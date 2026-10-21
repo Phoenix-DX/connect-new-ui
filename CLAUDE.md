@@ -32,7 +32,9 @@ Migrate the OutSystems app **UBTConnect TST** (`https://ubtm-tst.ubtconnectgloba
 
 ## How to work with me
 
-- Reply in Vietnamese; keep code, commands, file names and identifiers in English.
+- Reply to me in Vietnamese, whatever language I write in (Vietnamese or English). Keep code, commands, file names and
+  identifiers in English. Files written in the project (specs, docs, notes, commit messages) stay in English and follow
+  `migration/english-docs/style-rules.md`.
 - Questions to me: one session per topic (scope, stack, flags), grouped, each with evidence, options and a recommendation.
 - At the start of every session: `python3 $SK/route.py plan`, read `migration/contexts/INDEX.md`, and tell me in 5 lines
   where we are and what is next.
