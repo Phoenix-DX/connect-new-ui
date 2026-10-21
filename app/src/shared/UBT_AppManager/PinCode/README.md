@@ -15,6 +15,7 @@ Events: `KeyPressed` → `onKeyPressed`, `SetPin(UBTPincode)` → `onSetPin`, `P
 `placeholderBottomKeyboard`, `ContentPlaceholder` → `contentPlaceholder`.
 
 Keypad of the PIN screens:
+
 - Pins (filled `selected-icon` / `empty-icon`).
 - Keys 1–9 and 0 in three columns.
 - The Option placeholder (Length > 0) or an OK key (Length 0).

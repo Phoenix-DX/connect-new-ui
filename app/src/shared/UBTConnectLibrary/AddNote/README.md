@@ -8,8 +8,9 @@ Handler_OnSubmitNote :317-348). Placeholders: none.
 
 Markup (view :100-295): CustomContainer (padding horizontal base, top small; border neutral-3, top small) >
 Columns_Two (reduce last, spacing xs).
+
 - Left: the text Input widget `Input_Note` and InputCounter. The widget markup is `span.input-text >
-  input.form-control .OSFillParent`, with prompt "Add a Note" and max length 150. The capture on ContactByEmailMember
+input.form-control .OSFillParent`, with prompt "Add a Note" and max length 150. The capture on ContactByEmailMember
   shows this Input widget markup. InputCounter has In_InputId = the input id and In_InitialLength 0.
 - Right: CircleButton_IconPrimary (Send, primary circle, neutral-0 icon). It is enabled when Trim(Note) <> "".
   A click runs Handler_OnSubmitNote.

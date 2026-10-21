@@ -18,6 +18,7 @@ Data: DataActionGetSubdivision (`api.ts`; mock `mocks.ts`: recorded fixture, any
 Ported actions: Get_LookupSection, GetSkeleton_UI_SubdivisionDetails (`../lib/actions.ts`).
 
 Navigation (OnClick_NavigateToHousehold) calls GetHasCarouselEnabled (flag C2EnableCarousel):
+
 - When GetHasCarouselEnabled is true: SetPreloadObject(CarouselHouseholdItem of every listed household) and
   HouseholdCarousel(In_StartingHouseholdId).
 - Otherwise: HouseholdDetails(HouseholdId).

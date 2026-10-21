@@ -31,6 +31,7 @@ OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â
   - HasEmail is true when a mobile phone or an email exists [Directory_EntityDetailsActions.tsx, Action_UpdateContactDetails].
 
   When the call fails, the block disables every action. It raises the error to the flow handler.
+
 - `DataActionFetchNotes` (`api.ts`) runs before the notes sheet opens (Handler_AddNotes). It also runs in OnReady, after
   the lookup of the new bookmarks.
 - `mocks.ts` has a mock for each of the two calls. Both mocks are fictional. Nobody recorded them. The contact details
@@ -59,6 +60,7 @@ OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â
     - The contact fetch failed.
 
     The model default of isLoaded is False.
+
   - Local copies: `src/shell/localEntities` (`localBookmarks.ts`). The shell synchronizes them at app start
     [src/shell/startup.ts:158-159].
 - **Handle_Bookmark** (:1388-1514): the user clicks Bookmark or Unbookmark in the menu
@@ -69,6 +71,7 @@ OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â
 
   With C2NewBookmarks off, the menu keeps reading Local_isBookmarked (view :379-384). So the label does not change after
   a click, as compiled.
+
 - **Server calls**:
   - The API contract has the calls ServiceAPIAddBookmark2 and ServiceAPIDeleteBookmarkByBookmarkId2
     (`migration/contract/extra-actions.json`). `bookmarkServerActions` calls them through `callAction`.

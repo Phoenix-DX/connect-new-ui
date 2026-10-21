@@ -14,6 +14,7 @@ stack `osui:Gallery` = hand-written component with the captured DOM and classes 
 Events: `Initialized(GalleryId)` → `onInitialized`. Placeholder `Content` → `children`.
 Behaviour ported (OutSystems UI pattern script, as captured): the Content element gets ExtendedClass and these inline
 variables:
+
 - `--gallery-<desktop|tablet|phone>-items`, `--gallery-list-<…>-items` = RowItems<Device>
 - `--gallery-gap: var(--space-<ItemsGap>)`
 

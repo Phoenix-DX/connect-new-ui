@@ -16,6 +16,7 @@ OutSystems: `UBTConnectLibrary.ConnectPatterns.LazyImage` · pack
 Events: none. Placeholders: none.
 
 Structure: SkeletonSection (loading while the image loads) › CustomContainer with the image.
+
 - The image is `hidden` in three cases: there is no image, the image loads, or the image failed.
 - In those cases, the fallback CustomContainer (`--no-image`, skeleton element) shows:
   1. Initials.
@@ -25,6 +26,7 @@ Structure: SkeletonSection (loading while the image loads) › CustomContainer w
 `getClasses_LazyImageSize_Dev` (`../lib/actions.ts`) gives the size classes.
 
 Lifecycle (controller):
+
 - OnReady runs on mount and on every new ImageURL, as OnParametersChanged.
 - OnReady resets the error, sets Local_ImageURL, and sets isLoading = ImageURL <> "".
 - The load and error events of the image run OnLoad and OnError. The error event runs only with a `src`.

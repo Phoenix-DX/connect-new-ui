@@ -185,6 +185,7 @@ latest release). The run is one vitest run in Node (`build/lighthouse/vitest.con
 
   Categories: performance, accessibility, best practices (Lighthouse 12
   removed the PWA category; the e2e checks installability).
+
 - Reports stay on this machine: `app/lighthouse-reports/` (gitignored and prettier-ignored), `<Page>.report.html`,
   `<Page>.report.json` and `summary.json`, replaced on every run. Nothing is uploaded (no LHCI server, no public
   storage).
@@ -291,7 +292,7 @@ the app does not keep such a cache).
 **Tests.**
 
 - Unit: `networkDetection.test.ts`, `networkStatus.test.tsx`, `src/pwa/{networkFirst,persistStorage,swRoutes}
-  .test.ts`, `auth.test.ts` (logout), `orbitStaticEntities.test.ts` (eviction).
+.test.ts`, `auth.test.ts` (logout), `orbitStaticEntities.test.ts` (eviction).
 - `npm run e2e:pwa` now covers the offline reload and the ping ([Testing](#testing)).
 - Smoke by hand (headless Chromium, demo build in a temp folder served by `serve.mjs`): simulate offline by stopping the
   server **and** `context.setOffline(true)`. Playwright's offline mode does not cover the service worker's own requests.

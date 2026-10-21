@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "5122e865366ddc16d1a8",
+ "fingerprint": "9e175ba548f507119bbc",
  "options": {
   "text": true,
   "style": true,
@@ -24,7 +24,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:28:19.331Z",
+ "at": "2026-10-21T04:49:21.222Z",
  "counts": {},
  "exemptionsUsed": {
   "LOADING-FRAME-CONNECTSHARE": 1,

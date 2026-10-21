@@ -19,6 +19,7 @@ The screen passes its BottomBarMenu in `bottomBar` and its CommonUI_InsideLayout
 (Layout_HomePage approach).
 
 The React component renders LayoutRuntime_Top and BaseLayout_UpdatedOSUI:
+
 - ExtendedClass is `"connect-theme " + ExtendedClasses`.
 - Each placeholder is in its own container.
 - HeaderRight has `display-flex align-items-center`.

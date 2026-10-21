@@ -12,7 +12,7 @@
 | [PWA](guides/pwa.md)                              | build modes, service worker, caching, manifest, demo build, iOS limits                                                                                                       |
 | [Device adapters](guides/device.md)               | native features behind `src/lib/device`: barcode scanner (web scanner, `?scanner=web`)                                                                                       |
 | [Quality checks](guides/quality.md)               | lint, tests, parity, CI                                                                                                                                                      |
-| [Known original bugs](known-original-bugs.md)     | B1-B13: bugs of the original app, each reproduced or deliberately not (see the table)                                                                                                  |
+| [Known original bugs](known-original-bugs.md)     | B1-B13: bugs of the original app, each reproduced or deliberately not (see the table)                                                                                        |
 | Reference (generated)                             | [stack and ADRs](reference/stack.md) · [screens](reference/screens.md) · [flags](reference/flags.md) · [shared blocks](reference/shared-blocks.md) · [API](reference/api.md) |
 
 The script `python3 migration/tools/docs_gen.py` (run from the project root) generates the reference pages. Do not edit them by hand.

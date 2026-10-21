@@ -24,6 +24,7 @@ Event `OnToggle(IsExpanded)` â†’ `onOnToggle`. Placeholders `Title`, `Content` â
   - Content placeholder (`tabpanel`).
 
   The capture has no `aria-labelledby` on ContentWrapper, so it is not rendered.
+
 - JS nodes in `sectionDom.ts` (DOM functions, as the original): Expand / Collapse (height animation: inline height,
   100 ms timeout, `is--animating`, transitionend), SetAriaAttributes, CloseAll. SetGlobalActions puts `CollapseItem`,
   `ExpandItem`, `updateAccordion` on the SectionItem element for DEPRECATED_Accordion.
@@ -37,6 +38,7 @@ Event `OnToggle(IsExpanded)` â†’ `onOnToggle`. Placeholders `Title`, `Content` â
     OutSystemsUI.js).
 
   OnParametersChanged reruns it: Expand / Collapse to the new IsExpanded.
+
 - OnClick (:415-506): see the component; OnToggle carries the new state.
 
 ## Captured variants (4 tested)

@@ -76,7 +76,6 @@ Client entities store DateTimes as DateTimeRevamp = false does: UTC `yyyy-MM-dd 
 | `recentSearch.ts`, `localSearchHistory.ts` | ConnectSearch recent terms / clicked results, local search history                                                                        | see the files                                                                                                                                                                                        |
 | `orbitStaticEntities.ts`                   | Connect2_OrbitMobile_MUI.LocalSurveyStatus (`OSUSR_HQ9_LOCALSURVEYSTATUS`), LocalOrbitMilestoneType (`OSUSR_HQ9_LOCALORBITMILESTONETYPE`) | SyncAllOrbitStaticEntities, SyncOrbitSurveyStatus, SyncOrbitMilestoneTypes, GetLocalOrbitMilestoneTypeById (Entity.get), aggregates by JSON_Name / Id; in-memory mirror for first-render reads (F12) |
 
-
 Local entities in practice:
 
 - Public API: `src/shell/localEntities/index.ts`. Blocks and screens call the module actions that it exports
@@ -152,6 +151,7 @@ mocks. `testSupport.ts` gives `freshPage()`, `reloadPage({ newTab })`, `calledAc
 - A device set up with an older test PIN gets `0223` on its next mock session.
 
 Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off by default (user, 2026-10-17).
+
 - On the dev server, `?review=1` shows them for the tab and `?review=0` hides them again.
 - Tests and Storybook turn them on.
 - Built apps (demo PWA, production) never show them and render the content without the frame
@@ -160,6 +160,7 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
 ## Part B: navigation, back handling, preload, view cache
 
 `src/shell/navigation` (import from `src/shell/navigation`).
+
 - `<NavigationHost />` (AppFrame) owns the only blocker of the router.
 - `<ScreenTransitionGroup />` (AppFrame) renders the screen containers and their transitions.
 - `<ScreenFrame>` (router.tsx) wraps every screen.

@@ -16,6 +16,7 @@ fictional). Mock (`mocks.ts`): BaseURL = `public/mock-embeds/feed-cms.html`, no 
 the feed iframe is a same-size mock page; **BaseURL is the single switch point** for the real CMS.
 
 Flow (compiled controller):
+
 - OnInitialize builds the skeleton list (5 items; 1 with FeedItemId).
 - OnReady sets isLoading.
 - After GetFeedConfig, the InitializeFeed JS node configures the Connect2Feed SDK once. It loads the feed (or one
@@ -38,6 +39,7 @@ The iframe size comes from the original CSS
 
 `connect2Feed.ts` ports the Connect2Feed SDK (`migration/runtime-sources/UBTConnect_EmbedFeed.EmbedFeed.js`): defaults
 and mergeConfig (only its own keys: `channelId` and `tokenType` from InitializeFeed are dropped, :5-49).
+
 - configure listens to `message` once. It preloads a hidden iframe `<BaseURL>/embed/feeds?theme&limit[&hideActions][&b2c…]
 [&feedId]&preload=true` in the container (:319-417).
 - loadFeeds shows the iframe and posts `feeds:load` once configure settles (`auth:ready` or 15 s), or creates
@@ -45,6 +47,7 @@ and mergeConfig (only its own keys: `channelId` and `tokenType` from InitializeF
 - openFeedItem uses `<BaseURL>/embed/feeds/item/<id>` with its own listener (:610-710).
 
 Messages count only from `origin === BaseURL`:
+
 - `embed:ready` (auth token / theme, onReady)
 - `embed:complete` (total 0 hides the iframe and collapses the container; onComplete once)
 - `feeds:loaded`

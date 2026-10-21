@@ -13,6 +13,7 @@ Events: `Event_OnChange(SearchString)` → `onEventOnChange`, `Event_ClearString
 element id), `Event_OnFocus` → `onEventOnFocus`. Placeholders: none.
 
 Markup (view :157-372): `div.ubt-search-input` > InputWithIcon > InputWithIcon right > the search Input widget.
+
 - The first InputWithIcon has the search icon while the text is empty.
 - InputWithIcon right has the clear icon `cancel_fill` while there is text.
 - The search Input widget is `span.input-search > input`. Its classes are
@@ -20,6 +21,7 @@ Markup (view :157-372): `div.ubt-search-input` > InputWithIcon > InputWithIcon r
   enabled, max length, autocomplete on/off).
 
 Behaviour (controller :376-875):
+
 - OnReady sets the initial string and attaches `clearStringAction` to the input element.
 - OnReady focuses the input (FocusOnReady) and raises Event_OnReady.
 - When the user types, the block validates a mandatory input.

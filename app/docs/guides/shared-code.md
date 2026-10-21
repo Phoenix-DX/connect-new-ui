@@ -12,6 +12,7 @@ Every shared block has a DOM capture test per captured state and a Storybook sto
 
 **Freeze.** Once the foundation is done, screens never edit `src/shell`, `src/shared`, `src/lib` or the original CSS.
 When a screen needs a change:
+
 - The screen writes `migration/change-requests/CR-<Screen>-<n>.md`.
 - The screen renders that part with `<NotCaptured>` and carries on.
 - The foundation owner applies change requests in batches. The owner re-verifies every screen that uses the block.
@@ -98,6 +99,7 @@ Why vendored: the original customises PanZoom (options that upstream does not ha
 1.1.0. Behaviour must match the original, so the app keeps the same file.
 
 How to upgrade: upgrade only together with the original app.
+
 1. Fetch the new file as a plain static GET.
 2. Replace the copy byte for byte.
 3. Update `SOURCE.md` (URL, date, size, sha256).

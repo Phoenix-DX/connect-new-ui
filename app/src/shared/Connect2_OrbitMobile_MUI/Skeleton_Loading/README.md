@@ -14,7 +14,7 @@ No events, no placeholders. `OrbitSkeletonLoading` values: TST static entities (
   - SingleItem
   - AdminEventDetails
   - OrbitLanding / TransportDetail / ViewDocument / HostSurveyHelpers (List_SkeletonLoadingSingle, row height large /
-     base / s / base)
+    base / s / base)
   - EventDetail
   - MilestoneDetailGuest
   - MilestoneDetailHost

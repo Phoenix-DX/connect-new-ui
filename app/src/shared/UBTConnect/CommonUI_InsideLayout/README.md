@@ -16,19 +16,19 @@ The block renders these children, in the captured order:
 
 - `OfflineDataSyncEvents`.
 - Block_PINUnlock. In the React app, this is the shell's `LockHost`.
-   - The block does not render it when In_IgnoreLockScreen is on.
-   - `LockHost` hides it in the same cases as HideLockScreen:
-     - The user is signed out.
-     - The user must register a PIN.
-     - The screen ignores the lock.
+  - The block does not render it when In_IgnoreLockScreen is on.
+  - `LockHost` hides it in the same cases as HideLockScreen:
+    - The user is signed out.
+    - The user must register a PIN.
+    - The screen ignores the lock.
 - `Policy_Checker`. The block renders it when In_IgnorePolicy is off and `App_Policies_HasPolicyToAccept` is on.
 - `Dialog_AccessRestrictedAction`. In the React app, this is the shell's `DialogAccessRestrictedAction`.
 - `HandleOnResumeOpenLink`.
 - `HandleImageLoadError`.
 - One of two back handlers:
-   - When IsNavigateToHomeOnBack is on, the block renders `PreventBackNavigation`. It opens HomeFeed.
-   - Otherwise, the block renders `BackNavigationHandler` (priority −10000). At the first entry of the tab, it opens
-     HomeFeed after 0 ms.
+  - When IsNavigateToHomeOnBack is on, the block renders `PreventBackNavigation`. It opens HomeFeed.
+  - Otherwise, the block renders `BackNavigationHandler` (priority −10000). At the first entry of the tab, it opens
+    HomeFeed after 0 ms.
 
 The layouts render this block in `Placeholder_CommonUI_Inside_Layout`. The Connect2 screens render it after their layout.
 Until the layouts do this, the shell's `CommonUiHost` and `LockHost` in AppFrame stand in for the block. This block
