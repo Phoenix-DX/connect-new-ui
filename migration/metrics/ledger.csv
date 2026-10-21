@@ -240,3 +240,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-21,_docs,other,123349,sonnet-ste-writer-other-03,,"English docs phase B: writer other-03; 8 docs, lint 38->0"
 2026-10-21,_docs,other,76488,sonnet-ste-reviewer-other-03,,"English docs phase B: reviewer other-03; 2 meaning fixes, 1 stale fact"
 2026-10-21,_docs,other,788,sonnet-pilot-shell-readmes,,English docs pilot: final count correction (212227 total; 211439 recorded earlier as interim)
+2026-10-21,_docs,other,99051,sonnet-dashboard-content-writer,,"UI Flows dashboard: content.en.json (13 areas, 44 flows, scope reasons, D1-D11)"
+2026-10-21,_docs,other,95502,sonnet-dashboard-content-reviewer,,"UI Flows dashboard: content review; 8 category fixes, 5 flow purposes, D6/D8 wording"

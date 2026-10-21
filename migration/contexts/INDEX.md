@@ -9,6 +9,7 @@ section "Context notes".
 - Auto mode OFF (user 2026-10-17); user reviewed the auto items; F2 answered, ADR-14 (handover, not implemented) ([context-027](context-027-review-markers-opt-in.md)).
 - Nothing open for the demo. Deferred to production (user 2026-10-17): nav timeout, PWA-2/3/B choices, 3 rows of 2026-10-15, BFF host, ADR-14 code; mobile performance later. Demo hosting: own domain/subdomain root (SW scope `/`).
 - English docs done (2026-10-21): all specs and docs in English, STE writing rules, reviewed; `REVIEW-GUIDE.md` at the root; 64 spec-done, parity 64/0. Open questions for the user in [context-032](context-032-english-docs-ste.md). Atlas/KB/Scorecard deleted ([context-031](context-031-coverage-atlas-removed.md)).
+- UI Flows dashboard built (2026-10-21, no React content): `migration/flows-dashboard/site/`; the user publishes it ([context-033](context-033-ui-flows-dashboard.md)).
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/` (`node serve.mjs`); dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1` for review frames). Tools: `migration/tools/` (parity sweep, re-stamp with the user's confirm, dev-vs-demo QA; README).
 
 ## Contexts
@@ -47,3 +48,4 @@ section "Context notes".
 | [030](context-030-kb-scorecard.md) | 2026-10-20 | KB Scorecard (EN): 9 sections, spec rubric 5×20, KB 82/B; artifact | superseded by context-031 (deleted) |
 | [031](context-031-coverage-atlas-removed.md) | 2026-10-21 | MCP coverage check, spec coverage vs DEV inventory (server side missing), VI scan, Atlas/KB/Scorecard deleted | current |
 | [032](context-032-english-docs-ste.md) | 2026-10-21 | English docs in STE style: phase A, pilot, phase B (342 files reviewed), 183 stale facts fixed, parity 64/0 | current |
+| [033](context-033-ui-flows-dashboard.md) | 2026-10-21 | UI Flows dashboard for the manager: 44 flows, scope reasons, TST screenshots, health, method; build only | current |

@@ -1,0 +1,724 @@
+{
+ "areas": {
+  "Start and sign-in": "Users open the app, sign in, set or enter a PIN and accept pending policies.",
+  "Home and messages": "Users read the home feed, notifications and messages, and open services, notes and events.",
+  "Directory: countries, localities, search": "Users browse countries and localities, search the directory and read directory updates.",
+  "Directory: households": "Users read household details, members, relations and photos.",
+  "Directory: supper meeting, OSG, community business": "Users read details of Supper Meetings and OneSchoolGlobal (OSG). Links to community business details open a Coming soon screen.",
+  "Bookmarks": "Users save directory items and open their saved items.",
+  "Orbit": "Users see Orbit events and their details, such as milestones, helpers, documents and QR codes.",
+  "LDM": "Users see Lord's Day Meal (LDM) events and contact the event hosts.",
+  "Assemble": "Users see Assemble events and browse them by country.",
+  "Menu, profile and contact": "Users open the menu, read their profile, change PIN settings, read policies and send contact messages.",
+  "Share": "Users share items and open items from a share link.",
+  "Deprecated": "Earlier personal-event screens that the original app no longer uses.",
+  "Shared building blocks": "Parts that many screens use again, such as layouts, dialogs, filters and cards."
+ },
+ "flows": {
+  "App_Cache": {
+   "label": "Data cache",
+   "purpose": "This flow holds one block that controls the cache of user information.",
+   "evidence": "migration/knowledge/*.md; flow block list in the input"
+  },
+  "App_Common": {
+   "label": "Start and layout",
+   "purpose": "This flow has the start, sign-in and InvalidPermissions screens, and the shared layout, bottom bar and version blocks.",
+   "evidence": "migration/survey/screens.json; board reasons"
+  },
+  "App_CommonBlocks_Filter": {
+   "label": "Filter and sort sheets",
+   "purpose": "This flow has the filter, sort and more-actions bottom sheets that screens use.",
+   "evidence": "block names in the flow"
+  },
+  "App_Common_Blocks": {
+   "label": "Common parts",
+   "purpose": "This flow has common parts such as the notification icon, badges, external links and list loading.",
+   "evidence": "block names in the flow"
+  },
+  "App_Common_Blocks_PopupDialogs": {
+   "label": "Dialogs",
+   "purpose": "This flow has the dialogs for information, choices, exit confirmation and navigation.",
+   "evidence": "block names in the flow"
+  },
+  "App_Menu": {
+   "label": "Menu and PIN settings",
+   "purpose": "Users open the menu, the terms and policies list and the PIN and biometrics settings.",
+   "evidence": "migration/survey/screens.json; board reasons"
+  },
+  "App_Menu_ContactUs": {
+   "label": "Contact us",
+   "purpose": "Users choose a contact subject and read its details. The flow also has the rating parts.",
+   "evidence": "migration/survey/screens.json; screen names"
+  },
+  "App_Notifications": {
+   "label": "Notifications",
+   "purpose": "Users read their notifications. The bell icon opens this screen when the flag C2NewNotifications is on.",
+   "evidence": "migration/scope-review.md (D11)"
+  },
+  "App_PIN": {
+   "label": "PIN",
+   "purpose": "Users register, enter or change the PIN of the app.",
+   "evidence": "migration/survey/screens.json; migration/knowledge/auth.md"
+  },
+  "App_Policies": {
+   "label": "Accept policies",
+   "purpose": "Users accept pending policies. Many screens send the user here when a policy waits.",
+   "evidence": "board reason of AcceptPendingPolicies"
+  },
+  "App_Profile": {
+   "label": "Profile",
+   "purpose": "Users read their own profile and a preview of their household.",
+   "evidence": "board reason of Profile; migration/survey/screens.json"
+  },
+  "App_Services": {
+   "label": "Services",
+   "purpose": "Users open the services that the home feed lists.",
+   "evidence": "migration/survey/screens.json (reached from HomeFeed)"
+  },
+  "Bookmarks": {
+   "label": "Bookmarks (new)",
+   "purpose": "This flow has the newer Bookmarks screen. It shows only when the flag C2NewBookmarks is on, and the flag is off on TST.",
+   "evidence": "migration/scope-review.md (D2)"
+  },
+  "Calendar": {
+   "label": "Calendar and events",
+   "purpose": "This flow has the entertaining events screen and an earlier calendar screen that another screen replaced.",
+   "evidence": "board reasons of MyCalendar and MyEntertaining"
+  },
+  "Calendar_Events": {
+   "label": "Event cards",
+   "purpose": "This flow has the event card and list parts for calendar events.",
+   "evidence": "block names in the flow"
+  },
+  "ContactFlow": {
+   "label": "Contact by email",
+   "purpose": "Users write an email to a member, OneSchoolGlobal, an Orbit host or helpdesk, or an LDM coordinator.",
+   "evidence": "migration/survey/screens.json; screen names"
+  },
+  "Deprecated_Calendar_PersonalEvent": {
+   "label": "Personal events",
+   "purpose": "This flow has the personal event screens. The flag C2EnablePersonalEvents is off on TST, and only screens that are out of scope open them.",
+   "evidence": "board reasons of the five screens"
+  },
+  "Directory_Caroussel": {
+   "label": "Carousels",
+   "purpose": "This flow has the carousel parts that show households and Supper Meetings one by one.",
+   "evidence": "block names in the flow"
+  },
+  "Directory_CommonBlocks": {
+   "label": "Directory parts",
+   "purpose": "This flow has the empty-state and action parts that directory screens use.",
+   "evidence": "block names in the flow"
+  },
+  "Directory_Household": {
+   "label": "Household details",
+   "purpose": "Users read a household, move between households in a carousel and read the relations of a member.",
+   "evidence": "migration/survey/screens.json; board reasons"
+  },
+  "Directory_Household_Blocks": {
+   "label": "Household cards",
+   "purpose": "This flow has the cards, member lists and photo timeline that household screens use.",
+   "evidence": "block names in the flow"
+  },
+  "Directory_Interchange": {
+   "label": "Interchange statistics",
+   "purpose": "This flow has one block that shows interchange statistics in the directory.",
+   "evidence": "block name in the flow"
+  },
+  "Directory_Locality": {
+   "label": "Countries and localities",
+   "purpose": "Users browse countries and localities and read the details of each one.",
+   "evidence": "migration/survey/screens.json; board reasons"
+  },
+  "Directory_OneSchoolGlobal": {
+   "label": "OSG details",
+   "purpose": "Users read the details of a OneSchoolGlobal (OSG) group. An OSG event screen exists but nothing opens it.",
+   "evidence": "migration/survey/screens.json; board reasons"
+  },
+  "Directory_OneSchoolGlobal_Blocks": {
+   "label": "OSG parts",
+   "purpose": "This flow has the numbers, event cards and detail cards for OneSchoolGlobal (OSG).",
+   "evidence": "block names in the flow"
+  },
+  "Directory_Photobook": {
+   "label": "Photobook",
+   "purpose": "Users look at the photos of a household in a photobook.",
+   "evidence": "board reason of Photobook; migration/survey/screens.json"
+  },
+  "Directory_Search": {
+   "label": "Directory search",
+   "purpose": "Users search the directory and see recent searches and results.",
+   "evidence": "board reason of Search; block names"
+  },
+  "Directory_SupperMeetings": {
+   "label": "Supper Meetings",
+   "purpose": "Users read the details of a Supper Meeting and move between Supper Meetings in a carousel.",
+   "evidence": "migration/survey/screens.json; board reasons"
+  },
+  "Directory_Updates": {
+   "label": "Updates",
+   "purpose": "Users read a list of updates with filters. The flow also has the update item parts.",
+   "evidence": "board reason of Updates_SingleList; block names"
+  },
+  "Home": {
+   "label": "Home feed",
+   "purpose": "Users read the home feed and open a feed item. The feed content comes from an embedded Feed CMS.",
+   "evidence": "migration/scope-review.md (D8); board reasons"
+  },
+  "Legacy_AssembleFlow": {
+   "label": "Assemble events",
+   "purpose": "Users see Assemble events, browse them by country and read an event.",
+   "evidence": "migration/knowledge/orbit-assemble-ldm.md; migration/survey/screens.json"
+  },
+  "Legacy_LDMEventsFlow": {
+   "label": "LDM events (V1)",
+   "purpose": "This flow has the version 1 screens for Lord's Day Meal (LDM) events. TST uses version 2.",
+   "evidence": "migration/knowledge/orbit-assemble-ldm.md"
+  },
+  "Legacy_LDMEventsFlow_V2": {
+   "label": "LDM events (V2)",
+   "purpose": "Users see their Lord's Day Meal (LDM) events and read an event. An email screen also exists.",
+   "evidence": "migration/knowledge/orbit-assemble-ldm.md; migration/survey/screens.json"
+  },
+  "Legacy_MyBookmarks": {
+   "label": "My bookmarks",
+   "purpose": "Users open their saved items and read the items of one group. Two more screens exist for another branch that TST does not use.",
+   "evidence": "migration/scope-review.md (D2)"
+  },
+  "Legacy_MyNotificationsFlow": {
+   "label": "Messages",
+   "purpose": "Users read a list of messages and open one message. A message can also open from a push notification or a link.",
+   "evidence": "migration/scope-review.md (D11); migration/survey/screens.json"
+  },
+  "Legacy_OrbitAdminFlow": {
+   "label": "Orbit admin",
+   "purpose": "Orbit administrators see their landing screen and an event. Two more admin screens exist on DEV only.",
+   "evidence": "migration/knowledge/orbit-assemble-ldm.md; migration/survey/screens.json"
+  },
+  "Legacy_OrbitEventsFlow": {
+   "label": "Orbit events",
+   "purpose": "Users see an Orbit event and its milestones, helpers, documents, transport, booklet and survey.",
+   "evidence": "migration/knowledge/orbit-assemble-ldm.md; migration/survey/screens.json"
+  },
+  "Legacy_OrbitQRCodeFlow": {
+   "label": "Orbit QR code",
+   "purpose": "Users make a QR code for an Orbit event.",
+   "evidence": "screen name and migration/survey/screens.json"
+  },
+  "Legacy_Share": {
+   "label": "Share",
+   "purpose": "Users open the share screen for an item. Share links from outside also open the app through this flow.",
+   "evidence": "migration/scope-review.md (D10); migration/survey/screens.json"
+  },
+  "Map": {
+   "label": "Map",
+   "purpose": "This flow has the map screen. Its entry icon in Locality_Details needs the flag C2EnableMaps. The flag is off on TST.",
+   "evidence": "migration/scope-review.md; board reason of Map"
+  },
+  "Notes": {
+   "label": "Notes",
+   "purpose": "Users read their notes and filter them.",
+   "evidence": "board reason of Notes; block names"
+  },
+  "SubLayout": {
+   "label": "Screen layouts",
+   "purpose": "This flow has the layout parts that browse and detail screens use.",
+   "evidence": "block names in the flow"
+  },
+  "zDEV_Directory_CommunityBusinessBlocks": {
+   "label": "Community business",
+   "purpose": "This flow is a development flow for community business details. The live links open a Coming soon screen.",
+   "evidence": "board reasons of the two screens"
+  },
+  "zTemp_Flow": {
+   "label": "Temporary screens",
+   "purpose": "This flow has a share screen for one bookmark branch and a test screen.",
+   "evidence": "board reasons of ShareObject and TestOpenShare"
+  }
+ },
+ "outOfScope": {
+  "InvalidPermissions": {
+   "category": "Not reachable on TST",
+   "reason": "No link, address or error handler opens this screen on TST.",
+   "reopen": "Reopen if the original app moves to this screen, for example for an account without permission.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V1 D3; migration/scope-review.md"
+  },
+  "MyCalendar": {
+   "category": "Replaced by another screen",
+   "reason": "MyEntertaining replaced this calendar screen. No link opens it.",
+   "reopen": "Reopen if a new link to MyCalendar appears.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V7; migration/scope-review.md"
+  },
+  "ContactByEmailContacts": {
+   "category": "Not reachable on TST",
+   "reason": "Its only link is in a block that no screen shows on TST.",
+   "reopen": "Reopen if that block appears in Locality_Details.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V7; migration/scope-review.md (D5)"
+  },
+  "PersonalEventDetails": {
+   "category": "Not reachable on TST",
+   "reason": "Part of the earlier personal-events flow. Only screens that are out of scope open it, and the flag C2EnablePersonalEvents is off on TST.",
+   "reopen": "Reopen when personal events are on again.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V7; migration/scope-review.md"
+  },
+  "PersonalEventForm": {
+   "category": "Not reachable on TST",
+   "reason": "Part of the earlier personal-events flow. Only screens that are out of scope open it, and the flag C2EnablePersonalEvents is off on TST.",
+   "reopen": "Reopen when personal events are on again.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V7; migration/scope-review.md"
+  },
+  "Recurrence": {
+   "category": "Not reachable on TST",
+   "reason": "Part of the earlier personal-events flow. Only screens that are out of scope open it, and the flag C2EnablePersonalEvents is off on TST.",
+   "reopen": "Reopen when personal events are on again.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V7; migration/scope-review.md"
+  },
+  "Reminder": {
+   "category": "Not reachable on TST",
+   "reason": "Part of the earlier personal-events flow. Only screens that are out of scope open it, and the flag C2EnablePersonalEvents is off on TST.",
+   "reopen": "Reopen when personal events are on again.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V7; migration/scope-review.md"
+  },
+  "ViewEventList": {
+   "category": "Not reachable on TST",
+   "reason": "Part of the earlier personal-events flow. Only screens that are out of scope open it, and the flag C2EnablePersonalEvents is off on TST.",
+   "reopen": "Reopen when personal events are on again.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V7; migration/scope-review.md"
+  },
+  "OneSchoolGlobalEventDetail": {
+   "category": "Not reachable on TST",
+   "reason": "No link opens this screen, and its input is not used.",
+   "reopen": "Reopen if a link to this screen appears.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V7; migration/scope-review.md"
+  },
+  "Bookmarks": {
+   "category": "Behind a flag that is off on TST",
+   "reason": "This is branch 1 of the Bookmarks tab. It shows only when the flag C2NewBookmarks is on. The flag is off on TST.",
+   "reopen": "Reopen when C2NewBookmarks is on.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V3d; migration/scope-review.md (D2)"
+  },
+  "New_MyBookmarks": {
+   "category": "Behind a flag that is off on TST",
+   "reason": "This is branch 2 of the Bookmarks tab. It needs the LaunchDarkly flag mobileDirectoryBookmarkNote on. The flag is off on TST.",
+   "reopen": "Reopen when mobileDirectoryBookmarkNote is on and C2NewBookmarks is off.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V3d; migration/scope-review.md (D2)"
+  },
+  "New_BookmarksByGroup": {
+   "category": "Behind a flag that is off on TST",
+   "reason": "This is branch 2 of the Bookmarks tab. It needs the LaunchDarkly flag mobileDirectoryBookmarkNote on. The flag is off on TST.",
+   "reopen": "Reopen when mobileDirectoryBookmarkNote is on and C2NewBookmarks is off.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V3d; migration/scope-review.md (D2)"
+  },
+  "ShareObject": {
+   "category": "Behind a flag that is off on TST",
+   "reason": "Only New_BookmarksByGroup opens this screen. That screen shows only when the flag mobileDirectoryBookmarkNote is on. The flag is off on TST.",
+   "reopen": "Reopen when mobileDirectoryBookmarkNote is on and C2NewBookmarks is off.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V3d; migration/scope-review.md (D2)"
+  },
+  "LDM_Email": {
+   "category": "Earlier version not used",
+   "reason": "TST uses the LDM version 2 screens. The version 1 screens are not needed.",
+   "reopen": "Reopen if TST uses the version 1 screens again.",
+   "decidedBy": "project owner",
+   "date": "2026-10-16",
+   "evidence": "Board reason of 2026-10-16; migration/knowledge/orbit-assemble-ldm.md"
+  },
+  "LDM_EventDetail": {
+   "category": "Earlier version not used",
+   "reason": "TST uses the LDM version 2 screens. The version 1 screens are not needed.",
+   "reopen": "Reopen if TST uses the version 1 screens again.",
+   "decidedBy": "project owner",
+   "date": "2026-10-16",
+   "evidence": "Board reason of 2026-10-16; migration/knowledge/orbit-assemble-ldm.md"
+  },
+  "LDM_MyEvents": {
+   "category": "Earlier version not used",
+   "reason": "TST uses the LDM version 2 screens. The version 1 screens are not needed.",
+   "reopen": "Reopen if TST uses the version 1 screens again.",
+   "decidedBy": "project owner",
+   "date": "2026-10-16",
+   "evidence": "Board reason of 2026-10-16; migration/knowledge/orbit-assemble-ldm.md"
+  },
+  "Map": {
+   "category": "Behind a flag that is off on TST",
+   "reason": "The entry icon in Locality_Details shows only when the flag C2EnableMaps is on.",
+   "reopen": "Reopen when C2EnableMaps is on.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V4a; migration/scope-review.md"
+  },
+  "CommunityBusinessDetails": {
+   "category": "Test or development screen",
+   "reason": "It belongs to a development flow. The live links open the Coming soon screen instead.",
+   "reopen": "Reopen if TST links to this screen.",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V7; migration/scope-review.md (D4)"
+  },
+  "TestOpenShare": {
+   "category": "Test or development screen",
+   "reason": "This is a test screen in a temporary flow.",
+   "reopen": "",
+   "decidedBy": "project owner",
+   "date": "2026-10-14",
+   "evidence": "Board reason V7; migration/scope-review.md"
+  }
+ },
+ "inScope": {
+  "Login": {
+   "reason": "Sign-in screen of the app.",
+   "date": "2026-10-14"
+  },
+  "Splash": {
+   "reason": "Start screen of the app.",
+   "date": "2026-10-14"
+  },
+  "Menu": {
+   "reason": "Menu tab of the bottom bar.",
+   "date": "2026-10-14"
+  },
+  "PINBiometricsMenu": {
+   "reason": "Opens from the menu. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "TermsAndPoliciesMenu": {
+   "reason": "Menu or contact screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "ContactUsDetails": {
+   "reason": "Menu or contact screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "ContactUsMenu": {
+   "reason": "Menu or contact screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "Notifications": {
+   "reason": "Shown when the flag C2NewNotifications is on. Both variants are in scope.",
+   "date": "2026-10-14"
+  },
+  "PINChange": {
+   "reason": "Opens from the PIN settings in the menu.",
+   "date": "2026-10-14"
+  },
+  "PINRegister": {
+   "reason": "The user sets a PIN when the app starts.",
+   "date": "2026-10-14"
+  },
+  "PINUnlock": {
+   "reason": "Lock screen. The user enters the PIN.",
+   "date": "2026-10-14"
+  },
+  "AcceptPendingPolicies": {
+   "reason": "Many screens lead here when a policy waits for acceptance.",
+   "date": "2026-10-14"
+  },
+  "Profile": {
+   "reason": "Menu or contact screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "Services": {
+   "reason": "Opens from the home feed and the bottom bar.",
+   "date": "2026-10-14"
+  },
+  "MyEntertaining": {
+   "reason": "Opens from the home feed. Most of the screen is embedded content.",
+   "date": "2026-10-14"
+  },
+  "ContactByEmailLDMCoordinator": {
+   "reason": "Part of the LDM family. It belongs to UBTConnect.",
+   "date": "2026-10-16"
+  },
+  "ContactByEmailMember": {
+   "reason": "Menu or contact screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "ContactByEmailOneSchoolGlobal": {
+   "reason": "Menu or contact screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "ContactByEmailOrbitHelpdesk": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "ContactByEmailOrbitHost": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "HouseholdCarousel": {
+   "reason": "Flag C2EnableCarousel is on on TST. Opens from 15 screens.",
+   "date": "2026-10-14"
+  },
+  "HouseholdDetails": {
+   "reason": "Opens from 28 places. 16 do not depend on the carousel flag.",
+   "date": "2026-10-14"
+  },
+  "Household_Relations": {
+   "reason": "Directory detail screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "BrowseCountries": {
+   "reason": "Directory detail screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "BrowseDirectory": {
+   "reason": "Directory detail screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "CountryDetails": {
+   "reason": "Directory detail screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "CountryList": {
+   "reason": "Directory tab on TST (flag C2EnableC1DirectoryView is on).",
+   "date": "2026-10-14"
+  },
+  "Locality_Details": {
+   "reason": "Opens from 13 screens. It is also a Directory tab variant.",
+   "date": "2026-10-14"
+  },
+  "OneSchoolGlobalDetails": {
+   "reason": "Directory detail screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "Photobook": {
+   "reason": "Directory detail screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "Search": {
+   "reason": "Opens from the home feed and the bottom bar.",
+   "date": "2026-10-14"
+  },
+  "SupperMeeting_Carousel": {
+   "reason": "Directory detail screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "SupperMeeting_Details": {
+   "reason": "Directory detail screen. Reachable on TST.",
+   "date": "2026-10-14"
+  },
+  "Updates_SingleList": {
+   "reason": "Opens from the home feed and the bottom bar.",
+   "date": "2026-10-14"
+  },
+  "FeedItemDetail": {
+   "reason": "Opens from a message and from a share link.",
+   "date": "2026-10-14"
+  },
+  "HomeFeed": {
+   "reason": "Default screen of the app.",
+   "date": "2026-10-14"
+  },
+  "AssembleDetail": {
+   "reason": "Assemble screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "AssembleEvents": {
+   "reason": "Assemble screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "Assemble_BrowseByCountry": {
+   "reason": "Assemble screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "EmailTarget": {
+   "reason": "Part of the LDM family. It belongs to UBTConnect.",
+   "date": "2026-10-16"
+  },
+  "LDM_Email_V2": {
+   "reason": "LDM version 2 screen. TST uses version 2.",
+   "date": "2026-10-16"
+  },
+  "LDM_EventDetail_V2": {
+   "reason": "LDM version 2 screen. TST uses version 2.",
+   "date": "2026-10-16"
+  },
+  "LDM_MyEvents_V2": {
+   "reason": "LDM version 2 screen. TST uses version 2.",
+   "date": "2026-10-16"
+  },
+  "BookmarksByGroup": {
+   "reason": "Branch of the Bookmarks tab that TST uses.",
+   "date": "2026-10-14"
+  },
+  "MyBookmarks": {
+   "reason": "Branch of the Bookmarks tab that TST uses.",
+   "date": "2026-10-14"
+  },
+  "MessageDetail": {
+   "reason": "Opens from the message list, links and push notifications.",
+   "date": "2026-10-16"
+  },
+  "MessageList": {
+   "reason": "Shown when the flag C2NewNotifications is off. Both variants are in scope.",
+   "date": "2026-10-14"
+  },
+  "OrbitAdminEventDetail": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "OrbitAdminLanding": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "EmailContact": {
+   "reason": "Part of the Orbit family. It belongs to UBTConnect.",
+   "date": "2026-10-16"
+  },
+  "EventBooklet": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "EventDetail": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "GuestArrangements": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "HelpersDetail": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "HostSurvey": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "MilestoneDetail": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "OrbitLanding": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "TransportDetail": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "ViewDocuments": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "QRCodeGenerate": {
+   "reason": "Orbit screens belong to UBTConnect itself, not to a separate app.",
+   "date": "2026-10-16"
+  },
+  "ConnectShare": {
+   "reason": "Entry for share links from outside the app.",
+   "date": "2026-10-14"
+  },
+  "LegacyShareObject": {
+   "reason": "Share button target of 12 in-scope screens.",
+   "date": "2026-10-14"
+  },
+  "Notes": {
+   "reason": "Opens from the home feed and the bottom bar.",
+   "date": "2026-10-14"
+  },
+  "CommunityBusinessDetails_CoomingSoon": {
+   "reason": "Opens from the bookmark screens that TST uses.",
+   "date": "2026-10-14"
+  }
+ },
+ "devOnly": {
+  "OrbitAdminMilestoneDetail": "This screen exists on DEV only, not on TST. No scope decision exists yet.",
+  "OrbitAdminMilestones": "This screen exists on DEV only, not on TST. No scope decision exists yet.",
+  "PassportScan": "This screen exists on DEV only, not on TST. No scope decision exists yet."
+ },
+ "decisions": [
+  {
+   "id": "D1",
+   "topic": "LDM versions",
+   "outcome": "The LDM version 2 screens are in scope. The LDM version 1 screens are not.",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "D2",
+   "topic": "Bookmarks branches",
+   "outcome": "Only the Bookmarks branch that TST uses is in scope. The other two branches are not.",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "D3",
+   "topic": "Sign-in and PIN",
+   "outcome": "Start, sign-in and PIN screens are in scope. InvalidPermissions is not.",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "D4",
+   "topic": "CommunityBusinessDetails",
+   "outcome": "This screen is out of scope. The live links open the Coming soon screen.",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "D5",
+   "topic": "ContactByEmailContacts",
+   "outcome": "This screen is out of scope. No screen shows its only link on TST.",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "D6",
+   "topic": "Screens with no way in",
+   "outcome": "Eight screens with no way in on TST are out of scope. EmailContact and EmailTarget are in scope with the Orbit and LDM families.",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "D7",
+   "topic": "Clearly reachable screens",
+   "outcome": "Screens that open from the app layout or from the home feed are in scope.",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "D8",
+   "topic": "Embedded content",
+   "outcome": "HomeFeed, FeedItemDetail, MessageDetail and MyEntertaining are in scope. The content that other apps embed in them is not in scope.",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "D9",
+   "topic": "Orbit and Assemble",
+   "outcome": "Orbit and Assemble screens are in scope. They are screens of UBTConnect itself, not of a separate app.",
+   "date": "2026-10-16"
+  },
+  {
+   "id": "D10",
+   "topic": "ConnectShare",
+   "outcome": "ConnectShare is in scope. It opens the app from a share link.",
+   "date": "2026-10-14"
+  },
+  {
+   "id": "D11",
+   "topic": "Notifications and messages",
+   "outcome": "Notifications and MessageList are both in scope. The flag C2NewNotifications chooses between them.",
+   "date": "2026-10-14"
+  }
+ ]
+}

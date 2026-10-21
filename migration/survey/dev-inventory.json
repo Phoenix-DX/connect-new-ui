@@ -1,0 +1,1161 @@
+{
+ "source": "OutSystems Service Studio MCP, module UBTConnect, environment DEV (read-only calls: getScreenNames, getWebBlockNames)",
+ "takenAt": "2026-10-21",
+ "note": "DEV is reference only; TST is the source of truth (CLAUDE.md). Screens and blocks of the module itself; referenced modules are counted only.",
+ "flows": [
+  "App_Cache",
+  "App_Common",
+  "App_CommonBlocks_Filter",
+  "App_Common_Blocks",
+  "App_Common_Blocks_PopupDialogs",
+  "App_Menu",
+  "App_Menu_ContactUs",
+  "App_Notifications",
+  "App_PIN",
+  "App_Policies",
+  "App_Profile",
+  "App_Services",
+  "Bookmarks",
+  "Calendar",
+  "Calendar_Events",
+  "ContactFlow",
+  "Deprecated_Calendar_PersonalEvent",
+  "Directory_Caroussel",
+  "Directory_CommonBlocks",
+  "Directory_Household",
+  "Directory_Household_Blocks",
+  "Directory_Interchange",
+  "Directory_Locality",
+  "Directory_OneSchoolGlobal",
+  "Directory_OneSchoolGlobal_Blocks",
+  "Directory_Photobook",
+  "Directory_Search",
+  "Directory_SupperMeetings",
+  "Directory_Updates",
+  "Home",
+  "Legacy_AssembleFlow",
+  "Legacy_LDMEventsFlow",
+  "Legacy_LDMEventsFlow_V2",
+  "Legacy_MyBookmarks",
+  "Legacy_MyNotificationsFlow",
+  "Legacy_OrbitAdminFlow",
+  "Legacy_OrbitEventsFlow",
+  "Legacy_OrbitQRCodeFlow",
+  "Legacy_Share",
+  "Map",
+  "Notes",
+  "SubLayout",
+  "zDEV_Directory_CommunityBusinessBlocks",
+  "zTemp_Flow"
+ ],
+ "screens": [
+  {
+   "name": "AcceptPendingPolicies",
+   "flow": "App_Policies"
+  },
+  {
+   "name": "AssembleDetail",
+   "flow": "Legacy_AssembleFlow"
+  },
+  {
+   "name": "AssembleEvents",
+   "flow": "Legacy_AssembleFlow"
+  },
+  {
+   "name": "Assemble_BrowseByCountry",
+   "flow": "Legacy_AssembleFlow"
+  },
+  {
+   "name": "Bookmarks",
+   "flow": "Bookmarks"
+  },
+  {
+   "name": "BookmarksByGroup",
+   "flow": "Legacy_MyBookmarks"
+  },
+  {
+   "name": "BrowseCountries",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "BrowseDirectory",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "CommunityBusinessDetails",
+   "flow": "zDEV_Directory_CommunityBusinessBlocks"
+  },
+  {
+   "name": "CommunityBusinessDetails_CoomingSoon",
+   "flow": "zDEV_Directory_CommunityBusinessBlocks"
+  },
+  {
+   "name": "ConnectShare",
+   "flow": "Legacy_Share"
+  },
+  {
+   "name": "ContactByEmailContacts",
+   "flow": "ContactFlow"
+  },
+  {
+   "name": "ContactByEmailLDMCoordinator",
+   "flow": "ContactFlow"
+  },
+  {
+   "name": "ContactByEmailMember",
+   "flow": "ContactFlow"
+  },
+  {
+   "name": "ContactByEmailOneSchoolGlobal",
+   "flow": "ContactFlow"
+  },
+  {
+   "name": "ContactByEmailOrbitHelpdesk",
+   "flow": "ContactFlow"
+  },
+  {
+   "name": "ContactByEmailOrbitHost",
+   "flow": "ContactFlow"
+  },
+  {
+   "name": "ContactUsDetails",
+   "flow": "App_Menu_ContactUs"
+  },
+  {
+   "name": "ContactUsMenu",
+   "flow": "App_Menu_ContactUs"
+  },
+  {
+   "name": "CountryDetails",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "CountryList",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "EmailContact",
+   "flow": "Legacy_OrbitEventsFlow"
+  },
+  {
+   "name": "EmailTarget",
+   "flow": "Legacy_LDMEventsFlow"
+  },
+  {
+   "name": "EventBooklet",
+   "flow": "Legacy_OrbitEventsFlow"
+  },
+  {
+   "name": "EventDetail",
+   "flow": "Legacy_OrbitEventsFlow"
+  },
+  {
+   "name": "FeedItemDetail",
+   "flow": "Home"
+  },
+  {
+   "name": "GuestArrangements",
+   "flow": "Legacy_OrbitEventsFlow"
+  },
+  {
+   "name": "HelpersDetail",
+   "flow": "Legacy_OrbitEventsFlow"
+  },
+  {
+   "name": "HomeFeed",
+   "flow": "Home"
+  },
+  {
+   "name": "HostSurvey",
+   "flow": "Legacy_OrbitEventsFlow"
+  },
+  {
+   "name": "HouseholdCarousel",
+   "flow": "Directory_Household"
+  },
+  {
+   "name": "HouseholdDetails",
+   "flow": "Directory_Household"
+  },
+  {
+   "name": "Household_Relations",
+   "flow": "Directory_Household"
+  },
+  {
+   "name": "InvalidPermissions",
+   "flow": "App_Common"
+  },
+  {
+   "name": "LDM_Email",
+   "flow": "Legacy_LDMEventsFlow"
+  },
+  {
+   "name": "LDM_Email_V2",
+   "flow": "Legacy_LDMEventsFlow_V2"
+  },
+  {
+   "name": "LDM_EventDetail",
+   "flow": "Legacy_LDMEventsFlow"
+  },
+  {
+   "name": "LDM_EventDetail_V2",
+   "flow": "Legacy_LDMEventsFlow_V2"
+  },
+  {
+   "name": "LDM_MyEvents",
+   "flow": "Legacy_LDMEventsFlow"
+  },
+  {
+   "name": "LDM_MyEvents_V2",
+   "flow": "Legacy_LDMEventsFlow_V2"
+  },
+  {
+   "name": "LegacyShareObject",
+   "flow": "Legacy_Share"
+  },
+  {
+   "name": "Locality_Details",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "Login",
+   "flow": "App_Common"
+  },
+  {
+   "name": "Map",
+   "flow": "Map"
+  },
+  {
+   "name": "Menu",
+   "flow": "App_Menu"
+  },
+  {
+   "name": "MessageDetail",
+   "flow": "Legacy_MyNotificationsFlow"
+  },
+  {
+   "name": "MessageList",
+   "flow": "Legacy_MyNotificationsFlow"
+  },
+  {
+   "name": "MilestoneDetail",
+   "flow": "Legacy_OrbitEventsFlow"
+  },
+  {
+   "name": "MyBookmarks",
+   "flow": "Legacy_MyBookmarks"
+  },
+  {
+   "name": "MyCalendar",
+   "flow": "Calendar"
+  },
+  {
+   "name": "MyEntertaining",
+   "flow": "Calendar"
+  },
+  {
+   "name": "New_BookmarksByGroup",
+   "flow": "Legacy_MyBookmarks"
+  },
+  {
+   "name": "New_MyBookmarks",
+   "flow": "Legacy_MyBookmarks"
+  },
+  {
+   "name": "Notes",
+   "flow": "Notes"
+  },
+  {
+   "name": "Notifications",
+   "flow": "App_Notifications"
+  },
+  {
+   "name": "OneSchoolGlobalDetails",
+   "flow": "Directory_OneSchoolGlobal"
+  },
+  {
+   "name": "OneSchoolGlobalEventDetail",
+   "flow": "Directory_OneSchoolGlobal"
+  },
+  {
+   "name": "OrbitAdminEventDetail",
+   "flow": "Legacy_OrbitAdminFlow"
+  },
+  {
+   "name": "OrbitAdminLanding",
+   "flow": "Legacy_OrbitAdminFlow"
+  },
+  {
+   "name": "OrbitAdminMilestoneDetail",
+   "flow": "Legacy_OrbitAdminFlow"
+  },
+  {
+   "name": "OrbitAdminMilestones",
+   "flow": "Legacy_OrbitAdminFlow"
+  },
+  {
+   "name": "OrbitLanding",
+   "flow": "Legacy_OrbitEventsFlow"
+  },
+  {
+   "name": "PINBiometricsMenu",
+   "flow": "App_Menu"
+  },
+  {
+   "name": "PINChange",
+   "flow": "App_PIN"
+  },
+  {
+   "name": "PINRegister",
+   "flow": "App_PIN"
+  },
+  {
+   "name": "PINUnlock",
+   "flow": "App_PIN"
+  },
+  {
+   "name": "PassportScan",
+   "flow": "Legacy_OrbitEventsFlow"
+  },
+  {
+   "name": "PersonalEventDetails",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "PersonalEventForm",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "Photobook",
+   "flow": "Directory_Photobook"
+  },
+  {
+   "name": "Profile",
+   "flow": "App_Profile"
+  },
+  {
+   "name": "QRCodeGenerate",
+   "flow": "Legacy_OrbitQRCodeFlow"
+  },
+  {
+   "name": "Recurrence",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "Reminder",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "Search",
+   "flow": "Directory_Search"
+  },
+  {
+   "name": "Services",
+   "flow": "App_Services"
+  },
+  {
+   "name": "ShareObject",
+   "flow": "zTemp_Flow"
+  },
+  {
+   "name": "Splash",
+   "flow": "App_Common"
+  },
+  {
+   "name": "SupperMeeting_Carousel",
+   "flow": "Directory_SupperMeetings"
+  },
+  {
+   "name": "SupperMeeting_Details",
+   "flow": "Directory_SupperMeetings"
+  },
+  {
+   "name": "TermsAndPoliciesMenu",
+   "flow": "App_Menu"
+  },
+  {
+   "name": "TestOpenShare",
+   "flow": "zTemp_Flow"
+  },
+  {
+   "name": "TransportDetail",
+   "flow": "Legacy_OrbitEventsFlow"
+  },
+  {
+   "name": "Updates_SingleList",
+   "flow": "Directory_Updates"
+  },
+  {
+   "name": "ViewDocuments",
+   "flow": "Legacy_OrbitEventsFlow"
+  },
+  {
+   "name": "ViewEventList",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  }
+ ],
+ "blocks": [
+  {
+   "name": "CacheControl_UserInfo_Wrapper",
+   "flow": "App_Cache"
+  },
+  {
+   "name": "AppLogo_White",
+   "flow": "App_Common"
+  },
+  {
+   "name": "ApplicationTitle",
+   "flow": "App_Common"
+  },
+  {
+   "name": "BottomBarContent",
+   "flow": "App_Common"
+  },
+  {
+   "name": "BottomBarMenu",
+   "flow": "App_Common"
+  },
+  {
+   "name": "CommonUI_InsideLayout",
+   "flow": "App_Common"
+  },
+  {
+   "name": "Layout",
+   "flow": "App_Common"
+  },
+  {
+   "name": "LayoutBlank",
+   "flow": "App_Common"
+  },
+  {
+   "name": "MenuIcon",
+   "flow": "App_Common"
+  },
+  {
+   "name": "OfflineDataSyncEvents",
+   "flow": "App_Common"
+  },
+  {
+   "name": "SVGBackground_LoginWrapper",
+   "flow": "App_Common"
+  },
+  {
+   "name": "UnsupportedVersion",
+   "flow": "App_Common"
+  },
+  {
+   "name": "UnsupportedVersion_Browser",
+   "flow": "App_Common"
+  },
+  {
+   "name": "UnsupportedVersion_Native",
+   "flow": "App_Common"
+  },
+  {
+   "name": "UnsupportedVersion_WebView",
+   "flow": "App_Common"
+  },
+  {
+   "name": "UnsupportedVersion_Wrapper",
+   "flow": "App_Common"
+  },
+  {
+   "name": "UserInfo",
+   "flow": "App_Common"
+  },
+  {
+   "name": "Version",
+   "flow": "App_Common"
+  },
+  {
+   "name": "Version_LoginWrapper",
+   "flow": "App_Common"
+  },
+  {
+   "name": "WelcomeToConnect",
+   "flow": "App_Common"
+  },
+  {
+   "name": "FilterSheet",
+   "flow": "App_CommonBlocks_Filter"
+  },
+  {
+   "name": "FilterSheet_Icon",
+   "flow": "App_CommonBlocks_Filter"
+  },
+  {
+   "name": "FilterSheet_Icon_Label",
+   "flow": "App_CommonBlocks_Filter"
+  },
+  {
+   "name": "FilterSheet_OptionChoice_Item",
+   "flow": "App_CommonBlocks_Filter"
+  },
+  {
+   "name": "FilterSheet_OptionList_Item",
+   "flow": "App_CommonBlocks_Filter"
+  },
+  {
+   "name": "MoreActionSheet",
+   "flow": "App_CommonBlocks_Filter"
+  },
+  {
+   "name": "SortSheet",
+   "flow": "App_CommonBlocks_Filter"
+  },
+  {
+   "name": "App_IconBadge",
+   "flow": "App_Common_Blocks"
+  },
+  {
+   "name": "App_NotificationIcon",
+   "flow": "App_Common_Blocks"
+  },
+  {
+   "name": "App_NotificationRefresh",
+   "flow": "App_Common_Blocks"
+  },
+  {
+   "name": "External_Link",
+   "flow": "App_Common_Blocks"
+  },
+  {
+   "name": "ItemCardActions",
+   "flow": "App_Common_Blocks"
+  },
+  {
+   "name": "ListLoading",
+   "flow": "App_Common_Blocks"
+  },
+  {
+   "name": "Section",
+   "flow": "App_Common_Blocks"
+  },
+  {
+   "name": "SectionSeparator",
+   "flow": "App_Common_Blocks"
+  },
+  {
+   "name": "Dialog_CustomChoice",
+   "flow": "App_Common_Blocks_PopupDialogs"
+  },
+  {
+   "name": "Dialog_ExitConfirmation",
+   "flow": "App_Common_Blocks_PopupDialogs"
+  },
+  {
+   "name": "Dialog_Information",
+   "flow": "App_Common_Blocks_PopupDialogs"
+  },
+  {
+   "name": "Dialog_Information_NonNavigation",
+   "flow": "App_Common_Blocks_PopupDialogs"
+  },
+  {
+   "name": "Dialog_Navigation",
+   "flow": "App_Common_Blocks_PopupDialogs"
+  },
+  {
+   "name": "Menu_List",
+   "flow": "App_Menu"
+  },
+  {
+   "name": "ContactUs_Rate",
+   "flow": "App_Menu_ContactUs"
+  },
+  {
+   "name": "ContactUs_RateItem",
+   "flow": "App_Menu_ContactUs"
+  },
+  {
+   "name": "MessageListItem",
+   "flow": "App_Notifications"
+  },
+  {
+   "name": "NotificationsList",
+   "flow": "App_Notifications"
+  },
+  {
+   "name": "NotificationsListBreakpoints",
+   "flow": "App_Notifications"
+  },
+  {
+   "name": "Notifications_Action",
+   "flow": "App_Notifications"
+  },
+  {
+   "name": "Notifications_Header",
+   "flow": "App_Notifications"
+  },
+  {
+   "name": "Notifications_MoreActionSheet",
+   "flow": "App_Notifications"
+  },
+  {
+   "name": "Notifications_NoItemsFound",
+   "flow": "App_Notifications"
+  },
+  {
+   "name": "Notifications_SortSheet",
+   "flow": "App_Notifications"
+  },
+  {
+   "name": "Block_PINRegister_ContentWrapper",
+   "flow": "App_PIN"
+  },
+  {
+   "name": "Block_PINUnlock",
+   "flow": "App_PIN"
+  },
+  {
+   "name": "Block_PINUnlock_ContentWrapper",
+   "flow": "App_PIN"
+  },
+  {
+   "name": "Policy_Checker",
+   "flow": "App_Policies"
+  },
+  {
+   "name": "Policy_Custom_AcceptPendingPolicies",
+   "flow": "App_Policies"
+  },
+  {
+   "name": "Profile_HouseholdPreview",
+   "flow": "App_Profile"
+  },
+  {
+   "name": "Bookmarks_Card_Item",
+   "flow": "Bookmarks"
+  },
+  {
+   "name": "Bookmarks_Card_List",
+   "flow": "Bookmarks"
+  },
+  {
+   "name": "Bookmarks_FilterSheet",
+   "flow": "Bookmarks"
+  },
+  {
+   "name": "CacheControl_Calendar_Coordinator",
+   "flow": "Calendar"
+  },
+  {
+   "name": "CalendarDays",
+   "flow": "Calendar"
+  },
+  {
+   "name": "CalendarHeaderWeekdays",
+   "flow": "Calendar"
+  },
+  {
+   "name": "CalendarMonths",
+   "flow": "Calendar"
+  },
+  {
+   "name": "CalendarView",
+   "flow": "Calendar"
+  },
+  {
+   "name": "CalendarView_MonthWrapper",
+   "flow": "Calendar"
+  },
+  {
+   "name": "CalendarView_WeekWrapper",
+   "flow": "Calendar"
+  },
+  {
+   "name": "CalendarWeeks",
+   "flow": "Calendar"
+  },
+  {
+   "name": "Calendar_Header",
+   "flow": "Calendar"
+  },
+  {
+   "name": "Calendar_Header_SelectedDate",
+   "flow": "Calendar"
+  },
+  {
+   "name": "Calendar_ViewActionMenu",
+   "flow": "Calendar"
+  },
+  {
+   "name": "DayList",
+   "flow": "Calendar"
+  },
+  {
+   "name": "EventList",
+   "flow": "Calendar"
+  },
+  {
+   "name": "EventList_CacheWrapper",
+   "flow": "Calendar"
+  },
+  {
+   "name": "MonthPicker",
+   "flow": "Calendar"
+  },
+  {
+   "name": "MyEntertaining_Embedded",
+   "flow": "Calendar"
+  },
+  {
+   "name": "Weekday",
+   "flow": "Calendar"
+  },
+  {
+   "name": "CacheControl_CalendarEvents",
+   "flow": "Calendar_Events"
+  },
+  {
+   "name": "Calendar_EventCard",
+   "flow": "Calendar_Events"
+  },
+  {
+   "name": "Calendar_NoEvents",
+   "flow": "Calendar_Events"
+  },
+  {
+   "name": "EventListItem",
+   "flow": "Calendar_Events"
+  },
+  {
+   "name": "EventListNew",
+   "flow": "Calendar_Events"
+  },
+  {
+   "name": "ContactByEmailForm",
+   "flow": "ContactFlow"
+  },
+  {
+   "name": "ConnectForm_ItemContainer",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "CustomScrollListWrapper",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "Indev_AddAttendees",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "PersonalEventForm_IconContent",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "PersonalEventForm_LabelContent",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "PersonalEventForm_TagInput",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "Picker_Date",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "Picker_Time",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "Recurrence_WeekdaysTagList",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "UserEventDetails_IconTextWrapper",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "UserEventDetails_InviteeList",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "UserEventForm_DateTime",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "UserEventForm_DateTimeWrapper",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "UserEventForm_Item__Navigate",
+   "flow": "Deprecated_Calendar_PersonalEvent"
+  },
+  {
+   "name": "CarouselTag",
+   "flow": "Directory_Caroussel"
+  },
+  {
+   "name": "EntitiesCarouse_lSupperMeetingDetails",
+   "flow": "Directory_Caroussel"
+  },
+  {
+   "name": "EntitiesCarousel",
+   "flow": "Directory_Caroussel"
+  },
+  {
+   "name": "EntitiesCarousel_Element",
+   "flow": "Directory_Caroussel"
+  },
+  {
+   "name": "EntitiesCarousel_HeaderGenerator",
+   "flow": "Directory_Caroussel"
+  },
+  {
+   "name": "EntitiesCarousel_HouseholdDetails",
+   "flow": "Directory_Caroussel"
+  },
+  {
+   "name": "Directory_EmptyState",
+   "flow": "Directory_CommonBlocks"
+  },
+  {
+   "name": "Directory_EntityDetailsActions",
+   "flow": "Directory_CommonBlocks"
+  },
+  {
+   "name": "HouseholdDetails_Block",
+   "flow": "Directory_Household"
+  },
+  {
+   "name": "HouseholdRelations_Block",
+   "flow": "Directory_Household"
+  },
+  {
+   "name": "HouseholdDetails_Members_Block",
+   "flow": "Directory_Household_Blocks"
+  },
+  {
+   "name": "HouseholdDetails_TimelinePhoto",
+   "flow": "Directory_Household_Blocks"
+  },
+  {
+   "name": "HouseholdDetails_TimelinePhoto_List",
+   "flow": "Directory_Household_Blocks"
+  },
+  {
+   "name": "Household_Card",
+   "flow": "Directory_Household_Blocks"
+  },
+  {
+   "name": "Household_GalleryCard",
+   "flow": "Directory_Household_Blocks"
+  },
+  {
+   "name": "Household_GalleryCard_List",
+   "flow": "Directory_Household_Blocks"
+  },
+  {
+   "name": "Directory_Interchange_StatisticsList",
+   "flow": "Directory_Interchange"
+  },
+  {
+   "name": "Directory_LegendBottomSheet",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "Directory_LegendBottomSheet2",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "Locality_DateTimeLabel",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "Locality_Households",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "Locality_Households_HouseholdList",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "Locality_Interchange",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "Locality_LocalityContacts",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "Locality_OneSchoolGlobal",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "Locality_Subdivisions",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "StatisticsList",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "Statistics_Icons",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "Statistics_TypedItem",
+   "flow": "Directory_Locality"
+  },
+  {
+   "name": "DW_OneSchoolGlobal_EventList",
+   "flow": "Directory_OneSchoolGlobal_Blocks"
+  },
+  {
+   "name": "DW_OneSchoolGlobal_Numbers",
+   "flow": "Directory_OneSchoolGlobal_Blocks"
+  },
+  {
+   "name": "OneSchoolGlobal_DetailCard_Content",
+   "flow": "Directory_OneSchoolGlobal_Blocks"
+  },
+  {
+   "name": "OneSchoolGlobal_Event_Card",
+   "flow": "Directory_OneSchoolGlobal_Blocks"
+  },
+  {
+   "name": "OneSchoolGlobal_Event_ListCard",
+   "flow": "Directory_OneSchoolGlobal_Blocks"
+  },
+  {
+   "name": "OneSchoolGlobal_Event_ListCard_List",
+   "flow": "Directory_OneSchoolGlobal_Blocks"
+  },
+  {
+   "name": "OneSchoolGlobal_List",
+   "flow": "Directory_OneSchoolGlobal_Blocks"
+  },
+  {
+   "name": "OneSchoolGlobal_Numbers",
+   "flow": "Directory_OneSchoolGlobal_Blocks"
+  },
+  {
+   "name": "UI_OneSchoolGlobalEventDetail_IconTextWrapper",
+   "flow": "Directory_OneSchoolGlobal_Blocks"
+  },
+  {
+   "name": "Photobook_Carousel",
+   "flow": "Directory_Photobook"
+  },
+  {
+   "name": "Photobook_Gallery",
+   "flow": "Directory_Photobook"
+  },
+  {
+   "name": "Photobook_Gallery_Item",
+   "flow": "Directory_Photobook"
+  },
+  {
+   "name": "Photobook_Item",
+   "flow": "Directory_Photobook"
+  },
+  {
+   "name": "Photobook_Options_Bottom",
+   "flow": "Directory_Photobook"
+  },
+  {
+   "name": "Photobook_Options_Left",
+   "flow": "Directory_Photobook"
+  },
+  {
+   "name": "Photobook_Options_Player",
+   "flow": "Directory_Photobook"
+  },
+  {
+   "name": "Photobook_Options_Right",
+   "flow": "Directory_Photobook"
+  },
+  {
+   "name": "ScreenBlock_Search",
+   "flow": "Directory_Search"
+  },
+  {
+   "name": "SearchResult_Section",
+   "flow": "Directory_Search"
+  },
+  {
+   "name": "SearchResults_Recent",
+   "flow": "Directory_Search"
+  },
+  {
+   "name": "Search_BirthdayOptions",
+   "flow": "Directory_Search"
+  },
+  {
+   "name": "SupperMeeting_DetailsBlock",
+   "flow": "Directory_SupperMeetings"
+  },
+  {
+   "name": "SupperMeeting_HouseholdList",
+   "flow": "Directory_SupperMeetings"
+  },
+  {
+   "name": "SupperMeeting_ImageCard_Content",
+   "flow": "Directory_SupperMeetings"
+  },
+  {
+   "name": "SupperMeeting_ImageCard_Content_IconText",
+   "flow": "Directory_SupperMeetings"
+  },
+  {
+   "name": "SupperMeeting_ImageCard_Content_Statistics",
+   "flow": "Directory_SupperMeetings"
+  },
+  {
+   "name": "Directory_Updates_FilterSheet",
+   "flow": "Directory_Updates"
+  },
+  {
+   "name": "Directory_Updates_Section_Wrapper",
+   "flow": "Directory_Updates"
+  },
+  {
+   "name": "SectionHeader",
+   "flow": "Directory_Updates"
+  },
+  {
+   "name": "UpdateItem_Header",
+   "flow": "Directory_Updates"
+  },
+  {
+   "name": "Updates_NoItemsFound",
+   "flow": "Directory_Updates"
+  },
+  {
+   "name": "FeedBlock_CommunityPopulation",
+   "flow": "Home"
+  },
+  {
+   "name": "FeedBlock_Services",
+   "flow": "Home"
+  },
+  {
+   "name": "FeedBlock_Updates",
+   "flow": "Home"
+  },
+  {
+   "name": "Feed_Embeded",
+   "flow": "Home"
+  },
+  {
+   "name": "Section_FeedWrapper",
+   "flow": "Home"
+  },
+  {
+   "name": "HandleOnResumeOpenLink",
+   "flow": "Legacy_Share"
+  },
+  {
+   "name": "CacheControl_CountriesMarkers",
+   "flow": "Map"
+  },
+  {
+   "name": "CacheControl_GlobalEntities",
+   "flow": "Map"
+  },
+  {
+   "name": "CacheControl_Household",
+   "flow": "Map"
+  },
+  {
+   "name": "CacheControl_Localities",
+   "flow": "Map"
+  },
+  {
+   "name": "Map_ExploreList_EmptyState",
+   "flow": "Map"
+  },
+  {
+   "name": "Map_ExploreList_Item",
+   "flow": "Map"
+  },
+  {
+   "name": "Map_ExploreList_Section",
+   "flow": "Map"
+  },
+  {
+   "name": "Map_PoIPreview",
+   "flow": "Map"
+  },
+  {
+   "name": "NoteCard_Item",
+   "flow": "Notes"
+  },
+  {
+   "name": "NoteCard_List",
+   "flow": "Notes"
+  },
+  {
+   "name": "Notes_FilterSheet",
+   "flow": "Notes"
+  },
+  {
+   "name": "SubLayout_Browse_Section",
+   "flow": "SubLayout"
+  },
+  {
+   "name": "SubLayout_DirectoryCalendar",
+   "flow": "SubLayout"
+  },
+  {
+   "name": "SubLayout_DirectoryDetailScreen",
+   "flow": "SubLayout"
+  },
+  {
+   "name": "SubLayout_DirectoryDetailScreen_Section",
+   "flow": "SubLayout"
+  },
+  {
+   "name": "CommunityBusinessCard_Content_Block",
+   "flow": "zDEV_Directory_CommunityBusinessBlocks"
+  },
+  {
+   "name": "ComunityBusinessDetails_Block",
+   "flow": "zDEV_Directory_CommunityBusinessBlocks"
+  }
+ ],
+ "counts": {
+  "screens": 86,
+  "blocks": 180,
+  "referencedBlocks": 391,
+  "clientActions": 200,
+  "serverActions": 6,
+  "serverActionsReferenced": 31,
+  "serviceActionsReferenced": 64,
+  "structures": 71,
+  "clientVariables": 28,
+  "sitePropertiesNames": [
+   "Embedd_B2CTenant",
+   "IsKi"
+  ],
+  "localStorageEntities": [
+   "ConnectSearch_RecentClickedResults",
+   "ConnectSearch_RecentSearchTerm",
+   "Temp_PersonalEventIds",
+   "UpdateFeed_ReadStatus"
+  ],
+  "staticEntities": [
+   "Photobook_Speed",
+   "Type_CarouselItemSwipeAction",
+   "UBTConnect_JSUtils_ElementCache_Parent",
+   "UBTConnect_JSUtils_ElementCache_Property",
+   "Updates_DateRanges"
+  ],
+  "roles": [
+   "Anonymous",
+   "Registered",
+   "UBTOne_User"
+  ],
+  "userExceptions": [
+   "BubbleCommunicationException",
+   "BubbleGenericException",
+   "InvalidAction",
+   "InvalidShare"
+  ],
+  "resources": 6,
+  "locales": 0,
+  "integrations": 0
+ }
+}

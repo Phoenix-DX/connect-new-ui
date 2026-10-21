@@ -19,3 +19,5 @@ __pycache__/
 *.tsbuildinfo
 # personal Claude Code permissions
 .claude/settings.local.json
+# privacy review sheets of the UI Flows dashboard screenshots (local only, not published)
+migration/flows-dashboard/site-review/

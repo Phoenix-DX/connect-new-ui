@@ -1,0 +1,526 @@
+<title>UBTConnect UI Flows</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: a map of the OutSystems module. A sticky bar with three views (Overview, Health, Method); the overview reads
+   top-down: key figures, the DEV-to-specification funnel, then UI flows grouped by area beside a "Needs attention"
+   rail; a flow opens as its own view; a screen opens in a side panel with its TST screenshots. */
+:root {
+  --bg: #f3f6f6; --surface: #ffffff; --surface-2: #e9eff0; --ink: #12262a; --ink-2: #3c5459; --muted: #627579;
+  --line: #d3dee0; --accent: #0a6c88; --in: #0a82a6; --out: #a4aba9; --dev: #c96a12; --dev-ink: #9a4f0b;
+  --focus: #0a82a6; --shadow: 0 1px 2px rgba(18, 38, 42, .06), 0 4px 14px rgba(18, 38, 42, .05);
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Public Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0d1517; --surface: #142024; --surface-2: #1a292d; --ink: #e4eef0; --ink-2: #b3c5c9; --muted: #869a9e;
+  --line: #29393d; --accent: #5ec4de; --in: #2f9fbd; --out: #5b6664; --dev: #d47626; --dev-ink: #f0a35f;
+  --focus: #5ec4de; --shadow: 0 1px 2px rgba(0, 0, 0, .3); color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0d1517; --surface: #142024; --surface-2: #1a292d; --ink: #e4eef0; --ink-2: #b3c5c9; --muted: #869a9e;
+  --line: #29393d; --accent: #5ec4de; --in: #2f9fbd; --out: #5b6664; --dev: #d47626; --dev-ink: #f0a35f;
+  --focus: #5ec4de; --shadow: 0 1px 2px rgba(0, 0, 0, .3); color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10;
+  background: var(--surface) }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px }
+:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; margin: 0 }
+h1 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); font-weight: 700; letter-spacing: -.01em }
+h2 { font-size: 1.3rem; font-weight: 700 }
+h3 { font-size: 1.02rem; font-weight: 600 }
+p { margin: 0 }
+.mono { font-family: var(--font-mono); font-size: .92em }
+.muted { color: var(--muted) }
+.eyebrow { font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600 }
+.num { font-variant-numeric: tabular-nums }
+
+.bar-top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface);
+  border-bottom: 1px solid var(--line) }
+.bar-inner, main { max-width: 1200px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+.bar-inner { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding-block: 10px }
+.brand { display: flex; align-items: baseline; gap: 10px; font-family: var(--font-display); font-weight: 700;
+  font-size: 1.05rem; color: var(--ink); text-decoration: none }
+.brand small { font-family: var(--font-body); font-weight: 500; font-size: .78rem; color: var(--muted) }
+nav.views { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap }
+nav.views a { padding: 6px 12px; border-radius: 999px; color: var(--ink-2); text-decoration: none; font-weight: 500;
+  font-size: .9rem }
+nav.views a[aria-current="page"] { background: var(--surface-2); color: var(--ink) }
+main { padding-block: 28px 64px; display: grid; gap: 28px }
+
+.intro { display: grid; gap: 8px; max-width: 70ch }
+.intro p { color: var(--ink-2) }
+.fresh { font-size: .8rem; color: var(--muted) }
+
+.kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px }
+.kpi { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px;
+  display: grid; gap: 2px; min-width: 0 }
+.kpi b { font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; line-height: 1.1;
+  font-variant-numeric: tabular-nums }
+.kpi span { font-weight: 600; font-size: .9rem }
+.kpi small { color: var(--muted); font-size: .8rem }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px;
+  display: grid; gap: 14px; align-content: start; min-width: 0 }
+.panel > header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px }
+
+.funnel { display: grid; gap: 8px }
+.frow { display: grid; grid-template-columns: minmax(120px, 210px) 1fr; gap: 12px; align-items: center }
+.frow .lab { font-size: .88rem; color: var(--ink-2) }
+.ftrack { position: relative; height: 26px; margin-right: 34px }
+.fbar { height: 100%; background: var(--in); border-radius: 0 4px 4px 0; display: flex; align-items: center;
+  justify-content: flex-end; min-width: 2px }
+.fbar.step0 { background: color-mix(in srgb, var(--in) 45%, var(--surface)) }
+.fbar.step1 { background: color-mix(in srgb, var(--in) 70%, var(--surface)) }
+.fval { position: absolute; top: 50%; transform: translateY(-50%); font-weight: 600; font-size: .9rem;
+  font-variant-numeric: tabular-nums; color: var(--ink); padding-left: 8px }
+
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .82rem; color: var(--ink-2) }
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px }
+.sw.in, .seg.in { background: var(--in) }
+.sw.out, .seg.out { background: repeating-linear-gradient(135deg, var(--out) 0 3px,
+  color-mix(in srgb, var(--out) 55%, var(--surface)) 3px 6px) }
+.sw.dev, .seg.dev { background: var(--dev) }
+
+.overview-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start }
+@media (max-width: 960px) { .overview-grid { grid-template-columns: minmax(0, 1fr) } }
+.map-tools { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between }
+.search { flex: 1 1 220px; max-width: 360px }
+.search input { width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit;
+  background: var(--surface); color: var(--ink) }
+.area { display: grid; gap: 10px }
+.area > header { display: grid; gap: 2px }
+.area > header p { color: var(--muted); font-size: .86rem }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px }
+.card { display: grid; gap: 8px; align-content: start; background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 12px 14px; text-decoration: none; color: inherit; min-width: 0;
+  transition: border-color .15s, box-shadow .15s }
+.card:hover { border-color: var(--accent); box-shadow: var(--shadow) }
+.card .fname { font-family: var(--font-mono); font-size: .8rem; color: var(--muted); overflow-wrap: anywhere }
+.card .flabel { font-weight: 600; line-height: 1.3 }
+.card .fmeta { font-size: .8rem; color: var(--ink-2) }
+.stack { display: flex; gap: 2px; height: 10px; border-radius: 3px; overflow: hidden; background: var(--surface-2) }
+.stack .seg { height: 100% }
+.stack.lg { height: 14px }
+.tag { display: inline-flex; align-items: center; gap: 4px; font-size: .74rem; font-weight: 600; padding: 2px 8px;
+  border-radius: 999px; border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap }
+.tag.lib { background: var(--surface-2) }
+.tag.warn { border-color: var(--dev); color: var(--dev-ink) }
+
+.rail { display: grid; gap: 12px; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 72px) }
+@media (max-width: 960px) { .rail { position: static; order: -1 } }
+.attention { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none }
+.attention li { display: grid; grid-template-columns: 22px 1fr; gap: 8px; font-size: .88rem }
+.attention .ico { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-weight: 700;
+  font-size: .78rem; border: 1.5px solid var(--dev); color: var(--dev-ink) }
+.attention .ico.info { border-color: var(--accent); color: var(--accent) }
+
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; font-weight: 600; padding: 2px 9px;
+  border-radius: 999px; white-space: nowrap }
+.chip::before { content: ""; width: 8px; height: 8px; border-radius: 2px }
+.chip.in { background: color-mix(in srgb, var(--in) 14%, var(--surface)); color: var(--accent) }
+.chip.in::before { background: var(--in) }
+.chip.out { background: var(--surface-2); color: var(--ink-2) }
+.chip.out::before { background: repeating-linear-gradient(135deg, var(--out) 0 2px, transparent 2px 4px);
+  border: 1px solid var(--out) }
+.chip.dev { background: color-mix(in srgb, var(--dev) 14%, var(--surface)); color: var(--dev-ink) }
+.chip.dev::before { background: var(--dev) }
+.chip.unused { background: transparent; border: 1px dashed var(--out); color: var(--muted) }
+.chip.unused::before { display: none }
+
+.crumbs { font-size: .84rem; color: var(--muted); display: flex; gap: 6px; flex-wrap: wrap }
+.flow-head { display: grid; gap: 10px; max-width: 80ch }
+.flow-head .fname { font-family: var(--font-mono); font-size: .9rem; color: var(--muted) }
+.flow-head p { color: var(--ink-2); font-size: 1.02rem }
+.facts { display: flex; flex-wrap: wrap; gap: 8px }
+
+.tablewrap { overflow-x: auto; margin: 0 -4px; padding: 0 4px }
+table { border-collapse: collapse; width: 100%; font-size: .88rem }
+th { text-align: left; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+  font-weight: 600; padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap }
+td { padding: 10px; border-bottom: 1px solid var(--line); vertical-align: top }
+tr:last-child td { border-bottom: 0 }
+td .why { color: var(--ink-2); font-size: .84rem; margin-top: 4px; max-width: 52ch }
+.linkbtn { background: none; border: 0; padding: 0; font: inherit; font-weight: 600; color: var(--accent);
+  cursor: pointer; text-align: left; text-decoration: underline; text-decoration-thickness: 1px;
+  text-underline-offset: 2px }
+.pills { display: flex; flex-wrap: wrap; gap: 4px }
+.pill { font-family: var(--font-mono); font-size: .76rem; padding: 1px 7px; border-radius: 6px;
+  background: var(--surface-2); color: var(--ink-2); text-decoration: none; white-space: nowrap }
+a.pill:hover { color: var(--accent) }
+.pill.ext { background: transparent; border: 1px solid var(--line) }
+.pill.shared { font-family: var(--font-body); background: transparent; border: 1px dashed var(--accent);
+  color: var(--accent) }
+details > summary { cursor: pointer; font-weight: 600; color: var(--ink-2) }
+details[open] > summary { margin-bottom: 10px }
+
+.drawer-back { position: fixed; inset: 0; background: rgba(8, 18, 20, .35); z-index: 20 }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(640px, 100%); background: var(--surface);
+  z-index: 21; overflow-y: auto; box-shadow: -8px 0 30px rgba(0, 0, 0, .18);
+  padding: calc(env(safe-area-inset-top, 0px) + 18px) max(18px, env(safe-area-inset-right, 0px))
+  calc(env(safe-area-inset-bottom, 0px) + 32px) 20px; display: grid; gap: 18px; align-content: start }
+.drawer header { display: grid; gap: 6px; padding-right: 44px; position: relative }
+.close { position: absolute; top: -4px; right: 0; width: 36px; height: 36px; border-radius: 50%;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: 1.2rem; cursor: pointer }
+.shots { display: grid; gap: 10px }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px }
+.tabs button { font: inherit; font-size: .82rem; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink-2); cursor: pointer }
+.tabs button[aria-selected="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink) }
+.phone { width: min(300px, 100%); border: 1px solid var(--line); border-radius: 18px; overflow: hidden;
+  background: var(--surface-2); justify-self: start }
+.phone img { display: block; width: 100%; height: auto }
+.noshot { padding: 18px; border: 1px dashed var(--line); border-radius: var(--radius); color: var(--muted);
+  font-size: .88rem }
+dl.kv { display: grid; grid-template-columns: minmax(110px, 160px) 1fr; gap: 8px 14px; margin: 0; font-size: .88rem }
+dl.kv dt { color: var(--muted) }
+dl.kv dd { margin: 0; min-width: 0 }
+
+.health { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px }
+.health .panel h3 { display: flex; align-items: baseline; gap: 10px }
+.health .panel h3 b { font-family: var(--font-display); font-size: 1.5rem }
+.health ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: .88rem }
+.prose { display: grid; gap: 12px; max-width: 72ch }
+.prose p, .prose li { color: var(--ink-2) }
+.empty { color: var(--muted); font-size: .9rem }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important } }
+@media (max-width: 560px) {
+  .frow { grid-template-columns: 1fr; gap: 2px }
+  dl.kv { grid-template-columns: 1fr; gap: 2px 0 }
+  dl.kv dd { margin-bottom: 8px }
+  /* tables become one card per row; each cell shows its column name */
+  .tablewrap thead { display: none }
+  .tablewrap tr { display: grid; gap: 8px; padding: 12px 0; border-bottom: 1px solid var(--line) }
+  .tablewrap tr:last-child { border-bottom: 0 }
+  .tablewrap td { border: 0; padding: 0 }
+  .tablewrap td[data-th]:not(:first-child)::before { content: attr(data-th); display: block; font-size: .7rem;
+    letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 2px }
+}
+</style>
+
+<header class="bar-top">
+  <div class="bar-inner">
+    <a class="brand" href="#overview">UBTConnect UI Flows <small>OutSystems app on TST</small></a>
+    <nav class="views" aria-label="Views">
+      <a href="#overview" data-view="overview">Overview</a>
+      <a href="#health" data-view="health">Health</a>
+      <a href="#method" data-view="method">Method</a>
+    </nav>
+  </div>
+</header>
+<main id="main" tabindex="-1"></main>
+<div class="drawer-back" id="drawer-back" hidden></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden></aside>
+
+<script>
+const DATA = /*__DATA__*/null;
+const main = document.getElementById('main');
+const drawer = document.getElementById('drawer');
+const drawerBack = document.getElementById('drawer-back');
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const SCOPE = { in: 'In scope', out: 'Out of scope', dev: 'DEV only' };
+const USAGE = { in: 'Used by in-scope screens', out: 'Used only by out-of-scope screens', unused: 'Not used on TST' };
+const chip = (k, text) => `<span class="chip ${k}">${esc(text ?? SCOPE[k])}</span>`;
+const plural = (n, one, many) => `${n} ${n === 1 ? one : (many ?? one + 's')}`;
+let lastFocus = null;
+
+function stack(c, big) {
+  const total = c.in + c.out + c.dev;
+  if (!total) return '';
+  const seg = (k) => c[k] ? `<span class="seg ${k}" style="flex:${c[k]}" title="${esc(SCOPE[k])}: ${c[k]}"></span>` : '';
+  return `<div class="stack${big ? ' lg' : ''}" role="img" aria-label="${c.in} in scope, ${c.out} out of scope, ${c.dev} DEV only">${seg('in')}${seg('out')}${seg('dev')}</div>`;
+}
+
+function flowMeta(f) {
+  if (!f.screens.length) {
+    const used = f.blocks.filter((b) => b.usage === 'in').length;
+    return `${plural(f.blocks.length, 'block')} · ${used} used by in-scope screens`;
+  }
+  const parts = [`${f.counts.in} in scope`];
+  if (f.counts.out) parts.push(`${f.counts.out} out`);
+  if (f.counts.dev) parts.push(`${f.counts.dev} DEV only`);
+  return `${plural(f.screens.length, 'screen')} · ${parts.join(' · ')}`;
+}
+
+function viewOverview() {
+  const c = DATA.counts;
+  const funnel = [
+    ['Screens on DEV', c.devScreens, 'step0'], ['Screens on TST', c.tstScreens, 'step1'],
+    ['In scope', c.inScope, ''], ['Specified', c.specified, ''],
+  ];
+  const max = c.devScreens;
+  const attention = [
+    [`${plural(c.devOnly, 'screen exists', 'screens exist')} only on DEV. ${c.devOnly === 1 ? 'It needs' : 'They need'} a scope decision when DEV goes to TST.`, '#health', 'warn'],
+    [`${plural(DATA.health.flagScope.length, 'out-of-scope screen')} come${DATA.health.flagScope.length === 1 ? 's' : ''} back into question if a flag is switched on.`, '#health', 'warn'],
+    ['The specifications describe the screens and their calls. The server logic behind each call is not specified yet.', '#method', 'warn'],
+    [`${plural(c.blocksUnused, 'block')} of the module ${c.blocksUnused === 1 ? 'is' : 'are'} not used by any screen on TST.`, '#health', 'info'],
+  ];
+  main.innerHTML = `
+  <section class="intro">
+    <span class="eyebrow">OutSystems module UBTConnect</span>
+    <h1>UI flows, scope and specification</h1>
+    <p>This page shows the UI flows of the UBTConnect OutSystems app on TST. It also shows the migration analysis: the screens in scope, the reasons for the others, and the specifications.</p>
+    <p class="fresh">Data from the repository at commit <span class="mono">${esc(DATA.meta.commit)}</span>, built ${esc(DATA.meta.builtAt)}. DEV snapshot ${esc(DATA.meta.devTakenAt)}.</p>
+  </section>
+  <section class="kpis" aria-label="Key figures">
+    <div class="kpi"><b>${c.flows}</b><span>UI flows</span><small>${c.screenFlows} with screens, ${c.blockFlows} with blocks only</small></div>
+    <div class="kpi"><b>${c.tstScreens}</b><span>Screens on TST</span><small>${c.devScreens} on DEV</small></div>
+    <div class="kpi"><b>${c.inScope}</b><span>In scope</span><small>of ${c.tstScreens} screens on TST</small></div>
+    <div class="kpi"><b>${c.outOfScope}</b><span>Out of scope</span><small>each with a recorded reason</small></div>
+    <div class="kpi"><b>${c.specified}<span class="muted" style="font-size:1rem"> / ${c.inScope}</span></b><span>Specified</span><small>in-scope screens with a specification</small></div>
+  </section>
+  <section class="panel" aria-labelledby="funnel-h">
+    <header><h2 id="funnel-h">From DEV to specification</h2><span class="muted" style="font-size:.84rem">Number of screens at each step</span></header>
+    <div class="funnel">${funnel.map(([lab, n, cls]) => `
+      <div class="frow"><span class="lab">${lab}</span>
+        <div class="ftrack"><div class="fbar ${cls}" style="width:${(n / max) * 100}%" title="${lab}: ${n}"></div>
+        <span class="fval" style="left:${(n / max) * 100}%">${n}</span></div></div>`).join('')}
+    </div>
+  </section>
+  <div class="overview-grid">
+    <section style="display:grid;gap:20px;min-width:0" aria-labelledby="map-h">
+      <div class="map-tools">
+        <h2 id="map-h">UI flows by area</h2>
+        <label class="search"><span class="eyebrow">Find a flow or a screen</span>
+          <input id="flow-search" type="search" placeholder="For example HomeFeed or Directory" autocomplete="off"></label>
+      </div>
+      <div class="legend" aria-label="Legend"><span><i class="sw in"></i>In scope</span><span><i class="sw out"></i>Out of scope, reason recorded</span><span><i class="sw dev"></i>DEV only, not on TST</span></div>
+      <div id="areas" style="display:grid;gap:22px"></div>
+    </section>
+    <aside class="rail">
+      <section class="panel" aria-labelledby="att-h">
+        <h2 id="att-h">Needs attention</h2>
+        <ul class="attention">${attention.map(([t, href, k]) => `<li><span class="ico ${k === 'info' ? 'info' : ''}" aria-hidden="true">${k === 'info' ? 'i' : '!'}</span><a href="${href}">${esc(t)}</a></li>`).join('')}</ul>
+      </section>
+      <section class="panel" aria-labelledby="blocks-h">
+        <h2 id="blocks-h">Blocks of the module</h2>
+        <p class="muted" style="font-size:.86rem">${c.blocks} blocks. Usage on TST:</p>
+        <div class="stack lg"><span class="seg in" style="flex:${c.blocksIn}" title="${USAGE.in}: ${c.blocksIn}"></span><span class="seg out" style="flex:${c.blocksOut}" title="${USAGE.out}: ${c.blocksOut}"></span><span class="seg" style="flex:${c.blocksUnused};background:var(--surface-2);outline:1px dashed var(--out);outline-offset:-1px" title="${USAGE.unused}: ${c.blocksUnused}"></span></div>
+        <div class="legend" style="display:grid;gap:4px"><span><i class="sw in"></i>${c.blocksIn} used by in-scope screens</span><span><i class="sw out"></i>${c.blocksOut} used only by out-of-scope screens</span><span><i class="sw" style="border:1px dashed var(--out)"></i>${c.blocksUnused} not used on TST</span></div>
+      </section>
+    </aside>
+  </div>`;
+  const input = document.getElementById('flow-search');
+  const draw = () => {
+    const q = input.value.trim().toLowerCase();
+    const match = (f) => !q || [f.name, f.label, f.purpose, ...f.screens].some((s) => String(s).toLowerCase().includes(q));
+    const html = DATA.areas.map((a) => {
+      const fl = a.flows.map((n) => DATA.flows[n]).filter(match);
+      if (!fl.length) return '';
+      return `<section class="area"><header><h3>${esc(a.name)}</h3><p>${esc(a.text)}</p></header><div class="cards">${fl.map((f) => `
+        <a class="card" href="#flow-${esc(f.name)}"><span class="fname">${esc(f.name)}</span><span class="flabel">${esc(f.label)}</span>
+        ${f.screens.length ? stack(f.counts) : '<span><span class="tag lib">Blocks only</span></span>'}
+        <span class="fmeta">${esc(flowMeta(f))}</span>${f.testOrDev ? '<span><span class="tag warn">Test, development or deprecated flow</span></span>' : ''}</a>`).join('')}</div></section>`;
+    }).join('');
+    document.getElementById('areas').innerHTML = html || '<p class="empty">No flow or screen matches this search.</p>';
+  };
+  input.addEventListener('input', draw);
+  draw();
+}
+
+function screenRow(s) {
+  const reason = s.reason;
+  return `<tr><td><button class="linkbtn" data-screen="${esc(s.name)}">${esc(s.name)}</button>${s.onTST ? '' : '<div class="why">Not on TST</div>'}</td>
+    <td>${chip(s.scope)}${reason ? `<div class="why">${esc(reason)}</div>` : ''}${s.reopen ? `<div class="why"><b>Reopen:</b> ${esc(s.reopen)}</div>` : ''}</td>
+    <td>${s.specified ? 'Specified' : '<span class="muted">—</span>'}</td>
+    <td class="num">${s.shots && s.shots.length ? plural(s.shots.length, 'state') : '<span class="muted">None</span>'}</td></tr>`;
+}
+
+function screenPills(names, flowName, shared) {
+  const tags = (shared || []).map((label) => `<span class="pill shared" title="${esc(label)}: ${esc((DATA.sharedNav[label] || []).join(', '))}">${esc(label)}</span>`);
+  if ((!names || !names.length) && !tags.length) return '<span class="muted">None</span>';
+  return `<div class="pills">${tags.join('')}${(names || []).map((n) => {
+    const s = DATA.screens[n];
+    if (!s) return `<span class="pill ext">${esc(n)}</span>`;
+    const other = s.flow !== flowName;
+    return `<a class="pill${other ? ' ext' : ''}" href="#screen-${esc(n)}" title="${other ? 'Flow ' + esc(s.flow) : 'Same flow'}">${esc(n)}</a>`;
+  }).join('')}</div>`;
+}
+
+function sharedNote() {
+  return `<p class="muted" style="font-size:.82rem">${Object.entries(DATA.sharedNav).map(([label, targets]) =>
+    `<span class="pill shared">${esc(label)}</span> links of a shared block that many screens show: ${targets.map(esc).join(', ')}.`).join('<br>')}</p>`;
+}
+
+function viewFlow(name) {
+  const f = DATA.flows[name];
+  if (!f) { main.innerHTML = `<p class="empty">No UI flow named ${esc(name)}.</p>`; return; }
+  const screens = f.screens.map((n) => DATA.screens[n]);
+  const byModule = {};
+  f.otherModuleBlocks.forEach((b) => { const m = b.split('.')[0]; (byModule[m] = byModule[m] || []).push(b.split('.').slice(1).join('.')); });
+  main.innerHTML = `
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="#overview">Overview</a><span>/</span><span>${esc(f.area)}</span></nav>
+  <section class="flow-head">
+    <span class="eyebrow">UI flow · ${esc(f.area)}</span>
+    <h1>${esc(f.label)}</h1>
+    <span class="fname">${esc(f.name)}</span>
+    <p>${esc(f.purpose)}</p>
+    <div class="facts">${f.screens.length ? `<span class="tag">${plural(f.screens.length, 'screen')}</span>` : '<span class="tag lib">Blocks only</span>'}
+      <span class="tag">${plural(f.blocks.length, 'block')} of its own</span>
+      ${f.otherModuleBlocks.length ? `<span class="tag">${plural(f.otherModuleBlocks.length, 'block')} from other modules</span>` : ''}
+      ${f.testOrDev ? '<span class="tag warn">Test, development or deprecated flow</span>' : ''}</div>
+    ${f.screens.length ? `${stack(f.counts, true)}<div class="legend"><span><i class="sw in"></i>${f.counts.in} in scope</span><span><i class="sw out"></i>${f.counts.out} out of scope</span><span><i class="sw dev"></i>${f.counts.dev} DEV only</span></div>` : ''}
+  </section>
+  ${screens.length ? `<section class="panel" aria-labelledby="scr-h"><header><h2 id="scr-h">Screens</h2><span class="muted" style="font-size:.84rem">Select a screen for its TST screenshots and details</span></header>
+    <div class="tablewrap"><table><thead><tr><th>Screen</th><th>Scope</th><th>Specification</th><th>Screenshots</th></tr></thead>
+    <tbody>${screens.map(screenRow).join('')}</tbody></table></div></section>
+  <section class="panel" aria-labelledby="nav-h"><header><h2 id="nav-h">How users move</h2><span class="muted" style="font-size:.84rem">Filled: same flow. Outlined: another flow. Dashed: links of a shared block.</span></header>
+    <div class="tablewrap"><table><thead><tr><th>Screen</th><th>Opens from</th><th>Leads to</th></tr></thead><tbody>
+    ${screens.filter((s) => s.onTST).map((s) => `<tr><td class="mono">${esc(s.name)}</td><td>${screenPills(s.reachedFrom, name, s.reachedShared)}</td><td>${screenPills(s.navOut, name, s.navShared)}</td></tr>`).join('') || '<tr><td colspan="3" class="empty">No screen of this flow is on TST.</td></tr>'}
+    </tbody></table></div>${sharedNote()}</section>` : ''}
+  <section class="panel" aria-labelledby="blk-h"><header><h2 id="blk-h">Blocks of this flow</h2><span class="muted" style="font-size:.84rem">Usage on TST</span></header>
+    ${f.blocks.length ? `<div class="tablewrap"><table><thead><tr><th>Block</th><th>Usage</th><th>Used by</th></tr></thead><tbody>
+    ${f.blocks.map((b) => `<tr><td class="mono">${esc(b.name)}</td><td>${chip(b.usage === 'unused' ? 'unused' : b.usage, USAGE[b.usage])}</td><td>${b.usedBy.length ? `${plural(b.usedBy.length, 'screen')}${b.usedBy.length <= 6 ? ': ' + b.usedBy.map(esc).join(', ') : ''}` : '<span class="muted">No screen</span>'}</td></tr>`).join('')}
+    </tbody></table></div>` : '<p class="empty">This flow has no blocks of its own.</p>'}
+    ${f.otherModuleBlocks.length ? `<details><summary>Blocks from other modules used by these screens (${f.otherModuleBlocks.length})</summary>
+      ${Object.entries(byModule).map(([m, bs]) => `<p style="margin-bottom:8px"><span class="eyebrow">${esc(m)}</span><br><span class="pills">${bs.map((b) => `<span class="pill">${esc(b)}</span>`).join('')}</span></p>`).join('')}</details>` : ''}
+  </section>`;
+}
+
+function viewHealth() {
+  const h = DATA.health, c = DATA.counts;
+  const unusedByFlow = {};
+  h.unusedBlocks.forEach((b) => { (unusedByFlow[b.flow] = unusedByFlow[b.flow] || []).push(b.name); });
+  const scr = (n) => `<a href="#screen-${esc(n)}" class="mono">${esc(n)}</a>`;
+  main.innerHTML = `
+  <section class="intro"><span class="eyebrow">Health of the original app</span><h1>What the TST app carries</h1>
+    <p>These findings come from the compiled code of the TST app and the DEV model. They show unused parts, test parts and differences between DEV and TST. They help to decide what the migration leaves behind.</p></section>
+  <div class="health">
+    <section class="panel"><h3><b>${c.blocksUnused}</b> Blocks not used on TST</h3><p class="muted" style="font-size:.86rem">No screen on TST uses these blocks.</p>
+      <ul>${Object.entries(unusedByFlow).map(([f, bs]) => `<li><a href="#flow-${esc(f)}" class="mono">${esc(f)}</a>: ${bs.map(esc).join(', ')}</li>`).join('')}</ul></section>
+    <section class="panel"><h3><b>${h.notReachable.length}</b> Screens not reachable on TST</h3><p class="muted" style="font-size:.86rem">Users cannot open these screens on TST. Each line gives the reason.</p>
+      <ul>${h.notReachable.map((n) => `<li>${scr(n)}: ${esc(DATA.screens[n].reason)}</li>`).join('') || '<li class="empty">None</li>'}</ul></section>
+    <section class="panel"><h3><b>${h.testOrDevFlows.length}</b> Test, development and deprecated flows</h3><p class="muted" style="font-size:.86rem">Flows whose names mark them as temporary, in development or deprecated.</p>
+      <ul>${h.testOrDevFlows.map((f) => `<li><a href="#flow-${esc(f)}" class="mono">${esc(f)}</a>: ${esc(flowMeta(DATA.flows[f]))}</li>`).join('')}</ul></section>
+    <section class="panel"><h3><b>${h.devOnly.length}</b> Screens only on DEV</h3><p class="muted" style="font-size:.86rem">These screens are in the DEV model but not in the TST app. They need a scope decision when DEV goes to TST.</p>
+      <ul>${h.devOnly.map((n) => `<li>${scr(n)} · flow <a href="#flow-${esc(DATA.screens[n].flow)}" class="mono">${esc(DATA.screens[n].flow)}</a></li>`).join('')}</ul></section>
+    <section class="panel"><h3><b>${h.flagScope.length}</b> Flags that change the scope</h3><p class="muted" style="font-size:.86rem">These screens are out of scope because a flag is off on TST.</p>
+      <ul>${h.flagScope.map((x) => `<li>${scr(x.screen)}: ${esc(x.reason)}${x.reopen ? ` <b>${esc(x.reopen)}</b>` : ''}</li>`).join('') || '<li class="empty">None</li>'}</ul></section>
+    <section class="panel"><h3><b>${h.outOnlyFlows.length}</b> Flows with no screen in scope</h3><p class="muted" style="font-size:.86rem">All screens of these flows are out of scope or only on DEV.</p>
+      <ul>${h.outOnlyFlows.map((f) => `<li><a href="#flow-${esc(f)}" class="mono">${esc(f)}</a>: ${esc(flowMeta(DATA.flows[f]))}</li>`).join('')}</ul></section>
+  </div>`;
+}
+
+function viewMethod() {
+  main.innerHTML = `
+  <section class="intro"><span class="eyebrow">Method</span><h1>How we analysed the app</h1></section>
+  <section class="prose">
+    <p>Facts come from three sources: the compiled code of the TST app, captures of each screen state on TST, and the OutSystems model on DEV. The captures mask personal data. The analysis only reads from TST and changes no data. TST is the source of truth. DEV is a reference only.</p>
+    <p>Where the sources did not answer a question, the project owner decided. Each scope decision has a reason and a date.</p>
+    <p>A specification describes one screen of the original app: layout, blocks, states (default, loading, offline), data calls, navigation, flags and texts. Each fact has a reference to the compiled code or to a capture.</p>
+  </section>
+  <section class="panel" aria-labelledby="dec-h"><header><h2 id="dec-h">Scope decisions</h2><span class="muted" style="font-size:.84rem">The final result of each decision</span></header>
+    <div class="tablewrap"><table><thead><tr><th>Decision</th><th>Topic</th><th>Result</th><th>Date</th></tr></thead><tbody>
+    ${DATA.decisions.map((d) => `<tr><td class="mono">${esc(d.id)}</td><td>${esc(d.topic)}</td><td>${esc(d.outcome)}</td><td class="num" style="white-space:nowrap">${esc(d.date)}</td></tr>`).join('')}
+    </tbody></table></div></section>
+  <section class="panel" aria-labelledby="terms-h"><h2 id="terms-h">Terms</h2>
+    <dl class="kv">
+      <dt>UI flow</dt><dd>A group of screens and blocks in the OutSystems module, as in the Interface tab of Service Studio.</dd>
+      <dt>Screen</dt><dd>One page of the app, with its own URL.</dd>
+      <dt>Block</dt><dd>A part of the user interface that screens use again.</dd>
+      <dt>TST, DEV</dt><dd>The test and the development environments of the original app. TST is the source of truth.</dd>
+      <dt>Flag</dt><dd>A feature switch of the original app. Its value on TST decides which branch of a screen users see.</dd>
+      <dt>${chip('in')}</dt><dd>The screen is part of the migration.</dd>
+      <dt>${chip('out')}</dt><dd>The screen is not part of the migration. The reason and a reopen condition are recorded.</dd>
+      <dt>${chip('dev')}</dt><dd>The screen exists on DEV only. It has no scope decision yet.</dd>
+      <dt>Specified</dt><dd>A specification of the original screen exists.</dd>
+    </dl></section>`;
+}
+
+function openScreen(name) {
+  const s = DATA.screens[name];
+  if (!s) return;
+  lastFocus = document.activeElement;
+  const shots = s.shots || [];
+  const list = (arr) => arr && arr.length ? `<div class="pills">${arr.map((x) => `<span class="pill">${esc(x)}</span>`).join('')}</div>` : '<span class="muted">None</span>';
+  drawer.innerHTML = `
+    <header><span class="eyebrow">Screen · flow <a href="#flow-${esc(s.flow)}">${esc(s.flow)}</a></span>
+      <h2 id="drawer-title" class="mono" style="font-family:var(--font-mono);font-size:1.25rem;overflow-wrap:anywhere">${esc(s.name)}</h2>
+      <div class="facts">${chip(s.scope)}${s.specified ? '<span class="tag">Specified</span>' : ''}${s.onTST ? '' : '<span class="tag warn">Not on TST</span>'}</div>
+      ${s.reason ? `<p style="color:var(--ink-2)">${esc(s.reason)}</p>` : ''}
+      ${s.reopen ? `<p style="color:var(--ink-2)"><b>Reopen:</b> ${esc(s.reopen)}</p>` : ''}
+      ${s.date ? `<p class="muted" style="font-size:.82rem">Decided by the project owner, ${esc(s.date)}</p>` : ''}
+      <button class="close" id="drawer-close" aria-label="Close">×</button></header>
+    <section class="shots" aria-label="TST screenshots"><h3>Screenshots on TST</h3>
+      ${shots.length ? `<div class="tabs" role="tablist">${shots.map((x, i) => `<button role="tab" aria-selected="${i === 0}" data-shot="${i}">${esc(x.label)}</button>`).join('')}</div>
+      <div class="phone"><img id="shot-img" src="${esc(shots[0].img)}" alt="${esc(s.name)} on TST, state ${esc(shots[0].label)}" loading="lazy"></div>
+      <p class="muted" style="font-size:.8rem">Phone width 390 px. Personal data is masked in the capture.</p>`
+      : `<div class="noshot">${!s.onTST ? 'This screen is not on TST, so it has no screenshot.'
+        : s.noCapture ? 'No screenshot. On TST, the test account cannot open this screen without a change to the data. The capture changes no data.'
+        : s.scope === 'out' ? 'No screenshot. Screens out of scope were not captured.'
+        : 'No screenshot of this screen on TST.'}</div>`}
+    </section>
+    ${s.onTST ? `<section style="display:grid;gap:10px"><h3>Details from the TST app</h3><dl class="kv">
+      <dt>URL</dt><dd class="mono" style="overflow-wrap:anywhere">${esc(s.route)}</dd>
+      <dt>Inputs</dt><dd>${list(s.inputs)}</dd>
+      <dt>Opens from</dt><dd>${screenPills(s.reachedFrom, s.flow, s.reachedShared)}</dd>
+      <dt>Leads to</dt><dd>${screenPills(s.navOut, s.flow, s.navShared)}</dd>
+      <dt>Data it loads</dt><dd>${list(s.dataActions)}</dd>
+      <dt>Server actions</dt><dd>${list(s.serverActions)}</dd>
+      <dt>Flags it checks</dt><dd>${list(s.flags)}</dd>
+      <dt>OutSystems UI patterns</dt><dd>${list(s.osui)}</dd>
+      <dt>Blocks</dt><dd>${plural(s.blocks, 'block')} in total${s.ownBlocks.length ? `, ${s.ownBlocks.length} of this module` : ''}</dd>
+    </dl></section>` : ''}`;
+  drawer.hidden = false; drawerBack.hidden = false;
+  document.body.style.overflow = 'hidden';
+  drawer.querySelectorAll('[data-shot]').forEach((b) => b.addEventListener('click', () => {
+    const x = shots[+b.dataset.shot];
+    drawer.querySelectorAll('[data-shot]').forEach((o) => o.setAttribute('aria-selected', String(o === b)));
+    const img = document.getElementById('shot-img');
+    img.src = x.img; img.alt = `${s.name} on TST, state ${x.label}`;
+  }));
+  document.getElementById('drawer-close').addEventListener('click', closeScreen);
+  document.getElementById('drawer-close').focus();
+}
+
+function closeScreen() {
+  if (drawer.hidden) return;
+  drawer.hidden = true; drawerBack.hidden = true; drawer.innerHTML = '';
+  document.body.style.overflow = '';
+  if (location.hash.startsWith('#screen-')) {
+    const s = DATA.screens[location.hash.slice(8)];
+    history.replaceState(null, '', s ? `#flow-${s.flow}` : '#overview');
+  }
+  if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
+}
+
+function labelCells() {
+  main.querySelectorAll('table').forEach((t) => {
+    const heads = [...t.querySelectorAll('thead th')].map((th) => th.textContent);
+    t.querySelectorAll('tbody tr').forEach((tr) => [...tr.children].forEach((td, i) => { if (heads[i]) td.dataset.th = heads[i]; }));
+  });
+}
+
+function route() {
+  if (!DATA) { main.innerHTML = '<p class="empty">The data is missing. Run build_dashboard.py.</p>'; return; }
+  const h = decodeURIComponent(location.hash.slice(1));
+  let view = 'overview';
+  if (h === 'health') { view = 'health'; viewHealth(); }
+  else if (h === 'method') { view = 'method'; viewMethod(); }
+  else if (h.startsWith('flow-')) { viewFlow(h.slice(5)); view = ''; }
+  else if (h.startsWith('screen-') && DATA.screens[h.slice(7)]) { viewFlow(DATA.screens[h.slice(7)].flow); view = ''; openScreen(h.slice(7)); }
+  else viewOverview();
+  labelCells();
+  document.querySelectorAll('nav.views a').forEach((a) => {
+    if (a.dataset.view === view) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+  });
+  if (!h.startsWith('screen-')) { closeScreen(); window.scrollTo(0, 0); }
+}
+
+main.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-screen]');
+  if (b) openScreen(b.dataset.screen);
+});
+drawerBack.addEventListener('click', closeScreen);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeScreen(); });
+window.addEventListener('hashchange', route);
+route();
+</script>

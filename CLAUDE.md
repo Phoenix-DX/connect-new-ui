@@ -28,12 +28,12 @@ Migrate the OutSystems app **UBTConnect TST** (`https://ubtm-tst.ubtconnectgloba
    Only exception: the calls in `migration/capture-plan.json` → `defaults.allowActions`, each confirmed by me (app start
    sync calls that run on every app open, reads whose names miss the guard rule, `Wrapper_NotificationOpened`;
    user, 2026-10-14). Emails, shares, policy accept and writes made by user actions stay blocked.
-7. Do not `git push`. Commit only when I ask.
+7. Do not `git push`. Commit only when I ask. Write commit messages in English.
 
 ## How to work with me
 
 - Reply to me in Vietnamese, whatever language I write in (Vietnamese or English). Keep code, commands, file names and
-  identifiers in English. Files written in the project (specs, docs, notes, commit messages) stay in English and follow
+  identifiers in English. Files written in the project (specs, docs, notes) stay in English and follow
   `migration/english-docs/style-rules.md`.
 - Questions to me: one session per topic (scope, stack, flags), grouped, each with evidence, options and a recommendation.
 - At the start of every session: `python3 $SK/route.py plan`, read `migration/contexts/INDEX.md`, and tell me in 5 lines
