@@ -1,0 +1,56 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/SupperMeeting_Carousel?In_StartingSupperMeetingId=1210&mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "988c4bdbe35ab4a72e7e",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 1183,
+  "texts": 72,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-21T04:36:03.195Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
+  "CAPTURE-SKELETON-SHIMMER-PHASE": 138,
+  "ignoreSubtrees": 1
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 328874,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 4,
+  "hotspots": [],
+  "diffPng": "migration/screens/SupperMeeting_Carousel/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

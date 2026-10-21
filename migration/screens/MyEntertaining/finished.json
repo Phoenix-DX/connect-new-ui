@@ -1,0 +1,13 @@
+{
+ "finishedAt": "2026-10-16T06:57:00",
+ "files": {
+  "src/screens/MyEntertaining/api.ts": "b296ca17ac9b64dc",
+  "src/screens/MyEntertaining/components/Embedded_MyEntertaining.tsx": "ee3e5f7556d5e72d",
+  "src/screens/MyEntertaining/components/MyEntertaining_Embedded.tsx": "f69c56e4ce5edaf7",
+  "src/screens/MyEntertaining/components/connect2Entertaining.ts": "f466205cb6906ccc",
+  "src/screens/MyEntertaining/components/staticEntities.ts": "a1673aafc2f3d408",
+  "src/screens/MyEntertaining/index.tsx": "158ec5d80f2376c3",
+  "src/screens/MyEntertaining/mocks.ts": "00966555952cb065",
+  "src/screens/MyEntertaining/types.ts": "a658fbbb72abb13f"
+ }
+}

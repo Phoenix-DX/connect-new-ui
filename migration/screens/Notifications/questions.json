@@ -1,0 +1,222 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "mocks",
+  "question": "The recorded GetDateRanges fixture (UBTConnect/DataActionGetDateRanges/01-66ac13ca.json) has anonymised static-entity ids (Ipsum, Last 3 Days, Last 94 Days, Ipsum), so no range matches Updates_DateRanges and the list would stay empty. How should the route answer DataActionGetDateRanges?",
+  "evidence": "fixture data.DateRangesList; UC:358-483 AugmentDateRanges compares Id with updates_DateRanges.today/last7Days/last30Days/older; knowledge/static-entities-tst.json UBTConnect.updates_DateRanges",
+  "mcp": "not needed: fact is in the fixture and the compiled code",
+  "options": [
+   "A: contract handler with the TST static-entity values (Today 1, Last 7 Days 2, Last 30 Days 3, Older 4) now, foundation re-converts the fixture keeping static-entity ids later",
+   "B: wait for a re-converted fixture and use recordedHandler"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T11:03:52",
+  "answer": "(user, 2026-10-15) DataActionGetDateRanges re-recorded read-only with range Id kept (01-e1d555a6.json), fixtures reviewed",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T11:24:45"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "images",
+  "question": "Notification avatars in TST are app logos /UBT_CW/img/UBT_CW.directory_entity_logo.png and /UBT_CW/img/UBT_CW.logo_assemble.svg (not person photos); the dev server does not serve /UBT_CW/img. Serve them (CR-Notifications-1) or use an empty URL (fallback icon)?",
+  "evidence": "analysis/dom/default.html items 1-5,14-16,18-19 (img src /UBT_CW/img/...); curl localhost:5173/UBT_CW/img/... returns index.html",
+  "mcp": "not needed",
+  "options": [
+   "A: CR-Notifications-1, mock keeps the original paths",
+   "B: empty ProfileIconURL (fallback icon)"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T11:03:52",
+  "answer": "(user, 2026-10-15) UBT_CW logos fetched read-only and served by the dev server at /UBT_CW/img/*",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T11:24:45"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "parity",
+  "question": "Notification titles are fictional (person-data rule), with the captured lengths. 8 titles were unmasked in the TST capture (test labels such as 'Notification 6'), so text parity reports 8 differences. Accept an exemption for the notification title text, or reuse those TST test labels?",
+  "evidence": "analysis/dom/default.html SanitizedHtml spans of items 1,6,13-16; knowledge/mock-fixtures.md person data fictional",
+  "mcp": "not needed",
+  "options": [
+   "A: exemption for text of [ConnectCorePatterns.Notification_ListItem] SanitizedHtml",
+   "B: reuse the unmasked TST test labels"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T11:03:53",
+  "answer": "(user, 2026-10-15) reuse the TST test labels (not person data) in the mock",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T11:24:45"
+ },
+ {
+  "id": "Q4",
+  "kind": "decision",
+  "topic": "parity",
+  "question": "Call parity default: the clone makes ServiceAPIGet_UI_UpdateItems_UnreadCount_All (raised by the screen after FetchNotifications, Directory_Updates_RefreshBottomBarCount(True)) after ActionGetUserInformation; TST made it before Sync_Info_GetMain. Same calls, same phase; the order is a race between the app-start chain and the screen's GetDateRanges -> FetchNotifications -> UnreadCount chain (the screen mounts after the app start began). Accept as an exemption (call order of UnreadCount_All vs the app-start chain) or should the route delay/advance anything?",
+  "evidence": "migration/screens/Notifications/parity/default.json [call]; analysis/calls.json ts 6349-7170; SCR :2289-2385",
+  "mcp": "not needed",
+  "options": [
+   "A: exemption for this call-order race (same calls, same phase)",
+   "B: keep as a difference for review"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T11:12:42",
+  "answer": "(user, 2026-10-15) accept: callOrderFree CALL-ORDER-APPSTART-RACE (count still compared)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T11:24:45"
+ },
+ {
+  "id": "Q5",
+  "kind": "decision",
+  "topic": "parity",
+  "question": "Pixel parity default (only remaining difference): the footer scroll shadow (footer.content-bottom::before, 9px gradient, rows 786-787 x 390 px = 780 px) shows in the build, not in the capture. The layout's OnReady SetScrollShadow decides --footer-shadow-scroll once after 200 ms, then only on scroll. The parity runner serves mocks with latency=0, so the list is already loaded (scrollable) at 200 ms -> visible; on TST (and in the app with the default 600 ms latency) the list is still loading at 200 ms -> hidden, as captured. Same code, timing of the mock only (new kind: runner latency vs a one-shot timer). Accept an exemption, or something else?",
+  "evidence": "analysis/dom/default.html:4 (screen-container style --footer-shadow-scroll: hidden); analysis/styles/bundle.css:24034-24037 (:root hidden), :26235-26241 (footer:before visibility var); app/src/shared/UBTConnectLibrary/lib/actions.ts:680-692 (setTimeout 200, then scroll only); app/src/screens/Notifications/components/Layout_MainPages_Upgrade.tsx:28-30,48-56 (OnReady, LAY :756-806); parity_check.cjs:542 (latency 0); probe 2026-10-15: latency=0 -> visible, latency 600 -> hidden; parity/default.diff.png rows 786-787 (780 px) + bottom-bar badge masked '••' vs '9+' (60 px, max tile 2.2%, under the thresholds)",
+  "mcp": "not needed: compiled code, captured CSS and DOM settle it",
+  "options": [
+   "A: exemption FOOTER-SHADOW-MOCK-LATENCY: mask footer.content-bottom::before (or ignore --footer-shadow-scroll) in pixel/style for Notifications default",
+   "B: foundation adds a per-state mock latency option to the parity runner (states.json) so the 200 ms check sees the loading list",
+   "C: keep it as a difference the user reviews"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T12:10:24",
+  "answer": "auto-decided (user instruction 11:24, 3h window): B instead of the recommended A, because an exemption cannot target only the footer ::before shadow on one route; capture-plan 'latencies' {default: 600} (route.py → parity_check --latency) reproduces TST's timing; parity 0 without exemption",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T12:12:55"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (user, 2026-10-15): GetDateRanges from the re-recorded fixture (`recordedHandler`, inputs not matched).; Q2 (user, 2026-10-15): avatars are the TST app logos at their original paths, served by the dev server.; Q3 (user, 2026-10-15): TST test labels reused for the 6 unmasked titles; other titles fictional, captured lengths.; Q4 (user, 2026-10-15): call order of UnreadCount_All vs the app-start chain exempted (CALL-ORDER-APPSTART-RACE).; Q5 (open, recommend A): exemption for the footer scroll shadow decided at 200 ms under the runner's mock latency 0.; FetchNotifications is never recorded (person data): 19 fictional rows keep the captured count, read state, avatar; Mark all / Delete all do nothing, as compiled (wrapper actions empty).; Post-scroll search header (IsToggleSearch + IsHeaderScrolled) is built from the compiled code, not captured;; Change requests: CR-Notifications-1 (UBT_CW logos), applied by the foundation (2026-10-15). None open. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getFlagURLByCountryCode → not a flag (false positive): country flag image URL; behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:refreshUpdatesAndFlags → not a flag (false positive): list item refresh (takes CurrentPosition); behaviour built as in the original (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T12:12:56",
+  "items": [
+   "Q1 (user, 2026-10-15): GetDateRanges from the re-recorded fixture (`recordedHandler`, inputs not matched).",
+   "Q2 (user, 2026-10-15): avatars are the TST app logos at their original paths, served by the dev server.",
+   "Q3 (user, 2026-10-15): TST test labels reused for the 6 unmasked titles; other titles fictional, captured lengths.",
+   "Q4 (user, 2026-10-15): call order of UnreadCount_All vs the app-start chain exempted (CALL-ORDER-APPSTART-RACE).",
+   "Q5 (open, recommend A): exemption for the footer scroll shadow decided at 200 ms under the runner's mock latency 0.",
+   "FetchNotifications is never recorded (person data): 19 fictional rows keep the captured count, read state, avatar",
+   "Mark all / Delete all do nothing, as compiled (wrapper actions empty).",
+   "Post-scroll search header (IsToggleSearch + IsHeaderScrolled) is built from the compiled code, not captured;",
+   "Change requests: CR-Notifications-1 (UBT_CW logos), applied by the foundation (2026-10-15). None open."
+  ],
+  "fixed": [],
+  "answer": "auto-confirmed (user instruction 2026-10-15 11:24: auto confirm built screens for 3 h)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T12:13:01"
+ },
+ {
+  "id": "Q7",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (user, 2026-10-15): GetDateRanges from the re-recorded fixture (`recordedHandler`, inputs not matched).; Q2 (user, 2026-10-15): avatars are the TST app logos at their original paths, served by the dev server.; Q3 (user, 2026-10-15): TST test labels reused for the 6 unmasked titles; other titles fictional, captured lengths.; Q4 (user, 2026-10-15): call order of UnreadCount_All vs the app-start chain exempted (CALL-ORDER-APPSTART-RACE).; Q5 (open, recommend A): exemption for the footer scroll shadow decided at 200 ms under the runner's mock latency 0.; FetchNotifications is never recorded (person data): 19 fictional rows keep the captured count, read state, avatar; Mark all / Delete all do nothing, as compiled (wrapper actions empty).; Post-scroll search header (IsToggleSearch + IsHeaderScrolled) is built from the compiled code, not captured;; Change requests: CR-Notifications-1 (UBT_CW logos), applied by the foundation (2026-10-15). None open. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getFlagURLByCountryCode → not a flag (false positive): country flag image URL; behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:refreshUpdatesAndFlags → not a flag (false positive): list item refresh (takes CurrentPosition); behaviour built as in the original (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T12:13:10",
+  "items": [
+   "Q1 (user, 2026-10-15): GetDateRanges from the re-recorded fixture (`recordedHandler`, inputs not matched).",
+   "Q2 (user, 2026-10-15): avatars are the TST app logos at their original paths, served by the dev server.",
+   "Q3 (user, 2026-10-15): TST test labels reused for the 6 unmasked titles; other titles fictional, captured lengths.",
+   "Q4 (user, 2026-10-15): call order of UnreadCount_All vs the app-start chain exempted (CALL-ORDER-APPSTART-RACE).",
+   "Q5 (open, recommend A): exemption for the footer scroll shadow decided at 200 ms under the runner's mock latency 0.",
+   "FetchNotifications is never recorded (person data): 19 fictional rows keep the captured count, read state, avatar",
+   "Mark all / Delete all do nothing, as compiled (wrapper actions empty).",
+   "Post-scroll search header (IsToggleSearch + IsHeaderScrolled) is built from the compiled code, not captured;",
+   "Change requests: CR-Notifications-1 (UBT_CW logos), applied by the foundation (2026-10-15). None open."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 11:24, 3h window)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T12:13:10"
+ },
+ {
+  "id": "Q8",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (user, 2026-10-15): GetDateRanges from the re-recorded fixture (`recordedHandler`, inputs not matched).; Q2 (user, 2026-10-15): avatars are the TST app logos at their original paths, served by the dev server.; Q3 (user, 2026-10-15): TST test labels reused for the 6 unmasked titles; other titles fictional, captured lengths.; Q4 (user, 2026-10-15): call order of UnreadCount_All vs the app-start chain exempted (CALL-ORDER-APPSTART-RACE).; Q5 (open, recommend A): exemption for the footer scroll shadow decided at 200 ms under the runner's mock latency 0.; FetchNotifications is never recorded (person data): 19 fictional rows keep the captured count, read state, avatar; Mark all / Delete all do nothing, as compiled (wrapper actions empty).; Post-scroll search header (IsToggleSearch + IsHeaderScrolled) is built from the compiled code, not captured;; Change requests: CR-Notifications-1 (UBT_CW logos), applied by the foundation (2026-10-15). None open. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getFlagURLByCountryCode → not a flag (false positive): country flag image URL; behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:refreshUpdatesAndFlags → not a flag (false positive): list item refresh (takes CurrentPosition); behaviour built as in the original (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T06:57:15",
+  "items": [
+   "Q1 (user, 2026-10-15): GetDateRanges from the re-recorded fixture (`recordedHandler`, inputs not matched).",
+   "Q2 (user, 2026-10-15): avatars are the TST app logos at their original paths, served by the dev server.",
+   "Q3 (user, 2026-10-15): TST test labels reused for the 6 unmasked titles; other titles fictional, captured lengths.",
+   "Q4 (user, 2026-10-15): call order of UnreadCount_All vs the app-start chain exempted (CALL-ORDER-APPSTART-RACE).",
+   "Q5 (open, recommend A): exemption for the footer scroll shadow decided at 200 ms under the runner's mock latency 0.",
+   "FetchNotifications is never recorded (person data): 19 fictional rows keep the captured count, read state, avatar",
+   "Mark all / Delete all do nothing, as compiled (wrapper actions empty).",
+   "Post-scroll search header (IsToggleSearch + IsHeaderScrolled) is built from the compiled code, not captured;",
+   "Change requests: CR-Notifications-1 (UBT_CW logos), applied by the foundation (2026-10-15). None open."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T06:57:15"
+ },
+ {
+  "id": "Q9",
+  "kind": "review",
+  "topic": "review round 4",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (user, 2026-10-15): GetDateRanges from the re-recorded fixture (`recordedHandler`, inputs not matched).; Q2 (user, 2026-10-15): avatars are the TST app logos at their original paths, served by the dev server.; Q3 (user, 2026-10-15): TST test labels reused for the 6 unmasked titles; other titles fictional, captured lengths.; Q4 (user, 2026-10-15): call order of UnreadCount_All vs the app-start chain exempted (CALL-ORDER-APPSTART-RACE).; Q5 (open, recommend A): exemption for the footer scroll shadow decided at 200 ms under the runner's mock latency 0.; FetchNotifications is never recorded (person data): 19 fictional rows keep the captured count, read state, avatar; Mark all / Delete all do nothing, as compiled (wrapper actions empty).; Post-scroll search header (IsToggleSearch + IsHeaderScrolled) is built from the compiled code, not captured;; Change requests: CR-Notifications-1 (UBT_CW logos), applied by the foundation (2026-10-15). None open. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getFlagURLByCountryCode → not a flag (false positive): country flag image URL; behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:refreshUpdatesAndFlags → not a flag (false positive): list item refresh (takes CurrentPosition); behaviour built as in the original (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T15:01:32",
+  "items": [
+   "Q1 (user, 2026-10-15): GetDateRanges from the re-recorded fixture (`recordedHandler`, inputs not matched).",
+   "Q2 (user, 2026-10-15): avatars are the TST app logos at their original paths, served by the dev server.",
+   "Q3 (user, 2026-10-15): TST test labels reused for the 6 unmasked titles; other titles fictional, captured lengths.",
+   "Q4 (user, 2026-10-15): call order of UnreadCount_All vs the app-start chain exempted (CALL-ORDER-APPSTART-RACE).",
+   "Q5 (open, recommend A): exemption for the footer scroll shadow decided at 200 ms under the runner's mock latency 0.",
+   "FetchNotifications is never recorded (person data): 19 fictional rows keep the captured count, read state, avatar",
+   "Mark all / Delete all do nothing, as compiled (wrapper actions empty).",
+   "Post-scroll search header (IsToggleSearch + IsHeaderScrolled) is built from the compiled code, not captured;",
+   "Change requests: CR-Notifications-1 (UBT_CW logos), applied by the foundation (2026-10-15). None open."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T15:01:32"
+ }
+]

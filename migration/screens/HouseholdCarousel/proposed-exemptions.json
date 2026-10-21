@@ -1,0 +1,84 @@
+{
+ "_comment": "Proposed by route-householdcarousel 2026-10-15 for the orchestrator; NOT applied to migration/parity-exemptions.json. Capture/timing artifacts only.",
+ "callOrderFree": [
+  {
+   "id": "CALL-APPSTART-VIA-HOUSEHOLDCAROUSEL",
+   "actions": [
+    "ActionAppManager_SynchAppContext",
+    "ActionAppManager_AfterInitialize",
+    "ActionSync_Info_GetMain",
+    "ActionGetUserInformation",
+    "ActionGetNumberUnreadMessages",
+    "ServiceAPIFetchData_CacheableMapEntities",
+    "ServiceAPIFetchData_CacheableHouseholds"
+   ],
+   "states": "^default$",
+   "kind": "extra calls in build (load phase)",
+   "reason": "The capture reached HouseholdCarousel through Locality_Details (capture-plan `via`), so the app-start calls ran on the source screen; parity opens the route by URL, so the shell's app start runs on this screen. Capture artifact (app-start call order), auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/HouseholdCarousel/analysis/states.json via; diagnostic default run (scratch copy of parity_check with JSON-string serialization)"
+  },
+  {
+   "id": "CALL-COUNT-SIGNED-IMAGES-BATCH-HOUSEHOLDCAROUSEL",
+   "actions": [
+    "ActionGetSignedImagesInBulk"
+   ],
+   "states": "^default$",
+   "kind": "count 2 in build vs 3 in capture (order-free)",
+   "reason": "GetSignedImagesInBulk batches the images requested within its debounce window (UBTConnect_Utils cache_SignedImageURL); how many batches the 4 slides' images fall into depends on response timing (TST ~3 s of staggered answers vs mocks at latency 0). Timing artifact, auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "pack.md Calls #14, #15, #19 (t 2992, 3068, 3491 ms)"
+  }
+ ],
+ "rules": [
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLDCAROUSEL",
+   "kinds": [
+    "class"
+   ],
+   "states": "^loading$",
+   "pathRegex": "\\[Directory_Household\\.HouseholdDetails_Block\\] > .*\\[Layouts\\.SubLayout_Section\\] > div[^>]*$",
+   "detail": "missing .list-error",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout, so the household members lists show their fetch-error class (list-error); the clone's loading scenario never answers. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT(-HOUSEHOLDDETAILS-IMAGE). Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/HouseholdCarousel/parity/loading.json (8 class diffs, slides 1-4)"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-HOUSEHOLDCAROUSEL",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b3-l1-1152_\\d-b2-b3-b1-b3-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "The household photo of every rendered slide was masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered size 390x259 on all four slides); the replayed reference shows a 26 px broken image, the clone the 260 px neutral placeholder (Q-W2C-1). Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS (same block, carousel instance ids).",
+   "evidence": "migration/screens/HouseholdCarousel/analysis/dom/default.html (img b3-l1-1152_0..3-b2-b3-b1-b4-b2-Image: data-masked-src=\"user-image\", data-rendered-size=\"390x259\"); migration/screens/HouseholdCarousel/parity/default.json (40 layout diffs, 10 per slide, all 390x26 -> 390x260 under LazyImage_Placeholder)"
+  },
+  {
+   "id": "CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL-POPUP",
+   "kinds": [
+    "attr",
+    "class"
+   ],
+   "states": "^(loading|offline)$",
+   "routeRegex": "/UBTConnect/HouseholdCarousel\\b",
+   "pathRegex": "^(div#reactContainer|html)$",
+   "detailRegex": "^(aria-hidden: true → ∅|missing \\.popup-disable-scroll\\b.*)$",
+   "reason": "Follows from CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL: on TST the About tab of each slide was rendered, with the closed AddressPopup of AddressSection, which hides #reactContainer (aria-hidden) and sets html.popup-disable-scroll, as in the default state where the clone matches. The clone, opened by URL with the user info pending, renders no About content, as the TST HouseholdDetails loading capture opened directly (no aria-hidden).",
+   "evidence": "migration/screens/HouseholdCarousel/analysis/dom/loading.html (<div aria-hidden=\"true\" id=\"reactContainer\">, AddressPopup b3-l1-1152_0..3-b2-b3-b1-b13-$b2); migration/screens/HouseholdDetails/analysis/dom/loading.html (<div id=\"reactContainer\">, direct open, 'Household gallery' :146) vs default.html (aria-hidden=\"true\")"
+  }
+ ],
+ "notExempted": [
+  "default: route markup identical (header, carousel, 23 slides, start slide); remaining differences are inside HouseholdDetails_Block: mock data (bookmark state, Share/Notes/Gift vs Call/Email CTAs, member rows: CR-HouseholdCarousel-2) and CR-HouseholdDetails-1",
+  "loading/offline: HouseholdDetails_Block skeleton structure (actions menu, chevron, member placeholders, OSList list-loading/list-error) = CR-HouseholdDetails-1; aria-hidden on #reactContainer and html.popup-disable-scroll = ShareSheet part of CR-HouseholdDetails-1",
+  "default: #b1-HeaderContent display block (capture) vs none (build): shared Layout_DetailPage, not this route"
+ ],
+ "_merged": "2026-10-15 by the orchestrator: CALL-APPSTART-VIA → parity-exemptions appStartCalls APP-START-VIA (parity_check: via states only); batch count → existing CALL-COUNT-SIGNED-IMAGES-BATCH; loading list-error → rule CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLD-MEMBERS (with detailRegex); 2026-10-15 orchestrator: rules:CAPTURE-MASKED-IMAGE-HOUSEHOLDCAROUSEL, rules:CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL-POPUP, ignoreSubtrees:CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL (the 3 first-round proposals stay replaced by APP-START-VIA, CALL-COUNT-SIGNED-IMAGES-BATCH and CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLD-MEMBERS)",
+ "_comment_F6": "Added by the F6 foundation owner 2026-10-15 (CR-HouseholdCarousel-2): NOT applied to migration/parity-exemptions.json. Capture artifacts only; the mock-data differences were fixed in the shared mocks.",
+ "ignoreSubtrees": [
+  {
+   "id": "CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL",
+   "idRegex": "^b3-l1-115[24]_\\d-b2-b3-\\$b1$",
+   "states": "^(loading|offline)$",
+   "reason": "The loading and offline states were captured via Locality_Details (states.json `via`), so on TST the app start had finished and the user-info cache was filled: HouseholdDetails_Block's OnReady passed GetUserInformation_Wrapper (mvc.js:2700-2710), set the skeleton household ('Example & Example', About/Photos tags appended after OnReady, mvc.js:2216-2240) and started GetHousehold, which then timed out / failed (0 members, list-error). Parity opens the route by URL under the never-answering / failing mock scenario, so the clone's app-start GetUserInformation is pending or failed and the block waits before OnReady's skeleton, as the original does when opened directly (TST HouseholdDetails loading/offline: 'Household gallery', no tags; that route's parity is 0 for the same block). Every difference inside the four slides' HouseholdDetails_Block (14 structure per slide: 5 skeleton Member_ListItem, 2 TagToggle, Block_Subtitle, AddressSection, SeeMoreSection, Directory_EntityDetailsActions and its margin, hero skeleton; texts 'Example & Example'/'Actions' vs 'Household gallery'/'Photobook'; VisibleAboutTab; bookmark state) follows from that path difference. Masked in DOM and pixel comparison for these two states only; the default state compares the block in full.",
+   "evidence": "migration/screens/HouseholdCarousel/analysis/states.json (loading/offline via /UBTConnect/Locality_Details); migration/screens/HouseholdCarousel/parity/loading.json, offline.json (structure 56 = 14 x 4 slides, all under b3-l1-1152_N-b2-b3-$b1 / b3-l1-1154_N-b2-b3-$b1); UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:2202-2240, :2700-2710; app/src/shell/userInfo.ts getUserInformation; migration/screens/HouseholdDetails/analysis/dom/loading.html:146"
+  }
+ ]
+}

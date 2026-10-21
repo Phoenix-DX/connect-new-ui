@@ -1,0 +1,154 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "flag mobileOrbitEventBooklet",
+  "question": "GetHasOrbitEventBooklet (launchDarkly_FF.mobileOrbitEventBooklet) gates the 'View Event Guest List' row (with IsBookletVisible) and OnClick_ViewEventBooklet. Which branches to build?",
+  "evidence": "ScreenBlock_EventDetail.mvc.js view :657-662, ctrl :2203-2215; knowledge/feature-flag-helpers.md (TST true); flag-values-tst.json getHasOrbitEventBooklet=true; the other Orbit flags were decided default-only",
+  "mcp": "unavailable (no MCP in this run)",
+  "options": [
+   "A: default-only, TST value on, key mobileOrbitEventBooklet (useFlagOn), like mobileOrbitAccess / mobileOrbitHostSurvey",
+   "B: both branches with a mock toggle"
+  ],
+  "recommend": "A",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T10:02:22",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night): flag mobileOrbitEventBooklet default-only on (flags.py decide + export done)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T10:17:16"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "Orbit local entities (CR-EventDetail-1)",
+  "question": "The Host Survey row and the Host Allocation accordion read the local entity LocalSurveyStatus (GetLocalSurveyStatusByJSONName) and HostAllocation_HelperItem reads LocalOrbitMilestoneType 'helper-host'; both are filled at app start by SyncAllOrbitStaticEntities(Sync_Info_GetMain.OrbitStaticEntities), which the clone's shell does not run (mock OrbitStaticEntities empty). How to build?",
+  "evidence": "ScreenBlock_EventDetail.mvc.js :1502-1595, :775-960, :1199; HostAllocation_HelperItem.mvc.js :274-276; UBTConnect.controller.js Sync_Info_Main (syncAllOrbitStaticEntities when not from login); app/src/shell/mocks.ts:63-76,132; app/src/shell/startup.ts:91-109",
+  "mcp": "unavailable",
+  "options": [
+   "A: CR-EventDetail-1 to the shell (sync + LocalSurveyStatus read API + fictional SurveyStatus/OrbitMilestoneTypes in the Sync_Info_GetMain mock); the route keeps the full logic reading the local entity and shows <NotCaptured> where the empty local entity hides the captured parts, until the CR is applied",
+   "B: seed the local survey status in the route until the CR is applied"
+  ],
+  "recommend": "A",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T10:02:22",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night): CR-EventDetail-1 (shell app start runs SyncAllOrbitStaticEntities from Sync_Info_GetMain.OrbitStaticEntities, LocalSurveyStatus read API, fictional Orbit static entities in the shell mock); NotCaptured until applied, route finishes after it",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T10:17:16"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "call ActionGetAllApplicationEvents",
+  "question": "The capture has ActionGetAllApplicationEvents (load, t=542 ms) from the shell's HandleImageLoadError → zOnApplicationEvent_Wrapper → cacheLocalApplicationEvents chain (an image error on TST during the transition); the route makes no such call. Accept a narrow call exemption for this route?",
+  "evidence": "analysis/call-sites.md (chain stops: runtime callback); calls.md #1; Utility.HandleImageLoadError is [shell]",
+  "mcp": "unavailable",
+  "options": [
+   "A: proposed exemption (migration/screens/EventDetail/proposed-exemptions.json, kind call, detail ActionGetAllApplicationEvents, routeRegex EventDetail) + a mock handler with an empty EventList for the gate",
+   "B: shell change to raise the image-error event"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T10:02:22",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night): exemption for ActionGetAllApplicationEvents plus a mock answering an empty EventList",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T10:17:16"
+ },
+ {
+  "id": "Q4",
+  "kind": "decision",
+  "topic": "mock world: event 7301 is a Host event",
+  "question": "OrbitLanding's mock event 7301 is typed Guest, but the EventDetail capture of the same card shows a Host event (row 'Host', host survey, host allocation). Switch the shared mock event to a Host type (same purple colour and meeting icon, so OrbitLanding renders the same) and give it host milestones (two accommodation nights, an evening video meeting, helpers)?",
+  "evidence": "dom/default.html:85-110 (orbit-icon-host-guest 'Host', View Host Survey, Host Allocation); ScreenBlock_EventDetail.mvc.js :552, :778, :1857; Card_Event.tsx uses only MainColorVar/MainIcon; app/src/mocks/fictional/orbit.ts",
+  "mcp": "n/a (mock data)",
+  "options": [
+   "A: host event in orbit.ts (ORBIT_EVENT_TYPES.host), host milestones and allocation data",
+   "B: keep the guest event and add a separate host event"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T10:02:22",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night): event 7301 is a Host event in orbit.ts",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T10:17:17"
+ },
+ {
+  "id": "Q5",
+  "kind": "fact",
+  "topic": "LocalSurveyStatus values",
+  "question": "TST records of LocalSurveyStatus (Id, Label, JSON_Name) and the HostSurveyRec.Id that Get_HostSurveyStatus returns (the JSON_Name). Only 'Confirmed' (Id 2, green pill) is captured.",
+  "evidence": "dom/default.html:104-111; static-entities-tst.json surveyStatus ids 1-4; calls.md DataActionGet_HostSurveyStatus Response.Id 'string'",
+  "mcp": "unavailable",
+  "options": [],
+  "recommend": "",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T10:02:22",
+  "answer": "No source: LocalSurveyStatus labels/JSON_Name come from server sync data (OrbitStaticEntities), not in the compiled code. Auto mode, no recommendation: keep the fictional values (the captured 'Confirmed' kept). To confirm with the user. auto-accepted (user instruction 2026-10-16 night)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T10:17:17"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A: flag mobileOrbitEventBooklet default-only on (pending orchestrator answer; `flags.py decide` + `export`).; Q2 → A: CR-EventDetail-1; host survey row and Host Allocation accordion behind `<NotCaptured>` until applied.; Q3 → A: proposed call exemption CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL; mock handler answers an empty EventList.; Q4 → A: shared mock event 7301 is a Host event (ORBIT_EVENT_TYPES.host, same colour/icon, OrbitLanding unchanged);; Parity needs capture-plan `cloneQuery` with the captured inputs (proposed-exemptions.json `_comment`): parity opens; Proposed exemptions: VIA-BACK-MENUICON-EVENTDETAIL, CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL.; Header-right QR / documents containers built from the compiled view without `line-height: initial` (rule 21; not; Mock: MilestoneInfo dates null and Description empty as captured; DayFilter IsSelected on the first day (server rule Feature flags: action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); action:getHasOrbitEventBooklet → default-only: wraps launchDarkly_FF.mobileOrbitEventBooklet (decided on); TST shows the booklet entry branch; auto-accepted (user instruction 2026-10-16 night); action:getHasOrbitHostSurvey → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T10:36:48",
+  "items": [
+   "Q1 → A: flag mobileOrbitEventBooklet default-only on (pending orchestrator answer; `flags.py decide` + `export`).",
+   "Q2 → A: CR-EventDetail-1; host survey row and Host Allocation accordion behind `<NotCaptured>` until applied.",
+   "Q3 → A: proposed call exemption CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL; mock handler answers an empty EventList.",
+   "Q4 → A: shared mock event 7301 is a Host event (ORBIT_EVENT_TYPES.host, same colour/icon, OrbitLanding unchanged);",
+   "Parity needs capture-plan `cloneQuery` with the captured inputs (proposed-exemptions.json `_comment`): parity opens",
+   "Proposed exemptions: VIA-BACK-MENUICON-EVENTDETAIL, CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL.",
+   "Header-right QR / documents containers built from the compiled view without `line-height: initial` (rule 21; not",
+   "Mock: MilestoneInfo dates null and Description empty as captured; DayFilter IsSelected on the first day (server rule"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T10:36:48"
+ },
+ {
+  "id": "Q7",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A: flag mobileOrbitEventBooklet default-only on (pending orchestrator answer; `flags.py decide` + `export`).; Q2 → A: CR-EventDetail-1; host survey row and Host Allocation accordion behind `<NotCaptured>` until applied.; Q3 → A: proposed call exemption CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL; mock handler answers an empty EventList.; Q4 → A: shared mock event 7301 is a Host event (ORBIT_EVENT_TYPES.host, same colour/icon, OrbitLanding unchanged);; Parity needs capture-plan `cloneQuery` with the captured inputs (proposed-exemptions.json `_comment`): parity opens; Proposed exemptions: VIA-BACK-MENUICON-EVENTDETAIL, CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL.; Header-right QR / documents containers built from the compiled view without `line-height: initial` (rule 21; not; Mock: MilestoneInfo dates null and Description empty as captured; DayFilter IsSelected on the first day (server rule Feature flags: action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); action:getHasOrbitEventBooklet → default-only: wraps launchDarkly_FF.mobileOrbitEventBooklet (decided on); TST shows the booklet entry branch; auto-accepted (user instruction 2026-10-16 night); action:getHasOrbitHostSurvey → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T12:25:50",
+  "items": [
+   "Q1 → A: flag mobileOrbitEventBooklet default-only on (pending orchestrator answer; `flags.py decide` + `export`).",
+   "Q2 → A: CR-EventDetail-1; host survey row and Host Allocation accordion behind `<NotCaptured>` until applied.",
+   "Q3 → A: proposed call exemption CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL; mock handler answers an empty EventList.",
+   "Q4 → A: shared mock event 7301 is a Host event (ORBIT_EVENT_TYPES.host, same colour/icon, OrbitLanding unchanged);",
+   "Parity needs capture-plan `cloneQuery` with the captured inputs (proposed-exemptions.json `_comment`): parity opens",
+   "Proposed exemptions: VIA-BACK-MENUICON-EVENTDETAIL, CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL.",
+   "Header-right QR / documents containers built from the compiled view without `line-height: initial` (rule 21; not",
+   "Mock: MilestoneInfo dates null and Description empty as captured; DayFilter IsSelected on the first day (server rule"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T12:25:50"
+ }
+]

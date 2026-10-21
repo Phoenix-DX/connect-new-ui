@@ -1,0 +1,56 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/BrowseDirectory?CountryCode=AR&mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "18eab3a5bfdf2e383313",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 884,
+  "texts": 139,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-21T04:27:58.652Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 3,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 179400,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 5,
+  "hotspots": [],
+  "diffPng": "migration/screens/BrowseDirectory/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

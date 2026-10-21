@@ -1,0 +1,14 @@
+{
+ "finishedAt": "2026-10-16T06:57:41",
+ "files": {
+  "src/screens/Updates_SingleList/api.ts": "1bb0b5bd830e9233",
+  "src/screens/Updates_SingleList/components/Directory_Updates_FilterSheet.tsx": "86464a2624b27c2f",
+  "src/screens/Updates_SingleList/components/SectionHeader.tsx": "2696c4926be3a236",
+  "src/screens/Updates_SingleList/components/UpdateItem_Header.tsx": "a8a976a6c0c0691e",
+  "src/screens/Updates_SingleList/components/actions.ts": "0b77074a1ff6eed9",
+  "src/screens/Updates_SingleList/components/staticEntities.ts": "5ed821cdb1f3ca77",
+  "src/screens/Updates_SingleList/index.tsx": "7081f7b9c8e6042a",
+  "src/screens/Updates_SingleList/mocks.ts": "dc359cd793c5b0d5",
+  "src/screens/Updates_SingleList/types.ts": "ea739d342553eb40"
+ }
+}

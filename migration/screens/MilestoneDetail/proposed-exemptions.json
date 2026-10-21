@@ -1,0 +1,46 @@
+{
+ "_comment": "Proposals of route MilestoneDetail (route agent, 2026-10-16); not applied. The orchestrator moves accepted entries into migration/parity-exemptions.json. Also needed (not an exemption): capture-plan.json MilestoneDetail entry \"cloneQuery\": \"mocksession=unlocked&In_FromNotification=False&In_MilestoneId=7301-1&In_EventId=7301&In_HostId=990002&In_OrbitMilestoneTypeId=accommodation-host&In_MilestoneName=Accommodation&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul\" (Q6) — the state was captured via OrbitLanding → EventDetail (the Accommodation card passes these inputs); parity opens the bare URL, so without it the wrapper gets no milestone type and renders nothing.",
+ "rules": [
+  {
+   "id": "VIA-BACK-MENUICON-MILESTONEDETAIL",
+   "routeRegex": "^/UBTConnect/MilestoneDetail(\\?|$)",
+   "kinds": [
+    "class",
+    "style",
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "header#b1-b5-b1-b2-Header\\.header\\.orbit-detail > div\\.header-top > div\\.display-flex\\.header-content > div\\.align-items-center\\.display-flex\\.full-width > (div#b1-b5-b1-b2-HeaderLeft\\.header-left( > .+)?|h1\\.header-title\\.text-align-center|div#b1-b5-b1-b2-HeaderRight\\.header-right)$",
+   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the state was captured via OrbitLanding → EventDetail (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Same artifact as VIA-BACK-MENUICON-EVENTDETAIL. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/MilestoneDetail/analysis/states.json (via /UBTConnect/OrbitLanding); diagnostic parity run with the cloneQuery (class missing .back, HeaderLeft 41×38 → 20×0, h1 offset 56,10 → 35,0, HeaderRight 26×0 → 37×0)"
+  },
+  {
+   "id": "CAPTURE-MASKED-ROOM-INFO-MILESTONEDETAIL",
+   "routeRegex": "^/UBTConnect/MilestoneDetail(\\?|$)",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b1-b5-l5-142864_\\d-b8-Content > div\\.room-info-cont > div\\.flex-center-vertical\\.flex-direction-row\\.justify-content-(center|flex-end) > i\\.fa\\.fa-1x\\.fa-flag$",
+   "detailRegex": "^offset in parent (2[6-9]|3[0-9]),[2-4] → (2[6-9]|3[0-9]),[2-4]$|^offset in parent (8[8-9]|9[0-6]),[2-4] → (8[8-9]|9[0-6]),[2-4]$",
+   "reason": "The room type and beds texts were masked by the capture (\"••••••\", \"•\"; only room 6's \"Male\" is plain): the fictional texts of the same length (Couple / Female, 1 / 2, mocks/fictional/orbit.ts ORBIT_HOSTED_ROOMS) are narrower than the bullets, so the centred and right-aligned icons sit a few px off (36 → 27/28, 94 → 91). Room 6 (plain \"Male\") matches. Text-mask capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "diagnostic parity run with the cloneQuery: 11 position diffs on room-info-cont icons of rooms 1-6, none on room 6's centred icon; dom/default.html room info spans"
+  },
+  {
+   "id": "CAPTURE-VIA-MASK-SHIFT-MILESTONEDETAIL-PIXELS",
+   "routeRegex": "^/UBTConnect/MilestoneDetail(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[0-6]\\.\\d\\d% pixels differ .*parity/default\\.diff\\.png$",
+   "reason": "Screenshot differences that follow from the capture artifacts above: the missing back arrow (the header row is 38 px high with it) moves the whole content up, and the masked header / room texts. DOM counts are otherwise 0, calls 0. Bounded to < 7%. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "diagnostic parity run with the cloneQuery: 6.21% pixels, hotspots y 80 (header); diff image shows every row shifted by the header height difference"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [],
+ "_merged": "2026-10-16 orchestrator: VIA-BACK-MENUICON-MILESTONEDETAIL, CAPTURE-MASKED-ROOM-INFO-MILESTONEDETAIL, CAPTURE-VIA-MASK-SHIFT-MILESTONEDETAIL-PIXELS"
+}

@@ -1,0 +1,31 @@
+App_Common.CommonUI_InsideLayout
+  App_Common.OfflineDataSyncEvents
+    Private.OfflineDataSyncCore
+      Private.NetworkStatusChanged
+  App_PIN.Block_PINUnlock
+    Layouts.Layout_LoginFlow
+      Layouts.SVG_Background_LoginWrapper
+        Layouts.SVG_Background_Custom
+          Utilities.InlineSVG
+      App_PIN.Block_PINUnlock_ContentWrapper
+        Fingerprint.PinUnlock_MobileWrapper
+          PIN.Pincode_Unlock
+            PIN.InactivityTimer
+  CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction
+    ConfirmationDialogs.ActionConfirmationDialog
+  Legacy_Share.HandleOnResumeOpenLink
+    AndroidAppLinks.AndroidAppLinkOnResumeHandler
+    EventfulDeeplinksPlugin.DeeplinkHandlerCentral
+  Utility.HandleImageLoadError
+  NavigationHandler.BackNavigationHandler
+Assemble.ScreenBlock_Assemble_Filter
+  Layout.Layout
+    LayoutRuntime_NavigationHandler.LayoutRuntime_Top
+    Layout.BaseLayout_UpdatedOSUI
+      Layout.MenuIcon__UpdatedOSUI
+      Interaction.InputWithIcon
+      Directory.LocalityListDetail
+      CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy
+        CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction
+          ConfirmationDialogs.ActionConfirmationDialog
+      NavigationHandler.BackNavigationHandler

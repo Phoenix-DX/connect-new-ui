@@ -1,0 +1,45 @@
+{
+ "state": "offline",
+ "route": "/UBTConnect/PINRegister?mocksession=nopin",
+ "mock": "error",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "29780929f8e2e6f23149",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true
+ },
+ "at": "2026-10-14T13:50:15.338Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 2,
+  "CAPTURE-LINK-HREF-CURSOR-PINREGISTER": 2,
+  "CAPTURE-LOGO-REPLAY-PINCODE": 4
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 0,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 13,
+  "hotspots": [],
+  "diffPng": "migration/screens/PINRegister/parity/offline.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

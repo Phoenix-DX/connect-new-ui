@@ -1,0 +1,40 @@
+{
+ "_comment": "Proposed by route-menu (2026-10-15) for the orchestrator to merge into migration/parity-exemptions.json. Measured with the `householder` scenario (Q1 → A): parity_check --mock householder on state default gave only these three differences (position 1, pixel 1, call 1).",
+ "rules": [
+  {
+   "id": "CAPTURE-MASKED-TEXT-VERSION-MENU",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b11-Content\\.display-flex\\.font-size-xxs\\.justify-content-center > div#\\$b12\\.OSBlockWidget\\[App_Common\\.Version\\]$",
+   "detailRegex": "^offset in parent \\d+,0 → \\d+,0$",
+   "reason": "The version line is centred (justify-content-center); the capture masked it as bullets (\"••• ••••••• ••• ••••\", four words as the clone's text since CR-Login-4), the bullets have other glyph widths than the clone's text, so only its horizontal offset differs (150 → 144). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Menu/analysis/dom/default.html:428-445 (masked text :441); migration/screens/Menu/parity/default.json (position diff); migration/change-requests/CR-Login-4.md"
+  },
+  {
+   "id": "CAPTURE-MASKED-AVATAR-MENU-SHIFT",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[0-1]\\.\\d\\d% pixels differ .*migration/screens/Menu/parity/default\\.diff\\.png$",
+   "reason": "The user's avatar was masked by the capture (img src removed, data-masked-src=\"user-image\", TST rendered 38x38): the replayed reference shows a broken inline image in the inline-block avatar container, the clone the 38x38 neutral placeholder (Q-W2C-1), so the header and everything below it sit a sub-pixel lower/higher; no layout or position difference is reported and the diff is only text and icon edges of the menu rows and the separator line (1.28 %, hotspots on row text). Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDRELATIONS-SHIFT; bounded to < 2 % and to this route's report. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Menu/analysis/dom/default.html:62-63; migration/screens/Menu/parity/default.json and default.diff.png (with scenario householder)"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [
+  {
+   "id": "CALL-ORDER-APPSTART-RACE-VERSION-MENU",
+   "actions": [
+    "ActionGet_RuntimeVersion"
+   ],
+   "states": "^default$",
+   "reason": "The Version block's OnReady Get_RuntimeVersion starts while the app-start chain runs: on TST it went out before AfterInitialize (4470 ms vs 6814 ms), the clone's shell calls AfterInitialize right after SynchAppContext, before the lazily loaded screen mounts. Its place among the app-start calls depends on timing; counts and inputs are still compared. Same artifact as CALL-ORDER-APPSTART-RACE-LEGACYSHAREOBJECT. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Menu/analysis/calls.md #2, #4; migration/screens/Menu/parity/default.json (calls:load)"
+  }
+ ],
+ "_merged": "2026-10-15 by the orchestrator (rules scoped with routeRegex): CAPTURE-MASKED-TEXT-VERSION-MENU, CAPTURE-MASKED-AVATAR-MENU-SHIFT, CALL-ORDER-APPSTART-RACE-VERSION-MENU"
+}

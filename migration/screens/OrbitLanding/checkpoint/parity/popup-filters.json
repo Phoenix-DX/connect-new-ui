@@ -1,0 +1,70 @@
+{
+ "state": "popup-filters",
+ "route": "/UBTConnect/OrbitLanding?mocksession=unlocked",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 1,
+ "fingerprint": "6f8abf7e3686088a461e",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 224,
+  "texts": 30,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T07:33:27.099Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
+  "ignoreSubtrees": 1,
+  "ORBITLANDING-POPUP-TOP-AND-RADIO-CHECKED": 1
+ },
+ "pixel": {
+  "ratio": 0.0642,
+  "maxCell": 0.875,
+  "maxCellRatio": 0.03,
+  "diffPixels": 19510,
+  "comparedPixels": 303873,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 10,
+  "hotspots": [
+   "40,360 (1400px)",
+   "120,360 (1382px)",
+   "80,360 (1300px)",
+   "160,360 (1243px)",
+   "40,320 (1240px)"
+  ],
+  "diffPng": "migration/screens/OrbitLanding/parity/popup-filters.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load",
+   "popup-filters"
+  ],
+  "expected": 9,
+  "actual": 9
+ },
+ "diffs": []
+}

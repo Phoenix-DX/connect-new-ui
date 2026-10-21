@@ -1,0 +1,44 @@
+{
+ "default": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/ContactUsDetails?In_ContactSubjectId=Set%20up%20a%20UBT%20One%20account&In_ContactSubjectTitle=User%20Account%20Management&In_ListMenuOptionLabel=Set%20up%20a%20UBT%20One%20account",
+  "steps": [],
+  "scenario": "real",
+  "auto": null,
+  "htmlClass": "",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "loading": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/ContactUsDetails?In_ContactSubjectId=Set%20up%20a%20UBT%20One%20account&In_ContactSubjectTitle=User%20Account%20Management&In_ListMenuOptionLabel=Set%20up%20a%20UBT%20One%20account",
+  "steps": [],
+  "scenario": "loading",
+  "auto": "loading",
+  "htmlClass": "",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "offline": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/ContactUsDetails?In_ContactSubjectId=Set%20up%20a%20UBT%20One%20account&In_ContactSubjectTitle=User%20Account%20Management&In_ListMenuOptionLabel=Set%20up%20a%20UBT%20One%20account",
+  "steps": [],
+  "scenario": "error",
+  "auto": "offline",
+  "htmlClass": "",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ }
+}

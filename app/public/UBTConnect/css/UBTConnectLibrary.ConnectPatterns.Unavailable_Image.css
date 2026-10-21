@@ -1,0 +1,13 @@
+﻿.ubt-unavailable-image-cont__background-image{
+    height: var(--_ubt-background-image-size,var(--ubt-background-image-s));
+    overflow: hidden;
+}
+
+
+.ubt-unavailable-image-cont__background-image .ubt-unavailable-image img {
+    height: 36px;
+    width:36px;
+}
+
+
+ubt-household-image-card__background-image ubt-background-image--xs

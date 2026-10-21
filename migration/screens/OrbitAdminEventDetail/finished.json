@@ -1,0 +1,15 @@
+{
+ "finishedAt": "2026-10-16T20:53:57",
+ "files": {
+  "src/screens/OrbitAdminEventDetail/api.ts": "4b06d09d3226d9c7",
+  "src/screens/OrbitAdminEventDetail/components/AdminPopup.tsx": "509abb9392a22e74",
+  "src/screens/OrbitAdminEventDetail/components/OrbitErrorMessage.tsx": "abf77900a8d77d42",
+  "src/screens/OrbitAdminEventDetail/components/Popup_QRCodeScan.tsx": "b2dc24470852989f",
+  "src/screens/OrbitAdminEventDetail/components/ScreenBlock_AdminEventDetail.tsx": "a5a82e4c93567073",
+  "src/screens/OrbitAdminEventDetail/components/actions.ts": "fe9580e72f555be2",
+  "src/screens/OrbitAdminEventDetail/components/staticEntities.ts": "e79348ba17f95c71",
+  "src/screens/OrbitAdminEventDetail/index.tsx": "77e514bbfece9411",
+  "src/screens/OrbitAdminEventDetail/mocks.ts": "bc2c877efc1878a0",
+  "src/screens/OrbitAdminEventDetail/types.ts": "c526eabb294e9dd9"
+ }
+}

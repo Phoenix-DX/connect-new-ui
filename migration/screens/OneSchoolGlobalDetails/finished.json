@@ -1,0 +1,13 @@
+{
+ "finishedAt": "2026-10-16T06:59:06",
+ "files": {
+  "src/screens/OneSchoolGlobalDetails/api.ts": "77b5b547d77d71a1",
+  "src/screens/OneSchoolGlobalDetails/components/ButtonGroup.tsx": "34509e2b503ed559",
+  "src/screens/OneSchoolGlobalDetails/components/ExpandableSection.tsx": "d6adb902b77e0a98",
+  "src/screens/OneSchoolGlobalDetails/components/External_Link.tsx": "21165d1218346fa9",
+  "src/screens/OneSchoolGlobalDetails/components/staticEntities.ts": "69db6c4f95da5cbf",
+  "src/screens/OneSchoolGlobalDetails/index.tsx": "290bc658966b9097",
+  "src/screens/OneSchoolGlobalDetails/mocks.ts": "b296bfc8d0c84995",
+  "src/screens/OneSchoolGlobalDetails/types.ts": "08f3df358021c621"
+ }
+}

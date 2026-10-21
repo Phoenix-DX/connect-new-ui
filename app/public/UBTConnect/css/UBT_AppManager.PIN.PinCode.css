@@ -1,0 +1,83 @@
+﻿:root {
+    --ubt-pincode-buttons-size: 64px;
+    --ubt-pincode-pin-size: 16px;
+    --ubt-pincode-button-color: var(--color-neutral-8);
+    --ubt-pincode-padding-top: 95px;
+    --ubt-pincode-padding: var(--ubt-pincode-padding-top) var(--space-base) var(--space-l) var(--space-base);
+}
+
+.ubt-pincode {
+    height: 100vh;
+    background: var(--color-background-login);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--ubt-pincode-padding);
+    position: relative;
+}
+
+.ubt-pincode__header-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.ubt-pincode__header__pins {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-s);
+    padding: var(--space-l) 0px;
+}
+
+.ubt-pincode__pin {
+    width: var(--ubt-pincode-pin-size);
+    height: var(--ubt-pincode-pin-size);
+    line-height: var(--ubt-pincode-pin-size);
+    font-size: var(--ubt-pincode-pin-size);
+}
+
+.ubt-pincode__header, 
+.ubt-pincode__keyboard {
+    z-index: 2;
+}
+
+.ubt-pincode__keyboard {
+    margin-top: var(--space-m);
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+}
+
+.ubt-pincode__keyboard-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-base);
+    margin-bottom: var(--space-s)
+}
+
+
+.ubt-pincode__keyboard-buttons .btn.btn.ubt-pincode__button,
+.ubt-pincode__keyboard-buttons .btn.ubt-pincode__button-erase,
+.ubt-pincode__keyboard-buttons .btn.ubt-pincode__button-confirm{
+    height: var(--ubt-pincode-buttons-size);
+    width:  var(--ubt-pincode-buttons-size);
+    min-width:  var(--ubt-pincode-buttons-size);
+    padding: 10px;
+    border: 2px solid var(--ubt-pincode-button-color);
+    border-radius: 50%;
+    color: var(--ubt-pincode-button-color);
+    font-weight: bold;
+    background-color: transparent;
+    margin-bottom: var(--space-base);
+    font-size: 21px;
+}
+
+.ubt-pincode__keyboard-buttons .btn.ubt-pincode__button-erase[disabled],
+.ubt-pincode__keyboard-buttons .btn.ubt-pincode__button-erase,
+.ubt-pincode__keyboard-buttons .btn.ubt-pincode__button-confirm,
+.ubt-pincode__keyboard-buttons .btn.ubt-pincode__button-confirm[disabled] {
+    border: 0px;
+}

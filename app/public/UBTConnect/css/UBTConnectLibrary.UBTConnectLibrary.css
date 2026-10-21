@@ -1,0 +1,2648 @@
+﻿/* ==================================================
+ * custom.css
+ * Purpose:
+ *   Define new design tokens, utilities, components, and layout patterns.
+ *   This is our custom design system for consistent branding and layout.
+ *
+ * Guidelines:
+ *   - Define all new reusable styles here, not in overrides.css.
+ *   - Start with tokens (variables), then utilities, components, and finally layout patterns.
+ *
+ * Naming Conventions:
+ *   - Use semantic and descriptive class names.
+ *   - For multi-word names, use kebab-case (e.g., `.card-custom`, `.login-wrapper`).
+ *   - Optional: prefix classes with `app-` or project identifier for shared modules.
+ *
+ * Index Structure:
+ 
+/* ================================================== */
+
+/* === 0. Root === */
+    /*  0.1. Animation  */
+    /*  0.2. Avatar Image  */
+    /*  0.3. Input Icon  */
+    /*  0.4. Icon Size  */
+    /*  0.5. Loading Dots  */
+    /*  0.6. Content Scroller  */
+    /*  0.7. Button Size  */
+    /*  0.8. Context Menu */
+    /*  0.9. Skeleton Colors  */
+    /*  0.10. Actions Menu  */
+    /*  0.11. Layout Login  */
+
+/* === 1. Utilities === */
+    /*  1.1. Library Utilities  */
+    /*  1.2. DX Animations  */
+
+/* === 2. Custom Components === */
+    /*  2.1. Expandable Section  */
+    /*  2.2. Icon Button  */
+    /*  2.3. Columns  */
+    /*  2.4. Avatar Image & Lazy Image  */
+    /*  2.5. Avatar Image List  */
+    /*  2.6. Avatar Double  */
+    /*  2.7. Tag  */
+    /*  2.8. Tag List  */
+    /*  2.9. Text Ellipsis  */
+    /*  2.10. Icon  */
+    /*  2.11. Card Item  */
+    /*  2.12. Bottom Sheet  */
+    /*  2.13. Sub-Header - Main Pages  */
+    /*  2.14. Pop Up  */
+    /*  2.15. Static Input  */
+    /*  2.16. Sub-Header - Home Page  */
+    /*  2.17. SVG Container  */
+    /*  2.18. Loading dots  */
+    /*  2.19. Button  */
+    /*  2.20. Context Menu  */
+    /*  2.21. Statistics Card  */
+    /*  2.22. Skeleton  */
+    /*  2.23. Highlight Search  */
+    /*  2.24. Actions Menu  */
+    /*  2.25. Event Card  */
+    /*  2.27. Calendar View Action Menu  */
+    /*  2.28. Horizontal Dot List  */
+    /*  2.29. Input With Counter  */
+    /*  2.30. Number Badge  */
+    /*  2.31. Bottom Bar Slider  */
+    /*  2.32. Fixed Footer  */
+    /*  2.33. Household Image Horizontal Card  */
+    /*  2.34. See More Section  */
+    /*  2.35. Input Underlined  */
+    /*  2.36. Contact by phone popup  */
+    /*  2.37. Custom Scroll List  */
+    /*  2.38. LocalityContact card  */
+    /*  2.39. Dynamic Text Area  */
+    /*  2.40. Option List  */
+    /*  2.41. Bookmark Note Item  */
+    /*  2.42. Horizontal_Filter_TagList*/
+    /*  2.43. ItemCard_ActionBar*/
+    
+
+/* === 3. Layout Patterns === */
+    /*  3.1. Layout - Main Pages  */
+    /*  3.2. Layout - Home Page  */
+    /*  3.2.1. Sub Layout Home Search  */
+    /*  3.3. Layout - Detail Page  */
+    /*  3.4. Layout - Common  */
+    /*  3.5. Layout - Sub Layout Section  */
+    /*  3.6. Layout - Login Flow Layout  */
+    /*  3.7. Layout - Main Pages: Fixed Header  */
+
+/* ================================================== */
+
+
+/* === 0. Root === */
+
+    /*  0.1. Animation  */
+
+:root{
+    --animation-duration: 0.3s;
+    --animation-easing: ease-in-out;
+}
+
+    /*  0.2. Avatar Image  */
+
+:root{
+    --avatar-image-size: 52px;
+    --lazy-image-width:
+}
+
+    /*  0.3. Input Icon  */
+
+:root{
+    --ubt-input-icon-box: 20px;
+}
+
+    /*  0.4. Icon Size  */
+
+:root{
+    --ubt-icon-size-small: 12px;
+    --ubt-icon-size-medium: 20px;
+    --ubt-icon-size-base: 24px;
+    --ubt-icon-size-display: 36px;
+    --ubt-icon-size-non-standard-14: 14px;
+    --ubt-icon-size-non-standard-16: 16px;
+    --ubt-icon-size-non-standard-18: 18px;
+    --ubt-icon-size-non-standard-32: 32px;
+    --ubt-icon-size-non-standard-64: 64px;
+    --ubt-icon-size-non-standard-108: 108px;
+    --ubt-icon-size: var(--ubt-icon-size-base);
+    
+}
+
+:root{
+    --ubt-login-svg-min-height: 732px;
+}
+
+    /*  0.5. Loading Dots  */
+
+:root{
+    --loading-dot-size: 10px;
+    --loading-dot-gap: 8px;
+
+}
+
+    /*  0.6. Content Scroller  */
+
+:root{
+    --header-shadow-scroll: hidden;
+    --footer-shadow-scroll: hidden;
+}
+
+    /*  0.7. Button Size  */
+
+:root {
+    --ubt-button-height-xs: 26px;
+    --ubt-button-height-s: 40px;
+    --ubt-button-height-m: 48px;
+    --ubt-button-width: var( --ubt-button-width-m)
+    
+}
+
+    /*  0.8. Context Menu */
+
+:root {
+    --ubt-context-menu-width: 151px;
+}
+
+   /*  0.9. Skeleton Colors*/
+
+:root {
+    --ubt-background-skeleton: var(--color-neutral-4);
+    --ubt-background-skeleton-light: var(--color-neutral-3);
+    --ubt-background-skeleton-dark: var(--color-neutral-4);
+    --ubt-skeleton-animation: ubt-skeleton-pulse 1.5s ease-in-out infinite
+}
+
+    /*  0.10. Actions Menu*/
+
+:root {
+    --ubt-actions-menu-width: 53px
+}
+
+    /*  0.11. Layout Login*/
+
+:root {
+    --current-svg-height: 100vh;
+    --ubt-pincode-padding-top: 95px;
+    --ubt-layout-login-padding-top: var(--ubt-pincode-padding-top);
+    --ubt-layout-login-padding: var(--ubt-pincode-padding, var(--ubt-layout-login-padding-top) var(--space-base) var(--space-l) var(--space-base));
+    --ubt-login-screen-padding-top: calc(var(--ubt-layout-login-padding-top) + 80px);
+}
+
+/* === 1. Utilities === */
+
+    /*  1.1. Library Utilities  */
+
+.OSBlockWidget:has(> .inline-block),
+.OSBlockWidget:has(> .OSBlockWidget > .ubt-custom-container.inline-block) {
+    display: inline-block;
+    width: fit-content;
+}
+
+.OSBlockWidget:has(> .script-block) {
+    display: block;
+    height: 0px;
+    width: 0px;
+}
+
+.ubt-hide {
+    display: none;
+}
+
+.ubt-zindex-2 {
+    z-index: 2;
+    position: relative;
+}
+
+/*
+.ubt-lazy-image--no-image .ubt-icon {
+        font-size: inherit;
+}*/
+
+.OSBlockWidget:has(> .ubt-with-fit-content),
+.ubt-with-fit-content {
+    width: fit-content;
+    display: inline-flex;
+}
+
+.link-disabled-view {
+  color: var(--color-neutral-6);
+  text-decoration: none;
+}
+
+/*  1.2. DX Animations */
+
+
+/* Use a heading font size and weight */
+.dx-confirmation-dialog .dx-dialog-header {
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-semi-bold);
+}
+
+/* Add margins to header and footer */
+.dx-confirmation-dialog .dx-dialog-header:not(:empty) {
+    margin-bottom: var(--space-s);
+}
+.dx-confirmation-dialog .dx-dialog-footer {
+    margin-top: var(--space-m);
+}
+
+/* Add gap between buttons */
+.dx-confirmation-dialog .dx-dialog-footer .btn + .btn {
+    margin-left: var(--space-base);
+}
+
+
+
+/* Screen transitions */
+:root {
+    --dx-screen-transition-duration: 300ms;
+}
+.slide-from-right-enter.slide-from-right-enter-active,
+.slide-from-right-leave.slide-from-right-leave-active,
+.slide-from-left-enter.slide-from-left-enter-active,
+.slide-from-left-leave.slide-from-left-leave-active,
+.slide-from-top-enter.slide-from-top-enter-active,
+.slide-from-top-leave.slide-from-top-leave-active,
+.slide-from-bottom-enter.slide-from-bottom-enter-active,
+.slide-from-bottom-leave.slide-from-bottom-leave-active,
+.fade-enter.fade-enter-active,
+.fade-leave.fade-leave-active {
+    transition: transform var(--dx-screen-transition-duration) ease-in-out,
+                opacity var(--dx-screen-transition-duration) ease-in-out;
+}
+.slide-from-right-enter.slide-from-right-enter-active .content,
+.slide-from-right-leave.slide-from-right-leave-active .content,
+.slide-from-left-enter.slide-from-left-enter-active .content,
+.slide-from-left-leave.slide-from-left-leave-active .content,
+.slide-from-top-enter.slide-from-top-enter-active .content,
+.slide-from-top-leave.slide-from-top-leave-active .content,
+.slide-from-bottom-enter.slide-from-bottom-enter-active .content,
+.slide-from-bottom-leave.slide-from-bottom-leave-active .content,
+.fade-enter.fade-enter-active .content,
+.fade-leave.fade-leave-active .content {
+    transition: transform var(--dx-screen-transition-duration) ease-in-out,
+                opacity var(--dx-screen-transition-duration) ease-in-out;
+}
+
+
+
+
+/* Design-time preview */
+.dx-confirmation-dialog > [data-popup-backdrop][data-expanded=false] + * {
+    display: none !important;
+}
+.dx-confirmation-dialog > [data-popup-backdrop][data-expanded=false] > [data-popup-dialog] {
+    display: block;
+    width: auto;
+    height: auto;
+    max-height: initial;
+    max-width: initial;
+    margin: var(--space-s) var(--space-m);
+    padding: var(--space-m);
+    background-color: #ffffff;
+    border: 0;
+    text-align: left;
+}
+.dx-confirmation-dialog > [data-popup-backdrop][data-expanded=false] > [data-popup-dialog] > div > * {
+    display: block !important;
+}
+
+/* === 2. Custom Components === */
+
+    /*  2.1. Expandable Section  */
+.ubt-expandable-section{
+  transition: all var(--animation-duration) var(--animation-easing);
+  overflow: hidden;
+}
+
+.ubt-expandable-section--title{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.5rem; /* Added spacing between text and icon */
+}
+
+.ubt-expandable-section--title-text{
+  font-weight: bold;
+}
+
+.ubt-expandable-section--title-icon{
+  display: inline-block;
+  transition: transform var(--animation-duration) var(--animation-easing);
+}
+
+.ubt-expandable-section--content{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--animation-duration) var(--animation-easing);
+  
+}
+
+.ubt-expandable-section.expanded .ubt-expandable-section--content{
+  max-height: 100vh; /* We use a large max-height here instead of 'unset' or 'none' because CSS cannot animate transitions between numeric values and 'auto' or 'none'. This is a known workaround to enable smooth expansion with max-height animations. */
+}
+
+.ubt-expandable-section.expanded .ubt-expandable-section--title-icon .icon,
+.ubt-expandable-section.expanded .ubt-expandable-section--title-icon .ubt-icon {
+  transform: rotate(180deg);
+}
+
+    /*  2.2. Icon Button */
+
+.ubt-icon-button{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-align: center;
+  width: fit-content; /* Ensures width only grows as needed by content */
+}
+
+.ubt-icon-button__icon-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: inherit;
+  width: var(--avatar-image-size);
+  height: var(--avatar-image-size);
+  position: relative;
+}
+
+.ubt-icon-button__text-container{
+  font-size: 0.75rem;
+  line-height: 1;
+  display: block;
+}
+
+/* Ensures main Custom Container Block for the text is not rendered if no text is present */
+.ubt-icon-button > [data-block]:has(.ubt-icon-button__text-container:empty){
+    display: none;
+}
+
+.ubt-icon-button--loading .ubt-icon-button__icon-container::before {
+  content: '';
+  position: absolute;
+  inset: -1px;             
+  border: inherit;
+  border-radius: inherit;
+  border-width: 1px;
+  border-top-color: var(--color-neutral-0); 
+}
+
+
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.ubt-icon-button--loading .ubt-icon-button__icon-container::before {
+  animation: spin 0.8s linear infinite;
+}
+
+.ubt-icon-button__badge:has(.ubt-icon){
+    position: absolute;
+    top: 14.645%;
+    right: 14.645%;
+    transform: translate(50%, -50%);
+}
+
+.ubt-icon-button__badge:not(:has(.ubt-icon)){
+    display: none;
+}
+
+.ubt-icon-button__badge {
+    background: radial-gradient(circle closest-side, #fff 75%, transparent 76%);
+}
+
+    /*  2.3. Columns  */
+
+.ubt-columns.ubt-columns-reduce-first > .columns-item:nth-child(1),
+.ubt-columns.ubt-columns-reduce-last.ubt-columns--two-columns > .columns-item:nth-child(2),
+.ubt-columns.ubt-columns-reduce-last.ubt-columns--three-columns > .columns-item:nth-child(3),
+.ubt-columns.ubt-columns-reduce-middle.ubt-columns--three-columns > .columns-item:nth-child(2),
+.ubt-columns.ubt-columns-expand-middle.ubt-columns--three-columns > .columns-item:nth-child(1),
+.ubt-columns.ubt-columns-expand-middle.ubt-columns--three-columns > .columns-item:nth-child(3){
+  flex: 0;
+  min-width: max-content;
+}
+
+.ubt-columns.ubt-columns-same-size.ubt-columns--two-columns > .columns-item
+{
+    flex: 1;
+}
+
+.ubt-columns.ubt-columns--reverse {
+    flex-direction: row-reverse;
+}
+
+.ubt-columns.ubt-columns--reverse.ubt-columns-reduce-first > .columns-item:nth-child(2),
+.ubt-columns.ubt-columns--reverse.ubt-columns-reduce-last.ubt-columns--two-columns > .columns-item:nth-child(1){
+  flex: 0;
+}
+
+.columns .ubt-columns.ubt-columns-same-size.ubt-columns--three-columns > .columns-item,
+.columns .ubt-columns.ubt-columns-same-size.ubt-columns--tow-columns > .columns-item
+{
+    flex: 1;
+}
+
+/*Fix to remove padding on the first elements, and also remove the margin. But keeping the gap between columns*/
+.ubt-columns:not(.ubt-columns--reverse) > .columns-item:first-child{
+  padding-left: 0px;
+}
+
+.ubt-columns:not(.ubt-columns--reverse) > .columns-item:last-child{
+  padding-right: 0px;
+}
+
+.ubt-columns.columns {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+/* Fix to remove padding on the first elements, and also remove the margin.
+But keeping the gap between columns - For reversed scenario */
+.ubt-columns.ubt-columns--reverse .columns-item:first-child{
+  padding-right: 0px;
+}
+
+.ubt-columns.ubt-columns--reverse .columns-item:last-child{
+  padding-left: 0px;
+}
+
+/*Local variable to fix the width of the left column*/
+.ubt-columns--fixed-width{
+    width: var(--_ubt-column-width, auto)
+}
+
+/*Fixing gap*/
+
+.columns.ubt-columns > .columns-item{
+  margin-bottom: unset;
+  padding: unset;
+}
+
+.columns.ubt-columns.gutter-none {
+  gap: var(--space-none);
+}
+
+.columns.ubt-columns.gutter-xs {
+  gap: var(--space-xs)
+}
+
+.columns.ubt-columns.gutter-s {
+  gap: var(--space-s)
+}
+
+.columns.ubt-columns.gutter-base {
+  gap: var(--space-base)
+}
+
+.columns.ubt-columns.gutter-m {
+  gap: var(--space-m)
+}
+
+.columns.ubt-columns.gutter-l {
+  gap: var(--space-l)
+}
+
+.columns.ubt-columns.gutter-xl {
+  gap: var(--space-xl)
+}
+
+.columns.ubt-columns.gutter-xxl {
+  gap: var(--space-xxl)
+}
+
+
+/*  2.4. Avatar Image & Lazy Image  */
+
+.ubt-lazy-image {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    max-width: unset;
+    width: var(--lazy-image-width, fit-content);
+    height: var(--avatar-image-size);
+    max-height: var(--avatar-image-size);
+    justify-self: center;
+}
+
+.ubt-avatar-image.hidden{
+  display:none;
+}
+
+.ubt-lazy-image.hidden {
+    --avatar-image-size: 0px;
+    --lazy-image-width: 0px;
+}
+
+.ubt-lazy-image img {
+    height: var(--avatar-image-size);
+    max-height: var(--avatar-image-size);
+    width: var(--lazy-image-width, auto);
+}
+
+.ubt-lazy-image.ubt-lazy-image-background,
+.ubt-lazy-image.ubt-lazy-image-background img {
+    height: var(--_ubt-background-image-size);
+    max-height: var(--_ubt-background-image-size);
+}
+
+.ubt-lazy-image.ubt-lazy-image--no-image.ubt-background-image--intrinsic-height {
+    min-height: var(--_ubt-background-image-size);
+    height: var(--_ubt-background-image-size);
+}
+
+.ubt-lazy-image.ubt-lazy-image--no-image.ubt-background-image--intrinsic-width {
+    min-width: var(--_ubt-background-image-size);
+    width: var(--_ubt-background-image-size);
+}
+
+.ubt-avatar-image{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-align: center;
+    aspect-ratio: 1;
+    max-width: inherit;
+    width: var(--avatar-image-size, fit-content);
+    height: var(--avatar-image-size);
+}
+
+.ubt-avatar-image:has(.background-skeleton) {
+    border: none
+}
+
+.ubt-lazy-image--width-xxs { --lazy-image-width: 20px; }
+.ubt-lazy-image--width-xs { --lazy-image-width: 32px; }
+.ubt-lazy-image--width-s { --lazy-image-width: 40px; }
+.ubt-lazy-image--width-base { --lazy-image-width: 52px; }
+.ubt-lazy-image--width-m { --lazy-image-width: 60px; }
+.ubt-lazy-image--width-l { --lazy-image-width: 65px; }
+.ubt-lazy-image--width-xl { --lazy-image-width: 100px; }
+.ubt-lazy-image--width-list-thumbnail { --lazy-image-width: 104px; }
+.ubt-lazy-image--width-xxl { --lazy-image-width: 176px; }
+.ubt-lazy-image--width-full-width { --lazy-image-width: 100%; }
+.ubt-lazy-image--width-max-width { --lazy-image-width: 100vw; }
+.ubt-lazy-image--width-auto { --lazy-image-width: auto; }
+.ubt-lazy-image--width-square { --lazy-image-width: var(--avatar-image-size); }
+.ubt-lazy-image--width-half-width { --lazy-image-width: 50vw; }
+.ubt-lazy-image--width-third-width { --lazy-image-width: calc(100vw / 3); }
+.ubt-lazy-image--width-quarter-width { --lazy-image-width: 25vw; }
+
+
+.ubt-avatar-image-xxs,
+.ubt-lazy-image-xxs{ --avatar-image-size: 20px; }
+
+.ubt-avatar-image-xs,
+.ubt-lazy-image-xs{ --avatar-image-size: 32px; }
+
+.ubt-avatar-image-s,
+.ubt-lazy-image-s { --avatar-image-size: 40px; }
+
+.ubt-avatar-image-sb,
+.ubt-lazy-image-sb { --avatar-image-size: 48px; }
+
+.ubt-avatar-image-base,
+.ubt-lazy-image-base { --avatar-image-size: 52px; }
+
+.ubt-avatar-image-m,
+.ubt-lazy-image-m{ --avatar-image-size: 60px; }
+
+.ubt-avatar-image-l,
+.ubt-lazy-image-l{ --avatar-image-size: 65px; }
+
+.ubt-avatar-image-xl,
+.ubt-lazy-image-xl{ --avatar-image-size: 100px; }
+
+.ubt-avatar-image-xxl,
+.ubt-lazy-image-xxl { --avatar-image-size: 176px; }
+
+.ubt-avatar-image-full-height,
+.ubt-lazy-image-full-height { --avatar-image-size: 100%; }
+
+.ubt-avatar-image-max-height,
+.ubt-lazy-image-max-height { --avatar-image-size: 100vh; }
+
+.ubt-avatar-image-auto,
+.ubt-lazy-image-auto { --avatar-image-size: auto; }
+
+.ubt-avatar-image-xxs,
+.ubt-lazy-image-xxs,
+.ubt-lazy-image--width-xxs { --avatar-initials-font-size: var(--font-size-xs); }
+
+.ubt-avatar-image-xs,
+.ubt-lazy-image-xs,
+.ubt-lazy-image--width-xs { --avatar-initials-font-size: var(--font-size-xs); }
+
+.ubt-avatar-image-s,
+.ubt-lazy-image-s,
+.ubt-lazy-image--width-s { --avatar-initials-font-size: var(--font-size-s); }
+
+.ubt-avatar-image-base,
+.ubt-lazy-image-base,
+.ubt-lazy-image--width-base {
+    --avatar-double-image-size: 32px;
+    --avatar-initials-font-size: var(--font-size-base);
+    --ubt-icon-size: var(--ubt-icon-size-base); }
+
+.ubt-avatar-image-m,
+.ubt-lazy-image-m,
+.ubt-lazy-image--width-m { --avatar-initials-font-size: var(--font-size-base); }
+
+.ubt-avatar-image-l,
+.ubt-lazy-image-l,
+.ubt-lazy-image--width-l,
+.ubt-lazy-image--width-list-thumbnail,
+.ubt-lazy-image--width-half-width {
+    --avatar-initials-font-size: var(--font-size-h4);
+    --avatar-double-image-size: 38px;
+    --avatar-double-initials-font-size: var(--font-size-xs)
+}
+
+.ubt-avatar-image-xl,
+.ubt-lazy-image-xl,
+.ubt-lazy-image--width-xl { --avatar-initials-font-size: var(--font-size-h1); }
+
+.ubt-avatar-image-xxl,
+.ubt-lazy-image-xxl,
+.ubt-lazy-image--width-xxl { --avatar-initials-font-size: var(--font-size-h0); }
+
+.ubt-avatar-image-full-height,
+.ubt-lazy-image-full-height,
+.ubt-lazy-image--width-full-width { --avatar-initials-font-size: var(--font-size-h0); }
+
+.ubt-avatar-image-max-height,
+.ubt-lazy-image-max-height,
+.ubt-lazy-image--width-max-width { --avatar-initials-font-size: var(--font-size-h0); }
+
+/*Icon placeholder sizes for Avatar*/
+.ubt-avatar-image.ubt-lazy-image.ubt-lazy-image-base {
+    --ubt-icon-size: var(--ubt-icon-size-non-standard-32);
+}
+
+
+/*Icon placeholder size for xxs Avatar*/
+.ubt-avatar-image-xxs,
+.ubt-lazy-image-xxs {
+    --ubt-icon-size: var(--ubt-icon-size-medium);
+}
+
+/*The following exists to remove a gap when the lazy image exists inside a circle button*/
+.lazy-image-middle .OSBlockWidget:has(> .inline-block.ubt-avatar-image) {
+    vertical-align: middle;
+}
+
+    /*  2.5. Avatar Image List  */
+
+.ubt-avatar-image-list > :not(:first-child){
+  margin-left: calc(-0.2 * var(--avatar-image-size)); 
+}
+
+.ubt-avatar-image-list .ubt-avatar-image-list__counter .ubt-avatar-image{
+    background-color: rgba(16, 18, 19, 0.45);
+    box-shadow: var(--shadow-s);
+}
+
+    /*  2.6. Avatar Double  */
+
+.ubt-avatar-double .ubt-avatar-image__initials{
+    --avatar-initials-font-size: var(--avatar-double-initials-font-size);
+}
+
+.ubt-avatar-image__initials{
+    font-size: var(--avatar-initials-font-size);
+}
+
+
+.ubt-avatar-double{
+   width: var(--avatar-image-size);
+   height: var(--avatar-image-size);
+   display: flex;
+   align-content: center;
+   justify-content: center;
+   flex-wrap: wrap;
+   line-height: 1;
+}
+
+.ubt-avatar-double .ubt-avatar-image{
+   width: var(--avatar-double-image-size);
+   height: var(--avatar-double-image-size)
+}
+
+.ubt-avatar-double__wrapper__last-avatar{
+  margin-left: calc(.71 * var(--avatar-double-image-size));
+  margin-top: calc(.52 * var(--avatar-double-image-size) * -1);
+}
+
+    /*  2.7. Tag  */
+
+.ubt-tag span,
+.ubt-tag-toggle span{
+    white-space: nowrap;
+}
+
+    /*  2.8. Tag List  */
+
+.ubt-tag-list.list.list-group{
+  display: flex;
+  overflow-x: scroll;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+.ubt-tag-list.list.list-group::-webkit-scrollbar{ 
+    display: none;  /* Safari and Chrome */
+}
+
+.ubt-tag-list .OSBlockWidget:has(> .inline-block) {
+        width: max-content;
+}
+
+
+    /*  2.9. Text Ellipsis  */
+
+.OSBlockWidget:has(> .ubt-text-ellipsis){
+    overflow: hidden;
+}
+
+.ubt-text-ellipsis{
+  display: inherit;
+}
+
+.ubt-text-no-break{
+    word-break: keep-all;
+}
+
+    /*  2.10. Icon  */
+
+
+.ubt-icon{
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    font-size: var(--ubt-icon-size);
+}
+
+/*For SVG*/
+.ubt-icon img {
+    width: var(--ubt-icon-size);
+    height: var(--ubt-icon-size);
+}
+
+.icon-display{
+    --ubt-icon-size: var(--ubt-icon-size-display);
+}
+
+.icon-base{
+    --ubt-icon-size: var(--ubt-icon-size-base);
+}
+
+.icon-medium{
+    --ubt-icon-size: var(--ubt-icon-size-medium);
+}
+
+.icon-small{
+    --ubt-icon-size: var(--ubt-icon-size-small);
+}
+
+.icon-non-standard-16{
+     --ubt-icon-size: var(--ubt-icon-size-non-standard-16);
+}
+
+.icon-non-standard-14{
+    --ubt-icon-size: var(--ubt-icon-size-non-standard-14);
+}
+
+.icon-non-standard-32 {
+     --ubt-icon-size: var(--ubt-icon-size-non-standard-32);
+}
+
+.icon-non-standard-64 {
+     --ubt-icon-size: var(--ubt-icon-size-non-standard-64);
+}
+
+.icon-non-standard-18{
+     --ubt-icon-size: var(--ubt-icon-size-non-standard-18);
+}
+
+.icon-non-standard-108{
+     --ubt-icon-size: var(--ubt-icon-size-non-standard-108);
+}
+
+    /*  2.11. Card Item  */
+
+.ubt-image-card{ 
+    /*min-height: 240px;*/
+    position: relative;
+}
+
+.ubt-image-card:has(.ubt-image-card__avatar-list) {
+    --_avatar-image-margin-top: calc(-1 * ((var(--avatar-image-size) + (var(--border-size-m) * 2)) /2));
+}
+
+.ubt-image-card__content{
+    margin-top: max(calc(var(--avatar-image-size) + var(--_avatar-image-margin-top)), 0px)
+}
+
+.ubt-unavailable-image-cont {
+    background-color: var(--color-neutral-2);
+    width: 100%;
+    height: 100%;
+    padding-top: var(--space-l);
+}
+
+.ubt-image-card__background-image{
+    height: var(--_ubt-background-image-size);
+    overflow: hidden;
+}
+
+.ubt-image-card__background-image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.ubt-image-card__background-image .ubt-unavailable-image img {
+    height: 36px;
+    width:36px;
+}
+
+.ubt-image-card__avatar-list{
+    position: absolute;
+    padding: 0 var(--space-base);
+    margin-top: var(--_avatar-image-margin-top);
+}
+
+.ubt-background-image--intrinsic-height {
+    --_ubt-background-image-size: calc(var(--lazy-image-width) * (2/3));
+}
+
+.ubt-background-image--intrinsic-height.ubt-lazy-image--width-auto {
+    --_ubt-background-image-size: var(--lazy-image-width);
+}
+
+.ubt-background-image--intrinsic-width {
+    --_ubt-background-image-size: calc(var(--avatar-image-size) / (2/3));
+}
+
+.ubt-background-image--intrinsic-width.ubt-avatar-image-auto {
+    --_ubt-background-image-size: var(--avatar-image-size);
+}
+
+.ubt-image-card--gallery .image-card-content__subtitle {
+    font-size: var(--font-size-xxs)
+}
+
+.image-card-content{
+    display: flex;
+    flex-direction: column;
+    gap:var(--space-xs);
+}
+
+.image-card-content > div:empty{
+    display: none;
+}
+
+.ubt-image-card__bookmarked:before {
+    content: "\f087";
+    background-color: var(--color-primary);
+    width: var(--ubt-icon-size);
+    height: var(--ubt-icon-size);
+    position: absolute;
+    right: 0;
+    color: var(--color-neutral-0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--border-size-s) solid var(--color-primary);
+    border-bottom-left-radius: var(--border-radius-medium);
+}
+
+.ubt-image-card__bookmarked.bookmark--rounded:before {
+    border-top-right-radius: var(--border-radius-large);
+}
+
+      /*  2.12. Bottom Sheet  */
+
+/* Overwriting the pointer-events from 'all' to 'auto' as 'all' is SVG-only. */
+.osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay {
+    pointer-events: auto;
+}
+
+.ubt-bottom-sheet.osui-bottom-sheet--has-handler .osui-bottom-sheet__header::before {
+    top: var(--space-s);
+}
+
+.ubt-bottom-sheet.osui-bottom-sheet--has-handler .osui-bottom-sheet__header__top-bar
+{
+   padding-top: calc(var(--space-s) + var(--space-base));
+}
+
+.ubt-bottom-sheet .osui-bottom-sheet__header {
+    background-color: var(--color-neutral-0);
+    border-top-left-radius: var(--bottom-sheet-shape);
+    border-top-right-radius: var(--bottom-sheet-shape);
+}
+
+/*compensantig padding from bottom sheet so we can apply a custom padding on the content only*/
+.ubt-bottom-sheet.custom-padding .osui-bottom-sheet__content {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    overflow-y: auto;
+}
+
+/*compensantig padding from bottom sheet so we can apply a custom padding on the content only*/
+.ubt-bottom-sheet.custom-padding .osui-bottom-sheet__content .ubt-bottom-sheet--content {
+    margin: calc(-1 * var(--space-base));
+    margin-bottom: calc(var(--bottom-sheet--footer-height));
+    max-height: unset;
+}
+
+.ubt-bottom-sheet {
+    --bottom-sheet--safe-padding: calc(var(--bottom-bar-size) + var(--space-m) + var(--os-safe-area-bottom));
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+}
+
+[data-block="Interaction.BottomSheet"]:has(.bottom-sheet-higher-z-index),
+[data-block="Interaction.BottomSheet"]:has(.bottom-sheet-higher-z-index) .ubt-bottom-sheet.osui-bottom-sheet{
+    --osui-bottom-sheet-layer: 1005;
+}
+
+.ubt-bottom-sheet--content{
+    margin-bottom: var(--bottom-sheet--footer-height);
+}
+
+.ubt-bottom-sheet--footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: var(--bottom-sheet--footer-height);
+    max-height: var(--bottom-sheet--footer-height);
+}
+
+/* disabling due to issues with Sharings.
+.ubt-bottom-sheet.custom-padding .osui-bottom-sheet__header,
+.ubt-bottom-sheet.osui-bottom-sheet {
+    --osui-bottom-sheet-layer: 103;
+}*/
+
+.ubt-bottom-sheet.osui-bottom-sheet.ubt-bottom-sheet--handler-preview { 
+    --ubt-bottomsheet-handler-preview--height: calc(var(--space-s) + var(--space-base) +  var(--ubt-bottomsheet-handler-preview--offset));
+    --ubt-bottomsheet-handler-preview--offset-height: calc(100% - (var(--footer-height) + var(--ubt-bottomsheet-handler-preview--height)));
+}
+
+.ubt-bottom-sheet.custom-padding.ubt-bottom-sheet--handler-preview  .osui-bottom-sheet__header,
+.ubt-bottom-sheet.osui-bottom-sheet.ubt-bottom-sheet--handler-preview {
+    /*ensure the bottom bar stays on top of this*/
+    --osui-bottom-sheet-layer: 1006;
+}
+
+.ubt-bottom-sheet.ubt-bottom-sheet--handler-preview:not(.osui-bottom-sheet--is-open) {
+     -webkit-transform:translateY(var(--ubt-bottomsheet-handler-preview--offset-height)); 
+    -ms-transform:translateY(var(--ubt-bottomsheet-handler-preview--offset-height)); 
+     transform:translateY(var(--ubt-bottomsheet-handler-preview--offset-height)); 
+}
+
+.ubt-bottom-sheet.ubt-bottom-sheet--handler-preview.bottom-sheet--dragging.osui-bottom-sheet--is-open {
+    -webkit-transform: translateY(var(--bottom-sheet-translate));
+    -ms-transform: translateY(var(--bottom-sheet-translate));
+    transform: translateY(var(--bottom-sheet-translate));
+}
+
+.ubt-bottom-sheet.ubt-bottom-sheet--handler-preview.osui-bottom-sheet--is-open {
+    -webkit-transform: translateY(var(--ubt-bottomsheet-handler-preview--anchor-point));
+    -ms-transform: translateY(var(--ubt-bottomsheet-handler-preview--anchor-point));
+    transform: translateY(var(--ubt-bottomsheet-handler-preview--anchor-point));
+}
+
+.ubt-bottom-sheet--transparent-overlay.osui-bottom-sheet--is-open + .osui-bottom-sheet-overlay {
+    opacity: 0;
+}
+
+.ubt-bottom-sheet--dynamic-height {
+  transition: 
+    transform 350ms var(--osui-bottom-sheet-transition-function),
+    height 350ms var(--osui-bottom-sheet-transition-function);
+}
+
+.ubt-bottom-sheet--full-height {
+    min-height: var(--bottom-sheet-max-height);   
+}
+
+
+    /*  2.13. Sub-Header - Main Pages */
+
+.ubt-sub-header-main-pages{
+    width: 100%;
+    background-color: transparent;
+    color: var(--color-neutral-0);
+    padding: var(--space-s) var(--space-base) var(--space-base) var(--space-base);
+}
+
+.ubt-sub-header-main-pages__padding{
+    padding-top: var(--status-bar-height);
+}
+
+.ubt-sub-header-main-pages__right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: var(--space-base);
+}
+
+.ubt-sub-header-main-pages__icons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: var(--space-base);
+}
+
+    /*  2.14. Pop Up  */
+
+.popup-dialog.ubt-pop-up,
+.ubt-pop-up .popup-dialog{
+    border-radius: var(--border-radius-large);
+    padding: var(--space-base);
+    max-width: 300px;
+}
+
+.ubt-pop-up .dx-dialog-footer {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: var(--space-m);
+}
+
+.ubt-pop-up .dx-dialog-footer .btn{
+    flex: 1;
+    margin: 0;
+}
+
+.ubt-pop-up .dx-dialog-footer .btn{
+    border: 0px;
+}
+
+.ubt-pop-up--stacked-buttons.ubt-pop-up .dx-dialog-footer {
+    flex-direction: column;
+}
+
+.ubt-pop-up--stacked-buttons.ubt-pop-up .dx-dialog-footer .btn{
+    min-height: 40px
+}
+
+    /*  2.15. Static Input  */
+
+.ubt-static-input{
+    background-color: var(--color-neutral-1);
+    border: var(--border-size-s) solid var(--color-neutral-5);
+    border-radius: var(--border-radius-rounded);
+    color: var(--color-neutral-7);
+    min-height: 37px;
+    height: 37px;
+    padding: 0 var(--space-base);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: var(--space-base);
+}
+
+    /*  2.16. Sub-Header - Home Page  */
+
+.ubt-sub-header-home-page{
+    width: 100%;
+    height: 0px;
+    overflow-y: visible;
+    z-index: 0;
+}
+
+.ubt-sub-header-home-page-background-flat{
+    width: 100%;
+    height: 114px;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-cyan) 100%);
+}
+
+.ubt-sub-header-home-page-background{
+    width: 100%;
+    height: 60px;
+    border-bottom-left-radius: var(--border-radius-circle);
+    border-bottom-right-radius: var(--border-radius-circle);
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-cyan) 100%);
+}
+
+    /*  2.17. SVG Container  */
+
+.ubt-svg-container{
+    width: 100%;
+    height: 0px;
+    overflow: visible;
+    position: relative;
+    top: calc(-1 * (var(--header-size) + var(--status-bar-height)));
+    z-index: 1;
+    font-size: 0px; /* Reseting font to make sure inline elements inside have 0px height */ 
+}
+
+.ubt-svg-container .svg-wrapper {
+    height: min-content !important;
+    width: 100%;
+}
+
+.ubt-svg-container svg{
+    width: 100%;
+    height: auto;
+}
+
+/*2.18 Loading dots*/
+
+.ubt-svg-container.ubt-svg-container-full-height {
+    top: 0;
+}
+
+.ubt-svg-container:has(.ubt-loading-svg){
+    position: absolutFe;
+    top: 50%;
+    left: 50%;
+    width: var(--loading-dot-size);
+    height: var(--loading-dot-size) !important;
+    display: none;
+}
+
+.ubt-svg-container:has(.ubt-loading-svg) svg{
+    height: 100%;
+}
+
+.ubt-svg-container.ubt-fall-expand:has(.ubt-loading-svg){
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    transform: translate(-50%, -50%);
+}
+
+.ubt-svg-container.ubt-loading-svg-complete {
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    border-radius: 0%;
+    display: block;
+    z-index: 0;
+}
+
+.ubt-loading-dots {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  height: auto;
+  --first-position: calc(50% - (2 * var(--loading-dot-size) + 1.5* var(--loading-dot-gap)));
+}
+
+.ubt-loading-text
+{
+  position: absolute;
+  top: calc(50% + var(--loading-dot-size) + var(--space-base));
+  left: 50%;
+  transform: translatex(-50%);
+}
+
+.ubt-loading-dots .ubt-loading-dots__dot {
+    background: #00819C;
+    width: var(--loading-dot-size);
+    height: var(--loading-dot-size);
+    border-radius: 50%;
+    z-index: 3;
+    transition: transform 1s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+.ubt-loading-dots .ubt-loading-dots__dot:nth-child(1) {
+  position: absolute;
+  left: var(--first-position);
+}
+
+.ubt-loading-dots .ubt-loading-dots__dot:nth-child(2) {
+  position: absolute;
+  left:  calc( var(--first-position) + 1*(var(--loading-dot-gap) + var(--loading-dot-size)));
+  animation-delay: 0.15s;
+}
+
+.ubt-loading-dots .ubt-loading-dots__dot:nth-child(3) {
+  position: absolute;
+  left:  calc( var(--first-position) + 2*(var(--loading-dot-gap) + var(--loading-dot-size)));
+  animation-delay: 0.3s;
+}
+
+.ubt-loading-dots .ubt-loading-dots__dot:nth-child(4) {
+  position: absolute;
+  left:  calc( var(--first-position) + 3*(var(--loading-dot-gap) + var(--loading-dot-size)));
+  animation-delay: 0.45s;
+}
+
+.ubt-bounce {
+  animation: ubt-bounce 0.8s infinite ease-in-out;
+}
+
+.ubt-fall-expand {
+    width: 100%;
+    height: 100%;
+}
+
+.ubt-svg-container.ubt-svg-container-full-height svg {
+    /*height: calc(100vh + var(--status-bar-height));*/
+    height: var(--current-svg-height);
+}
+
+.ubt-loading-header-animation.ubt-loading-dots .ubt-loading-dots__dot{
+  left: 50%;
+}
+
+@keyframes ubt-bounce {
+    0%, 100% { 
+            transform: translate(-0%, -0%) scale(1); 
+            background-color: var(--color-primary);
+    }
+    50% { 
+        transform: translate(-0%, -120%) scale(1.4); 
+        background-color: var(--color-cyan);
+
+    }
+}
+
+.fade-enter.fade-enter-active:has(.ubt-svg-container) {
+    transition: opacity 2000ms ease-in-out;
+}
+
+
+/*  2.19. Button */
+
+.btn:hover:active {
+    filter: none;
+}
+
+.OSBlockWidget:has(> [data-block] > .ubt-button.flex-grow) {
+    flex-grow: 1
+}
+
+.OSBlockWidget:has(> [data-block] > .ubt-button.flex-shrink) {
+    flex-shrink: 1
+}
+
+.ubt-button,
+.tablet .ubt-button,
+.phone .ubt-button{
+    width: 100%;
+    height: var(--ubt-button-height);
+    padding: var(--space-none) var(--space-s);
+    
+    border-radius: var(--border-radius-medium);
+    border-color: var(--ubt-button-border-color, var(--ubt-button-background-color, var(--color-primary)));
+    border-width: var(--ubt-button-border-size, var(--border-size-s));
+    
+    font-size: var(--ubt-button-font-size);
+    font-weight: var(--ubt-button-font-weight);
+    
+    color: var(--ubt-button-font-color, var(--color-neutral-0));
+    background-color: var(--ubt-button-background-color, var(--color-primary));
+    
+    filter: none;
+    gap: var(--space-s);
+}
+
+.ubt-button .btn-animation{
+    display: none;
+}
+
+.ubt-button--disabled {
+    pointer-events: none;
+}
+
+.ubt-button__content{
+    display:contents;
+}
+
+/*.ubt-button .columns{
+    width: 100%;
+    flex-grow: 1;
+}*/
+
+.ubt-button .ubt-icon{
+    font-size: var(--ubt-button-icon-size);
+    color: inherit;
+}
+
+.ubt-button--xs{
+    --ubt-button-width: var( --ubt-button-width-xs);
+    --ubt-button-height: var( --ubt-button-height-xs);
+
+    --ubt-button-padding: var(--space-xs) var(--space-s);
+    
+    --ubt-button-font-size: var(--font-size-xs);
+    --ubt-button-font-weight: var(--font-regular);
+        
+    --ubt-button-icon-size: var(--ubt-icon-size-small);
+}
+
+.ubt-button--s{
+    --ubt-button-width: var( --ubt-button-width-s);
+    --ubt-button-height: var( --ubt-button-height-s);
+
+    --ubt-button-padding: var(--space-xs) var(--space-s);
+    
+    --ubt-button-font-size: var(--font-size-base);
+    --ubt-button-font-weight: var(--font-regular);
+        
+    --ubt-button-icon-size: var(--ubt-icon-size-medium);
+}
+
+
+.ubt-button--m{
+    --ubt-button-width: var( --ubt-button-width-m);
+    --ubt-button-height: var( --ubt-button-height-m);
+
+    --ubt-button-padding: var(--space-xs) var(--space-s);
+    
+    --ubt-button-font-size: var(--font-size-base);
+    --ubt-button-font-weight: var(--font-semi-bold);
+        
+    --ubt-button-icon-size: var(--ubt-icon-size-base);
+
+    --ubt-button-border-size: var(--border-size-m);
+}
+
+
+.ubt-button--primary{
+    /*placeholder for defining primary button*/
+}
+
+
+.ubt-button--secondary{
+    --ubt-button-background-color: var(--color-neutral-0);
+    --ubt-button-font-color: var(--color-primary);
+    --ubt-button-border-color: var(--color-primary);
+}
+
+.ubt-button--tertiary{
+    --ubt-button-background-color: var(--color-neutral-0);
+    --ubt-button-font-color: var(--color-primary);
+}
+
+.ubt-button--disabled {
+    --ubt-button-background-color: var(--color-neutral-3);
+    --ubt-button-font-color: var(--color-neutral-7);
+    --ubt-button-border-color: var(--color-neutral-5);
+}
+
+
+.ubt-button--primary:active,
+.ubt-button--primary.display-pressed {
+    --ubt-button-background-color: var(--color-cyan-darker);
+}
+
+
+.ubt-button--secondary:active,
+.ubt-button--secondary.display-pressed{
+    --ubt-button-background-color: var(--color-cyan-lightest);
+    --ubt-button-font-color: var(--color-cyan-darker);
+    --ubt-button-border-color: var(--color-cyan-darker);
+}
+
+.ubt-button--tertiary:active,
+.ubt-button--tertiary.display-pressed{
+    --ubt-button-background-color: var(--color-cyan-lightest);
+    --ubt-button-font-color: var(--color-primary);
+}
+
+
+/*  2.20. Context Menu  */
+
+.dx-popup-menu-container:not(.dx-popup-menu-open){
+    display: none;
+}
+
+.dx-popup-menu-container {
+    z-index: var(--layer-global-instant-interaction);
+}
+
+.ubt-context-menu{
+    min-width: var(--ubt-context-menu-width)
+}
+
+.ubt-context-menu span {
+    white-space: nowrap;
+}
+
+
+/*  2.21. Statistics Card */
+
+.ubt-statistics-item__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(56px, 1fr));
+    gap: var(--space-s)
+}
+
+.ubt-statistics-item {
+    position: relative;
+}
+
+.ubt-statistics-item__bookmarked:before {
+    content: "\f087";
+    background-color: var(--color-primary);
+    width: var(--ubt-icon-size);
+    height: var(--ubt-icon-size);
+    position: absolute;
+    right: 0;
+    top:0;
+    color: var(--color-neutral-0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--border-size-s) solid var(--color-primary);
+    border-bottom-left-radius: var(--border-radius-medium);
+    border-top-right-radius: var(--border-radius-large);
+}
+
+
+/*  2.22. Skeleton */
+
+ .background-skeleton{
+   background: var(--ubt-background-skeleton)
+}
+
+.skeleton-avatar{
+    width: 100%;
+    height: 100%;
+}
+
+[data-block]:has(> .skeleton-avatar){
+    display: contents;
+}
+
+.skeleton-text{
+    min-height: 1lh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.skeleton-text__skeleton{
+    min-height: 1em;
+    border-radius: inherit;
+}
+
+.skeleton-text-updated{
+    height: 1lh;
+    display: flex;
+    align-items: center;
+}
+
+.skeleton-text-updated--no-line-height,
+.skeleton-text-updated--no-line-height .skeleton-text-updated__skeleton{
+    height: 1em;
+}
+
+.skeleton-text-updated__skeleton{
+    height: 1.2em;
+    border-radius: inherit;
+    flex: 1;
+}
+
+.skeleton-text-updated__skeleton--line-height{
+    height: 1lh;
+}
+
+
+
+/*The following section is a new approach to skeleton based mostly on CSS*/
+
+@keyframes ubt-skeleton-pulse {
+  0%, 100% { background-color: var(--ubt-background-skeleton-light); }
+  50% { background-color: var(--ubt-background-skeleton-dark); }
+}
+
+
+.ubt-skeleton-section *{
+    text-decoration: none;
+    
+}
+
+.ubt-skeleton-section *:has(>span:only-child){
+   /* padding: 0;*/
+    min-height: 1lh;
+    display: flex;
+    align-items: center;
+    background: unset;
+}
+
+.ubt-skeleton-section span {
+    color: transparent;  
+}
+
+.ubt-skeleton-section .ubt-icon:not(.ignore-loading) {
+    border-radius: var(--border-radius-medium);
+    color: transparent;
+}
+
+
+.ubt-skeleton-section span, 
+.ubt-skeleton-section .osui-dropdown-search { 
+    height: 1.2em;
+    align-items: center;
+    border-radius: var(--border-radius-medium);
+}
+
+.ubt-skeleton-section .ubt-skeleton-section__element span{
+    height: unset;
+}
+
+.ubt-skeleton-section span:empty{
+    --skeleton-span-length: 12ch;
+    width: var(--_skeleton-span-legth,var(--skeleton-span-length))
+}
+
+.ubt-skeleton-section .ubt-skeleton-section__multi-line {
+    display: block;
+    height: 1lh;
+}
+
+.ubt-skeleton-section .ubt-skeleton-section__multi-line span {
+    width: 100%;
+    display: block;
+}
+
+
+
+.ubt-skeleton-section span,
+.ubt-skeleton-section .ubt-skeleton-section__element,
+.ubt-skeleton-section .ubt-icon:not(.ignore-loading),
+.ubt-skeleton-section .form > div,
+.ubt-skeleton-section .osui-dropdown-search,
+.ubt-skeleton-section .badge {
+    background: var(--ubt-background-skeleton-light);
+    animation: var(--ubt-skeleton-animation);
+    border-color: var(--ubt-background-skeleton-light)
+}
+
+
+.ubt-skeleton-section .ubt-skeleton-section__element *,
+.ubt-skeleton-section .form > div *,
+.active-screen.screen-container .ub, -skeleton-section *::before,
+.active-screen.screen-container .ubt-skeleton-section *::after,
+.ubt-skeleton-section input, 
+.ubt-skeleton-section .osui-dropdown-search .vscomp-ele-wrapper,
+.ubt-skeleton-section .ubt-icon img {
+    visibility: hidden;
+    transition-property: visibility;
+    transition-duration: 0ms;
+}
+
+
+ /*  2.23. Highlight Search */
+ 
+ .highlight-search mark{
+     background-color: inherit;
+     color: inherit;
+     font-weight: inherit
+ }
+
+
+/*  2.24. Actions Menu */
+
+.ubt-actions-menu > div .ubt-icon-button{
+    width: var(--ubt-actions-menu-width);
+}
+
+
+.ubt-actions-menu{
+    gap: var(--space-xs);
+}
+
+/*  2.25. Event Card */
+
+.eventCard-mainBody {
+    display: flex;
+    flex-direction: column;
+    gap:6px;
+    margin-top:var(--space-base) ;
+    padding: 0px 8px 8px 8px;
+}
+
+.eventCard-mainBody-title {
+   border-bottom: 1px solid var(--color-neutral-3);
+   padding-bottom: var(--space-s);
+   font-weight: var(--font-semi-bold);
+   font-size: var(--font-size-s);
+}
+
+
+.eventCard-mainBody-bottom-lef {
+    border-right: 1px solid var(--color-neutral-3);
+    margin-right: 10px;
+    padding-right: var(--space-base);
+}
+
+.event-card-orbit {
+  background: linear-gradient(90.3deg, #112CBA 0.27%, #E1E5FF 100%);
+}
+
+.event-card-assemble {
+  background: linear-gradient(90deg, #6E71FF 0%, #F6F6FD 85.1%);
+}
+
+.event-card-ldm {
+  background: linear-gradient(90.31deg, #FF6F61 0.27%, #FFF0EF 85.14%);
+}
+
+.event-card-personal {
+    background: linear-gradient(90deg, #00819C 0%, #F6F6FD 85.1%);
+}
+
+  /*2.27. Calendar View Action Menu */
+
+.calendar-view-drawer-title {
+    font-size: var(--space-base);
+    font-weight: var(--font-semi-bold);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-neutral-3);
+}
+
+.calendar-view-drawer-content {
+    display:flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.calendar-view-drawer-bottom {
+    border-top: 1px solid var(--color-neutral-3); 
+}
+
+.calendar-view-drawer-options {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: var(--sapce-base);
+  padding-left: var(--sapce-base);
+  padding-right: var(--sapce-base);  
+  width: 84%; /* or whatever */
+  height: 100dvh;
+  z-index: 99999;   /* above header */
+  transform: translateX(-100%);
+  transition: transform .3s ease;
+}
+
+.calendar-view-drawer-options.open {
+  transform: translateX(0);
+}
+
+.calendar-view-drawer-overlay {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100dvh;
+  background: var(--overlay-background);
+  z-index: 99998;
+  opacity: 1;
+  transition: opacity .3s ease;  
+}
+
+.calendar-view-drawer-overlay.open {
+  opacity:1;
+  pointer-events:all;
+}
+
+/*2.28. Horizontal Dot List*/
+
+.ubt-dots-wrapper-horizontal {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.ubt-dot-cont {
+  width: 5px;
+  aspect-ratio: 1/1;
+  flex: 0 0 auto; 
+}
+
+
+
+/*2.29. Input With Counter*/
+
+.ubt-input-with-counter input[data-input],
+.ubt-input-with-counter textarea[data-textarea]{
+    margin-bottom: 0px;
+}
+
+
+/*2.30. Number Badge*/
+
+.ubt-badge.badge-xs {
+    font-size: var(--font-size-xxs);
+    height: 16px;
+    min-width: 16px;
+    width: 16px;
+}
+
+.OSBlockWidget:has(> .ubt-badge) {
+    display: flex;
+}
+
+/*  2.31. Bottom Bar Slider  */
+
+.dx-bottom-bar-slider {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: var(--bottom-bar-size);
+    max-width: calc(var(--dx-bottom-bar-items) * var(--dx-bottom-bar-item-max-width, 150px));
+    margin: auto;
+    z-index: var(--layer-global-navigation);
+    pointer-events: none;
+}
+
+.dx-bottom-bar-slider > div {
+    position: absolute;
+    left: 0;
+    width: calc(100% / var(--dx-bottom-bar-items));
+    transform: translateX(calc(var(--dx-bottom-bar-active-item) * 100%));
+    transition: transform var(--dx-bottom-bar-transition-duration, 400ms);
+}
+
+.dx-bottom-bar-slider > div::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    width: min(60%, var(--dx-bottom-bar-item-max-width, 150px));
+    margin: auto;
+}
+
+.dx-bottom-bar-slider.dx-bottom-bar-slider-appear > div {
+    animation: dx-bottom-bar-slider-appear var(--dx-bottom-bar-transition-duration);
+}
+@keyframes dx-bottom-bar-slider-appear {
+    from {
+        transform: translateX(calc(var(--dx-bottom-bar-active-item) * 100%)) scaleX(0);
+    }
+}
+.dx-bottom-bar-slider.dx-bottom-bar-slider-disappear > div {
+    animation: dx-bottom-bar-slider-disappear var(--dx-bottom-bar-transition-duration);
+}
+@keyframes dx-bottom-bar-slider-disappear {
+    to {
+        transform: translateX(calc(var(--dx-bottom-bar-active-item) * 100%)) scaleX(0);
+    }
+}
+
+
+.screen-container.slide-from-right-enter-active ~ .dx-bottom-bar-slider,
+.screen-container.slide-from-left-enter-active ~ .dx-bottom-bar-slider {
+    z-index: 1000;
+}
+
+.ios .dx-bottom-bar-slider {
+    bottom: calc(var(--bottom-bar-size) + var(--os-safe-area-bottom));
+}
+
+/* Also hide the bottom bar when the keyboard is visible */
+.dx-mobile-keyboard-visible .content-bottom,
+.dx-mobile-keyboard-visible .dx-bottom-bar-slider {
+    display: none;
+}
+
+
+/* Reversed screen transitions */
+.dx-bottom-bar-slider-reverse-direction .slide-from-left-enter .content {
+    transform: translateX(100vw);
+}
+.dx-bottom-bar-slider-reverse-direction .slide-from-left-enter.slide-from-left-enter-active .content {
+    transform: none;
+}
+.dx-bottom-bar-slider-reverse-direction .slide-from-left-leave.slide-from-left-leave-active .content {
+    transform: translateX(-30vw);
+}
+.dx-bottom-bar-slider-reverse-direction .slide-from-right-enter .content {
+    transform: translateX(-100vw);
+}
+.dx-bottom-bar-slider-reverse-direction .slide-from-right-enter.slide-from-right-enter-active .content {
+    transform: none;
+}
+.dx-bottom-bar-slider-reverse-direction .slide-from-right-leave.slide-from-right-leave-active .content {
+    transform: translateX(30vw);
+}
+
+/*  2.32. Fixed Footer  */
+
+.ubt-fixed-footer {
+    position: fixed;
+    bottom: calc(var(--bottom-bar-size) + var(--os-safe-area-bottom));
+    left: 0;
+    width: 100%;
+}
+
+.ubt-fixed-footer.ubt-fixed-footer--no-bottom-bar {
+    bottom: 0;
+}
+
+.ubt-fixed-footer--content {
+    /*this var is set in the OnReady of the block*/
+    margin-bottom: var(--ubt-fixed-footer---footer-height);
+}
+
+ /*  2.33. Household Image Horizontal Card  */
+
+ .ubt-household-image-card__background-image {
+    position: relative;
+}
+
+.householdImage_horizontalCard-label {
+    color: var(--color-neutral-0);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding-left: var(--space-xs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-semi-bold);   
+}
+
+.ubt-household-image-card__background-image img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center
+}
+
+/*  2.34. See More Section  */
+  
+.ubt-see-more-section{
+  transition: all var(--animation-duration) var(--animation-easing);
+  overflow: hidden;
+}
+
+.ubt-see-more-section--title{
+  cursor: pointer;
+
+}
+
+.ubt-see-more-section--content{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--animation-duration) var(--animation-easing);
+  
+}
+
+.ubt-see-more-section.expanded .ubt-see-more-section--content{
+  max-height: 100vh; /* We use a large max-height here instead of 'unset' or 'none' because CSS cannot animate transitions between numeric values and 'auto' or 'none'. This is a known workaround to enable smooth expansion with max-height animations. */
+}
+
+
+/*  2.35. Input Underlined  */
+
+.ubt-input-underlined input.form-control[data-input]{
+    border: none;
+    border-radius: 0;
+    font-size: var(--font-size-s);
+    min-height: var(--ubt-icon-size-base);
+    height: auto;
+}
+
+.input-with-icon.ubt-input-underlined .input-with-icon-content-icon + .input-with-icon-input input {
+    padding: var(--space-none) var(--space-base);
+}
+
+.input-with-icon.ubt-input-underlined .input-with-icon-content-icon:has( > div:not(:empty)) + .input-with-icon-input input {
+    padding-left: calc(var(--space-base) + var(--ubt-icon-size-base));
+}
+
+.input-with-icon.ubt-input-underlined .input-with-icon-content-icon:has( > div:empty) + .input-with-icon-input input {
+    padding-left: var(--space-none);
+}
+
+.ubt-input-underlined.input-with-icon .input-with-icon-content-icon{
+    width: auto;
+}
+
+/*  . Contact by phone popup  */
+
+
+.ubt-contact-by-phone-popup img{
+   height: var(--ubt-icon-size-display);
+}
+
+.ubt-object-fit-avatar-img .ubt-avatar-image img,
+.ubt-object-fit-avatar-img .ubt-lazy-image img
+ {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+ /*  2.37. Custom Scroll List  */
+
+
+.ubt-custom-scroll-list {
+    position: relative;
+    height: calc(var(--custom-scroll-list-item-height, 44px) * var(--custom-scroll-list-item-count)); 
+    width: 100%;
+    overflow: hidden;
+    touch-action: none; 
+}
+
+
+.ubt-custom-scroll-list:not(.ubt-custom-scroll-list--hide-central-marker)::after {
+    content: "";
+    position: absolute; 
+    top: 50%; 
+    left: 0; 
+    right: 0; 
+    height: var(--custom-scroll-list-item-height);
+    transform: translateY(-50%);
+    background: transparent;
+    border-top: 1px solid rgba(0,0,0,0.05); 
+    border-bottom: 1px solid rgba(0,0,0,0.05); 
+    pointer-events: none; 
+    z-index: 10;
+}
+
+.ubt-custom-scroll-list__list {
+    position: absolute;
+    width: 100%;
+    /* Pushes the list down so index 0 of the middle set is in slot 3 */
+    top: calc(var(--custom-scroll-list-item-height, 44px) * 2);
+    margin: 0;
+    padding: 0;
+    will-change: transform;
+}
+
+.ubt-custom-scroll-list__list__item{
+    color: var(--color-neutral-6)
+}
+
+.ubt-custom-scroll-list__list__item--selected{
+    color: var(--color-neutral-10)
+}
+
+
+
+ /*  2.38. LocalityContact card  */
+
+.ubt-locality-contact-item {
+    position: relative;
+}
+
+.ubt-locality-contact-item__bookmarked:before {
+    content: "\f087";
+    background-color: var(--color-primary);
+    width: var(--ubt-icon-size);
+    height: var(--ubt-icon-size);
+    position: absolute;
+    right: 0;
+    top:0;
+    color: var(--color-neutral-0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: var(--border-size-s) solid var(--color-primary);
+    border-bottom-left-radius: var(--border-radius-medium);
+    border-top-right-radius: var(--border-radius-large);
+}
+
+/*  2.39. Dynamic Text Area  */
+
+.resizable-text-area span {
+    display: grid;
+}
+.resizable-text-area span::after {
+  content: attr(data-replicated-value) " ";
+  white-space: pre-wrap;
+  visibility: hidden;
+}
+
+.resizable-text-area.resizable-text-area--bounded span::after{
+    padding: var(--space-s)
+}
+
+
+.resizable-text-area textarea[data-textarea] {
+  overflow: hidden;
+  resize: none;
+  margin-bottom: var(--space-none)
+}
+
+.resizable-text-area textarea,
+.resizable-text-area span::after {
+  /* Identical styling required!! */
+  font: inherit;
+  word-break: break-all;
+  /* Place on top of each other */
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.resizable-text-area:not(.resizable-text-area--bounded) textarea[data-textarea].form-control{
+  border: none;
+  padding:0;
+}
+
+/*  2.40. Option List  */
+
+.country-flag img {
+        object-fit: cover;
+}
+
+.ubt-options-list .option-disabled .country-flag img {
+        filter: grayscale(0.5);
+        opacity: 0.2;
+}
+
+/*  2.41. Bookmark Note Item  */
+
+.bookmark_note_card__actions {
+    border-top: var(--border-size-s) solid var(--color-neutral-3);
+}
+
+.bookmark_note_card__actions:empty {
+    display: none;
+}
+
+/*  2.42. Horizontal_Filter_TagList*/
+
+.horizontal-tabs-filter-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.horizontal-tabs-filter {
+    flex: 0 0 auto;
+}
+
+.horizontal-tabs-filter-container > .OSBlockWidget:has(.horizontal-tabs-list) {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.horizontal-tabs-list {
+    min-width: 0;
+}
+
+/*  2.43. ItemCard_ActionBar*/
+
+.ubt-action-bar {
+    gap: var(--space-m);
+}
+
+/* === 3. Layout Patterns === */
+
+    /*  3.1. Layout - Main Pages  */
+
+.ubt-layout-main{
+    --header-color: var(--color-primary-gradient-linear);
+    --header-size: 103px;
+}
+
+.ubt-layout-main .header{
+    background: var(--header-color);
+}
+
+.ubt-layout-main.layout-native .header-top{
+    padding: var(--space-base);
+}
+
+.ubt-layout-main.layout-native .header-title,
+.phone .ubt-layout-main.layout-native .header-title{
+    color: var(--color-neutral-0);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-semi-bold);
+}
+
+.tablet .ubt-layout-main.layout-native .header-top,
+.phone .ubt-layout-main.layout-native .header-top{
+    padding-bottom: 0;
+}
+
+.ubt-layout-main.layout-native .header-right{
+    color: var(--color-neutral-0);
+}
+
+.ubt-layout-main.layout-native .header-top-title /*Class for FixedTitle layout*/
+{
+    padding: var(--space-base);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.ubt-layout-main.layout-native .header-top-search /*Class for FixedTitle layout*/
+{ 
+    padding: var(--space-base);
+}
+
+.tablet .ubt-layout-main.layout-native .header-top-title,/*Class for FixedTitle layout*/
+.phone .ubt-layout-main.layout-native .header-top-title,
+.tablet .ubt-layout-main.layout-native .header-top-search,
+.phone .ubt-layout-main.layout-native .header-top-search{
+    padding-bottom: 0;
+}
+
+
+.ubt-layout-main__title,
+.ubt-layout-main__search{
+    width: 100%;
+}
+
+.ubt-layout-main__search{
+    margin-top: var(--space-s);
+}
+
+    /*  3.2. Layout - Home Page  */
+
+.ubt-layout-home{
+    --header-color: var(--color-primary-gradient-linear);
+    --header-size: 58px;
+}
+
+.screen-container .layout.ubt-layout-home.ubt-profile-screen {
+    --header-size: 50px;
+}
+
+.ubt-layout-home .header{
+    background: var(--color-primary-gradient-linear);
+    box-shadow: var(--shadow-none);
+}
+
+.ubt-layout-home .header.background-primary-gradient-radial{
+    background: var(--color-primary-gradient-radial);
+}
+
+.ubt-layout-home.layout-native .header-top{
+    padding: var(--space-s) var(--space-base);
+}
+
+.ubt-layout-home.layout-native .header-title,
+.phone .ubt-layout-home.layout-native .header-title{
+    color: var(--color-neutral-0);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-semi-bold);
+}
+
+.ubt-layout-home__title{
+    width: 100%;
+}
+
+.ubt-layout-home__header--right{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: var(--space-base);
+    margin: 0;
+    color: var(--color-neutral-0);
+}
+
+.ubt-layout-home .content-middle{
+    z-index: 2;
+}
+
+/* Handle Pull-To-Refresh */
+body.ptr-loading .ubt-layout-home .main,
+body.ptr-refresh .ubt-layout-home .main,
+body.ptr-reset .ubt-layout-home .main {
+    background: var(--color-primary-gradient-linear);
+}
+
+
+        /*  3.2.1. Sub Layout Home Search  */
+
+.ubt-home-page-search{
+    position: relative;
+    z-index: 1;
+}
+
+
+    /*  3.3. Layout - Detail Page  */
+
+.ubt-layout-detail,
+.connect-pin-screen{
+    --header-color: var(--color-neutral-0);
+    --header-size: 50px;
+}
+
+.ubt-layout-detail.ubt-layout-detail--primary{
+    --header-color: var(--color-primary-gradient-radial);
+}
+
+.ubt-layout-detail .header{
+    background-color: var(--header-color);
+    box-shadow: var(--shadow-none);
+    color: var(--color-neutral-9);
+}
+
+.ubt-layout-detail.ubt-layout-detail--primary .header{
+    color: var(--color-neutral-0);
+    background: var(--header-color);
+}
+
+.tablet .ubt-layout-detail.layout-native .header-top,
+.phone .ubt-layout-detail.layout-native .header-top {
+    padding: 0 var(--space-base);
+}
+
+.ubt-layout-detail .header-content{
+    background: transparent;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: var(--space-base);
+}
+
+.ubt-layout-detail__left{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    column-gap: var(--space-xs);
+    
+}
+
+.ubt-layout-detail__left .header-title-upgrade
+{
+    color: var(--color-neutral-0);
+    font-size: var(--font-size-h6);
+    font-weight: var(--font-semi-bold);
+}
+
+.layout-native.ubt-layout-detail .header-title,
+.phone .layout-native.ubt-layout-detail .header-title,
+.tablet .layout-native.ubt-layout-detail .header-title{
+    font-size: var(--font-size-s);
+    flex: 1;
+}
+
+.ubt-layout-detail.layout-native .header-right,
+.phone .ubt-layout-detail.layout-native .header-right{
+    flex: 1;
+}
+
+    /*  3.4. Layout - Common  */
+    
+.layout-gray-background .content {
+    background-color: var(--color-neutral-4)
+}
+
+.ubt-layout-home:has(header .header-top-content:empty),
+.ubt-layout-main:has(header .header-top-content:empty){
+    --header-size: calc(var(--header-size) + var(--space-base));
+}
+
+.ubt-layout-home header:has(.header-top-content:empty) .header-top,
+.ubt-layout-main header:has(.header-top-content:empty) .header-top{
+    padding-bottom: var(--space-base);
+}
+
+.ubt-layout-home footer:before,
+.ubt-layout-home header:after,
+.ubt-layout-main footer:before,
+.ubt-layout-main header:after,
+.ubt-layout-detail footer:before,
+.ubt-layout-detail header:after{
+    content: '';
+    width: 100%;
+    height: 9px;
+    z-index: 3;
+    display: block;
+    position: absolute;
+}
+
+.ubt-layout-home header:after,
+.ubt-layout-main header:after,
+.ubt-layout-detail header:after{
+    bottom: calc(-1 * 9px);
+    background: linear-gradient(180deg, rgba(39, 43, 48, 0.5) 0%, rgba(217, 217, 217, 0.05) 84.62%);
+    visibility: var(--header-shadow-scroll);
+}
+
+.ubt-layout-home footer:before,
+.ubt-layout-main footer:before,
+.ubt-layout-detail footer:before{
+    background: linear-gradient(180deg, rgba(217, 217, 217, 0.05) 0%, rgba(206, 212, 218, 0.85) 80%);
+    top: calc(-1 * 9px);
+    visibility: var(--footer-shadow-scroll);
+}
+
+.ubt-layout-home.layout-native .header-right,
+.phone .ubt-layout-home.layout-native .header-right,
+.ubt-layout-main.layout-native .header-right,
+.phone .ubt-layout-main.layout-native .header-right,
+.ubt-layout-detail.layout-native .header-right,
+.phone .ubt-layout-detail.layout-native .header-right{
+    margin: 0;
+    column-gap: var(--space-base);
+    position: relative;
+}
+
+.screen-container:has(.ubt-layout-home, .ubt-layout-main.layout-sticky-title, .ubt-layout-main, .ubt-layout-detail):has(.osui-bottom-sheet.osui-bottom-sheet--is-open) {
+    overflow: hidden;
+    touch-action: none;
+}
+
+    /*  3.5. Layout - Sub Layout Section  */
+
+.ubt-sub-layout-section{
+    width: 100%;
+    background-color: var(--color-neutral-0);
+}
+
+.ubt-sub-layout-section > div:empty{
+    display: none;
+}
+
+    /*  3.6. Layout - Login Flow Layout  */
+
+.ubt-lock-screen{
+     position: fixed;
+     top: 0;
+     z-index: 9999;
+     max-height: 100vh;
+     overflow: scroll;
+ }     
+
+.ubt-layout--login{
+    --ubt-pincode-button-color: var(--color-neutral-0);
+    --buttontext: var(--color-neutral-0);
+    position: relative;
+    background: var(--color-neutral-0);
+    color: var(--ubt-pincode-button-color);
+}
+
+.ubt-layout--login__header{
+    position: absolute;
+    height: var(--header-size);
+    display: flex;
+    align-items: center;
+    margin: var(--space-base);
+    margin-bottom: var(--space-none);
+    margin-top: var(--status-bar-height);
+    z-index: 2;
+}
+
+.ubt-layout--login .ubt-pincode__keyboard button,
+.ubt-layout--login__header a{
+    color: var(--ubt-pincode-button-color);
+}
+
+.ubt-layout--login__content,
+.ubt-layout--login__svg .svg-wrapper svg,
+.ubt-layout--login__content .ubt-pin-overlay,
+.ubt-layout--login__content .connect-login-screen {
+    min-height: var(--ubt-login-svg-min-height);
+    height: 100vh;
+    width: 100vw;
+ }
+
+.ubt-layout--login__content .connect-login-screen {
+    padding: var(--ubt-layout-login-padding);
+    padding-top: var(--ubt-login-screen-padding-top);
+}
+
+ .ubt-layout--login__svg .svg-wrapper{
+    height: min-content !important;
+    position: absolute;
+    line-height: 0;
+ }
+
+ .ubt-layout--login__content {
+    z-index: var(--layer-local-tier-1);
+    position: relative;
+ }
+
+ .ubt-layout--login__content .ubt-pin-overlay{
+     background-color: transparent;
+ }
+
+  .ubt-layout--login__content .ubt-pincode__keyboard-buttons .btn {
+      transition: none;
+      position: relative;
+  } 
+
+.ubt-layout--login__content .ubt-pincode__keyboard-buttons .btn.animate {
+      visibility: visible;
+  } 
+
+.ubt-layout--login__content .ubt-pincode__keyboard-buttons .btn *{
+    pointer-events: none;
+}
+
+.ubt-layout--login__content .ubt-pincode__keyboard-buttons .btn .btn-animation {
+    position: absolute;
+    /* Center it over the button */
+    top: -2px; 
+    left: -2px; 
+    right: -2px; 
+    bottom: -2px;
+    border-radius: 50%;
+    
+    /* The Glow Color */
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.8); 
+    
+    /* Ignore clicks so they pass through to the button */
+    pointer-events: none; 
+    
+    /* Run the animation immediately upon creation */
+    animation: ghostRipple 0.4s ease-out forwards;
+}
+
+/* The Animation Logic (Same as before) */
+@keyframes ghostRipple {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+
+.connect-login-card {
+    padding: 0px;
+}
+
+.connect-login-card__content {
+    height: 365px;
+    padding: 0px var(--space-xxl);
+    display: flex;
+    flex-direction: column;
+    gap: 110px;
+    justify-content: center;
+}
+
+.connect-login-card__content .btn:not(.btn-primary){
+    border-color: transparent
+}
+
+.connect-login-card__content .btn {
+    border-radius: var(--border-radius-medium);
+    height: 40px;
+}
+
+.connect-login-screen__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.connect-login-screen__content .need-help-footer{
+    color: var(--color-neutral-10)
+}
+
+    /*  3.7. Layout - Main Pages: Fixed Header  */
+
+.ubt-layout-main.layout-sticky-title { 
+    --header-size: 63px;
+}
+
+.ubt-layout-main.layout-sticky-title.layout-native .header-top-title,
+.phone .ubt-layout-main.layout-sticky-title.layout-native .header-top-title {
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-cyan) 100%);
+}
+
+.ubt-layout-main.layout-sticky-title.layout-native .header-title .ubt-search-input,
+.phone .ubt-layout-main.layout-sticky-title.layout-native .header-title .ubt-search-input {
+    font-size: var(--font-size-h5);
+}
+
+/* ==================================================
+   UPGRADE HEADER
+   ================================================== */
+
+.mainpage-upgrade-container .upgrade-header-top {
+    padding: var(--space-base);
+    padding-bottom: 0;
+}
+
+
+/* Header row */
+
+.mainpage-upgrade-container .ubt-layout-detail__left {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    width: 100%;
+    min-width: 0;
+
+    column-gap: var(--space-xs);
+}
+
+
+/* Back button */
+
+.mainpage-upgrade-container
+.ubt-layout-detail__left > :first-child {
+    flex: 0 0 auto;
+}
+
+
+/* ==================================================
+   CENTER TITLE
+   ================================================== */
+
+.mainpage-upgrade-container .header-title-upgrade {
+    position: absolute;
+
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 4px;
+
+    width: max-content;
+    max-width: calc(100% - 120px);
+
+    white-space: nowrap;
+
+    color: var(--color-neutral-0);
+    font-size: var(--font-size-h6);
+    font-weight: var(--font-semi-bold);
+}
+
+
+.mainpage-upgrade-container
+.header-title-upgrade > * {
+    flex: 0 0 auto;
+}
+
+
+/* ==================================================
+   RIGHT ACTIONS
+   ================================================== */
+
+.mainpage-upgrade-container .header-right,
+.mainpage-upgrade-container .header-right-upgrade {
+    margin-left: auto;
+
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* ==================================================
+   SEARCH
+   ==================================================
+   IMPORTANT:
+   Only style it.
+   Do NOT make it sticky/fixed.
+   ================================================== */
+
+.mainpage-upgrade-container .upgrade-header-top-search {
+    width: 100%;
+    padding: var(--space-base);
+}
+
+
+.mainpage-upgrade-container .ubt-layout-main__search {
+    width: 100%;
+    margin-top: 0;
+}
+
+
+/* ==================================================
+   HEADER CONTENT
+   ================================================== */
+
+.mainpage-upgrade-container .header-top-content {
+    width: 100%;
+}

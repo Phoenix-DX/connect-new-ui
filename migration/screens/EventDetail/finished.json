@@ -1,0 +1,14 @@
+{
+ "finishedAt": "2026-10-16T12:25:51",
+ "files": {
+  "src/screens/EventDetail/api.ts": "501eaef7b474632f",
+  "src/screens/EventDetail/components/EventDateSelection.tsx": "aacf3291834822a2",
+  "src/screens/EventDetail/components/HostAllocation_List.tsx": "55c6403fba1bcc23",
+  "src/screens/EventDetail/components/ScreenBlock_EventDetail.tsx": "54bd58dfc8bcee9a",
+  "src/screens/EventDetail/components/actions.ts": "68eb80cfd826765d",
+  "src/screens/EventDetail/components/staticEntities.ts": "b5cee9c3f24ae439",
+  "src/screens/EventDetail/index.tsx": "edd6a02a87029a05",
+  "src/screens/EventDetail/mocks.ts": "2ba070a5ebf03b2c",
+  "src/screens/EventDetail/types.ts": "b007684b4e782b89"
+ }
+}

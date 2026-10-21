@@ -1,0 +1,10 @@
+{
+ "module": "UBTConnect",
+ "action": "ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+ "screen": null,
+ "status": 200,
+ "inputs": {},
+ "data": {
+  "UnreadCount": 414
+ }
+}

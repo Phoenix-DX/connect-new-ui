@@ -1,0 +1,72 @@
+{
+ "_comment": "Proposals of route EventDetail (route agent, 2026-10-16); not applied. The orchestrator moves accepted entries into migration/parity-exemptions.json. Also needed (not an exemption): capture-plan.json EventDetail entry \"cloneQuery\": \"mocksession=unlocked&In_MemberId=990001&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_FromNotification=False\" — the states were captured via OrbitLanding (the card passes these inputs), parity opens the bare URL, so without it the clone has no event (IsNullResponse → NoInformation).",
+ "rules": [
+  {
+   "id": "CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL",
+   "routeRegex": "^/UBTConnect/EventDetail",
+   "kinds": [
+    "call"
+   ],
+   "pathRegex": "^calls:load$",
+   "detailRegex": "^server actions ActionGetAllApplicationEvents → build \\(none\\)$",
+   "states": "^default$",
+   "reason": "ActionGetAllApplicationEvents was raised on TST by the shell block Utility.HandleImageLoadError (applicationEvent_ImageError → zOnApplicationEvent_Wrapper → cacheLocalApplicationEvents) for an image that failed during the transition from OrbitLanding; the screen itself never calls it (EventDetail Q3). Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/EventDetail/analysis/call-sites.md (chain stops: runtime callback); analysis/calls.md #1; EventDetail Q3"
+  },
+  {
+   "id": "VIA-BACK-MENUICON-EVENTDETAIL",
+   "routeRegex": "^/UBTConnect/EventDetail",
+   "kinds": [
+    "class",
+    "style",
+    "layout",
+    "position"
+   ],
+   "pathRegex": "header#b1-b1-b2-Header\\.header\\.orbit-detail\\.orbit-header-center > div\\.header-top > div\\.display-flex\\.header-content > div\\.align-items-center\\.display-flex\\.full-width > (div#b1-b1-b2-HeaderLeft\\.header-left( > .+)?|h1\\.header-title\\.text-align-center|div#b1-b1-b2-HeaderRight\\.header-right( > div#b1-b1-HeaderRight)?)$",
+   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the states were captured via OrbitLanding (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/EventDetail/analysis/states.json (via /UBTConnect/OrbitLanding); migration/screens/EventDetail/parity/default.json, loading.json, offline.json (class missing .back)"
+  },
+  {
+   "id": "CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL",
+   "routeRegex": "^/UBTConnect/EventDetail",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-position"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "div#b1-\\$b14\\.OSBlockWidget\\[Orbit_Generic_Blocks\\.Skeleton_Loading\\]( > .+)?$",
+   "reason": "The skeleton shimmer animation runs; its background-position at snapshot time depends on timing (49.98% vs 64.15%). Capture timing artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/EventDetail/parity/loading.json, offline.json (style background-position on .orbit-skeleton-loading-item)"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [],
+ "_merged": "2026-10-16 orchestrator: CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL, VIA-BACK-MENUICON-EVENTDETAIL, CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL; F10 rules: CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER, CAPTURE-VIA-MASK-SHIFT-EVENTDETAIL-PIXELS",
+ "rules_f10": [
+  {
+   "id": "CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER",
+   "routeRegex": "^/UBTConnect/EventDetail(\\?|$)",
+   "kinds": [
+    "layout"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "div#b1-b1-b2-ContentWrapper\\.content\\.orbit-detail\\.orbit-header-center$",
+   "detailRegex": "^390×779 → 390×773$",
+   "reason": "The header title (In_EventName) was masked by the capture: its bullets fit one line, the fictional title of the same word lengths (7 5 11 1 5 3 4, mocks/fictional/orbit.ts) wraps to two lines in the clone, so the header is 6 px taller and the content wrapper 6 px shorter (779 → 773). Text-mask capture artifact, not a CR-EventDetail-1 difference (F10, 2026-10-16).",
+   "evidence": "migration/screens/EventDetail/parity/loading.json, offline.json (layout 390×779 → 390×773); parity/default.expected.png vs default.build.png (title one line of bullets vs two lines)"
+  },
+  {
+   "id": "CAPTURE-VIA-MASK-SHIFT-EVENTDETAIL-PIXELS",
+   "routeRegex": "^/UBTConnect/EventDetail(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^(([0-6]\\.\\d\\d% pixels differ .*parity/default\\.diff\\.png)|([0-1]\\.\\d\\d% pixels differ .*parity/loading\\.diff\\.png)|([0-2]\\.\\d\\d% pixels differ .*parity/offline\\.diff\\.png))$",
+   "reason": "Screenshot differences that follow from capture artifacts already accepted at DOM level: the missing back arrow (VIA-BACK-MENUICON-EVENTDETAIL, the states were captured via OrbitLanding), the masked one-line header title (CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER) that moves everything below the header 6 px (default: Host Allocation 323 → 329, itinerary and cards the same), and in offline the skeleton shimmer phase (CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL, right edge of every skeleton bar). DOM counts are 0 in every state; bounded to < 7% (default), < 2% (loading), < 3% (offline). F10, 2026-10-16.",
+   "evidence": "migration/screens/EventDetail/parity/default.diff.png (6.64%), loading.diff.png (1.84%, hotspots 0,0 back arrow), offline.diff.png (2.59%, hotspots x 320 skeleton edges)"
+  }
+ ]
+}

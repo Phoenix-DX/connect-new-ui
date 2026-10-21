@@ -1,0 +1,55 @@
+{
+ "_comment": "Proposed by the ConnectShare route agent (2026-10-15) for the orchestrator to merge into migration/parity-exemptions.json. The first two rules and the call-order entry are capture/timing artifacts (auto-accepted kinds); LOADING-FRAME-CONNECTSHARE is a real but invisible structural difference and waits for the answer to ConnectShare Q4.",
+ "rules": [
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-NAVIGATIONLANDING",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "cursor"
+   ],
+   "states": "^(default|offline)$",
+   "routeRegex": "ConnectShare",
+   "pathRegex": "\\[Reusable\\.NavigationLanding\\] > a( > i\\.fa\\.fa-2x\\.fa-home)?$",
+   "reason": "The capture renames a link's href to data-original-href, so the replayed reference home link of NavigationLanding and its icon have cursor auto; the app's link has its href (cursor pointer). Same artifact as CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/ConnectShare/analysis/dom/default.html:156-158 (data-original-href=\"/UBTConnect/\"); migration/screens/ConnectShare/parity/default.json, offline.json"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-CONNECTSHARE-STATUS",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "routeRegex": "ConnectShare",
+   "pathRegex": "\\[Reusable\\.ConnectBlankSlate\\] > div\\.connect-blank-slate-container > div#b1-b4-Title\\.connect-blank-slate-title\\.margin-top-base\\.text-align-center$",
+   "reason": "The status message (the Get_ShareDetails exception message) is masked by the capture as 54 bullets; the centred title box takes the text's width, so its x offset follows the text (reference 52 px with bullets, clone 77 px with the fictional mock message, Q1). y and every other box match; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/ConnectShare/analysis/dom/default.html:75-78; migration/screens/ConnectShare/parity/default.json (position 52,492 → 77,492)"
+  },
+  {
+   "id": "LOADING-FRAME-CONNECTSHARE",
+   "kinds": [
+    "structure"
+   ],
+   "states": "^loading$",
+   "routeRegex": "ConnectShare",
+   "pathRegex": "^div#reactContainer > div#transitionContainer$",
+   "reason": "PENDING ConnectShare Q4. The original creates the screen view only after OnInitialize ends (OutSystems.js:2, fireInitialize awaited), and in the loading capture Get_ShareDetails never answers, so #reactContainer stays empty; the clone's AppFrame always renders #transitionContainer and the screen renders nothing inside it until OnInitialize ends. Nothing visible differs (pixels 0.00%).",
+   "evidence": "migration/screens/ConnectShare/analysis/dom/loading.html:1-3; app/src/app/AppFrame.tsx:16-24; migration/screens/ConnectShare/parity/loading.json"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [
+  {
+   "id": "CALL-ORDER-APPSTART-SHAREDETAILS",
+   "actions": [
+    "ActionGet_ShareDetails"
+   ],
+   "states": "^default$",
+   "routeRegex": "ConnectShare",
+   "reason": "On TST the screen's OnInitialize sent Get_ShareDetails together with the app start's SynchAppContext (both at 2824 ms), before AfterInitialize; in the clone the screen mounts after the shell's app start sent SynchAppContext and AfterInitialize. Its place among the app-start calls depends on timing; counts are still compared; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/ConnectShare/analysis/calls.json (ts 2824 for both); migration/screens/ConnectShare/parity/default.json (calls:load)"
+  }
+ ],
+ "_merged": "2026-10-15 orchestrator: rules:CAPTURE-LINK-HREF-CURSOR-NAVIGATIONLANDING, rules:CAPTURE-MASKED-TEXT-CONNECTSHARE-STATUS, rules:LOADING-FRAME-CONNECTSHARE, callOrderFree:CALL-ORDER-APPSTART-SHAREDETAILS"
+}

@@ -1,0 +1,12 @@
+{
+ "finishedAt": "2026-10-15T20:13:39",
+ "files": {
+  "src/screens/ContactUsMenu/api.ts": "c00eba4557c8af00",
+  "src/screens/ContactUsMenu/components/actions.test.ts": "58996af34765691f",
+  "src/screens/ContactUsMenu/components/actions.ts": "c88e3b294146b01b",
+  "src/screens/ContactUsMenu/components/staticEntities.ts": "d989c4360c1ee722",
+  "src/screens/ContactUsMenu/index.tsx": "403bf21cb84cf97c",
+  "src/screens/ContactUsMenu/mocks.ts": "e13a0d4eeb5a2566",
+  "src/screens/ContactUsMenu/types.ts": "60adeecb4aa95ee3"
+ }
+}

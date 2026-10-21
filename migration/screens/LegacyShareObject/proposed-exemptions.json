@@ -1,0 +1,57 @@
+{
+ "_comment": "Proposed by route-legacyshareobject (2026-10-15) for migration/parity-exemptions.json; same format, merged by the orchestrator. Capture and timing artifacts only.",
+ "rules": [
+  {
+   "id": "CAPTURE-MASKED-IMAGE-LEGACYSHAREOBJECT",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b1-Household_List_Item\\.OSBlockWidget\\[Utility\\.Result_Item_Image\\] > div#b1-b3-Result_Item\\.[^ >]* > div\\.result-item-top-content > div\\.OSInline\\.result-item_visual( > .*)?$",
+   "reason": "The household photo was removed from the capture as person data (img src=\"\", data-masked-src=\"user-image\", live size 65x43), so the replayed reference renders the image column 0 px high (70x0, text column offset 34 px); the clone shows the neutral mock placeholder at 65x43 (Q-W2C-1), as the live capture did. Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LegacyShareObject/analysis/dom/default.html:78-79 (data-masked-src, data-rendered-size 65x43); migration/screens/LegacyShareObject/parity/default.json (6 layout, 1 position)"
+  },
+  {
+   "id": "CAPTURE-SHIMMER-PHASE-LEGACYSHAREOBJECT-LOADING-ITEM",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-position"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "\\[Utility\\.Result_Item_Image\\] > div#b1-b3-Result_Item\\.image-item\\.loading-item\\.no-border$",
+   "reason": "Result_Item_Image's loading-item shimmer is a CSS animation of background-position; the captured value is the animation phase at the capture instant (101.3 px loading, 96.0 px offline) and differs on every run. Same artifact as CAPTURE-SKELETON-SHIMMER-PHASE. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LegacyShareObject/parity/loading.json and offline.json ([style] background-position 101.344px 0px → 367.97px 0px; 96.032px 0px → 655.962px 0px)"
+  }
+ ],
+ "ignoreSubtrees": [
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-LEGACYSHAREOBJECT-PROFILES",
+   "idRegex": "^b1-b8-b[56]-(Icon|Message)$",
+   "states": "^loading$",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout, so ProfileList's DataActionGetAvailableUsers had failed (HasFetchError: ListBlankSlate exclamation-triangle \"Error Searching\"); the mock loading scenario never answers, so the clone shows the compiled fetching branch (ListBlankSlate spinner fa-spin \"Searching\", ProfileList.mvc.js view :532-620). Icon and message masked in DOM and pixel comparison for the loading state only; the same error markup passes in the offline state. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LegacyShareObject/analysis/dom/loading.html:132-145; migration/screens/LegacyShareObject/parity/loading.json (class, text, style, pseudo, layout, position, pixel hotspots 120-200,280-320); parity/offline.json passes"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-LEGACYSHAREOBJECT-IMAGE",
+   "idRegex": "^b1-b4-b1-Placeholder_LoadingSection$",
+   "states": "^loading$",
+   "reason": "In the loading capture the household UBT_LazyImage had already received the failed GetSignedImagesInBulk answer after the request timeout (outer SkeletonSection off, cyan no-image fallback with connect-icon-home); the mock loading scenario never answers, so the shared UBT_LazyImage keeps its skeleton (ubt-skeleton-section, grey elements, hidden icon). The fallback markup passes in the offline state. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLDDETAILS-IMAGE. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LegacyShareObject/analysis/dom/loading.html:72-89; migration/screens/LegacyShareObject/parity/loading.json ([class] extra .ubt-skeleton-section, [style]/[pseudo] under b1-b4-b2-b3-Content); parity/offline.json passes"
+  }
+ ],
+ "callOrderFree": [
+  {
+   "id": "CALL-ORDER-APPSTART-RACE-LEGACYSHAREOBJECT",
+   "actions": [
+    "ServiceAPIGetHouseholdDetails"
+   ],
+   "states": "^default$",
+   "reason": "ScreenBlock_ShareObject's OnReady GetHouseholdDetails starts while the app-start chain runs: on TST it started before AfterInitialize, the clone's shell calls AfterInitialize right after SynchAppContext, before the lazily loaded screen mounts. Its place among the app-start calls depends on timing; counts and inputs are still compared. Same artifact as CALL-ORDER-APPSTART-USERINFO. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LegacyShareObject/analysis/calls.json (GetHouseholdDetails ts 4593, AfterInitialize ts 5166); migration/screens/LegacyShareObject/parity/default.json (calls:load)"
+  }
+ ],
+ "_merged": "2026-10-15 by the orchestrator: CAPTURE-MASKED-IMAGE-LEGACYSHAREOBJECT, CAPTURE-SHIMMER-PHASE-LEGACYSHAREOBJECT-LOADING-ITEM, CAPTURE-LOADING-FETCH-TIMEOUT-LEGACYSHAREOBJECT-PROFILES, CAPTURE-LOADING-FETCH-TIMEOUT-LEGACYSHAREOBJECT-IMAGE, CALL-ORDER-APPSTART-RACE-LEGACYSHAREOBJECT"
+}

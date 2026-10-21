@@ -1,0 +1,30 @@
+{
+ "exemptions": [
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-SUPPERMEETING-ACTIONS",
+   "kinds": [
+    "class"
+   ],
+   "states": "^loading$",
+   "pathRegex": "div#b3-b8-b2-b(2|8)-b1-b1-b1-Content\\.[^ >]*border-radius-circle[^ >]*$|div#b3-b8-b2-b(2|8)-\\$b2\\.OSBlockWidget\\[ConnectPatterns\\.Icon\\] > div\\.connect-icon-(bookmark|share)[^ >]*$",
+   "reason": "Same capture artifact as CAPTURE-LOADING-FETCH-TIMEOUT-SUPPERMEETING (which already covers the Notes button b6): the loading capture held the TST requests until the OutSystems request timeout, so FetchContactDetails failed and HandleFetchError set EnableBookmark / EnableShare False (Bookmark b2 and Share b8 in neutral-3 / neutral-7). The mock loading scenario never answers, so the clone keeps the enabled colours. Until F4a these buttons matched only by accident: the clone dropped the ActionsMenuEnableOptions record defaults (EnableBookmark / EnableShare True) of the block's literal {EnableNotes: True}, now fixed in Directory_EntityDetailsActions.",
+   "evidence": "migration/screens/SupperMeeting_Details/parity/loading.json (4 class diffs b2/b8); Directory_EntityDetailsActions.mvc.js:1134-1150 (HandleFetchError); SupperMeeting_DetailsBlock mvc.js:370-371 (literal EnableNotes True); UBTConnectLibrary.model.js:4135-4156 (record defaults)"
+  }
+ ],
+ "_merged": "2026-10-15 by the orchestrator: CAPTURE-LOADING-FETCH-TIMEOUT-SUPPERMEETING-ACTIONS; F5 popup rule merged with routeRegex 2026-10-15",
+ "rules": [
+  {
+   "id": "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-SUPPERMEETING_DETAILS",
+   "kinds": [
+    "class"
+   ],
+   "states": [
+    "loading"
+   ],
+   "pathRegex": "^html$",
+   "detailRegex": "popup-disable-scroll",
+   "reason": "Timing artifact: the html popup-disable-scroll class at capture time depends on the order of OutSystems model flushes (client-variable flush vs local-storage query flush), not on the screen.",
+   "evidence": "usePopupWidget re-applies disableScroll on every client-variable change as every OS controller does (OutSystems.js:530153 fireInitialize subscribes clientVariablesHandler; :527146 generation++ + scheduleFlush). TST's final html class then depends on whether an EntityDetailsActions model flush (local IDB queries, OnReady) lands after the last client-variable flush; in the mock app local entities resolve in microtasks. TST itself is inconsistent across routes/states: states.json htmlClass default ''/loading 'popup-disable-scroll' on OneSchoolGlobalDetails, but default 'popup-disable-scroll'/loading '' on SupperMeeting_Carousel. See migration/screens/SupperMeeting_Details/analysis/states.json and parity/<state>.json."
+  }
+ ]
+}

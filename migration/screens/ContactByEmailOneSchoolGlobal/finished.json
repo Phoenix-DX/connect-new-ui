@@ -1,0 +1,11 @@
+{
+ "finishedAt": "2026-10-15T23:37:41",
+ "files": {
+  "src/screens/ContactByEmailOneSchoolGlobal/ContactByEmailOneSchoolGlobal.test.tsx": "d5c91c9e60fb07a2",
+  "src/screens/ContactByEmailOneSchoolGlobal/api.ts": "0fa2f47f9ed1dacc",
+  "src/screens/ContactByEmailOneSchoolGlobal/components/staticEntities.ts": "6aa0cc90cce19e5f",
+  "src/screens/ContactByEmailOneSchoolGlobal/index.tsx": "59e75ee866b06ff3",
+  "src/screens/ContactByEmailOneSchoolGlobal/mocks.ts": "613b787d671f0141",
+  "src/screens/ContactByEmailOneSchoolGlobal/types.ts": "cda5e5157edac28a"
+ }
+}

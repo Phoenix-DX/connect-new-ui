@@ -1,0 +1,155 @@
+﻿
+.ubt-rating-slider.osui-range-slider {
+  --range-slider-handle-size:28px;
+  --range-slider-thickness:24px;
+  --range-slider-handle-size-half:calc(var(--range-slider-handle-size) / 2);
+  --range-slider-thickness-half:calc(var(--range-slider-thickness) / 2);
+  --range-slider-handle-sliding-position:calc(var(--range-slider-handle-size-half) * -1);
+  --range-slider-dot-size: 10px;
+  --range-offset: -1%;
+  padding: 0px;
+}
+
+.ubt-rating-slider.osui-range-slider .noUi-target,
+.ubt-rating-slider.osui-range-slider .noUi-connects {
+    border-radius: 20px;
+}
+
+.ubt-rating-slider.osui-range-slider .noUi-target {
+    background-color: var(--color-neutral-2)
+}
+
+.ubt-rating-slider.osui-range-slide .noUi-target {
+    margin: var(--space-m) var(--space-none) var(--space-l);
+}
+
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large {
+    position: absolute;
+    top: calc(-1 * var(--range-slider-thickness-half) - 5px);
+    width: var( --range-slider-dot-size);
+    height: var( --range-slider-dot-size);
+    left: 0px !important;
+    border-radius: 20px;
+    background-color: var(--color-neutral-4)
+}
+
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="1.0"]):not(.ubt-rating-slider--no-rate),
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large:nth-of-type(1),
+.ubt-rating-slider.osui-range-slider .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(2) {
+  --range-offset: 2%;
+}
+
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="2.0"]),
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large:nth-of-type(3),
+.ubt-rating-slider.osui-range-slider .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(4) {
+  --range-offset: 10.6%;
+}
+
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="3.0"]),
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large:nth-of-type(5),
+.ubt-rating-slider.osui-range-slider .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(6) {
+  --range-offset: 21.2%;
+}
+
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="4.0"]),
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large:nth-of-type(7),
+.ubt-rating-slider.osui-range-slider .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(8) {
+  --range-offset: 31.8%;
+}
+
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="5.0"]),
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large:nth-of-type(9),
+.ubt-rating-slider.osui-range-slider .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(10) {
+  --range-offset: 42.4%;
+}
+
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="6.0"]),
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large:nth-of-type(11),
+.ubt-rating-slider.osui-range-slider .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(12) {
+  --range-offset: 53%;
+}
+
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="7.0"]),
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large:nth-of-type(13),
+.ubt-rating-slider.osui-range-slider .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(14) {
+  --range-offset: 63.6%;
+}
+
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="8.0"]),
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large:nth-of-type(15),
+.ubt-rating-slider.osui-range-slider .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(16) {
+  --range-offset: 74.2%;
+}
+
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="9.0"]),
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large:nth-of-type(17),
+.ubt-rating-slider.osui-range-slider .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(18) {
+  --range-offset: 84.8%;
+}
+
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="10.0"]),
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large:nth-of-type(19),
+.ubt-rating-slider.osui-range-slider .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(20) {
+  --range-offset: calc( 98% - var( --range-slider-dot-size));
+}
+
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="1.0"]):not(.ubt-rating-slider--no-rate) .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(2),
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="2.0"]) .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(4),
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="3.0"]) .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(6),
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="4.0"]) .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(8),
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="5.0"]) .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(10),
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="6.0"]) .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(12),
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="7.0"]) .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(14),
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="8.0"]) .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(16),
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="9.0"]) .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(18),
+.ubt-rating-slider.osui-range-slider:has(.noUi-handle.noUi-handle-lower[aria-valuenow="10.0"]) .noUi-value.noUi-value-horizontal.noUi-value-large:nth-of-type(20) {
+    font-weight: bold;
+}
+
+
+.ubt-rating-slider.osui-range-slider.ubt-rating-slider--no-rate .noUi-handle.noUi-handle-lower {
+    display: none;
+}
+
+.ubt-rating-slider.osui-range-slider .noUi-marker.noUi-marker-horizontal.noUi-marker-large {
+    left: var(--range-offset) !important;
+}
+
+.ubt-rating-slider.osui-range-slider .noUi-value.noUi-value-horizontal.noUi-value-large
+{
+    top: -2px;
+    left: calc(var(--range-offset) + var(--range-slider-dot-size) /2 )!important;
+    font-size: var(--font-size-xxs);
+    color: var(--color-neutral-7)
+}
+
+.ubt-rating-slider.osui-range-slider .noUi-origin {
+    transform: translate(calc((var(--range-offset) - 100%) + var(--range-slider-dot-size) / 2), 0px) !important;
+}
+
+.ubt-rating-slider.osui-range-slider .noUi-connect {
+    transform: scale(calc(var(--range-offset) + 1%), 1) !important;
+}
+
+.ubt-rating-slider.osui-range-slider .noUi-pips.noUi-pips-horizontal {
+    padding: 0px;
+}
+
+.ubt-rating-slider.osui-range-slider .noUi-horizontal .noUi-handle {
+    background-color: var(--color-cyan-darker);
+    border: unset;
+}
+
+.ubt-rating-slider.osui-range-slider .noUi-horizontal .noUi-handle:before {
+    content: "";
+    border: unset;
+    background-color: var(--color-primary);
+    width: 12px;
+    height: 12px;
+    border-radius: 20px;
+    left: calc(50% - 6px);
+}
+
+.ubt-rating-slider.osui-range-slider .noUi-horizontal .noUi-handle:after {
+    content: unset;
+}

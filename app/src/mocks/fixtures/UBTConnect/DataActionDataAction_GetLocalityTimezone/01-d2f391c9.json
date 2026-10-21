@@ -1,0 +1,50 @@
+{
+ "module": "UBTConnect",
+ "action": "DataActionDataAction_GetLocalityTimezone",
+ "screen": "ContactUsDetails",
+ "status": 200,
+ "inputs": {
+  "IsFormFilled": false,
+  "IsAnyFilled": false,
+  "isLogged": true,
+  "CountryPhone": "6 334 699 7135",
+  "isSubmiting": false,
+  "Rate_SelectedRate": 0,
+  "Rate_ShowRate": false,
+  "Rate_UserWantToBeContacted": false,
+  "CallPopupData": {
+   "ContactPopupData": {
+    "ImageURL": "",
+    "EntityTypeId": "",
+    "EntityId": "0",
+    "IsAvatarImage": true,
+    "ActionName": "",
+    "Name": "",
+    "Locality": "",
+    "TimezoneName": "",
+    "TimezoneOffset": 0,
+    "ShowPopup": false,
+    "DisplayContactNumber": "",
+    "IsFetchingTimezone": false,
+    "IsLoading": false,
+    "ShowTimezone": true,
+    "ShowImage": true,
+    "CountryName": "",
+    "TitleTerminator": ""
+   },
+   "Phone": "",
+   "MobilePhone": "",
+   "HomePhone": "",
+   "WorkPhone": ""
+  },
+  "isLoadingMainData": false,
+  "IgnorePolices": false,
+  "In_ContactSubjectId": "Sed et x Sit Sed aliquip",
+  "In_ContactSubjectTitle": "User Account Management",
+  "In_ListMenuOptionLabel": "Set up a UBT One account"
+ },
+ "data": {
+  "Out_TimezoneName": "CDT",
+  "Out_TimezoneOffset": -18000
+ }
+}

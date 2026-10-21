@@ -1,0 +1,65 @@
+{
+ "module": "UBTConnect",
+ "action": "DataActionGet_LocalityDetails",
+ "screen": "Locality_Details",
+ "status": 200,
+ "inputs": {
+  "TagsList": {
+   "List": [
+    {
+     "Text": "Households",
+     "Identifier": "Households",
+     "IconId": "",
+     "IsSelected": true,
+     "Enabled": true
+    },
+    {
+     "Text": "Supper Meetings",
+     "Identifier": "Supper Meetings",
+     "IconId": "",
+     "IsSelected": false,
+     "Enabled": true
+    },
+    {
+     "Text": "Interchange",
+     "Identifier": "Interchange",
+     "IconId": "",
+     "IsSelected": false,
+     "Enabled": true
+    },
+    {
+     "Text": "OneSchool Global",
+     "Identifier": "OneSchool Global",
+     "IconId": "",
+     "IsSelected": false,
+     "Enabled": true
+    }
+   ]
+  },
+  "HeaderIsScrolled": false,
+  "TagsList_SelectedTag": "Households",
+  "IsUserLocality": false,
+  "LocalityLabel": "Bahia Blanca, Argentina",
+  "IsScreenInitialized": true,
+  "LocalityId": "585",
+  "PreloadedLocalityLabel": "Bahia Blanca, Argentina"
+ },
+ "data": {
+  "LocalityDetails": {
+   "BretherenCount": 95,
+   "HouseholdCount": 25,
+   "MaiinHallLatitude": "-38.6921654",
+   "MainHallLongitude": "-62.2906036",
+   "UI_LocalityDetails": {
+    "LocalityId": "",
+    "Name": "Bahia Blanca",
+    "CountryName": "Argentina",
+    "CountryCode": "AR"
+   },
+   "UI_LocalityTimezone": {
+    "TimezoneName": "ART",
+    "TimezoneOffset": "-10800"
+   }
+  }
+ }
+}

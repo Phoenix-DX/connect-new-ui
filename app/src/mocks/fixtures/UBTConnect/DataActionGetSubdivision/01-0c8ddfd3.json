@@ -1,0 +1,34 @@
+{
+ "module": "UBTConnect",
+ "action": "DataActionGetSubdivision",
+ "screen": "SupperMeeting_DetailsBlock",
+ "status": 200,
+ "inputs": {
+  "In_SubdivsionId": "2820"
+ },
+ "data": {
+  "Subdivision": {
+   "Subdivision_Card": {
+    "SubdivisionId": "2820",
+    "Subdivision_Card_Content": {
+     "Name": "Zapiola (Main Meeting Room)",
+     "BretherenCount": 39,
+     "HouseholdCount": 11,
+     "BrothersCount": 24,
+     "SistersCount": 15,
+     "Address": "Aliquip elit Lorem Aliqua Tempor Ipsum Pariatur"
+    }
+   },
+   "Subdivision_Actions": {
+    "HasBookmark": false,
+    "HasUnbookmark": false,
+    "HasNotes": false,
+    "HasGift": false,
+    "HasShare": false,
+    "HasCall": false,
+    "HasEmail": false,
+    "HasViewDetails": false
+   }
+  }
+ }
+}

@@ -1,0 +1,74 @@
+{
+ "module": "UBTConnect",
+ "action": "DataActionGetCountryInfo",
+ "screen": "Profile",
+ "status": 200,
+ "inputs": {
+  "isHouseholder": false,
+  "HasChanges": false,
+  "isSpouse": true,
+  "isLoading_Submit": false,
+  "LocalCacheControl_AllLocalities": {
+   "CacheControl_AllLocalities": {
+    "LocalityList": {
+     "List": [],
+     "EmptyListItem": {
+      "LocalityId": "",
+      "Name": "",
+      "CountryName": "",
+      "CountryCode": "",
+      "Latitude": "0",
+      "Longitude": "0"
+     }
+    }
+   },
+   "isFetched": false
+  },
+  "LocalCacheControl_AllSubdivions": {
+   "CacheControl_AllSubdivions": {
+    "SubdivionsList": {
+     "List": [],
+     "EmptyListItem": {
+      "SubdivisionId": "",
+      "SubdivisionName": "",
+      "LocalityId": "",
+      "LocalityName": ""
+     }
+    }
+   },
+   "isFetched": false
+  },
+  "SubdivisionFilteredList": {
+   "List": [],
+   "EmptyListItem": {
+    "SubdivisionId": "",
+    "SubdivisionName": "",
+    "LocalityId": "",
+    "LocalityName": ""
+   }
+  },
+  "MainContainerId": "b0-ContentWrapper",
+  "PreviewHousehold_BottomSheetId": "",
+  "CurrentCountryCode": "US",
+  "FormattedAddress": "",
+  "isRequireRequestCreation": false
+ },
+ "data": {
+  "AddressInfo2": {
+   "AddressItemsList": {
+    "List": [],
+    "EmptyListItem": {
+     "Label": "",
+     "Visible": false,
+     "Required": false,
+     "Value": "",
+     "NumberRef": 0,
+     "IsValid": true
+    }
+   },
+   "AddressFormat": "[Address1] \r\n[Address2] [Address3] \r\n[Address4] [Address5] [Address6] ",
+   "CountryCode": "",
+   "CountryName": ""
+  }
+ }
+}

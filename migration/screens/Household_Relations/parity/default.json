@@ -1,0 +1,69 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/Household_Relations?HouseholdId=42438&MemberId=42438&mocksession=unlocked",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "efbbb6401ef0493afd41",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 523,
+  "texts": 48,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-21T04:30:35.729Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
+  "ignoreSubtrees": 1,
+  "CAPTURE-MASKED-IMAGE-HOUSEHOLDRELATIONS-SHIFT": 1
+ },
+ "pixel": {
+  "ratio": 0.0183,
+  "maxCell": 0.1519,
+  "maxCellRatio": 0.03,
+  "diffPixels": 4867,
+  "comparedPixels": 265891,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 28,
+  "hotspots": [
+   "80,200 (243px)",
+   "120,200 (208px)",
+   "40,480 (198px)",
+   "40,280 (185px)",
+   "80,680 (181px)"
+  ],
+  "diffPng": "migration/screens/Household_Relations/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 12,
+  "actual": 11
+ },
+ "diffs": []
+}

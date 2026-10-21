@@ -1,0 +1,90 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "mock data",
+  "question": "Apply filters can pick any country, but DataActionGetLocalityStatistics was recorded only for CountryCode=AR. What should the mock answer for another country?",
+  "evidence": "app/src/mocks/fixtures/index.json (CountryDetails fixture 02-e657cfcb.json, CountryCode AR only); CountryDetails.mvc.js:1814-1828 (Handler_FilterSheetApplyFilters sets CountryCode and refreshes)",
+  "mcp": "",
+  "options": [
+   "A: recordedHandler fallback = the AR recording, with its console warning",
+   "B: empty locality list and CountryName empty for unrecorded countries",
+   "C: record more countries read-only in TST first"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:08:27",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): other countries serve the AR recording with a console warning",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T17:18:41"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "map tiles",
+  "question": "The map loads tiles from server.arcgisonline.com (external, masked as user-image in the capture). How is the tile layer handled in the clone and in parity?",
+  "evidence": "CountryDetails.mvc.js:431-447 (TileLayer Url ArcGIS World_Street_Map); dom/default.html:104-111 (leaflet-tile imgs data-masked-src=user-image)",
+  "mcp": "",
+  "options": [
+   "A: keep the original tile URL in the app; parity masks the tile container (ignoreSubtrees on leaflet-tile-container, as the parity guide says for map tiles)",
+   "B: stub tiles in the app"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:08:27",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): keep the original ArcGIS tile URL",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T17:18:41"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "parity / shared LeafletMap",
+  "question": "Default state: the three map markers differ from the capture (tabindex 0 / role button missing, opacity 0 instead of 1) because the shared markerJSON lower-cases the MarkerOptions names (CR-CountryDetails-2). How should the route handle it?",
+  "evidence": "migration/screens/CountryDetails/parity/default.json (attr ×6, style ×3 on img.leaflet-marker-icon); dom/default.html:120-122; fixture 02-e657cfcb inputs MarkersList.EmptyListItem.Marker.Options keys; app/src/shared/Leaflet/lib/json.ts markerJSON",
+  "mcp": "",
+  "options": [
+   "A: keep the compiled inputs and wait for CR-CountryDetails-2 in the shared LeafletMap (difference stays until then)",
+   "B: route workaround passing Keyboard true and Opacity 1 in the markers (diverges from the compiled inputs)"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:16:45",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): markers keep the compiled inputs; marker serialization fixed by CR-CountryDetails-2",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T17:18:41"
+ },
+ {
+  "id": "Q4",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending orchestrator answer): unrecorded countries answer the AR recording (recordedHandler fallback, console warning).; Q2 → A (pending orchestrator answer): original ArcGIS tile URL kept; no tile exemption needed.; Q3 → A (pending orchestrator answer): markers keep the compiled inputs; the default state keeps the marker difference until CR-CountryDetails-2.; Exemptions added (capture artifacts): CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYDETAILS (+ -LAYOUT) for the timed-out loading capture, CAPTURE-LINK-HREF-CURSOR-LEAFLET-ZOOM for the replayed zoom links without href.; EmptyList (search without result) renders `NotCaptured` with the compiled title/text: no shared EmptyList block, never captured [pack Gaps].; Loading skeleton cards (3 \"Loading Name\" items) built from the compiled code; the loading capture shows the fetch-timeout state instead (exemption CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYDETAILS).; Quirk kept as compiled: list images use `Out_LocalitiesStatistics.Current.MainHallSubdivisionId`; with a search string Local_List is a new list, so every card asks the first locality's image [mvc.js:1240].; Module client actions not in shared code are ported in the route (`components/actions.ts`) until CR-CountryDetails-1 moves them. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getFlagURLByCountryCode → not a flag (false positive): country flag image URL; behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:map_GeoJSON_Feature_Add → not a flag (false positive): Leaflet map operation (BrowseDirectory, CountryDetails); behaviour built as in the original (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); key:LeafletMap → not a flag (false positive): Leaflet map widget key passed to map_GeoJSON_Feature_Add; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:37:26",
+  "items": [
+   "Q1 → A (pending orchestrator answer): unrecorded countries answer the AR recording (recordedHandler fallback, console warning).",
+   "Q2 → A (pending orchestrator answer): original ArcGIS tile URL kept; no tile exemption needed.",
+   "Q3 → A (pending orchestrator answer): markers keep the compiled inputs; the default state keeps the marker difference until CR-CountryDetails-2.",
+   "Exemptions added (capture artifacts): CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYDETAILS (+ -LAYOUT) for the timed-out loading capture, CAPTURE-LINK-HREF-CURSOR-LEAFLET-ZOOM for the replayed zoom links without href.",
+   "EmptyList (search without result) renders `NotCaptured` with the compiled title/text: no shared EmptyList block, never captured [pack Gaps].",
+   "Loading skeleton cards (3 \"Loading Name\" items) built from the compiled code; the loading capture shows the fetch-timeout state instead (exemption CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYDETAILS).",
+   "Quirk kept as compiled: list images use `Out_LocalitiesStatistics.Current.MainHallSubdivisionId`; with a search string Local_List is a new list, so every card asks the first locality's image [mvc.js:1240].",
+   "Module client actions not in shared code are ported in the route (`components/actions.ts`) until CR-CountryDetails-1 moves them."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T17:37:26"
+ }
+]

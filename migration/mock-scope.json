@@ -1,0 +1,67 @@
+{
+ "_note": "What may be recorded from TST into mock fixtures (user, 2026-10-14). TST data is test data; scope: only data that does not belong to a person. record_har.cjs --record-actions and har_to_fixtures.py convert --only-actions read 'record'. Everything else is mocked with fictional data that keeps the captured structure and counts (P-MOCKS).",
+ "record": [
+  "DataActionGetCountriesStatistics",
+  "DataActionGetCountryInfo",
+  "DataActionDataAction_GetCountriesNames",
+  "DataActionDataAction_GetLocalityTimezone",
+  "DataActionGetLocalityStatistics",
+  "DataActionGetDateRanges",
+  "DataActionFetchCount",
+  "ActionGetNumberUnreadMessages",
+  "ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+  "DataActionGetServices",
+  "ScreenDataSetGet_SearchBirthdayOptions",
+  "ScreenDataSetGetShareObjectTypeById",
+  "ScreenDataSetGetMessageTemplateParametersByMessageTemplateId",
+  "ActionGet_NotePills_ByNoteCategoryIds",
+  "DataActionGetCacheInfo",
+  "ActionGet_RuntimeVersion",
+  "ActionAppManager_AfterInitialize",
+  "DataActionGetPendingPolicies",
+  "DataActionGet_LocalityDetails",
+  "DataActionGetSubdivision",
+  "DataActionGet_Subdivision_List",
+  "DataActionGetOneSchoolGlobalDetails",
+  "DataActionGet_OneSchoolGlobal_List",
+  "DataActionGetInterchangesByLocalityId"
+ ],
+ "groups": {
+  "reference": [
+   "DataActionGetCountriesStatistics",
+   "DataActionGetCountryInfo",
+   "DataActionDataAction_GetCountriesNames",
+   "DataActionDataAction_GetLocalityTimezone",
+   "DataActionGetLocalityStatistics",
+   "DataActionGetDateRanges",
+   "DataActionFetchCount",
+   "ActionGetNumberUnreadMessages",
+   "ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+   "DataActionGetServices",
+   "ScreenDataSetGet_SearchBirthdayOptions",
+   "ScreenDataSetGetShareObjectTypeById",
+   "ScreenDataSetGetMessageTemplateParametersByMessageTemplateId",
+   "ActionGet_NotePills_ByNoteCategoryIds",
+   "DataActionGetCacheInfo",
+   "ActionGet_RuntimeVersion",
+   "ActionAppManager_AfterInitialize",
+   "DataActionGetPendingPolicies"
+  ],
+  "places_and_organisations": [
+   "DataActionGet_LocalityDetails",
+   "DataActionGetSubdivision",
+   "DataActionGet_Subdivision_List",
+   "DataActionGetOneSchoolGlobalDetails",
+   "DataActionGet_OneSchoolGlobal_List",
+   "DataActionGetInterchangesByLocalityId"
+  ],
+  "fictional_person_data": "households, members, relations, notes, bookmarks, messages, notifications, updates, search results, user and sync info, household cache, map entities, share data, signed image links",
+  "fictional_config_with_keys": [
+   "ActionAppManager_SynchAppContext",
+   "DataActionGetFeedConfig",
+   "DataActionGetEntertainingConfig",
+   "AppManager_Get_UserIdToken"
+  ],
+  "writes_never_recorded": "Add/Update/Delete/Mark/Send/Share/Accept/... (read-only guard); mocked with src/mocks/store.ts (P-MUTATION)"
+ }
+}

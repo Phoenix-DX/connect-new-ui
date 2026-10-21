@@ -1,0 +1,13 @@
+{
+ "finishedAt": "2026-10-16T14:01:05",
+ "files": {
+  "src/screens/TransportDetail/api.ts": "d8cc0109d7399c24",
+  "src/screens/TransportDetail/components/ScreenBlock_TransportDetail.tsx": "f98cc4fda8dc670b",
+  "src/screens/TransportDetail/components/TransportDetail.tsx": "c6f8ae8c635d2e1e",
+  "src/screens/TransportDetail/components/TransportDetail_TravelInfo.tsx": "3b894777834e825a",
+  "src/screens/TransportDetail/components/actions.ts": "4b26fa9341303969",
+  "src/screens/TransportDetail/index.tsx": "0223370ff3a6d4ba",
+  "src/screens/TransportDetail/mocks.ts": "727ea30908bf22e1",
+  "src/screens/TransportDetail/types.ts": "004e0b86a35c5d9e"
+ }
+}

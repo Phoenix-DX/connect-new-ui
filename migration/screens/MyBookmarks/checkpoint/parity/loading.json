@@ -1,0 +1,63 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/MyBookmarks?mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "1627f6cf2609091d2a4f",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 170,
+  "texts": 21,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-15T16:36:29.770Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 3,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
+  "CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS-PIXEL-F7B": 1
+ },
+ "pixel": {
+  "ratio": 0.07927,
+  "maxCell": 1,
+  "maxCellRatio": 0.03,
+  "diffPixels": 21620,
+  "comparedPixels": 272724,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 5,
+  "hotspots": [
+   "0,0 (1600px)",
+   "40,0 (1600px)",
+   "80,0 (1600px)",
+   "280,0 (1600px)",
+   "320,0 (1600px)"
+  ],
+  "diffPng": "migration/screens/MyBookmarks/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

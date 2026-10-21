@@ -1,0 +1,5 @@
+# Netlify / Cloudflare Pages rewrites of the UBTConnect demo (other hosts: README-demo.md, "Host it").
+# Existing files are served first; these rules only answer paths that are not files.
+/embed/feeds             /embed/feeds/index.html   200
+/embed/feeds/item/*      /embed/feeds/index.html   200
+/*                       /index.html               200

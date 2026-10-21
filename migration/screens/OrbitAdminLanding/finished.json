@@ -1,0 +1,12 @@
+{
+ "finishedAt": "2026-10-16T14:33:11",
+ "files": {
+  "src/screens/OrbitAdminLanding/api.ts": "1889dc2bd95a02d8",
+  "src/screens/OrbitAdminLanding/components/ScreenBlock_AdminLanding.tsx": "86f8b61934b2324d",
+  "src/screens/OrbitAdminLanding/components/actions.ts": "be25c0fa38bfb760",
+  "src/screens/OrbitAdminLanding/components/staticEntities.ts": "3bca7185911f2ce9",
+  "src/screens/OrbitAdminLanding/index.tsx": "ffb4aaa908dc1588",
+  "src/screens/OrbitAdminLanding/mocks.ts": "5f242f334ccca4c0",
+  "src/screens/OrbitAdminLanding/types.ts": "10f6713282af7026"
+ }
+}

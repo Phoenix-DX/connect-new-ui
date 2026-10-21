@@ -1,0 +1,322 @@
+[
+ {
+  "screen": "AcceptPendingPolicies",
+  "url": "/UBTConnect/AcceptPendingPolicies",
+  "src": "plan"
+ },
+ {
+  "screen": "AssembleDetail",
+  "url": "/UBTConnect/AssembleDetail",
+  "src": "plan"
+ },
+ {
+  "screen": "AssembleEvents",
+  "url": "/UBTConnect/AssembleEvents",
+  "src": "plan"
+ },
+ {
+  "screen": "Assemble_BrowseByCountry",
+  "url": "/UBTConnect/Assemble_BrowseByCountry",
+  "src": "plan"
+ },
+ {
+  "screen": "BookmarksByGroup",
+  "url": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts",
+  "src": "plan"
+ },
+ {
+  "screen": "BrowseCountries",
+  "url": "/UBTConnect/BrowseCountries",
+  "src": "plan"
+ },
+ {
+  "screen": "BrowseDirectory",
+  "url": "/UBTConnect/BrowseDirectory?CountryCode=AR",
+  "src": "plan"
+ },
+ {
+  "screen": "CommunityBusinessDetails_CoomingSoon",
+  "url": "/UBTConnect/CommunityBusinessDetails_CoomingSoon",
+  "src": "plan"
+ },
+ {
+  "screen": "ConnectShare",
+  "url": "/UBTConnect/ConnectShare?ShareId=00000000-0000-0000-0000-000000000000",
+  "src": "plan"
+ },
+ {
+  "screen": "ContactByEmailLDMCoordinator",
+  "url": "/UBTConnect/ContactByEmailLDMCoordinator",
+  "src": "plan"
+ },
+ {
+  "screen": "ContactByEmailMember",
+  "url": "/UBTConnect/ContactByEmailMember?In_AvatarURL=&In_ContactName=Test&In_ContactSurname=Member&In_ContactLocality=Test%20Locality&In_ContactCountry=Test%20Country&In_EmailTo=member%40example.test&In_IsHousehold=False",
+  "src": "plan"
+ },
+ {
+  "screen": "ContactByEmailOneSchoolGlobal",
+  "url": "/UBTConnect/ContactByEmailOneSchoolGlobal?In_EmailTo=school%40example.test&In_ContactName=Test%20School",
+  "src": "plan"
+ },
+ {
+  "screen": "ContactByEmailOrbitHelpdesk",
+  "url": "/UBTConnect/ContactByEmailOrbitHelpdesk?mocksession=unlocked&In_MilestoneId=&In_EventId=7301&In_Subject=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul%20-%20Bahia%20Blanca%20Main%20Hall%20-%20Fri%2023%20Oct%202026%20-%20Sun%2025%20Oct%202026&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul",
+  "src": "plan"
+ },
+ {
+  "screen": "ContactByEmailOrbitHost",
+  "url": "/UBTConnect/ContactByEmailOrbitHost?mocksession=unlocked&In_HostName=Mr%20Juli%C3%A1n%20%26%20Mrs%20Fiorella%20Vitale&In_EntityType=Member&In_Subject=Accommodation&In_ContactCountry=Argentina&In_FormattedDateTime=&In_ContactLocality=Bahia%20Blanca&In_HostEmail=vitale.family%40example.com&In_Surname=Vitale&In_AvatarURL=&In_EntityId=990002&In_MilestoneTitle=Accommodation&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul",
+  "src": "spec"
+ },
+ {
+  "screen": "ContactUsDetails",
+  "url": "/UBTConnect/ContactUsDetails?In_ContactSubjectId=Set%20up%20a%20UBT%20One%20account&In_ContactSubjectTitle=User%20Account%20Management&In_ListMenuOptionLabel=Set%20up%20a%20UBT%20One%20account",
+  "src": "plan"
+ },
+ {
+  "screen": "ContactUsMenu",
+  "url": "/UBTConnect/ContactUsMenu",
+  "src": "plan"
+ },
+ {
+  "screen": "CountryDetails",
+  "url": "/UBTConnect/CountryDetails?CountryCode=AR",
+  "src": "plan"
+ },
+ {
+  "screen": "CountryList",
+  "url": "/UBTConnect/CountryList",
+  "src": "plan"
+ },
+ {
+  "screen": "EmailContact",
+  "url": "/UBTConnect/EmailContact?mocksession=unlocked&In_IsContactHelpdesk=True&In_EventId=7301&In_MilestoneId=7301-1&In_TargetMemberId=0&In_Subject=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul%20-%20Accommodation&In_MilestoneTitle=Accommodation&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_HostName=&In_HostEmail=&In_FormattedDateTime=",
+  "src": "spec"
+ },
+ {
+  "screen": "EmailTarget",
+  "url": "/UBTConnect/EmailTarget?In_HouseholdFirstName=Dar\u00edo&In_HouseholdFullName=Medina,%20Dar\u00edo%20%26%20Lorena&EmailTo=dario.medina@example.com&IsFromLDM=True&EventDate=2026-09-26&EventLocality=Bahia%20Blanca",
+  "src": "spec-any"
+ },
+ {
+  "screen": "EventBooklet",
+  "url": "/UBTConnect/EventBooklet?mocksession=unlocked&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul",
+  "src": "spec-any"
+ },
+ {
+  "screen": "EventDetail",
+  "url": "/UBTConnect/EventDetail?mocksession=unlocked&In_MemberId=990001&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_FromNotification=False",
+  "src": "plan"
+ },
+ {
+  "screen": "FeedItemDetail",
+  "url": "/UBTConnect/FeedItemDetail?FeedItemId=7001",
+  "src": "plan"
+ },
+ {
+  "screen": "GuestArrangements",
+  "url": "/UBTConnect/GuestArrangements?mocksession=unlocked&In_MilestoneId=7301-1&In_EventId=7301&In_MemberId=880101&In_HostId=990002&In_OrbitMilestoneTypeId=accommodation-host&In_MilestoneTitle=Accommodation&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul",
+  "src": "spec"
+ },
+ {
+  "screen": "HelpersDetail",
+  "url": "/UBTConnect/HelpersDetail?mocksession=unlocked&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_HostId=42438&In_OrbitMilestoneTypeId=helper-host&In_MilestoneName=Helper",
+  "src": "plan"
+ },
+ {
+  "screen": "HomeFeed",
+  "url": "/UBTConnect/HomeFeed",
+  "src": "plan"
+ },
+ {
+  "screen": "HostSurvey",
+  "url": "/UBTConnect/HostSurvey?mocksession=unlocked&In_MemberId=42438&In_EventStartDate=2026-10-23T09%3A00%3A00.000Z&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_EventEndDate=2026-10-25T17%3A00%3A00.000Z",
+  "src": "plan"
+ },
+ {
+  "screen": "HouseholdCarousel",
+  "url": "/UBTConnect/HouseholdCarousel?In_StartingHouseholdId=42438",
+  "src": "plan"
+ },
+ {
+  "screen": "HouseholdDetails",
+  "url": "/UBTConnect/HouseholdDetails?HouseholdId=42438",
+  "src": "plan"
+ },
+ {
+  "screen": "Household_Relations",
+  "url": "/UBTConnect/Household_Relations?HouseholdId=42438&MemberId=42438",
+  "src": "plan"
+ },
+ {
+  "screen": "LDM_Email_V2",
+  "url": "/UBTConnect/LDM_Email_V2",
+  "src": "bare"
+ },
+ {
+  "screen": "LDM_EventDetail_V2",
+  "url": "/UBTConnect/LDM_EventDetail_V2?mocksession=unlocked&EventHostId=88231&EventId=70415",
+  "src": "plan"
+ },
+ {
+  "screen": "LDM_MyEvents_V2",
+  "url": "/UBTConnect/LDM_MyEvents_V2",
+  "src": "plan"
+ },
+ {
+  "screen": "LegacyShareObject",
+  "url": "/UBTConnect/LegacyShareObject?In_ShareObjectTypeId=Household&In_ObjectId=42438&In_CustomTitle=Test%20Household",
+  "src": "plan"
+ },
+ {
+  "screen": "Locality_Details",
+  "url": "/UBTConnect/Locality_Details?LocalityId=252&PreloadedLocalityLabel=Bahia%20Blanca%2C%20Argentina",
+  "src": "plan"
+ },
+ {
+  "screen": "Login",
+  "url": "/UBTConnect/Login?mocksession=out",
+  "src": "plan"
+ },
+ {
+  "screen": "Menu",
+  "url": "/UBTConnect/Menu",
+  "src": "plan"
+ },
+ {
+  "screen": "MessageDetail",
+  "url": "/UBTConnect/MessageDetail?MessageInstanceId=5965247",
+  "src": "plan"
+ },
+ {
+  "screen": "MessageList",
+  "url": "/UBTConnect/MessageList",
+  "src": "plan"
+ },
+ {
+  "screen": "MilestoneDetail",
+  "url": "/UBTConnect/MilestoneDetail?mocksession=unlocked&In_FromNotification=False&In_MilestoneId=7301-1&In_EventId=7301&In_HostId=990002&In_OrbitMilestoneTypeId=accommodation-host&In_MilestoneName=Accommodation&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul",
+  "src": "plan"
+ },
+ {
+  "screen": "MyBookmarks",
+  "url": "/UBTConnect/MyBookmarks",
+  "src": "plan"
+ },
+ {
+  "screen": "MyEntertaining",
+  "url": "/UBTConnect/MyEntertaining",
+  "src": "plan"
+ },
+ {
+  "screen": "Notes",
+  "url": "/UBTConnect/Notes",
+  "src": "plan"
+ },
+ {
+  "screen": "Notifications",
+  "url": "/UBTConnect/Notifications",
+  "src": "plan"
+ },
+ {
+  "screen": "OneSchoolGlobalDetails",
+  "url": "/UBTConnect/OneSchoolGlobalDetails?In_OneSchoolGlobalId=1430",
+  "src": "plan"
+ },
+ {
+  "screen": "OrbitAdminEventDetail",
+  "url": "/UBTConnect/OrbitAdminEventDetail",
+  "src": "bare"
+ },
+ {
+  "screen": "OrbitAdminLanding",
+  "url": "/UBTConnect/OrbitAdminLanding",
+  "src": "plan"
+ },
+ {
+  "screen": "OrbitLanding",
+  "url": "/UBTConnect/OrbitLanding",
+  "src": "plan"
+ },
+ {
+  "screen": "PINBiometricsMenu",
+  "url": "/UBTConnect/PINBiometricsMenu",
+  "src": "plan"
+ },
+ {
+  "screen": "PINChange",
+  "url": "/UBTConnect/PINChange",
+  "src": "plan"
+ },
+ {
+  "screen": "PINRegister",
+  "url": "/UBTConnect/PINRegister?mocksession=nopin",
+  "src": "plan"
+ },
+ {
+  "screen": "PINUnlock",
+  "url": "/UBTConnect/PINUnlock?mocksession=locked",
+  "src": "plan"
+ },
+ {
+  "screen": "Photobook",
+  "url": "/UBTConnect/Photobook?In_HouseholdId=42438&In_LocalityId=252",
+  "src": "plan"
+ },
+ {
+  "screen": "Profile",
+  "url": "/UBTConnect/Profile",
+  "src": "plan"
+ },
+ {
+  "screen": "QRCodeGenerate",
+  "url": "/UBTConnect/QRCodeGenerate?mocksession=unlocked&In_MemberId=990001&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_EventStartDate=2026-10-23T09%3A00%3A00Z&In_EventEndDate=2026-10-25T17%3A00%3A00Z&In_EventLocation=Bahia%20Blanca%20Main%20Hall",
+  "src": "spec"
+ },
+ {
+  "screen": "Search",
+  "url": "/UBTConnect/Search",
+  "src": "plan"
+ },
+ {
+  "screen": "Services",
+  "url": "/UBTConnect/Services",
+  "src": "plan"
+ },
+ {
+  "screen": "Splash",
+  "url": "/UBTConnect/Splash?mocksession=locked",
+  "src": "plan"
+ },
+ {
+  "screen": "SupperMeeting_Carousel",
+  "url": "/UBTConnect/SupperMeeting_Carousel?In_StartingSupperMeetingId=1210",
+  "src": "plan"
+ },
+ {
+  "screen": "SupperMeeting_Details",
+  "url": "/UBTConnect/SupperMeeting_Details?In_SubdivsionId=1210",
+  "src": "plan"
+ },
+ {
+  "screen": "TermsAndPoliciesMenu",
+  "url": "/UBTConnect/TermsAndPoliciesMenu",
+  "src": "plan"
+ },
+ {
+  "screen": "TransportDetail",
+  "url": "/UBTConnect/TransportDetail?mocksession=unlocked&In_MilestoneId=7301-T1&In_OrbitMilestoneTypeId=transport-flight&In_MilestoneName=Flight%20to%20Bahia%20Blanca&In_HeaderClass=orbit-transport-detail-flight&In_TargetMemberId=990001",
+  "src": "spec"
+ },
+ {
+  "screen": "Updates_SingleList",
+  "url": "/UBTConnect/Updates_SingleList",
+  "src": "plan"
+ },
+ {
+  "screen": "ViewDocuments",
+  "url": "/UBTConnect/ViewDocuments?mocksession=unlocked&In_MemberId=990001&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_EventStartDate=2026-10-23T09%3A00%3A00Z&In_EventEndDate=2026-10-25T17%3A00%3A00Z&In_EventLocation=Bahia%20Blanca%20Main%20Hall",
+  "src": "spec"
+ }
+]

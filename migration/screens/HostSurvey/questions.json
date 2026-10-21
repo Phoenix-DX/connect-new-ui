@@ -1,0 +1,103 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "local entities",
+  "question": "Until CR-HostSurvey-1 (shell sync of LocalHostSurveyStep, LocalHouseFloor, LocalGenderPreference, …) is applied, how does the route read these tables?",
+  "evidence": "orbitStaticEntities.ts:282-289 ports only milestone types and survey status; HS :4118-4170 (steps), :3585-3613 (floors), :4440-4463 (genders); without rows the content is empty",
+  "mcp": "n/a",
+  "options": [
+   "A: stand-in rows in components/localEntities.ts (captured labels + fictional), removed when the CR is applied",
+   "B: empty tables as a device that never synced (content empty, parity fails until the CR)"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T13:09:32",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T13:15:09"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "uncaptured branches",
+  "question": "The capture shows only a confirmed survey (Summary Review). How to build the data steps of a survey still to answer (navigation, accommodation, meal, helper, vehicle steps, items, notes, add-helper, footer Next/Submit, the 5 popups, PostHostSurvey) and the helper/vehicle summary sections?",
+  "evidence": "pack Gaps: HostSurvey_StepHeader, NavigationItem, AccommodationItem, MealItem, HelperItem, AddHelper, HelperPills, VehicleItem, VehiclePills, InputWithMaxChar, Orbit_FooterWithActions not rendered in any captured state; HS view :516-1936, :2407-2854, :3320-3465",
+  "mcp": "n/a",
+  "options": [
+   "A: NotCaptured markers now; capture a pending survey later (needs an account with a Pending/Sent survey; Submit stays mocked)",
+   "B: build them from the compiled code without a capture"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T13:09:32",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T13:15:09"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "cloneQuery",
+  "question": "cloneQuery for HostSurvey in capture-plan.json (parity opens the route by URL with the mock ids of orbit.ts)",
+  "evidence": "states.json via OrbitLanding → EventDetail → View Host Survey; EventDetail index.tsx:138-144 passes In_MemberId (householder), In_EventStartDate, In_EventId, In_EventName, In_EventEndDate; diagnostic parity run: structure 0, text 0, calls only app-start extras",
+  "mcp": "n/a",
+  "options": [
+   "A: mocksession=unlocked&In_MemberId=42438&In_EventStartDate=2026-10-23T09%3A00%3A00.000Z&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_EventEndDate=2026-10-25T17%3A00%3A00.000Z",
+   "B: no cloneQuery (defaults only: no event, empty survey)"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T13:09:32",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T13:15:09"
+ },
+ {
+  "id": "Q4",
+  "kind": "decision",
+  "topic": "exemptions",
+  "question": "Accept the proposed exemptions in migration/screens/HostSurvey/proposed-exemptions.json (MenuIcon back arrow missing when the route is opened by URL; app-start calls of a URL load)?",
+  "evidence": "diagnostic parity: [class] MenuIcon missing .back (41x38 → 20x0), extra load calls Sync_Info_GetMain, GetUserInformation, AppManager_* (capture came via OrbitLanding → EventDetail); same rules as HelpersDetail/EventDetail",
+  "mcp": "n/a",
+  "options": [
+   "A: accept",
+   "B: reject"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T13:09:32",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T13:15:09"
+ },
+ {
+  "id": "Q5",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A, Q2 → A, Q3 → A, Q4 → A (auto mode, pending orchestrator answer).; Change requests: CR-HostSurvey-1 (shell: remaining Orbit local entities; applied), CR-HostSurvey-2 (applied: the; Mock data: `app/src/mocks/fictional/orbit.ts` `orbitHostSurveys()` (Vitale household, event 7301; captured Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T13:31:16",
+  "items": [
+   "Q1 → A, Q2 → A, Q3 → A, Q4 → A (auto mode, pending orchestrator answer).",
+   "Change requests: CR-HostSurvey-1 (shell: remaining Orbit local entities; applied), CR-HostSurvey-2 (applied: the",
+   "Mock data: `app/src/mocks/fictional/orbit.ts` `orbitHostSurveys()` (Vitale household, event 7301; captured"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T13:31:16"
+ }
+]

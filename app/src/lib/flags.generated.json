@@ -1,0 +1,432 @@
+{
+ "_note": "Written by flags.py export from the user's decisions. Do not edit.",
+ "flags": {
+  "mobileAssemble": {
+   "source": "action:getHasAssemble",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "MessageDetail"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "mobileDirectoryBookmarkNote": {
+   "source": "launchDarkly_FF.mobileDirectoryBookmarkNote",
+   "default": "off",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "AssembleDetail",
+    "AssembleEvents",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "BrowseCountries",
+    "BrowseDirectory",
+    "CommunityBusinessDetails",
+    "CountryDetails",
+    "CountryList",
+    "EmailContact",
+    "EmailTarget",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "InvalidPermissions",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "Locality_Details",
+    "Map",
+    "Menu",
+    "MessageDetail",
+    "MessageList",
+    "MyBookmarks",
+    "New_BookmarksByGroup",
+    "New_MyBookmarks",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "OrbitAdminEventDetail",
+    "OrbitAdminLanding",
+    "OrbitLanding",
+    "Search",
+    "Updates_SingleList"
+   ],
+   "decision": "default-only: TST value off (user, 2026-10-14)"
+  },
+  "C2EnableC1DirectoryView": {
+   "source": "action:getHasC1DirectoryView",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "AssembleDetail",
+    "AssembleEvents",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "BrowseCountries",
+    "BrowseDirectory",
+    "CommunityBusinessDetails",
+    "CountryDetails",
+    "CountryList",
+    "EmailContact",
+    "EmailTarget",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "InvalidPermissions",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "Locality_Details",
+    "Map",
+    "Menu",
+    "MessageDetail",
+    "MessageList",
+    "MyBookmarks",
+    "New_BookmarksByGroup",
+    "New_MyBookmarks",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "OrbitAdminEventDetail",
+    "OrbitAdminLanding",
+    "OrbitLanding",
+    "Search",
+    "Updates_SingleList"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "C2EnableCarousel": {
+   "source": "action:getHasCarouselEnabled",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "AssembleDetail",
+    "BookmarksByGroup",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "Locality_Details",
+    "Map",
+    "MyBookmarks",
+    "Photobook",
+    "Search",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "Updates_SingleList"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "C2EnableCustomServices": {
+   "source": "action:getHasCustomEvents",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "HomeFeed"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "mobileDirectoryUpdateFeedDeceasedProfile": {
+   "source": "action:getHasDeceasedProfileAccess",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "MessageDetail"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "C2ExtendedShare": {
+   "source": "action:getHasExtendedShare",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "AssembleDetail",
+    "BookmarksByGroup",
+    "FeedItemDetail",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "Map",
+    "MessageDetail",
+    "New_BookmarksByGroup",
+    "OneSchoolGlobalDetails",
+    "Profile",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "Updates_SingleList"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "C2EnableFeed": {
+   "source": "action:getHasFeedEnabled",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "FeedItemDetail",
+    "HomeFeed",
+    "MessageDetail"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "C2EnableMaps": {
+   "source": "action:getHasMapsEnabled",
+   "default": "off",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "Locality_Details"
+   ],
+   "decision": "default-only: TST value off (user, 2026-10-14)"
+  },
+  "C2NewBookmarks": {
+   "source": "action:getHasNewBookmarks",
+   "default": "off",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "AssembleDetail",
+    "AssembleEvents",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "BrowseCountries",
+    "BrowseDirectory",
+    "CommunityBusinessDetails",
+    "CountryDetails",
+    "CountryList",
+    "EmailContact",
+    "EmailTarget",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "InvalidPermissions",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "Locality_Details",
+    "Map",
+    "Menu",
+    "MessageDetail",
+    "MessageList",
+    "MyBookmarks",
+    "New_BookmarksByGroup",
+    "New_MyBookmarks",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "OrbitAdminEventDetail",
+    "OrbitAdminLanding",
+    "OrbitLanding",
+    "Profile",
+    "Search",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "Updates_SingleList"
+   ],
+   "decision": "default-only: TST value off (user, 2026-10-14)"
+  },
+  "C2NewLDM": {
+   "source": "action:getHasNewLDM",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "HomeFeed",
+    "LDM_MyEvents",
+    "MessageDetail",
+    "MyCalendar"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "C2NewNotifications": {
+   "source": "action:getHasNewNotifications",
+   "default": "off",
+   "values": [
+    "off",
+    "on"
+   ],
+   "branches": "both",
+   "routes": [
+    "Bookmarks",
+    "CountryList",
+    "HomeFeed",
+    "MessageDetail",
+    "Notes",
+    "Updates_SingleList"
+   ],
+   "decision": "both branches, default off (TST); only the navigation target changes (Notifications / MessageList), both screens captured, so reference none (user, 2026-10-14)"
+  },
+  "mobileOrbitAccess": {
+   "source": "action:getHasOrbitAccess",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "EmailContact",
+    "EventDetail",
+    "GuestArrangements",
+    "HelpersDetail",
+    "MessageDetail",
+    "MilestoneDetail",
+    "OrbitLanding",
+    "TransportDetail",
+    "ViewDocuments"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "getHasOrbitEventBooklet": {
+   "source": "action:getHasOrbitEventBooklet",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "EventDetail"
+   ],
+   "decision": "default-only: wraps launchDarkly_FF.mobileOrbitEventBooklet (decided on); TST shows the booklet entry branch; auto-accepted (user instruction 2026-10-16 night)"
+  },
+  "mobileOrbitHostSurvey": {
+   "source": "action:getHasOrbitHostSurvey",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "EventDetail",
+    "MessageDetail"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "mobilePhotobook": {
+   "source": "action:getHasPhotobookAccess",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "Profile",
+    "SupperMeeting_Carousel"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "WalletAccess": {
+   "source": "action:getHasWalletAccess",
+   "default": "off",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "AssembleDetail",
+    "BookmarksByGroup",
+    "New_BookmarksByGroup"
+   ],
+   "decision": "default-only: TST value off (user, 2026-10-14)"
+  },
+  "mobileOrbitEventBooklet": {
+   "source": "launchDarkly_FF.mobileOrbitEventBooklet",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [],
+   "decision": "default-only: TST value on (the EventDetail capture shows the booklet entry branch); auto-accepted (user instruction 2026-10-16 night)"
+  },
+  "mobileStudentInformation": {
+   "source": "launchDarkly_FF.mobileStudentInformation",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "OneSchoolGlobalDetails"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  },
+  "C2EnableSearchByBirthday": {
+   "source": "outSystems_FF.c2EnableSearchByBirthday",
+   "default": "on",
+   "values": [
+    "on",
+    "off"
+   ],
+   "branches": "default-only",
+   "routes": [
+    "Map",
+    "Search"
+   ],
+   "decision": "default-only: TST value on (user, 2026-10-14)"
+  }
+ }
+}

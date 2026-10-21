@@ -1,0 +1,41 @@
+{
+ "note": "Generated from the runtime capture. phase = load, or the label of the plan step after which the call started.",
+ "calls": [
+  {
+   "module": "Connect2_OrbitMobile_MUI",
+   "action": "DataActionGetAccommodationHost",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_AccommodationHost/DataActionGetAccommodationHost",
+   "phase": "load",
+   "ts": 2391,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_OrbitMobile_MUI",
+   "action": "DataActionGet_Document",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_AccommodationHost/DataActionGet_Document",
+   "phase": "load",
+   "ts": 2700,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_LegacyShared",
+   "action": "ActionGetSignedImagesInBulk",
+   "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetSignedImagesInBulk",
+   "phase": "load",
+   "ts": 3016,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "BulkSignedImagesParameters"
+   ],
+   "scope": "this screen"
+  }
+ ],
+ "variants": {}
+}

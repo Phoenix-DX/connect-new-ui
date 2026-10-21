@@ -1,0 +1,309 @@
+{
+ "note": "Generated from the runtime capture. phase = load, or the label of the plan step after which the call started.",
+ "calls": [
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetHousehold",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold",
+   "phase": "load",
+   "ts": 2378,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetHousehold",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold",
+   "phase": "load",
+   "ts": 2403,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2391,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetHousehold",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold",
+   "phase": "load",
+   "ts": 2424,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2431,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetHousehold",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold",
+   "phase": "load",
+   "ts": 2459,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2411,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2466,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetHousehold_Coordinates",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold_Coordinates",
+   "phase": "load",
+   "ts": 2403,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetHousehold_Coordinates",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold_Coordinates",
+   "phase": "load",
+   "ts": 2378,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetHousehold_Coordinates",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold_Coordinates",
+   "phase": "load",
+   "ts": 2424,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetHousehold_Coordinates",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_Household/HouseholdDetails_Block/DataActionGetHousehold_Coordinates",
+   "phase": "load",
+   "ts": 2459,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2691,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect_Utils",
+   "action": "ActionGetSignedImagesInBulk",
+   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
+   "phase": "load",
+   "ts": 2692,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "BulkSignedImagesParameters"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect_Utils",
+   "action": "ActionGetSignedImagesInBulk",
+   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
+   "phase": "load",
+   "ts": 2723,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "BulkSignedImagesParameters"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2722,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2762,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2779,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect_Utils",
+   "action": "ActionGetSignedImagesInBulk",
+   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
+   "phase": "load",
+   "ts": 2991,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "BulkSignedImagesParameters"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2779,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2692,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2779,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2723,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2692,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2723,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2762,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 2762,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  }
+ ],
+ "variants": {}
+}

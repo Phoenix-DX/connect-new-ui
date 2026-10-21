@@ -1,0 +1,11 @@
+{
+ "finishedAt": "2026-10-16T11:17:28",
+ "files": {
+  "src/screens/LDM_Email_V2/api.ts": "078f4dc871b9922d",
+  "src/screens/LDM_Email_V2/components/ScreenBlock_Event_Email_V2.tsx": "134808e4082b08d8",
+  "src/screens/LDM_Email_V2/components/actions.ts": "59e44dff1072e709",
+  "src/screens/LDM_Email_V2/index.tsx": "2888baec37915bb3",
+  "src/screens/LDM_Email_V2/mocks.ts": "1cc5aaeeaeb43e43",
+  "src/screens/LDM_Email_V2/types.ts": "672506f111cedaf8"
+ }
+}

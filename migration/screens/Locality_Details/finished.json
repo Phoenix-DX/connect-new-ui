@@ -1,0 +1,24 @@
+{
+ "finishedAt": "2026-10-16T06:58:54",
+ "files": {
+  "src/screens/Locality_Details/api.ts": "a858cb6c4ba906a3",
+  "src/screens/Locality_Details/components/Directory_Interchange_StatisticsList.tsx": "998339ae9567eedb",
+  "src/screens/Locality_Details/components/Household_Card.tsx": "df3b0b03d47e6067",
+  "src/screens/Locality_Details/components/Locality_DateTimeLabel.tsx": "30ee961f23b852cf",
+  "src/screens/Locality_Details/components/Locality_Households.tsx": "cbbdf76dec0cb8e7",
+  "src/screens/Locality_Details/components/Locality_Households_HouseholdList.tsx": "c3c023009fdbd8f7",
+  "src/screens/Locality_Details/components/Locality_Interchange.tsx": "fb33375020785746",
+  "src/screens/Locality_Details/components/Locality_OneSchoolGlobal.tsx": "142d449d8e028883",
+  "src/screens/Locality_Details/components/Locality_Subdivisions.tsx": "3adcd8d40ee7d03b",
+  "src/screens/Locality_Details/components/OneSchoolGlobal_List.tsx": "9ce0202874f311ce",
+  "src/screens/Locality_Details/components/StopPropagationHelper.tsx": "1b71daaa8b0b5731",
+  "src/screens/Locality_Details/components/SubHeader_MainPages.tsx": "3edc835a9ca73940",
+  "src/screens/Locality_Details/components/Timer.tsx": "cb3b181d40e5de7d",
+  "src/screens/Locality_Details/components/UBT_LazyImage_List.tsx": "d423926824e8d9fe",
+  "src/screens/Locality_Details/components/actions.ts": "106a298c12d7d430",
+  "src/screens/Locality_Details/components/staticEntities.ts": "f02f644b4cd00aa7",
+  "src/screens/Locality_Details/index.tsx": "24b3bf0b3c8e0f9e",
+  "src/screens/Locality_Details/mocks.ts": "66403afeb0267516",
+  "src/screens/Locality_Details/types.ts": "91e4f8915b986fcc"
+ }
+}

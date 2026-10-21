@@ -1,0 +1,57 @@
+{
+ "state": "offline",
+ "route": "/UBTConnect/SupperMeeting_Carousel?In_StartingSupperMeetingId=1210&mocksession=unlocked",
+ "mock": "error",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "373befe02d78f97433f8",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 1189,
+  "texts": 74,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-21T04:36:07.311Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
+  "CAPTURE-SKELETON-SHIMMER-PHASE": 138,
+  "ignoreSubtrees": 1,
+  "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-SUPPERMEETING_CAROUSEL": 1
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 328874,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 4,
+  "hotspots": [],
+  "diffPng": "migration/screens/SupperMeeting_Carousel/parity/offline.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

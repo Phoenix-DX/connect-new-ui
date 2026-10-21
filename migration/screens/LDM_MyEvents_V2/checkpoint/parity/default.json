@@ -1,0 +1,70 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/LDM_MyEvents_V2?mocksession=unlocked",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "ea5e161eb2aa7f2f2fab",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 372,
+  "texts": 48,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T08:01:03.662Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "DATA-GUEST-PHOTO-LDM-MYEVENTS-V2": 16,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
+  "ignoreSubtrees": 1,
+  "DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL": 1
+ },
+ "pixel": {
+  "ratio": 0.00682,
+  "maxCell": 0.3438,
+  "maxCellRatio": 0.03,
+  "diffPixels": 1921,
+  "comparedPixels": 281545,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 27,
+  "hotspots": [
+   "320,280 (550px)",
+   "320,520 (436px)",
+   "280,520 (354px)",
+   "320,560 (204px)",
+   "280,560 (158px)"
+  ],
+  "diffPng": "migration/screens/LDM_MyEvents_V2/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 9,
+  "actual": 9
+ },
+ "diffs": []
+}

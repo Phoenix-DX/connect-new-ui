@@ -1,0 +1,9 @@
+{
+ "finishedAt": "2026-10-15T20:18:01",
+ "files": {
+  "src/screens/HouseholdDetails/api.ts": "ff7f09105bf95648",
+  "src/screens/HouseholdDetails/index.tsx": "82ee115c22a7d282",
+  "src/screens/HouseholdDetails/mocks.ts": "8c146fb157b4a6ae",
+  "src/screens/HouseholdDetails/types.ts": "c785f0ad6779fd6d"
+ }
+}

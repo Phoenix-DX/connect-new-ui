@@ -1,0 +1,60 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/CountryDetails?CountryCode=AR&mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "7ecb9bfb2683e178e27a",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 383,
+  "texts": 32,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-15T10:36:56.890Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 3,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
+  "CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYDETAILS-LAYOUT": 15,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
+ },
+ "pixel": {
+  "ratio": 0.00037,
+  "maxCell": 0.0219,
+  "maxCellRatio": 0.03,
+  "diffPixels": 60,
+  "comparedPixels": 160798,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 5,
+  "hotspots": [
+   "200,800 (35px)",
+   "200,760 (25px)"
+  ],
+  "diffPng": "migration/screens/CountryDetails/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

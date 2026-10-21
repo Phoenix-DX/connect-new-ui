@@ -1,0 +1,18 @@
+﻿div[data-block="Blocks.Embedded_MyEntertaining"] > div.display-none {
+    display: none;
+}
+
+div[data-block="Blocks.Embedded_MyEntertaining"] {
+    display: block;
+}
+
+div[data-block="Blocks.Embedded_MyEntertaining"] > div {
+    display: block;
+}
+
+div[data-block="Blocks.Embedded_MyEntertaining"] iframe {
+    width: 100%;
+    min-height: calc(100vh - var(--header-size, 0px));
+    border: none;
+    display: block;
+}

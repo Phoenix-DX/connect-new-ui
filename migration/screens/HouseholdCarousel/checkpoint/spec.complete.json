@@ -1,0 +1,13 @@
+{
+ "at": "2026-10-15T23:12:47",
+ "spec": "90acad6c24a4342d",
+ "inputs": {
+  "analysis": "92e130ed438a2233",
+  "flags": "9ec56ac3ef49485b",
+  "pack": "d627921479fb6d0c"
+ },
+ "answered": [
+  "Q1",
+  "Q2"
+ ]
+}

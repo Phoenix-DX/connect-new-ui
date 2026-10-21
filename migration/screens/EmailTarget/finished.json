@@ -1,0 +1,11 @@
+{
+ "finishedAt": "2026-10-16T11:17:29",
+ "files": {
+  "src/screens/EmailTarget/api.ts": "42b7d63b71d34b7a",
+  "src/screens/EmailTarget/components/ScreenBlock_Household_Email.tsx": "60db35dcba98441a",
+  "src/screens/EmailTarget/components/actions.ts": "753b829896209d38",
+  "src/screens/EmailTarget/index.tsx": "a525d74777810535",
+  "src/screens/EmailTarget/mocks.ts": "b6131d72ef720ce5",
+  "src/screens/EmailTarget/types.ts": "e8eed423478f0e70"
+ }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "connect-new-migration-tools",
+  "private": true,
+  "description": "Tooling for the outsystems-screen-spec skill (capture, recording, parity). The React app lives in app/.",
+  "devDependencies": { "playwright": "1.56.1" }
+}

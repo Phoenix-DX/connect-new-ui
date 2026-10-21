@@ -1,0 +1,17 @@
+﻿.ubt-policies .ubt-policies--content {
+    /*Calc to keep the Connect logo at the same position. Include size of 'Welcome to' with line height 1.5 and spacing*/
+    padding-top: calc(var(--ubt-pincode-padding-top) - var(--space-s) - (1.5 * var(--font-size-h3)));
+    padding-left: var(--space-base);
+    padding-right: var(--space-base);
+    max-height: var(--current-svg-height);
+}
+
+.ubt-policies .ubt-policies--content .columns .columns-item:first-child {
+    max-height: 40vh;
+    overflow-y: scroll;
+}
+
+.ubt-policies.ubt-fixed-footer--content {
+    margin-bottom: 0px;
+}
+

@@ -1,0 +1,82 @@
+{
+ "module": "UBTConnect",
+ "action": "DataActionGetOneSchoolGlobalDetails",
+ "screen": "OneSchoolGlobalDetails",
+ "status": 200,
+ "inputs": {
+  "LookupSections": {
+   "Actions": {
+    "Singular": "Action",
+    "Plural": "Actions",
+    "Icon": "",
+    "Icon_Color": ""
+   },
+   "Households": {
+    "Singular": "Household",
+    "Plural": "Households",
+    "Icon": "",
+    "Icon_Color": ""
+   },
+   "OneSchoolStatistitics": {
+    "Singular": "Show student numbers",
+    "Plural": "Show student numbers",
+    "Icon": "connect-icon-school",
+    "Icon_Color": ""
+   }
+  },
+  "Selected_OneschoolGlobal_SubsectionId": "Pariatur tempor",
+  "Type_OneschoolGlobal_SubsectionId": {
+   "UpcomingEvents": "Upcoming events",
+   "AboutOurCampus": "About our campus"
+  },
+  "LocalIsBookmarked": false,
+  "In_OneSchoolGlobalId": "4281"
+ },
+ "data": {
+  "Out_OneSchoolGlobal": {
+   "OneSchoolGlobal_About": "",
+   "OneSchoolGlobal_LocalitiesList": {
+    "List": [],
+    "EmptyListItem": {
+     "LocalityName": "",
+     "LocalityId": "0"
+    }
+   },
+   "OneSchoolGlobal_DetailCard": {
+    "CommunityBusinessId": "4281",
+    "SignedURL": "",
+    "UI_OneSchool_Card_Content": {
+     "Name": "Oneschool 0322",
+     "LocalityName": "",
+     "LocalityId": "0",
+     "CountryName": "",
+     "CountryCode": "",
+     "Phone": "",
+     "Email": ""
+    },
+    "OneSchoolGlobal__DetailCard_Content": {
+     "Address": "et Voluptate Sed Commodo Nostrud",
+     "AreasServed": "Bahia Blanca",
+     "BusinesLinks": {
+      "List": [
+       {
+        "Text": "tst",
+        "Link": "https://bw.campusandco.us",
+        "ID": "0"
+       }
+      ]
+     }
+    }
+   }
+  },
+  "HouseholdCoordinates": {
+   "Longitude": "0.0",
+   "Latitude": "0.0",
+   "UseCoordinates": false
+  },
+  "UI_Timezone": {
+   "TimezoneName": "",
+   "TimezoneOffset": "0"
+  }
+ }
+}

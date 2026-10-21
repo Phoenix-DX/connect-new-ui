@@ -1,0 +1,3365 @@
+﻿
+
+/*=====================================================================*/
+    
+    /* CSS Section Index */
+        
+        /*==========  $0. Root  ==========*/
+
+            /*  $0.1. Orbit Color Vars  */
+
+        /*==========  $1. General Classes  ==========*/
+
+            /*  $1.1. Orbit Icons Font Face  */
+            /*  $1.2. Orbit Color Classes  */
+            /*  $1.3. Orbit Helper Classes  */
+
+        /*==========  $2. Component Classes  ==========*/
+
+            /*  $2.1. LDM Popover Checkboxes  */
+            /*  $2.2. Orbit Accordion  */
+            /*  $2.3. Orbit Feedback Messages  */
+            /*  $2.4. Orbit Header  */
+
+
+        /*==========  $3. Specific Classes - LDMs  ==========*/
+
+            /*  $3.1. LDM Event Details Content  */
+            /*  $3.2. LDM Event Details Banner  */
+            /*  $3.3. LDM Event Details Section & Sub Section  */
+            /*  $3.4. LDM Event Details Host Card  */
+            /*  $3.5. LDM Event Detail General  */
+            /*  $3.6. LDM Event Detail List Item  */
+            /*  $3.7. LDM Event Detail Special Needs List Item  */
+            /*  $3.8. LDM Shared past events  */
+            /*  $3.9. LDM Contact Organiser  */
+            /*  $3.10. LDM Event Past Event Filter  */
+            /*  $3.11. LDM My Events  */
+            /*  $3.12. LDM My Timeline  */
+            /*  $3.13. LDM Event Card Box  */
+            /*  $3.14. LDM Event Card Info  */
+            /*  $3.15. LDM Agenda  */
+
+        /*==========  $4. Specific Classes - Orbit  ==========*/
+
+            /*  $4.1. Orbit Event Household Members  */
+            /*  $4.2. Orbit Event Skeleton Loading  */
+            /*  $4.3. Orbit Event Cards  */
+            /*  $4.4. Orbit Card List  */
+            /*  $4.5. Orbit Detail Header  */
+            /*      $4.5.1. Orbit Detail Header Center  */
+            /*      $4.5.2. Orbit Transport Detail Header  */
+            /*      $4.5.3. Orbit Milestone Detail Header  */
+            /*  $4.6. Orbit Contact Form  */
+            /*  $4.7. Orbit Confirmation Dialog Popup  */
+            /*  $4.8. Orbit Event Date Selector  */
+            /*  $4.9. Orbit Transport Detail  */
+            /*  $4.10. Orbit Contact Widget  */
+            /*  $4.11. Orbit Member Information Card  */
+            /*  $4.12. Orbit Meal Milestone  */
+            /*  $4.13. Orbit Host Survey */
+            /*  $4.14. Orbit Host Allocation */
+            /*  $4.15. Orbit Contact Helpdesk Footer  */
+            /*  $4.16. Orbit Room Information  */
+            /*  $4.17. Orbit Host Information  */
+            /*  $4.18. Orbit Landing Filters  */
+            /*  $4.19. Orbit Member QRCode  */
+            /*  $4.20. Orbit Admin View  */
+            /*  $4.21. Orbit Admin Scan Popup  */
+            /*  $4.22. Orbit Loading Spinner  */
+            /*  $4.23. Orbit Host Survey  */
+            /*      $4.23.1. Header  */
+            /*      $4.23.2. Content  */
+            /*      $4.23.3. Main List  */
+            /*      $4.23.4. Step Item  */
+            /*      $4.23.5. Label  */
+            /*      $4.23.6. Inputs/Dropdowns  */
+            /*      $4.23.7. Button Group  */
+            /*      $4.23.8. Checkboxes  */
+            /*      $4.23.9. Pills  */
+            /*      $4.23.10. General Items  */
+            /*      $4.23.11. Helper Member  */
+            /*      $4.23.12. Helper Member Search  */
+            /*      $4.23.13. Bottom Sheet  */
+            /*      $4.23.14. Member Card  */
+            /*      $4.23.15. Grid Split Inputs  */
+            /*      $4.23.16. New Popup  */
+            /*      $4.23.17. Accordion  */
+            /*      $4.23.18. Tooltip  */
+            /*      $4.23.19. Switch  */
+            /*      $4.23.20. Button Link to Survey  */
+            /*      $4.23.21. Household Captions   */
+            /*  $4.24. Orbit No Results  */
+            /*  $4.25. Orbit Admin Tag  */
+            /*  $4.26. Orbit Separator  */
+            /*  $4.27 Footer  */
+            /*  $4.28 Event Booklet  */
+            /*      $4.28.1 Filter Popup  */
+            /*      $4.28.2 Double Button  */
+            /*      $4.28.3 List Header  */
+            /*      $4.28.4 Location Pill  */
+            /*      $4.28.5 Member List  */
+            /*  $4.29 Orbit UI Classes  */
+
+
+
+        /*==========  $5. Auxiliary Classes  ==========*/
+        
+            /*  $5.1. LDM Error Screen  */
+                
+/*=====================================================================*/
+
+
+/*==========  $0. Root | START |  ==========*/
+
+
+    /*  $0.1. Orbit Color Vars  */
+
+:root {
+
+    /* Orbit color scheme */
+
+    --orbit-purple-1: #FFF0F6;
+    --orbit-purple-2: #FFD6E7;
+    --orbit-purple-3:#FFADD2;
+    --orbit-purple-4:#FF85C0;
+    --orbit-purple-5:#F759AB;
+    --orbit-purple-6:#EB2F96;
+    --orbit-purple-7: #BE327F;
+    --orbit-purple-8:#9E1068;
+    --orbit-purple-9:#780650;
+    --orbit-purple-10: #520339;
+
+    --orbit-orange-1: #FFFBF3;
+    --orbit-orange-2: #FFEDCB;
+    --orbit-orange-3:#FFD591;
+    --orbit-orange-4:#FFC069;
+    --orbit-orange-5:#FFA940;
+    --orbit-orange-6:#FA8C16;
+    --orbit-orange-7: #F47939;
+    --orbit-orange-8:#AD4E00;
+    --orbit-orange-9:#873800;
+    --orbit-orange-10: #612500;
+
+    --orbit-green-1: #EDFCFA;
+    --orbit-green-2: #BEF0EA;
+    --orbit-green-3:#9DE7DD;
+    --orbit-green-4:#2ACEBB;
+    --orbit-green-5:#1CC4B1;
+    --orbit-green-6:#19B3A1;
+    --orbit-green-7: #18A292;
+    --orbit-green-8:#127D70;
+    --orbit-green-9:#0F6B60;
+    --orbit-green-10: #0B473E;
+
+    --orbit-red-1: #FFF1F0;
+    --orbit-red-2: #FFCCC7;
+    --orbit-red-3:#FFA39E;
+    --orbit-red-4:#FF7875;
+    --orbit-red-5:#FF4D4F;
+    --orbit-red-6:#F5222D;
+    --orbit-red-7: #CF1322;
+    --orbit-red-8:#A8071A;
+    --orbit-red-9:#820014;
+    --orbit-red-10: #5C0011;
+}
+
+/*==========  $0. Root | END |  ==========*/
+
+
+/*==========  $1. General Classes | START |  ==========*/
+
+
+    /*  $1.1. Orbit Icons Font Face  */
+
+@font-face {
+  font-family: 'orbit-icon';
+  src:  url('../orbit-icon.eot?YhEKvoyn8wcKxhXsd7iMEw');
+  src:  url('../orbit-icon.eot?YhEKvoyn8wcKxhXsd7iMEw') format('embedded-opentype'),
+    url('../orbit-icon.ttf?FtkwVHIihZ8cTwVHmrIoqg') format('truetype'),
+    url('../orbit-icon.woff?FGGCie2FwIjVm4dRH4Rdjw') format('woff'),
+    url('../orbit-icon.svg?tOZCmg4FN67ztvDjm1DlBg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="orbit-icon-"], [class*=" orbit-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'orbit-icon' !important;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.orbit-icon-seat:before { content: "\e901"; }
+.orbit-icon-mail:before { content: "\e902"; }
+.orbit-icon-phone:before { content: "\e903"; }
+.orbit-icon-flight-seat:before { content: "\e904"; }
+.orbit-icon-vehicle-seat:before { content: "\e905"; }
+.orbit-icon-person-wave:before { content: "\e906"; }
+.orbit-icon-license-plate:before { content: "\e907"; }
+.orbit-icon-meal:before { content: "\e908"; }
+.orbit-icon-accommodation:before { content: "\e909"; }
+.orbit-icon-circle-arrow:before { content: "\e90a"; }
+.orbit-icon-stops:before { content: "\e90b"; }
+.orbit-icon-operator:before { content: "\e90c"; }
+.orbit-icon-break:before { content: "\e90d"; }
+.orbit-icon-timelapse:before { content: "\e90e"; }
+.orbit-icon-video-meeting:before { content: "\e90f"; }
+.orbit-icon-window:before { content: "\e910"; }
+.orbit-icon-transportation-flight:before { content: "\e911"; }
+.orbit-icon-transportation-train-arrival:before { content: "\e912"; }
+.orbit-icon-transportation-train:before { content: "\e913"; }
+.orbit-icon-transportation-flight-departure:before { content: "\e914"; }
+.orbit-icon-transportation-flight-arrival:before { content: "\e915"; }
+.orbit-icon-meeting:before { content: "\e916"; }
+.orbit-icon-date-time:before { content: "\e917"; }
+.orbit-icon-location:before { content: "\e918"; }
+.orbit-icon-host-guest:before { content: "\e919"; }
+.orbit-icon-transportation-boat:before { content: "\e91a"; }
+.orbit-icon-transportation-vehicle:before { content: "\e91b"; }
+.orbit-icon-transportation-vehicle-departure:before { content: "\e91c"; }
+.orbit-icon-transportation-boat-arrival:before { content: "\e91d"; }
+.orbit-icon-transportation-boat-departure:before { content: "\e91e"; }
+.orbit-icon-transportation-train-departure:before { content: "\e91f"; }
+.orbit-icon-transportation-vehicle-arrival:before { content: "\e920"; }
+.orbit-icon-home:before { content: "\e921"; }
+.orbit-icon-vehicle-name:before { content: "\e922"; }
+.orbit-icon-circle-cross:before { content: "\e923"; }
+.orbit-icon-check:before { content: "\e924"; }
+.orbit-icon-hotel:before { content: "\e925"; }
+.orbit-icon-paper-clip:before { content: "\e926"; }
+.orbit-icon-file-pdf:before { content: "\e927"; }
+.orbit-icon-arrangements:before { content: "\e928"; }
+.orbit-icon-delete:before { content: "\e929"; }
+.orbit-icon-edit:before { content: "\e930"; }
+.orbit-icon-amenity-ensuite:before { content: "\e931"; }
+.orbit-icon-couple:before { content: "\e932"; }
+.orbit-icon-file-doc:before { content: "\e933"; }
+.orbit-icon-capacity:before { content: "\e934"; }
+.orbit-icon-circle-check:before { content: "\e935"; }
+.orbit-icon-circle-warning:before { content: "\e936"; }
+.orbit-icon-warning:before { content: "\e937"; }
+.orbit-icon-bubble-warning:before { content: "\e938"; }
+.orbit-icon-cross:before { content: "\e939"; }
+.orbit-icon-arrow:before { content: "\e940"; }
+.orbit-icon-feedback-warning:before { content: "\e941"; }
+.orbit-icon-feedback-success:before { content: "\e942"; }
+.orbit-icon-feedback-error:before { content: "\e943"; }
+.orbit-icon-feedback-info:before { content: "\e944"; }
+.orbit-icon-amenity-toilet:before { content: "\e945"; }
+.orbit-icon-amenity-shower:before { content: "\e946"; }
+.orbit-icon-amenity-basin:before { content: "\e947"; }
+.orbit-icon-baggage:before { content: "\e948"; }
+.orbit-icon-filter:before { content: "\e949"; }
+.orbit-icon-search:before { content: "\e950"; }
+
+
+    /*  $1.2. Orbit Color Classes  */
+
+.color-orbit-purple-1 { color: var(--orbit-purple-1); }
+.color-orbit-purple-2 { color: var(--orbit-purple-2); }
+.color-orbit-purple-3 { color: var(--orbit-purple-3); }
+.color-orbit-purple-4 { color: var(--orbit-purple-4); }
+.color-orbit-purple-5 { color: var(--orbit-purple-5); }
+.color-orbit-purple-6 { color: var(--orbit-purple-6); }
+.color-orbit-purple-7 { color: var(--orbit-purple-7); }
+.color-orbit-purple-8 { color: var(--orbit-purple-8); }
+.color-orbit-purple-9 { color: var(--orbit-purple-9); }
+.color-orbit-purple-10 { color: var(--orbit-purple-10); }
+
+.color-orbit-orange-1 { color: var(--orbit-orange-1); }
+.color-orbit-orange-2 { color: var(--orbit-orange-2); }
+.color-orbit-orange-3 { color: var(--orbit-orange-3); }
+.color-orbit-orange-4 { color: var(--orbit-orange-4); }
+.color-orbit-orange-5 { color: var(--orbit-orange-5); }
+.color-orbit-orange-6 { color: var(--orbit-orange-6); }
+.color-orbit-orange-7 { color: var(--orbit-orange-7); }
+.color-orbit-orange-8 { color: var(--orbit-orange-8); }
+.color-orbit-orange-9 { color: var(--orbit-orange-9); }
+.color-orbit-orange-10 { color: var(--orbit-orange-10); }
+
+.color-orbit-green-1 { color: var(--orbit-green-1); }
+.color-orbit-green-2 { color: var(--orbit-green-2); }
+.color-orbit-green-3 { color: var(--orbit-green-3); }
+.color-orbit-green-4 { color: var(--orbit-green-4); }
+.color-orbit-green-5 { color: var(--orbit-green-5); }
+.color-orbit-green-6 { color: var(--orbit-green-6); }
+.color-orbit-green-7 { color: var(--orbit-green-7); }
+.color-orbit-green-8 { color: var(--orbit-green-8); }
+.color-orbit-green-9 { color: var(--orbit-green-9); }
+.color-orbit-green-10 { color: var(--orbit-green-10); }
+
+.color-orbit-red-1 { color: var(--orbit-red-1); }
+.color-orbit-red-2 { color: var(--orbit-red-2); }
+.color-orbit-red-3 { color: var(--orbit-red-3); }
+.color-orbit-red-4 { color: var(--orbit-red-4); }
+.color-orbit-red-5 { color: var(--orbit-red-5); }
+.color-orbit-red-6 { color: var(--orbit-red-6); }
+.color-orbit-red-7 { color: var(--orbit-red-7); }
+.color-orbit-red-8 { color: var(--orbit-red-8); }
+.color-orbit-red-9 { color: var(--orbit-red-9); }
+.color-orbit-red-10 { color: var(--orbit-red-10); }
+
+.color-orbit-primary-1 { color: var(--orbit-primary-1); }
+.color-orbit-primary-2 { color: var(--orbit-primary-2); }
+.color-orbit-primary-3 { color: var(--orbit-primary-3); }
+.color-orbit-primary-4 { color: var(--orbit-primary-4); }
+.color-orbit-primary-5 { color: var(--orbit-primary-5); }
+.color-orbit-primary-6 { color: var(--orbit-primary-6); }
+.color-orbit-primary-7 { color: var(--orbit-primary-7); }
+.color-orbit-primary-8 { color: var(--orbit-primary-8); }
+.color-orbit-primary-9 { color: var(--orbit-primary-9); }
+.color-orbit-primary-10 { color: var(--orbit-primary-10); }
+
+
+    /*  $1.3. Orbit Helper Classes  */
+
+.line-height-1 {
+    line-height: 1;
+}
+
+.sticky-to-bottom {
+    position: sticky;
+    bottom: 0px;
+}
+
+.sticky-to-top {
+    position: sticky;
+    top: 0px;
+}
+
+.opacity-1{
+    opacity: 1;
+}
+
+.opacity-0-75{
+    opacity: 0.75;
+}
+
+.opacity-0-5{
+    opacity: 0.50;
+}
+
+.opacity-0-25{
+    opacity: 0.25;
+}
+
+.opacity-0{
+    opacity: 0;
+}
+
+
+/*==========  $1. General Classes | END |  ==========*/
+
+
+/*==========  $2. Component Classes | START |  ==========*/
+
+
+    /*  $2.1. LDM Popover Checkboxes  */
+
+.event-view-option-item input.checkbox:before {
+    height: 20px;
+    width: 20px;
+    margin: 0;
+}
+
+.event-view-option-item input.checkbox:checked:after {
+    border: 7px solid var(--color-primary) !important;
+    left: 10px;
+    top: 10px;
+}
+
+.event-view-option-item input.checkbox[disabled]:checked:before{
+    border-width: 2px;
+}
+
+.event-view-option-item input.checkbox[disabled]:checked:after{
+    border-color: var(--color-neutral-6) !important;
+}
+
+.event-view-option-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    /*  $2.2. Orbit Accordion  */
+
+.accordion.orbit-accordion {
+    margin-top: var(--space-s);
+}
+
+.accordion.orbit-accordion.orbit-accordion-no-margin {
+    margin-top: 0;
+}
+
+.accordion.orbit-accordion .section-expandable.orbit-accordion-item {
+    border-bottom: none;
+}
+
+.accordion.orbit-accordion .section-expandable.orbit-accordion-item .section-expandable-title {
+    background-color: var(--orbit-primary-1);
+}
+
+.accordion.orbit-accordion .section-expandable.orbit-accordion-item.no-background .section-expandable-title {
+    background-color: transparent;
+}
+
+.accordion.orbit-accordion.orbit-accordion-colored-content .section-expandable.orbit-accordion-item .section-expandable-content {
+    background-color: var(--orbit-primary-1);
+}
+
+.accordion.orbit-accordion .section-expandable.orbit-accordion-item .section-expandable-title .dividers {
+    color: var(--orbit-primary-7);
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.accordion.orbit-accordion .section-expandable.orbit-accordion-item .section-expandable-title .section-expandable-icon {
+    margin: 0 var(--space-m) 0 0;
+}
+
+    /*  $2.3. Orbit Feedback Messages  */
+
+/* Feedback Message */
+.orbit-theme .feedback-message {
+    border-radius: 4px;
+    padding: var(--space-base);
+    color: var(--color-neutral-0);
+}
+
+.orbit-theme .feedback-message-text {
+    padding-left: var(--space-m);
+}
+
+/* Feedback Message Colors */
+.orbit-theme div.feedback-message-error {
+    background-color: var(--orbit-red-7);
+}
+
+.orbit-theme div.feedback-message-info {
+    background-color: var(--orbit-primary-6);
+}
+
+.orbit-theme div.feedback-message-success {
+    background-color: #29823B;
+}
+
+.orbit-theme div.feedback-message-warning {
+    background-color: #E9A100;
+}
+
+/* Feedback Message Icons */
+.orbit-theme .feedback-message-error i,
+.orbit-theme .feedback-message-success i,
+.orbit-theme .feedback-message-warning i,
+.orbit-theme .feedback-message-info i {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'orbit-icon' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+}
+
+/* Feedback Message Icons */
+.orbit-theme .feedback-message-error i:before {
+    content: "\e943";
+}
+.orbit-theme .feedback-message-success i:before {
+    content: "\e942";
+}
+.orbit-theme .feedback-message-info i:before {
+    content: "\e944";
+}
+.orbit-theme .feedback-message-warning i:before {
+    content: "\e941";
+}
+
+    /*  $2.4. Orbit Header  */
+
+:where(.backwards-compatibility) .layout-native.orbit-booklet .header-right i {
+    padding: 0px var(--space-s);
+    margin-left: var(--space-s);
+}
+
+
+/*==========  $2. Component Classes | END |  ==========*/
+
+/*==========  $3. Specific Classes - LDMs | START |  ==========*/
+
+
+    /*  $3.1. LDM Event Details Content  */
+
+.event-details-content{
+    background-color: #f7faff;
+    width: 100%;
+    height: auto;
+    padding-top: var(--space-s);
+}
+
+.event-details-content-top{
+    margin: 0 var(--space-s);
+    box-shadow: 0px 0px 7px 2px var(--color-neutral-7);
+    border-radius: 5px;
+}
+
+.event-detail-content-banner {
+    border-radius: 5px 5px 0 0;
+}
+
+.event-detail-content-guestview {
+    border-radius: 0 0 5px 5px;
+}
+
+
+    /*  $3.2. LDM Event Details Banner  */
+
+.event-detail-banner{
+    width: 100%;
+    height: auto;
+}
+
+.event-detail-banner-image-cont{
+    width: 100%;
+    position: relative;
+    height: auto;
+    
+}
+
+.event-detail-banner-image{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    border-radius: 5px 5px 0 0;
+    
+}
+
+.event-detail-banner-overlay{
+    width: 100%;
+    height: auto;
+    background-color: rgba(000,000,000,0.5);
+    border-radius: 5px 5px 0 0;
+    position: absolute;
+    top: 0;
+}
+
+.event-detail-banner-text{
+    width: 100%;
+    z-index: 10;
+    color: var(--color-neutral-0);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: var(--space-m);
+    height: auto;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    border-radius: 5px 5px 0 0;
+    
+}
+
+.event-detail-banner-text .btn-primary,
+.event-detail-banner-text .btn-primary:hover,
+.event-detail-banner-text .btn-primary:focus {
+    padding: var(--space-base);
+    margin-left: 0;
+}
+
+.event-detail-banner-people{
+    display: flex;
+    flex-direction: column;
+}
+
+.event-detail-banner-adults{
+    margin-right: var(--space-base);
+}
+
+.event-detail-banner-children{
+    padding-left: var(--space-base);
+    border-left: 1px solid var(--color-neutral-0);
+}
+
+
+    /*  $3.3. LDM Event Details Section & Sub Section  */
+
+.event-detail-section {
+    background-color: transparent;
+    
+}
+
+.event-detail-section-title {
+    color: #2f3f63;
+    font-weight: bold;
+    padding: var(--space-xl);
+    padding-bottom: var(--space-xs);
+    font-size: 0.75em;
+    text-align: center;
+}
+
+.event-detail-section-title-host {
+    padding: var(--space-m);
+    font-size: inherit;
+    text-align: inherit;
+}
+
+
+.event-detail-section-title-guest {
+    padding: var(--space-xl);
+    padding-bottom: var(--space-xs);
+    font-size: 0.75em;
+    text-align: center;
+}
+
+.event-detail-subsection {
+    background-color: transparent;
+}
+
+.event-detail-subsection-title {
+    font-size: 0.8em;
+    padding: var(--space-m) var(--space-base) var(--space-xs) var(--space-base);
+    text-align: left;
+    color: #2f3f63;
+    font-weight: bold;
+    width: 100%;
+}
+
+.event-detail-section-placeholder,
+.event-detail-subsection-placeholder {
+    border-top: 1px solid var(--color-neutral-4);
+}
+
+
+    /*  $3.4. LDM Event Details Host Card  */
+
+.event-detail-hostcard {
+    background-color: var(--color-neutral-0);
+    border-radius: 0 0 5px 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-detail-hostcard-content {
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items:center;
+}
+
+.event-detail-hostcard-host{
+    display: flex;
+    flex-direction: row;
+    flex: 2;
+    padding-left: var(--space-s);
+}
+
+.event-detail-icon-arrow {
+    Padding: 10px 8px 19px 8px;
+}
+
+.event-detail-hostcard-content-photo{
+    margin: var(--space-s) 0;
+}
+
+.event-detail-hostcard-content-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: var(--space-s);
+    margin-left: var(--space-base);
+    font-size: 0.75em;
+}
+
+.event-detail-hostcard-content-call{
+    display: inline-flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 1.5em;
+    color: var(--color-primary);
+    height: auto;
+    margin: var(--space-s) 0px;
+    border-left: 1px solid var(--color-neutral-3);
+}
+
+.event-detail-hostcard-content-call-icon{
+    padding: 0px var(--space-l);
+}
+
+.event-detail-hostcard-content-info-title {
+    color: var(--color-neutral-6);
+}
+
+.event-detail-hostcard-content-info-name {
+    font-weight: bolder;
+}
+
+.event-detail-hostcard-address {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-m);
+    padding-top: var(--space-base);
+}
+
+.event-detail-hostcard-address-top {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+
+.event-detail-hostcard-address-info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0px;
+}
+
+.event-detail-hostcard-address-info-title {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.event-detail-hostcard-address-info-distance {
+    color: var(--color-neutral-7);
+    font-size: 0.75em;
+}
+
+.event-detail-hostcard-address-icon {
+    color: var(--color-neutral-0);
+    font-size: 1.5em;
+}
+
+.event-detail-hostcard-address-button {
+    display:flex;
+    align-items: flex-start;
+}
+
+.event-detail-hostcard-address .btn {
+    padding: 0px
+}
+
+
+    /*  $3.5. LDM Event Detail General  */
+
+.event-detail-list {
+    background-color: transparent !important;
+}
+
+.event-detail-photo {
+    border-radius: 5px;
+    background-size: cover;
+    background-position: center top;
+}
+
+.event-detail-photo-blank {
+    border-radius: 5px;
+    /*background-color: var(--color-neutral-5);*/
+    background-color: #E0E0E0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25em;
+    color: var(--color-neutral-0);
+}
+
+
+
+    /*  $3.6. LDM Event Detail List Item  */
+
+.event-detail-list-item{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.event-detail-list-item-main {
+    background-color: var(--color-neutral-0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: var(--space-base);
+    width: 100%;
+}
+
+.event-detail-list-item-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-between;
+    margin-left: var(--space-base);
+    padding: var(--space-xs) 0;
+    
+}
+
+.event-detail-list-item-info-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    padding: var(--space-base) 0;
+}
+
+.event-detail-list-item-info-icon {
+    color: var(--color-neutral-7);
+    font-size: 1.25em;
+    font-weight: bold;
+    padding: var(--space-m);
+}
+
+.event-detail-list-item-contact {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.event-detail-list-item-contact-btn {
+    align-items: center;
+    background-color: #fafafa;
+    color: var(--color-primary);
+    display: flex;
+    flex-direction: column;
+    font-size: 0.7em;
+    font-weight: bold;
+    justify-content: center;
+    padding: var(--space-base);
+    text-transform: uppercase;
+    width: 50%;
+}
+
+.event-detail-list-item-contact-btn-border {
+    border-left: 1px solid var(--color-neutral-4);
+}
+
+
+    /*  $3.7. LDM Event Detail Special Needs List Item  */
+
+.event-detail-sp-list-item-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: var(--space-base);
+    background-color: var(--color-neutral-0);
+}
+
+.event-detail-list-sp-item-info {
+    margin-left: var(--space-base);
+    padding: var(--space-base);
+    padding-left: 0;
+    width: 100%;
+}
+
+
+    /*  $3.8. LDM Shared past events  */
+
+.shared-past-event-container {
+    padding: var(--space-base) var(--space-m);
+    border-bottom: 1px solid var(--color-neutral-5);
+    border-top: 1px solid var(--color-neutral-5);
+    background-color: var(--color-neutral-0);
+    margin-bottom: var(--space-m);
+}
+
+.shared-past-event-container .shared-past-event-heading {
+    display: flex;
+    align-items: center;
+    margin-right: calc(-1 * var(--space-m));
+}
+
+.shared-past-event-container .shared-past-event-heading .shared-past-event-heading-date {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--color-neutral-7);
+    letter-spacing: 2px;
+    word-spacing: 2px;
+}
+
+.shared-past-event-container .shared-past-event-heading .shared-past-event-heading-title {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.shared-past-event-container .separator {
+    margin: var(--space-base) 0;
+}
+
+.shared-past-event-container .shared-past-event-details > div {
+    display: flex;
+    padding-top: var(--space-base);
+    padding-bottom: var(--space-base);
+}
+
+
+    /*  $3.9. LDM Contact Organiser  */
+
+.contact-organiser-form-cont-label {
+    font-size: 0.9em;
+}
+
+.card input[data-input].contact-organiser-form-cont-input,
+.card input[data-input]:empty.contact-organiser-form-cont-input,
+.card textarea[data-textarea].contact-organiser-form-cont-input,
+.card textarea[data-textarea]:empty.contact-organiser-form-cont-input {
+    border: 2px solid var(--color-neutral-6);
+    border-radius: 5px;
+    margin-top: var(--space-xs);
+}
+
+.card input[data-input][disabled].contact-organiser-form-cont-input,
+.card textarea[data-textarea][disabled].contact-organiser-form-cont-input{
+    background-color: var(--color-neutral-4);
+    color: var(--color-neutral-10);
+}
+
+
+    /*  $3.10. LDM Event Past Event Filter  */
+
+.past-event-filter-cont {
+    padding: var(--space-base);
+    padding-top: 0px;
+    position: relative;
+}
+
+.past-event-filter-exit{
+    text-align: right;
+    font-size: 1.25em;
+}
+
+.past-event-filter-title {
+    margin-bottom: var(--space-base);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.past-event-filter-date-cont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.past-event-filter-date {
+    width: 50%;
+}
+
+input[type="date"].past-event-date-input, input[type="date"]:empty.past-event-date-input {
+    height: 35px;
+    border-radius: 5px;
+    border: 1.5px solid var(--color-neutral-5);
+    background-color: var(--color-neutral-0);
+    font-weight: bold;
+    font-size: 0.8em;
+}
+
+.past-event-filter-locality-cont {
+    margin-top: var(--space-l);
+    font-size: 0.8em;
+}
+
+.past-event-filter-locality-input {
+    min-height: 35px;
+    max-width: 100%;
+    border-radius: 5px;
+    border: 1.5px solid var(--color-neutral-5);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-xs) var(--space-base);
+    font-weight: bold;
+    margin-top: var(--space-s);
+}
+
+.past-event-filter-locality-input-text {
+    max-width: 30vw;
+    height: auto;
+}
+
+.past-event-filter-list-cont {
+    background-color: var(--color-neutral-0);
+    width: 80vw;
+    max-width: 80vw;
+    min-width: 80vw;
+    padding: 0;
+    box-shadow: 0px 0px 5px 1px var(--color-neutral-6);
+    border: none;
+    position: fixed;
+    overflow-y: scroll;
+    left: 10vw;
+    
+    
+}
+
+.past-event-filter-popup-title {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: var(--color-neutral-0);
+    text-align: right;
+    padding: var(--space-s) var(--space-base);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+.past-event-filter-list {
+    background-color: transparent !important;
+}
+
+.past-event-filter-list-item {
+    background-color: var(--color-neutral-0);
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: var(--space-base);
+    font-size: 0.8em;
+}
+
+.past-event-filter-button-cont {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: var(--space-m);
+}
+
+.past-event-filter-popup-buttons {
+    background-color: var(--color-neutral-0);
+    position: sticky;
+    bottom: 0;
+}
+
+.past-event-filter-btn {
+    width: 50%;
+    border-radius: 5px;
+    margin: var(--space-s);
+    padding: var(--space-s) 0;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.past-event-filter-btn-cancel {
+    color: var(--color-primary);
+}
+
+.past-event-filter-btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-neutral-0);
+}
+
+
+    /*  $3.11. LDM My Events  */
+
+.my-events-popup-filters {
+    border: none;
+    border-radius: 0px;
+}
+
+.my-events-popup-filters {
+    width: 95vw;
+    max-width: 95vw;
+}
+
+.my-events-popup-aura{
+    border: 1px solid var(--color-neutral-0);
+    padding: 1px 4px 0px 4px;
+    border-radius: 50%;
+    background-color: var(--color-neutral-0);
+    color: var(--color-primary);
+}
+
+:where(.backwards-compatibility) .my-events-popup-aura{
+     margin-right: var(--space-m);
+}
+
+:where(.backwards-compatibility) .header-right .my-events-popup-aura i{
+    color: var(--color-primary);
+    padding:0
+}
+
+    /*  $3.12. LDM My Timeline  */
+
+.timeline-ldm-height {
+    min-height: 100vh;
+}
+
+.past-event-list{
+    overflow: unset !important; 
+}
+
+.past-event-cont{
+    overflow: unset;
+}
+
+.past-event-date{
+    position: sticky;
+    top: 0px;
+    padding: var(--space-base);
+    z-index: 10;
+    font-size: .9em;
+    text-align: center;
+    border-top: 1px solid var(--color-neutral-3);
+    border-bottom: 1px solid var(--color-neutral-3);
+    background-color: var(--color-neutral-0);
+    font-weight: bold;
+    box-shadow: var(--color-neutral-6) 0 5px 7px -3px;
+    margin-bottom: var(--space-s);
+}
+
+
+    /*  $3.13. LDM Event Card Box  */
+
+.event-card-box {
+    border-radius: var(--space-s);
+    border: 2px solid  var(--color-neutral-5);
+    box-shadow: 1px 3px var(--color-neutral-6);
+    background-color: var(--color-neutral-0);
+    font-size: 1em;
+    margin: var(--space-s);
+    margin-bottom: var(--space-base);
+    padding: var(--space-s);
+}
+
+.small-icon {
+    height: 20px;
+    margin: 2px;
+}
+
+.medium-icon {
+    height: 24px;
+    margin: 2px;  
+}
+
+
+    /*  $3.14. LDM Event Card Info  */
+
+.event-card-info-cont {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.event-card-info-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: var(--space-base);
+}
+
+.event-card-info-title {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+
+.event-card-info-item-name-location {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: var(--space-s);
+   
+}
+    /*  $3.15. LDM Agenda  */
+
+.agenda-day {
+    padding-top: var(--space-m);
+    width: 100%;
+}
+
+.agenda-day-title {
+    font-weight: bold;
+    margin-left: var(--space-s);
+}
+
+.agenda-day-no-event {
+    color: var(--color-neutral-7);
+    font-size: .75em;
+    font-weight: bold;
+    margin-left: var(--space-base);
+}
+
+
+/*==========  $3. Specific Classes - LDMs | END |  ==========*/
+
+
+/*==========  $4. Specific Classes - Orbit | START |  ==========*/
+
+
+    /*  $4.1. Orbit Event Household Members  */
+
+.orbit-household-member-list-cont {
+    background-color: transparent;
+    width: 100vw;
+
+    
+}
+
+.list.list-group.orbit-household-member-list {
+    background-color: transparent;
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    /*scroll-snap-type: x mandatory;*/
+}
+
+.orbit-household-member-list-item {
+    min-width: calc(100vw / 3);
+    text-align: center;
+    padding: var(--space-s) 0;
+    color: var(--color-neutral-0);
+    font-weight: bold;
+    /*scroll-snap-align: center;*/
+}
+
+.orbit-household-member-list-item:first-of-type {
+    margin-left: calc(100vw / 3);
+}
+
+.orbit-household-member-list-item:last-of-type {
+    margin-right: calc(100vw / 3);
+}
+
+.orbit-household-member-list-item-text {
+    opacity: 0.5;
+    padding: var(--space-xs) var(--space-s);
+}
+
+
+    /*  $4.2. Orbit Event Skeleton Loading  */
+
+
+.orbit-skeleton-loading-cont {
+    width: 100%;
+    padding: var(--space-m);
+}
+
+.list.list-group.orbit-skeleton-loading-list {
+    background-color: transparent;
+    border: none;
+}
+
+.list.list-group.orbit-skeleton-loading-list .orbit-skeleton-loading-list-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-xs);
+    padding: var(--space-m) var(--space-m) 0px var(--space-m);
+    border-top: 1px solid var(--color-neutral-3);
+}
+
+.list.list-group.orbit-skeleton-loading-list .orbit-skeleton-loading-list-item .orbit-skeleton-loading-item {
+    border-radius: var(--space-m);
+}
+
+.orbit-skeleton-loading-list-item:last-of-type {
+    border-bottom: 1px solid var(--color-neutral-3);
+}
+
+.orbit-skeleton-loading-item-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: var(--space-m);
+    flex-wrap: nowrap;
+
+}
+
+.orbit-skeleton-loading-item {
+    border: none;
+    margin-bottom: var(--space-m);
+    border-radius: var(--space-base);
+    width: 100%;
+
+    /* Animation css */
+    background-image: linear-gradient(90deg, var(--color-neutral-3) 0%, var(--color-neutral-4) 42.5%, var(--color-neutral-5) 47.5%, var(--color-neutral-5) 52.5%, var(--color-neutral-4) 57.5%, var(--color-neutral-3) 100%);
+    background-size: 300% 100%;
+    animation-name: orbit-skeleton-loading;
+    animation-duration: 0.6s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+}
+
+.orbit-skeleton-loading-header {
+    background-color: var(--background-color-header);
+    transition: background-color 100ms ease-in-out;
+    height: 87.3281px;
+    line-height: 22.88px;
+    min-height: 65px;
+}
+
+.orbit-skeleton-loading-item.orbit-skeleton-loading-item-no-border {
+    border-radius: 0;
+}
+
+.orbit-skeleton-loading-item.orbit-skeleton-loading-item-no-margin {
+    margin: 0;
+}
+
+.orbit-skeleton-loading-item.orbit-skeleton-loading-item-margin-s {
+    margin-bottom: var(--space-s);
+}
+
+.orbit-skeleton-loading-item:last-of-type,
+.orbit-skeleton-loading-item.orbit-skeleton-loading-item-margin-s:last-of-type {
+    margin-bottom: 0px;
+}
+
+.orbit-skeleton-item-height-s {
+    height: 16px;
+}
+
+.orbit-skeleton-item-height-s-medium {
+    height: 20px;
+}
+
+.orbit-skeleton-item-height-s-large {
+    height: 28px;
+}
+
+.orbit-skeleton-item-height-base {
+    height: 40px;
+}
+
+.orbit-skeleton-item-height-sm {
+    height: 60px;
+}
+
+.orbit-skeleton-item-height-m {
+    height: 80px;
+}
+
+.orbit-skeleton-item-height-large {
+    height: 170px;
+}
+
+/* Animation Frames */
+@keyframes orbit-skeleton-loading {
+  0%    {background-position: 0 0}
+  100%    {background-position: 100% 0}
+}
+
+
+    /*  $4.3. Orbit Event Cards  */
+
+.orbit-card-cont {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: left;
+    align-items: baseline;
+    padding: var(--space-m);
+    border-radius: var(--space-base);
+
+    
+}
+
+.orbit-card-left-cont {
+    margin-right: var(--space-m);
+}
+
+.orbit-card-icon-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--space-s) var(--space-base);
+    border-radius: var(--space-m);
+}
+
+.orbit-card-icon {
+    font-size: 1.2em;
+
+    
+}
+
+.orbit-card-right-cont {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+}
+
+.orbit-card-title-cont {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: var(--space-m);
+}
+
+.orbit-card-content {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: left;
+}
+
+.orbit-card-content-info {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: baseline;
+}
+
+.orbit-card-content-info-icon {
+    margin-right: var(--space-base);
+
+}
+
+.orbit-card-content-info-text {
+    width: 100%;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.orbit-card-content-button-cont {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.btn.btn-orbit-card {
+    background-color: var(--color-neutral-0);
+    border-radius: var(--space-base);
+}
+
+
+    /*  $4.4. Orbit Card List  */
+
+.list.list-group.orbit-card-list {
+    background-color: transparent;
+    padding: var(--space-m);
+}
+
+.orbit-card-list-cont {
+    margin-top: var(--space-m);
+}
+
+.orbit-card-list-cont:first-of-type {
+    margin-top: 0px;
+}
+
+
+    /*  $4.5. Orbit Detail Header  */
+
+.header.orbit-detail .header-top {
+    align-items: baseline;
+    height: auto;
+    padding: var(--space-base) var(--space-m);
+}
+
+.header.orbit-detail .header-top .header-left {
+    flex: none;
+}
+
+.header.orbit-detail .header-top .header-title {
+    text-align: left;
+    margin-left: var(--space-m);
+}
+
+.header.orbit-detail .header-top .header-title span {
+    white-space: normal;
+}
+
+
+        /*  $4.5.1. Orbit Detail Header Center  */
+
+.header.orbit-detail.orbit-header-center .header-top {
+    align-items: center;
+}
+
+.header.orbit-detail.orbit-header-center .header-top .header-left,
+.header.orbit-detail.orbit-header-center .header-top .header-title {
+    align-self: center;
+}
+
+
+        /*  $4.5.2. Orbit Transport Detail Header  */
+
+.header.orbit-detail.orbit-transport-detail {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.header.orbit-detail.orbit-transport-detail .header-top {
+    background-color: rgba(29, 57, 196, 0.6);
+}
+
+.header.orbit-detail.orbit-transport-detail.orbit-transport-detail-flight {
+    background-image: url('../img/Connect2_LegacyShared.flight_detail_image2.png?oKcFhQilt3Fg2x35se0CDw');
+}
+
+.header.orbit-detail.orbit-transport-detail.orbit-transport-detail-train {
+    background-image: url('../img/Connect2_LegacyShared.train_detail_image2.png?Va9pD9WKBCv0n6sny6yxzA');
+}
+
+.header.orbit-detail.orbit-transport-detail.orbit-transport-detail-boat {
+    background-image: url('../img/Connect2_LegacyShared.boat_detail_image2.png?Vv_AHTUPXGiayZzNyo48sw');
+}
+
+.header.orbit-detail.orbit-transport-detail.orbit-transport-detail-vehicle {
+    background-image: url('../img/Connect2_LegacyShared.car_detail_image2.png?ToiX2hy1oUhOwvoMDlflow');
+}
+
+
+        /*  $4.5.3. Orbit Milestone Detail Header  */
+
+.header.orbit-detail .orbit-milestone-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.header.orbit-detail .orbit-milestone-header .orbit-milestone-sub-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+        
+    /*  $4.6. Orbit Contact Form  */
+
+.orbit-contact-form textarea[data-textarea][disabled] {
+    color: #263238;
+}
+
+.orbit-contact-form textarea[data-textarea]::-webkit-scrollbar {
+    display: block;
+    width: 5px;
+}
+
+.orbit-contact-form textarea[data-textarea]::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgb(0 0 0 / 30%);
+}
+
+.orbit-contact-form textarea[data-textarea]::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary-orbit);
+    outline: 1px solid var(--color-neutral-6);
+}
+
+
+    /*  $4.7. Orbit Confirmation Dialog Popup  */
+
+.orbit-confirm-popup .dx-confirmation-dialog .dx-dialog-header {
+    color: var(--color-neutral-10);
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.orbit-confirm-popup .dx-confirmation-dialog .dx-dialog-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-base);
+}
+
+.orbit-confirm-popup .dx-confirmation-dialog .dx-dialog-footer .btn {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    color: var(--color-neutral-0);
+    text-transform: capitalize;
+    font-size: 0.9em;
+}
+
+.orbit-confirm-popup .dx-confirmation-dialog .dx-dialog-footer .btn:not(.btn-primary) {
+    color: var(--orbit-primary-7);
+    border: 1px solid var(--orbit-primary-7);
+}
+
+.orbit-confirm-popup .dx-confirmation-dialog .dx-dialog-footer .btn.btn-primary {
+    background-color: var(--orbit-primary-7);
+}
+
+
+    /*  $4.8. Orbit Event Date Selector  */
+
+.event-date-selector-list-cont {
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: stretch;
+    background-color: var(--color-neutral-0);
+    padding: var(--space-m);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    overflow-x: scroll;
+    overflow-y: unset;
+}
+
+.event-date-selector-list {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+}
+
+.list.list-group.event-date-selector-list {
+    overflow-x: scroll;
+    overflow-y: unset;
+    background-color: var(--color-neutral-0);
+}
+
+.event-date-selector-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.event-date-selector {
+    width: 36px;
+    height: 36px;
+    max-width: 36px;
+    max-height: 36px;    
+    min-width: 36px;
+    min-height: 36px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.event-date-selector-day {
+    margin: 0 var(--space-s);
+    color: var(--orbit-primary-7);
+    border: 1px solid var(--orbit-primary-7);
+    background-color: var(--color-neutral-0);
+}
+
+.event-date-selector-weekday {
+    color: var(--color-neutral-7);
+    margin-top: var(--space-base);
+    
+}
+
+.event-date-selector-before-after {
+    color: var(--color-neutral-7);
+    border: 1px solid var(--color-neutral-4);
+    background-color: var(--color-neutral-4);
+}
+
+.event-date-selector-before {
+    margin-right: var(--space-s);
+}
+
+.event-date-selector-after {
+    margin-left: var(--space-s);
+}
+
+.event-date-selector-selected {
+    color: var(--color-neutral-0);
+    border: 1px solid var(--orbit-primary-7);
+    background-color: var(--orbit-primary-7);
+}
+
+
+    /*  $4.9. Orbit Transport Detail  */
+
+.transport-detail-cont {
+    width: 100%;
+    padding: var(--space-m);
+}
+
+.transport-detail-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    margin-bottom: var(--space-m);
+}
+
+.transport-detail-item-info {
+    margin-left: var(--space-base);
+    flex-grow: 1;
+}
+
+.transport-detail-travel-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+.orbit-transport-detail-icon {
+    width: 1em;
+    text-align: center;
+}
+
+.list.list-group.transport-detail-list {
+    background-color: transparent;
+}
+
+.transport-detail-list .transport-detail-list-item {
+    display: flex;
+    flex-direction: column;
+}
+
+    /*  $4.10. Orbit Contact Widget  */
+
+.orbit-contact-widget {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    border-top: 1px solid var(--orbit-primary-2);
+    border-bottom: 1px solid var(--orbit-primary-2);
+}
+
+.orbit-contact-widget-button {
+    width: 100%;
+    padding: var(--space-base) var(--space-m);
+    background-color: var(--orbit-primary-1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orbit-primary-7);
+    font-size: 1.5em;
+}
+
+.orbit-contact-widget-button:first-of-type {
+    border-right: 1px solid var(--orbit-primary-2);
+}
+
+
+    /*  $4.11. Orbit Member Information Card  */
+
+.member-info-cont {
+    display: flex;
+    flex-direction: row;
+    padding: var(--space-base) var(--space-m);
+}
+
+.member-info-left-cont {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.member-info-img-cont {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    display: grid;
+    grid-template-columns: 1fr calc(100% / 4);
+    grid-template-rows: 1fr calc(100% / 4);
+    margin-right: var(--space-base);
+}
+
+.member-info-img {
+    border-radius: 50%;
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 3;
+}
+
+.member-info-img-dot {
+    width: 100%;
+    height: 100%;
+    background-color: var(--orbit-primary-7);
+    border-radius: 50%;
+    border: 2px solid var(--color-neutral-0);
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    align-self: end;
+    justify-self: end;
+    border-width: thin;
+}
+
+.member-info-data-cont {
+    display: flex;
+    flex-direction: row;
+}
+
+.member-info-text-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+    font-size: var(--font-size-s);
+}
+
+.member-info-text-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.member-info-admin-tag {
+    margin-left: var(--space-base);
+}
+
+.member-info-name {
+    font-weight: bold;
+}
+
+.member-info-location{
+    color: var(--color-neutral-6);
+}
+
+.member-info-data-right-cont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.member-info-age-cont {
+    width: 36px;
+    height: 36px;
+    color: var(--color-neutral-7);
+    display: grid;
+    grid-template-columns: 15% 1fr 20%;
+    grid-template-rows: 25% 1fr 15%;
+    margin-left: var(--space-l);
+}
+
+.member-info-age-cont .member-info-age-icon {
+    font-size: 36px;
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 3;
+    justify-self: center;
+    align-self: center;
+}
+
+.member-info-age-cont .member-info-age-text {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    align-self: center;
+    justify-self: center;
+}
+
+.member-info-phone-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--orbit-primary-7);
+    font-size: 1.5em;
+    margin-left: var(--space-l);
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+}
+
+
+    /*  $4.12. Orbit Meal Milestone  */
+
+.list.list-group.orbit-household-list,
+.list.list-group.orbit-member-list {
+    background-color: transparent;
+}
+
+.list.list-group.orbit-household-list .orbit-household-list-item {
+    border-bottom: 1px solid var(--color-neutral-4);
+    margin-top: var(--space-m);
+}
+
+.list.list-group.orbit-household-list .orbit-household-list-item:last-of-type {
+    border-bottom: none;
+}
+
+.list.list-group.orbit-member-list .orbit-member-list-item {
+    
+}
+
+
+    /*  $4.13. Orbit Host Survey */
+
+.orbit-host-survey-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-m);
+}
+
+.orbit-host-survey-link .orbit-host-survey-link-tag {
+    padding: var(--space-xs) var(--space-base);
+    border-radius: var(--space-m);
+    background-color: var(--color-neutral-3);
+    color: var(--color-neutral-7);
+    font-size: var(--font-size-xs);
+}
+
+
+    /*  $4.14. Orbit Host Allocation */
+
+.list.list-group.host-allocation-list {
+    background-color: var(--orbit-primary-1);
+}
+
+.host-allocation-list-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--orbit-primary-1);
+    padding: var(--space-base) var(--space-m);
+}
+
+.host-allocation-list-item .host-allocation-list-item-left {
+    text-align: left;
+}
+
+.host-allocation-list-item .host-allocation-list-item-right {
+    padding: 0 var(--space-base);
+    text-align: right;
+    color: var(--orbit-primary-7);
+    font-weight: bold;
+}
+
+
+    /*  $4.15. Orbit Contact Helpdesk Footer  */
+
+.contact-helpdesk-footer {
+    padding: var(--space-l);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--orbit-primary-7);
+    box-shadow: 0px -2px 5px 0px var(--color-neutral-4);
+    background-color: var(--color-neutral-0);
+}
+
+
+    /*  $4.16. Orbit Room Information  */
+
+.room-info-cont {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 1fr;
+    font-size: 0.9em;
+    padding: var(--space-m);
+    border-bottom: 1px solid var(--color-neutral-4);
+}
+
+.orbit-member-list-item-arrangements {
+    margin-left: var(--space-base);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    background-color: var(--orbit-primary-6);
+    border-radius: 15px;
+    color: white;
+    padding: var(--space-xs) var(--space-base);
+    font-size: var(--font-size-s);
+}
+
+
+    /*  $4.17. Orbit Host Information  */
+
+.host-information-image {
+    width: 100%;
+    aspect-ratio: 3/2;
+}
+
+
+    /*  $4.18. Orbit Landing Filters  */
+
+.orbit-landing-filters-cont {
+    width: 100%;
+    background-color: var(--color-neutral-0);
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0px 3px 4px -1px var(--color-neutral-4);
+    color: var(--color-neutral-10);
+}
+
+.orbit-landing-filters {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: var(--space-m);
+}
+
+
+.orbit-landing-filters__popup-backdrop [data-popup-backdrop] {
+    display: block;
+    padding: var(--space-base);
+}
+
+
+.orbit-theme .backwards-compatibility .popup-dialog.orbit-filters-popup {
+    position: absolute;
+    min-width: 50%;
+    width: min-content;    
+    padding: 0;
+
+    
+    
+}
+
+.orbit-filters-popup-exit {
+    text-align: right;
+    color: var(--color-neutral-7);
+    background-color: var(--color-neutral-0);
+    border-radius: 6px 6px 0 0;
+}
+
+.orbit-filters-popup-cont {
+    background-color: var(--color-neutral-0);
+    color: var(--color-neutral-7);
+    padding: 0;
+    height: auto;
+    overflow-y: scroll;
+}
+
+.orbit-filters-popup-sub-cont {
+    padding: 0 var(--space-m);
+    background-color: var(--color-neutral-0);
+}
+
+.orbit-filters-popup-clear {
+    position: sticky;
+    top: -1px;
+    padding-bottom: var(--space-base);
+    font-size: var(--font-size-s);
+    color: var(--color-neutral-6);
+    text-align: right;
+    width: 100%;
+    z-index: 1;
+    background-color: var(--color-neutral-0);
+}
+
+.orbit-filters-popup-button {
+    position: sticky;
+    bottom: 0;
+    padding: var(--space-m);
+    width: 100%;
+    z-index: 1;
+    background-color: var(--color-neutral-0);
+    border-radius: 0 0 6px 6px;
+}
+
+.orbit-filters-popup-cont .btn {
+    width: 100%;
+}
+
+.orbit-filters-popup-cont .orbit-filters-popup-option {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--space-m);
+    margin-bottom: var(--space-m);
+    border-bottom: 1px solid var(--color-neutral-5);
+
+}
+
+.orbit-filters-popup-cont .orbit-filters-popup-option span:nth-child(1){
+    margin-right: var(--space-l);
+}
+
+.orbit-filters-popup-cont .orbit-filters-popup-option span:nth-child(2){
+    line-height: 1;
+}
+
+.orbit-filters-popup-cont .list .orbit-filters-popup-option:nth-child(2) {
+    padding-top: 0;
+}
+.orbit-filters-popup-cont .list .orbit-filters-popup-option {
+    padding: 0;
+    padding-top: var(--space-xl);
+    margin: 0;
+}
+
+.orbit-theme .orbit-filters-popup [data-radio-group] [data-radio-button] {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin: 0 0 var(--space-m) 0;
+    padding: 0 0 var(--space-m) 0;
+    border-bottom: 1px solid var(--color-neutral-5);
+}
+
+.orbit-theme .orbit-filters-popup [data-radio-group] [data-radio-button] .radio-button {
+    width: 20px;
+    height: 20px;
+}
+
+.orbit-theme .orbit-filters-popup [data-radio-group] [data-radio-button] .radio-button:before {
+    border: var(--border-size-s) solid var(--color-neutral-7);
+}
+
+.orbit-theme .orbit-filters-popup [data-radio-group] [data-radio-button] .radio-button:checked:before {
+    border: 5px solid var(--orbit-primary-7);
+}
+
+.orbit-theme .orbit-filters-popup [data-radio-group] [data-radio-button] .radio-button:hover:before {
+    filter: none;
+    -webkit-filter: none;
+}
+
+.orbit-theme .orbit-filters-popup [data-radio-group] [data-radio-button] label {
+    color: var(--color-neutral-7);
+    font-weight: normal;
+    margin: 0 var(--space-m) 0 0;
+    white-space: nowrap;
+}
+
+.phone.orbit-theme .backwards-compatibility .orbit-filters-popup-list [data-checkbox],
+.tablet.orbit-theme .backwards-compatibility .orbit-filters-popup-list [data-checkbox] {
+    border: none;
+    height: 20px;
+    width: 20px;
+}
+
+.phone.orbit-theme .backwards-compatibility .orbit-filters-popup-list [data-checkbox]:before,
+.tablet.orbit-theme .backwards-compatibility .orbit-filters-popup-list [data-checkbox]:before {
+    width: calc(100% - 2px);
+    height: calc(100% - 2px);
+    border: 1px solid var(--color-neutral-7);
+    border-radius: 3px;
+}
+
+.phone.orbit-theme .backwards-compatibility .orbit-filters-popup-list [data-checkbox]:checked:before,
+.tablet.orbit-theme .backwards-compatibility .orbit-filters-popup-list [data-checkbox]:checked:before {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: var(--orbit-primary-7);
+}
+
+.phone.orbit-theme .backwards-compatibility .orbit-filters-popup-list [data-checkbox]:checked:after,
+.tablet.orbit-theme .backwards-compatibility .orbit-filters-popup-list [data-checkbox]:checked:after {
+    border: 2px solid var(--color-neutral-0);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    border-radius: 1px;
+    background-color: transparent;
+    height: 5px;
+    width: 10px;
+    left: 4px;
+    top: 4px;
+}
+
+
+    /*  $4.19. Orbit Member QRCode  */
+
+.orbit-generate-qrcode-button {
+    border-radius: 10px;
+    padding: var(--space-xs) var(--space-base);
+    margin-left: var(--space-base);
+    background-color: var(--orbit-primary-6);
+    min-height: auto;
+    font-weight: normal;
+    width: auto;
+    color: white;
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: auto;
+}
+
+.orbit-generate-qrcode-button-disabled {
+    background-color: var(--orbit-green-6);
+}
+
+.orbit-generate-qrcode-button-text {
+    line-height: normal;
+    white-space: nowrap;
+    margin-left: var(--space-s);
+}
+
+.orbit-qrcode-member-cont {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+    padding: var(--space-xl);
+}
+
+.orbit-member-photo-cont {
+    width: 100%;
+    text-align: center;
+    height: auto;
+}
+
+.orbit-member-photo {
+    max-width: 25vw;
+    max-height: 25vw;
+    height: 25vw;
+    width: 25vw;
+    border-radius: 50%;
+}
+
+.orbit-qrcode-code {
+    max-width: 35vh;
+    max-height: 35vh;
+    height: 35vh;
+    width: 35vh;
+}
+
+
+    /*  $4.20. Orbit Admin View  */
+
+.orbit-admin-header-cont {
+    width: 100%;
+    background-color: transparent;
+}
+
+.orbit-admin-header-text-cont {
+    background-color: transparent;
+    text-align: center;
+    padding: var(--space-s) 0;
+    color: var(--color-neutral-0);
+    font-weight: bold;
+}
+
+.orbit-admin-header-text {
+    padding: var(--space-xs) var(--space-s);
+    border-bottom: 2px solid var(--color-neutral-0);
+}
+
+
+    /*  $4.21. Orbit Admin Scan Popup  */
+
+.orbit-qrcode-scan-cont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: var(--space-l);
+}
+
+.orbit-qrcode-scan-title {
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.orbit-qrcode-scan-seats {
+    height: auto;
+    width: 100%;
+    max-height: 15vh;
+    overflow-y: scroll;
+}
+
+.orbit-qrcode-scan-ckeck-cont {
+    width: 100%;
+    text-align: center;
+    margin-top: var(--space-base);
+    color: var(--orbit-green-6);
+}
+
+.orbit-qrcode-scan-cross-cont {
+    width: 100%;
+    text-align: center;
+    margin-top: var(--space-base);
+    color: var(--orbit-red-7);
+}
+
+.orbit-qrcode-scan-button-cont {
+    width: 100%;
+    text-align: center;
+    margin-top: var(--space-m);
+}
+
+.btn.btn-primary.orbit-qrcode-scan-button {
+    border-radius: 50px;
+}
+
+
+    /*  $4.22. Orbit Loading Spinner  */
+
+.orbit-spinner-cont {
+    width: 100%;
+    height: auto;
+    padding: var(--space-xxl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.orbit-spinner-cont .icon.orbit-spinner-icon {
+    font-size: 500%;
+    animation: spinner 800ms infinite normal linear;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+    /*  $4.23. Orbit Host Survey  */
+
+        /*  $4.23.1. Header  */
+
+:where(.backwards-compatibility).orbit-theme .header-title .orbit-host-survey-header-title {
+    white-space: normal;
+}
+
+.orbit-host-survey-header {
+    background-color: var(--color-neutral-0);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+:where(.backwards-compatibility) .header-content > div:only-child div:only-child.orbit-host-survey-header,
+:where(.backwards-compatibility) .header-content > div:only-child div:only-child.orbit-host-survey-header-summary {
+    /*
+        !important is required to overwrite backwards-compatibility code,
+        We're using the specific class of the div as an additional filter
+        to make sure other instances are not affected.
+    */
+    padding: var(--space-base) var(--space-m) !important;    
+    box-shadow: 0px 2px 6px 0px rgba(0,0,0,10%);
+}
+
+        /*  $4.23.2. Content  */
+
+.orbit-theme .orbit-host-survey.content {
+    background-color: var(--color-neutral-3);
+    /* overflow: visible; */
+}
+
+.orbit-theme .orbit-host-survey.orbit-host-survey-no-steps.content {
+    background-color: var(--color-neutral-0);
+}
+
+        /*  $4.23.3. Main List  */
+
+.orbit-theme .orbit-host-survey .list.list-group.orbit-host-survey-list {
+    background-color: transparent;
+    overflow: visible;
+}
+
+.orbit-theme .orbit-host-survey .list.list-group.orbit-host-survey-list > .orbit-host-survey-list-item {
+    margin-top: var(--space-s);
+}
+
+.orbit-theme .orbit-host-survey .list.list-group.orbit-host-survey-list > .orbit-host-survey-list-item:last-child {
+    margin-bottom: var(--space-s);
+}
+
+.orbit-theme .orbit-host-survey .list.list-group.orbit-host-survey-list > .orbit-host-survey-list-item:only-child {
+    margin-bottom: 0;
+}
+
+        /*  $4.23.4. Step Item  */
+
+.orbit-host-survey .orbit-host-survey-item {
+    width: 100%;
+    background-color: var(--color-neutral-0);
+    padding: var(--space-m);
+}
+
+.orbit-theme .orbit-host-survey .orbit-host-survey-item .orbit-host-survey-item-content > div {
+    margin-bottom: var(--space-base);
+}
+
+.orbit-theme .orbit-host-survey .orbit-host-survey-item .orbit-host-survey-item-content > div:last-of-type {
+    margin-bottom: 0px;
+}
+
+        /*  $4.23.5. Label  */
+
+.orbit-theme .orbit-host-survey label {
+    font-weight: normal;
+    font-size: var(--font-size-s);
+    margin-bottom: var(--space-s);
+}
+
+.orbit-theme .orbit-host-survey label.bold {
+    font-weight: var(--font-bold);
+}
+
+        /*  $4.23.6. Inputs/Dropdowns  */
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .input-text span.validation-message,
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .input-email span.validation-message,
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .input-tel span.validation-message,
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .input-area span.validation-message,
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .input-password span.validation-message,
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .input-date span.validation-message,
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .dropdown-container span.validation-message,
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey span.validation-message {
+    font-size: var(--font-size-s);
+}
+
+.tablet :where(.backwards-compatibility) .orbit-theme .orbit-host-survey div.dropdown-display,
+.tablet :where(.backwards-compatibility) .orbit-theme .orbit-host-survey select.dropdown-display,
+.phone :where(.backwards-compatibility) .orbit-theme .orbit-host-survey div.dropdown-display,
+.phone :where(.backwards-compatibility) .orbit-theme .orbit-host-survey select.dropdown-display {
+    height: 45px;
+    padding: 10px 10px;
+}
+
+.tablet .orbit-theme .orbit-host-survey .dropdown-container:after,
+.phone .orbit-theme .orbit-host-survey .dropdown-container:after {
+    top: 16px;
+    border-color: var(--color-neutral-7);
+}
+
+.tablet .orbit-theme .orbit-host-survey .dropdown-expanded.dropdown-container:after,
+.phone .orbit-theme .orbit-host-survey .dropdown-expanded.dropdown-container:after {
+    border-color: var(--orbit-primary-6);
+}
+
+.orbit-theme .orbit-host-survey .form-control[data-input]:focus,
+.orbit-theme .orbit-host-survey .form-control[data-textarea]:focus,
+.orbit-theme .orbit-host-survey .dropdown-container > div.dropdown-display:focus,
+.orbit-theme .orbit-host-survey .dropdown-container > select.dropdown-display:focus,
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .dropdown-container.dropdown-expanded > div.dropdown-display {
+    border: var(--border-size-s) solid var(--orbit-primary-6);
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-dropdown] > div.dropdown-display {
+    border: 1px solid var(--color-neutral-5);
+}
+
+.orbit-theme .orbit-host-survey .dropdown-container > div.dropdown-list {
+    border: 0px;
+    padding: var(--space-base);
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .dropdown-expanded-down div.dropdown-list,
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .dropdown-expanded-up div.dropdown-list {
+    border-radius: var(--border-radius-soft);
+    box-shadow: none;
+    margin : var(--space-s) 0;
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-dropdown] .scrollable-list {
+    max-height: 220px;
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .dropdown-container .dropdown-popup-row {
+    padding: var(--space-base) var(--space-xxl);
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .dropdown-container .dropdown-popup-row:first-of-type {
+    padding: 0 var(--space-xxl) var(--space-base) var(--space-xxl);
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .dropdown-container .dropdown-popup-row:last-of-type {
+    padding: var(--space-base) var(--space-xxl) 0 var(--space-xxl);
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .dropdown-container .dropdown-popup-row:focus {
+    background-color: var(--color-neutral-2);
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-dropdown] .scrollable-list-with-scroll::-webkit-scrollbar {
+    width: 8px !important;
+    display: block;
+    background-color: transparent;
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-dropdown] .scrollable-list-with-scroll::-webkit-scrollbar-thumb {
+    background-color: var(--color-neutral-5);
+    border-radius: 10px;
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .dropdown-container.not-valid > div.dropdown-display,
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .dropdown-container.not-valid > select.dropdown-display {
+    border: var(--border-size-s) solid var(--color-error);
+}
+
+.tablet .orbit-theme .orbit-host-survey .not-valid.dropdown-expanded.dropdown-container:after,
+.phone .orbit-theme .orbit-host-survey .not-valid.dropdown-expanded.dropdown-container:after {
+    border-color: var(--color-error);
+}
+
+.orbit-theme .orbit-host-survey span.validation-message {
+    max-width: fit-content;
+    display: block;
+    white-space: break-spaces;
+    margin-top: var(--space-s);
+}
+
+        /*  $4.23.7. Button Group  */
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .button-group {
+    background-color: var(--color-neutral-0);
+    border-radius: 4px;
+    padding: 0;
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .button-group.not-valid > div {
+    border-radius: 4px;
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .button-group-item {
+    font-size: var(--font-size-s);
+    color: var(--color-neutral-5);
+    padding: 12px 8px;
+    border: 1px solid var(--color-neutral-5);
+    border-left: none;
+    border-radius: 0px;
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .button-group-item:first-child {
+    border-radius: 4px 0 0 4px;
+    border-left: 1px solid var(--color-neutral-5);
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey .button-group-item:last-child {
+    border-radius: 0 4px 4px 0;
+}
+
+:where(.backwards-compatibility) .orbit-theme .orbit-host-survey button.button-group-item.button-group-selected-item {
+    background-color: var(--orbit-primary-7);
+    color: var(--color-neutral-0);
+    border: 1px solid var(--orbit-primary-7);
+}
+
+        /*  $4.23.8. Checkboxes  */
+
+.tablet :where(.backwards-compatibility) .orbit-theme .orbit-host-survey input[data-checkbox]:not([type="radio"]),
+.phone :where(.backwards-compatibility) .orbit-theme .orbit-host-survey input[data-checkbox]:not([type="radio"]) {
+    width: 22px;
+    height: 22px;
+}
+
+.tablet :where(.backwards-compatibility) .orbit-theme .orbit-host-survey input[data-checkbox]:not([type="radio"]):disabled,
+.phone :where(.backwards-compatibility) .orbit-theme .orbit-host-survey input[data-checkbox]:not([type="radio"]):disabled {
+    border-radius: var(--space-s);
+    border: none;
+}
+
+.tablet :where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-checkbox]:before,
+.phone :where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-checkbox]:before {
+    border: 1px solid var(--color-neutral-5);
+    border-radius: var(--space-s);
+}
+
+.tablet :where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-checkbox]:checked:before,
+.phone :where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-checkbox]:checked:before {
+    border: 1px solid var(--orbit-primary-7);
+    background-color: var(--orbit-primary-7);
+}
+
+.tablet :where(.backwards-compatibility) .orbit-theme .orbit-host-survey input[data-checkbox]:disabled:checked:before,
+.phone :where(.backwards-compatibility) .orbit-theme .orbit-host-survey input[data-checkbox]:disabled:checked:before {
+    border-radius: var(--space-s);
+    background-color: var(--color-neutral-4);
+    border: 1px solid var(--color-neutral-4);
+}
+
+.tablet :where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-checkbox]:checked:after,
+.phone :where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-checkbox]:checked:after {
+    width: 8px;
+    height: 4px;
+    border: 4px solid var(--color-neutral-0);
+    border-radius: 2px;
+    left: 6px;
+    top: 6px;
+}
+
+.tablet :where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-checkbox]:disabled:checked:after,
+.phone :where(.backwards-compatibility) .orbit-theme .orbit-host-survey [data-checkbox]:disabled:checked:after {
+    border-color: var(--color-neutral-7) !important;
+}
+
+        /*  $4.23.9. Pills  */
+
+.orbit-theme .orbit-host-survey .orbit-host-survey-pill-cont {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: var(--space-base);
+}
+
+.orbit-host-survey-pill {
+    width: min-content;
+    padding: 4px 8px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--orbit-primary-1);
+    color: var(--color-neutral-10);
+}
+
+.orbit-host-survey-pill.orbit-host-survey-pill-disabled {
+    background-color: var(--color-neutral-3);
+    color: var(--color-neutral-7);
+}
+
+        /*  $4.23.10. General Items  */
+
+.orbit-host-survey-navigation,
+.orbit-host-survey-accommodation,
+.orbit-host-survey-meal,
+.orbit-host-survey-helper,
+.orbit-host-survey-vehicle,
+.orbit-host-survey-summary {
+    width: 100%;
+    height: 100%;
+}
+
+.orbit-host-survey-accommodation-item,
+.orbit-host-survey-meal-item,
+.orbit-host-survey-helper-item,
+.orbit-host-survey-vehicle-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+        /*  $4.23.11. Helper Member  */
+
+.orbit-host-survey-helper-member {
+    border: var(--border-size-s) solid var(--color-neutral-5);
+    border-radius: var(--border-radius-soft);
+}
+
+        /*  $4.23.12. Helper Member Search  */
+
+.orbit-theme .orbit-host-survey .orbit-host-survey-helper-search {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: var(--space-base);
+    border: var(--border-size-s) solid var(--color-neutral-5);
+    border-radius: var(--border-radius-soft);
+    min-height: 45px;
+    gap: 0px var(--space-base);
+}
+
+.orbit-theme .orbit-host-survey .orbit-host-survey-helper-search.orbit-host-survey-helper-search-not-valid {
+    border: var(--border-size-s) solid var(--color-error);
+}
+
+.orbit-host-survey-helper-asterisk{
+    color: var(--color-alert);
+    vertical-align: top;
+    font-size: var(--font-size-xs);
+}
+
+.orbit-theme .orbit-host-survey .orbit-host-survey-helper-search .list.list-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: var(--space-base);
+}
+
+.orbit-theme .orbit-host-survey .orbit-host-survey-helper-search .orbit-host-survey-helper-search-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 0px var(--space-s);
+    color: var(--color-neutral-7);
+    background-color: var(--color-neutral-2);
+    width: fit-content;
+    padding: 8px 12px;
+    border-radius: 15px;
+}
+
+        /*  $4.23.13. Bottom Sheet  */
+
+.osui-bottom-sheet.orbit-host-survey-helper-sheet {
+    min-height: 100vh;
+    
+}
+
+.orbit-theme .orbit-host-survey .osui-bottom-sheet-overlay {
+    
+}
+
+.orbit-theme .orbit-host-survey .osui-bottom-sheet.orbit-host-survey-helper-sheet .osui-bottom-sheet__header {
+    background-color: var(--color-primary-orbit);
+}
+
+.orbit-theme .orbit-host-survey .osui-bottom-sheet.orbit-host-survey-helper-sheet .osui-bottom-sheet__header__top-bar {
+    padding: var(--space-m);
+}
+
+.orbit-theme .orbit-host-survey .osui-bottom-sheet.orbit-host-survey-helper-sheet.osui-bottom-sheet--has-handler .osui-bottom-sheet__header__top-bar {
+    padding-top: var(--space-l);
+}
+
+.orbit-theme .orbit-host-survey .osui-bottom-sheet.orbit-host-survey-helper-sheet .osui-bottom-sheet__header label {
+    color: var(--color-neutral-0);
+    font-size: var(--font-size-base);
+}
+
+.orbit-theme .orbit-host-survey .osui-bottom-sheet.orbit-host-survey-helper-sheet .osui-bottom-sheet__content {
+    padding: 0;
+}
+
+.orbit-theme .orbit-host-survey .osui-bottom-sheet.orbit-host-survey-helper-sheet .orbit-host-survey-load-more-button {
+    text-align: center;
+    font-size: var(--font-size-s);
+    padding: var(--space-base);
+    font-weight: bold;
+    border-top: 5px solid var(--color-neutral-3);
+}
+
+        /*  $4.23.14. Member Card  */
+
+.orbit-theme .orbit-host-survey .member-info-img-cont.orbit-host-survey-member-info-img-cont {
+    display: block;
+}
+
+.orbit-theme .orbit-host-survey .member-info-location.orbit-host-survey-member-location {
+    color: var(--color-neutral-7);
+    background-color: var(--color-neutral-2);
+    vertical-align: middle;
+    line-height: var(--font-size-base);
+    padding: 4px;
+}
+
+        /*  $4.23.15. Grid Split Inputs  */
+
+.grid-split-input-cont{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100%;
+    gap: var(--space-base);
+}
+
+.grid-split-input-1 {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.grid-split-input-2 {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+}
+
+        /*  $4.23.16. New Popup  */
+
+.orbit-popup-new-cont {
+    width: 100%;
+    background-color: var(--color-neutral-0);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.orbit-popup-new-exit {
+    width: 100%;
+    text-align: right;
+    color: var(--color-neutral-6);
+    font-size: var(--font-size-base);
+}
+
+.orbit-popup-new-title {
+    width: 100%;
+    font-size: var(--font-size-s);
+}
+
+.orbit-popup-new-message {
+    margin-top: var(--space-s);
+    width: 100%;
+    font-size: var(--font-size-xs);
+}
+
+.orbit-popup-new-action {
+    width: 100%;
+    margin-top: var(--space-m);
+    font-size: var(--font-size-xs);
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    column-gap: var(--space-m);
+}
+
+.orbit-popup-new-action-btn {
+    min-width: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-s) var(--space-xs);
+    border-radius: 100px;
+}
+
+.orbit-popup-new-action-btn-cancel {
+    color: var(--orbit-primary-6);
+    background-color: var(--color-neutral-0);
+}
+
+.orbit-popup-new-action-btn-proceed {
+    color: var(--color-neutral-0);
+    background-color: var(--orbit-primary-6);
+}
+
+        /*  $4.23.17. Accordion  */
+
+.orbit-theme .orbit-host-survey .osui-accordion.orbit-host-survey-accordion .osui-accordion-item {
+    border: none;
+    border-radius: 0px;
+    margin-top: var(--space-s);
+}
+
+.orbit-theme .orbit-host-survey .osui-accordion.orbit-host-survey-accordion .osui-accordion-item:after {
+    border-radius: 0px;
+}
+
+.orbit-theme .orbit-host-survey .osui-accordion.orbit-host-survey-accordion .osui-accordion-item.osui-accordion-item--is-open::after {
+    border-color: var(--orbit-primary-6);
+}
+
+.orbit-theme .orbit-host-survey .osui-accordion.orbit-host-survey-accordion .osui-accordion-item .osui-accordion-item__title {
+    padding: var(--space-m);
+    font-weight: bold;
+}
+
+.orbit-theme .orbit-host-survey .osui-accordion.orbit-host-survey-accordion .osui-accordion-item .osui-accordion-item__title .osui-accordion-item__icon.osui-accordion-item__icon--caret {
+    color: var(--orbit-primary-6);
+    font-weight: bold;
+}
+
+.orbit-theme .orbit-host-survey .osui-accordion.orbit-host-survey-accordion .osui-accordion-item .osui-accordion-item__content--is-expanded {
+    padding: var(--space-none) var(--space-m) var(--space-m);
+}
+
+.orbit-theme .orbit-host-survey .osui-accordion.orbit-host-survey-accordion .osui-accordion-item .osui-accordion-item__content .orbit-host-survey-list-item {
+    margin-top: var(--space-m);
+}
+
+.orbit-theme .orbit-host-survey .osui-accordion.orbit-host-survey-accordion .osui-accordion-item .osui-accordion-item__content .orbit-host-survey-list-item:first-of-type {
+    margin-top: 0px;
+}
+
+.orbit-theme .orbit-host-survey .osui-accordion.orbit-host-survey-accordion .osui-accordion-item .osui-accordion-item__content .orbit-host-survey-item {
+    padding: 0px;
+}
+
+        /*  $4.23.18. Tooltip  */
+
+.orbit-theme .orbit-host-survey .orbit-host-survey-accommodation .osui-tooltip,
+.orbit-theme .orbit-host-survey .orbit-host-survey-accommodation .osui-tooltip.osui-tooltip--is-open {
+    width: 100%;
+}
+
+.orbit-theme .osui-tooltip__balloon-wrapper__balloon {
+    padding: var(--space-m);
+}
+
+        /*  $4.23.19. Switch  */
+
+.orbit-switch-cont {
+    margin-left: var(--space-m);
+}
+
+.orbit-switch-cont span {
+    display: block;
+    height: 24px;
+}
+
+:where(.backwards-compatibility) input.switch.orbit-switch {
+    height: 24px;
+    width: 38.4px;
+}
+
+:where(.backwards-compatibility) input.switch.orbit-switch:empty:before {
+    height: 24px;
+    top: 0px;
+    opacity: 1;
+    border: none;
+    width: 38.4px;
+    background-color: var(--color-neutral-6);
+}
+
+:where(.backwards-compatibility) input.switch.orbit-switch:checked:before {
+    background-color: var(--orbit-primary-6) !important;
+    border: none;
+}
+
+:where(.backwards-compatibility) input.switch.orbit-switch:empty:after {
+    border: none;
+    background-color: var(--color-neutral-0) !important;
+    box-shadow: none;
+    height: 18px;
+    width: 18px;
+    top: 3px;
+    left: 3px;
+}
+
+:where(.backwards-compatibility) input.switch.orbit-switch:checked:after {
+    left: 17.4px;
+}
+
+        /*  $4.23.20. Button Link to Survey  */
+
+.orbit-host-survey-link-new {
+    font-size: 0.85em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--orbit-primary-6);
+    color: var(--color-neutral-0);
+    padding: var(--space-base) var(--space-m);
+    border-radius: var(--space-base);
+}
+
+        /*  $4.23.21. Household Captions   */
+
+.orbit-household-caption-list [data-expression] {
+    white-space: normal;
+}
+
+    /*  $4.24. Orbit No Results  */
+
+.no-results-cont {
+    width: 100%;
+    background-color: var(--color-neutral-0);
+    padding: var(--space-m);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.no-results-icon-cont {
+    text-align: center;
+    background-color: var(--color-neutral-2);
+    color: var(--color-neutral-7);
+    padding: var(--space-m);
+    border-radius: 50%;
+}
+
+.no-results-icon {
+    font-size: 1.5em;
+    vertical-align: middle;
+}
+
+.no-results-title {
+    font-weight: bold;
+    margin-top: var(--space-m);
+}
+
+.no-results-message {
+    margin-top: var(--space-base);
+    font-size: var(--font-size-s);
+    text-align: center;
+    color: var(--color-neutral-7);
+}
+
+    /*  $4.25. Orbit Admin Tag  */
+
+.orbit-admin-tag {
+    color: var(--color-neutral-0);
+    background-color: var(--orbit-primary-6);
+    border-radius: 4px;
+    padding: 0 var(--space-s);
+    border: none;
+}
+
+    /*  $4.26. Orbit Separator  */
+
+.orbit-separator {
+    width: 100%;
+    height: var(--space-xs);
+    background-color: var(--color-neutral-3);
+    border-radius: 0px;
+}
+
+    /*  $4.27 Footer  */
+
+.orbit-footer-with-buttons {
+    padding: var(--space-m);
+    background-color: var(--color-neutral-0);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.orbit-footer-with-buttons .orbit-footer-with-buttons-btn {
+    font-size: var(--font-size-s);
+    padding: 16px 8px;
+    min-height: 40px;
+    max-width: 140px;
+    min-width: 39%;
+    width: 140px;
+    text-align: center;
+    border-radius: 100px;
+    font-weight: bold;
+}
+
+.orbit-footer-with-buttons .orbit-footer-with-buttons-btn.orbit-footer-with-buttons-btn-small {
+    padding: 10px 5px;
+    min-height: 34px;
+    max-width: 100px;
+    border-radius: 3px;
+}
+
+.orbit-footer-with-buttons .orbit-footer-with-buttons-btn.orbit-footer-with-buttons-btn-left {
+    color: var(--orbit-primary-7);
+}
+
+.orbit-footer-with-buttons .orbit-footer-with-buttons-btn.orbit-footer-with-buttons-btn-right {
+    background-color: var(--orbit-primary-7);
+    color: var(--color-neutral-0);
+}
+
+.orbit-footer-with-buttons .orbit-footer-with-buttons-btn.orbit-footer-with-buttons-btn-right.orbit-footer-with-buttons-btn-disabled {
+    background-color: var(--color-neutral-3);
+    color: var(--color-neutral-6);
+    border: 1px solid var(--color-neutral-6);
+}
+
+    /*  $4.28 Event Booklet  */
+
+
+        /*  $4.28.1 Filter Popup  */
+
+.orbit-theme .orbit-booklet-popup.popup-dialog {
+    padding: var(--space-m) var(--space-base) 0 var(--space-base);
+    margin: var(--space-base);
+}
+
+.tablet.orbit-theme [data-checkbox],
+.phone.orbit-theme [data-checkbox] {
+    height: 24px;
+    width: 24px;
+}
+
+.tablet.orbit-theme [data-checkbox]:before,
+.phone.orbit-theme [data-checkbox]:before {
+    height: 22px;
+    width: 22px;
+}
+
+.tablet.orbit-theme [data-checkbox]:checked:before,
+.phone.orbit-theme [data-checkbox]:checked:before {
+    background: var(--orbit-primary-7);
+    border: var(--border-size-s) solid var(--orbit-primary-7);
+}
+
+.tablet.orbit-theme [data-checkbox]:checked:after,
+.phone.orbit-theme [data-checkbox]:checked:after {
+    width: 8px;
+    top: 8px;
+    left: 7px;
+}
+
+.orbit-theme .orbit-booklet-popup .orbit-booklet-popup-filters-cont {
+    height: 60vh;
+    overflow-y: scroll;
+    overflow-x: unset;
+    margin-top: var(--space-base);
+}
+
+        /*  $4.28.2 Double Button  */
+
+.orbit-theme .orbit-double-button-cont {
+    width: 100%;
+    background-color: var(--color-neutral-0);
+    padding: var(--space-base) var(--space-m);
+}
+
+:where(.backwards-compatibility) .orbit-theme .header-content > div:only-child > div:only-child.orbit-double-button-cont,
+:where(.backwards-compatibility) .orbit-theme .header-content > div:only-child > span:only-child > div:only-child.orbit-double-button-cont {
+    padding: var(--space-base) var(--space-m) !important;
+    /* 
+    Important is needed to counter another !important rule set
+    for all only-child divs inside the header-content by default
+     */
+}
+
+.orbit-theme .orbit-double-button-border-cont {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 2px;
+    padding: var(--space-xs);
+    background-color: var(--color-neutral-2);
+    border: 1px solid var(--color-neutral-5);
+    border-radius: var(--space-s);
+}
+
+.orbit-theme .orbit-double-button-btn {
+    width: 100%;
+    min-height: 30px;
+    height: 30px;
+    max-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-s) var(--space-m);
+    background-color: transparent;
+    color: var(--color-neutral-10);
+    border-radius: var(--space-xs);
+    text-align: center;
+    font-weight: 500;
+}
+
+.orbit-theme .orbit-double-button-btn.orbit-double-button-btn-active {
+    background-color: var(--orbit-primary-7);
+    color: var(--color-neutral-0);
+}
+
+.orbit-theme .orbit-double-button-btn.orbit-double-button-btn-disabled {
+    background-color: var(--color-neutral-3);
+    color: var(--color-neutral-6);
+}
+
+        /*  $4.28.3 List Header  */
+
+
+.orbit-theme .orbit-booklet-list-header-sticky-cont {
+    width: 100%;
+    background-color: var(--color-neutral-0);
+    position: sticky;
+    top: 0px;
+    z-index: 2;
+}
+
+.orbit-theme .orbit-booklet-list-header-cont {
+    width: 100%;
+    background-color: var(--orbit-primary-1);
+    height: 30px;
+    display: grid;
+    grid-template-columns: 45% 12.5% 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    column-gap: 4px;
+    font-size: var(--font-size-xs);
+    font-weight: bold;
+    padding: var(--space-xs) var(--space-base);
+}
+
+.orbit-theme .orbit-booklet-list-header-title {
+    grid-column: 1 / 2;
+    grid-row: 1 / 1;
+}
+
+.orbit-theme .orbit-booklet-list-header-days {
+    grid-column: 2 / 3;
+    grid-row: 1 / 1;
+}
+
+.orbit-theme .orbit-booklet-list-header-host {
+    grid-column: 3 / span 1;
+    grid-row: 1 / 1;
+}
+
+        /*  $4.28.4 Location Pill  */
+
+.orbit-theme .orbit-booklet-location-pill-cont {
+    padding: var(--space-s) var(--space-base);
+    background-color: var(--color-neutral-0);
+    position: sticky;
+    top: 30px;
+    z-index: 1;
+}
+
+.orbit-theme .orbit-booklet-location-pill {
+    background-color: var(--color-neutral-3);
+    color: var(--color-neutral-9);
+}
+
+        /*  $4.28.5 Member List  */
+
+.orbit-theme .list.list-group.orbit-booklet-main-list,
+.orbit-theme .list.list-group.orbit-booklet-secondary-list {
+    overflow: unset !important;
+}
+
+.orbit-theme .orbit-booklet-list-cont {
+    padding: var(--space-base) 0 var(--space-s) 0;
+    border-bottom: 1px solid var(--color-neutral-4);
+    background-color: var(--color-neutral-0);
+    overflow: unset;
+}
+
+.orbit-theme .orbit-booklet-list-cont:first-of-type {
+    padding-top: 0;
+}
+
+.orbit-theme .orbit-booklet-list-cont:last-of-type,
+.orbit-theme .orbit-booklet-list-cont:only-of-type {
+    border: none;
+}
+
+.orbit-theme .list.list-group.orbit-booklet-list-members {
+    padding: 0 var(--space-base);
+}
+
+.orbit-theme .orbit-booklet-list-members-item {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 45% 12.5% 1fr;
+    grid-template-rows: 1fr;
+    column-gap: 4px;
+    font-size: var(--font-size-xs);
+    align-items: center;
+    padding: var(--space-xs) 0;
+}
+
+.orbit-theme .orbit-booklet-list-members-title {
+    grid-column: 1 / 2;
+    grid-row: 1 / 1;
+    line-height: 24px;
+}
+
+.orbit-theme .orbit-booklet-list-members-days {
+    grid-column: 2 / 3;
+    grid-row: 1 / 1;
+    line-height: 24px;
+}
+
+.orbit-theme .orbit-booklet-list-members-days .list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: fit-content;
+}
+
+.orbit-theme .orbit-booklet-list-members-host {
+    grid-column: 3 / span 1;
+    grid-row: 1 / 1;
+    line-height: 24px;
+}
+
+
+    /*  $4.29 Orbit UI Classes  */
+
+.orbit-border-background {
+    border-top: 3px solid var(--color-neutral-3);
+    border-bottom: 3px solid var(--color-neutral-3);
+}
+
+
+/*==========  $4. Specific Classes - Orbit | END |  ==========*/
+
+
+/*==========  $5. Auxiliary Classes | START |  ==========*/
+
+
+    /*  $5.1. LDM Error Screen  */
+
+.error-screen-cont {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl);
+}
+
+.error-screen-info {
+    width: 100%;
+    align-items: center;
+    color: var(--color-neutral-8);
+    display: flex;
+    flex-direction: column;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+
+/*==========  $5. Auxiliary Classes | END |  ==========*/
+
+
+/*Migration to updated OSUI theme*/
+
+:where(.backwards-compatibility) .header.orbit-detail .header-top .header-content > div{
+    align-items: baseline;
+    height: auto;
+}
+
+/*:where(.backwards-compatibility) .header.orbit-detail .header-top{
+    padding-top: var(--space-xs);
+}*/
+
+:where(.backwards-compatibility) .header.orbit-detail.orbit-header-center .header-top .header-content > div{
+    align-items: center;
+}
+
+
+:where(.backwards-compatibility) .layout-native .month-year-selector .list-item {
+    border: none;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    padding-top: 10px;
+}
+
+
+:where(.backwards-compatibility) .month-year-selector .fa-chevron-left{
+    padding-left: 6px  
+} 
+
+:where(.backwards-compatibility) .month-year-selector .fa-chevron-right{
+    padding-right: 6px  
+}  
+
+:where(.backwards-compatibility) .month-calendar-wrapper.main-content{
+    position: absolute;
+    height: 100%;
+}
+
+:where(.backwards-compatibility) .event-view-option-item input.checkbox,
+:where(.backwards-compatibility) .event-view-option-item input.checkbox{
+    border: none;
+    width: auto;
+    height: auto;
+}
+
+:where(.backwards-compatibility) .layout-native .event-view-option-item input.checkbox:before{
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-primary);
+}
+
+:where(.backwards-compatibility) .layout-native .event-view-option-item input.checkbox[disabled]:checked:before{
+      border: 2px solid #cfd8dc;
+}
+
+:where(.backwards-compatibility) .layout-native .event-view-option-item input.checkbox:after{
+    top: 5px;
+    left: 5px
+}
+
+:where(.backwards-compatibility) .event-view-option-item{
+    height:38px;
+}
+/*Migration end*/
+
+

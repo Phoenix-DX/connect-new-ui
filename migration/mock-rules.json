@@ -1,0 +1,48 @@
+{
+ "_note": "har_to_fixtures.py rules (user, 2026-10-14): place, organisation, service and static-entity names are app labels and keep their real value (capture decision Q3 a); emails, phones, street addresses and person names are replaced. dropInputs: screen state OutSystems sends with data actions (the test user's cached profile, account and contact forms, typed text, device data) is removed; mocks match only the inputs a route sends. Latitude/Longitude kept: only place coordinates are in scope (countries, localities, halls), needed for map pins 1:1. dropOutputs Directory_UserCurrent (user, 2026-10-14): the test user's profile is never kept; the GetCacheInfo mock fills it from the shell's fictional mock user. Counters and map styles caught by name (\u2026Message\u2026, Opa-city) are kept (contract fixture check, 2026-10-14).",
+ "keep": [
+  "Name",
+  "CountryName",
+  "Country_Name",
+  "LocalityName",
+  "Locality_Name",
+  "SearchName",
+  "TimezoneName",
+  "Out_TimezoneName",
+  "Out_Name",
+  "Policy_FileName",
+  "AddressFormat",
+  "AddressItemsList",
+  "Out_NotePills",
+  "Latitude",
+  "Longitude",
+  "MaiinHallLatitude",
+  "MainHallLongitude",
+  "NumberPrivateUnreadMessages",
+  "NumberPublicUnreadMessages",
+  "Opacity",
+  "FillOpacity"
+ ],
+ "anonymize": [
+  "Address",
+  "Email",
+  "Phone",
+  "ContactName"
+ ],
+ "ids": [],
+ "dropInputs": [
+  "LocalCacheControl_UserInformation",
+  "AccountForm",
+  "AccountFormOriginal",
+  "AccountForm_ViewPreview",
+  "ContactUsForm",
+  "Description",
+  "MessagePrompt",
+  "Logged_User",
+  "DeviceId",
+  "AppManager_MobileContext"
+ ],
+ "dropOutputs": [
+  "Directory_UserCurrent"
+ ]
+}

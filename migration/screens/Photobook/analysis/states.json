@@ -1,0 +1,44 @@
+{
+ "default": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/Photobook?In_HouseholdId=42438&In_LocalityId=252",
+  "steps": [],
+  "scenario": "real",
+  "auto": null,
+  "htmlClass": "",
+  "bodyClass": "phone portrait is-ltr",
+  "bodyStyle": "",
+  "dpr": 1
+ },
+ "loading": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/Photobook?In_HouseholdId=42438&In_LocalityId=252",
+  "steps": [],
+  "scenario": "loading",
+  "auto": "loading",
+  "htmlClass": "",
+  "bodyClass": "phone portrait is-ltr",
+  "bodyStyle": "",
+  "dpr": 1
+ },
+ "offline": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/Photobook?In_HouseholdId=42438&In_LocalityId=252",
+  "steps": [],
+  "scenario": "error",
+  "auto": "offline",
+  "htmlClass": "",
+  "bodyClass": "phone portrait is-ltr",
+  "bodyStyle": "",
+  "dpr": 1
+ }
+}

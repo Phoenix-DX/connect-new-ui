@@ -1,0 +1,32 @@
+{
+  "name": "Connect 2.0",
+  "short_name": "Connect 2.0",
+  "description": "Main app for Connect 2.0",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1992ab",
+  "icons": [
+    {
+      "src": "/UBTConnect/img/UBTConnect.AppLogo.48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "/UBTConnect/img/UBTConnect.AppLogo.96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "/UBTConnect/img/UBTConnect.AppLogo.192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/UBTConnect/img/UBTConnect.AppLogo.512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/UBTConnect/",
+  "orientation": "portrait"
+}

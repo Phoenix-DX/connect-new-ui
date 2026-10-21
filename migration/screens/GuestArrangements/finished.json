@@ -1,0 +1,11 @@
+{
+ "finishedAt": "2026-10-16T15:03:19",
+ "files": {
+  "src/screens/GuestArrangements/api.ts": "51fefbb00aa4c9e6",
+  "src/screens/GuestArrangements/components/ScreenBlock_GuestArrangements.tsx": "b88d38044f8d3752",
+  "src/screens/GuestArrangements/components/actions.ts": "8c91879011345f12",
+  "src/screens/GuestArrangements/index.tsx": "14ba71b0a3126821",
+  "src/screens/GuestArrangements/mocks.ts": "9e07f8b9fbbcb49e",
+  "src/screens/GuestArrangements/types.ts": "18755fe6f493f641"
+ }
+}

@@ -1,0 +1,30 @@
+{
+ "app": "UBTConnect TST",
+ "account": "test account (not named)",
+ "at": "/UBTConnect/HomeFeed",
+ "probedAt": "2026-10-14T05:24:13.276Z",
+ "values": {
+  "getHasNewLDM": true,
+  "getHasNewBookmarks": false,
+  "getHasBookmarNote": false,
+  "getHasNewNotifications": false,
+  "getHasCarouselEnabled": true,
+  "getHasC1DirectoryView": true,
+  "getHasMapsEnabled": false,
+  "getHasPhotobookAccess": true,
+  "getHasOrbitAccess": true,
+  "getHasOrbitEventBooklet": true,
+  "getHasOrbitHostSurvey": true,
+  "getHasAssemble": true,
+  "getHasFeedEnabled": true,
+  "getHasCustomEvents": true,
+  "getHasExtendedShare": true,
+  "getHasDeceasedProfileAccess": true,
+  "getHasPersonalEvents": false,
+  "getHasAncestry4thGenerationAccess": true,
+  "getHasHiddenMembersAccess": true,
+  "outSystems_FF.c2EnableSearchByBirthday": true,
+  "launchDarkly_FF.mobileStudentInformation": true
+ },
+ "callsDuringProbe": []
+}

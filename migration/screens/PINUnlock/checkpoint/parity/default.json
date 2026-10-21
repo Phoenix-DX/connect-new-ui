@@ -1,0 +1,61 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/PINUnlock?mocksession=locked",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "1eb1957a5cea442d7e5e",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 152,
+  "texts": 24,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T08:01:49.593Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 2,
+  "CAPTURE-LINK-HREF-CURSOR-PINCODE": 6
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 0,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 12,
+  "hotspots": [],
+  "diffPng": "migration/screens/PINUnlock/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 8,
+  "actual": 8
+ },
+ "diffs": []
+}

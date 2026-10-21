@@ -1,0 +1,60 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/MessageList?mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "8cac0d24fa59d19873b8",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 171,
+  "texts": 17,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-21T04:32:42.051Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "PULL-TO-REFRESH-FADEIN-PHASE": 1,
+  "ignoreSubtrees": 2,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
+ },
+ "pixel": {
+  "ratio": 0.00006,
+  "maxCell": 0.0069,
+  "maxCellRatio": 0.03,
+  "diffPixels": 20,
+  "comparedPixels": 328978,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 3,
+  "hotspots": [
+   "200,800 (11px)",
+   "200,760 (9px)"
+  ],
+  "diffPng": "migration/screens/MessageList/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

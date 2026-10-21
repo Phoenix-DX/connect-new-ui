@@ -1,0 +1,25 @@
+{
+ "module": "UBTConnect_Utils",
+ "action": "DataActionGetCacheInfo",
+ "screen": "CacheControl_Policies",
+ "status": 200,
+ "inputs": {
+  "CacheTypeId": "Pariatur",
+  "CacheKey": "Unique",
+  "TimeToLiveSeconds": 7200
+ },
+ "data": {
+  "CacheControl_Response": {
+   "PolicyInformation_TermsAndConditions": {
+    "Policy_ContentType": "application/pdf",
+    "Policy_FileName": "Privacy Policy TST 236 (1).pdf",
+    "Policy_Url": "https://ubtm-tst.ubtconnectglobal.com/ApplicationPoliciesMT/rest/Policy/1343"
+   },
+   "PolicyInformation_PrivacyPolicy": {
+    "Policy_ContentType": "application/pdf",
+    "Policy_FileName": "Privacy Policy TST 236 (1).pdf",
+    "Policy_Url": "https://ubtm-tst.ubtconnectglobal.com/ApplicationPoliciesMT/rest/Policy/1344"
+   }
+  }
+ }
+}

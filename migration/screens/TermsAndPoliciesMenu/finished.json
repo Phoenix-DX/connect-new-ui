@@ -1,0 +1,12 @@
+{
+ "finishedAt": "2026-10-16T15:02:14",
+ "files": {
+  "src/screens/TermsAndPoliciesMenu/api.ts": "6867e49ae0f56ba8",
+  "src/screens/TermsAndPoliciesMenu/components/actions.test.ts": "becd0e97a1f8e9bd",
+  "src/screens/TermsAndPoliciesMenu/components/actions.ts": "67fff688ceb487fb",
+  "src/screens/TermsAndPoliciesMenu/components/staticEntities.ts": "38016c6430a601c4",
+  "src/screens/TermsAndPoliciesMenu/index.tsx": "5877c06d86d048d0",
+  "src/screens/TermsAndPoliciesMenu/mocks.ts": "0d2567be565cb26f",
+  "src/screens/TermsAndPoliciesMenu/types.ts": "c6a48dda4d91d1dc"
+ }
+}

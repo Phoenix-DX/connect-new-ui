@@ -1,0 +1,42 @@
+{
+ "_comment": "Proposed by route-orbit-lite-1 (ContactByEmailOrbitHelpdesk, 2026-10-16) for the orchestrator; not in migration/parity-exemptions.json. Evidence: diagnostic parity run with the Q1 cloneQuery (scratchpad) and the stamped reports in migration/screens/ContactByEmailOrbitHelpdesk/parity/.",
+ "rules": [
+  {
+   "id": "VIA-ORBIT-THEME-BODY-CONTACTBYEMAILORBITHELPDESK",
+   "routeRegex": "^/UBTConnect/ContactByEmailOrbitHelpdesk(\\?|$)",
+   "kinds": [
+    "class"
+   ],
+   "states": "^default$",
+   "pathRegex": "^body$",
+   "detailRegex": "^missing \\.orbit-theme",
+   "reason": "The state was captured via OrbitLanding → EventDetail (states.json via): Layout_Orbit's OnInitialize put the orbit-theme class on the body (SetThemeClassToBody) and nothing removes it, so it is still there on this Layout_DetailPage screen. Parity opens the route by URL with no Orbit screen before, so the body has no orbit-theme; in the app, after the same navigation, the shared Layout_Orbit leaves it too (shell/bodyTheme.ts). Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "analysis/states.json (via); analysis/dom/default.html:1 (body class orbit-theme); app/src/shared/Connect2_LegacyShared/Layout_Orbit/Layout_Orbit.tsx:60-62; parity/default.json (class body missing .orbit-theme)"
+  },
+  {
+   "id": "CAPTURE-MASKED-SUBJECT-REPLICA-CONTACTBYEMAILORBITHELPDESK",
+   "routeRegex": "^/UBTConnect/ContactByEmailOrbitHelpdesk(\\?|$)",
+   "kinds": [
+    "pseudo"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b2-\\$b4\\.OSBlockWidget\\[ConnectPatterns\\.DynamicTextArea\\] > div\\.resizable-text-area\\.resizable-text-area--bounded > div#b2-b4-Placeholder_TextArea > span$",
+   "detailRegex": "^::after content \".*\" → \".*\"$",
+   "reason": "The capture masked the subject text area (bullets of the TST event subject) but not DynamicTextArea's data-replicated-value copy that its ::after shows, so the ::after holds the TST event subject while the clone holds the fictional subject of the same word lengths from the cloneQuery (mocks/fictional/orbit.ts event 7301; same three-line layout). Masked-text capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "analysis/dom/default.html:73-74 (data-replicated-value vs masked textarea); parity/default.json (pseudo ::after content)"
+  },
+  {
+   "id": "CAPTURE-MASKED-SUBJECT-PIXELS-CONTACTBYEMAILORBITHELPDESK",
+   "routeRegex": "^/UBTConnect/ContactByEmailOrbitHelpdesk(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[0-1]\\.\\d\\d% pixels differ .*parity/default\\.diff\\.png$",
+   "reason": "Screenshot difference limited to the subject text area: masked bullets in the capture vs the fictional subject text in the clone (same lines and box). Masked-text capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/default.diff.png (0.90%, hotspots on the subject rows y 200-260)"
+  }
+ ],
+ "_merged": "2026-10-16 orchestrator: VIA-ORBIT-THEME-BODY-CONTACTBYEMAILORBITHELPDESK, CAPTURE-MASKED-SUBJECT-REPLICA-CONTACTBYEMAILORBITHELPDESK, CAPTURE-MASKED-SUBJECT-PIXELS-CONTACTBYEMAILORBITHELPDESK"
+}

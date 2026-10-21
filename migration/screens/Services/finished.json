@@ -1,0 +1,13 @@
+{
+ "finishedAt": "2026-10-15T10:49:48",
+ "files": {
+  "src/screens/Services/api.ts": "a89485203d4f7fe5",
+  "src/screens/Services/components/SortableList.tsx": "3382a160c44e06f8",
+  "src/screens/Services/components/SortableList_Draggable.tsx": "393a95df87cb21c6",
+  "src/screens/Services/components/actions.ts": "4bb36c4f04a463f3",
+  "src/screens/Services/components/staticEntities.ts": "f9043908c5bba2d8",
+  "src/screens/Services/index.tsx": "9f8de80361814457",
+  "src/screens/Services/mocks.ts": "03a9f41f87f814fb",
+  "src/screens/Services/types.ts": "71c735ab9af8a170"
+ }
+}

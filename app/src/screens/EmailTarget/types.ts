@@ -1,0 +1,20 @@
+import type { ActionInputs, PathOf } from '../../lib/api';
+
+/** Screen inputs of EmailTarget with their OutSystems defaults (S = runtime-sources/UBTConnect.Legacy_LDMEventsFlow
+    .EmailTarget.mvc.js, model :12-65, set from the URL :106-146). EventDate is "YYYY-MM-DD", "" for the null date. */
+export interface EmailTargetInputs {
+  In_HouseholdFirstName: string;
+  In_HouseholdFullName: string;
+  EmailTo: string;
+  ContactBusinessType: string;
+  InitialEmailSubject: string;
+  EmailHost: boolean;
+  IsFromLDM: boolean;
+  EventDate: string;
+  EventLocality: string;
+}
+
+/** UBT_Email.UserContactRequest: the input of UserContactUser (H :800-815). */
+export type UserContactRequest = ActionInputs<
+  PathOf<'Connect2_LegacyShared', 'ActionUserContactUser'>
+>['UserContactRequest'];

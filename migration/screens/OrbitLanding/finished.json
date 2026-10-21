@@ -1,0 +1,16 @@
+{
+ "finishedAt": "2026-10-16T14:33:35",
+ "files": {
+  "src/screens/OrbitLanding/api.ts": "e9c6010c489b8825",
+  "src/screens/OrbitLanding/components/Household_Members_Selection.tsx": "6b494d5a3f5178e7",
+  "src/screens/OrbitLanding/components/OrbitLandingPopup.tsx": "86ee84f0beb1fada",
+  "src/screens/OrbitLanding/components/Popup_OrbitLanding_Filters.tsx": "9394a4d9e0958482",
+  "src/screens/OrbitLanding/components/Popup_OrbitLanding_Sort.tsx": "5c7edabd56bef508",
+  "src/screens/OrbitLanding/components/ScreenBlock_OrbitLanding.tsx": "9d63a02bf16482b7",
+  "src/screens/OrbitLanding/components/actions.ts": "3ada5b571c7a47e6",
+  "src/screens/OrbitLanding/components/staticEntities.ts": "9723fb18bb8334c1",
+  "src/screens/OrbitLanding/index.tsx": "b74730a2197cd857",
+  "src/screens/OrbitLanding/mocks.ts": "6b13e5d2a9adc5c9",
+  "src/screens/OrbitLanding/types.ts": "925d0fab79b45ee1"
+ }
+}

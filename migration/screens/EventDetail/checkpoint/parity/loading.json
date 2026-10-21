@@ -1,0 +1,61 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/EventDetail?mocksession=unlocked&In_MemberId=990001&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_FromNotification=False",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "8c0ec16e14577b1f363e",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 94,
+  "texts": 11,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T05:21:32.920Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "VIA-BACK-MENUICON-EVENTDETAIL": 14,
+  "CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER": 1,
+  "ignoreSubtrees": 2,
+  "CAPTURE-VIA-MASK-SHIFT-EVENTDETAIL-PIXELS": 1
+ },
+ "pixel": {
+  "ratio": 0.01844,
+  "maxCell": 0.11,
+  "maxCellRatio": 0.03,
+  "diffPixels": 217,
+  "comparedPixels": 11766,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 3,
+  "hotspots": [
+   "0,0 (176px)",
+   "40,0 (33px)",
+   "0,40 (8px)"
+  ],
+  "diffPng": "migration/screens/EventDetail/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

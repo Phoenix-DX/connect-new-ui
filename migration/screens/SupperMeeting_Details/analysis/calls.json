@@ -1,0 +1,174 @@
+{
+ "note": "Generated from the runtime capture. phase = load, or the label of the plan step after which the call started.",
+ "calls": [
+  {
+   "module": "UBT_AppManager",
+   "action": "ActionAppManager_SynchAppContext",
+   "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext",
+   "phase": "load",
+   "ts": 2412,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "EspaceName"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetSubdivisionHouseholds",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds",
+   "phase": "load",
+   "ts": 3706,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 3706,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect_Utils",
+   "action": "ActionGetSignedImagesInBulk",
+   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
+   "phase": "load",
+   "ts": 3999,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "BulkSignedImagesParameters"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetSubdivision",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_SupperMeetings/SupperMeeting_DetailsBlock/DataActionGetSubdivision",
+   "phase": "load",
+   "ts": 3706,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 3720,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBT_AppManager",
+   "action": "ActionAppManager_AfterInitialize",
+   "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_AfterInitialize",
+   "phase": "load",
+   "ts": 5003,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "AppManager_MobileContext",
+    "EspaceName",
+    "TOTP"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect_Utils",
+   "action": "ActionGetSignedImagesInBulk",
+   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetSignedImagesInBulk",
+   "phase": "load",
+   "ts": 5020,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "BulkSignedImagesParameters"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchContactDetails",
+   "path": "/UBTConnect/screenservices/UBTConnect/Directory_CommonBlocks/Directory_EntityDetailsActions/DataActionFetchContactDetails",
+   "phase": "load",
+   "ts": 5020,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "ActionSync_Info_GetMain",
+   "path": "/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain",
+   "phase": "load",
+   "ts": 5276,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "isFromLogin"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect_Utils",
+   "action": "ActionGetUserInformation",
+   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation",
+   "phase": "load",
+   "ts": 5852,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [],
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_LegacyShared",
+   "action": "ActionGetNumberUnreadMessages",
+   "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages",
+   "phase": "load",
+   "ts": 6183,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "DeviceId"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "ServiceAPIFetchData_CacheableHouseholds",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
+   "phase": "load",
+   "ts": 6427,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "ServiceAPIFetchData_CacheableMapEntities",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+   "phase": "load",
+   "ts": 6426,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [],
+   "scope": "this screen"
+  }
+ ],
+ "variants": {}
+}

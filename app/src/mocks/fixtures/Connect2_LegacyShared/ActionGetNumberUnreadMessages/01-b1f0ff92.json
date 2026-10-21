@@ -1,0 +1,11 @@
+{
+ "module": "Connect2_LegacyShared",
+ "action": "ActionGetNumberUnreadMessages",
+ "screen": null,
+ "status": 200,
+ "inputs": {},
+ "data": {
+  "NumberPublicUnreadMessages": "0",
+  "NumberPrivateUnreadMessages": "6"
+ }
+}

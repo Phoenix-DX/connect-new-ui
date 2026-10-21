@@ -1,0 +1,214 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "uncaptured tabs",
+  "question": "The tag list switches the content to Supper Meetings (Locality_Subdivisions), Interchange (Locality_Interchange), OneSchool Global (Locality_OneSchoolGlobal), My Household (HouseholdDetails_Block, own locality only) and Locality Contacts (ComingSoon, flag). Only the Households tab is captured. Build the uncaptured tab blocks now from the compiled code, or render them as NotCaptured until tab states are captured?",
+  "evidence": "Locality_Details.mvc.js view :880-1010 (content $if per GetLocalityMenu option); pack Gaps: Locality_Subdivisions/Interchange/OneSchoolGlobal not rendered in any captured state; catalog/blocks.md :216-222 not built; states.json has no tag-click step",
+  "mcp": "",
+  "options": [
+   "NotCaptured now; capture a state per tag (steps) and build them in a follow-up",
+   "Build all tab blocks from compiled code without a capture"
+  ],
+  "recommend": "NotCaptured now; capture a state per tag (steps) and build them in a follow-up",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:28:01",
+  "answer": "Recommended, auto-accepted recommendation (user instruction 2026-10-15 16:59): uncaptured tabs render NotCaptured now; capture one state per tag later and build them",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T17:41:16"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "flag mobileDirectoryLocalityContacts",
+  "question": "GetSample_FilterTags adds the 'Locality Contacts' tag only when LaunchDarkly flag mobileDirectoryLocalityContacts is on. The flag is still open in migration/flags.md (not decided, not exported). Decide it: default-only with the TST value off (the capture shows no Locality Contacts tag), or both?",
+  "evidence": "UBTConnect.controller.js GetSample_FilterTags (BookmarksByGroup raw copy :10825+, Connect_LaunchDarkly_PermissionCheck(launchDarkly_FF.mobileDirectoryLocalityContacts)); migration/flags.md:75 open; dom/default.html:155-205 four tags",
+  "mcp": "",
+  "options": [
+   "default-only: TST value off",
+   "both (needs a captured state with the flag on)"
+  ],
+  "recommend": "default-only: TST value off",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:28:01",
+  "answer": "Recommended, auto-accepted recommendation (user instruction 2026-10-15 16:59): mobileDirectoryLocalityContacts default-only off (TST value)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T17:41:16"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "local bookmark mock data",
+  "question": "In the capture the first household card is bookmarked (class ubt-image-card__bookmarked) because the test account had a legacy local bookmark (Contact) for it; that also causes a 24th DataActionGetMembers call (the card's Household input changes after OnAfterFetch). The shell mock syncs no LocalBookmark, so the clone shows no bookmarked card and makes 23 GetMembers calls. Seed one legacy Contact bookmark for the first fictional household in the shell mock (CR-Locality_Details-1), or accept the difference as data drift?",
+  "evidence": "dom/default.html:302 (only card 0 has ubt-image-card__bookmarked); calls.json 24 DataActionGetMembers for 23 cards; Locality_Households_HouseholdList.mvc.js controller OnAfterFetch_GetLocalityHouseholds_Bookmarks (GetLocal_Bookmark per row); app/src/shell/mocks.ts:101 LocalBookmark List []",
+  "mcp": "",
+  "options": [
+   "CR: seed one legacy Contact bookmark in the shell mock",
+   "accept as data drift (exemption)"
+  ],
+  "recommend": "CR: seed one legacy Contact bookmark in the shell mock",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:28:01",
+  "answer": "Recommended, auto-accepted recommendation (user instruction 2026-10-15 16:59): CR-Locality_Details-1 seeds one legacy Contact bookmark in the shell mock",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T17:41:16"
+ },
+ {
+  "id": "Q4",
+  "kind": "decision",
+  "topic": "signed image batching / offline state",
+  "question": "Two parity differences come from shared/shell behaviour, not from this route: (a) default: ActionGetSignedImagesInBulk is called 5x in the clone and 7x in the capture (23 household photos + 44 avatars batched by the shared UBT_LazyImage / Cache_SignedImageURL bulk callback; the batch count follows render timing); (b) offline: with the error scenario the shell app start fails and the clone shows Block_PINUnlock / Dialog_AccessRestrictedAction instead of the screen (Layout_MainPages missing). Accept (a) as a timing artifact (exemption) and send (b) to the foundation as a CR, or other?",
+  "evidence": "migration/screens/Locality_Details/parity/default.json (call diff), parity/offline.json (4 structure diffs); analysis/calls.json ts 5494-7210 (7 bulk calls)",
+  "mcp": "",
+  "options": [
+   "(a) exemption as timing artifact, (b) foundation CR for the error scenario at app start",
+   "(a) foundation CR to match the bulk batching, (b) foundation CR"
+  ],
+  "recommend": "(a) exemption as timing artifact, (b) foundation CR for the error scenario at app start",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:38:37",
+  "answer": "(a) + (b), auto-accepted recommendation (user instruction 2026-10-15 16:59): callOrderFree countFree CALL-COUNT-SIGNED-IMAGES-BATCH; offline error-scenario app start to the foundation",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T17:41:16"
+ },
+ {
+  "id": "Q5",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → NotCaptured for every uncaptured tab (pending orchestrator answer).; Q2 → mobileDirectoryLocalityContacts default-only, TST value off (pending orchestrator answer).; Q3 → CR-Locality_Details-1: seed one legacy Contact bookmark in the shell mock (pending orchestrator answer).; Q4 → signed-image batch count as timing artifact; offline error-scenario app start to the foundation (pending).; GetLocalityHouseholds and GetMembers are fictional (never recorded): 23 households with captured text lengths, 1-2; UBT_LazyImage_List \"+N\" counter (AvatarImage) rendered as NotCaptured (never captured).; Exemptions added (artifacts): CAPTURE-MASKED-IMAGE-LOCALITYDETAILS, CAPTURE-MASKED-AVATAR-LOCALITYDETAILS, Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasMapsEnabled → default-only: TST value off (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:getHasPhotobookAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:16:30",
+  "items": [
+   "Q1 → NotCaptured for every uncaptured tab (pending orchestrator answer).",
+   "Q2 → mobileDirectoryLocalityContacts default-only, TST value off (pending orchestrator answer).",
+   "Q3 → CR-Locality_Details-1: seed one legacy Contact bookmark in the shell mock (pending orchestrator answer).",
+   "Q4 → signed-image batch count as timing artifact; offline error-scenario app start to the foundation (pending).",
+   "GetLocalityHouseholds and GetMembers are fictional (never recorded): 23 households with captured text lengths, 1-2",
+   "UBT_LazyImage_List \"+N\" counter (AvatarImage) rendered as NotCaptured (never captured).",
+   "Exemptions added (artifacts): CAPTURE-MASKED-IMAGE-LOCALITYDETAILS, CAPTURE-MASKED-AVATAR-LOCALITYDETAILS,"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T20:16:30"
+ },
+ {
+  "id": "Q6",
+  "kind": "decision",
+  "topic": "parity tag states",
+  "question": "F1 tag states: the remaining parity differences of tag-suppermeetings/-interchange/-oneschoolglobal are capture or timing artifacts (masked photos, tag row scrolled by Playwright, time label, slider -appear, app-start call order, footer shadow first run at latency 0). Accept the entries of migration/screens/Locality_Details/proposed-exemptions.json (rules_tags, ignoreSubtrees_tags, callOrderFree_tags) and the capture-plan latency 600 ms for tag-interchange?",
+  "evidence": "parity/tag-*.json (2 runs 2026-10-16), proposed-exemptions.json, precedent HouseholdDetails F5 latency",
+  "mcp": "",
+  "options": [
+   "A: accept all proposals",
+   "B: accept the exemptions, not the latency (exempt the footer pixel instead)",
+   "C: reject, keep the tag states for user review"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T01:45:23",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 01:14, until 10:00): tag exemptions merged (rules/ignoreSubtrees/callOrderFree scoped to the tag states) + capture-plan latency 600 ms for tag-interchange",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T01:48:42"
+ },
+ {
+  "id": "Q7",
+  "kind": "decision",
+  "topic": "same-screen navigation",
+  "question": "Locality_Interchange's Handler_NavigateToLocality opens Locality_Details itself with another LocalityId. The shell's Outlet is not keyed by history entry, so the screen would keep its state. Key the screen instance by the history entry inside the route (default export renders the screen with key=location.key), or ask the shell for it (CR)?",
+  "evidence": "Locality_Interchange.mvc.js controller :452-618 (navigateTo /UBTConnect/Locality_Details); app/src/app/AppFrame.tsx:19-20",
+  "mcp": "",
+  "options": [
+   "A: key inside the route (built)",
+   "B: shell CR, NotCaptured until then"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T01:45:23",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 01:14, until 10:00): the screen instance is keyed by history entry inside the route (no shell CR)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T01:48:42"
+ },
+ {
+  "id": "Q8",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → answered: the three tags captured read-only and built (F1); My Household and Locality Contacts stay NotCaptured.; Q6 → A: accept proposed-exemptions.json (tag-state artifacts) and capture-plan latency 600 ms for tag-interchange; Q7 → A: Locality_Details keys its screen instance by `location.key` (pending orchestrator answer).; Tag mocks are fictional (never recorded), captured counts and text lengths: supper meetings 1210 / 9202 / 9203 (ids of; StopPropagationHelper_Check reads `window.event` like its JavaScript node (lint rule no-deprecated disabled there).; Q2 → mobileDirectoryLocalityContacts default-only, TST value off (pending orchestrator answer).; Q3 → CR-Locality_Details-1: seed one legacy Contact bookmark in the shell mock (pending orchestrator answer).; Q4 → signed-image batch count as timing artifact; offline error-scenario app start to the foundation (pending).; GetLocalityHouseholds and GetMembers are fictional (never recorded): 23 households with captured text lengths, 1-2; UBT_LazyImage_List \"+N\" counter (AvatarImage) rendered as NotCaptured (never captured).; Exemptions added (artifacts): CAPTURE-MASKED-IMAGE-LOCALITYDETAILS, CAPTURE-MASKED-AVATAR-LOCALITYDETAILS, Fixed since the last review: F1 Build the three tag contents now captured read-only (tag-suppermeetings, tag-interchange, tag-oneschoolglobal; analysis/dom + states.json + calls.json, capture-tags-2026-10-16/). Decision: Locality_Details Q1 (capture one state per tag later and build them), auto-accepted under the user's instruction; work done in the overnight auto window 2026-10-16 01:14-10:00. My Household and Locality Contacts are not on locality 252 and stay NotCaptured. → Built the three tags from the compiled blocks (sources extracted from the survey to analysis/sources/pretty/): Locality_Subdivisions (SupperMeeting cards, Carousel/Details navigation), Locality_Interchange + Directory_Interchange_StatisticsList (Statistics_ListItem, EntityDetailsActions, HasAccessToRegion → Locality_Details keyed per history entry, Q7), Locality_OneSchoolGlobal + OneSchoolGlobal_List + StopPropagationHelper (OneSchoolGlobalDetails). api.ts adapters, fictional mocks with captured counts/lengths (ids 1210/9202/9203, 1430). Parity: default/loading/offline 0; tag states only capture/timing artifacts, proposed in proposed-exemptions.json (Q6). Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasMapsEnabled → default-only: TST value off (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:getHasPhotobookAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T01:49:29",
+  "items": [
+   "Q1 → answered: the three tags captured read-only and built (F1); My Household and Locality Contacts stay NotCaptured.",
+   "Q6 → A: accept proposed-exemptions.json (tag-state artifacts) and capture-plan latency 600 ms for tag-interchange",
+   "Q7 → A: Locality_Details keys its screen instance by `location.key` (pending orchestrator answer).",
+   "Tag mocks are fictional (never recorded), captured counts and text lengths: supper meetings 1210 / 9202 / 9203 (ids of",
+   "StopPropagationHelper_Check reads `window.event` like its JavaScript node (lint rule no-deprecated disabled there).",
+   "Q2 → mobileDirectoryLocalityContacts default-only, TST value off (pending orchestrator answer).",
+   "Q3 → CR-Locality_Details-1: seed one legacy Contact bookmark in the shell mock (pending orchestrator answer).",
+   "Q4 → signed-image batch count as timing artifact; offline error-scenario app start to the foundation (pending).",
+   "GetLocalityHouseholds and GetMembers are fictional (never recorded): 23 households with captured text lengths, 1-2",
+   "UBT_LazyImage_List \"+N\" counter (AvatarImage) rendered as NotCaptured (never captured).",
+   "Exemptions added (artifacts): CAPTURE-MASKED-IMAGE-LOCALITYDETAILS, CAPTURE-MASKED-AVATAR-LOCALITYDETAILS,"
+  ],
+  "fixed": [
+   "F1"
+  ],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T01:49:29"
+ },
+ {
+  "id": "Q9",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → answered: the three tags captured read-only and built (F1); My Household and Locality Contacts stay NotCaptured.; Q6 → A: accept proposed-exemptions.json (tag-state artifacts) and capture-plan latency 600 ms for tag-interchange; Q7 → A: Locality_Details keys its screen instance by `location.key` (pending orchestrator answer).; Tag mocks are fictional (never recorded), captured counts and text lengths: supper meetings 1210 / 9202 / 9203 (ids of; StopPropagationHelper_Check reads `window.event` like its JavaScript node (lint rule no-deprecated disabled there).; Q2 → mobileDirectoryLocalityContacts default-only, TST value off (pending orchestrator answer).; Q3 → CR-Locality_Details-1: seed one legacy Contact bookmark in the shell mock (pending orchestrator answer).; Q4 → signed-image batch count as timing artifact; offline error-scenario app start to the foundation (pending).; GetLocalityHouseholds and GetMembers are fictional (never recorded): 23 households with captured text lengths, 1-2; UBT_LazyImage_List \"+N\" counter (AvatarImage) rendered as NotCaptured (never captured).; Exemptions added (artifacts): CAPTURE-MASKED-IMAGE-LOCALITYDETAILS, CAPTURE-MASKED-AVATAR-LOCALITYDETAILS, Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasMapsEnabled → default-only: TST value off (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:getHasPhotobookAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T06:58:52",
+  "items": [
+   "Q1 → answered: the three tags captured read-only and built (F1); My Household and Locality Contacts stay NotCaptured.",
+   "Q6 → A: accept proposed-exemptions.json (tag-state artifacts) and capture-plan latency 600 ms for tag-interchange",
+   "Q7 → A: Locality_Details keys its screen instance by `location.key` (pending orchestrator answer).",
+   "Tag mocks are fictional (never recorded), captured counts and text lengths: supper meetings 1210 / 9202 / 9203 (ids of",
+   "StopPropagationHelper_Check reads `window.event` like its JavaScript node (lint rule no-deprecated disabled there).",
+   "Q2 → mobileDirectoryLocalityContacts default-only, TST value off (pending orchestrator answer).",
+   "Q3 → CR-Locality_Details-1: seed one legacy Contact bookmark in the shell mock (pending orchestrator answer).",
+   "Q4 → signed-image batch count as timing artifact; offline error-scenario app start to the foundation (pending).",
+   "GetLocalityHouseholds and GetMembers are fictional (never recorded): 23 households with captured text lengths, 1-2",
+   "UBT_LazyImage_List \"+N\" counter (AvatarImage) rendered as NotCaptured (never captured).",
+   "Exemptions added (artifacts): CAPTURE-MASKED-IMAGE-LOCALITYDETAILS, CAPTURE-MASKED-AVATAR-LOCALITYDETAILS,"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T06:58:52"
+ }
+]

@@ -1,0 +1,140 @@
+[
+  {
+    "path": "screenservices/Connect2_LegacyShared/ActionGetSignedPhotosInBulk",
+    "screens": [
+      "BookmarksByGroup",
+      "LegacyShareObject",
+      "MessageDetail"
+    ],
+    "evidence": "Connect2_LegacyShared.controller.js:7865-7880 (ServerAction.GetSignedPhotosInBulk), :2983-3035 (GetBulkSignedPhotosURL), :3947-4115 (GetCacheableSignedPhotoURL), called by Connect2_LegacyShared.Utility.Result_Item_Image (LoadPhotoAsync, .mvc.js:702-770); CR-W3Y-1"
+  },
+  {
+    "path": "screenservices/UBTConnect/ServiceAPIAddBookmark2",
+    "screens": [
+      "HouseholdCarousel",
+      "HouseholdDetails",
+      "Locality_Details",
+      "OneSchoolGlobalDetails",
+      "Profile",
+      "SupperMeeting_Carousel",
+      "SupperMeeting_Details"
+    ],
+    "evidence": "UBTConnect.controller.js:18251-18286 (ServerAction.AddBookmark2: In_BookmarkCategoryId, In_ItemId Text; Success, Bookmark_Added Connect_Bookmarks_CS UI_Bookmark_Added), called by ToggleBookmarkItem_C2 (:17105-17280, :17167), called by UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions Handle_Bookmark (.mvc.js:1414); screens = build screens whose block closure has Directory_EntityDetailsActions (migration/survey/screens.json); CR-W4A-1"
+  },
+  {
+    "path": "screenservices/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2",
+    "screens": [
+      "HouseholdCarousel",
+      "HouseholdDetails",
+      "Locality_Details",
+      "OneSchoolGlobalDetails",
+      "Profile",
+      "SupperMeeting_Carousel",
+      "SupperMeeting_Details"
+    ],
+    "evidence": "UBTConnect.controller.js:18312-18336 (ServerAction.DeleteBookmarkByBookmarkId2: BookmarkId Long Integer; Success), called by ToggleBookmarkItem_C2 (:17105-17280, :17141), called by UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions Handle_Bookmark (.mvc.js:1414); screens = build screens whose block closure has Directory_EntityDetailsActions (migration/survey/screens.json); CR-W4A-1"
+  },
+  {
+    "path": "screenservices/UBTConnect/ActionUpdateItem_MarkAsRead",
+    "screens": [
+      "HouseholdCarousel"
+    ],
+    "evidence": "UBTConnect.controller.js:18574-18584 (ServerAction.UpdateItem_MarkAsRead: In_UpdateItemId Long Integer; no output), called by Directory_Updates_CarouselSwipeAction (:1625-1660), called by HouseholdCarousel Handler_EventMoved (HouseholdCarousel.mvc.js:511-605) for an item whose SwipeAction.ActionId is UpdatesCarousel_SetIsRead; copy in migration/screens/HouseholdCarousel/analysis/sources/raw/; CR-HouseholdCarousel-1"
+  },
+  {
+    "path": "screenservices/Connect2_MyBookmarks_MUI/ActionGetBookmarkById",
+    "screens": [
+      "BookmarksByGroup",
+      "MyBookmarks"
+    ],
+    "evidence": "Connect2_MyBookmarks_MUI.controller.js (prettified, migration/screens/MyBookmarks/analysis/sources/pretty/): ServerAction.GetBookmarkById :195-229 (BookmarkId Long Integer; GetBookmarkByIdResponse Connect2_MyBookmarks_IS BookmarkItem, IsBookmarkFound Boolean), called by the client action GetBookmarkById :1-75 when GetHasBookmarNote is off (TST, flags.md mobileDirectoryBookmarkNote default-only off); callers ScreenBlock_MyBookmarks NavigateTo_BookmarkedItem (.mvc.js:980-1140) and ScreenBlock_BookmarkGroup OnClick_BookmarkedItem (.mvc.js:2728-2892); CR-MyBookmarks-1, CR-BookmarksByGroup-1"
+  },
+  {
+    "path": "screenservices/Connect2_MyBookmarks_MUI/ActionNew_GetBookmarkById",
+    "screens": [
+      "BookmarksByGroup",
+      "MyBookmarks"
+    ],
+    "evidence": "Connect2_MyBookmarks_MUI.controller.js (prettified, migration/screens/MyBookmarks/analysis/sources/pretty/): ServerAction.New_GetBookmarkById :230-264 (same inputs and outputs), the GetHasBookmarNote branch of the client action GetBookmarkById :24-41 (mobileDirectoryBookmarkNote on; off on TST, so not reached with the default flags); CR-BookmarksByGroup-1"
+  },
+  {
+    "path": "screenservices/Connect2_LegacyShared/ActionGetUserLocalitiesForCountryCodeWithGPS",
+    "screens": [
+      "AssembleEvents",
+      "Assemble_BrowseByCountry"
+    ],
+    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetUserLocalitiesForCountryCodeWithGPS :7940-7960 (input CountryCode, output Results), called by client action GetCountryInformation :4716-4772, the miss callback of GetCacheableCountryInfo :3142-3275; reached by Connect2_Assemble_MUI Assemble_FilterLocalityByCountry FetchLocalities / OnChange_SearchTerm (O-B3)"
+  },
+  {
+    "path": "screenservices/Connect2_LegacyShared/ActionGetLocalityInformation",
+    "screens": [
+      "AssembleEvents",
+      "Assemble_BrowseByCountry"
+    ],
+    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetLocalityInformation :7743-7800 (input LocalityId, outputs CacheableLocalityInformation, SignedPhotosPreload, ...), called by client action GetLocalityInformation :5124-5170, the miss callback of GetCacheableLocality :3278-3330; reached through Connect2_Assemble_MUI GetLocality (controller.js:1006-1055) by Assemble_FilterSubdivisionByLocality (O-B3)"
+  },
+  {
+    "path": "screenservices/Connect2_LegacyShared/ActionGetUserInformation",
+    "screens": [
+      "AssembleEvents",
+      "Assemble_BrowseByCountry"
+    ],
+    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetUserInformation :7917-7935 (no input, output UserInformation), called by client action GetUserInformation :5620-5667, the miss callback of GetCacheableUserInfo :4391-4520; reached by Assemble_FilterLocalityByCountry OnReady and Connect2_Assemble_MUI HasAccessToRegion (Regional plan, controller.js:1140-1254) (O-B3)"
+  },
+  {
+    "path": "screenservices/Connect2_OrbitMobile_MUI/ActionGetDirectoryAccess",
+    "screens": [
+      "MilestoneDetail"
+    ],
+    "evidence": "Connect2_OrbitMobile_MUI.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetDirectoryAccess :8508-8530 (Id Long Integer, Type Text; Response APIDomain_Directory_IS DirectoryAccessRec), called by client action CheckDirectoryAccess :1081-1150 (HasAccess = not Response.RecordDisabled), called by ScreenBlock_AccommodationHost OnHandle_ClickedMember (migration/screens/MilestoneDetail/analysis/sources/pretty/...ScreenBlock_AccommodationHost.mvc.js:2451-2535) and every Orbit block with ClickedMember; CR-MilestoneDetail-1"
+  },
+  {
+    "path": "screenservices/Connect2_LegacyShared/ActionGetMemberContactByCacheKey",
+    "screens": [
+      "MilestoneDetail"
+    ],
+    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetMemberContactByCacheKey :7780-7800, called by client action GetMemberContactList :5210-5260, the miss callback of GetCacheableMemberContactList :3414-3545 (memory cache DirectoryCacheType.MemberContact, key BuildMemberContactsCacheKey :915-985); reached by ScreenBlock_AccommodationHost BuildMemberCallData (...ScreenBlock_AccommodationHost.mvc.js:2121-2260); CR-MilestoneDetail-2"
+  },
+  {
+    "path": "screenservices/Connect2_LegacyShared/ActionGetTimezoneInformation",
+    "screens": [
+      "MilestoneDetail"
+    ],
+    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/): ServerAction.GetTimezoneInformation :7892-7912 (LocalityId Long Integer; TimezoneInformation APIDomain_Directory_IS TimezoneRec), called by client action GetTimezoneInformation :5500-5575, the miss callback of GetCacheableTimezoneInfo :4251-4390 (memory cache DirectoryCacheType.Timezone, key LocalityId, TTL 1200); reached by ScreenBlock_AccommodationHost BuildMemberCallData (...ScreenBlock_AccommodationHost.mvc.js:2121-2260); CR-MilestoneDetail-2"
+  },
+  {
+    "path": "screenservices/Connect2_LegacyShared/ActionGetBulkSubdivisions_V2",
+    "screens": [
+      "AssembleDetail"
+    ],
+    "evidence": "Connect2_LegacyShared.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetBulkSubdivisions_V2 :7691-7704 (input CacheKeys RecordList, output Results CacheableSubdivisionInformationTextTextRecordList), called by client action GetBulkSubdivision_V2 :3070-3110, the bulk callback (Callbacks JS :4245-4249) of GetCacheableSubdivision_V2 :4115-4244; reached by Connect2_Assemble_MUI AssembleEventDetail_AttendeeSubdivision OnReady (AssembleDetail sources …AttendeeSubdivision.mvc.js:1742-1830); CR-AssembleDetail-1"
+  },
+  {
+    "path": "screenservices/Connect2_Assemble_MUI/ActionAddBookmark",
+    "screens": [
+      "AssembleDetail"
+    ],
+    "evidence": "Connect2_Assemble_MUI.controller.js (prettified, migration/screens/AssembleEvents/analysis/sources/pretty/): ServerAction.AddBookmark :1687-1723 (ObjectType, ObjectId, Group, Note Text; outputs Success Boolean, CreatedBookmarkResponse Connect2_MyBookmarks_IS BookmarkItem), called by the client action ToggleBookmarkItem :1493-1686; reached by AssembleEventDetail_AttendeeSubdivision household ContextMenu bookmark (AssembleDetail sources …AttendeeSubdivision.mvc.js:1901-2080); CR-AssembleDetail-2"
+  },
+  {
+    "path": "screenservices/Connect2_Assemble_MUI/ActionDeleteBookmarkByBookmarkId",
+    "screens": [
+      "AssembleDetail"
+    ],
+    "evidence": "Connect2_Assemble_MUI.controller.js (prettified, migration/screens/AssembleEvents/analysis/sources/pretty/): ServerAction.DeleteBookmarkByBookmarkId :1725-1749 (BookmarkId Long Integer; output Success Boolean), called by the client action ToggleBookmarkItem :1493-1686; reached by AssembleEventDetail_AttendeeSubdivision household ContextMenu bookmark (AssembleDetail sources …AttendeeSubdivision.mvc.js:1901-2080); CR-AssembleDetail-2"
+  },
+  {
+    "path": "screenservices/Connect2_OrbitMobile_MUI/ActionGetBookletGuestsMaxRows",
+    "screens": [
+      "EventBooklet"
+    ],
+    "evidence": "Connect2_OrbitMobile_MUI.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetBookletGuestsMaxRows :8466-8487 (no inputs; output BookletGuestsMaxRows Integer), called by client action Set_BookletGuestsMaxRows :6515-6556 (stores it in the client variable BookletGuestsMaxRows, Connect2_OrbitMobile_MUI.clientVariables.js), called by SetBookletMaxRows :6599-6620, called by ScreenBlock_EventBooklet OnReady (migration/screens/EventBooklet/analysis/sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet.mvc.js:3121-3194); CR-EventBooklet-1"
+  },
+  {
+    "path": "screenservices/Connect2_OrbitMobile_MUI/ActionGetBookletHelpersMaxRows",
+    "screens": [
+      "EventBooklet"
+    ],
+    "evidence": "Connect2_OrbitMobile_MUI.controller.js (migration/runtime-sources/, fetched read-only from TST): ServerAction.GetBookletHelpersMaxRows :8488-8509 (no inputs; output BookletHelpersMaxRows Integer), called by client action Set_BookletHelpersMaxRows :6557-6598 (stores it in the client variable BookletHelpersMaxRows, Connect2_OrbitMobile_MUI.clientVariables.js), called by SetBookletMaxRows :6599-6620, called by ScreenBlock_EventBooklet OnReady (migration/screens/EventBooklet/analysis/sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet.mvc.js:3121-3194); CR-EventBooklet-1"
+  }
+]

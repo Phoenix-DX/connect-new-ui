@@ -1,0 +1,13 @@
+{
+ "finishedAt": "2026-10-16T06:56:24",
+ "files": {
+  "src/screens/MessageDetail/api.ts": "d63f939b9ec64801",
+  "src/screens/MessageDetail/components/NotificationDetailBlock.tsx": "7d533dbe1424033b",
+  "src/screens/MessageDetail/components/ScreenBlock_MessageDetail.tsx": "bc95a5da923cd269",
+  "src/screens/MessageDetail/components/actions.ts": "c6097cbcd3a89367",
+  "src/screens/MessageDetail/components/staticEntities.ts": "9b5b23c672e58daa",
+  "src/screens/MessageDetail/index.tsx": "e99ccca4ef846912",
+  "src/screens/MessageDetail/mocks.ts": "20938eb8caf4e2b3",
+  "src/screens/MessageDetail/types.ts": "495f8d5357f6ba4f"
+ }
+}

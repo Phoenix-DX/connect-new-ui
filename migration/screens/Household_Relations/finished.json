@@ -1,0 +1,12 @@
+{
+ "finishedAt": "2026-10-16T06:58:06",
+ "files": {
+  "src/screens/Household_Relations/api.ts": "cff1cd3b171383b2",
+  "src/screens/Household_Relations/components/HouseholdRelations_Block.tsx": "b5d910d6a5cd5cf8",
+  "src/screens/Household_Relations/components/MemberRelation_ListItem.tsx": "436d1ee5c3444ee9",
+  "src/screens/Household_Relations/components/staticEntities.ts": "e5d79eebdae455b3",
+  "src/screens/Household_Relations/index.tsx": "cb09b8d16d62afa8",
+  "src/screens/Household_Relations/mocks.ts": "e677382878d28481",
+  "src/screens/Household_Relations/types.ts": "01e0d21de1dd7554"
+ }
+}

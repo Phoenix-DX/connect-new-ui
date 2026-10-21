@@ -1,0 +1,13 @@
+{
+ "finishedAt": "2026-10-17T08:35:02",
+ "files": {
+  "src/screens/Splash/api.ts": "552ee02fbd136ccf",
+  "src/screens/Splash/components/ApplicationLoadEvents.tsx": "42de358f49357080",
+  "src/screens/Splash/components/LayoutBlank.tsx": "a0dc1294ffc8ee9f",
+  "src/screens/Splash/components/LoadingDots.tsx": "73cee5d2209d314a",
+  "src/screens/Splash/components/staticEntities.ts": "8345e8cb6bf0df6a",
+  "src/screens/Splash/index.tsx": "1302ec9caf152286",
+  "src/screens/Splash/mocks.ts": "807ea36e3cc0591d",
+  "src/screens/Splash/types.ts": "72dce1453615515a"
+ }
+}

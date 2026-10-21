@@ -1,0 +1,17 @@
+{
+ "finishedAt": "2026-10-16T11:23:44",
+ "files": {
+  "src/screens/LDM_EventDetail_V2/api.ts": "c4d3eb3b198de4f1",
+  "src/screens/LDM_EventDetail_V2/components/EventDetail_Banner.tsx": "2808fddd45319a4c",
+  "src/screens/LDM_EventDetail_V2/components/EventDetail_HostCard.tsx": "83f6f5e49cb74e25",
+  "src/screens/LDM_EventDetail_V2/components/EventDetail_ListItem.tsx": "5805f525034b529c",
+  "src/screens/LDM_EventDetail_V2/components/EventDetail_Section.tsx": "afcf9bc03e8a743f",
+  "src/screens/LDM_EventDetail_V2/components/EventDetail_SpecialNeeds_ListItem.tsx": "a2fb26fbcbf1d2c4",
+  "src/screens/LDM_EventDetail_V2/components/EventsDetail_Content.tsx": "0127791290294597",
+  "src/screens/LDM_EventDetail_V2/components/ScreenBlock_EventDetail_V2.tsx": "ff2ca320cdd095d1",
+  "src/screens/LDM_EventDetail_V2/components/actions.ts": "fcf29af583d32ab2",
+  "src/screens/LDM_EventDetail_V2/index.tsx": "1d33fe9f11397670",
+  "src/screens/LDM_EventDetail_V2/mocks.ts": "a1af492a764e2188",
+  "src/screens/LDM_EventDetail_V2/types.ts": "1395bff9aa614a2d"
+ }
+}

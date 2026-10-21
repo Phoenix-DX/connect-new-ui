@@ -1,0 +1,71 @@
+{
+ "_comment": "Proposed by route-orbit-lite-1 (HelpersDetail, 2026-10-16) for the orchestrator; not in migration/parity-exemptions.json. Evidence: diagnostic parity runs with the Q1 cloneQuery (scratchpad) and the stamped reports in migration/screens/HelpersDetail/parity/.",
+ "rules": [
+  {
+   "id": "VIA-BACK-MENUICON-HELPERSDETAIL",
+   "routeRegex": "^/UBTConnect/HelpersDetail(\\?|$)",
+   "kinds": [
+    "class",
+    "style",
+    "layout",
+    "position"
+   ],
+   "pathRegex": "header#b1-b1-b2-Header\\.header\\.orbit-detail > div\\.header-top > div\\.display-flex\\.header-content > div\\.align-items-center\\.display-flex\\.full-width > (div#b1-b1-b2-HeaderLeft\\.header-left( > .+)?|h1\\.header-title\\.text-align-center|div#b1-b1-b2-HeaderRight\\.header-right)$",
+   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the states were captured via OrbitLanding → EventDetail (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/HelpersDetail/analysis/states.json (via); parity/default.json, loading.json, offline.json (class missing .back); same rule as VIA-BACK-MENUICON-EVENTDETAIL / -MILESTONEDETAIL"
+  },
+  {
+   "id": "CAPTURE-MASKED-TITLE-HELPERSDETAIL-HEADER",
+   "routeRegex": "^/UBTConnect/HelpersDetail(\\?|$)",
+   "kinds": [
+    "layout"
+   ],
+   "pathRegex": "div#b1-b1-b2-ContentWrapper\\.content\\.orbit-detail( > div#b1-b1-b2-MainContentWrapper\\.ThemeGrid_Container\\.main-content)?$",
+   "detailRegex": "^390×758 → 390×742$",
+   "reason": "The header title (In_EventName) was masked by the capture: its bullets fit one line, the fictional title of the same word lengths (7 5 11 1 5 3 4, mocks/fictional/orbit.ts) wraps to two lines in the clone, so the header is 16 px taller and the content wrapper 16 px shorter (758 → 742). Text-mask capture artifact (as CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER); auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/default.expected.png vs default.build.png (one line of bullets vs two lines); parity/*.json layout 390×758 → 390×742"
+  },
+  {
+   "id": "CAPTURE-SKELETON-SHIMMER-PHASE-HELPERSDETAIL",
+   "routeRegex": "^/UBTConnect/HelpersDetail(\\?|$)",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-position"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "div#b1-\\$b8\\.OSBlockWidget\\[Orbit_Generic_Blocks\\.Skeleton_Loading\\]( > .+)?$",
+   "reason": "Skeleton shimmer animation (background-position keyframes of .orbit-skeleton-loading-item) photographed at another phase (50.0037% vs 59.5201%); same markup, classes and other styles. Animation-phase capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/offline.json (style background-position on .orbit-skeleton-loading-item)"
+  },
+  {
+   "id": "MOCK-LOADING-NO-SYNC-HELPERSDETAIL-HEADER",
+   "routeRegex": "^/UBTConnect/HelpersDetail(\\?|$)",
+   "kinds": [
+    "class",
+    "style",
+    "pseudo",
+    "layout",
+    "position",
+    "text"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "div#b1-\\$b3\\.OSBlockWidget\\[Orbit_Blocks\\.MilestoneHeader\\] > div\\.orbit-milestone-header > div\\.orbit-milestone-sub-header( > (i\\.icon\\.orbit-icon-person-wave|span\\.font-size-0-9rem\\.margin-left-s))?$",
+   "reason": "PENDING CR-HelpersDetail-1 (shell/mocks, not route code): in the loading scenario the app start's Sync_Info_GetMain never answers, so LocalOrbitMilestoneType (on TST kept in the device database by earlier starts) is empty and MilestoneHeader shows \"Helper ()\" without the icon. Remove when the CR lands. Needs the orchestrator's decision (not a capture artifact).",
+   "evidence": "migration/change-requests/CR-HelpersDetail-1.md; parity/loading.json, offline.json (text \"Helper (Host)\" → \"Helper ()\", missing .orbit-icon-person-wave)"
+  },
+  {
+   "id": "CAPTURE-VIA-MASK-SHIFT-HELPERSDETAIL-PIXELS",
+   "routeRegex": "^/UBTConnect/HelpersDetail(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^(([0-3]\\.\\d\\d% pixels differ .*parity/default\\.diff\\.png)|([0-1]\\.\\d\\d% pixels differ .*parity/loading\\.diff\\.png)|([0-4]\\.\\d\\d% pixels differ .*parity/offline\\.diff\\.png))$",
+   "reason": "Screenshot differences that follow from the artifacts above: the missing back arrow (via), the masked one-line title (16 px shift of the content), the skeleton shimmer phase and, in loading/offline, the empty sub-header type (CR-HelpersDetail-1). Auto-accepted in the user's auto mode 2026-10-15 except the CR part",
+   "evidence": "parity/default.diff.png (3.20%), loading.diff.png (0.47%), offline.diff.png (4.50%)"
+  }
+ ],
+ "_merged": "2026-10-16 orchestrator: VIA-BACK-MENUICON-HELPERSDETAIL, CAPTURE-MASKED-TITLE-HELPERSDETAIL-HEADER, CAPTURE-SKELETON-SHIMMER-PHASE-HELPERSDETAIL, CAPTURE-VIA-MASK-SHIFT-HELPERSDETAIL-PIXELS; MOCK-LOADING-NO-SYNC not merged: fixed by CR-HelpersDetail-1 instead"
+}

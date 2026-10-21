@@ -1,0 +1,11 @@
+﻿[data-button].btn.ubt-pincode__button-fingerprint{
+    height: var(--ubt-pincode-buttons-size);
+    width:  var(--ubt-pincode-buttons-size);
+    min-width:  var(--ubt-pincode-buttons-size);
+    background: transparent;
+    border: none;
+}
+
+[data-button].btn.ubt-pincode__button-fingerprint .ubt-icon{
+    font-size:  calc(var(--ubt-pincode-buttons-size) - 10px);
+}

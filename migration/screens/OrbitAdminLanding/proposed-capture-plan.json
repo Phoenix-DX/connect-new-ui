@@ -1,0 +1,7 @@
+{
+ "screen": "OrbitAdminLanding",
+ "question": "Q1",
+ "proposal": {"scenarios": {"default": "noadminevents"}},
+ "reason": "TST's full-permission account has no admin event (default capture = NoInformation_Orbit). The real mock shows three fictional admin events; the 'noadminevents' scenario returns the captured empty list, as AssembleEvents 'nomeetings'. Pending orchestrator answer (auto mode).",
+ "evidence": "analysis/dom/default.html:69-75; analysis/calls.md DataActionGet_AdminEventsList; app/src/screens/OrbitAdminLanding/mocks.ts"
+}

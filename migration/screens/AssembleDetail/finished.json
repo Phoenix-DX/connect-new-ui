@@ -1,0 +1,15 @@
+{
+ "finishedAt": "2026-10-16T13:36:54",
+ "files": {
+  "src/screens/AssembleDetail/api.ts": "7e032221b3688cdc",
+  "src/screens/AssembleDetail/components/AssembleEventDetail.tsx": "d0c3cc83552ad426",
+  "src/screens/AssembleDetail/components/AssembleEventDetail_Contacts.tsx": "51e9296adb080076",
+  "src/screens/AssembleDetail/components/AssembleEventDetail_Localities.tsx": "7d4139f4ff3cdf6a",
+  "src/screens/AssembleDetail/components/LegacySharedBlocks.tsx": "3dce5655c0b2712d",
+  "src/screens/AssembleDetail/components/ScreenBlock_AssembleDetail.tsx": "36672483db145cfe",
+  "src/screens/AssembleDetail/components/actions.ts": "6626a033d1653883",
+  "src/screens/AssembleDetail/index.tsx": "d2f8c4a063e9b1cd",
+  "src/screens/AssembleDetail/mocks.ts": "02b0b82538101f13",
+  "src/screens/AssembleDetail/types.ts": "697e746742dba1fb"
+ }
+}

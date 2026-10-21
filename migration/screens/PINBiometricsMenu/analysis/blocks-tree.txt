@@ -1,0 +1,14 @@
+Layouts.Layout_DetailPage
+  LayoutRuntime_NavigationHandler.LayoutRuntime_Top
+  ConnectPatterns.Icon
+  App_Menu.Menu_List
+    BasePatterns.CustomContainer
+      ConnectPatterns.SkeletonSection
+        BasePatterns.CustomContainer
+          BasePatterns.Columns_Three
+            Adaptive.Columns3
+              ConnectPatterns.Icon
+              BasePatterns.CustomText
+                ConnectPatterns.IconInline_Internal
+              ConnectPatterns.SkeletonSection
+                ConnectPatterns.Icon

@@ -1,0 +1,5 @@
+{
+  "keep": ["StatusName", "CategoryName", "Label"],
+  "anonymize": ["Reference", "Remarks"],
+  "ids": ["OrderNumber"]
+}

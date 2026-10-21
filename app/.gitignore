@@ -1,0 +1,12 @@
+node_modules
+dist
+dist-demo
+dist-demo.zip
+storybook-static
+coverage
+*.local
+../capture
+*.har
+
+# local Lighthouse reports (npm run lighthouse): never committed, never uploaded
+lighthouse-reports

@@ -1,0 +1,17 @@
+{
+ "note": "Generated from the runtime capture. phase = load, or the label of the plan step after which the call started.",
+ "calls": [
+  {
+   "module": "Connect2_OrbitMobile_MUI",
+   "action": "DataActionGetHostSurvey",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_HostSurvey/ScreenBlock_HostSurvey/DataActionGetHostSurvey",
+   "phase": "load",
+   "ts": 2441,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  }
+ ],
+ "variants": {}
+}

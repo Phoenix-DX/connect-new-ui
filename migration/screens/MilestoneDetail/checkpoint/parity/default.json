@@ -1,0 +1,78 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/MilestoneDetail?mocksession=unlocked&In_FromNotification=False&In_MilestoneId=7301-1&In_EventId=7301&In_HostId=990002&In_OrbitMilestoneTypeId=accommodation-host&In_MilestoneName=Accommodation&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "524b9b364154a74c0ae9",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 511,
+  "texts": 83,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T05:25:54.960Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "VIA-BACK-MENUICON-MILESTONEDETAIL": 14,
+  "CAPTURE-MASKED-ROOM-INFO-MILESTONEDETAIL": 11,
+  "ignoreSubtrees": 2,
+  "CAPTURE-VIA-MASK-SHIFT-MILESTONEDETAIL-PIXELS": 1
+ },
+ "pixel": {
+  "ratio": 0.06209,
+  "maxCell": 0.6512,
+  "maxCellRatio": 0.03,
+  "diffPixels": 15368,
+  "comparedPixels": 247526,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 53,
+  "hotspots": [
+   "80,80 (1042px)",
+   "120,80 (1020px)",
+   "160,80 (1005px)",
+   "40,80 (959px)",
+   "0,80 (804px)"
+  ],
+  "diffPng": "migration/screens/MilestoneDetail/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 3,
+  "actual": 10,
+  "viaAppStartSkipped": [
+   "ActionAppManager_AfterInitialize",
+   "ActionAppManager_SynchAppContext",
+   "ActionGetNumberUnreadMessages",
+   "ActionGetUserInformation",
+   "ActionSync_Info_GetMain",
+   "ServiceAPIFetchData_CacheableHouseholds",
+   "ServiceAPIFetchData_CacheableMapEntities"
+  ]
+ },
+ "diffs": []
+}

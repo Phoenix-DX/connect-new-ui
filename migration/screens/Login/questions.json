@@ -1,0 +1,194 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "Forgot Password (mock)",
+  "question": "What does 'Forgot Password?' do in the mock phase? The original runs Login(IsResetPassword=True): IsResettingPassword=True (spinner on that button, Login button disabled), then AppManager_Login sends the browser to the B2C password-reset page; the return comes through the B2C callback (AppManager_Events) with toast texts from the callback record (not captured). D3(a)/U4 only cover 'Login with UBT One'.",
+  "evidence": "p:UBTConnect.App_Common.Login.mvc.js:464 (Forgot Password onClick login(true)), :702-780 (_login), :868-873 (idP_OnResetPassword toast); app-shell.spec.md U4",
+  "mcp": "not available to the route agent",
+  "options": [
+   "a) button as captured, click does nothing until the real identity provider (BFF)",
+   "b) click shows the loading state (IsResettingPassword) and stays there",
+   "c) click behaves like 'Login with UBT One' (mock sign-in)"
+  ],
+  "recommend": "a",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T18:22:03",
+  "answer": "A: 'Forgot Password?' does nothing in the mock phase until the real identity provider (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T18:35:03"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "Login?In_IsFromResetPIN=True (mock)",
+  "question": "PINUnlock 'Forgot PIN' opens Login?In_IsFromResetPIN=True. The original OnInitialize then (unless restored from the view cache) runs Login(False) (B2C redirect) and AppManager_Logout (clears session + local PIN); after the B2C round-trip the callback goes to PINRegister. How should the mock do it?",
+  "evidence": "p:UBTConnect.App_Common.Login.mvc.js:960-990 (OnInitialize In_IsFromResetPIN branch); shared Block_PINUnlock_ContentWrapper.tsx:163; shell auth.ts signIn/signOut",
+  "mcp": "not available to the route agent",
+  "options": [
+   "a) signOut() then mock signIn() at once → PINRegister (the B2C round-trip skipped, as U4)",
+   "b) signOut() only, stay on Login signed out; the user taps 'Login with UBT One'",
+   "c) not built now: Login shows as usual, the user stays signed in"
+  ],
+  "recommend": "a",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T18:22:03",
+  "answer": "A: Login?In_IsFromResetPIN=True → signOut() (clears session and local PIN), then mock signIn() which goes to PINRegister (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T18:35:03"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "B2C callback branches (mock)",
+  "question": "Branches that only the real B2C callback reaches: (1) OnReady with CallbackType = DeviceAwareness_InvalidDevice → AppManager_HandleDeviceAwarenessPopUp (opens ConfirmationDialog_ResetPassword 'Security Warning', may call AppManager_ChangeDevice); (2) AppManager_Events onCallback: IsSucess False → error toast, IdP_OnResetPassword → toast with callback texts. The mock sign-in (U4) replaces the callback; DeviceAwareness_Use is false on TST. Build them now?",
+  "evidence": "p:UBTConnect.App_Common.Login.mvc.js:800-818 (OnReady), :828-905 (AppManager_Callback), :633-650 (dialog texts); knowledge/shell-observed.md U2 (DeviceAwareness_Use false); pack 'Declared … not observed' AppManager_ChangeDevice",
+  "mcp": "not available to the route agent",
+  "options": [
+   "a) not built: AppManager_Events and the Security Warning dialog render closed as captured, no callback logic (the shell's mock sign-in stands in)",
+   "b) build them with fictional callback records through a mock toggle"
+  ],
+  "recommend": "a",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T18:22:35",
+  "answer": "A: B2C callback and device-awareness branches not built in the mock phase; the dialog renders closed as captured (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T18:35:03"
+ },
+ {
+  "id": "Q4",
+  "kind": "fact",
+  "topic": "Get_IsUnsupportedSystem",
+  "question": "Is Get_IsUnsupportedSystem.Out_IsUnsupportedSystem exactly (unsupported app version OR WebView version OR browser version), i.e. the OR of the three outputs of Get_IsUnsupportedVersion that the shared UnsupportedVersion_Wrapper uses? The route uses that OR (False on TST: no minimum versions; True with ?mock=unsupported-browser, U16).",
+  "evidence": "p:UBTConnect.App_Common.Login.mvc.js:940-947 (OnInitialize), :250 ($if IsUnsupportedSystem → UnsupportedVersion_Wrapper); app-shell.spec.md:190; shared/UBTConnect/lib/actions.ts get_IsUnsupportedVersion",
+  "mcp": "not available to the route agent (UBTConnect.controller Get_IsUnsupportedSystem not in the route sources)",
+  "options": [],
+  "recommend": "",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T18:22:35",
+  "answer": "No: Get_IsUnsupportedSystem.Out_IsUnsupportedSystem = Get_IsUnsupportedVersion.Out_IsUnsupportedAppVersion OR Out_IsUnsupportedBrowserVersion (WebView version NOT included). Evidence: TST compiled UBTConnect.controller.js (Get_IsUnsupportedSystem, comment 'Out_IsUnsupportedSystem = ... AppVersion or ... BrowserVersion'). Fix the route to OR only these two.",
+  "answeredBy": "code",
+  "answeredAt": "2026-10-14T18:30:11"
+ },
+ {
+  "id": "Q5",
+  "kind": "fact",
+  "topic": "DelayedMessage_Show",
+  "question": "What does UBT_AppManager DelayedMessage_Show do (Login OnReady, when CallbackType is not DeviceAwareness_InvalidDevice), and who sets the client variable AppManager_DelayedMessage? Neither is ported in the shell (CR-Login-1).",
+  "evidence": "p:UBTConnect.App_Common.Login.mvc.js:810-813; migration/shell/client-variables.md:86 (AppManager_DelayedMessage)",
+  "mcp": "not available to the route agent (UBT_AppManager.controller not in the route sources)",
+  "options": [],
+  "recommend": "",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T18:22:35",
+  "answer": "DelayedMessage_Show (UBT_AppManager.controller.js): if AppManager_DelayedMessage is not empty, JSON-deserialize it (AppManager_DelayedMessage record: MessageTitle, Message, Type), set the variable to \"\", then FeedbackMessage_AutoClose(title, message, type, EncodedHTML=True, ExtendedClass=\"\", DelayMs=0, UseDebounce=False). The only writer is DelayedMessage_Define, called only by FRD_HandleEvent_Logout (Firebase Realtime Database remote logout: AppManager_Logout, DelayedMessage_Define, JSUtils_PageRefresh). The mock has no Firebase, so the message is never set; port DelayedMessage_Show as a shell function (CR-Login-1).",
+  "answeredBy": "code",
+  "answeredAt": "2026-10-14T18:30:11"
+ },
+ {
+  "id": "Q6",
+  "kind": "decision",
+  "topic": "Parity: capture artifacts",
+  "question": "Accept these Login parity differences as capture artifacts (exemptions), since the build follows the compiled code and the live capture? (1) WelcomeToConnect logo: expected render shows a 16×16 broken image, the live capture recorded data-rendered-size 209x33 → card content and buttons 7px lower, pixel diff; (2) SVG background: compiled SVG has preserveAspectRatio=\"none\", dropped by the capture, so the expected render scales it uniformly (path 0,32 390×665 vs 0,0 390×720), pixel diff; (3) 'Contact Us' link cursor auto (capture renamed href to data-original-href) vs pointer; (4) version text masked in the capture; (5) loading/offline only: body class osx and .slide-from-right-enter-done missing in those captures (taken before the device class/transition).",
+  "evidence": "parity/default.json, loading.json, offline.json; dom/default.html:53 (data-rendered-size=209x33), :93 (data-original-href); sources/pretty/UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js:202 (preserveAspectRatio none); parity/default.expected.png vs default.build.png",
+  "mcp": "not applicable",
+  "options": [
+   "a) accept all five as exemptions",
+   "b) accept some (name them)",
+   "c) none: keep them as open differences"
+  ],
+  "recommend": "a",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T18:27:19",
+  "answer": "A: accept the five capture-replay artifacts as parity exemptions in migration/parity-exemptions.json, with reason and evidence (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T18:35:03"
+ },
+ {
+  "id": "Q7",
+  "kind": "decision",
+  "topic": "Parity: version text",
+  "question": "The default state keeps one difference: the Version text is 'App version (61)' in the build but four words on TST ('App version' + environment + '(N)', masked in the capture), so the centred span sits 5px further right (134,1 → 139,1). The environment word needs a shell/shared change (CR-Login-4: keep UBT_AppManager.OutSystems_Environment from SynchAppContext). Wait for CR-Login-4, or accept the difference as an exemption until then?",
+  "evidence": "migration/screens/Login/parity/default.json; analysis/dom/default.html:106 (masked text 3+7+3+4 chars); app/src/shared/UBTConnect/Version/README.md 'Not settled'; migration/change-requests/CR-Login-4.md",
+  "mcp": "not applicable",
+  "options": [
+   "a) wait: apply CR-Login-4, no exemption",
+   "b) temporary exemption VERSION-ENVIRONMENT (position of the Version span) until CR-Login-4 is applied"
+  ],
+  "recommend": "a",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T18:39:27",
+  "answer": "A: no exemption; CR-Login-4 applied (shell keeps OutSystems_Environment from SynchAppContext, mock Environment TST); Version shows 'App version TST (61)'; parity 0 differences (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T19:20:40"
+ },
+ {
+  "id": "Q8",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: \"Forgot Password?\" renders as captured and does nothing on click in the mock phase (Q1).; Login?In_IsFromResetPIN=True (not restored from the view cache): signOut() (session and local PIN), then the mock; AppManager_Events renders as the empty captured widget and the Security Warning dialog stays closed; callback and; IsUnsupportedSystem = unsupported app version OR unsupported browser version (Q4): False on TST, True with; OnReady calls the shell's `delayedMessageShow()` (Q5, CR-Login-1); nothing is pending in the mock app.; \"Login with UBT One\" signs in at once as the mock user and the shell picks the destination (D3(a)/U4, shell auth.ts).; Static entity values `large` (UBT_Shape) and `xxs` (UBT_FontSize) are local constants taken from the captured classes; Parity exemptions added for the capture-replay artifacts (Q6): CAPTURE-SVG-PRESERVEASPECTRATIO (ignoreSubtrees; The ButtonLoading loading state (`osui-btn-loading--is-loading`, aria-busy) is not captured; it comes from the shared Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-14T19:20:40",
+  "items": [
+   "\"Forgot Password?\" renders as captured and does nothing on click in the mock phase (Q1).",
+   "Login?In_IsFromResetPIN=True (not restored from the view cache): signOut() (session and local PIN), then the mock",
+   "AppManager_Events renders as the empty captured widget and the Security Warning dialog stays closed; callback and",
+   "IsUnsupportedSystem = unsupported app version OR unsupported browser version (Q4): False on TST, True with",
+   "OnReady calls the shell's `delayedMessageShow()` (Q5, CR-Login-1); nothing is pending in the mock app.",
+   "\"Login with UBT One\" signs in at once as the mock user and the shell picks the destination (D3(a)/U4, shell auth.ts).",
+   "Static entity values `large` (UBT_Shape) and `xxs` (UBT_FontSize) are local constants taken from the captured classes",
+   "Parity exemptions added for the capture-replay artifacts (Q6): CAPTURE-SVG-PRESERVEASPECTRATIO (ignoreSubtrees",
+   "The ButtonLoading loading state (`osui-btn-loading--is-loading`, aria-busy) is not captured; it comes from the shared"
+  ],
+  "fixed": [],
+  "answer": "confirm (user tested the review, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T19:24:06"
+ },
+ {
+  "id": "Q9",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: \"Forgot Password?\" renders as captured and does nothing on click in the mock phase (Q1).; Login?In_IsFromResetPIN=True (not restored from the view cache): signOut() (session and local PIN), then the mock; AppManager_Events renders as the empty captured widget and the Security Warning dialog stays closed; callback and; IsUnsupportedSystem = unsupported app version OR unsupported browser version (Q4): False on TST, True with; OnReady calls the shell's `delayedMessageShow()` (Q5, CR-Login-1); nothing is pending in the mock app.; \"Login with UBT One\" signs in at once as the mock user and the shell picks the destination (D3(a)/U4, shell auth.ts).; Static entity values `large` (UBT_Shape) and `xxs` (UBT_FontSize) are local constants taken from the captured classes; Parity exemptions added for the capture-replay artifacts (Q6): CAPTURE-SVG-PRESERVEASPECTRATIO (ignoreSubtrees; The ButtonLoading loading state (`osui-btn-loading--is-loading`, aria-busy) is not captured; it comes from the shared Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T01:28:31",
+  "items": [
+   "\"Forgot Password?\" renders as captured and does nothing on click in the mock phase (Q1).",
+   "Login?In_IsFromResetPIN=True (not restored from the view cache): signOut() (session and local PIN), then the mock",
+   "AppManager_Events renders as the empty captured widget and the Security Warning dialog stays closed; callback and",
+   "IsUnsupportedSystem = unsupported app version OR unsupported browser version (Q4): False on TST, True with",
+   "OnReady calls the shell's `delayedMessageShow()` (Q5, CR-Login-1); nothing is pending in the mock app.",
+   "\"Login with UBT One\" signs in at once as the mock user and the shell picks the destination (D3(a)/U4, shell auth.ts).",
+   "Static entity values `large` (UBT_Shape) and `xxs` (UBT_FontSize) are local constants taken from the captured classes",
+   "Parity exemptions added for the capture-replay artifacts (Q6): CAPTURE-SVG-PRESERVEASPECTRATIO (ignoreSubtrees",
+   "The ButtonLoading loading state (`osui-btn-loading--is-loading`, aria-busy) is not captured; it comes from the shared"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T01:28:31"
+ }
+]

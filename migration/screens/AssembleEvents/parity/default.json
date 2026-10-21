@@ -1,0 +1,67 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/AssembleEvents?mocksession=unlocked",
+ "mock": "nomeetings",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "630462df89cf9de6b81d",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 551,
+  "texts": 97,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-21T04:27:13.020Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 1,
+  "CAPTURE-LINK-HREF-CURSOR-ASSEMBLEEVENTS": 2,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
+  "CAPTURE-MASKED-COUNT-WIDTH-ASSEMBLEEVENTS-SHEET": 89
+ },
+ "pixel": {
+  "ratio": 0.00006,
+  "maxCell": 0.0069,
+  "maxCellRatio": 0.03,
+  "diffPixels": 20,
+  "comparedPixels": 325918,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 52,
+  "hotspots": [
+   "200,800 (11px)",
+   "200,760 (9px)"
+  ],
+  "diffPng": "migration/screens/AssembleEvents/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 11,
+  "actual": 11
+ },
+ "diffs": []
+}

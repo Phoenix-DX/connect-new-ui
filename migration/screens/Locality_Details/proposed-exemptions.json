@@ -1,0 +1,78 @@
+{
+ "_comment": "Proposed by route-locality-details for feedback F1 (tag states, capture-tags-2026-10-16). Not applied: the orchestrator merges what it accepts into migration/parity-exemptions.json (rules / ignoreSubtrees / callOrderFree) and the capture plan. Each entry mirrors an accepted default-state exemption of this route or a precedent; parity/tag-*.json of 2026-10-16 list the differences they cover. Reasons end with the auto-mode note.",
+ "rules_tags": [
+  {
+   "id": "TAGS-MASKED-IMAGE-LOCALITYDETAILS",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^tag-(suppermeetings|oneschoolglobal)$",
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "pathRegex": "div#(b19-l1-3598_\\d+-b4|b21-b3-l1-3709_\\d+-b2)-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "Same as CAPTURE-MASKED-IMAGE-LOCALITYDETAILS (default): the supper meeting and school photos were masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered 390x260 / 390x292), so the replayed reference shows a 26 px broken image while the clone shows the 390x260 neutral placeholder (Q-W2C-1). 20 diffs in tag-suppermeetings (cards l1-3598_10, _11), 22 in tag-oneschoolglobal (l1-3709_3, _4); the third supper meeting (no photo on TST) matches. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Locality_Details/analysis/dom/tag-suppermeetings.html:226-228, tag-oneschoolglobal.html (img data-masked-src); parity/tag-suppermeetings.json, parity/tag-oneschoolglobal.json"
+  },
+  {
+   "id": "TAGS-TAGLIST-SCROLL-LOCALITYDETAILS",
+   "kinds": [
+    "position"
+   ],
+   "states": "^tag-(interchange|oneschoolglobal)$",
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "pathRegex": "div#\\$b16\\.OSBlockWidget\\[ConnectPatterns\\.HorizontalTagList\\] > div\\.OSFillParent\\.household-tag\\.list > div#b16-l1-\\d+_\\d+-\\$b1\\.OSBlockWidget\\[ConnectPatterns\\.TagToggle\\]$",
+   "reason": "The plan step clicks a tag that sticks out of the 390 px tag row, so Playwright scrolls the row before the click (Interchange 12 px, OneSchool Global 186 px, measured on the clone after the same steps). The replayed reference is serialized HTML, which keeps no scrollLeft: every tag stays at its unscrolled offset (16, 134, 287, 406). Capture artifact (scroll position), not markup. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/tag-interchange.json and parity/tag-oneschoolglobal.json (offset in parent 16,0 → 4,0 / -170,0); states.json steps"
+  },
+  {
+   "id": "TAGS-SLIDER-APPEAR-TIMING",
+   "kinds": [
+    "class"
+   ],
+   "states": "^tag-(suppermeetings|interchange|oneschoolglobal)$",
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "pathRegex": "div#transitionContainer > div\\.dx-bottom-bar-slider(\\.dx-bottom-bar-slider-appear)?$",
+   "reason": "Same as SLIDER-APPEAR-TIMING (default, offline): the app-start slider keeps -appear on TST (undefined animation duration); the tag states start from the same load. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/tag-*.json class diff 'missing .dx-bottom-bar-slider-appear'"
+  }
+ ],
+ "ignoreSubtrees_tags": [
+  {
+   "id": "TAGS-TIME-LABEL-LOCALITYDETAILS",
+   "states": "^tag-(suppermeetings|interchange|oneschoolglobal)$",
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "blockRegex": "^Directory_Locality\\.Locality_DateTimeLabel$",
+   "reason": "Same as TIME-LABEL-LOCALITYDETAILS (default/loading/offline): the label shows the current time in the locality's time zone, so text and width depend on when capture and parity run (data drift). Covers the text diff and the pixel hotspot at y 80-120. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/tag-*.json text 'Thursday, 03:17 PM (UTC - 3)' → run time"
+  },
+  {
+   "id": "TAGS-TAGLIST-SCROLL-PIXEL",
+   "states": "^tag-(interchange|oneschoolglobal)$",
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "blockRegex": "^ConnectPatterns\\.HorizontalTagList$",
+   "reason": "Pixel side of TAGS-TAGLIST-SCROLL-LOCALITYDETAILS: the reference draws the tag row unscrolled, the clone scrolled by Playwright's click (hotspots y 160). Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/tag-interchange.diff.png, parity/tag-oneschoolglobal.diff.png"
+  }
+ ],
+ "callOrderFree_tags": [
+  {
+   "id": "TAGS-CALL-ORDER-APPSTART",
+   "actions": [
+    "ActionGetSignedImagesInBulk",
+    "ActionGetUserInformation"
+   ],
+   "states": "^tag-(suppermeetings|interchange|oneschoolglobal)$",
+   "countFree": true,
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "reason": "The load phase of the tag states is the default state's load (same route, the clicks come after): the accepted CALL-ORDER-APPSTART-RACE, CALL-ORDER-APPSTART-USERINFO and CALL-COUNT-SIGNED-IMAGES-BATCH apply (only to ^default$ today). The tag-phase calls match. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/tag-*.json call diff 'calls:load' only"
+  }
+ ],
+ "capturePlan_tags": {
+  "id": "TAGS-FOOTER-SHADOW-LATENCY",
+  "proposal": "capture-plan Locality_Details: \"latencies\": {\"tag-interchange\": 600} (or all three tag states)",
+  "reason": "Same cause as HouseholdDetails F5 (latency 600, orchestrator 2026-10-15): SetScrollShadow runs once ~200 ms after the layout is ready (SA:151-205). On TST GetUserInformation had not answered yet, so the Households tag was not mounted, the content was short and --footer-shadow-scroll stayed hidden (dom/tag-interchange.raw.html: hidden). At latency 0 the clone has the 23 households by then, sets 'visible', and no later scroll recomputes it; only tag-interchange shows it because its content is shorter than the viewport, so the bottom bar and its shadow are in the screenshot (pixel band y 760-800, about 3000 px).",
+  "evidence": "parity/tag-interchange.diff.png (bottom bar line), app/src/shared/UBTConnectLibrary/lib/actions.ts setScrollShadow"
+ },
+ "_merged": "tags merged 2026-10-16: rules:TAGS-MASKED-IMAGE-LOCALITYDETAILS, rules:TAGS-TAGLIST-SCROLL-LOCALITYDETAILS, rules:TAGS-SLIDER-APPEAR-TIMING, ignoreSubtrees:TAGS-TIME-LABEL-LOCALITYDETAILS, ignoreSubtrees:TAGS-TAGLIST-SCROLL-PIXEL, callOrderFree:TAGS-CALL-ORDER-APPSTART"
+}

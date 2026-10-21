@@ -1,0 +1,122 @@
+{
+ "module": "UBTConnect",
+ "action": "DataActionGetServices",
+ "screen": "FeedBlock_Services",
+ "status": 200,
+ "inputs": {
+  "MainElementClass": "ubt-services-carousel",
+  "Local_ServicesPerPage": {
+   "List": [
+    {
+     "PageNumber": 1,
+     "ServiceItem": {
+      "List": [
+       {
+        "Id": "",
+        "IconId": "",
+        "Name": "",
+        "Order": 0
+       },
+       {
+        "Id": "",
+        "IconId": "",
+        "Name": "",
+        "Order": 0
+       },
+       {
+        "Id": "",
+        "IconId": "",
+        "Name": "",
+        "Order": 0
+       },
+       {
+        "Id": "",
+        "IconId": "",
+        "Name": "",
+        "Order": 0
+       },
+       {
+        "Id": "",
+        "IconId": "",
+        "Name": "",
+        "Order": 0
+       }
+      ]
+     }
+    }
+   ]
+  },
+  "ExternalAppPopUp_Id": "",
+  "Local_ExternalApp_PopUpInfo": {
+   "AppName": "",
+   "PackageName": "",
+   "IconId": ""
+  },
+  "ItemPerPage": 6,
+  "ForceAddService": false
+ },
+ "data": {
+  "List": {
+   "List": [
+    {
+     "Id": "Orbit",
+     "Label": "Orbit",
+     "Order": 1,
+     "Is_Active": false,
+     "IconId": "connect-icon-orbit_text",
+     "isMandatory": false,
+     "StartAsDefault": false
+    },
+    {
+     "Id": "LDM",
+     "Label": "Lord's Day Meal",
+     "Order": 2,
+     "Is_Active": false,
+     "IconId": "connect-icon-ldm",
+     "isMandatory": false,
+     "StartAsDefault": false
+    },
+    {
+     "Id": "Assemble",
+     "Label": "Assemble",
+     "Order": 3,
+     "Is_Active": false,
+     "IconId": "connect-icon-assemble",
+     "isMandatory": false,
+     "StartAsDefault": false
+    },
+    {
+     "Id": "Trove",
+     "Label": "Trove",
+     "Order": 4,
+     "Is_Active": false,
+     "IconId": "connect-icon-trove",
+     "isMandatory": false,
+     "StartAsDefault": false
+    },
+    {
+     "Id": "MyCalendar",
+     "Label": "My Entertaining",
+     "Order": 5,
+     "Is_Active": false,
+     "IconId": "connect-icon-calendar",
+     "isMandatory": false,
+     "StartAsDefault": false
+    },
+    {
+     "Id": "MyNotes",
+     "Label": "My Notes",
+     "Order": 6,
+     "Is_Active": false,
+     "IconId": "connect-icon-tooltip",
+     "isMandatory": false,
+     "StartAsDefault": false
+    }
+   ]
+  },
+  "ExternalLinks_ElGusto": "https://elgustoglobal.com/",
+  "ExterrnalPackages_CommunityTradelink": "xyz.appmaker.bufeqe",
+  "ExterrnalPackages_HR100": "com.ubtconnectglobal.ubtm.HR100Mobile",
+  "ExterrnalPackages_Trove": "com.ubtconnectglobal.ubtm.TroveMobile"
+ }
+}

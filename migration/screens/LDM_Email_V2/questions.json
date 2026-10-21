@@ -1,0 +1,88 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "mock data",
+  "question": "No TST call was recorded (no-capture). Mock GetCoordinatorDetails from the shared LDM world (src/mocks/fictional/ldm.ts): the meal is found by In_EventId, else by EventHostId; it answers the locality's coordinator (name, email, phone, locality, time zone), EventName = the meal's name ('Lord\\'s Day Meal at Bahia Blanca') and the meal's date; an unknown meal answers Out_HasContent False ('No Event Organiser information.'). EventContact (a write) is mocked with a P-MUTATION collection of sent coordinator e-mails and an empty answer, never the real server. OK?",
+  "evidence": "migration/runtime-sources/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js:925-953 (DataActionGetCoordinatorDetails, screen variables), :913-924 (EventContact), :1184-1211 (OnAfterFetch: Subject = EventName + ' - ' + date); contract-report.md rows 53/78 (fictional, not captured)",
+  "mcp": "",
+  "options": [
+   "A: shared LDM world as described",
+   "B: other fictional data"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T10:54:24",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T11:17:27"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "header icon",
+  "question": "MenuIcon__UpdatedOSUI gets the Orbit MenuAction Auto (not Back), whose class is 'app-menu-icon' until OSUI SetMenuIcon(Auto) runs. Render it as the back icon, as LDM_MyEvents_V2 does from its capture (the same block input, captured 'app-menu-icon back')?",
+  "evidence": "migration/runtime-sources/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js:270-276 (MenuAction auto); MenuIcon__UpdatedOSUI.mvc.js:149 (class back only for Back); migration/screens/LDM_MyEvents_V2/route-spec.md:116",
+  "mcp": "",
+  "options": [
+   "A: back icon (as LDM_MyEvents_V2)",
+   "B: plain app-menu-icon"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T10:54:24",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T11:17:27"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "compiled inline styles",
+  "question": "The compiled view puts Styles Editor inline styles on the form containers (Cont_From margin-top: 0px; Cont_To, Cont_Subject, Cont_Message margin-top: 10px). consistency_check NO-INLINE-COLOR accepts a margin only when a capture shows it, and this route has no capture. Render them as compiled (1:1) and raise CR-LDM_Email_V2-1 so the check accepts compiled-view styles of no-capture routes (consistency reports these lines until then), or leave them out until the CR is done?",
+  "evidence": "migration/runtime-sources/Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js:303-307, :336-340, :369-373, :402-406 (extendedProperties.style); consistency_check.py:58-95 (captured_inline_styles reads analysis/dom only)",
+  "mcp": "",
+  "options": [
+   "A: render as compiled + CR (consistency flags 4 lines until the CR)",
+   "B: leave out + CR (fields 10px closer until the CR)"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T10:54:24",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T11:17:27"
+ },
+ {
+  "id": "Q4",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending): GetCoordinatorDetails from the shared LDM world (meal by In_EventId, else EventHostId; unknown →; Q2 → A (pending): header icon rendered as Back (as LDM_MyEvents_V2's capture).; Q3 → A (pending): the compiled margin-top inline styles are rendered; CR-LDM_Email_V2-1 asks the check to accept them.; GetCoordinatorDetails sends the six block inputs only (the original sends every block variable; the other ones are; Restored from the view cache: the block starts again (Message \"\" as OnInitialize does, OnReady fetches again); the; Telemetry (AddAuditEventDetailEvent, zOnApplicationEvent_Wrapper) goes to the log without personal fields (decision; GetNetworkStatus = `navigator.onLine` (as LDM_EventDetail_V2). Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T11:17:28",
+  "items": [
+   "Q1 → A (pending): GetCoordinatorDetails from the shared LDM world (meal by In_EventId, else EventHostId; unknown →",
+   "Q2 → A (pending): header icon rendered as Back (as LDM_MyEvents_V2's capture).",
+   "Q3 → A (pending): the compiled margin-top inline styles are rendered; CR-LDM_Email_V2-1 asks the check to accept them.",
+   "GetCoordinatorDetails sends the six block inputs only (the original sends every block variable; the other ones are",
+   "Restored from the view cache: the block starts again (Message \"\" as OnInitialize does, OnReady fetches again); the",
+   "Telemetry (AddAuditEventDetailEvent, zOnApplicationEvent_Wrapper) goes to the log without personal fields (decision",
+   "GetNetworkStatus = `navigator.onLine` (as LDM_EventDetail_V2)."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T11:17:28"
+ }
+]

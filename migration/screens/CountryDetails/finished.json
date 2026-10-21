@@ -1,0 +1,11 @@
+{
+ "finishedAt": "2026-10-15T17:37:27",
+ "files": {
+  "src/screens/CountryDetails/api.ts": "336bd5053571933e",
+  "src/screens/CountryDetails/components/actions.ts": "6bc75cf98d1fb526",
+  "src/screens/CountryDetails/components/staticEntities.ts": "ca63ec38063d9845",
+  "src/screens/CountryDetails/index.tsx": "14137b77d75c3669",
+  "src/screens/CountryDetails/mocks.ts": "d0e6d2166b8eca18",
+  "src/screens/CountryDetails/types.ts": "ce4f18bffc70a586"
+ }
+}

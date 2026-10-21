@@ -1,0 +1,17 @@
+{
+ "rules": [],
+ "ignoreSubtrees": [],
+ "callOrderFree": [
+  {
+   "id": "CALL-ORDER-APPSTART-RACE-ASSEMBLE-BROWSEBYCOUNTRY",
+   "actions": [
+    "ActionGetCountriesBySubscription"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/Assemble_BrowseByCountry(\\?|$)",
+   "reason": "ScreenBlock_Assemble_Filter's FetchCountries runs Cache_UserInfo_Get, then GetCountriesBySubscription: on TST the screen's user-info request went out before AfterInitialize (calls.json #3-#5), the clone's shell answers block user-info requests after the app-start step (CALL-ORDER-APPSTART-USERINFO), so GetCountriesBySubscription follows Sync_Info_GetMain. Its place among the app-start calls depends on timing; counts and inputs are still compared. Applies once CR-Assemble_BrowseByCountry-1 lets the call run. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Assemble_BrowseByCountry/analysis/calls.json (GetUserInformation ts 4797, GetCountriesBySubscription ts 5101, AfterInitialize ts 5682); app/src/shell/userInfo.ts (holdUserInfoForAppStart)"
+  }
+ ],
+ "_merged": "2026-10-16 orchestrator: CALL-ORDER-APPSTART-RACE-ASSEMBLE-BROWSEBYCOUNTRY"
+}

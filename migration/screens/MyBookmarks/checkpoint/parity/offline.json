@@ -1,0 +1,62 @@
+{
+ "state": "offline",
+ "route": "/UBTConnect/MyBookmarks?mocksession=unlocked",
+ "mock": "error",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "f4d2599452b2f398632b",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 170,
+  "texts": 21,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-15T16:36:33.459Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING-POSITION": 1,
+  "CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING": 1,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
+  "ignoreSubtrees": 1,
+  "SLIDER-APPEAR-TIMING": 1
+ },
+ "pixel": {
+  "ratio": 0.00006,
+  "maxCell": 0.0069,
+  "maxCellRatio": 0.03,
+  "diffPixels": 20,
+  "comparedPixels": 328978,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 2,
+  "hotspots": [
+   "200,800 (11px)",
+   "200,760 (9px)"
+  ],
+  "diffPng": "migration/screens/MyBookmarks/parity/offline.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

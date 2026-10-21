@@ -1,0 +1,150 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "uncaptured message kinds",
+  "question": "Only a plain Directory message was captured. Sharing messages (ShareObjectDetail / ShareObjectDetail_ExtendedShare + Feed_Embeded), adaptive-card messages (AdaptiveCardViewer: Microsoft Adaptive Cards renderer, not in the package allow-list; its submit flow calls StoreAdaptiveCardResponses and opens LDM screens), Assemble messages (content built by BuildAssembleNotificationContent -> PlaceholderLib.SetTextPlaceholdersValue, controller source not local; 'View Meeting' button) and Orbit / Orbit host survey messages ('View Event' / 'Go to Host Survey' buttons, Get_Orbit*NotificationParameters) never rendered. How should the clone treat them?",
+  "evidence": "dom/default.html (Directory message only); ScreenBlock_MessageDetail.mvc.js view :392-630, controller :916-1203, :1213-1500, :1573-1706; catalog/blocks.md :168-175 (not built); PlaceholderLib.controller.js missing (only contract/sources/raw/PlaceholderLib.model.js)",
+  "mcp": "not available (no MCP in this run)",
+  "options": [
+   "A: keep <NotCaptured> for these parts now (the data flow and calls are built); record a Sharing, an adaptive-card, an Assemble and an Orbit message on TST later, then build them",
+   "B: build them now from the compiled code with fictional mocks (needs an ADR for the adaptivecards package and PlaceholderLib.controller.js fetched)"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T12:23:11",
+  "answer": "A, auto-accepted recommendation (user instruction 2026-10-15 11:24, 3h window): keep NotCaptured for the uncaptured message kinds; capture them on TST later",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T12:30:41"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "external targets",
+  "question": "The Orbit/Assemble buttons and the Sharing/adaptive-card flows navigate to routes decided skip:external (EventDetail, MilestoneDetail, HostSurvey, AssembleDetail, LDM_EventDetail(_V2), LDM_Email(_V2)). What should the clone do on those navigations once those parts are built?",
+  "evidence": "UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js :475-1050 (navigateTo with the original parameters); board: skip:external (D9); HomeFeed navigates to LDM_MyEvents_V2 by path",
+  "mcp": "not available",
+  "options": [
+   "A: navigate to the original path with the original parameters (the clone shows its NotMigrated page), as HomeFeed does",
+   "B: open the external app (openInApp_OpenApp / OpenExternalLink) with a package or URL you give per app"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T12:23:11",
+  "answer": "A, auto-accepted recommendation (user instruction 2026-10-15 11:24, 3h window): navigate to the original paths with the original parameters (NotMigrated in the clone), as HomeFeed",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T12:30:41"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "parity exemption",
+  "question": "loading/offline: the Spinner's .list-updating::before rotation (CSS animation) is photographed at another phase (transform matrix differs); markup, classes and pixels match. Accept a narrow exemption (pseudo transform on Reusable.Spinner > div.list-updating-cont > div.list-updating, states loading|offline)?",
+  "evidence": "migration/screens/MessageDetail/parity/loading.json, offline.json ([pseudo] ::before transform); dom/loading.html :63-68",
+  "mcp": "not applicable",
+  "options": [
+   "A: accept SPINNER-ROTATION-PHASE (kinds pseudo, prop transform, states loading",
+   "offline, Spinner path only)",
+   "B: do not accept; the state is reviewed by you instead"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T12:29:24",
+  "answer": "A, auto-accepted recommendation (user instruction 2026-10-15 11:24, 3h window): exemption SPINNER-ROTATION-PHASE (pseudo transform of the Spinner, loading|offline)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T12:30:41"
+ },
+ {
+  "id": "Q4",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Mock: GetMessageInstance has no recorded fixture → fictional message \"Test Noti 56\" (Directory sender, read) for the captured id; other ids are built from the MessageList mock rows (shared store `MessageList.messages`), unknown ids answer \"not found\" (P-MUTATION).; Mock: Wrapper_NotificationOpened answers IsRetracted False and marks the row read in that store.; Sharing / adaptive-card / Orbit / Assemble parts render `<NotCaptured>` until Q1 is answered (calls and flow built).; DecrementReadWhatsNewsCounter: client variable UnreadWhatsNewsNumber missing in the shell → CR-MessageDetail-1; the What's New branch skips the decrement until then.; Navigation to skip:external targets is not reachable while Q1 parts are NotCaptured (Q2).; Summary row and urgent icon render `<NotCaptured>` (not captured; inline styles not in a captured state).; Exemption CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK added (accepted kind link cursor, auto-decided in the user's 3h window 2026-10-15); spinner rotation phase proposed (Q3).; Body links open in a new tab (OpenLinksInSystemBrowserJS web branch, window.open _blank). Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasAssemble → default-only: TST value on (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasDeceasedProfileAccess → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasFeedEnabled → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:getHasNewLDM → default-only: TST value on (user, 2026-10-14); action:getHasNewNotifications → both branches, default off (TST); only the navigation target changes (Notifications / MessageList), both screens captured, so reference none (user, 2026-10-14); action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); action:getHasOrbitHostSurvey → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T12:31:38",
+  "items": [
+   "Mock: GetMessageInstance has no recorded fixture → fictional message \"Test Noti 56\" (Directory sender, read) for the captured id; other ids are built from the MessageList mock rows (shared store `MessageList.messages`), unknown ids answer \"not found\" (P-MUTATION).",
+   "Mock: Wrapper_NotificationOpened answers IsRetracted False and marks the row read in that store.",
+   "Sharing / adaptive-card / Orbit / Assemble parts render `<NotCaptured>` until Q1 is answered (calls and flow built).",
+   "DecrementReadWhatsNewsCounter: client variable UnreadWhatsNewsNumber missing in the shell → CR-MessageDetail-1; the What's New branch skips the decrement until then.",
+   "Navigation to skip:external targets is not reachable while Q1 parts are NotCaptured (Q2).",
+   "Summary row and urgent icon render `<NotCaptured>` (not captured; inline styles not in a captured state).",
+   "Exemption CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK added (accepted kind link cursor, auto-decided in the user's 3h window 2026-10-15); spinner rotation phase proposed (Q3).",
+   "Body links open in a new tab (OpenLinksInSystemBrowserJS web branch, window.open _blank)."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 11:24, 3h window)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T12:31:42"
+ },
+ {
+  "id": "Q5",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Mock: GetMessageInstance has no recorded fixture → fictional message \"Test Noti 56\" (Directory sender, read) for the captured id; other ids are built from the MessageList mock rows (shared store `MessageList.messages`), unknown ids answer \"not found\" (P-MUTATION).; Mock: Wrapper_NotificationOpened answers IsRetracted False and marks the row read in that store.; Sharing / adaptive-card / Orbit / Assemble parts render `<NotCaptured>` until Q1 is answered (calls and flow built).; DecrementReadWhatsNewsCounter: client variable UnreadWhatsNewsNumber missing in the shell → CR-MessageDetail-1; the What's New branch skips the decrement until then.; Navigation to skip:external targets is not reachable while Q1 parts are NotCaptured (Q2).; Summary row and urgent icon render `<NotCaptured>` (not captured; inline styles not in a captured state).; Exemption CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK added (accepted kind link cursor, auto-decided in the user's 3h window 2026-10-15); spinner rotation phase proposed (Q3).; Body links open in a new tab (OpenLinksInSystemBrowserJS web branch, window.open _blank). Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasAssemble → default-only: TST value on (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasDeceasedProfileAccess → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasFeedEnabled → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:getHasNewLDM → default-only: TST value on (user, 2026-10-14); action:getHasNewNotifications → both branches, default off (TST); only the navigation target changes (Notifications / MessageList), both screens captured, so reference none (user, 2026-10-14); action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); action:getHasOrbitHostSurvey → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T13:01:14",
+  "items": [
+   "Mock: GetMessageInstance has no recorded fixture → fictional message \"Test Noti 56\" (Directory sender, read) for the captured id; other ids are built from the MessageList mock rows (shared store `MessageList.messages`), unknown ids answer \"not found\" (P-MUTATION).",
+   "Mock: Wrapper_NotificationOpened answers IsRetracted False and marks the row read in that store.",
+   "Sharing / adaptive-card / Orbit / Assemble parts render `<NotCaptured>` until Q1 is answered (calls and flow built).",
+   "DecrementReadWhatsNewsCounter: client variable UnreadWhatsNewsNumber missing in the shell → CR-MessageDetail-1; the What's New branch skips the decrement until then.",
+   "Navigation to skip:external targets is not reachable while Q1 parts are NotCaptured (Q2).",
+   "Summary row and urgent icon render `<NotCaptured>` (not captured; inline styles not in a captured state).",
+   "Exemption CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK added (accepted kind link cursor, auto-decided in the user's 3h window 2026-10-15); spinner rotation phase proposed (Q3).",
+   "Body links open in a new tab (OpenLinksInSystemBrowserJS web branch, window.open _blank)."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed re-stamp after formatting only: user instruction 2026-10-15 11:24, 3h window)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T13:01:14"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Mock: GetMessageInstance has no recorded fixture → fictional message \"Test Noti 56\" (Directory sender, read) for the captured id; other ids are built from the MessageList mock rows (shared store `MessageList.messages`), unknown ids answer \"not found\" (P-MUTATION).; Mock: Wrapper_NotificationOpened answers IsRetracted False and marks the row read in that store.; Sharing / adaptive-card / Orbit / Assemble parts render `<NotCaptured>` until Q1 is answered (calls and flow built).; DecrementReadWhatsNewsCounter: client variable UnreadWhatsNewsNumber missing in the shell → CR-MessageDetail-1; the What's New branch skips the decrement until then.; Navigation to skip:external targets is not reachable while Q1 parts are NotCaptured (Q2).; Summary row and urgent icon render `<NotCaptured>` (not captured; inline styles not in a captured state).; Exemption CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK added (accepted kind link cursor, auto-decided in the user's 3h window 2026-10-15); spinner rotation phase proposed (Q3).; Body links open in a new tab (OpenLinksInSystemBrowserJS web branch, window.open _blank). Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasAssemble → default-only: TST value on (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasDeceasedProfileAccess → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasFeedEnabled → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:getHasNewLDM → default-only: TST value on (user, 2026-10-14); action:getHasNewNotifications → both branches, default off (TST); only the navigation target changes (Notifications / MessageList), both screens captured, so reference none (user, 2026-10-14); action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); action:getHasOrbitHostSurvey → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T06:56:23",
+  "items": [
+   "Mock: GetMessageInstance has no recorded fixture → fictional message \"Test Noti 56\" (Directory sender, read) for the captured id; other ids are built from the MessageList mock rows (shared store `MessageList.messages`), unknown ids answer \"not found\" (P-MUTATION).",
+   "Mock: Wrapper_NotificationOpened answers IsRetracted False and marks the row read in that store.",
+   "Sharing / adaptive-card / Orbit / Assemble parts render `<NotCaptured>` until Q1 is answered (calls and flow built).",
+   "DecrementReadWhatsNewsCounter: client variable UnreadWhatsNewsNumber missing in the shell → CR-MessageDetail-1; the What's New branch skips the decrement until then.",
+   "Navigation to skip:external targets is not reachable while Q1 parts are NotCaptured (Q2).",
+   "Summary row and urgent icon render `<NotCaptured>` (not captured; inline styles not in a captured state).",
+   "Exemption CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK added (accepted kind link cursor, auto-decided in the user's 3h window 2026-10-15); spinner rotation phase proposed (Q3).",
+   "Body links open in a new tab (OpenLinksInSystemBrowserJS web branch, window.open _blank)."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T06:56:23"
+ }
+]

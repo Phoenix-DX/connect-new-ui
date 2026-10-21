@@ -1,0 +1,19 @@
+{
+ "_comment": "Proposed by route-hostsurvey (HostSurvey, 2026-10-16) for the orchestrator (HostSurvey Q4); not in migration/parity-exemptions.json. Evidence: diagnostic parity run with the Q3 cloneQuery and migration/parity-exemptions.json (scratchpad diag2-default.json): every remaining difference is either this rule or CR-HostSurvey-2 (accordion item b22 closed).",
+ "rules": [
+  {
+   "id": "VIA-BACK-MENUICON-HOSTSURVEY",
+   "routeRegex": "^/UBTConnect/HostSurvey(\\?|$)",
+   "kinds": [
+    "class",
+    "style",
+    "layout",
+    "position"
+   ],
+   "pathRegex": "header#b2-b1-b2-Header\\.header\\.orbit-detail\\.orbit-host-survey(\\.orbit-host-survey-no-steps)? > div\\.header-top > div\\.display-flex\\.header-content > div\\.align-items-center\\.display-flex\\.full-width > (div#b2-b1-b2-HeaderLeft\\.header-left( > .+)?|h1\\.header-title\\.text-align-center|div#b2-b1-b2-HeaderRight\\.header-right)$",
+   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the state was captured via OrbitLanding → EventDetail → View Host Survey (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/HostSurvey/analysis/states.json (via); diagnostic parity default (class missing .back, 14 differences under the header); same rule as VIA-BACK-MENUICON-HELPERSDETAIL / -EVENTDETAIL / -MILESTONEDETAIL"
+  }
+ ],
+ "_merged": "2026-10-16 orchestrator: VIA-BACK-MENUICON-HOSTSURVEY"
+}

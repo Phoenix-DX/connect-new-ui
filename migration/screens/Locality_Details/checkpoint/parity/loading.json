@@ -1,0 +1,62 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/Locality_Details?LocalityId=252&PreloadedLocalityLabel=Bahia%20Blanca%2C%20Argentina&mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "fb6d8aaa5ff725b2b302",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 222,
+  "texts": 26,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-15T23:58:13.316Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 3,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
+  "CAPTURE-SKELETON-SHIMMER-PHASE": 10,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
+ },
+ "pixel": {
+  "ratio": 0.00024,
+  "maxCell": 0.0219,
+  "maxCellRatio": 0.03,
+  "diffPixels": 77,
+  "comparedPixels": 323970,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 6,
+  "hotspots": [
+   "200,800 (35px)",
+   "200,760 (25px)",
+   "160,120 (9px)",
+   "160,80 (8px)"
+  ],
+  "diffPng": "migration/screens/Locality_Details/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

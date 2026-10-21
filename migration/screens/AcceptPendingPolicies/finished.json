@@ -1,0 +1,12 @@
+{
+ "finishedAt": "2026-10-15T10:52:54",
+ "files": {
+  "src/screens/AcceptPendingPolicies/api.ts": "87f114822b274437",
+  "src/screens/AcceptPendingPolicies/components/Policy_Custom_AcceptPendingPolicies.tsx": "9e3b877c45f0011c",
+  "src/screens/AcceptPendingPolicies/components/actions.ts": "411865e3a01c5a1c",
+  "src/screens/AcceptPendingPolicies/components/staticEntities.ts": "c83c32ac1267c648",
+  "src/screens/AcceptPendingPolicies/index.tsx": "d1926fd8aec99370",
+  "src/screens/AcceptPendingPolicies/mocks.ts": "70f74a36435c62ee",
+  "src/screens/AcceptPendingPolicies/types.ts": "e20e89f2188b3e05"
+ }
+}

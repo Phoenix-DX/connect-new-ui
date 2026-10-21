@@ -1,0 +1,126 @@
+{
+ "note": "Generated from the runtime capture. phase = load, or the label of the plan step after which the call started.",
+ "calls": [
+  {
+   "module": "UBT_AppManager",
+   "action": "ActionAppManager_SynchAppContext",
+   "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext",
+   "phase": "load",
+   "ts": 3358,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "EspaceName"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionGetDateRanges",
+   "path": "/UBTConnect/screenservices/UBTConnect/App_Notifications/Notifications/DataActionGetDateRanges",
+   "phase": "load",
+   "ts": 4239,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBT_AppManager",
+   "action": "ActionAppManager_AfterInitialize",
+   "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_AfterInitialize",
+   "phase": "load",
+   "ts": 6349,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "AppManager_MobileContext",
+    "EspaceName",
+    "TOTP"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "DataActionFetchNotifications",
+   "path": "/UBTConnect/screenservices/UBTConnect/App_Notifications/Notifications/DataActionFetchNotifications",
+   "phase": "load",
+   "ts": 4512,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+   "phase": "load",
+   "ts": 6835,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "ActionSync_Info_GetMain",
+   "path": "/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain",
+   "phase": "load",
+   "ts": 6612,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "isFromLogin"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect_Utils",
+   "action": "ActionGetUserInformation",
+   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation",
+   "phase": "load",
+   "ts": 7170,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [],
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_LegacyShared",
+   "action": "ActionGetNumberUnreadMessages",
+   "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages",
+   "phase": "load",
+   "ts": 7524,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [
+    "DeviceId"
+   ],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "ServiceAPIFetchData_CacheableMapEntities",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+   "phase": "load",
+   "ts": 7885,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [],
+   "scope": "this screen"
+  },
+  {
+   "module": "UBTConnect",
+   "action": "ServiceAPIFetchData_CacheableHouseholds",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
+   "phase": "load",
+   "ts": 7886,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [],
+   "scope": "this screen"
+  }
+ ],
+ "variants": {}
+}

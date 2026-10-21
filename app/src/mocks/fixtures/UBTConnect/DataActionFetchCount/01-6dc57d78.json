@@ -1,0 +1,13 @@
+{
+ "module": "UBTConnect",
+ "action": "DataActionFetchCount",
+ "screen": "FeedBlock_CommunityPopulation",
+ "status": 200,
+ "inputs": {},
+ "data": {
+  "UI_MembersStatistics": {
+   "TotalNumberOfMembers": "54461",
+   "TotalNumberOfHouseholds": "0"
+  }
+ }
+}

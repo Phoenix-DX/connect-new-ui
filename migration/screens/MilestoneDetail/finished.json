@@ -1,0 +1,12 @@
+{
+ "finishedAt": "2026-10-16T12:25:55",
+ "files": {
+  "src/screens/MilestoneDetail/api.ts": "a5e46548e8b01d45",
+  "src/screens/MilestoneDetail/components/ScreenBlock_AccommodationHost.tsx": "fad8595a2524bdab",
+  "src/screens/MilestoneDetail/components/ScreenBlock_MilestoneWrapper.tsx": "fbc20836d7573566",
+  "src/screens/MilestoneDetail/components/actions.ts": "edad7c1cdd606f95",
+  "src/screens/MilestoneDetail/index.tsx": "311b908719b3f462",
+  "src/screens/MilestoneDetail/mocks.ts": "34eff66cd1a91f3b",
+  "src/screens/MilestoneDetail/types.ts": "08380d231810adc8"
+ }
+}

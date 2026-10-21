@@ -1,0 +1,57 @@
+{
+ "rules": [
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CBEOSG",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/ContactByEmailOneSchoolGlobal(\\?|$)",
+   "pathRegex": "form#b2-Form1\\.OSFillParent\\.form > div > (div#b2-\\$b3\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b2-b3-Content\\.font-size-s\\.ubt-custom-container > (div#b2-\\$b4\\.OSBlockWidget\\[ConnectPatterns\\.DynamicTextArea\\]( > div\\.resizable-text-area\\.resizable-text-area--bounded( > div#b2-b4-Placeholder_TextArea( > span( > textarea#b2-TextArea_Subject\\.OSFillParent\\.form-control)?)?)?)?|div#b2-\\$b5\\.OSBlockWidget\\[ConnectPatterns\\.InputCounter\\])|div#b2-\\$b7\\.OSBlockWidget\\[ConnectPatterns\\.TextArea_WithCounter\\] > div\\.ubt-input-with-counter > (div#b2-b7-Placeholder_Input( > span( > textarea#b2-TextArea_Message\\.OSFillParent\\.form-control)?)?|div#b2-b7-\\$b1\\.OSBlockWidget\\[ConnectPatterns\\.InputCounter\\]))$",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Layout of the two text areas, their DynamicTextArea / placeholder wrappers and the counters below them. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
+  },
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CBEOSG-GRID",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "grid-template-rows"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/ContactByEmailOneSchoolGlobal(\\?|$)",
+   "pathRegex": "form#b2-Form1\\.OSFillParent\\.form > div > div#b2-\\$b3\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b2-b3-Content\\.font-size-s\\.ubt-custom-container > div#b2-\\$b4\\.OSBlockWidget\\[ConnectPatterns\\.DynamicTextArea\\] > div\\.resizable-text-area\\.resizable-text-area--bounded > div#b2-b4-Placeholder_TextArea > span$",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the DynamicTextArea span grid row (60px → 39px). Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
+  },
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CBEOSG-PSEUDO",
+   "kinds": [
+    "pseudo"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/ContactByEmailOneSchoolGlobal(\\?|$)",
+   "pathRegex": "form#b2-Form1\\.OSFillParent\\.form > div > div#b2-\\$b3\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b2-b3-Content\\.font-size-s\\.ubt-custom-container > div#b2-\\$b4\\.OSBlockWidget\\[ConnectPatterns\\.DynamicTextArea\\] > div\\.resizable-text-area\\.resizable-text-area--bounded > div#b2-b4-Placeholder_TextArea > span$",
+   "detailRegex": "^::after height 44px → 23px$",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the bounded ::after stretched to the grid row (44px → 23px content height). Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
+  },
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CBEOSG-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/ContactByEmailOneSchoolGlobal(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[01]\\.\\d\\d% pixels differ .*migration/screens/ContactByEmailOneSchoolGlobal/parity/(default|loading|offline)\\.diff\\.png$",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the screenshot differs only in the text area band (hotspots y 280-360, parity/default.diff.png); bounded to < 2 % and to this route. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [],
+ "_merged": "2026-10-15 by the orchestrator, widened to ContactByEmailMember: CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL, CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-GRID, CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-PSEUDO, CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-PIXEL"
+}

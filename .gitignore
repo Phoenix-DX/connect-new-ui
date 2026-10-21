@@ -1,0 +1,21 @@
+# secrets: credentials + browser session
+.auth/
+# raw recordings (HAR, salt): real data
+migration/.raw/
+*.har
+# raw captures per screen, also nested ones such as capture-tags-*/capture/ (analysis/ is kept)
+migration/screens/**/capture/
+# Vietnamese originals of the English docs rewrite (2026-10-21); kept outside the repository
+migration/.ste-backup/
+# capture plan: holds test-account ids (skill privacy rule)
+migration/capture-plan.json
+migration/capture-ids.json
+# tooling
+node_modules/
+app/node_modules/
+app/dist/
+__pycache__/
+.DS_Store
+*.tsbuildinfo
+# personal Claude Code permissions
+.claude/settings.local.json

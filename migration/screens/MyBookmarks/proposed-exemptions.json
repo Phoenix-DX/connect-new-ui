@@ -1,0 +1,72 @@
+{
+ "_comment": "Proposed by the MyBookmarks route agent (2026-10-15) for the orchestrator to merge into migration/parity-exemptions.json. Capture / timing artifacts only; each entry as narrow as the parity reports allow.",
+ "rules": [
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS",
+   "kinds": [
+    "structure"
+   ],
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/MyBookmarks(\\?|$)",
+   "pathRegex": "div#b1-b1-Content > div#b1-\\$b1(1|2)\\.OSBlockWidget\\[(Widgets\\.NetworkWarning|Reusable\\.Spinner)\\]$",
+   "detailRegex": "^(missing|extra) in build$",
+   "reason": "The loading capture held DataActionGetGroupSummaries until the module's 10 s request timeout (Connect2_MyBookmarks_MUI defaultTimeout 10), so RefreshBookmarkData took its error branch: HasNetworkError True, NetworkWarning shown, toast 'The connection has timed out'. The clone has no request timeout and its loading scenario never answers, so it shows the compiled fetching branch (Spinner, ScreenBlock_MyBookmarks.mvc.js:597-612). The same NetworkWarning markup passes in the offline state. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT (MyBookmarks Q4 A). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/MyBookmarks/analysis/dom/loading.html:2-10, :72-97; migration/screens/MyBookmarks/parity/loading.json (2 structure diffs); parity/offline.json (NetworkWarning matches)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/MyBookmarks(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^2[0-9]\\.\\d\\d% pixels differ .*migration/screens/MyBookmarks/parity/loading\\.diff\\.png$",
+   "reason": "Pixel side of CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS: the capture shows the timeout toast over the header (feedbackMessageContainer, outside #reactContainer, so no subtree mask reaches it) and the orange NetworkWarning card; the clone shows the header and the Spinner. Diff 23.65%, all of it in the header (y 0-56) and the card (y 64-208). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/MyBookmarks/parity/loading.diff.png; loading.json"
+  },
+  {
+   "id": "CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING",
+   "kinds": [
+    "style"
+   ],
+   "states": "^offline$",
+   "routeRegex": "^/UBTConnect/MyBookmarks(\\?|$)",
+   "pathRegex": "\\[Widgets\\.NetworkWarning\\] > div#b1-b11-\\$b1\\.OSBlockWidget\\[Interaction\\.Animate\\] > div#b1-b11-b1-Content\\.animate\\.normal\\.top-to-bottom$",
+   "props": [
+    "opacity",
+    "transform"
+   ],
+   "reason": "The offline capture photographed the NetworkWarning's Animate (top-to-bottom, normal) mid-animation (opacity 0.51, translateY -41.9 px); the clone is compared with reduced motion at the end state (opacity 1, no transform). Animation phase artifact. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/MyBookmarks/parity/offline.json ([style] opacity 0.51325 → 1; transform matrix(1, 0, 0, 1, 0, -41.9137) → matrix(1, 0, 0, 1, 0, 0))"
+  },
+  {
+   "id": "CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING-POSITION",
+   "kinds": [
+    "position"
+   ],
+   "states": "^offline$",
+   "routeRegex": "^/UBTConnect/MyBookmarks(\\?|$)",
+   "pathRegex": "\\[Widgets\\.NetworkWarning\\] > div#b1-b11-\\$b1\\.OSBlockWidget\\[Interaction\\.Animate\\] > div#b1-b11-b1-Content\\.animate\\.normal\\.top-to-bottom$",
+   "detailRegex": "^offset in parent 0,-\\d+ → 0,-?[01]$",
+   "reason": "Position side of CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING: the mid-animation translateY moves the card up 43 px in the capture. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/MyBookmarks/parity/offline.json ([position] offset in parent 0,-43 → 0,-1)"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [],
+ "_merged": "2026-10-15 by the orchestrator: CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS, CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS-PIXEL, CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING, CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING-POSITION; F7b rules merged 2026-10-15: CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS-PIXEL-F7B",
+ "rules_F7b": [
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS-PIXEL-F7B",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/MyBookmarks(\\?|$)",
+   "detailRegex": "^[5-9]\\.\\d\\d% pixels differ .*migration/screens/MyBookmarks/parity/loading\\.diff\\.png$",
+   "reason": "Replaces the detail range of CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS-PIXEL (^2[0-9]...), calibrated before the loading ignoreSubtrees were merged; the loading capture held the requests until the module's 10 s request timeout, so the reference shows the 'The connection has timed out' toast over the header and the error branch, while the clone's loading scenario never answers and shows the header and the fetching branch (Spinner). Not caused by data: the loading scenario answers no bookmark call. Proposed by foundation F7b (2026-10-15), measured 7.93% after the shared legacy-bookmarks change.",
+   "evidence": "migration/screens/MyBookmarks/analysis/dom/loading.html:2-10; migration/screens/MyBookmarks/parity/loading.json (7.93%, hotspots y=0); loading.expected.png vs loading.build.png (toast + NetworkWarning vs header + Spinner)"
+  }
+ ]
+}

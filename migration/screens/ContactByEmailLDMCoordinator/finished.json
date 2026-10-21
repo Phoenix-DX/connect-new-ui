@@ -1,0 +1,10 @@
+{
+ "finishedAt": "2026-10-16T11:17:28",
+ "files": {
+  "src/screens/ContactByEmailLDMCoordinator/api.ts": "c7b21851b694a675",
+  "src/screens/ContactByEmailLDMCoordinator/components/actions.ts": "00664c48197b3d3f",
+  "src/screens/ContactByEmailLDMCoordinator/index.tsx": "a3da117f9bd070bb",
+  "src/screens/ContactByEmailLDMCoordinator/mocks.ts": "7cdc49dddde52a10",
+  "src/screens/ContactByEmailLDMCoordinator/types.ts": "cfe9847dc0de72fc"
+ }
+}

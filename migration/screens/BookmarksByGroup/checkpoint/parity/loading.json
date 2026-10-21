@@ -1,0 +1,63 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts&mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "0b33c76cb6b5f4c1b015",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 175,
+  "texts": 22,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T04:23:26.518Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 3,
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
+  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
+  "CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP-PIXEL-F7B": 1
+ },
+ "pixel": {
+  "ratio": 0.10575,
+  "maxCell": 1,
+  "maxCellRatio": 0.03,
+  "diffPixels": 31893,
+  "comparedPixels": 301584,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 5,
+  "hotspots": [
+   "80,0 (1600px)",
+   "280,0 (1600px)",
+   "320,0 (1600px)",
+   "240,0 (1579px)",
+   "40,0 (1578px)"
+  ],
+  "diffPng": "migration/screens/BookmarksByGroup/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

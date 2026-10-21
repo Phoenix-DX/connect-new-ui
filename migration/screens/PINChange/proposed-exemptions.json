@@ -1,0 +1,20 @@
+{
+ "_comment": "Proposed by route-pinchange for the orchestrator to merge into migration/parity-exemptions.json (rules). Same artifact as CAPTURE-LINK-HREF-CURSOR-PINREGISTER, whose pathRegex does not match here because PINChange's Main carries ubt-lock-screen.",
+ "rules": [
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-PINCHANGE",
+   "kinds": [
+    "style"
+   ],
+   "pathRegex": "\\[Layouts\\.Layout_LoginFlow\\] > div#b1-Main\\.ubt-layout--login\\.ubt-lock-screen > div#b1-Placeholder_Header\\.ubt-layout--login__header > a( > div#\\$b2\\.OSBlockWidget\\[ConnectPatterns\\.IconText\\])?$",
+   "detailRegex": "^cursor auto → pointer$",
+   "props": [
+    "cursor"
+   ],
+   "states": "^(default|loading|offline)$",
+   "reason": "The capture renames a link's href to data-original-href, so the replayed reference anchor of the PINChange header (\"Change PIN\") and the IconText block inside it have cursor auto; the app's link has its href \"#\" (cursor pointer). Same artifact as CAPTURE-LINK-HREF-CURSOR (Login Q6), CAPTURE-LINK-HREF-CURSOR-PINCODE (PINUnlock Q3) and CAPTURE-LINK-HREF-CURSOR-PINREGISTER. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/PINChange/analysis/dom/default.html:34 (data-original-href=\"#\"); migration/screens/PINChange/parity/{default,loading,offline}.json (2 style diffs each, cursor only)"
+  }
+ ],
+ "_merged": "2026-10-15 by the orchestrator: CAPTURE-LINK-HREF-CURSOR-PINCHANGE"
+}

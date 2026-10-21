@@ -1,0 +1,25 @@
+{
+ "module": "Connect2_LegacyShared",
+ "action": "ScreenDataSetGetShareObjectTypeById",
+ "screen": "ScreenBlock_ShareObject",
+ "status": 200,
+ "inputs": {},
+ "data": {
+  "List": {
+   "List": [
+    {
+     "Type_ShareObject": {
+      "Id": "",
+      "Label": "Household",
+      "LabelPrefix": "",
+      "Order": 0,
+      "Is_Active": false,
+      "NotificationTitle": "",
+      "APIKey": ""
+     }
+    }
+   ]
+  },
+  "Count": -1
+ }
+}

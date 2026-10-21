@@ -1,0 +1,99 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "D8(b) embed stand-in",
+  "question": "The external Connect2Entertaining SDK (<BaseURL>/embed-entertaining.js, loaded by RequireScript after GetEntertainingConfig) is not a TST file, so its message protocol is unknown. Mock-phase stand-in: a local module with the interface the block uses (init, isConfigured, destroy, setSources, refreshToken) that puts one iframe with the neutral page /mock-embeds/my-entertaining.html into the connect2entertaining container and calls onReady then onComplete (no status, no total) when that iframe has loaded; setSources and refreshToken do nothing; no onAuthenticated or onError. RequireScript becomes one seam function (requireEmbed(BaseURL)) where the real script is plugged in later. OK?",
+  "evidence": "Embedded_MyEntertaining.mvc.js: OnAfterFetch_GetEntertainingConfig RequireScript(BaseURL + '/embed-entertaining.js') and InitializeCalendarJS (Connect2Entertaining.embed.init); calls.md:810-811 (script and iframe <BaseURL>/embed/calendar from my-entertaining-embed-tst); dom/default.html:115 (container shown, empty); D8(b) user 2026-10-14; Embedded_FeedCMS mock page answers ready/complete on load (CR-W2F-1)",
+  "mcp": "not available in this run; the SDK is external (not in TST)",
+  "options": [
+   "A: stand-in completes on iframe load (as the Feed CMS mock)",
+   "B: stand-in never completes (skeleton stays until the real embed is plugged)",
+   "C: completes immediately on init without waiting for the iframe"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T09:38:56",
+  "answer": "A (user, 2026-10-15): stand-in as described",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T09:56:40"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "parity exemption D8(b) iframe",
+  "question": "Accept a parity exemption MYENT-D8B-IFRAME (same kind as FEED-CMS-D8B-IFRAME): kinds structure, layout, position; pathRegex '\\[Blocks\\.Embedded_MyEntertaining\\]( > .*)?$'; states '^default$'. The build shows the same-size mock iframe in the connect2entertaining container; the TST capture's container was empty (block and container 390x0 in the capture vs 390x794 in the build, iframe extra in build). Pixels are equal (0.00%) because the mock page is an empty neutral surface.",
+  "evidence": "migration/screens/MyEntertaining/parity/default.json (structure 1: iframe extra; layout 2: 390x0 -> 390x794); analysis/dom/default.html:115 (empty container); calls.md:811 (iframe <BaseURL>/embed/calendar requested in TST); styles/bundle.css:1195-1200 (iframe min-height calc(100vh - header)); D8(b) user 2026-10-14; FEED-CMS-D8B-IFRAME accepted 2026-10-15",
+  "mcp": "not applicable (capture artifact / D8(b) mock)",
+  "options": [
+   "A: accept the exemption as proposed",
+   "B: reject: the user reviews the default state instead"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T09:42:54",
+  "answer": "A (user, 2026-10-15): accept MYENT-D8B-IFRAME",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T09:56:40"
+ },
+ {
+  "id": "Q3",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: D8(b) stand-in for the external SDK (Q1): `components/connect2Entertaining.ts` replaces RequireScript + `window.Connect2Entertaining`; one iframe with `/mock-embeds/my-entertaining.html` (neutral page); onReady + onComplete on iframe load; setSources / refreshToken are no-ops. Plugging the real embed = `requireEmbed(BaseURL)` loads `<BaseURL>/embed-entertaining.js` and returns its `Connect2Entertaining.embed`.; Mock config: BaseURL = app origin, Token / B2CClientId / B2CPolicy empty; AppManager_Get_UserIdToken answers IdToken \"\" (fictional action, never a real token).; JSUtils_Console_Log calls of the block (ready, authenticated, complete, error, failed sources) are not ported (NO-CONSOLE).; The mock page is an empty neutral surface (#f4f4f4, no label): the TST container was empty, so pixels stay equal (a visible label gave 0.19% / worst tile 13.1% in the first parity run).; Exemption MYENT-D8B-IFRAME for the iframe in state default (Q2, accepted by the user 2026-10-15).; A failing token refresh (unobserved) is only logged (`log.warn`); a failing config call leaves the skeleton, as the offline capture.; Gaps of the pack (Policy_Checker, UnsupportedVersion_Wrapper, PinCode…) belong to the shell blocks; nothing rendered here. Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T09:57:12",
+  "items": [
+   "D8(b) stand-in for the external SDK (Q1): `components/connect2Entertaining.ts` replaces RequireScript + `window.Connect2Entertaining`; one iframe with `/mock-embeds/my-entertaining.html` (neutral page); onReady + onComplete on iframe load; setSources / refreshToken are no-ops. Plugging the real embed = `requireEmbed(BaseURL)` loads `<BaseURL>/embed-entertaining.js` and returns its `Connect2Entertaining.embed`.",
+   "Mock config: BaseURL = app origin, Token / B2CClientId / B2CPolicy empty; AppManager_Get_UserIdToken answers IdToken \"\" (fictional action, never a real token).",
+   "JSUtils_Console_Log calls of the block (ready, authenticated, complete, error, failed sources) are not ported (NO-CONSOLE).",
+   "The mock page is an empty neutral surface (#f4f4f4, no label): the TST container was empty, so pixels stay equal (a visible label gave 0.19% / worst tile 13.1% in the first parity run).",
+   "Exemption MYENT-D8B-IFRAME for the iframe in state default (Q2, accepted by the user 2026-10-15).",
+   "A failing token refresh (unobserved) is only logged (`log.warn`); a failing config call leaves the skeleton, as the offline capture.",
+   "Gaps of the pack (Policy_Checker, UnsupportedVersion_Wrapper, PinCode…) belong to the shell blocks; nothing rendered here."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-10-15)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T10:49:46"
+ },
+ {
+  "id": "Q4",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: D8(b) stand-in for the external SDK (Q1): `components/connect2Entertaining.ts` replaces RequireScript + `window.Connect2Entertaining`; one iframe with `/mock-embeds/my-entertaining.html` (neutral page); onReady + onComplete on iframe load; setSources / refreshToken are no-ops. Plugging the real embed = `requireEmbed(BaseURL)` loads `<BaseURL>/embed-entertaining.js` and returns its `Connect2Entertaining.embed`.; Mock config: BaseURL = app origin, Token / B2CClientId / B2CPolicy empty; AppManager_Get_UserIdToken answers IdToken \"\" (fictional action, never a real token).; JSUtils_Console_Log calls of the block (ready, authenticated, complete, error, failed sources) are not ported (NO-CONSOLE).; The mock page is an empty neutral surface (#f4f4f4, no label): the TST container was empty, so pixels stay equal (a visible label gave 0.19% / worst tile 13.1% in the first parity run).; Exemption MYENT-D8B-IFRAME for the iframe in state default (Q2, accepted by the user 2026-10-15).; A failing token refresh (unobserved) is only logged (`log.warn`); a failing config call leaves the skeleton, as the offline capture.; Gaps of the pack (Policy_Checker, UnsupportedVersion_Wrapper, PinCode…) belong to the shell blocks; nothing rendered here. Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T06:56:59",
+  "items": [
+   "D8(b) stand-in for the external SDK (Q1): `components/connect2Entertaining.ts` replaces RequireScript + `window.Connect2Entertaining`; one iframe with `/mock-embeds/my-entertaining.html` (neutral page); onReady + onComplete on iframe load; setSources / refreshToken are no-ops. Plugging the real embed = `requireEmbed(BaseURL)` loads `<BaseURL>/embed-entertaining.js` and returns its `Connect2Entertaining.embed`.",
+   "Mock config: BaseURL = app origin, Token / B2CClientId / B2CPolicy empty; AppManager_Get_UserIdToken answers IdToken \"\" (fictional action, never a real token).",
+   "JSUtils_Console_Log calls of the block (ready, authenticated, complete, error, failed sources) are not ported (NO-CONSOLE).",
+   "The mock page is an empty neutral surface (#f4f4f4, no label): the TST container was empty, so pixels stay equal (a visible label gave 0.19% / worst tile 13.1% in the first parity run).",
+   "Exemption MYENT-D8B-IFRAME for the iframe in state default (Q2, accepted by the user 2026-10-15).",
+   "A failing token refresh (unobserved) is only logged (`log.warn`); a failing config call leaves the skeleton, as the offline capture.",
+   "Gaps of the pack (Policy_Checker, UnsupportedVersion_Wrapper, PinCode…) belong to the shell blocks; nothing rendered here."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T06:57:00"
+ }
+]

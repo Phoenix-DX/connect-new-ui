@@ -1,0 +1,10 @@
+{
+ "finishedAt": "2026-10-16T15:00:42",
+ "files": {
+  "src/screens/FeedItemDetail/FeedItemDetail.test.tsx": "ece57837650531ac",
+  "src/screens/FeedItemDetail/api.ts": "857b8e91b0e4eb32",
+  "src/screens/FeedItemDetail/index.tsx": "bedf8adee73dded3",
+  "src/screens/FeedItemDetail/mocks.ts": "abdc9b386095e899",
+  "src/screens/FeedItemDetail/types.ts": "c422bf1b604a75d2"
+ }
+}

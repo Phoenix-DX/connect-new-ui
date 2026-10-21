@@ -1,0 +1,11 @@
+{
+ "finishedAt": "2026-10-16T12:21:26",
+ "files": {
+  "src/screens/HelpersDetail/api.ts": "34efdb1ebd8a2d88",
+  "src/screens/HelpersDetail/components/ScreenBlock_HelperDetails.tsx": "d1761de9ea01cbb7",
+  "src/screens/HelpersDetail/components/actions.ts": "2f33f2252a4316da",
+  "src/screens/HelpersDetail/index.tsx": "d8073fa0349ab44c",
+  "src/screens/HelpersDetail/mocks.ts": "61c0e2029bad0c59",
+  "src/screens/HelpersDetail/types.ts": "7dc624a6abf4437b"
+ }
+}

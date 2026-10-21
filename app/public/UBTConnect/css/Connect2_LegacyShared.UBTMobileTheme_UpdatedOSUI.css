@@ -1,0 +1,5468 @@
+﻿
+/* The following section is not subject to backwards compatibility selector*/
+
+
+:root {
+    
+    /* Color - Neutral */
+    
+    --color-neutral-0: #ffffff;
+    --color-neutral-1: #f8f9fa;
+    --color-neutral-2: #f1f3f5;
+    --color-neutral-3: #e9ecef;
+    --color-neutral-4: #dee2e6;
+    --color-neutral-5: #ced4da;
+    --color-neutral-6: #adb5bd;
+    --color-neutral-7: #6a7178;
+    --color-neutral-8: #4f575e;
+    --color-neutral-9: #272b30;
+    --color-neutral-10: #101213;
+
+    --color-neutral-11: #F8F9F9;
+    --color-neutral-12: #68737D;
+    --color-neutral-13: #D8DCDE;
+    
+    /* Color - Primary */
+    
+    /*--color-primary: #1775ba;*/
+    --color-primary-dark: #0c5e95;
+    --color-primary-light: #87badd;
+    --color-alert: #e53935;
+    
+    /** Color - Transversal to all applications **/
+    --color-double-menu: #1775ba;
+    
+    /** Applicaiton primary Colors**/
+    --color-primary-directory:#1775ba;
+    --color-primary-connect:#13598a;
+    --color-primary-media-hub:#202020;
+    --color-primary-ldm:#0D254E;
+    --color-primary-subscriptions: #4a0681;
+    --color-primary-bussiness-services: #5C6BC0;
+    --color-primary-photobook: #1976D2;
+    --color-primary-gift-portal: #000;
+    --color-primary-HR100: #E4E4E4;
+    --color-primary-el-gusto:#4A6545;
+    --color-primary-community-trade-link:#FEDB00;
+
+    --orbit-primary-1: #F0F5FF;
+    --orbit-primary-2: #D6E4FF;
+    --orbit-primary-3:#ADC6FF;
+    --orbit-primary-4:#85A5FF;
+    --orbit-primary-5:#597EF7;
+    /*--orbit-primary-6:#2857D8;
+    --orbit-primary-7: #1D39C4;
+    --orbit-primary-8:#10239E;
+    --orbit-primary-9:#061178;
+    --orbit-primary-10: #002453;*/
+
+    --orbit-primary-6: var(--color-primary);
+    --orbit-primary-7: var(--color-primary);
+    --orbit-primary-8:var(--color-primary);
+    --orbit-primary-9:var(--color-primary);
+    --orbit-primary-10: var(--color-primary);
+
+    --color-primary-orbit: var(--orbit-primary-10);
+    
+    --color-badge-menu: #87badd;
+    
+    /* Color - ContactUs */
+    --color-choices-menu: #1E88E5;
+    
+    --size-double-menu: 60px;
+    --size-menu-icon: 40px;
+      
+     /*  --z-index-bottom-bar-locked: 9000;*/  
+    --z-index-feedback-message-trove: 25;
+    --z-index-bottom-bar:            900;   
+    /* Z-index for screen transition animations is set to 1000 on basic.css, 
+       so anything above that will always be visible during screen transitions*/ 
+    --z-index-menu:                 9200;
+    --z-index-popups:               9400;
+    --z-index-lock-screen:          9500;
+    --z-index-feedback-message:    10000;  
+  /*  --z-index-bottom-bar-unlocked: 11000;*/
+    
+    --mini-player-video-height: 10vh;
+    --mini-player-video-width: 20vw;
+    --player-color-active: #555;
+    
+}
+
+  /* Migration */
+
+:root :where(.backwards-compatibility){
+
+    /*
+    Disabling for new Connect
+    --bottom-bar-size: 61px;*/
+
+     /* Space - Sizes */
+    --space-none: 0;
+    --space-xs: 3px;
+    --space-s: 5px;
+    --space-base: 10px;
+    --space-m: 15px;
+    --space-l: 20px;
+    --space-xl: 25px;
+    --space-xxl: 30px;
+    
+}
+
+  /* Migration END */
+
+
+
+/* Connect Theme */
+
+.connect-theme{
+    /*--color-primary: #1775ba;*/
+    --background-color-header: var(--color-primary);
+    --background-color-content: white;    
+    --background-color-button: var(--color-primary);
+    --background-color-bottom-bar: white;    
+    --color-bottom-bar: #455a64;
+    --color-bottom-bar-active: var(--color-primary);
+}
+
+/* Trove Theme */
+
+.media-hub-theme {
+    --color-primary: var(--color-primary-media-hub);  
+    --color-primary-light: #2c2c2c;
+    --color-secondary: #bfb18c;    
+    --player-color-active: #555;
+    --background-color-header: var(--color-primary-light);   
+    --background-color-content: var(--color-primary-light);
+    --background-color-button: var(--color-secondary);
+    --background-color-bottom-bar: var(--color-primary);
+    --color-bottom-bar: white;
+    --color-bottom-bar-active: var(--color-secondary);    
+}
+
+/* Orbit Theme */
+
+.orbit-theme {
+    --color-primary: var(--color-primary-orbit);
+    --background-color-button: var(--orbit-primary-7);
+    --background-color-header: var(--color-primary-orbit);
+    --background-color-content: white;
+}
+
+/* C&Co.  */
+
+.background-color-CampusAndCo {
+    background-color: var(--color-primary-gift-portal);
+
+}
+
+/* HR100 */
+
+.background-color-HR100 {
+    background-color: var(--color-primary-HR100);
+}
+
+/* El Gusto */
+.background-color-el-gusto {
+     background-color: var(--color-primary-el-gusto);
+}
+
+/*Community TradeLink */
+
+.background-color-community-trade-link {
+     background-color: var(--color-primary-community-trade-link);
+}
+
+
+/*  Theme height definition  */
+
+.connect-theme .connect-theme,
+.connect-theme .media-hub-theme,
+.connect-theme .orbit-theme,
+.media-hub-theme .media-hub-theme,
+.media-hub-theme .connect-theme,
+.media-hub-theme .orbit-theme,
+.orbit-theme .orbit-theme,
+.orbit-theme .connect-theme,
+.orbit-theme .media-hub-theme{
+    height:100vh;
+    min-height: 100vh;
+    height: 100dvh;
+    min-height: 100dvh;
+}
+
+
+/*Migration*/
+
+:where(.backwards-compatibility) .background-orange-dark { background-color: #FF6F00; }
+
+:where(.backwards-compatibility) ::-webkit-input-placeholder{
+  color:var(--color-neutral-6);
+}
+:where(.backwards-compatibility) ::-moz-placeholder{
+  color:var(--color-neutral-6);
+}
+:where(.backwards-compatibility) ::-ms-input-placeholder{
+  color:var(--color-neutral-6);
+}
+
+:where(.backwards-compatibility) .padding {
+    padding: 10px;
+}
+
+:where(.backwards-compatibility) [type=search]::-webkit-search-cancel-button, [type=search]::-webkit-search-decoration{
+  -webkit-appearance:auto;
+          appearance:auto;
+}
+
+/*Imported from OSUIMobileTheme_Deprecated*/
+
+/*Added for MediaHub*/
+/* Headings */
+/*If changed check MediaHubLanding page*/
+
+:where(.backwards-compatibility) .display-inline-flex {
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+}
+
+:where(.backwards-compatibility) h1,
+:where(.backwards-compatibility) .h1,
+:where(.backwards-compatibility) .heading1,
+.phone :where(.backwards-compatibility) h1,
+.phone :where(.backwards-compatibility) .h1,
+.phone :where(.backwards-compatibility) .heading1{
+    font-size: 28px;
+}
+
+:where(.backwards-compatibility) h2,
+:where(.backwards-compatibility) .h2,
+:where(.backwards-compatibility) .heading2,
+.phone :where(.backwards-compatibility) h2,
+.phone :where(.backwards-compatibility) .h2,
+.phone :where(.backwards-compatibility) .heading2{
+    font-size: 22px;
+}
+
+:where(.backwards-compatibility) h3,
+:where(.backwards-compatibility) .h3,
+:where(.backwards-compatibility) .heading3,
+.phone :where(.backwards-compatibility) h3,
+.phone :where(.backwards-compatibility) .h3,
+.phone :where(.backwards-compatibility) .heading3{
+    font-size: 18px;
+}
+
+:where(.backwards-compatibility) h4,
+:where(.backwards-compatibility) .h4,
+:where(.backwards-compatibility) .heading4,
+.phone :where(.backwards-compatibility) h4,
+.phone :where(.backwards-compatibility) .h4,
+.phone :where(.backwards-compatibility) .heading4{
+    font-size: 16px;
+}
+
+:where(.backwards-compatibility) h5,
+:where(.backwards-compatibility) .h5,
+:where(.backwards-compatibility) .heading5,
+.phone :where(.backwards-compatibility) h5,
+.phone :where(.backwards-compatibility) .h5,
+.phone :where(.backwards-compatibility) .heading5{
+    font-size: 14px ;
+}
+
+:where(.backwards-compatibility) h6,
+:where(.backwards-compatibility) .h6,
+:where(.backwards-compatibility) .heading6,
+.phone :where(.backwards-compatibility) h6,
+.phone :where(.backwards-compatibility) .h6,
+.phone :where(.backwards-compatibility) .heading6{
+    font-size: 12px;
+}
+
+/*If changed check MediaHubLanding page*/
+
+/*Added for MediaHub END*/
+
+.media-hub-theme:where(.backwards-compatibility) .header-top a {
+    display: inline-block; /* to make links easier to click on iOS devices */
+    padding: 0 10px 0 6px;
+}
+
+:where(.backwards-compatibility) .login-screen,
+:where(.backwards-compatibility) .splash-screen {
+    background-color: #0097eb; /*primary-color*/
+    color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display:         flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-box-align: center;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -ms-flex-align: center;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    -ms-flex-pack: distribute;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+
+:where(.backwards-compatibility) input.switch {
+    width: 56px;
+    height: 30px;
+    overflow: visible;
+}
+
+:where(.backwards-compatibility) input.switch:empty:before,
+:where(.backwards-compatibility) input.switch:empty:after {
+    background-color: #b0bec5;
+    border-radius: 25px;
+    height: 28px;
+    top: 0px;
+    width: 56px;
+    opacity: 1;
+}
+
+
+:where(.backwards-compatibility) input.switch:empty:after {
+    background-color: #fff;
+    border: 1px solid #CFD8DC;
+    bottom: 0;    
+    height: 24px;
+    margin-left: 0;
+    top: 2px;
+    width: 24px;
+    left: 3px;
+    border-radius: 100px;
+    box-shadow: 0 2px 4px rgba(184, 190, 194, 0.4);
+}
+
+:where(.backwards-compatibility) .btn,
+:where(.backwards-compatibility) .btn:hover,
+:where(.backwards-compatibility) .btn:focus {
+    align-items: center;
+    background-color: transparent;
+    border: 1px solid #0097eb; /*primary-color*/
+    border-radius: 2px;
+    color: #0097eb; /*primary-color*/ 
+    display: inline-flex;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 50px;
+    min-width: 80px;
+    overflow: hidden;
+    padding: 8px 10px;
+    position: relative;
+    text-align: center;
+    transition: all 200ms ease;
+    -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+    -webkit-user-select: none;
+            user-select: none;
+}
+
+:where(.backwards-compatibility) .btn[disabled]{
+    background-color: transparent;
+}
+
+body:where(.backwards-compatibility){
+  font-size: 100%;
+  line-height: 1.43;
+
+}
+
+:where(.backwards-compatibility) [data-popup] {
+    position: relative;
+    text-align: left;
+    max-width: 90%;
+    max-height: 90%;
+    min-width:  300px;
+    min-height: 100px;    
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;  
+}
+
+:where(.backwards-compatibility) [data-popup]:not([class*=padding-]) {
+    padding: 10px; 
+}
+
+:where(.backwards-compatibility) a,
+:where(.backwards-compatibility) a:link,
+:where(.backwards-compatibility) a:visited {
+  color: var(--color-primary);
+  font-weight: 600;
+  transition: all 100ms ease;
+  -webkit-user-select: none;
+   user-select: none;
+}
+
+:where(.backwards-compatibility)  [data-dropdown] .scrollable-list {
+    max-height: 240px;
+    height: inherit;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: 4;
+    -ms-overflow-style: none; /* Hide the scrollbar in IE */
+}
+
+:where(.backwards-compatibility) .dropdown-expanded-down div.dropdown-list {
+    border-radius: 0 0 2px 2px;
+    overflow: hidden;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+    border-width: 0;
+}
+
+:where(.backwards-compatibility) [data-dropdown] > div.dropdown-display {
+    border: 1px solid transparent;
+}
+
+:where(.backwards-compatibility) .choices__inner {
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #CFD8DC; /* shade5 */;
+    display: inline-block;
+    height: 40px;
+    line-height: 32px;
+    padding-left: 10px;
+    -webkit-transition: all 180ms linear;
+            transition: all 180ms linear;
+    vertical-align: top;
+    width: 100%;
+}
+
+:where(.backwards-compatibility) .margin-right15{
+  margin-right: 15px;
+}
+
+:where(.backwards-compatibility)  .choices[data-type*="select-one"] .search--wrapper input:not(.btn):not(.checkbox):not(.radio-button),
+:where(.backwards-compatibility)  .choices[data-type*="select-one"] .search--wrapper .input {
+    max-width: 100%;
+    line-height: 42px;
+    padding-left: 30px;
+}
+
+:where(.backwards-compatibility) .input-with-icon .input-with-icon-content-icon,
+:where(.backwards-compatibility) .input-with-icon .input-with-icon-content-icon a {
+    color: #B0BEC5;
+    z-index: 1;
+}
+
+:where(.backwards-compatibility) .input-with-icon .input-with-icon-content-icon:not(:empty) + .input-with-icon-input input {
+    padding-left: 40px;
+}
+
+
+:where(.backwards-compatibility) [data-block*="TabsHeaderItem"] {
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto;    
+}
+
+
+:where(.backwards-compatibility) .layout-native .section-expandable-content.is--expanded {
+    height: auto;
+    padding: 0 15px 15px 15px;
+    visibility: visible;
+}
+
+:where(.backwards-compatibility) .input-with-icon.input-with-icon-right .input-with-icon-content-icon:not(:empty)+.input-with-icon-input input {
+    padding-right: 40px;
+    padding-left: 10px;
+}
+
+:where(.backwards-compatibility) [data-dropdown] .dropdown-popup-row {
+    padding: 10px;
+    padding-right: 50px;
+}
+
+.dropdown-container > div.dropdown-list{
+  width: auto !important;
+}
+
+:where(.backwards-compatibility) .app-menu-links a,
+:where(.backwards-compatibility) .app-menu-links a:link,
+:where(.backwards-compatibility) .app-menu-links a:visited,
+:where(.backwards-compatibility) .submenu-item {  
+   color: #263238; 
+   padding: 10px 15px;
+   -webkit-user-select: none;
+   user-select: none;
+   font-size: 14px;
+   font-weight: normal;
+   line-height: 1.43;
+}
+
+:where(.backwards-compatibility) .badge(.bottom-bar-item .badge) {
+  font-size: 12px;
+  margin: 0 5px;
+  min-width: 10px;
+  padding: 0 8px 0 9px;
+}
+
+
+:where(.backwards-compatibility) .app-menu-container {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+:where(.backwards-compatibility) .app-menu{
+  height: 100%
+}
+
+:where(.backwards-compatibility) .no-padding,
+:where(.backwards-compatibility) .padding-none {
+    padding: 0 !important;
+}
+
+:where(.backwards-compatibility) .italic,
+:where(.backwards-compatibility) .text-italic {
+    font-style: italic;
+}
+
+:where(.backwards-compatibility) .layout-native .card,
+:where(.backwards-compatibility) .card {
+    border: 0;
+    border-radius: 4px;
+    border-left: 4px solid transparent;
+}
+
+:where(.backwards-compatibility) .layout-native .card,
+:where(.backwards-compatibility) .card{
+    padding: 0;
+}
+
+:where(.backwards-compatibility) textarea[data-textarea],
+:where(.backwards-compatibility) textarea[data-textarea]:empty,
+:where(.backwards-compatibility) .form-control[data-textarea],
+:where(.backwards-compatibility) .form-control[data-textarea]:empty{
+    height: auto;
+    padding: 5px 10px;
+    resize: none;
+}
+
+:where(.backwards-compatibility) .layout-native .card-title,
+:where(.backwards-compatibility) .layout-native .card-content,
+:where(.backwards-compatibility) .layout-native .card-bottom {
+    padding: 15px 15px 15px 11px;
+}
+
+:where(.backwards-compatibility) p{
+  margin: 0
+}
+
+:where(.backwards-compatibility) .text-note {
+    color: #a6a6a6; /*shade4*/
+    font-size: 10px;
+}
+
+
+:where(.backwards-compatibility) .flex-wrap-wrap {
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+:where(.backwards-compatibility) b,
+:where(.backwards-compatibility) strong,
+:where(.backwards-compatibility) .bold,
+:where(.backwards-compatibility) .text-bold {
+    font-weight: bold;
+}
+
+:where(.backwards-compatibility) .splash-logo,
+:where(.backwards-compatibility) .login-logo {
+    max-width: 240px;
+    text-align: center;
+}
+
+.splash-title,
+.splash-loading,
+.login-form {
+    max-width: 320px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+
+:where(.backwards-compatibility) .OSLoaderContainer {
+    background: rgba(255,255,255,0.5);
+    border-radius: 20px;
+}
+
+:where(.backwards-compatibility) .OSLoadingBar {
+    background-color: #fff;
+    border-radius: 20px;
+    height: 6px;
+    margin-top: 10px;    
+    transition: width 300ms ease;
+    width: 0;   
+}
+
+
+:where(.backwards-compatibility) .btn-primary[disabled],
+:where(.backwards-compatibility) .btn-primary[disabled]:hover,
+:where(.backwards-compatibility) .btn-primary[disabled]:focus,
+:where(.backwards-compatibility) .btn-primary[disabled]:active {
+    background-color: #eceff1;
+    color: #b0bec5;
+    border: 1px solid transparent;
+}
+
+:where(.backwards-compatibility) .form span.validation-message{
+  position: static;
+}
+
+
+:where(.backwards-compatibility) [data-checkbox] {
+  position: relative;
+  display: inline-block;
+  background-color: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  /*
+  border: 1px solid var(--color-primary);
+  */
+}
+
+:where(.backwards-compatibility) input[data-checkbox]:not([type="radio"]){
+  width: 20px;
+  height: 20px;
+  border-radius: 0px;
+}
+
+:where(.backwards-compatibility) [data-checkbox][disabled]{
+    border: 1px solid #bdc5c7;
+} 
+
+:where(.backwards-compatibility) .font-size-0-9em,
+.phone :where(.backwards-compatibility) .font-size-0-9em,
+:where(.backwards-compatibility) .tablet .font-size-0-9em{
+    font-size: 0.9em;
+}
+
+:where(.backwards-compatibility) .choices[data-type*="select-one"]:after {
+  top: 8px;
+  right: 12px
+}
+
+:where(.backwards-compatibility) .padding15 {
+    padding: 15px;
+}
+
+:where(.backwards-compatibility) .bottom .btn,
+:where(.backwards-compatibility) .layout-native .bottom .btn,
+:where(.backwards-compatibility) .bottom .btn:hover,
+:where(.backwards-compatibility) .layout-native .bottom .btn:hover,
+:where(.backwards-compatibility) .bottom .btn:focus,
+:where(.backwards-compatibility) .layout-native .bottom .btn:focus {
+    min-height: 60px;
+    border-radius: 0;
+    height: 100%;
+    padding: var(--space-base) var(--space-xl);
+}
+
+
+:where(.backwards-compatibility) .btn .icon {
+    padding: 0 5px;
+}
+
+:where(.backwards-compatibility) .range-slider .noUi-value-horizontal {
+    margin-left: -20px;
+    padding-top: 5px;
+}
+
+:where(.backwards-compatibility) .range-slider .noUi-value {
+    width: 40px;
+    position: absolute;
+    text-align: center;
+}
+
+:where(.backwards-compatibility) .badge > span {
+        line-height: 24px;
+}
+
+
+:where(.backwards-compatibility) .underline,
+:where(.backwards-compatibility) .text-underline {
+  text-decoration: underline;
+}
+
+:where(.backwards-compatibility) .layout-native .login-screen .login-form .btn {
+  background-color: transparent;
+}
+
+:where(.backwards-compatibility) .padding5 {
+    padding: 5px;
+}
+
+:where(.backwards-compatibility) [data-popover] > .popover-bottom {
+  min-width: 160px;
+  
+}
+
+:where(.backwards-compatibility) input[data-input]{
+  padding:var(--space-none) var(--space-base);
+}
+
+
+:where(.backwards-compatibility) .section-expandable.is--open > .section-expandable-title{
+    font-weight: normal;
+}
+
+:where(.backwards-compatibility) .button-group {
+    background-color: #eaeaea;
+    border-radius: 6px;  
+    padding: 3px;
+}
+
+:where(.backwards-compatibility) button.button-group-item {
+    padding: 8px;
+    border-radius: 4px;
+    border: 0;
+    background-color: transparent;
+    color: #565656;
+    font-size: 12px;
+    -webkit-user-select: none;
+            user-select: none;
+    font-weight: normal;
+}
+
+:where(.backwards-compatibility) .button-group-item:first-child,
+:where(.backwards-compatibility) .button-group-item:last-child
+{
+   border-radius: 4px;
+}
+
+.tablet :where(.backwards-compatibility) .button-group-item,
+.phone :where(.backwards-compatibility) .button-group-item{
+  height:auto;
+}
+
+/*Imported from OSUIMobileTheme_Deprecated END*/
+
+/*OutsystemsUI resets*/
+
+/*Without this selector, content will have a small scroll due to margins on the first container, and will collapse on the household carousel*/
+:where(.backwards-compatibility) .layout-native .content-middle{
+  height:auto;
+  position: static;
+}
+
+
+.tablet :where(.backwards-compatibility) [data-checkbox],
+.phone :where(.backwards-compatibility) [data-checkbox]{
+  height:30px;
+  width:30px;
+}
+
+
+:where(.backwards-compatibility).popup-dialog:not([class*=padding-]),
+:where(.backwards-compatibility) .popup-dialog:not([class*=padding-]){
+  margin: 0;
+  padding: 10px;
+}
+
+:where(.backwards-compatibility) th{
+  font: inherit;
+}
+
+:where(.backwards-compatibility) .section-expandable .section-expandable-title{
+  line-height: 1.43
+}
+
+:where(.backwards-compatibility) .form label{
+  margin-bottom: 0;
+}
+
+:where(.backwards-compatibility) .b2c-login .badge{
+    height: auto;
+}
+
+:where(.backwards-compatibility) .layout-side .app-menu-links a,
+:where(.backwards-compatibility) .layout-side .app-menu-links a.active{
+  border: none;
+  display: block;
+}
+
+:where(.backwards-compatibility) .tabs-header-tab{
+  margin-left: unset;
+}
+
+
+:where(.backwards-compatibility) .btn,
+:where(.backwards-compatibility) .btn{
+  height: unset;
+}
+
+
+:where(.backwards-compatibility) .layout-side .app-logo{
+  border-radius: 0;
+  margin-right: 0;
+  max-height: unset;
+  max-width: unset;
+}
+
+:where(.backwards-compatibility) [data-list-item] {
+  border-bottom: 1px solid #cfd8dc;
+}
+
+
+:where(.backwards-compatibility) .dropdown-container .scrollable-list-with-scroll{
+  padding: 0;
+}
+
+:where(.backwards-compatibility) .dropdown-expanded-down div.dropdown-list{
+  margin-top:0
+}
+
+:where(.backwards-compatibility) .dropdown-container .dropdown-popup-row{
+  height: unset;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.tablet :where(.backwards-compatibility) div.dropdown-display,
+.tablet :where(.backwards-compatibility) select.dropdown-display,
+.phone :where(.backwards-compatibility) div.dropdown-display,
+.phone :where(.backwards-compatibility) select.dropdown-display{
+  height: unset;
+  padding: 14px 10px
+}
+
+:where(.backwards-compatibility).choices__inner{
+   border: 1px solid transparent;
+}
+
+
+:where(.backwards-compatibility) .header .header-top-content{
+  height:auto;
+}
+
+
+:where(.backwards-compatibility) .dropdown-container > div.dropdown-list{
+  width: auto !important;
+  min-width: 100%
+}
+
+:where(.backwards-compatibility) .form .dropdown,
+:where(.backwards-compatibility) .form .search-input,
+:where(.backwards-compatibility) .form input[data-input],
+:where(.backwards-compatibility) .form textarea[data-textarea],
+:where(.backwards-compatibility) .form [data-switch]{
+  margin-bottom:0;
+}
+
+:where(.backwards-compatibility) [data-label].mandatory:after{
+  margin-left:0;
+}
+
+:where(.backwards-compatibility) h1,
+:where(.backwards-compatibility) .heading1,
+:where(.backwards-compatibility) h2,
+:where(.backwards-compatibility) .heading2,
+:where(.backwards-compatibility) h3,
+:where(.backwards-compatibility) .heading3,
+:where(.backwards-compatibility) h4,
+:where(.backwards-compatibility) .heading4,
+:where(.backwards-compatibility) h5,
+:where(.backwards-compatibility) .heading5,
+:where(.backwards-compatibility) h6,
+:where(.backwards-compatibility) .heading6,
+:where(.backwards-compatibility) .font-size-display{
+  line-height:1.43;
+}
+
+.ios :where(.backwards-compatibility) .layout-native .footer {
+  /*applied ios class to fix compability issues on ios. However, this can create issues in the future due to the safe area used by iOS on the bottom bar. Old value was fixed as calc(var(--os-safe-area-bottom) + var(--bottom-bar-size));*/
+  height: auto;
+}
+
+
+.tablet :where(.backwards-compatibility) [data-checkbox]:before,
+.phone :where(.backwards-compatibility) [data-checkbox]:before,
+.phone :where(.backwards-compatibility) [data-checkbox][disabled]:before{
+  height:100%;
+  width:100%;
+  border-radius: 0;
+  border: none;
+  transition: none;
+}
+
+/*OutsystemsUI resets END*/
+
+
+/*Migration End*/
+
+/*  $1.1. Font  */
+
+@font-face {    
+    font-family: 'Roboto-Bold';
+    src: url('../Roboto-Bold.ttf?4H34bO8uchEVWD1h0ftopg') format('truetype');
+    font-weight: normal;    
+    font-style: normal;
+}
+@font-face {    
+    font-family: 'Roboto';
+    src: url('../Roboto-Regular.ttf?Eeq8oiUTJc_FWJycb7V7Rg') format('truetype');
+    font-weight: normal;    
+    font-style: normal;
+}
+@font-face {    
+    font-family: 'Roboto-Light';
+    src: url('../Roboto-Thin.ttf?Mh3meOWS0Lj0TxqC18pLYg') format('truetype');
+    font-weight: normal;    
+    font-style: normal;
+}
+
+
+/*  $1.2. Body  */
+
+body {
+    font-family: Roboto;
+    overscroll-behavior: none;
+}
+body.connect-theme , .connect-theme .content, .connect-theme.ios .layout-native.ios-bounce .content {
+    background: var(--background-color-content);
+}
+
+
+body.media-hub-theme , .media-hub-theme .content {
+    background-color: var(--background-color-content);
+    color: var(--color-neutral-0);
+}
+
+body.orbit-theme , .orbit-theme .content {
+    background: var(--background-color-content);
+}
+
+.tablet .main-content {
+    max-width: initial;
+}
+
+
+/* $1.3 Browser defaults */
+
+i, em { font-style: italic; }
+
+li {
+  display: list-item;
+  text-align: match-parent;
+}
+
+ol {
+  display: block;
+  list-style-type: decimal;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  padding-inline-start: 40px;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  padding-inline-start: 40px;
+}
+
+
+.connect-theme.advanced-search .header {
+    z-index: 901; /* Used to fix the issues with the dropdown on the header. */
+}
+
+.connect-theme .input-search :is(.input[data-input], input[data-input]:empty, textarea[data-textarea], textarea[data-textarea]:empty){
+    background-color: white;
+}
+
+
+
+    /* Orbit specific bottom bar element*/
+.orbit-theme .bottom-bar> a.active,
+.orbit-theme .bottom-bar> a.active .bottom-bar-item-text, 
+.bottom-bar-items > a.active .bottom-bar-item-text, 
+.orbit-theme .bottom-bar> a.active .bottom-bar-item-icon, 
+.bottom-bar-items > a.active .bottom-bar-item-icon, 
+.orbit-theme .bottom-bar.floating-actions-items a, 
+.orbit-theme .bottom-bar.floating-actions-items a:link, 
+.orbit-theme .bottom-bar.floating-actions-items a:visited {
+    color: var(--color-primary-directory);
+}
+
+.feedback-message.media-hub-theme {
+    height: auto;
+}
+
+@font-face {
+  font-family: 'material-design-icons';
+  src:  url('../material-design-icons.eot?IP7FPFitL8kSvdPsmbKsbg');
+  src:  url('../material-design-icons.eot?IP7FPFitL8kSvdPsmbKsbg') format('embedded-opentype'),
+    url('../material-design-icons.ttf?FSQur0+TVUPHB31fiOES2g') format('truetype'),
+    url('../material-design-icons.woff?Z96Kd0jhK9A4kSDT3YcbNw') format('woff'),
+    url('../material-design-icons.svg?z_UA0Jp639HYC+nME59TdQ') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"]:not(.ubt-icon), [class*=" icon-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'material-design-icons' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ldm:before {
+  content: "\e900";
+}
+.icon-fingerprint:before {
+  content: "\ec60";
+}
+
+.icon-back-arrow-curved:before {
+  content: "\e950";
+}
+
+
+/* ------------------Icons Locality Tabs---------------*/
+
+
+@font-face {
+  font-family: 'locality-tabs';
+  src:  url('../locality-tabs.eot?Itc3nssBMJWiNUzWQwL7XA');
+  src:  url('../locality-tabs.eot?Itc3nssBMJWiNUzWQwL7XA') format('embedded-opentype'),
+    url('../locality-tabs.ttf?zynGmM5ldBgDnoy2RH6F3w') format('truetype'),
+    url('../locality-tabs.woff?H0pznENcqj6mhFu2OFgL_g') format('woff'),
+    url('../locality-tabs.svg?1CPvc43m8CLvNgP9ky7yvw') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-locality-tabs"]:not(.ubt-icon), [class*=" icon-locality-tabs"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'locality-tabs' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-locality-tabsarrows:before {
+  content: "\e900";
+}
+.icon-locality-tabsshops:before {
+  content: "\e901";
+}
+.icon-locality-tabshouseholds:before {
+  content: "\e902";
+}
+.icon-locality-tabsservices:before {
+  content: "\e903";
+}
+.icon-locality-tabsschools:before {
+  content: "\e904";
+}
+.icon-locality-tabssuper-meeting:before {
+  content: "\e905";
+}
+
+
+/* ------------------End Icons Locality Tabs---------------*/
+
+/*------------------- My Update Feed icons-----------------------------*/
+
+@font-face {
+  font-family: 'my-update-feed';
+  src:  url('../my-update-feed.eot?qeTkNokdu8adUEzXZOLFoQ');
+  src:  url('../my-update-feed.eot?qeTkNokdu8adUEzXZOLFoQ') format('embedded-opentype'),
+    url('../my-update-feed.ttf?kk8Do0GMDjmMpxOSo4kggQ') format('truetype'),
+    url('../my-update-feed.woff?RfZ5WwvzU7k2VRvvJj8uYQ') format('woff'),
+    url('../my-update-feed.svg?vzGCCBDI7EjieWR9rkDjOQ') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-my-update-feed"]:not(.ubt-icon), [class*=" icon-my-update-feed"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'my-update-feed' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-my-update-feedall:before {
+  content: "\e900";
+}
+.icon-my-update-feedbirths:before {
+  content: "\e901";
+}
+.icon-my-update-feeddeaths:before {
+  content: "\e902";
+}
+.icon-my-update-feedmarriages:before {
+  content: "\e903";
+}
+
+
+
+
+/*------------------- End My Update Feed icons-----------------------------*/
+
+
+/*------------------- Directory Icons -------------------------------------*/
+
+@font-face {
+  font-family: 'icon-directory';
+  src:  url('../icon-directory-theme.eot?EXUrKsthOOAhgF99VZIWTg');
+  src:  url('../icon-directory-theme.eot?EXUrKsthOOAhgF99VZIWTg') format('embedded-opentype'),
+    url('../icon-directory-theme.ttf?1eN8TMrp0aG0VBDx9CIZeg') format('truetype'),
+    url('../icon-directory-theme.woff?hwN4VE0_J2pO1fVNUlNijg') format('woff'),
+    url('../icon-directory-theme.svg?nm09zZU7qzwwqVZV7c1vgQ') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+/* weigth-fix for icon - dont delete */
+.icon-directory-location-circle:before {
+  font-weight: bold;
+}
+.icon-directory-Hosuehold:before {
+  color: #50b8b3;
+}
+.icon-directory-Locality:before {
+  color: #db4437;
+}
+.icon-directory-members:before {
+  color: #1976d2;
+}
+[class^="icon-directory-"]:not(.ubt-icon), [class*=" icon-directory-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icon-directory' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-directory-ellipsis-h-round:before {
+  content: "\e900"; 
+}
+
+.icon-directory-backspace-outline:before {
+  content: "\e901";
+}
+.icon-directory-play:before {
+  content: "\e904";
+}
+.icon-directory-key:before {
+  content: "\e905";
+}
+.icon-directory-Hosuehold:before {
+  content: "\e906";
+}
+.icon-directory-Locality:before {
+  content: "\e907";
+}
+.icon-directory-members:before {
+  content: "\e908";
+}
+.icon-directory-arrows:before {
+  content: "\e909";
+}
+.icon-directory-shops:before {
+  content: "\e90a";
+}
+.icon-directory-households:before {
+  content: "\e90b";
+}
+.icon-directory-services:before {
+  content: "\e90c";
+}
+.icon-directory-schools:before {
+  content: "\e90d";
+}
+.icon-directory-super-meeting:before {
+  content: "\e90e";
+}
+.icon-directory-mobile-phone:before {
+  content: "\e90f";
+}
+.icon-directory-location-on:before {
+  content: "\e910";
+}
+.icon-directory-email:before {
+  content: "\e911";
+}
+.icon-directory-account-circle:before {
+  content: "\e912";
+}
+.icon-directory-work-phone:before {
+  content: "\e913";
+}
+.icon-directory-phone-enabled:before {
+  content: "\e914";
+}
+.icon-directory-location-circle:before {
+  content: "\e915";
+}
+.icon-directory-all:before {
+  content: "\e916";
+}
+.icon-directory-pram:before {
+  content: "\e917";
+}
+.icon-directory-marriages:before {
+  content: "\e918";
+}
+.icon-directory-deaths:before {
+  content: "\e919";
+}
+.icon-directory-family-tree:before {
+  content: "\e91a";
+}
+.icon-directory-phone-decline:before {
+  content: "\e91b";
+}
+.icon-directory-phone-call:before {
+  content: "\e91c";
+}
+.icon-directory-local-time:before {
+  content: "\e91d";
+}
+.icon-directory-line-closed:before {
+  content: "\e91e";
+}
+.icon-directory-card-close:before {
+  content: "\e91f";
+}
+.icon-directory-back-arrow-curved:before {
+  content: "\e920";
+} 
+
+/*------------------- End Directory icons-----------------------------*/
+
+
+/*------------------- CommunityHub Icons-----------------------------*/
+
+
+@font-face {
+  font-family: 'communityHub';
+  src:  url('../communityHub.eot?tdkYtvWGIxscOoabUsbreg');
+  src:  url('../communityHub.eot?tdkYtvWGIxscOoabUsbreg') format('embedded-opentype'),
+    url('../communityHub.ttf?T_62xCRIGciBRHs3EPd8sg') format('truetype'),
+    url('../communityHub.woff?TqYojxBfwgXl3siW8Fmt1g') format('woff'),
+    url('../communityHub.svg?eAgys52B5fL3NvIDrpMQSQ') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-ch-"]:not(.ubt-icon), [class*=" icon-ch-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'communityHub' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ch-dots_horizontal:before {
+  content: "\e900";
+}
+.icon-ch-dots_vertical:before {
+  content: "\e901";
+}
+.icon-ch-Account_settings:before {
+  content: "\e905";
+}
+.icon-ch-Advanced:before {
+  content: "\e906";
+}
+.icon-ch-Back:before {
+  content: "\e907";
+}
+.icon-ch-Bookmark_filled:before {
+  content: "\e908";
+}
+.icon-ch-Calendar:before {
+  content: "\e909";
+}
+.icon-ch-CH_icon:before {
+  content: "\e90a";
+}
+.icon-ch-Chat:before {
+  content: "\e90b";
+}
+.icon-ch-Community_Tradelink:before {
+  content: "\e90c";
+}
+.icon-ch-Contact_Us:before {
+  content: "\e90d";
+}
+.icon-ch-Couple:before {
+  content: "\e90e";
+}
+.icon-ch-D4B:before {
+  content: "\e90f";
+}
+.icon-ch-El-Gusto:before {
+  content: "\e910";
+}
+.icon-ch-Email:before {
+  content: "\e911";
+}
+.icon-ch-Event_outline:before {
+  content: "\e912";
+}
+.icon-ch-Family:before {
+  content: "\e913";
+}
+.icon-ch-Filter_3:before {
+  content: "\e914";
+}
+.icon-ch-Filter_4:before {
+  content: "\e915";
+}
+.icon-ch-Frank_News:before {
+  content: "\e916";
+}
+.icon-ch-Global-outline:before {
+  content: "\e917";
+}
+.icon-ch-Group_outline:before {
+  content: "\e918";
+}
+.icon-ch-Heart:before {
+  content: "\e919";
+}
+.icon-ch-Help__Support:before {
+  content: "\e91a";
+}
+.icon-ch-Home:before {
+  content: "\e91b";
+}
+.icon-ch-Location_filled:before {
+  content: "\e91c";
+}
+.icon-ch-Location_outline:before {
+  content: "\e91d";
+}
+.icon-ch-Log_out:before {
+  content: "\e91e";
+}
+.icon-ch-Menu:before {
+  content: "\e91f";
+}
+.icon-ch-My-Notifications:before {
+  content: "\e920";
+}
+.icon-ch-My-Subscriptions--Payments:before {
+  content: "\e921";
+}
+.icon-ch-My_Country_outline:before {
+  content: "\e922";
+}
+.icon-ch-Person:before {
+  content: "\e923";
+}
+.icon-ch-Phone:before {
+  content: "\e924";
+}
+.icon-ch-Rate_Your_Experience:before {
+  content: "\e925";
+}
+.icon-ch-Search_icon:before {
+  content: "\e926";
+}
+.icon-ch-Share:before {
+  content: "\e927";
+}
+.icon-ch-Support__FAQs:before {
+  content: "\e928";
+}
+.icon-ch-Trove:before {
+  content: "\e929";
+}
+.icon-ch-User_2_outline:before {
+  content: "\e92a";
+}
+.icon-ch-Warning_triangle:before {
+  content: "\e92b";
+}
+.icon-ch-Whats_New:before {
+  content: "\e92c";
+}
+@font-face {
+  font-family: 'photobook-icon-set';
+  src: url('../photobook-icon-set.eot?t8wKyvny2bhyQJgzTAHB5w');
+  src: url('../photobook-icon-set.ttf?ocJjmHCJQetQxdJFJO7yCA') format('truetype'),
+    url('../photobook-icon-set.woff?F3HFiCVGuoCT7enXB6ZjYg') format('woff'),
+    url('../photobook-icon-set.svg?KLjkgM+rPoqZCZNQwwIBpg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="photobook-icon-"]:not(.ubt-icon), [class*=" photobook-icon-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'photobook-icon-set' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.photobook-icon-outline-play:before {
+  content: "\e900";
+}
+.photobook-icon-outline-pause:before {
+  content: "\e901";
+}
+
+
+/*------------------- End CommunityHub Icons-----------------------------*/
+
+
+
+/* -- ADVSearch Icons | Using the font-family attribute inside each class
+to not clash with the classes from the font-family above. -- */
+
+@font-face {
+  font-family: 'ADVSearch-Icons';
+  src:  url('../ADVSearch-Icons.eot?fh_hYE_8NGImxnArEjcuPA');
+  src:  url('../ADVSearch-Icons.eot?fh_hYE_8NGImxnArEjcuPA') format('embedded-opentype'),
+    url('../ADVSearch-Icons.ttf?HZgCsxZPWtFgs1csHefFiA') format('truetype'),
+    url('../ADVSearch-Icons.woff?pki3+pJiO+VzCiZzRGq2_g') format('woff'),
+    url('../ADVSearch-Icons.svg?wqqk3njsROJr3lligpAxtQ') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.icon-all:before {
+    font-family: 'ADVSearch-Icons' !important;
+    content: "\e906";
+}
+.icon-all-selected:before {
+    font-family: 'ADVSearch-Icons' !important;
+    content: "\e907";
+}
+.icon-notifications:before {
+    font-family: 'ADVSearch-Icons' !important;
+    content: "\e908";
+}
+.icon-places:before {
+    font-family: 'ADVSearch-Icons' !important;
+    content: "\e909";
+}
+.icon-people:before {
+    font-family: 'ADVSearch-Icons' !important;
+    content: "\e910";
+}
+.icon-history:before {
+    font-family: 'ADVSearch-Icons' !important;
+    content: "\e911";
+}
+
+/*Application Icons*/
+@font-face {
+  font-family: 'application-icon';
+  src:  url('../application-icon.eot?d16cuS2Bz_+2x6ZJhjVWBw');
+  src:  url('../application-icon.eot?d16cuS2Bz_+2x6ZJhjVWBw') format('embedded-opentype'),
+    url('../application-icon.ttf?MYWNLPCFIySmKFhVrCQvEQ') format('truetype'),
+    url('../application-icon.woff?A3kzDwfZz+9JV6tRNDTNHw') format('woff'),
+    url('../application-icon.svg?IcnniXg4X4UfFD5yVs6Nrw') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+} 
+
+[class^="application-icon-"]:not(.ubt-icon), [class*=" application-icon-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'application-icon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none; 
+  line-height: 1; 
+  
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.application-icon-directory:before {
+  content: "\e900";
+}
+.application-icon-trove:before {
+  content: "\e901";
+}
+.application-icon-connect:before {
+  content: "\e902";
+}
+.application-icon-bussiness-service:before {
+  content: "\e903";
+}
+
+/** Media Hub -Trove Icons **/
+@font-face {
+  font-family: 'trove-icon';
+  src:  url('../trove-icon.eot?A1rCO9re9OVI3j6q_XsFvA');
+  src:  url('../trove-icon.eot?A1rCO9re9OVI3j6q_XsFvA') format('embedded-opentype'),
+    url('../trove-icon.ttf?yM5JRQEBs2USzPAxMXoH9g') format('truetype'),
+    url('../trove-icon.woff?JTc0FkGCBVelrkXdJ0Hz7w') format('woff'),
+    url('../trove-icon.svg?mJO9+4Ba9wrhcKCtpm2LSA') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="trove-icon-"]:not(.ubt-icon), [class*=" trove-icon-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'trove-icon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.trove-icon-library_music-24px:before {
+  content: "\e90b";
+}
+.trove-icon-sort-side:before {
+  content: "\e910";
+}
+.trove-icon-sort:before {
+  content: "\e90f";
+}
+.trove-icon-queue_music:before {
+  content: "\e90e";
+}
+.trove-icon-language:before {
+  content: "\e90a";
+}
+.trove-icon-repeat_one:before {
+  content: "\e909";
+}
+.trove-icon-music_video:before {
+  content: "\e908";
+}
+.trove-icon-list:before {
+  content: "\e907";
+}
+.trove-icon-repeat:before {
+  content: "\e906";
+}
+.trove-icon-library_music_outline:before {
+  content: "\e905";
+}
+.trove-icon-queue_music:before {
+  content: "\e904";
+}
+.trove-icon-help_outline:before {
+  content: "\e903";
+}
+.trove-icon-leftArrow:before {
+  content: "\e901";
+}
+.trove-icon-rightArrow:before {
+  content: "\e900";
+}
+.trove-icon-queue_music:before {
+  content: "\e90d";
+}
+.trove-icon-shuffle:before {
+  content: "\e902";
+}
+.trove-icon-skip_next:before {
+  content: "\e90c";
+}
+.trove-icon-skip_previous:before {
+  content: "\e911";
+}
+
+/*Trove Icon*/
+@font-face {    
+    font-family: 'icon_play_circle';
+    src: url('../icon-play_circle.eot?249rJQyhNeo0jnB+Kg68Rg');
+    src: url('../icon-play_circle.ttf?qHlBID3ARMRgzpxTshnUWg') format('truetype'),
+         url('../icon-play_circle.woff?iUo20cJSpbQdtObQBkgB4w') format('woff'),
+         url('../icon-play_circle.svg?4Pd+0tffVMz8IYWl8jCdAA') format('svg');
+    font-weight: normal;    
+    font-style: normal;
+}
+.icon-play-circle:before {
+    font-family: 'icon_play_circle' !important;
+    content:'\e901';
+}
+
+/*  Trove Mobile Icons  */
+
+@font-face {
+  font-family: 'trove-mobile-icon';
+  src:  url('../trove-mobile-icon.eot?EptB8Iy5l8Ac18ysaqXyzA');
+  src:  url('../trove-mobile-icon.eot?EptB8Iy5l8Ac18ysaqXyzA') format('embedded-opentype'),
+    url('../trove-mobile-icon.ttf?HnHftPxR19DMjtNagYPgJA') format('truetype'),
+    url('../trove-mobile-icon.woff?xq6I_zzDBApvW6NZ5tAYCw') format('woff'),
+    url('../trove-mobile-icon.svg?m59_vMLthoUM29+_fQWamQ') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="trove-mobile-icon-"]:not(.ubt-icon), [class*=" trove-mobile-icon-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'trove-mobile-icon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.trove-mobile-icon-rate-app:before {
+  content: "\e900";
+}
+
+.trove-mobile-icon-Feedback:before {
+  content: "\e901";
+}
+
+
+/*Bookmark Icon*/
+@font-face {    
+    font-family: 'bookmark_icon';
+    src: url('../bookmark_icon.eot?Y86W8hErZs05qs5oEd3Xgg');
+    src: url('../bookmark_icon.ttf?W9ZhuufvFQdihUXNwFYpiA') format('truetype'),
+         url('../bookmark_icon.woff?qBcfL8V5b8T4vkd+3TGBuQ') format('woff'),
+         url('../bookmark_icon.svg?KoX8XigLCcoBCvcnXu99Rw') format('svg');
+    font-weight: normal;    
+    font-style: normal;
+}
+.bookmark_icon_white:before {
+    font-family: 'bookmark_icon' !important;
+    content:'\e900';
+}
+.bookmark_icon_black:before {
+    font-family: 'bookmark_icon' !important;
+    content:'\e902';
+}
+/*Event Icons*/
+@font-face {
+    font-family: 'event_icons';
+    src: url('../event_icon.eot?p+OBBDY0qsvLff9aZW+Kjg');
+    src: url('../event_icon.woff?Ujl1eJ0Il9tkEQ5hN1HWGg') format('woff'),
+         url('../event_icon.ttf?dRckqaEMWSQedkmk+vhz5w') format('truetype'),
+         url('../event_icon.svg?ufJwNyVq1ykTX45kn6eLvQ') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon-events:before {
+    font-family: 'event_icons' !important;
+    content:'\e900';
+}
+
+
+/*account setting icon*/
+@font-face {
+    font-family: 'AccountSetting-Icons';
+    src: url('../AccountSetting-Icons.eot?yF2_eHjmOe4J6iunaFAnHw');
+    src:  url('../AccountSetting-Icons.eot?yF2_eHjmOe4J6iunaFAnHw') format('embedded-opentype'),
+    url('../AccountSetting-Icons.ttf?7HQomssyg0ND6F+1K8W+Nw') format('truetype'),
+    url('../AccountSetting-Icons.woff?Nh_MuuZa1fC_uXNJ+5Cgkw') format('woff'),
+    url('../AccountSetting-Icons.svg?Xh7Cqri5AjBAdy7u4uTx0A') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-setting-"]:not(.ubt-icon), [class*=" icon-setting-"]:not(.ubt-icon){
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'AccountSetting-Icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-setting-fingerprint:before {
+    font-family: 'AccountSetting-Icons' !important;
+    content:'\e900';
+}
+
+.icon-setting-recognition:before {
+    font-family: 'AccountSetting-Icons' !important;
+    content:'\e901';
+}
+
+.icon-setting-dialpad:before {
+    font-family: 'AccountSetting-Icons' !important;
+    content:'\e902';
+}
+
+.icon-setting-lock:before {
+    font-family: 'AccountSetting-Icons' !important;
+    content:'\e903';
+}
+
+.icon-setting-account_circle:before {
+    font-family: 'AccountSetting-Icons' !important;
+    content:'\e904';
+}
+
+/*account setting icon*/
+
+/*my detail icon*/
+@font-face {
+    font-family: 'MyDetail-Icons';
+    src: url('../MyDetail-Icons.eot?qkE4VzvJKI6JevkrvbT0QQ');
+    src:  url('../MyDetail-Icons.eot?qkE4VzvJKI6JevkrvbT0QQ') format('embedded-opentype'),
+    url('../MyDetail-Icons.ttf?Ti5paCy8wIQoLSejEZR0gg') format('truetype'),
+    url('../MyDetail-Icons.woff?Myu4hnbZw52kxfxUUjCSPg') format('woff'),
+    url('../MyDetail-Icons.svg?muhr1C0EMG4ePtSopgsR2A') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-mydetail-"]:not(.ubt-icon), [class*=" icon-mydetail-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'MyDetail-Icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mydetail-update:before {
+    font-family: 'MyDetail-Icons' !important;
+    content:'\e902';
+}
+
+.icon-mydetail-loop:before {
+    font-family: 'MyDetail-Icons' !important;
+    content:'\e903';
+}
+
+.icon-mydetail-place:before {
+    font-family: 'MyDetail-Icons' !important;
+    content: '\e904';
+}
+
+/*my detail icon*/
+
+/*My Profiles icon*/
+@font-face {
+  font-family: 'myprofile-icon-set';
+  src:  url('../myprofile-icon-set.eot?KWzs9nTmre0yg_MqQNwfeg');
+  src:  url('../myprofile-icon-set.eot?KWzs9nTmre0yg_MqQNwfeg') format('embedded-opentype'),
+    url('../myprofile-icon-set.woff?Z1lhUnCHRNziHwPE1dmczA') format('truetype'),
+    url('../myprofile-icon-set.ttf?8yEQe4K8ttvdjxk8_SzzFw') format('woff'),
+    url('../myprofile-icon-set.svg?unMeKxHCAC5vAi89dF8EJw') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-myprofile-icon-"]:not(.ubt-icon), [class*=" icon-myprofile-icon-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'myprofile-icon-set' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-myprofile-icon-stay_current_portrait:before {
+  content: "\e900";
+}
+.icon-myprofile-icon-family-tree-leaf:before {
+  content: "\e901";
+}
+.icon-myprofile-icon-location_on:before {
+  content: "\e902";
+}
+.icon-myprofile-icon-email:before {
+  content: "\e903";
+}
+.icon-myprofile-icon-account_circle:before {
+  content: "\e904";
+}
+.icon-myprofile-icon-work:before {
+  content: "\e905";
+}
+.icon-myprofile-icon-phone_enabled:before {
+  content: "\e906";
+}
+
+
+
+/*My Profiles icon*/
+
+/*Photo Request icon*/
+@font-face {
+    font-family: 'RequestPhoto-Icons';
+    src: url('../myprofile-icon-set.eot?KWzs9nTmre0yg_MqQNwfeg');
+    src:url('../myprofile-icon-set.ttf?8yEQe4K8ttvdjxk8_SzzFw') format('truetype'),
+    url('../myprofile-icon-set.woff?Z1lhUnCHRNziHwPE1dmczA') format('woff'),
+    url('../myprofile-icon-set.svg?unMeKxHCAC5vAi89dF8EJw') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-requestphoto-"]:not(.ubt-icon), [class*=" icon-requestphoto-"]:not(.ubt-icon){
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'RequestPhoto-Icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-requestphoto-child_friendly:before {
+    font-family: 'RequestPhoto-Icons' !important;
+    content:'\e901';
+}
+
+.icon-requestphoto-image:before {
+    font-family: 'RequestPhoto-Icons' !important;
+    content:'\e900';
+}
+
+/*Photo Request */
+
+/* Contact Us Icon*/
+@font-face {
+    font-family: 'ContactUs-Icons';
+    src: url('../ContactUs-Icons.eot?PpXWiSfL6xPwnXbahSLTIQ');
+    src:  url('../ContactUs-Icons.eot?PpXWiSfL6xPwnXbahSLTIQ') format('embedded-opentype'),
+    url('../ContactUs-Icons.ttf?9oAT59NU2B0MJnFsCmGbVA') format('truetype'),
+    url('../ContactUs-Icons.woff?_UrQ1jSVOkuaFju2WQ2Mxw') format('woff'),
+    url('../ContactUs-Icons.svg?7z_iyUgPw5CWgj685uZqqQ') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+[class^="icon-contactus-"]:not(.ubt-icon), [class*=" icon-contactus-"]:not(.ubt-icon){
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ContactUs-Icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-contactus-Questions:before {
+    font-family: 'ContactUs-Icons' !important;
+    content:'\e904';
+}
+
+.icon-contactus-Suggestions:before {
+    font-family: 'ContactUs-Icons' !important;
+    content:'\e900';
+}
+
+.icon-contactus-Content:before {
+    font-family: 'ContactUs-Icons' !important;
+    content:'\e902';
+}
+
+.icon-contactus-Compliments:before {
+    font-family: 'ContactUs-Icons' !important;
+    content:'\e903';
+}
+
+.icon-contactus-Products:before {
+    font-family: 'ContactUs-Icons' !important;
+    content:'\e901';
+}
+
+.icon-contactus-Other:before {
+    font-family: 'ContactUs-Icons' !important;
+    content:'\e905';
+}
+.icon-contactus-Support:before {
+    font-family: 'ContactUs-Icons' !important;
+    content:'\e906';
+}
+/* Contact Us Icon*/
+
+/* 
+ * Menu Icons - Beginning
+ */ 
+@font-face {
+  font-family: 'menu-icon';
+  src:  url('../menu-icon.eot?RI0Hqts80iCDUYHpcVBTAw');
+  src:  url('../menu-icon.eot?RI0Hqts80iCDUYHpcVBTAw') format('embedded-opentype'),
+    url('../menu-icon.ttf?tuuj8U7NpzeeXifxB5btmQ') format('truetype'),
+    url('../menu-icon.woff?XWHQJcIhoLur5j84lh_ztQ') format('woff'),
+    url('../menu-icon.svg?ZEOmOj2ICwyB4Ix7NEI4sw') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="menu-icon-"]:not(.ubt-icon), [class*=" menu-icon-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'menu-icon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.menu-icon-orbit-sub-menu:before {
+  content: "\e900";
+}
+.menu-icon-view-orbit:before {
+  content: "\e901";
+}
+.menu-icon-audio-bible:before {
+  content: "\e902";
+}
+.menu-icon-photo-book:before {
+  content: "\e903";
+}
+.menu-icon-play_arrow:before {
+  content: "\e904";
+}
+.menu-icon-playlist_add:before {
+  content: "\e905";
+}
+.menu-icon-videocam:before {
+  content: "\e906";
+}
+.menu-icon-music_note:before {
+  content: "\e907";
+}
+.menu-icon-BGT:before {
+  content: "\e908";
+}
+.menu-icon-LDM:before {
+  content: "\e909";
+}
+.menu-icon-bookmark:before {
+  content: "\e90a";
+}
+.menu-icon-CONNECT_100:before {
+  content: "\e90b";
+}
+.menu-icon-account_circle:before {
+  content: "\e90c";
+}
+.menu-icon-Directory_100:before {
+  content: "\e90d";
+}
+.menu-icon-Trove_100:before {
+  content: "\e90e";
+}
+.menu-icon-help:before {
+  content: "\e90f";
+}
+.menu-icon-subscriptions:before {
+  content: "\e910";
+}
+.menu-icon-sign-out:before {
+  content: "\e911";
+}
+.menu-icon-notifications:before {
+  content: "\e912";
+}
+.menu-icon-rss_feed:before {
+  content: "\e913";
+}
+.menu-icon-https:before {
+  content: "\e914";
+}
+.menu-icon-update:before {
+  content: "\e915";
+}
+.menu-icon-email:before {
+  content: "\e916";
+}
+.menu-icon-globe:before {
+  content: "\e917";
+}
+.menu-icon-info:before {
+  content: "\e918";
+}
+.menu-icon-help1:before {
+  content: "\e919";
+}
+.menu-icon-dashboard:before {
+  content: "\e91a";
+}
+.menu-icon-search:before {
+  content: "\e91b";
+}
+.menu-icon-queue_music-24px1:before {
+  content: "\e91c";
+}
+.menu-icon-sms_failed:before {
+  content: "\e91d";
+}
+.menu-icon-library_music-24px:before {
+  content: "\e91e";
+}
+.menu-icon-music_video:before {
+  content: "\e91f";
+}
+.menu-icon-file_upload:before {
+  content: "\e920";
+}
+.menu-icon-spiky_info:before {
+  content: "\e921";
+}
+.menu-icon-person:before {
+  content: "\e922";
+}
+.menu-icon-people_alt:before {
+  content: "\e923";
+}
+.menu-icon-browse:before {
+  content: "\e924";
+}
+.menu-icon-go_for_gold_invert:before {
+  content: "\e925";
+}
+.menu-icon-Orbit:before {
+  content: "\e926";
+}
+.menu-icon-my-calendar:before {    
+  content: "\e927";    
+}
+
+.menu-icon-assemble:before {    
+  content: "\e928";    
+}
+.menu-icon-community-trade-link:before {
+  content: "\e929";
+}
+.menu-icon-HR100:before {
+  content: "\e92a";
+}
+.menu-icon-gift:before {
+  content: "\e931";
+}
+.menu-icon-el-gusto:before {
+  content: "\e92d";
+}
+
+
+@font-face {
+  font-family: 'Playlist';
+  src:  url('../Playlist.eot?nZmztsBca5xfcAoA1P5GQg');
+  src:  
+    url('../Playlist.ttf?BfhiXC94Tip7nN7f3Fv99A') format('truetype'),
+    url('../Playlist.woff?+oCim0kRJV9GgQMfTLsnWQ') format('woff'),
+    url('../Playlist.svg?6irepqJqoMWcNeTqL+LZ+A') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-playlist-"]:not(.ubt-icon), [class*=" icon-playlist-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'Playlist' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-playlist-play:before {
+  content: "\e901";
+}
+.icon-playlist-add_check:before {
+  content: "\e900";
+}
+.icon-playlist-menu3:before {
+  content: "\e9bf";
+}
+
+
+/* 
+* Menu Icons - End
+*/ 
+
+
+/*Overflow*/
+
+.overflow-visible {
+    overflow: visible;
+}
+
+
+/* The following section is not subject to backwards compatibility selector END*/
+
+:where(.backwards-compatibility) .connect-concept-theme .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: transparent;
+}
+:where(.backwards-compatibility) .connect-concept-theme-blue-gradient-header .header {
+  background: linear-gradient(90deg, #255a82 13%, #376d97 50%, #477ea9 81%);
+}
+:where(.backwards-compatibility) .connect-concept-theme-blue-gradient-header .header .header-title {
+  position: absolute;
+  top: 70px;
+  left: 15px;
+  font-size: 1.4em;
+}
+:where(.backwards-compatibility) .connect-concept-theme-blue-gradient-header .header-content {
+  margin-top: 35px;
+}
+:where(.backwards-compatibility) .connect-concept-theme-blue-gradient-header .header .header-dropdown [data-dropdown] > select.dropdown-display {
+  background-color: transparent;
+}
+:where(.backwards-compatibility) .header-content .mark-cont {
+  display: flex;
+  justify-content: flex-end;
+}
+:where(.backwards-compatibility) .header-content .mark-cont .header-mark-all-button {
+  background-color: white;
+  color: var(--color-primary);
+  border-radius: 20px;
+  padding: var(--space-s) var(--space-m);
+  display: flex;
+  justify-content: center;
+  font-size: 0.75em;
+  margin: 0px 10px 10px;
+}
+:where(.backwards-compatibility) .splash-screen,
+:where(.backwards-compatibility) .login-screen {
+  background-image: url("../img/Connect2_LegacyShared.Large_BackgroundLogin.jpg?4GVhQB1ga2GGi5WxtntTpw");
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .login-screen {
+  -webkit-justify-content: space-evenly;
+  justify-content: space-evenly;
+}
+:where(.backwards-compatibility) .login-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  display: -webkit-flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+:where(.backwards-compatibility) .login-form {
+  flex: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: var(--space-l);
+  border-radius: 5px;
+}
+:where(.backwards-compatibility) .login-screen a,
+:where(.backwards-compatibility) .login-screen a:visited,
+:where(.backwards-compatibility) .login-screen a:link {
+  color: var(--color-neutral-8);
+  font-weight: bold;
+}
+:where(.backwards-compatibility) .login-button .btn,
+:where(.backwards-compatibility) .login-button .btn:hover,
+:where(.backwards-compatibility) .login-button .btn:focus {
+  border-radius: var(--space-s);
+  height: 48px;
+  padding: 0px;
+  min-height: 48px;
+  align-items: center;
+}
+:where(.backwards-compatibility) .login-screen input[data-input],
+:where(.backwards-compatibility) .login-screen input[data-input]:focus,
+:where(.backwards-compatibility) .login-screen input[data-input]:empty,
+:where(.backwards-compatibility) .login-screen .animated-label-input input[data-input],
+:where(.backwards-compatibility) .login-screen .animated-label-input input[data-input]:empty {
+  background-color: var(--color-neutral-0);
+  border-bottom: 1px solid var(--color-neutral-8);
+  color: var(--color-neutral-8);
+  border-radius: 5px;
+}
+:where(.backwards-compatibility) .login-screen .animated-label-text {
+  color: var(--color-neutral-8);
+  z-index: 1;
+  top: 8px;
+}
+:where(.backwards-compatibility) .login-screen .animated-label-input input[data-input]:focus {
+  border-bottom: 2px solid var(--color-neutral-8);
+}
+:where(.backwards-compatibility) .login-screen .animated-label-text img {
+  height: auto;
+  width: auto;
+  margin: 0px var(--space-base);
+}
+:where(.backwards-compatibility) .lock-screen.login-screen {
+  z-index: var(--z-index-lock-screen);
+  padding: 10px 20px;
+}
+:where(.backwards-compatibility) .login-screen .animated-label.active .animated-label-text img {
+  height: 12px;
+  margin: 0px var(--space-s);
+}
+:where(.backwards-compatibility) .b2c-splash .login-logo-background {
+  background-image: linear-gradient(#FFFFFFC0 25%, #19CDC7C0 66%, #1775BAC0 100%);
+}
+:where(.backwards-compatibility) .b2c-splash .login-screen {
+  background-image: none;
+  background-color: white;
+  background-position: top;
+}
+:where(.backwards-compatibility) .b2c-splash .login-form {
+  background-color: white;
+  padding: var(--space-l);
+  border-radius: 10px;
+}
+:where(.backwards-compatibility) .b2c-splash .login-form-custom {
+  margin-top: -30px;
+  max-width: 400px;
+  margin-bottom: 7vh;
+}
+:where(.backwards-compatibility) .b2c-splash .login-button .btn-b2c {
+  font-size: 21px;
+  border-radius: var(--space-xl);
+  border: 2px solid var(--color-neutral-5);
+  color: var(--color-neutral-7);
+  margin-bottom: 15px;
+  margin-top: 15px;
+  padding: var(--space-base) 40px;
+}
+:where(.backwards-compatibility) .b2c-splash .btn-b2c.btn-primary {
+  color: #0097eb;
+  background-color: white;
+  margin-top: 0px;
+  padding: var(--space-base) 40px;
+}
+:where(.backwards-compatibility) .b2c-splash .btn-login-b2c-messages {
+  position: relative;
+}
+:where(.backwards-compatibility) .b2c-splash .btn-login-b2c-messages .btn-b2c {
+  padding: var(--space-base) 50px;
+}
+:where(.backwards-compatibility) .b2c-splash .btn-login-b2c-badge {
+  position: absolute;
+  right: 10px;
+  font-size: 12px;
+}
+:where(.backwards-compatibility) .b2c-splash .login-logo {
+  margin-top: -10vh;
+}
+:where(.backwards-compatibility) .login-bottom-info {
+  height: 30px;
+  margin-bottom: 25px;
+  width: 100%;
+  color: var(--color-neutral-7);
+}
+@media all and (max-width: 410px) {
+  :where(.backwards-compatibility) .b2c-splash .login-button .btn-b2c,
+:where(.backwards-compatibility) .b2c-splash .btn-login-b2c-messages .btn-b2c {
+    font-size: 19px;
+  }
+}
+@media all and (max-width: 380px) {
+  :where(.backwards-compatibility) .b2c-splash .login-button .btn-b2c,
+:where(.backwards-compatibility) .b2c-splash .btn-login-b2c-messages .btn-b2c {
+    font-size: 17px;
+  }
+  :where(.backwards-compatibility) .b2c-splash .login-separator-cont .login-separator-text {
+    font-size: 14px;
+  }
+}
+@media all and (max-width: 355px) {
+  :where(.backwards-compatibility) .b2c-splash .login-button .btn-b2c,
+:where(.backwards-compatibility) .b2c-splash .btn-login-b2c-messages .btn-b2c {
+    font-size: 15px;
+  }
+  :where(.backwards-compatibility) .b2c-splash .login-separator-cont .login-separator-text {
+    font-size: 12px;
+  }
+}
+@media all and (max-width: 330px) {
+  :where(.backwards-compatibility) .b2c-splash .login-button .btn-b2c,
+:where(.backwards-compatibility) .b2c-splash .btn-login-b2c-messages .btn-b2c {
+    font-size: 13px;
+  }
+}
+:where(.backwards-compatibility) .login-separator-cont {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-top: 10px;
+}
+:where(.backwards-compatibility) .login-separator-cont .login-separator {
+  border-bottom: 1px solid var(--color-neutral-7);
+  flex: 4;
+}
+:where(.backwards-compatibility) .login-separator-cont .login-separator-text {
+  color: var(--color-neutral-7);
+  flex: 2;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+}
+:where(.backwards-compatibility) .header {
+  -service-studio-background-color: #1775ba;
+  background-color: var(--background-color-header);
+  transition: background-color 100ms ease-in-out;
+}
+:where(.backwards-compatibility) .header.transparent {
+  background-color: transparent;
+}
+:where(.backwards-compatibility) .no-title .header,
+:where(.backwards-compatibility) .layout-native.ios-bounce:not(.hide-header-on-scroll) .no-title .header {
+  position: absolute;
+  width: 100%;
+  
+}
+:where(.backwards-compatibility) .screen.no-title {
+  position: relative;
+}
+:where(.backwards-compatibility) .header a,
+:where(.backwards-compatibility) .header a:link,
+:where(.backwards-compatibility) .header a:visited {
+  color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .header-title {
+  color: var(--color-neutral-0);
+  flex-basis: 14em;
+  flex-grow: 1;
+  overflow-x: hidden;
+}
+:where(.backwards-compatibility) .header-title * {
+  white-space: nowrap;
+}
+:where(.backwards-compatibility) .header-left {
+  color: var(--color-neutral-0);
+  flex-grow: 0;
+  flex: 1;
+}
+:where(.backwards-compatibility) .connect-concept-theme-blue-gradient-header .header .header-search {
+  color: var(--color-neutral-0);
+  text-align: left;
+  flex-grow: 5;
+  overflow-x: hidden;
+}
+:where(.backwards-compatibility) .header-top .header-search:empty {
+  display: none;
+}
+:where(.backwards-compatibility) .header-right, 
+:where(.backwards-compatibility) .header-left {
+  white-space: nowrap;
+  min-width: fit-content
+}
+:where(.backwards-compatibility) .header-right .search-input {
+  background-color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .header a.app-menu-back {
+  /* color: var(--color-neutral-10); - Couldn't find where this was needed so implemented white. */
+  color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .header-content .search input[data-input],
+:where(.backwards-compatibility) .header-content .search input[data-input]:empty {
+  background: var(--color-neutral-0);
+  color: var(--color-neutral-10);
+}
+:where(.backwards-compatibility) .header-content .search-input:after {
+  color: var(--color-neutral-10);
+}
+:where(.backwards-compatibility) .header-content button.button-group-item.button-group-item {
+  color: rgba(0, 0, 0, 0.7);
+}
+:where(.backwards-compatibility) .header-content button.button-group-item.button-group-selected-item {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .header-content button.button-group-item.button-group-selected-item:after {
+  background-color: var(--color-primary);
+  bottom: 1px;
+}
+:where(.backwards-compatibility) .header-content button.button-group-item.button-group-item .badge.background-primary-color {
+  margin-top: -2px;
+  font-size: 10px;
+  margin-right: 0;
+}
+:where(.backwards-compatibility) .header-title input[data-input], :where(.backwards-compatibility) .header-title input[data-input]:empty {
+  border-radius: var(--space-s);
+  height: 50px;
+  background: var(--color-primary-dark);
+}
+:where(.backwards-compatibility) .header-title input[data-input]:focus {
+  border: none;
+  border-radius: var(--space-s);
+  height: 50px;
+}
+:where(.backwards-compatibility) .app-menu-line {
+  background-color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .app-menu-links a > div {
+  width: 100%;
+}
+:where(.backwards-compatibility) .menu-item .menu-entry-icon {
+  width: 30px;
+}
+:where(.backwards-compatibility) .policy-container-item {
+  min-width: 50%;
+  text-align: center;
+  font-size: 0.7em;
+}
+:where(.backwards-compatibility) .version-container {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.8em;
+  color: var(--color-neutral-10);
+}
+:where(.backwards-compatibility) .user-info {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  align-items: baseline;
+  -webkit-box-align: center;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -ms-flex-align: center;
+  -webkit-align-items: baseline;
+  flex-direction: column;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  background-color: var(--color-primary);
+  color: var(--color-neutral-0);
+  padding: 15px;
+  height: 100%;
+}
+:where(.backwards-compatibility) .user-info-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: row;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-box-align: start;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -ms-flex-align: start;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  justify-content: space-between;
+}
+:where(.backwards-compatibility) .user-info-username,
+:where(.backwards-compatibility) .user-info-username a,
+:where(.backwards-compatibility) .user-info-username a:link,
+:where(.backwards-compatibility) .user-info-username a:visited {
+  color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .user-info-image img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  object-position: top center;
+}
+:where(.backwards-compatibility) .menu-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin-top: 15px;
+  color: var(--color-neutral-10);
+  padding: 0px 15px;
+}
+:where(.backwards-compatibility) .btn,
+:where(.backwards-compatibility) .btn:hover,
+:where(.backwards-compatibility) .btn:focus {
+  border: 1px solid var(--background-color-button);
+  color: var(--color-primary);
+  text-transform: capitalize;
+  border-radius: var(--space-s);
+  padding: var(--space-base) var(--space-xl);
+  min-height: 40px;
+  min-width: 120px;
+}
+
+:where(.backwards-compatibility) .btn.ignore-cap {
+   text-transform: unset; 
+}
+
+:where(.backwards-compatibility) .btn-primary,
+:where(.backwards-compatibility) .btn-primary:hover,
+:where(.backwards-compatibility) .btn-primary:focus {
+  background-color: var(--background-color-button);
+  color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .btn-border {
+  /* this class is added here so the border of buttons with class .btn can be overwritten*/
+  border: 1px solid var(--background-color-button);
+}
+:where(.backwards-compatibility) .btn-success,
+:where(.backwards-compatibility) .btn-success:hover,
+:where(.backwards-compatibility) .btn-success:focus,
+:where(.backwards-compatibility) .btn-danger,
+:where(.backwards-compatibility) .btn-danger:hover,
+:where(.backwards-compatibility) .btn-danger:focus {
+  border: none;
+  color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .btn-link,
+:where(.backwards-compatibility) .btn-link:hover,
+:where(.backwards-compatibility) .btn-link:focus {
+  color: var(--background-color-button);
+  border: 2px solid transparent;
+}
+:where(.backwards-compatibility) .btn.background-white,
+:where(.backwards-compatibility) .btn.background-white:hover,
+:where(.backwards-compatibility) .btn.background-white:focus {
+  color: var(--background-color-button);
+}
+:where(.backwards-compatibility) a,
+:where(.backwards-compatibility) a:link,
+:where(.backwards-compatibility) a:visited {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .card-action {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) input[data-input],
+:where(.backwards-compatibility) input[data-input]:empty,
+:where(.backwards-compatibility) input[data-input]:focus,
+.phone :where(.backwards-compatibility) .form-control[data-input] {
+  height: 45px;
+}
+:where(.backwards-compatibility) .input-with-icon .input-with-icon-content-icon {
+  height: 45px;
+}
+:where(.backwards-compatibility) input[data-input]:focus,
+:where(.backwards-compatibility) textarea[data-textarea]:focus {
+  box-sizing: border-box;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--space-xs);
+  background-color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .animated-label-input input[data-input],
+:where(.backwards-compatibility) .animated-label-input input[data-input]:empty {
+  padding: 22px 10px 5px 5px;
+}
+:where(.backwards-compatibility) .animated-label-input input[data-input]:focus {
+  border-bottom: 2px solid var(--color-primary);
+}
+:where(.backwards-compatibility) [data-dropdown] > div.dropdown-display:after {
+  border-color: var(--color-primary);
+}
+:where(.backwards-compatibility) [data-dropdown] div.dropdown-popup-row-selected {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) [data-upload].upload-image-withoverlay .change-image {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .bottom-bar > a.active,
+:where(.backwards-compatibility) .bottom-bar > a.active .bottom-bar-item-text,
+:where(.backwards-compatibility) .bottom-bar-items > a.active .bottom-bar-item-text,
+:where(.backwards-compatibility) .bottom-bar > a.active .bottom-bar-item-icon,
+:where(.backwards-compatibility) .bottom-bar-items > a.active .bottom-bar-item-icon,
+:where(.backwards-compatibility) .bottom-bar .floating-actions-items a,
+:where(.backwards-compatibility) .bottom-bar .floating-actions-items a:link,
+:where(.backwards-compatibility) .bottom-bar .floating-actions-items a:visited {
+  color: var(--color-primary);
+  display: block;
+}
+:where(.backwards-compatibility) .floating-actions .bottom-bar-item {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .bottom .btn,
+:where(.backwards-compatibility) .bottom .btn:hover,
+:where(.backwards-compatibility) .bottom .btn:focus {
+  align-items: center;
+}
+:where(.backwards-compatibility) .bottom-bar-more-item .application-icon {
+  color: var(--color-neutral-0);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+:where(.backwards-compatibility) .bottom {
+  z-index: var(--z-index-bottom-bar);
+}
+:where(.backwards-compatibility) .list-item-action-primary {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .section-expandable-icon {
+  margin: 15px 0 0 10px;
+}
+:where(.backwards-compatibility) .section-expandable-icon:before,
+:where(.backwards-compatibility) .section-expandable-icon:after {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .section-expandable.open .section-expandable-title .dividers {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .tabs-underline {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .tabs-header-tab.active {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .tabs-content-tab > div .list.list-group {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+:where(.backwards-compatibility) .icon-circle {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .noUi-origin .noUi-handle-lower:before,
+:where(.backwards-compatibility) .noUi-origin.noUi-connect .noUi-handle-lower:before,
+:where(.backwards-compatibility) .noUi-origin .noUi-handle-lower:after,
+:where(.backwards-compatibility) .noUi-origin.noUi-connect .noUi-handle-lower:after,
+:where(.backwards-compatibility) .noUi-origin.noUi-background .noUi-handle-upper:before {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .noUi-origin.noUi-connect,
+:where(.backwards-compatibility) .range-slider .noUi-connect,
+:where(.backwards-compatibility) .noUi-base {
+  background-color: var(--color-primary);
+  border-radius: 20px;
+}
+:where(.backwards-compatibility) input.checkbox:before {
+  background: var(--color-neutral-0);
+  border-radius: 50%;
+  height: 26px;
+  width: 26px;
+  border: 2px solid var(--color-primary);
+}
+:where(.backwards-compatibility) input.checkbox:checked:before {
+  background-color: var(--color-neutral-0);
+  border: 2px solid var(--color-primary);
+}
+:where(.backwards-compatibility) input.checkbox:checked:after {
+  border: 8px solid var(--color-primary);
+  /* Important is needed to overwrite automatic style given by the platform. */
+  left: 7px;
+  top: 7px;
+  width: 0px;
+  height: 0px;
+  border-radius: 50%;
+}
+:where(.backwards-compatibility) input.checkbox[disabled]:before {
+  border: 2px solid var(--color-neutral-6);
+  background: var(--color-neutral-2);
+}
+:where(.backwards-compatibility) input.switch {
+  background-color: transparent;
+}
+:where(.backwards-compatibility) input.switch:empty:before, :where(.backwards-compatibility) input.switch:empty:after {
+  height: 20px;
+  top: 5px;
+}
+:where(.backwards-compatibility) input.switch:empty:after {
+  background-color: var(--color-neutral-0);
+  bottom: 0;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+}
+:where(.backwards-compatibility) input.switch:checked:before {
+  opacity: 0.6;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+:where(.backwards-compatibility) input.switch:checked:after {
+  background-color: var(--color-primary);
+  left: 29px;
+  border-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .wizard-item-wrapper.active .wizard-label {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .wizard-item-wrapper.past .wizard-item, :where(.backwards-compatibility) .wizard-item-wrapper.active .wizard-item {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .wizard-item-wrapper.past:before {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .tag.text-primary-color {
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+:where(.backwards-compatibility) .tag.text-white {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .counter.background-white {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .badge.background-white {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .clean-badge .badge {
+  color: transparent;
+  overflow: hidden;
+  padding: 0;
+}
+:where(.backwards-compatibility) .small-badge .badge {
+  width: 15px;
+  height: 15px;
+  left: 15px;
+  font-size: 0.6em;
+}
+:where(.backwards-compatibility) .no-badge .badge {
+  display: none;
+}
+:where(.backwards-compatibility) .icon-badge .badge:not(.bottom-bar-item .badge),
+:where(.backwards-compatibility) .badge:not(.bottom-bar-item .badge)
+  padding: 0 8px 0 8px;
+}
+
+:where(.backwards-compatibility) .avatar.background-white {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .is-inrange .pika-button {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .is-endrange .pika-button,
+:where(.backwards-compatibility) .is-startrange .pika-button {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .is-selected .pika-button {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .calendar:not(.interval) .is-startrange:after,
+:where(.backwards-compatibility) .calendar:not(.interval) .is-endrange:after {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .pika-label {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .carousel .carousel-dots-container .carousel-dot {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .carousel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+:where(.backwards-compatibility) .carousel > .carousel-container {
+  display: contents;
+}
+:where(.backwards-compatibility) .carousel > .carousel-container > .carousel-container-content {
+  display: flex;
+  flex-flow: row nowrap;
+  background-color: transparent;
+}
+:where(.backwards-compatibility) .carousel > .carousel-container > .carousel-container-content > .list.list-group {
+  display: contents;
+}
+:where(.backwards-compatibility) .carousel > .carousel-container > .carousel-container-content > .list > .carousel-scroll-cont {
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+  contain: size layout paint;
+}
+:where(.backwards-compatibility) .carousel.init {
+  opacity: 1;
+}
+:where(.backwards-compatibility) .split-right-close a,
+:where(.backwards-compatibility) .split-right-close a:link,
+:where(.backwards-compatibility) .split-right-close a:visited {
+  color: var(--color-neutral-10);
+}
+:where(.backwards-compatibility) button.button-group-item.button-group-selected-item {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .header .button-group {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .header-content button.button-group-item.button-group-selected-item:after {
+  background-color: white;
+  bottom: 0px;
+  height: 3px;
+}
+:where(.backwards-compatibility) .header-content button.button-group-item.button-group-item {
+  background-color: var(--color-primary);
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: bold;
+}
+:where(.backwards-compatibility) .header-content button.button-group-item.button-group-selected-item {
+  color: white;
+}
+:where(.backwards-compatibility) .form.card > span div, :where(.backwards-compatibility) .form.card > div {
+  margin-top: 20px;
+}
+:where(.backwards-compatibility) label {
+  color: black;
+  font-weight: bold;
+  margin-bottom: var(--size-s);
+}
+@keyframes fadein-pull-to-refresh {
+  0% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+:where(.backwards-compatibility) .list-updating-cont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  
+}
+:where(.backwards-compatibility) .list-updating {
+  z-index: 3;
+  margin-bottom: 15px;
+  background-color: transparent;
+}
+:where(.backwards-compatibility) .pull-to-refresh {
+  padding: 0;
+  animation-duration: 1s;
+  animation-name: fadein-pull-to-refresh;
+}
+:where(.backwards-compatibility) .member-count-badge-content {
+  font-size: 12px;
+  text-align: left;
+  width: 100%;
+}
+:where(.backwards-compatibility) .member-count-badge-icons {
+  margin-bottom: 3px;
+}
+:where(.backwards-compatibility) .member-count-badge-icons-extramargin {
+  margin-bottom: 3px;
+  margin-right: 20px;
+}
+:where(.backwards-compatibility) .member-count-badge-img {
+  font-size: 12px;
+  height: 26px;
+  width: 26px;
+}
+:where(.backwards-compatibility) .member-count-badge-description {
+  white-space: nowrap;
+  padding: 5px;
+  font-size: 14px;
+  margin-left: 5px;
+  font-weight: 400;
+}
+:where(.backwards-compatibility) .icon.fa-33 {
+  font-size: 1.33em;
+}
+:where(.backwards-compatibility) .icon-home {
+  src: url("../home.svg?H1bCuT1azv8LDTle_R1wxA") format("svg");
+}
+
+:where(.backwards-compatibility) .photo-cropper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+:where(.backwards-compatibility) .result-image {
+  width: 100%;
+  height: auto;
+}
+:where(.backwards-compatibility) .round-photo {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+:where(.backwards-compatibility) .card.warning-card {
+  color: var(--color-neutral-0) !important;
+  margin: var(--space-m);
+  padding: var(--space-base);
+  font-size: 0.9em;
+}
+:where(.backwards-compatibility) .card.warning-card > div:first-child {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+:where(.backwards-compatibility) .card.warning-card > div:first-child > .icon {
+  margin-right: var(--space-m);
+  font-size: 2.3em;
+}
+:where(.backwards-compatibility) .card.warning-card > div:last-child {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-base);
+}
+:where(.backwards-compatibility) .card.warning-card > div:last-child .btn {
+  color: inherit;
+  border-color: inherit;
+  padding: 5px 20px;
+  min-height: initial;
+  min-width: initial;
+}
+:where(.backwards-compatibility) .filter-bar {
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+}
+:where(.backwards-compatibility) :root {
+  --person-height: 70px;
+  --person-width: 70px;
+  --person-margin: 50px;
+  --person-margin-child-horizontal: 25px;
+  --person-connector-half-width: 1px;
+}
+@keyframes family-tree-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+:where(.backwards-compatibility) .family-tree {
+  transition: transform 300ms;
+  animation-name: family-tree-fade-in;
+  animation-duration: 300ms;
+  margin: 0px 5px;
+}
+:where(.backwards-compatibility) .family-tree-person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px auto 5px;
+  min-width: 33%;
+  justify-content: center;
+}
+:where(.backwards-compatibility) .family-tree-person-name [data-expression] {
+  white-space: nowrap;
+}
+:where(.backwards-compatibility) .family-tree-person-image,
+:where(.backwards-compatibility) .family-tree-person-image img {
+  border-radius: 50%;
+}
+:where(.backwards-compatibility) .family-tree-person-image {
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  padding: 2px;
+  background-color: white;
+  margin-bottom: 10px;
+  max-width: var(--person-width);
+}
+:where(.backwards-compatibility) .family-tree-person-image.border-pink {
+  background-color: #F6BCD6;
+}
+:where(.backwards-compatibility) .family-tree-person-image.border-blue {
+  background-color: #6E9ED0;
+}
+:where(.backwards-compatibility) .family-tree-person-image img {
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+:where(.backwards-compatibility) .family-tree-person-name {
+  padding: 0.125em 1em;
+  background-color: #B5D1FF;
+  border-radius: 100px;
+}
+:where(.backwards-compatibility) .family-tree-parents, :where(.backwards-compatibility) .family-tree-children {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  flex-wrap: wrap;
+}
+:where(.backwards-compatibility) .family-tree-children {
+  background: #ECF7FE;
+  border-radius: 10px;
+  padding: 0px 20px;
+}
+:where(.backwards-compatibility) .family-tree-children > div {
+  width: 33%;
+}
+:where(.backwards-compatibility) .parents-brackets {
+  width: 40%;
+  border: 2px solid;
+  border-top: 0;
+  height: 30px;
+  border-radius: 0 0 15px 15px;
+  margin: auto;
+}
+:where(.backwards-compatibility) .children-bracket {
+  width: 75%;
+  border: 2px solid;
+  border-bottom: 0;
+  height: 30px;
+  border-radius: 15px 15px 0 0;
+  margin: 15px auto 0;
+  position: relative;
+}
+:where(.backwards-compatibility) .children-bracket::before {
+  height: 16px;
+  width: 2px;
+  content: "";
+  position: absolute;
+  right: 50%;
+  top: -18px;
+  background-color: black;
+}
+:where(.backwards-compatibility) .bmpui-margin-right-base {
+  margin-right: 15px;
+}
+:where(.backwards-compatibility) .simple-badge {
+  border-radius: 50%;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  width: 50px;
+  max-width: 200px;
+  min-height: 40px;
+  height: 50px;
+  max-height: 200px;
+  background-color: var(--color-neutral-3);
+  color: var(--color-neutral-0);
+  border-radius: 100%;
+  text-transform: uppercase;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+:where(.backwards-compatibility) .simple-badge.loading::before {
+  animation: spin 2s ease-in-out infinite;
+  border: solid 4px #eee0;
+  border-top-color: #485bc7;
+  border-radius: 50%;
+  content: "";
+  height: 42px;
+  opacity: inherit;
+  position: absolute;
+  transform: translate3d(-50%, -50%, 0);
+  transform-origin: center;
+  width: 42px;
+  will-change: transform;
+}
+:where(.backwards-compatibility) .bitmovinplayer-poster {
+  background-color: black;
+}
+:where(.backwards-compatibility) .mini-player .bitmovinplayer-container .bitmovinplayer-poster {
+  background-color: var(--player-color-active);
+}
+:where(.backwards-compatibility) :root {
+  --mini-player-video-height: 10vh;
+  --mini-player-video-width: 20vw;
+  --player-color-active: #555;
+}
+:where(.backwards-compatibility) .mini-player-container {
+  width: var(--mini-player-video-width);
+  height: var(--mini-player-video-height);
+}
+:where(.backwards-compatibility) .mini-player {
+  background-color: var(--player-color-active);
+  color: white;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: var(--mini-player-video-height);
+}
+:where(.backwards-compatibility) .mini-player-placeholder {
+  width: var(--mini-player-video-width);
+  z-index: 1;
+}
+:where(.backwards-compatibility) .mini-player-video > div {
+  min-width: var(--mini-player-video-width);
+  min-height: var(--mini-player-video-height);
+  z-index: 2;
+}
+
+:where(.backwards-compatibility) .mini-player video {
+    width: 100%;
+    max-height: var(--mini-player-video-height);
+}
+
+:where(.backwards-compatibility) .mini-player-title {
+  flex: 1;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0 var(--space-base);
+  z-index: 0;
+  max-width: 80%;
+}
+:where(.backwards-compatibility) .mini-player-container > div {
+  min-width: var(--mini-player-video-width);
+  min-height: var(--mini-player-video-height);
+}
+:where(.backwards-compatibility) .mini-player-controls {
+  align-items: center;
+  display: flex;
+  z-index: 1;
+  background: var(--player-color-active);
+  height: calc(var(--space-l) * 2.5);
+  font-size: 20px;
+}
+:where(.backwards-compatibility) .mini-player-controls > div {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+:where(.backwards-compatibility) .marquee {
+  margin: 0 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+:where(.backwards-compatibility) .marquee span {
+  display: inline-block;
+  width: max-content;
+  will-change: transform;
+  animation-name: marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+:where(.backwards-compatibility) .marquee span:hover {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  0% {
+    transform: translate(0, 0);
+  }
+  60% {
+    transform: translate(-100%, 0);
+  }
+  70% {
+    transform: translate(0, 0);
+  }
+}
+:where(.backwards-compatibility) .ripple {
+  background: var(--player-color-active) radial-gradient(circle, transparent 1%, var(--player-color-active) 1%) center/15000%;
+  transition: background 0.8s;
+}
+:where(.backwards-compatibility) .ripple:active {
+  background-color: white;
+  background-size: 100%;
+  transition: background 0s;
+  outline: none;
+}
+:where(.backwards-compatibility) .alert-background {
+  background-color: rgba(239, 83, 80, 0.7);
+}
+:where(.backwards-compatibility) .alert-text {
+  color: #e02020;
+}
+:where(.backwards-compatibility) .input-field {
+  margin-top: var(--space-base);
+  border-radius: var(--space-xs);
+}
+:where(.backwards-compatibility) .card input[data-input], :where(.backwards-compatibility) .card input[data-input]:empty,
+:where(.backwards-compatibility) .card textarea[data-textarea], :where(.backwards-compatibility) .card textarea[data-textarea]:empty,
+:where(.backwards-compatibility) .background-white input[data-input],
+:where(.backwards-compatibility) .background-white input[data-input]:empty,
+:where(.backwards-compatibility) .background-white textarea[data-textarea],
+:where(.backwards-compatibility) .background-white textarea[data-textarea]:empty,
+:where(.backwards-compatibility) .form-control[data-input][disabled], 
+:where(.backwards-compatibility) .form-control[data-textarea][disabled]{
+  border: 1px solid var(--color-neutral-3);
+  background: transparent;
+  border-radius: var(--space-xs);
+}
+:where(.backwards-compatibility) input[data-input].not-valid, :where(.backwards-compatibility) input[data-input].not-valid:focus, :where(.backwards-compatibility) textarea[data-textarea].not-valid, :where(.backwards-compatibility) textarea[data-textarea].not-valid:focus, :where(.backwards-compatibility) div.dropdown-display.not-valid, :where(.backwards-compatibility) div.button-group.not-valid > div
+{
+  border: 1px solid var(--color-alert);
+  box-shadow: inset 0px 0px 1px var(--color-alert);
+}
+:where(.backwards-compatibility) [data-label].mandatory:after {
+  content: "*";
+  font-size: 70%;
+  color: var(--color-alert);
+  position: absolute;
+  display: inline-block !important;
+  padding-left: 2px;
+}
+:where(.backwards-compatibility) .input-text, :where(.backwards-compatibility) .input-email, :where(.backwards-compatibility) .input-tel, :where(.backwards-compatibility) .input-area {
+  position: relative;
+}
+:where(.backwards-compatibility) .input-text span.validation-message,
+:where(.backwards-compatibility) .input-email span.validation-message,
+:where(.backwards-compatibility) .input-tel span.validation-message,
+:where(.backwards-compatibility) .input-area span.validation-message,
+:where(.backwards-compatibility) .input-password span.validation-message,
+:where(.backwards-compatibility) .input-date span.validation-message,
+:where(.backwards-compatibility) .dropdown-container span.validation-message,
+:where(.backwards-compatibility) span.validation-message {
+  color: var(--color-alert);
+  line-height: 1em;
+  padding-left: 0.5em;
+  font-size: 0.9em;
+  margin: 0;
+  white-space: pre;
+}
+:where(.backwards-compatibility) .search-group {
+  overflow: hidden;
+  border-radius: var(--space-s);
+}
+:where(.backwards-compatibility) .search-group .dropdown-container:after {
+  border: 0;
+}
+:where(.backwards-compatibility) .search-group .dropdown-display.dropdown {
+  background: transparent;
+  padding: 0;
+}
+:where(.backwards-compatibility) .search-group .card {
+  border-radius: 0;
+  border: 0;
+}
+:where(.backwards-compatibility) .image-sample-bg {
+  background: linear-gradient(to right bottom,#212454, #7078E9);
+}
+:where(.backwards-compatibility) .app-logo {
+  padding: 25% 0% 15%;
+}
+:where(.backwards-compatibility) .mydetails-tabs > .tabs-header {
+  position: sticky;
+}
+:where(.backwards-compatibility) .btn-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+:where(.backwards-compatibility) .fake-input {
+  display: inline-flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  color: var(--color-neutral-6);
+  min-width: 70vw;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 1em;
+  font-weight: normal;
+  padding: 0px var(--space-m);
+  background-color: var(--color-neutral-0);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+:where(.backwards-compatibility) .fake-input-icon {
+  position: fixed;
+}
+:where(.backwards-compatibility) .header .search-menu a.app-menu-back {
+  color: var(--color-neutral-10);
+}
+:where(.backwards-compatibility) .search-container {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--color-neutral-0);
+  padding-top: 15vh;
+}
+:where(.backwards-compatibility) .search-container input[data-input],
+:where(.backwards-compatibility) .search-container input[data-input]:empty {
+  padding: 0px 0px 0px var(--space-l);
+  border: none;
+  border-bottom: 2px solid var(--color-neutral-4);
+}
+:where(.backwards-compatibility) .search-container input[data-input]:focus {
+  border: none;
+  border-bottom: 2px solid var(--color-neutral-4);
+  box-shadow: var(--color-neutral-5) 0 5px 10px 0px;
+}
+:where(.backwards-compatibility) .search-dropdown .dropdown-display.dropdown {
+  padding: 0px;
+  background-color: transparent;
+  font-size: 0.75em;
+  color: var(--color-neutral-5);
+}
+:where(.backwards-compatibility) .search-dropdown .dropdown-container:after {
+  border: none;
+}
+:where(.backwards-compatibility) .input-search input[data-input],
+:where(.backwards-compatibility) .input-search input[data-input]:empty {
+  border: none;
+  background-color: var(--color-neutral-0);
+  width: 100%;
+}
+:where(.backwards-compatibility) .no-results {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-m);
+  width: 100%;
+  background-color: var(--color-neutral-0);
+  color: var(--color-neutral-7);
+  font-size: 0.9em;
+}
+:where(.backwards-compatibility) .gm-style .gm-style-iw-c {
+  padding: 15px 10px 10px !important;
+}
+:where(.backwards-compatibility) .gm-style-iw-d {
+  overflow: hidden !important;
+}
+:where(.backwards-compatibility) .vertical-separator {
+  position: relative;
+}
+:where(.backwards-compatibility) .vertical-separator .separator {
+  background: none;
+  height: 0;
+}
+:where(.backwards-compatibility) .vertical-separator .separator:before {
+  content: "";
+  height: 60%;
+  width: 1px;
+  background-color: var(--color-neutral-5);
+  position: absolute;
+  left: 0px;
+  margin: 10% 0px;
+}
+:where(.backwards-compatibility) a.circular-badge-centered,
+:where(.backwards-compatibility) a:link.circular-badge-centered,
+:where(.backwards-compatibility) a:visited.circular-badge-centered {
+  border-radius: 50%;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  width: 50px;
+  max-width: 200px;
+  min-height: 40px;
+  height: 50px;
+  max-height: 200px;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 100%;
+  text-transform: uppercase;
+  font-size: 1.25em;
+  padding: 1.5em;
+  font-weight: bold;
+}
+:where(.backwards-compatibility) .pincode .pincode-display {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+:where(.backwards-compatibility) .pincode .pincode-content .content-placeholder {
+  margin-top: 10px;
+  min-height: 22px;
+}
+:where(.backwards-compatibility) .pincode .pincode-display .pin-display {
+  padding: 10px;
+  justify-content: center;
+  color: white;
+}
+:where(.backwards-compatibility) .icon.selected-icon {
+  content: ".";
+  color: white;
+  align-self: center;
+}
+:where(.backwards-compatibility) .pincode .pincode-keyboard .pincode-button,
+:where(.backwards-compatibility) .pincode .pincode-keyboard .pincode-button:hover,
+:where(.backwards-compatibility) .pincode .pincode-keyboard .pincode-button:focus {
+  border: 0;
+  color: inherit;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.5;
+  margin: 3px 0;
+  min-width: 100%;
+  display: flex;
+}
+:where(.backwards-compatibility) .menu {
+  z-index: var(--z-index-menu);
+}
+:where(.backwards-compatibility) .user-info.user-info-match-connect {
+  background-color: var(--color-primary-connect);
+}
+:where(.backwards-compatibility) .user-info.user-info-match-trove {
+  background-color: var(--color-primary-media-hub);
+}
+:where(.backwards-compatibility) .user-info.user-info-match-directory {
+  background-color: var(--color-primary-directory);
+}
+:where(.backwards-compatibility) .user-info.user-info-match-orbit {
+  background-color: var(--color-primary-orbit);
+}
+:where(.backwards-compatibility) .user-info.user-info-match-business-service {
+  background-color: var(--color-primary-bussiness-services);
+}
+:where(.backwards-compatibility) .trove-menu .icon.menu-icon-browse {
+  font-size: 1.2em;
+}
+:where(.backwards-compatibility) .media-hub-menu .icon.menu-icon-browse {
+  font-size: 1.2em;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+:where(.backwards-compatibility) .menu--visible .outside-menu {
+  display: block;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: -44px;
+}
+:where(.backwards-compatibility) .common-menu {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+:where(.backwards-compatibility) .common-menu-bottom {
+  align-self: stretch;
+  overflow: auto;
+  flex: 1;
+}
+:where(.backwards-compatibility) .common-menu-footer {
+  --common-menu-footer-background-color: var(--color-neutral-1);
+  --common-menu-footer-color: var(--color-neutral-10);
+  background-color: var(--common-menu-footer-background-color);
+  color: var(--common-menu-footer-color);
+  box-shadow: 0px 0px 3px #bbb;
+}
+:where(.backwards-compatibility) .app-menu-links a.active div,
+:where(.backwards-compatibility) .app-menu-links a.active span,
+:where(.backwards-compatibility) .app-menu-links a.active i {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .menu-logo img {
+  width: 130%;
+  max-width: 130%;
+}
+:where(.backwards-compatibility) .menu-item img {
+  padding-right: 10px;
+}
+:where(.backwards-compatibility) .trove-title {
+  display: flex;
+  align-items: center;
+  margin-left: var(--space-base);
+}
+:where(.backwards-compatibility) .media-hub-menu {
+  --color-primary: #202020;
+  --color-primary-light: #2c2c2c;
+  --color-secondary: #bfb18c;
+  --color-primary-lightest:#3a3a3a;
+}
+:where(.backwards-compatibility) .media-hub-menu {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .media-hub-menu .common-menu-footer {
+  background-color: var(--color-primary-lightest);
+  box-shadow: none;
+}
+:where(.backwards-compatibility) .media-hub-menu .common-menu-bottom {
+  background-color: var(--color-primary-light);
+}
+:where(.backwards-compatibility) .media-hub-menu .app-menu-links > a,
+:where(.backwards-compatibility) .media-hub-menu .app-menu-links a,
+:where(.backwards-compatibility) .media-hub-menu .app-menu-links a .icon,
+:where(.backwards-compatibility) .media-hub-menu .version-container,
+:where(.backwards-compatibility) .media-hub-menu .common-menu-footer,
+:where(.backwards-compatibility) .media-hub-menu .menu-logo {
+  color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .media-hub-menu .close-icon:before, :where(.backwards-compatibility) .media-hub-menu .close-icon:after {
+  border-color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .media-hub-menu .app-menu-links a:visited,
+:where(.backwards-compatibility) .trove-menu .app-menu-links a:link {
+  color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .media-hub-menu .app-menu-links a.active div,
+:where(.backwards-compatibility) .media-hub-menu .app-menu-links a.active span,
+:where(.backwards-compatibility) .media-hub-menu .app-menu-links a.active .icon {
+  color: var(--color-secondary);
+}
+:where(.backwards-compatibility) .orbit-menu {
+  --color-primary: var(--color-primary-orbit);
+}
+:where(.backwards-compatibility) .orbit-menu .app-menu-links a.active div,
+:where(.backwards-compatibility) .orbit-menu .app-menu-links a.active .icon {
+  color: var(--color-primary-directory);
+}
+:where(.backwards-compatibility) .menu-icon-view-orbit {
+  font-size: 1.5em;
+}
+:where(.backwards-compatibility) .subscriptions-menu {
+  --color-primary: var(--color-primary);
+}
+:where(.backwards-compatibility) .sidebar-entry .sidebar-icon i.application-icon-bussiness-service {
+  font-size: 1.5em;
+}
+:where(.backwards-compatibility) .menu-sidebar {
+  margin-left: 0 !important;
+  background-color: var(--color-neutral-0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  align-items: center;
+  position: fixed;
+  height: 100%;
+  width: var(--size-double-menu);
+  display: flex;
+  flex-direction: column;
+  transition: width 350ms linear;
+  max-width: 350px;
+}
+:where(.backwards-compatibility) .menu-sidebar > div {
+  width: 100%;
+}
+:where(.backwards-compatibility) .iphonex.portrait .menu-sidebar {
+  height: calc(100% - 35px);
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-action {
+  background-color: var(--primary-color);
+}
+:where(.backwards-compatibility) .sidebar-action .arrow {
+  padding-right: var(--space-base);
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-action img,
+:where(.backwards-compatibility) .menu-sidebar .sidebar-action .photo-cropper {
+  height: var(--size-menu-icon);
+  width: var(--size-menu-icon);
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-action .user-info-image {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-action .sidebar-description {
+  padding-left: var(--space-base);
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-action .user-info {
+  padding: var(--space-base) 0px;
+  height: 65px;
+  transition: height 300ms linear;
+}
+:where(.backwards-compatibility) .menu-sidebar.expanded .sidebar-action .user-info {
+  transition: height 300ms linear;
+  padding: var(--space-base) 0px;
+  height: 90px;
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-top {
+  background-color: var(--color-neutral-4);
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-list .sidebar-icon {
+  background-color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .menu-sidebar .active,
+:where(.backwards-compatibility) .menu-sidebar .active .sidebar-icon {
+  background-color: #7faac4;
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-list {
+  flex-grow: 2;
+  color: var(--color-neutral-10);
+  overflow: auto;
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-bottom,
+:where(.backwards-compatibility) .sidebar-bottom .sidebar-icon {
+  background-color: var(--color-neutral-4);
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-bottom {
+  color: var(--color-neutral-10);
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-icon {
+  color: var(--color-double-menu);
+  padding: 4px calc((var(--size-double-menu) - var(--size-menu-icon))/2);
+  text-align: center;
+  font-size: 1.5em;
+  z-index: 2;
+}
+:where(.backwards-compatibility) .sidebar-bottom .sidebar-icon {
+  width: 100%;
+  max-width: var(--size-double-menu);
+}
+:where(.backwards-compatibility) .sidebar-icon i {
+  margin: auto;
+}
+:where(.backwards-compatibility) .sidebar-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-description {
+  z-index: 1;
+  font-size: 1em;
+  margin-right: var(--space-base);
+  margin-left: -300px;
+  opacity: 0;
+  transition: margin-left 350ms linear;
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-description [data-expression] {
+  white-space: nowrap;
+}
+:where(.backwards-compatibility) .menu-sidebar.expanded .sidebar-description {
+  margin-left: 0px;
+  opacity: 1;
+}
+:where(.backwards-compatibility) .menu-sidebar.expanded {
+  width: 90vw;
+  max-width: 350px;
+}
+:where(.backwards-compatibility) .menu-container {
+  margin-left: var(--size-double-menu);
+  position: relative;
+}
+:where(.backwards-compatibility) .menu-container .app-menu a .icon {
+  padding-right: var(--space-s);
+}
+:where(.backwards-compatibility) .menu-sidebar .sidebar-list .application-icon {
+  color: var(--color-neutral-0);
+  border-radius: 50%;
+  width: var(--size-menu-icon);
+  height: var(--size-menu-icon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:where(.backwards-compatibility) .sidebar-list .menu-icon-community-trade-link,
+:where(.backwards-compatibility) .sidebar-list .menu-icon-HR100 {
+    color: Black;
+}
+
+:where(.backwards-compatibility) .close-icon {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+}
+:where(.backwards-compatibility) .close-icon:before, :where(.backwards-compatibility) .close-icon:after {
+  position: absolute;
+  content: " ";
+  height: 8px;
+  width: 8px;
+  border-style: solid;
+}
+:where(.backwards-compatibility) .close-icon:before {
+  border: 0px solid black 0px solid black 2px solid black 2px solid black;
+  border-top: 0px solid black;
+  border-left: 0px solid black;
+  border-bottom: 2px solid black;
+  border-right: 2px solid black;
+  transform: rotate(-45deg);
+  right: 1px;
+}
+:where(.backwards-compatibility) .close-icon:after {
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  border-bottom: 0px solid black;
+  border-right: 0px solid black;
+  transform: rotate(-45deg);
+  left: 0;
+}
+:where(.backwards-compatibility) .LittleBadge .icon-badge .badge {
+  top: -4px;
+  font-size: 12px;
+  padding: 0px 6px 0px 6px;
+}
+:where(.backwards-compatibility) .updates-badge .badge.border-radius-rounded.background-cyan,
+:where(.backwards-compatibility) .connect-badge .badge.border-radius-rounded {
+  left: 90%;
+}
+:where(.backwards-compatibility) .menu-badge-absolute {
+  position: absolute;
+  top: -0.9em;
+}
+:where(.backwards-compatibility) .badge.border-radius-rounded.connect-badge,
+:where(.backwards-compatibility) .connect-badge .badge.border-radius-rounded {
+  height: 16px;
+  min-width: 28px;
+  background-color: #50B8B3;
+}
+:where(.backwards-compatibility) .badge.border-radius-rounded.connect-badge > span,
+:where(.backwards-compatibility) .connect-badge .badge.border-radius-rounded > span {
+  line-height: 16px;
+  margin: auto;
+  color: white;
+}
+:where(.backwards-compatibility) .menu-badge .badge {
+  background-color: var(--color-badge-menu);
+  padding: 2px 5px;
+}
+:where(.backwards-compatibility) .menu-badge .badge > span {
+  line-height: 12px;
+}
+:where(.backwards-compatibility) .notification-detail-icon-badge {
+  border: 3px solid #0c5e95;
+  border-radius: 50%;
+  margin-top: 5px;
+  max-width: 55px;
+  width: 55px;
+  height: 55px;
+}
+:where(.backwards-compatibility) .notification-detail-icon-badge img {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+:where(.backwards-compatibility) .advanced-search-item-tag, :where(.backwards-compatibility) .advanced-search-item-tag div, :where(.backwards-compatibility) .advanced-search-item-tag marker {
+  vertical-align: baseline;
+}
+:where(.backwards-compatibility) .locality-info-container {
+  width: 100%;
+  color: #000;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+:where(.backwards-compatibility) .locality-info-container i {
+  padding-left: 3px;
+  font-size: 0.8em;
+}
+:where(.backwards-compatibility) .locality-details-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+:where(.backwards-compatibility) .share-with-input .input-with-icon .form-control .input-search :is(.input[data-input], input[data-input]:empty, textarea[data-textarea], textarea[data-textarea]:empty) {
+  background-color: var(--color-neutral-2);
+}
+:where(.backwards-compatibility) .font-size-0-25 {
+  font-size: 25%;
+}
+:where(.backwards-compatibility) .font-size-0-50 {
+  font-size: 50%;
+}
+:where(.backwards-compatibility) .font-size-0-75 {
+  font-size: 75%;
+}
+:where(.backwards-compatibility) .font-size-0-8 {
+  font-size: 80%;
+}
+:where(.backwards-compatibility) .font-size-0-9 {
+  font-size: 90%;
+}
+:where(.backwards-compatibility) .font-size-1 {
+  font-size: 100%;
+}
+:where(.backwards-compatibility) .font-size-1-1 {
+  font-size: 110%;
+}
+:where(.backwards-compatibility) .font-size-1-25 {
+  font-size: 125%;
+}
+:where(.backwards-compatibility) .font-size-1-5 {
+  font-size: 150%;
+}
+:where(.backwards-compatibility) .font-size-2 {
+  font-size: 200%;
+}
+:where(.backwards-compatibility) .font-size-2-1 {
+  font-size: 210%;
+}
+:where(.backwards-compatibility) .font-size-2-5 {
+  font-size: 250%;
+}
+:where(.backwards-compatibility) .font-size-3 {
+  font-size: 300%;
+}
+:where(.backwards-compatibility) .font-size-3-5 {
+  font-size: 350%;
+}
+:where(.backwards-compatibility) .font-size-4 {
+  font-size: 400%;
+}
+:where(.backwards-compatibility) .font-size-4-5 {
+  font-size: 450%;
+}
+:where(.backwards-compatibility) .font-size-5 {
+  font-size: 500%;
+}
+:where(.backwards-compatibility) .font-size-5-5 {
+  font-size: 550%;
+}
+:where(.backwards-compatibility) .font-size-6 {
+  font-size: 600%;
+}
+:where(.backwards-compatibility) .font-size-0-25em {
+  font-size: 0.25em;
+}
+:where(.backwards-compatibility) .font-size-0-50em {
+  font-size: 0.5em;
+}
+
+ :where(.backwards-compatibility) .font-size-0-625em{
+     font-size: 0.625em;
+ }
+
+:where(.backwards-compatibility) .font-size-0-75em {
+  font-size: 0.75em;
+}
+:where(.backwards-compatibility) .font-size-0-8em {
+  font-size: 0.8em;
+}
+:where(.backwards-compatibility) .font-size-0-9em {
+  font-size: 0.9em;
+}
+:where(.backwards-compatibility) .font-size-1em {
+  font-size: 1em;
+}
+:where(.backwards-compatibility) .font-size-1-1em {
+  font-size: 1.1em;
+}
+:where(.backwards-compatibility) .font-size-1-25em {
+  font-size: 1.25em;
+}
+:where(.backwards-compatibility) .font-size-1-5em {
+  font-size: 1.5em;
+}
+:where(.backwards-compatibility) .font-size-2em {
+  font-size: 2em;
+}
+:where(.backwards-compatibility) .font-size-2-1em {
+  font-size: 2.1em;
+}
+:where(.backwards-compatibility) .font-size-2-5em {
+  font-size: 2.5em;
+}
+:where(.backwards-compatibility) .font-size-3em {
+  font-size: 3em;
+}
+:where(.backwards-compatibility) .font-size-3-5em {
+  font-size: 3.5em;
+}
+:where(.backwards-compatibility) .font-size-4em {
+  font-size: 4em;
+}
+:where(.backwards-compatibility) .font-size-4-5em {
+  font-size: 4.5em;
+}
+:where(.backwards-compatibility) .font-size-5em {
+  font-size: 5em;
+}
+:where(.backwards-compatibility) .font-size-5-5em {
+  font-size: 5.5em;
+}
+:where(.backwards-compatibility) .font-size-6em {
+  font-size: 6em;
+}
+:where(.backwards-compatibility) .font-size-0-25rem {
+  font-size: 0.25rem;
+}
+:where(.backwards-compatibility) .font-size-0-50rem {
+  font-size: 0.5rem;
+}
+:where(.backwards-compatibility) .font-size-0-75rem {
+  font-size: 0.75rem;
+}
+:where(.backwards-compatibility) .font-size-0-8rem {
+  font-size: 0.8rem;
+}
+:where(.backwards-compatibility) .font-size-0-9rem {
+  font-size: 0.9rem;
+}
+:where(.backwards-compatibility) .font-size-1rem {
+  font-size: 1rem;
+}
+:where(.backwards-compatibility) .font-size-1-1rem {
+  font-size: 1.1rem;
+}
+:where(.backwards-compatibility) .font-size-1-25rem {
+  font-size: 1.25rem;
+}
+:where(.backwards-compatibility) .font-size-1-5rem {
+  font-size: 1.5rem;
+}
+:where(.backwards-compatibility) .font-size-2rem {
+  font-size: 2rem;
+}
+:where(.backwards-compatibility) .font-size-2-1rem {
+  font-size: 2.1rem;
+}
+:where(.backwards-compatibility) .font-size-2-5rem {
+  font-size: 2.5rem;
+}
+:where(.backwards-compatibility) .font-size-3rem {
+  font-size: 3rem;
+}
+:where(.backwards-compatibility) .font-size-3-5rem {
+  font-size: 3.5rem;
+}
+:where(.backwards-compatibility) .font-size-4rem {
+  font-size: 4rem;
+}
+:where(.backwards-compatibility) .font-size-4-5rem {
+  font-size: 4.5rem;
+}
+:where(.backwards-compatibility) .font-size-5rem {
+  font-size: 5rem;
+}
+:where(.backwards-compatibility) .font-size-5-5rem {
+  font-size: 5.5rem;
+}
+:where(.backwards-compatibility) .font-size-6rem {
+  font-size: 6rem;
+}
+:where(.backwards-compatibility) .text-align-left {
+  text-align: left;
+}
+:where(.backwards-compatibility) .text-align-center {
+  text-align: center;
+}
+:where(.backwards-compatibility) .text-align-right {
+  text-align: right;
+}
+:where(.backwards-compatibility) .flex-center-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+:where(.backwards-compatibility) .flex-center-vertical {
+  display: flex;
+  align-items: center;
+}
+:where(.backwards-compatibility) .flex-center-horizontal {
+  display: flex;
+  justify-content: center;
+}
+:where(.backwards-compatibility) .flex-center-baseline {
+  display: flex;
+  align-items: baseline;
+}
+:where(.backwards-compatibility) .flex-horizontal-left {
+  justify-content: flex-start;
+}
+:where(.backwards-compatibility) .flex-horizontal-right {
+  justify-content: flex-end;
+}
+:where(.backwards-compatibility) .inline-flex-center-all {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+:where(.backwards-compatibility) .inline-flex-center-vertical {
+  display: inline-flex;
+  align-items: center;
+}
+:where(.backwards-compatibility) .inline-flex-center-horizontal {
+  display: inline-flex;
+  justify-content: center;
+}
+:where(.backwards-compatibility) .inline-flex-center-baseline {
+  display: flex;
+  align-items: baseline;
+}
+:where(.backwards-compatibility) .flex-space-evenly {
+  justify-content: space-evenly;
+}
+:where(.backwards-compatibility) .flex-space-around {
+  justify-content: space-around;
+}
+:where(.backwards-compatibility) .flex-space-between {
+  justify-content: space-between;
+}
+:where(.backwards-compatibility) .flex-direction-row {
+  flex-direction: row;
+}
+:where(.backwards-compatibility) .flex-direction-row-reverse {
+  flex-direction: row-reverse;
+}
+:where(.backwards-compatibility) .flex-direction-column {
+  flex-direction: column;
+}
+:where(.backwards-compatibility) .flex-direction-column-reverse {
+  flex-direction: column-reverse;
+}
+:where(.backwards-compatibility) .flex-grow {
+  flex-grow: 1;
+}
+:where(.backwards-compatibility) .flex1 {
+  flex: 1;
+}
+:where(.backwards-compatibility) .flex2 {
+  flex: 2;
+}
+:where(.backwards-compatibility) .flex3 {
+  flex: 3;
+}
+:where(.backwards-compatibility) .flex4 {
+  flex: 4;
+}
+:where(.backwards-compatibility) .flex5 {
+  flex: 5;
+}
+:where(.backwards-compatibility) .width-auto {
+  min-width: auto;
+  width: auto;
+  max-width: auto;
+}
+:where(.backwards-compatibility) .no-width {
+  width: 0px;
+}
+:where(.backwards-compatibility) .width-two-thirds {
+  min-width: 66.66%;
+  width: 66.66%;
+  max-width: 66.66%;
+  min-width: calc((100% / 3) * 2);
+  width: calc((100% / 3) * 2);
+  max-width: calc((100% / 3) * 2);
+}
+:where(.backwards-compatibility) .width-third {
+  min-width: 33.33%;
+  width: 33.33%;
+  max-width: 33.33%;
+  min-width: calc(100% / 3);
+  width: calc(100% / 3);
+  max-width: calc(100% / 3);
+}
+:where(.backwards-compatibility) .width-sixth {
+  min-width: 16.66%;
+  width: 16.66%;
+  max-width: 16.66%;
+  min-width: calc(100% / 6);
+  width: calc(100% / 6);
+  max-width: calc(100% / 6);
+}
+:where(.backwards-compatibility) .width-seventh {
+  min-width: 14.285%;
+  width: 14.285%;
+  max-width: 14.285%;
+  min-width: calc(100% / 7);
+  width: calc(100% / 7);
+  max-width: calc(100% / 7);
+}
+:where(.backwards-compatibility) .width-eigth {
+  min-width: 12.5%;
+  width: 12.5%;
+  max-width: 12.5%;
+  min-width: calc(100% / 8);
+  width: calc(100% / 8);
+  max-width: calc(100% / 8);
+}
+:where(.backwards-compatibility) .width-ninth {
+  min-width: 11.11%;
+  width: 11.11%;
+  max-width: 11.11%;
+  min-width: calc(100% / 9);
+  width: calc(100% / 9);
+  max-width: calc(100% / 9);
+}
+:where(.backwards-compatibility) .width5 {
+  min-width: 5%;
+  max-width: 5%;
+  width: 5%;
+}
+:where(.backwards-compatibility) .width10 {
+  min-width: 10%;
+  max-width: 10%;
+  width: 10%;
+}
+:where(.backwards-compatibility) .width15 {
+  min-width: 15%;
+  max-width: 15%;
+  width: 15%;
+}
+:where(.backwards-compatibility) .width18 {
+  min-width: 18%;
+  max-width: 18%;
+  width: 18%;
+}
+:where(.backwards-compatibility) .width20 {
+  min-width: 20%;
+  max-width: 20%;
+  width: 20%;
+}
+:where(.backwards-compatibility) .width25 {
+  min-width: 25%;
+  max-width: 25%;
+  width: 25%;
+}
+:where(.backwards-compatibility) .width30 {
+  min-width: 30%;
+  max-width: 30%;
+  width: 30%;
+}
+:where(.backwards-compatibility) .width35 {
+  min-width: 35%;
+  max-width: 35%;
+  width: 35%;
+}
+:where(.backwards-compatibility) .width37-5 {
+  min-width: 37.5%;
+  max-width: 37.5%;
+  width: 37.5%;
+}
+:where(.backwards-compatibility) .width40 {
+  min-width: 40%;
+  max-width: 40%;
+  width: 40%;
+}
+:where(.backwards-compatibility) .width45 {
+  min-width: 45%;
+  max-width: 45%;
+  width: 45%;
+}
+:where(.backwards-compatibility) .width50 {
+  min-width: 50%;
+  max-width: 50%;
+  width: 50%;
+}
+:where(.backwards-compatibility) .width55 {
+  min-width: 55%;
+  max-width: 55%;
+  width: 55%;
+}
+:where(.backwards-compatibility) .width60 {
+  min-width: 60%;
+  max-width: 60%;
+  width: 60%;
+}
+:where(.backwards-compatibility) .width65 {
+  min-width: 65%;
+  max-width: 65%;
+  width: 65%;
+}
+:where(.backwards-compatibility) .width70 {
+  min-width: 70%;
+  max-width: 70%;
+  width: 70%;
+}
+:where(.backwards-compatibility) .width75 {
+  min-width: 75%;
+  max-width: 75%;
+  width: 75%;
+}
+:where(.backwards-compatibility) .width80 {
+  min-width: 80%;
+  max-width: 80%;
+  width: 80%;
+}
+:where(.backwards-compatibility) .width85 {
+  min-width: 85%;
+  max-width: 85%;
+  width: 85%;
+}
+:where(.backwards-compatibility) .width90 {
+  min-width: 90%;
+  max-width: 90%;
+  width: 90%;
+}
+:where(.backwards-compatibility) .width95 {
+  min-width: 95%;
+  max-width: 95%;
+  width: 95%;
+}
+:where(.backwards-compatibility) .width5-vw {
+  min-width: 5vw;
+  max-width: 5vw;
+  width: 5vw;
+}
+:where(.backwards-compatibility) .width10-vw {
+  min-width: 10vw;
+  max-width: 10vw;
+  width: 10vw;
+}
+:where(.backwards-compatibility) .width15-vw {
+  min-width: 15vw;
+  max-width: 15vw;
+  width: 15vw;
+}
+:where(.backwards-compatibility) .width20-vw {
+  min-width: 20vw;
+  max-width: 20vw;
+  width: 20vw;
+}
+:where(.backwards-compatibility) .width25-vw {
+  min-width: 25vw;
+  max-width: 25vw;
+  width: 25vw;
+}
+:where(.backwards-compatibility) .width30-vw {
+  min-width: 30vw;
+  max-width: 30vw;
+  width: 30vw;
+}
+:where(.backwards-compatibility) .width35-vw {
+  min-width: 35vw;
+  max-width: 35vw;
+  width: 35vw;
+}
+:where(.backwards-compatibility) .width37-5-vw {
+  min-width: 37.5vw;
+  max-width: 37.5vw;
+  width: 37.5vw;
+}
+:where(.backwards-compatibility) .width40-vw {
+  min-width: 40vw;
+  max-width: 40vw;
+  width: 40vw;
+}
+:where(.backwards-compatibility) .width45-vw {
+  min-width: 45vw;
+  max-width: 45vw;
+  width: 45vw;
+}
+:where(.backwards-compatibility) .width50-vw {
+  min-width: 50vw;
+  max-width: 50vw;
+  width: 50vw;
+}
+:where(.backwards-compatibility) .width55-vw {
+  min-width: 55vw;
+  max-width: 55vw;
+  width: 55vw;
+}
+:where(.backwards-compatibility) .width60-vw {
+  min-width: 60vw;
+  max-width: 60vw;
+  width: 60vw;
+}
+:where(.backwards-compatibility) .width65-vw {
+  min-width: 65vw;
+  max-width: 65vw;
+  width: 65vw;
+}
+:where(.backwards-compatibility) .width70-vw {
+  min-width: 70vw;
+  max-width: 70vw;
+  width: 70vw;
+}
+:where(.backwards-compatibility) .width75-vw {
+  min-width: 75vw;
+  max-width: 75vw;
+  width: 75vw;
+}
+:where(.backwards-compatibility) .width80-vw {
+  min-width: 80vw;
+  max-width: 80vw;
+  width: 80vw;
+}
+:where(.backwards-compatibility) .width85-vw {
+  min-width: 85vw;
+  max-width: 85vw;
+  width: 85vw;
+}
+:where(.backwards-compatibility) .width90-vw {
+  min-width: 90vw;
+  max-width: 90vw;
+  width: 90vw;
+}
+:where(.backwards-compatibility) .width95-vw {
+  min-width: 95vw;
+  max-width: 95vw;
+  width: 95vw;
+}
+:where(.backwards-compatibility) .height-auto {
+  min-height: auto;
+  height: auto;
+  max-height: auto;
+}
+:where(.backwards-compatibility) .no-height {
+  height: 0px;
+}
+:where(.backwards-compatibility) .height5 {
+  min-height: 5%;
+  max-height: 5%;
+  height: 5%;
+}
+:where(.backwards-compatibility) .height10 {
+  min-height: 10%;
+  max-height: 10%;
+  height: 10%;
+}
+:where(.backwards-compatibility) .height15 {
+  min-height: 15%;
+  max-height: 15%;
+  height: 15%;
+}
+:where(.backwards-compatibility) .height20 {
+  min-height: 20%;
+  max-height: 20%;
+  height: 20%;
+}
+:where(.backwards-compatibility) .height25 {
+  min-height: 25%;
+  max-height: 25%;
+  height: 25%;
+}
+:where(.backwards-compatibility) .height30 {
+  min-height: 30%;
+  max-height: 30%;
+  height: 30%;
+}
+:where(.backwards-compatibility) .height35 {
+  min-height: 35%;
+  max-height: 35%;
+  height: 35%;
+}
+:where(.backwards-compatibility) .height40 {
+  min-height: 40%;
+  max-height: 40%;
+  height: 40%;
+}
+:where(.backwards-compatibility) .height45 {
+  min-height: 45%;
+  max-height: 45%;
+  height: 45%;
+}
+:where(.backwards-compatibility) .height50 {
+  min-height: 50%;
+  max-height: 50%;
+  height: 50%;
+}
+:where(.backwards-compatibility) .height55 {
+  min-height: 55%;
+  max-height: 55%;
+  height: 55%;
+}
+:where(.backwards-compatibility) .height60 {
+  min-height: 60%;
+  max-height: 60%;
+  height: 60%;
+}
+:where(.backwards-compatibility) .height65 {
+  min-height: 65%;
+  max-height: 65%;
+  height: 65%;
+}
+:where(.backwards-compatibility) .height70 {
+  min-height: 70%;
+  max-height: 70%;
+  height: 70%;
+}
+:where(.backwards-compatibility) .height75 {
+  min-height: 75%;
+  max-height: 75%;
+  height: 75%;
+}
+:where(.backwards-compatibility) .height80 {
+  min-height: 80%;
+  max-height: 80%;
+  height: 80%;
+}
+:where(.backwards-compatibility) .height85 {
+  min-height: 85%;
+  max-height: 85%;
+  height: 85%;
+}
+:where(.backwards-compatibility) .height90 {
+  min-height: 90%;
+  max-height: 90%;
+  height: 90%;
+}
+:where(.backwards-compatibility) .height95 {
+  min-height: 95%;
+  max-height: 95%;
+  height: 95%;
+}
+:where(.backwards-compatibility) .height5-vh {
+  min-height: 5vh;
+  max-height: 5vh;
+  height: 5vh;
+}
+:where(.backwards-compatibility) .height10-vh {
+  min-height: 10vh;
+  max-height: 10vh;
+  height: 10vh;
+}
+:where(.backwards-compatibility) .height15-vh {
+  min-height: 15vh;
+  max-height: 15vh;
+  height: 15vh;
+}
+:where(.backwards-compatibility) .height20-vh {
+  min-height: 20vh;
+  max-height: 20vh;
+  height: 20vh;
+}
+:where(.backwards-compatibility) .height25-vh {
+  min-height: 25vh;
+  max-height: 25vh;
+  height: 25vh;
+}
+:where(.backwards-compatibility) .height30-vh {
+  min-height: 30vh;
+  max-height: 30vh;
+  height: 30vh;
+}
+:where(.backwards-compatibility) .height35-vh {
+  min-height: 35vh;
+  max-height: 35vh;
+  height: 35vh;
+}
+:where(.backwards-compatibility) .height40-vh {
+  min-height: 40vh;
+  max-height: 40vh;
+  height: 40vh;
+}
+:where(.backwards-compatibility) .height45-vh {
+  min-height: 45vh;
+  max-height: 45vh;
+  height: 45vh;
+}
+:where(.backwards-compatibility) .height50-vh {
+  min-height: 50vh;
+  max-height: 50vh;
+  height: 50vh;
+}
+:where(.backwards-compatibility) .height55-vh {
+  min-height: 55vh;
+  max-height: 55vh;
+  height: 55vh;
+}
+:where(.backwards-compatibility) .height60-vh {
+  min-height: 60vh;
+  max-height: 60vh;
+  height: 60vh;
+}
+:where(.backwards-compatibility) .height65-vh {
+  min-height: 65vh;
+  max-height: 65vh;
+  height: 65vh;
+}
+:where(.backwards-compatibility) .height70-vh {
+  min-height: 70vh;
+  max-height: 70vh;
+  height: 70vh;
+}
+:where(.backwards-compatibility) .height75-vh {
+  min-height: 75vh;
+  max-height: 75vh;
+  height: 75vh;
+}
+:where(.backwards-compatibility) .height80-vh {
+  min-height: 80vh;
+  max-height: 80vh;
+  height: 80vh;
+}
+:where(.backwards-compatibility) .height85-vh {
+  min-height: 85vh;
+  max-height: 85vh;
+  height: 85vh;
+}
+:where(.backwards-compatibility) .height90-vh {
+  min-height: 90vh;
+  max-height: 90vh;
+  height: 90vh;
+}
+:where(.backwards-compatibility) .height95-vh {
+  min-height: 95vh;
+  max-height: 95vh;
+  height: 95vh;
+}
+:where(.backwards-compatibility) .background-primary-color {
+  background-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .background-secondary-color {
+  background-color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .text-primary-color {
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .text-secondary-color {
+  color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .border-bottom-primary {
+  border-bottom-color: var(--color-primary);
+}
+:where(.backwards-compatibility) .z-index0 {
+  z-index: 0;
+}
+:where(.backwards-compatibility) .z-index1 {
+  z-index: 1;
+}
+:where(.backwards-compatibility) .z-index2 {
+  z-index: 2;
+}
+:where(.backwards-compatibility) .z-index3 {
+  z-index: 3;
+}
+:where(.backwards-compatibility) .z-index4 {
+  z-index: 4;
+}
+:where(.backwards-compatibility) .z-index5 {
+  z-index: 5;
+}
+:where(.backwards-compatibility) .z-index6 {
+  z-index: 6;
+}
+:where(.backwards-compatibility) .z-index7 {
+  z-index: 7;
+}
+:where(.backwards-compatibility) .z-index8 {
+  z-index: 8;
+}
+:where(.backwards-compatibility) .z-index9 {
+  z-index: 9;
+}
+:where(.backwards-compatibility) .z-index10 {
+  z-index: 10;
+}
+:where(.backwards-compatibility) .z-index15 {
+  z-index: 15;
+}
+:where(.backwards-compatibility) .z-index20 {
+  z-index: 20;
+}
+:where(.backwards-compatibility) .z-index25 {
+  z-index: 25;
+}
+:where(.backwards-compatibility) .z-index50 {
+  z-index: 50;
+}
+:where(.backwards-compatibility) .z-index75 {
+  z-index: 75;
+}
+:where(.backwards-compatibility) .z-index100 {
+  z-index: 100;
+}
+:where(.backwards-compatibility) .position-fixed {
+  position: fixed;
+}
+:where(.backwards-compatibility) .top-0 {
+  position: fixed;
+  top: 0;
+}
+:where(.backwards-compatibility) .right-0 {
+  position: fixed;
+  right: 0;
+}
+:where(.backwards-compatibility) .bottom-0 {
+  position: fixed;
+  bottom: 0;
+}
+:where(.backwards-compatibility) .left-0 {
+  position: fixed;
+  left: 0;
+}
+:where(.backwards-compatibility) .top-0-imp {
+  position: fixed;
+  top: 0 !important;
+}
+:where(.backwards-compatibility) .right-0-imp {
+  position: fixed;
+  right: 0 !important;
+}
+:where(.backwards-compatibility) .bottom-0-imp {
+  position: fixed;
+  bottom: 0 !important;
+}
+:where(.backwards-compatibility) .left-0-imp {
+  position: fixed;
+  left: 0 !important;
+}
+:where(.backwards-compatibility) .stick-to-top {
+  position: sticky;
+  top: 0;
+}
+:where(.backwards-compatibility) .stick-to-bottom {
+  position: sticky;
+  bottom: 0;
+}
+:where(.backwards-compatibility) .display-none {
+  display: none;
+}
+:where(.backwards-compatibility) .display-block {
+  display: block;
+}
+:where(.backwards-compatibility) .margin-middle {
+  margin: auto 0;
+}
+:where(.backwards-compatibility) .margin-center {
+  margin: 0 auto;
+}
+:where(.backwards-compatibility) .border-box {
+  box-sizing: border-box;
+}
+:where(.backwards-compatibility) .no-border {
+  border: none !important;
+}
+:where(.backwards-compatibility) .border-width-1 {
+  border-width: 1px;
+}
+:where(.backwards-compatibility) .border-width-2 {
+  border-width: 2px;
+}
+:where(.backwards-compatibility) .border-width-3 {
+  border-width: 3px;
+}
+:where(.backwards-compatibility) .border-width-4 {
+  border-width: 4px;
+}
+:where(.backwards-compatibility) .border-width-5 {
+  border-width: 5px;
+}
+:where(.backwards-compatibility) .border-width-6 {
+  border-width: 6px;
+}
+:where(.backwards-compatibility) .border-width-7 {
+  border-width: 7px;
+}
+:where(.backwards-compatibility) .border-width-8 {
+  border-width: 8px;
+}
+:where(.backwards-compatibility) .border-width-9 {
+  border-width: 9px;
+}
+:where(.backwards-compatibility) .border-width-10 {
+  border-width: 10px;
+}
+:where(.backwards-compatibility) .border-neutral-0 {
+  border: 1px solid var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .border-neutral-1 {
+  border: 1px solid var(--color-neutral-1);
+}
+:where(.backwards-compatibility) .border-neutral-2 {
+  border: 1px solid var(--color-neutral-2);
+}
+:where(.backwards-compatibility) .border-neutral-3 {
+  border: 1px solid var(--color-neutral-3);
+}
+:where(.backwards-compatibility) .border-neutral-4 {
+  border: 1px solid var(--color-neutral-4);
+}
+:where(.backwards-compatibility) .border-neutral-5 {
+  border: 1px solid var(--color-neutral-5);
+}
+:where(.backwards-compatibility) .border-neutral-6 {
+  border: 1px solid var(--color-neutral-6);
+}
+:where(.backwards-compatibility) .border-neutral-7 {
+  border: 1px solid var(--color-neutral-7);
+}
+:where(.backwards-compatibility) .border-neutral-8 {
+  border: 1px solid var(--color-neutral-8);
+}
+:where(.backwards-compatibility) .border-neutral-9 {
+  border: 1px solid var(--color-neutral-9);
+}
+:where(.backwards-compatibility) .border-neutral-10 {
+  border: 1px solid var(--color-neutral-10);
+}
+:where(.backwards-compatibility) .border-top-neutral-0 {
+  border-top: 1px solid var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .border-top-neutral-1 {
+  border-top: 1px solid var(--color-neutral-1);
+}
+:where(.backwards-compatibility) .border-top-neutral-2 {
+  border-top: 1px solid var(--color-neutral-2);
+}
+:where(.backwards-compatibility) .border-top-neutral-3 {
+  border-top: 1px solid var(--color-neutral-3);
+}
+:where(.backwards-compatibility) .border-top-neutral-4 {
+  border-top: 1px solid var(--color-neutral-4);
+}
+:where(.backwards-compatibility) .border-top-neutral-5 {
+  border-top: 1px solid var(--color-neutral-5);
+}
+:where(.backwards-compatibility) .border-top-neutral-6 {
+  border-top: 1px solid var(--color-neutral-6);
+}
+:where(.backwards-compatibility) .border-top-neutral-7 {
+  border-top: 1px solid var(--color-neutral-7);
+}
+:where(.backwards-compatibility) .border-top-neutral-8 {
+  border-top: 1px solid var(--color-neutral-8);
+}
+:where(.backwards-compatibility) .border-top-neutral-9 {
+  border-top: 1px solid var(--color-neutral-9);
+}
+:where(.backwards-compatibility) .border-top-neutral-10 {
+  border-top: 1px solid var(--color-neutral-10);
+}
+:where(.backwards-compatibility) .border-right-neutral-0 {
+  border-right: 1px solid var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .border-right-neutral-1 {
+  border-right: 1px solid var(--color-neutral-1);
+}
+:where(.backwards-compatibility) .border-right-neutral-2 {
+  border-right: 1px solid var(--color-neutral-2);
+}
+:where(.backwards-compatibility) .border-right-neutral-3 {
+  border-right: 1px solid var(--color-neutral-3);
+}
+:where(.backwards-compatibility) .border-right-neutral-4 {
+  border-right: 1px solid var(--color-neutral-4);
+}
+:where(.backwards-compatibility) .border-right-neutral-5 {
+  border-right: 1px solid var(--color-neutral-5);
+}
+:where(.backwards-compatibility) .border-right-neutral-6 {
+  border-right: 1px solid var(--color-neutral-6);
+}
+:where(.backwards-compatibility) .border-right-neutral-7 {
+  border-right: 1px solid var(--color-neutral-7);
+}
+:where(.backwards-compatibility) .border-right-neutral-8 {
+  border-right: 1px solid var(--color-neutral-8);
+}
+:where(.backwards-compatibility) .border-right-neutral-9 {
+  border-right: 1px solid var(--color-neutral-9);
+}
+:where(.backwards-compatibility) .border-right-neutral-10 {
+  border-right: 1px solid var(--color-neutral-10);
+}
+:where(.backwards-compatibility) .border-bottom-neutral-0 {
+  border-bottom: 1px solid var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .border-bottom-neutral-1 {
+  border-bottom: 1px solid var(--color-neutral-1);
+}
+:where(.backwards-compatibility) .border-bottom-neutral-2 {
+  border-bottom: 1px solid var(--color-neutral-2);
+}
+:where(.backwards-compatibility) .border-bottom-neutral-3 {
+  border-bottom: 1px solid var(--color-neutral-3);
+}
+:where(.backwards-compatibility) .border-bottom-neutral-4 {
+  border-bottom: 1px solid var(--color-neutral-4);
+}
+:where(.backwards-compatibility) .border-bottom-neutral-5 {
+  border-bottom: 1px solid var(--color-neutral-5);
+}
+:where(.backwards-compatibility) .border-bottom-neutral-6 {
+  border-bottom: 1px solid var(--color-neutral-6);
+}
+:where(.backwards-compatibility) .border-bottom-neutral-7 {
+  border-bottom: 1px solid var(--color-neutral-7);
+}
+:where(.backwards-compatibility) .border-bottom-neutral-8 {
+  border-bottom: 1px solid var(--color-neutral-8);
+}
+:where(.backwards-compatibility) .border-bottom-neutral-9 {
+  border-bottom: 1px solid var(--color-neutral-9);
+}
+:where(.backwards-compatibility) .border-bottom-neutral-10 {
+  border-bottom: 1px solid var(--color-neutral-10);
+}
+:where(.backwards-compatibility) .border-left-neutral-0 {
+  border-left: 1px solid var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .border-left-neutral-1 {
+  border-left: 1px solid var(--color-neutral-1);
+}
+:where(.backwards-compatibility) .border-left-neutral-2 {
+  border-left: 1px solid var(--color-neutral-2);
+}
+:where(.backwards-compatibility) .border-left-neutral-3 {
+  border-left: 1px solid var(--color-neutral-3);
+}
+:where(.backwards-compatibility) .border-left-neutral-4 {
+  border-left: 1px solid var(--color-neutral-4);
+}
+:where(.backwards-compatibility) .border-left-neutral-5 {
+  border-left: 1px solid var(--color-neutral-5);
+}
+:where(.backwards-compatibility) .border-left-neutral-6 {
+  border-left: 1px solid var(--color-neutral-6);
+}
+:where(.backwards-compatibility) .border-left-neutral-7 {
+  border-left: 1px solid var(--color-neutral-7);
+}
+:where(.backwards-compatibility) .border-left-neutral-8 {
+  border-left: 1px solid var(--color-neutral-8);
+}
+:where(.backwards-compatibility) .border-left-neutral-9 {
+  border-left: 1px solid var(--color-neutral-9);
+}
+:where(.backwards-compatibility) .border-left-neutral-10 {
+  border-left: 1px solid var(--color-neutral-10);
+}
+:where(.backwards-compatibility) .text-no-wrap {
+  white-space: nowrap;
+}
+:where(.backwards-compatibility) .position-absolute {
+  position: absolute;
+}
+:where(.backwards-compatibility) .font-weight-100 {
+  font-weight: 100;
+}
+:where(.backwards-compatibility) .font-weight-200 {
+  font-weight: 200;
+}
+:where(.backwards-compatibility) .font-weight-300 {
+  font-weight: 300;
+}
+:where(.backwards-compatibility) .font-weight-400 {
+  font-weight: 400;
+}
+:where(.backwards-compatibility) .font-weight-500 {
+  font-weight: 500;
+}
+:where(.backwards-compatibility) .font-weight-600 {
+  font-weight: 600;
+}
+:where(.backwards-compatibility) .font-weight-700 {
+  font-weight: 700;
+}
+:where(.backwards-compatibility) .font-weight-800 {
+  font-weight: 800;
+}
+:where(.backwards-compatibility) .font-weight-900 {
+  font-weight: 900;
+}
+:where(.backwards-compatibility) .font-weight-lighter {
+  font-weight: lighter;
+}
+:where(.backwards-compatibility) .font-weight-bolder {
+  font-weight: bolder;
+}
+:where(.backwards-compatibility) .font-weight-inherit {
+  font-weight: inherit;
+}
+:where(.backwards-compatibility) .popup-backdrop {
+  animation: popup-fade-in 0.1s;
+  z-index: var(--z-index-popups);
+}
+:where(.backwards-compatibility) .popup-dialog,
+:where(.backwards-compatibility).popup-dialog {
+  animation: popup-fade-in-delayed 0.2s;
+}
+@keyframes popup-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes popup-fade-in-delayed {
+  from {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+:where(.backwards-compatibility) .bottom-bar-wrapper {
+  animation: popup-fade-in 0.3s ease-out;
+}
+:where(.backwards-compatibility) .bottom-bar-more .action-sheet {
+  background-color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .bottom-bar-more .btn.background-white,
+:where(.backwards-compatibility) .bottom-bar-more .btn.background-white:hover,
+:where(.backwards-compatibility) .bottom-bar-more .btn.background-white:focus {
+  border: 1px solid;
+}
+:where(.backwards-compatibility) .bottom-bar-more-items {
+  background-color: var(--color-neutral-0);
+}
+
+:where(.backwards-compatibility) .bottom-bar-more-item .menu-icon-HR100 {
+   color: black;
+}
+
+:where(.backwards-compatibility) .bottom-bar-more-item {
+  padding: var(--space-s) var(--space-l);
+  display: flex;
+  align-items: center;
+}
+:where(.backwards-compatibility) .bottom-bar-more-item > div {
+  margin-right: var(--space-base);
+}
+:where(.backwards-compatibility) .background-color-trove {
+  background-color: var(--color-primary-media-hub);
+}
+:where(.backwards-compatibility) .background-color-connect {
+  background-color: var(--color-primary-directory);
+}
+:where(.backwards-compatibility) .landscape .pincode {
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+}
+:where(.backwards-compatibility) .pincode .pincode-display,
+:where(.backwards-compatibility) .landscape .pincode .pincode-display {
+  width: auto;
+  padding-top: 0;
+}
+:where(.backwards-compatibility) .pincode .pincode-keyboard,
+:where(.backwards-compatibility) .landscape .pincode .pincode-keyboard {
+  width: auto;
+  margin-bottom: 0;
+  height: auto !important;
+}
+:where(.backwards-compatibility) .pincode .pincode-display .list.list-group {
+  white-space: nowrap;
+  justify-content: center;
+}
+:where(.backwards-compatibility) .pincode .pincode-content .content-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: var(--space-base);
+  padding-right: var(--space-base);
+}
+:where(.backwards-compatibility) .pincode .pincode-content .content-placeholder > div {
+  display: flex;
+  align-items: center;
+}
+:where(.backwards-compatibility) .pincode .pincode-content .content-placeholder > div:only-child {
+  flex-grow: 1;
+  justify-content: center;
+}
+:where(.backwards-compatibility) .pincode .pincode-keyboard .erase .pincode-digit {
+  line-height: 1.2;
+}
+:where(.backwards-compatibility) .pincode .pincode-keyboard .erase .pincode-digit:before {
+  position: absolute;
+}
+:where(.backwards-compatibility) .login-form.pincode-form,
+:where(.backwards-compatibility) .landscape .login-form.pincode-form {
+  max-width: 320px;
+  padding: 10px;
+}
+:where(.backwards-compatibility) .pincode .pincode-display .list.list-group {
+  white-space: nowrap;
+}
+:where(.backwards-compatibility) .action-menu-container {
+  height: 100vh;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: var(--z-index-menu);
+  
+}
+:where(.backwards-compatibility) .action-menu-container--visible {
+  pointer-events: auto;
+}
+:where(.backwards-compatibility) .action-menu-container--visible.action-menu-container:after {
+  opacity: 1;
+}
+:where(.backwards-compatibility) .action-menu-container:after {
+  background-color: rgba(0, 0, 0, 0.25);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  -webkit-transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1);
+  transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1);
+  width: 100%;
+  will-change: opacity;
+  
+}
+:where(.backwards-compatibility) .action-menu {
+  bottom: 0;
+  left: 0;
+  margin-top: 0;
+  padding-top: var(--space-base);
+  padding-right: calc(var(--os-safe-area-right) + var(--space-base));
+  padding-bottom: calc(var(--os-safe-area-bottom) + var(--space-base));
+  padding-left: calc(var(--os-safe-area-left) + var(--space-base));
+  pointer-events: auto;
+  position: fixed;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  width: 100%;
+  will-change: transform;
+  z-index: 60;
+  
+  
+  background-color: #fff;
+}
+:where(.backwards-compatibility) .action-menu-container--visible .action-menu {
+  -webkit-transform: none;
+  transform: none;
+}
+:where(.backwards-compatibility) .action-menu-container--animatable .action-menu {
+  -webkit-transition: all 130ms ease-in;
+  transition: all 130ms ease-in;
+}
+:where(.backwards-compatibility) .action-menu-container--visible.action-menu-container--animatable .action-menu {
+  -webkit-transition: all 330ms ease-out;
+  transition: all 330ms ease-out;
+}
+:where(.backwards-compatibility) .action-menu-cancel .btn {
+  color: var(--color-neutral-1);
+}
+:where(.backwards-compatibility) .action-menu-top {
+  margin-bottom: var(--space-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+:where(.backwards-compatibility) .action-menu .close-bar {
+  width: 10vw;
+  height: 6px;
+  background-color: var(--color-neutral-5);
+  border-radius: 5px;
+}
+:where(.backwards-compatibility) .user-info.user-info-match-mediahub {
+  background-color: var(--color-primary-media-hub);
+}
+:where(.backwards-compatibility) .dx-popup-menu,
+:where(.backwards-compatibility).dx-popup-menu,
+:where(.backwards-compatibility) .dx-popup-menu-anchor,
+ :where(.backwards-compatibility).dx-popup-menu-anchor{
+  display: inline-block;
+}
+:where(.backwards-compatibility) .dx-popup-menu,
+:where(.backwards-compatibility).dx-popup-menu  {
+  position: relative;
+}
+:where(.backwards-compatibility) .dx-popup-menu-container,
+:where(.backwards-compatibility).dx-popup-menu-container {
+  display: none;
+  position: absolute;
+  margin: var(--space-base);
+  z-index: 105000;
+}
+:where(.backwards-compatibility) .dx-popup-menu-container.dx-popup-menu-open,
+:where(.backwards-compatibility).dx-popup-menu-container.dx-popup-menu-open {
+  display: block;
+}
+:where(.backwards-compatibility) .dx-popup-menu-content,
+:where(.backwards-compatibility).dx-popup-menu-content {
+  background-color: var(--color-neutral-0);
+  box-shadow: var(--shadow-m);
+  white-space: nowrap;
+}
+:where(.backwards-compatibility) .dx-popup-menu-backdrop,
+:where(.backwards-compatibility).dx-popup-menu-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+:where(.backwards-compatibility) .map-fitsize {
+  position: relative;
+  min-height: 200px;
+  max-height: 350px;
+}
+:where(.backwards-compatibility) .color-photobook {
+  color: var(--color-primary-photobook);
+}
+:where(.backwards-compatibility) .backgroundcolor-photobook {
+  background-color: var(--color-primary-photobook);
+}
+
+  /*-------------------------------Migration ---------------------*/
+
+:where(.backwards-compatibility) td, :where(.backwards-compatibility) textarea, :where(.backwards-compatibility) img, :where(.backwards-compatibility) div {
+  vertical-align: top;
+}
+:where(.backwards-compatibility) .layout-native .header {
+  position: static;
+  box-shadow: none;
+}
+
+body, :where(.backwards-compatibility) select, :where(.backwards-compatibility) textarea, :where(.backwards-compatibility) input, :where(.backwards-compatibility) button {
+  color: #263238;
+  font-family: sans-serif;
+  font-size: 16px;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
+  line-height: 1.43;
+  
+}
+body{
+  font-family: Roboto;
+  overscroll-behavior: none;
+}
+:where(.backwards-compatibility) .layout-native .header {
+  position: static;
+  box-shadow: none;
+}
+:where(.backwards-compatibility) .menu-icon-line {
+  border-radius: 2px;
+  height: 2px;
+  width: 20px;
+}
+:where(.backwards-compatibility) .layout-native .header-left {
+  margin-right: 0;
+}
+:where(.backwards-compatibility) h1.header-title {
+  line-height: 1.43;
+}
+:where(.backwards-compatibility) .layout-native .header {
+  position: static;
+  box-shadow: none;
+  color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .layout-native .header-top {
+  padding: 5px 15px;
+  min-height: 65px;
+}
+:where(.backwards-compatibility) .layout-native .header-title {
+  font-size: var(--font-size-h6);
+}
+:where(.backwards-compatibility) .header-search {
+  color: var(--color-neutral-10);
+}
+:where(.backwards-compatibility) .layout-native .header-right {
+  margin-left: 0;
+}
+:where(.backwards-compatibility) .layout-native .header-right i {
+  padding: 0px var(--space-base);
+  color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .layout-native .app-menu-icon {
+  padding: 0px var(--space-base);
+}
+:where(.backwards-compatibility) .layout-native .app-menu-icon.back {
+  padding-top: 4px;
+}
+:where(.backwards-compatibility) .header .menu-back {
+  color: var(--color-neutral-0);
+  font-size: 1.5em;
+}
+:where(.backwards-compatibility) .no-title .header,
+:where(.backwards-compatibility) .layout-native.ios-bounce:not(.hide-header-on-scroll) .no-title .header {
+  position: absolute;
+}
+:where(.backwards-compatibility) .main.no-title {
+  position: relative;
+}
+:where(.backwards-compatibility) .menu-icon-line {
+  background-color: var(--color-neutral-0);
+}
+:where(.backwards-compatibility) .btn {
+  line-height: 1.43;
+}
+.tablet :where(.backwards-compatibility)  .btn,
+.phone :where(.backwards-compatibility)  .btn {
+  height: auto;
+  font-size: 14px
+}
+:where(.backwards-compatibility) .tabs-header-tab {
+  color: #b0bec5;
+  font-weight: 500;
+  text-align: center;
+  padding: 20px 15px 16px;
+  width: auto;
+  font-size: 12px;
+  text-transform: uppercase;
+  -webkit-transition: all 300ms ease;
+  transition: all 300ms ease;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  border-bottom: 3px solid transparent;
+  display: block;
+}
+:where(.backwards-compatibility) .tabs-header-tab.active {
+  border-bottom: 3px solid;
+  color: #0097eb;
+  /*primary-color*/
+}
+
+.tablet :where(.backwards-compatibility)  [data-checkbox]:not([disabled]):before,
+.phone :where(.backwards-compatibility)  [data-checkbox]:not([disabled]):before {
+  border-color: var(--color-primary);
+}
+.tablet :where(.backwards-compatibility)  [data-checkbox]:checked:after,
+.phone :where(.backwards-compatibility)  [data-checkbox]:checked:after {
+  left: 2px;
+  top: 4px;
+}
+
+/*
+Disabling for new Connect
+:where(.backwards-compatibility) .bottom-bar .bottom-bar-item-icon {
+  font-size: 20px;
+  display: block;
+}
+
+:where(.backwards-compatibility) .bottom-bar-item {
+  padding: 9px 5px 8px;
+  overflow: hidden;
+  position: relative;
+}
+:where(.backwards-compatibility) .bottom-bar .bottom-bar-item-icon .icon {
+  font-size: 16px;
+}*/
+
+.footer > div,
+.footer > div > div{
+    height: 100%;
+}
+
+:where(.backwards-compatibility) .bottom-bar > a,
+:where(.backwards-compatibility) .bottom-bar > a:link,
+:where(.backwards-compatibility) .bottom-bar > a:visited {
+  color: #455a64;
+  font-weight: 400;
+  -webkit-user-select: none;
+  user-select: none;
+}
+:where(.backwards-compatibility) .bottom-bar > a.active,
+:where(.backwards-compatibility) .bottom-bar > a:active {
+  background-color: transparent;
+  color: var(--color-primary);
+  /*primary-color*/
+}
+:where(.backwards-compatibility) .bottom-bar > a.active .bottom-bar-item-text,
+:where(.backwards-compatibility) .bottom-bar > a:active .bottom-bar-item-text,
+:where(.backwards-compatibility) .bottom-bar > a.active .bottom-bar-item-icon,
+:where(.backwards-compatibility) .bottom-bar > a:active .bottom-bar-item-icon {
+  color: var(--color-primary);
+  /*primary-color*/
+}
+:where(.backwards-compatibility) .tabs.justified [data-block*=TabsHeaderItem] {
+  -webkit-box-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+:where(.backwards-compatibility) .padding-left15 {
+  padding-left: 15px;
+}
+:where(.backwards-compatibility) .content {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+:where(.backwards-compatibility) .screen-container {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+:where(.backwards-compatibility) .dropdown-container.dropdown-expanded > div.dropdown-display{
+  border: 1px solid transparent;
+}
+
+
+/* Section Expandable - Migrated from OutsystemsUIMobileTheme*/
+
+:where(.backwards-compatibility) .section-expandable.is--open > .section-expandable-title > .section-expandable-icon {
+
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+:where(.backwards-compatibility) .section-expandable,
+:where(.backwards-compatibility) .section-expandable.is--open {
+  border: 0;
+  border-bottom: 1px solid #eaeaea;
+}
+:where(.backwards-compatibility) .section-expandable-title,
+:where(.backwards-compatibility) .layout-native .section-expandable .section-expandable-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 15px;
+}
+:where(.backwards-compatibility) .section-expandable-title .dividers {
+  color: #181818;
+  font-size: 14px;
+  text-transform: none;
+}
+/*
+:where(.backwards-compatibility) .section-expandable.open .section-expandable-title .dividers {
+  color: #0097eb;
+ 
+}*/
+
+:where(.backwards-compatibility) .section-expandable-icon {
+  margin-left: 10px;
+  position: relative;
+  width: 16px;
+}
+:where(.backwards-compatibility) .section-expandable-icon:before,
+:where(.backwards-compatibility) .section-expandable-icon:after {
+  /*primary-color*/
+  content: "";
+  height: 11px;
+  position: absolute;
+  right: 3px;
+  top: 5px;
+  transition: all 300ms ease;
+  width: 3px;
+}
+:where(.backwards-compatibility) .section-expandable-icon:before {
+  -webkit-transform: translate(0, 0) rotate(45deg);
+  transform: translate(0, 0) rotate(45deg);
+}
+:where(.backwards-compatibility) .section-expandable-icon:after {
+  -webkit-transform: translate(-6px, 0) rotate(-45deg);
+  transform: translate(-6px, 0) rotate(-45deg);
+}
+:where(.backwards-compatibility) .section-expandable.open .section-expandable-title .section-expandable-icon:before {
+  -webkit-transform: translate(-6px, 0) rotate(45deg);
+  transform: translate(-6px, 0) rotate(45deg);
+}
+:where(.backwards-compatibility) .section-expandable.open .section-expandable-title .section-expandable-icon:after {
+  -webkit-transform: translate(0, 0) rotate(-45deg);
+  transform: translate(0, 0) rotate(-45deg);
+}
+:where(.backwards-compatibility) .section-expandable-content {
+  padding: 0 15px 0 15px;
+}
+:where(.backwards-compatibility) .section-expandable-content {
+  display: block;
+  overflow: hidden;
+}
+:where(.backwards-compatibility) .section-expandable-content.is--collapsed {
+  height: 0;
+  padding: 0 15px 0 15px;
+  visibility: hidden;
+}
+:where(.backwards-compatibility) .section-expandable-content.is--expanded {
+  height: auto;
+  padding: 0 15px 15px 15px;
+  visibility: visible;
+}
+:where(.backwards-compatibility) .section-expandable-content.is--animating {
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+:where(.backwards-compatibility) .section-expandable.is--disabled {
+  color: #b0bec5;
+  pointer-events: none;
+}
+:where(.backwards-compatibility) .section-expandable .section-expandable-icon:after {
+  content: "";
+}
+/* Section Expandable - Migrated from OutsystemsUIMobileTheme - END*/
+
+  /*-------------------------------Migration END---------------------*/
+
+

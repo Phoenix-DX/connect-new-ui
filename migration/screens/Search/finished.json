@@ -1,0 +1,14 @@
+{
+ "finishedAt": "2026-10-16T06:57:28",
+ "files": {
+  "src/screens/Search/api.ts": "fa14397acfe31f56",
+  "src/screens/Search/components/ScreenBlock_Search.tsx": "eafd590f5f8440c4",
+  "src/screens/Search/components/SearchResult_Section.tsx": "f01709ab77ab3d46",
+  "src/screens/Search/components/Search_BirthdayOptions.tsx": "afea1281a9964606",
+  "src/screens/Search/components/actions.ts": "c61f95e28b18b685",
+  "src/screens/Search/components/staticEntities.ts": "f53a7417669dab64",
+  "src/screens/Search/index.tsx": "c4e53dde1a522357",
+  "src/screens/Search/mocks.ts": "d1a63f19e1aaf21c",
+  "src/screens/Search/types.ts": "61e89dec6f7d61f8"
+ }
+}

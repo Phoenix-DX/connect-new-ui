@@ -1,0 +1,61 @@
+{
+ "_comment": "Proposals of the LDM_MyEvents_V2 route agent (2026-10-16), for the orchestrator to review and merge into migration/parity-exemptions.json. Evidence: parity/default.json, parity/default.diff.png, parity/offline.json.",
+ "rules": [
+  {
+   "id": "DATA-GUEST-PHOTO-LDM-MYEVENTS-V2",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-image"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/LDM_MyEvents_V2(\\?|$)",
+   "pathRegex": "\\[Widgets\\.OverlappingImages\\] > div#[^ ]+-ImageList\\.OSFillParent\\.list\\.list-group > div\\.overlapping-photo-cropper$",
+   "reason": "Person photos: the capture keeps the TST signed photo URLs of the guest households in the background-image of OverlappingImages (not masked: it is a style, not an img); the mock answers the neutral placeholder (Person images in mocks, Q-W2C-1). Data drift. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LDM_MyEvents_V2/parity/default.json (16 style diffs, background-image only); migration/knowledge/mock-fixtures.md 'Person images in mocks'"
+  },
+  {
+   "id": "DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/LDM_MyEvents_V2(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^0\\.\\d\\d% pixels differ .*migration/screens/LDM_MyEvents_V2/parity/default\\.diff\\.png$",
+   "reason": "Pixel side of DATA-GUEST-PHOTO-LDM-MYEVENTS-V2: the only differing areas are the 16 overlapping guest photos (TST photos vs the neutral placeholder; diff.png shows nothing else, 0.73 % of the page). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LDM_MyEvents_V2/parity/default.diff.png (hotspots 280-320,280-560 = the photo stacks)"
+  },
+  {
+   "id": "CAPTURE-ANIMATE-PHASE-LDM-MYEVENTS-V2-NETWORKWARNING",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "opacity",
+    "transform"
+   ],
+   "states": "^offline$",
+   "routeRegex": "^/UBTConnect/LDM_MyEvents_V2(\\?|$)",
+   "pathRegex": "\\[Widgets\\.NetworkWarning\\] > div#b1-b9-b5-\\$b1\\.OSBlockWidget\\[Interaction\\.Animate\\] > div#b1-b9-b5-b1-Content\\.animate\\.normal\\.top-to-bottom$",
+   "reason": "The offline capture photographed the NetworkWarning's Animate (top-to-bottom, normal) mid-animation (opacity 0.545, translateY -39.1 px); the clone is read at the end state. Animation phase artifact (as CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LDM_MyEvents_V2/parity/offline.json"
+  },
+  {
+   "id": "CAPTURE-ANIMATE-PHASE-LDM-MYEVENTS-V2-NETWORKWARNING-POSITION",
+   "kinds": [
+    "position"
+   ],
+   "states": "^offline$",
+   "routeRegex": "^/UBTConnect/LDM_MyEvents_V2(\\?|$)",
+   "pathRegex": "\\[Widgets\\.NetworkWarning\\] > div#b1-b9-b5-\\$b1\\.OSBlockWidget\\[Interaction\\.Animate\\] > div#b1-b9-b5-b1-Content\\.animate\\.normal\\.top-to-bottom$",
+   "detailRegex": "^offset in parent 0,-\\d+ → 0,-?[01]$",
+   "reason": "Position side of CAPTURE-ANIMATE-PHASE-LDM-MYEVENTS-V2-NETWORKWARNING: the mid-animation translateY moves the card up 40 px in the capture. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LDM_MyEvents_V2/parity/offline.json"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [],
+ "_merged": "2026-10-16 orchestrator: DATA-GUEST-PHOTO-LDM-MYEVENTS-V2, DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL, CAPTURE-ANIMATE-PHASE-LDM-MYEVENTS-V2-NETWORKWARNING, CAPTURE-ANIMATE-PHASE-LDM-MYEVENTS-V2-NETWORKWARNING-POSITION"
+}

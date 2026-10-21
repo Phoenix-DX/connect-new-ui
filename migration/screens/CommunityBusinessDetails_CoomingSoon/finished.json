@@ -1,0 +1,9 @@
+{
+ "finishedAt": "2026-10-15T17:26:15",
+ "files": {
+  "src/screens/CommunityBusinessDetails_CoomingSoon/api.ts": "3b69f059ed2a5c83",
+  "src/screens/CommunityBusinessDetails_CoomingSoon/index.tsx": "770edf55b8e530b7",
+  "src/screens/CommunityBusinessDetails_CoomingSoon/mocks.ts": "5c9cbf0cf887610b",
+  "src/screens/CommunityBusinessDetails_CoomingSoon/types.ts": "ebad37552ea1ca31"
+ }
+}

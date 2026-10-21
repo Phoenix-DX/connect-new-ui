@@ -1,0 +1,133 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "row click / GetBookmarkById",
+  "question": "A bookmark row click runs GetBookmarkById (Connect2_MyBookmarks_MUI, server action ActionGetBookmarkById) before it navigates; that action is not in the API contract, so the clone cannot call it. Build the whole OnClick_BookmarkedItem flow behind an adapter that stays disabled (click does nothing) until CR-BookmarksByGroup-1 adds the action to the contract and a mock, or something else?",
+  "evidence": "ScreenBlock_BookmarkGroup.mvc.js:2728-2894; Connect2_MyBookmarks_MUI.controller.js (raw) getBookmarkById$Action / getBookmarkById$ServerAction screenservices/Connect2_MyBookmarks_MUI/ActionGetBookmarkById; app/src/api/openapi.yaml has no GetBookmarkById",
+  "mcp": "",
+  "options": [
+   "A: flow built, adapter disabled until CR-BookmarksByGroup-1",
+   "B: render the click as NotCaptured only"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:25:36",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): full click flow behind a null adapter until CR-BookmarksByGroup-1 (GetBookmarkById in the contract, foundation F7); route waits for it before finish",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T23:12:06"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "Locations / Entities groups",
+  "question": "Only BookmarkGroup=Contacts was captured. Build the Locations (localities with Utility.Result_Item_Badge, Supper Meetings with Result_Item_Image) and Entities (Campus&Co / OneSchool Global) lists from the compiled view with fictional mock rows, or render them as NotCaptured?",
+  "evidence": "ScreenBlock_BookmarkGroup.mvc.js:642-1173 (List_Locations, List_Entities); Result_Item_Badge view in capture/survey-UBTConnect.json sources; states.json has only BookmarkGroup=Contacts",
+  "mcp": "",
+  "options": [
+   "A: build from the compiled view, fictional mocks, no parity state",
+   "B: NotCaptured for the two groups"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:25:36",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): Locations and Entities lists from the compiled view with fictional rows; main-hall colours NotCaptured",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T23:12:06"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "Unmark: legacy local bookmark delete",
+  "question": "After DeleteBookmarkByBookmarkId succeeds the original runs Connect2_LegacyShared Delete_LocalBookmarkByBookmarkId (legacy LocalBookmark). The shell's localBookmarks.ts has no legacy delete (only the C2 one). File CR-BookmarksByGroup-2 for the shell and skip the local delete until it lands, or something else?",
+  "evidence": "ScreenBlock_BookmarkGroup.mvc.js:3171; Connect2_LegacyShared.controller.js (raw) delete_LocalBookmarkByBookmarkId$Action; app/src/shell/localEntities/localBookmarks.ts exports only the C2 delete",
+  "mcp": "",
+  "options": [
+   "A: CR-BookmarksByGroup-2, local delete skipped until it lands",
+   "B: call the C2 delete instead"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:25:36",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): legacy local-bookmark delete skipped until CR-BookmarksByGroup-2 (shell, foundation F7)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T23:12:06"
+ },
+ {
+  "id": "Q4",
+  "kind": "fact",
+  "topic": "MyBookmarks cache TTL",
+  "question": "PutCachedMyBookmarks stores the list with MemoryClientCache UnlimitedTimeToLiveSeconds(); the MemoryClientCache controller is not in the local sources. What value does it return? Built as no expiry (Infinity), as the name says.",
+  "evidence": "Connect2_LegacyShared.controller.js (raw) putCachedMyBookmarks$Action; MemoryClientCache.controller.js missing from migration/runtime-sources",
+  "mcp": "",
+  "options": [],
+  "recommend": "",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:25:36",
+  "answer": "MemoryClientCache.controller.js (fetched read-only 2026-10-15): UnlimitedTimeToLiveSeconds returns TimeToLiveSeconds = 604800 (7 days). The route now uses 604800 (components/actions.ts).",
+  "answeredBy": "code",
+  "answeredAt": "2026-10-15T23:12:06"
+ },
+ {
+  "id": "Q5",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending orchestrator answer): row-click flow built behind a null adapter; CR-BookmarksByGroup-1.; Q2 → A (pending): Locations / Entities built from the compiled view (Result_Item_Badge own), fictional mock rows;; Q3 → A (pending): CR-BookmarksByGroup-2; local delete skipped until it lands.; Q4 (fact, answered by code): cache TTL 604800 s.; Mock: 7 fictional contacts with the captured object ids and text lengths (narrow-glyph names on row 1 so the masked; Proposed exemptions: `proposed-exemptions.json` (masked photos; loading timeout content and toast).; CR-BookmarksByGroup-3 (optional shared consolidation with MyBookmarks). Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasBookmarNote → default-only: TST value off (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:getHasWalletAccess → default-only: TST value off (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T23:36:46",
+  "items": [
+   "Q1 → A (pending orchestrator answer): row-click flow built behind a null adapter; CR-BookmarksByGroup-1.",
+   "Q2 → A (pending): Locations / Entities built from the compiled view (Result_Item_Badge own), fictional mock rows;",
+   "Q3 → A (pending): CR-BookmarksByGroup-2; local delete skipped until it lands.",
+   "Q4 (fact, answered by code): cache TTL 604800 s.",
+   "Mock: 7 fictional contacts with the captured object ids and text lengths (narrow-glyph names on row 1 so the masked",
+   "Proposed exemptions: `proposed-exemptions.json` (masked photos; loading timeout content and toast).",
+   "CR-BookmarksByGroup-3 (optional shared consolidation with MyBookmarks)."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T23:36:46"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending orchestrator answer): row-click flow built behind a null adapter; CR-BookmarksByGroup-1.; Q2 → A (pending): Locations / Entities built from the compiled view (Result_Item_Badge own), fictional mock rows;; Q3 → A (pending): CR-BookmarksByGroup-2; local delete skipped until it lands.; Q4 (fact, answered by code): cache TTL 604800 s.; Mock: 7 fictional contacts with the captured object ids and text lengths (narrow-glyph names on row 1 so the masked; Proposed exemptions: `proposed-exemptions.json` (masked photos; loading timeout content and toast).; CR-BookmarksByGroup-3 (optional shared consolidation with MyBookmarks). Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasBookmarNote → default-only: TST value off (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:getHasWalletAccess → default-only: TST value off (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T11:23:31",
+  "items": [
+   "Q1 → A (pending orchestrator answer): row-click flow built behind a null adapter; CR-BookmarksByGroup-1.",
+   "Q2 → A (pending): Locations / Entities built from the compiled view (Result_Item_Badge own), fictional mock rows;",
+   "Q3 → A (pending): CR-BookmarksByGroup-2; local delete skipped until it lands.",
+   "Q4 (fact, answered by code): cache TTL 604800 s.",
+   "Mock: 7 fictional contacts with the captured object ids and text lengths (narrow-glyph names on row 1 so the masked",
+   "Proposed exemptions: `proposed-exemptions.json` (masked photos; loading timeout content and toast).",
+   "CR-BookmarksByGroup-3 (optional shared consolidation with MyBookmarks)."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T11:23:31"
+ }
+]

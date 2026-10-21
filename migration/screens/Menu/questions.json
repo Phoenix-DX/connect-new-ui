@@ -1,0 +1,93 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "mock data",
+  "question": "The TST account captured on Menu is a householder (or spouse of one): the 'Request Photo Update' row is kept, and the screen removes it when NOT (isHouseholder or SpouseIsHouseholder). The shell's mock user is not a householder by default (toggle ?mockuser=householder), so the clone's default state shows 5 rows instead of 6. How should the default state be matched?",
+  "evidence": "dom/default.html:309 (row 'Request Photo Update'); Menu.mvc.js:845-856 (ListRemove when not householder); app/src/shell/mockUser.ts:28-31,71 (householder toggle off by default)",
+  "mcp": "not available to route agents",
+  "options": [
+   "A: Menu mocks.ts scenario 'householder' (answers CacheControl_UserInfo/DataActionGetCacheInfo with the shell mock user, householder on) + capture-plan Menu scenarios {default: householder} (orchestrator edits capture-plan)",
+   "B: change request: shell mock user householder by default",
+   "C: the user reviews the default state instead of parity"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:05:12",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): Menu mocks.ts householder scenario (shell mock user as householder, neutral square photo); capture-plan Menu scenarios.default = householder",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T20:14:38"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "uncaptured branches",
+  "question": "No capture opens the dialogs or clicks a row. Build the uncaptured branches as in the compiled code: Log out → confirm PopUp_Logout → shell signOut() (Connect_Logout; AppManager_Logout server call is not made, shell spec 10) → HomeFeed (the shell's signed-out gate then opens Login); Request Photo Update → confirm Popup_SubmitPhotoRequest → ActionRequestPhotoUpdate (fictional mock answer Out_IsSuccess=True, nothing stored) → success message; Subscription and Payments → OpenInApp_OpenExternalLink(SubscriptionManageLink, new tab) once user info is fetched; Edit your account → Profile once fetched; navigation without the Fade/Default transitions (the shell has none)?",
+  "evidence": "Menu.mvc.js:752-790 (Action_Logout), :960-1040 (OnClick_MenuOption), :925-940 (OnClick_EditYourAccount); app/src/shell/auth.ts signOut; openapi x-mock-source fictional for ActionRequestPhotoUpdate",
+  "mcp": "not available to route agents",
+  "options": [
+   "A: build as compiled with the fictional mock",
+   "B: render NotCaptured for the uncaptured branches"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:05:12",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): uncaptured branches built as compiled, RequestPhotoUpdate fictional Out_IsSuccess true; limits noted (no AppManager_Logout call from the shell, no Fade/Default page transitions)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T20:14:38"
+ },
+ {
+  "id": "Q3",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending orchestrator answer): `householder` mock scenario in `mocks.ts` (shell mock user with isHouseholder on and the neutral square placeholder as photo, as the TST record had a photo: no GetSignedImagesInBulk in the capture); the capture-plan entry needs `scenarios: {default: householder}` (orchestrator).; Proposed exemptions (`migration/screens/Menu/proposed-exemptions.json`, for the orchestrator): masked Version text offset, masked avatar sub-pixel shift (pixel), Get_RuntimeVersion app-start order.; Q2 → A (pending orchestrator answer): uncaptured branches built as compiled; RequestPhotoUpdate answers `{Out_IsSuccess: true}` (fictional, x-mock-source fictional); logout uses the shell `signOut()` (no AppManager_Logout call, shell spec 10) then HomeFeed, where the shell's signed-out gate opens Login; no screen transitions (Fade/Default) as in the whole shell.; Version text shows \"App version (N)\" without the environment (Version README \"Not settled\"): masked in the capture. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:17:36",
+  "items": [
+   "Q1 → A (pending orchestrator answer): `householder` mock scenario in `mocks.ts` (shell mock user with isHouseholder on and the neutral square placeholder as photo, as the TST record had a photo: no GetSignedImagesInBulk in the capture); the capture-plan entry needs `scenarios: {default: householder}` (orchestrator).",
+   "Proposed exemptions (`migration/screens/Menu/proposed-exemptions.json`, for the orchestrator): masked Version text offset, masked avatar sub-pixel shift (pixel), Get_RuntimeVersion app-start order.",
+   "Q2 → A (pending orchestrator answer): uncaptured branches built as compiled; RequestPhotoUpdate answers `{Out_IsSuccess: true}` (fictional, x-mock-source fictional); logout uses the shell `signOut()` (no AppManager_Logout call, shell spec 10) then HomeFeed, where the shell's signed-out gate opens Login; no screen transitions (Fade/Default) as in the whole shell.",
+   "Version text shows \"App version (N)\" without the environment (Version README \"Not settled\"): masked in the capture."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T20:17:36"
+ },
+ {
+  "id": "Q4",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending orchestrator answer): `householder` mock scenario in `mocks.ts` (shell mock user with isHouseholder on and the neutral square placeholder as photo, as the TST record had a photo: no GetSignedImagesInBulk in the capture); the capture-plan entry needs `scenarios: {default: householder}` (orchestrator).; Proposed exemptions (`migration/screens/Menu/proposed-exemptions.json`, for the orchestrator): masked Version text offset, masked avatar sub-pixel shift (pixel), Get_RuntimeVersion app-start order.; Q2 → A (pending orchestrator answer): uncaptured branches built as compiled; RequestPhotoUpdate answers `{Out_IsSuccess: true}` (fictional, x-mock-source fictional); logout uses the shell `signOut()` (no AppManager_Logout call, shell spec 10) then HomeFeed, where the shell's signed-out gate opens Login; no screen transitions (Fade/Default) as in the whole shell.; Version text shows \"App version (N)\" without the environment (Version README \"Not settled\"): masked in the capture. Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T16:32:05",
+  "items": [
+   "Q1 → A (pending orchestrator answer): `householder` mock scenario in `mocks.ts` (shell mock user with isHouseholder on and the neutral square placeholder as photo, as the TST record had a photo: no GetSignedImagesInBulk in the capture); the capture-plan entry needs `scenarios: {default: householder}` (orchestrator).",
+   "Proposed exemptions (`migration/screens/Menu/proposed-exemptions.json`, for the orchestrator): masked Version text offset, masked avatar sub-pixel shift (pixel), Get_RuntimeVersion app-start order.",
+   "Q2 → A (pending orchestrator answer): uncaptured branches built as compiled; RequestPhotoUpdate answers `{Out_IsSuccess: true}` (fictional, x-mock-source fictional); logout uses the shell `signOut()` (no AppManager_Logout call, shell spec 10) then HomeFeed, where the shell's signed-out gate opens Login; no screen transitions (Fade/Default) as in the whole shell.",
+   "Version text shows \"App version (N)\" without the environment (Version README \"Not settled\"): masked in the capture."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-10-16: \"Confirm cả hai\" (English: \"Confirm both\"), after F18 added the compiled transition arguments)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T16:32:05"
+ }
+]

@@ -1,0 +1,96 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "mock SendContactMemberEmail",
+  "question": "SendContactMemberEmail is a write that was never recorded (guard). How should the mock answer it?",
+  "evidence": "p:UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js:425-434 (output record empty); openapi UBTConnect.ServiceAPISendContactMemberEmail x-os-writes true; mock-fixtures.md:13 (writes never recorded, P-MUTATION)",
+  "mcp": "not asked (no MCP for route agents)",
+  "options": [
+   "A: append the sent UI_ContactByEmailForm to an in-memory store collection (P-MUTATION) and answer {} (no output fields)",
+   "B: stateless {} answer"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:17:27",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): send mock stores the form in an in-memory collection and answers {}",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T20:30:00"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "send error branch",
+  "question": "When SendContactMemberEmail fails, what should the screen do? Compiled Handler_SubmitForm has no exception handler: IsLoading stays True and the error goes up to the ContactFlow flow handler (UBTConnect.ContactFlow.controller.js not in the local sources).",
+  "evidence": "p:UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal.mvc.js:474-528 (no catch besides debugger rethrow), :565-567 handleError → ContactFlow controller; shell raiseToFlowHandler (AcceptPendingPolicies Q2, Q-W3B-2)",
+  "mcp": "not asked (no MCP for route agents)",
+  "options": [
+   "A: as compiled: keep IsLoading True (fields disabled, button spinner) and call raiseToFlowHandler(error)",
+   "B: reset IsLoading to False after the message"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:17:27",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): on failure IsLoading stays on as compiled; error to raiseToFlowHandler (ContactFlow.handleError → App_Common handleError, UBTConnect.ContactFlow.controller.js fetched 2026-10-15)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T20:30:00"
+ },
+ {
+  "id": "Q3",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending orchestrator answer): sent e-mails go to an in-memory collection; answer `{}`; never a real server.; Q2 → A (pending orchestrator answer): on a send error IsLoading stays True and the error goes to `raiseToFlowHandler`.; The application event EmailHousehold is written to `log.info` instead of Azure Insights (app-shell.spec U17).; `In_ContactName` of the capture (\"Test School\") is the fictional value of the capture plan (capture-plan note \"Q3 a\").; Not captured: the sending state and Dialog_Navigation (shared block, compiled view only); the sending, success and; Proposed capture-artifact exemptions CAPTURE-TEXTAREA-ROWS-CBEOSG (+ -GRID, -PSEUDO, -PIXEL): text-area `rows`",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:30:27",
+  "items": [
+   "Q1 → A (pending orchestrator answer): sent e-mails go to an in-memory collection; answer `{}`; never a real server.",
+   "Q2 → A (pending orchestrator answer): on a send error IsLoading stays True and the error goes to `raiseToFlowHandler`.",
+   "The application event EmailHousehold is written to `log.info` instead of Azure Insights (app-shell.spec U17).",
+   "`In_ContactName` of the capture (\"Test School\") is the fictional value of the capture plan (capture-plan note \"Q3 a\").",
+   "Not captured: the sending state and Dialog_Navigation (shared block, compiled view only); the sending, success and",
+   "Proposed capture-artifact exemptions CAPTURE-TEXTAREA-ROWS-CBEOSG (+ -GRID, -PSEUDO, -PIXEL): text-area `rows`"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T20:30:27"
+ },
+ {
+  "id": "Q4",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending orchestrator answer): sent e-mails go to an in-memory collection; answer `{}`; never a real server.; Q2 → A (pending orchestrator answer): on a send error IsLoading stays True and the error goes to `raiseToFlowHandler`.; The application event EmailHousehold is written to `log.info` instead of Azure Insights (app-shell.spec U17).; `In_ContactName` of the capture (\"Test School\") is the fictional value of the capture plan (capture-plan note \"Q3 a\").; Not captured: the sending state and Dialog_Navigation (shared block, compiled view only); the sending, success and; Proposed capture-artifact exemptions CAPTURE-TEXTAREA-ROWS-CBEOSG (+ -GRID, -PSEUDO, -PIXEL): text-area `rows`",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T23:37:40",
+  "items": [
+   "Q1 → A (pending orchestrator answer): sent e-mails go to an in-memory collection; answer `{}`; never a real server.",
+   "Q2 → A (pending orchestrator answer): on a send error IsLoading stays True and the error goes to `raiseToFlowHandler`.",
+   "The application event EmailHousehold is written to `log.info` instead of Azure Insights (app-shell.spec U17).",
+   "`In_ContactName` of the capture (\"Test School\") is the fictional value of the capture plan (capture-plan note \"Q3 a\").",
+   "Not captured: the sending state and Dialog_Navigation (shared block, compiled view only); the sending, success and",
+   "Proposed capture-artifact exemptions CAPTURE-TEXTAREA-ROWS-CBEOSG (+ -GRID, -PSEUDO, -PIXEL): text-area `rows`"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T23:37:40"
+ }
+]

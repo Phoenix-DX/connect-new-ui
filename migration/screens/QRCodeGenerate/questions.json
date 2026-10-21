@@ -1,0 +1,65 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "QR code mock",
+  "question": "The original draws no QR code in the browser: the server returns the PNG (Get_EventQRCode Response.QRCodeAsBinary, BinaryData) and an Image widget of type Binary shows it (no QR library in the TST manifest). What does the mock answer for event 7301?",
+  "evidence": "ScreenBlock_GenerateQRCode.mvc.js :315 (If not NullBinary), :467-506 (Image type Binary imageContent QRCodeAsBinary); contract Connect2_OrbitMobile_BL.GetEventQRCode_ScreenRec; survey manifest: only BarcodePlugin (scanning), no generator script",
+  "mcp": "",
+  "options": [
+   "A: Matias's event pass in orbit.ts (ORBIT_EVENT_PASSES: role Host, GMP tag H-0417, rows of the two seated meetings, payload text) with a real QR PNG of the payload rendered offline by macOS CoreImage CIQRCodeGenerator and decoded back, stored as base64 mock data (no package, no app code); other members get no pass (null binary: 'Unfortunately the QR Code couldn't be generated')",
+   "B: no pass for anyone (NoInformation only), QR area NotCaptured"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T13:54:45",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T14:01:04"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "cached user info",
+  "question": "RefreshData reads AppManager_GetCachedUserInfo for the name, locality and member photo of the pass; the mock sign-in fills only CountryCode of UBT_AppManager.AppManager_UserExtended (knowledge/shell-facts.md), so the pass shows an empty name and location and no photo. Fill the mock session's cached user info?",
+  "evidence": "ScreenBlock_GenerateQRCode.mvc.js :770-789 (UserName, UserLocation, GetCacheableSignedImageURL(MemberId, Member, Medium)); app/src/shell/cachedUserInfo.ts; migration/knowledge/shell-facts.md:125-127 ('Ask again when … a screen depends on other fields')",
+  "mcp": "",
+  "options": [
+   "A: CR-QRCodeGenerate-1 to the shell: the mock sign-in also writes FirstName, LastName, MemberId, Locality, Country of the mock user (Matias Vitale, 990001, Bahia Blanca, Argentina); the screen reads the record as compiled (no change)",
+   "B: keep the record as it is (empty name and location)"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T13:54:45",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night): CR-QRCodeGenerate-1 (cached user info in memory) by foundation F16",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T14:01:04"
+ },
+ {
+  "id": "Q3",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A: Matías's pass for event 7301 (orbit.ts ORBIT_EVENT_PASSES: role Host, GMP tag H-0417, rows \"12 & 12\" of the; Q2 → A: CR-QRCodeGenerate-1 (shell): the mock user's names, MemberId, locality and country in; Markup not captured: built from the compiled view (SB). Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T14:33:11",
+  "items": [
+   "Q1 → A: Matías's pass for event 7301 (orbit.ts ORBIT_EVENT_PASSES: role Host, GMP tag H-0417, rows \"12 & 12\" of the",
+   "Q2 → A: CR-QRCodeGenerate-1 (shell): the mock user's names, MemberId, locality and country in",
+   "Markup not captured: built from the compiled view (SB)."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T14:33:11"
+ }
+]

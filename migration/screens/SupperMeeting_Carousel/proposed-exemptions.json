@@ -1,0 +1,74 @@
+{
+ "_comment": "Proposed by the SupperMeeting_Carousel route agent (2026-10-15) for the orchestrator; not in migration/parity-exemptions.json. Each entry is a capture or timing artifact; foundation differences (CR-HouseholdDetails-1, CR-SupperMeeting_Details-1) and the per-slide household counts (CR-SupperMeeting_Carousel-1) are left reported on purpose.",
+ "rules": [
+  {
+   "id": "CAPTURE-MASKED-IMAGE-SMCAROUSEL",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b3-l1-1164_\\d-b2-b1-b1-(b3|b9-b1-l1-\\d+_\\d+-b5-b1)-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "Same artifact as CAPTURE-MASKED-IMAGE-SUPPERMEETING on the carousel slides: the subdivision photo and the household photos were masked by the capture (data-masked-src=\"user-image\", src removed; TST rendered 390x260 and 195x130), so the replayed reference shows broken images (390x26, 195x24) while the clone shows the mock placeholder. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html (24 data-masked-src=\"user-image\", data-rendered-size=\"390x260\"); parity/default.json (layout 390×26 → 390×260 under b3-l1-1164_0-b2-b1-b1-b3-LazyImage_Placeholder, 195×24 → 195×130 under …-b9-b1-l1-1258_N-b5-b1-LazyImage_Placeholder)"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-SMCAROUSEL-GRID",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "grid-template-rows"
+   ],
+   "states": "^default$",
+   "pathRegex": "\\[Adaptive\\.Gallery\\] > div#b3-l1-1164_0-b2-b1-b1-b9-b1-b4-Content\\.osui-gallery( > div\\.OSFillParent\\.list\\.list-group)?$",
+   "reason": "Follows from CAPTURE-MASKED-IMAGE-SMCAROUSEL on slide 1 only (11 households in capture and mock): the gallery rows are sized by the masked 24 px broken images (rows 178 px) while the clone shows the 130 px placeholder (rows 193 px). Slides 2 and 3 are left reported until CR-SupperMeeting_Carousel-1 gives them their captured counts. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/SupperMeeting_Carousel/parity/default.json (grid-template-rows 1148px → 1238px; 178px ×6 → 193px ×6 on b3-l1-1164_0-b2-b1-b1-b9-b1-b4-Content)"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-CAROUSELTAG-SMCAROUSEL",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "left"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b3-l1-1164_\\d-b2-b1-b1-b3-Placeholder_ImageTag\\.absolute-bottom-right\\.padding-s\\.position-absolute$",
+   "reason": "The CarouselTag text was masked by the capture ('• • •' for '1 / 3'), so the right-aligned tag placeholder of the reference is a third of a pixel wider than the clone's (left 337.688px → 337.344px). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html:90-92 (masked tag text); parity/default.json (left 337.688px → 337.344px on b3-l1-1164_0-b2-b1-b1-b3-Placeholder_ImageTag)"
+  },
+  {
+   "id": "CAPTURE-OFFSCREEN-SLIDE-SKELETON-SMCAROUSEL",
+   "pendingQuestion": "SupperMeeting_Carousel Q2 (fact): adopt only if the answer is 'capture timing artifact'",
+   "kinds": [
+    "class",
+    "text",
+    "style",
+    "pseudo",
+    "layout",
+    "position",
+    "structure"
+   ],
+   "states": "^default$",
+   "pathRegex": "^(?!.*#b3-l1-1164_[12]-b2-b1-b1-(\\$b[89]|b[89]-)).*#b3-l1-1164_[12]-b2-b1-b1-(\\$b[2-7]|b[2-7]-)",
+   "reason": "Off-screen slides 2 and 3 were snapshotted while SupperMeeting_DetailsBlock still showed GetSkeleton_UI_SubdivisionDetails (ubt-skeleton-section, 'Subdivision Name Example', counts 10) although their household lists had loaded; the clone shows the loaded card. Limited to the card and actions sections b2-b7 of slides 2-3 (actions menu b8 and household list b9 stay reported). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html (ubt-skeleton-section on b3-l1-1164_1/2-b2-b1-b1-b2/b6-Placeholder_LoadingSection only); SupperMeeting_DetailsBlock.mvc.js:188,302,660-680; parity/default.json (slides 1164_1/2, sections b2-b7)"
+  },
+  {
+   "id": "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-SUPPERMEETING_CAROUSEL",
+   "kinds": [
+    "class"
+   ],
+   "states": [
+    "default",
+    "offline"
+   ],
+   "pathRegex": "^html$",
+   "detailRegex": "popup-disable-scroll",
+   "reason": "Timing artifact: the html popup-disable-scroll class at capture time depends on the order of OutSystems model flushes (client-variable flush vs local-storage query flush), not on the screen.",
+   "evidence": "usePopupWidget re-applies disableScroll on every client-variable change as every OS controller does (OutSystems.js:530153 fireInitialize subscribes clientVariablesHandler; :527146 generation++ + scheduleFlush). TST's final html class then depends on whether an EntityDetailsActions model flush (local IDB queries, OnReady) lands after the last client-variable flush; in the mock app local entities resolve in microtasks. TST itself is inconsistent across routes/states: states.json htmlClass default ''/loading 'popup-disable-scroll' on OneSchoolGlobalDetails, but default 'popup-disable-scroll'/loading '' on SupperMeeting_Carousel. See migration/screens/SupperMeeting_Carousel/analysis/states.json and parity/<state>.json."
+  }
+ ],
+ "_merged": "2026-10-15 by the orchestrator: CAPTURE-MASKED-IMAGE-SMCAROUSEL, CAPTURE-MASKED-IMAGE-SMCAROUSEL-GRID, CAPTURE-MASKED-TEXT-CAROUSELTAG-SMCAROUSEL, CAPTURE-OFFSCREEN-SLIDE-SKELETON-SMCAROUSEL; F5 popup rule merged with routeRegex 2026-10-15"
+}

@@ -1,0 +1,51 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/PINRegister?mocksession=nopin",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "b9c8c3841c48f78b34a5",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true
+ },
+ "at": "2026-10-14T13:50:09.138Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 2,
+  "CAPTURE-LINK-HREF-CURSOR-PINREGISTER": 2,
+  "CAPTURE-LOGO-REPLAY-PINCODE": 4
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 0,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 13,
+  "hotspots": [],
+  "diffPng": "migration/screens/PINRegister/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 7,
+  "actual": 7
+ },
+ "diffs": []
+}

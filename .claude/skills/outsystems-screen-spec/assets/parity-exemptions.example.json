@@ -1,0 +1,77 @@
+{
+  "_comment": "Accepted differences, decided by a person. Every entry has an id and a reason; the parity report counts how often each fires.",
+  "ignoreClasses": [
+    "-enter(-active|-done)?$",
+    "-exit(-active|-done)?$",
+    "^slide-from-",
+    "^is--focused$"
+  ],
+  "ignoreSubtrees": [
+    {
+      "id": "MAP-TILES",
+      "classRegex": "^leaflet-(tile|marker|shadow)-pane$",
+      "reason": "map tiles and markers come from a live tile server"
+    },
+    {
+      "id": "EXT-IFRAME",
+      "blockRegex": "<EmbeddedContentBlock>$",
+      "reason": "third-party feed iframe content is not part of the app"
+    }
+  ],
+  "listTolerance": [
+    {
+      "id": "OSLIST-SMOOTHING",
+      "containerClassRegex": "^list$",
+      "max": 3,
+      "reason": "OS List renders rows progressively; the count at capture time depends on timing"
+    }
+  ],
+  "ignoreStyleProps": [],
+  "ignoreStates": {
+    "loading-firstframe": "captured mid slide-in transition; checked by a person",
+    "back-firstframe": "view-cache restore timing; checked by a person"
+  },
+  "rules": [
+    {
+      "id": "SKELETON-PULSE",
+      "kinds": [
+        "style"
+      ],
+      "pathRegex": "skeleton",
+      "reason": "animation phase differs between captures"
+    },
+    {
+      "id": "CAROUSEL-AUTOPLAY",
+      "kinds": [
+        "pixel"
+      ],
+      "pathRegex": "^screenshot$",
+      "states": "^home",
+      "reason": "carousel slide position depends on time"
+    }
+  ],
+  "layoutTolerancePx": 2,
+  "compareAttributes": [],
+  "pixel": {
+    "threshold": 0.1,
+    "maxRatio": 0.002,
+    "maxCellRatio": 0.03,
+    "_comment": "threshold: per-pixel colour distance (pixelmatch scale); maxRatio: share of the page; maxCellRatio: share of the worst 40px tile"
+  },
+  "pixelByState": {
+    "default@desktop": {
+      "maxRatio": 0.004
+    }
+  },
+  "ignoreCalls": [
+    "^ActionTrack",
+    "^ActionLog"
+  ],
+  "appStartCalls": {
+    "id": "APP-START-VIA",
+    "actions": [
+      "ActionAppManager_AfterInitialize"
+    ],
+    "reason": "calls the app makes on every app open; for states captured `via` another screen (states.json) the capture holds only the calls made after arriving, so these are not compared there unless the capture has them too"
+  }
+}

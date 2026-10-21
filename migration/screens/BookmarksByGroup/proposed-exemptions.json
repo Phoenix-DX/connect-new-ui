@@ -1,0 +1,50 @@
+{
+ "rules": [
+  {
+   "id": "CAPTURE-MASKED-PHOTO-BOOKMARKSBYGROUP",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/BookmarksByGroup(\\?|$)",
+   "pathRegex": "div#b1-l1-57_\\d+-b4-Result_Item\\.image-item\\.no-border\\.padding-x-base > div\\.result-item-top-content > div\\.OSInline\\.result-item_visual$",
+   "detailRegex": "^(70×23 → 70×47|offset in parent 0,2[1-3] → 0,(9|1[01]))$",
+   "reason": "The household photos were masked by the capture (data-masked-src=\"user-image\", src removed; TST rendered 70x47): the replayed reference shows a 23 px broken image, vertically centred in the 66 px row, the clone the 70x47 neutral placeholder (Q-W2C-1). Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/BookmarksByGroup/analysis/dom/default.html:78, :187, :245, :303, :361, :414 (data-rendered-size 70x47); migration/screens/BookmarksByGroup/parity/default.json; default.expected.png (empty image column on rows 1, 3-7)"
+  }
+ ],
+ "ignoreSubtrees": [
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP",
+   "idRegex": "^b1-b1-Content$",
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/BookmarksByGroup(\\?|$)",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout: RefreshBookmarkData's AllExceptions branch set IsFetchingBookmarks False, so the reference shows NoBookmarks; the mock loading scenario never answers (the clone has no request timeout yet, see SLIDER-LOADING-TIMEOUT), so the clone shows the compiled fetching branch (Reusable.Spinner, ScreenBlock_BookmarkGroup.mvc.js:1656-1677). The NoBookmarks markup passes in the offline state. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/BookmarksByGroup/analysis/dom/loading.html:73-101; migration/screens/BookmarksByGroup/parity/loading.json (NoBookmarks missing, Spinner extra); offline.json (passes)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP-TOAST",
+   "idRegex": "^feedbackMessageContainer$",
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/BookmarksByGroup(\\?|$)",
+   "reason": "Same timeout: the reference shows the error message \"The connection has timed out\" (CommunicationException of the client timeout, shown by RefreshBookmarkData's AllExceptions handler, mvc.js:1960-1985); the clone never times out in the loading scenario, so no message. The same message path passes in the offline state (\"Request failed with an error\"). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/BookmarksByGroup/analysis/dom/loading.html:2-10; migration/screens/BookmarksByGroup/parity/loading.diff.png (hotspots y=0)"
+  }
+ ],
+ "callOrderFree": [],
+ "_merged": "2026-10-15 orchestrator: rules:CAPTURE-MASKED-PHOTO-BOOKMARKSBYGROUP, ignoreSubtrees:CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP, ignoreSubtrees:CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP-TOAST; F7b rules merged 2026-10-15: CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP-PIXEL-F7B",
+ "rules_F7b": [
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP-PIXEL-F7B",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/BookmarksByGroup(\\?|$)",
+   "detailRegex": "^(9|1[0-2])\\.\\d\\d% pixels differ .*migration/screens/BookmarksByGroup/parity/loading\\.diff\\.png$",
+   "reason": "The merged ignoreSubtrees CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP(-TOAST) remove the structure diffs but not the pixels of the header the toast covers; the loading capture held the requests until the module's 10 s request timeout, so the reference shows the 'The connection has timed out' toast over the header and the error branch, while the clone's loading scenario never answers and shows the header and the fetching branch (Spinner). Not caused by data: the loading scenario answers no bookmark call. Proposed by foundation F7b (2026-10-15), measured 10.58% after the shared legacy-bookmarks change.",
+   "evidence": "migration/screens/BookmarksByGroup/analysis/dom/loading.html:2-10; migration/screens/BookmarksByGroup/parity/loading.json (10.58%, hotspots y=0); loading.expected.png vs loading.build.png (toast + NoBookmarks vs header + Spinner)"
+  }
+ ]
+}

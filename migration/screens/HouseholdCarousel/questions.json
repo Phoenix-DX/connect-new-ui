@@ -1,0 +1,98 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "entry without preload (mock phase)",
+  "question": "HouseholdCarousel gets its households only from the previous screen's preload (SetPreloadObject); opened by URL (parity runs, review links) the original shows an empty carousel. How should the mock phase open it by URL?",
+  "evidence": "HouseholdCarousel.mvc.js:467-498 (OnInitialize: GetPreloadObject/AssignFromObject only when HouseholdPreload is empty); capture-plan note 'opened by URL it is empty, so captured via Locality_Details'; Locality_Households_HouseholdList.mvc.js Household_CardEvent_OnClickHousehold (preload = {CarouselHouseholdItem: [{Household}]} of the locality's households, In_StartingHouseholdId = clicked one); default capture: 23 slides, start index 0",
+  "mcp": "not needed: compiled code is clear",
+  "options": [
+   "A: mock-only seed: when the app runs on mocks and no preload is waiting, the screen takes a fictional Locality_Details-like preload from its mocks.ts (23 households, In_StartingHouseholdId first, no swipe actions); real builds keep the original (empty carousel)",
+   "B: no seed: opened by URL the carousel is empty as in the original; default/loading/offline parity cannot pass, review only through HomeFeed/Updates"
+  ],
+  "recommend": "A",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:33:46",
+  "answer": "A — mock-only seed (fictional Locality_Details-like preload, 23 households, In_StartingHouseholdId first); real builds keep the empty carousel. auto-accepted (user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T19:15:12"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "swipe action server call",
+  "question": "On a move to a slide whose preload item has the UpdatesCarousel_SetIsRead swipe action (from HomeFeed/Updates), the original calls the server action UpdateItem_MarkAsRead (screenservices/UBTConnect/ActionUpdateItem_MarkAsRead, In_UpdateItemId). It is not in the API contract (callAction does not compile). What should the route do?",
+  "evidence": "HouseholdCarousel.mvc.js:528-575 Handler_EventMoved; UBTConnect.controller.js:1621-1660 Directory_Updates_CarouselSwipeAction (JSON deserialize, UpdateItem_MarkAsRead, Out_ItemId, Directory_Updates_UnreadCount - 1); UBTConnect.controller.js:18574-18584 server action; app/src/api/openapi.yaml has only ServiceAPIAction_UI_UpdateItem_MarkAsRead (another action)",
+  "mcp": "not needed: compiled code is clear",
+  "options": [
+   "A: change request CR-HouseholdCarousel-1 adds ActionUpdateItem_MarkAsRead to the contract and a mock on the shared update items; until applied the swipe branch makes no call and changes nothing (item stays unread, nothing handed back on back)",
+   "B: call ServiceAPIAction_UI_UpdateItem_MarkAsRead (in the contract) instead, a different action than the original"
+  ],
+  "recommend": "A",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:33:46",
+  "answer": "A — CR-HouseholdCarousel-1 adds ActionUpdateItem_MarkAsRead to the contract + mock; until applied the swipe branch makes no call. auto-accepted (user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T19:15:12"
+ },
+ {
+  "id": "Q3",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending orchestrator answer): mock-only seed preload in `mocks.ts` (23 fictional households, the; Q2 → A (pending orchestrator answer): CR-HouseholdCarousel-1 adds ActionUpdateItem_MarkAsRead; until then the swipe; CR-HouseholdCarousel-2: two 6-member fictional households (9003, 9004) in the shared HouseholdDetails_Block mocks;; Mock data of the slides (bookmark state, Share/Notes/Gift CTAs, member rows) differs from TST inside; Proposed exemptions (capture/timing artifacts, `proposed-exemptions.json`, not applied): app-start calls run on this; Parity tool: the default state cannot be compared by `parity_check.cjs` (the DOM is 64 levels deep; Playwright's; Shared-block differences found by HouseholdDetails (CR-HouseholdDetails-1: actions-menu skeleton, skeleton chevron, Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:getHasPhotobookAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T23:15:11",
+  "items": [
+   "Q1 → A (pending orchestrator answer): mock-only seed preload in `mocks.ts` (23 fictional households, the",
+   "Q2 → A (pending orchestrator answer): CR-HouseholdCarousel-1 adds ActionUpdateItem_MarkAsRead; until then the swipe",
+   "CR-HouseholdCarousel-2: two 6-member fictional households (9003, 9004) in the shared HouseholdDetails_Block mocks;",
+   "Mock data of the slides (bookmark state, Share/Notes/Gift CTAs, member rows) differs from TST inside",
+   "Proposed exemptions (capture/timing artifacts, `proposed-exemptions.json`, not applied): app-start calls run on this",
+   "Parity tool: the default state cannot be compared by `parity_check.cjs` (the DOM is 64 levels deep; Playwright's",
+   "Shared-block differences found by HouseholdDetails (CR-HouseholdDetails-1: actions-menu skeleton, skeleton chevron,"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T23:15:11"
+ },
+ {
+  "id": "Q4",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending orchestrator answer): mock-only seed preload in `mocks.ts` (23 fictional households, the; Q2 → A (pending orchestrator answer): CR-HouseholdCarousel-1 adds ActionUpdateItem_MarkAsRead; until then the swipe; CR-HouseholdCarousel-2: two 6-member fictional households (9003, 9004) in the shared HouseholdDetails_Block mocks;; Mock data of the slides (bookmark state, Share/Notes/Gift CTAs, member rows) differs from TST inside; Proposed exemptions (capture/timing artifacts, `proposed-exemptions.json`, not applied): app-start calls run on this; Parity tool: the default state cannot be compared by `parity_check.cjs` (the DOM is 64 levels deep; Playwright's; Shared-block differences found by HouseholdDetails (CR-HouseholdDetails-1: actions-menu skeleton, skeleton chevron, Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:getHasPhotobookAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T06:57:53",
+  "items": [
+   "Q1 → A (pending orchestrator answer): mock-only seed preload in `mocks.ts` (23 fictional households, the",
+   "Q2 → A (pending orchestrator answer): CR-HouseholdCarousel-1 adds ActionUpdateItem_MarkAsRead; until then the swipe",
+   "CR-HouseholdCarousel-2: two 6-member fictional households (9003, 9004) in the shared HouseholdDetails_Block mocks;",
+   "Mock data of the slides (bookmark state, Share/Notes/Gift CTAs, member rows) differs from TST inside",
+   "Proposed exemptions (capture/timing artifacts, `proposed-exemptions.json`, not applied): app-start calls run on this",
+   "Parity tool: the default state cannot be compared by `parity_check.cjs` (the DOM is 64 levels deep; Playwright's",
+   "Shared-block differences found by HouseholdDetails (CR-HouseholdDetails-1: actions-menu skeleton, skeleton chevron,"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T06:57:53"
+ }
+]

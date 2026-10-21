@@ -1,0 +1,42 @@
+# Questions: PINUnlock
+
+Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and reviews only by the user.
+
+## Q1 [decision] navigation after unlock (answered)
+- Question: After a correct PIN with no resume link, PINUnlock navigates (replace) to client variable UBTConnect.LastURL, which only Splash OnLoadComplete (LastURL = href) and the FCM link write; the mock shell's app-start PIN redirect (U3) stores OutSystems_LastURL instead and nothing writes UBTConnect.LastURL, so it is empty in the mock app. What should the screen do?
+- Evidence: UBTConnect.App_PIN.PINUnlock.mvc.js:228-249 (GetResumeLoginLink; ReplaceOnUpcomingNavigation; If URLOut<>"" NavigateToPage(URLOut,True) else NavigateToPage(getLastURL(),True)); knowledge/shell-facts.md:34,39 (Splash writes LastURL; NavigateToPage replace=true); app-shell.spec.md:206; app/src/shell/startup.ts:190-195 (redirect writes OutSystems_LastURL)
+- OutSystems MCP: not asked (no MCP for route agents); compiled TST code is unambiguous about the read, the empty case is not covered
+- Options: A: read UBTConnect.LastURL exactly as compiled + CR-PINUnlock-1 (shell redirect also sets UBTConnect.LastURL to the location, as Splash does); while it is empty go to HomeFeed (PINRegister's fallback) | B: read UBTConnect.LastURL, else OutSystems_LastURL written by the shell redirect, else HomeFeed | C: exact compiled only: navigate to UBTConnect.LastURL even when empty (recommended: A)
+- Answer (user, 2026-10-14T18:35:03): B: return to the screen that was opened, as TST does (observed: Menu → PINUnlock → Menu, knowledge/shell-observed.md); the shell's PIN redirect keeps the opened path as UBTConnect.LastURL (CR-PINUnlock-1, applied by the foundation owner) (user, 2026-10-14)
+
+## Q2 [decision] Block_PINUnlock composition (answered)
+- Question: The shell's BlockPinUnlock (src/shell/dialogs/BlockPinUnlock.tsx) is only the CommonUI lock-container instance: In_ForceVisible False, In_IsCommonBlock True (no LayoutRuntime_Top), no Unlock event, no CommonUI placeholder, no unsupported-system card. PINUnlock renders Block_PINUnlock with In_ForceVisible True, In_IsCommonBlock default (LayoutRuntime_Top shown), the Unlock event and CommonUI_InsideLayout (In_IgnoreLockScreen, In_IgnorePolicy) in Placeholder_CommonUI_Inside_Layout. How should the screen render it?
+- Evidence: UBTConnect.App_PIN.PINUnlock.mvc.js:128-186; UBTConnect.App_PIN.Block_PINUnlock.mvc.js:160-335 (Layout_LoginFlow In_ExtendedClass 'ubt-lock-screen connect-legacy-compatibily-containter', IsUnsupportedSystem branch, ContentWrapper ShowForgotPIN/ShowPolicy/In_ForceVisible/UseOverlay); dom/default.html:5-300; app/src/shell/dialogs/BlockPinUnlock.tsx
+- OutSystems MCP: not needed: compiled code and capture are explicit
+- Options: A: compose Block_PINUnlock's wrapper in the screen from the shared Layout_LoginFlow + Block_PINUnlock_ContentWrapper + CommonUI_InsideLayout now (unsupported-system card not built, as in the shell, U16), and CR-PINUnlock-2 asks the foundation to generalise BlockPinUnlock (inputs, Unlock event, placeholder, unsupported card); the screen switches to it when it lands | B: render Block_PINUnlock as NotCaptured until CR-PINUnlock-2 lands (recommended: A)
+- Answer (user, 2026-10-14T18:35:03): A: the screen assembles Block_PINUnlock from the shared Layout_LoginFlow, ContentWrapper and CommonUI_InsideLayout now; CR-PINUnlock-2 later in the foundation; unsupported-system card not built yet (user, 2026-10-14)
+
+## Q3 [decision] parity differences from the capture replay (answered)
+- Question: The remaining PINUnlock parity differences come from the expected side (replayed capture), not from the screen markup: (1) the Connect logo img is a broken 16x16 image in the replay (image not captured; build shows it at 202x33, the captured data-rendered-size), which shifts the PIN header by 15 px; (2) the background svg has no preserveAspectRatio in the replay (captures drop it) while the compiled SVG_Background_Custom has preserveAspectRatio=none, so the path is 390x665 at y=32 vs 390x720 at y=0; (3) links lost href (data-original-href) so cursor auto vs pointer; (4) loading/offline captures have no .slide-from-right-enter-done and no body .osx; (5) keypad digits masked. Together 11.65% pixels. How should they be handled?
+- Evidence: parity/default.json, loading.json, offline.json; parity/default.expected.png vs default.build.png; dom/default.html:52 (data-rendered-size=202x33), :230-240 (data-original-href); app/src/shared/UBTConnectLibrary/SVG_Background_Custom/SVG_Background_Custom.tsx:21 (compiled svg string with preserveAspectRatio none); app/src/shared/README conventions ('Captures drop many attributes (preserveAspectRatio...)'); states.json bodyClass of loading/offline
+- OutSystems MCP: not applicable (capture tooling)
+- Options: A: accept them as parity exemptions (user adds the 5 entries to migration/parity-exemptions.json) | B: re-capture PINUnlock with images and full attributes, then re-run parity | C: no exemption; the user reviews these states visually instead (recommended: A)
+- Answer (user, 2026-10-14T18:35:03): A: accept the capture-replay artifacts as parity exemptions in migration/parity-exemptions.json, with reason and evidence (user, 2026-10-14)
+
+## Q4 [review] review round 1 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (user: B) applied: the shell's PIN redirect writes `UBTConnect.LastURL` = the opened path (CR-PINUnlock-1; Q2 (user: A) applied: Block_PINUnlock composed in the screen from the shared Layout_LoginFlow, ContentWrapper and; Q3 (user: A) applied: parity exemptions reused (CAPTURE-SVG-PRESERVEASPECTRATIO, CAPTURE-LOGO-REPLAY,; `ScreenController_NavigateToPage(URL, True)` is a replace navigation inside the SPA (knowledge/shell-facts.md:39);; Policy links and Forgot PIN behave as the shared ContentWrapper (policy links do nothing yet; shared README). Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-10-14T19:26:13): confirm (user tested the review, 2026-10-14)
+
+## Q5 [review] review round 2 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (user: B) applied: the shell's PIN redirect writes `UBTConnect.LastURL` = the opened path (CR-PINUnlock-1; Q2 (user: A) superseded by CR-PINUnlock-2 (applied 2026-10-14): the screen renders the shell's `BlockPinUnlock`; Q3 (user: A) applied: parity exemptions reused (CAPTURE-SVG-PRESERVEASPECTRATIO, CAPTURE-LOGO-REPLAY,; `ScreenController_NavigateToPage(URL, True)` is the shared `useScreenController_NavigateToPage` (CR-Splash-2): a; Policy links and Forgot PIN behave as the shared ContentWrapper (policy links do nothing yet; shared README). Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-10-14T20:51:44): confirm (user, 2026-10-14: re-stamp after foundation CR batch 1, parity 0)
+
+## Q6 [review] review round 3 (answered, blocking)
+- Question: Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 (user: B) applied: the shell's PIN redirect writes `UBTConnect.LastURL` = the opened path (CR-PINUnlock-1; Q2 (user: A) superseded by CR-PINUnlock-2 (applied 2026-10-14): the screen renders the shell's `BlockPinUnlock`; Q3 (user: A) applied: parity exemptions reused (CAPTURE-SVG-PRESERVEASPECTRATIO, CAPTURE-LOGO-REPLAY,; `ScreenController_NavigateToPage(URL, True)` is the shared `useScreenController_NavigateToPage` (CR-Splash-2): a; Policy links and Forgot PIN behave as the shared ContentWrapper (policy links do nothing yet; shared README). Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)
+- Evidence: route-spec.md, parity reports, feedback.md
+- Options: confirm | change (say what)
+- Answer (user, 2026-10-16T15:01:57): confirm (auto-confirmed: user instruction 2026-10-15 16:59)

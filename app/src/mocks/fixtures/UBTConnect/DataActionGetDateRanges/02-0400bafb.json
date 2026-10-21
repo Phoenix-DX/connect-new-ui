@@ -1,0 +1,156 @@
+{
+ "module": "UBTConnect",
+ "action": "DataActionGetDateRanges",
+ "screen": "Updates_SingleList",
+ "status": 200,
+ "inputs": {
+  "Filter_UpdateTypeOptions": {
+   "List": [
+    {
+     "Text": "All",
+     "Identifier": "",
+     "IconId": "",
+     "IsSelected": true,
+     "Enabled": true
+    },
+    {
+     "Text": "Birth",
+     "Identifier": "Birth",
+     "IconId": "",
+     "IsSelected": false,
+     "Enabled": true
+    },
+    {
+     "Text": "Marriage",
+     "Identifier": "Marriage",
+     "IconId": "",
+     "IsSelected": false,
+     "Enabled": true
+    },
+    {
+     "Text": "Taken",
+     "Identifier": "Taken",
+     "IconId": "",
+     "IsSelected": false,
+     "Enabled": true
+    }
+   ]
+  },
+  "Filter_BottomSheetId": "",
+  "Filter_Updates": {
+   "Filter_Date": {
+    "Date_From": "1900-01-01",
+    "Date_To": "1900-01-01"
+   },
+   "Filter_SearchText": "",
+   "Filter_UpdateTypeId": "",
+   "CountryIds": {
+    "List": [],
+    "EmptyListItem": ""
+   },
+   "LocalitiesIds": {
+    "List": [],
+    "EmptyListItem": ""
+   },
+   "Filter_ReadOnly": "",
+   "Sort_ByNewest": ""
+  },
+  "Filter_DefaultState": {
+   "Filter_Date": {
+    "Date_From": "1900-01-01",
+    "Date_To": "1900-01-01"
+   },
+   "Filter_SearchText": "",
+   "Filter_UpdateTypeId": "",
+   "CountryIds": {
+    "List": [],
+    "EmptyListItem": ""
+   },
+   "LocalitiesIds": {
+    "List": [],
+    "EmptyListItem": ""
+   },
+   "Filter_ReadOnly": "",
+   "Sort_ByNewest": ""
+  },
+  "HasFiltersApplied": false,
+  "ShowMarkAll": false,
+  "DateRanges": {
+   "List": [],
+   "EmptyListItem": {
+    "Range": "",
+    "From": "1900-01-01",
+    "To": "1900-01-01"
+   }
+  },
+  "isLoading": true,
+  "BottomSheetId_IsLoaded": false,
+  "BottomSheetId_ShowSubscription": false,
+  "Breakpoints": {
+   "List": [],
+   "EmptyListItem": {
+    "Position": 0,
+    "SectionName": "",
+    "BadgeCount": 0,
+    "DateRange": {
+     "Range": "",
+     "From": "1900-01-01",
+     "To": "1900-01-01"
+    }
+   }
+  },
+  "CurrentBreakpoint": {
+   "Position": 0,
+   "SectionName": "Magna",
+   "BadgeCount": 0,
+   "DateRange": {
+    "Range": "",
+    "From": "1900-01-01",
+    "To": "1900-01-01"
+   }
+  },
+  "IsHeaderScrolled": false,
+  "ShareableUpdateItem": {
+   "UpdateItemId": "0",
+   "UpdateItemTypeId": "",
+   "Name": "",
+   "Date": "1900-01-01",
+   "GenderId": "",
+   "LocationString": "",
+   "IsRead": false,
+   "HasAccess": false,
+   "HasShare": false,
+   "HouseholdId": "0",
+   "ParentsNames": "",
+   "BirthType": "",
+   "MemberId": ""
+  },
+  "IsShareOpen": false,
+  "ShareableObjectId": "",
+  "IsToggleSearch": false,
+  "FocusedScrollAnchorId": "",
+  "CurrentSearchString": ""
+ },
+ "data": {
+  "DateRangesList": {
+   "List": [
+    {
+     "Id": "Today",
+     "Order": 1
+    },
+    {
+     "Id": "Last 7 Days",
+     "Order": 2
+    },
+    {
+     "Id": "Last 30 Days",
+     "Order": 3
+    },
+    {
+     "Id": "Older",
+     "Order": 4
+    }
+   ]
+  }
+ }
+}

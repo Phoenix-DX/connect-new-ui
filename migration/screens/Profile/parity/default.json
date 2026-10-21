@@ -1,0 +1,71 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/Profile?mocksession=unlocked",
+ "mock": "spouse",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "63245e0a2c790642121a",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 895,
+  "texts": 63,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-21T04:35:24.669Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
+  "ignoreSubtrees": 2,
+  "CAPTURE-MASKED-TEXT-PROFILE-NAME": 1,
+  "CAPTURE-SWITCH-CHECKED-PROFILE": 4,
+  "CAPTURE-MASKED-IMAGE-PROFILE-HOUSEHOLD": 10,
+  "CAPTURE-MASKED-AVATAR-INPUTS-PROFILE-SHIFT": 1
+ },
+ "pixel": {
+  "ratio": 0.03914,
+  "maxCell": 0.1663,
+  "maxCellRatio": 0.03,
+  "diffPixels": 10008,
+  "comparedPixels": 255672,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 19,
+  "hotspots": [
+   "40,640 (266px)",
+   "40,520 (261px)",
+   "80,640 (256px)",
+   "40,720 (245px)",
+   "80,360 (235px)"
+  ],
+  "diffPng": "migration/screens/Profile/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 26,
+  "actual": 22
+ },
+ "diffs": []
+}

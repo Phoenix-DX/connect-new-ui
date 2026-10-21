@@ -1,0 +1,11 @@
+{
+ "finishedAt": "2026-10-16T06:59:34",
+ "files": {
+  "src/screens/Profile/api.ts": "0cc975ae730dde87",
+  "src/screens/Profile/components/Profile_HouseholdPreview.tsx": "09fd92673a1e5c13",
+  "src/screens/Profile/components/actions.ts": "c245402d96017bf6",
+  "src/screens/Profile/index.tsx": "8b4b7049845984a8",
+  "src/screens/Profile/mocks.ts": "634330af44de7e47",
+  "src/screens/Profile/types.ts": "6b8a44b34c6a2c81"
+ }
+}

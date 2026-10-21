@@ -1,0 +1,880 @@
+{
+ "module": "UBTConnect",
+ "action": "DataActionGetCountriesStatistics",
+ "screen": "BrowseCountries",
+ "status": 200,
+ "inputs": {},
+ "data": {
+  "Out_CountriesStatistics": {
+   "List": [
+    {
+     "CountryCode": "AR",
+     "Statistics": {
+      "Title": "Argentina",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "3",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "397",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "125",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "203",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "194",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "AU",
+     "Statistics": {
+      "Title": "Australia",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "82",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "17,064",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "5,139",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "8,588",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "8,476",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "BB",
+     "Statistics": {
+      "Title": "Barbados",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "1",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "430",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "144",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "196",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "234",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "CA",
+     "Statistics": {
+      "Title": "Canada",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "20",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "2,436",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "757",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "1,232",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "1,204",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "DK",
+     "Statistics": {
+      "Title": "Denmark",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "1",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "95",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "27",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "50",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "45",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "FR",
+     "Statistics": {
+      "Title": "France",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "9",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "1,612",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "514",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "808",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "804",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "DE",
+     "Statistics": {
+      "Title": "Germany",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "4",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "683",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "218",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "345",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "338",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "IT",
+     "Statistics": {
+      "Title": "Italy",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "1",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "89",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "28",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "47",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "42",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "JM",
+     "Statistics": {
+      "Title": "Jamaica",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "2",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "187",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "72",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "83",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "104",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "NL",
+     "Statistics": {
+      "Title": "Netherlands",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "1",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "111",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "34",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "55",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "56",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "NZ",
+     "Statistics": {
+      "Title": "New Zealand",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "41",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "9,387",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "2,878",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "4,695",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "4,692",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "VC",
+     "Statistics": {
+      "Title": "Saint Vincent",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "1",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "74",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "27",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "37",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "37",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "SE",
+     "Statistics": {
+      "Title": "Sweden",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "4",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "530",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "162",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "268",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "262",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "CH",
+     "Statistics": {
+      "Title": "Switzerland",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "1",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "109",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "33",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "58",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "51",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "TT",
+     "Statistics": {
+      "Title": "Trinidad",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "1",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "74",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "20",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "36",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "38",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "UK",
+     "Statistics": {
+      "Title": "United Kingdom",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "86",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "18,980",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "5,977",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "9,524",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "9,456",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    },
+    {
+     "CountryCode": "US",
+     "Statistics": {
+      "Title": "United States",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Localities",
+         "Value": "29",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "4,580",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "1,396",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "2,265",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "2,315",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     }
+    }
+   ]
+  }
+ }
+}

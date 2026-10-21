@@ -1,0 +1,241 @@
+date,screen,phase,tokens,agent,tier,note
+2026-10-14,_foundation,foundation,450487,shell-spec,,"app-shell.spec.md, 164 tool calls, Opus; broad grep scope"
+2026-10-14,_foundation,foundation,379518,contract-gen,,"contract_gen.py + owner paths (2 runs), Opus"
+2026-10-14,_foundation,foundation,276512,shell-facts,,"U1/U3/U9/U10/U11 from compiled code, Opus"
+2026-10-14,_foundation,foundation,415678,shell-A,,"session, mock user, app start, sign-in/PIN mock, inactivity; 65 tests; 153 tool calls, Opus"
+2026-10-14,_foundation,foundation,200520,shell-B,,"navigation, back queue, preload, view cache, Leave App; 22 tests; 59 tool calls (narrow brief), Opus"
+2026-10-14,_foundation,foundation,250764,shell-C,,"feedback messages (B1/B2), shared dialogs, lock overlay host, CommonUI back, network; 28 tests; 93 tool calls, Opus"
+2026-10-14,_foundation,foundation,265532,blocks-w1-b1,,"reference batch: 11 blocks, 41 capture tests, conventions; 97 tool calls, Opus"
+2026-10-14,_foundation,foundation,258040,blocks-w1-b2,,"18 shell infra blocks, 221 tests total; 82 tool calls, Opus"
+2026-10-14,_foundation,foundation,294019,blocks-w1-b3,,"10 blocks incl. CommonUI_InsideLayout, LazyImage; 258 tests; 118 tool calls, Opus"
+2026-10-14,_foundation,foundation,340668,blocks-w1-b4,,"10 PIN/login blocks, lock overlay real content; 316 tests; 99 tool calls, Opus"
+2026-10-14,Login,build,218703,route-login,,"spec+build+parity; blocked on Q1-Q6, CR-Login-1..3; 76 tool calls, Opus"
+2026-10-14,PINUnlock,build,184494,route-pinunlock,,"spec+build+parity; blocked on Q1-Q3, CR-PINUnlock-1..4; 79 tool calls, Opus"
+2026-10-14,Login,build,37052,route-login,,"continuation: Q1-Q6 wired, exemptions file; 1 diff left (env word, CR-Login-4)"
+2026-10-14,PINUnlock,build,28822,route-pinunlock,,"continuation: Q1-Q3 applied, exemptions; parity tool grouping bug found"
+2026-10-14,PINRegister,build,140282,route-pinregister,,built; Q1 (default capture timing classes); 60 tool calls
+2026-10-14,Splash,build,206322,route-splash,,"built; Q1-Q3, CR-Splash-1/2; 71 tool calls"
+2026-10-14,AcceptPendingPolicies,build,215444,route-acceptpolicies,,"built from compiled code (no capture); Q1-Q4, CR-1/2; 100 tool calls"
+2026-10-14,_foundation,foundation,128097,css-per-screen,,"per-screen original stylesheets: 52 css + 108 assets, css_sets.py (39 captured/44 compiled), StylesheetHost; 45 tool calls, Opus"
+2026-10-14,Splash,build,18713,route-splash,,"continuation: GSAP animation (ADR-6), parity default 1 diff → CR-Splash-3; 12 tool calls"
+2026-10-14,AcceptPendingPolicies,build,45500,route-acceptpolicies,,"continuation: CSS check after per-screen sheets, Q1-Q4 applied, screenshots; 29 tool calls"
+2026-10-14,_foundation,foundation,230039,cr-batch-1,,"CR-Splash-2, CR-AcceptPendingPolicies-2, CR-PINUnlock-2 applied; 336 tests; parity 4 routes clean; 108 tool calls, Opus"
+2026-10-14,_foundation,foundation,264520,blocks-w2-b,,"wave 2 batch B: 12 blocks (CircleButton*, ContextMenu, PopupMenu, Avatar*, ...); 74 tool calls, Opus"
+2026-10-14,_foundation,foundation,312812,blocks-w2-a,,"wave 2 batch A: 12 blocks (bottom bar, badges, columns, inputs), CR-W2A-1; 87 tool calls, Opus"
+2026-10-14,_foundation,foundation,15822,blocks-w2-b,,"continuation: ContextMenu_Item, AvatarDouble from survey sources; 8 tool calls"
+2026-10-14,_foundation,foundation,375259,blocks-w2-d,,"wave 2 batch D: 7 blocks (Gallery, Carousel/Splide, Embedded_FeedCMS + mock page, Update_ListItem, Layout_HomePage...); 90 tool calls, Opus"
+2026-10-14,_foundation,foundation,332527,blocks-w2-c,,"wave 2 batch C: 10 blocks (BottomSheet, Input, ShareSheet family, ContactPopup, SharePopup) + CR-W2A-1; 92 tool calls, Opus"
+2026-10-14,_foundation,foundation,292000,blocks-w2-c-forkA,,fork of batch C: popups; 42 tool calls (reported by batch C)
+2026-10-14,_foundation,foundation,425000,blocks-w2-c-forkB,,fork of batch C: ShareSheet family; 93 tool calls (reported by batch C)
+2026-10-14,_foundation,foundation,139525,blocks-w2-e,,"wave 2 last block Feed_Embeded; 38 tool calls, Opus"
+2026-10-15,_foundation,foundation,293113,w2-followup,,"mock image rule + placeholders, ports from runtime sources (BottomSheet drag, Carousel provider, Connect2Feed SDK, navigateTo); CR-W2F-1; 104 tool calls, Opus"
+2026-10-15,HomeFeed,build,356378,route-homefeed,,"spec (full) + build + 6 own blocks; blocked: Q1 fixture, Q2 MCP, CR-HomeFeed-1..3; 125 tool calls, Opus"
+2026-10-15,HomeFeed,foundation,247590,cr-homefeed,,"CR-HomeFeed-1..3 (OpenExternalLink, preloaded households, bottom bar slider/unread rule); 112 tool calls, Opus"
+2026-10-15,HomeFeed,foundation,155818,parity-replay,,"parity_check: DOM builder replay keeps live nesting (nested a), A/B on 4 finished routes identical; 30 tool calls, Opus"
+2026-10-15,HomeFeed,foundation,263206,homefeed-shell-fixes,,"OpenApp web, TST static values, NavigationHandler transition events, offline bell rule; 105 tool calls, Opus"
+2026-10-15,HomeFeed,verify,229166,route-homefeed-2,,"remaining diffs traced to capture artifacts; slider timing Q3; spec updated; 106 tool calls, Opus"
+2026-10-15,_foundation,foundation,345551,blocks-w3-c,,"wave 3 batch C: 13 blocks (FilterSheet family, tags, caches, Animate, AlignCenter); ci unfinished at budget; 114 tool calls, Opus"
+2026-10-15,_foundation,foundation,338380,blocks-w3-b,,"wave 3 batch B: 12 blocks (notes, inputs, Popup, SectionSeparator, Card); 118 tool calls, Opus"
+2026-10-15,_foundation,foundation,11801,blocks-w3-c,,continuation: FilterSheet lint + render-loop fix (stable empty defaults); 10 tool calls
+2026-10-15,_foundation,foundation,330000,blocks-w3-a,,"wave 3 batch A: 11 blocks (Layout_DetailPage, legacy layouts, ScrollAnchor, SanitizedHtml...); network error + resume; ~112 tool calls, Opus (tokens estimated: no usage line after resume)"
+2026-10-15,_foundation,foundation,231192,notes-local-cache,,"local notes cache adapter (IndexedDB, shell/localEntities), note error mapping; 86 tool calls, Opus"
+2026-10-15,_foundation,foundation,219978,foundation-x,,"typed OutSystems exceptions in contract/callAction/mocks, IndexedDB evidence, SyncNotes at sign-in; 92 tool calls, Opus"
+2026-10-15,_foundation,foundation,254228,foundation-y,,"signed photo cache, ScrollEvent, sanitizer config, IOS meta/swipe, body theme (CR-W3A-1); CR-W3Y-1; 93 tool calls, Opus"
+2026-10-15,MyEntertaining,build,189713,route-myentertaining,,"spec+build, D8(b) stand-in; blocked on Q1/Q2 (exemption); 63 tool calls, Opus"
+2026-10-15,Services,build,242479,route-services,,"spec+build (sortable list); blocked on Q1 fixture + CR-Services-1; 89 tool calls, Opus"
+2026-10-15,Search,build,250492,route-search,,"spec+build; Q1-Q5, CR-Search-1..3; 104 tool calls, Opus"
+2026-10-15,_knowledge,other,87129,kb-screens,,"knowledge dashboard: screen catalog extraction, Sonnet"
+2026-10-15,_knowledge,other,127457,kb-system,,"knowledge dashboard: shell/data/integrations extraction, Sonnet"
+2026-10-15,_knowledge,other,89414,kb-ui,,"knowledge dashboard: blocks/OSUI/patterns extraction, Sonnet"
+2026-10-15,_knowledge,other,125825,kb-decisions,,"knowledge dashboard: flags/decisions/timeline extraction, Sonnet"
+2026-10-15,_foundation,foundation,218001,w3-r1-crs,,"CR-Services-1 (no CommonUI: no lock), CR-Search-1 (recent search adapter, memory), CR-Search-2 rejected; CR-Search-3 open; 98 tool calls, Opus"
+2026-10-15,Services,verify,150418,route-services-2,,"pixel cause = captured /UBTConnect/img replay; functional checks; Q2/Q3; 69 tool calls, Opus"
+2026-10-15,Search,build,290040,route-search-2,,"CR-Search-3 (app start waits first screen), recent search IDB + UI, sections, phone validation; parity 0; 103 tool calls, Opus"
+2026-10-15,Notes,build,310869,route-notes,,"full spec+build, 8 own blocks; blocked Q1-Q4; 103 tool calls, Opus"
+2026-10-15,MessageList,build,310883,route-messagelist,,"full spec+build; Q1-Q6, CR-MessageList-1/2; 125 tool calls, Opus"
+2026-10-15,Notifications,build,351799,route-notifications,,"full spec+build; Q1-Q4, CR-Notifications-1; 96 tool calls, Opus"
+2026-10-15,Notifications,verify,134470,route-notifications-2,,"answers applied; footer shadow latency → Q5; 73 tool calls, Opus"
+2026-10-15,Notes,verify,133179,route-notes-2,,"Q1-Q4 applied, CAPTURE-NOTES-MASKED-COUNT, parity 0, ready; 64 tool calls, Opus"
+2026-10-15,_foundation,foundation,179178,osl-foundation,,"OSList shared component (P-LIST ref), synchronizeNumberUnreadMessages export, CR-MessageList-1; swipe blocked on missing file; 74 tool calls, Opus"
+2026-10-15,FeedItemDetail,build,138222,route-feeditemdetail,,"no-capture build from compiled view, smoke + screenshots; 60 tool calls, Opus"
+2026-10-15,MessageDetail,build,318967,route-messagedetail,,"full spec+build; Q1-Q3, CR-MessageDetail-1; 94 tool calls, Opus"
+2026-10-15,MessageList,build,292659,route-messagelist-2,,"swipe port (OSListItem), OSList adoption, filter/search; Q7 open; 95 tool calls, Opus"
+2026-10-15,Updates_SingleList,build,412360,route-updates-singlelist,,"full spec+build, 88 fictional rows; Q1/Q2, CR-Updates_SingleList-1; 134 tool calls, Opus"
+2026-10-15,Updates_SingleList,verify,125989,route-updates-singlelist-2,,"parity tool masks pseudo boxes of ignored subtrees; parity 0; ready; 47 tool calls, Opus"
+2026-10-15,MessageList,verify,247049,route-messagelist-3,,"search/filter states captured read-only and merged, search history adapter (CR-MessageList-3); Q8-Q12; 101 tool calls, Opus"
+2026-10-15,_foundation,foundation,383820,blocks-w4-a,,"wave 4 batch A: 14 blocks (sublayouts, popups, ActionsMenu, EntityDetailsActions, Layout_MainPages, BlankSlate, TouchEvents); CR-W4A-1; 100 tool calls, Opus"
+2026-10-15,_foundation,foundation,358015,blocks-w4-b,,"wave 4 batch B: 14 blocks (image cards, list items, Statistics_ListItem, LeafletMap...); CR-W4B-1; 91 tool calls, Opus"
+2026-10-15,_foundation,foundation,308947,blocks-w4-d,,"wave 4 batch D: 4 Locality statistics blocks, LeafletMap GeoJSON, TouchEvents; 123 tool calls, Opus"
+2026-10-15,_foundation,foundation,292770,w4-foundation,,"local bookmarks (both entities, sync at start), DeviceInfo_IsNative, clipboard/split utils, Connect_Entity TST; 103 tool calls, Opus"
+2026-10-15,_foundation,foundation,297720,blocks-w4-c,,"wave 4 batch C: 8 of 9 blocks (HouseholdDetails_Block not built: 3656 lines); 101 tool calls, Opus"
+2026-10-15,_foundation,foundation,129973,w4-bookmarks-contract,,"AddBookmark2/DeleteBookmarkByBookmarkId2 in contract (98 ops), mocks, wiring, 6 tests; 50 tool calls, Opus"
+2026-10-15,_foundation,foundation,304296,blocks-w4-householddetails,,"HouseholdDetails_Block (5 variants, logic.ts, fictional mocks); auto-accepted Q1-Q4; 107 tool calls, Opus"
+2026-10-15,BrowseCountries,build,206200,route-browsecountries,,"lite spec+build, parity 0; Q1 answered by orchestrator; 82 tool calls, Opus"
+2026-10-15,BrowseCountries,build,6764,route-browsecountries,,continuation: Q1 applied in code (spec-done blocked for subagent)
+2026-10-15,CountryList,build,287606,route-countrylist,,"lite spec+build; Q1/Q2 answered by orchestrator; 115 tool calls, Opus"
+2026-10-15,CountryDetails,build,359693,route-countrydetails,,"lite spec+build; Q1-Q3, CR-CountryDetails-1/2; 123 tool calls, Opus"
+2026-10-15,BrowseDirectory,build,342747,route-browsedirectory,,"lite spec+build; Q1-Q5, CR-BrowseDirectory-1..3; 138 tool calls, Opus"
+2026-10-15,HouseholdDetails,build,227819,route-householddetails,,"full spec+build; Q1/Q2, CR-HouseholdDetails-1/2; 103 tool calls, Opus"
+2026-10-15,CommunityBusinessDetails_CoomingSoon,build,107314,route-cbd-comingsoon,,"lite, static placeholder; parity 0; auto-confirmed; 40 tool calls, Opus"
+2026-10-15,_foundation,foundation,263085,blocks-w4-e,,"wave 4 batch E: 5 EntitiesCarousel blocks, OSUI Carousel extended (additive); 106 tool calls, Opus"
+2026-10-15,_foundation,foundation,250000,w4-directory-crs,,"Leaflet JSON default rule, shared directory actions, StatisticsList keys, ShowLocalities default (estimate; usage line pending)"
+2026-10-15,_foundation,foundation,3555,w4-directory-crs,,correction to the estimate above (actual 253555)
+2026-10-15,OneSchoolGlobalDetails,build,341973,route-oneschoolglobaldetails,,"full spec+build; Q1-Q4, CR-OneSchoolGlobalDetails-1; 134 tool calls, Opus"
+2026-10-15,SupperMeeting_Details,build,212308,route-suppermeeting-details,,"full spec+build; Q1, CR-SupperMeeting_Details-1; 81 tool calls, Opus"
+2026-10-15,Locality_Details,build,380265,route-locality-details,,"full spec+build, 7 own blocks; Q1-Q4, CR-Locality_Details-1; 125 tool calls, Opus"
+2026-10-15,Photobook,build,360804,route-photobook,,"full spec+build, 7 blocks; Q1-Q3, CR-Photobook-1/2; parity default pending timer/settle; Opus"
+2026-10-15,HouseholdCarousel,build,285827,route-householdcarousel,,"wave 4 route agent: spec+build+parity (default blocked by deep-tree serialization), Q1/Q2 opened, CR-HouseholdCarousel-1/2"
+2026-10-15,SupperMeeting_Carousel,build,242881,route-suppermeeting-carousel,,"wave 4 route agent: spec+build+parity x2, Q1 decision + Q2 fact open, CR-SupperMeeting_Carousel-1, 4 proposed exemptions"
+2026-10-15,foundation,foundation,206365,foundation-cr-householddetails,,"CR-HouseholdDetails-1 (+2 partial), CR-OneSchoolGlobalDetails-1, CR-SupperMeeting_Details-1, OSList flaky test; parity HD loading/offline 0, OSG loading/offline 0, SMD loading 0"
+2026-10-15,Household_Relations,build,340501,route-household-relations,,"wave 4 route agent: full-tier spec+build+parity x2, Q1 (3 capture exemptions)"
+2026-10-15,PINChange,build,137162,route-pinchange,,"wave 5 lite route: spec+build+parity x2 (cursor only), Q1 unlocked branch from compiled code"
+2026-10-15,foundation,foundation,201678,blocks-w5a,,"wave 5-7 blocks batch A: NavigationConfirmationDialog, Dialog_Navigation, Dialog_CustomChoice, Dialog_AccessRestrictedAction_Legacy, ConnectBlankSlate, NoBookmarks"
+2026-10-15,foundation,foundation,254179,foundation-f4a,,"F4a: HD-2 bookmark sync race, CR-Locality_Details-1, EnableOptions defaults, CR-HouseholdCarousel-1/2, CR-SupperMeeting_Carousel-1; PIN flake not reproduced"
+2026-10-15,foundation,foundation,253977,foundation-f4b,,"F4b Photobook: ADR-7 PanZoom vendored, CR-Photobook-1 carousel actions, CR-Photobook-2 OSRadioGroup, 6 exact exemption rules, gallery scroll = capture artifact"
+2026-10-15,foundation,foundation,322495,blocks-w5b,,"wave 5-7 blocks batch B: Menu_List, DynamicTextArea, ContactByEmailForm, DEPRECATED_GalleryV2, DropdownSearch (Virtual Select fetched+vendored), RangeSlider"
+2026-10-15,LegacyShareObject,build,406399,route-legacyshareobject,,"wave 7 full route: spec+build+parity x2, Q1-Q5, 5 proposed exemptions"
+2026-10-15,PINBiometricsMenu,build,120601,route-pinbiometricsmenu,,"wave 5 lite route: parity 0 all states, no questions"
+2026-10-15,TermsAndPoliciesMenu,build,172709,route-termsandpoliciesmenu,,"wave 5 lite route: parity 0 all states, no questions"
+2026-10-15,ContactUsMenu,build,159587,route-contactusmenu,,"wave 5 lite route: parity 0 all states, Q1 signed-out branch"
+2026-10-15,foundation,foundation,227033,foundation-f5,,"F5: popup client-var re-render lifecycle, gallery list status, navigation gate dx-before-navigation, HD footer shadow analysis; CR-HouseholdCarousel-2 rest not started"
+2026-10-15,Menu,build,258920,route-menu,,"wave 5 lite route: loading/offline 0, default via householder scenario (Q1), Q2 uncaptured branches, 3 proposed exemptions"
+2026-10-15,ContactByEmailOneSchoolGlobal,build,219663,route-contactbyemailoneschoolglobal,,"wave 5 lite route: textarea rows capture artifact, Q1/Q2, CR-1"
+2026-10-15,ContactByEmailMember,build,224281,route-contactbyemailmember,,"wave 5 lite route: Q1-Q4, CR-1/2 (textarea rows)"
+2026-10-15,Profile,build,373574,route-profile,,"wave 5 full route: spouse scenario Q2, address NotCaptured Q1, Q3 fact validation, Q4, CR-Profile-1, 4 proposed exemptions"
+2026-10-15,MyBookmarks,build,340593,route-mybookmarks,,"wave 6 full route: Q1-Q5, CR-MyBookmarks-1/2, 4 proposed exemptions"
+2026-10-15,ContactUsDetails,build,334786,route-contactusdetails,,"wave 5 lite route: parity 0, Q1/Q2 NotCaptured branches; textarea rows to re-check"
+2026-10-15,foundation,foundation,213066,foundation-f6,,"F6: CR-HouseholdCarousel-2 (9005 slide), SMC subtitle mocks, CR-Profile-1; 3 HC proposals pending merge"
+2026-10-15,ConnectShare,build,250520,route-connectshare,,"wave 7 lite route: Q1-Q4, 4 proposed exemptions"
+2026-10-15,BookmarksByGroup,build,427326,route-bookmarksbygroup,,"wave 6 full route: Q1-Q4, CR-BookmarksByGroup-1/2/3, 3 proposed exemptions"
+2026-10-15,foundation,foundation,196757,foundation-f7a,,"F7a: CR-Profile-2 OSValidation (platform widget validation, app language-resource messages), Profile wired; Input block aligned"
+2026-10-15,foundation,foundation,225202,foundation-f7b,,"F7b: GetBookmarkById contract+mock, shared legacy bookmarks + shell legacy delete, shared SendContactMemberEmail mock, UBT_FontWeight; CR-BookmarksByGroup-3 rejected"
+2026-10-16,foundation,foundation,163813,foundation-f8b,,"F8b: Login + ContactUsDetails onto OSValidation, UnbuiltValidationWidget; 91001 alignment needed a decision (a recommended)"
+2026-10-16,foundation,foundation,155823,foundation-f8a,,"F8a: request timeouts in callAction per module (UBTConnect 20 s, others 10 s), 13 tests"
+2026-10-16,docs,foundation,90871,docs-update-sonnet,,"app/docs: os-widgets guide, shell nav guard + local entities, vendored scripts, test switches, overview runtime pieces"
+2026-10-16,Locality_Details,fix,336070,route-locality-details-tags,,"F1: 3 tags built (Subdivisions, Interchange, OneSchoolGlobal), Q6/Q7, tag exemptions"
+2026-10-16,mocks,foundation,176197,meaningful-mocks-b,,"content texts meaningful: MessageList, MessageDetail, Notifications, Updates_SingleList, HomeFeed, ShareSheet, notes; Q1/Q2 keep TST labels and Feed CMS stand-in"
+2026-10-16,mocks,foundation,234849,meaningful-mocks-a,,"directory cast app/src/mocks/fictional/directory.ts (Bahia Blanca households, mock user Matías Vitale); Q1 ids, Q2 school name, Q3 Photobook"
+2026-10-16,mocks,foundation,169747,mock-followups-myentertaining,,"MyEntertaining + Feed CMS stand-ins filled, card 1 = 42438, school name, Photobook cast, story placeholders"
+2026-10-16,foundation,foundation,318571,blocks-w8-ob2,,"wave 8 O-B2: 15 blocks (NC_*, LocalityListDetail, MultiResolutionImageLoader, OSUI Accordion/Item, Tag, Tooltip, DropdownTags, Columns4, ButtonLoading, SwipeEvents)"
+2026-10-16,foundation,foundation,324958,blocks-w8-oa1,,"wave 8 O-A1: 12 blocks (Layout_Orbit, Skeleton_Loading, NoInformation_Orbit, ContactHelpdesk_Footer, ErrorScreen, NoResults, Orbit_FooterWithActions, DaySelector, ListOfDaySelectors, DEPRECATED_Accordion/Item, Accordion_Orbit); 2 TST files fetched"
+2026-10-16,foundation-W8-O-A2,foundation,110595,sonnet-subagent,,"O-A2a LegacyShared: InputCounter, Person_Contact_Options, NetworkWarning (31 tool calls)"
+2026-10-16,foundation-W8-O-A2,foundation,178394,sonnet-subagent,,"O-A2b Orbit: Card_MemberInformation, MilestoneHeader, HostSurvey_PillItem, EventDetail_SubSection (55 tool calls)"
+2026-10-16,foundation,foundation,243355,blocks-w8-oa2,,"wave 8 O-A2: 10 blocks (Card_Template/Event/Milestone, Card_MemberInformation, MilestoneHeader, HostSurvey_PillItem, EventDetail_SubSection, InputCounter, Person_Contact_Options, NetworkWarning); spawned 2 subagents (own ledger rows)"
+2026-10-16,foundation,foundation,268677,blocks-w8-ob1,,wave 8 O-B1: 11 Assemble/LegacyShared blocks; 2 filter blocks left to O-B3
+2026-10-16,foundation,foundation,229996,blocks-w8-ob3,,"wave 8 O-B3: Assemble filters + ItemOptionsMenu/PopupMenu moved shared; helpers, 3 contract actions, contract regen (Assemble/Orbit modules); tests left to O-B4"
+2026-10-16,OrbitLanding,build,335378,route-orbitlanding,,"wave 8 full route: orbit.ts shared mock, Q1-Q3, CR-OrbitLanding-1, popups pending capture"
+2026-10-16,foundation,foundation,196327,blocks-w8-ob4,,"wave 8 O-B4: O-B3 leftovers (tests, stories, READMEs, api.test, lint), GetLocalBookmarkedLocalityInformation; CI green"
+2026-10-16,foundation,foundation,221706,foundation-f9,,"F9: contract_gen scans compiled call sites + block closure, 157 ops, OrbitLanding bridge removed, 45 mvc.js fetched for uncaptured screens"
+2026-10-16,OrbitLanding,fix,83842,route-orbitlanding-popups,,follow-up: Filters/Sort popups from capture (agent total 419220 incl. first run 335378)
+2026-10-16,EventDetail,build,439689,route-eventdetail,,"wave 8 full route: orbit.ts host event, Q1-Q5, CR-EventDetail-1, cloneQuery needed"
+2026-10-16,LDM_MyEvents_V2,build,366977,route-ldm-myevents-v2,,"wave 8 full route: ldm.ts shared mock, 5 past events, Q1/Q2, 4 exemptions"
+2026-10-16,foundation,foundation,218198,foundation-f10,,"F10: CR-EventDetail-1 Orbit static entities sync in app start, EventDetail NotCaptured removed, shared popup re-render"
+2026-10-16,LDM_EventDetail_V2,build,381748,route-ldm-eventdetail-v2,,"wave 8 full route: ldm.ts details, Q1-Q3, cloneQuery, CR-LDM_EventDetail_V2-1"
+2026-10-16,MilestoneDetail,build,365352,route-milestonedetail,,"wave 8 full route: rooms in orbit.ts, Q1-Q6, cloneQuery, CR-MilestoneDetail-1..4"
+2026-10-16,LDM_Email_V2,build,355890,route-ldm-forms,,"wave 8: LDM_Email_V2 + ContactByEmailLDMCoordinator + EmailTarget (no-capture, one agent)"
+2026-10-16,foundation,foundation,290498,foundation-f11,,"F11: CR-MilestoneDetail-1..4 (directory access, member contacts/timezone, open file, Orbit static store subscribe), CR-LDM_EventDetail_V2-1 (LDM helpers shared)"
+2026-10-16,HelpersDetail,build,379434,route-orbit-lite-1,,wave 8: HelpersDetail + ContactByEmailOrbitHelpdesk + ContactByEmailOrbitHost; CR-HelpersDetail-1
+2026-10-16,AssembleEvents,build,546816,route-assemble,,"wave 8: Assemble_BrowseByCountry + AssembleEvents, assemble.ts shared mock, CR-Assemble_BrowseByCountry-1, CR-AssembleEvents-1"
+2026-10-16,foundation,foundation,174660,foundation-f12,,"F12: Orbit static entities persisted in IndexedDB + mock session seed (CR-HelpersDetail-1, F10 deviation resolved)"
+2026-10-16,foundation,foundation,193939,foundation-f13,,"F13: mock user region, memoryCache QueueJS in-flight sharing, DateTime URL param (AssembleEvents Q2 by code); AssembleEvents default 89 diffs open"
+2026-10-16,AssembleEvents,fix,15426,route-assemble-followup,,masked-count sheet width investigation (agent total 562242)
+2026-10-16,HostSurvey,build,319074,route-hostsurvey,,"wave 8 full route: orbitHostSurveys mock, Q1-Q4, cloneQuery, CR-HostSurvey-1/2"
+2026-10-16,AssembleDetail,build,382270,route-assembledetail,,"wave 8 no-capture: AssembleDetail from compiled code, assembleEventOf mock, CR-AssembleDetail-1/2"
+2026-10-16,foundation,foundation,245390,foundation-f14,,F14: 10 Orbit local entities persisted + HostSurvey readers; Accordion CR resolved by MultipleItems prop
+2026-10-16,foundation,foundation,254190,foundation-f15,,"F15: GetBulkSubdivisions_V2 + Assemble bookmark toggle (contract 163 ops), AssembleDetail NotCaptured removed"
+2026-10-16,TransportDetail,build,424092,route-orbit-lite-2,,wave 8 no-capture: TransportDetail + ViewDocuments + QRCodeGenerate; CR-QRCodeGenerate-1
+2026-10-16,OrbitAdminLanding,build,436037,route-orbit-admin,,"wave 8: OrbitAdminLanding + OrbitAdminEventDetail, orbitAdmin.ts, CR-OrbitAdminLanding-1"
+2026-10-16,foundation,foundation,135325,foundation-f16,,"F16: cached user identity at read time (mocks), OrbitLanding member order; CR-OrbitAdminLanding-1, CR-QRCodeGenerate-1"
+2026-10-16,pwa,other,194469,pwa-discussion-plan,,"migration/pwa/pwa-discussion-plan.md: 16 decisions P1-P16, phases 0-5, read-only research"
+2026-10-16,audit,verify,259492,audit-a1-empty-handlers,,A1: 21 no-ops + ~100 comments + 821 bindings checked; Feed_Embeded download + PIN policy links fixed
+2026-10-16,EventBooklet,build,649571,route-orbit-3b,,wave 8 no-capture: GuestArrangements + EventBooklet + EmailContact; CR-EventBooklet-1/2
+2026-10-16,EventBooklet,foundation,211512,F17,,CR-EventBooklet-1/2: booklet max rows + OSUI dropdown client API
+2026-10-16,pwa,other,95196,pwa-file-plugins,,F3 fact-find: file plugins as PWA -> fallback new tab (knowledge/pwa-file-plugins.md)
+2026-10-16,_foundation,foundation,290493,F18,,"CR-F18-1: screen transitions ported 1:1 (TransitionGroup, classes, events, POP reverse); sweep 64/64 clean"
+2026-10-16,pwa,foundation,224122,PWA-1,,"ADR-9 phase 1: SW injectManifest, TST manifest/icons, demo PWA with in-process mocks, dist-demo + zip; sweep 64/64 clean"
+2026-10-16,pwa,verify,63801,qa-demo-diffs,,"4 dev-vs-demo diffs = QA timing (networkidle), no demo bug"
+2026-10-16,Photobook,fix,71423,FIX-D,,Photobook setState-in-render fix; Splash DataActionGetCacheInfo mock (matchInputs false); nested <a> is 1:1
+2026-10-16,pwa,foundation,116805,PWA-B,,"production build mock-free (MOCKS_BUILT gate, mockFree build guard, no mock public files); -294 KB JS"
+2026-10-16,OrbitAdminEventDetail,foundation,190504,PWA-3,,"ADR-11 vendored TST web scanner, src/lib/device adapter, ?scanner=web"
+2026-10-16,pwa,foundation,251409,PWA-2,,"phase 2: NetworkDetection 1:1, ping file, storage.persist, eviction gap, logout clears local entities, nav timeout 4 s"
+2026-10-16,pwa,verify,162086,PWA-5T,,"e2e:pwa 8 scenarios (vitest+playwright), @lhci/cli blocked by audit (11 high) -> ADR-13"
+2026-10-16,pwa,verify,40000,PWA-5T-lighthouse,,"est.: ADR-13 lighthouse 13.4.1 script, budgets, first scores (usage not reported separately)"
+2026-10-16,pwa,verify,-8619,PWA-5T-lighthouse,,"correction: real usage of the continuation was 31381 (agent total 193467 - 162086), not the 40000 estimate"
+2026-10-16,Photobook,fix,1421,FIX-D,,late usage update (total 72844)
+2026-10-16,Photobook,fix,456,FIX-D,,final usage update (total 73300)
+2026-10-17,_knowledge,other,187698,sonnet-atlas-vi-a0,,Atlas VI route content batch 0 (13 routes)
+2026-10-17,_knowledge,other,169973,sonnet-atlas-vi-a1,,Atlas VI route content batch 1 (13 routes)
+2026-10-17,_knowledge,other,165561,sonnet-atlas-vi-a2,,Atlas VI route content batch 2 (13 routes)
+2026-10-17,_knowledge,other,169597,sonnet-atlas-vi-a3,,Atlas VI route content batch 3 (13 routes)
+2026-10-17,_knowledge,other,166501,sonnet-atlas-vi-a4,,Atlas VI route content batch 4 (13 routes)
+2026-10-17,_knowledge,other,221952,sonnet-atlas-review-r0,,Atlas pre-publish review (r0): sensitive data + VI content accuracy
+2026-10-17,_knowledge,other,234542,sonnet-atlas-review-r1,,Atlas pre-publish review (r1): sensitive data + VI content accuracy
+2026-10-17,_knowledge,other,230752,sonnet-atlas-review-r2,,Atlas pre-publish review (r2): sensitive data + VI content accuracy
+2026-10-17,_knowledge,other,259465,sonnet-atlas-review-r3,,Atlas pre-publish review (r3): sensitive data + VI content accuracy
+2026-10-17,_knowledge,other,298932,sonnet-atlas-review-rg,,Atlas pre-publish review (rg): sensitive data + VI content accuracy
+2026-10-17,_knowledge,other,57582,sonnet-atlas-fix-fA,,Atlas VI content review fixes (fA)
+2026-10-17,_knowledge,other,64406,sonnet-atlas-fix-fB,,Atlas VI content review fixes (fB)
+2026-10-17,_knowledge,other,65197,sonnet-atlas-fix-fC,,Atlas VI content review fixes (fC)
+2026-10-17,_knowledge,other,59321,sonnet-atlas-fix-fD,,Atlas VI content review fixes (fD)
+2026-10-17,_knowledge,other,53070,sonnet-atlas-fix-fE,,Atlas VI content fixes (group E: stale wording)
+2026-10-17,_knowledge,other,141058,sonnet-kb-review-b0,,Build KB pre-publish review: block READMEs part 0
+2026-10-17,_knowledge,other,153597,sonnet-kb-review-b1,,Build KB pre-publish review: block READMEs part 1
+2026-10-21,_docs,other,58040,sonnet-translate-runbook-scopeplan,,English docs phase A: RUNBOOK.md + scope-plan.md translation
+2026-10-21,_docs,other,80212,sonnet-translate-scopereview,,English docs phase A: scope-review.md translation
+2026-10-21,_docs,other,95805,sonnet-review-translation,,"English docs phase A: VI vs EN review of 3 files, 0 meaning errors"
+2026-10-21,_docs,other,198647,sonnet-pilot-routespecs,,"English docs pilot: STE rewrite of 3 route specs (Login, HomeFeed, Locality_Details)"
+2026-10-21,_docs,other,211439,sonnet-pilot-shell-readmes,,English docs pilot: STE rewrite of app-shell.spec.md + 10 shared READMEs (interim count)
+2026-10-21,_docs,other,100661,sonnet-review-pilot-shell-readmes,,"English docs pilot review: shell spec + 10 READMEs, 7 meaning fixes"
+2026-10-21,_docs,other,139811,sonnet-review-pilot-routespecs,,"English docs pilot review: 3 route specs, 5 meaning fixes (incl. Share sheet example)"
+2026-10-21,_docs,other,99645,sonnet-ste-writer-route-03,,"English docs phase B: writer route-03; 5 route specs, lint 26->0"
+2026-10-21,_docs,other,107115,sonnet-ste-writer-route-04,,"English docs phase B: writer route-04; 5 route specs, lint 31->0"
+2026-10-21,_docs,other,105637,sonnet-ste-writer-route-05,,"English docs phase B: writer route-05; 6 route specs, lint 26->0"
+2026-10-21,_docs,other,103473,sonnet-ste-writer-route-01,,"English docs phase B: writer route-01; 5 route specs, lint 32->2 (quoted UI text)"
+2026-10-21,_docs,other,103843,sonnet-ste-writer-route-02,,"English docs phase B: writer route-02; 5 route specs, lint 31->0"
+2026-10-21,_docs,other,97244,sonnet-ste-reviewer-route-03,,"English docs phase B: reviewer route-03; 4 meaning fixes, 12 stale facts"
+2026-10-21,_docs,other,81947,sonnet-ste-reviewer-route-02,,"English docs phase B: reviewer route-02; 0 meaning fixes, 13 stale facts"
+2026-10-21,_docs,other,103235,sonnet-ste-reviewer-route-04,,"English docs phase B: reviewer route-04; 1 meaning fix, ~20 stale facts"
+2026-10-21,_docs,other,116330,sonnet-ste-reviewer-route-01,,"English docs phase B: reviewer route-01; 2 meaning fixes, 15 stale facts"
+2026-10-21,_docs,other,122399,sonnet-ste-reviewer-route-05,,"English docs phase B: reviewer route-05; 2 meaning fixes, ~20 stale facts"
+2026-10-21,_docs,other,102377,sonnet-ste-writer-route-06,,"English docs phase B: writer route-06; 5 route specs, lint 25->0"
+2026-10-21,_docs,other,110403,sonnet-ste-writer-route-07,,"English docs phase B: writer route-07; 5 route specs, lint 22->0"
+2026-10-21,_docs,other,110303,sonnet-ste-writer-route-08,,"English docs phase B: writer route-08; 5 route specs, lint 36->0"
+2026-10-21,_docs,other,119746,sonnet-ste-writer-route-10,,"English docs phase B: writer route-10; 5 route specs, lint 28->2 (Profile tree lines)"
+2026-10-21,_docs,other,110068,sonnet-ste-reviewer-route-06,,"English docs phase B: reviewer route-06; 2 meaning fixes, ~15 stale facts"
+2026-10-21,_docs,other,106166,sonnet-ste-writer-route-09,,"English docs phase B: writer route-09; 5 route specs, lint 33->0"
+2026-10-21,_docs,other,73076,sonnet-ste-reviewer-route-07,,"English docs phase B: reviewer route-07; 2 meaning fixes, 10 stale facts"
+2026-10-21,_docs,other,99176,sonnet-ste-reviewer-route-08,,"English docs phase B: reviewer route-08; 2 meaning fixes, 15 stale facts"
+2026-10-21,_docs,other,97450,sonnet-ste-reviewer-route-09,,"English docs phase B: reviewer route-09; 2 meaning fixes, 12 stale facts"
+2026-10-21,_docs,other,107589,sonnet-ste-reviewer-route-10,,"English docs phase B: reviewer route-10; 1 meaning fix, ~20 stale facts"
+2026-10-21,_docs,other,98111,sonnet-ste-writer-route-11,,"English docs phase B: writer route-11; 5 route specs, lint 22->3 (tree lines)"
+2026-10-21,_docs,other,97957,sonnet-ste-writer-route-12,,"English docs phase B: writer route-12; 5 route specs, lint 30->0"
+2026-10-21,_docs,other,85588,sonnet-ste-writer-readme-01,,"English docs phase B: writer readme-01; 26 READMEs (14 changed), lint 15->0"
+2026-10-21,_docs,other,89709,sonnet-ste-writer-readme-03,,"English docs phase B: writer readme-03; 25 READMEs, lint 21->0"
+2026-10-21,_docs,other,82576,sonnet-ste-reviewer-route-11,,"English docs phase B: reviewer route-11; 3 meaning fixes, ~10 stale facts"
+2026-10-21,_docs,other,61377,sonnet-ste-reviewer-readme-01,,"English docs phase B: reviewer readme-01; approved, 0 fixes"
+2026-10-21,_docs,other,62750,sonnet-ste-reviewer-readme-03,,"English docs phase B: reviewer readme-03; approved, 0 fixes"
+2026-10-21,_docs,other,109716,sonnet-ste-writer-readme-02,,"English docs phase B: writer readme-02; 25 READMEs, lint 25->0"
+2026-10-21,_docs,other,112762,sonnet-ste-reviewer-route-12,,"English docs phase B: reviewer route-12; 3 meaning fixes, ~15 stale facts"
+2026-10-21,_docs,other,71283,sonnet-ste-writer-readme-05,,"English docs phase B: writer readme-05; 25 READMEs (12 changed), lint 14->0"
+2026-10-21,_docs,other,59337,sonnet-ste-reviewer-readme-02,,English docs phase B: reviewer readme-02; 1 meaning fix
+2026-10-21,_docs,other,78895,sonnet-ste-writer-readme-04,,"English docs phase B: writer readme-04; 25 READMEs, lint 18->0"
+2026-10-21,_docs,other,81654,sonnet-ste-writer-readme-06,,"English docs phase B: writer readme-06; 26 READMEs (13 changed), lint 22->0"
+2026-10-21,_docs,other,46623,sonnet-ste-reviewer-readme-05,,"English docs phase B: reviewer readme-05; approved, 0 fixes"
+2026-10-21,_docs,other,55211,sonnet-ste-reviewer-readme-04,,"English docs phase B: reviewer readme-04; approved, 0 fixes"
+2026-10-21,_docs,other,77772,sonnet-ste-writer-readme-07,,"English docs phase B: writer readme-07; 25 READMEs (11 changed), lint 14->0"
+2026-10-21,_docs,other,53634,sonnet-ste-reviewer-readme-06,,English docs phase B: reviewer readme-06; 1 clarity fix
+2026-10-21,_docs,other,55780,sonnet-ste-reviewer-readme-07,,English docs phase B: reviewer readme-07; 1 actor fix
+2026-10-21,_docs,other,88283,sonnet-ste-writer-readme-08,,"English docs phase B: writer readme-08; 25 READMEs (13 changed), lint 18->0"
+2026-10-21,_docs,other,84337,sonnet-ste-writer-other-01,,"English docs phase B: writer other-01; 6 docs, lint 8->0"
+2026-10-21,_docs,other,83063,sonnet-ste-writer-readme-09,,"English docs phase B: writer readme-09; 25 READMEs (12 changed), lint 14->0"
+2026-10-21,_docs,other,56237,sonnet-ste-reviewer-readme-08,,English docs phase B: reviewer readme-08; 1 fix
+2026-10-21,_docs,other,91225,sonnet-ste-writer-other-02,,"English docs phase B: writer other-02; 8 docs, lint 28->0"
+2026-10-21,_docs,other,54181,sonnet-ste-reviewer-readme-09,,English docs phase B: reviewer readme-09; 1 fix
+2026-10-21,_docs,other,62329,sonnet-ste-reviewer-other-01,,English docs phase B: reviewer other-01; 5 stale facts (PWA plan)
+2026-10-21,_docs,other,75802,sonnet-ste-writer-other-04,,"English docs phase B: writer other-04; 8 docs, lint 25->0"
+2026-10-21,_docs,other,60058,sonnet-ste-reviewer-other-02,,English docs phase B: reviewer other-02; 2 meaning fixes
+2026-10-21,_docs,other,68584,sonnet-ste-reviewer-other-04,,English docs phase B: reviewer other-04; 3 meaning fixes
+2026-10-21,_docs,other,87538,sonnet-ste-writer-other-05,,"English docs phase B: writer other-05; 10 docs, lint 25->0"
+2026-10-21,_docs,other,53554,sonnet-ste-reviewer-other-05,,English docs phase B: reviewer other-05; 2 meaning fixes
+2026-10-21,_docs,other,123349,sonnet-ste-writer-other-03,,"English docs phase B: writer other-03; 8 docs, lint 38->0"
+2026-10-21,_docs,other,76488,sonnet-ste-reviewer-other-03,,"English docs phase B: reviewer other-03; 2 meaning fixes, 1 stale fact"

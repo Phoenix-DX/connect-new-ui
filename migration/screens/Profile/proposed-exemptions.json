@@ -1,0 +1,54 @@
+{
+ "rules": [
+  {
+   "id": "CAPTURE-SWITCH-CHECKED-PROFILE",
+   "kinds": [
+    "pseudo"
+   ],
+   "states": "^default$",
+   "routeRegex": "/UBTConnect/Profile\\b",
+   "pathRegex": "span > input#Switch[23]\\.switch$",
+   "reason": "A switch's checked state is a DOM property, not an attribute, so the captured HTML (dom/default.raw.html) replays both switches unchecked; TST had them on: the notes under them read \"Display mobile number on your profile.\" / \"Display work number on your profile.\" (If(ShowMobileNumber/ShowWorkNumber, \"Display\", \"Hide\"), Profile.mvc.js:2073, :2286), and the OS Switch widget starts from the variable value (state={value:e.variable.value}, runtime-sources/OutSystemsReactWidgets.js). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Profile/analysis/dom/default.html:372-374, :390, :414-416, :436; parity Profile/default (?mock=spouse): ::before background rgb(233,236,239) → rgb(0,129,156), ::after transform 4px → 28px on Switch2 and Switch3 only"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-PROFILE-HOUSEHOLD",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "routeRegex": "/UBTConnect/Profile\\b",
+   "pathRegex": "div#b60-b2-b3-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "The household photo of the preview sheet was masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered size 390x259); the replayed reference shows a 26 px broken image, the clone the 260 px placeholder (same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Profile/analysis/dom/default.html:720; parity Profile/default: LazyImage_Placeholder subtree 390x26 → 390x260"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-PROFILE-NAME",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "routeRegex": "/UBTConnect/Profile\\b",
+   "pathRegex": "div#b5-Content\\.align-items-center\\.display-flex\\.flex-direction-column > div#NameText\\.OSBlockWidget\\[BasePatterns\\.CustomText\\]$",
+   "detailRegex": "^offset in parent \\d+,20[5-7] → \\d+,20[5-7]$",
+   "reason": "The member name is centred (align-items-center); the capture masked it as bullets (\"•••••• ••••\"), the fictional mock name has the same word lengths but other glyph widths, and the masked avatar above it replays as a broken image (1 px), so only its offset moves. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Profile/analysis/dom/default.html:113-114, :128; parity Profile/default: offset in parent 129,206 → 107,205"
+  },
+  {
+   "id": "CAPTURE-MASKED-AVATAR-INPUTS-PROFILE-SHIFT",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "routeRegex": "/UBTConnect/Profile\\b",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[0-4]\\.\\d\\d% pixels differ .*migration/screens/Profile/parity/default\\.diff\\.png$",
+   "reason": "Three capture artifacts on the visible screen: the 174x174 avatar was masked (data-masked-src=\"user-image\"), so the replayed broken image shifts everything below it by a sub-pixel; the input values (ContactBase ID, account number, username, email, phones) are DOM properties that the captured HTML does not keep, so the reference shows empty inputs while the clone shows the mock user's values; and the two switches replay unchecked (CAPTURE-SWITCH-CHECKED-PROFILE). The DOM, style and layout comparisons of these elements pass. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Profile/analysis/dom/default.html:113-114, :197-199, :226-228, :252-254, :265-267, :330-332, :378-380, :424-426; parity Profile/default.diff.png (?mock=spouse): red outlines on every text below y≈330 and on the input values"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [],
+ "_merged": "2026-10-15 by the orchestrator (routeRegex Profile): CAPTURE-SWITCH-CHECKED-PROFILE, CAPTURE-MASKED-IMAGE-PROFILE-HOUSEHOLD, CAPTURE-MASKED-TEXT-PROFILE-NAME, CAPTURE-MASKED-AVATAR-INPUTS-PROFILE-SHIFT"
+}

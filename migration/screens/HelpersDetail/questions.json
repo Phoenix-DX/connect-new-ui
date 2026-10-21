@@ -1,0 +1,69 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "parity cloneQuery",
+  "question": "States default/loading/offline were reached by clicks (OrbitLanding -> event card -> Host Allocation -> helper View). Which direct URL should parity open in the React app?",
+  "evidence": "states.json via; EventDetail OnHandle_NavigateToHelpers (UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js:735-742: In_EventId, In_EventName, In_HostId, In_OrbitMilestoneTypeId=helper, In_MilestoneName); EventDetail OnHandle_ViewHelpers passes the user's HouseholderId (mock 42438) and ItemName 'Helper'; capture-plan EventDetail/MilestoneDetail cloneQuery pattern",
+  "mcp": "",
+  "options": [
+   "mocksession=unlocked&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_HostId=42438&In_OrbitMilestoneTypeId=helper-host&In_MilestoneName=Helper",
+   "no cloneQuery (parity follows the via clicks)"
+  ],
+  "recommend": "mocksession=unlocked&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_HostId=42438&In_OrbitMilestoneTypeId=helper-host&In_MilestoneName=Helper",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T11:29:10",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T11:51:42"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "mock data: helpers branch",
+  "question": "The capture shows no helper (NoInformation 'There is no Helper available.'). The helper list branch (role accordion + member cards + Contact Orbit Helpdesk footer) is built from the compiled code. How should the mock expose it?",
+  "evidence": "dom/default.html:77-83 (NoInformation); calls.md DataActionGetHelperDetails Helpers List empty; ScreenBlock_HelperDetails.mvc.js view :330-560, bottomBar :600-625; static entity Connect2_OrbitMobile_MUI.helperRole (catering, usher, ...)",
+  "mcp": "",
+  "options": [
+   "A: real = no helper for event 7301 (as captured); extra scenario ?mock=helpers answers fictional helpers from orbit.ts (ORBIT_EVENT_HELPERS: Catering and Usher roles, members of two Bahia Blanca households, Role text upper case)",
+   "B: real only (list branch not reviewable in the mock)"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-16T11:29:10",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-16 night)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T11:51:42"
+ },
+ {
+  "id": "Q3",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: cloneQuery for default/loading/offline: `mocksession=unlocked&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_HostId=42438&In_OrbitMilestoneTypeId=helper-host&In_MilestoneName=Helper` (Q1); Mock: event 7301 has no helper allocated (captured); `?mock=helpers` shows Catering and Usher helpers of two Bahia Blanca households (Q2; role texts upper case are fictional, formatted as compiled \"Catering/s\"); List item ids of the uncaptured helper branch follow the block aliases (`b1-$b5`, `b1-$b6` + row index), not captured; OnApplicationEvent_ViewHousehold / CallMember go to the log with ids only (decision U17, as MilestoneDetail); Real answer mirrors the captured record: EventDetails with empty name/location and null dates (calls.md); the helpers; OrbitMilestoneType (GetLocalOrbitMilestoneTypeById in OnReady, HB :900-906) only travels as a block variable: left out; Proposed exemptions (migration/screens/HelpersDetail/proposed-exemptions.json): back arrow via clicks, masked title Feature flags: action:getHasOrbitAccess → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T12:21:25",
+  "items": [
+   "cloneQuery for default/loading/offline: `mocksession=unlocked&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_HostId=42438&In_OrbitMilestoneTypeId=helper-host&In_MilestoneName=Helper` (Q1)",
+   "Mock: event 7301 has no helper allocated (captured); `?mock=helpers` shows Catering and Usher helpers of two Bahia Blanca households (Q2; role texts upper case are fictional, formatted as compiled \"Catering/s\")",
+   "List item ids of the uncaptured helper branch follow the block aliases (`b1-$b5`, `b1-$b6` + row index), not captured",
+   "OnApplicationEvent_ViewHousehold / CallMember go to the log with ids only (decision U17, as MilestoneDetail)",
+   "Real answer mirrors the captured record: EventDetails with empty name/location and null dates (calls.md); the helpers",
+   "OrbitMilestoneType (GetLocalOrbitMilestoneTypeById in OnReady, HB :900-906) only travels as a block variable: left out",
+   "Proposed exemptions (migration/screens/HelpersDetail/proposed-exemptions.json): back arrow via clicks, masked title"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T12:21:25"
+ }
+]

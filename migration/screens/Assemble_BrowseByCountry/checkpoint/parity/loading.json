@@ -1,0 +1,55 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/Assemble_BrowseByCountry?mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "302213e920fe807a85c5",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 93,
+  "texts": 11,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T05:57:10.929Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 1,
+  "SPINNER-ROTATION-PHASE": 1
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 329160,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 1,
+  "hotspots": [],
+  "diffPng": "migration/screens/Assemble_BrowseByCountry/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

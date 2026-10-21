@@ -1,0 +1,101 @@
+import { existsSync, mkdtempSync, readdirSync, readFileSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { afterAll, describe, expect, it } from 'vitest';
+import { forbiddenMockModules, KNOWN_MOCK_LEFTOVERS, MOCK_PUBLIC_FILES } from './mockFree';
+import { viteBuildSync } from './viteBuild';
+
+/* Production bundle hygiene (docs/guides/pwa.md "Build modes", ADR-9): a production build (VITE_USE_MOCKS=false) ships
+   no mock chunk, no MSW code, no recorded fixture and none of public/'s mock files, and its service worker precaches no
+   mock file; the plain mock build and the demo build keep them. Real `vite build` runs in a child process. */
+
+const work = mkdtempSync(join(tmpdir(), 'mock-free-build-'));
+
+afterAll(() => {
+  rmSync(work, { recursive: true, force: true });
+});
+
+function build(name: string, env: Record<string, string>, args: string[] = []): string {
+  const outDir = join(work, name);
+  const run = viteBuildSync(outDir, env, args);
+  expect(run.status, String(run.error ?? run.stderr)).toBe(0);
+  return outDir;
+}
+
+const precacheOf = (outDir: string): string[] =>
+  [...readFileSync(join(outDir, 'sw.js'), 'utf8').matchAll(/"url":"([^"]+)"/g)].map((m) => m[1] ?? '');
+
+const scriptsOf = (outDir: string): string[] =>
+  readdirSync(join(outDir, 'assets')).filter((file) => file.endsWith('.js'));
+
+/** Chunks named after the mock modules (src/mocks/fixtures.ts, src/shell/mocks.ts, MSW's browser worker, …). */
+const MOCK_CHUNK = /^(mocks|fixtures|handlers|browser|inProcess|contract|store)-[\w-]+\.js$/;
+/** MSW's log prefix (msw/lib/core/utils/internal/devUtils), present wherever MSW code is bundled. */
+const MSW_CODE = '[MSW]';
+/** A recorded fixture (src/mocks/fixtures/**.json: module, action, screen, …) as an object literal or JSON string. */
+const FIXTURE_RECORD = /["']?module["']?:[^,]{1,80},["']?action["']?:[^,]{1,160},["']?screen["']?:/;
+/** src/mocks/fixtures.ts's warning text. */
+const FIXTURE_LOADER = '[mock] no recorded call';
+const MOCK_FILE = /mock|fixture|msw/i;
+
+describe('mock-free production build', () => {
+  it('production build: no mock chunk, MSW code, fixture or mock public file, none precached', () => {
+    const out = build('production', { VITE_USE_MOCKS: 'false' });
+    const scripts = scriptsOf(out);
+    expect(scripts.filter((file) => MOCK_CHUNK.test(file))).toEqual([]);
+    for (const file of [...scripts.map((name) => join('assets', name)), 'sw.js']) {
+      const code = readFileSync(join(out, file), 'utf8');
+      expect(code.includes(MSW_CODE), `${file} bundles MSW`).toBe(false);
+      expect(code.includes(FIXTURE_LOADER), `${file} bundles the fixture loader`).toBe(false);
+      expect(FIXTURE_RECORD.test(code), `${file} bundles a recorded fixture`).toBe(false);
+    }
+    for (const entry of MOCK_PUBLIC_FILES) expect(existsSync(join(out, entry)), entry).toBe(false);
+    expect(existsSync(join(out, 'embed/feeds/index.html'))).toBe(false);
+    // public/ itself is still copied (original stylesheets and fonts)
+    expect(existsSync(join(out, 'UBTConnect/Roboto-Regular.ttf'))).toBe(true);
+    const urls = precacheOf(out);
+    expect(urls).toContain('index.html');
+    expect(urls.filter((url) => MOCK_FILE.test(url))).toEqual([]);
+  }, 180_000);
+
+  it('mock build (dev mode files): MSW worker, mock embeds and mock images kept', () => {
+    const out = build('mock', { VITE_USE_MOCKS: 'true', VITE_DEMO: 'false' });
+    for (const entry of MOCK_PUBLIC_FILES) expect(existsSync(join(out, entry)), entry).toBe(true);
+    expect(scriptsOf(out).some((file) => /^fixtures-[\w-]+\.js$/.test(file))).toBe(true);
+  }, 180_000);
+
+  it('demo build: mock files kept and precached for offline use', () => {
+    const out = build('demo', { VITE_USE_MOCKS: 'true', VITE_DEMO: 'true' }, ['--mode', 'demo']);
+    for (const entry of MOCK_PUBLIC_FILES) expect(existsSync(join(out, entry)), entry).toBe(true);
+    const urls = precacheOf(out);
+    expect(urls.some((url) => /^assets\/fixtures-[\w-]+\.js$/.test(url))).toBe(true);
+    expect(urls.some((url) => url.startsWith('mock-images/'))).toBe(true);
+  }, 180_000);
+});
+
+describe('forbiddenMockModules (the production build guard of build/mockFree.ts)', () => {
+  const root = '/app';
+  it('flags MSW, src/mocks and the mocks.ts of screens, blocks and the shell', () => {
+    const ids = [
+      '/app/node_modules/msw/lib/core/http.mjs',
+      '/app/node_modules/@mswjs/interceptors/lib/browser/index.mjs',
+      '/app/src/mocks/fixtures.ts',
+      '/app/src/mocks/fixtures/UBTConnect/ActionGetUserInformation.json',
+      '/app/src/screens/HomeFeed/mocks.ts',
+      '/app/src/shell/mocks.ts',
+      '/app/src/shared/UBTConnect/HouseholdDetails_Block/mockData.ts',
+    ];
+    expect(forbiddenMockModules(ids, root)).toEqual(ids);
+  });
+
+  it('passes app code and the known leftovers', () => {
+    const ids = [
+      '/app/src/main.tsx',
+      '/app/src/shell/testSession.ts',
+      '/app/src/shell/mockUser.ts',
+      '/app/node_modules/react/index.js',
+      ...KNOWN_MOCK_LEFTOVERS.map((file) => `${root}/${file}`),
+    ];
+    expect(forbiddenMockModules(ids, root)).toEqual([]);
+  });
+});

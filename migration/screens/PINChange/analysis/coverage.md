@@ -1,0 +1,63 @@
+# Coverage for PINChange
+
+- UI states captured: default, loading, offline
+- Runtime captures: 1 file(s), 7 call(s)
+- Masked text nodes: 10, user images removed: 0
+- Fetch failures during snapshot: 0
+
+## Blocks referenced in code but not rendered in any captured state
+Each one is a UI state (loading, empty, error, popup...) that still needs a capture, or a branch that never runs for this user.
+
+- [ ] `App_PIN.Block_PINRegister_ContentWrapper`
+- [ ] `BasePatterns.CustomContainer`
+- [ ] `CacheControl.CacheControl_Policies`
+- [ ] `ConnectPatterns.HighlightSearch`
+- [ ] `ConnectPatterns.IconSVG`
+- [ ] `ConnectPatterns.SkeletonSection`
+- [ ] `Fingerprint.FingerprintScanner`
+- [ ] `NavigationHandler.PreventBackNavigation`
+- [ ] `PIN.InactivityTimer`
+
+## Images referenced in code
+- [ ] `img/UBTConnect.ConnectLogo.svg`
+- [x] `img/UBTConnect.ConnectLogoWhite.svg`
+- [ ] `img/UBTConnectLibrary.ar.png`
+- [ ] `img/UBT_CW.UK.png`
+- [ ] `img/UBT_CW.au.png`
+- [ ] `img/UBT_CW.bb.png`
+- [ ] `img/UBT_CW.ca.png`
+- [ ] `img/UBT_CW.ch.png`
+- [ ] `img/UBT_CW.de.png`
+- [ ] `img/UBT_CW.dk.png`
+- [ ] `img/UBT_CW.fr.png`
+- [ ] `img/UBT_CW.ie.png`
+- [ ] `img/UBT_CW.it.png`
+- [ ] `img/UBT_CW.jm.png`
+- [ ] `img/UBT_CW.nl.png`
+- [ ] `img/UBT_CW.nz.png`
+- [ ] `img/UBT_CW.se.png`
+- [ ] `img/UBT_CW.tt.png`
+- [ ] `img/UBT_CW.us.png`
+- [ ] `img/UBT_CW.vc.png`
+- [ ] `scripts/OutSystemsUI_2_23.MWO.js`
+- [ ] `scripts/OutSystemsUI_2_23.OutSystemsUI.js`
+
+## Data/server actions declared in the screen and its blocks
+- none
+
+## Module-level server actions (called from client actions; check which ones this screen uses)
+- [ ] `AddBookmark` (UBTConnect.controller.js)
+- [ ] `AddBookmark2` (UBTConnect.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId` (UBTConnect.controller.js)
+- [ ] `DeleteBookmarkByBookmarkId2` (UBTConnect.controller.js)
+- [x] `FetchData_CacheableHouseholds` (UBTConnect.controller.js)
+- [x] `FetchData_CacheableMapEntities` (UBTConnect.controller.js)
+- [ ] `Get_ShareDetails` (UBTConnect.controller.js)
+- [ ] `Get_UI_UpdateItems_UnreadCount_All` (UBTConnect.controller.js)
+- [x] `Sync_Info_GetMain` (UBTConnect.controller.js)
+- [ ] `UpdateItem_MarkAsRead` (UBTConnect.controller.js)
+- [x] `AppManager_AfterInitialize` (UBT_AppManager.controller.js)
+- [ ] `AppManager_ChangeDevice` (UBT_AppManager.controller.js)
+- [ ] `AppManager_Login` (UBT_AppManager.controller.js)
+- [ ] `AppManager_Logout` (UBT_AppManager.controller.js)
+- [x] `AppManager_SynchAppContext` (UBT_AppManager.controller.js)

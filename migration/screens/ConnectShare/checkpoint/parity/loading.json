@@ -1,0 +1,55 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/ConnectShare?ShareId=00000000-0000-0000-0000-000000000000&mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "381e34a87333a5357f39",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 1,
+  "texts": 2,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T09:32:13.257Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "LOADING-FRAME-CONNECTSHARE": 1,
+  "CAPTURE-LOADING-BODYCLASS": 1
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 329160,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 0,
+  "hotspots": [],
+  "diffPng": "migration/screens/ConnectShare/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

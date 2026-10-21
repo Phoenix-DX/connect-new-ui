@@ -1,0 +1,31 @@
+{
+ "rules": [
+  {
+   "id": "ORBITADMINLANDING-SKELETON-SHIMMER-PHASE-OFFLINE",
+   "routeRegex": "^/UBTConnect/OrbitAdminLanding(\\?|$)",
+   "kinds": [
+    "style"
+   ],
+   "states": "^offline$",
+   "pathRegex": "\\[Orbit_Generic_Blocks\\.Skeleton_Loading\\] > div\\.orbit-skeleton-loading-cont > div#b1-b5-List_SkeletonLoadingSingle[^>]* > div\\.orbit-skeleton-item-height-large\\.orbit-skeleton-loading-item$",
+   "detailRegex": "^background-position ",
+   "reason": "Skeleton shimmer animation (background-position keyframes of .orbit-skeleton-loading-item) photographed at another phase in the offline capture (54.782% vs 64.1446%); same markup, classes and every other style; the loading state with the same skeleton passes. Capture timing artifact, auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/OrbitAdminLanding/parity/offline.json (6 rows, one per skeleton row); same kind as ORBITLANDING-SKELETON-SHIMMER-PHASE-OFFLINE"
+  },
+  {
+   "id": "OA-LANDING-HEADER-NAME-EMPTY-UNTIL-CR",
+   "routeRegex": "^/UBTConnect/OrbitAdminLanding(\\?|$)",
+   "kinds": [
+    "pseudo"
+   ],
+   "states": "^(default|loading|offline)$",
+   "pathRegex": "div#b1-b1-HeaderContent > div\\.orbit-admin-header-cont > div\\.orbit-admin-header-text-cont > span\\.orbit-admin-header-text$",
+   "detailRegex": "^::after extra in build$",
+   "reason": "Interim, pending OrbitAdminLanding Q3 / CR-OrbitAdminLanding-1: the shell's mock cached user record has no FirstName (CR-AcceptPendingPolicies-2), so the admin-name span is empty and the runtime CSS [data-expression]:empty::after adds a zero-width space; TST shows the (masked) first name. Not a markup difference of the route (same element, classes; text compare skipped for masked text). Remove when the CR is applied (Q3 = B) or keep (Q3 = A)",
+   "evidence": "analysis/dom/default.html header (masked 6-char name); parity/{default,loading,offline}.json pseudo; css OutSystemsReactWidgets.css [data-expression]:empty::after; app/src/shell/mockUser.ts mockCachedUserInfo"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [],
+ "_merged": "2026-10-16 orchestrator: ORBITADMINLANDING-SKELETON-SHIMMER-PHASE-OFFLINE; OA-LANDING-HEADER-NAME-EMPTY-UNTIL-CR not merged (CR-OrbitAdminLanding-1 in F16)"
+}

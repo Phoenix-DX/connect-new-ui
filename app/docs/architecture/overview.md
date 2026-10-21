@@ -1,0 +1,114 @@
+# Architecture overview
+
+UBTConnect React replaces the OutSystems 11 mobile app UBTConnect. The UI and its behaviour match the original 1:1
+(nothing invented). Until a backend exists, the app runs on mock data that the browser serves. The app calls the API
+exactly as the original app calls its server: same actions, same moments, same inputs and outputs.
+
+Reference pages that scripts generate from the migration data: [stack and ADRs](../reference/stack.md),
+[screens](../reference/screens.md), [flags](../reference/flags.md), [shared blocks](../reference/shared-blocks.md),
+[API](../reference/api.md).
+
+## Quality attributes, in priority order
+
+| #   | Attribute                 | What it means here                                                                               | How it is enforced                                                                                        |
+| --- | ------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
+| 1   | Fidelity                  | Same DOM, class names and CSS as the original; same routes and parameters; same calls and states | original CSS files unchanged, per screen (`public/UBTConnect/css/`); parity check per captured state      |
+| 2   | Maintainability           | Clean, typed, readable code; one way to do each recurring thing                                  | TypeScript strict, ESLint strict (type-checked), Prettier, patterns with reference code, ADRs for changes |
+| 3   | Ready for production      | Backend, identity, flags and monitoring can be swapped in without touching screens               | API contract + typed client, providers in `src/lib` (config, log, flags, auth later)                      |
+| 4   | Consistency and isolation | Each screen lives in its own folder; shared code is built once and frozen                        | folder rules, `consistency_check`, change requests for shared code                                        |
+| 5   | Documentation             | Architecture and references stay current                                                         | these pages; reference pages generated from data                                                          |
+| 6   | Testability               | Every branch and state can be reached without a backend                                          | MSW scenarios, flag panel, mock store, Vitest, Storybook                                                  |
+
+Deliberately not goals: a new design system, behaviour or performance beyond the original, server rendering.
+
+## Context (C4 level 1)
+
+```mermaid
+flowchart LR
+  user([Member on a phone browser / installed PWA])
+  app[UBTConnect React app<br/>SPA, Vite + React 19]
+  api[(API: POST /api/Module/Action<br/>today MSW in the browser,<br/>later a backend / BFF)]
+  idp[(Identity provider<br/>Azure AD B2C, later)]
+  ext[(External apps and links<br/>Trove, HR100, Community Tradelink, El Gusto)]
+  user --> app
+  app --> api
+  app -. sign-in later .-> idp
+  app -. opens app or link .-> ext
+```
+
+## Containers and layers (C4 level 2–3)
+
+```mermaid
+flowchart TB
+  subgraph Browser
+    direction TB
+    shell[src/shell<br/>error handling, sign-in and PIN mock,<br/>navigation guard, view cache, toasts,<br/>local entities IndexedDB]
+    screens[src/screens/&lt;Screen&gt;<br/>index.tsx · api.ts · mocks.ts · types.ts]
+    widgets[src/components<br/>platform widgets: validation, popup,<br/>list, radio group, NotCaptured]
+    vendor[src/vendor and osui vendor folders<br/>third-party scripts copied from the original]
+    shared[src/shared<br/>one component per OutSystems block<br/>src/shared/osui for OutSystems UI patterns]
+    lib[src/lib<br/>api client · config · log · flags · os-wire · device]
+    mocks[src/mocks<br/>MSW handlers · recorded fixtures · mock store]
+    css[public/UBTConnect/css<br/>original OutSystems CSS per screen]
+  end
+  contract[src/api/openapi.yaml<br/>API contract]
+  screens --> shared
+  screens --> lib
+  screens --> widgets
+  shared --> widgets
+  shared --> vendor
+  shell --> lib
+  shared --> lib
+  lib -- callAction --> mocks
+  contract -. types .-> lib
+  contract -. validates .-> mocks
+```
+
+Rules that keep it this way (`consistency_check.py` checks them before a screen is finished):
+
+- A screen imports only from its own folder and from `src/shared`, `src/shell`, `src/lib`, `src/components`, `src/mocks`.
+- A screen has no `fetch`, browser storage, route CSS, inline visual styles, raw HTML or `console.log`.
+- Packages come only from the pinned allow-list ([stack](../reference/stack.md)). A new package needs an ADR.
+
+## Data flow of one server call
+
+```mermaid
+sequenceDiagram
+  participant C as Screen component
+  participant A as screens/X/api.ts (TanStack Query hook)
+  participant L as lib/api.ts callAction
+  participant M as MSW handler (mocks.ts)
+  C->>A: useXxx(inputs)
+  A->>L: callAction('Module', 'Action', OutSystems input names)
+  L->>M: POST /api/Module/Action
+  M-->>L: { data: outputs } (recorded fixture or fictional data)
+  L-->>A: typed outputs (from the contract)
+  A-->>C: domain types (wire shapes mapped in api.ts)
+```
+
+- Types of inputs and outputs come from the contract (`npm run gen:api`). An action that is not in the contract does
+  not compile.
+- Mock data: reference, place and organisation data are recorded from TST and anonymised. Data about a person is
+  fictional, with the recorded structure and counts.
+- Later, the backend implements the same contract. Only the `src/lib/api.ts` configuration and the mappers in `api.ts`
+  can change. The screens do not change.
+
+## Runtime pieces worth knowing
+
+| Piece                 | Where                                                                                        | Guide                                            |
+| --------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Request timeouts      | `SERVER_REQUEST_TIMEOUT` in `src/lib/api.ts` (20 s for `UBTConnect`, 10 s for other modules) | [API and mock data](../guides/api-and-mocks.md)  |
+| Navigation guard      | `src/shell/navigation/navigationGate.ts`: `dx-before-navigation`, prevent / resume           | [Shell](../guides/shell.md)                      |
+| Platform validation   | `src/components/OSValidation`                                                                | [Platform widgets](../guides/os-widgets.md)      |
+| Popups                | `src/components/OSPopup/usePopupWidget.ts`                                                   | [Platform widgets](../guides/os-widgets.md)      |
+| Local entities        | `src/shell/localEntities` (IndexedDB; bookmark sync in one transaction, ADR-8)               | [Shell](../guides/shell.md)                      |
+| Vendored scripts      | `src/vendor/panzoom` (ADR-7), `src/shared/osui/DropdownSearch/vendor` (ADR-5)                | [Shared code](../guides/shared-code.md)          |
+| Mock scenarios, store | `src/mocks`, `?mock=`, `?mocksession=`                                                       | [API and mock data](../guides/api-and-mocks.md)  |
+| Known original bugs   | B1-B13                                                                                       | [Known original bugs](../known-original-bugs.md) |
+
+## Where decisions live
+
+- Stack, pinned versions and ADRs: [reference/stack.md](../reference/stack.md) (source `migration/stack.json`).
+- Implementation patterns with reference code: `migration/patterns/P-*.md`.
+- Feature flag decisions: [reference/flags.md](../reference/flags.md).
+- Per screen: `migration/screens/<Screen>/route-spec.md`.

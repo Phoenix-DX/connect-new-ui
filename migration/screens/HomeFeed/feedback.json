@@ -1,0 +1,11 @@
+[
+ {
+  "id": "F1",
+  "kind": "bug",
+  "text": "The search input on the HomeFeed page cannot be clicked (user, 2026-10-16).",
+  "status": "closed",
+  "at": "2026-10-16T14:40:04",
+  "note": "Layout_HomePage OnSearchClick now runs OnClick_Search → navigate to /UBTConnect/Search (HomeFeed.mvc.js:159-166, :708-723); the route had an empty handler by mistake. Checked in a headless browser: clicking the search input opens Search.",
+  "fixedAt": "2026-10-16T14:41:05"
+ }
+]

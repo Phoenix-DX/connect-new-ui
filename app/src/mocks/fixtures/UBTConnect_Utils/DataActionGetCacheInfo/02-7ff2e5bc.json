@@ -1,0 +1,16 @@
+{
+ "module": "UBTConnect_Utils",
+ "action": "DataActionGetCacheInfo",
+ "screen": "CacheControl_UserInfo",
+ "status": 200,
+ "inputs": {
+  "CacheTypeId": "Reprehenderit",
+  "CacheKey": "Unique"
+ },
+ "data": {
+  "CacheControl_Response": {
+   "HasPoliciesToAccept": false
+  },
+  "TTL": 7200
+ }
+}

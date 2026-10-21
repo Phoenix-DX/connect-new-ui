@@ -1,0 +1,68 @@
+{
+ "default": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/SupperMeeting_Carousel?In_StartingSupperMeetingId=1210",
+  "via": {
+   "from": "/UBTConnect/Locality_Details?LocalityId=252",
+   "pre": [
+    "[data-block='ConnectPatterns.TagToggle'] >> nth=1"
+   ],
+   "click": "[data-block='ConnectCorePatterns.ImageCard_LazyLoading']",
+   "nth": 0
+  },
+  "steps": [],
+  "scenario": "real",
+  "auto": null,
+  "htmlClass": "popup-disable-scroll",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "loading": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/SupperMeeting_Carousel?In_StartingSupperMeetingId=1210",
+  "via": {
+   "from": "/UBTConnect/Locality_Details?LocalityId=252",
+   "pre": [
+    "[data-block='ConnectPatterns.TagToggle'] >> nth=1"
+   ],
+   "click": "[data-block='ConnectCorePatterns.ImageCard_LazyLoading']",
+   "nth": 0
+  },
+  "steps": [],
+  "scenario": "loading",
+  "auto": "loading",
+  "htmlClass": "",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "offline": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/SupperMeeting_Carousel?In_StartingSupperMeetingId=1210",
+  "via": {
+   "from": "/UBTConnect/Locality_Details?LocalityId=252",
+   "pre": [
+    "[data-block='ConnectPatterns.TagToggle'] >> nth=1"
+   ],
+   "click": "[data-block='ConnectCorePatterns.ImageCard_LazyLoading']",
+   "nth": 0
+  },
+  "steps": [],
+  "scenario": "error",
+  "auto": "offline",
+  "htmlClass": "popup-disable-scroll",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ }
+}

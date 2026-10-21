@@ -1,0 +1,163 @@
+﻿.ubt-map-layout {
+    --header-size: 0px;
+    /*Setting this to ensure the floating search stays on top of the map*/
+    --layer-global-elevated: 1000;
+    /*Setting this to ensure bottom sheet stays on top of the map and the search*/
+    --osui-bottom-sheet-layer: 1007;
+    --layer-global-navigation: 1006;
+    --footer-shadow-scroll: hidden;
+   
+    --ubt-bottomsheet-handler-preview--height: calc(var(--space-s) + var(--space-base) +  var(--ubt-bottomsheet-handler-preview--offset));
+}
+
+.ubt-map-layout .osui-bottom-sheet.custom-padding{
+ padding-bottom: calc(var(--safe-area-inset-bottom, 0px) + var(--bottom-bar-size));
+
+}
+.ubt-map-layout .ubt-map-layout .header {
+    display: none;
+}
+
+.ubt-map-layout .dx-bottom-bar-slider {
+    z-index: var(--layer-global-navigation);
+    max-width: unset;
+}
+
+.bottom-sheet-map-details,
+.ubt-map-layout .popup-backdrop:has(.connect-share-sheet) {
+    z-index: var(--layer-global-navigation);
+}
+
+.ubt-map-search.floating-content-top {
+    top: 0;
+}
+
+.bottom-sheet-map-details .osui-bottom-sheet__content{
+    padding: 0;
+    padding-bottom: calc(var(--bottom-bar-size) + var(--space-base));
+    text-align: left;
+}
+
+.bottom-sheet-map-details .osui-bottom-sheet__content .ubt-image-card__content{
+    padding-bottom: 0px;
+}
+
+.bottom-sheet-map-details__country-flag{
+    max-height: unset;
+    aspect-ratio: 3 / 2;
+}
+
+
+.footer:has(.footer--auto-height),
+.ios .footer:has(.footer--auto-height){
+    height: auto;
+}
+
+.subscription-pop-up [data-popup-backdrop] {
+    z-index: 1005;
+}
+
+.ubt-map-sheet.osui-sidebar{
+    width: 100%;
+    max-width: 100%;
+    z-index: calc(var(--layer-global-navigation) + 1);
+}
+
+.ubt-map-sheet .osui-sidebar__content{
+    padding: 0;
+}
+
+
+.ubt-map-sheet--show-footer{
+    height: calc(100vh - var(--footer-height));
+}
+
+
+.ubt-map-marker-tooltip{
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    top: 12px !important;
+    color: var(--color-neutral-10);
+   /* -webkit-text-stroke-color: var(--color-neutral-0);
+    -webkit-text-stroke-width: 0.1px;*/
+    font-size: var(--font-size-xs);
+    font-style: normal;
+    line-height: 115%; /* 13.8px */
+    letter-spacing: 0.72px;  
+    pointer-events: none;
+    opacity: 0.9;
+    max-width: 150px;
+    width: max-content;
+    white-space: normal;
+}
+
+.ubt-map-marker-tooltip--household{
+    color: var(--color-cyan-darker);
+}
+
+.ubt-map-marker-tooltip--subdivision{
+    color: #B34700;
+}
+
+.ubt-map-marker-tooltip--osg{
+    color: var(--color-purple-darker);
+}
+
+.ubt-map-marker-tooltip:before{
+    display: none;
+}
+
+.ubt-map-marker-tooltip.leaflet-tooltip-right{
+    left: calc(5px + var(--space-s));
+}
+
+.ubt-map-marker-user-location {
+    width: 16px;
+    height: 16px;
+    background: var(--color-primary, #1A73E8);
+    border: 2px solid var(--color-neutral-0, #fff);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(26,115,232,0.3);
+    pointer-events: none;
+    animation: ubt-map-user-location-pulse 2s infinite;
+    display: inline-block;
+}
+
+@keyframes ubt-map-user-location-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(26,115,232,0.5); }
+    70% { box-shadow: 0 0 0 12px rgba(26,115,232,0); }
+    100% { box-shadow: 0 0 0 0 rgba(26,115,232,0); }
+}
+
+
+/* Map data loading overlay */
+.map-loading-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+.map-loading-dots {
+    display: flex;
+    gap: 8px;
+}
+.map-loading-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #666666;
+    animation: map-loading-bounce 1.4s infinite ease-in-out both;
+}
+.map-loading-dot-1 { animation-delay: -0.32s; }
+.map-loading-dot-2 { animation-delay: -0.16s; }
+.map-loading-dot-3 { animation-delay: 0s; }
+@keyframes map-loading-bounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
+}
+
+/*manual change to force update*/

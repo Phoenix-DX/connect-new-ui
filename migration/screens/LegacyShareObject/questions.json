@@ -1,0 +1,159 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "mock: share type label",
+  "question": "ScreenDataSetGetShareObjectTypeById (title 'Share ' + Type_ShareObject.Label) was recorded only for In_ShareObjectTypeId=Household (Label 'Household'). What should the mock answer for the other share types (Feed, Locality, Supper Meeting, OneSchool Global, Campus&Co, My Household, Update…)?",
+  "evidence": "app/src/mocks/fixtures/Connect2_LegacyShared/ScreenDataSetGetShareObjectTypeById/01-585887a6.json; ScreenBlock_ShareObject.mvc.js view title expression; migration/runtime-sources moduleinfo.json holds only the identifiers",
+  "mcp": "MCP not available to the route agent",
+  "options": [
+   "A: recorded record for Household; any other type answers one record whose Label = the type identifier (fictional, e.g. 'Share Feed')",
+   "B: the recorded Household record for every type",
+   "C: record the other types on TST first"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T19:43:49",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): the mock answers Label = the share type identifier for types other than Household",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T19:58:53"
+ },
+ {
+  "id": "Q2",
+  "kind": "fact",
+  "topic": "GetAvailableUsers semantics",
+  "question": "DataActionGetAvailableUsers (ProfileList) is server-side: which users it returns for an empty and a non-empty SearchFilter, the Label text, whether already-shared users are included. The mock (fictional, captured count 1 and field lengths) returns a fixed list of fictional users, filtered by FullName containing every search word (case-insensitive), Label fictional with the captured length (13 chars). Confirm or give the real rule.",
+  "evidence": "ProfileList.mvc.js getAvailableUsers$DataActRefresh, GetAvailableUsersOnAfterFetch; analysis/dom/default.html:136-170 (1 row, masked label)",
+  "mcp": "MCP not available to the route agent",
+  "options": [],
+  "recommend": "",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T19:43:49",
+  "answer": "No source: GetAvailableUsers is server-side in Connect2_LegacyShared, which is not loaded in the Service Studio MCP (DEV: UBTConnect, Connect2_Assemble_CS only) and was recorded once. Auto mode, no recommendation: keep the most conservative reversible mock (fixed fictional list, FullName contains every search word, captured lengths). To confirm with the user later. auto-accepted (user instruction 2026-10-15 16:59) (answered 2026-10-15T19:58:53, user) | Confirmed (user, 2026-10-21): keep this mock for the demo; check it again in the production phase.",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-21T11:31:42"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "mock: ShareObject answer",
+  "question": "ShareObject (write, P-MUTATION) was never recorded. Mock answer?",
+  "evidence": "ProfileList.mvc.js _deferredHandleShareObjectList$Action (IsAllowed / IsSuccess / Message branches, SubscriptionDenied event); shell mock user toggle ?mockuser=expired (SubscriptionActive false)",
+  "mcp": "MCP not available to the route agent",
+  "options": [
+   "A: store the share in the in-memory collection LegacyShareObject.shares and answer IsSuccess True, Message '', ShareId = new id; IsAllowed = the mock user's subscription is active (?mockuser=expired → IsAllowed False → SubscriptionDenied popup)",
+   "B: always IsAllowed True and IsSuccess True"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T19:43:49",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): ShareObject stored in the mock store collection; IsAllowed false with ?mockuser=expired raises SubscriptionDenied",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T19:58:53"
+ },
+ {
+  "id": "Q4",
+  "kind": "decision",
+  "topic": "uncaptured share types",
+  "question": "Only In_ShareObjectTypeId=Household was captured. The Campus&Co / OneSchool Global card (Get_UI_CommunityBusinessShareCard, not observed) and the Feed card (AvatarImage + In_CustomTitle) are reachable from in-scope screens. Build them?",
+  "evidence": "ScreenBlock_ShareObject.mvc.js view (CommunityBusiness_List_Item, Feed_List_Item) and onReady; openapi.yaml ServiceAPIGet_UI_CommunityBusinessShareCard (x-mock-source fictional)",
+  "mcp": "MCP not available to the route agent",
+  "options": [
+   "A: build both as compiled, with a fictional Get_UI_CommunityBusinessShareCard mock (photo fields empty → the coming-soon image)",
+   "B: render NotCaptured for those branches"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T19:43:49",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): Campus&Co / OneSchool Global and Feed cards built from the compiled code with fictional mocks",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T19:58:54"
+ },
+ {
+  "id": "Q5",
+  "kind": "decision",
+  "topic": "uncaptured shared-row icon",
+  "question": "After a successful share the row shows Icon check-circle (2x) with the compiled extended style 'color: #009706;'. That state was never captured (sharing is a write), and NO-INLINE-COLOR refuses an inline colour not in the capture. How to render it?",
+  "evidence": "ProfileList.mvc.js view result_Item_Placeholder (IsShared → check-circle, style color: #009706); consistency_check.py NO-INLINE-COLOR",
+  "mcp": "MCP not available to the route agent",
+  "options": [
+   "A: NotCaptured marker around the check-circle icon without the colour, until a capture or a waiver exists",
+   "B: compiled inline colour with a NO-INLINE-COLOR waiver granted by the user"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T19:51:38",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): the never-captured shared check icon renders inside NotCaptured without the inline colour",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T19:58:54"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending orchestrator answer): other share types answer Label = identifier in the mock.; Q2 (fact, pending): fictional GetAvailableUsers: 1 fictional user (captured count and text lengths), Label \"Contacts list\" (13 chars, fictional), filter = every search word in FullName (case-insensitive).; Q5 → A (pending): the IsShared check-circle icon (compiled colour #009706, never captured) renders inside a NotCaptured marker without the inline colour (NO-INLINE-COLOR).; Q3 → A (pending): ShareObject stores the share in `LegacyShareObject.shares`; IsAllowed = mock user's subscription active.; Q4 → A (pending): Campus&Co / OneSchool Global and Feed cards built as compiled with fictional mocks.; GetHouseholdDetails fictional: the mock user's household (Bahia Blanca, Argentina; captured lengths), no members.; Proposed exemptions (capture / timing artifacts, `proposed-exemptions.json`): masked household photo (default), loading-item shimmer phase (loading, offline), loading fetch timeout of GetAvailableUsers and of the household image (loading), GetHouseholdDetails among the app-start calls (default).; Search input keeps the compiled `maxLength 50` as the `maxlength` attribute (OutSystemsReactWidgets Input; the capture shows none and parity does not flag it).; No change request: every shared block used exists (Layout, MenuIcon_Back, Result_Item_Image, UBT_LazyImage, AvatarImage, InputWithIcon, FreeSubscriptionActionDialog, CommonUI_InsideLayout, shell DialogAccessRestrictedAction).; ScreenBlock_ShareObject HandleShareProfileList (Share event) not wired: never raised by ProfileList. Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:14:28",
+  "items": [
+   "Q1 → A (pending orchestrator answer): other share types answer Label = identifier in the mock.",
+   "Q2 (fact, pending): fictional GetAvailableUsers: 1 fictional user (captured count and text lengths), Label \"Contacts list\" (13 chars, fictional), filter = every search word in FullName (case-insensitive).",
+   "Q5 → A (pending): the IsShared check-circle icon (compiled colour #009706, never captured) renders inside a NotCaptured marker without the inline colour (NO-INLINE-COLOR).",
+   "Q3 → A (pending): ShareObject stores the share in `LegacyShareObject.shares`; IsAllowed = mock user's subscription active.",
+   "Q4 → A (pending): Campus&Co / OneSchool Global and Feed cards built as compiled with fictional mocks.",
+   "GetHouseholdDetails fictional: the mock user's household (Bahia Blanca, Argentina; captured lengths), no members.",
+   "Proposed exemptions (capture / timing artifacts, `proposed-exemptions.json`): masked household photo (default), loading-item shimmer phase (loading, offline), loading fetch timeout of GetAvailableUsers and of the household image (loading), GetHouseholdDetails among the app-start calls (default).",
+   "Search input keeps the compiled `maxLength 50` as the `maxlength` attribute (OutSystemsReactWidgets Input; the capture shows none and parity does not flag it).",
+   "No change request: every shared block used exists (Layout, MenuIcon_Back, Result_Item_Image, UBT_LazyImage, AvatarImage, InputWithIcon, FreeSubscriptionActionDialog, CommonUI_InsideLayout, shell DialogAccessRestrictedAction).",
+   "ScreenBlock_ShareObject HandleShareProfileList (Share event) not wired: never raised by ProfileList."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T20:14:29"
+ },
+ {
+  "id": "Q7",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (pending orchestrator answer): other share types answer Label = identifier in the mock.; Q2 (fact, pending): fictional GetAvailableUsers: 1 fictional user (captured count and text lengths), Label \"Contacts list\" (13 chars, fictional), filter = every search word in FullName (case-insensitive).; Q5 → A (pending): the IsShared check-circle icon (compiled colour #009706, never captured) renders inside a NotCaptured marker without the inline colour (NO-INLINE-COLOR).; Q3 → A (pending): ShareObject stores the share in `LegacyShareObject.shares`; IsAllowed = mock user's subscription active.; Q4 → A (pending): Campus&Co / OneSchool Global and Feed cards built as compiled with fictional mocks.; GetHouseholdDetails fictional: the mock user's household (Bahia Blanca, Argentina; captured lengths), no members.; Proposed exemptions (capture / timing artifacts, `proposed-exemptions.json`): masked household photo (default), loading-item shimmer phase (loading, offline), loading fetch timeout of GetAvailableUsers and of the household image (loading), GetHouseholdDetails among the app-start calls (default).; Search input keeps the compiled `maxLength 50` as the `maxlength` attribute (OutSystemsReactWidgets Input; the capture shows none and parity does not flag it).; No change request: every shared block used exists (Layout, MenuIcon_Back, Result_Item_Image, UBT_LazyImage, AvatarImage, InputWithIcon, FreeSubscriptionActionDialog, CommonUI_InsideLayout, shell DialogAccessRestrictedAction).; ScreenBlock_ShareObject HandleShareProfileList (Share event) not wired: never raised by ProfileList. Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T06:59:45",
+  "items": [
+   "Q1 → A (pending orchestrator answer): other share types answer Label = identifier in the mock.",
+   "Q2 (fact, pending): fictional GetAvailableUsers: 1 fictional user (captured count and text lengths), Label \"Contacts list\" (13 chars, fictional), filter = every search word in FullName (case-insensitive).",
+   "Q5 → A (pending): the IsShared check-circle icon (compiled colour #009706, never captured) renders inside a NotCaptured marker without the inline colour (NO-INLINE-COLOR).",
+   "Q3 → A (pending): ShareObject stores the share in `LegacyShareObject.shares`; IsAllowed = mock user's subscription active.",
+   "Q4 → A (pending): Campus&Co / OneSchool Global and Feed cards built as compiled with fictional mocks.",
+   "GetHouseholdDetails fictional: the mock user's household (Bahia Blanca, Argentina; captured lengths), no members.",
+   "Proposed exemptions (capture / timing artifacts, `proposed-exemptions.json`): masked household photo (default), loading-item shimmer phase (loading, offline), loading fetch timeout of GetAvailableUsers and of the household image (loading), GetHouseholdDetails among the app-start calls (default).",
+   "Search input keeps the compiled `maxLength 50` as the `maxlength` attribute (OutSystemsReactWidgets Input; the capture shows none and parity does not flag it).",
+   "No change request: every shared block used exists (Layout, MenuIcon_Back, Result_Item_Image, UBT_LazyImage, AvatarImage, InputWithIcon, FreeSubscriptionActionDialog, CommonUI_InsideLayout, shell DialogAccessRestrictedAction).",
+   "ScreenBlock_ShareObject HandleShareProfileList (Share event) not wired: never raised by ProfileList."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T06:59:45"
+ }
+]

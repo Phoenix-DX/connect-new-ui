@@ -1,0 +1,58 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/ContactUsDetails?In_ContactSubjectId=Set%20up%20a%20UBT%20One%20account&In_ContactSubjectTitle=User%20Account%20Management&In_ListMenuOptionLabel=Set%20up%20a%20UBT%20One%20account&mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "ec3c6d9ffdc585a28234",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 140,
+  "texts": 18,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-21T04:28:53.746Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
+  "CAPTURE-SKELETON-SHIMMER-PHASE": 3,
+  "CAPTURE-TEXTAREA-ROWS-CONTACTUSDETAILS": 5,
+  "CAPTURE-TEXTAREA-ROWS-CONTACTUSDETAILS-FOOTER": 1,
+  "ignoreSubtrees": 1
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 328406,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 2,
+  "hotspots": [],
+  "diffPng": "migration/screens/ContactUsDetails/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

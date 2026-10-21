@@ -1,0 +1,3755 @@
+{
+ "builtAt": "2026-10-21T10:14:13",
+ "groups": {
+  "A": [
+   {
+    "path": "RUNBOOK.md",
+    "words": 1209
+   },
+   {
+    "path": "migration/scope-review.md",
+    "words": 4838
+   },
+   {
+    "path": "migration/scope-plan.md",
+    "words": 854
+   },
+   {
+    "path": "migration/tools/sitemap.py",
+    "words": 1437
+   },
+   {
+    "path": "migration/sitemap.md",
+    "words": 4323
+   },
+   {
+    "path": "migration/sitemap.html",
+    "words": 3485
+   },
+   {
+    "path": "migration/contexts/context-003-scope-decided.md",
+    "words": 432
+   },
+   {
+    "path": "migration/contexts/context-005-catalog-flags.md",
+    "words": 386
+   },
+   {
+    "path": "migration/contexts/context-029-build-kb.md",
+    "words": 364
+   },
+   {
+    "path": "migration/knowledge/auto-decisions-2026-10-16.md",
+    "words": 3171
+   },
+   {
+    "path": "migration/knowledge/orbit-assemble-ldm.md",
+    "words": 397
+   },
+   {
+    "path": "migration/knowledge/runtime-sources.md",
+    "words": 1370
+   },
+   {
+    "path": "migration/screens/ConnectShare/questions.md",
+    "words": 943
+   },
+   {
+    "path": "migration/screens/ConnectShare/questions.json",
+    "words": 1226
+   },
+   {
+    "path": "migration/screens/Menu/questions.md",
+    "words": 877
+   },
+   {
+    "path": "migration/screens/Menu/questions.json",
+    "words": 1153
+   }
+  ],
+  "pilot": [
+   {
+    "path": "migration/screens/Login/route-spec.md",
+    "words": 1454
+   },
+   {
+    "path": "migration/screens/HomeFeed/route-spec.md",
+    "words": 3208
+   },
+   {
+    "path": "migration/screens/Locality_Details/route-spec.md",
+    "words": 1556
+   },
+   {
+    "path": "migration/app-shell.spec.md",
+    "words": 5375
+   },
+   {
+    "path": "app/src/shared/UBTConnect/BottomBarMenu/README.md",
+    "words": 289
+   },
+   {
+    "path": "app/src/shared/UBTConnect/CommonUI_InsideLayout/README.md",
+    "words": 256
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Layout_LoginFlow/README.md",
+    "words": 229
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Layout_HomePage/README.md",
+    "words": 324
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/ShareSheet/README.md",
+    "words": 498
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Directory_EntityDetailsActions/README.md",
+    "words": 439
+   },
+   {
+    "path": "app/src/shared/osui/Carousel/README.md",
+    "words": 622
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/TagToggle/README.md",
+    "words": 127
+   },
+   {
+    "path": "app/src/shared/UBTConnect/App_NotificationIcon/README.md",
+    "words": 138
+   },
+   {
+    "path": "app/src/shared/UBTConnect/UnsupportedVersion_Wrapper/README.md",
+    "words": 139
+   }
+  ],
+  "B": [
+   {
+    "path": "app/docs/README.md",
+    "words": 199
+   },
+   {
+    "path": "app/docs/architecture/overview.md",
+    "words": 836
+   },
+   {
+    "path": "app/docs/guides/api-and-mocks.md",
+    "words": 932
+   },
+   {
+    "path": "app/docs/guides/device.md",
+    "words": 473
+   },
+   {
+    "path": "app/docs/guides/getting-started.md",
+    "words": 286
+   },
+   {
+    "path": "app/docs/guides/os-widgets.md",
+    "words": 681
+   },
+   {
+    "path": "app/docs/guides/pwa.md",
+    "words": 3091
+   },
+   {
+    "path": "app/docs/guides/quality.md",
+    "words": 255
+   },
+   {
+    "path": "app/docs/guides/shared-code.md",
+    "words": 842
+   },
+   {
+    "path": "app/docs/guides/shell.md",
+    "words": 3030
+   },
+   {
+    "path": "app/docs/known-original-bugs.md",
+    "words": 601
+   },
+   {
+    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingDetails/README.md",
+    "words": 111
+   },
+   {
+    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingDetails_Entry/README.md",
+    "words": 117
+   },
+   {
+    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingURL/README.md",
+    "words": 149
+   },
+   {
+    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleSummaryCard/README.md",
+    "words": 166
+   },
+   {
+    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleSummaryCard__Header/README.md",
+    "words": 57
+   },
+   {
+    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleSummaryDetailHeader_Skeleton/README.md",
+    "words": 100
+   },
+   {
+    "path": "app/src/shared/Connect2_Assemble_MUI/AssembleSummary_Card_Row/README.md",
+    "words": 46
+   },
+   {
+    "path": "app/src/shared/Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry/README.md",
+    "words": 240
+   },
+   {
+    "path": "app/src/shared/Connect2_Assemble_MUI/Assemble_FilterSubdivisionByLocality/README.md",
+    "words": 193
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/BaseLayout_UpdatedOSUI/README.md",
+    "words": 280
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/ConnectBlankSlate/README.md",
+    "words": 104
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/FreeSubscriptionActionDialog/README.md",
+    "words": 146
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/HandleImageLoadError/README.md",
+    "words": 122
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/InputCounter/README.md",
+    "words": 191
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/ItemOptionsMenu/README.md",
+    "words": 218
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/LabelWithCopyIcon/README.md",
+    "words": 101
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/Layout/README.md",
+    "words": 239
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/Layout_Orbit/README.md",
+    "words": 239
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/LocalityListDetail/README.md",
+    "words": 152
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/MenuIcon_Back/README.md",
+    "words": 65
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI/README.md",
+    "words": 167
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/MessageList_NoResults/README.md",
+    "words": 107
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/MultiResolutionImageLoader/README.md",
+    "words": 129
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton/README.md",
+    "words": 76
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/NC_Card_Item_Visual/README.md",
+    "words": 188
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/NC_Result_Item_Badge/README.md",
+    "words": 116
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/NC_Result_Item__Card/README.md",
+    "words": 138
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/NC_Result_Item__Image/README.md",
+    "words": 231
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/NetworkWarning/README.md",
+    "words": 125
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/NewConnectContent/README.md",
+    "words": 77
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/Person_Contact_Options/README.md",
+    "words": 182
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/PopupMenu/README.md",
+    "words": 263
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/RadioButtonListItem/README.md",
+    "words": 169
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/Result_Item_Image/README.md",
+    "words": 422
+   },
+   {
+    "path": "app/src/shared/Connect2_LegacyShared/Spinner/README.md",
+    "words": 109
+   },
+   {
+    "path": "app/src/shared/Connect2_MyBookmarks_MUI/NoBookmarks/README.md",
+    "words": 110
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit/README.md",
+    "words": 161
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Card_Event/README.md",
+    "words": 136
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Card_MemberInformation/README.md",
+    "words": 445
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Card_Milestone/README.md",
+    "words": 264
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Card_Template/README.md",
+    "words": 174
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer/README.md",
+    "words": 91
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/DaySelector/README.md",
+    "words": 117
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/ErrorScreen/README.md",
+    "words": 188
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection/README.md",
+    "words": 163
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem/README.md",
+    "words": 241
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/ListOfDaySelectors/README.md",
+    "words": 271
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/MilestoneHeader/README.md",
+    "words": 311
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit/README.md",
+    "words": 140
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/NoResults/README.md",
+    "words": 97
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Orbit_FooterWithActions/README.md",
+    "words": 194
+   },
+   {
+    "path": "app/src/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading/README.md",
+    "words": 208
+   },
+   {
+    "path": "app/src/shared/Leaflet/LeafletMap/README.md",
+    "words": 579
+   },
+   {
+    "path": "app/src/shared/NavigationHandler/BackNavigationHandler/README.md",
+    "words": 111
+   },
+   {
+    "path": "app/src/shared/NavigationHandler/LayoutRuntime_Top/README.md",
+    "words": 71
+   },
+   {
+    "path": "app/src/shared/NavigationHandler/NavigationConfirmationDialog/README.md",
+    "words": 184
+   },
+   {
+    "path": "app/src/shared/NavigationHandler/NavigationHandler/README.md",
+    "words": 100
+   },
+   {
+    "path": "app/src/shared/NavigationHandler/PreventBackNavigation/README.md",
+    "words": 91
+   },
+   {
+    "path": "app/src/shared/NavigationHandler/ScrollAnchor/README.md",
+    "words": 130
+   },
+   {
+    "path": "app/src/shared/README.md",
+    "words": 25
+   },
+   {
+    "path": "app/src/shared/ReactiveHtmlSanitizer/SanitizedHtml/README.md",
+    "words": 322
+   },
+   {
+    "path": "app/src/shared/UBTConnect/App_IconBadge/README.md",
+    "words": 179
+   },
+   {
+    "path": "app/src/shared/UBTConnect/App_NotificationRefresh/README.md",
+    "words": 98
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Block_PINRegister_ContentWrapper/README.md",
+    "words": 257
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Block_PINUnlock_ContentWrapper/README.md",
+    "words": 308
+   },
+   {
+    "path": "app/src/shared/UBTConnect/BottomBarContent/README.md",
+    "words": 94
+   },
+   {
+    "path": "app/src/shared/UBTConnect/CacheControl_UserInfo_Wrapper/README.md",
+    "words": 52
+   },
+   {
+    "path": "app/src/shared/UBTConnect/CarouselTag/README.md",
+    "words": 89
+   },
+   {
+    "path": "app/src/shared/UBTConnect/ContactByEmailForm/README.md",
+    "words": 273
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Dialog_CustomChoice/README.md",
+    "words": 193
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Dialog_Navigation/README.md",
+    "words": 144
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Directory_EmptyState/README.md",
+    "words": 124
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Directory_LegendBottomSheet/README.md",
+    "words": 141
+   },
+   {
+    "path": "app/src/shared/UBTConnect/EntitiesCarouse_lSupperMeetingDetails/README.md",
+    "words": 105
+   },
+   {
+    "path": "app/src/shared/UBTConnect/EntitiesCarousel/README.md",
+    "words": 337
+   },
+   {
+    "path": "app/src/shared/UBTConnect/EntitiesCarousel_Element/README.md",
+    "words": 212
+   },
+   {
+    "path": "app/src/shared/UBTConnect/EntitiesCarousel_HeaderGenerator/README.md",
+    "words": 114
+   },
+   {
+    "path": "app/src/shared/UBTConnect/EntitiesCarousel_HouseholdDetails/README.md",
+    "words": 119
+   },
+   {
+    "path": "app/src/shared/UBTConnect/FeedBlock_CommunityPopulation/README.md",
+    "words": 121
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Feed_Embeded/README.md",
+    "words": 495
+   },
+   {
+    "path": "app/src/shared/UBTConnect/FilterSheet/README.md",
+    "words": 294
+   },
+   {
+    "path": "app/src/shared/UBTConnect/FilterSheet_Icon/README.md",
+    "words": 108
+   },
+   {
+    "path": "app/src/shared/UBTConnect/FilterSheet_OptionChoice_Item/README.md",
+    "words": 96
+   },
+   {
+    "path": "app/src/shared/UBTConnect/FilterSheet_OptionList_Item/README.md",
+    "words": 134
+   },
+   {
+    "path": "app/src/shared/UBTConnect/HandleOnResumeOpenLink/README.md",
+    "words": 76
+   },
+   {
+    "path": "app/src/shared/UBTConnect/HouseholdDetails_Block/README.md",
+    "words": 458
+   },
+   {
+    "path": "app/src/shared/UBTConnect/HouseholdDetails_Members_Block/README.md",
+    "words": 208
+   },
+   {
+    "path": "app/src/shared/UBTConnect/HouseholdDetails_TimelinePhoto/README.md",
+    "words": 210
+   },
+   {
+    "path": "app/src/shared/UBTConnect/HouseholdDetails_TimelinePhoto_List/README.md",
+    "words": 86
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Household_GalleryCard/README.md",
+    "words": 94
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Household_GalleryCard_List/README.md",
+    "words": 165
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Menu_List/README.md",
+    "words": 278
+   },
+   {
+    "path": "app/src/shared/UBTConnect/OfflineDataSyncEvents/README.md",
+    "words": 94
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Policy_Checker/README.md",
+    "words": 95
+   },
+   {
+    "path": "app/src/shared/UBTConnect/SectionSeparator/README.md",
+    "words": 88
+   },
+   {
+    "path": "app/src/shared/UBTConnect/StatisticsList/README.md",
+    "words": 221
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Statistics_Icons/README.md",
+    "words": 137
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Statistics_TypedItem/README.md",
+    "words": 193
+   },
+   {
+    "path": "app/src/shared/UBTConnect/SubLayout_Browse_Section/README.md",
+    "words": 73
+   },
+   {
+    "path": "app/src/shared/UBTConnect/SubLayout_DirectoryDetailScreen/README.md",
+    "words": 126
+   },
+   {
+    "path": "app/src/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section/README.md",
+    "words": 128
+   },
+   {
+    "path": "app/src/shared/UBTConnect/SupperMeeting_DetailsBlock/README.md",
+    "words": 178
+   },
+   {
+    "path": "app/src/shared/UBTConnect/SupperMeeting_HouseholdList/README.md",
+    "words": 141
+   },
+   {
+    "path": "app/src/shared/UBTConnect/SupperMeeting_ImageCard_Content/README.md",
+    "words": 101
+   },
+   {
+    "path": "app/src/shared/UBTConnect/SupperMeeting_ImageCard_Content_IconText/README.md",
+    "words": 109
+   },
+   {
+    "path": "app/src/shared/UBTConnect/SupperMeeting_ImageCard_Content_Statistics/README.md",
+    "words": 113
+   },
+   {
+    "path": "app/src/shared/UBTConnect/UnsupportedVersion/README.md",
+    "words": 192
+   },
+   {
+    "path": "app/src/shared/UBTConnect/UnsupportedVersion_Browser/README.md",
+    "words": 67
+   },
+   {
+    "path": "app/src/shared/UBTConnect/UnsupportedVersion_Native/README.md",
+    "words": 56
+   },
+   {
+    "path": "app/src/shared/UBTConnect/UnsupportedVersion_WebView/README.md",
+    "words": 50
+   },
+   {
+    "path": "app/src/shared/UBTConnect/Version/README.md",
+    "words": 163
+   },
+   {
+    "path": "app/src/shared/UBTConnect/WelcomeToConnect/README.md",
+    "words": 82
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/ActionsMenu/README.md",
+    "words": 152
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/AddNote/README.md",
+    "words": 134
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/AvatarDouble/README.md",
+    "words": 151
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/AvatarImage/README.md",
+    "words": 217
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Badge/README.md",
+    "words": 210
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/BottomSheet/README.md",
+    "words": 469
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Button/README.md",
+    "words": 144
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/CircleButton/README.md",
+    "words": 223
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/CircleButton_IconPrimary/README.md",
+    "words": 201
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/CircleButton_WithLabel/README.md",
+    "words": 233
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Columns_Three/README.md",
+    "words": 169
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Columns_Two/README.md",
+    "words": 171
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/ComingSoon/README.md",
+    "words": 116
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/ContextMenu/README.md",
+    "words": 299
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/ContextMenu_Item/README.md",
+    "words": 140
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/CustomContainer/README.md",
+    "words": 191
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/CustomText/README.md",
+    "words": 209
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/DynamicTextArea/README.md",
+    "words": 133
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/EmptyList/README.md",
+    "words": 121
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/FixedFooter/README.md",
+    "words": 138
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/HighlightSearch/README.md",
+    "words": 162
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/HorizontalTagList/README.md",
+    "words": 173
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Icon/README.md",
+    "words": 160
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/IconBadge/README.md",
+    "words": 150
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/IconInline_Internal/README.md",
+    "words": 78
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/IconSVG/README.md",
+    "words": 119
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/IconText/README.md",
+    "words": 213
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/ImageCard_LazyLoading/README.md",
+    "words": 199
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/ImageCard__Content/README.md",
+    "words": 152
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/ImageCard__Content__Tag/README.md",
+    "words": 79
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Input/README.md",
+    "words": 372
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/InputCounter/README.md",
+    "words": 203
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/KebabButtonMenu/README.md",
+    "words": 128
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/KebabButton_BookmarkNotes/README.md",
+    "words": 124
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Layout_DetailPage/README.md",
+    "words": 376
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Layout_MainPages/README.md",
+    "words": 245
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Layout_MainPages_FixedTitle/README.md",
+    "words": 316
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/LazyImage/README.md",
+    "words": 328
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Member_ListItem/README.md",
+    "words": 133
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/NonMember_ListItem/README.md",
+    "words": 189
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Note_Item/README.md",
+    "words": 298
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Note_Item_List/README.md",
+    "words": 311
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Popup/README.md",
+    "words": 218
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/PopupMenu/README.md",
+    "words": 330
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/SVG_Background_Custom/README.md",
+    "words": 194
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/SVG_Background_LoginWrapper/README.md",
+    "words": 95
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/SeeMoreSection/README.md",
+    "words": 138
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/SelectionOption_List/README.md",
+    "words": 190
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/SkeletonSection/README.md",
+    "words": 177
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/StaticInput/README.md",
+    "words": 135
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Statistics_ListItem/README.md",
+    "words": 169
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/SubLayout_HomePageSearch/README.md",
+    "words": 92
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/SubLayout_Section/README.md",
+    "words": 125
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/TagContent/README.md",
+    "words": 175
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/TextArea_WithCounter/README.md",
+    "words": 174
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/TextEllipsis/README.md",
+    "words": 99
+   },
+   {
+    "path": "app/src/shared/UBTConnectLibrary/Update_ListItem/README.md",
+    "words": 293
+   },
+   {
+    "path": "app/src/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS/README.md",
+    "words": 460
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/AddressPopup/README.md",
+    "words": 127
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/AddressPopup_Wrapper/README.md",
+    "words": 194
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/Button/README.md",
+    "words": 219
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/CacheControl/README.md",
+    "words": 162
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/CacheControl_AllCountries/README.md",
+    "words": 151
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/CacheControl_AllLocalities/README.md",
+    "words": 151
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/CacheControl_Policies/README.md",
+    "words": 169
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/CacheControl_UserInfo/README.md",
+    "words": 145
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/ContactByMessage_Wrapper/README.md",
+    "words": 129
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/ContactPopup/README.md",
+    "words": 445
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/ContactPopup_ByMessage/README.md",
+    "words": 119
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/ContactPopup_ByPhone/README.md",
+    "words": 144
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy/README.md",
+    "words": 126
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/NoteListActions/README.md",
+    "words": 330
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/NotesSheet/README.md",
+    "words": 324
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/SearchResult_Item/README.md",
+    "words": 233
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/SharePopup/README.md",
+    "words": 281
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/ShareSheet_Section/README.md",
+    "words": 100
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/ShareSheet_SectionTitle/README.md",
+    "words": 110
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/ShareableObject_Generic/README.md",
+    "words": 135
+   },
+   {
+    "path": "app/src/shared/UBTConnect_Utils/UBT_LazyImage/README.md",
+    "words": 495
+   },
+   {
+    "path": "app/src/shared/UBT_AppManager/InactivityTimer/README.md",
+    "words": 142
+   },
+   {
+    "path": "app/src/shared/UBT_AppManager/PinCode/README.md",
+    "words": 296
+   },
+   {
+    "path": "app/src/shared/UBT_AppManager/Pincode_Register/README.md",
+    "words": 187
+   },
+   {
+    "path": "app/src/shared/UBT_AppManager/Pincode_Unlock/README.md",
+    "words": 230
+   },
+   {
+    "path": "app/src/shared/UBT_AppManager_Mobile/FingerprintScanner/README.md",
+    "words": 129
+   },
+   {
+    "path": "app/src/shared/UBT_AppManager_Mobile/PinUnlock_MobileWrapper/README.md",
+    "words": 202
+   },
+   {
+    "path": "app/src/shared/osui/Accordion/README.md",
+    "words": 165
+   },
+   {
+    "path": "app/src/shared/osui/AccordionItem/README.md",
+    "words": 258
+   },
+   {
+    "path": "app/src/shared/osui/AlignCenter/README.md",
+    "words": 84
+   },
+   {
+    "path": "app/src/shared/osui/Animate/README.md",
+    "words": 111
+   },
+   {
+    "path": "app/src/shared/osui/BlankSlate/README.md",
+    "words": 117
+   },
+   {
+    "path": "app/src/shared/osui/BottomBarItem/README.md",
+    "words": 120
+   },
+   {
+    "path": "app/src/shared/osui/BottomSheet/README.md",
+    "words": 516
+   },
+   {
+    "path": "app/src/shared/osui/ButtonLoading/README.md",
+    "words": 240
+   },
+   {
+    "path": "app/src/shared/osui/Card/README.md",
+    "words": 136
+   },
+   {
+    "path": "app/src/shared/osui/Columns2/README.md",
+    "words": 152
+   },
+   {
+    "path": "app/src/shared/osui/Columns3/README.md",
+    "words": 142
+   },
+   {
+    "path": "app/src/shared/osui/Columns4/README.md",
+    "words": 98
+   },
+   {
+    "path": "app/src/shared/osui/DEPRECATED_Accordion/README.md",
+    "words": 226
+   },
+   {
+    "path": "app/src/shared/osui/DEPRECATED_AccordionItem/README.md",
+    "words": 388
+   },
+   {
+    "path": "app/src/shared/osui/DEPRECATED_ButtonLoading/README.md",
+    "words": 144
+   },
+   {
+    "path": "app/src/shared/osui/DEPRECATED_GalleryV2/README.md",
+    "words": 201
+   },
+   {
+    "path": "app/src/shared/osui/DropdownSearch/README.md",
+    "words": 359
+   },
+   {
+    "path": "app/src/shared/osui/DropdownTags/README.md",
+    "words": 198
+   },
+   {
+    "path": "app/src/shared/osui/Gallery/README.md",
+    "words": 218
+   },
+   {
+    "path": "app/src/shared/osui/InlineSVG/README.md",
+    "words": 159
+   },
+   {
+    "path": "app/src/shared/osui/InputWithIcon/README.md",
+    "words": 176
+   },
+   {
+    "path": "app/src/shared/osui/NetworkStatusChanged/README.md",
+    "words": 126
+   },
+   {
+    "path": "app/src/shared/osui/OfflineDataSyncCore/README.md",
+    "words": 144
+   },
+   {
+    "path": "app/src/shared/osui/PullToRefresh/README.md",
+    "words": 108
+   },
+   {
+    "path": "app/src/shared/osui/RangeSlider/README.md",
+    "words": 293
+   },
+   {
+    "path": "app/src/shared/osui/Separator/README.md",
+    "words": 121
+   },
+   {
+    "path": "app/src/shared/osui/SwipeEvents/README.md",
+    "words": 106
+   },
+   {
+    "path": "app/src/shared/osui/Tag/README.md",
+    "words": 132
+   },
+   {
+    "path": "app/src/shared/osui/Tooltip/README.md",
+    "words": 239
+   },
+   {
+    "path": "app/src/shared/osui/TouchEvents/README.md",
+    "words": 274
+   },
+   {
+    "path": "app/src/shell/testSession.ts",
+    "words": 810
+   },
+   {
+    "path": "migration/capture-notes.md",
+    "words": 369
+   },
+   {
+    "path": "migration/knowledge/audit-a1-empty-handlers.md",
+    "words": 1121
+   },
+   {
+    "path": "migration/knowledge/auth.md",
+    "words": 353
+   },
+   {
+    "path": "migration/knowledge/feature-flag-helpers.md",
+    "words": 481
+   },
+   {
+    "path": "migration/knowledge/mock-fixtures.md",
+    "words": 612
+   },
+   {
+    "path": "migration/knowledge/navigation.md",
+    "words": 252
+   },
+   {
+    "path": "migration/knowledge/orbit-assemble-ldm.md",
+    "words": 397
+   },
+   {
+    "path": "migration/knowledge/pwa-file-plugins.md",
+    "words": 664
+   },
+   {
+    "path": "migration/knowledge/pwa-tst-service-worker.md",
+    "words": 526
+   },
+   {
+    "path": "migration/knowledge/runtime-sources.md",
+    "words": 1370
+   },
+   {
+    "path": "migration/knowledge/shell-facts.md",
+    "words": 2246
+   },
+   {
+    "path": "migration/knowledge/shell-observed.md",
+    "words": 408
+   },
+   {
+    "path": "migration/knowledge/stack-baseline.md",
+    "words": 603
+   },
+   {
+    "path": "migration/knowledge/static-entities.md",
+    "words": 235
+   },
+   {
+    "path": "migration/patterns/P-BACK.md",
+    "words": 64
+   },
+   {
+    "path": "migration/patterns/P-CALLS.md",
+    "words": 88
+   },
+   {
+    "path": "migration/patterns/P-DATA.md",
+    "words": 86
+   },
+   {
+    "path": "migration/patterns/P-DIALOG.md",
+    "words": 69
+   },
+   {
+    "path": "migration/patterns/P-FLAGS.md",
+    "words": 103
+   },
+   {
+    "path": "migration/patterns/P-FORM.md",
+    "words": 58
+   },
+   {
+    "path": "migration/patterns/P-LIST.md",
+    "words": 64
+   },
+   {
+    "path": "migration/patterns/P-MOCKS.md",
+    "words": 106
+   },
+   {
+    "path": "migration/patterns/P-MUTATION.md",
+    "words": 102
+   },
+   {
+    "path": "migration/patterns/P-OSUI.md",
+    "words": 123
+   },
+   {
+    "path": "migration/patterns/P-PARAMS.md",
+    "words": 80
+   },
+   {
+    "path": "migration/patterns/P-STATES.md",
+    "words": 78
+   },
+   {
+    "path": "migration/pwa/pwa-discussion-plan.md",
+    "words": 4143
+   },
+   {
+    "path": "migration/screens/AcceptPendingPolicies/route-spec.md",
+    "words": 1778
+   },
+   {
+    "path": "migration/screens/AssembleDetail/route-spec.md",
+    "words": 1110
+   },
+   {
+    "path": "migration/screens/AssembleEvents/route-spec.md",
+    "words": 1272
+   },
+   {
+    "path": "migration/screens/Assemble_BrowseByCountry/route-spec.md",
+    "words": 1040
+   },
+   {
+    "path": "migration/screens/BookmarksByGroup/route-spec.md",
+    "words": 1011
+   },
+   {
+    "path": "migration/screens/BrowseCountries/route-spec.md",
+    "words": 763
+   },
+   {
+    "path": "migration/screens/BrowseDirectory/route-spec.md",
+    "words": 1298
+   },
+   {
+    "path": "migration/screens/CommunityBusinessDetails_CoomingSoon/route-spec.md",
+    "words": 821
+   },
+   {
+    "path": "migration/screens/ConnectShare/route-spec.md",
+    "words": 1160
+   },
+   {
+    "path": "migration/screens/ContactByEmailLDMCoordinator/route-spec.md",
+    "words": 718
+   },
+   {
+    "path": "migration/screens/ContactByEmailMember/route-spec.md",
+    "words": 1098
+   },
+   {
+    "path": "migration/screens/ContactByEmailOneSchoolGlobal/route-spec.md",
+    "words": 1128
+   },
+   {
+    "path": "migration/screens/ContactByEmailOrbitHelpdesk/route-spec.md",
+    "words": 668
+   },
+   {
+    "path": "migration/screens/ContactByEmailOrbitHost/route-spec.md",
+    "words": 723
+   },
+   {
+    "path": "migration/screens/ContactUsDetails/route-spec.md",
+    "words": 1632
+   },
+   {
+    "path": "migration/screens/ContactUsMenu/route-spec.md",
+    "words": 982
+   },
+   {
+    "path": "migration/screens/CountryDetails/route-spec.md",
+    "words": 1412
+   },
+   {
+    "path": "migration/screens/CountryList/route-spec.md",
+    "words": 1231
+   },
+   {
+    "path": "migration/screens/EmailContact/route-spec.md",
+    "words": 1090
+   },
+   {
+    "path": "migration/screens/EmailTarget/route-spec.md",
+    "words": 1091
+   },
+   {
+    "path": "migration/screens/EventBooklet/route-spec.md",
+    "words": 2469
+   },
+   {
+    "path": "migration/screens/EventDetail/route-spec.md",
+    "words": 1895
+   },
+   {
+    "path": "migration/screens/FeedItemDetail/route-spec.md",
+    "words": 1170
+   },
+   {
+    "path": "migration/screens/GuestArrangements/route-spec.md",
+    "words": 1127
+   },
+   {
+    "path": "migration/screens/HelpersDetail/route-spec.md",
+    "words": 1134
+   },
+   {
+    "path": "migration/screens/HostSurvey/route-spec.md",
+    "words": 741
+   },
+   {
+    "path": "migration/screens/HouseholdCarousel/route-spec.md",
+    "words": 1794
+   },
+   {
+    "path": "migration/screens/HouseholdDetails/route-spec.md",
+    "words": 1324
+   },
+   {
+    "path": "migration/screens/Household_Relations/route-spec.md",
+    "words": 2035
+   },
+   {
+    "path": "migration/screens/LDM_Email_V2/route-spec.md",
+    "words": 1448
+   },
+   {
+    "path": "migration/screens/LDM_EventDetail_V2/route-spec.md",
+    "words": 1237
+   },
+   {
+    "path": "migration/screens/LDM_MyEvents_V2/route-spec.md",
+    "words": 1014
+   },
+   {
+    "path": "migration/screens/LegacyShareObject/route-spec.md",
+    "words": 2219
+   },
+   {
+    "path": "migration/screens/Menu/route-spec.md",
+    "words": 1149
+   },
+   {
+    "path": "migration/screens/MessageDetail/route-spec.md",
+    "words": 1411
+   },
+   {
+    "path": "migration/screens/MessageList/route-spec.md",
+    "words": 2592
+   },
+   {
+    "path": "migration/screens/MilestoneDetail/route-spec.md",
+    "words": 1107
+   },
+   {
+    "path": "migration/screens/MyBookmarks/route-spec.md",
+    "words": 800
+   },
+   {
+    "path": "migration/screens/MyEntertaining/route-spec.md",
+    "words": 1220
+   },
+   {
+    "path": "migration/screens/Notes/route-spec.md",
+    "words": 1021
+   },
+   {
+    "path": "migration/screens/Notifications/route-spec.md",
+    "words": 1445
+   },
+   {
+    "path": "migration/screens/OneSchoolGlobalDetails/route-spec.md",
+    "words": 1219
+   },
+   {
+    "path": "migration/screens/OrbitAdminEventDetail/route-spec.md",
+    "words": 1549
+   },
+   {
+    "path": "migration/screens/OrbitAdminLanding/route-spec.md",
+    "words": 1098
+   },
+   {
+    "path": "migration/screens/OrbitLanding/route-spec.md",
+    "words": 1228
+   },
+   {
+    "path": "migration/screens/PINBiometricsMenu/route-spec.md",
+    "words": 773
+   },
+   {
+    "path": "migration/screens/PINChange/route-spec.md",
+    "words": 901
+   },
+   {
+    "path": "migration/screens/PINRegister/route-spec.md",
+    "words": 1063
+   },
+   {
+    "path": "migration/screens/PINUnlock/route-spec.md",
+    "words": 1120
+   },
+   {
+    "path": "migration/screens/Photobook/route-spec.md",
+    "words": 646
+   },
+   {
+    "path": "migration/screens/Profile/route-spec.md",
+    "words": 1481
+   },
+   {
+    "path": "migration/screens/QRCodeGenerate/route-spec.md",
+    "words": 1076
+   },
+   {
+    "path": "migration/screens/Search/route-spec.md",
+    "words": 1520
+   },
+   {
+    "path": "migration/screens/Services/route-spec.md",
+    "words": 1598
+   },
+   {
+    "path": "migration/screens/Splash/route-spec.md",
+    "words": 1155
+   },
+   {
+    "path": "migration/screens/SupperMeeting_Carousel/route-spec.md",
+    "words": 1604
+   },
+   {
+    "path": "migration/screens/SupperMeeting_Details/route-spec.md",
+    "words": 1630
+   },
+   {
+    "path": "migration/screens/TermsAndPoliciesMenu/route-spec.md",
+    "words": 915
+   },
+   {
+    "path": "migration/screens/TransportDetail/route-spec.md",
+    "words": 995
+   },
+   {
+    "path": "migration/screens/Updates_SingleList/route-spec.md",
+    "words": 1639
+   },
+   {
+    "path": "migration/screens/ViewDocuments/route-spec.md",
+    "words": 1075
+   },
+   {
+    "path": "migration/shell/README.md",
+    "words": 23
+   },
+   {
+    "path": "migration/shell/client-variables.md",
+    "words": 973
+   }
+  ],
+  "generated": [
+   {
+    "path": "app/docs/reference/api.md",
+    "words": 1524
+   },
+   {
+    "path": "app/docs/reference/flags.md",
+    "words": 347
+   },
+   {
+    "path": "app/docs/reference/screens.md",
+    "words": 1064
+   },
+   {
+    "path": "app/docs/reference/shared-blocks.md",
+    "words": 1823
+   },
+   {
+    "path": "app/docs/reference/stack.md",
+    "words": 3187
+   },
+   {
+    "path": "app/docs/guides/screens.md",
+    "words": 251
+   },
+   {
+    "path": "migration/blocks/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails.md",
+    "words": 492
+   },
+   {
+    "path": "migration/blocks/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails_Entry.md",
+    "words": 473
+   },
+   {
+    "path": "migration/blocks/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.md",
+    "words": 736
+   },
+   {
+    "path": "migration/blocks/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard.md",
+    "words": 745
+   },
+   {
+    "path": "migration/blocks/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard__Header.md",
+    "words": 262
+   },
+   {
+    "path": "migration/blocks/Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row.md",
+    "words": 336
+   },
+   {
+    "path": "migration/blocks/Connect2_Assemble_MUI.Assemble.Assemble_FilterLocalityByCountry.md",
+    "words": 718
+   },
+   {
+    "path": "migration/blocks/Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality.md",
+    "words": 710
+   },
+   {
+    "path": "migration/blocks/Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton.md",
+    "words": 448
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Directory.LocalityListDetail.md",
+    "words": 2531
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI.md",
+    "words": 1436
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Layout.Layout.md",
+    "words": 634
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Layout.MenuIcon_Back.md",
+    "words": 361
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.md",
+    "words": 483
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit.md",
+    "words": 629
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.NewConnect_Skeleton.NC_Card_Item_Text__Skeleton.md",
+    "words": 285
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.NewConnect_Utilities.NC_Card_Item_Visual.md",
+    "words": 485
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item_Badge.md",
+    "words": 305
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card.md",
+    "words": 689
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image.md",
+    "words": 863
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Reusable.ConnectBlankSlate.md",
+    "words": 466
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Reusable.InputCounter.md",
+    "words": 292
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Reusable.MessageList_NoResults.md",
+    "words": 508
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Reusable.NewConnectContent.md",
+    "words": 394
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Reusable.Person_Contact_Options.md",
+    "words": 700
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Reusable.RadioButtonListItem.md",
+    "words": 363
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Reusable.Spinner.md",
+    "words": 325
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog.md",
+    "words": 430
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Utility.HandleImageLoadError.md",
+    "words": 328
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Utility.LabelWithCopyIcon.md",
+    "words": 421
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Utility.Result_Item_Image.md",
+    "words": 1365
+   },
+   {
+    "path": "migration/blocks/Connect2_LegacyShared.Widgets.MultiResolutionImageLoader.md",
+    "words": 300
+   },
+   {
+    "path": "migration/blocks/Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks.md",
+    "words": 389
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection.md",
+    "words": 541
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Event.md",
+    "words": 631
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.md",
+    "words": 1090
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone.md",
+    "words": 737
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template.md",
+    "words": 962
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer.md",
+    "words": 332
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem.md",
+    "words": 560
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader.md",
+    "words": 489
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit.md",
+    "words": 382
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DaySelector.md",
+    "words": 356
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ListOfDaySelectors.md",
+    "words": 624
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoInformation_Orbit.md",
+    "words": 379
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoResults.md",
+    "words": 346
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_FooterWithActions.md",
+    "words": 522
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading.md",
+    "words": 905
+   },
+   {
+    "path": "migration/blocks/Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen.md",
+    "words": 399
+   },
+   {
+    "path": "migration/blocks/INDEX.md",
+    "words": 856
+   },
+   {
+    "path": "migration/blocks/Leaflet.Leaflet.LeafletMap.md",
+    "words": 960
+   },
+   {
+    "path": "migration/blocks/NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog.md",
+    "words": 678
+   },
+   {
+    "path": "migration/blocks/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.md",
+    "words": 287
+   },
+   {
+    "path": "migration/blocks/NavigationHandler.NavigationHandler.BackNavigationHandler.md",
+    "words": 308
+   },
+   {
+    "path": "migration/blocks/NavigationHandler.NavigationHandler.NavigationHandler.md",
+    "words": 263
+   },
+   {
+    "path": "migration/blocks/NavigationHandler.NavigationHandler.PreventBackNavigation.md",
+    "words": 384
+   },
+   {
+    "path": "migration/blocks/NavigationHandler.ScrollAnchors.ScrollAnchor.md",
+    "words": 300
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Adaptive.Columns2.md",
+    "words": 861
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Adaptive.Columns3.md",
+    "words": 723
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Adaptive.Columns4.md",
+    "words": 362
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Adaptive.DEPRECATED_GalleryV2.md",
+    "words": 575
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Adaptive.Gallery.md",
+    "words": 759
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Content.Accordion.md",
+    "words": 319
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Content.AccordionItem.md",
+    "words": 681
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Content.BlankSlate.md",
+    "words": 436
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Content.Card.md",
+    "words": 433
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Content.DEPRECATED_Accordion.md",
+    "words": 427
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.md",
+    "words": 1250
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Content.Tag.md",
+    "words": 431
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Content.Tooltip.md",
+    "words": 384
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Interaction.Animate.md",
+    "words": 387
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Interaction.BottomSheet.md",
+    "words": 807
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Interaction.Carousel.md",
+    "words": 2220
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Interaction.DropdownSearch.md",
+    "words": 293
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Interaction.DropdownTags.md",
+    "words": 293
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Interaction.InputWithIcon.md",
+    "words": 544
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Interaction.RangeSlider.md",
+    "words": 315
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Navigation.BottomBarItem.md",
+    "words": 428
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Private.NetworkStatusChanged.md",
+    "words": 324
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Private.OfflineDataSyncCore.md",
+    "words": 370
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Private.PullToRefresh.md",
+    "words": 509
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Utilities.AlignCenter.md",
+    "words": 302
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Utilities.ButtonLoading.md",
+    "words": 398
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading.md",
+    "words": 364
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Utilities.InlineSVG.md",
+    "words": 455
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Utilities.Separator.md",
+    "words": 44
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Utilities.SwipeEvents.md",
+    "words": 364
+   },
+   {
+    "path": "migration/blocks/OutSystemsUI_2_23.Utilities.TouchEvents.md",
+    "words": 273
+   },
+   {
+    "path": "migration/blocks/ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml.md",
+    "words": 357
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper.md",
+    "words": 339
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common.BottomBarContent.md",
+    "words": 694
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common.BottomBarMenu.md",
+    "words": 819
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common.CommonUI_InsideLayout.md",
+    "words": 845
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common.OfflineDataSyncEvents.md",
+    "words": 486
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common.UnsupportedVersion.md",
+    "words": 83
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common.UnsupportedVersion_Browser.md",
+    "words": 83
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common.UnsupportedVersion_Native.md",
+    "words": 83
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common.UnsupportedVersion_WebView.md",
+    "words": 83
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common.UnsupportedVersion_Wrapper.md",
+    "words": 83
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common.Version.md",
+    "words": 327
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common.WelcomeToConnect.md",
+    "words": 509
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_CommonBlocks_Filter.FilterSheet.md",
+    "words": 980
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.md",
+    "words": 466
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item.md",
+    "words": 728
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item.md",
+    "words": 775
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common_Blocks.App_IconBadge.md",
+    "words": 595
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common_Blocks.App_NotificationIcon.md",
+    "words": 410
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common_Blocks.App_NotificationRefresh.md",
+    "words": 260
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common_Blocks.SectionSeparator.md",
+    "words": 365
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_CustomChoice.md",
+    "words": 653
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation.md",
+    "words": 647
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Menu.Menu_List.md",
+    "words": 787
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.md",
+    "words": 782
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.md",
+    "words": 801
+   },
+   {
+    "path": "migration/blocks/UBTConnect.App_Policies.Policy_Checker.md",
+    "words": 83
+   },
+   {
+    "path": "migration/blocks/UBTConnect.ContactFlow.ContactByEmailForm.md",
+    "words": 791
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Caroussel.CarouselTag.md",
+    "words": 324
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails.md",
+    "words": 332
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Caroussel.EntitiesCarousel.md",
+    "words": 652
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.md",
+    "words": 616
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator.md",
+    "words": 266
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails.md",
+    "words": 388
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_CommonBlocks.Directory_EmptyState.md",
+    "words": 458
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.md",
+    "words": 882
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Household.HouseholdDetails_Block.md",
+    "words": 884
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.md",
+    "words": 767
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto.md",
+    "words": 592
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List.md",
+    "words": 387
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Household_Blocks.Household_GalleryCard.md",
+    "words": 488
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Household_Blocks.Household_GalleryCard_List.md",
+    "words": 609
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Locality.Directory_LegendBottomSheet.md",
+    "words": 741
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Locality.StatisticsList.md",
+    "words": 773
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Locality.Statistics_Icons.md",
+    "words": 714
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_Locality.Statistics_TypedItem.md",
+    "words": 788
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock.md",
+    "words": 719
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList.md",
+    "words": 354
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content.md",
+    "words": 555
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_IconText.md",
+    "words": 419
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_Statistics.md",
+    "words": 727
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Home.FeedBlock_CommunityPopulation.md",
+    "words": 633
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Home.Feed_Embeded.md",
+    "words": 741
+   },
+   {
+    "path": "migration/blocks/UBTConnect.Legacy_Share.HandleOnResumeOpenLink.md",
+    "words": 440
+   },
+   {
+    "path": "migration/blocks/UBTConnect.SubLayout.SubLayout_Browse_Section.md",
+    "words": 393
+   },
+   {
+    "path": "migration/blocks/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen.md",
+    "words": 566
+   },
+   {
+    "path": "migration/blocks/UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section.md",
+    "words": 544
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.BasePatterns.Columns_Three.md",
+    "words": 566
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.BasePatterns.Columns_Two.md",
+    "words": 535
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.BasePatterns.CustomContainer.md",
+    "words": 511
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.BasePatterns.CustomText.md",
+    "words": 730
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectCorePatterns.ActionsMenu.md",
+    "words": 762
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectCorePatterns.ContextMenu.md",
+    "words": 727
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading.md",
+    "words": 803
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu.md",
+    "words": 465
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectCorePatterns.Member_ListItem.md",
+    "words": 673
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem.md",
+    "words": 744
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem.md",
+    "words": 778
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectCorePatterns.Update_ListItem.md",
+    "words": 845
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.AddNote.md",
+    "words": 633
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.AvatarDouble.md",
+    "words": 46
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.AvatarImage.md",
+    "words": 781
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.BottomSheet.md",
+    "words": 809
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.Button.md",
+    "words": 550
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.CircleButton.md",
+    "words": 717
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary.md",
+    "words": 567
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel.md",
+    "words": 637
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.ComingSoon.md",
+    "words": 433
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.ContextMenu_Item.md",
+    "words": 54
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.DynamicTextArea.md",
+    "words": 339
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.EmptyList.md",
+    "words": 670
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.FixedFooter.md",
+    "words": 365
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.HighlightSearch.md",
+    "words": 415
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.HorizontalTagList.md",
+    "words": 644
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.Icon.md",
+    "words": 579
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.md",
+    "words": 407
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.IconSVG.md",
+    "words": 614
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.IconText.md",
+    "words": 599
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.ImageCard__Content.md",
+    "words": 826
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.ImageCard__Content__Tag.md",
+    "words": 492
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.Input.md",
+    "words": 731
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.InputCounter.md",
+    "words": 395
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.md",
+    "words": 527
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.LazyImage.md",
+    "words": 860
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.Note_Item.md",
+    "words": 774
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.Note_Item_List.md",
+    "words": 823
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.Popup.md",
+    "words": 569
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.PopupMenu.md",
+    "words": 523
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.SeeMoreSection.md",
+    "words": 624
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.SelectionOption_List.md",
+    "words": 1183
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.SkeletonSection.md",
+    "words": 821
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.StaticInput.md",
+    "words": 425
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.TagContent.md",
+    "words": 520
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.TagToggle.md",
+    "words": 729
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter.md",
+    "words": 456
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.ConnectPatterns.TextEllipsis.md",
+    "words": 332
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.Layouts.Layout_DetailPage.md",
+    "words": 1340
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.Layouts.Layout_HomePage.md",
+    "words": 1139
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.Layouts.Layout_LoginFlow.md",
+    "words": 872
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.Layouts.Layout_MainPages.md",
+    "words": 1410
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle.md",
+    "words": 2208
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.Layouts.SVG_Background_Custom.md",
+    "words": 496
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.Layouts.SVG_Background_LoginWrapper.md",
+    "words": 374
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.Layouts.SubLayout_HomePageSearch.md",
+    "words": 419
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.Layouts.SubLayout_Section.md",
+    "words": 448
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.OutSystemsUIOverrides.Badge.md",
+    "words": 465
+   },
+   {
+    "path": "migration/blocks/UBTConnectLibrary.OutSystemsUIOverrides.IconBadge.md",
+    "words": 418
+   },
+   {
+    "path": "migration/blocks/UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.md",
+    "words": 722
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy.md",
+    "words": 298
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_CTA_PopUps.AddressPopup.md",
+    "words": 379
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.md",
+    "words": 662
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper.md",
+    "words": 461
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup.md",
+    "words": 785
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage.md",
+    "words": 425
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone.md",
+    "words": 426
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_CTA_PopUps.SharePopup.md",
+    "words": 413
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_Common.Button.md",
+    "words": 543
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_Image.UBT_LazyImage.md",
+    "words": 532
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_Notes.NoteListActions.md",
+    "words": 470
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_Notes.NotesSheet.md",
+    "words": 687
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_Search.SearchResult_Item.md",
+    "words": 775
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_Share.ShareSheet.md",
+    "words": 866
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_Share.ShareSheet_Section.md",
+    "words": 287
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle.md",
+    "words": 414
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CW_Share.ShareableObject_Generic.md",
+    "words": 759
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CacheControl.CacheControl.md",
+    "words": 320
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CacheControl.CacheControl_AllCountries.md",
+    "words": 372
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CacheControl.CacheControl_AllLocalities.md",
+    "words": 373
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CacheControl.CacheControl_Policies.md",
+    "words": 409
+   },
+   {
+    "path": "migration/blocks/UBTConnect_Utils.CacheControl.CacheControl_UserInfo.md",
+    "words": 377
+   },
+   {
+    "path": "migration/blocks/UBT_AppManager.PIN.InactivityTimer.md",
+    "words": 290
+   },
+   {
+    "path": "migration/blocks/UBT_AppManager.PIN.PinCode.md",
+    "words": 1864
+   },
+   {
+    "path": "migration/blocks/UBT_AppManager.PIN.Pincode_Register.md",
+    "words": 614
+   },
+   {
+    "path": "migration/blocks/UBT_AppManager.PIN.Pincode_Unlock.md",
+    "words": 742
+   },
+   {
+    "path": "migration/blocks/UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.md",
+    "words": 83
+   },
+   {
+    "path": "migration/blocks/UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.md",
+    "words": 747
+   },
+   {
+    "path": "migration/catalog/actions.md",
+    "words": 1294
+   },
+   {
+    "path": "migration/catalog/blocks.md",
+    "words": 4994
+   },
+   {
+    "path": "migration/catalog/contract-report.md",
+    "words": 5549
+   },
+   {
+    "path": "migration/catalog/foundation-queue.md",
+    "words": 54
+   },
+   {
+    "path": "migration/survey/osui.md",
+    "words": 448
+   },
+   {
+    "path": "migration/survey/routes.md",
+    "words": 3031
+   },
+   {
+    "path": "migration/survey/shared-blocks.md",
+    "words": 1728
+   },
+   {
+    "path": "migration/survey/shell.md",
+    "words": 181
+   },
+   {
+    "path": "migration/survey/variants.md",
+    "words": 129
+   },
+   {
+    "path": "migration/architecture.md",
+    "words": 4385
+   },
+   {
+    "path": "migration/flags.md",
+    "words": 3222
+   },
+   {
+    "path": "migration/fixture-coverage.md",
+    "words": 780
+   },
+   {
+    "path": "migration/board.md",
+    "words": 2730
+   },
+   {
+    "path": "migration/knowledge/auto-decisions-2026-10-15.md",
+    "words": 1795
+   }
+  ],
+  "out": [
+   {
+    "path": "migration/contexts/INDEX.md",
+    "words": 874
+   },
+   {
+    "path": "migration/contexts/context-001-auto-login.md",
+    "words": 318
+   },
+   {
+    "path": "migration/contexts/context-002-survey-and-scope-review.md",
+    "words": 371
+   },
+   {
+    "path": "migration/contexts/context-004-capture.md",
+    "words": 462
+   },
+   {
+    "path": "migration/contexts/context-006-stack.md",
+    "words": 430
+   },
+   {
+    "path": "migration/contexts/context-007-foundation-wave1.md",
+    "words": 399
+   },
+   {
+    "path": "migration/contexts/context-008-wave1-login-pinunlock.md",
+    "words": 307
+   },
+   {
+    "path": "migration/contexts/context-009-css-per-screen-wave1-reviews.md",
+    "words": 357
+   },
+   {
+    "path": "migration/contexts/context-010-cr-batch-1.md",
+    "words": 242
+   },
+   {
+    "path": "migration/contexts/context-011-wave2-foundation.md",
+    "words": 245
+   },
+   {
+    "path": "migration/contexts/context-012-homefeed.md",
+    "words": 261
+   },
+   {
+    "path": "migration/contexts/context-013-wave3-foundation.md",
+    "words": 244
+   },
+   {
+    "path": "migration/contexts/context-014-knowledge-atlas.md",
+    "words": 283
+   },
+   {
+    "path": "migration/contexts/context-014-wave3-round1.md",
+    "words": 182
+   },
+   {
+    "path": "migration/contexts/context-015-wave3-done.md",
+    "words": 262
+   },
+   {
+    "path": "migration/contexts/context-016-wave4-paused-demo.md",
+    "words": 287
+   },
+   {
+    "path": "migration/contexts/context-017-wave4-auto-mode.md",
+    "words": 357
+   },
+   {
+    "path": "migration/contexts/context-018-all-screens-built.md",
+    "words": 350
+   },
+   {
+    "path": "migration/contexts/context-019-overnight-f8.md",
+    "words": 281
+   },
+   {
+    "path": "migration/contexts/context-020-wave8-orbit-assemble-ldm.md",
+    "words": 249
+   },
+   {
+    "path": "migration/contexts/context-021-wave8-complete.md",
+    "words": 316
+   },
+   {
+    "path": "migration/contexts/context-022-f18-transitions-pwa-decisions.md",
+    "words": 346
+   },
+   {
+    "path": "migration/contexts/context-023-pwa-demo.md",
+    "words": 374
+   },
+   {
+    "path": "migration/contexts/context-024-pwa-phases-2-3.md",
+    "words": 320
+   },
+   {
+    "path": "migration/contexts/context-025-pwa-tests.md",
+    "words": 354
+   },
+   {
+    "path": "migration/contexts/context-026-favicon-date-rollover.md",
+    "words": 338
+   },
+   {
+    "path": "migration/contexts/context-027-review-markers-opt-in.md",
+    "words": 395
+   },
+   {
+    "path": "migration/contexts/context-028-migration-atlas.md",
+    "words": 406
+   },
+   {
+    "path": "migration/contexts/context-030-kb-scorecard.md",
+    "words": 209
+   },
+   {
+    "path": "migration/contexts/context-031-coverage-atlas-removed.md",
+    "words": 367
+   },
+   {
+    "path": "migration/change-requests/CR-AcceptPendingPolicies-1.md",
+    "words": 292
+   },
+   {
+    "path": "migration/change-requests/CR-AcceptPendingPolicies-2.md",
+    "words": 356
+   },
+   {
+    "path": "migration/change-requests/CR-AssembleDetail-1.md",
+    "words": 340
+   },
+   {
+    "path": "migration/change-requests/CR-AssembleDetail-2.md",
+    "words": 343
+   },
+   {
+    "path": "migration/change-requests/CR-AssembleEvents-1.md",
+    "words": 350
+   },
+   {
+    "path": "migration/change-requests/CR-Assemble_BrowseByCountry-1.md",
+    "words": 317
+   },
+   {
+    "path": "migration/change-requests/CR-BookmarksByGroup-1.md",
+    "words": 339
+   },
+   {
+    "path": "migration/change-requests/CR-BookmarksByGroup-2.md",
+    "words": 265
+   },
+   {
+    "path": "migration/change-requests/CR-BookmarksByGroup-3.md",
+    "words": 191
+   },
+   {
+    "path": "migration/change-requests/CR-BrowseDirectory-1.md",
+    "words": 312
+   },
+   {
+    "path": "migration/change-requests/CR-BrowseDirectory-2.md",
+    "words": 303
+   },
+   {
+    "path": "migration/change-requests/CR-BrowseDirectory-3.md",
+    "words": 358
+   },
+   {
+    "path": "migration/change-requests/CR-ContactByEmailMember-1.md",
+    "words": 244
+   },
+   {
+    "path": "migration/change-requests/CR-ContactByEmailMember-2.md",
+    "words": 241
+   },
+   {
+    "path": "migration/change-requests/CR-ContactByEmailOneSchoolGlobal-1.md",
+    "words": 252
+   },
+   {
+    "path": "migration/change-requests/CR-CountryDetails-1.md",
+    "words": 321
+   },
+   {
+    "path": "migration/change-requests/CR-CountryDetails-2.md",
+    "words": 420
+   },
+   {
+    "path": "migration/change-requests/CR-EventBooklet-1.md",
+    "words": 398
+   },
+   {
+    "path": "migration/change-requests/CR-EventBooklet-2.md",
+    "words": 401
+   },
+   {
+    "path": "migration/change-requests/CR-EventDetail-1.md",
+    "words": 588
+   },
+   {
+    "path": "migration/change-requests/CR-F18-1.md",
+    "words": 638
+   },
+   {
+    "path": "migration/change-requests/CR-HelpersDetail-1.md",
+    "words": 454
+   },
+   {
+    "path": "migration/change-requests/CR-HomeFeed-1.md",
+    "words": 420
+   },
+   {
+    "path": "migration/change-requests/CR-HomeFeed-2.md",
+    "words": 267
+   },
+   {
+    "path": "migration/change-requests/CR-HomeFeed-3.md",
+    "words": 658
+   },
+   {
+    "path": "migration/change-requests/CR-HostSurvey-1.md",
+    "words": 640
+   },
+   {
+    "path": "migration/change-requests/CR-HostSurvey-2.md",
+    "words": 470
+   },
+   {
+    "path": "migration/change-requests/CR-HouseholdCarousel-1.md",
+    "words": 312
+   },
+   {
+    "path": "migration/change-requests/CR-HouseholdCarousel-2.md",
+    "words": 679
+   },
+   {
+    "path": "migration/change-requests/CR-HouseholdDetails-1.md",
+    "words": 612
+   },
+   {
+    "path": "migration/change-requests/CR-HouseholdDetails-2.md",
+    "words": 555
+   },
+   {
+    "path": "migration/change-requests/CR-LDM_Email_V2-1.md",
+    "words": 252
+   },
+   {
+    "path": "migration/change-requests/CR-LDM_EventDetail_V2-1.md",
+    "words": 267
+   },
+   {
+    "path": "migration/change-requests/CR-Locality_Details-1.md",
+    "words": 203
+   },
+   {
+    "path": "migration/change-requests/CR-Login-1.md",
+    "words": 235
+   },
+   {
+    "path": "migration/change-requests/CR-Login-2.md",
+    "words": 246
+   },
+   {
+    "path": "migration/change-requests/CR-Login-3.md",
+    "words": 189
+   },
+   {
+    "path": "migration/change-requests/CR-Login-4.md",
+    "words": 224
+   },
+   {
+    "path": "migration/change-requests/CR-MessageDetail-1.md",
+    "words": 172
+   },
+   {
+    "path": "migration/change-requests/CR-MessageList-1.md",
+    "words": 330
+   },
+   {
+    "path": "migration/change-requests/CR-MessageList-2.md",
+    "words": 188
+   },
+   {
+    "path": "migration/change-requests/CR-MessageList-3.md",
+    "words": 285
+   },
+   {
+    "path": "migration/change-requests/CR-MilestoneDetail-1.md",
+    "words": 334
+   },
+   {
+    "path": "migration/change-requests/CR-MilestoneDetail-2.md",
+    "words": 328
+   },
+   {
+    "path": "migration/change-requests/CR-MilestoneDetail-3.md",
+    "words": 364
+   },
+   {
+    "path": "migration/change-requests/CR-MilestoneDetail-4.md",
+    "words": 311
+   },
+   {
+    "path": "migration/change-requests/CR-MyBookmarks-1.md",
+    "words": 324
+   },
+   {
+    "path": "migration/change-requests/CR-MyBookmarks-2.md",
+    "words": 375
+   },
+   {
+    "path": "migration/change-requests/CR-Notes-1.md",
+    "words": 386
+   },
+   {
+    "path": "migration/change-requests/CR-Notifications-1.md",
+    "words": 182
+   },
+   {
+    "path": "migration/change-requests/CR-OneSchoolGlobalDetails-1.md",
+    "words": 291
+   },
+   {
+    "path": "migration/change-requests/CR-OrbitAdminLanding-1.md",
+    "words": 575
+   },
+   {
+    "path": "migration/change-requests/CR-OrbitLanding-1.md",
+    "words": 472
+   },
+   {
+    "path": "migration/change-requests/CR-PINUnlock-1.md",
+    "words": 240
+   },
+   {
+    "path": "migration/change-requests/CR-PINUnlock-2.md",
+    "words": 430
+   },
+   {
+    "path": "migration/change-requests/CR-PINUnlock-3.md",
+    "words": 232
+   },
+   {
+    "path": "migration/change-requests/CR-PINUnlock-4.md",
+    "words": 206
+   },
+   {
+    "path": "migration/change-requests/CR-Photobook-1.md",
+    "words": 365
+   },
+   {
+    "path": "migration/change-requests/CR-Photobook-2.md",
+    "words": 338
+   },
+   {
+    "path": "migration/change-requests/CR-Profile-1.md",
+    "words": 326
+   },
+   {
+    "path": "migration/change-requests/CR-Profile-2.md",
+    "words": 668
+   },
+   {
+    "path": "migration/change-requests/CR-QRCodeGenerate-1.md",
+    "words": 582
+   },
+   {
+    "path": "migration/change-requests/CR-Search-1.md",
+    "words": 395
+   },
+   {
+    "path": "migration/change-requests/CR-Search-2.md",
+    "words": 251
+   },
+   {
+    "path": "migration/change-requests/CR-Search-3.md",
+    "words": 309
+   },
+   {
+    "path": "migration/change-requests/CR-Services-1.md",
+    "words": 436
+   },
+   {
+    "path": "migration/change-requests/CR-Splash-1.md",
+    "words": 268
+   },
+   {
+    "path": "migration/change-requests/CR-Splash-2.md",
+    "words": 446
+   },
+   {
+    "path": "migration/change-requests/CR-Splash-3.md",
+    "words": 292
+   },
+   {
+    "path": "migration/change-requests/CR-SupperMeeting_Carousel-1.md",
+    "words": 304
+   },
+   {
+    "path": "migration/change-requests/CR-SupperMeeting_Details-1.md",
+    "words": 509
+   },
+   {
+    "path": "migration/change-requests/CR-Updates_SingleList-1.md",
+    "words": 280
+   },
+   {
+    "path": "migration/change-requests/CR-W2A-1.md",
+    "words": 559
+   },
+   {
+    "path": "migration/change-requests/CR-W2F-1.md",
+    "words": 287
+   },
+   {
+    "path": "migration/change-requests/CR-W3A-1.md",
+    "words": 306
+   },
+   {
+    "path": "migration/change-requests/CR-W3Y-1.md",
+    "words": 286
+   },
+   {
+    "path": "migration/change-requests/CR-W4A-1.md",
+    "words": 576
+   },
+   {
+    "path": "migration/change-requests/CR-W4B-1.md",
+    "words": 195
+   },
+   {
+    "path": "migration/screens/AcceptPendingPolicies/notes.md",
+    "words": 85
+   },
+   {
+    "path": "migration/screens/AssembleDetail/notes.md",
+    "words": 78
+   },
+   {
+    "path": "migration/screens/AssembleEvents/notes.md",
+    "words": 78
+   },
+   {
+    "path": "migration/screens/Assemble_BrowseByCountry/notes.md",
+    "words": 78
+   },
+   {
+    "path": "migration/screens/Bookmarks/notes.md",
+    "words": 30
+   },
+   {
+    "path": "migration/screens/BookmarksByGroup/notes.md",
+    "words": 59
+   },
+   {
+    "path": "migration/screens/BrowseCountries/notes.md",
+    "words": 36
+   },
+   {
+    "path": "migration/screens/BrowseDirectory/notes.md",
+    "words": 42
+   },
+   {
+    "path": "migration/screens/CommunityBusinessDetails/notes.md",
+    "words": 45
+   },
+   {
+    "path": "migration/screens/CommunityBusinessDetails_CoomingSoon/notes.md",
+    "words": 41
+   },
+   {
+    "path": "migration/screens/ConnectShare/notes.md",
+    "words": 79
+   },
+   {
+    "path": "migration/screens/ContactByEmailContacts/notes.md",
+    "words": 45
+   },
+   {
+    "path": "migration/screens/ContactByEmailLDMCoordinator/notes.md",
+    "words": 65
+   },
+   {
+    "path": "migration/screens/ContactByEmailMember/notes.md",
+    "words": 57
+   },
+   {
+    "path": "migration/screens/ContactByEmailOneSchoolGlobal/notes.md",
+    "words": 63
+   },
+   {
+    "path": "migration/screens/ContactByEmailOrbitHelpdesk/notes.md",
+    "words": 80
+   },
+   {
+    "path": "migration/screens/ContactByEmailOrbitHost/notes.md",
+    "words": 80
+   },
+   {
+    "path": "migration/screens/ContactUsDetails/notes.md",
+    "words": 63
+   },
+   {
+    "path": "migration/screens/ContactUsMenu/notes.md",
+    "words": 49
+   },
+   {
+    "path": "migration/screens/CountryDetails/notes.md",
+    "words": 42
+   },
+   {
+    "path": "migration/screens/CountryList/notes.md",
+    "words": 54
+   },
+   {
+    "path": "migration/screens/EmailContact/notes.md",
+    "words": 132
+   },
+   {
+    "path": "migration/screens/EmailTarget/notes.md",
+    "words": 85
+   },
+   {
+    "path": "migration/screens/EventBooklet/notes.md",
+    "words": 122
+   },
+   {
+    "path": "migration/screens/EventDetail/notes.md",
+    "words": 89
+   },
+   {
+    "path": "migration/screens/FeedItemDetail/notes.md",
+    "words": 65
+   },
+   {
+    "path": "migration/screens/GuestArrangements/notes.md",
+    "words": 117
+   },
+   {
+    "path": "migration/screens/HelpersDetail/notes.md",
+    "words": 93
+   },
+   {
+    "path": "migration/screens/HomeFeed/notes.md",
+    "words": 162
+   },
+   {
+    "path": "migration/screens/HostSurvey/notes.md",
+    "words": 87
+   },
+   {
+    "path": "migration/screens/HouseholdCarousel/notes.md",
+    "words": 44
+   },
+   {
+    "path": "migration/screens/HouseholdDetails/notes.md",
+    "words": 44
+   },
+   {
+    "path": "migration/screens/Household_Relations/notes.md",
+    "words": 50
+   },
+   {
+    "path": "migration/screens/InvalidPermissions/notes.md",
+    "words": 48
+   },
+   {
+    "path": "migration/screens/LDM_Email/notes.md",
+    "words": 73
+   },
+   {
+    "path": "migration/screens/LDM_Email_V2/notes.md",
+    "words": 73
+   },
+   {
+    "path": "migration/screens/LDM_EventDetail/notes.md",
+    "words": 73
+   },
+   {
+    "path": "migration/screens/LDM_EventDetail_V2/notes.md",
+    "words": 93
+   },
+   {
+    "path": "migration/screens/LDM_MyEvents/notes.md",
+    "words": 73
+   },
+   {
+    "path": "migration/screens/LDM_MyEvents_V2/notes.md",
+    "words": 101
+   },
+   {
+    "path": "migration/screens/LegacyShareObject/notes.md",
+    "words": 53
+   },
+   {
+    "path": "migration/screens/Locality_Details/notes.md",
+    "words": 59
+   },
+   {
+    "path": "migration/screens/Login/notes.md",
+    "words": 82
+   },
+   {
+    "path": "migration/screens/Map/notes.md",
+    "words": 29
+   },
+   {
+    "path": "migration/screens/Menu/notes.md",
+    "words": 63
+   },
+   {
+    "path": "migration/screens/MessageDetail/notes.md",
+    "words": 108
+   },
+   {
+    "path": "migration/screens/MessageList/notes.md",
+    "words": 66
+   },
+   {
+    "path": "migration/screens/MilestoneDetail/notes.md",
+    "words": 107
+   },
+   {
+    "path": "migration/screens/MyBookmarks/notes.md",
+    "words": 57
+   },
+   {
+    "path": "migration/screens/MyCalendar/notes.md",
+    "words": 42
+   },
+   {
+    "path": "migration/screens/MyEntertaining/notes.md",
+    "words": 58
+   },
+   {
+    "path": "migration/screens/New_BookmarksByGroup/notes.md",
+    "words": 27
+   },
+   {
+    "path": "migration/screens/New_MyBookmarks/notes.md",
+    "words": 27
+   },
+   {
+    "path": "migration/screens/Notes/notes.md",
+    "words": 49
+   },
+   {
+    "path": "migration/screens/Notifications/notes.md",
+    "words": 80
+   },
+   {
+    "path": "migration/screens/OneSchoolGlobalDetails/notes.md",
+    "words": 44
+   },
+   {
+    "path": "migration/screens/OneSchoolGlobalEventDetail/notes.md",
+    "words": 42
+   },
+   {
+    "path": "migration/screens/OrbitAdminEventDetail/notes.md",
+    "words": 101
+   },
+   {
+    "path": "migration/screens/OrbitAdminLanding/notes.md",
+    "words": 99
+   },
+   {
+    "path": "migration/screens/OrbitLanding/notes.md",
+    "words": 121
+   },
+   {
+    "path": "migration/screens/PINBiometricsMenu/notes.md",
+    "words": 59
+   },
+   {
+    "path": "migration/screens/PINChange/notes.md",
+    "words": 73
+   },
+   {
+    "path": "migration/screens/PINRegister/notes.md",
+    "words": 82
+   },
+   {
+    "path": "migration/screens/PINUnlock/notes.md",
+    "words": 90
+   },
+   {
+    "path": "migration/screens/PersonalEventDetails/notes.md",
+    "words": 25
+   },
+   {
+    "path": "migration/screens/PersonalEventForm/notes.md",
+    "words": 25
+   },
+   {
+    "path": "migration/screens/Photobook/notes.md",
+    "words": 64
+   },
+   {
+    "path": "migration/screens/Profile/notes.md",
+    "words": 63
+   },
+   {
+    "path": "migration/screens/QRCodeGenerate/notes.md",
+    "words": 87
+   },
+   {
+    "path": "migration/screens/Recurrence/notes.md",
+    "words": 25
+   },
+   {
+    "path": "migration/screens/Reminder/notes.md",
+    "words": 25
+   },
+   {
+    "path": "migration/screens/Search/notes.md",
+    "words": 89
+   },
+   {
+    "path": "migration/screens/Services/notes.md",
+    "words": 55
+   },
+   {
+    "path": "migration/screens/ShareObject/notes.md",
+    "words": 27
+   },
+   {
+    "path": "migration/screens/Splash/notes.md",
+    "words": 100
+   },
+   {
+    "path": "migration/screens/SupperMeeting_Carousel/notes.md",
+    "words": 36
+   },
+   {
+    "path": "migration/screens/SupperMeeting_Details/notes.md",
+    "words": 42
+   },
+   {
+    "path": "migration/screens/TermsAndPoliciesMenu/notes.md",
+    "words": 57
+   },
+   {
+    "path": "migration/screens/TestOpenShare/notes.md",
+    "words": 41
+   },
+   {
+    "path": "migration/screens/TransportDetail/notes.md",
+    "words": 87
+   },
+   {
+    "path": "migration/screens/Updates_SingleList/notes.md",
+    "words": 57
+   },
+   {
+    "path": "migration/screens/ViewDocuments/notes.md",
+    "words": 81
+   },
+   {
+    "path": "migration/screens/ViewEventList/notes.md",
+    "words": 25
+   },
+   {
+    "path": "migration/screens/AcceptPendingPolicies/questions.md",
+    "words": 1517
+   },
+   {
+    "path": "migration/screens/AssembleDetail/questions.md",
+    "words": 471
+   },
+   {
+    "path": "migration/screens/AssembleEvents/questions.md",
+    "words": 798
+   },
+   {
+    "path": "migration/screens/Assemble_BrowseByCountry/questions.md",
+    "words": 354
+   },
+   {
+    "path": "migration/screens/BookmarksByGroup/questions.md",
+    "words": 953
+   },
+   {
+    "path": "migration/screens/BrowseCountries/questions.md",
+    "words": 296
+   },
+   {
+    "path": "migration/screens/BrowseDirectory/questions.md",
+    "words": 1067
+   },
+   {
+    "path": "migration/screens/CommunityBusinessDetails_CoomingSoon/questions.md",
+    "words": 122
+   },
+   {
+    "path": "migration/screens/ContactByEmailLDMCoordinator/questions.md",
+    "words": 213
+   },
+   {
+    "path": "migration/screens/ContactByEmailMember/questions.md",
+    "words": 839
+   },
+   {
+    "path": "migration/screens/ContactByEmailOneSchoolGlobal/questions.md",
+    "words": 530
+   },
+   {
+    "path": "migration/screens/ContactByEmailOrbitHelpdesk/questions.md",
+    "words": 331
+   },
+   {
+    "path": "migration/screens/ContactByEmailOrbitHost/questions.md",
+    "words": 286
+   },
+   {
+    "path": "migration/screens/ContactUsDetails/questions.md",
+    "words": 761
+   },
+   {
+    "path": "migration/screens/ContactUsMenu/questions.md",
+    "words": 326
+   },
+   {
+    "path": "migration/screens/CountryDetails/questions.md",
+    "words": 702
+   },
+   {
+    "path": "migration/screens/CountryList/questions.md",
+    "words": 961
+   },
+   {
+    "path": "migration/screens/EmailContact/questions.md",
+    "words": 439
+   },
+   {
+    "path": "migration/screens/EmailTarget/questions.md",
+    "words": 318
+   },
+   {
+    "path": "migration/screens/EventBooklet/questions.md",
+    "words": 652
+   },
+   {
+    "path": "migration/screens/EventDetail/questions.md",
+    "words": 1071
+   },
+   {
+    "path": "migration/screens/FeedItemDetail/questions.md",
+    "words": 614
+   },
+   {
+    "path": "migration/screens/GuestArrangements/questions.md",
+    "words": 288
+   },
+   {
+    "path": "migration/screens/HelpersDetail/questions.md",
+    "words": 422
+   },
+   {
+    "path": "migration/screens/HomeFeed/questions.md",
+    "words": 2828
+   },
+   {
+    "path": "migration/screens/HostSurvey/questions.md",
+    "words": 544
+   },
+   {
+    "path": "migration/screens/HouseholdCarousel/questions.md",
+    "words": 901
+   },
+   {
+    "path": "migration/screens/HouseholdDetails/questions.md",
+    "words": 478
+   },
+   {
+    "path": "migration/screens/Household_Relations/questions.md",
+    "words": 635
+   },
+   {
+    "path": "migration/screens/LDM_Email_V2/questions.md",
+    "words": 595
+   },
+   {
+    "path": "migration/screens/LDM_EventDetail_V2/questions.md",
+    "words": 819
+   },
+   {
+    "path": "migration/screens/LDM_MyEvents_V2/questions.md",
+    "words": 866
+   },
+   {
+    "path": "migration/screens/LegacyShareObject/questions.md",
+    "words": 1202
+   },
+   {
+    "path": "migration/screens/Locality_Details/questions.md",
+    "words": 1891
+   },
+   {
+    "path": "migration/screens/Login/questions.md",
+    "words": 1437
+   },
+   {
+    "path": "migration/screens/MessageDetail/questions.md",
+    "words": 1522
+   },
+   {
+    "path": "migration/screens/MessageList/questions.md",
+    "words": 2201
+   },
+   {
+    "path": "migration/screens/MilestoneDetail/questions.md",
+    "words": 1118
+   },
+   {
+    "path": "migration/screens/MyBookmarks/questions.md",
+    "words": 767
+   },
+   {
+    "path": "migration/screens/MyEntertaining/questions.md",
+    "words": 830
+   },
+   {
+    "path": "migration/screens/Notes/questions.md",
+    "words": 968
+   },
+   {
+    "path": "migration/screens/Notifications/questions.md",
+    "words": 2025
+   },
+   {
+    "path": "migration/screens/OneSchoolGlobalDetails/questions.md",
+    "words": 858
+   },
+   {
+    "path": "migration/screens/OrbitAdminEventDetail/questions.md",
+    "words": 998
+   },
+   {
+    "path": "migration/screens/OrbitAdminLanding/questions.md",
+    "words": 705
+   },
+   {
+    "path": "migration/screens/OrbitLanding/questions.md",
+    "words": 1264
+   },
+   {
+    "path": "migration/screens/PINBiometricsMenu/questions.md",
+    "words": 149
+   },
+   {
+    "path": "migration/screens/PINChange/questions.md",
+    "words": 556
+   },
+   {
+    "path": "migration/screens/PINRegister/questions.md",
+    "words": 627
+   },
+   {
+    "path": "migration/screens/PINUnlock/questions.md",
+    "words": 1039
+   },
+   {
+    "path": "migration/screens/Photobook/questions.md",
+    "words": 862
+   },
+   {
+    "path": "migration/screens/Profile/questions.md",
+    "words": 994
+   },
+   {
+    "path": "migration/screens/QRCodeGenerate/questions.md",
+    "words": 441
+   },
+   {
+    "path": "migration/screens/Search/questions.md",
+    "words": 1667
+   },
+   {
+    "path": "migration/screens/Services/questions.md",
+    "words": 724
+   },
+   {
+    "path": "migration/screens/Splash/questions.md",
+    "words": 1426
+   },
+   {
+    "path": "migration/screens/SupperMeeting_Carousel/questions.md",
+    "words": 598
+   },
+   {
+    "path": "migration/screens/SupperMeeting_Details/questions.md",
+    "words": 333
+   },
+   {
+    "path": "migration/screens/TermsAndPoliciesMenu/questions.md",
+    "words": 231
+   },
+   {
+    "path": "migration/screens/TransportDetail/questions.md",
+    "words": 401
+   },
+   {
+    "path": "migration/screens/Updates_SingleList/questions.md",
+    "words": 968
+   },
+   {
+    "path": "migration/screens/ViewDocuments/questions.md",
+    "words": 372
+   },
+   {
+    "path": "migration/screens/AcceptPendingPolicies/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/AssembleDetail/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/AssembleEvents/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Assemble_BrowseByCountry/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/BookmarksByGroup/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/BrowseCountries/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/BrowseDirectory/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/CommunityBusinessDetails_CoomingSoon/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/ConnectShare/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/ContactByEmailLDMCoordinator/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/ContactByEmailMember/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/ContactByEmailOneSchoolGlobal/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/ContactByEmailOrbitHelpdesk/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/ContactByEmailOrbitHost/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/ContactUsDetails/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/ContactUsMenu/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/CountryDetails/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/CountryList/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/EmailContact/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/EmailTarget/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/EventBooklet/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/EventDetail/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/FeedItemDetail/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/GuestArrangements/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/HelpersDetail/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/HomeFeed/feedback.md",
+    "words": 70
+   },
+   {
+    "path": "migration/screens/HostSurvey/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/HouseholdCarousel/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/HouseholdDetails/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Household_Relations/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/LDM_Email_V2/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/LDM_EventDetail_V2/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/LDM_MyEvents_V2/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/LegacyShareObject/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Locality_Details/feedback.md",
+    "words": 145
+   },
+   {
+    "path": "migration/screens/Login/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Menu/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/MessageDetail/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/MessageList/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/MilestoneDetail/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/MyBookmarks/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/MyEntertaining/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Notes/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Notifications/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/OneSchoolGlobalDetails/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/OrbitAdminEventDetail/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/OrbitAdminLanding/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/OrbitLanding/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/PINBiometricsMenu/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/PINChange/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/PINRegister/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/PINUnlock/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Photobook/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Profile/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/QRCodeGenerate/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Search/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Services/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Splash/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/SupperMeeting_Carousel/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/SupperMeeting_Details/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/TermsAndPoliciesMenu/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/TransportDetail/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/Updates_SingleList/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/screens/ViewDocuments/feedback.md",
+    "words": 18
+   },
+   {
+    "path": "migration/foundation-plan.md",
+    "words": 1558
+   },
+   {
+    "path": "migration/extras-plan.md",
+    "words": 531
+   },
+   {
+    "path": "migration/recording-coverage.md",
+    "words": 296
+   },
+   {
+    "path": "migration/AGENTS.md",
+    "words": 1812
+   },
+   {
+    "path": "CLAUDE.md",
+    "words": 698
+   }
+  ]
+ }
+}

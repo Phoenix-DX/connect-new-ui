@@ -1,0 +1,533 @@
+﻿
+/*ORBIT*/
+
+
+
+/*ORBIT*/
+   
+   
+    /* CSS Section Index */
+        
+        /*==========  $0. Root  ==========*/
+
+
+        /*==========  $1. General Classes  ==========*/
+        
+        
+        
+        /*==========  $2. Component Classes  ==========*/
+            /*  $2.1. Household Context Menu  */
+            /*  $2.2. Connect Blank Slate  */
+
+        /*==========  $3. Specific Classes  ==========*/
+            /*  $3.1. Buttons  */
+            /*  $3.2. Card      */
+        
+
+        /*==========  $4. Auxiliary Classes  ==========*/
+
+/*=====================================================================*/
+
+
+    /*==========  $0. Root  ==========*/
+:root {
+    --connect-color-nd: #212454;
+    --connect-color-nd-secondary: #1775BA;
+
+    --font-size-14: 14px;
+    --font-color-choices: #4d4d4d;
+}
+/*=====================================================================*/
+
+/*This is an initiative in line with the Scroll Bouncing effect in IOS PWA*/
+/*Removed for HALO 547*/
+/*
+* {
+     overscroll-behavior: none;
+}*/
+/*=====================================================================*/
+    
+
+/*==========  $2. Component Classes  ==========*/
+            
+            
+/*  $2.1. Household Context Menu  */
+
+:where(.backwards-compatibility) .dx-popup-menu-container,
+:where(.backwards-compatibility).dx-popup-menu-container {
+  border: 1px solid var(--color-neutral-5);
+  border-radius: 5px;
+  font-weight: normal;
+  background-color: var(--color-neutral-0);
+  padding: 1px;
+  margin-bottom: 70px;
+}
+:where(.backwards-compatibility) .context-menu-item {
+  display: flex;
+  align-items: baseline;
+  padding: var(--space-s);
+  border: 1px solid var(--color-neutral-0);
+  background-color: var(--color-neutral-0);
+  border-radius: 5px;
+}
+:where(.backwards-compatibility) .context-menu-item:hover {
+  background-color: var(--background-color-button);
+  color: var(--background-color-content);
+}
+:where(.backwards-compatibility) .context-menu-item i {
+  width: 15px;
+}
+:where(.backwards-compatibility) .share-app-logo {
+  height: 44px;
+}
+:where(.backwards-compatibility) .connect-blank-slate-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  
+}
+:where(.backwards-compatibility) .connect-blank-slate-title {
+  font-weight: bold;
+  color: var(--color-primary);
+}
+:where(.backwards-compatibility) .connect-blank-slate-sub-title {
+  font-size: 0.9em;
+}
+:where(.backwards-compatibility) .btn.connect-btn.btn-primary {
+  background: linear-gradient(135.41deg, #212454 41.42%, #7078E9 82.65%);
+  border: 3px solid #212454;
+}
+:where(.backwards-compatibility) .card.warning-card {
+  background-color: #FF6F00;
+}
+:where(.backwards-compatibility) .loading-skeleton {
+  align-self: stretch;
+  animation: animateBg 2s infinite linear;
+  background-image: linear-gradient(90deg, var(--color-neutral-2), var(--color-neutral-8), var(--color-neutral-2), var(--color-neutral-8));
+  background-size: 300% 100%;
+  padding: 8px 0;
+  width: 70px;
+  height: 70px;
+  border-radius: 5px;
+}
+@keyframes animateBg {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+:where(.backwards-compatibility) .share-app-logo {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-height: 44px;
+}
+:where(.backwards-compatibility) .share-app-logo > img {
+  max-height: 40px;
+  width: auto;
+}
+:where(.backwards-compatibility) .welcome-message {
+  font-size: 30px;
+  line-height: 41px;
+  text-align: center;
+  margin-top: 23%;
+}
+:where(.backwards-compatibility) div.adv-search-input > div:nth-child(2) > span > input {
+  padding-right: 74px;
+  /**  !important
+  Removed this important as it was overriding spcific class css
+  If you need this please check ticket https://ubteam.atlassian.net/browse/DIRECTORY-1114
+  Also please reconsider if you really need the important that will always overwrite class specific rules;**/
+  text-overflow: ellipsis;
+}
+:where(.backwards-compatibility) .subdivision .font-size-0-75em > span {
+  white-space: nowrap;
+  font-size: 14px;
+  color: #263238;
+}
+:where(.backwards-compatibility) .subdivision .subdivision-options-cont {
+  margin-top: var(--space-base);
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  width: 100%;
+}
+:where(.backwards-compatibility) .subdivision .subdivision-options {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-neutral-2);
+  border-top: 1px solid var(--color-neutral-4);
+  border-bottom: 1px solid var(--color-neutral-4);
+  padding: var(--space-base) 0;
+  flex: 1;
+  color: var(--color-neutral-7);
+  font-size: 1.25em;
+}
+:where(.backwards-compatibility) .advanced-search-filters .dropdown85vw[data-dropdown] > div.dropdown-list {
+  width: 85vw !important;
+}
+:where(.backwards-compatibility) .household .selector-class .section-expandable-icon {
+  display: none;
+}
+:where(.backwards-compatibility) .household .selector-class .section-expandable-title {
+  pointer-events: none !important;
+}
+:where(.backwards-compatibility) .household .text-no-wrap-address {
+  white-space: nowrap;
+  font-size: 14px;
+  color: #263238;
+}
+:where(.backwards-compatibility) .household .text-address {
+  font-size: 14px;
+  color: #263238;
+  margin-top: -2px;
+  line-height: initial;
+  display: inline-block;
+}
+:where(.backwards-compatibility) .household .sub-address {
+  font-size: 14px;
+}
+:where(.backwards-compatibility) .household .detail-badge-cont {
+  margin-bottom: 0px !important;
+}
+:where(.backwards-compatibility) .leaflet-control-attribution {
+  display: none;
+}
+:where(.backwards-compatibility) .header .header-top {
+  transition: all 100ms ease;
+}
+@media screen and (min-device-height: 641px) {
+  :where(.backwards-compatibility) .map-fitsize {
+    position: relative;
+    min-height: 300px;
+  }
+}
+:where(.backwards-compatibility) .text-ellipsis > [data-expression] {
+  white-space: inherit;
+}
+:where(.backwards-compatibility) .dropdown.my-update-feed-dropdown-country .dropdown-list {
+  top: 45px !important;
+  /*used !important to override the js that sets the element style*/
+}
+:where(.backwards-compatibility) .dropdown.my-update-feed-dropdown-country[data-dropdown] > div.dropdown-display:after {
+  margin-left: var(--space-xl);
+  margin-top: 1px;
+  position: relative;
+  vertical-align: text-top;
+}
+:where(.backwards-compatibility) .dropdown.my-update-feed-dropdown-country .dropdown-display-content {
+  vertical-align: text-bottom;
+}
+:where(.backwards-compatibility) .dropdown.my-update-feed-dropdown-country[data-dropdown] .dropdown-list {
+  right: initial !important;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices .choices__placeholder {
+  opacity: 1;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities-blur-content {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 901;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices__list--dropdown {
+  z-index: 902;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .icon {
+  font-size: 1em;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-country .flag-icon-style {
+  width: 28px;
+  height: 20px;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-country[data-dropdown] .dropdown-popup-row {
+  padding-right: initial;
+  display: flex;
+  gap: 10px;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-country[data-dropdown] .dropdown-popup-row div:nth-child(2) {
+  font-size: var(--font-size-14);
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-country[data-dropdown] .dropdown-display .dropdown-display-content {
+  display: inline-flex;
+  gap: 10px;
+  align-items: self-end;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-country[data-dropdown] .dropdown-display .dropdown-display-content {
+  display: inline-flex;
+  gap: 10px;
+  align-items: self-end;
+}
+:where(.backwards-compatibility) .my-update-feed.on-dev > div:first-child {
+  padding-left: 15px;
+  min-width: fit-content;
+}
+:where(.backwards-compatibility) .my-update-feed.on-dev div.dropdown-display {
+  padding: 0;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices__list.choices__list--dropdown {
+  min-width: 215px;
+  right: -5px;
+}
+:where(.backwards-compatibility) .display-flex > div.my-update-feed-dropdown-localities,
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities > div:last-child {
+  min-width: 0;
+  flex: unset;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices__list--single .choices__item--selectable {
+  text-overflow: ellipsis;
+  width: 100%;
+}
+:where(.backwards-compatibility) .choices__list--single .choices__item {
+  text-overflow: initial;
+  padding-right: 25px;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices {
+  min-width: unset;
+  padding: 0px;
+}
+:where(.backwards-compatibility) .my-update-feed .choices__list::-webkit-scrollbar {
+  display: block;
+  width: 10px;
+}
+
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices.is-flipped .choices__list{
+    bottom: unset;
+}
+
+:where(.backwards-compatibility) .my-update-feed .choices__list {
+  overflow-x: hidden;
+}
+:where(.backwards-compatibility) .my-update-feed .choices__list::-webkit-scrollbar-thumb {
+  background-color: var(--color-neutral-6);
+}
+:where(.backwards-compatibility) .my-update-feed .choices__list::-webkit-scrollbar-track {
+  background: var(--color-neutral-3);
+}
+:where(.backwards-compatibility) .my-update-feed .choices__list--dropdown .has-no-results {
+  color: var(--font-color-choices);
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-country .dropdown-popup-row:first-child span {
+  display: none;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-country .dropdown-popup-row:first-child:before {
+  content: "All Countries";
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices__list--single .choices__item {
+  padding-top: unset;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .custom-dropdown-arrow.choices:after {
+  top: unset;
+}
+@media screen and (max-device-width: 360px) {
+  :where(.backwards-compatibility) .my-update-feed.on-dev > div:first-child {
+    padding-left: 11px;
+  }
+ 
+  :where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices__list--single .choices__item {
+    padding-right: var(--space-l);
+  }
+  :where(.backwards-compatibility) .dropdown.my-update-feed-dropdown-country[data-dropdown] > div.dropdown-display:after {
+    margin-left: var(--space-l);
+  }
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices__list--single .choices__item {
+  padding-right: var(--space-l);
+}
+:where(.backwards-compatibility) .dropdown.my-update-feed-dropdown-country[data-dropdown] > div.dropdown-display:after {
+  margin-left: var(--space-l);
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-country .scrollable-list {
+  max-height: 308px;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices__list--dropdown .choices__list {
+  /*A calculation is needed to account for keyboard opening/closing*/
+  max-height: min(256px, calc(100vh - var(--header-size) - var(--footer-height) - 91px));
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices__inner {
+  padding-left: 5px;
+  border: none;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-localities .choices__list .choices__list--single .is-active {
+  min-height: 216px;
+}
+:where(.backwards-compatibility) .my-update-feed-dropdown-country .flag-icon-style > img {
+  height: 100%;
+  width: 100%;
+}
+
+:where(.backwards-compatibility) .CountryFilter .dropdown-popup-row.drowpdown-empty-value-row {
+    display: none !important;
+}
+
+:where(.backwards-compatibility) .LocalityFilter .choices__item.needsclick.choices__item--selectable {
+    font-weight: var(--font-regular)
+}
+
+:where(.backwards-compatibility) .CountryLocality .CountryFilter {
+    padding-left: 0 !important;
+}
+
+:where(.backwards-compatibility) .LocalityFilter .choices.is-open.is-focused .choices__inner {
+    border: none;
+}
+
+:where(.backwards-compatibility) .LocalityFilter.my-update-feed-dropdown-localities .choices__list--single .choices__item {
+    padding-right: var(--space-base) ;
+    color: var(--color-primary);
+    font-weight: var(--font-bold)
+}
+
+:where(.backwards-compatibility) .dropdown-popup-row .CountryName .text-no-wrap {
+    color: var(--color-neutral-9) !important;
+    font-weight: var(--font-regular)
+}
+
+/* -- New Login - START -- */
+
+.connect-theme .b2c-login .btn.btn-login-new {
+    border: none;
+    color: transparent;
+    background-color: var(--color-neutral-0);
+    min-width: 55vw;
+}
+
+.connect-theme .b2c-login .osui-btn-loading.osui-btn-loading--is-loading.osui-btn-loading-show-spinner .btn.btn-login-new .osui-btn-loading__spinner-animation{
+    border-color: var(--orbit-primary-6);
+    border-top-color: transparent;
+}
+
+.connect-theme .b2c-login .btn.btn-login-new .btn-login-new-text {
+    background: linear-gradient(135deg, var(--connect-color-nd), #7078E9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.connect-theme .b2c-login .osui-btn-loading.osui-btn-loading--is-loading.osui-btn-loading-show-spinner .btn.btn-login-new .btn-login-new-text {
+    display: none;
+}
+
+/* -- New Login - END -- */
+
+  /*Migration*/
+
+:where(.backwards-compatibility) .layout-native .login-screen {
+  color: var(--color-neutral-0);
+  flex-direction: column;
+}
+:where(.backwards-compatibility) .layout-native .login-screen {
+  color: var(--color-neutral-0);
+}
+
+
+
+:where(.backwards-compatibility) .login-form.pincode-form,
+:where(.backwards-compatibility) .landscape .login-form.pincode-form {
+  min-width: unset;
+}
+:where(.backwards-compatibility) .layout-native .login-screen .login-form {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+}
+
+.list .list-item.background-blue-lightest{
+  background-color: var(--color-blue-lightest)
+}
+
+:where(.backwards-compatibility) a .member-count-badge-content .icon{
+    padding-left: 0px;
+    margin: 0px;
+}
+
+:where(.backwards-compatibility) .member-count-badge-content .badge > span {
+    line-height: 24px;
+}
+
+:where(.backwards-compatibility) .member-count-badge-content .icon-badge .badge{
+  height: unset;
+    top: 5px;
+}
+
+:where(.backwards-compatibility) .custom-dropdown-arrow.dropdown-container:after{
+    width: 11px;
+    height: 11px;
+    border: 4px solid var(--color-neutral-5);
+    transform: rotate(225deg);
+    top: unset;
+    bottom: calc((100%/2) - 3.5px);
+    right: 10px;
+}
+
+:where(.backwards-compatibility) .my-update-feed-dropdown-country.custom-dropdown-arrow.dropdown-container:after{
+    right: 0px;
+}
+
+:where(.backwards-compatibility) .my-update-feed-dropdown-country.custom-dropdown-arrow .dropdown-display{
+  margin-right: 20px;
+}
+
+:where(.backwards-compatibility) .dropdown-expanded-down.custom-dropdown-arrow.dropdown-container:after
+{
+    transform: rotate(315deg);
+}
+
+  /* Migration End*/
+
+/*Horizontal scroll tiles - Locality Menu*/
+
+.connect-pill-menu .connect-tag{
+  padding: var(--space-none) 14px;
+}
+
+
+.connect-pill-menu .connect-tag{
+  margin-right: var(--space-s);
+  margin-left: var(--space-none);
+}
+
+.connect-pill-menu .horizontal-scroll-tiles-content .list > div:first-child .connect-tag{
+  margin-left: var(--space-s);
+}
+
+.connect-pill-menu{
+  --local-tag-color:#87929D;
+  --local-tag-border-color: #D8DCDE
+}
+
+.connect-pill-menu .horizontal-scroll-tiles-content {
+  box-shadow: 0px 2px 4px 0px #0000001A;
+  padding: 10px; /* Hardcoded to keep consistency between old and new Connect designs*/
+}
+
+.connect-locality-sub-menu{
+    display: flex;
+    justify-content: space-between;
+    padding: var(--space-base);
+    border-bottom: 1px solid var(--color-neutral-3);
+}
+
+.radio-button[value="True"]:before {
+  background-color: var(--color-neutral-0);
+  border: 6px solid var(--color-primary);
+}
+
+.field-error-border {
+    border: var(--border-size-s) solid var(--color-error) !important;
+}
+
+.form-control[data-input]:focus, .form-control[data-textarea]:focus {
+  border:var(--border-size-s) solid var(--color-primary) !important;
+}

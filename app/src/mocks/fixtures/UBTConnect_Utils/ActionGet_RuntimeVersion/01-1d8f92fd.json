@@ -1,0 +1,11 @@
+{
+ "module": "UBTConnect_Utils",
+ "action": "ActionGet_RuntimeVersion",
+ "screen": null,
+ "status": 200,
+ "inputs": {},
+ "data": {
+  "Out_RuntimeVersion": 61,
+  "Out_Name": ""
+ }
+}

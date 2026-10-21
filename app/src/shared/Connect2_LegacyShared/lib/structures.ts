@@ -1,0 +1,70 @@
+import type { components } from '../../../api/schema';
+
+/* Structures of Connect2_LegacyShared used by the ported actions; fields named as in OutSystems (the record attributes
+   read and written by Connect2_LegacyShared.controller.js), all optional = OutSystems default. */
+
+/** BulkSignedPhotoParameters: one photo asked of GetSignedPhotosInBulk (controller.js:2928-2933). */
+export interface BulkSignedPhotoParameters {
+  Bucket?: string;
+  Path?: string;
+  Type?: string;
+}
+
+/** BulkSignedPhotoResult: one answer of GetSignedPhotosInBulk (controller.js:3012-3025): the asked photo, its signed
+    URL and an error text ("" = none). */
+export interface BulkSignedPhotoResult {
+  Bucket?: string;
+  Path?: string;
+  Type?: string;
+  SignedURL?: string;
+  Error?: string;
+}
+
+/* ---- Wave 8 O-B2 (LocalityListDetail) ---- */
+/** CountryWithMapPosition (Connect2_LegacyShared.model.js `CountryWithMapPositionRec`, SupperMeeting_Details raw copy):
+    Code, Name "", RegionId / LocalitiesCount / HouseholdersCount / MembersCount 0 (Long Integer → number), InitialLatitude
+    / InitialLongitude 0 (Decimal), InitialZoom 5, WithinSubscription False. */
+export interface CountryWithMapPosition {
+  Code?: string;
+  Name?: string;
+  RegionId?: number;
+  LocalitiesCount?: number;
+  HouseholdersCount?: number;
+  MembersCount?: number;
+  InitialLatitude?: number;
+  InitialLongitude?: number;
+  InitialZoom?: number;
+  WithinSubscription?: boolean;
+}
+
+/* ---- Wave 8 O-B3 (Assemble filters): records of the server actions, typed by the API contract. ---- */
+type Schemas = components['schemas'];
+/** LocalityResultItemWithGPS: one locality of GetUserLocalitiesForCountryCodeWithGPS (GetCacheableCountryInfo). */
+export type LocalityResultItemWithGPS = Schemas['Connect2_LegacyShared__LocalityResultItemWithGPS'];
+/** CacheableLocalityInformation: GetLocalityInformation's locality (GetCacheableLocality). */
+export type CacheableLocalityInformation = Schemas['Connect2_LegacyShared__CacheableLocalityInformation'];
+/** SubdivisionsItem: one supper meeting of CacheableLocalityInformation.LocalitySubdivisionsList. */
+export type SubdivisionsItem = Schemas['Connect2_LegacyShared__SubdivisionsItem'];
+/** Users_Current_GETResponse (APIDomain_Directory_IS): GetUserInformation's user (GetCacheableUserInfo). */
+export type Users_Current_GETResponse = Schemas['APIDomain_Directory_IS__Users_Current_GETResponse'];
+
+/* ---- F11 (CR-MilestoneDetail-2: call popup data) ---- */
+
+/** MemberContactWithTimezone (Connect2_LegacyShared.model.js:8348-8400): a member's phones, e-mail, locality and
+    timezone (Timezone: TextLongIntegerRecord TimezoneLabel / OffsetSeconds). */
+export type MemberContactWithTimezone = Schemas['Connect2_LegacyShared__MemberContactWithTimezone'];
+
+/** TimezoneRec (APIDomain_Directory_IS): TimezoneLabel, OffsetSeconds (Long Integer), TimezoneAbreviation,
+    CountryName. */
+export type Timezone = Schemas['APIDomain_Directory_IS__Timezone'];
+
+/* ---- F15 (CR-AssembleDetail-1, CR-AssembleDetail-2) ---- */
+/** CacheableSubdivisionInformation (model.js:5755): the hall (SubdivisionExtended) and its households
+    (HouseholdListResponse, LocalityHouseholdsResultItem list), as GetBulkSubdivisions_V2 sends it. */
+export type CacheableSubdivisionInformation = Schemas['Connect2_LegacyShared__CacheableSubdivisionInformation'];
+/** CacheableSubdivisionInformationTextTextRecord (model.js:7171): one answer of GetBulkSubdivisions_V2 (CacheKey, Error,
+    Value). */
+export type CacheableSubdivisionInformationTextText =
+  Schemas['Connect2_LegacyShared__CacheableSubdivisionInformationTextTextRecord'];
+/** Connect2_MyBookmarks_IS BookmarkItem: a legacy bookmark (AddBookmarkToCache, the MyBookmarks cache). */
+export type BookmarkItem = Schemas['Connect2_MyBookmarks_IS__BookmarkItem'];

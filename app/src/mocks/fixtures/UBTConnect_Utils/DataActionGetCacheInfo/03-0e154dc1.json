@@ -1,0 +1,2315 @@
+{
+ "module": "UBTConnect_Utils",
+ "action": "DataActionGetCacheInfo",
+ "screen": "CacheControl_AllLocalities",
+ "status": 200,
+ "inputs": {
+  "CacheTypeId": "Reprehenderit",
+  "CacheKey": "Unique",
+  "TimeToLiveSeconds": 7200
+ },
+ "data": {
+  "CacheControl_Response": {
+   "LocalityList": {
+    "List": [
+     {
+      "LocalityId": "1",
+      "Name": "Zürich",
+      "CountryName": "Switzerland",
+      "CountryCode": "ch",
+      "Latitude": "47.374400",
+      "Longitude": "8.541100"
+     },
+     {
+      "LocalityId": "0",
+      "Name": "Düsseldorf",
+      "CountryName": "Germany",
+      "CountryCode": "de",
+      "Latitude": "51.233300",
+      "Longitude": "6.783300"
+     },
+     {
+      "LocalityId": "8",
+      "Name": "Endbach",
+      "CountryName": "Germany",
+      "CountryCode": "de",
+      "Latitude": "50.751766",
+      "Longitude": "8.494500"
+     },
+     {
+      "LocalityId": "8",
+      "Name": "Gummersbach",
+      "CountryName": "Germany",
+      "CountryCode": "de",
+      "Latitude": "51.033300",
+      "Longitude": "7.566700"
+     },
+     {
+      "LocalityId": "9",
+      "Name": "Siegen",
+      "CountryName": "Germany",
+      "CountryCode": "de",
+      "Latitude": "50.883300",
+      "Longitude": "8.016700"
+     },
+     {
+      "LocalityId": "1",
+      "Name": "Copenhagen",
+      "CountryName": "Denmark",
+      "CountryCode": "dk",
+      "Latitude": "55.676100",
+      "Longitude": "12.568300"
+     },
+     {
+      "LocalityId": "84",
+      "Name": "Alès",
+      "CountryName": "France",
+      "CountryCode": "fr",
+      "Latitude": "44.128100",
+      "Longitude": "4.081700"
+     },
+     {
+      "LocalityId": "37",
+      "Name": "La Voulte",
+      "CountryName": "France",
+      "CountryCode": "fr",
+      "Latitude": "44.800076",
+      "Longitude": "4.781385"
+     },
+     {
+      "LocalityId": "41",
+      "Name": "Le Chambon",
+      "CountryName": "France",
+      "CountryCode": "fr",
+      "Latitude": "44.836300",
+      "Longitude": "4.304660"
+     },
+     {
+      "LocalityId": "16",
+      "Name": "Lyon",
+      "CountryName": "France",
+      "CountryCode": "fr",
+      "Latitude": "45.760000",
+      "Longitude": "4.840000"
+     },
+     {
+      "LocalityId": "27",
+      "Name": "Nîmes",
+      "CountryName": "France",
+      "CountryCode": "fr",
+      "Latitude": "43.838300",
+      "Longitude": "4.359700"
+     },
+     {
+      "LocalityId": "78",
+      "Name": "Paris",
+      "CountryName": "France",
+      "CountryCode": "fr",
+      "Latitude": "48.856700",
+      "Longitude": "2.352200"
+     },
+     {
+      "LocalityId": "27",
+      "Name": "St Etienne",
+      "CountryName": "France",
+      "CountryCode": "fr",
+      "Latitude": "45.440147",
+      "Longitude": "4.387306"
+     },
+     {
+      "LocalityId": "37",
+      "Name": "Toulon",
+      "CountryName": "France",
+      "CountryCode": "fr",
+      "Latitude": "43.125800",
+      "Longitude": "5.930600"
+     },
+     {
+      "LocalityId": "98",
+      "Name": "Valence",
+      "CountryName": "France",
+      "CountryCode": "fr",
+      "Latitude": "44.933300",
+      "Longitude": "4.891700"
+     },
+     {
+      "LocalityId": "14",
+      "Name": "Rome",
+      "CountryName": "Italy",
+      "CountryCode": "it",
+      "Latitude": "41.893300",
+      "Longitude": "12.482800"
+     },
+     {
+      "LocalityId": "21",
+      "Name": "The Hague",
+      "CountryName": "Netherlands",
+      "CountryCode": "nl",
+      "Latitude": "52.080000",
+      "Longitude": "4.310000"
+     },
+     {
+      "LocalityId": "93",
+      "Name": "Gothenburg",
+      "CountryName": "Sweden",
+      "CountryCode": "se",
+      "Latitude": "57.707500",
+      "Longitude": "11.967500"
+     },
+     {
+      "LocalityId": "78",
+      "Name": "Helsingborg",
+      "CountryName": "Sweden",
+      "CountryCode": "se",
+      "Latitude": "56.050000",
+      "Longitude": "12.716700"
+     },
+     {
+      "LocalityId": "54",
+      "Name": "Ljungby",
+      "CountryName": "Sweden",
+      "CountryCode": "se",
+      "Latitude": "56.833300",
+      "Longitude": "13.933300"
+     },
+     {
+      "LocalityId": "41",
+      "Name": "Smålandsstenar",
+      "CountryName": "Sweden",
+      "CountryCode": "se",
+      "Latitude": "57.162696",
+      "Longitude": "13.411559"
+     },
+     {
+      "LocalityId": "85",
+      "Name": "Aberdeen",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "57.150000",
+      "Longitude": "-2.110000"
+     },
+     {
+      "LocalityId": "48",
+      "Name": "Aldeburgh",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.152381",
+      "Longitude": "1.601569"
+     },
+     {
+      "LocalityId": "72",
+      "Name": "Ipswich",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.059400",
+      "Longitude": "1.155600"
+     },
+     {
+      "LocalityId": "11",
+      "Name": "Andover",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.208000",
+      "Longitude": "-1.480000"
+     },
+     {
+      "LocalityId": "36",
+      "Name": "Banbury",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.061000",
+      "Longitude": "-1.336000"
+     },
+     {
+      "LocalityId": "75",
+      "Name": "Belfast",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "54.596400",
+      "Longitude": "-5.930000"
+     },
+     {
+      "LocalityId": "18",
+      "Name": "Biggleswade",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.085500",
+      "Longitude": "-0.255700"
+     },
+     {
+      "LocalityId": "33",
+      "Name": "Birmingham",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.480000",
+      "Longitude": "-1.902500"
+     },
+     {
+      "LocalityId": "57",
+      "Name": "Bognor",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "50.783497",
+      "Longitude": "-0.673072"
+     },
+     {
+      "LocalityId": "19",
+      "Name": "Bournemouth",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "50.720000",
+      "Longitude": "-1.880000"
+     },
+     {
+      "LocalityId": "47",
+      "Name": "Bristol",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.453600",
+      "Longitude": "-2.597500"
+     },
+     {
+      "LocalityId": "68",
+      "Name": "Burgess Hill",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "50.953500",
+      "Longitude": "-0.126200"
+     },
+     {
+      "LocalityId": "94",
+      "Name": "Cambridge",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.205300",
+      "Longitude": "0.119200"
+     },
+     {
+      "LocalityId": "22",
+      "Name": "Canterbury",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.280000",
+      "Longitude": "1.080000"
+     },
+     {
+      "LocalityId": "85",
+      "Name": "Cardiff",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.481655",
+      "Longitude": "-3.179193"
+     },
+     {
+      "LocalityId": "88",
+      "Name": "Chelmsford",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.730000",
+      "Longitude": "0.480000"
+     },
+     {
+      "LocalityId": "32",
+      "Name": "Chester",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.190000",
+      "Longitude": "-2.890000"
+     },
+     {
+      "LocalityId": "12",
+      "Name": "Chesterfield",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.236300",
+      "Longitude": "-1.429200"
+     },
+     {
+      "LocalityId": "39",
+      "Name": "Chippenham",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.459000",
+      "Longitude": "-2.116000"
+     },
+     {
+      "LocalityId": "21",
+      "Name": "Colchester",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.891700",
+      "Longitude": "0.903000"
+     },
+     {
+      "LocalityId": "34",
+      "Name": "Coventry",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.408100",
+      "Longitude": "-1.510600"
+     },
+     {
+      "LocalityId": "58",
+      "Name": "Crewe",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.099000",
+      "Longitude": "-2.440000"
+     },
+     {
+      "LocalityId": "53",
+      "Name": "Dereham",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.680205",
+      "Longitude": "0.938633"
+     },
+     {
+      "LocalityId": "18",
+      "Name": "Didcot",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.606000",
+      "Longitude": "-1.241000"
+     },
+     {
+      "LocalityId": "51",
+      "Name": "Doncaster",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.523100",
+      "Longitude": "-1.133900"
+     },
+     {
+      "LocalityId": "45",
+      "Name": "Edinburgh",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "55.953300",
+      "Longitude": "-3.189200"
+     },
+     {
+      "LocalityId": "15",
+      "Name": "Exeter",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "50.725600",
+      "Longitude": "-3.526900"
+     },
+     {
+      "LocalityId": "26",
+      "Name": "Fernhurst",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.048192",
+      "Longitude": "-0.723310"
+     },
+     {
+      "LocalityId": "68",
+      "Name": "Gillingham",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.385000",
+      "Longitude": "0.550000"
+     },
+     {
+      "LocalityId": "91",
+      "Name": "Glasgow",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "55.861100",
+      "Longitude": "-4.250000"
+     },
+     {
+      "LocalityId": "84",
+      "Name": "Gloucester",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.866700",
+      "Longitude": "-2.250000"
+     },
+     {
+      "LocalityId": "80",
+      "Name": "Grangemouth",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "56.012000",
+      "Longitude": "-3.717000"
+     },
+     {
+      "LocalityId": "35",
+      "Name": "Grimsby",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.567500",
+      "Longitude": "-0.080000"
+     },
+     {
+      "LocalityId": "23",
+      "Name": "Guildford",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.236500",
+      "Longitude": "-0.570300"
+     },
+     {
+      "LocalityId": "18",
+      "Name": "Harrogate",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.991900",
+      "Longitude": "-1.537800"
+     },
+     {
+      "LocalityId": "84",
+      "Name": "Hastings",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "50.850000",
+      "Longitude": "0.570000"
+     },
+     {
+      "LocalityId": "65",
+      "Name": "Hereford",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.056000",
+      "Longitude": "-2.716000"
+     },
+     {
+      "LocalityId": "11",
+      "Name": "Hertford",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.796600",
+      "Longitude": "-0.077400"
+     },
+     {
+      "LocalityId": "33",
+      "Name": "Horsham",
+      "CountryName": "United Kingdom",
+      "CountryCode": "UK",
+      "Latitude": "51.062000",
+      "Longitude": "-0.325000"
+     },
+     {
+      "LocalityId": "42",
+      "Name": "Hull",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.762386",
+      "Longitude": "-0.330121"
+     },
+     {
+      "LocalityId": "53",
+      "Name": "Kilmarnock",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "55.611100",
+      "Longitude": "-4.495700"
+     },
+     {
+      "LocalityId": "71",
+      "Name": "King's Lynn",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.753867",
+      "Longitude": "0.395477"
+     },
+     {
+      "LocalityId": "12",
+      "Name": "Kirkcaldy",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "56.110700",
+      "Longitude": "-3.167400"
+     },
+     {
+      "LocalityId": "33",
+      "Name": "Lancaster",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "54.048900",
+      "Longitude": "-2.801400"
+     },
+     {
+      "LocalityId": "48",
+      "Name": "Leamington",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.291339",
+      "Longitude": "-1.536404"
+     },
+     {
+      "LocalityId": "23",
+      "Name": "Leeds",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.797500",
+      "Longitude": "-1.543600"
+     },
+     {
+      "LocalityId": "58",
+      "Name": "Leicester",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.634400",
+      "Longitude": "-1.131900"
+     },
+     {
+      "LocalityId": "80",
+      "Name": "Lincoln",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.228300",
+      "Longitude": "-0.538900"
+     },
+     {
+      "LocalityId": "40",
+      "Name": "Liverpool",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.409400",
+      "Longitude": "-2.978500"
+     },
+     {
+      "LocalityId": "61",
+      "Name": "London",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.507200",
+      "Longitude": "-0.127500"
+     },
+     {
+      "LocalityId": "89",
+      "Name": "Londonderry",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "54.997868",
+      "Longitude": "-7.321306"
+     },
+     {
+      "LocalityId": "39",
+      "Name": "Loughborough",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.772500",
+      "Longitude": "-1.207800"
+     },
+     {
+      "LocalityId": "62",
+      "Name": "Lowestoft",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.480000",
+      "Longitude": "1.750000"
+     },
+     {
+      "LocalityId": "50",
+      "Name": "Luton",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.878300",
+      "Longitude": "-0.414700"
+     },
+     {
+      "LocalityId": "58",
+      "Name": "Maidstone",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.272000",
+      "Longitude": "0.529000"
+     },
+     {
+      "LocalityId": "31",
+      "Name": "Manchester",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.479000",
+      "Longitude": "-2.245200"
+     },
+     {
+      "LocalityId": "49",
+      "Name": "Middlesbrough",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "54.576700",
+      "Longitude": "-1.235500"
+     },
+     {
+      "LocalityId": "60",
+      "Name": "Newtown",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.513200",
+      "Longitude": "-3.314100"
+     },
+     {
+      "LocalityId": "19",
+      "Name": "Northampton",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.230400",
+      "Longitude": "-0.893800"
+     },
+     {
+      "LocalityId": "35",
+      "Name": "Norwich",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.628600",
+      "Longitude": "1.292800"
+     },
+     {
+      "LocalityId": "77",
+      "Name": "Nottingham",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.956100",
+      "Longitude": "-1.151200"
+     },
+     {
+      "LocalityId": "53",
+      "Name": "Perth",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "56.395800",
+      "Longitude": "-3.433300"
+     },
+     {
+      "LocalityId": "13",
+      "Name": "Peterhead",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "57.509100",
+      "Longitude": "-1.783200"
+     },
+     {
+      "LocalityId": "12",
+      "Name": "Plymouth",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "50.371400",
+      "Longitude": "-4.142200"
+     },
+     {
+      "LocalityId": "18",
+      "Name": "Portsmouth",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "50.805800",
+      "Longitude": "-1.087200"
+     },
+     {
+      "LocalityId": "326",
+      "Name": "Preston",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "53.830000",
+      "Longitude": "-2.735000"
+     },
+     {
+      "LocalityId": "466",
+      "Name": "Reading",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.454200",
+      "Longitude": "-0.973100"
+     },
+     {
+      "LocalityId": "685",
+      "Name": "Salisbury",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.070000",
+      "Longitude": "-1.790000"
+     },
+     {
+      "LocalityId": "384",
+      "Name": "Shrewsbury",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.708000",
+      "Longitude": "-2.754000"
+     },
+     {
+      "LocalityId": "740",
+      "Name": "Southampton",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "50.902500",
+      "Longitude": "-1.404200"
+     },
+     {
+      "LocalityId": "476",
+      "Name": "St Austell",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "50.338140",
+      "Longitude": "-4.794184"
+     },
+     {
+      "LocalityId": "620",
+      "Name": "Stafford",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.807000",
+      "Longitude": "-2.117000"
+     },
+     {
+      "LocalityId": "146",
+      "Name": "Stamford",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.656000",
+      "Longitude": "-0.484000"
+     },
+     {
+      "LocalityId": "156",
+      "Name": "Stow",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "55.691857",
+      "Longitude": "-2.866821"
+     },
+     {
+      "LocalityId": "555",
+      "Name": "Sutton",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.365600",
+      "Longitude": "-0.196300"
+     },
+     {
+      "LocalityId": "118",
+      "Name": "Swansea",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.619596",
+      "Longitude": "-3.945925"
+     },
+     {
+      "LocalityId": "100",
+      "Name": "Swindon",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.560000",
+      "Longitude": "-1.780000"
+     },
+     {
+      "LocalityId": "286",
+      "Name": "Taunton",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.019000",
+      "Longitude": "-3.100000"
+     },
+     {
+      "LocalityId": "469",
+      "Name": "Thaxted",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.952532",
+      "Longitude": "0.343824"
+     },
+     {
+      "LocalityId": "870",
+      "Name": "Torbay",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "50.446247",
+      "Longitude": "-3.539500"
+     },
+     {
+      "LocalityId": "453",
+      "Name": "Tunbridge Wells",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.137148",
+      "Longitude": "0.267345"
+     },
+     {
+      "LocalityId": "292",
+      "Name": "Warrenpoint",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "54.099992",
+      "Longitude": "-6.251283"
+     },
+     {
+      "LocalityId": "415",
+      "Name": "Watford",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.655000",
+      "Longitude": "-0.395700"
+     },
+     {
+      "LocalityId": "652",
+      "Name": "Winchester",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "51.063200",
+      "Longitude": "-1.308000"
+     },
+     {
+      "LocalityId": "317",
+      "Name": "Worcester",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "52.191100",
+      "Longitude": "-2.220600"
+     },
+     {
+      "LocalityId": "315",
+      "Name": "Yeovil",
+      "CountryName": "United Kingdom",
+      "CountryCode": "uk",
+      "Latitude": "50.945200",
+      "Longitude": "-2.637000"
+     },
+     {
+      "LocalityId": "419",
+      "Name": "Brisbane",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-27.467800",
+      "Longitude": "153.028100"
+     },
+     {
+      "LocalityId": "611",
+      "Name": "Shepparton",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-36.383300",
+      "Longitude": "145.400000"
+     },
+     {
+      "LocalityId": "641",
+      "Name": "Camden",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-34.016087",
+      "Longitude": "150.719885"
+     },
+     {
+      "LocalityId": "545",
+      "Name": "Moss Vale",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-34.550000",
+      "Longitude": "150.383300"
+     },
+     {
+      "LocalityId": "139",
+      "Name": "Ipswich",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-27.614400",
+      "Longitude": "152.760800"
+     },
+     {
+      "LocalityId": "431",
+      "Name": "Lithgow",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.483300",
+      "Longitude": "150.150000"
+     },
+     {
+      "LocalityId": "701",
+      "Name": "Ballarat",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.560800",
+      "Longitude": "143.847500"
+     },
+     {
+      "LocalityId": "166",
+      "Name": "Kellyville",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.715827",
+      "Longitude": "150.954993"
+     },
+     {
+      "LocalityId": "266",
+      "Name": "Armadale",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-32.179190",
+      "Longitude": "116.106678"
+     },
+     {
+      "LocalityId": "370",
+      "Name": "Stawell",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.050000",
+      "Longitude": "142.766700"
+     },
+     {
+      "LocalityId": "157",
+      "Name": "Gnowangerup",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-34.084772",
+      "Longitude": "118.320742"
+     },
+     {
+      "LocalityId": "227",
+      "Name": "Leeton",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-34.566700",
+      "Longitude": "146.400000"
+     },
+     {
+      "LocalityId": "635",
+      "Name": "Melbourne",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.814200",
+      "Longitude": "144.963100"
+     },
+     {
+      "LocalityId": "144",
+      "Name": "Deloraine",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-41.525094",
+      "Longitude": "146.659930"
+     },
+     {
+      "LocalityId": "365",
+      "Name": "Lisarow",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.382211",
+      "Longitude": "151.369983"
+     },
+     {
+      "LocalityId": "771",
+      "Name": "Berwick",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-38.039830",
+      "Longitude": "145.345109"
+     },
+     {
+      "LocalityId": "267",
+      "Name": "Toowoomba",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-27.566700",
+      "Longitude": "151.950000"
+     },
+     {
+      "LocalityId": "228",
+      "Name": "Mt Gambier",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.830139",
+      "Longitude": "140.784263"
+     },
+     {
+      "LocalityId": "461",
+      "Name": "Castlemaine",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.066478",
+      "Longitude": "144.220003"
+     },
+     {
+      "LocalityId": "755",
+      "Name": "Young",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-34.300000",
+      "Longitude": "148.300000"
+     },
+     {
+      "LocalityId": "127",
+      "Name": "Canberra",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-35.293100",
+      "Longitude": "149.126900"
+     },
+     {
+      "LocalityId": "655",
+      "Name": "Caboolture",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-27.085000",
+      "Longitude": "152.951300"
+     },
+     {
+      "LocalityId": "834",
+      "Name": "Tamworth",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-31.083300",
+      "Longitude": "150.916700"
+     },
+     {
+      "LocalityId": "676",
+      "Name": "Adelaide",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-34.927500",
+      "Longitude": "138.600000"
+     },
+     {
+      "LocalityId": "396",
+      "Name": "Burnie",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-41.063600",
+      "Longitude": "145.875300"
+     },
+     {
+      "LocalityId": "127",
+      "Name": "Bendigo",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-36.750000",
+      "Longitude": "144.266700"
+     },
+     {
+      "LocalityId": "210",
+      "Name": "Swan Hill",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-35.333300",
+      "Longitude": "143.550000"
+     },
+     {
+      "LocalityId": "887",
+      "Name": "Perth",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-31.955900",
+      "Longitude": "115.860600"
+     },
+     {
+      "LocalityId": "943",
+      "Name": "Molong",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.092382",
+      "Longitude": "148.863861"
+     },
+     {
+      "LocalityId": "160",
+      "Name": "Northam",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-31.653100",
+      "Longitude": "116.666100"
+     },
+     {
+      "LocalityId": "815",
+      "Name": "Goulburn",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-34.754700",
+      "Longitude": "149.618600"
+     },
+     {
+      "LocalityId": "597",
+      "Name": "Nambour",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-26.626900",
+      "Longitude": "152.959100"
+     },
+     {
+      "LocalityId": "582",
+      "Name": "Newcastle",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-32.916700",
+      "Longitude": "151.750000"
+     },
+     {
+      "LocalityId": "314",
+      "Name": "Maryborough",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-25.537500",
+      "Longitude": "152.701900"
+     },
+     {
+      "LocalityId": "451",
+      "Name": "Bathurst",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.420000",
+      "Longitude": "149.577800"
+     },
+     {
+      "LocalityId": "270",
+      "Name": "Condobolin",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.088797",
+      "Longitude": "147.149732"
+     },
+     {
+      "LocalityId": "323",
+      "Name": "Cowra",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.833900",
+      "Longitude": "148.686100"
+     },
+     {
+      "LocalityId": "518",
+      "Name": "Engadine",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-34.065013",
+      "Longitude": "151.013823"
+     },
+     {
+      "LocalityId": "244",
+      "Name": "Geelong",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-38.150000",
+      "Longitude": "144.350000"
+     },
+     {
+      "LocalityId": "695",
+      "Name": "Hobart",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-42.880600",
+      "Longitude": "147.325000"
+     },
+     {
+      "LocalityId": "445",
+      "Name": "Kalamunda",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-32.003808",
+      "Longitude": "116.102207"
+     },
+     {
+      "LocalityId": "183",
+      "Name": "Launceston",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-41.441900",
+      "Longitude": "147.145000"
+     },
+     {
+      "LocalityId": "352",
+      "Name": "Sydney",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.867800",
+      "Longitude": "151.210000"
+     },
+     {
+      "LocalityId": "672",
+      "Name": "Wagga Wagga",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-35.118900",
+      "Longitude": "147.368900"
+     },
+     {
+      "LocalityId": "734",
+      "Name": "Warragul",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-38.150000",
+      "Longitude": "145.933300"
+     },
+     {
+      "LocalityId": "199",
+      "Name": "Warwick",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-28.215200",
+      "Longitude": "152.035200"
+     },
+     {
+      "LocalityId": "139",
+      "Name": "Wollongong",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-34.433100",
+      "Longitude": "150.883100"
+     },
+     {
+      "LocalityId": "618",
+      "Name": "Melton",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.683300",
+      "Longitude": "144.583300"
+     },
+     {
+      "LocalityId": "619",
+      "Name": "Armidale",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-30.500000",
+      "Longitude": "151.650000"
+     },
+     {
+      "LocalityId": "875",
+      "Name": "Katoomba",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.710000",
+      "Longitude": "150.310000"
+     },
+     {
+      "LocalityId": "145",
+      "Name": "Sale",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-38.100000",
+      "Longitude": "147.066700"
+     },
+     {
+      "LocalityId": "345",
+      "Name": "Warrnambool",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-38.383300",
+      "Longitude": "142.483300"
+     },
+     {
+      "LocalityId": "193",
+      "Name": "Kerang",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-35.733837",
+      "Longitude": "143.920415"
+     },
+     {
+      "LocalityId": "329",
+      "Name": "Bairnsdale",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.833300",
+      "Longitude": "147.616700"
+     },
+     {
+      "LocalityId": "187",
+      "Name": "Lake Cargelligo",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.298381",
+      "Longitude": "146.373932"
+     },
+     {
+      "LocalityId": "633",
+      "Name": "Kyneton",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.247494",
+      "Longitude": "144.455217"
+     },
+     {
+      "LocalityId": "343",
+      "Name": "Bundaberg",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-24.866100",
+      "Longitude": "152.349400"
+     },
+     {
+      "LocalityId": "427",
+      "Name": "Hamilton",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.733300",
+      "Longitude": "142.016700"
+     },
+     {
+      "LocalityId": "436",
+      "Name": "Albury",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-36.080600",
+      "Longitude": "146.915800"
+     },
+     {
+      "LocalityId": "378",
+      "Name": "Penrith",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.751100",
+      "Longitude": "150.694200"
+     },
+     {
+      "LocalityId": "409",
+      "Name": "Gympie",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-26.190000",
+      "Longitude": "152.665500"
+     },
+     {
+      "LocalityId": "722",
+      "Name": "Wangaratta",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-36.358300",
+      "Longitude": "146.312500"
+     },
+     {
+      "LocalityId": "924",
+      "Name": "Sunbury",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.581100",
+      "Longitude": "144.713900"
+     },
+     {
+      "LocalityId": "178",
+      "Name": "Albany",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-35.022800",
+      "Longitude": "117.881400"
+     },
+     {
+      "LocalityId": "404",
+      "Name": "Boronia",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.860662",
+      "Longitude": "145.284844"
+     },
+     {
+      "LocalityId": "118",
+      "Name": "Cunderdin",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-31.609835",
+      "Longitude": "117.127256"
+     },
+     {
+      "LocalityId": "453",
+      "Name": "Maitland",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-32.716700",
+      "Longitude": "151.550000"
+     },
+     {
+      "LocalityId": "131",
+      "Name": "Nathalia",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-36.057807",
+      "Longitude": "145.207485"
+     },
+     {
+      "LocalityId": "160",
+      "Name": "Orange",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.283300",
+      "Longitude": "149.100000"
+     },
+     {
+      "LocalityId": "729",
+      "Name": "Parkes",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.133300",
+      "Longitude": "148.166700"
+     },
+     {
+      "LocalityId": "425",
+      "Name": "Picton",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-33.341555",
+      "Longitude": "115.702740"
+     },
+     {
+      "LocalityId": "430",
+      "Name": "Singleton",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-32.566700",
+      "Longitude": "151.169700"
+     },
+     {
+      "LocalityId": "345",
+      "Name": "Werribee",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.899501",
+      "Longitude": "144.660904"
+     },
+     {
+      "LocalityId": "457",
+      "Name": "Scottsdale",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-41.166700",
+      "Longitude": "147.516700"
+     },
+     {
+      "LocalityId": "157",
+      "Name": "Mundaring",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-31.883877",
+      "Longitude": "116.194068"
+     },
+     {
+      "LocalityId": "208",
+      "Name": "Moe",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-38.172200",
+      "Longitude": "146.267800"
+     },
+     {
+      "LocalityId": "713",
+      "Name": "Dalwallinu",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-30.129974",
+      "Longitude": "116.945542"
+     },
+     {
+      "LocalityId": "584",
+      "Name": "Lilydale",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-37.757157",
+      "Longitude": "145.345867"
+     },
+     {
+      "LocalityId": "380",
+      "Name": "Mt Barker",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-35.064130",
+      "Longitude": "138.858639"
+     },
+     {
+      "LocalityId": "947",
+      "Name": "Campbelltown",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-34.066700",
+      "Longitude": "150.816700"
+     },
+     {
+      "LocalityId": "123",
+      "Name": "Devonport",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-41.180000",
+      "Longitude": "146.350300"
+     },
+     {
+      "LocalityId": "337",
+      "Name": "Griffith",
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-34.290000",
+      "Longitude": "146.040000"
+     },
+     {
+      "LocalityId": "151",
+      "Name": "Pukekohe",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-37.200638",
+      "Longitude": "174.903687"
+     },
+     {
+      "LocalityId": "191",
+      "Name": "Ashburton",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-43.902440",
+      "Longitude": "171.750333"
+     },
+     {
+      "LocalityId": "668",
+      "Name": "Nelson",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-41.270800",
+      "Longitude": "173.283900"
+     },
+     {
+      "LocalityId": "605",
+      "Name": "Auckland",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-36.840600",
+      "Longitude": "174.740000"
+     },
+     {
+      "LocalityId": "421",
+      "Name": "Warkworth",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-36.397669",
+      "Longitude": "174.665849"
+     },
+     {
+      "LocalityId": "580",
+      "Name": "Papakura",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-37.064265",
+      "Longitude": "174.944667"
+     },
+     {
+      "LocalityId": "129",
+      "Name": "Westport",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-41.758100",
+      "Longitude": "171.602200"
+     },
+     {
+      "LocalityId": "683",
+      "Name": "Motueka",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-41.112493",
+      "Longitude": "173.009488"
+     },
+     {
+      "LocalityId": "995",
+      "Name": "Tauranga",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-37.683300",
+      "Longitude": "176.166700"
+     },
+     {
+      "LocalityId": "835",
+      "Name": "Maungaturoto",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-35.370225",
+      "Longitude": "173.881884"
+     },
+     {
+      "LocalityId": "946",
+      "Name": "Blenheim",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-41.514000",
+      "Longitude": "173.960000"
+     },
+     {
+      "LocalityId": "266",
+      "Name": "Christchurch",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-43.531000",
+      "Longitude": "172.636500"
+     },
+     {
+      "LocalityId": "317",
+      "Name": "Rangiora",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-43.303171",
+      "Longitude": "172.596148"
+     },
+     {
+      "LocalityId": "976",
+      "Name": "Gisborne",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-38.662500",
+      "Longitude": "178.017800"
+     },
+     {
+      "LocalityId": "101",
+      "Name": "Cambridge",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-37.883300",
+      "Longitude": "175.466700"
+     },
+     {
+      "LocalityId": "253",
+      "Name": "Feilding",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-40.216700",
+      "Longitude": "175.566700"
+     },
+     {
+      "LocalityId": "742",
+      "Name": "Hastings",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-39.641768",
+      "Longitude": "176.843078"
+     },
+     {
+      "LocalityId": "176",
+      "Name": "Dargaville",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-35.941214",
+      "Longitude": "173.868570"
+     },
+     {
+      "LocalityId": "785",
+      "Name": "Dunedin",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-45.874200",
+      "Longitude": "170.503600"
+     },
+     {
+      "LocalityId": "202",
+      "Name": "Invercargill",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-46.413100",
+      "Longitude": "168.347500"
+     },
+     {
+      "LocalityId": "542",
+      "Name": "Gore",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-46.098448",
+      "Longitude": "168.944781"
+     },
+     {
+      "LocalityId": "513",
+      "Name": "Greymouth",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-42.450000",
+      "Longitude": "171.207500"
+     },
+     {
+      "LocalityId": "271",
+      "Name": "Hamilton",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-37.783300",
+      "Longitude": "175.283300"
+     },
+     {
+      "LocalityId": "222",
+      "Name": "Timaru",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-44.393100",
+      "Longitude": "171.250800"
+     },
+     {
+      "LocalityId": "100",
+      "Name": "Masterton",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-40.970000",
+      "Longitude": "175.650000"
+     },
+     {
+      "LocalityId": "161",
+      "Name": "Napier",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-39.490300",
+      "Longitude": "176.917800"
+     },
+     {
+      "LocalityId": "362",
+      "Name": "Hawera",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-39.593300",
+      "Longitude": "174.278300"
+     },
+     {
+      "LocalityId": "780",
+      "Name": "Hutt",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-41.212575",
+      "Longitude": "174.905763"
+     },
+     {
+      "LocalityId": "431",
+      "Name": "Wellington",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-41.288900",
+      "Longitude": "174.777200"
+     },
+     {
+      "LocalityId": "987",
+      "Name": "Kaitaia",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-35.112500",
+      "Longitude": "173.262800"
+     },
+     {
+      "LocalityId": "439",
+      "Name": "Kerikeri",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-35.224400",
+      "Longitude": "173.951400"
+     },
+     {
+      "LocalityId": "142",
+      "Name": "Levin",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-40.621900",
+      "Longitude": "175.286700"
+     },
+     {
+      "LocalityId": "706",
+      "Name": "New Plymouth",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-39.057800",
+      "Longitude": "174.074200"
+     },
+     {
+      "LocalityId": "203",
+      "Name": "Oamaru",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-45.099983",
+      "Longitude": "170.969793"
+     },
+     {
+      "LocalityId": "935",
+      "Name": "Pahiatua",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-40.453396",
+      "Longitude": "175.840683"
+     },
+     {
+      "LocalityId": "652",
+      "Name": "Palmerston North",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-40.355000",
+      "Longitude": "175.611700"
+     },
+     {
+      "LocalityId": "266",
+      "Name": "Paparoa",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-42.107803",
+      "Longitude": "171.486426"
+     },
+     {
+      "LocalityId": "796",
+      "Name": "Thames",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-37.138300",
+      "Longitude": "175.537500"
+     },
+     {
+      "LocalityId": "751",
+      "Name": "Wanganui",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-39.932490",
+      "Longitude": "175.051931"
+     },
+     {
+      "LocalityId": "481",
+      "Name": "Wellsford",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-36.295743",
+      "Longitude": "174.523259"
+     },
+     {
+      "LocalityId": "497",
+      "Name": "Whangarei",
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-35.725000",
+      "Longitude": "174.323600"
+     },
+     {
+      "LocalityId": "574",
+      "Name": "Barbados",
+      "CountryName": "Barbados",
+      "CountryCode": "BB",
+      "Latitude": "13.189946",
+      "Longitude": "-59.559215"
+     },
+     {
+      "LocalityId": "585",
+      "Name": "Bahia Blanca",
+      "CountryName": "Argentina",
+      "CountryCode": "AR",
+      "Latitude": "-38.717652",
+      "Longitude": "-62.265487"
+     },
+     {
+      "LocalityId": "924",
+      "Name": "Buenos Aires",
+      "CountryName": "Argentina",
+      "CountryCode": "AR",
+      "Latitude": "-34.603300",
+      "Longitude": "-58.381700"
+     },
+     {
+      "LocalityId": "216",
+      "Name": "Rosario",
+      "CountryName": "Argentina",
+      "CountryCode": "AR",
+      "Latitude": "-32.957500",
+      "Longitude": "-60.639400"
+     },
+     {
+      "LocalityId": "552",
+      "Name": "Trinidad",
+      "CountryName": "Trinidad",
+      "CountryCode": "TT",
+      "Latitude": "21.805199",
+      "Longitude": "-79.984551"
+     },
+     {
+      "LocalityId": "976",
+      "Name": "St Vincent",
+      "CountryName": "Saint Vincent",
+      "CountryCode": "VC",
+      "Latitude": "13.252879",
+      "Longitude": "-61.194946"
+     },
+     {
+      "LocalityId": "500",
+      "Name": "Kingston",
+      "CountryName": "Jamaica",
+      "CountryCode": "JM",
+      "Latitude": "17.971400",
+      "Longitude": "-76.793100"
+     },
+     {
+      "LocalityId": "510",
+      "Name": "Mandeville",
+      "CountryName": "Jamaica",
+      "CountryCode": "JM",
+      "Latitude": "18.033300",
+      "Longitude": "-77.500000"
+     },
+     {
+      "LocalityId": "353",
+      "Name": "Baltimore",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "39.305100",
+      "Longitude": "-76.614400"
+     },
+     {
+      "LocalityId": "685",
+      "Name": "Boston",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "42.318800",
+      "Longitude": "-71.085200"
+     },
+     {
+      "LocalityId": "824",
+      "Name": "Chicago",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "41.837500",
+      "Longitude": "-87.686600"
+     },
+     {
+      "LocalityId": "509",
+      "Name": "Cleveland",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "41.476400",
+      "Longitude": "-81.680500"
+     },
+     {
+      "LocalityId": "577",
+      "Name": "Columbus",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "39.986200",
+      "Longitude": "-82.985500"
+     },
+     {
+      "LocalityId": "323",
+      "Name": "Council Bluffs",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "41.236900",
+      "Longitude": "-95.851600"
+     },
+     {
+      "LocalityId": "258",
+      "Name": "Des Moines",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "41.572500",
+      "Longitude": "-93.610500"
+     },
+     {
+      "LocalityId": "125",
+      "Name": "Detroit",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "42.383400",
+      "Longitude": "-83.102400"
+     },
+     {
+      "LocalityId": "545",
+      "Name": "Gothenburg",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "40.927732",
+      "Longitude": "-100.161990"
+     },
+     {
+      "LocalityId": "818",
+      "Name": "Indianapolis",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "39.777100",
+      "Longitude": "-86.145800"
+     },
+     {
+      "LocalityId": "758",
+      "Name": "Kalispell",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "48.215300",
+      "Longitude": "-114.327400"
+     },
+     {
+      "LocalityId": "988",
+      "Name": "Knoxville",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "35.969200",
+      "Longitude": "-83.949600"
+     },
+     {
+      "LocalityId": "500",
+      "Name": "Los Angeles",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "34.114100",
+      "Longitude": "-118.406800"
+     },
+     {
+      "LocalityId": "540",
+      "Name": "Manchester",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "42.984800",
+      "Longitude": "-71.444700"
+     },
+     {
+      "LocalityId": "103",
+      "Name": "Minneapolis",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "44.963500",
+      "Longitude": "-93.267800"
+     },
+     {
+      "LocalityId": "793",
+      "Name": "Neche",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "48.982625",
+      "Longitude": "-97.551941"
+     },
+     {
+      "LocalityId": "657",
+      "Name": "New York",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "40.694300",
+      "Longitude": "-73.924900"
+     },
+     {
+      "LocalityId": "301",
+      "Name": "Omaha",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "41.262700",
+      "Longitude": "-96.052900"
+     },
+     {
+      "LocalityId": "316",
+      "Name": "Pembina",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "48.753079",
+      "Longitude": "-97.553283"
+     },
+     {
+      "LocalityId": "414",
+      "Name": "Philadelphia",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "40.007700",
+      "Longitude": "-75.133900"
+     },
+     {
+      "LocalityId": "203",
+      "Name": "Portland",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "45.537100",
+      "Longitude": "-122.650000"
+     },
+     {
+      "LocalityId": "940",
+      "Name": "Redwood Falls",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "44.539372",
+      "Longitude": "-95.116448"
+     },
+     {
+      "LocalityId": "140",
+      "Name": "Rochester",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "43.168000",
+      "Longitude": "-77.616200"
+     },
+     {
+      "LocalityId": "108",
+      "Name": "San Antonio",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "29.463200",
+      "Longitude": "-98.523800"
+     },
+     {
+      "LocalityId": "420",
+      "Name": "San Francisco",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "37.755800",
+      "Longitude": "-122.444900"
+     },
+     {
+      "LocalityId": "470",
+      "Name": "Seattle",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "47.621100",
+      "Longitude": "-122.324400"
+     },
+     {
+      "LocalityId": "272",
+      "Name": "Stamford",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "41.103900",
+      "Longitude": "-73.558500"
+     },
+     {
+      "LocalityId": "169",
+      "Name": "Washington",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "38.904700",
+      "Longitude": "-77.016300"
+     },
+     {
+      "LocalityId": "398",
+      "Name": "Westfield",
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "40.034100",
+      "Longitude": "-86.152900"
+     },
+     {
+      "LocalityId": "870",
+      "Name": "Abbotsford",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "49.050000",
+      "Longitude": "-122.316700"
+     },
+     {
+      "LocalityId": "801",
+      "Name": "Calgary",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "51.050000",
+      "Longitude": "-114.066700"
+     },
+     {
+      "LocalityId": "448",
+      "Name": "Edmonton",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "53.534400",
+      "Longitude": "-113.490300"
+     },
+     {
+      "LocalityId": "188",
+      "Name": "Galt",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "43.358987",
+      "Longitude": "-80.315247"
+     },
+     {
+      "LocalityId": "984",
+      "Name": "Hamilton",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "43.256700",
+      "Longitude": "-79.869200"
+     },
+     {
+      "LocalityId": "407",
+      "Name": "Kingston",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "44.312800",
+      "Longitude": "-76.455300"
+     },
+     {
+      "LocalityId": "995",
+      "Name": "London",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "42.983600",
+      "Longitude": "-81.249700"
+     },
+     {
+      "LocalityId": "661",
+      "Name": "Maple Creek",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "49.905692",
+      "Longitude": "-109.480022"
+     },
+     {
+      "LocalityId": "532",
+      "Name": "Montreal",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "45.503182",
+      "Longitude": "-73.569806"
+     },
+     {
+      "LocalityId": "308",
+      "Name": "Oxbow",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "49.229818",
+      "Longitude": "-102.173666"
+     },
+     {
+      "LocalityId": "124",
+      "Name": "Perth",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "43.493599",
+      "Longitude": "-81.016411"
+     },
+     {
+      "LocalityId": "955",
+      "Name": "Regina",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "50.454700",
+      "Longitude": "-104.606700"
+     },
+     {
+      "LocalityId": "566",
+      "Name": "St. Catharines",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "43.183300",
+      "Longitude": "-79.233300"
+     },
+     {
+      "LocalityId": "920",
+      "Name": "Stonewall",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "50.134734",
+      "Longitude": "-97.326655"
+     },
+     {
+      "LocalityId": "447",
+      "Name": "Tillsonburg",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "42.866700",
+      "Longitude": "-80.733300"
+     },
+     {
+      "LocalityId": "160",
+      "Name": "Toronto",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "43.741700",
+      "Longitude": "-79.373300"
+     },
+     {
+      "LocalityId": "329",
+      "Name": "Vancouver",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "49.250000",
+      "Longitude": "-123.100000"
+     },
+     {
+      "LocalityId": "662",
+      "Name": "Winnipeg",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "49.884400",
+      "Longitude": "-97.146400"
+     },
+     {
+      "LocalityId": "322",
+      "Name": "Woodlands",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "54.355847",
+      "Longitude": "-115.225268"
+     },
+     {
+      "LocalityId": "176",
+      "Name": "Woodstock",
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "43.130600",
+      "Longitude": "-80.746700"
+     }
+    ]
+   }
+  }
+ }
+}

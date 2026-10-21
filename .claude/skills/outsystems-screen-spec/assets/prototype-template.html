@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>__TITLE__</title>
+<style>
+  :root { --rv-bg:#e9ecf1; --rv-surface:#fff; --rv-text:#1c2330; --rv-muted:#5a6476; --rv-line:#d3d8e0; --rv-accent:#1068eb; --rv-accent-text:#fff; color-scheme: light; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --rv-bg:#15181d; --rv-surface:#1e2229; --rv-text:#e5e8ee; --rv-muted:#98a1b0; --rv-line:#343a45; --rv-accent:#5b9bff; --rv-accent-text:#0e1117; color-scheme: dark; } }
+  :root[data-theme="dark"] { --rv-bg:#15181d; --rv-surface:#1e2229; --rv-text:#e5e8ee; --rv-muted:#98a1b0; --rv-line:#343a45; --rv-accent:#5b9bff; --rv-accent-text:#0e1117; color-scheme: dark; }
+  :root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { height: 100%; scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body { margin: 0; height: 100%; background: var(--rv-bg); color: var(--rv-text); font: 14.5px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+  #root { min-height: 100%; }
+  :focus-visible { outline: 2px solid var(--rv-accent); outline-offset: 2px; }
+  .rv-harness { min-height: 100%; display: grid; grid-template-columns: minmax(300px, 370px) 1fr; }
+  .rv-panel { background: var(--rv-surface); border-right: 1px solid var(--rv-line); padding: 20px 20px 32px; max-height: 100vh; overflow-y: auto; }
+  .rv-panel h1 { font-size: 18px; margin: 0 0 4px; } .rv-panel h2 { font-size: 14px; margin: 0 0 8px; }
+  .rv-lead { margin: 0 0 18px; color: var(--rv-muted); font-size: 13.5px; }
+  .rv-panel fieldset { border: 0; padding: 0; margin: 0 0 16px; } .rv-panel legend { font-weight: 600; font-size: 13.5px; margin-bottom: 6px; padding: 0; }
+  .rv-radio, .rv-check { display: flex; gap: 8px; align-items: flex-start; font-size: 13.5px; padding: 3px 0; cursor: pointer; }
+  .rv-radio input, .rv-check input { margin-top: 3px; }
+  .rv-seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--rv-line); border-radius: 8px; overflow: hidden; }
+  .rv-seg button { border: 0; background: transparent; color: var(--rv-text); padding: 6px 11px; cursor: pointer; font: inherit; font-size: 13px; }
+  .rv-seg button + button { border-left: 1px solid var(--rv-line); }
+  .rv-seg button[aria-pressed="true"] { background: var(--rv-accent); color: var(--rv-accent-text); }
+  .rv-note { color: var(--rv-muted); font-size: 13px; margin: 6px 0 0; } .rv-note code { color: var(--rv-text); font-size: 12.5px; word-break: break-all; }
+  .rv-btn-main { width: 100%; margin: 0 0 16px; border: 1px solid var(--rv-line); background: var(--rv-surface); color: var(--rv-text); border-radius: 8px; padding: 8px 12px; font: inherit; cursor: pointer; }
+  .rv-btn-main:hover { border-color: var(--rv-accent); }
+  .rv-panel details { border-top: 1px solid var(--rv-line); padding: 10px 0; font-size: 13.5px; } .rv-panel summary { cursor: pointer; font-weight: 600; }
+  .rv-panel details ul { margin: 8px 0 0; padding-left: 18px; color: var(--rv-muted); } .rv-panel details li { margin-bottom: 4px; } .rv-panel details li b { color: var(--rv-text); }
+  .rv-log { border-top: 1px solid var(--rv-line); padding-top: 12px; }
+  .rv-log ol { list-style: none; margin: 0; padding: 0; font-size: 12.5px; }
+  .rv-log li { display: grid; grid-template-columns: 62px 1fr; gap: 6px; padding: 4px 0; border-bottom: 1px dashed var(--rv-line); word-break: break-word; }
+  .rv-log time { color: var(--rv-muted); font-variant-numeric: tabular-nums; }
+  .rv-stage { display: flex; justify-content: center; align-items: flex-start; padding: 28px 16px; overflow-x: auto; }
+  .rv-device { max-width: 100%; border: 10px solid #20242b; border-radius: 34px; overflow: hidden; background: #fff; box-shadow: 0 18px 50px rgba(20,30,50,.22); flex: none; }
+  .rv-device iframe { display: block; border: 0; max-width: 100%; }
+  @media (max-width: 860px) {
+    .rv-harness { grid-template-columns: 1fr; }
+    .rv-stage { order: -1; padding: 0; }
+    .rv-device { border: 0; border-radius: 0; box-shadow: none; width: 100% !important; }
+    .rv-device iframe { width: 100% !important; }
+    .rv-panel { border-right: 0; border-top: 1px solid var(--rv-line); max-height: none; }
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/plain" id="os-css">__CSS__</script>
+<script type="application/json" id="os-assets">__ASSETS__</script>
+<script type="application/json" id="os-env">__ENV__</script>
+<script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+/* ======================= HARNESS RUNTIME (do not edit per screen) ======================= */
+const { useState, useEffect, useRef, useCallback, useMemo, useSyncExternalStore } = React;
+const html = htm.bind(React.createElement);
+
+const ASSETS = JSON.parse(document.getElementById('os-assets').textContent);
+const ENV = JSON.parse(document.getElementById('os-env').textContent);
+const OS_CSS = document.getElementById('os-css').textContent.replace(/asset:([^")]+)/g, (m, p) => (ASSETS[p] || ''));
+const asset = p => ASSETS[p] || null;
+
+/* Image the original code references but the capture does not contain: show a marker, never redraw it. */
+function missingImage(name, w = 300, h = 130) {
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}'><rect width='${w}' height='${h}' fill='#fff0f5' stroke='#d63c74' stroke-width='3' stroke-dasharray='8 6'/><text x='${w / 2}' y='${h / 2 - 6}' font-family='Arial' font-size='13' fill='#7a1f43' text-anchor='middle'>Image not captured</text><text x='${w / 2}' y='${h / 2 + 14}' font-family='Arial' font-size='11' fill='#7a1f43' text-anchor='middle'>${name}</text></svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+/* Look up an OutSystems image by the path used in code ("img/Module.name.png"). */
+const osImage = ref => {
+  const file = ref.split('?')[0].split('/').pop();
+  const hit = Object.keys(ASSETS).find(k => k.endsWith('/' + file));
+  return hit ? ASSETS[hit] : missingImage(file);
+};
+/* Neutral mock photo standing in for user images (which are never captured). */
+function mockPhoto(seed, w = 300, h = 130) {
+  const hue = [205, 160, 28, 265, 190, 340][seed % 6];
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='${w}' height='${h}'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='hsl(${hue},35%,62%)'/><stop offset='1' stop-color='hsl(${hue},30%,38%)'/></linearGradient></defs><rect width='${w}' height='${h}' fill='url(#g)'/><text x='${w - 8}' y='18' font-family='Arial' font-size='11' fill='rgba(255,255,255,.75)' text-anchor='end'>mock</text></svg>`;
+  return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+}
+
+const store = (() => {
+  let state = { epoch: 1, latency: 1200, size: null, scenario: null, flags: {} };
+  const subs = new Set();
+  return { get: () => state, set: p => { state = { ...state, ...p }; subs.forEach(f => f()); }, sub: f => { subs.add(f); return () => subs.delete(f); } };
+})();
+const useSettings = () => useSyncExternalStore(store.sub, store.get);
+const flag = name => !!store.get().flags[name];
+
+const logBus = new EventTarget(); let logSeq = 0;
+function log(msg) { logBus.dispatchEvent(new CustomEvent('log', { detail: { id: ++logSeq, t: new Date().toLocaleTimeString([], { hour12: false }), msg } })); }
+const delay = ms => new Promise(r => setTimeout(r, ms));
+
+/* Every OutSystems block renders this wrapper. Keep name/id as captured. */
+function OSBlock({ name, id, children }) { return html`<div className="OSBlockWidget" data-block=${name} id=${id}>${children}</div>`; }
+/* A block or state that the capture does not contain: visible marker, real children allowed inside. */
+function Missing({ name, children }) { return html`<div className="rv-missing"><b>Not captured: ${name}</b>${children}</div>`; }
+
+const RV_CSS = `
+.rv-missing{margin:var(--space-m,16px);padding:12px 14px;border:2px dashed #d63c74;border-radius:8px;background:#fff0f5;color:#7a1f43;
+  font:13px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;display:flex;flex-direction:column;gap:8px}
+.rv-missing b{font-weight:700}
+.rv-btn{align-self:flex-start;border:1px solid #d63c74;background:#fff;color:#7a1f43;border-radius:6px;padding:6px 12px;font:600 13px/1 -apple-system,sans-serif;cursor:pointer}
+.rv-code{font:12px/1.4 ui-monospace,Menlo,monospace;word-break:break-all;background:#fff;padding:6px 8px;border-radius:4px}
+.rv-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center}
+.rv-overlay .rv-missing{max-width:320px}`;
+
+function PhoneFrame() {
+  const s = useSettings();
+  const ref = useRef(null), rootRef = useRef(null);
+  const [w, h] = APP_CONFIG.sizes[s.size || Object.keys(APP_CONFIG.sizes)[0]];
+  useEffect(() => {
+    const doc = ref.current.contentDocument;
+    doc.open();
+    doc.write(`<!doctype html><html class="${ENV.htmlClass || ''}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head><body class="${ENV.bodyClass || ''}"><div id="reactContainer"></div></body></html>`);
+    doc.close();
+    const os = doc.createElement('style'); os.textContent = OS_CSS; doc.head.appendChild(os);
+    const rv = doc.createElement('style'); rv.textContent = RV_CSS; doc.head.appendChild(rv);
+    rootRef.current = ReactDOM.createRoot(doc.getElementById('reactContainer'));
+    return () => rootRef.current && rootRef.current.unmount();
+  }, []);
+  useEffect(() => {
+    const body = ref.current.contentDocument.body;
+    const style = (ENV.bodyStyle || '').replace(/--viewport-height:\s*[^;]+;?/, '');
+    body.setAttribute('style', `${style} --viewport-height: ${h}px;`.trim());
+  }, [h]);
+  useEffect(() => { rootRef.current && rootRef.current.render(html`<${PhoneApp} key=${s.epoch} />`); }, [s.epoch]);
+  return html`<div className="rv-device" style=${{ width: w + 'px' }}><iframe ref=${ref} title=${APP_CONFIG.title} style=${{ width: w + 'px', height: h + 'px' }}></iframe></div>`;
+}
+
+function Panel() {
+  const s = useSettings();
+  const [logs, setLogs] = useState([]);
+  useEffect(() => { const f = e => setLogs(l => [e.detail, ...l].slice(0, 18)); logBus.addEventListener('log', f); return () => logBus.removeEventListener('log', f); }, []);
+  const reenter = () => { log('Enter screen from scratch'); store.set({ epoch: s.epoch + 1 }); };
+  const setScenario = v => { APP_CONFIG.onScenarioChange && APP_CONFIG.onScenarioChange(v); store.set({ scenario: v, epoch: s.epoch + 1 }); log(`Scenario: ${v}`); };
+  const scenario = s.scenario || APP_CONFIG.scenarios[0][0];
+  const size = s.size || Object.keys(APP_CONFIG.sizes)[0];
+  return html`<aside className="rv-panel">
+    <h1>${APP_CONFIG.title}</h1>
+    <p className="rv-lead">${APP_CONFIG.lead}</p>
+    <fieldset><legend>${APP_CONFIG.scenarioLegend || 'Data scenario'}</legend>
+      ${APP_CONFIG.scenarios.map(([v, label]) => html`<label key=${v} className="rv-radio"><input type="radio" name="sc" checked=${scenario === v} onChange=${() => setScenario(v)} /> ${label}</label>`)}
+    </fieldset>
+    <fieldset><legend>Network latency</legend><div className="rv-seg" role="group" aria-label="Network latency">
+      ${[300, 1200, 3000].map(ms => html`<button key=${ms} type="button" aria-pressed=${s.latency === ms ? 'true' : 'false'} onClick=${() => store.set({ latency: ms })}>${ms} ms</button>`)}
+    </div></fieldset>
+    <fieldset><legend>Screen size</legend><div className="rv-seg" role="group" aria-label="Screen size">
+      ${Object.keys(APP_CONFIG.sizes).map(k => html`<button key=${k} type="button" aria-pressed=${size === k ? 'true' : 'false'} onClick=${() => store.set({ size: k })}>${k.replace('x', ' × ')}</button>`)}
+    </div></fieldset>
+    ${APP_CONFIG.flags.length ? html`<fieldset><legend>Flags read from code</legend>
+      ${APP_CONFIG.flags.map(([k, label]) => html`<label key=${k} className="rv-check"><input type="checkbox" checked=${!!s.flags[k]} onChange=${e => store.set({ flags: { ...s.flags, [k]: e.target.checked } })} /> ${label}</label>`)}
+      ${APP_CONFIG.flagNote ? html`<p className="rv-note">${APP_CONFIG.flagNote(s)}</p>` : null}
+    </fieldset>` : null}
+    <button type="button" className="rv-btn-main" onClick=${reenter}>Enter the screen from scratch</button>
+    ${APP_CONFIG.sections.map(([title, items, open]) => html`<details key=${title} open=${!!open}><summary>${title}</summary><ul>${items.map((it, i) => html`<li key=${i}>${it}</li>`)}</ul></details>`)}
+    <section className="rv-log" aria-live="polite"><h2>Call log</h2>
+      ${logs.length === 0 ? html`<p className="rv-note">No calls yet.</p>` : html`<ol>${logs.map(l => html`<li key=${l.id}><time>${l.t}</time><span>${l.msg}</span></li>`)}</ol>`}
+    </section>
+  </aside>`;
+}
+
+/* ======================= SCREEN CODE (generated per screen) ======================= */
+__APP__
+
+/* ======================= MOUNT ======================= */
+store.set({ scenario: APP_CONFIG.scenarios[0][0], size: Object.keys(APP_CONFIG.sizes)[0], flags: APP_CONFIG.defaultFlags || {} });
+log('Enter screen from scratch');
+ReactDOM.createRoot(document.getElementById('root')).render(html`<div className="rv-harness"><${Panel} /><div className="rv-stage"><${PhoneFrame} /></div></div>`);
+</script>
+</body>
+</html>

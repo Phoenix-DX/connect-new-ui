@@ -1,0 +1,9 @@
+{
+ "finishedAt": "2026-10-15T20:17:25",
+ "files": {
+  "src/screens/SupperMeeting_Details/api.ts": "fd6e8fd25a34127d",
+  "src/screens/SupperMeeting_Details/index.tsx": "f34748d9a7dcfdff",
+  "src/screens/SupperMeeting_Details/mocks.ts": "17be1f184d598de2",
+  "src/screens/SupperMeeting_Details/types.ts": "e1af29e65895a4c9"
+ }
+}

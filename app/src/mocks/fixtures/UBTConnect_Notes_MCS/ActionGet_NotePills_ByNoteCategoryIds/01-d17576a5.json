@@ -1,0 +1,21 @@
+{
+ "module": "UBTConnect_Notes_MCS",
+ "action": "ActionGet_NotePills_ByNoteCategoryIds",
+ "screen": null,
+ "status": 200,
+ "inputs": {
+  "In_NoteCategoryIds": {
+   "List": [],
+   "EmptyListItem": ""
+  }
+ },
+ "data": {
+  "Out_NotePills": {
+   "List": [],
+   "EmptyListItem": {
+    "Text": "",
+    "Identifier": ""
+   }
+  }
+ }
+}

@@ -1,0 +1,44 @@
+{
+ "default": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/ContactByEmailOneSchoolGlobal?In_EmailTo=school%40example.test&In_ContactName=Test%20School",
+  "steps": [],
+  "scenario": "real",
+  "auto": null,
+  "htmlClass": "",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "loading": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/ContactByEmailOneSchoolGlobal?In_EmailTo=school%40example.test&In_ContactName=Test%20School",
+  "steps": [],
+  "scenario": "loading",
+  "auto": "loading",
+  "htmlClass": "",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "offline": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/ContactByEmailOneSchoolGlobal?In_EmailTo=school%40example.test&In_ContactName=Test%20School",
+  "steps": [],
+  "scenario": "error",
+  "auto": "offline",
+  "htmlClass": "",
+  "bodyClass": "phone portrait osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ }
+}

@@ -1,0 +1,27 @@
+Layouts.Layout_DetailPage
+  LayoutRuntime_NavigationHandler.LayoutRuntime_Top
+  ConnectPatterns.Icon
+  ContactFlow.ContactByEmailForm
+    BasePatterns.CustomContainer
+      BasePatterns.CustomContainer
+        BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
+          BasePatterns.CustomContainer
+      BasePatterns.CustomContainer
+        ConnectPatterns.DynamicTextArea
+        ConnectPatterns.InputCounter
+          BasePatterns.CustomContainer
+      ConnectPatterns.TextArea_WithCounter
+        ConnectPatterns.InputCounter
+          BasePatterns.CustomContainer
+    ConnectPatterns.FixedFooter
+      BasePatterns.CustomContainer
+        Utilities.ButtonLoading
+          CW_Common.Button
+            ConnectPatterns.Button
+              ConnectPatterns.IconText
+                BasePatterns.Columns_Two
+                  Adaptive.Columns2
+                    ConnectPatterns.Icon
+                    BasePatterns.CustomText
+                      ConnectPatterns.IconInline_Internal

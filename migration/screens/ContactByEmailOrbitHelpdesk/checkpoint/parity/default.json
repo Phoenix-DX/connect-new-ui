@@ -1,0 +1,78 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/ContactByEmailOrbitHelpdesk?mocksession=unlocked&In_MilestoneId=&In_EventId=7301&In_Subject=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul%20-%20Bahia%20Blanca%20Main%20Hall%20-%20Fri%2023%20Oct%202026%20-%20Sun%2025%20Oct%202026&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "c02b591cef4d280ca0da",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 89,
+  "texts": 10,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T04:51:47.556Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
+  "CAPTURE-MASKED-SUBJECT-REPLICA-CONTACTBYEMAILORBITHELPDESK": 1,
+  "VIA-ORBIT-THEME-BODY-CONTACTBYEMAILORBITHELPDESK": 1,
+  "CAPTURE-MASKED-SUBJECT-PIXELS-CONTACTBYEMAILORBITHELPDESK": 1
+ },
+ "pixel": {
+  "ratio": 0.00903,
+  "maxCell": 0.2425,
+  "maxCellRatio": 0.03,
+  "diffPixels": 2968,
+  "comparedPixels": 328679,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 1,
+  "hotspots": [
+   "40,200 (388px)",
+   "80,200 (363px)",
+   "240,200 (341px)",
+   "200,200 (340px)",
+   "120,200 (333px)"
+  ],
+  "diffPng": "migration/screens/ContactByEmailOrbitHelpdesk/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 0,
+  "actual": 7,
+  "viaAppStartSkipped": [
+   "ActionAppManager_AfterInitialize",
+   "ActionAppManager_SynchAppContext",
+   "ActionGetNumberUnreadMessages",
+   "ActionGetUserInformation",
+   "ActionSync_Info_GetMain",
+   "ServiceAPIFetchData_CacheableHouseholds",
+   "ServiceAPIFetchData_CacheableMapEntities"
+  ]
+ },
+ "diffs": []
+}

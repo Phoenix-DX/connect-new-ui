@@ -1,0 +1,11 @@
+[
+ {
+  "id": "F1",
+  "kind": "todo",
+  "text": "Build the three tag contents now captured read-only (tag-suppermeetings, tag-interchange, tag-oneschoolglobal; analysis/dom + states.json + calls.json, capture-tags-2026-10-16/). Decision: Locality_Details Q1 (capture one state per tag later and build them), auto-accepted under the user's instruction; work done in the overnight auto window 2026-10-16 01:14-10:00. My Household and Locality Contacts are not on locality 252 and stay NotCaptured.",
+  "status": "closed",
+  "at": "2026-10-16T01:25:50",
+  "note": "Built the three tags from the compiled blocks (sources extracted from the survey to analysis/sources/pretty/): Locality_Subdivisions (SupperMeeting cards, Carousel/Details navigation), Locality_Interchange + Directory_Interchange_StatisticsList (Statistics_ListItem, EntityDetailsActions, HasAccessToRegion → Locality_Details keyed per history entry, Q7), Locality_OneSchoolGlobal + OneSchoolGlobal_List + StopPropagationHelper (OneSchoolGlobalDetails). api.ts adapters, fictional mocks with captured counts/lengths (ids 1210/9202/9203, 1430). Parity: default/loading/offline 0; tag states only capture/timing artifacts, proposed in proposed-exemptions.json (Q6).",
+  "fixedAt": "2026-10-16T01:48:04"
+ }
+]

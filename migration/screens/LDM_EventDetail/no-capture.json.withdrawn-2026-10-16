@@ -1,0 +1,5 @@
+{
+ "by": "user",
+ "reason": "TST routes the V1 event card to LDM_EventDetail_V2 (GetHasNewLDM on, LDM_MyEvents.mvc.js handler_NavigateTo_EventDetail); V1 is not reachable read-only. Build from the compiled code (user fallback decision 2026-10-16 'D\u1ef1ng t\u1eeb m\u00e3 bi\u00ean d\u1ecbch').",
+ "at": "2026-10-16T06:41:04"
+}

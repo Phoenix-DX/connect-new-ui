@@ -1,0 +1,3979 @@
+{
+ "flags": {
+  "action:connect_LaunchDarkly_PermissionCheck": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.App_Common.BottomBarMenu.mvc.js",
+    "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js",
+    "UBTConnect.controller.js",
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "AssembleEvents",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "BrowseCountries",
+    "BrowseDirectory",
+    "CommunityBusinessDetails",
+    "CountryDetails",
+    "CountryList",
+    "EmailContact",
+    "EmailTarget",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "InvalidPermissions",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "Locality_Details",
+    "Map",
+    "Menu",
+    "MessageDetail",
+    "MessageList",
+    "MyBookmarks",
+    "New_BookmarksByGroup",
+    "New_MyBookmarks",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "OrbitAdminEventDetail",
+    "OrbitAdminLanding",
+    "OrbitLanding",
+    "Search",
+    "Updates_SingleList"
+   ],
+   "inControllers": [
+    "UBTConnect.controller.js",
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup",
+    "ldm_email",
+    "ldm_eventdetail",
+    "ldm_myevents",
+    "mybookmarks"
+   ],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "not a feature flag: shared wrapper that reads LaunchDarkly flags (the flags are decided one by one)",
+    "values": "",
+    "source": "TST compiled code (survey sources), 2026-10-14",
+    "at": "2026-10-14T12:36:20"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:36:20",
+    "key": "connect_LaunchDarkly_PermissionCheck",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "none",
+    "reference": "none"
+   }
+  },
+  "action:getFlagURLByCountryCode": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Directory_Locality.BrowseCountries.mvc.js",
+    "UBTConnect.Directory_Locality.CountryList.mvc.js",
+    "UBTConnect.Map.Map_PoIPreview.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.SelectionOption_List.mvc.js"
+   ],
+   "screens": [
+    "Bookmarks",
+    "BrowseCountries",
+    "CountryDetails",
+    "CountryList",
+    "Map",
+    "MyCalendar",
+    "Notes",
+    "Notifications",
+    "Recurrence",
+    "Reminder",
+    "Search",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "not a feature flag: country flag image URL",
+    "values": "",
+    "source": "TST compiled code (survey sources), 2026-10-14",
+    "at": "2026-10-14T12:36:20"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "not a flag (false positive): country flag image URL; behaviour built as in the original (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:36:20",
+    "key": "getFlagURLByCountryCode",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "none",
+    "reference": "none"
+   }
+  },
+  "action:getHasAssemble": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js"
+   ],
+   "screens": [
+    "MessageDetail"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "mobileAssemble: Assemble entry (external)",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:37"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:37",
+    "key": "mobileAssemble",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasBookmarNote": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js",
+    "Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_ScreenBlock_BookmarkGroup.mvc.js",
+    "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js",
+    "Connect2_MyBookmarks_MUI.controller.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "BookmarksByGroup",
+    "New_BookmarksByGroup"
+   ],
+   "inControllers": [
+    "Connect2_MyBookmarks_MUI.controller.js"
+   ],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup"
+   ],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "mobileDirectoryBookmarkNote: bookmark note branch (D2)",
+    "values": "tst=off, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:35"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value off (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:35",
+    "key": "mobileDirectoryBookmarkNote",
+    "default": "off",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasC1DirectoryView": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.App_Common.BottomBarMenu.mvc.js",
+    "UBTConnect.Directory_Locality.Locality_Details.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "AssembleEvents",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "BrowseCountries",
+    "BrowseDirectory",
+    "CommunityBusinessDetails",
+    "CountryDetails",
+    "CountryList",
+    "EmailContact",
+    "EmailTarget",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "InvalidPermissions",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "Locality_Details",
+    "Map",
+    "Menu",
+    "MessageDetail",
+    "MessageList",
+    "MyBookmarks",
+    "New_BookmarksByGroup",
+    "New_MyBookmarks",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "OrbitAdminEventDetail",
+    "OrbitAdminLanding",
+    "OrbitLanding",
+    "Search",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup",
+    "ldm_email",
+    "ldm_eventdetail",
+    "ldm_myevents",
+    "mybookmarks"
+   ],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "C2EnableC1DirectoryView: Directory tab opens CountryList (on) or Locality_Details",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:36"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:36",
+    "key": "C2EnableC1DirectoryView",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasCarouselEnabled": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Directory_Locality.Locality_Households_HouseholdList.mvc.js",
+    "UBTConnect.Directory_Locality.Locality_Subdivisions.mvc.js",
+    "UBTConnect.Directory_Photobook.Photobook.mvc.js",
+    "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js",
+    "UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock.mvc.js",
+    "UBTConnect.Directory_Updates.Updates_SingleList.mvc.js",
+    "UBTConnect.Home.FeedBlock_Updates.mvc.js",
+    "UBTConnect.Legacy_AssembleFlow.AssembleDetail.mvc.js",
+    "UBTConnect.Legacy_LDMEventsFlow.LDM_EventDetail.mvc.js",
+    "UBTConnect.Legacy_LDMEventsFlow.LDM_MyEvents.mvc.js",
+    "UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2.mvc.js",
+    "UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2.mvc.js",
+    "UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js",
+    "UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "BookmarksByGroup",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "Locality_Details",
+    "Map",
+    "MyBookmarks",
+    "Photobook",
+    "Search",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup",
+    "ldm_eventdetail",
+    "ldm_myevents",
+    "mybookmarks"
+   ],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "C2EnableCarousel: opens HouseholdCarousel instead of HouseholdDetails",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:36"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:36",
+    "key": "C2EnableCarousel",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasCustomEvents": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Home.FeedBlock_Services.mvc.js"
+   ],
+   "screens": [
+    "HomeFeed"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "C2EnableCustomServices: services part of HomeFeed",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:36"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:36",
+    "key": "C2EnableCustomServices",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasDeceasedProfileAccess": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js",
+    "Connect2_LegacyShared.Share_UI.ShareObjectDetail.mvc.js",
+    "Connect2_LegacyShared.Share_UI.ShareObjectDetail_ExtendedShare.mvc.js"
+   ],
+   "screens": [
+    "MessageDetail"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "mobileDirectoryUpdateFeedDeceasedProfile: deceased profile updates inside screens",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:36"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:37",
+    "key": "mobileDirectoryUpdateFeedDeceasedProfile",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasExtendedShare": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js",
+    "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js",
+    "Connect2_LegacyShared.Share_UI.ShareObjectDetail.mvc.js",
+    "Connect2_LegacyShared.Utility.ItemOptionsMenu.mvc.js",
+    "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js",
+    "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js",
+    "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js",
+    "UBTConnect.Directory_Updates.Updates_SingleList.mvc.js",
+    "UBTConnect.Home.FeedBlock_Updates.mvc.js",
+    "UBTConnect.Home.Feed_Embeded.mvc.js",
+    "UBTConnect_Utils.CW_CTA_PopUps.SharePopup.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "BookmarksByGroup",
+    "FeedItemDetail",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "Map",
+    "MessageDetail",
+    "New_BookmarksByGroup",
+    "OneSchoolGlobalDetails",
+    "Profile",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup"
+   ],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "C2ExtendedShare: extended share UI inside screens",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:36"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:36",
+    "key": "C2ExtendedShare",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasFeedEnabled": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Home.Feed_Embeded.mvc.js"
+   ],
+   "screens": [
+    "FeedItemDetail",
+    "HomeFeed",
+    "MessageDetail"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "C2EnableFeed: Feed CMS part of HomeFeed",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:36"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:36",
+    "key": "C2EnableFeed",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasMapsEnabled": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Directory_Locality.Locality_Details.mvc.js"
+   ],
+   "screens": [
+    "Locality_Details"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "C2EnableMaps: entry to Map (Map skipped)",
+    "values": "tst=off, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:36"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value off (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:36",
+    "key": "C2EnableMaps",
+    "default": "off",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasNewBookmarks": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.App_Common.BottomBarMenu.mvc.js",
+    "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js",
+    "UBTConnect.Directory_Locality.Locality_Households_HouseholdList.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "AssembleEvents",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "BrowseCountries",
+    "BrowseDirectory",
+    "CommunityBusinessDetails",
+    "CountryDetails",
+    "CountryList",
+    "EmailContact",
+    "EmailTarget",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "InvalidPermissions",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "Locality_Details",
+    "Map",
+    "Menu",
+    "MessageDetail",
+    "MessageList",
+    "MyBookmarks",
+    "New_BookmarksByGroup",
+    "New_MyBookmarks",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "OrbitAdminEventDetail",
+    "OrbitAdminLanding",
+    "OrbitLanding",
+    "Profile",
+    "Search",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup",
+    "ldm_email",
+    "ldm_eventdetail",
+    "ldm_myevents",
+    "mybookmarks"
+   ],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "C2NewBookmarks: selects the bookmarks branch (D2)",
+    "values": "tst=off, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:35"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value off (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:35",
+    "key": "C2NewBookmarks",
+    "default": "off",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasNewLDM": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Calendar.MyCalendar.mvc.js",
+    "UBTConnect.Home.FeedBlock_Services.mvc.js",
+    "UBTConnect.Legacy_LDMEventsFlow.LDM_MyEvents.mvc.js",
+    "UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js"
+   ],
+   "screens": [
+    "HomeFeed",
+    "LDM_MyEvents",
+    "MessageDetail",
+    "MyCalendar"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "ldm_myevents"
+   ],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "C2NewLDM: LDM V2 / V1 entry (LDM external)",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:37"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:37",
+    "key": "C2NewLDM",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasNewNotifications": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.App_Common_Blocks.App_NotificationIcon.mvc.js",
+    "UBTConnect.Legacy_MyNotificationsFlow.MessageDetail.mvc.js"
+   ],
+   "screens": [
+    "Bookmarks",
+    "CountryList",
+    "HomeFeed",
+    "MessageDetail",
+    "Notes",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "C2NewNotifications: bell and MessageDetail open Notifications (on) or MessageList (off); icon DOM unchanged",
+    "values": "tst=off, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:35"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "both branches, default off (TST); only the navigation target changes (Notifications / MessageList), both screens captured, so reference none (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:35",
+    "key": "C2NewNotifications",
+    "default": "off",
+    "values": [
+     "off",
+     "on"
+    ],
+    "branches": "both",
+    "reference": "none"
+   }
+  },
+  "action:getHasOrbitAccess": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.EventDetail.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.HelpersDetail.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.OrbitLanding.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.TransportDetail.mvc.js",
+    "UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments.mvc.js"
+   ],
+   "screens": [
+    "EmailContact",
+    "EventDetail",
+    "GuestArrangements",
+    "HelpersDetail",
+    "MessageDetail",
+    "MilestoneDetail",
+    "OrbitLanding",
+    "TransportDetail",
+    "ViewDocuments"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "mobileOrbitAccess: Orbit entry (external)",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:37"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:37",
+    "key": "mobileOrbitAccess",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasOrbitEventBooklet": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js"
+   ],
+   "screens": [
+    "EventDetail"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "The Service Studio MCP (DEV) loads only UBTConnect and Connect2_Assemble_CS; the wrapper's module is not loaded, so it cannot tell.",
+    "values": "",
+    "source": "",
+    "at": "2026-10-16T10:36:37"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: wraps launchDarkly_FF.mobileOrbitEventBooklet (decided on); TST shows the booklet entry branch; auto-accepted (user instruction 2026-10-16 night)",
+    "by": "user",
+    "at": "2026-10-16T10:36:37",
+    "key": "getHasOrbitEventBooklet",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasOrbitHostSurvey": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js",
+    "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail.mvc.js"
+   ],
+   "screens": [
+    "EventDetail",
+    "MessageDetail"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "mobileOrbitHostSurvey: Orbit HostSurvey entry (external)",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:37"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:37",
+    "key": "mobileOrbitHostSurvey",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasPersonalEvents": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Calendar.MyCalendar.mvc.js"
+   ],
+   "screens": [
+    "MyCalendar"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "action:getHasPhotobookAccess": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js"
+   ],
+   "screens": [
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "Profile",
+    "SupperMeeting_Carousel"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "mobilePhotobook: access to Photobook",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:37"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:37",
+    "key": "mobilePhotobook",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:getHasWalletAccess": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.Utility.ItemOptionsMenu.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "BookmarksByGroup",
+    "New_BookmarksByGroup"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup"
+   ],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "WalletAccess: constant HasAccess = False in GetHasWalletAccess",
+    "values": "tst=off, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:37"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value off (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:37",
+    "key": "WalletAccess",
+    "default": "off",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "action:get_ActiveGeoJsonFeatureId": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Map.Map.mvc.js"
+   ],
+   "screens": [
+    "Map"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "action:map_GeoJSON_Feature_Add": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Leaflet.Leaflet.LeafletMap.mvc.js",
+    "Leaflet.Leaflet.LeafletMap_Updated.mvc.js",
+    "UBTConnect.Map.Map.mvc.js",
+    "UBTConnect.controller.js"
+   ],
+   "screens": [
+    "BrowseDirectory",
+    "CountryDetails",
+    "Map"
+   ],
+   "inControllers": [
+    "UBTConnect.controller.js"
+   ],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "not a feature flag: Leaflet map operation (BrowseDirectory, CountryDetails)",
+    "values": "",
+    "source": "TST compiled code (survey sources), 2026-10-14",
+    "at": "2026-10-14T12:36:20"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "not a flag (false positive): Leaflet map operation (BrowseDirectory, CountryDetails); behaviour built as in the original (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:36:21",
+    "key": "map_GeoJSON_Feature_Add",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "none",
+    "reference": "none"
+   }
+  },
+  "action:map_GeoJSON_Feature_Remove": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Map.Map.mvc.js"
+   ],
+   "screens": [
+    "Map"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "action:refreshUpdatesAndFlags": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.App_Notifications.Notifications.mvc.js",
+    "UBTConnect.Directory_Updates.Updates_SingleList.mvc.js"
+   ],
+   "screens": [
+    "Notifications",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "not a feature flag: list item refresh (takes CurrentPosition)",
+    "values": "",
+    "source": "TST compiled code (survey sources), 2026-10-14",
+    "at": "2026-10-14T12:36:21"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "not a flag (false positive): list item refresh (takes CurrentPosition); behaviour built as in the original (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:36:21",
+    "key": "refreshUpdatesAndFlags",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "none",
+    "reference": "none"
+   }
+  },
+  "clientVar:App_PIN_BiometricEnabled": {
+   "kinds": [
+    "client variable"
+   ],
+   "files": [
+    "UBTConnect.App_Menu.PINBiometricsMenu.mvc.js",
+    "UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper.mvc.js",
+    "UBTConnect.controller.js"
+   ],
+   "screens": [
+    "AcceptPendingPolicies",
+    "AssembleDetail",
+    "AssembleEvents",
+    "Assemble_BrowseByCountry",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "BrowseCountries",
+    "BrowseDirectory",
+    "CommunityBusinessDetails",
+    "ConnectShare",
+    "ContactUsDetails",
+    "ContactUsMenu",
+    "CountryDetails",
+    "CountryList",
+    "EmailContact",
+    "EmailTarget",
+    "EventBooklet",
+    "EventDetail",
+    "FeedItemDetail",
+    "GuestArrangements",
+    "HelpersDetail",
+    "HomeFeed",
+    "HostSurvey",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "LegacyShareObject",
+    "Locality_Details",
+    "Login",
+    "Map",
+    "Menu",
+    "MessageDetail",
+    "MessageList",
+    "MilestoneDetail",
+    "MyBookmarks",
+    "MyCalendar",
+    "MyEntertaining",
+    "New_BookmarksByGroup",
+    "New_MyBookmarks",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "OrbitAdminEventDetail",
+    "OrbitAdminLanding",
+    "OrbitLanding",
+    "PINBiometricsMenu",
+    "PINChange",
+    "PINRegister",
+    "PINUnlock",
+    "PersonalEventDetails",
+    "PersonalEventForm",
+    "Photobook",
+    "Profile",
+    "QRCodeGenerate",
+    "Recurrence",
+    "Reminder",
+    "Search",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "TermsAndPoliciesMenu",
+    "TransportDetail",
+    "Updates_SingleList",
+    "ViewDocuments"
+   ],
+   "inControllers": [
+    "UBTConnect.controller.js"
+   ],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup",
+    "ldm_email",
+    "ldm_eventdetail",
+    "ldm_myevents",
+    "mybookmarks"
+   ],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "not a feature flag: user setting for biometric unlock, kept in a client variable",
+    "values": "",
+    "source": "TST compiled code (survey sources), 2026-10-14",
+    "at": "2026-10-14T12:36:20"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:36:20",
+    "key": "App_PIN_BiometricEnabled",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "none",
+    "reference": "none"
+   }
+  },
+  "key:LeafletMap": {
+   "kinds": [
+    "key passed to map_GeoJSON_Feature_Add"
+   ],
+   "files": [
+    "Leaflet.Leaflet.LeafletMap.mvc.js",
+    "Leaflet.Leaflet.LeafletMap_Updated.mvc.js"
+   ],
+   "screens": [
+    "BrowseDirectory",
+    "CountryDetails",
+    "Map"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "not a feature flag: Leaflet map widget key passed to map_GeoJSON_Feature_Add",
+    "values": "",
+    "source": "TST compiled code (survey sources), 2026-10-14",
+    "at": "2026-10-14T12:36:21"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "not a flag (false positive): Leaflet map widget key passed to map_GeoJSON_Feature_Add; behaviour built as in the original (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:36:21",
+    "key": "LeafletMap",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "none",
+    "reference": "none"
+   }
+  },
+  "launchDarkly_FF.mobileAssemble": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "launchDarkly_FF.mobileDirectoryBookmarkNote": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect.App_Common.BottomBarMenu.mvc.js",
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "AssembleEvents",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "BrowseCountries",
+    "BrowseDirectory",
+    "CommunityBusinessDetails",
+    "CountryDetails",
+    "CountryList",
+    "EmailContact",
+    "EmailTarget",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "InvalidPermissions",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "Locality_Details",
+    "Map",
+    "Menu",
+    "MessageDetail",
+    "MessageList",
+    "MyBookmarks",
+    "New_BookmarksByGroup",
+    "New_MyBookmarks",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "OrbitAdminEventDetail",
+    "OrbitAdminLanding",
+    "OrbitLanding",
+    "Search",
+    "Updates_SingleList"
+   ],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [
+    "bookmarksbygroup",
+    "ldm_email",
+    "ldm_eventdetail",
+    "ldm_myevents",
+    "mybookmarks"
+   ],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "mobileDirectoryBookmarkNote: bookmark note branch, read directly by the bottom bar (D2)",
+    "values": "tst=off, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:36"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value off (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:36",
+    "key": "mobileDirectoryBookmarkNote",
+    "default": "off",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "launchDarkly_FF.mobileDirectoryListVirtualization": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "launchDarkly_FF.mobileDirectoryLocalityContacts": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "launchDarkly_FF.mobileDirectoryUpdateFeedDeceasedProfile": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "launchDarkly_FF.mobileHasHiddenMembersAccess": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "launchDarkly_FF.mobileHouseholdAncestry4thGen": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "launchDarkly_FF.mobileOrbitAccess": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "launchDarkly_FF.mobileOrbitEventBooklet": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (the EventDetail capture shows the booklet entry branch); auto-accepted (user instruction 2026-10-16 night)",
+    "by": "user",
+    "at": "2026-10-16T10:17:16",
+    "key": "mobileOrbitEventBooklet",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "launchDarkly_FF.mobileOrbitHostSurvey": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "launchDarkly_FF.mobilePhotobook": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "launchDarkly_FF.mobileStudentInformation": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js"
+   ],
+   "screens": [
+    "OneSchoolGlobalDetails"
+   ],
+   "inControllers": [],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "mobileStudentInformation: student information section in OneSchoolGlobalDetails",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:38"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:38",
+    "key": "mobileStudentInformation",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "outSystems_FF.c2EnableC1DirectoryView": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "outSystems_FF.c2EnableCarousel": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "outSystems_FF.c2EnableCustomServices": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "outSystems_FF.c2EnableFeed": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "outSystems_FF.c2EnableMaps": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "outSystems_FF.c2EnablePersonalEvents": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "outSystems_FF.c2EnableSearchByBirthday": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js"
+   ],
+   "screens": [
+    "Map",
+    "Search"
+   ],
+   "inControllers": [],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "C2EnableSearchByBirthday: birthday search inside Search",
+    "values": "tst=on, prod=?",
+    "source": "TST compiled UBTConnect_Utils.controller.js (GetHas helpers / PermissionCheck) + migration/tools/flag_probe.cjs 2026-10-14; MCP is on DEV and cannot read per-user flag values",
+    "at": "2026-10-14T12:31:37"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "default-only: TST value on (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:31:37",
+    "key": "C2EnableSearchByBirthday",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "default-only",
+    "reference": "none"
+   }
+  },
+  "outSystems_FF.c2ExtendedShare": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "outSystems_FF.c2NewBookmarks": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "outSystems_FF.c2NewLDM": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "outSystems_FF.c2NewNotifications": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "UBTConnect_Utils.controller.js"
+   ],
+   "candidate": false,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   }
+  },
+  "registeredCallbackEvents.onToggle": {
+   "kinds": [
+    "static entity record"
+   ],
+   "files": [
+    "OutSystemsUI_2_23.Content.AccordionItem.mvc.js",
+    "OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "AssembleEvents",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "CountryDetails",
+    "CountryList",
+    "FeedItemDetail",
+    "HomeFeed",
+    "HostSurvey",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "Locality_Details",
+    "Map",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "PersonalEventForm",
+    "Photobook",
+    "Profile",
+    "Search",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup"
+   ],
+   "mcp": {
+    "status": "unavailable",
+    "answer": "not a feature flag: bottom sheet toggle event",
+    "values": "",
+    "source": "TST compiled code (survey sources), 2026-10-14",
+    "at": "2026-10-14T12:36:20"
+   },
+   "decision": {
+    "status": "decided",
+    "value": "not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+    "by": "user",
+    "at": "2026-10-14T12:36:20",
+    "key": "onToggle",
+    "default": "on",
+    "values": [
+     "on",
+     "off"
+    ],
+    "branches": "none",
+    "reference": "none"
+   }
+  },
+  "action:action_ToggleSearchMode": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_SelectSearchResults.mvc.js"
+   ],
+   "screens": [
+    "PersonalEventForm"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:bookmarkToggle": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.Utility.ItemOptionsMenu.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "BookmarksByGroup",
+    "New_BookmarksByGroup"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:bottomSheetOnToggle": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js",
+    "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet.mvc.js",
+    "UBTConnect.App_CommonBlocks_Filter.SortSheet.mvc.js",
+    "UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc.js"
+   ],
+   "screens": [
+    "Bookmarks",
+    "CountryDetails",
+    "CountryList",
+    "Map",
+    "Notes",
+    "Notifications",
+    "Search",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:bottomSheet_InternalOnToggle": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "AssembleEvents",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "CountryDetails",
+    "CountryList",
+    "FeedItemDetail",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "Locality_Details",
+    "Map",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "PersonalEventForm",
+    "Photobook",
+    "Profile",
+    "Search",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:carouselToggleDrag": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Directory_Photobook.Photobook_Carousel.mvc.js"
+   ],
+   "screens": [
+    "Photobook"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:dropdownTogglePopup": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters.mvc.js"
+   ],
+   "screens": [
+    "EventBooklet"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:event_BottomSheetDetails_OnToggle": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Map.Map.mvc.js"
+   ],
+   "screens": [
+    "Map"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:event_BottomSheetExplore_OnToggle": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Map.Map.mvc.js"
+   ],
+   "screens": [
+    "Map"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:event_ToggledSearchMode": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_SelectSearchResults.mvc.js"
+   ],
+   "screens": [
+    "PersonalEventForm"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:event_ToggledSearchResult": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_ResultList.mvc.js"
+   ],
+   "screens": [
+    "PersonalEventForm"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:expandToggled": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.Calendars.EventCalendarWeekMonth.mvc.js"
+   ],
+   "screens": [
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "ldm_myevents"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:handler_BottomSheetOnToggle": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js",
+    "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_BottomSheet.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "BookmarksByGroup",
+    "FeedItemDetail",
+    "HomeFeed",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "Map",
+    "OneSchoolGlobalDetails",
+    "PersonalEventForm",
+    "Profile",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:handler_OnClickToggleLocalitiesList": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:handler_OnClickToggleSubsdivisionList": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:handler_ToggleInfoSheet": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Directory_Photobook.Photobook_Options_Left.mvc.js"
+   ],
+   "screens": [
+    "Photobook"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:handler_ToggleMonthSelector": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Deprecated_Calendar_PersonalEvent.Picker_Date.mvc.js"
+   ],
+   "screens": [
+    "PersonalEventForm",
+    "Recurrence"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:handler_TogglePlay": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Directory_Photobook.Photobook_Options_Player.mvc.js"
+   ],
+   "screens": [
+    "Photobook"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:handler_ToggleSearch": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.App_Notifications.Notifications.mvc.js",
+    "UBTConnect.Directory_Updates.Updates_SingleList.mvc.js"
+   ],
+   "screens": [
+    "Notifications",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:handler_ToggleSpeedSheet": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Directory_Photobook.Photobook_Options_Right.mvc.js"
+   ],
+   "screens": [
+    "Photobook"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:handler_ToggledSearchMode": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_Entity_UnderDev.mvc.js"
+   ],
+   "screens": [
+    "PersonalEventForm"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:handler_ToggledSearchResultsList": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_SelectSearchResults.mvc.js"
+   ],
+   "screens": [
+    "PersonalEventForm"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:jSUtils_Element_Operations_ToggleAttribute": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js"
+   ],
+   "screens": [
+    "AcceptPendingPolicies",
+    "AssembleDetail",
+    "AssembleEvents",
+    "Assemble_BrowseByCountry",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "BrowseCountries",
+    "BrowseDirectory",
+    "CommunityBusinessDetails",
+    "ConnectShare",
+    "ContactByEmailContacts",
+    "ContactByEmailMember",
+    "ContactByEmailOrbitHost",
+    "ContactUsDetails",
+    "ContactUsMenu",
+    "CountryDetails",
+    "CountryList",
+    "EmailContact",
+    "EmailTarget",
+    "EventBooklet",
+    "EventDetail",
+    "FeedItemDetail",
+    "GuestArrangements",
+    "HelpersDetail",
+    "HomeFeed",
+    "HostSurvey",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "InvalidPermissions",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "LegacyShareObject",
+    "Locality_Details",
+    "Login",
+    "Map",
+    "Menu",
+    "MessageDetail",
+    "MessageList",
+    "MilestoneDetail",
+    "MyBookmarks",
+    "MyCalendar",
+    "MyEntertaining",
+    "New_BookmarksByGroup",
+    "New_MyBookmarks",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "OneSchoolGlobalEventDetail",
+    "OrbitAdminEventDetail",
+    "OrbitAdminLanding",
+    "OrbitLanding",
+    "PINBiometricsMenu",
+    "PINChange",
+    "PINRegister",
+    "PINUnlock",
+    "PersonalEventDetails",
+    "PersonalEventForm",
+    "Photobook",
+    "Profile",
+    "QRCodeGenerate",
+    "Recurrence",
+    "Reminder",
+    "Search",
+    "Services",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "TermsAndPoliciesMenu",
+    "TransportDetail",
+    "Updates_SingleList",
+    "ViewDocuments"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup",
+    "ldm_email",
+    "ldm_eventdetail",
+    "ldm_myevents",
+    "mybookmarks"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:meetingInfo_Toggle": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "AssembleEvents"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:onHandle_BookmarkToggle": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_ScreenBlock_BookmarkGroup.mvc.js",
+    "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js"
+   ],
+   "screens": [
+    "BookmarksByGroup",
+    "New_BookmarksByGroup"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:onHandle_ExpandToggled": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks.ScreenBlock_MyEvents.mvc.js",
+    "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2.mvc.js"
+   ],
+   "screens": [
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "ldm_myevents"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:onHandle_ToggleView": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.Calendars.EventCalendarWeekMonth.mvc.js"
+   ],
+   "screens": [
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "ldm_myevents"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:onToggle": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "OutSystemsUI_2_23.Content.AccordionItem.mvc.js",
+    "OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem.mvc.js",
+    "OutSystemsUI_2_23.Content.Tooltip.mvc.js",
+    "OutSystemsUI_2_23.Interaction.BottomSheet.mvc.js",
+    "OutSystemsUI_2_23.Interaction.Sidebar.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.BottomSheet.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "AssembleEvents",
+    "Bookmarks",
+    "BookmarksByGroup",
+    "CountryDetails",
+    "CountryList",
+    "EventDetail",
+    "FeedItemDetail",
+    "GuestArrangements",
+    "HelpersDetail",
+    "HomeFeed",
+    "HostSurvey",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "Locality_Details",
+    "Map",
+    "MilestoneDetail",
+    "Notes",
+    "Notifications",
+    "OneSchoolGlobalDetails",
+    "PersonalEventForm",
+    "Photobook",
+    "Profile",
+    "Search",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:onToggleMenu": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.App_Common.MenuIcon.mvc.js"
+   ],
+   "screens": [
+    "InvalidPermissions"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:onToggle_BottomSheet_Helpers": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AddHelper.mvc.js"
+   ],
+   "screens": [
+    "HostSurvey"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:onToggle_FilterPopup": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js"
+   ],
+   "screens": [
+    "OrbitLanding"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:onToggle_PopupQRCode": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js"
+   ],
+   "screens": [
+    "OrbitAdminEventDetail"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:onToggle_SidebarSearch": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Map.Map.mvc.js"
+   ],
+   "screens": [
+    "Map"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:onToggle_SidebarSettings": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Map.Map.mvc.js"
+   ],
+   "screens": [
+    "Map"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:onToggle_SortPopup": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js"
+   ],
+   "screens": [
+    "OrbitLanding"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:tagToggleToggle": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnectLibrary.ConnectPatterns.HorizontalTagList.mvc.js",
+    "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList.mvc.js"
+   ],
+   "screens": [
+    "Bookmarks",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "Map",
+    "Notes",
+    "Profile",
+    "Recurrence",
+    "Search",
+    "SupperMeeting_Carousel",
+    "Updates_SingleList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleActionSheet": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.NewConnect.InBlock_ActionMenu.mvc.js"
+   ],
+   "screens": [
+    "AssembleEvents"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleAutoplay": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Directory_Photobook.Photobook_Carousel.mvc.js"
+   ],
+   "screens": [
+    "Photobook"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleBookmarkItem": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision.mvc.js",
+    "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js",
+    "UBTConnect.Directory_Locality.Locality_LocalityContacts.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "Map",
+    "OneSchoolGlobalDetails",
+    "Profile",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleBookmarkItem_C2": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.App_Common_Blocks.ItemCardActions.mvc.js",
+    "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions.mvc.js"
+   ],
+   "screens": [
+    "Bookmarks",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "Map",
+    "Notes",
+    "OneSchoolGlobalDetails",
+    "Profile",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleCalendarMenu": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Calendar.Calendar_ViewActionMenu.mvc.js"
+   ],
+   "screens": [
+    "MyCalendar"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleCheckBox": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js"
+   ],
+   "screens": [
+    "AcceptPendingPolicies"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleDeleteConfirmationPopup": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnectLibrary.ConnectPatterns.Note_Item_List.mvc.js"
+   ],
+   "screens": [
+    "Bookmarks",
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Household_Relations",
+    "Locality_Details",
+    "Map",
+    "Notes",
+    "OneSchoolGlobalDetails",
+    "Profile",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleEventFilters": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.LDM_Blocks.MyEvents_MyTimelineFilterButton.mvc.js",
+    "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyEvents_MyTimelineFilterButton.mvc.js"
+   ],
+   "screens": [
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "ldm_myevents"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleFilterDrawer": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_Assemble_MUI.Assemble.AssembleSummary_List.mvc.js"
+   ],
+   "screens": [
+    "AssembleEvents"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleFiltersPopUp": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet.mvc.js"
+   ],
+   "screens": [
+    "EventBooklet"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleGuestList": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests.mvc.js"
+   ],
+   "screens": [
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "ldm_myevents"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleInfoSheet": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Directory_Photobook.Photobook_Options_Left.mvc.js"
+   ],
+   "screens": [
+    "Photobook"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleLocationPopup": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper.mvc.js"
+   ],
+   "screens": [
+    "HouseholdCarousel",
+    "HouseholdDetails",
+    "Locality_Details",
+    "Map",
+    "OneSchoolGlobalDetails",
+    "OneSchoolGlobalEventDetail",
+    "Profile",
+    "SupperMeeting_Carousel",
+    "SupperMeeting_Details"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleMonthSelector": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Calendar.MyCalendar.mvc.js"
+   ],
+   "screens": [
+    "MyCalendar"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleSearchMode": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet.mvc.js"
+   ],
+   "screens": [
+    "EventBooklet"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleSelectAllCheckBox": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js"
+   ],
+   "screens": [
+    "AcceptPendingPolicies"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleShowFilters": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js"
+   ],
+   "screens": [
+    "MessageList"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleShowSearch": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList.mvc.js",
+    "Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_ScreenBlock_BookmarkGroup.mvc.js",
+    "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js"
+   ],
+   "screens": [
+    "BookmarksByGroup",
+    "MessageList",
+    "New_BookmarksByGroup"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleSideMenu": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI.mvc.js",
+    "UBTConnect.App_Common.MenuIcon.mvc.js"
+   ],
+   "screens": [
+    "AssembleDetail",
+    "AssembleEvents",
+    "Assemble_BrowseByCountry",
+    "BookmarksByGroup",
+    "EmailContact",
+    "EmailTarget",
+    "EventBooklet",
+    "EventDetail",
+    "GuestArrangements",
+    "HelpersDetail",
+    "HostSurvey",
+    "InvalidPermissions",
+    "LDM_Email",
+    "LDM_Email_V2",
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2",
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2",
+    "MessageList",
+    "MilestoneDetail",
+    "MyBookmarks",
+    "New_BookmarksByGroup",
+    "New_MyBookmarks",
+    "OrbitAdminEventDetail",
+    "OrbitAdminLanding",
+    "OrbitLanding",
+    "QRCodeGenerate",
+    "TransportDetail",
+    "ViewDocuments"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "bookmarksbygroup",
+    "ldm_email",
+    "ldm_eventdetail",
+    "ldm_myevents",
+    "mybookmarks"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleSingleResetMealData": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.ScreenBlock_HostSurvey.mvc.js"
+   ],
+   "screens": [
+    "HostSurvey"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleSpeedSheet": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Directory_Photobook.Photobook_Options_Right.mvc.js"
+   ],
+   "screens": [
+    "Photobook"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggleTextSpacing_Legacy": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "OutSystemsUI_2_23.controller.js"
+   ],
+   "screens": [],
+   "inControllers": [
+    "OutSystemsUI_2_23.controller.js"
+   ],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggle_Calendar_MenuOptions": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "UBTConnect.Calendar.MyCalendar.mvc.js"
+   ],
+   "screens": [
+    "MyCalendar"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggle_IsFetching": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks.ScreenBlock_EventDetail.mvc.js",
+    "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js"
+   ],
+   "screens": [
+    "LDM_EventDetail",
+    "LDM_EventDetail_V2"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "ldm_eventdetail"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  },
+  "action:toggle_IsShowList": {
+   "kinds": [
+    "flag check action"
+   ],
+   "files": [
+    "Connect2_OrbitMobile_MUI.LDM_Blocks.MyTimeline_Filters.mvc.js"
+   ],
+   "screens": [
+    "LDM_MyEvents",
+    "LDM_MyEvents_V2"
+   ],
+   "inControllers": [],
+   "candidate": true,
+   "variantGroups": [
+    "ldm_myevents"
+   ],
+   "mcp": {
+    "status": "open",
+    "answer": "",
+    "values": "",
+    "source": "",
+    "at": null
+   },
+   "decision": {
+    "status": "open",
+    "value": "",
+    "by": null,
+    "at": null
+   },
+   "gone": true
+  }
+ },
+ "scannedAt": "2026-10-14T12:23:10"
+}

@@ -1,0 +1,17 @@
+{
+ "rules": [
+  {
+   "id": "CAPTURE-FOOTER-SHADOW-ONESHOT-HOUSEHOLDDETAILS",
+   "kinds": [
+    "pixel"
+   ],
+   "states": [
+    "default"
+   ],
+   "pathRegex": "^screenshot$",
+   "reason": "Timing artifact: the footer shadow (footer.content-bottom::before, visibility var(--footer-shadow-scroll), UBTConnectLibrary.css) is set once ~200 ms after the layout is ready and then only on scroll (SetScrollShadow, SA:151-205; app/src/shared/UBTConnectLibrary/lib/actions.ts:684-700). Parity loads the build with latency=0 (parity_check.cjs:595), so the member list is already taller than the viewport (screen-container 1062/844) and the shadow is visible; in TST the data arrived later and the captured var is hidden. With the default mock latency (600 ms) the build also ends hidden (measured).",
+   "evidence": "parity/default.diff.png hotspots y 780-787 = 9px gradient above the bottom bar; build pixels at x=330 y=782/786 (234,236,239)/(213,219,224) vs expected white. Remaining 2px shift of member row 2 (icons y 744 vs 746) not proven: expected row 1 shows masked text and a broken avatar image in the replay."
+  }
+ ],
+ "_merged": "CAPTURE-FOOTER-SHADOW-ONESHOT-HOUSEHOLDDETAILS not merged: replaced by capture-plan latencies.default=600 (orchestrator 2026-10-15)"
+}

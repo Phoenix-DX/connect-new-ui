@@ -1,0 +1,12 @@
+{
+ "finishedAt": "2026-10-15T23:37:29",
+ "files": {
+  "src/screens/ContactByEmailMember/ContactByEmailMember.test.tsx": "fbe9e123c908f0a3",
+  "src/screens/ContactByEmailMember/api.ts": "782716b3217d2dee",
+  "src/screens/ContactByEmailMember/components/actions.ts": "0e85ccc6b2304caa",
+  "src/screens/ContactByEmailMember/components/staticEntities.ts": "5e05acdc8a27ff6a",
+  "src/screens/ContactByEmailMember/index.tsx": "799dae351603cf4b",
+  "src/screens/ContactByEmailMember/mocks.ts": "613b787d671f0141",
+  "src/screens/ContactByEmailMember/types.ts": "6f90f0f2370da24d"
+ }
+}

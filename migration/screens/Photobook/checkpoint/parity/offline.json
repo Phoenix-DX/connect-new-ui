@@ -1,0 +1,54 @@
+{
+ "state": "offline",
+ "route": "/UBTConnect/Photobook?In_HouseholdId=42438&In_LocalityId=252&mocksession=unlocked",
+ "mock": "error",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "0281c918640980a497c8",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 47,
+  "texts": 10,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T13:54:11.895Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 1
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 329160,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 1,
+  "hotspots": [],
+  "diffPng": "migration/screens/Photobook/parity/offline.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

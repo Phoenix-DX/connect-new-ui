@@ -1,0 +1,13 @@
+{
+ "finishedAt": "2026-10-16T01:28:32",
+ "files": {
+  "src/screens/Login/api.ts": "3ac11f7b5316043f",
+  "src/screens/Login/components/AppManager_Events.tsx": "cd9dbe8fc213cc86",
+  "src/screens/Login/components/Tile.tsx": "04d67b08eedbf506",
+  "src/screens/Login/components/Version_LoginWrapper.tsx": "479f092a4c2314ef",
+  "src/screens/Login/components/staticEntities.ts": "91d14c7fbd851def",
+  "src/screens/Login/index.tsx": "ffabbfa1231c6948",
+  "src/screens/Login/mocks.ts": "c3b24ecfcb7bfab6",
+  "src/screens/Login/types.ts": "26f86cacd543d653"
+ }
+}

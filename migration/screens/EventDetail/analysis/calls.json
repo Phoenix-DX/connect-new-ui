@@ -1,0 +1,61 @@
+{
+ "note": "Generated from the runtime capture. phase = load, or the label of the plan step after which the call started.",
+ "calls": [
+  {
+   "module": "Connect2_LegacyShared",
+   "action": "ActionGetAllApplicationEvents",
+   "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetAllApplicationEvents",
+   "phase": "load",
+   "ts": 286,
+   "status": 200,
+   "kind": "server",
+   "inputNames": [],
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_OrbitMobile_MUI",
+   "action": "DataActionGet_EventDetails",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_EventDetails",
+   "phase": "load",
+   "ts": 1316,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_OrbitMobile_MUI",
+   "action": "DataActionGet_HostSurveyStatus",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HostSurveyStatus",
+   "phase": "load",
+   "ts": 1775,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_OrbitMobile_MUI",
+   "action": "DataActionGet_HasDocuments",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasDocuments",
+   "phase": "load",
+   "ts": 2313,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  },
+  {
+   "module": "Connect2_OrbitMobile_MUI",
+   "action": "DataActionGet_HasQRCode",
+   "path": "/UBTConnect/screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/ScreenBlock_EventDetail/DataActionGet_HasQRCode",
+   "phase": "load",
+   "ts": 2609,
+   "status": 200,
+   "kind": "data",
+   "inputNames": null,
+   "scope": "this screen"
+  }
+ ],
+ "variants": {}
+}

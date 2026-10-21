@@ -1,0 +1,34 @@
+{
+ "_comment": "Proposals of the LDM_EventDetail_V2 route agent (2026-10-16), for the orchestrator to review and merge into migration/parity-exemptions.json. Evidence: diagnostic parity with cloneQuery 'mocksession=unlocked&EventHostId=88231&EventId=70415' (Q2): default = style 6 (cursor) + position 1; loading and offline clean.",
+ "rules": [
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-LDM-EVENTDETAIL-V2",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "cursor"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/LDM_EventDetail_V2(\\?|$)",
+   "pathRegex": "\\[Reusable\\.Person_Contact_Options\\] > div\\.block-household-person-options > a( > .*)?$",
+   "reason": "The capture renames href to data-original-href, so the replayed reference anchors of the host's call / email links (and their children) have cursor auto; the app's links have an href (cursor pointer). Same artifact as CAPTURE-LINK-HREF-CURSOR-HOMEFEED. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "diagnostic parity default (6 style diffs, cursor auto → pointer, all under b1-b5-$b1 Person_Contact_Options); analysis/dom/default.html:121-136 (data-original-href=\"#\")"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-LDM-EVENTDETAIL-V2-BANNER",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/LDM_EventDetail_V2(\\?|$)",
+   "pathRegex": "\\[LDM_Blocks\\.EventDetail_Banner\\] > div\\.event-detail-banner-image-cont > div\\.event-detail-banner-text > div\\.display-flex\\.flex-direction-column[^ >]*$",
+   "detailRegex": "^offset in parent \\d+,68 → \\d+,68$",
+   "reason": "The centred locality / date column of the banner is as wide as its longest text; the capture masks both texts (\"••••••••••• ••••\", \"•••• •••• ••••\") and the mock's locality and date (relative to today) have other widths, so only the column's horizontal offset differs (same row, same height). Masked text / data drift. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "diagnostic parity default: offset in parent 126,68 → 94,68; analysis/dom/default.html:76-83"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [],
+ "_merged": "2026-10-16 orchestrator: CAPTURE-LINK-HREF-CURSOR-LDM-EVENTDETAIL-V2, CAPTURE-MASKED-TEXT-LDM-EVENTDETAIL-V2-BANNER"
+}

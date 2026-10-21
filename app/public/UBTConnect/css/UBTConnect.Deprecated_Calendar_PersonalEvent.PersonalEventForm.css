@@ -1,0 +1,14 @@
+﻿.connect-form-item-container {
+    border-bottom: var(--border-size-s) solid var(--color-neutral-3)    
+}
+
+.connect-custom-scroll-list{
+    position: relative
+}
+
+.connect-custom-scroll-list__separator{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+}

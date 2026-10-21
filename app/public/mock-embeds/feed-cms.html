@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Feed CMS (mock)</title>
+    <style>
+      /* Stand-in for the Connect2Feed CMS page (decision D8 b). The block's iframe keeps the original size from
+         UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.css (width 100%, min-height calc(100vh - header)). The dev / preview
+         server answers both `/embed/feeds` (the feed list of HomeFeed) and `/embed/feeds/item/<id>` (one post, of
+         FeedItemDetail) with this page. Content: fictional community posts of the mock user's world (the directory cast,
+         src/mocks/fictional/directory.ts: locality Bahia Blanca, its supper meetings, school OneSchool Alem, interchange
+         Monte Hermoso). The real CMS is external (not a TST file): its look is not known, so this one is plain. Unknown
+         item ids show the first post (ConnectShare's mock-feed-item-1 is that one). The real CMS URL replaces this page
+         through DataActionGetFeedConfig. */
+      :root {
+        --surface: #f4f4f4;
+        --card: #ffffff;
+        --text: #1d2a30;
+        --muted: #5f6b70;
+        --line: #e2e6e8;
+        --primary: #0e7c90;
+        --primary-soft: #e3f2f5;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: var(--surface);
+        color: var(--text);
+        font:
+          14px/1.45 Inter,
+          Roboto,
+          -apple-system,
+          'Segoe UI',
+          Helvetica,
+          Arial,
+          sans-serif;
+      }
+      main {
+        min-height: 100vh;
+        padding: 12px 16px 24px;
+      }
+      .post {
+        background: var(--card);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 12px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+      }
+      .post img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        background: var(--line);
+      }
+      .body {
+        padding: 12px 14px 10px;
+      }
+      .meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .tag {
+        display: inline-block;
+        border-radius: 10px;
+        padding: 1px 8px;
+        background: var(--primary-soft);
+        color: var(--primary);
+        font-weight: 600;
+      }
+      h2 {
+        margin: 8px 0 4px;
+        font-size: 17px;
+        line-height: 1.3;
+      }
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+      }
+      .text p {
+        margin: 10px 0 0;
+      }
+      .actions {
+        display: flex;
+        justify-content: flex-end;
+        border-top: 1px solid var(--line);
+        margin-top: 10px;
+        padding-top: 6px;
+      }
+      .actions button {
+        border: 0;
+        background: none;
+        color: var(--primary);
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 4px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <main aria-label="Feed"></main>
+    <script>
+      /* The CMS side of the Connect2Feed protocol (app/src/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS/connect2Feed.ts,
+         SDK handleMessage): embed:ready once loaded, then embed:complete, and embed:complete again on each feeds:load
+         from the SDK; count / total = the posts shown (non-zero, so the SDK keeps the iframe shown; total 0 hides it).
+         Share posts feed:share {feedId, feedTitle, subtitle, image} (the block opens the ShareSheet). The SDK accepts
+         these messages only when its baseUrl is this page's origin (CR-W2F-1). Query (theme, limit, preload…)
+         ignored except hideActions. */
+      (function () {
+        var IMAGE = '/mock-images/placeholder-landscape.svg';
+        var POSTS = [
+          {
+            id: 'mock-feed-item-1',
+            tag: 'OneSchool Alem',
+            date: 'Friday 16 October 2026',
+            title: 'Science fair at OneSchool Alem this Friday',
+            subtitle: 'Years 7 to 10 show their projects in the campus hall from 14:00.',
+            text: [
+              'Thirty students present projects on wind energy, water quality in the Napostá stream and a weather station built in the school garden.',
+              'Families are welcome from 14:00 to 17:00. Tea and alfajores are served by the Year 9 class to raise funds for their end-of-year trip.',
+            ],
+          },
+          {
+            id: 'mock-feed-item-2',
+            tag: 'Bahia Blanca',
+            date: 'Thursday 15 October 2026',
+            title: 'Visitors from Monte Hermoso on Saturday 24 October',
+            subtitle: 'Five households join the Patagonia supper meeting for the day.',
+            text: [
+              'The visitors arrive by 10:30 and stay for lunch with the Torres household and their neighbours.',
+              'If you can offer a bed for Saturday night, please let Gustavo Torres know before Wednesday.',
+            ],
+          },
+          {
+            id: 'mock-feed-item-3',
+            tag: 'Zapiola',
+            date: 'Tuesday 13 October 2026',
+            title: 'New car park at the Zapiola meeting room',
+            subtitle: 'The extended car park opens on Monday 19 October.',
+            text: [
+              'Forty more spaces are now available behind the main meeting room. After 18:00 please use the side gate on Calle Zapiola.',
+              'Thanks to the eleven households who gave their Saturdays to finish the paving.',
+            ],
+          },
+          {
+            id: 'mock-feed-item-4',
+            tag: 'Ingeniero White',
+            date: 'Monday 12 October 2026',
+            title: 'Spring working bee at the Ingeniero White hall',
+            subtitle: 'Saturday 31 October, 8:00 to 12:00. Morning tea provided.',
+            text: [
+              'We will paint the front fence, clear the gutters and plant the new garden beds along the path.',
+              'Bring gloves and a hat; paint, brushes and tools are supplied. Children are welcome to help with the planting.',
+            ],
+          },
+        ];
+
+        var origin = window.location.origin;
+        function post(message) {
+          if (window.parent !== window) window.parent.postMessage(message, origin);
+        }
+        function el(tag, className, text) {
+          var node = document.createElement(tag);
+          if (className) node.className = className;
+          if (text != null) node.textContent = text;
+          return node;
+        }
+
+        var match = /\/embed\/feeds\/item\/([^/?#]+)/.exec(window.location.pathname);
+        var itemId = match ? decodeURIComponent(match[1]) : null;
+        var hideActions = new URLSearchParams(window.location.search).get('hideActions') === 'true';
+        var shown = POSTS;
+        if (itemId) {
+          var found = POSTS.filter(function (p) {
+            return p.id === itemId;
+          });
+          shown = found.length ? found : POSTS.slice(0, 1);
+        }
+
+        function render(p) {
+          var card = el('article', 'post');
+          var img = el('img');
+          img.src = IMAGE;
+          img.alt = '';
+          card.appendChild(img);
+          var body = el('div', 'body');
+          var meta = el('div', 'meta');
+          meta.appendChild(el('span', 'tag', p.tag));
+          meta.appendChild(el('span', '', p.date));
+          body.appendChild(meta);
+          body.appendChild(el('h2', '', p.title));
+          body.appendChild(el('p', 'subtitle', p.subtitle));
+          if (itemId) {
+            var text = el('div', 'text');
+            p.text.forEach(function (t) {
+              text.appendChild(el('p', '', t));
+            });
+            body.appendChild(text);
+          }
+          if (!hideActions) {
+            var actions = el('div', 'actions');
+            var share = el('button', '', 'Share');
+            share.type = 'button';
+            share.addEventListener('click', function () {
+              post({ type: 'feed:share', feedId: p.id, feedTitle: p.title, subtitle: p.subtitle, image: '' });
+            });
+            actions.appendChild(share);
+            body.appendChild(actions);
+          }
+          card.appendChild(body);
+          return card;
+        }
+
+        var main = document.querySelector('main');
+        shown.forEach(function (p) {
+          main.appendChild(render(p));
+        });
+
+        var complete = { type: 'embed:complete', count: shown.length, total: shown.length };
+        window.addEventListener('message', function (event) {
+          if (event.source === window.parent && event.data && event.data.type === 'feeds:load') post(complete);
+        });
+        post({ type: 'embed:ready' });
+        post(complete);
+      })();
+    </script>
+  </body>
+</html>

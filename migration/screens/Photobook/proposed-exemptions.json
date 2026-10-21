@@ -1,0 +1,77 @@
+{
+ "_comment": "Proposed by F4b (foundation owner) 2026-10-15 for the orchestrator; NOT added to migration/parity-exemptions.json. Format: parity-exemptions.json `rules`. Derived from migration/screens/Photobook/parity/default.json after the F4b changes (345 differences, all covered: layout 230, position 69, style 46). Replaces the earlier PHOTOBOOK-MASKED-PHOTOS-LAYOUT scope entry. Dropped PHOTOBOOK-OPTIONS-INACTIVITY-TIMER: with the capture-plan settle of 5500 ms the options are hidden in the build too (no class, structure or visibility differences left in state default).",
+ "rules": [
+  {
+   "id": "PHOTOBOOK-MASKED-PHOTO-BACKGROUND-LAYOUT",
+   "kinds": [
+    "layout"
+   ],
+   "states": "^default$",
+   "pathRegex": "\\[Directory_Photobook\\.Photobook_Item\\] > div#b4-l1-37_\\d+-b2-CarouselItem\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b1-Content\\.align-items-center\\.display-flex\\.justify-content-center > div#b4-l1-37_\\d+-b2-DIV_BackgroundImage\\.photobook-carousel-item-cont( > .+)?$",
+   "detailRegex": "^410×27 → 410×273$",
+   "reason": "Household photos are person data: the capture masks every Photobook_Item background image (data-masked-src=\"user-image\", src=\"\"), so the replayed reference's empty img is 27 px high and DIV_BackgroundImage, the UBT_LazyImage chain and the img are 410×27; the build shows the neutral placeholder (Q-W2C-1) at 410×273. 10 elements × 23 slides.",
+   "evidence": "migration/screens/Photobook/analysis/dom/default.html:98 (DIV_BackgroundImage of slide 0), :107 (img data-masked-src=\"user-image\", src=\"\", data-rendered-size 390x259 on TST; same on every slide), :117 (DIV_ForegroundImage), :144 (Title_Background, name masked as bullets); migration/screens/Photobook/parity/default.json (2026-10-15T12:37, after the F4b changes)"
+  },
+  {
+   "id": "PHOTOBOOK-MASKED-PHOTO-BACKGROUND-OFFSET",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "\\[Directory_Photobook\\.Photobook_Item\\] > div#b4-l1-37_\\d+-b2-CarouselItem\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b1-Content\\.align-items-center\\.display-flex\\.justify-content-center > div#b4-l1-37_\\d+-b2-DIV_BackgroundImage\\.photobook-carousel-item-cont$",
+   "detailRegex": "^offset in parent -10,-1 → -10,-6$",
+   "reason": "Same masked background photo: the vertically centred DIV_BackgroundImage moves with its 27 px vs 273 px height (offset y -1 → -6). One per slide.",
+   "evidence": "migration/screens/Photobook/analysis/dom/default.html:98 (DIV_BackgroundImage of slide 0), :107 (img data-masked-src=\"user-image\", src=\"\", data-rendered-size 390x259 on TST; same on every slide), :117 (DIV_ForegroundImage), :144 (Title_Background, name masked as bullets); migration/screens/Photobook/parity/default.json (2026-10-15T12:37, after the F4b changes)"
+  },
+  {
+   "id": "PHOTOBOOK-MASKED-PHOTO-BACKGROUND-BOTTOM",
+   "kinds": [
+    "style"
+   ],
+   "states": "^default$",
+   "props": [
+    "bottom"
+   ],
+   "pathRegex": "\\[Directory_Photobook\\.Photobook_Item\\] > div#b4-l1-37_\\d+-b2-CarouselItem\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b1-Content\\.align-items-center\\.display-flex\\.justify-content-center > div#b4-l1-37_\\d+-b2-DIV_BackgroundImage\\.photobook-carousel-item-cont$",
+   "reason": "Same masked background photo: the computed bottom of the absolutely positioned DIV_BackgroundImage follows its height (818px for 27 px, 584px for 273 px). Only `bottom` is exempted.",
+   "evidence": "migration/screens/Photobook/analysis/dom/default.html:98 (DIV_BackgroundImage of slide 0), :107 (img data-masked-src=\"user-image\", src=\"\", data-rendered-size 390x259 on TST; same on every slide), :117 (DIV_ForegroundImage), :144 (Title_Background, name masked as bullets); migration/screens/Photobook/parity/default.json (2026-10-15T12:37, after the F4b changes)"
+  },
+  {
+   "id": "PHOTOBOOK-MASKED-PHOTO-FOREGROUND-CENTRING",
+   "kinds": [
+    "style"
+   ],
+   "states": "^default$",
+   "props": [
+    "left",
+    "right"
+   ],
+   "pathRegex": "\\[Directory_Photobook\\.Photobook_Item\\] > div#b4-l1-37_\\d+-b2-CarouselItem\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b1-Content\\.align-items-center\\.display-flex\\.justify-content-center > div#b4-l1-37_\\d+-b2-DIV_ForegroundImage\\.photobook-carousel-item-cont$",
+   "reason": "Masked foreground photo (inside PanZoom): the empty img has no width, so the shrink-to-fit DIV_ForegroundImage is 0 px wide and centred (computed left/right 195px); with the build's placeholder image it fills the slide (0px). Only `left` and `right` are exempted.",
+   "evidence": "migration/screens/Photobook/analysis/dom/default.html:98 (DIV_BackgroundImage of slide 0), :107 (img data-masked-src=\"user-image\", src=\"\", data-rendered-size 390x259 on TST; same on every slide), :117 (DIV_ForegroundImage), :144 (Title_Background, name masked as bullets); migration/screens/Photobook/parity/default.json (2026-10-15T12:37, after the F4b changes)"
+  },
+  {
+   "id": "PHOTOBOOK-MASKED-TITLE-OFFSET",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "\\[Directory_Photobook\\.Photobook_Item\\] > div#b4-l1-37_\\d+-b2-CarouselItem\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b1-Content\\.align-items-center\\.display-flex\\.justify-content-center > div#b4-l1-37_\\d+-b2-Title_Cont\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b5-Content\\.align-items-center\\.display-flex\\.flex-direction-column > div#b4-l1-37_\\d+-b2-Title_Background\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\]$",
+   "detailRegex": "^offset in parent \\d+,0 → \\d+,0$",
+   "reason": "The household name in Title_FamilyName is masked in the capture (bullets, e.g. dom/default.html Title_Background of slide 0), the mock has fictional names of the same word lengths; the centred Title_Background moves horizontally with the text width (only x differs). The parity tool skips elements whose own text is masked, not their centred ancestors.",
+   "evidence": "migration/screens/Photobook/analysis/dom/default.html:98 (DIV_BackgroundImage of slide 0), :107 (img data-masked-src=\"user-image\", src=\"\", data-rendered-size 390x259 on TST; same on every slide), :117 (DIV_ForegroundImage), :144 (Title_Background, name masked as bullets); migration/screens/Photobook/parity/default.json (2026-10-15T12:37, after the F4b changes)"
+  },
+  {
+   "id": "PHOTOBOOK-GALLERY-LIST-SCROLL",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b4-b6-Photobook_Gallery_List\\.OSFillParent\\.list\\.list-group > div#b4-b6-l1-43_\\d+-\\$b3\\.OSBlockWidget\\[Directory_Photobook\\.Photobook_Gallery_Item\\]$",
+   "detailRegex": "^offset in parent (195,0 → 179|235,0 → 219|275,0 → 259|315,0 → 299|355,0 → 339|395,0 → 379|435,0 → 419|475,0 → 459|515,0 → 499|555,0 → 539|595,0 → 579|635,0 → 619|675,0 → 659|715,0 → 699|755,0 → 739|795,0 → 779|835,0 → 819|875,0 → 859|915,0 → 899|955,0 → 939|995,0 → 979|1035,0 → 1019|1075,0 → 1059),0$",
+   "reason": "The thumbnail list is scrolled by 16 px at runtime: the List's componentdidmount runs ScrollSelectedIntoPosition(IsInstantScroll True), scrollAmount = SelectedItemPosition (SelectedPosition + 1 = 1) × 40 (32 px item + 8 px margin-right) − (8/2 + 40/2) = 16, which centres the first thumbnail (list padding = half the width). The reference is rebuilt from the captured HTML, which cannot carry an element's scrollLeft, so it always shows scroll 0: every thumbnail sits exactly 16 px further right. Capture artifact; the build follows the compiled JS (same selector and formula).",
+   "evidence": "migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Gallery.mvc.js:247-252 (componentdidmount), :578-589 (ScrollIntoPosition parameters; :587 SelectedItemPosition = SelectedPosition + 1), :703-727 (ScrollIntoPositionJS); .claude/skills/outsystems-screen-spec/scripts/parity_check.cjs:612-626 (reference rebuilt from dom/default.html by buildDom) and :395-397 (offsets from getBoundingClientRect, which includes the parent's scroll); app/src/screens/Photobook/components/Photobook_Gallery.tsx scrollIntoPosition"
+  }
+ ],
+ "_merged": "2026-10-15 by the orchestrator: PHOTOBOOK-MASKED-PHOTO-BACKGROUND-LAYOUT, PHOTOBOOK-MASKED-PHOTO-BACKGROUND-OFFSET, PHOTOBOOK-MASKED-PHOTO-BACKGROUND-BOTTOM, PHOTOBOOK-MASKED-PHOTO-FOREGROUND-CENTRING, PHOTOBOOK-MASKED-TITLE-OFFSET, PHOTOBOOK-GALLERY-LIST-SCROLL"
+}

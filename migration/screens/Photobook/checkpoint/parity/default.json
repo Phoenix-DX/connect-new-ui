@@ -1,0 +1,66 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/Photobook?In_HouseholdId=42438&In_LocalityId=252&mocksession=unlocked",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "434ec92fa939cd9e7d3f",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 1248,
+  "texts": 57,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T13:54:05.445Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 1,
+  "PHOTOBOOK-MASKED-PHOTO-BACKGROUND-OFFSET": 23,
+  "PHOTOBOOK-MASKED-PHOTO-BACKGROUND-BOTTOM": 23,
+  "PHOTOBOOK-MASKED-PHOTO-BACKGROUND-LAYOUT": 230,
+  "PHOTOBOOK-MASKED-PHOTO-FOREGROUND-CENTRING": 23,
+  "PHOTOBOOK-MASKED-TITLE-OFFSET": 21,
+  "PHOTOBOOK-GALLERY-LIST-SCROLL": 23
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 0,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 116,
+  "hotspots": [],
+  "diffPng": "migration/screens/Photobook/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 10,
+  "actual": 10
+ },
+ "diffs": []
+}

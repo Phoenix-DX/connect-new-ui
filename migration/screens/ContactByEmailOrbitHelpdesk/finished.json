@@ -1,0 +1,10 @@
+{
+ "finishedAt": "2026-10-16T11:51:48",
+ "files": {
+  "src/screens/ContactByEmailOrbitHelpdesk/api.ts": "17d460734324463f",
+  "src/screens/ContactByEmailOrbitHelpdesk/components/actions.ts": "f47adf6529df984d",
+  "src/screens/ContactByEmailOrbitHelpdesk/index.tsx": "868218d2e7f2034b",
+  "src/screens/ContactByEmailOrbitHelpdesk/mocks.ts": "feb27b4e82786bbe",
+  "src/screens/ContactByEmailOrbitHelpdesk/types.ts": "9c28ce44ed4e38c2"
+ }
+}

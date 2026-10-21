@@ -1,0 +1,324 @@
+[
+ {
+  "module": "Connect2_LegacyShared",
+  "action": "ActionGetNumberUnreadMessages",
+  "screen": null,
+  "file": "Connect2_LegacyShared/ActionGetNumberUnreadMessages/01-b1f0ff92.json",
+  "inputs": []
+ },
+ {
+  "module": "Connect2_LegacyShared",
+  "action": "ScreenDataSetGetShareObjectTypeById",
+  "screen": "ScreenBlock_ShareObject",
+  "file": "Connect2_LegacyShared/ScreenDataSetGetShareObjectTypeById/01-585887a6.json",
+  "inputs": []
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionDataAction_GetLocalityTimezone",
+  "screen": "ContactUsDetails",
+  "file": "UBTConnect/DataActionDataAction_GetLocalityTimezone/01-d2f391c9.json",
+  "inputs": [
+   "IsFormFilled",
+   "IsAnyFilled",
+   "isLogged",
+   "CountryPhone",
+   "isSubmiting",
+   "Rate_SelectedRate",
+   "Rate_ShowRate",
+   "Rate_UserWantToBeContacted",
+   "CallPopupData",
+   "isLoadingMainData",
+   "IgnorePolices",
+   "In_ContactSubjectId",
+   "In_ContactSubjectTitle",
+   "In_ListMenuOptionLabel"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionFetchCount",
+  "screen": "FeedBlock_CommunityPopulation",
+  "file": "UBTConnect/DataActionFetchCount/01-6dc57d78.json",
+  "inputs": []
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGetCountriesStatistics",
+  "screen": "BrowseCountries",
+  "file": "UBTConnect/DataActionGetCountriesStatistics/01-c8c3cc75.json",
+  "inputs": []
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGetCountriesStatistics",
+  "screen": "CountryList",
+  "file": "UBTConnect/DataActionGetCountriesStatistics/02-93a3ea9f.json",
+  "inputs": [
+   "BottomSheetId"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGetCountryInfo",
+  "screen": "Profile",
+  "file": "UBTConnect/DataActionGetCountryInfo/01-c52c670a.json",
+  "inputs": [
+   "isHouseholder",
+   "HasChanges",
+   "isSpouse",
+   "isLoading_Submit",
+   "LocalCacheControl_AllLocalities",
+   "LocalCacheControl_AllSubdivions",
+   "SubdivisionFilteredList",
+   "MainContainerId",
+   "PreviewHousehold_BottomSheetId",
+   "CurrentCountryCode",
+   "FormattedAddress",
+   "isRequireRequestCreation"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGetDateRanges",
+  "screen": "Notifications",
+  "file": "UBTConnect/DataActionGetDateRanges/01-e1d555a6.json",
+  "inputs": [
+   "Filter_BottomSheetId",
+   "Filter_Updates",
+   "HasFiltersApplied",
+   "ShowMarkAll",
+   "DateRanges",
+   "isLoading",
+   "BottomSheetId_IsLoaded",
+   "BottomSheetId_ShowSubscription",
+   "Breakpoints",
+   "CurrentBreakpoint",
+   "IsHeaderScrolled",
+   "IsToggleSearch",
+   "CurrentSearchString",
+   "BadgeNumber",
+   "SelectedHistorySearch",
+   "DeviceHardwareId",
+   "Filter_MessageTypePrivate",
+   "Filter_MessageTypePublic",
+   "OrderByIsAscending",
+   "MaxRecords",
+   "ShowWarning",
+   "SelectedFilter_OrderASC",
+   "Filter_OrderASC",
+   "Filter_OrderDESC",
+   "SelectedFilter_MessageTypePrivate",
+   "SelectedFilter_MessageTypePublic",
+   "MoreAction_BottomSheetId"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGetDateRanges",
+  "screen": "Updates_SingleList",
+  "file": "UBTConnect/DataActionGetDateRanges/02-0400bafb.json",
+  "inputs": [
+   "Filter_UpdateTypeOptions",
+   "Filter_BottomSheetId",
+   "Filter_Updates",
+   "Filter_DefaultState",
+   "HasFiltersApplied",
+   "ShowMarkAll",
+   "DateRanges",
+   "isLoading",
+   "BottomSheetId_IsLoaded",
+   "BottomSheetId_ShowSubscription",
+   "Breakpoints",
+   "CurrentBreakpoint",
+   "IsHeaderScrolled",
+   "ShareableUpdateItem",
+   "IsShareOpen",
+   "ShareableObjectId",
+   "IsToggleSearch",
+   "FocusedScrollAnchorId",
+   "CurrentSearchString"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGetLocalityStatistics",
+  "screen": "BrowseDirectory",
+  "file": "UBTConnect/DataActionGetLocalityStatistics/01-1b4fc559.json",
+  "inputs": [
+   "MarkersList",
+   "Center",
+   "Local_MapId",
+   "CountryCode"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGetLocalityStatistics",
+  "screen": "CountryDetails",
+  "file": "UBTConnect/DataActionGetLocalityStatistics/02-e657cfcb.json",
+  "inputs": [
+   "MarkersList",
+   "Center",
+   "Local_MapId",
+   "SearchString",
+   "Local_List",
+   "HasFiltersApplied",
+   "BottomSheetId_IsLoaded",
+   "BottomSheetId_ShowSubscription",
+   "Filter_BottomSheetId",
+   "OriginalCountryCode",
+   "BottomSheetId",
+   "CountryCode"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGetOneSchoolGlobalDetails",
+  "screen": "OneSchoolGlobalDetails",
+  "file": "UBTConnect/DataActionGetOneSchoolGlobalDetails/01-5a0e2715.json",
+  "inputs": [
+   "LookupSections",
+   "Selected_OneschoolGlobal_SubsectionId",
+   "Type_OneschoolGlobal_SubsectionId",
+   "LocalIsBookmarked",
+   "In_OneSchoolGlobalId"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGetServices",
+  "screen": "FeedBlock_Services",
+  "file": "UBTConnect/DataActionGetServices/02-20169777.json",
+  "inputs": [
+   "MainElementClass",
+   "Local_ServicesPerPage",
+   "ExternalAppPopUp_Id",
+   "Local_ExternalApp_PopUpInfo",
+   "ItemPerPage",
+   "ForceAddService"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGetServices",
+  "screen": "Services",
+  "file": "UBTConnect/DataActionGetServices/02-f72786df.json",
+  "inputs": [
+   "isLoading",
+   "ReferenceServices",
+   "HasChanges"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGetSubdivision",
+  "screen": "SupperMeeting_DetailsBlock",
+  "file": "UBTConnect/DataActionGetSubdivision/01-0c8ddfd3.json",
+  "inputs": [
+   "In_SubdivsionId"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "DataActionGet_LocalityDetails",
+  "screen": "Locality_Details",
+  "file": "UBTConnect/DataActionGet_LocalityDetails/01-a5fd3a96.json",
+  "inputs": [
+   "TagsList",
+   "HeaderIsScrolled",
+   "TagsList_SelectedTag",
+   "IsUserLocality",
+   "LocalityLabel",
+   "IsScreenInitialized",
+   "LocalityId",
+   "PreloadedLocalityLabel"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "ScreenDataSetGet_SearchBirthdayOptions",
+  "screen": "ScreenBlock_Search",
+  "file": "UBTConnect/ScreenDataSetGet_SearchBirthdayOptions/01-4f4cc788.json",
+  "inputs": [
+   "StartIndex",
+   "MaxRecords"
+  ]
+ },
+ {
+  "module": "UBTConnect",
+  "action": "ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+  "screen": null,
+  "file": "UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All/01-4f5c3a3c.json",
+  "inputs": []
+ },
+ {
+  "module": "UBTConnect_Notes_MCS",
+  "action": "ActionGet_NotePills_ByNoteCategoryIds",
+  "screen": null,
+  "file": "UBTConnect_Notes_MCS/ActionGet_NotePills_ByNoteCategoryIds/01-d17576a5.json",
+  "inputs": [
+   "In_NoteCategoryIds"
+  ]
+ },
+ {
+  "module": "UBTConnect_Utils",
+  "action": "ActionGet_RuntimeVersion",
+  "screen": null,
+  "file": "UBTConnect_Utils/ActionGet_RuntimeVersion/01-1d8f92fd.json",
+  "inputs": []
+ },
+ {
+  "module": "UBTConnect_Utils",
+  "action": "DataActionGetCacheInfo",
+  "screen": "CacheControl_AllCountries",
+  "file": "UBTConnect_Utils/DataActionGetCacheInfo/01-8066a989.json",
+  "inputs": [
+   "CacheTypeId",
+   "CacheKey",
+   "TimeToLiveSeconds"
+  ]
+ },
+ {
+  "module": "UBTConnect_Utils",
+  "action": "DataActionGetCacheInfo",
+  "screen": "CacheControl_UserInfo",
+  "file": "UBTConnect_Utils/DataActionGetCacheInfo/02-7ff2e5bc.json",
+  "inputs": [
+   "CacheTypeId",
+   "CacheKey"
+  ]
+ },
+ {
+  "module": "UBTConnect_Utils",
+  "action": "DataActionGetCacheInfo",
+  "screen": "CacheControl_AllLocalities",
+  "file": "UBTConnect_Utils/DataActionGetCacheInfo/03-0e154dc1.json",
+  "inputs": [
+   "CacheTypeId",
+   "CacheKey",
+   "TimeToLiveSeconds"
+  ]
+ },
+ {
+  "module": "UBTConnect_Utils",
+  "action": "DataActionGetCacheInfo",
+  "screen": "CacheControl_Policies",
+  "file": "UBTConnect_Utils/DataActionGetCacheInfo/04-af1a1d24.json",
+  "inputs": [
+   "CacheTypeId",
+   "CacheKey",
+   "TimeToLiveSeconds"
+  ]
+ },
+ {
+  "module": "UBT_AppManager",
+  "action": "ActionAppManager_AfterInitialize",
+  "screen": null,
+  "file": "UBT_AppManager/ActionAppManager_AfterInitialize/01-d4d0d81e.json",
+  "inputs": [
+   "EspaceName",
+   "TOTP"
+  ]
+ }
+]

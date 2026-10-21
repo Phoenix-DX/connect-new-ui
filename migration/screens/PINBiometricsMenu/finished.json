@@ -1,0 +1,10 @@
+{
+ "finishedAt": "2026-10-15T20:13:15",
+ "files": {
+  "src/screens/PINBiometricsMenu/api.ts": "0270a021e6c60486",
+  "src/screens/PINBiometricsMenu/components/staticEntities.ts": "750754f1f4fa90d2",
+  "src/screens/PINBiometricsMenu/index.tsx": "a8e455d307064bb4",
+  "src/screens/PINBiometricsMenu/mocks.ts": "2f6a88bc6c46b8de",
+  "src/screens/PINBiometricsMenu/types.ts": "66c327d17e4f3f6b"
+ }
+}

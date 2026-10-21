@@ -1,0 +1,29 @@
+﻿.drag-handle {
+  cursor: grab;
+}
+
+.drag-ghost {
+  opacity: 0.4;
+}
+
+.sortable-drop-target {
+  background: rgba(0, 136, 170, 0.03);
+}
+
+.sortable-insert-marker {
+  height: 48px;
+  margin: 4px 0;
+  border: 2px dashed var(--color-primary, #0088aa);
+  border-radius: 8px;
+  background: rgba(0, 136, 170, 0.06);
+  pointer-events: none;
+}
+
+.sortable-drop-denied {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sortable-drop-denied-target {
+  outline: 2px dashed var(--color-error, red);
+}

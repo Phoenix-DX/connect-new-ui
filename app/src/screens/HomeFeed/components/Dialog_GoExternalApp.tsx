@@ -1,0 +1,151 @@
+// @os-block UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp
+import { useEffect } from 'react';
+import { NotCaptured } from '../../../components/NotCaptured';
+import { OSBlock } from '../../../components/OSBlock';
+import { ActionConfirmationDialog } from '../../../shell/dialogs';
+import { feedbackMessageAutoClose } from '../../../shell/feedback';
+import { CircleButton } from '../../../shared/UBTConnectLibrary/CircleButton';
+import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
+import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
+import {
+  UBT_AvatarSize,
+  UBT_Color,
+  UBT_FontSize,
+  UBT_FontWeight,
+  UBT_Size,
+} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Icons2 as UBT_Icons_Connect } from '../../../shared/UBTConnect/lib/staticEntities';
+import { openInApp_OpenApp } from '../../../shared/UBTConnect_Utils/lib/actions';
+import { UBT_IconSize } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
+import type { ExternalAppPopUpInfo } from '../types';
+
+export interface Dialog_GoExternalAppProps {
+  /** Block instance id (FeedBlock_Services: `b5-$b12`). */
+  id: string;
+  inExtendedClass?: string;
+  externalAppPopUpInfo: ExternalAppPopUpInfo;
+  /** Event OnPopUpReady(PopUpId). */
+  onOnPopUpReady?: (popUpId: string) => void;
+}
+
+/** UBTConnect_Utils CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp (p:…Dialog_GoExternalApp.mvc.js, "DGE").
+    Closed markup captured (dom/default.html:421-430). Open state not captured: the content follows the compiled view
+    (DGE:157-560) inside NotCaptured; the container with the inline `text-align: center` and the confirm row's
+    FlexDirection Row (identifier not captured) are left out. */
+export function Dialog_GoExternalApp({
+  id,
+  inExtendedClass = '',
+  externalAppPopUpInfo: info,
+  onOnPopUpReady,
+}: Dialog_GoExternalAppProps) {
+  const scope = id.replace('$', '');
+  const widgetId = `${scope}-PopUp`;
+
+  // OnReady: Trigger OnPopUpReady(PopUp.Id) (DGE:600-615)
+  useEffect(() => {
+    onOnPopUpReady?.(widgetId);
+  }, [widgetId, onOnPopUpReady]);
+
+  // GoToExternalApp (DGE:640-665; raw mvc.js:620-629)
+  const goToExternalApp = () => {
+    if (info.packageName === '') {
+      // MessageType = TextToInteger("Entities.UBT_MessageType.Error") in the original: 0, the Info type.
+      feedbackMessageAutoClose({
+        title: 'Not available',
+        message: 'Sorry, this is not available in the platform you are using',
+        messageType: 'info',
+        encodedHtml: true,
+        extendedClass: '',
+        delayMs: 0,
+        useDebounce: false,
+      });
+      return;
+    }
+    // OpenInApp_OpenApp(PackageName) (raw Dialog_GoExternalApp.mvc.js:629; shared since CR-HomeFeed-1: in the browser
+    // the "Not available" toast, UBTConnect_Utils.controller.js:4439-4441).
+    openInApp_OpenApp(info.packageName);
+  };
+
+  const isSvg = info.iconId.includes('SVG_');
+  return (
+    <OSBlock name="CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp" id={id}>
+      <div
+        className={`subscription-pop-up connect-dialog-popup connect-dialog-popup--access-restricted ${inExtendedClass}`.trimEnd()}
+        data-container=""
+      >
+        <ActionConfirmationDialog
+          widgetId={widgetId}
+          scope={`${scope}-b1`}
+          header={
+            <div className="text-align-center" data-container="">
+              <CustomText
+                inText={`Move to ${info.appName}`}
+                inTextOptions={{ FontSize: UBT_FontSize.Base, FontWeight: UBT_FontWeight.SemiBold }}
+                inPaddingOptions={{ BottomSizeId: UBT_Size.Small }}
+              />
+            </div>
+          }
+          body={
+            <NotCaptured name="Dialog_GoExternalApp open state (compiled view DGE:250-420)">
+              <CustomContainer options={{ PaddingSize: { GeneralSizeId: UBT_Size.Base } }}>
+                {info.iconId !== '' &&
+                  (isSvg ? (
+                    <Icon inIconId={info.iconId} inSizeId={UBT_IconSize.NonStandard_64} />
+                  ) : (
+                    <CircleButton
+                      backgroundColorId={UBT_Color.Primary}
+                      sizeId={UBT_AvatarSize.Base_52}
+                      icon={
+                        <Icon
+                          inIconId={info.iconId}
+                          inSizeId={UBT_IconSize.NonStandard_32}
+                          inColorId={UBT_Color.Neutral0}
+                        />
+                      }
+                    />
+                  ))}
+              </CustomContainer>
+              <CustomContainer
+                options={{
+                  MarginSize: { TopSizeId: UBT_Size.Base, BottomSizeId: UBT_Size.Base },
+                  TextOptions: { Color: UBT_Color.Neutral10 },
+                }}
+              >
+                <div data-container="">
+                  <span data-expression="">
+                    {`You’re about to leave this app and open ${info.appName}. Are you sure you want to continue?`}
+                  </span>
+                </div>
+              </CustomContainer>
+            </NotCaptured>
+          }
+          confirmLabel={
+            <NotCaptured name="Dialog_GoExternalApp confirm label (compiled view DGE:430-540)">
+              <div data-container="">
+                <CustomText
+                  noWrap
+                  inText={`Continue to ${info.appName}`}
+                  inTextOptions={{
+                    Color: UBT_Color.Neutral0,
+                    FontSize: UBT_FontSize.Small,
+                    FontWeight: UBT_FontWeight.SemiBold,
+                  }}
+                />
+              </div>
+              <div className="margin-left-s" data-container="">
+                <Icon
+                  inIconId={UBT_Icons_Connect.OpenNew}
+                  inSizeId={UBT_IconSize.NonStandard_16}
+                  inColorId={UBT_Color.Neutral0}
+                />
+              </div>
+            </NotCaptured>
+          }
+          dismissLabel="Cancel"
+          onConfirmed={goToExternalApp}
+        />
+      </div>
+    </OSBlock>
+  );
+}

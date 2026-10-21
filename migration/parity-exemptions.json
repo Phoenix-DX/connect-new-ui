@@ -1,0 +1,1664 @@
+{
+ "_comment": "Accepted parity differences, decided by the user. Every entry has an id, a reason and evidence; the parity report counts how often each fires. Login entries: Q6 answered by the user (2026-10-14), migration/screens/Login/questions.json. PINUnlock entries (*-PINCODE): Q3 answered by the user (2026-10-14), migration/screens/PINUnlock/questions.json. PINRegister entry (*-PINREGISTER): same capture-replay artifact as the Login/PINUnlock link-cursor entries (accepted in kind). HomeFeed entries (*-HOMEFEED, CAPTURE-LOADING-FETCH-TIMEOUT, CAPTURE-SKELETON-SHIMMER-PHASE, FEED-CMS-D8B-IFRAME): accepted by the user 2026-10-15. 2026-10-15: CAPTURE-LINK-HREF-CURSOR* narrowed to the cursor property (`props`), as their reasons state; parity_check honours `props`. 2026-10-15: HomeFeed CAPTURE-BADGE-MASKED-TEXT-HOMEFEED, CAPTURE-LOGO-REPLAY-HOMEFEED-PIXEL, CAPTURE-LOADING-FETCH-TIMEOUT-PIXEL (ignoreSubtrees with states), SLIDER-APPEAR-TIMING, SLIDER-LOADING-TIMEOUT accepted by the user. 2026-10-15: MYENT-D8B-IFRAME and CAPTURE-UNFOCUSED-SEARCH-INPUT accepted by the user. 2026-10-15: CALL-ORDER-APPSTART-RACE (callOrderFree) and PULL-TO-REFRESH-FADEIN-PHASE accepted by the user; Notes masked-digit pixel entry follows once its selector is known.",
+ "ignoreSubtrees": [
+  {
+   "id": "CAPTURE-SVG-PRESERVEASPECTRATIO",
+   "classRegex": "^ubt-header-svg$",
+   "reason": "The header background SVG is drawn with preserveAspectRatio=\"none\" (compiled SVGCode); the capture drops that attribute, so the replayed reference scales the SVG uniformly (path offset 0,32 and 390x665 instead of 0,0 and 390x720). Its subtree and screen area are not comparable.",
+   "evidence": "migration/screens/Login/analysis/sources/pretty/UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js:202; migration/screens/Login/parity/default.expected.png vs default.build.png; Login Q6"
+  },
+  {
+   "id": "CAPTURE-LOGO-REPLAY",
+   "classRegex": "^login-screen__connect-logo$",
+   "reason": "The Connect logo image does not load in the replayed reference (16x16 broken image); the live capture recorded it at 209x33.",
+   "evidence": "migration/screens/Login/analysis/dom/default.html:53 (data-rendered-size=\"209x33\"); Login Q6"
+  },
+  {
+   "id": "CAPTURE-LOGO-REPLAY-HOMEFEED-PIXEL",
+   "blockRegex": "^App_Common\\.AppLogo_White$",
+   "reason": "The HomeFeed header logo is a broken image in the replayed reference (live capture 155x25); masked in DOM and pixel comparison, as CAPTURE-LOGO-REPLAY for Login.",
+   "evidence": "migration/screens/HomeFeed/analysis/dom/default.html:24; parity/default.diff.png (1660 px on the logo); accepted by the user 2026-10-15 (HomeFeed finishing round)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-PIXEL",
+   "blockRegex": "^Home\\.FeedBlock_(Updates|CommunityPopulation)$",
+   "states": "^loading$",
+   "reason": "Pixel side of CAPTURE-LOADING-FETCH-TIMEOUT: the loading capture shows these blocks in their fetch-error state after the OutSystems request timeout; the mock loading scenario shows their skeletons.",
+   "evidence": "migration/screens/HomeFeed/analysis/dom/loading.html:418, :509-510; parity/loading.diff.png (~4100 px in the Updates list); accepted by the user 2026-10-15 (HomeFeed finishing round)"
+  },
+  {
+   "id": "CAPTURE-UNFOCUSED-SEARCH-INPUT",
+   "idRegex": "^(b1-b2-Input_Search|b1-Input_SearchMessages)$",
+   "reason": "The original sets FocusOnReady True; the headless capture page was not focused, so the captured input shows no focus border. The clone keeps the focus (Search Q4). Masked in DOM and pixel comparison (style and pixel, as accepted).",
+   "evidence": "migration/screens/Search/parity/default.json; Search Q4; accepted by the user 2026-10-15; migration/screens/MessageList/parity/search.json; MessageList Q8"
+  },
+  {
+   "id": "CAPTURE-NOTES-MASKED-COUNT",
+   "idRegex": "^b8-l1-61_\\d+-b7-b1-\\$b10$",
+   "states": "^(loading|offline)$",
+   "reason": "The total-notes IconText of the Notes skeleton cards (ItemCard_WithNotes): the capture masks its digit as '•' where the build shows the count 0, and the narrower glyph moves the right-aligned list_alt icon. Same kind as CAPTURE-BADGE-MASKED-TEXT. Masked in DOM and pixel comparison for that IconText only.",
+   "evidence": "migration/screens/Notes/analysis/dom/loading.html:267-289 (and offline.html:267, one per skeleton card b8-l1-61_0..5); migration/screens/Notes/parity/loading.diff.png, offline.diff.png (hotspots x≈320-338 at each card); Notes Q4, accepted by the user 2026-10-15"
+  },
+  {
+   "id": "SLIDER-LOADING-TIMEOUT-PIXEL",
+   "classRegex": "^dx-bottom-bar-slider$",
+   "states": "^loading$",
+   "reason": "Pixel side of SLIDER-LOADING-TIMEOUT: in the loading capture the slider appears after the 10 s SynchAppContext timeout, which the clone has no equivalent of yet (backlog: request timeouts). Auto-accepted recommendation in the user's 3h window 2026-10-15 (Updates_SingleList Q2).",
+   "evidence": "migration/screens/Updates_SingleList/parity/loading.json; HomeFeed Q3; Updates_SingleList Q2"
+  },
+  {
+   "id": "MESSAGELIST-SORT-RADIO-TST",
+   "idRegex": "^b1-b13-b3-CheckboxPlaceholder$",
+   "states": "^filter$",
+   "reason": "TST rendered the Newest to Oldest radio unchecked; the compiled logic (RevertSelectedFiltersToPersistedValue: Filter_OrderDESC = True) checks it. The clone follows the compiled code; the user can check TST on a device. Auto-accepted recommendation in the user's 3h window 2026-10-15.",
+   "evidence": "migration/screens/MessageList/parity/filter.json; MessageList Q11"
+  },
+  {
+   "id": "DATA-DRIFT-MOCK-USER-COUNTRYLIST",
+   "idRegex": "^HeaderColumns$",
+   "states": "^default$",
+   "reason": "CountryList 'My locality / My country' cards show the shell's mock user (shell/mockUser.ts: AR flag, 3 supper meetings, 3 localities) while the TST capture shows the test user (US flag, 7 supper meetings, 29 localities, names masked). Data drift only: the cards' structure and classes are compared in the loading and offline states. Masked in DOM and pixel comparison for the default state; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/CountryList/analysis/dom/default.html:116-235; migration/screens/CountryList/parity/default.json (text $b11 '7 Supper Meetings' → '3 Supper Meetings', $b16 '29 Localities' → '3 Localities'; pixel hotspots 240-280,120-240); app/src/shell/mockUser.ts:49-56"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYLIST",
+   "idRegex": "^b23-Placeholder_LoadingSection$",
+   "states": "^loading$",
+   "reason": "The CountryList loading capture held the TST requests until the OutSystems request timeout, so the countries list shows its fetch-error state (no skeleton, empty list-error); the mock loading scenario never answers, so the build shows the 10 skeleton rows of Action_RefreshData (same artifact as CAPTURE-LOADING-FETCH-TIMEOUT). Masked in DOM and pixel comparison; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/CountryList/analysis/dom/loading.html:326-330; migration/screens/CountryList/parity/loading.json; CountryList.mvc.js ctrl :1347-1440"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYDETAILS",
+   "idRegex": "^b10-Content$",
+   "states": "^loading$",
+   "reason": "The loading capture shows GetLocalityStatistics after the OutSystems request timeout (fetch error: count '10 Localities' from the skeleton list, empty list, Service Interruption toast); the mock loading scenario never answers, so the clone shows the compiled loading branch (count skeleton, three skeleton cards). Search/legend/list container masked in DOM and pixel comparison for the loading state only; the same markup passes in the offline state. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/CountryDetails/analysis/dom/loading.html:185-206; CountryDetails.mvc.js:979-1139; migration/screens/CountryDetails/parity/loading.json"
+  },
+  {
+   "id": "TIME-LABEL-LOCALITYDETAILS",
+   "states": "^(default|loading|offline)$",
+   "reason": "Locality_DateTimeLabel shows the current device time moved to the locality time zone (CurrDateTime + Timer every second): the text and its width depend on when the capture and the parity run happen (data drift); auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Locality_Details/analysis/dom/default.html:120-125, loading.html / offline.html:124-128 (Wednesday 12:45 AM / 03:45 AM); UBTConnect.Directory_Locality.Locality_DateTimeLabel.mvc.js controller OnInitialize / Handler_TimerEvent_IntervalElapsed",
+   "blockRegex": "^Directory_Locality\\.Locality_DateTimeLabel$"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-ONESCHOOLGLOBALDETAILS-ACTIONS",
+   "idRegex": "^b14-b1-Placeholder_LoadingSection$",
+   "states": "^loading$",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout, so Directory_EntityDetailsActions' FetchContactDetails had failed: every action disabled (background-neutral-3, text-neutral-7) and the skeleton off; the mock loading scenario never answers, so the clone keeps the skeleton with the enabled colours. The same markup matches the TST error state in the offline state. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/OneSchoolGlobalDetails/analysis/dom/loading.html:197-365 vs dom/offline.html; migration/screens/OneSchoolGlobalDetails/parity/loading.json, offline.json"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-LEGACYSHAREOBJECT-PROFILES",
+   "idRegex": "^b1-b8-b[56]-(Icon|Message)$",
+   "states": "^loading$",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout, so ProfileList's DataActionGetAvailableUsers had failed (HasFetchError: ListBlankSlate exclamation-triangle \"Error Searching\"); the mock loading scenario never answers, so the clone shows the compiled fetching branch (ListBlankSlate spinner fa-spin \"Searching\", ProfileList.mvc.js view :532-620). Icon and message masked in DOM and pixel comparison for the loading state only; the same error markup passes in the offline state. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LegacyShareObject/analysis/dom/loading.html:132-145; migration/screens/LegacyShareObject/parity/loading.json (class, text, style, pseudo, layout, position, pixel hotspots 120-200,280-320); parity/offline.json passes"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-LEGACYSHAREOBJECT-IMAGE",
+   "idRegex": "^b1-b4-b1-Placeholder_LoadingSection$",
+   "states": "^loading$",
+   "reason": "In the loading capture the household UBT_LazyImage had already received the failed GetSignedImagesInBulk answer after the request timeout (outer SkeletonSection off, cyan no-image fallback with connect-icon-home); the mock loading scenario never answers, so the shared UBT_LazyImage keeps its skeleton (ubt-skeleton-section, grey elements, hidden icon). The fallback markup passes in the offline state. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLDDETAILS-IMAGE. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LegacyShareObject/analysis/dom/loading.html:72-89; migration/screens/LegacyShareObject/parity/loading.json ([class] extra .ubt-skeleton-section, [style]/[pseudo] under b1-b4-b2-b3-Content); parity/offline.json passes"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP",
+   "idRegex": "^b1-b1-Content$",
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/BookmarksByGroup(\\?|$)",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout: RefreshBookmarkData's AllExceptions branch set IsFetchingBookmarks False, so the reference shows NoBookmarks; the mock loading scenario never answers (the clone has no request timeout yet, see SLIDER-LOADING-TIMEOUT), so the clone shows the compiled fetching branch (Reusable.Spinner, ScreenBlock_BookmarkGroup.mvc.js:1656-1677). The NoBookmarks markup passes in the offline state. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/BookmarksByGroup/analysis/dom/loading.html:73-101; migration/screens/BookmarksByGroup/parity/loading.json (NoBookmarks missing, Spinner extra); offline.json (passes)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP-TOAST",
+   "idRegex": "^feedbackMessageContainer$",
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/BookmarksByGroup(\\?|$)",
+   "reason": "Same timeout: the reference shows the error message \"The connection has timed out\" (CommunicationException of the client timeout, shown by RefreshBookmarkData's AllExceptions handler, mvc.js:1960-1985); the clone never times out in the loading scenario, so no message. The same message path passes in the offline state (\"Request failed with an error\"). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/BookmarksByGroup/analysis/dom/loading.html:2-10; migration/screens/BookmarksByGroup/parity/loading.diff.png (hotspots y=0)"
+  },
+  {
+   "id": "CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL",
+   "idRegex": "^b3-l1-115[24]_\\d-b2-b3-\\$b1$",
+   "states": "^(loading|offline)$",
+   "reason": "The loading and offline states were captured via Locality_Details (states.json `via`), so on TST the app start had finished and the user-info cache was filled: HouseholdDetails_Block's OnReady passed GetUserInformation_Wrapper (mvc.js:2700-2710), set the skeleton household ('Example & Example', About/Photos tags appended after OnReady, mvc.js:2216-2240) and started GetHousehold, which then timed out / failed (0 members, list-error). Parity opens the route by URL under the never-answering / failing mock scenario, so the clone's app-start GetUserInformation is pending or failed and the block waits before OnReady's skeleton, as the original does when opened directly (TST HouseholdDetails loading/offline: 'Household gallery', no tags; that route's parity is 0 for the same block). Every difference inside the four slides' HouseholdDetails_Block (14 structure per slide: 5 skeleton Member_ListItem, 2 TagToggle, Block_Subtitle, AddressSection, SeeMoreSection, Directory_EntityDetailsActions and its margin, hero skeleton; texts 'Example & Example'/'Actions' vs 'Household gallery'/'Photobook'; VisibleAboutTab; bookmark state) follows from that path difference. Masked in DOM and pixel comparison for these two states only; the default state compares the block in full.",
+   "evidence": "migration/screens/HouseholdCarousel/analysis/states.json (loading/offline via /UBTConnect/Locality_Details); migration/screens/HouseholdCarousel/parity/loading.json, offline.json (structure 56 = 14 x 4 slides, all under b3-l1-1152_N-b2-b3-$b1 / b3-l1-1154_N-b2-b3-$b1); UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js:2202-2240, :2700-2710; app/src/shell/userInfo.ts getUserInformation; migration/screens/HouseholdDetails/analysis/dom/loading.html:146"
+  },
+  {
+   "id": "TAGS-TIME-LABEL-LOCALITYDETAILS",
+   "states": "^tag-(suppermeetings|interchange|oneschoolglobal)$",
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "blockRegex": "^Directory_Locality\\.Locality_DateTimeLabel$",
+   "reason": "Same as TIME-LABEL-LOCALITYDETAILS (default/loading/offline): the label shows the current time in the locality's time zone, so text and width depend on when capture and parity run (data drift). Covers the text diff and the pixel hotspot at y 80-120. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/tag-*.json text 'Thursday, 03:17 PM (UTC - 3)' → run time"
+  },
+  {
+   "id": "TAGS-TAGLIST-SCROLL-PIXEL",
+   "states": "^tag-(interchange|oneschoolglobal)$",
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "blockRegex": "^ConnectPatterns\\.HorizontalTagList$",
+   "reason": "Pixel side of TAGS-TAGLIST-SCROLL-LOCALITYDETAILS: the reference draws the tag row unscrolled, the clone scrolled by Playwright's click (hotspots y 160). Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/tag-interchange.diff.png, parity/tag-oneschoolglobal.diff.png"
+  },
+  {
+   "id": "MYENT-D8B-IFRAME-PIXEL",
+   "blockRegex": "^Blocks\\.Embedded_MyEntertaining$",
+   "states": "^default$",
+   "reason": "Pixel companion of MYENT-D8B-IFRAME (decision D8 b): the iframe shows the local stand-in calendar, now filled with meaningful fictional content (user, 2026-10-16), while the capture shows the real embed; mask the embed area in the pixel comparison. Auto-accepted (user instruction 2026-10-16 night).",
+   "evidence": "MyEntertaining default parity pixel 9.62% after the stand-in content (mock follow-up agent, 2026-10-16)"
+  }
+ ],
+ "rules": [
+  {
+   "id": "CAPTURE-LOGO-REPLAY",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "pathRegex": "\\[App_Common\\.WelcomeToConnect\\]( > .+)?$|div\\.connect-login-card__content > div$",
+   "reason": "Sizes and offsets that follow from the logo replay: WelcomeToConnect and its children are sized by the 16x16 broken image in the reference, and the card content is centred, so the block and the buttons below it move (48,48 -> 48,40; 48,222 -> 48,229).",
+   "evidence": "migration/screens/Login/analysis/dom/default.html:53; migration/screens/Login/parity/default.json; Login Q6"
+  },
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR",
+   "kinds": [
+    "style"
+   ],
+   "pathRegex": "div\\.need-help-footer > a\\.font-regular\\.text-underline$",
+   "reason": "The capture renames a link's href to data-original-href, so the replayed reference anchor has no href and its cursor is auto; the app's link has its href (cursor pointer).",
+   "evidence": "migration/screens/Login/analysis/dom/default.html:93; Login Q6",
+   "props": [
+    "cursor"
+   ]
+  },
+  {
+   "id": "CAPTURE-LOADING-BODYCLASS",
+   "kinds": [
+    "class"
+   ],
+   "pathRegex": "^body$",
+   "states": "^(loading|offline)$",
+   "reason": "The loading and offline captures were taken before the device classes were set on body (no osx); the app sets them at start.",
+   "evidence": "migration/screens/Login/analysis/dom/loading.html:1, offline.html:1 vs default.html:1; Login Q6"
+  },
+  {
+   "id": "CAPTURE-LOADING-TRANSITION",
+   "kinds": [
+    "class"
+   ],
+   "pathRegex": "> div\\.active-screen\\.screen-container$",
+   "states": "^(loading|offline)$",
+   "reason": "The loading and offline captures were taken before the screen transition finished (no slide-from-right-enter-done on the active screen).",
+   "evidence": "migration/screens/Login/analysis/dom/loading.html:4, offline.html:4 vs default.html:4; Login Q6"
+  },
+  {
+   "id": "CAPTURE-LOGO-REPLAY-PINCODE",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "pathRegex": "\\[PIN\\.PinCode\\] > div\\.connect-pin-screen\\.ubt-pin-overlay\\.ubt-pincode > (div\\.ubt-pincode__header( > div#[^ >]*TitlePlaceholder[^ >]*)*|div\\.ubt-pincode__header > div\\.OSFillParent\\.list\\.list-group|div\\.ubt-pincode__header > div#[^ >]*-Message\\.ubt-pincode__header__message|div\\.ubt-pincode__keyboard)$",
+   "reason": "Sizes and offsets that follow from the logo replay in the PIN keypad header (overlay variant): the white Connect logo is a 16x16 broken image in the replayed reference, so the title placeholders are 24 px instead of 39 px high and the dots, the message and the keyboard sit 15 px higher (header 358x128 vs 358x143).",
+   "evidence": "migration/screens/PINUnlock/analysis/dom/default.html:55 (data-rendered-size=\"202x33\"); migration/screens/PINUnlock/parity/default.expected.png vs default.build.png; PINUnlock Q3 (user)"
+  },
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-PINCODE",
+   "kinds": [
+    "style"
+   ],
+   "pathRegex": "\\[PIN\\.PinCode\\] > .*(div\\.OSInline\\.border-bottom-s\\.border-color-neutral-0|div#[^ >]*\\.ubt-columns--column\\.ubt-columns--(left|right) > div) > a( > div#[^ >]*\\.OSBlockWidget\\[BasePatterns\\.(CustomContainer|CustomText)\\])?$",
+   "reason": "The capture renames a link's href to data-original-href, so the replayed reference anchors of the PIN keypad (Forgot PIN, Terms & Conditions, Our Privacy Policy) and the blocks inside them have cursor auto; the app's links have their href (cursor pointer).",
+   "evidence": "migration/screens/PINUnlock/analysis/dom/default.html:197, 222, 239 (data-original-href=\"#\"); migration/screens/PINUnlock/parity/default.json; PINUnlock Q3 (user)",
+   "props": [
+    "cursor"
+   ]
+  },
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-PINREGISTER",
+   "kinds": [
+    "style"
+   ],
+   "pathRegex": "\\[Layouts\\.Layout_LoginFlow\\] > div#b1-Main\\.ubt-layout--login > div#b1-Placeholder_Header\\.ubt-layout--login__header > a( > div#\\$b2\\.OSBlockWidget\\[ConnectPatterns\\.IconText\\])?$",
+   "reason": "The capture renames a link's href to data-original-href, so the replayed reference anchor of the PINRegister header (\"Back to login\") and the IconText block inside it have cursor auto; the app's link has its href \"#\" (cursor pointer). Same artifact as CAPTURE-LINK-HREF-CURSOR (Login Q6) and CAPTURE-LINK-HREF-CURSOR-PINCODE (PINUnlock Q3).",
+   "evidence": "migration/screens/PINRegister/analysis/dom/default.html:35 (data-original-href=\"#\"); migration/screens/PINRegister/parity/default.json; accepted in kind: Login Q6, PINUnlock Q3",
+   "props": [
+    "cursor"
+   ]
+  },
+  {
+   "id": "SPLASH-LOADINGDOTS-ANIMATION-PHASE",
+   "kinds": [
+    "class",
+    "style",
+    "layout",
+    "position",
+    "attr"
+   ],
+   "pathRegex": "ConnectPatterns\\.LoadingDots\\]",
+   "reason": "The Splash capture is a mid-animation snapshot (GSAP matrix on the path, fall-expand phase, ~10 s into a slow TST load); the clone is photographed at another point of the 1.5 s + 1.2 s + 3 s timeline (user, 2026-10-14, Splash decisions)",
+   "evidence": "migration/screens/Splash/analysis/dom/default.html:13-48; LoadingDots.mvc.js:617-692"
+  },
+  {
+   "id": "CAPTURE-LOGO-REPLAY-HOMEFEED",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "pathRegex": "div#b1-Placeholder_Header_Title\\.OSInline( > div#\\$b2\\.OSBlockWidget\\[App_Common\\.AppLogo_White\\]( > img)?)?$",
+   "reason": "The HomeFeed header logo is a broken 16x16 image in the replayed reference; the live capture rendered it 155x25 (data-rendered-size). Same artifact as CAPTURE-LOGO-REPLAY (Login Q6).",
+   "evidence": "migration/screens/HomeFeed/analysis/dom/default.html:24; HomeFeed route agent proposal, 2026-10-15; accepted by the user 2026-10-15 (all 5)"
+  },
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-HOMEFEED",
+   "kinds": [
+    "style"
+   ],
+   "pathRegex": "a\\.skip-nav$|Placeholder_LoadingSection > a( > .*)?$|\\[App_Common\\.BottomBarContent\\] > .* > a(\\.active)?( > .*)?$",
+   "reason": "The capture renames href to data-original-href, so the replayed reference anchors have cursor auto; the app's links have an href (cursor pointer). Same artifact as CAPTURE-LINK-HREF-CURSOR (Login Q6).",
+   "evidence": "migration/screens/HomeFeed/parity/default.json; HomeFeed route agent proposal, 2026-10-15; accepted by the user 2026-10-15 (all 5)",
+   "props": [
+    "cursor"
+   ]
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT",
+   "kinds": [
+    "class",
+    "style",
+    "pseudo",
+    "layout",
+    "position"
+   ],
+   "states": "^loading$",
+   "pathRegex": "\\[Home\\.FeedBlock_(Updates|CommunityPopulation)\\]( > .*)?$",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout, so these blocks show their fetch-error state (no skeleton, list-error); the mock loading scenario never answers, so the build shows the skeletons.",
+   "evidence": "migration/screens/HomeFeed/analysis/dom/loading.html:418, :509-510; HomeFeed route agent proposal, 2026-10-15; accepted by the user 2026-10-15 (all 5)"
+  },
+  {
+   "id": "CAPTURE-SKELETON-SHIMMER-PHASE",
+   "kinds": [
+    "style"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "Placeholder_LoadingSection\\.ubt-skeleton-section > .*$|\\[Blocks\\.Embedded_FeedCMS\\] > .*$",
+   "reason": "Skeleton shimmer animation photographed at another phase (background 229,232,236 vs 229,232,235).",
+   "evidence": "migration/screens/HomeFeed/parity/loading.json; HomeFeed route agent proposal, 2026-10-15; accepted by the user 2026-10-15 (all 5)"
+  },
+  {
+   "id": "FEED-CMS-D8B-IFRAME",
+   "kinds": [
+    "structure",
+    "layout",
+    "position"
+   ],
+   "pathRegex": "\\[Blocks\\.Embedded_FeedCMS\\]( > .*)?$",
+   "reason": "Decision D8(b): the build shows the same-size mock Feed CMS iframe; the capture's container was still empty (390x0 vs 390x844).",
+   "evidence": "migration/screens/HomeFeed/analysis/dom/default.html (Embedded_FeedCMS); board D8(b); HomeFeed route agent proposal, 2026-10-15; accepted by the user 2026-10-15 (all 5)"
+  },
+  {
+   "id": "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "right"
+   ],
+   "pathRegex": "\\[OutSystemsUIOverrides\\.Badge\\] > div\\.OSInline\\.background-red\\.badge$",
+   "reason": "The badge pill has left:45% and right:auto, so its computed right follows the text width; the capture masks the count text as \"••\" (TST showed 9+), the mock count differs.",
+   "evidence": "migration/screens/HomeFeed/analysis/dom/default.html:51-55, :1019-1023; css-relevant.md:585; accepted by the user 2026-10-15 (HomeFeed finishing round)"
+  },
+  {
+   "id": "SLIDER-APPEAR-TIMING",
+   "kinds": [
+    "class"
+   ],
+   "states": "^(default|offline)$",
+   "pathRegex": "div#transitionContainer > div\\.dx-bottom-bar-slider(\\.dx-bottom-bar-slider-appear)?$",
+   "reason": "On TST the slider is added by the app-start ForceRefresh about 2 s after the screen with an undefined duration ('undefinedms' animation never ends), so -appear stays; with 0 ms mock latency the clone's app start ends before the screen and the 0 ms first transition removes -appear. With the default 600 ms latency the markup matches (HomeFeed Q3 = A). Extended to offline (Updates_SingleList Q2, auto-accepted recommendation in the user's 3h window 2026-10-15).",
+   "evidence": "migration/screens/HomeFeed/capture/runtime-HomeFeed.json (SynchAppContext 3799 ms, AfterInitialize 7211 ms); UC:15318-15332; UBTConnectLibrary css:1802-1803; accepted by the user 2026-10-15 (HomeFeed finishing round)"
+  },
+  {
+   "id": "SLIDER-LOADING-TIMEOUT",
+   "kinds": [
+    "structure"
+   ],
+   "states": "^loading$",
+   "pathRegex": "div#transitionContainer > div\\.dx-bottom-bar-slider(\\.dx-bottom-bar-slider-appear)?$",
+   "reason": "In the loading capture the slider appears after SynchAppContext times out (10 s, AM:8579) and returns an empty config (AM:5103-5113); the clone has no request timeout yet (foundation backlog) and parity photographs loading after 1.5 s (HomeFeed Q3 = A).",
+   "evidence": "migration/screens/HomeFeed/capture/runtime-HomeFeed.json; AM:8579, AM:5103-5113; accepted by the user 2026-10-15 (HomeFeed finishing round)"
+  },
+  {
+   "id": "MYENT-D8B-IFRAME",
+   "kinds": [
+    "structure",
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "\\[Blocks\\.Embedded_MyEntertaining\\]( > .*)?$",
+   "reason": "Decision D8(b): the build shows the same-size mock iframe of the MyEntertaining embed; the TST capture's connect2entertaining container was empty (390x0 vs 390x794).",
+   "evidence": "migration/screens/MyEntertaining/parity/default.json; analysis/dom/default.html:115; MyEntertaining Q2; accepted by the user 2026-10-15"
+  },
+  {
+   "id": "PULL-TO-REFRESH-FADEIN-PHASE",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "opacity"
+   ],
+   "pathRegex": "\\.pull-to-refresh(\\.[\\w-]+)*$",
+   "reason": "The pull-to-refresh element fades in with the 1 s @keyframes fadein-pull-to-refresh (opacity 0 until 66 %): the capture and the build are read at different phases (MessageList Q6).",
+   "evidence": "migration/screens/MessageList/parity/default.json; original CSS @keyframes fadein-pull-to-refresh; accepted by the user 2026-10-15"
+  },
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK",
+   "kinds": [
+    "style"
+   ],
+   "pathRegex": "\\[Layout\\.MenuIcon_Back\\] > div#[^ >]*\\.app-menu-icon\\.back > a#[^ >]*\\.OSFillParent\\.app-menu-back( > i#[^ >]*\\.fa\\.fa-1x\\.fa-arrow-left)?$",
+   "reason": "The capture renames a link's href to data-original-href, so the replayed reference back link of MenuIcon_Back and its icon have cursor auto; the app's link has its href (cursor pointer). Same artifact as CAPTURE-LINK-HREF-CURSOR (Login Q6). Accepted kind, auto-decided in the user's 3h window 2026-10-15.",
+   "evidence": "migration/screens/MessageDetail/analysis/dom/default.html:31 (data-original-href=\"#\"); migration/screens/MessageDetail/parity/default.json",
+   "props": [
+    "cursor"
+   ]
+  },
+  {
+   "id": "SPINNER-ROTATION-PHASE",
+   "kinds": [
+    "pseudo"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "\\[Reusable\\.Spinner\\] > div\\.list-updating-cont > div\\.list-updating$",
+   "reason": "The Spinner's ::before rotates (CSS animation); the capture and the build are photographed at different rotation phases (transform matrix differs). Auto-accepted recommendation in the user's 3h window 2026-10-15 (MessageDetail Q3).",
+   "evidence": "migration/screens/MessageDetail/parity/loading.json, offline.json; MessageDetail Q3"
+  },
+  {
+   "id": "CAPTURE-DATA-DRIFT-MESSAGELIST-READ",
+   "kinds": [
+    "class"
+   ],
+   "states": "^search$",
+   "pathRegex": "-Messages_List_Item > div\\.list-item-container\\.list-item-float-left > div\\.list-item$",
+   "reason": "Capture data drift: the test account's messages were read on TST between the default capture (2026-10-14, 16 unread) and the search capture (2026-10-15, 6 unread); the mock follows the default capture. Auto-accepted recommendation in the user's 3h window 2026-10-15.",
+   "evidence": "migration/screens/MessageList/parity/search.json; analysis/dom/default.html vs dom/search.html; MessageList Q9"
+  },
+  {
+   "id": "CAPTURE-DATA-DRIFT-MESSAGELIST-READ-BG",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-color"
+   ],
+   "states": "^search$",
+   "pathRegex": "-Messages_List_Item > div\\.list-item-container\\.list-item-float-left > div\\.list-item$",
+   "reason": "Capture data drift: the test account's messages were read on TST between the default capture (2026-10-14, 16 unread) and the search capture (2026-10-15, 6 unread); the mock follows the default capture. Auto-accepted recommendation in the user's 3h window 2026-10-15.",
+   "evidence": "migration/screens/MessageList/parity/search.json; analysis/dom/default.html vs dom/search.html; MessageList Q9"
+  },
+  {
+   "id": "ANIMATE-ENTRANCE-PHASE-MESSAGELIST",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "opacity",
+    "transform"
+   ],
+   "states": "^filter$",
+   "pathRegex": "\\[Interaction\\.Animate\\] > div#b1-b12-Content\\.animate\\.fast\\.right-to-left$",
+   "reason": "OSUI Animate (right-to-left, fast 500 ms) photographed mid-animation on TST (opacity 0.906, translateX 21.9px); the build is read after it ended. Auto-accepted recommendation in the user's 3h window 2026-10-15.",
+   "evidence": "migration/screens/MessageList/parity/filter.json; MessageList Q10"
+  },
+  {
+   "id": "ANIMATE-ENTRANCE-PHASE-MESSAGELIST-POS",
+   "kinds": [
+    "position"
+   ],
+   "states": "^filter$",
+   "pathRegex": "\\[Interaction\\.Animate\\] > div#b1-b12-Content\\.animate\\.fast\\.right-to-left$",
+   "reason": "OSUI Animate (right-to-left, fast 500 ms) photographed mid-animation on TST (opacity 0.906, translateX 21.9px); the build is read after it ended. Auto-accepted recommendation in the user's 3h window 2026-10-15.",
+   "evidence": "migration/screens/MessageList/parity/filter.json; MessageList Q10"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYLIST-SHEET",
+   "kinds": [
+    "position"
+   ],
+   "states": "^loading$",
+   "pathRegex": "div#\\$b28\\.OSBlockWidget\\[Directory_Locality\\.Directory_LegendBottomSheet\\]( > .+)?$",
+   "reason": "Follows from CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYLIST: the closed legend sheet is placed below the page content, so the 10 skeleton rows of the build (890 px list) move its offsets (-845 → -1390). Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/CountryList/parity/loading.json (4 position diffs under $b28)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYDETAILS-LAYOUT",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^loading$",
+   "pathRegex": "(div#b1-ContentWrapper\\.content|div#b1-MainContentWrapper\\.ThemeGrid_Container\\.main-content|div#b1-Content\\.content-middle|div#\\$b2\\.OSBlockWidget\\[SubLayout\\.SubLayout_Browse_Section\\]|div\\.directory-detail-screen|div#b2-Placeholder_BottomSection|div#\\$b10\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\]|\\[Interaction\\.BottomSheet\\] > (span\\.focus-trap-(top|bottom)\\.wcag-hide-text|div\\.osui-bottom-sheet-overlay|div#b2[89]-b1-b1-BottomSheet[^ >]*))$",
+   "reason": "Layout side of CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYDETAILS: the clone's loading skeleton cards make the content taller than the timed-out capture (ancestors of the masked container grow, the closed bottom sheets move by the 3 px page overflow). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/CountryDetails/parity/loading.json"
+  },
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-LEAFLET-ZOOM",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "cursor"
+   ],
+   "states": "^default$",
+   "pathRegex": "\\.leaflet-control-zoom > a\\.connect-icon-(add|remove)\\.leaflet-control-zoom-(in|out)\\.text-[\\w-]+$",
+   "reason": "The capture replays the zoom links without their href (data-original-href=\"#\"), so they show cursor auto; the live links (href \"#\") show pointer. Same kind as CAPTURE-LINK-HREF-CURSOR. auto-accepted in the user's auto mode 2026-10-15 Widened to any text colour class (BrowseDirectory uses text-neutral-8); same artifact, auto-accepted 2026-10-15.",
+   "evidence": "migration/screens/CountryDetails/analysis/dom/default.html:138-141; migration/screens/CountryDetails/parity/default.json"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLDDETAILS-IMAGE",
+   "kinds": [
+    "class"
+   ],
+   "states": "^loading$",
+   "pathRegex": "\\[CW_Image\\.UBT_LazyImage\\] > div#b2-b4-\\$b1\\.OSBlockWidget\\[ConnectPatterns\\.SkeletonSection\\] > div#b2-b4-b1-Placeholder_LoadingSection$",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout, so the household photo's GetSignedImagesInBulk had failed and UBT_LazyImage left its skeleton (no-image placeholder shown); the mock loading scenario never answers, so the clone keeps the skeleton. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/HouseholdDetails/analysis/dom/loading.html:50-60 (Placeholder_LoadingSection class \"\", ubt-lazy-image--no-image); migration/screens/HouseholdDetails/parity/loading.json"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b2-b3-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "The household photo was masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered size 390x259); the replayed reference shows a 26 px broken image, the clone the 260 px placeholder; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/HouseholdDetails/analysis/dom/default.html:56-57; migration/screens/HouseholdDetails/parity/default.json"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-LOCALITYDETAILS",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b17-b10-l1-111_\\d+-b4-b1-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "The household photos were masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered size 390x259); the replayed reference shows a 26 px broken image, the clone the 260 px placeholder (same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS); auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Locality_Details/analysis/dom/default.html:297-300; migration/screens/Locality_Details/parity/default.json"
+  },
+  {
+   "id": "CAPTURE-MASKED-AVATAR-LOCALITYDETAILS",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "bottom"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b17-b10-l1-111_\\d+-b4-b1-AvatarList\\.ubt-image-card__avatar-list$",
+   "reason": "The member avatars were masked by the capture (img src removed, data-rendered-size 38x38): the broken inline images make the absolutely positioned avatar list 1 px taller in the replayed reference (computed bottom 82/64 vs 83/65 px on every card); auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Locality_Details/analysis/dom/default.html:320-322; analysis/css-relevant.md:805; migration/screens/Locality_Details/parity/default.json"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-ONESCHOOLGLOBALDETAILS",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b5-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "The school photo was masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered size 390x260); the replayed reference shows a 26 px broken image, the clone the 260 px neutral placeholder (Q-W2C-1); auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/OneSchoolGlobalDetails/analysis/dom/default.html:61-62; migration/screens/OneSchoolGlobalDetails/parity/default.json (layout 390x26 -> 390x260)"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-SUPPERMEETING",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "(div#b3-b3-LazyImage_Placeholder|div#b3-b9-b1-l1-89_\\d+-b5-b1-LazyImage_Placeholder)\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "The subdivision photo and the 11 household photos were masked by the capture (data-masked-src=\"user-image\", src removed; TST rendered 390x260 and 195x130): the replayed reference shows broken images (390x26, 195x24), the clone the mock landscape placeholder. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/SupperMeeting_Details/analysis/dom/default.html:63, :468 (data-rendered-size); parity/default.json; parity/default.expected.png"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-SUPPERMEETING-GRID",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "grid-template-rows"
+   ],
+   "states": "^default$",
+   "pathRegex": "\\[Adaptive\\.Gallery\\] > div#b3-b9-b1-b4-Content\\.osui-gallery( > div\\.OSFillParent\\.list\\.list-group)?$",
+   "reason": "Follows from CAPTURE-MASKED-IMAGE-SUPPERMEETING: the gallery rows are sized by the household cards, whose masked photos replay as 24 px broken images (rows 178 px) while the clone shows the 130 px placeholder (rows 193 px). auto-accepted in the user's auto mode 2026-10-15 Correction (F6, 2026-10-15): the remaining row-height difference comes from masked text, not masked images: two 30-character subtitles wrap with the clone's neutral letters but not with the capture's bullets (glyph widths).",
+   "evidence": "migration/screens/SupperMeeting_Details/parity/default.json (grid-template-rows 1148px → 1238px; 178px → 193px ×6)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-SUPPERMEETING",
+   "kinds": [
+    "class"
+   ],
+   "states": "^loading$",
+   "pathRegex": "\\[Directory_CommonBlocks\\.Directory_EntityDetailsActions\\] > div#b3-b8-\\$b1\\.OSBlockWidget\\[ConnectPatterns\\.SkeletonSection\\] > div#b3-b8-b1-Placeholder_LoadingSection(\\.ubt-skeleton-section)?$|div#b3-b8-b2-b6-b1-b1-b1-Content\\.[^ >]*border-radius-circle[^ >]*$|div#b3-b8-b2-b6-\\$b2\\.OSBlockWidget\\[ConnectPatterns\\.Icon\\] > div\\.connect-icon-tooltip[^ >]*$|\\[Adaptive\\.Gallery\\] > div#b3-b9-b1-b4-Content\\.osui-gallery > div\\.OSFillParent\\.list(\\.list-(error|loading))?$",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout, so FetchContactDetails and GetSubdivisionHouseholds had failed: the actions menu left its skeleton (hasFetchError) with the Notes button in its neutral colours, and the household list shows list-error; the mock loading scenario never answers, so the clone keeps the skeleton (and list-loading once OSList takes the fetch status, CR-HouseholdDetails-1 §3). Same kind as CAPTURE-LOADING-FETCH-TIMEOUT. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/SupperMeeting_Details/analysis/dom/loading.html (b3-b8-b1-Placeholder_LoadingSection without ubt-skeleton-section, list-error); parity/loading.json; Directory_EntityDetailsActions.tsx:348-350 (skeleton off on fetch error)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLD-MEMBERS",
+   "kinds": [
+    "class"
+   ],
+   "states": "^loading$",
+   "pathRegex": "\\[Directory_Household\\.HouseholdDetails_Block\\] > .*\\[Layouts\\.SubLayout_Section\\] > .*div\\.OSFillParent\\.list(\\.[^ >]*)?$",
+   "detailRegex": "^missing \\.list-error extra \\.list-loading$",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout, so the household members lists show their fetch-error class (list-error) where the clone's loading scenario, which never answers, keeps list-loading. Only that exact swap is exempt (a missing list-loading stays a difference). Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT. HouseholdCarousel proposal, auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/HouseholdCarousel/parity/loading.json (8 class diffs, slides 1-4)"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-SMCAROUSEL",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b3-l1-1164_\\d-b2-b1-b1-(b3|b9-b1-l1-\\d+_\\d+-b5-b1)-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "Same artifact as CAPTURE-MASKED-IMAGE-SUPPERMEETING on the carousel slides: the subdivision photo and the household photos were masked by the capture (data-masked-src=\"user-image\", src removed; TST rendered 390x260 and 195x130), so the replayed reference shows broken images (390x26, 195x24) while the clone shows the mock placeholder. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html (24 data-masked-src=\"user-image\", data-rendered-size=\"390x260\"); parity/default.json (layout 390×26 → 390×260 under b3-l1-1164_0-b2-b1-b1-b3-LazyImage_Placeholder, 195×24 → 195×130 under …-b9-b1-l1-1258_N-b5-b1-LazyImage_Placeholder)"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-SMCAROUSEL-GRID",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "grid-template-rows"
+   ],
+   "states": "^default$",
+   "pathRegex": "\\[Adaptive\\.Gallery\\] > div#b3-l1-1164_0-b2-b1-b1-b9-b1-b4-Content\\.osui-gallery( > div\\.OSFillParent\\.list\\.list-group)?$",
+   "reason": "Follows from CAPTURE-MASKED-IMAGE-SMCAROUSEL on slide 1 only (11 households in capture and mock): the gallery rows are sized by the masked 24 px broken images (rows 178 px) while the clone shows the 130 px placeholder (rows 193 px). Slides 2 and 3 are left reported until CR-SupperMeeting_Carousel-1 gives them their captured counts. auto-accepted in the user's auto mode 2026-10-15 Correction (F6, 2026-10-15): the remaining row-height difference comes from masked text, not masked images: two 30-character subtitles wrap with the clone's neutral letters but not with the capture's bullets (glyph widths).",
+   "evidence": "migration/screens/SupperMeeting_Carousel/parity/default.json (grid-template-rows 1148px → 1238px; 178px ×6 → 193px ×6 on b3-l1-1164_0-b2-b1-b1-b9-b1-b4-Content)"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-CAROUSELTAG-SMCAROUSEL",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "left"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b3-l1-1164_\\d-b2-b1-b1-b3-Placeholder_ImageTag\\.absolute-bottom-right\\.padding-s\\.position-absolute$",
+   "reason": "The CarouselTag text was masked by the capture ('• • •' for '1 / 3'), so the right-aligned tag placeholder of the reference is a third of a pixel wider than the clone's (left 337.688px → 337.344px). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html:90-92 (masked tag text); parity/default.json (left 337.688px → 337.344px on b3-l1-1164_0-b2-b1-b1-b3-Placeholder_ImageTag)"
+  },
+  {
+   "id": "CAPTURE-OFFSCREEN-SLIDE-SKELETON-SMCAROUSEL",
+   "kinds": [
+    "class",
+    "text",
+    "style",
+    "pseudo",
+    "layout",
+    "position",
+    "structure"
+   ],
+   "states": "^default$",
+   "pathRegex": "^(?!.*#b3-l1-1164_[12]-b2-b1-b1-(\\$b[89]|b[89]-)).*#b3-l1-1164_[12]-b2-b1-b1-(\\$b[2-7]|b[2-7]-)",
+   "reason": "Off-screen slides 2 and 3 were snapshotted while SupperMeeting_DetailsBlock still showed GetSkeleton_UI_SubdivisionDetails (ubt-skeleton-section, 'Subdivision Name Example', counts 10) although their household lists had loaded; the clone shows the loaded card. Limited to the card and actions sections b2-b7 of slides 2-3 (actions menu b8 and household list b9 stay reported). SupperMeeting_Carousel Q2 answered by code (timing artifact: EntitiesCarousel_Element.mvc.js:240-307, SupperMeeting_DetailsBlock.mvc.js:188,302,660-680); auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/SupperMeeting_Carousel/analysis/dom/default.html (ubt-skeleton-section on b3-l1-1164_1/2-b2-b1-b1-b2/b6-Placeholder_LoadingSection only); SupperMeeting_DetailsBlock.mvc.js:188,302,660-680; parity/default.json (slides 1164_1/2, sections b2-b7)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLDRELATIONS-IMAGES",
+   "kinds": [
+    "class"
+   ],
+   "states": "^loading$",
+   "pathRegex": "\\[CW_Image\\.UBT_LazyImage\\] > div#b3-b(4|15|19)-\\$b1\\.OSBlockWidget\\[ConnectPatterns\\.SkeletonSection\\] > div#b3-b(4|15|19)-b1-Placeholder_LoadingSection$",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout, so GetSignedImagesInBulk for the member, father and mother avatars had failed and UBT_LazyImage left its skeleton (no-image placeholder shown); the mock loading scenario never answers, so the clone keeps the skeleton. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLDDETAILS-IMAGE; the offline state (calls fail at once) passes. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Household_Relations/analysis/dom/loading.html:51, :229, :315 (Placeholder_LoadingSection class \"\", ubt-lazy-image--no-image); migration/screens/Household_Relations/parity/loading.json (3 class diffs); parity/offline.json clean"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-HOUSEHOLDRELATIONS-NAME",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b3-b5-Content\\.align-items-baseline\\.display-flex\\.justify-content-center > div#b3-\\$b6\\.OSBlockWidget\\[BasePatterns\\.CustomText\\]$",
+   "detailRegex": "^offset in parent \\d+,0 → \\d+,0$",
+   "reason": "The member name is centred (justify-content-center); the capture masked it as bullets (\"•••••• ••••••\"), the fictional mock name has the same word lengths but other glyph widths, so only its horizontal offset differs (149 → 138). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Household_Relations/analysis/dom/default.html:70-79; migration/screens/Household_Relations/parity/default.json (position diff)"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-HOUSEHOLDRELATIONS-SHIFT",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[0-2]\\.\\d\\d% pixels differ .*migration/screens/Household_Relations/parity/default\\.diff\\.png$",
+   "reason": "The member photo was masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered 98x98): the replayed reference shows a broken image 100 px high, the clone the 98 px neutral placeholder (Q-W2C-1), so everything below the photo sits 1 px higher (Notes button top 212 → 211; measured: the clone with the image src emptied gives 212). The diff is only text and icon edges from that 1 px shift (default.diff.png); bounded to < 3 % of the pixels and to this route's report. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Household_Relations/analysis/dom/default.html:58; migration/screens/Household_Relations/parity/default.json (1.83 %, hotspots on text edges), default.diff.png"
+  },
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-PINCHANGE",
+   "kinds": [
+    "style"
+   ],
+   "pathRegex": "\\[Layouts\\.Layout_LoginFlow\\] > div#b1-Main\\.ubt-layout--login\\.ubt-lock-screen > div#b1-Placeholder_Header\\.ubt-layout--login__header > a( > div#\\$b2\\.OSBlockWidget\\[ConnectPatterns\\.IconText\\])?$",
+   "detailRegex": "^cursor auto → pointer$",
+   "props": [
+    "cursor"
+   ],
+   "states": "^(default|loading|offline)$",
+   "reason": "The capture renames a link's href to data-original-href, so the replayed reference anchor of the PINChange header (\"Change PIN\") and the IconText block inside it have cursor auto; the app's link has its href \"#\" (cursor pointer). Same artifact as CAPTURE-LINK-HREF-CURSOR (Login Q6), CAPTURE-LINK-HREF-CURSOR-PINCODE (PINUnlock Q3) and CAPTURE-LINK-HREF-CURSOR-PINREGISTER. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/PINChange/analysis/dom/default.html:34 (data-original-href=\"#\"); migration/screens/PINChange/parity/{default,loading,offline}.json (2 style diffs each, cursor only)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-SUPPERMEETING-ACTIONS",
+   "kinds": [
+    "class"
+   ],
+   "states": "^loading$",
+   "pathRegex": "div#b3-b8-b2-b(2|8)-b1-b1-b1-Content\\.[^ >]*border-radius-circle[^ >]*$|div#b3-b8-b2-b(2|8)-\\$b2\\.OSBlockWidget\\[ConnectPatterns\\.Icon\\] > div\\.connect-icon-(bookmark|share)[^ >]*$",
+   "reason": "Same capture artifact as CAPTURE-LOADING-FETCH-TIMEOUT-SUPPERMEETING (which already covers the Notes button b6): the loading capture held the TST requests until the OutSystems request timeout, so FetchContactDetails failed and HandleFetchError set EnableBookmark / EnableShare False (Bookmark b2 and Share b8 in neutral-3 / neutral-7). The mock loading scenario never answers, so the clone keeps the enabled colours. Until F4a these buttons matched only by accident: the clone dropped the ActionsMenuEnableOptions record defaults (EnableBookmark / EnableShare True) of the block's literal {EnableNotes: True}, now fixed in Directory_EntityDetailsActions.",
+   "evidence": "migration/screens/SupperMeeting_Details/parity/loading.json (4 class diffs b2/b8); Directory_EntityDetailsActions.mvc.js:1134-1150 (HandleFetchError); SupperMeeting_DetailsBlock mvc.js:370-371 (literal EnableNotes True); UBTConnectLibrary.model.js:4135-4156 (record defaults)"
+  },
+  {
+   "id": "CAPTURE-OFFSCREEN-SLIDE-ACTIONS-SKELETON-SMCAROUSEL",
+   "kinds": [
+    "style",
+    "pseudo"
+   ],
+   "states": "^default$",
+   "pathRegex": "#b3-l1-1164_[12]-b2-b1-b1-(\\$b8|b8-)",
+   "reason": "Follows from SupperMeeting_Carousel Q2 (answered by code: the default capture caught off-screen slides 2-3 mid-load). Their Directory_EntityDetailsActions (b8) was still in its loading look (grey circles, hidden icons) while its own FetchContactDetails answers were arriving; slide 1, loaded, matches. Limited to style/pseudo of b8 on slides 2-3. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/SupperMeeting_Carousel/parity/default.json (style 52 / pseudo 6, all under #b3-l1-1164_1|2-b2-b1-b1-b8); analysis/calls.md #4-#15 (FetchContactDetails answers until 5769 ms); CAPTURE-OFFSCREEN-SLIDE-SKELETON-SMCAROUSEL"
+  },
+  {
+   "id": "PHOTOBOOK-MASKED-PHOTO-BACKGROUND-LAYOUT",
+   "kinds": [
+    "layout"
+   ],
+   "states": "^default$",
+   "pathRegex": "\\[Directory_Photobook\\.Photobook_Item\\] > div#b4-l1-37_\\d+-b2-CarouselItem\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b1-Content\\.align-items-center\\.display-flex\\.justify-content-center > div#b4-l1-37_\\d+-b2-DIV_BackgroundImage\\.photobook-carousel-item-cont( > .+)?$",
+   "detailRegex": "^410×27 → 410×273$",
+   "reason": "Household photos are person data: the capture masks every Photobook_Item background image (data-masked-src=\"user-image\", src=\"\"), so the replayed reference's empty img is 27 px high and DIV_BackgroundImage, the UBT_LazyImage chain and the img are 410×27; the build shows the neutral placeholder (Q-W2C-1) at 410×273. 10 elements × 23 slides.",
+   "evidence": "migration/screens/Photobook/analysis/dom/default.html:98 (DIV_BackgroundImage of slide 0), :107 (img data-masked-src=\"user-image\", src=\"\", data-rendered-size 390x259 on TST; same on every slide), :117 (DIV_ForegroundImage), :144 (Title_Background, name masked as bullets); migration/screens/Photobook/parity/default.json (2026-10-15T12:37, after the F4b changes)"
+  },
+  {
+   "id": "PHOTOBOOK-MASKED-PHOTO-BACKGROUND-OFFSET",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "\\[Directory_Photobook\\.Photobook_Item\\] > div#b4-l1-37_\\d+-b2-CarouselItem\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b1-Content\\.align-items-center\\.display-flex\\.justify-content-center > div#b4-l1-37_\\d+-b2-DIV_BackgroundImage\\.photobook-carousel-item-cont$",
+   "detailRegex": "^offset in parent -10,-1 → -10,-6$",
+   "reason": "Same masked background photo: the vertically centred DIV_BackgroundImage moves with its 27 px vs 273 px height (offset y -1 → -6). One per slide.",
+   "evidence": "migration/screens/Photobook/analysis/dom/default.html:98 (DIV_BackgroundImage of slide 0), :107 (img data-masked-src=\"user-image\", src=\"\", data-rendered-size 390x259 on TST; same on every slide), :117 (DIV_ForegroundImage), :144 (Title_Background, name masked as bullets); migration/screens/Photobook/parity/default.json (2026-10-15T12:37, after the F4b changes)"
+  },
+  {
+   "id": "PHOTOBOOK-MASKED-PHOTO-BACKGROUND-BOTTOM",
+   "kinds": [
+    "style"
+   ],
+   "states": "^default$",
+   "props": [
+    "bottom"
+   ],
+   "pathRegex": "\\[Directory_Photobook\\.Photobook_Item\\] > div#b4-l1-37_\\d+-b2-CarouselItem\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b1-Content\\.align-items-center\\.display-flex\\.justify-content-center > div#b4-l1-37_\\d+-b2-DIV_BackgroundImage\\.photobook-carousel-item-cont$",
+   "reason": "Same masked background photo: the computed bottom of the absolutely positioned DIV_BackgroundImage follows its height (818px for 27 px, 584px for 273 px). Only `bottom` is exempted.",
+   "evidence": "migration/screens/Photobook/analysis/dom/default.html:98 (DIV_BackgroundImage of slide 0), :107 (img data-masked-src=\"user-image\", src=\"\", data-rendered-size 390x259 on TST; same on every slide), :117 (DIV_ForegroundImage), :144 (Title_Background, name masked as bullets); migration/screens/Photobook/parity/default.json (2026-10-15T12:37, after the F4b changes)"
+  },
+  {
+   "id": "PHOTOBOOK-MASKED-PHOTO-FOREGROUND-CENTRING",
+   "kinds": [
+    "style"
+   ],
+   "states": "^default$",
+   "props": [
+    "left",
+    "right"
+   ],
+   "pathRegex": "\\[Directory_Photobook\\.Photobook_Item\\] > div#b4-l1-37_\\d+-b2-CarouselItem\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b1-Content\\.align-items-center\\.display-flex\\.justify-content-center > div#b4-l1-37_\\d+-b2-DIV_ForegroundImage\\.photobook-carousel-item-cont$",
+   "reason": "Masked foreground photo (inside PanZoom): the empty img has no width, so the shrink-to-fit DIV_ForegroundImage is 0 px wide and centred (computed left/right 195px); with the build's placeholder image it fills the slide (0px). Only `left` and `right` are exempted.",
+   "evidence": "migration/screens/Photobook/analysis/dom/default.html:98 (DIV_BackgroundImage of slide 0), :107 (img data-masked-src=\"user-image\", src=\"\", data-rendered-size 390x259 on TST; same on every slide), :117 (DIV_ForegroundImage), :144 (Title_Background, name masked as bullets); migration/screens/Photobook/parity/default.json (2026-10-15T12:37, after the F4b changes)"
+  },
+  {
+   "id": "PHOTOBOOK-MASKED-TITLE-OFFSET",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "\\[Directory_Photobook\\.Photobook_Item\\] > div#b4-l1-37_\\d+-b2-CarouselItem\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b1-Content\\.align-items-center\\.display-flex\\.justify-content-center > div#b4-l1-37_\\d+-b2-Title_Cont\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b4-l1-37_\\d+-b2-b5-Content\\.align-items-center\\.display-flex\\.flex-direction-column > div#b4-l1-37_\\d+-b2-Title_Background\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\]$",
+   "detailRegex": "^offset in parent \\d+,0 → \\d+,0$",
+   "reason": "The household name in Title_FamilyName is masked in the capture (bullets, e.g. dom/default.html Title_Background of slide 0), the mock has fictional names of the same word lengths; the centred Title_Background moves horizontally with the text width (only x differs). The parity tool skips elements whose own text is masked, not their centred ancestors.",
+   "evidence": "migration/screens/Photobook/analysis/dom/default.html:98 (DIV_BackgroundImage of slide 0), :107 (img data-masked-src=\"user-image\", src=\"\", data-rendered-size 390x259 on TST; same on every slide), :117 (DIV_ForegroundImage), :144 (Title_Background, name masked as bullets); migration/screens/Photobook/parity/default.json (2026-10-15T12:37, after the F4b changes)"
+  },
+  {
+   "id": "PHOTOBOOK-GALLERY-LIST-SCROLL",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b4-b6-Photobook_Gallery_List\\.OSFillParent\\.list\\.list-group > div#b4-b6-l1-43_\\d+-\\$b3\\.OSBlockWidget\\[Directory_Photobook\\.Photobook_Gallery_Item\\]$",
+   "detailRegex": "^offset in parent (195,0 → 179|235,0 → 219|275,0 → 259|315,0 → 299|355,0 → 339|395,0 → 379|435,0 → 419|475,0 → 459|515,0 → 499|555,0 → 539|595,0 → 579|635,0 → 619|675,0 → 659|715,0 → 699|755,0 → 739|795,0 → 779|835,0 → 819|875,0 → 859|915,0 → 899|955,0 → 939|995,0 → 979|1035,0 → 1019|1075,0 → 1059),0$",
+   "reason": "The thumbnail list is scrolled by 16 px at runtime: the List's componentdidmount runs ScrollSelectedIntoPosition(IsInstantScroll True), scrollAmount = SelectedItemPosition (SelectedPosition + 1 = 1) × 40 (32 px item + 8 px margin-right) − (8/2 + 40/2) = 16, which centres the first thumbnail (list padding = half the width). The reference is rebuilt from the captured HTML, which cannot carry an element's scrollLeft, so it always shows scroll 0: every thumbnail sits exactly 16 px further right. Capture artifact; the build follows the compiled JS (same selector and formula).",
+   "evidence": "migration/screens/Photobook/analysis/sources/pretty/UBTConnect.Directory_Photobook.Photobook_Gallery.mvc.js:247-252 (componentdidmount), :578-589 (ScrollIntoPosition parameters; :587 SelectedItemPosition = SelectedPosition + 1), :703-727 (ScrollIntoPositionJS); .claude/skills/outsystems-screen-spec/scripts/parity_check.cjs:612-626 (reference rebuilt from dom/default.html by buildDom) and :395-397 (offsets from getBoundingClientRect, which includes the parent's scroll); app/src/screens/Photobook/components/Photobook_Gallery.tsx scrollIntoPosition"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-LEGACYSHAREOBJECT",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b1-Household_List_Item\\.OSBlockWidget\\[Utility\\.Result_Item_Image\\] > div#b1-b3-Result_Item\\.[^ >]* > div\\.result-item-top-content > div\\.OSInline\\.result-item_visual( > .*)?$",
+   "reason": "The household photo was removed from the capture as person data (img src=\"\", data-masked-src=\"user-image\", live size 65x43), so the replayed reference renders the image column 0 px high (70x0, text column offset 34 px); the clone shows the neutral mock placeholder at 65x43 (Q-W2C-1), as the live capture did. Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LegacyShareObject/analysis/dom/default.html:78-79 (data-masked-src, data-rendered-size 65x43); migration/screens/LegacyShareObject/parity/default.json (6 layout, 1 position)"
+  },
+  {
+   "id": "CAPTURE-SHIMMER-PHASE-LEGACYSHAREOBJECT-LOADING-ITEM",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-position"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "\\[Utility\\.Result_Item_Image\\] > div#b1-b3-Result_Item\\.image-item\\.loading-item\\.no-border$",
+   "reason": "Result_Item_Image's loading-item shimmer is a CSS animation of background-position; the captured value is the animation phase at the capture instant (101.3 px loading, 96.0 px offline) and differs on every run. Same artifact as CAPTURE-SKELETON-SHIMMER-PHASE. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LegacyShareObject/parity/loading.json and offline.json ([style] background-position 101.344px 0px → 367.97px 0px; 96.032px 0px → 655.962px 0px)"
+  },
+  {
+   "id": "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-ONESCHOOLGLOBALDETAILS",
+   "kinds": [
+    "class"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "^html$",
+   "detailRegex": "popup-disable-scroll",
+   "reason": "Timing artifact: the html popup-disable-scroll class at capture time depends on the order of OutSystems model flushes (client-variable flush vs local-storage query flush), not on the screen. Scoped to this route (routeRegex). Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "usePopupWidget re-applies disableScroll on every client-variable change as every OS controller does (OutSystems.js:530153 fireInitialize subscribes clientVariablesHandler; :527146 generation++ + scheduleFlush). TST's final html class then depends on whether an EntityDetailsActions model flush (local IDB queries, OnReady) lands after the last client-variable flush; in the mock app local entities resolve in microtasks. TST itself is inconsistent across routes/states: states.json htmlClass default ''/loading 'popup-disable-scroll' on OneSchoolGlobalDetails, but default 'popup-disable-scroll'/loading '' on SupperMeeting_Carousel. See migration/screens/OneSchoolGlobalDetails/analysis/states.json and parity/<state>.json.",
+   "routeRegex": "/UBTConnect/OneSchoolGlobalDetails\\b"
+  },
+  {
+   "id": "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-SUPPERMEETING_DETAILS",
+   "kinds": [
+    "class"
+   ],
+   "states": "^(loading)$",
+   "pathRegex": "^html$",
+   "detailRegex": "popup-disable-scroll",
+   "reason": "Timing artifact: the html popup-disable-scroll class at capture time depends on the order of OutSystems model flushes (client-variable flush vs local-storage query flush), not on the screen. Scoped to this route (routeRegex). Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "usePopupWidget re-applies disableScroll on every client-variable change as every OS controller does (OutSystems.js:530153 fireInitialize subscribes clientVariablesHandler; :527146 generation++ + scheduleFlush). TST's final html class then depends on whether an EntityDetailsActions model flush (local IDB queries, OnReady) lands after the last client-variable flush; in the mock app local entities resolve in microtasks. TST itself is inconsistent across routes/states: states.json htmlClass default ''/loading 'popup-disable-scroll' on OneSchoolGlobalDetails, but default 'popup-disable-scroll'/loading '' on SupperMeeting_Carousel. See migration/screens/SupperMeeting_Details/analysis/states.json and parity/<state>.json.",
+   "routeRegex": "/UBTConnect/SupperMeeting_Details\\b"
+  },
+  {
+   "id": "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-SUPPERMEETING_CAROUSEL",
+   "kinds": [
+    "class"
+   ],
+   "states": "^(default|offline)$",
+   "pathRegex": "^html$",
+   "detailRegex": "popup-disable-scroll",
+   "reason": "Timing artifact: the html popup-disable-scroll class at capture time depends on the order of OutSystems model flushes (client-variable flush vs local-storage query flush), not on the screen. Scoped to this route (routeRegex). Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "usePopupWidget re-applies disableScroll on every client-variable change as every OS controller does (OutSystems.js:530153 fireInitialize subscribes clientVariablesHandler; :527146 generation++ + scheduleFlush). TST's final html class then depends on whether an EntityDetailsActions model flush (local IDB queries, OnReady) lands after the last client-variable flush; in the mock app local entities resolve in microtasks. TST itself is inconsistent across routes/states: states.json htmlClass default ''/loading 'popup-disable-scroll' on OneSchoolGlobalDetails, but default 'popup-disable-scroll'/loading '' on SupperMeeting_Carousel. See migration/screens/SupperMeeting_Carousel/analysis/states.json and parity/<state>.json.",
+   "routeRegex": "/UBTConnect/SupperMeeting_Carousel\\b"
+  },
+  {
+   "id": "CAPTURE-MASKED-AVATAR-HOUSEHOLDDETAILS-SHIFT",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "pathRegex": "^screenshot$",
+   "routeRegex": "/UBTConnect/HouseholdDetails\\b",
+   "detailRegex": "^0\\.\\d\\d% pixels differ .*migration/screens/HouseholdDetails/parity/default\\.diff\\.png$",
+   "reason": "The member avatars were masked by the capture (data-masked-src=\"user-image\"), so the replayed reference shows broken images whose box differs from the clone's neutral placeholder; the second member row's call/email icons sit 1-2 px apart (DOM layout within tolerance, 0.15% pixels, hotspots y 720-760 on icon edges only). Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDRELATIONS-SHIFT. Bounded to < 1% and to this route. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/HouseholdDetails/parity/default.json (pixel 0.15%, worst tile 7.0% at 320,720), default.expected.png vs default.build.png rows 1-2; F5 report 2026-10-15"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-VERSION-MENU",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b11-Content\\.display-flex\\.font-size-xxs\\.justify-content-center > div#\\$b12\\.OSBlockWidget\\[App_Common\\.Version\\]$",
+   "detailRegex": "^offset in parent \\d+,0 → \\d+,0$",
+   "reason": "The version line is centred (justify-content-center); the capture masked it as bullets (\"••• ••••••• ••• ••••\", four words as the clone's text since CR-Login-4), the bullets have other glyph widths than the clone's text, so only its horizontal offset differs (150 → 144). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Menu/analysis/dom/default.html:428-445 (masked text :441); migration/screens/Menu/parity/default.json (position diff); migration/change-requests/CR-Login-4.md",
+   "routeRegex": "/UBTConnect/Menu\\b"
+  },
+  {
+   "id": "CAPTURE-MASKED-AVATAR-MENU-SHIFT",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[0-1]\\.\\d\\d% pixels differ .*migration/screens/Menu/parity/default\\.diff\\.png$",
+   "reason": "The user's avatar was masked by the capture (img src removed, data-masked-src=\"user-image\", TST rendered 38x38): the replayed reference shows a broken inline image in the inline-block avatar container, the clone the 38x38 neutral placeholder (Q-W2C-1), so the header and everything below it sit a sub-pixel lower/higher; no layout or position difference is reported and the diff is only text and icon edges of the menu rows and the separator line (1.28 %, hotspots on row text). Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDRELATIONS-SHIFT; bounded to < 2 % and to this route's report. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Menu/analysis/dom/default.html:62-63; migration/screens/Menu/parity/default.json and default.diff.png (with scenario householder)",
+   "routeRegex": "/UBTConnect/Menu\\b"
+  },
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/ContactByEmail(OneSchoolGlobal|Member)(\\?|$)",
+   "pathRegex": "form#b2-Form1\\.OSFillParent\\.form > div > (div#b2-\\$b3\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b2-b3-Content\\.font-size-s\\.ubt-custom-container > (div#b2-\\$b4\\.OSBlockWidget\\[ConnectPatterns\\.DynamicTextArea\\]( > div\\.resizable-text-area\\.resizable-text-area--bounded( > div#b2-b4-Placeholder_TextArea( > span( > textarea#b2-TextArea_Subject\\.OSFillParent\\.form-control)?)?)?)?|div#b2-\\$b5\\.OSBlockWidget\\[ConnectPatterns\\.InputCounter\\])|div#b2-\\$b7\\.OSBlockWidget\\[ConnectPatterns\\.TextArea_WithCounter\\] > div\\.ubt-input-with-counter > (div#b2-b7-Placeholder_Input( > span( > textarea#b2-TextArea_Message\\.OSFillParent\\.form-control)?)?|div#b2-b7-\\$b1\\.OSBlockWidget\\[ConnectPatterns\\.InputCounter\\]))$",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Layout of the two text areas, their DynamicTextArea / placeholder wrappers and the counters below them. Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
+  },
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-GRID",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "grid-template-rows"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/ContactByEmail(OneSchoolGlobal|Member)(\\?|$)",
+   "pathRegex": "form#b2-Form1\\.OSFillParent\\.form > div > div#b2-\\$b3\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b2-b3-Content\\.font-size-s\\.ubt-custom-container > div#b2-\\$b4\\.OSBlockWidget\\[ConnectPatterns\\.DynamicTextArea\\] > div\\.resizable-text-area\\.resizable-text-area--bounded > div#b2-b4-Placeholder_TextArea > span$",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the DynamicTextArea span grid row (60px → 39px). Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
+  },
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-PSEUDO",
+   "kinds": [
+    "pseudo"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/ContactByEmail(OneSchoolGlobal|Member)(\\?|$)",
+   "pathRegex": "form#b2-Form1\\.OSFillParent\\.form > div > div#b2-\\$b3\\.OSBlockWidget\\[BasePatterns\\.CustomContainer\\] > div#b2-b3-Content\\.font-size-s\\.ubt-custom-container > div#b2-\\$b4\\.OSBlockWidget\\[ConnectPatterns\\.DynamicTextArea\\] > div\\.resizable-text-area\\.resizable-text-area--bounded > div#b2-b4-Placeholder_TextArea > span$",
+   "detailRegex": "^::after height 44px → 23px$",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the bounded ::after stretched to the grid row (44px → 23px content height). Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
+  },
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/ContactByEmail(OneSchoolGlobal|Member)(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[01]\\.\\d\\d% pixels differ .*migration/screens/ContactByEmail(OneSchoolGlobal|Member)/parity/(default|loading|offline)\\.diff\\.png$",
+   "reason": "The capture serializer keeps only the attributes of KEEP_ATTR (.claude/skills/outsystems-screen-spec/scripts/capture.js:285), which drops `rows` (and `maxlength`) of the ContactByEmailForm text areas, so the replayed reference shows both at the browser default rows=2 (60 px). TST renders TextArea_Subject with textLines 1 and TextArea_Message with textLines 3 (UBTConnect.ContactFlow.ContactByEmailForm.mvc.js:400, :556; OutSystemsReactWidgets.js TextArea render `rows:this.props.textLines`), which the clone does (39 px and 81 px: line 21 px + padding/border 18 px). The subject shrinks by 21 px and the message grows by 21 px, so nothing after the form moves. Follows: the screenshot differs only in the text area band (hotspots y 280-360, parity/default.diff.png); bounded to < 2 % and to this route. Auto-accepted in the user's auto mode 2026-10-15 Applies to both ContactByEmail screens (shared ContactByEmailForm). capture.js KEEP_ATTR (line 285) dropped rows/maxlength; OutSystemsReactWidgets TextArea renders rows = textLines. Fixed in capture.js for future captures. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/ContactByEmailOneSchoolGlobal/parity/default.json, loading.json, offline.json (358×60 → 358×39 subject, 358×60 → 358×81 message); analysis/dom/default.html:79, :104 (textareas without rows/maxlength; the input of ContactByEmailMember also lacks its compiled maxlength 100)"
+  },
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-FOOTER",
+   "kinds": [
+    "position"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/ContactByEmailMember(\\?|$)",
+   "pathRegex": "\\[ContactFlow\\.ContactByEmailForm\\] > div#b2-\\$b8\\.OSBlockWidget\\[ConnectPatterns\\.FixedFooter\\] > div\\.ubt-fixed-footer\\.ubt-fixed-footer--no-bottom-bar$",
+   "detailRegex": "^offset in parent 0,326 → 0,305$",
+   "reason": "Follows from CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL: the message text area is 81 px on TST (rows 3) but 60 px in the replayed reference (rows stripped by the capture), so the fixed footer below the form sits 21 px higher in the reference. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/ContactByEmailMember/parity/default.json (position 0,326 → 0,305); 81 − 60 = 21"
+  },
+  {
+   "id": "CAPTURE-SWITCH-CHECKED-PROFILE",
+   "kinds": [
+    "pseudo"
+   ],
+   "states": "^default$",
+   "routeRegex": "/UBTConnect/Profile\\b",
+   "pathRegex": "span > input#Switch[23]\\.switch$",
+   "reason": "A switch's checked state is a DOM property, not an attribute, so the captured HTML (dom/default.raw.html) replays both switches unchecked; TST had them on: the notes under them read \"Display mobile number on your profile.\" / \"Display work number on your profile.\" (If(ShowMobileNumber/ShowWorkNumber, \"Display\", \"Hide\"), Profile.mvc.js:2073, :2286), and the OS Switch widget starts from the variable value (state={value:e.variable.value}, runtime-sources/OutSystemsReactWidgets.js). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Profile/analysis/dom/default.html:372-374, :390, :414-416, :436; parity Profile/default (?mock=spouse): ::before background rgb(233,236,239) → rgb(0,129,156), ::after transform 4px → 28px on Switch2 and Switch3 only"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-PROFILE-HOUSEHOLD",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "routeRegex": "/UBTConnect/Profile\\b",
+   "pathRegex": "div#b60-b2-b3-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "The household photo of the preview sheet was masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered size 390x259); the replayed reference shows a 26 px broken image, the clone the 260 px placeholder (same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Profile/analysis/dom/default.html:720; parity Profile/default: LazyImage_Placeholder subtree 390x26 → 390x260"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-PROFILE-NAME",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "routeRegex": "/UBTConnect/Profile\\b",
+   "pathRegex": "div#b5-Content\\.align-items-center\\.display-flex\\.flex-direction-column > div#NameText\\.OSBlockWidget\\[BasePatterns\\.CustomText\\]$",
+   "detailRegex": "^offset in parent \\d+,20[5-7] → \\d+,20[5-7]$",
+   "reason": "The member name is centred (align-items-center); the capture masked it as bullets (\"•••••• ••••\"), the fictional mock name has the same word lengths but other glyph widths, and the masked avatar above it replays as a broken image (1 px), so only its offset moves. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Profile/analysis/dom/default.html:113-114, :128; parity Profile/default: offset in parent 129,206 → 107,205"
+  },
+  {
+   "id": "CAPTURE-MASKED-AVATAR-INPUTS-PROFILE-SHIFT",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "routeRegex": "/UBTConnect/Profile\\b",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[0-4]\\.\\d\\d% pixels differ .*migration/screens/Profile/parity/default\\.diff\\.png$",
+   "reason": "Three capture artifacts on the visible screen: the 174x174 avatar was masked (data-masked-src=\"user-image\"), so the replayed broken image shifts everything below it by a sub-pixel; the input values (ContactBase ID, account number, username, email, phones) are DOM properties that the captured HTML does not keep, so the reference shows empty inputs while the clone shows the mock user's values; and the two switches replay unchecked (CAPTURE-SWITCH-CHECKED-PROFILE). The DOM, style and layout comparisons of these elements pass. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Profile/analysis/dom/default.html:113-114, :197-199, :226-228, :252-254, :265-267, :330-332, :378-380, :424-426; parity Profile/default.diff.png (?mock=spouse): red outlines on every text below y≈330 and on the input values"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS",
+   "kinds": [
+    "structure"
+   ],
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/MyBookmarks(\\?|$)",
+   "pathRegex": "div#b1-b1-Content > div#b1-\\$b1(1|2)\\.OSBlockWidget\\[(Widgets\\.NetworkWarning|Reusable\\.Spinner)\\]$",
+   "detailRegex": "^(missing|extra) in build$",
+   "reason": "The loading capture held DataActionGetGroupSummaries until the module's 10 s request timeout (Connect2_MyBookmarks_MUI defaultTimeout 10), so RefreshBookmarkData took its error branch: HasNetworkError True, NetworkWarning shown, toast 'The connection has timed out'. The clone has no request timeout and its loading scenario never answers, so it shows the compiled fetching branch (Spinner, ScreenBlock_MyBookmarks.mvc.js:597-612). The same NetworkWarning markup passes in the offline state. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT (MyBookmarks Q4 A). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/MyBookmarks/analysis/dom/loading.html:2-10, :72-97; migration/screens/MyBookmarks/parity/loading.json (2 structure diffs); parity/offline.json (NetworkWarning matches)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/MyBookmarks(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^2[0-9]\\.\\d\\d% pixels differ .*migration/screens/MyBookmarks/parity/loading\\.diff\\.png$",
+   "reason": "Pixel side of CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS: the capture shows the timeout toast over the header (feedbackMessageContainer, outside #reactContainer, so no subtree mask reaches it) and the orange NetworkWarning card; the clone shows the header and the Spinner. Diff 23.65%, all of it in the header (y 0-56) and the card (y 64-208). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/MyBookmarks/parity/loading.diff.png; loading.json"
+  },
+  {
+   "id": "CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING",
+   "kinds": [
+    "style"
+   ],
+   "states": "^offline$",
+   "routeRegex": "^/UBTConnect/MyBookmarks(\\?|$)",
+   "pathRegex": "\\[Widgets\\.NetworkWarning\\] > div#b1-b11-\\$b1\\.OSBlockWidget\\[Interaction\\.Animate\\] > div#b1-b11-b1-Content\\.animate\\.normal\\.top-to-bottom$",
+   "props": [
+    "opacity",
+    "transform"
+   ],
+   "reason": "The offline capture photographed the NetworkWarning's Animate (top-to-bottom, normal) mid-animation (opacity 0.51, translateY -41.9 px); the clone is compared with reduced motion at the end state (opacity 1, no transform). Animation phase artifact. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/MyBookmarks/parity/offline.json ([style] opacity 0.51325 → 1; transform matrix(1, 0, 0, 1, 0, -41.9137) → matrix(1, 0, 0, 1, 0, 0))"
+  },
+  {
+   "id": "CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING-POSITION",
+   "kinds": [
+    "position"
+   ],
+   "states": "^offline$",
+   "routeRegex": "^/UBTConnect/MyBookmarks(\\?|$)",
+   "pathRegex": "\\[Widgets\\.NetworkWarning\\] > div#b1-b11-\\$b1\\.OSBlockWidget\\[Interaction\\.Animate\\] > div#b1-b11-b1-Content\\.animate\\.normal\\.top-to-bottom$",
+   "detailRegex": "^offset in parent 0,-\\d+ → 0,-?[01]$",
+   "reason": "Position side of CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING: the mid-animation translateY moves the card up 43 px in the capture. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/MyBookmarks/parity/offline.json ([position] offset in parent 0,-43 → 0,-1)"
+  },
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CONTACTUSDETAILS",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/ContactUsDetails(\\?|$)",
+   "pathRegex": "\\[ConnectPatterns\\.TextArea_WithCounter\\] > div\\.ubt-input-with-counter > (div#b12-Placeholder_Input( > span( > textarea#TextArea_Message\\.OSFillParent\\.form-control)?)?|div#b12-\\$b1\\.OSBlockWidget\\[ConnectPatterns\\.InputCounter\\])$",
+   "reason": "TST renders TextArea_Message with rows=3 (ContactUsDetails.mvc.js:1102 textLines: 3; OutSystemsReactWidgets TextArea rows = textLines), 81 px; the capture stripped rows (capture.js KEEP_ATTR, fixed for future captures), so the replayed reference shows the default 2 rows (60 px) and everything below sits 21 px higher. Same artifact as CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/ContactUsDetails/parity/default.json (358×60 → 358×81, 358×90 → 358×111, offsets +21)"
+  },
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CONTACTUSDETAILS-FOOTER",
+   "kinds": [
+    "position"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/ContactUsDetails(\\?|$)",
+   "pathRegex": "div#\\$b15\\.OSBlockWidget\\[ConnectPatterns\\.FixedFooter\\] > div\\.ubt-fixed-footer\\.ubt-fixed-footer--no-bottom-bar$",
+   "detailRegex": "^offset in parent 0,(231 → 0,210|289 → 0,268)$",
+   "reason": "TST renders TextArea_Message with rows=3 (ContactUsDetails.mvc.js:1102 textLines: 3; OutSystemsReactWidgets TextArea rows = textLines), 81 px; the capture stripped rows (capture.js KEEP_ATTR, fixed for future captures), so the replayed reference shows the default 2 rows (60 px) and everything below sits 21 px higher. Same artifact as CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/ContactUsDetails/parity/default.json (0,231 → 0,210); loading/offline 0,289 → 0,268 (same 21 px)"
+  },
+  {
+   "id": "CAPTURE-TEXTAREA-ROWS-CONTACTUSDETAILS-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/ContactUsDetails(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^0\\.\\d\\d% pixels differ .*migration/screens/ContactUsDetails/parity/default\\.diff\\.png$",
+   "reason": "TST renders TextArea_Message with rows=3 (ContactUsDetails.mvc.js:1102 textLines: 3; OutSystemsReactWidgets TextArea rows = textLines), 81 px; the capture stripped rows (capture.js KEEP_ATTR, fixed for future captures), so the replayed reference shows the default 2 rows (60 px) and everything below sits 21 px higher. Same artifact as CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/ContactUsDetails/parity/default.json (0.23%, hotspots y 400 = the 21 px taller text area)"
+  },
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-NAVIGATIONLANDING",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "cursor"
+   ],
+   "states": "^(default|offline)$",
+   "routeRegex": "ConnectShare",
+   "pathRegex": "\\[Reusable\\.NavigationLanding\\] > a( > i\\.fa\\.fa-2x\\.fa-home)?$",
+   "reason": "The capture renames a link's href to data-original-href, so the replayed reference home link of NavigationLanding and its icon have cursor auto; the app's link has its href (cursor pointer). Same artifact as CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/ConnectShare/analysis/dom/default.html:156-158 (data-original-href=\"/UBTConnect/\"); migration/screens/ConnectShare/parity/default.json, offline.json"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-CONNECTSHARE-STATUS",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "routeRegex": "ConnectShare",
+   "pathRegex": "\\[Reusable\\.ConnectBlankSlate\\] > div\\.connect-blank-slate-container > div#b1-b4-Title\\.connect-blank-slate-title\\.margin-top-base\\.text-align-center$",
+   "reason": "The status message (the Get_ShareDetails exception message) is masked by the capture as 54 bullets; the centred title box takes the text's width, so its x offset follows the text (reference 52 px with bullets, clone 77 px with the fictional mock message, Q1). y and every other box match; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/ConnectShare/analysis/dom/default.html:75-78; migration/screens/ConnectShare/parity/default.json (position 52,492 → 77,492)"
+  },
+  {
+   "id": "LOADING-FRAME-CONNECTSHARE",
+   "kinds": [
+    "structure"
+   ],
+   "states": "^loading$",
+   "routeRegex": "ConnectShare",
+   "pathRegex": "^div#reactContainer > div#transitionContainer$",
+   "reason": "PENDING ConnectShare Q4. The original creates the screen view only after OnInitialize ends (OutSystems.js:2, fireInitialize awaited), and in the loading capture Get_ShareDetails never answers, so #reactContainer stays empty; the clone's AppFrame always renders #transitionContainer and the screen renders nothing inside it until OnInitialize ends. Nothing visible differs (pixels 0.00%).",
+   "evidence": "migration/screens/ConnectShare/analysis/dom/loading.html:1-3; app/src/app/AppFrame.tsx:16-24; migration/screens/ConnectShare/parity/loading.json"
+  },
+  {
+   "id": "CAPTURE-MASKED-PHOTO-BOOKMARKSBYGROUP",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/BookmarksByGroup(\\?|$)",
+   "pathRegex": "div#b1-l1-57_\\d+-b4-Result_Item\\.image-item\\.no-border\\.padding-x-base > div\\.result-item-top-content > div\\.OSInline\\.result-item_visual$",
+   "detailRegex": "^(70×23 → 70×47|offset in parent 0,2[1-3] → 0,(9|1[01]))$",
+   "reason": "The household photos were masked by the capture (data-masked-src=\"user-image\", src removed; TST rendered 70x47): the replayed reference shows a 23 px broken image, vertically centred in the 66 px row, the clone the 70x47 neutral placeholder (Q-W2C-1). Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/BookmarksByGroup/analysis/dom/default.html:78, :187, :245, :303, :361, :414 (data-rendered-size 70x47); migration/screens/BookmarksByGroup/parity/default.json; default.expected.png (empty image column on rows 1, 3-7)"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-HOUSEHOLDCAROUSEL",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b3-l1-1152_\\d-b2-b3-b1-b3-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "The household photo of every rendered slide was masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered size 390x259 on all four slides); the replayed reference shows a 26 px broken image, the clone the 260 px neutral placeholder (Q-W2C-1). Same artifact as CAPTURE-MASKED-IMAGE-HOUSEHOLDDETAILS (same block, carousel instance ids).",
+   "evidence": "migration/screens/HouseholdCarousel/analysis/dom/default.html (img b3-l1-1152_0..3-b2-b3-b1-b4-b2-Image: data-masked-src=\"user-image\", data-rendered-size=\"390x259\"); migration/screens/HouseholdCarousel/parity/default.json (40 layout diffs, 10 per slide, all 390x26 -> 390x260 under LazyImage_Placeholder)",
+   "routeRegex": "^/UBTConnect/HouseholdCarousel(\\?|$)"
+  },
+  {
+   "id": "CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL-POPUP",
+   "kinds": [
+    "attr",
+    "class"
+   ],
+   "states": "^(loading|offline)$",
+   "routeRegex": "/UBTConnect/HouseholdCarousel\\b",
+   "pathRegex": "^(div#reactContainer|html)$",
+   "detailRegex": "^(aria-hidden: true → ∅|missing \\.popup-disable-scroll\\b.*)$",
+   "reason": "Follows from CAPTURE-VIA-USERINFO-HOUSEHOLDCAROUSEL: on TST the About tab of each slide was rendered, with the closed AddressPopup of AddressSection, which hides #reactContainer (aria-hidden) and sets html.popup-disable-scroll, as in the default state where the clone matches. The clone, opened by URL with the user info pending, renders no About content, as the TST HouseholdDetails loading capture opened directly (no aria-hidden).",
+   "evidence": "migration/screens/HouseholdCarousel/analysis/dom/loading.html (<div aria-hidden=\"true\" id=\"reactContainer\">, AddressPopup b3-l1-1152_0..3-b2-b3-b1-b13-$b2); migration/screens/HouseholdDetails/analysis/dom/loading.html (<div id=\"reactContainer\">, direct open, 'Household gallery' :146) vs default.html (aria-hidden=\"true\")"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS-PIXEL-F7B",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/MyBookmarks(\\?|$)",
+   "detailRegex": "^[5-9]\\.\\d\\d% pixels differ .*migration/screens/MyBookmarks/parity/loading\\.diff\\.png$",
+   "reason": "Replaces the detail range of CAPTURE-LOADING-FETCH-TIMEOUT-MYBOOKMARKS-PIXEL (^2[0-9]...), calibrated before the loading ignoreSubtrees were merged; the loading capture held the requests until the module's 10 s request timeout, so the reference shows the 'The connection has timed out' toast over the header and the error branch, while the clone's loading scenario never answers and shows the header and the fetching branch (Spinner). Not caused by data: the loading scenario answers no bookmark call. Proposed by foundation F7b (2026-10-15), measured 7.93% after the shared legacy-bookmarks change.",
+   "evidence": "migration/screens/MyBookmarks/analysis/dom/loading.html:2-10; migration/screens/MyBookmarks/parity/loading.json (7.93%, hotspots y=0); loading.expected.png vs loading.build.png (toast + NetworkWarning vs header + Spinner)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP-PIXEL-F7B",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/BookmarksByGroup(\\?|$)",
+   "detailRegex": "^(9|1[0-2])\\.\\d\\d% pixels differ .*migration/screens/BookmarksByGroup/parity/loading\\.diff\\.png$",
+   "reason": "The merged ignoreSubtrees CAPTURE-LOADING-FETCH-TIMEOUT-BOOKMARKSBYGROUP(-TOAST) remove the structure diffs but not the pixels of the header the toast covers; the loading capture held the requests until the module's 10 s request timeout, so the reference shows the 'The connection has timed out' toast over the header and the error branch, while the clone's loading scenario never answers and shows the header and the fetching branch (Spinner). Not caused by data: the loading scenario answers no bookmark call. Proposed by foundation F7b (2026-10-15), measured 10.58% after the shared legacy-bookmarks change.",
+   "evidence": "migration/screens/BookmarksByGroup/analysis/dom/loading.html:2-10; migration/screens/BookmarksByGroup/parity/loading.json (10.58%, hotspots y=0); loading.expected.png vs loading.build.png (toast + NoBookmarks vs header + Spinner)"
+  },
+  {
+   "id": "CAPTURE-FOCUS-BADGE-SEARCH-LOADING-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/Search(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^0\\.\\d\\d% pixels differ .*migration/screens/Search/parity/loading\\.diff\\.png$",
+   "reason": "Two capture artifacts together pass the 0.20% pixel limit: (1) the search input is focused on ready (Input FocusOnReady true, ScreenBlock_Search; Input.tsx OnReady), so its border is the focus colour (106,113,120), while the reference is static HTML that cannot hold :focus (206,212,218), rows y 6 and 44; (2) the Updates badge text is masked in the capture ('••') and the mock shows '9+', a different glyph width (y 780-820). Found by the final regression sweep 2026-10-15. Auto-accepted (user instruction 2026-10-15 16:59)",
+   "evidence": "migration/screens/Search/parity/loading.{expected,build,diff}.png; pixel rows measured with PIL (879 px over 30/255)"
+  },
+  {
+   "id": "TAGS-MASKED-IMAGE-LOCALITYDETAILS",
+   "kinds": [
+    "layout",
+    "position"
+   ],
+   "states": "^tag-(suppermeetings|oneschoolglobal)$",
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "pathRegex": "div#(b19-l1-3598_\\d+-b4|b21-b3-l1-3709_\\d+-b2)-LazyImage_Placeholder\\.ubt-image-card--lazy-image-placeholder( > .*)?$",
+   "reason": "Same as CAPTURE-MASKED-IMAGE-LOCALITYDETAILS (default): the supper meeting and school photos were masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered 390x260 / 390x292), so the replayed reference shows a 26 px broken image while the clone shows the 390x260 neutral placeholder (Q-W2C-1). 20 diffs in tag-suppermeetings (cards l1-3598_10, _11), 22 in tag-oneschoolglobal (l1-3709_3, _4); the third supper meeting (no photo on TST) matches. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Locality_Details/analysis/dom/tag-suppermeetings.html:226-228, tag-oneschoolglobal.html (img data-masked-src); parity/tag-suppermeetings.json, parity/tag-oneschoolglobal.json"
+  },
+  {
+   "id": "TAGS-TAGLIST-SCROLL-LOCALITYDETAILS",
+   "kinds": [
+    "position"
+   ],
+   "states": "^tag-(interchange|oneschoolglobal)$",
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "pathRegex": "div#\\$b16\\.OSBlockWidget\\[ConnectPatterns\\.HorizontalTagList\\] > div\\.OSFillParent\\.household-tag\\.list > div#b16-l1-\\d+_\\d+-\\$b1\\.OSBlockWidget\\[ConnectPatterns\\.TagToggle\\]$",
+   "reason": "The plan step clicks a tag that sticks out of the 390 px tag row, so Playwright scrolls the row before the click (Interchange 12 px, OneSchool Global 186 px, measured on the clone after the same steps). The replayed reference is serialized HTML, which keeps no scrollLeft: every tag stays at its unscrolled offset (16, 134, 287, 406). Capture artifact (scroll position), not markup. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/tag-interchange.json and parity/tag-oneschoolglobal.json (offset in parent 16,0 → 4,0 / -170,0); states.json steps"
+  },
+  {
+   "id": "TAGS-SLIDER-APPEAR-TIMING",
+   "kinds": [
+    "class"
+   ],
+   "states": "^tag-(suppermeetings|interchange|oneschoolglobal)$",
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "pathRegex": "div#transitionContainer > div\\.dx-bottom-bar-slider(\\.dx-bottom-bar-slider-appear)?$",
+   "reason": "Same as SLIDER-APPEAR-TIMING (default, offline): the app-start slider keeps -appear on TST (undefined animation duration); the tag states start from the same load. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/tag-*.json class diff 'missing .dx-bottom-bar-slider-appear'"
+  },
+  {
+   "id": "ORBITLANDING-SKELETON-SHIMMER-PHASE-OFFLINE",
+   "routeRegex": "^/UBTConnect/OrbitLanding(\\?|$)",
+   "kinds": [
+    "style"
+   ],
+   "states": "^offline$",
+   "pathRegex": "\\[Orbit_Generic_Blocks\\.Skeleton_Loading\\] > div\\.orbit-skeleton-loading-cont > div#b1-b7-List_SkeletonLoadingSingle[^>]* > div\\.orbit-skeleton-item-height-large\\.orbit-skeleton-loading-item$",
+   "detailRegex": "^background-position ",
+   "reason": "Skeleton shimmer animation (background-position keyframes of .orbit-skeleton-loading-item) photographed at another phase in the offline capture (49.9986% vs 64.1626%); same markup, classes and every other style; the loading state with the same skeleton passes. Capture timing artifact, auto-accepted in the user's auto mode 2026-10-15.",
+   "evidence": "migration/screens/OrbitLanding/parity/offline.json (6 rows, one per skeleton row); dom/offline.html:112-126; same kind as CAPTURE-SKELETON-SHIMMER-PHASE"
+  },
+  {
+   "id": "ORBITLANDING-POPUP-TOP-AND-RADIO-CHECKED",
+   "routeRegex": "^/UBTConnect/OrbitLanding(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^popup-(filters|sort)$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[4-7]\\.\\d\\d% pixels differ .*migration/screens/OrbitLanding/parity/popup-(filters|sort)\\.diff\\.png$",
+   "reason": "Pixel-only difference of the two popup states (DOM, classes, attributes, styles, layout and calls equal): (1) the TST popup top is the GetPopupMeasurements value read at OnReady on TST (.header offsetHeight 204), while the clone, like the replayed TST DOM, has a 174 px header, so the dialog is 30 px higher; (2) the replayed reference draws both radios unchecked because the capture does not serialize the checked property, while the platform RadioButton checks the selected one (aria-activedescendant matches). Q4 = A, auto-accepted in the user's auto mode 2026-10-15.",
+   "evidence": "dom/popup-filters.raw.html, dom/popup-sort.raw.html (top: 204px); ScreenBlock_OrbitLanding.mvc.js :2200-2214; parity/popup-filters.diff.png, parity/popup-sort.diff.png; OutSystemsReactWidgets.js RadioButton (checked: isSelected); OrbitLanding Q4"
+  },
+  {
+   "id": "CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL",
+   "routeRegex": "^/UBTConnect/EventDetail(\\?|$)",
+   "kinds": [
+    "call"
+   ],
+   "pathRegex": "^calls:load$",
+   "detailRegex": "^server actions ActionGetAllApplicationEvents → build \\(none\\)$",
+   "states": "^default$",
+   "reason": "ActionGetAllApplicationEvents was raised on TST by the shell block Utility.HandleImageLoadError (applicationEvent_ImageError → zOnApplicationEvent_Wrapper → cacheLocalApplicationEvents) for an image that failed during the transition from OrbitLanding; the screen itself never calls it (EventDetail Q3). Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/EventDetail/analysis/call-sites.md (chain stops: runtime callback); analysis/calls.md #1; EventDetail Q3"
+  },
+  {
+   "id": "VIA-BACK-MENUICON-EVENTDETAIL",
+   "routeRegex": "^/UBTConnect/EventDetail(\\?|$)",
+   "kinds": [
+    "class",
+    "style",
+    "layout",
+    "position"
+   ],
+   "pathRegex": "header#b1-b1-b2-Header\\.header\\.orbit-detail\\.orbit-header-center > div\\.header-top > div\\.display-flex\\.header-content > div\\.align-items-center\\.display-flex\\.full-width > (div#b1-b1-b2-HeaderLeft\\.header-left( > .+)?|h1\\.header-title\\.text-align-center|div#b1-b1-b2-HeaderRight\\.header-right( > div#b1-b1-HeaderRight)?)$",
+   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the states were captured via OrbitLanding (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/EventDetail/analysis/states.json (via /UBTConnect/OrbitLanding); migration/screens/EventDetail/parity/default.json, loading.json, offline.json (class missing .back)"
+  },
+  {
+   "id": "CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL",
+   "routeRegex": "^/UBTConnect/EventDetail(\\?|$)",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-position"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "div#b1-\\$b14\\.OSBlockWidget\\[Orbit_Generic_Blocks\\.Skeleton_Loading\\]( > .+)?$",
+   "reason": "The skeleton shimmer animation runs; its background-position at snapshot time depends on timing (49.98% vs 64.15%). Capture timing artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/EventDetail/parity/loading.json, offline.json (style background-position on .orbit-skeleton-loading-item)"
+  },
+  {
+   "id": "DATA-GUEST-PHOTO-LDM-MYEVENTS-V2",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-image"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/LDM_MyEvents_V2(\\?|$)",
+   "pathRegex": "\\[Widgets\\.OverlappingImages\\] > div#[^ ]+-ImageList\\.OSFillParent\\.list\\.list-group > div\\.overlapping-photo-cropper$",
+   "reason": "Person photos: the capture keeps the TST signed photo URLs of the guest households in the background-image of OverlappingImages (not masked: it is a style, not an img); the mock answers the neutral placeholder (Person images in mocks, Q-W2C-1). Data drift. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LDM_MyEvents_V2/parity/default.json (16 style diffs, background-image only); migration/knowledge/mock-fixtures.md 'Person images in mocks'"
+  },
+  {
+   "id": "DATA-GUEST-PHOTO-LDM-MYEVENTS-V2-PIXEL",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/LDM_MyEvents_V2(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^0\\.\\d\\d% pixels differ .*migration/screens/LDM_MyEvents_V2/parity/default\\.diff\\.png$",
+   "reason": "Pixel side of DATA-GUEST-PHOTO-LDM-MYEVENTS-V2: the only differing areas are the 16 overlapping guest photos (TST photos vs the neutral placeholder; diff.png shows nothing else, 0.73 % of the page). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LDM_MyEvents_V2/parity/default.diff.png (hotspots 280-320,280-560 = the photo stacks)"
+  },
+  {
+   "id": "CAPTURE-ANIMATE-PHASE-LDM-MYEVENTS-V2-NETWORKWARNING",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "opacity",
+    "transform"
+   ],
+   "states": "^offline$",
+   "routeRegex": "^/UBTConnect/LDM_MyEvents_V2(\\?|$)",
+   "pathRegex": "\\[Widgets\\.NetworkWarning\\] > div#b1-b9-b5-\\$b1\\.OSBlockWidget\\[Interaction\\.Animate\\] > div#b1-b9-b5-b1-Content\\.animate\\.normal\\.top-to-bottom$",
+   "reason": "The offline capture photographed the NetworkWarning's Animate (top-to-bottom, normal) mid-animation (opacity 0.545, translateY -39.1 px); the clone is read at the end state. Animation phase artifact (as CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LDM_MyEvents_V2/parity/offline.json"
+  },
+  {
+   "id": "CAPTURE-ANIMATE-PHASE-LDM-MYEVENTS-V2-NETWORKWARNING-POSITION",
+   "kinds": [
+    "position"
+   ],
+   "states": "^offline$",
+   "routeRegex": "^/UBTConnect/LDM_MyEvents_V2(\\?|$)",
+   "pathRegex": "\\[Widgets\\.NetworkWarning\\] > div#b1-b9-b5-\\$b1\\.OSBlockWidget\\[Interaction\\.Animate\\] > div#b1-b9-b5-b1-Content\\.animate\\.normal\\.top-to-bottom$",
+   "detailRegex": "^offset in parent 0,-\\d+ → 0,-?[01]$",
+   "reason": "Position side of CAPTURE-ANIMATE-PHASE-LDM-MYEVENTS-V2-NETWORKWARNING: the mid-animation translateY moves the card up 40 px in the capture. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LDM_MyEvents_V2/parity/offline.json"
+  },
+  {
+   "id": "CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER",
+   "routeRegex": "^/UBTConnect/EventDetail(\\?|$)",
+   "kinds": [
+    "layout"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "div#b1-b1-b2-ContentWrapper\\.content\\.orbit-detail\\.orbit-header-center$",
+   "detailRegex": "^390×779 → 390×773$",
+   "reason": "The header title (In_EventName) was masked by the capture: its bullets fit one line, the fictional title of the same word lengths (7 5 11 1 5 3 4, mocks/fictional/orbit.ts) wraps to two lines in the clone, so the header is 6 px taller and the content wrapper 6 px shorter (779 → 773). Text-mask capture artifact, not a CR-EventDetail-1 difference (F10, 2026-10-16).",
+   "evidence": "migration/screens/EventDetail/parity/loading.json, offline.json (layout 390×779 → 390×773); parity/default.expected.png vs default.build.png (title one line of bullets vs two lines)"
+  },
+  {
+   "id": "CAPTURE-VIA-MASK-SHIFT-EVENTDETAIL-PIXELS",
+   "routeRegex": "^/UBTConnect/EventDetail(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^(([0-6]\\.\\d\\d% pixels differ .*parity/default\\.diff\\.png)|([0-1]\\.\\d\\d% pixels differ .*parity/loading\\.diff\\.png)|([0-2]\\.\\d\\d% pixels differ .*parity/offline\\.diff\\.png))$",
+   "reason": "Screenshot differences that follow from capture artifacts already accepted at DOM level: the missing back arrow (VIA-BACK-MENUICON-EVENTDETAIL, the states were captured via OrbitLanding), the masked one-line header title (CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER) that moves everything below the header 6 px (default: Host Allocation 323 → 329, itinerary and cards the same), and in offline the skeleton shimmer phase (CAPTURE-SKELETON-SHIMMER-PHASE-EVENTDETAIL, right edge of every skeleton bar). DOM counts are 0 in every state; bounded to < 7% (default), < 2% (loading), < 3% (offline). F10, 2026-10-16.",
+   "evidence": "migration/screens/EventDetail/parity/default.diff.png (6.64%), loading.diff.png (1.84%, hotspots 0,0 back arrow), offline.diff.png (2.59%, hotspots x 320 skeleton edges)"
+  },
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-LDM-EVENTDETAIL-V2",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "cursor"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/LDM_EventDetail_V2(\\?|$)",
+   "pathRegex": "\\[Reusable\\.Person_Contact_Options\\] > div\\.block-household-person-options > a( > .*)?$",
+   "reason": "The capture renames href to data-original-href, so the replayed reference anchors of the host's call / email links (and their children) have cursor auto; the app's links have an href (cursor pointer). Same artifact as CAPTURE-LINK-HREF-CURSOR-HOMEFEED. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "diagnostic parity default (6 style diffs, cursor auto → pointer, all under b1-b5-$b1 Person_Contact_Options); analysis/dom/default.html:121-136 (data-original-href=\"#\")"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-LDM-EVENTDETAIL-V2-BANNER",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/LDM_EventDetail_V2(\\?|$)",
+   "pathRegex": "\\[LDM_Blocks\\.EventDetail_Banner\\] > div\\.event-detail-banner-image-cont > div\\.event-detail-banner-text > div\\.display-flex\\.flex-direction-column[^ >]*$",
+   "detailRegex": "^offset in parent \\d+,68 → \\d+,68$",
+   "reason": "The centred locality / date column of the banner is as wide as its longest text; the capture masks both texts (\"••••••••••• ••••\", \"•••• •••• ••••\") and the mock's locality and date (relative to today) have other widths, so only the column's horizontal offset differs (same row, same height). Masked text / data drift. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "diagnostic parity default: offset in parent 126,68 → 94,68; analysis/dom/default.html:76-83"
+  },
+  {
+   "id": "VIA-BACK-MENUICON-MILESTONEDETAIL",
+   "routeRegex": "^/UBTConnect/MilestoneDetail(\\?|$)",
+   "kinds": [
+    "class",
+    "style",
+    "layout",
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "header#b1-b5-b1-b2-Header\\.header\\.orbit-detail > div\\.header-top > div\\.display-flex\\.header-content > div\\.align-items-center\\.display-flex\\.full-width > (div#b1-b5-b1-b2-HeaderLeft\\.header-left( > .+)?|h1\\.header-title\\.text-align-center|div#b1-b5-b1-b2-HeaderRight\\.header-right)$",
+   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the state was captured via OrbitLanding → EventDetail (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Same artifact as VIA-BACK-MENUICON-EVENTDETAIL. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/MilestoneDetail/analysis/states.json (via /UBTConnect/OrbitLanding); diagnostic parity run with the cloneQuery (class missing .back, HeaderLeft 41×38 → 20×0, h1 offset 56,10 → 35,0, HeaderRight 26×0 → 37×0)"
+  },
+  {
+   "id": "CAPTURE-MASKED-ROOM-INFO-MILESTONEDETAIL",
+   "routeRegex": "^/UBTConnect/MilestoneDetail(\\?|$)",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b1-b5-l5-142864_\\d-b8-Content > div\\.room-info-cont > div\\.flex-center-vertical\\.flex-direction-row\\.justify-content-(center|flex-end) > i\\.fa\\.fa-1x\\.fa-flag$",
+   "detailRegex": "^offset in parent (2[6-9]|3[0-9]),[2-4] → (2[6-9]|3[0-9]),[2-4]$|^offset in parent (8[8-9]|9[0-6]),[2-4] → (8[8-9]|9[0-6]),[2-4]$",
+   "reason": "The room type and beds texts were masked by the capture (\"••••••\", \"•\"; only room 6's \"Male\" is plain): the fictional texts of the same length (Couple / Female, 1 / 2, mocks/fictional/orbit.ts ORBIT_HOSTED_ROOMS) are narrower than the bullets, so the centred and right-aligned icons sit a few px off (36 → 27/28, 94 → 91). Room 6 (plain \"Male\") matches. Text-mask capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "diagnostic parity run with the cloneQuery: 11 position diffs on room-info-cont icons of rooms 1-6, none on room 6's centred icon; dom/default.html room info spans"
+  },
+  {
+   "id": "CAPTURE-VIA-MASK-SHIFT-MILESTONEDETAIL-PIXELS",
+   "routeRegex": "^/UBTConnect/MilestoneDetail(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[0-6]\\.\\d\\d% pixels differ .*parity/default\\.diff\\.png$",
+   "reason": "Screenshot differences that follow from the capture artifacts above: the missing back arrow (the header row is 38 px high with it) moves the whole content up, and the masked header / room texts. DOM counts are otherwise 0, calls 0. Bounded to < 7%. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "diagnostic parity run with the cloneQuery: 6.21% pixels, hotspots y 80 (header); diff image shows every row shifted by the header height difference"
+  },
+  {
+   "id": "VIA-BACK-MENUICON-HELPERSDETAIL",
+   "routeRegex": "^/UBTConnect/HelpersDetail(\\?|$)",
+   "kinds": [
+    "class",
+    "style",
+    "layout",
+    "position"
+   ],
+   "pathRegex": "header#b1-b1-b2-Header\\.header\\.orbit-detail > div\\.header-top > div\\.display-flex\\.header-content > div\\.align-items-center\\.display-flex\\.full-width > (div#b1-b1-b2-HeaderLeft\\.header-left( > .+)?|h1\\.header-title\\.text-align-center|div#b1-b1-b2-HeaderRight\\.header-right)$",
+   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the states were captured via OrbitLanding → EventDetail (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/HelpersDetail/analysis/states.json (via); parity/default.json, loading.json, offline.json (class missing .back); same rule as VIA-BACK-MENUICON-EVENTDETAIL / -MILESTONEDETAIL"
+  },
+  {
+   "id": "CAPTURE-MASKED-TITLE-HELPERSDETAIL-HEADER",
+   "routeRegex": "^/UBTConnect/HelpersDetail(\\?|$)",
+   "kinds": [
+    "layout"
+   ],
+   "pathRegex": "div#b1-b1-b2-ContentWrapper\\.content\\.orbit-detail( > div#b1-b1-b2-MainContentWrapper\\.ThemeGrid_Container\\.main-content)?$",
+   "detailRegex": "^390×758 → 390×742$",
+   "reason": "The header title (In_EventName) was masked by the capture: its bullets fit one line, the fictional title of the same word lengths (7 5 11 1 5 3 4, mocks/fictional/orbit.ts) wraps to two lines in the clone, so the header is 16 px taller and the content wrapper 16 px shorter (758 → 742). Text-mask capture artifact (as CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER); auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/default.expected.png vs default.build.png (one line of bullets vs two lines); parity/*.json layout 390×758 → 390×742"
+  },
+  {
+   "id": "CAPTURE-SKELETON-SHIMMER-PHASE-HELPERSDETAIL",
+   "routeRegex": "^/UBTConnect/HelpersDetail(\\?|$)",
+   "kinds": [
+    "style"
+   ],
+   "props": [
+    "background-position"
+   ],
+   "states": "^(loading|offline)$",
+   "pathRegex": "div#b1-\\$b8\\.OSBlockWidget\\[Orbit_Generic_Blocks\\.Skeleton_Loading\\]( > .+)?$",
+   "reason": "Skeleton shimmer animation (background-position keyframes of .orbit-skeleton-loading-item) photographed at another phase (50.0037% vs 59.5201%); same markup, classes and other styles. Animation-phase capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/offline.json (style background-position on .orbit-skeleton-loading-item)"
+  },
+  {
+   "id": "CAPTURE-VIA-MASK-SHIFT-HELPERSDETAIL-PIXELS",
+   "routeRegex": "^/UBTConnect/HelpersDetail(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^(([0-3]\\.\\d\\d% pixels differ .*parity/default\\.diff\\.png)|([0-1]\\.\\d\\d% pixels differ .*parity/loading\\.diff\\.png)|([0-4]\\.\\d\\d% pixels differ .*parity/offline\\.diff\\.png))$",
+   "reason": "Screenshot differences that follow from the artifacts above: the missing back arrow (via), the masked one-line title (16 px shift of the content), the skeleton shimmer phase and, in loading/offline, the empty sub-header type (CR-HelpersDetail-1). Auto-accepted in the user's auto mode 2026-10-15 except the CR part",
+   "evidence": "parity/default.diff.png (3.20%), loading.diff.png (0.47%), offline.diff.png (4.50%)"
+  },
+  {
+   "id": "VIA-ORBIT-THEME-BODY-CONTACTBYEMAILORBITHELPDESK",
+   "routeRegex": "^/UBTConnect/ContactByEmailOrbitHelpdesk(\\?|$)",
+   "kinds": [
+    "class"
+   ],
+   "states": "^default$",
+   "pathRegex": "^body$",
+   "detailRegex": "^missing \\.orbit-theme",
+   "reason": "The state was captured via OrbitLanding → EventDetail (states.json via): Layout_Orbit's OnInitialize put the orbit-theme class on the body (SetThemeClassToBody) and nothing removes it, so it is still there on this Layout_DetailPage screen. Parity opens the route by URL with no Orbit screen before, so the body has no orbit-theme; in the app, after the same navigation, the shared Layout_Orbit leaves it too (shell/bodyTheme.ts). Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "analysis/states.json (via); analysis/dom/default.html:1 (body class orbit-theme); app/src/shared/Connect2_LegacyShared/Layout_Orbit/Layout_Orbit.tsx:60-62; parity/default.json (class body missing .orbit-theme)"
+  },
+  {
+   "id": "CAPTURE-MASKED-SUBJECT-REPLICA-CONTACTBYEMAILORBITHELPDESK",
+   "routeRegex": "^/UBTConnect/ContactByEmailOrbitHelpdesk(\\?|$)",
+   "kinds": [
+    "pseudo"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b2-\\$b4\\.OSBlockWidget\\[ConnectPatterns\\.DynamicTextArea\\] > div\\.resizable-text-area\\.resizable-text-area--bounded > div#b2-b4-Placeholder_TextArea > span$",
+   "detailRegex": "^::after content \".*\" → \".*\"$",
+   "reason": "The capture masked the subject text area (bullets of the TST event subject) but not DynamicTextArea's data-replicated-value copy that its ::after shows, so the ::after holds the TST event subject while the clone holds the fictional subject of the same word lengths from the cloneQuery (mocks/fictional/orbit.ts event 7301; same three-line layout). Masked-text capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "analysis/dom/default.html:73-74 (data-replicated-value vs masked textarea); parity/default.json (pseudo ::after content)"
+  },
+  {
+   "id": "CAPTURE-MASKED-SUBJECT-PIXELS-CONTACTBYEMAILORBITHELPDESK",
+   "routeRegex": "^/UBTConnect/ContactByEmailOrbitHelpdesk(\\?|$)",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[0-1]\\.\\d\\d% pixels differ .*parity/default\\.diff\\.png$",
+   "reason": "Screenshot difference limited to the subject text area: masked bullets in the capture vs the fictional subject text in the clone (same lines and box). Masked-text capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/default.diff.png (0.90%, hotspots on the subject rows y 200-260)"
+  },
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-ASSEMBLEEVENTS",
+   "kinds": [
+    "style"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/AssembleEvents(\\?|$)",
+   "pathRegex": "div#b2-b1-HeaderRight\\.align-items-center\\.display-flex > div\\.OSInline\\.line-height-1 > a( > i\\.connect-icon-place\\.fa\\.fa-1x)?$",
+   "detailRegex": "^cursor auto → pointer$",
+   "props": [
+    "cursor"
+   ],
+   "reason": "The capture renames href to data-original-href, so the replayed header place link (and its icon) has cursor auto; the clone's OS Link has an href (cursor pointer). Same artifact as CAPTURE-LINK-HREF-CURSOR-HOMEFEED, whose path list does not cover this header link. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/AssembleEvents/analysis/dom/default.html:224 (<a data-link data-original-href=\"#\">); migration/screens/AssembleEvents/parity/loading.json, offline.json (only these 2 style diffs)"
+  },
+  {
+   "id": "CAPTURE-MASKED-COUNT-WIDTH-ASSEMBLEEVENTS-SHEET",
+   "kinds": [
+    "layout",
+    "position",
+    "style"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/AssembleEvents(\\?|$)",
+   "pathRegex": "div#Assemble_FilterSheet_Instance\\.OSBlockWidget\\[Assemble\\.Assemble_FilterSheet\\] > .* > div#b5-b2-l1-95_\\d+-ListItem1\\.list-item > div\\.OSInline\\.landing-country-list-item( > .+)?$",
+   "detailRegex": "^(\\d+(\\.\\d+)?×\\d+(\\.\\d+)? → \\d+(\\.\\d+)?×\\d+(\\.\\d+)?|offset in parent -?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)? → -?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)?|margin-left \\d+(\\.\\d+)?px → \\d+(\\.\\d+)?px)$",
+   "reason": "Masked text, not a build defect: the bottom sheet is a screen-level sibling of the Layout, outside .backwards-compatibility, so ':where(.backwards-compatibility) .landing-country-list-item {display:inline-flex; width:100%}' (Connect2_LegacyShared.ConnectMobileCommonTheme.css) does not apply and each row is an inline-block sized by its text, on TST as in the clone (same markup and CSS). The capture masked the member/household/locality counts with '•' glyphs, narrower than digits, so the reference rows are narrower (width30/width5 90 px vs 115 px, icon margins in %). Replacing the clone's counts with the captured masked strings gives exactly the reference geometry (row 0: 89.8 px, offset 118; row 1: 129.4 px, offset 98). On Assemble_BrowseByCountry the same block sits inside .backwards-compatibility (full-width inline-flex rows), so masking does not move it. Text diffs are 0. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/AssembleEvents/parity/default.json (89 diffs, all under div#b5-b2-l1-95_N-ListItem1 > .landing-country-list-item); migration/screens/AssembleEvents/analysis/css-relevant.md:1497-1499; Playwright check on the dev server 2026-10-16: computed display inline-block, closest('.backwards-compatibility') null; after setting the captured masked counts, width30 115→89.84 px and offset 106→118 (row 0), 157.2→129.4 px and 84→98 (row 1)"
+  },
+  {
+   "id": "VIA-BACK-MENUICON-HOSTSURVEY",
+   "routeRegex": "^/UBTConnect/HostSurvey(\\?|$)",
+   "kinds": [
+    "class",
+    "style",
+    "layout",
+    "position"
+   ],
+   "pathRegex": "header#b2-b1-b2-Header\\.header\\.orbit-detail\\.orbit-host-survey(\\.orbit-host-survey-no-steps)? > div\\.header-top > div\\.display-flex\\.header-content > div\\.align-items-center\\.display-flex\\.full-width > (div#b2-b1-b2-HeaderLeft\\.header-left( > .+)?|h1\\.header-title\\.text-align-center|div#b2-b1-b2-HeaderRight\\.header-right)$",
+   "reason": "MenuIcon__UpdatedOSUI with MenuAction Auto shows the back arrow when there is a screen to go back to: the state was captured via OrbitLanding → EventDetail → View Host Survey (states.json via), parity opens the route by URL with no previous screen, so the clone shows no back arrow (missing .back, 41x38 → 20x0) and the title / header-right shift by its width. Capture artifact; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/HostSurvey/analysis/states.json (via); diagnostic parity default (class missing .back, 14 differences under the header); same rule as VIA-BACK-MENUICON-HELPERSDETAIL / -EVENTDETAIL / -MILESTONEDETAIL"
+  },
+  {
+   "id": "CAPTURE-VIA-MASK-SHIFT-HOSTSURVEY-PIXELS",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/HostSurvey(\\?|$)",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[0-9]\\.\\d\\d% pixels differ .*migration/screens/HostSurvey/parity/default\\.diff\\.png$",
+   "reason": "Reached via OrbitLanding → EventDetail on TST: the masked header title fits on one line while the fictional title wraps to two, and the back arrow is missing when parity opens the URL, so everything below the header sits 15 px lower. Same artifact as CAPTURE-VIA-MASK-SHIFT-EVENTDETAIL/HELPERSDETAIL-PIXELS; DOM kinds are all 0. Bounded below 10%. Auto-accepted (user instruction 2026-10-16 night)",
+   "evidence": "F14 report: HostSurvey default pixel 9.26%, all DOM kinds 0"
+  },
+  {
+   "id": "ORBITADMINLANDING-SKELETON-SHIMMER-PHASE-OFFLINE",
+   "routeRegex": "^/UBTConnect/OrbitAdminLanding(\\?|$)",
+   "kinds": [
+    "style"
+   ],
+   "states": "^offline$",
+   "pathRegex": "\\[Orbit_Generic_Blocks\\.Skeleton_Loading\\] > div\\.orbit-skeleton-loading-cont > div#b1-b5-List_SkeletonLoadingSingle[^>]* > div\\.orbit-skeleton-item-height-large\\.orbit-skeleton-loading-item$",
+   "detailRegex": "^background-position ",
+   "reason": "Skeleton shimmer animation (background-position keyframes of .orbit-skeleton-loading-item) photographed at another phase in the offline capture (54.782% vs 64.1446%); same markup, classes and every other style; the loading state with the same skeleton passes. Capture timing artifact, auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/OrbitAdminLanding/parity/offline.json (6 rows, one per skeleton row); same kind as ORBITLANDING-SKELETON-SHIMMER-PHASE-OFFLINE"
+  },
+  {
+   "id": "MOCK-RELATIVE-DATES-EVENTDETAIL-DAYSELECTOR",
+   "routeRegex": "^/UBTConnect/EventDetail(\\?|$)",
+   "kinds": [
+    "text",
+    "layout",
+    "position"
+   ],
+   "pathRegex": "div#b1-b7-b1-l1-\\d+_\\d+-\\$b1\\.OSBlockWidget\\[Orbit_Generic_Blocks\\.DaySelector\\] > div\\.event-date-selector(\\.[\\w-]+)* > div#b1-b7-b1-l1-\\d+_\\d+-b1-Placeholder_Digit( > span)?$",
+   "states": "^default$",
+   "reason": "The day digits of the conference days: the capture shows TST's real days of event 7301 (23, 24, 25), the mock world builds the meetings on the first Friday at least a week after today (src/mocks/fictional/orbit.ts meetingsFriday), so the digits and the width of the digit box follow the run date (the clone matched only for runs between 2026-10-10 and 2026-10-16). Weekdays stay Friday to Sunday. Mock artifact; auto-accepted in the user's auto mode 2026-10-16 evening (until 2026-10-17 morning)",
+   "evidence": "migration/screens/EventDetail/parity/default.json (2026-10-17 sweep: text \"23\"→\"30\", \"24\"→\"31\", \"25\"→\"1\", Placeholder_Digit 18×23 → 9×23); app/src/mocks/fictional/orbit.ts:561-569"
+  }
+ ],
+ "ignoreClasses": [
+  "-enter(-active|-done)?$",
+  "-exit(-active|-done)?$",
+  "^slide-from-",
+  "^(osx|windows|linux|ios|android)$"
+ ],
+ "_ignoreClassesNote": "Animation-state classes of screen transitions: the capture moment decides whether they are set (user, 2026-10-14, PINRegister Q1). OS classes on body/html depend on the capture machine and on when OutSystems UI adds them; the clone computes them from the user agent (user, 2026-10-14).",
+ "callOrderFree": [
+  {
+   "id": "CALL-ORDER-APPSTART-RACE",
+   "actions": [
+    "ActionGetSignedImagesInBulk",
+    "ServiceAPIGet_UI_UpdateItems_UnreadCount_All"
+   ],
+   "states": "^(default|filter|search)$",
+   "reason": "These calls start while the app-start chain (AfterInitialize, Sync_Info_GetMain, GetUserInformation) is still running; their place in the order depends on network timing (MessageList Q5, Notifications Q4). Counts are still compared.",
+   "evidence": "migration/screens/MessageList/parity/default.json; migration/screens/Notifications/parity/default.json; accepted by the user 2026-10-15; migration/screens/MessageList/parity/filter.json, search.json; MessageList Q12"
+  },
+  {
+   "id": "CALL-ORDER-APPSTART-USERINFO",
+   "actions": [
+    "ActionGetUserInformation"
+   ],
+   "states": "^default$",
+   "reason": "GetUserInformation's place among the app-start calls depends on timing: on TST the screen's block asked for it before AfterInitialize, the clone's shell answers block requests after the app-start step. Counts are still compared; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/HouseholdDetails/analysis/calls.md #2 vs migration/screens/HouseholdDetails/parity/default.json (calls:load)"
+  },
+  {
+   "id": "CALL-COUNT-SIGNED-IMAGES-BATCH",
+   "actions": [
+    "ActionGetSignedImagesInBulk"
+   ],
+   "states": "^default$",
+   "countFree": true,
+   "reason": "GetSignedImagesInBulk is a batched memory-cache call (bulk of 15, 10 ms timeout, shell memoryCache): how many batches go out depends on when the images mount, so the capture (7) and the clone (5) differ in count, not in presence. Locality_Details Q4 (a), auto-accepted (user instruction 2026-10-15 16:59).",
+   "evidence": "migration/screens/Locality_Details/parity/default.json; app/src/shell/memoryCache.ts getCacheableObjectInBulk; migration/screens/HouseholdCarousel/pack.md Calls #14, #15, #19 (2 vs 3 batches, HouseholdCarousel proposal merged here)"
+  },
+  {
+   "id": "CALL-ORDER-APPSTART-RACE-LEGACYSHAREOBJECT",
+   "actions": [
+    "ServiceAPIGetHouseholdDetails"
+   ],
+   "states": "^default$",
+   "reason": "ScreenBlock_ShareObject's OnReady GetHouseholdDetails starts while the app-start chain runs: on TST it started before AfterInitialize, the clone's shell calls AfterInitialize right after SynchAppContext, before the lazily loaded screen mounts. Its place among the app-start calls depends on timing; counts and inputs are still compared. Same artifact as CALL-ORDER-APPSTART-USERINFO. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/LegacyShareObject/analysis/calls.json (GetHouseholdDetails ts 4593, AfterInitialize ts 5166); migration/screens/LegacyShareObject/parity/default.json (calls:load)"
+  },
+  {
+   "id": "CALL-ORDER-APPSTART-RACE-VERSION-MENU",
+   "actions": [
+    "ActionGet_RuntimeVersion"
+   ],
+   "states": "^default$",
+   "reason": "The Version block's OnReady Get_RuntimeVersion starts while the app-start chain runs: on TST it went out before AfterInitialize (4470 ms vs 6814 ms), the clone's shell calls AfterInitialize right after SynchAppContext, before the lazily loaded screen mounts. Its place among the app-start calls depends on timing; counts and inputs are still compared. Same artifact as CALL-ORDER-APPSTART-RACE-LEGACYSHAREOBJECT. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Menu/analysis/calls.md #2, #4; migration/screens/Menu/parity/default.json (calls:load)"
+  },
+  {
+   "id": "CALL-ORDER-APPSTART-SHAREDETAILS",
+   "actions": [
+    "ActionGet_ShareDetails"
+   ],
+   "states": "^default$",
+   "routeRegex": "ConnectShare",
+   "reason": "On TST the screen's OnInitialize sent Get_ShareDetails together with the app start's SynchAppContext (both at 2824 ms), before AfterInitialize; in the clone the screen mounts after the shell's app start sent SynchAppContext and AfterInitialize. Its place among the app-start calls depends on timing; counts are still compared; auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/ConnectShare/analysis/calls.json (ts 2824 for both); migration/screens/ConnectShare/parity/default.json (calls:load)"
+  },
+  {
+   "id": "TAGS-CALL-ORDER-APPSTART",
+   "actions": [
+    "ActionGetSignedImagesInBulk",
+    "ActionGetUserInformation"
+   ],
+   "states": "^tag-(suppermeetings|interchange|oneschoolglobal)$",
+   "countFree": true,
+   "routeRegex": "^/UBTConnect/Locality_Details",
+   "reason": "The load phase of the tag states is the default state's load (same route, the clicks come after): the accepted CALL-ORDER-APPSTART-RACE, CALL-ORDER-APPSTART-USERINFO and CALL-COUNT-SIGNED-IMAGES-BATCH apply (only to ^default$ today). The tag-phase calls match. Auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "parity/tag-*.json call diff 'calls:load' only"
+  },
+  {
+   "id": "CALL-ORDER-APPSTART-RACE-ASSEMBLE-BROWSEBYCOUNTRY",
+   "actions": [
+    "ActionGetCountriesBySubscription"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/Assemble_BrowseByCountry(\\?|$)",
+   "reason": "ScreenBlock_Assemble_Filter's FetchCountries runs Cache_UserInfo_Get, then GetCountriesBySubscription: on TST the screen's user-info request went out before AfterInitialize (calls.json #3-#5), the clone's shell answers block user-info requests after the app-start step (CALL-ORDER-APPSTART-USERINFO), so GetCountriesBySubscription follows Sync_Info_GetMain. Its place among the app-start calls depends on timing; counts and inputs are still compared. Applies once CR-Assemble_BrowseByCountry-1 lets the call run. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Assemble_BrowseByCountry/analysis/calls.json (GetUserInformation ts 4797, GetCountriesBySubscription ts 5101, AfterInitialize ts 5682); app/src/shell/userInfo.ts (holdUserInfoForAppStart)"
+  },
+  {
+   "id": "CALL-ORDER-APPSTART-RACE-ASSEMBLEEVENTS",
+   "actions": [
+    "ActionGetCountriesBySubscription"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/AssembleEvents(\\?|$)",
+   "reason": "Assemble_FilterSheet's FetchCountries runs Cache_UserInfo_Get, then GetCountriesBySubscription: on TST the user-info request went out before AfterInitialize (calls.json #3-#5), the clone's shell answers block user-info requests after the app-start step (CALL-ORDER-APPSTART-USERINFO), so GetCountriesBySubscription follows Sync_Info_GetMain. Counts and inputs are still compared. Applies once CR-Assemble_BrowseByCountry-1 lets the call run. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/AssembleEvents/analysis/calls.json (GetUserInformation ts 4633, GetCountriesBySubscription ts 4919, AfterInitialize ts 5492); app/src/shell/userInfo.ts (holdUserInfoForAppStart)"
+  }
+ ],
+ "appStartCalls": {
+  "id": "APP-START-VIA",
+  "actions": [
+   "ActionAppManager_SynchAppContext",
+   "ActionAppManager_AfterInitialize",
+   "ActionSync_Info_GetMain",
+   "ActionGetUserInformation",
+   "ActionGetNumberUnreadMessages",
+   "ServiceAPIFetchData_CacheableMapEntities",
+   "ServiceAPIFetchData_CacheableHouseholds"
+  ],
+  "reason": "The app-start chain (shell startup.ts: SynchAppContext → AfterInitialize → Sync_Info_GetMain → GetUserInformation → GetNumberUnreadMessages → CacheableMapEntities + CacheableHouseholds) runs on every app open. States captured via another screen (capture-plan `via`, states.json) recorded only the calls after arriving, so these ran on the source screen on TST; parity opens the route by URL, where they run here. Applied only to via states and only when the capture lacks the action. HouseholdCarousel proposal CALL-APPSTART-VIA-HOUSEHOLDCAROUSEL, auto-accepted (user instruction 2026-10-15 16:59)",
+  "evidence": "app/src/shell/startup.ts; migration/screens/HouseholdCarousel/analysis/states.json (via); migration/screens/HouseholdCarousel/analysis/calls.json (no app-start call)"
+ }
+}

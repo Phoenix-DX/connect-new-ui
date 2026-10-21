@@ -1,0 +1,29 @@
+define("Connect2_LegacyShared.languageResources", ["OutSystems/ClientRuntime/Main"], function(OutSystems) {
+    var OS = OutSystems.Internal;
+    var MessagesProvider = (function(_super) {
+        __extends(MessagesProvider, _super);
+
+        function MessagesProvider(translationResources) {
+            _super.apply(this, arguments);
+            this.setMessage("Validation.Mandatory", "This field is required.");
+            this.setMessage("Validation.Integer", "Enter a valid integer.");
+            this.setMessage("Validation.LongInteger", "Enter a valid integer.");
+            this.setMessage("Validation.Decimal", "Enter a valid decimal.");
+            this.setMessage("Validation.Currency", "Enter a valid currency.");
+            this.setMessage("Validation.Date", "Enter a valid date.");
+            this.setMessage("Validation.Time", "Enter a valid time.");
+            this.setMessage("Validation.DateTime", "Enter a valid date and time.");
+            this.setMessage("Validation.Text", "Enter a valid text.");
+            this.setMessage("Validation.PhoneNumber", "Enter a valid phone number.");
+            this.setMessage("Validation.Email", "Enter a valid email.");
+            this.setMessage("UpgradeComplete", "Your application has been updated to the latest version.");
+            this.setMessage("AppInitError.Generic", "An error occurred while trying to update the app. If you want to retry the update, restart the app.");
+            this.setMessage("AppInitError.Resources", "An error occurred while trying to update the app. If you want to retry the update, restart the app.");
+            this.setMessage("AppInitError.DataModel", "An error occurred while trying to update the app. If you want to retry the update, restart the app. If the problem persists you can reinstall, but all local data will be lost.");
+            this.setMessage("UpgradeRequired", "Your application needs to be updated. Tap here to update.");
+            this.setMessage("UpgradeRequiredDataLoss", "Your application needs to be updated. Unsaved data will be lost. Tap here to update.");
+        }
+        return MessagesProvider;
+    })(OS.LanguageResources.BaseMessagesProvider);
+    return new MessagesProvider();
+});

@@ -1,0 +1,6049 @@
+{
+ "UBTConnect.App_Common.BottomBarMenu": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "BrowseCountries",
+   "BrowseDirectory",
+   "CountryDetails",
+   "CountryList",
+   "EmailContact",
+   "EmailTarget",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "Locality_Details",
+   "Menu",
+   "MessageDetail",
+   "MessageList",
+   "MyBookmarks",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 38,
+  "builtAt": "src/shared/UBTConnect/BottomBarMenu/BottomBarMenu.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "EmailContact",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Common_Blocks.App_IconBadge": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "BrowseCountries",
+   "BrowseDirectory",
+   "CountryDetails",
+   "CountryList",
+   "EmailContact",
+   "EmailTarget",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "Locality_Details",
+   "Menu",
+   "MessageDetail",
+   "MessageList",
+   "MyBookmarks",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 38,
+  "builtAt": "src/shared/UBTConnect/App_IconBadge/App_IconBadge.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "EmailContact",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.OutSystemsUIOverrides.IconBadge": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "BrowseCountries",
+   "BrowseDirectory",
+   "CountryDetails",
+   "CountryList",
+   "EmailContact",
+   "EmailTarget",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "Locality_Details",
+   "Menu",
+   "MessageDetail",
+   "MessageList",
+   "MyBookmarks",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 38,
+  "builtAt": "src/shared/UBTConnectLibrary/IconBadge/IconBadge.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "EmailContact",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.OutSystemsUIOverrides.Badge": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "BrowseCountries",
+   "BrowseDirectory",
+   "CountryDetails",
+   "CountryList",
+   "EmailContact",
+   "EmailTarget",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "Locality_Details",
+   "Menu",
+   "MessageDetail",
+   "MessageList",
+   "MyBookmarks",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 38,
+  "builtAt": "src/shared/UBTConnectLibrary/Badge/Badge.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "EmailContact",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding"
+  ],
+  "kind": "shared"
+ },
+ "OutSystemsUI_2_23.Navigation.BottomBarItem": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "BrowseCountries",
+   "BrowseDirectory",
+   "CountryDetails",
+   "CountryList",
+   "EmailContact",
+   "EmailTarget",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "Locality_Details",
+   "Menu",
+   "MessageDetail",
+   "MessageList",
+   "MyBookmarks",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 38,
+  "builtAt": "src/shared/osui/BottomBarItem/BottomBarItem.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "EmailContact",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding"
+  ],
+  "kind": "osui"
+ },
+ "UBTConnect.App_Common.BottomBarContent": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "BrowseCountries",
+   "BrowseDirectory",
+   "CountryDetails",
+   "CountryList",
+   "EmailContact",
+   "EmailTarget",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "Locality_Details",
+   "Menu",
+   "MessageDetail",
+   "MessageList",
+   "MyBookmarks",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 38,
+  "builtAt": "src/shared/UBTConnect/BottomBarContent/BottomBarContent.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "EmailContact",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding"
+  ],
+  "kind": "shared"
+ },
+ "OutSystemsUI_2_23.Content.BlankSlate": {
+  "liveUsers": [
+   "CommunityBusinessDetails_CoomingSoon"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/osui/BlankSlate/BlankSlate.tsx",
+  "remainingUsers": [],
+  "kind": "osui"
+ },
+ "UBTConnect.App_Common.MenuIcon": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.App_Common.Layout": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "NavigationHandler.NavigationHandler.NavigationHandler": {
+  "liveUsers": [
+   "ContactByEmailLDMCoordinator",
+   "ContactByEmailMember",
+   "ContactByEmailOneSchoolGlobal",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "ContactUsDetails",
+   "EmailContact",
+   "EmailTarget",
+   "LDM_Email_V2",
+   "Profile",
+   "Splash"
+  ],
+  "allUsers": 14,
+  "builtAt": "src/shared/NavigationHandler/NavigationHandler/NavigationHandler.tsx",
+  "remainingUsers": [
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "EmailContact"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.LoadingDots": {
+  "liveUsers": [
+   "Splash"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Utilities.InlineSVG": {
+  "liveUsers": [
+   "AcceptPendingPolicies",
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "BookmarksByGroup",
+   "BrowseCountries",
+   "BrowseDirectory",
+   "ConnectShare",
+   "ContactByEmailMember",
+   "ContactByEmailOrbitHost",
+   "ContactUsDetails",
+   "ContactUsMenu",
+   "CountryDetails",
+   "CountryList",
+   "EmailContact",
+   "EmailTarget",
+   "EventBooklet",
+   "EventDetail",
+   "FeedItemDetail",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HomeFeed",
+   "HostSurvey",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "LegacyShareObject",
+   "Locality_Details",
+   "Login",
+   "Menu",
+   "MessageDetail",
+   "MessageList",
+   "MilestoneDetail",
+   "MyBookmarks",
+   "MyEntertaining",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "PINChange",
+   "PINRegister",
+   "PINUnlock",
+   "Photobook",
+   "Profile",
+   "QRCodeGenerate",
+   "Search",
+   "Splash",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "TermsAndPoliciesMenu",
+   "TransportDetail",
+   "Updates_SingleList",
+   "ViewDocuments"
+  ],
+  "allUsers": 73,
+  "builtAt": "src/shared/osui/InlineSVG/InlineSVG.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "ContactByEmailOrbitHost",
+   "EmailContact",
+   "EventBooklet",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "MilestoneDetail",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "kind": "osui"
+ },
+ "UBTConnect.App_Common.LayoutBlank": {
+  "liveUsers": [
+   "Splash"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Adaptive.Columns2": {
+  "liveUsers": [
+   "AcceptPendingPolicies",
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "BookmarksByGroup",
+   "BrowseCountries",
+   "BrowseDirectory",
+   "CommunityBusinessDetails_CoomingSoon",
+   "ConnectShare",
+   "ContactByEmailLDMCoordinator",
+   "ContactByEmailMember",
+   "ContactByEmailOneSchoolGlobal",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "ContactUsDetails",
+   "ContactUsMenu",
+   "CountryDetails",
+   "CountryList",
+   "EmailContact",
+   "EmailTarget",
+   "EventBooklet",
+   "EventDetail",
+   "FeedItemDetail",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HomeFeed",
+   "HostSurvey",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "LegacyShareObject",
+   "Locality_Details",
+   "Login",
+   "Menu",
+   "MessageDetail",
+   "MessageList",
+   "MilestoneDetail",
+   "MyBookmarks",
+   "MyEntertaining",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "PINBiometricsMenu",
+   "PINChange",
+   "PINRegister",
+   "PINUnlock",
+   "Photobook",
+   "Profile",
+   "QRCodeGenerate",
+   "Search",
+   "Services",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "TermsAndPoliciesMenu",
+   "TransportDetail",
+   "Updates_SingleList",
+   "ViewDocuments"
+  ],
+  "allUsers": 80,
+  "builtAt": "src/shared/osui/Columns2/Columns2.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "EmailContact",
+   "EventBooklet",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "MilestoneDetail",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "kind": "osui"
+ },
+ "UBT_AppManager.Layouts.AppManager_Events": {
+  "liveUsers": [
+   "Login"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_ExitConfirmation": {
+  "liveUsers": [
+   "HomeFeed",
+   "Login"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shell/navigation/DialogExitConfirmation.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "NavigationHandler.ConfirmationDialogs.ExitConfirmationDialog": {
+  "liveUsers": [
+   "HomeFeed",
+   "Login"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shell/navigation/DialogExitConfirmation.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Common.Version_LoginWrapper": {
+  "liveUsers": [
+   "Login"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_Common.Version": {
+  "liveUsers": [
+   "Login",
+   "Menu"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/Version/Version.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "OutSystemsUI_2_23.Utilities.ButtonLoading": {
+  "liveUsers": [
+   "ContactByEmailLDMCoordinator",
+   "ContactByEmailMember",
+   "ContactByEmailOneSchoolGlobal",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "ContactUsDetails",
+   "Login",
+   "Profile",
+   "Services"
+  ],
+  "allUsers": 12,
+  "builtAt": "src/shared/osui/ButtonLoading/ButtonLoading.tsx",
+  "remainingUsers": [
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost"
+  ],
+  "kind": "osui"
+ },
+ "UBTConnectLibrary.ConnectPatterns.Tile": {
+  "liveUsers": [
+   "Login"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_Menu.Menu_List": {
+  "liveUsers": [
+   "ContactUsMenu",
+   "Menu",
+   "PINBiometricsMenu",
+   "TermsAndPoliciesMenu"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/UBTConnect/Menu_List/Menu_List.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.BasePatterns.Columns_Three": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "ContactByEmailMember",
+   "ContactByEmailOrbitHost",
+   "ContactUsMenu",
+   "CountryDetails",
+   "CountryList",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Menu",
+   "MessageDetail",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "PINBiometricsMenu",
+   "Photobook",
+   "Profile",
+   "Search",
+   "Services",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "TermsAndPoliciesMenu",
+   "Updates_SingleList"
+  ],
+  "allUsers": 32,
+  "builtAt": "src/shared/UBTConnectLibrary/Columns_Three/Columns_Three.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "ContactByEmailOrbitHost"
+  ],
+  "kind": "shared"
+ },
+ "OutSystemsUI_2_23.Adaptive.Columns3": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "ContactByEmailMember",
+   "ContactByEmailOrbitHost",
+   "ContactUsMenu",
+   "CountryDetails",
+   "CountryList",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "LDM_MyEvents_V2",
+   "Locality_Details",
+   "Menu",
+   "MessageDetail",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "PINBiometricsMenu",
+   "Photobook",
+   "Profile",
+   "Search",
+   "Services",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "TermsAndPoliciesMenu",
+   "Updates_SingleList"
+  ],
+  "allUsers": 34,
+  "builtAt": "src/shared/osui/Columns3/Columns3.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "ContactByEmailOrbitHost"
+  ],
+  "kind": "osui"
+ },
+ "UBTConnect.App_Common_Blocks.SectionSeparator": {
+  "liveUsers": [
+   "ContactUsDetails",
+   "ContactUsMenu",
+   "Menu",
+   "PINBiometricsMenu",
+   "Profile",
+   "Search",
+   "Services",
+   "TermsAndPoliciesMenu"
+  ],
+  "allUsers": 12,
+  "builtAt": "src/shared/UBTConnect/SectionSeparator/SectionSeparator.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.Layouts.Layout_DetailPage": {
+  "liveUsers": [
+   "BrowseCountries",
+   "BrowseDirectory",
+   "ContactByEmailLDMCoordinator",
+   "ContactByEmailMember",
+   "ContactByEmailOneSchoolGlobal",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "ContactUsDetails",
+   "ContactUsMenu",
+   "CountryDetails",
+   "FeedItemDetail",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Menu",
+   "MyEntertaining",
+   "OneSchoolGlobalDetails",
+   "PINBiometricsMenu",
+   "Search",
+   "Services",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "TermsAndPoliciesMenu"
+  ],
+  "allUsers": 32,
+  "builtAt": "src/shared/UBTConnectLibrary/Layout_DetailPage/Layout_DetailPage.tsx",
+  "remainingUsers": [
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper": {
+  "liveUsers": [
+   "ContactUsDetails",
+   "CountryDetails",
+   "CountryList",
+   "Menu",
+   "Notes",
+   "Notifications",
+   "Profile",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 11,
+  "builtAt": "src/shared/UBTConnect/CacheControl_UserInfo_Wrapper/CacheControl_UserInfo_Wrapper.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CacheControl.CacheControl_UserInfo": {
+  "liveUsers": [
+   "ContactUsDetails",
+   "CountryDetails",
+   "CountryList",
+   "Menu",
+   "Notes",
+   "Notifications",
+   "Profile",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 11,
+  "builtAt": "src/shared/UBTConnect_Utils/CacheControl_UserInfo/CacheControl_UserInfo.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_CustomChoice": {
+  "liveUsers": [
+   "Menu",
+   "Profile"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/Dialog_CustomChoice/Dialog_CustomChoice.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_Image.UBT_LazyImage": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup",
+   "ContactByEmailMember",
+   "ContactByEmailOrbitHost",
+   "ContactUsDetails",
+   "CountryDetails",
+   "CountryList",
+   "FeedItemDetail",
+   "HelpersDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "LegacyShareObject",
+   "Locality_Details",
+   "Menu",
+   "MessageDetail",
+   "MilestoneDetail",
+   "OneSchoolGlobalDetails",
+   "Photobook",
+   "Profile",
+   "Search",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 36,
+  "builtAt": "src/shared/UBTConnect_Utils/UBT_LazyImage/UBT_LazyImage.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "ContactByEmailOrbitHost",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone": {
+  "liveUsers": [
+   "AssembleDetail",
+   "ContactUsDetails",
+   "HelpersDetail",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "Locality_Details",
+   "MilestoneDetail",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 18,
+  "builtAt": "src/shared/UBTConnect_Utils/ContactPopup_ByPhone/ContactPopup_ByPhone.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup": {
+  "liveUsers": [
+   "AssembleDetail",
+   "ContactUsDetails",
+   "FeedItemDetail",
+   "HelpersDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "Locality_Details",
+   "MessageDetail",
+   "MilestoneDetail",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 22,
+  "builtAt": "src/shared/UBTConnect_Utils/ContactPopup/ContactPopup.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation": {
+  "liveUsers": [
+   "ContactByEmailLDMCoordinator",
+   "ContactByEmailMember",
+   "ContactByEmailOneSchoolGlobal",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "ContactUsDetails",
+   "Profile"
+  ],
+  "allUsers": 8,
+  "builtAt": "src/shared/UBTConnect/Dialog_Navigation/Dialog_Navigation.tsx",
+  "remainingUsers": [
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost"
+  ],
+  "kind": "shared"
+ },
+ "NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog": {
+  "liveUsers": [
+   "ContactByEmailLDMCoordinator",
+   "ContactByEmailMember",
+   "ContactByEmailOneSchoolGlobal",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "ContactUsDetails",
+   "EmailContact",
+   "EmailTarget",
+   "LDM_Email_V2",
+   "Profile"
+  ],
+  "allUsers": 12,
+  "builtAt": "src/shared/NavigationHandler/NavigationConfirmationDialog/NavigationConfirmationDialog.tsx",
+  "remainingUsers": [
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "EmailContact"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup",
+   "ContactUsDetails",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "MessageDetail",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 18,
+  "builtAt": "src/shared/UBTConnectLibrary/CircleButton_WithLabel/CircleButton_WithLabel.tsx",
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.CircleButton": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup",
+   "ContactUsDetails",
+   "CountryDetails",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "MessageDetail",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 22,
+  "builtAt": "src/shared/UBTConnectLibrary/CircleButton/CircleButton.tsx",
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Information": {
+  "liveUsers": [
+   "ContactUsDetails"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectPatterns.FixedFooter": {
+  "liveUsers": [
+   "AcceptPendingPolicies",
+   "ContactByEmailLDMCoordinator",
+   "ContactByEmailMember",
+   "ContactByEmailOneSchoolGlobal",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "ContactUsDetails",
+   "Profile",
+   "Services"
+  ],
+  "allUsers": 12,
+  "builtAt": "src/shared/UBTConnectLibrary/FixedFooter/FixedFooter.tsx",
+  "remainingUsers": [
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter": {
+  "liveUsers": [
+   "ContactByEmailLDMCoordinator",
+   "ContactByEmailMember",
+   "ContactByEmailOneSchoolGlobal",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "ContactUsDetails",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 18,
+  "builtAt": "src/shared/UBTConnectLibrary/TextArea_WithCounter/TextArea_WithCounter.tsx",
+  "remainingUsers": [
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.InputCounter": {
+  "liveUsers": [
+   "ContactByEmailLDMCoordinator",
+   "ContactByEmailMember",
+   "ContactByEmailOneSchoolGlobal",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost",
+   "ContactUsDetails",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 18,
+  "builtAt": "src/shared/UBTConnectLibrary/InputCounter/InputCounter.tsx",
+  "remainingUsers": [
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Menu_ContactUs.ContactUs_Rate": {
+  "liveUsers": [
+   "ContactUsDetails"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Interaction.RangeSlider": {
+  "liveUsers": [
+   "ContactUsDetails"
+  ],
+  "allUsers": 1,
+  "builtAt": "src/shared/osui/RangeSlider/RangeSlider.tsx",
+  "remainingUsers": [],
+  "kind": "osui"
+ },
+ "UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section": {
+  "liveUsers": [
+   "ContactUsDetails",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 9,
+  "builtAt": "src/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section/SubLayout_DirectoryDetailScreen_Section.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.Layouts.SubLayout_Section": {
+  "liveUsers": [
+   "ContactUsDetails",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 9,
+  "builtAt": "src/shared/UBTConnectLibrary/SubLayout_Section/SubLayout_Section.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Notifications.Notifications_MoreActionSheet": {
+  "liveUsers": [
+   "Notifications"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_CommonBlocks_Filter.MoreActionSheet": {
+  "liveUsers": [
+   "Notifications"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectPatterns.BottomSheet": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "CountryDetails",
+   "CountryList",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "Photobook",
+   "Profile",
+   "Search",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 23,
+  "builtAt": "src/shared/UBTConnectLibrary/BottomSheet/BottomSheet.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "OutSystemsUI_2_23.Interaction.BottomSheet": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "CountryDetails",
+   "CountryList",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HostSurvey",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "Photobook",
+   "Profile",
+   "Search",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 24,
+  "builtAt": "src/shared/osui/BottomSheet/BottomSheet.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "HostSurvey"
+  ],
+  "kind": "osui"
+ },
+ "UBTConnect.App_Notifications.Notifications_SortSheet": {
+  "liveUsers": [
+   "Notifications"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_CommonBlocks_Filter.SortSheet": {
+  "liveUsers": [
+   "Notifications"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item": {
+  "liveUsers": [
+   "CountryDetails",
+   "Notes",
+   "Notifications",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 7,
+  "builtAt": "src/shared/UBTConnect/FilterSheet_OptionChoice_Item/FilterSheet_OptionChoice_Item.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.SelectionOption_List": {
+  "liveUsers": [
+   "CountryDetails",
+   "Notes",
+   "Notifications",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 10,
+  "builtAt": "src/shared/UBTConnectLibrary/SelectionOption_List/SelectionOption_List.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "NavigationHandler.ScrollAnchors.ScrollAnchor": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "Notifications",
+   "Updates_SingleList"
+  ],
+  "allUsers": 6,
+  "builtAt": "src/shared/NavigationHandler/ScrollAnchor/ScrollAnchor.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem": {
+  "liveUsers": [
+   "Notifications"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml": {
+  "liveUsers": [
+   "MessageDetail",
+   "MilestoneDetail",
+   "Notifications",
+   "Photobook"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/ReactiveHtmlSanitizer/SanitizedHtml/SanitizedHtml.tsx",
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.AvatarImage": {
+  "liveUsers": [
+   "BrowseCountries",
+   "BrowseDirectory",
+   "HomeFeed",
+   "LegacyShareObject",
+   "Locality_Details",
+   "MessageDetail",
+   "Notes",
+   "Notifications",
+   "Updates_SingleList"
+  ],
+  "allUsers": 12,
+  "builtAt": "src/shared/UBTConnectLibrary/AvatarImage/AvatarImage.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.AvatarDouble": {
+  "liveUsers": [
+   "HomeFeed",
+   "MessageDetail",
+   "Notifications",
+   "Updates_SingleList"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/UBTConnectLibrary/AvatarDouble/AvatarDouble.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Notifications.NotificationsListBreakpoints": {
+  "liveUsers": [
+   "Notifications"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_Notifications.NotificationsList": {
+  "liveUsers": [
+   "Notifications"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_Notifications.Notifications_Header": {
+  "liveUsers": [
+   "Notifications"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_Notifications.Notifications_NoItemsFound": {
+  "liveUsers": [
+   "Notifications"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_Notifications.Notifications_Action": {
+  "liveUsers": [
+   "Notifications"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectPatterns.Input": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "BrowseCountries",
+   "BrowseDirectory",
+   "CountryDetails",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "Search",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 22,
+  "builtAt": "src/shared/UBTConnectLibrary/Input/Input.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "OutSystemsUI_2_23.Interaction.InputWithIcon": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "BookmarksByGroup",
+   "BrowseCountries",
+   "BrowseDirectory",
+   "CountryDetails",
+   "EventBooklet",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HostSurvey",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "LegacyShareObject",
+   "Locality_Details",
+   "MessageList",
+   "Notes",
+   "Notifications",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "Search",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 27,
+  "builtAt": "src/shared/osui/InputWithIcon/InputWithIcon.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "EventBooklet",
+   "HostSurvey"
+  ],
+  "kind": "osui"
+ },
+ "UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade": {
+  "liveUsers": [
+   "Notifications"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_PIN.Block_PINRegister_ContentWrapper": {
+  "liveUsers": [
+   "PINChange",
+   "PINRegister"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/Block_PINRegister_ContentWrapper/Block_PINRegister_ContentWrapper.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBT_AppManager.PIN.Pincode_Register": {
+  "liveUsers": [
+   "PINChange",
+   "PINRegister"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBT_AppManager/Pincode_Register/Pincode_Register.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies": {
+  "liveUsers": [
+   "AcceptPendingPolicies"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Utilities.Separator": {
+  "liveUsers": [
+   "AcceptPendingPolicies",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "MessageList"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/osui/Separator/Separator.tsx",
+  "remainingUsers": [
+   "AssembleEvents",
+   "Assemble_BrowseByCountry"
+  ],
+  "kind": "osui"
+ },
+ "SortableJS.Sortable.SortableList_Draggable": {
+  "liveUsers": [
+   "Services"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "SortableJS.Sortable.SortableList": {
+  "liveUsers": [
+   "Services"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Bookmarks.Bookmarks_FilterSheet": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.App_CommonBlocks_Filter.FilterSheet": {
+  "liveUsers": [
+   "CountryDetails",
+   "Notes",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 6,
+  "builtAt": "src/shared/UBTConnect/FilterSheet/FilterSheet.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CacheControl.CacheControl_AllLocalities": {
+  "liveUsers": [
+   "CountryDetails",
+   "Notes",
+   "Profile",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 7,
+  "builtAt": "src/shared/UBTConnect_Utils/CacheControl_AllLocalities/CacheControl_AllLocalities.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CacheControl.CacheControl_AllCountries": {
+  "liveUsers": [
+   "CountryDetails",
+   "Notes",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 6,
+  "builtAt": "src/shared/UBTConnect_Utils/CacheControl_AllCountries/CacheControl_AllCountries.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item": {
+  "liveUsers": [
+   "CountryDetails",
+   "Notes",
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 6,
+  "builtAt": "src/shared/UBTConnect/FilterSheet_OptionList_Item/FilterSheet_OptionList_Item.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Bookmarks.Bookmarks_Card_List": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Bookmarks.Bookmarks_Card_Item": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect_Utils.CW_Notes.NotesSheet": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 11,
+  "builtAt": "src/shared/UBTConnect_Utils/NotesSheet/NotesSheet.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.AddNote": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 11,
+  "builtAt": "src/shared/UBTConnectLibrary/AddNote/AddNote.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary": {
+  "liveUsers": [
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "MessageDetail",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 14,
+  "builtAt": "src/shared/UBTConnectLibrary/CircleButton_IconPrimary/CircleButton_IconPrimary.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_Notes.NoteListActions": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 11,
+  "builtAt": "src/shared/UBTConnect_Utils/NoteListActions/NoteListActions.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.Note_Item_List": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 11,
+  "builtAt": "src/shared/UBTConnectLibrary/Note_Item_List/Note_Item_List.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.Popup": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 11,
+  "builtAt": "src/shared/UBTConnectLibrary/Popup/Popup.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.Note_Item": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 11,
+  "builtAt": "src/shared/UBTConnectLibrary/Note_Item/Note_Item.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 11,
+  "builtAt": "src/shared/UBTConnectLibrary/KebabButton_BookmarkNotes/KebabButton_BookmarkNotes.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.ContextMenu": {
+  "liveUsers": [
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "MessageDetail",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 14,
+  "builtAt": "src/shared/UBTConnectLibrary/ContextMenu/ContextMenu.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.ContextMenu_Item": {
+  "liveUsers": [
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "MessageDetail",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 14,
+  "builtAt": "src/shared/UBTConnectLibrary/ContextMenu_Item/ContextMenu_Item.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.PopupMenu": {
+  "liveUsers": [
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "MessageDetail",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 14,
+  "builtAt": "src/shared/UBTConnectLibrary/PopupMenu/PopupMenu.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.TextEllipsis": {
+  "liveUsers": [
+   "CommunityBusinessDetails_CoomingSoon",
+   "CountryList",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 16,
+  "builtAt": "src/shared/UBTConnectLibrary/TextEllipsis/TextEllipsis.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Common_Blocks.ItemCardActions": {
+  "liveUsers": [
+   "Notes"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar": {
+  "liveUsers": [
+   "Notes"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes": {
+  "liveUsers": [
+   "Notes"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectPatterns.EmptyList": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup",
+   "CountryDetails",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "Notes",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 17,
+  "builtAt": "src/shared/UBTConnectLibrary/EmptyList/EmptyList.tsx",
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label": {
+  "liveUsers": [
+   "Notes"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList": {
+  "liveUsers": [
+   "Notes"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectPatterns.TagToggle": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "Notes",
+   "Profile",
+   "Search",
+   "SupperMeeting_Carousel",
+   "Updates_SingleList"
+  ],
+  "allUsers": 11,
+  "builtAt": "src/shared/UBTConnectLibrary/TagToggle/TagToggle.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Common_Blocks.App_NotificationIcon": {
+  "liveUsers": [
+   "CountryList",
+   "HomeFeed",
+   "Notes",
+   "Updates_SingleList"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnect/App_NotificationIcon/App_NotificationIcon.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Common_Blocks.App_NotificationRefresh": {
+  "liveUsers": [
+   "CountryList",
+   "HomeFeed",
+   "Notes",
+   "Updates_SingleList"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnect/App_NotificationRefresh/App_NotificationRefresh.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle": {
+  "liveUsers": [
+   "Notes",
+   "Updates_SingleList"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/UBTConnectLibrary/Layout_MainPages_FixedTitle/Layout_MainPages_FixedTitle.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.App_Profile.Profile_HouseholdPreview": {
+  "liveUsers": [
+   "Profile"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Household.HouseholdDetails_Block": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "Profile",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnect/HouseholdDetails_Block/HouseholdDetails_Block.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_Share.ShareableObject_Generic": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "MessageDetail",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 13,
+  "builtAt": "src/shared/UBTConnect_Utils/ShareableObject_Generic/ShareableObject_Generic.tsx",
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_Share.ShareSheet": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 13,
+  "builtAt": "src/shared/UBTConnect_Utils/ShareSheet/ShareSheet.tsx",
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_Search.SearchResult_Item": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "Search",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 15,
+  "builtAt": "src/shared/UBTConnect_Utils/SearchResult_Item/SearchResult_Item.tsx",
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 14,
+  "builtAt": "src/shared/UBTConnect_Utils/ShareSheet_SectionTitle/ShareSheet_SectionTitle.tsx",
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_Share.ShareSheet_Section": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup",
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details",
+   "Updates_SingleList"
+  ],
+  "allUsers": 13,
+  "builtAt": "src/shared/UBTConnect_Utils/ShareSheet_Section/ShareSheet_Section.tsx",
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "Profile",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnect/HouseholdDetails_Members_Block/HouseholdDetails_Members_Block.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Household_Relations",
+   "Locality_Details",
+   "Profile",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 6,
+  "builtAt": "src/shared/UBTConnectLibrary/NonMember_ListItem/NonMember_ListItem.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 8,
+  "builtAt": "src/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_CTA_PopUps.SharePopup": {
+  "liveUsers": [
+   "FeedItemDetail",
+   "HomeFeed",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "MessageDetail",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 11,
+  "builtAt": "src/shared/UBTConnect_Utils/SharePopup/SharePopup.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper": {
+  "liveUsers": [
+   "AssembleDetail",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "Locality_Details",
+   "MilestoneDetail",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 14,
+  "builtAt": "src/shared/UBTConnect_Utils/ContactByMessage_Wrapper/ContactByMessage_Wrapper.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "MilestoneDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage": {
+  "liveUsers": [
+   "AssembleDetail",
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "Locality_Details",
+   "MilestoneDetail",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 14,
+  "builtAt": "src/shared/UBTConnect_Utils/ContactPopup_ByMessage/ContactPopup_ByMessage.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "MilestoneDetail"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.ActionsMenu": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 8,
+  "builtAt": "src/shared/UBTConnectLibrary/ActionsMenu/ActionsMenu.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.Member_ListItem": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "Profile",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnectLibrary/Member_ListItem/Member_ListItem.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.ComingSoon": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 6,
+  "builtAt": "src/shared/UBTConnectLibrary/ComingSoon/ComingSoon.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "Profile",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnect/HouseholdDetails_TimelinePhoto_List/HouseholdDetails_TimelinePhoto_List.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "Profile",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnect/HouseholdDetails_TimelinePhoto/HouseholdDetails_TimelinePhoto.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.SeeMoreSection": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "Profile",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 6,
+  "builtAt": "src/shared/UBTConnectLibrary/SeeMoreSection/SeeMoreSection.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 9,
+  "builtAt": "src/shared/UBTConnect_Utils/AddressPopup_Wrapper/AddressPopup_Wrapper.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CW_CTA_PopUps.AddressPopup": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 9,
+  "builtAt": "src/shared/UBTConnect_Utils/AddressPopup/AddressPopup.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "Profile",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnectLibrary/KebabButtonMenu/KebabButtonMenu.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.HorizontalTagList": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "Profile",
+   "Search",
+   "SupperMeeting_Carousel",
+   "Updates_SingleList"
+  ],
+  "allUsers": 9,
+  "builtAt": "src/shared/UBTConnectLibrary/HorizontalTagList/HorizontalTagList.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.ImageCard__Content": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 9,
+  "builtAt": "src/shared/UBTConnectLibrary/ImageCard__Content/ImageCard__Content.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 8,
+  "builtAt": "src/shared/UBTConnectLibrary/ImageCard_LazyLoading/ImageCard_LazyLoading.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "HouseholdDetails",
+   "Locality_Details",
+   "OneSchoolGlobalDetails",
+   "Profile",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 8,
+  "builtAt": "src/shared/UBTConnect/SubLayout_DirectoryDetailScreen/SubLayout_DirectoryDetailScreen.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_Utils.CacheControl.CacheControl_AllSubdivisions": {
+  "liveUsers": [
+   "Profile"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Interaction.DropdownSearch": {
+  "liveUsers": [
+   "Profile"
+  ],
+  "allUsers": 1,
+  "builtAt": "src/shared/osui/DropdownSearch/DropdownSearch.tsx",
+  "remainingUsers": [],
+  "kind": "osui"
+ },
+ "UBTConnectLibrary.Layouts.Layout_HomePage": {
+  "liveUsers": [
+   "HomeFeed",
+   "Profile"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnectLibrary/Layout_HomePage/Layout_HomePage.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.Layouts.SubLayout_HomePageSearch": {
+  "liveUsers": [
+   "HomeFeed",
+   "Profile"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnectLibrary/SubLayout_HomePageSearch/SubLayout_HomePageSearch.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.StaticInput": {
+  "liveUsers": [
+   "CommunityBusinessDetails_CoomingSoon",
+   "CountryList",
+   "HomeFeed",
+   "Locality_Details",
+   "Profile"
+  ],
+  "allUsers": 7,
+  "builtAt": "src/shared/UBTConnectLibrary/StaticInput/StaticInput.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Calendar.MonthPicker": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "OutSystemsUI_2_23.Adaptive.Gallery": {
+  "liveUsers": [
+   "HomeFeed",
+   "HostSurvey",
+   "HouseholdCarousel",
+   "Search",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 10,
+  "builtAt": "src/shared/osui/Gallery/Gallery.tsx",
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "osui"
+ },
+ "UBTConnect.Calendar.Calendar_ViewActionMenu": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.CalendarView_MonthWrapper": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.CalendarView": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.CacheControl_Calendar_Coordinator": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar_Events.CacheControl_CalendarEvents": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.CalendarMonths": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.DayList": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnectLibrary.ConnectPatterns.HorizontalDot_List": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.Weekday": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.CalendarHeaderWeekdays": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.CalendarWeeks": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.CalendarDays": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.EventList": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar_Events.Calendar_EventCard": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnectLibrary.ConnectPatterns.EventCard": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar_Events.Calendar_NoEvents": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.EventList_CacheWrapper": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.CalendarView_WeekWrapper": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.SubLayout.SubLayout_DirectoryCalendar": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.Calendar_Header": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.Calendar_Header_SelectedDate": {
+  "liveUsers": [],
+  "allUsers": 3,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Calendar.MyEntertaining_Embedded": {
+  "liveUsers": [
+   "MyEntertaining"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining": {
+  "liveUsers": [
+   "MyEntertaining"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.ContactFlow.ContactByEmailForm": {
+  "liveUsers": [
+   "ContactByEmailLDMCoordinator",
+   "ContactByEmailMember",
+   "ContactByEmailOneSchoolGlobal",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost"
+  ],
+  "allUsers": 6,
+  "builtAt": "src/shared/UBTConnect/ContactByEmailForm/ContactByEmailForm.tsx",
+  "remainingUsers": [
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.DynamicTextArea": {
+  "liveUsers": [
+   "ContactByEmailLDMCoordinator",
+   "ContactByEmailMember",
+   "ContactByEmailOneSchoolGlobal",
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost"
+  ],
+  "allUsers": 7,
+  "builtAt": "src/shared/UBTConnectLibrary/DynamicTextArea/DynamicTextArea.tsx",
+  "remainingUsers": [
+   "ContactByEmailOrbitHelpdesk",
+   "ContactByEmailOrbitHost"
+  ],
+  "kind": "shared"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.UserEventDetails_InviteeList": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.UserEventDetails_IconTextWrapper": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventForm_LabelContent": {
+  "liveUsers": [],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.Indev_AddAttendees": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_Entity_UnderDev": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_SelectSearchResults": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_ResultList": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect_Utils.CW_Common.StickySearchInput": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect_Utils.CW_ShearchSheet.SearchSheet_BottomSheet": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.UserEventForm_Item__Navigate": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventForm_IconContent": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.ConnectForm_ItemContainer": {
+  "liveUsers": [],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.UserEventForm_DateTimeWrapper": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.Picker_Time": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.CustomScrollListWrapper": {
+  "liveUsers": [],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnectLibrary.ConnectPatterns.CustomScrollList": {
+  "liveUsers": [],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.Picker_Date": {
+  "liveUsers": [],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.UserEventForm_DateTime": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventForm_TagInput": {
+  "liveUsers": [],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnectLibrary.ConnectPatterns.Input_Underlined": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.Recurrence_WeekdaysTagList": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Directory_Household.HouseholdRelations_Block": {
+  "liveUsers": [
+   "Household_Relations"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem": {
+  "liveUsers": [
+   "Household_Relations"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Caroussel.EntitiesCarousel": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/EntitiesCarousel/EntitiesCarousel.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/EntitiesCarousel_HeaderGenerator/EntitiesCarousel_HeaderGenerator.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Caroussel.EntitiesCarousel_Element": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/EntitiesCarousel_Element/EntitiesCarousel_Element.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/EntitiesCarousel_HouseholdDetails/EntitiesCarousel_HouseholdDetails.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Caroussel.CarouselTag": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/CarouselTag/CarouselTag.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.TagContent": {
+  "liveUsers": [
+   "HomeFeed",
+   "HouseholdCarousel",
+   "MessageDetail",
+   "SupperMeeting_Carousel",
+   "Updates_SingleList"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnectLibrary/TagContent/TagContent.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/EntitiesCarouse_lSupperMeetingDetails/EntitiesCarouse_lSupperMeetingDetails.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/UBTConnect/SupperMeeting_DetailsBlock/SupperMeeting_DetailsBlock.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/UBTConnect/SupperMeeting_HouseholdList/SupperMeeting_HouseholdList.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Household_Blocks.Household_GalleryCard_List": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/UBTConnect/Household_GalleryCard_List/Household_GalleryCard_List.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Household_Blocks.Household_GalleryCard": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/UBTConnect/Household_GalleryCard/Household_GalleryCard.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_CommonBlocks.Directory_EmptyState": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "Locality_Details",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/UBTConnect/Directory_EmptyState/Directory_EmptyState.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "Locality_Details",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnect/SupperMeeting_ImageCard_Content/SupperMeeting_ImageCard_Content.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_Statistics": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "Locality_Details",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnect/SupperMeeting_ImageCard_Content_Statistics/SupperMeeting_ImageCard_Content_Statistics.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectPatterns.ImageCard__Content__Tag": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "Locality_Details",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnectLibrary/ImageCard__Content__Tag/ImageCard__Content__Tag.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_IconText": {
+  "liveUsers": [
+   "HouseholdCarousel",
+   "Locality_Details",
+   "SupperMeeting_Carousel",
+   "SupperMeeting_Details"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnect/SupperMeeting_ImageCard_Content_IconText/SupperMeeting_ImageCard_Content_IconText.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "OutSystemsUI_2_23.Interaction.Carousel": {
+  "liveUsers": [
+   "HomeFeed",
+   "HouseholdCarousel",
+   "Photobook",
+   "SupperMeeting_Carousel"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/osui/Carousel/Carousel.tsx",
+  "remainingUsers": [],
+  "kind": "osui"
+ },
+ "UBTConnect.Directory_Locality.StatisticsList": {
+  "liveUsers": [
+   "BrowseCountries",
+   "BrowseDirectory"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/StatisticsList/StatisticsList.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem": {
+  "liveUsers": [
+   "BrowseCountries",
+   "BrowseDirectory",
+   "Locality_Details"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/UBTConnectLibrary/Statistics_ListItem/Statistics_ListItem.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "Leaflet.Leaflet.LeafletMap": {
+  "liveUsers": [
+   "BrowseDirectory",
+   "CountryDetails"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Leaflet/LeafletMap/LeafletMap.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.SubLayout.SubLayout_Browse_Section": {
+  "liveUsers": [
+   "BrowseDirectory",
+   "CountryDetails"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/SubLayout_Browse_Section/SubLayout_Browse_Section.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Locality.Directory_LegendBottomSheet": {
+  "liveUsers": [
+   "CountryDetails",
+   "CountryList"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/Directory_LegendBottomSheet/Directory_LegendBottomSheet.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Locality.Statistics_TypedItem": {
+  "liveUsers": [
+   "CountryDetails",
+   "CountryList"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/Statistics_TypedItem/Statistics_TypedItem.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Locality.Statistics_Icons": {
+  "liveUsers": [
+   "CountryDetails",
+   "CountryList"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/Statistics_Icons/Statistics_Icons.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Home.FeedBlock_CommunityPopulation": {
+  "liveUsers": [
+   "CountryList",
+   "HomeFeed"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/UBTConnect/FeedBlock_CommunityPopulation/FeedBlock_CommunityPopulation.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnectLibrary.Layouts.Layout_MainPages": {
+  "liveUsers": [
+   "CommunityBusinessDetails_CoomingSoon",
+   "CountryList",
+   "Locality_Details"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/UBTConnectLibrary/Layout_MainPages/Layout_MainPages.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Locality.Locality_OneSchoolGlobal": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectPatterns.StopPropagationHelper": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Locality.Locality_Interchange": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Interchange.Directory_Interchange_StatisticsList": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Locality.Locality_Subdivisions": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Locality.Locality_Households": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Locality.Locality_Households_HouseholdList": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Household_Blocks.Household_Card": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect_Utils.CW_Image.UBT_LazyImage_List": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Locality.Locality_DateTimeLabel": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect_Utils.Utils.Timer": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.Layouts.SubHeader_MainPages": {
+  "liveUsers": [
+   "Locality_Details"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectPatterns.ExpandableSection": {
+  "liveUsers": [
+   "OneSchoolGlobalDetails"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_Common_Blocks.External_Link": {
+  "liveUsers": [
+   "OneSchoolGlobalDetails"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectPatterns.Skeleton_TextBlock": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_Event_Card": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Directory_OneSchoolGlobal_Blocks.UI_OneSchoolGlobalEventDetail_IconTextWrapper": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.ImageCard": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnectLibrary.ConnectPatterns.AvatarImageList": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnectLibrary.ConnectPatterns.Unavailable_Image": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Directory_Photobook.Photobook_Carousel": {
+  "liveUsers": [
+   "Photobook"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Photobook.Photobook_Gallery": {
+  "liveUsers": [
+   "Photobook"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Utilities.TouchEvents": {
+  "liveUsers": [
+   "LDM_MyEvents_V2",
+   "Photobook"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/osui/TouchEvents/TouchEvents.tsx",
+  "remainingUsers": [],
+  "kind": "osui"
+ },
+ "UBTConnect.Directory_Photobook.Photobook_Gallery_Item": {
+  "liveUsers": [
+   "Photobook"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Photobook.Photobook_Options_Bottom": {
+  "liveUsers": [
+   "Photobook"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Photobook.Photobook_Options_Player": {
+  "liveUsers": [
+   "Photobook"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Photobook.Photobook_Options_Right": {
+  "liveUsers": [
+   "Photobook"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Photobook.Photobook_Options_Left": {
+  "liveUsers": [
+   "Photobook"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Photobook.Photobook_Item": {
+  "liveUsers": [
+   "Photobook"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "PanZoom.PanZoom.PanZoom": {
+  "liveUsers": [
+   "Photobook"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Search.ScreenBlock_Search": {
+  "liveUsers": [
+   "Search"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Search.SearchResult_Section": {
+  "liveUsers": [
+   "Search"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Search.Search_BirthdayOptions": {
+  "liveUsers": [
+   "Search"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon": {
+  "liveUsers": [
+   "Search",
+   "Updates_SingleList"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/UBTConnect/FilterSheet_Icon/FilterSheet_Icon.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Updates.Directory_Updates_FilterSheet": {
+  "liveUsers": [
+   "Updates_SingleList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnectLibrary.ConnectCorePatterns.Update_ListItem": {
+  "liveUsers": [
+   "HomeFeed",
+   "MessageDetail",
+   "Updates_SingleList"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/UBTConnectLibrary/Update_ListItem/Update_ListItem.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Directory_Updates.SectionHeader": {
+  "liveUsers": [
+   "Updates_SingleList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Updates.UpdateItem_Header": {
+  "liveUsers": [
+   "Updates_SingleList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Directory_Updates.Updates_NoItemsFound": {
+  "liveUsers": [
+   "Updates_SingleList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Home.Feed_Embeded": {
+  "liveUsers": [
+   "FeedItemDetail",
+   "HomeFeed",
+   "MessageDetail"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/UBTConnect/Feed_Embeded/Feed_Embeded.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS": {
+  "liveUsers": [
+   "FeedItemDetail",
+   "HomeFeed",
+   "MessageDetail"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS/Embedded_FeedCMS.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "UBTConnect.Home.FeedBlock_Updates": {
+  "liveUsers": [
+   "HomeFeed"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Home.FeedBlock_Services": {
+  "liveUsers": [
+   "HomeFeed"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp": {
+  "liveUsers": [
+   "HomeFeed"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Home.Section_FeedWrapper": {
+  "liveUsers": [
+   "HomeFeed"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_Common_Blocks.Section": {
+  "liveUsers": [
+   "HomeFeed"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.App_Common.AppLogo_White": {
+  "liveUsers": [
+   "HomeFeed"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.Assemble_FilterSheet": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "BookmarksByGroup",
+   "ConnectShare",
+   "EventBooklet",
+   "GuestArrangements",
+   "HelpersDetail",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "MilestoneDetail",
+   "MyBookmarks"
+  ],
+  "allUsers": 16,
+  "builtAt": "src/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy/Dialog_AccessRestrictedAction_Legacy.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "EventBooklet",
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_Assemble_MUI.Assemble.Assemble_FilterLocalityByCountry": {
+  "liveUsers": [
+   "AssembleEvents",
+   "Assemble_BrowseByCountry"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry/Assemble_FilterLocalityByCountry.tsx",
+  "remainingUsers": [
+   "AssembleEvents",
+   "Assemble_BrowseByCountry"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality": {
+  "liveUsers": [
+   "AssembleEvents",
+   "Assemble_BrowseByCountry"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_Assemble_MUI/Assemble_FilterSubdivisionByLocality/Assemble_FilterSubdivisionByLocality.tsx",
+  "remainingUsers": [
+   "AssembleEvents",
+   "Assemble_BrowseByCountry"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.Reusable.RadioButtonListItem": {
+  "liveUsers": [
+   "AssembleEvents",
+   "Assemble_BrowseByCountry"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_LegacyShared/RadioButtonListItem/RadioButtonListItem.tsx",
+  "remainingUsers": [
+   "AssembleEvents",
+   "Assemble_BrowseByCountry"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.Reusable.Spinner": {
+  "liveUsers": [
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "BookmarksByGroup",
+   "MessageDetail",
+   "MessageList",
+   "MyBookmarks"
+  ],
+  "allUsers": 8,
+  "builtAt": "src/shared/Connect2_LegacyShared/Spinner/Spinner.tsx",
+  "remainingUsers": [
+   "AssembleEvents",
+   "Assemble_BrowseByCountry"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.Directory.LocalityListDetail": {
+  "liveUsers": [
+   "AssembleEvents",
+   "Assemble_BrowseByCountry"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_LegacyShared/LocalityListDetail/LocalityListDetail.tsx",
+  "remainingUsers": [
+   "AssembleEvents",
+   "Assemble_BrowseByCountry"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleEvents": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleSummary_List": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleSummary_FilterDrawer": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Reusable.NewConnectContent": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_LegacyShared/NewConnectContent/NewConnectContent.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.NewConnect.InBlock_ActionMenu": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummary_SkeletonList": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card__Location": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item_Badge": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_LegacyShared/NC_Result_Item_Badge/NC_Result_Item_Badge.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.NewConnect_Skeleton.NC_Card_Item_Text__Skeleton": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton/NC_Card_Item_Text__Skeleton.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_Assemble_MUI/AssembleSummaryDetailHeader_Skeleton/AssembleSummaryDetailHeader_Skeleton.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_LegacyShared/NC_Result_Item__Card/NC_Result_Item__Card.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleSummaryCard": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_Assemble_MUI/AssembleSummaryCard/AssembleSummaryCard.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingURL/AssembleCommon_VirtualMeetingURL.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingDetails/AssembleCommon_VirtualMeetingDetails.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails_Entry": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingDetails_Entry/AssembleCommon_VirtualMeetingDetails_Entry.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.Utility.LabelWithCopyIcon": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_LegacyShared/LabelWithCopyIcon/LabelWithCopyIcon.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "OutSystemsUI_2_23.Utilities.AlignCenter": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "BookmarksByGroup",
+   "MessageList"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/osui/AlignCenter/AlignCenter.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "osui"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_Assemble_MUI/AssembleSummary_Card_Row/AssembleSummary_Card_Row.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Image": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_LegacyShared/NC_Result_Item__Image/NC_Result_Item__Image.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleSummaryCard__Header": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_Assemble_MUI/AssembleSummaryCard__Header/AssembleSummaryCard__Header.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.NewConnect_Utilities.NC_Card_Item_Visual": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_LegacyShared/NC_Card_Item_Visual/NC_Card_Item_Visual.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.NewConnect_Utilities.NC_ErrorScreen": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleSummary_List__Header": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Reusable.HorizontalTags": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Content.Tag": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": "src/shared/osui/Tag/Tag.tsx",
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "osui"
+ },
+ "Connect2_LegacyShared.Reusable.HorizontalScrollTiles": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Share.StickyHeader": {
+  "liveUsers": [
+   "AssembleEvents"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleEvents"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "BookmarksByGroup",
+   "EmailContact",
+   "EmailTarget",
+   "EventBooklet",
+   "EventDetail",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "MessageList",
+   "MilestoneDetail",
+   "MyBookmarks",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "allUsers": 28,
+  "builtAt": "src/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI/MenuIcon__UpdatedOSUI.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "EmailContact",
+   "EventBooklet",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "MilestoneDetail",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.Layout.Layout": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "BookmarksByGroup",
+   "ConnectShare",
+   "EmailTarget",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "LegacyShareObject",
+   "MessageDetail",
+   "MessageList",
+   "MyBookmarks"
+  ],
+  "allUsers": 18,
+  "builtAt": "src/shared/Connect2_LegacyShared/Layout/Layout.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI": {
+  "liveUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "BookmarksByGroup",
+   "ConnectShare",
+   "EmailContact",
+   "EmailTarget",
+   "EventBooklet",
+   "EventDetail",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2",
+   "LegacyShareObject",
+   "MessageDetail",
+   "MessageList",
+   "MilestoneDetail",
+   "MyBookmarks",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "allUsers": 31,
+  "builtAt": "src/shared/Connect2_LegacyShared/BaseLayout_UpdatedOSUI/BaseLayout_UpdatedOSUI.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "AssembleEvents",
+   "Assemble_BrowseByCountry",
+   "EmailContact",
+   "EventBooklet",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "MilestoneDetail",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_Assemble_MUI.Assemble.ScreenBlock_Assemble_Filter": {
+  "liveUsers": [
+   "Assemble_BrowseByCountry"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "Assemble_BrowseByCountry"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Email.ScreenBlock_Household_Email": {
+  "liveUsers": [
+   "EmailTarget"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading": {
+  "liveUsers": [
+   "EmailContact",
+   "EmailTarget"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/osui/DEPRECATED_ButtonLoading/DEPRECATED_ButtonLoading.tsx",
+  "remainingUsers": [
+   "EmailContact"
+  ],
+  "kind": "osui"
+ },
+ "Connect2_LegacyShared.Reusable.InputCounter": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup",
+   "EmailContact",
+   "EmailTarget",
+   "HostSurvey",
+   "LDM_Email_V2"
+  ],
+  "allUsers": 8,
+  "builtAt": "src/shared/Connect2_LegacyShared/InputCounter/InputCounter.tsx",
+  "remainingUsers": [
+   "AssembleDetail",
+   "EmailContact",
+   "HostSurvey"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleEventDetail": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Reusable.Person_Contact_Options": {
+  "liveUsers": [
+   "AssembleDetail",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/Connect2_LegacyShared/Person_Contact_Options/Person_Contact_Options.tsx",
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.NewConnect_Skeleton.NC_Result_Item__Image__Skeleton": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitiesList": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.MyBookmarks.BookmarkNoteAddEdit": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Share.ContextMenu": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Utility.ItemOptionsMenu": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/Connect2_LegacyShared/ItemOptionsMenu/ItemOptionsMenu.tsx",
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.Widgets.PopupMenu": {
+  "liveUsers": [
+   "AssembleDetail",
+   "BookmarksByGroup"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/Connect2_LegacyShared/PopupMenu/PopupMenu.tsx",
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Tag": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Utility.ShowMoreShowLessContainer": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Section": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_Assemble_MUI.Assemble.AssembleEventDetail__Error": {
+  "liveUsers": [
+   "AssembleDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "AssembleDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks.ScreenBlock_Event_Email": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_LegacyShared.Widgets.NetworkWarning": {
+  "liveUsers": [
+   "LDM_Email_V2",
+   "LDM_MyEvents_V2",
+   "MyBookmarks"
+  ],
+  "allUsers": 6,
+  "builtAt": "src/shared/Connect2_LegacyShared/NetworkWarning/NetworkWarning.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "OutSystemsUI_2_23.Interaction.Animate": {
+  "liveUsers": [
+   "LDM_Email_V2",
+   "LDM_MyEvents_V2",
+   "MessageList",
+   "MyBookmarks"
+  ],
+  "allUsers": 7,
+  "builtAt": "src/shared/osui/Animate/Animate.tsx",
+  "remainingUsers": [],
+  "kind": "osui"
+ },
+ "Connect2_OrbitMobile_MUI.UtilityFlow.ErrorScreen": {
+  "liveUsers": [
+   "LDM_Email_V2",
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 6,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/ErrorScreen/ErrorScreen.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.Agenda_V2": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_V2": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Utility.Result_Item_Image": {
+  "liveUsers": [
+   "BookmarksByGroup",
+   "LDM_MyEvents_V2",
+   "LegacyShareObject",
+   "MessageDetail"
+  ],
+  "allUsers": 6,
+  "builtAt": "src/shared/Connect2_LegacyShared/Result_Item_Image/Result_Item_Image.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.Widgets.OverlappingImages": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.EventCard_Info_V2": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Box": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.WeekDataDisplay": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyTimeline_V2": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Utilities.SwipeEvents": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/osui/SwipeEvents/SwipeEvents.tsx",
+  "remainingUsers": [],
+  "kind": "osui"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SubSection": {
+  "liveUsers": [
+   "LDM_EventDetail_V2",
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection/EventDetail_SubSection.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.Calendars.DayCalendar": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "FullCalendarReactive.FullCalendarReactive.EnhancedFullCalendar": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Calendars.MonthCalendar": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Calendars.EventCalendarWeekMonth": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyEvents_MyTimelineFilterButton": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.MyTimeline_Filters": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.MonthYearSelector": {
+  "liveUsers": [
+   "LDM_MyEvents_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2": {
+  "liveUsers": [
+   "LDM_Email_V2"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks.ScreenBlock_EventDetail": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem": {
+  "liveUsers": [
+   "LDM_EventDetail_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem": {
+  "liveUsers": [
+   "LDM_EventDetail_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section": {
+  "liveUsers": [
+   "LDM_EventDetail_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard": {
+  "liveUsers": [
+   "LDM_EventDetail_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner": {
+  "liveUsers": [
+   "LDM_EventDetail_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content": {
+  "liveUsers": [
+   "LDM_EventDetail_V2"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks.ScreenBlock_MyEvents": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.Agenda": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Info": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.MyTimeline": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.MyEvents_MyTimelineFilterButton": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2": {
+  "liveUsers": [
+   "LDM_EventDetail_V2"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup": {
+  "liveUsers": [
+   "BookmarksByGroup"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Reusable.MessageList_NoResults": {
+  "liveUsers": [
+   "BookmarksByGroup",
+   "MessageList"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/Connect2_LegacyShared/MessageList_NoResults/MessageList_NoResults.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks": {
+  "liveUsers": [
+   "BookmarksByGroup",
+   "MyBookmarks"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/Connect2_MyBookmarks_MUI/NoBookmarks/NoBookmarks.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.Reusable.ConnectBlankSlate": {
+  "liveUsers": [
+   "BookmarksByGroup",
+   "ConnectShare",
+   "MyBookmarks"
+  ],
+  "allUsers": 5,
+  "builtAt": "src/shared/Connect2_LegacyShared/ConnectBlankSlate/ConnectBlankSlate.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteDelete": {
+  "liveUsers": [
+   "BookmarksByGroup"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteAddEdit": {
+  "liveUsers": [
+   "BookmarksByGroup"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Utility.Result_Item_Badge": {
+  "liveUsers": [
+   "BookmarksByGroup"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNote": {
+  "liveUsers": [
+   "BookmarksByGroup"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks": {
+  "liveUsers": [
+   "MyBookmarks"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Album": {
+  "liveUsers": [
+   "MyBookmarks"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Adaptive.DEPRECATED_GalleryV2": {
+  "liveUsers": [
+   "MyBookmarks"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/osui/DEPRECATED_GalleryV2/DEPRECATED_GalleryV2.tsx",
+  "remainingUsers": [],
+  "kind": "osui"
+ },
+ "Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Card": {
+  "liveUsers": [
+   "MyBookmarks"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList": {
+  "liveUsers": [
+   "MessageList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.MyNotifications.MessageList_Filter": {
+  "liveUsers": [
+   "MessageList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Reusable.TwoButtonsAligned": {
+  "liveUsers": [
+   "MessageList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Reusable.CircledCheckbox": {
+  "liveUsers": [
+   "MessageList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.MyNotifications.MessageFilterItem": {
+  "liveUsers": [
+   "MessageList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.MyNotifications.MessageFilterGroup": {
+  "liveUsers": [
+   "MessageList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.MyNotifications.MessageList_NoNotifications_Banner": {
+  "liveUsers": [
+   "MessageList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.MyNotifications.MessageListBlock": {
+  "liveUsers": [
+   "MessageList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.MyNotifications.MessageListItem": {
+  "liveUsers": [
+   "MessageList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Reusable.Warning_PrivateMessage": {
+  "liveUsers": [
+   "MessageList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.UtilityFlow.MessageSearchHistory": {
+  "liveUsers": [
+   "MessageList"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Layout.MenuIcon_Back": {
+  "liveUsers": [
+   "ConnectShare",
+   "LegacyShareObject",
+   "MessageDetail",
+   "MessageList"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/Connect2_LegacyShared/MenuIcon_Back/MenuIcon_Back.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_ScreenBlock_BookmarkGroup": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_ScreenBlock_MyBookmarks": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_MyBookmarks_MUI.MyBookmarksFlow.New_MyBookmarks_Album": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_LegacyShared.Utility.PhotoAsync": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Connect2_LegacyShared.Reusable.NavigationLanding": {
+  "liveUsers": [
+   "ConnectShare"
+  ],
+  "allUsers": 2,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail": {
+  "liveUsers": [
+   "MessageDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Share_UI.ShareObjectDetail": {
+  "liveUsers": [
+   "MessageDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog": {
+  "liveUsers": [
+   "LegacyShareObject",
+   "MessageDetail"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_LegacyShared/FreeSubscriptionActionDialog/FreeSubscriptionActionDialog.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "Connect2_LegacyShared.Share_UI.EmptyShareDetailCard": {
+  "liveUsers": [
+   "MessageDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Share_UI.ShareObjectDetail_ExtendedShare": {
+  "liveUsers": [
+   "MessageDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Share_UI.EmptyShareDetailCard_ExtendedFlow": {
+  "liveUsers": [
+   "MessageDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Widgets.NotificationDetailBlock": {
+  "liveUsers": [
+   "MessageDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Widgets.AdaptiveCardViewer": {
+  "liveUsers": [
+   "MessageDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Content.Card": {
+  "liveUsers": [
+   "MessageDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": "src/shared/osui/Card/Card.tsx",
+  "remainingUsers": [],
+  "kind": "osui"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail": {
+  "liveUsers": [
+   "OrbitAdminEventDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "OrbitAdminEventDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.OrbitErrorMessage": {
+  "liveUsers": [
+   "OrbitAdminEventDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "OrbitAdminEventDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading": {
+  "liveUsers": [
+   "EventBooklet",
+   "EventDetail",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "MilestoneDetail",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "allUsers": 12,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading/Skeleton_Loading.tsx",
+  "remainingUsers": [
+   "EventBooklet",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "MilestoneDetail",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoInformation_Orbit": {
+  "liveUsers": [
+   "EventDetail",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "MilestoneDetail",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "QRCodeGenerate",
+   "ViewDocuments"
+  ],
+  "allUsers": 10,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit/NoInformation_Orbit.tsx",
+  "remainingUsers": [
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "MilestoneDetail",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "QRCodeGenerate",
+   "ViewDocuments"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan": {
+  "liveUsers": [
+   "OrbitAdminEventDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "OrbitAdminEventDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Layout_OrbitTheme.Layout_Orbit": {
+  "liveUsers": [
+   "EmailContact",
+   "EventBooklet",
+   "EventDetail",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "MilestoneDetail",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "allUsers": 13,
+  "builtAt": "src/shared/Connect2_LegacyShared/Layout_Orbit/Layout_Orbit.tsx",
+  "remainingUsers": [
+   "EmailContact",
+   "EventBooklet",
+   "GuestArrangements",
+   "HelpersDetail",
+   "HostSurvey",
+   "MilestoneDetail",
+   "OrbitAdminEventDetail",
+   "OrbitAdminLanding",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_ContactForm": {
+  "liveUsers": [
+   "EmailContact"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "EmailContact"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding": {
+  "liveUsers": [
+   "OrbitAdminLanding"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "OrbitAdminLanding"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Event": {
+  "liveUsers": [
+   "OrbitAdminLanding",
+   "OrbitLanding"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/Card_Event/Card_Event.tsx",
+  "remainingUsers": [
+   "OrbitAdminLanding"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template": {
+  "liveUsers": [
+   "EventDetail",
+   "OrbitAdminLanding",
+   "OrbitLanding"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/Card_Template/Card_Template.tsx",
+  "remainingUsers": [
+   "OrbitAdminLanding"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet": {
+  "liveUsers": [
+   "EventBooklet"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "EventBooklet"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters": {
+  "liveUsers": [
+   "EventBooklet"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "EventBooklet"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_FooterWithActions": {
+  "liveUsers": [
+   "EventBooklet",
+   "HostSurvey"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/Orbit_FooterWithActions/Orbit_FooterWithActions.tsx",
+  "remainingUsers": [
+   "EventBooklet",
+   "HostSurvey"
+  ],
+  "kind": "shared"
+ },
+ "OutSystemsUI_2_23.Interaction.DropdownTags": {
+  "liveUsers": [
+   "EventBooklet"
+  ],
+  "allUsers": 1,
+  "builtAt": "src/shared/osui/DropdownTags/DropdownTags.tsx",
+  "remainingUsers": [
+   "EventBooklet"
+  ],
+  "kind": "osui"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ListOfDaySelectors": {
+  "liveUsers": [
+   "EventBooklet",
+   "EventDetail"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/ListOfDaySelectors/ListOfDaySelectors.tsx",
+  "remainingUsers": [
+   "EventBooklet"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DaySelector": {
+  "liveUsers": [
+   "EventBooklet",
+   "EventDetail"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/DaySelector/DaySelector.tsx",
+  "remainingUsers": [
+   "EventBooklet"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_MembersItem": {
+  "liveUsers": [
+   "EventBooklet"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "EventBooklet"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem": {
+  "liveUsers": [
+   "EventBooklet",
+   "EventDetail",
+   "HostSurvey"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem/HostSurvey_PillItem.tsx",
+  "remainingUsers": [
+   "EventBooklet",
+   "HostSurvey"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoResults": {
+  "liveUsers": [
+   "EventBooklet",
+   "HostSurvey"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/NoResults/NoResults.tsx",
+  "remainingUsers": [
+   "EventBooklet",
+   "HostSurvey"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_ListHeader": {
+  "liveUsers": [
+   "EventBooklet"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "EventBooklet"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction": {
+  "liveUsers": [
+   "EventBooklet"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "EventBooklet"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail": {
+  "liveUsers": [
+   "EventDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer": {
+  "liveUsers": [
+   "EventDetail",
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "allUsers": 7,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer/ContactHelpdesk_Footer.tsx",
+  "remainingUsers": [
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail",
+   "QRCodeGenerate",
+   "TransportDetail",
+   "ViewDocuments"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone": {
+  "liveUsers": [
+   "EventDetail",
+   "OrbitLanding"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/Card_Milestone/Card_Milestone.tsx",
+  "remainingUsers": [],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection": {
+  "liveUsers": [
+   "EventDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_List": {
+  "liveUsers": [
+   "EventDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_HelperItem": {
+  "liveUsers": [
+   "EventDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostAllocation_ListItem": {
+  "liveUsers": [
+   "EventDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem": {
+  "liveUsers": [
+   "EventDetail",
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/osui/DEPRECATED_AccordionItem/DEPRECATED_AccordionItem.tsx",
+  "remainingUsers": [
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "kind": "osui"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit": {
+  "liveUsers": [
+   "EventDetail",
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit/Accordion_Orbit.tsx",
+  "remainingUsers": [
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "kind": "shared"
+ },
+ "OutSystemsUI_2_23.Content.DEPRECATED_Accordion": {
+  "liveUsers": [
+   "EventDetail",
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "allUsers": 4,
+  "builtAt": "src/shared/osui/DEPRECATED_Accordion/DEPRECATED_Accordion.tsx",
+  "remainingUsers": [
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "kind": "osui"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_GuestArrangements": {
+  "liveUsers": [
+   "GuestArrangements"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "GuestArrangements"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation": {
+  "liveUsers": [
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/Card_MemberInformation/Card_MemberInformation.tsx",
+  "remainingUsers": [
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader": {
+  "liveUsers": [
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "allUsers": 3,
+  "builtAt": "src/shared/Connect2_OrbitMobile_MUI/MilestoneHeader/MilestoneHeader.tsx",
+  "remainingUsers": [
+   "GuestArrangements",
+   "HelpersDetail",
+   "MilestoneDetail"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_HelperDetails": {
+  "liveUsers": [
+   "HelpersDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HelpersDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.ScreenBlock_HostSurvey": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_ConfirmationPopUp_New": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_VehiclePills": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperPills": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealPills": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationPills": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_Item": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Content.AccordionItem": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": "src/shared/osui/AccordionItem/AccordionItem.tsx",
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "osui"
+ },
+ "OutSystemsUI_2_23.Content.Accordion": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": "src/shared/osui/Accordion/Accordion.tsx",
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "osui"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_VehicleItem": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AddHelper": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation_Survey": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Widgets.MultiResolutionImageLoader": {
+  "liveUsers": [
+   "HostSurvey",
+   "MilestoneDetail"
+  ],
+  "allUsers": 2,
+  "builtAt": "src/shared/Connect2_LegacyShared/MultiResolutionImageLoader/MultiResolutionImageLoader.tsx",
+  "remainingUsers": [
+   "HostSurvey",
+   "MilestoneDetail"
+  ],
+  "kind": "shared"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperItem": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealItem": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "OutSystemsUI_2_23.Adaptive.Columns4": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": "src/shared/osui/Columns4/Columns4.tsx",
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "osui"
+ },
+ "OutSystemsUI_2_23.Content.Tooltip": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": "src/shared/osui/Tooltip/Tooltip.tsx",
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "osui"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AdminNotes": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_NavigationItem": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_StepHeader": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.InputWithMaxChar": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_TopMessage": {
+  "liveUsers": [
+   "HostSurvey"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "HostSurvey"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_Documents.ScreenBlock_ViewDocuments": {
+  "liveUsers": [
+   "ViewDocuments"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "ViewDocuments"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.LoadingSpinner": {
+  "liveUsers": [
+   "ViewDocuments"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "ViewDocuments"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_TransportDetail": {
+  "liveUsers": [
+   "TransportDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "TransportDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail": {
+  "liveUsers": [
+   "TransportDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "TransportDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail_TravelInfo": {
+  "liveUsers": [
+   "TransportDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "TransportDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding": {
+  "liveUsers": [
+   "OrbitLanding"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Sort": {
+  "liveUsers": [
+   "OrbitLanding"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Filters": {
+  "liveUsers": [
+   "OrbitLanding"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.Household_Members_Selection": {
+  "liveUsers": [
+   "OrbitLanding"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper": {
+  "liveUsers": [
+   "MilestoneDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHelper": {
+  "liveUsers": [
+   "MilestoneDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.OrbitAdminTag": {
+  "liveUsers": [
+   "MilestoneDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostInformation": {
+  "liveUsers": [
+   "MilestoneDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ContactOptions_Orbit": {
+  "liveUsers": [
+   "MilestoneDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.PhotoLazyLoaded": {
+  "liveUsers": [
+   "MilestoneDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost": {
+  "liveUsers": [
+   "MilestoneDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationGuest": {
+  "liveUsers": [
+   "MilestoneDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealHelper": {
+  "liveUsers": [
+   "MilestoneDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealHost": {
+  "liveUsers": [
+   "MilestoneDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealGuest": {
+  "liveUsers": [
+   "MilestoneDetail"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "MilestoneDetail"
+  ],
+  "kind": "own"
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_QRCode.ScreenBlock_GenerateQRCode": {
+  "liveUsers": [
+   "QRCodeGenerate"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [
+   "QRCodeGenerate"
+  ],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Share_UI.ScreenBlock_ShareDetail": {
+  "liveUsers": [
+   "ConnectShare"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Share_UI.ScreenBlock_ShareObject": {
+  "liveUsers": [
+   "LegacyShareObject"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Share_UI.ProfileList": {
+  "liveUsers": [
+   "LegacyShareObject"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Share_UI.ListBlankSlate": {
+  "liveUsers": [
+   "LegacyShareObject"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "Connect2_LegacyShared.Directory.HighlightSearch": {
+  "liveUsers": [
+   "LegacyShareObject"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Map.CacheControl_GlobalEntities": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Map.CacheControl_Localities": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Map.CacheControl_CountriesMarkers": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Map.CacheControl_Household": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "OutSystemsUI_2_23.Interaction.Sidebar": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Map.Map_PoIPreview": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Map.Map_ExploreList_Section": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Map.Map_ExploreList_Item": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnectLibrary.BasePatterns.NegativeMargin": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Map.Map_ExploreList_EmptyState": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnectLibrary.ConnectPatterns.BottomSheetAnchor": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "OutSystemsUI_2_23.Content.FloatingContent": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "Leaflet.Leaflet.LeafletMap_Updated": {
+  "liveUsers": [],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "dead"
+ },
+ "UBTConnect.Notes.Notes_FilterSheet": {
+  "liveUsers": [
+   "Notes"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Notes.NoteCard_List": {
+  "liveUsers": [
+   "Notes"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ },
+ "UBTConnect.Notes.NoteCard_Item": {
+  "liveUsers": [
+   "Notes"
+  ],
+  "allUsers": 1,
+  "builtAt": null,
+  "remainingUsers": [],
+  "kind": "own"
+ }
+}

@@ -1,0 +1,10 @@
+Layouts.Layout_MainPages
+  LayoutRuntime_NavigationHandler.LayoutRuntime_Top
+  BasePatterns.Columns_Two
+    Adaptive.Columns2
+  BasePatterns.Columns_Two
+    Adaptive.Columns2
+      ConnectPatterns.StaticInput
+        ConnectPatterns.Icon
+        ConnectPatterns.TextEllipsis
+  Content.BlankSlate

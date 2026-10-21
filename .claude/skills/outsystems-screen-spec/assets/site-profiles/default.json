@@ -1,0 +1,27 @@
+{
+  "_comment": "Site profile: where to sign in and how. NO SECRETS HERE: user, password and PIN come from the environment variables named in 'secrets' or from .auth/credentials.json (never committed).",
+  "name": "UBTConnect TST",
+  "base": "https://ubtm-tst.ubtconnectglobal.com/UBTConnect/",
+  "home": "/UBTConnect/HomeFeed",
+  "environment": "test",
+  "login": {
+    "url": "/UBTConnect/Login",
+    "match": "/UBTConnect/Login(\\?|$|#)",
+    "start": { "click": "text=Login with UBT One" },
+    "idp": "^https://ubtb2cuat\\.b2clogin\\.com/",
+    "transit": "/UBT_AppManager/Callback(\\?|$|#)",
+    "user": ["#signInName", "#email", "input[name=signInName]", "input[name=Email]", "input[type=email]", "input[autocomplete=username]"],
+    "password": ["#password", "input[name=Password]", "input[type=password]"],
+    "next": ["#continue", "#next", "button:has-text('Next')", "button:has-text('Continue')"],
+    "submit": ["#next", "button#next", "button[type=submit]", "button:has-text('Sign in')"]
+  },
+  "pin": {
+    "match": "/UBTConnect/PINUnlock(\\?|$|#)",
+    "input": ["input[type=password]:visible", "input[inputmode=numeric]:visible", "input[type=tel]:visible", "input[type=number]:visible", "input[type=text]:visible"],
+    "submit": [],
+    "register": { "match": "/UBTConnect/PINRegister(\\?|$|#)", "times": 2 },
+    "overlay": "[data-block='PIN.Pincode_Unlock']",
+    "overlayIgnore": "/UBTConnect/PIN(Change|Register|BiometricsMenu)(\\?|$|#)"
+  },
+  "secrets": { "user": "UBT_USER", "password": "UBT_PASSWORD", "pin": "UBT_PIN" }
+}

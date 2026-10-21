@@ -1,0 +1,40 @@
+﻿[type="radio"] {
+    border: initial;
+    padding: initial;
+    appearance: radio;
+}
+
+[type="checkbox"] {
+    border: initial;
+    padding: initial;
+    appearance: radio;
+}
+
+[type="menulist"] {
+    margin: initial;
+    -webkit-appearance: menulist;
+    -moz-appearance: menulist;
+    appearance: menulist;
+}
+
+.ac-actionSet{
+    flex-direction: column !important;
+    justify-content: center !important;
+}
+
+button.ac-pushButton.style-default {
+    margin: var(--space-s) 0;
+    width: 100%;
+    background-color: var(--color-neutral-2);
+    border: 1px solid var(--color-primary);
+    border-radius: 4px;
+    color: var(--color-primary);
+    font-size: 0.8em;
+    padding: var(--space-xs);
+    /*font-weight: bold;*/
+}
+
+button.ac-pushButton.style-default.primary {
+    color: var(--color-neutral-0 );
+    background-color: var(--color-primary);
+}

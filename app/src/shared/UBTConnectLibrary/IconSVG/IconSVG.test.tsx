@@ -1,0 +1,17 @@
+import { describe } from 'vitest';
+import { testCapturedVariants } from '../../test/capturedVariants';
+import * as stories from './IconSVG.stories';
+import { render } from '@testing-library/react';
+import { expect, it } from 'vitest';
+import { IconSVG } from './IconSVG';
+
+const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
+
+describe('IconSVG', () => {
+  testCapturedVariants(stories, captures);
+
+  it('renders no image for an icon it does not know', () => {
+    const { container } = render(<IconSVG inIconId="connect-icon-home" />);
+    expect(container.querySelector('img')).toBeNull();
+  });
+});

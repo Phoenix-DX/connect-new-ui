@@ -1,0 +1,24 @@
+﻿:root :where(.backwards-compatibility){
+  --color-blue-lightest: #e8f2fa;
+}
+
+/*Fix orbit invalid messages*/
+.button-group.not-valid .validation-message{
+  bottom: unset;
+}
+
+.connect-share-sheet--legacy .connect-icon-close:before{
+   content: "\f07c";
+}
+
+.connect-share-sheet--legacy .input-search input[data-input]:empty,
+.connect-share-sheet--legacy .input-search input[data-input]:focus{
+  /*Important is needed to overwrite another !important*/
+    border: var(--border-size-s) solid var(--color-neutral-5) !important;
+}
+
+
+.connect-share-sheet--legacy .input-search input[data-input]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
+}

@@ -1,0 +1,190 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "policy link",
+  "question": "Clicking a policy name (OnClickPolicy) calls ApplicationPolicies_CW.CanOpenApplicationPolicyDirectlyViaUrl: True opens Policies.Current.Url in a new tab (JSUtils_PageOpenInNewTab); False runs DetailsOnClick (Get_PolicsyIsLoading, OpenApplicationPolicy(Url, PolicyContentFilename, PolicyContentType), NetworkError on HasFoundNetworkError). The ApplicationPolicies_CW sources are not in the survey and there is no MCP in this run, so neither the condition nor OpenApplicationPolicy is known. What should the mock web build do?",
+  "evidence": "survey UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js controller _onClickPolicy$Action / _detailsOnClick$Action (lines ~1135-1215)",
+  "mcp": "",
+  "options": [
+   "A: always open the policy Url (fictional) in a new tab, as the True branch",
+   "B: keep the click a no-op and mark it NotCaptured until the ApplicationPolicies_CW code is read (MCP)"
+  ],
+  "recommend": "B",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T19:34:44",
+  "answer": "On the web the policy name opens the policy URL in a new tab (CanOpenApplicationPolicyDirectlyViaUrl = IsWeb → JSUtils_PageOpenInNewTab(URL) → DetailsOnClick; TST compiled ApplicationPolicies_CW / Policy_Custom_AcceptPendingPolicies in migration/shell/sources) (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T19:46:49"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "errors",
+  "question": "Errors that go to the App_Policies flow exception handler (handleError of UBTConnect.App_Policies.controller, source not in the survey): a failed DataActionGetPendingPolicies, and AcceptPolicies failing with a non-communication error. A communication error of AcceptPolicies is settled (NetworkError -> ShowCommunicationExceptionMessage). What should the mock show for the other errors (?mock=error)?",
+  "evidence": "AcceptPendingPolicies.mvc.js controller handleError -> _flow_UBTConnect_App_PoliciesController.default.handleError; Policy_Custom_AcceptPendingPolicies.mvc.js ContinueOnClick catch (only CommunicationException handled)",
+  "mcp": "",
+  "options": [
+   "A: shell showExceptionMessage(message, false) (the UBTConnect generic exception message)",
+   "B: nothing visible (the list stays in its loading state) until the flow handler is read via MCP"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T19:34:45",
+  "answer": "Other errors: App_Common handler (App_Policies handleError delegates to it) → shell showExceptionMessage(msg, false); communication errors → communication toast (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T19:46:49"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "mock data",
+  "question": "DataActionGetPendingPolicies was never recorded (the test account has none). Fictional seed for the mock user ?mockuser=policies: how many pending policies and which? Proposed: 2 policies of application Connect: 'Terms and Conditions' and 'Privacy Policy' (so 'I agree to all' shows, it needs more than 1), IsSelected False, fictional Url. AcceptPolicies removes the accepted ids from the in-memory store (P-MUTATION), so a reload of the screen shows the 'You have accepted all required policies' state and goes back after 5 s. The shell mock user keeps HasPoliciesToAccept=True on a page reload (the screen only updates the in-memory user-info cache and the client variable, as the original does).",
+  "evidence": "contract UBTConnect__Policy_Custom_AcceptPendingPolicies__DataActionGetPendingPolicies__Output (x-mock-source fictional); block view $if(Policies.Length > 1) for the agree-to-all row",
+  "mcp": "",
+  "options": [
+   "A: 2 policies as proposed",
+   "B: 1 policy (no 'I agree to all' row)",
+   "C: 3 policies (Connect, Directory, Orbit)"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T19:34:45",
+  "answer": "Fictional seed: two Connect policies 'Terms and Conditions' and 'Privacy Policy', with the recorded policy URLs (CacheControl_Policies fixture) (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T19:46:49"
+ },
+ {
+  "id": "Q4",
+  "kind": "decision",
+  "topic": "device id",
+  "question": "ContinueOnClick's GetDeviceInfo JS sends DeviceDetails.UniqueId = localStorage['UUID'] (created once with crypto.randomUUID) and Platform 'Web'/'PWA'. AGENTS rule 16 forbids personal identifiers in browser storage in the mock phase. OK to keep the generated UniqueId in memory only (new id per page load), with Platform/Manufacturer/Model as the JS computes them?",
+  "evidence": "Policy_Custom_AcceptPendingPolicies.mvc.js controller.ContinueOnClick.GetDeviceInfoJS; AGENTS.md rule 16",
+  "mcp": "",
+  "options": [
+   "A: in memory only (new id per page load)",
+   "B: store it like the original under the ubtc-mock: prefix"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T19:34:45",
+  "answer": "Device UniqueId kept in memory only (no localStorage, AGENTS rule 16) (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T19:46:49"
+ },
+ {
+  "id": "Q5",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: The whole route is built from the compiled code; no state was captured (Q7 c); parity has no captured state to run.; `allowUpcomingNavigation` is imported from `src/shell/navigation/navigationGate` (not re-exported by the; Smoke test (headless Chrome, `?mocksession=unlocked&mockuser=policies`): 2 rows render, DataActionGetPendingPolicies; Policy name opens the policy Url in a new tab (Q1). With the Q3 seed this is the recorded TST policy URL; Errors (Q2): failed DataActionGetPendingPolicies and non-communication AcceptPolicies errors → ShowExceptionMessage; Seed (Q3): \"Terms and Conditions\" and \"Privacy Policy\" of Connect; Url, file name and content type from the recorded; UniqueId generated once per page load in memory, not stored (Q4, AGENTS rule 16).; Country sent as `''` until CR-AcceptPendingPolicies-2 is applied.; Stylesheets: the screen gets the 10-file set of `src/app/routes.css.generated.ts`, taken from the compiled; The logo keeps the grid class `ThemeGrid_MarginGutter` from the compiled `gridProperties`: with the OSUI CSS it; Error state (`?mock=error`): exception toast plus the `list-updating` spinner (Q2, see above).; Ids of blocks inside the List rows (`b7-l1-<n>_<i>-$b2`) are runtime counters and are not rendered.; Image grid class order `login-screen__connect-logo ThemeGrid_MarginGutter` follows the captured List rule (style, then grid class).; The shell mock user keeps HasPoliciesToAccept True after a reload; only the in-memory user-info cache and the client variable change, as in the original.; After an accept, a reload of this screen shows the empty state and goes back after 5 s (store keeps the accepted ids for the page life). Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-14T20:17:14",
+  "items": [
+   "The whole route is built from the compiled code; no state was captured (Q7 c); parity has no captured state to run.",
+   "`allowUpcomingNavigation` is imported from `src/shell/navigation/navigationGate` (not re-exported by the",
+   "Smoke test (headless Chrome, `?mocksession=unlocked&mockuser=policies`): 2 rows render, DataActionGetPendingPolicies",
+   "Policy name opens the policy Url in a new tab (Q1). With the Q3 seed this is the recorded TST policy URL",
+   "Errors (Q2): failed DataActionGetPendingPolicies and non-communication AcceptPolicies errors → ShowExceptionMessage",
+   "Seed (Q3): \"Terms and Conditions\" and \"Privacy Policy\" of Connect; Url, file name and content type from the recorded",
+   "UniqueId generated once per page load in memory, not stored (Q4, AGENTS rule 16).",
+   "Country sent as `''` until CR-AcceptPendingPolicies-2 is applied.",
+   "Stylesheets: the screen gets the 10-file set of `src/app/routes.css.generated.ts`, taken from the compiled",
+   "The logo keeps the grid class `ThemeGrid_MarginGutter` from the compiled `gridProperties`: with the OSUI CSS it",
+   "Error state (`?mock=error`): exception toast plus the `list-updating` spinner (Q2, see above).",
+   "Ids of blocks inside the List rows (`b7-l1-<n>_<i>-$b2`) are runtime counters and are not rendered.",
+   "Image grid class order `login-screen__connect-logo ThemeGrid_MarginGutter` follows the captured List rule (style, then grid class).",
+   "The shell mock user keeps HasPoliciesToAccept True after a reload; only the in-memory user-info cache and the client variable change, as in the original.",
+   "After an accept, a reload of this screen shows the empty state and goes back after 5 s (store keeps the accepted ids for the page life)."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-10-14: 'I confirm ok all')",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T20:20:54"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: The whole route is built from the compiled code; no state was captured (Q7 c); parity has no captured state to run.; `allowUpcomingNavigation` is imported from `src/shell/navigation` (exported since CR-Splash-2).; Smoke test (headless Chrome, `?mocksession=unlocked&mockuser=policies`): 2 rows render, DataActionGetPendingPolicies; Policy name opens the policy Url in a new tab (Q1). With the Q3 seed this is the recorded TST policy URL; Errors (Q2): failed DataActionGetPendingPolicies and non-communication AcceptPolicies errors → ShowExceptionMessage; Seed (Q3): \"Terms and Conditions\" and \"Privacy Policy\" of Connect; Url, file name and content type from the recorded; UniqueId generated once per page load in memory, not stored (Q4, AGENTS rule 16).; Country = the cached user's CountryCode (CR-AcceptPendingPolicies-2 applied): the mock sign-in and `?mocksession=`; Stylesheets: the screen gets the 10-file set of `src/app/routes.css.generated.ts`, taken from the compiled; The logo keeps the grid class `ThemeGrid_MarginGutter` from the compiled `gridProperties`: with the OSUI CSS it; Error state (`?mock=error`): exception toast plus the `list-updating` spinner (Q2, see above).; Ids of blocks inside the List rows (`b7-l1-<n>_<i>-$b2`) are runtime counters and are not rendered.; Image grid class order `login-screen__connect-logo ThemeGrid_MarginGutter` follows the captured List rule (style, then grid class).; The shell mock user keeps HasPoliciesToAccept True after a reload; only the in-memory user-info cache and the client variable change, as in the original.; After an accept, a reload of this screen shows the empty state and goes back after 5 s (store keeps the accepted ids for the page life). Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-14T20:51:45",
+  "items": [
+   "The whole route is built from the compiled code; no state was captured (Q7 c); parity has no captured state to run.",
+   "`allowUpcomingNavigation` is imported from `src/shell/navigation` (exported since CR-Splash-2).",
+   "Smoke test (headless Chrome, `?mocksession=unlocked&mockuser=policies`): 2 rows render, DataActionGetPendingPolicies",
+   "Policy name opens the policy Url in a new tab (Q1). With the Q3 seed this is the recorded TST policy URL",
+   "Errors (Q2): failed DataActionGetPendingPolicies and non-communication AcceptPolicies errors → ShowExceptionMessage",
+   "Seed (Q3): \"Terms and Conditions\" and \"Privacy Policy\" of Connect; Url, file name and content type from the recorded",
+   "UniqueId generated once per page load in memory, not stored (Q4, AGENTS rule 16).",
+   "Country = the cached user's CountryCode (CR-AcceptPendingPolicies-2 applied): the mock sign-in and `?mocksession=`",
+   "Stylesheets: the screen gets the 10-file set of `src/app/routes.css.generated.ts`, taken from the compiled",
+   "The logo keeps the grid class `ThemeGrid_MarginGutter` from the compiled `gridProperties`: with the OSUI CSS it",
+   "Error state (`?mock=error`): exception toast plus the `list-updating` spinner (Q2, see above).",
+   "Ids of blocks inside the List rows (`b7-l1-<n>_<i>-$b2`) are runtime counters and are not rendered.",
+   "Image grid class order `login-screen__connect-logo ThemeGrid_MarginGutter` follows the captured List rule (style, then grid class).",
+   "The shell mock user keeps HasPoliciesToAccept True after a reload; only the in-memory user-info cache and the client variable change, as in the original.",
+   "After an accept, a reload of this screen shows the empty state and goes back after 5 s (store keeps the accepted ids for the page life)."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-10-14: re-stamp after foundation CR batch 1, parity 0)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T20:51:45"
+ },
+ {
+  "id": "Q7",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: The whole route is built from the compiled code; no state was captured (Q7 c); parity has no captured state to run.; `allowUpcomingNavigation` is imported from `src/shell/navigation` (exported since CR-Splash-2).; Smoke test (headless Chrome, `?mocksession=unlocked&mockuser=policies`): 2 rows render, DataActionGetPendingPolicies; Policy name opens the policy Url in a new tab (Q1). With the Q3 seed this is the recorded TST policy URL; Errors (Q2): failed DataActionGetPendingPolicies and non-communication AcceptPolicies errors → ShowExceptionMessage; Seed (Q3): \"Terms and Conditions\" and \"Privacy Policy\" of Connect; Url, file name and content type from the recorded; UniqueId generated once per page load in memory, not stored (Q4, AGENTS rule 16).; Country = the cached user's CountryCode (CR-AcceptPendingPolicies-2 applied): the mock sign-in and `?mocksession=`; Stylesheets: the screen gets the 10-file set of `src/app/routes.css.generated.ts`, taken from the compiled; The logo keeps the grid class `ThemeGrid_MarginGutter` from the compiled `gridProperties`: with the OSUI CSS it; Error state (`?mock=error`): exception toast plus the `list-updating` spinner (Q2, see above).; Ids of blocks inside the List rows (`b7-l1-<n>_<i>-$b2`) are runtime counters and are not rendered.; Image grid class order `login-screen__connect-logo ThemeGrid_MarginGutter` follows the captured List rule (style, then grid class).; The shell mock user keeps HasPoliciesToAccept True after a reload; only the in-memory user-info cache and the client variable change, as in the original.; After an accept, a reload of this screen shows the empty state and goes back after 5 s (store keeps the accepted ids for the page life). Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T10:52:54",
+  "items": [
+   "The whole route is built from the compiled code; no state was captured (Q7 c); parity has no captured state to run.",
+   "`allowUpcomingNavigation` is imported from `src/shell/navigation` (exported since CR-Splash-2).",
+   "Smoke test (headless Chrome, `?mocksession=unlocked&mockuser=policies`): 2 rows render, DataActionGetPendingPolicies",
+   "Policy name opens the policy Url in a new tab (Q1). With the Q3 seed this is the recorded TST policy URL",
+   "Errors (Q2): failed DataActionGetPendingPolicies and non-communication AcceptPolicies errors → ShowExceptionMessage",
+   "Seed (Q3): \"Terms and Conditions\" and \"Privacy Policy\" of Connect; Url, file name and content type from the recorded",
+   "UniqueId generated once per page load in memory, not stored (Q4, AGENTS rule 16).",
+   "Country = the cached user's CountryCode (CR-AcceptPendingPolicies-2 applied): the mock sign-in and `?mocksession=`",
+   "Stylesheets: the screen gets the 10-file set of `src/app/routes.css.generated.ts`, taken from the compiled",
+   "The logo keeps the grid class `ThemeGrid_MarginGutter` from the compiled `gridProperties`: with the OSUI CSS it",
+   "Error state (`?mock=error`): exception toast plus the `list-updating` spinner (Q2, see above).",
+   "Ids of blocks inside the List rows (`b7-l1-<n>_<i>-$b2`) are runtime counters and are not rendered.",
+   "Image grid class order `login-screen__connect-logo ThemeGrid_MarginGutter` follows the captured List rule (style, then grid class).",
+   "The shell mock user keeps HasPoliciesToAccept True after a reload; only the in-memory user-info cache and the client variable change, as in the original.",
+   "After an accept, a reload of this screen shows the empty state and goes back after 5 s (store keeps the accepted ids for the page life)."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-10-15: re-stamp after typed exceptions)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T10:52:54"
+ }
+]

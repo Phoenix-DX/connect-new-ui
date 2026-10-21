@@ -1,0 +1,156 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "LoadingDots path animation (GSAP)",
+  "question": "LoadingDots animates the splash SVG path with GSAP + MorphSVGPlugin (scale 0→4 in 1.5 s, morph to a rectangle in 0.5 s, morph to the PIN header path in 1 s, then AnimationComplete). gsap is not in the package allow-list. How should the clone animate the path?",
+  "evidence": "sources/pretty/UBTConnectLibrary.ConnectPatterns.LoadingDots.mvc.js:612-615 (gsap.registerPlugin(MorphSVGPlugin)), :617-692 (AnimateJS: gsap.fromTo / morphSVG / Action_AnimationCompleted); capture dom/default.html:24 path transform=matrix(2.7087…) data-svg-origin (GSAP mid-tween); pack Packages allowed (no gsap)",
+  "mcp": "not asked (no MCP in this run); not a fact",
+  "options": [
+   "A: ADR to add gsap 3.13+ (MorphSVGPlugin is free since 3.13), same library as the original",
+   "B: Web Animations API scale tween, no morph (the path jumps to the header path at the end)",
+   "C: no path tween: class timeline and timings only (1.2 s merge, 3 s to AnimationComplete), the path stays the circle"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T19:33:34",
+  "answer": "A: add GSAP 3.13.0 (the TST version, MorphSVGPlugin included) through an ADR; animate the logo path as compiled (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T19:46:49"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "ApplicationLoadEvents load complete",
+  "question": "OSUI ApplicationLoadEvents waits for the OutSystems runtime ApplicationLifecycle onLoadComplete, then max(1500 ms - elapsed, 0) before OnLoadComplete starts the animation. The SPA has no runtime load event. Which moment counts as load complete in the clone?",
+  "evidence": "sources/pretty/OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js:541-578 (JSRegisterListeners: ApplicationLifecycle.listen onLoadComplete → SetTimeoutForLoadComplete(max(MinDisplayTimeMs - elapsed, 0))); Splash MinimumDisplayTimeMs=1500 (Splash.mvc.js:197); TST capture: app-start Sync_Info_GetMain at 8247 ms and the capture (about 10 s) already mid-animation",
+  "mcp": "not asked (no MCP in this run); runtime code not captured",
+  "options": [
+   "A: when Splash mounts (the bundle is loaded): OnLoadComplete after 1500 ms",
+   "B: when the shell app start finishes (appReady), then max(1500 - elapsed since mount, 0)"
+  ],
+  "recommend": "B",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T19:33:34",
+  "answer": "B: load complete = the shell's appReady (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T19:46:49"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "Final navigation to LastURL",
+  "question": "When no PIN step applies (signed out, or PIN off) and there is no cold-start link, Splash navigates (replace) to LastURL, which OnLoadComplete set to window.location.href. In the original the runtime shows Splash at the URL the user asked for; in the clone Splash has its own path, so LastURL is /UBTConnect/Splash itself and the user stays on the finished splash. What should the clone do?",
+  "evidence": "sources/pretty/UBTConnect.App_Common.Splash.mvc.js:427-435 (LastURL = In_RedirectURL), :509-524 (ScreenController_NavigateToPage(LastURL, True)); ALE:538 TriggerOnLoadComplete(window.location.href); knowledge/navigation.md:7 SplashScreen = Splash; knowledge/shell-observed.md (TST fresh tab did not show Splash)",
+  "mcp": "not asked (no MCP in this run)",
+  "options": [
+   "A: as compiled: navigate to LastURL (the Splash URL itself, user stays on the finished splash)",
+   "B: when LastURL is the Splash path, go to the default screen HomeFeed (the shell gate then sends a signed-out user to Login)"
+  ],
+  "recommend": "B",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-14T19:33:34",
+  "answer": "A: as compiled: LastURL is Splash itself, the user stays on the finished splash (observed on TST: /UBTConnect/Splash stays put, migration/tools/unlock_target.cjs --then) (user, 2026-10-14)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T19:46:49"
+ },
+ {
+  "id": "Q4",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 answered A: the LoadingDots path is animated with gsap 3.13.0 + MorphSVGPlugin exactly as AnimateJS (LoadingDots.mvc.js:612-692): scale 0→4 (1.5 s, power2.out), morph to `M0,0 H100 V100 H0 Z` (0.5 s), morph to `SVGHeader_GetPath(App_PIN_Header_FinalHeightPercentage ×2)` (1 s, transform cleared on start), then `AnimationComplete`; plugin registered on mount (OnReady JavaScript1); tweens are killed when the block unmounts (the original leaves them running).; Q2 answered B: load complete = shell `appReady`, then `max(1500 - elapsed since mount, 0)` ms.; Q3 answered A: navigate (replace) to LastURL as compiled; a same-origin absolute href becomes its path; a Splash URL keeps the user on the finished splash.; PINRegister / PINUnlock destinations push a history entry (as the other routes' Destination nodes), ScreenController_NavigateToPage replaces (its `True` argument).; Stand-ins until CR-Splash-2: `Set_InitialClientVariables` skipped (EightSeconds value unknown), cold-start link `\"\"` (U14), `allowUpcomingNavigation` imported from `shell/navigation/navigationGate`, URL → path conversion in the route.; Splash's layout (App_Common.LayoutBlank) has no CommonUI, so it tells the shell to mount no CommonUI stand-in (Access Restricted dialog, back handler): `useNoCommonUi()` (CR-Splash-3, applied by the foundation owner).; `OnUpgradeProgress` Percentage is kept but not rendered (the original renders nothing with it: `$if(false…)` [Splash.mvc.js:191-195]).; LoadingDots class changes on the shared `SVG_Background_Custom` container are applied with `classList`, as the original JS node does (the shared block has no class input).; LayoutBlank OnReady LayoutReady / SetLang / AddFavicon and OnDestroy LayoutDestroy (OSUI runtime layout helpers) are not ported, like every other layout of the app.; Exemption `SPLASH-LOADINGDOTS-ANIMATION-PHASE` (added by the orchestrator): the capture is a mid-animation snapshot, so animation-phase classes, styles and positions inside LoadingDots are not compared.",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-14T20:16:08",
+  "items": [
+   "Q1 answered A: the LoadingDots path is animated with gsap 3.13.0 + MorphSVGPlugin exactly as AnimateJS (LoadingDots.mvc.js:612-692): scale 0→4 (1.5 s, power2.out), morph to `M0,0 H100 V100 H0 Z` (0.5 s), morph to `SVGHeader_GetPath(App_PIN_Header_FinalHeightPercentage ×2)` (1 s, transform cleared on start), then `AnimationComplete`; plugin registered on mount (OnReady JavaScript1); tweens are killed when the block unmounts (the original leaves them running).",
+   "Q2 answered B: load complete = shell `appReady`, then `max(1500 - elapsed since mount, 0)` ms.",
+   "Q3 answered A: navigate (replace) to LastURL as compiled; a same-origin absolute href becomes its path; a Splash URL keeps the user on the finished splash.",
+   "PINRegister / PINUnlock destinations push a history entry (as the other routes' Destination nodes), ScreenController_NavigateToPage replaces (its `True` argument).",
+   "Stand-ins until CR-Splash-2: `Set_InitialClientVariables` skipped (EightSeconds value unknown), cold-start link `\"\"` (U14), `allowUpcomingNavigation` imported from `shell/navigation/navigationGate`, URL → path conversion in the route.",
+   "Splash's layout (App_Common.LayoutBlank) has no CommonUI, so it tells the shell to mount no CommonUI stand-in (Access Restricted dialog, back handler): `useNoCommonUi()` (CR-Splash-3, applied by the foundation owner).",
+   "`OnUpgradeProgress` Percentage is kept but not rendered (the original renders nothing with it: `$if(false…)` [Splash.mvc.js:191-195]).",
+   "LoadingDots class changes on the shared `SVG_Background_Custom` container are applied with `classList`, as the original JS node does (the shared block has no class input).",
+   "LayoutBlank OnReady LayoutReady / SetLang / AddFavicon and OnDestroy LayoutDestroy (OSUI runtime layout helpers) are not ported, like every other layout of the app.",
+   "Exemption `SPLASH-LOADINGDOTS-ANIMATION-PHASE` (added by the orchestrator): the capture is a mid-animation snapshot, so animation-phase classes, styles and positions inside LoadingDots are not compared."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-10-14: 'I confirm ok all')",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T20:20:54"
+ },
+ {
+  "id": "Q5",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 answered A: the LoadingDots path is animated with gsap 3.13.0 + MorphSVGPlugin exactly as AnimateJS (LoadingDots.mvc.js:612-692): scale 0→4 (1.5 s, power2.out), morph to `M0,0 H100 V100 H0 Z` (0.5 s), morph to `SVGHeader_GetPath(App_PIN_Header_FinalHeightPercentage ×2)` (1 s, transform cleared on start), then `AnimationComplete`; plugin registered on mount (OnReady JavaScript1); tweens are killed when the block unmounts (the original leaves them running).; Q2 answered B: load complete = shell `appReady`, then `max(1500 - elapsed since mount, 0)` ms.; Q3 answered A: navigate (replace) to LastURL as compiled; a same-origin absolute href becomes its path; a Splash URL keeps the user on the finished splash.; PINRegister / PINUnlock destinations push a history entry (as the other routes' Destination nodes), ScreenController_NavigateToPage replaces (its `True` argument).; CR-Splash-2 applied (2026-10-14): `Set_InitialClientVariables` runs (EightSeconds = 8000 from the MCP on DEV,; Splash's layout (App_Common.LayoutBlank) has no CommonUI, so it tells the shell to mount no CommonUI stand-in (Access Restricted dialog, back handler): `useNoCommonUi()` (CR-Splash-3, applied by the foundation owner).; `OnUpgradeProgress` Percentage is kept but not rendered (the original renders nothing with it: `$if(false…)` [Splash.mvc.js:191-195]).; LoadingDots class changes on the shared `SVG_Background_Custom` container are applied with `classList`, as the original JS node does (the shared block has no class input).; LayoutBlank OnReady LayoutReady / SetLang / AddFavicon and OnDestroy LayoutDestroy (OSUI runtime layout helpers) are not ported, like every other layout of the app.; Exemption `SPLASH-LOADINGDOTS-ANIMATION-PHASE` (added by the orchestrator): the capture is a mid-animation snapshot, so animation-phase classes, styles and positions inside LoadingDots are not compared.",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-14T20:51:45",
+  "items": [
+   "Q1 answered A: the LoadingDots path is animated with gsap 3.13.0 + MorphSVGPlugin exactly as AnimateJS (LoadingDots.mvc.js:612-692): scale 0→4 (1.5 s, power2.out), morph to `M0,0 H100 V100 H0 Z` (0.5 s), morph to `SVGHeader_GetPath(App_PIN_Header_FinalHeightPercentage ×2)` (1 s, transform cleared on start), then `AnimationComplete`; plugin registered on mount (OnReady JavaScript1); tweens are killed when the block unmounts (the original leaves them running).",
+   "Q2 answered B: load complete = shell `appReady`, then `max(1500 - elapsed since mount, 0)` ms.",
+   "Q3 answered A: navigate (replace) to LastURL as compiled; a same-origin absolute href becomes its path; a Splash URL keeps the user on the finished splash.",
+   "PINRegister / PINUnlock destinations push a history entry (as the other routes' Destination nodes), ScreenController_NavigateToPage replaces (its `True` argument).",
+   "CR-Splash-2 applied (2026-10-14): `Set_InitialClientVariables` runs (EightSeconds = 8000 from the MCP on DEV,",
+   "Splash's layout (App_Common.LayoutBlank) has no CommonUI, so it tells the shell to mount no CommonUI stand-in (Access Restricted dialog, back handler): `useNoCommonUi()` (CR-Splash-3, applied by the foundation owner).",
+   "`OnUpgradeProgress` Percentage is kept but not rendered (the original renders nothing with it: `$if(false…)` [Splash.mvc.js:191-195]).",
+   "LoadingDots class changes on the shared `SVG_Background_Custom` container are applied with `classList`, as the original JS node does (the shared block has no class input).",
+   "LayoutBlank OnReady LayoutReady / SetLang / AddFavicon and OnDestroy LayoutDestroy (OSUI runtime layout helpers) are not ported, like every other layout of the app.",
+   "Exemption `SPLASH-LOADINGDOTS-ANIMATION-PHASE` (added by the orchestrator): the capture is a mid-animation snapshot, so animation-phase classes, styles and positions inside LoadingDots are not compared."
+  ],
+  "fixed": [],
+  "answer": "confirm (user, 2026-10-14: re-stamp after foundation CR batch 1, parity 0)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-14T20:51:45"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 answered A: the LoadingDots path is animated with gsap 3.13.0 + MorphSVGPlugin exactly as AnimateJS (LoadingDots.mvc.js:612-692): scale 0→4 (1.5 s, power2.out), morph to `M0,0 H100 V100 H0 Z` (0.5 s), morph to `SVGHeader_GetPath(App_PIN_Header_FinalHeightPercentage ×2)` (1 s, transform cleared on start), then `AnimationComplete`; plugin registered on mount (OnReady JavaScript1); tweens are killed when the block unmounts (the original leaves them running).; Q2 answered B: load complete = shell `appReady`, then `max(1500 - elapsed since mount, 0)` ms.; Q3 answered A: navigate (replace) to LastURL as compiled; a same-origin absolute href becomes its path; a Splash URL keeps the user on the finished splash.; PINRegister / PINUnlock destinations push a history entry (as the other routes' Destination nodes), ScreenController_NavigateToPage replaces (its `True` argument).; CR-Splash-2 applied (2026-10-14): `Set_InitialClientVariables` runs (EightSeconds = 8000 from the MCP on DEV,; Splash's layout (App_Common.LayoutBlank) has no CommonUI, so it tells the shell to mount no CommonUI stand-in (Access Restricted dialog, back handler): `useNoCommonUi()` (CR-Splash-3, applied by the foundation owner).; `OnUpgradeProgress` Percentage is kept but not rendered (the original renders nothing with it: `$if(false…)` [Splash.mvc.js:191-195]).; LoadingDots class changes on the shared `SVG_Background_Custom` container are applied with `classList`, as the original JS node does (the shared block has no class input).; LayoutBlank OnReady LayoutReady / SetLang / AddFavicon and OnDestroy LayoutDestroy (OSUI runtime layout helpers) are not ported, like every other layout of the app.; Exemption `SPLASH-LOADINGDOTS-ANIMATION-PHASE` (added by the orchestrator): the capture is a mid-animation snapshot, so animation-phase classes, styles and positions inside LoadingDots are not compared.",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-17T08:35:01",
+  "items": [
+   "Q1 answered A: the LoadingDots path is animated with gsap 3.13.0 + MorphSVGPlugin exactly as AnimateJS (LoadingDots.mvc.js:612-692): scale 0→4 (1.5 s, power2.out), morph to `M0,0 H100 V100 H0 Z` (0.5 s), morph to `SVGHeader_GetPath(App_PIN_Header_FinalHeightPercentage ×2)` (1 s, transform cleared on start), then `AnimationComplete`; plugin registered on mount (OnReady JavaScript1); tweens are killed when the block unmounts (the original leaves them running).",
+   "Q2 answered B: load complete = shell `appReady`, then `max(1500 - elapsed since mount, 0)` ms.",
+   "Q3 answered A: navigate (replace) to LastURL as compiled; a same-origin absolute href becomes its path; a Splash URL keeps the user on the finished splash.",
+   "PINRegister / PINUnlock destinations push a history entry (as the other routes' Destination nodes), ScreenController_NavigateToPage replaces (its `True` argument).",
+   "CR-Splash-2 applied (2026-10-14): `Set_InitialClientVariables` runs (EightSeconds = 8000 from the MCP on DEV,",
+   "Splash's layout (App_Common.LayoutBlank) has no CommonUI, so it tells the shell to mount no CommonUI stand-in (Access Restricted dialog, back handler): `useNoCommonUi()` (CR-Splash-3, applied by the foundation owner).",
+   "`OnUpgradeProgress` Percentage is kept but not rendered (the original renders nothing with it: `$if(false…)` [Splash.mvc.js:191-195]).",
+   "LoadingDots class changes on the shared `SVG_Background_Custom` container are applied with `classList`, as the original JS node does (the shared block has no class input).",
+   "LayoutBlank OnReady LayoutReady / SetLang / AddFavicon and OnDestroy LayoutDestroy (OSUI runtime layout helpers) are not ported, like every other layout of the app.",
+   "Exemption `SPLASH-LOADINGDOTS-ANIMATION-PHASE` (added by the orchestrator): the capture is a mid-animation snapshot, so animation-phase classes, styles and positions inside LoadingDots are not compared."
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-16 evening, until 2026-10-17 morning)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-17T08:35:01"
+ }
+]

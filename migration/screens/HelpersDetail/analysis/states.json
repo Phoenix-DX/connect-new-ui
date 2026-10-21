@@ -1,0 +1,71 @@
+{
+ "default": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/HelpersDetail",
+  "via": {
+   "from": "/UBTConnect/OrbitLanding",
+   "pre": [
+    "[data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont",
+    "text=Host Allocation"
+   ],
+   "click": "[data-block='Orbit_Blocks.HostAllocation_HelperItem'] >> text=View",
+   "nth": 0
+  },
+  "steps": [],
+  "scenario": "real",
+  "auto": null,
+  "htmlClass": "",
+  "bodyClass": "phone portrait orbit-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "loading": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/HelpersDetail",
+  "via": {
+   "from": "/UBTConnect/OrbitLanding",
+   "pre": [
+    "[data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont",
+    "text=Host Allocation"
+   ],
+   "click": "[data-block='Orbit_Blocks.HostAllocation_HelperItem'] >> text=View",
+   "nth": 0
+  },
+  "steps": [],
+  "scenario": "loading",
+  "auto": "loading",
+  "htmlClass": "",
+  "bodyClass": "phone portrait orbit-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "offline": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/HelpersDetail",
+  "via": {
+   "from": "/UBTConnect/OrbitLanding",
+   "pre": [
+    "[data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont",
+    "text=Host Allocation"
+   ],
+   "click": "[data-block='Orbit_Blocks.HostAllocation_HelperItem'] >> text=View",
+   "nth": 0
+  },
+  "steps": [],
+  "scenario": "error",
+  "auto": "offline",
+  "htmlClass": "",
+  "bodyClass": "phone portrait orbit-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ }
+}

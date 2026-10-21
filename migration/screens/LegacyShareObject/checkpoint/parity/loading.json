@@ -1,0 +1,55 @@
+{
+ "state": "loading",
+ "route": "/UBTConnect/LegacyShareObject?In_ShareObjectTypeId=Household&In_ObjectId=42438&In_CustomTitle=Test%20Household&mocksession=unlocked",
+ "mock": "loading",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "1a049cc9422d81a31d2c",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 136,
+  "texts": 12,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-15T23:59:41.110Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-MENUICON-BACK": 2,
+  "ignoreSubtrees": 2
+ },
+ "pixel": {
+  "ratio": 0,
+  "maxCell": 0,
+  "maxCellRatio": 0.03,
+  "diffPixels": 0,
+  "comparedPixels": 194220,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 2,
+  "hotspots": [],
+  "diffPng": "migration/screens/LegacyShareObject/parity/loading.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

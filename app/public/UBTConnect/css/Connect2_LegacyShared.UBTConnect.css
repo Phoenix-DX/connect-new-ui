@@ -1,0 +1,1985 @@
+﻿
+/* === 0. Root === */
+    /*  0.1. CSS Variables */
+    /*  0.2. temporal colors  */
+    /*  0.3. Calendar  */
+    
+/* === 1. Screen CSS === */
+    /*  1.1. Login Screen  */
+    /*  1.2. PIN Screen  */
+    /*  1.3. Contact By Email Locality Contacts  */
+    /*  1.4. My Calendar  */
+    /*  1.5. My Calendar User Event Form  */
+    /*  1.6. Unsupported Card  */
+    /*  1.7. Photobook  */
+        /*  1.7.1. Photobook Carousel  */
+        /*  1.7.2. Photobook Gallery  */
+        /*  1.7.3. Photobook Options  */
+        /*  1.7.4. Photobook Bottom Sheet  */
+    /*  1.8. Updates  */
+    /*  1.9. HomePage  */
+
+/* === 2. General === */
+    /*  2.1. Bottom bar  */
+
+/* === 3. Resets === */
+
+/* === 4. Custom Widgets === */
+    /*  4.1. Weekday Tag List  */
+    /*  4.2. Form Item Container  */
+    /*  4.3. LeafletMap  */
+    /*  4.4. Share Sheet */
+
+/* === 5 Page Layout === */
+    /*  5.1. Layouts  */
+
+/*=============================================================*/
+
+/* === 0. Root === */
+
+/*  0.1. CSS Variables */
+
+:root{
+    --month-gallery-column-gap: var(--space-s);
+}
+
+
+/* 0.2. Temporal Colours */
+
+:root { 
+
+    --calendar-main-color: var(--color-primary); /*done keep*/
+    --calendar-main-color-rgb: var(--color-primary-rgb); /*done keep*/
+
+    --calendar-main-color-light: #d4ebee;
+    --calendar-main-color-light-rgb: 212, 235, 238;
+
+    --calendar-main-color-lighter: #EDF6F8;
+    --calendar-main-color-lighter-rgb: 237, 246, 248;
+
+    --calendar-secondary-color: #f4c336;
+    --calendar-secondary-color-rgb: 244, 195, 54;
+
+    --calendar-secondary-color-light: #FFF9E3;
+    --calendar-secondary-color-light-rgb: 255, 249, 227;
+
+    --calendar-grey-darker: #87929d;
+    --calendar-grey: var(--color-neutral-5); /*done keep*/
+    --calendar-grey-light: var(--color-neutral-1); /*done keep*/
+    --color-neutral-11: #d8dcde;
+    --color-neutral-12: #68737D;
+    --color-neutral-13: #2F3941;
+    --color-grey-100: #F8F9F9;
+
+   
+}
+
+ /* 0.3. Calendar */
+
+ :root { 
+    --calendar-width: 100vw;
+    --calendar-element-height-factor: 1
+ }
+
+/* === 1. Screen Css === */
+
+
+/* 1.1. Login Screen*/
+
+.layout-native .login-screen {
+  background: var(--color-background-login);
+  flex-direction: column;
+}
+
+.layout-native .login-screen [data-block="ConnectPatterns.Tile"]
+{
+  flex: 2;
+  max-width: 400px;
+  width: -webkit-fill-available;
+  margin: 0px var(--space-base);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.layout-native .login-screen [data-block="ConnectPatterns.Tile"] .login-form {
+  min-width: unset;
+}
+
+.layout-native .login-screen [data-block="ConnectPatterns.Tile"] .login-screen__connect-logo {
+  margin-top: var(--space-base);
+  width: 210px;
+  margin-bottom: var(--space-xxl);
+}
+
+.layout-native .login-screen [data-block="ConnectPatterns.Tile"] .btn {
+  width: auto;
+  border: 0px;
+}
+
+.login-button .ubt-icon{
+    color: inherit;
+}
+
+.login-button .btn:not(.btn-primary)[disabled]{
+    background-color: var(--color-neutral-0)
+}
+
+.connect-login-card__content:has(.unsupported-card){
+    height: auto;
+}
+
+connect-login-screen:has(.unsupported-card--webview),
+.ubt-layout--login__content__unsupported-card:has(.unsupported-card--webview){
+     padding-top: calc(var(--ubt-login-screen-padding-top) - 9px)
+ }
+
+.connect-login-screen:has(.unsupported-card--native),
+.ubt-layout--login__content__unsupported-card:has(.unsupported-card--native){
+     padding-top: calc(var(--ubt-login-screen-padding-top) - 72px)
+ }
+
+
+
+/* 1.2. PIN Screens*/
+
+.ubt-lock-screen.ubt-layout--login {
+    position: fixed;
+    top:0;
+    left: 0;
+}
+
+/*Hide screen if not displaying pincode nor unsupported systems card*/
+.ubt-lock-screen:not(:has(.pincode-unlock)):not(:has(.unsupported-card)){
+    display:none;
+}
+
+
+.account-setting-fingerprint[data-switch]{
+    --fingerprint-switch-height: 10px;
+    --fingerprint-switch-width: 35px;
+    --fingerprint-check-height: calc(var(--fingerprint-switch-height) * 1.75);
+    display: flex;
+    width: var(--fingerprint-switch-width);
+    height: var(--fingerprint-check-height);
+
+}
+
+.account-setting-fingerprint[data-switch]:empty:before,
+.account-setting-fingerprint[data-switch]:before {
+    height: var(--fingerprint-switch-height);
+    top: calc(var(--fingerprint-check-height) * 0.2);
+    width: 100%;
+    border: 0px;
+}
+
+.account-setting-fingerprint[data-switch]:empty:after,
+.account-setting-fingerprint[data-switch]:after {
+   top: 0px;
+   width: var(--fingerprint-check-height);
+   height: var(--fingerprint-check-height);
+   transform: unset;
+}
+
+
+.account-setting-fingerprint[data-switch]:checked:after {
+  background-color: var(--color-primary);
+  border-color: var(--color-primsemantic/brand/brand-containerary);
+  transform: translateX(calc(var(--fingerprint-switch-width) - var(--fingerprint-check-height))) translateZ(0);;
+}
+
+.account-setting-fingerprint[data-switch]:checked:before {
+  background-color: var(--color-cyan-light);
+}
+
+/*Making sure the bottom sheet will not stay on top of the PIN Screen*/
+.active-screen:has(.ubt-pincode.connect-pin-screen.ubt-pin-overlay) .osui-bottom-sheet {
+   z-index: 0;
+}
+
+
+
+/* 1.3. ContactByEmailLocalityContacts */
+
+.contact-by-email__header img{
+    width: 100%
+}
+
+.contact-by-email__header__img{
+    height: 52px
+}
+
+/*  1.4. My Calendar  */
+
+.connect-calendar-layout footer:before,
+.connect-calendar-layout header:after{
+    display: none;
+}
+
+/* 1.5 My Calendar User Event Form*/
+
+.connect-event-form-item .columns3 > .columns-item:last-child{
+    margin-left: calc(-1 * (var(--space-base) - var(--space-xs)))
+}
+
+/* 1.6. Unsupported Card */
+
+.unsupported-card .ubt-button{
+    min-width: 250px
+}
+
+/*  1.7. Photobook  */
+
+    /*  1.7.1. Photobook Carousel  */
+
+.photobook-carousel {
+    height: 100vh;
+    width: 100vw;
+}
+
+.photobook-carousel .photobook-carousel-item {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.photobook-carousel .photobook-carousel-item-cont {
+    position: absolute;
+    top: 0;
+}
+
+.photobook-carousel .photobook-carousel-item-cont:has(.photobook-carousel-background-image) {
+    z-index: 1;
+    filter: blur(3px);
+    transform: scale(1.05);
+}
+
+.photobook-carousel .photobook-carousel-item-cont:has(.photobook-carousel-foreground-image) {
+    z-index: 2;
+}
+
+.photobook-carousel .osui-carousel .splide .photobook-carousel-foreground-image img {
+    object-position: center center;
+    object-fit: contain;
+}
+
+.photobook-carousel .osui-carousel .splide .photobook-carousel-background-image img {
+    object-position: center center;
+    object-fit: cover;
+}
+
+.photobook-carousel .photobook-carousel-title-cont {
+    position: absolute;
+    top: var(--space-base);
+    left: 0;
+    width: 100vw;
+    z-index: 3;
+}
+
+.photobook-carousel .photobook-carousel-title-background {
+    backdrop-filter: blur(2px);
+}
+
+    /*  1.7.2. Photobook Gallery  */
+
+.photobook-carousel .photobook-gallery {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: auto;
+}
+
+.photobook-carousel .list.photobook-gallery--list {
+    overflow-x: scroll;
+    display: flex;
+    background-color: transparent;
+    padding-left: 50vw;
+    padding-right: 50vw;
+}
+
+.photobook-carousel .list.photobook-gallery--list > *:not(script):not(:last-of-type) {
+    margin-right: var(--space-s);
+}
+
+.photobook-carousel .photobook-gallery--item {
+    overflow: hidden;
+    
+    min-height: 40px;
+    height: 40px;
+    max-height: 40px;
+    min-width: 32px;
+    width: 32px;
+    max-width: 32px;
+}
+
+.photobook-carousel .photobook-gallery--item .ubt-lazy-image img {
+    object-fit: cover;
+}
+
+.photobook-carousel .photobook-gallery .photobook-gallery--counter {
+    margin-bottom: var(--space-s);
+}
+
+    /*  1.7.3. Photobook Options  */
+
+.photobook-carousel .photobook-carousel--top-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: var(--space-m) 0 0 var(--space-m);
+    z-index: 1;
+}
+
+.photobook-carousel .photobook-carousel--top-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: var(--space-m) var(--space-m) 0 0;
+    z-index: 1;
+}
+
+.photobook-carousel .photobook-carousel--player {
+    position: absolute;
+    top: calc(50vh - 32px);    
+    left: calc(50vw - 32px);
+    z-index: 1;
+}
+
+    /*  1.7.4. Photobook Bottom Sheet  */
+
+.photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet {
+    max-width: 55vw;
+    left: 22.5vw;
+}
+
+.photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet--speed .osui-bottom-sheet__content {
+    background-color: var(--color-neutral-2);
+    padding-top: var(--space-s);
+}
+
+.landscape .photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet .osui-bottom-sheet__content {
+    padding-right: calc(var(--space-s) + var(--os-safe-area-right));
+    padding-left: calc(var(--space-s) + var(--os-safe-area-left));
+    padding-bottom: calc(var(--space-s) + var(--os-safe-area-bottom));
+}
+
+.photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet--speed .ubt-bottom-sheet--content {
+    background-color: var(--color-neutral-0);
+    padding: var(--space-s) var(--space-base);
+    border-radius: 0 0 var(--border-radius-soft) var(--border-radius-soft);
+}
+
+.photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet--speed [data-radio-button]:has(.photobook-carousel--radio-button) {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    margin: 0;
+    padding: var(--space-s) 0;
+    border-bottom: var(--border-size-m) solid var(--color-neutral-2);
+}
+
+.photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet--speed [data-radio-button]:last-of-type:has(.photobook-carousel--radio-button) {
+    border: 0;
+}
+
+.photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet--speed .photobook-carousel--radio-button:before {
+    border: var(--border-size-m) solid var(--color-neutral-7);
+}
+
+.photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet--speed .photobook-carousel--radio-button:checked {
+    border: var(--border-size-l) solid var(--color-primary);
+    border-radius: var(--border-radius-circle);
+}
+
+.photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet--speed .photobook-carousel--radio-button:checked:before {
+    background-color: var(--color-primary);
+    border: var(--border-size-l) solid var(--color-neutral-0);
+}
+
+.photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet--speed .photobook-carousel--radio-button:checked:hover:before {
+    -webkit-filter: none;
+    filter: none;
+}
+
+.photobook-carousel .osui-bottom-sheet.photobook-carousel-bottom-sheet--speed [data-radio-button]:has(.photobook-carousel--radio-button) label {
+    margin: 0;
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-10);
+    font-weight: var(--font-regular);
+}
+
+/*  1.8. Updates  */
+
+.header-filter-enabled {
+    position: absolute;
+    right: -6px;
+    top: -6px;
+}
+
+div:has(div > div.ubt-icon.header-filter-enabled) {
+    position: relative;
+}
+
+.ubt-layout-main.layout-sticky-title .header-title span.input-search,
+.ubt-layout-main.layout-sticky-title .header-title .input-with-icon .input-with-icon-content-icon {
+    font-size: var(--font-size-h5);
+    font-weight: var(--font-regular);
+    line-height: 1;
+}
+
+/*  1.9. HomePage  */
+
+.ubt-services-carousel .osui-carousel .splide img {
+    -o-object-fit:uset;
+     object-fit:unset;
+}
+
+/* === 2. General === */
+
+/* 2.1. Bottom bar*/
+
+.layout-native .footer {
+    height: auto;
+}
+
+.bottom-bar-wrapper {
+    height: var(--bottom-bar-size);
+}
+
+.bottom-bar-wrapper .badge {
+    top: 20%;
+}
+
+.bottom-bar > div:not(.list),
+.bottom-bar .list > a
+{
+  -webkit-box-flex:1;
+  -ms-flex:1;
+  flex:1;
+  max-width:150px;
+  height: auto !important;
+}
+
+.bottom-bar .list {
+    display: flex;
+    min-width: 100%;
+    white-space: unset;
+    justify-content: space-around;
+}
+
+.bottom-bar .list script{
+    width: 0px !important;
+}
+
+.bottom-bar span {
+   white-space: unset;
+}
+
+.icon-badge {
+    display: inherit; 
+}
+
+
+/* === 3. Resets === */
+
+body:has(.calendar-root){
+    touch-action: auto;
+}
+
+.popup-backdrop{
+  background-color: var( --overlay-background);
+  z-index: 100;
+}
+
+body:has(.slide-from-left-leave:not(.active-screen)) .popup-backdrop{
+   z-index: 1000;
+}
+
+
+.popup-dialog{
+    padding: var(--space-base);
+    border-radius: var(--border-radius-large)
+}
+
+
+/*  FUTURE CS/CW CSS */
+
+/* This section is for in-dev UI blocks that haven't been moved to the correct place */
+
+.list .ubt-card--household{
+    margin-bottom: var(--space-s);
+}
+
+.list .ubt-card--household:last-of-type {
+    margin-bottom: 0px;
+}
+
+/*Sublayout_DirectoryCalendar*/
+
+.calendar-full-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    background-color: var(--color-neutral-4); 
+}
+
+/* Undefined location of the block and CSS - SubLayout_DirectoryDetailScreen - SubLayout_DirectoryDetailScreen_Section*/
+
+.directory-detail-screen {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    background-color: var(--color-neutral-4); 
+
+}
+
+.directory-detail-screen > div:empty{
+    display: none;
+}
+
+
+/* locality Households block*/
+
+.locality-count {
+ --ubt-icon-size: var(--ubt-icon-size-non-standard-16);
+ flex-direction: row;
+}
+
+.locality-brethren-count {
+ border-right: solid 1px var(--color-neutral-5);
+}
+
+/*Directory Home screen*/
+
+
+.directory-locality.ubt-icon {
+ --ubt-icon-size: 18px;
+}
+
+/*Household Details*/
+
+.see-more-locality-cont {
+ border-bottom: solid 1px var(--color-neutral-3);
+}
+
+.householdAddress [data-expression] {
+    white-space: normal;
+}
+
+.location-cont-item {
+    border-bottom: solid 1px var(--color-neutral-5);
+    padding: var(--space-base);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: var(--space-base);
+    margin-left: var(--space-base);
+}
+
+/* Household GalleryCard List*/
+
+.Household_GalleryCard-list.list.list-group{
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.Household_GalleryCard-list.list.list-group::-webkit-scrollbar{ 
+    display: none;  /* Safari and Chrome */
+}
+
+.Household_GalleryCard-list .OSBlockWidget:has(> .inline-block) {
+        width: max-content;
+}
+
+
+/* ==============================================================================
+ Calendar Blocks
+=============================================================================== */
+
+/*! 1.1. Calendar Day Widget */
+
+.phone .calendar-day-gallery.osui-gallery > .list{
+    column-gap: var(--month-gallery-column-gap);
+}
+
+.calendar-day-container {
+    background-color: var(--color-neutral-0);
+    border: var(--border-size-s) solid transparent;
+    border-radius: var(--border-radius-soft);
+    font-size: var(--font-size-xs);
+    font-variant-numeric: tabular-nums;
+}
+
+.calendar-day-container .calendar-day-item{
+    height: calc(((((var(--calendar-width) - (var(--month-gallery-column-gap) * 6)) - (var(--space-base) * 2)) / 7) - (2 * var(--border-size-s))) * var(--calendar-element-height-factor));
+}
+
+
+.calendar-day-item {
+    display: grid;
+    grid-template-columns: 24% 52% 24%;
+    grid-template-rows: 9.5% 52% 9.5% 5% 5% 5% 14%;
+    height: 100%;
+}
+
+.calendar-day-item-bg-selected{
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    place-self: center;
+    height: 100%;
+    width: 100%;
+}
+
+.calendar-day-item-bg-current {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    border-radius: 2px;
+    background-color: var(--color-primary);
+    place-self: center;
+    height: 100%;
+    width: 100%;
+}
+
+.calendar-day-container--selected {
+    border: var(--border-size-s) solid var(--calendar-main-color);
+}
+
+.calendar-day-item-number {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+    place-self: center;
+}
+
+.calendar-day-item-number-current  {
+    color: var(--color-neutral-0);
+}
+
+.calendar-day-item-number-selected,
+.calendar-item__week .calendar-day-item-number-selected.calendar-day-item-off {
+    font-weight: var(--font-semi-bold);
+    
+}
+
+
+/*.calendar-day-item-current {
+    background-color: var(--color-primary);
+}*/
+
+.calendar-day-item-off,
+.calendar-day-item-out-bounds {
+    color: var(--calendar-grey);
+}
+
+
+/*! 1.2 Weekdays Widget */
+
+.calendar-header-weekdays{ 
+    border-bottom: var(--border-size-s) solid var(--color-neutral-3);
+}
+
+.calendar-header-weekdays__list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    column-gap: var(--month-gallery-column-gap);
+}
+
+
+/*! 1.3. FullCalendar */
+
+/*! 1.3.1 Calendar Week */
+.calendar-week{
+    height: 100%;
+    background-color: var(--color-neutral-0);
+}
+
+.calendar-week .fc table {
+    font-size: 10px;
+    color: var(--calendar-grey);
+}
+
+.calendar-week .fc table td {
+    height: calc(100vw / 7);
+    width: calc((100vw - 8px) / 8);
+}
+
+/* Important is needed here to overwrite a style
+applied by the Calendar's internal JS as inline CSS. */
+.calendar-week .fc table td.fc-axis {
+    width: calc(((100vw - 8px) / 8) - 8px) !important;
+}
+
+.calendar-week .fc-unthemed th,
+.calendar-week .fc-unthemed td,
+.calendar-week .fc-unthemed thead,
+.calendar-week .fc-unthemed tbody,
+.calendar-week .fc-unthemed .fc-divider,
+.calendar-week .fc-unthemed .fc-row,
+.calendar-week .fc-unthemed .fc-content,
+.calendar-week .fc-unthemed .fc-popover,
+.calendar-week .fc-unthemed .fc-list-view,
+.calendar-week .fc-unthemed .fc-list-heading td {
+    border-color: var(--calendar-grey-light);
+}
+
+.calendar-week .fc table hr.fc-divider {
+    padding: 0;
+}
+
+.calendar-week .fc-ltr.fc table td .fc-axis.fc-widget-content {
+    text-align: left;
+    vertical-align: top;
+}
+
+.calendar-week .fc-ltr.fc table td .fc-day-grid .fc-axis.fc-widget-content {
+    vertical-align: middle;
+}
+
+.calendar-week .fc-timeGrid-view table .fc-day-grid .fc-row .fc-content-skeleton {
+    padding-bottom: 0;
+}
+
+.calendar-week table a.fc-day-grid-event.fc-h-event.fc-event.fc-start.fc-end {
+    height: 85%;
+}
+
+.mycalendar-fc-day .fc-day-grid .fc-content-skeleton{
+    padding-top: calc( var(--space-base) + var(--space-xs));
+}
+
+.calendar-week table td.fc-today {
+    background-color: var(--color-neutral-0);
+}
+
+.calendar-week .fc-day-grid-event .fc-content {
+    text-overflow: ellipsis;
+}
+
+.mycalendar-fc-day .fc-content .fc-title,
+.mycalendar-fc-day .fc-content .fc-description{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+
+.carousel-week-item {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 12.5% 87.5%;
+    grid-template-rows: 1fr;
+}
+
+.carousel-week-item-left {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.carousel-week-item-right {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+}
+
+
+/*! 1.3.2. Calendar Day */
+
+.calendar-day-dots-wrapper {
+  grid-column: 2 / span 1;
+  grid-row: 6 / span 1;
+  display: flex;             
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  padding: 0;
+}
+
+.mycalendar-fc-day{
+    height: 100%;
+    background-color: var(--color-neutral-0);
+}
+
+
+.mycalendar-fc-day .fc table {
+    font-size: 10px;
+    color: var(--calendar-grey);
+}
+
+.mycalendar-fc-day .fc table td {
+    height: calc(100vw / 7);
+    border: 0;
+}
+
+
+.mycalendar-fc-day .fc .fc-time-grid-container table td{
+    border-top: 1px solid var(--calendar-grey-light);
+}
+
+.mycalendar-fc-day .fc .fc-day-grid table td{
+    height: auto;
+    padding-bottom: var(--space-xs);
+}
+/* Important is needed here to overwrite a style
+applied by the Calendar's internal JS as inline CSS. */
+.mycalendar-fc-day .fc table td.fc-axis {
+    width: 28px !important;
+    padding: 0px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.mycalendar-fc-day .fc table .fc-day-grid td.fc-axis{
+    padding-top: 0;
+    font-size: var(--font-size-xs);
+    line-height: 1;
+}
+
+.mycalendar-fc-day .fc-unthemed th,
+.mycalendar-fc-day .fc-unthemed td,
+.mycalendar-fc-day .fc-unthemed thead,
+.mycalendar-fc-day .fc-unthemed tbody,
+.mycalendar-fc-day .fc-unthemed .fc-divider,
+.mycalendar-fc-day .fc-unthemed .fc-row,
+.mycalendar-fc-day .fc-unthemed .fc-content,
+.mycalendar-fc-day .fc-unthemed .fc-popover,
+.mycalendar-fc-day .fc-unthemed .fc-list-view,
+.mycalendar-fc-day .fc-unthemed .fc-list-heading td {
+    border-color: var(--calendar-grey-light);
+    border-left: none;
+    border-right: none;
+}
+
+.mycalendar-fc-day .fc table hr.fc-divider {
+    padding: 0;
+}
+
+.mycalendar-fc-day .fc-ltr.fc table td .fc-axis.fc-widget-content {
+    vertical-align: top;
+}
+
+.mycalendar-fc-day .fc-ltr.fc table td .fc-day-grid .fc-axis.fc-widget-content {
+    vertical-align: top;
+}
+
+.mycalendar-fc-day .fc-timeGrid-view table .fc-day-grid .fc-row .fc-content-skeleton {
+    padding-bottom: 0;
+}
+
+
+.mycalendar-fc-day table td.fc-today {
+    background-color: var(--color-neutral-0);
+}
+
+.mycalendar-fc-day .fc-day-grid-event .fc-content {
+    text-overflow: ellipsis;
+}
+
+.mycalendar-fc-day .fc-content .fc-title{
+    font-size: var(--font-size-s);
+    font-weight: 500;
+}
+
+.mycalendar-fc-day .fc-event{
+    border: none;
+    border-left: 3px solid var(--calendar-main-color); /*In case no style is provided for color, default to main color*/
+    border-radius: 6px;
+    background-color: var(--calendar-main-color-lighter); /*In case no style is provided for color, default to main color*/
+    color: var(--color-neutral-13);
+    padding-left: calc(var(--space-base) - 3px);
+    padding-top: 10px;
+    padding-bottom: var(--space-xs);
+    font-weight: 500;
+}
+
+/*.mycalendar-fc-day .fc-scroller{
+    height: var(--scrollable-container-height) !important;
+}*/
+
+.mycalendar-fc-day .fc-event-container{
+    width: 100%;
+}
+
+.mycalendar-fc-day .fc-description{
+  font-size: var(--font-size-xs);
+  color: var(--calendar-grey-darker);
+  margin-top: 2px;
+  margin-right: var(--space-xs);
+}
+
+.mycalendar-fc-day table a.fc-day-grid-event.fc-h-event.fc-event{
+    height: auto;
+    padding-left: var(--space-s);
+    border: 1px solid;
+    color: var(--color-neutral-0);
+    font-weight: 500;
+    padding: var(--space-s) var(--space-s);
+    line-height: 1;
+}
+
+.mycalendar-fc-day .fc-day-grid-event .fc-description{
+    display: none;
+}
+
+.mycalendar-fc-day .fc-day-grid + .fc-divider {
+    border-width: 0px;
+    border-bottom-width: 1px;
+}
+
+.fc-time-grid-event--canceled .fc-title,
+.fc-time-grid-event--canceled .fc-description{
+    text-decoration: line-through;
+}
+
+
+/*! 1.4. Calendar List */
+
+.calendar-list.list.list-group {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory;
+   /* scroll-behavior: smooth;*/
+    scroll-snap-points-x: repeat(100vw);
+    -webkit-overflow-scrolling: touch;
+   /* border-bottom: 1px solid  var(--color-neutral-11);*/
+    background-color: white;
+}
+
+.calendar-list.list.list-group.calendar-list--day-view{
+   /* border-bottom:0*/
+}
+
+.scroll-snap-mandatory{
+    scroll-snap-type: x mandatory !important;
+}
+
+.calendar-list .calendar-item {
+    width: var(--calendar-width);
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+    flex-shrink: 0;
+    padding: 0px var(--space-base);
+}
+
+.calendar-list--day-view .calendar-item {
+   padding: 0;
+}
+
+.calendar-list.list.calendar-list--day-view .fc-scroller,
+.calendar-list{
+    overscroll-behavior: auto;
+    scrollbar-width: none;
+}
+
+.event-list__header{
+    position: sticky;
+    top: var(--header-size);
+    z-index: 1;  
+}
+
+.event-list--fixed-height-content .event-list__header{
+    position: sticky;
+    top: 0;
+    z-index: 1;  
+}
+
+.event-list--fixed-height-content{
+    overflow: scroll;
+}
+
+
+/*WeekDaysForWeekView*/
+
+.calendar-day-wrapper{
+    display: grid;
+    grid-template-rows:
+        auto     
+        auto    
+        auto      
+        auto;     
+    justify-items: center;
+    align-items: center;
+    grid-column: 1 / -1; 
+    grid-row: 1 / -1;    
+    position: relative;  
+}
+
+.calendar-week-item .calendar-day-item {
+    display: grid;
+    grid-template-columns: 100%;   
+    grid-template-rows: 
+        auto 
+        auto 
+        auto   
+        auto;  
+    justify-items: center;
+    row-gap: 4px;
+} 
+
+.calendar-week-item .calendar-day-container {
+    min-height: calc(((100vw - (var(--month-gallery-column-gap) * 6)) - (var(--space-base) * 2)) / 7);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 0;
+}
+
+.calendar-week-item .calendar-day-item-number-current {
+    color: var(--color-neutral-0);
+    padding: 2px 6px;
+}
+
+.calendar-day-weekday {
+    font-size: var(--space-base);
+    color: var(--color-neutral-6);
+    grid-column: 2 / span 1;  
+    grid-row: 1 / span 1;     
+    text-align: center;
+    z-index: 2;
+}
+
+.calendar-day-container--selected .calendar-day-weekday {
+    color: var(--color-neutral-10);
+    font-weight: var(--font-semi-bold);
+}
+.calendar-week-item .calendar-header-weekdays{
+    color: var(--color-neutral-6);
+    border-bottom: none;
+}
+
+.calendar-day-month-name {
+    grid-column: 2 / span 1;
+    grid-row: 4 / span 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    font-size:10px;  
+    height: 100%;
+    width: 100%;
+}
+
+.calendar-week-item .calendar-day-dots-wrapper {
+  grid-column: 2 / span 1;
+  grid-row: 8 / span 1;
+  display: flex;             
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  padding: 0;
+}
+
+
+
+
+
+
+/*! 1.5. Floating Button */
+/*
+.connect-sticky-button{
+    position: sticky;
+    transform: translateX(0px);
+    bottom: 0;
+    z-index: 1;
+}
+
+.connect-sticky-button__button{
+    cursor: pointer;
+    line-height: 0;
+    font-size: var(--font-size-xs);
+    padding: 10px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    color: var(--color-neutral-0);
+    box-shadow: 0px 4px 4px 0px #00000040;
+    z-index: 1;
+    position: fixed;
+    bottom: var(--space-xxl);
+    right: var(--space-l);
+}
+
+*/
+
+
+/*! 1.6. Calendar View Menu */
+/*
+.calendar-view-menu .action-menu{
+  padding: 0;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.calendar-view-menu .action-menu-top{
+  padding: var(--space-s);
+  margin-bottom: 0;
+}
+
+.calendar-view-menu .close-bar{
+  height: var(--space-xs);
+}
+
+.calendar-menu-option, 
+.calendar-menu-header{
+    border-bottom: 1px solid var(--color-neutral-11);
+}
+
+.calendar-view-menu .calendar-menu-option{
+    color: var(--color-neutral-13);
+}
+
+.calendar-menu-option--active{
+  background-color: var(--calendar-main-color-lighter);
+}
+*/
+
+/*! 1.7. Card With Vertical Indicator */
+/*
+.my-calendar-card-title,
+.my-calendar-event-card-search__content > div{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.my-calendar-card-title span,
+.my-calendar-event-card-search__content span{
+    white-space: nowrap;
+}
+
+
+.card-vertical-indicator__indicator{
+    width: 3px;
+    flex-shrink: 0;
+}
+
+.card-vertical-indicator__title{
+    font-weight: 500;
+}
+
+
+.card-vertical-indicator__description{
+    color: var(--calendar-grey-darker);
+}
+.card-vertical-indicator__content{
+    min-width: 0;
+}
+*/
+
+/*! 1.8. Month Selector */
+
+.mycalendar-month-selector-popup .popup-dialog{
+    margin: 0px;
+    max-width: 328px;  
+}
+
+.mycalendar-month-selector{
+  color: var(--color-neutral-9); 
+}
+
+.mycalendar-month-selector .osui-gallery .list{
+  justify-items: center;
+  column-gap: var(--space-m);
+  row-gap: var(--space-base);
+}
+
+.mycalendar-month-selector__month{
+  border-radius: 50%;
+  width: 45px;
+  aspect-ratio: 1/1;
+  background-color: var(--calendar-grey-light);
+  border: 1px solid var(--calendar-grey);
+}
+
+.mycalendar-month-selector__month--selected{
+  color: var(--color-neutral-0);
+  background-color: var(--calendar-main-color);
+  border: none;
+}
+
+.mycalendar-month-selector__month--disabled{
+    background-color: var(--color-neutral-4)
+}
+
+/*! 1.9. Skeleton */
+/*
+[class*="calendar-skeleton"]{
+    background: linear-gradient(90deg, var(--calendar-grey) 0%, rgba(194, 200, 204, 0.25) 100%);
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+
+.calendar-skeleton-note{
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.calendar-skeleton-card{
+    border-radius: 20px;
+    height: 74px;
+    margin-bottom: 10px;
+}
+
+.calendar-skeleton-card--tall{
+    height: 106px;
+}
+
+.calendar-skeleton-note--event-community{
+    grid-column: 2 / span 1;
+    grid-row: 6 / span 1;
+}
+
+.calendar-skeleton-note--event-user{
+    grid-column: 2 / span 1;
+    grid-row: 4 / span 1;
+}*/
+
+/*! 1.10. Event Form */
+/*
+.mycalendar-form{
+  padding-left: var(--space-base);
+  padding-right: var(--space-base);
+}
+
+.mycalendar-form__field{
+  padding-top: var(--space-base);
+  padding-bottom: var(--space-base);
+  border-bottom: 1px solid var(--color-neutral-11);
+  display: flex; 
+}
+
+.mycalendar-form__field__icon{
+  color: var( --color-primary);
+}
+
+.mycalendar-form__field__icon i{
+  padding-top: 2px
+}
+
+.mycalendar-form__datetime{
+  display: flex;
+  justify-content: space-around;
+}
+
+.mycalendar-form__datetime > div:first-child,
+.mycalendar-form__datetime > div:last-child{
+    flex-grow: 1;
+}
+
+.mycalendar-form__datetime i{
+  padding-top: 18px;
+ font-size: 24px;
+}
+
+
+.mycalendar-form__datetime__time{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+
+.mycalendar-form__datetime__date{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+
+.mycalendar-form .mycalendar-form__field .mycalendar-form__value input,
+.mycalendar-form .mycalendar-form__field .mycalendar-form__value textarea{
+  border: none;
+  height: auto;
+  padding: var(--space-none);
+}
+
+.mycalendar-form__value{
+    flex: 1;
+} */
+
+/*! 1.11. Horizontal Scroll Tags */
+
+/*.horizontal-scroll-Tags ::-webkit-scrollbar {
+  display: none;
+}
+
+.horizontal-scroll-tags {
+  position: relative;
+}
+
+.horizontal-scroll-tags-content {
+  display: flex;
+  overflow: auto;
+}
+
+.tag-list {
+    position: relative; 
+}
+
+.tag-list .list.list-group {
+    display: flex;
+    flex-direction:row;
+    overflow: hidden;
+}
+
+.tag-list.recent-search .list.list-group {
+    flex-wrap: wrap;
+}
+*/
+/*! 1.12. Horizontal Tags */
+/*
+.tag-item .tag {
+    background-color: var(--color-neutral-0);
+    border: 1px solid #D8DCDE;
+    color: #87929D;
+    border-radius: 16px;
+    font-size: var(--font-size-s);
+    padding: 8px 12px;  
+    font-weight: 400;
+    margin-right: var(--space-xs);
+}
+
+.tag-item.recent-search .tag {
+    background-color: #E9EBED;
+    color: #68737D;
+    margin-top: var(--space-xs);
+ }
+
+.tag-item.active .tag {
+    background-color: #00819C;
+    border: 1px solid #00819C;
+    color: var(--color-neutral-0);
+}
+
+.tag-item .tag .icon {
+    font-size: 0.7em;
+}
+*/
+
+/*! 1.13. Recent Searches */
+/*
+.recent-search-header {
+    display: flex;
+    justify-content: space-between;
+    color: #49545C;
+}
+
+.recent-search-header a:link {
+    color: #49545C;
+}
+*/
+/*! 1.14. Filter Tabs */
+/*
+.my-calendar-search-filter-tab {
+    box-shadow: 0px 2px 10px 4px rgba(216,220,222,0.4);
+    margin-bottom: 8px;
+    position: fixed;
+    background-color: white;
+    z-index: 1;
+    width: 100%;
+
+}*/
+
+/*! 1.15. Calendar Month */
+
+
+.calendar-list--month .calendar-day-gallery,
+.calendar-menu-option .calendar-day-gallery{
+    min-height: calc((((((var(--calendar-width) - (var(--month-gallery-column-gap) * 6)) - (var(--space-base) * 2)) / 7) * 6) + (5 * var(--gallery-gap))) * var(--calendar-element-height-factor));
+}
+
+
+/*! 1.16. Switch */
+
+.calendar-theme .fc {
+  height: 100% !important;
+}
+
+.my-calendar-theme [data-switch]{
+  background-color:transparent;
+  border-radius:0;
+  height:24px;
+  overflow:initial;
+  width:50px;
+}
+.my-calendar-theme [data-switch]:empty:before{
+  background-color:var(--color-neutral-5);
+  border:var(--border-size-s) solid var(--color-neutral-5);
+  border-radius:20px;
+  height:22px;
+  opacity:1;
+  -webkit-transition:all 180ms linear;
+  -o-transition:all 180ms linear;
+  transition:all 180ms linear;
+  width:34px;
+  top: 0;
+}
+.my-calendar-theme [data-switch]:empty:after{
+  border:0;
+  bottom:0;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  height:20px;
+  left: 0px;
+  margin-left:0;
+  top:2px;
+  -webkit-transform:translateX(2px) translateZ(0);
+  transform:translateX(2px) translateZ(0);
+  -webkit-transition:all 180ms linear;
+  -o-transition:all 180ms linear;
+  transition:all 180ms linear;
+  width:20px;
+  background-color: var(--color-neutral-0) !important;
+}
+.my-calendar-theme [data-switch]:hover:before{
+  background-color:var(--color-neutral-11);
+  border:var(--border-size-s) solid var(--color-neutral-11);
+}
+.my-calendar-theme [data-switch]:checked:before{
+  background-color:var(--color-primary) !important;
+  border:var(--border-size-s) solid var(--color-primary) !important;
+}
+
+.my-calendar-theme [data-switch]:checked:after{
+  -webkit-transform:translateX(14px) translateZ(0);
+          transform:translateX(14px) translateZ(0);
+}
+.my-calendar-theme [data-switch][disabled]{
+  pointer-events:none;
+}
+.my-calendar-theme [data-switch][disabled]:empty:before{
+  background-color:var(--color-neutral-2);
+  border:var(--border-size-s) solid var(--color-neutral-4);
+}
+.my-calendar-theme [data-switch][disabled]:empty:after{
+  background-color:var(--color-neutral-5);
+  border:0;
+}
+
+/*! 1.16. Resizable text area */
+/*
+.resizable-text-area {
+  /* easy way to plop the elements on top of each other and have them both sized based on the tallest one's height */
+ /* display: grid;
+}
+.resizable-text-area::after {
+  /* Note the weird space! Needed to preventy jumpy behavior */
+ /* content: attr(data-replicated-value) " ";
+
+  /* This is how textarea text behaves */
+  /*white-space: pre-wrap;
+
+  /* Hidden from view, clicks, and screen readers */
+ /* visibility: hidden;
+}
+.resizable-text-area > textarea {
+  /* You could leave this, but after a user resizes, then it ruins the auto sizing */
+ /* resize: none;
+
+  /* Firefox shows scrollbar on growth, you can hide like this. */
+ /* overflow: hidden;
+}
+.resizable-text-area > textarea,
+.resizable-text-area::after {
+  /* Identical styling required!! */
+ /* font: inherit;
+  word-break: break-all;
+  /* Place on top of each other */
+ /* grid-area: 1 / 1 / 2 / 2;
+}*/
+
+/*! 1.17. Radio Button */
+/*
+.my-calendar-theme .radio-button:checked:before{
+    border-width:5px;
+}
+
+.my-calendar-theme .radio-button{
+    height:20px;
+    width:20px;
+}
+*/
+
+/*! 1.18. Inputs and TextAreas */
+/*
+.my-calendar-theme ::-webkit-input-placeholder{
+   color:var(--calendar-grey-darker);
+}
+.my-calendar-theme ::-moz-placeholder{
+   color:var(--calendar-grey-darker);
+}
+.my-calendar-theme :-ms-input-placeholder{
+   color:var(--calendar-grey-darker);
+}
+.my-calendar-theme .placeholder-text{
+  color:var(--calendar-grey-darker);
+}*/
+
+
+.calendar-datepicker {
+--month-gallery-column-gap: var(--space-xs);
+--calendar-element-height-factor: 0.97
+}
+
+/*1.8 - Homepage */
+
+.layout-native .content.background-neutral-4 {
+    background-color: var(--color-neutral-4);
+}
+
+/* Services */
+
+.ubt-services-carousel{
+    /*Preload items in order to prevent flicker*/
+    --gallery-desktop-items: 3;
+    --gallery-list-desktop-items: 3;
+    --gallery-tablet-items: 3;
+    --gallery-list-tablet-items: 3;
+    --gallery-phone-items: 3;
+    --gallery-list-phone-items: 3;
+    --gallery-gap: var(--space-base);
+}
+
+.ubt-services-carousel__list{}
+
+.ubt-services-carousel__gallery{
+    width: 100%;
+}
+
+.ubt-services-carousel__list-items > div{
+    justify-self: center;
+    align-self: center;
+}
+
+.ubt-services-carousel .splide__pagination li {
+    display: inline-flex;
+    margin: var(--space-none) calc(var(--space-xs) / 2);
+    justify-content: center;
+    align-items: center;
+}
+
+.ubt-services-carousel .splide__pagination__page{
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-neutral-3);
+    border: var(--border-size-s) solid var(--color-neutral-5);
+    opacity: 1;
+    margin: 0;
+    background: none;
+}
+
+.ubt-services-carousel .splide__pagination__page.is-active {
+    width: 15px;
+    height: 10px;
+    border: var(--border-size-m) solid var(--color-primary);
+    border-radius: var(--border-radius-medium);
+    background-color: var(--color-primary-lightest);
+    -webkit-transform: unset;
+    -ms-transform: unset;
+    transform: unset;
+}
+
+
+
+/*Utilities*/
+
+/*
+.list--gap-s > *:not(script):not(:last-child) {
+    margin-bottom: var(--space-s);
+}
+*/
+
+/* Changed last-child to last-of-type because if the list has virtualization it'll have a script as the last element,
+therefore the final listed last element on the list will not be considered the last-child and have the margin applied. */
+
+/*.list--gap-s > *:not(script):not(:last-of-type) {
+    margin-bottom: var(--space-s);
+}*/
+
+.list--gap-s{
+    margin-bottom: calc(-1 * var(--space-s));
+}
+
+.list--gap-s > div{
+    padding-bottom: var(--space-s);
+}
+
+.list--gap-s > .OSBlockWidget {
+    display: block;
+}
+
+.list--gap-xs > div {
+    padding-bottom: var(--space-xs);
+}
+
+.list-horizontal--gap-xs > *:not(script):not(:last-of-type) {
+    margin-right: var(--space-xs);
+}
+
+.list-horizontal--gap-xs > .OSBlockWidget {
+    display: block;
+}
+
+.fit-content {
+    max-width: fit-content;
+}
+
+/* One School Global*/
+
+.dx-popup-menu-container--years-list__element{
+    width: 128px;
+    height: var(--_dx-popup-menu-element-height)
+}
+
+
+.dx-popup-menu-container--year-list .list > div:not(:last-child) > div{
+    border-bottom: var(--border-size-s) solid var(--color-neutral-7);
+}
+
+.dx-popup-menu-container--year-list{
+    --_dx-popup-menu-element-height: 45px;
+    max-height: calc(6.5 *  var(--_dx-popup-menu-element-height));
+    overflow:scroll;
+}
+.school-address {
+    background-color: #EDF6F8;
+    padding: var(--space-s);
+    border-radius: var(--space-xs);
+    margin-top: var(--space-s);
+    margin-bottom: var(--space-xs);
+}
+
+.school-link-item {
+    background-color: #EDF6F8;
+    padding: var(--space-s);
+    border-radius: var(--space-xs);
+}
+
+/* MyProfile  */
+.list-menu .list-menu__option{
+    border-bottom: var(--border-size-s) solid var(--color-neutral-3)
+}
+
+.my-profile__header .OSBlockWidget:has( > .ubt-avatar-image),
+.my-profile__header .OSBlockWidget:has( > .OSBlockWidget > .ubt-avatar-image){
+    display: inline;
+}
+
+
+/* Dialog Popup */
+.connect-dialog-popup .dx-dialog-footer button.btn{
+  height: var(--ubt-button-height-s);
+  flex-grow: 1;
+  border-radius: var(--border-radius-medium);
+}
+
+.connect-dialog-popup .dx-confirmation-dialog .dx-dialog-header {
+    font-size: var(--font-size-base);
+}
+
+
+.connect-dialog-popup .dx-dialog-footer .btn + .btn{
+  margin-left: 0px;
+}
+
+.connect-dialog-popup .dx-dialog-footer{
+  display: flex;
+  gap: var(--space-s);
+  flex-direction: row-reverse;
+}
+
+.connect-dialog-popup.connect-dialog-popup--vertical-buttons .dx-dialog-footer{
+    flex-direction: column;
+}
+
+
+.connect-dialog-popup.connect-dialog-popup--access-restricted .dx-dialog-footer{
+    flex-direction: column;
+}
+
+.connect-dialog-popup.connect-dialog-popup--access-restricted .access-restricted-body-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.connect-dialog-popup .dx-dialog-footer button.btn:not(.btn-primary){
+  border: none;
+}
+
+.connect-dialog-popup .popup-dialog{
+    border-radius: var(--border-radius-large);
+    padding: var(--space-base)
+}
+
+.connect-dialog-popup--information .dx-dialog-footer button.btn:not(.btn-primary) {
+    display: none;
+}
+
+
+/* === 4. Custom Widgets === */
+
+ /* 4.1. Weekday Tag List */
+
+.connect-weekdays-tag-list{
+    justify-content: space-between
+}
+
+.connect-weekdays-tag-list.list.ubt-tag-list > div{
+    margin-right: var(--space-none)
+}
+
+.connect-weekdays-tag-list .ubt-tag-toggle{
+    border-radius: var(--border-radius-circle);
+    width: 40px;
+    aspect-ratio: 1/1;
+    padding: var(--space-none);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height:1
+}
+
+
+/* 4.2. Form Item Container */
+
+.connect-event-form {
+    --connect-event-form-item-border:  var(--border-size-s) solid var(--color-neutral-3) 
+}
+
+.connect-event-form__item-container {
+    border-bottom: var(--connect-event-form-item-border)    
+}
+
+.connect-event-form__option-list .list > .OSBlockWidget > div{
+    border-bottom: var(--connect-event-form-item-border);
+}
+
+.connect-event-form__item-container > div > .OSBlockWidget:has( > .connect-event-form__option-list):last-child .list > .OSBlockWidget > div:last-child {
+    border-bottom: none;   
+}
+
+.connect-event-form__item .columns3 > .columns-item:last-child{
+    margin-left: calc(-1 * (var(--space-base) - var(--space-xs)))
+}
+
+
+/*4.3. Leaflet Map*/
+
+.leaflet-touch .leaflet-bar.leaflet-custom-controls {
+    border: unset;
+}
+
+.leaflet-touch .leaflet-bar.leaflet-custom-controls a {
+    border: unset;
+    border-radius: 100px;
+    margin-bottom: var(--space-base);
+    font-size: 28px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-m);
+}
+
+.leaflet-bar a.text-primary {
+    color: var(--color-primary);
+}
+
+.leaflet-bar a.text-neutral-8 {
+    color: var(--color-neutral-8);
+}
+
+.leaflet-touch .leaflet-bar.leaflet-custom-controls a:last-child {
+    margin-bottom: var(--ubt-bottomsheet-handler-preview--height);
+}
+
+
+.marker-cluster-small {
+    background-color: unset;
+    }
+.marker-cluster-small div {
+    background-color: var(--color-green);
+    }
+
+.marker-cluster-medium {
+    background-color: unset;
+    }
+.marker-cluster-medium div {
+    background-color: var(--color-yellow-dark);
+    }
+
+.marker-cluster-large {
+    background-color: unset;
+    }
+.marker-cluster-large div {
+    background-color: var(--color-orange-dark);
+    }
+
+.marker-cluster div {
+    border: 2px solid var(--color-neutral-9);
+    color: var(--color-neutral-9);
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+
+
+/*4.4. Share Sheet*/
+
+
+/*The following CSS exists to hide the popup hosting the share sheet*/
+/*We use a popup to place the share sheet outside the screen container to allow for use in carousel*/
+.popup-backdrop:has(.connect-share-portal) {
+    background-color: transparent !important;
+    pointer-events: none !important;
+    position: relative;
+    /* Optional: display: none !important; if you don't need the backdrop at all */
+}
+
+.connect-share-portal {
+    position: relative !important; 
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    pointer-events: none !important; /* Pass clicks through the invisible popup */
+}
+
+.connect-share-portal .popup-content {
+    pointer-events: auto 
+}
+
+/*Hide popup end*/
+
+
+.connect-share-sheet{
+    --share-sheet-gap: var(--space-s);
+    gap: var(--share-sheet-gap);
+}
+
+.connect-share-sheet .osui-bottom-sheet__content{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: var(--share-sheet-gap, var(--space-s));
+}
+
+.connect-share-sheet.osui-bottom-sheet .osui-bottom-sheet__content .ubt-bottom-sheet--content{
+    margin: 0;
+    flex: 1;
+}
+
+
+.connect-share-sheet .osui-bottom-sheet__header__top-bar::before, .connect-share-sheet .osui-bottom-sheet__header::after{
+    display: none;
+}
+
+
+.connect-share-sheet__content{
+    position: relative;
+}
+
+.connect-share-sheet__content--processing::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  pointer-events: auto;
+  z-index: calc(var(--osui-bottom-sheet-layer) + 1);
+}
+
+.connect-share-sheet__content > *:has(.list) {
+    padding: 0px;
+}
+
+.connect-share-sheet__content .connect-share-sheet__content__search-list .list > *:not(script) {
+    border-bottom: var(--border-size-s) solid var(--color-neutral-3);
+    display: block;
+}
+
+
+.connect-share-sheet__content .connect-share-sheet__content__search-list .connect-search-result{
+    border-bottom: none;
+}
+
+
+.connect-share-sheet__content .connect-share-sheet__content__search-list .list > *{
+    padding: 0px var(--space-base);
+}
+
+.connect-share-sheet .ubt-bottom-sheet--footer{
+    position: sticky;
+}
+
+.connect-share-sheet .ubt-icon-button__text-container { 
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.connect-share-sheet .feed--single-item iframe{
+    min-height: unset;
+}
+
+
+
+/* every ancestor of the results list: column, can shrink */
+.osui-bottom-sheet__content *:has(.connect-share-sheet__results) {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* ancestors of the marker also fill the available height */
+.osui-bottom-sheet__content *:has(.connect-share-sheet__fill-parent-end) {
+    flex: 1;
+}
+
+/* Div_SearchList takes the space left after the search input and avatar row */
+.connect-share-sheet__content__search-list {
+    flex: 1 1 auto;
+}
+
+/* the results list is the scroll container */
+.connect-share-sheet .osui-bottom-sheet__content .connect-share-sheet__results {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+.connect-share-sheet__content .connect-share-sheet__horizontal-list .ubt-icon-button{
+    width: min-content;
+}
+
+.shareable-object-generic .ubt-lazy-image--no-image {
+  aspect-ratio: 100/58;
+}
+
+ .shareable-object-generic .ubt-lazy-image:not(.ubt-lazy-image--no-image) img{
+     aspect-ratio: 100/58;
+     object-fit: cover;
+ }
+
+
+ /* 5.1. Layouts */
+
+.footer:has(.footer--auto-height),
+.ios .footer:has(.footer--auto-height){
+    height: auto;
+}
+
+.subscription-pop-up [data-popup-backdrop] {
+    z-index: 1005;
+}

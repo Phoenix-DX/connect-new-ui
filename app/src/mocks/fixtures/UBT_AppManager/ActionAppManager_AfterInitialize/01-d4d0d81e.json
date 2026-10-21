@@ -1,0 +1,13 @@
+{
+ "module": "UBT_AppManager",
+ "action": "ActionAppManager_AfterInitialize",
+ "screen": null,
+ "status": 200,
+ "inputs": {
+  "EspaceName": "Incididunt",
+  "TOTP": ""
+ },
+ "data": {
+  "isNotRegistered": false
+ }
+}

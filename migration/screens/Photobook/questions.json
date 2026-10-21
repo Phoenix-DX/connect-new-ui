@@ -1,0 +1,138 @@
+[
+ {
+  "id": "Q1",
+  "kind": "decision",
+  "topic": "PanZoom (pinch zoom of the foreground photo)",
+  "question": "PanZoom.PanZoom runs a customised anvaka panzoom script (scripts/PanZoom.anvaka_panzoom_js.js: maxZoom 3, minZoom 1, bounds, triggerZoomIn / triggerMinZoomReached callbacks, doubleClickEnablesZoom). The script is in none of the local sources and no allowed package provides it. How should the zoom be ported?",
+  "evidence": "PanZoom.PanZoom.PanZoom.mvc.js:113-115 (getJsDependencies) and OnReady JavaScript1JS (panzoom(area, {...})); dom/default.html:113-115 (Zoomable div, transform matrix(1, 0, 0, 1, 0, 0))",
+  "mcp": "not asked (no MCP for route agents)",
+  "options": [
+   "A: vendor the TST script (orchestrator fetches it read-only, foundation applies it through an ADR like Virtual Select) and port PanZoom with it; until then the captured static markup without zoom",
+   "B: npm panzoom (anvaka) through an ADR",
+   "C: no zoom: static markup only"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:33:43",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): vendor the TST PanZoom script (ADR-7)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T19:11:48"
+ },
+ {
+  "id": "Q2",
+  "kind": "decision",
+  "topic": "Carousel provider actions (CR-Photobook-1)",
+  "question": "Photobook_Carousel calls the OSUI actions CarouselGoTo (gallery thumbnail click, Replay) and CarouselToggleDrag (zoom in / min zoom / autoplay), and UBTConnect Carousel_SetCurrentPosition (writes the live carousel's StartingPosition). The shared Carousel API (osui/lib/actions.ts) has none of them. Priority of change request CR-Photobook-1?",
+  "evidence": "Photobook_Carousel.mvc.js:707,832,1100-1110,1191 (carouselToggleDrag$Action / carouselGoTo$Action / carousel_SetCurrentPosition$Action); UBTConnect.controller.js Carousel_SetCurrentPosition.SetCurrentPositionJS (carouselObject._configs.StartingPosition = index)",
+  "mcp": "not asked",
+  "options": [
+   "A: apply CR-Photobook-1 before the review; until then the route calls nothing for these actions (thumbnail click and Replay do not move the carousel, drag stays on)",
+   "B: review now with the actions inert and apply CR-Photobook-1 later"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:33:43",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): apply CR-Photobook-1 (shared Carousel go-to, toggle-drag, starting position) before the review",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T19:11:48"
+ },
+ {
+  "id": "Q3",
+  "kind": "decision",
+  "topic": "Mock of DataActionGetHouseholdCaption (info sheet)",
+  "question": "The info sheet's caption (Photobook_Options_Left DataActionGetHouseholdCaption, on demand after the info button) was not captured and is person data. What should the mock answer?",
+  "evidence": "Photobook_Options_Left.mvc.js controller getHouseholdCaption$DataActRefresh (dataFetchDependenciesOriginal -1, on demand), view SanitizedHtml AllowedTags nobr,sup; skeleton caption UBTConnect.controller.js GetSkeleton_UI_PhotobookCaption",
+  "mcp": "not asked",
+  "options": [
+   "A: a fictional caption per household in the skeleton caption's format (fictional names, the household's fictional locality), LastFetchedHousehold = the requested household",
+   "B: the skeleton caption text for every household"
+  ],
+  "recommend": "A",
+  "blocking": false,
+  "status": "answered",
+  "askedAt": "2026-10-15T17:33:43",
+  "answer": "A (recommended), auto-accepted (user instruction 2026-10-15 16:59): fictional caption per household in the skeleton caption format",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T19:11:48"
+ },
+ {
+  "id": "Q4",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A, Q2 → A, Q3 → A: auto-accepted (user instruction 2026-10-15 16:59); see questions.json.; CR-Photobook-2 applied: platform RadioGroup/RadioButton (`app/src/components/OSRadioGroup/`, W:78-188, W:347-430);; SetSplideEvent \"moved\" handler only logs to the console: not ported (NO-CONSOLE).; Exemptions (capture artifacts: masked photos, masked title, gallery scroll) merged into parity-exemptions.json Feature flags: action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:16:46",
+  "items": [
+   "Q1 → A, Q2 → A, Q3 → A: auto-accepted (user instruction 2026-10-15 16:59); see questions.json.",
+   "CR-Photobook-2 applied: platform RadioGroup/RadioButton (`app/src/components/OSRadioGroup/`, W:78-188, W:347-430);",
+   "SetSplideEvent \"moved\" handler only logs to the console: not ported (NO-CONSOLE).",
+   "Exemptions (capture artifacts: masked photos, masked title, gallery scroll) merged into parity-exemptions.json"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T20:16:46"
+ },
+ {
+  "id": "Q5",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A, Q2 → A, Q3 → A: auto-accepted (user instruction 2026-10-15 16:59); see questions.json.; CR-Photobook-2 applied: platform RadioGroup/RadioButton (`app/src/components/OSRadioGroup/`, W:78-188, W:347-430);; SetSplideEvent \"moved\" handler only logs to the console: not ported (NO-CONSOLE).; Exemptions (capture artifacts: masked photos, masked title, gallery scroll) merged into parity-exemptions.json Feature flags: action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T06:59:21",
+  "items": [
+   "Q1 → A, Q2 → A, Q3 → A: auto-accepted (user instruction 2026-10-15 16:59); see questions.json.",
+   "CR-Photobook-2 applied: platform RadioGroup/RadioButton (`app/src/components/OSRadioGroup/`, W:78-188, W:347-430);",
+   "SetSplideEvent \"moved\" handler only logs to the console: not ported (NO-CONSOLE).",
+   "Exemptions (capture artifacts: masked photos, masked title, gallery scroll) merged into parity-exemptions.json"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T06:59:21"
+ },
+ {
+  "id": "Q6",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A, Q2 → A, Q3 → A: auto-accepted (user instruction 2026-10-15 16:59); see questions.json.; CR-Photobook-2 applied: platform RadioGroup/RadioButton (`app/src/components/OSRadioGroup/`, W:78-188, W:347-430);; SetSplideEvent \"moved\" handler only logs to the console: not ported (NO-CONSOLE).; Exemptions (capture artifacts: masked photos, masked title, gallery scroll) merged into parity-exemptions.json Feature flags: action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T20:54:12",
+  "items": [
+   "Q1 → A, Q2 → A, Q3 → A: auto-accepted (user instruction 2026-10-15 16:59); see questions.json.",
+   "CR-Photobook-2 applied: platform RadioGroup/RadioButton (`app/src/components/OSRadioGroup/`, W:78-188, W:347-430);",
+   "SetSplideEvent \"moved\" handler only logs to the console: not ported (NO-CONSOLE).",
+   "Exemptions (capture artifacts: masked photos, masked title, gallery scroll) merged into parity-exemptions.json"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-16 evening, until 2026-10-17 morning)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T20:54:13"
+ }
+]

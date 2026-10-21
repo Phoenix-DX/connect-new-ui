@@ -1,0 +1,14 @@
+{
+ "finishedAt": "2026-10-16T01:28:44",
+ "files": {
+  "src/screens/ContactUsDetails/api.ts": "d67a0cfec84d9d49",
+  "src/screens/ContactUsDetails/components/Dialog_Information.tsx": "2468363d0f24ade0",
+  "src/screens/ContactUsDetails/components/TextArea_Message.tsx": "c1a5ef1574957c46",
+  "src/screens/ContactUsDetails/components/actions.test.ts": "c2381e20d50979f6",
+  "src/screens/ContactUsDetails/components/actions.ts": "491111f430fb7811",
+  "src/screens/ContactUsDetails/components/staticEntities.ts": "d6020673fc5f10c4",
+  "src/screens/ContactUsDetails/index.tsx": "881789941f2a5f93",
+  "src/screens/ContactUsDetails/mocks.ts": "cd83d25be991c9c6",
+  "src/screens/ContactUsDetails/types.ts": "3884bc43d863e619"
+ }
+}

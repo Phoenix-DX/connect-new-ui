@@ -1,0 +1,1171 @@
+﻿
+/*=====================================================================*/
+    
+    /* CSS Section Index */
+        
+        /*==========  $0. Root  ==========*/
+
+            /*  $0.1. General Vars  */
+            /*  $0.2. Font face icons  */
+
+        /*==========  $1.Resets  ==========*/
+
+            /*  $1.1. Colors  */
+
+        /*==========  $2. General Classes  ==========*/
+
+            /*  $2.1. Line Height  */
+            /*  $2.2. Headers  */
+            /*  $2.3. Box Width */
+        /*==========  $3. Component Classes  ==========*/
+
+        /*==========  $4. HTML Elements  ==========*/
+
+            /*  $4.1. Images  */
+
+
+        /*==========  $7. Usefull Classes  ==========*/    
+            /*  $7.1. Text  */
+            /*  $7.2. Space - Margin */
+            /*  $7.3. Display */
+        /*==========  $11. Custom Widgets  ==========*/
+
+            /*  $11.1. Recurrency-pill  */
+            /*  $11.2. Detail card   */
+            /*  $11.3. Show More Show Less */
+            /*  $11.4. Checkbox  */
+            /*  $11.5. Radio Group  */
+            /*  $11.6. Error Screen  */
+            /*  $11.7. Action Menu  */
+            /*  $11.8. Radio group list  */
+            /*  $11.9. List of sticky records */
+            /*  $11.10. Skeleton */
+
+
+      
+         /*==========  $12. Screens/Blocks  ==========*/
+
+             /*  $12.1. Assemble summary list  */
+             /*  $12.2. Assemble detail  */
+             /*  $12.3. Assemble virtual meeting details  */
+             /*  $12.4. Assemble filter drawer  */
+             /*  $12.5. Send A Gift Available Balance */
+             /*  $12.6. CurrencyAmountInput */
+             /*  $12.7. ScreenBlock_SendAGift */
+             /*  $12.8. Gift_Receipt */
+             /*  $12.9. ScreenBlock_GiftReceipt */
+             /*  $12.10 LoadingOverlay */
+             /*  $12.11 Assemble summary card*/
+
+             
+
+
+
+
+
+
+
+/*=====================================================================*/
+
+
+/*==========  $0. Root | START |  ==========*/
+
+
+    /*  $0.1. General Vars  */
+
+:root{
+    --color-neutral-14: #2F3941B2;
+    --color-neutral-14-rgb: 47, 57, 65;
+    --color-neutral-15: #E9EBED;
+
+    --color-progress-bar-1: #40A0E7;
+    --color-progress-bar-2: #1775BA;
+
+    --color-balance-summary:#1976D2;
+
+
+}  
+
+
+    /*  $0.2. Font face icons  */
+
+@font-face {
+  font-family: 'connect';
+  src:  url('../connect.eot?LW0f4G6tCiJwsWeAidpvSw') format('embedded-opentype'),
+    url('../connect.ttf?xoIzm_jFB9Pkv756mhbddQ') format('truetype'),
+    url('../connect.woff?53VmsESruuEuWOWez5f9Zw') format('woff'),
+    url('../connect.svg?zVvtfQXpnwCLMRoZWQ4JVw') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="connect-icon-"]:not(.ubt-icon), [class*=" connect-icon-"]:not(.ubt-icon) {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'connect' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.connect-icon-close:before {
+  content: "\e900";
+}
+.connect-icon-info_outline:before {
+  content: "\e901";
+}
+.connect-icon-menu:before {
+  content: "\e902";
+}
+.connect-icon-play-circle-outline:before {
+  content: "\e903";
+}
+.connect-icon-stop_circle:before {
+  content: "\e904";
+}
+.connect-icon-groups:before {
+  content: "\e905";
+}
+.connect-icon-assemble:before {
+  content: "\e906";
+}
+.connect-icon-calendar-repeat:before {
+  content: "\e907";
+}
+.connect-icon-label:before {
+  content: "\e908";
+}
+.connect-icon-people:before {
+  content: "\e909";
+}
+.connect-icon-place:before {
+  content: "\e90a";
+}
+.connect-icon-placeholder-people:before {
+  content: "\e90b";
+}
+.connect-icon-calendar-cross:before {
+  content: "\e90c";
+}
+.connect-icon-edit:before {
+  content: "\e90d";
+}
+.connect-icon-trash:before {
+  content: "\e90e";
+}
+.connect-icon-add:before {
+  content: "\e90f";
+}
+.connect-icon-email:before {
+  content: "\e910";
+}
+.connect-icon-location-pin-group:before {
+  content: "\e911";
+}
+.connect-icon-location-pin:before {
+  content: "\e912";
+}
+.connect-icon-phone:before {
+  content: "\e913";
+}
+.connect-icon-video-camera:before {
+  content: "\e914";
+}
+
+.connect-icon-search-off:before {
+  content: "\e915";
+}
+
+.connect-icon-copy:before {
+  content: "\e916";
+}
+
+.connect-icon-info-fill:before {
+  content: "\e917";
+}
+
+.connect-icon-repeat:before {
+  content: "\e918";
+}
+
+.connect-icon-time-clock:before {
+  content: "\e919";
+}
+
+
+@font-face {
+  font-family: 'wallet';
+  src:  url('../wallet.eot?+p63YuQsuFrCIn70V_mDFw');
+  src:  url('../wallet.eot?+p63YuQsuFrCIn70V_mDFw') format('embedded-opentype'),
+    url('../wallet.ttf?HXdqszt_FNZ0E4ihzyUXYg') format('truetype'),
+    url('../wallet.woff?DdWmX5UnkgOCIZoz1Gtbfg') format('woff'),
+    url('../wallet.svg?bqCIVxBcBdv3Or7wszLYig') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="wallet-icon-"], [class*=" wallet-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'wallet' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.wallet-icon-gift:before {
+  content: "\e903";
+}
+.wallet-icon-heart-full-canvas:before {
+  content: "\e905";
+}
+.wallet-icon-qrcode:before {
+  content: "\e904";
+}
+.wallet-icon-bank-card:before {
+  content: "\e900";
+}
+.wallet-icon-plus-skinny:before {
+  content: "\e901";
+}
+.wallet-icon-wallet:before {
+  content: "\e902";
+}
+
+
+/*==========  $0. Root | END |  ==========*/
+
+/*! ==============================================================================
+1. Resets
+=============================================================================== */  
+
+.ignore-backwards-compatibility-content{
+/*! Typography - Size */
+  --font-size-h1:32px;
+  --font-size-h2:28px;
+  --font-size-h3:26px;
+  --font-size-h4:22px;
+  --font-size-h5:20px;
+  --font-size-h6:18px;
+  --font-size-display:36px;
+  --font-size-base:16px;
+  --font-size-s:14px;
+  --font-size-xs:12px;
+  --font-size-label:11px;
+  /*! Typography - Weight */
+  --font-light:300;
+  --font-regular:400;
+  --font-semi-bold:600;
+  --font-bold:700;
+  /*! Color - Brand */
+  /*--color-primary:#1068eb;
+  --color-secondary:#303d60;
+  --color-primary-hover:#295fd6;
+  --color-primary-selected:rgba(20, 110, 245, 0.12);
+  --color-primary-lightest:linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));*/
+  /*! Color - Focus */
+  --color-focus-outer:#ffd337;
+  --color-focus-inner:var(--color-neutral-10);
+  /*! Color - Extended */
+  --color-red-lightest:#faeaea;
+  --color-red-lighter:#e9aaaa;
+  --color-red-light:#d96a6a;
+  --color-red:#c92a2a;
+  --color-red-dark:#ab2424;
+  --color-red-darker:#8d1d1d;
+  --color-red-darkest:#6f1717;
+  --color-orange-lightest:#fef0e6;
+  --color-orange-lighter:#fcc29c;
+  --color-orange-light:#f99551;
+  --color-orange:#f76707;
+  --color-orange-dark:#d25806;
+  --color-orange-darker:#ad4805;
+  --color-orange-darkest:#883904;
+  --color-yellow-lightest:#fef5e5;
+  --color-yellow-lighter:#fbd999;
+  --color-yellow-light:#f8bc4c;
+  --color-yellow:#f59f00;
+  --color-yellow-dark:#d08700;
+  --color-yellow-darker:#ac6f00;
+  --color-yellow-darkest:#875700;
+  --color-lime-lightest:#f1f8e8;
+  --color-lime-lighter:#c7e3a2;
+  --color-lime-light:#9ecd5c;
+  --color-lime:#74b816;
+  --color-lime-dark:#639c13;
+  --color-lime-darker:#51810f;
+  --color-lime-darkest:#40650c;
+  --color-green-lightest:#ebf7ed;
+  --color-green-lighter:#afe0b8;
+  --color-green-light:#73c982;
+  --color-green:#37b24d;
+  --color-green-dark:#2f9741;
+  --color-green-darker:#267d36;
+  --color-green-darkest:#1e622a;
+  --color-teal-lightest:#e6f2ef;
+  --color-teal-lighter:#9cccbd;
+  --color-teal-light:#52a58c;
+  --color-teal:#087f5b;
+  --color-teal-dark:#076c4d;
+  --color-teal-darker:#065940;
+  --color-teal-darkest:#044632;
+  --color-cyan-lightest:#e7f2f4;
+  --color-cyan-lighter:#9eccd3;
+  --color-cyan-light:#56a6b2;
+  --color-cyan:#0d8091;
+  --color-cyan-dark:#0b6d7b;
+  --color-cyan-darker:#095a66;
+  --color-cyan-darkest:#074650;
+  --color-blue-lightest:#e8f2fa;
+  --color-blue-lighter:#a3c9ea;
+  --color-blue-light:#5fa1db;
+  --color-blue:#1a79cb;
+  --color-blue-dark:#1667ad;
+  --color-blue-darker:#12558e;
+  --color-blue-darkest:#0e4370;
+  --color-indigo-lightest:#eceffd;
+  --color-indigo-lighter:#b3c1f7;
+  --color-indigo-light:#7b92f1;
+  --color-indigo:#4263eb;
+  --color-indigo-dark:#3854c8;
+  --color-indigo-darker:#2e45a5;
+  --color-indigo-darkest:#243681;
+  --color-violet-lightest:#f1edfd;
+  --color-violet-lighter:#c6b6f6;
+  --color-violet-light:#9b7fef;
+  --color-violet:#7048e8;
+  --color-violet-dark:#5f3dc5;
+  --color-violet-darker:#4e32a2;
+  --color-violet-darkest:#3e2880;
+  --color-grape-lightest:#f7ecfa;
+  --color-grape-lighter:#dfb2e9;
+  --color-grape-light:#c678d9;
+  --color-grape:#ae3ec9;
+  --color-grape-dark:#9435ab;
+  --color-grape-darker:#7a2b8d;
+  --color-grape-darkest:#60226f;
+  --color-pink-lightest:#fbebf0;
+  --color-pink-lighter:#efadc4;
+  --color-pink-light:#e27098;
+  --color-pink:#d6336c;
+  --color-pink-dark:#b62b5c;
+  --color-pink-darker:#96244c;
+  --color-pink-darkest:#761c3b;
+  /*! Color - Neutral */
+  --color-neutral-0:#ffffff;
+  --color-neutral-1:#f8f9fa;
+  --color-neutral-2:#f1f3f5;
+  --color-neutral-3:#e9ecef;
+  --color-neutral-4:#dee2e6;
+  --color-neutral-5:#ced4da;
+  --color-neutral-6:#adb5bd;
+  --color-neutral-7:#6a7178;
+  --color-neutral-8:#4f575e;
+  --color-neutral-9:#272b30;
+  --color-neutral-10:#101213;
+  /*! Color - Semantic */
+  --color-error-light:#fceaea;
+  --color-error:#dc2020;
+  --color-warning-light:#fdf6e5;
+  --color-warning:#e9a100;
+  --color-success-light:#eaf3eb;
+  --color-success:#29823b;
+  --color-info-light:#e5f5fc;
+  --color-info:#017aad;
+  /*! Overlays */
+  --overlay-background:rgba(0, 0, 0, 0.25);
+  /*! Space - Sizes */
+  --space-none:0;
+  --space-xs:4px;
+  --space-s:8px;
+  --space-base:16px;
+  --space-m:24px;
+  --space-l:32px;
+  --space-xl:40px;
+  --space-xxl:48px;
+
+  --space-5-px: 5px;
+  --space-6-px: 6px;
+  --space-10-px: 10px;
+
+  /*! Border Radius */
+  --border-radius-none:0;
+  --border-radius-soft:4px;
+  --border-radius-rounded:100px;
+  --border-radius-circle:100%;
+  /*! Border Size */
+  --border-size-none:0;
+  --border-size-s:1px;
+  --border-size-m:2px;
+  --border-size-l:3px;
+  /*! Elevation / Shadow */
+  --shadow-none:none;
+  --shadow-xs:0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-s:0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-m:0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-l:0 6px 8px rgba(0, 0, 0, 0.1);
+  --shadow-xl:0 8px 10px rgba(0, 0, 0, 0.1);
+  /*! App Settings */
+  --header-color:#ffffff;
+  --color-background-body:#f3f6f8;
+  --color-background-login:#ffffff;
+  --header-size:56px;
+  --header-size-content:48px;
+  --side-menu-size:300px;
+  --bottom-bar-size:56px;
+  --footer-height:0px;
+  /*! Set the StatusBar variable that will be overwritten when it will be enable due to miss calculations! */
+  --status-bar-height:0px;
+  /*! iOS Safe Areas (Notch Support) */
+  --os-safe-area-top:env(safe-area-inset-top);
+  --os-safe-area-right:env(safe-area-inset-right);
+  --os-safe-area-bottom:env(safe-area-inset-bottom);
+  --os-safe-area-left:env(safe-area-inset-left);
+}
+    
+
+/*==========  $1. Resets  | START |  ==========*/
+
+/*  $1.1. Colors  */
+
+.ignore-backwards-compatibility-content{
+     color:var(--color-neutral-8);
+}
+
+.ignore-backwards-compatibility-content{
+/*! Color - Neutral - Custom */
+
+  --color-neutral-0:#ffffff;
+  --color-neutral-1:#F8F9F9;
+  --color-neutral-2:#E9EBED;
+  --color-neutral-3:#D8DCDE;
+  --color-neutral-4:#C2C8CC;
+  --color-neutral-5:#87929D;
+  --color-neutral-6:#68737D;
+  --color-neutral-7:#49545C;
+  --color-neutral-8:#2F3941;
+  --color-neutral-9:#4F575E;
+  --skeleton-start-color: #F8F9FA;
+  --skeleton-end-color: #DEE2E6;
+  --color-blue-2: #EDF7FF;
+  --color-blue-3: #ADCCE4;
+  --color-blue-7: #144A75;
+}
+
+/*==========  $2. Resets  | END |  ==========*/
+
+/*==========  $2. General Classes  | START |  ==========*/
+
+
+/*  $2.1. Line Height  */
+
+.line-height-1 {
+    line-height: 1;
+}
+
+.line-height-xs {
+    line-height: var(--font-size-xs);
+}
+
+.line-height-s {
+    line-height: var(--font-size-s);
+}
+
+.line-height-base {
+    line-height: var(--font-size-base);
+}
+
+
+/*  $2.2. Headers  */
+
+.section-header{
+  font-size: var(--font-size-h5);
+  font-weight: var(--font-semi-bold);
+  line-height: 1.5em;
+  padding: var(--space-xs) var(--space-none);
+  margin-bottom: 12px;
+  border-bottom: var(--border-size-s) solid var(--color-neutral-2);
+}
+
+/*  $2.3. Box Width */
+.width-fit-content{
+    width: fit-content;
+}
+
+/*==========  $2. General Classes | END |  ==========*/
+
+
+/*==========  $4. HTML Elements | START ==========*/
+
+/*  $4.1. Images  */
+
+img.img-cover--top-center{
+    object-position: top center;
+}
+
+img.img-cover--center-center{
+    object-position: center center;
+}
+
+
+/*==========  $4. HTML Elements | END ==========*/
+
+/*==========  $7. Usefull Classes | START ==========*/    
+
+/*  $7.1. Text  */
+
+.white-space-normal{
+    white-space: normal;
+}
+
+.display-inline span{
+    display: inline;
+}
+
+ /*  $7.2. Space - Margin */
+
+ .margin-bottom-6{
+     margin-bottom: var(--space-6-px);
+ }
+
+.margin-left-auto{
+    margin-left: auto;
+ }
+
+.margin-top-10 {
+ margin-top: var(--space-10-px);
+}
+
+/*  $7.3. Display */
+
+.display-inline.inline{
+    display: inline;
+}
+
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+
+/*==========  $7. Usefull Classes | END ==========*/   
+
+/*==========  $11. Custom Widgets | START |  ==========*/
+
+/*  $11.1. RecurrencyTag  */
+
+.recurrency-pill.tag{
+    padding: var(--space-none) var(--space-s);
+}
+
+.recurrency-pill__label{
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-regular);
+    margin-left: var(--space-xs);
+}
+
+/*  $11.1. Recurrency-pill  */
+
+.assemble-card .recurrency-pill{
+    position: absolute;
+    right: var(--space-m);
+    top: var(--space-m);
+}
+
+.recurrency-pill{
+    background-color: var(--color-blue-2);
+    color: var(--color-blue-7);
+    border-radius: var(--space-6-px);
+    border: var(--border-size-s) solid var(--color-blue-3);
+    height: 20px;
+}
+
+.recurrency-pill i{
+    font-size: 14px;
+}
+
+/*  $11.2. Detail Card  */
+
+.btn.btn--card-action,
+.btn.btn--card-action:hover,
+.btn.btn--card-action:focus {
+  padding: var(--space-s);
+  border-radius: var(--border-radius-soft);
+  width: 100%;
+  font-size: var(--font-size-xs)
+}
+
+.nc-hero-profile-photo__img{
+  width: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.nc-hero-profile-photo__img,
+.nc-hero-profile-photo .placeholder-image
+{
+    height: 202px;
+}
+
+.nc-result-item-card{
+    line-height: 1.5;
+}
+
+/*  $11.3. Show More Show Less  */
+
+.show-more-body {
+  line-height: 1.5em;
+  max-height: calc(var(--overflow-max-lines) * var(--content-line-height));
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.show-more-container .show-more-expand,
+.show-more-container .show-more-collapse {
+  display: none;
+}
+
+.show-more-container.show-more-overflowing:not(.show-more-expanded) .show-more-expand {
+  display: block;
+}
+.show-more-container.show-more-overflowing.show-more-expanded .show-more-collapse {
+  display: block;
+}
+
+.show-more-container.show-more-overflowing.show-more-expanded .show-more-body {
+  max-height: initial;
+  overflow: visible;
+}
+
+.show-more-cutoff{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: var(--content-line-height);
+    background: linear-gradient(to bottom, transparent, var(--color-neutral-0));
+}
+
+.show-more-container.show-more-overflowing.show-more-expanded .show-more-cutoff,
+.show-more-container:not(.show-more-overflowing) .show-more-cutoff{
+    display:none
+}
+
+
+/*  $11.4. Checkbox  */
+
+.ignore-backwards-compatibility-content input[data-checkbox][type="checkbox"]{
+  border: none;
+}
+
+.ignore-backwards-compatibility-content input[data-checkbox][type="checkbox"]:before{
+  border: 1px solid var(--color-primary);
+  border-radius: var(--border-radius-soft);
+  width: 18px;
+  height: 18px;
+}
+
+.ignore-backwards-compatibility-content input[data-checkbox][type="checkbox"]x:not(:checked):before{
+  border-color: var(--color-neutral-4);
+}
+
+.ignore-backwards-compatibility-content input[data-checkbox][type="checkbox"]:checked:before{
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.ignore-backwards-compatibility-content input[data-checkbox][type="checkbox"]:checked:after{
+  border-width: 2px;
+  top: 6px;
+  left: 4px;
+  width: 9px;
+  height: 3px;
+  border-radius: 0;
+  border-color: var(--color-neutral-0);
+}
+
+/*  $11.5. Radio Group  */
+
+.nc-radio-group [data-radio-button]{
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    padding-top: var(--space-base);
+    padding-bottom: var(--space-base);
+    border-bottom: var(--border-size-s) solid var(--color-neutral-4);
+}
+
+.nc-radio-group [data-radio-button] label{
+    margin-left: var(--space-none);
+    color: var(--color-neutral-5);
+    font-weight: var(--font-semi-bold);
+}
+
+.nc-radio-group .radio-button:checked+label{
+  color: var(--color-primary);
+}
+
+.nc-radio-group .radio-button{
+  width: 20px;
+  height: 20px;
+}
+
+.nc-radio-group .radio-button:checked:before{
+  border-width: 5px;
+}
+
+/*  $11.6. Error Screen  */
+
+.nc-error-screen-info{
+    margin-top: 25vh;
+}
+
+
+
+/*  $11.7. Action Menu  */
+
+.action-menu-container--scrollable .action-menu{
+    max-height: 100vh;
+    overflow: scroll;
+    padding-top: var(--space-none);
+}
+
+.action-menu-container--scrollable .action-menu-top,
+.action-menu-container--scrollable__header{
+  position: sticky;
+  z-index: 1;
+  background-color: var(--color-neutral-0);
+}
+
+.action-menu-container--scrollable .action-menu-top{
+  margin-bottom: var(--space-none);
+  padding-top: var(--space-base);
+  padding-bottom: var(--space-base);
+  top: 0;
+}
+
+.action-menu-container--scrollable__header{
+  top: calc(calc(2 * var(--space-base)) + 6px);
+}
+
+.action-menu-container--padding-none .action-menu{
+  padding-top: var(--space-none);
+  padding-right: calc(var(--os-safe-area-right) + var(--space-none));
+  padding-bottom: calc(var(--os-safe-area-bottom) + var(--space-none));
+  padding-left: calc(var(--os-safe-area-left) + var(--space-none));  
+}
+
+/*  $11.8. Radio group list  */
+
+.radio-group--list-item [data-radio-button]{
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.radio-group--list-item [data-radio-button] label{
+  margin: var(--space-none);
+}
+
+/*  $11.9. List of sticky records */
+
+.list-group.list-sticky-records.list{
+    overflow: visible;
+}
+
+.list-sticky-records__sticky-record{
+    position: sticky;
+   /* top: max(var(--header-size), 65px);*/
+    top: 0;
+    z-index: 2;
+    background-color: var(--color-neutral-0);
+    padding-top: var(--space-s);
+    padding-bottom: var(--space-s);
+}
+
+.list-sticky-records .list-sticky-records .list-sticky-records__sticky-record{
+    top: calc(40px + calc( var(--space-s) * 2));
+    z-index: 1;
+}
+
+.list-sticky-records__sticky-record--active{
+    border-bottom: var(--border-size-s) solid var(--color-neutral-2);
+}
+
+.list-sticky-records__sticky-record--active .list-sticky-records__sticky-record__action{
+    color: var(--color-primary);
+}
+
+/*  $11.10. Skeleton */
+ [class^=skeleton-item]{
+   background: linear-gradient(91.75deg, var(--skeleton-start-color) -2.27%, var(--skeleton-end-color) 72.03%); 
+}
+
+.skeleton-item--text{
+    min-height: 1lh;
+    border-radius: var(--border-radius-soft);
+}
+
+.skeleton-item--text.border-radius-bottom-none{
+    border-bottom-left-radius:var(--border-radius-none);
+    border-bottom-right-radius:var(--border-radius-none);
+}
+
+.skeleton-item--text.border-radius-top-none{
+  border-top-right-radius:var(--border-radius-none);
+  border-top-left-radius:var(--border-radius-none);
+}
+
+/*==========  $11. Custom Widgets | END |  ==========*/
+
+/*==========  $12. Screens/Blocks | START |  ==========*/
+
+/*  $12.1. Assemble summary list  */
+
+.assemble-list-header__filter{
+    height: 40px;
+}
+.assemble-list-header__filter, .assemble-list-header__date{
+    box-shadow: 0px 3px 4px -1px var(--color-neutral-4);
+}
+
+.assemble-list-header{
+    position: sticky;
+    background-color: var(--color-neutral-0);
+    z-index: 1;
+}
+
+.assemble-list-header--secondary{
+    /*Top is based on the pill header size on the locality screen*/
+    top: 60px;
+}
+
+
+/*  $12.2. Assemble detail  */
+
+@media only screen and (max-width: 375px) {
+  :where(.backwards-compatibility) .ignore-backwards-compatibility-content .block-household-person-options {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    flex-wrap: wrap    
+  }
+
+  :where(.backwards-compatibility) .assemble-detail-content .block-household-person-options > a:nth-child(even){
+     margin-left: var(--space-base);
+  }
+  
+  :where(.backwards-compatibility) .assemble-detail-content .block-household-person-options > a {
+    margin-left: var(--space-base);
+  }
+}
+
+.assemble-details-error > div{
+  margin-bottom: 12px;
+}
+
+.assemble-details-error__icon .icon{
+  font-size: 24px;
+  color: #00819C;
+  background-color: #EDF6F8;
+  padding: 12px;
+  border-radius: var(--border-radius-circle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+ /*  $12.3. Assemble virtual meeting details  */
+
+.assemble-meeting-info-popup .dx-dialog-footer button.btn.btn-primary{
+    display: none;
+}
+
+
+/*  $12.4. Assemble filter drawer  */
+
+
+.assemble-filter-actions{
+    padding: 10px 0px;
+    position: sticky;
+    bottom: 0;
+    background-color: var(--color-neutral-0)
+}
+
+
+.assemble-filter-actions .btn:not(.btn-primary){
+    border: var(--color-neutral-0);
+}
+
+.assemble-filter-actions .btn,
+.backwards-compatibility .bottom .assemble-filter-actions .btn{
+    height: 38px;
+    min-height: unset;
+    width: 100px;
+    border-radius: 3px;
+    font-size: var(--font-size-s);
+    font-weight: var(--font-semi-bold);
+}
+
+.assemble-filter-actions .btn[disabled]{
+  color: var(--color-neutral-5);
+}
+
+.assemble-filter-actions .btn + .btn {
+    margin-left: 20px;
+}
+
+.assemble-list-filter {
+    border-radius: var(--border-radius-soft);
+    border: var(--border-size-s) solid var(--color-neutral-6);
+}
+
+.assemble-filter-search .form-control[data-input]{
+    border:var(--border-size-s) solid var(--color-neutral-5) !important;
+}
+.assemble-filter-search input[type="search"]::-webkit-search-cancel-button {
+  display:none;
+}
+ /*  $12.5. Send A Gift Available Balance */
+ 
+ .send-gift-summary-balance {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-s) var(--space-base);
+    max-height: 62px;
+    background-color: var(--color-balance-summary);
+    color: var(--color-neutral-0);
+}
+
+.send-gift-summary-balance .balance-amount {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.send-gift-summary-balance .top-up .btn,
+.send-gift-summary-balance .top-up .btn:hover,
+.send-gift-summary-balance .top-up .btn:focus {
+    color: var(--color-neutral-0);
+    background: transparent;
+    gap: var(--space-10-px);
+    border: 1px solid var(--color-neutral-0);
+    border-radius: var(--space-5-px);
+    padding: var(--space-s);
+    min-height: 38px;
+    min-width: 93px; 
+}
+
+.send-gift-summary-balance .top-up .btn-animation {
+    display: none;
+}
+
+/*  $12.6. CurrencyAmountInput */
+
+.currency-amount-label {
+    color: var(--color-neutral-9);
+}
+
+.currency-amount-inputs {
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+    padding-top: var(--space-s);
+    padding-bottom: var(--space-s);
+}
+
+.currency-amount-inputs .form-control[data-input] {
+    height: var(--space-xxl);
+    color: var(--color-neutral-5);
+}
+
+.currency-amount-inputs input.invalid-amount.form-control[data-input]  {
+    border:var(--border-size-s) solid var(--color-error);
+}
+
+.currency-amount-inputs .dropdown-container  select.dropdown-display {
+    padding: var(--space-10-px); 
+    color: var(--color-neutral-5);
+    height: var(--space-xxl);
+}
+
+.currency-amount-inputs .dropdown-container.dropdown-container:after {
+    border-color: var(--color-neutral-5);
+}
+
+.currency-amount-currency {
+    flex: 0.7;
+}
+
+.currency-amount-value{
+    flex: 2;
+}
+
+.currency-amount-helper{
+color: var(--color-neutral-5);
+}
+
+.currency-amount-helper-error {
+    color: var(--color-error);
+}
+
+/*  $12.7. ScreenBlock_SendAGift */
+
+.gift_progress {  
+    background: linear-gradient(90.25deg, var(--color-progress-bar-1) 46.27%, var(--color-progress-bar-2) 100%);
+    height: var(--space-5-px);
+    border-top-right-radius: var(--space-5-px);
+    border-bottom-right-radius: var(--space-5-px);
+    margin-right: 2px;
+    margin-top: 3px;
+}
+
+.gift_progress_half {
+    background-color: var(--color-neutral-2);
+    margin-bottom: 2px;
+}
+
+.gift-btn .btn.btn-primary {
+ height: 39px;
+
+}
+/*  $12.8. Gift_Receipt */
+
+.receipt_content {
+    padding: var(--space-l) var(--space-base);
+    padding-top: 18px;
+    border: 1px solid var(--color-neutral-3);
+    border-radius: var(--space-xs);
+    box-shadow: 0px 4px 8px 0px #4F4F4F1A;
+ }
+
+.receipt_content .result-item_content {
+    margin-left: var(--space-10-px);
+}
+
+.receipt_text{
+    font-weight: 500;
+    font-size: var(--font-size-h2);
+    padding: var(--space-base);
+    padding-top: var(--space-s);
+}
+
+/*  $12.9. ScreenBlock_GiftReceipt */
+
+.receipt_subtitle {
+    font-size: var(--font-size-h4);
+    padding-left: var(--space-base);  
+    padding-top: var(--space-base);  
+    font-weight: 500;
+}
+
+
+.receipt_info {
+ height:80%;
+ position: absolute;
+ display:flex;
+ justify-content: center;
+ align-items: center;
+
+}
+
+.close_receipt_btn {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-45%);
+    margin-bottom: var(--space-base);   
+}
+
+.close_receipt_btn .btn {
+    width: 90%;
+    height: 39px;
+}
+
+/*  $12.10 LoadingOverlay */
+
+.loading_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--overlay-background);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    pointer-events: auto;
+}
+
+.overlay-content {
+    background: var(--color-neutral-0);
+    padding: var(--space-s);
+    border-radius: 100%;
+    width: 170px;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    justify-content: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.spinner-image {
+    animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+ /*  $12.11 Assemble summary card*/
+
+.assemble-summary-row{
+    display: flex;
+    align-items: flex-start;
+    font-size: var(--font-size-xs);
+    margin-bottom: var(--space-xs)
+}
+
+.assemble-summary-row__icon-placeholder{
+    height: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.assemble-summary-row__icon-placeholder i{
+    font-size: var(--font-size-base);
+    margin-right: var(--space-xs)
+}
+
+.assemble-summary-row__icon-placeholder--right{
+    margin-left: auto;
+    margin-right: 0px;
+}
+
+.assemble-summary-row__icon-placeholder--right i{
+    font-size: var(--font-size-base);
+    margin-right: var(--space-xs)
+}
+
+/*==========  $12. Screens/Blocks | END |  ==========*/

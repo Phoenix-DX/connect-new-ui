@@ -1,0 +1,11 @@
+{
+ "finishedAt": "2026-10-15T17:37:24",
+ "files": {
+  "src/screens/BrowseDirectory/api.ts": "110be13771b092fb",
+  "src/screens/BrowseDirectory/components/actions.ts": "2afc5ae61f27de01",
+  "src/screens/BrowseDirectory/components/staticEntities.ts": "0552bc7df22b8c5b",
+  "src/screens/BrowseDirectory/index.tsx": "44a5c7d0f6769261",
+  "src/screens/BrowseDirectory/mocks.ts": "2c3ff4cdf03ec3d5",
+  "src/screens/BrowseDirectory/types.ts": "ea7344f021082100"
+ }
+}

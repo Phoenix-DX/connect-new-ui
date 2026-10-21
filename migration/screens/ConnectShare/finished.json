@@ -1,0 +1,13 @@
+{
+ "finishedAt": "2026-10-16T16:32:18",
+ "files": {
+  "src/screens/ConnectShare/api.ts": "a90377f9b3383196",
+  "src/screens/ConnectShare/components/NavigationLanding.tsx": "ac473cd30a35eede",
+  "src/screens/ConnectShare/components/ScreenBlock_ShareDetail.tsx": "5c55967c2cb665b4",
+  "src/screens/ConnectShare/components/actions.test.ts": "2a5a5e76b3133e05",
+  "src/screens/ConnectShare/components/actions.ts": "cab85febb74f9f20",
+  "src/screens/ConnectShare/index.tsx": "3eb07407d88723f5",
+  "src/screens/ConnectShare/mocks.ts": "da50295e3555b7ec",
+  "src/screens/ConnectShare/types.ts": "d70f805153f2568f"
+ }
+}

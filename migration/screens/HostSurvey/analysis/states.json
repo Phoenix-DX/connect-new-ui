@@ -1,0 +1,24 @@
+{
+ "default": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/HostSurvey",
+  "via": {
+   "from": "/UBTConnect/OrbitLanding",
+   "pre": [
+    "[data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont"
+   ],
+   "click": "text=View Host Survey",
+   "nth": 0
+  },
+  "steps": [],
+  "scenario": "real",
+  "auto": null,
+  "htmlClass": "",
+  "bodyClass": "phone portrait orbit-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "dpr": 1
+ }
+}

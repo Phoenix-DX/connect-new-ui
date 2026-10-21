@@ -1,0 +1,12 @@
+{
+ "finishedAt": "2026-10-16T14:01:05",
+ "files": {
+  "src/screens/ViewDocuments/api.ts": "245da4e64ee68060",
+  "src/screens/ViewDocuments/components/LoadingSpinner.tsx": "b76f15aa0699fc91",
+  "src/screens/ViewDocuments/components/ScreenBlock_ViewDocuments.tsx": "036b5d81948a6e04",
+  "src/screens/ViewDocuments/components/actions.ts": "a6c24eabc6c7fc06",
+  "src/screens/ViewDocuments/index.tsx": "ba2f5f0029572371",
+  "src/screens/ViewDocuments/mocks.ts": "dd4c1164a6057d90",
+  "src/screens/ViewDocuments/types.ts": "41dbc07ff21ba45b"
+ }
+}

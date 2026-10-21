@@ -1,0 +1,47 @@
+{
+ "rules": [
+  {
+   "id": "CAPTURE-LINK-HREF-CURSOR-ASSEMBLEEVENTS",
+   "kinds": [
+    "style"
+   ],
+   "states": "^(default|loading|offline)$",
+   "routeRegex": "^/UBTConnect/AssembleEvents(\\?|$)",
+   "pathRegex": "div#b2-b1-HeaderRight\\.align-items-center\\.display-flex > div\\.OSInline\\.line-height-1 > a( > i\\.connect-icon-place\\.fa\\.fa-1x)?$",
+   "detailRegex": "^cursor auto → pointer$",
+   "props": [
+    "cursor"
+   ],
+   "reason": "The capture renames href to data-original-href, so the replayed header place link (and its icon) has cursor auto; the clone's OS Link has an href (cursor pointer). Same artifact as CAPTURE-LINK-HREF-CURSOR-HOMEFEED, whose path list does not cover this header link. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/AssembleEvents/analysis/dom/default.html:224 (<a data-link data-original-href=\"#\">); migration/screens/AssembleEvents/parity/loading.json, offline.json (only these 2 style diffs)"
+  },
+  {
+   "id": "CAPTURE-MASKED-COUNT-WIDTH-ASSEMBLEEVENTS-SHEET",
+   "kinds": [
+    "layout",
+    "position",
+    "style"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/AssembleEvents(\\?|$)",
+   "pathRegex": "div#Assemble_FilterSheet_Instance\\.OSBlockWidget\\[Assemble\\.Assemble_FilterSheet\\] > .* > div#b5-b2-l1-95_\\d+-ListItem1\\.list-item > div\\.OSInline\\.landing-country-list-item( > .+)?$",
+   "detailRegex": "^(\\d+(\\.\\d+)?×\\d+(\\.\\d+)? → \\d+(\\.\\d+)?×\\d+(\\.\\d+)?|offset in parent -?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)? → -?\\d+(\\.\\d+)?,-?\\d+(\\.\\d+)?|margin-left \\d+(\\.\\d+)?px → \\d+(\\.\\d+)?px)$",
+   "reason": "Masked text, not a build defect: the bottom sheet is a screen-level sibling of the Layout, outside .backwards-compatibility, so ':where(.backwards-compatibility) .landing-country-list-item {display:inline-flex; width:100%}' (Connect2_LegacyShared.ConnectMobileCommonTheme.css) does not apply and each row is an inline-block sized by its text, on TST as in the clone (same markup and CSS). The capture masked the member/household/locality counts with '•' glyphs, narrower than digits, so the reference rows are narrower (width30/width5 90 px vs 115 px, icon margins in %). Replacing the clone's counts with the captured masked strings gives exactly the reference geometry (row 0: 89.8 px, offset 118; row 1: 129.4 px, offset 98). On Assemble_BrowseByCountry the same block sits inside .backwards-compatibility (full-width inline-flex rows), so masking does not move it. Text diffs are 0. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/AssembleEvents/parity/default.json (89 diffs, all under div#b5-b2-l1-95_N-ListItem1 > .landing-country-list-item); migration/screens/AssembleEvents/analysis/css-relevant.md:1497-1499; Playwright check on the dev server 2026-10-16: computed display inline-block, closest('.backwards-compatibility') null; after setting the captured masked counts, width30 115→89.84 px and offset 106→118 (row 0), 157.2→129.4 px and 84→98 (row 1)"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [
+  {
+   "id": "CALL-ORDER-APPSTART-RACE-ASSEMBLEEVENTS",
+   "actions": [
+    "ActionGetCountriesBySubscription"
+   ],
+   "states": "^default$",
+   "routeRegex": "^/UBTConnect/AssembleEvents(\\?|$)",
+   "reason": "Assemble_FilterSheet's FetchCountries runs Cache_UserInfo_Get, then GetCountriesBySubscription: on TST the user-info request went out before AfterInitialize (calls.json #3-#5), the clone's shell answers block user-info requests after the app-start step (CALL-ORDER-APPSTART-USERINFO), so GetCountriesBySubscription follows Sync_Info_GetMain. Counts and inputs are still compared. Applies once CR-Assemble_BrowseByCountry-1 lets the call run. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/AssembleEvents/analysis/calls.json (GetUserInformation ts 4633, GetCountriesBySubscription ts 4919, AfterInitialize ts 5492); app/src/shell/userInfo.ts (holdUserInfoForAppStart)"
+  }
+ ],
+ "_merged": "2026-10-16 orchestrator: CAPTURE-LINK-HREF-CURSOR-ASSEMBLEEVENTS, CALL-ORDER-APPSTART-RACE-ASSEMBLEEVENTS; follow-up: CAPTURE-MASKED-COUNT-WIDTH-ASSEMBLEEVENTS-SHEET"
+}

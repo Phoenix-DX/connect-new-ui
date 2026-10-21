@@ -1,0 +1,77 @@
+{
+ "state": "default",
+ "route": "/UBTConnect/HostSurvey?mocksession=unlocked&In_MemberId=42438&In_EventStartDate=2026-10-23T09%3A00%3A00.000Z&In_EventId=7301&In_EventName=Weekend%20Bible%20Conferences%20-%20Bahia%20and%20Azul&In_EventEndDate=2026-10-25T17%3A00%3A00.000Z",
+ "mock": "real",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "83e4b76424664ef4b298",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 339,
+  "texts": 59,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-16T06:31:15.642Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "ignoreSubtrees": 1,
+  "VIA-BACK-MENUICON-HOSTSURVEY": 14,
+  "CAPTURE-VIA-MASK-SHIFT-HOSTSURVEY-PIXELS": 1
+ },
+ "pixel": {
+  "ratio": 0.09258,
+  "maxCell": 0.61,
+  "maxCellRatio": 0.03,
+  "diffPixels": 27504,
+  "comparedPixels": 297075,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 27,
+  "hotspots": [
+   "40,80 (976px)",
+   "80,80 (973px)",
+   "0,80 (785px)",
+   "120,80 (686px)",
+   "120,160 (614px)"
+  ],
+  "diffPng": "migration/screens/HostSurvey/parity/default.diff.png"
+ },
+ "calls": {
+  "phases": [
+   "load"
+  ],
+  "expected": 1,
+  "actual": 8,
+  "viaAppStartSkipped": [
+   "ActionAppManager_AfterInitialize",
+   "ActionAppManager_SynchAppContext",
+   "ActionGetNumberUnreadMessages",
+   "ActionGetUserInformation",
+   "ActionSync_Info_GetMain",
+   "ServiceAPIFetchData_CacheableHouseholds",
+   "ServiceAPIFetchData_CacheableMapEntities"
+  ]
+ },
+ "diffs": []
+}

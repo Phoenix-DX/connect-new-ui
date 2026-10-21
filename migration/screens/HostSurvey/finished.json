@@ -1,0 +1,12 @@
+{
+ "finishedAt": "2026-10-16T13:31:16",
+ "files": {
+  "src/screens/HostSurvey/api.ts": "a7ebf3c6866da2f8",
+  "src/screens/HostSurvey/components/HostSurvey_Blocks.tsx": "7f1923ad36d4a9c3",
+  "src/screens/HostSurvey/components/ScreenBlock_HostSurvey.tsx": "a93c19825550da65",
+  "src/screens/HostSurvey/components/actions.ts": "769686c8a2d77242",
+  "src/screens/HostSurvey/index.tsx": "b2cde2a42053a928",
+  "src/screens/HostSurvey/mocks.ts": "753f2352fac653f5",
+  "src/screens/HostSurvey/types.ts": "b38be6e9e6908b6c"
+ }
+}

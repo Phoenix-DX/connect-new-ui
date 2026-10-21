@@ -1,0 +1,121 @@
+{
+ "module": "UBTConnect_Utils",
+ "action": "DataActionGetCacheInfo",
+ "screen": "CacheControl_AllCountries",
+ "status": 200,
+ "inputs": {
+  "CacheTypeId": "Exercitation",
+  "CacheKey": "Unique",
+  "TimeToLiveSeconds": 7200
+ },
+ "data": {
+  "CacheControl_Response": {
+   "CountryList": {
+    "List": [
+     {
+      "CountryName": "Argentina",
+      "CountryCode": "AR",
+      "Latitude": "-37.090800",
+      "Longitude": "-63.976952"
+     },
+     {
+      "CountryName": "Australia",
+      "CountryCode": "AU",
+      "Latitude": "-24.913400",
+      "Longitude": "133.082836"
+     },
+     {
+      "CountryName": "Barbados",
+      "CountryCode": "BB",
+      "Latitude": "13.190300",
+      "Longitude": "-59.560830"
+     },
+     {
+      "CountryName": "Canada",
+      "CountryCode": "CA",
+      "Latitude": "56.839100",
+      "Longitude": "-110.408553"
+     },
+     {
+      "CountryName": "Switzerland",
+      "CountryCode": "CH",
+      "Latitude": "46.813050",
+      "Longitude": "8.445382"
+     },
+     {
+      "CountryName": "Germany",
+      "CountryCode": "DE",
+      "Latitude": "51.165050",
+      "Longitude": "10.579126"
+     },
+     {
+      "CountryName": "Denmark",
+      "CountryCode": "DK",
+      "Latitude": "55.941150",
+      "Longitude": "9.320822"
+     },
+     {
+      "CountryName": "France",
+      "CountryCode": "FR",
+      "Latitude": "46.712350",
+      "Longitude": "2.182191"
+     },
+     {
+      "CountryName": "Italy",
+      "CountryCode": "IT",
+      "Latitude": "42.503050",
+      "Longitude": "12.684025"
+     },
+     {
+      "CountryName": "Jamaica",
+      "CountryCode": "JM",
+      "Latitude": "18.115300",
+      "Longitude": "-77.160045"
+     },
+     {
+      "CountryName": "Netherlands",
+      "CountryCode": "NL",
+      "Latitude": "52.094000",
+      "Longitude": "5.500074"
+     },
+     {
+      "CountryName": "New Zealand",
+      "CountryCode": "NZ",
+      "Latitude": "-43.585650",
+      "Longitude": "171.200091"
+     },
+     {
+      "CountryName": "Sweden",
+      "CountryCode": "SE",
+      "Latitude": "62.197950",
+      "Longitude": "14.894744"
+     },
+     {
+      "CountryName": "Trinidad",
+      "CountryCode": "TT",
+      "Latitude": "10.443350",
+      "Longitude": "-61.260697"
+     },
+     {
+      "CountryName": "United Kingdom",
+      "CountryCode": "UK",
+      "Latitude": "54.311750",
+      "Longitude": "-1.917097"
+     },
+     {
+      "CountryName": "United States",
+      "CountryCode": "US",
+      "Latitude": "37.249750",
+      "Longitude": "-99.702332"
+     },
+     {
+      "CountryName": "Saint Vincent",
+      "CountryCode": "VC",
+      "Latitude": "13.251800",
+      "Longitude": "-61.194581"
+     }
+    ]
+   }
+  }
+ }
+}

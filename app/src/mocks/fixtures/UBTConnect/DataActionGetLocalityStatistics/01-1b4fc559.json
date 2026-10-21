@@ -1,0 +1,276 @@
+{
+ "module": "UBTConnect",
+ "action": "DataActionGetLocalityStatistics",
+ "screen": "BrowseDirectory",
+ "status": 200,
+ "inputs": {
+  "MarkersList": {
+   "List": [],
+   "EmptyListItem": {
+    "Marker": {
+     "Id": "",
+     "Type": "",
+     "ExtraData": "",
+     "Latlng": {
+      "List": [],
+      "EmptyListItem": "0"
+     },
+     "Options": {
+      "Icon": {
+       "iconUrl": "",
+       "iconRetinaUrl": "",
+       "iconSize": {
+        "List": [],
+        "EmptyListItem": "0"
+       },
+       "iconAnchor": {
+        "List": [],
+        "EmptyListItem": "0"
+       },
+       "popupAnchor": {
+        "List": [],
+        "EmptyListItem": "0"
+       },
+       "tooltipAnchor": {
+        "List": [],
+        "EmptyListItem": "0"
+       },
+       "shadowUrl": "",
+       "shadowRetinaUrl": "",
+       "shadowSize": {
+        "List": [],
+        "EmptyListItem": "0"
+       },
+       "shadowAnchor": {
+        "List": [],
+        "EmptyListItem": "0"
+       },
+       "className": "",
+       "crossOrigin": "",
+       "isTextIcon": false
+      },
+      "Draggable": false,
+      "Keyboard": false,
+      "Title": "",
+      "Alt": "",
+      "ZIndexOffset": "0",
+      "Opacity": "0",
+      "RiseOnHover": false,
+      "RiseOffset": "0"
+     }
+    },
+    "Tooltip": {
+     "Content": "",
+     "Options": {
+      "Pane": "tooltipPane",
+      "Offset": {
+       "List": [],
+       "EmptyListItem": "0"
+      },
+      "Direction": "top",
+      "Permanent": false,
+      "Sticky": true,
+      "Interactive": true,
+      "Opacity": "0.9",
+      "ClassName": ""
+     }
+    },
+    "Popup": {
+     "Pane": "popupPane",
+     "MaxWidth": "300",
+     "MinWidth": "50",
+     "AutoPan": false,
+     "AutoPanPadding": {
+      "X": "0",
+      "Y": "0"
+     },
+     "KeepInView": false,
+     "CloseButton": false,
+     "AutoClose": false,
+     "CloseOnEscapeKey": false,
+     "ClassName": "",
+     "Interactive": false,
+     "Content": ""
+    }
+   }
+  },
+  "Center": {
+   "List": [],
+   "EmptyListItem": "0"
+  },
+  "Local_MapId": "",
+  "CountryCode": "AR"
+ },
+ "data": {
+  "Out_LocalitiesStatistics": {
+   "List": [
+    {
+     "LocalityId": "585",
+     "Name": "Bahia Blanca",
+     "Latitude": "-38.6921654",
+     "Longitude": "-62.2906036",
+     "Statistics": {
+      "Title": "Bahia Blanca",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Supper Meetings",
+         "Value": "3",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "95",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "25",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "53",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "42",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     },
+     "MainHallSubdivisionId": "0"
+    },
+    {
+     "LocalityId": "924",
+     "Name": "Buenos Aires",
+     "Latitude": "-34.8893166",
+     "Longitude": "-58.5094261",
+     "Statistics": {
+      "Title": "Buenos Aires",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Supper Meetings",
+         "Value": "4",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "163",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "53",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "82",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "81",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     },
+     "MainHallSubdivisionId": "0"
+    },
+    {
+     "LocalityId": "216",
+     "Name": "Rosario",
+     "Latitude": "-32.9260178",
+     "Longitude": "-60.7536964",
+     "Statistics": {
+      "Title": "Rosario",
+      "Subtitle": "",
+      "AvatarURL": "",
+      "Statistics": {
+       "List": [
+        {
+         "Name": "Supper Meetings",
+         "Value": "4",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brethren",
+         "Value": "139",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Households",
+         "Value": "47",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Brothers",
+         "Value": "68",
+         "IconColorId": "",
+         "IconId": ""
+        },
+        {
+         "Name": "Sisters",
+         "Value": "71",
+         "IconColorId": "",
+         "IconId": ""
+        }
+       ]
+      }
+     },
+     "UI_TypedStatisticsTexts": {
+      "Members": "",
+      "Households": "",
+      "Localities": "",
+      "Brothers": "",
+      "Sisters": "",
+      "SupperMeetings": "",
+      "Distance": ""
+     },
+     "MainHallSubdivisionId": "0"
+    }
+   ]
+  },
+  "CountryName": "Argentina"
+ }
+}

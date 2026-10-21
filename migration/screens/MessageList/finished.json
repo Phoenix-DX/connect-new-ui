@@ -1,0 +1,22 @@
+{
+ "finishedAt": "2026-10-16T06:56:48",
+ "files": {
+  "src/screens/MessageList/api.ts": "1be877bb8105fa96",
+  "src/screens/MessageList/components/CircledCheckbox.tsx": "9fb2663f71858733",
+  "src/screens/MessageList/components/MessageFilterGroup.tsx": "40d6071a36961b7a",
+  "src/screens/MessageList/components/MessageFilterItem.tsx": "7b1c009fa495bba0",
+  "src/screens/MessageList/components/MessageListBlock.tsx": "4106454756da3688",
+  "src/screens/MessageList/components/MessageListItem.tsx": "6aadff66e5334c56",
+  "src/screens/MessageList/components/MessageList_Filter.tsx": "4b793a0bc9a8989b",
+  "src/screens/MessageList/components/MessageList_NoNotifications_Banner.tsx": "1658ed59840c6350",
+  "src/screens/MessageList/components/MessageSearchHistory.tsx": "0109f2c37abd9d02",
+  "src/screens/MessageList/components/ScreenBlock_MessageList.tsx": "b130ca175c2956a5",
+  "src/screens/MessageList/components/TwoButtonsAligned.tsx": "a73f19c4eeb4d574",
+  "src/screens/MessageList/components/Warning_PrivateMessage.tsx": "59faa0b235533c3a",
+  "src/screens/MessageList/components/actions.ts": "70b1d3b0497d5186",
+  "src/screens/MessageList/components/staticEntities.ts": "ca2e41245fcc2366",
+  "src/screens/MessageList/index.tsx": "a4e8ee0d66bd892e",
+  "src/screens/MessageList/mocks.ts": "cecacedd712fa3b8",
+  "src/screens/MessageList/types.ts": "d962a58cdfc31edf"
+ }
+}

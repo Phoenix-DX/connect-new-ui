@@ -1,0 +1,31 @@
+{
+ "rules": [
+  {
+   "id": "ORBITLANDING-SKELETON-SHIMMER-PHASE-OFFLINE",
+   "routeRegex": "^OrbitLanding$",
+   "kinds": [
+    "style"
+   ],
+   "states": "^offline$",
+   "pathRegex": "\\[Orbit_Generic_Blocks\\.Skeleton_Loading\\] > div\\.orbit-skeleton-loading-cont > div#b1-b7-List_SkeletonLoadingSingle[^>]* > div\\.orbit-skeleton-item-height-large\\.orbit-skeleton-loading-item$",
+   "detailRegex": "^background-position ",
+   "reason": "Skeleton shimmer animation (background-position keyframes of .orbit-skeleton-loading-item) photographed at another phase in the offline capture (49.9986% vs 64.1626%); same markup, classes and every other style; the loading state with the same skeleton passes. Capture timing artifact, auto-accepted in the user's auto mode 2026-10-15.",
+   "evidence": "migration/screens/OrbitLanding/parity/offline.json (6 rows, one per skeleton row); dom/offline.html:112-126; same kind as CAPTURE-SKELETON-SHIMMER-PHASE"
+  },
+  {
+   "id": "ORBITLANDING-POPUP-TOP-AND-RADIO-CHECKED",
+   "routeRegex": "^OrbitLanding$",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^popup-(filters|sort)$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[4-7]\\.\\d\\d% pixels differ .*migration/screens/OrbitLanding/parity/popup-(filters|sort)\\.diff\\.png$",
+   "reason": "Pixel-only difference of the two popup states (DOM, classes, attributes, styles, layout and calls equal): (1) the TST popup top is the GetPopupMeasurements value read at OnReady on TST (.header offsetHeight 204), while the clone, like the replayed TST DOM, has a 174 px header, so the dialog is 30 px higher; (2) the replayed reference draws both radios unchecked because the capture does not serialize the checked property, while the platform RadioButton checks the selected one (aria-activedescendant matches). Q4 = A, auto-accepted in the user's auto mode 2026-10-15.",
+   "evidence": "dom/popup-filters.raw.html, dom/popup-sort.raw.html (top: 204px); ScreenBlock_OrbitLanding.mvc.js :2200-2214; parity/popup-filters.diff.png, parity/popup-sort.diff.png; OutSystemsReactWidgets.js RadioButton (checked: isSelected); OrbitLanding Q4"
+  }
+ ],
+ "ignoreSubtrees": [],
+ "callOrderFree": [],
+ "_merged": "2026-10-16 orchestrator (routeRegex corrected to the full path): ORBITLANDING-SKELETON-SHIMMER-PHASE-OFFLINE, ORBITLANDING-POPUP-TOP-AND-RADIO-CHECKED"
+}

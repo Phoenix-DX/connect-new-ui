@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node *)",
+      "Bash(python3 *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git add *)",
+      "Bash(git ls-files*)"
+    ],
+    "deny": [
+      "Read(./.auth/**)",
+      "Read(./migration/.raw/**)",
+      "Edit(./.auth/**)",
+      "Bash(cat ./.auth/*)",
+      "Bash(cat .auth/*)",
+      "Bash(git push*)",
+      "Bash(node * --allow-writes*)"
+    ]
+  }
+}

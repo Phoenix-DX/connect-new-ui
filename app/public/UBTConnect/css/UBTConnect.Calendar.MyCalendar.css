@@ -1,0 +1,181 @@
+﻿/*CSS requires checked againt new design for now I'm leaving it here but It will be relocated and unused
+classes will be removed. Lorena*/
+
+
+
+/*! ==============================================================================
+2. Screen Blocks
+=============================================================================== */
+
+/*! 2.1. ScreenBlock_MyCalendar */
+/*
+
+.my-calendar-event-card{
+    border: 1px solid var(--color-neutral-11);
+    border-radius: 20px;
+}
+
+
+.my-calendar-event-card-search {
+    padding: 10px 16px 10px 13px;
+    border-left: 3px solid;
+    border-radius: 6px;
+}
+
+.my-calendar-event-card-search .icon {
+    font-size: var(--space-base);
+}
+
+
+.my-calendar-event-list .list{
+    margin-bottom: calc(var(--bottom-bar-size) + var(--space-l));
+}
+
+
+.my-calendar-event-search-list.my-calendar-event-list .list{
+    top:60px;
+}
+
+.my-calendar-event-date {
+    color: #87929D; 
+    font-size: var(--font-size-s);
+    font-weight: bold;
+}
+
+
+.my-calendar-event-card__header i{
+    font-size: 1.8em;
+}
+
+*/
+/*! 2.2. ScreenBlock_Search */
+/*
+.mycalendar-search.input-search .icon {
+    color: #49545C;
+    
+}
+
+.search__input-cross  {
+    padding: 12px 12px 12px 0px;
+    position: absolute;
+    right: 0px;
+    top: 5px;
+
+}
+
+.mycalendar-search.input-search .search__input-cross.icon {
+    color: #87929D;   
+}
+
+
+*/
+
+
+/* ==============================================================================
+3. Usefull Classes
+=============================================================================== */
+
+/*! 3.1. Colors - Brand */
+/*
+.background-calendar-secondary-color{
+    background-color: var(--calendar-secondary-color);
+}
+
+.background-calendar-main-lighter{
+    background-color: var(--calendar-main-color-lighter);
+}
+
+.text-neutral-12{
+    color: var(--color-neutral-12)
+}
+
+.text-neutral-13{
+    color: var(--color-neutral-13)
+}
+
+.text-neutral-14{
+    color: var(--color-neutral-14)
+}
+
+.text-calendar-grey{
+    color: var(--calendar-grey);
+}
+*/
+/*! 3.2.Margins */
+/*
+.margin-left-auto{
+    margin-left: auto;
+}
+*/
+/*! 3.3.Typography */
+/*
+.font-size-1-5-em{
+    font-size: 1.5em;
+}
+
+.text-decoration-line-through{
+   text-decoration:line-through;
+}
+*/
+/*! 3.4. Visibility */
+/*
+.visibility-hidden{
+    visibility: hidden;
+}
+*/
+/*! 3.5. Overflow */
+/*
+.overflow-scroll{
+    overflow: scroll;
+}*/
+
+/*! 3.6. Border */
+/*
+.border-bottom-calendar-grey-light{
+    border-bottom: 1px solid var(--calendar-grey-light);
+}
+*/
+/*! 3.7. Miscelaneous */
+/*
+
+.min-width-0{
+    min-width: 0;
+}*/
+
+/* ==============================================================================
+4. Animations
+=============================================================================== */
+
+/*! 4.1. Skeleton */
+
+/*
+@keyframes skeleton-loading{
+   0%{
+      opacity: 0.6; 
+   }
+     50%{
+      opacity: 1;
+   }
+  
+   100%{
+        opacity: 0.6;
+   }
+}*/
+
+
+/*! ==============================================================================
+5. Page Layout
+=============================================================================== */
+
+/*! 5.1. Layout */
+/*
+.mycalendar-bottom-bar .bottom-bar-item-icon .icon {
+  font-size: var(--font-size-base);
+    margin-bottom: var(--space-s)
+}
+
+.mycalendar-bottom-bar .bottom-bar-item-text{
+    font-size: var(--font-size-base);
+    line-height: 1.5em;
+    font-weight: var(--font-semi-bold);
+}*/

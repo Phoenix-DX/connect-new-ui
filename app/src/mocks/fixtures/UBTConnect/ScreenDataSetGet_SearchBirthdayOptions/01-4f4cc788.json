@@ -1,0 +1,59 @@
+{
+ "module": "UBTConnect",
+ "action": "ScreenDataSetGet_SearchBirthdayOptions",
+ "screen": "ScreenBlock_Search",
+ "status": 200,
+ "inputs": {
+  "StartIndex": 0,
+  "MaxRecords": 50
+ },
+ "data": {
+  "List": {
+   "List": [
+    {
+     "Connect_SearchBirthdayOptions": {
+      "Name": "Last Week",
+      "SearchName": "Birthday Last Week",
+      "Order": 1
+     }
+    },
+    {
+     "Connect_SearchBirthdayOptions": {
+      "Name": "Next Week",
+      "SearchName": "Birthday Next Week",
+      "Order": 6
+     }
+    },
+    {
+     "Connect_SearchBirthdayOptions": {
+      "Name": "This Week",
+      "SearchName": "Birthday This Week",
+      "Order": 5
+     }
+    },
+    {
+     "Connect_SearchBirthdayOptions": {
+      "Name": "Today",
+      "SearchName": "Birthday Today",
+      "Order": 3
+     }
+    },
+    {
+     "Connect_SearchBirthdayOptions": {
+      "Name": "Tomorrow",
+      "SearchName": "Birthday Tomorrow",
+      "Order": 4
+     }
+    },
+    {
+     "Connect_SearchBirthdayOptions": {
+      "Name": "Yesterday",
+      "SearchName": "Birthday Yesterday",
+      "Order": 2
+     }
+    }
+   ]
+  },
+  "Count": -1
+ }
+}

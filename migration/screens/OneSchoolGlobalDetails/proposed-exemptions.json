@@ -1,0 +1,19 @@
+{
+ "rules": [
+  {
+   "id": "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-ONESCHOOLGLOBALDETAILS",
+   "kinds": [
+    "class"
+   ],
+   "states": [
+    "loading",
+    "offline"
+   ],
+   "pathRegex": "^html$",
+   "detailRegex": "popup-disable-scroll",
+   "reason": "Timing artifact: the html popup-disable-scroll class at capture time depends on the order of OutSystems model flushes (client-variable flush vs local-storage query flush), not on the screen.",
+   "evidence": "usePopupWidget re-applies disableScroll on every client-variable change as every OS controller does (OutSystems.js:530153 fireInitialize subscribes clientVariablesHandler; :527146 generation++ + scheduleFlush). TST's final html class then depends on whether an EntityDetailsActions model flush (local IDB queries, OnReady) lands after the last client-variable flush; in the mock app local entities resolve in microtasks. TST itself is inconsistent across routes/states: states.json htmlClass default ''/loading 'popup-disable-scroll' on OneSchoolGlobalDetails, but default 'popup-disable-scroll'/loading '' on SupperMeeting_Carousel. See migration/screens/OneSchoolGlobalDetails/analysis/states.json and parity/<state>.json."
+  }
+ ],
+ "_merged": "F5 popup rule merged with routeRegex 2026-10-15"
+}

@@ -1,0 +1,50 @@
+[
+ {
+  "id": "Q1",
+  "kind": "review",
+  "topic": "review round 1",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Policy links open the recorded TST policy URL (fixture `UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo`,; Click on a row while the policies are not fetched (loading / offline) shows the error feedback \"This policy couldn't Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-15T20:13:26",
+  "items": [
+   "Policy links open the recorded TST policy URL (fixture `UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo`,",
+   "Click on a row while the policies are not fetched (loading / offline) shows the error feedback \"This policy couldn't"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-15T20:13:27"
+ },
+ {
+  "id": "Q2",
+  "kind": "review",
+  "topic": "review round 2",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Policy links open the recorded TST policy URL (fixture `UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo`,; Click on a row while the policies are not fetched (loading / offline) shows the error feedback \"This policy couldn't Feature flags: clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-16T15:02:11",
+  "items": [
+   "Policy links open the recorded TST policy URL (fixture `UBTConnect_Utils/CacheControl_Policies/DataActionGetCacheInfo`,",
+   "Click on a row while the policies are not fetched (loading / offline) shows the error feedback \"This policy couldn't"
+  ],
+  "fixed": [],
+  "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-16T15:02:11"
+ }
+]

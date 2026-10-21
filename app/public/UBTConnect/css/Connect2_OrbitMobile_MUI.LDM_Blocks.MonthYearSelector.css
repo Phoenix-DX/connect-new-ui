@@ -1,0 +1,19 @@
+﻿.month-year-selector {
+    color: #263238;
+}
+
+.month-year-selector .list-item {
+    border: none;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    padding-top: 10px;
+}
+
+.month-year-selector i {
+    color: #263238;
+    vertical-align: baseline !important;
+}
+
+.month-year-selector .popover-current-item {
+    font-weight: bold;
+}

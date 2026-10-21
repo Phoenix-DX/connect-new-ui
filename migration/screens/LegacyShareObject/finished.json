@@ -1,0 +1,14 @@
+{
+ "finishedAt": "2026-10-16T06:59:46",
+ "files": {
+  "src/screens/LegacyShareObject/api.ts": "64a3fa20035867e5",
+  "src/screens/LegacyShareObject/components/HighlightSearch.tsx": "a43ed5989336d5d9",
+  "src/screens/LegacyShareObject/components/ListBlankSlate.tsx": "e523eaf148987e13",
+  "src/screens/LegacyShareObject/components/ProfileList.tsx": "21b4615e6c53ff73",
+  "src/screens/LegacyShareObject/components/ScreenBlock_ShareObject.tsx": "3f58833eab797a33",
+  "src/screens/LegacyShareObject/components/staticEntities.ts": "9cce0688ee4644da",
+  "src/screens/LegacyShareObject/index.tsx": "810994cf05cac002",
+  "src/screens/LegacyShareObject/mocks.ts": "3b1f35419695f4f8",
+  "src/screens/LegacyShareObject/types.ts": "6e301f7b83882088"
+ }
+}

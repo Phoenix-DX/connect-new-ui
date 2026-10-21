@@ -1,0 +1,20 @@
+{
+ "finishedAt": "2026-10-16T12:59:23",
+ "files": {
+  "src/screens/AssembleEvents/AssembleEvents.test.tsx": "bae9c6e8d7eab35b",
+  "src/screens/AssembleEvents/api.ts": "c252007f7e62d7a4",
+  "src/screens/AssembleEvents/components/AssembleSummary_FilterDrawer.tsx": "00845b32eaedd98a",
+  "src/screens/AssembleEvents/components/AssembleSummary_List.tsx": "731898f799d0f07d",
+  "src/screens/AssembleEvents/components/AssembleSummary_List__Header.tsx": "c327a5f6c93a4209",
+  "src/screens/AssembleEvents/components/AssembleSummary_SkeletonList.tsx": "b599262bf03c67d5",
+  "src/screens/AssembleEvents/components/Assemble_FilterSheet.tsx": "7502734fa3e71951",
+  "src/screens/AssembleEvents/components/HorizontalTags.tsx": "06098b423ebafc24",
+  "src/screens/AssembleEvents/components/InBlock_ActionMenu.tsx": "23dc7ad1e5da6755",
+  "src/screens/AssembleEvents/components/NC_ErrorScreen.tsx": "174343b86b917dd5",
+  "src/screens/AssembleEvents/components/ScreenBlock_AssembleEvents.tsx": "dce71539dd002814",
+  "src/screens/AssembleEvents/components/actions.ts": "ea4ca9f03dce5132",
+  "src/screens/AssembleEvents/index.tsx": "5d1fd6ca9dfce191",
+  "src/screens/AssembleEvents/mocks.ts": "6816161d059eac92",
+  "src/screens/AssembleEvents/types.ts": "8a811c99ef1cfda1"
+ }
+}

@@ -1,0 +1,202 @@
+{
+ "AssembleDetail": {
+  "tier": "full",
+  "own": [
+   "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail",
+   "NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack",
+   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail",
+   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList",
+   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact",
+   "Connect2_LegacyShared.NewConnect_Skeleton.NC_Result_Item__Image__Skeleton",
+   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitiesList",
+   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList",
+   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision",
+   "Connect2_LegacyShared.MyBookmarks.BookmarkNoteAddEdit",
+   "Connect2_LegacyShared.Share.ContextMenu",
+   "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Tag",
+   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet",
+   "Connect2_LegacyShared.Utility.ShowMoreShowLessContainer",
+   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Section",
+   "Connect2_Assemble_MUI.Assemble.AssembleEventDetail__Error"
+  ],
+  "sharedMissing": [],
+  "server": [
+   "CS_CreateShareProfileLink",
+   "CS_ShareObject"
+  ]
+ },
+ "AssembleEvents": {
+  "tier": "full",
+  "own": [
+   "Connect2_Assemble_MUI.Assemble.Assemble_FilterSheet",
+   "Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleEvents",
+   "Connect2_Assemble_MUI.Assemble.AssembleSummary_List",
+   "Connect2_Assemble_MUI.Assemble.AssembleSummary_FilterDrawer",
+   "Connect2_LegacyShared.NewConnect.InBlock_ActionMenu",
+   "Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummary_SkeletonList",
+   "Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card__Location",
+   "Connect2_LegacyShared.NewConnect_Utilities.NC_ErrorScreen",
+   "Connect2_Assemble_MUI.Assemble.AssembleSummary_List__Header",
+   "Connect2_LegacyShared.Reusable.HorizontalTags",
+   "Connect2_LegacyShared.Reusable.HorizontalScrollTiles",
+   "Connect2_LegacyShared.Share.StickyHeader"
+  ],
+  "sharedMissing": [],
+  "server": []
+ },
+ "Assemble_BrowseByCountry": {
+  "tier": "lite",
+  "own": [
+   "Connect2_Assemble_MUI.Assemble.ScreenBlock_Assemble_Filter"
+  ],
+  "sharedMissing": [],
+  "server": []
+ },
+ "ContactByEmailOrbitHelpdesk": {
+  "tier": "lite",
+  "own": [],
+  "sharedMissing": [],
+  "server": [
+   "SendContactEmail"
+  ]
+ },
+ "ContactByEmailOrbitHost": {
+  "tier": "lite",
+  "own": [],
+  "sharedMissing": [],
+  "server": [
+   "SendContactEmail"
+  ]
+ },
+ "EmailContact": {
+  "tier": "lite",
+  "own": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_ContactForm"
+  ],
+  "sharedMissing": [],
+  "server": [
+   "SendContactEmail"
+  ]
+ },
+ "EventBooklet": {
+  "tier": "full",
+  "own": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_MembersItem",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_ListHeader",
+   "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction"
+  ],
+  "sharedMissing": [],
+  "server": []
+ },
+ "GuestArrangements": {
+  "tier": "lite",
+  "own": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_GuestArrangements"
+  ],
+  "sharedMissing": [],
+  "server": []
+ },
+ "HelpersDetail": {
+  "tier": "lite",
+  "own": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_HelperDetails"
+  ],
+  "sharedMissing": [],
+  "server": []
+ },
+ "HostSurvey": {
+  "tier": "full",
+  "own": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.ScreenBlock_HostSurvey",
+   "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_ConfirmationPopUp_New",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_VehiclePills",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperPills",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealPills",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationPills",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_Item",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_VehicleItem",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AddHelper",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation_Survey",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_HelperItem",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_MealItem",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AdminNotes",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_NavigationItem",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_StepHeader",
+   "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.InputWithMaxChar",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_TopMessage"
+  ],
+  "sharedMissing": [],
+  "server": [
+   "PostHostSurvey"
+  ]
+ },
+ "MilestoneDetail": {
+  "tier": "full",
+  "own": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper",
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHelper",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.OrbitAdminTag",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostInformation",
+   "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ContactOptions_Orbit",
+   "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.PhotoLazyLoaded",
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost",
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationGuest",
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealHelper",
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealHost",
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealGuest"
+  ],
+  "sharedMissing": [],
+  "server": []
+ },
+ "OrbitAdminEventDetail": {
+  "tier": "lite",
+  "own": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail",
+   "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.OrbitErrorMessage",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan"
+  ],
+  "sharedMissing": [],
+  "server": [
+   "GetMemberByMemberId",
+   "GetScanEventQRCode"
+  ]
+ },
+ "OrbitAdminLanding": {
+  "tier": "lite",
+  "own": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding"
+  ],
+  "sharedMissing": [],
+  "server": []
+ },
+ "QRCodeGenerate": {
+  "tier": "lite",
+  "own": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_QRCode.ScreenBlock_GenerateQRCode"
+  ],
+  "sharedMissing": [],
+  "server": []
+ },
+ "TransportDetail": {
+  "tier": "lite",
+  "own": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_TransportDetail",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail",
+   "Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail_TravelInfo"
+  ],
+  "sharedMissing": [],
+  "server": []
+ },
+ "ViewDocuments": {
+  "tier": "lite",
+  "own": [
+   "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_Documents.ScreenBlock_ViewDocuments",
+   "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.LoadingSpinner"
+  ],
+  "sharedMissing": [],
+  "server": []
+ }
+}

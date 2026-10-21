@@ -1,0 +1,64 @@
+{
+ "state": "offline",
+ "route": "/UBTConnect/ContactByEmailOneSchoolGlobal?In_EmailTo=school%40example.test&In_ContactName=Test%20School&mocksession=unlocked",
+ "mock": "error",
+ "viewport": "390x844",
+ "flags": {},
+ "steps": 0,
+ "fingerprint": "5b6ee6a16ac981962612",
+ "options": {
+  "text": true,
+  "style": true,
+  "pixel": true,
+  "calls": true,
+  "full": true,
+  "replay": "builder"
+ },
+ "replay": {
+  "mode": "builder",
+  "elements": 96,
+  "texts": 11,
+  "comments": 0,
+  "dropped": 0,
+  "endTagMismatch": 0,
+  "unclosed": 0,
+  "badNames": 0
+ },
+ "at": "2026-10-21T04:28:43.449Z",
+ "counts": {},
+ "exemptionsUsed": {
+  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
+  "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL": 11,
+  "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-GRID": 1,
+  "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-PSEUDO": 1,
+  "CAPTURE-TEXTAREA-ROWS-CONTACTBYEMAIL-PIXEL": 1
+ },
+ "pixel": {
+  "ratio": 0.00912,
+  "maxCell": 0.2569,
+  "maxCellRatio": 0.03,
+  "diffPixels": 2991,
+  "comparedPixels": 327951,
+  "maxRatio": 0.002,
+  "threshold": 0.1,
+  "expectedSize": [
+   390,
+   844
+  ],
+  "buildSize": [
+   390,
+   844
+  ],
+  "masks": 2,
+  "hotspots": [
+   "40,280 (411px)",
+   "80,320 (398px)",
+   "40,320 (381px)",
+   "0,280 (285px)",
+   "0,320 (186px)"
+  ],
+  "diffPng": "migration/screens/ContactByEmailOneSchoolGlobal/parity/offline.diff.png"
+ },
+ "calls": null,
+ "diffs": []
+}

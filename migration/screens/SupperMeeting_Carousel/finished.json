@@ -1,0 +1,10 @@
+{
+ "finishedAt": "2026-10-15T23:14:59",
+ "files": {
+  "src/screens/SupperMeeting_Carousel/api.ts": "f365e38c3dbc13ca",
+  "src/screens/SupperMeeting_Carousel/components/logic.ts": "9a821964b7bfb50f",
+  "src/screens/SupperMeeting_Carousel/index.tsx": "5e5b68256123866d",
+  "src/screens/SupperMeeting_Carousel/mocks.ts": "41c09b757951b044",
+  "src/screens/SupperMeeting_Carousel/types.ts": "405eb0c02bc02511"
+ }
+}

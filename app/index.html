@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>UBTConnect</title>
+    <!-- the original's manifest link and path (every capture: environment.manifestLink); served by build/pwa.ts -->
+    <link rel="manifest" href="/UBTConnect/moduleservices/pwa/manifest" />
+    <!-- every original layout runs OutSystems UI AddFavicon("favicon.png") on ready, which adds this link
+         (OutSystemsUI.js Utils.AddFavicon); public/UBTConnect/favicon.png is the TST file (moduleinfo manifest) -->
+    <link type="image/x-icon" rel="shortcut icon" href="/UBTConnect/favicon.png" />
+    <!-- the original OutSystems stylesheets of the current screen are added by src/shell/StylesheetHost.tsx -->
+  </head>
+  <!-- body classes and style variables copied from the capture: OutSystems UI sets them at runtime -->
+  <body class="phone portrait osx is-ltr" style="--header-size-content: 0px; --footer-height: 56px">
+    <div id="reactContainer"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+{
+ "finishedAt": "2026-10-16T15:22:07",
+ "files": {
+  "src/screens/EventBooklet/api.ts": "b62c2a43be9b6f55",
+  "src/screens/EventBooklet/components/BookletPopup.tsx": "da7a4580f2ece349",
+  "src/screens/EventBooklet/components/DoubleAction.tsx": "3d68d0f4d34c33b2",
+  "src/screens/EventBooklet/components/EventBooklet_ListHeader.tsx": "87f7b0a00abedf50",
+  "src/screens/EventBooklet/components/EventBooklet_MembersItem.tsx": "ad20a507186f6845",
+  "src/screens/EventBooklet/components/PopUp_OrbitBookletFilters.tsx": "bdf8be727c6eb42a",
+  "src/screens/EventBooklet/components/ScreenBlock_EventBooklet.tsx": "9c1623c6cf204b87",
+  "src/screens/EventBooklet/components/actions.ts": "efa1aae6c8932077",
+  "src/screens/EventBooklet/index.tsx": "a34e98051569df69",
+  "src/screens/EventBooklet/mocks.ts": "644b0554d9875239",
+  "src/screens/EventBooklet/types.ts": "aad6d5ac80c1fd52"
+ }
+}

@@ -1,0 +1,38 @@
+{
+ "_comment": "Proposed by route-household-relations 2026-10-15 for the orchestrator; NOT applied to migration/parity-exemptions.json. Capture/timing artifacts only (route question Q1).",
+ "rules": [
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLDRELATIONS-IMAGES",
+   "kinds": [
+    "class"
+   ],
+   "states": "^loading$",
+   "pathRegex": "\\[CW_Image\\.UBT_LazyImage\\] > div#b3-b(4|15|19)-\\$b1\\.OSBlockWidget\\[ConnectPatterns\\.SkeletonSection\\] > div#b3-b(4|15|19)-b1-Placeholder_LoadingSection$",
+   "reason": "The loading capture held the TST requests until the OutSystems request timeout, so GetSignedImagesInBulk for the member, father and mother avatars had failed and UBT_LazyImage left its skeleton (no-image placeholder shown); the mock loading scenario never answers, so the clone keeps the skeleton. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLDDETAILS-IMAGE; the offline state (calls fail at once) passes. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Household_Relations/analysis/dom/loading.html:51, :229, :315 (Placeholder_LoadingSection class \"\", ubt-lazy-image--no-image); migration/screens/Household_Relations/parity/loading.json (3 class diffs); parity/offline.json clean"
+  },
+  {
+   "id": "CAPTURE-MASKED-TEXT-HOUSEHOLDRELATIONS-NAME",
+   "kinds": [
+    "position"
+   ],
+   "states": "^default$",
+   "pathRegex": "div#b3-b5-Content\\.align-items-baseline\\.display-flex\\.justify-content-center > div#b3-\\$b6\\.OSBlockWidget\\[BasePatterns\\.CustomText\\]$",
+   "detailRegex": "^offset in parent \\d+,0 → \\d+,0$",
+   "reason": "The member name is centred (justify-content-center); the capture masked it as bullets (\"•••••• ••••••\"), the fictional mock name has the same word lengths but other glyph widths, so only its horizontal offset differs (149 → 138). auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Household_Relations/analysis/dom/default.html:70-79; migration/screens/Household_Relations/parity/default.json (position diff)"
+  },
+  {
+   "id": "CAPTURE-MASKED-IMAGE-HOUSEHOLDRELATIONS-SHIFT",
+   "kinds": [
+    "pixel"
+   ],
+   "states": "^default$",
+   "pathRegex": "^screenshot$",
+   "detailRegex": "^[0-2]\\.\\d\\d% pixels differ .*migration/screens/Household_Relations/parity/default\\.diff\\.png$",
+   "reason": "The member photo was masked by the capture (data-masked-src=\"user-image\", src removed, TST rendered 98x98): the replayed reference shows a broken image 100 px high, the clone the 98 px neutral placeholder (Q-W2C-1), so everything below the photo sits 1 px higher (Notes button top 212 → 211; measured: the clone with the image src emptied gives 212). The diff is only text and icon edges from that 1 px shift (default.diff.png); bounded to < 3 % of the pixels and to this route's report. auto-accepted in the user's auto mode 2026-10-15",
+   "evidence": "migration/screens/Household_Relations/analysis/dom/default.html:58; migration/screens/Household_Relations/parity/default.json (1.83 %, hotspots on text edges), default.diff.png"
+  }
+ ],
+ "_merged": "2026-10-15 by the orchestrator (Q1 A, auto-accepted): CAPTURE-LOADING-FETCH-TIMEOUT-HOUSEHOLDRELATIONS-IMAGES, CAPTURE-MASKED-TEXT-HOUSEHOLDRELATIONS-NAME, CAPTURE-MASKED-IMAGE-HOUSEHOLDRELATIONS-SHIFT"
+}

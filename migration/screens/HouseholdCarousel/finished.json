@@ -1,0 +1,11 @@
+{
+ "finishedAt": "2026-10-16T06:57:54",
+ "files": {
+  "src/screens/HouseholdCarousel/api.ts": "e04843b392011665",
+  "src/screens/HouseholdCarousel/components/logic.test.ts": "43b1835c45556c90",
+  "src/screens/HouseholdCarousel/components/logic.ts": "b50e54bfdc6baf66",
+  "src/screens/HouseholdCarousel/index.tsx": "c7ae0ed3e84aa8d9",
+  "src/screens/HouseholdCarousel/mocks.ts": "98f3c95db9f3a89e",
+  "src/screens/HouseholdCarousel/types.ts": "6652f724fc3a6fb9"
+ }
+}

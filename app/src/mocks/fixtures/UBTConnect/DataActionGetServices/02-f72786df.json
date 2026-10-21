@@ -1,0 +1,167 @@
+{
+ "module": "UBTConnect",
+ "action": "DataActionGetServices",
+ "screen": "Services",
+ "status": 200,
+ "inputs": {
+  "isLoading": false,
+  "ReferenceServices": {
+   "List": [],
+   "EmptyListItem": {
+    "Id": "",
+    "Label": "",
+    "Order": 0,
+    "Is_Active": false,
+    "IconId": "",
+    "isMandatory": false,
+    "StartAsDefault": false
+   }
+  },
+  "HasChanges": false
+ },
+ "data": {
+  "AvailableServices": {
+   "List": [
+    {
+     "Id": "HR100",
+     "Label": "HR100",
+     "Order": 8,
+     "Is_Active": true,
+     "IconId": "SVG_HR100",
+     "isMandatory": false,
+     "StartAsDefault": false
+    },
+    {
+     "Id": "ElGusto",
+     "Label": "El Gusto",
+     "Order": 9,
+     "Is_Active": true,
+     "IconId": "SVG_ElGusto",
+     "isMandatory": false,
+     "StartAsDefault": false
+    },
+    {
+     "Id": "CommunityTradelink",
+     "Label": "Community Tradelink",
+     "Order": 10,
+     "Is_Active": true,
+     "IconId": "SVG_CommunityTradelink",
+     "isMandatory": false,
+     "StartAsDefault": false
+    }
+   ]
+  },
+  "CurrentServices": {
+   "List": [
+    {
+     "Connect_Services": {
+      "Id": "Orbit",
+      "Label": "Orbit",
+      "Order": 1,
+      "Is_Active": true,
+      "IconId": "connect-icon-orbit_text",
+      "isMandatory": true,
+      "StartAsDefault": true
+     },
+     "Connect_Service_User": {
+      "Id": "568",
+      "ConnectServiceId": "Orbit",
+      "UserId": 4291,
+      "Order": 1,
+      "LastChangedOn": "1900-01-01T00:00:00"
+     }
+    },
+    {
+     "Connect_Services": {
+      "Id": "LDM",
+      "Label": "Lord's Day Meal",
+      "Order": 2,
+      "Is_Active": true,
+      "IconId": "connect-icon-ldm",
+      "isMandatory": true,
+      "StartAsDefault": true
+     },
+     "Connect_Service_User": {
+      "Id": "569",
+      "ConnectServiceId": "LDM",
+      "UserId": 4291,
+      "Order": 2,
+      "LastChangedOn": "1900-01-01T00:00:00"
+     }
+    },
+    {
+     "Connect_Services": {
+      "Id": "Assemble",
+      "Label": "Assemble",
+      "Order": 3,
+      "Is_Active": true,
+      "IconId": "connect-icon-assemble",
+      "isMandatory": true,
+      "StartAsDefault": true
+     },
+     "Connect_Service_User": {
+      "Id": "570",
+      "ConnectServiceId": "Assemble",
+      "UserId": 4291,
+      "Order": 3,
+      "LastChangedOn": "1900-01-01T00:00:00"
+     }
+    },
+    {
+     "Connect_Services": {
+      "Id": "Trove",
+      "Label": "Trove",
+      "Order": 4,
+      "Is_Active": true,
+      "IconId": "connect-icon-trove",
+      "isMandatory": false,
+      "StartAsDefault": true
+     },
+     "Connect_Service_User": {
+      "Id": "571",
+      "ConnectServiceId": "Trove",
+      "UserId": 4291,
+      "Order": 4,
+      "LastChangedOn": "1900-01-01T00:00:00"
+     }
+    },
+    {
+     "Connect_Services": {
+      "Id": "MyCalendar",
+      "Label": "My Entertaining",
+      "Order": 5,
+      "Is_Active": true,
+      "IconId": "connect-icon-calendar",
+      "isMandatory": false,
+      "StartAsDefault": true
+     },
+     "Connect_Service_User": {
+      "Id": "572",
+      "ConnectServiceId": "MyCalendar",
+      "UserId": 4291,
+      "Order": 5,
+      "LastChangedOn": "1900-01-01T00:00:00"
+     }
+    },
+    {
+     "Connect_Services": {
+      "Id": "MyNotes",
+      "Label": "My Notes",
+      "Order": 6,
+      "Is_Active": true,
+      "IconId": "connect-icon-tooltip",
+      "isMandatory": false,
+      "StartAsDefault": true
+     },
+     "Connect_Service_User": {
+      "Id": "573",
+      "ConnectServiceId": "MyNotes",
+      "UserId": 4291,
+      "Order": 6,
+      "LastChangedOn": "1900-01-01T00:00:00"
+     }
+    }
+   ]
+  }
+ }
+}

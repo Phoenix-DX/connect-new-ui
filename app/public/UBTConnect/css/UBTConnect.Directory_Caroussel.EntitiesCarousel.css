@@ -1,0 +1,30 @@
+﻿.ubt-entities-carousel {
+    --carousel-container-height: var(--bottom-bar-size);
+}
+
+.layout:has(.footer:empty) .ubt-entities-carousel{
+    --carousel-container-height: 0px;
+}
+
+.ubt-entities-carousel .splide__slide {
+   --carousel-slide-custom-height: calc(100vh - var(--carousel-container-height) - var(--header-size));
+   overflow-y: scroll;
+}
+
+.layout:has(.ubt-entities-carousel) footer::before,
+.layout:has(.ubt-entities-carousel) header::after{
+    display: none !important;
+}
+
+.ubt-entities-carousel .splide__track {
+    touch-action: pan-x;
+}
+
+.splide__track,
+.splide__list {
+  will-change: transform;
+}
+
+.splide__list {
+  align-items: flex-start; 
+}

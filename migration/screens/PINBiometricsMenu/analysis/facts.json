@@ -1,0 +1,3607 @@
+{
+ "screen": "PINBiometricsMenu",
+ "env": {
+  "path": "/UBTConnect/PINBiometricsMenu",
+  "collectedAt": "2026-10-14T03:10:40.764Z",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/141.0.7390.37 Safari/537.36",
+  "viewport": {
+   "width": 390,
+   "height": 844,
+   "dpr": 1
+  },
+  "htmlClass": "",
+  "bodyClass": "phone portrait osx is-ltr",
+  "htmlStyle": "",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 0px; --viewport-height: 844px;",
+  "title": "PINBiometricsMenu",
+  "manifestLink": "/UBTConnect/moduleservices/pwa/manifest",
+  "serviceWorkers": [],
+  "indexedDBNames": [
+   "<guid>-Users",
+   "firebaseLocalStorageDb"
+  ],
+  "localStorageKeys": [
+   "$OS_Users$UBT_AppManager$ClientVars$PIN_HasUnlocked",
+   "$OS_Users$RolesInfo",
+   "$OS_Users$UBTConnect$ClientVars$PhotobookCarousel_SelectedSpeed",
+   "$OS_Users$UBT_AppManager$ClientVars$AppManager_UserExternalId",
+   "$OS_Users$CurrentLocale",
+   "$OS_Users$UBT_AppManager$ClientVars$AzureB2C_ResetPassPolicy",
+   "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_IsRunningAsPWA",
+   "$OS_UBTConnect$ApplicationInfo",
+   "$OS_Users$UBT_AppManager$ClientVars$OutSystems_LastURL",
+   "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_ErrorMessage_NoInternet",
+   "$OS_Users$UBT_AppManager$ClientVars$MinWebViewVersion_Safari",
+   "$OS_Users$UBT_AppManager$ClientVars$Permissions_List",
+   "$OS_Users$Connect2_LegacyShared$ClientVars$UnreadPublicMessagesNumber",
+   "$OS_Users$UBT_AppManager$ClientVars$Firebase_RealtimeDatabase_Use",
+   "$OS_Users$UBTConnect$ClientVars$App_Policies_HasPolicyToAccept",
+   "$OS_UBT_AppManager$HasTracingEnabled",
+   "$OS_Users$UBT_AppManager$ClientVars$AzureInsights_Use",
+   "$OS_Users$UBT_AppManager$ClientVars$Streamline_SerialNumber",
+   "$OS_Users$UBT_AppManager$ClientVars$MinWebViewVersion_Chrome",
+   "$OS_Users$UBT_AppManager$ClientVars$AppManager_OAuth_EndPoint",
+   "$OS_Users$UBT_AppManager$ClientVars$PIN_SessionInactivity_Navigate",
+   "$OS_Users$UBTConnect$ClientVars$App_NetworkStatus_IsOnline_IsPersistent",
+   "$OS_Users$UBT_AppManager$ClientVars$AppManager_IdPProviderId",
+   "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_MobileVersion",
+   "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_UUID",
+   "$OS_Users$UBT_AppManager$ClientVars$PIN_SessionInactivity_Seconds",
+   "$OS_Users$UBT_AppManager$ClientVars$AppManager_MemberId",
+   "$OS_Users$UBTConnect$ClientVars$Bookmarks_IsSynched",
+   "$OS_Users$UBT_AppManager$ClientVars$AzureB2C_ClientId",
+   "$OS_Users$UBT_AppManager$ClientVars$MinNativeAppVersion",
+   "$OS_Users$UBT_AppManager$ClientVars$Firebase_CloudMessage_Token",
+   "$OS_Users$UBT_AppManager$ClientVars$AppManager_ContactBaseId",
+   "$OS_Users$UBT_AppManager$ClientVars$OutSystems_Environment",
+   "$OS_Users$UBT_AppManager$ClientVars$AppManager_EspaceName",
+   "$OS_Users$UBTConnect$ClientVars$IsNavigateToHomeOnBack",
+   "$OS_Users$UBTConnect$ClientVars$Embedd_B2CTenant",
+   "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_Browser",
+   "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_PackageName",
+   "$OS_Users$UBTConnect_Utils$ClientVars$App_SubscriptionPopUp",
+   "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_Platform",
+   "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_VerboseMode",
+   "$OS_Users$UBTConnect$ClientVars$Directory_Updates_UnreadCount_LastCheck",
+   "$OS_Users$UBT_AppManager$ClientVars$Streamline_TOTPOnLogin",
+   "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_ErrorMessage_GenericError",
+   "$OS_Users$NetworkDetection$ClientVars$Offline_NetworkStatus_PendingPing_Check",
+   "$OS_Users$UBTConnect$ClientVars$Notifications_LastChecked",
+   "$OS_Users$$ClientVars$$SESSION_USER_ID",
+   "$OS_Users$UBT_AppManager$ClientVars$AppManager_AppBaseURL",
+   "$OS_Users$UBT_AppManager$ClientVars$PIN_IsRegistering",
+   "$OS_Users$UBT_AppManager$ClientVars$Firebase_RealtimeDatabase_StartedOn",
+   "$OS_Users$UBT_AppManager$ClientVars$Firebase_ProjectId",
+   "$OS_UBT_AppManager$ApplicationInfo",
+   "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_UserAgent",
+   "$OS_Users$UBT_AppManager$ClientVars$AppManager_Username",
+   "$OS_Users$UBTConnect$ClientVars$Directory_Updates_MonthsToShow",
+   "$OS_Users$UBT_AppManager$ClientVars$PIN_EnforceOnReady",
+   "$OS_Users$UBTConnect$ClientVars$Notes_IsSynched",
+   "UUID",
+   "$OS_Users$UBTConnect$ClientVars$Directory_Updates_UnreadCount",
+   "$OS_Users$UBT_AppManager$ClientVars$PIN_Use",
+   "$OS_Users$UBT_AppManager$ClientVars$AppManager_CustomCallback",
+   "AppManager_LocalStorageKey_Pin",
+   "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_StatusIsOnline_IsPersistent",
+   "firebase:host:connect2-tst-default-rtdb.asia-southeast1.firebasedatabase.app",
+   "$OS_Users$UBTConnect$ClientVars$Notifications_IsSynched",
+   "$OS_Users$UBT_AppManager$ClientVars$Licenses_List",
+   "$OS_Users$UBT_AppManager$ClientVars$Streamline_IsInstalled",
+   "$OS_Users$Connect2_LegacyShared$ClientVars$UnreadNotificationsNumber",
+   "$OS_UBTConnect$HasTracingEnabled",
+   "$OS_Users$UBT_AppManager$ClientVars$AzureB2C_LoginPolicy",
+   "$OS_Users$UBT_AppManager$ClientVars$PIN_SessionInactivity_Use",
+   "$OS_Users$UBT_AppManager$ClientVars$FrontEgg_AppId",
+   "$OS_Users$ApplicationInsightsConnector$ClientVars$ConnectionString",
+   "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_MobileBuild",
+   "$OS_Users$UBT_AppManager$ClientVars$PIN_IsLocked",
+   "$OS_Users$UBT_AppManager$ClientVars$PIN_EnableFingerprint",
+   "$OS_Users$UBT_AppManager$ClientVars$AppManager_UserExtended",
+   "$OS_Users$UBT_AppManager$ClientVars$Firebase_RealtimeDatabase_Token",
+   "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_IsNative",
+   "$OS_Users$UBTConnect$ClientVars$LastURL"
+  ],
+  "sessionStorageKeys": [
+   "$OS_UBTConnect$UpgradeStatus",
+   "AI_sentBuffer_1",
+   "$OS_UBTConnect$HasRenderedSplashInSession",
+   "AI_buffer_1",
+   "$OS_UBTConnect$RouterHistoryAge"
+  ],
+  "security": {
+   "isSecureContext": true,
+   "cookieNamesVisibleToJS": [
+    "ai_user",
+    "nr2Users",
+    "ai_session"
+   ],
+   "localStorage": [
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_HasUnlocked",
+     "category": "lock / re-auth"
+    },
+    {
+     "key": "$OS_Users$RolesInfo",
+     "category": "permissions / entitlements"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$PhotobookCarousel_SelectedSpeed",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_UserExternalId",
+     "category": "identity / personal"
+    },
+    {
+     "key": "$OS_Users$CurrentLocale",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AzureB2C_ResetPassPolicy",
+     "category": "auth config"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_IsRunningAsPWA",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_UBTConnect$ApplicationInfo",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$OutSystems_LastURL",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_ErrorMessage_NoInternet",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$MinWebViewVersion_Safari",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$Permissions_List",
+     "category": "permissions / entitlements"
+    },
+    {
+     "key": "$OS_Users$Connect2_LegacyShared$ClientVars$UnreadPublicMessagesNumber",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$Firebase_RealtimeDatabase_Use",
+     "category": "feature flags"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$App_Policies_HasPolicyToAccept",
+     "category": "other"
+    },
+    {
+     "key": "$OS_UBT_AppManager$HasTracingEnabled",
+     "category": "feature flags"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AzureInsights_Use",
+     "category": "feature flags"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$Streamline_SerialNumber",
+     "category": "third-party sdk"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$MinWebViewVersion_Chrome",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_OAuth_EndPoint",
+     "category": "auth config"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_SessionInactivity_Navigate",
+     "category": "lock / re-auth"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$App_NetworkStatus_IsOnline_IsPersistent",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_IdPProviderId",
+     "category": "auth config"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_MobileVersion",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_UUID",
+     "category": "identity / personal"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_SessionInactivity_Seconds",
+     "category": "lock / re-auth"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_MemberId",
+     "category": "identity / personal"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$Bookmarks_IsSynched",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AzureB2C_ClientId",
+     "category": "auth config"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$MinNativeAppVersion",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$Firebase_CloudMessage_Token",
+     "category": "token/secret"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_ContactBaseId",
+     "category": "identity / personal"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$OutSystems_Environment",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_EspaceName",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$IsNavigateToHomeOnBack",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$Embedd_B2CTenant",
+     "category": "auth config"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_Browser",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_PackageName",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBTConnect_Utils$ClientVars$App_SubscriptionPopUp",
+     "category": "permissions / entitlements"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_Platform",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_VerboseMode",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$Directory_Updates_UnreadCount_LastCheck",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$Streamline_TOTPOnLogin",
+     "category": "auth config"
+    },
+    {
+     "key": "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_ErrorMessage_GenericError",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$NetworkDetection$ClientVars$Offline_NetworkStatus_PendingPing_Check",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$Notifications_LastChecked",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$$ClientVars$$SESSION_USER_ID",
+     "category": "identity / personal"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_AppBaseURL",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_IsRegistering",
+     "category": "lock / re-auth"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$Firebase_RealtimeDatabase_StartedOn",
+     "category": "third-party sdk"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$Firebase_ProjectId",
+     "category": "third-party sdk"
+    },
+    {
+     "key": "$OS_UBT_AppManager$ApplicationInfo",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_UserAgent",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_Username",
+     "category": "identity / personal"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$Directory_Updates_MonthsToShow",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_EnforceOnReady",
+     "category": "lock / re-auth"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$Notes_IsSynched",
+     "category": "other"
+    },
+    {
+     "key": "UUID",
+     "category": "identity / personal"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$Directory_Updates_UnreadCount",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_Use",
+     "category": "lock / re-auth"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_CustomCallback",
+     "category": "other"
+    },
+    {
+     "key": "AppManager_LocalStorageKey_Pin",
+     "category": "token/secret"
+    },
+    {
+     "key": "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_StatusIsOnline_IsPersistent",
+     "category": "other"
+    },
+    {
+     "key": "firebase:host:connect2-tst-default-rtdb.asia-southeast1.firebasedatabase.app",
+     "category": "third-party sdk"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$Notifications_IsSynched",
+     "category": "other"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$Licenses_List",
+     "category": "permissions / entitlements"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$Streamline_IsInstalled",
+     "category": "third-party sdk"
+    },
+    {
+     "key": "$OS_Users$Connect2_LegacyShared$ClientVars$UnreadNotificationsNumber",
+     "category": "other"
+    },
+    {
+     "key": "$OS_UBTConnect$HasTracingEnabled",
+     "category": "feature flags"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AzureB2C_LoginPolicy",
+     "category": "auth config"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_SessionInactivity_Use",
+     "category": "lock / re-auth"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$FrontEgg_AppId",
+     "category": "auth config"
+    },
+    {
+     "key": "$OS_Users$ApplicationInsightsConnector$ClientVars$ConnectionString",
+     "category": "token/secret"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_MobileBuild",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_IsLocked",
+     "category": "lock / re-auth"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_EnableFingerprint",
+     "category": "lock / re-auth"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_UserExtended",
+     "category": "identity / personal"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$Firebase_RealtimeDatabase_Token",
+     "category": "token/secret"
+    },
+    {
+     "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_IsNative",
+     "category": "device / app info"
+    },
+    {
+     "key": "$OS_Users$UBTConnect$ClientVars$LastURL",
+     "category": "other"
+    }
+   ],
+   "sessionStorage": [
+    {
+     "key": "$OS_UBTConnect$UpgradeStatus",
+     "category": "other"
+    },
+    {
+     "key": "AI_sentBuffer_1",
+     "category": "telemetry"
+    },
+    {
+     "key": "$OS_UBTConnect$HasRenderedSplashInSession",
+     "category": "other"
+    },
+    {
+     "key": "AI_buffer_1",
+     "category": "telemetry"
+    },
+    {
+     "key": "$OS_UBTConnect$RouterHistoryAge",
+     "category": "other"
+    }
+   ],
+   "documentSecurityHeaders": {
+    "strict-transport-security": "max-age=31536000;includeSubDomains",
+    "x-content-type-options": "nosniff",
+    "cache-control": "no-cache"
+   },
+   "thirdPartyHosts": [
+    "australiaeast-0.in.applicationinsights.azure.com",
+    "js.monitor.azure.com",
+    "www.googleapis.com"
+   ]
+  }
+ },
+ "report": {
+  "maskedTexts": 0,
+  "keptTexts": 3,
+  "removedUserImages": 0,
+  "failed": []
+ },
+ "blocksOnPage": [
+  "Layouts.Layout_DetailPage",
+  "LayoutRuntime_NavigationHandler.LayoutRuntime_Top",
+  "ConnectPatterns.Icon",
+  "App_Menu.Menu_List",
+  "BasePatterns.CustomContainer",
+  "ConnectPatterns.SkeletonSection",
+  "BasePatterns.Columns_Three",
+  "Adaptive.Columns3",
+  "BasePatterns.CustomText",
+  "ConnectPatterns.IconInline_Internal"
+ ],
+ "states": [
+  "default",
+  "loading",
+  "offline"
+ ],
+ "js": {
+  "UBTConnect.App_Menu.PINBiometricsMenu.mvc.js": {
+   "file": "UBTConnect.App_Menu.PINBiometricsMenu.mvc.js",
+   "displayName": [
+    "App_Menu.PINBiometricsMenu"
+   ],
+   "variables": [
+    {
+     "name": "MenuOptionList",
+     "kind": "local",
+     "type": "RecordList",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_ListMenuOptionList())"
+    },
+    {
+     "name": "ChangePinName",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"Change PIN\""
+    },
+    {
+     "name": "BiometricLoginName",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"Biometric Login\""
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [
+    {
+     "to": "/UBTConnect/PINChange",
+     "params": []
+    }
+   ],
+   "navigateBack": 0,
+   "clientActions": [
+    "screenEvent_OnInitialize",
+    "onClick_MenuOption"
+   ],
+   "lifecycle": [
+    "Initialize"
+   ],
+   "referencedBlocks": [
+    "UBTConnectLibrary.Layouts.Layout_DetailPage",
+    "UBTConnect.App_Menu.Menu_List"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css",
+    "css/OutSystemsUI_2_23.OutSystemsUI.css",
+    "css/UBTConnectLibrary.UBTConnectBase.css",
+    "css/UBTConnectLibrary.UBTConnectLibrary.css",
+    "css/Connect2_LegacyShared.UBTConnect.css",
+    "css/OutSystemsUI_2_23.OutSystemsUI.extra.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [
+    "UBTConnect.App_Menu.PINBiometricsMenu.mvc$controller.ScreenEvent_OnInitialize.IsViewRestoredFromCacheJS"
+   ],
+   "staticEntities": [
+    "uBT_Icons2.password",
+    "uBT_Icons2.fingerprint"
+   ],
+   "clientVariables": [
+    "getApp_PIN_BiometricEnabled",
+    "setApp_PIN_BiometricEnabled"
+   ],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js": {
+   "file": "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js",
+   "displayName": [
+    "Layouts.Layout_DetailPage"
+   ],
+   "variables": [
+    {
+     "name": "ScrollElement",
+     "kind": "local",
+     "type": "Object",
+     "default": "null"
+    },
+    {
+     "name": "ScrollEvent",
+     "kind": "local",
+     "type": "Object",
+     "default": "null"
+    },
+    {
+     "name": "ShadowTimeout",
+     "kind": "local",
+     "type": "Object",
+     "default": "null"
+    },
+    {
+     "name": "In_AlignTitleLeft",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "In_IsPrimaryColor",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "true"
+    },
+    {
+     "name": "In_ExtendedClass",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_EnableAccessibilityFeatures",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "In_InitializeNavigationHandler",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "true"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 1,
+   "clientActions": [
+    "onClick_BackNavigation",
+    "setScrollEvents",
+    "onDestroy",
+    "skipToContentOnClick",
+    "onReady",
+    "onReadyEvent"
+   ],
+   "lifecycle": [
+    "Ready",
+    "Destroy"
+   ],
+   "referencedBlocks": [
+    "NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top",
+    "UBTConnectLibrary.ConnectPatterns.Icon"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "uBT_Icons.arrowLeftAlt",
+    "uBT_Color.inherit",
+    "uBT_IconSize.base_24"
+   ],
+   "clientVariables": [],
+   "candidateStrings": [
+    "Skip to Content (Press Enter)"
+   ]
+  },
+  "NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js": {
+   "file": "NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
+   "displayName": [
+    "LayoutRuntime_NavigationHandler.LayoutRuntime_Top"
+   ],
+   "variables": [
+    {
+     "name": "DestroyCallback",
+     "kind": "local",
+     "type": "Object",
+     "default": "null"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "onInitialize",
+    "onDestroy"
+   ],
+   "lifecycle": [
+    "Initialize",
+    "Destroy"
+   ],
+   "referencedBlocks": [],
+   "cssDependencies": [],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [
+    "NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc$controller.OnInitialize.InitializeQueueJS",
+    "NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc$controller.OnDestroy.ExecuteDestroyCallbackJS"
+   ],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js": {
+   "file": "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+   "displayName": [
+    "ConnectPatterns.Icon"
+   ],
+   "variables": [
+    {
+     "name": "MainContainerClass",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"ubt-icon\""
+    },
+    {
+     "name": "In_IconId",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_ColorId",
+     "kind": "input",
+     "type": "Text",
+     "default": "UBTConnectLibraryModel.staticEntities.uBT_Color.neutral9"
+    },
+    {
+     "name": "In_SizeId",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_Visible",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "true"
+    },
+    {
+     "name": "In_ExtendedClasses",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "click"
+   ],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "UBTConnectLibrary.ConnectPatterns.IconSVG"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "uBT_Color.neutral9"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnect.App_Menu.Menu_List.mvc.js": {
+   "file": "UBTConnect.App_Menu.Menu_List.mvc.js",
+   "displayName": [
+    "App_Menu.Menu_List"
+   ],
+   "variables": [
+    {
+     "name": "In_MenuSection",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectModel.UI_MenuSectionRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "onClick_MenuOption"
+   ],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "UBTConnect.App_Common_Blocks.SectionSeparator",
+    "UBTConnectLibrary.BasePatterns.CustomContainer",
+    "UBTConnectLibrary.ConnectPatterns.SkeletonSection",
+    "UBTConnectLibrary.BasePatterns.Columns_Three",
+    "UBTConnectLibrary.ConnectPatterns.Icon",
+    "UBTConnectLibrary.BasePatterns.CustomText",
+    "UBTConnectLibrary.ConnectPatterns.IconText"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "uBT_Color.neutral0",
+    "uBT_Size.base",
+    "uBT_Size.small",
+    "uBT_Color.neutral8",
+    "uBT_FontSize.extraSmall",
+    "uBT_FontWeight.semiBold",
+    "uBT_Color.neutral3",
+    "uBT_ColumnBehaviour.expandMiddle",
+    "uBT_VerticalAlign.center",
+    "uBT_Color.neutral9",
+    "uBT_IconsSize.base_24",
+    "uBT_FontWeight.regular",
+    "uBT_Color.neutral6",
+    "uBT_Color.neutral7"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js": {
+   "file": "UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
+   "displayName": [
+    "BasePatterns.CustomContainer"
+   ],
+   "variables": [
+    {
+     "name": "MainContainerClass",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"ubt-custom-container\""
+    },
+    {
+     "name": "ExtendedClasses",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "Options",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ContainerOptionsRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "onReady",
+    "onParametersChanged",
+    "clicked"
+   ],
+   "lifecycle": [
+    "Ready",
+    "ParametersChanged"
+   ],
+   "referencedBlocks": [],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js": {
+   "file": "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js",
+   "displayName": [
+    "ConnectPatterns.SkeletonSection"
+   ],
+   "variables": [
+    {
+     "name": "In_IsLoading",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "In_ExtendedClass",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_IsActiveWhileLoading",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "onReady",
+    "screenEvent_OnParametersChanged"
+   ],
+   "lifecycle": [
+    "Ready",
+    "ParametersChanged"
+   ],
+   "referencedBlocks": [],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [
+    "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc$controller.ScreenEvent_OnParametersChanged.Delayed_SetInertJS"
+   ],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js": {
+   "file": "UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js",
+   "displayName": [
+    "BasePatterns.Columns_Three"
+   ],
+   "variables": [
+    {
+     "name": "MainContainerClass",
+     "kind": "local",
+     "type": "Text",
+     "default": "\"ubt-columns\""
+    },
+    {
+     "name": "ExtendedClasses",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "ColumnOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.ColumnOptionsRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "onReady"
+   ],
+   "lifecycle": [
+    "Ready"
+   ],
+   "referencedBlocks": [
+    "OutSystemsUI_2_23.Adaptive.Columns3"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "OutSystemsUI_2_23.Adaptive.Columns3.mvc.js": {
+   "file": "OutSystemsUI_2_23.Adaptive.Columns3.mvc.js",
+   "displayName": [
+    "Adaptive.Columns3"
+   ],
+   "variables": [
+    {
+     "name": "GutterSize",
+     "kind": "input",
+     "type": "Text",
+     "default": "OutSystemsUI_2_23Model.staticEntities.gutterSize.base"
+    },
+    {
+     "name": "TabletBehavior",
+     "kind": "input",
+     "type": "Text",
+     "default": "OutSystemsUI_2_23Model.staticEntities.breakColumns.none"
+    },
+    {
+     "name": "PhoneBehavior",
+     "kind": "input",
+     "type": "Text",
+     "default": "OutSystemsUI_2_23Model.staticEntities.breakColumns.none"
+    },
+    {
+     "name": "ExtendedClass",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [],
+   "lifecycle": [],
+   "referencedBlocks": [],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [
+    "gutterSize.base",
+    "breakColumns.none"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.BasePatterns.CustomText.mvc.js": {
+   "file": "UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
+   "displayName": [
+    "BasePatterns.CustomText"
+   ],
+   "variables": [
+    {
+     "name": "In_Text",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_TextOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())"
+    },
+    {
+     "name": "In_PaddingOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.SpacingOptionsRec())"
+    },
+    {
+     "name": "In_HighlightWords",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "In_HighlightOptions",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.TextOptionsRec())"
+    },
+    {
+     "name": "ExtendedClasses",
+     "kind": "input",
+     "type": "Text",
+     "default": "\"\""
+    },
+    {
+     "name": "FitContent",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "InJustifyText",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "NoWrap",
+     "kind": "input",
+     "type": "Boolean",
+     "default": "false"
+    },
+    {
+     "name": "InlineIcon",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [
+    "clicked"
+   ],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "UBTConnectLibrary.ConnectPatterns.HighlightSearch",
+    "UBTConnectLibrary.ConnectPatterns.IconInline_Internal"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js": {
+   "file": "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
+   "displayName": [
+    "ConnectPatterns.IconInline_Internal"
+   ],
+   "variables": [
+    {
+     "name": "InlineIcon",
+     "kind": "input",
+     "type": "Record",
+     "default": "OS.DataTypes.ImmutableBase.getData(new UBTConnectLibraryModel.InlineIconRec())"
+    }
+   ],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [],
+   "lifecycle": [],
+   "referencedBlocks": [
+    "UBTConnectLibrary.ConnectPatterns.Icon"
+   ],
+   "cssDependencies": [
+    "css/OutSystemsReactWidgets.css"
+   ],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "UBTConnect.controller.js": {
+   "file": "UBTConnect.controller.js",
+   "displayName": [],
+   "variables": [],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [
+    {
+     "name": "AddBookmark",
+     "url": "screenservices/UBTConnect/ActionAddBookmark"
+    },
+    {
+     "name": "AddBookmark2",
+     "url": "screenservices/UBTConnect/ServiceAPIAddBookmark2"
+    },
+    {
+     "name": "DeleteBookmarkByBookmarkId",
+     "url": "screenservices/UBTConnect/ActionDeleteBookmarkByBookmarkId"
+    },
+    {
+     "name": "DeleteBookmarkByBookmarkId2",
+     "url": "screenservices/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2"
+    },
+    {
+     "name": "FetchData_CacheableHouseholds",
+     "url": "screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds"
+    },
+    {
+     "name": "FetchData_CacheableMapEntities",
+     "url": "screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities"
+    },
+    {
+     "name": "Get_ShareDetails",
+     "url": "screenservices/UBTConnect/ActionGet_ShareDetails"
+    },
+    {
+     "name": "Get_UI_UpdateItems_UnreadCount_All",
+     "url": "screenservices/UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All"
+    },
+    {
+     "name": "Sync_Info_GetMain",
+     "url": "screenservices/UBTConnect/ActionSync_Info_GetMain"
+    },
+    {
+     "name": "UpdateItem_MarkAsRead",
+     "url": "screenservices/UBTConnect/ActionUpdateItem_MarkAsRead"
+    }
+   ],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [],
+   "lifecycle": [],
+   "referencedBlocks": [],
+   "cssDependencies": [],
+   "images": [],
+   "feedbackMessages": [
+    "\"Incorrect year value\", /*Info*/ 0)",
+    "\"Incorrect date value\", /*Info*/ 0)",
+    "\"Bookmark could not be removed. Please try again later.\", /*Info*/ 0)"
+   ],
+   "exceptions": [
+    "UserException"
+   ],
+   "jsNodes": [
+    "UBTConnect.controller$Carousel_SetCurrentPosition.SetCurrentPositionJS",
+    "UBTConnect.controller$CopyClassesAcrossPortal.CopyClassesAcrossPortalJS",
+    "UBTConnect.controller$Directory_BrowseByCountry_TooltipBuilder.JavaScript1JS",
+    "UBTConnect.controller$ExitApplicationForWebViewUpdate.ExitApplicationJS",
+    "UBTConnect.controller$FCM_DeeplinkCallback.JavaScript2JS",
+    "UBTConnect.controller$FCM_DeeplinkCallback.JavaScript4JS",
+    "UBTConnect.controller$FCM_DeeplinkCallback.JavaScript1JS",
+    "UBTConnect.controller$FCM_DeeplinkCallback.JavaScript3JS",
+    "UBTConnect.controller$GetResumeLoginLink.JavaScript1JS",
+    "UBTConnect.controller$GetSVGMetric.JavaScript1JS",
+    "UBTConnect.controller$GetVisibleCalendarElement.GetVisibleElementJS",
+    "UBTConnect.controller$IsHouseholdDetails_InAncestryModeView.AncestryModeViewExistsJS",
+    "UBTConnect.controller$LockOrientationLandscapeIfNeeded.IsLandscapeJS",
+    "UBTConnect.controller$LockOrientationWithNavigationTransition.LockOnTransitionJS",
+    "UBTConnect.controller$OnApplicationReady.SetLNCallbackJS",
+    "UBTConnect.controller$OnApplicationReady.GetCallbacksJS",
+    "UBTConnect.controller$OnApplicationReady.AddCustomHeadersJS",
+    "UBTConnect.controller$OnApplicationReady.Async_FetchCacheableMapEntitiesJS",
+    "UBTConnect.controller$OnApplicationReady_ListenForLandscapeScreens.LockOrientationForLandscapeScreensJS",
+    "UBTConnect.controller$OpenGooglePlay_Chrome.OpenGooglePlayJS",
+    "UBTConnect.controller$OpenGooglePlay_UBTConnect.OpenGooglePlayJS",
+    "UBTConnect.controller$OpenGooglePlay_WebView.OpenGooglePlayJS",
+    "UBTConnect.controller$ScrollTop.ScrollTopJS",
+    "UBTConnect.controller$SetResumeLoginLink.JavaScript1JS",
+    "UBTConnect.controller$TextListAppend_Function.JS_AppendJS",
+    "UBTConnect.controller$UnlockOrientationLandscapeIfNeeded.IsLandscapeJS",
+    "UBTConnect.controller$UnlockOrientationLandscapeIfNeeded.MaybeRemoveLandscapeJS",
+    "UBTConnect.controller$Upgrade_WebView.GetAndroidVersionJS",
+    "UBTConnect.controller$ValidateSearchPhoneNumber.ValidatePhoneNumberJS"
+   ],
+   "staticEntities": [
+    "updates_DateRanges.today",
+    "updates_DateRanges.last7Days",
+    "updates_DateRanges.last30Days",
+    "updates_DateRanges.older",
+    "type_CarouselItemSwipeAction.updatesCarousel_SetIsRead",
+    "appManager_FRD_Event.logOut",
+    "cacheableMapObjects.globalEntities",
+    "cacheableMapObjects.countriesMarker",
+    "cacheableMapObjects.countriesGeoJSON",
+    "cacheableMapObjects.localitiesMarker",
+    "cacheableMapObjects.localitiesGeoJSON",
+    "cacheableMapObjects.households",
+    "cacheableMapObjects.householdsExploreItems",
+    "uBT_Icons2.listAlt",
+    "type_MyCalendarEventSource.assemble",
+    "uBT_Color.purpleDarkGradientLinear",
+    "uBT_Color.purpleDarker",
+    "uBT_Icons2.assemble",
+    "uBT_Color.purpleDark",
+    "type_MyCalendarEventSource.lDM",
+    "uBT_Color.peachDarkGradientLinear",
+    "uBT_Color.peachDarker",
+    "uBT_Icons2.lDM",
+    "uBT_Color.peach",
+    "type_MyCalendarEventSource.orbit",
+    "uBT_Color.blueDarkGradientLinear",
+    "uBT_Color.blueDarker",
+    "uBT_Icons2.orbit",
+    "uBT_Color.blueDark",
+    "type_MyCalendarEventSource.userCreated",
+    "uBT_Color.cyanDarkGradientLinear",
+    "uBT_Color.neutral0",
+    "uBT_Icons2.accountCircleFill",
+    "uBT_Color.primary",
+    "recurrenceType.weekly",
+    "type_ContactSubject.setupAUBTOneAccount",
+    "uBT_Icons2.uBT",
+    "type_ContactSubject.loginWithUBTOne",
+    "uBT_Icons2.personAdd",
+    "type_ContactSubject.subscriptionsAndPayments",
+    "uBT_Icons2.shoppingBasket",
+    "type_ContactSubject.householdDetailsAndProfile",
+    "uBT_Icons2.accountCircle",
+    "type_ContactSubject.communityEvents",
+    "uBT_Icons2.personPlay",
+    "type_ContactSubject.generalQuestions",
+    "uBT_Icons2.bookOpen",
+    "type_ContactSubject.generalSuggestionsFeedbackRating",
+    "uBT_Icons2.tooltip",
+    "type_ContactSubject.generalQuestionsOrSuggestions",
+    "dayOfWeek.sunday",
+    "dayOfWeek.monday",
+    "dayOfWeek.tuesday",
+    "dayOfWeek.wednesday",
+    "dayOfWeek.thursday",
+    "dayOfWeek.friday",
+    "dayOfWeek.saturday",
+    "recurrencePatternWeekIndex.first",
+    "recurrencePatternWeekIndex.second",
+    "recurrencePatternWeekIndex.third",
+    "recurrencePatternWeekIndex.fourth",
+    "recurrencePatternWeekIndex.last",
+    "recurrenceType.daily",
+    "recurrenceType.monthly",
+    "recurrenceType.yearly",
+    "reminderOption.doNotRemind",
+    "reminderOption.fiveMinutes",
+    "reminderOption.fifteenMinutes",
+    "reminderOption.thirtyMinutes",
+    "reminderOption.oneHour",
+    "reminderOption.twoHours",
+    "reminderOption.twelveHours",
+    "reminderOption.oneDay",
+    "reminderOption.oneWeek",
+    "reminderOption.aDTimeOf",
+    "reminderOption.aDDayOfMorning",
+    "reminderOption.aDDayBeforeMorning",
+    "reminderOption.aDDayBeforeAfternoon",
+    "reminderOption.aDWeekBefore",
+    "type_RSVPStatus.host",
+    "uBT_Color.neutral7",
+    "type_RSVPStatus.accepted",
+    "uBT_Color.success",
+    "type_RSVPStatus.declined",
+    "uBT_Color.error",
+    "type_RSVPStatus.tentative",
+    "uBT_Color.warning",
+    "uBT_Icons2.school",
+    "bookmarkCategory.household",
+    "noteCategory2.household",
+    "bookmarkCategory.supperMeeting",
+    "noteCategory2.supperMeeting",
+    "bookmarkCategory.interchange",
+    "noteCategory2.interchange",
+    "bookmarkCategory.member",
+    "noteCategory2.member",
+    "bookmarkCategory.locality",
+    "noteCategory2.locality",
+    "bookmarkCategory.oneSchoolGlobal",
+    "noteCategory2.oneSchoolGlobal",
+    "bookmarkCategory.feedItem",
+    "noteCategory2.feedItem",
+    "bookmarkCategory.assembleEvent",
+    "noteCategory2.assembleEvent",
+    "bookmarkCategory.lDMEvent",
+    "noteCategory2.lDMEvent",
+    "bookmarkCategory.orbitEvent",
+    "noteCategory2.orbitEvent",
+    "bookmarkCategory.personalEvent",
+    "noteCategory2.personalEvent",
+    "bookmarkCategory.update",
+    "noteCategory2.update",
+    "connect_Entity.household",
+    "connect_Entity.supperMeetings_aka_Subdivisions",
+    "connect_Entity.interchange",
+    "connect_Entity.member",
+    "connect_Entity.locality",
+    "connect_Entity.oneSchoolGlobal",
+    "connect_Entity.feedItem",
+    "myBookmarks_ObjectType.locality",
+    "myBookmarks_Group.locations",
+    "myBookmarks_ObjectType.contact",
+    "myBookmarks_Group.contacts",
+    "myBookmarks_ObjectType.subdivision",
+    "myBookmarks_ObjectType.oneSchoolGlobal",
+    "myBookmarks_Group.entities",
+    "calendarView.month",
+    "calendarView.week",
+    "calendarView.day",
+    "recurrenceRangeType.endDate",
+    "launchDarkly_FF.mobileDirectoryLocalityContacts",
+    "type_ShareObject.locality",
+    "type_ShareObject.household",
+    "type_ShareObject.supperMeeting",
+    "type_ShareObject.oneSchoolGlobal",
+    "type_ShareObject.feed",
+    "type_ShareObject.myHousehold",
+    "connect_UpdateTypeId.taken",
+    "connect_Subscription_Plan.global",
+    "connect_Subscription_Plan.regional",
+    "connect_Subscription_Plan.advancePlus",
+    "connect_Subscription_Plan.free",
+    "type_FCMExtraParameter.notificationIcon",
+    "type_ShareObject.update",
+    "photobook_Speed.eightSeconds",
+    "uBT_MessageType.info",
+    "uBT_MessageType.error",
+    "uBTConnect_JSUtils_ElementCache_Parent.uBTConnect"
+   ],
+   "clientVariables": [
+    "setBookmarks_IsSynched",
+    "setNotes_IsSynched",
+    "setNotifications_IsSynched",
+    "setNotifications_LastChecked",
+    "setDirectory_Updates_UnreadCount",
+    "getDirectory_Updates_UnreadCount",
+    "getDirectory_Updates_MonthsToShow",
+    "getDirectory_Updates_UnreadCount_LastCheck",
+    "getDirectory_Updates_UnreadCount_CheckFrequency_Minut",
+    "setDirectory_Updates_UnreadCount_LastCheck",
+    "setLastURL",
+    "getColumnsPerView",
+    "getRowsPerMonth",
+    "setApp_Policies_HasPolicyToAccept",
+    "setIsNavigateToHomeOnBack",
+    "setApp_NetworkStatus_IsOnline_IsPersistent",
+    "setPhotobookCarousel_SelectedSpeed",
+    "getApp_NetworkStatus_IsOnline_IsPersistent",
+    "setEmbedd_B2CTenant",
+    "setDirectory_Updates_MonthsToShow",
+    "getApp_PIN_Header_FinalHeightPercentage",
+    "getApp_Policies_HasPolicyToAccept",
+    "getPhotobookCarousel_SelectedSpeed",
+    "getApp_PIN_Header_FinalCurvaturePercentage",
+    "getNotifications_LastChecked",
+    "getApp_PIN_BiometricEnabled",
+    "getIsNavigateToHomeOnBack",
+    "getSearch_RecenctClickedResultsLimit",
+    "getDaysBuffer",
+    "getWeeksBuffer",
+    "getMonthsBuffer",
+    "getLastURL",
+    "getNotes_IsSynched",
+    "getMinimumDate",
+    "getBookmarks_IsSynched",
+    "getApp_Notifications_MonthsToShow",
+    "getNotifications_IsSynched",
+    "getApp_Policies_RedirectURL",
+    "getEmbedd_B2CTenant",
+    "getUsername",
+    "getTest_Remove_UseCachedMap"
+   ],
+   "candidateStrings": []
+  },
+  "UBTConnectLibrary.controller.js": {
+   "file": "UBTConnectLibrary.controller.js",
+   "displayName": [],
+   "variables": [],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [],
+   "lifecycle": [],
+   "referencedBlocks": [],
+   "cssDependencies": [],
+   "images": [
+    "img/UBTConnectLibrary.ar.png",
+    "img/UBT_CW.au.png",
+    "img/UBT_CW.bb.png",
+    "img/UBT_CW.ca.png",
+    "img/UBT_CW.dk.png",
+    "img/UBT_CW.fr.png",
+    "img/UBT_CW.de.png",
+    "img/UBT_CW.ie.png",
+    "img/UBT_CW.it.png",
+    "img/UBT_CW.jm.png",
+    "img/UBT_CW.nl.png",
+    "img/UBT_CW.nz.png",
+    "img/UBT_CW.vc.png",
+    "img/UBT_CW.se.png",
+    "img/UBT_CW.ch.png",
+    "img/UBT_CW.tt.png",
+    "img/UBT_CW.UK.png",
+    "img/UBT_CW.us.png"
+   ],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [
+    "UBTConnectLibrary.controller$BlurInput.BlurElementJS",
+    "UBTConnectLibrary.controller$BottomBarSlider_ForceRefresh.JavaScript1JS",
+    "UBTConnectLibrary.controller$BottomSheet_AnchorsInitialize.JavaScript1JS",
+    "UBTConnectLibrary.controller$BottomSheet_SetDragEnabled.SetDragEnabledJS",
+    "UBTConnectLibrary.controller$CheckForEnterKeyPress.CheckForEnterKeyJS",
+    "UBTConnectLibrary.controller$ClearTimeout.ClearTimeoutJS",
+    "UBTConnectLibrary.controller$FocusOnInput.FocusOnInputJS",
+    "UBTConnectLibrary.controller$GetRelativeTimeTag.JavaScript1JS",
+    "UBTConnectLibrary.controller$GetTargetTimeLabel.CalculateTargetDateTimeJS",
+    "UBTConnectLibrary.controller$Initialize_SvgScroll.JavaScript1JS",
+    "UBTConnectLibrary.controller$IsEmailValid.ValidateEmailJS",
+    "UBTConnectLibrary.controller$IsPhoneNumberValid.CheckFormatPhoneNumberJS",
+    "UBTConnectLibrary.controller$OnApplicationReady_BottomBarSlider.InitializeJS",
+    "UBTConnectLibrary.controller$OnApplicationReady_MobileKeyboardVisible.HandleMobileKeyboardVisibilityJS",
+    "UBTConnectLibrary.controller$RemoveRegexSpecialCharacters.RemoveRegexSpecialCharactersJS",
+    "UBTConnectLibrary.controller$RemoveScrollEvents.RemoveScrollEventsJS",
+    "UBTConnectLibrary.controller$ResetSvgFlags.ResetSvgVariablesJS",
+    "UBTConnectLibrary.controller$SetHomeScroll.SetHomeScrollEventsJS",
+    "UBTConnectLibrary.controller$SetLocalVariable_ColumnSize.SetStyleJS",
+    "UBTConnectLibrary.controller$SetMainFixedScroll.SetMainFixedScrollEventsJS",
+    "UBTConnectLibrary.controller$SetMainScroll.SetMainScrollEventsJS",
+    "UBTConnectLibrary.controller$SetScrollShadow.SetShadowScrollEventsJS",
+    "UBTConnectLibrary.controller$SetStyle.SetStyleJS",
+    "UBTConnectLibrary.controller$SetSvgScroll.SetScrollEventsJS",
+    "UBTConnectLibrary.controller$StopPropagationHelper_Check.JavaScript1JS"
+   ],
+   "staticEntities": [
+    "uBT_Size.none",
+    "gutterSize.none",
+    "uBT_Size.extraSmall",
+    "gutterSize.extraSmall",
+    "uBT_Size.small",
+    "gutterSize.small",
+    "uBT_Size.base",
+    "gutterSize.base",
+    "uBT_Size.medium",
+    "gutterSize.medium",
+    "uBT_Size.large",
+    "gutterSize.large",
+    "uBT_Size.extraLarge",
+    "gutterSize.extraLarge",
+    "uBT_Size.doubleExtraLarge",
+    "gutterSize.xXLarge",
+    "uBT_VerticalAlign.top",
+    "uBT_VerticalAlign.center",
+    "uBT_VerticalAlign.bottom",
+    "connect_UpdateTypeId.marriage",
+    "uBT_Color.yellowLightest",
+    "connect_UpdateTypeId.birth",
+    "gender.mALE",
+    "uBT_Color.blueNonStandard",
+    "uBT_Color.pinkNonStandard",
+    "uBT_Color.neutral3",
+    "gender.fEMALE",
+    "uBT_Icons.home",
+    "uBT_Color.yellowDark",
+    "uBT_Color.neutral0",
+    "uBT_Color.neutral7",
+    "uBT_Color.primary",
+    "uBT_Color.secondary",
+    "uBT_Color.tertiary",
+    "uBT_Color.cyan",
+    "uBT_Color.purple",
+    "uBT_Color.peach",
+    "uBT_Color.blue",
+    "uBT_Color.green",
+    "uBT_Color.yellow",
+    "uBT_Color.red",
+    "uBT_Color.transparent",
+    "uBT_Color.neutral1",
+    "uBT_Color.neutral2",
+    "uBT_Color.neutral4",
+    "uBT_Color.neutral5",
+    "uBT_Color.neutral6",
+    "uBT_Color.neutral8",
+    "uBT_Color.neutral9",
+    "uBT_Color.neutral10",
+    "uBT_Color.info",
+    "uBT_Color.warning",
+    "uBT_Color.success",
+    "uBT_Color.error",
+    "uBT_Color.orange",
+    "uBT_Color.lime",
+    "uBT_Color.teal",
+    "uBT_Color.indigo",
+    "uBT_Color.violet",
+    "uBT_Color.grape",
+    "uBT_Color.pink",
+    "uBT_ColumnBehaviour.reduceFirst",
+    "uBT_ColumnBehaviour.reduceMiddle",
+    "uBT_ColumnBehaviour.reduceLast",
+    "uBT_ColumnBehaviour.expandMiddle",
+    "uBT_Shadow.none",
+    "uBT_Shadow.extraSmall",
+    "uBT_Shadow.small",
+    "uBT_Shadow.medium",
+    "uBT_Shadow.large",
+    "uBT_Shadow.extraLarge",
+    "uBT_Shadow.s2",
+    "uBT_Shape.none",
+    "uBT_Shape.soft",
+    "uBT_Shape.rounded",
+    "uBT_Shape.circle",
+    "uBT_Color.cyanLightest",
+    "uBT_ImageCardType.detail",
+    "uBT_Shape.large",
+    "uBT_BackgroundImageSize.intrinsicHeight_2_To_3",
+    "uBT_ImageCardType.gallery",
+    "uBT_ImageSize.maxWidth_100vw",
+    "uBT_ColumnWidth.fill",
+    "uBT_Display.flex",
+    "uBT_Display.inlineFlex",
+    "uBT_ImageSize.square",
+    "uBT_ImageSize.fullHeight_100_Percent",
+    "uBT_ImageSize.fullWidth_100_Percent",
+    "uBT_ImageSize.auto",
+    "uBT_BackgroundImageSize.intrinsicWidth_3_To_2",
+    "uBT_ButtonSize.extraSmall",
+    "uBT_ImageSize.halfWidth_50vw",
+    "uBT_ImageSize.thirdWidth_33vw",
+    "uBT_ImageSize.quarterWidth_25vw",
+    "uBT_Icons.bookmark",
+    "uBT_Icons.check",
+    "uBT_Icons.tooltip",
+    "uBT_Icons.gifting",
+    "uBT_Icons.share",
+    "uBT_Icons.call",
+    "uBT_Icons.letter",
+    "uBT_Icons.arrowOutward",
+    "uBT_Icons.personFill",
+    "uBT_Icons.household",
+    "uBT_Icons.girl",
+    "uBT_Color.pinkNonStandardDarker",
+    "uBT_Icons.boy",
+    "uBT_Color.blueNonStandarDarker",
+    "uBT_Icons.locationOnFill",
+    "uBT_Icons.explore",
+    "uBT_Icons.houseFill",
+    "uBT_ImageCardType.list",
+    "uBT_ImageCardType.sublist",
+    "uBT_ImageCardType.listWithImages",
+    "uBT_FontSize.base",
+    "uBT_FontWeight.semiBold",
+    "uBT_FontSize.doubleExtraSmall"
+   ],
+   "clientVariables": [
+    "getSVG_DefaultHeight",
+    "getSVG_DefaultWidth",
+    "getSVG_DefaultCurvePoint",
+    "getSVG_DefaultBreakPoint"
+   ],
+   "candidateStrings": []
+  },
+  "NavigationHandler.controller.js": {
+   "file": "NavigationHandler.controller.js",
+   "displayName": [],
+   "variables": [],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [],
+   "lifecycle": [],
+   "referencedBlocks": [],
+   "cssDependencies": [],
+   "images": [],
+   "feedbackMessages": [],
+   "exceptions": [],
+   "jsNodes": [
+    "NavigationHandler.controller$AddDefaultBackNavigationHandlers.CloseExpandedDropdownJS",
+    "NavigationHandler.controller$AllowUpcomingNavigation.AllowUpcomingNavigationJS",
+    "NavigationHandler.controller$AssignFromObject.AssignJS",
+    "NavigationHandler.controller$ConfirmAction.ShowDialogJS",
+    "NavigationHandler.controller$CopyClassesAcrossPortal.CopyClassesAcrossPortalJS",
+    "NavigationHandler.controller$GetFocusedScrollAnchorOnBack.SetScrollAnchorOnNavigationStorageJS",
+    "NavigationHandler.controller$GetPreloadObject.GetPreloadJS",
+    "NavigationHandler.controller$IsNavigationToScreen.CheckNavigationToScreenJS",
+    "NavigationHandler.controller$OnApplicationReady_NavigationHandler.NavigationEventsJS",
+    "NavigationHandler.controller$OnApplicationReady_NavigationHandler.ScrollAnchorsJS",
+    "NavigationHandler.controller$OnApplicationReady_NavigationHandler.PreloadingJS",
+    "NavigationHandler.controller$OnApplicationReady_NavigationHandler.NavigationDataStorageJS",
+    "NavigationHandler.controller$OnApplicationReady_NavigationHandler.UtilitiesJS",
+    "NavigationHandler.controller$OnApplicationReady_NavigationHandler.TransitionEventsJS",
+    "NavigationHandler.controller$PreventNavigation.PreventDefaultJS",
+    "NavigationHandler.controller$RememberFocusedScrollAnchor.SetScrollAnchorOnComponentPropertiesJS",
+    "NavigationHandler.controller$ReplaceOnUpcomingNavigation.AllowUpcomingNavigationJS",
+    "NavigationHandler.controller$ResetReplaceOnUpcomingNavigation.ResetReplaceOnUpcomingNavigationJS",
+    "NavigationHandler.controller$ResumeNavigation.ResumeJS",
+    "NavigationHandler.controller$SetPreloadObject.SetPreloadJS",
+    "NavigationHandler.controller$StabilizeFocusedScrollAnchor.StabilizeJS",
+    "NavigationHandler.controller$WasNavigationPrevented.GetDefaultPreventedJS",
+    "NavigationHandler.controller$WillNavigate.WillNavigateJS"
+   ],
+   "staticEntities": [],
+   "clientVariables": [],
+   "candidateStrings": []
+  },
+  "OutSystemsUI_2_23.controller.js": {
+   "file": "OutSystemsUI_2_23.controller.js",
+   "displayName": [],
+   "variables": [],
+   "dataActions": [],
+   "aggregates": [],
+   "serverActions": [],
+   "navigation": [],
+   "navigateBack": 0,
+   "clientActions": [],
+   "lifecycle": [],
+   "referencedBlocks": [],
+   "cssDependencies": [],
+   "images": [
+    "scripts/OutSystemsUI_2_23.MWO.js",
+    "scripts/OutSystemsUI_2_23.OutSystemsUI.js"
+   ],
+   "feedbackMessages": [
+    "$parameters.Message, $parameters.MessageType, $parameters.EncodedHtml, $parameters.ExtraCSSClasses, $parameters.CloseOnClick)"
+   ],
+   "exceptions": [],
+   "jsNodes": [
+    "OutSystemsUI_2_23.controller$AccordionChangeBooleanProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$AccordionChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$AccordionCollapseAll.CollapseAllJS",
+    "OutSystemsUI_2_23.controller$AccordionCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$AccordionDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$AccordionExpandAll.ExpandAllJS",
+    "OutSystemsUI_2_23.controller$AccordionInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$AccordionItemAllowTitleEvents.AccordionItemAllowTitleEventsJS",
+    "OutSystemsUI_2_23.controller$AccordionItemChangeBooleanProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$AccordionItemChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$AccordionItemCollapse.CloseJS",
+    "OutSystemsUI_2_23.controller$AccordionItemCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$AccordionItemDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$AccordionItemExpand.OpenJS",
+    "OutSystemsUI_2_23.controller$AccordionItemInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$AccordionItemRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$AccordionRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$AddFavicon.AddFaviconJS",
+    "OutSystemsUI_2_23.controller$AddFavicon_Legacy.AddFaviconJS",
+    "OutSystemsUI_2_23.controller$AddRTLObserver.ObserverJS",
+    "OutSystemsUI_2_23.controller$AnimatedLabelChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$AnimatedLabelCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$AnimatedLabelDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$AnimatedLabelInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$AnimatedLabelRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$AnimatedLabelUpdateOnRender.UpdateOnRenderJS",
+    "OutSystemsUI_2_23.controller$BinaryToURLImage.JsBinaryToBase64JS",
+    "OutSystemsUI_2_23.controller$BottomSheetChangeBooleanProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$BottomSheetChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$BottomSheetClose.CloseJS",
+    "OutSystemsUI_2_23.controller$BottomSheetCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$BottomSheetDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$BottomSheetInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$BottomSheetOpen.OpenJS",
+    "OutSystemsUI_2_23.controller$BottomSheetRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$ButtonLoadingChangeBooleanProperty.ChangeBooleanPropertyJS",
+    "OutSystemsUI_2_23.controller$ButtonLoadingChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$ButtonLoadingCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$ButtonLoadingDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$ButtonLoadingInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$ButtonLoadingRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$CarouselChangeBooleanProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$CarouselChangeIntegerProp.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$CarouselChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$CarouselCreate.CreateCarouselJS",
+    "OutSystemsUI_2_23.controller$CarouselDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$CarouselDisableOnRender.CarouselDisableOnRenderJS",
+    "OutSystemsUI_2_23.controller$CarouselEnableOnRender.CarouselEnableOnRenderJS",
+    "OutSystemsUI_2_23.controller$CarouselGoTo.CarouselGoToJS",
+    "OutSystemsUI_2_23.controller$CarouselInitialize.InitializeCarouselJS",
+    "OutSystemsUI_2_23.controller$CarouselNext.CarouselNextJS",
+    "OutSystemsUI_2_23.controller$CarouselPrevious.CarouselPreviousJS",
+    "OutSystemsUI_2_23.controller$CarouselRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$CarouselToggleDrag.CarouselToggleDragJS",
+    "OutSystemsUI_2_23.controller$CarouselUpdateOnRender.UpdateOnRenderJS",
+    "OutSystemsUI_2_23.controller$CheckOutSystemsUIScript.CheckOSUIScriptJS",
+    "OutSystemsUI_2_23.controller$ConfigureOfflineDataSync.ConfigureOfflineDataSyncJS",
+    "OutSystemsUI_2_23.controller$DatePickerChangeBooleanProperty.ChangeBooleanPropertyJS",
+    "OutSystemsUI_2_23.controller$DatePickerChangeDateTimeProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$DatePickerChangeIntegerProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$DatePickerChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$DatePickerClear.ClearDatepickerJS",
+    "OutSystemsUI_2_23.controller$DatePickerClose.CloseDatepickerJS",
+    "OutSystemsUI_2_23.controller$DatePickerCreate.CreateDatePickerJS",
+    "OutSystemsUI_2_23.controller$DatePickerDestroy.DestroyDatePickerJS",
+    "OutSystemsUI_2_23.controller$DatePickerDisableDays.DisableDaysJS",
+    "OutSystemsUI_2_23.controller$DatePickerDisableWeekDays.DisableWeekDaysJS",
+    "OutSystemsUI_2_23.controller$DatePickerInitialize.InitializeDatePickerJS",
+    "OutSystemsUI_2_23.controller$DatePickerOnRender.OnRenderDatePickerJS",
+    "OutSystemsUI_2_23.controller$DatePickerOpen.OpenDatepickerJS",
+    "OutSystemsUI_2_23.controller$DatePickerRangeUpdateDates.UpdateInitialDateJS",
+    "OutSystemsUI_2_23.controller$DatePickerRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$DatePickerSetEditableInput.SetEditableInputJS",
+    "OutSystemsUI_2_23.controller$DatePickerSetLanguage.SetDatePickerNewLanguageJS",
+    "OutSystemsUI_2_23.controller$DatePickerToggleNativeBehavior.ToggleNativeBehaviorJS",
+    "OutSystemsUI_2_23.controller$DatePickerUpdateDate.UpdateInitialDateJS",
+    "OutSystemsUI_2_23.controller$DatePickerUpdatePrompt.UpdatePromptMessageJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_AccessibilityConfiguration.setConfigJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_CarouselDisableSwipe.AddClassNoSwipeJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_CarouselGoTo.CallGoToActionJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_CarouselNext.CallNextActionJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_CarouselPrevious.CallPreviousActionJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_CarouselUpdate.CallUpdateActionJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_DatePickerClearInputDate.ClearDateJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_RangeSliderReset.RangeSliderResetJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_SetActiveMenuItems.SetActiveJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_SetMenuListeners.setEventListenerJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_ShowPassword.ShowPasswordJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_SidebarToggle.ToggleSidebarJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_TabsDisableSwipe.AddClassNoSwipeJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_TabsGoTo.JsChangeTabJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_UpdateAccordion.UpdateAccordionJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_VideoPause.PauseVideoJS",
+    "OutSystemsUI_2_23.controller$DEPRECATED_VideoPlay.PlayVideoJS",
+    "OutSystemsUI_2_23.controller$DisableTabItem.DisableTabItemJS",
+    "OutSystemsUI_2_23.controller$DropdownChangeBooleanProperty.ChangeBooleanPropertyJS",
+    "OutSystemsUI_2_23.controller$DropdownChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$DropdownClear.ClearDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownClearValidation.ValidationDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownClose.CloseDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownCreate.CreateDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownDestroy.DestroyDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownDisable.DisableDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownEnable.EnableDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownGetSelectedValues.GetSelectedValuesJS",
+    "OutSystemsUI_2_23.controller$DropdownInitialize.InitializeDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownNotValid.ValidationDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownOpen.OpenDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideClear.ClearDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideClearValidation.ValidationDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideClose.CloseDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideDisable.DisableDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideEnable.EnableDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideItemChangeBooleanProperty.ChangeBooleanPropertyJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideItemChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideItemCreate.CreateDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideItemDestroy.DestroyDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideItemInitialize.InitializeDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideItemRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideNotValid.ValidationDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownServerSideOpen.OpenDropdownJS",
+    "OutSystemsUI_2_23.controller$DropdownSetValue.DropdownSetValueJS",
+    "OutSystemsUI_2_23.controller$DropdownTogglePopup.TogglePopupJS",
+    "OutSystemsUI_2_23.controller$ECTCall.InitECTJS",
+    "OutSystemsUI_2_23.controller$ECTCall.CheckECTRequestJS",
+    "OutSystemsUI_2_23.controller$EnableTabItem.EnableTabItemJS",
+    "OutSystemsUI_2_23.controller$EndOfflineDataSync.TriggerSyncCompleteEventJS",
+    "OutSystemsUI_2_23.controller$EndOfflineDataSync.TriggerSyncErrorEventJS",
+    "OutSystemsUI_2_23.controller$FeedbackMessageClose.closeFeedbackMessageJS",
+    "OutSystemsUI_2_23.controller$FeedbackMessageShow.ShowFeedbackMessageJS",
+    "OutSystemsUI_2_23.controller$FixInputs.FixInputsJS",
+    "OutSystemsUI_2_23.controller$FlipContentBack.ShowBackJS",
+    "OutSystemsUI_2_23.controller$FlipContentChangeBooleanProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$FlipContentChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$FlipContentCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$FlipContentDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$FlipContentFront.ShowFrontJS",
+    "OutSystemsUI_2_23.controller$FlipContentInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$FlipContentRegisterCallack.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$FlipContentToggle.ToggleJS",
+    "OutSystemsUI_2_23.controller$FocusFirstInvalidInput.FocusFirstInvalidInputJS",
+    "OutSystemsUI_2_23.controller$GalleryChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$GalleryCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$GalleryDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$GalleryInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$GalleryRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$GenerateUniqueId.RandomStringJS",
+    "OutSystemsUI_2_23.controller$GetBrowser.GetBrowserJS",
+    "OutSystemsUI_2_23.controller$GetDeviceOrientation.CheckDeviceJS",
+    "OutSystemsUI_2_23.controller$GetDeviceOrientation_Legacy.CheckDeviceJS",
+    "OutSystemsUI_2_23.controller$GetDeviceType.CheckDeviceJS",
+    "OutSystemsUI_2_23.controller$GetDeviceType_Legacy.CheckDeviceJS",
+    "OutSystemsUI_2_23.controller$GetIsTouch.SetIsTouchJS",
+    "OutSystemsUI_2_23.controller$GetIsTouch_Legacy.SetIsTouchJS",
+    "OutSystemsUI_2_23.controller$GetNetworkStatus.CheckDeviceOnlineJS",
+    "OutSystemsUI_2_23.controller$GetNetworkStatus_Legacy.CheckDeviceOnlineJS",
+    "OutSystemsUI_2_23.controller$GetNetworkType.CheckNetworkTypeJS",
+    "OutSystemsUI_2_23.controller$GetNetworkType_Legacy.CheckNetworkTypeJS",
+    "OutSystemsUI_2_23.controller$GetOS.GetOperatingSystemJS",
+    "OutSystemsUI_2_23.controller$GetOS_Legacy.DetectIphoneXJS",
+    "OutSystemsUI_2_23.controller$HasMasterDetail.HasMasterDetailJS",
+    "OutSystemsUI_2_23.controller$HideHeader.SetHideHeaderJS",
+    "OutSystemsUI_2_23.controller$InlineSVGChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$InlineSVGCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$InlineSVGDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$InlineSVGInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$InlineSVGRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$IsDesktop.GetIsDesktopJS",
+    "OutSystemsUI_2_23.controller$IsLayoutNative.CheckIsLayoutNativeJS",
+    "OutSystemsUI_2_23.controller$IsLayoutNative_Legacy.CheckIsWebAppJS",
+    "OutSystemsUI_2_23.controller$IsMenuDraggable.CheckIsMenuDraggableJS",
+    "OutSystemsUI_2_23.controller$IsPhone.CheckIsPhoneJS",
+    "OutSystemsUI_2_23.controller$IsRTL.CheckRTLJS",
+    "OutSystemsUI_2_23.controller$IsRTL_Legacy.CheckRTLJS",
+    "OutSystemsUI_2_23.controller$IsRunningAsPWA.IsRunningAsPWAJS",
+    "OutSystemsUI_2_23.controller$IsRunningAsPWA_Legacy.IsRunningAsPWAJS",
+    "OutSystemsUI_2_23.controller$IsTablet.CheckIsTabletJS",
+    "OutSystemsUI_2_23.controller$IsWebApp.CheckIsWebAppJS",
+    "OutSystemsUI_2_23.controller$IsWebApp_Legacy.CheckIsWebAppJS",
+    "OutSystemsUI_2_23.controller$LayoutDestroy.DestroyLayoutJS",
+    "OutSystemsUI_2_23.controller$LayoutReady.RunOnStartJS",
+    "OutSystemsUI_2_23.controller$LayoutReady.SetA11YAttrsJS",
+    "OutSystemsUI_2_23.controller$LayoutReady.FixForRenderingIssuesJS",
+    "OutSystemsUI_2_23.controller$LayoutReady.SetBodyCssVariablesJS",
+    "OutSystemsUI_2_23.controller$LayoutReady.SetDeprecatedSubmenuEventsJS",
+    "OutSystemsUI_2_23.controller$LayoutReady.SetSkipContentLinkJS",
+    "OutSystemsUI_2_23.controller$LayoutReady.SetExpandableExceptionsJS",
+    "OutSystemsUI_2_23.controller$ListItemHint.ListItemAnimateJS",
+    "OutSystemsUI_2_23.controller$LoadOutSystemsUIScript.RequireOSUIJS",
+    "OutSystemsUI_2_23.controller$LogEvent.LogMessageJS",
+    "OutSystemsUI_2_23.controller$MasterDetailSetContentFocus.SetFocusBehaviourJS",
+    "OutSystemsUI_2_23.controller$MasterDetailSetContentFocus_Legacy.SetFocusBehaviourJS",
+    "OutSystemsUI_2_23.controller$MenuDestroy.OnDestroyJS",
+    "OutSystemsUI_2_23.controller$MenuHide.JsMenuHideJS",
+    "OutSystemsUI_2_23.controller$MenuReady.OnReadyJS",
+    "OutSystemsUI_2_23.controller$MenuShow.JsMenuShowJS",
+    "OutSystemsUI_2_23.controller$MonthPickerChangeMonthYearProperty.ChangeMonthPropertyJS",
+    "OutSystemsUI_2_23.controller$MonthPickerChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$MonthPickerClear.ClearMonthPickerJS",
+    "OutSystemsUI_2_23.controller$MonthPickerClose.CloseMonthPickerJS",
+    "OutSystemsUI_2_23.controller$MonthPickerCreate.CreateMonthPickerJS",
+    "OutSystemsUI_2_23.controller$MonthPickerDestroy.DestroyMonthPickerJS",
+    "OutSystemsUI_2_23.controller$MonthPickerInitialize.InitializeMonthPickerJS",
+    "OutSystemsUI_2_23.controller$MonthPickerOnRender.OnRenderMonthPickerJS",
+    "OutSystemsUI_2_23.controller$MonthPickerOpen.OpenMonthPickerJS",
+    "OutSystemsUI_2_23.controller$MonthPickerRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$MonthPickerSetEditableInput.SetEditableInputJS",
+    "OutSystemsUI_2_23.controller$MonthPickerSetLanguage.SetMonthPickerNewLanguageJS",
+    "OutSystemsUI_2_23.controller$MonthPickerUpdateMonth.UpdateInitialMonthJS",
+    "OutSystemsUI_2_23.controller$MonthPickerUpdatePrompt.UpdatePromptMessageJS",
+    "OutSystemsUI_2_23.controller$MoveElement.JsMoveElementJS",
+    "OutSystemsUI_2_23.controller$MoveElement_Legacy.MoveElementJS",
+    "OutSystemsUI_2_23.controller$NoOutSystemsUIScriptMessage.ConsoleWarningJS",
+    "OutSystemsUI_2_23.controller$NotificationChangeBooleanProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$NotificationChangeIntegerProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$NotificationChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$NotificationClose.HideNotificationJS",
+    "OutSystemsUI_2_23.controller$NotificationCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$NotificationDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$NotificationInitialize.InitializeNotificationJS",
+    "OutSystemsUI_2_23.controller$NotificationOpen.ShowNotificationJS",
+    "OutSystemsUI_2_23.controller$NotificationRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$OverflowMenuChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$OverflowMenuClose.CloseJS",
+    "OutSystemsUI_2_23.controller$OverflowMenuCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$OverflowMenuDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$OverflowMenuDisable.DisableJS",
+    "OutSystemsUI_2_23.controller$OverflowMenuEnable.EnableJS",
+    "OutSystemsUI_2_23.controller$OverflowMenuInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$OverflowMenuOpen.OpenJS",
+    "OutSystemsUI_2_23.controller$OverflowMenuRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$ProgressApplyGradient.JsProgressApplyGradientAPIJS",
+    "OutSystemsUI_2_23.controller$ProgressBarCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$ProgressChangeIntegerProperty.ChangeBooleanPropertyJS",
+    "OutSystemsUI_2_23.controller$ProgressChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$ProgressCircleCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$ProgressDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$ProgressInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$ProgressRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$RangeSliderChangeBooleanProperty.ChangeBooleanPropertyJS",
+    "OutSystemsUI_2_23.controller$RangeSliderChangeDecimalProperty.ChangeDecimalPropertyJS",
+    "OutSystemsUI_2_23.controller$RangeSliderChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$RangeSliderCreate.CreateRangeSliderJS",
+    "OutSystemsUI_2_23.controller$RangeSliderDestroy.DestroyRangeSliderJS",
+    "OutSystemsUI_2_23.controller$RangeSliderDisable.JsRangeSliderDisableJS",
+    "OutSystemsUI_2_23.controller$RangeSliderEnable.JsRangeSliderEnableJS",
+    "OutSystemsUI_2_23.controller$RangeSliderInitialize.InitializeRangeSliderJS",
+    "OutSystemsUI_2_23.controller$RangeSliderRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$RatingChangeExtendedClass.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$RatingChangeIsEdit.ChangeIsEditJS",
+    "OutSystemsUI_2_23.controller$RatingChangeRatingScale.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$RatingChangeRatingValue.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$RatingChangeSize.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$RatingCreate.CreateRatingJS",
+    "OutSystemsUI_2_23.controller$RatingDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$RatingDisable.DisableRatingJS",
+    "OutSystemsUI_2_23.controller$RatingEnable.EnableRatingJS",
+    "OutSystemsUI_2_23.controller$RatingInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$RatingRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$RemoveRTLObserver.ObserverJS",
+    "OutSystemsUI_2_23.controller$ResetProgressBar.ResetProgressValueJS",
+    "OutSystemsUI_2_23.controller$ResetProgressCircle.ResetProgressValueJS",
+    "OutSystemsUI_2_23.controller$ResetRangeSlider.ResetRangeSliderJS",
+    "OutSystemsUI_2_23.controller$ResetRangeSliderInterval.ResetRangeSliderJS",
+    "OutSystemsUI_2_23.controller$ScrollToElement.ScrollToElementJS",
+    "OutSystemsUI_2_23.controller$SearchChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$SearchCreate.CreateSearchJS",
+    "OutSystemsUI_2_23.controller$SearchDestroy.DestroySearchJS",
+    "OutSystemsUI_2_23.controller$SearchInitialize.InitializeSearchJS",
+    "OutSystemsUI_2_23.controller$SearchRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$SectionIndexChangeBooleanProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$SectionIndexChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$SectionIndexCreate.CreateSectionIndexJS",
+    "OutSystemsUI_2_23.controller$SectionIndexDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$SectionIndexInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$SectionIndexItemChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$SectionIndexItemCreate.CreateSectionItemIndexJS",
+    "OutSystemsUI_2_23.controller$SectionIndexItemDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$SectionIndexItemInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$SectionIndexItemRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$SectionIndexRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$SetAccessibilityRole.SetRoleJS",
+    "OutSystemsUI_2_23.controller$SetAccessibilityRole_Legacy.SetRoleJS",
+    "OutSystemsUI_2_23.controller$SetActiveElement.SetActiveElementJS",
+    "OutSystemsUI_2_23.controller$SetActiveMenuItems.SetActiveJS",
+    "OutSystemsUI_2_23.controller$SetActiveTab.SetActiveTabJS",
+    "OutSystemsUI_2_23.controller$SetAriaHidden.setAriaHiddenJS",
+    "OutSystemsUI_2_23.controller$SetAriaHidden_Legacy.setAriaHiddenJS",
+    "OutSystemsUI_2_23.controller$SetBottomBarActiveElement.SetBottomBarActiveElementJS",
+    "OutSystemsUI_2_23.controller$SetCarouselDirection.CarouselGoToJS",
+    "OutSystemsUI_2_23.controller$SetDeviceBreakpoints.SetDeviceOnResizeJS",
+    "OutSystemsUI_2_23.controller$SetDeviceBreakpoints_Legacy.SetDeviceOnResizeJS",
+    "OutSystemsUI_2_23.controller$SetDeviceClass.SetDeviceClassJS",
+    "OutSystemsUI_2_23.controller$SetFlatpickrConfigs.SetProviderConfigsJS",
+    "OutSystemsUI_2_23.controller$SetFlatpickrEvent.SetProviderEventJS",
+    "OutSystemsUI_2_23.controller$SetFocus.SetFocusJS",
+    "OutSystemsUI_2_23.controller$SetFocus_Legacy.SetFocusJS",
+    "OutSystemsUI_2_23.controller$SetLang.SetLangJS",
+    "OutSystemsUI_2_23.controller$SetLang_Legacy.SetLangJS",
+    "OutSystemsUI_2_23.controller$SetLocalLanguage.SetAppLanguageJS",
+    "OutSystemsUI_2_23.controller$SetMenuAttributes.JsSetMenuAttributesJS",
+    "OutSystemsUI_2_23.controller$SetMenuIcon.JsSetMenuIconJS",
+    "OutSystemsUI_2_23.controller$SetMenuIconListeners.JsSetEventListenerJS",
+    "OutSystemsUI_2_23.controller$SetMenuListeners.JsSetEventListenerJS",
+    "OutSystemsUI_2_23.controller$SetNoUISliderConfigs.SetProviderConfigsJS",
+    "OutSystemsUI_2_23.controller$SetNoUISliderEvent.SetProviderEventJS",
+    "OutSystemsUI_2_23.controller$SetProgressBarValue.SetProgressValueJS",
+    "OutSystemsUI_2_23.controller$SetProgressCircleValue.SetProgressValueJS",
+    "OutSystemsUI_2_23.controller$SetRangeSliderChangeOnDragEnd.SetRangeSliderChangeOnDragEndJS",
+    "OutSystemsUI_2_23.controller$SetRangeSliderIntervalChangeOnDragEnd.SetRangeSliderChangeOnDragEndJS",
+    "OutSystemsUI_2_23.controller$SetRangeSliderIntervalValue.SetRangeSliderValueJS",
+    "OutSystemsUI_2_23.controller$SetRangeSliderValue.SetRangeSliderValueJS",
+    "OutSystemsUI_2_23.controller$SetSelectedTableRow.SetSelectedRowJS",
+    "OutSystemsUI_2_23.controller$SetServerDateFormat.SetServerDateFormatJS",
+    "OutSystemsUI_2_23.controller$SetSplideConfigs.SetProviderConfigsJS",
+    "OutSystemsUI_2_23.controller$SetSplideEvent.SetProviderEventJS",
+    "OutSystemsUI_2_23.controller$SetVirtualSelectConfigs.SetProviderConfigsJS",
+    "OutSystemsUI_2_23.controller$SetVirtualSelectEvent.SetProviderEventJS",
+    "OutSystemsUI_2_23.controller$ShowPassword.ShowPasswordJS",
+    "OutSystemsUI_2_23.controller$SidebarChangeBooleanProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$SidebarChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$SidebarClickOutsideToClose.JsClickOutsideToCloseJS",
+    "OutSystemsUI_2_23.controller$SidebarClose.CloseSidebarJS",
+    "OutSystemsUI_2_23.controller$SidebarCreate.CreateSidebarJS",
+    "OutSystemsUI_2_23.controller$SidebarDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$SidebarInitialize.InitializeSidebarJS",
+    "OutSystemsUI_2_23.controller$SidebarOpen.OpenSidebarJS",
+    "OutSystemsUI_2_23.controller$SidebarRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$SidebarToggleSwipe.ToggleSwipeSidebarJS",
+    "OutSystemsUI_2_23.controller$SkipToContent.SkipToContentJS",
+    "OutSystemsUI_2_23.controller$SkipToContent_Legacy.SkipToContentJS",
+    "OutSystemsUI_2_23.controller$StackedCardsSwipeLeft.SwipeLeftJS",
+    "OutSystemsUI_2_23.controller$StackedCardsSwipeRight.SwipeRightJS",
+    "OutSystemsUI_2_23.controller$StackedCardsSwipeTop.SwipeTopJS",
+    "OutSystemsUI_2_23.controller$StackedCardsUpdate.UpdateUiJS",
+    "OutSystemsUI_2_23.controller$StartOfflineDataSync.CallBlockHandlerJS",
+    "OutSystemsUI_2_23.controller$SubmenuChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$SubmenuClickOutsideToClose.ClickOutsideToCloseAPIJS",
+    "OutSystemsUI_2_23.controller$SubmenuClose.CloseSubmenuJS",
+    "OutSystemsUI_2_23.controller$SubmenuCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$SubmenuDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$SubmenuInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$SubmenuOnRender.OnRenderJS",
+    "OutSystemsUI_2_23.controller$SubmenuOpen.OpenSubmenuJS",
+    "OutSystemsUI_2_23.controller$SubmenuOpenOnHover.SetSubmenuOpenOnHoverJS",
+    "OutSystemsUI_2_23.controller$SubmenuRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$TabsChangeBooleanProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$TabsChangeIntegerProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$TabsChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$TabsContentItemChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$TabsContentItemCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$TabsContentItemDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$TabsContentItemInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$TabsContentItemRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$TabsCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$TabsDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$TabsHeaderItemChangeTextProperty.ChangePropertyJS",
+    "OutSystemsUI_2_23.controller$TabsHeaderItemCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$TabsHeaderItemDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$TabsHeaderItemInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$TabsHeaderItemRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$TabsHeaderItemUpdateOnRender.UpdateOnRenderJS",
+    "OutSystemsUI_2_23.controller$TabsInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$TabsRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$TabsToggleSwipe.TabsToggleSwipeJS",
+    "OutSystemsUI_2_23.controller$TimePickerChangeBooleanProperty.ChangeBooleanPropertyJS",
+    "OutSystemsUI_2_23.controller$TimePickerChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$TimePickerChangeTimeProperty.ChangeTimePropertyJS",
+    "OutSystemsUI_2_23.controller$TimePickerClear.ClearTimePickerJS",
+    "OutSystemsUI_2_23.controller$TimePickerClose.CloseTimepickerJS",
+    "OutSystemsUI_2_23.controller$TimePickerCreate.CreateTimePickerJS",
+    "OutSystemsUI_2_23.controller$TimePickerDestroy.DestroyTimePickerJS",
+    "OutSystemsUI_2_23.controller$TimePickerInitialize.InitializeTimePickerJS",
+    "OutSystemsUI_2_23.controller$TimePickerOnRender.OnRenderTimePickerJS",
+    "OutSystemsUI_2_23.controller$TimePickerOpen.OpenTimePickerJS",
+    "OutSystemsUI_2_23.controller$TimePickerRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$TimePickerSetEditableInput.SetEditableInputJS",
+    "OutSystemsUI_2_23.controller$TimePickerSetLanguage.TimePickerSetLanguageJS",
+    "OutSystemsUI_2_23.controller$TimePickerToggleNativeBehavior.ToggleNativeBehaviorJS",
+    "OutSystemsUI_2_23.controller$TimePickerUpdatePrompt.UpdatePromptMessageJS",
+    "OutSystemsUI_2_23.controller$TimePickerUpdateTime.UpdateInitialTimeJS",
+    "OutSystemsUI_2_23.controller$ToggleSideMenu.JsToggleSideMenuJS",
+    "OutSystemsUI_2_23.controller$ToggleTextSpacing.TextSpacingStylesJS",
+    "OutSystemsUI_2_23.controller$ToggleTextSpacing_Legacy.TextSpacingStylesJS",
+    "OutSystemsUI_2_23.controller$TooltipChangeBooleanProperty.ChangeBooleanPropertyJS",
+    "OutSystemsUI_2_23.controller$TooltipChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$TooltipClose.HideTooltipJS",
+    "OutSystemsUI_2_23.controller$TooltipCreate.CreateJS",
+    "OutSystemsUI_2_23.controller$TooltipDestroy.DestroyJS",
+    "OutSystemsUI_2_23.controller$TooltipInitialize.InitializeJS",
+    "OutSystemsUI_2_23.controller$TooltipOpen.ShowTooltipJS",
+    "OutSystemsUI_2_23.controller$TooltipRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$UnsetFlatpickrEvent.UnsetProviderEventJS",
+    "OutSystemsUI_2_23.controller$UnsetNoUISliderEvent.UnsetProviderEventJS",
+    "OutSystemsUI_2_23.controller$UnsetSplideEvent.UnsetProviderEventJS",
+    "OutSystemsUI_2_23.controller$UnsetVirtualSelectEvent.UnsetProviderEventJS",
+    "OutSystemsUI_2_23.controller$VideoChangeBooleanProperty.ChangeBooleanPropertyJS",
+    "OutSystemsUI_2_23.controller$VideoChangeTextProperty.ChangeTextPropertyJS",
+    "OutSystemsUI_2_23.controller$VideoCreate.CreateVideoJS",
+    "OutSystemsUI_2_23.controller$VideoDestroy.DestroyVideoJS",
+    "OutSystemsUI_2_23.controller$VideoGetState.GetStateJS",
+    "OutSystemsUI_2_23.controller$VideoInitialize.InitializeVideoJS",
+    "OutSystemsUI_2_23.controller$VideoJumpToTime.VideoJumpToTimeJS",
+    "OutSystemsUI_2_23.controller$VideoPause.VideoPauseJS",
+    "OutSystemsUI_2_23.controller$VideoPlay.VideoPlayJS",
+    "OutSystemsUI_2_23.controller$VideoRegisterCallback.RegisterCallbackJS",
+    "OutSystemsUI_2_23.controller$WCAGMetaTag.ViewportJS"
+   ],
+   "staticEntities": [
+    "datePickerWeekDay.monday",
+    "datePickerWeekDay.tuesday",
+    "datePickerWeekDay.wednesday",
+    "datePickerWeekDay.thursday",
+    "datePickerWeekDay.friday",
+    "datePickerWeekDay.saturday",
+    "datePickerWeekDay.sunday",
+    "month.january",
+    "month.february",
+    "month.march",
+    "month.april",
+    "month.may",
+    "month.june",
+    "month.july",
+    "month.august",
+    "month.september",
+    "month.october",
+    "month.november",
+    "month.december",
+    "gradient.linearHorizontal"
+   ],
+   "clientVariables": [],
+   "candidateStrings": []
+  }
+ },
+ "screenFile": "UBTConnect.App_Menu.PINBiometricsMenu.mvc.js",
+ "renderedFiles": [
+  "UBTConnect.App_Menu.PINBiometricsMenu.mvc.js",
+  "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js",
+  "NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+  "UBTConnect.App_Menu.Menu_List.mvc.js",
+  "UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js",
+  "UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js",
+  "OutSystemsUI_2_23.Adaptive.Columns3.mvc.js",
+  "UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js"
+ ],
+ "otherSourceFiles": [],
+ "blocksReferencedNotRendered": [
+  "App_Common_Blocks.SectionSeparator",
+  "ConnectPatterns.HighlightSearch",
+  "ConnectPatterns.IconSVG",
+  "ConnectPatterns.IconText"
+ ],
+ "images": [
+  {
+   "ref": "img/UBTConnectLibrary.ar.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.UK.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.au.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.bb.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.ca.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.ch.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.de.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.dk.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.fr.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.ie.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.it.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.jm.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.nl.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.nz.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.se.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.tt.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.us.png",
+   "captured": false
+  },
+  {
+   "ref": "img/UBT_CW.vc.png",
+   "captured": false
+  },
+  {
+   "ref": "scripts/OutSystemsUI_2_23.MWO.js",
+   "captured": false
+  },
+  {
+   "ref": "scripts/OutSystemsUI_2_23.OutSystemsUI.js",
+   "captured": false
+  }
+ ],
+ "cssOrder": [
+  "/UBTConnect/css/_Basic.css",
+  "/UBTConnect/css/OutSystemsReactWidgets.css",
+  "/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css",
+  "/UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css",
+  "/UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css",
+  "/UBTConnect/css/Connect2_LegacyShared.UBTConnect.css",
+  "/UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css"
+ ],
+ "cssMissingAssets": [],
+ "calls": [
+  {
+   "order": 1,
+   "t": 2243,
+   "action": "ActionAppManager_SynchAppContext",
+   "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_SynchAppContext",
+   "status": 200,
+   "scope": "other (after navigating away, or app shell)"
+  },
+  {
+   "order": 2,
+   "t": 5175,
+   "action": "ActionAppManager_AfterInitialize",
+   "path": "/UBTConnect/screenservices/UBT_AppManager/ActionAppManager_AfterInitialize",
+   "status": 200,
+   "scope": "other (after navigating away, or app shell)"
+  },
+  {
+   "order": 3,
+   "t": 5721,
+   "action": "ActionSync_Info_GetMain",
+   "path": "/UBTConnect/screenservices/UBTConnect/ActionSync_Info_GetMain",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
+   "order": 4,
+   "t": 6054,
+   "action": "ActionGetUserInformation",
+   "path": "/UBTConnect/screenservices/UBTConnect_Utils/ActionGetUserInformation",
+   "status": 200,
+   "scope": "other (after navigating away, or app shell)"
+  },
+  {
+   "order": 5,
+   "t": 6304,
+   "action": "ActionGetNumberUnreadMessages",
+   "path": "/UBTConnect/screenservices/Connect2_LegacyShared/ActionGetNumberUnreadMessages",
+   "status": 200,
+   "scope": "other (after navigating away, or app shell)"
+  },
+  {
+   "order": 6,
+   "t": 6849,
+   "action": "ServiceAPIFetchData_CacheableHouseholds",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
+   "status": 200,
+   "scope": "this screen"
+  },
+  {
+   "order": 7,
+   "t": 7152,
+   "action": "ServiceAPIFetchData_CacheableMapEntities",
+   "path": "/UBTConnect/screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+   "status": 200,
+   "scope": "this screen"
+  }
+ ],
+ "otherRequests": [
+  {
+   "request": "script /UBTConnect/scripts/cordova.js",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/_Basic.css",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsManifestLoader.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.appDefinition.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.index.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsSettings.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Debugger.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsReactWidgets.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsReactView.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystems.js",
+   "count": 1
+  },
+  {
+   "request": "xmlhttprequest /UBTConnect/moduleservices/moduleversioninfo",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/AppInsightsConnector_Mobile.entities.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.entities.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Notes_MCS.entities.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.entities.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.entities.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Menu.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.entities.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/AppInsightsConnector_Mobile.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Menu.Menu_List.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Notes_MCS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/CommonPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/KeyboardPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ApplicationInsightsConnector.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ScreenOrientationPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Firebase.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ApplicationInsightsConnector.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Notes_MCS.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Firebase.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Bookmarks_MCS.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Leaflet.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/MemoryClientCache.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTJavaScriptUtils.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager_CS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect_Map_CS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/MemoryClientCache.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconSVG.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/NavigationHandler.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ScreenOrientationPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/EventfulDeeplinksPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/CommonPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/KeyboardPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/KeyboardPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_AndroidAppLinksPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_BL.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/NavigationHandler.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ScreenOrientationPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LegacyShared.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ApplicationInsightsConnector.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_LocalNotificationPlugin.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/APIDomain_Directory_IS.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTJavaScriptUtils.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTJavaScriptUtils.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBT_AppManager_Mobile.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect2_OrbitMobile_MUI.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Connect_Map_CS.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect_Utils.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/InAppBrowserPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/PrivacyScreenPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ContentProviderPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/AppVersionPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/NetworkDetection.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/AppInsightsConnector_Mobile.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/TouchIdPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.controller.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/InAppBrowserPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/InAppBrowserPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/NetworkDetection.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ContentProviderPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/TouchIdPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/AppVersionPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/FirebaseCrashlyticsPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/TouchIdPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/PrivacyScreenPlugin.model.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/AppVersionPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/NetworkDetection.clientVariables.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/AppInsightsConnector_Mobile.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/FirebaseCloudMessagingPlugin.referencesHealth.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/NavigationHandler.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnect.App_Common_Blocks.SectionSeparator.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconText.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns3.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Two.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.HighlightSearch.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Firebase.FirebaseApp.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/status/network-ping.txt",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns2.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Firebase.FirebaseAuth.js",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/Connect2_LegacyShared.UBTConnect.css",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/OutSystemsReactWidgets.css",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/UBTConnectLibrary.ScrollAnimations.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/Firebase.FirebaseDatabase.js",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.OutSystemsUI.js",
+   "count": 1
+  },
+  {
+   "request": "link /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css",
+   "count": 1
+  },
+  {
+   "request": "css /UBTConnect/fonts/connect-icon.ttf",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/OutSystemsUI_2_23.MWO.js",
+   "count": 1
+  },
+  {
+   "request": "xmlhttprequest https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo",
+   "count": 2
+  },
+  {
+   "request": "xmlhttprequest https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyCustomToken",
+   "count": 1
+  },
+  {
+   "request": "script /UBTConnect/scripts/ApplicationInsightsConnector.AppInsights_v3_4_nightly.js",
+   "count": 1
+  },
+  {
+   "request": "fetch https://js.monitor.azure.com/scripts/b/ai.config.1.cfg.json",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/moduleservices/moduleinfo",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect.App_Menu.PINBiometricsMenu.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect.App_Menu.Menu_List.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.Adaptive.Columns3.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect.controller.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect.model.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnect.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.controller.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.model.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/UBTConnectLibrary.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/NavigationHandler.controller.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/NavigationHandler.model.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/NavigationHandler.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.controller.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.model.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/scripts/OutSystemsUI_2_23.languageResources.js",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/css/_Basic.css",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/css/OutSystemsReactWidgets.css",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.css",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/css/UBTConnectLibrary.UBTConnectBase.css",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/css/UBTConnectLibrary.UBTConnectLibrary.css",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/css/Connect2_LegacyShared.UBTConnect.css",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/css/OutSystemsUI_2_23.OutSystemsUI.extra.css",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/fonts/fontawesome-webfont.woff2",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/fonts/fontawesome-webfont.woff",
+   "count": 1
+  },
+  {
+   "request": "xmlhttprequest https://australiaeast-0.in.applicationinsights.azure.com/v2/track",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/Inter-VariableFont_opsz,wght.ttf",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/Inter-Italic-VariableFont_opsz,wght.ttf",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/fonts/connect-icon.ttf",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/fonts/connect-icon.woff",
+   "count": 1
+  },
+  {
+   "request": "fetch /UBTConnect/PINBiometricsMenu",
+   "count": 1
+  }
+ ],
+ "declaredCalls": [
+  {
+   "file": "UBTConnect.controller.js",
+   "name": "AddBookmark",
+   "url": "screenservices/UBTConnect/ActionAddBookmark",
+   "observed": false
+  },
+  {
+   "file": "UBTConnect.controller.js",
+   "name": "AddBookmark2",
+   "url": "screenservices/UBTConnect/ServiceAPIAddBookmark2",
+   "observed": false
+  },
+  {
+   "file": "UBTConnect.controller.js",
+   "name": "DeleteBookmarkByBookmarkId",
+   "url": "screenservices/UBTConnect/ActionDeleteBookmarkByBookmarkId",
+   "observed": false
+  },
+  {
+   "file": "UBTConnect.controller.js",
+   "name": "DeleteBookmarkByBookmarkId2",
+   "url": "screenservices/UBTConnect/ServiceAPIDeleteBookmarkByBookmarkId2",
+   "observed": false
+  },
+  {
+   "file": "UBTConnect.controller.js",
+   "name": "FetchData_CacheableHouseholds",
+   "url": "screenservices/UBTConnect/ServiceAPIFetchData_CacheableHouseholds",
+   "observed": true
+  },
+  {
+   "file": "UBTConnect.controller.js",
+   "name": "FetchData_CacheableMapEntities",
+   "url": "screenservices/UBTConnect/ServiceAPIFetchData_CacheableMapEntities",
+   "observed": true
+  },
+  {
+   "file": "UBTConnect.controller.js",
+   "name": "Get_ShareDetails",
+   "url": "screenservices/UBTConnect/ActionGet_ShareDetails",
+   "observed": false
+  },
+  {
+   "file": "UBTConnect.controller.js",
+   "name": "Get_UI_UpdateItems_UnreadCount_All",
+   "url": "screenservices/UBTConnect/ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+   "observed": false
+  },
+  {
+   "file": "UBTConnect.controller.js",
+   "name": "Sync_Info_GetMain",
+   "url": "screenservices/UBTConnect/ActionSync_Info_GetMain",
+   "observed": true
+  },
+  {
+   "file": "UBTConnect.controller.js",
+   "name": "UpdateItem_MarkAsRead",
+   "url": "screenservices/UBTConnect/ActionUpdateItem_MarkAsRead",
+   "observed": false
+  }
+ ],
+ "callSites": {
+  "UBTConnect/ActionSync_Info_GetMain": {
+   "observed": true,
+   "defined": true,
+   "chains": [
+    [
+     "UBTConnect.onApplicationReady",
+     "UBTConnect.connect_SetLoggedContext",
+     "UBTConnect.sync_Info_Main",
+     "server Sync_Info_GetMain"
+    ],
+    [
+     "UBTConnect.onApplicationReady",
+     "UBTConnect.sync_Info_Main",
+     "server Sync_Info_GetMain"
+    ]
+   ],
+   "rootKinds": [
+    "client action"
+   ],
+   "rootLabels": [
+    "UBTConnect.onApplicationReady",
+    "UBTConnect.onApplicationReady"
+   ]
+  },
+  "UBTConnect/ServiceAPIFetchData_CacheableHouseholds": {
+   "observed": true,
+   "defined": true,
+   "chains": [
+    [
+     "UBTConnect.get_Cacheable_MapHouseholds",
+     "server FetchData_CacheableHouseholds"
+    ]
+   ],
+   "rootKinds": [
+    "client action"
+   ],
+   "rootLabels": [
+    "UBTConnect.get_Cacheable_MapHouseholds"
+   ]
+  },
+  "UBTConnect/ServiceAPIFetchData_CacheableMapEntities": {
+   "observed": true,
+   "defined": true,
+   "chains": [
+    [
+     "UBTConnect.get_Cacheable_MapEntities",
+     "server FetchData_CacheableMapEntities"
+    ]
+   ],
+   "rootKinds": [
+    "client action"
+   ],
+   "rootLabels": [
+    "UBTConnect.get_Cacheable_MapEntities"
+   ]
+  }
+ },
+ "allSourceNames": [
+  "NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top.mvc.js",
+  "NavigationHandler.controller.js",
+  "NavigationHandler.languageResources.js",
+  "NavigationHandler.model.js",
+  "OutSystemsUI_2_23.Adaptive.Columns3.mvc.js",
+  "OutSystemsUI_2_23.controller.js",
+  "OutSystemsUI_2_23.languageResources.js",
+  "OutSystemsUI_2_23.model.js",
+  "UBTConnect.App_Menu.Menu_List.mvc.js",
+  "UBTConnect.App_Menu.PINBiometricsMenu.mvc.js",
+  "UBTConnect.controller.js",
+  "UBTConnect.languageResources.js",
+  "UBTConnect.model.js",
+  "UBTConnectLibrary.BasePatterns.Columns_Three.mvc.js",
+  "UBTConnectLibrary.BasePatterns.CustomContainer.mvc.js",
+  "UBTConnectLibrary.BasePatterns.CustomText.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.Icon.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.IconInline_Internal.mvc.js",
+  "UBTConnectLibrary.ConnectPatterns.SkeletonSection.mvc.js",
+  "UBTConnectLibrary.Layouts.Layout_DetailPage.mvc.js",
+  "UBTConnectLibrary.controller.js",
+  "UBTConnectLibrary.languageResources.js",
+  "UBTConnectLibrary.model.js"
+ ],
+ "diagrams": {
+  "architectureNodes": 6,
+  "serverNodes": 3,
+  "actionSequences": 1
+ },
+ "security": {
+  "localStorage": [
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_HasUnlocked",
+    "category": "lock / re-auth"
+   },
+   {
+    "key": "$OS_Users$RolesInfo",
+    "category": "permissions / entitlements"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$PhotobookCarousel_SelectedSpeed",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_UserExternalId",
+    "category": "identity / personal"
+   },
+   {
+    "key": "$OS_Users$CurrentLocale",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AzureB2C_ResetPassPolicy",
+    "category": "auth config"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_IsRunningAsPWA",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_UBTConnect$ApplicationInfo",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$OutSystems_LastURL",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_ErrorMessage_NoInternet",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$MinWebViewVersion_Safari",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$Permissions_List",
+    "category": "permissions / entitlements"
+   },
+   {
+    "key": "$OS_Users$Connect2_LegacyShared$ClientVars$UnreadPublicMessagesNumber",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$Firebase_RealtimeDatabase_Use",
+    "category": "feature flags"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$App_Policies_HasPolicyToAccept",
+    "category": "other"
+   },
+   {
+    "key": "$OS_UBT_AppManager$HasTracingEnabled",
+    "category": "feature flags"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AzureInsights_Use",
+    "category": "feature flags"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$Streamline_SerialNumber",
+    "category": "third-party sdk"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$MinWebViewVersion_Chrome",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_OAuth_EndPoint",
+    "category": "auth config"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_SessionInactivity_Navigate",
+    "category": "lock / re-auth"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$App_NetworkStatus_IsOnline_IsPersistent",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_IdPProviderId",
+    "category": "auth config"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_MobileVersion",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_UUID",
+    "category": "identity / personal"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_SessionInactivity_Seconds",
+    "category": "lock / re-auth"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_MemberId",
+    "category": "identity / personal"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$Bookmarks_IsSynched",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AzureB2C_ClientId",
+    "category": "auth config"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$MinNativeAppVersion",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$Firebase_CloudMessage_Token",
+    "category": "token/secret"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_ContactBaseId",
+    "category": "identity / personal"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$OutSystems_Environment",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_EspaceName",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$IsNavigateToHomeOnBack",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$Embedd_B2CTenant",
+    "category": "auth config"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_Browser",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_PackageName",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBTConnect_Utils$ClientVars$App_SubscriptionPopUp",
+    "category": "permissions / entitlements"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_Platform",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_VerboseMode",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$Directory_Updates_UnreadCount_LastCheck",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$Streamline_TOTPOnLogin",
+    "category": "auth config"
+   },
+   {
+    "key": "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_ErrorMessage_GenericError",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$NetworkDetection$ClientVars$Offline_NetworkStatus_PendingPing_Check",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$Notifications_LastChecked",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$$ClientVars$$SESSION_USER_ID",
+    "category": "identity / personal"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_AppBaseURL",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_IsRegistering",
+    "category": "lock / re-auth"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$Firebase_RealtimeDatabase_StartedOn",
+    "category": "third-party sdk"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$Firebase_ProjectId",
+    "category": "third-party sdk"
+   },
+   {
+    "key": "$OS_UBT_AppManager$ApplicationInfo",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_UserAgent",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_Username",
+    "category": "identity / personal"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$Directory_Updates_MonthsToShow",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_EnforceOnReady",
+    "category": "lock / re-auth"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$Notes_IsSynched",
+    "category": "other"
+   },
+   {
+    "key": "UUID",
+    "category": "identity / personal"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$Directory_Updates_UnreadCount",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_Use",
+    "category": "lock / re-auth"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_CustomCallback",
+    "category": "other"
+   },
+   {
+    "key": "AppManager_LocalStorageKey_Pin",
+    "category": "token/secret"
+   },
+   {
+    "key": "$OS_Users$NetworkDetection$ClientVars$NetworkDetection_StatusIsOnline_IsPersistent",
+    "category": "other"
+   },
+   {
+    "key": "firebase:host:connect2-tst-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "category": "third-party sdk"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$Notifications_IsSynched",
+    "category": "other"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$Licenses_List",
+    "category": "permissions / entitlements"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$Streamline_IsInstalled",
+    "category": "third-party sdk"
+   },
+   {
+    "key": "$OS_Users$Connect2_LegacyShared$ClientVars$UnreadNotificationsNumber",
+    "category": "other"
+   },
+   {
+    "key": "$OS_UBTConnect$HasTracingEnabled",
+    "category": "feature flags"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AzureB2C_LoginPolicy",
+    "category": "auth config"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_SessionInactivity_Use",
+    "category": "lock / re-auth"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$FrontEgg_AppId",
+    "category": "auth config"
+   },
+   {
+    "key": "$OS_Users$ApplicationInsightsConnector$ClientVars$ConnectionString",
+    "category": "token/secret"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_MobileBuild",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_IsLocked",
+    "category": "lock / re-auth"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$PIN_EnableFingerprint",
+    "category": "lock / re-auth"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$AppManager_UserExtended",
+    "category": "identity / personal"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$Firebase_RealtimeDatabase_Token",
+    "category": "token/secret"
+   },
+   {
+    "key": "$OS_Users$UBT_AppManager$ClientVars$DeviceInfo_IsNative",
+    "category": "device / app info"
+   },
+   {
+    "key": "$OS_Users$UBTConnect$ClientVars$LastURL",
+    "category": "other"
+   }
+  ],
+  "sessionStorage": [
+   {
+    "key": "$OS_UBTConnect$UpgradeStatus",
+    "category": "other"
+   },
+   {
+    "key": "AI_sentBuffer_1",
+    "category": "telemetry"
+   },
+   {
+    "key": "$OS_UBTConnect$HasRenderedSplashInSession",
+    "category": "other"
+   },
+   {
+    "key": "AI_buffer_1",
+    "category": "telemetry"
+   },
+   {
+    "key": "$OS_UBTConnect$RouterHistoryAge",
+    "category": "other"
+   }
+  ],
+  "requestHeaders": [
+   "accept",
+   "content-type",
+   "outsystems-request-token",
+   "request-id",
+   "traceparent",
+   "x-csrftoken"
+  ],
+  "responseHeaders": [
+   "cache-control",
+   "cf-cache-status",
+   "cf-ray",
+   "content-encoding",
+   "content-length",
+   "content-type",
+   "date",
+   "outsystems-locale",
+   "pragma",
+   "server",
+   "strict-transport-security",
+   "vary",
+   "x-content-type-options"
+  ],
+  "documentSecurityHeaders": {
+   "strict-transport-security": "max-age=31536000;includeSubDomains",
+   "x-content-type-options": "nosniff",
+   "cache-control": "no-cache"
+  },
+  "thirdPartyHosts": [
+   "australiaeast-0.in.applicationinsights.azure.com",
+   "js.monitor.azure.com",
+   "www.googleapis.com"
+  ],
+  "sensitiveWrites": [],
+  "authActions": [
+   [
+    "Sync_Info_GetMain",
+    "screenservices/UBTConnect/ActionSync_Info_GetMain",
+    "UBTConnect.controller.js"
+   ]
+  ]
+ }
+}

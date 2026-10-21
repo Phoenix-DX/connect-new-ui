@@ -1,0 +1,96 @@
+{
+ "default": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/MessageList",
+  "steps": [],
+  "scenario": "real",
+  "auto": null,
+  "htmlClass": "",
+  "bodyClass": "phone portrait connect-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "loading": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/MessageList",
+  "steps": [],
+  "scenario": "loading",
+  "auto": "loading",
+  "htmlClass": "",
+  "bodyClass": "phone portrait connect-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "offline": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/MessageList",
+  "steps": [],
+  "scenario": "error",
+  "auto": "offline",
+  "htmlClass": "",
+  "bodyClass": "phone portrait connect-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "filter": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/MessageList",
+  "steps": [
+   {
+    "click": "#b1-Filter_Icon",
+    "waitMs": 1200,
+    "label": "filter"
+   }
+  ],
+  "scenario": "real",
+  "auto": null,
+  "phase": "filter",
+  "htmlClass": "",
+  "bodyClass": "phone portrait connect-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ },
+ "search": {
+  "viewport": "390x844",
+  "viewportName": "phone",
+  "variant": null,
+  "flags": {},
+  "route": "/UBTConnect/MessageList",
+  "steps": [
+   {
+    "click": "#b1-Filter_Icon",
+    "waitMs": 1200,
+    "label": "filter"
+   },
+   {
+    "click": "#b1-Close_Filter_Icon",
+    "waitMs": 800,
+    "label": "step2"
+   },
+   {
+    "click": "#b1-Search_Icon",
+    "waitMs": 1200,
+    "label": "search"
+   }
+  ],
+  "scenario": "real",
+  "auto": null,
+  "phase": "search",
+  "htmlClass": "",
+  "bodyClass": "phone portrait connect-theme osx is-ltr",
+  "bodyStyle": "--header-size-content: 0px; --footer-height: 56px; --viewport-height: 844px;",
+  "dpr": 1
+ }
+}
