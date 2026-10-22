@@ -123,9 +123,12 @@ Do not paste the plan or file contents into a prompt: the brief carries them.
 Before the test stage of a step with a parity level other than `none`:
 
 1. `curl -s -o /dev/null -w "%{http_code}" http://localhost:5173/UBTConnect/HomeFeed`.
-2. When it does not print `200`, start `npm --prefix app run dev` in the background (Bash `run_in_background`) and
+2. When it does not print `200`, start
+   `export PATH=$HOME/.nvm/versions/node/v24.21.0/bin:$PATH && npm --prefix app run dev` in the background (Bash
+   `run_in_background`) and
    wait until the curl prints `200`, for 60 seconds at most.
-3. After a step that changed `vite.config.ts`, `tsconfig.json` or `index.html`, restart the dev server.
+3. After a step that changed `vite.config.ts`, `tsconfig.json`, `index.html` or the version of `vite`, restart the dev
+   server. The project needs Node 24; the default shell has Node 22 (prefix the PATH as above).
 
 ## 5. User gates and questions
 
@@ -137,6 +140,17 @@ Before the test stage of a step with a parity level other than `none`:
 
 When the user confirms an after-gate, continue with the commit (section 6). When the user asks for a change, run the
 developer in mode `loop <n>` with the user's words in the prompt.
+
+### 5.1 Advisor, when the user delegates decisions
+
+When the user says that an advisor decides for them (for example "nhờ opus suggest và auto chọn recommand"):
+
+1. Ask one narrow question per agent call. Never bundle questions.
+2. A Sonnet agent looks up the facts: versions, release dates, advisories, file contents. No installs, no smoke
+   projects.
+3. An Opus agent gets those facts in the prompt and gives the judgment only: one recommendation and a one-line reason.
+4. Record the recommendation with the marker of the user's instruction. Add a row to the auto-decision log of
+   the run (`migration/refactor/auto-decisions-<date>.md`).
 
 ## 6. Commit
 

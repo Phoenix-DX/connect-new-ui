@@ -536,6 +536,13 @@ def cmd_brief(c: Ctx, a) -> int:
     ]
     if step.get("extra"):
         parts += ["## Scope of this step", "", step["extra"], ""]
+    decided = [f"- {q['id']}: {q['text']} **Answer:** {q['answer']}" for q in c.state["questions"]
+               if q["step"] == step["id"] and q["status"] == "answered"]
+    decided += [f"- {k.split(':')[1]}-gate: {g['text']}" for k, g in c.state["gates"].items()
+                if k.split(":")[0] == step["id"] and g.get("status") == "confirmed"]
+    if decided:
+        parts += ["## Decisions for this step", "", "These answers override the step text where they differ.", "",
+                  *decided, ""]
     parts += ["## The step in the plan", "", section, "", "## Rules for all steps (plan v2 §1.4)", "",
               "\n".join(rules.splitlines()[1:]).strip(), ""]
     if step["kind"] == "move":

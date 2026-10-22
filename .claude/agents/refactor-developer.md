@@ -29,6 +29,11 @@ you, and a documenter updates the documents.
 Do not read the full plan, the contexts or other handoff folders. Never open, read or print anything in `.auth/` or
 `migration/.raw/` (CLAUDE.md, rule 1).
 
+## Node
+
+The project needs Node 24 (`app/package.json` engines). The default shell has Node 22. Start every shell command
+with `export PATH=$HOME/.nvm/versions/node/v24.21.0/bin:$PATH &&`.
+
 ## Rules
 
 1. Work on the branch `refactor/architecture`. When `git branch --show-current` prints another branch, stop with

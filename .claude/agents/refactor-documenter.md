@@ -32,6 +32,11 @@ Never open, read or print anything in `.auth/` or `migration/.raw/`.
 The brief says "full run: --all" at the last step of a phase. At that step, also read the architecture documents
 fully. Fix every path or statement that the code no longer supports.
 
+## Node
+
+The project needs Node 24 (`app/package.json` engines). The default shell has Node 22. Start every shell command
+with `export PATH=$HOME/.nvm/versions/node/v24.21.0/bin:$PATH &&`.
+
 ## Rules
 
 1. Do not change code files (`.ts`, `.tsx`, `.js`, `.css`, `.json` config), `CLAUDE.md` or `.claude/`.

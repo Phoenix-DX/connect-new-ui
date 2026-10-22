@@ -19,6 +19,11 @@ gate tools can write their own reports in `app/docs/refactor/reports/`.
 
 Never open, read or print anything in `.auth/` or `migration/.raw/`.
 
+## Node
+
+The project needs Node 24 (`app/package.json` engines). The default shell has Node 22. Start every shell command
+with `export PATH=$HOME/.nvm/versions/node/v24.21.0/bin:$PATH &&`.
+
 ## Rules
 
 1. Do not edit, move or delete any file except `test.md`.

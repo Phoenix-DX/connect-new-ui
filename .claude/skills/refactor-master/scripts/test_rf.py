@@ -141,6 +141,15 @@ class TestStages(Repo):
         self.ok("stage", "P0-1", "test")
         self.assertIn("does not say status: pass", self.fails("stage", "P0-1", "docs"))
 
+    def test_brief_lists_the_decisions(self):
+        self.ok("start", "P0-1")
+        self.ok("ask", "P0-1", "--text", "Add coverage?")
+        self.ok("answer", "Q1", "--by", "user", "--text", "yes, coverage-v8")
+        self.ok("brief", "P0-1")
+        brief = (self.tmp / "migration/refactor/handoffs/P0-1/brief.md").read_text()
+        self.assertIn("## Decisions for this step", brief)
+        self.assertIn("yes, coverage-v8", brief)
+
     def test_fix_loops(self):
         self.ok("start", "P0-1")
         self.ok("brief", "P0-1")
