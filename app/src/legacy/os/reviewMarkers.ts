@@ -1,6 +1,6 @@
 import { readItem, writeItem } from '@/platform/storage/storage';
 
-/* Review markers (`<NotCaptured>`, components/NotCaptured.tsx) frame what the migration built without a capture. They
+/* Review markers (`<NotCaptured>`, platform/feedback/NotCaptured.tsx) frame what the migration built without a capture. They
    are a reviewer's aid, so built apps (demo PWA, production) never show them, and the dev server shows them only on
    request: `?review=1` shows them for the tab, `?review=0` hides them again (user, 2026-10-16: the framed Trove dialog
    looked like an error in a demo; user, 2026-10-17: off by default on the dev server too). Tests and Storybook turn

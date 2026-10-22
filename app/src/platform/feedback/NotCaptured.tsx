@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { showReviewMarkers } from '@/legacy/os/reviewMarkers';
 
 /* Marker for anything the capture does not contain (block, state, image, popup, unmigrated screen).
-   Never replace it with an invented design. The frame shows on the dev server with `?review=1` only (shell/reviewMarkers.ts); built
+   Never replace it with an invented design. The frame shows on the dev server with `?review=1` only (legacy/os/reviewMarkers.ts); built
    apps render the content built from the compiled code without the frame, and nothing for an empty marker. */
 export function NotCaptured({ name, children }: { name: string; children?: ReactNode }) {
   if (!showReviewMarkers()) return <>{children}</>;

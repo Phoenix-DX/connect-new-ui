@@ -1,6 +1,6 @@
 // @os-block Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { useFlagOn } from '@/platform/flags/flags';

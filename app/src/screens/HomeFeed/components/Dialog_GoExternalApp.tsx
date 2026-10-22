@@ -1,6 +1,6 @@
 // @os-block UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp
 import { useEffect } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import { feedbackMessageAutoClose } from '@/platform/feedback';

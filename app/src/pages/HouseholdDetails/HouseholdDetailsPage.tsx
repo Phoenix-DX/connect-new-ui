@@ -1,11 +1,10 @@
 import { useSearchParams } from 'react-router';
 import { DetailLayout } from '@/components/layout';
-import { HouseholdDetailsContainer } from '@/containers';
+import { HouseholdDetailsContainer, useHouseholdDetailsFlags } from '@/containers';
 import { useNavigateBack, useViewState } from '@/platform/navigation';
 import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
-import { readHouseholdDetailsInputs } from './api';
-import { useHouseholdDetailsFlags } from './hooks/useHouseholdDetails';
+import { readHouseholdDetailsInputs } from './inputs';
 
 /** @origin UBTConnect.Directory_Household.HouseholdDetails
     The route of a household: the detail layout (not primary) titled "Locality, Country", the household details as

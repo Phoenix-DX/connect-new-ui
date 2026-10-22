@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Home.FeedBlock_Updates
 import { useEffect, useState } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useFlagOn } from '@/platform/flags/flags';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';

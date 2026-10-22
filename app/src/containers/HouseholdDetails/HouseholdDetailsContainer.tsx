@@ -1,15 +1,15 @@
 import type { ReactNode } from 'react';
 import { HouseholdDetailsView } from '@/components/household';
-import {
-  useHouseholdDetails,
-  type HouseholdDetailsFlags,
-  type HouseholdDetailsParameters,
-} from '@/pages/HouseholdDetails/hooks/useHouseholdDetails';
 import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
 import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
 import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
 import { Connect_Entity, Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
 import type { HouseholdPreviewStructure, UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
+import {
+  useHouseholdDetails,
+  type HouseholdDetailsFlags,
+  type HouseholdDetailsParameters,
+} from './hooks/useHouseholdDetails';
 
 /** Where the household details come from: the server, or the server data with the account form that the Profile
     preview edits (Preview.UsePreview). Both fetch the household by its id. */

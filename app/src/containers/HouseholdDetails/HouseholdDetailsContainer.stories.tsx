@@ -6,9 +6,9 @@ import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { currentUserId, isSignedIn, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { getBookmarkType_FromEntity } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
-import { useHouseholdDetailsFlags } from '@/pages/HouseholdDetails/hooks/useHouseholdDetails';
-import { HOUSEHOLD_DETAILS_ID, PROFILE_HOUSEHOLD_ID } from '@/pages/HouseholdDetails/mockData';
 import { HouseholdDetailsContainer, type HouseholdDetailsContainerProps } from './HouseholdDetailsContainer';
+import { useHouseholdDetailsFlags } from './hooks/useHouseholdDetails';
+import { HOUSEHOLD_DETAILS_ID, PROFILE_HOUSEHOLD_ID } from './mockData';
 
 /** The container with the flags of the session, read as the page reads them. */
 function HouseholdDetails(props: Omit<HouseholdDetailsContainerProps, 'flags'>) {

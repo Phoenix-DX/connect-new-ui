@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Widgets.NotificationDetailBlock
 import { useEffect, type ReactNode } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { Card } from '@/shared/osui/Card';

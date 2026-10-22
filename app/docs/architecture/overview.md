@@ -43,8 +43,8 @@ flowchart TB
   subgraph Browser
     direction TB
     platform[src/platform<br/>error handling, sign-in and PIN mock,<br/>navigation guard, view cache, toasts,<br/>local entities IndexedDB]
-    pages[src/pages/&lt;Route&gt;<br/>&lt;Route&gt;Page.tsx · hooks · api.ts · mocks.ts · types.ts]
-    containers[src/containers<br/>a container only by the criterion of the page template]
+    pages[src/pages/&lt;Route&gt;<br/>&lt;Route&gt;Page.tsx · hooks · inputs.ts · mocks.ts]
+    containers[src/containers<br/>a container only by the criterion of the page template,<br/>with its hooks and mocks]
     comps[src/components/&lt;domain&gt;<br/>props-only components with stories and tests]
     domain[src/api/&lt;domain&gt;<br/>types · mapper · repository · keys · hooks]
     screens[src/screens/&lt;Screen&gt;<br/>screens not yet moved: index.tsx · api.ts · mocks.ts · types.ts]
@@ -76,7 +76,7 @@ flowchart TB
 
 Rules that keep it this way (`consistency_check.py` checks them before a screen is finished):
 
-- A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (ESLint, `app/eslint.config.js`). The recipe is the [page template](../guides/page-template.md). Only HouseholdDetails is a page so far.
+- A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (ESLint, `app/eslint.config.js`). Only `pages/<Route>/` imports `pages/<Route>/`, and `src/shared` imports no `src/screens` or `src/app` (dependency-cruiser warnings, `app/.dependency-cruiser.cjs`). The recipe is the [page template](../guides/page-template.md). Only HouseholdDetails is a page so far.
 - A screen imports only from its own folder and from `src/shared`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/mocks`.
 - A screen has no `fetch`, browser storage, route CSS, inline visual styles, raw HTML or `console.log`.
 - Packages come only from the pinned allow-list ([stack](../reference/stack.md)). A new package needs an ADR.

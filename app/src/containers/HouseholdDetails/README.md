@@ -8,17 +8,19 @@ Locality_Details.
 
 | File                                                                 | Role                                                                                                      |
 | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `pages/HouseholdDetails/hooks/useHouseholdDetails.ts`                | The flows (OnInitialize, OnParametersChanged, refreshes) with `useReducer`.                               |
-| `pages/HouseholdDetails/hooks/householdDetailsState.ts`              | The state record, the reducer and the client actions (tested in `householdDetailsState.test.ts`).         |
+| `containers/HouseholdDetails/hooks/useHouseholdDetails.ts`           | The flows (OnInitialize, OnParametersChanged, refreshes) with `useReducer`.                               |
+| `containers/HouseholdDetails/hooks/householdDetailsState.ts`         | The state record, the reducer and the client actions (tested in `householdDetailsState.test.ts`).         |
 | `containers/HouseholdDetails/HouseholdDetailsContainer.tsx`          | Takes `source` (`server` or `preview`) and `flags`; fills the slots; renders the view.                    |
 | `components/household/HouseholdDetailsView/HouseholdDetailsView.tsx` | The card, props only. Uses HouseholdTags, HouseholdAddress, HouseholdMemberList, HouseholdTimelinePhotos. |
-| `pages/HouseholdDetails/mocks.ts`, `mockData.ts`                     | The two MSW handlers and the fictional records.                                                           |
+| `containers/HouseholdDetails/mocks.ts`, `mockData.ts`                | The two MSW handlers and the fictional records.                                                           |
 
 The data actions come from `src/api/household/`. The old `api.ts`, `logic.ts`, `types.ts` and block `mocks.ts` no
 longer exist. The callers read the flags with `useHouseholdDetailsFlags()` and pass `flags`. The container gives
 `entityActions`, `renderMemberActions` and `shareSheet` to the view as slots. Compiled source:
 `migration/screens/HouseholdCarousel/analysis/sources/pretty/UBTConnect.Directory_Household.HouseholdDetails_Block.mvc.js`
 (view :241-1886, controller :1887-3058); line numbers in the code are from this file.
+
+The page reads the route input in `pages/HouseholdDetails/inputs.ts`.
 
 ## Inputs → props
 
@@ -40,7 +42,7 @@ DeceasedOrAncestry_View)` → `onHouseholdDataFetched`, raised after every GetHo
 - `DataActionGetHousehold` / `DataActionGetHousehold_Coordinates` (domain `src/api/household/`), on demand only: OnReady (unless restored
   from the view cache with the same age visibility) and OnParametersChanged (preview used, or In_IsSkeletonOnly turned
   False). Sent: the block inputs and `UserAge_Visibility`.
-- Never recorded (households, members and coordinates are person data): `pages/HouseholdDetails/mocks.ts` answers fictional records from
+- Never recorded (households, members and coordinates are person data): `containers/HouseholdDetails/mocks.ts` answers fictional records from
   `mockData.ts` with the captured counts (HouseholdDetails: 5 members, no married children; Profile: 3), word lengths of
   the masked texts, every wire field present.
 - Client actions: `householdDetailsState.ts` (tested); `getSkeleton_UI_HouseholdDetails` (UBTConnect lib),

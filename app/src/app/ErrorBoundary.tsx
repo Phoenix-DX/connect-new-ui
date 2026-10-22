@@ -1,5 +1,5 @@
 import { Component, type ErrorInfo, type ReactNode } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { log } from '@/platform/log/log';
 
 /* Catches render errors below it, logs them, and shows the review marker: the original app's own error screen is not

@@ -11,7 +11,6 @@ an `index.ts`; import from the folder. Header comments name the runtime file and
 | `OSList/`                   | List and ListItem widgets, including swipe actions      |
 | `OSRadioGroup/`             | RadioGroup and RadioButton widgets                      |
 | `OSBlock.tsx`               | the wrapper OutSystems renders around every block       |
-| `NotCaptured.tsx`           | marker for anything the capture does not contain        |
 | `FlagPanel.tsx`             | the feature-flag panel shown with `?ffpanel=1`          |
 
 ## OSValidation
@@ -91,6 +90,8 @@ in the folder.
 uses it. Keep the name: CSS and parity checks depend on it.
 
 ## NotCaptured
+
+It lives in `src/platform/feedback/NotCaptured.tsx` (P3-1), not in `src/components`.
 
 `<NotCaptured name="...">` renders `div.rv-missing[data-not-captured]` with "Not captured: <name>" and optional children.
 It stands for any state or block the original capture never showed. Never replace it with an invented design. Search for

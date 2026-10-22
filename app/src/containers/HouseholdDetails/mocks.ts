@@ -5,9 +5,10 @@ import { markContactOnly } from '@/shared/UBTConnect/Directory_EntityDetailsActi
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { HOUSEHOLD_DETAILS_ID, membersOf, sampleHouseholds } from './mockData';
 
-/* HouseholdDetails calls no action of its own. The household details (containers/HouseholdDetails, also used by
-   HouseholdCarousel, Profile and Locality_Details) call DataActionGetHousehold and DataActionGetHousehold_Coordinates,
-   answered here; the contact details, signed images and bottom-bar calls are answered by their own shared/shell mocks.
+/* The household details (this container, used by HouseholdDetails, HouseholdCarousel, Profile and Locality_Details)
+   call DataActionGetHousehold and DataActionGetHousehold_Coordinates, answered here; the HouseholdDetails screen calls
+   no action of its own. The contact details, signed images and bottom-bar calls are answered by their own shared and
+   platform mocks.
    Scenarios: `real`, `loading` (never answers: skeleton) and `error` (calls fail: skeleton stays).
    Never recorded (households, members and their coordinates are person data): fictional, with the captured shapes and
    counts (HouseholdDetails/default: 5 members, no married children, visible; Profile/default: 3 members, CR-Profile-1;

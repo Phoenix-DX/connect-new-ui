@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper
 import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
 import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';

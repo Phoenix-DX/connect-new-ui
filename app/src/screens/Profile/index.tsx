@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import {
   OSForm,
   useInputWithVariableValidation,

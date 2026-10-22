@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyEvents_MyTimelineFilterButton
 import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
 import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';

@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { isSignedIn, setClientVar, setSignedInUser } from '@/platform/session/session';
-import { HOUSEHOLD_DETAILS_ID } from '@/pages/HouseholdDetails/mockData';
+import { HOUSEHOLD_DETAILS_ID } from '@/containers/HouseholdDetails/mockData';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { EntitiesCarousel_Element } from './EntitiesCarousel_Element';
 

@@ -97,3 +97,9 @@
 - Steps P2-1 to P2-4: the route is in `src/pages/HouseholdDetails/`, the data in `src/api/household/`, the card in `src/containers/HouseholdDetails/` and `src/components/household/`.
 - 4 rows of `move-map.csv` have status `moved`; the shape of the pilot is in the page template. Open: move the hook next to the container when HouseholdCarousel and Profile become pages.
 - Gate: ci passes; parity 64/64 for both references; bundle within 5 percent (HomeFeed 236.43 kB, Login 184.71 kB gzip).
+
+## P3-1 - refactor(P3-1): shared code no longer imports screens or app
+
+- `src/shared/` imports no `screens/`, `app/` or `pages/`. `NotCaptured` is now `src/platform/feedback/NotCaptured.tsx`. The update-items mock is in `shared/UBTConnect/Directory_Updates/mocks.ts`.
+- Follow-ups F1 to F3: the hooks, state and mocks of HouseholdDetails are in `containers/HouseholdDetails/`; `pages/HouseholdDetails/api.ts` is `inputs.ts`; `docs_gen.py` and `move-map.mjs` read `@origin`.
+- 2 new dependency-cruiser warn rules guard this (`pages-imported-by-own-route-only`, `shared-no-import-of-screens-or-app`). `move-map.csv` rows 166, 181, 379 changed. Strict parity 64/64 for both references.

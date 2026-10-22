@@ -1,7 +1,7 @@
 // @os-block Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteAddEdit
 // @os-block Connect2_MyBookmarks_MUI.MyBookmarksFlow.BookmarkNoteDelete
 import { useState } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import type { BookmarkNote } from '@/screens/BookmarksByGroup/types';

@@ -1,8 +1,7 @@
 import { useEffect, useReducer, useRef } from 'react';
 import { useLocation, useSearchParams } from 'react-router';
-import { NotCaptured } from '@/app/NotCaptured';
-import { HouseholdDetailsContainer } from '@/containers';
-import { useHouseholdDetailsFlags } from '@/pages/HouseholdDetails/hooks/useHouseholdDetails';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
+import { HouseholdDetailsContainer, useHouseholdDetailsFlags } from '@/containers';
 import { useFlagOn } from '@/platform/flags/flags';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';

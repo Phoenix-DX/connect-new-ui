@@ -7,7 +7,7 @@ How to build a page, a hook, a container and the components of one OutSystems sc
 
 | Folder                     | What goes there                                                                                 |
 | -------------------------- | ----------------------------------------------------------------------------------------------- |
-| `src/pages/<Route>/`       | The route: `<Route>Page.tsx`, its hooks, its mocks, its types. Code that only this page uses.   |
+| `src/pages/<Route>/`       | The route: `<Route>Page.tsx`, `inputs.ts`, its hooks and mocks. Code that only this page uses.  |
 | `src/api/<domain>/`        | The calls of one domain: types, mapper, repository, keys, hooks, barrel (`src/api/household/`). |
 | `src/components/<domain>/` | Components with props only. They import no `api/`, `platform/`, `containers/` or `pages/`.      |
 | `src/containers/<Name>/`   | A container, only by the criterion below.                                                       |
@@ -21,23 +21,21 @@ Where the files of a container go:
 - `pages/<Route>/` holds only what that page alone uses.
 - `containers/` never imports `pages/`.
 - Shared fictional data lives in `src/mocks/fictional/`.
-- Temporary exception: the hook, the state file and the mocks of the pilot are still in `pages/HouseholdDetails/`.
-  P3-1 moves them (follow-up F1 in `migration/refactor/followups.md`).
 
 A `screens/<Route>/api.ts` splits in two. Server calls go to `api/<domain>/repository.ts`. The reader of the route
-input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. The pilot still has `api.ts` until P3-1 (follow-up F2).
+input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that holds only input types folds into `inputs.ts`.
 
 ## Files of the pilot
 
-| File                                                                                                                               | Role                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [`pages/HouseholdDetails/HouseholdDetailsPage.tsx`](../../src/pages/HouseholdDetails/HouseholdDetailsPage.tsx)                     | The route (`@origin` of the screen). Reads the URL, the flags and the view state; renders layout and container. |
-| [`pages/HouseholdDetails/hooks/useHouseholdDetails.ts`](../../src/pages/HouseholdDetails/hooks/useHouseholdDetails.ts)             | The flows of the block (OnInitialize, OnParametersChanged, refreshes) with `useReducer`.                        |
-| [`pages/HouseholdDetails/hooks/householdDetailsState.ts`](../../src/pages/HouseholdDetails/hooks/householdDetailsState.ts)         | The state record, the reducer and the client actions. Pure, with a unit test.                                   |
-| [`pages/HouseholdDetails/mocks.ts`](../../src/pages/HouseholdDetails/mocks.ts), `mockData.ts`                                      | The MSW handlers and the fictional records of the page.                                                         |
-| [`api/household/`](../../src/api/household)                                                                                        | The domain: data actions, mapper, query keys and hooks.                                                         |
-| [`containers/HouseholdDetails/HouseholdDetailsContainer.tsx`](../../src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx) | Runs the hook, fills the slots, renders the view.                                                               |
-| [`components/household/HouseholdDetailsView/`](../../src/components/household/HouseholdDetailsView)                                | The card, props only, with test and stories.                                                                    |
+| File                                                                                                                                 | Role                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------- |
+| [`pages/HouseholdDetails/HouseholdDetailsPage.tsx`](../../src/pages/HouseholdDetails/HouseholdDetailsPage.tsx)                       | The route (`@origin` of the screen). Reads the URL, the flags and the view state; renders layout and container. |
+| [`containers/HouseholdDetails/hooks/useHouseholdDetails.ts`](../../src/containers/HouseholdDetails/hooks/useHouseholdDetails.ts)     | The flows of the block (OnInitialize, OnParametersChanged, refreshes) with `useReducer`.                        |
+| [`containers/HouseholdDetails/hooks/householdDetailsState.ts`](../../src/containers/HouseholdDetails/hooks/householdDetailsState.ts) | The state record, the reducer and the client actions. Pure, with a unit test.                                   |
+| [`containers/HouseholdDetails/mocks.ts`](../../src/containers/HouseholdDetails/mocks.ts), `mockData.ts`                              | The MSW handlers and the fictional records of the page.                                                         |
+| [`api/household/`](../../src/api/household)                                                                                          | The domain: data actions, mapper, query keys and hooks.                                                         |
+| [`containers/HouseholdDetails/HouseholdDetailsContainer.tsx`](../../src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx)   | Runs the hook, fills the slots, renders the view.                                                               |
+| [`components/household/HouseholdDetailsView/`](../../src/components/household/HouseholdDetailsView)                                  | The card, props only, with test and stories.                                                                    |
 
 ## Hook shape
 

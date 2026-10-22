@@ -1,7 +1,6 @@
 // @os-block UBTConnect.App_Profile.Profile_HouseholdPreview
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { HouseholdDetailsContainer } from '@/containers';
-import { useHouseholdDetailsFlags } from '@/pages/HouseholdDetails/hooks/useHouseholdDetails';
+import { HouseholdDetailsContainer, useHouseholdDetailsFlags } from '@/containers';
 import type { HouseholdPreviewStructure } from '@/shared/UBTConnect/lib/structures';
 import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';

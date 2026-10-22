@@ -112,3 +112,9 @@ One line per event. Written by rf.py.
 - 2026-10-22T21:16:07 P2-4 waits for the user: Test HouseholdDetails, HouseholdCarousel and Profile on localhost, read the pilot report, then confirm.
 - 2026-10-22T21:21:54 P2-4 after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (B, medium) and Fable (B, high) review: confirm with changes. 3 routes OK (links 200 on 5174, build.png match, parity 64/64 both refs). Changes (Markdown, applied by the documenter before the commit): page-template.md hook shape = repository fetch* functions, query hooks unused for now; container rule (hook/state/mocks in containers/<Name>/, containers never import pages; pilot is a temporary exception); standard state shape written down; screens/*/api.ts split (calls to api/<domain>/repository.ts, route inputs to pages/<Route>/inputs.ts). Code moves deferred as follow-ups F1-F5 in migration/refactor/followups.md (more conservative option where the two differed)."
 - 2026-10-22T21:23:01 P2-4 stage commit
+- 2026-10-22T21:23:02 P2-4 done 7605ebe: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); gate confirmed with changes (Opus + Fable)
+- 2026-10-22T21:23:11 P3-1 started
+- 2026-10-22T21:23:11 P3-1 stage dev
+- 2026-10-22T21:41:04 P3-1 stage test
+- 2026-10-22T21:47:25 P3-1 stage docs
+- 2026-10-22T21:48:57 P3-1 stage commit

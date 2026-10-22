@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { HostSurvey_PillItem } from '@/shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';
 import type { HostSurveyMeal, HostSurveyRoom } from '@/screens/HostSurvey/types';

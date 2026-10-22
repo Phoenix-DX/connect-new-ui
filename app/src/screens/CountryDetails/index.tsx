@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSList } from '@/components/ui/os/OSList';
 import type L from '@/shared/Leaflet/lib/leaflet';
 import { map_InvalidateSize } from '@/shared/Leaflet/lib/actions';

@@ -1,4 +1,5 @@
-/* Architecture rules for dependency-cruiser (plan v2 section 2.4, rules 3 to 10; section 4.4).
+/* Architecture rules for dependency-cruiser (plan v2 section 2.4, rules 3 to 10; section 4.4), plus the rules of the
+   refactor steps that keep a cleaned direction (P3-1: pages/ and shared/).
    no-circular is an error. The folder rules are warnings until Phase 9 turns them into errors. The target folders
    (pages/, containers/, platform/, legacy/os/) do not exist before Phase 1: the regexes apply when they appear.
    Rule 11 (alias imports) is an ESLint rule (no-restricted-imports), not set here. */
@@ -19,6 +20,24 @@ module.exports = {
       severity: 'warn',
       from: { path: '^src/pages/([^/]+)/' },
       to: { path: '^src/pages/', pathNot: '^src/pages/$1/' },
+    },
+    {
+      name: 'pages-imported-by-own-route-only',
+      comment:
+        'Only pages/<Route>/ imports pages/<Route>/: containers/, components/, shared/, screens/ and every other folder ' +
+        'never import pages/ (P2-4 follow-up F1; rule 3 covers the other pages). app/ finds the pages with ' +
+        'import.meta.glob, which dependency-cruiser does not follow.',
+      severity: 'warn',
+      from: { pathNot: '^src/pages/' },
+      to: { path: '^src/pages/' },
+    },
+    {
+      name: 'shared-no-import-of-screens-or-app',
+      comment:
+        'P3-1: shared/ does not import screens/ or app/. Values come through props or a platform/ module or context.',
+      severity: 'warn',
+      from: { path: '^src/shared/' },
+      to: { path: '^src/(screens|app)/' },
     },
     {
       name: 'rule-4-components-no-upward-import',

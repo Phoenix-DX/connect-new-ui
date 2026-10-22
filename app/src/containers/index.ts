@@ -4,3 +4,4 @@ export {
   type HouseholdDetailsContainerProps,
   type HouseholdDetailsSource,
 } from './HouseholdDetails/HouseholdDetailsContainer';
+export { useHouseholdDetailsFlags, type HouseholdDetailsFlags } from './HouseholdDetails/hooks/useHouseholdDetails';

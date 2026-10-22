@@ -2,7 +2,7 @@
 
 # Shared blocks
 
-One React component per OutSystems block, tagged `@os-block <Module.Flow.Block>`. OutSystems UI patterns live in `src/shared/osui/`.
+One React component per OutSystems block, tagged `@os-block <Module.Flow.Block>` or, after the refactor, `@origin <Module.Flow.Block>`. OutSystems UI patterns live in `src/shared/osui/`.
 
 | Block | Kind | Screens | Built |
 |---|---|---|---|

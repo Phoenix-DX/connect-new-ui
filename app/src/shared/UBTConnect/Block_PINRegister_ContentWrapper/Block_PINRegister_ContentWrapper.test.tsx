@@ -2,8 +2,8 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
+import { PATHS } from '@/platform/navigation/paths';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import { HOME } from '@/app/routes.generated';
 import { setResumeLoginLink } from '@/platform/session/resume';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
@@ -81,7 +81,7 @@ describe('Block_PINRegister_ContentWrapper', () => {
     view = setup({});
     await view.type('1357');
     await view.type('1357');
-    expect(view.location()).toBe(HOME);
+    expect(view.location()).toBe(PATHS.home);
     expect(getClientVar('UBTConnect.IsNavigateToHomeOnBack')).toBe(false);
   });
 

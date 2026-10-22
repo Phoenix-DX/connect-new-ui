@@ -12,7 +12,7 @@ import { registerMockPreload } from './api';
    first (slides 1-4 rendered with 5, 3, 6, 6 members): the start household (42438 answers the Vitale household, card
    1), then the other 22 households of locality 252 in the directory cast's card order (src/mocks/fictional/
    directory.ts): 91002 (3 members and a non-member row), 91003 and 91004 (6 members), with the captured member shapes
-   (CR-HouseholdCarousel-2, src/pages/HouseholdDetails/mockData.ts). */
+   (CR-HouseholdCarousel-2, src/containers/HouseholdDetails/mockData.ts). */
 const OTHER_HOUSEHOLDS = LOCALITY_HOUSEHOLDS.slice(1).map((h) => h.id);
 
 registerMockPreload((startingHouseholdId) => ({

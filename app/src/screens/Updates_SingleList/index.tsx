@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSList } from '@/components/ui/os/OSList';
 import { UserException } from '@/legacy/os/os-exceptions';
 import { useFlagOn } from '@/platform/flags/flags';

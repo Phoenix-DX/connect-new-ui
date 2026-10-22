@@ -195,16 +195,25 @@ const inventory = parseCsv(
   fs.readFileSync(path.join(APP, "docs/refactor/inventory.csv"), "utf8"),
 );
 
-function originOfBlock(inv) {
-  const p = path.join(APP, inv.path);
-  const files = fs.statSync(p).isDirectory()
-    ? [path.join(p, `${inv.name}.tsx`), ...walk(p)]
-    : [p];
-  for (const f of files) {
-    if (!fs.existsSync(f) || !/\.tsx?$/.test(f) || isTest(f) || isStory(f))
-      continue;
-    const m = fs.readFileSync(f, "utf8").match(/^\/\/ @os-block (\S+)/m);
-    if (m) return m[1];
+/** The OutSystems tag of a file: `// @os-block <name>` (migration) or the JSDoc tag `@origin <name>` (refactor, R4). */
+const ORIGIN_TAG = /^\/\/ @os-block (\S+)|@origin\s+(\w+(?:\.\w+)+)/m;
+
+/** The OutSystems name of a block, from the tag in its files. When the source path is gone (moved or merged), the
+    file at the target path gives it. */
+function originOfBlock(inv, target) {
+  for (const rel of [inv.path, target]) {
+    if (!rel) continue;
+    const p = path.join(APP, rel);
+    if (!fs.existsSync(p)) continue;
+    const files = fs.statSync(p).isDirectory()
+      ? [path.join(p, `${inv.name}.tsx`), ...walk(p)]
+      : [p];
+    for (const f of files) {
+      if (!fs.existsSync(f) || !/\.tsx?$/.test(f) || isTest(f) || isStory(f))
+        continue;
+      const m = fs.readFileSync(f, "utf8").match(ORIGIN_TAG);
+      if (m) return m[1] ?? m[2];
+    }
   }
   return "";
 }
@@ -332,7 +341,7 @@ for (const inv of inventory) {
   rows.push({
     merge: d.merge,
     source: inv.path,
-    origin: d.origin || originOfBlock(inv),
+    origin: d.origin || originOfBlock(inv, d.target),
     shape: d.shape,
     target: d.target,
     phase: d.phase,

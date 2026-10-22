@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { UserException } from '@/legacy/os/os-exceptions';
 import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';

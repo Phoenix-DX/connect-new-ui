@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail
 import { useEffect, useRef, type ReactNode } from 'react';
-import { NotCaptured } from '@/app/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
 import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
