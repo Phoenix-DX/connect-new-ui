@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { isSignedIn, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { CarouselTag } from '@/shared/UBTConnect/CarouselTag';
-import { HOUSEHOLD_DETAILS_ID } from '@/shared/UBTConnect/HouseholdDetails_Block/mockData';
+import { HOUSEHOLD_DETAILS_ID } from '@/pages/HouseholdDetails/mockData';
 import { EntitiesCarousel_HouseholdDetails } from './EntitiesCarousel_HouseholdDetails';
 
 const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });

@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P2-2",
+  "step": "P2-3",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-22T20:23:48"
+  "since": "2026-10-22T21:06:04"
  },
  "steps": {
   "P0-1": {
@@ -144,12 +144,25 @@
    "finished": "2026-10-22T20:04:42"
   },
   "P2-2": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-22T20:04:47",
    "tokens": {
     "dev": 150172,
     "test": 26094,
     "docs": 24135
+   },
+   "commit": "aedc20e",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within baseline",
+   "loops": 0,
+   "finished": "2026-10-22T20:23:48"
+  },
+  "P2-3": {
+   "status": "active",
+   "started": "2026-10-22T20:23:49",
+   "tokens": {
+    "dev": 356457,
+    "test": 41076,
+    "docs": 45341
    }
   }
  },

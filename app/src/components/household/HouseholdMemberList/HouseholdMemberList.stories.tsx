@@ -1,30 +1,26 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
-import { setClientVar } from '@/platform/session/session';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
-import { HouseholdDetails_Members_Block } from './HouseholdDetails_Members_Block';
+import { HouseholdMemberList } from './HouseholdMemberList';
 import { VITALE } from '@/mocks/fictional/directory';
 
 const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
-/** Directory_EntityDetailsActions needs the query client and a router; bookmarks and notes are synched (as captured). */
-const providers: Decorator = (Story) => {
-  setClientVar('UBTConnect.Bookmarks_IsSynched', true);
-  setClientVar('UBTConnect.Notes_IsSynched', true);
-  return (
-    <QueryClientProvider client={client}>
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    </QueryClientProvider>
-  );
-};
+/** The member photos (UBT_LazyImage) need the query client; a router for the links. */
+const providers: Decorator = (Story) => (
+  <QueryClientProvider client={client}>
+    <MemoryRouter>
+      <Story />
+    </MemoryRouter>
+  </QueryClientProvider>
+);
 
 const meta = {
-  title: 'Shared/UBTConnect/HouseholdDetails_Members_Block',
-  component: HouseholdDetails_Members_Block,
+  title: 'Components/Household/HouseholdMemberList',
+  component: HouseholdMemberList,
   decorators: [providers],
-} satisfies Meta<typeof HouseholdDetails_Members_Block>;
+} satisfies Meta<typeof HouseholdMemberList>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -41,8 +37,14 @@ const members: UI_HouseholdMember[] = VITALE.members.map((member, i) => ({
   HasNavigation: i < 2,
 }));
 
+/** The call-to-actions slot: the household details give Directory_EntityDetailsActions (a container to be, tested
+    with the household details); the captures collapse it, so the story shows its wrapper only. */
+const memberActions = () => <OSBlock name="Directory_CommonBlocks.Directory_EntityDetailsActions" />;
+
 /** HouseholdCarousel/default (pack: wrapper only). */
-export const V1: Story = { args: { inHouseholdMembers: members, inNonHouseholdMembers: [], inIsLoading: false } };
+export const V1: Story = {
+  args: { members, nonMembers: [], isLoading: false, renderMemberActions: memberActions },
+};
 /** HouseholdDetails/default: five members (actions and navigation on the parents), no married children (avatars, actions and
     chevrons collapsed: own tests). */
 export const V2: Story = { args: V1.args };

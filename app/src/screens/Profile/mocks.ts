@@ -6,7 +6,7 @@ import { mockDelay, scenario } from '@/mocks/scenario';
 import { collection } from '@/mocks/store';
 import { PROFILE_SPOUSE_NAME } from '@/mocks/fictional/directory';
 import { mockUserInformation, mockUserToggles } from '@/platform/session/mockUser';
-import { PROFILE_HOUSEHOLD_ID } from '@/shared/UBTConnect/HouseholdDetails_Block/mockData';
+import { PROFILE_HOUSEHOLD_ID } from '@/pages/HouseholdDetails/mockData';
 
 /* Profile mocks (P-MOCKS, P-MUTATION).
    - DataActionGetCountryInfo: recorded once (CurrentCountryCode US, fixture UBTConnect/DataActionGetCountryInfo/

@@ -1,0 +1,11 @@
+import { ViewHasChangedException, isInstanceOf } from '@/legacy/os/os-exceptions';
+
+/* The errors of a client action flow, for pages and hooks: plan v2 §2.4 rule 9 lets only platform/, api/ and app/
+   import legacy/os/. The barrel of platform/feedback does not export this module, because legacy/os/exceptions
+   imports that barrel (an import cycle). */
+
+export { raiseToFlowHandler } from '@/legacy/os/exceptions';
+
+/** The server answered that the screen changed version (ViewHasChangedException, an ignorable system exception): a
+    data source keeps its fetch status then. */
+export const isViewHasChangedException = (error: unknown): boolean => isInstanceOf(error, ViewHasChangedException);

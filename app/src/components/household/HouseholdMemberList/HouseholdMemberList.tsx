@@ -1,8 +1,6 @@
-// @os-block UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DataFetchStatus, OSList } from '@/components/ui/os/OSList';
-import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
@@ -18,8 +16,7 @@ import { Member_ListItem } from '@/shared/UBTConnectLibrary/Member_ListItem';
 import { NonMember_ListItem } from '@/shared/UBTConnectLibrary/NonMember_ListItem';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
-import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
-import { getSkeletonList_UI_HouseholdMembers, hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { getSkeletonList_UI_HouseholdMembers } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity, Connect_HouseholdMemberRole } from '@/shared/UBTConnect/lib/staticEntities';
 import type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
 import { SubLayout_DirectoryDetailScreen_Section } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
@@ -28,75 +25,74 @@ const NO_MEMBERS: UI_HouseholdMember[] = [];
 const AVATAR_SIZE = { Height: UBT_ImageSize.Base_52, Width: UBT_ImageSize.Square };
 const memberKey = (member: UI_HouseholdMember, index: number) => `${member.Id ?? ''}-${String(index)}`;
 
-export interface HouseholdDetails_Members_BlockProps {
+export interface HouseholdMemberListProps {
   /** OutSystems instance id of the block. */
   id?: string;
+  /** False: a click on a member does nothing. Default true. */
   isEnabled?: boolean;
-  inHouseholdMembers?: UI_HouseholdMember[];
-  inNonHouseholdMembers?: UI_HouseholdMember[];
-  inIsLoading?: boolean;
-  /** Data fetch status of In_HouseholdMembers (`_in_HouseholdMembersInDataFetchStatus`, the status of the caller's data
-      source; :274 passes it to the List as `source_dataFetchStatus`). Default Fetched. */
-  inHouseholdMembersDataFetchStatus?: DataFetchStatus;
-  /** Data fetch status of In_NonHouseholdMembers (`_in_NonHouseholdMembersInDataFetchStatus`, :568). Default Fetched. */
-  inNonHouseholdMembersDataFetchStatus?: DataFetchStatus;
-  /** Event Event_MemberOnClick(MemberId). */
-  onEventMemberOnClick?: (memberId: string) => void;
-  /** Event Event_NonMemberOnClick(HouseholdId): raised only when the user has access to the member's region. */
-  onEventNonMemberOnClick?: (householdId: string) => void;
+  /** The members of the household. */
+  members?: UI_HouseholdMember[];
+  /** The married children who live in other households. */
+  nonMembers?: UI_HouseholdMember[];
+  /** Shows the skeleton. While it is true and there are no members, the list shows five skeleton members until the
+      parent sets the members again. */
+  isLoading?: boolean;
+  /** The data fetch status of the source of `members` (the status of the list). Default Fetched. */
+  membersDataFetchStatus?: DataFetchStatus;
+  /** The data fetch status of the source of `nonMembers`. Default Fetched. */
+  nonMembersDataFetchStatus?: DataFetchStatus;
+  /** The call-to-actions of a member whose HasCTAs is true (the parent gives the entity actions). */
+  renderMemberActions?: (member: UI_HouseholdMember) => ReactNode;
+  /** The user clicked a member (its id). Not raised for a child row, for id 0 or when not enabled. */
+  onMemberClick?: (memberId: string) => void;
+  /** The user clicked a married child (row or chevron). The parent checks the access to the region of the child. */
+  onNonMemberClick?: (member: UI_HouseholdMember) => void;
 }
 
-/** Members of a household (p:migration/screens/HouseholdCarousel/analysis/sources/pretty/
-    UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block.mvc.js:186-760, controller :785-960).
-    SkeletonSection(In_IsLoading) > CustomContainer (margin-bottom ExtraSmall) > section "Household members" with the
-    List "list list-group list--gap-s" (animated, virtualization disabled) of Member_ListItem, then a section without
-    title (padding top Small, bottom Base) with the List of NonMember_ListItem. OnReady: while In_IsLoading with no
-    members the list shows GetSkeletonList_UI_HouseholdMembers(5) until the inputs change. */
-export function HouseholdDetails_Members_Block({
+/** The members of a household: a skeleton section with the section "Household members" (an animated list of member
+    rows with their call-to-actions and a chevron), then a section without title with the married children in other
+    households.
+    @origin UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block */
+export function HouseholdMemberList({
   id,
   isEnabled = true,
-  inHouseholdMembers = NO_MEMBERS,
-  inNonHouseholdMembers = NO_MEMBERS,
-  inIsLoading = false,
-  inHouseholdMembersDataFetchStatus = DataFetchStatus.Fetched,
-  inNonHouseholdMembersDataFetchStatus = DataFetchStatus.Fetched,
-  onEventMemberOnClick,
-  onEventNonMemberOnClick,
-}: HouseholdDetails_Members_BlockProps) {
-  // ScreenEvent_OnReady (:785-800): In_HouseholdMembers = the skeleton list, kept until the parent sets the input again.
+  members = NO_MEMBERS,
+  nonMembers = NO_MEMBERS,
+  isLoading = false,
+  membersDataFetchStatus = DataFetchStatus.Fetched,
+  nonMembersDataFetchStatus = DataFetchStatus.Fetched,
+  renderMemberActions,
+  onMemberClick,
+  onNonMemberClick,
+}: HouseholdMemberListProps) {
+  // OnReady: while loading without members, the list shows the skeleton list until the parent sets the members again.
   const [ready] = useState(() => ({
-    source: inHouseholdMembers,
-    skeleton: inIsLoading && inHouseholdMembers.length === 0 ? getSkeletonList_UI_HouseholdMembers(5) : undefined,
+    source: members,
+    skeleton: isLoading && members.length === 0 ? getSkeletonList_UI_HouseholdMembers(5) : undefined,
   }));
-  const members =
-    ready.skeleton !== undefined && inHouseholdMembers === ready.source ? ready.skeleton : inHouseholdMembers;
+  const shownMembers = ready.skeleton !== undefined && members === ready.source ? ready.skeleton : members;
 
-  // Handler_MemberOnClick (:836-850): nothing for MemberId 0 or when not enabled, else Event_MemberOnClick(MemberId).
+  // Handler_MemberOnClick: nothing for member id 0 or when not enabled.
   const memberOnClick = (memberId: string) => {
     if (memberId === '0' || !isEnabled) return;
-    onEventMemberOnClick?.(memberId);
-  };
-  // Handler_NonMemberOnClick (:869-905): HasAccessToRegion, then Event_NonMemberOnClick or the upgrade popup.
-  const nonMemberOnClick = async (localityName: string, countryName: string, householdId: string) => {
-    if (await hasAccessToRegion(localityName, countryName)) onEventNonMemberOnClick?.(householdId);
-    else await showUpgradePopUp();
+    onMemberClick?.(memberId);
   };
   const nonMemberClick = (member: UI_HouseholdMember) => () => {
-    void nonMemberOnClick(member.LocalityName ?? '', member.CountryName ?? '', member.HouseholdId ?? '0');
+    onNonMemberClick?.(member);
   };
 
   return (
     <OSBlock name="Directory_Household_Blocks.HouseholdDetails_Members_Block" id={id}>
-      <SkeletonSection inIsLoading={inIsLoading}>
+      <SkeletonSection inIsLoading={isLoading}>
         <CustomContainer options={{ MarginSize: { BottomSizeId: UBT_Size.ExtraSmall } }}>
           <SubLayout_DirectoryDetailScreen_Section inTitle="Household members">
             <OSList
-              source={members}
+              source={shownMembers}
               keyOf={memberKey}
               className="list list-group list--gap-s"
               animateItems
               disableVirtualization
-              sourceDataFetchStatus={inHouseholdMembersDataFetchStatus}
+              sourceDataFetchStatus={membersDataFetchStatus}
             >
               {(member) => (
                 <Member_ListItem
@@ -120,17 +116,7 @@ export function HouseholdDetails_Members_Block({
                         DisplayOptions: { Display: UBT_Display.Flex, JustifyContent: UBT_JustifyContent.SpaceBetween },
                       }}
                     >
-                      {member.HasCTAs === true && (
-                        <Directory_EntityDetailsActions
-                          enableOptions={{
-                            EnableCall: member.IsDeceased !== true,
-                            EnableEmail: member.IsDeceased !== true,
-                          }}
-                          entityType={Connect_Entity.Member}
-                          isEnabled={isEnabled}
-                          entityId={member.Id ?? '0'}
-                        />
-                      )}
+                      {member.HasCTAs === true && renderMemberActions?.(member)}
                       {member.HasNavigation === true && (
                         <div className="display-flex flex-direction-column justify-content-center" data-container="">
                           <CustomContainer
@@ -159,12 +145,12 @@ export function HouseholdDetails_Members_Block({
           inTitle=""
         >
           <OSList
-            source={inNonHouseholdMembers}
+            source={nonMembers}
             keyOf={memberKey}
             className="list list-group list--gap-s"
             animateItems
             disableVirtualization
-            sourceDataFetchStatus={inNonHouseholdMembersDataFetchStatus}
+            sourceDataFetchStatus={nonMembersDataFetchStatus}
           >
             {(member) => (
               <NonMember_ListItem

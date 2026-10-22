@@ -1,7 +1,8 @@
 // @os-block UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { HouseholdDetails_Block } from '@/shared/UBTConnect/HouseholdDetails_Block';
+import { HouseholdDetailsContainer } from '@/containers';
+import { useHouseholdDetailsFlags } from '@/pages/HouseholdDetails/hooks/useHouseholdDetails';
 
 export interface EntitiesCarousel_HouseholdDetailsProps {
   /** OutSystems instance id of the block. */
@@ -30,18 +31,19 @@ export function EntitiesCarousel_HouseholdDetails({
   onEventSetHeader,
 }: EntitiesCarousel_HouseholdDetailsProps) {
   const prefix = id?.replace('$', '');
+  const flags = useHouseholdDetailsFlags();
   return (
     <OSBlock name="Directory_Caroussel.EntitiesCarousel_HouseholdDetails" id={id}>
-      <HouseholdDetails_Block
+      <HouseholdDetailsContainer
         id={prefix === undefined ? undefined : `${prefix}-$b1`}
-        householdId={inHouseholdId}
-        inIsSkeletonOnly={inIsSkeletonOnly}
+        source={{ kind: 'server', householdId: inHouseholdId }}
+        flags={flags}
+        isSkeletonOnly={inIsSkeletonOnly}
         onHouseholdDataFetched={(localityName, countryName) => {
           onEventSetHeader?.(`${localityName}, ${countryName}`);
         }}
-      >
-        <div id={prefix === undefined ? undefined : `${prefix}-Placeholder_CarouselTag`}>{children}</div>
-      </HouseholdDetails_Block>
+        carouselTag={<div id={prefix === undefined ? undefined : `${prefix}-Placeholder_CarouselTag`}>{children}</div>}
+      />
     </OSBlock>
   );
 }

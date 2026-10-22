@@ -1,28 +1,30 @@
 import { useSearchParams } from 'react-router';
+import { DetailLayout } from '@/components/layout';
+import { HouseholdDetailsContainer } from '@/containers';
+import { useNavigateBack, useViewState } from '@/platform/navigation';
 import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
-import { HouseholdDetails_Block } from '@/shared/UBTConnect/HouseholdDetails_Block';
-import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
-import { useViewState } from '@/platform/navigation';
 import { readHouseholdDetailsInputs } from './api';
+import { useHouseholdDetailsFlags } from './hooks/useHouseholdDetails';
 
 /** @origin UBTConnect.Directory_Household.HouseholdDetails
-    (HouseholdDetails.mvc.js: model :1-80, view :81-275, controller
-    :276-380): Layout_DetailPage (In_IsPrimaryColor False) titled "Locality, Country", HouseholdDetails_Block as
-    content, BottomBarMenu without inputs and CommonUI_InsideLayout. No screen lifecycle event and no call of its own
-    (:290-292, :372-376). */
+    The route of a household: the detail layout (not primary) titled "Locality, Country", the household details as
+    content, the bottom bar without an active item and CommonUI_InsideLayout. The screen has no lifecycle event and no
+    call of its own: the title comes from the HouseholdDataFetched event of the household details. */
 export default function HouseholdDetails() {
   const [params] = useSearchParams();
   const { HouseholdId } = readHouseholdDetailsInputs(params);
-  // Screen variables (:13-21), kept by the view cache (P-BACK).
+  const flags = useHouseholdDetailsFlags();
+  const navigateBack = useNavigateBack();
+  // Screen variables, kept by the view cache (P-BACK).
   const [localityName, setLocalityName] = useViewState('LocalityName', '');
   const [countryName, setCountryName] = useViewState('CountryName', '');
   const [, setDeceasedOrAncestryView] = useViewState('DeceasedOrAncestry_View', false);
 
-  // Header title expression (:172).
+  // The header title: "Locality, Country", or the one that is not empty.
   const title = localityName !== '' ? localityName + (countryName !== '' ? `, ${countryName}` : '') : countryName;
 
-  // Handler_HouseholdDetails_DataFetched (:296-326): the three assignments.
+  // Handler_HouseholdDetails_DataFetched: the three assignments.
   const onHouseholdDataFetched = (locality: string, country: string, deceasedOrAncestryView: boolean) => {
     setLocalityName(locality);
     setCountryName(country);
@@ -30,19 +32,25 @@ export default function HouseholdDetails() {
   };
 
   return (
-    <Layout_DetailPage
+    <DetailLayout
       id="$b1"
-      inIsPrimaryColor={false}
-      placeholderHeaderTitle={
+      isPrimaryColor={false}
+      onBack={navigateBack}
+      headerTitle={
         <span className="font-semi-bold text-neutral-10" data-expression="">
           {title}
         </span>
       }
       content={
-        <HouseholdDetails_Block id="$b2" householdId={HouseholdId} onHouseholdDataFetched={onHouseholdDataFetched} />
+        <HouseholdDetailsContainer
+          id="$b2"
+          source={{ kind: 'server', householdId: HouseholdId }}
+          flags={flags}
+          onHouseholdDataFetched={onHouseholdDataFetched}
+        />
       }
       bottom={<BottomBarMenu id="$b3" />}
-      placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b4" />}
+      commonUI={<CommonUI_InsideLayout id="$b4" />}
     />
   );
 }

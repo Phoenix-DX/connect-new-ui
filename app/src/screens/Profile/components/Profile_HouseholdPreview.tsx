@@ -1,6 +1,7 @@
 // @os-block UBTConnect.App_Profile.Profile_HouseholdPreview
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { HouseholdDetails_Block } from '@/shared/UBTConnect/HouseholdDetails_Block';
+import { HouseholdDetailsContainer } from '@/containers';
+import { useHouseholdDetailsFlags } from '@/pages/HouseholdDetails/hooks/useHouseholdDetails';
 import type { HouseholdPreviewStructure } from '@/shared/UBTConnect/lib/structures';
 import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
@@ -24,6 +25,7 @@ const CONTENT_PADDING = { GeneralSizeId: UBT_Size.None };
     False, kebab menu shown, empty carousel tag). Initialized raises OnInitialized (:206-216). */
 export function Profile_HouseholdPreview({ id, householdId, preview, onOnInitialized }: Profile_HouseholdPreviewProps) {
   const scope = id?.replace('$', '') ?? 'b60';
+  const flags = useHouseholdDetailsFlags();
   return (
     <OSBlock name="App_Profile.Profile_HouseholdPreview" id={id}>
       <BottomSheet
@@ -33,12 +35,12 @@ export function Profile_HouseholdPreview({ id, householdId, preview, onOnInitial
         onInitialized={onOnInitialized}
         content={
           <div data-container="" inert style={{ textAlign: 'left' }}>
-            <HouseholdDetails_Block
+            <HouseholdDetailsContainer
               id={`${scope}-$b2`}
               isEnabled={false}
-              householdId={householdId}
-              inShowKebabMenu
-              preview={preview}
+              source={{ kind: 'preview', householdId, preview }}
+              flags={flags}
+              showKebabMenu
             />
           </div>
         }

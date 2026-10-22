@@ -1,6 +1,8 @@
 import { useEffect, useReducer, useRef } from 'react';
 import { useLocation, useSearchParams } from 'react-router';
 import { NotCaptured } from '@/app/NotCaptured';
+import { HouseholdDetailsContainer } from '@/containers';
+import { useHouseholdDetailsFlags } from '@/pages/HouseholdDetails/hooks/useHouseholdDetails';
 import { useFlagOn } from '@/platform/flags/flags';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
@@ -8,7 +10,6 @@ import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
-import { HouseholdDetails_Block } from '@/shared/UBTConnect/HouseholdDetails_Block';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
 import { ComingSoon } from '@/shared/UBTConnectLibrary/ComingSoon';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
@@ -111,6 +112,7 @@ function Locality_DetailsScreen() {
   const navigate = useOsNavigate();
   const restored = useWasRestoredFromCache();
   const mapsEnabled = useFlagOn('C2EnableMaps'); // GetHasMapsEnabled (view :267-308, :640-680)
+  const householdDetailsFlags = useHouseholdDetailsFlags();
   const [saved, setSaved] = useViewState<Model | null>('Model', null);
   const [state, dispatch] = useReducer(
     (s: Model, patch: Partial<Model>): Model => ({ ...s, ...patch }),
@@ -353,12 +355,13 @@ function Locality_DetailsScreen() {
           )}
           {selected === LocalityMenu.MyHousehold && (
             <NotCaptured name="My Household tab (Q1)">
-              <HouseholdDetails_Block
+              <HouseholdDetailsContainer
                 id={b(18)}
-                inShowKebabMenu
-                householdId={v.logged_User.householdId}
-                inCheckVisibility
-                inHideActions
+                showKebabMenu
+                source={{ kind: 'server', householdId: v.logged_User.householdId }}
+                flags={householdDetailsFlags}
+                checkVisibility
+                hideActions
               />
             </NotCaptured>
           )}

@@ -77,3 +77,10 @@
 - New domain folder `src/api/household/` with types, mapper, repository, keys, hooks and a barrel. The hooks use `staleTime: 0` and `gcTime: 0`.
 - `src/shared/UBTConnect/HouseholdDetails_Block/api.ts` only re-exports the domain under its old names; the callers are unchanged.
 - `move-map.csv` is unchanged: no block moved. Strict parity 64/64 for both references.
+
+## P2-3 - refactor(P2-3): HouseholdDetails as page, hooks, container and components
+
+- `HouseholdDetails_Block` is now `pages/HouseholdDetails/hooks/useHouseholdDetails.ts` (`useReducer`), `containers/HouseholdDetails/HouseholdDetailsContainer.tsx` (`source`: server or preview) and props-only components in `components/household/`. `components/layout/DetailLayout` is new; `Layout_DetailPage` is a thin adapter.
+- Both old block folders are deleted. HouseholdCarousel, Profile and Locality_Details use the container. `platform/feedback/flowErrors.ts` is new. 3 rows of `move-map.csv` have status `moved` (181, 182, 241).
+- Open for P2-4: (1) `components/household/HouseholdTimelinePhotos` is the Photos section of the card, but move-map row 184 gives that name to the port of `HouseholdDetails_TimelinePhoto_List`: settle the names. (2) When HouseholdCarousel and Profile become pages, move `useHouseholdDetails` next to the container: rule 3 will flag the `@/pages/HouseholdDetails/hooks/...` import.
+- Open: `migration/tools/docs_gen.py` and `migration/tools/refactor/move-map.mjs` read `// @os-block`; the new files use only `@origin`. `migration/screens/HouseholdDetails/route-spec.md` links to the old README path.

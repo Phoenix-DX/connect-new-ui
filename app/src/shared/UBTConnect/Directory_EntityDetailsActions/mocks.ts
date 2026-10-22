@@ -11,7 +11,7 @@ import {
   type CastHousehold,
 } from '@/mocks/fictional/directory';
 import { collection } from '@/mocks/store';
-import { sampleHouseholds } from '@/shared/UBTConnect/HouseholdDetails_Block/mockData';
+import { sampleHouseholds } from '@/pages/HouseholdDetails/mockData';
 import { notesCollection } from '@/shared/UBTConnect_Utils/NoteListActions/mocks';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 
