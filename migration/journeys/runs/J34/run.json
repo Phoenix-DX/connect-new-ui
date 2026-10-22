@@ -6,7 +6,7 @@
  "account": "global",
  "steps": [],
  "debug": "J34.debug/global-HomeFeed.png",
- "status": "blocked",
+ "status": "not-run",
  "blockedAt": {
   "step": 0,
   "screen": "HomeFeed",
@@ -28,14 +28,24 @@
    "debug": "J34.debug/global-HomeFeed.png"
   },
   {
-   "account": "regional",
+   "account": "local",
    "status": "skipped",
    "reason": "a policy waits for acceptance"
   },
   {
-   "account": "local",
-   "status": "skipped",
-   "reason": "a policy waits for acceptance"
+   "account": "regional",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J34.debug/regional-HomeFeed.png"
+  },
+  {
+   "account": "householder",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J34.debug/householder-HomeFeed.png"
   }
- ]
+ ],
+ "reason": "Needs the flag C2NewBookmarks off. On TST, each account tried has C2NewBookmarks on."
 }

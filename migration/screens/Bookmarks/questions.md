@@ -2,7 +2,8 @@
 
 Managed by route.py. Facts may be answered by the OutSystems MCP; decisions and reviews only by the user.
 
-## Q1 [decision] D2 Bookmarks branch: TST flag changed (open)
+## Q1 [decision] D2 Bookmarks branch: TST flag changed (answered)
 - Question: On TST the flag C2NewBookmarks (getHasNewBookmarks) is now true; on 2026-10-14 it was false. The Bookmarks tab of the bottom bar now opens Bookmarks (branch 1, skip:variant), not MyBookmarks (the built branch). D2 says: build the branch that PROD uses now. Which branch do we keep?
 - Evidence: flag_probe.cjs 2026-10-21 (scratchpad copy) vs migration/knowledge/flag-values-tst.json (probedAt 2026-10-14): only getHasNewBookmarks differs. journey_capture.cjs J33 2026-10-21: bottom bar Bookmarks opened /UBTConnect/Bookmarks; the guard blocked ActionGet_BookmarkPills_ByBookmarkCategoryIds (a read whose name contains Book).
 - Options: a) keep D2 as is (MyBookmarks) until the PROD value is known; journeys J33/J34 need C2NewBookmarks off  |  b) reopen Bookmarks (branch 1) because TST now uses it  |  c) build both branches behind the flag (recommended: a) keep D2 and check the PROD value of C2NewBookmarks first; record the new TST value in migration/knowledge/flag-values-tst.json)
+- Answer (user, 2026-10-22T08:51:34): a) Keep D2 as is (MyBookmarks) until the PROD value of C2NewBookmarks is known. Record the new TST value (true since 2026-10-21) in migration/knowledge/flag-values-tst.json. Journeys J33 and J34 need an account with C2NewBookmarks off (user, 2026-10-22).

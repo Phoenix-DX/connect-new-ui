@@ -76,18 +76,25 @@
      "debug": "J3.debug/global-HomeFeed.png"
     },
     {
-     "account": "regional",
-     "status": "blocked",
-     "at": "AcceptPendingPolicies",
-     "error": "page.waitForURL: Timeout 25000ms exceeded.",
-     "debug": "J3.debug/regional-AcceptPendingPolicies.png"
-    },
-    {
      "account": "local",
      "status": "blocked",
      "at": "AcceptPendingPolicies",
      "error": "page.waitForURL: Timeout 25000ms exceeded.",
      "debug": "J3.debug/local-AcceptPendingPolicies.png"
+    },
+    {
+     "account": "regional",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 45000ms exceeded.",
+     "debug": "J3.debug/regional-HomeFeed.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 45000ms exceeded.",
+     "debug": "J3.debug/householder-HomeFeed.png"
     }
    ]
   },
@@ -114,14 +121,23 @@
      "debug": "J4.debug/global-ConnectShare.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "ConnectShare",
+     "error": "page.waitForURL: Timeout 45000ms exceeded.",
+     "debug": "J4.debug/regional-ConnectShare.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "ConnectShare",
+     "error": "page.waitForURL: Timeout 45000ms exceeded.",
+     "debug": "J4.debug/householder-ConnectShare.png"
     }
    ]
   },
@@ -150,14 +166,23 @@
      "debug": "J5.debug/global-Updates_SingleList.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "Updates_SingleList",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J5.debug/regional-Updates_SingleList.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "Updates_SingleList",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J5.debug/householder-Updates_SingleList.png"
     }
    ]
   },
@@ -230,7 +255,7 @@
    ]
   },
   "J10": {
-   "status": "blocked",
+   "status": "not-run",
    "account": "global",
    "steps": 1,
    "at": {
@@ -241,7 +266,7 @@
     "path": "/UBTConnect/MessageList",
     "blocked": []
    },
-   "reason": null,
+   "reason": "Needs the flag C2NewNotifications on. On TST, each account tried has C2NewNotifications off.",
    "ranAt": "2026-10-21T17:47:37.528Z",
    "attempts": [
     {
@@ -252,14 +277,23 @@
      "debug": "J10.debug/global-HomeFeed.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J10.debug/regional-HomeFeed.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J10.debug/householder-HomeFeed.png"
     }
    ]
   },
@@ -332,7 +366,7 @@
    ]
   },
   "J15": {
-   "status": "blocked",
+   "status": "not-run",
    "account": "global",
    "steps": 2,
    "at": {
@@ -343,7 +377,7 @@
     "path": "/UBTConnect/SupperMeeting_Details",
     "blocked": []
    },
-   "reason": null,
+   "reason": "Needs the flag C2ExtendedShare off. On TST, each account tried has C2ExtendedShare on.",
    "ranAt": "2026-10-21T17:49:06.976Z",
    "attempts": [
     {
@@ -354,19 +388,28 @@
      "debug": "J15.debug/global-SupperMeeting_Details.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "SupperMeeting_Details",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J15.debug/regional-SupperMeeting_Details.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "SupperMeeting_Details",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J15.debug/householder-SupperMeeting_Details.png"
     }
    ]
   },
   "J16": {
-   "status": "blocked",
+   "status": "not-run",
    "account": "global",
    "steps": 1,
    "at": {
@@ -377,7 +420,7 @@
     "path": "/UBTConnect/CountryList",
     "blocked": []
    },
-   "reason": null,
+   "reason": "Needs the flag C2EnableC1DirectoryView off. On TST, each account tried has C2EnableC1DirectoryView on.",
    "ranAt": "2026-10-21T17:51:41.153Z",
    "attempts": [
     {
@@ -388,14 +431,23 @@
      "debug": "J16.debug/global-HomeFeed.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J16.debug/regional-HomeFeed.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J16.debug/householder-HomeFeed.png"
     }
    ]
   },
@@ -422,14 +474,23 @@
      "debug": "J17.debug/global-MilestoneDetail.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J17.debug/regional-OrbitLanding.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J17.debug/householder-OrbitLanding.png"
     }
    ]
   },
@@ -490,14 +551,23 @@
      "debug": "J20.debug/global-EventDetail.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J20.debug/regional-OrbitLanding.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J20.debug/householder-OrbitLanding.png"
     }
    ]
   },
@@ -541,14 +611,23 @@
      "debug": "J22.debug/global-EventDetail.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J22.debug/regional-OrbitLanding.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J22.debug/householder-OrbitLanding.png"
     }
    ]
   },
@@ -575,14 +654,23 @@
      "debug": "J23.debug/global-EventDetail.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J23.debug/regional-OrbitLanding.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J23.debug/householder-OrbitLanding.png"
     }
    ]
   },
@@ -609,14 +697,23 @@
      "debug": "J24.debug/global-EventDetail.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J24.debug/regional-OrbitLanding.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J24.debug/householder-OrbitLanding.png"
     }
    ]
   },
@@ -643,14 +740,23 @@
      "debug": "J25.debug/global-MilestoneDetail.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J25.debug/regional-OrbitLanding.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "OrbitLanding",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+     "debug": "J25.debug/householder-OrbitLanding.png"
     }
    ]
   },
@@ -677,14 +783,23 @@
      "debug": "J26.debug/global-HomeFeed.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "no visible element for: [data-block='Home.FeedBlock_Services'] >> text=/Orbit Admin/i | a[href*=\"/OrbitAdminLanding\"]",
+     "debug": "J26.debug/regional-HomeFeed.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "no visible element for: [data-block='Home.FeedBlock_Services'] >> text=/Orbit Admin/i | a[href*=\"/OrbitAdminLanding\"]",
+     "debug": "J26.debug/householder-HomeFeed.png"
     }
    ]
   },
@@ -762,14 +877,23 @@
      "debug": "J30.debug/global-MessageDetail.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "MessageDetail",
+     "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/EventDetail\"]",
+     "debug": "J30.debug/regional-MessageDetail.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "MessageList",
+     "error": "no visible element for: [data-block='MyNotifications.MessageListItem'] | a[href*=\"/MessageDetail\"]",
+     "debug": "J30.debug/householder-MessageList.png"
     }
    ]
   },
@@ -796,14 +920,23 @@
      "debug": "J31.debug/global-MessageDetail.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "MessageDetail",
+     "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/FeedItemDetail\"]",
+     "debug": "J31.debug/regional-MessageDetail.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "MessageList",
+     "error": "no visible element for: [data-block='MyNotifications.MessageListItem'] | a[href*=\"/MessageDetail\"]",
+     "debug": "J31.debug/householder-MessageList.png"
     }
    ]
   },
@@ -830,19 +963,28 @@
      "debug": "J32.debug/global-MessageDetail.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "MessageDetail",
+     "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/LDM_Email_V2\"]",
+     "debug": "J32.debug/regional-MessageDetail.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "MessageList",
+     "error": "no visible element for: [data-block='MyNotifications.MessageListItem'] | a[href*=\"/MessageDetail\"]",
+     "debug": "J32.debug/householder-MessageList.png"
     }
    ]
   },
   "J33": {
-   "status": "blocked",
+   "status": "not-run",
    "account": "global",
    "steps": 1,
    "at": {
@@ -855,7 +997,7 @@
      "ActionGet_BookmarkPills_ByBookmarkCategoryIds"
     ]
    },
-   "reason": null,
+   "reason": "Needs the flag C2NewBookmarks off. On TST, each account tried has C2NewBookmarks on.",
    "ranAt": "2026-10-21T18:06:17.784Z",
    "attempts": [
     {
@@ -866,19 +1008,28 @@
      "debug": "J33.debug/global-HomeFeed.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J33.debug/regional-HomeFeed.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J33.debug/householder-HomeFeed.png"
     }
    ]
   },
   "J34": {
-   "status": "blocked",
+   "status": "not-run",
    "account": "global",
    "steps": 0,
    "at": {
@@ -891,7 +1042,7 @@
      "ActionGet_BookmarkPills_ByBookmarkCategoryIds"
     ]
    },
-   "reason": null,
+   "reason": "Needs the flag C2NewBookmarks off. On TST, each account tried has C2NewBookmarks on.",
    "ranAt": "2026-10-21T18:07:56.130Z",
    "attempts": [
     {
@@ -902,14 +1053,23 @@
      "debug": "J34.debug/global-HomeFeed.png"
     },
     {
-     "account": "regional",
+     "account": "local",
      "status": "skipped",
      "reason": "a policy waits for acceptance"
     },
     {
-     "account": "local",
-     "status": "skipped",
-     "reason": "a policy waits for acceptance"
+     "account": "regional",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J34.debug/regional-HomeFeed.png"
+    },
+    {
+     "account": "householder",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J34.debug/householder-HomeFeed.png"
     }
    ]
   },
@@ -965,5 +1125,5 @@
    ]
   }
  },
- "ranAt": "2026-10-21T18:09:08.413Z"
+ "ranAt": "2026-10-22T02:55:40.947Z"
 }

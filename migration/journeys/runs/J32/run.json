@@ -38,14 +38,23 @@
    "debug": "J32.debug/global-MessageDetail.png"
   },
   {
-   "account": "regional",
+   "account": "local",
    "status": "skipped",
    "reason": "a policy waits for acceptance"
   },
   {
-   "account": "local",
-   "status": "skipped",
-   "reason": "a policy waits for acceptance"
+   "account": "regional",
+   "status": "blocked",
+   "at": "MessageDetail",
+   "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/LDM_Email_V2\"]",
+   "debug": "J32.debug/regional-MessageDetail.png"
+  },
+  {
+   "account": "householder",
+   "status": "blocked",
+   "at": "MessageList",
+   "error": "no visible element for: [data-block='MyNotifications.MessageListItem'] | a[href*=\"/MessageDetail\"]",
+   "debug": "J32.debug/householder-MessageList.png"
   }
  ]
 }

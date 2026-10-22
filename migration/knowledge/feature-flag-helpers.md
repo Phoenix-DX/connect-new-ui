@@ -11,7 +11,7 @@ The table lists two more flags as (direct): the code checks them directly with a
 | Helper | Flag | TST test account | Used in (flows / blocks) | Chooses between screens? |
 |---|---|---|---|---|
 | GetHasNewLDM | outSystems_FF.C2NewLDM | true | Calendar, Home, Legacy_LDMEventsFlow, Legacy_MyNotificationsFlow | yes: LDM V2 / V1 (D1) |
-| GetHasNewBookmarks | outSystems_FF.C2NewBookmarks | false | App_Common, Directory_CommonBlocks, Directory_Locality | yes: Bookmarks / New_MyBookmarks / MyBookmarks (D2) |
+| GetHasNewBookmarks | outSystems_FF.C2NewBookmarks | true since 2026-10-21 (false on 2026-10-14; Bookmarks Q1) | App_Common, Directory_CommonBlocks, Directory_Locality | yes: Bookmarks / New_MyBookmarks / MyBookmarks (D2) |
 | GetHasBookmarNote | launchDarkly_FF.mobileDirectoryBookmarkNote | false | Assemble, MyBookmarksFlow (+ bottom bar directly) | yes, with the above (D2) |
 | GetHasNewNotifications | outSystems_FF.C2NewNotifications | false | App_NotificationIcon, MessageDetail | yes: bell → Notifications / MessageList (D11) |
 | GetHasCarouselEnabled | outSystems_FF.C2EnableCarousel | true | 10 places: Directory_*, Home, Legacy_AssembleFlow | yes: HouseholdCarousel / HouseholdDetails |

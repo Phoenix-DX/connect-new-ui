@@ -4,7 +4,8 @@
  * each step: the path reached, the element that the step used, the screenservice actions it called and a screenshot
  * of the masked DOM. The result is the evidence that a journey works on the real app, and the base for e2e tests.
  *
- *   node migration/tools/journey_capture.cjs run [--only J5,J11] [--skip-verified] [--headed] [--keep-dom]
+ *   node migration/tools/journey_capture.cjs run [--only J5,J11] [--accounts regional] [--skip-verified] [--headed] [--keep-dom]
+ *   --accounts: run only these roles of .auth/accounts.json, in this order; the last run counts as an earlier attempt
  *   --debug: when a step stops, also save the masked DOM and a screenshot of the page at that moment (popups included)
  *            as runs/<J>/debug-<Screen>.{html,png}
  *   --skip-verified: leave out the journeys whose last run (runs/<J>/run.json) is verified and still has its screenshots
@@ -13,7 +14,9 @@
  * the accounts in order (default global, regional, local) until one verifies it; a verified journey is not run again
  * (--all runs them too). An account with a pending policy is left out (accepting writes data), except for journeys
  * through AcceptPendingPolicies. A stopped attempt saves a debug snapshot in runs/<J>.debug/. run.json records the
- * account role that verified the journey and every attempt; when none verifies it, runs/<J> is the furthest attempt. Only this process reads the file; the values go to
+ * account role that verified the journey and every attempt; when none verifies it, runs/<J> is the furthest attempt. A
+ * journey with `requires` that no account verifies is not-run (it keeps the furthest attempt); later runs try only the
+ * accounts not tried yet (user, 2026-10-22). Only this process reads the file; the values go to
  * site_auth.cjs and are never printed or written. Format (the owner writes it):
  *   { "password": "…", "pin": "…", "accounts": { "global": "<user>", "regional": "<user>", "local": "<user>",
  *     "householder": "<user>" }, "order": ["global", "regional", "local"] }
@@ -261,7 +264,7 @@ async function runJourney(browser, session, renderCtx, j, byId, o) {
   const result = { journey: j.id, title: j.title, ranAt: new Date().toISOString(), viewport: DEVICE || `${VIEWPORT.width}x${VIEWPORT.height}`,
                    account: session.role || null, steps: [] };
   if (j.requires && j.requires.tst !== j.requires.value && !session.role) {   // with several accounts, another user may have the value
-    Object.assign(result, { status: 'not-run', reason: `Needs the flag ${j.requires.flag} ${j.requires.value}; it is ${j.requires.tst} on TST.` });
+    Object.assign(result, { status: 'not-run', reason: `Needs the flag ${j.requires.flag} ${j.requires.value}. On TST, ${j.requires.flag} is ${j.requires.tst}.` });
     fs.writeFileSync(path.join(dir, 'run.json'), JSON.stringify(result, null, 1));
     fs.rmSync(final, { recursive: true, force: true }); fs.renameSync(dir, final);
     return result;
@@ -359,12 +362,12 @@ async function runJourney(browser, session, renderCtx, j, byId, o) {
 }
 
 /* the accounts of .auth/accounts.json, in memory only; null when the file does not exist */
-function loadAccounts() {
+function loadAccounts(pick) {
   if (!fs.existsSync(ACCOUNTS)) return null;
   const tracked = require('child_process').spawnSync('git', ['ls-files', '--error-unmatch', ACCOUNTS], { encoding: 'utf8' });
   if (tracked.status === 0) throw new Error(`${ACCOUNTS} is tracked by git: remove it from the repository first`);
   const a = JSON.parse(fs.readFileSync(ACCOUNTS, 'utf8'));
-  const order = a.order || ['global', 'regional', 'local'];
+  const order = pick || a.order || ['global', 'regional', 'local'];
   const roles = order.filter(r => a.accounts && a.accounts[r]);
   const missing = order.filter(r => !(a.accounts && a.accounts[r]));
   if (missing.length) log(`accounts: no user for ${missing.join(', ')} (left out)`);
@@ -383,7 +386,8 @@ async function main() {
   VIEWPORT = { width: w, height: h };
   DEVICE = d.device || null;
   PROFILE = auth.resolveProfile({});
-  const accounts = o['single-account'] ? null : loadAccounts();
+  const pick = o.accounts ? String(o.accounts).split(',').map(s => s.trim()) : null;
+  const accounts = o['single-account'] ? null : loadAccounts(pick);
   SECRETS = PROFILE && !accounts ? auth.loadSecrets(PROFILE, {}) : null;
   if (!PROFILE || (!SECRETS && !accounts)) { console.error('site profile or secrets not found: ask the user (see site_auth.cjs)'); process.exit(1); }
   log(`site profile: ${PROFILE.name}; ${accounts ? `accounts: ${accounts.map(a => a.role).join(' → ')}` : 'secrets: found'}; guard on, ${ALLOW.size} confirmed action(s) allowed`);
@@ -398,8 +402,20 @@ async function main() {
       return r.status === 'verified' && r.steps.every(s => !s.shot || fs.existsSync(path.join(OUT, id, s.shot)));
     } catch { return false; }
   };
-  const ids = J.journeys.map(x => x.id).filter(id => (!only || only.has(id)) && !(o['skip-verified'] && verifiedWithShots(id)));
+  // a journey that needs another flag value (not-run) runs again only with the accounts not tried yet
+  const untried = id => {
+    if (!accounts || o.all) return accounts;
+    try {
+      const r = JSON.parse(fs.readFileSync(path.join(OUT, id, 'run.json'), 'utf8'));
+      if (r.status !== 'not-run' || !byId[id].requires) return accounts;
+      const tried = new Set((r.attempts || []).filter(x => x.status !== 'skipped').map(x => x.account));
+      return accounts.filter(a => !tried.has(a.role));
+    } catch { return accounts; }
+  };
+  const ids = J.journeys.map(x => x.id).filter(id => (!only || only.has(id)) && !(o['skip-verified'] && verifiedWithShots(id))
+                                                && !(accounts && !untried(id).length));
   log(`journeys to run: ${ids.join(', ') || 'none'}`);
+  if (!ids.length) return;
   const ordered = [...first.filter(id => ids.includes(id)), ...ids.filter(id => !first.includes(id) && !last.includes(id)), ...last.filter(id => ids.includes(id))];
 
   const browser = await pw.chromium.launch({ headless: !o.headed });
@@ -436,14 +452,29 @@ async function main() {
         r = await runJourney(browser, s, renderCtx, j, byId, o);
         say(id, r);
       } else {
-        fs.rmSync(path.join(OUT, `${id}.debug`), { recursive: true, force: true });
+        const runWith = untried(id);
+        const partial = !!pick || runWith !== accounts;   // some accounts only: the last run counts too
+        const dbg = path.join(OUT, `${id}.debug`);
+        if (!partial) fs.rmSync(dbg, { recursive: true, force: true });
+        else if (fs.existsSync(dbg)) for (const f of fs.readdirSync(dbg)) if (runWith.some(a => f.startsWith(`${a.role}-`))) fs.rmSync(path.join(dbg, f), { force: true });
         const viaPolicies = j.steps.some(st => st.screen === 'AcceptPendingPolicies');
         const attempts = [];
         // when no account verifies the journey, runs/<J> keeps the attempt that went furthest (the first one on a tie)
         const progress = x => (x.status === 'verified' ? Infinity : x.blockedAt ? x.blockedAt.step : -1);
         const keep = path.join(OUT, `${id}.best`);
-        let best = null;
-        for (const acc of accounts) {
+        let best = null, earlier = [];
+        // with some accounts only, the last run counts as the first attempt, and its attempts of the other accounts stay
+        const prevPath = path.join(OUT, id, 'run.json');
+        if (partial && fs.existsSync(prevPath)) {
+          const prev = JSON.parse(fs.readFileSync(prevPath, 'utf8'));
+          if (prev.status !== 'verified') {
+            best = prev;
+            earlier = (prev.attempts || []).filter(x => !runWith.some(a => a.role === x.account));
+            fs.rmSync(keep, { recursive: true, force: true });
+            fs.cpSync(path.join(OUT, id), keep, { recursive: true });
+          }
+        }
+        for (const acc of runWith) {
           const s = await sessionOf(acc);
           if (s.failed) { attempts.push({ account: acc.role, status: 'skipped', reason: 'sign-in failed' }); continue; }
           if (s.pendingPolicy && !viaPolicies) { attempts.push({ account: acc.role, status: 'skipped', reason: 'a policy waits for acceptance' }); continue; }
@@ -458,12 +489,17 @@ async function main() {
             fs.cpSync(path.join(OUT, id), keep, { recursive: true });
           }
         }
-        if (best && r !== best && r.status !== 'verified') { fs.rmSync(path.join(OUT, id), { recursive: true, force: true }); fs.renameSync(keep, path.join(OUT, id)); }
+        if (best && r !== best && (!r || r.status !== 'verified')) { fs.rmSync(path.join(OUT, id), { recursive: true, force: true }); fs.renameSync(keep, path.join(OUT, id)); }
         fs.rmSync(keep, { recursive: true, force: true });
         const runPath = path.join(OUT, id, 'run.json');
         if (fs.existsSync(runPath)) {   // the final run.json is the last attempt: add the list of attempts
           const fr = JSON.parse(fs.readFileSync(runPath, 'utf8'));
-          fr.attempts = attempts;
+          fr.attempts = [...earlier, ...attempts];
+          if (fr.status !== 'verified' && j.requires && j.requires.tst !== j.requires.value) {   // no account has the flag value (user, 2026-10-22)
+            fr.status = 'not-run';
+            fr.reason = `Needs the flag ${j.requires.flag} ${j.requires.value}. On TST, each account tried has ${j.requires.flag} ${j.requires.tst}.`;
+            log(`${id}: not run on TST (${fr.reason})`);
+          }
           fs.writeFileSync(runPath, JSON.stringify(fr, null, 1));
           r = fr;
         }

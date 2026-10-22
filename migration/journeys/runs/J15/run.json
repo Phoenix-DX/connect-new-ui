@@ -47,7 +47,7 @@
   }
  ],
  "debug": "J15.debug/global-SupperMeeting_Details.png",
- "status": "blocked",
+ "status": "not-run",
  "blockedAt": {
   "step": 5,
   "screen": "SupperMeeting_Details",
@@ -66,14 +66,24 @@
    "debug": "J15.debug/global-SupperMeeting_Details.png"
   },
   {
-   "account": "regional",
+   "account": "local",
    "status": "skipped",
    "reason": "a policy waits for acceptance"
   },
   {
-   "account": "local",
-   "status": "skipped",
-   "reason": "a policy waits for acceptance"
+   "account": "regional",
+   "status": "blocked",
+   "at": "SupperMeeting_Details",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J15.debug/regional-SupperMeeting_Details.png"
+  },
+  {
+   "account": "householder",
+   "status": "blocked",
+   "at": "SupperMeeting_Details",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J15.debug/householder-SupperMeeting_Details.png"
   }
- ]
+ ],
+ "reason": "Needs the flag C2ExtendedShare off. On TST, each account tried has C2ExtendedShare on."
 }

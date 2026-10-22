@@ -13,7 +13,10 @@
   ],
   "recommend": "a) keep D2 and check the PROD value of C2NewBookmarks first; record the new TST value in migration/knowledge/flag-values-tst.json",
   "blocking": false,
-  "status": "open",
-  "askedAt": "2026-10-21T16:53:33"
+  "status": "answered",
+  "askedAt": "2026-10-21T16:53:33",
+  "answer": "a) Keep D2 as is (MyBookmarks) until the PROD value of C2NewBookmarks is known. Record the new TST value (true since 2026-10-21) in migration/knowledge/flag-values-tst.json. Journeys J33 and J34 need an account with C2NewBookmarks off (user, 2026-10-22).",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-22T08:51:34"
  }
 ]

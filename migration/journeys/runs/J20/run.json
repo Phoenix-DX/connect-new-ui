@@ -41,14 +41,23 @@
    "debug": "J20.debug/global-EventDetail.png"
   },
   {
-   "account": "regional",
+   "account": "local",
    "status": "skipped",
    "reason": "a policy waits for acceptance"
   },
   {
-   "account": "local",
-   "status": "skipped",
-   "reason": "a policy waits for acceptance"
+   "account": "regional",
+   "status": "blocked",
+   "at": "OrbitLanding",
+   "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+   "debug": "J20.debug/regional-OrbitLanding.png"
+  },
+  {
+   "account": "householder",
+   "status": "blocked",
+   "at": "OrbitLanding",
+   "error": "no visible element for: [data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont | a[href*=\"/EventDetail\"]",
+   "debug": "J20.debug/householder-OrbitLanding.png"
   }
  ]
 }

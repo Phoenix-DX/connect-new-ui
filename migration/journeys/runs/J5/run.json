@@ -63,14 +63,23 @@
    "debug": "J5.debug/global-Updates_SingleList.png"
   },
   {
-   "account": "regional",
+   "account": "local",
    "status": "skipped",
    "reason": "a policy waits for acceptance"
   },
   {
-   "account": "local",
-   "status": "skipped",
-   "reason": "a policy waits for acceptance"
+   "account": "regional",
+   "status": "blocked",
+   "at": "Updates_SingleList",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J5.debug/regional-Updates_SingleList.png"
+  },
+  {
+   "account": "householder",
+   "status": "blocked",
+   "at": "Updates_SingleList",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J5.debug/householder-Updates_SingleList.png"
   }
  ]
 }

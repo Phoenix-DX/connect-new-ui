@@ -5,7 +5,7 @@
  "probedAt": "2026-10-14T05:24:13.276Z",
  "values": {
   "getHasNewLDM": true,
-  "getHasNewBookmarks": false,
+  "getHasNewBookmarks": true,
   "getHasBookmarNote": false,
   "getHasNewNotifications": false,
   "getHasCarouselEnabled": true,
@@ -26,5 +26,15 @@
   "outSystems_FF.c2EnableSearchByBirthday": true,
   "launchDarkly_FF.mobileStudentInformation": true
  },
- "callsDuringProbe": []
+ "callsDuringProbe": [],
+ "changes": [
+  {
+   "value": "getHasNewBookmarks",
+   "from": false,
+   "to": true,
+   "seenAt": "2026-10-21",
+   "evidence": "flag_probe.cjs on 2026-10-21 (global test account) and journey J33: Bookmarks in the bottom bar opens Bookmarks. The other values are from probedAt.",
+   "decision": "Bookmarks Q1 a (user, 2026-10-22): keep MyBookmarks (D2) until the PROD value is known."
+  }
+ ]
 }

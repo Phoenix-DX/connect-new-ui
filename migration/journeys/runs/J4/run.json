@@ -38,14 +38,23 @@
    "debug": "J4.debug/global-ConnectShare.png"
   },
   {
-   "account": "regional",
+   "account": "local",
    "status": "skipped",
    "reason": "a policy waits for acceptance"
   },
   {
-   "account": "local",
-   "status": "skipped",
-   "reason": "a policy waits for acceptance"
+   "account": "regional",
+   "status": "blocked",
+   "at": "ConnectShare",
+   "error": "page.waitForURL: Timeout 45000ms exceeded.",
+   "debug": "J4.debug/regional-ConnectShare.png"
+  },
+  {
+   "account": "householder",
+   "status": "blocked",
+   "at": "ConnectShare",
+   "error": "page.waitForURL: Timeout 45000ms exceeded.",
+   "debug": "J4.debug/householder-ConnectShare.png"
   }
  ]
 }

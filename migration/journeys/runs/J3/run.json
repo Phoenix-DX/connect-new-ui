@@ -48,18 +48,25 @@
    "debug": "J3.debug/global-HomeFeed.png"
   },
   {
-   "account": "regional",
-   "status": "blocked",
-   "at": "AcceptPendingPolicies",
-   "error": "page.waitForURL: Timeout 25000ms exceeded.",
-   "debug": "J3.debug/regional-AcceptPendingPolicies.png"
-  },
-  {
    "account": "local",
    "status": "blocked",
    "at": "AcceptPendingPolicies",
    "error": "page.waitForURL: Timeout 25000ms exceeded.",
    "debug": "J3.debug/local-AcceptPendingPolicies.png"
+  },
+  {
+   "account": "regional",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "page.waitForURL: Timeout 45000ms exceeded.",
+   "debug": "J3.debug/regional-HomeFeed.png"
+  },
+  {
+   "account": "householder",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "page.waitForURL: Timeout 45000ms exceeded.",
+   "debug": "J3.debug/householder-HomeFeed.png"
   }
  ]
 }

@@ -110,7 +110,7 @@
    "preconditions": [
     "A policy waits for acceptance by the user"
    ],
-   "knownBlock": "Accepting the policies writes data; the read-only guard blocks it (CLAUDE.md rule 6). The first account had no pending policy; the second account has one (2026-10-21).",
+   "knownBlock": "Accepting the policies writes data; the read-only guard blocks it (CLAUDE.md rule 6). The journey needs an account with a pending policy. The last run is from the regional account on 2026-10-21, before the owner accepted its policy on 2026-10-22. Now only the local account has a pending policy.",
    "steps": [
     {
      "screen": "HomeFeed",
@@ -215,7 +215,7 @@
      "screen": "Household_Relations"
     }
    ],
-   "knownBlock": "Opening an update first marks it as read (ServiceAPIAction_UI_UpdateItem_MarkAsRead), a write that the read-only guard blocks."
+   "knownBlock": "Opening an update first marks it as read (ServiceAPIAction_UI_UpdateItem_MarkAsRead), a write that the read-only guard blocks. The stop stays: writes stay blocked; e2e tests on the mock app cover the rest (user, 2026-10-22)."
   },
   {
    "id": "J6",
@@ -1201,6 +1201,11 @@
    "group": "Messages and saved items",
    "title": "Open saved items",
    "purpose": "A user opens a group of saved items and a saved household.",
+   "requires": {
+    "flag": "C2NewBookmarks",
+    "value": "off",
+    "tst": "on"
+   },
    "notes": [
     "On 2026-10-14, Bookmarks in the bottom bar opened MyBookmarks (C2NewBookmarks and mobileDirectoryBookmarkNote off).",
     "The flag C2EnableCarousel is on on TST. Household links open the household carousel."
@@ -1241,7 +1246,7 @@
      "screen": "HouseholdCarousel"
     }
    ],
-   "knownBlock": "Observed on TST 2026-10-21: Bookmarks in the bottom bar opens Bookmarks, not MyBookmarks, because C2NewBookmarks is now true on TST (it was false on 2026-10-14). Decision open: Bookmarks Q1."
+   "knownBlock": "Observed on TST 2026-10-21: Bookmarks in the bottom bar opens Bookmarks, not MyBookmarks, because C2NewBookmarks is now true on TST (it was false on 2026-10-14). Bookmarks Q1 (user, 2026-10-22): keep MyBookmarks until the PROD value is known. The journey needs an account with C2NewBookmarks off."
   },
   {
    "id": "J34",
@@ -1255,6 +1260,11 @@
    "preconditions": [
     "A saved community business"
    ],
+   "requires": {
+    "flag": "C2NewBookmarks",
+    "value": "off",
+    "tst": "on"
+   },
    "notes": [
     "Community business details show a Coming soon screen."
    ],
@@ -1273,7 +1283,7 @@
      "screen": "CommunityBusinessDetails_CoomingSoon"
     }
    ],
-   "knownBlock": "Starts from J33, which stops on TST: see J33 and the decision Bookmarks Q1."
+   "knownBlock": "Starts from J33, which needs an account with C2NewBookmarks off (Bookmarks Q1)."
   },
   {
    "id": "J35",

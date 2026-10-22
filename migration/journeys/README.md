@@ -50,7 +50,8 @@ Journeys view of the UI Flows dashboard (`migration/flows-dashboard/`). Decision
 - `auth`: `locked` is a new tab of a signed-in browser, so the app asks for the PIN. `register` is a new browser that
   signs in and sets a PIN.
 - `requires`: the journey needs a flag value that TST does not have. With one account, the runner does not run it.
-  With several accounts, it tries them, because flag values can differ per user.
+  With several accounts, it tries them, because flag values can differ per user. When no account verifies it, the
+  status is `not-run` (user, 2026-10-22), and later runs try only the accounts that did not run it yet.
 
 Rules:
 
@@ -65,6 +66,7 @@ Rules:
 ```bash
 node migration/tools/journey_capture.cjs run                 # all journeys
 node migration/tools/journey_capture.cjs run --only J5,J11   # some journeys
+node migration/tools/journey_capture.cjs run --accounts regional   # only some accounts (see below)
 ```
 
 The runner signs in by itself (skill module `site_auth.cjs`), keeps the read-only guard on, and allows only the
@@ -103,6 +105,9 @@ With this file, the runner works as follows (user, 2026-10-21):
    account verifies the journey, `runs/<J>` keeps the attempt that went furthest.
 7. A journey that stops with all accounts goes to the debug check. When the debug check finds no fix, the agent asks
    the owner.
+8. `--accounts <role>,<role>` runs only these roles of the file, in this order. Use it to try a new account without the
+   accounts that stopped before. The last run counts as an earlier attempt: `runs/<J>` keeps the attempt that went
+   furthest over both runs, and `attempts` keeps the attempts of the other accounts.
 
 Without the file (or with `--single-account`), the runner uses the one account of `.auth/credentials.json`.
 
@@ -111,7 +116,8 @@ Status of a journey after a run:
 - `verified`: each step opened the expected screen on TST.
 - `blocked`: the run stopped at a step. `blockedAt` gives the step, the screen and the error. `knownBlock` gives the
   known reason (for example, no data for the test account in read-only mode).
-- `not-run`: the journey needs a flag value that TST does not have.
+- `not-run`: the journey needs a flag value that TST does not have. With several accounts, `run.json` keeps the
+  attempt that went furthest. The dashboard shows "Needs <flag> <value>".
 
 ## From a journey to an e2e test
 

@@ -9,7 +9,7 @@ section "Context notes".
 - Auto mode OFF (user 2026-10-17); user reviewed the auto items; F2 answered, ADR-14 (handover, not implemented) ([context-027](context-027-review-markers-opt-in.md)).
 - Nothing open for the demo. Deferred to production (user 2026-10-17): nav timeout, PWA-2/3/B choices, 3 rows of 2026-10-15, BFF host, ADR-14 code; mobile performance later. Demo hosting: own domain/subdomain root (SW scope `/`).
 - English docs done (2026-10-21): all specs and docs in English, STE writing rules, reviewed; `REVIEW-GUIDE.md` at the root; 64 spec-done, parity 64/0. Open questions for the user in [context-032](context-032-english-docs-ste.md). Atlas/KB/Scorecard deleted ([context-031](context-031-coverage-atlas-removed.md)).
-- UI Flows dashboard + 38 user journeys (2026-10-22): 20 verified, 18 stop; accepted and published 2026-10-22; Bookmarks read allowed; householder account next; Bookmarks Q1 open ([context-033](context-033-ui-flows-dashboard.md), sections Open issues and Next).
+- UI Flows dashboard + 38 user journeys (2026-10-22): 20 verified, 13 stop (test data from the team), 5 need another flag value; published 2026-10-22; new build waits for the accept ([context-033](context-033-ui-flows-dashboard.md), sections Open issues and Next).
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/` (`node serve.mjs`); dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1` for review frames). Tools: `migration/tools/` (parity sweep, re-stamp with the user's confirm, dev-vs-demo QA; README).
 
 ## Contexts

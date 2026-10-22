@@ -19,7 +19,7 @@
   }
  ],
  "debug": "J16.debug/global-HomeFeed.png",
- "status": "blocked",
+ "status": "not-run",
  "blockedAt": {
   "step": 0,
   "screen": "HomeFeed",
@@ -38,14 +38,24 @@
    "debug": "J16.debug/global-HomeFeed.png"
   },
   {
-   "account": "regional",
+   "account": "local",
    "status": "skipped",
    "reason": "a policy waits for acceptance"
   },
   {
-   "account": "local",
-   "status": "skipped",
-   "reason": "a policy waits for acceptance"
+   "account": "regional",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J16.debug/regional-HomeFeed.png"
+  },
+  {
+   "account": "householder",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J16.debug/householder-HomeFeed.png"
   }
- ]
+ ],
+ "reason": "Needs the flag C2EnableC1DirectoryView off. On TST, each account tried has C2EnableC1DirectoryView on."
 }

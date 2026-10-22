@@ -36,14 +36,23 @@
    "debug": "J26.debug/global-HomeFeed.png"
   },
   {
-   "account": "regional",
+   "account": "local",
    "status": "skipped",
    "reason": "a policy waits for acceptance"
   },
   {
-   "account": "local",
-   "status": "skipped",
-   "reason": "a policy waits for acceptance"
+   "account": "regional",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "no visible element for: [data-block='Home.FeedBlock_Services'] >> text=/Orbit Admin/i | a[href*=\"/OrbitAdminLanding\"]",
+   "debug": "J26.debug/regional-HomeFeed.png"
+  },
+  {
+   "account": "householder",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "no visible element for: [data-block='Home.FeedBlock_Services'] >> text=/Orbit Admin/i | a[href*=\"/OrbitAdminLanding\"]",
+   "debug": "J26.debug/householder-HomeFeed.png"
   }
  ]
 }
