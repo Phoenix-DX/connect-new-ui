@@ -340,3 +340,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,build,88019,refactor-dev,,P3-3 opus
 2026-10-22,refactor,verify,23159,refactor-test,,P3-3 sonnet
 2026-10-23,refactor,other,26979,refactor-docs,,P3-3 sonnet
+2026-10-23,refactor,build,38251,refactor-dev,,P3-4 sonnet
+2026-10-23,refactor,verify,24593,refactor-test,,P3-4 sonnet
+2026-10-23,refactor,other,27727,refactor-docs,,P3-4 sonnet

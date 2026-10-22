@@ -125,7 +125,8 @@ sequenceDiagram
 - Target architecture of the refactor: ADR-15 in `migration/stack.json` (accepted at the gate of P0-5), the full text in
   [refactor-plan-v2.md](refactor-plan-v2.md), and the plan for each block in [move-map.csv](../refactor/move-map.csv).
   Phases 1 and 2 moved the code to `platform/`, `legacy/os/`, `api/<domain>/`, `pages/`, `containers/` and `components/`.
-  The other screens stay in `src/screens/` and the other blocks in `src/shared/` until their phase.
+  Phase 3 removed the import cycles and added the folder-direction rules; its numbers are in
+  [reports/P3.md](../refactor/reports/P3.md). The other screens stay in `src/screens/` and the other blocks in `src/shared/` until their phase.
 - Implementation patterns with reference code: `migration/patterns/P-*.md`.
 - Feature flag decisions: [reference/flags.md](../reference/flags.md).
 - Per screen: `migration/screens/<Screen>/route-spec.md`.

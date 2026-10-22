@@ -115,3 +115,14 @@
 - The only module cycle in `src/` was `platform/session/cachedUserInfo.ts` and `mockUser.ts`. The record type `AppManager_CachedUserInfoRec` is now in the new leaf file `platform/session/types.ts`; `LDM_Email_V2/components/ScreenBlock_Event_Email_V2.tsx` imports it from there. `depcruise` reports 0 cycles.
 - The folder pairs and `shared/osui` had no production import left to remove. 3 new warn rules keep the directions (`osui-no-import-of-app-modules`, `legacyshared-no-import-of-ubtconnect`, `mybookmarks-no-import-of-assemble`). Strict parity 64/64 for both references.
 - Open for Phase 4: folder-level loops through `platform/` remain (`Connect2_LegacyShared` to `platform/feedback` to `shared/UBTConnect`; `shared/osui` to `components/ui` to `platform/session` to `platform/bootstrap` to `UBTConnectLibrary`). They make no module cycle and end when `platform/` stops importing `shared/`.
+
+## P3-4 - refactor(P3-4): phase 3 report
+
+- No code change. The phase report [reports/P3.md](reports/P3.md) records the `lint:arch`, `jscpd` and chunk numbers. Import cycles: 0 (baseline 1). jscpd: 64 clones and 1.15 percent (baseline 63 and 1.15 percent). HomeFeed 236.42 kB and Login 184.71 kB gzip.
+- `overview.md` links the report. `move-map.csv` is unchanged. Full strict parity: 64/64 for the original; 63/64 for the self reference on the first run.
+- Known flake: EventDetail/default differed by 1 pixel once and passed on two reruns with no code change.
+
+## Phase P3 - remove cycles and fix dependency direction
+
+- Steps P3-1 to P3-4: `src/shared/` imports no `screens/`, `app/` or `pages/`; the module graph has 0 cycles; 7 new dependency-cruiser warn rules keep the folder directions (`app/.dependency-cruiser.cjs`).
+- Open for Phase 4: the folder-level loops through `platform/`. Details in [reports/P3.md](reports/P3.md).
