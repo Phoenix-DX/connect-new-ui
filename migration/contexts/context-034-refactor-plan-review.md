@@ -2,20 +2,30 @@
 
 ## Result
 - Review of `app/docs/architecture/refactor-plan.md` (draft of 2026-10-22) as a principal front-end engineer: score 6/10.
-  Strong: parity levels, self-parity reference, codemods, branch rules. Weak: the estimate (35 days; the real need is 2
-  to 3 times more), a container split without a criterion, 3 state systems not addressed, CSS Modules for the legacy UI.
-  The draft has no flag design and no auth design.
-- New files: `app/docs/architecture/refactor-plan-review.md` (findings, flag design, session state machine, decisions
-  R1 to R8) and `app/docs/architecture/refactor-plan-v2.md` (10 phases, steps with Goal / Do / Check / Commit for an agent,
-  about 51 days plus reserve). Both pass `ste_lint` with 0 errors. The draft got a pointer to both files.
+  Strong: parity levels, self-parity reference, codemods, branch rules. Weak: the estimate of 35 days (the real need is
+  2 to 3 times more). Also weak: a container split without a criterion, 3 state systems not addressed, CSS Modules for
+  the legacy UI. The draft has no flag design and no auth design.
+- New file `app/docs/architecture/refactor-plan-review.md`: findings, flag design, session state machine, decisions
+  R1 to R8.
+- New file `app/docs/architecture/refactor-plan-v2.md`: 10 phases, steps with Goal / Do / Check / Commit for an agent,
+  about 51 days plus reserve. Both files pass `ste_lint` with 0 errors. The draft got a pointer to both files.
 
 ## Decisions (who, date)
 - None yet. R1 to R8 wait for the user (`refactor-plan-review.md` §4). D5 (start date) stays open.
 - The plan v2 assumes R1 (b), R2 (b), R3 (b), R4 (b), R5 (a), R7 (b), R8 (b) until the user decides.
 
 ## Facts learned (evidence)
-- Counts by `grep` (2026-10-22): 71 files call `callAction` directly; 24 use TanStack Query; 53 use `useViewState`;
-  27 use `memoryCache`. 50 files outside `shell/` read client variables (46 names). 32 files read flags.
+- Counts by `grep` (2026-10-22):
+
+  | Files | What they do |
+  |---|---|
+  | 71 | call `callAction` directly |
+  | 24 | use TanStack Query |
+  | 53 | use `useViewState` |
+  | 27 | use `memoryCache` |
+  | 50 outside `shell/` | read client variables (46 names) |
+  | 32 | read flags |
+
 - 28 `ScreenBlock_*` files and 10 shared blocks have more than 530 lines; the largest is 1,077 lines
   (`screens/EventBooklet/components/ScreenBlock_EventBooklet.tsx`).
 - `eslint.config.js` has no boundary or import rule. No CSS Module exists in `src/`.
