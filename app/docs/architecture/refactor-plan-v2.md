@@ -1,14 +1,16 @@
 # Refactor plan v2: from OutSystems parity to a clean React architecture
 
-Status: **proposal by Claude, waits for the user's decisions R1 to R8** (`refactor-plan-review.md` §4). Written
-2026-10-22. This plan replaces §4 to §8 of `refactor-plan.md` (the draft). §1 to §3 of the draft stay valid: goal,
-measured state, principles. This plan does not repeat them. The decisions D1 to D4 of the draft stay (§9).
+Status: **approved by the user on 2026-10-22: R1 to R8 as recommended** (`refactor-plan-review.md` §4). **Not
+started: the user gives the start (D5).** Written 2026-10-22.
+
+This plan replaces §4 to §8 of `refactor-plan.md` (the draft). §1 to §3 of the draft stay valid: goal, measured state,
+principles. This plan does not repeat them. The decisions D1 to D4 of the draft stay (§9).
 
 Writing rules: `migration/english-docs/style-rules.md`. Terms: `migration/english-docs/glossary.md`. In this plan the
 React terms **page**, **container**, **component** and **hook** have the meanings of §2.1.
 
-Assumptions until the user decides: R1 (b), R2 (b), R3 (b), R4 (b), R5 (a), R7 (b), R8 (b). When the user chooses
-another option, update the steps that name that decision.
+Decided (user, 2026-10-22): R1 (b), R2 (b), R3 (b), R4 (b), R5 (a), R6 (a) for now, R7 (b), R8 (b). The
+decision table is §9.
 
 ## 1. How an agent works with this plan
 
@@ -851,12 +853,12 @@ Count check: 10 + 9 + 8 + 13 + 16 + 7 + 1 (HouseholdDetails) = 64.
 | D2  | API contract                   | Keep it, behind `api/<domain>/`                                                                                                                         | user, 2026-10-22                |
 | D3  | Dev dependencies               | `dependency-cruiser`, `eslint-plugin-boundaries`, `jscpd`, `knip`, `ts-morph`; this plan adds `eslint-plugin-import-x` and `tsx` (needs the user's yes) | user, 2026-10-22; addition open |
 | D4  | Relation to the skill pipeline | Option B, `refactor_parity.py`                                                                                                                          | user, 2026-10-22                |
-| D5  | Start date                     | Open                                                                                                                                                    | —                               |
-| R1  | Scope and time                 | Open. This plan assumes (b).                                                                                                                            | —                               |
-| R2  | Container criterion            | Open. This plan assumes (b), §2.3.                                                                                                                      | —                               |
-| R3  | CSS scope                      | Open. This plan assumes (b), §2.8.                                                                                                                      | —                               |
-| R4  | OutSystems references          | Open. This plan assumes (b), `@origin`.                                                                                                                 | —                               |
-| R5  | Flag source in production      | Open. This plan assumes (a).                                                                                                                            | —                               |
-| R6  | PIN verification in production | Open. Not needed before the BFF phase.                                                                                                                  | —                               |
-| R7  | Sequence                       | Open. This plan assumes (b), Phase 2 pilot.                                                                                                             | —                               |
-| R8  | Barrels                        | Open. This plan assumes (b), §2.4 rule 12.                                                                                                              | —                               |
+| D5  | Start date                     | **Open. The user says when to start. Do not run P0-1 before that.**                                                                                     | —                               |
+| R1  | Scope and time                 | (b) phases 0 to 7, about 45 days; phases 8 and 9 as stretch                                                                                             | user, 2026-10-22                |
+| R2  | Container criterion            | (b) hooks by default; container only by the criterion of §2.3                                                                                           | user, 2026-10-22                |
+| R3  | CSS scope                      | (b) tokens, `@layer legacy`, delete unused CSS; CSS Modules for new components only (§2.8)                                                              | user, 2026-10-22                |
+| R4  | OutSystems references          | (b) one `@origin` tag per file; no inline line numbers after a rewrite                                                                                  | user, 2026-10-22                |
+| R5  | Flag source in production      | (a) one batch call through the BFF, with a parity exemption for the flag calls                                                                          | user, 2026-10-22                |
+| R6  | PIN verification in production | (a) local, as the original, for parity. The security owner reviews it before the BFF phase                                                              | user, 2026-10-22                |
+| R7  | Sequence                       | (b) walking skeleton on HouseholdDetails (Phase 2) before the mass work                                                                                 | user, 2026-10-22                |
+| R8  | Barrels                        | (b) at package boundaries only (§2.4, rule 12)                                                                                                          | user, 2026-10-22                |

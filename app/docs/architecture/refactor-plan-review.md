@@ -249,6 +249,9 @@ no tokens in the browser (P12, 2026-10-16).
 
 ## 4. Decisions for the user
 
+The user chose the recommendation of every row on 2026-10-22. R6: (a) for now; the security owner reviews it before
+the BFF phase. The start date (D5) stays open.
+
 | Id  | Decision                       | Options                                                                                                                                                                      | Recommendation                         |
 | --- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | R1  | Scope and time                 | (a) full plan, 60 to 80 days; (b) plan v2 core phases 0 to 7 (about 45 days), styles and UI merge as stretch; (c) structure and platform only (phases 0 to 4, about 20 days) | (b)                                    |

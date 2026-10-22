@@ -6,7 +6,7 @@ section "Context notes".
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
 - 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)).
-- Branch `refactor/architecture`, tag `migration-complete`. Refactor plan draft reviewed (6/10) and plan v2 written ([context-034](context-034-refactor-plan-review.md)); the user decides R1–R8 and the start date D5.
+- Branch `refactor/architecture`, tag `migration-complete`. Refactor plan v2 approved, R1–R8 decided (user 2026-10-22, [context-034](context-034-refactor-plan-review.md)); **not started, the user gives the start (D5)**.
 - Auto mode OFF (user 2026-10-17). Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`). Tools: `migration/tools/` (README).
 

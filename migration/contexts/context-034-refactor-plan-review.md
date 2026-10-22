@@ -11,8 +11,8 @@
   about 51 days plus reserve. Both files pass `ste_lint` with 0 errors. The draft got a pointer to both files.
 
 ## Decisions (who, date)
-- None yet. R1 to R8 wait for the user (`refactor-plan-review.md` §4). D5 (start date) stays open.
-- The plan v2 assumes R1 (b), R2 (b), R3 (b), R4 (b), R5 (a), R7 (b), R8 (b) until the user decides.
+- User, 2026-10-22: R1 to R8 as recommended: R1 (b), R2 (b), R3 (b), R4 (b), R5 (a), R6 (a) for now, R7 (b), R8 (b).
+- User, 2026-10-22: do not start. The user says when to start (D5 open).
 
 ## Facts learned (evidence)
 - Counts by `grep` (2026-10-22):
@@ -38,8 +38,8 @@
 - No code file changed.
 
 ## Open issues
-- The user decides R1 to R8 and D5. D3 addition: `eslint-plugin-import-x` and `tsx` need the user's yes.
+- D5 open. D3 addition: `eslint-plugin-import-x` and `tsx` need the user's yes (ask at P0-3).
 - R6 (PIN verification in production) needs the security owner; not needed before the BFF phase.
 
 ## Next
-- When the user answers R1 to R8: update plan v2 §9 and the steps that name the decision, then start P0-1.
+- When the user says to start: P0-1 of `refactor-plan-v2.md`, on `refactor/architecture`.
