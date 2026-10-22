@@ -6,7 +6,8 @@ import { useNoCommonUi } from '@/platform/feedback/dialogs/commonUiPresence';
 import { LockHost } from './LockHost';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { registerPin, verifyPin } from '@/platform/session/pin';
-import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
+import { getClientVar, markAppReady, setClientVar, setSignedInUser } from '@/platform/session/session';
+import { getSessionStatus } from '@/platform/session/machine';
 import { freshPage } from '@/test/testSupport';
 
 /** The unlock content (Block_PINUnlock_ContentWrapper → Pincode_Unlock) inside the lock container. */
@@ -57,6 +58,19 @@ test('unlocking hides the lock and restarts the timer', async () => {
   expect(overlay()).toBeNull();
   await idle(1_210_000);
   expect(overlay()).not.toBeNull();
+});
+
+test('session machine (plan v2 §3.2): the timeout, unlocked → locked; the unlock, locked → unlocked', async () => {
+  markAppReady(); // the app start of this tab: PIN registered here, so unlocked
+  expect(getSessionStatus()).toEqual({ status: 'unlocked', userId: MOCK_USER_ID });
+  renderAt('/UBTConnect/Menu');
+  await idle(1_210_000);
+  expect(overlay()).not.toBeNull();
+  expect(getSessionStatus()).toMatchObject({ status: 'locked', userId: MOCK_USER_ID });
+  await act(async () => {
+    await verifyPin('1357');
+  });
+  expect(getSessionStatus()).toEqual({ status: 'unlocked', userId: MOCK_USER_ID });
 });
 
 test('each screen restarts the timer (a new CommonUI per screen)', async () => {

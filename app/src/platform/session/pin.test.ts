@@ -1,7 +1,8 @@
 import { beforeEach, describe, expect, test } from 'vitest';
+import { getSessionStatus } from './machine';
 import { MOCK_USER_ID } from './mockUser';
 import { deletePin, isLocked, lock, pinCheck, registerPin, verifyPin } from './pin';
-import { getClientVar, getShellState, readPin, setClientVar, setSignedInUser } from './session';
+import { getClientVar, getShellState, markAppReady, readPin, setClientVar, setSignedInUser } from './session';
 import { freshPage } from '@/test/testSupport';
 
 beforeEach(() => {
@@ -67,6 +68,34 @@ describe('verifyPin (Pincode_Unlock OnSetPin)', () => {
   test('signed out', async () => {
     setSignedInUser(null);
     await expect(verifyPin('1357')).resolves.toEqual({ status: 'error', error: 'User not logged in.' });
+  });
+});
+
+describe('the PIN steps write the session machine (plan v2 §3.2)', () => {
+  beforeEach(() => {
+    setSignedInUser(MOCK_USER_ID);
+    markAppReady(); // PIN_Use, no local PIN
+  });
+
+  test('registerPin: needPinRegister → unlocked', async () => {
+    expect(getSessionStatus()).toEqual({ status: 'needPinRegister', userId: MOCK_USER_ID });
+    await registerPin('1357');
+    expect(getSessionStatus()).toEqual({ status: 'unlocked', userId: MOCK_USER_ID });
+  });
+
+  test('lock: unlocked → locked, with the location; verifyPin: locked → unlocked (not with a wrong PIN)', async () => {
+    await registerPin('1357');
+    window.history.replaceState(null, '', '/UBTConnect/Notes?x=1');
+    try {
+      lock();
+      expect(getSessionStatus()).toEqual({ status: 'locked', userId: MOCK_USER_ID, returnTo: '/UBTConnect/Notes?x=1' });
+      await verifyPin('0000');
+      expect(getSessionStatus().status).toBe('locked');
+      await verifyPin('1357');
+      expect(getSessionStatus()).toEqual({ status: 'unlocked', userId: MOCK_USER_ID });
+    } finally {
+      window.history.replaceState(null, '', '/');
+    }
   });
 });
 

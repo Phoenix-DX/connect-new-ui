@@ -5,6 +5,7 @@ import { CACHE_TYPE, peekCacheableObject, putCacheableObject } from '@/platform/
 import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
 import { registerPin } from '@/platform/session/pin';
 import { getClientVar, getShellState, setClientVar, setSignedInUser } from '@/platform/session/session';
+import { getSessionStatus } from '@/platform/session/machine';
 import { getSetting, getSettings, setSettings } from '@/platform/settings';
 import { pinUnlockRedirect, signedOutRedirect, startApp, synchronizeNumberUnreadMessages } from './startup';
 import { getLocalOrbitMilestoneTypeById, getLocalSurveyStatusByJSONName } from '@/platform/storage/localEntities';
@@ -185,6 +186,39 @@ test('a failing Sync_Info_GetMain is swallowed like its AllExceptions handler', 
   setSignedInUser(MOCK_USER_ID);
   await startApp();
   expect(calledActions()).toContain('ActionGetNumberUnreadMessages');
+});
+
+describe('the end of the app start writes the session machine (plan v2 §3.2)', () => {
+  test('before: starting; signed out: signedOut', async () => {
+    expect(getSessionStatus()).toEqual({ status: 'starting' });
+    await startApp();
+    expect(getSessionStatus()).toEqual({ status: 'signedOut' });
+  });
+
+  test('signed in, no local PIN (PIN_Use of TST): needPinRegister', async () => {
+    setSignedInUser(MOCK_USER_ID);
+    await startApp();
+    expect(getSessionStatus()).toEqual({ status: 'needPinRegister', userId: MOCK_USER_ID });
+  });
+
+  test('local PIN: a new tab is locked (with the opened location), the unlocked tab reloads unlocked', async () => {
+    setClientVar('UBT_AppManager.PIN_Use', true);
+    setSignedInUser(MOCK_USER_ID);
+    await registerPin('2468');
+    reloadPage({ newTab: true });
+    window.history.replaceState(null, '', '/UBTConnect/Menu?x=1');
+    try {
+      await startApp();
+    } finally {
+      window.history.replaceState(null, '', '/');
+    }
+    expect(getSessionStatus()).toEqual({ status: 'locked', userId: MOCK_USER_ID, returnTo: '/UBTConnect/Menu?x=1' });
+    setClientVar('UBT_AppManager.PIN_HasUnlocked', true);
+    reloadPage();
+    expect(getSessionStatus()).toEqual({ status: 'starting' });
+    await startApp();
+    expect(getSessionStatus()).toEqual({ status: 'unlocked', userId: MOCK_USER_ID });
+  });
 });
 
 describe('redirects after the app start', () => {

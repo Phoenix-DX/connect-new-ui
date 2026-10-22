@@ -1,14 +1,22 @@
 import { act, renderHook } from '@testing-library/react';
-import { beforeEach, expect, test } from 'vitest';
+import { beforeEach, describe, expect, test } from 'vitest';
 import {
+  appReady,
   clearClientVarsAfterLogout,
+  currentUserId,
   getClientVar,
   getShellState,
+  hasLocalPin,
+  hasUnlocked,
+  isSignedIn,
+  markAppReady,
   setClientVar,
   setSignedInUser,
   useClientVar,
   useShellState,
+  writePin,
 } from './session';
+import { getSessionStatus } from './machine';
 import { getSetting, setSettings } from '@/platform/settings';
 import { freshPage, reloadPage } from '@/test/testSupport';
 
@@ -91,4 +99,40 @@ test('components re-render on changes', () => {
   });
   expect(state.result.current.signedIn).toBe(true);
   expect(lastUrl.result.current).toBe('/UBTConnect/Notes');
+});
+
+describe('the selectors read the session machine (plan v2 §3.2)', () => {
+  test('while the app starts, the stored session gives the user; the app start resolves it into a status', () => {
+    setSignedInUser('990001');
+    expect(getSessionStatus()).toEqual({ status: 'starting' });
+    expect([isSignedIn(), currentUserId(), appReady()]).toEqual([true, '990001', false]);
+    markAppReady();
+    expect(getSessionStatus()).toEqual({ status: 'unlocked', userId: '990001' }); // PIN_Use false
+    expect([isSignedIn(), currentUserId(), appReady()]).toEqual([true, '990001', true]);
+    expect(getShellState()).toMatchObject({ signedIn: true, userId: '990001', appReady: true });
+  });
+
+  test('a change of the session user moves the status (userChanged)', () => {
+    setSettings({ 'pin.enabled': true });
+    markAppReady();
+    expect(getSessionStatus()).toEqual({ status: 'signedOut' });
+    setSignedInUser('990001');
+    expect(getSessionStatus()).toEqual({ status: 'needPinRegister', userId: '990001' });
+    expect(hasLocalPin()).toBe(false);
+    writePin({ userId: '990001', appId: 'UBTConnect', salt: 's', hash: 'h' });
+    expect(hasLocalPin()).toBe(true);
+    setSignedInUser(null);
+    expect(getSessionStatus()).toEqual({ status: 'signedOut' });
+    expect([isSignedIn(), currentUserId(), hasLocalPin()]).toEqual([false, null, false]);
+  });
+
+  test('hasUnlocked() is PIN_HasUnlocked; a reload starts the status again', () => {
+    setClientVar('UBT_AppManager.PIN_HasUnlocked', true);
+    expect(hasUnlocked()).toBe(true);
+    markAppReady();
+    reloadPage({ newTab: true });
+    expect(hasUnlocked()).toBe(false);
+    expect(getSessionStatus()).toEqual({ status: 'starting' });
+    expect(appReady()).toBe(false);
+  });
 });

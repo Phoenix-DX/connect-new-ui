@@ -37,6 +37,9 @@ const FIXTURE_RECORD = /["']?module["']?:[^,]{1,80},["']?action["']?:[^,]{1,160}
 /** src/mocks/fixtures.ts's warning text. */
 const FIXTURE_LOADER = '[mock] no recorded call';
 const MOCK_FILE = /mock|fixture|msw/i;
+/** A precached URL without the content hash of a built asset (`assets/<name>-<hash>.<ext>`): a hash can spell "msw"
+    (`assets/useQuery-Bu8xmswu.js`). */
+const withoutHash = (url: string): string => url.replace(/^(assets\/.+)-[\w-]{8}(\.\w+)$/, '$1$2');
 
 describe('mock-free production build', () => {
   it('production build: no mock chunk, MSW code, fixture or mock public file, none precached', () => {
@@ -55,7 +58,7 @@ describe('mock-free production build', () => {
     expect(existsSync(join(out, 'UBTConnect/Roboto-Regular.ttf'))).toBe(true);
     const urls = precacheOf(out);
     expect(urls).toContain('index.html');
-    expect(urls.filter((url) => MOCK_FILE.test(url))).toEqual([]);
+    expect(urls.filter((url) => MOCK_FILE.test(withoutHash(url)))).toEqual([]);
   }, 180_000);
 
   it('mock build (dev mode files): MSW worker, mock embeds and mock images kept', () => {

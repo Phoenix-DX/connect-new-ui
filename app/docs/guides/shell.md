@@ -52,6 +52,21 @@ in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the us
   messages.
 - Mock user toggles: `policies` = pending policies (`HasPoliciesToAccept`), `expired` = `SubscriptionActive` false,
   `householder` = `isHouseholder` true.
+- The session status is in `src/platform/session/machine.ts` (plan v2 §3.2). The status lives in memory, so each page
+  load starts at `starting`. The statuses are `starting`, `signedOut`, `signingIn`, `needPinRegister`, `locked`,
+  `unlocked` and `policiesPending`. The pure `transition(state, event)` changes the status, `sendSessionEvent` applies
+  an event, and `getSessionStatus` reads it. Each row has a test in `machine.test.ts`.
+  - Events and senders: `appStartDone` (`session.ts markAppReady`, called by `runAppStart`), `signIn` and
+    `postLoginDone` (`auth.ts signIn`), `pinRegistered` (`pin.ts registerPin`), `inactivityTimeout` (`pin.ts lock`,
+    which LockHost calls at the timeout), `pinVerified` (`pin.ts verifyPin`), `signOut` (`auth.ts signOut`).
+  - Differences from §3.2: `signOut` also applies from `signingIn` (a 401 during the post-login calls). The event
+    `userChanged` exists only for the mock: when the stored session user changes (`setSignedInUser`, another tab), the
+    status follows. No event leads to `policiesPending` yet; the pending policies stay in
+    `UBTConnect.App_Policies_HasPolicyToAccept`.
+  - The selectors keep their names and values. `isLocked()` and `hasUnlocked()` still read `PIN_IsLocked` and
+    `PIN_HasUnlocked`, because the status `locked` also covers the app-start lock, where no lock overlay shows today.
+    `isSignedIn()` and `currentUserId()` read the user of the status, and the stored session while the status is
+    `starting` or `signingIn`.
 - Client variable names are `<Module>.<Variable>`, with the compiled defaults of `migration/shell/client-variables.md`.
 - The 11 server settings (`PIN_Use`, `PIN_IsInactivityEnabled`, and so on) are in the typed store `src/platform/settings`
   (`getSetting`, `setSettings`, `useSetting`). `synchAppContext` writes the store. The adapter

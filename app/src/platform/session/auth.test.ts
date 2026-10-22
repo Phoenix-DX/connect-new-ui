@@ -16,6 +16,7 @@ import {
   syncOrbitMilestoneTypes,
 } from '@/platform/storage/localEntities';
 import { CACHE_TYPE, peekCacheableObject, putCacheableObject } from '@/platform/storage/memoryCache';
+import { getSessionStatus, subscribeSessionStatus } from './machine';
 import { MOCK_USER_ID } from './mockUser';
 import { registerPin } from './pin';
 import { setAppCallback, setResumeLoginLink } from './resume';
@@ -68,6 +69,37 @@ describe('signIn (decision U4: the Login callback branches)', () => {
   test('with a local PIN and nothing kept: HomeFeed', async () => {
     await devicePinOfMockUser();
     await expect(signIn()).resolves.toBe('/UBTConnect/HomeFeed');
+  });
+});
+
+describe('signIn and signOut write the session machine (plan v2 §3.2)', () => {
+  const statusesDuring = async (run: () => Promise<unknown>) => {
+    const seen: string[] = [];
+    const stop = subscribeSessionStatus(() => seen.push(getSessionStatus().status));
+    try {
+      await run();
+    } finally {
+      stop();
+    }
+    return seen;
+  };
+
+  test('no local PIN: signedOut → signingIn → needPinRegister', async () => {
+    expect(getSessionStatus()).toEqual({ status: 'signedOut' });
+    expect(await statusesDuring(signIn)).toEqual(['signingIn', 'needPinRegister']);
+    expect(getSessionStatus()).toEqual({ status: 'needPinRegister', userId: MOCK_USER_ID });
+  });
+
+  test('with a local PIN: signingIn → unlocked', async () => {
+    await devicePinOfMockUser();
+    expect(await statusesDuring(signIn)).toEqual(['signingIn', 'unlocked']);
+    expect(getSessionStatus()).toEqual({ status: 'unlocked', userId: MOCK_USER_ID });
+  });
+
+  test('sign out: signedOut', async () => {
+    await signIn();
+    await registerPin('1357');
+    expect(await statusesDuring(signOut)).toEqual(['signedOut']);
   });
 });
 

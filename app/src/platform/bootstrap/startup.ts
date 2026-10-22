@@ -265,7 +265,7 @@ export async function runAppStart(): Promise<void> {
     log.error('OnApplicationReady failed', e);
   } finally {
     releaseUserInfoForAppStart();
-    markAppReady();
+    markAppReady(); // session machine: starting → the status of the stored session (appStartDone)
   }
 }
 
@@ -276,7 +276,7 @@ export function startApp(): Promise<void> {
   return (started ??= runAppStart());
 }
 
-/** Forgets that the app started, as a new page load does (tests). */
+/** Forgets that the app started, as a new page load does (tests): the session status is `starting` again. */
 export function resetAppStart(): void {
   started = null;
   firstScreenRendered = false;

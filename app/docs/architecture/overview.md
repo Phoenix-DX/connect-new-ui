@@ -114,6 +114,7 @@ sequenceDiagram
 | Navigation guard      | `src/platform/navigation/navigationGate.ts`: `dx-before-navigation`, prevent / resume                                | [Shell](../guides/shell.md)                      |
 | Platform validation   | `src/components/ui/os/OSValidation`                                                                                  | [Platform widgets](../guides/os-widgets.md)      |
 | Popups                | `src/components/ui/os/OSPopup/usePopupWidget.ts`                                                                     | [Platform widgets](../guides/os-widgets.md)      |
+| Session status        | `src/platform/session/machine.ts` (7 statuses, pure `transition`; selectors in `session.ts`)                         | [Shell](../guides/shell.md)                      |
 | Settings store        | `src/platform/settings` (11 typed server settings from `synchAppContext`; adapter `src/legacy/os/clientVarNames.ts`) | [Shell](../guides/shell.md)                      |
 | Local entities        | `src/platform/storage/localEntities` (IndexedDB; bookmark sync in one transaction, ADR-8)                            | [Shell](../guides/shell.md)                      |
 | Vendored scripts      | `src/vendor/panzoom` (ADR-7), `src/shared/osui/DropdownSearch/vendor` (ADR-5)                                        | [Shared code](../guides/shared-code.md)          |

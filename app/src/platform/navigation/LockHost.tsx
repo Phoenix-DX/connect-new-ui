@@ -26,7 +26,8 @@ export function LockHost() {
   useEffect(() => {
     // a screen without CommonUI has no InactivityTimer (CR-Services-1): AppLockHost unmounts this host on the next render
     if (hidden || contentVisible || isCommonUiAbsentNow()) return;
-    // InactivityTimer OnInitialize (p:UBT_AppManager.PIN.InactivityTimer.mvc.js:186-197); OnDestroy removes the handler
+    // InactivityTimer OnInitialize (p:UBT_AppManager.PIN.InactivityTimer.mvc.js:186-197); OnDestroy removes the
+    // handler. The timeout writes the session machine: lock() sets PIN_IsLocked and moves the status unlocked → locked.
     const removeHandler = registerInactivityTimeoutHandler(() => {
       lock();
     });

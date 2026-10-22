@@ -5,7 +5,8 @@ import { pinUnlockRedirect, signedOutRedirect, startApp } from './startup';
 import { applyTestSession } from '@/platform/session/testSession';
 import { useShellState } from '@/platform/session/session';
 
-/* Runs the app start once per page load, then applies its outcomes to navigation:
+/* Runs the app start once per page load (its end moves the session machine out of `starting`: runAppStart →
+   markAppReady), then applies its outcomes to navigation:
    - every screen a signed-out user opens is checked (the screens' checkRegistered, shell-facts U1);
    - the PIN check runs once, after the app-start calls (shell-observed U3).
    Both navigate with the Default transition: App_Common OnException → Login (ACF:81-84), and the TST captures of Login

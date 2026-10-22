@@ -132,3 +132,9 @@
 - New `src/platform/settings` holds 11 typed server settings (plan v2 §3.2 lists 10; `pin.inactivity.navigate` is the extra one). `synchAppContext` writes the store. The adapter `src/legacy/os/clientVarNames.ts` keeps the old `getClientVar('UBT_AppManager.PIN_Use')` calls working.
 - Storage: one object under `ubtc-mock:settings` replaces 11 `ubtc-mock:cv:UBT_AppManager.*` keys (decision Q12). A browser tab that ran an older build reads the default settings once, until the SynchAppContext answer of its next page load. The `ubtc-mock:` keys are mock-only.
 - Strict parity 64/64 for both references. `move-map.csv` is unchanged.
+
+## P4-2 - refactor(P4-2): session state machine
+
+- New `src/platform/session/machine.ts` holds the session status and the events of plan v2 §3.2, with one unit test per transition. `session.ts`, `auth.ts` and `pin.ts` send the events; the selectors keep their names and values. `LockHost` sends through `pin.ts lock()`.
+- Differences from §3.2: `isLocked()` and `hasUnlocked()` keep reading the stored values; the mock-only event `userChanged`; `signOut` from `signingIn`; `policiesPending` is not reached yet.
+- Strict parity 64/64 for both references. Known flake F6: EventDetail/default differed by 1 pixel in 2 of 5 reruns. `move-map.csv` is unchanged.
