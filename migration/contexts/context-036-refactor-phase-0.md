@@ -3,8 +3,8 @@
 ## Result
 - P0-1 to P0-5 committed on `refactor/architecture` between 11:44 and 14:20: 6b4efba, 4bee9f6, 9e439d0, 9c0bd22,
   eeb37e2. Plan text sync: 5979d1c. Next step: P1-1 (not started).
-- Baseline: ci pass on Node 24, parity 64/0 against OutSystems and against the self reference, coverage 49.22 percent,
-  first load HomeFeed 236.40 kB and Login 184.61 kB gzip (`app/docs/refactor/baseline.md`).
+- Baseline (`app/docs/refactor/baseline.md`): ci pass on Node 24; parity 64/0 against OutSystems and the self reference.
+  Coverage is 49.22 percent. First load (gzip): HomeFeed 236.40 kB, Login 184.61 kB.
 - Tools: `migration/tools/refactor_parity.py` (strict/visual, `--changed` from the dependency graph), dependency-cruiser,
   jscpd, knip, codemod `migration/tools/refactor/move.ts`, `measure.mjs`, `bundle-report.mjs`.
 - Plan of the moves: `app/docs/refactor/move-map.csv` (329 rows), `duplicates.md`, ADR-15 accepted.
