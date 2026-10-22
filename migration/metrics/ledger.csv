@@ -320,3 +320,11 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,build,356457,refactor-dev,,P2-3 opus
 2026-10-22,refactor,verify,41076,refactor-test,,P2-3 sonnet
 2026-10-22,refactor,other,45341,refactor-docs,,P2-3 sonnet
+2026-10-22,refactor,build,44155,refactor-dev,,P2-4 sonnet
+2026-10-22,refactor,verify,20480,refactor-test,,P2-4 loop 1 sonnet
+2026-10-22,refactor,fix,2388,refactor-dev,,P2-4 loop 1 sonnet
+2026-10-22,refactor,verify,13678,refactor-test,,P2-4 loop 1 sonnet
+2026-10-22,refactor,other,42631,refactor-docs,,P2-4 loop 1 sonnet
+2026-10-22,refactor,review,90705,refactor-advisor,,"P2-4 gate review, opus, 2 min (B, confidence medium)"
+2026-10-22,refactor,review,101902,refactor-advisor,,"P2-4 gate review, fable, 3 min (B, confidence high)"
+2026-10-22,refactor,other,21374,refactor-docs,,P2-4 loop 1 sonnet

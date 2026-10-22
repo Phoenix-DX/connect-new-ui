@@ -102,3 +102,13 @@ One line per event. Written by rf.py.
 - 2026-10-22T20:57:58 P2-3 stage test
 - 2026-10-22T21:04:37 P2-3 stage docs
 - 2026-10-22T21:06:04 P2-3 stage commit
+- 2026-10-22T21:06:04 P2-3 done 612208e: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); bundle within +5%
+- 2026-10-22T21:06:05 P2-4 started
+- 2026-10-22T21:06:05 P2-4 stage dev
+- 2026-10-22T21:07:50 P2-4 stage test
+- 2026-10-22T21:14:06 P2-4 test failed, fix loop 1
+- 2026-10-22T21:14:39 P2-4 stage test
+- 2026-10-22T21:15:05 P2-4 stage docs
+- 2026-10-22T21:16:07 P2-4 waits for the user: Test HouseholdDetails, HouseholdCarousel and Profile on localhost, read the pilot report, then confirm.
+- 2026-10-22T21:21:54 P2-4 after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (B, medium) and Fable (B, high) review: confirm with changes. 3 routes OK (links 200 on 5174, build.png match, parity 64/64 both refs). Changes (Markdown, applied by the documenter before the commit): page-template.md hook shape = repository fetch* functions, query hooks unused for now; container rule (hook/state/mocks in containers/<Name>/, containers never import pages; pilot is a temporary exception); standard state shape written down; screens/*/api.ts split (calls to api/<domain>/repository.ts, route inputs to pages/<Route>/inputs.ts). Code moves deferred as follow-ups F1-F5 in migration/refactor/followups.md (more conservative option where the two differed)."
+- 2026-10-22T21:23:01 P2-4 stage commit

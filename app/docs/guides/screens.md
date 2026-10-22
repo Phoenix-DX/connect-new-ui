@@ -5,7 +5,8 @@ Each screen of the original app has one folder, named exactly as the OutSystems 
 
 A migrated screen lives in `src/pages/<Screen>/` and its page file is `<Screen>Page.tsx` instead of `index.tsx`
 (HouseholdDetails since P2-1). `src/app/screens.ts` loads `pages/*/<Screen>Page.tsx` first and falls back to
-`screens/*/index.tsx` during the transition. The other files keep their names.
+`screens/*/index.tsx` during the transition. The other files keep their names. The full recipe (hook, container criterion, test and story shape) is the
+[page template](page-template.md).
 
 ```
 src/screens/<Screen>/

@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P2-3",
+  "step": "P2-4",
   "stage": "commit",
-  "loop": 0,
-  "since": "2026-10-22T21:06:04"
+  "loop": 1,
+  "since": "2026-10-22T21:23:01"
  },
  "steps": {
   "P0-1": {
@@ -157,12 +157,25 @@
    "finished": "2026-10-22T20:23:48"
   },
   "P2-3": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-22T20:23:49",
    "tokens": {
     "dev": 356457,
     "test": 41076,
     "docs": 45341
+   },
+   "commit": "612208e",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-22T21:06:04"
+  },
+  "P2-4": {
+   "status": "active",
+   "started": "2026-10-22T21:06:05",
+   "tokens": {
+    "dev": 46543,
+    "test": 34158,
+    "docs": 64005
    }
   }
  },
@@ -178,6 +191,12 @@
    "by": "user",
    "text": "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done: 'kéo dài tới khi xong P0-5'): an Opus reviewer checked move-map.csv, duplicates.md and ADR-15 and confirmed with changes (16 rows, 5 other changes, Q7); the changes are applied (dev.md loops 1 and 2).",
    "at": "2026-10-22T14:16:26"
+  },
+  "P2-4:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (B, medium) and Fable (B, high) review: confirm with changes. 3 routes OK (links 200 on 5174, build.png match, parity 64/64 both refs). Changes (Markdown, applied by the documenter before the commit): page-template.md hook shape = repository fetch* functions, query hooks unused for now; container rule (hook/state/mocks in containers/<Name>/, containers never import pages; pilot is a temporary exception); standard state shape written down; screens/*/api.ts split (calls to api/<domain>/repository.ts, route inputs to pages/<Route>/inputs.ts). Code moves deferred as follow-ups F1-F5 in migration/refactor/followups.md (more conservative option where the two differed).",
+   "at": "2026-10-22T21:21:54"
   }
  },
  "questions": [

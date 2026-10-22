@@ -43,7 +43,11 @@ flowchart TB
   subgraph Browser
     direction TB
     platform[src/platform<br/>error handling, sign-in and PIN mock,<br/>navigation guard, view cache, toasts,<br/>local entities IndexedDB]
-    screens[src/screens/&lt;Screen&gt;<br/>index.tsx · api.ts · mocks.ts · types.ts]
+    pages[src/pages/&lt;Route&gt;<br/>&lt;Route&gt;Page.tsx · hooks · api.ts · mocks.ts · types.ts]
+    containers[src/containers<br/>a container only by the criterion of the page template]
+    comps[src/components/&lt;domain&gt;<br/>props-only components with stories and tests]
+    domain[src/api/&lt;domain&gt;<br/>types · mapper · repository · keys · hooks]
+    screens[src/screens/&lt;Screen&gt;<br/>screens not yet moved: index.tsx · api.ts · mocks.ts · types.ts]
     widgets[src/components<br/>platform widgets in components/ui/os:<br/>validation, popup, list, radio group]
     vendor[src/vendor and osui vendor folders<br/>third-party scripts copied from the original]
     shared[src/shared<br/>one component per OutSystems block<br/>src/shared/osui for OutSystems UI patterns]
@@ -52,6 +56,12 @@ flowchart TB
     css[public/UBTConnect/css<br/>original OutSystems CSS per screen]
   end
   contract[src/api/openapi.yaml<br/>API contract]
+  pages --> containers
+  pages --> comps
+  pages --> domain
+  containers --> comps
+  containers --> domain
+  domain --> lib
   screens --> shared
   screens --> lib
   screens --> widgets
@@ -66,6 +76,7 @@ flowchart TB
 
 Rules that keep it this way (`consistency_check.py` checks them before a screen is finished):
 
+- A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (ESLint, `app/eslint.config.js`). The recipe is the [page template](../guides/page-template.md). Only HouseholdDetails is a page so far.
 - A screen imports only from its own folder and from `src/shared`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/mocks`.
 - A screen has no `fetch`, browser storage, route CSS, inline visual styles, raw HTML or `console.log`.
 - Packages come only from the pinned allow-list ([stack](../reference/stack.md)). A new package needs an ADR.
@@ -111,7 +122,8 @@ sequenceDiagram
 - Stack, pinned versions and ADRs: [reference/stack.md](../reference/stack.md) (source `migration/stack.json`).
 - Target architecture of the refactor: ADR-15 in `migration/stack.json` (accepted at the gate of P0-5), the full text in
   [refactor-plan-v2.md](refactor-plan-v2.md), and the plan for each block in [move-map.csv](../refactor/move-map.csv).
-  The folders on this page stay as they are until Phase 1 moves code.
+  Phases 1 and 2 moved the code to `platform/`, `legacy/os/`, `api/<domain>/`, `pages/`, `containers/` and `components/`.
+  The other screens stay in `src/screens/` and the other blocks in `src/shared/` until their phase.
 - Implementation patterns with reference code: `migration/patterns/P-*.md`.
 - Feature flag decisions: [reference/flags.md](../reference/flags.md).
 - Per screen: `migration/screens/<Screen>/route-spec.md`.

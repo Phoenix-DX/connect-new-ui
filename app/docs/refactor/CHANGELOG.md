@@ -84,3 +84,16 @@
 - Both old block folders are deleted. HouseholdCarousel, Profile and Locality_Details use the container. `platform/feedback/flowErrors.ts` is new. 3 rows of `move-map.csv` have status `moved` (181, 182, 241).
 - Open for P2-4: (1) `components/household/HouseholdTimelinePhotos` is the Photos section of the card, but move-map row 184 gives that name to the port of `HouseholdDetails_TimelinePhoto_List`: settle the names. (2) When HouseholdCarousel and Profile become pages, move `useHouseholdDetails` next to the container: rule 3 will flag the `@/pages/HouseholdDetails/hooks/...` import.
 - Open: `migration/tools/docs_gen.py` and `migration/tools/refactor/move-map.mjs` read `// @os-block`; the new files use only `@origin`. `migration/screens/HouseholdDetails/route-spec.md` links to the old README path.
+
+## P2-4 - refactor(P2-4): add the page template from the pilot
+
+- No code change. New guide `app/docs/guides/page-template.md` (folders, hook shape, container criterion, test and story shape, gate checklist) and pilot report `app/docs/refactor/reports/P2-4-pilot.md`.
+- `move-map.csv`: row `HouseholdDetails_TimelinePhoto_List` now targets `HouseholdTimelinePhotoList`; the hook move waits until HouseholdCarousel and Profile are pages. Pilot time recorded in the row of `HouseholdDetails_Block`.
+- Overview diagram and `guides/screens.md` name `pages/`, `containers/`, `components/` and `api/<domain>/`. The parity run is 64/64 for both references.
+- User gate (Opus and Fable reviewers): the page template has new rules for container files, the `api.ts` split and the flow state. Open items F1 to F5: `migration/refactor/followups.md`.
+
+## Phase P2 - pilot HouseholdDetails
+
+- Steps P2-1 to P2-4: the route is in `src/pages/HouseholdDetails/`, the data in `src/api/household/`, the card in `src/containers/HouseholdDetails/` and `src/components/household/`.
+- 4 rows of `move-map.csv` have status `moved`; the shape of the pilot is in the page template. Open: move the hook next to the container when HouseholdCarousel and Profile become pages.
+- Gate: ci passes; parity 64/64 for both references; bundle within 5 percent (HomeFeed 236.43 kB, Login 184.71 kB gzip).
