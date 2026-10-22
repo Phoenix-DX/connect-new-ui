@@ -12,6 +12,7 @@
 ## Decisions (who, date)
 - User, 2026-10-22 11:44: start; delegation to an Opus advisor; extended at 12:59 until P0-5 was done (ended 14:20).
 - Auto decisions Q1 to Q7 and the P0-5 gate: `migration/refactor/auto-decisions-2026-10-22.md` (for the user's review).
+- User, 2026-10-22: no security audit per phase in the gate ("Ko cần chạy audit mỗi phase").
 - User, 2026-10-22: up to 10 agents in parallel; advisor rules (one question, Sonnet facts, Opus judgment, no installs).
 
 ## Facts learned (evidence)
@@ -28,7 +29,6 @@
 ## Open issues
 - The user reviews the auto decisions, specially Q4 (changes D3) and the plan text changes of Q5 and Q7.
 - `npm audit`: braces (high, dev-only, no fix) accepted in ADR-15; re-check in Phase 9.
-- No periodic security audit in the gate (the user asked; Claude proposed a report-only audit per phase, not built).
 
 ## Next
 - `/refactor-master continue` starts P1-1. Decisions are the user's again (CLAUDE.md rule 2).
