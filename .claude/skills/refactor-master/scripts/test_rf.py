@@ -213,6 +213,11 @@ class TestVerify(Repo):
         self.ok("begin", "--by", "user", "--text", "start")
         self.assertIn("verify: ok", self.ok("verify"))
 
+    def test_ledger_file_is_allowed(self):
+        self.ok("begin", "--by", "user", "--text", "start")
+        self.write("migration/metrics/ledger.csv", "screen,phase,tokens\n")
+        self.assertIn("verify: ok", self.ok("verify"))
+
     def test_wrong_branch(self):
         sh(self.tmp, "git", "checkout", "-q", "-b", "other")
         self.assertIn("branch is other", self.fails("verify"))

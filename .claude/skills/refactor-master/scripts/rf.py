@@ -33,7 +33,8 @@ from pathlib import Path
 
 STAGES = ["brief", "dev", "test", "docs", "commit"]
 MAX_LOOPS = 2
-ALWAYS_DIRTY_OK = ("migration/refactor/state.json", "migration/refactor/log.md")
+# files that rf.py itself writes after a commit (state, log, and the ledger line of rf.py tokens)
+ALWAYS_DIRTY_OK = ("migration/refactor/state.json", "migration/refactor/log.md", "migration/metrics/ledger.csv")
 HANDOFF_TEMPLATE = Path(".claude/skills/refactor-master/references/handoff.md")
 LEDGER = Path(".claude/skills/outsystems-screen-spec/scripts/ledger.py")
 

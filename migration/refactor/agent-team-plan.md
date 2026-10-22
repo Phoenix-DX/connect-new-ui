@@ -1,6 +1,6 @@
 # Agent team for the refactor: plan
 
-Status: **approved by the user on 2026-10-22: A1 to A7 as recommended. Built on 2026-10-22** (user guide:
+Status: **approved by the user on 2026-10-22: A1 to A7 as recommended. Built and self-tested on 2026-10-22 (context-035)** (user guide:
 `README.md`). The refactor itself does not start before the user says so (D5 of `refactor-plan-v2.md`).
 
 Writing rules: `migration/english-docs/style-rules.md`.

@@ -56,9 +56,15 @@ rf.py stage <id> commit   → commit (section 6), rf.py done
 
 ### 3.1 Start an agent
 
-Start one subagent at a time (A4). Use these calls. When the agent type is not available in this session, use
-`subagent_type: "general-purpose"`. Then start the prompt with "First read `.claude/agents/<name>.md` and follow it
-as your role."
+Start one subagent at a time (A4). Use these calls. An agent runs in the background: wait for its completion
+notification before the next command, and do not start another agent in the meantime. When the agent type is not
+available in this session, use `subagent_type: "general-purpose"`, and start the prompt with this line:
+
+```
+First read `.claude/agents/<name>.md` and follow it as your role.
+```
+
+Fact (2026-10-22): a new agent file loads into the running session after a short time. The fallback is for that gap.
 
 Developer:
 
@@ -90,8 +96,8 @@ Do not paste the plan or file contents into a prompt: the brief carries them.
 ### 3.2 After each agent
 
 1. Read the status line of its report. Do not read the full report unless the status is not `pass`.
-2. Record the tokens that the Agent result reports: `rf.py tokens <id> --agent dev|test|docs --n <N> --model <m>`.
-   When the result reports no number, use `--n 0`.
+2. Record the tokens of the agent: `rf.py tokens <id> --agent dev|test|docs --n <N> --model <m>`. The number is
+   `subagent_tokens` in the usage of the completion notification. When no number is given, use `--n 0`.
 3. Act on the status:
 
 | Agent      | Status     | Do                                                                                                          |
@@ -136,8 +142,9 @@ developer in mode `loop <n>` with the user's words in the prompt.
 
 The user gave a standing approval for commits on `refactor/architecture` after the gate passes (user, 2026-10-22).
 
-1. `git status --short`. Every change must be in `dev.md` or `docs.md`, or in `migration/refactor/`. When a file is
-   not, stop and ask.
+1. Wait for the completion notification of the documenter and record its tokens first. Then run `git status --short`.
+   Every change must be in `dev.md` or `docs.md`, in `migration/refactor/`, or `migration/metrics/ledger.csv`. When a
+   file is not, stop and ask.
 2. `git add -A`, then commit:
 
    ```
@@ -172,8 +179,8 @@ The user gave a standing approval for commits on `refactor/architecture` after t
 
 Stop at: a user gate, a question, a block, a failed preflight, the end of the scope of the command.
 
-1. When only `migration/refactor/state.json` and `log.md` changed since the last commit, commit them:
-   `chore(refactor): state after <id>`.
+1. When only `migration/refactor/state.json`, `log.md` and `migration/metrics/ledger.csv` changed since the last
+   commit, commit them: `chore(refactor): state after <id>`.
 2. Tell the user in Vietnamese, in 5 lines:
    - the steps done in this run, with their commits;
    - the gate results;

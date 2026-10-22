@@ -244,3 +244,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-21,_docs,other,95502,sonnet-dashboard-content-reviewer,,"UI Flows dashboard: content review; 8 category fixes, 5 flow purposes, D6/D8 wording"
 2026-10-21,_docs,other,132761,sonnet-journeys-screen-descriptions,,"Journeys: screens.en.json, 64 in-scope screens (sees, does, back)"
 2026-10-22,refactor,review,220000,main,,"P0-D0 plan review, flag/auth design, plan v2 (2026-10-22)"
+2026-10-22,refactor,build,40743,refactor-dev,,"agent team self-test T0-1 (A6 b), sonnet"
+2026-10-22,refactor,verify,14325,refactor-test,,"agent team self-test T0-1 (A6 b), sonnet"
+2026-10-22,refactor,other,13236,refactor-docs,,"agent team self-test T0-1 (A6 b), sonnet"
+2026-10-22,refactor,foundation,180000,main,,"agent team plan + build (B1-B7), estimate"
