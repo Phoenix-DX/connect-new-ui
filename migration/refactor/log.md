@@ -1,0 +1,19 @@
+# Refactor log
+
+One line per event. Written by rf.py.
+
+- 2026-10-22T11:44:17 begun by the user: "Giờ tôi sẽ đi ăn tới 3h30 chiều việt nam. Bạn hãy chạy Refactory plan, nếu định hỏi gì thì hãy nhờ opus suggest và auto chọn recommand nhé, ko cần chờ tôi."
+- 2026-10-22T11:44:27 P0-1 started
+- 2026-10-22T11:44:27 P0-1 stage dev
+- 2026-10-22T11:44:42 Q1 (P0-1) asked: Statement coverage needs a Vitest coverage provider (@vitest/coverage-v8), which is not installed. Add it now, or record coverage as not measured until P0-3?
+- 2026-10-22T11:44:42 Q2 (P0-3) asked: Before-gate: approve the added dev dependencies eslint-plugin-import-x and tsx (D3 addition), versions by the stable rule (ADR-2)?
+- 2026-10-22T12:29:02 Q1 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended (a): add @vitest/coverage-v8 at the exact vitest version in P0-1; measure with --coverage.include='src/**/*.{ts,tsx}' --coverage.exclude='**/*.stories.tsx' --coverage.reporter=text-summary --coverage.reporter=json-summary; record the flags in baseline.md"
+- 2026-10-22T12:36:17 Q2 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended: approve neither eslint-plugin-import-x nor tsx. Rule 11 with ESLint core no-restricted-imports (regex ^\.\./); codemod runs on plain Node 24 and loads ts-morph with createRequire(app/package.json). Versions: dependency-cruiser 17.4.3, eslint-plugin-boundaries 5.4.0 (handlebars override 4.7.10 if kept), jscpd 4.3.0, knip 5.88.1, ts-morph 27.0.2. braces advisory (no fix, dev-only CLIs) to accept in ADR-15. The boundaries resolver question stays open (Q3)."
+- 2026-10-22T12:36:17 P0-3 before-gate confirmed by the user: "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended: add no extra dependency (no eslint-plugin-import-x, no tsx); see Q2 for the versions."
+- 2026-10-22T12:37:17 Q3 (P0-1) asked: Apply the security patches (vitest 4.1.12 + coverage-v8 4.1.12, vite 7.3.7, storybook + @storybook/react-vite 10.6.x) in P0-1 before the baseline is measured?
+- 2026-10-22T12:37:56 Q3 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended (a): before the baseline install vitest@4.1.12, @vitest/coverage-v8@4.1.12, vite@7.3.7, storybook@10.6.3, @storybook/react-vite@10.6.3 and every other @storybook/* at 10.6.3 (ADR-2 security exception); npm audit must show no open advisory of these; smoke-test storybook build once; if the parity sweep shows differences after the vite patch, investigate before accepting them as the baseline."
+- 2026-10-22T12:45:08 P0-1 stage test
+- 2026-10-22T12:56:49 Q4 (P0-3) asked: Boundary rules 3-9 with @/ imports: (1) add eslint-import-resolver-typescript 4.4.5 to keep eslint-plugin-boundaries, (2) a local resolver file, or (3) rules 3-9 in dependency-cruiser only and drop eslint-plugin-boundaries?
+- 2026-10-22T12:57:21 P0-1 stage docs
+- 2026-10-22T12:58:04 Q4 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended (3): rules 3-9 and 10 in dependency-cruiser only (resolves @/ natively); drop eslint-plugin-boundaries (changes D3: no handlebars override, no braces path via micromatch); add ESLint core no-restricted-imports overrides per folder for the simple bans so the editor shows them. The user reviews the D3 change."
+- 2026-10-22T12:59:11 P0-1 stage commit

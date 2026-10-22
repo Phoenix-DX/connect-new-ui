@@ -248,3 +248,10 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,verify,14325,refactor-test,,"agent team self-test T0-1 (A6 b), sonnet"
 2026-10-22,refactor,other,13236,refactor-docs,,"agent team self-test T0-1 (A6 b), sonnet"
 2026-10-22,refactor,foundation,180000,main,,"agent team plan + build (B1-B7), estimate"
+2026-10-22,refactor,review,112851,refactor-advisor,,"P0-1 Q1, P0-3 Q2 (deps, versions, security), opus"
+2026-10-22,refactor,review,40188,refactor-advisor,,"P0-1 Q3 facts (security patches), sonnet, 37 s"
+2026-10-22,refactor,review,35298,refactor-advisor,,"P0-1 Q3 judgment (security patches), opus, 17 s"
+2026-10-22,refactor,build,37128,refactor-dev,,P0-1 sonnet
+2026-10-22,refactor,verify,23630,refactor-test,,P0-1 sonnet
+2026-10-22,refactor,review,36031,refactor-advisor,,"P0-3 Q4 judgment (resolver), opus, 15 s"
+2026-10-22,refactor,other,28095,refactor-docs,,P0-1 sonnet
