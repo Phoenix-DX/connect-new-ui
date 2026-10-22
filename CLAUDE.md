@@ -55,6 +55,14 @@ Migrate the OutSystems app **UBTConnect TST** (`https://ubtm-tst.ubtconnectgloba
   row. An outdated context gets status `superseded by context-<NNN>`; never delete one.
 - Never write passwords, PINs, emails, test-account names, raw data or anything from `.auth/` or `migration/.raw/`.
 
+## Refactor (branch `refactor/architecture`)
+
+- Plan: `app/docs/architecture/refactor-plan-v2.md`, decisions R1–R8 (user, 2026-10-22). **Not begun until I say start.**
+- Run it only through the skill **refactor-master**: `/refactor-master status | start | continue | phase P<n> | step <id>`.
+  The master routes each step to the agents `refactor-developer`, `refactor-tester`, `refactor-documenter`
+  (`.claude/agents/`). State: `migration/refactor/state.json`; guide: `migration/refactor/README.md`.
+- The refactor does not use `route.py` (D4). Its parity gate is `migration/tools/refactor_parity.py` (built in P0-2).
+
 ## Environment
 
 - Source of truth is **TST** (captures, survey, compiled code). The OutSystems MCP (Service Studio) is connected to

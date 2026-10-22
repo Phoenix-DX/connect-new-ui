@@ -1,0 +1,9 @@
+{
+ "plan": "app/docs/architecture/refactor-plan-v2.md",
+ "branch": "refactor/architecture",
+ "begun": null,
+ "current": null,
+ "steps": {},
+ "gates": {},
+ "questions": []
+}

@@ -391,8 +391,9 @@ of the same cases. Coverage does not fall below the baseline of P0-1 (statement 
 
 ## 6. Phases and steps
 
-Total: about 51 working days for one developer with Claude, plus 15 percent reserve: 58 days. Option R1 (b) is
-phases 0 to 7 (about 45 days). Each step has: Goal, Preconditions, Read, Do, Check, Commit.
+Total: about 56 working days for one developer with Claude, plus 15 percent reserve: 64 days. Option R1 (b) is
+phases 0 to 7: about 50 days, 58 days with the reserve. Correction (2026-10-22): the first version of this plan gave
+51 and 45 days; the sum of the phase durations is 56 and 50. Each step has: Goal, Preconditions, Read, Do, Check, Commit.
 
 Durations are estimates. Report the real duration in the daily report.
 
@@ -854,7 +855,7 @@ Count check: 10 + 9 + 8 + 13 + 16 + 7 + 1 (HouseholdDetails) = 64.
 | D3  | Dev dependencies               | `dependency-cruiser`, `eslint-plugin-boundaries`, `jscpd`, `knip`, `ts-morph`; this plan adds `eslint-plugin-import-x` and `tsx` (needs the user's yes) | user, 2026-10-22; addition open |
 | D4  | Relation to the skill pipeline | Option B, `refactor_parity.py`                                                                                                                          | user, 2026-10-22                |
 | D5  | Start date                     | **Open. The user says when to start. Do not run P0-1 before that.**                                                                                     | —                               |
-| R1  | Scope and time                 | (b) phases 0 to 7, about 45 days; phases 8 and 9 as stretch                                                                                             | user, 2026-10-22                |
+| R1  | Scope and time                 | (b) phases 0 to 7, about 50 days; phases 8 and 9 as stretch                                                                                             | user, 2026-10-22                |
 | R2  | Container criterion            | (b) hooks by default; container only by the criterion of §2.3                                                                                           | user, 2026-10-22                |
 | R3  | CSS scope                      | (b) tokens, `@layer legacy`, delete unused CSS; CSS Modules for new components only (§2.8)                                                              | user, 2026-10-22                |
 | R4  | OutSystems references          | (b) one `@origin` tag per file; no inline line numbers after a rewrite                                                                                  | user, 2026-10-22                |

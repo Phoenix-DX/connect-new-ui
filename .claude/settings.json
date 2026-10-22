@@ -9,7 +9,12 @@
       "Bash(git diff*)",
       "Bash(git log*)",
       "Bash(git add *)",
-      "Bash(git ls-files*)"
+      "Bash(git ls-files*)",
+      "Bash(git mv *)",
+      "Bash(git commit *)",
+      "Bash(git stash *)",
+      "Bash(git rev-parse*)",
+      "Bash(git branch --show-current)"
     ],
     "deny": [
       "Read(./.auth/**)",
