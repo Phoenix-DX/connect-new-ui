@@ -80,7 +80,7 @@ src/
     components/              components that only this page uses
     containers/              containers that only this page uses (rare)
     <Route>.test.tsx, *.stories.tsx
-  containers/                containers that 2 or more pages use (ShareSheet, FilterSheet, BottomBar)
+  containers/                containers that 2 or more pages use (rare; see app/docs/refactor/move-map.csv)
   components/
     ui/                      generic UI: Button, Dialog, BottomSheet, Card, List, EmptyState, Skeleton, Tag, ...
     layout/                  AppLayout, DetailLayout, HomeLayout, BlankLayout
@@ -146,15 +146,15 @@ block in `move-map.csv`, column `shape` (`page`, `hook+component`, `container+co
 
 ### 2.6 From an OutSystems block to React
 
-| OutSystems block                                                 | React target                                             |
-| ---------------------------------------------------------------- | -------------------------------------------------------- |
-| UI only, with input parameters                                   | Component                                                |
-| With a data action, aggregate or side effect                     | Hook + component (§2.3); container only by the criterion |
-| Layout block (`Layout_DetailPage`, `CommonUI_InsideLayout`, ...) | `components/layout/`                                     |
-| OutSystems UI pattern (`shared/osui/*`)                          | `components/ui/`                                         |
-| `DEPRECATED_*` pattern                                           | Delete after the last user moves to the new component    |
-| Screen (`screens/<S>/index.tsx`)                                 | `pages/<S>/<S>Page.tsx`                                  |
-| `ScreenBlock_*` in `screens/<S>/components/`                     | Split into hooks and components of the page              |
+| OutSystems block                                                 | React target                                                                                                         |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| UI only, with input parameters                                   | Component                                                                                                            |
+| With a data action, aggregate or side effect                     | Hook + component (§2.3); container only by the criterion                                                             |
+| Layout block (`Layout_DetailPage`, `CommonUI_InsideLayout`, ...) | `components/layout/`                                                                                                 |
+| OutSystems UI pattern (`shared/osui/*`)                          | `components/ui/`                                                                                                     |
+| `DEPRECATED_*` pattern                                           | Legacy UI component in `components/ui/legacy/` with a business name; not deleted (Q5: the original screens use them) |
+| Screen (`screens/<S>/index.tsx`)                                 | `pages/<S>/<S>Page.tsx`                                                                                              |
+| `ScreenBlock_*` in `screens/<S>/components/`                     | Split into hooks and components of the page                                                                          |
 
 ### 2.7 State
 
@@ -321,8 +321,8 @@ The fast gate is `--changed`. The full gate is `--all`. The full gate runs at th
 ### 4.3 Codemod `migration/tools/refactor/move.ts` (ts-morph), written in step P0-3
 
 ```
-npx tsx migration/tools/refactor/move.ts --from app/src/shell --to app/src/platform/legacy-shell [--dry-run]
-npx tsx migration/tools/refactor/move.ts --map app/docs/refactor/move-map.csv --phase P1 [--dry-run]
+node migration/tools/refactor/move.ts --from app/src/shell --to app/src/platform/legacy-shell [--dry-run]
+node migration/tools/refactor/move.ts --map app/docs/refactor/move-map.csv --phase P1 [--dry-run]
 ```
 
 Behavior: the codemod moves the files with `git mv`, with their tests and stories. It rewrites every import in `src/`,
@@ -331,14 +331,15 @@ other text.
 
 ### 4.4 Lint and graph tools (D3), installed in step P0-3
 
-| Tool                       | Config                        | Use                                                                |
-| -------------------------- | ----------------------------- | ------------------------------------------------------------------ |
-| `dependency-cruiser`       | `app/.dependency-cruiser.cjs` | `no-circular`, folder rules of §2.4, graph export to `graph.json`  |
-| `eslint-plugin-boundaries` | `app/eslint.config.js`        | rules 3 to 9 of §2.4; `warn` until Phase 9, then `error`           |
-| `eslint-plugin-import-x`   | `app/eslint.config.js`        | `no-relative-parent-imports` (rule 11), `no-cycle` as a second net |
-| `jscpd`                    | `app/.jscpd.json`             | duplicate report; threshold in Phase 9                             |
-| `knip`                     | `app/knip.json`               | unused files and exports; report in P0, gate in Phase 9            |
-| `ts-morph`, `tsx`          | dev dependencies              | the codemod                                                        |
+| Tool                                | Config                        | Use                                                                                                            |
+| ----------------------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `dependency-cruiser`                | `app/.dependency-cruiser.cjs` | `no-circular`, folder rules 3 to 10 of §2.4 (`warn` until Phase 9, then `error`), graph export to `graph.json` |
+| `jscpd`                             | `app/.jscpd.json`             | duplicate report; threshold in Phase 9                                                                         |
+| `knip`                              | `app/knip.json`               | unused files and exports; report in P0, gate in Phase 9                                                        |
+| ESLint core `no-restricted-imports` | `app/eslint.config.js`        | rule 11 (no `../`), and per-folder bans for editor feedback                                                    |
+| `ts-morph`                          | dev dependencies              | the codemod (no `tsx`)                                                                                         |
+
+Changed by the auto decisions Q2 and Q4 (2026-10-22); D3 is updated in ADR-15.
 
 Versions follow the stable rule (ADR-2): major line at least 9 months old, version at least 60 days old. Record the
 versions in `app/docs/refactor/baseline.md` and in the ADR of step P0-5.
@@ -347,7 +348,7 @@ versions in `app/docs/refactor/baseline.md` and in the ADR of step P0-5.
 
 ```
 npm --prefix app run ci
-npm --prefix app run lint:arch          # depcruise + boundaries, added in P1-1
+npm --prefix app run lint:arch          # dependency-cruiser (`npm run arch`) + `no-restricted-imports`, added in P1-1
 python3 migration/tools/refactor_parity.py --level <level> --changed
 python3 migration/tools/refactor_parity.py --level <level> --all     # end of day, end of phase
 node app/build/bundle-report.mjs        # first-load size of HomeFeed and Login, added in P0-4
@@ -496,9 +497,9 @@ Durations are estimates. Report the real duration in the daily report.
 
 - Goal: the boundary rules exist and report; the build does not fail on them.
 - Do:
-  1. Add `eslint-plugin-boundaries` elements for the target folders of §2.2 and the rules of §2.4 as `warn`.
-  2. Add `eslint-plugin-import-x` with `no-relative-parent-imports` as `warn`.
-  3. Add the script `lint:arch`: `depcruise src --config .dependency-cruiser.cjs && eslint . --rule '...'`. Keep
+  1. Set the folder rules of §2.4 in `app/.dependency-cruiser.cjs` to `warn` for the target folders of §2.2. The folders exist from P0-3; check them.
+  2. Add ESLint core `no-restricted-imports` with the pattern `^\.\./` as `warn` (rule 11). Add per-folder bans for `components/**` (no `@/api`, `@/platform`, `@/pages`, `@/containers`, `@/app`).
+  3. Add the script `lint:arch`: `npm run arch && eslint .`. Keep
      `npm run ci` unchanged in this phase.
   4. Record the number of warnings in `baseline.md` (metric "boundary violations").
 - Check: `npm --prefix app run ci` passes; `npm run lint:arch` runs and prints the count.
@@ -532,15 +533,15 @@ Durations are estimates. Report the real duration in the daily report.
 
 - Goal: the files of `lib/` and `components/` live in their target folders. File names do not change in this step.
 
-  | Source                                                      | Target                                               |
-  | ----------------------------------------------------------- | ---------------------------------------------------- |
-  | `lib/api.ts`                                                | `api/client/callAction.ts`                           |
-  | `lib/os-exceptions.ts`, `lib/os-wire.ts`, `lib/os-assets.*` | `legacy/os/`                                         |
-  | `lib/flags.ts`, `lib/flags.generated.json`                  | `platform/flags/`                                    |
-  | `lib/config.ts`, `lib/log.ts`, `lib/device*`                | `platform/config`, `platform/log`, `platform/device` |
-  | `components/OS*`                                            | `legacy/os/widgets/`                                 |
-  | `components/FlagPanel.tsx`                                  | `platform/flags/FlagPanel.tsx`                       |
-  | `components/NotCaptured.tsx`                                | `app/`                                               |
+  | Source                                                      | Target                                                                                                                              |
+  | ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+  | `lib/api.ts`                                                | `api/client/callAction.ts`                                                                                                          |
+  | `lib/os-exceptions.ts`, `lib/os-wire.ts`, `lib/os-assets.*` | `legacy/os/`                                                                                                                        |
+  | `lib/flags.ts`, `lib/flags.generated.json`                  | `platform/flags/`                                                                                                                   |
+  | `lib/config.ts`, `lib/log.ts`, `lib/device*`                | `platform/config`, `platform/log`, `platform/device`                                                                                |
+  | `components/OS*`                                            | `components/ui/os/` (presentational widgets; a widget that imports `legacy/os` stays in `legacy/os/` behind a platform adapter; Q7) |
+  | `components/FlagPanel.tsx`                                  | `platform/flags/FlagPanel.tsx`                                                                                                      |
+  | `components/NotCaptured.tsx`                                | `app/`                                                                                                                              |
 
 - Do: run the codemod with `--phase P1-3`. Keep `window.__osCalls` in `api/client/callAction.ts`.
 - Check: as P1-2.
@@ -550,7 +551,7 @@ Durations are estimates. Report the real duration in the daily report.
 
 - Goal: no `../../..` import in `src/`.
 - Do: run the codemod in `--alias-only` mode (rewrite relative parent imports to `@/`). Change
-  `no-relative-parent-imports` to `error`.
+  the `no-restricted-imports` rule 11 pattern to `error`.
 - Check: `ci` passes; `grep -r "from '\.\./\.\./" app/src | wc -l` prints 0; parity strict 64/0.
 - Commit: `refactor(P1-4): use the @/ alias everywhere`.
 

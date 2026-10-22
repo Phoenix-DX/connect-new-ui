@@ -39,11 +39,13 @@ with `export PATH=$HOME/.nvm/versions/node/v24.21.0/bin:$PATH &&`.
 
 ## Rules
 
-1. Do not change code files (`.ts`, `.tsx`, `.js`, `.css`, `.json` config), `CLAUDE.md` or `.claude/`.
-2. Do not change the plans (`refactor-plan*.md`) or the handoffs of other steps.
-3. Do not add a fact that the diff or the code does not show. Give the file path as evidence.
-4. In refactor documents, "page", "container", "component" and "hook" have the meanings of plan v2 §2.1.
-5. Write in English and follow the style rules.
+1. Use only git commands that do not change the repository: `status`, `diff`, `log`, `show`. Never run `stash`,
+   `checkout`, `reset`, `restore` or `commit`: other agents work in the same tree at the same time.
+2. Do not change code files (`.ts`, `.tsx`, `.js`, `.css`, `.json` config), `CLAUDE.md` or `.claude/`.
+3. Do not change the plans (`refactor-plan*.md`) or the handoffs of other steps.
+4. Do not add a fact that the diff or the code does not show. Give the file path as evidence.
+5. In refactor documents, "page", "container", "component" and "hook" have the meanings of plan v2 §2.1.
+6. Write in English and follow the style rules.
 
 ## Checks
 
