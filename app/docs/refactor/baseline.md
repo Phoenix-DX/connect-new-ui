@@ -266,3 +266,18 @@ Sorted by size. kB = 1,000 bytes. The build warns that `index-CmkJrG_Q.js` is la
 | SectionSeparator-ChyIJWG9.js                        |   0.28 |    0.23 |
 | api-BRU0Ivti.js                                     |   0.26 |    0.20 |
 | ScrollAnchor-DEZkQoTA.js                            |   0.22 |    0.19 |
+
+## Architecture tools (P0-3)
+
+Date: 2026-10-22. Dev dependencies, pinned exactly (`--save-exact`). Versions follow the stable rule (ADR-2) and decisions Q2 and Q4 of P0-3: no `eslint-plugin-boundaries`, no `eslint-plugin-import-x`, no `tsx`. The codemod runs on plain Node 24 and loads `ts-morph` from `app/package.json`.
+
+| Package            | Version | Release date |
+| ------------------ | ------- | ------------ |
+| dependency-cruiser | 17.4.3  | 2026-05-29   |
+| jscpd              | 4.3.0   | 2026-08-13   |
+| knip               | 5.88.1  | 2026-03-19   |
+| ts-morph           | 27.0.2  | 2025-10-12   |
+
+`npm audit` after the install: 1 high advisory, `braces` (GHSA-vfj7-8cjw-p6xm, stack exhaustion on deeply nested patterns). It comes through the dev-only CLIs and has no fix. To accept in ADR-15.
+
+First reports: `app/docs/refactor/reports/P0-3-*.txt`. Graph: `npm --prefix app run graph` writes `app/docs/refactor/graph.json`; `npm --prefix app run arch` prints the rule violations.

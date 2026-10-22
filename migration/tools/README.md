@@ -33,7 +33,7 @@ python3 migration/tools/refactor_parity.py --level strict|visual [--all | --rout
 | `--level visual` | Skips `structure`, `class`, `attr`; `style` and `pseudo` only on elements that are visible on both sides |
 | `--ref` | `outsystems`: the capture, exemptions `migration/parity-exemptions.json`. `self`: the self-parity reference, exemptions `migration/refactor-exemptions.json`. Default `both` |
 | `--record-self` | Records the running app as the self-parity reference in `migration/refactor-reference/<Route>/<state>/` (`tree.json`, `screenshot.png`), then stops. About 2 min for 64 routes, 160 MB, so the folder is in `.gitignore`: record it again on a new clone, at the commit that is the reference |
-| `--changed` | Routes whose files changed (`git diff --name-only <since>` and untracked files; default `HEAD~1`). A change in a shared path (`app/src/app`, `platform`, `api/client`, `legacy/os`, `styles`, `shell`, `shared`, `lib`, `components`, `mocks`, `app/public`, the exemption files) selects all routes. A change in `app/src/screens/<R>/` selects `<R>`. From P0-3 the file `app/docs/refactor/graph.json` (`{"routes": {"<R>": ["app/src/...", ...]}}`, the import closure per route) selects more routes |
+| `--changed` | Routes whose import closure holds a changed file (`git diff --name-only <since>` and untracked files; default `HEAD~1`). The closure comes from `app/docs/refactor/graph.json` (dependency-cruiser, `modules[].dependencies[].resolved`); the tool runs `npm --prefix app run graph` first when the file is missing or older than the newest commit. Entry of a route: `src/screens/<R>/index.tsx` or `src/pages/<R>/<R>Page.tsx`. A change in `app/src/app`, `platform`, `api/client`, `legacy/os`, `styles`, `shell`, `mocks`, `app/public`, `app/index.html`, the app build config or the exemption files selects all routes (`shared`, `lib` and `components` are not global: the closure covers them). `--files <path>...` replaces the git diff; `--explain` prints the selected routes and the files that selected them, then exits |
 | `--report` | Markdown: one line per route and state, a total per reference. Default `migration/refactor-parity/last/report.md` |
 | `--jobs` | Parallel browser runs (default 4) |
 
@@ -72,6 +72,15 @@ the named routes). Add an entry only with the user's confirm.
 - `--freeze-animations`: finish finite animations and pause endless ones.
 - `--diff-ref <path>`: the diff image path named in pixel details.
 
+## Refactor codemod (`refactor/move.ts`)
+
+The codemod runs on plain Node 24 (it loads ts-morph from `app/node_modules`). It moves files with `git mv`, moves their tests and stories, rewrites the imports that the move changes to `@/`, then runs the typecheck. Always use `--dry-run` first: it prints the file list and the import count and changes nothing.
+- One folder: `node migration/tools/refactor/move.ts --from app/src/shell --to app/src/platform [--dry-run]`
+- Rows of the move map: `node migration/tools/refactor/move.ts --map app/docs/refactor/move-map.csv --phase P1 [--dry-run]`
+- Only rewrite `../` imports to `@/`: `node migration/tools/refactor/move.ts --alias-only [--dry-run]`
+- `--no-typecheck` skips the typecheck at the end. `import.meta.glob` patterns are not rewritten; the tool prints a warning.
+
+
 Servers:
 - dev: `npm --prefix app run dev` (http://localhost:5173)
 - demo: `node app/dist-demo/serve.mjs 8099` (http://localhost:8099/UBTConnect/)
@@ -80,3 +89,4 @@ Related checks in the app:
 - `npm --prefix app run ci`: types, lint, format, unit tests, build.
 - `npm --prefix app run e2e:pwa`: PWA end-to-end.
 - `npm --prefix app run lighthouse`: Lighthouse on the demo build.
+- `npm --prefix app run arch` and `npm --prefix app run graph`: dependency-cruiser check and graph (see `app/docs/guides/quality.md`).

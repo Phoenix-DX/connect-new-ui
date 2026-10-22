@@ -1,4 +1,5 @@
 /// <reference types="vitest/config" />
+import path from 'node:path';
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { bootPlan } from './src/pwa/bootPlan';
@@ -24,6 +25,7 @@ export default defineConfig(({ mode }) => {
       ...(plan.mocks === 'none' ? mockFreeBuild() : []),
       appServiceWorker(plan),
     ],
+    resolve: { alias: { '@': path.resolve(import.meta.dirname, 'src') } },
     define: { __API_CONTRACT_VERSION__: JSON.stringify(apiContractVersion()) },
     build: { outDir: demo ? 'dist-demo' : 'dist' },
     server: { port: 5173, strictPort: true },

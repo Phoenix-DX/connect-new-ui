@@ -46,8 +46,8 @@ KINDS = ["structure", "class", "attr", "text", "style", "pseudo", "layout", "pos
 VISUAL_SKIP = "structure,class,attr"
 # a change under one of these paths can touch every route (current layout and the target layout of plan v2 §2.4)
 GLOBAL_PATHS = ("app/src/app/", "app/src/platform/", "app/src/api/client", "app/src/legacy/os", "app/src/styles/",
-                "app/src/shell/", "app/src/shared/", "app/src/lib/", "app/src/components/", "app/src/mocks/",
-                "app/public/", "app/index.html", "migration/parity-exemptions.json", EXEMPT_SELF)
+                "app/src/shell/", "app/src/mocks/", "app/public/", "app/index.html", "app/package.json",
+                "app/package-lock.json", "app/vite.config.ts", "app/tsconfig", "migration/parity-exemptions.json", EXEMPT_SELF)
 
 sys.path.insert(0, SK)
 import route as skill  # noqa: E402  (the skill's route.py: state loading, URL and plan helpers; main() is guarded)
@@ -61,30 +61,68 @@ def finished_routes():
     return [d for d in sorted(os.listdir("migration/screens")) if os.path.exists(f"migration/screens/{d}/finished.json")]
 
 
-def changed_routes(since, all_routes):
-    """Routes touched by `git diff --name-only <since>` (commits and working tree). Uses app/docs/refactor/graph.json
-    (step P0-3) when it exists: {"routes": {"<Route>": ["app/src/...", ...]}} (the import closure of each route)."""
-    files = [f for f in git("diff", "--name-only", since).splitlines() if f]
-    files += [f for f in git("ls-files", "--others", "--exclude-standard").splitlines() if f]
+GRAPH = "app/docs/refactor/graph.json"
+
+
+def load_graph():
+    """Forward import graph of dependency-cruiser: {source: [resolved, ...]}, paths relative to app/. It runs
+    `npm --prefix app run graph` first when graph.json is missing or older than the newest commit."""
+    stale = True
+    if os.path.exists(GRAPH):
+        newest = (git("log", "-1", "--format=%ct").strip() or "0")
+        stale = os.path.getmtime(GRAPH) < int(newest)
+    if stale:
+        env = dict(os.environ, PATH=NODE_BIN + ":" + os.environ["PATH"])
+        r = subprocess.run(["npm", "--prefix", "app", "run", "graph"], capture_output=True, text=True, env=env)
+        if r.returncode != 0 and not os.path.exists(GRAPH):
+            sys.exit("npm --prefix app run graph failed:\n" + (r.stdout + r.stderr)[-2000:])
+    data = json.load(open(GRAPH, encoding="utf-8"))
+    return {m["source"]: [d["resolved"] for d in m.get("dependencies", [])] for m in data.get("modules", [])}
+
+
+def closure(graph, entry):
+    """All files reachable from `entry` (the entry included)."""
+    seen, todo = set(), [entry]
+    while todo:
+        f = todo.pop()
+        if f in seen:
+            continue
+        seen.add(f)
+        todo.extend(graph.get(f, []))
+    return seen
+
+
+def route_entry(graph, route):
+    """src/screens/<R>/index.tsx now, src/pages/<R>/<R>Page.tsx after the moves of plan v2."""
+    for e in (f"src/screens/{route}/index.tsx", f"src/pages/{route}/{route}Page.tsx"):
+        if e in graph:
+            return e
+    return None
+
+
+def changed_routes(since, all_routes, files=None, explain=None):
+    """Routes whose import closure holds a changed file. `files` replaces the git diff (--files). Changes in
+    GLOBAL_PATHS select all routes. `explain` (a dict) receives {route: [changed files that selected it]}."""
+    if files is None:
+        files = [f for f in git("diff", "--name-only", since).splitlines() if f]
+        files += [f for f in git("ls-files", "--others", "--exclude-standard").splitlines() if f]
     files = [f for f in files if f.startswith(("app/", "migration/parity-exemptions", EXEMPT_SELF)) and not f.startswith("app/docs/")]
-    if any(f.startswith(GLOBAL_PATHS) for f in files):
-        return all_routes, "a change in a shared path selects all routes"
-    sel = set()
+    why = {}
     for f in files:
-        m = re.match(r"app/src/screens/([^/]+)/", f)
-        if m:
-            sel.add(m.group(1))
-    graph = {}
-    try:
-        graph = json.load(open("app/docs/refactor/graph.json", encoding="utf-8")).get("routes", {})
-    except (OSError, ValueError):
-        pass
-    if not graph and any(not re.match(r"app/src/screens/", f) for f in files):
-        return all_routes, "app/docs/refactor/graph.json is missing: all routes selected"
-    for r, closure in graph.items():
-        if r in all_routes and any(f in closure for f in files):
-            sel.add(r)
-    return [r for r in all_routes if r in sel], f"{len(files)} changed file(s)"
+        if f.startswith(GLOBAL_PATHS):
+            for r in all_routes:
+                why.setdefault(r, []).append(f"{f} (global path)")
+    if not why or len(why) < len(all_routes):
+        graph = load_graph()
+        for r in all_routes:
+            entry = route_entry(graph, r)
+            cl = closure(graph, entry) if entry else set()
+            for f in files:
+                if f.startswith("app/") and not f.startswith(GLOBAL_PATHS) and f[4:] in cl:
+                    why.setdefault(r, []).append(f)
+    if explain is not None:
+        explain.update(why)
+    return [r for r in all_routes if r in why], f"{len(files)} changed file(s)"
 
 
 def self_rules(route):
@@ -166,6 +204,8 @@ def main():
     g.add_argument("--all", action="store_true")
     g.add_argument("--routes", nargs="+")
     g.add_argument("--changed", action="store_true")
+    ap.add_argument("--files", nargs="+", help="with --changed: use this list of paths (from the project root) instead of git")
+    ap.add_argument("--explain", action="store_true", help="with --changed: print the selected routes and why, then exit")
     ap.add_argument("--since", default="HEAD~1", help="with --changed: the commit to diff from (default HEAD~1)")
     ap.add_argument("--ref", choices=["outsystems", "self", "both"], default="both")
     ap.add_argument("--record-self", action="store_true")
@@ -187,7 +227,13 @@ def main():
             sys.exit(f"unknown or unfinished routes: {unknown}")
         routes = args.routes
     elif args.changed:
-        routes, note = changed_routes(args.since, every)
+        why = {}
+        routes, note = changed_routes(args.since, every, args.files, why)
+        if args.explain:
+            print(f"{len(routes)} of {len(every)} routes selected ({note})")
+            for r in routes:
+                print(f"{r}: " + ", ".join(sorted(set(why[r]))[:6]) + (" ..." if len(set(why[r])) > 6 else ""))
+            return
     else:
         routes = every
     ex = json.load(open("migration/parity-exemptions.json", encoding="utf-8")) if os.path.exists("migration/parity-exemptions.json") else {}

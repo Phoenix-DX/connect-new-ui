@@ -18,3 +18,4 @@ docs/reference
 docs/refactor/reports
 src/shared/**/__captures__
 lighthouse-reports
+docs/refactor/graph.json

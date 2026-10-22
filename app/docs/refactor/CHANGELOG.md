@@ -11,3 +11,9 @@
 - Architecture: no change. New tool `migration/tools/refactor_parity.py` (levels strict and visual, `--changed`, `--all`).
 - Self-parity reference recorded in `migration/refactor-reference/` (git-ignored). Strict run: 64/0 against both references.
 - New default-off flags in `parity_check.cjs`; exemptions in `migration/refactor-exemptions.json` (empty).
+
+## P0-3 - refactor(P0-3): add the architecture tools and the move codemod
+
+- Architecture: no folder change. Added dev tools: dependency-cruiser (`npm run graph`, `npm run arch`), jscpd, knip, ts-morph, and the alias `@/` for `src/`.
+- Added the move codemod `migration/tools/refactor/move.ts` (plain Node 24). No import uses `@/` yet.
+- First reports are in `app/docs/refactor/reports/P0-3-*.txt`. `npm run arch` reports 1 cycle (`src/shell/cachedUserInfo.ts` and `src/shell/mockUser.ts`).

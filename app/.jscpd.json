@@ -1,0 +1,16 @@
+{
+  "path": ["src"],
+  "format": ["typescript", "tsx"],
+  "ignore": [
+    "**/*.test.ts",
+    "**/*.test.tsx",
+    "**/*.stories.tsx",
+    "src/mocks/**",
+    "src/api/schema.d.ts",
+    "src/vendor/**"
+  ],
+  "minLines": 10,
+  "minTokens": 70,
+  "reporters": ["console"],
+  "gitignore": true
+}

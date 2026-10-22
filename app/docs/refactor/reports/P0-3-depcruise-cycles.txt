@@ -1,0 +1,15 @@
+
+> ubtconnect-react@0.1.0 arch
+> depcruise src --config .dependency-cruiser.cjs --output-type err
+
+
+  warn rule-6-lib-imports-lib-only: src/lib/device/webBarcodeScanner.ts → src/vendor/barcodeplugin/index.ts
+  warn rule-6-lib-imports-lib-only: src/lib/device/webBarcodeScanner.test.ts → src/vendor/barcodeplugin/index.ts
+  warn rule-6-lib-imports-lib-only: src/lib/api.test.ts → src/test/setup.ts
+  warn rule-6-lib-imports-lib-only: src/lib/api.test.ts → src/shell/testSupport.ts
+  error no-circular: src/shell/cachedUserInfo.ts → 
+      src/shell/mockUser.ts →
+      src/shell/cachedUserInfo.ts
+
+x 5 dependency violations (1 errors, 4 warnings). 1886 modules, 7174 dependencies cruised.
+

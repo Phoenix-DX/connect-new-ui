@@ -1,0 +1,852 @@
+Unused files (19)
+src/screens/ContactUsMenu/api.ts                                    
+src/screens/PINBiometricsMenu/api.ts                                
+src/screens/PINChange/api.ts                                        
+src/screens/PINChange/types.ts                                      
+src/screens/PINRegister/api.ts                                      
+src/screens/PINRegister/types.ts                                    
+src/screens/PINUnlock/api.ts                                        
+src/screens/PINUnlock/types.ts                                      
+src/screens/Splash/api.ts                                           
+src/screens/Splash/types.ts                                         
+src/screens/TermsAndPoliciesMenu/api.ts                             
+src/shared/Connect2_LegacyShared/MultiResolutionImageLoader/index.ts
+src/shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection/types.ts 
+src/shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem/types.ts    
+src/shared/osui/Columns4/index.ts                                   
+src/shared/osui/DropdownSearch/index.ts                             
+src/shared/osui/RangeSlider/index.ts                                
+src/shared/osui/SwipeEvents/index.ts                                
+src/shared/osui/Tooltip/index.ts                                    
+Unused exports (220)
+ROUTE_CSS_ORIGIN                                            src/app/routes.css.generated.ts:1148:14                     
+useWidgetValidationRecord                                   src/components/OSValidation/index.ts:6:3                    
+DEFAULT_WIDGET_RECORD                                       src/components/OSValidation/index.ts:13:3                   
+isEmptyValue                                                src/components/OSValidation/index.ts:16:3                   
+MessagesProvider                                            src/components/OSValidation/index.ts:17:3                   
+UBTCONNECT_VALIDATION_MESSAGES                              src/components/OSValidation/index.ts:18:3                   
+validateInputWithVariable                                   src/components/OSValidation/index.ts:19:3                   
+ValidationResult                                            src/components/OSValidation/index.ts:20:3                   
+ValidationService                                           src/components/OSValidation/index.ts:21:3                   
+useWidgetValidationRecord                         function  src/components/OSValidation/OSValidation.tsx:51:17          
+UBTCONNECT_VALIDATION_MESSAGES                              src/components/OSValidation/validationService.ts:55:14      
+isEmptyValue                                      function  src/components/OSValidation/validationService.ts:250:17     
+isAcceptable                                      function  src/components/OSValidation/validationService.ts:256:17     
+deviceTokens                                      function  src/lib/device.ts:24:17                                     
+browserEnvironment                                          src/lib/device/webBarcodeScanner.ts:42:14                   
+useFlag                                           function  src/lib/flags.ts:50:17                                      
+InvalidLoginException                             class     src/lib/os-exceptions.ts:64:14                              
+IgnorableSystemException                          class     src/lib/os-exceptions.ts:79:14                              
+AbortActivityChangeException                      class     src/lib/os-exceptions.ts:91:14                              
+osText                                                      src/lib/os-wire.ts:5:14                                     
+reloadForContractChange                           function  src/pwa/register.ts:105:23                                  
+OFFLINE_ENTRY                                               src/pwa/swRoutes.ts:11:14                                   
+MOCK_FEED_PAGE                                              src/pwa/swRoutes.ts:13:14                                   
+getUnavailableEventErrorMessage                   function  src/screens/AssembleDetail/components/actions.ts:20:17      
+AssembleEventDetail_Contact                       function  …leDetail/components/AssembleEventDetail_Contacts.tsx:134:17
+AssembleEventDetail_LocalitySubdivisio…           function  …Detail/components/AssembleEventDetail_Localities.tsx:103:17
+AssembleEventDetail_AttendeeSubdivision           function  …Detail/components/AssembleEventDetail_Localities.tsx:232:17
+AssembleEventDetail_Section                       function  …ens/AssembleDetail/components/AssembleEventDetail.tsx:28:17
+AssembleEventDetail__Error                        function  …ens/AssembleDetail/components/AssembleEventDetail.tsx:71:17
+AssembleEventDetail_AttendeeSubdivisio…           function  …ns/AssembleDetail/components/AssembleEventDetail.tsx:113:17
+FocusScrollAnchorOnBack                           function  …embleDetail/components/ScreenBlock_AssembleDetail.tsx:24:17
+toBookmarkItem                                              src/screens/BookmarksByGroup/api.ts:19:14                   
+getSkeleton_UI_CountryStatistics                            src/screens/BrowseCountries/components/actions.ts:5:14      
+auditShareViewEvent                               function  src/screens/ConnectShare/components/actions.ts:13:23        
+ApplicationEvents_Orbit_ContactHelpdesk                     …eens/ContactByEmailOrbitHelpdesk/components/actions.ts:9:14
+get_LookupContactUsMenu                           function  src/screens/ContactUsMenu/components/actions.ts:27:17       
+getSkeleton_UI_CountryStatistics                  function  src/screens/CountryList/components/actions.ts:5:17          
+toMilestone                                                 src/screens/EventDetail/api.ts:15:14                        
+getOrdinalEnding                                  function  src/screens/LDM_EventDetail_V2/components/actions.ts:23:17  
+textToLongInteger                                 function  src/screens/LegacyShareObject/api.ts:26:17                  
+highlightParts                                    function  …eens/LegacyShareObject/components/HighlightSearch.tsx:27:17
+osDateOf                                                    src/screens/Notifications/components/actions.ts:8:14        
+MoreActionSheet                                   function  …/screens/Notifications/components/MoreActionSheet.tsx:39:17
+SortSheet                                         function  src/screens/Notifications/components/SortSheet.tsx:45:17    
+toAdminEventItem                                            src/screens/OrbitAdminLanding/api.ts:8:14                   
+toHouseholdMember                                           src/screens/OrbitLanding/api.ts:16:14                       
+toEventsSummaryItem                               function  src/screens/OrbitLanding/api.ts:24:17                       
+householdWire                                               src/screens/Photobook/api.ts:27:14                          
+searchCategory_GetList                            function  src/screens/Search/components/actions.ts:14:17              
+Type_SearchTarget                                           src/screens/Search/components/staticEntities.ts:11:14       
+EMPTY_PRELOAD                                               src/screens/SupperMeeting_Carousel/components/logic.ts:8:14 
+toItem                                                      src/screens/Updates_SingleList/api.ts:19:14                 
+filterWire                                                  src/screens/Updates_SingleList/api.ts:56:14                 
+EMPTY_DATE_RANGE                                            src/screens/Updates_SingleList/components/actions.ts:19:14  
+diffDays                                          function  src/screens/Updates_SingleList/components/actions.ts:28:17  
+directory_Updates_MinDateToShow                   function  src/screens/Updates_SingleList/components/actions.ts:44:17  
+auditSubscriptionEvent                            function  src/shared/Connect2_Assemble_MUI/lib/actions.ts:128:17      
+addBookmark                                       function  src/shared/Connect2_Assemble_MUI/lib/actions.ts:166:17      
+deleteBookmarkByBookmarkId                        function  src/shared/Connect2_Assemble_MUI/lib/actions.ts:177:17      
+getCountryInformation                             function  src/shared/Connect2_LegacyShared/lib/actions.ts:277:23      
+getLocalityInformation                            function  src/shared/Connect2_LegacyShared/lib/actions.ts:297:23      
+getRegionSubscribedCountries                      function  src/shared/Connect2_LegacyShared/lib/actions.ts:327:23      
+getMemberContactList                              function  src/shared/Connect2_LegacyShared/lib/actions.ts:373:23      
+getTimezoneInformation                            function  src/shared/Connect2_LegacyShared/lib/actions.ts:392:23      
+getBulkSubdivisions_V2                            function  src/shared/Connect2_LegacyShared/lib/actions.ts:430:23      
+getBulkSubdivision_V2                             function  src/shared/Connect2_LegacyShared/lib/actions.ts:439:23      
+set_BookletGuestsMaxRows                          function  src/shared/Connect2_OrbitMobile_MUI/lib/actions.ts:270:23   
+set_BookletHelpersMaxRows                         function  src/shared/Connect2_OrbitMobile_MUI/lib/actions.ts:277:23   
+OrbitCardColor                                              …shared/Connect2_OrbitMobile_MUI/lib/staticEntities.ts:80:14
+dEPRECATED_CheckFileTransferPlugin                function  src/shared/FileTransferPlugin/lib/handleDownload.ts:68:17   
+lL_MapObjectAttr_ZoomControl                                src/shared/Leaflet/lib/actions.ts:37:14                     
+lL_MapObjectAttr_MarkerCluster_Layer                        src/shared/Leaflet/lib/actions.ts:39:14                     
+lL_MapAttr_IsUsingCluster                                   src/shared/Leaflet/lib/actions.ts:41:14                     
+lL_MapObject_Attr_Marker_Registry                           src/shared/Leaflet/lib/actions.ts:43:14                     
+lL_MapObject_Attr_PopupBindingCallback                      src/shared/Leaflet/lib/actions.ts:45:14                     
+lL_MapObject_Attr_TooltipBindingCallba…                     src/shared/Leaflet/lib/actions.ts:47:14                     
+generateGUID                                                src/shared/Leaflet/lib/actions.ts:50:14                     
+map_GetObject_FromId                              function  src/shared/Leaflet/lib/actions.ts:53:17                     
+getFromObject_Bool                                function  src/shared/Leaflet/lib/actions.ts:59:17                     
+getFromObject_Object                              function  src/shared/Leaflet/lib/actions.ts:65:17                     
+getFromObject_Array                               function  src/shared/Leaflet/lib/actions.ts:71:17                     
+setToObject_Bool                                  function  src/shared/Leaflet/lib/actions.ts:79:17                     
+map_Marker_GetRegistry                                      src/shared/Leaflet/lib/actions.ts:85:14                     
+map_MarkerCluster_UsingCluster_Check                        src/shared/Leaflet/lib/actions.ts:93:14                     
+map_GetPopupBindingCallback                                 src/shared/Leaflet/lib/actions.ts:97:14                     
+map_GetTooltipBindingCallback                               src/shared/Leaflet/lib/actions.ts:99:14                     
+map_MarkerCluster_GetOrCreateLayer                function  src/shared/Leaflet/lib/actions.ts:103:17                    
+map_Marker_BindPopUp                              function  src/shared/Leaflet/lib/actions.ts:139:17                    
+lL_MapObject_Attr_GeoJSON_Callback_Sty…                     src/shared/Leaflet/lib/actions.ts:403:14                    
+lL_MapObject_Attr_GeoJSON_Layer                             src/shared/Leaflet/lib/actions.ts:405:14                    
+lL_MapObject_Attr_GeoJSON_Registry                          src/shared/Leaflet/lib/actions.ts:407:14                    
+setToObject_Object                                function  src/shared/Leaflet/lib/actions.ts:410:17                    
+map_GeoJSON_Callback_GetStyle                               src/shared/Leaflet/lib/actions.ts:416:14                    
+map_GeoJSON_Callback_SetStyle                     function  src/shared/Leaflet/lib/actions.ts:420:17                    
+map_GeoJSON_GetLayer                              function  src/shared/Leaflet/lib/actions.ts:426:17                    
+map_GeoJSON_GetRegistry                                     src/shared/Leaflet/lib/actions.ts:446:14                    
+map_Internal_Layer_SetStyle                       function  src/shared/Leaflet/lib/actions.ts:451:17                    
+disableKeypressOnLoading                          function  …DEPRECATED_ButtonLoading/DEPRECATED_ButtonLoading.tsx:23:17
+galleryV2Style                                    function  …ed/osui/DEPRECATED_GalleryV2/DEPRECATED_GalleryV2.tsx:28:17
+toJson                                                      src/shared/osui/DropdownSearch/DropdownSearch.tsx:40:14     
+galleryStyle                                      function  src/shared/osui/Gallery/Gallery.tsx:23:17                   
+tooltipFormat                                               src/shared/osui/RangeSlider/provider.ts:82:14               
+buildEmbedUrl                                     function  …BTConnect_EmbedFeed/Embedded_FeedCMS/connect2Feed.ts:103:17
+getComingSoonMessage                                        src/shared/UBTConnect_Utils/lib/actions.ts:104:14           
+cache_SignedImageURL_GetCacheKey                            src/shared/UBTConnect_Utils/lib/actions.ts:129:14           
+cache_SignedImageURL_GetCallback                  function  src/shared/UBTConnect_Utils/lib/actions.ts:133:23           
+openInApp_ViewFile_Fallback                       function  src/shared/UBTConnect_Utils/lib/actions.ts:301:17           
+sampleHouseholdMembers                            function  …/shared/UBTConnect/HouseholdDetails_Block/mockData.ts:98:17
+getSkeleton_UI_SubdivisionHousehold               function  src/shared/UBTConnect/lib/actions.ts:381:17                 
+getSkeleton_UI_HouseholdMember                    function  src/shared/UBTConnect/lib/actions.ts:395:17                 
+getSkeleton_UI_HouseholdCardContent               function  src/shared/UBTConnect/lib/actions.ts:463:17                 
+getSkeleton_UI_HouseholdCard                      function  src/shared/UBTConnect/lib/actions.ts:478:17                 
+getSkeleton_HouseholdActions                      function  src/shared/UBTConnect/lib/actions.ts:483:17                 
+getSkeleton_UI_LocalityStatistics                 function  src/shared/UBTConnect/lib/actions.ts:501:17                 
+getClass_Visibility                               function  src/shared/UBTConnectLibrary/lib/actions.ts:60:17           
+getClasses_UBTSkeletonElement                     function  src/shared/UBTConnectLibrary/lib/actions.ts:64:17           
+convertVerticalAlignToFlexAlignItems              function  src/shared/UBTConnectLibrary/lib/actions.ts:185:17          
+getConnectWeekdayLabel_ByDayOfWeek                function  src/shared/UBTConnectLibrary/lib/actions.ts:428:17          
+getConnectDateFormat_Components                   function  src/shared/UBTConnectLibrary/lib/actions.ts:439:17          
+getConnectDateFormat_DayMonth                     function  src/shared/UBTConnectLibrary/lib/actions.ts:444:17          
+formatConnectDate                                 function  src/shared/UBTConnectLibrary/lib/actions.ts:450:17          
+getGalleryBackgroundClass                         function  src/shared/UBTConnectLibrary/lib/actions.ts:845:17          
+ensureDeviceUuid                                  function  src/shell/deviceContext.ts:7:17                             
+useIsCommonUiAbsent                                         src/shell/dialogs/index.ts:5:31                             
+useIsCommonUiMounted                                        src/shell/dialogs/index.ts:5:52                             
+navigateToUpgrade                                           src/shell/dialogs/index.ts:8:10                             
+useCommonUiBackHandler                                      src/shell/dialogs/index.ts:9:10                             
+AbortActivityChangeException                                src/shell/exceptions.ts:16:3                                
+CommunicationException                                      src/shell/exceptions.ts:17:3                                
+DataBaseException                                           src/shell/exceptions.ts:18:3                                
+Exception                                                   src/shell/exceptions.ts:19:3                                
+InvalidLoginException                                       src/shell/exceptions.ts:20:3                                
+SecurityException                                           src/shell/exceptions.ts:22:3                                
+ServerException                                             src/shell/exceptions.ts:23:3                                
+useFeedback                              feedba…  function  src/shell/feedback/index.ts:25:17                           
+FREQUENCY_SECONDS                                           src/shell/feedback/networkDetection.ts:31:14                
+PING_TIMEOUT_MS                                             src/shell/feedback/networkDetection.ts:32:14                
+PRECISION_SECONDS                                           src/shell/inactivity.ts:9:14                                
+serializeRecord                                   function  src/shell/localEntities/entities.ts:138:17                  
+delete_LocalNoteById                                        src/shell/localEntities/index.ts:6:3                        
+getLocalNotesByNoteId                                       src/shell/localEntities/index.ts:10:3                       
+getLocalNotesByUserId                                       src/shell/localEntities/index.ts:11:3                       
+CONNECTSEARCH_RECENTCLICKEDRESULTS                          src/shell/localEntities/index.ts:22:3                       
+CONNECTSEARCH_RECENTSEARCHTERM                              src/shell/localEntities/index.ts:23:3                       
+setRecentSearchDatabase                                     src/shell/localEntities/index.ts:33:3                       
+LOCALSEARCHHISTORY                                          src/shell/localEntities/index.ts:37:3                       
+setLocalSearchHistoryDatabase                               src/shell/localEntities/index.ts:42:3                       
+LEGACY_LOCAL_BOOKMARK                                       src/shell/localEntities/index.ts:47:3                       
+LOCAL_BOOKMARK                                              src/shell/localEntities/index.ts:48:3                       
+delete_LocalBookmarkById                                    src/shell/localEntities/index.ts:51:3                       
+get_LocalBookmarkByBookmarkId                               src/shell/localEntities/index.ts:52:3                       
+getLocalBookmarkByBookmarkId                                src/shell/localEntities/index.ts:54:3                       
+legacyDelete_LocalBookmarkById                              src/shell/localEntities/index.ts:59:3                       
+LOCAL_BED_SIZE                                              src/shell/localEntities/index.ts:81:3                       
+LOCAL_GENDER_PREFERENCE                                     src/shell/localEntities/index.ts:82:3                       
+LOCAL_HELPER_ROLE                                           src/shell/localEntities/index.ts:83:3                       
+LOCAL_HELPER_STATUS                                         src/shell/localEntities/index.ts:84:3                       
+LOCAL_HOST_SURVEY_STEP                                      src/shell/localEntities/index.ts:85:3                       
+LOCAL_HOUSE_FLOOR                                           src/shell/localEntities/index.ts:86:3                       
+LOCAL_MEAL_TYPE                                             src/shell/localEntities/index.ts:87:3                       
+LOCAL_ORBIT_EVENT_TYPE                                      src/shell/localEntities/index.ts:88:3                       
+LOCAL_ORBIT_MILESTONE_TYPE                                  src/shell/localEntities/index.ts:89:3                       
+LOCAL_SURVEY_STATUS                                         src/shell/localEntities/index.ts:90:3                       
+LOCAL_VEHICLE_OWNER                                         src/shell/localEntities/index.ts:91:3                       
+LOCAL_VEHICLE_TYPE                                          src/shell/localEntities/index.ts:92:3                       
+getLocalBedSizes                                            src/shell/localEntities/index.ts:93:3                       
+getLocalHelperStatus                                        src/shell/localEntities/index.ts:96:3                       
+getLocalMealTypes                                           src/shell/localEntities/index.ts:99:3                       
+getLocalOrbitEventTypes                                     src/shell/localEntities/index.ts:100:3                      
+getLocalSurveyStatusById                                    src/shell/localEntities/index.ts:103:3                      
+getLocalVehicleOwners                                       src/shell/localEntities/index.ts:105:3                      
+getLocalVehicleTypes                                        src/shell/localEntities/index.ts:106:3                      
+localOrbitMilestoneTypesRead                                src/shell/localEntities/index.ts:109:3                      
+setOrbitStaticEntitiesDatabase                              src/shell/localEntities/index.ts:112:3                      
+syncOrbitBedSize                                            src/shell/localEntities/index.ts:114:3                      
+syncOrbitEventTypes                                         src/shell/localEntities/index.ts:115:3                      
+syncOrbitGenderPreference                                   src/shell/localEntities/index.ts:116:3                      
+syncOrbitHelperRoles                                        src/shell/localEntities/index.ts:117:3                      
+syncOrbitHelperStatus                                       src/shell/localEntities/index.ts:118:3                      
+syncOrbitHouseFloor                                         src/shell/localEntities/index.ts:119:3                      
+syncOrbitMealType                                           src/shell/localEntities/index.ts:120:3                      
+syncOrbitSurveyStatus                                       src/shell/localEntities/index.ts:122:3                      
+syncOrbitSurveyStep                                         src/shell/localEntities/index.ts:123:3                      
+syncOrbitVehicleOwner                                       src/shell/localEntities/index.ts:124:3                      
+syncOrbitVehicleType                                        src/shell/localEntities/index.ts:125:3                      
+DATABASE_NAME                                               src/shell/localEntities/index.ts:130:10                     
+LOCAL_NOTE                                                  src/shell/localEntities/index.ts:130:25                     
+METADATA_TABLE                                              src/shell/localEntities/index.ts:130:37                     
+delete_LocalBookmarkById                          function  src/shell/localEntities/localBookmarks.ts:190:17            
+legacyDelete_LocalBookmarkById                    function  src/shell/localEntities/localBookmarks.ts:283:17            
+getLocalNotesByNoteId                             function  src/shell/localEntities/localNotes.ts:73:23                 
+getLocalNotesByUserId                             function  src/shell/localEntities/localNotes.ts:86:23                 
+delete_LocalNoteById                              function  src/shell/localEntities/localNotes.ts:128:17                
+LOCAL_SURVEY_STATUS                                         src/shell/localEntities/orbitStaticEntities.ts:56:14        
+LOCAL_ORBIT_EVENT_TYPE                                      src/shell/localEntities/orbitStaticEntities.ts:105:14       
+LOCAL_HOST_SURVEY_STEP                                      src/shell/localEntities/orbitStaticEntities.ts:122:14       
+LOCAL_GENDER_PREFERENCE                                     src/shell/localEntities/orbitStaticEntities.ts:148:14       
+LOCAL_HOUSE_FLOOR                                           src/shell/localEntities/orbitStaticEntities.ts:158:14       
+LOCAL_VEHICLE_OWNER                                         src/shell/localEntities/orbitStaticEntities.ts:168:14       
+LOCAL_VEHICLE_TYPE                                          src/shell/localEntities/orbitStaticEntities.ts:178:14       
+LOCAL_HELPER_STATUS                                         src/shell/localEntities/orbitStaticEntities.ts:188:14       
+LOCAL_MEAL_TYPE                                             src/shell/localEntities/orbitStaticEntities.ts:198:14       
+syncOrbitEventTypes                               function  src/shell/localEntities/orbitStaticEntities.ts:487:17       
+syncOrbitSurveyStep                               function  src/shell/localEntities/orbitStaticEntities.ts:504:17       
+syncOrbitBedSize                                            src/shell/localEntities/orbitStaticEntities.ts:530:14       
+syncOrbitGenderPreference                                   src/shell/localEntities/orbitStaticEntities.ts:535:14       
+syncOrbitHouseFloor                                         src/shell/localEntities/orbitStaticEntities.ts:540:14       
+syncOrbitVehicleOwner                                       src/shell/localEntities/orbitStaticEntities.ts:545:14       
+syncOrbitVehicleType                                        src/shell/localEntities/orbitStaticEntities.ts:550:14       
+syncOrbitHelperStatus                                       src/shell/localEntities/orbitStaticEntities.ts:556:14       
+syncOrbitMealType                                           src/shell/localEntities/orbitStaticEntities.ts:562:14       
+syncOrbitHelperRoles                                        src/shell/localEntities/orbitStaticEntities.ts:568:14       
+removeCacheableObjectsByType                      function  src/shell/memoryCache.ts:194:17                             
+entryIdx                                          function  src/shell/navigation/historyStack.ts:25:17                  
+screenUrl                                                   src/shell/navigation/index.ts:9:3                           
+exitApp                                                     src/shell/navigation/index.ts:18:10                         
+useExitConfirmation                                         src/shell/navigation/index.ts:18:19                         
+runAppStart                                       function  src/shell/startup.ts:229:23                                 
+whenLoaded                                        function  src/shell/StylesheetHost.tsx:99:17                          
+OS_BARCODE_PLUGIN_URL                                       src/vendor/barcodeplugin/index.ts:39:14                     
+Unused exported types (606)
+CssSetOrigin                          type       src/app/routes.css.generated.ts:9:13                                   
+OSListProps                           interface  src/components/OSList/OSList.tsx:69:18                                 
+OSListItemProps                       interface  src/components/OSList/OSListItem.tsx:474:18                            
+OSListItemActionProps                 interface  src/components/OSList/OSListItem.tsx:538:18                            
+RadioButtonProps                      type       src/components/OSRadioGroup/index.ts:1:40                              
+RadioGroupProps                       type       src/components/OSRadioGroup/index.ts:1:63                              
+RadioGroupProps                       interface  src/components/OSRadioGroup/OSRadioGroup.tsx:29:18                     
+RadioButtonProps                      interface  src/components/OSRadioGroup/OSRadioGroup.tsx:105:18                    
+InputWithVariableValidation           type       src/components/OSValidation/index.ts:9:8                               
+OSFormProps                           type       src/components/OSValidation/index.ts:10:8                              
+InputedValueValidity                  type       src/components/OSValidation/index.ts:24:8                              
+InputWithVariable                     type       src/components/OSValidation/index.ts:25:8                              
+ValidationWidget                      type       src/components/OSValidation/index.ts:26:8                              
+InputWithVariableValidation           interface  src/components/OSValidation/OSValidation.tsx:68:18                     
+OSFormProps                           interface  src/components/OSValidation/OSValidation.tsx:157:18                    
+ValidationWidget                      interface  src/components/OSValidation/validationService.ts:39:18                 
+InputedValueValidity                  interface  src/components/OSValidation/validationService.ts:266:18                
+InputWithVariable                     interface  src/components/OSValidation/validationService.ts:271:18                
+AppConfig                             interface  src/lib/config.ts:3:18                                                 
+LogLevel                              type       src/lib/log.ts:6:13                                                    
+LogEntry                              interface  src/lib/log.ts:7:18                                                    
+LogSink                               type       src/lib/log.ts:14:13                                                   
+ServerExceptionName                   type       src/lib/os-exceptions.ts:21:13                                         
+ErrorAnswer                           type       src/lib/os-exceptions.ts:23:13                                         
+ExceptionClass                        type       src/lib/os-exceptions.ts:136:13                                        
+SwContainer                           interface  src/pwa/register.ts:14:18                                              
+SwRegistration                        interface  src/pwa/register.ts:18:18                                              
+Policy_Custom_AcceptPending…          interface  …ndingPolicies/components/Policy_Custom_AcceptPendingPolicies.tsx:29:18
+PolicyAcceptanceDeviceDetai…          type       src/screens/AcceptPendingPolicies/types.ts:11:13                       
+ScreenBlock_Assemble_Filter…          interface  …emble_BrowseByCountry/components/ScreenBlock_Assemble_Filter.tsx:21:18
+ShowMoreShowLessContainerPr…          interface  src/screens/AssembleDetail/components/LegacySharedBlocks.tsx:18:18     
+NC_Result_Item__Image__Skel…          interface  src/screens/AssembleDetail/components/LegacySharedBlocks.tsx:139:18    
+ContextMenuProps                      interface  src/screens/AssembleDetail/components/LegacySharedBlocks.tsx:209:18    
+BookmarkNoteAddEditProps              interface  src/screens/AssembleDetail/components/LegacySharedBlocks.tsx:248:18    
+ScreenBlock_AssembleDetailP…          interface  …screens/AssembleDetail/components/ScreenBlock_AssembleDetail.tsx:53:18
+AssembleEventSummaryDetail            interface  src/screens/AssembleDetail/types.ts:52:18                              
+Assemble_FilterSheetProps             interface  src/screens/AssembleEvents/components/Assemble_FilterSheet.tsx:25:18   
+AssembleSummary_FilterDrawe…          interface  …reens/AssembleEvents/components/AssembleSummary_FilterDrawer.tsx:13:18
+AssembleSummary_List__Heade…          interface  …creens/AssembleEvents/components/AssembleSummary_List__Header.tsx:7:18
+AssembleSummary_ListProps             interface  src/screens/AssembleEvents/components/AssembleSummary_List.tsx:36:18   
+AssembleSummary_SkeletonLis…          interface  …creens/AssembleEvents/components/AssembleSummary_SkeletonList.tsx:8:18
+HorizontalTagsProps                   interface  src/screens/AssembleEvents/components/HorizontalTags.tsx:9:18          
+InBlock_ActionMenuProps               interface  src/screens/AssembleEvents/components/InBlock_ActionMenu.tsx:7:18      
+NC_ErrorScreenProps                   interface  src/screens/AssembleEvents/components/NC_ErrorScreen.tsx:5:18          
+ScreenBlock_AssembleEventsP…          interface  …screens/AssembleEvents/components/ScreenBlock_AssembleEvents.tsx:13:18
+BookmarkNoteAddEditProps              interface  src/screens/BookmarksByGroup/components/BookmarkNoteDialogs.tsx:9:18   
+BookmarkNoteDeleteProps               interface  src/screens/BookmarksByGroup/components/BookmarkNoteDialogs.tsx:83:18  
+Result_Item_BadgeProps                interface  src/screens/BookmarksByGroup/components/Result_Item_Badge.tsx:5:18     
+BookmarkGroupNavigation               interface  …creens/BookmarksByGroup/components/ScreenBlock_BookmarkGroup.tsx:47:18
+ScreenBlock_BookmarkGroupPr…          interface  …creens/BookmarksByGroup/components/ScreenBlock_BookmarkGroup.tsx:58:18
+NavigationLandingProps                interface  src/screens/ConnectShare/components/NavigationLanding.tsx:5:18         
+ScreenBlock_ShareDetailProps          interface  src/screens/ConnectShare/components/ScreenBlock_ShareDetail.tsx:10:18  
+UI_ContactByEmailFormWire             interface  src/screens/ContactByEmailOneSchoolGlobal/types.ts:18:18               
+Dialog_InformationProps               interface  src/screens/ContactUsDetails/components/Dialog_Information.tsx:8:18    
+UI_ListMenuOption                     type       src/screens/ContactUsMenu/types.ts:4:15                                
+ScreenBlock_ContactFormProps          interface  src/screens/EmailContact/components/ScreenBlock_ContactForm.tsx:52:18  
+SendContactEmailInputsWire            type       src/screens/EmailContact/types.ts:8:13                                 
+SendContactEmailWire                  type       src/screens/EmailContact/types.ts:9:13                                 
+ScreenBlock_Household_Email…          interface  …c/screens/EmailTarget/components/ScreenBlock_Household_Email.tsx:31:18
+BookletPopupProps                     interface  src/screens/EventBooklet/components/BookletPopup.tsx:11:18             
+DoubleActionProps                     interface  src/screens/EventBooklet/components/DoubleAction.tsx:9:18              
+EventBooklet_ListHeaderProps          interface  src/screens/EventBooklet/components/EventBooklet_ListHeader.tsx:8:18   
+EventBooklet_MembersItemPro…          interface  src/screens/EventBooklet/components/EventBooklet_MembersItem.tsx:10:18 
+PopUp_OrbitBookletFiltersPr…          interface  src/screens/EventBooklet/components/PopUp_OrbitBookletFilters.tsx:18:18
+ScreenBlock_EventBookletPro…          interface  src/screens/EventBooklet/components/ScreenBlock_EventBooklet.tsx:178:18
+GetEventBookletHelpersWire            type       src/screens/EventBooklet/types.ts:15:13                                
+EventDateSelectionProps               interface  src/screens/EventDetail/components/EventDateSelection.tsx:26:18        
+HostAllocation_ListProps              interface  src/screens/EventDetail/components/HostAllocation_List.tsx:92:18       
+ScreenBlock_EventDetailProps          interface  src/screens/EventDetail/components/ScreenBlock_EventDetail.tsx:115:18  
+Get_HostSurveyStatusWire              type       src/screens/EventDetail/types.ts:14:13                                 
+Get_HasDocumentsWire                  type       src/screens/EventDetail/types.ts:15:13                                 
+Get_HasQRCodeWire                     type       src/screens/EventDetail/types.ts:16:13                                 
+DateFilterWire                        type       src/screens/EventDetail/types.ts:23:13                                 
+ScreenBlock_GuestArrangemen…          interface  …s/GuestArrangements/components/ScreenBlock_GuestArrangements.tsx:74:18
+SpecialNeedsItemWire                  type       src/screens/GuestArrangements/types.ts:16:13                           
+MealDetailItemWire                    type       src/screens/GuestArrangements/types.ts:18:13                           
+OrbitMilestoneTypeWire                type       src/screens/GuestArrangements/types.ts:19:13                           
+ScreenBlock_HelperDetailsPr…          interface  …c/screens/HelpersDetail/components/ScreenBlock_HelperDetails.tsx:66:18
+GetServicesVariables                  interface  src/screens/HomeFeed/api.ts:11:18                                      
+Dialog_GoExternalAppProps             interface  src/screens/HomeFeed/components/Dialog_GoExternalApp.tsx:23:18         
+FeedBlock_ServicesProps               interface  src/screens/HomeFeed/components/FeedBlock_Services.tsx:58:18           
+FeedBlock_UpdatesProps                interface  src/screens/HomeFeed/components/FeedBlock_Updates.tsx:57:18            
+Section_FeedWrapperProps              interface  src/screens/HomeFeed/components/Section_FeedWrapper.tsx:20:18          
+SectionProps                          interface  src/screens/HomeFeed/components/Section.tsx:7:18                       
+GetServicesInputsWire                 type       src/screens/HomeFeed/types.ts:7:13                                     
+GetServicesOutputsWire                type       src/screens/HomeFeed/types.ts:8:13                                     
+ConnectServiceWire                    type       src/screens/HomeFeed/types.ts:10:13                                    
+ScreenBlock_HostSurveyProps           interface  src/screens/HostSurvey/components/ScreenBlock_HostSurvey.tsx:104:18    
+HostSurveyInfoWire                    type       src/screens/HostSurvey/types.ts:15:13                                  
+HostSurveyHelperWire                  type       src/screens/HostSurvey/types.ts:18:13                                  
+HostSurveyVehicleWire                 type       src/screens/HostSurvey/types.ts:19:13                                  
+PostHostSurveyInputsWire              type       src/screens/HostSurvey/types.ts:20:13                                  
+HouseholdRelations_BlockPro…          interface  …eens/Household_Relations/components/HouseholdRelations_Block.tsx:46:18
+MemberRelation_ListItemProps          interface  …reens/Household_Relations/components/MemberRelation_ListItem.tsx:18:18
+ScreenBlock_Event_Email_V2P…          interface  …c/screens/LDM_Email_V2/components/ScreenBlock_Event_Email_V2.tsx:60:18
+GetCoordinatorDetailsWire             type       src/screens/LDM_Email_V2/types.ts:4:13                                 
+EventDetail_BannerProps               interface  src/screens/LDM_EventDetail_V2/components/EventDetail_Banner.tsx:7:18  
+EventDetail_HostCardProps             interface  src/screens/LDM_EventDetail_V2/components/EventDetail_HostCard.tsx:7:18
+EventDetail_ListItemProps             interface  …c/screens/LDM_EventDetail_V2/components/EventDetail_ListItem.tsx:15:18
+EventDetail_SectionProps              interface  src/screens/LDM_EventDetail_V2/components/EventDetail_Section.tsx:5:18 
+EventDetail_SpecialNeeds_Li…          interface  …M_EventDetail_V2/components/EventDetail_SpecialNeeds_ListItem.tsx:6:18
+EventsDetail_ContentProps             interface  src/screens/LDM_EventDetail_V2/components/EventsDetail_Content.tsx:5:18
+ContactByEmailArgs                    interface  …ens/LDM_EventDetail_V2/components/ScreenBlock_EventDetail_V2.tsx:76:18
+ScreenBlock_EventDetail_V2P…          interface  …ens/LDM_EventDetail_V2/components/ScreenBlock_EventDetail_V2.tsx:89:18
+GetCoordinatorDetailsWire             type       src/screens/LDM_EventDetail_V2/types.ts:7:13                           
+MyEventsVariables                     interface  src/screens/LDM_MyEvents_V2/api.ts:17:18                               
+EventCard_BoxProps                    interface  src/screens/LDM_MyEvents_V2/components/EventCard_Box.tsx:5:18          
+EventCard_GuestsProps                 interface  src/screens/LDM_MyEvents_V2/components/EventCard_Guests.tsx:18:18      
+EventCard_Info_V2Props                interface  src/screens/LDM_MyEvents_V2/components/EventCard_Info_V2.tsx:7:18      
+EventCard_V2Props                     interface  src/screens/LDM_MyEvents_V2/components/EventCard_V2.tsx:12:18          
+MyEvents_MyTimelineFilterBu…          interface  …s/LDM_MyEvents_V2/components/MyEvents_MyTimelineFilterButton.tsx:13:18
+MyTimeline_V2Props                    interface  src/screens/LDM_MyEvents_V2/components/MyTimeline_V2.tsx:14:18         
+OverlappingImagesProps                interface  src/screens/LDM_MyEvents_V2/components/OverlappingImages.tsx:6:18      
+ScreenBlock_MyEvents_V2Props          interface  …c/screens/LDM_MyEvents_V2/components/ScreenBlock_MyEvents_V2.tsx:58:18
+GetEventLocalitiesForFilter…          type       src/screens/LDM_MyEvents_V2/types.ts:7:13                              
+TimelineEventGroup_V2Wire             type       src/screens/LDM_MyEvents_V2/types.ts:10:13                             
+ShareObjectBlockInputs                interface  src/screens/LegacyShareObject/api.ts:33:18                             
+HighlightSearchProps                  interface  src/screens/LegacyShareObject/components/HighlightSearch.tsx:5:18      
+ListBlankSlateProps                   interface  src/screens/LegacyShareObject/components/ListBlankSlate.tsx:5:18       
+ProfileListProps                      interface  src/screens/LegacyShareObject/components/ProfileList.tsx:18:18         
+ScreenBlock_ShareObjectProps          interface  …screens/LegacyShareObject/components/ScreenBlock_ShareObject.tsx:19:18
+GetHouseholdDetailsWire               type       src/screens/LegacyShareObject/types.ts:13:13                           
+CommunityBusinessShareCardW…          type       src/screens/LegacyShareObject/types.ts:14:13                           
+ShareObjectInputsWire                 type       src/screens/LegacyShareObject/types.ts:17:13                           
+ShareObjectWire                       type       src/screens/LegacyShareObject/types.ts:18:13                           
+LocalityDetailsCallInputs             interface  src/screens/Locality_Details/api.ts:15:18                              
+SubdivisionListCallInputs             interface  src/screens/Locality_Details/api.ts:117:18                             
+OneSchoolGlobalListCallInpu…          interface  src/screens/Locality_Details/api.ts:180:18                             
+Directory_Interchange_Stati…          interface  …lity_Details/components/Directory_Interchange_StatisticsList.tsx:13:18
+Household_CardProps                   interface  src/screens/Locality_Details/components/Household_Card.tsx:29:18       
+Locality_DateTimeLabelProps           interface  src/screens/Locality_Details/components/Locality_DateTimeLabel.tsx:7:18
+Locality_Households_Househo…          interface  …ocality_Details/components/Locality_Households_HouseholdList.tsx:20:18
+Locality_HouseholdsProps              interface  src/screens/Locality_Details/components/Locality_Households.tsx:17:18  
+Locality_InterchangeProps             interface  src/screens/Locality_Details/components/Locality_Interchange.tsx:14:18 
+Locality_OneSchoolGlobalPro…          interface  …screens/Locality_Details/components/Locality_OneSchoolGlobal.tsx:15:18
+Locality_SubdivisionsProps            interface  src/screens/Locality_Details/components/Locality_Subdivisions.tsx:26:18
+OneSchoolGlobal_ListProps             interface  src/screens/Locality_Details/components/OneSchoolGlobal_List.tsx:21:18 
+StopPropagationHelperProps            interface  src/screens/Locality_Details/components/StopPropagationHelper.tsx:6:18 
+SubHeader_MainPagesProps              interface  src/screens/Locality_Details/components/SubHeader_MainPages.tsx:15:18  
+TimerProps                            interface  src/screens/Locality_Details/components/Timer.tsx:5:18                 
+UBT_LazyImage_ListProps               interface  src/screens/Locality_Details/components/UBT_LazyImage_List.tsx:10:18   
+TileProps                             interface  src/screens/Login/components/Tile.tsx:9:18                             
+NotificationDetailBlockProps          interface  src/screens/MessageDetail/components/NotificationDetailBlock.tsx:10:18 
+ScreenBlock_MessageDetailPr…          interface  …c/screens/MessageDetail/components/ScreenBlock_MessageDetail.tsx:21:18
+CircledCheckboxProps                  interface  src/screens/MessageList/components/CircledCheckbox.tsx:5:18            
+MessageFilterGroupProps               interface  src/screens/MessageList/components/MessageFilterGroup.tsx:8:18         
+MessageFilterItemProps                interface  src/screens/MessageList/components/MessageFilterItem.tsx:6:18          
+MessageList_FilterProps               interface  src/screens/MessageList/components/MessageList_Filter.tsx:8:18         
+MessageListBlockProps                 interface  src/screens/MessageList/components/MessageListBlock.tsx:8:18           
+MessageListItemProps                  interface  src/screens/MessageList/components/MessageListItem.tsx:9:18            
+MessageSearchHistoryProps             interface  src/screens/MessageList/components/MessageSearchHistory.tsx:11:18      
+ScreenBlock_MessageListProps          interface  src/screens/MessageList/components/ScreenBlock_MessageList.tsx:87:18   
+TwoButtonsAlignedProps                interface  src/screens/MessageList/components/TwoButtonsAligned.tsx:5:18          
+Warning_PrivateMessageProps           interface  src/screens/MessageList/components/Warning_PrivateMessage.tsx:4:18     
+MilestoneWrapperVariablesWi…          type       src/screens/MilestoneDetail/api.ts:144:13                              
+ScreenBlock_AccommodationHo…          interface  …ens/MilestoneDetail/components/ScreenBlock_AccommodationHost.tsx:98:18
+ScreenBlock_MilestoneWrappe…          interface  …eens/MilestoneDetail/components/ScreenBlock_MilestoneWrapper.tsx:42:18
+Get_DocumentWire                      type       src/screens/MilestoneDetail/types.ts:13:13                             
+HelperWire                            type       src/screens/MilestoneDetail/types.ts:18:13                             
+MyBookmarks_AlbumProps                interface  src/screens/MyBookmarks/components/MyBookmarks_Album.tsx:10:18         
+MyBookmarks_CardProps                 interface  src/screens/MyBookmarks/components/MyBookmarks_Card.tsx:5:18           
+NetworkWarningProps                   interface  src/screens/MyBookmarks/components/NetworkWarning.tsx:6:18             
+ScreenBlock_MyBookmarksProps          interface  src/screens/MyBookmarks/components/ScreenBlock_MyBookmarks.tsx:30:18   
+EmbedCompleteData                     interface  src/screens/MyEntertaining/components/connect2Entertaining.ts:8:18     
+EmbedErrorData                        interface  src/screens/MyEntertaining/components/connect2Entertaining.ts:14:18    
+EmbedInitOptions                      interface  src/screens/MyEntertaining/components/connect2Entertaining.ts:20:18    
+Connect2EntertainingEmbed             interface  src/screens/MyEntertaining/components/connect2Entertaining.ts:40:18    
+Embedded_MyEntertainingProps          interface  src/screens/MyEntertaining/components/Embedded_MyEntertaining.tsx:24:18
+MyEntertaining_EmbeddedProps          interface  src/screens/MyEntertaining/components/MyEntertaining_Embedded.tsx:12:18
+FilterSheet_Icon_LabelProps           interface  src/screens/Notes/components/FilterSheet_Icon_Label.tsx:23:18          
+Horizontal_Filter_TagListPr…          interface  src/screens/Notes/components/Horizontal_Filter_TagList.tsx:12:18       
+ItemCard_ActionBarProps               interface  src/screens/Notes/components/ItemCard_ActionBar.tsx:22:18              
+ItemCard_WithNotesProps               interface  src/screens/Notes/components/ItemCard_WithNotes.tsx:32:18              
+ItemCardActionsProps                  interface  src/screens/Notes/components/ItemCardActions.tsx:8:18                  
+NoteCard_ItemProps                    interface  src/screens/Notes/components/NoteCard_Item.tsx:12:18                   
+NoteCard_ListProps                    interface  src/screens/Notes/components/NoteCard_List.tsx:19:18                   
+Notes_FilterSheetProps                interface  src/screens/Notes/components/Notes_FilterSheet.tsx:13:18               
+Layout_MainPages_UpgradePro…          interface  src/screens/Notifications/components/Layout_MainPages_Upgrade.tsx:15:18
+MoreActionSheetProps                  interface  src/screens/Notifications/components/MoreActionSheet.tsx:26:18         
+Notifications_MoreActionShe…          interface  src/screens/Notifications/components/MoreActionSheet.tsx:134:18        
+Notification_ListItemProps            interface  src/screens/Notifications/components/Notification_ListItem.tsx:21:18   
+Notifications_ActionProps             interface  src/screens/Notifications/components/Notifications_Action.tsx:20:18    
+Notifications_HeaderProps             interface  src/screens/Notifications/components/Notifications_Header.tsx:16:18    
+NotificationsListProps                interface  src/screens/Notifications/components/NotificationsList.tsx:10:18       
+NotificationsListBreakpoint…          interface  …screens/Notifications/components/NotificationsListBreakpoints.tsx:7:18
+SortSheetProps                        interface  src/screens/Notifications/components/SortSheet.tsx:22:18               
+Notifications_SortSheetProps          interface  src/screens/Notifications/components/SortSheet.tsx:151:18              
+GetDateRangesInputsWire               type       src/screens/Notifications/types.ts:9:13                                
+GetDateRangesWire                     type       src/screens/Notifications/types.ts:13:13                               
+Updates_DateRangesWire                type       src/screens/Notifications/types.ts:15:13                               
+ButtonGroupItemSpec                   interface  src/screens/OneSchoolGlobalDetails/components/ButtonGroup.tsx:12:18    
+ButtonGroupProps                      interface  src/screens/OneSchoolGlobalDetails/components/ButtonGroup.tsx:21:18    
+ExpandableSectionProps                interface  …/screens/OneSchoolGlobalDetails/components/ExpandableSection.tsx:11:18
+External_LinkProps                    interface  src/screens/OneSchoolGlobalDetails/components/External_Link.tsx:16:18  
+ScannerAdmin                          interface  src/screens/OrbitAdminEventDetail/api.ts:63:18                         
+QRCodeInformation                     interface  src/screens/OrbitAdminEventDetail/components/actions.ts:49:18          
+AdminPopupProps                       interface  src/screens/OrbitAdminEventDetail/components/AdminPopup.tsx:5:18       
+OrbitErrorMessageProps                interface  src/screens/OrbitAdminEventDetail/components/OrbitErrorMessage.tsx:5:18
+Popup_QRCodeScanProps                 interface  src/screens/OrbitAdminEventDetail/components/Popup_QRCodeScan.tsx:9:18 
+ScreenBlock_AdminEventDetai…          interface  …rbitAdminEventDetail/components/ScreenBlock_AdminEventDetail.tsx:79:18
+Get_EventInformationWire              type       src/screens/OrbitAdminEventDetail/types.ts:15:13                       
+GetMemberByMemberIdWire               type       src/screens/OrbitAdminEventDetail/types.ts:38:13                       
+GetScanEventQRCodeWire                type       src/screens/OrbitAdminEventDetail/types.ts:39:13                       
+AuditPayload_ClickEvent               interface  src/screens/OrbitAdminLanding/components/actions.ts:6:18               
+ScreenBlock_AdminLandingPro…          interface  …creens/OrbitAdminLanding/components/ScreenBlock_AdminLanding.tsx:55:18
+GetMilestoneScanFFWire                type       src/screens/OrbitAdminLanding/types.ts:24:13                           
+Household_Members_Selection…          interface  …c/screens/OrbitLanding/components/Household_Members_Selection.tsx:9:18
+OrbitLandingPopupProps                interface  src/screens/OrbitLanding/components/OrbitLandingPopup.tsx:6:18         
+Popup_OrbitLanding_FiltersP…          interface  …c/screens/OrbitLanding/components/Popup_OrbitLanding_Filters.tsx:10:18
+Popup_OrbitLanding_SortProps          interface  src/screens/OrbitLanding/components/Popup_OrbitLanding_Sort.tsx:6:18   
+ScreenBlock_OrbitLandingPro…          interface  src/screens/OrbitLanding/components/ScreenBlock_OrbitLanding.tsx:86:18 
+PhotobookVariables                    interface  src/screens/Photobook/api.ts:34:18                                     
+CaptionVariables                      interface  src/screens/Photobook/api.ts:62:18                                     
+PanZoomProps                          interface  src/screens/Photobook/components/PanZoom.tsx:5:18                      
+Photobook_CarouselProps               interface  src/screens/Photobook/components/Photobook_Carousel.tsx:47:18          
+Photobook_GalleryProps                interface  src/screens/Photobook/components/Photobook_Gallery.tsx:144:18          
+Photobook_ItemProps                   interface  src/screens/Photobook/components/Photobook_Item.tsx:26:18              
+Photobook_Options_LeftProps           interface  src/screens/Photobook/components/Photobook_Options_Left.tsx:44:18      
+Photobook_Options_PlayerPro…          interface  src/screens/Photobook/components/Photobook_Options_Player.tsx:9:18     
+Photobook_Options_RightProps          interface  src/screens/Photobook/components/Photobook_Options_Right.tsx:21:18     
+UserInformationResult                 interface  src/screens/Profile/components/actions.ts:26:18                        
+Profile_HouseholdPreviewPro…          interface  src/screens/Profile/components/Profile_HouseholdPreview.tsx:8:18       
+CountryInfoWire                       type       src/screens/Profile/types.ts:12:13                                     
+ScreenBlock_GenerateQRCodeP…          interface  …screens/QRCodeGenerate/components/ScreenBlock_GenerateQRCode.tsx:82:18
+SearchCategory_Item                   interface  src/screens/Search/components/actions.ts:5:18                          
+ScreenBlock_SearchProps               interface  src/screens/Search/components/ScreenBlock_Search.tsx:65:18             
+Search_BirthdayOptionsProps           interface  src/screens/Search/components/Search_BirthdayOptions.tsx:10:18         
+SearchResult_SectionProps             interface  src/screens/Search/components/SearchResult_Section.tsx:19:18           
+FetchSearchResultsInputsWire          type       src/screens/Search/types.ts:8:13                                       
+FetchSearchResultsWire                type       src/screens/Search/types.ts:12:13                                      
+SortableList_DraggableProps           interface  src/screens/Services/components/SortableList_Draggable.tsx:5:18        
+SortableListProps                     interface  src/screens/Services/components/SortableList.tsx:6:18                  
+ApplicationLoadEventsProps            interface  src/screens/Splash/components/ApplicationLoadEvents.tsx:5:18           
+LayoutBlankProps                      interface  src/screens/Splash/components/LayoutBlank.tsx:7:18                     
+LoadingDotsProps                      interface  src/screens/Splash/components/LoadingDots.tsx:11:18                    
+PolicyInformation                     type       src/screens/TermsAndPoliciesMenu/types.ts:9:13                         
+ScreenBlock_TransportDetail…          interface  …reens/TransportDetail/components/ScreenBlock_TransportDetail.tsx:79:18
+TransportDetail_TravelInfoP…          interface  …creens/TransportDetail/components/TransportDetail_TravelInfo.tsx:12:18
+TransportDetailProps                  interface  src/screens/TransportDetail/components/TransportDetail.tsx:17:18       
+TransportDetailsScreenWire            type       src/screens/TransportDetail/types.ts:15:13                             
+Directory_Updates_FilterShe…          interface  …/Updates_SingleList/components/Directory_Updates_FilterSheet.tsx:16:18
+SectionHeaderProps                    interface  src/screens/Updates_SingleList/components/SectionHeader.tsx:9:18       
+UpdateItem_HeaderProps                interface  src/screens/Updates_SingleList/components/UpdateItem_Header.tsx:18:18  
+LoadingSpinnerProps                   interface  src/screens/ViewDocuments/components/LoadingSpinner.tsx:11:18          
+ScreenBlock_ViewDocumentsPr…          interface  …c/screens/ViewDocuments/components/ScreenBlock_ViewDocuments.tsx:56:18
+EventDocumentItemWire                 type       src/screens/ViewDocuments/types.ts:14:13                               
+Assemble_FilterLocalityByCo…          interface  …ble_FilterLocalityByCountry/Assemble_FilterLocalityByCountry.tsx:13:18
+Assemble_FilterSubdivisionB…          interface  …erSubdivisionByLocality/Assemble_FilterSubdivisionByLocality.tsx:13:18
+AssembleCommon_VirtualMeeti…          interface  …etingDetails_Entry/AssembleCommon_VirtualMeetingDetails_Entry.tsx:7:18
+AssembleCommon_VirtualMeeti…          interface  …on_VirtualMeetingDetails/AssembleCommon_VirtualMeetingDetails.tsx:6:18
+AssembleCommon_VirtualMeeti…          interface  …bleCommon_VirtualMeetingURL/AssembleCommon_VirtualMeetingURL.tsx:10:18
+AssembleSummary_Card_RowPro…          interface  …ssemble_MUI/AssembleSummary_Card_Row/AssembleSummary_Card_Row.tsx:5:18
+AssembleSummaryCard__Header…          interface  …e_MUI/AssembleSummaryCard__Header/AssembleSummaryCard__Header.tsx:4:18
+AssembleSummaryCardProps              interface  …onnect2_Assemble_MUI/AssembleSummaryCard/AssembleSummaryCard.tsx:25:18
+AssembleEventType                     type       src/shared/Connect2_Assemble_MUI/AssembleSummaryCard/types.ts:1:37     
+AssembleSummaryDetailHeader…          interface  …aryDetailHeader_Skeleton/AssembleSummaryDetailHeader_Skeleton.tsx:6:18
+BaseLayout_UpdatedOSUIProps           interface  …t2_LegacyShared/BaseLayout_UpdatedOSUI/BaseLayout_UpdatedOSUI.tsx:7:18
+ConnectBlankSlateProps                interface  …red/Connect2_LegacyShared/ConnectBlankSlate/ConnectBlankSlate.tsx:5:18
+FreeSubscriptionActionDialo…          interface  …red/FreeSubscriptionActionDialog/FreeSubscriptionActionDialog.tsx:7:18
+HandleImageLoadErrorProps             interface  …nect2_LegacyShared/HandleImageLoadError/HandleImageLoadError.tsx:10:18
+InputCounterProps                     interface  src/shared/Connect2_LegacyShared/InputCounter/InputCounter.tsx:6:18    
+ItemOptionsMenuProps                  interface  …/shared/Connect2_LegacyShared/ItemOptionsMenu/ItemOptionsMenu.tsx:7:18
+LabelWithCopyIconProps                interface  …red/Connect2_LegacyShared/LabelWithCopyIcon/LabelWithCopyIcon.tsx:6:18
+Layout_OrbitProps                     interface  src/shared/Connect2_LegacyShared/Layout_Orbit/Layout_Orbit.tsx:10:18   
+LayoutProps                           interface  src/shared/Connect2_LegacyShared/Layout/Layout.tsx:10:18               
+CheckSupportedBrowserVersio…          interface  src/shared/Connect2_LegacyShared/lib/actions.ts:186:18                 
+LocalityListDetailProps               interface  …d/Connect2_LegacyShared/LocalityListDetail/LocalityListDetail.tsx:6:18
+MenuIcon__UpdatedOSUIProps            interface  …ect2_LegacyShared/MenuIcon__UpdatedOSUI/MenuIcon__UpdatedOSUI.tsx:6:18
+MenuIcon_BackProps                    interface  src/shared/Connect2_LegacyShared/MenuIcon_Back/MenuIcon_Back.tsx:6:18  
+MessageList_NoResultsProps            interface  …ect2_LegacyShared/MessageList_NoResults/MessageList_NoResults.tsx:6:18
+MultiResolutionImageLoaderP…          interface  …yShared/MultiResolutionImageLoader/MultiResolutionImageLoader.tsx:5:18
+NC_Card_Item_Text__Skeleton…          interface  …hared/NC_Card_Item_Text__Skeleton/NC_Card_Item_Text__Skeleton.tsx:4:18
+NC_Card_Item_VisualProps              interface  …Connect2_LegacyShared/NC_Card_Item_Visual/NC_Card_Item_Visual.tsx:9:18
+NC_Result_Item__CardProps             interface  …nnect2_LegacyShared/NC_Result_Item__Card/NC_Result_Item__Card.tsx:5:18
+NC_Result_Item__ImageProps            interface  …ect2_LegacyShared/NC_Result_Item__Image/NC_Result_Item__Image.tsx:9:18
+NC_Result_Item_BadgeProps             interface  …nnect2_LegacyShared/NC_Result_Item_Badge/NC_Result_Item_Badge.tsx:6:18
+NetworkWarningProps                   interface  src/shared/Connect2_LegacyShared/NetworkWarning/NetworkWarning.tsx:6:18
+NewConnectContentProps                interface  …red/Connect2_LegacyShared/NewConnectContent/NewConnectContent.tsx:5:18
+Person_Contact_OptionsProps           interface  …t2_LegacyShared/Person_Contact_Options/Person_Contact_Options.tsx:5:18
+PopupMenuProps                        interface  src/shared/Connect2_LegacyShared/PopupMenu/PopupMenu.tsx:7:18          
+RadioButtonListItemProps              interface  …Connect2_LegacyShared/RadioButtonListItem/RadioButtonListItem.tsx:6:18
+Result_Item_ImageProps                interface  …red/Connect2_LegacyShared/Result_Item_Image/Result_Item_Image.tsx:9:18
+SpinnerProps                          interface  src/shared/Connect2_LegacyShared/Spinner/Spinner.tsx:4:18              
+NoBookmarksProps                      interface  src/shared/Connect2_MyBookmarks_MUI/NoBookmarks/NoBookmarks.tsx:7:18   
+Accordion_OrbitProps                  interface  …ared/Connect2_OrbitMobile_MUI/Accordion_Orbit/Accordion_Orbit.tsx:6:18
+Card_EventProps                       interface  src/shared/Connect2_OrbitMobile_MUI/Card_Event/Card_Event.tsx:9:18     
+EventInfo                             type       src/shared/Connect2_OrbitMobile_MUI/Card_Event/types.ts:1:15           
+OrbitEventTypeRecord                  type       src/shared/Connect2_OrbitMobile_MUI/Card_Event/types.ts:1:40           
+Card_MemberInformationProps           interface  …rbitMobile_MUI/Card_MemberInformation/Card_MemberInformation.tsx:16:18
+Card_MilestoneProps                   interface  …hared/Connect2_OrbitMobile_MUI/Card_Milestone/Card_Milestone.tsx:15:18
+MilestoneInfo                         type       src/shared/Connect2_OrbitMobile_MUI/Card_Milestone/types.ts:1:15       
+Card_TemplateProps                    interface  …c/shared/Connect2_OrbitMobile_MUI/Card_Template/Card_Template.tsx:8:18
+ContactHelpdesk_FooterProps           interface  …OrbitMobile_MUI/ContactHelpdesk_Footer/ContactHelpdesk_Footer.tsx:4:18
+DaySelectorProps                      interface  src/shared/Connect2_OrbitMobile_MUI/DaySelector/DaySelector.tsx:5:18   
+ErrorScreenProps                      interface  src/shared/Connect2_OrbitMobile_MUI/ErrorScreen/ErrorScreen.tsx:7:18   
+EventDetail_SubSectionProps           interface  …OrbitMobile_MUI/EventDetail_SubSection/EventDetail_SubSection.tsx:5:18
+HostSurvey_PillItemProps              interface  …nect2_OrbitMobile_MUI/HostSurvey_PillItem/HostSurvey_PillItem.tsx:5:18
+ApplicationEvent_LDM                  type       src/shared/Connect2_OrbitMobile_MUI/lib/actions.ts:306:13              
+ListOfDaySelectorsProps               interface  …onnect2_OrbitMobile_MUI/ListOfDaySelectors/ListOfDaySelectors.tsx:9:18
+MilestoneHeaderProps                  interface  …red/Connect2_OrbitMobile_MUI/MilestoneHeader/MilestoneHeader.tsx:12:18
+NoInformation_OrbitProps              interface  …nect2_OrbitMobile_MUI/NoInformation_Orbit/NoInformation_Orbit.tsx:4:18
+NoResultsProps                        interface  src/shared/Connect2_OrbitMobile_MUI/NoResults/NoResults.tsx:5:18       
+Orbit_FooterWithActionsProps          interface  …bitMobile_MUI/Orbit_FooterWithActions/Orbit_FooterWithActions.tsx:6:18
+Skeleton_LoadingProps                 interface  …ed/Connect2_OrbitMobile_MUI/Skeleton_Loading/Skeleton_Loading.tsx:8:18
+HandleDownloadEvents                  interface  src/shared/FileTransferPlugin/lib/handleDownload.ts:54:18              
+LeafletMapProps                       interface  src/shared/Leaflet/LeafletMap/LeafletMap.tsx:29:18                     
+GeoJSONFeature                        type       src/shared/Leaflet/LeafletMap/types.ts:2:3                             
+MapVisibleBoundaries                  type       src/shared/Leaflet/LeafletMap/types.ts:4:3                             
+OnMarkerClickFunction                 type       src/shared/Leaflet/lib/actions.ts:23:13                                
+BindingCallback                       type       src/shared/Leaflet/lib/actions.ts:32:13                                
+OnGeoJSONClickFunction                type       src/shared/Leaflet/lib/actions.ts:395:13                               
+GeoJSONStyleFunction                  type       src/shared/Leaflet/lib/actions.ts:397:13                               
+IconJSON                              interface  src/shared/Leaflet/lib/json.ts:68:18                                   
+MarkerJSON                            interface  src/shared/Leaflet/lib/json.ts:85:18                                   
+OSLinkProps                           interface  src/shared/lib/OSLink.tsx:4:18                                         
+BackNavigationHandlerProps            interface  …NavigationHandler/BackNavigationHandler/BackNavigationHandler.tsx:6:18
+LayoutRuntime_TopProps                interface  …/shared/NavigationHandler/LayoutRuntime_Top/LayoutRuntime_Top.tsx:4:18
+NavigationConfirmationDialo…          interface  …er/NavigationConfirmationDialog/NavigationConfirmationDialog.tsx:10:18
+NavigationEvent                       type       src/shared/NavigationHandler/NavigationConfirmationDialog/types.ts:1:15
+NavigationEventDetail                 type       src/shared/NavigationHandler/NavigationConfirmationDialog/types.ts:1:32
+NavigationHandlerProps                interface  …/shared/NavigationHandler/NavigationHandler/NavigationHandler.tsx:5:18
+PreventBackNavigationProps            interface  …NavigationHandler/PreventBackNavigation/PreventBackNavigation.tsx:7:18
+ScrollAnchorProps                     interface  src/shared/NavigationHandler/ScrollAnchor/ScrollAnchor.tsx:4:18        
+AccordionProps                        interface  src/shared/osui/Accordion/Accordion.tsx:6:18                           
+AccordionChild                        interface  src/shared/osui/Accordion/accordionContext.ts:4:18                     
+AccordionParent                       interface  src/shared/osui/Accordion/accordionContext.ts:12:18                    
+AccordionItemProps                    interface  src/shared/osui/AccordionItem/AccordionItem.tsx:16:18                  
+AlignCenterProps                      interface  src/shared/osui/AlignCenter/AlignCenter.tsx:5:18                       
+AnimateProps                          interface  src/shared/osui/Animate/Animate.tsx:6:18                               
+BlankSlateProps                       interface  src/shared/osui/BlankSlate/BlankSlate.tsx:5:18                         
+BottomBarItemProps                    interface  src/shared/osui/BottomBarItem/BottomBarItem.tsx:5:18                   
+DragDirection                         type       src/shared/osui/BottomSheet/dragToClose.ts:11:13                       
+SpringProperties                      interface  src/shared/osui/BottomSheet/dragToClose.ts:14:18                       
+ButtonLoadingProps                    interface  src/shared/osui/ButtonLoading/ButtonLoading.tsx:5:18                   
+CardProps                             interface  src/shared/osui/Card/Card.tsx:5:18                                     
+CarouselProps                         interface  src/shared/osui/Carousel/Carousel.tsx:11:18                            
+CarouselEvents                        interface  src/shared/osui/Carousel/provider.ts:23:18                             
+CarouselItems                         type       src/shared/osui/Carousel/types.ts:1:15                                 
+CarouselOptionalConfigs               type       src/shared/osui/Carousel/types.ts:1:30                                 
+Columns2Props                         interface  src/shared/osui/Columns2/Columns2.tsx:6:18                             
+Columns3Props                         interface  src/shared/osui/Columns3/Columns3.tsx:6:18                             
+Columns4Props                         interface  src/shared/osui/Columns4/Columns4.tsx:6:18                             
+DEPRECATED_AccordionProps             interface  src/shared/osui/DEPRECATED_Accordion/DEPRECATED_Accordion.tsx:6:18     
+DEPRECATED_AccordionItemPro…          interface  …shared/osui/DEPRECATED_AccordionItem/DEPRECATED_AccordionItem.tsx:7:18
+DEPRECATED_ButtonLoadingPro…          interface  …shared/osui/DEPRECATED_ButtonLoading/DEPRECATED_ButtonLoading.tsx:5:18
+DEPRECATED_GalleryV2Props             interface  src/shared/osui/DEPRECATED_GalleryV2/DEPRECATED_GalleryV2.tsx:6:18     
+DropdownSearchProps                   interface  src/shared/osui/DropdownSearch/DropdownSearch.tsx:13:18                
+DropdownVariant                       type       src/shared/osui/DropdownSearch/provider.ts:38:13                       
+DropdownSearchCallbacks               interface  src/shared/osui/DropdownSearch/provider.ts:221:18                      
+VirtualSelectStatic                   interface  src/shared/osui/DropdownSearch/vendor/index.ts:32:18                   
+DropdownTagsProps                     interface  src/shared/osui/DropdownTags/DropdownTags.tsx:13:18                    
+GalleryProps                          interface  src/shared/osui/Gallery/Gallery.tsx:6:18                               
+InlineSVGProps                        interface  src/shared/osui/InlineSVG/InlineSVG.tsx:4:18                           
+InputWithIconProps                    interface  src/shared/osui/InputWithIcon/InputWithIcon.tsx:5:18                   
+NetworkStatusChangedProps             interface  src/shared/osui/NetworkStatusChanged/NetworkStatusChanged.tsx:5:18     
+OfflineDataSyncCoreProps              interface  src/shared/osui/OfflineDataSyncCore/OfflineDataSyncCore.tsx:6:18       
+PullToRefreshProps                    interface  src/shared/osui/PullToRefresh/PullToRefresh.tsx:4:18                   
+RangeSliderCallbacks                  interface  src/shared/osui/RangeSlider/provider.ts:102:18                         
+RangeSliderProps                      interface  src/shared/osui/RangeSlider/RangeSlider.tsx:8:18                       
+SeparatorProps                        interface  src/shared/osui/Separator/Separator.tsx:5:18                           
+SwipeEventsProps                      interface  src/shared/osui/SwipeEvents/SwipeEvents.tsx:5:18                       
+SwipeDirection                        type       src/shared/osui/SwipeEvents/SwipeEvents.tsx:24:13                      
+TagProps                              interface  src/shared/osui/Tag/Tag.tsx:6:18                                       
+TooltipProps                          interface  src/shared/osui/Tooltip/Tooltip.tsx:7:18                               
+TouchEventsProps                      interface  src/shared/osui/TouchEvents/TouchEvents.tsx:6:18                       
+SanitizedHtmlProps                    interface  src/shared/ReactiveHtmlSanitizer/SanitizedHtml/SanitizedHtml.tsx:15:18 
+FingerprintScannerProps               interface  …d/UBT_AppManager_Mobile/FingerprintScanner/FingerprintScanner.tsx:6:18
+PinUnlock_MobileWrapperProps          interface  …anager_Mobile/PinUnlock_MobileWrapper/PinUnlock_MobileWrapper.tsx:7:18
+InactivityTimerProps                  interface  src/shared/UBT_AppManager/InactivityTimer/InactivityTimer.tsx:4:18     
+PIN_ValidateRulesOut                  interface  src/shared/UBT_AppManager/lib/actions.ts:11:18                         
+FeedMessage                           interface  src/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS/connect2Feed.ts:7:18  
+Connect2FeedConfig                    interface  src/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS/connect2Feed.ts:24:18 
+Connect2FeedUserConfig                type       src/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS/connect2Feed.ts:51:13 
+AddressPopup_WrapperProps             interface  …d/UBTConnect_Utils/AddressPopup_Wrapper/AddressPopup_Wrapper.tsx:14:18
+AddressPopupProps                     interface  src/shared/UBTConnect_Utils/AddressPopup/AddressPopup.tsx:8:18         
+ButtonProps                           interface  src/shared/UBTConnect_Utils/Button/Button.tsx:9:18                     
+CacheControl_AllCountriesPr…          interface  …ct_Utils/CacheControl_AllCountries/CacheControl_AllCountries.tsx:10:18
+CacheControl_AllLocalitiesP…          interface  …_Utils/CacheControl_AllLocalities/CacheControl_AllLocalities.tsx:10:18
+CacheControl_PoliciesProps            interface  …UBTConnect_Utils/CacheControl_Policies/CacheControl_Policies.tsx:10:18
+CacheControl_UserInfoProps            interface  …UBTConnect_Utils/CacheControl_UserInfo/CacheControl_UserInfo.tsx:10:18
+CacheControlProps                     interface  src/shared/UBTConnect_Utils/CacheControl/CacheControl.tsx:6:18         
+ContactByMessage_WrapperPro…          interface  …nnect_Utils/ContactByMessage_Wrapper/ContactByMessage_Wrapper.tsx:9:18
+ContactPopup_ByMessageProps           interface  …BTConnect_Utils/ContactPopup_ByMessage/ContactPopup_ByMessage.tsx:8:18
+ContactPopup_ByPhoneProps             interface  …ed/UBTConnect_Utils/ContactPopup_ByPhone/ContactPopup_ByPhone.tsx:9:18
+ContactPopupProps                     interface  src/shared/UBTConnect_Utils/ContactPopup/ContactPopup.tsx:27:18        
+Dialog_AccessRestrictedActi…          interface  …sRestrictedAction_Legacy/Dialog_AccessRestrictedAction_Legacy.tsx:5:18
+ConnectVersionDetails                 interface  src/shared/UBTConnect_Utils/lib/actions.ts:28:18                       
+NoteListActionsProps                  interface  src/shared/UBTConnect_Utils/NoteListActions/NoteListActions.tsx:13:18  
+Notes                                 type       src/shared/UBTConnect_Utils/NoteListActions/types.ts:1:15              
+NotesSheetProps                       interface  src/shared/UBTConnect_Utils/NotesSheet/NotesSheet.tsx:17:18            
+Notes                                 type       src/shared/UBTConnect_Utils/NotesSheet/types.ts:1:15                   
+SearchResult_ItemProps                interface  …/shared/UBTConnect_Utils/SearchResult_Item/SearchResult_Item.tsx:24:18
+ShareableObject_GenericProps          interface  …onnect_Utils/ShareableObject_Generic/ShareableObject_Generic.tsx:20:18
+SharePopupProps                       interface  src/shared/UBTConnect_Utils/SharePopup/SharePopup.tsx:9:18             
+ShareSheet_SectionProps               interface  …shared/UBTConnect_Utils/ShareSheet_Section/ShareSheet_Section.tsx:5:18
+ShareSheet_SectionTitleProps          interface  …Connect_Utils/ShareSheet_SectionTitle/ShareSheet_SectionTitle.tsx:6:18
+ShareSheetVariables                   interface  src/shared/UBTConnect_Utils/ShareSheet/api.ts:11:18                    
+LazyImageLocals                       interface  src/shared/UBTConnect_Utils/UBT_LazyImage/onInitialize.ts:14:18        
+UBT_LazyImageProps                    interface  src/shared/UBTConnect_Utils/UBT_LazyImage/UBT_LazyImage.tsx:11:18      
+App_IconBadgeProps                    interface  src/shared/UBTConnect/App_IconBadge/App_IconBadge.tsx:9:18             
+App_NotificationIconProps             interface  …/shared/UBTConnect/App_NotificationIcon/App_NotificationIcon.tsx:12:18
+App_NotificationRefreshProps          interface  …ed/UBTConnect/App_NotificationRefresh/App_NotificationRefresh.tsx:5:18
+BottomBarContentProps                 interface  src/shared/UBTConnect/BottomBarContent/BottomBarContent.tsx:5:18       
+CacheControl_UserInfo_Wrapp…          interface  …t/CacheControl_UserInfo_Wrapper/CacheControl_UserInfo_Wrapper.tsx:8:18
+CarouselTagProps                      interface  src/shared/UBTConnect/CarouselTag/CarouselTag.tsx:6:18                 
+Dialog_CustomChoiceProps              interface  src/shared/UBTConnect/Dialog_CustomChoice/Dialog_CustomChoice.tsx:8:18 
+Dialog_NavigationProps                interface  src/shared/UBTConnect/Dialog_Navigation/Dialog_Navigation.tsx:9:18     
+Directory_EmptyStateProps             interface  …c/shared/UBTConnect/Directory_EmptyState/Directory_EmptyState.tsx:7:18
+Directory_EntityDetailsActi…          interface  …irectory_EntityDetailsActions/Directory_EntityDetailsActions.tsx:42:18
+Directory_LegendBottomSheet…          interface  …nect/Directory_LegendBottomSheet/Directory_LegendBottomSheet.tsx:16:18
+EntitiesCarouse_lSupperMeet…          interface  …e_lSupperMeetingDetails/EntitiesCarouse_lSupperMeetingDetails.tsx:6:18
+EntitiesCarousel_ElementPro…          interface  …UBTConnect/EntitiesCarousel_Element/EntitiesCarousel_Element.tsx:13:18
+EntitiesCarousel_HeaderGene…          interface  …tiesCarousel_HeaderGenerator/EntitiesCarousel_HeaderGenerator.tsx:9:18
+HeaderList                            type       src/shared/UBTConnect/EntitiesCarousel_HeaderGenerator/types.ts:1:15   
+EntitiesCarouselProps                 interface  src/shared/UBTConnect/EntitiesCarousel/EntitiesCarousel.tsx:24:18      
+EntitiesCarousel_Item                 type       src/shared/UBTConnect/EntitiesCarousel/types.ts:1:15                   
+Feed_EmbededProps                     interface  src/shared/UBTConnect/Feed_Embeded/Feed_Embeded.tsx:18:18              
+FeedBlock_CommunityPopulati…          interface  …/FeedBlock_CommunityPopulation/FeedBlock_CommunityPopulation.tsx:19:18
+FilterSheet_IconProps                 interface  src/shared/UBTConnect/FilterSheet_Icon/FilterSheet_Icon.tsx:9:18       
+FilterSheet_OptionChoice_It…          interface  …/FilterSheet_OptionChoice_Item/FilterSheet_OptionChoice_Item.tsx:18:18
+FilterSheet_OptionList_Item…          interface  …nect/FilterSheet_OptionList_Item/FilterSheet_OptionList_Item.tsx:24:18
+OptionControl                         interface  src/shared/UBTConnect/FilterSheet/FilterSheet.tsx:50:18                
+FilterSheetProps                      interface  src/shared/UBTConnect/FilterSheet/FilterSheet.tsx:56:18                
+HandleOnResumeOpenLinkProps           interface  …ared/UBTConnect/HandleOnResumeOpenLink/HandleOnResumeOpenLink.tsx:4:18
+Household_GalleryCard_ListP…          interface  …onnect/Household_GalleryCard_List/Household_GalleryCard_List.tsx:17:18
+UI_SubdivisionHousehold               type       src/shared/UBTConnect/Household_GalleryCard_List/types.ts:1:15         
+Household_GalleryCardProps            interface  …hared/UBTConnect/Household_GalleryCard/Household_GalleryCard.tsx:10:18
+UI_SubdivisionHousehold               type       src/shared/UBTConnect/Household_GalleryCard/types.ts:1:15              
+HouseholdDetails_BlockProps           interface  …red/UBTConnect/HouseholdDetails_Block/HouseholdDetails_Block.tsx:77:18
+MockHousehold                         interface  src/shared/UBTConnect/HouseholdDetails_Block/mockData.ts:112:18        
+HouseholdPreviewStructure             type       src/shared/UBTConnect/HouseholdDetails_Block/types.ts:1:15             
+HouseholdDetails_Members_Bl…          interface  …ouseholdDetails_Members_Block/HouseholdDetails_Members_Block.tsx:31:18
+UI_HouseholdMember                    type       src/shared/UBTConnect/HouseholdDetails_Members_Block/types.ts:1:15     
+HouseholdDetails_TimelinePh…          interface  …tails_TimelinePhoto_List/HouseholdDetails_TimelinePhoto_List.tsx:10:18
+UI_HouseholdTimelineImages            type       src/shared/UBTConnect/HouseholdDetails_TimelinePhoto_List/types.ts:1:15
+HouseholdDetails_TimelinePh…          interface  …ouseholdDetails_TimelinePhoto/HouseholdDetails_TimelinePhoto.tsx:20:18
+UI_AccountForm_PersonalInfo…          interface  src/shared/UBTConnect/lib/structures.ts:219:18                         
+UI_AccountForm_ContactInfor…          interface  src/shared/UBTConnect/lib/structures.ts:226:18                         
+Menu_ListProps                        interface  src/shared/UBTConnect/Menu_List/Menu_List.tsx:24:18                    
+OfflineDataSyncEventsProps            interface  …shared/UBTConnect/OfflineDataSyncEvents/OfflineDataSyncEvents.tsx:5:18
+Policy_CheckerProps                   interface  src/shared/UBTConnect/Policy_Checker/Policy_Checker.tsx:8:18           
+SectionSeparatorProps                 interface  src/shared/UBTConnect/SectionSeparator/SectionSeparator.tsx:6:18       
+Statistics_IconsProps                 interface  src/shared/UBTConnect/Statistics_Icons/Statistics_Icons.tsx:19:18      
+UI_StatisticsTexts                    type       src/shared/UBTConnect/Statistics_Icons/types.ts:1:15                   
+Statistics_TypedItemProps             interface  …/shared/UBTConnect/Statistics_TypedItem/Statistics_TypedItem.tsx:23:18
+UI_TypedStatistics                    type       src/shared/UBTConnect/Statistics_TypedItem/types.ts:1:15               
+UI_StatisticsTexts                    type       src/shared/UBTConnect/Statistics_TypedItem/types.ts:2:15               
+StatisticsListProps                   interface  src/shared/UBTConnect/StatisticsList/StatisticsList.tsx:14:18          
+SubLayout_Browse_SectionPro…          interface  …/UBTConnect/SubLayout_Browse_Section/SubLayout_Browse_Section.tsx:5:18
+SubLayout_DirectoryDetailSc…          interface  …yDetailScreen_Section/SubLayout_DirectoryDetailScreen_Section.tsx:9:18
+SubLayout_DirectoryDetailSc…          interface  …bLayout_DirectoryDetailScreen/SubLayout_DirectoryDetailScreen.tsx:5:18
+SupperMeeting_HouseholdList…          interface  …nect/SupperMeeting_HouseholdList/SupperMeeting_HouseholdList.tsx:10:18
+SupperMeeting_ImageCard_Con…          interface  …ard_Content_IconText/SupperMeeting_ImageCard_Content_IconText.tsx:7:18
+SupperMeeting_ImageCard_Con…          interface  …ontent_Statistics/SupperMeeting_ImageCard_Content_Statistics.tsx:11:18
+SupperMeeting_ImageCard_Con…          interface  …perMeeting_ImageCard_Content/SupperMeeting_ImageCard_Content.tsx:11:18
+UI_Subdivision_Card_Content           type       src/shared/UBTConnect/SupperMeeting_ImageCard_Content/types.ts:1:15    
+UnsupportedVersion_BrowserP…          interface  …Connect/UnsupportedVersion_Browser/UnsupportedVersion_Browser.tsx:5:18
+UnsupportedVersion_NativePr…          interface  …BTConnect/UnsupportedVersion_Native/UnsupportedVersion_Native.tsx:5:18
+UnsupportedVersion_WebViewP…          interface  …Connect/UnsupportedVersion_WebView/UnsupportedVersion_WebView.tsx:5:18
+UnsupportedVersion_WrapperP…          interface  …onnect/UnsupportedVersion_Wrapper/UnsupportedVersion_Wrapper.tsx:12:18
+UnsupportedVersionProps               interface  src/shared/UBTConnect/UnsupportedVersion/UnsupportedVersion.tsx:10:18  
+VersionProps                          interface  src/shared/UBTConnect/Version/Version.tsx:8:18                         
+WelcomeToConnectProps                 interface  src/shared/UBTConnect/WelcomeToConnect/WelcomeToConnect.tsx:7:18       
+ActionsMenuProps                      interface  src/shared/UBTConnectLibrary/ActionsMenu/ActionsMenu.tsx:10:18         
+AddNoteProps                          interface  src/shared/UBTConnectLibrary/AddNote/AddNote.tsx:10:18                 
+AvatarDoubleProps                     interface  src/shared/UBTConnectLibrary/AvatarDouble/AvatarDouble.tsx:8:18        
+AvatarImageProps                      interface  src/shared/UBTConnectLibrary/AvatarImage/AvatarImage.tsx:10:18         
+AvatarImageFallbackoptions            type       src/shared/UBTConnectLibrary/AvatarImage/types.ts:2:49                 
+BadgeProps                            interface  src/shared/UBTConnectLibrary/Badge/Badge.tsx:6:18                      
+BottomSheetProps                      interface  src/shared/UBTConnectLibrary/BottomSheet/BottomSheet.tsx:32:18         
+SpacingOptions                        type       src/shared/UBTConnectLibrary/BottomSheet/types.ts:1:15                 
+ButtonProps                           interface  src/shared/UBTConnectLibrary/Button/Button.tsx:8:18                    
+CircleButton_IconPrimaryPro…          interface  …nectLibrary/CircleButton_IconPrimary/CircleButton_IconPrimary.tsx:8:18
+CircleButton_WithLabelProps           interface  …ConnectLibrary/CircleButton_WithLabel/CircleButton_WithLabel.tsx:10:18
+CircleButtonProps                     interface  src/shared/UBTConnectLibrary/CircleButton/CircleButton.tsx:8:18        
+Columns_ThreeProps                    interface  src/shared/UBTConnectLibrary/Columns_Three/Columns_Three.tsx:14:18     
+ColumnSizes                           type       src/shared/UBTConnectLibrary/Columns_Three/types.ts:1:30               
+Columns_TwoProps                      interface  src/shared/UBTConnectLibrary/Columns_Two/Columns_Two.tsx:14:18         
+ColumnSizes                           type       src/shared/UBTConnectLibrary/Columns_Two/types.ts:1:30                 
+ComingSoonProps                       interface  src/shared/UBTConnectLibrary/ComingSoon/ComingSoon.tsx:8:18            
+TextOptions                           type       src/shared/UBTConnectLibrary/ComingSoon/types.ts:1:15                  
+ContextMenu_ItemProps                 interface  src/shared/UBTConnectLibrary/ContextMenu_Item/ContextMenu_Item.tsx:8:18
+ContextMenuProps                      interface  src/shared/UBTConnectLibrary/ContextMenu/ContextMenu.tsx:11:18         
+ContextMenuDelete                     type       src/shared/UBTConnectLibrary/ContextMenu/types.ts:1:15                 
+ContextMenuEdit                       type       src/shared/UBTConnectLibrary/ContextMenu/types.ts:1:34                 
+CustomContainerProps                  interface  src/shared/UBTConnectLibrary/CustomContainer/CustomContainer.tsx:14:18 
+BackgroundImage                       type       src/shared/UBTConnectLibrary/CustomContainer/types.ts:2:3              
+BackgroundOptions                     type       src/shared/UBTConnectLibrary/CustomContainer/types.ts:3:3              
+BorderOptions                         type       src/shared/UBTConnectLibrary/CustomContainer/types.ts:4:3              
+DisplayOptions                        type       src/shared/UBTConnectLibrary/CustomContainer/types.ts:6:3              
+RadiusOptions                         type       src/shared/UBTConnectLibrary/CustomContainer/types.ts:7:3              
+SizeOptions                           type       src/shared/UBTConnectLibrary/CustomContainer/types.ts:8:3              
+SpacingOptions                        type       src/shared/UBTConnectLibrary/CustomContainer/types.ts:9:3              
+TextOptions                           type       src/shared/UBTConnectLibrary/CustomContainer/types.ts:10:3             
+CustomTextProps                       interface  src/shared/UBTConnectLibrary/CustomText/CustomText.tsx:8:18            
+DynamicTextAreaProps                  interface  src/shared/UBTConnectLibrary/DynamicTextArea/DynamicTextArea.tsx:5:18  
+EmptyListProps                        interface  src/shared/UBTConnectLibrary/EmptyList/EmptyList.tsx:18:18             
+FixedFooterProps                      interface  src/shared/UBTConnectLibrary/FixedFooter/FixedFooter.tsx:7:18          
+HighlightPart                         interface  src/shared/UBTConnectLibrary/HighlightSearch/highlight.ts:3:18         
+HighlightSearchProps                  interface  src/shared/UBTConnectLibrary/HighlightSearch/HighlightSearch.tsx:8:18  
+HorizontalTagListProps                interface  …/shared/UBTConnectLibrary/HorizontalTagList/HorizontalTagList.tsx:8:18
+IconProps                             interface  src/shared/UBTConnectLibrary/Icon/Icon.tsx:7:18                        
+IconBadgeProps                        interface  src/shared/UBTConnectLibrary/IconBadge/IconBadge.tsx:7:18              
+IconInline_InternalProps              interface  …red/UBTConnectLibrary/IconInline_Internal/IconInline_Internal.tsx:7:18
+IconSVGProps                          interface  src/shared/UBTConnectLibrary/IconSVG/IconSVG.tsx:6:18                  
+IconTextProps                         interface  src/shared/UBTConnectLibrary/IconText/IconText.tsx:9:18                
+ImageCard__Content__TagProps          interface  …onnectLibrary/ImageCard__Content__Tag/ImageCard__Content__Tag.tsx:6:18
+ImageCard__ContentProps               interface  …hared/UBTConnectLibrary/ImageCard__Content/ImageCard__Content.tsx:7:18
+ImageCard_LazyLoadingProps            interface  …BTConnectLibrary/ImageCard_LazyLoading/ImageCard_LazyLoading.tsx:15:18
+InputProps                            interface  src/shared/UBTConnectLibrary/Input/Input.tsx:16:18                     
+SearchInput                           type       src/shared/UBTConnectLibrary/Input/types.ts:1:15                       
+InputCounterProps                     interface  src/shared/UBTConnectLibrary/InputCounter/InputCounter.tsx:7:18        
+KebabButton_BookmarkNotesPr…          interface  …ctLibrary/KebabButton_BookmarkNotes/KebabButton_BookmarkNotes.tsx:7:18
+KebabButtonMenuProps                  interface  src/shared/UBTConnectLibrary/KebabButtonMenu/KebabButtonMenu.tsx:7:18  
+Layout_DetailPageProps                interface  …shared/UBTConnectLibrary/Layout_DetailPage/Layout_DetailPage.tsx:10:18
+Layout_HomePageProps                  interface  src/shared/UBTConnectLibrary/Layout_HomePage/Layout_HomePage.tsx:20:18 
+Layout_LoginFlowProps                 interface  src/shared/UBTConnectLibrary/Layout_LoginFlow/Layout_LoginFlow.tsx:7:18
+Layout_MainPages_FixedTitle…          interface  …rary/Layout_MainPages_FixedTitle/Layout_MainPages_FixedTitle.tsx:10:18
+Layout_MainPagesProps                 interface  …c/shared/UBTConnectLibrary/Layout_MainPages/Layout_MainPages.tsx:16:18
+LazyImageProps                        interface  src/shared/UBTConnectLibrary/LazyImage/LazyImage.tsx:13:18             
+ScrollEventsOut                       interface  src/shared/UBTConnectLibrary/lib/actions.ts:678:18                     
+Member_ListItemProps                  interface  src/shared/UBTConnectLibrary/Member_ListItem/Member_ListItem.tsx:15:18 
+NonMember_ListItemProps               interface  …ared/UBTConnectLibrary/NonMember_ListItem/NonMember_ListItem.tsx:15:18
+Note_Item_ListProps                   interface  src/shared/UBTConnectLibrary/Note_Item_List/Note_Item_List.tsx:29:18   
+Notes                                 type       src/shared/UBTConnectLibrary/Note_Item_List/types.ts:1:15              
+Note_ItemRecord                       type       src/shared/UBTConnectLibrary/Note_Item_List/types.ts:1:35              
+Note_ItemProps                        interface  src/shared/UBTConnectLibrary/Note_Item/Note_Item.tsx:26:18             
+Note_ItemRecord                       type       src/shared/UBTConnectLibrary/Note_Item/types.ts:1:28                   
+Notes                                 type       src/shared/UBTConnectLibrary/Note_Item/types.ts:1:45                   
+PopupProps                            interface  src/shared/UBTConnectLibrary/Popup/Popup.tsx:11:18                     
+PopupMenuProps                        interface  src/shared/UBTConnectLibrary/PopupMenu/PopupMenu.tsx:7:18              
+Box                                   interface  src/shared/UBTConnectLibrary/PopupMenu/position.ts:5:18                
+Size                                  interface  src/shared/UBTConnectLibrary/PopupMenu/position.ts:12:18               
+Margins                               interface  src/shared/UBTConnectLibrary/PopupMenu/position.ts:17:18               
+SeeMoreSectionProps                   interface  src/shared/UBTConnectLibrary/SeeMoreSection/SeeMoreSection.tsx:9:18    
+SelectionOption_ListProps             interface  …/UBTConnectLibrary/SelectionOption_List/SelectionOption_List.tsx:22:18
+SkeletonSectionProps                  interface  src/shared/UBTConnectLibrary/SkeletonSection/SkeletonSection.tsx:6:18  
+StaticInputProps                      interface  src/shared/UBTConnectLibrary/StaticInput/StaticInput.tsx:7:18          
+Statistics_ListItemProps              interface  …ed/UBTConnectLibrary/Statistics_ListItem/Statistics_ListItem.tsx:24:18
+StatisticsOptions                     type       src/shared/UBTConnectLibrary/Statistics_ListItem/types.ts:1:15         
+TextTextUBT_ColorIdentifier…          type       src/shared/UBTConnectLibrary/Statistics_ListItem/types.ts:1:34         
+SubLayout_HomePageSearchPro…          interface  …nectLibrary/SubLayout_HomePageSearch/SubLayout_HomePageSearch.tsx:7:18
+SubLayout_SectionProps                interface  …/shared/UBTConnectLibrary/SubLayout_Section/SubLayout_Section.tsx:8:18
+SVG_Background_CustomProps            interface  …UBTConnectLibrary/SVG_Background_Custom/SVG_Background_Custom.tsx:7:18
+SVG_Background_LoginWrapper…          interface  …brary/SVG_Background_LoginWrapper/SVG_Background_LoginWrapper.tsx:5:18
+TagContentProps                       interface  src/shared/UBTConnectLibrary/TagContent/TagContent.tsx:7:18            
+TagToggleProps                        interface  src/shared/UBTConnectLibrary/TagToggle/TagToggle.tsx:10:18             
+TextArea_WithCounterProps             interface  …d/UBTConnectLibrary/TextArea_WithCounter/TextArea_WithCounter.tsx:6:18
+TextEllipsisProps                     interface  src/shared/UBTConnectLibrary/TextEllipsis/TextEllipsis.tsx:5:18        
+SpacingOptions                        type       src/shared/UBTConnectLibrary/Update_ListItem/types.ts:1:15             
+TextGenderIdentifier                  type       src/shared/UBTConnectLibrary/Update_ListItem/types.ts:1:31             
+Update_ListItemProps                  interface  src/shared/UBTConnectLibrary/Update_ListItem/Update_ListItem.tsx:41:18 
+DeviceContext                         type       src/shell/deviceContext.ts:4:13                                        
+ActionConfirmationDialogPro…          interface  src/shell/dialogs/ActionConfirmationDialog.tsx:14:18                   
+BlockPinUnlockProps                   interface  src/shell/dialogs/BlockPinUnlock.tsx:28:18                             
+DialogAccessRestrictedActio…          interface  src/shell/dialogs/DialogAccessRestrictedAction.tsx:17:18               
+ActionConfirmationDialogPro…          type       src/shell/dialogs/index.ts:2:41                                        
+FeedbackMessageAutoCloseInp…  feedb…  interface  src/shell/feedback/feedbackMessageAutoClose.ts:13:18                   
+FeedbackMessageAutoCloseInp…  feedb…  type       src/shell/feedback/index.ts:8:8                                        
+UbtMessageType                feedb…  type       src/shell/feedback/index.ts:9:8                                        
+PingResult                            interface  src/shell/feedback/networkDetection.ts:36:18                           
+NetworkDetectionOptions               interface  src/shell/feedback/networkDetection.ts:48:18                           
+NetworkDetection                      interface  src/shell/feedback/networkDetection.ts:58:18                           
+Key                                   type       src/shell/localEntities/database.ts:32:13                              
+ClickedSearchResult                   type       src/shell/localEntities/index.ts:19:8                                  
+HostSurveyStepFilter                  type       src/shell/localEntities/index.ts:67:8                                  
+LocalBedSize                          type       src/shell/localEntities/index.ts:68:8                                  
+LocalGenderPreference                 type       src/shell/localEntities/index.ts:69:8                                  
+LocalHelperStatus                     type       src/shell/localEntities/index.ts:71:8                                  
+LocalHouseFloor                       type       src/shell/localEntities/index.ts:73:8                                  
+LocalMealType                         type       src/shell/localEntities/index.ts:75:8                                  
+LocalOrbitEventType                   type       src/shell/localEntities/index.ts:76:8                                  
+LocalVehicleOwner                     type       src/shell/localEntities/index.ts:78:8                                  
+LocalVehicleType                      type       src/shell/localEntities/index.ts:79:8                                  
+LocalDatabase                         type       src/shell/localEntities/index.ts:129:31                                
+LocalOrbitEventType                   interface  src/shell/localEntities/orbitStaticEntities.ts:230:18                  
+LocalGenderPreference                 type       src/shell/localEntities/orbitStaticEntities.ts:254:13                  
+LocalHouseFloor                       type       src/shell/localEntities/orbitStaticEntities.ts:255:13                  
+LocalLongLabelledRecord               interface  src/shell/localEntities/orbitStaticEntities.ts:259:18                  
+LocalBedSize                          type       src/shell/localEntities/orbitStaticEntities.ts:265:13                  
+LocalVehicleOwner                     type       src/shell/localEntities/orbitStaticEntities.ts:266:13                  
+LocalVehicleType                      type       src/shell/localEntities/orbitStaticEntities.ts:267:13                  
+LocalHelperStatus                     interface  src/shell/localEntities/orbitStaticEntities.ts:270:18                  
+LocalMealType                         type       src/shell/localEntities/orbitStaticEntities.ts:275:13                  
+HostSurveyStepFilter                  interface  src/shell/localEntities/orbitStaticEntities.ts:662:18                  
+ClickedSearchResult                   interface  src/shell/localEntities/recentSearch.ts:82:18                          
+DirectoryUserCurrent                  type       src/shell/mockUser.ts:17:13                                            
+MockUserToggles                       interface  src/shell/mockUser.ts:19:18                                            
+ExitConfirmation                      interface  src/shell/navigation/exitConfirmation.ts:16:18                         
+HistoryEntry                          interface  src/shell/navigation/historyStack.ts:8:18                              
+BackHandler                           type       src/shell/navigation/index.ts:2:30                                     
+OsNavigate                            type       src/shell/navigation/index.ts:12:8                                     
+OsNavigateOptions                     type       src/shell/navigation/index.ts:13:8                                     
+OsParams                              type       src/shell/navigation/index.ts:14:8                                     
+GateDeps                              interface  src/shell/navigation/navigationGate.ts:22:18                           
+OsNavigateOptions                     interface  src/shell/navigation/osNavigate.ts:19:18                               
+OsNavigate                            type       src/shell/navigation/osNavigate.ts:72:13                               
+SavedView                             interface  src/shell/navigation/viewCache.ts:17:18                                
+PinUnlockResult                       type       src/shell/pin.ts:31:13                                                 
+StoredPin                             interface  src/shell/session.ts:15:18                                             
+ShellState                            interface  src/shell/session.ts:22:18                                             
+StorageArea                           type       src/shell/storage.ts:5:13                                              
+DomDiff                               interface  src/test/dom.ts:8:18                                                   
+PanZoomOptions                        interface  src/vendor/panzoom/index.ts:8:18                                       
+PanZoomTransform                      interface  src/vendor/panzoom/index.ts:24:18                                      
+PanZoomInstance                       interface  src/vendor/panzoom/index.ts:31:18                                      
+Configuration hints (3)
+src/api/schema.d.ts    knip.json  Remove from ignore            
+src/main.tsx           knip.json  Remove redundant entry pattern
+src/test/setup.ts      knip.json  Remove redundant entry pattern

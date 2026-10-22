@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P0-2",
+  "step": "P0-3",
   "stage": "commit",
   "loop": 1,
-  "since": "2026-10-22T14:03:51"
+  "since": "2026-10-22T14:13:42"
  },
  "steps": {
   "P0-1": {
@@ -27,20 +27,26 @@
    "finished": "2026-10-22T12:59:11"
   },
   "P0-2": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-22T12:59:47",
    "tokens": {
     "dev": 111427,
-    "test": 46418
-   }
+    "test": 46418,
+    "docs": 23743
+   },
+   "commit": "4bee9f6",
+   "gate": "ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); visual self 64/0",
+   "loops": 1,
+   "finished": "2026-10-22T14:03:51"
   },
   "P0-3": {
-   "status": "pending",
+   "status": "active",
    "tokens": {
-    "dev": 57313,
-    "test": 18937,
+    "dev": 79901,
+    "test": 46900,
     "docs": 22956
-   }
+   },
+   "started": "2026-10-22T14:04:04"
   },
   "P0-4": {
    "status": "pending",
