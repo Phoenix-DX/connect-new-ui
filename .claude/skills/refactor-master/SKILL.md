@@ -65,8 +65,11 @@ shares no file:
   (`git worktree add -b rf/prefetch-<id>`).
 
 When the prefetched step becomes active, apply its diff to the main tree. When its test passed in the worktree, run a short tester
-pass on the main tree before the commit: `npm run ci` and the parity of the step. Use these calls. An agent runs in the background: wait for its completion
-notification before the next command, and do not start another agent in the meantime. When the agent type is not
+pass on the main tree before the commit: `npm run ci` and the parity of the step. Use these calls. An agent runs in the background: wait for its report
+(the hand-back message or the completion notification, whichever comes first) before the next command, and do not
+start another agent in the meantime. When the report arrives, act on it at once. Never end the turn only to wait for
+the completion notification: on 2026-10-22 it came only with the next user message, and the overnight run stopped for
+6 hours. When the agent type is not
 available in this session, use `subagent_type: "general-purpose"`, and start the prompt with this line:
 
 ```
@@ -106,7 +109,8 @@ Do not paste the plan or file contents into a prompt: the brief carries them.
 
 1. Read the status line of its report. Do not read the full report unless the status is not `pass`.
 2. Record the tokens of the agent: `rf.py tokens <id> --agent dev|test|docs --n <N> --model <m>`. The number is
-   `subagent_tokens` in the usage of the completion notification. When no number is given, use `--n 0`.
+   `subagent_tokens` in the usage of the completion notification. When the report came first, continue the step and
+   record the tokens when the notification comes (`rf.py tokens` adds). When no number is given, use `--n 0`.
 3. Act on the status:
 
 | Agent      | Status     | Do                                                                                                          |
@@ -173,7 +177,7 @@ When the user says that an advisor decides for them (for example "nhờ opus sug
 
 The user gave a standing approval for commits on `refactor/architecture` after the gate passes (user, 2026-10-22).
 
-1. Wait for the completion notification of the documenter and record its tokens first. Then run `git status --short`.
+1. Wait for the report of the documenter (section 3.1). Then run `git status --short`.
    Every change must be in `dev.md` or `docs.md`, in `migration/refactor/`, or `migration/metrics/ledger.csv`. When a
    file is not, stop and ask.
 2. `git add -A`, then commit:
