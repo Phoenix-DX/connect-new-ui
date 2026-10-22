@@ -80,6 +80,11 @@ The codemod runs on plain Node 24 (it loads ts-morph from `app/node_modules`). I
 - Only rewrite `../` imports to `@/`: `node migration/tools/refactor/move.ts --alias-only [--dry-run]`
 - `--no-typecheck` skips the typecheck at the end. `import.meta.glob` patterns are not rewritten; the tool prints a warning.
 
+## Refactor measurement (P0-4)
+
+- `node migration/tools/refactor/measure.mjs`: writes `app/docs/refactor/inventory.csv`, `routes.csv` and `calls-by-domain.md` from `app/src` (AST scan). Then run `npx prettier --write docs/refactor/calls-by-domain.md` in `app`.
+- `node app/build/bundle-report.mjs`: prints the first-load size (entry, route chunk, shared chunks) of HomeFeed and Login from `app/dist/`. Run `npm --prefix app run build` first.
+
 
 Servers:
 - dev: `npm --prefix app run dev` (http://localhost:5173)

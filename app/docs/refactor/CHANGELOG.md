@@ -17,3 +17,9 @@
 - Architecture: no folder change. Added dev tools: dependency-cruiser (`npm run graph`, `npm run arch`), jscpd, knip, ts-morph, and the alias `@/` for `src/`.
 - Added the move codemod `migration/tools/refactor/move.ts` (plain Node 24). No import uses `@/` yet.
 - First reports are in `app/docs/refactor/reports/P0-3-*.txt`. `npm run arch` reports 1 cycle (`src/shell/cachedUserInfo.ts` and `src/shell/mockUser.ts`).
+
+## P0-4 - refactor(P0-4): add the code inventory
+
+- Architecture: no folder change. New tools `migration/tools/refactor/measure.mjs` and `app/build/bundle-report.mjs`.
+- Outputs: `inventory.csv` (265 rows), `routes.csv` (64 routes), `calls-by-domain.md` (70 files call `callAction`).
+- First-load gzip: HomeFeed 236.40 kB, Login 184.61 kB; recorded in `baseline.md`.

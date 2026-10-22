@@ -276,3 +276,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,other,23743,refactor-docs,,P0-2 sonnet
 2026-10-22,refactor,verify,27963,refactor-test,,P0-3 loop 1 sonnet
 2026-10-22,refactor,fix,22588,refactor-dev,,P0-3 loop 1 sonnet
+2026-10-22,refactor,verify,22001,refactor-test,,P0-3 sonnet
+2026-10-22,refactor,other,22554,refactor-docs,,P0-4 sonnet

@@ -39,3 +39,9 @@ One line per event. Written by rf.py.
 - 2026-10-22T14:11:35 P0-3 stage test
 - 2026-10-22T14:13:42 P0-3 stage docs
 - 2026-10-22T14:13:42 P0-3 stage commit
+- 2026-10-22T14:13:43 P0-3 done 9e439d0: ci: pass; parity strict --changed (self): 64/0; arch: 1 known cycle
+- 2026-10-22T14:13:52 P0-4 started
+- 2026-10-22T14:13:52 P0-4 stage dev
+- 2026-10-22T14:13:52 P0-4 stage test
+- 2026-10-22T14:16:08 P0-4 stage docs
+- 2026-10-22T14:16:08 P0-4 stage commit
