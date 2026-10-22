@@ -1,0 +1,54 @@
+{
+ "journey": "J24",
+ "title": "Show the QR code",
+ "ranAt": "2026-10-21T17:58:45.425Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "EventDetail",
+   "path": "/UBTConnect/EventDetail",
+   "params": [
+    "In_EventId",
+    "In_MemberId",
+    "In_FromNotification",
+    "In_EventName"
+   ],
+   "shot": "01-EventDetail.png",
+   "maskedTexts": 11,
+   "stopped": true,
+   "calls": []
+  }
+ ],
+ "debug": "J24.debug/global-EventDetail.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 2,
+  "screen": "EventDetail",
+  "setup": false,
+  "error": "no visible element for: text=QR Code | text=QR | a[href*=\"/QRCodeGenerate\"]",
+  "path": "/UBTConnect/EventDetail",
+  "blocked": []
+ },
+ "knownBlock": "The Orbit event of the test account shows no QR code link (no-capture of QRCodeGenerate, user 2026-10-16).",
+ "seconds": 61,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "EventDetail",
+   "error": "no visible element for: text=QR Code | text=QR | a[href*=\"/QRCodeGenerate\"]",
+   "debug": "J24.debug/global-EventDetail.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

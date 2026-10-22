@@ -1,0 +1,52 @@
+{
+ "journey": "J38",
+ "title": "Look at my profile",
+ "ranAt": "2026-10-21T17:07:37.462Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "Menu",
+   "path": "/UBTConnect/Menu",
+   "params": [],
+   "shot": "01-Menu.png",
+   "maskedTexts": 3,
+   "action": {
+    "label": "Edit your account.",
+    "kind": "click",
+    "element": {
+     "selector": "text=Edit your account",
+     "index": 0
+    },
+    "ms": 5717
+   },
+   "calls": [
+    "DataActionGetCountryInfo",
+    "ActionGetSignedImagesInBulk",
+    "DataActionGetHousehold",
+    "DataActionGetHousehold_Coordinates",
+    "DataActionFetchContactDetails",
+    "DataActionFetchNotes"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "Profile",
+   "path": "/UBTConnect/Profile",
+   "params": [],
+   "shot": "02-Profile.png",
+   "maskedTexts": 16
+  }
+ ],
+ "status": "verified",
+ "seconds": 75,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "journey": "J37",
+ "title": "Read the terms and policies",
+ "ranAt": "2026-10-21T17:06:36.162Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "Menu",
+   "path": "/UBTConnect/Menu",
+   "params": [],
+   "shot": "01-Menu.png",
+   "maskedTexts": 3,
+   "action": {
+    "label": "Terms & Policies.",
+    "kind": "click",
+    "element": {
+     "selector": "text=Terms & Policies",
+     "index": 0
+    },
+    "ms": 2802
+   },
+   "calls": [
+    "DataActionGetCacheInfo"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "TermsAndPoliciesMenu",
+   "path": "/UBTConnect/TermsAndPoliciesMenu",
+   "params": [],
+   "shot": "02-TermsAndPoliciesMenu.png",
+   "maskedTexts": 0
+  }
+ ],
+ "status": "verified",
+ "seconds": 61,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

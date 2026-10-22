@@ -21,3 +21,9 @@ __pycache__/
 .claude/settings.local.json
 # privacy review sheets of the UI Flows dashboard screenshots (local only, not published)
 migration/flows-dashboard/site-review/
+# masked DOM of journey runs (local only, large)
+migration/journeys/runs/*/dom/
+migration/journeys/runs/*/debug-*
+migration/journeys/runs/*.debug/
+migration/journeys/runs/*.tmp/
+migration/journeys/runs/*.best/

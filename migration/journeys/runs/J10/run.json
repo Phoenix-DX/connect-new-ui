@@ -1,0 +1,51 @@
+{
+ "journey": "J10",
+ "title": "Read notifications",
+ "ranAt": "2026-10-21T17:47:37.528Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "stopped": true,
+   "calls": [
+    "DataActionGetMessages",
+    "ActionGetSignedImagesInBulk"
+   ]
+  }
+ ],
+ "debug": "J10.debug/global-HomeFeed.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 0,
+  "screen": "HomeFeed",
+  "setup": false,
+  "error": "page.waitForURL: Timeout 25000ms exceeded.",
+  "path": "/UBTConnect/MessageList",
+  "blocked": []
+ },
+ "seconds": 89,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J10.debug/global-HomeFeed.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

@@ -1,0 +1,49 @@
+{
+ "journey": "J26",
+ "title": "Manage Orbit as an admin",
+ "ranAt": "2026-10-21T18:01:12.014Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "stopped": true,
+   "calls": []
+  }
+ ],
+ "debug": "J26.debug/global-HomeFeed.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 0,
+  "screen": "HomeFeed",
+  "setup": false,
+  "error": "no visible element for: [data-block='Home.FeedBlock_Services'] >> text=/Orbit Admin/i | a[href*=\"/OrbitAdminLanding\"]",
+  "path": "/UBTConnect/HomeFeed",
+  "blocked": []
+ },
+ "knownBlock": "The test account is not an Orbit admin: Services shows no Orbit Admin item.",
+ "seconds": 71,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "no visible element for: [data-block='Home.FeedBlock_Services'] >> text=/Orbit Admin/i | a[href*=\"/OrbitAdminLanding\"]",
+   "debug": "J26.debug/global-HomeFeed.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

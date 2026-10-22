@@ -1,0 +1,76 @@
+{
+ "journey": "J13",
+ "title": "Open a OneSchool Global page",
+ "ranAt": "2026-10-21T16:30:47.162Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "Locality_Details",
+   "path": "/UBTConnect/Locality_Details",
+   "params": [
+    "LocalityId",
+    "PreloadedLocalityLabel"
+   ],
+   "shot": "01-Locality_Details.png",
+   "maskedTexts": 57,
+   "action": {
+    "label": "OneSchool Global tab, then a campus card.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List'] [data-block='ConnectCorePatterns.ImageCard_LazyLoading']",
+     "index": 0
+    },
+    "ms": 4883
+   },
+   "calls": [
+    "DataActionGet_OneSchoolGlobal_List",
+    "DataActionFetchContactDetails",
+    "DataActionFetchNotes",
+    "DataActionGetOneSchoolGlobalDetails"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "OneSchoolGlobalDetails",
+   "path": "/UBTConnect/OneSchoolGlobalDetails",
+   "params": [
+    "In_OneSchoolGlobalId"
+   ],
+   "shot": "02-OneSchoolGlobalDetails.png",
+   "maskedTexts": 4,
+   "action": {
+    "label": "Email in the actions.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Directory_CommonBlocks.Directory_EntityDetailsActions'] >> text=Email",
+     "index": 0
+    },
+    "ms": 3858
+   },
+   "calls": [],
+   "blocked": []
+  },
+  {
+   "screen": "ContactByEmailOneSchoolGlobal",
+   "path": "/UBTConnect/ContactByEmailOneSchoolGlobal",
+   "params": [
+    "In_ContactName",
+    "In_EmailTo"
+   ],
+   "shot": "03-ContactByEmailOneSchoolGlobal.png",
+   "maskedTexts": 3
+  }
+ ],
+ "status": "verified",
+ "seconds": 101,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

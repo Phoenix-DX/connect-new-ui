@@ -1,0 +1,51 @@
+{
+ "journey": "J32",
+ "title": "Read an LDM email",
+ "ranAt": "2026-10-21T18:05:16.966Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "MessageDetail",
+   "path": "/UBTConnect/MessageDetail",
+   "params": [
+    "MessageInstanceId"
+   ],
+   "shot": "01-MessageDetail.png",
+   "maskedTexts": 7,
+   "stopped": true,
+   "calls": []
+  }
+ ],
+ "debug": "J32.debug/global-MessageDetail.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 2,
+  "screen": "MessageDetail",
+  "setup": false,
+  "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/LDM_Email_V2\"]",
+  "path": "/UBTConnect/MessageDetail",
+  "blocked": []
+ },
+ "knownBlock": "The messages of the test accounts are directory notices or adaptive cards (a form with Submit, which writes data). None has an Orbit, Assemble or host survey action button (debug snapshots 2026-10-21).",
+ "seconds": 61,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "MessageDetail",
+   "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/LDM_Email_V2\"]",
+   "debug": "J32.debug/global-MessageDetail.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

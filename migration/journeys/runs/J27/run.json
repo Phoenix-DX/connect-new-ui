@@ -1,0 +1,97 @@
+{
+ "journey": "J27",
+ "title": "Look at a Lord's Day Meal",
+ "ranAt": "2026-10-21T16:51:09.833Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "Lord's Day Meal in Services.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Home.FeedBlock_Services'] >> text=\"Lord's Day Meal\"",
+     "index": 0
+    },
+    "ms": 4640
+   },
+   "calls": [
+    "DataActionGetEventLocalitiesForFilter",
+    "DataActionGetEventsForMyTimeline"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "LDM_MyEvents_V2",
+   "path": "/UBTConnect/LDM_MyEvents_V2",
+   "params": [],
+   "shot": "02-LDM_MyEvents_V2.png",
+   "maskedTexts": 26,
+   "action": {
+    "label": "Select an event.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='LDM_Blocks_V2.EventCard_V2'] .event-card-box",
+     "index": 0
+    },
+    "ms": 3355
+   },
+   "calls": [
+    "DataActionGetCoordinatorDetails",
+    "DataActionGetEventByEventId"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "LDM_EventDetail_V2",
+   "path": "/UBTConnect/LDM_EventDetail_V2",
+   "params": [
+    "EventId",
+    "EventHostId"
+   ],
+   "shot": "03-LDM_EventDetail_V2.png",
+   "maskedTexts": 4,
+   "action": {
+    "label": "Contact Coordinator, then Email in the popup.",
+    "kind": "click",
+    "element": {
+     "selector": "text=\"Email\"",
+     "index": 0
+    },
+    "ms": 5321
+   },
+   "calls": [],
+   "blocked": []
+  },
+  {
+   "screen": "ContactByEmailLDMCoordinator",
+   "path": "/UBTConnect/ContactByEmailLDMCoordinator",
+   "params": [
+    "In_EmailTo",
+    "In_ContactName",
+    "In_EventDate",
+    "In_AvatarURL",
+    "In_Subject",
+    "In_EventLocality"
+   ],
+   "shot": "04-ContactByEmailLDMCoordinator.png",
+   "maskedTexts": 2
+  }
+ ],
+ "status": "verified",
+ "seconds": 110,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

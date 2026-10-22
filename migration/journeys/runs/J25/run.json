@@ -1,0 +1,57 @@
+{
+ "journey": "J25",
+ "title": "Contact the host",
+ "ranAt": "2026-10-21T17:59:46.710Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "MilestoneDetail",
+   "path": "/UBTConnect/MilestoneDetail",
+   "params": [
+    "In_OrbitMilestoneTypeId",
+    "In_FromNotification",
+    "In_HostId",
+    "In_EventId",
+    "In_MilestoneId",
+    "In_EventName",
+    "In_MilestoneName"
+   ],
+   "shot": "01-MilestoneDetail.png",
+   "maskedTexts": 41,
+   "stopped": true,
+   "calls": []
+  }
+ ],
+ "debug": "J25.debug/global-MilestoneDetail.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 3,
+  "screen": "MilestoneDetail",
+  "setup": false,
+  "error": "page.waitForURL: Timeout 25000ms exceeded.",
+  "path": "/UBTConnect/ContactByEmailOrbitHelpdesk",
+  "blocked": []
+ },
+ "knownBlock": "The milestone of the test accounts is a host accommodation milestone. The host contact email is not on it (MilestoneDetail spec §9: phone popup only); it needs a guest milestone.",
+ "seconds": 85,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "MilestoneDetail",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J25.debug/global-MilestoneDetail.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

@@ -1,0 +1,969 @@
+{
+ "journeys": {
+  "J35": {
+   "status": "verified",
+   "account": "global",
+   "steps": 4,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T17:03:24.194Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J37": {
+   "status": "verified",
+   "account": "global",
+   "steps": 2,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T17:06:36.162Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J1": {
+   "status": "verified",
+   "account": "global",
+   "steps": 3,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T17:30:04.081Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J3": {
+   "status": "blocked",
+   "account": "regional",
+   "steps": 2,
+   "at": {
+    "step": 1,
+    "screen": "AcceptPendingPolicies",
+    "setup": false,
+    "error": "page.waitForURL: Timeout 25000ms exceeded.",
+    "path": "/UBTConnect/AcceptPendingPolicies",
+    "blocked": [
+     "ActionAcceptPolicies"
+    ]
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:39:32.334Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 45000ms exceeded.",
+     "debug": "J3.debug/global-HomeFeed.png"
+    },
+    {
+     "account": "regional",
+     "status": "blocked",
+     "at": "AcceptPendingPolicies",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J3.debug/regional-AcceptPendingPolicies.png"
+    },
+    {
+     "account": "local",
+     "status": "blocked",
+     "at": "AcceptPendingPolicies",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J3.debug/local-AcceptPendingPolicies.png"
+    }
+   ]
+  },
+  "J4": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 0,
+    "screen": "ConnectShare",
+    "setup": false,
+    "error": "page.waitForURL: Timeout 45000ms exceeded.",
+    "path": "/UBTConnect/ConnectShare",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:43:50.487Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "ConnectShare",
+     "error": "page.waitForURL: Timeout 45000ms exceeded.",
+     "debug": "J4.debug/global-ConnectShare.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J5": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 2,
+   "at": {
+    "step": 1,
+    "screen": "Updates_SingleList",
+    "setup": false,
+    "error": "page.waitForURL: Timeout 25000ms exceeded.",
+    "path": "/UBTConnect/Updates_SingleList",
+    "blocked": [
+     "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
+    ]
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:45:28.312Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "Updates_SingleList",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J5.debug/global-Updates_SingleList.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J6": {
+   "status": "verified",
+   "account": "global",
+   "steps": 3,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:18:20.877Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J7": {
+   "status": "verified",
+   "account": "global",
+   "steps": 2,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:20:23.548Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J8": {
+   "status": "verified",
+   "account": "global",
+   "steps": 2,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:21:22.330Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J9": {
+   "status": "verified",
+   "account": "global",
+   "steps": 2,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:22:33.783Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J10": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 0,
+    "screen": "HomeFeed",
+    "setup": false,
+    "error": "page.waitForURL: Timeout 25000ms exceeded.",
+    "path": "/UBTConnect/MessageList",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:47:37.528Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J10.debug/global-HomeFeed.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J11": {
+   "status": "verified",
+   "account": "global",
+   "steps": 6,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:25:09.098Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J12": {
+   "status": "verified",
+   "account": "global",
+   "steps": 4,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:28:23.703Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J13": {
+   "status": "verified",
+   "account": "global",
+   "steps": 3,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:30:47.162Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J14": {
+   "status": "verified",
+   "account": "global",
+   "steps": 2,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:32:28.394Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J15": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 2,
+   "at": {
+    "step": 5,
+    "screen": "SupperMeeting_Details",
+    "setup": false,
+    "error": "page.waitForURL: Timeout 25000ms exceeded.",
+    "path": "/UBTConnect/SupperMeeting_Details",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:49:06.976Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "SupperMeeting_Details",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J15.debug/global-SupperMeeting_Details.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J16": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 0,
+    "screen": "HomeFeed",
+    "setup": false,
+    "error": "page.waitForURL: Timeout 25000ms exceeded.",
+    "path": "/UBTConnect/CountryList",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:51:41.153Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J16.debug/global-HomeFeed.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J17": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 4,
+   "at": {
+    "step": 3,
+    "screen": "MilestoneDetail",
+    "setup": false,
+    "error": "no visible element for: text=Guest Arrangements | text=/guest arrangements/i | a[href*=\"/GuestArrangements\"]",
+    "path": "/UBTConnect/MilestoneDetail",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:53:15.297Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "MilestoneDetail",
+     "error": "no visible element for: text=Guest Arrangements | text=/guest arrangements/i | a[href*=\"/GuestArrangements\"]",
+     "debug": "J17.debug/global-MilestoneDetail.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J18": {
+   "status": "verified",
+   "account": "global",
+   "steps": 2,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:40:45.045Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J19": {
+   "status": "verified",
+   "account": "global",
+   "steps": 2,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:41:51.835Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J20": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 2,
+    "screen": "EventDetail",
+    "setup": false,
+    "error": "no visible element for: [data-block='Orbit_Blocks.Card_Milestone'] >> text=/Transport|Travel|Flight|Bus|Train/i | text=View Itinerary | a[href*=\"/TransportDetail\"]",
+    "path": "/UBTConnect/EventDetail",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:55:36.488Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "EventDetail",
+     "error": "no visible element for: [data-block='Orbit_Blocks.Card_Milestone'] >> text=/Transport|Travel|Flight|Bus|Train/i | text=View Itinerary | a[href*=\"/TransportDetail\"]",
+     "debug": "J20.debug/global-EventDetail.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J21": {
+   "status": "verified",
+   "account": "global",
+   "steps": 2,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:44:11.994Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J22": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 2,
+    "screen": "EventDetail",
+    "setup": false,
+    "error": "no visible element for: text=Documents | text=View Documents | a[href*=\"/ViewDocuments\"]",
+    "path": "/UBTConnect/EventDetail",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:56:37.232Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "EventDetail",
+     "error": "no visible element for: text=Documents | text=View Documents | a[href*=\"/ViewDocuments\"]",
+     "debug": "J22.debug/global-EventDetail.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J23": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 2,
+    "screen": "EventDetail",
+    "setup": false,
+    "error": "no visible element for: text=Booklet | text=Event Booklet | a[href*=\"/EventBooklet\"]",
+    "path": "/UBTConnect/EventDetail",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:57:41.889Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "EventDetail",
+     "error": "no visible element for: text=Booklet | text=Event Booklet | a[href*=\"/EventBooklet\"]",
+     "debug": "J23.debug/global-EventDetail.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J24": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 2,
+    "screen": "EventDetail",
+    "setup": false,
+    "error": "no visible element for: text=QR Code | text=QR | a[href*=\"/QRCodeGenerate\"]",
+    "path": "/UBTConnect/EventDetail",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:58:45.425Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "EventDetail",
+     "error": "no visible element for: text=QR Code | text=QR | a[href*=\"/QRCodeGenerate\"]",
+     "debug": "J24.debug/global-EventDetail.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J25": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 3,
+    "screen": "MilestoneDetail",
+    "setup": false,
+    "error": "page.waitForURL: Timeout 25000ms exceeded.",
+    "path": "/UBTConnect/ContactByEmailOrbitHelpdesk",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T17:59:46.710Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "MilestoneDetail",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J25.debug/global-MilestoneDetail.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J26": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 0,
+    "screen": "HomeFeed",
+    "setup": false,
+    "error": "no visible element for: [data-block='Home.FeedBlock_Services'] >> text=/Orbit Admin/i | a[href*=\"/OrbitAdminLanding\"]",
+    "path": "/UBTConnect/HomeFeed",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T18:01:12.014Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "no visible element for: [data-block='Home.FeedBlock_Services'] >> text=/Orbit Admin/i | a[href*=\"/OrbitAdminLanding\"]",
+     "debug": "J26.debug/global-HomeFeed.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J27": {
+   "status": "verified",
+   "account": "global",
+   "steps": 4,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:51:09.833Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J28": {
+   "status": "verified",
+   "account": "global",
+   "steps": 3,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:52:59.921Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J29": {
+   "status": "verified",
+   "account": "global",
+   "steps": 3,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T16:54:54.362Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J30": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 3,
+   "at": {
+    "step": 2,
+    "screen": "MessageDetail",
+    "setup": false,
+    "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/EventDetail\"]",
+    "path": "/UBTConnect/MessageDetail",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T18:02:23.112Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "MessageDetail",
+     "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/EventDetail\"]",
+     "debug": "J30.debug/global-MessageDetail.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J31": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 2,
+    "screen": "MessageDetail",
+    "setup": false,
+    "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/FeedItemDetail\"]",
+    "path": "/UBTConnect/MessageDetail",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T18:04:14.175Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "MessageDetail",
+     "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/FeedItemDetail\"]",
+     "debug": "J31.debug/global-MessageDetail.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J32": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 2,
+    "screen": "MessageDetail",
+    "setup": false,
+    "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/LDM_Email_V2\"]",
+    "path": "/UBTConnect/MessageDetail",
+    "blocked": []
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T18:05:16.966Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "MessageDetail",
+     "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/LDM_Email_V2\"]",
+     "debug": "J32.debug/global-MessageDetail.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J33": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 1,
+   "at": {
+    "step": 0,
+    "screen": "HomeFeed",
+    "setup": false,
+    "error": "page.waitForURL: Timeout 25000ms exceeded.",
+    "path": "/UBTConnect/Bookmarks",
+    "blocked": [
+     "ActionGet_BookmarkPills_ByBookmarkCategoryIds"
+    ]
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T18:06:17.784Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J33.debug/global-HomeFeed.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J34": {
+   "status": "blocked",
+   "account": "global",
+   "steps": 0,
+   "at": {
+    "step": 0,
+    "screen": "HomeFeed",
+    "setup": true,
+    "error": "page.waitForURL: Timeout 25000ms exceeded.",
+    "path": "/UBTConnect/Bookmarks",
+    "blocked": [
+     "ActionGet_BookmarkPills_ByBookmarkCategoryIds"
+    ]
+   },
+   "reason": null,
+   "ranAt": "2026-10-21T18:07:56.130Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "blocked",
+     "at": "HomeFeed",
+     "error": "page.waitForURL: Timeout 25000ms exceeded.",
+     "debug": "J34.debug/global-HomeFeed.png"
+    },
+    {
+     "account": "regional",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    },
+    {
+     "account": "local",
+     "status": "skipped",
+     "reason": "a policy waits for acceptance"
+    }
+   ]
+  },
+  "J36": {
+   "status": "verified",
+   "account": "global",
+   "steps": 3,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T17:05:07.906Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J38": {
+   "status": "verified",
+   "account": "global",
+   "steps": 2,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T17:07:37.462Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  },
+  "J2": {
+   "status": "verified",
+   "account": "global",
+   "steps": 3,
+   "at": null,
+   "reason": null,
+   "ranAt": "2026-10-21T17:08:52.653Z",
+   "attempts": [
+    {
+     "account": "global",
+     "status": "verified",
+     "at": null,
+     "error": null,
+     "debug": null
+    }
+   ]
+  }
+ },
+ "ranAt": "2026-10-21T18:09:08.413Z"
+}

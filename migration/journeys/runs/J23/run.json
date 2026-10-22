@@ -1,0 +1,54 @@
+{
+ "journey": "J23",
+ "title": "Read the event booklet",
+ "ranAt": "2026-10-21T17:57:41.889Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "EventDetail",
+   "path": "/UBTConnect/EventDetail",
+   "params": [
+    "In_EventId",
+    "In_MemberId",
+    "In_FromNotification",
+    "In_EventName"
+   ],
+   "shot": "01-EventDetail.png",
+   "maskedTexts": 11,
+   "stopped": true,
+   "calls": []
+  }
+ ],
+ "debug": "J23.debug/global-EventDetail.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 2,
+  "screen": "EventDetail",
+  "setup": false,
+  "error": "no visible element for: text=Booklet | text=Event Booklet | a[href*=\"/EventBooklet\"]",
+  "path": "/UBTConnect/EventDetail",
+  "blocked": []
+ },
+ "knownBlock": "The Orbit event of the test account shows no booklet link (no-capture of EventBooklet, user 2026-10-16).",
+ "seconds": 64,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "EventDetail",
+   "error": "no visible element for: text=Booklet | text=Event Booklet | a[href*=\"/EventBooklet\"]",
+   "debug": "J23.debug/global-EventDetail.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

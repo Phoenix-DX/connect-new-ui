@@ -1,0 +1,53 @@
+{
+ "journey": "J33",
+ "title": "Open saved items",
+ "ranAt": "2026-10-21T18:06:17.784Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "stopped": true,
+   "calls": [
+    "ActionGet_BookmarkPills_ByBookmarkCategoryIds"
+   ]
+  }
+ ],
+ "debug": "J33.debug/global-HomeFeed.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 0,
+  "screen": "HomeFeed",
+  "setup": false,
+  "error": "page.waitForURL: Timeout 25000ms exceeded.",
+  "path": "/UBTConnect/Bookmarks",
+  "blocked": [
+   "ActionGet_BookmarkPills_ByBookmarkCategoryIds"
+  ]
+ },
+ "knownBlock": "Observed on TST 2026-10-21: Bookmarks in the bottom bar opens Bookmarks, not MyBookmarks, because C2NewBookmarks is now true on TST (it was false on 2026-10-14). Decision open: Bookmarks Q1.",
+ "seconds": 98,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J33.debug/global-HomeFeed.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

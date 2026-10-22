@@ -1,0 +1,1414 @@
+{
+ "version": 1,
+ "about": "Main user journeys of the UBTConnect app on TST, the source for end-to-end tests. Format and rules: README.md. Each arrow must be a link in the compiled TST code (survey/screens.json); journey_capture.cjs runs them on TST read-only.",
+ "run": {
+  "viewport": "390x844",
+  "order": [
+   "J1"
+  ],
+  "last": [
+   "J2"
+  ]
+ },
+ "groups": [
+  "Start the app",
+  "Home",
+  "Directory",
+  "Programs",
+  "Messages and saved items",
+  "Menu and help"
+ ],
+ "notInAJourney": [
+  {
+   "screen": "EmailContact",
+   "reason": "No way in on TST. In scope with the Orbit family (D6)."
+  },
+  {
+   "screen": "EmailTarget",
+   "reason": "No way in on TST. In scope with the LDM family (D6)."
+  }
+ ],
+ "journeys": [
+  {
+   "id": "J1",
+   "group": "Start the app",
+   "title": "Open the app again",
+   "purpose": "A user who has a PIN on the device opens the app.",
+   "start": {
+    "route": "/UBTConnect/"
+   },
+   "auth": "locked",
+   "preconditions": [
+    "Signed in on this device, PIN set, app locked"
+   ],
+   "steps": [
+    {
+     "screen": "Splash",
+     "action": {
+      "label": "The app checks the PIN and opens the PIN screen.",
+      "kind": "auto"
+     },
+     "evidence": "Splash spec: PIN_Check, then PINRegister or PINUnlock"
+    },
+    {
+     "screen": "PINUnlock",
+     "action": {
+      "label": "Enter the PIN. The app opens the last URL, here the start URL, which shows the home feed.",
+      "kind": "pin"
+     },
+     "evidence": "PINUnlock spec: Unlock, GetResumeLoginLink, LastURL"
+    },
+    {
+     "screen": "HomeFeed",
+     "at": "/UBTConnect/"
+    }
+   ],
+   "notes": [
+    "The run opens the start URL of the app (/UBTConnect/, PWA manifest start_url), as a user does. A tab that opens /UBTConnect/Splash itself keeps Splash as LastURL, so after the PIN the app opens Splash again and locks again (knowledge/shell-facts.md U3)."
+   ]
+  },
+  {
+   "id": "J2",
+   "group": "Start the app",
+   "title": "Sign in for the first time",
+   "purpose": "A new user signs in with UBT One and sets a PIN.",
+   "auth": "register",
+   "preconditions": [
+    "Not signed in on this device",
+    "A UBT One account"
+   ],
+   "notes": [
+    "The UBT One sign-in page is outside the app."
+   ],
+   "steps": [
+    {
+     "screen": "Login",
+     "action": {
+      "label": "Login with UBT One, then sign in on the UBT One page.",
+      "kind": "signin"
+     },
+     "evidence": "Login spec: button 'Login with UBT One'"
+    },
+    {
+     "screen": "PINRegister",
+     "action": {
+      "label": "Enter and confirm a new PIN. The app opens the home feed.",
+      "kind": "pin"
+     },
+     "evidence": "PINRegister spec: resume link or LastURL"
+    },
+    {
+     "screen": "HomeFeed"
+    }
+   ]
+  },
+  {
+   "id": "J3",
+   "group": "Start the app",
+   "title": "Accept updated policies",
+   "purpose": "A user accepts new terms before using the app.",
+   "preconditions": [
+    "A policy waits for acceptance by the user"
+   ],
+   "knownBlock": "Accepting the policies writes data; the read-only guard blocks it (CLAUDE.md rule 6). The first account had no pending policy; the second account has one (2026-10-21).",
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "The policy checker opens the policies screen when a policy waits for acceptance.",
+      "kind": "auto"
+     },
+     "evidence": "App layout: Policy_Checker, AcceptPendingPolicies"
+    },
+    {
+     "screen": "AcceptPendingPolicies",
+     "action": {
+      "label": "Tick the boxes, then the button. Accepting writes data: the read-only guard blocks it.",
+      "selectors": [
+       "[data-block='App_Policies.Policy_Custom_AcceptPendingPolicies'] button",
+       "[data-block='ConnectPatterns.FixedFooter'] button"
+      ],
+      "preOptional": [
+       ".connect-icon-checkbox_outline_blank",
+       ".connect-icon-checkbox_outline_blank",
+       ".connect-icon-checkbox_outline_blank",
+       ".connect-icon-checkbox_outline_blank"
+      ]
+     },
+     "evidence": "AcceptPendingPolicies spec"
+    },
+    {
+     "screen": "HomeFeed"
+    }
+   ]
+  },
+  {
+   "id": "J4",
+   "group": "Start the app",
+   "title": "Open a share link",
+   "purpose": "A user opens a link that another member shared.",
+   "start": {
+    "plan": "ConnectShare"
+   },
+   "preconditions": [
+    "A share link (ShareId) of a household"
+   ],
+   "notes": [
+    "The link can also open a Supper Meeting, a OneSchool Global page or a feed item."
+   ],
+   "steps": [
+    {
+     "screen": "ConnectShare",
+     "action": {
+      "label": "The app reads the link and opens the shared item, here a household.",
+      "kind": "auto"
+     },
+     "evidence": "ConnectShare spec: Action_Redirect"
+    },
+    {
+     "screen": "HouseholdDetails"
+    }
+   ],
+   "knownBlock": "The ShareId of the capture plan is a placeholder, so Get_ShareDetails raises a server exception and ConnectShare shows its status message (ConnectShare route spec, states). The journey needs a real share link of a household. Making one is a share, which writes data."
+  },
+  {
+   "id": "J5",
+   "group": "Home",
+   "title": "Read community updates",
+   "purpose": "A user reads the latest births, marriages and other updates.",
+   "notes": [
+    "The flag C2EnableCarousel is on on TST. Household links open the household carousel."
+   ],
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "Updates: View all.",
+      "selectors": [
+       "text=View all"
+      ]
+     },
+     "evidence": "HomeFeed spec: Updates 'View all'"
+    },
+    {
+     "screen": "Updates_SingleList",
+     "action": {
+      "label": "Select an update.",
+      "selectors": [
+       "[data-block='ConnectCorePatterns.Update_ListItem']"
+      ]
+     },
+     "evidence": "Updates_SingleList spec: HouseholdCarousel"
+    },
+    {
+     "screen": "HouseholdCarousel",
+     "action": {
+      "label": "Select a member to see the relations.",
+      "selectors": [
+       ".splide__slide.is-active [data-block='ConnectCorePatterns.Member_ListItem']",
+       "[data-block='ConnectCorePatterns.Member_ListItem']"
+      ]
+     },
+     "evidence": "navOut HouseholdCarousel to Household_Relations"
+    },
+    {
+     "screen": "Household_Relations"
+    }
+   ],
+   "knownBlock": "Opening an update first marks it as read (ServiceAPIAction_UI_UpdateItem_MarkAsRead), a write that the read-only guard blocks."
+  },
+  {
+   "id": "J6",
+   "group": "Home",
+   "title": "Search the directory",
+   "purpose": "A user searches for a household and opens it.",
+   "notes": [
+    "The flag C2EnableCarousel is on on TST. Household links open the household carousel."
+   ],
+   "preconditions": [
+    "A household whose name matches the search text"
+   ],
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "The search box at the top.",
+      "selectors": [
+       "[placeholder*='Search for households']",
+       "[data-block='Layouts.SubLayout_HomePageSearch'] input",
+       "[data-block='Layouts.SubLayout_HomePageSearch']"
+      ]
+     },
+     "evidence": "HomeFeed spec: Layout search, OnClick_Search"
+    },
+    {
+     "screen": "Search",
+     "action": {
+      "label": "Type a name and press Enter, choose the Households tag, then select a household.",
+      "selectors": [
+       "[data-block='CW_Search.SearchResult_Item']"
+      ],
+      "fill": {
+       "selector": "input[type=search]",
+       "value": "Test",
+       "press": "Enter"
+      },
+      "pre": [
+       "[data-block='ConnectPatterns.TagToggle'] >> text=Households"
+      ]
+     },
+     "evidence": "navOut Search to HouseholdCarousel"
+    },
+    {
+     "screen": "HouseholdCarousel"
+    }
+   ]
+  },
+  {
+   "id": "J7",
+   "group": "Home",
+   "title": "Manage the services",
+   "purpose": "A user changes the order of the services on the home feed.",
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "The settings icon of Services.",
+      "selectors": [
+       "[data-block='Home.FeedBlock_Services'] .connect-icon-settings"
+      ]
+     },
+     "evidence": "HomeFeed spec: Services settings, OnClick_ServiceSettings"
+    },
+    {
+     "screen": "Services"
+    }
+   ]
+  },
+  {
+   "id": "J8",
+   "group": "Home",
+   "title": "Open my notes",
+   "purpose": "A user opens the notes on households and other entities.",
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "My Notes in Services.",
+      "selectors": [
+       "[data-block='Home.FeedBlock_Services'] >> text=\"My Notes\""
+      ]
+     },
+     "evidence": "HomeFeed spec: Service item, MyNotes to Notes"
+    },
+    {
+     "screen": "Notes"
+    }
+   ]
+  },
+  {
+   "id": "J9",
+   "group": "Home",
+   "title": "Open my entertaining",
+   "purpose": "A user opens the calendar of the meals that the user hosts.",
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "My Entertaining in Services.",
+      "selectors": [
+       "[data-block='Home.FeedBlock_Services'] >> text=\"My Entertaining\""
+      ]
+     },
+     "evidence": "HomeFeed spec: Service item, MyCalendar to MyEntertaining"
+    },
+    {
+     "screen": "MyEntertaining"
+    }
+   ]
+  },
+  {
+   "id": "J10",
+   "group": "Home",
+   "title": "Read notifications",
+   "purpose": "A user opens the notifications from the bell.",
+   "requires": {
+    "flag": "C2NewNotifications",
+    "value": "on",
+    "tst": "off"
+   },
+   "notes": [
+    "With the flag off (TST), the bell opens Messages: see J30."
+   ],
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "The bell at the top.",
+      "selectors": [
+       "[data-block='App_Common_Blocks.App_NotificationIcon'] .connect-icon-notifications"
+      ]
+     },
+     "evidence": "flags.md: C2NewNotifications"
+    },
+    {
+     "screen": "Notifications"
+    }
+   ]
+  },
+  {
+   "id": "J11",
+   "group": "Directory",
+   "title": "Find a household in the directory",
+   "purpose": "A user goes from a country to a locality, then to a household and its relations.",
+   "notes": [
+    "On TST, Directory in the bottom bar opens the country list (C2EnableC1DirectoryView is on).",
+    "The flag C2EnableCarousel is on on TST. Household links open the household carousel."
+   ],
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "Directory in the bottom bar.",
+      "selectors": [
+       ".bottom-bar .list > a >> nth=1"
+      ]
+     },
+     "evidence": "app-shell spec: bottom bar, directory item"
+    },
+    {
+     "screen": "CountryList",
+     "action": {
+      "label": "The MY COUNTRY card.",
+      "selectors": [
+       "text=MY COUNTRY"
+      ]
+     },
+     "evidence": "CountryList spec: MY COUNTRY card, CountryDetails"
+    },
+    {
+     "screen": "CountryDetails",
+     "action": {
+      "label": "Select a locality.",
+      "selectors": [
+       "[data-block='Directory_Locality.Statistics_TypedItem']"
+      ]
+     },
+     "evidence": "CountryDetails spec: list item, Locality_Details"
+    },
+    {
+     "screen": "Locality_Details",
+     "action": {
+      "label": "Select a household card.",
+      "selectors": [
+       "[data-block='Directory_Household_Blocks.Household_Card']"
+      ]
+     },
+     "evidence": "Locality_Details spec: household card, carousel on"
+    },
+    {
+     "screen": "HouseholdCarousel",
+     "action": {
+      "label": "Select a member to see the relations.",
+      "selectors": [
+       ".splide__slide.is-active [data-block='ConnectCorePatterns.Member_ListItem']",
+       "[data-block='ConnectCorePatterns.Member_ListItem']"
+      ]
+     },
+     "evidence": "navOut HouseholdCarousel to Household_Relations"
+    },
+    {
+     "screen": "Household_Relations"
+    }
+   ]
+  },
+  {
+   "id": "J12",
+   "group": "Directory",
+   "title": "Look at a Supper Meeting",
+   "purpose": "A user opens a Supper Meeting of a locality and writes to a member.",
+   "start": {
+    "journey": "J11",
+    "step": 3
+   },
+   "notes": [
+    "The flag C2EnableCarousel is on on TST. Supper Meeting and household cards open carousels.",
+    "The journey stops before Send: sending writes data."
+   ],
+   "steps": [
+    {
+     "screen": "Locality_Details",
+     "action": {
+      "label": "Supper Meetings tab, then a Supper Meeting card.",
+      "selectors": [
+       "[data-block='ConnectCorePatterns.ImageCard_LazyLoading']"
+      ],
+      "pre": [
+       "[data-block='ConnectPatterns.TagToggle'] >> nth=1"
+      ]
+     },
+     "evidence": "Locality_Details spec: supper meeting card, carousel on"
+    },
+    {
+     "screen": "SupperMeeting_Carousel",
+     "action": {
+      "label": "Select a household.",
+      "selectors": [
+       ".splide__slide.is-active [data-block='Directory_Household_Blocks.Household_GalleryCard']"
+      ]
+     },
+     "evidence": "navOut SupperMeeting_Carousel to HouseholdCarousel"
+    },
+    {
+     "screen": "HouseholdCarousel",
+     "action": {
+      "label": "The email icon of a member, then Email in the popup.",
+      "selectors": [
+       ".splide__slide.is-active [style*='cursor: pointer'] >> text=\"Email\"",
+       "text=\"Email\""
+      ],
+      "pre": [
+       ".splide__slide.is-active [data-block='ConnectCorePatterns.Member_ListItem'] .connect-icon-letter"
+      ]
+     },
+     "evidence": "navOut HouseholdCarousel to ContactByEmailMember"
+    },
+    {
+     "screen": "ContactByEmailMember"
+    }
+   ]
+  },
+  {
+   "id": "J13",
+   "group": "Directory",
+   "title": "Open a OneSchool Global page",
+   "purpose": "A user opens a OneSchool Global campus of a locality and writes to it.",
+   "start": {
+    "journey": "J11",
+    "step": 3
+   },
+   "notes": [
+    "The journey stops before Send: sending writes data."
+   ],
+   "steps": [
+    {
+     "screen": "Locality_Details",
+     "action": {
+      "label": "OneSchool Global tab, then a campus card.",
+      "selectors": [
+       "[data-block='Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List'] [data-block='ConnectCorePatterns.ImageCard_LazyLoading']"
+      ],
+      "pre": [
+       "[data-block='ConnectPatterns.TagToggle'] >> nth=3"
+      ]
+     },
+     "evidence": "navOut Locality_Details to OneSchoolGlobalDetails"
+    },
+    {
+     "screen": "OneSchoolGlobalDetails",
+     "action": {
+      "label": "Email in the actions.",
+      "selectors": [
+       "[data-block='Directory_CommonBlocks.Directory_EntityDetailsActions'] >> text=Email"
+      ]
+     },
+     "evidence": "navOut OneSchoolGlobalDetails to ContactByEmailOneSchoolGlobal"
+    },
+    {
+     "screen": "ContactByEmailOneSchoolGlobal"
+    }
+   ]
+  },
+  {
+   "id": "J14",
+   "group": "Directory",
+   "title": "See the photos of a household",
+   "purpose": "A user opens the photo book of a household.",
+   "start": {
+    "journey": "J11",
+    "step": 4
+   },
+   "preconditions": [
+    "A household with photos"
+   ],
+   "steps": [
+    {
+     "screen": "HouseholdCarousel",
+     "action": {
+      "label": "The Photos tag on the household picture, then the Photobook row.",
+      "selectors": [
+       ".splide__slide.is-active >> text=\"Photobook\""
+      ],
+      "pre": [
+       ".splide__slide.is-active >> text=Photos"
+      ],
+      "nth": 1
+     },
+     "evidence": "navOut HouseholdCarousel to Photobook"
+    },
+    {
+     "screen": "Photobook"
+    }
+   ]
+  },
+  {
+   "id": "J15",
+   "group": "Directory",
+   "title": "Share a Supper Meeting of a household",
+   "purpose": "A user opens the Supper Meeting of a household and shares it.",
+   "start": {
+    "journey": "J11",
+    "step": 4
+   },
+   "notes": [
+    "With C2ExtendedShare on (TST), Share opens a share sheet on the same screen with the same content as LegacyShareObject (debug snapshot 2026-10-21; HomeFeed spec: GetHasExtendedShare on → share sheet)."
+   ],
+   "steps": [
+    {
+     "screen": "HouseholdCarousel",
+     "action": {
+      "label": "The Supper Meeting link of the household.",
+      "selectors": [
+       ".splide__slide.is-active [id$='-SupperMeeting'] [style*='cursor: pointer']",
+       ".splide__slide.is-active >> text=Supper Meeting:"
+      ]
+     },
+     "evidence": "navOut HouseholdCarousel to SupperMeeting_Details"
+    },
+    {
+     "screen": "SupperMeeting_Details",
+     "action": {
+      "label": "Share in the actions.",
+      "selectors": [
+       "[data-block='Directory_CommonBlocks.Directory_EntityDetailsActions'] >> text=Share"
+      ]
+     },
+     "evidence": "navOut SupperMeeting_Details to LegacyShareObject"
+    },
+    {
+     "screen": "LegacyShareObject"
+    }
+   ],
+   "requires": {
+    "flag": "C2ExtendedShare",
+    "value": "off",
+    "tst": "on"
+   }
+  },
+  {
+   "id": "J16",
+   "group": "Directory",
+   "title": "Browse the directory by country",
+   "purpose": "A user opens the directory by locality and changes the country.",
+   "requires": {
+    "flag": "C2EnableC1DirectoryView",
+    "value": "off",
+    "tst": "on"
+   },
+   "notes": [
+    "With the flag on (TST), Directory opens the country list: see J11."
+   ],
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "Directory in the bottom bar.",
+      "selectors": [
+       ".bottom-bar .list > a >> nth=1"
+      ]
+     },
+     "evidence": "app-shell spec: bottom bar, directory item"
+    },
+    {
+     "screen": "Locality_Details",
+     "action": {
+      "label": "The country link at the top.",
+      "selectors": [
+       "text=Select another country to view"
+      ]
+     },
+     "evidence": "Locality_Details spec: BrowseDirectory with CountryCode"
+    },
+    {
+     "screen": "BrowseDirectory",
+     "action": {
+      "label": "Select another country to view.",
+      "selectors": [
+       "text=Select another country to view"
+      ]
+     },
+     "evidence": "navOut BrowseDirectory to BrowseCountries"
+    },
+    {
+     "screen": "BrowseCountries"
+    }
+   ]
+  },
+  {
+   "id": "J17",
+   "group": "Programs",
+   "title": "Follow an Orbit event",
+   "purpose": "A user opens an Orbit event, a milestone and the guest arrangements.",
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "Orbit in Services.",
+      "selectors": [
+       "[data-block='Home.FeedBlock_Services'] >> text=\"Orbit\""
+      ]
+     },
+     "evidence": "HomeFeed spec: Service item, Orbit to OrbitLanding"
+    },
+    {
+     "screen": "OrbitLanding",
+     "action": {
+      "label": "Select an event.",
+      "selectors": [
+       "[data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont"
+      ]
+     },
+     "evidence": "capture plan: EventDetail via OrbitLanding"
+    },
+    {
+     "screen": "EventDetail",
+     "action": {
+      "label": "Select a milestone card.",
+      "selectors": [
+       "[data-block='Orbit_Blocks.Card_Milestone'] [id$='OrbitEventCard_Content']"
+      ]
+     },
+     "evidence": "capture plan: MilestoneDetail via EventDetail"
+    },
+    {
+     "screen": "MilestoneDetail",
+     "action": {
+      "label": "Open a room, then Guest Arrangements on a guest card.",
+      "selectors": [
+       "text=Guest Arrangements",
+       "text=/guest arrangements/i"
+      ],
+      "preOptional": [
+       "text=Room: 1-Master Guest",
+       "text=Room: Guest 1"
+      ],
+      "evidence": "MilestoneDetail spec §8-9: Guest Arrangements link on a guest card when HasGuestArrangements"
+     },
+     "evidence": "capture plan: GuestArrangements via MilestoneDetail"
+    },
+    {
+     "screen": "GuestArrangements"
+    }
+   ],
+   "knownBlock": "The guest cards of the room show no Guest Arrangements link: no guest has arrangements (HasGuestArrangements, MilestoneDetail spec §8; debug snapshot 2026-10-21)."
+  },
+  {
+   "id": "J18",
+   "group": "Programs",
+   "title": "Read the host survey",
+   "purpose": "A user reads the host survey of an Orbit event.",
+   "start": {
+    "journey": "J17",
+    "step": 2
+   },
+   "steps": [
+    {
+     "screen": "EventDetail",
+     "action": {
+      "label": "View Host Survey.",
+      "selectors": [
+       "text=View Host Survey"
+      ]
+     },
+     "evidence": "navOut EventDetail to HostSurvey"
+    },
+    {
+     "screen": "HostSurvey"
+    }
+   ]
+  },
+  {
+   "id": "J19",
+   "group": "Programs",
+   "title": "See the helpers",
+   "purpose": "A user reads the details of a helper of an Orbit event.",
+   "start": {
+    "journey": "J17",
+    "step": 2
+   },
+   "steps": [
+    {
+     "screen": "EventDetail",
+     "action": {
+      "label": "Host Allocation, then View of a helper.",
+      "selectors": [
+       "[data-block='Orbit_Blocks.HostAllocation_HelperItem'] >> text=View"
+      ],
+      "pre": [
+       "text=Host Allocation"
+      ]
+     },
+     "evidence": "navOut EventDetail to HelpersDetail"
+    },
+    {
+     "screen": "HelpersDetail"
+    }
+   ]
+  },
+  {
+   "id": "J20",
+   "group": "Programs",
+   "title": "See the itinerary",
+   "purpose": "A user reads the travel plan of an Orbit event.",
+   "start": {
+    "journey": "J17",
+    "step": 2
+   },
+   "steps": [
+    {
+     "screen": "EventDetail",
+     "action": {
+      "label": "Another day of the itinerary, then a transport milestone card.",
+      "selectors": [
+       "[data-block='Orbit_Blocks.Card_Milestone'] >> text=/Transport|Travel|Flight|Bus|Train/i",
+       "text=View Itinerary"
+      ],
+      "pre": [
+       "[data-block='Orbit_Generic_Blocks.DaySelector'] >> nth=1"
+      ],
+      "evidence": "EventDetail spec: milestone card, transport → TransportDetail"
+     },
+     "evidence": "navOut EventDetail to TransportDetail"
+    },
+    {
+     "screen": "TransportDetail"
+    }
+   ],
+   "knownBlock": "The Orbit event of the test accounts has no transport milestone on days 23 and 24 (only accommodation and meeting cards), so there is no way into TransportDetail (debug snapshots 2026-10-21)."
+  },
+  {
+   "id": "J21",
+   "group": "Programs",
+   "title": "Contact the Orbit helpdesk",
+   "purpose": "A user writes to the Orbit helpdesk.",
+   "start": {
+    "journey": "J17",
+    "step": 2
+   },
+   "notes": [
+    "The journey stops before Send: sending writes data."
+   ],
+   "steps": [
+    {
+     "screen": "EventDetail",
+     "action": {
+      "label": "Contact Orbit Helpdesk.",
+      "selectors": [
+       "text=Contact Orbit Helpdesk"
+      ]
+     },
+     "evidence": "navOut EventDetail to ContactByEmailOrbitHelpdesk"
+    },
+    {
+     "screen": "ContactByEmailOrbitHelpdesk"
+    }
+   ]
+  },
+  {
+   "id": "J22",
+   "group": "Programs",
+   "title": "Read the event documents",
+   "purpose": "A user reads the documents of an Orbit event.",
+   "start": {
+    "journey": "J17",
+    "step": 2
+   },
+   "steps": [
+    {
+     "screen": "EventDetail",
+     "action": {
+      "label": "Documents of the event.",
+      "selectors": [
+       "text=Documents",
+       "text=View Documents"
+      ]
+     },
+     "evidence": "navOut EventDetail to ViewDocuments"
+    },
+    {
+     "screen": "ViewDocuments"
+    }
+   ],
+   "knownBlock": "The Orbit event of the test account shows no documents link (no-capture of ViewDocuments, user 2026-10-16)."
+  },
+  {
+   "id": "J23",
+   "group": "Programs",
+   "title": "Read the event booklet",
+   "purpose": "A user reads the booklet of an Orbit event.",
+   "start": {
+    "journey": "J17",
+    "step": 2
+   },
+   "steps": [
+    {
+     "screen": "EventDetail",
+     "action": {
+      "label": "Booklet of the event.",
+      "selectors": [
+       "text=Booklet",
+       "text=Event Booklet"
+      ]
+     },
+     "evidence": "navOut EventDetail to EventBooklet"
+    },
+    {
+     "screen": "EventBooklet"
+    }
+   ],
+   "knownBlock": "The Orbit event of the test account shows no booklet link (no-capture of EventBooklet, user 2026-10-16)."
+  },
+  {
+   "id": "J24",
+   "group": "Programs",
+   "title": "Show the QR code",
+   "purpose": "A user shows the QR code of an Orbit event.",
+   "start": {
+    "journey": "J17",
+    "step": 2
+   },
+   "steps": [
+    {
+     "screen": "EventDetail",
+     "action": {
+      "label": "QR code of the event.",
+      "selectors": [
+       "text=QR Code",
+       "text=QR"
+      ]
+     },
+     "evidence": "navOut EventDetail to QRCodeGenerate"
+    },
+    {
+     "screen": "QRCodeGenerate"
+    }
+   ],
+   "knownBlock": "The Orbit event of the test account shows no QR code link (no-capture of QRCodeGenerate, user 2026-10-16)."
+  },
+  {
+   "id": "J25",
+   "group": "Programs",
+   "title": "Contact the host",
+   "purpose": "A user writes to the host of an Orbit milestone.",
+   "start": {
+    "journey": "J17",
+    "step": 3
+   },
+   "notes": [
+    "The journey stops before Send: sending writes data."
+   ],
+   "steps": [
+    {
+     "screen": "MilestoneDetail",
+     "action": {
+      "label": "Contact, then email.",
+      "selectors": [
+       "text=Email",
+       "text=Message"
+      ],
+      "pre": [
+       "text=Contact"
+      ]
+     },
+     "evidence": "navOut MilestoneDetail to ContactByEmailOrbitHost"
+    },
+    {
+     "screen": "ContactByEmailOrbitHost"
+    }
+   ],
+   "knownBlock": "The milestone of the test accounts is a host accommodation milestone. The host contact email is not on it (MilestoneDetail spec §9: phone popup only), and Email opens the Orbit Helpdesk email (ContactByEmailOrbitHelpdesk, as in J21). The journey needs a guest milestone."
+  },
+  {
+   "id": "J26",
+   "group": "Programs",
+   "title": "Manage Orbit as an admin",
+   "purpose": "An Orbit admin opens an event in the admin view.",
+   "preconditions": [
+    "The user is an Orbit admin"
+   ],
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "Orbit Admin in Services.",
+      "selectors": [
+       "[data-block='Home.FeedBlock_Services'] >> text=/Orbit Admin/i"
+      ]
+     },
+     "evidence": "HomeFeed spec: Service item, OrbitAdmin to OrbitAdminLanding"
+    },
+    {
+     "screen": "OrbitAdminLanding",
+     "action": {
+      "label": "Select an event.",
+      "selectors": [
+       "[data-block='Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding'] [data-block*='Card']"
+      ]
+     },
+     "evidence": "navOut OrbitAdminLanding to OrbitAdminEventDetail"
+    },
+    {
+     "screen": "OrbitAdminEventDetail"
+    }
+   ],
+   "knownBlock": "The test account is not an Orbit admin: Services shows no Orbit Admin item."
+  },
+  {
+   "id": "J27",
+   "group": "Programs",
+   "title": "Look at a Lord's Day Meal",
+   "purpose": "A user opens a Lord's Day Meal (LDM) event and writes to the coordinator.",
+   "notes": [
+    "The flag C2NewLDM is on on TST. Services opens the LDM version 2 screens.",
+    "The journey stops before Send: sending writes data."
+   ],
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "Lord's Day Meal in Services.",
+      "selectors": [
+       "[data-block='Home.FeedBlock_Services'] >> text=\"Lord's Day Meal\""
+      ]
+     },
+     "evidence": "HomeFeed spec: Service item, LDM to LDM_MyEvents_V2"
+    },
+    {
+     "screen": "LDM_MyEvents_V2",
+     "action": {
+      "label": "Select an event.",
+      "selectors": [
+       "[data-block='LDM_Blocks_V2.EventCard_V2'] .event-card-box"
+      ]
+     },
+     "evidence": "capture plan: LDM_EventDetail_V2 via LDM_MyEvents_V2"
+    },
+    {
+     "screen": "LDM_EventDetail_V2",
+     "action": {
+      "label": "Contact Coordinator, then Email in the popup.",
+      "selectors": [
+       "text=\"Email\""
+      ],
+      "pre": [
+       "text=Contact Coordinator"
+      ]
+     },
+     "evidence": "capture plan: ContactByEmailLDMCoordinator"
+    },
+    {
+     "screen": "ContactByEmailLDMCoordinator"
+    }
+   ]
+  },
+  {
+   "id": "J28",
+   "group": "Programs",
+   "title": "Look at an Assemble meeting",
+   "purpose": "A user opens the upcoming Assemble meetings and reads one.",
+   "preconditions": [
+    "An Assemble meeting for the user"
+   ],
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "Assemble in Services.",
+      "selectors": [
+       "[data-block='Home.FeedBlock_Services'] >> text=\"Assemble\""
+      ]
+     },
+     "evidence": "HomeFeed spec: Service item, Assemble to AssembleEvents"
+    },
+    {
+     "screen": "AssembleEvents",
+     "action": {
+      "label": "Past Meetings, then a meeting card.",
+      "selectors": [
+       "[data-block='Assemble.AssembleSummary_List'] [data-block*='Card']",
+       "[data-block='Assemble.AssembleSummary_List'] [data-list] > *"
+      ],
+      "pre": [
+       "[data-block='Content.Tag'] >> nth=1"
+      ]
+     },
+     "evidence": "AssembleEvents spec: Card OnClick, NavigateTo_AssembleDetail"
+    },
+    {
+     "screen": "AssembleDetail"
+    }
+   ],
+   "notes": [
+    "The test accounts have no upcoming Assemble meeting: the journey opens a past meeting."
+   ]
+  },
+  {
+   "id": "J29",
+   "group": "Programs",
+   "title": "Browse Assemble meetings by country",
+   "purpose": "A user opens the Assemble meetings of a country.",
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "Assemble in Services.",
+      "selectors": [
+       "[data-block='Home.FeedBlock_Services'] >> text=\"Assemble\""
+      ]
+     },
+     "evidence": "HomeFeed spec: Service item, Assemble to AssembleEvents"
+    },
+    {
+     "screen": "AssembleEvents",
+     "action": {
+      "label": "The place icon at the top.",
+      "selectors": [
+       ".connect-icon-place"
+      ]
+     },
+     "evidence": "navOut AssembleEvents to Assemble_BrowseByCountry"
+    },
+    {
+     "screen": "Assemble_BrowseByCountry"
+    }
+   ]
+  },
+  {
+   "id": "J30",
+   "group": "Messages and saved items",
+   "title": "Read a message about an event",
+   "purpose": "A user reads a message and opens the Orbit event that it is about.",
+   "notes": [
+    "The flag C2NewNotifications is off on TST. The bell opens Messages, not Notifications."
+   ],
+   "preconditions": [
+    "A message about an Orbit event"
+   ],
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "The bell at the top.",
+      "selectors": [
+       "[data-block='App_Common_Blocks.App_NotificationIcon'] .connect-icon-notifications"
+      ]
+     },
+     "evidence": "flags.md: C2NewNotifications, bell opens MessageList when off"
+    },
+    {
+     "screen": "MessageList",
+     "action": {
+      "label": "Select a message with the Orbit icon.",
+      "selectors": [
+       "[data-block='MyNotifications.MessageListItem']"
+      ],
+      "nth": 1
+     },
+     "evidence": "MessageList spec: navigate /UBTConnect/MessageDetail"
+    },
+    {
+     "screen": "MessageDetail",
+     "action": {
+      "label": "The action button of the message, here to an Orbit event.",
+      "selectors": [
+       "[id$='Placeholder_ActionButton'] a",
+       "[id$='Placeholder_ActionButton'] button",
+       "[id$='Placeholder_ActionButton'] [style*='cursor: pointer']"
+      ]
+     },
+     "evidence": "navOut MessageDetail to EventDetail"
+    },
+    {
+     "screen": "EventDetail"
+    }
+   ],
+   "knownBlock": "The messages of the test accounts are directory notices or adaptive cards (a form with Submit, which writes data). None has an Orbit, Assemble or host survey action button (debug snapshots 2026-10-21)."
+  },
+  {
+   "id": "J31",
+   "group": "Messages and saved items",
+   "title": "Read a message about a feed item",
+   "purpose": "A user reads a message and opens the feed item that it is about.",
+   "start": {
+    "journey": "J30",
+    "step": 2
+   },
+   "preconditions": [
+    "A message about a feed item"
+   ],
+   "steps": [
+    {
+     "screen": "MessageDetail",
+     "action": {
+      "label": "The action button of the message, here to a feed item.",
+      "selectors": [
+       "[id$='Placeholder_ActionButton'] a",
+       "[id$='Placeholder_ActionButton'] button",
+       "[id$='Placeholder_ActionButton'] [style*='cursor: pointer']"
+      ]
+     },
+     "evidence": "navOut MessageDetail to FeedItemDetail"
+    },
+    {
+     "screen": "FeedItemDetail"
+    }
+   ],
+   "knownBlock": "The messages of the test accounts are directory notices or adaptive cards (a form with Submit, which writes data). None has an Orbit, Assemble or host survey action button (debug snapshots 2026-10-21)."
+  },
+  {
+   "id": "J32",
+   "group": "Messages and saved items",
+   "title": "Read an LDM email",
+   "purpose": "A user reads a message and opens the Lord's Day Meal email that it is about.",
+   "start": {
+    "journey": "J30",
+    "step": 2
+   },
+   "preconditions": [
+    "A message about an LDM email"
+   ],
+   "steps": [
+    {
+     "screen": "MessageDetail",
+     "action": {
+      "label": "The action button of the message, here to an LDM email.",
+      "selectors": [
+       "[id$='Placeholder_ActionButton'] a",
+       "[id$='Placeholder_ActionButton'] button",
+       "[id$='Placeholder_ActionButton'] [style*='cursor: pointer']"
+      ]
+     },
+     "evidence": "navOut MessageDetail to LDM_Email_V2"
+    },
+    {
+     "screen": "LDM_Email_V2"
+    }
+   ],
+   "knownBlock": "The messages of the test accounts are directory notices or adaptive cards (a form with Submit, which writes data). None has an Orbit, Assemble or host survey action button (debug snapshots 2026-10-21)."
+  },
+  {
+   "id": "J33",
+   "group": "Messages and saved items",
+   "title": "Open saved items",
+   "purpose": "A user opens a group of saved items and a saved household.",
+   "notes": [
+    "On 2026-10-14, Bookmarks in the bottom bar opened MyBookmarks (C2NewBookmarks and mobileDirectoryBookmarkNote off).",
+    "The flag C2EnableCarousel is on on TST. Household links open the household carousel."
+   ],
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "Bookmarks in the bottom bar.",
+      "selectors": [
+       ".bottom-bar .list > a >> nth=3"
+      ]
+     },
+     "evidence": "app-shell spec: bottom bar, bookmarks item"
+    },
+    {
+     "screen": "MyBookmarks",
+     "action": {
+      "label": "View All of a group.",
+      "selectors": [
+       "text=View All"
+      ]
+     },
+     "evidence": "MyBookmarks spec: View All, NavigateTo_ViewAll"
+    },
+    {
+     "screen": "BookmarksByGroup",
+     "action": {
+      "label": "Select a household.",
+      "selectors": [
+       "[data-block='Utility.Result_Item_Image']",
+       "[data-block='MyBookmarksFlow.ScreenBlock_BookmarkGroup'] [data-list] > *"
+      ]
+     },
+     "evidence": "BookmarksByGroup spec: HouseholdCarousel by C2EnableCarousel"
+    },
+    {
+     "screen": "HouseholdCarousel"
+    }
+   ],
+   "knownBlock": "Observed on TST 2026-10-21: Bookmarks in the bottom bar opens Bookmarks, not MyBookmarks, because C2NewBookmarks is now true on TST (it was false on 2026-10-14). Decision open: Bookmarks Q1."
+  },
+  {
+   "id": "J34",
+   "group": "Messages and saved items",
+   "title": "Open a saved community business",
+   "purpose": "A user opens a saved community business.",
+   "start": {
+    "journey": "J33",
+    "step": 1
+   },
+   "preconditions": [
+    "A saved community business"
+   ],
+   "notes": [
+    "Community business details show a Coming soon screen."
+   ],
+   "steps": [
+    {
+     "screen": "MyBookmarks",
+     "action": {
+      "label": "Select a saved community business.",
+      "selectors": [
+       "a[href*='CommunityBusinessDetails_CoomingSoon']"
+      ]
+     },
+     "evidence": "navOut MyBookmarks to CommunityBusinessDetails_CoomingSoon"
+    },
+    {
+     "screen": "CommunityBusinessDetails_CoomingSoon"
+    }
+   ],
+   "knownBlock": "Starts from J33, which stops on TST: see J33 and the decision Bookmarks Q1."
+  },
+  {
+   "id": "J35",
+   "group": "Menu and help",
+   "title": "Change the PIN",
+   "purpose": "A user changes the PIN of the app.",
+   "notes": [
+    "The journey stops on the PIN screen: a new PIN is not set."
+   ],
+   "steps": [
+    {
+     "screen": "HomeFeed",
+     "action": {
+      "label": "Menu in the bottom bar.",
+      "selectors": [
+       ".bottom-bar .list > a >> nth=4"
+      ]
+     },
+     "evidence": "app-shell spec: bottom bar, menu item"
+    },
+    {
+     "screen": "Menu",
+     "action": {
+      "label": "PIN & Biometrics.",
+      "selectors": [
+       "text=PIN & Biometrics"
+      ]
+     },
+     "evidence": "Menu spec: Menu_List, OnClick_MenuOption"
+    },
+    {
+     "screen": "PINBiometricsMenu",
+     "action": {
+      "label": "Change PIN.",
+      "selectors": [
+       "text=Change PIN"
+      ]
+     },
+     "evidence": "PINBiometricsMenu spec: ChangePinName, /UBTConnect/PINChange"
+    },
+    {
+     "screen": "PINChange"
+    }
+   ]
+  },
+  {
+   "id": "J36",
+   "group": "Menu and help",
+   "title": "Ask for help",
+   "purpose": "A user sends a question to the Customer Care Team.",
+   "start": {
+    "journey": "J35",
+    "step": 1
+   },
+   "notes": [
+    "The journey stops before Send: sending writes data."
+   ],
+   "steps": [
+    {
+     "screen": "Menu",
+     "action": {
+      "label": "Contact Us.",
+      "selectors": [
+       "text=Contact Us"
+      ]
+     },
+     "evidence": "Menu spec: Menu_List, Contact Us"
+    },
+    {
+     "screen": "ContactUsMenu",
+     "action": {
+      "label": "Select a topic, for example Set up a UBT One account.",
+      "selectors": [
+       "text=Set up a UBT One account"
+      ]
+     },
+     "evidence": "ContactUsMenu spec: Menu_List row, ContactUsDetails"
+    },
+    {
+     "screen": "ContactUsDetails"
+    }
+   ]
+  },
+  {
+   "id": "J37",
+   "group": "Menu and help",
+   "title": "Read the terms and policies",
+   "purpose": "A user opens the terms and the privacy policy.",
+   "start": {
+    "journey": "J35",
+    "step": 1
+   },
+   "steps": [
+    {
+     "screen": "Menu",
+     "action": {
+      "label": "Terms & Policies.",
+      "selectors": [
+       "text=Terms & Policies"
+      ]
+     },
+     "evidence": "Menu spec: Menu_List, Terms & Policies"
+    },
+    {
+     "screen": "TermsAndPoliciesMenu"
+    }
+   ]
+  },
+  {
+   "id": "J38",
+   "group": "Menu and help",
+   "title": "Look at my profile",
+   "purpose": "A user opens the account page.",
+   "start": {
+    "journey": "J35",
+    "step": 1
+   },
+   "steps": [
+    {
+     "screen": "Menu",
+     "action": {
+      "label": "Edit your account.",
+      "selectors": [
+       "text=Edit your account"
+      ]
+     },
+     "evidence": "Menu spec: account header, Profile"
+    },
+    {
+     "screen": "Profile"
+    }
+   ],
+   "notes": [
+    "Preview Household Profile opens a bottom sheet with the household card (Profile spec: Profile_HouseholdPreview)."
+   ]
+  }
+ ]
+}

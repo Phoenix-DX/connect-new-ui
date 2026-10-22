@@ -1,0 +1,129 @@
+{
+ "journey": "J17",
+ "title": "Follow an Orbit event",
+ "ranAt": "2026-10-21T17:53:15.297Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "Orbit in Services.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Home.FeedBlock_Services'] >> text=\"Orbit\"",
+     "index": 0
+    },
+    "ms": 4066
+   },
+   "calls": [
+    "DataActionGet_HouseholdMembers",
+    "DataActionGet_EventsByMemberId"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "OrbitLanding",
+   "path": "/UBTConnect/OrbitLanding",
+   "params": [],
+   "shot": "02-OrbitLanding.png",
+   "maskedTexts": 9,
+   "action": {
+    "label": "Select an event.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Orbit_Blocks.Card_Event'] .orbit-card-cont",
+     "index": 0
+    },
+    "ms": 3900
+   },
+   "calls": [
+    "ActionGetAllApplicationEvents",
+    "DataActionGet_EventDetails",
+    "DataActionGet_HostSurveyStatus",
+    "DataActionGet_HasDocuments",
+    "DataActionGet_HasQRCode"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "EventDetail",
+   "path": "/UBTConnect/EventDetail",
+   "params": [
+    "In_EventId",
+    "In_MemberId",
+    "In_FromNotification",
+    "In_EventName"
+   ],
+   "shot": "03-EventDetail.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "Select a milestone card.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Orbit_Blocks.Card_Milestone'] [id$='OrbitEventCard_Content']",
+     "index": 0
+    },
+    "ms": 4646
+   },
+   "calls": [
+    "DataActionGetAccommodationHost",
+    "DataActionGet_Document",
+    "ActionGetSignedImagesInBulk"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "MilestoneDetail",
+   "path": "/UBTConnect/MilestoneDetail",
+   "params": [
+    "In_OrbitMilestoneTypeId",
+    "In_FromNotification",
+    "In_HostId",
+    "In_EventId",
+    "In_MilestoneId",
+    "In_EventName",
+    "In_MilestoneName"
+   ],
+   "shot": "04-MilestoneDetail.png",
+   "maskedTexts": 41,
+   "stopped": true,
+   "calls": []
+  }
+ ],
+ "debug": "J17.debug/global-MilestoneDetail.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 3,
+  "screen": "MilestoneDetail",
+  "setup": false,
+  "error": "no visible element for: text=Guest Arrangements | text=/guest arrangements/i | a[href*=\"/GuestArrangements\"]",
+  "path": "/UBTConnect/MilestoneDetail",
+  "blocked": []
+ },
+ "knownBlock": "The guest cards of the room show no Guest Arrangements link: no guest has arrangements (HasGuestArrangements, MilestoneDetail spec §8; debug snapshot 2026-10-21).",
+ "seconds": 141,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "MilestoneDetail",
+   "error": "no visible element for: text=Guest Arrangements | text=/guest arrangements/i | a[href*=\"/GuestArrangements\"]",
+   "debug": "J17.debug/global-MilestoneDetail.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

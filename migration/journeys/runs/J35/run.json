@@ -1,0 +1,83 @@
+{
+ "journey": "J35",
+ "title": "Change the PIN",
+ "ranAt": "2026-10-21T17:03:24.194Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "Menu in the bottom bar.",
+    "kind": "click",
+    "element": {
+     "selector": ".bottom-bar .list > a >> nth=4",
+     "index": 0
+    },
+    "ms": 3597
+   },
+   "calls": [
+    "ActionGet_RuntimeVersion"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "Menu",
+   "path": "/UBTConnect/Menu",
+   "params": [],
+   "shot": "02-Menu.png",
+   "maskedTexts": 3,
+   "action": {
+    "label": "PIN & Biometrics.",
+    "kind": "click",
+    "element": {
+     "selector": "text=PIN & Biometrics",
+     "index": 0
+    },
+    "ms": 2808
+   },
+   "calls": [],
+   "blocked": []
+  },
+  {
+   "screen": "PINBiometricsMenu",
+   "path": "/UBTConnect/PINBiometricsMenu",
+   "params": [],
+   "shot": "03-PINBiometricsMenu.png",
+   "maskedTexts": 0,
+   "action": {
+    "label": "Change PIN.",
+    "kind": "click",
+    "element": {
+     "selector": "text=Change PIN",
+     "index": 0
+    },
+    "ms": 3324
+   },
+   "calls": [],
+   "blocked": []
+  },
+  {
+   "screen": "PINChange",
+   "path": "/UBTConnect/PINChange",
+   "params": [],
+   "shot": "04-PINChange.png",
+   "maskedTexts": 10
+  }
+ ],
+ "status": "verified",
+ "seconds": 104,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

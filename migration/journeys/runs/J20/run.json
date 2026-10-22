@@ -1,0 +1,54 @@
+{
+ "journey": "J20",
+ "title": "See the itinerary",
+ "ranAt": "2026-10-21T17:55:36.488Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "EventDetail",
+   "path": "/UBTConnect/EventDetail",
+   "params": [
+    "In_EventId",
+    "In_MemberId",
+    "In_FromNotification",
+    "In_EventName"
+   ],
+   "shot": "01-EventDetail.png",
+   "maskedTexts": 1,
+   "stopped": true,
+   "calls": []
+  }
+ ],
+ "debug": "J20.debug/global-EventDetail.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 2,
+  "screen": "EventDetail",
+  "setup": false,
+  "error": "no visible element for: [data-block='Orbit_Blocks.Card_Milestone'] >> text=/Transport|Travel|Flight|Bus|Train/i | text=View Itinerary | a[href*=\"/TransportDetail\"]",
+  "path": "/UBTConnect/EventDetail",
+  "blocked": []
+ },
+ "knownBlock": "The Orbit event of the test accounts has no transport milestone on days 23 and 24 (only accommodation and meeting cards), so there is no way into TransportDetail (debug snapshots 2026-10-21).",
+ "seconds": 61,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "EventDetail",
+   "error": "no visible element for: [data-block='Orbit_Blocks.Card_Milestone'] >> text=/Transport|Travel|Flight|Bus|Train/i | text=View Itinerary | a[href*=\"/TransportDetail\"]",
+   "debug": "J20.debug/global-EventDetail.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

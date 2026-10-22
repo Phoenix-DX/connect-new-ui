@@ -1,0 +1,51 @@
+{
+ "journey": "J31",
+ "title": "Read a message about a feed item",
+ "ranAt": "2026-10-21T18:04:14.175Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "MessageDetail",
+   "path": "/UBTConnect/MessageDetail",
+   "params": [
+    "MessageInstanceId"
+   ],
+   "shot": "01-MessageDetail.png",
+   "maskedTexts": 7,
+   "stopped": true,
+   "calls": []
+  }
+ ],
+ "debug": "J31.debug/global-MessageDetail.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 2,
+  "screen": "MessageDetail",
+  "setup": false,
+  "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/FeedItemDetail\"]",
+  "path": "/UBTConnect/MessageDetail",
+  "blocked": []
+ },
+ "knownBlock": "The messages of the test accounts are directory notices or adaptive cards (a form with Submit, which writes data). None has an Orbit, Assemble or host survey action button (debug snapshots 2026-10-21).",
+ "seconds": 63,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "MessageDetail",
+   "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/FeedItemDetail\"]",
+   "debug": "J31.debug/global-MessageDetail.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

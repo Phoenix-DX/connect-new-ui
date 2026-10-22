@@ -1,0 +1,68 @@
+{
+ "journey": "J29",
+ "title": "Browse Assemble meetings by country",
+ "ranAt": "2026-10-21T16:54:54.362Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "Assemble in Services.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Home.FeedBlock_Services'] >> text=\"Assemble\"",
+     "index": 0
+    },
+    "ms": 5555
+   },
+   "calls": [
+    "ActionGetUserInformation",
+    "DataActionGetAssembleMeetingSummaryList",
+    "DataActionGetAssembleEventTypes",
+    "ActionGetCountriesBySubscription"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "AssembleEvents",
+   "path": "/UBTConnect/AssembleEvents",
+   "params": [],
+   "shot": "02-AssembleEvents.png",
+   "maskedTexts": 51,
+   "action": {
+    "label": "The place icon at the top.",
+    "kind": "click",
+    "element": {
+     "selector": ".connect-icon-place",
+     "index": 0
+    },
+    "ms": 3042
+   },
+   "calls": [],
+   "blocked": []
+  },
+  {
+   "screen": "Assemble_BrowseByCountry",
+   "path": "/UBTConnect/Assemble_BrowseByCountry",
+   "params": [],
+   "shot": "03-Assemble_BrowseByCountry.png",
+   "maskedTexts": 49
+  }
+ ],
+ "status": "verified",
+ "seconds": 94,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

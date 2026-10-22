@@ -1,0 +1,150 @@
+{
+ "journey": "J11",
+ "title": "Find a household in the directory",
+ "ranAt": "2026-10-21T16:25:09.098Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "Directory in the bottom bar.",
+    "kind": "click",
+    "element": {
+     "selector": ".bottom-bar .list > a >> nth=1",
+     "index": 0
+    },
+    "ms": 3315
+   },
+   "calls": [
+    "DataActionFetchCount",
+    "DataActionGetCountriesStatistics"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "CountryList",
+   "path": "/UBTConnect/CountryList",
+   "params": [],
+   "shot": "02-CountryList.png",
+   "maskedTexts": 74,
+   "action": {
+    "label": "The MY COUNTRY card.",
+    "kind": "click",
+    "element": {
+     "selector": "text=MY COUNTRY",
+     "index": 0
+    },
+    "ms": 4222
+   },
+   "calls": [
+    "ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+    "DataActionGetLocalityStatistics",
+    "DataActionGetCacheInfo",
+    "ActionGetSignedImagesInBulk"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "CountryDetails",
+   "path": "/UBTConnect/CountryDetails",
+   "params": [
+    "CountryCode"
+   ],
+   "shot": "03-CountryDetails.png",
+   "maskedTexts": 122,
+   "action": {
+    "label": "Select a locality.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Directory_Locality.Statistics_TypedItem']",
+     "index": 0
+    },
+    "ms": 4731
+   },
+   "calls": [
+    "DataActionGet_LocalityDetails",
+    "DataActionGetLocalityHouseholds",
+    "DataActionGetMembers",
+    "ActionGetSignedImagesInBulk"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "Locality_Details",
+   "path": "/UBTConnect/Locality_Details",
+   "params": [
+    "LocalityId",
+    "PreloadedLocalityLabel"
+   ],
+   "shot": "04-Locality_Details.png",
+   "maskedTexts": 57,
+   "action": {
+    "label": "Select a household card.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Directory_Household_Blocks.Household_Card']",
+     "index": 0
+    },
+    "ms": 4659
+   },
+   "calls": [
+    "DataActionGetHousehold",
+    "DataActionGetHousehold_Coordinates",
+    "DataActionFetchContactDetails",
+    "DataActionFetchNotes",
+    "ActionGetSignedImagesInBulk"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "HouseholdCarousel",
+   "path": "/UBTConnect/HouseholdCarousel",
+   "params": [
+    "In_StartingHouseholdId"
+   ],
+   "shot": "05-HouseholdCarousel.png",
+   "maskedTexts": 62,
+   "action": {
+    "label": "Select a member to see the relations.",
+    "kind": "click",
+    "element": {
+     "selector": ".splide__slide.is-active [data-block='ConnectCorePatterns.Member_ListItem']",
+     "index": 0
+    },
+    "ms": 3341
+   },
+   "calls": [
+    "ActionGetSignedImagesInBulk",
+    "DataActionGet_MemberDetails",
+    "DataActionGet_ParentHouseholdDetails"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "Household_Relations",
+   "path": "/UBTConnect/Household_Relations",
+   "params": [
+    "HouseholdId",
+    "MemberId"
+   ],
+   "shot": "06-Household_Relations.png",
+   "maskedTexts": 11
+  }
+ ],
+ "status": "verified",
+ "seconds": 195,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

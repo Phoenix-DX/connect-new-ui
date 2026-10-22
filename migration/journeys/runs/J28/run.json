@@ -1,0 +1,75 @@
+{
+ "journey": "J28",
+ "title": "Look at an Assemble meeting",
+ "ranAt": "2026-10-21T16:52:59.921Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "Assemble in Services.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Home.FeedBlock_Services'] >> text=\"Assemble\"",
+     "index": 0
+    },
+    "ms": 5542
+   },
+   "calls": [
+    "ActionGetUserInformation",
+    "DataActionGetAssembleMeetingSummaryList",
+    "DataActionGetAssembleEventTypes",
+    "ActionGetCountriesBySubscription"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "AssembleEvents",
+   "path": "/UBTConnect/AssembleEvents",
+   "params": [],
+   "shot": "02-AssembleEvents.png",
+   "maskedTexts": 51,
+   "action": {
+    "label": "Past Meetings, then a meeting card.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Assemble.AssembleSummary_List'] [data-block*='Card']",
+     "index": 0
+    },
+    "ms": 6592
+   },
+   "calls": [
+    "DataActionGetAssembleMeetingSummaryList",
+    "DataActionGetAssembleEvent"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "AssembleDetail",
+   "path": "/UBTConnect/AssembleDetail",
+   "params": [
+    "Start",
+    "EventId",
+    "SeriesId"
+   ],
+   "shot": "03-AssembleDetail.png",
+   "maskedTexts": 7
+  }
+ ],
+ "status": "verified",
+ "seconds": 114,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

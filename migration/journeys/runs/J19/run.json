@@ -1,0 +1,58 @@
+{
+ "journey": "J19",
+ "title": "See the helpers",
+ "ranAt": "2026-10-21T16:41:51.835Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "EventDetail",
+   "path": "/UBTConnect/EventDetail",
+   "params": [
+    "In_EventId",
+    "In_MemberId",
+    "In_FromNotification",
+    "In_EventName"
+   ],
+   "shot": "01-EventDetail.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "Host Allocation, then View of a helper.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Orbit_Blocks.HostAllocation_HelperItem'] >> text=View",
+     "index": 0
+    },
+    "ms": 4894
+   },
+   "calls": [
+    "DataActionGetHelperDetails"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "HelpersDetail",
+   "path": "/UBTConnect/HelpersDetail",
+   "params": [
+    "In_EventId",
+    "In_EventName",
+    "In_HostId",
+    "In_OrbitMilestoneTypeId",
+    "In_MilestoneName"
+   ],
+   "shot": "02-HelpersDetail.png",
+   "maskedTexts": 1
+  }
+ ],
+ "status": "verified",
+ "seconds": 75,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

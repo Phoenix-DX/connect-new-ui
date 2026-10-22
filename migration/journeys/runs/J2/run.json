@@ -1,0 +1,80 @@
+{
+ "journey": "J2",
+ "title": "Sign in for the first time",
+ "ranAt": "2026-10-21T17:08:52.653Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "Login",
+   "path": "/UBTConnect/Login",
+   "params": [],
+   "shot": "01-Login.png",
+   "maskedTexts": 0,
+   "action": {
+    "label": "Login with UBT One, then sign in on the UBT One page.",
+    "kind": "signin",
+    "element": null,
+    "ms": 30649
+   },
+   "calls": [
+    "ActionAppManager_Login",
+    "ActionAppManager_SynchAppContext",
+    "ActionAppManager_AfterInitialize",
+    "ActionSync_Info_GetMain",
+    "ActionGetUserInformation",
+    "ActionGetNumberUnreadMessages",
+    "ServiceAPIFetchData_CacheableMapEntities",
+    "ServiceAPIFetchData_CacheableHouseholds"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "PINRegister",
+   "path": "/UBTConnect/PINRegister",
+   "params": [],
+   "shot": "02-PINRegister.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "Enter and confirm a new PIN. The app opens the home feed.",
+    "kind": "pin",
+    "element": null,
+    "ms": 54723
+   },
+   "calls": [
+    "ActionGet_RuntimeVersion",
+    "ActionAppManager_SynchAppContext",
+    "DataActionGetServices",
+    "DataActionFetchCount",
+    "DataActionFetchUpdates",
+    "DataActionGetFeedConfig",
+    "ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+    "ActionAppManager_AfterInitialize",
+    "ActionSync_Info_GetMain",
+    "ActionGetUserInformation",
+    "ActionGetNumberUnreadMessages",
+    "ServiceAPIFetchData_CacheableMapEntities",
+    "ServiceAPIFetchData_CacheableHouseholds"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "03-HomeFeed.png",
+   "maskedTexts": 11
+  }
+ ],
+ "status": "verified",
+ "seconds": 154,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

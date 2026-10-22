@@ -1,7 +1,8 @@
 # UI Flows dashboard
 
-A static page for the manager. It shows the UBTConnect OutSystems module by UI flow: scope, specification status,
-TST screenshots, health of the original app and the scope decisions. It has no content about the React app
+A static page for the manager. It shows the UBTConnect OutSystems module by UI flow: scope, specification status
+and TST screenshots. It also shows the main user journeys, a navigation map per flow, the health of the original app and
+the scope decisions. It has no content about the React app
 (user, 2026-10-21). Background: [context-033](../contexts/context-033-ui-flows-dashboard.md).
 
 ## Files
@@ -12,7 +13,11 @@ TST screenshots, health of the original app and the scope decisions. It has no c
 | `src/page.html` | Page template (layout, styles, script). The builder puts the data into it. |
 | `content/content.en.json` | Text for areas, flows, scope reasons and decisions. A writer agent and a reviewer agent made it. |
 | `site/index.html` | The built page. This is the artifact page. |
-| `site/img/*.webp` | TST screenshots, 390 px wide. These are the supporting files of the artifact. |
+| `site/img/*.webp` | TST screenshots, 390 px wide. These are supporting files of the artifact. |
+| `site/img/j/*.webp` | Journey screenshots from the last TST run. These are supporting files of the artifact. |
+
+The journeys come from `migration/journeys/` (`journeys.json` and the last run in `runs/`). The builder stops when a
+step is not a link in the TST code.
 | `site-review/` | Contact sheets for the privacy check. Local only (`.gitignore`). Never publish them. |
 
 Data sources: `migration/survey/dev-inventory.json` (DEV snapshot from the OutSystems MCP),
@@ -51,18 +56,24 @@ light and dark tokens, Google Fonts only, no external script).
 |---|---|
 | `file_path` | `migration/flows-dashboard/site/index.html` |
 | `root` | `migration/flows-dashboard/site` |
-| `files` | one entry `{"path": "img/<file>"}` for each file in `site/img/` (149 files, one publish) |
+| `files` | one entry `{"path": "img/<file>"}` for each file in `site/img/` and `site/img/j/` (229 files on 2026-10-22, one publish) |
 | `icon` | `map` |
-| `description` | `UI flows of the UBTConnect OutSystems app on TST, with scope, specification status and TST screenshots.` |
+| `description` | `UI flows and main user journeys of the UBTConnect OutSystems app on TST, with scope, specification status and TST screenshots.` |
 
-The title comes from the page: "UBTConnect UI Flows". The artifact is private. The owner shares it.
+The title comes from the page: "UBTConnect UI Flows and Journeys". The artifact is private. The owner shares it.
 
-Views have their own links: the artifact link plus `#overview`, `#health`, `#method`, `#flow-<Flow>` or
-`#screen-<Screen>`.
+Views have their own links: the artifact link plus `#overview`, `#journeys`, `#journey-J<n>`, `#health`, `#method`,
+`#flow-<Flow>` or `#screen-<Screen>`.
 
 To update the page later, build again and publish to the same artifact URL (parameter `url`). Leave out the files that
 did not change.
 
-## Published artifact
+## Published artifacts
 
-Not published yet. After the first publish, write the URL here.
+- https://claude.ai/artifact/KNHgnHAA6hKwTy64ivqyaG: first publish 2026-10-21 without journeys. Version 2
+  (2026-10-21) adds the journeys and flow maps (user, 2026-10-21). Shared with the organization.
+- https://claude.ai/artifact/JJCYpEtp6Q2V3xSbRkXA69 ("UBTConnect UI Flows and Journeys", first publish 2026-10-21,
+  with journeys and flow maps). Same content as version 2 above. Update 2026-10-22: the 38 journeys with the TST
+  run screenshots (the user accepted the local build, 2026-10-22).
+
+When the page changes, publish it to the artifacts that the owner wants to keep current.

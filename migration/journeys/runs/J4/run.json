@@ -1,0 +1,51 @@
+{
+ "journey": "J4",
+ "title": "Open a share link",
+ "ranAt": "2026-10-21T17:43:50.487Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "ConnectShare",
+   "path": "/UBTConnect/ConnectShare",
+   "params": [
+    "ShareId"
+   ],
+   "shot": "01-ConnectShare.png",
+   "maskedTexts": 1,
+   "stopped": true,
+   "calls": []
+  }
+ ],
+ "debug": "J4.debug/global-ConnectShare.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 0,
+  "screen": "ConnectShare",
+  "setup": false,
+  "error": "page.waitForURL: Timeout 45000ms exceeded.",
+  "path": "/UBTConnect/ConnectShare",
+  "blocked": []
+ },
+ "knownBlock": "The ShareId of the capture plan is a placeholder, so Get_ShareDetails raises a server exception and ConnectShare shows its status message (ConnectShare route spec, states). The journey needs a real share link of a household. Making one is a share, which writes data.",
+ "seconds": 98,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "ConnectShare",
+   "error": "page.waitForURL: Timeout 45000ms exceeded.",
+   "debug": "J4.debug/global-ConnectShare.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

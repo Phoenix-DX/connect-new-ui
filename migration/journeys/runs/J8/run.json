@@ -1,0 +1,48 @@
+{
+ "journey": "J8",
+ "title": "Open my notes",
+ "ranAt": "2026-10-21T16:21:22.330Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "My Notes in Services.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Home.FeedBlock_Services'] >> text=\"My Notes\"",
+     "index": 0
+    },
+    "ms": 4647
+   },
+   "calls": [
+    "ActionGet_NotePills_ByNoteCategoryIds",
+    "DataActionGetNotes"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "Notes",
+   "path": "/UBTConnect/Notes",
+   "params": [],
+   "shot": "02-Notes.png",
+   "maskedTexts": 2
+  }
+ ],
+ "status": "verified",
+ "seconds": 71,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

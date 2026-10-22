@@ -34,6 +34,9 @@ ROOT = os.path.normpath(os.path.join(HERE, "..", ".."))
 MIG = os.path.join(ROOT, "migration")
 SITE = os.path.join(HERE, "site")
 REVIEW = os.path.join(HERE, "site-review")
+JOURNEY_DIR = os.path.join(MIG, "journeys")  # journeys.json, screens.en.json, runs/ (the e2e source)
+SURVEY = os.path.join(ROOT, "capture", "survey-UBTConnect.json")  # compiled TST sources, for the links of each screen
+LINK = re.compile(r"[\"']/UBTConnect/([A-Za-z0-9_]+)")
 BLOCK_ONLY_AREA = "Shared building blocks"
 TEST_FLOW = re.compile(r"^(zTemp|zDEV|Deprecated)")
 # shared blocks whose links every screen that renders them has (survey/shell.md, survey/shared-blocks.md)
@@ -87,6 +90,40 @@ def commit_hash():
         return "unknown"
 
 
+def save_image(src, name, ext):
+    """Write a 390 px wide copy of a screenshot to site/img/<name>."""
+    with Image.open(src) as im:
+        im = im.convert("RGB")
+        if im.width > 390:
+            im = im.resize((390, round(im.height * 390 / im.width)))
+        target = os.path.join(SITE, "img", name)
+        os.makedirs(os.path.dirname(target), exist_ok=True)
+        im.save(target, quality=74, method=6) if ext == "webp" else im.save(target, quality=78, optimize=True)
+
+
+def journey_runs(journeys, ext):
+    """Merge the last TST run of each journey (journeys/runs/<J>/run.json) into the journey; copy its screenshots."""
+    for j in journeys["journeys"]:
+        p = os.path.join(JOURNEY_DIR, "runs", j["id"], "run.json")
+        if not os.path.exists(p):
+            j["run"] = {"status": "not-run", "reason": "No run on TST yet."}
+            continue
+        r = read_json(p)
+        j["run"] = {k: r.get(k) for k in ("status", "reason", "blockedAt", "knownBlock", "ranAt", "viewport", "account")}
+        j["run"]["attempts"] = [{k: t.get(k) for k in ("account", "status", "at", "reason")} for t in r.get("attempts") or []]
+        by_screen = {}
+        for i, st in enumerate(r.get("steps", [])):
+            if st.get("shot"):
+                name = f"j/{j['id']}-{i + 1:02d}.{ext}"
+                save_image(os.path.join(JOURNEY_DIR, "runs", j["id"], st["shot"]), name, ext)
+                st["img"] = f"img/{name}"
+            by_screen.setdefault(st["screen"], st)
+        for st in j["steps"]:
+            got = by_screen.get(st["screen"])
+            if got:
+                st["run"] = {k: got.get(k) for k in ("params", "img", "action", "calls", "blocked")}
+
+
 def screenshots(screen, ext):
     """Convert the TST screenshots of a screen to small images in site/img/. Returns [{state, label, img}]."""
     shots = []
@@ -96,12 +133,7 @@ def screenshots(screen, ext):
             continue
         state = path[: -len(".expected.png")]
         name = f"{screen}__{state}.{ext}"
-        with Image.open(os.path.join(MIG, "screens", screen, "parity", path)) as im:
-            im = im.convert("RGB")
-            if im.width > 390:
-                im = im.resize((390, round(im.height * 390 / im.width)))
-            im.save(os.path.join(SITE, "img", name), quality=74, method=6) if ext == "webp" else \
-                im.save(os.path.join(SITE, "img", name), quality=78, optimize=True)
+        save_image(os.path.join(MIG, "screens", screen, "parity", path), name, ext)
         shots.append({"state": state, "label": state_label(state), "img": f"img/{name}"})
     order = {"default": 0, "loading": 1, "offline": 2}
     return sorted(shots, key=lambda s: (order.get(s["state"], 3), s["state"]))
@@ -127,49 +159,55 @@ def build():
         for b in set(v.get("closure", [])) | set(v.get("directBlocks", [])):
             used_by.setdefault(b[: -len(".mvc.js")], set()).add(s)
 
-    # navigation that a shared block adds to every screen that renders it: the targets common to all those screens
+    # navigation. A shared block (the app layout, the bottom bar) adds the same links to every screen that renders it:
+    # the targets common to all those screens. A link that the screen file or one of its own blocks names stays an own link.
+    sources = read_json(SURVEY)["sources"]
+    common_blocks = {b for b, users in used_by.items() if len(users) >= len(tst) / 4}
+
+    def blocks_of(v):
+        return set(v.get("closure", [])) | set(v.get("directBlocks", []))
+
     def nav_set(v):
         return {screen_of(r) for r in v.get("navOut", [])}
 
     def common_targets(block):
-        sets = [nav_set(v) for v in tst.values() if block in v.get("closure", []) + v.get("directBlocks", [])]
+        sets = [nav_set(v) for v in tst.values() if block in blocks_of(v)]
         return set.intersection(*sets) if sets else set()
 
-    shared_nav = {}  # label -> (block, targets)
     shell_targets = common_targets(SHELL_BLOCK)
-    shared_nav[SHELL_LABEL] = (SHELL_BLOCK, shell_targets)
-    shared_nav[BAR_LABEL] = (BAR_BLOCK, common_targets(BAR_BLOCK) - shell_targets)
+    shared_nav = {SHELL_LABEL: (SHELL_BLOCK, shell_targets),
+                  BAR_LABEL: (BAR_BLOCK, common_targets(BAR_BLOCK) - shell_targets)}  # label -> (block, targets)
 
-    def split_nav(v, name):
-        """Own navigation targets of a screen, plus the labels of the shared blocks that add the others."""
-        own, shared = set(), []
-        blocks = set(v.get("closure", [])) | set(v.get("directBlocks", []))
-        hidden = set()
+    own_out, shared_out = {}, {}
+    for name, v in tst.items():
+        files = [v.get("file", "")] + [b for b in blocks_of(v) if b[: -len(".mvc.js")] not in common_blocks]
+        explicit = {m for f in files for m in LINK.findall(sources.get(f, ""))} & nav_set(v)
+        hidden, labels = set(), []
         for label, (block, targets) in shared_nav.items():
-            if block in blocks and targets:
-                shared.append(label)
-                hidden |= targets
-        for target in nav_set(v) - hidden - {name}:
-            own.add(EXTERNAL_LABEL if ":" in target else target)
-        return sorted(own), shared
+            if block in blocks_of(v) and targets - explicit:
+                labels.append(label)
+                hidden |= targets - explicit
+        own_out[name] = sorted({EXTERNAL_LABEL if ":" in t else t for t in nav_set(v) - hidden - {name}})
+        shared_out[name] = labels
 
-    def split_reached(v, name):
-        """Screens that open this screen through their own links; shared blocks count once, as a label."""
-        own, shared = set(), set()
-        for r in v.get("reachedFrom", []):
-            src = screen_of(r)
-            if src == name:
-                continue
-            if src == "(app shell)":
-                shared.add(APP_START_LABEL)
-                continue
-            via = [label for label, (block, targets) in shared_nav.items()
-                   if name in targets and block in tst.get(src, {}).get("closure", []) + tst.get(src, {}).get("directBlocks", [])]
-            if via:
-                shared.update(via)
-            else:
-                own.add(src)
-        return sorted(own), sorted(shared)
+    def reached(name):
+        """Screens with an own link to this screen, plus the labels of the shared blocks and the app start."""
+        own = sorted(src for src, targets in own_out.items() if name in targets and src != name)
+        labels = [label for label, (_, targets) in shared_nav.items()
+                  if name in targets and any(label in shared_out[src] and name not in own_out[src] for src in tst)]
+        if "(app shell)" in tst[name].get("reachedFrom", []):
+            labels.append(APP_START_LABEL)
+        return own, labels
+
+    # main journeys: every step must be a link in the compiled TST code
+    journeys = read_json(os.path.join(JOURNEY_DIR, "journeys.json"))
+    for j in journeys["journeys"]:
+        names = [st["screen"] for st in j["steps"]]
+        for a, b in zip(names, names[1:]):
+            if b not in nav_set(tst.get(a, {})):
+                raise SystemExit(f"journey {j['id']}: no link from {a} to {b} in survey/screens.json")
+    journey_runs(journeys, ext)
+    screen_text = read_json(os.path.join(JOURNEY_DIR, "screens.en.json"))
 
     screens = {}
     for s in dev["screens"]:
@@ -190,17 +228,18 @@ def build():
         if t:
             own_blocks = sorted({b[: -len(".mvc.js")].split(".", 2)[2] for b in t.get("closure", [])
                                  if b.startswith("UBTConnect.")})
-            nav_out, nav_shared = split_nav(t, name)
-            reached, reached_shared = split_reached(t, name)
+            reached_from, reached_shared = reached(name)
             rec.update(
                 title=t.get("title", ""), route=t.get("route", ""), inputs=t.get("inputs", []),
-                navOut=nav_out, navShared=nav_shared, reachedFrom=reached, reachedShared=reached_shared,
+                navOut=own_out[name], navShared=shared_out[name], reachedFrom=reached_from, reachedShared=reached_shared,
                 dataActions=t.get("dataActions", []), serverActions=t.get("serverActions", []),
                 flags=sorted({f.split(".")[-1] for f in t.get("flags", []) if "launchDarkly" in f or f.startswith("C2")}),
                 osui=sorted({p.split(".")[-1] for p in t.get("osuiPatterns", [])}),
                 blocks=len(t.get("closure", [])), ownBlocks=own_blocks,
                 shots=screenshots(name, ext),
                 noCapture=os.path.exists(os.path.join(MIG, "screens", name, "no-capture.json")))
+        if name in screen_text:
+            rec.update({k: screen_text[name].get(k, "") for k in ("sees", "does", "back")})
         screens[name] = rec
 
     flows = {}
@@ -257,6 +296,7 @@ def build():
         "counts": counts, "areas": area_list, "flows": flows, "screens": screens, "health": health,
         "decisions": content.get("decisions", []),
         "sharedNav": {label: sorted(targets) for label, (_, targets) in shared_nav.items()},
+        "journeys": journeys,
     }
     page = open(os.path.join(HERE, "src", "page.html"), encoding="utf-8").read()
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
@@ -272,6 +312,8 @@ def contact_sheets(data, per_sheet=12, cols=6, width=260):
         shutil.rmtree(REVIEW)
     os.makedirs(REVIEW)
     shots = [(n, s["label"], s["img"]) for n, rec in sorted(data["screens"].items()) for s in rec.get("shots", [])]
+    shots += [(f"{j['id']} {st['screen']}", "journey run", st["run"]["img"]) for j in data["journeys"]["journeys"]
+              for st in j["steps"] if st.get("run", {}).get("img")]
     for i in range(0, len(shots), per_sheet):
         part = shots[i: i + per_sheet]
         ims = []

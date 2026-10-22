@@ -1,0 +1,47 @@
+{
+ "journey": "J7",
+ "title": "Manage the services",
+ "ranAt": "2026-10-21T16:20:23.548Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "The settings icon of Services.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Home.FeedBlock_Services'] .connect-icon-settings",
+     "index": 0
+    },
+    "ms": 3848
+   },
+   "calls": [
+    "DataActionGetServices"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "Services",
+   "path": "/UBTConnect/Services",
+   "params": [],
+   "shot": "02-Services.png",
+   "maskedTexts": 2
+  }
+ ],
+ "status": "verified",
+ "seconds": 59,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

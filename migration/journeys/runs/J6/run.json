@@ -1,0 +1,75 @@
+{
+ "journey": "J6",
+ "title": "Search the directory",
+ "ranAt": "2026-10-21T16:18:20.877Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "The search box at the top.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Layouts.SubLayout_HomePageSearch']",
+     "index": 0
+    },
+    "ms": 3876
+   },
+   "calls": [
+    "ScreenDataSetGet_SearchBirthdayOptions",
+    "DataActionGetCacheInfo"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "Search",
+   "path": "/UBTConnect/Search",
+   "params": [],
+   "shot": "02-Search.png",
+   "maskedTexts": 15,
+   "action": {
+    "label": "Type a name and press Enter, choose the Households tag, then select a household.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='CW_Search.SearchResult_Item']",
+     "index": 0
+    },
+    "ms": 10003
+   },
+   "calls": [
+    "DataActionFetchSearchResults",
+    "ActionGetSignedImagesInBulk",
+    "DataActionGetHousehold",
+    "DataActionGetHousehold_Coordinates",
+    "DataActionFetchContactDetails",
+    "DataActionFetchNotes"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "HouseholdCarousel",
+   "path": "/UBTConnect/HouseholdCarousel",
+   "params": [
+    "In_StartingHouseholdId"
+   ],
+   "shot": "03-HouseholdCarousel.png",
+   "maskedTexts": 58
+  }
+ ],
+ "status": "verified",
+ "seconds": 123,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

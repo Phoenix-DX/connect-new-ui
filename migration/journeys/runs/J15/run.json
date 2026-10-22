@@ -1,0 +1,79 @@
+{
+ "journey": "J15",
+ "title": "Share a Supper Meeting of a household",
+ "ranAt": "2026-10-21T17:49:06.976Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HouseholdCarousel",
+   "path": "/UBTConnect/HouseholdCarousel",
+   "params": [
+    "In_StartingHouseholdId"
+   ],
+   "shot": "01-HouseholdCarousel.png",
+   "maskedTexts": 62,
+   "action": {
+    "label": "The Supper Meeting link of the household.",
+    "kind": "click",
+    "element": {
+     "selector": ".splide__slide.is-active [id$='-SupperMeeting'] [style*='cursor: pointer']",
+     "index": 0,
+     "dispatched": true
+    },
+    "ms": 10820
+   },
+   "calls": [
+    "DataActionFetchContactDetails",
+    "DataActionGetSubdivisionHouseholds",
+    "DataActionGetSubdivision",
+    "DataActionFetchNotes",
+    "ActionGetSignedImagesInBulk"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "SupperMeeting_Details",
+   "path": "/UBTConnect/SupperMeeting_Details",
+   "params": [
+    "In_SubdivsionId"
+   ],
+   "shot": "02-SupperMeeting_Details.png",
+   "maskedTexts": 21,
+   "stopped": true,
+   "calls": [
+    "DataActionGetRecentlyShared"
+   ]
+  }
+ ],
+ "debug": "J15.debug/global-SupperMeeting_Details.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 5,
+  "screen": "SupperMeeting_Details",
+  "setup": false,
+  "error": "page.waitForURL: Timeout 25000ms exceeded.",
+  "path": "/UBTConnect/SupperMeeting_Details",
+  "blocked": []
+ },
+ "seconds": 154,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "SupperMeeting_Details",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J15.debug/global-SupperMeeting_Details.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

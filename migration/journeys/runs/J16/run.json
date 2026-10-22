@@ -1,0 +1,51 @@
+{
+ "journey": "J16",
+ "title": "Browse the directory by country",
+ "ranAt": "2026-10-21T17:51:41.153Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "stopped": true,
+   "calls": [
+    "DataActionFetchCount",
+    "DataActionGetCountriesStatistics"
+   ]
+  }
+ ],
+ "debug": "J16.debug/global-HomeFeed.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 0,
+  "screen": "HomeFeed",
+  "setup": false,
+  "error": "page.waitForURL: Timeout 25000ms exceeded.",
+  "path": "/UBTConnect/CountryList",
+  "blocked": []
+ },
+ "seconds": 94,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J16.debug/global-HomeFeed.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

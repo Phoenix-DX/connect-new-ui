@@ -42,3 +42,9 @@ This is a read-only observation of TST `/UBTConnect/Login` (no session, guard on
 (`UBTConnectLibrary.Layouts.SVG_Background_Custom.mvc.js:202`). The capture DOM lacks these attributes, so the capture
 serializer drops them. Exemption `CAPTURE-SVG-PRESERVEASPECTRATIO` is a capture artifact. The React app follows the
 compiled code in every instance (screen and CommonUI lock container). The OSUI InlineSVG container id is `<instance>-SVG`.
+
+## Reopen from the start URL (2026-10-22, `journey_capture.cjs`, journey J1)
+- New tab of a signed-in context at `/UBTConnect/` → `/UBTConnect/PINUnlock` → PIN entered → `/UBTConnect/`. The
+  Splash has no URL of its own here. The start URL shows the home feed. Guard on, nothing blocked.
+- New tab at `/UBTConnect/Splash` → PINUnlock → PIN entered → Splash again → PINUnlock again. Splash keeps its own
+  href as `LastURL` (shell-facts.md U3), so the unlock returns to Splash, which checks the PIN again.

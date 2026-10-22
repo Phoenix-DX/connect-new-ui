@@ -1,0 +1,58 @@
+{
+ "journey": "J18",
+ "title": "Read the host survey",
+ "ranAt": "2026-10-21T16:40:45.045Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "EventDetail",
+   "path": "/UBTConnect/EventDetail",
+   "params": [
+    "In_EventId",
+    "In_MemberId",
+    "In_FromNotification",
+    "In_EventName"
+   ],
+   "shot": "01-EventDetail.png",
+   "maskedTexts": 1,
+   "action": {
+    "label": "View Host Survey.",
+    "kind": "click",
+    "element": {
+     "selector": "text=View Host Survey",
+     "index": 0
+    },
+    "ms": 4224
+   },
+   "calls": [
+    "DataActionGetHostSurvey"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "HostSurvey",
+   "path": "/UBTConnect/HostSurvey",
+   "params": [
+    "In_MemberId",
+    "In_EventStartDate",
+    "In_EventId",
+    "In_EventName",
+    "In_EventEndDate"
+   ],
+   "shot": "02-HostSurvey.png",
+   "maskedTexts": 26
+  }
+ ],
+ "status": "verified",
+ "seconds": 67,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

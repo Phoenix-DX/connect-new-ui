@@ -1,0 +1,52 @@
+{
+ "journey": "J14",
+ "title": "See the photos of a household",
+ "ranAt": "2026-10-21T16:32:28.394Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HouseholdCarousel",
+   "path": "/UBTConnect/HouseholdCarousel",
+   "params": [
+    "In_StartingHouseholdId"
+   ],
+   "shot": "01-HouseholdCarousel.png",
+   "maskedTexts": 62,
+   "action": {
+    "label": "The Photos tag on the household picture, then the Photobook row.",
+    "kind": "click",
+    "element": {
+     "selector": ".splide__slide.is-active >> text=\"Photobook\"",
+     "index": 1
+    },
+    "ms": 5953
+   },
+   "calls": [
+    "DataActionGetLocalityHouseholdIds"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "Photobook",
+   "path": "/UBTConnect/Photobook",
+   "params": [
+    "In_HouseholdId",
+    "In_LocalityId"
+   ],
+   "shot": "02-Photobook.png",
+   "maskedTexts": 41
+  }
+ ],
+ "status": "verified",
+ "seconds": 97,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

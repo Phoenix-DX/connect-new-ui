@@ -1,0 +1,65 @@
+{
+ "journey": "J3",
+ "title": "Accept updated policies",
+ "ranAt": "2026-10-21T17:39:32.334Z",
+ "viewport": "390x844",
+ "account": "regional",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "passed": "The app opened the next screen before the snapshot.",
+   "action": {
+    "label": "The policy checker opens the policies screen when a policy waits for acceptance.",
+    "kind": "auto"
+   }
+  },
+  {
+   "screen": "AcceptPendingPolicies",
+   "path": "/UBTConnect/AcceptPendingPolicies",
+   "params": [],
+   "shot": "01-AcceptPendingPolicies.png",
+   "maskedTexts": 0,
+   "stopped": true,
+   "calls": [
+    "ActionAcceptPolicies"
+   ]
+  }
+ ],
+ "debug": "J3.debug/regional-AcceptPendingPolicies.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 1,
+  "screen": "AcceptPendingPolicies",
+  "setup": false,
+  "error": "page.waitForURL: Timeout 25000ms exceeded.",
+  "path": "/UBTConnect/AcceptPendingPolicies",
+  "blocked": [
+   "ActionAcceptPolicies"
+  ]
+ },
+ "knownBlock": "Accepting the policies writes data; the read-only guard blocks it (CLAUDE.md rule 6). The first account had no pending policy; the second account has one (2026-10-21).",
+ "seconds": 80,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "page.waitForURL: Timeout 45000ms exceeded.",
+   "debug": "J3.debug/global-HomeFeed.png"
+  },
+  {
+   "account": "regional",
+   "status": "blocked",
+   "at": "AcceptPendingPolicies",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J3.debug/regional-AcceptPendingPolicies.png"
+  },
+  {
+   "account": "local",
+   "status": "blocked",
+   "at": "AcceptPendingPolicies",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J3.debug/local-AcceptPendingPolicies.png"
+  }
+ ]
+}

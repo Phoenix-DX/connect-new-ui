@@ -1,0 +1,55 @@
+{
+ "journey": "J1",
+ "title": "Open the app again",
+ "ranAt": "2026-10-21T17:30:04.081Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "Splash",
+   "passed": "The app opened the next screen before the snapshot.",
+   "action": {
+    "label": "The app checks the PIN and opens the PIN screen.",
+    "kind": "auto"
+   }
+  },
+  {
+   "screen": "PINUnlock",
+   "path": "/UBTConnect/PINUnlock",
+   "params": [],
+   "shot": "01-PINUnlock.png",
+   "maskedTexts": 10,
+   "action": {
+    "label": "Enter the PIN. The app opens the last URL, here the start URL, which shows the home feed.",
+    "kind": "pin",
+    "element": null,
+    "ms": 11423
+   },
+   "calls": [
+    "DataActionGetServices",
+    "DataActionFetchCount",
+    "DataActionFetchUpdates",
+    "DataActionGetFeedConfig"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/",
+   "params": [],
+   "shot": "02-HomeFeed.png",
+   "maskedTexts": 11
+  }
+ ],
+ "status": "verified",
+ "seconds": 75,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

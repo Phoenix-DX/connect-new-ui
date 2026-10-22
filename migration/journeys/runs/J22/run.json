@@ -1,0 +1,54 @@
+{
+ "journey": "J22",
+ "title": "Read the event documents",
+ "ranAt": "2026-10-21T17:56:37.232Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "EventDetail",
+   "path": "/UBTConnect/EventDetail",
+   "params": [
+    "In_EventId",
+    "In_MemberId",
+    "In_FromNotification",
+    "In_EventName"
+   ],
+   "shot": "01-EventDetail.png",
+   "maskedTexts": 11,
+   "stopped": true,
+   "calls": []
+  }
+ ],
+ "debug": "J22.debug/global-EventDetail.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 2,
+  "screen": "EventDetail",
+  "setup": false,
+  "error": "no visible element for: text=Documents | text=View Documents | a[href*=\"/ViewDocuments\"]",
+  "path": "/UBTConnect/EventDetail",
+  "blocked": []
+ },
+ "knownBlock": "The Orbit event of the test account shows no documents link (no-capture of ViewDocuments, user 2026-10-16).",
+ "seconds": 65,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "EventDetail",
+   "error": "no visible element for: text=Documents | text=View Documents | a[href*=\"/ViewDocuments\"]",
+   "debug": "J22.debug/global-EventDetail.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

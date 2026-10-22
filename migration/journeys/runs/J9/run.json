@@ -1,0 +1,47 @@
+{
+ "journey": "J9",
+ "title": "Open my entertaining",
+ "ranAt": "2026-10-21T16:22:33.783Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "My Entertaining in Services.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='Home.FeedBlock_Services'] >> text=\"My Entertaining\"",
+     "index": 0
+    },
+    "ms": 3906
+   },
+   "calls": [
+    "DataActionGetEntertainingConfig"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "MyEntertaining",
+   "path": "/UBTConnect/MyEntertaining",
+   "params": [],
+   "shot": "02-MyEntertaining.png",
+   "maskedTexts": 0
+  }
+ ],
+ "status": "verified",
+ "seconds": 66,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

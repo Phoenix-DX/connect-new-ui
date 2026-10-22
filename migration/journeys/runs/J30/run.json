@@ -1,0 +1,94 @@
+{
+ "journey": "J30",
+ "title": "Read a message about an event",
+ "ranAt": "2026-10-21T18:02:23.112Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "The bell at the top.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='App_Common_Blocks.App_NotificationIcon'] .connect-icon-notifications",
+     "index": 0
+    },
+    "ms": 3842
+   },
+   "calls": [
+    "DataActionGetMessages",
+    "ActionGetSignedImagesInBulk"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "MessageList",
+   "path": "/UBTConnect/MessageList",
+   "params": [],
+   "shot": "02-MessageList.png",
+   "maskedTexts": 35,
+   "action": {
+    "label": "Select a message with the Orbit icon.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='MyNotifications.MessageListItem']",
+     "index": 1
+    },
+    "ms": 5238
+   },
+   "calls": [
+    "DataActionGetMessageInstanceById2",
+    "DataActionGetMessageInstance",
+    "ScreenDataSetGetMessageTemplateParametersByMessageTemplateId"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "MessageDetail",
+   "path": "/UBTConnect/MessageDetail",
+   "params": [
+    "MessageInstanceId"
+   ],
+   "shot": "03-MessageDetail.png",
+   "maskedTexts": 7,
+   "stopped": true,
+   "calls": []
+  }
+ ],
+ "debug": "J30.debug/global-MessageDetail.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 2,
+  "screen": "MessageDetail",
+  "setup": false,
+  "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/EventDetail\"]",
+  "path": "/UBTConnect/MessageDetail",
+  "blocked": []
+ },
+ "knownBlock": "The messages of the test accounts are directory notices or adaptive cards (a form with Submit, which writes data). None has an Orbit, Assemble or host survey action button (debug snapshots 2026-10-21).",
+ "seconds": 111,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "MessageDetail",
+   "error": "no visible element for: [id$='Placeholder_ActionButton'] a | [id$='Placeholder_ActionButton'] button | [id$='Placeholder_ActionButton'] [style*='cursor: pointer'] | a[href*=\"/EventDetail\"]",
+   "debug": "J30.debug/global-MessageDetail.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

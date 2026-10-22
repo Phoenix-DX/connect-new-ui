@@ -1,0 +1,55 @@
+{
+ "journey": "J21",
+ "title": "Contact the Orbit helpdesk",
+ "ranAt": "2026-10-21T16:44:11.994Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "EventDetail",
+   "path": "/UBTConnect/EventDetail",
+   "params": [
+    "In_EventId",
+    "In_MemberId",
+    "In_FromNotification",
+    "In_EventName"
+   ],
+   "shot": "01-EventDetail.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "Contact Orbit Helpdesk.",
+    "kind": "click",
+    "element": {
+     "selector": "text=Contact Orbit Helpdesk",
+     "index": 0
+    },
+    "ms": 3865
+   },
+   "calls": [],
+   "blocked": []
+  },
+  {
+   "screen": "ContactByEmailOrbitHelpdesk",
+   "path": "/UBTConnect/ContactByEmailOrbitHelpdesk",
+   "params": [
+    "In_MilestoneId",
+    "In_EventId",
+    "In_Subject",
+    "In_EventName"
+   ],
+   "shot": "02-ContactByEmailOrbitHelpdesk.png",
+   "maskedTexts": 2
+  }
+ ],
+ "status": "verified",
+ "seconds": 61,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

@@ -1,0 +1,386 @@
+{
+ "AcceptPendingPolicies": {
+  "back": "",
+  "does": "The user selects the checkbox of each policy, or all of them, and then selects \"Continue\" to accept.",
+  "evidence": "Structure, States",
+  "sees": "The screen shows the UBT Connect logo and the text \"Welcome to\", \"Connect and Directory\" and \"Terms and Conditions & Privacy Policy\". It lists each pending policy with a checkbox and an \"I agree to all\" checkbox when more than one policy is pending. When no policy is pending, it shows \"You have accepted all required policies.\""
+ },
+ "AssembleDetail": {
+  "back": "The previous screen",
+  "does": "The user reads the meeting information, expands or collapses long notes with \"Read more\" and \"Show less\", and reviews the attendees and contacts.",
+  "evidence": "Structure, States",
+  "sees": "The screen shows the details of one Assemble meeting. It has a summary card, \"Meeting Note\", \"Meeting Attendees\" with \"Host Locality\" and \"Interchange Meetings\", and a local contact list. When the meeting does not exist, it shows \"Meeting not found\"."
+ },
+ "AssembleEvents": {
+  "back": "The previous screen, when the back control shows. Otherwise the screen shows the menu icon.",
+  "does": "The user switches between upcoming and past meetings, opens the filter sheet, and opens a meeting to see its details.",
+  "evidence": "Structure, Behaviour",
+  "sees": "The screen shows the title \"Assemble\" with the subdivision name, and the \"Upcoming\" and \"Past\" tabs. Below the tabs, it lists the meetings as cards. When no meeting exists, it shows \"We were unable to find any meetings to display.\""
+ },
+ "Assemble_BrowseByCountry": {
+  "back": "The previous screen",
+  "does": "The user searches for a country, selects a country and a locality, and selects \"Apply\" to see the Assemble meetings of that locality, or \"Cancel\".",
+  "evidence": "Structure",
+  "sees": "The screen shows a search field \"Search Country\" and the list of countries. When the user selects a country, the screen shows the localities of that country. The screen shows \"No results found\" when the search has no match."
+ },
+ "BookmarksByGroup": {
+  "back": "The previous screen",
+  "does": "The user opens a bookmark, adds, edits or deletes the note of a bookmark, and shares a bookmark when sharing is on.",
+  "evidence": "Structure tree, Entry and routing",
+  "sees": "The screen shows the bookmarks of one group as a list of rows. Each row has an options menu and can have a note. When the group has no bookmark, the screen shows an empty state."
+ },
+ "BrowseCountries": {
+  "back": "The previous screen",
+  "does": "The user searches for a country and selects a country to open BrowseDirectory. A user without access to the region sees an upgrade pop-up.",
+  "evidence": "Structure, Behaviour",
+  "sees": "The screen has the title \"Browse by country\". It shows a search field \"Search country\" and a list of countries with a flag and statistics. The bottom bar shows the Directory item as active."
+ },
+ "BrowseDirectory": {
+  "back": "The previous screen",
+  "does": "The user selects another country, pans the map, searches for a locality, and opens a locality from the list.",
+  "evidence": "Structure, Behaviour",
+  "sees": "The screen shows the country name as title and a \"Select another country to view\" row. It shows a map with markers and a searchable list of localities with statistics. The bottom bar shows Directory as active."
+ },
+ "CommunityBusinessDetails_CoomingSoon": {
+  "back": "",
+  "does": "The user can only read the message. The screen has no other action.",
+  "evidence": "Structure",
+  "sees": "The screen shows a search bar \"Search for households. entities, news\" and a blank page with an icon and the text \"Comming soon\" (spelling as in the app)."
+ },
+ "ConnectShare": {
+  "back": "The previous screen",
+  "does": "The user reads the message and selects the home icon to go to the app start page.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"Connect Share\". It shows an icon and a status message that says the shared item is not available. A home icon links to the app start page."
+ },
+ "ContactByEmailLDMCoordinator": {
+  "back": "The previous screen",
+  "does": "The user writes a subject and a message and sends the email to the LDM event coordinator.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"Email\". It shows a card with the coordinator name and \"LDM Event Coordinator\", and an email form with subject and message fields."
+ },
+ "ContactByEmailMember": {
+  "back": "The previous screen",
+  "does": "The user writes a subject and a message and sends the email to the member or the household.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"Contact Member\", or \"Contact the\" followed by the household name. It shows a card with the photo, name, locality and country, and an email form with \"Add a subject\" and \"Add a message\"."
+ },
+ "ContactByEmailOneSchoolGlobal": {
+  "back": "The previous screen",
+  "does": "The user writes a subject and a message and sends the email to OneSchool Global.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"Email\". It shows a header with the OneSchool Global logo and the contact name, and an email form with subject and message fields."
+ },
+ "ContactByEmailOrbitHelpdesk": {
+  "back": "The previous screen",
+  "does": "The user writes a message and sends the email to the Orbit helpdesk.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"Email\". It shows a header with the Orbit logo and \"Orbit Helpdesk\", and an email form with subject and message fields."
+ },
+ "ContactByEmailOrbitHost": {
+  "back": "The previous screen",
+  "does": "The user writes a subject and a message and sends the email to the host household.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"Contact the\" followed by the household name. It shows a card with the host photo, name, locality and country, and an email form with subject and message fields."
+ },
+ "ContactUsDetails": {
+  "back": "The previous screen",
+  "does": "The user writes a message and selects \"Send\". The user can call the support team when the phone link shows.",
+  "evidence": "Structure",
+  "sees": "The screen shows the title and the text of the selected contact category. It shows a \"Message\" field with a counter of 500 characters and a \"Send\" button. For a signed-in user with a support phone number, it also shows \"Give our Support Team a call\"."
+ },
+ "ContactUsMenu": {
+  "back": "The previous screen",
+  "does": "The user selects a subject to open ContactUsDetails.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"Contact Us\". It shows the text \"Please select the most relevant category so our Customer Care Team can direct your request to the right team.\" The categories are User Account Management, Community Engagement and General Inquiries, each with subjects."
+ },
+ "CountryDetails": {
+  "back": "The previous screen",
+  "does": "The user selects another country, searches for a locality, opens a locality, and selects the info icon to read the legend.",
+  "evidence": "Structure",
+  "sees": "The screen shows the country name as title, a \"Select another country to view\" row, a map, and a search field \"Search locality\". It shows \"Browse by Locality\" with the locality count and a list of localities."
+ },
+ "CountryList": {
+  "back": "",
+  "does": "The user opens the search, opens a country, opens the user locality or country card, and selects the info icon to read the legend.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"Directory\" and a search bar \"Search any member or location\". It shows the cards \"MY LOCALITY\" and \"MY COUNTRY\", the Community Population block, and the list \"Browse by Country\". The bottom bar shows Directory as active."
+ },
+ "EmailContact": {
+  "back": "The previous screen",
+  "does": "The user writes a subject (for a host) and a message, and sends the email to the Orbit helpdesk or to the host.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"Contact Orbit Helpdesk\" or \"Contact Host\". It shows a form with a subject field, a message field with a counter, and a send button."
+ },
+ "EmailTarget": {
+  "back": "The previous screen",
+  "does": "The user writes a subject and a message and sends the email. When the user leaves with unsent text, a dialog asks to confirm.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"Contact\" followed by the target name. It shows the line \"To:\" with the household name, and a form with \"Subject\" and \"Message\" fields with counters and a \"send email\" button."
+ },
+ "EventBooklet": {
+  "back": "The previous screen",
+  "does": "The user searches the booklet, opens the filter pop-up, and opens a household from the list.",
+  "evidence": "Entry and routing, Architecture",
+  "sees": "The screen shows the booklet of one Orbit event. It has a search field, filters and a paged list of households and members."
+ },
+ "EventDetail": {
+  "back": "The previous screen",
+  "does": "The user selects a day, opens a milestone, opens the host survey, and contacts the helpdesk. A QR code icon and a documents icon show only when the event has them.",
+  "evidence": "Structure tree, Entry and routing",
+  "sees": "The screen shows the event name as title, the event information and a host survey row. It shows an accordion with host allocation and an \"Itinerary\" with day selectors and milestone cards. A footer lets the user contact the helpdesk."
+ },
+ "FeedItemDetail": {
+  "back": "The previous screen",
+  "does": "The user reads the feed item. The user can share the item when the flag C2ExtendedShare is on.",
+  "evidence": "Structure, Data",
+  "sees": "The screen has the title \"Feed Item\". It shows the embedded content of one feed item."
+ },
+ "GuestArrangements": {
+  "back": "The previous screen",
+  "does": "The user reads the arrangements of the guests for the milestone.",
+  "evidence": "Structure",
+  "sees": "The screen shows the milestone name as title. It shows the guest arrangements with the guest name and the arrangement details. When no data exists, it shows \"No guest arrangement data has been found.\""
+ },
+ "HelpersDetail": {
+  "back": "The previous screen",
+  "does": "The user expands the roles, reads the helper details, and contacts the helpdesk by phone or email.",
+  "evidence": "Structure",
+  "sees": "The screen shows the milestone name as title. It shows an accordion of helper roles, and each role lists the helper members as cards. When no helper exists, it shows \"There is no Helper available.\" A footer lets the user contact the helpdesk."
+ },
+ "HomeFeed": {
+  "back": "A \"Leave App\" dialog opens.",
+  "does": "The user opens a service, opens an update, selects \"View all\", and opens the bell or the search. The settings button shows when the flag C2EnableCustomServices is on.",
+  "evidence": "Summary, Structure tree, Feature flags",
+  "sees": "The screen shows the logo, the notification bell and a search bar. Below, it shows three sections: Services (a carousel of shortcuts), Community Population, and Updates with \"View all\". At the end, it shows the embedded feed."
+ },
+ "HostSurvey": {
+  "back": "The previous screen",
+  "does": "The user answers the host survey for rooms and meals and confirms the choices in the confirmation pop-ups.",
+  "evidence": "Structure tree, Entry and routing",
+  "sees": "The screen shows the event name and dates, a summary banner and a message at the top. It shows an accordion with the rooms and the meals of the host survey, with their pills."
+ },
+ "HouseholdCarousel": {
+  "back": "The previous screen",
+  "does": "The user swipes between the households of the list that opened the screen.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen shows the household name as title and a carousel of household detail pages. The bottom bar is visible."
+ },
+ "HouseholdDetails": {
+  "back": "The previous screen",
+  "does": "The user reads the household information, opens a member to see the relations, and contacts or shares the household.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen shows the locality and country as title. It shows the details of one household and its members. The bottom bar is visible."
+ },
+ "Household_Relations": {
+  "back": "The previous screen",
+  "does": "The user opens a related member or household, and uses the \"Notes\" and \"Bookmark\" buttons.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen shows a member photo and name, and the buttons \"Notes\" and \"Bookmark\". It lists the relations of the member, such as \"Father\" and \"Mother\". The bottom bar is visible."
+ },
+ "LDM_Email_V2": {
+  "back": "The previous screen",
+  "does": "The user writes a message and selects \"Submit\", or calls the coordinator directly.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"Contact Event Coordinator\". It shows a form with sender, destination, subject and message fields, a \"Submit\" button and \"or Call us Directly\". When no organiser exists, it shows \"No Event Organiser information.\""
+ },
+ "LDM_EventDetail_V2": {
+  "back": "The previous screen",
+  "does": "The user reads the event details and contacts the coordinator or a person by phone or message.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen shows one LDM event with a banner, a host card, and sections with special needs and guests. The bottom bar is visible."
+ },
+ "LDM_MyEvents_V2": {
+  "back": "The menu",
+  "does": "The user filters the events by locality, expands the guests, opens an event, and contacts a person.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen has the title \"My Timeline\" with a filter button. It lists the events of the user as cards with the event information and the guests. The bottom bar is visible."
+ },
+ "LegacyShareObject": {
+  "back": "The previous screen",
+  "does": "The user selects a profile to share the item with.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen has the title \"Share\" followed by the object type. It shows a card with the shared household or item and a list of profiles."
+ },
+ "Locality_Details": {
+  "back": "",
+  "does": "The user opens the search, selects a tag, opens a household, supper meeting, locality or school, and selects the locality label.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen shows a search bar, a locality label with date and time, and tags. The tags switch between the households, the supper meetings, the interchange localities and the schools. The bottom bar is visible."
+ },
+ "Login": {
+  "back": "A \"Leave App\" dialog opens.",
+  "does": "The user selects \"Login with UBT One\" to sign in, or selects \"Contact Us\".",
+  "evidence": "Structure, Behaviour",
+  "sees": "The screen shows a card with the welcome text, the button \"Login with UBT One\" and a \"Forgot Password?\" button. It shows the line \"Need help?\" with a \"Contact Us\" link, and the app version."
+ },
+ "Menu": {
+  "back": "",
+  "does": "The user edits the account, opens an option, requests a photo update, or logs out after a confirmation.",
+  "evidence": "Structure, Behaviour",
+  "sees": "The screen has the title \"Menu\". It shows the user photo and name with \"Edit your account\". The options are PIN & Biometrics, Contact Us, Subscription and Payments, Request Photo Update, Terms & Policies and Log out. It shows the app version."
+ },
+ "MessageDetail": {
+  "back": "The previous screen",
+  "does": "The user reads one message. Opening an unread message marks it as read.",
+  "evidence": "Summary, Structure tree",
+  "sees": "The screen shows the sender name as title, a card with the icon, title, summary and urgent mark, the message body, and the creation date. The bottom bar shows when the user is signed in."
+ },
+ "MessageList": {
+  "back": "The menu, or the previous screen when the user is signed out",
+  "does": "The user opens a message, marks all as read, searches, and sorts or filters the messages.",
+  "evidence": "Summary, Structure tree",
+  "sees": "The screen has the title \"My Notifications\". It shows the messages of the user, newest first, with the unread messages highlighted, and \"Mark All as Read\". The bell opens it when the flag C2NewNotifications is off."
+ },
+ "MilestoneDetail": {
+  "back": "The previous screen",
+  "does": "The user expands the accordions, reads the accommodation details, and contacts the helpdesk or a host by phone.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen shows the milestone name as title. For an accommodation milestone, it shows accordions with the host and the member cards. A footer lets the user contact the helpdesk."
+ },
+ "MyBookmarks": {
+  "back": "The menu",
+  "does": "The user opens a bookmark, and opens a group to see all its bookmarks. A free-subscription user sees an access dialog for some actions.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen shows the cards Contacts, Locations and Entities, and an album of the latest bookmarks in each card. When no bookmark exists, it shows an empty state."
+ },
+ "MyEntertaining": {
+  "back": "The previous screen",
+  "does": "The user browses the calendar events inside the embedded view.",
+  "evidence": "Structure",
+  "sees": "The screen has the title \"My Entertaining\". It shows the embedded entertaining calendar as a timeline."
+ },
+ "Notes": {
+  "back": "",
+  "does": "The user searches notes, selects a category pill, opens the sort and year filter sheet, and opens a note.",
+  "evidence": "Summary",
+  "sees": "The screen has the title \"My Notes\" with a search field, category pills and the bottom bar. It shows the notes as cards. When no note exists, it shows \"No Notes found\"."
+ },
+ "Notifications": {
+  "back": "The previous screen",
+  "does": "The user searches, sorts, shows only unread notifications, and opens the more actions sheet.",
+  "evidence": "Summary, Entry and routing",
+  "sees": "The screen has the title \"Notifications\" with a badge, a search field, and the row \"Sort / Only show unread\". It groups the notifications as Today, Last 7 Days, Last 30 Days and Older. The bell opens it when the flag C2NewNotifications is on."
+ },
+ "OneSchoolGlobalDetails": {
+  "back": "The previous screen",
+  "does": "The user opens the address and the links, and uses the actions to contact, bookmark or share the school.",
+  "evidence": "Structure tree",
+  "sees": "The screen has the title \"OneSchool Global\". It shows a school image card, \"Educating Students From:\" with the areas served, the address, the school links and action buttons."
+ },
+ "OrbitAdminEventDetail": {
+  "back": "The previous screen",
+  "does": "The user scans the QR code of a participant.",
+  "evidence": "Structure",
+  "sees": "The screen shows the event name as title, the event dates, location and type, and a \"Scan QR Code\" button when the event supports it. When the event is not available, it shows \"The Event is no longer available for you.\""
+ },
+ "OrbitAdminLanding": {
+  "back": "The menu",
+  "does": "The user opens an event to see its details.",
+  "evidence": "Structure",
+  "sees": "The screen shows the Orbit icon as title and the first name of the user. It lists the events as cards. The bottom bar is visible."
+ },
+ "OrbitLanding": {
+  "back": "The menu",
+  "does": "The user selects a member, filters and sorts the cards, opens an event or a transport milestone, or opens My Entertaining.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen shows the Orbit events and milestones of the user as cards, a household member selector, and filter and sort pop-ups. The bottom bar is visible. Without Orbit access, the screen goes to HomeFeed."
+ },
+ "PINBiometricsMenu": {
+  "back": "The previous screen",
+  "does": "The user selects \"Change PIN\" to open PINChange.",
+  "evidence": "Structure, Behaviour",
+  "sees": "The screen has the title \"PIN & Biometrics\". It shows a list with the row \"Change PIN\". The biometric row shows only on a device with a fingerprint reader."
+ },
+ "PINChange": {
+  "back": "The previous screen",
+  "does": "The user enters the current PIN, then the new PIN twice.",
+  "evidence": "Structure",
+  "sees": "The screen shows a back link \"Change PIN\" and a keypad with the prompt \"Enter your current PIN\". After the check, it asks for \"Enter new PIN\" and \"Confirm new PIN\"."
+ },
+ "PINRegister": {
+  "back": "Login",
+  "does": "The user creates a PIN, or selects \"Back to login\".",
+  "evidence": "Structure",
+  "sees": "The screen shows a back link \"Back to login\" and a keypad to create a PIN. It asks the user to enter the PIN and then confirm it."
+ },
+ "PINUnlock": {
+  "back": "",
+  "does": "The user enters the PIN to unlock the app, or selects \"Forgot PIN\" to go to Login.",
+  "evidence": "Structure, Behaviour",
+  "sees": "The screen shows a keypad with four PIN dots. It shows \"Forgot PIN\" and links to the policies."
+ },
+ "Photobook": {
+  "back": "The household screen",
+  "does": "The user swipes between the households, zooms a photo, reads the household caption, plays the slide show, and opens the gallery. The close control returns to the household.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen shows the photos of the households of a locality as a full-screen carousel with zoom. It has controls for the info, the play mode and the gallery."
+ },
+ "Profile": {
+  "back": "The previous screen",
+  "does": "The user edits the profile fields, copies the account number, previews the household profile, and selects \"Save\". Unsaved changes trigger a confirmation on leave.",
+  "evidence": "Structure tree, Behaviour",
+  "sees": "The screen shows the user photo and name, \"Preview Household Profile\", and a form with the sections Identification and Personal Information. The footer has \"Close\" and \"Save\"."
+ },
+ "QRCodeGenerate": {
+  "back": "The previous screen",
+  "does": "The user shows the QR code to be scanned.",
+  "evidence": "Structure",
+  "sees": "The screen shows the event name as title, the member photo, name and location, and the QR code of the member for the event."
+ },
+ "Search": {
+  "back": "The previous screen",
+  "does": "The user types a search, selects a tag, filters by country, and opens a result. A birthday search shows when the flag C2EnableSearchByBirthday is on.",
+  "evidence": "Structure, Behaviour",
+  "sees": "The screen shows a search field \"Search for households, members or places.\", a filter icon, and the tags All, Households, Members and Places. It shows the search results and the recent searches. The bottom bar is visible."
+ },
+ "Services": {
+  "back": "The previous screen",
+  "does": "The user drags services between the lists, removes a service, adds a service, and saves the new order.",
+  "evidence": "Structure, Data",
+  "sees": "The screen has the title \"Manage Services\". It shows the list \"Favourites\" and, when other services exist, the list \"Suggestions\". Each row has a drag handle."
+ },
+ "Splash": {
+  "back": "",
+  "does": "The user waits. The app then goes to PINRegister or PINUnlock.",
+  "evidence": "Structure, Behaviour",
+  "sees": "The screen shows a loading animation with the text \"Loading...\"."
+ },
+ "SupperMeeting_Carousel": {
+  "back": "The previous screen",
+  "does": "The user swipes between the supper meetings of the list that opened the screen.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen has the title \"Supper Meeting\" and a carousel of supper meeting detail pages."
+ },
+ "SupperMeeting_Details": {
+  "back": "The previous screen",
+  "does": "The user reads the meeting details and uses the actions to contact, bookmark or share it.",
+  "evidence": "Entry and routing, Structure tree",
+  "sees": "The screen has the title \"Supper Meeting\". It shows the details of one supper meeting and its action buttons."
+ },
+ "TermsAndPoliciesMenu": {
+  "back": "The previous screen",
+  "does": "The user selects a row to open the policy in a new tab.",
+  "evidence": "Structure, Behaviour",
+  "sees": "The screen has the title \"Terms & Policies\". It shows two rows: \"Terms and Conditions\" and \"Privacy Policy\"."
+ },
+ "TransportDetail": {
+  "back": "The previous screen",
+  "does": "The user reads the travel information and contacts the helpdesk.",
+  "evidence": "Structure",
+  "sees": "The screen shows the milestone name as title, and the transport details: operator, type, departure and arrival, baggage, trip duration, stops and seats. A footer lets the user contact the helpdesk."
+ },
+ "Updates_SingleList": {
+  "back": "",
+  "does": "The user searches, filters, selects a tag, marks all as read, and opens an update. With the flag C2EnableCarousel on, it opens HouseholdCarousel.",
+  "evidence": "Summary, Structure tree",
+  "sees": "The screen has the title \"Updates\" with the bell. It shows a search field \"Search updates\" with a filter icon, and the tags All, Birth, Marriage and Taken. It lists the updates by date range with \"Mark All as Read\". The bottom bar shows Updates as active."
+ },
+ "ViewDocuments": {
+  "back": "The previous screen",
+  "does": "The user opens a document to view or download it.",
+  "evidence": "Structure",
+  "sees": "The screen shows the event name as title. It shows the hint \"Tap the link/s below to view/download documents\" and the list of event documents. When none exist, it shows a message to contact the event organiser."
+ }
+}

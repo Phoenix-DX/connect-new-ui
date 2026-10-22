@@ -1,0 +1,76 @@
+{
+ "journey": "J5",
+ "title": "Read community updates",
+ "ranAt": "2026-10-21T17:45:28.312Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "HomeFeed",
+   "path": "/UBTConnect/HomeFeed",
+   "params": [],
+   "shot": "01-HomeFeed.png",
+   "maskedTexts": 11,
+   "action": {
+    "label": "Updates: View all.",
+    "kind": "click",
+    "element": {
+     "selector": "text=View all",
+     "index": 0
+    },
+    "ms": 3935
+   },
+   "calls": [
+    "DataActionGetDateRanges",
+    "DataActionGetCacheInfo",
+    "DataActionFetchUpdates",
+    "ServiceAPIGet_UI_UpdateItems_UnreadCount_All"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "Updates_SingleList",
+   "path": "/UBTConnect/Updates_SingleList",
+   "params": [],
+   "shot": "02-Updates_SingleList.png",
+   "maskedTexts": 267,
+   "stopped": true,
+   "calls": [
+    "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
+   ]
+  }
+ ],
+ "debug": "J5.debug/global-Updates_SingleList.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 1,
+  "screen": "Updates_SingleList",
+  "setup": false,
+  "error": "page.waitForURL: Timeout 25000ms exceeded.",
+  "path": "/UBTConnect/Updates_SingleList",
+  "blocked": [
+   "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
+  ]
+ },
+ "knownBlock": "Opening an update first marks it as read (ServiceAPIAction_UI_UpdateItem_MarkAsRead), a write that the read-only guard blocks.",
+ "seconds": 129,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "Updates_SingleList",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J5.debug/global-Updates_SingleList.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

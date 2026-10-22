@@ -1,0 +1,41 @@
+{
+ "journey": "J34",
+ "title": "Open a saved community business",
+ "ranAt": "2026-10-21T18:07:56.130Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [],
+ "debug": "J34.debug/global-HomeFeed.png",
+ "status": "blocked",
+ "blockedAt": {
+  "step": 0,
+  "screen": "HomeFeed",
+  "setup": true,
+  "error": "page.waitForURL: Timeout 25000ms exceeded.",
+  "path": "/UBTConnect/Bookmarks",
+  "blocked": [
+   "ActionGet_BookmarkPills_ByBookmarkCategoryIds"
+  ]
+ },
+ "knownBlock": "Starts from J33, which stops on TST: see J33 and the decision Bookmarks Q1.",
+ "seconds": 72,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "blocked",
+   "at": "HomeFeed",
+   "error": "page.waitForURL: Timeout 25000ms exceeded.",
+   "debug": "J34.debug/global-HomeFeed.png"
+  },
+  {
+   "account": "regional",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  },
+  {
+   "account": "local",
+   "status": "skipped",
+   "reason": "a policy waits for acceptance"
+  }
+ ]
+}

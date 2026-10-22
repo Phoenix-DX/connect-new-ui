@@ -1,0 +1,110 @@
+{
+ "journey": "J12",
+ "title": "Look at a Supper Meeting",
+ "ranAt": "2026-10-21T16:28:23.703Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "Locality_Details",
+   "path": "/UBTConnect/Locality_Details",
+   "params": [
+    "LocalityId",
+    "PreloadedLocalityLabel"
+   ],
+   "shot": "01-Locality_Details.png",
+   "maskedTexts": 57,
+   "action": {
+    "label": "Supper Meetings tab, then a Supper Meeting card.",
+    "kind": "click",
+    "element": {
+     "selector": "[data-block='ConnectCorePatterns.ImageCard_LazyLoading']",
+     "index": 0
+    },
+    "ms": 6174
+   },
+   "calls": [
+    "DataActionGet_Subdivision_List",
+    "ActionGetSignedImagesInBulk",
+    "DataActionFetchContactDetails",
+    "DataActionGetSubdivisionHouseholds",
+    "DataActionGetSubdivision",
+    "DataActionFetchNotes"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "SupperMeeting_Carousel",
+   "path": "/UBTConnect/SupperMeeting_Carousel",
+   "params": [
+    "In_StartingSupperMeetingId"
+   ],
+   "shot": "02-SupperMeeting_Carousel.png",
+   "maskedTexts": 41,
+   "action": {
+    "label": "Select a household.",
+    "kind": "click",
+    "element": {
+     "selector": ".splide__slide.is-active [data-block='Directory_Household_Blocks.Household_GalleryCard']",
+     "index": 0
+    },
+    "ms": 2809
+   },
+   "calls": [
+    "DataActionGetHousehold",
+    "DataActionGetHousehold_Coordinates",
+    "DataActionFetchContactDetails",
+    "DataActionFetchNotes",
+    "ActionGetSignedImagesInBulk"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "HouseholdCarousel",
+   "path": "/UBTConnect/HouseholdCarousel",
+   "params": [
+    "In_StartingHouseholdId"
+   ],
+   "shot": "03-HouseholdCarousel.png",
+   "maskedTexts": 83,
+   "action": {
+    "label": "The email icon of a member, then Email in the popup.",
+    "kind": "click",
+    "element": {
+     "selector": "text=\"Email\"",
+     "index": 0
+    },
+    "ms": 5509
+   },
+   "calls": [],
+   "blocked": []
+  },
+  {
+   "screen": "ContactByEmailMember",
+   "path": "/UBTConnect/ContactByEmailMember",
+   "params": [
+    "In_ContactName",
+    "In_ContactSurname",
+    "In_EmailTo",
+    "In_ContactLocality",
+    "In_EntityType",
+    "In_EntityId",
+    "In_ContactCountry",
+    "In_AvatarURL"
+   ],
+   "shot": "04-ContactByEmailMember.png",
+   "maskedTexts": 4
+  }
+ ],
+ "status": "verified",
+ "seconds": 143,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}

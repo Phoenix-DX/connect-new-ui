@@ -1,9 +1,11 @@
-<title>UBTConnect UI Flows</title>
+<meta charset="utf-8">
+<title>UBTConnect UI Flows and Journeys</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap">
 <style>
+[hidden] { display: none !important }   /* the publish skeleton has it too; the local preview needs it */
 /* Layout: a map of the OutSystems module. A sticky bar with three views (Overview, Health, Method); the overview reads
    top-down: key figures, the DEV-to-specification funnel, then UI flows grouped by area beside a "Needs attention"
    rail; a flow opens as its own view; a screen opens in a side panel with its TST screenshots. */
@@ -92,8 +94,9 @@ main { padding-block: 28px 64px; display: grid; gap: 28px }
 
 .overview-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 24px; align-items: start }
 @media (max-width: 960px) { .overview-grid { grid-template-columns: minmax(0, 1fr) } }
-.map-tools { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between }
-.search { flex: 1 1 220px; max-width: 360px }
+.map-tools { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; min-width: 0 }
+.map-tools select { max-width: 100%; min-width: 0 }
+.search { flex: 1 1 220px; max-width: 360px; min-width: 0 }
 .search input { width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit;
   background: var(--surface); color: var(--ink) }
 .area { display: grid; gap: 10px }
@@ -191,6 +194,90 @@ dl.kv dd { margin: 0; min-width: 0 }
 .prose { display: grid; gap: 12px; max-width: 72ch }
 .prose p, .prose li { color: var(--ink-2) }
 .empty { color: var(--muted); font-size: .9rem }
+/* journeys: a chain of screens with the action between two steps */
+.jgroups { display: grid; gap: 28px }
+.jgroup { display: grid; gap: 12px }
+.journey { scroll-margin-top: 80px }
+.journey > header { display: grid; gap: 4px }
+.journey > header h3 { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap }
+.jid { font-family: var(--font-mono); font-size: .78rem; color: var(--muted); font-weight: 500 }
+.chain { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px 0 }
+.step { width: 148px; display: grid; gap: 6px; background: none; border: 0; padding: 0; text-align: left; font: inherit;
+  color: inherit; cursor: pointer }
+.step .thumb { height: 176px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface-2) }
+.step .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block }
+.step .thumb .none { height: 100%; display: grid; place-items: center; padding: 10px; text-align: center; font-size: .74rem;
+  color: var(--muted) }
+.step:hover .thumb { border-color: var(--accent) }
+.step .sname { font-family: var(--font-mono); font-size: .76rem; font-weight: 500; overflow-wrap: anywhere; color: var(--accent);
+  text-decoration: underline; text-underline-offset: 2px }
+.step .sflow { font-size: .74rem; color: var(--muted) }
+.how { width: 124px; padding: 70px 10px 0; display: grid; gap: 4px; justify-items: center; text-align: center;
+  font-size: .76rem; color: var(--ink-2); line-height: 1.35 }
+.how .arrow { color: var(--accent); font-size: 1.2rem; line-height: 1 }
+.jnotes { margin: 0; padding-left: 18px; font-size: .82rem; color: var(--ink-2) }
+.chip.ok { background: color-mix(in srgb, var(--in) 14%, var(--surface)); color: var(--accent) }
+.chip.ok::before { background: var(--in); border-radius: 50% }
+.chip.stop { background: color-mix(in srgb, var(--dev) 14%, var(--surface)); color: var(--dev-ink) }
+.chip.stop::before { background: var(--dev); clip-path: polygon(50% 0, 100% 100%, 0 100%); border-radius: 0 }
+.chip.flag { background: var(--surface-2); color: var(--ink-2) }
+.chip.flag::before { background: transparent; border: 1.5px dashed var(--muted) }
+.journey h3 .chip { font-family: var(--font-body); font-size: .74rem }
+.pre, .jstop { font-size: .84rem; color: var(--ink-2); margin: 0 }
+.jstop { border-left: 3px solid var(--dev); padding: 4px 0 4px 10px }
+.step.stop .thumb { border: 2px solid var(--dev) }
+.step .thumb { position: relative }
+.stopmark { position: absolute; left: 6px; right: 6px; bottom: 6px; background: var(--dev); color: #fff; font-size: .7rem;
+  font-weight: 600; border-radius: 6px; padding: 2px 6px; text-align: center }
+.filters { display: flex; flex-wrap: wrap; gap: 6px; align-items: center }
+.filters button { font: inherit; font-size: .84rem; padding: 5px 12px; border-radius: 999px; border: 1px solid var(--line);
+  background: var(--surface); color: var(--ink-2); cursor: pointer }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--surface); border-color: var(--ink) }
+.linkpill { border: 0; cursor: pointer; font: inherit; font-family: var(--font-mono); font-size: .76rem }
+.linkpill:hover { color: var(--accent) }
+.jtag { font-family: var(--font-body); font-size: .68rem; color: var(--accent); font-weight: 600 }
+table.steps td { font-size: .84rem }
+table.steps td:nth-child(3) { min-width: 220px; max-width: 360px }
+.appmap svg { min-width: 1000px }
+.appmap.focus .me:not(.on) { opacity: .14 }
+.appmap .mn rect { fill: var(--surface); stroke: var(--line) }
+.appmap .mn text { fill: var(--ink); font-size: 12.5px }
+.appmap .mn.on rect { fill: color-mix(in srgb, var(--in) 16%, var(--surface)); stroke: var(--in); stroke-width: 2 }
+.appmap .mn.dim { opacity: .45 }
+.appmap .mn .mstep { fill: var(--accent); font-weight: 700; font-family: var(--font-mono); font-size: 11px }
+.appmap a .mn:hover rect { stroke: var(--accent); stroke-width: 2 }
+.appmap .me { fill: none; stroke: var(--out); opacity: .55 }
+.appmap .me.on { stroke: var(--accent); opacity: 1 }
+.map-tools select { font: inherit; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface);
+  color: var(--ink); max-width: 100% }
+.jlinks { display: flex; flex-wrap: wrap; gap: 6px }
+/* flow map: where users come from, the screens of the flow, where they go */
+.fmap { overflow-x: auto }
+.fmap svg { display: block; min-width: 660px; width: 100%; height: auto; font-family: var(--font-body) }
+.fmap .n rect { fill: var(--surface); stroke: var(--line) }
+.fmap .n.mid rect { fill: color-mix(in srgb, var(--in) 12%, var(--surface)); stroke: var(--in) }
+.fmap .n.mid.out rect { fill: url(#hatch); stroke: var(--out) }
+.fmap .n.shared rect { stroke: var(--accent); stroke-dasharray: 4 3 }
+.fmap .n text { fill: var(--ink); font-size: 12px }
+.fmap .n.mid text { font-family: var(--font-mono); font-size: 11.5px }
+.fmap .n .cnt { fill: var(--muted); font-size: 11px }
+.fmap a .n:hover rect, .fmap .n.mid:hover rect { stroke: var(--accent); stroke-width: 2 }
+.fmap .n.mid { cursor: pointer }
+.fmap .e { fill: none; stroke: var(--out); stroke-width: 1.2; opacity: .8 }
+.fmap .e.int { stroke: var(--accent); stroke-width: 1.6; opacity: 1 }
+.fmap .colh { fill: var(--muted); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 600 }
+.fmap .hatch-a { stroke: var(--out); stroke-width: 2 }
+.fmap .hatch-bg { fill: color-mix(in srgb, var(--out) 18%, var(--surface)) }
+.fmap .mk-e { fill: var(--out) }
+.fmap .mk-i { fill: var(--accent) }
+@media (max-width: 560px) {
+  .chain { flex-direction: column; flex-wrap: nowrap }
+  .step { width: 100%; grid-template-columns: 64px 1fr; align-items: center; column-gap: 12px }
+  .step .thumb { height: 92px; grid-row: span 2 }
+  .how { width: auto; padding: 4px 0 4px 76px; justify-items: start; text-align: left; grid-template-columns: auto 1fr;
+    align-items: center; column-gap: 8px }
+  .how .arrow { transform: rotate(90deg) }
+}
 @media (prefers-reduced-motion: reduce) { * { transition: none !important } }
 @media (max-width: 560px) {
   .frow { grid-template-columns: 1fr; gap: 2px }
@@ -211,6 +298,8 @@ dl.kv dd { margin: 0; min-width: 0 }
     <a class="brand" href="#overview">UBTConnect UI Flows <small>OutSystems app on TST</small></a>
     <nav class="views" aria-label="Views">
       <a href="#overview" data-view="overview">Overview</a>
+      <a href="#journeys" data-view="journeys">Journeys</a>
+      <a href="#map" data-view="map">App map</a>
       <a href="#health" data-view="health">Health</a>
       <a href="#method" data-view="method">Method</a>
     </nav>
@@ -268,6 +357,7 @@ function viewOverview() {
     <span class="eyebrow">OutSystems module UBTConnect</span>
     <h1>UI flows, scope and specification</h1>
     <p>This page shows the UI flows of the UBTConnect OutSystems app on TST. It also shows the migration analysis: the screens in scope, the reasons for the others, and the specifications.</p>
+    <p><a href="#journeys">Journeys</a> shows how users go from screen to screen in the main tasks, with a run on TST. <a href="#map">App map</a> shows the journeys on a map of the UI flows.</p>
     <p class="fresh">Data from the repository at commit <span class="mono">${esc(DATA.meta.commit)}</span>, built ${esc(DATA.meta.builtAt)}. DEV snapshot ${esc(DATA.meta.devTakenAt)}.</p>
   </section>
   <section class="kpis" aria-label="Key figures">
@@ -367,11 +457,13 @@ function viewFlow(name) {
       <span class="tag">${plural(f.blocks.length, 'block')} of its own</span>
       ${f.otherModuleBlocks.length ? `<span class="tag">${plural(f.otherModuleBlocks.length, 'block')} from other modules</span>` : ''}
       ${f.testOrDev ? '<span class="tag warn">Test, development or deprecated flow</span>' : ''}</div>
+    ${journeyLinks(journeysOf(f.screens), 'Main journeys through this flow')}
     ${f.screens.length ? `${stack(f.counts, true)}<div class="legend"><span><i class="sw in"></i>${f.counts.in} in scope</span><span><i class="sw out"></i>${f.counts.out} out of scope</span><span><i class="sw dev"></i>${f.counts.dev} DEV only</span></div>` : ''}
   </section>
   ${screens.length ? `<section class="panel" aria-labelledby="scr-h"><header><h2 id="scr-h">Screens</h2><span class="muted" style="font-size:.84rem">Select a screen for its TST screenshots and details</span></header>
     <div class="tablewrap"><table><thead><tr><th>Screen</th><th>Scope</th><th>Specification</th><th>Screenshots</th></tr></thead>
     <tbody>${screens.map(screenRow).join('')}</tbody></table></div></section>
+  ${flowMapPanel(f)}
   <section class="panel" aria-labelledby="nav-h"><header><h2 id="nav-h">How users move</h2><span class="muted" style="font-size:.84rem">Filled: same flow. Outlined: another flow. Dashed: links of a shared block.</span></header>
     <div class="tablewrap"><table><thead><tr><th>Screen</th><th>Opens from</th><th>Leads to</th></tr></thead><tbody>
     ${screens.filter((s) => s.onTST).map((s) => `<tr><td class="mono">${esc(s.name)}</td><td>${screenPills(s.reachedFrom, name, s.reachedShared)}</td><td>${screenPills(s.navOut, name, s.navShared)}</td></tr>`).join('') || '<tr><td colspan="3" class="empty">No screen of this flow is on TST.</td></tr>'}
@@ -382,6 +474,272 @@ function viewFlow(name) {
     </tbody></table></div>` : '<p class="empty">This flow has no blocks of its own.</p>'}
     ${f.otherModuleBlocks.length ? `<details><summary>Blocks from other modules used by these screens (${f.otherModuleBlocks.length})</summary>
       ${Object.entries(byModule).map(([m, bs]) => `<p style="margin-bottom:8px"><span class="eyebrow">${esc(m)}</span><br><span class="pills">${bs.map((b) => `<span class="pill">${esc(b)}</span>`).join('')}</span></p>`).join('')}</details>` : ''}
+  </section>`;
+}
+
+function journeysOf(names) {
+  const set = new Set(names);
+  return DATA.journeys.journeys.filter((j) => j.steps.some((st) => set.has(st.screen)));
+}
+
+function journeyLinks(list, label) {
+  if (!list.length) return '';
+  return `<div class="jlinks" aria-label="${esc(label)}"><span class="muted" style="font-size:.84rem">${esc(label)}:</span>${list.map((j) => `<a class="pill ext" href="#journey-${esc(j.id)}">${esc(j.id)} ${esc(j.title)}</a>`).join('')}</div>`;
+}
+
+function journeyStatus(j) {
+  const r = j.run || {};
+  if (r.status === 'verified') return { cls: 'ok', text: r.account ? `Verified on TST · ${r.account} account` : 'Verified on TST' };
+  if (r.status === 'blocked') return { cls: 'stop', text: `Stops at ${r.blockedAt && r.blockedAt.screen ? r.blockedAt.screen : 'a step'}` };
+  if (j.requires) return { cls: 'flag', text: `Needs ${j.requires.flag} ${j.requires.value}` };
+  return { cls: 'flag', text: 'Not run on TST' };
+}
+
+function friendlyError(b) {
+  const e = b && b.error;
+  if (!e) return '';
+  const now = ((b.path || '').split('/').pop()) || '';
+  if (/^no visible element/.test(e)) return 'The element for the next step is not on the screen. The test account has no data for it, or the screen differs.';
+  const m = /expected (\w+), the app shows (\S+)/.exec(e);
+  if (m) return `The app opened ${m[2].split('/').pop()} instead of ${m[1]}.`;
+  if (/^sent to/.test(e)) return 'The app asked for the sign-in or the PIN again.';
+  if (/Timeout|waitForURL/i.test(e)) return now && now.toLowerCase() !== String(b.screen).toLowerCase() ? `The app opened ${now}, not the next screen.` : 'The next screen did not open in time.';
+  return e;
+}
+
+function stepTile(st, stop) {
+  const s = DATA.screens[st.screen];
+  const img = (st.run && st.run.img) || (s && s.shots && s.shots[0] && s.shots[0].img);
+  const flow = s ? DATA.flows[s.flow] : null;
+  return `<button class="step${stop ? ' stop' : ''}" data-screen="${esc(st.screen)}" aria-label="${esc(st.screen)}, open details">
+    <span class="thumb">${img ? `<img src="${esc(img)}" alt="" loading="lazy">` : '<span class="none">No screenshot on TST</span>'}${stop ? '<span class="stopmark">Run stops here</span>' : ''}</span>
+    <span><span class="sname">${esc(st.screen)}</span><br><span class="sflow">${esc(flow ? flow.label : '')}</span>
+    ${s && s.scope !== 'in' ? `<br>${chip(s.scope)}` : ''}</span></button>`;
+}
+
+function edgeJourneys(a, b) {
+  return DATA.journeys.journeys.filter((j) => j.steps.some((st, i) => st.screen === a && j.steps[i + 1] && j.steps[i + 1].screen === b));
+}
+
+function branches(screen, next) {
+  const s = DATA.screens[screen];
+  if (!s) return '';
+  const others = s.navOut.filter((t) => t !== next && t !== EXTERNAL);
+  if (!others.length) return '<span class="muted">None</span>';
+  return `<div class="pills">${others.map((t) => {
+    const js = edgeJourneys(screen, t);
+    return `<button class="pill linkpill" data-screen="${esc(t)}" title="${js.length ? 'In ' + js.map((j) => j.id).join(', ') : 'In no main journey'}">${esc(t)}${js.length ? ` <span class="jtag">${js.map((j) => esc(j.id)).join(' ')}</span>` : ''}</button>`;
+  }).join('')}</div>`;
+}
+
+function stepTable(j) {
+  return `<div class="tablewrap"><table class="steps"><thead><tr><th>#</th><th>Screen</th><th>What the user sees</th><th>Action to the next step</th><th>Other ways from here</th></tr></thead><tbody>
+  ${j.steps.map((st, i) => {
+    const s = DATA.screens[st.screen] || {};
+    const a = st.action;
+    const r = st.run && st.run.action;
+    const el = r && r.element ? r.element.selector + (r.element.index ? ` (item ${r.element.index + 1})` : '') : '';
+    const calls = st.run && st.run.calls && st.run.calls.length ? st.run.calls : [];
+    return `<tr><td class="num">${i + 1}</td>
+      <td><button class="linkbtn" data-screen="${esc(st.screen)}">${esc(st.screen)}</button>${s.back ? `<div class="why">Back: ${esc(s.back)}</div>` : ''}</td>
+      <td>${esc(s.sees || '')}${s.does ? `<div class="why">${esc(s.does)}</div>` : ''}</td>
+      <td>${a ? `${esc(a.label)}${el ? `<div class="why mono">${esc(el)}</div>` : ''}${calls.length ? `<div class="why">Calls: <span class="mono">${calls.map(esc).join(', ')}</span></div>` : ''}${st.run && st.run.blocked && st.run.blocked.length ? `<div class="why">Blocked by the read-only guard: <span class="mono">${st.run.blocked.map(esc).join(', ')}</span></div>` : ''}` : '<span class="muted">End of the journey</span>'}</td>
+      <td>${a ? branches(st.screen, j.steps[i + 1].screen) : ''}</td></tr>`;
+  }).join('')}</tbody></table></div>`;
+}
+
+let journeyFilter = 'all';
+function viewJourneys(focus) {
+  const J = DATA.journeys;
+  const inScope = Object.values(DATA.screens).filter((s) => s.scope === 'in').map((s) => s.name);
+  const covered = new Set(J.journeys.flatMap((j) => j.steps.map((st) => st.screen)));
+  const cnt = { ok: 0, stop: 0, flag: 0 };
+  J.journeys.forEach((j) => { cnt[journeyStatus(j).cls] += 1; });
+  const ranAt = J.journeys.map((j) => j.run && j.run.ranAt).filter(Boolean).sort().pop();
+  main.innerHTML = `
+  <section class="intro"><span class="eyebrow">Journeys</span><h1>How users move through the app</h1>
+    <p>Each journey is a main task in the TST app, and a source for end-to-end tests. Each arrow is a link in the compiled code of the TST app. The text on the arrow is the action on the screen. A run on TST, read only, checks each journey step by step.</p>
+    <p class="fresh">${ranAt ? `Last run on TST: ${esc(ranAt.slice(0, 16).replace('T', ' '))} UTC, phone width ${esc((J.journeys.find((j) => j.run && j.run.viewport) || {}).run.viewport || '')}.` : 'No run on TST yet.'} The journeys use the flag values of TST.</p></section>
+  <section class="kpis" aria-label="Journey figures">
+    <div class="kpi"><b>${J.journeys.length}</b><span>Journeys</span><small>in ${J.groups.length} groups</small></div>
+    <div class="kpi"><b>${inScope.filter((n) => covered.has(n)).length}<span class="muted" style="font-size:1rem"> / ${inScope.length}</span></b><span>Screens in scope covered</span><small>${J.notInAJourney.map((x) => esc(x.screen)).join(', ')}: no way in</small></div>
+    <div class="kpi"><b>${cnt.ok}</b><span>Verified on TST</span><small>each step opened the next screen</small></div>
+    <div class="kpi"><b>${cnt.stop}</b><span>Stop on TST</span><small>no data for the test account, or a write</small></div>
+    <div class="kpi"><b>${cnt.flag}</b><span>Need another flag value</span><small>not run on TST</small></div>
+  </section>
+  <div class="filters" role="group" aria-label="Show journeys">${[['all', 'All'], ['ok', 'Verified on TST'], ['stop', 'Stop on TST'], ['flag', 'Need another flag value']].map(([k, t]) => `<button data-jfilter="${k}" aria-pressed="${journeyFilter === k}">${t}</button>`).join('')}
+    <a class="pill ext" href="#map" style="margin-left:auto">See the journeys on the app map</a></div>
+  <div class="jgroups">${J.groups.map((g) => {
+    const list = J.journeys.filter((j) => j.group === g && (journeyFilter === 'all' || journeyStatus(j).cls === journeyFilter));
+    if (!list.length) return '';
+    return `<section class="jgroup" aria-label="${esc(g)}"><h2>${esc(g)}</h2>${list.map((j) => {
+      const stt = journeyStatus(j);
+      const r = j.run || {};
+      const stopAt = r.status === 'blocked' && r.blockedAt && !r.blockedAt.setup ? r.blockedAt.screen : null;
+      const stopNote = r.status === 'blocked' ? `<p class="jstop"><b>On TST:</b> the run stops at ${esc(r.blockedAt && r.blockedAt.screen)}${r.blockedAt && r.blockedAt.setup ? ' (a setup step)' : ''}. ${esc(friendlyError(r.blockedAt))}${j.knownBlock ? ` <b>Known reason:</b> ${esc(j.knownBlock)}` : ''}</p>` : '';
+      const flagNote = r.status === 'not-run' && j.requires ? `<p class="jstop"><b>On TST:</b> not run. ${esc(r.reason || '')}</p>` : '';
+      const tried = r.attempts && r.attempts.length ? `<p class="muted" style="font-size:.82rem">Accounts tried: ${r.attempts.map((t) => `${esc(t.account)} (${esc(t.status === 'verified' ? 'verified' : t.status === 'skipped' ? 'left out' + (t.reason ? ': ' + t.reason : '') : 'stops' + (t.at ? ' at ' + t.at : ''))})`).join(', ')}.</p>` : '';
+      const from = j.start && j.start.journey ? `<p class="muted" style="font-size:.82rem">Starts where <a href="#journey-${esc(j.start.journey)}">${esc(j.start.journey)}</a> reaches ${esc(j.steps[0].screen)}.</p>` : '';
+      return `
+      <article class="panel journey" id="journey-${esc(j.id)}">
+        <header><h3><span class="jid">${esc(j.id)}</span>${esc(j.title)} <span class="chip ${stt.cls}">${esc(stt.text)}</span></h3>
+          <p class="muted" style="font-size:.88rem">${esc(j.purpose)}</p>${from}
+          ${j.preconditions && j.preconditions.length ? `<p class="pre"><b>Before the journey:</b> ${j.preconditions.map(esc).join('; ')}.</p>` : ''}</header>
+        <div class="chain">${j.steps.map((st, i) => stepTile(st, st.screen === stopAt && i === j.steps.findIndex((x) => x.screen === stopAt)) + (i < j.steps.length - 1
+          ? `<div class="how"><span class="arrow" aria-hidden="true">→</span><span>${esc(st.action ? st.action.label : '')}</span></div>` : '')).join('')}</div>
+        ${stopNote}${flagNote}${tried}
+        ${j.notes && j.notes.length ? `<ul class="jnotes">${j.notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul>` : ''}
+        <details><summary>Steps in detail</summary>${stepTable(j)}</details>
+      </article>`;
+    }).join('')}</section>`;
+  }).join('') || '<p class="empty">No journey has this status.</p>'}</div>`;
+  main.querySelectorAll('[data-jfilter]').forEach((b) => b.addEventListener('click', () => { journeyFilter = b.dataset.jfilter; viewJourneys(); labelCells(); }));
+  if (focus) {
+    const el = document.getElementById(focus);
+    if (el) requestAnimationFrame(() => el.scrollIntoView({ block: 'start' }));
+  }
+}
+
+/* the app map: UI flows in columns by part of the app; a selected journey shows as a numbered path */
+const MAP_COLUMNS = [
+  { title: 'Start', areas: ['Start and sign-in', 'Share'] },
+  { title: 'Home', areas: ['Home and messages'] },
+  { title: 'Directory', areas: ['Directory: countries, localities, search', 'Directory: households', 'Directory: supper meeting, OSG, community business'] },
+  { title: 'Programs', areas: ['Orbit', 'LDM', 'Assemble'] },
+  { title: 'Saved items', areas: ['Bookmarks'] },
+  { title: 'Menu', areas: ['Menu, profile and contact', 'Deprecated'] },
+];
+let mapJourney = '';
+function viewMap() {
+  const flowsOn = (a) => (DATA.areas.find((x) => x.name === a) || { flows: [] }).flows.filter((f) => DATA.flows[f] && DATA.flows[f].screens.some((n) => DATA.screens[n].onTST));
+  const NW = 162, NH = 30, GAPY = 9, COLW = 202, TOP = 44, AREAGAP = 14;
+  const pos = {};
+  let H = 0;
+  MAP_COLUMNS.forEach((c, ci) => {
+    let y = TOP;
+    c.areas.forEach((a) => {
+      const fl = flowsOn(a);
+      if (!fl.length) return;
+      fl.forEach((f) => { pos[f] = { x: ci * COLW, y, col: ci }; y += NH + GAPY; });
+      y += AREAGAP;
+    });
+    H = Math.max(H, y);
+  });
+  const W = (MAP_COLUMNS.length - 1) * COLW + NW + 70;   // room for the arcs of the last column
+  const links = {};
+  Object.values(DATA.screens).filter((s) => s.onTST).forEach((s) => s.navOut.forEach((t) => {
+    const ts = DATA.screens[t];
+    if (!ts || ts.flow === s.flow || !pos[s.flow] || !pos[ts.flow]) return;
+    const k = `${s.flow}>${ts.flow}`; links[k] = (links[k] || 0) + 1;
+  }));
+  const path = (a, b) => {
+    const A = pos[a], B = pos[b];
+    const ay = A.y + NH / 2, by = B.y + NH / 2;
+    if (A.col === B.col) { const x = A.x + NW, bulge = x + 24 + Math.min(Math.abs(ay - by) / 8, 40); return `M${x},${ay} C${bulge},${ay} ${bulge},${by} ${x + 4},${by}`; }
+    const fwd = B.col > A.col;
+    const x1 = fwd ? A.x + NW : A.x, x2 = fwd ? B.x : B.x + NW;
+    const dx = (x2 - x1) / 2;
+    return `M${x1},${ay} C${x1 + dx},${ay} ${x2 - dx},${by} ${x2 + (fwd ? -4 : 4)},${by}`;
+  };
+  const j = DATA.journeys.journeys.find((x) => x.id === mapJourney);
+  const jFlows = j ? j.steps.map((st) => DATA.screens[st.screen].flow) : [];
+  const jEdges = new Set(); const order = {};
+  jFlows.forEach((f, i) => { (order[f] = order[f] || []).push(i + 1); if (i && jFlows[i - 1] !== f) jEdges.add(`${jFlows[i - 1]}>${f}`); });
+  const edges = Object.entries(links).map(([k, n]) => {
+    const [a, b] = k.split('>');
+    const on = jEdges.has(k);
+    return `<path class="me${on ? ' on' : ''}" d="${path(a, b)}" style="stroke-width:${on ? 3 : Math.min(0.8 + n * 0.35, 4)}" marker-end="url(#${on ? 'mm-on' : 'mm'})"><title>${esc(DATA.flows[a].label)} → ${esc(DATA.flows[b].label)}: ${n} link(s)</title></path>`;
+  });
+  [...jEdges].filter((k) => !links[k]).forEach((k) => { const [a, b] = k.split('>'); if (pos[a] && pos[b]) edges.push(`<path class="me on" d="${path(a, b)}" style="stroke-width:3" marker-end="url(#mm-on)"/>`); });
+  const nodes = Object.entries(pos).map(([f, p]) => {
+    const fl = DATA.flows[f];
+    const on = order[f];
+    return `<a href="#flow-${esc(f)}"><g class="mn${on ? ' on' : ''}${j && !on ? ' dim' : ''}"><rect x="${p.x}" y="${p.y}" width="${NW}" height="${NH}" rx="8"/><text x="${p.x + 9}" y="${p.y + 19}">${esc((n => fl.label.length > n ? fl.label.slice(0, n - 1) + '…' : fl.label)(on ? 24 - 2 * on.length : 24))}</text>${on ? `<text class="mstep" x="${p.x + NW - 7}" y="${p.y + 19}" text-anchor="end">${on.join(' ')}</text>` : ''}<title>${esc(f)} · ${plural(fl.screens.length, 'screen')}</title></g></a>`;
+  });
+  main.innerHTML = `
+  <section class="intro"><span class="eyebrow">App map</span><h1>The app as a map of UI flows</h1>
+    <p>Each box is a UI flow with screens on TST, in columns by part of the app. A line is a link between screens of two flows; a thicker line has more links. Select a journey to see its path. The numbers are the steps.</p></section>
+  <section class="panel">
+    <div class="map-tools"><label class="search"><span class="eyebrow">Journey</span>
+      <select id="map-journey"><option value="">No journey</option>${DATA.journeys.groups.map((g) => `<optgroup label="${esc(g)}">${DATA.journeys.journeys.filter((x) => x.group === g).map((x) => `<option value="${esc(x.id)}"${x.id === mapJourney ? ' selected' : ''}>${esc(x.id)} ${esc(x.title)}</option>`).join('')}</optgroup>`).join('')}</select></label>
+      ${j ? `<a class="pill ext" href="#journey-${esc(j.id)}">Open ${esc(j.id)} in Journeys</a>` : ''}</div>
+    ${j ? `<p class="muted" style="font-size:.86rem">${j.steps.map((st, i) => `${i + 1}. ${esc(st.screen)}`).join(' → ')}</p>` : ''}
+    <div class="fmap appmap${j ? ' focus' : ''}"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Map of the UI flows of the app">
+      <defs><marker id="mm" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path class="mk-e" d="M0,0 L8,4 L0,8 z"/></marker>
+        <marker id="mm-on" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="5" markerHeight="5" orient="auto"><path class="mk-i" d="M0,0 L8,4 L0,8 z"/></marker></defs>
+      ${MAP_COLUMNS.map((c, ci) => `<text class="colh" x="${ci * COLW}" y="18">${esc(c.title)}</text>`).join('')}
+      ${edges.join('')}${nodes.join('')}
+    </svg></div>
+  </section>`;
+  document.getElementById('map-journey').addEventListener('change', (e) => { mapJourney = e.target.value; viewMap(); });
+}
+
+const EXTERNAL = 'External map link';
+function flowMapPanel(f) {
+  const mids = f.screens.map((n) => DATA.screens[n]).filter((s) => s.onTST);
+  if (!mids.length) return '';
+  const left = new Map(), right = new Map(), internal = new Set();
+  const node = (map, key, label, kind) => { if (!map.has(key)) map.set(key, { key, label, kind, to: new Set() }); return map.get(key); };
+  const flowNode = (map, flowName) => {
+    const fl = DATA.flows[flowName];
+    return node(map, flowName, fl ? fl.label : flowName, 'flow');
+  };
+  mids.forEach((s) => {
+    s.reachedFrom.forEach((src) => {
+      const fs = DATA.screens[src] ? DATA.screens[src].flow : src;
+      if (fs === f.name) internal.add(`${src}>${s.name}`); else flowNode(left, fs).to.add(s.name);
+    });
+    s.reachedShared.forEach((lab) => node(left, '@' + lab, lab, 'shared').to.add(s.name));
+    s.navOut.forEach((t) => {
+      if (t === EXTERNAL) { node(right, '@ext', EXTERNAL, 'shared').to.add(s.name); return; }
+      const ft = DATA.screens[t] ? DATA.screens[t].flow : t;
+      if (ft === f.name) internal.add(`${s.name}>${t}`); else flowNode(right, ft).to.add(s.name);
+    });
+    s.navShared.forEach((lab) => node(right, '@' + lab, lab, 'shared').to.add(s.name));
+  });
+  const order = (map) => [...map.values()].sort((a, b) => (a.kind === b.kind ? b.to.size - a.to.size || a.label.localeCompare(b.label) : a.kind === 'shared' ? -1 : 1));
+  const L = order(left), R = order(right);
+  const RH = 40, NH = 30, TOP = 34, XL = 0, WL = 196, XM = 300, WM = 236, XR = 640, WR = 196, W = XR + WR + 4;
+  const rows = Math.max(L.length, mids.length, R.length, 1);
+  const H = TOP + rows * RH + 6;
+  const ys = (n) => { const off = TOP + ((rows - n) * RH) / 2; return (i) => off + i * RH; };
+  const yl = ys(L.length), ym = ys(mids.length), yr = ys(R.length);
+  const midY = {}; mids.forEach((s, i) => { midY[s.name] = ym(i) + NH / 2; });
+  const curve = (x1, y1, x2, y2) => `M${x1},${y1} C${x1 + 60},${y1} ${x2 - 60},${y2} ${x2 - 6},${y2}`;
+  const clip = (t, n) => (t.length > n ? t.slice(0, n - 1) + '…' : t);
+  const edges = [], nodes = [];
+  L.forEach((n, i) => {
+    const y = yl(i) + NH / 2;
+    n.to.forEach((m) => edges.push(`<path class="e" d="${curve(XL + WL, y, XM, midY[m])}" marker-end="url(#mk-e)"><title>${esc(n.label)} → ${esc(m)}</title></path>`));
+  });
+  R.forEach((n, i) => {
+    const y = yr(i) + NH / 2;
+    n.to.forEach((m) => edges.push(`<path class="e" d="${curve(XM + WM, midY[m], XR, y)}" marker-end="url(#mk-e)"><title>${esc(m)} → ${esc(n.label)}</title></path>`));
+  });
+  [...internal].forEach((k) => {
+    const [a, b] = k.split('>');
+    if (midY[a] === undefined || midY[b] === undefined || a === b) return;
+    const bulge = XM + WM + Math.min(16 + (Math.abs(midY[a] - midY[b]) / RH) * 11, 92);
+    edges.push(`<path class="e int" d="M${XM + WM},${midY[a]} C${bulge},${midY[a]} ${bulge},${midY[b]} ${XM + WM + 6},${midY[b]}" marker-end="url(#mk-i)"><title>${esc(a)} → ${esc(b)} (same flow)</title></path>`);
+  });
+  const side = (n, x, y, w, dir) => {
+    const inner = `<g class="n ${n.kind}"><rect x="${x}" y="${y}" width="${w}" height="${NH}" rx="7"/><text x="${x + 10}" y="${y + 19}">${esc(clip(n.kind === 'shared' ? n.label.split(' (')[0] : n.label, 24))}</text><text class="cnt" x="${x + w - 10}" y="${y + 19}" text-anchor="end">${n.to.size}</text><title>${esc(n.kind === 'flow' ? `Flow ${n.key}: ${dir} ${n.to.size} screen(s) of this flow` : `${n.label}: ${dir} ${n.to.size} screen(s) of this flow`)}</title></g>`;
+    return n.kind === 'flow' && DATA.flows[n.key] ? `<a href="#flow-${esc(n.key)}">${inner}</a>` : inner;
+  };
+  L.forEach((n, i) => nodes.push(side(n, XL, yl(i), WL, 'opens')));
+  R.forEach((n, i) => nodes.push(side(n, XR, yr(i), WR, 'is opened from')));
+  mids.forEach((s, i) => nodes.push(`<g class="n mid ${s.scope}" data-screen="${esc(s.name)}" role="button" tabindex="0" aria-label="${esc(s.name)}, open details"><rect x="${XM}" y="${ym(i)}" width="${WM}" height="${NH}" rx="7"/><text x="${XM + 10}" y="${ym(i) + 19}">${esc(clip(s.name, 30))}</text><title>${esc(s.name)} · ${esc(SCOPE[s.scope])}</title></g>`));
+  return `<section class="panel" aria-labelledby="map-h"><header><h2 id="map-h">Map of this flow</h2><span class="muted" style="font-size:.84rem">Left: where users come from. Right: where they go. The number is the count of screens of this flow.</span></header>
+    <div class="fmap"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Navigation map of the flow ${esc(f.name)}">
+      <defs>
+        <marker id="mk-e" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="mk-e" d="M0,0 L8,4 L0,8 z"/></marker>
+        <marker id="mk-i" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path class="mk-i" d="M0,0 L8,4 L0,8 z"/></marker>
+        <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect class="hatch-bg" width="6" height="6"/><line class="hatch-a" x1="0" y1="0" x2="0" y2="6"/></pattern>
+      </defs>
+      <text class="colh" x="${XL}" y="14">Comes from</text><text class="colh" x="${XM}" y="14">Screens of this flow</text><text class="colh" x="${XR}" y="14">Leads to</text>
+      ${edges.join('')}${nodes.join('')}
+    </svg></div>
+    <div class="legend"><span><i class="sw in"></i>Screen in scope</span><span><i class="sw out"></i>Screen out of scope</span><span><i class="sw" style="border:1px dashed var(--accent)"></i>Shared block or app start</span><span><i class="sw" style="background:var(--accent);height:3px;vertical-align:3px"></i>Link inside the flow</span></div>
   </section>`;
 }
 
@@ -415,6 +773,7 @@ function viewMethod() {
   <section class="prose">
     <p>Facts come from three sources: the compiled code of the TST app, captures of each screen state on TST, and the OutSystems model on DEV. The captures mask personal data. The analysis only reads from TST and changes no data. TST is the source of truth. DEV is a reference only.</p>
     <p>Where the sources did not answer a question, the project owner decided. Each scope decision has a reason and a date.</p>
+    <p>Navigation comes from the links in the compiled code of each screen. A link that a shared block adds to many screens (the app layout, the bottom bar) shows once, as a label. The journeys are main tasks. Each step is a link in the TST code, with the flag values of TST.</p>
     <p>A specification describes one screen of the original app: layout, blocks, states (default, loading, offline), data calls, navigation, flags and texts. Each fact has a reference to the compiled code or to a capture.</p>
   </section>
   <section class="panel" aria-labelledby="dec-h"><header><h2 id="dec-h">Scope decisions</h2><span class="muted" style="font-size:.84rem">The final result of each decision</span></header>
@@ -448,7 +807,9 @@ function openScreen(name) {
       ${s.reason ? `<p style="color:var(--ink-2)">${esc(s.reason)}</p>` : ''}
       ${s.reopen ? `<p style="color:var(--ink-2)"><b>Reopen:</b> ${esc(s.reopen)}</p>` : ''}
       ${s.date ? `<p class="muted" style="font-size:.82rem">Decided by the project owner, ${esc(s.date)}</p>` : ''}
+      ${journeyLinks(journeysOf([s.name]), 'Main journeys')}
       <button class="close" id="drawer-close" aria-label="Close">×</button></header>
+    ${s.sees ? `<section style="display:grid;gap:6px"><h3>What the user sees</h3><p style="color:var(--ink-2)">${esc(s.sees)}</p>${s.does ? `<p style="color:var(--ink-2)">${esc(s.does)}</p>` : ''}${s.back ? `<p class="muted" style="font-size:.84rem">Back: ${esc(s.back)}</p>` : ''}</section>` : ''}
     <section class="shots" aria-label="TST screenshots"><h3>Screenshots on TST</h3>
       ${shots.length ? `<div class="tabs" role="tablist">${shots.map((x, i) => `<button role="tab" aria-selected="${i === 0}" data-shot="${i}">${esc(x.label)}</button>`).join('')}</div>
       <div class="phone"><img id="shot-img" src="${esc(shots[0].img)}" alt="${esc(s.name)} on TST, state ${esc(shots[0].label)}" loading="lazy"></div>
@@ -505,6 +866,9 @@ function route() {
   let view = 'overview';
   if (h === 'health') { view = 'health'; viewHealth(); }
   else if (h === 'method') { view = 'method'; viewMethod(); }
+  else if (h === 'journeys') { view = 'journeys'; viewJourneys(); }
+  else if (h === 'map') { view = 'map'; viewMap(); }
+  else if (h.startsWith('journey-')) { view = 'journeys'; viewJourneys(h); }
   else if (h.startsWith('flow-')) { viewFlow(h.slice(5)); view = ''; }
   else if (h.startsWith('screen-') && DATA.screens[h.slice(7)]) { viewFlow(DATA.screens[h.slice(7)].flow); view = ''; openScreen(h.slice(7)); }
   else viewOverview();
@@ -521,6 +885,10 @@ main.addEventListener('click', (e) => {
 });
 drawerBack.addEventListener('click', closeScreen);
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeScreen(); });
+main.addEventListener('keydown', (e) => {
+  const g = e.target.closest('g[data-screen]');
+  if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openScreen(g.dataset.screen); }
+});
 window.addEventListener('hashchange', route);
 route();
 </script>

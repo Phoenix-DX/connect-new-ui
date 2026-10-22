@@ -1,0 +1,69 @@
+{
+ "journey": "J36",
+ "title": "Ask for help",
+ "ranAt": "2026-10-21T17:05:07.906Z",
+ "viewport": "390x844",
+ "account": "global",
+ "steps": [
+  {
+   "screen": "Menu",
+   "path": "/UBTConnect/Menu",
+   "params": [],
+   "shot": "01-Menu.png",
+   "maskedTexts": 3,
+   "action": {
+    "label": "Contact Us.",
+    "kind": "click",
+    "element": {
+     "selector": "text=Contact Us",
+     "index": 0
+    },
+    "ms": 2824
+   },
+   "calls": [],
+   "blocked": []
+  },
+  {
+   "screen": "ContactUsMenu",
+   "path": "/UBTConnect/ContactUsMenu",
+   "params": [],
+   "shot": "02-ContactUsMenu.png",
+   "maskedTexts": 0,
+   "action": {
+    "label": "Select a topic, for example Set up a UBT One account.",
+    "kind": "click",
+    "element": {
+     "selector": "text=Set up a UBT One account",
+     "index": 0
+    },
+    "ms": 4093
+   },
+   "calls": [
+    "DataActionDataAction_GetLocalityTimezone"
+   ],
+   "blocked": []
+  },
+  {
+   "screen": "ContactUsDetails",
+   "path": "/UBTConnect/ContactUsDetails",
+   "params": [
+    "In_ContactSubjectId",
+    "In_ContactSubjectTitle",
+    "In_ListMenuOptionLabel"
+   ],
+   "shot": "03-ContactUsDetails.png",
+   "maskedTexts": 1
+  }
+ ],
+ "status": "verified",
+ "seconds": 88,
+ "attempts": [
+  {
+   "account": "global",
+   "status": "verified",
+   "at": null,
+   "error": null,
+   "debug": null
+  }
+ ]
+}
