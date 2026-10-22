@@ -243,3 +243,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-21,_docs,other,99051,sonnet-dashboard-content-writer,,"UI Flows dashboard: content.en.json (13 areas, 44 flows, scope reasons, D1-D11)"
 2026-10-21,_docs,other,95502,sonnet-dashboard-content-reviewer,,"UI Flows dashboard: content review; 8 category fixes, 5 flow purposes, D6/D8 wording"
 2026-10-21,_docs,other,132761,sonnet-journeys-screen-descriptions,,"Journeys: screens.en.json, 64 in-scope screens (sees, does, back)"
+2026-10-22,refactor,review,220000,main,,"P0-D0 plan review, flag/auth design, plan v2 (2026-10-22)"

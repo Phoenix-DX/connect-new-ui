@@ -5,6 +5,9 @@ page-first model, the "component and container" vocabulary, and decisions D1 to 
 
 Writing rules: `migration/english-docs/style-rules.md` (ASD-STE100 writing rules).
 
+Review and detailed proposal (2026-10-22): `refactor-plan-review.md` (score, findings, flag and sign-in design, decisions
+R1 to R8) and `refactor-plan-v2.md` (steps for an agent). The user decides which plan applies.
+
 ## 1. Goal
 
 The app in `app/` matches the OutSystems app 1:1. The code also copies the OutSystems structure: modules, blocks and
