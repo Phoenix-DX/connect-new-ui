@@ -20,6 +20,7 @@ import { APP_ID, PATHS, ignoresLockScreen, isProtectedPath, screenOf } from '@/p
 import { pinCheck } from '@/platform/session/pin';
 import { setAppCallbackCurrentLocation } from '@/platform/session/resume';
 import { getClientVar, isSignedIn, markAppReady, reloadSessionState, setClientVar } from '@/platform/session/session';
+import { setSettings } from '@/platform/settings';
 import {
   getUserInformation_Wrapper,
   holdUserInfoForAppStart,
@@ -44,8 +45,10 @@ const isNetworkError = (e: unknown) => isInstanceOf(e, CommunicationException); 
 /** OutSystems CurrDateTime on the wire: ISO date and time without milliseconds. */
 const nowWire = () => new Date().toISOString().slice(0, 19);
 
-/** AppManager_SynchAppContext(Internal) (AM:4939-5120): settings into client variables. A communication error gives the
-    empty config (CheckDeviceOnReady false); isSuccess false raises InvalidApp. Keys and tokens are not kept. */
+/** AppManager_SynchAppContext(Internal) (AM:4939-5120): settings into the settings store (platform/settings; the
+    original sets the UBT_AppManager client variables of legacy/os/clientVarNames.ts). A communication error gives the
+    empty config (CheckDeviceOnReady false) and keeps the stored settings; isSuccess false raises InvalidApp. Keys and
+    tokens are not kept. */
 export async function synchAppContext(): Promise<ClientConfig | null> {
   let out;
   try {
@@ -57,18 +60,20 @@ export async function synchAppContext(): Promise<ClientConfig | null> {
   }
   if (!out.isSuccess) throw new Error('Error defining login information');
   const c = out.AppManager_ClientConfig.AppManager_ClientCache;
-  setClientVar('UBT_AppManager.AzureInsights_Use', c.AzureInsights_Use);
-  // OutSystems_Environment = AppManager_ClientCache.Environment (AM: appManager_SynchAppContextInternal; CR-Login-4)
-  setClientVar('UBT_AppManager.OutSystems_Environment', c.Environment);
-  setClientVar('UBT_AppManager.PIN_Use', c.PIN_Use);
-  setClientVar('UBT_AppManager.PIN_SessionInactivity_Use', c.PIN_SessionInactivity_Use);
-  setClientVar('UBT_AppManager.PIN_SessionInactivity_Seconds', c.PIN_SessionInactivity_Seconds);
-  setClientVar('UBT_AppManager.PIN_EnableFingerprint', c.PIN_EnableFingerprint);
-  setClientVar('UBT_AppManager.PIN_EnforceOnReady', c.PIN_EnforceOnReady);
-  setClientVar('UBT_AppManager.PIN_SessionInactivity_Navigate', c.PIN_SessionInactivity_Navigate);
-  setClientVar('UBT_AppManager.MinNativeAppVersion', c.MinNativeAppVersion);
-  setClientVar('UBT_AppManager.MinWebViewVersion_Chrome', c.MinWebViewVersion_Chrome);
-  setClientVar('UBT_AppManager.MinWebViewVersion_Safari', c.MinWebViewVersion_Safari);
+  setSettings({
+    'insights.enabled': c.AzureInsights_Use,
+    // OutSystems_Environment = AppManager_ClientCache.Environment (AM: appManager_SynchAppContextInternal; CR-Login-4)
+    'app.environment': c.Environment,
+    'pin.enabled': c.PIN_Use,
+    'pin.inactivity.enabled': c.PIN_SessionInactivity_Use,
+    'pin.inactivity.seconds': c.PIN_SessionInactivity_Seconds,
+    'pin.fingerprint': c.PIN_EnableFingerprint,
+    'pin.enforceOnReady': c.PIN_EnforceOnReady,
+    'pin.inactivity.navigate': c.PIN_SessionInactivity_Navigate,
+    'app.minNativeVersion': c.MinNativeAppVersion,
+    'app.minWebViewChrome': c.MinWebViewVersion_Chrome,
+    'app.minWebViewSafari': c.MinWebViewVersion_Safari,
+  });
   return out.AppManager_ClientConfig;
 }
 

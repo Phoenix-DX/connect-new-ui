@@ -9,6 +9,7 @@ import {
   useClientVar,
   useShellState,
 } from './session';
+import { getSetting, setSettings } from '@/platform/settings';
 import { freshPage, reloadPage } from '@/test/testSupport';
 
 beforeEach(() => {
@@ -39,8 +40,26 @@ test('PIN_HasUnlocked survives a reload but not a new tab (shell-observed U3)', 
 });
 
 test('a stored value of the wrong type falls back to the default', () => {
-  localStorage.setItem('ubtc-mock:cv:UBT_AppManager.PIN_Use', '"yes"');
-  expect(getClientVar('UBT_AppManager.PIN_Use')).toBe(false);
+  localStorage.setItem('ubtc-mock:cv:UBT_AppManager.PIN_IsLocked', '"yes"');
+  expect(getClientVar('UBT_AppManager.PIN_IsLocked')).toBe(false);
+});
+
+test('the server settings are read and written in the settings store by their OutSystems names (P4-1)', () => {
+  setSettings({ 'pin.enabled': true });
+  expect(getClientVar('UBT_AppManager.PIN_Use')).toBe(true);
+  setClientVar('UBT_AppManager.PIN_SessionInactivity_Seconds', 30);
+  expect(getSetting('pin.inactivity.seconds')).toBe(30);
+  expect(localStorage.getItem('ubtc-mock:cv:UBT_AppManager.PIN_SessionInactivity_Seconds')).toBeNull();
+});
+
+test('a settings change is a client variable change: readers and the shell snapshot update', () => {
+  const pinUse = renderHook(() => useClientVar('UBT_AppManager.PIN_Use'));
+  const before = getShellState();
+  act(() => {
+    setSettings({ 'pin.enabled': true });
+  });
+  expect(pinUse.result.current).toBe(true);
+  expect(getShellState()).not.toBe(before); // usePopupWidget renders again on every client variable change
 });
 
 test('the signed-in user is kept across reloads', () => {
@@ -59,6 +78,7 @@ test('after a logout every client variable is reset except *_IsPersistent (AM:41
   expect(getClientVar('UBTConnect.App_NetworkStatus_IsOnline_IsPersistent')).toBe(false);
   expect(getClientVar('UBT_AppManager.PIN_Use')).toBe(false);
   expect(getClientVar('UBT_AppManager.PIN_HasUnlocked')).toBe(false);
+  expect(getSetting('pin.enabled')).toBe(false);
 });
 
 test('components re-render on changes', () => {

@@ -126,3 +126,9 @@
 
 - Steps P3-1 to P3-4: `src/shared/` imports no `screens/`, `app/` or `pages/`; the module graph has 0 cycles; 7 new dependency-cruiser warn rules keep the folder directions (`app/.dependency-cruiser.cjs`).
 - Open for Phase 4: the folder-level loops through `platform/`. Details in [reports/P3.md](reports/P3.md).
+
+## P4-1 - refactor(P4-1): typed settings store
+
+- New `src/platform/settings` holds 11 typed server settings (plan v2 §3.2 lists 10; `pin.inactivity.navigate` is the extra one). `synchAppContext` writes the store. The adapter `src/legacy/os/clientVarNames.ts` keeps the old `getClientVar('UBT_AppManager.PIN_Use')` calls working.
+- Storage: one object under `ubtc-mock:settings` replaces 11 `ubtc-mock:cv:UBT_AppManager.*` keys (decision Q12). A browser tab that ran an older build reads the default settings once, until the SynchAppContext answer of its next page load. The `ubtc-mock:` keys are mock-only.
+- Strict parity 64/64 for both references. `move-map.csv` is unchanged.

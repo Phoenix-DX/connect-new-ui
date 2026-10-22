@@ -343,3 +343,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,38251,refactor-dev,,P3-4 sonnet
 2026-10-23,refactor,verify,24593,refactor-test,,P3-4 sonnet
 2026-10-23,refactor,other,27727,refactor-docs,,P3-4 sonnet
+2026-10-23,refactor,build,146379,refactor-dev,,P4-1 opus
+2026-10-23,refactor,review,57436,refactor-advisor,,"P4-1 Q12 storage layout, opus, 50 s (a, high)"
+2026-10-23,refactor,verify,33099,refactor-test,,P4-1 sonnet
+2026-10-23,refactor,other,34447,refactor-docs,,P4-1 sonnet

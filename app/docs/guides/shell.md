@@ -53,15 +53,20 @@ in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the us
 - Mock user toggles: `policies` = pending policies (`HasPoliciesToAccept`), `expired` = `SubscriptionActive` false,
   `householder` = `isHouseholder` true.
 - Client variable names are `<Module>.<Variable>`, with the compiled defaults of `migration/shell/client-variables.md`.
+- The 11 server settings (`PIN_Use`, `PIN_IsInactivityEnabled`, and so on) are in the typed store `src/platform/settings`
+  (`getSetting`, `setSettings`, `useSetting`). `synchAppContext` writes the store. The adapter
+  `src/legacy/os/clientVarNames.ts` maps the OutSystems names to the settings, so `getClientVar`, `setClientVar` and
+  `useClientVar` still work for them until their page moves.
 
 ## Storage (decision U5)
 
 Mock values only. Keys start with `ubtc-mock:`.
 
-- localStorage: session (`session`), hashed PIN with salt (`pin`), client variables (`cv:<name>`).
+- localStorage: session (`session`), hashed PIN with salt (`pin`), client variables (`cv:<name>`),
+  the 11 server settings as one object (`settings`).
 - sessionStorage: `PIN_HasUnlocked` (a new tab starts locked, a reload keeps the unlock) and remembered test switches
   (`param:<name>`).
-- A logout resets every client variable except `*_IsPersistent`.
+- A logout resets every client variable except `*_IsPersistent`, and the settings.
 
 Client entities (local storage entities, `src/platform/storage/localEntities`) use IndexedDB, as TST runs in a browser without
 WebSQL (its runtime record holds the IndexedDB database `<environment key>-Users`). However, the served env params say

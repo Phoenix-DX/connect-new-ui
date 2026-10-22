@@ -2,7 +2,12 @@
    compiled defaults of migration/shell/client-variables.md ("type default" = false, 0, "" or 1900-01-01).
    Persistence (decision U5): localStorage like the original, except PIN_HasUnlocked, which lives in sessionStorage so a
    new tab starts locked and a reload keeps the unlock (shell-observed U3: the original resets it when the tab has no
-   `HasRenderedSplashInSession` session key). */
+   `HasRenderedSplashInSession` session key).
+   The server settings of AppManager_SynchAppContext (PIN_Use, OutSystems_Environment, ...) are not in this list: they
+   live in the typed store platform/settings, and getClientVar reads them there by their OutSystems names
+   (legacy/os/clientVarNames.ts). */
+import type { SettingClientVarName, SettingClientVarValue } from '@/legacy/os/clientVarNames';
+
 export const NO_DATE = '1900-01-01T00:00:00';
 
 export const CLIENT_VAR_DEFAULTS = {
@@ -28,19 +33,8 @@ export const CLIENT_VAR_DEFAULTS = {
   'UBTConnect_Utils.UniqueCacheKey': 'Unique',
   'UBT_AppManager.OutSystems_LastURL': '',
   'UBT_AppManager.AppManager_DelayedMessage': '',
-  'UBT_AppManager.OutSystems_Environment': '',
-  'UBT_AppManager.PIN_Use': false,
-  'UBT_AppManager.PIN_SessionInactivity_Use': false,
-  'UBT_AppManager.PIN_SessionInactivity_Seconds': 0,
-  'UBT_AppManager.PIN_SessionInactivity_Navigate': false,
-  'UBT_AppManager.PIN_EnableFingerprint': false,
-  'UBT_AppManager.PIN_EnforceOnReady': false,
   'UBT_AppManager.PIN_IsLocked': false,
   'UBT_AppManager.PIN_HasUnlocked': false,
-  'UBT_AppManager.MinNativeAppVersion': '',
-  'UBT_AppManager.MinWebViewVersion_Chrome': '',
-  'UBT_AppManager.MinWebViewVersion_Safari': '',
-  'UBT_AppManager.AzureInsights_Use': false,
   'UBT_AppManager.DeviceInfo_UUID': '',
   // Boolean, type default (UBT_AppManager.clientVariables.js:242-247; migration/shell/client-variables.md:74). The original
   // sets it from AppManager_MobileContext.isNativeDevice in AppManager_SetDeviceContext (UBT_AppManager.controller.js:
@@ -60,16 +54,25 @@ export const CLIENT_VAR_DEFAULTS = {
 } satisfies Record<string, string | number | boolean>;
 
 type Defaults = typeof CLIENT_VAR_DEFAULTS;
-export type ClientVarName = keyof Defaults;
-export type ClientVarValue<N extends ClientVarName> = Defaults[N] extends string
-  ? string
-  : Defaults[N] extends number
-    ? number
-    : boolean;
+/** A client variable kept by this module in storage. */
+export type StoredClientVarName = keyof Defaults;
+/** A name that getClientVar accepts: a stored client variable or a server setting (platform/settings). */
+export type ClientVarName = StoredClientVarName | SettingClientVarName;
+export type ClientVarValue<N extends ClientVarName> = N extends SettingClientVarName
+  ? SettingClientVarValue<N>
+  : N extends StoredClientVarName
+    ? Defaults[N] extends string
+      ? string
+      : Defaults[N] extends number
+        ? number
+        : boolean
+    : never;
 
-export const SESSION_SCOPED: ReadonlySet<ClientVarName> = new Set<ClientVarName>(['UBT_AppManager.PIN_HasUnlocked']);
+export const SESSION_SCOPED: ReadonlySet<StoredClientVarName> = new Set<StoredClientVarName>([
+  'UBT_AppManager.PIN_HasUnlocked',
+]);
 
 /** The original keeps variables whose name ends with `_IsPersistent` after a logout (AM:4176-4194). */
 export const survivesLogout = (name: string): boolean => name.endsWith('_IsPersistent');
 
-export const isClientVarName = (name: string): name is ClientVarName => name in CLIENT_VAR_DEFAULTS;
+export const isStoredClientVarName = (name: string): name is StoredClientVarName => name in CLIENT_VAR_DEFAULTS;

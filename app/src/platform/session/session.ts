@@ -2,16 +2,26 @@ import { useSyncExternalStore } from 'react';
 import {
   CLIENT_VAR_DEFAULTS,
   SESSION_SCOPED,
-  isClientVarName,
+  isStoredClientVarName,
   survivesLogout,
   type ClientVarName,
   type ClientVarValue,
+  type StoredClientVarName,
 } from './clientVars';
+import {
+  isSettingClientVar,
+  readSettingClientVar,
+  writeSettingClientVar,
+  type SettingClientVarValue,
+} from '@/legacy/os/clientVarNames';
 import { APP_ID } from '@/platform/navigation/paths';
+import { resetSettings, subscribeSettings } from '@/platform/settings';
 import { itemKeys, readItem, removeItem, writeItem } from '@/platform/storage/storage';
 
 /* The mock session store (decision U5): signed-in user, local PIN (hashed), client variables, and the in-memory flags
-   of the running page. Components read it with useShellState / useClientVar (useSyncExternalStore). */
+   of the running page. Components read it with useShellState / useClientVar (useSyncExternalStore).
+   The server settings (PIN_Use, ...) are in the typed store platform/settings: getClientVar, setClientVar and
+   useClientVar reach them through the adapter legacy/os/clientVarNames.ts. */
 export interface StoredPin {
   userId: string;
   appId: string;
@@ -74,6 +84,10 @@ function emit() {
   for (const l of listeners) l();
 }
 
+/* A settings change is a client variable change of the original: the listeners of this store hear it, as the readers
+   of useClientVar and the Popup widget (usePopupWidget re-renders on every client variable change) did before. */
+subscribeSettings(emit);
+
 export function subscribe(listener: () => void): () => void {
   listeners.add(listener);
   return () => {
@@ -84,13 +98,20 @@ export function subscribe(listener: () => void): () => void {
 export const getShellState = (): ShellState => snapshot;
 
 export function getClientVar<N extends ClientVarName>(name: N): ClientVarValue<N> {
-  const fallback = CLIENT_VAR_DEFAULTS[name] as ClientVarValue<N>;
-  const stored = readItem(SESSION_SCOPED.has(name) ? 'session' : 'local', VAR_PREFIX + name);
+  if (isSettingClientVar(name)) return readSettingClientVar(name) as ClientVarValue<N>;
+  const key: StoredClientVarName = name;
+  const fallback = CLIENT_VAR_DEFAULTS[key] as ClientVarValue<N>;
+  const stored = readItem(SESSION_SCOPED.has(key) ? 'session' : 'local', VAR_PREFIX + key);
   return typeof stored === typeof fallback ? (stored as ClientVarValue<N>) : fallback;
 }
 
 export function setClientVar<N extends ClientVarName>(name: N, value: ClientVarValue<N>): void {
-  writeItem(SESSION_SCOPED.has(name) ? 'session' : 'local', VAR_PREFIX + name, value);
+  if (isSettingClientVar(name)) {
+    writeSettingClientVar(name, value as SettingClientVarValue<typeof name>); // the store emits (subscribeSettings)
+    return;
+  }
+  const key: StoredClientVarName = name;
+  writeItem(SESSION_SCOPED.has(key) ? 'session' : 'local', VAR_PREFIX + key, value);
   emit();
 }
 
@@ -115,9 +136,10 @@ export function clearClientVarsAfterLogout(): void {
   for (const kind of ['local', 'session'] as const) {
     for (const key of itemKeys(kind, VAR_PREFIX)) {
       const name = key.slice(VAR_PREFIX.length);
-      if (!isClientVarName(name) || !survivesLogout(name)) removeItem(kind, key);
+      if (!isStoredClientVarName(name) || !survivesLogout(name)) removeItem(kind, key);
     }
   }
+  resetSettings(); // no server setting is `*_IsPersistent`
   emit();
 }
 

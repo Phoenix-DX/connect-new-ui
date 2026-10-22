@@ -5,6 +5,7 @@ import { CACHE_TYPE, peekCacheableObject, putCacheableObject } from '@/platform/
 import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
 import { registerPin } from '@/platform/session/pin';
 import { getClientVar, getShellState, setClientVar, setSignedInUser } from '@/platform/session/session';
+import { getSetting, getSettings, setSettings } from '@/platform/settings';
 import { pinUnlockRedirect, signedOutRedirect, startApp, synchronizeNumberUnreadMessages } from './startup';
 import { getLocalOrbitMilestoneTypeById, getLocalSurveyStatusByJSONName } from '@/platform/storage/localEntities';
 import { getUserInformation } from '@/platform/session/userInfo';
@@ -36,6 +37,35 @@ describe('signed-out load (spec 10; shell-observed U1)', () => {
     expect(getClientVar('UBT_AppManager.PIN_EnforceOnReady')).toBe(false);
     expect(getClientVar('UBT_AppManager.PIN_EnableFingerprint')).toBe(true);
     expect(getClientVar('UBT_AppManager.MinWebViewVersion_Chrome')).toBe('');
+  });
+
+  test('writes the settings of SynchAppContext into the settings store (P4-1)', async () => {
+    await startApp();
+    expect(getSettings()).toEqual({
+      'pin.enabled': true,
+      'pin.inactivity.enabled': true,
+      'pin.inactivity.seconds': 1200,
+      'pin.inactivity.navigate': false,
+      'pin.enforceOnReady': false,
+      'pin.fingerprint': true,
+      'app.environment': 'TST',
+      'app.minNativeVersion': '',
+      'app.minWebViewChrome': '',
+      'app.minWebViewSafari': '',
+      'insights.enabled': true,
+    });
+  });
+
+  test('a communication error keeps the stored settings (empty config)', async () => {
+    setSettings({ 'pin.enabled': true, 'pin.inactivity.seconds': 600 });
+    server.use(
+      http.post('/api/UBT_AppManager/ActionAppManager_SynchAppContext', () =>
+        HttpResponse.json({ error: 'x' }, { status: 500 }),
+      ),
+    );
+    await startApp();
+    expect(getSetting('pin.enabled')).toBe(true);
+    expect(getSetting('pin.inactivity.seconds')).toBe(600);
   });
 
   test('sends the module name and isFromLogin false', async () => {
