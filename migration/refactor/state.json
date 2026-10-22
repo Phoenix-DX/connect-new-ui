@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P3-1",
+  "step": "P3-2",
   "stage": "commit",
-  "loop": 0,
-  "since": "2026-10-22T21:48:57"
+  "loop": 1,
+  "since": "2026-10-22T23:10:10"
  },
  "steps": {
   "P0-1": {
@@ -183,12 +183,25 @@
    "finished": "2026-10-22T21:23:02"
   },
   "P3-1": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-22T21:23:11",
    "tokens": {
     "dev": 231423,
     "test": 33385,
     "docs": 46707
+   },
+   "commit": "183070b",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-22T21:48:58"
+  },
+  "P3-2": {
+   "status": "active",
+   "started": "2026-10-22T21:48:58",
+   "tokens": {
+    "dev": 214443,
+    "test": 23609,
+    "docs": 32824
    }
   }
  },
@@ -312,6 +325,16 @@
    "answer": "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (high) recommends (a): fix the test in its own test-only commit before the P2-1 commit; freeze the clock with vi.setSystemTime (copying the app rule still depends on the time of day). Keeps P2-1 a pure move and ci meaningful for every later gate.",
    "by": "user",
    "answeredAt": "2026-10-22T19:53:33"
+  },
+  {
+   "id": "Q11",
+   "step": "P3-2",
+   "text": "The UBTConnect cycle came only from 8 UBTConnectLibrary stories (20 upward imports); the developer replaced the real blocks with StandInBlock, so those stories show 'Not captured' markers. Keep (a), exclude stories from the rules (b), or move the stories up (c)?",
+   "status": "answered",
+   "at": "2026-10-22T22:02:31",
+   "answer": "auto-accepted (user instruction 2026-10-22 19:41, overnight): SPLIT: Opus (c, medium), Fable (b, high). Master took the more conservative and reversible option (b): revert the 8 stories to the real blocks as at HEAD, drop StandInBlock, and exclude *.stories.tsx (and test files) from the cycle and layer rules in .dependency-cruiser.cjs; production code keeps the strict rules (the 2 new direction rules stay for non-story files).",
+   "by": "user",
+   "answeredAt": "2026-10-22T22:02:31"
   }
  ]
 }

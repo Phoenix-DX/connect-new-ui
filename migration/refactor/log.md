@@ -118,3 +118,13 @@ One line per event. Written by rf.py.
 - 2026-10-22T21:41:04 P3-1 stage test
 - 2026-10-22T21:47:25 P3-1 stage docs
 - 2026-10-22T21:48:57 P3-1 stage commit
+- 2026-10-22T21:48:58 P3-1 done 183070b: ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within +5%
+- 2026-10-22T21:48:58 P3-2 started
+- 2026-10-22T21:48:59 P3-2 stage dev
+- 2026-10-22T22:01:30 P3-2 stage test
+- 2026-10-22T22:02:31 Q11 (P3-2) asked: The UBTConnect cycle came only from 8 UBTConnectLibrary stories (20 upward imports); the developer replaced the real blocks with StandInBlock, so those stories show 'Not captured' markers. Keep (a), exclude stories from the rules (b), or move the stories up (c)?
+- 2026-10-22T22:02:31 Q11 answered by the user: "auto-accepted (user instruction 2026-10-22 19:41, overnight): SPLIT: Opus (c, medium), Fable (b, high). Master took the more conservative and reversible option (b): revert the 8 stories to the real blocks as at HEAD, drop StandInBlock, and exclude *.stories.tsx (and test files) from the cycle and layer rules in .dependency-cruiser.cjs; production code keeps the strict rules (the 2 new direction rules stay for non-story files)."
+- 2026-10-22T22:02:31 P3-2 test failed, fix loop 1
+- 2026-10-22T22:07:45 P3-2 stage test
+- 2026-10-22T22:16:30 P3-2 stage docs
+- 2026-10-22T23:10:10 P3-2 stage commit

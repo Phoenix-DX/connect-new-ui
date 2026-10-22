@@ -331,3 +331,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,build,231423,refactor-dev,,P3-1 opus
 2026-10-22,refactor,verify,33385,refactor-test,,P3-1 sonnet
 2026-10-22,refactor,other,46707,refactor-docs,,P3-1 sonnet
+2026-10-22,refactor,build,169359,refactor-dev,,P3-2 opus
+2026-10-22,refactor,review,35747,refactor-advisor,,"P3-2 Q11 judgment (stories), opus, 14 s (c, medium)"
+2026-10-22,refactor,review,35400,refactor-advisor,,"P3-2 Q11 second opinion, fable, 10 s (b, high) - split"
+2026-10-22,refactor,fix,45084,refactor-dev,,P3-2 loop 1 opus
+2026-10-22,refactor,verify,23609,refactor-test,,P3-2 loop 1 sonnet
+2026-10-22,refactor,other,32824,refactor-docs,,P3-2 loop 1 sonnet

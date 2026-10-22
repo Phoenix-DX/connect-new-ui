@@ -76,7 +76,8 @@ flowchart TB
 
 Rules that keep it this way (`consistency_check.py` checks them before a screen is finished):
 
-- A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (ESLint, `app/eslint.config.js`). Only `pages/<Route>/` imports `pages/<Route>/`, and `src/shared` imports no `src/screens` or `src/app` (dependency-cruiser warnings, `app/.dependency-cruiser.cjs`). The recipe is the [page template](../guides/page-template.md). Only HouseholdDetails is a page so far.
+- A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (ESLint, `app/eslint.config.js`). Only `pages/<Route>/` imports `pages/<Route>/`, and `src/shared` imports no `src/screens` or `src/app`. Inside `src/shared`, `UBTConnectLibrary` imports neither `UBTConnect_Utils` nor `UBTConnect`, and `UBTConnect_Utils` does not import `UBTConnect` (dependency-cruiser warnings, `app/.dependency-cruiser.cjs`). The recipe is the [page template](../guides/page-template.md). Only HouseholdDetails is a page so far.
+- Story and test files are outside the cycle rule and these folder rules (decision Q11, P3-2). A story renders the real blocks of the captured screen, so it may import across the three modules.
 - A screen imports only from its own folder and from `src/shared`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/mocks`.
 - A screen has no `fetch`, browser storage, route CSS, inline visual styles, raw HTML or `console.log`.
 - Packages come only from the pinned allow-list ([stack](../reference/stack.md)). A new package needs an ADR.

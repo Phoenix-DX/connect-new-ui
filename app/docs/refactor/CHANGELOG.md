@@ -103,3 +103,9 @@
 - `src/shared/` imports no `screens/`, `app/` or `pages/`. `NotCaptured` is now `src/platform/feedback/NotCaptured.tsx`. The update-items mock is in `shared/UBTConnect/Directory_Updates/mocks.ts`.
 - Follow-ups F1 to F3: the hooks, state and mocks of HouseholdDetails are in `containers/HouseholdDetails/`; `pages/HouseholdDetails/api.ts` is `inputs.ts`; `docs_gen.py` and `move-map.mjs` read `@origin`.
 - 2 new dependency-cruiser warn rules guard this (`pages-imported-by-own-route-only`, `shared-no-import-of-screens-or-app`). `move-map.csv` rows 166, 181, 379 changed. Strict parity 64/64 for both references.
+
+## P3-2 - refactor(P3-2): remove the UBTConnect cycles
+
+- The folder cycle came only from 8 UBTConnectLibrary stories (20 upward imports). No production file moved.
+- Decision Q11 (b): `STORY_OR_TEST` in `app/.dependency-cruiser.cjs` excludes story and test files from the cycle rule and the folder rules.
+- 2 new warn rules keep the direction UBTConnect, UBTConnect_Utils, UBTConnectLibrary. Strict parity 64/64 for both references.
