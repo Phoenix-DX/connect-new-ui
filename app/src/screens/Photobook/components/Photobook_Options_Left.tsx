@@ -8,8 +8,8 @@ import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContain
 import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
 import { UBT_Color, UBT_Display, UBT_Shape, UBT_Size } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
 import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useWasRestoredFromCache } from '../../../shell/navigation';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useWasRestoredFromCache } from '@/platform/navigation';
 import { getHouseholdCaption } from '../api';
 import type { PhotobookHousehold } from '../types';
 import {

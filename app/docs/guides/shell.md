@@ -1,6 +1,6 @@
 # App shell: session, app start, sign-in, PIN, lock, navigation, back, view cache
 
-`src/shell` holds the app-wide logic of `migration/app-shell.spec.md`. Part A covers the mock session, the app-start
+`src/platform` holds the app-wide logic of `migration/app-shell.spec.md`. Part A covers the mock session, the app-start
 calls, mock sign-in and sign-out, the device PIN and the inactivity lock. Part B (below) covers navigation, back
 handling, preload and the view cache. Part C covers feedback messages, shared dialogs and the lock overlay.
 The shell depends on no screen. Screens call the APIs below.
@@ -63,7 +63,7 @@ Mock values only. Keys start with `ubtc-mock:`.
   (`param:<name>`).
 - A logout resets every client variable except `*_IsPersistent`.
 
-Client entities (local storage entities, `src/shell/localEntities`) use IndexedDB, as TST runs in a browser without
+Client entities (local storage entities, `src/platform/storage/localEntities`) use IndexedDB, as TST runs in a browser without
 WebSQL (its runtime record holds the IndexedDB database `<environment key>-Users`). However, the served env params say
 IndexedDBOffline = false, i.e. WebSQL. This is an open question (evidence in the header of `localEntities/database.ts`).
 Client entities store DateTimes as DateTimeRevamp = false does: UTC `yyyy-MM-dd HH:mm:ss`, the null date
@@ -78,8 +78,8 @@ Client entities store DateTimes as DateTimeRevamp = false does: UTC `yyyy-MM-dd 
 
 Local entities in practice:
 
-- Public API: `src/shell/localEntities/index.ts`. Blocks and screens call the module actions that it exports
-  (`createOrUpdate_LocalNote`, `saveRecentSearchTerm`, `create_LocalBookmark`, …). Nothing outside `src/shell` touches
+- Public API: `src/platform/storage/localEntities/index.ts`. Blocks and screens call the module actions that it exports
+  (`createOrUpdate_LocalNote`, `saveRecentSearchTerm`, `create_LocalBookmark`, …). Nothing outside `src/platform` touches
   browser storage.
 - One adapter per entity group: notes (`localNotes.ts`), recent search terms and clicked results (`recentSearch.ts`),
   local search history (`localSearchHistory.ts`), bookmarks (`localBookmarks.ts`), Orbit static entities
@@ -124,7 +124,7 @@ The tab remembers all of them.
 
 ## Mock data
 
-`src/shell/mocks.ts`:
+`src/platform/bootstrap/mocks.ts`:
 
 - SynchAppContext is fictional, with the TST settings of U2 (PIN on, 1200 s, overlay, no enforce on ready, device check
   on ready).
@@ -135,13 +135,13 @@ The tab remembers all of them.
 
 ## Tests
 
-`src/shell/*.test.ts(x)` cover: call order signed in and out, redirects, sign-in branches, sign-out, PIN, lock timer,
+`src/platform/**/*.test.ts(x)` cover: call order signed in and out, redirects, sign-in branches, sign-out, PIN, lock timer,
 mocks. `testSupport.ts` gives `freshPage()`, `reloadPage({ newTab })`, `calledActions()`, `recordBodies(path)`.
 
 ## Test session
 
 - `?mocksession=unlocked` starts the page signed in as the mock user, with the tab unlocked, as the TST captures were
-  taken. The local PIN is `0223` (`TEST_PIN` in `src/shell/testSession.ts`; user, 2026-10-16).
+  taken. The local PIN is `0223` (`TEST_PIN` in `src/platform/session/testSession.ts`; user, 2026-10-16).
 - `?mocksession=out` starts signed out.
 - Parity runs use these parameters (`cloneQuery` in `migration/capture-plan.json`), also for Login and the PIN screens.
   The user decided on 2026-10-14 that review links and parity runs use them until the Login and PIN screens exist. These
@@ -155,11 +155,11 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
 - On the dev server, `?review=1` shows them for the tab and `?review=0` hides them again.
 - Tests and Storybook turn them on.
 - Built apps (demo PWA, production) never show them and render the content without the frame
-  (`src/shell/reviewMarkers.ts`).
+  (`src/legacy/os/reviewMarkers.ts`).
 
 ## Part B: navigation, back handling, preload, view cache
 
-`src/shell/navigation` (import from `src/shell/navigation`).
+`src/platform/navigation` (import from `src/platform/navigation`).
 
 - `<NavigationHost />` (AppFrame) owns the only blocker of the router.
 - `<ScreenTransitionGroup />` (AppFrame) renders the screen containers and their transitions.
@@ -243,7 +243,7 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
   - Screens only need stable query keys, `useViewState` for variables that the original keeps, and
     `useWasRestoredFromCache()` where the original tests it.
 
-- **Navigation guard (`dx-before-navigation`).** `src/shell/navigation/navigationGate.ts` (`shouldBlockNavigation`) runs
+- **Navigation guard (`dx-before-navigation`).** `src/platform/navigation/navigationGate.ts` (`shouldBlockNavigation`) runs
   as the blocker of the router before every navigation. Unless `allowUpcomingNavigation()` was called, it does two
   things:
   1. For a back navigation, it runs the back queue.
@@ -263,13 +263,13 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
       `dx-navigation-cancelled-by-user`.
     - A back navigation while the dialog is open is prevented and runs No.
     - ContactUsDetails and Profile use it to confirm discarding changes.
-  - Tests: `src/shell/navigation/navigationGate.test.tsx`.
+  - Tests: `src/platform/navigation/navigationGate.test.tsx`.
 
-Tests: `src/shell/navigation/*.test.tsx` (`testRouter.tsx` renders routes inside the same frame on a memory router).
+Tests: `src/platform/navigation/*.test.tsx` (`testRouter.tsx` renders routes inside the same frame on a memory router).
 
 ## Part C: feedback messages, shared dialogs, lock overlay
 
-`src/shell/feedback` and `src/shell/dialogs`. `<CommonUiHost />` (AppFrame) mounts the message container and the
+`src/platform/feedback` and `src/platform/feedback/dialogs`. `<CommonUiHost />` (AppFrame) mounts the message container and the
 online/offline listener. Per screen (remounted on each navigation), it also mounts Access Restricted and the CommonUI
 back handler. It is a stand-in until the layouts render CommonUI in `Placeholder_CommonUI_Inside_Layout`.
 
@@ -298,14 +298,14 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
   - The app start does not toast yet: App_Common toasts a `ScreenController_RaiseError` only if a plain `Error` is not
     "system" (open).
   - Server calls raise the OutSystems exceptions of `src/lib/os-exceptions.ts` (see `api-and-mocks.md`).
-  - A ported Handle Error tests them with `src/shell/exceptions.ts`: `isUserException(e[, '<Module>.<Name>'])`,
+  - A ported Handle Error tests them with `src/legacy/os/exceptions.ts`: `isUserException(e[, '<Module>.<Name>'])`,
     `isCommunicationException(e)`, `isInstanceOf(e, SecurityException)`, AllExceptions = `!isSystemException(e)`.
   - An unhandled exception goes to `raiseToFlowHandler(e)` (communication message, else
     `showExceptionMessage(message, false)`).
 - **Network (U11).**
   - `online`/`offline` events and `navigator.onLine` at start set `App_NetworkStatus_IsOnline_IsPersistent`. The variable
     only picks the communication text.
-  - NetworkDetection is ported 1:1 (PWA-2, `src/shell/feedback/networkDetection.ts`). It pings the TST file
+  - NetworkDetection is ported 1:1 (PWA-2, `src/platform/feedback/networkDetection.ts`). It pings the TST file
     `status/network-ping.txt` (served at its TST path in every build, never cached). It runs the online / offline
     callbacks on a transition. See `pwa.md`.
 - **Dialogs.**
@@ -322,7 +322,7 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
 
 ### Inactivity timer and screens without CommonUI (CR-Services-1)
 
-`src/shell/inactivity.ts` ports the session-inactivity timer of the AppManager. `LockHost.tsx` plays the part of
+`src/platform/session/inactivity.ts` ports the session-inactivity timer of the AppManager. `LockHost.tsx` plays the part of
 `InactivityTimer` (inside `Pincode_Unlock` ← `Block_PINUnlock` ← CommonUI_InsideLayout / PINUnlock).
 
 | API                                                                                                | Original                                                                                                                                                                                                                                 |
@@ -335,7 +335,7 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
 - **Who starts it.** Only `LockHost` (mounted by the shell while the screen has CommonUI) starts it. It registers a
   handler that calls `lock()`, then calls `pinSessionInactivityStart()`. Screens never call these functions.
 - **Screens without CommonUI.** A screen whose layout has an empty `Placeholder_CommonUI_Inside_Layout` calls
-  `useNoCommonUi()` from `src/shell/dialogs` (Services: Services.mvc.js:1207; Splash: App_Common.LayoutBlank).
+  `useNoCommonUi()` from `src/platform/feedback/dialogs` (Services: Services.mvc.js:1207; Splash: App_Common.LayoutBlank).
   - The shell then mounts no Access Restricted dialog and no lock layer (`useIsCommonUiAbsent`).
   - `LockHost` skips its start in that commit (`isCommonUiAbsentNow`).
   - As in the original, the timer started on the previous screen keeps running.
@@ -345,6 +345,6 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
 - **Known gap.** On a direct load of such a screen, the app-level host can start the timer once while the lazy screen
   chunk loads. No lock results. At timeout, only the app callback is set.
 
-Tests: `src/shell/inactivity.test.ts`, `src/shell/LockHost.test.tsx`.
+Tests: `src/platform/session/inactivity.test.ts`, `src/platform/navigation/LockHost.test.tsx`.
 
-Tests: `src/shell/feedback/*.test.tsx`, `src/shell/dialogs/*.test.tsx`.
+Tests: `src/platform/feedback/*.test.tsx`, `src/platform/feedback/dialogs/*.test.tsx`.

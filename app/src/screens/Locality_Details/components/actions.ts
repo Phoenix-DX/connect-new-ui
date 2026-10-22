@@ -1,5 +1,5 @@
 import { isOn } from '../../../lib/flags';
-import { get_LocalBookmarkByObjectId } from '../../../shell/localEntities';
+import { get_LocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { currDateTime, formatDateTime } from '../../../shared/lib/osDateTime';
 import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '../../../shared/UBTConnectLibrary/lib/actions';
 import type { LookupItem, Tag } from '../../../shared/UBTConnectLibrary/lib/structures';

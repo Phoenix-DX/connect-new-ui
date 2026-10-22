@@ -1,10 +1,10 @@
 // @os-block UBTConnect.Directory_Locality.Locality_Interchange
 import { useEffect, useRef } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { showUpgradePopUp } from '../../../shell/dialogs/subscription';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useOsNavigate, useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
-import { APP_ID } from '../../../shell/paths';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
 import { getLocalityLabel, hasAccessToRegion } from '../../../shared/UBTConnect/lib/actions';
 import { getInterchangesByLocalityId } from '../api';
 import type { InterchangeItem } from '../types';

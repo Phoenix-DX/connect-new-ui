@@ -2,8 +2,8 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
 import { callAction } from '../../../lib/api';
-import { CACHE_TYPE, putCacheableObject } from '../../../shell/memoryCache';
-import { getClientVar } from '../../../shell/session';
+import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
+import { getClientVar } from '@/platform/session/session';
 import { CacheControl } from '../CacheControl';
 import type { CacheControl_AllCountriesRec } from './types';
 

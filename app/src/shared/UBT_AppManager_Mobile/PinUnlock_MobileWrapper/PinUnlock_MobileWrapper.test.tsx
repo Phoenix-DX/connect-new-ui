@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, describe, expect, it } from 'vitest';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { setClientVar, setSignedInUser } from '../../../shell/session';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { setClientVar, setSignedInUser } from '@/platform/session/session';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { PinUnlock_MobileWrapper } from './PinUnlock_MobileWrapper';
 import * as stories from './PinUnlock_MobileWrapper.stories';

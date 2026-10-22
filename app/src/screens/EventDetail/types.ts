@@ -94,4 +94,4 @@ export interface UserIds {
 }
 
 /** LocalSurveyStatus record (local entity of Connect2_OrbitMobile_MUI, synced by the shell's app start). */
-export type { LocalSurveyStatus } from '../../shell/localEntities';
+export type { LocalSurveyStatus } from '@/platform/storage/localEntities';

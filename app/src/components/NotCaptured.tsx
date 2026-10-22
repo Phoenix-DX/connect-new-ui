@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { showReviewMarkers } from '../shell/reviewMarkers';
+import { showReviewMarkers } from '@/legacy/os/reviewMarkers';
 
 /* Marker for anything the capture does not contain (block, state, image, popup, unmigrated screen).
    Never replace it with an invented design. The frame shows on the dev server with `?review=1` only (shell/reviewMarkers.ts); built

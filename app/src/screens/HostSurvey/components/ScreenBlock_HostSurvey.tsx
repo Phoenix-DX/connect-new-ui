@@ -21,8 +21,8 @@ import {
   useOrbitStaticEntitiesVersion,
   type LocalHostSurveyStep,
   type LocalSurveyStatus,
-} from '../../../shell/localEntities';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+} from '@/platform/storage/localEntities';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getHostSurvey } from '../api';
 import type { HostSurvey, HostSurveyMeal, HostSurveyRoom, HostSurveyVariablesWire } from '../types';
 import {

@@ -4,15 +4,15 @@ import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { setFlag } from '../../../lib/flags';
-import * as feedback from '../../../shell/feedback';
+import * as feedback from '@/platform/feedback';
 import {
   getLocalBookmarkByObjectId,
   localBookmarksSchemas,
   memoryDatabase,
   setLocalBookmarksDatabase,
-} from '../../../shell/localEntities';
-import { setClientVar, setSignedInUser } from '../../../shell/session';
-import { freshPage } from '../../../shell/testSupport';
+} from '@/platform/storage/localEntities';
+import { setClientVar, setSignedInUser } from '@/platform/session/session';
+import { freshPage } from '@/test/testSupport';
 import { bookmarkServerActions, toggleBookmarkItem_C2 } from '../lib/actions';
 import { BookmarkCategory, Connect_Entity } from '../lib/staticEntities';
 import { Directory_EntityDetailsActions } from './Directory_EntityDetailsActions';

@@ -1,5 +1,5 @@
 import { log } from '../../../lib/log';
-import { showFeedbackMessage } from '../../../shell/feedback';
+import { showFeedbackMessage } from '@/platform/feedback';
 
 /* Client actions, JavaScript nodes and static-entity records of the screen (S) and of ScreenBlock_Household_Email (H).
    Local copies (no import across routes; CR-LDM_EventDetail_V2-1). Values are the TST values

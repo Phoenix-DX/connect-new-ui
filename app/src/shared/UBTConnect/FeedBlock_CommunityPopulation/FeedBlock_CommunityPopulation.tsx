@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
 import { log } from '../../../lib/log';
-import { useOsNavigate } from '../../../shell/navigation';
-import { APP_ID } from '../../../shell/paths';
+import { useOsNavigate } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../UBTConnectLibrary/CustomText';
 import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';

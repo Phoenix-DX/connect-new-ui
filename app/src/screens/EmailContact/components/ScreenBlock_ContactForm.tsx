@@ -13,9 +13,9 @@ import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/Men
 import { NavigationConfirmationDialog } from '../../../shared/NavigationHandler/NavigationConfirmationDialog';
 import { preventNavigation } from '../../../shared/NavigationHandler/lib/actions';
 import { DEPRECATED_ButtonLoading } from '../../../shared/osui/DEPRECATED_ButtonLoading';
-import { appManager_GetCachedUserInfo } from '../../../shell/cachedUserInfo';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback';
+import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { sendContactEmail } from '../api';
 import type { EmailContactInputs } from '../types';
 import {

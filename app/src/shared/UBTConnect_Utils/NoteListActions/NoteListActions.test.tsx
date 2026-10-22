@@ -4,22 +4,22 @@ import { http, HttpResponse } from 'msw';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { server } from '../../../test/setup';
 import { CommunicationException } from '../../../lib/os-exceptions';
-import { UserException, raiseToFlowHandler } from '../../../shell/exceptions';
-import { getFeedbackMessage, resetFeedbackMessages } from '../../../shell/feedback/feedbackStore';
+import { UserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import {
   createOrUpdate_LocalNote,
   get_LocalNoteByNoteId,
   localNotesSchemas,
   memoryDatabase,
   setLocalNotesDatabase,
-} from '../../../shell/localEntities';
-import { setSignedInUser } from '../../../shell/session';
+} from '@/platform/storage/localEntities';
+import { setSignedInUser } from '@/platform/session/session';
 import { NoteListActions } from './NoteListActions';
 import * as stories from './NoteListActions.stories';
 import { SAMPLE_NOTES } from './NoteListActions.stories';
 
-vi.mock('../../../shell/exceptions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../../../shell/exceptions')>()),
+vi.mock('@/legacy/os/exceptions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/legacy/os/exceptions')>()),
   raiseToFlowHandler: vi.fn(),
 }));
 

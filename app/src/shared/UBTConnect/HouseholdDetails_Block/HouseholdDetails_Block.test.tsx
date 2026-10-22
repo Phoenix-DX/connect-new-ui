@@ -9,8 +9,8 @@ import { handlePreviewData, initialTagsList, selectedTagOf, selectTimelinePhoto,
 import type { GetHouseholdOutput } from './api';
 
 const navigate = vi.hoisted(() => vi.fn());
-vi.mock('../../../shell/navigation', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../../../shell/navigation')>()),
+vi.mock('@/platform/navigation', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/navigation')>()),
   useOsNavigate: () => navigate,
 }));
 

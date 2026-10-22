@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getClientVar, setClientVar } from '../../../shell/session';
+import { getClientVar, setClientVar } from '@/platform/session/session';
 import {
   EMPTY_PRELOAD,
   appendSwippedItem,

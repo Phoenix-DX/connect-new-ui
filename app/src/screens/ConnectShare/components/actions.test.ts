@@ -10,7 +10,7 @@ const spy = vi.hoisted(() => ({
   userInfo: vi.fn<() => Promise<unknown>>(),
 }));
 vi.mock('../api', () => ({ get_ShareDetails: spy.share }));
-vi.mock('../../../shell/userInfo', () => ({ getUserInformation: spy.userInfo }));
+vi.mock('@/platform/session/userInfo', () => ({ getUserInformation: spy.userInfo }));
 
 const share = (patch: Partial<ShareDetails>): ShareDetails => ({
   isShareAvailable: true,

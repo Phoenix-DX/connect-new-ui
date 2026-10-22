@@ -5,7 +5,7 @@ import { EntitiesCarousel } from '../../shared/UBTConnect/EntitiesCarousel';
 import { Connect_Entity } from '../../shared/UBTConnect/lib/staticEntities';
 import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
 import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { usePreloadObject, useViewState } from '../../shell/navigation';
+import { usePreloadObject, useViewState } from '@/platform/navigation';
 import { mockPreload, readSupperMeetingCarouselInputs } from './api';
 import { assignFromObject, startingPosition, toEntitiesCarouselItems } from './components/logic';
 import type { PreloadedSupperMeetings } from './types';

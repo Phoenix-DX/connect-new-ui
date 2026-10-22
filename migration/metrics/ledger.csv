@@ -288,3 +288,12 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,review,35046,refactor-advisor,,"P1-1 Q8 judgment (self reference), opus, 9 s"
 2026-10-22,refactor,verify,19189,refactor-test,,P1-1 sonnet
 2026-10-22,refactor,other,18427,refactor-docs,,P1-1 sonnet
+2026-10-22,refactor,build,43169,refactor-dev,,P1-2 sonnet
+2026-10-22,refactor,review,51957,refactor-advisor,,"P1-2 Q9 fact lookup (shell test files), sonnet, 30 s"
+2026-10-22,refactor,review,36184,refactor-advisor,,"P1-2 Q9 judgment, opus, 9 s (confidence medium)"
+2026-10-22,refactor,review,35984,refactor-advisor,,"P1-2 Q9 second opinion, fable, 8 s (confidence high)"
+2026-10-22,refactor,build,21743,refactor-dev,,P1-2 sonnet
+2026-10-22,refactor,verify,21028,refactor-test,,P1-2 loop 1 sonnet
+2026-10-22,refactor,fix,18338,refactor-dev,,P1-2 loop 1 sonnet
+2026-10-22,refactor,verify,27074,refactor-test,,P1-2 loop 1 sonnet
+2026-10-22,refactor,other,32927,refactor-docs,,P1-2 loop 1 sonnet

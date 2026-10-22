@@ -2,7 +2,7 @@ import { useFlagOn } from '../../lib/flags';
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { Connect_BottomBar_Items, Connect_Entity } from '../../shared/UBTConnect_Utils/lib/staticEntities';
-import { setPreloadObject, useOsNavigate } from '../../shell/navigation';
+import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_MyBookmarks } from './components/ScreenBlock_MyBookmarks';
 
 /** UBTConnect Legacy_MyBookmarks.MyBookmarks (p:UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js: view :120-270,

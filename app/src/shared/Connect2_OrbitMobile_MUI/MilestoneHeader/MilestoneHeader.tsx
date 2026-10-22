@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.MilestoneHeader
 import { useEffect, useMemo, useRef } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import {
   getLocalOrbitMilestoneTypeById,
   localOrbitMilestoneTypesRead,

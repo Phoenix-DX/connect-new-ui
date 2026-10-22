@@ -10,7 +10,7 @@ import {
   setScrollShadow,
 } from '../../../shared/UBTConnectLibrary/lib/actions';
 import { UBT_Color, UBT_IconSize, UBT_Icons2 } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { useNavigateBack } from '../../../shell/navigation';
+import { useNavigateBack } from '@/platform/navigation';
 
 export interface Layout_MainPages_UpgradeProps {
   isGrayBackground?: boolean;

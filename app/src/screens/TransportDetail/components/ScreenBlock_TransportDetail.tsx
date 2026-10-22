@@ -6,8 +6,8 @@ import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/Men
 import { ContactHelpdesk_Footer } from '../../../shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
 import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import { OrbitMilestoneType } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getTransportDetail } from '../api';
 import type { TransportDetails, TransportDetailVariablesWire } from '../types';
 import { getContactHelpdeskSubject_Transport, getSkeletonLoadingIdFromMilestoneTypeId } from './actions';

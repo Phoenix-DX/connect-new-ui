@@ -1,9 +1,9 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
-import { synchBookmarks } from '../../../shell/localEntities/localBookmarks';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { currentUserId, isSignedIn, setClientVar, setSignedInUser } from '../../../shell/session';
+import { synchBookmarks } from '@/platform/storage/localEntities/localBookmarks';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { currentUserId, isSignedIn, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { getBookmarkType_FromEntity } from '../lib/actions';
 import { Connect_Entity } from '../lib/staticEntities';
 import { HouseholdDetails_Block } from './HouseholdDetails_Block';

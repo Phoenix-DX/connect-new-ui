@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import type { Location } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { createBackEvent, resetBackQueue, runBackHandlers } from '../../../shell/navigation/backQueue';
+import { createBackEvent, resetBackQueue, runBackHandlers } from '@/platform/navigation/backQueue';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { BackNavigationHandler } from './BackNavigationHandler';
 import * as stories from './BackNavigationHandler.stories';

@@ -37,12 +37,12 @@ import {
 } from '../../shared/UBTConnectLibrary/lib/staticEntities';
 import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
 import { TextArea_WithCounter } from '../../shared/UBTConnectLibrary/TextArea_WithCounter';
-import { confirmAction } from '../../shell/dialogs';
-import { exceptionMessage, isSystemException, raiseToFlowHandler } from '../../shell/exceptions';
-import { feedbackMessageAutoClose } from '../../shell/feedback';
-import { useNavigateBack } from '../../shell/navigation';
-import { pinCheck } from '../../shell/pin';
-import { currentUserId } from '../../shell/session';
+import { confirmAction } from '@/platform/feedback/dialogs';
+import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
+import { useNavigateBack } from '@/platform/navigation';
+import { pinCheck } from '@/platform/session/pin';
+import { currentUserId } from '@/platform/session/session';
 import { dataAction_GetCountriesNames, dataAction_GetLocalityTimezone, sendContactUsMessage } from './api';
 import {
   emptyCallPopupData,

@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router';
-import { useNoCommonUi } from '../../shell/dialogs';
+import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { BlankSlate } from '../../shared/osui/BlankSlate';
 import { Layout_MainPages } from '../../shared/UBTConnectLibrary/Layout_MainPages';
 import { StaticInput } from '../../shared/UBTConnectLibrary/StaticInput';

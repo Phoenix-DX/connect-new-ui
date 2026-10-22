@@ -3,15 +3,15 @@ import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { http, HttpResponse } from 'msw';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { getFeedbackMessage, resetFeedbackMessages } from '../../../shell/feedback/feedbackStore';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import {
   get_LocalNoteByNoteId,
   localNotesSchemas,
   memoryDatabase,
   setLocalNotesDatabase,
-} from '../../../shell/localEntities';
-import { setSignedInUser } from '../../../shell/session';
+} from '@/platform/storage/localEntities';
+import { setSignedInUser } from '@/platform/session/session';
 import { server } from '../../../test/setup';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { SAMPLE_NOTES } from '../NoteListActions/NoteListActions.stories';
@@ -24,8 +24,8 @@ function wrapper({ children }: { children?: ReactNode }) {
   return <MemoryRouter>{children}</MemoryRouter>;
 }
 
-vi.mock('../../../shell/exceptions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../../../shell/exceptions')>()),
+vi.mock('@/legacy/os/exceptions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/legacy/os/exceptions')>()),
   raiseToFlowHandler: vi.fn(),
 }));
 

@@ -3,7 +3,7 @@ import type { ActionOutputs, PathOf } from '../../lib/api';
 import { contractHandler } from '../../mocks/contract';
 import { fixtureData } from '../../mocks/fixtures';
 import { mockDelay, scenario } from '../../mocks/scenario';
-import { mockUserInformation, mockUserToggles } from '../../shell/mockUser';
+import { mockUserInformation, mockUserToggles } from '@/platform/session/mockUser';
 import { Connect_Entity } from '../../shared/UBTConnect_Utils/lib/staticEntities';
 import { mockSignedImageURL } from '../../shared/UBTConnect_Utils/UBT_LazyImage/mocks';
 

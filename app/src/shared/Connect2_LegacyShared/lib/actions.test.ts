@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { UserException } from '../../../lib/os-exceptions';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { setSignedInUser } from '../../../shell/session';
-import { freshPage } from '../../../shell/testSupport';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { setSignedInUser } from '@/platform/session/session';
+import { freshPage } from '@/test/testSupport';
 import {
   addMetaTag,
   getCacheableCountryInfo,
@@ -26,7 +26,7 @@ import {
   inputCounterMaxLength,
   inputCounterOnInitialize,
 } from './actions';
-import { cacheKeyPart } from '../../../shell/memoryCache';
+import { cacheKeyPart } from '@/platform/storage/memoryCache';
 import { MapNavigationRedirect } from './staticEntities';
 
 const keyOf = (bucket: string, path: string, type: string) =>

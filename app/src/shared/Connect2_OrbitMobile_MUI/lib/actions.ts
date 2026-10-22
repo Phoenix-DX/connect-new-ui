@@ -4,7 +4,7 @@
    handed to the JS nodes as a local-midnight Date (shared/lib/osDateTime.ts parseOsDate). */
 import { callAction } from '../../../lib/api';
 import { log } from '../../../lib/log';
-import { setClientVar } from '../../../shell/session';
+import { setClientVar } from '@/platform/session/session';
 import { parseOsDate } from '../../lib/osDateTime';
 import type { MemberInformation } from './structures';
 import {
@@ -253,7 +253,7 @@ export {
   localOrbitMilestoneTypesRead,
   syncOrbitMilestoneTypes,
   useOrbitStaticEntitiesVersion,
-} from '../../../shell/localEntities/orbitStaticEntities';
+} from '@/platform/storage/localEntities/orbitStaticEntities';
 
 /* ---- F11 (CR-MilestoneDetail-1, CR-MilestoneDetail-3) ---- */
 

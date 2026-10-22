@@ -3,8 +3,8 @@ import { useFlagOn } from '../../lib/flags';
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { getNameAndSurname_ByFullName } from '../../shared/UBTConnect/lib/actions';
-import { pageRedirect } from '../../shell/feedback/pageRedirect';
-import { generateScreenURL, setPreloadObject, useOsNavigate } from '../../shell/navigation';
+import { pageRedirect } from '@/platform/feedback/pageRedirect';
+import { generateScreenURL, setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { readInputs } from './api';
 import { ScreenBlock_EventDetail_V2 } from './components/ScreenBlock_EventDetail_V2';
 

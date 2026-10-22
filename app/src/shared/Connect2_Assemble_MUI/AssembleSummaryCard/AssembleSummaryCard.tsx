@@ -2,9 +2,9 @@
 import { OSBlock } from '../../../components/OSBlock';
 import { osImage } from '../../../lib/os-assets';
 import { UserException } from '../../../lib/os-exceptions';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback/feedbackStore';
-import { pageRedirect } from '../../../shell/feedback/pageRedirect';
-import { generateScreenURL } from '../../../shell/navigation';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
+import { pageRedirect } from '@/platform/feedback/pageRedirect';
+import { generateScreenURL } from '@/platform/navigation';
 import { OSLink } from '../../lib/OSLink';
 import { NC_Card_Item_Visual } from '../../Connect2_LegacyShared/NC_Card_Item_Visual';
 import { NC_Result_Item__Card } from '../../Connect2_LegacyShared/NC_Result_Item__Card';

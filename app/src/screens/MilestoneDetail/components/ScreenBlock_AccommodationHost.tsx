@@ -33,11 +33,11 @@ import {
   type FileDownloadResult,
   type FileTransferError,
 } from '../../../shared/FileTransferPlugin/lib/handleDownload';
-import { showUpgradePopUp } from '../../../shell/dialogs/subscription';
-import { isUserException, raiseToFlowHandler } from '../../../shell/exceptions';
-import { feedbackMessageAutoClose } from '../../../shell/feedback';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
+import { isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { log } from '../../../lib/log';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getAccommodationHost, getCacheableSignedImageURL, get_Document } from '../api';
 import type { AccommodationData, AccommodationHostVariablesWire, HelperItem, RoomItem } from '../types';
 import {

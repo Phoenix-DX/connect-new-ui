@@ -4,16 +4,16 @@ import { callAction } from '../../../lib/api';
 import { osList, wireList } from '../../../lib/os-wire';
 import { isOn } from '../../../lib/flags';
 import { log } from '../../../lib/log';
-import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback';
-import { pageRedirect } from '../../../shell/feedback/pageRedirect';
+import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
+import { pageRedirect } from '@/platform/feedback/pageRedirect';
 import {
   CACHE_TYPE,
   cacheKeyPart,
   getCacheableObjectInBulk,
   getCacheKeyParts,
   type BulkCacheResult,
-} from '../../../shell/memoryCache';
-import { getClientVar } from '../../../shell/session';
+} from '@/platform/storage/memoryCache';
+import { getClientVar } from '@/platform/session/session';
 import { jSUtils_PageOpenInNewTab } from '../../UBTJavaScriptUtils/lib/actions';
 import { dropdownClose } from '../../osui/lib/actions';
 import {

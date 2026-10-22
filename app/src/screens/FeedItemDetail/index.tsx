@@ -7,7 +7,7 @@ import { Connect_Entity } from '../../shared/UBTConnect_Utils/lib/staticEntities
 import type { UI_ShareableObject_Generic } from '../../shared/UBTConnect_Utils/lib/structures';
 import { ShareableObject_Generic } from '../../shared/UBTConnect_Utils/ShareableObject_Generic';
 import { ShareSheet } from '../../shared/UBTConnect_Utils/ShareSheet';
-import { useViewState } from '../../shell/navigation';
+import { useViewState } from '@/platform/navigation';
 import { NULL_DATE, readFeedItemDetailInputs } from './api';
 
 /** UBTConnect.Home.FeedItemDetail (FeedItemDetail.mvc.js: model :1-164, view :165-478, controller :479-797):

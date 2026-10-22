@@ -18,11 +18,11 @@ import {
 } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { Milestone_Screen } from '../../../shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { DEPRECATED_AccordionItem } from '../../../shared/osui/DEPRECATED_AccordionItem';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { getLocalSurveyStatusByJSONName } from '../../../shell/localEntities';
-import { showFeedbackMessage } from '../../../shell/feedback';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
-import { getUserInformation } from '../../../shell/userInfo';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { getLocalSurveyStatusByJSONName } from '@/platform/storage/localEntities';
+import { showFeedbackMessage } from '@/platform/feedback';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
+import { getUserInformation } from '@/platform/session/userInfo';
 import { getEventDetails, getHasDocuments, getHasQRCode, getHostSurveyStatus } from '../api';
 import type {
   DateFilters,

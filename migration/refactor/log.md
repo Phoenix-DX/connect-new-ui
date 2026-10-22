@@ -60,3 +60,13 @@ One line per event. Written by rf.py.
 - 2026-10-22T15:30:10 Q8 answered by the user: "auto-accepted (user instruction 2026-10-22 15:29, until end of P1): Opus recommends B: stash the three P1-1 app files, run refactor_parity.py --record-self --all at 3b25ddd, pop, run the tester again. Reason: every later step diffs against this reference, so record it at the documented commit."
 - 2026-10-22T15:39:25 P1-1 stage docs
 - 2026-10-22T15:39:56 P1-1 stage commit
+- 2026-10-22T15:40:03 P1-1 done ab01f0a: ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle = baseline
+- 2026-10-22T15:40:09 P1-2 started
+- 2026-10-22T15:40:09 P1-2 stage dev
+- 2026-10-22T15:44:02 Q9 (P1-2) asked: shell/mocks.ts, shell/mocks.test.ts and shell/testSupport.ts are not in the P1-2 step table; the developer put them in platform/testing/. Is that the right place?
+- 2026-10-22T15:45:23 Q9 answered by the user: "auto-accepted (user instruction 2026-10-22 15:29, until end of P1): Opus (medium) and Fable (high) both recommend (b): mocks.ts and mocks.test.ts to platform/bootstrap/ (rename only, the glob still matches); testSupport.ts to src/test/testSupport.ts next to the setup it imports. No platform/testing area. Note in move-map.csv: mocks.ts also mocks shell-block calls, so bootstrap/ is approximate; P5 follow-up with src/mocks/handlers/."
+- 2026-10-22T15:47:17 P1-2 stage test
+- 2026-10-22T15:49:01 P1-2 test failed, fix loop 1
+- 2026-10-22T15:50:16 P1-2 stage test
+- 2026-10-22T15:58:00 P1-2 stage docs
+- 2026-10-22T15:59:04 P1-2 stage commit

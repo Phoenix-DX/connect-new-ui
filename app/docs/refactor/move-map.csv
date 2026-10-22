@@ -328,3 +328,33 @@ src/screens/TermsAndPoliciesMenu/index.tsx,UBTConnect.App_Menu.TermsAndPoliciesM
 src/screens/TransportDetail/index.tsx,UBTConnect.Legacy_OrbitEventsFlow.TransportDetail,page,src/pages/TransportDetail/TransportDetailPage.tsx,P6-G5,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
 src/screens/Updates_SingleList/index.tsx,UBTConnect.Directory_Updates.Updates_SingleList,page,src/pages/Updates_SingleList/Updates_SingleListPage.tsx,P6-G3,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
 src/screens/ViewDocuments/index.tsx,UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments,page,src/pages/ViewDocuments/ViewDocumentsPage.tsx,P6-G6,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
+src/shell/session.ts,,,src/platform/session/session.ts,P1-2,,moved,
+src/shell/clientVars.ts,,,src/platform/session/clientVars.ts,P1-2,,moved,
+src/shell/pin.ts,,,src/platform/session/pin.ts,P1-2,,moved,
+src/shell/auth.ts,,,src/platform/session/auth.ts,P1-2,,moved,
+src/shell/mockUser.ts,,,src/platform/session/mockUser.ts,P1-2,,moved,
+src/shell/cachedUserInfo.ts,,,src/platform/session/cachedUserInfo.ts,P1-2,,moved,
+src/shell/userInfo.ts,,,src/platform/session/userInfo.ts,P1-2,,moved,
+src/shell/resume.ts,,,src/platform/session/resume.ts,P1-2,,moved,
+src/shell/inactivity.ts,,,src/platform/session/inactivity.ts,P1-2,,moved,
+src/shell/testSession.ts,,,src/platform/session/testSession.ts,P1-2,,moved,
+src/shell/startup.ts,,,src/platform/bootstrap/startup.ts,P1-2,,moved,
+src/shell/AppStart.tsx,,,src/platform/bootstrap/AppStart.tsx,P1-2,,moved,
+src/shell/paths.ts,,,src/platform/navigation/paths.ts,P1-2,,moved,
+src/shell/LockHost.tsx,,,src/platform/navigation/LockHost.tsx,P1-2,,moved,
+src/shell/AppLockHost.tsx,,,src/platform/navigation/AppLockHost.tsx,P1-2,,moved,
+src/shell/storage.ts,,,src/platform/storage/storage.ts,P1-2,,moved,
+src/shell/memoryCache.ts,,,src/platform/storage/memoryCache.ts,P1-2,,moved,
+src/shell/deviceContext.ts,,,src/platform/device/deviceContext.ts,P1-2,,moved,
+src/shell/StylesheetHost.tsx,,,src/legacy/os/StylesheetHost.tsx,P1-2,,moved,
+src/shell/exceptions.ts,,,src/legacy/os/exceptions.ts,P1-2,,moved,
+src/shell/bodyTheme.ts,,,src/legacy/os/bodyTheme.ts,P1-2,,moved,
+src/shell/reviewMarkers.ts,,,src/legacy/os/reviewMarkers.ts,P1-2,,moved,
+src/shell/ErrorBoundary.tsx,,,src/app/ErrorBoundary.tsx,P1-2,,moved,
+src/shell/RouteError.tsx,,,src/app/RouteError.tsx,P1-2,,moved,
+src/shell/mocks.ts,,,src/platform/bootstrap/mocks.ts,P1-2,,moved,bootstrap/ is approximate: mocks.ts also mocks shell-block calls; P5 follow-up: split into src/mocks/handlers/
+src/shell/testSupport.ts,,,src/test/testSupport.ts,P1-2,,moved,next to the test setup it imports
+src/shell/navigation,,,src/platform/navigation,P1-2,,moved,
+src/shell/feedback,,,src/platform/feedback,P1-2,,moved,
+src/shell/dialogs,,,src/platform/feedback/dialogs,P1-2,,moved,
+src/shell/localEntities,,,src/platform/storage/localEntities,P1-2,,moved,

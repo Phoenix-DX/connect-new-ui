@@ -1,14 +1,14 @@
 import { act, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { DataBaseException } from '../../../lib/os-exceptions';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { syncOrbitMilestoneTypes } from '../lib/actions';
 import { MilestoneHeader } from './MilestoneHeader';
 import * as stories from './MilestoneHeader.stories';
 
-vi.mock('../../../shell/exceptions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../../../shell/exceptions')>()),
+vi.mock('@/legacy/os/exceptions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/legacy/os/exceptions')>()),
   raiseToFlowHandler: vi.fn(),
 }));
 

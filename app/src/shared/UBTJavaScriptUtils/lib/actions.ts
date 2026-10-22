@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useOsNavigate } from '../../../shell/navigation';
+import { useOsNavigate } from '@/platform/navigation';
 
 /* Client actions of UBTJavaScriptUtils used by the shared blocks, ported 1:1 from UBTJavaScriptUtils.controller.js
    (copy in migration/shell/sources/). One function per action, named after it in lowerCamelCase. */

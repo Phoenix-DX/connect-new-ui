@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState, useSyncExternalStore, type RefObject } from 'react';
-import { getShellState, subscribe } from '../../shell/session';
+import { getShellState, subscribe } from '@/platform/session/session';
 
 /* Page-level side effects of the OutSystems platform Popup widget (OSWidgets.Popup, "OutSystems/ReactWidgets/Popup" in
    migration/runtime-sources/OutSystemsReactWidgets.js; readable copy

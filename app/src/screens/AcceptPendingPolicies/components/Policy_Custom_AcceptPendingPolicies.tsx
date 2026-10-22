@@ -15,7 +15,7 @@ import {
 } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
 import { Button } from '../../../shared/UBTConnect_Utils/Button';
 import { Separator } from '../../../shared/osui/Separator';
-import { isCommunicationException, raiseToFlowHandler } from '../../../shell/exceptions';
+import { isCommunicationException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { acceptPolicies, useGetPendingPolicies } from '../api';
 import type { PendingPolicy } from '../types';
 import { getDeviceInfo, jSUtils_PageOpenInNewTab } from './actions';

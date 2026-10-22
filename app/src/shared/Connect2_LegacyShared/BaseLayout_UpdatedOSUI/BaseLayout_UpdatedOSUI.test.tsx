@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
-import { setSignedInUser } from '../../../shell/session';
+import { setSignedInUser } from '@/platform/session/session';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { BaseLayout_UpdatedOSUI } from './BaseLayout_UpdatedOSUI';
 import * as stories from './BaseLayout_UpdatedOSUI.stories';

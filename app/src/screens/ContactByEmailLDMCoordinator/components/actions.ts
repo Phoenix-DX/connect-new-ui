@@ -1,5 +1,5 @@
 import { log } from '../../../lib/log';
-import { showFeedbackMessage } from '../../../shell/feedback';
+import { showFeedbackMessage } from '@/platform/feedback';
 
 /* Client actions and the JavaScript node the screen calls (S = runtime-sources/UBTConnect.ContactFlow
    .ContactByEmailLDMCoordinator.mvc.js). Local copies (no import across routes; CR-LDM_EventDetail_V2-1). */

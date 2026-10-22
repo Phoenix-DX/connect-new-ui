@@ -1,4 +1,4 @@
-import { getClientVar, setClientVar } from '../../../shell/session';
+import { getClientVar, setClientVar } from '@/platform/session/session';
 
 /** Connect2_LegacyShared SetUnreadNotificationsNumber (controller.js:7006-7018): UnreadNotificationsNumber = input. */
 export function setUnreadNotificationsNumber(unreadNotificationsNumber: number): void {

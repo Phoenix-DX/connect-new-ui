@@ -3,16 +3,16 @@ import { NotCaptured } from '../../components/NotCaptured';
 import { OSList } from '../../components/OSList';
 import { UserException } from '../../lib/os-exceptions';
 import { useFlagOn } from '../../lib/flags';
-import { exceptionMessage, isSystemException, raiseToFlowHandler } from '../../shell/exceptions';
+import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import {
   getPreloadObject,
   setPreloadObject,
   useOsNavigate,
   useViewState,
   useWasRestoredFromCache,
-} from '../../shell/navigation';
-import { APP_ID } from '../../shell/paths';
-import { getClientVar } from '../../shell/session';
+} from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
+import { getClientVar } from '@/platform/session/session';
 import { ScrollAnchor } from '../../shared/NavigationHandler/ScrollAnchor';
 import { App_NotificationIcon } from '../../shared/UBTConnect/App_NotificationIcon';
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';

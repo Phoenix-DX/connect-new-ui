@@ -1,6 +1,6 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { setSignedInUser } from '../../../shell/session';
+import { setSignedInUser } from '@/platform/session/session';
 import { CommonUI_InsideLayout } from './CommonUI_InsideLayout';
 
 /** Stories only: the mock session the captured screen had (the lock block needs a signed-in user). */

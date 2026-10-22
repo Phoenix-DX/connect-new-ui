@@ -4,7 +4,7 @@ import {
   getCacheableRegionSubscribedCountries,
   getCacheableUserInfo,
 } from '../../shared/Connect2_LegacyShared/lib/actions';
-import { getUserInformation } from '../../shell/userInfo';
+import { getUserInformation } from '@/platform/session/userInfo';
 import type {
   AssembleEventFilter,
   AssembleEventTypeItem,

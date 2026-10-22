@@ -4,8 +4,8 @@ import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLa
 import { Type_ShareObject } from '../../shared/UBTConnect/lib/staticEntities';
 import { textToLongInteger } from '../../shared/UBTConnect_Utils/lib/actions';
 import { Dialog_AccessRestrictedAction_Legacy } from '../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { showUpgradePopUp } from '../../shell/dialogs';
-import { raiseToFlowHandler } from '../../shell/exceptions';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import {
   replaceOnUpcomingNavigation,
   useNavigateBack,
@@ -13,7 +13,7 @@ import {
   useViewState,
   useWasRestoredFromCache,
   TransitionAnimation,
-} from '../../shell/navigation';
+} from '@/platform/navigation';
 import { readInputs } from './api';
 import { onInitializeSharingScreen } from './components/actions';
 import { ScreenBlock_ShareDetail } from './components/ScreenBlock_ShareDetail';

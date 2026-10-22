@@ -1,9 +1,9 @@
 import { FlagPanel } from '../components/FlagPanel';
-import { AppStart } from '../shell/AppStart';
-import { CommonUiHost } from '../shell/dialogs';
-import { AppLockHost } from '../shell/AppLockHost';
-import { NavigationHost, ScreenTransitionGroup } from '../shell/navigation';
-import { StylesheetHost } from '../shell/StylesheetHost';
+import { AppStart } from '@/platform/bootstrap/AppStart';
+import { CommonUiHost } from '@/platform/feedback/dialogs';
+import { AppLockHost } from '@/platform/navigation/AppLockHost';
+import { NavigationHost, ScreenTransitionGroup } from '@/platform/navigation';
+import { StylesheetHost } from '@/legacy/os/StylesheetHost';
 import { prepareScreen, showsScreen } from './screens';
 
 /* OutSystems runtime containers. Screen-level layout (header, content, bottom bar) is rendered by each

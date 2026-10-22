@@ -1,10 +1,10 @@
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { useScreenController_NavigateToPage } from '../../shared/UBTJavaScriptUtils/lib/actions';
-import { BlockPinUnlock } from '../../shell/dialogs';
-import { replaceOnUpcomingNavigation, useOsNavigate } from '../../shell/navigation';
-import { PATHS } from '../../shell/paths';
-import { getResumeLoginLink } from '../../shell/resume';
-import { getClientVar } from '../../shell/session';
+import { BlockPinUnlock } from '@/platform/feedback/dialogs';
+import { replaceOnUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
+import { PATHS } from '@/platform/navigation/paths';
+import { getResumeLoginLink } from '@/platform/session/resume';
+import { getClientVar } from '@/platform/session/session';
 
 /* PINUnlock (p:UBTConnect.App_PIN.PINUnlock.mvc.js): Block_PINUnlock with In_ForceVisible True, CommonUI_InsideLayout
    (In_IgnoreLockScreen, In_IgnorePolicy) in its placeholder (:128-186). No data action, no lifecycle handler (:210, 280).

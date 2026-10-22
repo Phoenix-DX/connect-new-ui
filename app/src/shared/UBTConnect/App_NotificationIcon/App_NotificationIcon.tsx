@@ -1,9 +1,9 @@
 // @os-block UBTConnect.App_Common_Blocks.App_NotificationIcon
 import { useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { useOsNavigate } from '../../../shell/navigation';
-import { APP_ID } from '../../../shell/paths';
-import { getClientVar, useClientVar } from '../../../shell/session';
+import { useOsNavigate } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
+import { getClientVar, useClientVar } from '@/platform/session/session';
 import { getHasNewNotifications } from '../../UBTConnect_Utils/lib/actions';
 import { App_IconBadge } from '../App_IconBadge';
 import { App_NotificationRefresh } from '../App_NotificationRefresh';

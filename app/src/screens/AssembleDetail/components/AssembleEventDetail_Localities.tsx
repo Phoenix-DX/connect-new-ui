@@ -17,10 +17,10 @@ import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect
 import { ShareSheet } from '../../../shared/UBTConnect_Utils/ShareSheet';
 import { ShareableObject_Generic } from '../../../shared/UBTConnect_Utils/ShareableObject_Generic';
 import type { UI_ShareableObject_Generic } from '../../../shared/UBTConnect_Utils/lib/structures';
-import { confirmAction } from '../../../shell/dialogs/confirmAction';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { getLocalBookmarksByObjectType } from '../../../shell/localEntities';
-import { setPreloadObject, useWasRestoredFromCache } from '../../../shell/navigation';
+import { confirmAction } from '@/platform/feedback/dialogs/confirmAction';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { getLocalBookmarksByObjectType } from '@/platform/storage/localEntities';
+import { setPreloadObject, useWasRestoredFromCache } from '@/platform/navigation';
 import type { AssembleAttendeeGuest, AssembleAttendeeSubdivision, LocalityDetails } from '../types';
 import { maybeDisplaySubscriptionPopup } from './actions';
 import {

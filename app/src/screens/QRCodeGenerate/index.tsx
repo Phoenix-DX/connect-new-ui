@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { useOsNavigate } from '../../shell/navigation';
+import { useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_GenerateQRCode } from './components/ScreenBlock_GenerateQRCode';
 
 /** UBTConnect Legacy_OrbitQRCodeFlow.QRCodeGenerate (S = analysis/sources/UBTConnect.Legacy_OrbitQRCodeFlow.

@@ -12,8 +12,8 @@ import { MOCKS_BUILT } from '../../../lib/config';
 import { log } from '../../../lib/log';
 import { osList } from '../../../lib/os-wire';
 import { scenario } from '../../../mocks/scenario';
-import { getClientVar, setClientVar } from '../../../shell/session';
-import { getUserInformation } from '../../../shell/userInfo';
+import { getClientVar, setClientVar } from '@/platform/session/session';
+import { getUserInformation } from '@/platform/session/userInfo';
 import { SystemException, UserException, isInstanceOf } from '../../../lib/os-exceptions';
 import {
   BookmarkCategory,
@@ -35,7 +35,7 @@ import {
   create_LocalBookmark,
   delete_LocalBookmarkByBookmarkId,
   getLocalBookmarkByObjectId,
-} from '../../../shell/localEntities';
+} from '@/platform/storage/localEntities';
 import type {
   CarouselPreloadedHouseholds,
   CarouselSwipeCallbackParametersItem,

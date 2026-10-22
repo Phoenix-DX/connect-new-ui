@@ -5,7 +5,7 @@ import { NotCaptured } from '../../../components/NotCaptured';
 import { OSBlock } from '../../../components/OSBlock';
 import { usePopupWidget } from '../../../components/OSPopup';
 import { PreventBackNavigation } from '../../../shared/NavigationHandler/PreventBackNavigation';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { getEventLocalitiesForFilter } from '../api';
 import type { EventLocality } from '../types';
 import { addAuditEvent_LDM, getCurrentTimeInMill } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';

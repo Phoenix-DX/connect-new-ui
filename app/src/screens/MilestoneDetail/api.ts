@@ -7,7 +7,7 @@ import {
   getCacheableObjectInBulk,
   getCacheKeyParts,
   type BulkCacheResult,
-} from '../../shell/memoryCache';
+} from '@/platform/storage/memoryCache';
 import type { AccommodationHostResult, AccommodationHostVariablesWire, MemberInformationWire } from './types';
 
 /** Module and owner of the two data actions (screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/

@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { resetBackQueue } from '../../../shell/navigation/backQueue';
-import { setClientVar, setSignedInUser } from '../../../shell/session';
+import { resetBackQueue } from '@/platform/navigation/backQueue';
+import { setClientVar, setSignedInUser } from '@/platform/session/session';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { Layout_LoginFlow } from './Layout_LoginFlow';
 import * as stories from './Layout_LoginFlow.stories';

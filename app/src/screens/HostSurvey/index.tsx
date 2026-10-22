@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { useNavigateBack } from '../../shell/navigation';
+import { useNavigateBack } from '@/platform/navigation';
 import { dateTimeInput } from './api';
 import { ScreenBlock_HostSurvey } from './components/ScreenBlock_HostSurvey';
 

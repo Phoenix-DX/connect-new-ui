@@ -1,8 +1,8 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { isSignedIn, setClientVar, setSignedInUser } from '../../../shell/session';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { isSignedIn, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { CarouselTag } from '../CarouselTag';
 import { HOUSEHOLD_DETAILS_ID } from '../HouseholdDetails_Block/mockData';
 import { EntitiesCarousel_HouseholdDetails } from './EntitiesCarousel_HouseholdDetails';

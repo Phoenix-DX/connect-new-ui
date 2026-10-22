@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { callAction } from '../../../lib/api';
 import { osList, wireList } from '../../../lib/os-wire';
-import { getUserInformation } from '../../../shell/userInfo';
+import { getUserInformation } from '@/platform/session/userInfo';
 import type { SearchResult } from '../lib/structures';
 
 /* Server data and actions of CW_Share.ShareSheet (P-DATA / P-CALLS). Both data actions are fetched only on demand

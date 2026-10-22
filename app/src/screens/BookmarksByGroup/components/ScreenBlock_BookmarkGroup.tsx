@@ -18,11 +18,11 @@ import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect
 import { ShareableObject_Generic } from '../../../shared/UBTConnect_Utils/ShareableObject_Generic';
 import { ShareSheet } from '../../../shared/UBTConnect_Utils/ShareSheet';
 import type { UI_ShareableObject_Generic } from '../../../shared/UBTConnect_Utils/ShareableObject_Generic/types';
-import { confirmAction, showUpgradePopUp } from '../../../shell/dialogs';
-import { exceptionMessage, isSystemException, raiseToFlowHandler } from '../../../shell/exceptions';
-import { showFeedbackMessage } from '../../../shell/feedback';
-import { legacyDelete_LocalBookmarkByBookmarkId } from '../../../shell/localEntities';
-import { setPreloadObject, useWasRestoredFromCache, type BackNavigationEvent } from '../../../shell/navigation';
+import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { showFeedbackMessage } from '@/platform/feedback';
+import { legacyDelete_LocalBookmarkByBookmarkId } from '@/platform/storage/localEntities';
+import { setPreloadObject, useWasRestoredFromCache, type BackNavigationEvent } from '@/platform/navigation';
 import { deleteBookmarkByBookmarkId, getAllBookmarksByGroup, getBookmarkById, new_UpdateBookmarkNote } from '../api';
 import type { BookmarkItem, BookmarkNote } from '../types';
 import {

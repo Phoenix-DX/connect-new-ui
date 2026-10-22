@@ -12,10 +12,10 @@ import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
 } from '../../../shared/UBTConnect_Utils/lib/structures';
-import { showUpgradePopUp } from '../../../shell/dialogs';
-import { exceptionMessage, isSystemException, raiseToFlowHandler } from '../../../shell/exceptions';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getEventsForMyTimeline } from '../api';
 import type { EventCalendar, EventCalendarFiltersAsText, TimelineEventGroup } from '../types';
 import type { HouseholdClick } from './EventCard_V2';

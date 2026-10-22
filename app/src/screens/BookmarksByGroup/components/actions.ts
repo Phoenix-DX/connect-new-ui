@@ -1,6 +1,6 @@
 import { log } from '../../../lib/log';
-import { showFeedbackMessage } from '../../../shell/feedback';
-import { peekCacheableObject, putCacheableObject } from '../../../shell/memoryCache';
+import { showFeedbackMessage } from '@/platform/feedback';
+import { peekCacheableObject, putCacheableObject } from '@/platform/storage/memoryCache';
 import type { BookmarkItem } from '../types';
 import {
   APPLICATION_EVENT_SUBSCRIPTION_REQUIRED,

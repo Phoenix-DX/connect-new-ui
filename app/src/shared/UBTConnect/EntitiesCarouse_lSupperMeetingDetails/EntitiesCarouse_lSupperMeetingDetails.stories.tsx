@@ -1,7 +1,7 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
-import { setClientVar } from '../../../shell/session';
+import { setClientVar } from '@/platform/session/session';
 import { CarouselTag } from '../CarouselTag';
 import { EntitiesCarouse_lSupperMeetingDetails } from './EntitiesCarouse_lSupperMeetingDetails';
 

@@ -1,16 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { CommunicationException } from '../../../lib/os-exceptions';
-import * as feedback from '../../../shell/feedback';
+import * as feedback from '@/platform/feedback';
 import {
   getLocalBookmarkByObjectId,
   localBookmarksSchemas,
   memoryDatabase,
   setLocalBookmarksDatabase,
   synchBookmarksC2,
-} from '../../../shell/localEntities';
-import { setSignedInUser } from '../../../shell/session';
-import { getClientVar } from '../../../shell/session';
-import { freshPage } from '../../../shell/testSupport';
+} from '@/platform/storage/localEntities';
+import { setSignedInUser } from '@/platform/session/session';
+import { getClientVar } from '@/platform/session/session';
+import { freshPage } from '@/test/testSupport';
 import {
   directory_Updates_GetCarouselPreloadedHouseholds,
   get_IsUnsupportedSystem,

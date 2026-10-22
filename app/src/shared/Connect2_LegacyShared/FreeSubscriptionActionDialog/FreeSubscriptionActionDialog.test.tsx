@@ -1,11 +1,11 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { confirmAction } from '../../../shell/dialogs/confirmAction';
+import { confirmAction } from '@/platform/feedback/dialogs/confirmAction';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { FreeSubscriptionActionDialog } from './FreeSubscriptionActionDialog';
 import * as stories from './FreeSubscriptionActionDialog.stories';
 
-vi.mock('../../../shell/userInfo', () => ({
+vi.mock('@/platform/session/userInfo', () => ({
   getUserInformation: () =>
     Promise.resolve({
       Directory_UserCurrent: {

@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { setSignedInUser } from '../../../shell/session';
+import { setSignedInUser } from '@/platform/session/session';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { Layout_DetailPage } from './Layout_DetailPage';
 import * as stories from './Layout_DetailPage.stories';

@@ -1,9 +1,9 @@
 // @os-block UBTConnect.App_Common.CommonUI_InsideLayout
 import { useEffect, useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { DialogAccessRestrictedAction } from '../../../shell/dialogs';
-import { LockHost } from '../../../shell/LockHost';
-import { useCommonUiPresence } from '../../../shell/dialogs';
+import { DialogAccessRestrictedAction } from '@/platform/feedback/dialogs';
+import { LockHost } from '@/platform/navigation/LockHost';
+import { useCommonUiPresence } from '@/platform/feedback/dialogs';
 import {
   BACK_PRIORITY,
   TransitionAnimation,
@@ -11,9 +11,9 @@ import {
   useViewState,
   useWasRestoredFromCache,
   type BackNavigationEvent,
-} from '../../../shell/navigation';
-import { PATHS } from '../../../shell/paths';
-import { getClientVar, setClientVar, useClientVar } from '../../../shell/session';
+} from '@/platform/navigation';
+import { PATHS } from '@/platform/navigation/paths';
+import { getClientVar, setClientVar, useClientVar } from '@/platform/session/session';
 import { HandleImageLoadError } from '../../Connect2_LegacyShared/HandleImageLoadError';
 import { BackNavigationHandler } from '../../NavigationHandler/BackNavigationHandler';
 import { PreventBackNavigation } from '../../NavigationHandler/PreventBackNavigation';

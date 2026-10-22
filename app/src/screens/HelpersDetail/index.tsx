@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '../../lib/flags';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { showFeedbackMessage } from '../../shell/feedback';
-import { useOsNavigate } from '../../shell/navigation';
+import { showFeedbackMessage } from '@/platform/feedback';
+import { useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_HelperDetails } from './components/ScreenBlock_HelperDetails';
 
 const NO_ORBIT_ACCESS = "You don't have access to Orbit. Please contact the Orbit Helpdesk if you have any questions.";

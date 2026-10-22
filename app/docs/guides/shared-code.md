@@ -5,12 +5,12 @@
   `@os-block <Module.Flow.Block>`.
 - `src/shared/osui/<Pattern>/`: OutSystems UI patterns (BottomSheet, Carousel, Gallery…). Use the same provider library
   and version as the original, where the original has one ([stack](../reference/stack.md)).
-- `src/shell/`: app-wide logic (error handling, sign-in and PIN mock, navigation, preload, feedback messages).
+- `src/platform/`: app-wide logic (error handling, sign-in and PIN mock, navigation, preload, feedback messages).
 - `src/lib/`: framework-free helpers and providers (api, config, log, flags, os-wire, device).
 
 Every shared block has a DOM capture test per captured state and a Storybook story per state.
 
-**Freeze.** Once the foundation is done, screens never edit `src/shell`, `src/shared`, `src/lib` or the original CSS.
+**Freeze.** Once the foundation is done, screens never edit `src/platform`, `src/shared`, `src/lib` or the original CSS.
 When a screen needs a change:
 
 - The screen writes `migration/change-requests/CR-<Screen>-<n>.md`.

@@ -5,7 +5,7 @@ import { Menu_List, type UI_ListMenuOption, type UI_MenuSection } from '../../sh
 import { CacheControl_Policies } from '../../shared/UBTConnect_Utils/CacheControl_Policies';
 import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
 import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
-import { useViewState } from '../../shell/navigation';
+import { useViewState } from '@/platform/navigation';
 import { openPolicy, POLICY_NOT_FOUND } from './components/actions';
 import { UBT_Icons2_Contacts } from './components/staticEntities';
 import type { LocalCacheControl_Policies } from './types';

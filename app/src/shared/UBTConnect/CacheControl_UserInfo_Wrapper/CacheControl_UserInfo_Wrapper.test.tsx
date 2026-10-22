@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '../../../shell/memoryCache';
-import { mockUserInformation } from '../../../shell/mockUser';
-import { getClientVar, setClientVar } from '../../../shell/session';
+import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
+import { mockUserInformation } from '@/platform/session/mockUser';
+import { getClientVar, setClientVar } from '@/platform/session/session';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { CacheControl_UserInfo_Wrapper } from './CacheControl_UserInfo_Wrapper';
 import * as stories from './CacheControl_UserInfo_Wrapper.stories';

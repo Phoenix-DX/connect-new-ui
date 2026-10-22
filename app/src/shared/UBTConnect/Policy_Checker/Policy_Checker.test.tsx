@@ -1,7 +1,7 @@
 import { waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
-import { renderRoutes, resetNavigation } from '../../../shell/navigation/testRouter';
-import { setClientVar } from '../../../shell/session';
+import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
+import { setClientVar } from '@/platform/session/session';
 import { Policy_Checker } from './Policy_Checker';
 
 const routes = {

@@ -21,9 +21,9 @@ import { DEPRECATED_AccordionItem } from '../../../shared/osui/DEPRECATED_Accord
 import { ContactPopup_ByPhone } from '../../../shared/UBTConnect_Utils/ContactPopup_ByPhone';
 import type { ContactByPhonePopupData } from '../../../shared/UBTConnect_Utils/ContactPopup_ByPhone/types';
 import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { showUpgradePopUp } from '../../../shell/dialogs/subscription';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getCacheableSignedImageURL, getHelperDetails } from '../api';
 import type { HelperData, HelperDetailsVariablesWire, HelperItem } from '../types';
 import {

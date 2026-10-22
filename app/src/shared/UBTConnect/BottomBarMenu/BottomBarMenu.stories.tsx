@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { setClientVar } from '../../../shell/session';
+import { setClientVar } from '@/platform/session/session';
 import { Connect_BottomBar_Items } from '../../UBTConnect_Utils/lib/staticEntities';
 import { BottomBarMenu } from './BottomBarMenu';
 

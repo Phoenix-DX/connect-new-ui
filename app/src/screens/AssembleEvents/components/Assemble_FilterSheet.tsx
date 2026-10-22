@@ -8,8 +8,8 @@ import { removeDiacritics } from '../../../shared/Connect2_LegacyShared/lib/acti
 import { Spinner } from '../../../shared/Connect2_LegacyShared/Spinner';
 import { InputWithIcon } from '../../../shared/osui/InputWithIcon';
 import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { confirmAction, showUpgradePopUp } from '../../../shell/dialogs';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
+import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { getSubscribedCountries, getUserSubdivision } from '../api';
 import type { CountryWithMapPosition } from '../types';
 

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { osImage } from '../../../lib/os-assets';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '../../../shell/memoryCache';
-import { getClientVar } from '../../../shell/session';
+import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
+import { getClientVar } from '@/platform/session/session';
 import { CacheControl_Policies } from '../../UBTConnect_Utils/CacheControl_Policies';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../UBTConnectLibrary/CustomText';

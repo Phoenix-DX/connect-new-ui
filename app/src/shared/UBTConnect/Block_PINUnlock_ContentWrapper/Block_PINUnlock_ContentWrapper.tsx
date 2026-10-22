@@ -2,10 +2,10 @@
 import { useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
 import { osImage } from '../../../lib/os-assets';
-import { feedbackMessageAutoClose } from '../../../shell/feedback';
-import { useOsNavigate } from '../../../shell/navigation';
-import { PATHS } from '../../../shell/paths';
-import { getClientVar } from '../../../shell/session';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
+import { useOsNavigate } from '@/platform/navigation';
+import { PATHS } from '@/platform/navigation/paths';
+import { getClientVar } from '@/platform/session/session';
 import { OSLink } from '../../lib/OSLink';
 import { PinUnlock_MobileWrapper } from '../../UBT_AppManager_Mobile/PinUnlock_MobileWrapper';
 import { CacheControl_Policies, type CacheControl_PoliciesRec } from '../../UBTConnect_Utils/CacheControl_Policies';

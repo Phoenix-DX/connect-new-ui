@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { useShellState } from '../../../shell/session';
+import { useShellState } from '@/platform/session/session';
 
 export interface ApplicationLoadEventsProps {
   /** OutSystems instance id of the block. */

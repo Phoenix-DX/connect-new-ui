@@ -1,10 +1,10 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { isLocked, registerPin } from '../../../shell/pin';
-import { getClientVar, setClientVar, setSignedInUser } from '../../../shell/session';
-import { freshPage } from '../../../shell/testSupport';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { isLocked, registerPin } from '@/platform/session/pin';
+import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
+import { freshPage } from '@/test/testSupport';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { Pincode_Unlock, type Pincode_UnlockProps } from './Pincode_Unlock';
 import * as stories from './Pincode_Unlock.stories';

@@ -31,7 +31,7 @@ when a flow can catch that one by name.
 | no answer within the module's timeout | `CommunicationException` `'The connection has timed out'` (request aborted)        |
 | any other failed answer, network down | `CommunicationException` (`'Request failed with status <N>'` / `… with an error'`) |
 
-Flows test exceptions with `src/shell/exceptions.ts` (`isUserException(e, specificType?)`, `isCommunicationException`,
+Flows test exceptions with `src/legacy/os/exceptions.ts` (`isUserException(e, specificType?)`, `isCommunicationException`,
 `isInstanceOf`, `isSystemException`; `raiseToFlowHandler` for the unhandled ones).
 In a mock, throw the exception from the answer: `contractHandler(..., () => raiseUserException('Not allowed', 'Module.Name'))`,
 or `throw new SecurityException('…')`. The handler sends the error answer with HTTP 500.
@@ -72,7 +72,7 @@ Otherwise `har_to_fixtures.py check` fails.
 
 ## Mock scenarios and test switches
 
-`src/mocks/scenario.ts` and `src/shell` read the switches and remember them for the tab (sessionStorage).
+`src/mocks/scenario.ts` and `src/platform` read the switches and remember them for the tab (sessionStorage).
 The switches work only while the app runs on mocks (`VITE_USE_MOCKS` is not `false`).
 
 | Switch                                      | Effect                                                                                                                                                                                                                                                                                                                                       |
@@ -83,8 +83,8 @@ The switches work only while the app runs on mocks (`VITE_USE_MOCKS` is not `fal
 | `?mock=loading` / `?latency=infinite`       | calls never answer; they time out as on TST (see Request timeout)                                                                                                                                                                                                                                                                            |
 | `?latency=<ms>`                             | answer delay (default 600)                                                                                                                                                                                                                                                                                                                   |
 | `?mock=<route scenario>`                    | a scenario defined by one route's `mocks.ts`, e.g. Menu `householder` (a householder account, shows "Request Photo Update"), Profile `spouse` (a householder's spouse with household of 3 members). Read the header comment of `src/screens/<Screen>/mocks.ts`: it lists the scenarios, what they answer and what falls through to the shell |
-| `?mocksession=unlocked\|out\|nopin\|locked` | start state: signed in and unlocked (default on a tab's first load), signed out, signed in without PIN, signed in with PIN but locked (`src/shell/testSession.ts`; test PIN `TEST_PIN`)                                                                                                                                                      |
-| `?mockuser=policies,expired,householder`    | toggles of the mock user (`src/shell/mockUser.ts`)                                                                                                                                                                                                                                                                                           |
+| `?mocksession=unlocked\|out\|nopin\|locked` | start state: signed in and unlocked (default on a tab's first load), signed out, signed in without PIN, signed in with PIN but locked (`src/platform/session/testSession.ts`; test PIN `TEST_PIN`)                                                                                                                                           |
+| `?mockuser=policies,expired,householder`    | toggles of the mock user (`src/platform/session/mockUser.ts`)                                                                                                                                                                                                                                                                                |
 | `?locksecs=<s>`                             | inactivity timeout                                                                                                                                                                                                                                                                                                                           |
 | `?mock-reset=1`                             | clears the mock store                                                                                                                                                                                                                                                                                                                        |
 

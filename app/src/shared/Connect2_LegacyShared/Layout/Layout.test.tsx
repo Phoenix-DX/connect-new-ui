@@ -1,7 +1,7 @@
 import { composeStories } from '@storybook/react-vite';
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { setSignedInUser } from '../../../shell/session';
+import { setSignedInUser } from '@/platform/session/session';
 import { expectToMatchCapture } from '../../../test/dom';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import baseV1 from '../BaseLayout_UpdatedOSUI/__captures__/v1.html?raw';

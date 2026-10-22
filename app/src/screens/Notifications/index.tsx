@@ -18,8 +18,8 @@ import {
   UBT_Size,
 } from '../../shared/UBTConnectLibrary/lib/staticEntities';
 import { bottomSheetOpen } from '../../shared/osui/lib/actions';
-import { exceptionMessage, isSystemException, raiseToFlowHandler } from '../../shell/exceptions';
-import { useViewState } from '../../shell/navigation';
+import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useViewState } from '@/platform/navigation';
 import { fetchNotifications, getDateRanges } from './api';
 import {
   app_Notifications_AugmentDateRanges,

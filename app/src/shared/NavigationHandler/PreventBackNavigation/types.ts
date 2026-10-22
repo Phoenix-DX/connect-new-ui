@@ -1,1 +1,1 @@
-export type { BackNavigationEvent } from '../../../shell/navigation';
+export type { BackNavigationEvent } from '@/platform/navigation';

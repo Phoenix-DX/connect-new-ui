@@ -1,4 +1,4 @@
-import { getClientVar, setClientVar } from '../../../shell/session';
+import { getClientVar, setClientVar } from '@/platform/session/session';
 
 /** Connect2_LegacyShared AddFirstSentence(In_UserFirstName, In_MessageContent) (controller.js:99-160, copy in
     migration/screens/BookmarksByGroup/analysis/sources/raw/): "Hello " + name + ", <br> <br>" + content. */

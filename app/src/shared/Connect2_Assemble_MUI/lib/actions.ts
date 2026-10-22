@@ -10,9 +10,9 @@ import {
   getLocalBookmarksByObjectType,
   legacyCreate_LocalBookmark,
   legacyDelete_LocalBookmarkByBookmarkId,
-} from '../../../shell/localEntities';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback/feedbackStore';
-import { getUserInformation } from '../../../shell/userInfo';
+} from '@/platform/storage/localEntities';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
+import { getUserInformation } from '@/platform/session/userInfo';
 import {
   addBookmarkToCache,
   getCacheableLocality,

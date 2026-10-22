@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useRef } from 'react';
 import { OSList } from '../../components/OSList';
-import { showUpgradePopUp } from '../../shell/dialogs';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import {
   exceptionMessage,
   isCommunicationException,
@@ -9,9 +9,9 @@ import {
   NotRegisteredException,
   raiseToFlowHandler,
   UserException,
-} from '../../shell/exceptions';
-import { useOsNavigate, useViewState, useWasRestoredFromCache } from '../../shell/navigation';
-import { APP_ID } from '../../shell/paths';
+} from '@/legacy/os/exceptions';
+import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
 import { bottomSheetOpen } from '../../shared/osui/lib/actions';
 import { App_NotificationIcon } from '../../shared/UBTConnect/App_NotificationIcon';
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';

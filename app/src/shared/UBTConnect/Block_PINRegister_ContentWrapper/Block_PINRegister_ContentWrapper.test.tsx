@@ -1,12 +1,12 @@
 import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { getFeedbackMessage, resetFeedbackMessages } from '../../../shell/feedback/feedbackStore';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
+import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { HOME } from '../../../app/routes.generated';
-import { setResumeLoginLink } from '../../../shell/resume';
-import { getClientVar, setClientVar, setSignedInUser } from '../../../shell/session';
-import { freshPage } from '../../../shell/testSupport';
+import { setResumeLoginLink } from '@/platform/session/resume';
+import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
+import { freshPage } from '@/test/testSupport';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import {
   Block_PINRegister_ContentWrapper,

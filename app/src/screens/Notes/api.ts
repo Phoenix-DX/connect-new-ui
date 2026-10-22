@@ -1,7 +1,10 @@
 import { callAction } from '../../lib/api';
 import { osList, wireList } from '../../lib/os-wire';
-import { get_Note_DynamicFilter_YearOptions, getLocalNotesCategoryIds_ByUserId } from '../../shell/localEntities';
-import { currentUserId } from '../../shell/session';
+import {
+  get_Note_DynamicFilter_YearOptions,
+  getLocalNotesCategoryIds_ByUserId,
+} from '@/platform/storage/localEntities';
+import { currentUserId } from '@/platform/session/session';
 import type { Tag } from '../../shared/UBTConnectLibrary/lib/structures';
 import type { NoteCardItem, NoteCardItemWire, NotesFilter, NotesFilterWire, NotesPage, NotesVariables } from './types';
 

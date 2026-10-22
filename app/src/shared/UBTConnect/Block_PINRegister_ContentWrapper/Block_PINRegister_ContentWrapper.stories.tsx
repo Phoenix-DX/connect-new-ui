@@ -1,7 +1,7 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { setSignedInUser } from '../../../shell/session';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { setSignedInUser } from '@/platform/session/session';
 import { Block_PINRegister_ContentWrapper } from './Block_PINRegister_ContentWrapper';
 
 /** Stories only: the signed-in user who registers a PIN after the first sign-in. */

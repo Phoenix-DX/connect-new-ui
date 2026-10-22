@@ -1,9 +1,9 @@
 // @os-block UBTConnect.App_Policies.Policy_Checker
 import { useEffect, useRef } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { resetReplaceOnUpcomingNavigation, useOsNavigate } from '../../../shell/navigation';
-import { APP_ID } from '../../../shell/paths';
-import { getClientVar } from '../../../shell/session';
+import { resetReplaceOnUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
+import { getClientVar } from '@/platform/session/session';
 
 export interface Policy_CheckerProps {
   /** OutSystems instance id of the block. */

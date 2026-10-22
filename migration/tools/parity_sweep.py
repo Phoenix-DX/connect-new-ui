@@ -3,7 +3,7 @@
 Run from the project root, with the dev server up (npm --prefix app run dev):
     python3 migration/tools/parity_sweep.py [--app http://localhost:5173] [Route ...]
 Without routes it takes every route that has migration/screens/<S>/finished.json. About 10 minutes for 64 routes.
-Needed after any change to a parity input (route code, src/shell, src/shared, src/lib, src/components, src/mocks,
+Needed after any change to a parity input (route code, src/platform, src/legacy, src/shared, src/lib, src/components, src/mocks,
 src/app, public/UBTConnect, index.html, legacy CSS, migration/parity-exemptions.json): reports count only when made
 by route.py parity after the last code change (CLAUDE.md rule 5).
 """

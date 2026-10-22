@@ -12,7 +12,7 @@ const { V1, OneSchoolGlobal } = composeStories(stories);
 const captured = { default: stories.default, V1: stories.V1 };
 const capture = (name: string) => captures[`./__captures__/${name}.html`] ?? '';
 
-vi.mock('../../../shell/navigation', () => ({ allowUpcomingNavigation: vi.fn() }));
+vi.mock('@/platform/navigation', () => ({ allowUpcomingNavigation: vi.fn() }));
 
 describe('ContactByEmailForm', () => {
   testCapturedVariants(captured, captures);
@@ -28,7 +28,7 @@ describe('ContactByEmailForm', () => {
   });
 
   it('Send is enabled once Subject and Message are filled; OnClick_SubmitForm raises Event_SubmitForm', async () => {
-    const { allowUpcomingNavigation } = await import('../../../shell/navigation');
+    const { allowUpcomingNavigation } = await import('@/platform/navigation');
     const onSubmit = vi.fn();
     render(<ContactByEmailForm onEventSubmitForm={onSubmit} inMessagePlaceholder="Add a message" />);
     const send = screen.getByRole('button');

@@ -34,16 +34,16 @@ vi.mock('./api', async (original) => ({
   ...(await original<typeof import('./api')>()),
   sendContactMemberEmail: spy.send,
 }));
-vi.mock('../../shell/navigation', async (original) => ({
-  ...(await original<typeof import('../../shell/navigation')>()),
+vi.mock('@/platform/navigation', async (original) => ({
+  ...(await original<typeof import('@/platform/navigation')>()),
   useNavigateBack: () => spy.back,
 }));
-vi.mock('../../shell/feedback', async (original) => ({
-  ...(await original<typeof import('../../shell/feedback')>()),
+vi.mock('@/platform/feedback', async (original) => ({
+  ...(await original<typeof import('@/platform/feedback')>()),
   showFeedbackMessage: spy.feedback,
 }));
-vi.mock('../../shell/exceptions', async (original) => ({
-  ...(await original<typeof import('../../shell/exceptions')>()),
+vi.mock('@/legacy/os/exceptions', async (original) => ({
+  ...(await original<typeof import('@/legacy/os/exceptions')>()),
   raiseToFlowHandler: spy.raise,
 }));
 

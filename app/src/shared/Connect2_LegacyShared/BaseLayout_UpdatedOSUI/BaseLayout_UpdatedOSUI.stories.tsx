@@ -1,7 +1,7 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { setClientVar, setSignedInUser } from '../../../shell/session';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { setClientVar, setSignedInUser } from '@/platform/session/session';
 import { BackNavigationHandler } from '../../NavigationHandler/BackNavigationHandler';
 import { PendingBlock } from '../../test/PendingBlock';
 import { BottomBarMenu } from '../../UBTConnect/BottomBarMenu';

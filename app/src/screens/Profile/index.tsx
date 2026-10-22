@@ -43,7 +43,7 @@ import {
 } from '../../shared/UBTConnectLibrary/lib/staticEntities';
 import type { SpacingOptions, TextOptions } from '../../shared/UBTConnectLibrary/lib/structures';
 import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
-import { confirmAction } from '../../shell/dialogs';
+import { confirmAction } from '@/platform/feedback/dialogs';
 import {
   NotRegisteredException,
   UserException,
@@ -52,12 +52,12 @@ import {
   isInstanceOf,
   isSystemException,
   raiseToFlowHandler,
-} from '../../shell/exceptions';
-import { feedbackMessageAutoClose } from '../../shell/feedback';
-import { CACHE_TYPE, putCacheableObject } from '../../shell/memoryCache';
-import { useNavigateBack } from '../../shell/navigation';
-import { getClientVar } from '../../shell/session';
-import { getUserInformation, USER_INFO_TTL_SECONDS } from '../../shell/userInfo';
+} from '@/legacy/os/exceptions';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
+import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
+import { useNavigateBack } from '@/platform/navigation';
+import { getClientVar } from '@/platform/session/session';
+import { getUserInformation, USER_INFO_TTL_SECONDS } from '@/platform/session/userInfo';
 import { member_EditDetails_Service, useGetCountryInfo } from './api';
 import {
   EMPTY_ACCOUNT_FORM,

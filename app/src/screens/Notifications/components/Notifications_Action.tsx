@@ -14,7 +14,7 @@ import {
   UBT_Size,
 } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
 import { bottomSheetOpen } from '../../../shared/osui/lib/actions';
-import { showUpgradePopUp } from '../../../shell/dialogs';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { UBT_Icons2_Notifications } from './staticEntities';
 
 export interface Notifications_ActionProps {

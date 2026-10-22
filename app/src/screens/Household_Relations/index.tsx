@@ -4,7 +4,7 @@ import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLa
 import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '../../shared/UBTConnect/lib/staticEntities';
 import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
 import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { useViewState } from '../../shell/navigation';
+import { useViewState } from '@/platform/navigation';
 import { readHousehold_RelationsInputs } from './api';
 import { HouseholdRelations_Block } from './components/HouseholdRelations_Block';
 

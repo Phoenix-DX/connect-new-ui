@@ -1,9 +1,9 @@
 // @os-block UBTConnect.Home.Feed_Embeded
 import { useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { useOsNavigate } from '../../../shell/navigation';
-import { APP_ID } from '../../../shell/paths';
-import { getClientVar } from '../../../shell/session';
+import { useOsNavigate } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
+import { getClientVar } from '@/platform/session/session';
 import { Embedded_FeedCMS } from '../../UBTConnect_EmbedFeed/Embedded_FeedCMS';
 import {
   getHasExtendedShare,

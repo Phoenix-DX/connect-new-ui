@@ -1,9 +1,9 @@
 import { useMemo, useState } from 'react';
-import { signOut } from '../../shell/auth';
-import { confirmAction } from '../../shell/dialogs';
-import { raiseToFlowHandler } from '../../shell/exceptions';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../shell/feedback';
-import { TransitionAnimation, useOsNavigate } from '../../shell/navigation';
+import { signOut } from '@/platform/session/auth';
+import { confirmAction } from '@/platform/feedback/dialogs';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
+import { TransitionAnimation, useOsNavigate } from '@/platform/navigation';
 import { OSLink } from '../../shared/lib/OSLink';
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CacheControl_UserInfo_Wrapper } from '../../shared/UBTConnect/CacheControl_UserInfo_Wrapper';

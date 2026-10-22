@@ -1,5 +1,5 @@
 import type { CSSProperties, MouseEvent, ReactNode } from 'react';
-import { useOsNavigate } from '../../shell/navigation';
+import { useOsNavigate } from '@/platform/navigation';
 
 export interface OSLinkProps {
   /** Screen URL (`/UBTConnect/<Screen>`): the link navigates inside the app. Without it the link only runs `onClick`. */

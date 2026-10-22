@@ -16,9 +16,9 @@ import {
   type FileTransferError,
 } from '../../../shared/FileTransferPlugin/lib/handleDownload';
 import { openInApp_TryOpenFileInApp } from '../../../shared/UBTConnect_Utils/lib/actions';
-import { isUserException, raiseToFlowHandler } from '../../../shell/exceptions';
-import { feedbackMessageAutoClose } from '../../../shell/feedback';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getEventDocuments } from '../api';
 import type { EventDocumentItem, EventDocumentsVariablesWire } from '../types';
 import { getContactHelpdeskSubject_Event } from './actions';

@@ -1,7 +1,7 @@
 // @os-block UBTConnect.ContactFlow.ContactByEmailForm
 import { useId, useState, type ReactNode } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { allowUpcomingNavigation } from '../../../shell/navigation';
+import { allowUpcomingNavigation } from '@/platform/navigation';
 import { preventNavigation, type NavigationEvent } from '../../NavigationHandler/lib/actions';
 import { ButtonLoading } from '../../osui/ButtonLoading';
 import { Button } from '../../UBTConnect_Utils/Button';

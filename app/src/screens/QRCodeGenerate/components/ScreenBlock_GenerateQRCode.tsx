@@ -12,9 +12,9 @@ import {
   ImageSigningSize,
   OrbitSkeletonLoading,
 } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { appManager_GetCachedUserInfo } from '../../../shell/cachedUserInfo';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getCacheableSignedImageURL, getEventQRCode } from '../api';
 import type { EventQRCodeData, EventQRCodeVariablesWire, QRCodeSeatItem } from '../types';
 import { getContactHelpdeskSubject_Event } from './actions';

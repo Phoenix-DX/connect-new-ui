@@ -2,10 +2,10 @@ import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { ASSEMBLE_COUNTRIES } from '../../mocks/fictional/assemble';
 import { SUPPER_MEETINGS } from '../../mocks/fictional/directory';
-import { mockUserInformation } from '../../shell/mockUser';
-import { resetNavigation, renderRoutes } from '../../shell/navigation/testRouter';
-import { applyTestSession } from '../../shell/testSession';
-import { freshPage } from '../../shell/testSupport';
+import { mockUserInformation } from '@/platform/session/mockUser';
+import { resetNavigation, renderRoutes } from '@/platform/navigation/testRouter';
+import { applyTestSession } from '@/platform/session/testSession';
+import { freshPage } from '@/test/testSupport';
 import Assemble_BrowseByCountry from './index';
 
 /* Compiled view and controller: analysis/sources/pretty/Connect2_Assemble_MUI.Assemble.ScreenBlock_Assemble_Filter
@@ -20,8 +20,8 @@ const title = (container: HTMLElement) => container.querySelector('#b2-ScreenTit
 
 /* Cache_UserInfo_Get (the shell's user-info cache) with the subscription region of the test. */
 const region = vi.hoisted(() => ({ id: '1' }));
-vi.mock('../../shell/userInfo', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('../../shell/userInfo')>();
+vi.mock('@/platform/session/userInfo', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/session/userInfo')>();
   return {
     ...actual,
     getUserInformation: () => {

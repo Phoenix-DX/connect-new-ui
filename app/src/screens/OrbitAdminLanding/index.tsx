@@ -1,6 +1,6 @@
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { useOsNavigate } from '../../shell/navigation';
+import { useOsNavigate } from '@/platform/navigation';
 import { getMilestoneScanFF, wireDateTimeParam } from './api';
 import { ScreenBlock_AdminLanding } from './components/ScreenBlock_AdminLanding';
 

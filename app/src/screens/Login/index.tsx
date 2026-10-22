@@ -11,11 +11,11 @@ import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer'
 import { Layout_LoginFlow } from '../../shared/UBTConnectLibrary/Layout_LoginFlow';
 import { UBT_Size } from '../../shared/UBTConnectLibrary/lib/staticEntities';
 import { ButtonLoading } from '../../shared/osui/ButtonLoading';
-import { signOut, useSignIn } from '../../shell/auth';
-import { ActionConfirmationDialog } from '../../shell/dialogs';
-import { delayedMessageShow, showExceptionMessage } from '../../shell/feedback';
-import { DialogExitConfirmation, useWasRestoredFromCache } from '../../shell/navigation';
-import { setAppCallback } from '../../shell/resume';
+import { signOut, useSignIn } from '@/platform/session/auth';
+import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
+import { delayedMessageShow, showExceptionMessage } from '@/platform/feedback';
+import { DialogExitConfirmation, useWasRestoredFromCache } from '@/platform/navigation';
+import { setAppCallback } from '@/platform/session/resume';
 import { readLoginInputs } from './api';
 import { AppManager_Events } from './components/AppManager_Events';
 import { Tile } from './components/Tile';

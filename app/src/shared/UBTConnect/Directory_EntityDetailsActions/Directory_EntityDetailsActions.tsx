@@ -5,15 +5,15 @@ import { OSBlock } from '../../../components/OSBlock';
 import { OSPopupWidget } from '../../../components/OSPopup';
 import { osImage } from '../../../lib/os-assets';
 import { NotRegisteredException, UserException, isInstanceOf } from '../../../lib/os-exceptions';
-import { useOsNavigate } from '../../../shell/navigation/osNavigate';
+import { useOsNavigate } from '@/platform/navigation/osNavigate';
 import {
   exceptionMessage,
   isCommunicationException,
   isSystemException,
   raiseToFlowHandler,
-} from '../../../shell/exceptions';
-import { get_LocalBookmarkByObjectId, getLocalBookmarkByObjectId } from '../../../shell/localEntities';
-import { useClientVar } from '../../../shell/session';
+} from '@/legacy/os/exceptions';
+import { get_LocalBookmarkByObjectId, getLocalBookmarkByObjectId } from '@/platform/storage/localEntities';
+import { useClientVar } from '@/platform/session/session';
 import { ActionsMenu } from '../../UBTConnectLibrary/ActionsMenu';
 import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '../../UBTConnectLibrary/lib/actions';
 import type { ActionsMenuEnableOptions, ActionsMenuOptions, Notes } from '../../UBTConnectLibrary/lib/structures';

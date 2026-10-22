@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import type { Location } from 'react-router';
 import { afterEach, describe, expect, it } from 'vitest';
-import { createBackEvent, resetBackQueue, runBackHandlers } from '../../../shell/navigation/backQueue';
+import { createBackEvent, resetBackQueue, runBackHandlers } from '@/platform/navigation/backQueue';
 import { UnsupportedVersion_Wrapper } from './UnsupportedVersion_Wrapper';
 
 const location: Location = { pathname: '/UBTConnect/Login', search: '', hash: '', state: null, key: 'k' };

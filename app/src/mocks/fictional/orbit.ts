@@ -1,4 +1,4 @@
-import { MOCK_USER_ID } from '../../shell/mockUser';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { LOCALITY, LOCALITY_HOUSEHOLDS, MOCK_USER, VITALE, type CastHousehold } from './directory';
 
 /* The fictional Orbit world of the mock app (user rule 2026-10-16, migration/knowledge/mock-fixtures.md "Fictional text

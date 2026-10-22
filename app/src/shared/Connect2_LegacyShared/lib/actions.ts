@@ -10,11 +10,11 @@ import {
   peekCacheableObject,
   putCacheableObject,
   type BulkCacheResult,
-} from '../../../shell/memoryCache';
+} from '@/platform/storage/memoryCache';
 import { log } from '../../../lib/log';
 import { UserException } from '../../../lib/os-exceptions';
-import { isSignedIn } from '../../../shell/session';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback/feedbackStore';
+import { isSignedIn } from '@/platform/session/session';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { checkAppLauncherPlugin, getOperatingSystem } from '../../UBTConnect_Utils/lib/actions';
 import { Mobile_OperatingSystem } from '../../UBTConnect_Utils/lib/staticEntities';
 import { DirectoryCacheType, MapNavigationRedirect } from './staticEntities';

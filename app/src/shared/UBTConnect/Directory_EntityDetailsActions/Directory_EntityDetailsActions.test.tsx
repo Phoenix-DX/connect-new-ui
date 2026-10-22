@@ -3,7 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
-import { setClientVar } from '../../../shell/session';
+import { setClientVar } from '@/platform/session/session';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { Connect_Entity } from '../lib/staticEntities';
 import { Directory_EntityDetailsActions } from './Directory_EntityDetailsActions';

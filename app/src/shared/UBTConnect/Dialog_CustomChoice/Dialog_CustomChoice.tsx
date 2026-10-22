@@ -1,7 +1,7 @@
 // @os-block UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_CustomChoice
 import type { ReactNode } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { ActionConfirmationDialog } from '../../../shell/dialogs';
+import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { UBT_Color, UBT_FontWeight, UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';
 

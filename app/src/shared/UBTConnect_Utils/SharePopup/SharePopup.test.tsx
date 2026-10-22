@@ -7,8 +7,8 @@ import { SharePopup } from './SharePopup';
 import * as stories from './SharePopup.stories';
 
 const feedback = vi.hoisted(() => ({ feedbackMessageAutoClose: vi.fn() }));
-vi.mock('../../../shell/feedback', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../../../shell/feedback')>()),
+vi.mock('@/platform/feedback', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback')>()),
   feedbackMessageAutoClose: feedback.feedbackMessageAutoClose,
 }));
 

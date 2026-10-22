@@ -17,10 +17,10 @@ import {
   UBT_IconsSize,
   UBT_Size,
 } from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import { showFeedbackMessage } from '../../shell/feedback';
-import { useNoCommonUi } from '../../shell/dialogs';
-import { raiseToFlowHandler } from '../../shell/exceptions';
-import { useNavigateBack } from '../../shell/navigation';
+import { showFeedbackMessage } from '@/platform/feedback';
+import { useNoCommonUi } from '@/platform/feedback/dialogs';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useNavigateBack } from '@/platform/navigation';
 import { readInputs, sendContactEmail } from './api';
 
 /** ScheduleFeedbackMessageAfterTransition JS node (S :772-779): after 500 ms,

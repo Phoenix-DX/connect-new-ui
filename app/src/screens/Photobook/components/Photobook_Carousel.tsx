@@ -7,7 +7,7 @@ import { carouselGoTo, carouselToggleDrag, setSplideConfigs } from '../../../sha
 import { carousel_SetCurrentPosition } from '../../../shared/UBTConnect/lib/actions';
 import type { SplideConfigs } from '../../../shared/osui/lib/structures';
 import { BooleanTypes, CarouselNavigation, Photobook_Speed } from '../../../shared/UBTConnect/lib/staticEntities';
-import { getClientVar, setClientVar } from '../../../shell/session';
+import { getClientVar, setClientVar } from '@/platform/session/session';
 import type { PhotobookHousehold, SelectedHousehold } from '../types';
 import { Photobook_Gallery } from './Photobook_Gallery';
 import { Photobook_Item } from './Photobook_Item';

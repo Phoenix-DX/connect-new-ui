@@ -10,9 +10,9 @@ import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/No
 import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import { OrbitSkeletonLoading } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { Event_Screen, Milestone_Screen } from '../../../shared/Connect2_OrbitMobile_MUI/lib/structures';
-import { appManager_GetCachedUserInfo } from '../../../shell/cachedUserInfo';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getEventsByMemberId, getHouseholdMembers } from '../api';
 import type { EventsSummaryItem, HouseholdMember, OrbitLandingVariablesWire, YearItem } from '../types';
 import {

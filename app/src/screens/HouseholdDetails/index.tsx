@@ -3,7 +3,7 @@ import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { HouseholdDetails_Block } from '../../shared/UBTConnect/HouseholdDetails_Block';
 import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { useViewState } from '../../shell/navigation';
+import { useViewState } from '@/platform/navigation';
 import { readHouseholdDetailsInputs } from './api';
 
 /** UBTConnect.Directory_Household.HouseholdDetails (HouseholdDetails.mvc.js: model :1-80, view :81-275, controller

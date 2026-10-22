@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '../../../shell/memoryCache';
-import { mockUserInformation } from '../../../shell/mockUser';
+import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
+import { mockUserInformation } from '@/platform/session/mockUser';
 import { CacheControl_UserInfo_Wrapper } from './CacheControl_UserInfo_Wrapper';
 
 const meta = {

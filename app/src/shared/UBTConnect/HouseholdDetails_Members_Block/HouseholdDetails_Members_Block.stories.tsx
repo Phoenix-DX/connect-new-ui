@@ -1,7 +1,7 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
-import { setClientVar } from '../../../shell/session';
+import { setClientVar } from '@/platform/session/session';
 import type { UI_HouseholdMember } from '../lib/structures';
 import { HouseholdDetails_Members_Block } from './HouseholdDetails_Members_Block';
 import { VITALE } from '../../../mocks/fictional/directory';

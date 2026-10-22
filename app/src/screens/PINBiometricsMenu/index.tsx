@@ -2,10 +2,10 @@ import { useMemo, useState } from 'react';
 import { Menu_List } from '../../shared/UBTConnect/Menu_List';
 import type { UI_MenuSection } from '../../shared/UBTConnect/Menu_List';
 import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { useNoCommonUi } from '../../shell/dialogs';
-import { useOsNavigate, useViewState, useWasRestoredFromCache } from '../../shell/navigation';
-import { APP_ID } from '../../shell/paths';
-import { getClientVar, setClientVar } from '../../shell/session';
+import { useNoCommonUi } from '@/platform/feedback/dialogs';
+import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
+import { getClientVar, setClientVar } from '@/platform/session/session';
 import { UBT_Icons2_Fingerprint, UBT_Icons2_Password } from './components/staticEntities';
 import type { UI_ListMenuOption } from './types';
 

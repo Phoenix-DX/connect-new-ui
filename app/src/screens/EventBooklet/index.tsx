@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { useOsNavigate } from '../../shell/navigation';
+import { useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_EventBooklet } from './components/ScreenBlock_EventBooklet';
 
 /** UBTConnect Legacy_OrbitEventsFlow.EventBooklet (S = analysis/sources/UBTConnect.Legacy_OrbitEventsFlow.

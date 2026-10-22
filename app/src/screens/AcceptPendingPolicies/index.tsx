@@ -7,12 +7,12 @@ import { Layout_LoginFlow } from '../../shared/UBTConnectLibrary/Layout_LoginFlo
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '../../shared/UBTConnectLibrary/lib/staticEntities';
 import { jSUtils_SetStyleProperty } from '../../shared/UBTJavaScriptUtils/lib/actions';
 import { osImage } from '../../lib/os-assets';
-import { showCommunicationExceptionMessage } from '../../shell/feedback';
-import { CACHE_TYPE, putCacheableObject } from '../../shell/memoryCache';
-import { appManager_GetCachedUserInfo } from '../../shell/cachedUserInfo';
-import { allowUpcomingNavigation, replaceOnUpcomingNavigation, useNavigateBack } from '../../shell/navigation';
-import { getClientVar, setClientVar } from '../../shell/session';
-import { getUserInformation, USER_INFO_TTL_SECONDS } from '../../shell/userInfo';
+import { showCommunicationExceptionMessage } from '@/platform/feedback';
+import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
+import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import { allowUpcomingNavigation, replaceOnUpcomingNavigation, useNavigateBack } from '@/platform/navigation';
+import { getClientVar, setClientVar } from '@/platform/session/session';
+import { getUserInformation, USER_INFO_TTL_SECONDS } from '@/platform/session/userInfo';
 import { getSVGMetric } from './components/actions';
 import { Policy_Custom_AcceptPendingPolicies } from './components/Policy_Custom_AcceptPendingPolicies';
 import { Connect_Applications, UBT_FontSize_Heading3 } from './components/staticEntities';

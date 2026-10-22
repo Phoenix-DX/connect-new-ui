@@ -2,8 +2,8 @@ import { Suspense } from 'react';
 import { createBrowserRouter, Navigate, type RouteObject } from 'react-router';
 import { AppFrame } from './AppFrame';
 import { NotMigrated } from './NotMigrated';
-import { RouteError } from '../shell/RouteError';
-import { ScreenFrame } from '../shell/navigation';
+import { RouteError } from '@/app/RouteError';
+import { ScreenFrame } from '@/platform/navigation';
 import { APP, ROUTES, HOME } from './routes.generated';
 import { lazyScreen } from './screens';
 

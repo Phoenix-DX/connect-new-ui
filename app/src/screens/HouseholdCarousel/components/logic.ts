@@ -1,4 +1,4 @@
-import { getClientVar, setClientVar } from '../../../shell/session';
+import { getClientVar, setClientVar } from '@/platform/session/session';
 import { textToLongInteger } from '../../../shared/UBTConnect_Utils/lib/actions';
 import type { CarouselHouseholdItem, EntitiesCarousel_Item } from '../../../shared/UBTConnect/lib/structures';
 import type { EntitiesCarousel_SwippedItem, HouseholdPreload } from '../types';

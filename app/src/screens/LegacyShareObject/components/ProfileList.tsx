@@ -7,9 +7,9 @@ import { FreeSubscriptionActionDialog } from '../../../shared/Connect2_LegacySha
 import { ResultListType } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
 import { Result_Item_Image } from '../../../shared/Connect2_LegacyShared/Result_Item_Image';
 import { InputWithIcon } from '../../../shared/osui/InputWithIcon';
-import { appManager_GetCachedUserInfo } from '../../../shell/cachedUserInfo';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback';
+import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { shareObject, useGetAvailableUsers, type AvailableUsersFetch } from '../api';
 import type { AvailableUsers, AvailableUsersRequest, ShareProfile } from '../types';
 import { HighlightSearch } from './HighlightSearch';

@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import type { Location } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { createBackEvent, resetBackQueue, runBackHandlers } from '../../../shell/navigation/backQueue';
+import { createBackEvent, resetBackQueue, runBackHandlers } from '@/platform/navigation/backQueue';
 import { preventNavigation } from '../lib/actions';
 import { NavigationConfirmationDialog } from './NavigationConfirmationDialog';
 

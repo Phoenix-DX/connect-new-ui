@@ -6,7 +6,7 @@ import {
   getCacheableObjectInBulk,
   getCacheKeyParts,
   type BulkCacheResult,
-} from '../../shell/memoryCache';
+} from '@/platform/storage/memoryCache';
 import type { EventQRCodeData, EventQRCodeVariablesWire } from './types';
 
 /** Module and owner of the data action (screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_QRCode/

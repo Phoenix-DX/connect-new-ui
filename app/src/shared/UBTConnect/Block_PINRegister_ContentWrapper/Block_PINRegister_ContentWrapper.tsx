@@ -2,12 +2,12 @@
 import { useEffect, useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
 import { osImage } from '../../../lib/os-assets';
-import { feedbackMessageAutoClose } from '../../../shell/feedback';
-import { replaceOnUpcomingNavigation, TransitionAnimation, useOsNavigate } from '../../../shell/navigation';
-import { APP_ID, PATHS } from '../../../shell/paths';
-import { getResumeLoginLink } from '../../../shell/resume';
-import { getClientVar, setClientVar } from '../../../shell/session';
-import { getUserInformation } from '../../../shell/userInfo';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
+import { replaceOnUpcomingNavigation, TransitionAnimation, useOsNavigate } from '@/platform/navigation';
+import { APP_ID, PATHS } from '@/platform/navigation/paths';
+import { getResumeLoginLink } from '@/platform/session/resume';
+import { getClientVar, setClientVar } from '@/platform/session/session';
+import { getUserInformation } from '@/platform/session/userInfo';
 import { OSLink } from '../../lib/OSLink';
 import { useScreenController_NavigateToPage } from '../../UBTJavaScriptUtils/lib/actions';
 import { Pincode_Register } from '../../UBT_AppManager/Pincode_Register';

@@ -1,8 +1,8 @@
 // @os-block UBTConnect_Utils.CW_Notes.NotesSheet
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { isUserException, raiseToFlowHandler } from '../../../shell/exceptions';
-import { createOrUpdate_LocalNote } from '../../../shell/localEntities';
+import { isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { createOrUpdate_LocalNote } from '@/platform/storage/localEntities';
 import { BackNavigationHandler } from '../../NavigationHandler/BackNavigationHandler';
 import { AddNote } from '../../UBTConnectLibrary/AddNote';
 import { BottomSheet } from '../../UBTConnectLibrary/BottomSheet';

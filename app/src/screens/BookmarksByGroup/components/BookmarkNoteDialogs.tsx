@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { NotCaptured } from '../../../components/NotCaptured';
 import { OSBlock } from '../../../components/OSBlock';
-import { ActionConfirmationDialog } from '../../../shell/dialogs';
+import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import type { BookmarkNote } from '../types';
 
 export interface BookmarkNoteAddEditProps {

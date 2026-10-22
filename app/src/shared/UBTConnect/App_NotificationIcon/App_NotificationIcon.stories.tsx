@@ -1,6 +1,6 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { setClientVar } from '../../../shell/session';
+import { setClientVar } from '@/platform/session/session';
 import { App_NotificationIcon } from './App_NotificationIcon';
 
 /** Stories only: the client variables the captured screen had (2 unread notifications; synchronised or not). */

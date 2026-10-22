@@ -7,7 +7,7 @@ import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
 } from '../../../shared/UBTConnect_Utils/lib/structures';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import type { DetailGuestItem } from '../types';
 import { flipHouseholdName } from '../../../shared/Connect2_LegacyShared/lib/actions';
 import { getLocalityName } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';

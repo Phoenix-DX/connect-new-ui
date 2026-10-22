@@ -2,8 +2,8 @@
 import { useEffect } from 'react';
 import { NotCaptured } from '../../../components/NotCaptured';
 import { OSBlock } from '../../../components/OSBlock';
-import { ActionConfirmationDialog } from '../../../shell/dialogs';
-import { feedbackMessageAutoClose } from '../../../shell/feedback';
+import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { CircleButton } from '../../../shared/UBTConnectLibrary/CircleButton';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';

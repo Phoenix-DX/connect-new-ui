@@ -5,10 +5,10 @@ import { UBT_FontWeight } from '../../shared/UBTConnect/lib/staticEntities';
 import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
 import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
 import { UBT_Color, UBT_FontSize, UBT_Size } from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import { appManager_GetCachedUserInfo } from '../../shell/cachedUserInfo';
-import { useNoCommonUi } from '../../shell/dialogs';
-import { raiseToFlowHandler } from '../../shell/exceptions';
-import { useNavigateBack } from '../../shell/navigation';
+import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import { useNoCommonUi } from '@/platform/feedback/dialogs';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useNavigateBack } from '@/platform/navigation';
 import { readInputs, sendContactLDMCoordinatorEmail } from './api';
 import {
   addAuditEventDetailEvent,

@@ -1,9 +1,9 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { ASSEMBLE_MEETINGS, USER_HALL_ID } from '../../mocks/fictional/assemble';
-import { resetNavigation, renderRoutes } from '../../shell/navigation/testRouter';
-import { applyTestSession } from '../../shell/testSession';
-import { freshPage } from '../../shell/testSupport';
+import { resetNavigation, renderRoutes } from '@/platform/navigation/testRouter';
+import { applyTestSession } from '@/platform/session/testSession';
+import { freshPage } from '@/test/testSupport';
 import AssembleEvents from './index';
 
 /* Built from the compiled code: TST's account had no meeting (default capture = NC_ErrorScreen), so the meeting list,

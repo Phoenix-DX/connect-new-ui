@@ -1,6 +1,6 @@
 // @os-block NavigationHandler.NavigationHandler.BackNavigationHandler
 import { OSBlock } from '../../../components/OSBlock';
-import { useBackHandler } from '../../../shell/navigation';
+import { useBackHandler } from '@/platform/navigation';
 import type { BackNavigationEvent } from './types';
 
 export interface BackNavigationHandlerProps {

@@ -9,8 +9,8 @@ import { Mobile_OperatingSystem } from './staticEntities';
 
 const redirect = vi.hoisted(() => vi.fn());
 const toast = vi.hoisted(() => vi.fn());
-vi.mock('../../../shell/feedback/pageRedirect', () => ({ pageRedirect: redirect }));
-vi.mock('../../../shell/feedback', async (importOriginal) => ({
+vi.mock('@/platform/feedback/pageRedirect', () => ({ pageRedirect: redirect }));
+vi.mock('@/platform/feedback', async (importOriginal) => ({
   ...(await importOriginal<object>()),
   feedbackMessageAutoClose: toast,
 }));

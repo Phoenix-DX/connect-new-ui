@@ -2,7 +2,7 @@
 import { useRef } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
 import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler';
-import type { BackNavigationEvent } from '../../../shell/navigation';
+import type { BackNavigationEvent } from '@/platform/navigation';
 import { BottomSheet } from '../../../shared/UBTConnectLibrary/BottomSheet';
 import { Button } from '../../../shared/UBTConnectLibrary/Button';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';

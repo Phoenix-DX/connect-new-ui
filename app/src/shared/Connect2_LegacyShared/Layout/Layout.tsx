@@ -1,7 +1,7 @@
 // @os-block Connect2_LegacyShared.Layout.Layout
 import { useEffect, useLayoutEffect, type ReactNode } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { setThemeClassToBody } from '../../../shell/bodyTheme';
+import { setThemeClassToBody } from '@/legacy/os/bodyTheme';
 import { LayoutRuntime_Top } from '../../NavigationHandler/LayoutRuntime_Top';
 import { BaseLayout_UpdatedOSUI } from '../BaseLayout_UpdatedOSUI';
 import { iOSMetaTags, iOSPreventSwipe } from '../lib/actions';

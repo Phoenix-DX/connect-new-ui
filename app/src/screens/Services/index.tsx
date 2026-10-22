@@ -30,10 +30,10 @@ import {
   isInstanceOf,
   isSystemException,
   raiseToFlowHandler,
-} from '../../shell/exceptions';
-import { useNoCommonUi } from '../../shell/dialogs';
-import { feedbackMessageAutoClose } from '../../shell/feedback';
-import { currentUserId } from '../../shell/session';
+} from '@/legacy/os/exceptions';
+import { useNoCommonUi } from '@/platform/feedback/dialogs';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
+import { currentUserId } from '@/platform/session/session';
 import { changeOrderBulk, useGetServices } from './api';
 import { action_ChangeOrderLocal, type ServicesLists } from './components/actions';
 import { SortableList } from './components/SortableList';

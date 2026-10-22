@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P1-1",
+  "step": "P1-2",
   "stage": "commit",
-  "loop": 0,
-  "since": "2026-10-22T15:39:56"
+  "loop": 1,
+  "since": "2026-10-22T15:59:04"
  },
  "steps": {
   "P0-1": {
@@ -79,12 +79,25 @@
    "finished": "2026-10-22T14:20:54"
   },
   "P1-1": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-22T15:17:57",
    "tokens": {
     "dev": 27384,
     "test": 41431,
     "docs": 18427
+   },
+   "commit": "ab01f0a",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle = baseline",
+   "loops": 0,
+   "finished": "2026-10-22T15:40:03"
+  },
+  "P1-2": {
+   "status": "active",
+   "started": "2026-10-22T15:40:09",
+   "tokens": {
+    "dev": 83250,
+    "test": 48102,
+    "docs": 32927
    }
   }
  },
@@ -182,6 +195,16 @@
    "answer": "auto-accepted (user instruction 2026-10-22 15:29, until end of P1): Opus recommends B: stash the three P1-1 app files, run refactor_parity.py --record-self --all at 3b25ddd, pop, run the tester again. Reason: every later step diffs against this reference, so record it at the documented commit.",
    "by": "user",
    "answeredAt": "2026-10-22T15:30:10"
+  },
+  {
+   "id": "Q9",
+   "step": "P1-2",
+   "text": "shell/mocks.ts, shell/mocks.test.ts and shell/testSupport.ts are not in the P1-2 step table; the developer put them in platform/testing/. Is that the right place?",
+   "status": "answered",
+   "at": "2026-10-22T15:44:02",
+   "answer": "auto-accepted (user instruction 2026-10-22 15:29, until end of P1): Opus (medium) and Fable (high) both recommend (b): mocks.ts and mocks.test.ts to platform/bootstrap/ (rename only, the glob still matches); testSupport.ts to src/test/testSupport.ts next to the setup it imports. No platform/testing area. Note in move-map.csv: mocks.ts also mocks shell-block calls, so bootstrap/ is approximate; P5 follow-up with src/mocks/handlers/.",
+   "by": "user",
+   "answeredAt": "2026-10-22T15:45:23"
   }
  ]
 }

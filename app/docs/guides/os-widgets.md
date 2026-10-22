@@ -65,7 +65,7 @@ the widget is in the screen, open or not. `OSPopupWidget` calls it when the call
   open dialog added, as on TST.
 
 These files use it: `src/shared/UBTConnectLibrary/Popup/Popup.tsx`, `NavigationConfirmationDialog`, `ContactPopup`,
-`Directory_EntityDetailsActions` and the shell dialogs (`src/shell/dialogs`, `DialogExitConfirmation`).
+`Directory_EntityDetailsActions` and the shell dialogs (`src/platform/feedback/dialogs`, `DialogExitConfirmation`).
 Tests: `usePopupWidget.test.tsx`.
 
 ## OSList

@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { setSignedInUser } from '../../../shell/session';
+import { setSignedInUser } from '@/platform/session/session';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { UBT_Color } from '../lib/staticEntities';
 import { Layout_HomePage } from './Layout_HomePage';

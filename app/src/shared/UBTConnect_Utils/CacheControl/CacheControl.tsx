@@ -1,7 +1,7 @@
 // @os-block UBTConnect_Utils.CacheControl.CacheControl
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { peekCacheableObject } from '../../../shell/memoryCache';
+import { peekCacheableObject } from '@/platform/storage/memoryCache';
 
 export interface CacheControlProps {
   /** OutSystems instance id of the block. */

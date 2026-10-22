@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router';
 import { afterEach, describe, expect, it } from 'vitest';
 import { setFlag } from '../../../lib/flags';
-import { setClientVar } from '../../../shell/session';
+import { setClientVar } from '@/platform/session/session';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { App_NotificationIcon } from './App_NotificationIcon';
 import * as stories from './App_NotificationIcon.stories';

@@ -1,5 +1,5 @@
 import { log } from '../../../lib/log';
-import { showFeedbackMessage } from '../../../shell/feedback';
+import { showFeedbackMessage } from '@/platform/feedback';
 
 /** zOnApplicationEvent_Wrapper (Connect2_LegacyShared.controller.js, migration/runtime-sources, :7567-7601):
     GetAppEventName(EventId), then AzureInsights_CreateCustomEvent(name, AttachmentJSON). Telemetry is not wired in the

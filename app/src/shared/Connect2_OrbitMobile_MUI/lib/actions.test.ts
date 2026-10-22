@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { getClientVar } from '../../../shell/session';
+import { getClientVar } from '@/platform/session/session';
 import {
   addExtensionToFile,
   checkDirectoryAccess,

@@ -1,5 +1,5 @@
-import { isSystemException, exceptionMessage } from '../../../shell/exceptions';
-import { getUserInformation } from '../../../shell/userInfo';
+import { isSystemException, exceptionMessage } from '@/legacy/os/exceptions';
+import { getUserInformation } from '@/platform/session/userInfo';
 import { Type_ShareObject } from '../../../shared/UBTConnect/lib/staticEntities';
 import { get_ShareDetails } from '../api';
 import type { OnInitializeSharingScreenResult } from '../types';

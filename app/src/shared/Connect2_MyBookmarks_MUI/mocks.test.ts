@@ -1,7 +1,7 @@
 import { beforeEach, expect, test, vi } from 'vitest';
 import { callAction } from '../../lib/api';
-import { mockLocalBookmarks } from '../../shell/mocks';
-import { freshPage } from '../../shell/testSupport';
+import { mockLocalBookmarks } from '@/platform/bootstrap/mocks';
+import { freshPage } from '@/test/testSupport';
 import { MyBookmarks_Group } from '../UBTConnect/lib/staticEntities';
 import { legacyBookmarksOfGroup } from './mocks';
 

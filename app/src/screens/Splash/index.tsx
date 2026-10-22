@@ -3,11 +3,11 @@ import { HandleOnResumeOpenLink } from '../../shared/UBTConnect/HandleOnResumeOp
 import { set_InitialClientVariables } from '../../shared/UBTConnect/lib/actions';
 import { NavigationHandler } from '../../shared/NavigationHandler/NavigationHandler';
 import { useScreenController_NavigateToPage } from '../../shared/UBTJavaScriptUtils/lib/actions';
-import { allowUpcomingNavigation, useOsNavigate } from '../../shell/navigation';
-import { PATHS } from '../../shell/paths';
-import { pinCheck } from '../../shell/pin';
-import { getColdStartLinkURL, setResumeLoginLink } from '../../shell/resume';
-import { getClientVar, isSignedIn, setClientVar, useClientVar } from '../../shell/session';
+import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
+import { PATHS } from '@/platform/navigation/paths';
+import { pinCheck } from '@/platform/session/pin';
+import { getColdStartLinkURL, setResumeLoginLink } from '@/platform/session/resume';
+import { getClientVar, isSignedIn, setClientVar, useClientVar } from '@/platform/session/session';
 import { ApplicationLoadEvents } from './components/ApplicationLoadEvents';
 import { LayoutBlank } from './components/LayoutBlank';
 import { LoadingDots } from './components/LoadingDots';

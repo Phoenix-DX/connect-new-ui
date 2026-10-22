@@ -1,8 +1,8 @@
 import { composeStories } from '@storybook/react-vite';
 import { fireEvent, render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import * as pageRedirectModule from '../../../shell/feedback/pageRedirect';
-import * as feedback from '../../../shell/feedback/feedbackStore';
+import * as pageRedirectModule from '@/platform/feedback/pageRedirect';
+import * as feedback from '@/platform/feedback/feedbackStore';
 import { linkAddressOnClick } from './AssembleSummaryCard';
 import * as stories from './AssembleSummaryCard.stories';
 

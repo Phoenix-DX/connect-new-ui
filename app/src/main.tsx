@@ -7,7 +7,7 @@ import './styles/review.css'; // original OutSystems CSS: per screen, by shell/S
 import { applyDeviceClasses } from './lib/device';
 import { initFlags } from './lib/flags';
 import { config, MOCKS_BUILT } from './lib/config';
-import { ErrorBoundary } from './shell/ErrorBoundary';
+import { ErrorBoundary } from './app/ErrorBoundary';
 import { bootPlan } from './pwa/bootPlan';
 import { clearStaleServiceWorkers, registerAppServiceWorker } from './pwa/register';
 

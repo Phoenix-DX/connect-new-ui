@@ -1,7 +1,7 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { setClientVar, setSignedInUser } from '../../../shell/session';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { setClientVar, setSignedInUser } from '@/platform/session/session';
 import { OSLink } from '../../lib/OSLink';
 import { PendingBlock } from '../../test/PendingBlock';
 import { Block_PINRegister_ContentWrapper } from '../../UBTConnect/Block_PINRegister_ContentWrapper';

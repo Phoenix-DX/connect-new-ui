@@ -14,9 +14,9 @@ import { checkDirectoryAccess, getFormattedDateTime } from '../../../shared/Conn
 import { DirectoryAPIFilter } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import { DEPRECATED_AccordionItem } from '../../../shared/osui/DEPRECATED_AccordionItem';
 import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { showUpgradePopUp } from '../../../shell/dialogs/subscription';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getCacheableSignedImageURL, getGuestArrangements } from '../api';
 import type {
   GuestArrangementsData,

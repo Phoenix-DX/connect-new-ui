@@ -2,7 +2,7 @@ import { act, fireEvent, render as renderUi } from '@testing-library/react';
 import type { ReactElement } from 'react';
 import { MemoryRouter, type Location } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { createBackEvent, resetBackQueue, runBackHandlers } from '../../../shell/navigation/backQueue';
+import { createBackEvent, resetBackQueue, runBackHandlers } from '@/platform/navigation/backQueue';
 import { bottomSheetOpen } from '../../osui/lib/actions';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { Directory_LegendBottomSheet } from './Directory_LegendBottomSheet';

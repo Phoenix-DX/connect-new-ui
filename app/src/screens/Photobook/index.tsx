@@ -7,7 +7,7 @@ import type { CarouselPreloadedHouseholds } from '../../shared/UBTConnect/lib/st
 import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
 import { UBT_Color, UBT_Display, UBT_FontSize, UBT_Size } from '../../shared/UBTConnectLibrary/lib/staticEntities';
 import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
-import { raiseToFlowHandler } from '../../shell/exceptions';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import {
   replaceOnUpcomingNavigation,
   setPreloadObject,
@@ -15,8 +15,8 @@ import {
   useOsNavigate,
   useViewState,
   useWasRestoredFromCache,
-} from '../../shell/navigation';
-import { APP_ID } from '../../shell/paths';
+} from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
 import { readPhotobookInputs, useGetLocalityHouseholdIds } from './api';
 import { Photobook_Carousel } from './components/Photobook_Carousel';
 import { UBT_AlignItems, UBT_FlexDirection, UBT_JustifyContent } from './components/staticEntities';

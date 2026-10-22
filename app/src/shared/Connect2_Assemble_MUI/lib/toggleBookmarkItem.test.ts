@@ -1,16 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { VITALE, householdsOfSupperMeeting } from '../../../mocks/fictional/directory';
-import { getFeedbackMessage, resetFeedbackMessages } from '../../../shell/feedback/feedbackStore';
+import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import {
   get_LocalBookmarkByObjectId,
   localBookmarksSchemas,
   memoryDatabase,
   setLocalBookmarksDatabase,
   synchBookmarks,
-} from '../../../shell/localEntities';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { setSignedInUser } from '../../../shell/session';
-import { freshPage } from '../../../shell/testSupport';
+} from '@/platform/storage/localEntities';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { setSignedInUser } from '@/platform/session/session';
+import { freshPage } from '@/test/testSupport';
 import {
   getCachedMyBookmarks,
   getCacheableSubdivision_V2,

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { setSignedInUser } from '../../../shell/session';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { setSignedInUser } from '@/platform/session/session';
 import { PendingBlock } from '../../test/PendingBlock';
 import { CommonUI_InsideLayout } from '../../UBTConnect/CommonUI_InsideLayout';
 import { MenuIcon_Back } from '../MenuIcon_Back';

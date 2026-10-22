@@ -31,8 +31,8 @@ import {
   UBT_Size,
   UBT_VerticalAlign,
 } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { showUpgradePopUp } from '../../../shell/dialogs';
-import { feedbackMessageAutoClose } from '../../../shell/feedback';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
 import {
   NotRegisteredException,
   UserException,
@@ -41,7 +41,7 @@ import {
   isSystemException,
   isUserException,
   raiseToFlowHandler,
-} from '../../../shell/exceptions';
+} from '@/legacy/os/exceptions';
 import {
   type ConnectSearch_RecentClickedResults,
   type ConnectSearch_RecentSearchTerm,
@@ -52,9 +52,9 @@ import {
   removeAllRecentSearch,
   saveRecentClickedResult,
   saveRecentSearchTerm,
-} from '../../../shell/localEntities';
-import { setPreloadObject, useOsNavigate, useViewState } from '../../../shell/navigation';
-import { getClientVar } from '../../../shell/session';
+} from '@/platform/storage/localEntities';
+import { setPreloadObject, useOsNavigate, useViewState } from '@/platform/navigation';
+import { getClientVar } from '@/platform/session/session';
 import { fetchSearchResults, useSearchBirthdayOptions } from '../api';
 import type { SearchResult, SearchResults, SearchVariables } from '../types';
 import { initialTagList, isBirthdayKeyWord, showsCategory, validateSearchPhoneNumber } from './actions';

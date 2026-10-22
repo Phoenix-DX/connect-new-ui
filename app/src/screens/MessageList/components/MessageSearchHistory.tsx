@@ -4,7 +4,7 @@ import {
   getFilteredUserSearchHistory,
   localSearchHistory_Update,
   type LocalSearchHistory,
-} from '../../../shell/localEntities';
+} from '@/platform/storage/localEntities';
 import { OSBlock } from '../../../components/OSBlock';
 import { OSList } from '../../../components/OSList';
 

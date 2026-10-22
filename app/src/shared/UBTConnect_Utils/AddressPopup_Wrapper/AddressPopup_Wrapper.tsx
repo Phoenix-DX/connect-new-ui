@@ -1,9 +1,9 @@
 // @os-block UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper
 import { useRef, useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { appManager_GetIsNative } from '../../../shell/deviceContext';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback';
+import { appManager_GetIsNative } from '@/platform/device/deviceContext';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { CustomText } from '../../UBTConnectLibrary/CustomText';
 import { changeWindowLocation, jSUtils_CopyToClipboard } from '../../UBTJavaScriptUtils/lib/actions';
 import { AddressPopup } from '../AddressPopup';

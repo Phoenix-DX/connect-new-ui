@@ -12,11 +12,11 @@ import { currDateTime } from '../../../shared/lib/osDateTime';
 import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler';
 import { Animate } from '../../../shared/osui/Animate';
 import { InputWithIcon } from '../../../shared/osui/InputWithIcon';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { showFeedbackMessage } from '../../../shell/feedback';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
-import { getClientVar, useShellState } from '../../../shell/session';
-import { synchronizeNumberUnreadMessages } from '../../../shell/startup';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { showFeedbackMessage } from '@/platform/feedback';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
+import { getClientVar, useShellState } from '@/platform/session/session';
+import { synchronizeNumberUnreadMessages } from '@/platform/bootstrap/startup';
 import {
   fetchMessageInstanceExists,
   fetchMessages,

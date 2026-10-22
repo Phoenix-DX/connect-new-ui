@@ -3,8 +3,8 @@ import { BackNavigationHandler } from '../../shared/NavigationHandler/BackNaviga
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { getHasNewNotifications } from '../../shared/UBTConnect_Utils/lib/actions';
-import { useOsNavigate } from '../../shell/navigation';
-import { useShellState } from '../../shell/session';
+import { useOsNavigate } from '@/platform/navigation';
+import { useShellState } from '@/platform/session/session';
 import { readMessageDetailInputs } from './api';
 import { ScreenBlock_MessageDetail } from './components/ScreenBlock_MessageDetail';
 

@@ -13,10 +13,10 @@ import {
   UBT_IconsSize,
   UBT_Size,
 } from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import { useNoCommonUi } from '../../shell/dialogs';
-import { feedbackMessageAutoClose } from '../../shell/feedback';
-import { allowUpcomingNavigation, useOsNavigate } from '../../shell/navigation';
-import { APP_ID } from '../../shell/paths';
+import { useNoCommonUi } from '@/platform/feedback/dialogs';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
+import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
 
 /** UBTConnect App_PIN.PINChange (p:UBTConnect.App_PIN.PINChange.mvc.js; view :122-326, controller :331-443).
     No input, no data action, no lifecycle handler (:61, 348, 427-431). Locals isScreenUnlocked = False, UseOverlay = True

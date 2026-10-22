@@ -1,6 +1,6 @@
 // @os-block UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy
 import { OSBlock } from '../../../components/OSBlock';
-import { DialogAccessRestrictedAction } from '../../../shell/dialogs';
+import { DialogAccessRestrictedAction } from '@/platform/feedback/dialogs';
 
 export interface Dialog_AccessRestrictedAction_LegacyProps {
   /** OutSystems instance id of the block (BookmarksByGroup: `b1-FreeSubscriptionAlert`); `confirmAction(id)` opens it. */

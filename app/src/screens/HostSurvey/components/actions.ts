@@ -1,4 +1,4 @@
-import type { LocalLabelledRecord } from '../../../shell/localEntities';
+import type { LocalLabelledRecord } from '@/platform/storage/localEntities';
 
 /* Client actions of Connect2_OrbitMobile_MUI that the HostSurvey blocks call, ported 1:1. `C:<n>` = line of
    migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js, `TF:<n>` = Connect2_OrbitMobile_MUI.TimeFormat.js. */

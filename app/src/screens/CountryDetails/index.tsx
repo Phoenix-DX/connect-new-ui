@@ -44,9 +44,9 @@ import {
 import type { SearchInput } from '../../shared/UBTConnectLibrary/lib/structures';
 import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
 import { jSUtils_String_RemoveAccents } from '../../shared/UBTJavaScriptUtils/lib/actions';
-import { showUpgradePopUp } from '../../shell/dialogs';
-import { raiseToFlowHandler } from '../../shell/exceptions';
-import { useOsNavigate, useViewState } from '../../shell/navigation';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useOsNavigate, useViewState } from '@/platform/navigation';
 import { useGetLocalityStatistics } from './api';
 import {
   directory_BrowseByCountry_TooltipBuilder,

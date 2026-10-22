@@ -1,5 +1,5 @@
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { allowUpcomingNavigation, useNavigateBack, useOsNavigate } from '../../shell/navigation';
+import { allowUpcomingNavigation, useNavigateBack, useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_Assemble_Filter } from './components/ScreenBlock_Assemble_Filter';
 
 /** UBTConnect Legacy_AssembleFlow.Assemble_BrowseByCountry (p:migration/screens/Assemble_BrowseByCountry/analysis/

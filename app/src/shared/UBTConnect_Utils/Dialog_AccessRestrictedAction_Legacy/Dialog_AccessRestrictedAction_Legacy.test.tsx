@@ -1,6 +1,6 @@
 import { act, render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { confirmAction } from '../../../shell/dialogs';
+import { confirmAction } from '@/platform/feedback/dialogs';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { Dialog_AccessRestrictedAction_Legacy } from './Dialog_AccessRestrictedAction_Legacy';
 import * as stories from './Dialog_AccessRestrictedAction_Legacy.stories';

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { DialogExitConfirmation, useViewState } from '../../shell/navigation';
+import { DialogExitConfirmation, useViewState } from '@/platform/navigation';
 import { App_NotificationIcon } from '../../shared/UBTConnect/App_NotificationIcon';
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
@@ -13,8 +13,8 @@ import { Connect_BottomBar_Items, Connect_Entity } from '../../shared/UBTConnect
 import type { UI_ShareableObject_Generic } from '../../shared/UBTConnect_Utils/lib/structures';
 import { ShareableObject_Generic } from '../../shared/UBTConnect_Utils/ShareableObject_Generic';
 import { ShareSheet } from '../../shared/UBTConnect_Utils/ShareSheet';
-import { useOsNavigate } from '../../shell/navigation';
-import { APP_ID } from '../../shell/paths';
+import { useOsNavigate } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
 import { NULL_DATE } from './api';
 import { AppLogo_White } from './components/AppLogo_White';
 import { FeedBlock_Services } from './components/FeedBlock_Services';

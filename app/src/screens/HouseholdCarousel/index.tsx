@@ -7,7 +7,7 @@ import { EntitiesCarousel } from '../../shared/UBTConnect/EntitiesCarousel';
 import { Connect_Entity, Type_CarouselItemSwipeAction } from '../../shared/UBTConnect/lib/staticEntities';
 import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
 import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
-import { setPreloadObject, usePreloadObject, useViewState } from '../../shell/navigation';
+import { setPreloadObject, usePreloadObject, useViewState } from '@/platform/navigation';
 import { mockPreload, readHouseholdCarouselInputs, updateItemMarkAsRead } from './api';
 import {
   appendSwippedItem,

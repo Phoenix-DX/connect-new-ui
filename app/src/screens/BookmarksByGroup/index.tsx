@@ -3,7 +3,7 @@ import { useFlagOn } from '../../lib/flags';
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { Connect_BottomBar_Items } from '../../shared/UBTConnect_Utils/lib/staticEntities';
-import { setPreloadObject, useOsNavigate } from '../../shell/navigation';
+import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { readInputs } from './api';
 import { ScreenBlock_BookmarkGroup } from './components/ScreenBlock_BookmarkGroup';
 import { MyBookmarks_ObjectType } from './components/staticEntities';

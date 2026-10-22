@@ -5,9 +5,9 @@ import { Icon } from '../../shared/UBTConnectLibrary/Icon';
 import { IconText } from '../../shared/UBTConnectLibrary/IconText';
 import { Layout_LoginFlow } from '../../shared/UBTConnectLibrary/Layout_LoginFlow';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import { signOut } from '../../shell/auth';
-import { allowUpcomingNavigation, useOsNavigate } from '../../shell/navigation';
-import { PATHS } from '../../shell/paths';
+import { signOut } from '@/platform/session/auth';
+import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
+import { PATHS } from '@/platform/navigation/paths';
 import { UBT_Icons2_ArrowLeftAlt, UBT_IconsSize_Base_24 } from './components/staticEntities';
 
 /** UBTConnect App_PIN.PINRegister (p:UBTConnect.App_PIN.PINRegister.mvc.js; view :137-286, controller :292-370).

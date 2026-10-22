@@ -2,8 +2,8 @@
    Connect2_Assemble_MUI.controller.js; FSA = migration/screens/AssembleDetail/sources/NavigationHandler.ScrollAnchors
    .FocusScrollAnchorOnBack.mvc.js. DateTimes are "yyyy-MM-ddTHH:mm:ss" wall-clock strings. */
 import { hasAccessToRegion } from '../../../shared/Connect2_Assemble_MUI/lib/actions';
-import { showUpgradePopUp } from '../../../shell/dialogs/subscription';
-import { feedbackMessageAutoClose } from '../../../shell/feedback/feedbackMessageAutoClose';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
+import { feedbackMessageAutoClose } from '@/platform/feedback/feedbackMessageAutoClose';
 
 /** OffsetDateTimeByUserUTCOffset(DateTime, IsForServer) (C:1393-1474): the clone's DateTimes travel as wall-clock text,
     so the device-offset shift and the platform's UTC conversion cancel: unchanged (as AssembleEvents). */

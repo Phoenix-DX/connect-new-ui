@@ -29,8 +29,8 @@ import {
 import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
 import { AddressPopup_Wrapper } from '../../shared/UBTConnect_Utils/AddressPopup_Wrapper';
 import { UBT_LazyImage } from '../../shared/UBTConnect_Utils/UBT_LazyImage';
-import { raiseToFlowHandler } from '../../shell/exceptions';
-import { useViewState, useWasRestoredFromCache } from '../../shell/navigation';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { readOneSchoolGlobalDetailsInputs, useGetOneSchoolGlobalDetails } from './api';
 import { ButtonGroup } from './components/ButtonGroup';
 import { ExpandableSection } from './components/ExpandableSection';

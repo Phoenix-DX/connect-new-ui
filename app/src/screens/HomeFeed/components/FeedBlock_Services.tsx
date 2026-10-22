@@ -2,10 +2,10 @@
 import { useCallback, useMemo, useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
 import { useFlagOn } from '../../../lib/flags';
-import { confirmAction } from '../../../shell/dialogs';
-import { feedbackMessageAutoClose } from '../../../shell/feedback';
-import { useOsNavigate } from '../../../shell/navigation';
-import { APP_ID } from '../../../shell/paths';
+import { confirmAction } from '@/platform/feedback/dialogs';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
+import { useOsNavigate } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
 import { Carousel } from '../../../shared/osui/Carousel';
 import { Gallery } from '../../../shared/osui/Gallery';
 import { CarouselNavigation } from '../../../shared/osui/lib/staticEntities';

@@ -3,7 +3,7 @@ import type { ReactElement } from 'react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setFlag } from '../../../lib/flags';
-import { setClientVar } from '../../../shell/session';
+import { setClientVar } from '@/platform/session/session';
 import type { Embedded_FeedCMSProps } from '../../UBTConnect_EmbedFeed/Embedded_FeedCMS';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { Feed_Embeded } from './Feed_Embeded';

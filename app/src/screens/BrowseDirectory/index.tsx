@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'react-router';
-import { showUpgradePopUp } from '../../shell/dialogs';
-import { raiseToFlowHandler } from '../../shell/exceptions';
-import { useOsNavigate, useViewState, useWasRestoredFromCache } from '../../shell/navigation';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { map_InvalidateSize } from '../../shared/Leaflet/lib/actions';
 import {
   LeafletMap,

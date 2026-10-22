@@ -1,4 +1,4 @@
-import { applyTestSession } from '../../shell/testSession';
+import { applyTestSession } from '@/platform/session/testSession';
 
 let started: Promise<void> | null = null;
 

@@ -12,9 +12,9 @@ import { Spinner } from '../../../shared/Connect2_LegacyShared/Spinner';
 import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler';
 import { InputWithIcon } from '../../../shared/osui/InputWithIcon';
 import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { confirmAction, showUpgradePopUp } from '../../../shell/dialogs';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useViewState, useWasRestoredFromCache, type BackNavigationEvent } from '../../../shell/navigation';
+import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useViewState, useWasRestoredFromCache, type BackNavigationEvent } from '@/platform/navigation';
 import { getSubscribedCountries, getUserSubdivisionId } from '../api';
 import type { CountryWithMapPosition } from '../types';
 

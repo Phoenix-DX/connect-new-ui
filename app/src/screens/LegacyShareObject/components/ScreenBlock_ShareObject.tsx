@@ -10,7 +10,7 @@ import { AvatarImage } from '../../../shared/UBTConnectLibrary/AvatarImage';
 import { UBT_AvatarSize, UBT_Color, UBT_Shape } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
 import { Connect_Entity, UBT_ImageSize } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
 import { UBT_LazyImage } from '../../../shared/UBTConnect_Utils/UBT_LazyImage';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { getCommunityBusinessShareCard, getHouseholdDetails, useShareObjectTypeLabel } from '../api';
 import type { CommunityBusinessShareCard } from '../types';
 import { ProfileList } from './ProfileList';

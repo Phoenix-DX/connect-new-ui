@@ -12,7 +12,7 @@ Node comes from `~/.nvm/versions/node/v24.21.0/bin`, and Playwright from `node_m
 
 | Script | What it does | When |
 |---|---|---|
-| `parity_sweep.py [--app URL] [Route…]` | `route.py parity` on every finished route (or the ones named), one line each, then a total. Report only. About 10 min for 64 routes | After any change to a parity input: route code, `src/shell`, `src/shared`, `src/lib`, `src/components`, `src/mocks`, `src/app`, `public/UBTConnect`, `index.html`, legacy CSS, `migration/parity-exemptions.json` |
+| `parity_sweep.py [--app URL] [Route…]` | `route.py parity` on every finished route (or the ones named), one line each, then a total. Report only. About 10 min for 64 routes | After any change to a parity input: route code, `src/platform`, `src/legacy`, `src/shared`, `src/lib`, `src/components`, `src/mocks`, `src/app`, `public/UBTConnect`, `index.html`, legacy CSS, `migration/parity-exemptions.json` |
 | `restamp.py --confirm "<user's answer>" Route…` | Per route: parity → `step parity` → `ready` → answer the review with the user's text → `finish`. Routes with differences are only reported | When a finished route's own code changed and the user confirmed it in the conversation (CLAUDE.md rules 2 and 4). Never with an invented confirm |
 | `qa_dev_demo.cjs [--settle ms] [--out dir]` | Opens the 64 URLs of `qa-urls.json` on the dev server (:5173) and the demo (:8099), compares visible text, errors, failed requests and broken images. Saves screenshots | After `npm --prefix app run build:demo`, before sharing a new demo |
 

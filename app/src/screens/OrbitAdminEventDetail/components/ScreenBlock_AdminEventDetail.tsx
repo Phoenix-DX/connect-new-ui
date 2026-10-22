@@ -15,10 +15,10 @@ import {
 } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { OrbitEventTypeRecord } from '../../../shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { textToLongInteger } from '../../../shared/UBTConnect_Utils/lib/actions';
-import { appManager_GetCachedUserInfo } from '../../../shell/cachedUserInfo';
-import { exceptionMessage, isSystemException, raiseToFlowHandler } from '../../../shell/exceptions';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getCacheableSignedImageURL, getEventInformation, getMemberByMemberId, getScanEventQRCode } from '../api';
 import type {
   AdminEventDetailInputs,

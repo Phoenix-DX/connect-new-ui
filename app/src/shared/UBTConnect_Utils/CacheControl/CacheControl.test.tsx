@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '../../../shell/memoryCache';
+import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { CacheControl } from './CacheControl';
 import * as stories from './CacheControl.stories';

@@ -31,6 +31,6 @@ exists only in the demo build and with `VITE_USE_MOCKS=false` ([PWA](pwa.md)); d
 ## Where to look first
 
 - A bug on one screen: `src/screens/<Screen>/` ([screens](screens.md)); its `mocks.ts` header lists its scenarios.
-- Something every screen shares (sign-in, PIN, navigation, local storage): `src/shell` ([shell](shell.md)).
+- Something every screen shares (sign-in, PIN, navigation, local storage): `src/platform` ([shell](shell.md)).
 - A form that validates, a dialog, a list: [platform widgets](os-widgets.md).
 - Behaviour that looks wrong compared with the original: check [known original bugs](../known-original-bugs.md) first.

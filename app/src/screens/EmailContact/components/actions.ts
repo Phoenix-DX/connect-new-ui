@@ -1,5 +1,5 @@
 import { log } from '../../../lib/log';
-import { showFeedbackMessage } from '../../../shell/feedback';
+import { showFeedbackMessage } from '@/platform/feedback';
 
 /* Client actions and JavaScript nodes of ScreenBlock_ContactForm (CF = analysis/sources/Connect2_OrbitMobile_MUI.
    Orbit_ScreenBlocks.ScreenBlock_ContactForm.mvc.js). Local copies (no import across routes). */

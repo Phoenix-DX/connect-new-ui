@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon
 import { OSBlock } from '../../../components/OSBlock';
-import { showUpgradePopUp } from '../../../shell/dialogs/subscription';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { bottomSheetOpen } from '../../osui/lib/actions';
 import { Icon } from '../../UBTConnectLibrary/Icon';
 import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';

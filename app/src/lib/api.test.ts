@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw';
 import { afterEach, beforeEach, expect, test, vi } from 'vitest';
-import { freshPage } from '../shell/testSupport';
+import { freshPage } from '@/test/testSupport';
 import { server } from '../test/setup';
 import { SERVER_REQUEST_TIMEOUT, callAction, type ActionPath, type ContractModule } from './api';
 import { CONNECTION_TIMED_OUT, CommunicationException } from './os-exceptions';

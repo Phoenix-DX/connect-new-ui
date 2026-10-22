@@ -1,8 +1,8 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { CACHE_TYPE, putCacheableObject } from '../../../shell/memoryCache';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { getClientVar, setClientVar, setSignedInUser } from '../../../shell/session';
+import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { Block_PINUnlock_ContentWrapper } from './Block_PINUnlock_ContentWrapper';
 
 /** Stories only: signed in and unlocked, as the captures were taken. */

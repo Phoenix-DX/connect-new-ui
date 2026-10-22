@@ -4,7 +4,7 @@ import { OSBlock } from '../../../components/OSBlock';
 import { HostSurvey_PillItem } from '../../../shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';
 import type { HostSurveyMeal, HostSurveyRoom } from '../types';
 import { getFormattedDate_Survey, getGenderPreferenceByJSON_Name, getHouseFloorByJSON_Name } from './actions';
-import type { LocalLabelledRecord } from '../../../shell/localEntities';
+import type { LocalLabelledRecord } from '@/platform/storage/localEntities';
 
 /* The screen-specific Orbit blocks of HostSurvey that the captured summary renders. Sources (P = analysis/sources/
    pretty/Connect2_OrbitMobile_MUI.<block>.mvc.js): Orbit_Blocks.HostSurvey_TopMessage, HostSurvey_Item,

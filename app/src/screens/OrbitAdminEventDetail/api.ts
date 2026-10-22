@@ -6,7 +6,7 @@ import {
   getCacheableObjectInBulk,
   getCacheKeyParts,
   type BulkCacheResult,
-} from '../../shell/memoryCache';
+} from '@/platform/storage/memoryCache';
 import type {
   AdminEventDetailInputs,
   AdminEventDetailVariablesWire,

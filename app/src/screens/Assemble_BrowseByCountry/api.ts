@@ -2,7 +2,7 @@ import {
   getCacheableRegionSubscribedCountries,
   getCacheableUserInfo,
 } from '../../shared/Connect2_LegacyShared/lib/actions';
-import { getUserInformation } from '../../shell/userInfo';
+import { getUserInformation } from '@/platform/session/userInfo';
 import type { CountryWithMapPosition } from './types';
 
 /* Adapters of ScreenBlock_Assemble_Filter (p:Connect2_Assemble_MUI.Assemble.ScreenBlock_Assemble_Filter.mvc.js, cited

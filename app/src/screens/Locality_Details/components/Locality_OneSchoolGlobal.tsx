@@ -1,8 +1,8 @@
 // @os-block UBTConnect.Directory_Locality.Locality_OneSchoolGlobal
 import { useEffect, useRef } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { Directory_EmptyState } from '../../../shared/UBTConnect/Directory_EmptyState';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import { UBT_Color, UBT_Size } from '../../../shared/UBTConnectLibrary/lib/staticEntities';

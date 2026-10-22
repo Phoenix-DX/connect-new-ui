@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { clearMemoryCache } from '../../../shell/memoryCache';
+import { clearMemoryCache } from '@/platform/storage/memoryCache';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { Choice } from '../lib/staticEntities';
 import { FilterSheet } from './FilterSheet';

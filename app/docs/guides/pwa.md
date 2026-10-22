@@ -29,7 +29,7 @@ Production is mock-free (`build/mockFree.ts`, checked by `build/mockFreeBuild.te
 - The build fails when a chunk still renders a mock module, and names it. Two small mock modules are still allowed
   (`KNOWN_MOCK_LEFTOVERS`, no fixture, no MSW): `src/mocks/scenario.ts` (`?mock=unsupported-browser` in
   `src/shared/UBTConnect/lib/actions.ts`) and `src/mocks/fictional/directory.ts` (the mock user of the mock sign-in,
-  `src/shell/auth.ts`, until the identity provider exists). Remove an entry when the app gates its importer.
+  `src/platform/session/auth.ts`, until the identity provider exists). Remove an entry when the app gates its importer.
 
 - Only one service worker per scope. At start, `clearStaleServiceWorkers()` (`src/pwa/register.ts`) removes the other
   mode's worker.
@@ -252,7 +252,7 @@ What the first reports point at (findings, nothing changed):
 
 Decisions: P1 online-first, P10 / ADR-10 IndexedDB kept (`migration/pwa/pwa-discussion-plan.md` section 7).
 
-**Network detection (1:1, `src/shell/feedback/networkDetection.ts`).** Port of NetworkDetection's JavaScript node
+**Network detection (1:1, `src/platform/feedback/networkDetection.ts`).** Port of NetworkDetection's JavaScript node
 (`migration/shell/sources/NetworkDetection.controller.js`, shell-facts U11), started once by `useNetworkStatusEvents`
 (`networkStatus.ts`, mounted in AppFrame):
 
@@ -285,7 +285,7 @@ the app does not keep such a cache).
   filled it on this device (first visit, eviction, logout). The table stays "not read" until the sync, so
   MilestoneHeader and HostSurvey wait instead of raising "not found" (`orbitStaticEntities.ts` readMirror). Search history and recent searches are
   local only and start empty, as in the original.
-- Logout (`shell/auth.ts` signOut, after Cache_InvalidateEverything, original order kept) clears the whole memory cache
+- Logout (`platform/session/auth.ts` signOut, after Cache_InvalidateEverything, original order kept) clears the whole memory cache
   and every local entity store, metadata included (`localEntities/clearLocalEntities.ts`). The Orbit reference lists
   stay in the page's mirror for a new sign-in; the next app start re-syncs the stores.
 

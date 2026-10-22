@@ -4,8 +4,8 @@ import { OSBlock } from '../../../components/OSBlock';
 import { OSList } from '../../../components/OSList';
 import { AssembleSummaryCard } from '../../../shared/Connect2_Assemble_MUI/AssembleSummaryCard';
 import { ScrollAnchor } from '../../../shared/NavigationHandler/ScrollAnchor';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { setPreloadObject, useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { setPreloadObject, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getAssembleEventTypes, getAssembleMeetingSummaryList, getUserSubdivision } from '../api';
 import type { AssembleEventFilter, AssembleMeeting, TagItem } from '../types';
 import {

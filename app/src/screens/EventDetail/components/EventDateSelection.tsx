@@ -4,7 +4,7 @@ import { OSBlock } from '../../../components/OSBlock';
 import { ListOfDaySelectors } from '../../../shared/Connect2_OrbitMobile_MUI/ListOfDaySelectors';
 import { MilestoneTimeType } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { DayFilter } from '../../../shared/Connect2_OrbitMobile_MUI/lib/structures';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import type { DateFilters } from '../types';
 
 /* EventDateSelection (sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection.mvc.js = ES; captured

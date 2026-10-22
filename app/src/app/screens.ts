@@ -1,6 +1,6 @@
 import { createElement, use, type ComponentType, type ReactNode } from 'react';
 import type { Location } from 'react-router';
-import { screenOf } from '../shell/paths';
+import { screenOf } from '@/platform/navigation/paths';
 
 /* Screen code, split per screen (src/screens/<Screen>/index.tsx, default export). The runtime's router loads a screen
    before the location changes (OutSystemsReactView.js Router: createHistory with the ScreenLoader; Root's first

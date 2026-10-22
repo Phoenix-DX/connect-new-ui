@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
 import { LayoutRuntime_Top } from '../../../shared/NavigationHandler/LayoutRuntime_Top';
-import { useNoCommonUi } from '../../../shell/dialogs';
+import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { OfflineDataSyncEvents } from '../../../shared/UBTConnect/OfflineDataSyncEvents';
 
 export interface LayoutBlankProps {

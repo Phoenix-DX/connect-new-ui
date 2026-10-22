@@ -5,8 +5,8 @@ import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
 import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import { NewConnectContent } from '../../../shared/Connect2_LegacyShared/NewConnectContent';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getSubdivisionName, getUserSubdivision } from '../api';
 import { AssembleSummary_List } from './AssembleSummary_List';
 

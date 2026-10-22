@@ -1,5 +1,5 @@
 import { log } from '../../../lib/log';
-import { showFeedbackMessage } from '../../../shell/feedback';
+import { showFeedbackMessage } from '@/platform/feedback';
 
 /* Client actions and the JavaScript node the screen calls (S = migration/screens/ContactByEmailOrbitHelpdesk/analysis/
    sources/pretty/UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js). Local copies (no import across routes). */

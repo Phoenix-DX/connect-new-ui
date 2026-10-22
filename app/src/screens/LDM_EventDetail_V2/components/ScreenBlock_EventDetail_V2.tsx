@@ -17,10 +17,10 @@ import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
 } from '../../../shared/UBTConnect_Utils/lib/structures';
-import { showUpgradePopUp } from '../../../shell/dialogs';
-import { exceptionMessage, isSystemException, raiseToFlowHandler } from '../../../shell/exceptions';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getCoordinatorDetails, getEventByEventId, getHouseholdCoordinates, type EventDetailVariables } from '../api';
 import type { CoordinatorDetailsData, EventDetail, SpecialNeedsItem } from '../types';
 import { EventDetail_Banner } from './EventDetail_Banner';

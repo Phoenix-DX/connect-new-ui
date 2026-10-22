@@ -1,7 +1,7 @@
 // @os-block UBTConnectLibrary.Layouts.Layout_DetailPage
 import { useEffect, useId, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { useNavigateBack } from '../../../shell/navigation';
+import { useNavigateBack } from '@/platform/navigation';
 import { LayoutRuntime_Top } from '../../NavigationHandler/LayoutRuntime_Top';
 import { Icon } from '../Icon';
 import { clearScrollTimeout, removeScrollEvents, setScrollShadow } from '../lib/actions';

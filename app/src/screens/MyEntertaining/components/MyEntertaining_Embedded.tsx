@@ -4,8 +4,8 @@ import { OSBlock } from '../../../components/OSBlock';
 import { CommonUI_InsideLayout } from '../../../shared/UBTConnect/CommonUI_InsideLayout';
 import { Layout_DetailPage } from '../../../shared/UBTConnectLibrary/Layout_DetailPage';
 import { openInApp_OpenExternalLink } from '../../../shared/UBTConnect_Utils/lib/actions';
-import { feedbackMessageAutoClose } from '../../../shell/feedback';
-import { useClientVar } from '../../../shell/session';
+import { feedbackMessageAutoClose } from '@/platform/feedback';
+import { useClientVar } from '@/platform/session/session';
 import { Embedded_MyEntertaining } from './Embedded_MyEntertaining';
 import { Type_MyCalendarEventSource } from './staticEntities';
 

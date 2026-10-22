@@ -16,10 +16,10 @@ import { NoBookmarks } from '../../../shared/Connect2_MyBookmarks_MUI/NoBookmark
 import { MyBookmarks_Group, MyBookmarks_ObjectType } from '../../../shared/UBTConnect/lib/staticEntities';
 import { connect_LaunchDarkly_PermissionCheck, textToLongInteger } from '../../../shared/UBTConnect_Utils/lib/actions';
 import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { showUpgradePopUp } from '../../../shell/dialogs';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback';
-import { setPreloadObject, useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
+import { setPreloadObject, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getBookmarkById, getGroupSummaries } from '../api';
 import type { BookmarkItem, GroupSummaries, GroupSummary, MyBookmarksModel } from '../types';
 import { MyBookmarks_Album } from './MyBookmarks_Album';

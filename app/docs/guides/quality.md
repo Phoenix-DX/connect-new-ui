@@ -21,5 +21,5 @@
 | Refactor parity  | `migration/tools/refactor_parity.py` (project root)                 | refactor gate: `--level strict` (all checks) or `visual` (no structure, class, attribute); `--changed` for the routes of a diff, `--all` for all 64; `--ref outsystems\|self\|both` |
 
 Tests sit next to the code (`*.test.ts(x)`). Each shared block has a DOM snapshot test per captured state. Platform widgets
-(`src/components/*`), the shell (`src/shell`) and local entities have their own unit tests. Each vendored script has an
+(`src/components/*`), the shell (`src/platform`) and local entities have their own unit tests. Each vendored script has an
 `index.test.ts` for the wrapper. The test `src/mocks/contract.test.ts` checks the mock handlers against the contract.

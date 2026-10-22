@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react';
 import { NotCaptured } from '../../../components/NotCaptured';
 import { OSBlock } from '../../../components/OSBlock';
 import { useFlagOn } from '../../../lib/flags';
-import { showUpgradePopUp } from '../../../shell/dialogs';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '../../../shell/feedback';
-import { getPreloadObject, setPreloadObject, useOsNavigate, useWasRestoredFromCache } from '../../../shell/navigation';
-import { APP_ID } from '../../../shell/paths';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
+import { getPreloadObject, setPreloadObject, useOsNavigate, useWasRestoredFromCache } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
 import { directory_Updates_GetCarouselPreloadedHouseholds } from '../../../shared/UBTConnect/lib/actions';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import {

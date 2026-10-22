@@ -42,7 +42,7 @@ flowchart LR
 flowchart TB
   subgraph Browser
     direction TB
-    shell[src/shell<br/>error handling, sign-in and PIN mock,<br/>navigation guard, view cache, toasts,<br/>local entities IndexedDB]
+    platform[src/platform<br/>error handling, sign-in and PIN mock,<br/>navigation guard, view cache, toasts,<br/>local entities IndexedDB]
     screens[src/screens/&lt;Screen&gt;<br/>index.tsx · api.ts · mocks.ts · types.ts]
     widgets[src/components<br/>platform widgets: validation, popup,<br/>list, radio group, NotCaptured]
     vendor[src/vendor and osui vendor folders<br/>third-party scripts copied from the original]
@@ -57,7 +57,7 @@ flowchart TB
   screens --> widgets
   shared --> widgets
   shared --> vendor
-  shell --> lib
+  platform --> lib
   shared --> lib
   lib -- callAction --> mocks
   contract -. types .-> lib
@@ -66,7 +66,7 @@ flowchart TB
 
 Rules that keep it this way (`consistency_check.py` checks them before a screen is finished):
 
-- A screen imports only from its own folder and from `src/shared`, `src/shell`, `src/lib`, `src/components`, `src/mocks`.
+- A screen imports only from its own folder and from `src/shared`, `src/platform`, `src/lib`, `src/components`, `src/mocks`.
 - A screen has no `fetch`, browser storage, route CSS, inline visual styles, raw HTML or `console.log`.
 - Packages come only from the pinned allow-list ([stack](../reference/stack.md)). A new package needs an ADR.
 
@@ -98,10 +98,10 @@ sequenceDiagram
 | Piece                 | Where                                                                                        | Guide                                            |
 | --------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | Request timeouts      | `SERVER_REQUEST_TIMEOUT` in `src/lib/api.ts` (20 s for `UBTConnect`, 10 s for other modules) | [API and mock data](../guides/api-and-mocks.md)  |
-| Navigation guard      | `src/shell/navigation/navigationGate.ts`: `dx-before-navigation`, prevent / resume           | [Shell](../guides/shell.md)                      |
+| Navigation guard      | `src/platform/navigation/navigationGate.ts`: `dx-before-navigation`, prevent / resume        | [Shell](../guides/shell.md)                      |
 | Platform validation   | `src/components/OSValidation`                                                                | [Platform widgets](../guides/os-widgets.md)      |
 | Popups                | `src/components/OSPopup/usePopupWidget.ts`                                                   | [Platform widgets](../guides/os-widgets.md)      |
-| Local entities        | `src/shell/localEntities` (IndexedDB; bookmark sync in one transaction, ADR-8)               | [Shell](../guides/shell.md)                      |
+| Local entities        | `src/platform/storage/localEntities` (IndexedDB; bookmark sync in one transaction, ADR-8)    | [Shell](../guides/shell.md)                      |
 | Vendored scripts      | `src/vendor/panzoom` (ADR-7), `src/shared/osui/DropdownSearch/vendor` (ADR-5)                | [Shared code](../guides/shared-code.md)          |
 | Mock scenarios, store | `src/mocks`, `?mock=`, `?mocksession=`                                                       | [API and mock data](../guides/api-and-mocks.md)  |
 | Known original bugs   | B1-B13                                                                                       | [Known original bugs](../known-original-bugs.md) |

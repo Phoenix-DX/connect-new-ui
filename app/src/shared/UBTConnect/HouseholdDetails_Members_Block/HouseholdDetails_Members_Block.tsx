@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
 import { DataFetchStatus, OSList } from '../../../components/OSList';
-import { showUpgradePopUp } from '../../../shell/dialogs';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { Icon } from '../../UBTConnectLibrary/Icon';
 import {

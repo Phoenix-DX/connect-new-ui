@@ -6,10 +6,10 @@ import { SectionSeparator } from '../../shared/UBTConnect/SectionSeparator';
 import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
 import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
 import { UBT_Color, UBT_FontSize, UBT_Size } from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import { raiseToFlowHandler } from '../../shell/exceptions';
-import { useOsNavigate, useViewState, useWasRestoredFromCache } from '../../shell/navigation';
-import { pinCheck } from '../../shell/pin';
-import { currentUserId } from '../../shell/session';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
+import { pinCheck } from '@/platform/session/pin';
+import { currentUserId } from '@/platform/session/session';
 import { get_ContactUsMenuSections } from './components/actions';
 import type { ContactUsDetailsParams, UI_MenuSection } from './types';
 

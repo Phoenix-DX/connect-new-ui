@@ -7,7 +7,7 @@ import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEnti
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import { NewConnectContent } from '../../../shared/Connect2_LegacyShared/NewConnectContent';
 import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler';
-import { getPreloadObject, useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { getPreloadObject, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import type { AssembleDetailInputs } from '../types';
 import { navigationStorage } from './actions';
 import { AssembleEventDetail, type AssembleEventDetailProps } from './AssembleEventDetail';

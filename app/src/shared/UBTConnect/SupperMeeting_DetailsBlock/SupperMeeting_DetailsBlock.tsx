@@ -2,8 +2,8 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
 import { useFlagOn } from '../../../lib/flags';
-import { setPreloadObject, useOsNavigate } from '../../../shell/navigation';
-import { APP_ID } from '../../../shell/paths';
+import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
+import { APP_ID } from '@/platform/navigation/paths';
 import { ImageCard_LazyLoading } from '../../UBTConnectLibrary/ImageCard_LazyLoading';
 import { UBT_ImageCardType, UBT_ImageSize } from '../../UBTConnectLibrary/lib/staticEntities';
 import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';

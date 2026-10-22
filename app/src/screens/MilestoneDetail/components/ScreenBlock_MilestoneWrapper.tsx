@@ -6,9 +6,9 @@ import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit
 import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
 import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import { OrbitMilestoneType, OrbitSkeletonLoading } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { appManager_GetCachedUserInfo } from '../../../shell/cachedUserInfo';
-import { raiseToFlowHandler } from '../../../shell/exceptions';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
+import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getGmpMilestoneHost, type GmpMilestoneHostResponse } from '../api';
 import type { MilestoneDetailInputs } from '../types';
 import { ScreenBlock_AccommodationHost } from './ScreenBlock_AccommodationHost';

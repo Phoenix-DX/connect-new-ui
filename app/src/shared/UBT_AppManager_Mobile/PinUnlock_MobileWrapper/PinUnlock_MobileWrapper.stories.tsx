@@ -1,9 +1,9 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { osImage } from '../../../lib/os-assets';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '../../../shell/memoryCache';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { getClientVar, setClientVar, setSignedInUser } from '../../../shell/session';
+import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { OSLink } from '../../lib/OSLink';
 import { CacheControl_Policies } from '../../UBTConnect_Utils/CacheControl_Policies';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';

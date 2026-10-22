@@ -1,8 +1,8 @@
 // @os-block Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog
 import { useId } from 'react';
 import { OSBlock } from '../../../components/OSBlock';
-import { ActionConfirmationDialog } from '../../../shell/dialogs/ActionConfirmationDialog';
-import { getUserInformation } from '../../../shell/userInfo';
+import { ActionConfirmationDialog } from '@/platform/feedback/dialogs/ActionConfirmationDialog';
+import { getUserInformation } from '@/platform/session/userInfo';
 
 export interface FreeSubscriptionActionDialogProps {
   /** OutSystems instance id of the block: callers show the dialog with `confirmAction(id)` (it finds the event hub

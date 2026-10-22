@@ -2,7 +2,7 @@ import { useFlagOn } from '../../lib/flags';
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { getNameAndSurname_ByFullName } from '../../shared/UBTConnect/lib/actions';
-import { setPreloadObject, useOsNavigate } from '../../shell/navigation';
+import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_MyEvents_V2 } from './components/ScreenBlock_MyEvents_V2';
 
 /** UBTConnect.type_MyCalendarEventSource.lDM (static-entities-tst.json). */

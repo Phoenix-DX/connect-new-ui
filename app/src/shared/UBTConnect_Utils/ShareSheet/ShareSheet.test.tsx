@@ -4,9 +4,9 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { MOCK_USER_ID } from '../../../shell/mockUser';
-import { setSignedInUser } from '../../../shell/session';
-import { freshPage, recordBodies } from '../../../shell/testSupport';
+import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { setSignedInUser } from '@/platform/session/session';
+import { freshPage, recordBodies } from '@/test/testSupport';
 import { expectToMatchCapture } from '../../../test/dom';
 import { cs_CreateShareProfileLink } from './api';
 import { delaySetIsOpen, scrollToTop, shareSheet_IsSharing } from './jsNodes';

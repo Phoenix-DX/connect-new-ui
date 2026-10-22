@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { LOCALITY } from '../../../mocks/fictional/directory';
-import { applyTestSession } from '../../../shell/testSession';
-import { freshPage } from '../../../shell/testSupport';
+import { applyTestSession } from '@/platform/session/testSession';
+import { freshPage } from '@/test/testSupport';
 import { Assemble_FilterSubdivisionByLocality } from './Assemble_FilterSubdivisionByLocality';
 
 /* Compiled view and controller: migration/blocks/sources/Connect2_Assemble_MUI.Assemble

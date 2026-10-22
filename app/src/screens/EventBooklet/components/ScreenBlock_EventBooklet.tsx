@@ -16,12 +16,12 @@ import {
 } from '../../../shared/NavigationHandler/BackNavigationHandler';
 import { InputWithIcon } from '../../../shared/osui/InputWithIcon';
 import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { showUpgradePopUp } from '../../../shell/dialogs/subscription';
-import { exceptionMessage, isSystemException, raiseToFlowHandler } from '../../../shell/exceptions';
-import { showFeedbackMessage } from '../../../shell/feedback';
-import { getLocalHelperRoles, type LocalHelperRole } from '../../../shell/localEntities';
-import { useViewState, useWasRestoredFromCache } from '../../../shell/navigation';
-import { getClientVar } from '../../../shell/session';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
+import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { showFeedbackMessage } from '@/platform/feedback';
+import { getLocalHelperRoles, type LocalHelperRole } from '@/platform/storage/localEntities';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
+import { getClientVar } from '@/platform/session/session';
 import {
   getEventBookletFilters,
   getEventBookletGuests,
