@@ -1,7 +1,7 @@
 import type { components } from '@/api/schema';
 import { wireList } from '@/legacy/os/os-wire';
 import { LOCALITY, MOCK_USER } from '@/mocks/fictional/directory';
-import type { AppManager_CachedUserInfoRec } from './cachedUserInfo';
+import type { AppManager_CachedUserInfoRec } from './types';
 import { rememberedParam } from '@/platform/storage/storage';
 
 /* The fictional signed-in user (decision U7): Matías Vitale of the directory cast (src/mocks/fictional/directory.ts),

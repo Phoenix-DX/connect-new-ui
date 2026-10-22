@@ -109,3 +109,9 @@
 - The folder cycle came only from 8 UBTConnectLibrary stories (20 upward imports). No production file moved.
 - Decision Q11 (b): `STORY_OR_TEST` in `app/.dependency-cruiser.cjs` excludes story and test files from the cycle rule and the folder rules.
 - 2 new warn rules keep the direction UBTConnect, UBTConnect_Utils, UBTConnectLibrary. Strict parity 64/64 for both references.
+
+## P3-3 - refactor(P3-3): zero import cycles
+
+- The only module cycle in `src/` was `platform/session/cachedUserInfo.ts` and `mockUser.ts`. The record type `AppManager_CachedUserInfoRec` is now in the new leaf file `platform/session/types.ts`; `LDM_Email_V2/components/ScreenBlock_Event_Email_V2.tsx` imports it from there. `depcruise` reports 0 cycles.
+- The folder pairs and `shared/osui` had no production import left to remove. 3 new warn rules keep the directions (`osui-no-import-of-app-modules`, `legacyshared-no-import-of-ubtconnect`, `mybookmarks-no-import-of-assemble`). Strict parity 64/64 for both references.
+- Open for Phase 4: folder-level loops through `platform/` remain (`Connect2_LegacyShared` to `platform/feedback` to `shared/UBTConnect`; `shared/osui` to `components/ui` to `platform/session` to `platform/bootstrap` to `UBTConnectLibrary`). They make no module cycle and end when `platform/` stops importing `shared/`.

@@ -1,5 +1,6 @@
 /* Architecture rules for dependency-cruiser (plan v2 section 2.4, rules 3 to 10; section 4.4), plus the rules of the
-   refactor steps that keep a cleaned direction (P3-1: pages/ and shared/; P3-2: the three UBTConnect modules).
+   refactor steps that keep a cleaned direction (P3-1: pages/ and shared/; P3-2: the three UBTConnect modules; P3-3:
+   shared/osui, Connect2_LegacyShared and UBTConnect, Connect2_Assemble_MUI and Connect2_MyBookmarks_MUI).
    no-circular is an error. The folder rules are warnings until Phase 9 turns them into errors. The target folders
    (pages/, containers/, platform/, legacy/os/) do not exist before Phase 1: the regexes apply when they appear.
    Rule 11 (alias imports) is an ESLint rule (no-restricted-imports), not set here. */
@@ -62,6 +63,34 @@ module.exports = {
       severity: 'warn',
       from: { path: '^src/shared/UBTConnect_Utils/', pathNot: STORY_OR_TEST },
       to: { path: '^src/shared/UBTConnect/' },
+    },
+    {
+      name: 'osui-no-import-of-app-modules',
+      comment:
+        'P3-3: shared/osui/ is generic UI (OutSystems UI patterns). It does not import the app modules in shared/ ' +
+        '(UBTConnect, UBTConnectLibrary, UBTConnect_Utils, Connect2_*, ...); it may import shared/lib/. Its stories ' +
+        'and tests may (decision Q11, see STORY_OR_TEST).',
+      severity: 'warn',
+      from: { path: '^src/shared/osui/', pathNot: STORY_OR_TEST },
+      to: { path: '^src/shared/', pathNot: '^src/shared/(osui|lib)/' },
+    },
+    {
+      name: 'legacyshared-no-import-of-ubtconnect',
+      comment:
+        'P3-3: shared/UBTConnect/ imports shared/Connect2_LegacyShared/, so shared/Connect2_LegacyShared/ does not ' +
+        'import shared/UBTConnect/ (its stories may: decision Q11).',
+      severity: 'warn',
+      from: { path: '^src/shared/Connect2_LegacyShared/', pathNot: STORY_OR_TEST },
+      to: { path: '^src/shared/UBTConnect/' },
+    },
+    {
+      name: 'mybookmarks-no-import-of-assemble',
+      comment:
+        'P3-3: shared/Connect2_Assemble_MUI/ imports shared/Connect2_MyBookmarks_MUI/ (the legacy bookmark mocks), so ' +
+        'shared/Connect2_MyBookmarks_MUI/ does not import shared/Connect2_Assemble_MUI/.',
+      severity: 'warn',
+      from: { path: '^src/shared/Connect2_MyBookmarks_MUI/', pathNot: STORY_OR_TEST },
+      to: { path: '^src/shared/Connect2_Assemble_MUI/' },
     },
     {
       name: 'rule-4-components-no-upward-import',

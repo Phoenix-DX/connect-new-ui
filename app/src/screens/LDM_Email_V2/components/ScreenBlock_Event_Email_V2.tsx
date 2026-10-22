@@ -18,7 +18,8 @@ import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/Navigat
 import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
 import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
 import type { ContactByPhonePopupData } from '@/shared/UBTConnect_Utils/lib/structures';
-import { appManager_GetCachedUserInfo, type AppManager_CachedUserInfoRec } from '@/platform/session/cachedUserInfo';
+import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import type { AppManager_CachedUserInfoRec } from '@/platform/session/types';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { allowUpcomingNavigation, useNavigateBack } from '@/platform/navigation';
