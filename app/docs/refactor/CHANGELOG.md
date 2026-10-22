@@ -61,3 +61,13 @@
 - `src/mocks/handlers.ts` uses one glob per folder, joined as screens, shared, platform. P1-2 had moved the app-start mocks to the front (`shell` became `platform`), so they won over the screen mocks (Menu, Profile). `handlers.test.ts` guards the order.
 - Parity of P1 re-run on this repo's server (port 5174) with the self reference re-recorded at 3b25ddd. Result: 64/64 for both references.
 - Self runs of `parity_check.cjs` normalize `http://localhost:<port>` and `127.0.0.1` in absolute URLs on both sides (`origin_normalize.cjs`).
+
+## P2-1 - refactor(P2-1): move HouseholdDetails to pages/
+
+- `src/screens/HouseholdDetails/` is now `src/pages/HouseholdDetails/`; `index.tsx` is `HouseholdDetailsPage.tsx` (with `@origin`).
+- `src/app/screens.ts` loads `pages/*/<Route>Page.tsx` first, then `screens/*/index.tsx`. `src/mocks/handlers.ts` merges both mock globs by folder name; the handler order stays.
+- 1 row of `move-map.csv` has status `moved`. Strict parity 64/64 for both references.
+
+## Test fix - test(AssembleEvents): freeze the clock at local noon of the day
+
+- No architecture change (commit 1bb105f, decision Q10). The AssembleEvents test froze `Date` at local noon, so it no longer depends on the time of day.

@@ -6,7 +6,8 @@ import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage'
 import { useViewState } from '@/platform/navigation';
 import { readHouseholdDetailsInputs } from './api';
 
-/** UBTConnect.Directory_Household.HouseholdDetails (HouseholdDetails.mvc.js: model :1-80, view :81-275, controller
+/** @origin UBTConnect.Directory_Household.HouseholdDetails
+    (HouseholdDetails.mvc.js: model :1-80, view :81-275, controller
     :276-380): Layout_DetailPage (In_IsPrimaryColor False) titled "Locality, Country", HouseholdDetails_Block as
     content, BottomBarMenu without inputs and CommonUI_InsideLayout. No screen lifecycle event and no call of its own
     (:290-292, :372-376). */

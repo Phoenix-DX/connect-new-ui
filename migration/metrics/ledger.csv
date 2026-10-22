@@ -308,3 +308,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,build,54730,refactor-dev,,"P1-fix loop 1 sonnet (origin normalization)"
 2026-10-22,refactor,verify,22651,refactor-test,,"P1-fix sonnet"
 2026-10-22,refactor,other,21518,refactor-docs,,"P1-fix sonnet"
+2026-10-22,refactor,build,26169,refactor-dev,,P2-1 sonnet
+2026-10-22,refactor,verify,25161,refactor-test,,P2-1 sonnet
+2026-10-22,refactor,review,34952,refactor-advisor,,"P2-1 Q10 judgment (time-of-day test), opus, 8 s (confidence high)"
+2026-10-22,refactor,build,26823,refactor-dev,,"P2-1 extra Q10 sonnet (AssembleEvents clock)"
+2026-10-22,refactor,verify,23338,refactor-test,,P2-1 sonnet
+2026-10-22,refactor,other,32352,refactor-docs,,P2-1 sonnet

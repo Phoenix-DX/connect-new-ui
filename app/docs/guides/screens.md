@@ -3,6 +3,10 @@
 Each screen of the original app has one folder, named exactly as the OutSystems screen, served at the original route
 (`src/app/routes.generated.ts`). A screen appears automatically once `index.tsx` exists.
 
+A migrated screen lives in `src/pages/<Screen>/` and its page file is `<Screen>Page.tsx` instead of `index.tsx`
+(HouseholdDetails since P2-1). `src/app/screens.ts` loads `pages/*/<Screen>Page.tsx` first and falls back to
+`screens/*/index.tsx` during the transition. The other files keep their names.
+
 ```
 src/screens/<Screen>/
   index.tsx     default export: the screen (markup and class names as in the original)
@@ -20,9 +24,9 @@ Rules (checked before a screen is finished):
 - anything the capture does not show renders `<NotCaptured name="…">` with what is known, never an invented design;
 - a needed change in shared code is a change request (`migration/change-requests/`), not an edit.
 
-How a screen is verified: a route spec (`migration/screens/<Screen>/route-spec.md`) with evidence for every statement,
-parity against each captured state of the original, then the product owner's review.
+How to verify a screen: write a route spec (`migration/screens/<Screen>/route-spec.md`) with evidence for every statement.
+Then run parity against each captured state of the original. The product owner then does the review.
 
-Screen scenarios: a screen that needs another account type or state adds a scenario to its `mocks.ts` and documents it in
-the header (see [API and mock data](api-and-mocks.md)). A form validates with the platform validation
+Screen scenarios: a screen that needs another account type or state adds a scenario to its `mocks.ts`. It documents the
+scenario in the header (see [API and mock data](api-and-mocks.md)). A form validates with the platform validation
 ([platform widgets](os-widgets.md)); a screen that asks before leaving uses the navigation guard ([shell](shell.md)).

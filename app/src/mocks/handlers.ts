@@ -9,9 +9,16 @@ type MockModules = Record<string, { handlers?: RequestHandler[] }>;
  * (screens < shared < shell); renaming shell/ to platform/ moved the fallback to the front.
  * One glob per folder keeps the order explicit.
  */
-const screens: MockModules = import.meta.glob('../screens/*/mocks.ts', { eager: true });
+const pageMocks: MockModules = import.meta.glob('../pages/*/mocks.ts', { eager: true });
+const legacyScreenMocks: MockModules = import.meta.glob('../screens/*/mocks.ts', { eager: true });
 const shared: MockModules = import.meta.glob('../shared/**/mocks.ts', { eager: true });
 const platform: MockModules = import.meta.glob('../platform/**/mocks.ts', { eager: true });
+
+/** Pages and not yet migrated screens in one group, ordered by folder name as the single screens glob was. */
+const folderOf = (path: string): string => path.split('/')[2] ?? path;
+const screens: MockModules = Object.fromEntries(
+  Object.entries({ ...pageMocks, ...legacyScreenMocks }).sort(([a], [b]) => (folderOf(a) < folderOf(b) ? -1 : 1)),
+);
 
 /** Joins the handlers of the module groups in the given order. */
 export function collectHandlers(...groups: MockModules[]): RequestHandler[] {

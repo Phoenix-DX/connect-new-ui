@@ -29,3 +29,16 @@ of P1)". Added at 15:40 by the user: when Opus is not sure, ask Fable too (refac
 | -- | ---- | ---------------- | -------------- | -------- |
 | Q8 | P1-1 | The self parity reference (`migration/refactor-reference/`, git-ignored) is missing; 50 routes fail `--ref both`. Record it again, and at which commit? | Opus: (B) stash the three P1-1 app files, record `--record-self --all` at 3b25ddd, restore the files, test again. Every later step compares with this reference, so it must come from the documented commit. Done: 149/149 states, 162.4 MB. | accepted |
 | Q9 | P1-2 | `shell/mocks.ts`, `mocks.test.ts` and `testSupport.ts` are not in the step table; the developer put them in `platform/testing/`. Right place? | Opus (medium) and Fable (high) agree: (b) `mocks.ts` and `mocks.test.ts` to `platform/bootstrap/` (rename only, the MSW glob still matches); `testSupport.ts` to `src/test/` next to the setup it imports. No new `platform/testing` area. `bootstrap/` is an approximate fit (it also mocks shell-block calls): P5 follow-up in move-map.csv. | accepted |
+
+## Window 3: 19:41 +07, overnight, until every in-scope phase (P2 to P7) is done
+
+The user's instruction (19:41): "Tôi giờ sẽ đi ngủ nên là bạn cứ chạy hết các Px giúp tôi nhé, xong hết thì cho 1 bảng
+đầy đủ các quyết định của Opus và Fable, mỗi quyết định nêu rõ context và lý do vì sao chọn nhé." (English: "I am going
+to sleep, so run all the phases for me. When all is done, give me a full table of the decisions of Opus and Fable, each
+with its context and the reason for the choice.") Marker: "auto-accepted (user instruction 2026-10-22 19:41,
+overnight)". Stretch phases P8 and P9 are not in this window. Each row: context, options, choice, reason, advisors and
+confidence.
+
+| Id | Step | Context | Options | Choice | Reason | Advisors (confidence) |
+| -- | ---- | ------- | ------- | ------ | ------ | --------------------- |
+| Q10 | P2-1 | ci fails on `AssembleEvents.test.tsx`, a test that P2-1 did not touch: it computes the expected next meeting from the real time (`Date.now()`, UTC day), so it passed at 19:30 and fails at 20:00 +07. Every later gate runs ci. | (a) fix the test in its own commit before P2-1; (b) fix it inside the P2-1 commit; (c) accept ci red | (a), freeze the clock with `vi.setSystemTime` | A pre-existing flaky test that blocks every later gate; a separate test-only commit keeps P2-1 a pure move and ci meaningful. Copying the app rule into the test would still depend on the time of day. | Opus (high) |

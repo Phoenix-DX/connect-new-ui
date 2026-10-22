@@ -83,3 +83,10 @@ One line per event. Written by rf.py.
 - 2026-10-22T16:27:52 P1-4 stage docs
 - 2026-10-22T16:30:04 P1-4 stage commit
 - 2026-10-22T16:30:05 P1-4 done faf8682: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self, 1 flake clean on rerun); bundle = baseline
+- 2026-10-22T19:41:52 P2-1 started
+- 2026-10-22T19:41:53 P2-1 stage dev
+- 2026-10-22T19:43:38 P2-1 stage test
+- 2026-10-22T19:53:32 Q10 (P2-1) asked: ci fails on the pre-existing time-of-day dependent test AssembleEvents.test.tsx (expected 1210-series-5, got 1210-series-1); P2-1 did not touch it. Fix now in its own commit, inside P2-1, or accept?
+- 2026-10-22T19:53:33 Q10 answered by the user: "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (high) recommends (a): fix the test in its own test-only commit before the P2-1 commit; freeze the clock with vi.setSystemTime (copying the app rule still depends on the time of day). Keeps P2-1 a pure move and ci meaningful for every later gate."
+- 2026-10-22T20:03:37 P2-1 stage docs
+- 2026-10-22T20:04:41 P2-1 stage commit

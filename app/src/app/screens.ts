@@ -2,14 +2,19 @@ import { createElement, use, type ComponentType, type ReactNode } from 'react';
 import type { Location } from 'react-router';
 import { screenOf } from '@/platform/navigation/paths';
 
-/* Screen code, split per screen (src/screens/<Screen>/index.tsx, default export). The runtime's router loads a screen
+/* Screen code, split per screen (src/pages/<Screen>/<Screen>Page.tsx or, until moved, src/screens/<Screen>/index.tsx; default export). The runtime's router loads a screen
    before the location changes (OutSystemsReactView.js Router: createHistory with the ScreenLoader; Root's first
    render waits for `screenLoader.load`), so a screen transition never starts on an empty container.
    - First screen of the page: `lazyScreen` suspends (router.tsx Suspense, fallback null) until its code is loaded.
    - Later navigations: ScreenTransitionGroup awaits `prepareScreen` before the transition, so the screen renders at
      once (no Suspense fallback inside the entering container). */
 
-const screenModules = import.meta.glob<{ default: ComponentType }>('../screens/*/index.tsx');
+type ScreenLoader = () => Promise<{ default: ComponentType }>;
+
+/* Migrated pages (src/pages/<Screen>/<Screen>Page.tsx) win over the screens not migrated yet
+   (src/screens/<Screen>/index.tsx, transition fallback). */
+const pageModules = import.meta.glob<{ default: ComponentType }>('../pages/*/*Page.tsx');
+const legacyScreenModules = import.meta.glob<{ default: ComponentType }>('../screens/*/index.tsx');
 
 interface LoadableScreen {
   component: ComponentType | null;
@@ -39,7 +44,8 @@ function loadable(loader: () => Promise<{ default: ComponentType }>): LoadableSc
 export function lazyScreen(screen: string): ComponentType | null {
   let entry = screens.get(screen);
   if (!entry) {
-    const loader = screenModules[`../screens/${screen}/index.tsx`];
+    const loader: ScreenLoader | undefined =
+      pageModules[`../pages/${screen}/${screen}Page.tsx`] ?? legacyScreenModules[`../screens/${screen}/index.tsx`];
     if (!loader) return null;
     entry = loadable(loader);
     screens.set(screen, entry);
