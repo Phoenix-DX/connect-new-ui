@@ -28,9 +28,12 @@ with `export PATH=$HOME/.nvm/versions/node/v24.21.0/bin:$PATH &&`.
 
 1. Do not edit, move or delete any file except `test.md`.
 2. Use only git commands that do not change the repository: `status`, `diff`, `log`, `show`, `ls-files`.
-3. The master starts the dev server before your stage. Check it first:
-   `curl -s -o /dev/null -w "%{http_code}" http://localhost:5173/UBTConnect/HomeFeed`. When the result is not
-   `200` and the step has a parity level other than `none`, stop with status `blocked`.
+3. The master starts the dev server before your stage and gives you its URL (default `http://localhost:5173`).
+   Check it first: `curl -s -o /dev/null -w "%{http_code}" <url>/UBTConnect/HomeFeed`, and check that the server
+   serves this repo: `lsof -p $(lsof -nP -iTCP:<port> -sTCP:LISTEN -t | head -1) -a -d cwd` prints
+   `<project root>/app`. When the result is not `200` or the folder is another one, and the step has a parity level
+   other than `none`, stop with status `blocked`. When the URL is not the default, pass `--app <url>` to every
+   `refactor_parity.py` command.
 4. Do not fix a failure. Report it with the evidence.
 
 ## Gate

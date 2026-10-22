@@ -88,7 +88,7 @@ Tester:
 ```
 Agent(subagent_type="refactor-tester", model="sonnet", description="<id> test",
   prompt="Step <id>. Brief: migration/refactor/handoffs/<id>/brief.md. Developer report: dev.md in the same
-          folder. The dev server runs on http://localhost:5173. Write test.md. Return only the Result and Questions
+          folder. The dev server runs on <url> (section 4). Write test.md. Return only the Result and Questions
           sections.")
 ```
 
@@ -131,7 +131,12 @@ Do not paste the plan or file contents into a prompt: the brief carries them.
 
 Before the test stage of a step with a parity level other than `none`:
 
-1. `curl -s -o /dev/null -w "%{http_code}" http://localhost:5173/UBTConnect/HomeFeed`.
+1. `curl -s -o /dev/null -w "%{http_code}" http://localhost:5173/UBTConnect/HomeFeed`, and check which folder the
+   server serves: `lsof -p $(lsof -nP -iTCP:5173 -sTCP:LISTEN -t | head -1) -a -d cwd`. The folder must be
+   `<project root>/app`. A 200 alone does not prove it: on 2026-10-22 port 5173 served another clone, and the parity of
+   P1 tested the wrong code. When another folder holds the port, do not stop that server: start this repo's server
+   on a free port (`npm --prefix app run dev -- --port 5174 --strictPort`), and give that URL to the tester. The tester
+   then passes `--app <url>` to `refactor_parity.py`.
 2. When it does not print `200`, start
    `export PATH=$HOME/.nvm/versions/node/v24.21.0/bin:$PATH && npm --prefix app run dev` in the background (Bash
    `run_in_background`) and
