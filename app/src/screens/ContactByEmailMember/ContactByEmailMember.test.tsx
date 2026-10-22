@@ -18,7 +18,7 @@ const spy = vi.hoisted(() => ({
   raise: vi.fn(),
 }));
 vi.mock('../../shared/UBTConnect/ContactByEmailForm', async () => {
-  const { OSBlock } = await import('../../components/OSBlock');
+  const { OSBlock } = await import('@/components/ui/os/OSBlock');
   return {
     ContactByEmailForm: (props: ContactByEmailFormProps & { children?: ReactNode }) => {
       spy.form = props;

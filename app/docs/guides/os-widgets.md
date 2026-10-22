@@ -75,7 +75,7 @@ It takes the loading and error classes from `sourceDataFetchStatus`. It has an o
 scroll, default threshold 2000 px).
 
 `OSListItem` is a plain item. It is a swipeable item when the caller gives `leftActions` or `rightActions`.
-`OSListItemAction` is a swipe button. The full prop table is in `src/components/OSList/README.md`. Stories and tests are
+`OSListItemAction` is a swipe button. The full prop table is in `src/components/ui/os/OSList/README.md`. Stories and tests are
 in the folder.
 
 ## OSRadioGroup

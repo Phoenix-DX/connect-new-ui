@@ -1,8 +1,8 @@
 // @os-block Connect2_Assemble_MUI.Assemble.Assemble_FilterSubdivisionByLocality
 import { useEffect, useId, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
-import { osList } from '../../../lib/os-wire';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
+import { osList } from '@/legacy/os/os-wire';
 import type { SubdivisionsItem } from '../../Connect2_LegacyShared/lib/structures';
 import { RadioButtonListItem } from '../../Connect2_LegacyShared/RadioButtonListItem';
 import { Spinner } from '../../Connect2_LegacyShared/Spinner';

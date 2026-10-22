@@ -1,5 +1,5 @@
 // @os-block Connect2_LegacyShared.MyNotifications.MessageList_NoNotifications_Banner
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 /** MessageList_NoNotifications_Banner (survey source Connect2_LegacyShared.MyNotifications.MessageList_NoNotifications_
     Banner.mvc.js view): the inbox icon and "You have no notifications". No input, no event. Not captured (shown only

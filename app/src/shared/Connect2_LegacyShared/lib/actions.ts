@@ -1,7 +1,7 @@
 /* Client actions of Connect2_LegacyShared, ported 1:1 from migration/runtime-sources/Connect2_LegacyShared.controller.js
    (fetched read-only from TST, 2026-10-15; cited below as controller.js:<line>). */
-import { callAction } from '../../../lib/api';
-import { osList, wireList } from '../../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList, wireList } from '@/legacy/os/os-wire';
 import {
   cacheKeyPart,
   getCacheKeyParts,
@@ -11,8 +11,8 @@ import {
   putCacheableObject,
   type BulkCacheResult,
 } from '@/platform/storage/memoryCache';
-import { log } from '../../../lib/log';
-import { UserException } from '../../../lib/os-exceptions';
+import { log } from '@/platform/log/log';
+import { UserException } from '@/legacy/os/os-exceptions';
 import { isSignedIn } from '@/platform/session/session';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { checkAppLauncherPlugin, getOperatingSystem } from '../../UBTConnect_Utils/lib/actions';

@@ -2,7 +2,7 @@ import type { RequestHandler } from 'msw';
 import { contractHandler } from '../../mocks/contract';
 import { recordedHandler } from '../../mocks/fixtures';
 import { collection, statefulHandler } from '../../mocks/store';
-import { wireList } from '../../lib/os-wire';
+import { wireList } from '@/legacy/os/os-wire';
 import type { UpdateItemWire } from './types';
 
 /* DataActionGetDateRanges: the recorded fixture (UBTConnect/DataActionGetDateRanges/02-0400bafb.json, re-recorded

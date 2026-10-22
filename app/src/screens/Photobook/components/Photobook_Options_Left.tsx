@@ -1,6 +1,6 @@
 // @os-block Directory_Photobook.Photobook_Options_Left
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { bottomSheetClose, bottomSheetOpen } from '../../../shared/osui/lib/actions';
 import { SanitizedHtml } from '../../../shared/ReactiveHtmlSanitizer/SanitizedHtml';
 import { BottomSheet } from '../../../shared/UBTConnectLibrary/BottomSheet';

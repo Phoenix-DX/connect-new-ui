@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { CommunicationException } from '../../../lib/os-exceptions';
+import { CommunicationException } from '@/legacy/os/os-exceptions';
 import * as feedback from '@/platform/feedback';
 import {
   getLocalBookmarkByObjectId,

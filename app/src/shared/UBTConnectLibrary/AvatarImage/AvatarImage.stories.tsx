@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { osImage } from '../../../lib/os-assets';
+import { osImage } from '@/legacy/os/os-assets';
 import { AvatarImage } from './AvatarImage';
 
 const meta = { title: 'Shared/UBTConnectLibrary/AvatarImage', component: AvatarImage } satisfies Meta<

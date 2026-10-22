@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CircleButton_WithLabel } from '../CircleButton_WithLabel';
 import { CustomText } from '../CustomText';
 import { Icon } from '../Icon';

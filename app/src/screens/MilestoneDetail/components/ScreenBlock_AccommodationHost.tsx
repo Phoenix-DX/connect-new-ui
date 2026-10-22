@@ -1,8 +1,8 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHost
 import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
-import { NotCaptured } from '../../../components/NotCaptured';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import {
@@ -36,7 +36,7 @@ import {
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
-import { log } from '../../../lib/log';
+import { log } from '@/platform/log/log';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getAccommodationHost, getCacheableSignedImageURL, get_Document } from '../api';
 import type { AccommodationData, AccommodationHostVariablesWire, HelperItem, RoomItem } from '../types';

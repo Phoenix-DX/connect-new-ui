@@ -1,5 +1,5 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { NewConnectContent } from '../../Connect2_LegacyShared/NewConnectContent';
 import { AssembleCommon_VirtualMeetingDetails_Entry } from '../AssembleCommon_VirtualMeetingDetails_Entry';
 

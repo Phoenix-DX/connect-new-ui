@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import type { callAction } from '../../lib/api';
+import type { callAction } from '@/api/client/callAction';
 import { contractHandler } from '../../mocks/contract';
 import { SCHOOLS } from '../../mocks/fictional/directory';
 import { fixtureData } from '../../mocks/fixtures';

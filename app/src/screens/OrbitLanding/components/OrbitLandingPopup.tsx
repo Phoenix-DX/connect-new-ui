@@ -1,6 +1,6 @@
 import { useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { usePopupWidget } from '../../../components/OSPopup';
+import { usePopupWidget } from '@/components/ui/os/OSPopup';
 import { styleFromCssText } from '../../../shared/lib/cssText';
 
 export interface OrbitLandingPopupProps {

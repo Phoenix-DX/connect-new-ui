@@ -1,5 +1,5 @@
 // @os-block Connect2_LegacyShared.Widgets.NetworkWarning
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Animate } from '../../osui/Animate';
 import { AnimationType, Speed } from '../../osui/lib/staticEntities';
 

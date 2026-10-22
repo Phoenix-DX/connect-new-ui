@@ -1,5 +1,5 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails_Entry
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSLink } from '../../lib/OSLink';
 import { LabelWithCopyIcon } from '../../Connect2_LegacyShared/LabelWithCopyIcon';
 import { checkSupportedBrowserVersion, openExternalURL } from '../../Connect2_LegacyShared/lib/actions';

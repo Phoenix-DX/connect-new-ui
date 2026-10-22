@@ -1,6 +1,6 @@
 // @os-block Directory_Photobook.Photobook_Item
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Connect_Entity } from '../../../shared/UBTConnect/lib/staticEntities';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';

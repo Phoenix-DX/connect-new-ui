@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { flagDefs, flagValue, setFlag } from '../lib/flags';
+import { flagDefs, flagValue, setFlag } from '@/platform/flags/flags';
 
 /* Review tool, not part of the original UI: open with ?ffpanel=1. Switches flag branches the user decided to build. */
 export function FlagPanel() {

@@ -1,7 +1,7 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleSummary_List
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { AssembleSummaryCard } from '../../../shared/Connect2_Assemble_MUI/AssembleSummaryCard';
 import { ScrollAnchor } from '../../../shared/NavigationHandler/ScrollAnchor';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';

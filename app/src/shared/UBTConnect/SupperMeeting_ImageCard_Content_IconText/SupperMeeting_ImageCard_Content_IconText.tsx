@@ -1,5 +1,5 @@
 // @os-block UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_IconText
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Icon } from '../../UBTConnectLibrary/Icon';
 import { IconText } from '../../UBTConnectLibrary/IconText';
 import { UBT_FontWeight, UBT_IconsSize, UBT_Size } from '../lib/staticEntities';

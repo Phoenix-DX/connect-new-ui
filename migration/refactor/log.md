@@ -70,3 +70,9 @@ One line per event. Written by rf.py.
 - 2026-10-22T15:50:16 P1-2 stage test
 - 2026-10-22T15:58:00 P1-2 stage docs
 - 2026-10-22T15:59:04 P1-2 stage commit
+- 2026-10-22T15:59:13 P1-2 done fdd21d0: ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle = baseline; diffcheck --move: ok (110 renames)
+- 2026-10-22T15:59:19 P1-3 started
+- 2026-10-22T15:59:19 P1-3 stage dev
+- 2026-10-22T16:04:02 P1-3 stage test
+- 2026-10-22T16:11:46 P1-3 stage docs
+- 2026-10-22T16:13:07 P1-3 stage commit

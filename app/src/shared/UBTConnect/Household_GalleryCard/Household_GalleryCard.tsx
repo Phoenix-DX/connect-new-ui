@@ -1,5 +1,5 @@
 // @os-block UBTConnect.Directory_Household_Blocks.Household_GalleryCard
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ImageCard_LazyLoading } from '../../UBTConnectLibrary/ImageCard_LazyLoading';
 import { ImageCard__Content } from '../../UBTConnectLibrary/ImageCard__Content';
 import { UBT_ImageCardType, UBT_ImageSize } from '../../UBTConnectLibrary/lib/staticEntities';

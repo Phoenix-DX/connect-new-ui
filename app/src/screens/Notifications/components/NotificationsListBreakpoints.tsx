@@ -1,5 +1,5 @@
 // @os-block UBTConnect.App_Notifications.NotificationsListBreakpoints
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import type { Breakpoint, NotificationItem } from '../types';
 import { NotificationsList } from './NotificationsList';
 import { Notifications_Header } from './Notifications_Header';

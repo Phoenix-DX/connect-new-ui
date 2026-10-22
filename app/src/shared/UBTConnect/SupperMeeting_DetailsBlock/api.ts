@@ -1,4 +1,4 @@
-import { callAction } from '../../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import type { UI_Screen_SubdivisionDetails } from '../lib/structures';
 
 /** DataActionGetSubdivision (block controller getSubdivision$DataActRefresh, mvc.js:458-476): sent with the block's

@@ -1,6 +1,6 @@
 // @os-block UBT_AppManager.PIN.Pincode_Register
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { registerPin } from '@/platform/session/pin';
 import { currentUserId } from '@/platform/session/session';
 import { pIN_ValidateRules } from '../lib/actions';

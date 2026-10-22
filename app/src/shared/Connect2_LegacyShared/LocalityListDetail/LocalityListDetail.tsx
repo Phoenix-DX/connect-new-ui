@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Directory.LocalityListDetail
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList, OSListItem } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList, OSListItem } from '@/components/ui/os/OSList';
 import type { CountryWithMapPosition } from './types';
 
 export interface LocalityListDetailProps {

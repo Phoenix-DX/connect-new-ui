@@ -1,8 +1,8 @@
 // @os-block UBTConnect.Directory_Locality.Locality_Households_HouseholdList
 import { useEffect, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
-import { isOn } from '../../../lib/flags';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
+import { isOn } from '@/platform/flags/flags';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { setPreloadObject, useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';

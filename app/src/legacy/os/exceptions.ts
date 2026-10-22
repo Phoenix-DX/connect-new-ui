@@ -1,4 +1,4 @@
-import { CommunicationException, SystemException, UserException, isInstanceOf } from '@/lib/os-exceptions';
+import { CommunicationException, SystemException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
 import { showCommunicationExceptionMessage, showExceptionMessage } from '@/platform/feedback';
 
 /* OutSystems exceptions as client action flows test them (runtime: migration/runtime-sources/OutSystems.js:2,
@@ -24,7 +24,7 @@ export {
   SystemException,
   UserException,
   isInstanceOf,
-} from '@/lib/os-exceptions';
+} from '@/legacy/os/os-exceptions';
 
 /** OS.Exceptions.isInstanceOf(ex, UserException[, specificType]): any user exception, or the named one. */
 export const isUserException = (error: unknown, specificType = ''): error is UserException =>

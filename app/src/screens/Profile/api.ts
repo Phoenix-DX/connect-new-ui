@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { callAction } from '../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import type { AccountForm, CountryInfo } from './types';
 
 /** DataActionGetCountryInfo of the screen (Profile.mvc.js:2850-2878): not fetched at start; "Refresh Query" after the

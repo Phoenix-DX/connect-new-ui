@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Reusable.InputCounter
 import { useEffect, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { inputCounterLimitField, inputCounterMaxLength, inputCounterOnInitialize } from '../lib/actions';
 
 export interface InputCounterProps {

@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../CustomContainer';
 import {
   formatClasses,

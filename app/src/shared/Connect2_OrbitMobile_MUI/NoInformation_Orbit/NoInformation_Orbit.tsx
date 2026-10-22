@@ -1,5 +1,5 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.NoInformation_Orbit
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface NoInformation_OrbitProps {
   /** OutSystems instance id of the block. */

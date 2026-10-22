@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.TagToggle
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../CustomContainer';
 import { Icon } from '../Icon';
 import { IconText } from '../IconText';

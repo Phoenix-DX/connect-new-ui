@@ -1,6 +1,6 @@
 // @os-block OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem
 import { useEffect, useLayoutEffect, useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { isLayoutNative, isWebApp } from '../lib/deviceDetection';
 import { closeAllJS, collapseJS, expandJS, setAriaAttributesJS, type AccordionSectionElement } from './sectionDom';
 

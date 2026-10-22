@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Reusable.CircledCheckbox
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface CircledCheckboxProps {
   /** OutSystems instance id of the block. */

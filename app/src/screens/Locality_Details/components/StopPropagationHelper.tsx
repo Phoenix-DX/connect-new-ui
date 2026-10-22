@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.StopPropagationHelper
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { STOP_PROPAGATION_HELPER_CLASS } from './actions';
 
 export interface StopPropagationHelperProps {

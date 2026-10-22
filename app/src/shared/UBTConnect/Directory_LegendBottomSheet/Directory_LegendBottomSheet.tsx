@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_Locality.Directory_LegendBottomSheet
 import { useRef, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PreventBackNavigation } from '../../NavigationHandler/PreventBackNavigation';
 import { bottomSheetClose } from '../../osui/lib/actions';
 import { BottomSheet } from '../../UBTConnectLibrary/BottomSheet';

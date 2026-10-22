@@ -1,4 +1,4 @@
-import { DataFetchStatus } from '../../../components/OSList';
+import { DataFetchStatus } from '@/components/ui/os/OSList';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { getSkeletonList_UI_SubdivisionHousehold } from '../lib/actions';
 import { Household_GalleryCard_List } from './Household_GalleryCard_List';

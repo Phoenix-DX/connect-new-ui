@@ -41,3 +41,9 @@
 - `src/shell/` is gone. Files moved to `src/platform/{session,bootstrap,navigation,feedback,storage,device}`, `src/legacy/os` and `src/app`; `testSupport.ts` moved to `src/test/`.
 - `ErrorBoundary` and `RouteError` are in `src/app/`. Guides, overview diagram and `platform/README.md` name the new paths.
 - 30 rows of `move-map.csv` have status `moved`. No code change; strict parity 64/64 for both references.
+
+## P1-3 - refactor(P1-3): move lib/ and components/ to api/, platform/ and legacy/os/
+
+- `src/lib/` is gone. `callAction` is in `src/api/client/`; `os-*` files in `src/legacy/os/`; flags, config, log and device in `src/platform/{flags,config,log,device}/`.
+- `OS*` widgets are in `src/components/ui/os/`; `FlagPanel` is in `src/platform/flags/`; `NotCaptured` is in `src/app/`.
+- 20 rows of `move-map.csv` have status `moved`. Guides, overview diagram and 4 READMEs name the new paths.

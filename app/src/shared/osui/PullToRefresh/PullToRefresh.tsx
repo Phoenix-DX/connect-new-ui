@@ -1,5 +1,5 @@
 // @os-block OutSystemsUI_2_23.Private.PullToRefresh
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface PullToRefreshProps {
   /** OutSystems instance id of the block. */

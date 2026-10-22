@@ -1,6 +1,6 @@
 // @os-block UBTConnect_Utils.CW_Image.UBT_LazyImage
 import { useEffect, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LazyImage } from '../../UBTConnectLibrary/LazyImage';
 import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
 import { cache_SignedImageURL_Get } from '../lib/actions';

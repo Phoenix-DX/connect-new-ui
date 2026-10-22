@@ -1,6 +1,6 @@
 // @os-block UBTConnect_Utils.CW_CTA_PopUps.AddressPopup
 import { useMemo } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ContactPopup } from '../ContactPopup';
 import { UBT_ImageSize, UBT_Icons } from '../lib/staticEntities';
 import type { ContactPopupButton, ContactPopupData } from './types';

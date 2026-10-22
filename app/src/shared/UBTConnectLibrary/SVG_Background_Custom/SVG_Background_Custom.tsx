@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.Layouts.SVG_Background_Custom
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { InlineSVG } from '../../osui/InlineSVG';
 import { formatClasses, sVGHeader_GetPath } from '../lib/actions';
 

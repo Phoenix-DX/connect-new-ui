@@ -1,8 +1,8 @@
 // @os-block UBTConnect.Home.FeedBlock_Updates
 import { useEffect, useState } from 'react';
-import { NotCaptured } from '../../../components/NotCaptured';
-import { OSBlock } from '../../../components/OSBlock';
-import { useFlagOn } from '../../../lib/flags';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { useFlagOn } from '@/platform/flags/flags';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { getPreloadObject, setPreloadObject, useOsNavigate, useWasRestoredFromCache } from '@/platform/navigation';

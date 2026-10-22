@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useWasRestoredFromCache } from '@/platform/navigation';
 import { formatDateForEventBanner } from './actions';
 

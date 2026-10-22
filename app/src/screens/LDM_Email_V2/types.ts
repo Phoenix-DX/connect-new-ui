@@ -1,4 +1,4 @@
-import type { ActionInputs, ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 
 /* Wire shapes of the route's calls (contract src/api/openapi.yaml; not captured). Long Integers stay text. */
 export type GetCoordinatorDetailsWire = ActionOutputs<

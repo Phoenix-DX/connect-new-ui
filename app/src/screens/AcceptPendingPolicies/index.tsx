@@ -6,7 +6,7 @@ import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
 import { Layout_LoginFlow } from '../../shared/UBTConnectLibrary/Layout_LoginFlow';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '../../shared/UBTConnectLibrary/lib/staticEntities';
 import { jSUtils_SetStyleProperty } from '../../shared/UBTJavaScriptUtils/lib/actions';
-import { osImage } from '../../lib/os-assets';
+import { osImage } from '@/legacy/os/os-assets';
 import { showCommunicationExceptionMessage } from '@/platform/feedback';
 import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';

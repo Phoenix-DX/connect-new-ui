@@ -1,5 +1,5 @@
 // @os-block UBTConnect.App_Common.UnsupportedVersion_Browser
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { UnsupportedVersion } from '../UnsupportedVersion';
 
 export interface UnsupportedVersion_BrowserProps {

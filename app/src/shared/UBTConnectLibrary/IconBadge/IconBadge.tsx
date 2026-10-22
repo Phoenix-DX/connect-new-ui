@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.OutSystemsUIOverrides.IconBadge
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Badge } from '../Badge';
 import { UBT_Color } from '../lib/staticEntities';
 

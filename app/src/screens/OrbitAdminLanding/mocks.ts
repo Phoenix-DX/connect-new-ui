@@ -6,7 +6,7 @@ import {
   type OrbitAdminEvent,
 } from '../../mocks/fictional/orbitAdmin';
 import { scenario } from '../../mocks/scenario';
-import { wireList } from '../../lib/os-wire';
+import { wireList } from '@/legacy/os/os-wire';
 import type { AdminOrbitEventsWire, Get_AdminEventsListWire } from './types';
 
 /* Mocks of OrbitAdminLanding (P-MOCKS), on the fictional Orbit admin world (src/mocks/fictional/orbitAdmin.ts). Neither

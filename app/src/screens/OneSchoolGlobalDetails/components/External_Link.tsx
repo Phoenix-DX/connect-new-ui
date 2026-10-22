@@ -1,5 +1,5 @@
 // @os-block UBTConnect.App_Common_Blocks.External_Link
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '../../../shared/UBTConnect/lib/staticEntities';
 import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
 import { IconText } from '../../../shared/UBTConnectLibrary/IconText';

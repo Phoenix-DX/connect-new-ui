@@ -1,4 +1,4 @@
-import { config } from './config';
+import { config } from '@/platform/config/config';
 
 /* Application logging. Routes and shared code log through `log`, never through console directly (rule NO-CONSOLE).
    A sink receives every entry: the console today; a monitoring service (e.g. Application Insights, which the original

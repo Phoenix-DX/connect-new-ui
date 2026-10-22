@@ -1,4 +1,4 @@
-import { log } from '../../../lib/log';
+import { log } from '@/platform/log/log';
 import { showFeedbackMessage } from '@/platform/feedback';
 
 /* Client actions, JavaScript nodes and static-entity records of the screen (S) and of ScreenBlock_Household_Email (H).

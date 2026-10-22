@@ -297,7 +297,7 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
   - `forceLogout` → `signOut()`, then a full page load of `\UBTConnect\Login`.
   - The app start does not toast yet: App_Common toasts a `ScreenController_RaiseError` only if a plain `Error` is not
     "system" (open).
-  - Server calls raise the OutSystems exceptions of `src/lib/os-exceptions.ts` (see `api-and-mocks.md`).
+  - Server calls raise the OutSystems exceptions of `src/legacy/os/os-exceptions.ts` (see `api-and-mocks.md`).
   - A ported Handle Error tests them with `src/legacy/os/exceptions.ts`: `isUserException(e[, '<Module>.<Name>'])`,
     `isCommunicationException(e)`, `isInstanceOf(e, SecurityException)`, AllExceptions = `!isSystemException(e)`.
   - An unhandled exception goes to `raiseToFlowHandler(e)` (communication message, else

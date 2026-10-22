@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Common_Blocks.Section
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import { UBT_Color, UBT_Size } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
 

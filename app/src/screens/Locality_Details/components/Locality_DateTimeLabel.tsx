@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_Locality.Locality_DateTimeLabel
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { getLocalityCurrentTimeLabel } from './actions';
 import { Timer } from './Timer';
 

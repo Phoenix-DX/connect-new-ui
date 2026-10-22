@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Home.FeedBlock_CommunityPopulation
 import { useEffect, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { log } from '../../../lib/log';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { log } from '@/platform/log/log';
 import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';

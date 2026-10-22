@@ -1,4 +1,4 @@
-import { useFlagOn } from '../../lib/flags';
+import { useFlagOn } from '@/platform/flags/flags';
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { showFeedbackMessage } from '@/platform/feedback';

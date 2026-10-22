@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.MyNotifications.MessageListBlock
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList, OSListItem, OSListItemAction } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList, OSListItem, OSListItemAction } from '@/components/ui/os/OSList';
 import type { MessagesList } from '../types';
 import { MessageListItem } from './MessageListItem';
 import { MessagePriority } from './staticEntities';

@@ -1,6 +1,6 @@
 // @os-block UBTConnect_Utils.CW_Share.ShareSheet_Section
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface ShareSheet_SectionProps {
   /** OutSystems instance id of the block. */

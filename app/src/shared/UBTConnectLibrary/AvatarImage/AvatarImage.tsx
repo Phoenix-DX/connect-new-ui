@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.AvatarImage
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { InlineSVG } from '../../osui/InlineSVG';
 import { CustomContainer } from '../CustomContainer';
 import { Icon } from '../Icon';

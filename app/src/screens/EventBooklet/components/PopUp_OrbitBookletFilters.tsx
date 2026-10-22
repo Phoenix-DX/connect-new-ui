@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ListOfDaySelectors } from '../../../shared/Connect2_OrbitMobile_MUI/ListOfDaySelectors';
 import { Orbit_FooterWithActions } from '../../../shared/Connect2_OrbitMobile_MUI/Orbit_FooterWithActions';
 import { styleFromCssText } from '../../../shared/lib/cssText';

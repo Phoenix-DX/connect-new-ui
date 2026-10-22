@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_Info_V2
-import { OSBlock } from '../../../components/OSBlock';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { osImage } from '@/legacy/os/os-assets';
 import type { EventCalendar } from '../types';
 import { formatEventDate } from './actions';
 

@@ -1,5 +1,5 @@
 // @os-block NavigationHandler.LayoutRuntime_NavigationHandler.LayoutRuntime_Top
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface LayoutRuntime_TopProps {
   /** OutSystems instance id of the block. */

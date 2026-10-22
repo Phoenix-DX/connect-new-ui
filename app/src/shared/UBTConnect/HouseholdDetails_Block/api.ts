@@ -1,5 +1,5 @@
-import { callAction } from '../../../lib/api';
-import { osList } from '../../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList } from '@/legacy/os/os-wire';
 import type { Directory_Coordinates } from '../../UBTConnect_Utils/lib/structures';
 import type { UI_HouseholdMember, UI_Screen_HouseholdDetails } from '../lib/structures';
 

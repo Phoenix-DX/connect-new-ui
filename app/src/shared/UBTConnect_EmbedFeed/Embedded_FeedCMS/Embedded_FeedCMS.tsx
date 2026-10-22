@@ -1,7 +1,7 @@
 // @os-block UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { log } from '../../../lib/log';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { log } from '@/platform/log/log';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { LazyImage } from '../../UBTConnectLibrary/LazyImage';
 import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';

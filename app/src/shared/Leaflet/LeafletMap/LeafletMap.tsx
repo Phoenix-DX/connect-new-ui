@@ -1,6 +1,6 @@
 // @os-block Leaflet.Leaflet.LeafletMap
 import { useEffect, useId, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import {
   lL_MapObject_Attr,
   map_GeoJSON_Feature_Add,

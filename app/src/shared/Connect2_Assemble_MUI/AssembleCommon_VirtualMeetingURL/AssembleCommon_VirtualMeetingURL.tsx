@@ -1,6 +1,6 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL
 import { useId, type MouseEvent } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog, confirmAction } from '@/platform/feedback/dialogs';
 import { OSLink } from '../../lib/OSLink';
 import { checkSupportedBrowserVersion, openExternalURL } from '../../Connect2_LegacyShared/lib/actions';

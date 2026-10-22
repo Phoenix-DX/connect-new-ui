@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { expect, test, vi } from 'vitest';
-import { addLogSink } from '@/lib/log';
+import { addLogSink } from '@/platform/log/log';
 import { ErrorBoundary } from './ErrorBoundary';
 
 function Broken(): never {

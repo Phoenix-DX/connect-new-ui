@@ -1,6 +1,6 @@
 // @os-block OutSystemsUI_2_23.Utilities.TouchEvents
 import { useEffect, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { createTouchTrack, type TouchTrack } from './touchTrack';
 
 export interface TouchEventsProps {

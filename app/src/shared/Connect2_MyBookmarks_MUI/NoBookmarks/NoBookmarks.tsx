@@ -1,7 +1,7 @@
 // @os-block Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { osImage } from '@/legacy/os/os-assets';
 import { ConnectBlankSlate } from '../../Connect2_LegacyShared/ConnectBlankSlate';
 
 export interface NoBookmarksProps {

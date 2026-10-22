@@ -1,8 +1,8 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
+import { osImage } from '@/legacy/os/os-assets';
 import { Person_Contact_Options } from '../../../shared/Connect2_LegacyShared/Person_Contact_Options';
 import { Result_Item_Image } from '../../../shared/Connect2_LegacyShared/Result_Item_Image';
 import type {

@@ -1,4 +1,4 @@
-import { callAction } from '../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import type { CarouselPreloadedHouseholds } from '../../shared/UBTConnect/lib/structures';
 import type { HouseholdCarouselInputs } from './types';
 

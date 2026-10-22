@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { callAction } from '../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import type { EntertainingConfig, EntertainingConfigInputs, MyEntertainingInputs } from './types';
 
 /** MyCalendarEventSourceId (Text) from the query string, "" when absent (MyEntertaining.mvc.js:13-15, 62-63). */

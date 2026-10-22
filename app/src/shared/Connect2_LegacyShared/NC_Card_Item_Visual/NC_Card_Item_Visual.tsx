@@ -1,7 +1,7 @@
 // @os-block Connect2_LegacyShared.NewConnect_Utilities.NC_Card_Item_Visual
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { osImage } from '@/legacy/os/os-assets';
 import { styleFromCssText } from '../../lib/cssText';
 import { ResultListType } from '../lib/staticEntities';
 import { useLoadPhotoAsync } from '../Result_Item_Image/useLoadPhotoAsync';

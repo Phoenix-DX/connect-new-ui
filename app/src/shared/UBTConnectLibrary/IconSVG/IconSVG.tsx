@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.IconSVG
-import { OSBlock } from '../../../components/OSBlock';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { osImage } from '@/legacy/os/os-assets';
 import { UBT_Icons } from '../lib/staticEntities';
 
 export interface IconSVGProps {

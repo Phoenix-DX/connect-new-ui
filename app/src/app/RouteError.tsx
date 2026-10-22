@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { isRouteErrorResponse, useRouteError } from 'react-router';
-import { NotCaptured } from '@/components/NotCaptured';
-import { log } from '@/lib/log';
+import { NotCaptured } from '@/app/NotCaptured';
+import { log } from '@/platform/log/log';
 
 /* errorElement of the root route: errors thrown while rendering or loading a route. Logged, then the review marker
    (the original app's error screen is not captured yet). */

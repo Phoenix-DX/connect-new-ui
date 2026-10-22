@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { callAction } from '../../lib/api';
-import { osList, wireList } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList, wireList } from '@/legacy/os/os-wire';
 import type { ExternalAppPopUpInfo, ServicesData, ServicesPage, UpdateItem, UpdateItemWire } from './types';
 
 /** OutSystems NullDate() as it travels on the wire (ShareSheet In_UpdateDate when nothing is shared). */

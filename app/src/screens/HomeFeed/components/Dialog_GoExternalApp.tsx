@@ -1,7 +1,7 @@
 // @os-block UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp
 import { useEffect } from 'react';
-import { NotCaptured } from '../../../components/NotCaptured';
-import { OSBlock } from '../../../components/OSBlock';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { CircleButton } from '../../../shared/UBTConnectLibrary/CircleButton';

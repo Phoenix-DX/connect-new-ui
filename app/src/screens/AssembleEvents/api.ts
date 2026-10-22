@@ -1,5 +1,5 @@
-import { callAction } from '../../lib/api';
-import { osDate, osList } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osDate, osList } from '@/legacy/os/os-wire';
 import {
   getCacheableRegionSubscribedCountries,
   getCacheableUserInfo,

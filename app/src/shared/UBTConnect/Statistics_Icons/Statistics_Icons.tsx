@@ -1,5 +1,5 @@
 // @os-block UBTConnect.Directory_Locality.Statistics_Icons
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import type { UI_StatisticsTexts } from '../../Connect_Geography_CS/lib/structures';
 import { Columns_Three } from '../../UBTConnectLibrary/Columns_Three';
 import { CustomText } from '../../UBTConnectLibrary/CustomText';

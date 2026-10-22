@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.CircleButton
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../CustomContainer';
 import { formatClasses, getClasses_AvatarSize } from '../lib/actions';
 import { UBT_Color, UBT_Shape, UBT_Size } from '../lib/staticEntities';

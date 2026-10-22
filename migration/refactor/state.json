@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P1-2",
+  "step": "P1-3",
   "stage": "commit",
-  "loop": 1,
-  "since": "2026-10-22T15:59:04"
+  "loop": 0,
+  "since": "2026-10-22T16:13:07"
  },
  "steps": {
   "P0-1": {
@@ -92,12 +92,25 @@
    "finished": "2026-10-22T15:40:03"
   },
   "P1-2": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-22T15:40:09",
    "tokens": {
     "dev": 83250,
     "test": 48102,
     "docs": 32927
+   },
+   "commit": "fdd21d0",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle = baseline; diffcheck --move: ok (110 renames)",
+   "loops": 1,
+   "finished": "2026-10-22T15:59:13"
+  },
+  "P1-3": {
+   "status": "active",
+   "started": "2026-10-22T15:59:19",
+   "tokens": {
+    "dev": 43346,
+    "test": 29226,
+    "docs": 37695
    }
   }
  },

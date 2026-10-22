@@ -1,5 +1,5 @@
 import { beforeEach, expect, test, vi } from 'vitest';
-import { callAction } from '../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import { mockLocalBookmarks } from '@/platform/bootstrap/mocks';
 import { freshPage } from '@/test/testSupport';
 import { MyBookmarks_Group } from '../UBTConnect/lib/staticEntities';

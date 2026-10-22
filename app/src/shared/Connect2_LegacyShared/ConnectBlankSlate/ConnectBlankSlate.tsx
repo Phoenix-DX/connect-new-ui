@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Reusable.ConnectBlankSlate
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface ConnectBlankSlateProps {
   /** OutSystems instance id of the block. */

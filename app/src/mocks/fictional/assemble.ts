@@ -1,5 +1,5 @@
 import type { components } from '../../api/schema';
-import { wireList } from '../../lib/os-wire';
+import { wireList } from '@/legacy/os/os-wire';
 
 /* The fictional Assemble world of the mock app (user rule 2026-10-16, migration/knowledge/mock-fixtures.md "Fictional
    text must be meaningful"), shared by Assemble_BrowseByCountry, AssembleEvents and later AssembleDetail. It sits in the

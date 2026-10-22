@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Notes.NoteCard_List
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
 import { EmptyList } from '../../../shared/UBTConnectLibrary/EmptyList';

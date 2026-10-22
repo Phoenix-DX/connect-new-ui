@@ -1,8 +1,8 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Filters
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
-import { RadioButton, RadioGroup } from '../../../components/OSRadioGroup';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
+import { RadioButton, RadioGroup } from '@/components/ui/os/OSRadioGroup';
 import { styleFromCssText } from '../../../shared/lib/cssText';
 import type { YearItem } from '../types';
 import { OrbitLandingFilter } from './staticEntities';

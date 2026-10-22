@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_Caroussel.EntitiesCarousel_HeaderGenerator
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { get_CurrentEntityHeader } from '../lib/actions';
 import type { HeaderList } from '../lib/structures';
 

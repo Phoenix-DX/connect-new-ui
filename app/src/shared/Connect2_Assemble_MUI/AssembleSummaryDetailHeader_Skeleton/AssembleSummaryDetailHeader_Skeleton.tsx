@@ -1,6 +1,6 @@
 // @os-block Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { NC_Result_Item__Card } from '../../Connect2_LegacyShared/NC_Result_Item__Card';
 
 export interface AssembleSummaryDetailHeader_SkeletonProps {

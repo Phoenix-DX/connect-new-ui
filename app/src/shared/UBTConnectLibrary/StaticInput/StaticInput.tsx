@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.StaticInput
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Icon } from '../Icon';
 import { UBT_Color, UBT_Icons, UBT_IconSize } from '../lib/staticEntities';
 import { TextEllipsis } from '../TextEllipsis';

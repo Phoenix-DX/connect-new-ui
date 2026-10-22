@@ -1,5 +1,5 @@
 import type { components } from '@/api/schema';
-import { wireList } from '@/lib/os-wire';
+import { wireList } from '@/legacy/os/os-wire';
 import { LOCALITY, MOCK_USER } from '@/mocks/fictional/directory';
 import type { AppManager_CachedUserInfoRec } from './cachedUserInfo';
 import { rememberedParam } from '@/platform/storage/storage';

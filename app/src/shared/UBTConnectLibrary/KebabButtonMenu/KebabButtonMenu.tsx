@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.KebabButtonMenu
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ContextMenu } from '../ContextMenu';
 import { CustomContainer } from '../CustomContainer';
 import { Position } from '../lib/staticEntities';

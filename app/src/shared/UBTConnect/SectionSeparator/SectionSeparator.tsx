@@ -1,5 +1,5 @@
 // @os-block UBTConnect.App_Common_Blocks.SectionSeparator
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { UBT_Color, UBT_Size } from '../lib/staticEntities';
 

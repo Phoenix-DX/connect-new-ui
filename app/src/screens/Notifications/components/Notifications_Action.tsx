@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Notifications.Notifications_Action
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '../../../shared/UBTConnectLibrary/Icon';

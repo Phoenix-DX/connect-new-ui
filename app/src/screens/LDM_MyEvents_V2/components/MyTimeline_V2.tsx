@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyTimeline_V2
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { NetworkWarning } from '../../../shared/Connect2_LegacyShared/NetworkWarning';
 import { ErrorScreen } from '../../../shared/Connect2_OrbitMobile_MUI/ErrorScreen';
 import { EventDetail_SubSection } from '../../../shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection';

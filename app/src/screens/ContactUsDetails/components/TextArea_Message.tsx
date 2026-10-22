@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useInputWithVariableValidation } from '../../../components/OSValidation';
+import { useInputWithVariableValidation } from '@/components/ui/os/OSValidation';
 
 /** OSWidgets.TextArea TextArea_Message (P:1075-1110: Mandatory True, variable ContactUsForm.Message of type Text, max
     length 500, 3 rows), inside Form_ContactUs. Markup as captured (dom/default.html): `<span>` > textarea; the platform

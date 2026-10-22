@@ -1,7 +1,7 @@
 // @os-block UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { osImage } from '@/legacy/os/os-assets';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { useOsNavigate } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';

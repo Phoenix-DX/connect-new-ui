@@ -1,7 +1,7 @@
 // @os-block Connect2_LegacyShared.Widgets.PopupMenu
 import { useCallback, useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { popupPosition } from '../../UBTConnectLibrary/PopupMenu/position';
 
 export interface PopupMenuProps {

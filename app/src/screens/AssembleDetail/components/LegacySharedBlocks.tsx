@@ -4,7 +4,7 @@
 // @os-block Connect2_LegacyShared.Share.ContextMenu
 // @os-block Connect2_LegacyShared.MyBookmarks.BookmarkNoteAddEdit
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { InputCounter } from '../../../shared/Connect2_LegacyShared/InputCounter';
 import { ItemOptionsMenu } from '../../../shared/Connect2_LegacyShared/ItemOptionsMenu';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';

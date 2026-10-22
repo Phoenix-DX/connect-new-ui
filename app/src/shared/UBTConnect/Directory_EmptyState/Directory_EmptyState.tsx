@@ -1,5 +1,5 @@
 // @os-block UBTConnect.Directory_CommonBlocks.Directory_EmptyState
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { EmptyList } from '../../UBTConnectLibrary/EmptyList';
 import { getEntityType_Icon } from '../../UBTConnect_Utils/lib/actions';
 import { Connect_Entity } from '../lib/staticEntities';

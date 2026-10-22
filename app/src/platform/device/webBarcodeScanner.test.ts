@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import type { OSBarcodePluginApi, OSBarcodeScannerParams } from '../../vendor/barcodeplugin';
+import type { OSBarcodePluginApi, OSBarcodeScannerParams } from '@/vendor/barcodeplugin';
 import { addBarcodePluginCss, BARCODE_PLUGIN_CSS } from './barcodePluginCss';
 import { BarcodePluginEntities, SCANNER_CLOSED_BY_USER } from './barcodePluginTypes';
 import {

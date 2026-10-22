@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
 import { useLayoutEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
 import { sVGHeader_GetPath } from '../../../shared/UBTConnectLibrary/lib/actions';
 import { UBT_FontSize, UBT_FontWeight } from '../../../shared/UBTConnectLibrary/lib/staticEntities';

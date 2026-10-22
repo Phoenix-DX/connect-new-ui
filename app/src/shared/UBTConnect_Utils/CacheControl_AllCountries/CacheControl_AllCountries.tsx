@@ -1,7 +1,7 @@
 // @os-block UBTConnect_Utils.CacheControl.CacheControl_AllCountries
 import { useLayoutEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { callAction } from '../../../lib/api';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { callAction } from '@/api/client/callAction';
 import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
 import { getClientVar } from '@/platform/session/session';
 import { CacheControl } from '../CacheControl';

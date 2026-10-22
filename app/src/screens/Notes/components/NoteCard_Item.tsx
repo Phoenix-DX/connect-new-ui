@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Notes.NoteCard_Item
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { NoteListActions } from '../../../shared/UBTConnect_Utils/NoteListActions';
 import { NotesSheet } from '../../../shared/UBTConnect_Utils/NotesSheet';
 import type { Notes } from '../../../shared/UBTConnectLibrary/lib/structures';

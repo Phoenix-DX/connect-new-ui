@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { wireList } from '../../lib/os-wire';
+import { wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '../../mocks/contract';
 import { orbitTransportLegs, type OrbitTransportLocation } from '../../mocks/fictional/orbit';
 import type { GetTransportDetailWire, TransportLocationWire } from './types';

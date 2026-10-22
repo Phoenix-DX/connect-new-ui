@@ -1,7 +1,7 @@
 // @os-block Directory_Photobook.Photobook_Gallery
 import { useEffect, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { TouchEvents } from '../../../shared/osui/TouchEvents';
 import { Connect_Entity } from '../../../shared/UBTConnect/lib/staticEntities';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';

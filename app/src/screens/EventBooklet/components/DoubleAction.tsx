@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 /* DoubleAction (DA = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction.mvc.js, view
    :122-172). Its stylesheet Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction.css comes with the route

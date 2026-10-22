@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.Icon
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { formatClasses, getClass_Color } from '../lib/actions';
 import { UBT_Color } from '../lib/staticEntities';
 import { IconSVG } from '../IconSVG';

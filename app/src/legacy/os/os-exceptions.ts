@@ -1,4 +1,4 @@
-import type { components } from '../api/schema';
+import type { components } from '@/api/schema';
 
 /* OutSystems client runtime exceptions (migration/runtime-sources/OutSystems.js:2, module
    OutSystems/ClientRuntime/Exceptions), the classes a ported flow can meet:

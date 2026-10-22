@@ -7,13 +7,13 @@ import {
   orbitAdminQRCode,
 } from '../../mocks/fictional/orbitAdmin';
 import { scenario } from '../../mocks/scenario';
-import { wireList } from '../../lib/os-wire';
+import { wireList } from '@/legacy/os/os-wire';
 import {
   BarcodePluginEntities,
   setBarcodeScanner,
   SCANNER_CLOSED_BY_USER,
   type BarcodeScanner,
-} from '../../lib/device/barcodePlugin';
+} from '@/platform/device/barcodePlugin';
 
 /* Mocks of OrbitAdminEventDetail (P-MOCKS), on the fictional Orbit admin world (src/mocks/fictional/orbitAdmin.ts).
    No-capture route (user decision 2026-10-16): no recorded call, shapes from the API contract.

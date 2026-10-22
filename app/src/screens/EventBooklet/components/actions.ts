@@ -1,4 +1,4 @@
-import { log } from '../../../lib/log';
+import { log } from '@/platform/log/log';
 import type { LocalHelperRole } from '@/platform/storage/localEntities';
 import type { BookletMembersByLocality, BookletMembersByRole, DayFilter, EventBookletMember } from '../types';
 

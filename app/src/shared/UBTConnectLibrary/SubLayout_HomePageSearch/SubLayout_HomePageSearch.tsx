@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.Layouts.SubLayout_HomePageSearch
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../CustomContainer';
 import { UBT_Size } from '../lib/staticEntities';
 import { StaticInput } from '../StaticInput';

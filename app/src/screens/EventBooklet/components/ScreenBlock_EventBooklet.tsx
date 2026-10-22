@@ -1,8 +1,8 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet
 import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
-import { UserException } from '../../../lib/os-exceptions';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
+import { UserException } from '@/legacy/os/os-exceptions';
 import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import { HostSurvey_PillItem } from '../../../shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';

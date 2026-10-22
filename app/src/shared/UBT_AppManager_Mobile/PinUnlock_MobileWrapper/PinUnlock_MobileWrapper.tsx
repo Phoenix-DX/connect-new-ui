@@ -1,6 +1,6 @@
 // @os-block UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Pincode_Unlock } from '../../UBT_AppManager/Pincode_Unlock';
 import { FingerprintScanner } from '../FingerprintScanner';
 

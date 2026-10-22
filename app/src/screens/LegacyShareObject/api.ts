@@ -1,6 +1,6 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { callAction } from '../../lib/api';
-import { osList } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList } from '@/legacy/os/os-wire';
 import type {
   AvailableUser,
   AvailableUsers,

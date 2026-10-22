@@ -1,6 +1,6 @@
 // @os-block UBT_AppManager.PIN.PinCode
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { replaceOnUpcomingNavigation } from '@/platform/navigation';
 import { PreventBackNavigation } from '../../NavigationHandler/PreventBackNavigation';
 

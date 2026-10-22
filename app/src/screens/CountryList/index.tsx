@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef } from 'react';
-import { OSList } from '../../components/OSList';
+import { OSList } from '@/components/ui/os/OSList';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import {
   exceptionMessage,

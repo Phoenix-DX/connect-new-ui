@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Common.Version
 import { useEffect, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { get_ConnectVersionDetails } from '../../UBTConnect_Utils/lib/actions';
 import { CustomText } from '../../UBTConnectLibrary/CustomText';
 import { UBT_Color } from '../lib/staticEntities';

@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.NewConnect_Utilities.NC_ErrorScreen
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface NC_ErrorScreenProps {
   id: string;

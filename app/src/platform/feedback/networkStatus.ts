@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { config } from '@/lib/config';
+import { config } from '@/platform/config/config';
 import { setClientVar } from '@/platform/session/session';
 import { startNetworkDetection, type ServerCallObserver } from './networkDetection';
 

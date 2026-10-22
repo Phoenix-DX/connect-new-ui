@@ -1,6 +1,6 @@
 // @os-block OutSystemsUI_2_23.Content.Accordion
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AccordionContext, createAccordionParent } from './accordionContext';
 
 export interface AccordionProps {

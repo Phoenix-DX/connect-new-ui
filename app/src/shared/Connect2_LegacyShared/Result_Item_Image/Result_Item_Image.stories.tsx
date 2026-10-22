@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { osImage } from '../../../lib/os-assets';
+import { osImage } from '@/legacy/os/os-assets';
 import { PendingBlock } from '../../test/PendingBlock';
 import { UBT_LazyImage } from '../../UBTConnect_Utils/UBT_LazyImage';
 import { ResultListType } from '../lib/staticEntities';

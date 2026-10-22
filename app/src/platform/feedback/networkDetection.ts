@@ -1,4 +1,4 @@
-import { log } from '@/lib/log';
+import { log } from '@/platform/log/log';
 import { APP_ID } from '@/platform/navigation/paths';
 
 /* NetworkDetection (knowledge/shell-facts.md U11), ported 1:1 from its JavaScript node

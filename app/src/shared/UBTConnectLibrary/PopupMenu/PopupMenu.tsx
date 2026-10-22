@@ -1,7 +1,7 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.PopupMenu
 import { useCallback, useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { popupPosition } from './position';
 
 export interface PopupMenuProps {

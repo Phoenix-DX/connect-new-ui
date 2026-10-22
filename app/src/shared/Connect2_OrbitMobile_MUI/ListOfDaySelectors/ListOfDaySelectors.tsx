@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.ListOfDaySelectors
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { DaySelector } from '../DaySelector';
 import { getFormattedDate_Single, getFormattedDate_Weekday } from '../lib/actions';
 import { MilestoneTimeType, TimeFormat } from '../lib/staticEntities';

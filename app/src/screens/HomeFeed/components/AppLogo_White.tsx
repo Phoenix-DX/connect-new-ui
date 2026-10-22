@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Common.AppLogo_White
-import { OSBlock } from '../../../components/OSBlock';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { osImage } from '@/legacy/os/os-assets';
 
 /** UBTConnect App_Common.AppLogo_White (AppLogo_White.mvc.js:123-133): static image, width 155px (captured
     dom/default.html:24). */

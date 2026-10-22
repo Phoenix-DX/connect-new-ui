@@ -1,8 +1,8 @@
 // @os-block NavigationHandler.ConfirmationDialogs.ExitConfirmationDialog
 // @os-block UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_ExitConfirmation
 import { createPortal } from 'react-dom';
-import { OSBlock } from '@/components/OSBlock';
-import { usePopupWidget } from '@/components/OSPopup';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { usePopupWidget } from '@/components/ui/os/OSPopup';
 import { useExitConfirmation } from './exitConfirmation';
 
 /* UBTConnect App_Common_Blocks_PopupDialogs.Dialog_ExitConfirmation: ExitConfirmationDialog with Force=True, texts

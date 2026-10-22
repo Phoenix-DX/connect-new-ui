@@ -1,4 +1,4 @@
-import type { ActionInputs, ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 
 /* ---- Wire shapes (api.ts and mocks.ts only) ----
    SendContactEmail of ScreenBlock_ContactForm (screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/

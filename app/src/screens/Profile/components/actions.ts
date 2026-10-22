@@ -1,4 +1,4 @@
-import { osList, wireList } from '../../../lib/os-wire';
+import { osList, wireList } from '@/legacy/os/os-wire';
 import type { Directory_UserCurrent } from '../../../shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
 import type { AccountForm, AddressItem } from '../types';
 

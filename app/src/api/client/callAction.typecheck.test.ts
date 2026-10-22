@@ -1,5 +1,5 @@
 import { expectTypeOf, test } from 'vitest';
-import type { ActionInputs, ActionOutputs } from './api';
+import type { ActionInputs, ActionOutputs } from './callAction';
 
 // Contract typing smoke test: owned data actions resolve to their own endpoint types.
 type UserInfo = '/api/UBTConnect_Utils/CacheControl_UserInfo/DataActionGetCacheInfo';

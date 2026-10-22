@@ -1,5 +1,5 @@
 // @os-block UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction_Legacy
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DialogAccessRestrictedAction } from '@/platform/feedback/dialogs';
 
 export interface Dialog_AccessRestrictedAction_LegacyProps {

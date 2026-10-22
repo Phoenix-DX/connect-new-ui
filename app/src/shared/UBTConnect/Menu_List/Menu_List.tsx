@@ -1,7 +1,7 @@
 // @os-block UBTConnect.App_Menu.Menu_List
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { Columns_Three } from '../../UBTConnectLibrary/Columns_Three';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../UBTConnectLibrary/CustomText';

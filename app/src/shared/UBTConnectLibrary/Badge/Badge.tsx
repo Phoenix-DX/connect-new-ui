@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.OutSystemsUIOverrides.Badge
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { getClass_BackgroundColor } from '../lib/actions';
 import { Shape, UBT_Color } from '../lib/staticEntities';
 

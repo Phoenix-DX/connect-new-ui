@@ -1,6 +1,6 @@
 // @os-block UBTConnect_Utils.CW_Share.ShareSheet
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { PreventBackNavigation } from '../../NavigationHandler/PreventBackNavigation';
 import { bottomSheetClose, bottomSheetOpen } from '../../osui/lib/actions';

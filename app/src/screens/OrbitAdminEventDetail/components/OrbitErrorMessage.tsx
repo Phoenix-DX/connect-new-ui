@@ -1,5 +1,5 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.OrbitErrorMessage
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AdminPopup } from './AdminPopup';
 
 export interface OrbitErrorMessageProps {

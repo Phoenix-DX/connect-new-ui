@@ -1,5 +1,5 @@
 // @os-block UBTConnect.Directory_Search.SearchResult_Section
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { SectionSeparator } from '../../../shared/UBTConnect/SectionSeparator';
 import { SearchResult_Item } from '../../../shared/UBTConnect_Utils/SearchResult_Item';
 import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';

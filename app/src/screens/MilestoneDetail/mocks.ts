@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { osList, wireList } from '../../lib/os-wire';
+import { osList, wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '../../mocks/contract';
 import { orbitEvents, type OrbitMilestone, type OrbitRoom } from '../../mocks/fictional/orbit';
 import { OrbitMilestoneType } from '../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';

@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_Updates.Directory_Updates_FilterSheet
 import { useMemo } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { FilterSheet } from '../../../shared/UBTConnect/FilterSheet';
 import { Choice } from '../../../shared/UBTConnect/lib/staticEntities';
 import type {

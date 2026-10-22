@@ -1,4 +1,4 @@
-import { osImage } from '../../../lib/os-assets';
+import { osImage } from '@/legacy/os/os-assets';
 /* Client actions of UBTConnectLibrary used by the shared blocks, ported 1:1 from UBTConnectLibrary.controller.js
    (copy in migration/screens/<Screen>/analysis/sources/raw/). One function per action, named after it in lowerCamelCase;
    it returns the action's single output. Empty text means "no value" (OutSystems NullTextIdentifier). */

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { osImage } from '../../../lib/os-assets';
+import { osImage } from '@/legacy/os/os-assets';
 import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
 import { getClientVar } from '@/platform/session/session';
 import { CacheControl_Policies } from '../../UBTConnect_Utils/CacheControl_Policies';

@@ -1,5 +1,5 @@
-import { callAction } from '../../lib/api';
-import { osList } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList } from '@/legacy/os/os-wire';
 import type { Get_MemberDetailsOutput, Get_ParentHouseholdDetailsOutput, Household_RelationsInputs } from './types';
 
 const osLongInput = (v: string | null): string => (v === null || v === '' ? '0' : v);

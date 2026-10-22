@@ -1,4 +1,4 @@
-import { callAction } from '../../../lib/api';
+import { callAction } from '@/api/client/callAction';
 
 /** AddNote (ServiceAPIAddNote, NotesSheet.mvc.js:432-460): Handler_OnAddNoteRequested, ItemId as text. A write: the
     mock adds to the notes collection (P-MUTATION), nothing is written for real. */

@@ -1,4 +1,4 @@
-import type { ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 
 /** Wire shapes (P-DATA): only api.ts and mocks.ts use them. */
 type GetAllBookmarksByGroupOutput = ActionOutputs<

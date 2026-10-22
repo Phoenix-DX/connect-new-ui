@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_Caroussel.EntitiesCarousel_HouseholdDetails
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { HouseholdDetails_Block } from '../HouseholdDetails_Block';
 
 export interface EntitiesCarousel_HouseholdDetailsProps {

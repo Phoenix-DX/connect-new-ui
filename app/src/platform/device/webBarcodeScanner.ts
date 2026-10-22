@@ -8,7 +8,7 @@
    The Cordova branches (IsPluginAvailableJS, RunCodeScannerJS) are not ported: the app is web / PWA only (ADR-1) and ships
    no Cordova plugin, so with Cordova present CheckBarcodePlugin answers as the original does without the plugin (0012).
    The browser is reached only through WebScannerEnvironment, so the branches are unit-tested without a camera. */
-import { requireOSBarcodePlugin, type OSBarcodePluginApi, type OSBarcodeScanResult } from '../../vendor/barcodeplugin';
+import { requireOSBarcodePlugin, type OSBarcodePluginApi, type OSBarcodeScanResult } from '@/vendor/barcodeplugin';
 import { addBarcodePluginCss } from './barcodePluginCss';
 import {
   BarcodePluginEntities,

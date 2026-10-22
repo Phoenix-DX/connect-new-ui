@@ -1,8 +1,8 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleEventDetail_Contact
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { hasAccessToRegion } from '../../../shared/Connect2_Assemble_MUI/lib/actions';
 import { NC_Result_Item__Image } from '../../../shared/Connect2_LegacyShared/NC_Result_Item__Image';
 import { Person_Contact_Options } from '../../../shared/Connect2_LegacyShared/Person_Contact_Options';

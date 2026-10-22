@@ -1,6 +1,6 @@
 // @os-block OutSystemsUI_2_23.Private.NetworkStatusChanged
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface NetworkStatusChangedProps {
   /** OutSystems instance id of the block. */

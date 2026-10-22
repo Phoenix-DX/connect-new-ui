@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface EventsDetail_ContentProps {
   id: string;

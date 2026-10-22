@@ -1,6 +1,6 @@
 // @os-block UBTConnect_Utils.CW_Notes.NoteListActions
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { isSystemException, isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { createOrUpdate_LocalNote, delete_LocalNoteByNoteId } from '@/platform/storage/localEntities';
 import { Note_Item_List } from '../../UBTConnectLibrary/Note_Item_List';

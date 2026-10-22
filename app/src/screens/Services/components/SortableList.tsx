@@ -1,6 +1,6 @@
 // @os-block SortableJS.Sortable.SortableList
 import { useEffect, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { setupList, type DragEndHandler } from './actions';
 
 export interface SortableListProps {

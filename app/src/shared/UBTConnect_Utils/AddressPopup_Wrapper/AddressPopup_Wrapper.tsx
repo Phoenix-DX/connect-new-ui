@@ -1,6 +1,6 @@
 // @os-block UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper
 import { useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { appManager_GetIsNative } from '@/platform/device/deviceContext';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';

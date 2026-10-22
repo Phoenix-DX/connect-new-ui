@@ -30,7 +30,7 @@ None: the pattern was never rendered in a capture (Profile only). Built from the
 ## Not captured / not settled
 
 - `ele` is the element itself, not `'#' + id` (Virtual Select accepts both); the element has no generated id.
-- IsMobileDevice uses the app's user-agent OS rule (`lib/device` osToken) instead of OSUI `GetOperatingSystem`.
+- IsMobileDevice uses the app's user-agent OS rule (`platform/device` osToken) instead of OSUI `GetOperatingSystem`.
 - Not ported (no counterpart in the app): the OSUI body-click listener that toggles on open/close, the
   `has-accessible-features` class on the dropbox, the Edge mouseup fix.
 - JSON Deserialize of an empty selection is taken as an empty list (OutSystems behaviour for "" not checked).

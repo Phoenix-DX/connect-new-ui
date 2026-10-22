@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { contractHandler } from '../../mocks/contract';
 import { scenario } from '../../mocks/scenario';
-import { osList, wireList } from '../../lib/os-wire';
+import { osList, wireList } from '@/legacy/os/os-wire';
 import { Choice } from '../../shared/UBTConnect/lib/staticEntities';
 import { NULL_DATE_TIME, notesCollection, type NoteRow } from '../../shared/UBTConnect_Utils/NoteListActions/mocks';
 import type { NoteCardItemWire } from './types';

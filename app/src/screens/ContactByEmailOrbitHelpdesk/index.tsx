@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { osImage } from '../../lib/os-assets';
+import { osImage } from '@/legacy/os/os-assets';
 import { ContactByEmailForm } from '../../shared/UBTConnect/ContactByEmailForm';
 import { UBT_FontWeight } from '../../shared/UBTConnect/lib/staticEntities';
 import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';

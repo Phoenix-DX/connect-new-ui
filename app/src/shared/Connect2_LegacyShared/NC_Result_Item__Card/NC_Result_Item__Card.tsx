@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item__Card
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface NC_Result_Item__CardProps {
   /** OutSystems instance id of the block. */

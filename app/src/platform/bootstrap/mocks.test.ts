@@ -1,5 +1,5 @@
 import { beforeEach, expect, test, vi } from 'vitest';
-import { callAction } from '@/lib/api';
+import { callAction } from '@/api/client/callAction';
 import { mockDirectoryUser } from '@/platform/session/mockUser';
 import { freshPage } from '@/test/testSupport';
 

@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.ComingSoon
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../CustomContainer';
 import { CustomText } from '../CustomText';
 import { UBT_Size } from '../lib/staticEntities';

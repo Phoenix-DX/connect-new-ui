@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { OSList } from '../../components/OSList';
+import { OSList } from '@/components/ui/os/OSList';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { Menu_List } from '../../shared/UBTConnect/Menu_List';
 import { SectionSeparator } from '../../shared/UBTConnect/SectionSeparator';

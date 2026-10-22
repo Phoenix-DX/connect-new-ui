@@ -1,7 +1,7 @@
 import { composeStories } from '@storybook/react-vite';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { setFlag } from '../../../lib/flags';
+import { setFlag } from '@/platform/flags/flags';
 import { diffAgainstCapture } from '../../../test/dom';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import * as stories from './HouseholdDetails_Block.stories';

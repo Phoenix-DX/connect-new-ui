@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.Layouts.SubHeader_MainPages
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
 import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
 import {

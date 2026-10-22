@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.ContextMenu
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CircleButton_IconPrimary } from '../CircleButton_IconPrimary';
 import { ContextMenu_Item } from '../ContextMenu_Item';
 import { CustomContainer } from '../CustomContainer';

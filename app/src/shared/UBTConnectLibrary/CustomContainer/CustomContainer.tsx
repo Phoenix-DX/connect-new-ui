@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.BasePatterns.CustomContainer
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { styleFromCssText } from '../../lib/cssText';
 import {
   formatClasses,

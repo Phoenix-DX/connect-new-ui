@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Home.FeedBlock_Services
 import { useCallback, useMemo, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { useFlagOn } from '../../../lib/flags';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { useFlagOn } from '@/platform/flags/flags';
 import { confirmAction } from '@/platform/feedback/dialogs';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { useOsNavigate } from '@/platform/navigation';

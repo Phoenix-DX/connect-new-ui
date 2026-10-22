@@ -1,5 +1,5 @@
-import { callAction } from '../../lib/api';
-import { osList } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList } from '@/legacy/os/os-wire';
 import type { CoordinatorDetailsData, EventByEventIdData, HouseholdCoordinates } from './types';
 
 /** Module of the route's calls (screenservices/Connect2_OrbitMobile_MUI/…). */

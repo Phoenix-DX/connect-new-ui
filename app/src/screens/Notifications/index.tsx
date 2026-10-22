@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useRef } from 'react';
-import { NotCaptured } from '../../components/NotCaptured';
-import { UserException } from '../../lib/os-exceptions';
+import { NotCaptured } from '@/app/NotCaptured';
+import { UserException } from '@/legacy/os/os-exceptions';
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { directory_Updates_RefreshBottomBarCount, scrollTop } from '../../shared/UBTConnect/lib/actions';

@@ -1,4 +1,4 @@
-import { callAction } from '../../../lib/api';
+import { callAction } from '@/api/client/callAction';
 
 export interface FeedConfig {
   Token: string;

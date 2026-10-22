@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Common.UnsupportedVersion_Native
-import { NotCaptured } from '../../../components/NotCaptured';
-import { OSBlock } from '../../../components/OSBlock';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface UnsupportedVersion_NativeProps {
   /** OutSystems instance id of the block. */

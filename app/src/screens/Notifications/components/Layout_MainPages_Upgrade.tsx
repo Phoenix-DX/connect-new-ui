@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntime_Top } from '../../../shared/NavigationHandler/LayoutRuntime_Top';
 import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
 import {

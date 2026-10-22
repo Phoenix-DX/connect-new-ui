@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.TagContent
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../CustomContainer';
 import { formatClasses } from '../lib/actions';
 import { UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '../lib/staticEntities';

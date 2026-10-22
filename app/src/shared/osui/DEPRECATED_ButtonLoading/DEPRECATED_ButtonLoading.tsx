@@ -1,6 +1,6 @@
 // @os-block OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading
 import { useEffect, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface DEPRECATED_ButtonLoadingProps {
   /** OutSystems instance id of the block. */

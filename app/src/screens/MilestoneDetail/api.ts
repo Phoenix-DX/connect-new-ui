@@ -1,5 +1,5 @@
-import { callAction, type ActionInputs, type ActionOutputs, type PathOf } from '../../lib/api';
-import { osList, wireList } from '../../lib/os-wire';
+import { callAction, type ActionInputs, type ActionOutputs, type PathOf } from '@/api/client/callAction';
+import { osList, wireList } from '@/legacy/os/os-wire';
 import type { MemberInformation } from '../../shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { textToLongInteger } from '../../shared/UBTConnect_Utils/lib/actions';
 import {

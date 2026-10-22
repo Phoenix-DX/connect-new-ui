@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation
 import { useEffect, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { osImage } from '@/legacy/os/os-assets';
 import { styleFromCssText } from '../../lib/cssText';
 import {
   cardMemberInformationOnReady,

@@ -1,6 +1,6 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { osImage } from '../../../lib/os-assets';
+import { osImage } from '@/legacy/os/os-assets';
 import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';

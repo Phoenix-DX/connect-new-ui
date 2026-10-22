@@ -1,8 +1,8 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail
 import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
-import { useFlagOn } from '../../../lib/flags';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
+import { useFlagOn } from '@/platform/flags/flags';
 import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import { Accordion_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';

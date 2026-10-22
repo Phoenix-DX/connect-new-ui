@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Common.UnsupportedVersion_Wrapper
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PreventBackNavigation } from '../../NavigationHandler/PreventBackNavigation';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';

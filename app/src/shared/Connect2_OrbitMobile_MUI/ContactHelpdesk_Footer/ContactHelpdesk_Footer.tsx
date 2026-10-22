@@ -1,5 +1,5 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.ContactHelpdesk_Footer
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface ContactHelpdesk_FooterProps {
   /** OutSystems instance id of the block. */

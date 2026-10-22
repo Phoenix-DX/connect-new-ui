@@ -2,10 +2,10 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
-import { useFlagOn } from '../../../lib/flags';
-import { osList } from '../../../lib/os-wire';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
+import { useFlagOn } from '@/platform/flags/flags';
+import { osList } from '@/legacy/os/os-wire';
 import { toggleBookmarkItem } from '../../../shared/Connect2_Assemble_MUI/lib/actions';
 import { MyBookmarks_Group, MyBookmarks_ObjectType } from '../../../shared/Connect2_Assemble_MUI/lib/staticEntities';
 import { NC_Result_Item_Badge } from '../../../shared/Connect2_LegacyShared/NC_Result_Item_Badge';

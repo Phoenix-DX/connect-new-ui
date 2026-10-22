@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.TextArea_WithCounter
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { InputCounter } from '../InputCounter';
 
 export interface TextArea_WithCounterProps {

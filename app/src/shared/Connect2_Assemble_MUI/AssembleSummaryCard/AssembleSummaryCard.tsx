@@ -1,7 +1,7 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleSummaryCard
-import { OSBlock } from '../../../components/OSBlock';
-import { osImage } from '../../../lib/os-assets';
-import { UserException } from '../../../lib/os-exceptions';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { osImage } from '@/legacy/os/os-assets';
+import { UserException } from '@/legacy/os/os-exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
 import { generateScreenURL } from '@/platform/navigation';

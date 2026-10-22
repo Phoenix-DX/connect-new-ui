@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_QRCode.ScreenBlock_GenerateQRCode
 import { useEffect, useLayoutEffect, useMemo, useReducer, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import { ContactHelpdesk_Footer } from '../../../shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';

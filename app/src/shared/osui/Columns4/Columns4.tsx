@@ -1,6 +1,6 @@
 // @os-block OutSystemsUI_2_23.Adaptive.Columns4
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { BreakColumns, GutterSize } from '../lib/staticEntities';
 
 export interface Columns4Props {

@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item
 import { useMemo } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../UBTConnectLibrary/CustomText';
 import { SelectionOption_List } from '../../UBTConnectLibrary/SelectionOption_List';

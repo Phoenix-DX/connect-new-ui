@@ -1,5 +1,5 @@
 // @os-block OutSystemsUI_2_23.Utilities.InlineSVG
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface InlineSVGProps {
   /** OutSystems instance id of the block. */

@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Reusable.TwoButtonsAligned
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface TwoButtonsAlignedProps {
   id: string;

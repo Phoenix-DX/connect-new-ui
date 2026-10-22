@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Share_UI.ListBlankSlate
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface ListBlankSlateProps {
   /** OutSystems instance id of the block (`b1-b8-$b5`); the placeholders are `<scope>-Icon` and `<scope>-Message`. */

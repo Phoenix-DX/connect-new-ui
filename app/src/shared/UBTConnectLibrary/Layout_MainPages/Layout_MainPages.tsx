@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.Layouts.Layout_MainPages
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntime_Top } from '../../NavigationHandler/LayoutRuntime_Top';
 import { PullToRefresh } from '../../osui/PullToRefresh';
 import { Columns_Two } from '../Columns_Two';

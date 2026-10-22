@@ -2,8 +2,8 @@
    migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js; `TF:<n>` = line of the module script
    migration/runtime-sources/Connect2_OrbitMobile_MUI.TimeFormat.js (global `TimeFormat`). A Date is "yyyy-MM-dd",
    handed to the JS nodes as a local-midnight Date (shared/lib/osDateTime.ts parseOsDate). */
-import { callAction } from '../../../lib/api';
-import { log } from '../../../lib/log';
+import { callAction } from '@/api/client/callAction';
+import { log } from '@/platform/log/log';
 import { setClientVar } from '@/platform/session/session';
 import { parseOsDate } from '../../lib/osDateTime';
 import type { MemberInformation } from './structures';

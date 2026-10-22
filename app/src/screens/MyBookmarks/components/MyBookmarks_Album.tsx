@@ -1,7 +1,7 @@
 // @os-block Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Album
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
+import { osImage } from '@/legacy/os/os-assets';
 import { DEPRECATED_GalleryV2 } from '../../../shared/osui/DEPRECATED_GalleryV2';
 import { Space } from '../../../shared/osui/lib/staticEntities';
 import { MyBookmarks_Group, MyBookmarks_ObjectType } from '../../../shared/UBTConnect/lib/staticEntities';

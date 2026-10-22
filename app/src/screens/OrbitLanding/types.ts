@@ -1,4 +1,4 @@
-import type { ActionInputs, ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 import type { Event_Screen, Milestone_Screen } from '../../shared/Connect2_OrbitMobile_MUI/lib/structures';
 
 /* ---- Wire shapes (api.ts and mocks.ts only) ----

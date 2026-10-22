@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';

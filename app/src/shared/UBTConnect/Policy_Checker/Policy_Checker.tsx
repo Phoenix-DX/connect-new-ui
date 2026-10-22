@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Policies.Policy_Checker
 import { useEffect, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { resetReplaceOnUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getClientVar } from '@/platform/session/session';

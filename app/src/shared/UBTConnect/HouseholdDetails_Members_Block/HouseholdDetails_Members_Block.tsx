@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Directory_Household_Blocks.HouseholdDetails_Members_Block
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { DataFetchStatus, OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { DataFetchStatus, OSList } from '@/components/ui/os/OSList';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { Icon } from '../../UBTConnectLibrary/Icon';

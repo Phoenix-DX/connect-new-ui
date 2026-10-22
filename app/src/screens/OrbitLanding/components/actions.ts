@@ -1,4 +1,4 @@
-import { log } from '../../../lib/log';
+import { log } from '@/platform/log/log';
 import type { EventsSummaryItem, YearItem } from '../types';
 import { ApplicationEvents_Orbit, OrbitLandingFilter } from './staticEntities';
 

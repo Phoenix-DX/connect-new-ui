@@ -1,7 +1,7 @@
 // @os-block Connect2_LegacyShared.Reusable.RadioButtonListItem
 import { useId, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { RadioButton, RadioGroup } from '../../../components/OSRadioGroup';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { RadioButton, RadioGroup } from '@/components/ui/os/OSRadioGroup';
 
 export interface RadioButtonListItemProps {
   /** OutSystems instance id of the block. */

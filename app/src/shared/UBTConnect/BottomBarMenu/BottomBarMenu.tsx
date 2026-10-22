@@ -1,8 +1,8 @@
 // @os-block UBTConnect.App_Common.BottomBarMenu
 import { useEffect, useRef } from 'react';
-import { NotCaptured } from '../../../components/NotCaptured';
-import { OSBlock } from '../../../components/OSBlock';
-import { log } from '../../../lib/log';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { log } from '@/platform/log/log';
 import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { useClientVar } from '@/platform/session/session';

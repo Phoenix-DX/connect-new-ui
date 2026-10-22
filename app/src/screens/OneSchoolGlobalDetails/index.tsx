@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { OSList } from '../../components/OSList';
-import { useFlagOn } from '../../lib/flags';
+import { OSList } from '@/components/ui/os/OSList';
+import { useFlagOn } from '@/platform/flags/flags';
 import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { Directory_EntityDetailsActions } from '../../shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';

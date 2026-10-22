@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
 import { createPortal } from 'react-dom';
-import { NotCaptured } from '@/components/NotCaptured';
+import { NotCaptured } from '@/app/NotCaptured';
 import {
   closeFeedbackMessage,
   FEEDBACK_CONTAINER_ID,

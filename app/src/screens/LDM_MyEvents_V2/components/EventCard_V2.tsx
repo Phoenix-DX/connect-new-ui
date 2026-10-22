@@ -1,5 +1,5 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_V2
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,

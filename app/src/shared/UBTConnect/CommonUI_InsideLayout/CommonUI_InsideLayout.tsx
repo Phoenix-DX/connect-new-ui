@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Common.CommonUI_InsideLayout
 import { useEffect, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DialogAccessRestrictedAction } from '@/platform/feedback/dialogs';
 import { LockHost } from '@/platform/navigation/LockHost';
 import { useCommonUiPresence } from '@/platform/feedback/dialogs';

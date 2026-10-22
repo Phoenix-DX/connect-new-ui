@@ -1,4 +1,4 @@
-import { config } from '@/lib/config';
+import { config } from '@/platform/config/config';
 import { mockCachedUserIdentity } from './mockUser';
 import { getClientVar, setClientVar } from './session';
 

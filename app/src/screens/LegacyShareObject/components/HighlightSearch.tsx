@@ -1,5 +1,5 @@
 // @os-block Connect2_LegacyShared.Directory.HighlightSearch
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { removeRegexSpecialCharacters } from '../../../shared/UBTConnectLibrary/lib/actions';
 
 export interface HighlightSearchProps {

@@ -1,4 +1,4 @@
-import { log } from '../../../lib/log';
+import { log } from '@/platform/log/log';
 import { getFormattedDateTime } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { OrbitMilestoneType, OrbitSkeletonLoading } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 

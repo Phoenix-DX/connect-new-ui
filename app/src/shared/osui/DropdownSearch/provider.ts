@@ -1,4 +1,4 @@
-import { osToken } from '../../../lib/device';
+import { osToken } from '@/platform/device/device';
 import { virtualSelect, type VirtualSelectInstance, type VirtualSelectOption } from './vendor';
 
 /* OutSystems UI Dropdown Search provider glue for Virtual Select, ported from

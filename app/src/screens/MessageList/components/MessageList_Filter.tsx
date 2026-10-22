@@ -1,5 +1,5 @@
 // @os-block Connect2_LegacyShared.MyNotifications.MessageList_Filter
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CircledCheckbox } from './CircledCheckbox';
 import { MessageFilterGroup } from './MessageFilterGroup';
 import { MessageFilterItem } from './MessageFilterItem';

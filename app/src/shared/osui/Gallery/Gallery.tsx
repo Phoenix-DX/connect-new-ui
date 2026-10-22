@@ -1,6 +1,6 @@
 // @os-block OutSystemsUI_2_23.Adaptive.Gallery
 import { useEffect, useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Space } from '../lib/staticEntities';
 
 export interface GalleryProps {

@@ -1,8 +1,8 @@
 import { useEffect, useReducer, useRef } from 'react';
-import { NotCaptured } from '../../components/NotCaptured';
-import { OSList } from '../../components/OSList';
-import { UserException } from '../../lib/os-exceptions';
-import { useFlagOn } from '../../lib/flags';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSList } from '@/components/ui/os/OSList';
+import { UserException } from '@/legacy/os/os-exceptions';
+import { useFlagOn } from '@/platform/flags/flags';
 import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import {
   getPreloadObject,

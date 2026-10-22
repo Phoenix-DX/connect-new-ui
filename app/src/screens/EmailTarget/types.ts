@@ -1,4 +1,4 @@
-import type { ActionInputs, PathOf } from '../../lib/api';
+import type { ActionInputs, PathOf } from '@/api/client/callAction';
 
 /** Screen inputs of EmailTarget with their OutSystems defaults (S = runtime-sources/UBTConnect.Legacy_LDMEventsFlow
     .EmailTarget.mvc.js, model :12-65, set from the URL :106-146). EventDate is "YYYY-MM-DD", "" for the null date. */

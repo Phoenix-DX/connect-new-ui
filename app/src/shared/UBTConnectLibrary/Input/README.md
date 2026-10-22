@@ -44,7 +44,7 @@ Behaviour (controller :376-875):
 
 - The clear icon, the invalid state and the events are in no capture: tested from the compiled code. The invalid
   state is the platform Input widget markup (OutSystemsReactView.js ValidationWidget, CR-Profile-2): " not-valid" on
-  the input, `aria-describedby`, `span.validation-message` after it, shared with `components/OSValidation` (no caller
+  the input, `aria-describedby`, `span.validation-message` after it, shared with `components/ui/os/OSValidation` (no caller
   sets IsMandatory or IsForceInvalid).
 - SearchInput defaults = the structure's attribute defaults (`UBTConnectLibrary.model.js:1477-1516`, SearchInputRec,
   copy in migration/screens/BrowseDirectory/analysis/sources/raw/).

@@ -1,4 +1,4 @@
-import type { ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import type { StatisticsOptions } from '../../shared/UBTConnect/StatisticsList';
 
 /* Wire types from the contract (src/api/openapi.yaml), through the callAction types. */

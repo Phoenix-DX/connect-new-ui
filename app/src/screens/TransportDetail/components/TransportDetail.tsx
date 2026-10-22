@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail
 import { useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { getFormattedDateTimeById } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { OrbitMilestoneType } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { SeatItem, StopItem, TransportDetails, TransportLocation } from '../types';

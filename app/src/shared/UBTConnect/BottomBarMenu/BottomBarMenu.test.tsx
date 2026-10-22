@@ -2,7 +2,7 @@ import { composeStories } from '@storybook/react-vite';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { setFlag } from '../../../lib/flags';
+import { setFlag } from '@/platform/flags/flags';
 import { NO_DATE } from '@/platform/session/clientVars';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { Connect_BottomBar_Items as I } from '../../UBTConnect_Utils/lib/staticEntities';

@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Reusable.NewConnectContent
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface NewConnectContentProps {
   /** OutSystems instance id of the block. */

@@ -2,9 +2,9 @@
    migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_Assemble_MUI.controller.js (cited as
    controller.js:<line>). */
 import { dayOfWeek, formatDateTime } from '../../lib/osDateTime';
-import { log } from '../../../lib/log';
-import { osList } from '../../../lib/os-wire';
-import { callAction } from '../../../lib/api';
+import { log } from '@/platform/log/log';
+import { osList } from '@/legacy/os/os-wire';
+import { callAction } from '@/api/client/callAction';
 import {
   get_LocalBookmarkByObjectId,
   getLocalBookmarksByObjectType,

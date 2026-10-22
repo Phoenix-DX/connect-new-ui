@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.BottomSheet
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSLink } from '../../lib/OSLink';
 import { BottomSheet as OSUIBottomSheet } from '../../osui/BottomSheet';
 import { bottomSheetClose, bottomSheetOpen } from '../../osui/lib/actions';

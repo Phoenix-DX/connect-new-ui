@@ -1,5 +1,5 @@
 // @os-block Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useNavigateBack } from '@/platform/navigation';
 import { MenuAction } from '../lib/staticEntities';
 

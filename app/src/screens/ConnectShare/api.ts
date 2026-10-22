@@ -1,5 +1,5 @@
-import { callAction } from '../../lib/api';
-import { osLong } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osLong } from '@/legacy/os/os-wire';
 import type { ConnectShareInputs, ShareDetails } from './types';
 
 /** Screen inputs from the query string with the original names (P-PARAMS; ConnectShare.mvc.js model: ShareId Text,

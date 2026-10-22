@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import { NotCaptured } from '../../../components/NotCaptured';
-import { OSBlock } from '../../../components/OSBlock';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { HostSurvey_PillItem } from '../../../shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';
 import type { HostSurveyMeal, HostSurveyRoom } from '../types';
 import { getFormattedDate_Survey, getGenderPreferenceByJSON_Name, getHouseFloorByJSON_Name } from './actions';

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { log } from '../../../lib/log';
+import { log } from '@/platform/log/log';
 import { contractHandler } from '../../../mocks/contract';
 import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';

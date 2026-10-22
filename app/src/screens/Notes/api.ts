@@ -1,5 +1,5 @@
-import { callAction } from '../../lib/api';
-import { osList, wireList } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList, wireList } from '@/legacy/os/os-wire';
 import {
   get_Note_DynamicFilter_YearOptions,
   getLocalNotesCategoryIds_ByUserId,

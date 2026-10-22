@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_Household_Blocks.Household_Card
 import { useEffect, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
 import { IconText } from '../../../shared/UBTConnectLibrary/IconText';

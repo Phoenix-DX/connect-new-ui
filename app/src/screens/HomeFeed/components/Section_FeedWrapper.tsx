@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Home.Section_FeedWrapper
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';

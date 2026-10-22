@@ -201,7 +201,7 @@ def cmd_export(a):
         out["flags"][dc.get("key") or n] = {"source": n, "default": dc.get("default", "on"), "values": dc.get("values", ["on", "off"]),
                                              "branches": dc.get("branches", "default-only"), "routes": f.get("screens", []),
                                              "decision": dc.get("value", "")}
-    p = os.path.join(a.app, "src", "lib", "flags.generated.json")
+    p = os.path.join(a.app, "src", "platform", "flags", "flags.generated.json")
     os.makedirs(os.path.dirname(p), exist_ok=True)
     json.dump(out, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
     print(f"{len(out['flags'])} flag(s) → {p}")

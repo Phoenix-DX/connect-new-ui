@@ -1,8 +1,8 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail
 import { useEffect, useReducer, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { checkBarcodePlugin, scanBarcode, SCANNER_CLOSED_BY_USER } from '../../../lib/device/barcodePlugin';
-import { UserException } from '../../../lib/os-exceptions';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { checkBarcodePlugin, scanBarcode, SCANNER_CLOSED_BY_USER } from '@/platform/device/barcodePlugin';
+import { UserException } from '@/legacy/os/os-exceptions';
 import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';

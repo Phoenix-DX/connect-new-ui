@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.EmptyList
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CircleButton } from '../CircleButton';
 import { CustomContainer } from '../CustomContainer';
 import { Icon } from '../Icon';

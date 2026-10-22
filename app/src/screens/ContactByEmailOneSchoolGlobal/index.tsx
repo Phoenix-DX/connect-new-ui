@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { log } from '../../lib/log';
-import { osImage } from '../../lib/os-assets';
+import { log } from '@/platform/log/log';
+import { osImage } from '@/legacy/os/os-assets';
 import { ContactByEmailForm } from '../../shared/UBTConnect/ContactByEmailForm';
 import { UBT_FontWeight } from '../../shared/UBTConnect/lib/staticEntities';
 import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';

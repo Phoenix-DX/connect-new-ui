@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { styleFromCssText } from '../../../shared/lib/cssText';
-import { osImage } from '../../../lib/os-assets';
+import { osImage } from '@/legacy/os/os-assets';
 import { Person_Contact_Options } from '../../../shared/Connect2_LegacyShared/Person_Contact_Options';
 import type {
   ContactByPhonePopupData,

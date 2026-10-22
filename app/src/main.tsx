@@ -4,9 +4,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router/dom';
 import { router } from './app/router';
 import './styles/review.css'; // original OutSystems CSS: per screen, by shell/StylesheetHost (public/UBTConnect/css)
-import { applyDeviceClasses } from './lib/device';
-import { initFlags } from './lib/flags';
-import { config, MOCKS_BUILT } from './lib/config';
+import { applyDeviceClasses } from './platform/device/device';
+import { initFlags } from './platform/flags/flags';
+import { config, MOCKS_BUILT } from './platform/config/config';
 import { ErrorBoundary } from './app/ErrorBoundary';
 import { bootPlan } from './pwa/bootPlan';
 import { clearStaleServiceWorkers, registerAppServiceWorker } from './pwa/register';

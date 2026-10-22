@@ -9,7 +9,7 @@
   - Server and service actions: `POST /api/<Module>/<Action>`, called as `callAction('Module', 'ActionName', inputs)`.
   - Data actions and aggregates belong to the screen or block that defines them (same-named ones differ):
     `POST /api/<Module>/<Owner>/<Action>`, called as `callAction('Module', 'Owner/DataActionName', inputs)`.
-- `npm run gen:api` writes `src/api/schema.d.ts`. `callAction(module, action, inputs)` (`src/lib/api.ts`) takes its types from that file.
+- `npm run gen:api` writes `src/api/schema.d.ts`. `callAction(module, action, inputs)` (`src/api/client/callAction.ts`) takes its types from that file.
 - `migration/tools/contract_gen.py` generates the contract from the compiled code of the original app.
   Only the foundation owner changes the contract.
 
@@ -22,7 +22,7 @@ In this answer, `exception` is the OutSystems class. The names come from the cli
 
 `specificType` is the name of the user exception (`<Module>.<Name>`, e.g. `Connect2_LegacyShared.ObjectNotFound`)
 when a flow can catch that one by name.
-`callAction` raises the same class from `src/lib/os-exceptions.ts`, as the runtime does (`OutSystems.js:3`):
+`callAction` raises the same class from `src/legacy/os/os-exceptions.ts`, as the runtime does (`OutSystems.js:3`):
 
 | Answer                                | Raised                                                                             |
 | ------------------------------------- | ---------------------------------------------------------------------------------- |
@@ -40,12 +40,12 @@ or `throw new SecurityException('…')`. The handler sends the error answer with
 **Request timeout.** Like the runtime (`getEffectiveTimeoutForServerCall`, `OutSystems.js:17`), every call times out
 after a delay. The delay is the Server Request Timeout of the module that makes the call, that is, the `<Module>` in the path of the call.
 
-- `SERVER_REQUEST_TIMEOUT` in `src/lib/api.ts` sets the timeout: **20 s for `UBTConnect`, 10 s for every other module**
+- `SERVER_REQUEST_TIMEOUT` in `src/api/client/callAction.ts` sets the timeout: **20 s for `UBTConnect`, 10 s for every other module**
   (the compiled controllers' `defaultTimeout`, cited per module there).
 - The same rule covers server actions, data actions and aggregates. None sets its own timeout; `applicationDefaultTimeout` is 0 on TST.
 - The timer starts at the send. The answer clears it.
 - On expiry the request is aborted and the call raises `CommunicationException` with `CONNECTION_TIMED_OUT`
-  (`src/lib/os-exceptions.ts`). So the timeout branches of the flows run as on TST: `showExceptionMessage` → "communication" toast,
+  (`src/legacy/os/os-exceptions.ts`). So the timeout branches of the flows run as on TST: `showExceptionMessage` → "communication" toast,
   `IsTimeoutExceptionMessage`, list-error states.
 - A new module in the contract does not compile until it gets its timeout.
 - The `loading` scenario (`latency=infinite`) therefore ends like TST: app-start calls fail after 10 s, `UBTConnect` data actions
@@ -57,7 +57,7 @@ after a delay. The delay is the Server Request Timeout of the module that makes 
 - Lists are `{ "List": [...] }`.
 - "No value" is `""`, `"0"` or `1900-01-01`.
 
-The helpers are in `src/lib/os-wire.ts`. The `api.ts` of each screen does the mapping. Components see only domain types.
+The helpers are in `src/legacy/os/os-wire.ts`. The `api.ts` of each screen does the mapping. Components see only domain types.
 
 ## Mock data
 

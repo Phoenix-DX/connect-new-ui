@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { CommunicationException, ServerException, ViewHasChangedException } from '../../../lib/os-exceptions';
+import { CommunicationException, ServerException, ViewHasChangedException } from '@/legacy/os/os-exceptions';
 import type { ShareDetails } from '../types';
 import { onInitializeSharingScreen } from './actions';
 

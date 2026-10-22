@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_Caroussel.EntitiesCarousel_Element
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CarouselTag } from '../CarouselTag';
 import { EntitiesCarouse_lSupperMeetingDetails } from '../EntitiesCarouse_lSupperMeetingDetails';
 import { EntitiesCarousel_HouseholdDetails } from '../EntitiesCarousel_HouseholdDetails';

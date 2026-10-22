@@ -9,7 +9,7 @@ import {
   type ReactNode,
   type UIEvent,
 } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { registerBottomSheet } from '../lib/actions';
 import { Shape } from '../lib/staticEntities';
 import { AnimateOnDrag, BOTTOM_SHEET_SPRING, hasTouchGestures, setDragEvents } from './dragToClose';

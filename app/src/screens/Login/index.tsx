@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { useScreenValidationService } from '../../components/OSValidation';
+import { useScreenValidationService } from '@/components/ui/os/OSValidation';
 import { OSLink } from '../../shared/lib/OSLink';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import { get_IsUnsupportedVersion } from '../../shared/UBTConnect/lib/actions';

@@ -11,7 +11,7 @@ import {
 } from '../../../mocks/fictional/directory';
 import { MOCK_SIGNED_PHOTO_URL } from '../Result_Item_Image/mocks';
 import { ORBIT_HOSTED_ROOMS, type OrbitGuestHousehold, type OrbitGuestMember } from '../../../mocks/fictional/orbit';
-import { wireList } from '../../../lib/os-wire';
+import { wireList } from '@/legacy/os/os-wire';
 import type { MemberContactWithTimezone } from './structures';
 import {
   defaultCacheableSubdivisionInformation,

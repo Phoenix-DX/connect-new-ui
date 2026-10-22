@@ -1,14 +1,14 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 import { useSearchParams } from 'react-router';
-import { NotCaptured } from '../../components/NotCaptured';
+import { NotCaptured } from '@/app/NotCaptured';
 import {
   OSForm,
   UnbuiltValidationWidget,
   useScreenValidationService,
   ValidationServiceProvider,
-} from '../../components/OSValidation';
-import { osImage } from '../../lib/os-assets';
+} from '@/components/ui/os/OSValidation';
+import { osImage } from '@/legacy/os/os-assets';
 import { preventNavigation, type NavigationEvent } from '../../shared/NavigationHandler/lib/actions';
 import { ButtonLoading } from '../../shared/osui/ButtonLoading';
 import { CacheControl_UserInfo_Wrapper } from '../../shared/UBTConnect/CacheControl_UserInfo_Wrapper';

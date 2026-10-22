@@ -1,4 +1,4 @@
-import { log } from '../lib/log';
+import { log } from '@/platform/log/log';
 
 /* ADR-10 (P10): the client entities stay in IndexedDB as in the original; when the app is installed, ask the browser to
    keep that storage (`navigator.storage.persist()`), so it is not evicted under storage pressure or, on Safari, after

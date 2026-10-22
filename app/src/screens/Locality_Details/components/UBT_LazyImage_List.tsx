@@ -1,7 +1,7 @@
 // @os-block UBTConnect_Utils.CW_Image.UBT_LazyImage_List
-import { NotCaptured } from '../../../components/NotCaptured';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { formatClasses, getClasses_AvatarSize } from '../../../shared/UBTConnectLibrary/lib/actions';
 import { UBT_ImageSize } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_LazyImage } from '../../../shared/UBTConnect_Utils/UBT_LazyImage';

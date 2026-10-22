@@ -1,6 +1,6 @@
 import { act, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { DataBaseException } from '../../../lib/os-exceptions';
+import { DataBaseException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { syncOrbitMilestoneTypes } from '../lib/actions';

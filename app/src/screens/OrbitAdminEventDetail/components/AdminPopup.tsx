@@ -1,6 +1,6 @@
 import { useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { usePopupWidget } from '../../../components/OSPopup';
+import { usePopupWidget } from '@/components/ui/os/OSPopup';
 
 export interface AdminPopupProps {
   /** Widget name with its block prefix (`b1-Popup_QRCode`, `b1-b6-UnknownErrorPopup`). */

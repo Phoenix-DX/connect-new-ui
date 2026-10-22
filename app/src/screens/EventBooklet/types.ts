@@ -1,4 +1,4 @@
-import type { ActionInputs, ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 import type { DayFilter } from '../../shared/Connect2_OrbitMobile_MUI/lib/structures';
 import type { DropdownOption } from '../../shared/osui/lib/structures';
 

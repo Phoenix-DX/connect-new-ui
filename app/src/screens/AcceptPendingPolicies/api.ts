@@ -1,6 +1,6 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { callAction } from '../../lib/api';
-import { osList, wireList } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList, wireList } from '@/legacy/os/os-wire';
 import type { DeviceInfo, PendingPoliciesInputs, PendingPolicy, PolicyAcceptanceInformationWire } from './types';
 
 const toPolicy = (w: PolicyAcceptanceInformationWire): PendingPolicy => ({

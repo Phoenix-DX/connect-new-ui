@@ -1,5 +1,5 @@
 // @os-block UBTConnect.App_Notifications.Notifications_Header
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Badge } from '../../../shared/UBTConnectLibrary/Badge';
 import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';

@@ -1,4 +1,4 @@
-import { callAction } from '../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import type { ContactByEmailForm, ContactByEmailMemberInputs } from './types';
 
 /* ContactByEmailMember has no data action (controller `dataFetchActionNames = []`, mvc.js:640). The calls of the

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntime_Top } from '../../../shared/NavigationHandler/LayoutRuntime_Top';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { OfflineDataSyncEvents } from '../../../shared/UBTConnect/OfflineDataSyncEvents';

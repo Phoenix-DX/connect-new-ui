@@ -1,6 +1,6 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleSummary_Card_Row
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface AssembleSummary_Card_RowProps {
   /** OutSystems instance id of the block. */

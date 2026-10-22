@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.MoreActionSheet
 import { useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler';
 import type { BackNavigationEvent } from '@/platform/navigation';
 import { BottomSheet } from '../../../shared/UBTConnectLibrary/BottomSheet';

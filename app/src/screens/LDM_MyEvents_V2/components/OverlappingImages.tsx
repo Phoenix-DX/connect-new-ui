@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Widgets.OverlappingImages
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { styleFromCssText } from '../../../shared/lib/cssText';
 
 export interface OverlappingImagesProps {

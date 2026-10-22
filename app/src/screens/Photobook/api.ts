@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
-import { callAction } from '../../lib/api';
-import { osList } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList } from '@/legacy/os/os-wire';
 import type { HouseholdCaption, PhotobookHousehold, PhotobookInputs, SelectedHousehold } from './types';
 
 const ACTION_HOUSEHOLDS = 'Photobook/DataActionGetLocalityHouseholdIds';

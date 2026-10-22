@@ -1,5 +1,5 @@
 // @os-block UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_Statistics
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Two } from '../../UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { ImageCard__Content__Tag } from '../../UBTConnectLibrary/ImageCard__Content__Tag';

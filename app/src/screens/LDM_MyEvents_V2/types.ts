@@ -1,4 +1,4 @@
-import type { ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 
 /* Wire shapes of the two data actions (analysis/calls.md; contract src/api/openapi.yaml). Long Integers stay text. */
 export type GetEventsForMyTimelineWire = ActionOutputs<

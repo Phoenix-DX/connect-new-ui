@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.Update_ListItem
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AvatarDouble } from '../AvatarDouble';
 import { AvatarImage } from '../AvatarImage';
 import { Columns_Three } from '../Columns_Three';

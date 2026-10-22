@@ -1,5 +1,5 @@
-import { callAction } from '../../lib/api';
-import { osList, osNumber, wireList } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList, osNumber, wireList } from '@/legacy/os/os-wire';
 import type { GetMessagesResult, MessageItem, MessageListVariables, MessagesList, MessageWire } from './types';
 
 const toMessage = (w: MessageWire): MessageItem => ({

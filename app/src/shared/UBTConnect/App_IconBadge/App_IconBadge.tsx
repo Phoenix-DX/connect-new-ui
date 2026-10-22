@@ -1,5 +1,5 @@
 // @os-block UBTConnect.App_Common_Blocks.App_IconBadge
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSLink } from '../../lib/OSLink';
 import { Icon } from '../../UBTConnectLibrary/Icon';
 import { IconBadge } from '../../UBTConnectLibrary/IconBadge';

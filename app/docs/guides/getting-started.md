@@ -24,7 +24,7 @@ npm run lighthouse     # Lighthouse on the demo build, reports in lighthouse-rep
 
 ## Configuration
 
-Build-time variables (`.env.example`), read only through `src/lib/config.ts`: `VITE_USE_MOCKS`, `VITE_DEMO`,
+Build-time variables (`.env.example`), read only through `src/platform/config/config.ts`: `VITE_USE_MOCKS`, `VITE_DEMO`,
 `VITE_APP_ENV`, `VITE_API_BASE_URL`, `VITE_ORBIT_URL`, `VITE_ASSEMBLE_URL`, `VITE_LDM_URL`. The app service worker
 exists only in the demo build and with `VITE_USE_MOCKS=false` ([PWA](pwa.md)); dev keeps MSW's worker.
 

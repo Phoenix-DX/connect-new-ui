@@ -1,5 +1,5 @@
 // @os-block NavigationHandler.ScrollAnchors.ScrollAnchor
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface ScrollAnchorProps {
   /** OutSystems instance id of the block. */

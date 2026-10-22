@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_Locality.Locality_OneSchoolGlobal
 import { useEffect, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { Directory_EmptyState } from '../../../shared/UBTConnect/Directory_EmptyState';

@@ -1,6 +1,6 @@
 // @os-block NavigationHandler.NavigationHandler.NavigationHandler
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface NavigationHandlerProps {
   /** OutSystems instance id of the block. */

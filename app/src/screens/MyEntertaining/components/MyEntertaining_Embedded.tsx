@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Calendar.MyEntertaining_Embedded
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CommonUI_InsideLayout } from '../../../shared/UBTConnect/CommonUI_InsideLayout';
 import { Layout_DetailPage } from '../../../shared/UBTConnectLibrary/Layout_DetailPage';
 import { openInApp_OpenExternalLink } from '../../../shared/UBTConnect_Utils/lib/actions';

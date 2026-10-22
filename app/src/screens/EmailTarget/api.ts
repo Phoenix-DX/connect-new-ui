@@ -1,4 +1,4 @@
-import { callAction } from '../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import type { EmailTargetInputs, UserContactRequest } from './types';
 
 /* EmailTarget and ScreenBlock_Household_Email have no data action (S :318, H :706). The only server call is

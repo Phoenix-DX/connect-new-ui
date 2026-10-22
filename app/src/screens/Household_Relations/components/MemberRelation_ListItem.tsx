@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Three } from '../../../shared/UBTConnectLibrary/Columns_Three';
 import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
 import { Icon } from '../../../shared/UBTConnectLibrary/Icon';

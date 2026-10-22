@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Skeleton_Loading
 import { useMemo } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { skeletonNumberOfBlocks } from '../lib/actions';
 import { OrbitSkeletonLoading } from '../lib/staticEntities';
 

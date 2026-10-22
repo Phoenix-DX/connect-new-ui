@@ -1,12 +1,12 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_ContactForm
 import { useEffect, useReducer, useRef, type ReactNode, type RefObject } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import {
   OSForm,
   useInputWithVariableValidation,
   useScreenValidationService,
   ValidationServiceProvider,
-} from '../../../components/OSValidation';
+} from '@/components/ui/os/OSValidation';
 import { InputCounter } from '../../../shared/Connect2_LegacyShared/InputCounter';
 import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';

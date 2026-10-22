@@ -2,7 +2,7 @@ import type { RequestHandler } from 'msw';
 import { contractHandler } from '../../mocks/contract';
 import { fixtureData } from '../../mocks/fixtures';
 import { collection } from '../../mocks/store';
-import { osList } from '../../lib/os-wire';
+import { osList } from '@/legacy/os/os-wire';
 import type { ConnectServicesWire, CurrentServiceWire } from './types';
 
 /* Services (P-MOCKS, P-MUTATION).

@@ -1,5 +1,5 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail_TravelInfo
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OrbitMilestoneType } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { TransportMilestoneType, TravelInfo } from '../types';
 import { transportDetails_ShowGeneralInformation } from './actions';

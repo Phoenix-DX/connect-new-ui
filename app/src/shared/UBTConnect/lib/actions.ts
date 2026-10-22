@@ -7,14 +7,14 @@ import type {
   UI_Screen_SubdivisionDetails,
   UI_SubdivisionHousehold,
 } from './structures';
-import { callAction } from '../../../lib/api';
-import { MOCKS_BUILT } from '../../../lib/config';
-import { log } from '../../../lib/log';
-import { osList } from '../../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { MOCKS_BUILT } from '@/platform/config/config';
+import { log } from '@/platform/log/log';
+import { osList } from '@/legacy/os/os-wire';
 import { scenario } from '../../../mocks/scenario';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { SystemException, UserException, isInstanceOf } from '../../../lib/os-exceptions';
+import { SystemException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
 import {
   BookmarkCategory,
   Connect_Entity,

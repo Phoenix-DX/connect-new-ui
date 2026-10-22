@@ -1,6 +1,6 @@
 // @os-block Directory_Photobook.Photobook_Options_Player
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
 import { UBT_Color } from '../../../shared/UBTConnectLibrary/lib/staticEntities';

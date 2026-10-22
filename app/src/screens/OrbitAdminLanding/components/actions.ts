@@ -1,4 +1,4 @@
-import { log } from '../../../lib/log';
+import { log } from '@/platform/log/log';
 import { ApplicationEvents_Orbit_ClickEvent } from './staticEntities';
 
 /** AuditPayload_ClickEventRec (Connect2_OrbitMobile_MUI): what OnHandle_EventCardClicked records about the clicked

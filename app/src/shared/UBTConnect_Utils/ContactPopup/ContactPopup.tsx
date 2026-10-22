@@ -1,9 +1,9 @@
 // @os-block UBTConnect_Utils.CW_CTA_PopUps.ContactPopup
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { NotCaptured } from '../../../components/NotCaptured';
-import { OSBlock } from '../../../components/OSBlock';
-import { usePopupWidget } from '../../../components/OSPopup';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { usePopupWidget } from '@/components/ui/os/OSPopup';
 import { PreventBackNavigation } from '../../NavigationHandler/PreventBackNavigation';
 import { Button } from '../../UBTConnectLibrary/Button';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';

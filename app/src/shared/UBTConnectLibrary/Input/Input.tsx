@@ -1,13 +1,13 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.Input
 import { useEffect, useId, useRef, useState, type ChangeEvent, type KeyboardEvent } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import {
   DESCRIBED_BY_SUFFIX,
   hasValidationMessage,
   ValidationMessage,
   withNotValidClass,
   type WidgetValidationRecord,
-} from '../../../components/OSValidation';
+} from '@/components/ui/os/OSValidation';
 import { InputWithIcon } from '../../osui/InputWithIcon';
 import { Icon } from '../Icon';
 import { Shape, UBT_Color, UBT_Icons, UBT_IconSize } from '../lib/staticEntities';

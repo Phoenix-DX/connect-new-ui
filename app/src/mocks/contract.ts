@@ -1,6 +1,6 @@
 import { http, HttpResponse, type RequestHandler } from 'msw';
-import type { ActionInputs, ActionOutputs, PathOf } from '../lib/api';
-import { UserException, answerOfException, isRaisedByServer } from '../lib/os-exceptions';
+import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
+import { UserException, answerOfException, isRaisedByServer } from '@/legacy/os/os-exceptions';
 import { emptyLists, mockDelay, scenario } from './scenario';
 
 /* A mock handler typed by the API contract, for fictional data (P-MOCKS) and mutations (P-MUTATION):

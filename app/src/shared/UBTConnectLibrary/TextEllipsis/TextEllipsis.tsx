@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.TextEllipsis
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { formatClasses } from '../lib/actions';
 
 export interface TextEllipsisProps {

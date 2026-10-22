@@ -1,13 +1,13 @@
 import { http, HttpResponse } from 'msw';
 import { expect, test } from 'vitest';
-import { callAction } from '../lib/api';
+import { callAction } from '@/api/client/callAction';
 import {
   CommunicationException,
   SecurityException,
   UserException,
   ViewHasChangedException,
   isInstanceOf,
-} from '../lib/os-exceptions';
+} from '@/legacy/os/os-exceptions';
 import { server } from '../test/setup';
 import { contractHandler, raiseUserException } from './contract';
 

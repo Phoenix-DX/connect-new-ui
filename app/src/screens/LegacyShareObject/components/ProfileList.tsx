@@ -1,8 +1,8 @@
 // @os-block Connect2_LegacyShared.Share_UI.ProfileList
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
-import { NotCaptured } from '../../../components/NotCaptured';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { FreeSubscriptionActionDialog } from '../../../shared/Connect2_LegacyShared/FreeSubscriptionActionDialog';
 import { ResultListType } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
 import { Result_Item_Image } from '../../../shared/Connect2_LegacyShared/Result_Item_Image';

@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Directory_SupperMeetings.SupperMeeting_HouseholdList
 import { useEffect, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { DataFetchStatus } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { DataFetchStatus } from '@/components/ui/os/OSList';
 import { Household_GalleryCard_List } from '../Household_GalleryCard_List';
 import { getSkeletonList_UI_SubdivisionHousehold } from '../lib/actions';
 import type { UI_SubdivisionHousehold } from '../lib/structures';

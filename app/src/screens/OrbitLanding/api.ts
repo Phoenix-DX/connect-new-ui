@@ -1,5 +1,5 @@
-import { callAction } from '../../lib/api';
-import { osDate, osList, osNumber } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osDate, osList, osNumber } from '@/legacy/os/os-wire';
 import type {
   EventsByMemberIdResult,
   EventsSummaryItem,

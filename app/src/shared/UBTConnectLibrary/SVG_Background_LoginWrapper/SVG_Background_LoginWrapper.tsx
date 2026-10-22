@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.Layouts.SVG_Background_LoginWrapper
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { SVG_Background_Custom } from '../SVG_Background_Custom';
 
 export interface SVG_Background_LoginWrapperProps {

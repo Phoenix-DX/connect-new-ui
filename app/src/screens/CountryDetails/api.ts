@@ -1,6 +1,6 @@
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { callAction } from '../../lib/api';
-import { osList, osNumber } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList, osNumber } from '@/legacy/os/os-wire';
 import type { LocalityStatistics, LocalityStatisticsData, LocalityStatisticsInputs } from './types';
 
 type GetLocalityStatisticsOutput = Awaited<

@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef } from 'react';
 import { useLocation, useSearchParams } from 'react-router';
-import { NotCaptured } from '../../components/NotCaptured';
-import { useFlagOn } from '../../lib/flags';
+import { NotCaptured } from '@/app/NotCaptured';
+import { useFlagOn } from '@/platform/flags/flags';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';

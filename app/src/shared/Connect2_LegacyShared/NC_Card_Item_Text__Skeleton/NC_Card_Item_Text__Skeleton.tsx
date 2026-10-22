@@ -1,5 +1,5 @@
 // @os-block Connect2_LegacyShared.NewConnect_Skeleton.NC_Card_Item_Text__Skeleton
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface NC_Card_Item_Text__SkeletonProps {
   /** OutSystems instance id of the block. */

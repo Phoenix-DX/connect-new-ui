@@ -1,7 +1,7 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { AvatarImage } from '../AvatarImage';
 import { Columns_Two } from '../Columns_Two';
 import { CustomContainer } from '../CustomContainer';

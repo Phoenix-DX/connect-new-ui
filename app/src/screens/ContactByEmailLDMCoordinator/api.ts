@@ -1,4 +1,4 @@
-import { callAction } from '../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import type { ContactByEmailForm, ContactByEmailLDMCoordinatorInputs } from './types';
 
 /* ContactByEmailLDMCoordinator has no data action (`dataFetchActionNames = []`, S :478). Its only server call is

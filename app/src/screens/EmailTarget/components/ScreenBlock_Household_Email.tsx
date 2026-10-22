@@ -1,12 +1,12 @@
 // @os-block Connect2_LegacyShared.Email.ScreenBlock_Household_Email
 import { useRef, useState, type ReactNode, type RefObject } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import {
   OSForm,
   useInputWithVariableValidation,
   useScreenValidationService,
   ValidationServiceProvider,
-} from '../../../components/OSValidation';
+} from '@/components/ui/os/OSValidation';
 import { InputCounter } from '../../../shared/Connect2_LegacyShared/InputCounter';
 import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';

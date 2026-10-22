@@ -1,7 +1,7 @@
 // @os-block Directory_Photobook.Photobook_Options_Right
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { RadioButton, RadioGroup } from '../../../components/OSRadioGroup';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { RadioButton, RadioGroup } from '@/components/ui/os/OSRadioGroup';
 import { bottomSheetClose, bottomSheetOpen } from '../../../shared/osui/lib/actions';
 import { BottomSheet } from '../../../shared/UBTConnectLibrary/BottomSheet';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';

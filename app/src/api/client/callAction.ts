@@ -1,13 +1,13 @@
 import createClient from 'openapi-fetch';
-import type { paths } from '../api/schema';
-import { config } from './config';
-import { log } from './log';
+import type { paths } from '@/api/schema';
+import { config } from '@/platform/config/config';
+import { log } from '@/platform/log/log';
 import {
   CONNECTION_TIMED_OUT,
   CommunicationException,
   ViewHasChangedException,
   exceptionOfAnswer,
-} from './os-exceptions';
+} from '@/legacy/os/os-exceptions';
 
 /* Typed caller for server-side actions, typed from the API contract (src/api/openapi.yaml → npm run gen:api).
    One endpoint per OutSystems action, body = the inputs with their OutSystems names, answer = { data: <outputs> }:

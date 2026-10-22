@@ -1,5 +1,5 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleSummaryCard__Header
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface AssembleSummaryCard__HeaderProps {
   /** OutSystems instance id of the block. */

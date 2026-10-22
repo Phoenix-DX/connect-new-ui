@@ -1,5 +1,5 @@
 import { http, HttpResponse, type RequestHandler } from 'msw';
-import type { ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '../../mocks/contract';
 import { fixtureData } from '../../mocks/fixtures';
 import { mockDelay, scenario } from '../../mocks/scenario';

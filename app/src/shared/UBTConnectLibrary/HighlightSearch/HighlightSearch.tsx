@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.HighlightSearch
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { IconInline_Internal } from '../IconInline_Internal';
 import { removeRegexSpecialCharacters } from '../lib/actions';
 import { highlight_V3 } from './highlight';

@@ -5,8 +5,8 @@ import {
   localSearchHistory_Update,
   type LocalSearchHistory,
 } from '@/platform/storage/localEntities';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 
 export interface MessageSearchHistoryProps {
   /** OutSystems instance id of the block (`b1-$b5`). */

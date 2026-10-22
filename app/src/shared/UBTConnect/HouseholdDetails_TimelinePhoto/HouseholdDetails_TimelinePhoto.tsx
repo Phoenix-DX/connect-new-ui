@@ -1,5 +1,5 @@
 // @os-block UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { formatClasses, getClasses_BackgroundImageSize } from '../../UBTConnectLibrary/lib/actions';
 import {

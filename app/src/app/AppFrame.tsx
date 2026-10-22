@@ -1,4 +1,4 @@
-import { FlagPanel } from '../components/FlagPanel';
+import { FlagPanel } from '@/platform/flags/FlagPanel';
 import { AppStart } from '@/platform/bootstrap/AppStart';
 import { CommonUiHost } from '@/platform/feedback/dialogs';
 import { AppLockHost } from '@/platform/navigation/AppLockHost';

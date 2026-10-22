@@ -1,13 +1,13 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2
 import { useEffect, useReducer, useRef, type ReactNode, type RefObject } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import {
   OSForm,
   useInputWithVariableValidation,
   useScreenValidationService,
   ValidationServiceProvider,
-} from '../../../components/OSValidation';
-import { osImage } from '../../../lib/os-assets';
+} from '@/components/ui/os/OSValidation';
+import { osImage } from '@/legacy/os/os-assets';
 import { InputCounter } from '../../../shared/Connect2_LegacyShared/InputCounter';
 import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';

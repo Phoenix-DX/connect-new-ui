@@ -1,8 +1,8 @@
 // @os-block NavigationHandler.ConfirmationDialogs.NavigationConfirmationDialog
 import { useCallback, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { OSBlock } from '../../../components/OSBlock';
-import { usePopupWidget } from '../../../components/OSPopup';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { usePopupWidget } from '@/components/ui/os/OSPopup';
 import { resumeNavigation, wasNavigationPrevented, type NavigationEvent } from '../lib/actions';
 import { NavigationHandler } from '../NavigationHandler';
 import { PreventBackNavigation } from '../PreventBackNavigation';

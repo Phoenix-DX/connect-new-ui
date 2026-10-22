@@ -1,6 +1,6 @@
 import { useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { usePopupWidget } from '../../../components/OSPopup';
+import { usePopupWidget } from '@/components/ui/os/OSPopup';
 
 /* The platform Popup widget of ScreenBlock_EventBooklet (SB view :1731-1799: ShowPopup = FiltersPopUp, Style
    "popup-dialog orbit-booklet-popup"), as OutSystemsReactWidgets.js Popup.render and OutSystemsReactView.js Portal

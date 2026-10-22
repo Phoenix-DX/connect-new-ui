@@ -1,5 +1,5 @@
 // @os-block UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { ImageCard__Content } from '../../UBTConnectLibrary/ImageCard__Content';
 import { UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';

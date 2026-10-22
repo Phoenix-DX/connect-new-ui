@@ -1,5 +1,5 @@
 // @os-block UBTConnect_Utils.CW_Share.ShareableObject_Generic
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../UBTConnectLibrary/CustomText';
 import { Icon } from '../../UBTConnectLibrary/Icon';

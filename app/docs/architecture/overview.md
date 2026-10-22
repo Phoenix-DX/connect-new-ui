@@ -14,7 +14,7 @@ Reference pages that scripts generate from the migration data: [stack and ADRs](
 | --- | ------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
 | 1   | Fidelity                  | Same DOM, class names and CSS as the original; same routes and parameters; same calls and states | original CSS files unchanged, per screen (`public/UBTConnect/css/`); parity check per captured state      |
 | 2   | Maintainability           | Clean, typed, readable code; one way to do each recurring thing                                  | TypeScript strict, ESLint strict (type-checked), Prettier, patterns with reference code, ADRs for changes |
-| 3   | Ready for production      | Backend, identity, flags and monitoring can be swapped in without touching screens               | API contract + typed client, providers in `src/lib` (config, log, flags, auth later)                      |
+| 3   | Ready for production      | Backend, identity, flags and monitoring can be swapped in without touching screens               | API contract + typed client, providers in `src/platform` (config, log, flags, auth later)                 |
 | 4   | Consistency and isolation | Each screen lives in its own folder; shared code is built once and frozen                        | folder rules, `consistency_check`, change requests for shared code                                        |
 | 5   | Documentation             | Architecture and references stay current                                                         | these pages; reference pages generated from data                                                          |
 | 6   | Testability               | Every branch and state can be reached without a backend                                          | MSW scenarios, flag panel, mock store, Vitest, Storybook                                                  |
@@ -44,10 +44,10 @@ flowchart TB
     direction TB
     platform[src/platform<br/>error handling, sign-in and PIN mock,<br/>navigation guard, view cache, toasts,<br/>local entities IndexedDB]
     screens[src/screens/&lt;Screen&gt;<br/>index.tsx · api.ts · mocks.ts · types.ts]
-    widgets[src/components<br/>platform widgets: validation, popup,<br/>list, radio group, NotCaptured]
+    widgets[src/components<br/>platform widgets in components/ui/os:<br/>validation, popup, list, radio group]
     vendor[src/vendor and osui vendor folders<br/>third-party scripts copied from the original]
     shared[src/shared<br/>one component per OutSystems block<br/>src/shared/osui for OutSystems UI patterns]
-    lib[src/lib<br/>api client · config · log · flags · os-wire · device]
+    lib[src/api/client · src/platform/{config, log, flags, device}<br/>src/legacy/os: os-wire, os-exceptions, os-assets]
     mocks[src/mocks<br/>MSW handlers · recorded fixtures · mock store]
     css[public/UBTConnect/css<br/>original OutSystems CSS per screen]
   end
@@ -66,7 +66,7 @@ flowchart TB
 
 Rules that keep it this way (`consistency_check.py` checks them before a screen is finished):
 
-- A screen imports only from its own folder and from `src/shared`, `src/platform`, `src/lib`, `src/components`, `src/mocks`.
+- A screen imports only from its own folder and from `src/shared`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/mocks`.
 - A screen has no `fetch`, browser storage, route CSS, inline visual styles, raw HTML or `console.log`.
 - Packages come only from the pinned allow-list ([stack](../reference/stack.md)). A new package needs an ADR.
 
@@ -76,7 +76,7 @@ Rules that keep it this way (`consistency_check.py` checks them before a screen 
 sequenceDiagram
   participant C as Screen component
   participant A as screens/X/api.ts (TanStack Query hook)
-  participant L as lib/api.ts callAction
+  participant L as api/client/callAction.ts
   participant M as MSW handler (mocks.ts)
   C->>A: useXxx(inputs)
   A->>L: callAction('Module', 'Action', OutSystems input names)
@@ -90,21 +90,21 @@ sequenceDiagram
   not compile.
 - Mock data: reference, place and organisation data are recorded from TST and anonymised. Data about a person is
   fictional, with the recorded structure and counts.
-- Later, the backend implements the same contract. Only the `src/lib/api.ts` configuration and the mappers in `api.ts`
+- Later, the backend implements the same contract. Only the `src/api/client/callAction.ts` configuration and the mappers in `api.ts`
   can change. The screens do not change.
 
 ## Runtime pieces worth knowing
 
-| Piece                 | Where                                                                                        | Guide                                            |
-| --------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| Request timeouts      | `SERVER_REQUEST_TIMEOUT` in `src/lib/api.ts` (20 s for `UBTConnect`, 10 s for other modules) | [API and mock data](../guides/api-and-mocks.md)  |
-| Navigation guard      | `src/platform/navigation/navigationGate.ts`: `dx-before-navigation`, prevent / resume        | [Shell](../guides/shell.md)                      |
-| Platform validation   | `src/components/OSValidation`                                                                | [Platform widgets](../guides/os-widgets.md)      |
-| Popups                | `src/components/OSPopup/usePopupWidget.ts`                                                   | [Platform widgets](../guides/os-widgets.md)      |
-| Local entities        | `src/platform/storage/localEntities` (IndexedDB; bookmark sync in one transaction, ADR-8)    | [Shell](../guides/shell.md)                      |
-| Vendored scripts      | `src/vendor/panzoom` (ADR-7), `src/shared/osui/DropdownSearch/vendor` (ADR-5)                | [Shared code](../guides/shared-code.md)          |
-| Mock scenarios, store | `src/mocks`, `?mock=`, `?mocksession=`                                                       | [API and mock data](../guides/api-and-mocks.md)  |
-| Known original bugs   | B1-B13                                                                                       | [Known original bugs](../known-original-bugs.md) |
+| Piece                 | Where                                                                                                      | Guide                                            |
+| --------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Request timeouts      | `SERVER_REQUEST_TIMEOUT` in `src/api/client/callAction.ts` (20 s for `UBTConnect`, 10 s for other modules) | [API and mock data](../guides/api-and-mocks.md)  |
+| Navigation guard      | `src/platform/navigation/navigationGate.ts`: `dx-before-navigation`, prevent / resume                      | [Shell](../guides/shell.md)                      |
+| Platform validation   | `src/components/ui/os/OSValidation`                                                                        | [Platform widgets](../guides/os-widgets.md)      |
+| Popups                | `src/components/ui/os/OSPopup/usePopupWidget.ts`                                                           | [Platform widgets](../guides/os-widgets.md)      |
+| Local entities        | `src/platform/storage/localEntities` (IndexedDB; bookmark sync in one transaction, ADR-8)                  | [Shell](../guides/shell.md)                      |
+| Vendored scripts      | `src/vendor/panzoom` (ADR-7), `src/shared/osui/DropdownSearch/vendor` (ADR-5)                              | [Shared code](../guides/shared-code.md)          |
+| Mock scenarios, store | `src/mocks`, `?mock=`, `?mocksession=`                                                                     | [API and mock data](../guides/api-and-mocks.md)  |
+| Known original bugs   | B1-B13                                                                                                     | [Known original bugs](../known-original-bugs.md) |
 
 ## Where decisions live
 

@@ -3,7 +3,7 @@ import { contractHandler } from '../../mocks/contract';
 import { householdsOfSupperMeeting } from '../../mocks/fictional/directory';
 import { assembleEventOf, type AssembleEventSummaryWire } from '../../mocks/fictional/assemble';
 import { scenario } from '../../mocks/scenario';
-import { wireList } from '../../lib/os-wire';
+import { wireList } from '@/legacy/os/os-wire';
 
 /* Mocks of AssembleDetail (P-MOCKS), on the fictional Assemble world (src/mocks/fictional/assemble.ts). No TST capture
    (no-capture route): every value is fictional. Scenarios: real (the meeting of EventId; an unknown EventId → IsNotFound

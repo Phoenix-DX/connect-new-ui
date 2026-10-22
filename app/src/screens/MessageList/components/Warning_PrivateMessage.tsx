@@ -1,5 +1,5 @@
 // @os-block Connect2_LegacyShared.Reusable.Warning_PrivateMessage
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface Warning_PrivateMessageProps {
   id?: string;

@@ -1,5 +1,5 @@
-import { NotCaptured } from '../../components/NotCaptured';
-import { OSBlock } from '../../components/OSBlock';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 /** Stories only: stand-in for a nested block that is not built yet. Same root wrapper as the real block (the capture
     tests compare only that wrapper for nested blocks); its content is a visible "not built" marker. */

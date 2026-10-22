@@ -1,6 +1,6 @@
 // @os-block OutSystemsUI_2_23.Interaction.Carousel
 import { useId, useLayoutEffect, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { registerCarousel } from '../lib/actions';
 import { CarouselNavigation } from '../lib/staticEntities';
 import type { CarouselItems, CarouselOptionalConfigs } from '../lib/structures';

@@ -1,4 +1,4 @@
-import { log } from '@/lib/log';
+import { log } from '@/platform/log/log';
 import type { LocalDatabase, TableSchema } from './database';
 import { localBookmarksDatabase, localBookmarksSchemas } from './localBookmarks';
 import { localNotesDatabase, localNotesSchemas } from './localNotes';

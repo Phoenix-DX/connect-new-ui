@@ -1,4 +1,4 @@
-import type { ActionInputs, ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 
 /* ---- Wire shapes (api.ts and mocks.ts only) ----
    DataActionGet_EventQRCode of ScreenBlock_GenerateQRCode, typed by the API contract (no capture: shape from the

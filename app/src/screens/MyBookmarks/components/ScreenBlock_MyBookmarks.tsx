@@ -1,13 +1,13 @@
 // @os-block Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks
 import { useEffect, useReducer, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import {
   CommunicationException,
   Exception,
   NotRegisteredException,
   SystemException,
   UserException,
-} from '../../../lib/os-exceptions';
+} from '@/legacy/os/os-exceptions';
 import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';

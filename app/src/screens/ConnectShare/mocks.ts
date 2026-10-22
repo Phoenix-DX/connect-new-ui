@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { ServerException } from '../../lib/os-exceptions';
+import { ServerException } from '@/legacy/os/os-exceptions';
 import { contractHandler } from '../../mocks/contract';
 import { Type_ShareObject } from '../../shared/UBTConnect/lib/staticEntities';
 import type { Get_ShareDetailsWire } from './types';

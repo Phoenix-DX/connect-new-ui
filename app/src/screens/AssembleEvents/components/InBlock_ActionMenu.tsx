@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.NewConnect.InBlock_ActionMenu
 import { useEffect, useRef, type MouseEvent, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 const POINTER = { cursor: 'pointer' };
 

@@ -4,7 +4,7 @@
    OnDownloadProgress / OnDownloadComplete / OnDownloadError. Web port: a hook the owning block calls; the owner keeps the
    block's <OSBlock name="FileTransfer.HandleDownload"> for the markup. */
 import { useEffect, useRef } from 'react';
-import { log } from '../../../lib/log';
+import { log } from '@/platform/log/log';
 
 /** FileDownloadResult (FileTransferPlugin.model.js:198-240; JSON names isFile, isDirectory, name, fullPath,
     nativeURL). */

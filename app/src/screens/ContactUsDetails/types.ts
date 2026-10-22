@@ -1,4 +1,4 @@
-import type { ActionInputs, PathOf } from '../../lib/api';
+import type { ActionInputs, PathOf } from '@/api/client/callAction';
 
 type In<A extends string> = ActionInputs<PathOf<'UBTConnect', A>>;
 

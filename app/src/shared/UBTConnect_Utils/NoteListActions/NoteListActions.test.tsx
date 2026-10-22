@@ -3,7 +3,7 @@ import { act, fireEvent, render, screen, waitFor, within } from '@testing-librar
 import { http, HttpResponse } from 'msw';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { server } from '../../../test/setup';
-import { CommunicationException } from '../../../lib/os-exceptions';
+import { CommunicationException } from '@/legacy/os/os-exceptions';
 import { UserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import {

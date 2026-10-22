@@ -1,7 +1,7 @@
 // @os-block UBT_AppManager_Mobile.Fingerprint.FingerprintScanner
 import type { ReactNode } from 'react';
-import { NotCaptured } from '../../../components/NotCaptured';
-import { OSBlock } from '../../../components/OSBlock';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface FingerprintScannerProps {
   /** OutSystems instance id of the block. */

@@ -1,5 +1,5 @@
 // @os-block UBT_AppManager.Layouts.AppManager_Events
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 /** Layouts.AppManager_Events: renders nothing of its own (captured empty widget, dom/default.html:137). The original
     registers the identity-provider callback handlers (OnReady GetHandlersJS) and raises OnCallback to Login's

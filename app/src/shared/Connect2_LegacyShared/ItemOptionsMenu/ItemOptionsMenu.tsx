@@ -1,7 +1,7 @@
 // @os-block Connect2_LegacyShared.Utility.ItemOptionsMenu
 import { useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { useFlagOn } from '../../../lib/flags';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { useFlagOn } from '@/platform/flags/flags';
 import { PopupMenu } from '../PopupMenu';
 
 export interface ItemOptionsMenuProps {

@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Utility.Result_Item_Badge
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface Result_Item_BadgeProps {
   /** OutSystems instance id of the block (`b1-l2-…-LocalitiesList_Item`). */

@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Sort
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { RadioButton, RadioGroup } from '../../../components/OSRadioGroup';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { RadioButton, RadioGroup } from '@/components/ui/os/OSRadioGroup';
 
 export interface Popup_OrbitLanding_SortProps {
   /** OutSystems instance id of the block (`b1-$b9`). */

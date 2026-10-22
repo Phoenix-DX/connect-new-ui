@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Directory_Search.ScreenBlock_Search
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { useFlagOn } from '../../../lib/flags';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { useFlagOn } from '@/platform/flags/flags';
 import { BottomBarMenu } from '../../../shared/UBTConnect/BottomBarMenu';
 import { CommonUI_InsideLayout } from '../../../shared/UBTConnect/CommonUI_InsideLayout';
 import { FilterSheet } from '../../../shared/UBTConnect/FilterSheet';

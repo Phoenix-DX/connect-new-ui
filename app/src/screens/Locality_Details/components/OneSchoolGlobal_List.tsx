@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { Directory_EntityDetailsActions } from '../../../shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
 import { ImageCard_LazyLoading } from '../../../shared/UBTConnectLibrary/ImageCard_LazyLoading';
 import { ImageCard__Content } from '../../../shared/UBTConnectLibrary/ImageCard__Content';

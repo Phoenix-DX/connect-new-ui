@@ -1,8 +1,8 @@
 import type { components } from '@/api/schema';
-import { callAction } from '@/lib/api';
-import { log } from '@/lib/log';
-import { CommunicationException, UserException, isInstanceOf } from '@/lib/os-exceptions';
-import { osNumber } from '@/lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { log } from '@/platform/log/log';
+import { CommunicationException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
+import { osNumber } from '@/legacy/os/os-wire';
 import { onApplicationReady_BottomBarSlider } from '@/shared/UBTConnectLibrary/lib/actions';
 import { deviceContext } from '@/platform/device/deviceContext';
 import {

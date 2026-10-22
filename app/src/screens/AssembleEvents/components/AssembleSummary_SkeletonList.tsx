@@ -1,6 +1,6 @@
 // @os-block Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummary_SkeletonList
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { AssembleSummaryDetailHeader_Skeleton } from '../../../shared/Connect2_Assemble_MUI/AssembleSummaryDetailHeader_Skeleton';
 import { NC_Card_Item_Text__Skeleton } from '../../../shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
 import { NC_Result_Item_Badge } from '../../../shared/Connect2_LegacyShared/NC_Result_Item_Badge';

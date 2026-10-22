@@ -1,6 +1,6 @@
 // @os-block UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../UBTConnectLibrary/CustomText';
 import { SubLayout_Section } from '../../UBTConnectLibrary/SubLayout_Section';

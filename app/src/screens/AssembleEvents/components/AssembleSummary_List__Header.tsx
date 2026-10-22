@@ -1,5 +1,5 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleSummary_List__Header
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { NC_Card_Item_Text__Skeleton } from '../../../shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
 
 const POINTER = { cursor: 'pointer' };

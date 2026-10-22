@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router';
-import { useFlagOn } from '../../lib/flags';
+import { useFlagOn } from '@/platform/flags/flags';
 import { LayoutRuntime_Top } from '../../shared/NavigationHandler/LayoutRuntime_Top';
 import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
 import type { CarouselPreloadedHouseholds } from '../../shared/UBTConnect/lib/structures';

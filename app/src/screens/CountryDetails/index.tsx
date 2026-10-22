@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { NotCaptured } from '../../components/NotCaptured';
-import { OSList } from '../../components/OSList';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSList } from '@/components/ui/os/OSList';
 import type L from '../../shared/Leaflet/lib/leaflet';
 import { map_InvalidateSize } from '../../shared/Leaflet/lib/actions';
 import type { MapOptions, MarkerWithWindow, TileLayer, ZoomControlOptions } from '../../shared/Leaflet/lib/structures';

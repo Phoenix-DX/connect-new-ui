@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_MembersItem
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { getFormattedDate_Weekday } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
 import type { EventBookletMember } from '../types';
 

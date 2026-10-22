@@ -1,6 +1,6 @@
 // @os-block Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Card
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface MyBookmarks_CardProps {
   /** OutSystems instance id of the block (`b1-MyBookmarks_Contacts`). */

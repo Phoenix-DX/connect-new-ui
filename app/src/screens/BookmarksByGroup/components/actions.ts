@@ -1,4 +1,4 @@
-import { log } from '../../../lib/log';
+import { log } from '@/platform/log/log';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { peekCacheableObject, putCacheableObject } from '@/platform/storage/memoryCache';
 import type { BookmarkItem } from '../types';

@@ -1,5 +1,5 @@
-import { callAction } from '../../lib/api';
-import { osList } from '../../lib/os-wire';
+import { callAction } from '@/api/client/callAction';
+import { osList } from '@/legacy/os/os-wire';
 import type { Milestone_Screen } from '../../shared/Connect2_OrbitMobile_MUI/lib/structures';
 import type { EventDetailsResult, EventDetailVariablesWire, MilestoneWire } from './types';
 

@@ -1,6 +1,6 @@
 // @os-block SortableJS.Sortable.SortableList_Draggable
 import { useEffect, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface SortableList_DraggableProps {
   /** OutSystems instance id of the block (e.g. `l1-38_0-$b8`). */

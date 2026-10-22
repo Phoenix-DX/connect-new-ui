@@ -1,4 +1,4 @@
-import { callAction } from '../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import type { ContactByEmailFormRecord, ContactByEmailOneSchoolGlobalInputs } from './types';
 
 /** Screen inputs from the query string with the original names (P-PARAMS); a missing Text input is "". */

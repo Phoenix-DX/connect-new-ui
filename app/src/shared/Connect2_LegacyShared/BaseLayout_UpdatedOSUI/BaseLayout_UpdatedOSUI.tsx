@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PullToRefresh } from '../../osui/PullToRefresh';
 import { SideMenuBehavior } from '../lib/staticEntities';
 

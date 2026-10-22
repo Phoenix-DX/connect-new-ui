@@ -1,4 +1,4 @@
-import { callAction } from '../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import type { ContactByEmailOrbitHelpdeskInputs, OrbitContactEmail } from './types';
 
 /* ContactByEmailOrbitHelpdesk has no data action (`dataFetchActionNames = []`, S :481). Its only server call is

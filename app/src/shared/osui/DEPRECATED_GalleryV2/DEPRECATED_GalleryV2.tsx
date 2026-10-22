@@ -1,6 +1,6 @@
 // @os-block OutSystemsUI_2_23.Adaptive.DEPRECATED_GalleryV2
 import type { CSSProperties, ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Space } from '../lib/staticEntities';
 
 export interface DEPRECATED_GalleryV2Props {

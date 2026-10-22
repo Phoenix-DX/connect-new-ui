@@ -1,8 +1,8 @@
 // @os-block UBTConnect.Directory_Household.HouseholdDetails_Block
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { DataFetchStatus } from '../../../components/OSList';
-import { ViewHasChangedException, isInstanceOf } from '../../../lib/os-exceptions';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { DataFetchStatus } from '@/components/ui/os/OSList';
+import { ViewHasChangedException, isInstanceOf } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';

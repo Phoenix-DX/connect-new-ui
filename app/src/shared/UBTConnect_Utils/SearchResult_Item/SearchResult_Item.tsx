@@ -1,6 +1,6 @@
 // @os-block UBTConnect_Utils.CW_Search.SearchResult_Item
 import { useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Two } from '../../UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../UBTConnectLibrary/CustomText';

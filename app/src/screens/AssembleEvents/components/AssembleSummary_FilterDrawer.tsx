@@ -1,7 +1,7 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleSummary_FilterDrawer
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { NewConnectContent } from '../../../shared/Connect2_LegacyShared/NewConnectContent';
 import { Input } from '../../../shared/UBTConnectLibrary/Input';
 import { Shape } from '../../../shared/UBTConnectLibrary/lib/staticEntities';

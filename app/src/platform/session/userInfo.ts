@@ -1,4 +1,4 @@
-import { callAction } from '@/lib/api';
+import { callAction } from '@/api/client/callAction';
 import { CACHE_TYPE, getCacheableObject } from '@/platform/storage/memoryCache';
 import type { UserInformation } from './mockUser';
 import { getClientVar, isSignedIn, setClientVar } from './session';

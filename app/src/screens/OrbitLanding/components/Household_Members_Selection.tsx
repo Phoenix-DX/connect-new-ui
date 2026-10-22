@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.Household_Members_Selection
 import { useEffect, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { styleFromCssText } from '../../../shared/lib/cssText';
 import type { HouseholdMember } from '../types';
 import { isItemAvailable, scrollToSelectMember } from './actions';

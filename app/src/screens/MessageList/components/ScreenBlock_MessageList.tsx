@@ -1,7 +1,7 @@
 // @os-block Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useRef, type KeyboardEvent, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
 import { MenuIcon_Back } from '../../../shared/Connect2_LegacyShared/MenuIcon_Back';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';

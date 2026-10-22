@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Directory_Caroussel.EntitiesCarousel
 import { useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { Carousel } from '../../osui/Carousel';
 import {
   carouselDisableOnRender,

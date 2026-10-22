@@ -1,4 +1,4 @@
-import type { ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 
 /** Wire outputs of Get_ShareDetails (contract UBTConnect__ActionGet_ShareDetails__Output). Only mocks.ts sees them. */
 export type Get_ShareDetailsWire = ActionOutputs<PathOf<'UBTConnect', 'ActionGet_ShareDetails'>>;

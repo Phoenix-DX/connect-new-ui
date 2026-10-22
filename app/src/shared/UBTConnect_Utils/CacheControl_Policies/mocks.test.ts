@@ -1,5 +1,5 @@
 import { expect, test, vi } from 'vitest';
-import { callAction } from '../../../lib/api';
+import { callAction } from '@/api/client/callAction';
 
 test('CacheControl_Policies GetCacheInfo: answers with the real call inputs and no "no recorded call" warning', async () => {
   const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);

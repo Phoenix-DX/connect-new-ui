@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
 import { IconText } from '../../../shared/UBTConnectLibrary/IconText';

@@ -1,4 +1,4 @@
-import type { LongId } from '../../lib/os-wire';
+import type { LongId } from '@/legacy/os/os-wire';
 
 /** Wire record MessageListItem (Connect2_LegacyShared), as DataActionGetMessages answers it (analysis/types.ts:53-67). */
 export interface MessageWire {

@@ -1,4 +1,4 @@
-import { callAction } from '../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import type { EmailContactInputs, OrbitContactEmail } from './types';
 
 /* EmailContact has no data action (screen and ScreenBlock_ContactForm: `dataFetchActionNames = []`, CF :895). Its only

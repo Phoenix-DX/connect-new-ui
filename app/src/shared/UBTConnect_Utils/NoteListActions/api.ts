@@ -1,4 +1,4 @@
-import { callAction } from '../../../lib/api';
+import { callAction } from '@/api/client/callAction';
 
 /* Server actions of CW_Notes.NoteListActions (P-DATA / P-CALLS), sent with the original input names. Both are writes:
    the mocks change the notes collection (P-MUTATION), nothing is written for real. */

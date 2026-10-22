@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.ImageCard__Content__Tag
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../CustomContainer';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '../lib/staticEntities';
 

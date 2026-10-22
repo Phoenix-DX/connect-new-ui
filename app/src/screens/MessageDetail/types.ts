@@ -1,4 +1,4 @@
-import type { LongId } from '../../lib/os-wire';
+import type { LongId } from '@/legacy/os/os-wire';
 
 /** Screen inputs (query string, original names): UBTConnect.Legacy_MyNotificationsFlow.MessageDetail model. */
 export interface MessageDetailInputs {

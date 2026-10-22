@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock
 import { useEffect, useState, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { useFlagOn } from '../../../lib/flags';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { useFlagOn } from '@/platform/flags/flags';
 import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { ImageCard_LazyLoading } from '../../UBTConnectLibrary/ImageCard_LazyLoading';

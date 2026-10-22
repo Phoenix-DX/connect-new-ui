@@ -1,4 +1,4 @@
-import type { ActionInputs, ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 
 /* Wire types from the contract (src/api/openapi.yaml), through the callAction types. */
 type EditDetailsInputs = ActionInputs<PathOf<'UBTConnect', 'ServiceAPIMember_EditDetails_Service'>>;

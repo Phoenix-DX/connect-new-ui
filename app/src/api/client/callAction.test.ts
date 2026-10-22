@@ -1,9 +1,9 @@
 import { http, HttpResponse } from 'msw';
 import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import { freshPage } from '@/test/testSupport';
-import { server } from '../test/setup';
-import { SERVER_REQUEST_TIMEOUT, callAction, type ActionPath, type ContractModule } from './api';
-import { CONNECTION_TIMED_OUT, CommunicationException } from './os-exceptions';
+import { server } from '@/test/setup';
+import { SERVER_REQUEST_TIMEOUT, callAction, type ActionPath, type ContractModule } from './callAction';
+import { CONNECTION_TIMED_OUT, CommunicationException } from '@/legacy/os/os-exceptions';
 
 /* The OutSystems request timeout in callAction: getEffectiveTimeoutForServerCall + the request's onTimeout
    (migration/runtime-sources/OutSystems.js:17 offset 523471, :3 offsets 71295 and 74168). */

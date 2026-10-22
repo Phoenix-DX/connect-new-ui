@@ -1,5 +1,5 @@
 import { Workbox } from 'workbox-window';
-import { log } from '../lib/log';
+import { log } from '@/platform/log/log';
 import type { BootPlan } from './bootPlan';
 import { SW_URL } from './swRoutes';
 

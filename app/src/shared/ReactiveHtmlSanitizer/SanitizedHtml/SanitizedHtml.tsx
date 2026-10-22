@@ -1,6 +1,6 @@
 // @os-block ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml
 import { useMemo } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import {
   allowAttributes,
   allowCssStyles,

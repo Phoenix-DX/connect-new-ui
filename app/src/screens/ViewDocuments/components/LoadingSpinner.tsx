@@ -1,8 +1,8 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.LoadingSpinner
 import { useLayoutEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { OSBlock } from '../../../components/OSBlock';
-import { usePopupWidget } from '../../../components/OSPopup';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { usePopupWidget } from '@/components/ui/os/OSPopup';
 
 /* LoadingSpinner (LS = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.LoadingSpinner.mvc.js: model
    :1-60, view :122-204, controller :205-280). No capture: markup from the compiled view and the platform Popup widget

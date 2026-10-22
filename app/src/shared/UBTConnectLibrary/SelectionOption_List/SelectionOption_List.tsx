@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.SelectionOption_List
 import { useMemo, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Two } from '../Columns_Two';
 import { CustomContainer } from '../CustomContainer';
 import { CustomText } from '../CustomText';

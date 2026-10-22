@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.BasePatterns.Columns_Three
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns3 } from '../../osui/Columns3';
 import { styleFromCssText } from '../../lib/cssText';
 import {

@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.AvatarDouble
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AvatarImage } from '../AvatarImage';
 import { CustomContainer } from '../CustomContainer';
 import { getClasses_AvatarSize } from '../lib/actions';

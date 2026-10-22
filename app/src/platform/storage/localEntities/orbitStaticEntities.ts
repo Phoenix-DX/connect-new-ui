@@ -1,7 +1,7 @@
 import { useSyncExternalStore } from 'react';
 import type { components } from '@/api/schema';
-import { isOn } from '@/lib/flags';
-import { DataBaseException } from '@/lib/os-exceptions';
+import { isOn } from '@/platform/flags/flags';
+import { DataBaseException } from '@/legacy/os/os-exceptions';
 import type {
   LocalOrbitMilestoneType,
   OrbitMilestoneTypeRecord,

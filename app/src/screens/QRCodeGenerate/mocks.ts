@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { wireList } from '../../lib/os-wire';
+import { wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '../../mocks/contract';
 import { ORBIT_EVENT_PASSES } from '../../mocks/fictional/orbit';
 import type { GetEventQRCodeWire } from './types';

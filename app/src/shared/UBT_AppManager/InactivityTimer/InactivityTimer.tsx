@@ -1,5 +1,5 @@
 // @os-block UBT_AppManager.PIN.InactivityTimer
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface InactivityTimerProps {
   /** OutSystems instance id of the block. */

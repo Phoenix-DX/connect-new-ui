@@ -1,5 +1,5 @@
 // @os-block Connect2_LegacyShared.Reusable.NavigationLanding
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSLink } from '../../../shared/lib/OSLink';
 
 export interface NavigationLandingProps {

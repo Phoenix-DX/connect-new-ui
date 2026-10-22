@@ -1,5 +1,5 @@
 // @os-block UBTConnect.App_Common.Version_LoginWrapper
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
 import { UBT_Color, UBT_Size } from '../../../shared/UBTConnect/lib/staticEntities';
 import { Version } from '../../../shared/UBTConnect/Version';

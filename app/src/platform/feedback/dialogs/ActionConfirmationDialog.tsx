@@ -1,8 +1,8 @@
 // @os-block NavigationHandler.ConfirmationDialogs.ActionConfirmationDialog
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { OSBlock } from '@/components/OSBlock';
-import { usePopupWidget } from '@/components/OSPopup';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { usePopupWidget } from '@/components/ui/os/OSPopup';
 import { usePreventBackNavigation } from '@/platform/navigation';
 import { DX_SHOW, type DxShowDetail } from './confirmAction';
 

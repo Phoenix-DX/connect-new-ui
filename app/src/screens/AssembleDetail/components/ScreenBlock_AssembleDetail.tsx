@@ -1,7 +1,7 @@
 // @os-block Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleDetail
 // @os-block NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack
 import { useEffect, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
 import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';

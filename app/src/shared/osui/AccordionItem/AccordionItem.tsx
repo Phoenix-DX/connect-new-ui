@@ -9,7 +9,7 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AccordionContext } from '../Accordion/accordionContext';
 import { AccordionIconPosition, AccordionIconType } from '../lib/staticEntities';
 

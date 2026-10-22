@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto_List
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { UBT_ImageCardType } from '../../UBTConnectLibrary/lib/staticEntities';
 import { HouseholdDetails_TimelinePhoto } from '../HouseholdDetails_TimelinePhoto';
 import type { UI_HouseholdTimelineImages } from '../lib/structures';

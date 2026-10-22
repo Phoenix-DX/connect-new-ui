@@ -1,7 +1,7 @@
 // @os-block Connect2_LegacyShared.MyNotifications.MessageListItem
 import { useEffect, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { osImage } from '@/legacy/os/os-assets';
 import { formatDateTime } from '../../../shared/lib/osDateTime';
 import { cache_SignedImageURL_Get } from '../../../shared/UBTConnect_Utils/lib/actions';
 import { Connect_Entity, ImageSize } from './staticEntities';

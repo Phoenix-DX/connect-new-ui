@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { wireList } from '../../../lib/os-wire';
+import { wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '../../../mocks/contract';
 import { householdsOfSupperMeeting } from '../../../mocks/fictional/directory';
 import { subdivisionHousehold } from '../Household_GalleryCard_List/mockData';

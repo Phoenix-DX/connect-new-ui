@@ -1,7 +1,7 @@
 // @os-block Directory_Photobook.Photobook_Carousel
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { Carousel } from '../../../shared/osui/Carousel';
 import { carouselGoTo, carouselToggleDrag, setSplideConfigs } from '../../../shared/osui/lib/actions';
 import { carousel_SetCurrentPosition } from '../../../shared/UBTConnect/lib/actions';

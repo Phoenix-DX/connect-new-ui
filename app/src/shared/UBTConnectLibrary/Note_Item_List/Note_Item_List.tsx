@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.Note_Item_List
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Button } from '../Button';
 import { CircleButton } from '../CircleButton';
 import { Columns_Two } from '../Columns_Two';

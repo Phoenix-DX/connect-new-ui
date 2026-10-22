@@ -4,7 +4,7 @@
    layers as properties of the map element (document.getElementById(MapId)[<LL_* name>]). */
 import type { MarkerClusterGroup } from 'leaflet';
 import L from './leaflet';
-import { UserException } from '../../../lib/os-exceptions';
+import { UserException } from '@/legacy/os/os-exceptions';
 import { markerJSON, markerWithWindowJSON, pathOptionsJSON, tileLayerJSON, zoomControlOptionsJSON } from './json';
 import type {
   GeoJSONFeature,

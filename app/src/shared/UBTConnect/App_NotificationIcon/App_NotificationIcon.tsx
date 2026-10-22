@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Common_Blocks.App_NotificationIcon
 import { useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getClientVar, useClientVar } from '@/platform/session/session';

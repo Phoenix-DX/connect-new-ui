@@ -1,4 +1,4 @@
-import { log } from '../../../lib/log';
+import { log } from '@/platform/log/log';
 import { showFeedbackMessage } from '@/platform/feedback';
 
 /* Client actions, JavaScript nodes and static-entity records the block uses (B = runtime-sources/Connect2_OrbitMobile_MUI

@@ -1,10 +1,10 @@
 // @os-block Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup
 import { useEffect, useRef, useState, type ReactNode } from 'react';
-import { NotCaptured } from '../../../components/NotCaptured';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
-import { useFlagOn } from '../../../lib/flags';
-import { osImage } from '../../../lib/os-assets';
+import { NotCaptured } from '@/app/NotCaptured';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
+import { useFlagOn } from '@/platform/flags/flags';
+import { osImage } from '@/legacy/os/os-assets';
 import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
 import { MenuAction, ResultListType } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';

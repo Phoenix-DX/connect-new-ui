@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import type { components } from '@/api/schema';
-import { setFlag } from '@/lib/flags';
-import { DataBaseException } from '@/lib/os-exceptions';
+import { setFlag } from '@/platform/flags/flags';
+import { DataBaseException } from '@/legacy/os/os-exceptions';
 import { memoryDatabase, type LocalDatabase } from './database';
 import {
   HostSurveyStep,

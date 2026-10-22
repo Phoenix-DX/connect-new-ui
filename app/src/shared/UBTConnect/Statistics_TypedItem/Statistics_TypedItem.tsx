@@ -1,5 +1,5 @@
 // @os-block UBTConnect.Directory_Locality.Statistics_TypedItem
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Three } from '../../UBTConnectLibrary/Columns_Three';
 import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
 import { CustomText } from '../../UBTConnectLibrary/CustomText';

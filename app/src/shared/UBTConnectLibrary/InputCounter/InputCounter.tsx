@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.InputCounter
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '../CustomContainer';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '../lib/staticEntities';
 

@@ -1,4 +1,4 @@
-import { callAction } from '../../lib/api';
+import { callAction } from '@/api/client/callAction';
 import type { CoordinatorDetailsData, EventEmailInputs, UserContactRequest } from './types';
 
 /** Module of the block's calls (screenservices/Connect2_OrbitMobile_MUI/LDM_ScreenBlocks_V2/ScreenBlock_Event_Email_V2/…). */

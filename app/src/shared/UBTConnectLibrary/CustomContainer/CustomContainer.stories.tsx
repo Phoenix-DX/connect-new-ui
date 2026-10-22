@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { osImage } from '../../../lib/os-assets';
+import { osImage } from '@/legacy/os/os-assets';
 import { PendingBlock } from '../../test/PendingBlock';
 import { Columns_Two } from '../Columns_Two';
 import { CustomText } from '../CustomText';

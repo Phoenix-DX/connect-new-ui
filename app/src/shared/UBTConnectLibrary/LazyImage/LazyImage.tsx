@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.LazyImage
 import { useState, type SyntheticEvent } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { InlineSVG } from '../../osui/InlineSVG';
 import { CustomContainer } from '../CustomContainer';
 import { CustomText } from '../CustomText';

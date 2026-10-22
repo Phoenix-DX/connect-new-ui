@@ -1,5 +1,5 @@
-import type { ActionInputs, ActionOutputs, PathOf } from '../../lib/api';
-import type { LongId } from '../../lib/os-wire';
+import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
+import type { LongId } from '@/legacy/os/os-wire';
 
 /* Wire types from the contract (src/api/openapi.yaml), through the callAction types. */
 type FetchSearchResultsPath = PathOf<'UBTConnect', 'ScreenBlock_Search/DataActionFetchSearchResults'>;

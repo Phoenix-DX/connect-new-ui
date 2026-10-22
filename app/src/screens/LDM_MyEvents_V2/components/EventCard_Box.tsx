@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Box
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface EventCard_BoxProps {
   id?: string;

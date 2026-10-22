@@ -1,6 +1,6 @@
 // @os-block UBTConnect_Utils.CW_Notes.NotesSheet
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { createOrUpdate_LocalNote } from '@/platform/storage/localEntities';
 import { BackNavigationHandler } from '../../NavigationHandler/BackNavigationHandler';

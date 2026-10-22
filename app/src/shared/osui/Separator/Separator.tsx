@@ -1,5 +1,5 @@
 // @os-block OutSystemsUI_2_23.Utilities.Separator
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Color, Space } from '../lib/staticEntities';
 
 export interface SeparatorProps {

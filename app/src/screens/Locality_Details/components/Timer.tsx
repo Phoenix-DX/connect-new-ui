@@ -1,6 +1,6 @@
 // @os-block UBTConnect_Utils.Utils.Timer
 import { useEffect, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface TimerProps {
   id?: string;

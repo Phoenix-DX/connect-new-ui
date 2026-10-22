@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.Popup
 import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { OSBlock } from '../../../components/OSBlock';
-import { usePopupWidget } from '../../../components/OSPopup';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { usePopupWidget } from '@/components/ui/os/OSPopup';
 import { CustomContainer } from '../CustomContainer';
 import { CustomText } from '../CustomText';
 import { formatClasses } from '../lib/actions';

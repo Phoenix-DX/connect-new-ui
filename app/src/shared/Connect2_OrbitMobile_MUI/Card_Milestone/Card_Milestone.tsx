@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone
 import { Fragment, useState, type MouseEvent, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { styleFromCssText } from '../../lib/cssText';
 import { Card_Template } from '../Card_Template';
 import {

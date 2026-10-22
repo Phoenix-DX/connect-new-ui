@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem
-import { OSBlock } from '../../../components/OSBlock';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { osImage } from '@/legacy/os/os-assets';
 import { SanitizedHtml } from '../../../shared/ReactiveHtmlSanitizer/SanitizedHtml';
 import { AvatarImage } from '../../../shared/UBTConnectLibrary/AvatarImage';
 import { Columns_Three } from '../../../shared/UBTConnectLibrary/Columns_Three';

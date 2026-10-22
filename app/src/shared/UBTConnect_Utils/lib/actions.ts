@@ -1,9 +1,9 @@
 /* Client actions of UBTConnect_Utils used by the shared blocks, ported 1:1 from UBTConnect_Utils.controller.js
    (copy in migration/screens/Login/analysis/sources/raw/). */
-import { callAction } from '../../../lib/api';
-import { osList, wireList } from '../../../lib/os-wire';
-import { isOn } from '../../../lib/flags';
-import { log } from '../../../lib/log';
+import { callAction } from '@/api/client/callAction';
+import { osList, wireList } from '@/legacy/os/os-wire';
+import { isOn } from '@/platform/flags/flags';
+import { log } from '@/platform/log/log';
 import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
 import {

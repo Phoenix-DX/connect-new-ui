@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { UserException } from '../../../lib/os-exceptions';
+import { UserException } from '@/legacy/os/os-exceptions';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';

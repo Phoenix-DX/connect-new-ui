@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { osImage } from '../../../lib/os-assets';
+import { osImage } from '@/legacy/os/os-assets';
 import { UBT_ImageSize } from '../lib/staticEntities';
 import { UBT_LazyImage } from './UBT_LazyImage';
 

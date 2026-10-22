@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { setFlag } from '../../../lib/flags';
+import { setFlag } from '@/platform/flags/flags';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import { ItemOptionsMenu } from './ItemOptionsMenu';
 import * as stories from './ItemOptionsMenu.stories';

@@ -1,5 +1,5 @@
 // @os-block Connect2_LegacyShared.Reusable.Spinner
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface SpinnerProps {
   /** OutSystems instance id of the block. */

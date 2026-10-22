@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AvatarImage } from '../../../shared/UBTConnectLibrary/AvatarImage';
 import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';

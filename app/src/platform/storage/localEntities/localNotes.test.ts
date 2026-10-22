@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { CommunicationException, ServerException } from '@/lib/os-exceptions';
+import { CommunicationException, ServerException } from '@/legacy/os/os-exceptions';
 import { setSignedInUser } from '@/platform/session/session';
 import { compareKeys, memoryDatabase, type LocalDatabase, type Row } from './database';
 import { LOCAL_NOTE, METADATA_TABLE } from './entities';

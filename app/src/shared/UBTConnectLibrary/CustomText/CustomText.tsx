@@ -1,5 +1,5 @@
 // @os-block UBTConnectLibrary.BasePatterns.CustomText
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { HighlightSearch } from '../HighlightSearch';
 import { IconInline_Internal } from '../IconInline_Internal';
 import { formatClasses, getClasses_Text, getSpacingOptions } from '../lib/actions';

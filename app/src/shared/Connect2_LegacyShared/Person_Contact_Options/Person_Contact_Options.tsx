@@ -1,5 +1,5 @@
 // @os-block Connect2_LegacyShared.Reusable.Person_Contact_Options
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSLink } from '../../lib/OSLink';
 
 export interface Person_Contact_OptionsProps {

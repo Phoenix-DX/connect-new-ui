@@ -1,7 +1,7 @@
 // @os-block Connect2_LegacyShared.Share_UI.ScreenBlock_ShareDetail
 import type { ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { osImage } from '../../../lib/os-assets';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { osImage } from '@/legacy/os/os-assets';
 import { ConnectBlankSlate } from '../../../shared/Connect2_LegacyShared/ConnectBlankSlate';
 import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
 import { MenuIcon_Back } from '../../../shared/Connect2_LegacyShared/MenuIcon_Back';

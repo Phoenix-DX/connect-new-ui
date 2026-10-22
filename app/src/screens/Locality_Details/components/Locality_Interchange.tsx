@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_Locality.Locality_Interchange
 import { useEffect, useRef } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';

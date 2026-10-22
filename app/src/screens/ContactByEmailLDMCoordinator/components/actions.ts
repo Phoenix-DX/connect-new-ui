@@ -1,4 +1,4 @@
-import { log } from '../../../lib/log';
+import { log } from '@/platform/log/log';
 import { showFeedbackMessage } from '@/platform/feedback';
 
 /* Client actions and the JavaScript node the screen calls (S = runtime-sources/UBTConnect.ContactFlow

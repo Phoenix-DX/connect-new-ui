@@ -1,9 +1,9 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2
 import { useEffect, useReducer, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
-import { OSList } from '../../../components/OSList';
-import { osImage } from '../../../lib/os-assets';
-import { UserException } from '../../../lib/os-exceptions';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
+import { osImage } from '@/legacy/os/os-assets';
+import { UserException } from '@/legacy/os/os-exceptions';
 import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
 import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';

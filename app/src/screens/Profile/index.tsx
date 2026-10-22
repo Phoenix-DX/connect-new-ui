@@ -1,12 +1,12 @@
 import { useMemo, useRef, useState } from 'react';
-import { NotCaptured } from '../../components/NotCaptured';
+import { NotCaptured } from '@/app/NotCaptured';
 import {
   OSForm,
   useInputWithVariableValidation,
   useScreenValidationService,
   ValidationServiceProvider,
   type InputDataType,
-} from '../../components/OSValidation';
+} from '@/components/ui/os/OSValidation';
 import { ButtonLoading } from '../../shared/osui/ButtonLoading';
 import { InputWithIcon } from '../../shared/osui/InputWithIcon';
 import { bottomSheetOpen } from '../../shared/osui/lib/actions';

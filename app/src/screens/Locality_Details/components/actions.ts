@@ -1,4 +1,4 @@
-import { isOn } from '../../../lib/flags';
+import { isOn } from '@/platform/flags/flags';
 import { get_LocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { currDateTime, formatDateTime } from '../../../shared/lib/osDateTime';
 import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '../../../shared/UBTConnectLibrary/lib/actions';

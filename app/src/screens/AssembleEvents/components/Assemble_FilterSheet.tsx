@@ -1,6 +1,6 @@
 // @os-block Connect2_Assemble_MUI.Assemble.Assemble_FilterSheet
 import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Assemble_FilterLocalityByCountry } from '../../../shared/Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry';
 import { hasAccessToRegion } from '../../../shared/Connect2_Assemble_MUI/lib/actions';
 import { LocalityListDetail } from '../../../shared/Connect2_LegacyShared/LocalityListDetail';

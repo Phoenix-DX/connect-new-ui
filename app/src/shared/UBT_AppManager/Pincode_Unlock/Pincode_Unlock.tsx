@@ -1,6 +1,6 @@
 // @os-block UBT_AppManager.PIN.Pincode_Unlock
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { lock, verifyPin, type PinUnlockError } from '@/platform/session/pin';
 import { currentUserId, useClientVar } from '@/platform/session/session';
 import { InactivityTimer } from '../InactivityTimer';

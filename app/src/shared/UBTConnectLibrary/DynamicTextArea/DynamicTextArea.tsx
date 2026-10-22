@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.DynamicTextArea
 import { useEffect, useRef, type ReactNode } from 'react';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 
 export interface DynamicTextAreaProps {
   /** OutSystems instance id of the block. */

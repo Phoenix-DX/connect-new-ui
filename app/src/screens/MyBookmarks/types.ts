@@ -1,4 +1,4 @@
-import type { ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 
 /* Wire shapes of the contract (Connect2_MyBookmarks_IS structures, src/api/openapi.yaml), taken from the outputs of
    GetGroupSummaries, and the domain types the components see (rule 9: no `{ List }`, no "" as null). */

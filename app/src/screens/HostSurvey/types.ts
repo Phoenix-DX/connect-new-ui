@@ -1,4 +1,4 @@
-import type { ActionInputs, ActionOutputs, PathOf } from '../../lib/api';
+import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 
 /* ---- Wire shapes (api.ts and mocks.ts only) ----
    DataActionGetHostSurvey of ScreenBlock_HostSurvey and the server action PostHostSurvey, typed by the API contract

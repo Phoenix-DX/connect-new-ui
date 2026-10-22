@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_PIN.Block_PINUnlock
 import { useState, type ReactNode } from 'react';
-import { OSBlock } from '@/components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
 import { Block_PINUnlock_ContentWrapper } from '@/shared/UBTConnect/Block_PINUnlock_ContentWrapper';
 import { get_IsUnsupportedSystem } from '@/shared/UBTConnect/lib/actions';

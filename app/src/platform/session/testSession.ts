@@ -1,5 +1,5 @@
-import { MOCKS_BUILT } from '@/lib/config';
-import { osNumber } from '@/lib/os-wire';
+import { MOCKS_BUILT } from '@/platform/config/config';
+import { osNumber } from '@/legacy/os/os-wire';
 import { appManager_SetCachedUserInfo } from './cachedUserInfo';
 import { MOCK_USER_ID, mockCachedUserInfo } from './mockUser';
 import { registerPin } from './pin';

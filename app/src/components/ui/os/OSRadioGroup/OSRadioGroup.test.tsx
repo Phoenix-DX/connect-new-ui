@@ -1,7 +1,7 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { expectToMatchCapture } from '../../test/dom';
+import { expectToMatchCapture } from '@/test/dom';
 import { RadioButton, RadioGroup } from './OSRadioGroup';
 
 /* Markup and behaviour of OSWidgets.RadioGroup / RadioButton (OutSystemsReactWidgets.js W:78-188, W:347-430), as the

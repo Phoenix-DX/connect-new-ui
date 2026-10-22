@@ -1,7 +1,7 @@
 import { composeStories } from '@storybook/react-vite';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { OSBlock } from '../../../components/OSBlock';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { testCapturedVariants } from '../../test/capturedVariants';
 import type { SupperMeeting_DetailsBlockProps } from '../SupperMeeting_DetailsBlock';
 import * as stories from './EntitiesCarouse_lSupperMeetingDetails.stories';
