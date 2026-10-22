@@ -23,7 +23,8 @@ DeceasedOrAncestry_View)` → `onHouseholdDataFetched`, raised after every GetHo
 
 ## Data
 
-- `DataActionGetHousehold` / `DataActionGetHousehold_Coordinates` (`api.ts`), on demand only: OnReady (unless restored
+- `DataActionGetHousehold` / `DataActionGetHousehold_Coordinates` (domain `src/api/household/`; `api.ts` re-exports it
+  under the old names), on demand only: OnReady (unless restored
   from the view cache with the same age visibility) and OnParametersChanged (preview used, or In_IsSkeletonOnly turned
   False). Sent: the block inputs and `UserAge_Visibility`.
 - Never recorded (households, members and coordinates are person data): `mocks.ts` answers fictional records from

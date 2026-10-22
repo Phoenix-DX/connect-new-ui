@@ -314,3 +314,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,build,26823,refactor-dev,,"P2-1 extra Q10 sonnet (AssembleEvents clock)"
 2026-10-22,refactor,verify,23338,refactor-test,,P2-1 sonnet
 2026-10-22,refactor,other,32352,refactor-docs,,P2-1 sonnet
+2026-10-22,refactor,build,150172,refactor-dev,,P2-2 opus
+2026-10-22,refactor,verify,26094,refactor-test,,P2-2 sonnet
+2026-10-22,refactor,other,24135,refactor-docs,,P2-2 sonnet

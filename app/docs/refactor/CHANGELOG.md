@@ -71,3 +71,9 @@
 ## Test fix - test(AssembleEvents): freeze the clock at local noon of the day
 
 - No architecture change (commit 1bb105f, decision Q10). The AssembleEvents test froze `Date` at local noon, so it no longer depends on the time of day.
+
+## P2-2 - refactor(P2-2): add api/household
+
+- New domain folder `src/api/household/` with types, mapper, repository, keys, hooks and a barrel. The hooks use `staleTime: 0` and `gcTime: 0`.
+- `src/shared/UBTConnect/HouseholdDetails_Block/api.ts` only re-exports the domain under its old names; the callers are unchanged.
+- `move-map.csv` is unchanged: no block moved. Strict parity 64/64 for both references.

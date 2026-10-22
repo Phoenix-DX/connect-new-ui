@@ -90,3 +90,9 @@ One line per event. Written by rf.py.
 - 2026-10-22T19:53:33 Q10 answered by the user: "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (high) recommends (a): fix the test in its own test-only commit before the P2-1 commit; freeze the clock with vi.setSystemTime (copying the app rule still depends on the time of day). Keeps P2-1 a pure move and ci meaningful for every later gate."
 - 2026-10-22T20:03:37 P2-1 stage docs
 - 2026-10-22T20:04:41 P2-1 stage commit
+- 2026-10-22T20:04:42 P2-1 done ad2d23e: ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within baseline
+- 2026-10-22T20:04:47 P2-2 started
+- 2026-10-22T20:04:47 P2-2 stage dev
+- 2026-10-22T20:16:47 P2-2 stage test
+- 2026-10-22T20:23:14 P2-2 stage docs
+- 2026-10-22T20:23:48 P2-2 stage commit

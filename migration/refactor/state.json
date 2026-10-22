@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P2-1",
+  "step": "P2-2",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-22T20:04:41"
+  "since": "2026-10-22T20:23:48"
  },
  "steps": {
   "P0-1": {
@@ -131,12 +131,25 @@
    "finished": "2026-10-22T16:30:05"
   },
   "P2-1": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-22T19:41:52",
    "tokens": {
     "dev": 26169,
     "test": 48499,
     "docs": 32352
+   },
+   "commit": "ad2d23e",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within baseline",
+   "loops": 0,
+   "finished": "2026-10-22T20:04:42"
+  },
+  "P2-2": {
+   "status": "active",
+   "started": "2026-10-22T20:04:47",
+   "tokens": {
+    "dev": 150172,
+    "test": 26094,
+    "docs": 24135
    }
   }
  },
