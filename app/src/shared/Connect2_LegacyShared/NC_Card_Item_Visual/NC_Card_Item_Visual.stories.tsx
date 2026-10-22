@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { MOCK_SIGNED_PHOTO_URL } from '../Result_Item_Image/mocks';
+import { MOCK_SIGNED_PHOTO_URL } from '@/shared/Connect2_LegacyShared/Result_Item_Image/mocks';
 import { NC_Card_Item_Visual } from './NC_Card_Item_Visual';
 
 /* Never captured (the pack has no DOM variant): stories from the compiled view. */

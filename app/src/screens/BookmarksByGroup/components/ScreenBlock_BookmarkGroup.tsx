@@ -5,26 +5,31 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { useFlagOn } from '@/platform/flags/flags';
 import { osImage } from '@/legacy/os/os-assets';
-import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
-import { MenuAction, ResultListType } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { MessageList_NoResults } from '../../../shared/Connect2_LegacyShared/MessageList_NoResults';
-import { Result_Item_Image } from '../../../shared/Connect2_LegacyShared/Result_Item_Image';
-import { Spinner } from '../../../shared/Connect2_LegacyShared/Spinner';
-import { NoBookmarks } from '../../../shared/Connect2_MyBookmarks_MUI/NoBookmarks';
-import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler';
-import { ScrollAnchor } from '../../../shared/NavigationHandler/ScrollAnchor';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { ShareableObject_Generic } from '../../../shared/UBTConnect_Utils/ShareableObject_Generic';
-import { ShareSheet } from '../../../shared/UBTConnect_Utils/ShareSheet';
-import type { UI_ShareableObject_Generic } from '../../../shared/UBTConnect_Utils/ShareableObject_Generic/types';
+import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { MenuAction, ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { MessageList_NoResults } from '@/shared/Connect2_LegacyShared/MessageList_NoResults';
+import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
+import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { NoBookmarks } from '@/shared/Connect2_MyBookmarks_MUI/NoBookmarks';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { ScrollAnchor } from '@/shared/NavigationHandler/ScrollAnchor';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
+import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
+import type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic/types';
 import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { legacyDelete_LocalBookmarkByBookmarkId } from '@/platform/storage/localEntities';
 import { setPreloadObject, useWasRestoredFromCache, type BackNavigationEvent } from '@/platform/navigation';
-import { deleteBookmarkByBookmarkId, getAllBookmarksByGroup, getBookmarkById, new_UpdateBookmarkNote } from '../api';
-import type { BookmarkItem, BookmarkNote } from '../types';
+import {
+  deleteBookmarkByBookmarkId,
+  getAllBookmarksByGroup,
+  getBookmarkById,
+  new_UpdateBookmarkNote,
+} from '@/screens/BookmarksByGroup/api';
+import type { BookmarkItem, BookmarkNote } from '@/screens/BookmarksByGroup/types';
 import {
   auditBookmarkSubscriptionEvent,
   getCachedMyBookmarks,
@@ -33,7 +38,7 @@ import {
   sendBookmarkedHiddenFeedbackMessage,
 } from './actions';
 import { BookmarkNoteAddEdit, BookmarkNoteDelete } from './BookmarkNoteDialogs';
-import { ItemOptionsMenu } from '../../../shared/Connect2_LegacyShared/ItemOptionsMenu';
+import { ItemOptionsMenu } from '@/shared/Connect2_LegacyShared/ItemOptionsMenu';
 import { Result_Item_Badge } from './Result_Item_Badge';
 import {
   CommunityBusinessType2,

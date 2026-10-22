@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { App_IconBadge } from '../../UBTConnect/App_IconBadge';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
+import { App_IconBadge } from '@/shared/UBTConnect/App_IconBadge';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { BottomBarItem } from './BottomBarItem';
 
 const meta = {

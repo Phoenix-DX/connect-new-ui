@@ -1,14 +1,14 @@
 import { act, render } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { dropdownTags_CloseOtherOnClick } from '../../UBTConnect_Utils/lib/actions';
-import { dropdownClear, dropdownClearValidation, dropdownTogglePopup } from '../lib/actions';
+import { dropdownTags_CloseOtherOnClick } from '@/shared/UBTConnect_Utils/lib/actions';
+import { dropdownClear, dropdownClearValidation, dropdownTogglePopup } from '@/shared/osui/lib/actions';
 import { DropdownTags } from './DropdownTags';
 
 const fake = vi.hoisted(() => ({
   instances: [] as { ele: HTMLElement; options: Record<string, unknown>; selected: unknown; opened: boolean }[],
 }));
 
-vi.mock('../DropdownSearch/vendor', () => ({
+vi.mock('@/shared/osui/DropdownSearch/vendor', () => ({
   virtualSelect: () => ({
     init: (options: Record<string, unknown>) => {
       const ele = options.ele as HTMLElement;

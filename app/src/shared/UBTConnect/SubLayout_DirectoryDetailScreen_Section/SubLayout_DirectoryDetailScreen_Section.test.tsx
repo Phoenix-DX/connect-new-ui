@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { SubLayout_DirectoryDetailScreen_Section } from './SubLayout_DirectoryDetailScreen_Section';
 import * as stories from './SubLayout_DirectoryDetailScreen_Section.stories';
 

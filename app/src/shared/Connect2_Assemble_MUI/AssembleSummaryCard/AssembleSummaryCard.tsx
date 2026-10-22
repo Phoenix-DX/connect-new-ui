@@ -5,21 +5,21 @@ import { UserException } from '@/legacy/os/os-exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
 import { generateScreenURL } from '@/platform/navigation';
-import { OSLink } from '../../lib/OSLink';
-import { NC_Card_Item_Visual } from '../../Connect2_LegacyShared/NC_Card_Item_Visual';
-import { NC_Result_Item__Card } from '../../Connect2_LegacyShared/NC_Result_Item__Card';
-import { NC_Result_Item__Image } from '../../Connect2_LegacyShared/NC_Result_Item__Image';
-import { navigateToMaps } from '../../Connect2_LegacyShared/lib/actions';
-import { MapNavigationRedirect } from '../../Connect2_LegacyShared/lib/staticEntities';
-import { AssembleCommon_VirtualMeetingURL } from '../AssembleCommon_VirtualMeetingURL';
-import { AssembleSummaryCard__Header } from '../AssembleSummaryCard__Header';
-import { AssembleSummary_Card_Row } from '../AssembleSummary_Card_Row';
+import { OSLink } from '@/shared/lib/OSLink';
+import { NC_Card_Item_Visual } from '@/shared/Connect2_LegacyShared/NC_Card_Item_Visual';
+import { NC_Result_Item__Card } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Card';
+import { NC_Result_Item__Image } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Image';
+import { navigateToMaps } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { MapNavigationRedirect } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { AssembleCommon_VirtualMeetingURL } from '@/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingURL';
+import { AssembleSummaryCard__Header } from '@/shared/Connect2_Assemble_MUI/AssembleSummaryCard__Header';
+import { AssembleSummary_Card_Row } from '@/shared/Connect2_Assemble_MUI/AssembleSummary_Card_Row';
 import {
   getAssembleEventSummaryDateTimeString,
   getAssembleEventSummaryHeaderLabel,
   getAssembleHostedAtComponents,
-} from '../lib/actions';
-import { Position, ResultListType } from '../lib/staticEntities';
+} from '@/shared/Connect2_Assemble_MUI/lib/actions';
+import { Position, ResultListType } from '@/shared/Connect2_Assemble_MUI/lib/staticEntities';
 import type { AssembleEventSummary } from './types';
 
 export interface AssembleSummaryCardProps {

@@ -1,8 +1,8 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { osImage } from '@/legacy/os/os-assets';
-import { expectToMatchCapture } from '../../../test/dom';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { expectToMatchCapture } from '@/test/dom';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { LazyImage } from './LazyImage';
 import * as stories from './LazyImage.stories';
 

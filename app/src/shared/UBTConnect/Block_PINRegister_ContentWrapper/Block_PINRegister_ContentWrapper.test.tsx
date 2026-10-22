@@ -3,11 +3,11 @@ import { createMemoryRouter, RouterProvider } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import { HOME } from '../../../app/routes.generated';
+import { HOME } from '@/app/routes.generated';
 import { setResumeLoginLink } from '@/platform/session/resume';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import {
   Block_PINRegister_ContentWrapper,
   type Block_PINRegister_ContentWrapperProps,

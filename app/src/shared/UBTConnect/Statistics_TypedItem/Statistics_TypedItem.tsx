@@ -1,9 +1,9 @@
 // @os-block UBTConnect.Directory_Locality.Statistics_TypedItem
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Three } from '../../UBTConnectLibrary/Columns_Three';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
+import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   UBT_AlignItems,
   UBT_ColumnBehaviour,
@@ -14,11 +14,11 @@ import {
   UBT_Shape,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import { UBT_ImageSize } from '../../UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '../../UBTConnect_Utils/UBT_LazyImage';
-import type { UI_TypedStatistics } from '../lib/structures';
-import { Statistics_Icons } from '../Statistics_Icons';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import type { UI_TypedStatistics } from '@/shared/UBTConnect/lib/structures';
+import { Statistics_Icons } from '@/shared/UBTConnect/Statistics_Icons';
 
 export interface Statistics_TypedItemProps {
   /** OutSystems instance id of the block. */

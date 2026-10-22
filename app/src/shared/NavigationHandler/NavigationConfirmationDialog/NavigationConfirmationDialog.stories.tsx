@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { preventNavigation } from '../lib/actions';
+import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
 import { NavigationConfirmationDialog } from './NavigationConfirmationDialog';
 
 const meta = {

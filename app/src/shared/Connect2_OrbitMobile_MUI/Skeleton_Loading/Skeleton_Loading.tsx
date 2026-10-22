@@ -2,8 +2,8 @@
 import { useMemo } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { skeletonNumberOfBlocks } from '../lib/actions';
-import { OrbitSkeletonLoading } from '../lib/staticEntities';
+import { skeletonNumberOfBlocks } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 
 export interface Skeleton_LoadingProps {
   /** OutSystems instance id of the block. */

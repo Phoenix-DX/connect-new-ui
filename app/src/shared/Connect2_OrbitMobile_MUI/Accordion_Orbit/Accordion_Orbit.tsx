@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { DEPRECATED_Accordion } from '../../osui/DEPRECATED_Accordion';
+import { DEPRECATED_Accordion } from '@/shared/osui/DEPRECATED_Accordion';
 
 export interface Accordion_OrbitProps {
   /** OutSystems instance id of the block. */

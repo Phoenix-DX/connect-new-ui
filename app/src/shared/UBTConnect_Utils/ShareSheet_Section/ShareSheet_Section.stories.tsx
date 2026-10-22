@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { ShareSheet_SectionTitle } from '../ShareSheet_SectionTitle';
+import { ShareSheet_SectionTitle } from '@/shared/UBTConnect_Utils/ShareSheet_SectionTitle';
 import { ShareSheet_Section } from './ShareSheet_Section';
 
 const meta = { title: 'Shared/UBTConnect_Utils/ShareSheet_Section', component: ShareSheet_Section } satisfies Meta<

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { ResultListType } from '../lib/staticEntities';
+import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { NC_Card_Item_Visual } from './NC_Card_Item_Visual';
 
 /* Never captured: behaviour from the compiled view (NC_Card_Item_Visual.mvc.js view :300-395). */

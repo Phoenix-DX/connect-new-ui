@@ -14,9 +14,9 @@ import {
   map_SetTileLayer,
   map_Zoom_Control,
   map_Zoom_GetLevel,
-} from '../lib/actions';
-import { mapOptionsJSON, OSM_TILE_URL } from '../lib/json';
-import L from '../lib/leaflet';
+} from '@/shared/Leaflet/lib/actions';
+import { mapOptionsJSON, OSM_TILE_URL } from '@/shared/Leaflet/lib/json';
+import L from '@/shared/Leaflet/lib/leaflet';
 import type {
   GeoJSONFeature,
   MapOptions,
@@ -24,7 +24,7 @@ import type {
   MarkerWithWindow,
   TileLayer,
   ZoomControlOptions,
-} from '../lib/structures';
+} from '@/shared/Leaflet/lib/structures';
 
 export interface LeafletMapProps {
   /** OutSystems instance id of the block. */

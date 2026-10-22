@@ -1,11 +1,11 @@
-import type { UI_SubdivisionHousehold } from '../lib/structures';
+import type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
 import {
   LOCALITY_HOUSEHOLDS,
   childrenText,
   householdName,
   householdsOfSupperMeeting,
   type CastHousehold,
-} from '../../../mocks/fictional/directory';
+} from '@/mocks/fictional/directory';
 
 /** A gallery card row of a cast household (src/mocks/fictional/directory.ts). */
 export const subdivisionHousehold = (h: CastHousehold): Required<UI_SubdivisionHousehold> => ({

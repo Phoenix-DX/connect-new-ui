@@ -1,14 +1,14 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.Note_Item_List
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Button } from '../Button';
-import { CircleButton } from '../CircleButton';
-import { Columns_Two } from '../Columns_Two';
-import { CustomContainer } from '../CustomContainer';
-import { CustomText } from '../CustomText';
-import { Icon } from '../Icon';
-import { Note_Item } from '../Note_Item';
-import { Popup } from '../Popup';
+import { Button } from '@/shared/UBTConnectLibrary/Button';
+import { CircleButton } from '@/shared/UBTConnectLibrary/CircleButton';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Note_Item } from '@/shared/UBTConnectLibrary/Note_Item';
+import { Popup } from '@/shared/UBTConnectLibrary/Popup';
 import {
   UBT_AlignItems,
   UBT_AvatarSize,
@@ -23,8 +23,8 @@ import {
   UBT_JustifyContent,
   UBT_Shape,
   UBT_Size,
-} from '../lib/staticEntities';
-import type { Note_Item as NoteItemRecord, Notes } from '../lib/structures';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { Note_Item as NoteItemRecord, Notes } from '@/shared/UBTConnectLibrary/lib/structures';
 
 export interface Note_Item_ListProps {
   /** OutSystems instance id of the block. */

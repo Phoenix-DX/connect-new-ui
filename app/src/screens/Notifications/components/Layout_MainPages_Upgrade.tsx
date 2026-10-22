@@ -1,15 +1,15 @@
 // @os-block UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { LayoutRuntime_Top } from '../../../shared/NavigationHandler/LayoutRuntime_Top';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
+import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   clearScrollTimeout,
   removeScrollEvents,
   setMainFixedScroll,
   setScrollShadow,
-} from '../../../shared/UBTConnectLibrary/lib/actions';
-import { UBT_Color, UBT_IconSize, UBT_Icons2 } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_Color, UBT_IconSize, UBT_Icons2 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { useNavigateBack } from '@/platform/navigation';
 
 export interface Layout_MainPages_UpgradeProps {

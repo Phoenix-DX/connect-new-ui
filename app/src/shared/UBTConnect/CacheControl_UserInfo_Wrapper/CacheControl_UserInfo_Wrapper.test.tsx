@@ -3,7 +3,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
 import { mockUserInformation } from '@/platform/session/mockUser';
 import { getClientVar, setClientVar } from '@/platform/session/session';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { CacheControl_UserInfo_Wrapper } from './CacheControl_UserInfo_Wrapper';
 import * as stories from './CacheControl_UserInfo_Wrapper.stories';
 

@@ -3,24 +3,24 @@ import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { log } from '@/platform/log/log';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { ContactHelpdesk_Footer } from '../../../shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
-import { addExtensionToFile } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitSkeletonLoading } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
+import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
+import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { addExtensionToFile } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import {
   useHandleDownload,
   type FileDownloadResult,
   type FileTransferError,
-} from '../../../shared/FileTransferPlugin/lib/handleDownload';
-import { openInApp_TryOpenFileInApp } from '../../../shared/UBTConnect_Utils/lib/actions';
+} from '@/shared/FileTransferPlugin/lib/handleDownload';
+import { openInApp_TryOpenFileInApp } from '@/shared/UBTConnect_Utils/lib/actions';
 import { isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getEventDocuments } from '../api';
-import type { EventDocumentItem, EventDocumentsVariablesWire } from '../types';
+import { getEventDocuments } from '@/screens/ViewDocuments/api';
+import type { EventDocumentItem, EventDocumentsVariablesWire } from '@/screens/ViewDocuments/types';
 import { getContactHelpdeskSubject_Event } from './actions';
 import { LoadingSpinner } from './LoadingSpinner';
 

@@ -8,22 +8,22 @@ import {
   ValidationServiceProvider,
 } from '@/components/ui/os/OSValidation';
 import { osImage } from '@/legacy/os/os-assets';
-import { InputCounter } from '../../../shared/Connect2_LegacyShared/InputCounter';
-import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { NetworkWarning } from '../../../shared/Connect2_LegacyShared/NetworkWarning';
-import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
-import { ErrorScreen } from '../../../shared/Connect2_OrbitMobile_MUI/ErrorScreen';
-import { NavigationConfirmationDialog } from '../../../shared/NavigationHandler/NavigationConfirmationDialog';
-import { preventNavigation } from '../../../shared/NavigationHandler/lib/actions';
-import { ContactPopup_ByPhone } from '../../../shared/UBTConnect_Utils/ContactPopup_ByPhone';
-import type { ContactByPhonePopupData } from '../../../shared/UBTConnect_Utils/lib/structures';
+import { InputCounter } from '@/shared/Connect2_LegacyShared/InputCounter';
+import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { NetworkWarning } from '@/shared/Connect2_LegacyShared/NetworkWarning';
+import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { ErrorScreen } from '@/shared/Connect2_OrbitMobile_MUI/ErrorScreen';
+import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
+import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
+import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import type { ContactByPhonePopupData } from '@/shared/UBTConnect_Utils/lib/structures';
 import { appManager_GetCachedUserInfo, type AppManager_CachedUserInfoRec } from '@/platform/session/cachedUserInfo';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { allowUpcomingNavigation, useNavigateBack } from '@/platform/navigation';
-import { emptyCoordinatorDetailsData, eventContact, getCoordinatorDetails } from '../api';
-import type { CoordinatorDetailsData, EventEmailInputs } from '../types';
+import { emptyCoordinatorDetailsData, eventContact, getCoordinatorDetails } from '@/screens/LDM_Email_V2/api';
+import type { CoordinatorDetailsData, EventEmailInputs } from '@/screens/LDM_Email_V2/types';
 import {
   addAuditEventDetailEvent,
   ApplicationEvents_Directory_EmailHousehold,

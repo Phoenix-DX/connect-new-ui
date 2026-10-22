@@ -1,9 +1,9 @@
 import type { RequestHandler } from 'msw';
 import { wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../../mocks/contract';
-import { markNoPhoto } from '../../UBTConnect_Utils/UBT_LazyImage/mocks';
-import { markContactOnly } from '../Directory_EntityDetailsActions/mocks';
-import { Connect_Entity } from '../lib/staticEntities';
+import { contractHandler } from '@/mocks/contract';
+import { markNoPhoto } from '@/shared/UBTConnect_Utils/UBT_LazyImage/mocks';
+import { markContactOnly } from '@/shared/UBTConnect/Directory_EntityDetailsActions/mocks';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { HOUSEHOLD_DETAILS_ID, membersOf, sampleHouseholds } from './mockData';
 
 /* Never recorded (households, members and their coordinates are person data): fictional, with the captured shapes and

@@ -5,9 +5,9 @@ import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { getLocalityLabel, hasAccessToRegion } from '../../../shared/UBTConnect/lib/actions';
-import { getInterchangesByLocalityId } from '../api';
-import type { InterchangeItem } from '../types';
+import { getLocalityLabel, hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { getInterchangesByLocalityId } from '@/screens/Locality_Details/api';
+import type { InterchangeItem } from '@/screens/Locality_Details/types';
 import { getIconLabel_Interchange_Statistics } from './actions';
 import { Directory_Interchange_StatisticsList } from './Directory_Interchange_StatisticsList';
 

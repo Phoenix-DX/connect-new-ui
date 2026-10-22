@@ -1,4 +1,4 @@
-import type { CacheControl_PoliciesRec } from '../../shared/UBTConnect_Utils/CacheControl_Policies';
+import type { CacheControl_PoliciesRec } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
 
 /* TermsAndPoliciesMenu has no route input (p:UBTConnect.App_Menu.TermsAndPoliciesMenu.mvc.js model
    `setInputs = function(inputs) {}`) and no call of its own: the policies come from the shared CacheControl_Policies

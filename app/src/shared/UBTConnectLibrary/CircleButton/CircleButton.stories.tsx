@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Icon } from '../Icon';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { CircleButton } from './CircleButton';
 
 const meta = { title: 'Shared/UBTConnectLibrary/CircleButton', component: CircleButton } satisfies Meta<

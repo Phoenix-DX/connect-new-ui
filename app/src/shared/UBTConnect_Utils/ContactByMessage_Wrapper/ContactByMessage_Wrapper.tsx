@@ -1,9 +1,9 @@
 // @os-block UBTConnect_Utils.CW_CTA_PopUps.ContactByMessage_Wrapper
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { changeWindowLocation } from '../../UBTJavaScriptUtils/lib/actions';
-import { ContactPopup_ByMessage } from '../ContactPopup_ByMessage';
-import { Type_MessageChannel } from '../lib/staticEntities';
+import { changeWindowLocation } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { ContactPopup_ByMessage } from '@/shared/UBTConnect_Utils/ContactPopup_ByMessage';
+import { Type_MessageChannel } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import type { UI_ContactByMessage_WrapperData } from './types';
 
 export interface ContactByMessage_WrapperProps {

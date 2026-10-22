@@ -1,6 +1,6 @@
-import { parseOsDate } from '../../../shared/lib/osDateTime';
-import { Choice } from '../../../shared/UBTConnect/lib/staticEntities';
-import type { Breakpoint, DateRange, FilterUpdates, NotificationItem } from '../types';
+import { parseOsDate } from '@/shared/lib/osDateTime';
+import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
+import type { Breakpoint, DateRange, FilterUpdates, NotificationItem } from '@/screens/Notifications/types';
 import { Updates_DateRanges } from './staticEntities';
 
 const pad = (n: number) => String(n).padStart(2, '0');

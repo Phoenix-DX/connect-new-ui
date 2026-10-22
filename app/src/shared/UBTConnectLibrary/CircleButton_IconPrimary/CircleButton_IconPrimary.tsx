@@ -1,9 +1,9 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.CircleButton_IconPrimary
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CircleButton_WithLabel } from '../CircleButton_WithLabel';
-import { CustomText } from '../CustomText';
-import { Icon } from '../Icon';
-import { UBT_AvatarSize, UBT_Color, UBT_FontSize, UBT_FontWeight } from '../lib/staticEntities';
+import { CircleButton_WithLabel } from '@/shared/UBTConnectLibrary/CircleButton_WithLabel';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { UBT_AvatarSize, UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface CircleButton_IconPrimaryProps {
   /** OutSystems instance id of the block. */

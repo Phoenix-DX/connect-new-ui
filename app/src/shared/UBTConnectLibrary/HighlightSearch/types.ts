@@ -1,1 +1,1 @@
-export type { InlineIcon } from '../lib/structures';
+export type { InlineIcon } from '@/shared/UBTConnectLibrary/lib/structures';

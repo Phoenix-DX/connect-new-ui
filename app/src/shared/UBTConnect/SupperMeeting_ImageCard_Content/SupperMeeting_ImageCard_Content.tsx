@@ -1,12 +1,12 @@
 // @os-block UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { ImageCard__Content } from '../../UBTConnectLibrary/ImageCard__Content';
-import { UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';
-import { AddressPopup_Wrapper } from '../../UBTConnect_Utils/AddressPopup_Wrapper';
-import { getDescriptor_Subdivision_GenderSplit } from '../lib/actions';
-import type { UI_Subdivision_Card_Content } from '../lib/structures';
-import { SupperMeeting_ImageCard_Content_Statistics } from '../SupperMeeting_ImageCard_Content_Statistics';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
+import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { AddressPopup_Wrapper } from '@/shared/UBTConnect_Utils/AddressPopup_Wrapper';
+import { getDescriptor_Subdivision_GenderSplit } from '@/shared/UBTConnect/lib/actions';
+import type { UI_Subdivision_Card_Content } from '@/shared/UBTConnect/lib/structures';
+import { SupperMeeting_ImageCard_Content_Statistics } from '@/shared/UBTConnect/SupperMeeting_ImageCard_Content_Statistics';
 
 export interface SupperMeeting_ImageCard_ContentProps {
   /** OutSystems instance id of the block. */

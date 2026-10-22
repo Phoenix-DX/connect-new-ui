@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { AccordionItem } from '../AccordionItem';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { AccordionItem } from '@/shared/osui/AccordionItem';
 import { Accordion } from './Accordion';
 import * as stories from './Accordion.stories';
 

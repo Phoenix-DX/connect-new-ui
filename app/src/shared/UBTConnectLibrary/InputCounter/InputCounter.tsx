@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.InputCounter
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../CustomContainer';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '../lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface InputCounterProps {
   /** OutSystems instance id of the block. */

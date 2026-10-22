@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_Info_V2
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import type { EventCalendar } from '../types';
+import type { EventCalendar } from '@/screens/LDM_MyEvents_V2/types';
 import { formatEventDate } from './actions';
 
 export interface EventCard_Info_V2Props {

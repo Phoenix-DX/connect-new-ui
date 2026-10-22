@@ -2,13 +2,13 @@ import { composeStories } from '@storybook/react-vite';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import type { SupperMeeting_DetailsBlockProps } from '../SupperMeeting_DetailsBlock';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import type { SupperMeeting_DetailsBlockProps } from '@/shared/UBTConnect/SupperMeeting_DetailsBlock';
 import * as stories from './EntitiesCarouse_lSupperMeetingDetails.stories';
 
 /* SupperMeeting_DetailsBlock (own tests) shows its CarouselTag placeholder only inside the loaded image card: here a
    stand-in with the same wrapper renders the inputs it receives. */
-vi.mock('../SupperMeeting_DetailsBlock', () => ({
+vi.mock('@/shared/UBTConnect/SupperMeeting_DetailsBlock', () => ({
   SupperMeeting_DetailsBlock: ({ id, inSubdivsionId, placeholderCarouselTag }: SupperMeeting_DetailsBlockProps) => (
     <OSBlock name="Directory_SupperMeetings.SupperMeeting_DetailsBlock" id={id}>
       <span>subdivision {inSubdivsionId}</span>

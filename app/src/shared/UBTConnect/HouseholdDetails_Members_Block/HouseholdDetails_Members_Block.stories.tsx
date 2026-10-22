@@ -2,9 +2,9 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
 import { setClientVar } from '@/platform/session/session';
-import type { UI_HouseholdMember } from '../lib/structures';
+import type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
 import { HouseholdDetails_Members_Block } from './HouseholdDetails_Members_Block';
-import { VITALE } from '../../../mocks/fictional/directory';
+import { VITALE } from '@/mocks/fictional/directory';
 
 const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
 /** Directory_EntityDetailsActions needs the query client and a router; bookmarks and notes are synched (as captured). */

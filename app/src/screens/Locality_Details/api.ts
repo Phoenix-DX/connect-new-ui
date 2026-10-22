@@ -1,6 +1,6 @@
 import { callAction } from '@/api/client/callAction';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import type { Tag } from '../../shared/UBTConnectLibrary/lib/structures';
+import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
 import type {
   HouseholdMembers,
   InterchangeItem,

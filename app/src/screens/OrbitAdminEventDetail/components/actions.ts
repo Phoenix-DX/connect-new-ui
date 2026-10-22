@@ -1,5 +1,5 @@
 import { log } from '@/platform/log/log';
-import { timeFormatGetWeekDay } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { timeFormatGetWeekDay } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { ApplicationEvents_Orbit } from './staticEntities';
 
 /* Client actions of Connect2_OrbitMobile_MUI the block and its popup call (runtime-sources/Connect2_OrbitMobile_MUI

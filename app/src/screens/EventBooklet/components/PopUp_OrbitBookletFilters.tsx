@@ -1,13 +1,13 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ListOfDaySelectors } from '../../../shared/Connect2_OrbitMobile_MUI/ListOfDaySelectors';
-import { Orbit_FooterWithActions } from '../../../shared/Connect2_OrbitMobile_MUI/Orbit_FooterWithActions';
-import { styleFromCssText } from '../../../shared/lib/cssText';
-import { DropdownTags } from '../../../shared/osui/DropdownTags';
-import { dropdownClear, dropdownClearValidation, dropdownTogglePopup } from '../../../shared/osui/lib/actions';
-import { dropdownTags_CloseOtherOnClick } from '../../../shared/UBTConnect_Utils/lib/actions';
-import type { DropdownOption, PopupFilters } from '../types';
+import { ListOfDaySelectors } from '@/shared/Connect2_OrbitMobile_MUI/ListOfDaySelectors';
+import { Orbit_FooterWithActions } from '@/shared/Connect2_OrbitMobile_MUI/Orbit_FooterWithActions';
+import { styleFromCssText } from '@/shared/lib/cssText';
+import { DropdownTags } from '@/shared/osui/DropdownTags';
+import { dropdownClear, dropdownClearValidation, dropdownTogglePopup } from '@/shared/osui/lib/actions';
+import { dropdownTags_CloseOtherOnClick } from '@/shared/UBTConnect_Utils/lib/actions';
+import type { DropdownOption, PopupFilters } from '@/screens/EventBooklet/types';
 
 /* PopUp_OrbitBookletFilters (PF = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters.mvc.js:
    model :1-89, view :90-685, controller :686-1507). No capture: markup from the compiled view. The OutSystems UI

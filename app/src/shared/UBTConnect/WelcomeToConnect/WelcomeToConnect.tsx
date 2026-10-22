@@ -1,8 +1,8 @@
 // @os-block UBTConnect.App_Common.WelcomeToConnect
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '../lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface WelcomeToConnectProps {
   /** OutSystems instance id of the block. */

@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { getNameAndSurname_ByFullName } from '../../shared/UBTConnect/lib/actions';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { getNameAndSurname_ByFullName } from '@/shared/UBTConnect/lib/actions';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
 import { generateScreenURL, setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { readInputs } from './api';

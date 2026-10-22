@@ -13,27 +13,27 @@ import {
 } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getClientVar } from '@/platform/session/session';
-import { ScrollAnchor } from '../../shared/NavigationHandler/ScrollAnchor';
-import { App_NotificationIcon } from '../../shared/UBTConnect/App_NotificationIcon';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { FilterSheet_Icon } from '../../shared/UBTConnect/FilterSheet_Icon';
+import { ScrollAnchor } from '@/shared/NavigationHandler/ScrollAnchor';
+import { App_NotificationIcon } from '@/shared/UBTConnect/App_NotificationIcon';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { FilterSheet_Icon } from '@/shared/UBTConnect/FilterSheet_Icon';
 import {
   directory_Updates_GetCarouselPreloadedHouseholds,
   directory_Updates_RefreshBottomBarCount,
   scrollTop,
-} from '../../shared/UBTConnect/lib/actions';
-import { Type_ShareObject } from '../../shared/UBTConnect/lib/staticEntities';
-import { ShareSheet } from '../../shared/UBTConnect_Utils/ShareSheet';
-import { Connect_BottomBar_Items } from '../../shared/UBTConnect_Utils/lib/staticEntities';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { HorizontalTagList } from '../../shared/UBTConnectLibrary/HorizontalTagList';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { Input } from '../../shared/UBTConnectLibrary/Input';
-import { Layout_MainPages_FixedTitle } from '../../shared/UBTConnectLibrary/Layout_MainPages_FixedTitle';
-import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
-import { Update_ListItem } from '../../shared/UBTConnectLibrary/Update_ListItem';
-import type { Tag } from '../../shared/UBTConnectLibrary/lib/structures';
+} from '@/shared/UBTConnect/lib/actions';
+import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
+import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
+import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { HorizontalTagList } from '@/shared/UBTConnectLibrary/HorizontalTagList';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { Layout_MainPages_FixedTitle } from '@/shared/UBTConnectLibrary/Layout_MainPages_FixedTitle';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Update_ListItem } from '@/shared/UBTConnectLibrary/Update_ListItem';
+import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
 import {
   Connect_UpdateTypeId,
   Shape,
@@ -43,8 +43,8 @@ import {
   UBT_Icons2,
   UBT_IconsSize,
   UBT_Size,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import { Choice } from '../../shared/UBTConnect/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
 import { fetchUpdates, getDateRanges, markAllAsRead, markAsRead, markAsUnread, osDateInput } from './api';
 import {
   dateToText,

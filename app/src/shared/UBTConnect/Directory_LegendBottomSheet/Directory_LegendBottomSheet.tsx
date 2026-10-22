@@ -1,17 +1,17 @@
 // @os-block UBTConnect.Directory_Locality.Directory_LegendBottomSheet
 import { useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { PreventBackNavigation } from '../../NavigationHandler/PreventBackNavigation';
-import { bottomSheetClose } from '../../osui/lib/actions';
-import { BottomSheet } from '../../UBTConnectLibrary/BottomSheet';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { IconText } from '../../UBTConnectLibrary/IconText';
-import { UBT_Color, UBT_FontSize, UBT_Icons2, UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';
-import type { TextOptions } from '../../UBTConnectLibrary/lib/structures';
-import { getEntityType_Icon } from '../../UBTConnect_Utils/lib/actions';
-import { Connect_Entity, UBT_IconsSize } from '../lib/staticEntities';
+import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';
+import { bottomSheetClose } from '@/shared/osui/lib/actions';
+import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { UBT_Color, UBT_FontSize, UBT_Icons2, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import { getEntityType_Icon } from '@/shared/UBTConnect_Utils/lib/actions';
+import { Connect_Entity, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface Directory_LegendBottomSheetProps {
   /** OutSystems instance id of the block. */

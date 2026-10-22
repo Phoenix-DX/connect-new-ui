@@ -4,37 +4,42 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { osImage } from '@/legacy/os/os-assets';
 import { UserException } from '@/legacy/os/os-exceptions';
-import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
-import { EventDetail_SubSection } from '../../../shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection';
-import { ErrorScreen } from '../../../shared/Connect2_OrbitMobile_MUI/ErrorScreen';
-import { ContactByMessage_Wrapper } from '../../../shared/UBTConnect_Utils/ContactByMessage_Wrapper';
-import { ContactPopup_ByPhone } from '../../../shared/UBTConnect_Utils/ContactPopup_ByPhone';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { cleanAddressForMaps, getOperatingSystem } from '../../../shared/UBTConnect_Utils/lib/actions';
+import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { EventDetail_SubSection } from '@/shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection';
+import { ErrorScreen } from '@/shared/Connect2_OrbitMobile_MUI/ErrorScreen';
+import { ContactByMessage_Wrapper } from '@/shared/UBTConnect_Utils/ContactByMessage_Wrapper';
+import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { cleanAddressForMaps, getOperatingSystem } from '@/shared/UBTConnect_Utils/lib/actions';
 import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
-} from '../../../shared/UBTConnect_Utils/lib/structures';
+} from '@/shared/UBTConnect_Utils/lib/structures';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getCoordinatorDetails, getEventByEventId, getHouseholdCoordinates, type EventDetailVariables } from '../api';
-import type { CoordinatorDetailsData, EventDetail, SpecialNeedsItem } from '../types';
+import {
+  getCoordinatorDetails,
+  getEventByEventId,
+  getHouseholdCoordinates,
+  type EventDetailVariables,
+} from '@/screens/LDM_EventDetail_V2/api';
+import type { CoordinatorDetailsData, EventDetail, SpecialNeedsItem } from '@/screens/LDM_EventDetail_V2/types';
 import { EventDetail_Banner } from './EventDetail_Banner';
 import { EventDetail_HostCard } from './EventDetail_HostCard';
 import { EventDetail_ListItem } from './EventDetail_ListItem';
 import { EventDetail_Section } from './EventDetail_Section';
 import { EventDetail_SpecialNeeds_ListItem } from './EventDetail_SpecialNeeds_ListItem';
 import { EventsDetail_Content } from './EventsDetail_Content';
-import { flipHouseholdName } from '../../../shared/Connect2_LegacyShared/lib/actions';
+import { flipHouseholdName } from '@/shared/Connect2_LegacyShared/lib/actions';
 import {
   addAuditEvent_LDM,
   getCurrentTimeInMill,
   getLocalityName,
-} from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
+} from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { formatDateForEventBanner } from './actions';
 
 /** Block variables the view reads (ScreenBlock_EventDetail_V2.mvc.js = SB, model :46-100) and the two data actions. */

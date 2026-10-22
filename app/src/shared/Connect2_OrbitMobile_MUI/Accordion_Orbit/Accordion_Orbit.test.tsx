@@ -1,10 +1,10 @@
 import { composeStories } from '@storybook/react-vite';
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { expectToMatchCapture } from '../../../test/dom';
-import accordionV1 from '../../osui/DEPRECATED_Accordion/__captures__/v1.html?raw';
-import accordionV2 from '../../osui/DEPRECATED_Accordion/__captures__/v2.html?raw';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { expectToMatchCapture } from '@/test/dom';
+import accordionV1 from '@/shared/osui/DEPRECATED_Accordion/__captures__/v1.html?raw';
+import accordionV2 from '@/shared/osui/DEPRECATED_Accordion/__captures__/v2.html?raw';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { Accordion_Orbit } from './Accordion_Orbit';
 import * as stories from './Accordion_Orbit.stories';
 

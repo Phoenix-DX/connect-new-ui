@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { SupperMeeting_DetailsBlock } from '../../shared/UBTConnect/SupperMeeting_DetailsBlock';
-import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { SupperMeeting_DetailsBlock } from '@/shared/UBTConnect/SupperMeeting_DetailsBlock';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { readSupperMeetingDetailsInputs } from './api';
 
 /** UBTConnect.Directory_SupperMeetings.SupperMeeting_Details (SupperMeeting_Details.mvc.js: model :1-70, view

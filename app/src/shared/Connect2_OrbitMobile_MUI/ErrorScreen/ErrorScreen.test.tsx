@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { ErrorScreen } from './ErrorScreen';
 import * as stories from './ErrorScreen.stories';
 

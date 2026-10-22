@@ -2,12 +2,12 @@
 import { useMemo, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { IconText } from '../../UBTConnectLibrary/IconText';
-import { Input } from '../../UBTConnectLibrary/Input';
-import { SelectionOption_List } from '../../UBTConnectLibrary/SelectionOption_List';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { SelectionOption_List } from '@/shared/UBTConnectLibrary/SelectionOption_List';
 import {
   Shape,
   UBT_Color,
@@ -16,9 +16,9 @@ import {
   UBT_Icons2,
   UBT_Shape,
   UBT_Size,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import type { SelectionOption_Item } from '../../UBTConnectLibrary/lib/structures';
-import { Choice } from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { SelectionOption_Item } from '@/shared/UBTConnectLibrary/lib/structures';
+import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
 import type { Filter_Common_Control_List } from './types';
 
 export interface FilterSheet_OptionList_ItemProps {

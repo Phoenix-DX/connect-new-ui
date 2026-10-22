@@ -1,1 +1,1 @@
-export type { Note_Item as Note_ItemRecord, Notes } from '../lib/structures';
+export type { Note_Item as Note_ItemRecord, Notes } from '@/shared/UBTConnectLibrary/lib/structures';

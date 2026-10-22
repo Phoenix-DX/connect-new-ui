@@ -2,8 +2,8 @@ import { composeStories } from '@storybook/react-vite';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { http, HttpResponse } from 'msw';
 import { describe, expect, it, vi } from 'vitest';
-import { server } from '../../../test/setup';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { server } from '@/test/setup';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import * as stories from './SupperMeeting_HouseholdList.stories';
 
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });

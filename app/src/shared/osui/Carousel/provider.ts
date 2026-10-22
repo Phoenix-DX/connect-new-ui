@@ -1,6 +1,6 @@
 import Splide, { type Options } from '@splidejs/splide';
-import type { CarouselProviderApi, SplideEventHandler } from '../lib/actions';
-import { CarouselNavigation } from '../lib/staticEntities';
+import type { CarouselProviderApi, SplideEventHandler } from '@/shared/osui/lib/actions';
+import { CarouselNavigation } from '@/shared/osui/lib/staticEntities';
 
 /* The OutSystems UI Splide provider of the Carousel (OSUI = migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js):
    OSUISplide (:18143-18428), SplideConfig (:18441-18517), AbstractCarouselConfig (:5380-5420), Carousel enums

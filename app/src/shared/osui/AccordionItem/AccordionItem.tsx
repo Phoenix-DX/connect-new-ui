@@ -10,8 +10,8 @@ import {
   type ReactNode,
 } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { AccordionContext } from '../Accordion/accordionContext';
-import { AccordionIconPosition, AccordionIconType } from '../lib/staticEntities';
+import { AccordionContext } from '@/shared/osui/Accordion/accordionContext';
+import { AccordionIconPosition, AccordionIconType } from '@/shared/osui/lib/staticEntities';
 
 export interface AccordionItemProps {
   /** OutSystems instance id of the block (the AccordionItemId of the events; `aria-controls` is derived from it). */

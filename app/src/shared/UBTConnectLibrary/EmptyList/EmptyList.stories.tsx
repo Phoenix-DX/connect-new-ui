@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CustomText } from '../CustomText';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { EmptyList } from './EmptyList';
 
 const meta = { title: 'Shared/UBTConnectLibrary/EmptyList', component: EmptyList } satisfies Meta<typeof EmptyList>;

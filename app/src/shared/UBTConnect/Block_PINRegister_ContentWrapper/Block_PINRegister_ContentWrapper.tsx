@@ -8,19 +8,19 @@ import { APP_ID, PATHS } from '@/platform/navigation/paths';
 import { getResumeLoginLink } from '@/platform/session/resume';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { OSLink } from '../../lib/OSLink';
-import { useScreenController_NavigateToPage } from '../../UBTJavaScriptUtils/lib/actions';
-import { Pincode_Register } from '../../UBT_AppManager/Pincode_Register';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
+import { OSLink } from '@/shared/lib/OSLink';
+import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { Pincode_Register } from '@/shared/UBT_AppManager/Pincode_Register';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   UBT_Color,
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Icons2,
   UBT_IconsSize,
-} from '../../UBTConnectLibrary/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface Block_PINRegister_ContentWrapperProps {
   /** OutSystems instance id of the block. */

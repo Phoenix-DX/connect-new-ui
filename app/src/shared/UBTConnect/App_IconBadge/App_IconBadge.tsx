@@ -1,10 +1,10 @@
 // @os-block UBTConnect.App_Common_Blocks.App_IconBadge
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { OSLink } from '../../lib/OSLink';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { IconBadge } from '../../UBTConnectLibrary/IconBadge';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { UBT_Color, UBT_IconsSize } from '../lib/staticEntities';
+import { OSLink } from '@/shared/lib/OSLink';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconBadge } from '@/shared/UBTConnectLibrary/IconBadge';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { UBT_Color, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface App_IconBadgeProps {
   /** OutSystems instance id of the block. */

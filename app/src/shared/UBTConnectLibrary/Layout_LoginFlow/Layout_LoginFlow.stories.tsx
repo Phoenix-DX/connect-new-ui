@@ -2,13 +2,13 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
-import { OSLink } from '../../lib/OSLink';
-import { PendingBlock } from '../../test/PendingBlock';
-import { Block_PINRegister_ContentWrapper } from '../../UBTConnect/Block_PINRegister_ContentWrapper';
-import { Block_PINUnlock_ContentWrapper } from '../../UBTConnect/Block_PINUnlock_ContentWrapper';
-import { CommonUI_InsideLayout } from '../../UBTConnect/CommonUI_InsideLayout';
-import { OfflineDataSyncEvents } from '../../UBTConnect/OfflineDataSyncEvents';
-import { IconText } from '../IconText';
+import { OSLink } from '@/shared/lib/OSLink';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { Block_PINRegister_ContentWrapper } from '@/shared/UBTConnect/Block_PINRegister_ContentWrapper';
+import { Block_PINUnlock_ContentWrapper } from '@/shared/UBTConnect/Block_PINUnlock_ContentWrapper';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { OfflineDataSyncEvents } from '@/shared/UBTConnect/OfflineDataSyncEvents';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import { Layout_LoginFlow } from './Layout_LoginFlow';
 
 /** Stories only: the session and screen of the capture. */

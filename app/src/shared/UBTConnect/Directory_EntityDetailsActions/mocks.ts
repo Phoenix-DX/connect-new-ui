@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
 import { wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../../mocks/contract';
+import { contractHandler } from '@/mocks/contract';
 import {
   LOCALITY,
   SCHOOLS,
@@ -9,11 +9,11 @@ import {
   householdById,
   householdName,
   type CastHousehold,
-} from '../../../mocks/fictional/directory';
-import { collection } from '../../../mocks/store';
-import { sampleHouseholds } from '../HouseholdDetails_Block/mockData';
-import { notesCollection } from '../../UBTConnect_Utils/NoteListActions/mocks';
-import { Connect_Entity } from '../lib/staticEntities';
+} from '@/mocks/fictional/directory';
+import { collection } from '@/mocks/store';
+import { sampleHouseholds } from '@/shared/UBTConnect/HouseholdDetails_Block/mockData';
+import { notesCollection } from '@/shared/UBTConnect_Utils/NoteListActions/mocks';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 
 /* The C2 bookmark writes of UBTConnect ToggleBookmarkItem_C2 (UBTConnect.controller.js:17105-17280, copy in
    migration/screens/BookmarksByGroup/analysis/sources/raw/), called by this block's Handle_Bookmark: AddBookmark2

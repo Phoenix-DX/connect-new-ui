@@ -1,12 +1,12 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList
 import { useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { formatClasses } from '../../../shared/UBTConnectLibrary/lib/actions';
-import { UBT_Size } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { Tag } from '../../../shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
-import { TagToggle } from '../../../shared/UBTConnectLibrary/TagToggle';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { TagToggle } from '@/shared/UBTConnectLibrary/TagToggle';
 import { child, scopeOf } from './ids';
 
 export interface Horizontal_Filter_TagListProps {

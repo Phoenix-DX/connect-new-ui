@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
 import { readInputs } from './api';
 import { ScreenBlock_Event_Email_V2 } from './components/ScreenBlock_Event_Email_V2';
 

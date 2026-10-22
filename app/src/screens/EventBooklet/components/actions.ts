@@ -1,6 +1,11 @@
 import { log } from '@/platform/log/log';
 import type { LocalHelperRole } from '@/platform/storage/localEntities';
-import type { BookletMembersByLocality, BookletMembersByRole, DayFilter, EventBookletMember } from '../types';
+import type {
+  BookletMembersByLocality,
+  BookletMembersByRole,
+  DayFilter,
+  EventBookletMember,
+} from '@/screens/EventBooklet/types';
 
 /* Client actions of Connect2_OrbitMobile_MUI that ScreenBlock_EventBooklet calls, ported 1:1. `C:<n>` = line of
    migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js. */

@@ -1,4 +1,4 @@
-import { LOCALITY } from '../../../mocks/fictional/directory';
+import { LOCALITY } from '@/mocks/fictional/directory';
 import type { Event_Screen } from './types';
 
 /** Fictional event of the OrbitLanding capture: a purple "meeting" event over three days at the local main hall. */

@@ -1,7 +1,7 @@
 import { callAction } from '@/api/client/callAction';
 import { osList } from '@/legacy/os/os-wire';
-import type { Directory_Coordinates } from '../../UBTConnect_Utils/lib/structures';
-import type { UI_HouseholdMember, UI_Screen_HouseholdDetails } from '../lib/structures';
+import type { Directory_Coordinates } from '@/shared/UBTConnect_Utils/lib/structures';
+import type { UI_HouseholdMember, UI_Screen_HouseholdDetails } from '@/shared/UBTConnect/lib/structures';
 
 /** Block variables OutSystems sends with both data actions (screenData.variables): the inputs and UserAge_Visibility.
     The other UI variables (tags, share sheet, timeline) are view state the server does not need. */

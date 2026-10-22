@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { BackNavigationHandler } from '../../shared/NavigationHandler/BackNavigationHandler';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { EntitiesCarousel } from '../../shared/UBTConnect/EntitiesCarousel';
-import { Connect_Entity, Type_CarouselItemSwipeAction } from '../../shared/UBTConnect/lib/staticEntities';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { EntitiesCarousel } from '@/shared/UBTConnect/EntitiesCarousel';
+import { Connect_Entity, Type_CarouselItemSwipeAction } from '@/shared/UBTConnect/lib/staticEntities';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { setPreloadObject, usePreloadObject, useViewState } from '@/platform/navigation';
 import { mockPreload, readHouseholdCarouselInputs, updateItemMarkAsRead } from './api';
 import {

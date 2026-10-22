@@ -1,15 +1,15 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.Update_ListItem
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { AvatarDouble } from '../AvatarDouble';
-import { AvatarImage } from '../AvatarImage';
-import { Columns_Three } from '../Columns_Three';
-import { Columns_Two } from '../Columns_Two';
-import { ContextMenu } from '../ContextMenu';
-import { CustomContainer } from '../CustomContainer';
-import { CustomText } from '../CustomText';
-import { Icon } from '../Icon';
-import { IconText } from '../IconText';
+import { AvatarDouble } from '@/shared/UBTConnectLibrary/AvatarDouble';
+import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';
+import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { ContextMenu } from '@/shared/UBTConnectLibrary/ContextMenu';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import {
   formatConnectDate_WithYear,
   getBackgroundColor_IsRead,
@@ -17,7 +17,7 @@ import {
   get_BackgroundColor_Tag_UpdateItem,
   get_FontColor_Avatar_UpdateItem,
   get_FontColor_Tag_UpdateItem,
-} from '../lib/actions';
+} from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   Connect_UpdateTypeId,
   UBT_AvatarSize,
@@ -29,14 +29,14 @@ import {
   UBT_IconSize,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type {
   AvatarImage as AvatarImageRecord,
   ContextMenuOptions,
   SpacingOptions,
   TextGenderIdentifier,
-} from '../lib/structures';
-import { TagContent } from '../TagContent';
+} from '@/shared/UBTConnectLibrary/lib/structures';
+import { TagContent } from '@/shared/UBTConnectLibrary/TagContent';
 
 export interface Update_ListItemProps {
   /** OutSystems instance id of the block. */

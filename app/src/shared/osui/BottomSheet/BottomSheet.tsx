@@ -10,8 +10,8 @@ import {
   type UIEvent,
 } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { registerBottomSheet } from '../lib/actions';
-import { Shape } from '../lib/staticEntities';
+import { registerBottomSheet } from '@/shared/osui/lib/actions';
+import { Shape } from '@/shared/osui/lib/staticEntities';
 import { AnimateOnDrag, BOTTOM_SHEET_SPRING, hasTouchGestures, setDragEvents } from './dragToClose';
 
 export interface BottomSheetProps {

@@ -1,4 +1,4 @@
-import type { Tag } from '../../../shared/UBTConnectLibrary/HorizontalTagList';
+import type { Tag } from '@/shared/UBTConnectLibrary/HorizontalTagList';
 import { Connect_SearchCategories } from './staticEntities';
 
 /** SearchCategory_ItemRec (UBTConnect_Utils). */

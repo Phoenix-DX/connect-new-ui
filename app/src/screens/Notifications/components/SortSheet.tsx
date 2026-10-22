@@ -1,13 +1,13 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.SortSheet
 import { useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
 import type { BackNavigationEvent } from '@/platform/navigation';
-import { FilterSheet_OptionChoice_Item } from '../../../shared/UBTConnect/FilterSheet_OptionChoice_Item';
-import { BottomSheet } from '../../../shared/UBTConnectLibrary/BottomSheet';
-import { Button } from '../../../shared/UBTConnectLibrary/Button';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
+import { FilterSheet_OptionChoice_Item } from '@/shared/UBTConnect/FilterSheet_OptionChoice_Item';
+import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { Button } from '@/shared/UBTConnectLibrary/Button';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import {
   UBT_ButtonSize,
   UBT_ButtonType,
@@ -15,8 +15,8 @@ import {
   UBT_FlexBehavior,
   UBT_Shadow,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { bottomSheetClose } from '../../../shared/osui/lib/actions';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { bottomSheetClose } from '@/shared/osui/lib/actions';
 import { Choice } from './staticEntities';
 
 export interface SortSheetProps {

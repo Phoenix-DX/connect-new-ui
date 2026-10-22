@@ -4,13 +4,13 @@ import { createPortal } from 'react-dom';
 import { NotCaptured } from '@/app/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
-import { PreventBackNavigation } from '../../NavigationHandler/PreventBackNavigation';
-import { Button } from '../../UBTConnectLibrary/Button';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { IconText } from '../../UBTConnectLibrary/IconText';
-import { LazyImage } from '../../UBTConnectLibrary/LazyImage';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
+import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';
+import { Button } from '@/shared/UBTConnectLibrary/Button';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { LazyImage } from '@/shared/UBTConnectLibrary/LazyImage';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import {
   UBT_ButtonSize,
   UBT_ButtonType,
@@ -19,9 +19,15 @@ import {
   UBT_FontSize as UBT_FontSize_Library,
   UBT_FontWeight,
   UBT_Size,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '../UBT_LazyImage';
-import { UBT_FontSize, UBT_IconSize, UBT_Icons, UBT_ImageSize, UBT_Shape } from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import {
+  UBT_FontSize,
+  UBT_IconSize,
+  UBT_Icons,
+  UBT_ImageSize,
+  UBT_Shape,
+} from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import type { ContactPopupButton, ContactPopupData } from './types';
 
 export interface ContactPopupProps {

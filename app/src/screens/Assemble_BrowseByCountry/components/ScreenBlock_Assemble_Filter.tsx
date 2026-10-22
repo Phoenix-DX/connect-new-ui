@@ -1,22 +1,22 @@
 // @os-block Connect2_Assemble_MUI.Assemble.ScreenBlock_Assemble_Filter
 import { useEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Assemble_FilterLocalityByCountry } from '../../../shared/Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry';
-import { hasAccessToRegion } from '../../../shared/Connect2_Assemble_MUI/lib/actions';
-import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
-import { LocalityListDetail } from '../../../shared/Connect2_LegacyShared/LocalityListDetail';
-import { removeDiacritics } from '../../../shared/Connect2_LegacyShared/lib/actions';
-import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { Spinner } from '../../../shared/Connect2_LegacyShared/Spinner';
-import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler';
-import { InputWithIcon } from '../../../shared/osui/InputWithIcon';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { Assemble_FilterLocalityByCountry } from '@/shared/Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry';
+import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
+import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { LocalityListDetail } from '@/shared/Connect2_LegacyShared/LocalityListDetail';
+import { removeDiacritics } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache, type BackNavigationEvent } from '@/platform/navigation';
-import { getSubscribedCountries, getUserSubdivisionId } from '../api';
-import type { CountryWithMapPosition } from '../types';
+import { getSubscribedCountries, getUserSubdivisionId } from '@/screens/Assemble_BrowseByCountry/api';
+import type { CountryWithMapPosition } from '@/screens/Assemble_BrowseByCountry/types';
 
 export interface ScreenBlock_Assemble_FilterProps {
   /** OutSystems instance id of the block (`$b2`). */

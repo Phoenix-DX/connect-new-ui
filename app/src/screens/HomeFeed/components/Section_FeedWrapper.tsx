@@ -1,19 +1,19 @@
 // @os-block UBTConnect.Home.Section_FeedWrapper
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_IconSize } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_IconSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { Section } from './Section';
 import { UBT_Icons2 } from './staticEntities';
 

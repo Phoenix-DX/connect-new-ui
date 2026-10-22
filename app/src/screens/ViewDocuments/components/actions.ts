@@ -1,4 +1,4 @@
-import { getFormattedDateTime } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 
 /* Client actions of Connect2_OrbitMobile_MUI that ScreenBlock_ViewDocuments calls, ported 1:1. `C:<n>` = line of
    migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js. Dates are OutSystems values as text; "" is the

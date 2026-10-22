@@ -2,19 +2,24 @@
 import { useEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { Card_Event } from '../../../shared/Connect2_OrbitMobile_MUI/Card_Event';
-import { Card_Milestone } from '../../../shared/Connect2_OrbitMobile_MUI/Card_Milestone';
-import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
-import { OrbitSkeletonLoading } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { Event_Screen, Milestone_Screen } from '../../../shared/Connect2_OrbitMobile_MUI/lib/structures';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { Card_Event } from '@/shared/Connect2_OrbitMobile_MUI/Card_Event';
+import { Card_Milestone } from '@/shared/Connect2_OrbitMobile_MUI/Card_Milestone';
+import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
+import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import type { Event_Screen, Milestone_Screen } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getEventsByMemberId, getHouseholdMembers } from '../api';
-import type { EventsSummaryItem, HouseholdMember, OrbitLandingVariablesWire, YearItem } from '../types';
+import { getEventsByMemberId, getHouseholdMembers } from '@/screens/OrbitLanding/api';
+import type {
+  EventsSummaryItem,
+  HouseholdMember,
+  OrbitLandingVariablesWire,
+  YearItem,
+} from '@/screens/OrbitLanding/types';
 import {
   filterEvents,
   getPopupMeasurements,

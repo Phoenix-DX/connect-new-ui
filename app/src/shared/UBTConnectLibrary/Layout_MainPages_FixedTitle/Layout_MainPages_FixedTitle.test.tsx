@@ -1,7 +1,7 @@
 import { act, render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setSignedInUser } from '@/platform/session/session';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { Layout_MainPages_FixedTitle } from './Layout_MainPages_FixedTitle';
 import * as stories from './Layout_MainPages_FixedTitle.stories';
 

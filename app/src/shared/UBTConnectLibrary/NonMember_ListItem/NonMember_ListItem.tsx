@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.NonMember_ListItem
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Three } from '../Columns_Three';
-import { CustomText } from '../CustomText';
+import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -10,7 +10,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface NonMember_ListItemProps {
   /** OutSystems instance id of the block. */

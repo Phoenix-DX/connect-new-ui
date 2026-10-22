@@ -1,4 +1,4 @@
-import { householdName, LOCALITY, VITALE } from '../../../mocks/fictional/directory';
+import { householdName, LOCALITY, VITALE } from '@/mocks/fictional/directory';
 import type { Milestone_Screen, OrbitMilestoneTypeRecord } from './types';
 
 const type = (Id: string, Name: string, MainColorVar: string, MainIcon: string): OrbitMilestoneTypeRecord => ({

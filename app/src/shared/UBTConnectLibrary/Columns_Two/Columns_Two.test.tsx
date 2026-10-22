@@ -1,13 +1,13 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { expectToMatchCapture } from '../../../test/dom';
-import columns2V2 from '../../osui/Columns2/__captures__/v2.html?raw';
-import columns2V3 from '../../osui/Columns2/__captures__/v3.html?raw';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { PendingBlock } from '../../test/PendingBlock';
-import { CustomText } from '../CustomText';
-import { Icon } from '../Icon';
-import { UBT_Size, UBT_VerticalAlign } from '../lib/staticEntities';
+import { expectToMatchCapture } from '@/test/dom';
+import columns2V2 from '@/shared/osui/Columns2/__captures__/v2.html?raw';
+import columns2V3 from '@/shared/osui/Columns2/__captures__/v3.html?raw';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { UBT_Size, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Columns_Two } from './Columns_Two';
 import * as stories from './Columns_Two.stories';
 

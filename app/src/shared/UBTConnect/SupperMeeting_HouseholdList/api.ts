@@ -1,6 +1,6 @@
 import { callAction } from '@/api/client/callAction';
 import { osList } from '@/legacy/os/os-wire';
-import type { UI_SubdivisionHousehold } from '../lib/structures';
+import type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
 
 /** DataActionGetSubdivisionHouseholds (block controller getSubdivisionHouseholds$DataActRefresh, mvc.js:235-252): sent
     with the block's In_SubdivisionId; refreshed only by OnReady. */

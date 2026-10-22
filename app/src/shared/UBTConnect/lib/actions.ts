@@ -1,4 +1,4 @@
-import type { CacheControl_UserInformation } from '../../UBTConnect_Utils/lib/structures';
+import type { CacheControl_UserInformation } from '@/shared/UBTConnect_Utils/lib/structures';
 import type {
   Filter_Common_Control_List,
   HeaderList,
@@ -11,7 +11,7 @@ import { callAction } from '@/api/client/callAction';
 import { MOCKS_BUILT } from '@/platform/config/config';
 import { log } from '@/platform/log/log';
 import { osList } from '@/legacy/os/os-wire';
-import { scenario } from '../../../mocks/scenario';
+import { scenario } from '@/mocks/scenario';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { SystemException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
@@ -27,10 +27,10 @@ import {
   Connect_Subscription_Plan,
   UBT_Icons2,
 } from './staticEntities';
-import { getLookupConcepts, setLookupLabel_MaybeLowercase } from '../../UBTConnectLibrary/lib/actions';
-import { jSUtils_String_Split } from '../../UBTJavaScriptUtils/lib/actions';
-import { setCarouselStartingPosition } from '../../osui/lib/actions';
-import { bookmark_SendFeedbackMessage } from '../../UBTConnect_Utils/lib/actions';
+import { getLookupConcepts, setLookupLabel_MaybeLowercase } from '@/shared/UBTConnectLibrary/lib/actions';
+import { jSUtils_String_Split } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { setCarouselStartingPosition } from '@/shared/osui/lib/actions';
+import { bookmark_SendFeedbackMessage } from '@/shared/UBTConnect_Utils/lib/actions';
 import {
   create_LocalBookmark,
   delete_LocalBookmarkByBookmarkId,
@@ -44,10 +44,10 @@ import type {
   UI_Household_Card_Content,
   UI_Screen_HouseholdDetails,
 } from './structures';
-import type { ActionsMenuOptions as HouseholdActionsMenuOptions } from '../../UBTConnectLibrary/lib/structures';
-import type { UI_LocalityStatistics } from '../../Connect_Geography_CS/lib/structures';
-import { markerJSON } from '../../Leaflet/lib/json';
-import type { MarkerWithWindow } from '../../Leaflet/lib/structures';
+import type { ActionsMenuOptions as HouseholdActionsMenuOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import type { UI_LocalityStatistics } from '@/shared/Connect_Geography_CS/lib/structures';
+import { markerJSON } from '@/shared/Leaflet/lib/json';
+import type { MarkerWithWindow } from '@/shared/Leaflet/lib/structures';
 
 /** Outputs of Get_IsUnsupportedVersion. */
 export interface IsUnsupportedVersion {

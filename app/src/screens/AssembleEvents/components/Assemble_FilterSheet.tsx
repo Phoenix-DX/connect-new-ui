@@ -1,17 +1,17 @@
 // @os-block Connect2_Assemble_MUI.Assemble.Assemble_FilterSheet
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Assemble_FilterLocalityByCountry } from '../../../shared/Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry';
-import { hasAccessToRegion } from '../../../shared/Connect2_Assemble_MUI/lib/actions';
-import { LocalityListDetail } from '../../../shared/Connect2_LegacyShared/LocalityListDetail';
-import { removeDiacritics } from '../../../shared/Connect2_LegacyShared/lib/actions';
-import { Spinner } from '../../../shared/Connect2_LegacyShared/Spinner';
-import { InputWithIcon } from '../../../shared/osui/InputWithIcon';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { Assemble_FilterLocalityByCountry } from '@/shared/Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry';
+import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
+import { LocalityListDetail } from '@/shared/Connect2_LegacyShared/LocalityListDetail';
+import { removeDiacritics } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { getSubscribedCountries, getUserSubdivision } from '../api';
-import type { CountryWithMapPosition } from '../types';
+import { getSubscribedCountries, getUserSubdivision } from '@/screens/AssembleEvents/api';
+import type { CountryWithMapPosition } from '@/screens/AssembleEvents/types';
 
 const BROWSE_BY_COUNTRY = 'Browse by Country';
 const NULL_ID = '0';

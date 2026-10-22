@@ -1,8 +1,8 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { expectToMatchCapture } from '../../../test/dom';
-import templateV3 from '../Card_Template/__captures__/v3.html?raw';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { expectToMatchCapture } from '@/test/dom';
+import templateV3 from '@/shared/Connect2_OrbitMobile_MUI/Card_Template/__captures__/v3.html?raw';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { Card_Event } from './Card_Event';
 import * as stories from './Card_Event.stories';
 import { THREE_DAY_MEETINGS } from './fixtures';

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '../../test/PendingBlock';
-import { NC_Result_Item_Badge } from '../NC_Result_Item_Badge';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { NC_Result_Item_Badge } from '@/shared/Connect2_LegacyShared/NC_Result_Item_Badge';
 import { NC_Result_Item__Card } from './NC_Result_Item__Card';
 
 const meta = {

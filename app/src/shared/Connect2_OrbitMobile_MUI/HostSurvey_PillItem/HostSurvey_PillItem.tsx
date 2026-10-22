@@ -1,6 +1,6 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_PillItem
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '../../lib/cssText';
+import { styleFromCssText } from '@/shared/lib/cssText';
 
 export interface HostSurvey_PillItemProps {
   /** OutSystems instance id of the block. */

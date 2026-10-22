@@ -22,7 +22,7 @@ HouseholdDetails (dom:1392-1398), like the shell's ActionConfirmationDialog. Sto
 
 ## Not settled
 
-- The shell's navigation gate (`src/shell/navigation/navigationGate.ts`) dispatches `dx-before-navigation` as
+- The shell's navigation gate (`src/platform/navigation/navigationGate.ts`) dispatches `dx-before-navigation` as
   NavigationEventsJS does (NavigationHandler.controller.js:858-944); prevented → dialog → Yes resumes / No stays is
-  tested in `src/shell/navigation/navigationGate.test.tsx`.
+  tested in `src/platform/navigation/navigationGate.test.tsx`.
 - Generated inner ids (Root, Popup, placeholders) are not rendered (convention); nothing looks them up in this app.

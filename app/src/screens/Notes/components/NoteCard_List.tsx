@@ -1,17 +1,12 @@
 // @os-block UBTConnect.Notes.NoteCard_List
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { EmptyList } from '../../../shared/UBTConnectLibrary/EmptyList';
-import {
-  UBT_Color,
-  UBT_FontSize,
-  UBT_FontWeight,
-  UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
-import type { NoteCardItem } from '../types';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { EmptyList } from '@/shared/UBTConnectLibrary/EmptyList';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import type { NoteCardItem } from '@/screens/Notes/types';
 import { child, scopeOf } from './ids';
 import { NoteCard_Item } from './NoteCard_Item';
 import { UBT_Icons2_Bookmark } from './staticEntities';

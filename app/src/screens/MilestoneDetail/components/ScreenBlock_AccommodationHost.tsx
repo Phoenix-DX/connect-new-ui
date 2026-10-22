@@ -3,43 +3,45 @@ import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { NotCaptured } from '@/app/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import {
-  getCacheableMemberContactList,
-  getCacheableTimezoneInfo,
-} from '../../../shared/Connect2_LegacyShared/lib/actions';
-import { Accordion_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
-import { Card_MemberInformation } from '../../../shared/Connect2_OrbitMobile_MUI/Card_MemberInformation';
-import { ContactHelpdesk_Footer } from '../../../shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { MilestoneHeader } from '../../../shared/Connect2_OrbitMobile_MUI/MilestoneHeader';
-import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { Accordion_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
+import { Card_MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/Card_MemberInformation';
+import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
+import { MilestoneHeader } from '@/shared/Connect2_OrbitMobile_MUI/MilestoneHeader';
+import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
+import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import {
   addExtensionToFile,
   checkDirectoryAccess,
   getFormattedDateTimeById,
-} from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { DirectoryAPIFilter, ImageSigningSize } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { MemberInformation } from '../../../shared/Connect2_OrbitMobile_MUI/lib/structures';
-import { styleFromCssText } from '../../../shared/lib/cssText';
-import { DEPRECATED_AccordionItem } from '../../../shared/osui/DEPRECATED_AccordionItem';
-import { ContactPopup_ByPhone } from '../../../shared/UBTConnect_Utils/ContactPopup_ByPhone';
-import type { ContactByPhonePopupData } from '../../../shared/UBTConnect_Utils/ContactPopup_ByPhone/types';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { openInApp_TryOpenFileInApp } from '../../../shared/UBTConnect_Utils/lib/actions';
+} from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { DirectoryAPIFilter, ImageSigningSize } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
+import { styleFromCssText } from '@/shared/lib/cssText';
+import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
+import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import type { ContactByPhonePopupData } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone/types';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { openInApp_TryOpenFileInApp } from '@/shared/UBTConnect_Utils/lib/actions';
 import {
   useHandleDownload,
   type FileDownloadResult,
   type FileTransferError,
-} from '../../../shared/FileTransferPlugin/lib/handleDownload';
+} from '@/shared/FileTransferPlugin/lib/handleDownload';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { log } from '@/platform/log/log';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getAccommodationHost, getCacheableSignedImageURL, get_Document } from '../api';
-import type { AccommodationData, AccommodationHostVariablesWire, HelperItem, RoomItem } from '../types';
+import { getAccommodationHost, getCacheableSignedImageURL, get_Document } from '@/screens/MilestoneDetail/api';
+import type {
+  AccommodationData,
+  AccommodationHostVariablesWire,
+  HelperItem,
+  RoomItem,
+} from '@/screens/MilestoneDetail/types';
 import {
   getContactHelpdeskSubject_Milestone,
   getFormattedStringFromHelperType,

@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { fixtureData } from '../../mocks/fixtures';
-import { collection } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { fixtureData } from '@/mocks/fixtures';
+import { collection } from '@/mocks/store';
 import { osList } from '@/legacy/os/os-wire';
 import type { ConnectServicesWire, CurrentServiceWire } from './types';
 

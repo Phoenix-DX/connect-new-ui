@@ -1,11 +1,11 @@
 // @os-block UBTConnect.Directory_Household_Blocks.Household_GalleryCard
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ImageCard_LazyLoading } from '../../UBTConnectLibrary/ImageCard_LazyLoading';
-import { ImageCard__Content } from '../../UBTConnectLibrary/ImageCard__Content';
-import { UBT_ImageCardType, UBT_ImageSize } from '../../UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '../../UBTConnect_Utils/UBT_LazyImage';
-import type { UI_SubdivisionHousehold } from '../lib/structures';
-import { Connect_Entity } from '../lib/staticEntities';
+import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
+import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
+import { UBT_ImageCardType, UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface Household_GalleryCardProps {
   /** OutSystems instance id of the block. */

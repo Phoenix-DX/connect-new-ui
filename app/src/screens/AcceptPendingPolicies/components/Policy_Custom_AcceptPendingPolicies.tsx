@@ -1,23 +1,23 @@
 // @os-block UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { FixedFooter } from '../../../shared/UBTConnectLibrary/FixedFooter';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { Button } from '../../../shared/UBTConnect_Utils/Button';
-import { Separator } from '../../../shared/osui/Separator';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Button } from '@/shared/UBTConnect_Utils/Button';
+import { Separator } from '@/shared/osui/Separator';
 import { isCommunicationException, raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { acceptPolicies, useGetPendingPolicies } from '../api';
-import type { PendingPolicy } from '../types';
+import { acceptPolicies, useGetPendingPolicies } from '@/screens/AcceptPendingPolicies/api';
+import type { PendingPolicy } from '@/screens/AcceptPendingPolicies/types';
 import { getDeviceInfo, jSUtils_PageOpenInNewTab } from './actions';
 import {
   UBT_FlexDirection_Column,

@@ -1,6 +1,6 @@
 /** Domain types of Locality_Details (wire shapes stay in api.ts and mocks.ts). Long Integers stay text. */
-import type { UI_Subdivision_Card_Content } from '../../shared/UBTConnect/lib/structures';
-import type { StatisticsOptions } from '../../shared/UBTConnectLibrary/lib/structures';
+import type { UI_Subdivision_Card_Content } from '@/shared/UBTConnect/lib/structures';
+import type { StatisticsOptions } from '@/shared/UBTConnectLibrary/lib/structures';
 
 /** Connect_Geography_CS UI_LocalityDetails_ForHousehold (Get_LocalityDetails.LocalityDetails). */
 export interface LocalityDetails {

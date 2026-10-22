@@ -1,10 +1,10 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.CircleButton_WithLabel
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CircleButton } from '../CircleButton';
-import { CustomContainer } from '../CustomContainer';
-import { formatClasses, getClasses_AvatarSize } from '../lib/actions';
-import { UBT_Size } from '../lib/staticEntities';
+import { CircleButton } from '@/shared/UBTConnectLibrary/CircleButton';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { formatClasses, getClasses_AvatarSize } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { AvatarIconOptions } from './types';
 
 export interface CircleButton_WithLabelProps {

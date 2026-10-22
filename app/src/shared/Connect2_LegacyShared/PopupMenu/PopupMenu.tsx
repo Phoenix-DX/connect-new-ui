@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { popupPosition } from '../../UBTConnectLibrary/PopupMenu/position';
+import { popupPosition } from '@/shared/UBTConnectLibrary/PopupMenu/position';
 
 export interface PopupMenuProps {
   /** OutSystems instance id of the block (`b1-l1-57_0-b5-$b1`). */

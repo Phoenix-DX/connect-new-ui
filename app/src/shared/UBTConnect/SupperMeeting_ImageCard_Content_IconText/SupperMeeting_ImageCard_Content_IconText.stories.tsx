@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { getLookupConcepts } from '../../UBTConnectLibrary/lib/actions';
-import { UBT_FontSize } from '../lib/staticEntities';
+import { getLookupConcepts } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_FontSize } from '@/shared/UBTConnect/lib/staticEntities';
 import { SupperMeeting_ImageCard_Content_IconText } from './SupperMeeting_ImageCard_Content_IconText';
 
 const meta = {

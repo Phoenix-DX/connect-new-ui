@@ -1,6 +1,6 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { DayFilter } from '../../shared/Connect2_OrbitMobile_MUI/lib/structures';
-import type { DropdownOption } from '../../shared/osui/lib/structures';
+import type { DayFilter } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { DropdownOption } from '@/shared/osui/lib/structures';
 
 /* ---- Wire shapes (api.ts and mocks.ts only) ----
    The three data actions of ScreenBlock_EventBooklet, typed by the API contract (no capture: shapes from the contract,

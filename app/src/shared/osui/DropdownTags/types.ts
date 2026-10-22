@@ -1,1 +1,1 @@
-export type { DropdownOption, DropdownTagsOptionalConfigs } from '../lib/structures';
+export type { DropdownOption, DropdownTagsOptionalConfigs } from '@/shared/osui/lib/structures';

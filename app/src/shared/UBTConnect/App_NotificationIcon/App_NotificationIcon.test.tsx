@@ -3,7 +3,7 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router';
 import { afterEach, describe, expect, it } from 'vitest';
 import { setFlag } from '@/platform/flags/flags';
 import { setClientVar } from '@/platform/session/session';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { App_NotificationIcon } from './App_NotificationIcon';
 import * as stories from './App_NotificationIcon.stories';
 

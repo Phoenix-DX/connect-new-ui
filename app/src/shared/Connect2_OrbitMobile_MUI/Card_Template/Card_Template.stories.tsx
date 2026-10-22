@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { householdName, LOCALITY, VITALE } from '../../../mocks/fictional/directory';
+import { householdName, LOCALITY, VITALE } from '@/mocks/fictional/directory';
 import { Card_Template } from './Card_Template';
 
 const meta = {

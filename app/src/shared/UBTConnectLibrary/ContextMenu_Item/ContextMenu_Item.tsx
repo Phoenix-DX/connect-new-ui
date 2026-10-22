@@ -1,9 +1,9 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.ContextMenu_Item
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../CustomContainer';
-import { Icon } from '../Icon';
-import { IconText } from '../IconText';
-import { UBT_Color, UBT_IconSize, UBT_Size } from '../lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { UBT_Color, UBT_IconSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface ContextMenu_ItemProps {
   /** OutSystems instance id of the block. */

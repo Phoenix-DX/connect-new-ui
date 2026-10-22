@@ -77,7 +77,7 @@ Send, recent-member share and the link action.
 
 - The external share section ("Shared To": Share via, Copy link, WhatsApp / Signal / Outlook) renders only when
   AppManager_GetIsNative is true.
-  - The React app runs as a browser PWA (`src/shell/deviceContext.ts`, `isNativeDevice: false`). So the block does not
+  - The React app runs as a browser PWA (`src/platform/device/deviceContext.ts`, `isNativeDevice: false`). So the block does not
     render this section.
   - In the original app, a click on an option (Handler_OnClickExternalOption) calls CS_CreateShareProfileLink
     (ported in `api.ts`). Then it runs the ExternalShare client action (native share / clipboard).

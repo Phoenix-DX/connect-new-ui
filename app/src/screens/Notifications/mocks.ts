@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { recordedHandler } from '../../mocks/fixtures';
-import { currDateTime } from '../../shared/lib/osDateTime';
+import { contractHandler } from '@/mocks/contract';
+import { recordedHandler } from '@/mocks/fixtures';
+import { currDateTime } from '@/shared/lib/osDateTime';
 import { wireList } from '@/legacy/os/os-wire';
 import type { MessageListItemWire } from './types';
 

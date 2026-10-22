@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { ORBIT_HELPDESK_EMAIL } from '../../mocks/fictional/orbit';
-import { collection } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { ORBIT_HELPDESK_EMAIL } from '@/mocks/fictional/orbit';
+import { collection } from '@/mocks/store';
 
 /* The route was not captured (no-capture, user 2026-10-16). Its data are its inputs (MilestoneDetail's meal blocks
    would pass the host of the shared Orbit world, src/mocks/fictional/orbit.ts, HostEmail on example.com).

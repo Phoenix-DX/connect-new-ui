@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DataFetchStatus } from '@/components/ui/os/OSList';
-import { Household_GalleryCard_List } from '../Household_GalleryCard_List';
-import { getSkeletonList_UI_SubdivisionHousehold } from '../lib/actions';
-import type { UI_SubdivisionHousehold } from '../lib/structures';
+import { Household_GalleryCard_List } from '@/shared/UBTConnect/Household_GalleryCard_List';
+import { getSkeletonList_UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/actions';
+import type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
 import { getSubdivisionHouseholds } from './api';
 
 export interface SupperMeeting_HouseholdListProps {

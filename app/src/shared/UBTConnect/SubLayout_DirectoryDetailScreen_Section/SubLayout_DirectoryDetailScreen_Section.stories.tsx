@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { SubLayout_DirectoryDetailScreen_Section } from './SubLayout_DirectoryDetailScreen_Section';
 
 const meta = {

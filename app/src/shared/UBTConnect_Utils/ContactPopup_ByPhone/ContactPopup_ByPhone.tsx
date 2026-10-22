@@ -1,9 +1,9 @@
 // @os-block UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByPhone
 import { useMemo } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { changeWindowLocation } from '../../UBTJavaScriptUtils/lib/actions';
-import { ContactPopup } from '../ContactPopup';
-import { UBT_ImageSize, UBT_Icons } from '../lib/staticEntities';
+import { changeWindowLocation } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { ContactPopup } from '@/shared/UBTConnect_Utils/ContactPopup';
+import { UBT_ImageSize, UBT_Icons } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import type { ContactByPhonePopupData, ContactPopupButton } from './types';
 
 export interface ContactPopup_ByPhoneProps {

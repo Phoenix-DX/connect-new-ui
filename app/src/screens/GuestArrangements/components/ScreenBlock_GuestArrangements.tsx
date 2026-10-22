@@ -2,22 +2,22 @@
 import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { Accordion_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
-import { Card_MemberInformation } from '../../../shared/Connect2_OrbitMobile_MUI/Card_MemberInformation';
-import { ContactHelpdesk_Footer } from '../../../shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { MilestoneHeader } from '../../../shared/Connect2_OrbitMobile_MUI/MilestoneHeader';
-import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
-import { checkDirectoryAccess, getFormattedDateTime } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { DirectoryAPIFilter } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { DEPRECATED_AccordionItem } from '../../../shared/osui/DEPRECATED_AccordionItem';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { Accordion_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
+import { Card_MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/Card_MemberInformation';
+import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
+import { MilestoneHeader } from '@/shared/Connect2_OrbitMobile_MUI/MilestoneHeader';
+import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
+import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { checkDirectoryAccess, getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { DirectoryAPIFilter } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getCacheableSignedImageURL, getGuestArrangements } from '../api';
+import { getCacheableSignedImageURL, getGuestArrangements } from '@/screens/GuestArrangements/api';
 import type {
   GuestArrangementsData,
   GuestArrangementsVariablesWire,
@@ -25,7 +25,7 @@ import type {
   MilestoneTransportItem,
   SpecialNeed,
   SpecialNeedsItem,
-} from '../types';
+} from '@/screens/GuestArrangements/types';
 import {
   getContactHelpdeskSubject_Milestone,
   getSkeletonLoadingIdFromMilestoneTypeId,

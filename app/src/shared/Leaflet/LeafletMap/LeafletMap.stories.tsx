@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { osImage } from '@/legacy/os/os-assets';
-import type { MarkerWithWindow } from '../lib/structures';
+import type { MarkerWithWindow } from '@/shared/Leaflet/lib/structures';
 import { LeafletMap } from './LeafletMap';
 
 const meta = {

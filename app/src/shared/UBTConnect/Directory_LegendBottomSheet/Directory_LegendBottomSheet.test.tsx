@@ -3,8 +3,8 @@ import type { ReactElement } from 'react';
 import { MemoryRouter, type Location } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createBackEvent, resetBackQueue, runBackHandlers } from '@/platform/navigation/backQueue';
-import { bottomSheetOpen } from '../../osui/lib/actions';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { Directory_LegendBottomSheet } from './Directory_LegendBottomSheet';
 import * as stories from './Directory_LegendBottomSheet.stories';
 

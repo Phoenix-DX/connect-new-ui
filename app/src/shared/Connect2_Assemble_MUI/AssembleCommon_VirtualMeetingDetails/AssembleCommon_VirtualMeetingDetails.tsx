@@ -1,7 +1,7 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { NewConnectContent } from '../../Connect2_LegacyShared/NewConnectContent';
-import { AssembleCommon_VirtualMeetingDetails_Entry } from '../AssembleCommon_VirtualMeetingDetails_Entry';
+import { NewConnectContent } from '@/shared/Connect2_LegacyShared/NewConnectContent';
+import { AssembleCommon_VirtualMeetingDetails_Entry } from '@/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingDetails_Entry';
 
 export interface AssembleCommon_VirtualMeetingDetailsProps {
   /** OutSystems instance id of the block. */

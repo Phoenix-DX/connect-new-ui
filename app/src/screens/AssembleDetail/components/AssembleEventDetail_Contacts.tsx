@@ -3,21 +3,21 @@
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { hasAccessToRegion } from '../../../shared/Connect2_Assemble_MUI/lib/actions';
-import { NC_Result_Item__Image } from '../../../shared/Connect2_LegacyShared/NC_Result_Item__Image';
-import { Person_Contact_Options } from '../../../shared/Connect2_LegacyShared/Person_Contact_Options';
-import { getCacheableSignedPhotoURL, getSignedPhotosInBulk } from '../../../shared/Connect2_LegacyShared/lib/actions';
-import { ContactByMessage_Wrapper } from '../../../shared/UBTConnect_Utils/ContactByMessage_Wrapper';
-import { ContactPopup_ByPhone } from '../../../shared/UBTConnect_Utils/ContactPopup_ByPhone';
-import type { ContactByPhonePopupData } from '../../../shared/UBTConnect_Utils/ContactPopup_ByPhone/types';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import type { ContactPopupData } from '../../../shared/UBTConnect_Utils/lib/structures';
+import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
+import { NC_Result_Item__Image } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Image';
+import { Person_Contact_Options } from '@/shared/Connect2_LegacyShared/Person_Contact_Options';
+import { getCacheableSignedPhotoURL, getSignedPhotosInBulk } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { ContactByMessage_Wrapper } from '@/shared/UBTConnect_Utils/ContactByMessage_Wrapper';
+import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import type { ContactByPhonePopupData } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone/types';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import type { ContactPopupData } from '@/shared/UBTConnect_Utils/lib/structures';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { useWasRestoredFromCache } from '@/platform/navigation';
-import { getAssembleEventContacts } from '../api';
-import type { AssembleEventContact } from '../types';
+import { getAssembleEventContacts } from '@/screens/AssembleDetail/api';
+import type { AssembleEventContact } from '@/screens/AssembleDetail/types';
 
 /* GMS local contacts of AssembleEventDetail. Sources: migration/screens/AssembleDetail/sources/Connect2_Assemble_MUI
    .Assemble.AssembleEventDetail_ContactList.mvc.js (CL) and …_Contact.mvc.js (CT). */

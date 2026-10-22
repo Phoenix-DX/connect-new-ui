@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Trigger } from '../lib/staticEntities';
+import { Trigger } from '@/shared/osui/lib/staticEntities';
 import { Tooltip } from './Tooltip';
 
 /* Never captured (the pack has no DOM variant): stories from the compiled view. */

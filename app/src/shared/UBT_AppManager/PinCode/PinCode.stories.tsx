@@ -3,19 +3,19 @@ import { MemoryRouter } from 'react-router';
 import { osImage } from '@/legacy/os/os-assets';
 import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
 import { getClientVar } from '@/platform/session/session';
-import { CacheControl_Policies } from '../../UBTConnect_Utils/CacheControl_Policies';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
+import { CacheControl_Policies } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import {
   UBT_Color,
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Icons2,
   UBT_IconsSize,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import { OSLink } from '../../lib/OSLink';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { OSLink } from '@/shared/lib/OSLink';
 import { PinCode } from './PinCode';
 
 const meta = {

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { SubLayout_HomePageSearch } from './SubLayout_HomePageSearch';
 import * as stories from './SubLayout_HomePageSearch.stories';
 

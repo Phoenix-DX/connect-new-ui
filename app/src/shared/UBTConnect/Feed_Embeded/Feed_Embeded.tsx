@@ -4,16 +4,16 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getClientVar } from '@/platform/session/session';
-import { Embedded_FeedCMS } from '../../UBTConnect_EmbedFeed/Embedded_FeedCMS';
+import { Embedded_FeedCMS } from '@/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS';
 import {
   getHasExtendedShare,
   getHasFeedEnabled,
   openInApp_TryOpenFileInApp,
   textToLongInteger,
-} from '../../UBTConnect_Utils/lib/actions';
-import { Connect_Entity } from '../../UBTConnect_Utils/lib/staticEntities';
-import { SharePopup } from '../../UBTConnect_Utils/SharePopup';
-import { Type_ShareObject } from '../lib/staticEntities';
+} from '@/shared/UBTConnect_Utils/lib/actions';
+import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { SharePopup } from '@/shared/UBTConnect_Utils/SharePopup';
+import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface Feed_EmbededProps {
   /** OutSystems instance id of the block. */

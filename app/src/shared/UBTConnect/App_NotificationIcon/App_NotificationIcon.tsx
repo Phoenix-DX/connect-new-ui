@@ -4,10 +4,10 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getClientVar, useClientVar } from '@/platform/session/session';
-import { getHasNewNotifications } from '../../UBTConnect_Utils/lib/actions';
-import { App_IconBadge } from '../App_IconBadge';
-import { App_NotificationRefresh } from '../App_NotificationRefresh';
-import { UBT_Color, UBT_Icons2 } from '../lib/staticEntities';
+import { getHasNewNotifications } from '@/shared/UBTConnect_Utils/lib/actions';
+import { App_IconBadge } from '@/shared/UBTConnect/App_IconBadge';
+import { App_NotificationRefresh } from '@/shared/UBTConnect/App_NotificationRefresh';
+import { UBT_Color, UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface App_NotificationIconProps {
   /** OutSystems instance id of the block. */

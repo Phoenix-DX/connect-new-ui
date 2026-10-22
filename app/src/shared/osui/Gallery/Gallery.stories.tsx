@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '../../test/PendingBlock';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { Carousel } from '../Carousel';
-import * as carousel from '../Carousel/Carousel.stories';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Carousel } from '@/shared/osui/Carousel';
+import * as carousel from '@/shared/osui/Carousel/Carousel.stories';
 import { Gallery } from './Gallery';
 
 const meta = {

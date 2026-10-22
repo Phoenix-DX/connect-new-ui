@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
-import { BlankSlate } from '../../shared/osui/BlankSlate';
-import { Layout_MainPages } from '../../shared/UBTConnectLibrary/Layout_MainPages';
-import { StaticInput } from '../../shared/UBTConnectLibrary/StaticInput';
+import { BlankSlate } from '@/shared/osui/BlankSlate';
+import { Layout_MainPages } from '@/shared/UBTConnectLibrary/Layout_MainPages';
+import { StaticInput } from '@/shared/UBTConnectLibrary/StaticInput';
 import { readCommunityBusinessDetailsInputs } from './api';
 
 /** UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon

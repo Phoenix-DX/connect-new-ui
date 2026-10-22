@@ -6,22 +6,22 @@ import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { useOsNavigate } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';
 import { getClientVar } from '@/platform/session/session';
-import { OSLink } from '../../lib/OSLink';
-import { PinUnlock_MobileWrapper } from '../../UBT_AppManager_Mobile/PinUnlock_MobileWrapper';
-import { CacheControl_Policies, type CacheControl_PoliciesRec } from '../../UBTConnect_Utils/CacheControl_Policies';
-import { openPolicy, POLICY_NOT_FOUND } from '../../UBTConnect_Utils/lib/actions';
-import { Columns_Two } from '../../UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
+import { OSLink } from '@/shared/lib/OSLink';
+import { PinUnlock_MobileWrapper } from '@/shared/UBT_AppManager_Mobile/PinUnlock_MobileWrapper';
+import { CacheControl_Policies, type CacheControl_PoliciesRec } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
+import { openPolicy, POLICY_NOT_FOUND } from '@/shared/UBTConnect_Utils/lib/actions';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import {
   UBT_Color,
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Icons2,
   UBT_IconsSize,
-} from '../../UBTConnectLibrary/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface Block_PINUnlock_ContentWrapperProps {
   /** OutSystems instance id of the block. */

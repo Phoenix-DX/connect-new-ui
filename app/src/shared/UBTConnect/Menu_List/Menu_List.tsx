@@ -2,11 +2,11 @@
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Columns_Three } from '../../UBTConnectLibrary/Columns_Three';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { IconText } from '../../UBTConnectLibrary/IconText';
+import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -16,9 +16,9 @@ import {
   UBT_IconsSize,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { SectionSeparator } from '../SectionSeparator';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
 import type { UI_ListMenuOption, UI_MenuSection } from './types';
 
 export interface Menu_ListProps {

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Space } from '../lib/staticEntities';
+import { Space } from '@/shared/osui/lib/staticEntities';
 import { DEPRECATED_GalleryV2 } from './DEPRECATED_GalleryV2';
 
 const meta = {

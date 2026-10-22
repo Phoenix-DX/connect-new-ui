@@ -1,1 +1,1 @@
-export type { RangeSliderOptionalConfigs } from '../lib/structures';
+export type { RangeSliderOptionalConfigs } from '@/shared/osui/lib/structures';

@@ -4,8 +4,8 @@ import type { ReactNode } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setFlag } from '@/platform/flags/flags';
-import type { Embedded_FeedCMSProps } from '../../shared/UBTConnect_EmbedFeed/Embedded_FeedCMS';
-import type { ShareSheetProps } from '../../shared/UBTConnect_Utils/ShareSheet';
+import type { Embedded_FeedCMSProps } from '@/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS';
+import type { ShareSheetProps } from '@/shared/UBTConnect_Utils/ShareSheet';
 import { NULL_DATE } from './api';
 import FeedItemDetail from './index';
 
@@ -16,7 +16,7 @@ const spy = vi.hoisted(() => ({
   feed: undefined as Embedded_FeedCMSProps | undefined,
   sheet: undefined as ShareSheetProps | undefined,
 }));
-vi.mock('../../shared/UBTConnect_EmbedFeed/Embedded_FeedCMS', async () => {
+vi.mock('@/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS', async () => {
   const { OSBlock } = await import('@/components/ui/os/OSBlock');
   return {
     Embedded_FeedCMS: (props: Embedded_FeedCMSProps) => {
@@ -25,7 +25,7 @@ vi.mock('../../shared/UBTConnect_EmbedFeed/Embedded_FeedCMS', async () => {
     },
   };
 });
-vi.mock('../../shared/UBTConnect_Utils/ShareSheet', async () => {
+vi.mock('@/shared/UBTConnect_Utils/ShareSheet', async () => {
   const { OSBlock } = await import('@/components/ui/os/OSBlock');
   return {
     ShareSheet: (props: ShareSheetProps & { children?: ReactNode }) => {

@@ -1,9 +1,9 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.ComingSoon
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../CustomContainer';
-import { CustomText } from '../CustomText';
-import { UBT_Size } from '../lib/staticEntities';
-import type { TextOptions } from '../lib/structures';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
 
 export interface ComingSoonProps {
   /** OutSystems instance id of the block. */

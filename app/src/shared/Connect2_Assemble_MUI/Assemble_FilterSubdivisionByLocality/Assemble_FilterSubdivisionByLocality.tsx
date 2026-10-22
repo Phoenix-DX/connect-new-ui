@@ -3,12 +3,12 @@ import { useEffect, useId, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { osList } from '@/legacy/os/os-wire';
-import type { SubdivisionsItem } from '../../Connect2_LegacyShared/lib/structures';
-import { RadioButtonListItem } from '../../Connect2_LegacyShared/RadioButtonListItem';
-import { Spinner } from '../../Connect2_LegacyShared/Spinner';
-import { InputWithIcon } from '../../osui/InputWithIcon';
-import { Separator } from '../../osui/Separator';
-import { getLocality, listFilterByName } from '../lib/actions';
+import type { SubdivisionsItem } from '@/shared/Connect2_LegacyShared/lib/structures';
+import { RadioButtonListItem } from '@/shared/Connect2_LegacyShared/RadioButtonListItem';
+import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { Separator } from '@/shared/osui/Separator';
+import { getLocality, listFilterByName } from '@/shared/Connect2_Assemble_MUI/lib/actions';
 
 export interface Assemble_FilterSubdivisionByLocalityProps {
   /** OutSystems instance id of the block. */

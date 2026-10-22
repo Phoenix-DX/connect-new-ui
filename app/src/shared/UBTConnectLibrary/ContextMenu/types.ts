@@ -1,1 +1,1 @@
-export type { ContextMenuDelete, ContextMenuEdit, ContextMenuOptions } from '../lib/structures';
+export type { ContextMenuDelete, ContextMenuEdit, ContextMenuOptions } from '@/shared/UBTConnectLibrary/lib/structures';

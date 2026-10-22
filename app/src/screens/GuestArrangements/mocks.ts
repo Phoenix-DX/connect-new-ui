@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../mocks/contract';
-import { orbitEvents, orbitGuestArrangements, type OrbitGuestTransport } from '../../mocks/fictional/orbit';
+import { contractHandler } from '@/mocks/contract';
+import { orbitEvents, orbitGuestArrangements, type OrbitGuestTransport } from '@/mocks/fictional/orbit';
 import type { GetGuestArrangementsWire, GuestArrangementsScreenWire, MilestoneTransportScreenWire } from './types';
 
 /* DataActionGetGuestArrangements was never recorded (no capture, no-capture.json): fictional answers from the shared

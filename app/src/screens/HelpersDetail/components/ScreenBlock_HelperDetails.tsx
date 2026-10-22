@@ -2,30 +2,27 @@
 import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import {
-  getCacheableMemberContactList,
-  getCacheableTimezoneInfo,
-} from '../../../shared/Connect2_LegacyShared/lib/actions';
-import { Accordion_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
-import { Card_MemberInformation } from '../../../shared/Connect2_OrbitMobile_MUI/Card_MemberInformation';
-import { ContactHelpdesk_Footer } from '../../../shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { MilestoneHeader } from '../../../shared/Connect2_OrbitMobile_MUI/MilestoneHeader';
-import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
-import { checkDirectoryAccess } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { DirectoryAPIFilter, ImageSigningSize } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { MemberInformation } from '../../../shared/Connect2_OrbitMobile_MUI/lib/structures';
-import { DEPRECATED_AccordionItem } from '../../../shared/osui/DEPRECATED_AccordionItem';
-import { ContactPopup_ByPhone } from '../../../shared/UBTConnect_Utils/ContactPopup_ByPhone';
-import type { ContactByPhonePopupData } from '../../../shared/UBTConnect_Utils/ContactPopup_ByPhone/types';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { Accordion_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
+import { Card_MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/Card_MemberInformation';
+import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
+import { MilestoneHeader } from '@/shared/Connect2_OrbitMobile_MUI/MilestoneHeader';
+import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
+import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { checkDirectoryAccess } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { DirectoryAPIFilter, ImageSigningSize } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
+import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
+import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import type { ContactByPhonePopupData } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone/types';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getCacheableSignedImageURL, getHelperDetails } from '../api';
-import type { HelperData, HelperDetailsVariablesWire, HelperItem } from '../types';
+import { getCacheableSignedImageURL, getHelperDetails } from '@/screens/HelpersDetail/api';
+import type { HelperData, HelperDetailsVariablesWire, HelperItem } from '@/screens/HelpersDetail/types';
 import {
   getContactHelpdeskSubject_Event,
   getFormattedStringFromHelperType,

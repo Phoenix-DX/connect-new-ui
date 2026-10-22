@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '../../test/PendingBlock';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { SubLayout_DirectoryDetailScreen } from './SubLayout_DirectoryDetailScreen';
 
 const meta = {

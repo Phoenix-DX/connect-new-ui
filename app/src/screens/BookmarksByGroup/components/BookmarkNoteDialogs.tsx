@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { NotCaptured } from '@/app/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
-import type { BookmarkNote } from '../types';
+import type { BookmarkNote } from '@/screens/BookmarksByGroup/types';
 
 export interface BookmarkNoteAddEditProps {
   /** Instance id (`b1-BookmarkNoteAddEdit_Popup`): the id ScreenBlock_BookmarkGroup gives ConfirmAction. */

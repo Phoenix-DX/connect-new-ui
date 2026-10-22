@@ -8,14 +8,14 @@ import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { hasAccessToRegion } from '../../../shared/UBTConnect/lib/actions';
-import { Connect_Entity, NoteCategory2 } from '../../../shared/UBTConnect/lib/staticEntities';
-import type { UI_HouseholdMember } from '../../../shared/UBTConnect/lib/structures';
-import { SubLayout_DirectoryDetailScreen_Section } from '../../../shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
+import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { Connect_Entity, NoteCategory2 } from '@/shared/UBTConnect/lib/staticEntities';
+import type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
+import { SubLayout_DirectoryDetailScreen_Section } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   UBT_AlignItems,
   UBT_ButtonSize,
@@ -30,16 +30,20 @@ import {
   UBT_JustifyContent,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { Notes } from '../../../shared/UBTConnectLibrary/lib/structures';
-import { NonMember_ListItem } from '../../../shared/UBTConnectLibrary/NonMember_ListItem';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
-import { Button } from '../../../shared/UBTConnect_Utils/Button';
-import { NotesSheet } from '../../../shared/UBTConnect_Utils/NotesSheet';
-import { UBT_ImageSize as UBTConnect_Utils_ImageSize } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '../../../shared/UBTConnect_Utils/UBT_LazyImage';
-import { get_MemberDetails, get_ParentHouseholdDetails, type HouseholdRelationsCallInputs } from '../api';
-import type { Get_MemberDetailsOutput, Get_ParentHouseholdDetailsOutput } from '../types';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
+import { NonMember_ListItem } from '@/shared/UBTConnectLibrary/NonMember_ListItem';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Button } from '@/shared/UBTConnect_Utils/Button';
+import { NotesSheet } from '@/shared/UBTConnect_Utils/NotesSheet';
+import { UBT_ImageSize as UBTConnect_Utils_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import {
+  get_MemberDetails,
+  get_ParentHouseholdDetails,
+  type HouseholdRelationsCallInputs,
+} from '@/screens/Household_Relations/api';
+import type { Get_MemberDetailsOutput, Get_ParentHouseholdDetailsOutput } from '@/screens/Household_Relations/types';
 import { MemberRelation_ListItem } from './MemberRelation_ListItem';
 import { UBT_AlignItems_Baseline } from './staticEntities';
 

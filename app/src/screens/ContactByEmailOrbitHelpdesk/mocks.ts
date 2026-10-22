@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { ORBIT_HELPDESK_EMAIL } from '../../mocks/fictional/orbit';
-import { collection } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { ORBIT_HELPDESK_EMAIL } from '@/mocks/fictional/orbit';
+import { collection } from '@/mocks/store';
 
 /* No call was captured (the form was not sent: CLAUDE.md rule 6). SendContactEmail (`UBTConnect/ActionSendContactEmail`,
    shared with ContactByEmailOrbitHost, the one handler for both screens) is a write, never recorded

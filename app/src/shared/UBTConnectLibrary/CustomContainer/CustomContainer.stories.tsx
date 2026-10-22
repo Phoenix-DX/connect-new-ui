@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { osImage } from '@/legacy/os/os-assets';
-import { PendingBlock } from '../../test/PendingBlock';
-import { Columns_Two } from '../Columns_Two';
-import { CustomText } from '../CustomText';
-import { UBT_Display } from '../lib/staticEntities';
-import { SkeletonSection } from '../SkeletonSection';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { UBT_Display } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { CustomContainer } from './CustomContainer';
 
 const meta = {

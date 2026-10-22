@@ -1,8 +1,8 @@
 import type { RequestHandler } from 'msw';
 import { wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../mocks/contract';
-import { orbitEventHelpers, orbitEvents, type OrbitHelperGroup } from '../../mocks/fictional/orbit';
-import { scenario } from '../../mocks/scenario';
+import { contractHandler } from '@/mocks/contract';
+import { orbitEventHelpers, orbitEvents, type OrbitHelperGroup } from '@/mocks/fictional/orbit';
+import { scenario } from '@/mocks/scenario';
 import type { GetHelperDetailsWire, HelperDetailsResponseWire, HelperWire } from './types';
 
 /* DataActionGetHelperDetails was recorded without data (calls.md: OrbitMilestoneType and EventDetails empty, null dates,

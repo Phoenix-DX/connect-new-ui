@@ -2,7 +2,7 @@ import { composeStories } from '@storybook/react-vite';
 import { render, waitFor } from '@testing-library/react';
 import L from 'leaflet';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { diffAgainstCapture } from '../../../test/dom';
+import { diffAgainstCapture } from '@/test/dom';
 import { LeafletMap } from './LeafletMap';
 import * as stories from './LeafletMap.stories';
 

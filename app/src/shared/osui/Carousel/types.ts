@@ -1,1 +1,1 @@
-export type { CarouselItems, CarouselOptionalConfigs } from '../lib/structures';
+export type { CarouselItems, CarouselOptionalConfigs } from '@/shared/osui/lib/structures';

@@ -1,6 +1,6 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { DEPRECATED_AccordionItem } from './DEPRECATED_AccordionItem';
 import * as stories from './DEPRECATED_AccordionItem.stories';
 

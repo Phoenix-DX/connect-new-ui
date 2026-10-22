@@ -1,8 +1,8 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { fixtureData } from '../../mocks/fixtures';
-import { VITALE, childrenText, householdById, householdName } from '../../mocks/fictional/directory';
-import { collection } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { fixtureData } from '@/mocks/fixtures';
+import { VITALE, childrenText, householdById, householdName } from '@/mocks/fictional/directory';
+import { collection } from '@/mocks/store';
 import { mockUserToggles } from '@/platform/session/mockUser';
 import { Type_ShareObject } from './components/staticEntities';
 import type { AvailableUserWire, ShareObjectTypeByIdWire } from './types';

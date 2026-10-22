@@ -2,8 +2,8 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { UBT_Color, UBT_FontWeight, UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface Dialog_CustomChoiceProps {
   /** OutSystems instance id of the block (Menu: `PopUp_Logout`); `confirmAction(id)` opens it. */

@@ -1,13 +1,13 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.MoreActionSheet
 import { useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
 import type { BackNavigationEvent } from '@/platform/navigation';
-import { BottomSheet } from '../../../shared/UBTConnectLibrary/BottomSheet';
-import { Button } from '../../../shared/UBTConnectLibrary/Button';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
+import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { Button } from '@/shared/UBTConnectLibrary/Button';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import {
   UBT_ButtonSize,
   UBT_ButtonType,
@@ -19,8 +19,8 @@ import {
   UBT_Shadow,
   UBT_Shape,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { bottomSheetClose } from '../../../shared/osui/lib/actions';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { bottomSheetClose } from '@/shared/osui/lib/actions';
 import { UBT_Color_Error, UBT_Icons2_Notifications } from './staticEntities';
 
 export interface MoreActionSheetProps {

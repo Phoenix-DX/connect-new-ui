@@ -1,13 +1,13 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
+import { contractHandler } from '@/mocks/contract';
 import {
   ASSEMBLE_EVENT_TYPES,
   ASSEMBLE_MEETINGS,
   countriesBySubscriptionOutput,
   hallName,
   USER_HALL_ID,
-} from '../../mocks/fictional/assemble';
-import { scenario } from '../../mocks/scenario';
+} from '@/mocks/fictional/assemble';
+import { scenario } from '@/mocks/scenario';
 import { wireList } from '@/legacy/os/os-wire';
 
 /* Mocks of AssembleEvents (P-MOCKS), on the fictional Assemble world (src/mocks/fictional/assemble.ts).

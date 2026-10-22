@@ -1,14 +1,14 @@
 // @os-block UBTConnect.Directory_Interchange.Directory_Interchange_StatisticsList
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Directory_EmptyState } from '../../../shared/UBTConnect/Directory_EmptyState';
-import { Directory_EntityDetailsActions } from '../../../shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { UBT_Color, UBT_Size } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
-import { Statistics_ListItem } from '../../../shared/UBTConnectLibrary/Statistics_ListItem';
-import { Connect_Entity } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
-import type { InterchangeItem } from '../types';
+import { Directory_EmptyState } from '@/shared/UBTConnect/Directory_EmptyState';
+import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Statistics_ListItem } from '@/shared/UBTConnectLibrary/Statistics_ListItem';
+import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import type { InterchangeItem } from '@/screens/Locality_Details/types';
 
 export interface Directory_Interchange_StatisticsListProps {
   /** OutSystems instance id of the block. */

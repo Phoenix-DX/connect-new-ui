@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { recordedHandler } from '../../mocks/fixtures';
+import { recordedHandler } from '@/mocks/fixtures';
 
 /* CountryDetails (P-MOCKS). CountryDetails/DataActionGetLocalityStatistics: the recorded TST answer for CountryCode AR
    (fixture UBTConnect/DataActionGetLocalityStatistics/02-e657cfcb.json: three localities, CountryName Argentina). Other

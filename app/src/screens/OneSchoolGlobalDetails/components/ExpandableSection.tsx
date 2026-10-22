@@ -1,11 +1,11 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.ExpandableSection
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { formatClasses } from '../../../shared/UBTConnectLibrary/lib/actions';
-import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_Icons_ExpandMore } from './staticEntities';
 
 export interface ExpandableSectionProps {

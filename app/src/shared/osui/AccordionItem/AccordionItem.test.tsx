@@ -1,8 +1,8 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { Accordion } from '../Accordion';
-import { AccordionIconPosition, AccordionIconType } from '../lib/staticEntities';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { Accordion } from '@/shared/osui/Accordion';
+import { AccordionIconPosition, AccordionIconType } from '@/shared/osui/lib/staticEntities';
 import { AccordionItem } from './AccordionItem';
 import * as stories from './AccordionItem.stories';
 

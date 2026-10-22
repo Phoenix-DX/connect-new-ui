@@ -1,10 +1,10 @@
 // @os-block UBTConnect.Directory_Search.SearchResult_Section
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { SectionSeparator } from '../../../shared/UBTConnect/SectionSeparator';
-import { SearchResult_Item } from '../../../shared/UBTConnect_Utils/SearchResult_Item';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
+import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
+import { SearchResult_Item } from '@/shared/UBTConnect_Utils/SearchResult_Item';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -12,8 +12,8 @@ import {
   UBT_FontWeight,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { SearchResult } from '../types';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { SearchResult } from '@/screens/Search/types';
 import { UBT_FontWeight_Bold } from './staticEntities';
 
 export interface SearchResult_SectionProps {

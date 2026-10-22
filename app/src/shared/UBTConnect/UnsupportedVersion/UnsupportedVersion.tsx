@@ -1,11 +1,11 @@
 // @os-block UBTConnect.App_Common.UnsupportedVersion
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Button } from '../../UBTConnect_Utils/Button';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { UBT_Display, UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';
-import { UBT_Color, UBT_FontSize, UBT_Icons2, UBT_JustifyContent } from '../lib/staticEntities';
-import { WelcomeToConnect } from '../WelcomeToConnect';
+import { Button } from '@/shared/UBTConnect_Utils/Button';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { UBT_Display, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_Icons2, UBT_JustifyContent } from '@/shared/UBTConnect/lib/staticEntities';
+import { WelcomeToConnect } from '@/shared/UBTConnect/WelcomeToConnect';
 
 export interface UnsupportedVersionProps {
   /** OutSystems instance id of the block. */

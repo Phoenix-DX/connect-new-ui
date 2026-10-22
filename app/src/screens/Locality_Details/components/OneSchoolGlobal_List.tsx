@@ -1,14 +1,14 @@
 // @os-block UBTConnect.Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Directory_EntityDetailsActions } from '../../../shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
-import { ImageCard_LazyLoading } from '../../../shared/UBTConnectLibrary/ImageCard_LazyLoading';
-import { ImageCard__Content } from '../../../shared/UBTConnectLibrary/ImageCard__Content';
-import { UBT_ImageCardType, UBT_ImageSize } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
-import { Connect_Entity } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '../../../shared/UBTConnect_Utils/UBT_LazyImage';
-import type { OneSchoolCard } from '../types';
+import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
+import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
+import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
+import { UBT_ImageCardType, UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import type { OneSchoolCard } from '@/screens/Locality_Details/types';
 import { StopPropagationHelper } from './StopPropagationHelper';
 
 /** A row of OneSchoolList with its record key (the three skeleton rows take 0-2, the fetched rows appended after

@@ -3,9 +3,9 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { http, HttpResponse } from 'msw';
 import { MemoryRouter, Route, Routes, useLocation } from 'react-router';
 import { describe, expect, it } from 'vitest';
-import { server } from '../../../test/setup';
-import { expectToMatchCapture } from '../../../test/dom';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { server } from '@/test/setup';
+import { expectToMatchCapture } from '@/test/dom';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { FeedBlock_CommunityPopulation } from './FeedBlock_CommunityPopulation';
 import * as stories from './FeedBlock_CommunityPopulation.stories';
 

@@ -1,6 +1,6 @@
-import { Choice } from '../../../shared/UBTConnect/lib/staticEntities';
-import { Connect_UpdateTypeId } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { Breakpoint, DateRange, FilterUpdates, UpdateItem } from '../types';
+import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_UpdateTypeId } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { Breakpoint, DateRange, FilterUpdates, UpdateItem } from '@/screens/Updates_SingleList/types';
 import { Updates_DateRanges } from './staticEntities';
 
 const pad = (n: number) => String(n).padStart(2, '0');

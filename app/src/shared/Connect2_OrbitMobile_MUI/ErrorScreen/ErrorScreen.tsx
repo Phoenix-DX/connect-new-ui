@@ -2,7 +2,7 @@
 import { useCallback, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { styleFromCssText } from '../../lib/cssText';
+import { styleFromCssText } from '@/shared/lib/cssText';
 
 export interface ErrorScreenProps {
   /** OutSystems instance id of the block. */

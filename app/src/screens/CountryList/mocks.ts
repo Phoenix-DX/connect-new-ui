@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { recordedHandler } from '../../mocks/fixtures';
+import { recordedHandler } from '@/mocks/fixtures';
 
 /* DataActionGetCountriesStatistics: the recorded fixture (UBTConnect/DataActionGetCountriesStatistics/02-93a3ea9f.json,
    17 countries with aggregate counts, no person data). Scenarios: `real` (recorded), `empty` (no countries), `error`

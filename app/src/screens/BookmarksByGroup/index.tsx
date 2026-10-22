@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { Connect_BottomBar_Items } from '../../shared/UBTConnect_Utils/lib/staticEntities';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { readInputs } from './api';
 import { ScreenBlock_BookmarkGroup } from './components/ScreenBlock_BookmarkGroup';

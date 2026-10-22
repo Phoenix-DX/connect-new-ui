@@ -1,7 +1,7 @@
 // @os-block OutSystemsUI_2_23.Content.Tooltip
 import { useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Position, Trigger } from '../lib/staticEntities';
+import { Position, Trigger } from '@/shared/osui/lib/staticEntities';
 import { computeFloatingPosition, transformPosition, type FloatingResult } from './position';
 
 export interface TooltipProps {

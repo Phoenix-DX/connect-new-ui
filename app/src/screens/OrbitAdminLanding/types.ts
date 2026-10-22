@@ -1,5 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { Event_Screen } from '../../shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { Event_Screen } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 
 /* ---- Wire shapes (api.ts and mocks.ts only) ----
    The data action of ScreenBlock_AdminLanding and the screen's server action GetMilestoneScanFF, typed by the API

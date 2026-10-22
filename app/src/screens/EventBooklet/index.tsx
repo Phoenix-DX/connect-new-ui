@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
 import { useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_EventBooklet } from './components/ScreenBlock_EventBooklet';
 

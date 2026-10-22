@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UBT_ImageCardType } from '../../UBTConnectLibrary/lib/staticEntities';
+import { UBT_ImageCardType } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { HouseholdDetails_TimelinePhoto } from './HouseholdDetails_TimelinePhoto';
 
 const meta = {

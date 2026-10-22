@@ -32,11 +32,11 @@ Controller:
   - Success → `Delete_LocalNoteByNoteId`, On_NoteDeleted(NoteId, Notes has 1 note), "Note deleted".
   - Else → "Couldn't delete note…".
 
-Messages: `Note_SendFeedbackMessages` (`../lib/actions.ts`). Local copy: `src/shell/localEntities` (Q-W3B-1, user 2026-10-15).
+Messages: `Note_SendFeedbackMessages` (`../lib/actions.ts`). Local copy: `src/platform/storage/localEntities` (Q-W3B-1, user 2026-10-15).
 
 Errors (Q-W3B-2, user 2026-10-15):
 
-- Save catches UserException only (:600-618). Any other error goes to `raiseToFlowHandler` (`src/shell/exceptions.ts`):
+- Save catches UserException only (:600-618). Any other error goes to `raiseToFlowHandler` (`src/legacy/os/exceptions.ts`):
   communication → ShowCommunicationExceptionMessage, else ShowExceptionMessage(message, False).
 - Delete catches every non-system error (:740-756) with "Couldn't delete note…".
 - `callAction` raises the own exception of the server. Save catches a server UserException. A failed request is a

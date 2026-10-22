@@ -1,1 +1,1 @@
-export type { CacheControl_UserInformation, Directory_UserCurrent } from '../../UBTConnect_Utils/lib/structures';
+export type { CacheControl_UserInformation, Directory_UserCurrent } from '@/shared/UBTConnect_Utils/lib/structures';

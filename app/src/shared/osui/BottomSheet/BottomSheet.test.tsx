@@ -1,7 +1,7 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { bottomSheetClose, bottomSheetOpen } from '../lib/actions';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { BottomSheet } from './BottomSheet';
 import * as stories from './BottomSheet.stories';
 import { BOTTOM_SHEET_SPRING, createSpringEffect, hasTouchGestures } from './dragToClose';

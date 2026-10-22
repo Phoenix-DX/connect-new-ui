@@ -1,6 +1,6 @@
 // @os-block OutSystemsUI_2_23.Utilities.SwipeEvents
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { TouchEvents } from '../TouchEvents';
+import { TouchEvents } from '@/shared/osui/TouchEvents';
 
 export interface SwipeEventsProps {
   /** OutSystems instance id of the block. */

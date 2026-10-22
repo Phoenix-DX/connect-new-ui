@@ -1,7 +1,7 @@
 /* Client actions of Connect2_Assemble_MUI used by the shared Assemble blocks, ported 1:1 from
    migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_Assemble_MUI.controller.js (cited as
    controller.js:<line>). */
-import { dayOfWeek, formatDateTime } from '../../lib/osDateTime';
+import { dayOfWeek, formatDateTime } from '@/shared/lib/osDateTime';
 import { log } from '@/platform/log/log';
 import { osList } from '@/legacy/os/os-wire';
 import { callAction } from '@/api/client/callAction';
@@ -20,9 +20,9 @@ import {
   removeBookmarkFromCache,
   removeDiacritics,
   sendBookmarkedFeedbackMessage,
-} from '../../Connect2_LegacyShared/lib/actions';
-import type { CacheableLocalityInformation } from '../../Connect2_LegacyShared/lib/structures';
-import { Connect_Subscription_Plan } from '../../UBTConnect/lib/staticEntities';
+} from '@/shared/Connect2_LegacyShared/lib/actions';
+import type { CacheableLocalityInformation } from '@/shared/Connect2_LegacyShared/lib/structures';
+import { Connect_Subscription_Plan } from '@/shared/UBTConnect/lib/staticEntities';
 import { MyBookmarks_ObjectType } from './staticEntities';
 import type { AssembleEventSummary, HostedAtComponents } from './structures';
 

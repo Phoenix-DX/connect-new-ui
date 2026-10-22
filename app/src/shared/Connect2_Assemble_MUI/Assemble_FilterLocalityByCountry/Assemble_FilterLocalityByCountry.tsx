@@ -2,13 +2,13 @@
 import { useEffect, useId, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList, OSListItem } from '@/components/ui/os/OSList';
-import { getCacheableCountryInfo, getCacheableUserInfo } from '../../Connect2_LegacyShared/lib/actions';
-import type { LocalityResultItemWithGPS } from '../../Connect2_LegacyShared/lib/structures';
-import { Spinner } from '../../Connect2_LegacyShared/Spinner';
-import { scrollToElement } from '../../osui/lib/actions';
-import { InputWithIcon } from '../../osui/InputWithIcon';
-import { Assemble_FilterSubdivisionByLocality } from '../Assemble_FilterSubdivisionByLocality';
-import { hasAccessToRegion, listFilterByName } from '../lib/actions';
+import { getCacheableCountryInfo, getCacheableUserInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
+import type { LocalityResultItemWithGPS } from '@/shared/Connect2_LegacyShared/lib/structures';
+import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { scrollToElement } from '@/shared/osui/lib/actions';
+import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { Assemble_FilterSubdivisionByLocality } from '@/shared/Connect2_Assemble_MUI/Assemble_FilterSubdivisionByLocality';
+import { hasAccessToRegion, listFilterByName } from '@/shared/Connect2_Assemble_MUI/lib/actions';
 
 export interface Assemble_FilterLocalityByCountryProps {
   /** OutSystems instance id of the block. */

@@ -2,13 +2,13 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
-import { PendingBlock } from '../../test/PendingBlock';
-import { BottomBarMenu } from '../../UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../UBTConnect/CommonUI_InsideLayout';
-import { Connect_BottomBar_Items } from '../../UBTConnect_Utils/lib/staticEntities';
-import { FixedFooter } from '../FixedFooter';
-import { UBT_Color } from '../lib/staticEntities';
-import { SkeletonSection } from '../SkeletonSection';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
+import { UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { Layout_HomePage } from './Layout_HomePage';
 
 /** Stories only: the signed-in session of the captures, 3 unread updates checked just now (no refresh call). */

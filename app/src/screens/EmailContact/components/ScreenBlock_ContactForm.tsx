@@ -7,17 +7,17 @@ import {
   useScreenValidationService,
   ValidationServiceProvider,
 } from '@/components/ui/os/OSValidation';
-import { InputCounter } from '../../../shared/Connect2_LegacyShared/InputCounter';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { NavigationConfirmationDialog } from '../../../shared/NavigationHandler/NavigationConfirmationDialog';
-import { preventNavigation } from '../../../shared/NavigationHandler/lib/actions';
-import { DEPRECATED_ButtonLoading } from '../../../shared/osui/DEPRECATED_ButtonLoading';
+import { InputCounter } from '@/shared/Connect2_LegacyShared/InputCounter';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
+import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
+import { DEPRECATED_ButtonLoading } from '@/shared/osui/DEPRECATED_ButtonLoading';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import { sendContactEmail } from '../api';
-import type { EmailContactInputs } from '../types';
+import { sendContactEmail } from '@/screens/EmailContact/api';
+import type { EmailContactInputs } from '@/screens/EmailContact/types';
 import {
   getTextAreaLineHeight,
   onApplicationEvent_ContactHelpdesk,

@@ -1,8 +1,8 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { clearMemoryCache } from '@/platform/storage/memoryCache';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { Choice } from '../lib/staticEntities';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
 import { FilterSheet } from './FilterSheet';
 import * as stories from './FilterSheet.stories';
 

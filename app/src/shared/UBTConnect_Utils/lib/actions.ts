@@ -14,8 +14,8 @@ import {
   type BulkCacheResult,
 } from '@/platform/storage/memoryCache';
 import { getClientVar } from '@/platform/session/session';
-import { jSUtils_PageOpenInNewTab } from '../../UBTJavaScriptUtils/lib/actions';
-import { dropdownClose } from '../../osui/lib/actions';
+import { jSUtils_PageOpenInNewTab } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { dropdownClose } from '@/shared/osui/lib/actions';
 import {
   Connect_BottomBar_Items,
   Connect_Entity,

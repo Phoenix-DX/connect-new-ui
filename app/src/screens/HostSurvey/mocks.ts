@@ -1,8 +1,8 @@
 import type { RequestHandler } from 'msw';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../mocks/contract';
-import { orbitEvents, orbitHostSurveys, type OrbitHostSurvey } from '../../mocks/fictional/orbit';
-import { collection } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { orbitEvents, orbitHostSurveys, type OrbitHostSurvey } from '@/mocks/fictional/orbit';
+import { collection } from '@/mocks/store';
 import type { HostSurveyResponseWire } from './types';
 
 /* DataActionGetHostSurvey and PostHostSurvey: fictional answers from the shared Orbit world

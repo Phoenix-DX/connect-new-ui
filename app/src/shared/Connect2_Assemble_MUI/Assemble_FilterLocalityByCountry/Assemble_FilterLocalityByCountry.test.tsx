@@ -1,11 +1,11 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { contractHandler } from '../../../mocks/contract';
-import { LOCALITY } from '../../../mocks/fictional/directory';
+import { contractHandler } from '@/mocks/contract';
+import { LOCALITY } from '@/mocks/fictional/directory';
 import { mockUserInformation } from '@/platform/session/mockUser';
 import { applyTestSession } from '@/platform/session/testSession';
 import { freshPage } from '@/test/testSupport';
-import { server } from '../../../test/setup';
+import { server } from '@/test/setup';
 import { Assemble_FilterLocalityByCountry } from './Assemble_FilterLocalityByCountry';
 
 /* Compiled view and controller: migration/blocks/sources/Connect2_Assemble_MUI.Assemble

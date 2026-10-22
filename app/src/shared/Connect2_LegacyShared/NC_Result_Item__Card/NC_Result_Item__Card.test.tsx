@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { NC_Result_Item__Card } from './NC_Result_Item__Card';
 import * as stories from './NC_Result_Item__Card.stories';
 

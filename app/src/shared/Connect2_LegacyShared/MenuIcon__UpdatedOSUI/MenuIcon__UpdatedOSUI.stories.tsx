@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { MenuAction } from '../lib/staticEntities';
+import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIcon__UpdatedOSUI } from './MenuIcon__UpdatedOSUI';
 
 const meta = {

@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react';
-import { HandleOnResumeOpenLink } from '../../shared/UBTConnect/HandleOnResumeOpenLink';
-import { set_InitialClientVariables } from '../../shared/UBTConnect/lib/actions';
-import { NavigationHandler } from '../../shared/NavigationHandler/NavigationHandler';
-import { useScreenController_NavigateToPage } from '../../shared/UBTJavaScriptUtils/lib/actions';
+import { HandleOnResumeOpenLink } from '@/shared/UBTConnect/HandleOnResumeOpenLink';
+import { set_InitialClientVariables } from '@/shared/UBTConnect/lib/actions';
+import { NavigationHandler } from '@/shared/NavigationHandler/NavigationHandler';
+import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';
 import { pinCheck } from '@/platform/session/pin';

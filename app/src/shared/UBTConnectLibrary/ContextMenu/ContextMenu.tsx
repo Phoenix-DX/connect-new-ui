@@ -1,11 +1,11 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.ContextMenu
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CircleButton_IconPrimary } from '../CircleButton_IconPrimary';
-import { ContextMenu_Item } from '../ContextMenu_Item';
-import { CustomContainer } from '../CustomContainer';
-import { Icon } from '../Icon';
-import { Position, UBT_Color, UBT_Icons, UBT_Shadow, UBT_Shape } from '../lib/staticEntities';
-import { PopupMenu } from '../PopupMenu';
+import { CircleButton_IconPrimary } from '@/shared/UBTConnectLibrary/CircleButton_IconPrimary';
+import { ContextMenu_Item } from '@/shared/UBTConnectLibrary/ContextMenu_Item';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Position, UBT_Color, UBT_Icons, UBT_Shadow, UBT_Shape } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { PopupMenu } from '@/shared/UBTConnectLibrary/PopupMenu';
 import type { ContextMenuOptions } from './types';
 
 export interface ContextMenuProps {

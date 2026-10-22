@@ -1,9 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { expectToMatchCapture } from '../../../test/dom';
-import templateV1 from '../Card_Template/__captures__/v1.html?raw';
-import templateV2 from '../Card_Template/__captures__/v2.html?raw';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { expectToMatchCapture } from '@/test/dom';
+import templateV1 from '@/shared/Connect2_OrbitMobile_MUI/Card_Template/__captures__/v1.html?raw';
+import templateV2 from '@/shared/Connect2_OrbitMobile_MUI/Card_Template/__captures__/v2.html?raw';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { Card_Milestone } from './Card_Milestone';
 import * as stories from './Card_Milestone.stories';
 import { ACCOMMODATION, FLIGHT, MEAL_HOST, MEETING } from './fixtures';

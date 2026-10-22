@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { VITALE, householdsOfSupperMeeting } from '../../../mocks/fictional/directory';
+import { VITALE, householdsOfSupperMeeting } from '@/mocks/fictional/directory';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import {
   get_LocalBookmarkByObjectId,
@@ -15,8 +15,8 @@ import {
   getCachedMyBookmarks,
   getCacheableSubdivision_V2,
   putCachedMyBookmarks,
-} from '../../Connect2_LegacyShared/lib/actions';
-import { legacyBookmarksCollection } from '../../Connect2_MyBookmarks_MUI/mocks';
+} from '@/shared/Connect2_LegacyShared/lib/actions';
+import { legacyBookmarksCollection } from '@/shared/Connect2_MyBookmarks_MUI/mocks';
 import { toggleBookmarkItem } from './actions';
 import { MyBookmarks_Group, MyBookmarks_ObjectType } from './staticEntities';
 

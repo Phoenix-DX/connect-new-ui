@@ -2,12 +2,12 @@
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { RadioButton, RadioGroup } from '@/components/ui/os/OSRadioGroup';
-import { bottomSheetClose, bottomSheetOpen } from '../../../shared/osui/lib/actions';
-import { BottomSheet } from '../../../shared/UBTConnectLibrary/BottomSheet';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { Photobook_Speed } from '../../../shared/UBTConnect/lib/staticEntities';
-import { UBT_Color, UBT_Display, UBT_Size } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
+import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Photobook_Speed } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_Display, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { ROUND_BUTTON } from './Photobook_Options_Left';
 import {
   UBT_AlignItems,

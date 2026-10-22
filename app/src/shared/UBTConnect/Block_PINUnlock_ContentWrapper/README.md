@@ -18,7 +18,7 @@ Events: `Unlock` → `onUnlock`, `NavigateTo_PINRegister` → `onNavigateToPINRe
 Fills `PinUnlock_MobileWrapper` (PIN length 4): logo, unlock text, erase icon, Forgot PIN (→
 `/UBTConnect/Login?In_IsFromResetPIN=True`), "Need help? Contact Us" or the policy links (CacheControl_Policies).
 The block shows unlock errors with `feedbackMessageAutoClose` (texts mapped as the original). The shell's lock
-container renders this block (`src/shell/dialogs/BlockPinUnlock.tsx`, as Block_PINUnlock: ShowForgotPIN, ShowPolicy).
+container renders this block (`src/platform/feedback/dialogs/BlockPinUnlock.tsx`, as Block_PINUnlock: ShowForgotPIN, ShowPolicy).
 
 ## Captured variants (3 tested)
 

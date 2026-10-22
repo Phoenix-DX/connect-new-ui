@@ -1,12 +1,12 @@
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { Feed_Embeded } from '../../shared/UBTConnect/Feed_Embeded';
-import { Type_ShareObject } from '../../shared/UBTConnect/lib/staticEntities';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { Connect_Entity } from '../../shared/UBTConnect_Utils/lib/staticEntities';
-import type { UI_ShareableObject_Generic } from '../../shared/UBTConnect_Utils/lib/structures';
-import { ShareableObject_Generic } from '../../shared/UBTConnect_Utils/ShareableObject_Generic';
-import { ShareSheet } from '../../shared/UBTConnect_Utils/ShareSheet';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Feed_Embeded } from '@/shared/UBTConnect/Feed_Embeded';
+import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/lib/structures';
+import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
+import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
 import { useViewState } from '@/platform/navigation';
 import { NULL_DATE, readFeedItemDetailInputs } from './api';
 

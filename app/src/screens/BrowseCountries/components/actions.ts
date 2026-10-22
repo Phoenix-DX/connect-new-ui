@@ -1,4 +1,4 @@
-import type { CountryStatistics } from '../types';
+import type { CountryStatistics } from '@/screens/BrowseCountries/types';
 
 /** GetSkeleton_UI_CountryStatistics (UBTConnect.controller.js, after :12630): Title "Australia", AvatarURL "-" and five
     statistics; CountryCode keeps its default "". */

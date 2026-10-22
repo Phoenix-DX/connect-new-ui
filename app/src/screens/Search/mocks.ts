@@ -1,9 +1,9 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { recordedHandler } from '../../mocks/fixtures';
+import { contractHandler } from '@/mocks/contract';
+import { recordedHandler } from '@/mocks/fixtures';
 import { wireList } from '@/legacy/os/os-wire';
 import type { SearchResultWire } from './types';
-import { LOCALITY, LOCALITY_HOUSEHOLDS, householdName, type CastHousehold } from '../../mocks/fictional/directory';
+import { LOCALITY, LOCALITY_HOUSEHOLDS, householdName, type CastHousehold } from '@/mocks/fictional/directory';
 
 /* Get_SearchBirthdayOptions: recorded (fixture UBTConnect ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions).
    DataActionFetchSearchResults was never recorded (no captured search, Q2): fictional people and places of the

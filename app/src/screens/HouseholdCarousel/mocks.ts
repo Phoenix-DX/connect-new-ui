@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { LOCALITY_HOUSEHOLDS } from '../../mocks/fictional/directory';
+import { LOCALITY_HOUSEHOLDS } from '@/mocks/fictional/directory';
 import { registerMockPreload } from './api';
 
 /* HouseholdCarousel calls no action of its own (HouseholdCarousel.mvc.js :371): GetHousehold, _Coordinates, contact

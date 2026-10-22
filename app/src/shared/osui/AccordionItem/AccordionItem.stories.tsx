@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '../../test/PendingBlock';
-import { AccordionContext, createAccordionParent } from '../Accordion/accordionContext';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { AccordionContext, createAccordionParent } from '@/shared/osui/Accordion/accordionContext';
 import { AccordionItem } from './AccordionItem';
 
 /** Inside an Accordion (role listitem), without its DOM: the capture is the item's own root. */

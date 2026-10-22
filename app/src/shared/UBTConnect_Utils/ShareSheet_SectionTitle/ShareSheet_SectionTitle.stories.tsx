@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UBT_FontSize } from '../lib/staticEntities';
+import { UBT_FontSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { ShareSheet_SectionTitle } from './ShareSheet_SectionTitle';
 
 const meta = {

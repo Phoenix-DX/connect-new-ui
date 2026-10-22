@@ -2,9 +2,9 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { log } from '@/platform/log/log';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { LazyImage } from '../../UBTConnectLibrary/LazyImage';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { LazyImage } from '@/shared/UBTConnectLibrary/LazyImage';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -12,8 +12,8 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import { getIframeObject, getScrollContainer } from '../lib/actions';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { getIframeObject, getScrollContainer } from '@/shared/UBTConnect_EmbedFeed/lib/actions';
 import { getFeedConfig, type FeedConfig } from './api';
 import { embed } from './connect2Feed';
 

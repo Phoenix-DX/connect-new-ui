@@ -7,19 +7,19 @@ import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { getPreloadObject, setPreloadObject, useOsNavigate, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { directory_Updates_GetCarouselPreloadedHouseholds } from '../../../shared/UBTConnect/lib/actions';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
+import { directory_Updates_GetCarouselPreloadedHouseholds } from '@/shared/UBTConnect/lib/actions';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import {
   Connect_UpdateTypeId,
   Gender,
   UBT_Color,
   UBT_Shape,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
-import { Update_ListItem } from '../../../shared/UBTConnectLibrary/Update_ListItem';
-import { markAsRead, markAsUnread, useFetchUpdates } from '../api';
-import type { UpdateItem } from '../types';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Update_ListItem } from '@/shared/UBTConnectLibrary/Update_ListItem';
+import { markAsRead, markAsUnread, useFetchUpdates } from '@/screens/HomeFeed/api';
+import type { UpdateItem } from '@/screens/HomeFeed/types';
 
 /** CurrDate() as OutSystems Date text (local day). */
 const currDate = () => {

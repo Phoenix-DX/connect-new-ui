@@ -1,9 +1,14 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.IconText
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '../Columns_Two';
-import { CustomText } from '../CustomText';
-import { UBT_ColumnBehaviour, UBT_FlexDirection, UBT_Size, UBT_VerticalAlign } from '../lib/staticEntities';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import {
+  UBT_ColumnBehaviour,
+  UBT_FlexDirection,
+  UBT_Size,
+  UBT_VerticalAlign,
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { TextOptions } from './types';
 
 export interface IconTextProps {

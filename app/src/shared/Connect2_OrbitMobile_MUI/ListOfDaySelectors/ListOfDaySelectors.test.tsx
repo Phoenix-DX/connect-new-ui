@@ -1,10 +1,10 @@
 import { composeStories } from '@storybook/react-vite';
 import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { expectToMatchCapture } from '../../../test/dom';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import daySelectorV1 from '../DaySelector/__captures__/v1.html?raw';
-import daySelectorV2 from '../DaySelector/__captures__/v2.html?raw';
+import { expectToMatchCapture } from '@/test/dom';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import daySelectorV1 from '@/shared/Connect2_OrbitMobile_MUI/DaySelector/__captures__/v1.html?raw';
+import daySelectorV2 from '@/shared/Connect2_OrbitMobile_MUI/DaySelector/__captures__/v2.html?raw';
 import { ListOfDaySelectors } from './ListOfDaySelectors';
 import * as stories from './ListOfDaySelectors.stories';
 

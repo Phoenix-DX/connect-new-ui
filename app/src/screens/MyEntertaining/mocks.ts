@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
+import { contractHandler } from '@/mocks/contract';
 
 /* Both actions are fictional in the contract (never recorded). Decision D8 (b): the calendar embed is a same-size
    local stand-in (components/connect2Entertaining.ts, page public/mock-embeds/my-entertaining.html), so the config

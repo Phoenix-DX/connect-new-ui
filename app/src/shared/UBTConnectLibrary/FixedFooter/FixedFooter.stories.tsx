@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CustomContainer } from '../CustomContainer';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { FixedFooter } from './FixedFooter';
 
 const meta = { title: 'Shared/UBTConnectLibrary/FixedFooter', component: FixedFooter } satisfies Meta<

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { LOCALITY } from '../../../mocks/fictional/directory';
+import { LOCALITY } from '@/mocks/fictional/directory';
 import type { AssembleEventSummary } from './types';
 import { AssembleSummaryCard } from './AssembleSummaryCard';
 

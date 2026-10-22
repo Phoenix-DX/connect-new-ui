@@ -13,8 +13,8 @@ import {
 } from '@/platform/storage/localEntities';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
-import { bookmarkServerActions, toggleBookmarkItem_C2 } from '../lib/actions';
-import { BookmarkCategory, Connect_Entity } from '../lib/staticEntities';
+import { bookmarkServerActions, toggleBookmarkItem_C2 } from '@/shared/UBTConnect/lib/actions';
+import { BookmarkCategory, Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { Directory_EntityDetailsActions } from './Directory_EntityDetailsActions';
 import { bookmarksCollection } from './mocks';
 

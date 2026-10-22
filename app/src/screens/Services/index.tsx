@@ -1,15 +1,15 @@
 import { useMemo, useState } from 'react';
-import { ButtonLoading } from '../../shared/osui/ButtonLoading';
-import { SectionSeparator } from '../../shared/UBTConnect/SectionSeparator';
-import { Button } from '../../shared/UBTConnect_Utils/Button';
-import { Columns_Three } from '../../shared/UBTConnectLibrary/Columns_Three';
-import { Columns_Two } from '../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
-import { FixedFooter } from '../../shared/UBTConnectLibrary/FixedFooter';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../shared/UBTConnectLibrary/IconText';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
+import { ButtonLoading } from '@/shared/osui/ButtonLoading';
+import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
+import { Button } from '@/shared/UBTConnect_Utils/Button';
+import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -19,9 +19,9 @@ import {
   UBT_Shape,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { ContainerOptions, TextOptions } from '../../shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { ContainerOptions, TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import {
   NotRegisteredException,
   UserException,

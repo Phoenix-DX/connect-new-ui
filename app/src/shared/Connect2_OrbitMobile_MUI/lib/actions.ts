@@ -5,7 +5,7 @@
 import { callAction } from '@/api/client/callAction';
 import { log } from '@/platform/log/log';
 import { setClientVar } from '@/platform/session/session';
-import { parseOsDate } from '../../lib/osDateTime';
+import { parseOsDate } from '@/shared/lib/osDateTime';
 import type { MemberInformation } from './structures';
 import {
   DirectoryAPIFilter,

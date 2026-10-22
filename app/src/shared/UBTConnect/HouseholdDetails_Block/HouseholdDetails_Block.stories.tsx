@@ -4,8 +4,8 @@ import { MemoryRouter } from 'react-router';
 import { synchBookmarks } from '@/platform/storage/localEntities/localBookmarks';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { currentUserId, isSignedIn, setClientVar, setSignedInUser } from '@/platform/session/session';
-import { getBookmarkType_FromEntity } from '../lib/actions';
-import { Connect_Entity } from '../lib/staticEntities';
+import { getBookmarkType_FromEntity } from '@/shared/UBTConnect/lib/actions';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { HouseholdDetails_Block } from './HouseholdDetails_Block';
 import { HOUSEHOLD_DETAILS_ID, PROFILE_HOUSEHOLD_ID } from './mockData';
 

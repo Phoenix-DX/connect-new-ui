@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { DEPRECATED_GalleryV2 } from './DEPRECATED_GalleryV2';
 import * as stories from './DEPRECATED_GalleryV2.stories';
 

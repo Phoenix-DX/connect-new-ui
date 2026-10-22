@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../mocks/contract';
-import { recordedHandler } from '../../mocks/fixtures';
+import { contractHandler } from '@/mocks/contract';
+import { recordedHandler } from '@/mocks/fixtures';
 import {
   INTERCHANGE,
   LOCALITY,
@@ -10,8 +10,8 @@ import {
   SUPPER_MEETINGS,
   childrenText,
   householdName,
-} from '../../mocks/fictional/directory';
-import { markNoPhoto } from '../../shared/UBTConnect_Utils/UBT_LazyImage/mocks';
+} from '@/mocks/fictional/directory';
+import { markNoPhoto } from '@/shared/UBTConnect_Utils/UBT_LazyImage/mocks';
 
 /* DataActionGet_LocalityDetails: the recorded fixture (UBTConnect/DataActionGet_LocalityDetails/01-a5fd3a96.json:
    counts, main hall coordinates, locality/country names and time zone, no person data). Its LocalityId was remapped by

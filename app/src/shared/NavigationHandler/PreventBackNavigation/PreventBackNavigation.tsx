@@ -1,7 +1,7 @@
 // @os-block NavigationHandler.NavigationHandler.PreventBackNavigation
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { BACK_PRIORITY, usePreventBackNavigation } from '@/platform/navigation';
-import { BackNavigationHandler } from '../BackNavigationHandler';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
 import type { BackNavigationEvent } from './types';
 
 export interface PreventBackNavigationProps {

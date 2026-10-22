@@ -1,20 +1,20 @@
 // @os-block UBTConnect.Directory_Locality.Statistics_Icons
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import type { UI_StatisticsTexts } from '../../Connect_Geography_CS/lib/structures';
-import { Columns_Three } from '../../UBTConnectLibrary/Columns_Three';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { IconText } from '../../UBTConnectLibrary/IconText';
+import type { UI_StatisticsTexts } from '@/shared/Connect_Geography_CS/lib/structures';
+import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import {
   UBT_ColumnBehaviour,
   UBT_Color,
   UBT_FontSize,
   UBT_Icons2,
   UBT_Size,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import type { TextOptions } from '../../UBTConnectLibrary/lib/structures';
-import { getEntityType_Icon } from '../../UBTConnect_Utils/lib/actions';
-import { Connect_Entity, UBT_IconsSize } from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import { getEntityType_Icon } from '@/shared/UBTConnect_Utils/lib/actions';
+import { Connect_Entity, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface Statistics_IconsProps {
   /** OutSystems instance id of the block. */

@@ -1,7 +1,7 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { ASSEMBLE_COUNTRIES } from '../../mocks/fictional/assemble';
-import { SUPPER_MEETINGS } from '../../mocks/fictional/directory';
+import { ASSEMBLE_COUNTRIES } from '@/mocks/fictional/assemble';
+import { SUPPER_MEETINGS } from '@/mocks/fictional/directory';
 import { mockUserInformation } from '@/platform/session/mockUser';
 import { resetNavigation, renderRoutes } from '@/platform/navigation/testRouter';
 import { applyTestSession } from '@/platform/session/testSession';

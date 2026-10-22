@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { recordedHandler } from '../../mocks/fixtures';
-import { collection } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { recordedHandler } from '@/mocks/fixtures';
+import { collection } from '@/mocks/store';
 
 /* ContactUsDetails mocks (route-spec.md "Data"). The app-start calls and CacheControl_UserInfo's GetCacheInfo are the
    shell's (src/shell/mocks.ts).

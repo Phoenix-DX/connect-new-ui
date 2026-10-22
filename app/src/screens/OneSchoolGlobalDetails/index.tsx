@@ -2,21 +2,21 @@ import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 import { OSList } from '@/components/ui/os/OSList';
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { Directory_EntityDetailsActions } from '../../shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
-import { get_LookupSection } from '../../shared/UBTConnect/lib/actions';
-import { Connect_Entity, UBT_IconsSize } from '../../shared/UBTConnect/lib/staticEntities';
-import { SubLayout_DirectoryDetailScreen } from '../../shared/UBTConnect/SubLayout_DirectoryDetailScreen';
-import { ComingSoon } from '../../shared/UBTConnectLibrary/ComingSoon';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../shared/UBTConnectLibrary/IconText';
-import { ImageCard__Content } from '../../shared/UBTConnectLibrary/ImageCard__Content';
-import { ImageCard_LazyLoading } from '../../shared/UBTConnectLibrary/ImageCard_LazyLoading';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '../../shared/UBTConnectLibrary/lib/actions';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
+import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
+import { Connect_Entity, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
+import { SubLayout_DirectoryDetailScreen } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen';
+import { ComingSoon } from '@/shared/UBTConnectLibrary/ComingSoon';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
+import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -25,10 +25,10 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
-import { AddressPopup_Wrapper } from '../../shared/UBTConnect_Utils/AddressPopup_Wrapper';
-import { UBT_LazyImage } from '../../shared/UBTConnect_Utils/UBT_LazyImage';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { AddressPopup_Wrapper } from '@/shared/UBTConnect_Utils/AddressPopup_Wrapper';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { readOneSchoolGlobalDetailsInputs, useGetOneSchoolGlobalDetails } from './api';

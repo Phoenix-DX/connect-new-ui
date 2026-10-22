@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../../mocks/contract';
-import { updateItems } from '../../../screens/HomeFeed/mocks';
+import { contractHandler } from '@/mocks/contract';
+import { updateItems } from '@/screens/HomeFeed/mocks';
 
 /* Server action UBTConnect UpdateItem_MarkAsRead(In_UpdateItemId) (UBTConnect.controller.js:18574-18584, copy in
    migration/screens/HouseholdCarousel/analysis/sources/raw/), called by Directory_Updates_CarouselSwipeAction

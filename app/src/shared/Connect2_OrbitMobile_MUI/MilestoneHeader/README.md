@@ -32,7 +32,7 @@ The icon class is `icon <MainIcon>` (the port replaces the `fa` classes of the w
 ## Not captured / not settled
 
 - **LocalOrbitMilestoneType records** come from the app start (Sync_Info_Main → SyncAllOrbitStaticEntities,
-  CR-EventDetail-1; store in `shell/localEntities/orbitStaticEntities.ts`). The mock lists the fictional types of
+  CR-EventDetail-1; store in `platform/storage/localEntities/orbitStaticEntities.ts`). The mock lists the fictional types of
   `mocks/fictional/orbit.ts`. The `unlocked` mock session seeds them as earlier app starts left them
   (CR-HelpersDetail-1).
   The captures show only `helper-host` / `accommodation-host` (icon, Type "Host").

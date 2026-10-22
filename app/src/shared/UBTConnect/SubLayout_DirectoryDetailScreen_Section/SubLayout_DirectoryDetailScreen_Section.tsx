@@ -1,10 +1,10 @@
 // @os-block UBTConnect.SubLayout.SubLayout_DirectoryDetailScreen_Section
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { SubLayout_Section } from '../../UBTConnectLibrary/SubLayout_Section';
-import { UBT_Color, UBT_FontWeight, UBT_Size } from '../lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { SubLayout_Section } from '@/shared/UBTConnectLibrary/SubLayout_Section';
+import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface SubLayout_DirectoryDetailScreen_SectionProps {
   /** OutSystems instance id of the block. */

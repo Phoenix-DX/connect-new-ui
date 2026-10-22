@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { DEPRECATED_AccordionItem } from '../DEPRECATED_AccordionItem';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
 import { DEPRECATED_Accordion } from './DEPRECATED_Accordion';
 import * as stories from './DEPRECATED_Accordion.stories';
 

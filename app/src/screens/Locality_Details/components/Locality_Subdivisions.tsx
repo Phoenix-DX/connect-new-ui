@@ -6,21 +6,16 @@ import { isOn } from '@/platform/flags/flags';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { setPreloadObject, useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { Directory_EmptyState } from '../../../shared/UBTConnect/Directory_EmptyState';
-import { SupperMeeting_ImageCard_Content } from '../../../shared/UBTConnect/SupperMeeting_ImageCard_Content';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { ImageCard_LazyLoading } from '../../../shared/UBTConnectLibrary/ImageCard_LazyLoading';
-import {
-  UBT_Color,
-  UBT_ImageCardType,
-  UBT_ImageSize,
-  UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
-import { Connect_Entity } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '../../../shared/UBTConnect_Utils/UBT_LazyImage';
-import { getSubdivisionList } from '../api';
-import type { SubdivisionCard } from '../types';
+import { Directory_EmptyState } from '@/shared/UBTConnect/Directory_EmptyState';
+import { SupperMeeting_ImageCard_Content } from '@/shared/UBTConnect/SupperMeeting_ImageCard_Content';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
+import { UBT_Color, UBT_ImageCardType, UBT_ImageSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { getSubdivisionList } from '@/screens/Locality_Details/api';
+import type { SubdivisionCard } from '@/screens/Locality_Details/types';
 import { getSkeletonList_UI_SubdivisionCard } from './actions';
 
 export interface Locality_SubdivisionsProps {

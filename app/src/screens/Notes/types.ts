@@ -1,5 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { Notes } from '../../shared/UBTConnectLibrary/lib/structures';
+import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
 
 /* Wire shapes (API contract) stay in api.ts / mocks.ts; components see the domain types below. */
 type GetNotesPath = PathOf<'UBTConnect', 'Notes/DataActionGetNotes'>;

@@ -1,5 +1,5 @@
 import { callAction } from '@/api/client/callAction';
-import type { CarouselPreloadedHouseholds } from '../../shared/UBTConnect/lib/structures';
+import type { CarouselPreloadedHouseholds } from '@/shared/UBTConnect/lib/structures';
 import type { HouseholdCarouselInputs } from './types';
 
 /* HouseholdCarousel has no data action of its own (controller `dataFetchActionNames = []`, HouseholdCarousel.mvc.js

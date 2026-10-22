@@ -2,19 +2,19 @@
 import { useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Carousel } from '../../osui/Carousel';
+import { Carousel } from '@/shared/osui/Carousel';
 import {
   carouselDisableOnRender,
   setSplideConfigs,
   setSplideEvent,
   unsetSplideEvent,
   type SplideEventHandler,
-} from '../../osui/lib/actions';
-import { textToLongInteger } from '../../UBTConnect_Utils/lib/actions';
-import { EntitiesCarousel_Element } from '../EntitiesCarousel_Element';
-import { EntitiesCarousel_HeaderGenerator } from '../EntitiesCarousel_HeaderGenerator';
-import { BooleanTypes, CarouselNavigation } from '../lib/staticEntities';
-import type { EntitiesCarousel_Item, HeaderList } from '../lib/structures';
+} from '@/shared/osui/lib/actions';
+import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import { EntitiesCarousel_Element } from '@/shared/UBTConnect/EntitiesCarousel_Element';
+import { EntitiesCarousel_HeaderGenerator } from '@/shared/UBTConnect/EntitiesCarousel_HeaderGenerator';
+import { BooleanTypes, CarouselNavigation } from '@/shared/UBTConnect/lib/staticEntities';
+import type { EntitiesCarousel_Item, HeaderList } from '@/shared/UBTConnect/lib/structures';
 
 const NO_ITEMS: readonly EntitiesCarousel_Item[] = [];
 

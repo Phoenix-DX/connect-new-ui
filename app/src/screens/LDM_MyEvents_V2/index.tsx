@@ -1,7 +1,7 @@
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { getNameAndSurname_ByFullName } from '../../shared/UBTConnect/lib/actions';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { getNameAndSurname_ByFullName } from '@/shared/UBTConnect/lib/actions';
 import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_MyEvents_V2 } from './components/ScreenBlock_MyEvents_V2';
 

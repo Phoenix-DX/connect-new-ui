@@ -1,7 +1,7 @@
 import { log } from '@/platform/log/log';
-import { getFormattedDateTime } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { MilestoneTimeType } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { Milestone_Screen } from '../../../shared/Connect2_OrbitMobile_MUI/lib/structures';
+import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { MilestoneTimeType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import type { Milestone_Screen } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { ApplicationEvents_Orbit_GenerateQRCode } from './staticEntities';
 
 /* Client actions of Connect2_OrbitMobile_MUI that ScreenBlock_EventDetail calls, ported 1:1. `C:<n>` = line of

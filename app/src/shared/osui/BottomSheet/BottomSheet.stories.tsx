@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
-import { PendingBlock } from '../../test/PendingBlock';
-import { bindDragToOpen } from '../../UBTConnectLibrary/BottomSheet/jsNodes';
-import { Columns_Three } from '../../UBTConnectLibrary/Columns_Three';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { jSUtils_SetStyleProperty } from '../../UBTJavaScriptUtils/lib/actions';
-import { bottomSheetOpen } from '../lib/actions';
-import { Shape } from '../lib/staticEntities';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { bindDragToOpen } from '@/shared/UBTConnectLibrary/BottomSheet/jsNodes';
+import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { jSUtils_SetStyleProperty } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { Shape } from '@/shared/osui/lib/staticEntities';
 import { BottomSheet, type BottomSheetProps } from './BottomSheet';
 
 const meta = { title: 'Shared/osui/BottomSheet', component: BottomSheet } satisfies Meta<typeof BottomSheet>;

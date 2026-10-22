@@ -7,27 +7,27 @@ import {
   ValidationServiceProvider,
   type InputDataType,
 } from '@/components/ui/os/OSValidation';
-import { ButtonLoading } from '../../shared/osui/ButtonLoading';
-import { InputWithIcon } from '../../shared/osui/InputWithIcon';
-import { bottomSheetOpen } from '../../shared/osui/lib/actions';
-import { preventNavigation } from '../../shared/NavigationHandler/lib/actions';
-import { CacheControl_UserInfo_Wrapper } from '../../shared/UBTConnect/CacheControl_UserInfo_Wrapper';
-import type { Directory_UserCurrent } from '../../shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { Dialog_CustomChoice } from '../../shared/UBTConnect/Dialog_CustomChoice';
-import { Dialog_Navigation } from '../../shared/UBTConnect/Dialog_Navigation';
-import { SectionSeparator } from '../../shared/UBTConnect/SectionSeparator';
-import { Button } from '../../shared/UBTConnect_Utils/Button';
-import { Connect_Entity } from '../../shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '../../shared/UBTConnect_Utils/UBT_LazyImage';
-import { jSUtils_CopyToClipboard } from '../../shared/UBTJavaScriptUtils/lib/actions';
-import { Columns_Two } from '../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
-import { FixedFooter } from '../../shared/UBTConnectLibrary/FixedFooter';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../shared/UBTConnectLibrary/IconText';
-import { Layout_HomePage } from '../../shared/UBTConnectLibrary/Layout_HomePage';
+import { ButtonLoading } from '@/shared/osui/ButtonLoading';
+import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
+import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
+import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Dialog_CustomChoice } from '@/shared/UBTConnect/Dialog_CustomChoice';
+import { Dialog_Navigation } from '@/shared/UBTConnect/Dialog_Navigation';
+import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
+import { Button } from '@/shared/UBTConnect_Utils/Button';
+import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { jSUtils_CopyToClipboard } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Layout_HomePage } from '@/shared/UBTConnectLibrary/Layout_HomePage';
 import {
   UBT_AlignItems,
   UBT_ButtonType,
@@ -40,9 +40,9 @@ import {
   UBT_ImageSize,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { SpacingOptions, TextOptions } from '../../shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { SpacingOptions, TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { confirmAction } from '@/platform/feedback/dialogs';
 import {
   NotRegisteredException,

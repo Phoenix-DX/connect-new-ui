@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
-import { getCacheableSignedPhotoURL, getSignedPhotosInBulk, type GetSignedPhotosInBulk } from '../lib/actions';
+import {
+  getCacheableSignedPhotoURL,
+  getSignedPhotosInBulk,
+  type GetSignedPhotosInBulk,
+} from '@/shared/Connect2_LegacyShared/lib/actions';
 
 interface LoadedPhoto {
   bucket: string;

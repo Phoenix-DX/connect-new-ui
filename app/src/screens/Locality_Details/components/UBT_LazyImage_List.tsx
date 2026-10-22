@@ -2,10 +2,10 @@
 import { NotCaptured } from '@/app/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { formatClasses, getClasses_AvatarSize } from '../../../shared/UBTConnectLibrary/lib/actions';
-import { UBT_ImageSize } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '../../../shared/UBTConnect_Utils/UBT_LazyImage';
-import type { LazyImageItem } from '../types';
+import { formatClasses, getClasses_AvatarSize } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import type { LazyImageItem } from '@/screens/Locality_Details/types';
 
 export interface UBT_LazyImage_ListProps {
   id?: string;

@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
-import { ORBIT_MEMBERS, orbitEventsOfMember, type OrbitEvent } from '../../mocks/fictional/orbit';
-import { contractHandler } from '../../mocks/contract';
+import { ORBIT_MEMBERS, orbitEventsOfMember, type OrbitEvent } from '@/mocks/fictional/orbit';
+import { contractHandler } from '@/mocks/contract';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import type {
   Get_EventsByMemberIdWire,

@@ -36,12 +36,14 @@ export default tseslint.config(
       '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
     },
   },
-  // Plan v2 §2.4 rule 11 and rule 4: warnings until Phase 9 turns them into errors.
+  // Plan v2 §2.4 rule 11 is an error (P1-4); rule 4 stays a warning until Phase 9 turns it into an error.
   // A later block that sets the same rule replaces this one, so the components block repeats the relative pattern.
   {
     files: ['src/**/*.{ts,tsx}'],
-    rules: { 'no-restricted-imports': ['warn', { patterns: [relativeParentPattern] }] },
+    rules: { 'no-restricted-imports': ['error', { patterns: [relativeParentPattern] }] },
   },
+  // The alias codemod skips src/sw (built by vite-plugin-pwa, build/pwa.ts), so it keeps relative imports.
+  { files: ['src/sw/**/*.ts'], rules: { 'no-restricted-imports': 'off' } },
   {
     files: ['src/components/**/*.{ts,tsx}'],
     rules: {

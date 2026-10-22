@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.TagContent
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../CustomContainer';
-import { formatClasses } from '../lib/actions';
-import { UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '../lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface TagContentProps {
   /** OutSystems instance id of the block. */

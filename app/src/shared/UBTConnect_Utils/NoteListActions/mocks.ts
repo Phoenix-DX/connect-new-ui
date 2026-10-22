@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../../mocks/contract';
-import { collection } from '../../../mocks/store';
-import { currDateTime } from '../../lib/osDateTime';
+import { contractHandler } from '@/mocks/contract';
+import { collection } from '@/mocks/store';
+import { currDateTime } from '@/shared/lib/osDateTime';
 
 /* The notes writes of CW_Notes (UpdateNote, DeleteNoteByNoteId here; AddNote in ../NotesSheet/mocks.ts) were never
    recorded (x-mock-source fictional): they change the in-memory notes collection (P-MUTATION), never the real server.

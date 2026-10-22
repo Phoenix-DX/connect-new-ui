@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { syncOrbitMilestoneTypes } from '../lib/actions';
-import type { OrbitMilestoneTypeRecord } from '../lib/structures';
+import { syncOrbitMilestoneTypes } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import type { OrbitMilestoneTypeRecord } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { MilestoneHeader } from './MilestoneHeader';
 
 /** Mock OrbitMilestoneTypes of the sync (fictional data; icon and Type as in the HelpersDetail / MilestoneDetail

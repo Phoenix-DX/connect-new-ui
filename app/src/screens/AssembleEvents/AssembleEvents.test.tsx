@@ -1,6 +1,6 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { ASSEMBLE_MEETINGS, USER_HALL_ID } from '../../mocks/fictional/assemble';
+import { ASSEMBLE_MEETINGS, USER_HALL_ID } from '@/mocks/fictional/assemble';
 import { resetNavigation, renderRoutes } from '@/platform/navigation/testRouter';
 import { applyTestSession } from '@/platform/session/testSession';
 import { freshPage } from '@/test/testSupport';

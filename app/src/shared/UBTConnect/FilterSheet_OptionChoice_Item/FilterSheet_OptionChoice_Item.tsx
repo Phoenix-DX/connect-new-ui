@@ -1,18 +1,18 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item
 import { useMemo } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { SelectionOption_List } from '../../UBTConnectLibrary/SelectionOption_List';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { SelectionOption_List } from '@/shared/UBTConnectLibrary/SelectionOption_List';
 import {
   UBT_Color,
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Shape,
   UBT_Size,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import type { SelectionOption_Item } from '../../UBTConnectLibrary/lib/structures';
-import { Choice } from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { SelectionOption_Item } from '@/shared/UBTConnectLibrary/lib/structures';
+import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
 import type { Filter_Common_Control_Choice } from './types';
 
 export interface FilterSheet_OptionChoice_ItemProps {

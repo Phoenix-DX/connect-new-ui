@@ -2,14 +2,14 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
-import { BackNavigationHandler } from '../../NavigationHandler/BackNavigationHandler';
-import { PendingBlock } from '../../test/PendingBlock';
-import { BottomBarMenu } from '../../UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../UBTConnect/CommonUI_InsideLayout';
-import { MenuAction } from '../lib/staticEntities';
-import { MenuIcon_Back } from '../MenuIcon_Back';
-import { MenuIcon__UpdatedOSUI } from '../MenuIcon__UpdatedOSUI';
-import { Spinner } from '../Spinner';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
 import { BaseLayout_UpdatedOSUI } from './BaseLayout_UpdatedOSUI';
 
 /** Stories only: the signed-in session of the captures (BottomBarMenu, CommonUI_InsideLayout), checked just now. */

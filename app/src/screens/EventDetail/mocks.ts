@@ -1,12 +1,12 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
+import { contractHandler } from '@/mocks/contract';
 import {
   ORBIT_MILESTONE_TYPES,
   orbitEventsOfMember,
   type OrbitEvent,
   type OrbitMilestone,
   type OrbitMilestoneTypeMock,
-} from '../../mocks/fictional/orbit';
+} from '@/mocks/fictional/orbit';
 import type { Get_EventDetailsWire, MilestoneWire } from './types';
 
 /* The four data actions of ScreenBlock_EventDetail were not recorded: fictional data from the shared Orbit world

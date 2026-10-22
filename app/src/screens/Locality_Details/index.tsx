@@ -6,27 +6,27 @@ import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { HouseholdDetails_Block } from '../../shared/UBTConnect/HouseholdDetails_Block';
-import { Columns_Two } from '../../shared/UBTConnectLibrary/Columns_Two';
-import { ComingSoon } from '../../shared/UBTConnectLibrary/ComingSoon';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { HorizontalTagList } from '../../shared/UBTConnectLibrary/HorizontalTagList';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { Layout_MainPages } from '../../shared/UBTConnectLibrary/Layout_MainPages';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { HouseholdDetails_Block } from '@/shared/UBTConnect/HouseholdDetails_Block';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { ComingSoon } from '@/shared/UBTConnectLibrary/ComingSoon';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { HorizontalTagList } from '@/shared/UBTConnectLibrary/HorizontalTagList';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Layout_MainPages } from '@/shared/UBTConnectLibrary/Layout_MainPages';
 import {
   UBT_ColumnBehaviour,
   UBT_Color,
   UBT_Display,
   UBT_FontSize,
   UBT_Size,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { ContainerOptions, Tag } from '../../shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
-import { StaticInput } from '../../shared/UBTConnectLibrary/StaticInput';
-import { Connect_BottomBar_Items } from '../../shared/UBTConnect_Utils/lib/staticEntities';
-import { getHasC1DirectoryView } from '../../shared/UBTConnect_Utils/lib/actions';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { ContainerOptions, Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { StaticInput } from '@/shared/UBTConnectLibrary/StaticInput';
+import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { getHasC1DirectoryView } from '@/shared/UBTConnect_Utils/lib/actions';
 import { getLocalityDetails } from './api';
 import { getSample_FilterTags, stopPropagationHelper_Check } from './components/actions';
 import { Locality_DateTimeLabel } from './components/Locality_DateTimeLabel';

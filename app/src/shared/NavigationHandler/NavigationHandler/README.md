@@ -17,5 +17,5 @@ wrapper; while mounted it listens on `window` for `dx-before-navigation` and rai
 - The Navigation event: from the compiled controller, tested in `NavigationHandler.test.tsx`.
 - The original NavigationHandler module dispatches `dx-before-navigation` (cancelable CustomEvent, detail `location`,
   `replace`, `resume()`) before every navigation (NavigationHandler.controller.js:858-944).
-- The shell's navigation gate (`src/shell/navigation/navigationGate.ts`, tests in `navigationGate.test.tsx`) does the
+- The shell's navigation gate (`src/platform/navigation/navigationGate.ts`, tests in `navigationGate.test.tsx`) does the
   same.

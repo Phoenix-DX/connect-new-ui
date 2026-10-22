@@ -1,13 +1,13 @@
 // @os-block UBTConnect.Notes.Notes_FilterSheet
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { FilterSheet } from '../../../shared/UBTConnect/FilterSheet';
+import { FilterSheet } from '@/shared/UBTConnect/FilterSheet';
 import type {
   Filter_Common_Control_Choice,
   Filter_Common_Control_List,
   Filter_Common_Options,
-} from '../../../shared/UBTConnect/lib/structures';
-import type { NotesFilter } from '../types';
+} from '@/shared/UBTConnect/lib/structures';
+import type { NotesFilter } from '@/screens/Notes/types';
 import { child, scopeOf } from './ids';
 
 export interface Notes_FilterSheetProps {

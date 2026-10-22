@@ -1,13 +1,13 @@
 // @os-block OutSystemsUI_2_23.Interaction.DropdownTags
 import { useId, useLayoutEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { registerDropdown } from '../lib/actions';
-import { fromJson, internalConfigs } from '../DropdownSearch/DropdownSearch';
+import { registerDropdown } from '@/shared/osui/lib/actions';
+import { fromJson, internalConfigs } from '@/shared/osui/DropdownSearch/DropdownSearch';
 import {
   DropdownSearchProvider,
   type DropdownSearchConfig,
   type DropdownSearchProperty,
-} from '../DropdownSearch/provider';
+} from '@/shared/osui/DropdownSearch/provider';
 import type { DropdownOption, DropdownTagsOptionalConfigs } from './types';
 
 export interface DropdownTagsProps {

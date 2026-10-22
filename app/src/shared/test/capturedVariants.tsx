@@ -1,7 +1,7 @@
 import { composeStories } from '@storybook/react-vite';
 import { render } from '@testing-library/react';
 import { it } from 'vitest';
-import { expectToMatchCapture } from '../../test/dom';
+import { expectToMatchCapture } from '@/test/dom';
 
 type StoriesModule = Parameters<typeof composeStories>[0];
 

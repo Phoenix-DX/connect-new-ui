@@ -5,7 +5,7 @@ import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { verifyPin } from '@/platform/session/pin';
 import { getShellState, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { Pincode_Register, type Pincode_RegisterProps } from './Pincode_Register';
 import * as stories from './Pincode_Register.stories';
 

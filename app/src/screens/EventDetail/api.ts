@@ -1,6 +1,6 @@
 import { callAction } from '@/api/client/callAction';
 import { osList } from '@/legacy/os/os-wire';
-import type { Milestone_Screen } from '../../shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { Milestone_Screen } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import type { EventDetailsResult, EventDetailVariablesWire, MilestoneWire } from './types';
 
 /** Module and owner of the four data actions (screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/

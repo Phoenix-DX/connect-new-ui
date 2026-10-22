@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
 import { mockUserInformation } from '@/platform/session/mockUser';
-import { Choice } from '../lib/staticEntities';
+import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
 import { FilterSheet } from './FilterSheet';
 
 const meta = {

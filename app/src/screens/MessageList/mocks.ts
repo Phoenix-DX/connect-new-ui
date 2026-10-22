@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
-import { scenario } from '../../mocks/scenario';
-import { collection, statefulHandler } from '../../mocks/store';
+import { scenario } from '@/mocks/scenario';
+import { collection, statefulHandler } from '@/mocks/store';
 import type { MessageWire } from './types';
 
 /* Messages are person data and DataActionGetMessages was never recorded (no fixture): 19 fictional rows with the

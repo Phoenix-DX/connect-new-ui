@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import type { Location } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createBackEvent, resetBackQueue, runBackHandlers } from '@/platform/navigation/backQueue';
-import { preventNavigation } from '../lib/actions';
+import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
 import { NavigationConfirmationDialog } from './NavigationConfirmationDialog';
 
 /* No captured DOM exists for this block: the checks follow the compiled view and controller

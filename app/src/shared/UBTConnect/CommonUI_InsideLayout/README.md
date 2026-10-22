@@ -32,7 +32,7 @@ The block renders these children, in the captured order:
 
 The layouts render this block in `Placeholder_CommonUI_Inside_Layout`. The Connect2 screens render it after their layout.
 Until the layouts do this, the shell's `CommonUiHost` and `LockHost` in AppFrame stand in for the block. This block
-replaces both on each screen. The back logic is the same as `shell/dialogs/commonUiBack.ts`. This block uses the
+replaces both on each screen. The back logic is the same as `platform/feedback/dialogs/commonUiBack.ts`. This block uses the
 NavigationHandler blocks that the capture shows.
 
 ## Captured variants (2 distinct; 2 tested)

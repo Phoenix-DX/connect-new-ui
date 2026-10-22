@@ -1,1 +1,6 @@
-export type { AvatarImageFallbackoptions, ImageBorderOptions, LazyImageSize, SpacingOptions } from '../lib/structures';
+export type {
+  AvatarImageFallbackoptions,
+  ImageBorderOptions,
+  LazyImageSize,
+  SpacingOptions,
+} from '@/shared/UBTConnectLibrary/lib/structures';

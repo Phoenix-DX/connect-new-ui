@@ -1,13 +1,13 @@
 import { useEffect, useReducer, useRef } from 'react';
 import { NotCaptured } from '@/app/NotCaptured';
 import { UserException } from '@/legacy/os/os-exceptions';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { directory_Updates_RefreshBottomBarCount, scrollTop } from '../../shared/UBTConnect/lib/actions';
-import { Badge } from '../../shared/UBTConnectLibrary/Badge';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { Input } from '../../shared/UBTConnectLibrary/Input';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/shared/UBTConnect/lib/actions';
+import { Badge } from '@/shared/UBTConnectLibrary/Badge';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Input } from '@/shared/UBTConnectLibrary/Input';
 import {
   Shape,
   UBT_AlignItems,
@@ -16,8 +16,8 @@ import {
   UBT_Icons2,
   UBT_IconsSize,
   UBT_Size,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import { bottomSheetOpen } from '../../shared/osui/lib/actions';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState } from '@/platform/navigation';
 import { fetchNotifications, getDateRanges } from './api';

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Icon } from '../Icon';
-import { UBT_Color } from '../lib/staticEntities';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { IconBadge } from './IconBadge';
 
 const meta = { title: 'Shared/UBTConnectLibrary/IconBadge', component: IconBadge } satisfies Meta<typeof IconBadge>;

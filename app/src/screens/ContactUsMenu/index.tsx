@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { OSList } from '@/components/ui/os/OSList';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { Menu_List } from '../../shared/UBTConnect/Menu_List';
-import { SectionSeparator } from '../../shared/UBTConnect/SectionSeparator';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { UBT_Color, UBT_FontSize, UBT_Size } from '../../shared/UBTConnectLibrary/lib/staticEntities';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Menu_List } from '@/shared/UBTConnect/Menu_List';
+import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { UBT_Color, UBT_FontSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { pinCheck } from '@/platform/session/pin';

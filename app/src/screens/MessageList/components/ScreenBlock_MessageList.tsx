@@ -2,16 +2,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useRef, type KeyboardEvent, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
-import { MenuIcon_Back } from '../../../shared/Connect2_LegacyShared/MenuIcon_Back';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
-import { MessageList_NoResults } from '../../../shared/Connect2_LegacyShared/MessageList_NoResults';
-import { Spinner } from '../../../shared/Connect2_LegacyShared/Spinner';
-import { currDateTime } from '../../../shared/lib/osDateTime';
-import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler';
-import { Animate } from '../../../shared/osui/Animate';
-import { InputWithIcon } from '../../../shared/osui/InputWithIcon';
+import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MessageList_NoResults } from '@/shared/Connect2_LegacyShared/MessageList_NoResults';
+import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { currDateTime } from '@/shared/lib/osDateTime';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { Animate } from '@/shared/osui/Animate';
+import { InputWithIcon } from '@/shared/osui/InputWithIcon';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
@@ -23,8 +23,8 @@ import {
   markMessageAsClear,
   markMessageAsRead,
   wrapper_MarkAllAsReadNotifications,
-} from '../api';
-import type { GetMessagesResult, MessageListVariables, MessagesList } from '../types';
+} from '@/screens/MessageList/api';
+import type { GetMessagesResult, MessageListVariables, MessagesList } from '@/screens/MessageList/types';
 import { decrementReadMessagesCounter, setUnreadNotificationsNumber } from './actions';
 import { MessageListBlock } from './MessageListBlock';
 import { MessageList_Filter } from './MessageList_Filter';

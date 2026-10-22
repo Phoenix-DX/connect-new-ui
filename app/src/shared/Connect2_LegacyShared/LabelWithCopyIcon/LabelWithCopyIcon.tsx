@@ -1,7 +1,7 @@
 // @os-block Connect2_LegacyShared.Utility.LabelWithCopyIcon
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { AlignCenter } from '../../osui/AlignCenter';
+import { AlignCenter } from '@/shared/osui/AlignCenter';
 
 export interface LabelWithCopyIconProps {
   /** OutSystems instance id of the block. */

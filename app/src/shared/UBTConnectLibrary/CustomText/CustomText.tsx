@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.BasePatterns.CustomText
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { HighlightSearch } from '../HighlightSearch';
-import { IconInline_Internal } from '../IconInline_Internal';
-import { formatClasses, getClasses_Text, getSpacingOptions } from '../lib/actions';
+import { HighlightSearch } from '@/shared/UBTConnectLibrary/HighlightSearch';
+import { IconInline_Internal } from '@/shared/UBTConnectLibrary/IconInline_Internal';
+import { formatClasses, getClasses_Text, getSpacingOptions } from '@/shared/UBTConnectLibrary/lib/actions';
 import type { InlineIcon, SpacingOptions, TextOptions } from './types';
 
 export interface CustomTextProps {

@@ -3,27 +3,27 @@ import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { useFlagOn } from '@/platform/flags/flags';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { Accordion_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
-import { Card_Milestone } from '../../../shared/Connect2_OrbitMobile_MUI/Card_Milestone';
-import { ContactHelpdesk_Footer } from '../../../shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { HostSurvey_PillItem } from '../../../shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';
-import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { Accordion_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
+import { Card_Milestone } from '@/shared/Connect2_OrbitMobile_MUI/Card_Milestone';
+import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
+import { HostSurvey_PillItem } from '@/shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';
+import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
+import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import {
   MilestoneTimeType,
   OrbitMilestoneType,
   OrbitSkeletonLoading,
-} from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { Milestone_Screen } from '../../../shared/Connect2_OrbitMobile_MUI/lib/structures';
-import { DEPRECATED_AccordionItem } from '../../../shared/osui/DEPRECATED_AccordionItem';
+} from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import type { Milestone_Screen } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
+import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { getLocalSurveyStatusByJSONName } from '@/platform/storage/localEntities';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { getEventDetails, getHasDocuments, getHasQRCode, getHostSurveyStatus } from '../api';
+import { getEventDetails, getHasDocuments, getHasQRCode, getHostSurveyStatus } from '@/screens/EventDetail/api';
 import type {
   DateFilters,
   EventDetailInputs,
@@ -31,7 +31,7 @@ import type {
   EventDetailVariablesWire,
   LocalSurveyStatus,
   UserIds,
-} from '../types';
+} from '@/screens/EventDetail/types';
 import {
   eventDateRange,
   filterMilestonesByDateGroup,

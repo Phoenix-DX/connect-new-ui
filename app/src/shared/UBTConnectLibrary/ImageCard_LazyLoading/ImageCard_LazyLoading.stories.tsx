@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CarouselTag } from '../../UBTConnect/CarouselTag';
-import { UBT_LazyImage } from '../../UBTConnect_Utils/UBT_LazyImage';
-import { ImageCard__Content } from '../ImageCard__Content';
-import { UBT_ImageCardType } from '../lib/staticEntities';
+import { CarouselTag } from '@/shared/UBTConnect/CarouselTag';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
+import { UBT_ImageCardType } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { ImageCard_LazyLoading } from './ImageCard_LazyLoading';
 
 const meta = {

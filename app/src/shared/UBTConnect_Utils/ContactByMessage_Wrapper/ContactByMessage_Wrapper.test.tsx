@@ -1,12 +1,12 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { changeWindowLocation } from '../../UBTJavaScriptUtils/lib/actions';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { changeWindowLocation } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { ContactByMessage_Wrapper } from './ContactByMessage_Wrapper';
 import * as stories from './ContactByMessage_Wrapper.stories';
 
-vi.mock('../../UBTJavaScriptUtils/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../../UBTJavaScriptUtils/lib/actions')>()),
+vi.mock('@/shared/UBTJavaScriptUtils/lib/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/shared/UBTJavaScriptUtils/lib/actions')>()),
   changeWindowLocation: vi.fn(),
 }));
 

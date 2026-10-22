@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
 import { useOsNavigate } from '@/platform/navigation';
 import { useShellState } from '@/platform/session/session';
 import { ScreenBlock_MessageList } from './components/ScreenBlock_MessageList';

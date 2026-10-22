@@ -1,8 +1,8 @@
 // @os-block UBTConnect.Directory_Locality.Locality_Households
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import {
   UBT_Display,
   UBT_Color,
@@ -10,8 +10,8 @@ import {
   UBT_FontWeight,
   UBT_Icons,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { TextOptions } from '../../../shared/UBTConnectLibrary/lib/structures';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
 import { Locality_Households_HouseholdList } from './Locality_Households_HouseholdList';
 
 export interface Locality_HouseholdsProps {

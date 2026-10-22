@@ -5,7 +5,7 @@ import {
   getLocalNotesCategoryIds_ByUserId,
 } from '@/platform/storage/localEntities';
 import { currentUserId } from '@/platform/session/session';
-import type { Tag } from '../../shared/UBTConnectLibrary/lib/structures';
+import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
 import type { NoteCardItem, NoteCardItemWire, NotesFilter, NotesFilterWire, NotesPage, NotesVariables } from './types';
 
 const toNoteCardItem = (w: NoteCardItemWire): NoteCardItem => ({

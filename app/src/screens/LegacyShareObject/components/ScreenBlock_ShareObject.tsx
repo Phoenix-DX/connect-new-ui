@@ -2,17 +2,21 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
-import { ResultListType } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
-import { MenuIcon_Back } from '../../../shared/Connect2_LegacyShared/MenuIcon_Back';
-import { Result_Item_Image } from '../../../shared/Connect2_LegacyShared/Result_Item_Image';
-import { AvatarImage } from '../../../shared/UBTConnectLibrary/AvatarImage';
-import { UBT_AvatarSize, UBT_Color, UBT_Shape } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { Connect_Entity, UBT_ImageSize } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '../../../shared/UBTConnect_Utils/UBT_LazyImage';
+import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
+import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
+import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';
+import { UBT_AvatarSize, UBT_Color, UBT_Shape } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Connect_Entity, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { getCommunityBusinessShareCard, getHouseholdDetails, useShareObjectTypeLabel } from '../api';
-import type { CommunityBusinessShareCard } from '../types';
+import {
+  getCommunityBusinessShareCard,
+  getHouseholdDetails,
+  useShareObjectTypeLabel,
+} from '@/screens/LegacyShareObject/api';
+import type { CommunityBusinessShareCard } from '@/screens/LegacyShareObject/types';
 import { ProfileList } from './ProfileList';
 import { FEED_ITEM_ICON, Type_ShareObject } from './staticEntities';
 

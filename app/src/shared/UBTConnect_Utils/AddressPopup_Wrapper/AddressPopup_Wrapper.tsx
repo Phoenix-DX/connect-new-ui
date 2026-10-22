@@ -4,11 +4,18 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { appManager_GetIsNative } from '@/platform/device/deviceContext';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { changeWindowLocation, jSUtils_CopyToClipboard } from '../../UBTJavaScriptUtils/lib/actions';
-import { AddressPopup } from '../AddressPopup';
-import { cleanAddressForMaps } from '../lib/actions';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_IconSize, UBT_Icons, UBT_Size } from '../lib/staticEntities';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { changeWindowLocation, jSUtils_CopyToClipboard } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { AddressPopup } from '@/shared/UBTConnect_Utils/AddressPopup';
+import { cleanAddressForMaps } from '@/shared/UBTConnect_Utils/lib/actions';
+import {
+  UBT_Color,
+  UBT_FontSize,
+  UBT_FontWeight,
+  UBT_IconSize,
+  UBT_Icons,
+  UBT_Size,
+} from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import type { Directory_Coordinates } from './types';
 
 export interface AddressPopup_WrapperProps {

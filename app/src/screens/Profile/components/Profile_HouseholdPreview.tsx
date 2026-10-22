@@ -1,9 +1,9 @@
 // @os-block UBTConnect.App_Profile.Profile_HouseholdPreview
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { HouseholdDetails_Block } from '../../../shared/UBTConnect/HouseholdDetails_Block';
-import type { HouseholdPreviewStructure } from '../../../shared/UBTConnect/lib/structures';
-import { BottomSheet } from '../../../shared/UBTConnectLibrary/BottomSheet';
-import { UBT_Size } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
+import { HouseholdDetails_Block } from '@/shared/UBTConnect/HouseholdDetails_Block';
+import type { HouseholdPreviewStructure } from '@/shared/UBTConnect/lib/structures';
+import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface Profile_HouseholdPreviewProps {
   /** OutSystems instance id of the block. */

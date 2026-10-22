@@ -1,15 +1,15 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Milestone
 import { Fragment, useState, type MouseEvent, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '../../lib/cssText';
-import { Card_Template } from '../Card_Template';
+import { styleFromCssText } from '@/shared/lib/cssText';
+import { Card_Template } from '@/shared/Connect2_OrbitMobile_MUI/Card_Template';
 import {
   getCSSVarFromMainColor,
   getFormattedDateTime,
   getFormattedDateTimeById,
   getFormattedTime_FromDateTime,
-} from '../lib/actions';
-import { OrbitColorShade, OrbitMilestoneType as T } from '../lib/staticEntities';
+} from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { OrbitColorShade, OrbitMilestoneType as T } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { Milestone_Screen } from './types';
 
 export interface Card_MilestoneProps {

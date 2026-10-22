@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../mocks/contract';
-import { VITALE, VITALE_PARENTS } from '../../mocks/fictional/directory';
+import { contractHandler } from '@/mocks/contract';
+import { VITALE, VITALE_PARENTS } from '@/mocks/fictional/directory';
 
 /* Never recorded (members and relations are person data, migration/knowledge/mock-fixtures.md): the relations of
    Julián Vitale, householder of the route's household 42438 (the Vitale household of the directory cast,

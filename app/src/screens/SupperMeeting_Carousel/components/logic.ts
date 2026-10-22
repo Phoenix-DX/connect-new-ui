@@ -1,6 +1,6 @@
-import { textToLongInteger } from '../../../shared/UBTConnect_Utils/lib/actions';
-import type { EntitiesCarousel_Item } from '../../../shared/UBTConnect/lib/structures';
-import type { PreloadedSupperMeetings } from '../types';
+import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import type { EntitiesCarousel_Item } from '@/shared/UBTConnect/lib/structures';
+import type { PreloadedSupperMeetings } from '@/screens/SupperMeeting_Carousel/types';
 
 /* Client logic of ScreenEvent_OnInitialize (SupperMeeting_Carousel.mvc.js controller `_screenEvent_OnInitialize$Action`),
    without React. */

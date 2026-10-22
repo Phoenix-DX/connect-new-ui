@@ -1,9 +1,9 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Event
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '../../lib/cssText';
-import { Card_Template } from '../Card_Template';
-import { getCSSVarFromMainColor, getFormattedDateTime } from '../lib/actions';
-import { OrbitColorShade } from '../lib/staticEntities';
+import { styleFromCssText } from '@/shared/lib/cssText';
+import { Card_Template } from '@/shared/Connect2_OrbitMobile_MUI/Card_Template';
+import { getCSSVarFromMainColor, getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { OrbitColorShade } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { Event_Screen } from './types';
 
 export interface Card_EventProps {

@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { SupperMeeting_ImageCard_Content } from './SupperMeeting_ImageCard_Content';
 import * as stories from './SupperMeeting_ImageCard_Content.stories';
 

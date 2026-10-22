@@ -1,4 +1,4 @@
-import type { components } from '../../../api/schema';
+import type { components } from '@/api/schema.d';
 
 /* Structures of Connect2_LegacyShared used by the ported actions; fields named as in OutSystems (the record attributes
    read and written by Connect2_LegacyShared.controller.js), all optional = OutSystems default. */

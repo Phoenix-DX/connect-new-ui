@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Connect_Entity } from '../lib/staticEntities';
+import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { ShareableObject_Generic } from './ShareableObject_Generic';
 
 const meta = {

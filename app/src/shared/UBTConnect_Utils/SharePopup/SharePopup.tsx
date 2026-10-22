@@ -1,9 +1,9 @@
 // @os-block UBTConnect_Utils.CW_CTA_PopUps.SharePopup
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ContactPopup } from '../ContactPopup';
-import { getHasExtendedShare, showComingSoonMessage } from '../lib/actions';
-import { Connect_Entity, UBT_Icons, UBT_ImageSize } from '../lib/staticEntities';
+import { ContactPopup } from '@/shared/UBTConnect_Utils/ContactPopup';
+import { getHasExtendedShare, showComingSoonMessage } from '@/shared/UBTConnect_Utils/lib/actions';
+import { Connect_Entity, UBT_Icons, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import type { ContactPopupButton, ContactPopupData } from './types';
 
 export interface SharePopupProps {

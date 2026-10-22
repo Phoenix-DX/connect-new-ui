@@ -2,10 +2,10 @@
 import { useEffect, useLayoutEffect, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { setThemeClassToBody } from '@/legacy/os/bodyTheme';
-import { LayoutRuntime_Top } from '../../NavigationHandler/LayoutRuntime_Top';
-import { BaseLayout_UpdatedOSUI } from '../BaseLayout_UpdatedOSUI';
-import { iOSMetaTags, iOSPreventSwipe } from '../lib/actions';
-import { ThemeClass } from '../lib/staticEntities';
+import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
+import { BaseLayout_UpdatedOSUI } from '@/shared/Connect2_LegacyShared/BaseLayout_UpdatedOSUI';
+import { iOSMetaTags, iOSPreventSwipe } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { ThemeClass } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 
 export interface LayoutProps {
   /** OutSystems instance id of the block. */

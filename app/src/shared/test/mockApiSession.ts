@@ -6,7 +6,7 @@ let started: Promise<void> | null = null;
     then the signed-in test session (`applyTestSession`), for blocks that load their own data. Runs once per page. */
 export function mockApiSession(): Promise<void> {
   started ??= (async () => {
-    const { worker } = await import('../../mocks/browser');
+    const { worker } = await import('@/mocks/browser');
     await worker.start({ onUnhandledRequest: 'bypass', quiet: true });
     await applyTestSession();
   })();

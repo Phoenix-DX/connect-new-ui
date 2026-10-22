@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../../mocks/contract';
-import { addLegacyBookmark, legacyBookmarksCollection } from '../../Connect2_MyBookmarks_MUI/mocks';
+import { contractHandler } from '@/mocks/contract';
+import { addLegacyBookmark, legacyBookmarksCollection } from '@/shared/Connect2_MyBookmarks_MUI/mocks';
 
 /* The legacy bookmark writes of Connect2_Assemble_MUI ToggleBookmarkItem (CR-AssembleDetail-2; Connect2_Assemble_MUI
    .controller.js:1493-1686, ServerAction.AddBookmark :1687-1723, DeleteBookmarkByBookmarkId :1725-1749): never recorded

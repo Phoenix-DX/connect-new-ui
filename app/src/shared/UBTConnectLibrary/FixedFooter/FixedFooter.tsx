@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.FixedFooter
 import { useEffect, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { jSUtils_AddClass, jSUtils_SetStyleProperty } from '../../UBTJavaScriptUtils/lib/actions';
-import { formatClasses } from '../lib/actions';
+import { jSUtils_AddClass, jSUtils_SetStyleProperty } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
 
 export interface FixedFooterProps {
   /** OutSystems instance id of the block. */

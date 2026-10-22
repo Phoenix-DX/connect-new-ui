@@ -1,5 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { DayFilter, Milestone_Screen } from '../../shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { DayFilter, Milestone_Screen } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 
 /* ---- Wire shapes (api.ts and mocks.ts only) ----
    The four data actions of ScreenBlock_EventDetail, typed by the API contract (ScreenBlock_EventDetail.mvc.js model

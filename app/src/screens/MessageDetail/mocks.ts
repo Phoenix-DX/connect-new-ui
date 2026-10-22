@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { scenario } from '../../mocks/scenario';
-import { collection, statefulHandler } from '../../mocks/store';
-import { messageSenderName } from '../../mocks/fictional/content';
+import { scenario } from '@/mocks/scenario';
+import { collection, statefulHandler } from '@/mocks/store';
+import { messageSenderName } from '@/mocks/fictional/content';
 
 /* DataActionGetMessageInstance was never recorded (no fixture) and messages are person data: fictional values with
    the captured shape (analysis/calls.md #2). The captured message (MessageInstanceId 5965247): sender target Directory

@@ -1,5 +1,5 @@
 import { callAction } from '@/api/client/callAction';
-import type { UI_Screen_SubdivisionDetails } from '../lib/structures';
+import type { UI_Screen_SubdivisionDetails } from '@/shared/UBTConnect/lib/structures';
 
 /** DataActionGetSubdivision (block controller getSubdivision$DataActRefresh, mvc.js:458-476): sent with the block's
     In_SubdivsionId; refreshed only by ScreenEvent_OnReady. */

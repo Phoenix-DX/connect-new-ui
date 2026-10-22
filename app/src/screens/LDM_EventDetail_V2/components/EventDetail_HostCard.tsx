@@ -1,8 +1,8 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '../../../shared/lib/cssText';
-import { Person_Contact_Options } from '../../../shared/Connect2_LegacyShared/Person_Contact_Options';
-import { flipHouseholdName } from '../../../shared/Connect2_LegacyShared/lib/actions';
+import { styleFromCssText } from '@/shared/lib/cssText';
+import { Person_Contact_Options } from '@/shared/Connect2_LegacyShared/Person_Contact_Options';
+import { flipHouseholdName } from '@/shared/Connect2_LegacyShared/lib/actions';
 
 export interface EventDetail_HostCardProps {
   id: string;

@@ -1,4 +1,4 @@
-import type { UI_HouseholdMember } from '../../shared/UBTConnect/lib/structures';
+import type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
 
 /** Route inputs of UBTConnect.Directory_Household.Household_Relations (Household_Relations.mvc.js model :13-30,
     query string). */

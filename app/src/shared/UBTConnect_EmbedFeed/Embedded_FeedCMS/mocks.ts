@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../../mocks/contract';
+import { contractHandler } from '@/mocks/contract';
 
 /* DataActionGetFeedConfig is fictional in the contract (never recorded). Decision D8 (b): the feed iframe shows a
    same-size local mock page; the real CMS URL replaces this BaseURL later (single switch point). No token or B2C

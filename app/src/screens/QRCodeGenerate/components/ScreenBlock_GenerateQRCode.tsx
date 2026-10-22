@@ -2,21 +2,21 @@
 import { useEffect, useLayoutEffect, useMemo, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { ContactHelpdesk_Footer } from '../../../shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
+import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
+import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import {
   DirectoryAPIFilter,
   ImageSigningSize,
   OrbitSkeletonLoading,
-} from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+} from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getCacheableSignedImageURL, getEventQRCode } from '../api';
-import type { EventQRCodeData, EventQRCodeVariablesWire, QRCodeSeatItem } from '../types';
+import { getCacheableSignedImageURL, getEventQRCode } from '@/screens/QRCodeGenerate/api';
+import type { EventQRCodeData, EventQRCodeVariablesWire, QRCodeSeatItem } from '@/screens/QRCodeGenerate/types';
 import { getContactHelpdeskSubject_Event } from './actions';
 
 /* ScreenBlock_GenerateQRCode (SB = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_QRCode.

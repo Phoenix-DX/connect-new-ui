@@ -8,20 +8,20 @@ import {
   SystemException,
   UserException,
 } from '@/legacy/os/os-exceptions';
-import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
-import { Spinner } from '../../../shared/Connect2_LegacyShared/Spinner';
-import { NoBookmarks } from '../../../shared/Connect2_MyBookmarks_MUI/NoBookmarks';
-import { MyBookmarks_Group, MyBookmarks_ObjectType } from '../../../shared/UBTConnect/lib/staticEntities';
-import { connect_LaunchDarkly_PermissionCheck, textToLongInteger } from '../../../shared/UBTConnect_Utils/lib/actions';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { NoBookmarks } from '@/shared/Connect2_MyBookmarks_MUI/NoBookmarks';
+import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/shared/UBTConnect/lib/staticEntities';
+import { connect_LaunchDarkly_PermissionCheck, textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { setPreloadObject, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getBookmarkById, getGroupSummaries } from '../api';
-import type { BookmarkItem, GroupSummaries, GroupSummary, MyBookmarksModel } from '../types';
+import { getBookmarkById, getGroupSummaries } from '@/screens/MyBookmarks/api';
+import type { BookmarkItem, GroupSummaries, GroupSummary, MyBookmarksModel } from '@/screens/MyBookmarks/types';
 import { MyBookmarks_Album } from './MyBookmarks_Album';
 import { MyBookmarks_Card } from './MyBookmarks_Card';
 import { NetworkWarning } from './NetworkWarning';

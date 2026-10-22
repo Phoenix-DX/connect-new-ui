@@ -1,5 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { MemberInformation } from '../../shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 
 /* ---- Wire shapes (api.ts and mocks.ts only) ----
    DataActionGetHelperDetails of ScreenBlock_HelperDetails, typed by the API contract (captured shape:

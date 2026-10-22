@@ -2,18 +2,27 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { NotCaptured } from '@/app/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
-import { MenuIcon_Back } from '../../../shared/Connect2_LegacyShared/MenuIcon_Back';
-import { Spinner } from '../../../shared/Connect2_LegacyShared/Spinner';
-import { cache_SignedImageURL_Get } from '../../../shared/UBTConnect_Utils/lib/actions';
-import { Connect_Entity, ImageSize } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
+import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
+import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { cache_SignedImageURL_Get } from '@/shared/UBTConnect_Utils/lib/actions';
+import { Connect_Entity, ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { replaceOnUpcomingNavigation, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { currentUserId, isSignedIn } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { fetchMessageInstance, fetchMessageTemplateParameters, wrapper_NotificationOpened } from '../api';
-import type { MessageDetail, MessageDetailInputs, MessageDetailVariables, MessageParameter } from '../types';
+import {
+  fetchMessageInstance,
+  fetchMessageTemplateParameters,
+  wrapper_NotificationOpened,
+} from '@/screens/MessageDetail/api';
+import type {
+  MessageDetail,
+  MessageDetailInputs,
+  MessageDetailVariables,
+  MessageParameter,
+} from '@/screens/MessageDetail/types';
 import { addFirstSentence, decrementReadMessagesCounter, decrementReadWhatsNewsCounter } from './actions';
 import { NotificationDetailBlock } from './NotificationDetailBlock';
 import { MessageInfoType, MessagePriority, MessageSenderTarget, MessageType, ParameterName } from './staticEntities';

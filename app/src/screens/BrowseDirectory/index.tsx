@@ -3,36 +3,31 @@ import { useSearchParams } from 'react-router';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { map_InvalidateSize } from '../../shared/Leaflet/lib/actions';
+import { map_InvalidateSize } from '@/shared/Leaflet/lib/actions';
 import {
   LeafletMap,
   type MapOptions,
   type MarkerWithWindow,
   type TileLayer,
   type ZoomControlOptions,
-} from '../../shared/Leaflet/LeafletMap';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { hasAccessToRegion } from '../../shared/UBTConnect/lib/actions';
-import { Connect_Entity } from '../../shared/UBTConnect/lib/staticEntities';
-import { StatisticsList } from '../../shared/UBTConnect/StatisticsList';
-import { SubLayout_Browse_Section } from '../../shared/UBTConnect/SubLayout_Browse_Section';
-import { Connect_BottomBar_Items } from '../../shared/UBTConnect_Utils/lib/staticEntities';
-import { Columns_Two } from '../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../shared/UBTConnectLibrary/IconText';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { getClass_Color, getLookupConcepts } from '../../shared/UBTConnectLibrary/lib/actions';
-import {
-  UBT_Color,
-  UBT_ColumnBehaviour,
-  UBT_Icons2,
-  UBT_Size,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { ContainerOptions } from '../../shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
-import { UBT_Icons2 as UBTConnect_Icons2 } from '../../shared/UBTConnect/lib/staticEntities';
+} from '@/shared/Leaflet/LeafletMap';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { StatisticsList } from '@/shared/UBTConnect/StatisticsList';
+import { SubLayout_Browse_Section } from '@/shared/UBTConnect/SubLayout_Browse_Section';
+import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { getClass_Color, getLookupConcepts } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_Color, UBT_ColumnBehaviour, UBT_Icons2, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { ContainerOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { UBT_Icons2 as UBTConnect_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
 import { getLocalityStatistics } from './api';
 import {
   directory_BrowseByCountry_TooltipBuilder,

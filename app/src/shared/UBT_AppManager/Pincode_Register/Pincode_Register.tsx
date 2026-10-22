@@ -3,8 +3,8 @@ import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 're
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { registerPin } from '@/platform/session/pin';
 import { currentUserId } from '@/platform/session/session';
-import { pIN_ValidateRules } from '../lib/actions';
-import { PinCode } from '../PinCode';
+import { pIN_ValidateRules } from '@/shared/UBT_AppManager/lib/actions';
+import { PinCode } from '@/shared/UBT_AppManager/PinCode';
 
 export interface Pincode_RegisterProps {
   /** OutSystems instance id of the block. */

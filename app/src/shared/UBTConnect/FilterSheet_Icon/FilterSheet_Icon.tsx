@@ -1,10 +1,10 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
-import { bottomSheetOpen } from '../../osui/lib/actions';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '../../UBTConnectLibrary/lib/staticEntities';
+import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface FilterSheet_IconProps {
   /** OutSystems instance id of the block. */

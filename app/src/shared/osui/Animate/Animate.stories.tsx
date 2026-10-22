@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { AnimationType, Speed } from '../lib/staticEntities';
+import { AnimationType, Speed } from '@/shared/osui/lib/staticEntities';
 import { Animate } from './Animate';
 
 const meta = {

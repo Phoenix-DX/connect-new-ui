@@ -1,7 +1,7 @@
 // @os-block OutSystemsUI_2_23.Interaction.DropdownSearch
 import { useId, useLayoutEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { registerDropdown } from '../lib/actions';
+import { registerDropdown } from '@/shared/osui/lib/actions';
 import {
   DropdownSearchProvider,
   type DropdownOptionJson,

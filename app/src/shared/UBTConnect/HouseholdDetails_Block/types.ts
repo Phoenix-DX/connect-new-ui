@@ -1,1 +1,1 @@
-export type { HouseholdPreviewStructure } from '../lib/structures';
+export type { HouseholdPreviewStructure } from '@/shared/UBTConnect/lib/structures';

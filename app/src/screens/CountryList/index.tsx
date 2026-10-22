@@ -12,23 +12,23 @@ import {
 } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { bottomSheetOpen } from '../../shared/osui/lib/actions';
-import { App_NotificationIcon } from '../../shared/UBTConnect/App_NotificationIcon';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CacheControl_UserInfo_Wrapper } from '../../shared/UBTConnect/CacheControl_UserInfo_Wrapper';
-import type { Directory_UserCurrent } from '../../shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { Directory_LegendBottomSheet } from '../../shared/UBTConnect/Directory_LegendBottomSheet';
-import { FeedBlock_CommunityPopulation } from '../../shared/UBTConnect/FeedBlock_CommunityPopulation';
-import { hasAccessToRegion } from '../../shared/UBTConnect/lib/actions';
-import { Statistics_TypedItem } from '../../shared/UBTConnect/Statistics_TypedItem';
-import { Columns_Two } from '../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { Layout_MainPages } from '../../shared/UBTConnectLibrary/Layout_MainPages';
-import { getFlagURLByCountryCode } from '../../shared/UBTConnectLibrary/lib/actions';
-import type { ContainerOptions, TextOptions } from '../../shared/UBTConnectLibrary/lib/structures';
+import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { App_NotificationIcon } from '@/shared/UBTConnect/App_NotificationIcon';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
+import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Directory_LegendBottomSheet } from '@/shared/UBTConnect/Directory_LegendBottomSheet';
+import { FeedBlock_CommunityPopulation } from '@/shared/UBTConnect/FeedBlock_CommunityPopulation';
+import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { Statistics_TypedItem } from '@/shared/UBTConnect/Statistics_TypedItem';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Layout_MainPages } from '@/shared/UBTConnectLibrary/Layout_MainPages';
+import { getFlagURLByCountryCode } from '@/shared/UBTConnectLibrary/lib/actions';
+import type { ContainerOptions, TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
 import {
   UBT_ColumnBehaviour,
   UBT_Color,
@@ -38,15 +38,11 @@ import {
   UBT_Shape,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
-import { StaticInput } from '../../shared/UBTConnectLibrary/StaticInput';
-import {
-  Connect_BottomBar_Items,
-  Connect_Entity,
-  UBT_ImageSize,
-} from '../../shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '../../shared/UBTConnect_Utils/UBT_LazyImage';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { StaticInput } from '@/shared/UBTConnectLibrary/StaticInput';
+import { Connect_BottomBar_Items, Connect_Entity, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import { getCountriesStatistics } from './api';
 import { countText, getSkeletonList_UI_CountryStatistics, longIntegerTextOf } from './components/actions';
 import { UBT_Icons2_CountryList } from './components/staticEntities';

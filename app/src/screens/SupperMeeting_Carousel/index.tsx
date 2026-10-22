@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { EntitiesCarousel } from '../../shared/UBTConnect/EntitiesCarousel';
-import { Connect_Entity } from '../../shared/UBTConnect/lib/staticEntities';
-import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { EntitiesCarousel } from '@/shared/UBTConnect/EntitiesCarousel';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { usePreloadObject, useViewState } from '@/platform/navigation';
 import { mockPreload, readSupperMeetingCarouselInputs } from './api';
 import { assignFromObject, startingPosition, toEntitiesCarouselItems } from './components/logic';

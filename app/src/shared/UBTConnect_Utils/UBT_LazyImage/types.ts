@@ -1,1 +1,1 @@
-export type { LazyImageSize } from '../../UBTConnectLibrary/lib/structures';
+export type { LazyImageSize } from '@/shared/UBTConnectLibrary/lib/structures';

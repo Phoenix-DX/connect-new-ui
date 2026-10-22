@@ -1,5 +1,5 @@
 import Sortable, { type MoveEvent, type SortableEvent } from 'sortablejs';
-import type { CurrentService, Service } from '../types';
+import type { CurrentService, Service } from '@/screens/Services/types';
 
 /* ---- SortableJS.SetupList (SortableJS.controller.js:94-492, JavaScript node), web port ----
    Expando properties of the original (placeholder._dropMarker / _pendingMove / _dragStart, list._sortableInstance) are

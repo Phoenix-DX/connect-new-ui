@@ -7,7 +7,7 @@ OutSystems: `UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRes
 Inputs, events, placeholders: none. Extra props: `id` (instance id, the id the caller gives `confirmAction`, e.g.
 `b1-FreeSubscriptionAlert`) and `scope` (id prefix of its own elements, e.g. `b1-b20`; default `id` without `$`).
 
-Markup (view :115-145): Dialog_AccessRestrictedAction (`src/shell/dialogs`, built with the shell) with In_ExtendedClass
+Markup (view :115-145): Dialog_AccessRestrictedAction (`src/platform/feedback/dialogs`, built with the shell) with In_ExtendedClass
 `connect-legacy-compatibily-containter`. Its OnReady sets `App_SubscriptionPopUp` to its own popup id, as the original
 nested instance does.
 

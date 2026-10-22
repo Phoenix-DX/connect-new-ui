@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { fixtureData } from '../../mocks/fixtures';
-import { collection } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { fixtureData } from '@/mocks/fixtures';
+import { collection } from '@/mocks/store';
 import type { PolicyAcceptanceInformationWire } from './types';
 
 /* DataActionGetPendingPolicies was never recorded (the test account has no pending policy, Q7 c): two fictional

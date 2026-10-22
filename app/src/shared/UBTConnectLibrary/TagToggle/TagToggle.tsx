@@ -1,10 +1,17 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.TagToggle
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../CustomContainer';
-import { Icon } from '../Icon';
-import { IconText } from '../IconText';
-import { formatClasses } from '../lib/actions';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_IconSize, UBT_Shape, UBT_Size } from '../lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
+import {
+  UBT_Color,
+  UBT_FontSize,
+  UBT_FontWeight,
+  UBT_IconSize,
+  UBT_Shape,
+  UBT_Size,
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { Tag } from './types';
 
 export interface TagToggleProps {

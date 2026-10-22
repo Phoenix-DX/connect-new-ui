@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { PendingBlock } from '../../test/PendingBlock';
+import { PendingBlock } from '@/shared/test/PendingBlock';
 import { Layout_Orbit } from './Layout_Orbit';
 
 const meta = {

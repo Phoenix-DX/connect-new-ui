@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { collection } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { collection } from '@/mocks/store';
 
 /* The route was not captured (no-capture, user 2026-10-16) and no screen links to it: its data are its inputs. The
    review URL uses a fictional household of the shared LDM world (src/mocks/fictional/ldm.ts; route-spec.md "Decisions

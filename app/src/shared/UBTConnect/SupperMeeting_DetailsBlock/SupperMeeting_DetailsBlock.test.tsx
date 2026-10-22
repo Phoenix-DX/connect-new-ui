@@ -1,8 +1,8 @@
 import { composeStories } from '@storybook/react-vite';
 import { render, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { expectToMatchCapture } from '../../../test/dom';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { expectToMatchCapture } from '@/test/dom';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import * as stories from './SupperMeeting_DetailsBlock.stories';
 
 /* V1 and V3 are compared on the first render (skeleton); V2 once the data action answered. */

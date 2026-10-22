@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { osImage } from '@/legacy/os/os-assets';
-import { PendingBlock } from '../../test/PendingBlock';
-import { UBT_LazyImage } from '../../UBTConnect_Utils/UBT_LazyImage';
-import { ResultListType } from '../lib/staticEntities';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { Result_Item_Image } from './Result_Item_Image';
 
 const meta = {

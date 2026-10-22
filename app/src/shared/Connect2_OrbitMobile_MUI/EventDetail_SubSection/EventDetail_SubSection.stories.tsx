@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '../../test/PendingBlock';
+import { PendingBlock } from '@/shared/test/PendingBlock';
 import { EventDetail_SubSection } from './EventDetail_SubSection';
 
 const meta = {

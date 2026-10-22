@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { NC_Result_Item_Badge } from './NC_Result_Item_Badge';
 import * as stories from './NC_Result_Item_Badge.stories';
 

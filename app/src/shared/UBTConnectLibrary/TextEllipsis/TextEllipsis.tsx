@@ -1,6 +1,6 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.TextEllipsis
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { formatClasses } from '../lib/actions';
+import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
 
 export interface TextEllipsisProps {
   /** OutSystems instance id of the block. */

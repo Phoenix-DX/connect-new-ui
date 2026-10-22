@@ -1,12 +1,12 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { AvatarImage } from '../../../shared/UBTConnectLibrary/AvatarImage';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
+import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import {
   UBT_AlignItems,
   UBT_Color,
@@ -19,8 +19,8 @@ import {
   UBT_Icons,
   UBT_Shape,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { AvatarImage as AvatarImageRec, TextOptions } from '../../../shared/UBTConnectLibrary/lib/structures';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { AvatarImage as AvatarImageRec, TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
 import { child, scopeOf } from './ids';
 import {
   UBT_AlignItems_FlexEnd,

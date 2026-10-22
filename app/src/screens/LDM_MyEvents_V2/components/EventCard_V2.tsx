@@ -3,8 +3,8 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
-} from '../../../shared/UBTConnect_Utils/lib/structures';
-import type { EventCalendar } from '../types';
+} from '@/shared/UBTConnect_Utils/lib/structures';
+import type { EventCalendar } from '@/screens/LDM_MyEvents_V2/types';
 import { EventCard_Box } from './EventCard_Box';
 import { EventCard_Guests } from './EventCard_Guests';
 import { EventCard_Info_V2 } from './EventCard_Info_V2';

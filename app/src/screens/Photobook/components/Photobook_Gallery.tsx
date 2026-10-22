@@ -2,20 +2,20 @@
 import { useEffect, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { TouchEvents } from '../../../shared/osui/TouchEvents';
-import { Connect_Entity } from '../../../shared/UBTConnect/lib/staticEntities';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
+import { TouchEvents } from '@/shared/osui/TouchEvents';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import {
   UBT_Color,
   UBT_Display,
   UBT_FontSize,
   UBT_Shape,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '../../../shared/UBTConnect_Utils/UBT_LazyImage';
-import type { SelectedHousehold } from '../types';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import type { SelectedHousehold } from '@/screens/Photobook/types';
 import {
   UBT_AlignItems,
   UBT_FlexDirection,

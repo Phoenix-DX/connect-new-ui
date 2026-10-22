@@ -1,4 +1,4 @@
-import type { DeviceInfo } from '../types';
+import type { DeviceInfo } from '@/screens/AcceptPendingPolicies/types';
 
 /** GetSVGMetric (UBTConnect.controller.js, TST copy in migration/screens/MessageList/analysis/sources/raw/, :13422-13504,
     JavaScript1 node): height of `.ubt-header-svg svg path` and the largest V and Q values of its `d`;

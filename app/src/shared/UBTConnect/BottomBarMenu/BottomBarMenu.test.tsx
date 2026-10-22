@@ -5,9 +5,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setFlag } from '@/platform/flags/flags';
 import { NO_DATE } from '@/platform/session/clientVars';
 import { getClientVar, setClientVar } from '@/platform/session/session';
-import { Connect_BottomBar_Items as I } from '../../UBTConnect_Utils/lib/staticEntities';
-import { expectToMatchCapture } from '../../../test/dom';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { Connect_BottomBar_Items as I } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { expectToMatchCapture } from '@/test/dom';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { BottomBarMenu, type BottomBarMenuProps } from './BottomBarMenu';
 import * as stories from './BottomBarMenu.stories';
 

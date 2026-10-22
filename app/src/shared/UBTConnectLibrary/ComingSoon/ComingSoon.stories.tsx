@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '../lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { ComingSoon } from './ComingSoon';
 
 const meta = { title: 'Shared/UBTConnectLibrary/ComingSoon', component: ComingSoon } satisfies Meta<typeof ComingSoon>;

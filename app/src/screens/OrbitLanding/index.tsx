@@ -1,6 +1,6 @@
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_OrbitLanding } from './components/ScreenBlock_OrbitLanding';

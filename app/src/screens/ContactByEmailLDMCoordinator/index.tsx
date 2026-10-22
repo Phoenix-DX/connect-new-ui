@@ -1,10 +1,10 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { ContactByEmailForm } from '../../shared/UBTConnect/ContactByEmailForm';
-import { UBT_FontWeight } from '../../shared/UBTConnect/lib/staticEntities';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { UBT_Color, UBT_FontSize, UBT_Size } from '../../shared/UBTConnectLibrary/lib/staticEntities';
+import { ContactByEmailForm } from '@/shared/UBTConnect/ContactByEmailForm';
+import { UBT_FontWeight } from '@/shared/UBTConnect/lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { UBT_Color, UBT_FontSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';

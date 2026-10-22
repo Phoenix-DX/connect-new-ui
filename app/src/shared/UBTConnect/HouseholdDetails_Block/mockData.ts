@@ -1,4 +1,4 @@
-import type { components } from '../../../api/schema';
+import type { components } from '@/api/schema.d';
 import {
   ORTIZ,
   VITALE,
@@ -10,7 +10,7 @@ import {
   householdName,
   supperMeetingName,
   type CastHousehold,
-} from '../../../mocks/fictional/directory';
+} from '@/mocks/fictional/directory';
 
 type Schemas = components['schemas'];
 type WireHouseholdDetails = Schemas['Connect_Household_CS__UI_Screen_HouseholdDetails'];

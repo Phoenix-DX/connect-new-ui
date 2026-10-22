@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Common.OfflineDataSyncEvents
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { OfflineDataSyncCore } from '../../osui/OfflineDataSyncCore';
+import { OfflineDataSyncCore } from '@/shared/osui/OfflineDataSyncCore';
 
 export interface OfflineDataSyncEventsProps {
   /** OutSystems instance id of the block. */

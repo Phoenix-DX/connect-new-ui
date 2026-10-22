@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { sampleSubdivisionHouseholds } from '../Household_GalleryCard_List/mockData';
+import { sampleSubdivisionHouseholds } from '@/shared/UBTConnect/Household_GalleryCard_List/mockData';
 import { Household_GalleryCard } from './Household_GalleryCard';
 
 const meta = {

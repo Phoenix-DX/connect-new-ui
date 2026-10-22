@@ -1,17 +1,17 @@
 // @os-block Directory_Photobook.Photobook_Options_Left
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { bottomSheetClose, bottomSheetOpen } from '../../../shared/osui/lib/actions';
-import { SanitizedHtml } from '../../../shared/ReactiveHtmlSanitizer/SanitizedHtml';
-import { BottomSheet } from '../../../shared/UBTConnectLibrary/BottomSheet';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { UBT_Color, UBT_Display, UBT_Shape, UBT_Size } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
+import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { SanitizedHtml } from '@/shared/ReactiveHtmlSanitizer/SanitizedHtml';
+import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { UBT_Color, UBT_Display, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useWasRestoredFromCache } from '@/platform/navigation';
-import { getHouseholdCaption } from '../api';
-import type { PhotobookHousehold } from '../types';
+import { getHouseholdCaption } from '@/screens/Photobook/api';
+import type { PhotobookHousehold } from '@/screens/Photobook/types';
 import {
   UBT_AlignItems,
   UBT_FlexDirection,

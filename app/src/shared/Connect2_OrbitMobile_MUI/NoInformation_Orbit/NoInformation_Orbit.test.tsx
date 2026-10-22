@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { NoInformation_Orbit } from './NoInformation_Orbit';
 import * as stories from './NoInformation_Orbit.stories';
 

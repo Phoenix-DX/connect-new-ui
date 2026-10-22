@@ -1,9 +1,9 @@
 import { composeStories } from '@storybook/react-vite';
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { expectToMatchCapture } from '../../../test/dom';
-import * as cardStories from '../../Connect2_LegacyShared/NC_Result_Item__Card/NC_Result_Item__Card.stories';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { expectToMatchCapture } from '@/test/dom';
+import * as cardStories from '@/shared/Connect2_LegacyShared/NC_Result_Item__Card/NC_Result_Item__Card.stories';
 import * as stories from './AssembleSummaryDetailHeader_Skeleton.stories';
 
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });

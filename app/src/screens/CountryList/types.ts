@@ -1,5 +1,5 @@
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { UI_StatisticsTexts } from '../../shared/Connect_Geography_CS/lib/structures';
+import type { UI_StatisticsTexts } from '@/shared/Connect_Geography_CS/lib/structures';
 
 /* Wire types from the contract (src/api/openapi.yaml), through the callAction types. */
 type GetCountriesStatisticsPath = PathOf<'UBTConnect', 'CountryList/DataActionGetCountriesStatistics'>;

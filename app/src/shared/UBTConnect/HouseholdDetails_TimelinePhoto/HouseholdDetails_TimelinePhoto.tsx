@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { formatClasses, getClasses_BackgroundImageSize } from '../../UBTConnectLibrary/lib/actions';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { formatClasses, getClasses_BackgroundImageSize } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_AlignItems,
   UBT_Color,
@@ -10,9 +10,9 @@ import {
   UBT_JustifyContent,
   UBT_Shape,
   UBT_Size,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '../../UBTConnect_Utils/UBT_LazyImage';
-import { Connect_Entity } from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 
 /** Local MainContainerClass (default "ubt-household-image-card"; p:…HouseholdDetails_TimelinePhoto.mvc.js:12-14). */
 const MAIN_CONTAINER_CLASS = 'ubt-household-image-card';

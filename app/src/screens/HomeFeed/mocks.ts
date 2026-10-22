@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { recordedHandler } from '../../mocks/fixtures';
-import { collection } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { recordedHandler } from '@/mocks/fixtures';
+import { collection } from '@/mocks/store';
 import type { UpdateItemWire } from './types';
 
 /* HomeFeed own blocks (FeedBlock_CommunityPopulation, Embedded_FeedCMS, App_NotificationIcon, the bottom bar and the

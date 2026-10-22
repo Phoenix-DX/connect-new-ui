@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Connect_Entity } from '../lib/staticEntities';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { Directory_EmptyState } from './Directory_EmptyState';
 
 const meta = {

@@ -7,18 +7,18 @@ import {
   useScreenValidationService,
   ValidationServiceProvider,
 } from '@/components/ui/os/OSValidation';
-import { InputCounter } from '../../../shared/Connect2_LegacyShared/InputCounter';
-import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
-import { NavigationConfirmationDialog } from '../../../shared/NavigationHandler/NavigationConfirmationDialog';
-import { preventNavigation } from '../../../shared/NavigationHandler/lib/actions';
-import { DEPRECATED_ButtonLoading } from '../../../shared/osui/DEPRECATED_ButtonLoading';
+import { InputCounter } from '@/shared/Connect2_LegacyShared/InputCounter';
+import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
+import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
+import { DEPRECATED_ButtonLoading } from '@/shared/osui/DEPRECATED_ButtonLoading';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { useNavigateBack } from '@/platform/navigation';
-import { userContactUser } from '../api';
+import { userContactUser } from '@/screens/EmailTarget/api';
 import {
   ApplicationEvents_Directory_EmailHousehold,
   CommunityBusinessType,

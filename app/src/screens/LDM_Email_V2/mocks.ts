@@ -1,13 +1,13 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
+import { contractHandler } from '@/mocks/contract';
 import {
   coordinatorDetails,
   emptyCoordinatorDetails,
   ldmEventById,
   ldmEventByHostId,
   ldmEventName,
-} from '../../mocks/fictional/ldm';
-import { collection } from '../../mocks/store';
+} from '@/mocks/fictional/ldm';
+import { collection } from '@/mocks/store';
 
 /* The route was not captured (no-capture, user 2026-10-16) and its calls never recorded: fictional data from the shared
    LDM world (src/mocks/fictional/ldm.ts) in the contract's shapes (Q1 → A pending). The meal is found by In_EventId,

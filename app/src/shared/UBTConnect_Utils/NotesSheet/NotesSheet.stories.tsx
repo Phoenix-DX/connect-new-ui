@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { SAMPLE_NOTES } from '../NoteListActions/NoteListActions.stories';
+import { SAMPLE_NOTES } from '@/shared/UBTConnect_Utils/NoteListActions/NoteListActions.stories';
 import { NotesSheet } from './NotesSheet';
 
 const meta = { title: 'Shared/UBTConnect_Utils/NotesSheet', component: NotesSheet } satisfies Meta<typeof NotesSheet>;

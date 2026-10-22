@@ -1,7 +1,7 @@
 /* src/mocks/fixtures.ts: serve fixtures recorded from the real app (har_to_fixtures.py) through MSW.
  *
  * In a screen's mocks.ts:
- *   import { recordedHandler } from '../../mocks/fixtures';
+ *   import { recordedHandler } from '@/mocks/fixtures';
  *   export const handlers = [
  *     recordedHandler('App', 'Orders/DataActionGetOrders'),   // data action / aggregate: <Owner>/<Action>
  *     recordedHandler('App', 'ActionGetOrderStatus'),         // server or service action

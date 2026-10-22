@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../mocks/contract';
-import { LOCALITY, LOCALITY_HOUSEHOLDS, householdById, householdName } from '../../mocks/fictional/directory';
+import { contractHandler } from '@/mocks/contract';
+import { LOCALITY, LOCALITY_HOUSEHOLDS, householdById, householdName } from '@/mocks/fictional/directory';
 
 /* DataActionGetLocalityHouseholdIds: households are person data (migration/knowledge/mock-fixtures.md, P-MOCKS), so the
    mock is fictional with the captured structure and count: the 23 households of locality 252 "Bahia Blanca" in the

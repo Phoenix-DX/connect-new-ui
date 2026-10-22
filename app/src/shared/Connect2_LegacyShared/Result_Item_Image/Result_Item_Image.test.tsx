@@ -1,7 +1,7 @@
 import { fireEvent, render, renderHook, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { ResultListType } from '../lib/staticEntities';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { Result_Item_Image } from './Result_Item_Image';
 import { MOCK_SIGNED_PHOTO_URL, mockGetSignedPhotosInBulk } from './mocks';
 import * as stories from './Result_Item_Image.stories';

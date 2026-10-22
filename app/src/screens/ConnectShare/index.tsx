@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { Type_ShareObject } from '../../shared/UBTConnect/lib/staticEntities';
-import { textToLongInteger } from '../../shared/UBTConnect_Utils/lib/actions';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
+import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import {

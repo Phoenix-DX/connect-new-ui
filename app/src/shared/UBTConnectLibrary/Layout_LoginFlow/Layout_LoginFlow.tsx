@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.Layouts.Layout_LoginFlow
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { LayoutRuntime_Top } from '../../NavigationHandler/LayoutRuntime_Top';
-import { SVG_Background_LoginWrapper } from '../SVG_Background_LoginWrapper';
+import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
+import { SVG_Background_LoginWrapper } from '@/shared/UBTConnectLibrary/SVG_Background_LoginWrapper';
 
 export interface Layout_LoginFlowProps {
   /** OutSystems instance id of the block. */

@@ -2,10 +2,10 @@
 import { useId, type MouseEvent } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog, confirmAction } from '@/platform/feedback/dialogs';
-import { OSLink } from '../../lib/OSLink';
-import { checkSupportedBrowserVersion, openExternalURL } from '../../Connect2_LegacyShared/lib/actions';
-import { AssembleCommon_VirtualMeetingDetails } from '../AssembleCommon_VirtualMeetingDetails';
-import { AssembleSummary_Card_Row } from '../AssembleSummary_Card_Row';
+import { OSLink } from '@/shared/lib/OSLink';
+import { checkSupportedBrowserVersion, openExternalURL } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { AssembleCommon_VirtualMeetingDetails } from '@/shared/Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingDetails';
+import { AssembleSummary_Card_Row } from '@/shared/Connect2_Assemble_MUI/AssembleSummary_Card_Row';
 
 export interface AssembleCommon_VirtualMeetingURLProps {
   /** OutSystems instance id of the block. */

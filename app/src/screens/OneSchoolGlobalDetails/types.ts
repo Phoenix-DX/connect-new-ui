@@ -1,5 +1,5 @@
-import type { LookupSections } from '../../shared/UBTConnect/lib/structures';
-import type { Directory_Coordinates } from '../../shared/UBTConnect_Utils/lib/structures';
+import type { LookupSections } from '@/shared/UBTConnect/lib/structures';
+import type { Directory_Coordinates } from '@/shared/UBTConnect_Utils/lib/structures';
 
 /** Screen inputs (OneSchoolGlobalDetails.mvc.js model :47-49, setInputs :95-100). Long Integer as text. */
 export interface OneSchoolGlobalDetailsInputs {

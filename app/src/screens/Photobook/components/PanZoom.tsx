@@ -1,6 +1,6 @@
 // @os-block PanZoom.PanZoom
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
-import { panzoom } from '../../../vendor/panzoom';
+import { panzoom } from '@/vendor/panzoom';
 
 export interface PanZoomProps {
   /** OutSystems instance id of the block. */

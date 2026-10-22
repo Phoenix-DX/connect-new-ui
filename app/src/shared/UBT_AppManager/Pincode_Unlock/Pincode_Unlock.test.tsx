@@ -5,7 +5,7 @@ import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { isLocked, registerPin } from '@/platform/session/pin';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { Pincode_Unlock, type Pincode_UnlockProps } from './Pincode_Unlock';
 import * as stories from './Pincode_Unlock.stories';
 

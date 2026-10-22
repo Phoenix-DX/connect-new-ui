@@ -8,7 +8,7 @@ import {
   ViewHasChangedException,
   isInstanceOf,
 } from '@/legacy/os/os-exceptions';
-import { server } from '../test/setup';
+import { server } from '@/test/setup';
 import { contractHandler, raiseUserException } from './contract';
 
 const unread = () => callAction('Connect2_LegacyShared', 'ActionGetNumberUnreadMessages', { DeviceId: 'device-1' });

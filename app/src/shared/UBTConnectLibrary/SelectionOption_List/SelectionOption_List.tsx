@@ -1,13 +1,13 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.SelectionOption_List
 import { useMemo, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '../Columns_Two';
-import { CustomContainer } from '../CustomContainer';
-import { CustomText } from '../CustomText';
-import { Icon } from '../Icon';
-import { IconText } from '../IconText';
-import { LazyImage } from '../LazyImage';
-import { getFlagURLByCountryCode, merge_StyleOptions } from '../lib/actions';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { LazyImage } from '@/shared/UBTConnectLibrary/LazyImage';
+import { getFlagURLByCountryCode, merge_StyleOptions } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -16,7 +16,7 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { ContainerOptions, SelectionOption_Item } from './types';
 
 export interface SelectionOption_ListProps {

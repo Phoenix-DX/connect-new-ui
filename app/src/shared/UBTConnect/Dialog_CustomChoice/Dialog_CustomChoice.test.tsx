@@ -1,7 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { confirmAction } from '@/platform/feedback/dialogs';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { Dialog_CustomChoice } from './Dialog_CustomChoice';
 import * as stories from './Dialog_CustomChoice.stories';
 

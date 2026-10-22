@@ -1,9 +1,9 @@
 import { composeStories } from '@storybook/react-vite';
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { expectToMatchCapture } from '../../../test/dom';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { browserCalc, stubCarouselLayout } from '../Carousel/testLayout';
+import { expectToMatchCapture } from '@/test/dom';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { browserCalc, stubCarouselLayout } from '@/shared/osui/Carousel/testLayout';
 import { Gallery } from './Gallery';
 import * as stories from './Gallery.stories';
 

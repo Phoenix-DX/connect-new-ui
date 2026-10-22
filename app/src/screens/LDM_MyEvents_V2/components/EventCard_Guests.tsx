@@ -3,16 +3,16 @@ import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { osImage } from '@/legacy/os/os-assets';
-import { Person_Contact_Options } from '../../../shared/Connect2_LegacyShared/Person_Contact_Options';
-import { Result_Item_Image } from '../../../shared/Connect2_LegacyShared/Result_Item_Image';
+import { Person_Contact_Options } from '@/shared/Connect2_LegacyShared/Person_Contact_Options';
+import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
 import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
-} from '../../../shared/UBTConnect_Utils/lib/structures';
-import type { CalendarGuestItem } from '../types';
+} from '@/shared/UBTConnect_Utils/lib/structures';
+import type { CalendarGuestItem } from '@/screens/LDM_MyEvents_V2/types';
 import { OverlappingImages } from './OverlappingImages';
-import { flipHouseholdName } from '../../../shared/Connect2_LegacyShared/lib/actions';
-import { getLocalityName } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { flipHouseholdName } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { getLocalityName } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { buildGuestString, validateBottomBorderOnListItem } from './actions';
 
 export interface EventCard_GuestsProps {

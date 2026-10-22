@@ -1,13 +1,13 @@
 // @os-block UBTConnect.App_Common.UnsupportedVersion_Wrapper
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { PreventBackNavigation } from '../../NavigationHandler/PreventBackNavigation';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';
-import { get_IsUnsupportedVersion, type IsUnsupportedVersion } from '../lib/actions';
-import { UnsupportedVersion_Browser } from '../UnsupportedVersion_Browser';
-import { UnsupportedVersion_Native } from '../UnsupportedVersion_Native';
-import { UnsupportedVersion_WebView } from '../UnsupportedVersion_WebView';
+import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { get_IsUnsupportedVersion, type IsUnsupportedVersion } from '@/shared/UBTConnect/lib/actions';
+import { UnsupportedVersion_Browser } from '@/shared/UBTConnect/UnsupportedVersion_Browser';
+import { UnsupportedVersion_Native } from '@/shared/UBTConnect/UnsupportedVersion_Native';
+import { UnsupportedVersion_WebView } from '@/shared/UBTConnect/UnsupportedVersion_WebView';
 
 export interface UnsupportedVersion_WrapperProps {
   /** OutSystems instance id of the block. */

@@ -12,7 +12,7 @@ OutSystems: `UBT_AppManager.PIN.Pincode_Unlock` · pack `migration/blocks/UBT_Ap
 Events: `KeyPressed`, `PinUnlockSuccess`, `PinUnlockError(ErrorMessage)`, `PincodeChange(InputLength)`,
 `UserLoggedOut`, `Timeout` → `on` + name. Placeholders: `HeaderBar`, `TitlePlaceholder`, `UnlockText`, `Option`,
 `EraseButton`, `Placeholder_BottomKeyboard` (→ `placeholderBottomKeyboard`), `ContentPlaceholder`, each passed to
-`PinCode` inside its own placeholder div. PIN check and lock state: `src/shell/pin.ts` (`verifyPin`, `lock`).
+`PinCode` inside its own placeholder div. PIN check and lock state: `src/platform/session/pin.ts` (`verifyPin`, `lock`).
 
 ## Captured variants (2 tested)
 

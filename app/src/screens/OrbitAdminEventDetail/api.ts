@@ -1,6 +1,6 @@
 import { callAction } from '@/api/client/callAction';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import { textToLongInteger } from '../../shared/UBTConnect_Utils/lib/actions';
+import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
 import {
   cacheKeyPart,
   getCacheableObjectInBulk,

@@ -1,7 +1,13 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.ImageCard__Content__Tag
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../CustomContainer';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '../lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import {
+  UBT_Color,
+  UBT_FontSize,
+  UBT_FontWeight,
+  UBT_Shape,
+  UBT_Size,
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface ImageCard__Content__TagProps {
   /** OutSystems instance id of the block. */

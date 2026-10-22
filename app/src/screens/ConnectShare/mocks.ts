@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { ServerException } from '@/legacy/os/os-exceptions';
-import { contractHandler } from '../../mocks/contract';
-import { Type_ShareObject } from '../../shared/UBTConnect/lib/staticEntities';
+import { contractHandler } from '@/mocks/contract';
+import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
 import type { Get_ShareDetailsWire } from './types';
 
 /* Get_ShareDetails was not recorded (share data is person data, migration/knowledge/mock-fixtures.md): fictional.

@@ -3,10 +3,10 @@ import { useEffect, useId, useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
-import { CustomContainer } from '../CustomContainer';
-import { CustomText } from '../CustomText';
-import { formatClasses } from '../lib/actions';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '../lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface PopupProps {
   /** OutSystems instance id of the block. */

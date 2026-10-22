@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UBT_LazyImage } from '../../UBTConnect_Utils/UBT_LazyImage';
-import { CircleButton } from '../CircleButton';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { CircleButton } from '@/shared/UBTConnectLibrary/CircleButton';
 import { NonMember_ListItem } from './NonMember_ListItem';
 
 const meta = {

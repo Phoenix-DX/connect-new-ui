@@ -1,4 +1,4 @@
-import type { components } from '../../api/schema';
+import type { components } from '@/api/schema.d';
 import {
   LOCALITY_HOUSEHOLDS,
   ORTIZ,

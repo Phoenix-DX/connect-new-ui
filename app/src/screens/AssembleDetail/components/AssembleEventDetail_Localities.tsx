@@ -6,22 +6,26 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { useFlagOn } from '@/platform/flags/flags';
 import { osList } from '@/legacy/os/os-wire';
-import { toggleBookmarkItem } from '../../../shared/Connect2_Assemble_MUI/lib/actions';
-import { MyBookmarks_Group, MyBookmarks_ObjectType } from '../../../shared/Connect2_Assemble_MUI/lib/staticEntities';
-import { NC_Result_Item_Badge } from '../../../shared/Connect2_LegacyShared/NC_Result_Item_Badge';
-import { NC_Result_Item__Image } from '../../../shared/Connect2_LegacyShared/NC_Result_Item__Image';
-import { flipHouseholdName, getCacheableSubdivision_V2 } from '../../../shared/Connect2_LegacyShared/lib/actions';
-import type { CacheableSubdivisionInformation } from '../../../shared/Connect2_LegacyShared/lib/structures';
-import { ScrollAnchor } from '../../../shared/NavigationHandler/ScrollAnchor';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { ShareSheet } from '../../../shared/UBTConnect_Utils/ShareSheet';
-import { ShareableObject_Generic } from '../../../shared/UBTConnect_Utils/ShareableObject_Generic';
-import type { UI_ShareableObject_Generic } from '../../../shared/UBTConnect_Utils/lib/structures';
+import { toggleBookmarkItem } from '@/shared/Connect2_Assemble_MUI/lib/actions';
+import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/shared/Connect2_Assemble_MUI/lib/staticEntities';
+import { NC_Result_Item_Badge } from '@/shared/Connect2_LegacyShared/NC_Result_Item_Badge';
+import { NC_Result_Item__Image } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Image';
+import { flipHouseholdName, getCacheableSubdivision_V2 } from '@/shared/Connect2_LegacyShared/lib/actions';
+import type { CacheableSubdivisionInformation } from '@/shared/Connect2_LegacyShared/lib/structures';
+import { ScrollAnchor } from '@/shared/NavigationHandler/ScrollAnchor';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
+import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
+import type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/lib/structures';
 import { confirmAction } from '@/platform/feedback/dialogs/confirmAction';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { getLocalBookmarksByObjectType } from '@/platform/storage/localEntities';
 import { setPreloadObject, useWasRestoredFromCache } from '@/platform/navigation';
-import type { AssembleAttendeeGuest, AssembleAttendeeSubdivision, LocalityDetails } from '../types';
+import type {
+  AssembleAttendeeGuest,
+  AssembleAttendeeSubdivision,
+  LocalityDetails,
+} from '@/screens/AssembleDetail/types';
 import { maybeDisplaySubscriptionPopup } from './actions';
 import {
   BookmarkNoteAddEdit,

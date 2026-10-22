@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CustomContainer } from '../CustomContainer';
-import { SeeMoreSection } from '../SeeMoreSection';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { SeeMoreSection } from '@/shared/UBTConnectLibrary/SeeMoreSection';
 import { ImageCard__Content } from './ImageCard__Content';
 
 const meta = {

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { ResultListType } from '../lib/staticEntities';
+import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { NC_Result_Item__Image } from './NC_Result_Item__Image';
 
 /* Never captured: behaviour from the compiled view (NC_Result_Item__Image.mvc.js view :330-600). */

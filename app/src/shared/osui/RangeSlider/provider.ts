@@ -1,6 +1,6 @@
 import noUiSlider, { PipsMode, type API, type Options } from 'nouislider';
 import wNumb from 'wnumb';
-import { Orientation } from '../lib/staticEntities';
+import { Orientation } from '@/shared/osui/lib/staticEntities';
 
 /* OutSystems UI Range Slider provider glue for noUiSlider 15.8.1 + wNumb 1.2.0 (single mode), ported from
    migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js ("U"): AbstractRangeSliderConfig.validateDefault

@@ -2,15 +2,15 @@ import { useEffect, useLayoutEffect, useReducer, useRef, type ReactNode } from '
 import { NotCaptured } from '@/app/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
-import { getFormattedDateTime } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitSkeletonLoading } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler/BackNavigationHandler';
-import { Accordion } from '../../../shared/osui/Accordion';
-import { AccordionItem } from '../../../shared/osui/AccordionItem';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
+import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler/BackNavigationHandler';
+import { Accordion } from '@/shared/osui/Accordion';
+import { AccordionItem } from '@/shared/osui/AccordionItem';
 import {
   HostSurveyStep,
   getLocalGenderPreferences,
@@ -23,8 +23,8 @@ import {
   type LocalSurveyStatus,
 } from '@/platform/storage/localEntities';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getHostSurvey } from '../api';
-import type { HostSurvey, HostSurveyMeal, HostSurveyRoom, HostSurveyVariablesWire } from '../types';
+import { getHostSurvey } from '@/screens/HostSurvey/api';
+import type { HostSurvey, HostSurveyMeal, HostSurveyRoom, HostSurveyVariablesWire } from '@/screens/HostSurvey/types';
 import {
   HostSurvey_AccommodationPills,
   HostSurvey_Item,

@@ -3,8 +3,8 @@ import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { lock, verifyPin, type PinUnlockError } from '@/platform/session/pin';
 import { currentUserId, useClientVar } from '@/platform/session/session';
-import { InactivityTimer } from '../InactivityTimer';
-import { PinCode } from '../PinCode';
+import { InactivityTimer } from '@/shared/UBT_AppManager/InactivityTimer';
+import { PinCode } from '@/shared/UBT_AppManager/PinCode';
 
 export interface Pincode_UnlockProps {
   /** OutSystems instance id of the block. */

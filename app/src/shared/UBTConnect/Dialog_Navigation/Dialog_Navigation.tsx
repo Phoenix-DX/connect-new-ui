@@ -1,10 +1,10 @@
 // @os-block UBTConnect.App_Common_Blocks_PopupDialogs.Dialog_Navigation
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import type { NavigationEvent } from '../../NavigationHandler/lib/actions';
-import { NavigationConfirmationDialog } from '../../NavigationHandler/NavigationConfirmationDialog';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { UBT_Color, UBT_FontWeight, UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';
+import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
+import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface Dialog_NavigationProps {
   /** OutSystems instance id of the block. */

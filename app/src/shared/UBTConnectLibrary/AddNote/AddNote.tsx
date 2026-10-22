@@ -1,11 +1,11 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.AddNote
 import { useId, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CircleButton_IconPrimary } from '../CircleButton_IconPrimary';
-import { Columns_Two } from '../Columns_Two';
-import { CustomContainer } from '../CustomContainer';
-import { InputCounter } from '../InputCounter';
-import { UBT_Color, UBT_ColumnBehaviour, UBT_Icons, UBT_Size } from '../lib/staticEntities';
+import { CircleButton_IconPrimary } from '@/shared/UBTConnectLibrary/CircleButton_IconPrimary';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { InputCounter } from '@/shared/UBTConnectLibrary/InputCounter';
+import { UBT_Color, UBT_ColumnBehaviour, UBT_Icons, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface AddNoteProps {
   /** OutSystems instance id of the block. */

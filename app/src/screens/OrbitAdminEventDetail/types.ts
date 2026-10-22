@@ -1,5 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { OrbitEventTypeRecord } from '../../shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { OrbitEventTypeRecord } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 
 /* ---- Wire shapes (api.ts and mocks.ts only) ----
    The data action and the two server actions of ScreenBlock_AdminEventDetail, typed by the API contract

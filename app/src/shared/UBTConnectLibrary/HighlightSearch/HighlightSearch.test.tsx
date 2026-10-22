@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { highlight_V3 } from './highlight';
 import * as stories from './HighlightSearch.stories';
 

@@ -2,8 +2,8 @@
 import { useEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { styleFromCssText } from '../../../shared/lib/cssText';
-import type { HouseholdMember } from '../types';
+import { styleFromCssText } from '@/shared/lib/cssText';
+import type { HouseholdMember } from '@/screens/OrbitLanding/types';
 import { isItemAvailable, scrollToSelectMember } from './actions';
 
 export interface Household_Members_SelectionProps {

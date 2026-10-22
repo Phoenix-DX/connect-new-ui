@@ -14,18 +14,18 @@ import {
 } from '@/legacy/os/exceptions';
 import { get_LocalBookmarkByObjectId, getLocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { useClientVar } from '@/platform/session/session';
-import { ActionsMenu } from '../../UBTConnectLibrary/ActionsMenu';
-import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '../../UBTConnectLibrary/lib/actions';
-import type { ActionsMenuEnableOptions, ActionsMenuOptions, Notes } from '../../UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { ContactByMessage_Wrapper } from '../../UBTConnect_Utils/ContactByMessage_Wrapper';
-import { ContactPopup_ByPhone } from '../../UBTConnect_Utils/ContactPopup_ByPhone';
-import { getHasExtendedShare, getHasNewBookmarks } from '../../UBTConnect_Utils/lib/actions';
-import type { ContactPopupData, ContactPopUp_OverrideOptions } from '../../UBTConnect_Utils/lib/structures';
-import { NotesSheet } from '../../UBTConnect_Utils/NotesSheet';
-import { ShareableObject_Generic } from '../../UBTConnect_Utils/ShareableObject_Generic';
-import { SharePopup } from '../../UBTConnect_Utils/SharePopup';
-import { ShareSheet } from '../../UBTConnect_Utils/ShareSheet';
+import { ActionsMenu } from '@/shared/UBTConnectLibrary/ActionsMenu';
+import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/shared/UBTConnectLibrary/lib/actions';
+import type { ActionsMenuEnableOptions, ActionsMenuOptions, Notes } from '@/shared/UBTConnectLibrary/lib/structures';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { ContactByMessage_Wrapper } from '@/shared/UBTConnect_Utils/ContactByMessage_Wrapper';
+import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import { getHasExtendedShare, getHasNewBookmarks } from '@/shared/UBTConnect_Utils/lib/actions';
+import type { ContactPopupData, ContactPopUp_OverrideOptions } from '@/shared/UBTConnect_Utils/lib/structures';
+import { NotesSheet } from '@/shared/UBTConnect_Utils/NotesSheet';
+import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
+import { SharePopup } from '@/shared/UBTConnect_Utils/SharePopup';
+import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
 import {
   bookmarkServerActions,
   get_NoteCategoryId_ByEntityTypeId,
@@ -35,8 +35,8 @@ import {
   getShareType_FromEntity,
   toggleBookmarkItem_C2,
   type BookmarkServerActions,
-} from '../lib/actions';
-import { Connect_Entity } from '../lib/staticEntities';
+} from '@/shared/UBTConnect/lib/actions';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { fetchContactDetails, fetchNotes, type EntityDetailsActionsVariables } from './api';
 
 export interface Directory_EntityDetailsActionsProps {

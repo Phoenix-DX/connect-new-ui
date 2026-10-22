@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CircleButton_IconPrimary } from '../CircleButton_IconPrimary';
-import { Icon } from '../Icon';
+import { CircleButton_IconPrimary } from '@/shared/UBTConnectLibrary/CircleButton_IconPrimary';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { PopupMenu } from './PopupMenu';
 
 const meta = { title: 'Shared/UBTConnectLibrary/PopupMenu', component: PopupMenu } satisfies Meta<typeof PopupMenu>;

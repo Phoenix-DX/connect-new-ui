@@ -13,7 +13,7 @@ OutSystems: `UBTConnect_Utils.CacheControl.CacheControl_UserInfo` · pack
 
 Miss: `callAction('UBTConnect_Utils', 'CacheControl_UserInfo/DataActionGetCacheInfo', { CacheKey, CacheTypeId })`, then
 `putCacheableObject` with the returned `TTL` and `Result`. Mock: the shell's `CacheControl_UserInfo` handler
-(`src/shell/mocks.ts`: recorded TTL and HasPoliciesToAccept, fictional mock user).
+(`src/platform/bootstrap/mocks.ts`: recorded TTL and HasPoliciesToAccept, fictional mock user).
 
 ## Captured variants (1 distinct; 1 tested)
 

@@ -3,8 +3,8 @@ import type { Location } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { BACK_PRIORITY } from '@/platform/navigation';
 import { createBackEvent, resetBackQueue, runBackHandlers } from '@/platform/navigation/backQueue';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { BackNavigationHandler } from '../BackNavigationHandler';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
 import { PreventBackNavigation } from './PreventBackNavigation';
 import * as stories from './PreventBackNavigation.stories';
 

@@ -2,7 +2,7 @@
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useFlagOn } from '@/platform/flags/flags';
-import { PopupMenu } from '../PopupMenu';
+import { PopupMenu } from '@/shared/Connect2_LegacyShared/PopupMenu';
 
 export interface ItemOptionsMenuProps {
   /** OutSystems instance id of the block (`b1-l1-57_0-$b5`). */

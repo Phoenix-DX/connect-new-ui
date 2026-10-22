@@ -1,5 +1,5 @@
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { useScreenController_NavigateToPage } from '../../shared/UBTJavaScriptUtils/lib/actions';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { BlockPinUnlock } from '@/platform/feedback/dialogs';
 import { replaceOnUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';

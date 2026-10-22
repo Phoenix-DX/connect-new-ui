@@ -1,6 +1,6 @@
 import { log } from '@/platform/log/log';
-import { getFormattedDateTimeById } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitMilestoneType, OrbitSkeletonLoading } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 
 /* Client actions of Connect2_OrbitMobile_MUI that ScreenBlock_GuestArrangements calls, ported 1:1 (as in
    MilestoneDetail). `C:<n>` = line of migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js. Dates are

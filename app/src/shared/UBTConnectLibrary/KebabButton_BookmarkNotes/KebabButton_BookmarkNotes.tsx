@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ContextMenu } from '../ContextMenu';
-import { CustomContainer } from '../CustomContainer';
-import { Position } from '../lib/staticEntities';
+import { ContextMenu } from '@/shared/UBTConnectLibrary/ContextMenu';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Position } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface KebabButton_BookmarkNotesProps {
   /** OutSystems instance id of the block. */

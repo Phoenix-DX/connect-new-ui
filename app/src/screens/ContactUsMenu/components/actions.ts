@@ -1,4 +1,4 @@
-import type { UI_ListMenuOption, UI_MenuSection } from '../../../shared/UBTConnect/Menu_List';
+import type { UI_ListMenuOption, UI_MenuSection } from '@/shared/UBTConnect/Menu_List';
 import { Type_ContactSubject, UBT_Icons2_Local } from './staticEntities';
 
 /** UBTConnect Lookup_ContactUsMenuOptions: one UI_ListMenuOption per contact subject. */

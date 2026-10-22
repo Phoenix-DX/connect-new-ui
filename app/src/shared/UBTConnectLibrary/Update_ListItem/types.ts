@@ -1,1 +1,1 @@
-export type { SpacingOptions, TextGenderIdentifier } from '../lib/structures';
+export type { SpacingOptions, TextGenderIdentifier } from '@/shared/UBTConnectLibrary/lib/structures';

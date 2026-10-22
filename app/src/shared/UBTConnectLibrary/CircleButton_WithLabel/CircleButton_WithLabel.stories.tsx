@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CustomText } from '../CustomText';
-import { Icon } from '../Icon';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { CircleButton_WithLabel } from './CircleButton_WithLabel';
 
 const meta = {

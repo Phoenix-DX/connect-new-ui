@@ -7,7 +7,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { freshPage, recordBodies } from '@/test/testSupport';
-import { expectToMatchCapture } from '../../../test/dom';
+import { expectToMatchCapture } from '@/test/dom';
 import { cs_CreateShareProfileLink } from './api';
 import { delaySetIsOpen, scrollToTop, shareSheet_IsSharing } from './jsNodes';
 import { ShareSheet } from './ShareSheet';

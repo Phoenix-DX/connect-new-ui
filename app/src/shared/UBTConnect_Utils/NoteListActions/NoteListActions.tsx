@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { isSystemException, isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { createOrUpdate_LocalNote, delete_LocalNoteByNoteId } from '@/platform/storage/localEntities';
-import { Note_Item_List } from '../../UBTConnectLibrary/Note_Item_List';
-import type { Notes } from '../../UBTConnectLibrary/lib/structures';
-import { currDateTime } from '../../lib/osDateTime';
-import { note_SendFeedbackMessages } from '../lib/actions';
-import { NoteActionType } from '../lib/staticEntities';
+import { Note_Item_List } from '@/shared/UBTConnectLibrary/Note_Item_List';
+import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
+import { currDateTime } from '@/shared/lib/osDateTime';
+import { note_SendFeedbackMessages } from '@/shared/UBTConnect_Utils/lib/actions';
+import { NoteActionType } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { deleteNoteByNoteId, updateNote } from './api';
 
 export interface NoteListActionsProps {

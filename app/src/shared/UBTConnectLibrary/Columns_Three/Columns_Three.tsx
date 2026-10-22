@@ -1,14 +1,14 @@
 // @os-block UBTConnectLibrary.BasePatterns.Columns_Three
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns3 } from '../../osui/Columns3';
-import { styleFromCssText } from '../../lib/cssText';
+import { Columns3 } from '@/shared/osui/Columns3';
+import { styleFromCssText } from '@/shared/lib/cssText';
 import {
   convertUbtSizeToGutterSize,
   formatClasses,
   getClasses_Column,
   getLocalVariable_ColumnSize,
-} from '../lib/actions';
+} from '@/shared/UBTConnectLibrary/lib/actions';
 import type { ColumnOptions } from './types';
 
 export interface Columns_ThreeProps {

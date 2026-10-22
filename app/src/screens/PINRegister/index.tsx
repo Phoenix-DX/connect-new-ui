@@ -1,10 +1,10 @@
-import { OSLink } from '../../shared/lib/OSLink';
-import { Block_PINRegister_ContentWrapper } from '../../shared/UBTConnect/Block_PINRegister_ContentWrapper';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../shared/UBTConnectLibrary/IconText';
-import { Layout_LoginFlow } from '../../shared/UBTConnectLibrary/Layout_LoginFlow';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '../../shared/UBTConnectLibrary/lib/staticEntities';
+import { OSLink } from '@/shared/lib/OSLink';
+import { Block_PINRegister_ContentWrapper } from '@/shared/UBTConnect/Block_PINRegister_ContentWrapper';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Layout_LoginFlow } from '@/shared/UBTConnectLibrary/Layout_LoginFlow';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { signOut } from '@/platform/session/auth';
 import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';

@@ -2,10 +2,10 @@ import { gsap } from 'gsap';
 import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
 import { useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { sVGHeader_GetPath } from '../../../shared/UBTConnectLibrary/lib/actions';
-import { UBT_FontSize, UBT_FontWeight } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SVG_Background_Custom } from '../../../shared/UBTConnectLibrary/SVG_Background_Custom';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { sVGHeader_GetPath } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SVG_Background_Custom } from '@/shared/UBTConnectLibrary/SVG_Background_Custom';
 import { UBT_Color_Primary } from './staticEntities';
 
 export interface LoadingDotsProps {

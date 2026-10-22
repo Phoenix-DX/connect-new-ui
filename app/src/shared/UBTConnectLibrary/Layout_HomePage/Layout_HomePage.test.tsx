@@ -1,8 +1,8 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setSignedInUser } from '@/platform/session/session';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { UBT_Color } from '../lib/staticEntities';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Layout_HomePage } from './Layout_HomePage';
 import * as stories from './Layout_HomePage.stories';
 

@@ -4,21 +4,21 @@ import { NotCaptured } from '@/app/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
-import { CircleButton } from '../../../shared/UBTConnectLibrary/CircleButton';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
+import { CircleButton } from '@/shared/UBTConnectLibrary/CircleButton';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   UBT_AvatarSize,
   UBT_Color,
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_Icons2 as UBT_Icons_Connect } from '../../../shared/UBTConnect/lib/staticEntities';
-import { openInApp_OpenApp } from '../../../shared/UBTConnect_Utils/lib/actions';
-import { UBT_IconSize } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
-import type { ExternalAppPopUpInfo } from '../types';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Icons2 as UBT_Icons_Connect } from '@/shared/UBTConnect/lib/staticEntities';
+import { openInApp_OpenApp } from '@/shared/UBTConnect_Utils/lib/actions';
+import { UBT_IconSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import type { ExternalAppPopUpInfo } from '@/screens/HomeFeed/types';
 
 export interface Dialog_GoExternalAppProps {
   /** Block instance id (FeedBlock_Services: `b5-$b12`). */

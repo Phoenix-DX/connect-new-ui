@@ -1,8 +1,8 @@
 import { isSystemException, exceptionMessage } from '@/legacy/os/exceptions';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { Type_ShareObject } from '../../../shared/UBTConnect/lib/staticEntities';
-import { get_ShareDetails } from '../api';
-import type { OnInitializeSharingScreenResult } from '../types';
+import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
+import { get_ShareDetails } from '@/screens/ConnectShare/api';
+import type { OnInitializeSharingScreenResult } from '@/screens/ConnectShare/types';
 
 /* Client actions of the UBTConnect module that ConnectShare runs (p:migration/screens/ConnectShare/analysis/sources/
    raw/UBTConnect.controller.js, "UC" below). */

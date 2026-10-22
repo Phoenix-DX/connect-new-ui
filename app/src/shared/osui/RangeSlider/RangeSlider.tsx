@@ -1,7 +1,7 @@
 // @os-block OutSystemsUI_2_23.Interaction.RangeSlider
 import { useId, useLayoutEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Orientation } from '../lib/staticEntities';
+import { Orientation } from '@/shared/osui/lib/staticEntities';
 import { RangeSliderProvider, type RangeSliderConfig, type RangeSliderProperty } from './provider';
 import type { RangeSliderOptionalConfigs } from './types';
 

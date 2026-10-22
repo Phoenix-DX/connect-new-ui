@@ -1,19 +1,19 @@
 // @os-block UBTConnect.App_Notifications.Notifications_Action
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
   UBT_Icons2,
   UBT_IconsSize,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { bottomSheetOpen } from '../../../shared/osui/lib/actions';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { UBT_Icons2_Notifications } from './staticEntities';
 

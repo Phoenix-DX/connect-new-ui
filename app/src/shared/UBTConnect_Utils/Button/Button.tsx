@@ -1,9 +1,9 @@
 // @os-block UBTConnect_Utils.CW_Common.Button
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Button as ConnectButton } from '../../UBTConnectLibrary/Button';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { IconText } from '../../UBTConnectLibrary/IconText';
-import { UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';
+import { Button as ConnectButton } from '@/shared/UBTConnectLibrary/Button';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { ButtonOptions } from './types';
 
 export interface ButtonProps {

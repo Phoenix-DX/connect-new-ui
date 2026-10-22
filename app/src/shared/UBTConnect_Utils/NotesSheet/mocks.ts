@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../../mocks/contract';
-import { currDateTime } from '../../lib/osDateTime';
-import { NULL_DATE_TIME, notesCollection } from '../NoteListActions/mocks';
+import { contractHandler } from '@/mocks/contract';
+import { currDateTime } from '@/shared/lib/osDateTime';
+import { NULL_DATE_TIME, notesCollection } from '@/shared/UBTConnect_Utils/NoteListActions/mocks';
 
 /* AddNote was never recorded (x-mock-source fictional): the note joins the in-memory notes collection (P-MUTATION),
    answered with the contract shape; the new note has no edit date (the null date). */

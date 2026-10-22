@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '../../test/PendingBlock';
-import { CustomText } from '../CustomText';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Columns_Two } from './Columns_Two';
 
 const meta = { title: 'Shared/UBTConnectLibrary/Columns_Two', component: Columns_Two } satisfies Meta<

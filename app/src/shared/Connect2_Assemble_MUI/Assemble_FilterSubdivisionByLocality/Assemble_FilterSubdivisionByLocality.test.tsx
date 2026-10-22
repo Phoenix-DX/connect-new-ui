@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { LOCALITY } from '../../../mocks/fictional/directory';
+import { LOCALITY } from '@/mocks/fictional/directory';
 import { applyTestSession } from '@/platform/session/testSession';
 import { freshPage } from '@/test/testSupport';
 import { Assemble_FilterSubdivisionByLocality } from './Assemble_FilterSubdivisionByLocality';

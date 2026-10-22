@@ -20,7 +20,7 @@ Placeholders: `Placeholder_Header` → `placeholderHeader`, `Placeholder_Body` �
 `Placeholder_ButtonLabel` → `placeholderButtonLabel`, `Placeholder_DismissButtonLabe` → `placeholderDismissButtonLabe`.
 
 Markup (view :131-308): container `connect-dialog-popup connect-dialog-popup--custom-choice` (+
-` connect-dialog-popup--vertical-buttons` when StackButtonsVertically) > ActionConfirmationDialog (`src/shell/dialogs`)
+` connect-dialog-popup--vertical-buttons` when StackButtonsVertically) > ActionConfirmationDialog (`src/platform/feedback/dialogs`)
 with these parts:
 
 - header CustomContainer (margin bottom base, neutral 10, semi-bold) > `text-align-center` > Placeholder_Header

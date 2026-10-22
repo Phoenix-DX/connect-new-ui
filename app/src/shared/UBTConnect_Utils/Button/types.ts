@@ -1,1 +1,1 @@
-export type { ButtonOptions } from '../../UBTConnectLibrary/lib/structures';
+export type { ButtonOptions } from '@/shared/UBTConnectLibrary/lib/structures';

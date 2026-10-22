@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
-import { eventLocalities, pastEventGroups } from '../../mocks/fictional/ldm';
-import { contractHandler } from '../../mocks/contract';
+import { eventLocalities, pastEventGroups } from '@/mocks/fictional/ldm';
+import { contractHandler } from '@/mocks/contract';
 
 /* The two data actions of the route were not recorded (person data): fictional data from the shared LDM world
    (src/mocks/fictional/ldm.ts) in the captured shapes (analysis/calls.md) and counts (dom/default.html): no upcoming

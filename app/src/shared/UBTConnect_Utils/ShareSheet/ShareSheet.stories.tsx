@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useEffect, useState } from 'react';
 import { MemoryRouter } from 'react-router';
-import { Connect_Entity } from '../lib/staticEntities';
-import { ShareableObject_Generic } from '../ShareableObject_Generic';
+import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
 import { ShareSheet, type ShareSheetProps } from './ShareSheet';
 
 const meta = { title: 'Shared/UBTConnect_Utils/ShareSheet', component: ShareSheet } satisfies Meta<typeof ShareSheet>;

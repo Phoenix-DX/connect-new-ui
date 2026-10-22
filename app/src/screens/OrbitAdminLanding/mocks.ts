@@ -1,11 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import {
-  ORBIT_ADMIN_SCAN_PER_MILESTONE,
-  orbitAdminEvents,
-  type OrbitAdminEvent,
-} from '../../mocks/fictional/orbitAdmin';
-import { scenario } from '../../mocks/scenario';
+import { contractHandler } from '@/mocks/contract';
+import { ORBIT_ADMIN_SCAN_PER_MILESTONE, orbitAdminEvents, type OrbitAdminEvent } from '@/mocks/fictional/orbitAdmin';
+import { scenario } from '@/mocks/scenario';
 import { wireList } from '@/legacy/os/os-wire';
 import type { AdminOrbitEventsWire, Get_AdminEventsListWire } from './types';
 

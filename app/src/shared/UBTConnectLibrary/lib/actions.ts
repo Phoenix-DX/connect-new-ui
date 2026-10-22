@@ -33,8 +33,8 @@ import {
   UBT_Size,
   UBT_VerticalAlign,
 } from './staticEntities';
-import { GutterSize } from '../../osui/lib/staticEntities';
-import { dayOfWeek, formatDateTime, parseOsDate } from '../../lib/osDateTime';
+import { GutterSize } from '@/shared/osui/lib/staticEntities';
+import { dayOfWeek, formatDateTime, parseOsDate } from '@/shared/lib/osDateTime';
 
 /** FormatClasses: appends a class to a class list, without a leading space. */
 export function formatClasses(originalClasses: string, newClassIn: string): string {

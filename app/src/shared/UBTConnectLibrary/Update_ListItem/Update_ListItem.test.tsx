@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { Connect_UpdateTypeId, Gender } from '../lib/staticEntities';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { Connect_UpdateTypeId, Gender } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Update_ListItem } from './Update_ListItem';
 import * as stories from './Update_ListItem.stories';
 

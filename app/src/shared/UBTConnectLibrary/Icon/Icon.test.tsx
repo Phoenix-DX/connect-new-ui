@@ -1,5 +1,5 @@
 import { describe } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import * as stories from './Icon.stories';
 import { fireEvent, render } from '@testing-library/react';
 import { expect, it, vi } from 'vitest';

@@ -1,12 +1,12 @@
 // @os-block UBTConnect_Utils.CW_Search.SearchResult_Item
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '../../UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { IconText } from '../../UBTConnectLibrary/IconText';
-import { UBT_ColumnBehaviour, UBT_VerticalAlign } from '../../UBTConnectLibrary/lib/staticEntities';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { UBT_ColumnBehaviour, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import {
   Connect_Entity,
   UBT_Color,
@@ -17,8 +17,8 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '../lib/staticEntities';
-import { UBT_LazyImage } from '../UBT_LazyImage';
+} from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import type { SearchResult } from './types';
 
 export interface SearchResult_ItemProps {

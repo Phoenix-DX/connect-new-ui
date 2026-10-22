@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '../../../shared/lib/cssText';
+import { styleFromCssText } from '@/shared/lib/cssText';
 
 export interface EventDetail_SpecialNeeds_ListItemProps {
   id: string;

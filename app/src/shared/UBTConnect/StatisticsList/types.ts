@@ -1,2 +1,2 @@
-export type { TextStatisticsOptionsRecord } from '../lib/structures';
-export type { StatisticsOptions } from '../../UBTConnectLibrary/lib/structures';
+export type { TextStatisticsOptionsRecord } from '@/shared/UBTConnect/lib/structures';
+export type { StatisticsOptions } from '@/shared/UBTConnectLibrary/lib/structures';

@@ -1,7 +1,7 @@
 // @os-block OutSystemsUI_2_23.Adaptive.Columns3
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { BreakColumns, GutterSize } from '../lib/staticEntities';
+import { BreakColumns, GutterSize } from '@/shared/osui/lib/staticEntities';
 
 export interface Columns3Props {
   /** OutSystems instance id of the block. */

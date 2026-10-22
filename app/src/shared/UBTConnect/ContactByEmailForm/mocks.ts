@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../../mocks/contract';
-import { collection } from '../../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { collection } from '@/mocks/store';
 
 /* UBTConnect SendContactMemberEmail (service action), the Send of the screens ContactByEmailMember and
    ContactByEmailOneSchoolGlobal: the contract merges their two screen services

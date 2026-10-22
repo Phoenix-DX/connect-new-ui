@@ -1,12 +1,15 @@
 // @os-block UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_Statistics
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '../../UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { ImageCard__Content__Tag } from '../../UBTConnectLibrary/ImageCard__Content__Tag';
-import { getLookupConcepts } from '../../UBTConnectLibrary/lib/actions';
-import { getDescriptor_BretherenCount, getDescriptor_Subdivision_HouseholdCount } from '../lib/actions';
-import { UBT_ColumnBehaviour, UBT_FontSize, UBT_Size } from '../lib/staticEntities';
-import { SupperMeeting_ImageCard_Content_IconText } from '../SupperMeeting_ImageCard_Content_IconText';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { ImageCard__Content__Tag } from '@/shared/UBTConnectLibrary/ImageCard__Content__Tag';
+import { getLookupConcepts } from '@/shared/UBTConnectLibrary/lib/actions';
+import {
+  getDescriptor_BretherenCount,
+  getDescriptor_Subdivision_HouseholdCount,
+} from '@/shared/UBTConnect/lib/actions';
+import { UBT_ColumnBehaviour, UBT_FontSize, UBT_Size } from '@/shared/UBTConnect/lib/staticEntities';
+import { SupperMeeting_ImageCard_Content_IconText } from '@/shared/UBTConnect/SupperMeeting_ImageCard_Content_IconText';
 
 export interface SupperMeeting_ImageCard_Content_StatisticsProps {
   /** OutSystems instance id of the block. */

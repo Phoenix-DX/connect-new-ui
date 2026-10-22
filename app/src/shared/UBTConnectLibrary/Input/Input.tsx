@@ -8,10 +8,10 @@ import {
   withNotValidClass,
   type WidgetValidationRecord,
 } from '@/components/ui/os/OSValidation';
-import { InputWithIcon } from '../../osui/InputWithIcon';
-import { Icon } from '../Icon';
-import { Shape, UBT_Color, UBT_Icons, UBT_IconSize } from '../lib/staticEntities';
-import type { SearchInput } from '../lib/structures';
+import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Shape, UBT_Color, UBT_Icons, UBT_IconSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { SearchInput } from '@/shared/UBTConnectLibrary/lib/structures';
 
 export interface InputProps {
   /** OutSystems instance id of the block. */

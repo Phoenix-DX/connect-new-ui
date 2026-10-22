@@ -6,22 +6,22 @@ import { log } from '@/platform/log/log';
 import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { useClientVar } from '@/platform/session/session';
-import { OSLink } from '../../lib/OSLink';
-import { BottomBarItem } from '../../osui/BottomBarItem';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { bottomBarSlider_ForceRefresh } from '../../UBTConnectLibrary/lib/actions';
+import { OSLink } from '@/shared/lib/OSLink';
+import { BottomBarItem } from '@/shared/osui/BottomBarItem';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { bottomBarSlider_ForceRefresh } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   bottomBar_GetList,
   connect_LaunchDarkly_PermissionCheck,
   getHasC1DirectoryView,
   getHasNewBookmarks,
-} from '../../UBTConnect_Utils/lib/actions';
-import { Connect_BottomBar_Items } from '../../UBTConnect_Utils/lib/staticEntities';
-import { App_IconBadge } from '../App_IconBadge';
-import { BottomBarContent } from '../BottomBarContent';
-import { directory_Updates_RefreshBottomBarCount, scrollTop } from '../lib/actions';
-import { UBT_Color, UBT_FontSize, UBT_IconsSize } from '../lib/staticEntities';
+} from '@/shared/UBTConnect_Utils/lib/actions';
+import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { App_IconBadge } from '@/shared/UBTConnect/App_IconBadge';
+import { BottomBarContent } from '@/shared/UBTConnect/BottomBarContent';
+import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/shared/UBTConnect/lib/actions';
+import { UBT_Color, UBT_FontSize, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface BottomBarMenuProps {
   /** OutSystems instance id of the block. */

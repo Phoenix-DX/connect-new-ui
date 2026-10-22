@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../../mocks/contract';
+import { contractHandler } from '@/mocks/contract';
 
 /* Fictional answers of Connect2_OrbitMobile_MUI server actions. The one behind CheckDirectoryAccess (CR-MilestoneDetail-1;
    never captured: no member click in the captures). The Orbit captures were recorded with a full-permission account

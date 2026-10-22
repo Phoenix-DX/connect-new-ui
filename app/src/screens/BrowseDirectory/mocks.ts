@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { recordedHandler } from '../../mocks/fixtures';
+import { recordedHandler } from '@/mocks/fixtures';
 
 /* BrowseDirectory (P-MOCKS).
    - BrowseDirectory/DataActionGetLocalityStatistics: the reviewed TST recording for CountryCode AR

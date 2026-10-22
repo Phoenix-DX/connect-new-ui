@@ -1,7 +1,7 @@
-import type { AssembleEventSummary } from '../../shared/Connect2_Assemble_MUI/lib/structures';
+import type { AssembleEventSummary } from '@/shared/Connect2_Assemble_MUI/lib/structures';
 
 /* Domain types of AssembleEvents (rule 9: components never see the wire shape; api.ts maps it). */
-export type { CountryWithMapPosition } from '../../shared/Connect2_LegacyShared/lib/structures';
+export type { CountryWithMapPosition } from '@/shared/Connect2_LegacyShared/lib/structures';
 
 /** Connect2_Assemble_CS AssembleEventType (Id, Title). */
 export interface AssembleEventTypeItem {

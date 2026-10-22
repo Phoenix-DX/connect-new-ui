@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../../mocks/contract';
+import { contractHandler } from '@/mocks/contract';
 import {
   childrenText,
   exampleEmail,
@@ -8,9 +8,9 @@ import {
   INTERCHANGE,
   LOCALITY,
   SUPPER_MEETINGS,
-} from '../../../mocks/fictional/directory';
-import { MOCK_SIGNED_PHOTO_URL } from '../Result_Item_Image/mocks';
-import { ORBIT_HOSTED_ROOMS, type OrbitGuestHousehold, type OrbitGuestMember } from '../../../mocks/fictional/orbit';
+} from '@/mocks/fictional/directory';
+import { MOCK_SIGNED_PHOTO_URL } from '@/shared/Connect2_LegacyShared/Result_Item_Image/mocks';
+import { ORBIT_HOSTED_ROOMS, type OrbitGuestHousehold, type OrbitGuestMember } from '@/mocks/fictional/orbit';
 import { wireList } from '@/legacy/os/os-wire';
 import type { MemberContactWithTimezone } from './structures';
 import {

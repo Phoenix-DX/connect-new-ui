@@ -1,1 +1,1 @@
-export type { Notes } from '../../UBTConnectLibrary/lib/structures';
+export type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';

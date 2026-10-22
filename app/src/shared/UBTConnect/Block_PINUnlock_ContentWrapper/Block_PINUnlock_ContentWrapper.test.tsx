@@ -6,7 +6,7 @@ import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { isLocked, registerPin } from '@/platform/session/pin';
 import { setClientVar, setSignedInUser, writePin } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import {
   Block_PINUnlock_ContentWrapper,
   type Block_PINUnlock_ContentWrapperProps,

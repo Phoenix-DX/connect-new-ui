@@ -1,6 +1,6 @@
 /* BrowseDirectory (UBTConnect Directory_Locality.BrowseDirectory). Wire shapes stay in api.ts / mocks.ts; components see
    the domain types. */
-import type { StatisticsOptions } from '../../shared/UBTConnectLibrary/lib/structures';
+import type { StatisticsOptions } from '@/shared/UBTConnectLibrary/lib/structures';
 
 /** TextTextUBT_ColorIdentifierUBT_Icons2Identifier record of Statistics.Statistics (wire). */
 export interface StatisticItemWire {

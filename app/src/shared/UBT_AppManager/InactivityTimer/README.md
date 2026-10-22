@@ -18,7 +18,7 @@ Inputs: none. Events: `Timeout` → `onTimeout` (not raised, see below). Placeho
   - On timeout, `PIN_SessionInactivty_OnTimeout` redirects to PINUnlock or raises the custom event → `Timeout` → the
     caller sets `PIN_IsLocked`.
 - The shell ports both: `pinSessionInactivityStart()` (one app-wide timer, which stays after the block is destroyed)
-  and `registerInactivityTimeoutHandler()` (`src/shell/inactivity.ts`).
+  and `registerInactivityTimeoutHandler()` (`src/platform/session/inactivity.ts`).
 - The shell's `LockHost` stands in for this block inside Block_PINUnlock (register on mount, start, remove on unmount;
   CR-Services-1).
 - This component does not call them, so it never raises `Timeout`. A caller that needs the event can wire those two APIs.

@@ -1,8 +1,8 @@
 import type { RequestHandler } from 'msw';
 import { wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../../mocks/contract';
-import { householdsOfSupperMeeting } from '../../../mocks/fictional/directory';
-import { subdivisionHousehold } from '../Household_GalleryCard_List/mockData';
+import { contractHandler } from '@/mocks/contract';
+import { householdsOfSupperMeeting } from '@/mocks/fictional/directory';
+import { subdivisionHousehold } from '@/shared/UBTConnect/Household_GalleryCard_List/mockData';
 
 /* Never recorded (x-mock-source fictional; households are person data): the households of the supper meeting in the
    directory cast (src/mocks/fictional/directory.ts), whose names, children and empty subtitles (households without

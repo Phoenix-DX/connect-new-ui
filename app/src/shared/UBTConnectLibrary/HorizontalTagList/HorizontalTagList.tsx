@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.HorizontalTagList
 import { useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { TagToggle } from '../TagToggle';
-import { formatClasses } from '../lib/actions';
+import { TagToggle } from '@/shared/UBTConnectLibrary/TagToggle';
+import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
 import type { Tag } from './types';
 
 export interface HorizontalTagListProps {

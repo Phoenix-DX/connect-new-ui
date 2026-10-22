@@ -3,7 +3,7 @@ import { osDate, osList } from '@/legacy/os/os-wire';
 import {
   getCacheableRegionSubscribedCountries,
   getCacheableUserInfo,
-} from '../../shared/Connect2_LegacyShared/lib/actions';
+} from '@/shared/Connect2_LegacyShared/lib/actions';
 import { getUserInformation } from '@/platform/session/userInfo';
 import type {
   AssembleEventFilter,

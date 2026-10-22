@@ -2,13 +2,13 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
-import { PendingBlock } from '../../test/PendingBlock';
-import { BottomBarMenu } from '../../UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../UBTConnect/CommonUI_InsideLayout';
-import { Connect_BottomBar_Items } from '../../UBTConnect_Utils/lib/staticEntities';
-import { CustomContainer } from '../CustomContainer';
-import { FixedFooter } from '../FixedFooter';
-import { SkeletonSection } from '../SkeletonSection';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { Layout_DetailPage } from './Layout_DetailPage';
 
 /** Stories only: the signed-in session of the captures (BottomBarMenu, CommonUI_InsideLayout), checked just now. */

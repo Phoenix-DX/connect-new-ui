@@ -3,9 +3,9 @@ import { useCallback, useLayoutEffect, useRef, useState, type ReactNode } from '
 import { createPortal } from 'react-dom';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
-import { resumeNavigation, wasNavigationPrevented, type NavigationEvent } from '../lib/actions';
-import { NavigationHandler } from '../NavigationHandler';
-import { PreventBackNavigation } from '../PreventBackNavigation';
+import { resumeNavigation, wasNavigationPrevented, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
+import { NavigationHandler } from '@/shared/NavigationHandler/NavigationHandler';
+import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';
 
 export interface NavigationConfirmationDialogProps {
   /** OutSystems instance id of the block. */

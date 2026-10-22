@@ -14,12 +14,12 @@ import {
 } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';
 import { getClientVar, setClientVar, useClientVar } from '@/platform/session/session';
-import { HandleImageLoadError } from '../../Connect2_LegacyShared/HandleImageLoadError';
-import { BackNavigationHandler } from '../../NavigationHandler/BackNavigationHandler';
-import { PreventBackNavigation } from '../../NavigationHandler/PreventBackNavigation';
-import { HandleOnResumeOpenLink } from '../HandleOnResumeOpenLink';
-import { OfflineDataSyncEvents } from '../OfflineDataSyncEvents';
-import { Policy_Checker } from '../Policy_Checker';
+import { HandleImageLoadError } from '@/shared/Connect2_LegacyShared/HandleImageLoadError';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';
+import { HandleOnResumeOpenLink } from '@/shared/UBTConnect/HandleOnResumeOpenLink';
+import { OfflineDataSyncEvents } from '@/shared/UBTConnect/OfflineDataSyncEvents';
+import { Policy_Checker } from '@/shared/UBTConnect/Policy_Checker';
 
 export interface CommonUI_InsideLayoutProps {
   /** OutSystems instance id of the block. */

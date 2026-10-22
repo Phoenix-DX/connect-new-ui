@@ -1,9 +1,9 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.EmptyList
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CircleButton } from '../CircleButton';
-import { CustomContainer } from '../CustomContainer';
-import { Icon } from '../Icon';
+import { CircleButton } from '@/shared/UBTConnectLibrary/CircleButton';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   UBT_AlignItems,
   UBT_AvatarSize,
@@ -13,7 +13,7 @@ import {
   UBT_JustifyContent,
   UBT_Shape,
   UBT_Size,
-} from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface EmptyListProps {
   /** OutSystems instance id of the block. */

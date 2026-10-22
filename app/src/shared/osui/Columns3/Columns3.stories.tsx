@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '../../test/PendingBlock';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { IconText } from '../../UBTConnectLibrary/IconText';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { UBT_LazyImage } from '../../UBTConnect_Utils/UBT_LazyImage';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import { Columns3 } from './Columns3';
 
 const meta = { title: 'Shared/osui/Columns3', component: Columns3 } satisfies Meta<typeof Columns3>;

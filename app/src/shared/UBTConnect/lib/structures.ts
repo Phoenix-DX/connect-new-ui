@@ -1,6 +1,6 @@
-import type { ActionsMenuOptions, LookupItem } from '../../UBTConnectLibrary/lib/structures';
-import type { UI_StatisticsTexts } from '../../Connect_Geography_CS/lib/structures';
-import type { SelectionOption_Item, StatisticsOptions } from '../../UBTConnectLibrary/lib/structures';
+import type { ActionsMenuOptions, LookupItem } from '@/shared/UBTConnectLibrary/lib/structures';
+import type { UI_StatisticsTexts } from '@/shared/Connect_Geography_CS/lib/structures';
+import type { SelectionOption_Item, StatisticsOptions } from '@/shared/UBTConnectLibrary/lib/structures';
 /* UBTConnect structures used by the shared actions (UBTConnect.model.js, copy in
    migration/screens/BookmarksByGroup/analysis/sources/raw/). Fields named as in OutSystems, all optional = OutSystems
    default. Long Integer → string. */

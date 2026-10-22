@@ -1,1 +1,1 @@
-export type { UI_ShareableObject_Generic } from '../lib/structures';
+export type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/lib/structures';

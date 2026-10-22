@@ -1,4 +1,4 @@
-import type { UI_StatisticsTexts } from '../../shared/Connect_Geography_CS/lib/structures';
+import type { UI_StatisticsTexts } from '@/shared/Connect_Geography_CS/lib/structures';
 
 /** One item of Out_LocalitiesStatistics (Connect_Geography_CS UI_LocalityStatistics, as used by the screen). */
 export interface LocalityStatistics {

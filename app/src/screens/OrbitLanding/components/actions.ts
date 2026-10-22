@@ -1,5 +1,5 @@
 import { log } from '@/platform/log/log';
-import type { EventsSummaryItem, YearItem } from '../types';
+import type { EventsSummaryItem, YearItem } from '@/screens/OrbitLanding/types';
 import { ApplicationEvents_Orbit, OrbitLandingFilter } from './staticEntities';
 
 /* Client actions and JavaScript nodes of ScreenBlock_OrbitLanding and Household_Members_Selection

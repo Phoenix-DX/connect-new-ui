@@ -3,9 +3,9 @@ import { useEffect, type ReactNode } from 'react';
 import { NotCaptured } from '@/app/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { Card } from '../../../shared/osui/Card';
-import { SanitizedHtml } from '../../../shared/ReactiveHtmlSanitizer/SanitizedHtml';
-import { formatDateTime } from '../../../shared/lib/osDateTime';
+import { Card } from '@/shared/osui/Card';
+import { SanitizedHtml } from '@/shared/ReactiveHtmlSanitizer/SanitizedHtml';
+import { formatDateTime } from '@/shared/lib/osDateTime';
 
 export interface NotificationDetailBlockProps {
   /** OutSystems instance id of the block (`b1-NotificationDetailBlock`). */

@@ -1,10 +1,10 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.SeeMoreSection
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../CustomContainer';
-import { CustomText } from '../CustomText';
-import { formatClasses } from '../lib/actions';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '../lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface SeeMoreSectionProps {
   /** OutSystems instance id of the block. */

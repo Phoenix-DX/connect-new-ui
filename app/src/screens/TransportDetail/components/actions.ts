@@ -1,6 +1,6 @@
-import { getFormattedDateTimeById } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitMilestoneType, OrbitSkeletonLoading } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { TransportMilestoneType, TravelInfo } from '../types';
+import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import type { TransportMilestoneType, TravelInfo } from '@/screens/TransportDetail/types';
 
 /* Client actions of Connect2_OrbitMobile_MUI that the TransportDetail blocks call, ported 1:1. `C:<n>` = line of
    migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js, `TF:<n>` = line of

@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DataFetchStatus, OSList } from '@/components/ui/os/OSList';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { Icon } from '../../UBTConnectLibrary/Icon';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   UBT_AlignItems,
   UBT_Color,
@@ -13,16 +13,16 @@ import {
   UBT_ImageSize,
   UBT_JustifyContent,
   UBT_Size,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import { Member_ListItem } from '../../UBTConnectLibrary/Member_ListItem';
-import { NonMember_ListItem } from '../../UBTConnectLibrary/NonMember_ListItem';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { UBT_LazyImage } from '../../UBTConnect_Utils/UBT_LazyImage';
-import { Directory_EntityDetailsActions } from '../Directory_EntityDetailsActions/Directory_EntityDetailsActions';
-import { getSkeletonList_UI_HouseholdMembers, hasAccessToRegion } from '../lib/actions';
-import { Connect_Entity, Connect_HouseholdMemberRole } from '../lib/staticEntities';
-import type { UI_HouseholdMember } from '../lib/structures';
-import { SubLayout_DirectoryDetailScreen_Section } from '../SubLayout_DirectoryDetailScreen_Section';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Member_ListItem } from '@/shared/UBTConnectLibrary/Member_ListItem';
+import { NonMember_ListItem } from '@/shared/UBTConnectLibrary/NonMember_ListItem';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
+import { getSkeletonList_UI_HouseholdMembers, hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { Connect_Entity, Connect_HouseholdMemberRole } from '@/shared/UBTConnect/lib/staticEntities';
+import type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
+import { SubLayout_DirectoryDetailScreen_Section } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
 
 const NO_MEMBERS: UI_HouseholdMember[] = [];
 const AVATAR_SIZE = { Height: UBT_ImageSize.Base_52, Width: UBT_ImageSize.Square };

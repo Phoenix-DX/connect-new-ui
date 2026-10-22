@@ -3,30 +3,35 @@ import { useEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { checkBarcodePlugin, scanBarcode, SCANNER_CLOSED_BY_USER } from '@/platform/device/barcodePlugin';
 import { UserException } from '@/legacy/os/os-exceptions';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
-import { getFormattedDateTime } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
+import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import {
   DirectoryAPIFilter,
   ImageSigningSize,
   OrbitSkeletonLoading,
-} from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { OrbitEventTypeRecord } from '../../../shared/Connect2_OrbitMobile_MUI/lib/structures';
-import { textToLongInteger } from '../../../shared/UBTConnect_Utils/lib/actions';
+} from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import type { OrbitEventTypeRecord } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
+import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getCacheableSignedImageURL, getEventInformation, getMemberByMemberId, getScanEventQRCode } from '../api';
+import {
+  getCacheableSignedImageURL,
+  getEventInformation,
+  getMemberByMemberId,
+  getScanEventQRCode,
+} from '@/screens/OrbitAdminEventDetail/api';
 import type {
   AdminEventDetailInputs,
   AdminEventDetailVariablesWire,
   QRCodeStatus,
   ScanError,
   ScannedUser,
-} from '../types';
+} from '@/screens/OrbitAdminEventDetail/types';
 import { deserializeQRCodeInformation, onApplicationEvent_Orbit } from './actions';
 import { AdminPopup } from './AdminPopup';
 import { OrbitErrorMessage } from './OrbitErrorMessage';

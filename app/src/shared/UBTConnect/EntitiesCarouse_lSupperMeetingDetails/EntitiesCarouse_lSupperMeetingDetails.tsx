@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { SupperMeeting_DetailsBlock } from '../SupperMeeting_DetailsBlock';
+import { SupperMeeting_DetailsBlock } from '@/shared/UBTConnect/SupperMeeting_DetailsBlock';
 
 export interface EntitiesCarouse_lSupperMeetingDetailsProps {
   /** OutSystems instance id of the block. */

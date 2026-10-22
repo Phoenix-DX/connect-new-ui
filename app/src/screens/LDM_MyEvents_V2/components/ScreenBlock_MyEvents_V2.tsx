@@ -2,26 +2,26 @@
 import { useEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { NotRegisteredException, UserException } from '@/legacy/os/os-exceptions';
-import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
-import { ContactByMessage_Wrapper } from '../../../shared/UBTConnect_Utils/ContactByMessage_Wrapper';
-import { ContactPopup_ByPhone } from '../../../shared/UBTConnect_Utils/ContactPopup_ByPhone';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { ContactByMessage_Wrapper } from '@/shared/UBTConnect_Utils/ContactByMessage_Wrapper';
+import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
-} from '../../../shared/UBTConnect_Utils/lib/structures';
+} from '@/shared/UBTConnect_Utils/lib/structures';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getEventsForMyTimeline } from '../api';
-import type { EventCalendar, EventCalendarFiltersAsText, TimelineEventGroup } from '../types';
+import { getEventsForMyTimeline } from '@/screens/LDM_MyEvents_V2/api';
+import type { EventCalendar, EventCalendarFiltersAsText, TimelineEventGroup } from '@/screens/LDM_MyEvents_V2/types';
 import type { HouseholdClick } from './EventCard_V2';
 import { MyEvents_MyTimelineFilterButton } from './MyEvents_MyTimelineFilterButton';
 import { MyTimeline_V2 } from './MyTimeline_V2';
-import { addAuditEvent_LDM, getCurrentTimeInMill } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { EventView_MyTimeline, addDays, addMonths, diffDays, toOsDate } from './actions';
 
 /** Block variables the view reads (ScreenBlock_MyEvents_V2.mvc.js model :46-100) and the fetch error of

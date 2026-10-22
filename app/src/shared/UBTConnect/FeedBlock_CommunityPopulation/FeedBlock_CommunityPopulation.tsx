@@ -4,16 +4,16 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { log } from '@/platform/log/log';
 import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import {
   UBT_Color,
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Shape,
   UBT_Size,
-} from '../../UBTConnectLibrary/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { fetchCount } from './api';
 
 export interface FeedBlock_CommunityPopulationProps {

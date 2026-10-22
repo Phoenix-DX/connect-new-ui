@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { MenuAction } from '../lib/staticEntities';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIcon__UpdatedOSUI } from './MenuIcon__UpdatedOSUI';
 import * as stories from './MenuIcon__UpdatedOSUI.stories';
 

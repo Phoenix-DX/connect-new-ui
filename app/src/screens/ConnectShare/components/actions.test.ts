@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { CommunicationException, ServerException, ViewHasChangedException } from '@/legacy/os/os-exceptions';
-import type { ShareDetails } from '../types';
+import type { ShareDetails } from '@/screens/ConnectShare/types';
 import { onInitializeSharingScreen } from './actions';
 
 /* OnInitializeSharingScreen (UBTConnect.controller.js:15603-15700): every branch, with Get_ShareDetails and the
@@ -9,7 +9,7 @@ const spy = vi.hoisted(() => ({
   share: vi.fn<(shareId: string) => Promise<ShareDetails>>(),
   userInfo: vi.fn<() => Promise<unknown>>(),
 }));
-vi.mock('../api', () => ({ get_ShareDetails: spy.share }));
+vi.mock('@/screens/ConnectShare/api', () => ({ get_ShareDetails: spy.share }));
 vi.mock('@/platform/session/userInfo', () => ({ getUserInformation: spy.userInfo }));
 
 const share = (patch: Partial<ShareDetails>): ShareDetails => ({

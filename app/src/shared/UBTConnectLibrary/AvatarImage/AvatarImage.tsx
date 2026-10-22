@@ -1,10 +1,16 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.AvatarImage
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { InlineSVG } from '../../osui/InlineSVG';
-import { CustomContainer } from '../CustomContainer';
-import { Icon } from '../Icon';
-import { formatClasses, getClasses_AvatarSize } from '../lib/actions';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '../lib/staticEntities';
+import { InlineSVG } from '@/shared/osui/InlineSVG';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { formatClasses, getClasses_AvatarSize } from '@/shared/UBTConnectLibrary/lib/actions';
+import {
+  UBT_Color,
+  UBT_FontSize,
+  UBT_FontWeight,
+  UBT_Shape,
+  UBT_Size,
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { AvatarImageRecord } from './types';
 
 export interface AvatarImageProps {

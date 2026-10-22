@@ -2,12 +2,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { AssembleSummaryCard } from '../../../shared/Connect2_Assemble_MUI/AssembleSummaryCard';
-import { ScrollAnchor } from '../../../shared/NavigationHandler/ScrollAnchor';
+import { AssembleSummaryCard } from '@/shared/Connect2_Assemble_MUI/AssembleSummaryCard';
+import { ScrollAnchor } from '@/shared/NavigationHandler/ScrollAnchor';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { setPreloadObject, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getAssembleEventTypes, getAssembleMeetingSummaryList, getUserSubdivision } from '../api';
-import type { AssembleEventFilter, AssembleMeeting, TagItem } from '../types';
+import { getAssembleEventTypes, getAssembleMeetingSummaryList, getUserSubdivision } from '@/screens/AssembleEvents/api';
+import type { AssembleEventFilter, AssembleMeeting, TagItem } from '@/screens/AssembleEvents/types';
 import {
   geAssembleSummaryListFilterLabel,
   getAssembleEventListDateRangeFilter,

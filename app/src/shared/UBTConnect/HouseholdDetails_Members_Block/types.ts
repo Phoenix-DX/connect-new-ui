@@ -1,1 +1,1 @@
-export type { UI_HouseholdMember } from '../lib/structures';
+export type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';

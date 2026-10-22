@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { App_NotificationRefresh } from './App_NotificationRefresh';
 import * as stories from './App_NotificationRefresh.stories';
 

@@ -3,12 +3,12 @@ import { useEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { Directory_EmptyState } from '../../../shared/UBTConnect/Directory_EmptyState';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { UBT_Color, UBT_Size } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { Connect_Entity } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
-import { getOneSchoolGlobalList } from '../api';
-import type { OneSchoolCard } from '../types';
+import { Directory_EmptyState } from '@/shared/UBTConnect/Directory_EmptyState';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { getOneSchoolGlobalList } from '@/screens/Locality_Details/api';
+import type { OneSchoolCard } from '@/screens/Locality_Details/types';
 import { getSkeletonList_UI_OneSchoolGlobal_ListCard } from './actions';
 import { OneSchoolGlobal_List, type OneSchoolRow } from './OneSchoolGlobal_List';
 

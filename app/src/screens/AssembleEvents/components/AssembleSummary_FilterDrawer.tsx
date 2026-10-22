@@ -2,11 +2,11 @@
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { NewConnectContent } from '../../../shared/Connect2_LegacyShared/NewConnectContent';
-import { Input } from '../../../shared/UBTConnectLibrary/Input';
-import { Shape } from '../../../shared/UBTConnectLibrary/lib/staticEntities';
+import { NewConnectContent } from '@/shared/Connect2_LegacyShared/NewConnectContent';
+import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { Shape } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { usePreventBackNavigation } from '@/platform/navigation';
-import type { AssembleEventFilter, AssembleEventTypeSelection } from '../types';
+import type { AssembleEventFilter, AssembleEventTypeSelection } from '@/screens/AssembleEvents/types';
 import { compareAssembleFilters, emptyFilter } from './actions';
 import { InBlock_ActionMenu } from './InBlock_ActionMenu';
 

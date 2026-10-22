@@ -3,7 +3,7 @@ import { act, render, screen } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { ContactByEmailFormProps } from '../../shared/UBTConnect/ContactByEmailForm';
+import type { ContactByEmailFormProps } from '@/shared/UBTConnect/ContactByEmailForm';
 import ContactByEmailMember from './index';
 import { OrbitApplicationEvent_EmailHost } from './components/staticEntities';
 
@@ -17,7 +17,7 @@ const spy = vi.hoisted(() => ({
   feedback: vi.fn(),
   raise: vi.fn(),
 }));
-vi.mock('../../shared/UBTConnect/ContactByEmailForm', async () => {
+vi.mock('@/shared/UBTConnect/ContactByEmailForm', async () => {
   const { OSBlock } = await import('@/components/ui/os/OSBlock');
   return {
     ContactByEmailForm: (props: ContactByEmailFormProps & { children?: ReactNode }) => {

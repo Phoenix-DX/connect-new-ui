@@ -19,7 +19,7 @@ Same shape as `Layout` with the Orbit theme: wrapper `orbit-theme backwards-comp
 
 ## Lifecycle
 
-- OnInitialize (:384-408): `SetThemeClassToBody(ThemeClass.Orbit)` (`shell/bodyTheme.ts`): the body gets
+- OnInitialize (:384-408): `SetThemeClassToBody(ThemeClass.Orbit)` (`legacy/os/bodyTheme.ts`): the body gets
   `orbit-theme`, the Connect / MediaHub classes go.
 - OnReady (:353-383): `IOSMetaTags`, `IOSPreventSwipe` (`../lib/actions.ts`, tested with Layout); OutSystems UI
   `DEPRECATED_LayoutReadyMobile(False)` is not ported (as Layout's LayoutReady).

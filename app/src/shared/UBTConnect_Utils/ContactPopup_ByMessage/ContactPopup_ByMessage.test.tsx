@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { ContactPopup_ByMessage } from './ContactPopup_ByMessage';
 import * as stories from './ContactPopup_ByMessage.stories';
 

@@ -1,16 +1,16 @@
 import type { RequestHandler } from 'msw';
-import type { components } from '../../api/schema';
-import { contractHandler } from '../../mocks/contract';
-import { collection } from '../../mocks/store';
-import { MOCK_SIGNED_PHOTO_URL } from '../Connect2_LegacyShared/Result_Item_Image/mocks';
+import type { components } from '@/api/schema.d';
+import { contractHandler } from '@/mocks/contract';
+import { collection } from '@/mocks/store';
+import { MOCK_SIGNED_PHOTO_URL } from '@/shared/Connect2_LegacyShared/Result_Item_Image/mocks';
 import {
   BOOKMARKED_ELSEWHERE,
   BOOKMARKED_PLACES,
   VITALE,
   bookmarkTitle,
   householdById,
-} from '../../mocks/fictional/directory';
-import { MyBookmarks_Group, MyBookmarks_ObjectType } from '../UBTConnect/lib/staticEntities';
+} from '@/mocks/fictional/directory';
+import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/shared/UBTConnect/lib/staticEntities';
 
 /* The mock user's legacy bookmarks (Connect2_MyBookmarks_IS BookmarkItem rows on the server), shared by every reader and
    writer of the legacy bookmarks (CR-MyBookmarks-2, CR-BookmarksByGroup-2; P-MUTATION):

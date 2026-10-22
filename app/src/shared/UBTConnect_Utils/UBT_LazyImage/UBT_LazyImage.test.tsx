@@ -1,9 +1,9 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { osImage } from '@/legacy/os/os-assets';
-import { expectToMatchCapture } from '../../../test/dom';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { Connect_Entity, ImageSize, UBT_ImageSize } from '../lib/staticEntities';
+import { expectToMatchCapture } from '@/test/dom';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { Connect_Entity, ImageSize, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { markNoPhoto, mockSignedImageURL } from './mocks';
 import { onInitialize } from './onInitialize';
 import { UBT_LazyImage } from './UBT_LazyImage';

@@ -1,6 +1,6 @@
 /* Generated once from src/api/openapi.yaml (O-B3): every attribute at its OutSystems default, for mocks that set
    only the fields they need. Regenerate when the contract of these structures changes. */
-import type { components } from '../../../api/schema';
+import type { components } from '@/api/schema.d';
 
 type Schemas = components['schemas'];
 

@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.Layouts.SubHeader_MainPages
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   UBT_ColumnBehaviour,
   UBT_Color,
@@ -10,7 +10,7 @@ import {
   UBT_IconsSize,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface SubHeader_MainPagesProps {
   id?: string;

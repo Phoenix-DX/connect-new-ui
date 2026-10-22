@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { OSLink } from '../../shared/lib/OSLink';
-import { Block_PINRegister_ContentWrapper } from '../../shared/UBTConnect/Block_PINRegister_ContentWrapper';
-import { Block_PINUnlock_ContentWrapper } from '../../shared/UBTConnect/Block_PINUnlock_ContentWrapper';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../shared/UBTConnectLibrary/IconText';
-import { Layout_LoginFlow } from '../../shared/UBTConnectLibrary/Layout_LoginFlow';
+import { OSLink } from '@/shared/lib/OSLink';
+import { Block_PINRegister_ContentWrapper } from '@/shared/UBTConnect/Block_PINRegister_ContentWrapper';
+import { Block_PINUnlock_ContentWrapper } from '@/shared/UBTConnect/Block_PINUnlock_ContentWrapper';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Layout_LoginFlow } from '@/shared/UBTConnectLibrary/Layout_LoginFlow';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -12,7 +12,7 @@ import {
   UBT_Icons2,
   UBT_IconsSize,
   UBT_Size,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';

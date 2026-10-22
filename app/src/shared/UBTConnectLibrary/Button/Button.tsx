@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.Button
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { formatClasses, getClasses_Button } from '../lib/actions';
-import { UBT_ButtonSize, UBT_ButtonType, UBT_FlexBehavior } from '../lib/staticEntities';
+import { formatClasses, getClasses_Button } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_ButtonSize, UBT_ButtonType, UBT_FlexBehavior } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { ButtonOptions } from './types';
 
 export interface ButtonProps {

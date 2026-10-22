@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { orbitContactRecipients } from '../../mocks/fictional/orbit';
-import { collection } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { orbitContactRecipients } from '@/mocks/fictional/orbit';
+import { collection } from '@/mocks/store';
 
 /* No call was captured (no-capture.json; the form is never sent to TST: CLAUDE.md rule 6). SendContactEmail of
    ScreenBlock_ContactForm (`Connect2_OrbitMobile_MUI/ActionSendContactEmail`) is a write, never recorded

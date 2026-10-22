@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.ImageCard__Content
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../CustomContainer';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '../lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface ImageCard__ContentProps {
   /** OutSystems instance id of the block. */

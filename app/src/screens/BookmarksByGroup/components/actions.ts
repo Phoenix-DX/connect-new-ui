@@ -1,7 +1,7 @@
 import { log } from '@/platform/log/log';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { peekCacheableObject, putCacheableObject } from '@/platform/storage/memoryCache';
-import type { BookmarkItem } from '../types';
+import type { BookmarkItem } from '@/screens/BookmarksByGroup/types';
 import {
   APPLICATION_EVENT_SUBSCRIPTION_REQUIRED,
   DIRECTORY_CACHE_TYPE_MY_BOOKMARKS,

@@ -1,4 +1,4 @@
-import type { components } from '../../api/schema';
+import type { components } from '@/api/schema.d';
 import { wireList } from '@/legacy/os/os-wire';
 
 /* The fictional Assemble world of the mock app (user rule 2026-10-16, migration/knowledge/mock-fixtures.md "Fictional

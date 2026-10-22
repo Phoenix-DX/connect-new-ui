@@ -3,19 +3,16 @@ import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { UserException } from '@/legacy/os/os-exceptions';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { HostSurvey_PillItem } from '../../../shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';
-import { NoResults } from '../../../shared/Connect2_OrbitMobile_MUI/NoResults';
-import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
-import { checkDirectoryAccess, setBookletMaxRows } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { DirectoryAPIFilter, OrbitSkeletonLoading } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import {
-  BackNavigationHandler,
-  type BackNavigationEvent,
-} from '../../../shared/NavigationHandler/BackNavigationHandler';
-import { InputWithIcon } from '../../../shared/osui/InputWithIcon';
-import { Dialog_AccessRestrictedAction_Legacy } from '../../../shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { HostSurvey_PillItem } from '@/shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';
+import { NoResults } from '@/shared/Connect2_OrbitMobile_MUI/NoResults';
+import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { checkDirectoryAccess, setBookletMaxRows } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { DirectoryAPIFilter, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { BackNavigationHandler, type BackNavigationEvent } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { showFeedbackMessage } from '@/platform/feedback';
@@ -28,7 +25,7 @@ import {
   getEventBookletHelpers,
   paginationWire,
   selectedFiltersWire,
-} from '../api';
+} from '@/screens/EventBooklet/api';
 import type {
   BookletMembersByLocality,
   BookletMembersByRole,
@@ -40,7 +37,7 @@ import type {
   PaginationSettings,
   PopupFilters,
   SelectedFilters,
-} from '../types';
+} from '@/screens/EventBooklet/types';
 import {
   blurInput,
   checkSelectedDates,

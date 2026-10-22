@@ -1,11 +1,11 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection
 import { useEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ListOfDaySelectors } from '../../../shared/Connect2_OrbitMobile_MUI/ListOfDaySelectors';
-import { MilestoneTimeType } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { DayFilter } from '../../../shared/Connect2_OrbitMobile_MUI/lib/structures';
+import { ListOfDaySelectors } from '@/shared/Connect2_OrbitMobile_MUI/ListOfDaySelectors';
+import { MilestoneTimeType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import type { DayFilter } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import type { DateFilters } from '../types';
+import type { DateFilters } from '@/screens/EventDetail/types';
 
 /* EventDateSelection (sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection.mvc.js = ES; captured
    dom/default.html:198-246). Only this route uses it. */

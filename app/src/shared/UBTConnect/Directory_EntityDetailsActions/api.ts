@@ -1,6 +1,6 @@
 import { callAction, type ActionInputs, type PathOf } from '@/api/client/callAction';
 import { osList } from '@/legacy/os/os-wire';
-import type { Notes } from '../../UBTConnectLibrary/lib/structures';
+import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
 
 /** The screen variables sent with both data actions of the block (x-os-inputs: screen-variables). */
 export type EntityDetailsActionsVariables = ActionInputs<

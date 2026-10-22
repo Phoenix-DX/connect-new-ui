@@ -4,25 +4,21 @@ import { confirmAction } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { TransitionAnimation, useOsNavigate } from '@/platform/navigation';
-import { OSLink } from '../../shared/lib/OSLink';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CacheControl_UserInfo_Wrapper } from '../../shared/UBTConnect/CacheControl_UserInfo_Wrapper';
-import type { Directory_UserCurrent } from '../../shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { Dialog_CustomChoice } from '../../shared/UBTConnect/Dialog_CustomChoice';
-import { Menu_List } from '../../shared/UBTConnect/Menu_List';
-import { Version } from '../../shared/UBTConnect/Version';
-import { openInApp_OpenExternalLink } from '../../shared/UBTConnect_Utils/lib/actions';
-import {
-  Connect_BottomBar_Items,
-  Connect_Entity,
-  UBT_ImageSize,
-} from '../../shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '../../shared/UBTConnect_Utils/UBT_LazyImage';
-import { Columns_Two } from '../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
+import { OSLink } from '@/shared/lib/OSLink';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
+import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Dialog_CustomChoice } from '@/shared/UBTConnect/Dialog_CustomChoice';
+import { Menu_List } from '@/shared/UBTConnect/Menu_List';
+import { Version } from '@/shared/UBTConnect/Version';
+import { openInApp_OpenExternalLink } from '@/shared/UBTConnect_Utils/lib/actions';
+import { Connect_BottomBar_Items, Connect_Entity, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -32,8 +28,8 @@ import {
   UBT_FontWeight,
   UBT_JustifyContent,
   UBT_Size,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { requestPhotoUpdate } from './api';
 import { applyUserInformation, menu_GetList, toMenuOptionList } from './components/actions';
 import { Connect_Menu_Items, UBT_FontSize_Heading5 } from './components/staticEntities';

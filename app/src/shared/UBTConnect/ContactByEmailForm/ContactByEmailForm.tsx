@@ -2,16 +2,16 @@
 import { useId, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { allowUpcomingNavigation } from '@/platform/navigation';
-import { preventNavigation, type NavigationEvent } from '../../NavigationHandler/lib/actions';
-import { ButtonLoading } from '../../osui/ButtonLoading';
-import { Button } from '../../UBTConnect_Utils/Button';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { DynamicTextArea } from '../../UBTConnectLibrary/DynamicTextArea';
-import { FixedFooter } from '../../UBTConnectLibrary/FixedFooter';
-import { InputCounter } from '../../UBTConnectLibrary/InputCounter';
-import { UBT_Color, UBT_FontSize, UBT_Shadow, UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';
-import { TextArea_WithCounter } from '../../UBTConnectLibrary/TextArea_WithCounter';
-import { Dialog_Navigation } from '../Dialog_Navigation';
+import { preventNavigation, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
+import { ButtonLoading } from '@/shared/osui/ButtonLoading';
+import { Button } from '@/shared/UBTConnect_Utils/Button';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { DynamicTextArea } from '@/shared/UBTConnectLibrary/DynamicTextArea';
+import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
+import { InputCounter } from '@/shared/UBTConnectLibrary/InputCounter';
+import { UBT_Color, UBT_FontSize, UBT_Shadow, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { TextArea_WithCounter } from '@/shared/UBTConnectLibrary/TextArea_WithCounter';
+import { Dialog_Navigation } from '@/shared/UBTConnect/Dialog_Navigation';
 
 export interface ContactByEmailFormProps {
   /** OutSystems instance id of the block. */

@@ -1,16 +1,16 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { expectToMatchCapture } from '../../../test/dom';
-import columns3V1 from '../../osui/Columns3/__captures__/v1.html?raw';
-import columns3V2 from '../../osui/Columns3/__captures__/v2.html?raw';
-import columns3V4 from '../../osui/Columns3/__captures__/v4.html?raw';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { CustomContainer } from '../CustomContainer';
-import { CustomText } from '../CustomText';
-import { Icon } from '../Icon';
-import { IconText } from '../IconText';
-import { SkeletonSection } from '../SkeletonSection';
-import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '../lib/staticEntities';
+import { expectToMatchCapture } from '@/test/dom';
+import columns3V1 from '@/shared/osui/Columns3/__captures__/v1.html?raw';
+import columns3V2 from '@/shared/osui/Columns3/__captures__/v2.html?raw';
+import columns3V4 from '@/shared/osui/Columns3/__captures__/v4.html?raw';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Columns_Three } from './Columns_Three';
 import * as stories from './Columns_Three.stories';
 

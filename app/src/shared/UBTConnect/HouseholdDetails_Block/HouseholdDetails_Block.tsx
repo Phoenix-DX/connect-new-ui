@@ -8,16 +8,16 @@ import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback'
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { Columns_Two } from '../../UBTConnectLibrary/Columns_Two';
-import { ComingSoon } from '../../UBTConnectLibrary/ComingSoon';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { HorizontalTagList } from '../../UBTConnectLibrary/HorizontalTagList';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { IconText } from '../../UBTConnectLibrary/IconText';
-import { ImageCard__Content } from '../../UBTConnectLibrary/ImageCard__Content';
-import { ImageCard_LazyLoading } from '../../UBTConnectLibrary/ImageCard_LazyLoading';
-import { KebabButtonMenu } from '../../UBTConnectLibrary/KebabButtonMenu';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { ComingSoon } from '@/shared/UBTConnectLibrary/ComingSoon';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { HorizontalTagList } from '@/shared/UBTConnectLibrary/HorizontalTagList';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
+import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
+import { KebabButtonMenu } from '@/shared/UBTConnectLibrary/KebabButtonMenu';
 import {
   UBT_AlignItems,
   UBT_Color,
@@ -31,20 +31,24 @@ import {
   UBT_JustifyContent,
   UBT_Shape,
   UBT_Size,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import type { Tag } from '../../UBTConnectLibrary/lib/structures';
-import { SeeMoreSection } from '../../UBTConnectLibrary/SeeMoreSection';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { AddressPopup_Wrapper } from '../../UBTConnect_Utils/AddressPopup_Wrapper';
-import { getHasExtendedShare, getHasPhotobookAccess, showComingSoonMessage } from '../../UBTConnect_Utils/lib/actions';
-import type { Directory_Coordinates } from '../../UBTConnect_Utils/lib/structures';
-import { ShareableObject_Generic } from '../../UBTConnect_Utils/ShareableObject_Generic';
-import { ShareSheet } from '../../UBTConnect_Utils/ShareSheet';
-import { UBT_LazyImage } from '../../UBTConnect_Utils/UBT_LazyImage';
-import { Directory_EntityDetailsActions } from '../Directory_EntityDetailsActions/Directory_EntityDetailsActions';
-import { HouseholdDetails_Members_Block } from '../HouseholdDetails_Members_Block';
-import { HouseholdDetails_TimelinePhoto_List } from '../HouseholdDetails_TimelinePhoto_List';
-import { getSkeleton_UI_HouseholdDetails } from '../lib/actions';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import { SeeMoreSection } from '@/shared/UBTConnectLibrary/SeeMoreSection';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { AddressPopup_Wrapper } from '@/shared/UBTConnect_Utils/AddressPopup_Wrapper';
+import {
+  getHasExtendedShare,
+  getHasPhotobookAccess,
+  showComingSoonMessage,
+} from '@/shared/UBTConnect_Utils/lib/actions';
+import type { Directory_Coordinates } from '@/shared/UBTConnect_Utils/lib/structures';
+import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
+import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
+import { HouseholdDetails_Members_Block } from '@/shared/UBTConnect/HouseholdDetails_Members_Block';
+import { HouseholdDetails_TimelinePhoto_List } from '@/shared/UBTConnect/HouseholdDetails_TimelinePhoto_List';
+import { getSkeleton_UI_HouseholdDetails } from '@/shared/UBTConnect/lib/actions';
 import {
   Connect_Entity,
   Type_ShareObject,
@@ -52,9 +56,9 @@ import {
   UBT_FlexDirection,
   UBT_Icons2 as UBTConnect_Icons2,
   UBT_IconsSize,
-} from '../lib/staticEntities';
-import type { HouseholdPreviewStructure, UI_HouseholdTimelineImages } from '../lib/structures';
-import { SubLayout_DirectoryDetailScreen } from '../SubLayout_DirectoryDetailScreen';
+} from '@/shared/UBTConnect/lib/staticEntities';
+import type { HouseholdPreviewStructure, UI_HouseholdTimelineImages } from '@/shared/UBTConnect/lib/structures';
+import { SubLayout_DirectoryDetailScreen } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen';
 import {
   getHousehold,
   getHousehold_Coordinates,

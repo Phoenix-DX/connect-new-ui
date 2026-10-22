@@ -1,17 +1,17 @@
 // @os-block UBTConnect.App_Common_Blocks.External_Link
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '../../../shared/UBTConnect/lib/staticEntities';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
+import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import {
   UBT_Color as Library_Color,
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { useScreenController_NavigateToPage } from '../../../shared/UBTJavaScriptUtils/lib/actions';
-import { openInApp_OpenExternalLink } from '../../../shared/UBTConnect_Utils/lib/actions';
-import type { BusinessLinkItem } from '../types';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { openInApp_OpenExternalLink } from '@/shared/UBTConnect_Utils/lib/actions';
+import type { BusinessLinkItem } from '@/screens/OneSchoolGlobalDetails/types';
 
 export interface External_LinkProps {
   /** OutSystems instance id of the block. */

@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../mocks/contract';
-import { orbitEventBooklets, type OrbitBookletMember } from '../../mocks/fictional/orbit';
+import { contractHandler } from '@/mocks/contract';
+import { orbitEventBooklets, type OrbitBookletMember } from '@/mocks/fictional/orbit';
 import type {
   EventBookletFiltersResponseWire,
   EventBookletMemberWire,

@@ -1,11 +1,11 @@
-import type { Tag } from '../../UBTConnectLibrary/lib/structures';
-import { HouseholdDetailTags } from '../lib/staticEntities';
+import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import { HouseholdDetailTags } from '@/shared/UBTConnect/lib/staticEntities';
 import type {
   HouseholdPreviewStructure,
   UI_Household_Card_Content,
   UI_HouseholdTimelineImages,
   UI_Screen_HouseholdDetails,
-} from '../lib/structures';
+} from '@/shared/UBTConnect/lib/structures';
 import type { GetHouseholdOutput } from './api';
 
 /* Block-local client actions of HouseholdDetails_Block, ported 1:1 as pure functions (compiled source:

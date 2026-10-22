@@ -1,1 +1,1 @@
-export type { UI_HouseholdTimelineImages } from '../lib/structures';
+export type { UI_HouseholdTimelineImages } from '@/shared/UBTConnect/lib/structures';

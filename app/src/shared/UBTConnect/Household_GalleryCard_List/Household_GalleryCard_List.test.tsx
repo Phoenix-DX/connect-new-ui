@@ -1,7 +1,7 @@
 import { composeStories } from '@storybook/react-vite';
 import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { Household_GalleryCard_List } from './Household_GalleryCard_List';
 import * as stories from './Household_GalleryCard_List.stories';
 

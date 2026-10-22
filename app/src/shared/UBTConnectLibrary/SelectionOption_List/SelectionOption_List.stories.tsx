@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UBT_Size } from '../lib/staticEntities';
+import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { SelectionOption_List } from './SelectionOption_List';
 import type { SelectionOption_Item } from './types';
 

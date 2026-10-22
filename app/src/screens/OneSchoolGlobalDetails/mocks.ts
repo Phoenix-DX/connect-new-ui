@@ -1,8 +1,8 @@
 import type { RequestHandler } from 'msw';
 import type { callAction } from '@/api/client/callAction';
-import { contractHandler } from '../../mocks/contract';
-import { SCHOOLS } from '../../mocks/fictional/directory';
-import { fixtureData } from '../../mocks/fixtures';
+import { contractHandler } from '@/mocks/contract';
+import { SCHOOLS } from '@/mocks/fictional/directory';
+import { fixtureData } from '@/mocks/fixtures';
 
 const ACTION = 'OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails';
 type GetDetailsOutput = Awaited<ReturnType<typeof callAction<'UBTConnect', typeof ACTION>>>;

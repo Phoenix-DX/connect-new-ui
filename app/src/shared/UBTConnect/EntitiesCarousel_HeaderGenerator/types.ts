@@ -1,1 +1,1 @@
-export type { HeaderList } from '../lib/structures';
+export type { HeaderList } from '@/shared/UBTConnect/lib/structures';

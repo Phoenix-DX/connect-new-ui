@@ -6,15 +6,15 @@ import { confirmAction } from '@/platform/feedback/dialogs';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { Carousel } from '../../../shared/osui/Carousel';
-import { Gallery } from '../../../shared/osui/Gallery';
-import { CarouselNavigation } from '../../../shared/osui/lib/staticEntities';
-import { CircleButton } from '../../../shared/UBTConnectLibrary/CircleButton';
-import { CircleButton_WithLabel } from '../../../shared/UBTConnectLibrary/CircleButton_WithLabel';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
+import { Carousel } from '@/shared/osui/Carousel';
+import { Gallery } from '@/shared/osui/Gallery';
+import { CarouselNavigation } from '@/shared/osui/lib/staticEntities';
+import { CircleButton } from '@/shared/UBTConnectLibrary/CircleButton';
+import { CircleButton_WithLabel } from '@/shared/UBTConnectLibrary/CircleButton_WithLabel';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   UBT_AvatarSize,
   UBT_Color,
@@ -26,12 +26,12 @@ import {
   UBT_Shape,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
-import { openInApp_OpenExternalLink } from '../../../shared/UBTConnect_Utils/lib/actions';
-import { UBT_IconSize } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
-import { useGetServices } from '../api';
-import type { ExternalAppPopUpInfo, ServiceItem, ServicesData, ServicesPage } from '../types';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { openInApp_OpenExternalLink } from '@/shared/UBTConnect_Utils/lib/actions';
+import { UBT_IconSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { useGetServices } from '@/screens/HomeFeed/api';
+import type { ExternalAppPopUpInfo, ServiceItem, ServicesData, ServicesPage } from '@/screens/HomeFeed/types';
 import { Dialog_GoExternalApp } from './Dialog_GoExternalApp';
 import { Connect_Services, UBT_Icons2, UBT_Shadow_Small } from './staticEntities';
 

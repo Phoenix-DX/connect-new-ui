@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { callAction } from '@/api/client/callAction';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import type { Tag } from '../../shared/UBTConnectLibrary/HorizontalTagList';
+import type { Tag } from '@/shared/UBTConnectLibrary/HorizontalTagList';
 import type {
   SearchBirthdayOption,
   SearchBirthdayOptionWire,

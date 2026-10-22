@@ -1,11 +1,11 @@
 // @os-block UBTConnect.Directory_Caroussel.EntitiesCarousel_Element
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CarouselTag } from '../CarouselTag';
-import { EntitiesCarouse_lSupperMeetingDetails } from '../EntitiesCarouse_lSupperMeetingDetails';
-import { EntitiesCarousel_HouseholdDetails } from '../EntitiesCarousel_HouseholdDetails';
-import { get_IsInsideRenderBuffer } from '../lib/actions';
-import { Connect_Entity } from '../lib/staticEntities';
+import { CarouselTag } from '@/shared/UBTConnect/CarouselTag';
+import { EntitiesCarouse_lSupperMeetingDetails } from '@/shared/UBTConnect/EntitiesCarouse_lSupperMeetingDetails';
+import { EntitiesCarousel_HouseholdDetails } from '@/shared/UBTConnect/EntitiesCarousel_HouseholdDetails';
+import { get_IsInsideRenderBuffer } from '@/shared/UBTConnect/lib/actions';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 
 /** Block variable IsSinglePassRender (mvc.js model, default True, never assigned): an element rendered once stays. */
 const BLOCK_VARIABLES = { IsSinglePassRender: true as boolean };

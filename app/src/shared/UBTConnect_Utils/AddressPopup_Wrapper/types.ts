@@ -1,1 +1,1 @@
-export type { Directory_Coordinates } from '../lib/structures';
+export type { Directory_Coordinates } from '@/shared/UBTConnect_Utils/lib/structures';

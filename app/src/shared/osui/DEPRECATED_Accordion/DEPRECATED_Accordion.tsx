@@ -1,7 +1,7 @@
 // @os-block OutSystemsUI_2_23.Content.DEPRECATED_Accordion
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import type { AccordionSectionElement } from '../DEPRECATED_AccordionItem/sectionDom';
+import type { AccordionSectionElement } from '@/shared/osui/DEPRECATED_AccordionItem/sectionDom';
 
 export interface DEPRECATED_AccordionProps {
   /** OutSystems instance id of the block. */

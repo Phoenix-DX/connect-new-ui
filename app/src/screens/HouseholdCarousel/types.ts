@@ -1,4 +1,4 @@
-import type { CarouselPreloadedHouseholds } from '../../shared/UBTConnect/lib/structures';
+import type { CarouselPreloadedHouseholds } from '@/shared/UBTConnect/lib/structures';
 
 /** Route inputs of UBTConnect.Directory_Household.HouseholdCarousel (HouseholdCarousel.mvc.js model :28-30, setInputs
     :77-79, query string). */

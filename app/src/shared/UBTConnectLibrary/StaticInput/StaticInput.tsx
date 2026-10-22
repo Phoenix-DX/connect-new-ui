@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.StaticInput
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Icon } from '../Icon';
-import { UBT_Color, UBT_Icons, UBT_IconSize } from '../lib/staticEntities';
-import { TextEllipsis } from '../TextEllipsis';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { UBT_Color, UBT_Icons, UBT_IconSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { TextEllipsis } from '@/shared/UBTConnectLibrary/TextEllipsis';
 
 export interface StaticInputProps {
   /** OutSystems instance id of the block. */

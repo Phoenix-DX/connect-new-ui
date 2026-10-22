@@ -2,7 +2,7 @@ import { composeStories } from '@storybook/react-vite';
 import { act, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { http, HttpResponse } from 'msw';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { server } from '../../../test/setup';
+import { server } from '@/test/setup';
 import { CommunicationException } from '@/legacy/os/os-exceptions';
 import { UserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';

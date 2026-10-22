@@ -1,7 +1,7 @@
 // @os-block OutSystemsUI_2_23.Content.Tag
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Color, Shape } from '../lib/staticEntities';
+import { Color, Shape } from '@/shared/osui/lib/staticEntities';
 
 export interface TagProps {
   /** OutSystems instance id of the block. */

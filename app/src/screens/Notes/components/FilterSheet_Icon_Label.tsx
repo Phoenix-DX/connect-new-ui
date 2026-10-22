@@ -1,10 +1,10 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
-import { bottomSheetOpen } from '../../../shared/osui/lib/actions';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
+import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   UBT_AlignItems,
   UBT_Color,
@@ -15,8 +15,8 @@ import {
   UBT_Icons2,
   UBT_IconsSize,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { child, scopeOf } from './ids';
 import { UBT_Icons2_ExpandMore } from './staticEntities';
 

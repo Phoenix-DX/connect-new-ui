@@ -2,9 +2,9 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { styleFromCssText } from '../../lib/cssText';
-import { ResultListType } from '../lib/staticEntities';
-import { useLoadPhotoAsync } from '../Result_Item_Image/useLoadPhotoAsync';
+import { styleFromCssText } from '@/shared/lib/cssText';
+import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { useLoadPhotoAsync } from '@/shared/Connect2_LegacyShared/Result_Item_Image/useLoadPhotoAsync';
 
 export interface NC_Result_Item__ImageProps {
   /** OutSystems instance id of the block. */

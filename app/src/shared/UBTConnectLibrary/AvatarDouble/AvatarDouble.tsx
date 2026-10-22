@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.AvatarDouble
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { AvatarImage } from '../AvatarImage';
-import { CustomContainer } from '../CustomContainer';
-import { getClasses_AvatarSize } from '../lib/actions';
+import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { getClasses_AvatarSize } from '@/shared/UBTConnectLibrary/lib/actions';
 import type { AvatarImageRecord } from './types';
 
 export interface AvatarDoubleProps {

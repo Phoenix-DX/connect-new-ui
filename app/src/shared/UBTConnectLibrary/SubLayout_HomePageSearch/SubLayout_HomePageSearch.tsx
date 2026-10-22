@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.Layouts.SubLayout_HomePageSearch
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../CustomContainer';
-import { UBT_Size } from '../lib/staticEntities';
-import { StaticInput } from '../StaticInput';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { StaticInput } from '@/shared/UBTConnectLibrary/StaticInput';
 
 export interface SubLayout_HomePageSearchProps {
   /** OutSystems instance id of the block. */

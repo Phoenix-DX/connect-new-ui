@@ -1,16 +1,16 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '../../../shared/lib/cssText';
+import { styleFromCssText } from '@/shared/lib/cssText';
 import { osImage } from '@/legacy/os/os-assets';
-import { Person_Contact_Options } from '../../../shared/Connect2_LegacyShared/Person_Contact_Options';
+import { Person_Contact_Options } from '@/shared/Connect2_LegacyShared/Person_Contact_Options';
 import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
-} from '../../../shared/UBTConnect_Utils/lib/structures';
+} from '@/shared/UBTConnect_Utils/lib/structures';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import type { DetailGuestItem } from '../types';
-import { flipHouseholdName } from '../../../shared/Connect2_LegacyShared/lib/actions';
-import { getLocalityName } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
+import type { DetailGuestItem } from '@/screens/LDM_EventDetail_V2/types';
+import { flipHouseholdName } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { getLocalityName } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 
 export interface EventDetail_ListItemProps {
   id: string;

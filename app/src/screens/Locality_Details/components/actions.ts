@@ -1,9 +1,9 @@
 import { isOn } from '@/platform/flags/flags';
 import { get_LocalBookmarkByObjectId } from '@/platform/storage/localEntities';
-import { currDateTime, formatDateTime } from '../../../shared/lib/osDateTime';
-import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '../../../shared/UBTConnectLibrary/lib/actions';
-import type { LookupItem, Tag } from '../../../shared/UBTConnectLibrary/lib/structures';
-import type { OneSchoolCard, SubdivisionCard } from '../types';
+import { currDateTime, formatDateTime } from '@/shared/lib/osDateTime';
+import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '@/shared/UBTConnectLibrary/lib/actions';
+import type { LookupItem, Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import type { OneSchoolCard, SubdivisionCard } from '@/screens/Locality_Details/types';
 import { LocalityMenu } from './staticEntities';
 
 /* Client actions of the UBTConnect module this route calls (UC = UBTConnect.controller.js, copy in

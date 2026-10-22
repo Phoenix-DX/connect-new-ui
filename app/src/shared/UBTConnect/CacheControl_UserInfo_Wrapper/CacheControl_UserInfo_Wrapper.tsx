@@ -1,8 +1,8 @@
 // @os-block UBTConnect.App_Cache.CacheControl_UserInfo_Wrapper
 import { useLayoutEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CacheControl_UserInfo } from '../../UBTConnect_Utils/CacheControl_UserInfo';
-import { getUserInformation_Wrapper_Assign } from '../lib/actions';
+import { CacheControl_UserInfo } from '@/shared/UBTConnect_Utils/CacheControl_UserInfo';
+import { getUserInformation_Wrapper_Assign } from '@/shared/UBTConnect/lib/actions';
 import type { CacheControl_UserInformation, Directory_UserCurrent } from './types';
 
 export interface CacheControl_UserInfo_WrapperProps {

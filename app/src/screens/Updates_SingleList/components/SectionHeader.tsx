@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Directory_Updates.SectionHeader
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import type { Breakpoint } from '../types';
+import type { Breakpoint } from '@/screens/Updates_SingleList/types';
 import { directory_Updates_GetListBreakpoint, EMPTY_BREAKPOINT } from './actions';
 import { Updates_DateRanges } from './staticEntities';
 import { UpdateItem_Header } from './UpdateItem_Header';

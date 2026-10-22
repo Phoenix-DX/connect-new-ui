@@ -2,23 +2,23 @@
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '../../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../../shared/UBTConnect/CommonUI_InsideLayout';
-import { FilterSheet } from '../../../shared/UBTConnect/FilterSheet';
-import { FilterSheet_Icon } from '../../../shared/UBTConnect/FilterSheet_Icon';
-import { SectionSeparator } from '../../../shared/UBTConnect/SectionSeparator';
-import { Connect_Entity } from '../../../shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '../../../shared/UBTConnect_Utils/UBT_LazyImage';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { HorizontalTagList, type Tag } from '../../../shared/UBTConnectLibrary/HorizontalTagList';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
-import { Gallery } from '../../../shared/osui/Gallery';
-import { Input } from '../../../shared/UBTConnectLibrary/Input';
-import { Layout_DetailPage } from '../../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { FilterSheet } from '@/shared/UBTConnect/FilterSheet';
+import { FilterSheet_Icon } from '@/shared/UBTConnect/FilterSheet_Icon';
+import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
+import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { HorizontalTagList, type Tag } from '@/shared/UBTConnectLibrary/HorizontalTagList';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Gallery } from '@/shared/osui/Gallery';
+import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import {
   Shape,
   UBT_Color,
@@ -30,7 +30,7 @@ import {
   UBT_Shape,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import {
@@ -55,8 +55,8 @@ import {
 } from '@/platform/storage/localEntities';
 import { setPreloadObject, useOsNavigate, useViewState } from '@/platform/navigation';
 import { getClientVar } from '@/platform/session/session';
-import { fetchSearchResults, useSearchBirthdayOptions } from '../api';
-import type { SearchResult, SearchResults, SearchVariables } from '../types';
+import { fetchSearchResults, useSearchBirthdayOptions } from '@/screens/Search/api';
+import type { SearchResult, SearchResults, SearchVariables } from '@/screens/Search/types';
 import { initialTagList, isBirthdayKeyWord, showsCategory, validateSearchPhoneNumber } from './actions';
 import { SearchResult_Section } from './SearchResult_Section';
 import { Search_BirthdayOptions } from './Search_BirthdayOptions';

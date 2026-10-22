@@ -1,6 +1,6 @@
 // @os-block Connect2_LegacyShared.Directory.HighlightSearch
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { removeRegexSpecialCharacters } from '../../../shared/UBTConnectLibrary/lib/actions';
+import { removeRegexSpecialCharacters } from '@/shared/UBTConnectLibrary/lib/actions';
 
 export interface HighlightSearchProps {
   /** OutSystems instance id of the block (`<prefix>-$b3`); the container is `<prefix>-b3-Contents`. */

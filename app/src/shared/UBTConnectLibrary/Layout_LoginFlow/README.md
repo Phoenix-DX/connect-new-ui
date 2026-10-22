@@ -38,5 +38,5 @@ Dialog_ExitConfirmation, AppManager_Events and ActionConfirmationDialog.
 ## Not captured / not settled
 
 - In_HasOverlay False: the source is the compiled code only. The block has a test.
-- The shell's lock container (`src/shell/dialogs/BlockPinUnlock.tsx`) still writes the markup of this layout itself. This is a
+- The shell's lock container (`src/platform/feedback/dialogs/BlockPinUnlock.tsx`) still writes the markup of this layout itself. This is a
   shell file. The container can render this block when a developer next opens the shell.

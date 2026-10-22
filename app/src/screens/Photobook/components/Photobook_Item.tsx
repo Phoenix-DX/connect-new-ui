@@ -1,18 +1,18 @@
 // @os-block Directory_Photobook.Photobook_Item
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Connect_Entity } from '../../../shared/UBTConnect/lib/staticEntities';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import {
   UBT_Color,
   UBT_Display,
   UBT_FontSize,
   UBT_Shape,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '../../../shared/UBTConnect_Utils/UBT_LazyImage';
-import type { PhotobookHousehold } from '../types';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import type { PhotobookHousehold } from '@/screens/Photobook/types';
 import { PanZoom } from './PanZoom';
 import {
   UBT_AlignItems,

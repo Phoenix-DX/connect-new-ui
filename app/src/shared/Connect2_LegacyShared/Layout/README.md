@@ -34,7 +34,7 @@ The React component renders LayoutRuntime_Top and BaseLayout_UpdatedOSUI:
 ## Lifecycle (Connect2_LegacyShared.controller.js, migration/runtime-sources)
 
 - OnInitialize runs `SetThemeClassToBody(ThemeClass.Connect)` (Layout.Layout.mvc.js:415). In the React app,
-  `shell/bodyTheme.ts` (CR-W3A-1, applied) removes the MediaHub, Connect and Orbit classes from the body and adds
+  `legacy/os/bodyTheme.ts` (CR-W3A-1, applied) removes the MediaHub, Connect and Orbit classes from the body and adds
   `connect-theme`. When the layout leaves, nothing removes `connect-theme` (no OnDestroy).
 - OnReady (:384-389) runs `IOSMetaTags` and `IOSPreventSwipe` (`../lib/actions.ts`). Tested.
   - On iOS only (`navigator.platform` iPhone / iPad / iPod, GetIOSPlatform), `IOSMetaTags` sets the viewport meta

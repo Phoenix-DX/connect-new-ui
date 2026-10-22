@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { RadioButton, RadioGroup } from '@/components/ui/os/OSRadioGroup';
-import { styleFromCssText } from '../../../shared/lib/cssText';
-import type { YearItem } from '../types';
+import { styleFromCssText } from '@/shared/lib/cssText';
+import type { YearItem } from '@/screens/OrbitLanding/types';
 import { OrbitLandingFilter } from './staticEntities';
 
 export interface Popup_OrbitLanding_FiltersProps {

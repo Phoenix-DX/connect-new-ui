@@ -9,22 +9,22 @@ import {
   ValidationServiceProvider,
 } from '@/components/ui/os/OSValidation';
 import { osImage } from '@/legacy/os/os-assets';
-import { preventNavigation, type NavigationEvent } from '../../shared/NavigationHandler/lib/actions';
-import { ButtonLoading } from '../../shared/osui/ButtonLoading';
-import { CacheControl_UserInfo_Wrapper } from '../../shared/UBTConnect/CacheControl_UserInfo_Wrapper';
-import type { Directory_UserCurrent } from '../../shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { Dialog_Navigation } from '../../shared/UBTConnect/Dialog_Navigation';
-import { SectionSeparator } from '../../shared/UBTConnect/SectionSeparator';
-import { SubLayout_DirectoryDetailScreen_Section } from '../../shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
-import { Button } from '../../shared/UBTConnect_Utils/Button';
-import { ContactPopup_ByPhone } from '../../shared/UBTConnect_Utils/ContactPopup_ByPhone';
-import { CircleButton_WithLabel } from '../../shared/UBTConnectLibrary/CircleButton_WithLabel';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { FixedFooter } from '../../shared/UBTConnectLibrary/FixedFooter';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../shared/UBTConnectLibrary/IconText';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
+import { preventNavigation, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
+import { ButtonLoading } from '@/shared/osui/ButtonLoading';
+import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
+import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Dialog_Navigation } from '@/shared/UBTConnect/Dialog_Navigation';
+import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
+import { SubLayout_DirectoryDetailScreen_Section } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
+import { Button } from '@/shared/UBTConnect_Utils/Button';
+import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import { CircleButton_WithLabel } from '@/shared/UBTConnectLibrary/CircleButton_WithLabel';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import {
   UBT_AvatarSize,
   UBT_Color,
@@ -34,9 +34,9 @@ import {
   UBT_ImageSize,
   UBT_Shadow,
   UBT_Size,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
-import { TextArea_WithCounter } from '../../shared/UBTConnectLibrary/TextArea_WithCounter';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { TextArea_WithCounter } from '@/shared/UBTConnectLibrary/TextArea_WithCounter';
 import { confirmAction } from '@/platform/feedback/dialogs';
 import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { feedbackMessageAutoClose } from '@/platform/feedback';

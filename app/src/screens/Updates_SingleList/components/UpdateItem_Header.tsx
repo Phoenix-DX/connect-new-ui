@@ -1,18 +1,18 @@
 // @os-block UBTConnect.Directory_Updates.UpdateItem_Header
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Badge } from '../../../shared/UBTConnectLibrary/Badge';
-import { Columns_Two } from '../../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
+import { Badge } from '@/shared/UBTConnectLibrary/Badge';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_Color_RedDark } from './staticEntities';
 
 export interface UpdateItem_HeaderProps {

@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
-import { PendingBlock } from '../../test/PendingBlock';
-import { CommonUI_InsideLayout } from '../../UBTConnect/CommonUI_InsideLayout';
-import { MenuIcon_Back } from '../MenuIcon_Back';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
 import { Layout } from './Layout';
 
 const meta = {

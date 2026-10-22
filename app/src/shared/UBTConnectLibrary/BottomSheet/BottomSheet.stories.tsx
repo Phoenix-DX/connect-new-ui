@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '../../test/PendingBlock';
-import { CustomContainer } from '../CustomContainer';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { BottomSheet } from './BottomSheet';
 
 const meta = {

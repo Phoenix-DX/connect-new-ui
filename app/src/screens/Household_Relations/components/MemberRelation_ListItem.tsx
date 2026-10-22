@@ -1,10 +1,10 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.MemberRelation_ListItem
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Three } from '../../../shared/UBTConnectLibrary/Columns_Three';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
+import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -12,7 +12,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_IconSize_NonStandard_14, UBT_Icons_HomePIn } from './staticEntities';
 
 export interface MemberRelation_ListItemProps {

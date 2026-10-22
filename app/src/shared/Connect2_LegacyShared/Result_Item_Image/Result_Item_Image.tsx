@@ -2,8 +2,8 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { styleFromCssText } from '../../lib/cssText';
-import { ResultListType } from '../lib/staticEntities';
+import { styleFromCssText } from '@/shared/lib/cssText';
+import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { useLoadPhotoAsync } from './useLoadPhotoAsync';
 
 export interface Result_Item_ImageProps {

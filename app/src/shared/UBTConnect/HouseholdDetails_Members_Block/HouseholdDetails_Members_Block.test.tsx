@@ -4,13 +4,13 @@ import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { HouseholdDetails_Members_Block } from './HouseholdDetails_Members_Block';
 import * as stories from './HouseholdDetails_Members_Block.stories';
 
 /* HasAccessToRegion reads the signed-in user's subscription (shell getUserInformation): stubbed here. */
-vi.mock('../lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('../lib/actions')>()),
+vi.mock('@/shared/UBTConnect/lib/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/shared/UBTConnect/lib/actions')>()),
   hasAccessToRegion: vi.fn(() => Promise.resolve(true)),
 }));
 

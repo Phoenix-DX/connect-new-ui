@@ -4,11 +4,11 @@ import { createPortal } from 'react-dom';
 import { NotCaptured } from '@/app/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
-import { PreventBackNavigation } from '../../../shared/NavigationHandler/PreventBackNavigation';
+import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { getEventLocalitiesForFilter } from '../api';
-import type { EventLocality } from '../types';
-import { addAuditEvent_LDM, getCurrentTimeInMill } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { getEventLocalitiesForFilter } from '@/screens/LDM_MyEvents_V2/api';
+import type { EventLocality } from '@/screens/LDM_MyEvents_V2/types';
+import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 
 export interface MyEvents_MyTimelineFilterButtonProps {
   id?: string;

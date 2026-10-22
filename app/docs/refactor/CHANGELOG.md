@@ -47,3 +47,9 @@
 - `src/lib/` is gone. `callAction` is in `src/api/client/`; `os-*` files in `src/legacy/os/`; flags, config, log and device in `src/platform/{flags,config,log,device}/`.
 - `OS*` widgets are in `src/components/ui/os/`; `FlagPanel` is in `src/platform/flags/`; `NotCaptured` is in `src/app/`.
 - 20 rows of `move-map.csv` have status `moved`. Guides, overview diagram and 4 READMEs name the new paths.
+
+## P1-4 - refactor(P1-4): use the @/ alias everywhere
+
+- No folder change. The codemod `--alias-only` rewrote 2,889 relative parent imports in `src/` to `@/`; `grep -r "from '\.\./\.\./" app/src` prints 0.
+- ESLint rule 11 is now an error (`app/eslint.config.js`). `src/sw` is exempt: its 2 `../pwa/` imports stay. ADR-15 names this.
+- `move-map.csv` is unchanged: no block moved.

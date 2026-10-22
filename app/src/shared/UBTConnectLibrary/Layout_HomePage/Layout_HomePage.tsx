@@ -1,11 +1,11 @@
 // @os-block UBTConnectLibrary.Layouts.Layout_HomePage
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { LayoutRuntime_Top } from '../../NavigationHandler/LayoutRuntime_Top';
-import { PullToRefresh } from '../../osui/PullToRefresh';
-import { Columns_Two } from '../Columns_Two';
-import { Icon } from '../Icon';
-import { formatClasses, getClass_BackgroundColor, initialize_SvgScroll } from '../lib/actions';
+import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
+import { PullToRefresh } from '@/shared/osui/PullToRefresh';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { formatClasses, getClass_BackgroundColor, initialize_SvgScroll } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -13,9 +13,9 @@ import {
   UBT_IconSize,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../lib/staticEntities';
-import { SubLayout_HomePageSearch } from '../SubLayout_HomePageSearch';
-import { SVG_Background_Custom } from '../SVG_Background_Custom';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SubLayout_HomePageSearch } from '@/shared/UBTConnectLibrary/SubLayout_HomePageSearch';
+import { SVG_Background_Custom } from '@/shared/UBTConnectLibrary/SVG_Background_Custom';
 
 export interface Layout_HomePageProps {
   /** OutSystems instance id of the block. */

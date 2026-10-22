@@ -1,7 +1,7 @@
 import { useRef, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
-import { styleFromCssText } from '../../../shared/lib/cssText';
+import { styleFromCssText } from '@/shared/lib/cssText';
 
 export interface OrbitLandingPopupProps {
   /** Widget name with its block prefix (`b1-Popup_Filters`, `b1-Popup_Sort`). */

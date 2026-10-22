@@ -4,8 +4,8 @@ import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
 import { setClientVar } from '@/platform/session/session';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import { Connect_Entity } from '../lib/staticEntities';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { Directory_EntityDetailsActions } from './Directory_EntityDetailsActions';
 import * as stories from './Directory_EntityDetailsActions.stories';
 

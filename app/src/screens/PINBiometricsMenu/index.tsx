@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
-import { Menu_List } from '../../shared/UBTConnect/Menu_List';
-import type { UI_MenuSection } from '../../shared/UBTConnect/Menu_List';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
+import { Menu_List } from '@/shared/UBTConnect/Menu_List';
+import type { UI_MenuSection } from '@/shared/UBTConnect/Menu_List';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';

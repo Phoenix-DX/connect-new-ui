@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { Person_Contact_Options } from './Person_Contact_Options';
 import * as stories from './Person_Contact_Options.stories';
 

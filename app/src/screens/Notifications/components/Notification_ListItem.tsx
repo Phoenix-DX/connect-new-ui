@@ -1,12 +1,12 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { SanitizedHtml } from '../../../shared/ReactiveHtmlSanitizer/SanitizedHtml';
-import { AvatarImage } from '../../../shared/UBTConnectLibrary/AvatarImage';
-import { Columns_Three } from '../../../shared/UBTConnectLibrary/Columns_Three';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../../shared/UBTConnectLibrary/CustomText';
-import { getBackgroundColor_IsRead } from '../../../shared/UBTConnectLibrary/lib/actions';
+import { SanitizedHtml } from '@/shared/ReactiveHtmlSanitizer/SanitizedHtml';
+import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';
+import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { getBackgroundColor_IsRead } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_AvatarSize,
   UBT_Color,
@@ -15,7 +15,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { get_ElapsedTime_Notification } from './actions';
 
 export interface Notification_ListItemProps {

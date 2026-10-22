@@ -5,13 +5,13 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { AssembleSummaryCard } from '../../../shared/Connect2_Assemble_MUI/AssembleSummaryCard';
-import { AssembleSummaryDetailHeader_Skeleton } from '../../../shared/Connect2_Assemble_MUI/AssembleSummaryDetailHeader_Skeleton';
-import { NC_Card_Item_Text__Skeleton } from '../../../shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
+import { AssembleSummaryCard } from '@/shared/Connect2_Assemble_MUI/AssembleSummaryCard';
+import { AssembleSummaryDetailHeader_Skeleton } from '@/shared/Connect2_Assemble_MUI/AssembleSummaryDetailHeader_Skeleton';
+import { NC_Card_Item_Text__Skeleton } from '@/shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getAssembleEvent } from '../api';
-import type { AssembleDetailInputs, GetAssembleEventResult } from '../types';
+import { getAssembleEvent } from '@/screens/AssembleDetail/api';
+import type { AssembleDetailInputs, GetAssembleEventResult } from '@/screens/AssembleDetail/types';
 import { getIANATimezone, offsetDateTimeByUserUTCOffset, showUnknownErrorMessage } from './actions';
 import { AssembleEventDetail_ContactList, type EmailContactArgs } from './AssembleEventDetail_Contacts';
 import { AssembleEventDetail_LocalitiesList, type AttendeeNavigation } from './AssembleEventDetail_Localities';

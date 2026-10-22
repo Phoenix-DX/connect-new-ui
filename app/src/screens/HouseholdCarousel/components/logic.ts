@@ -1,7 +1,7 @@
 import { getClientVar, setClientVar } from '@/platform/session/session';
-import { textToLongInteger } from '../../../shared/UBTConnect_Utils/lib/actions';
-import type { CarouselHouseholdItem, EntitiesCarousel_Item } from '../../../shared/UBTConnect/lib/structures';
-import type { EntitiesCarousel_SwippedItem, HouseholdPreload } from '../types';
+import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import type { CarouselHouseholdItem, EntitiesCarousel_Item } from '@/shared/UBTConnect/lib/structures';
+import type { EntitiesCarousel_SwippedItem, HouseholdPreload } from '@/screens/HouseholdCarousel/types';
 
 /* Client actions of UBTConnect.Directory_Household.HouseholdCarousel (HouseholdCarousel.mvc.js controller :376-605)
    and the module action Directory_Updates_CarouselSwipeAction (UBTConnect.controller.js:1625-1660), without React. */

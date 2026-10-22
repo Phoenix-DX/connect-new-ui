@@ -2,9 +2,9 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { log } from '@/platform/log/log';
-import { CustomContainer } from '../../../shared/UBTConnectLibrary/CustomContainer';
-import { LazyImage } from '../../../shared/UBTConnectLibrary/LazyImage';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { LazyImage } from '@/shared/UBTConnectLibrary/LazyImage';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -12,8 +12,8 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { appManager_Get_UserIdToken, useGetEntertainingConfig } from '../api';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { appManager_Get_UserIdToken, useGetEntertainingConfig } from '@/screens/MyEntertaining/api';
 import { loadedEmbed, requireEmbed } from './connect2Entertaining';
 
 /** MaxLoadingItems (Embedded_MyEntertaining.mvc.js model, default 5). */

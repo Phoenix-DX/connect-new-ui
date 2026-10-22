@@ -1,1 +1,1 @@
-export type { ActionsMenuEnableOptions, ActionsMenuOptions } from '../lib/structures';
+export type { ActionsMenuEnableOptions, ActionsMenuOptions } from '@/shared/UBTConnectLibrary/lib/structures';

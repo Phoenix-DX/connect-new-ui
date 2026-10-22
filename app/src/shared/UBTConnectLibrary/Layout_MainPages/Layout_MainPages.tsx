@@ -1,17 +1,22 @@
 // @os-block UBTConnectLibrary.Layouts.Layout_MainPages
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { LayoutRuntime_Top } from '../../NavigationHandler/LayoutRuntime_Top';
-import { PullToRefresh } from '../../osui/PullToRefresh';
-import { Columns_Two } from '../Columns_Two';
+import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
+import { PullToRefresh } from '@/shared/osui/PullToRefresh';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
 import {
   clearScrollTimeout,
   getClass_BackgroundColor,
   removeScrollEvents,
   setMainScroll,
   setScrollShadow,
-} from '../lib/actions';
-import { UBT_Color, UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/actions';
+import {
+  UBT_Color,
+  UBT_ColumnBehaviour,
+  UBT_Size,
+  UBT_VerticalAlign,
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface Layout_MainPagesProps {
   /** OutSystems instance id of the block. */

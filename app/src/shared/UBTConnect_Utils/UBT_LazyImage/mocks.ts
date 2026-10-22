@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../../mocks/contract';
-import { Connect_Entity } from '../lib/staticEntities';
+import { contractHandler } from '@/mocks/contract';
+import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 
 /* GetSignedImagesInBulk (CR-W2A-1), decision Q-W2C-1 (user, 2026-10-14; migration/knowledge/mock-fixtures.md): where
    TST showed a photo the mock answers a neutral, non-person placeholder shipped with the app (public/mock-images/);

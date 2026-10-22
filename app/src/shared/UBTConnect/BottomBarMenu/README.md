@@ -20,7 +20,7 @@ BottomBarContent, BottomBarItem, App_IconBadge, Icon (Base_24) and CustomText (x
 - OnReady: the block does two steps in this order.
   1. It runs `Directory_Updates_RefreshBottomBarCount(False)` (UBTConnect/lib/actions.ts).
      This action calls `ServiceAPIGet_UI_UpdateItems_UnreadCount_All` only when the last check is 5 minutes old or more.
-     The recorded mock is in `src/shell/mocks.ts`.
+     The recorded mock is in `src/platform/bootstrap/mocks.ts`.
   2. It runs OSUI `SetBottomBarActiveElement(-1)`.
 - OnParametersChanged: this event runs only when a parent changes the inputs (BottomBarMenu.mvc.js:513-560):
   - For a householder, the first time: the block sets Retried and runs OnInitialize.

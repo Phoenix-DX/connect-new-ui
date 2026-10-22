@@ -1,4 +1,4 @@
-import type { CountryStatistics } from '../types';
+import type { CountryStatistics } from '@/screens/CountryList/types';
 
 /** GetSkeleton_UI_CountryStatistics (UBTConnect.controller.js:11508-11573): Statistics.Title "Australia",
     Statistics.AvatarURL "-" (its Statistics list of five counts is not read by this screen), everything else empty. */

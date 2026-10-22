@@ -1,4 +1,4 @@
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
 import { allowUpcomingNavigation, useNavigateBack, useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_Assemble_Filter } from './components/ScreenBlock_Assemble_Filter';
 

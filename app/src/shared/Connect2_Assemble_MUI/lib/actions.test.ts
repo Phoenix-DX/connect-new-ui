@@ -1,10 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { log } from '@/platform/log/log';
-import { contractHandler } from '../../../mocks/contract';
+import { contractHandler } from '@/mocks/contract';
 import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
-import { server } from '../../../test/setup';
+import { server } from '@/test/setup';
 import {
   localBookmarksSchemas,
   memoryDatabase,
@@ -12,7 +12,7 @@ import {
   synchBookmarks,
   type LegacyLocalBookmark,
 } from '@/platform/storage/localEntities';
-import { defaultActionGetLocalityInformation_Output } from '../../Connect2_LegacyShared/lib/mockDefaults';
+import { defaultActionGetLocalityInformation_Output } from '@/shared/Connect2_LegacyShared/lib/mockDefaults';
 import {
   getAssembleEventSummaryDateTimeString,
   getAssembleEventSummaryHeaderLabel,

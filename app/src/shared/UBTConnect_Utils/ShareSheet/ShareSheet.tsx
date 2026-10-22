@@ -2,24 +2,24 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
-import { PreventBackNavigation } from '../../NavigationHandler/PreventBackNavigation';
-import { bottomSheetClose, bottomSheetOpen } from '../../osui/lib/actions';
-import { BottomSheet } from '../../UBTConnectLibrary/BottomSheet';
-import { CircleButton_WithLabel } from '../../UBTConnectLibrary/CircleButton_WithLabel';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { EmptyList } from '../../UBTConnectLibrary/EmptyList';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { Input } from '../../UBTConnectLibrary/Input';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
+import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';
+import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { CircleButton_WithLabel } from '@/shared/UBTConnectLibrary/CircleButton_WithLabel';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { EmptyList } from '@/shared/UBTConnectLibrary/EmptyList';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import {
   Shape,
   UBT_ButtonSize,
   UBT_ButtonType,
   UBT_Color as LibraryColor,
   UBT_Display,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import { Button } from '../Button';
-import type { SearchResult } from '../lib/structures';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Button } from '@/shared/UBTConnect_Utils/Button';
+import type { SearchResult } from '@/shared/UBTConnect_Utils/lib/structures';
 import {
   Connect_Entity,
   UBT_AvatarSize,
@@ -31,11 +31,11 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '../lib/staticEntities';
-import { SearchResult_Item } from '../SearchResult_Item';
-import { ShareSheet_Section } from '../ShareSheet_Section';
-import { ShareSheet_SectionTitle } from '../ShareSheet_SectionTitle';
-import { UBT_LazyImage } from '../UBT_LazyImage';
+} from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { SearchResult_Item } from '@/shared/UBTConnect_Utils/SearchResult_Item';
+import { ShareSheet_Section } from '@/shared/UBTConnect_Utils/ShareSheet_Section';
+import { ShareSheet_SectionTitle } from '@/shared/UBTConnect_Utils/ShareSheet_SectionTitle';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import { cs_ShareObject, useGetAvailableMembers, useGetRecentlyShared } from './api';
 import { delaySetIsOpen, scrollToTop, shareSheet_IsSharing } from './jsNodes';
 

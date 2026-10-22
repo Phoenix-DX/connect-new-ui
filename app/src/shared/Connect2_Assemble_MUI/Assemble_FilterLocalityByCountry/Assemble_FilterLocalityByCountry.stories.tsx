@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { LOCALITY } from '../../../mocks/fictional/directory';
-import { mockApiSession } from '../../test/mockApiSession';
+import { LOCALITY } from '@/mocks/fictional/directory';
+import { mockApiSession } from '@/shared/test/mockApiSession';
 import { Assemble_FilterLocalityByCountry } from './Assemble_FilterLocalityByCountry';
 
 const meta = {

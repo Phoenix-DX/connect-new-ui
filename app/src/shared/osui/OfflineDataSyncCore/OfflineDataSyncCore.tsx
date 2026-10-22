@@ -1,7 +1,7 @@
 // @os-block OutSystemsUI_2_23.Private.OfflineDataSyncCore
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { NetworkStatusChanged } from '../NetworkStatusChanged';
+import { NetworkStatusChanged } from '@/shared/osui/NetworkStatusChanged';
 
 export interface OfflineDataSyncCoreProps {
   /** OutSystems instance id of the block. */

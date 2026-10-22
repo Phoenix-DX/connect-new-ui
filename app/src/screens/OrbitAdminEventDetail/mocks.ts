@@ -1,12 +1,12 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
+import { contractHandler } from '@/mocks/contract';
 import {
   orbitAdminAttendees,
   orbitAdminEvents,
   orbitAdminMember,
   orbitAdminQRCode,
-} from '../../mocks/fictional/orbitAdmin';
-import { scenario } from '../../mocks/scenario';
+} from '@/mocks/fictional/orbitAdmin';
+import { scenario } from '@/mocks/scenario';
 import { wireList } from '@/legacy/os/os-wire';
 import {
   BarcodePluginEntities,

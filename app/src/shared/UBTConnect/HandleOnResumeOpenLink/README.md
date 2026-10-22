@@ -16,4 +16,4 @@ Inputs: none. Events: none. Placeholders: none. Child blocks (plugins, empty on 
 ## Not settled
 
 - The plugin events (`ResumeNavigation`, `OnDeeplinkOpen`) are native only; their handler (`Action_ProcessURL`) is not
-  ported (decision U14: plain URLs, resume-link helper in `src/shell/resume.ts`, plugins later).
+  ported (decision U14: plain URLs, resume-link helper in `src/platform/session/resume.ts`, plugins later).

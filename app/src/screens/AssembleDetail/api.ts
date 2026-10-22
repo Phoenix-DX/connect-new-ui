@@ -1,6 +1,6 @@
 import { callAction } from '@/api/client/callAction';
 import { osDate, osList } from '@/legacy/os/os-wire';
-import { getCacheableMemberContactList } from '../../shared/Connect2_LegacyShared/lib/actions';
+import { getCacheableMemberContactList } from '@/shared/Connect2_LegacyShared/lib/actions';
 import type {
   AssembleAttendeeGuest,
   AssembleDetailInputs,

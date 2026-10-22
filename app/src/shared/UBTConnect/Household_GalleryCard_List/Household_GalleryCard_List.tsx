@@ -1,14 +1,14 @@
 // @os-block UBTConnect.Directory_Household_Blocks.Household_GalleryCard_List
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DataFetchStatus, OSList } from '@/components/ui/os/OSList';
-import { Gallery } from '../../osui/Gallery';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { Directory_EmptyState } from '../Directory_EmptyState';
-import { Household_GalleryCard } from '../Household_GalleryCard';
-import { get_LookupSection } from '../lib/actions';
-import { Connect_Entity } from '../lib/staticEntities';
-import type { UI_SubdivisionHousehold } from '../lib/structures';
-import { SubLayout_DirectoryDetailScreen_Section } from '../SubLayout_DirectoryDetailScreen_Section';
+import { Gallery } from '@/shared/osui/Gallery';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Directory_EmptyState } from '@/shared/UBTConnect/Directory_EmptyState';
+import { Household_GalleryCard } from '@/shared/UBTConnect/Household_GalleryCard';
+import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
+import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
+import { SubLayout_DirectoryDetailScreen_Section } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
 
 /** Local ItemsPerRow (default 2; p:…Household_GalleryCard_List.mvc.js:13-15). */
 const ITEMS_PER_ROW = 2;

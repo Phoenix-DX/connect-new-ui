@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { OSLink } from '../../lib/OSLink';
-import { BottomBarItem } from '../../osui/BottomBarItem';
+import { OSLink } from '@/shared/lib/OSLink';
+import { BottomBarItem } from '@/shared/osui/BottomBarItem';
 import { BottomBarContent } from './BottomBarContent';
 
 const meta = {

@@ -2,13 +2,13 @@
 // @os-block NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack
 import { useEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Layout } from '../../../shared/Connect2_LegacyShared/Layout';
-import { MenuAction } from '../../../shared/Connect2_LegacyShared/lib/staticEntities';
-import { MenuIcon__UpdatedOSUI } from '../../../shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
-import { NewConnectContent } from '../../../shared/Connect2_LegacyShared/NewConnectContent';
-import { BackNavigationHandler } from '../../../shared/NavigationHandler/BackNavigationHandler';
+import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { NewConnectContent } from '@/shared/Connect2_LegacyShared/NewConnectContent';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
 import { getPreloadObject, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import type { AssembleDetailInputs } from '../types';
+import type { AssembleDetailInputs } from '@/screens/AssembleDetail/types';
 import { navigationStorage } from './actions';
 import { AssembleEventDetail, type AssembleEventDetailProps } from './AssembleEventDetail';
 

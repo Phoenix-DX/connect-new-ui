@@ -2,8 +2,8 @@ import { act, fireEvent, render as renderUi, screen } from '@testing-library/rea
 import type { ReactElement } from 'react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
-import { bottomSheetOpen } from '../../osui/lib/actions';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { BottomSheet } from './BottomSheet';
 import * as stories from './BottomSheet.stories';
 

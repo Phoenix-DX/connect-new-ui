@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { collection } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { collection } from '@/mocks/store';
 
 /* The route was not captured (no-capture, user 2026-10-16). Its data are its inputs (LDM_EventDetail_V2 passes the
    coordinator of the shared LDM world, src/mocks/fictional/ldm.ts). SendContactLDMCoordinatorEmail is a write, never

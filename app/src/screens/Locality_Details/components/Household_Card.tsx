@@ -2,10 +2,10 @@
 import { useEffect, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { Icon } from '../../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../../shared/UBTConnectLibrary/IconText';
-import { ImageCard_LazyLoading } from '../../../shared/UBTConnectLibrary/ImageCard_LazyLoading';
-import { ImageCard__Content } from '../../../shared/UBTConnectLibrary/ImageCard__Content';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
+import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -14,15 +14,12 @@ import {
   UBT_ImageCardType,
   UBT_ImageSize,
   UBT_Size,
-} from '../../../shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../../shared/UBTConnectLibrary/SkeletonSection';
-import {
-  Connect_Entity,
-  UBT_ImageSize as UBT_ImageSize_Utils,
-} from '../../../shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '../../../shared/UBTConnect_Utils/UBT_LazyImage';
-import { getMembers } from '../api';
-import type { HouseholdMembers, LazyImageItem, LocalityHousehold } from '../types';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Connect_Entity, UBT_ImageSize as UBT_ImageSize_Utils } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { getMembers } from '@/screens/Locality_Details/api';
+import type { HouseholdMembers, LazyImageItem, LocalityHousehold } from '@/screens/Locality_Details/types';
 import { UBT_Icons2_Locality } from './staticEntities';
 import { UBT_LazyImage_List } from './UBT_LazyImage_List';
 

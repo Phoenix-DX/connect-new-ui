@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
 import { readMyEntertainingInputs } from './api';
 import { MyEntertaining_Embedded } from './components/MyEntertaining_Embedded';
 

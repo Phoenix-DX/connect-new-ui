@@ -4,15 +4,15 @@ import { MemoryRouter, Route, Routes, useLocation } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setFlag } from '@/platform/flags/flags';
 import { setClientVar } from '@/platform/session/session';
-import type { Embedded_FeedCMSProps } from '../../UBTConnect_EmbedFeed/Embedded_FeedCMS';
-import { testCapturedVariants } from '../../test/capturedVariants';
+import type { Embedded_FeedCMSProps } from '@/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { Feed_Embeded } from './Feed_Embeded';
 import * as stories from './Feed_Embeded.stories';
 
 /* The mock feed SDK raises no OnShare (Embedded_FeedCMS README, D8 b): the child is replaced by its root wrapper (the
    only part the capture compares for a nested block) and its props are kept so the tests can raise its events. */
 const feed = vi.hoisted(() => ({ props: undefined as Embedded_FeedCMSProps | undefined }));
-vi.mock('../../UBTConnect_EmbedFeed/Embedded_FeedCMS', async () => {
+vi.mock('@/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS', async () => {
   const { OSBlock } = await import('@/components/ui/os/OSBlock');
   return {
     Embedded_FeedCMS: (props: Embedded_FeedCMSProps) => {

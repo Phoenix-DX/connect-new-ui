@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { contractHandler } from '../../mocks/contract';
-import { recordedHandler } from '../../mocks/fixtures';
-import { collection, statefulHandler } from '../../mocks/store';
+import { contractHandler } from '@/mocks/contract';
+import { recordedHandler } from '@/mocks/fixtures';
+import { collection, statefulHandler } from '@/mocks/store';
 import { wireList } from '@/legacy/os/os-wire';
 import type { UpdateItemWire } from './types';
 

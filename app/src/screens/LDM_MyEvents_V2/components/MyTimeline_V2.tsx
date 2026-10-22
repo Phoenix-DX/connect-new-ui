@@ -1,14 +1,14 @@
 // @os-block Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyTimeline_V2
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { NetworkWarning } from '../../../shared/Connect2_LegacyShared/NetworkWarning';
-import { ErrorScreen } from '../../../shared/Connect2_OrbitMobile_MUI/ErrorScreen';
-import { EventDetail_SubSection } from '../../../shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection';
+import { NetworkWarning } from '@/shared/Connect2_LegacyShared/NetworkWarning';
+import { ErrorScreen } from '@/shared/Connect2_OrbitMobile_MUI/ErrorScreen';
+import { EventDetail_SubSection } from '@/shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection';
 import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
-} from '../../../shared/UBTConnect_Utils/lib/structures';
-import type { EventCalendar, TimelineEventGroup } from '../types';
+} from '@/shared/UBTConnect_Utils/lib/structures';
+import type { EventCalendar, TimelineEventGroup } from '@/screens/LDM_MyEvents_V2/types';
 import { EventCard_V2, type HouseholdClick } from './EventCard_V2';
 
 export interface MyTimeline_V2Props {

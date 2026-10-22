@@ -1,8 +1,8 @@
 import { useSearchParams } from 'react-router';
-import { BackNavigationHandler } from '../../shared/NavigationHandler/BackNavigationHandler';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { getHasNewNotifications } from '../../shared/UBTConnect_Utils/lib/actions';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { getHasNewNotifications } from '@/shared/UBTConnect_Utils/lib/actions';
 import { useOsNavigate } from '@/platform/navigation';
 import { useShellState } from '@/platform/session/session';
 import { readMessageDetailInputs } from './api';

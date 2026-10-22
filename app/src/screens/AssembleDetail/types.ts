@@ -1,4 +1,4 @@
-import type { AssembleEventSummary } from '../../shared/Connect2_Assemble_MUI/lib/structures';
+import type { AssembleEventSummary } from '@/shared/Connect2_Assemble_MUI/lib/structures';
 
 /* Domain types of AssembleDetail (rule 9: components never see the wire shape; api.ts maps it). Field names are the
    Connect2_Assemble_CS attributes (contract schemas Connect2_Assemble_CS__*); Long Integers stay strings, counts are

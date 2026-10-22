@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CustomContainer } from '../CustomContainer';
-import { CustomText } from '../CustomText';
-import { IconText } from '../IconText';
-import { UBT_ColumnBehaviour } from '../lib/staticEntities';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { UBT_ColumnBehaviour } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Columns_Three } from './Columns_Three';
 
 const meta = { title: 'Shared/UBTConnectLibrary/Columns_Three', component: Columns_Three } satisfies Meta<

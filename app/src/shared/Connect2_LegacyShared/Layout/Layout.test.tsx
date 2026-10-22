@@ -2,9 +2,9 @@ import { composeStories } from '@storybook/react-vite';
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setSignedInUser } from '@/platform/session/session';
-import { expectToMatchCapture } from '../../../test/dom';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import baseV1 from '../BaseLayout_UpdatedOSUI/__captures__/v1.html?raw';
+import { expectToMatchCapture } from '@/test/dom';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import baseV1 from '@/shared/Connect2_LegacyShared/BaseLayout_UpdatedOSUI/__captures__/v1.html?raw';
 import { Layout } from './Layout';
 import * as stories from './Layout.stories';
 

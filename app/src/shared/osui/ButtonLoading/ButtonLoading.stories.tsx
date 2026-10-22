@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button } from '../../UBTConnect_Utils/Button';
+import { Button } from '@/shared/UBTConnect_Utils/Button';
 import { ButtonLoading } from './ButtonLoading';
 
 const meta = { title: 'Shared/osui/ButtonLoading', component: ButtonLoading } satisfies Meta<typeof ButtonLoading>;

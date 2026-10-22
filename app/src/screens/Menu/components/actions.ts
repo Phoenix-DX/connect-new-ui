@@ -1,8 +1,8 @@
-import type { UI_ListMenuOption } from '../../../shared/UBTConnect/Menu_List/types';
-import { UBT_Icons2 } from '../../../shared/UBTConnect/lib/staticEntities';
-import type { Directory_UserCurrent } from '../../../shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
+import type { UI_ListMenuOption } from '@/shared/UBTConnect/Menu_List/types';
+import { UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
+import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
 import { Connect_Menu_Items, UBT_Icons_Menu } from './staticEntities';
-import type { Menu_Item } from '../types';
+import type { Menu_Item } from '@/screens/Menu/types';
 
 /** UBTConnect_Utils Menu_GetList (p:UBTConnect_Utils.controller.js:4129-4205, Services copy): six rows appended in this
     order with their Order values (2, 4, 5, 6, 6, 7). */

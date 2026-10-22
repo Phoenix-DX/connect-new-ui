@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { callAction } from '@/api/client/callAction';
 import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
 import { getClientVar } from '@/platform/session/session';
-import { CacheControl } from '../CacheControl';
+import { CacheControl } from '@/shared/UBTConnect_Utils/CacheControl';
 import type { CacheControl_UserInformation } from './types';
 
 export interface CacheControl_UserInfoProps {

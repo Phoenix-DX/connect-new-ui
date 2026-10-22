@@ -15,8 +15,8 @@ import { log } from '@/platform/log/log';
 import { UserException } from '@/legacy/os/os-exceptions';
 import { isSignedIn } from '@/platform/session/session';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
-import { checkAppLauncherPlugin, getOperatingSystem } from '../../UBTConnect_Utils/lib/actions';
-import { Mobile_OperatingSystem } from '../../UBTConnect_Utils/lib/staticEntities';
+import { checkAppLauncherPlugin, getOperatingSystem } from '@/shared/UBTConnect_Utils/lib/actions';
+import { Mobile_OperatingSystem } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { DirectoryCacheType, MapNavigationRedirect } from './staticEntities';
 import type {
   BookmarkItem,

@@ -61,8 +61,8 @@ OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â
 
     The model default of isLoaded is False.
 
-  - Local copies: `src/shell/localEntities` (`localBookmarks.ts`). The shell synchronizes them at app start
-    [src/shell/startup.ts:158-159].
+  - Local copies: `src/platform/storage/localEntities` (`localBookmarks.ts`). The shell synchronizes them at app start
+    [src/platform/bootstrap/startup.ts:158-159].
 - **Handle_Bookmark** (:1388-1514): the user clicks Bookmark or Unbookmark in the menu
   [Directory_EntityDetailsActions.tsx, `handleBookmark`].
   1. The block always runs ToggleBookmarkItem_C2 (UBTConnect `lib/actions.ts`).

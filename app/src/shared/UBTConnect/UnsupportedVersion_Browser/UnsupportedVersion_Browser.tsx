@@ -1,6 +1,6 @@
 // @os-block UBTConnect.App_Common.UnsupportedVersion_Browser
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { UnsupportedVersion } from '../UnsupportedVersion';
+import { UnsupportedVersion } from '@/shared/UBTConnect/UnsupportedVersion';
 
 export interface UnsupportedVersion_BrowserProps {
   /** OutSystems instance id of the block. */

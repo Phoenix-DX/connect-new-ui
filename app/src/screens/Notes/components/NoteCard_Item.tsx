@@ -1,10 +1,10 @@
 // @os-block UBTConnect.Notes.NoteCard_Item
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { NoteListActions } from '../../../shared/UBTConnect_Utils/NoteListActions';
-import { NotesSheet } from '../../../shared/UBTConnect_Utils/NotesSheet';
-import type { Notes } from '../../../shared/UBTConnectLibrary/lib/structures';
-import type { NoteCardItem } from '../types';
+import { NoteListActions } from '@/shared/UBTConnect_Utils/NoteListActions';
+import { NotesSheet } from '@/shared/UBTConnect_Utils/NotesSheet';
+import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
+import type { NoteCardItem } from '@/screens/Notes/types';
 import { child, scopeOf } from './ids';
 import { ItemCard_WithNotes } from './ItemCard_WithNotes';
 import { ItemCardActions } from './ItemCardActions';

@@ -1,15 +1,15 @@
 import { composeStories } from '@storybook/react-vite';
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '../../test/capturedVariants';
-import type { EntitiesCarousel_HouseholdDetailsProps } from '../EntitiesCarousel_HouseholdDetails';
-import { get_IsInsideRenderBuffer } from '../lib/actions';
+import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import type { EntitiesCarousel_HouseholdDetailsProps } from '@/shared/UBTConnect/EntitiesCarousel_HouseholdDetails';
+import { get_IsInsideRenderBuffer } from '@/shared/UBTConnect/lib/actions';
 import * as stories from './EntitiesCarousel_Element.stories';
 
 /* Records the inputs EntitiesCarousel_HouseholdDetails receives; it still renders the real block. */
 const seen = vi.hoisted(() => ({ skeleton: [] as (boolean | undefined)[] }));
-vi.mock('../EntitiesCarousel_HouseholdDetails', async (importOriginal) => {
-  const real = await importOriginal<typeof import('../EntitiesCarousel_HouseholdDetails')>();
+vi.mock('@/shared/UBTConnect/EntitiesCarousel_HouseholdDetails', async (importOriginal) => {
+  const real = await importOriginal<typeof import('@/shared/UBTConnect/EntitiesCarousel_HouseholdDetails')>();
   return {
     ...real,
     EntitiesCarousel_HouseholdDetails: (props: EntitiesCarousel_HouseholdDetailsProps) => {

@@ -1,1 +1,1 @@
-export type { SearchInput } from '../lib/structures';
+export type { SearchInput } from '@/shared/UBTConnectLibrary/lib/structures';

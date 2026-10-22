@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { BottomSheet } from '../../shared/UBTConnectLibrary/BottomSheet';
-import { bottomSheetClose, bottomSheetOpen } from '../../shared/osui/lib/actions';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { dateTimeParam, useOsNavigate } from '@/platform/navigation';
 import { Assemble_FilterSheet } from './components/Assemble_FilterSheet';
 import { ScreenBlock_AssembleEvents } from './components/ScreenBlock_AssembleEvents';

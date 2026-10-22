@@ -1,7 +1,7 @@
 // @os-block Connect2_LegacyShared.MyNotifications.MessageFilterGroup
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Separator } from '../../../shared/osui/Separator';
+import { Separator } from '@/shared/osui/Separator';
 import { textEllipsis } from './actions';
 import { Space } from './staticEntities';
 

@@ -2,9 +2,9 @@
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { getFormattedDateTimeById } from '../../../shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitMilestoneType } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { SeatItem, StopItem, TransportDetails, TransportLocation } from '../types';
+import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import type { SeatItem, StopItem, TransportDetails, TransportLocation } from '@/screens/TransportDetail/types';
 import { getFormattedTime_FromTime, getFormattedTimeDifference } from './actions';
 import { TransportDetail_TravelInfo } from './TransportDetail_TravelInfo';
 

@@ -1,14 +1,14 @@
 // @os-block UBTConnect.Directory_Updates.Directory_Updates_FilterSheet
 import { useMemo } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { FilterSheet } from '../../../shared/UBTConnect/FilterSheet';
-import { Choice } from '../../../shared/UBTConnect/lib/staticEntities';
+import { FilterSheet } from '@/shared/UBTConnect/FilterSheet';
+import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
 import type {
   Filter_Common_Control_Choice,
   Filter_Common_Control_List,
   Filter_Common_Options,
-} from '../../../shared/UBTConnect/lib/structures';
-import type { FilterUpdates } from '../types';
+} from '@/shared/UBTConnect/lib/structures';
+import type { FilterUpdates } from '@/screens/Updates_SingleList/types';
 
 /** FilterByStatus_Title (DUFS model default). */
 const FILTER_BY_STATUS_TITLE = 'Filter by status';

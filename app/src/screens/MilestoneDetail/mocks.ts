@@ -1,9 +1,9 @@
 import type { RequestHandler } from 'msw';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../mocks/contract';
-import { orbitEvents, type OrbitMilestone, type OrbitRoom } from '../../mocks/fictional/orbit';
-import { OrbitMilestoneType } from '../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { mockSignedImageURL } from '../../shared/UBTConnect_Utils/UBT_LazyImage/mocks';
+import { contractHandler } from '@/mocks/contract';
+import { orbitEvents, type OrbitMilestone, type OrbitRoom } from '@/mocks/fictional/orbit';
+import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { mockSignedImageURL } from '@/shared/UBTConnect_Utils/UBT_LazyImage/mocks';
 import type { AccommodationResponseWire, GetAccommodationHostWire, GuestWire, RoomWire } from './types';
 
 /* The two data actions of ScreenBlock_AccommodationHost were not recorded: fictional data from the shared Orbit world

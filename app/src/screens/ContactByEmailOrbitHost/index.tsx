@@ -1,22 +1,22 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { ContactByEmailForm } from '../../shared/UBTConnect/ContactByEmailForm';
-import { Connect_Entity, UBT_FontWeight, UBT_Icons2 } from '../../shared/UBTConnect/lib/staticEntities';
-import { UBT_LazyImage } from '../../shared/UBTConnect_Utils/UBT_LazyImage';
-import { UBT_ImageSize } from '../../shared/UBTConnect_Utils/lib/staticEntities';
-import { Columns_Three } from '../../shared/UBTConnectLibrary/Columns_Three';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../shared/UBTConnectLibrary/IconText';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
+import { ContactByEmailForm } from '@/shared/UBTConnect/ContactByEmailForm';
+import { Connect_Entity, UBT_FontWeight, UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
   UBT_FontSize,
   UBT_IconsSize,
   UBT_Size,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';

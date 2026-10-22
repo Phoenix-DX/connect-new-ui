@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '../../test/PendingBlock';
-import { Input } from '../../UBTConnectLibrary/Input';
+import { PendingBlock } from '@/shared/test/PendingBlock';
+import { Input } from '@/shared/UBTConnectLibrary/Input';
 import { NewConnectContent } from './NewConnectContent';
 
 const meta = {

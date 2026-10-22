@@ -1,13 +1,13 @@
 import { http, HttpResponse, type RequestHandler } from 'msw';
 import { wireList } from '@/legacy/os/os-wire';
-import { contractHandler } from '../../mocks/contract';
-import { mockDelay, scenario } from '../../mocks/scenario';
+import { contractHandler } from '@/mocks/contract';
+import { mockDelay, scenario } from '@/mocks/scenario';
 import {
   emptyLegacyBookmarkItem,
   legacyBookmarksOfGroup,
   type LegacyBookmarkItem,
-} from '../../shared/Connect2_MyBookmarks_MUI/mocks';
-import { MyBookmarks_Group } from '../../shared/UBTConnect/lib/staticEntities';
+} from '@/shared/Connect2_MyBookmarks_MUI/mocks';
+import { MyBookmarks_Group } from '@/shared/UBTConnect/lib/staticEntities';
 import type { BookmarkItemWire, GroupSummaryWire } from './types';
 
 /* DataActionGetGroupSummaries was never recorded (bookmarks are person data, knowledge/mock-fixtures.md; contract

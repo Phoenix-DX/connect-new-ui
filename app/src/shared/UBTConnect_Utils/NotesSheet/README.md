@@ -45,5 +45,5 @@ in-memory notes collection of `../NoteListActions/mocks.ts` (P-MUTATION), nothin
 ## Not captured / not settled
 
 - The open sheet (story `Open`) is in no capture: tested from the compiled view in `NotesSheet.test.tsx`.
-- Add calls `CreateOrUpdate_LocalNote` (:518-521, `src/shell/localEntities`) and catches UserException only (:549-565);
+- Add calls `CreateOrUpdate_LocalNote` (:518-521, `src/platform/storage/localEntities`) and catches UserException only (:549-565);
   other errors go to `raiseToFlowHandler` (Q-W3B-1 / Q-W3B-2, user 2026-10-15; NoteListActions README).

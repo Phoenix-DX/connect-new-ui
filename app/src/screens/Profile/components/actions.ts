@@ -1,6 +1,6 @@
 import { osList, wireList } from '@/legacy/os/os-wire';
-import type { Directory_UserCurrent } from '../../../shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
-import type { AccountForm, AddressItem } from '../types';
+import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
+import type { AccountForm, AddressItem } from '@/screens/Profile/types';
 
 /* Client actions of the Profile screen (Profile.mvc.js controller :2818-4100), pure where the original only assigns. */
 

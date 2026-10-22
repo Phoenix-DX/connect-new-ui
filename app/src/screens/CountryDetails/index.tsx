@@ -2,34 +2,34 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { NotCaptured } from '@/app/NotCaptured';
 import { OSList } from '@/components/ui/os/OSList';
-import type L from '../../shared/Leaflet/lib/leaflet';
-import { map_InvalidateSize } from '../../shared/Leaflet/lib/actions';
-import type { MapOptions, MarkerWithWindow, TileLayer, ZoomControlOptions } from '../../shared/Leaflet/lib/structures';
-import { LeafletMap } from '../../shared/Leaflet/LeafletMap';
-import { bottomSheetOpen } from '../../shared/osui/lib/actions';
-import { BottomBarMenu } from '../../shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '../../shared/UBTConnect/CommonUI_InsideLayout';
-import { Directory_LegendBottomSheet } from '../../shared/UBTConnect/Directory_LegendBottomSheet';
-import { FilterSheet } from '../../shared/UBTConnect/FilterSheet';
-import { hasAccessToRegion } from '../../shared/UBTConnect/lib/actions';
-import { Choice, Connect_Entity } from '../../shared/UBTConnect/lib/staticEntities';
+import type L from '@/shared/Leaflet/lib/leaflet';
+import { map_InvalidateSize } from '@/shared/Leaflet/lib/actions';
+import type { MapOptions, MarkerWithWindow, TileLayer, ZoomControlOptions } from '@/shared/Leaflet/lib/structures';
+import { LeafletMap } from '@/shared/Leaflet/LeafletMap';
+import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { Directory_LegendBottomSheet } from '@/shared/UBTConnect/Directory_LegendBottomSheet';
+import { FilterSheet } from '@/shared/UBTConnect/FilterSheet';
+import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { Choice, Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import type {
   Filter_Common,
   Filter_Common_Control_List,
   Filter_Common_Options,
   UI_TypedStatistics,
-} from '../../shared/UBTConnect/lib/structures';
-import { Statistics_TypedItem } from '../../shared/UBTConnect/Statistics_TypedItem';
-import { SubLayout_Browse_Section } from '../../shared/UBTConnect/SubLayout_Browse_Section';
-import { Connect_BottomBar_Items } from '../../shared/UBTConnect_Utils/lib/staticEntities';
-import { Columns_Two } from '../../shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../shared/UBTConnectLibrary/CustomText';
-import { Icon } from '../../shared/UBTConnectLibrary/Icon';
-import { IconText } from '../../shared/UBTConnectLibrary/IconText';
-import { Input } from '../../shared/UBTConnectLibrary/Input';
-import { Layout_DetailPage } from '../../shared/UBTConnectLibrary/Layout_DetailPage';
-import { getClass_Color } from '../../shared/UBTConnectLibrary/lib/actions';
+} from '@/shared/UBTConnect/lib/structures';
+import { Statistics_TypedItem } from '@/shared/UBTConnect/Statistics_TypedItem';
+import { SubLayout_Browse_Section } from '@/shared/UBTConnect/SubLayout_Browse_Section';
+import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { getClass_Color } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   Shape,
   UBT_Color,
@@ -40,10 +40,10 @@ import {
   UBT_Icons2 as UBT_Icons2_Library,
   UBT_Size,
   UBT_VerticalAlign,
-} from '../../shared/UBTConnectLibrary/lib/staticEntities';
-import type { SearchInput } from '../../shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '../../shared/UBTConnectLibrary/SkeletonSection';
-import { jSUtils_String_RemoveAccents } from '../../shared/UBTJavaScriptUtils/lib/actions';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { SearchInput } from '@/shared/UBTConnectLibrary/lib/structures';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { jSUtils_String_RemoveAccents } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState } from '@/platform/navigation';

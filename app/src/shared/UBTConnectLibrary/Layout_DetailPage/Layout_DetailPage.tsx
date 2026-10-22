@@ -2,10 +2,10 @@
 import { useEffect, useId, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useNavigateBack } from '@/platform/navigation';
-import { LayoutRuntime_Top } from '../../NavigationHandler/LayoutRuntime_Top';
-import { Icon } from '../Icon';
-import { clearScrollTimeout, removeScrollEvents, setScrollShadow } from '../lib/actions';
-import { UBT_Color, UBT_IconSize, UBT_Icons } from '../lib/staticEntities';
+import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { clearScrollTimeout, removeScrollEvents, setScrollShadow } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_Color, UBT_IconSize, UBT_Icons } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface Layout_DetailPageProps {
   /** OutSystems instance id of the block. */

@@ -1,5 +1,9 @@
-import type { AvatarImageFallbackoptions, LazyImageSize, SpacingOptions } from '../../UBTConnectLibrary/lib/structures';
-import { getEntityType_Icon, getImageType_FromEntity } from '../lib/actions';
+import type {
+  AvatarImageFallbackoptions,
+  LazyImageSize,
+  SpacingOptions,
+} from '@/shared/UBTConnectLibrary/lib/structures';
+import { getEntityType_Icon, getImageType_FromEntity } from '@/shared/UBTConnect_Utils/lib/actions';
 import {
   Connect_Entity,
   ImageSize,
@@ -9,7 +13,7 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '../lib/staticEntities';
+} from '@/shared/UBTConnect_Utils/lib/staticEntities';
 
 export interface LazyImageLocals {
   fallbackOptions: AvatarImageFallbackoptions;

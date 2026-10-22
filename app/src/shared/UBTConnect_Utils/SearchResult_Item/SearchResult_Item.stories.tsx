@@ -1,6 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { Connect_Entity, UBT_Color, UBT_FontSize, UBT_Icons, UBT_ImageSize, UBT_Size } from '../lib/staticEntities';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import {
+  Connect_Entity,
+  UBT_Color,
+  UBT_FontSize,
+  UBT_Icons,
+  UBT_ImageSize,
+  UBT_Size,
+} from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { SearchResult_Item } from './SearchResult_Item';
 
 const meta = { title: 'Shared/UBTConnect_Utils/SearchResult_Item', component: SearchResult_Item } satisfies Meta<

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { insideNativeLayout } from '../../test/nativeLayout';
-import { PendingBlock } from '../../test/PendingBlock';
+import { insideNativeLayout } from '@/shared/test/nativeLayout';
+import { PendingBlock } from '@/shared/test/PendingBlock';
 import { DEPRECATED_AccordionItem } from './DEPRECATED_AccordionItem';
 
 const meta = {

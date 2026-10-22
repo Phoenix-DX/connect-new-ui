@@ -2,15 +2,15 @@
 import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { NotCaptured } from '@/app/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Layout_Orbit } from '../../../shared/Connect2_LegacyShared/Layout_Orbit';
-import { NoInformation_Orbit } from '../../../shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '../../../shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
-import { OrbitMilestoneType, OrbitSkeletonLoading } from '../../../shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
+import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getGmpMilestoneHost, type GmpMilestoneHostResponse } from '../api';
-import type { MilestoneDetailInputs } from '../types';
+import { getGmpMilestoneHost, type GmpMilestoneHostResponse } from '@/screens/MilestoneDetail/api';
+import type { MilestoneDetailInputs } from '@/screens/MilestoneDetail/types';
 import { ScreenBlock_AccommodationHost } from './ScreenBlock_AccommodationHost';
 
 /** GetGmpMilestoneHost.Response before the data action answers (record defaults). */

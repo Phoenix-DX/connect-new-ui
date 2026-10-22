@@ -1,10 +1,10 @@
 import { composeStories } from '@storybook/react-vite';
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { expectToMatchCapture } from '../../../test/dom';
-import { carouselGoTo, carouselToggleDrag, setCarouselStartingPosition } from '../lib/actions';
-import { CarouselNavigation } from '../lib/staticEntities';
-import { carousel_SetCurrentPosition } from '../../UBTConnect/lib/actions';
+import { expectToMatchCapture } from '@/test/dom';
+import { carouselGoTo, carouselToggleDrag, setCarouselStartingPosition } from '@/shared/osui/lib/actions';
+import { CarouselNavigation } from '@/shared/osui/lib/staticEntities';
+import { carousel_SetCurrentPosition } from '@/shared/UBTConnect/lib/actions';
 import { Carousel, splideOptions, type CarouselConfig } from './Carousel';
 import * as stories from './Carousel.stories';
 import { browserCalc, stubCarouselLayout } from './testLayout';

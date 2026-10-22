@@ -1,23 +1,23 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet
 import { useEffect, useReducer, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { BackNavigationHandler } from '../../NavigationHandler/BackNavigationHandler';
-import type { BackNavigationEvent } from '../../NavigationHandler/BackNavigationHandler';
-import { CacheControl_AllCountries } from '../../UBTConnect_Utils/CacheControl_AllCountries';
-import { CacheControl_AllLocalities } from '../../UBTConnect_Utils/CacheControl_AllLocalities';
+import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import type { BackNavigationEvent } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { CacheControl_AllCountries } from '@/shared/UBTConnect_Utils/CacheControl_AllCountries';
+import { CacheControl_AllLocalities } from '@/shared/UBTConnect_Utils/CacheControl_AllLocalities';
 import type {
   CacheControl_AllCountries as AllCountries,
   CacheControl_AllLocalities as AllLocalities,
   Directory_UserCurrent,
-} from '../../UBTConnect_Utils/lib/structures';
-import { Button } from '../../UBTConnectLibrary/Button';
-import { Columns_Two } from '../../UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Icon } from '../../UBTConnectLibrary/Icon';
-import { SelectionOption_List } from '../../UBTConnectLibrary/SelectionOption_List';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { BottomSheet } from '../../UBTConnectLibrary/BottomSheet';
+} from '@/shared/UBTConnect_Utils/lib/structures';
+import { Button } from '@/shared/UBTConnectLibrary/Button';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { SelectionOption_List } from '@/shared/UBTConnectLibrary/SelectionOption_List';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
 import {
   UBT_ButtonSize,
   UBT_ButtonType,
@@ -31,14 +31,14 @@ import {
   UBT_Shadow,
   UBT_Shape,
   UBT_Size,
-} from '../../UBTConnectLibrary/lib/staticEntities';
-import type { ContainerOptions, SelectionOption_Item } from '../../UBTConnectLibrary/lib/structures';
-import { bottomSheetClose } from '../../osui/lib/actions';
-import { CacheControl_UserInfo_Wrapper } from '../CacheControl_UserInfo_Wrapper';
-import { FilterSheet_OptionChoice_Item } from '../FilterSheet_OptionChoice_Item';
-import { FilterSheet_OptionList_Item } from '../FilterSheet_OptionList_Item';
-import { app_CommonFilter_CheckCountry, app_CommonFilter_DefineOptionNames } from '../lib/actions';
-import { Choice, Connect_Subscription_Plan } from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import type { ContainerOptions, SelectionOption_Item } from '@/shared/UBTConnectLibrary/lib/structures';
+import { bottomSheetClose } from '@/shared/osui/lib/actions';
+import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
+import { FilterSheet_OptionChoice_Item } from '@/shared/UBTConnect/FilterSheet_OptionChoice_Item';
+import { FilterSheet_OptionList_Item } from '@/shared/UBTConnect/FilterSheet_OptionList_Item';
+import { app_CommonFilter_CheckCountry, app_CommonFilter_DefineOptionNames } from '@/shared/UBTConnect/lib/actions';
+import { Choice, Connect_Subscription_Plan } from '@/shared/UBTConnect/lib/staticEntities';
 import type {
   Filter_Common,
   Filter_Common_Control_Choice,

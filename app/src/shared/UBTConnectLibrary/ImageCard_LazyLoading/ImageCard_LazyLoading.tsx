@@ -1,7 +1,7 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.ImageCard_LazyLoading
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '../CustomContainer';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import {
   formatClasses,
   getBorderOptions_ImageCard,
@@ -9,8 +9,14 @@ import {
   getClasses_ImageCard,
   getSpacingOptions_ImageCardContent,
   getTextOptions_ImageCard,
-} from '../lib/actions';
-import { UBT_AlignItems, UBT_AvatarSize, UBT_Color, UBT_Display, UBT_JustifyContent } from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/actions';
+import {
+  UBT_AlignItems,
+  UBT_AvatarSize,
+  UBT_Color,
+  UBT_Display,
+  UBT_JustifyContent,
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface ImageCard_LazyLoadingProps {
   /** OutSystems instance id of the block. */

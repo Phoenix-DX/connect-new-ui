@@ -1,13 +1,19 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.LazyImage
 import { useState, type SyntheticEvent } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { InlineSVG } from '../../osui/InlineSVG';
-import { CustomContainer } from '../CustomContainer';
-import { CustomText } from '../CustomText';
-import { Icon } from '../Icon';
-import { SkeletonSection } from '../SkeletonSection';
-import { formatClasses, getClasses_LazyImageSize_Dev } from '../lib/actions';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '../lib/staticEntities';
+import { InlineSVG } from '@/shared/osui/InlineSVG';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { formatClasses, getClasses_LazyImageSize_Dev } from '@/shared/UBTConnectLibrary/lib/actions';
+import {
+  UBT_Color,
+  UBT_FontSize,
+  UBT_FontWeight,
+  UBT_Shape,
+  UBT_Size,
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { AvatarImageFallbackoptions, ImageBorderOptions, LazyImageSize, SpacingOptions } from './types';
 
 export interface LazyImageProps {

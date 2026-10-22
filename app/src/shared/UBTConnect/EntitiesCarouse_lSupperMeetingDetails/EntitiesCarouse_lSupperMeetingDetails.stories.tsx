@@ -2,7 +2,7 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
 import { setClientVar } from '@/platform/session/session';
-import { CarouselTag } from '../CarouselTag';
+import { CarouselTag } from '@/shared/UBTConnect/CarouselTag';
 import { EntitiesCarouse_lSupperMeetingDetails } from './EntitiesCarouse_lSupperMeetingDetails';
 
 const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });

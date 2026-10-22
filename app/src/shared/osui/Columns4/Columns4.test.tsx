@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { BreakColumns, GutterSize } from '../lib/staticEntities';
+import { BreakColumns, GutterSize } from '@/shared/osui/lib/staticEntities';
 import { Columns4 } from './Columns4';
 
 /* Never captured: classes from the compiled view (OutSystemsUI_2_23.Adaptive.Columns4.mvc.js). */

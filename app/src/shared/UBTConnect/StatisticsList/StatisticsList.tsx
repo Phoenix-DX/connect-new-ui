@@ -2,14 +2,20 @@
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { CustomContainer } from '../../UBTConnectLibrary/CustomContainer';
-import { CustomText } from '../../UBTConnectLibrary/CustomText';
-import { Input } from '../../UBTConnectLibrary/Input';
-import { Shape, UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '../../UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '../../UBTConnectLibrary/SkeletonSection';
-import { Statistics_ListItem } from '../../UBTConnectLibrary/Statistics_ListItem';
-import { jSUtils_String_RemoveAccents } from '../../UBTJavaScriptUtils/lib/actions';
-import type { TextStatisticsOptionsRecord } from '../lib/structures';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Input } from '@/shared/UBTConnectLibrary/Input';
+import {
+  Shape,
+  UBT_Color,
+  UBT_FontSize,
+  UBT_FontWeight,
+  UBT_Size,
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Statistics_ListItem } from '@/shared/UBTConnectLibrary/Statistics_ListItem';
+import { jSUtils_String_RemoveAccents } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import type { TextStatisticsOptionsRecord } from '@/shared/UBTConnect/lib/structures';
 
 export interface StatisticsListProps {
   /** OutSystems instance id of the block. */

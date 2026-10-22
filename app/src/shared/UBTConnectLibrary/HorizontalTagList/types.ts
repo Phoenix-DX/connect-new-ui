@@ -1,1 +1,1 @@
-export type { Tag } from '../lib/structures';
+export type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';

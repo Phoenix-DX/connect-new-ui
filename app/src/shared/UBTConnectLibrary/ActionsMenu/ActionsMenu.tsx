@@ -1,10 +1,10 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.ActionsMenu
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CircleButton_IconPrimary } from '../CircleButton_IconPrimary';
-import { CustomContainer } from '../CustomContainer';
-import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT, getLookupActions } from '../lib/actions';
-import { UBT_Display, UBT_JustifyContent } from '../lib/staticEntities';
+import { CircleButton_IconPrimary } from '@/shared/UBTConnectLibrary/CircleButton_IconPrimary';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT, getLookupActions } from '@/shared/UBTConnectLibrary/lib/actions';
+import { UBT_Display, UBT_JustifyContent } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { ActionsMenuEnableOptions, ActionsMenuOptions } from './types';
 
 export interface ActionsMenuProps {

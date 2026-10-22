@@ -1,7 +1,7 @@
 // @os-block OutSystemsUI_2_23.Interaction.Animate
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '../../lib/cssText';
+import { styleFromCssText } from '@/shared/lib/cssText';
 
 export interface AnimateProps {
   /** OutSystems instance id of the block. */

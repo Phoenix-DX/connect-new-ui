@@ -1,5 +1,5 @@
-import type { UI_ListMenuOption } from '../../shared/UBTConnect/Menu_List/types';
-import type { Directory_UserCurrent } from '../../shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
+import type { UI_ListMenuOption } from '@/shared/UBTConnect/Menu_List/types';
+import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
 
 /** UBTConnect_Utils Menu_ItemRec (MenuItemId, Order, Label, UBTIcon) as Menu_GetList builds it. */
 export interface Menu_Item {

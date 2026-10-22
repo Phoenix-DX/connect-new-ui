@@ -1,15 +1,15 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.Note_Item
 import { useId, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Button } from '../Button';
-import { Columns_Two } from '../Columns_Two';
-import { CustomContainer } from '../CustomContainer';
-import { CustomText } from '../CustomText';
-import { Icon } from '../Icon';
-import { KebabButton_BookmarkNotes } from '../KebabButton_BookmarkNotes';
-import { TextArea_WithCounter } from '../TextArea_WithCounter';
-import { TextEllipsis } from '../TextEllipsis';
-import { getRelativeTimeTag } from '../lib/actions';
+import { Button } from '@/shared/UBTConnectLibrary/Button';
+import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { KebabButton_BookmarkNotes } from '@/shared/UBTConnectLibrary/KebabButton_BookmarkNotes';
+import { TextArea_WithCounter } from '@/shared/UBTConnectLibrary/TextArea_WithCounter';
+import { TextEllipsis } from '@/shared/UBTConnectLibrary/TextEllipsis';
+import { getRelativeTimeTag } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_ButtonSize,
   UBT_ButtonType,
@@ -21,7 +21,7 @@ import {
   UBT_FontWeight,
   UBT_Icons,
   UBT_Size,
-} from '../lib/staticEntities';
+} from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface Note_ItemProps {
   /** OutSystems instance id of the block. */
