@@ -6,7 +6,7 @@ section "Context notes".
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
 - 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)).
-- Branch `refactor/architecture`, tag `migration-complete`. Plan v2 approved, R1–R8 decided ([context-034](context-034-refactor-plan-review.md)). Agent team built and self-tested ([context-035](context-035-refactor-agent-team.md)): `/refactor-master status|start|continue`. **Not begun: the user gives the start (D5).**
+- Branch `refactor/architecture`: Phase 0 of the refactor done by the agent team (2026-10-22, [context-036](context-036-refactor-phase-0.md)); next P1-1 with `/refactor-master continue`. Auto decisions Q1–Q7 wait for the user's review.
 - Auto mode OFF (user 2026-10-17). Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`). Tools: `migration/tools/` (README).
 
@@ -49,3 +49,4 @@ section "Context notes".
 | [033](context-033-ui-flows-dashboard.md) | 2026-10-22 | UI Flows dashboard and 38 user journeys on TST (20 verified); build only, publish after the user's accept | current |
 | [034](context-034-refactor-plan-review.md) | 2026-10-22 | Refactor plan review (6/10), flag and session design, plan v2 with agent steps; R1–R8 open | current |
 | [035](context-035-refactor-agent-team.md) | 2026-10-22 | Refactor agent team: /refactor-master + developer/tester/documenter, rf.py state, self-test passed; not begun | current |
+| [036](context-036-refactor-phase-0.md) | 2026-10-22 | Refactor Phase 0 (P0-1 to P0-5) by the agent team; baseline, parity tool, move map, ADR-15; auto decisions Q1–Q7 | current |

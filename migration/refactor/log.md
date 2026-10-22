@@ -52,3 +52,4 @@ One line per event. Written by rf.py.
 - 2026-10-22T14:16:26 P0-5 after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done: 'kéo dài tới khi xong P0-5'): an Opus reviewer checked move-map.csv, duplicates.md and ADR-15 and confirmed with changes (16 rows, 5 other changes, Q7); the changes are applied (dev.md loops 1 and 2)."
 - 2026-10-22T14:20:53 P0-5 stage docs
 - 2026-10-22T14:20:53 P0-5 stage commit
+- 2026-10-22T14:20:54 P0-5 done eeb37e2: ci: pass; stack check OK; move-map reproduced; gate: Opus review (delegated)
