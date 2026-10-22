@@ -56,15 +56,16 @@ rf.py stage <id> commit   → commit (section 6), rf.py done
 
 ### 3.1 Start an agent
 
-Parallel work (user, 2026-10-22, replaces A4): at most 5 agents at the same time. Run work in parallel only when it
+Parallel work (user, 2026-10-22, replaces A4): at most 10 agents at the same time. Run work in parallel only when it
 shares no file:
 
 - advisors;
 - the documenter of one step and the developer of the next step;
-- a "prefetch" developer of a later step, in its own git worktree (`git worktree add -b rf/prefetch-<id>`).
+- a "prefetch" developer, tester or documenter of a later step, in its own git worktree
+  (`git worktree add -b rf/prefetch-<id>`).
 
-When the prefetched step becomes active, apply its diff to the main tree as its dev stage. Then run the test, docs
-and commit stages as usual. Use these calls. An agent runs in the background: wait for its completion
+When the prefetched step becomes active, apply its diff to the main tree. When its test passed in the worktree, run a short tester
+pass on the main tree before the commit: `npm run ci` and the parity of the step. Use these calls. An agent runs in the background: wait for its completion
 notification before the next command, and do not start another agent in the meantime. When the agent type is not
 available in this session, use `subagent_type: "general-purpose"`, and start the prompt with this line:
 
@@ -216,7 +217,7 @@ Stop at: a user gate, a question, a block, a failed preflight, the end of the sc
 
 - Start a step before `rf.py begin`, or a stretch step without the user's request.
 - Confirm a gate or answer a question for the user.
-- Run more than 5 agents at the same time, or two agents on the same files.
+- Run more than 10 agents at the same time, or two agents on the same files.
 - Do the work of an agent yourself.
 - Discard changes: use `git stash`. Push or merge.
 - Read `.auth/` or `migration/.raw/`.
