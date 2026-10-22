@@ -157,7 +157,10 @@ When the user says that an advisor decides for them (for example "nhờ opus sug
 1. Ask one narrow question per agent call. Never bundle questions.
 2. A Sonnet agent looks up the facts: versions, release dates, advisories, file contents. No installs, no smoke
    projects.
-3. An Opus agent gets those facts in the prompt and gives the judgment only: one recommendation and a one-line reason.
+3. An Opus agent gets those facts in the prompt and gives the judgment only: one recommendation, a one-line reason,
+   and its confidence (high, medium or low). When the confidence is not high, a Fable agent (`model: "fable"`) gets
+   the same question and facts, without the answer of Opus. When both agree, use the recommendation. When they do not
+   agree, use the more conservative and reversible option, and mark the log row "split" (user, 2026-10-22).
 4. Record the recommendation with the marker of the user's instruction. Add a row to the auto-decision log of
    the run (`migration/refactor/auto-decisions-<date>.md`).
 
