@@ -72,6 +72,12 @@ the named routes). Add an entry only with the user's confirm.
 - `--freeze-animations`: finish finite animations and pause endless ones.
 - `--diff-ref <path>`: the diff image path named in pixel details.
 
+With `--self-ref`, the script normalizes local origins before the style, attribute and call comparison, on both sides:
+`http(s)://localhost:<port>` and `http(s)://127.0.0.1:<port>` become `http://localhost:*`
+(`origin_normalize.cjs`, test: `node --test .claude/skills/outsystems-screen-spec/scripts/origin_normalize.test.cjs`).
+Reason: a self reference keeps the origin of the server that recorded it, and absolute image URLs in computed styles
+would differ on any other port. Only the origin is ignored; the path and the query still count.
+
 ## Refactor codemod (`refactor/move.ts`)
 
 The codemod runs on plain Node 24 (it loads ts-morph from `app/node_modules`). It moves files with `git mv`, moves their tests and stories, rewrites the imports that the move changes to `@/`, then runs the typecheck. Always use `--dry-run` first: it prints the file list and the import count and changes nothing.

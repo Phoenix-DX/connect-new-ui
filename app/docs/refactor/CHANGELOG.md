@@ -41,6 +41,7 @@
 - `src/shell/` is gone. Files moved to `src/platform/{session,bootstrap,navigation,feedback,storage,device}`, `src/legacy/os` and `src/app`; `testSupport.ts` moved to `src/test/`.
 - `ErrorBoundary` and `RouteError` are in `src/app/`. Guides, overview diagram and `platform/README.md` name the new paths.
 - 30 rows of `move-map.csv` have status `moved`. No code change; strict parity 64/64 for both references.
+- Note (P1-fix): this parity run used a dev server of another clone, so it did not test this code. See the P1-fix entry.
 
 ## P1-3 - refactor(P1-3): move lib/ and components/ to api/, platform/ and legacy/os/
 
@@ -53,3 +54,10 @@
 - No folder change. The codemod `--alias-only` rewrote 2,889 relative parent imports in `src/` to `@/`; `grep -r "from '\.\./\.\./" app/src` prints 0.
 - ESLint rule 11 is now an error (`app/eslint.config.js`). `src/sw` is exempt: its 2 `../pwa/` imports stay. ADR-15 names this.
 - `move-map.csv` is unchanged: no block moved.
+- Note (P1-fix): the parity runs of P1-1 to P1-4 used a dev server of another clone. The P1-fix run is the valid one.
+
+## P1-fix - fix(P1): restore the MSW handler order and re-run the parity of P1
+
+- `src/mocks/handlers.ts` uses one glob per folder, joined as screens, shared, platform. P1-2 had moved the app-start mocks to the front (`shell` became `platform`), so they won over the screen mocks (Menu, Profile). `handlers.test.ts` guards the order.
+- Parity of P1 re-run on this repo's server (port 5174) with the self reference re-recorded at 3b25ddd. Result: 64/64 for both references.
+- Self runs of `parity_check.cjs` normalize `http://localhost:<port>` and `127.0.0.1` in absolute URLs on both sides (`origin_normalize.cjs`).

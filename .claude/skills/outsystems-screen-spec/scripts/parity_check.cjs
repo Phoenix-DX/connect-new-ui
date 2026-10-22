@@ -49,6 +49,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { normalizeOrigins } = require('./origin_normalize.cjs');
 let pw;
 try { pw = require('playwright'); } catch { console.error('playwright not found: npm i -D playwright'); process.exit(2); }
 
@@ -657,8 +658,11 @@ async function main() {
     expected = JSON.parse(await exp.evaluate(serialize, { root, props: STYLE_PROPS, pseudoProps: PSEUDO_PROPS, attrsWanted: X.attrs }));
     }
     if (selfRef) expected = selfRef.actual;
+    // self runs: local origins (any port) are normalized on both sides, see origin_normalize.cjs
+    const selfOrigin = selfRef ? { exp: normalizeOrigins(expected), act: normalizeOrigins(actual), refCalls: normalizeOrigins(selfRef.appCalls || []), calls: normalizeOrigins(appCalls) } : null;
+    if (selfOrigin) expected = selfOrigin.exp;
 
-    const res = diffTrees(expected.tree, actual.tree, X, opts);
+    const res = diffTrees(expected.tree, selfOrigin ? selfOrigin.act.tree : actual.tree, X, opts);
     const push = d => { for (const r of X.rules) if (ruleHits(r, d)) { res.exemptionsUsed[r.id] = (res.exemptionsUsed[r.id] || 0) + 1; return; } res.diffs.push(d); };
     for (const [k, e, g] of [['html', expected.htmlClass, actual.htmlClass], ['body', expected.bodyClass, actual.bodyClass]]) {
       const f = l => l.filter(c => !X.ignoreClasses.some(r => r.test(c)));
@@ -701,7 +705,7 @@ async function main() {
     if (selfRef) {   // call parity against the recorded calls: same distinct calls per phase, order and repeats free
       const key = c => `${c.phase || 'load'}|${c.module || ''}/${c.action}`;
       const uniq = l => [...new Set(l)].sort();   // presence per phase: how often a call repeats depends on timing (timers, retries)
-      const [ea, ga] = [uniq((selfRef.appCalls || []).map(key)), uniq(appCalls.map(key))];
+      const [ea, ga] = [uniq(selfOrigin.refCalls.map(key)), uniq(selfOrigin.calls.map(key))];
       if (ea.join('\n') !== ga.join('\n')) {
         const miss = ea.filter(k => !ga.includes(k)), extra = ga.filter(k => !ea.includes(k));
         push({ kind: 'call', path: 'calls', detail: `self reference ${ea.length} call(s), build ${ga.length}${miss.length ? '; missing ' + [...new Set(miss)].join(', ') : ''}${extra.length ? '; extra ' + [...new Set(extra)].join(', ') : ''}` });

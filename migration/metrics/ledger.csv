@@ -304,3 +304,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,verify,22891,refactor-test,,P1-4 sonnet
 2026-10-22,refactor,other,26521,refactor-docs,,P1-4 sonnet
 2026-10-22,refactor,other,40656,refactor-docs,,P1-4 sonnet
+2026-10-22,refactor,build,40378,refactor-dev,,"P1-fix sonnet (MSW handler order)"
+2026-10-22,refactor,build,54730,refactor-dev,,"P1-fix loop 1 sonnet (origin normalization)"
+2026-10-22,refactor,verify,22651,refactor-test,,"P1-fix sonnet"
+2026-10-22,refactor,other,21518,refactor-docs,,"P1-fix sonnet"
