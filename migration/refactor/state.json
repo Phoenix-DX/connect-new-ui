@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P0-4",
+  "step": "P0-5",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-22T14:16:08"
+  "since": "2026-10-22T14:20:53"
  },
  "steps": {
   "P0-1": {
@@ -53,20 +53,26 @@
    "finished": "2026-10-22T14:13:43"
   },
   "P0-4": {
-   "status": "active",
+   "status": "done",
    "tokens": {
     "dev": 51478,
-    "test": 22950,
+    "test": 40243,
     "docs": 22554
    },
-   "started": "2026-10-22T14:13:52"
+   "started": "2026-10-22T14:13:52",
+   "commit": "9c0bd22",
+   "gate": "ci: pass; measure outputs reproduced; bundle = baseline",
+   "loops": 0,
+   "finished": "2026-10-22T14:16:08"
   },
   "P0-5": {
-   "status": "pending",
+   "status": "active",
    "tokens": {
     "dev": 413915,
-    "test": 25419
-   }
+    "test": 45186,
+    "docs": 40176
+   },
+   "started": "2026-10-22T14:16:26"
   }
  },
  "gates": {
@@ -75,6 +81,12 @@
    "by": "user",
    "text": "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended: add no extra dependency (no eslint-plugin-import-x, no tsx); see Q2 for the versions.",
    "at": "2026-10-22T12:36:17"
+  },
+  "P0-5:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done: 'kéo dài tới khi xong P0-5'): an Opus reviewer checked move-map.csv, duplicates.md and ADR-15 and confirmed with changes (16 rows, 5 other changes, Q7); the changes are applied (dev.md loops 1 and 2).",
+   "at": "2026-10-22T14:16:26"
   }
  },
  "questions": [

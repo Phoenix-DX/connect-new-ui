@@ -75,7 +75,7 @@ Confirmed by the user (Phase 4). Changing anything here is an ADR.
 | workbox-strategies | 7.4.1 |
 | workbox-window | 7.4.1 |
 | @eslint/js (dev) | 10.0.1 |
-| @storybook/react-vite (dev) | 10.5.8 |
+| @storybook/react-vite (dev) | 10.6.3 |
 | @testing-library/dom (dev) | 10.4.1 |
 | @testing-library/jest-dom (dev) | 6.10.0 |
 | @testing-library/react (dev) | 16.3.2 |
@@ -87,21 +87,26 @@ Confirmed by the user (Phase 4). Changing anything here is an ADR.
 | @types/react-dom (dev) | 19.2.4 |
 | @types/sortablejs (dev) | 1.15.9 |
 | @vitejs/plugin-react (dev) | 5.2.0 |
+| @vitest/coverage-v8 (dev) | 4.1.12 |
+| dependency-cruiser (dev) | 17.4.3 |
 | eslint (dev) | 10.8.1 |
 | eslint-plugin-react-hooks (dev) | 7.1.1 |
 | globals (dev) | 17.11.0 |
+| jscpd (dev) | 4.3.0 |
 | jsdom (dev) | 27.4.0 |
+| knip (dev) | 5.88.1 |
 | lighthouse (dev) | 13.4.1 |
 | msw (dev) | 2.15.0 |
 | openapi-typescript (dev) | 7.13.0 |
 | playwright (dev) | 1.62.1 |
 | prettier (dev) | 3.9.6 |
-| storybook (dev) | 10.5.8 |
+| storybook (dev) | 10.6.3 |
+| ts-morph (dev) | 27.0.2 |
 | typescript (dev) | 5.9.3 |
 | typescript-eslint (dev) | 8.67.0 |
-| vite (dev) | 7.3.6 |
+| vite (dev) | 7.3.7 |
 | vite-plugin-pwa (dev) | 1.3.0 |
-| vitest (dev) | 4.1.11 |
+| vitest (dev) | 4.1.12 |
 | workbox-build (dev) | 7.4.1 |
 
 ## Architecture decision records
@@ -121,6 +126,7 @@ Confirmed by the user (Phase 4). Changing anything here is an ADR.
 | ADR-12 | PWA test suite: Playwright PWA e2e and Lighthouse CI (@lhci/cli 0.15.1) | accepted | 2026-10-16 |
 | ADR-13 | Lighthouse runs through the lighthouse package 13.4.1 instead of @lhci/cli | accepted | 2026-10-16 |
 | ADR-14 | Production service worker served at TST's worker URL /UBTConnect/pwaServiceWorker.js (cutover handover) | accepted | 2026-10-17 |
+| ADR-15 | Target front-end architecture (refactor-plan-v2) | accepted | 2026-10-22 |
 
 ### ADR-1: Target platform: web / PWA only (no store app)
 
@@ -205,3 +211,36 @@ Confirmed by the user (Phase 4). Changing anything here is an ADR.
 - Context: PWA fact F2 (user, 2026-10-17): TST registers /UBTConnect/pwaServiceWorker.js on scope /UBTConnect/. It is cache-first for every screen path from its precache, and old caches are deleted only by a newer worker (migration/knowledge/pwa-tst-service-worker.md). Browsers re-check the registered script URL; if it answers 404 after cutover, devices keep the cached OutSystems app. P15 decided a same-origin cutover with a service-worker handover. Options: (A) serve our own worker at that URL; (B) a kill switch at that URL, then the new index.html registers /sw.js.
 - Decision: Option A (user, 2026-10-17): production builds serve the app service worker at /UBTConnect/pwaServiceWorker.js with scope /UBTConnect/, instead of /sw.js. Browsers update the existing registration in place on their next update check. On activate, the worker deletes the OutSystems caches (names starting with UBTConnect-).
 - Consequences: Production SW URL and output path change (src/pwa/swRoutes.ts SW_URL, build/pwa.ts, src/sw/sw.ts activate cleanup, tests, docs/guides/pwa.md). The URL must keep answering from cutover on (never 404). The worker file stays under /UBTConnect/, not at the root of the origin shared with ConnectMobile. The demo build is not covered by this ADR (own host). Implementation is phase 5 work.
+
+### ADR-15: Target front-end architecture (refactor-plan-v2)
+
+- Context: The React app passes parity with OutSystems on all 64 routes, but its folders follow the OutSystems structure (`screens/`, `shared/`, `shell/`). Plan v2 §7 counts 71 files that call `callAction` outside `api/`, 50 users of `getClientVar` and a 1,077-line component file. The goal is code that a team can keep in production, with the same UI and calls as the original. The user approved `app/docs/architecture/refactor-plan-v2.md` on 2026-10-22, with R1 to R8 as recommended and D1 to D4 of the draft (§9). Auto decisions Q1 to Q4 of the same day, accepted under the user's delegation, changed the tools (`migration/refactor/auto-decisions-2026-10-22.md`).
+- Decision: Adopt the target architecture of `app/docs/architecture/refactor-plan-v2.md` §2 and §3 for `app/src/`. Plan v2 holds the full text; this ADR lists the decisions and points to the sections.
+  - Terms (§2.1): a page renders one route, in `pages/<Route>/<Route>Page.tsx`, and does not import another page. A hook (`use*`) holds data, state or a flow and returns no markup. A container calls hooks and renders one component tree. A component renders UI from props, keeps only local UI state and does not call `api/`, `platform/`, flags or navigation. A layout in `components/layout/` places the header, content and bottom areas and does not fetch data.
+  - Folders (§2.2): the router, the route table with meta and the providers go to `app/`. Each route has `pages/<Route>/` with its page and the `hooks/`, `components/` and `containers/` that only this page uses. Code that 2 or more pages use goes to `containers/`, `components/ui/`, `components/layout/` or `components/<domain>/`. Server calls go to `api/client/` and `api/<domain>/`, and app services go to `platform/<area>/` (auth, session, settings, flags, navigation, device, storage, bootstrap, feedback). Pure functions go to `lib/`, and the OutSystems compatibility code goes to `legacy/os/`, which gets smaller in each phase. `mocks/` stays unchanged, and `styles/` holds the tokens and the CSS layers.
+  - Container criterion (§2.3, R2 b): hooks by default. Make a container only in two cases. First, one component tree renders data from two different sources. Second, the tree needs 2 or more data hooks and 3 or more event handlers, in a file of more than 200 lines. The column `shape` of `app/docs/refactor/move-map.csv` records the choice for each block.
+  - Rules 1 and 2 (§2.4): new code starts in `pages/<Route>/`. When a second page needs the code, the code moves to `components/`, `containers/` or `api/`.
+  - Rules 3 to 9 (§2.4, import direction): a page does not import another page. `components/**` does not import `api/`, `platform/`, `containers/`, `pages/` or `app/`, and `components/ui/` imports only `components/ui/`, `lib/` and `styles/`. `lib/` imports only `lib/`, and `api/<domain>/` imports only `api/client/`, `lib/` and `legacy/os/`. `platform/**` does not import `pages/`, `components/`, `containers/` or `app/`. Only `platform/`, `api/` and `app/` import `legacy/os/`.
+  - Rules 10 and 11 (§2.4): no import cycle anywhere. Imports use the alias `@/`, not `../../..`.
+  - Rule 12 (§2.4, R8 b): a barrel `index.ts` exists only at `components/ui`, `components/<domain>`, `containers`, `api/<domain>` and `platform/<area>`. Other code imports these folders through the barrel only.
+  - Rule 13 (§2.4, R4 b): each file that ports an OutSystems screen or block has one `@origin` tag. Inline references to compiled line numbers (`mvc.js:640-1150`) go away when the file is rewritten, not before.
+  - Naming and OutSystems blocks (§2.5, §2.6): business names in PascalCase without a module prefix, and hooks named `use<Thing>`. Each `api/<domain>/` has `repository.ts`, `mapper.ts`, `keys.ts`, `hooks.ts` and `types.ts`; wire types stay in `src/api/schema.d.ts`. A UI-only block becomes a component, and a block with data or side effects becomes a hook and a component. A screen becomes `pages/<S>/<S>Page.tsx`, a layout block goes to `components/layout/` and an OutSystems UI pattern goes to `components/ui/`.
+  - State (§2.7): TanStack Query is the only server-state store, and every call goes through `api/<domain>/`. Query options in `api/<domain>/keys.ts` replace `memoryCache`, after an exemption list (§5.4). View state moves to `platform/navigation/viewState.ts`; pages and hooks use it, and components do not. Client variables split into `platform/settings`, `platform/session` and `platform/navigation`.
+  - Styles (§2.8, R3 b): Phase 8 adds `styles/tokens.css` and puts the original CSS in `@layer legacy`. Existing components keep the legacy class names and CSS, and new components use CSS Modules with the tokens. Unused CSS goes away one stylesheet at a time, with coverage data from the parity captures, at the `visual` level.
+  - Feature flags (§3.1, R5 a): the `platform/flags` area has a typed registry, `resolveFlags` (precedence default < server < override) and `useFlag`. Only pages, hooks and containers read flags. The route table (`meta.flagRedirect`) handles the four flags that choose a screen. The app start waits for `fetchFlags()`. In production the flags come from one batch call through the BFF, with a parity exemption for the flag calls.
+  - Session and PIN (§3.2, R6 a): a state machine in `platform/session/machine.ts` holds the session status, and the selectors keep their names. The `AuthProvider` interface in `platform/auth/` has the `mockAuth` implementation behind `MOCKS_BUILT`, and this refactor does not build `bffAuth`. The route meta (`access`, `lock`, `flagRedirect`) and `RouteGuard` keep the redirect table of `startup.ts` unchanged. The app start steps keep their calls, order and conditions, and `fetchFlags` is the only new step. PIN verification stays local, as in the original, and the security owner reviews it before the BFF phase.
+  - Parity and API (§4.1, D1, D2): two parity levels, `strict` (all checks) and `visual` (no DOM checks), plus a self-parity reference. The API contract stays unchanged behind `api/<domain>/`.
+  - Scope and sequence (R1 b, R7 b): phases 0 to 7 in about 50 days, and phases 8 and 9 as a stretch goal. Phase 2 builds a walking skeleton on HouseholdDetails before the mass work.
+  - Tools (§4.4, D3 as changed by Q2 and Q4): dependency-cruiser checks rules 3 to 10 and exports the import graph. ESLint core `no-restricted-imports` checks rule 11. jscpd reports duplicate code, and knip reports unused files and exports. ts-morph runs the codemod `migration/tools/refactor/move.ts`.
+  - Q5 (auto-accepted under the user's delegation, 2026-10-22): the 4 `DEPRECATED_*` OutSystems UI patterns stay as legacy UI components with business names in `components/ui/legacy/` (phase P7, shape `ui`). They are not deleted, because the DOM must stay the same (R3).
+  - Q6 (auto-accepted under the user's delegation, 2026-10-22): the 5 `ContactByEmail*` pages share a `ContactEmailForm` and two card components. Each page has a config object and one submit hook, and there is no container. `EmailContact`, `EmailTarget` and `LDM_Email_V2` stay separate.
+- Consequences: After the user accepts this ADR at the P0-5 gate, `stack.py dep add --dev --adr ADR-15` allows the packages below.
+  - Dev dependencies to allow (stable rule, ADR-2; release dates in `app/docs/refactor/baseline.md`): `@vitest/coverage-v8` 4.1.12, `dependency-cruiser` 17.4.3, `jscpd` 4.3.0, `knip` 5.88.1 and `ts-morph` 27.0.2.
+  - Security patches to allow under the ADR-2 security exception (decision Q3): `vite` 7.3.7, `vitest` 4.1.12, `storybook` 10.6.3 and `@storybook/react-vite` 10.6.3. They replace `vite` 7.3.6, `vitest` 4.1.11 and the two `storybook` packages 10.5.8 in the allow-list.
+  - D3 changes by auto decision Q4: the refactor drops `eslint-plugin-boundaries`, and dependency-cruiser checks rules 3 to 9 because it resolves the `@/` alias. Decision Q2 adds no `eslint-plugin-import-x` and no `tsx`. ESLint core `no-restricted-imports` checks rule 11, and the codemod runs on plain Node 24. Plan v2 still names the dropped packages in §4.3 to §4.5, step P1-1 and the D3 row of §9. These places need a text update.
+  - Accepted advisory: `braces` GHSA-vfj7-8cjw-p6xm (high, stack exhaustion on deeply nested patterns) has no patched version. It comes only through the dev-only CLIs `knip` and `jscpd` (through `fast-glob` and `micromatch`) and does not reach the app bundle. The only fix path, `knip` 6.42.1, fails the stable rule, and `jscpd` 4.3.0 keeps the path. Check the advisory again at Phase 9.
+  - The refactor does not use `route.py` (D4). `migration/tools/refactor_parity.py` runs the parity at the level of each step, against the OutSystems captures and the self-parity reference. Self-parity exemptions go to `migration/refactor-exemptions.json` with the step id, the reason and the user's confirm.
+  - Open point: the consistency rules of `stack.json` (`requiredFiles`, `requiredIfCalls`, `allowedImportRoots`, NO-ROUTE-CSS) describe the folders of the migration. They need a change before the code moves to the new folders.
+  - Plan v2 §2.2 example "containers/ (ShareSheet, FilterSheet, BottomBar)" needs a text update: FilterSheet and BottomBar are not containers (no data action; `component` and `hook+component`).
+  - The memoryCache readers (`CacheControl`, `CacheControl_*`, `CacheControl_UserInfo_Wrapper`) are rewritten in P5-4, where they are; P6 only moves the files.
+  - OSBlock placement (decision Q7, auto-accepted): OSBlock and the other presentational OS* widgets go to `components/ui/os/`, not `legacy/os/widgets/`. They render the DOM that R3 keeps forever, so they are permanent UI primitives that rule 5 allows. A widget that imports from `legacy/os` (check OSPopup and OSValidation) stays in `legacy/os/` behind a platform adapter. Plan v2 P1-3 needs a text change (components/OS* → components/ui/os/). The move map has no `src/components/OS*` rows, so none was added.

@@ -278,3 +278,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,fix,22588,refactor-dev,,P0-3 loop 1 sonnet
 2026-10-22,refactor,verify,22001,refactor-test,,P0-3 sonnet
 2026-10-22,refactor,other,22554,refactor-docs,,P0-4 sonnet
+2026-10-22,refactor,verify,17293,refactor-test,,P0-4 sonnet
+2026-10-22,refactor,verify,19767,refactor-test,,P0-5 sonnet
+2026-10-22,refactor,other,40176,refactor-docs,,P0-5 sonnet
+2026-10-22,refactor,other,21505,refactor-docs,,"plan v2 text sync with Q2 Q4 Q5 Q7, sonnet"

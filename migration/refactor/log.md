@@ -45,3 +45,10 @@ One line per event. Written by rf.py.
 - 2026-10-22T14:13:52 P0-4 stage test
 - 2026-10-22T14:16:08 P0-4 stage docs
 - 2026-10-22T14:16:08 P0-4 stage commit
+- 2026-10-22T14:16:08 P0-4 done 9c0bd22: ci: pass; measure outputs reproduced; bundle = baseline
+- 2026-10-22T14:16:26 P0-5 started
+- 2026-10-22T14:16:26 P0-5 stage dev
+- 2026-10-22T14:16:26 P0-5 stage test
+- 2026-10-22T14:16:26 P0-5 after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done: 'kéo dài tới khi xong P0-5'): an Opus reviewer checked move-map.csv, duplicates.md and ADR-15 and confirmed with changes (16 rows, 5 other changes, Q7); the changes are applied (dev.md loops 1 and 2)."
+- 2026-10-22T14:20:53 P0-5 stage docs
+- 2026-10-22T14:20:53 P0-5 stage commit

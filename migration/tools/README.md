@@ -86,6 +86,11 @@ The codemod runs on plain Node 24 (it loads ts-morph from `app/node_modules`). I
 - `node app/build/bundle-report.mjs`: prints the first-load size (entry, route chunk, shared chunks) of HomeFeed and Login from `app/dist/`. Run `npm --prefix app run build` first.
 
 
+## Refactor move map (P0-5)
+
+- `node migration/tools/refactor/move-map.mjs [--check]`: writes `app/docs/refactor/move-map.csv` (one row per row of `inventory.csv` and one row per route screen; 329 rows). Rules come from plan v2 §2.2 to §2.6 and §8. The file `migration/tools/refactor/move-map.decisions.json` holds the decisions and wins over the rules. `--check` prints the counts and the name collisions and writes nothing. Run `measure.mjs` first when `src/` changed.
+
+
 Servers:
 - dev: `npm --prefix app run dev` (http://localhost:5173)
 - demo: `node app/dist-demo/serve.mjs 8099` (http://localhost:8099/UBTConnect/)
