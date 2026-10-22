@@ -82,3 +82,4 @@ One line per event. Written by rf.py.
 - 2026-10-22T16:20:19 P1-4 stage test
 - 2026-10-22T16:27:52 P1-4 stage docs
 - 2026-10-22T16:30:04 P1-4 stage commit
+- 2026-10-22T16:30:05 P1-4 done faf8682: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self, 1 flake clean on rerun); bundle = baseline
