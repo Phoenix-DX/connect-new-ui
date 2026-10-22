@@ -6,8 +6,8 @@ section "Context notes".
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
 - 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)).
-- Branch `refactor/architecture`: Phases 0 and 1 of the refactor done by the agent team (2026-10-22, [context-036](context-036-refactor-phase-0.md), [context-037](context-037-refactor-phase-1.md)); next P2-1 with `/refactor-master continue` (this repo's dev server on port 5174: 5173 is another clone). Auto decisions Q1–Q9 wait for the user's review.
-- Auto mode OFF (P1 window ended 16:30, 2026-10-22). Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
+- Branch `refactor/architecture`: Phases 0 to 2 of the refactor done by the agent team (2026-10-22, contexts 036 to 038); overnight run continues with P3-1 (`/refactor-master continue` resumes) (this repo's dev server on port 5174: 5173 is another clone). Auto decisions Q1–Q10, M1, G-P2-4 wait for the user's review.
+- Auto mode ON overnight from 19:41 (2026-10-22), until P2–P7 are done. Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`). Tools: `migration/tools/` (README).
 
 ## Contexts
@@ -51,3 +51,4 @@ section "Context notes".
 | [035](context-035-refactor-agent-team.md) | 2026-10-22 | Refactor agent team: /refactor-master + developer/tester/documenter, rf.py state, self-test passed; not begun | current |
 | [036](context-036-refactor-phase-0.md) | 2026-10-22 | Refactor Phase 0 (P0-1 to P0-5) by the agent team; baseline, parity tool, move map, ADR-15; auto decisions Q1–Q7 | current |
 | [037](context-037-refactor-phase-1.md) | 2026-10-22 | Refactor Phase 1 (P1-1 to P1-4): moves, `@/` imports; P1 parity had used another clone on 5173, re-run found 2 regressions, fixed (P1-fix); Q8–Q9 | current |
+| [038](context-038-refactor-phase-2.md) | 2026-10-22 | Refactor Phase 2 (P2-1 to P2-4) overnight: HouseholdDetails pilot page, page template, gate G-P2-4 by Opus + Fable; follow-ups F1–F5 | current |
