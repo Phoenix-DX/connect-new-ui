@@ -16,6 +16,12 @@
  *        [--out migration/screens/<S>/parity/<state>.json]     (also writes <state>.diff.png, .expected.png and .build.png)
  *        [--no-text] [--no-style] [--no-pixel]   relax a local run; such reports are marked full=false and never pass the gate
  *        [--replay builder|parser]   how the reference is rebuilt (default builder; parser = the old load, for A/B checks)
+ *        [--skip-kinds structure,class,attr] [--visible-only]   refactor parity (migration/tools/refactor_parity.py), default off
+ *        [--record-self <dir>]   save tree.json, screenshot.png and calls of the build in <dir>; no comparison
+ *        [--diff-ref <path>]     the diff png path named in pixel differences (exemptions match on it); default the --out one
+ *        [--fixed-time <iso>]    fix the page clock (Date.now, new Date) at this time, timers keep running (self reference: clocks)
+ *        [--freeze-animations]   before the snapshot: finish finite animations and transitions, pause endless ones at their start
+ *        [--self-ref <dir>]      compare against such a record (the self-parity reference) instead of --expect
  *   node parity_check.cjs --self-test             checks buildDom against a fixture (nested <a>, svg/xlink, entities, ...)
  *
  * Replay of the reference: the capture is outerHTML of the live page. Loading it through the HTML parser rebuilds
@@ -349,11 +355,14 @@ function diffTrees(a, b, X, opts) {
     for (const k of new Set([...Object.keys(x.attrs), ...Object.keys(y.attrs)]))
       if (X.attrs.includes(k) || k.startsWith('aria-')) if ((x.attrs[k] ?? null) !== (y.attrs[k] ?? null)) push({ kind: 'attr', path: p, detail: `${k}: ${x.attrs[k] ?? '∅'} → ${y.attrs[k] ?? '∅'}` });
     if (opts.text && !x.ownMasked && x.text !== y.text) push({ kind: 'text', path: p, detail: `"${x.text}" → "${y.text}"` });
-    if (opts.style) {
+    const vis = n => n.w > 0 && n.h > 0 && n.style.display !== 'none' && n.style.visibility !== 'hidden';
+    if (opts.style && (!opts.visibleOnly || (vis(x) && vis(y)))) {
       const sd = exemptProps(p, STYLE_PROPS.filter(k => !X.ignoreStyle.has(k) && x.style[k] !== y.style[k]));
       if (sd.length) push({ kind: 'style', path: p, detail: sd.slice(0, 5).map(k => `${k} ${x.style[k]} → ${y.style[k]}`).join('; ') + (sd.length > 5 ? ` (+${sd.length - 5})` : '') });
       pseudoDiff(p, '::before', x.before, y.before);
       pseudoDiff(p, '::after', x.after, y.after);
+    }
+    if (opts.style) {
       const tol = X.layoutTolerance;
       if (x.w > 0 && !x.masked && (Math.abs(x.w - y.w) > tol || Math.abs(x.h - y.h) > tol))
         push({ kind: 'layout', path: p, detail: `${x.w}×${x.h} → ${y.w}×${y.h}` });
@@ -581,7 +590,8 @@ async function main() {
   const mock = o.mock || meta.scenario || 'real';
   const steps = o.steps ? JSON.parse(o.steps) : (meta.steps || []);
   const flags = o.flags ? Object.fromEntries(String(o.flags).split(',').map(x => x.split('='))) : (meta.flags || {});
-  const opts = { text: !o['no-text'], style: !o['no-style'], pixel: !o['no-pixel'], calls: !!o.calls };
+  const opts = { text: !o['no-text'], style: !o['no-style'], pixel: !o['no-pixel'], calls: !!o.calls, visibleOnly: !!o['visible-only'] };
+  const skipKinds = new Set(String(o['skip-kinds'] === true ? '' : (o['skip-kinds'] || '')).split(',').filter(Boolean));
   const replayMode = o.replay || 'builder';
   if (!['builder', 'parser'].includes(replayMode)) { console.error('--replay builder|parser'); process.exit(2); }
   const browser = await pw.chromium.launch();
@@ -596,6 +606,7 @@ async function main() {
     // a screen's look depends on data arriving after a timed check, as on TST (e.g. a 200 ms layout check)
     u.searchParams.set('latency', mock === 'loading' ? 'infinite' : String(o.latency ?? '0'));
     if (Object.keys(flags).length) u.searchParams.set('ff', Object.entries(flags).map(([k, v]) => `${k}:${v}`).join(','));
+    if (o['fixed-time']) await app.clock.setFixedTime(new Date(o['fixed-time']));
     await app.addInitScript(() => { window.__osPhase = 'load'; });
     await app.goto(u.toString(), { waitUntil: 'load', timeout: 60000 });
     if (mock !== 'loading') await app.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {});
@@ -603,12 +614,23 @@ async function main() {
     await app.waitForTimeout(Number(o.settle || 1500));
     await replay(app, steps);
     await app.evaluate(() => document.fonts && document.fonts.ready);
+    if (o['freeze-animations']) await app.evaluate(() => document.getAnimations().forEach(a => { if (Number.isFinite(a.effect.getComputedTiming().endTime)) a.finish(); else { a.pause(); a.currentTime = 0; } }));
     const sheets = await app.evaluate(() => [...document.querySelectorAll('link[rel=stylesheet]')].map(l => l.href));
     const inlineCss = await app.evaluate(() => [...document.querySelectorAll('style')].map(s => s.textContent).join('\n'));
     const actual = JSON.parse(await app.evaluate(serialize, { root, props: STYLE_PROPS, pseudoProps: PSEUDO_PROPS, attrsWanted: X.attrs }));
-    const appCalls = opts.calls ? await app.evaluate(() => window.__osCalls || []) : [];
+    const appCalls = (opts.calls || o['record-self'] || o['self-ref']) ? await app.evaluate(() => window.__osCalls || []) : [];
 
-    const exp = await expCtx.newPage();
+    if (o['record-self']) {   // the self-parity reference: what the build renders now
+      fs.mkdirSync(o['record-self'], { recursive: true });
+      fs.writeFileSync(path.join(o['record-self'], 'tree.json'), JSON.stringify({ route: o.route, state, mock, viewport: `${w}x${h}`, at: new Date().toISOString(), actual, appCalls }));
+      fs.writeFileSync(path.join(o['record-self'], 'screenshot.png'), await app.screenshot({ fullPage: true, animations: 'disabled', caret: 'hide' }));
+      console.log(`${state}: self reference recorded in ${o['record-self']}`);
+      return;
+    }
+    let selfRef = null, replayStats = { mode: 'self-ref' }, expected, exp = null;
+    if (o['self-ref']) selfRef = JSON.parse(fs.readFileSync(path.join(o['self-ref'], 'tree.json'), 'utf8'));
+    else {
+    exp = await expCtx.newPage();
     let html = fs.readFileSync(o.expect, 'utf8').replace(/<script\b[\s\S]*?<\/script>/gi, '');   // captured DOM must stay inert
     const head = `<meta charset="utf-8"><base href="${u.origin}/">` + sheets.map(s => `<link rel="stylesheet" href="${s}">`).join('') + (o['inline-css'] ? `<style>${inlineCss}</style>` : '');
     const htmlCls = (meta.htmlClass || '').replace(/"/g, '');
@@ -626,13 +648,15 @@ async function main() {
     }
     await exp.route(blank, r => r.fulfill({ status: 200, contentType: 'text/html; charset=utf-8', body: html }));
     await exp.goto(blank, { waitUntil: 'load' });
-    const replayStats = replayMode === 'parser' ? { mode: 'parser' } : { mode: 'builder', ...(await exp.evaluate(() => window.__parityReplay || { error: 'builder did not run' })) };
+    replayStats = replayMode === 'parser' ? { mode: 'parser' } : { mode: 'builder', ...(await exp.evaluate(() => window.__parityReplay || { error: 'builder did not run' })) };
     if (replayStats.error) throw new Error(`reference replay failed: ${replayStats.error}`);
     if (replayStats.endTagMismatch || replayStats.unclosed)
       console.error(`replay: ${replayStats.endTagMismatch} unmatched end tag(s), ${replayStats.unclosed} unclosed element(s): ${o.expect} is not plain outerHTML`);
     await exp.evaluate(() => document.fonts && document.fonts.ready);
     await exp.waitForTimeout(300);
-    const expected = JSON.parse(await exp.evaluate(serialize, { root, props: STYLE_PROPS, pseudoProps: PSEUDO_PROPS, attrsWanted: X.attrs }));
+    expected = JSON.parse(await exp.evaluate(serialize, { root, props: STYLE_PROPS, pseudoProps: PSEUDO_PROPS, attrsWanted: X.attrs }));
+    }
+    if (selfRef) expected = selfRef.actual;
 
     const res = diffTrees(expected.tree, actual.tree, X, opts);
     const push = d => { for (const r of X.rules) if (ruleHits(r, d)) { res.exemptionsUsed[r.id] = (res.exemptionsUsed[r.id] || 0) + 1; return; } res.diffs.push(d); };
@@ -645,7 +669,7 @@ async function main() {
     let pixel = null;
     if (opts.pixel) {
       const shot = async p => (await p.screenshot({ fullPage: true, animations: 'disabled', caret: 'hide' })).toString('base64');
-      const [sa, sb] = [await shot(exp), await shot(app)];
+      const [sa, sb] = [selfRef ? fs.readFileSync(path.join(o['self-ref'], 'screenshot.png')).toString('base64') : await shot(exp), await shot(app)];
       const masksA = [...res.masks.map(m => m.a), ...res.skipped.filter((_, i) => i % 2 === 0)].filter(Boolean);
       const masksB = [...res.masks.map(m => m.b), ...res.skipped.filter((_, i) => i % 2 === 1)].filter(Boolean);
       const cmp = await (await browser.newPage()).evaluate(pixelDiff, { a: sa, b: sb, masksA, masksB, threshold: X.pixel.threshold });
@@ -663,7 +687,7 @@ async function main() {
       if (cmp.sizeA[1] !== cmp.sizeB[1] && Math.abs(cmp.sizeA[1] - cmp.sizeB[1]) > X.layoutTolerance)
         push({ kind: 'pixel', path: 'screenshot', detail: `page height ${cmp.sizeA[1]} → ${cmp.sizeB[1]}` });
       if (cmp.ratio > X.pixel.maxRatio || cmp.maxCell > X.pixel.maxCellRatio)
-        push({ kind: 'pixel', path: 'screenshot', detail: `${(cmp.ratio * 100).toFixed(2)}% pixels differ (max ${(X.pixel.maxRatio * 100).toFixed(2)}%), worst 40px tile ${(cmp.maxCell * 100).toFixed(1)}% (max ${(X.pixel.maxCellRatio * 100).toFixed(1)}%), hotspots ${cmp.hot.join('; ')}; see ${pngPath || 'the diff png (use --out)'}` });
+        push({ kind: 'pixel', path: 'screenshot', detail: `${(cmp.ratio * 100).toFixed(2)}% pixels differ (max ${(X.pixel.maxRatio * 100).toFixed(2)}%), worst 40px tile ${(cmp.maxCell * 100).toFixed(1)}% (max ${(X.pixel.maxCellRatio * 100).toFixed(1)}%), hotspots ${cmp.hot.join('; ')}; see ${o['diff-ref'] || pngPath || 'the diff png (use --out)'}` });
     }
 
     let callStats = null;
@@ -674,10 +698,21 @@ async function main() {
       callStats = { phases, ...diffCalls(list, appCalls, phases, X, push) };
     }
 
+    if (selfRef) {   // call parity against the recorded calls: same distinct calls per phase, order and repeats free
+      const key = c => `${c.phase || 'load'}|${c.module || ''}/${c.action}`;
+      const uniq = l => [...new Set(l)].sort();   // presence per phase: how often a call repeats depends on timing (timers, retries)
+      const [ea, ga] = [uniq((selfRef.appCalls || []).map(key)), uniq(appCalls.map(key))];
+      if (ea.join('\n') !== ga.join('\n')) {
+        const miss = ea.filter(k => !ga.includes(k)), extra = ga.filter(k => !ea.includes(k));
+        push({ kind: 'call', path: 'calls', detail: `self reference ${ea.length} call(s), build ${ga.length}${miss.length ? '; missing ' + [...new Set(miss)].join(', ') : ''}${extra.length ? '; extra ' + [...new Set(extra)].join(', ') : ''}` });
+      }
+      callStats = { expected: ea.length, actual: ga.length, distinct: true };
+    }
+    if (skipKinds.size) res.diffs = res.diffs.filter(d => !skipKinds.has(d.kind));
     const counts = res.diffs.reduce((c, d) => (c[d.kind] = (c[d.kind] || 0) + 1, c), {});
     const full = opts.text && opts.style && opts.pixel;   // route.py also requires call parity when calls.json exists
     const report = { state, route: o.route, mock, viewport: `${w}x${h}`, flags, steps: steps.length, fingerprint: o.fingerprint || null,
-      options: { ...opts, full, replay: replayMode }, replay: replayStats, at: new Date().toISOString(), counts, exemptionsUsed: res.exemptionsUsed, pixel, calls: callStats, diffs: res.diffs };
+      options: { ...opts, full, replay: replayMode, skipKinds: [...skipKinds], selfRef: !!selfRef }, replay: replayStats, at: new Date().toISOString(), counts, exemptionsUsed: res.exemptionsUsed, pixel, calls: callStats, diffs: res.diffs };
     if (o.out) { fs.mkdirSync(path.dirname(o.out), { recursive: true }); fs.writeFileSync(o.out, JSON.stringify(report, null, 1)); }
     const order = ['structure', 'class', 'attr', 'text', 'style', 'pseudo', 'layout', 'position', 'pixel', 'call'];
     console.log(`${state}: ` + (order.map(k => `${k} ${counts[k] || 0}`).join(', ')) + (pixel ? `; pixels ${(pixel.ratio * 100).toFixed(2)}%, worst tile ${(pixel.maxCell * 100).toFixed(1)}%` : '') +

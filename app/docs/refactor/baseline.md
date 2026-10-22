@@ -22,13 +22,13 @@ Install note: `npm install vitest@4.1.12` fails on npm 10.9.9 with `Cannot read 
 
 ## Gate results
 
-| Check                                  | Result                                                                                                     |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `npm --prefix app run ci`              | Passed (exit 0, Node 24.21.0): gen:api, typecheck, lint, format:check, 324 test files / 1,457 tests, build |
-| `npm --prefix app run build-storybook` | Passed once as a smoke test (`storybook-static` is ignored by git)                                         |
-| Parity sweep (OutSystems)              | ROUTES 64 WITH DIFFS 0 (`migration/tools/parity_sweep.py`, Node 24.21.0)                                   |
-| Self-parity                            | Recorded in P0-2                                                                                           |
-| `npm audit`                            | 0 vulnerabilities                                                                                          |
+| Check                                  | Result                                                                                                                                                                                                                            |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm --prefix app run ci`              | Passed (exit 0, Node 24.21.0): gen:api, typecheck, lint, format:check, 324 test files / 1,457 tests, build                                                                                                                        |
+| `npm --prefix app run build-storybook` | Passed once as a smoke test (`storybook-static` is ignored by git)                                                                                                                                                                |
+| Parity sweep (OutSystems)              | ROUTES 64 WITH DIFFS 0 (`migration/tools/parity_sweep.py`, Node 24.21.0)                                                                                                                                                          |
+| Self-parity                            | Recorded in P0-2: strict 64/0 against both references, visual self 64/0. `migration/refactor-reference/` is git-ignored (162 MB); a new clone runs `python3 migration/tools/refactor_parity.py --record-self --all` (about 2 min) |
+| `npm audit`                            | 0 vulnerabilities                                                                                                                                                                                                                 |
 
 ## Statement coverage
 

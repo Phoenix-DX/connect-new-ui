@@ -15,5 +15,6 @@ src/mocks/fixtures
 src/vendor
 src/shared/osui/*/vendor/*.js
 docs/reference
+docs/refactor/reports
 src/shared/**/__captures__
 lighthouse-reports

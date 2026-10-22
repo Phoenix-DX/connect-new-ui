@@ -17,3 +17,17 @@ One line per event. Written by rf.py.
 - 2026-10-22T12:57:21 P0-1 stage docs
 - 2026-10-22T12:58:04 Q4 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended (3): rules 3-9 and 10 in dependency-cruiser only (resolves @/ natively); drop eslint-plugin-boundaries (changes D3: no handlebars override, no braces path via micromatch); add ESLint core no-restricted-imports overrides per folder for the simple bans so the editor shows them. The user reviews the D3 change."
 - 2026-10-22T12:59:11 P0-1 stage commit
+- 2026-10-22T12:59:11 P0-1 done 6b4efba: ci: pass (Node 24); parity strict: 64/0 (OutSystems); audit 0
+- 2026-10-22T12:59:47 P0-2 started
+- 2026-10-22T12:59:48 P0-2 stage dev
+- 2026-10-22T13:33:32 Q5 (P0-5) asked: DEPRECATED_* patterns (4) render a different DOM from the new OSUI patterns and 7 routes use them (4 Orbit, EmailContact, EmailTarget, MyBookmarks): (a) keep them as legacy UI components in components/ui/legacy/ with business names, or (b) delete in P7 and accept the DOM change with parity exemptions?
+- 2026-10-22T13:33:32 Q6 (P0-5) asked: G2: the 5 ContactByEmail* pages fetch no data and differ only in config and the submit action: (a) shared ContactEmailForm + 2 card components + a config and a submit hook per page, no container (R2 criterion), or (b) one ContactEmailContainer with a config per route?
+- 2026-10-22T13:34:23 Q5 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done): Opus recommended (a): keep the 4 DEPRECATED_* patterns as legacy UI components with business names in components/ui/legacy/ (1:1 UI, R3, parity 64/0). Plan v2 §2.6 'delete DEPRECATED_*' does not apply to them; a switch to the new patterns is a later UX decision of the user, after cutover."
+- 2026-10-22T13:34:23 Q6 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done): Opus recommended (a): shared ContactEmailForm, two card components, and per page a config object plus one submit hook; no container (R2: no second data source, one submit hook). EmailContact, EmailTarget and LDM_Email_V2 stay separate."
+- 2026-10-22T13:50:22 Q7 (P0-5) asked: OSBlock (imported by 388 non-test files) moves to legacy/os/widgets/ in P1-3, but rules 4, 5 and 9 forbid components/** from importing legacy/os: (a) a rule exception so components/** may import legacy/os/widgets (OSBlock) until a later phase removes it, or (b) move OSBlock to components/ui/legacy/ instead?
+- 2026-10-22T13:50:36 P0-2 stage test
+- 2026-10-22T13:50:58 Q7 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done): Opus recommended (b): move OSBlock and the other presentational OS* widgets to components/ui/os/ (permanent UI primitives under R3, allowed by rule 5), not to legacy/os/widgets. A widget that imports from legacy/os (check OSPopup, OSValidation) stays in legacy/os behind a platform adapter. Plan v2 P1-3 needs a text change."
+- 2026-10-22T13:58:56 P0-2 test failed, fix loop 1
+- 2026-10-22T14:00:39 P0-2 stage test
+- 2026-10-22T14:02:14 P0-2 stage docs
+- 2026-10-22T14:03:51 P0-2 stage commit

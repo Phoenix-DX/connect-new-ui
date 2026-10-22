@@ -255,3 +255,21 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,verify,23630,refactor-test,,P0-1 sonnet
 2026-10-22,refactor,review,36031,refactor-advisor,,"P0-3 Q4 judgment (resolver), opus, 15 s"
 2026-10-22,refactor,other,28095,refactor-docs,,P0-1 sonnet
+2026-10-22,refactor,build,57313,refactor-dev,,P0-3 sonnet
+2026-10-22,refactor,build,51478,refactor-dev,,P0-4 sonnet
+2026-10-22,refactor,build,103101,refactor-dev,,P0-5 opus
+2026-10-22,refactor,verify,18937,refactor-test,,P0-3 sonnet
+2026-10-22,refactor,other,22956,refactor-docs,,P0-3 sonnet
+2026-10-22,refactor,build,219980,refactor-dev,,P0-5 opus
+2026-10-22,refactor,review,34157,refactor-advisor,,"P0-5 Q6 judgment, opus, 8 s"
+2026-10-22,refactor,review,34222,refactor-advisor,,"P0-5 Q5 judgment, opus, 12 s"
+2026-10-22,refactor,verify,22950,refactor-test,,P0-4 sonnet
+2026-10-22,refactor,build,53839,refactor-dev,,P0-5 sonnet
+2026-10-22,refactor,verify,25419,refactor-test,,P0-5 sonnet
+2026-10-22,refactor,build,96702,refactor-dev,,P0-2 sonnet
+2026-10-22,refactor,review,92284,refactor-advisor,,"P0-5 gate review (delegated), opus, 4.5 min"
+2026-10-22,refactor,review,34662,refactor-advisor,,"P0-5 Q7 judgment (OSBlock), opus, 11 s"
+2026-10-22,refactor,build,36995,refactor-dev,,P0-5 sonnet
+2026-10-22,refactor,verify,31040,refactor-test,,P0-2 loop 1 sonnet
+2026-10-22,refactor,fix,14725,refactor-dev,,P0-2 loop 1 sonnet
+2026-10-22,refactor,verify,15378,refactor-test,,P0-2 loop 1 sonnet

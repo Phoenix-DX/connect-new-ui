@@ -27,3 +27,6 @@ migration/journeys/runs/*/debug-*
 migration/journeys/runs/*.debug/
 migration/journeys/runs/*.tmp/
 migration/journeys/runs/*.best/
+# refactor parity: self-parity reference (re-record with refactor_parity.py --record-self --all, about 160 MB) and run outputs
+migration/refactor-reference/
+migration/refactor-parity/

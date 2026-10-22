@@ -7,19 +7,53 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P0-1",
+  "step": "P0-2",
   "stage": "commit",
-  "loop": 0,
-  "since": "2026-10-22T12:59:11"
+  "loop": 1,
+  "since": "2026-10-22T14:03:51"
  },
  "steps": {
   "P0-1": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-22T11:44:27",
    "tokens": {
     "dev": 37128,
     "test": 23630,
     "docs": 28095
+   },
+   "commit": "6b4efba",
+   "gate": "ci: pass (Node 24); parity strict: 64/0 (OutSystems); audit 0",
+   "loops": 0,
+   "finished": "2026-10-22T12:59:11"
+  },
+  "P0-2": {
+   "status": "active",
+   "started": "2026-10-22T12:59:47",
+   "tokens": {
+    "dev": 111427,
+    "test": 46418
+   }
+  },
+  "P0-3": {
+   "status": "pending",
+   "tokens": {
+    "dev": 57313,
+    "test": 18937,
+    "docs": 22956
+   }
+  },
+  "P0-4": {
+   "status": "pending",
+   "tokens": {
+    "dev": 51478,
+    "test": 22950
+   }
+  },
+  "P0-5": {
+   "status": "pending",
+   "tokens": {
+    "dev": 413915,
+    "test": 25419
    }
   }
  },
@@ -71,6 +105,36 @@
    "answer": "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended (3): rules 3-9 and 10 in dependency-cruiser only (resolves @/ natively); drop eslint-plugin-boundaries (changes D3: no handlebars override, no braces path via micromatch); add ESLint core no-restricted-imports overrides per folder for the simple bans so the editor shows them. The user reviews the D3 change.",
    "by": "user",
    "answeredAt": "2026-10-22T12:58:04"
+  },
+  {
+   "id": "Q5",
+   "step": "P0-5",
+   "text": "DEPRECATED_* patterns (4) render a different DOM from the new OSUI patterns and 7 routes use them (4 Orbit, EmailContact, EmailTarget, MyBookmarks): (a) keep them as legacy UI components in components/ui/legacy/ with business names, or (b) delete in P7 and accept the DOM change with parity exemptions?",
+   "status": "answered",
+   "at": "2026-10-22T13:33:32",
+   "answer": "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done): Opus recommended (a): keep the 4 DEPRECATED_* patterns as legacy UI components with business names in components/ui/legacy/ (1:1 UI, R3, parity 64/0). Plan v2 §2.6 'delete DEPRECATED_*' does not apply to them; a switch to the new patterns is a later UX decision of the user, after cutover.",
+   "by": "user",
+   "answeredAt": "2026-10-22T13:34:23"
+  },
+  {
+   "id": "Q6",
+   "step": "P0-5",
+   "text": "G2: the 5 ContactByEmail* pages fetch no data and differ only in config and the submit action: (a) shared ContactEmailForm + 2 card components + a config and a submit hook per page, no container (R2 criterion), or (b) one ContactEmailContainer with a config per route?",
+   "status": "answered",
+   "at": "2026-10-22T13:33:32",
+   "answer": "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done): Opus recommended (a): shared ContactEmailForm, two card components, and per page a config object plus one submit hook; no container (R2: no second data source, one submit hook). EmailContact, EmailTarget and LDM_Email_V2 stay separate.",
+   "by": "user",
+   "answeredAt": "2026-10-22T13:34:23"
+  },
+  {
+   "id": "Q7",
+   "step": "P0-5",
+   "text": "OSBlock (imported by 388 non-test files) moves to legacy/os/widgets/ in P1-3, but rules 4, 5 and 9 forbid components/** from importing legacy/os: (a) a rule exception so components/** may import legacy/os/widgets (OSBlock) until a later phase removes it, or (b) move OSBlock to components/ui/legacy/ instead?",
+   "status": "answered",
+   "at": "2026-10-22T13:50:22",
+   "answer": "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done): Opus recommended (b): move OSBlock and the other presentational OS* widgets to components/ui/os/ (permanent UI primitives under R3, allowed by rule 5), not to legacy/os/widgets. A widget that imports from legacy/os (check OSPopup, OSValidation) stays in legacy/os behind a platform adapter. Plan v2 P1-3 needs a text change.",
+   "by": "user",
+   "answeredAt": "2026-10-22T13:50:58"
   }
  ]
 }

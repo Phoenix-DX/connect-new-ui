@@ -5,3 +5,9 @@
 - Architecture: no change. The step records the baseline in `app/docs/refactor/baseline.md`.
 - Security packages pinned: vite 7.3.7, vitest and @vitest/coverage-v8 4.1.12, storybook and @storybook/react-vite 10.6.3.
 - Baseline: parity 64 routes with 0 differences, statements 49.22 percent, `npm audit` 0.
+
+## P0-2 - refactor(P0-2): add refactor_parity.py and the self-parity reference
+
+- Architecture: no change. New tool `migration/tools/refactor_parity.py` (levels strict and visual, `--changed`, `--all`).
+- Self-parity reference recorded in `migration/refactor-reference/` (git-ignored). Strict run: 64/0 against both references.
+- New default-off flags in `parity_check.cjs`; exemptions in `migration/refactor-exemptions.json` (empty).
