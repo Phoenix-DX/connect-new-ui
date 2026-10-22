@@ -3,6 +3,11 @@ import tseslint from 'typescript-eslint';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
 
+const relativeParentPattern = {
+  regex: '^\\.\\./',
+  message: 'Rule 11: import across folders with the @/ alias, not with ../.',
+};
+
 /* One lint configuration for the whole app (stack item "lint"). Type-checked strict rules: they catch wire-format
    mistakes (any, unchecked indexes, floating promises) before they reach a review. */
 export default tseslint.config(
@@ -29,6 +34,29 @@ export default tseslint.config(
     rules: {
       // numbers in template literals are common in OutSystems-derived markup (ids, counts)
       '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
+    },
+  },
+  // Plan v2 §2.4 rule 11 and rule 4: warnings until Phase 9 turns them into errors.
+  // A later block that sets the same rule replaces this one, so the components block repeats the relative pattern.
+  {
+    files: ['src/**/*.{ts,tsx}'],
+    rules: { 'no-restricted-imports': ['warn', { patterns: [relativeParentPattern] }] },
+  },
+  {
+    files: ['src/components/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': [
+        'warn',
+        {
+          patterns: [
+            relativeParentPattern,
+            {
+              regex: '^@/(api|platform|pages|containers|app)(/|$)',
+              message: 'Rule 4: components/** does not import api/, platform/, pages/, containers/ or app/.',
+            },
+          ],
+        },
+      ],
     },
   },
   { files: ['eslint.config.js'], extends: [tseslint.configs.disableTypeChecked] },

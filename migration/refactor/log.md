@@ -53,3 +53,10 @@ One line per event. Written by rf.py.
 - 2026-10-22T14:20:53 P0-5 stage docs
 - 2026-10-22T14:20:53 P0-5 stage commit
 - 2026-10-22T14:20:54 P0-5 done eeb37e2: ci: pass; stack check OK; move-map reproduced; gate: Opus review (delegated)
+- 2026-10-22T15:17:57 P1-1 started
+- 2026-10-22T15:17:57 P1-1 stage dev
+- 2026-10-22T15:20:57 P1-1 stage test
+- 2026-10-22T15:28:17 Q8 (P1-1) asked: Self parity reference migration/refactor-reference/ (git-ignored, recorded in P0-2) is missing; strict parity --ref both fails with 'no self reference' on 50 routes (OutSystems side 64/64 clean). Re-record with refactor_parity.py --record-self --all (P1-1 has no runtime change), or accept the OutSystems-only result?
+- 2026-10-22T15:30:10 Q8 answered by the user: "auto-accepted (user instruction 2026-10-22 15:29, until end of P1): Opus recommends B: stash the three P1-1 app files, run refactor_parity.py --record-self --all at 3b25ddd, pop, run the tester again. Reason: every later step diffs against this reference, so record it at the documented commit."
+- 2026-10-22T15:39:25 P1-1 stage docs
+- 2026-10-22T15:39:56 P1-1 stage commit

@@ -24,6 +24,7 @@
     "build-storybook": "storybook build -o storybook-static",
     "graph": "depcruise src --config .dependency-cruiser.cjs --output-type json --output-to docs/refactor/graph.json",
     "arch": "depcruise src --config .dependency-cruiser.cjs --output-type err",
+    "lint:arch": "npm run arch && eslint .",
     "ci": "npm run gen:api && npm run typecheck && npm run lint && npm run format:check && npm run test && vite build"
   },
   "dependencies": {

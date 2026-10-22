@@ -6,7 +6,12 @@
   "text": "Giờ tôi sẽ đi ăn tới 3h30 chiều việt nam. Bạn hãy chạy Refactory plan, nếu định hỏi gì thì hãy nhờ opus suggest và auto chọn recommand nhé, ko cần chờ tôi.",
   "at": "2026-10-22T11:44:17"
  },
- "current": null,
+ "current": {
+  "step": "P1-1",
+  "stage": "commit",
+  "loop": 0,
+  "since": "2026-10-22T15:39:56"
+ },
  "steps": {
   "P0-1": {
    "status": "done",
@@ -72,6 +77,15 @@
    "gate": "ci: pass; stack check OK; move-map reproduced; gate: Opus review (delegated)",
    "loops": 0,
    "finished": "2026-10-22T14:20:54"
+  },
+  "P1-1": {
+   "status": "active",
+   "started": "2026-10-22T15:17:57",
+   "tokens": {
+    "dev": 27384,
+    "test": 41431,
+    "docs": 18427
+   }
   }
  },
  "gates": {
@@ -158,6 +172,16 @@
    "answer": "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done): Opus recommended (b): move OSBlock and the other presentational OS* widgets to components/ui/os/ (permanent UI primitives under R3, allowed by rule 5), not to legacy/os/widgets. A widget that imports from legacy/os (check OSPopup, OSValidation) stays in legacy/os behind a platform adapter. Plan v2 P1-3 needs a text change.",
    "by": "user",
    "answeredAt": "2026-10-22T13:50:58"
+  },
+  {
+   "id": "Q8",
+   "step": "P1-1",
+   "text": "Self parity reference migration/refactor-reference/ (git-ignored, recorded in P0-2) is missing; strict parity --ref both fails with 'no self reference' on 50 routes (OutSystems side 64/64 clean). Re-record with refactor_parity.py --record-self --all (P1-1 has no runtime change), or accept the OutSystems-only result?",
+   "status": "answered",
+   "at": "2026-10-22T15:28:17",
+   "answer": "auto-accepted (user instruction 2026-10-22 15:29, until end of P1): Opus recommends B: stash the three P1-1 app files, run refactor_parity.py --record-self --all at 3b25ddd, pop, run the tester again. Reason: every later step diffs against this reference, so record it at the documented commit.",
+   "by": "user",
+   "answeredAt": "2026-10-22T15:30:10"
   }
  ]
 }

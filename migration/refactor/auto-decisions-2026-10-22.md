@@ -18,3 +18,13 @@ recorded the recommendation in `state.json` with the marker "auto-accepted (user
 | Q6 | P0-5 | G2 email pages: container or not? | (a) Shared `ContactEmailForm` + 2 card components + a config and one submit hook per page; no container (R2). EmailContact, EmailTarget, LDM_Email_V2 stay separate. | accepted |
 | Q7 | P0-5 | `OSBlock` (388 importers) and the other `OS*` widgets: `legacy/os/widgets/` with a rule exception, or a UI folder? | (b) `components/ui/os/`: they render the DOM that R3 keeps forever, so they are permanent UI primitives (rule 5 allows them). A widget that imports `legacy/os` stays there behind an adapter. | accepted; plan v2 P1-3 needs a text change |
 | G-P0-5 | P0-5 | User gate: move map (329 rows), duplicates.md, ADR-15 | Opus reviewer: confirm with changes (16 rows, 5 other changes, Q7); changes applied. ADR-15 accepted; 9 dev packages allowed with `stack.py dep add --adr ADR-15`. | accepted (window extended by the user until P0-5) |
+
+## Window 2: 15:29 +07 until the end of P1
+
+The user's instruction (15:29): "Hãy auto chạy cho tới hết P1 như P0" (English: "Run automatically until the end of
+P1, as for P0"). Same rules as window 1, with the marker "auto-accepted (user instruction 2026-10-22 15:29, until end
+of P1)". Added at 15:40 by the user: when Opus is not sure, ask Fable too (refactor-master §5.1).
+
+| Id | Step | Question or gate | Recommendation | Recorded |
+| -- | ---- | ---------------- | -------------- | -------- |
+| Q8 | P1-1 | The self parity reference (`migration/refactor-reference/`, git-ignored) is missing; 50 routes fail `--ref both`. Record it again, and at which commit? | Opus: (B) stash the three P1-1 app files, record `--record-self --all` at 3b25ddd, restore the files, test again. Every later step compares with this reference, so it must come from the documented commit. Done: 149/149 states, 162.4 MB. | accepted |
