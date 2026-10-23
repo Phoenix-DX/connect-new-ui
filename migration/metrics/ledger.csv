@@ -656,3 +656,13 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,518953,refactor-dev,,P6-G4-B-SupperMeeting_Details opus
 2026-10-24,refactor,other,34000,refactor-docs,,P6-G4-B-Assemble_BrowseByCountry sonnet
 2026-10-24,refactor,verify,30884,refactor-test,,P6-G4-B-SupperMeeting_Details sonnet
+2026-10-24,refactor,other,50827,refactor-docs,,P6-G4-B-SupperMeeting_Details sonnet
+2026-10-24,refactor,build,27899,refactor-dev,,P6-G4-C sonnet
+2026-10-24,refactor,review,36462,refactor-advisor,,"W28, opus"
+2026-10-24,refactor,review,36932,refactor-advisor,,"W28, fable"
+2026-10-24,refactor,review,35081,refactor-advisor,,"W27, opus"
+2026-10-24,refactor,review,34989,refactor-advisor,,"W27, fable"
+2026-10-24,refactor,verify,19897,refactor-test,,P6-G4-C sonnet
+2026-10-24,refactor,other,29704,refactor-docs,,P6-G4-C sonnet
+2026-10-24,refactor,review,41973,refactor-advisor,,"W29, opus"
+2026-10-24,refactor,review,42172,refactor-advisor,,"W29, fable"

@@ -571,3 +571,9 @@
 - New container `containers/SupperMeetingDetails` (hook `useSupperMeetingDetails` on `useFlowState`, W23 once-guard) holds both data actions. `SupperMeetingDetails` and `SupperMeetingHouseholdList` are props-only. The slot `renderSupperMeetingDetails` runs through `EntitiesCarousel`, `EntitiesCarousel_Element` and `CarouselSupperMeetingDetails`; both pages render the container. `DataActionGetSubdivisionHouseholds` moved to `api/locality`.
 - `arch-baseline.csv`: the 7 rows of this step are gone (74 to 67 rows: P7 66, pre-existing 1). Back navigation (both calls run again) is follow-up F22.
 - First load: HomeFeed +0.02 kB, Login +0.01 kB gzip; HouseholdCarousel -4.73 kB (dev.md).
+
+## P6-G4-C - refactor(P6-G4-C): prune group G4 and group gate
+
+- Architecture: no change. `knip` found no unused file in the G4 folders; `jscpd` found only small clones, left as is.
+- Group gate passes: parity `visual --all` 64/64 clean on both references, `e2e:pwa` 9/9, arch baseline 67 rows (P7 66, pre-existing 1).
+- Group report: `app/docs/refactor/reports/P6-G4.md`. Open follow-ups F21 and F22.
