@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G3-B-HomeFeed-Page",
+  "step": "P6-G3-C",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T03:17:02"
+  "since": "2026-10-24T03:30:22"
  },
  "steps": {
   "P0-1": {
@@ -937,12 +937,25 @@
    "finished": "2026-10-24T03:05:44"
   },
   "P6-G3-B-HomeFeed-Page": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T03:05:44",
    "tokens": {
     "dev": 336188,
     "test": 30449,
     "docs": 41589
+   },
+   "commit": "2bcc3346",
+   "gate": "ci: pass (2598 tests); parity visual --all: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; bundle HomeFeed 244.02/248.22 (+1.11 once, W24), Login 184.02/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T03:17:03"
+  },
+  "P6-G3-C": {
+   "status": "active",
+   "started": "2026-10-24T03:17:04",
+   "tokens": {
+    "dev": 31840,
+    "test": 28203,
+    "docs": 26695
    }
   }
  },
@@ -982,6 +995,12 @@
    "by": "user",
    "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W19 group G2 confirmed — Opus confirm (high), Fable confirm (high). Conditions: run P6-F15 (W18) next; keep follow-up F15 (committed remount test for EmailTarget) open; LDMCoordinator, OrbitHost and EmailTarget rest on unit tests and diff review (no parity states).",
    "at": "2026-10-24T00:24:16"
+  },
+  "P6-G3-C:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W25 group G3 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: open FeedItemDetail by hand once in the P6-end review (no parity states); add @origin to platform/session/unreadCounters.ts at the next touch; F18 and F19 stay open.",
+   "at": "2026-10-24T03:30:22"
   }
  },
  "questions": [

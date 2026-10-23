@@ -4,7 +4,6 @@ import { MessageInfoType, MessageSenderTarget, MessageType, ParameterName } from
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import {
   addFirstSentence,
-  decrementReadMessagesCounter,
   decrementReadWhatsNewsCounter,
   initialMessageDetailState,
   isOrbitKind,
@@ -162,16 +161,6 @@ describe('the client actions', () => {
     expect(addFirstSentence('Ingrid', '<p>See you at the camp.</p>')).toBe(
       'Hello Ingrid, <br> <br><p>See you at the camp.</p>',
     );
-  });
-
-  it('DecrementReadMessagesCounter lowers both unread numbers, not below 0', () => {
-    setClientVar('Connect2_LegacyShared.UnreadNotificationsNumber', 3);
-    decrementReadMessagesCounter();
-    expect(getClientVar('Connect2_LegacyShared.UnreadNotificationsNumber')).toBe(2);
-    expect(getClientVar('Connect2_LegacyShared.UnreadPublicMessagesNumber')).toBe(2);
-    setClientVar('Connect2_LegacyShared.UnreadNotificationsNumber', 0);
-    decrementReadMessagesCounter();
-    expect(getClientVar('Connect2_LegacyShared.UnreadNotificationsNumber')).toBe(0);
   });
 
   it('DecrementReadWhatsNewsCounter lowers the unread news, not below 0', () => {

@@ -14,10 +14,11 @@ import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback'
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, useWasRestoredFromCache, type BackNavigationEvent } from '@/platform/navigation';
 import { getClientVar } from '@/platform/session/session';
+import { decrementReadMessagesCounter } from '@/platform/session/unreadCounters';
 import { currDateTime } from '@/shared/lib/osDateTime';
 import type { MessageListViewEvents, MessageListViewState } from '@/pages/MessageList/components/MessageListView';
 import { INCREMENT_RECORDS, initialMessageListState, messageListReducer } from './messageListState';
-import { decrementReadMessagesCounter, setUnreadNotificationsNumber } from './unreadNotifications';
+import { setUnreadNotificationsNumber } from './unreadNotifications';
 
 /** The flows of the message list block: OnInitialize, OnReady, OnParametersChanged and the screen actions of the
     view. The state and the triggers come from useFlowState: the flows read `latest`, `parameters` and `events`, as

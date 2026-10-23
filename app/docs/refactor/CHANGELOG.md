@@ -477,3 +477,9 @@
 
 - FeedBlock_Services, FeedBlock_Updates and Dialog_GoExternalApp are hooks in `pages/HomeFeed/hooks` (`useFeedServices`, `useFeedUpdates`, `goToExternalApp`), called from two binding components in the page file, plus props-only components. GetServices is in `api/service` with the key `['service', 'feed']`. `api.ts` and `types.ts` are deleted; `// @os-block` is now `@origin` in Section, Section_FeedWrapper and AppLogo_White.
 - HomeFeed first load grew 1.11 kB gzip. W24 accepted this once. After P6-F16 the margin is 4.20 kB (244.02 kB, limit 248.22).
+
+## P6-G3-C - refactor(P6-G3-C): prune group G3
+
+- Prune: `knip` finds no unused file in the G3 folders (9 unused files in the whole app, none in G3). `jscpd` finds 3 small clones in 195 files (0.22 percent), left as is. `decrementReadMessagesCounter` had one copy in MessageList and one in MessageDetail; it now has one copy in `src/platform/session/unreadCounters.ts`, with its tests.
+- Group gate G3: `ci` exit 0; parity `visual --all` 64/64 clean on both references; `e2e:pwa` 9/9. `arch_baseline.py check` exit 0 (49 rows, no P6-G3 owner). Report: `reports/P6-G3.md`.
+- Bundle: HomeFeed 244.00 kB gzip (limit 248.22, margin 4.22); Login 184.00 kB gzip (limit 193.84, margin 9.84).

@@ -122,16 +122,6 @@ export function addFirstSentence(userFirstName: string, messageContent: string):
   return `Hello ${userFirstName}, <br> <br>${messageContent}`;
 }
 
-/** Connect2_LegacyShared DecrementReadMessagesCounter: UnreadNotificationsNumber - 1 (not below 0), and
-    UnreadPublicMessagesNumber = the new UnreadNotificationsNumber. MessageList has the same local copy; step P6-G3-C
-    removes the duplicate. */
-export function decrementReadMessagesCounter(): void {
-  const current = getClientVar('Connect2_LegacyShared.UnreadNotificationsNumber');
-  const next = current > 0 ? current - 1 : 0;
-  setClientVar('Connect2_LegacyShared.UnreadNotificationsNumber', next);
-  setClientVar('Connect2_LegacyShared.UnreadPublicMessagesNumber', next);
-}
-
 /** Connect2_LegacyShared DecrementReadWhatsNewsCounter: UnreadWhatsNewsNumber - 1 (not below 0), on the shell client
     variable added by CR-MessageDetail-1. */
 export function decrementReadWhatsNewsCounter(): void {

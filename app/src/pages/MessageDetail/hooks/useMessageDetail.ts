@@ -12,12 +12,12 @@ import { MessageInfoType } from '@/pages/MessageDetail/staticEntities';
 import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { replaceOnUpcomingNavigation, useFlowState, type IsAlive } from '@/platform/navigation';
 import { currentUserId, isSignedIn } from '@/platform/session/session';
+import { decrementReadMessagesCounter } from '@/platform/session/unreadCounters';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { cache_SignedImageURL_Get } from '@/shared/UBTConnect_Utils/lib/actions';
 import { Connect_Entity, ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import {
   addFirstSentence,
-  decrementReadMessagesCounter,
   decrementReadWhatsNewsCounter,
   initialMessageDetailState,
   isOrbitKind,
