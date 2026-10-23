@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G4-B-Assemble_BrowseByCountry",
+  "step": "P6-G4-B-SupperMeeting_Details",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T06:05:07"
+  "since": "2026-10-24T06:16:00"
  },
  "steps": {
   "P0-1": {
@@ -1132,11 +1132,24 @@
    "finished": "2026-10-24T05:57:21"
   },
   "P6-G4-B-Assemble_BrowseByCountry": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T05:57:22",
    "tokens": {
     "dev": 228664,
-    "test": 30043
+    "test": 30043,
+    "docs": 34000
+   },
+   "commit": "ec323d7c",
+   "gate": "ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; HomeFeed 244.12 kB, Login 184.15 kB",
+   "loops": 0,
+   "finished": "2026-10-24T06:05:08"
+  },
+  "P6-G4-B-SupperMeeting_Details": {
+   "status": "active",
+   "started": "2026-10-24T06:05:09",
+   "tokens": {
+    "dev": 518953,
+    "test": 30884
    }
   }
  },

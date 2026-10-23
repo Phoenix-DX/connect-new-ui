@@ -15,6 +15,7 @@ import {
   toOneSchoolListInputs,
   toSubdivisionCards,
   toSubdivisionDetails,
+  toSubdivisionHouseholdCards,
   toSubdivisionInformationResults,
   toSubdivisionListInputs,
   toSubdivisionName,
@@ -36,6 +37,7 @@ import type {
   OneSchoolListCallInputs,
   SubdivisionCard,
   SubdivisionDetails,
+  SubdivisionHouseholdCard,
   SubdivisionInformationResult,
   SubdivisionListCallInputs,
   SubdivisionNameCallInputs,
@@ -129,6 +131,16 @@ export async function fetchSubdivisionDetails(subdivisionId: string): Promise<Su
   return toSubdivisionDetails(
     await callAction('UBTConnect', 'SupperMeeting_DetailsBlock/DataActionGetSubdivision', {
       In_SubdivsionId: subdivisionId,
+    }),
+  );
+}
+
+/** DataActionGetSubdivisionHouseholds of SupperMeeting_HouseholdList (UBTConnect): the household cards of a supper
+    meeting (the block input In_SubdivisionId). OnReady refreshes it. */
+export async function fetchSubdivisionHouseholds(subdivisionId: string): Promise<SubdivisionHouseholdCard[]> {
+  return toSubdivisionHouseholdCards(
+    await callAction('UBTConnect', 'SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds', {
+      In_SubdivisionId: subdivisionId,
     }),
   );
 }

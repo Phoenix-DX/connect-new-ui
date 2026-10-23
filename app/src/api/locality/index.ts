@@ -18,6 +18,7 @@ export {
   fetchOneSchoolCards,
   fetchSubdivisionCards,
   fetchSubdivisionDetails,
+  fetchSubdivisionHouseholds,
   fetchSubdivisionName,
 } from './repository';
 export type * from './types';

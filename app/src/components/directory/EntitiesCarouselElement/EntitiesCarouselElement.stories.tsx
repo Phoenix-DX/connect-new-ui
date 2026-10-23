@@ -1,22 +1,11 @@
-import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useEffect, useLayoutEffect, useRef } from 'react';
-import { MemoryRouter } from 'react-router';
 import type { CarouselHouseholdDetailsSlot } from '@/components/directory/CarouselHouseholdDetails';
+import type { CarouselSupperMeetingDetailsSlot } from '@/components/directory/CarouselSupperMeetingDetails';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { VITALE } from '@/mocks/fictional/directory';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { EntitiesCarouselElement } from './EntitiesCarouselElement';
-
-const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
-/** The supper meeting details block (V3) runs with the query client and a router. */
-const providers: Decorator = (Story) => (
-  <QueryClientProvider client={client}>
-    <MemoryRouter>
-      <Story />
-    </MemoryRouter>
-  </QueryClientProvider>
-);
 
 /** A stand-in for the household details container that the page renders in the slot: the HouseholdDetails_Block
     wrapper with the carousel tag placeholder. After its first render it raises HouseholdDataFetched once, with the
@@ -41,10 +30,19 @@ function HouseholdDetailsStandIn({ id, carouselTag, onHouseholdDataFetched }: Ca
   );
 }
 
+/** A stand-in for the supper meeting details container that the page renders in the slot: the
+    SupperMeeting_DetailsBlock wrapper with the carousel tag placeholder. */
+function SupperMeetingDetailsStandIn({ id, carouselTag }: CarouselSupperMeetingDetailsSlot) {
+  return (
+    <OSBlock name="Directory_SupperMeetings.SupperMeeting_DetailsBlock" id={id}>
+      {carouselTag}
+    </OSBlock>
+  );
+}
+
 const meta = {
   title: 'Shared/UBTConnect/EntitiesCarousel_Element',
   component: EntitiesCarouselElement,
-  decorators: [providers],
 } satisfies Meta<typeof EntitiesCarouselElement>;
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -65,8 +63,8 @@ const household = {
 export const V1: Story = { args: { ...household, id: 'b3-l1-1152_0-$b2', inIndexCurrentElement: 0 } };
 /** HouseholdCarousel/default (pack variant 2): element 4 of 23, outside the render buffer: nothing rendered. */
 export const V2: Story = { args: { ...household, id: 'b3-l1-1152_4-$b2', inIndexCurrentElement: 4 } };
-/** SupperMeeting_Carousel/default (pack variant 3): element 0 of 3, the supper meeting details (the supper meeting of
-    SupperMeeting_DetailsBlock's own stories). */
+/** SupperMeeting_Carousel/default (pack variant 3): element 0 of 3, the supper meeting details (a stand-in in the
+    slot). */
 export const V3: Story = {
   args: {
     id: 'b3-l1-1164_0-$b2',
@@ -77,5 +75,6 @@ export const V3: Story = {
     inIndexNextActiveElement: -1,
     inIndexCurrentElement: 0,
     inRenderBuffer: 3,
+    renderSupperMeetingDetails: (slot: CarouselSupperMeetingDetailsSlot) => <SupperMeetingDetailsStandIn {...slot} />,
   },
 };

@@ -12,6 +12,7 @@ import {
 } from '@/shared/osui/lib/actions';
 import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
 import type { CarouselHouseholdDetailsSlot } from '@/components/directory/CarouselHouseholdDetails';
+import type { CarouselSupperMeetingDetailsSlot } from '@/components/directory/CarouselSupperMeetingDetails';
 import { EntitiesCarouselElement } from '@/components/directory/EntitiesCarouselElement';
 import { EntitiesCarouselHeader } from '@/components/directory/EntitiesCarouselHeader';
 import { BooleanTypes, CarouselNavigation } from '@/shared/UBTConnect/lib/staticEntities';
@@ -38,6 +39,9 @@ export interface EntitiesCarouselProps {
   /** HouseholdDetails_Block of each household slide: the page renders the household details container with the slot
       inputs (a component does not import a container, rule 4). */
   renderHouseholdDetails?: (slot: CarouselHouseholdDetailsSlot) => ReactNode;
+  /** SupperMeeting_DetailsBlock of each supper meeting slide: the page renders the supper meeting details container
+      with the slot inputs (a component does not import a container, rule 4). */
+  renderSupperMeetingDetails?: (slot: CarouselSupperMeetingDetailsSlot) => ReactNode;
 }
 
 /** Swipeable entities carousel of HouseholdCarousel and SupperMeeting_Carousel
@@ -51,6 +55,7 @@ export function EntitiesCarousel({
   onEventSetHeader,
   onEventMoved,
   renderHouseholdDetails,
+  renderSupperMeetingDetails,
 }: EntitiesCarouselProps) {
   const fallback = useId();
   const prefix = id?.replace('$', '') ?? `entities${fallback}`;
@@ -137,6 +142,7 @@ export function EntitiesCarousel({
                   handleSetHeaderList(eventHeader, index);
                 }}
                 renderHouseholdDetails={renderHouseholdDetails}
+                renderSupperMeetingDetails={renderSupperMeetingDetails}
               />
             </div>
           )}

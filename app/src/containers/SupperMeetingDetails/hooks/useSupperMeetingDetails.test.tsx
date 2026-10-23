@@ -1,0 +1,218 @@
+import { act, renderHook } from '@testing-library/react';
+import { StrictMode, type ReactNode } from 'react';
+import { MemoryRouter } from 'react-router';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import {
+  fetchSubdivisionDetails,
+  fetchSubdivisionHouseholds,
+  type SubdivisionDetails,
+  type SubdivisionHouseholdCard,
+} from '@/api/locality';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { getPreloadObject } from '@/platform/navigation';
+import { resetNavigation } from '@/platform/navigation/testRouter';
+import { INITIAL_SUPPER_MEETING_DETAILS_STATE, supperMeetingDetailsReducer } from './supperMeetingDetailsState';
+import { useSupperMeetingDetails } from './useSupperMeetingDetails';
+
+/* The flows of the supper meeting details, with both data actions, the reducer, the flow handler and the navigation
+   replaced by spies. The supper meeting and its households are fictional (src/mocks/fictional/directory.ts). */
+vi.mock('./supperMeetingDetailsState', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('./supperMeetingDetailsState')>();
+  return { ...actual, supperMeetingDetailsReducer: vi.fn(actual.supperMeetingDetailsReducer) };
+});
+vi.mock('@/api/locality', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/api/locality')>()),
+  fetchSubdivisionDetails: vi.fn(),
+  fetchSubdivisionHouseholds: vi.fn(),
+}));
+/* useFlowState sends a rejected OnReady to this flow handler. */
+vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
+  raiseToFlowHandler: vi.fn(),
+}));
+const { navigate } = vi.hoisted(() => ({ navigate: vi.fn() }));
+vi.mock('@/platform/navigation', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/navigation')>()),
+  useOsNavigate: () => navigate,
+}));
+
+const SUBDIVISION: SubdivisionDetails = {
+  Subdivision_Card: {
+    SubdivisionId: '1210',
+    Subdivision_Card_Content: { Name: 'Zapiola (Main Meeting Room)', Address: 'Zapiola 1450, Bahia Blanca' },
+  },
+};
+const HOUSEHOLDS: SubdivisionHouseholdCard[] = [
+  { HouseholdId: '42438', HouseholdName: 'Vitale', ChildrenNames: 'Sofia, Mateo' },
+  { HouseholdId: '91004', HouseholdName: 'Ortiz', ChildrenNames: '' },
+];
+const CAROUSEL_ON = { hasCarouselEnabled: true };
+
+const wrapper = ({ children }: { children: ReactNode }) => <MemoryRouter>{children}</MemoryRouter>;
+const strictWrapper = ({ children }: { children: ReactNode }) => (
+  <StrictMode>
+    <MemoryRouter>{children}</MemoryRouter>
+  </StrictMode>
+);
+const settle = () =>
+  act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  });
+/** An answer that the test gives later. */
+function deferred<T>() {
+  let resolve: (value: T) => void = () => undefined;
+  let reject: (error: unknown) => void = () => undefined;
+  const promise = new Promise<T>((res, rej) => {
+    resolve = res;
+    reject = rej;
+  });
+  return {
+    promise,
+    resolve: (value: T) => {
+      resolve(value);
+    },
+    reject: (error: unknown) => {
+      reject(error);
+    },
+  };
+}
+/** Both data actions answer only when the test says so. */
+function pendingAnswers() {
+  const households = deferred<SubdivisionHouseholdCard[]>();
+  const subdivision = deferred<SubdivisionDetails>();
+  vi.mocked(fetchSubdivisionHouseholds).mockReturnValueOnce(households.promise);
+  vi.mocked(fetchSubdivisionDetails).mockReturnValueOnce(subdivision.promise);
+  return { households, subdivision };
+}
+/** The order in which the two data actions were called, by name. */
+const callOrder = () =>
+  [
+    ...vi.mocked(fetchSubdivisionHouseholds).mock.invocationCallOrder.map((n) => [n, 'households'] as const),
+    ...vi.mocked(fetchSubdivisionDetails).mock.invocationCallOrder.map((n) => [n, 'subdivision'] as const),
+  ]
+    .sort(([a], [b]) => a - b)
+    .map(([, name]) => name);
+
+beforeEach(() => {
+  resetNavigation();
+  vi.mocked(fetchSubdivisionDetails).mockResolvedValue(SUBDIVISION);
+  vi.mocked(fetchSubdivisionHouseholds).mockResolvedValue(HOUSEHOLDS);
+});
+afterEach(() => {
+  vi.clearAllMocks();
+  resetNavigation();
+});
+
+describe('useSupperMeetingDetails', () => {
+  it('OnReady: the skeletons first, then GetSubdivisionHouseholds and GetSubdivision with In_SubdivsionId', async () => {
+    const { households, subdivision } = pendingAnswers();
+    const { result } = renderHook(() => useSupperMeetingDetails('1210', CAROUSEL_ON), { wrapper });
+    expect(result.current.state).toEqual(INITIAL_SUPPER_MEETING_DETAILS_STATE);
+    expect(result.current.subdivisionId).toBe('1210');
+    await settle();
+    expect(callOrder()).toEqual(['households', 'subdivision']);
+    expect(fetchSubdivisionHouseholds).toHaveBeenCalledWith('1210');
+    expect(fetchSubdivisionDetails).toHaveBeenCalledWith('1210');
+
+    subdivision.resolve(SUBDIVISION);
+    await settle();
+    expect(result.current.state.isDataFetched).toBe(true);
+    expect(result.current.state.subdivision).toEqual(SUBDIVISION);
+    expect(result.current.state.households.isDataFetched).toBe(false);
+
+    households.resolve(HOUSEHOLDS);
+    await settle();
+    expect(result.current.state.households).toEqual({ isDataFetched: true, isError: false, list: HOUSEHOLDS });
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('a failed GetSubdivision keeps the skeleton; a failed GetSubdivisionHouseholds sets the Error status', async () => {
+    vi.mocked(fetchSubdivisionDetails).mockRejectedValueOnce(new Error('down'));
+    vi.mocked(fetchSubdivisionHouseholds).mockRejectedValueOnce(new Error('down'));
+    const { result } = renderHook(() => useSupperMeetingDetails('1210', CAROUSEL_ON), { wrapper });
+    await settle();
+    expect(result.current.state.isDataFetched).toBe(false);
+    expect(result.current.state.subdivision).toEqual(INITIAL_SUPPER_MEETING_DETAILS_STATE.subdivision);
+    expect(result.current.state.households).toEqual({
+      isDataFetched: false,
+      isError: true,
+      list: INITIAL_SUPPER_MEETING_DETAILS_STATE.households.list,
+    });
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('reads In_SubdivsionId once: a new input neither refetches nor changes the id', async () => {
+    const { result, rerender } = renderHook(({ id }) => useSupperMeetingDetails(id, CAROUSEL_ON), {
+      wrapper,
+      initialProps: { id: '1210' },
+    });
+    await settle();
+    rerender({ id: '9202' });
+    await settle();
+    expect(result.current.subdivisionId).toBe('1210');
+    expect(fetchSubdivisionDetails).toHaveBeenCalledTimes(1);
+    expect(fetchSubdivisionHouseholds).toHaveBeenCalledTimes(1);
+  });
+
+  it('StrictMode: OnReady runs once and the data comes', async () => {
+    const { result } = renderHook(() => useSupperMeetingDetails('1210', CAROUSEL_ON), { wrapper: strictWrapper });
+    await settle();
+    expect(fetchSubdivisionDetails).toHaveBeenCalledTimes(1);
+    expect(fetchSubdivisionHouseholds).toHaveBeenCalledTimes(1);
+    expect(result.current.state.isDataFetched).toBe(true);
+    expect(result.current.state.households.list).toEqual(HOUSEHOLDS);
+  });
+
+  it('W23: after the unmount, the started flow makes its calls once and writes no state', async () => {
+    const { households, subdivision } = pendingAnswers();
+    let renders = 0;
+    const { unmount } = renderHook(
+      () => {
+        renders += 1;
+        return useSupperMeetingDetails('1210', CAROUSEL_ON);
+      },
+      { wrapper: strictWrapper },
+    );
+    await settle();
+    unmount();
+    const rendersAtUnmount = renders;
+    vi.mocked(supperMeetingDetailsReducer).mockClear();
+    subdivision.resolve(SUBDIVISION);
+    households.resolve(HOUSEHOLDS);
+    await settle();
+    expect(fetchSubdivisionDetails).toHaveBeenCalledTimes(1);
+    expect(fetchSubdivisionHouseholds).toHaveBeenCalledTimes(1);
+    expect(supperMeetingDetailsReducer).not.toHaveBeenCalled();
+    expect(renders).toBe(rendersAtUnmount);
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('W23: failures after the unmount write no state and do not reach the flow handler', async () => {
+    const { households, subdivision } = pendingAnswers();
+    const { unmount } = renderHook(() => useSupperMeetingDetails('1210', CAROUSEL_ON), { wrapper: strictWrapper });
+    await settle();
+    unmount();
+    vi.mocked(supperMeetingDetailsReducer).mockClear();
+    subdivision.reject(new Error('down'));
+    households.reject(new Error('down'));
+    await settle();
+    expect(supperMeetingDetailsReducer).not.toHaveBeenCalled();
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('OnClick_NavigateToHousehold with the carousel flag: every listed household preloaded, then HouseholdCarousel', async () => {
+    const { result } = renderHook(() => useSupperMeetingDetails('1210', CAROUSEL_ON), { wrapper });
+    await settle();
+    result.current.onClickNavigateToHousehold('91004', ['42438', '91004']);
+    expect(getPreloadObject()).toEqual({ CarouselHouseholdItem: [{ Household: '42438' }, { Household: '91004' }] });
+    expect(navigate).toHaveBeenCalledWith('/UBTConnect/HouseholdCarousel', { In_StartingHouseholdId: '91004' });
+  });
+
+  it('OnClick_NavigateToHousehold without the carousel flag: HouseholdDetails, no preload object', async () => {
+    const { result } = renderHook(() => useSupperMeetingDetails('1210', { hasCarouselEnabled: false }), { wrapper });
+    await settle();
+    result.current.onClickNavigateToHousehold('91004', ['42438', '91004']);
+    expect(getPreloadObject()).toBeNull();
+    expect(navigate).toHaveBeenCalledWith('/UBTConnect/HouseholdDetails', { HouseholdId: '91004' });
+  });
+});

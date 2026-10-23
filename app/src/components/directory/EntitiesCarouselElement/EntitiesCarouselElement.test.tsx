@@ -20,7 +20,7 @@ vi.mock('@/components/directory/CarouselHouseholdDetails', async (importOriginal
 });
 
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
-const { V1, V2 } = composeStories(stories);
+const { V1, V2, V3 } = composeStories(stories);
 const content = (container: HTMLElement) => container.querySelector('[data-container]');
 
 describe('EntitiesCarousel_Element', () => {
@@ -40,6 +40,16 @@ describe('EntitiesCarousel_Element', () => {
     rerender(<V2 inIndexActiveElement={20} inIndexNextActiveElement={20} />);
     expect(content(container)).not.toBeNull();
     expect(seen.skeleton.at(-1)).toBe(true);
+  });
+
+  it('renders a supper meeting slide with the supper meeting details slot and the CarouselTag "n / total"', () => {
+    const { container } = render(<V3 />);
+    const details = container.querySelector('[data-block="Directory_SupperMeetings.SupperMeeting_DetailsBlock"]');
+    expect(details?.id).toBe('b3-l1-1164_0-b2-b1-$b1');
+    expect(details?.parentElement?.getAttribute('data-block')).toBe(
+      'Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails',
+    );
+    expect(screen.getByText('1 / 3')).toBeInTheDocument();
   });
 
   it('renders an empty container for another entity type', () => {

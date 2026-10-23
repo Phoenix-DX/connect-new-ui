@@ -211,3 +211,5 @@ P6-G4-B-Photobook: `pages/Photobook/api.ts` is deleted (its rows in the househol
 P6-G4-B-Locality_Details: `pages/Locality_Details/api.ts` is deleted (its rows in the household and locality tables). The flow hooks call `fetchLocalityHouseholds` and `fetchHouseholdCardMembers` of `@/api/household`, and `fetchLocalityDetails`, `fetchSubdivisionCards`, `fetchInterchanges` and `fetchOneSchoolCards` of `@/api/locality`.
 
 P6-G4-B-OneSchoolGlobalDetails: `pages/OneSchoolGlobalDetails/api.ts` is deleted (its row in the app table above). The page hook `useOneSchoolGlobalDetails` calls `useOneSchoolGlobalDetailsQuery` of `@/api/locality`, which calls `fetchOneSchoolGlobalDetails`.
+
+P6-G4-B-SupperMeeting_Details: the `api.ts` files of `SupperMeeting_HouseholdList` and `SupperMeeting_DetailsBlock` are deleted (their rows in the household and locality tables). The hook `useSupperMeetingDetails` of `containers/SupperMeetingDetails` calls `fetchSubdivisionHouseholds` and `fetchSubdivisionDetails` of `@/api/locality`. `DataActionGetSubdivisionHouseholds` is now in the locality domain, not the household domain.

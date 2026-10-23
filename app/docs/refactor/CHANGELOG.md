@@ -565,3 +565,9 @@
 - `pages/Assemble_BrowseByCountry` is a page with the hook `useAssembleFilter` (`useFlowState`), the state file `assembleFilterState.ts` and the props-only view `AssembleFilterView`. `api.ts`, `types.ts` and `ScreenBlock_Assemble_Filter.tsx` are deleted.
 - The 2 adapters of `api.ts` are private functions of the hook (they call client actions, which `api/country` may not import). `AssembleEvents` still has its own copy (follow-up F21).
 - depcruise warnings 210 to 209 (the rule-9 warning of the old block is gone).
+
+## P6-G4-B-SupperMeeting_Details - refactor(P6-G4-B): SupperMeeting_Details as page
+
+- New container `containers/SupperMeetingDetails` (hook `useSupperMeetingDetails` on `useFlowState`, W23 once-guard) holds both data actions. `SupperMeetingDetails` and `SupperMeetingHouseholdList` are props-only. The slot `renderSupperMeetingDetails` runs through `EntitiesCarousel`, `EntitiesCarousel_Element` and `CarouselSupperMeetingDetails`; both pages render the container. `DataActionGetSubdivisionHouseholds` moved to `api/locality`.
+- `arch-baseline.csv`: the 7 rows of this step are gone (74 to 67 rows: P7 66, pre-existing 1). Back navigation (both calls run again) is follow-up F22.
+- First load: HomeFeed +0.02 kB, Login +0.01 kB gzip; HouseholdCarousel -4.73 kB (dev.md).

@@ -17,6 +17,7 @@ import type {
   SubdivisionCard,
   SubdivisionCardContent,
   SubdivisionDetails,
+  SubdivisionHouseholdCard,
   SubdivisionInformationResult,
   SubdivisionListCallInputs,
   SubdivisionNameCallInputs,
@@ -62,6 +63,10 @@ export type OneSchoolListWire = ActionOutputs<
 /** The outputs of DataActionGetSubdivision (SupperMeeting_DetailsBlock). */
 export type SubdivisionDetailsWire = ActionOutputs<
   PathOf<'UBTConnect', 'SupperMeeting_DetailsBlock/DataActionGetSubdivision'>
+>;
+/** The outputs of DataActionGetSubdivisionHouseholds (SupperMeeting_HouseholdList). */
+export type SubdivisionHouseholdsWire = ActionOutputs<
+  PathOf<'UBTConnect', 'SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds'>
 >;
 /** The outputs of DataActionGetCacheInfo of CacheControl_AllLocalities. */
 export type AllLocalitiesWire = ActionOutputs<
@@ -262,6 +267,16 @@ export const toSubdivisionDetails = (wire: SubdivisionDetailsWire): SubdivisionD
     Subdivision_Card_Content: toSubdivisionCardContent(wire.Subdivision.Subdivision_Card.Subdivision_Card_Content),
   },
 });
+
+/* ---- SupperMeeting_HouseholdList ---- */
+
+/** The household cards of DataActionGetSubdivisionHouseholds: Household_GalleryCard_List, unwrapped. */
+export const toSubdivisionHouseholdCards = (wire: SubdivisionHouseholdsWire): SubdivisionHouseholdCard[] =>
+  osList(wire.Household_GalleryCard_List).map((h) => ({
+    HouseholdId: h.HouseholdId,
+    HouseholdName: h.HouseholdName,
+    ChildrenNames: h.ChildrenNames,
+  }));
 
 /* ---- CacheControl_AllLocalities ---- */
 

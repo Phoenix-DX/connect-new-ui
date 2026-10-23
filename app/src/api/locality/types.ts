@@ -193,6 +193,16 @@ export interface SubdivisionDetails {
   };
 }
 
+/* ---- SupperMeeting_HouseholdList: DataActionGetSubdivisionHouseholds ---- */
+
+/** Connect_Household_CS UI_SubdivisionHousehold: the gallery card of a household of a supper meeting
+    (Household_GalleryCard_List), with the OutSystems names that the card reads. */
+export interface SubdivisionHouseholdCard {
+  HouseholdId: string;
+  HouseholdName: string;
+  ChildrenNames: string;
+}
+
 /* ---- CacheControl_AllLocalities: DataActionGetCacheInfo ---- */
 
 /** A locality of the list of all localities (UBTConnect_Utils UI_LocalityDetails): the fields that FilterSheet reads. */

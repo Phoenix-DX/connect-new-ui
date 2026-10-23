@@ -1,4 +1,4 @@
-import { act, screen } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { setPreloadObject } from '@/platform/navigation';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
@@ -46,6 +46,18 @@ describe('SupperMeeting_Carousel page', () => {
       );
     }
     expect(activeSlide(container)).toBe(0);
+  });
+
+  it('each slide renders the supper meeting details container with its own supper meeting (the carousel slot)', async () => {
+    const { container } = renderRoutes(routes, `${PATH}?In_StartingSupperMeetingId=2820`);
+    const slides = blocks(container, 'Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails');
+    const cardsOf = (slide: Element | undefined) =>
+      slide?.querySelectorAll('[data-block="Directory_SupperMeetings.SupperMeeting_HouseholdList"] .ubt-image-card')
+        .length;
+    // The mock households: 9202 has seven, 9203 five, any other id (2820) eleven.
+    await waitFor(() => {
+      expect([cardsOf(slides[0]), cardsOf(slides[1]), cardsOf(slides[2])]).toEqual([11, 7, 5]);
+    });
   });
 
   it('starts at In_StartingSupperMeetingId of the preload object, and a back navigation keeps the list', async () => {

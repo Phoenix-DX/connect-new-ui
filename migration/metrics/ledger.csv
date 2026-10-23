@@ -653,3 +653,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,other,26087,refactor-docs,,P6-G4-B-CommunityBusinessDetails_CoomingSoon sonnet
 2026-10-24,refactor,build,228664,refactor-dev,,P6-G4-B-Assemble_BrowseByCountry opus
 2026-10-24,refactor,verify,30043,refactor-test,,P6-G4-B-Assemble_BrowseByCountry sonnet
+2026-10-24,refactor,build,518953,refactor-dev,,P6-G4-B-SupperMeeting_Details opus
+2026-10-24,refactor,other,34000,refactor-docs,,P6-G4-B-Assemble_BrowseByCountry sonnet
+2026-10-24,refactor,verify,30884,refactor-test,,P6-G4-B-SupperMeeting_Details sonnet

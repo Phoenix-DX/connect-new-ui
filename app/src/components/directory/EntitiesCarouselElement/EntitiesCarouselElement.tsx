@@ -2,7 +2,10 @@
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CarouselTag } from '@/components/directory/CarouselTag';
-import { CarouselSupperMeetingDetails } from '@/components/directory/CarouselSupperMeetingDetails';
+import {
+  CarouselSupperMeetingDetails,
+  type CarouselSupperMeetingDetailsSlot,
+} from '@/components/directory/CarouselSupperMeetingDetails';
 import {
   CarouselHouseholdDetails,
   type CarouselHouseholdDetailsSlot,
@@ -33,6 +36,9 @@ export interface EntitiesCarouselElementProps {
   /** HouseholdDetails_Block of a household slide (EntitiesCarousel_HouseholdDetails): the page renders the household
       details container with the slot inputs. */
   renderHouseholdDetails?: (slot: CarouselHouseholdDetailsSlot) => ReactNode;
+  /** SupperMeeting_DetailsBlock of a supper meeting slide (EntitiesCarouse_lSupperMeetingDetails): the page renders
+      the supper meeting details container with the slot inputs. */
+  renderSupperMeetingDetails?: (slot: CarouselSupperMeetingDetailsSlot) => ReactNode;
 }
 
 /** One slide of EntitiesCarousel (p:UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js): rendered only
@@ -49,6 +55,7 @@ export function EntitiesCarouselElement({
   inRenderBuffer = 0,
   onEventSetHeader,
   renderHouseholdDetails,
+  renderSupperMeetingDetails,
 }: EntitiesCarouselElementProps) {
   const prefix = id?.replace('$', '');
   const childId = (name: string) => (prefix === undefined ? undefined : `${prefix}-${name}`);
@@ -72,7 +79,11 @@ export function EntitiesCarouselElement({
       {nextIsRender && (
         <div className="" data-container="">
           {inConnectEntityTypeId === Connect_Entity.SupperMeetings_aka_Subdivisions && (
-            <CarouselSupperMeetingDetails id={childId('$b1')} inSubdivisionId={inEntityId}>
+            <CarouselSupperMeetingDetails
+              id={childId('$b1')}
+              inSubdivisionId={inEntityId}
+              renderSupperMeetingDetails={renderSupperMeetingDetails}
+            >
               {carouselTag('$b2')}
             </CarouselSupperMeetingDetails>
           )}

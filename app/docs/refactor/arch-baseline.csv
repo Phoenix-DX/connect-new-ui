@@ -53,12 +53,6 @@ src/components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.test.tsx,@
 src/components/assemble/AssembleSubdivisionFilter/AssembleSubdivisionFilter.test.tsx,@/platform/session/testSession,rule-4,P7
 src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx,@/platform/device/deviceContext,rule-4,P7
 src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx,@/platform/feedback,rule-4,P7
-src/components/directory/SupperMeetingDetails/SupperMeetingDetails.stories.tsx,@/platform/session/session,rule-4,P6-G4-B-SupperMeeting_Details
-src/components/directory/SupperMeetingDetails/SupperMeetingDetails.tsx,@/platform/flags/flags,rule-4,P6-G4-B-SupperMeeting_Details
-src/components/directory/SupperMeetingDetails/SupperMeetingDetails.tsx,@/platform/navigation,rule-4,P6-G4-B-SupperMeeting_Details
-src/components/directory/SupperMeetingDetails/SupperMeetingDetails.tsx,@/platform/navigation/paths,rule-4,P6-G4-B-SupperMeeting_Details
-src/components/directory/SupperMeetingDetails/api.ts,@/api/locality,rule-4,P6-G4-B-SupperMeeting_Details
-src/components/directory/SupperMeetingHouseholdList/api.ts,@/api/client/callAction,rule-4,P6-G4-B-SupperMeeting_Details
 src/components/layout/MainLayout/MainLayout.stories.tsx,@/platform/session/mockUser,rule-4,P7
 src/components/layout/MainLayout/MainLayout.stories.tsx,@/platform/session/session,rule-4,P7
 src/components/layout/MainLayout/MainLayout.test.tsx,@/platform/session/session,rule-4,P7
@@ -68,7 +62,6 @@ src/components/note/NotesSheet/NotesSheet.test.tsx,@/platform/storage/localEntit
 src/components/note/NotesSheet/NotesSheet.tsx,@/platform/navigation/BackNavigationHandler,rule-4,P7
 src/components/note/NotesSheet/NotesSheet.tsx,@/platform/storage/localEntities,rule-4,P7
 src/components/note/NotesSheet/api.ts,@/api/note,rule-4,P7
-src/components/directory/SupperMeetingDetails/SupperMeetingDetails.tsx,@/containers/EntityDetailsActions/EntityDetailsActionsContainer,rule-4,P6-G4-B-SupperMeeting_Details
 src/components/note/NotesSheet/NotesSheet.stories.tsx,@/containers/NoteListActions/NoteListActionsContainer.stories,rule-4,P7
 src/components/note/NotesSheet/NotesSheet.test.tsx,@/containers/NoteListActions/NoteListActionsContainer.stories,rule-4,P7
 src/components/note/NotesSheet/NotesSheet.tsx,@/containers/NoteListActions,rule-4,P7

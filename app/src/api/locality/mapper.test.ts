@@ -20,6 +20,7 @@ import {
   toOneSchoolListInputs,
   toSubdivisionCards,
   toSubdivisionDetails,
+  toSubdivisionHouseholdCards,
   toSubdivisionInformationResults,
   toSubdivisionListInputs,
   toSubdivisionName,
@@ -32,6 +33,7 @@ import {
   type OneSchoolGlobalDetailsWire,
   type OneSchoolListWire,
   type SubdivisionDetailsWire,
+  type SubdivisionHouseholdsWire,
   type SubdivisionListWire,
 } from './mapper';
 import type { OneSchoolCard } from './types';
@@ -390,6 +392,22 @@ describe('locality mapper: SupperMeeting_DetailsBlock and CacheControl_AllLocali
         },
       },
     });
+  });
+
+  it('toSubdivisionHouseholdCards unwraps Household_GalleryCard_List and keeps the three card fields', () => {
+    const wire: SubdivisionHouseholdsWire = {
+      Household_GalleryCard_List: {
+        List: [
+          { HouseholdId: '42438', HouseholdName: 'Marco & Lucia Vitale', ChildrenNames: 'Sofia, Mateo' },
+          { HouseholdId: '91004', HouseholdName: 'Diego Ortiz', ChildrenNames: '' },
+        ],
+      },
+    };
+    expect(toSubdivisionHouseholdCards(wire)).toEqual([
+      { HouseholdId: '42438', HouseholdName: 'Marco & Lucia Vitale', ChildrenNames: 'Sofia, Mateo' },
+      { HouseholdId: '91004', HouseholdName: 'Diego Ortiz', ChildrenNames: '' },
+    ]);
+    expect(toSubdivisionHouseholdCards({ Household_GalleryCard_List: { List: [] } })).toEqual([]);
   });
 
   it('toAllLocalities keeps the list wrapped with LocalityId, Name and CountryCode only', () => {

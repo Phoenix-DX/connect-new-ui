@@ -3,37 +3,38 @@
 OutSystems: `UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock` · pack
 `migration/blocks/UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock.md`.
 
-| Input           | Type                | Prop             | Default |
-| --------------- | ------------------- | ---------------- | ------- |
-| In_SubdivsionId | Long Integer (text) | `inSubdivsionId` | `'0'`   |
+The view has props only. Its files import no `api/`, `platform/`, `containers/` or `pages/` (rule 4). The data, the
+navigation and Directory_EntityDetailsActions are in the container `containers/SupperMeetingDetails` (README there),
+which SupperMeeting_Details and SupperMeeting_Carousel render.
 
-Placeholder: `Placeholder_CarouselTag` → `placeholderCarouselTag`. Events: none.
+| Input / data                   | Prop                     | Note                                                  |
+| ------------------------------ | ------------------------ | ----------------------------------------------------- |
+| GetSubdivision.IsDataFetched   | `isDataFetched`          | false: the detail card and the actions are skeletons  |
+| GetSubdivision.Subdivision     | `subdivision`            | GetSkeleton_UI_SubdivisionDetails until it answers    |
+| GetSubdivisionHouseholds       | `households`             | `isDataFetched`, `isError`, `list` of the child block |
+| Placeholder_CarouselTag        | `placeholderCarouselTag` | inside the card's image tag                           |
+| Directory_EntityDetailsActions | `entityActions`          | slot: the container renders EntityDetailsActions      |
+| Event_OnClick_Household        | `onHouseholdClick`       | of the household list: the id and every listed id     |
 
 Children: SubLayout_DirectoryDetailScreen, SkeletonSection, ImageCard_LazyLoading, UBT_LazyImage,
-SupperMeeting_ImageCard_Content, SubLayout_DirectoryDetailScreen_Section, Directory_EntityDetailsActions,
-SupperMeeting_HouseholdList.
+SupperMeeting_ImageCard_Content, SubLayout_DirectoryDetailScreen_Section, the `entityActions` slot,
+SupperMeeting_HouseholdList (props only).
 
-Data: DataActionGetSubdivision (`api.ts`; mock `mocks.ts`: recorded fixture, any id).
-
-Ported actions: Get_LookupSection, GetSkeleton_UI_SubdivisionDetails (`../lib/actions.ts`).
-
-Navigation (OnClick_NavigateToHousehold) calls GetHasCarouselEnabled (flag C2EnableCarousel):
-
-- When GetHasCarouselEnabled is true: SetPreloadObject(CarouselHouseholdItem of every listed household) and
-  HouseholdCarousel(In_StartingHouseholdId).
-- Otherwise: HouseholdDetails(HouseholdId).
+Ported actions: Get_LookupSection, GetSkeleton_UI_SubdivisionDetails (`shared/UBTConnect/lib/actions.ts`).
 
 ## Captures
 
-| Capture | Source                                                                                 |
-| ------- | -------------------------------------------------------------------------------------- |
-| v1      | SupperMeeting_Carousel/default (pack: wrapper only)                                    |
-| v2      | SupperMeeting_Details/default (card content, actions, household list, photo collapsed) |
-| v3      | SupperMeeting_Details/loading (same collapsing)                                        |
+| Capture | Source                                                                                 | Story |
+| ------- | -------------------------------------------------------------------------------------- | ----- |
+| v1      | SupperMeeting_Carousel/default (pack: wrapper only)                                    | V1    |
+| v2      | SupperMeeting_Details/default (card content, actions, household list, photo collapsed) | V2    |
+| v3      | SupperMeeting_Details/loading (same collapsing)                                        | V3    |
+
+The stories give the fictional supper meeting 1210 of the directory cast with its eleven households
+(`src/mocks/fictional/directory.ts`) and a stand-in with the wrapper of Directory_EntityDetailsActions in the slot.
 
 ## Not captured / not settled
 
-- The block declares Handler_Bookmark (empty) and Handler_Share (ShowComingSoonMessage). No widget calls them. The React component does not port them.
-- When the view is restored from cache or history, ScreenEvent_OnReady skips the skeleton and the refresh. Here the
-  block refetches on mount.
+- The block declares Handler_Bookmark (empty) and Handler_Share (ShowComingSoonMessage). No widget calls them. The
+  React component does not port them.
 - The navigation branches are not captured; HouseholdDetails (flag off) follows the compiled code only.

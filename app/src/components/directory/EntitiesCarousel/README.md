@@ -12,10 +12,16 @@ Compiled source: `migration/screens/HouseholdCarousel/analysis/sources/pretty/UB
 Events: `Event_SetHeader(Event_Header)` → `onEventSetHeader`, `Event_Moved(Event_Index)` → `onEventMoved`. No placeholder.
 (The pack's input table omits the record list In_EntitiesCarousel_Items; the model declares it, :11-49.)
 
-Slot `renderHouseholdDetails`: HouseholdDetails_Block of each household slide. The block passes it to each
-EntitiesCarousel_Element, which passes it to EntitiesCarousel_HouseholdDetails. HouseholdCarousel renders the household
-details container in it (a component does not import a container, rule 4). SupperMeeting_Carousel does not give it:
-its slides are supper meetings. The stories give a stand-in with the wrapper of HouseholdDetails_Block.
+Slots (a component does not import a container, rule 4). The block passes both to each EntitiesCarousel_Element,
+which passes them to the slide block:
+
+- `renderHouseholdDetails`: HouseholdDetails_Block of each household slide (EntitiesCarousel_HouseholdDetails).
+  HouseholdCarousel renders the household details container in it.
+- `renderSupperMeetingDetails`: SupperMeeting_DetailsBlock of each supper meeting slide
+  (EntitiesCarouse_lSupperMeetingDetails). SupperMeeting_Carousel renders the supper meeting details container in it.
+
+Each page gives only the slot of its entity type. The stories give a stand-in with the wrapper of
+HouseholdDetails_Block.
 
 ## Behaviour
 

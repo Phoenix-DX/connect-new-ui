@@ -109,6 +109,8 @@ and passes props to components. Write the choice in `move-map.csv`, column `shap
 A component cannot import a container (rule 4). So the container gives the view these blocks as slots:
 `entityActions`, `renderMemberActions`, `shareSheet`.
 
+A component between a page and a container passes a slot down: `renderHouseholdDetails` and `renderSupperMeetingDetails` go through `EntitiesCarousel` and `EntitiesCarousel_Element`, and the page fills them with `HouseholdDetailsContainer` or `SupperMeetingDetailsContainer`.
+
 ## Pattern of a form page with a config (ContactByEmail)
 
 For pages that differ only in values, use a config and not a container (decision Q6). The pilot is

@@ -15,11 +15,13 @@ import {
   fetchOneSchoolGlobalDetails,
   fetchSubdivisionCards,
   fetchSubdivisionDetails,
+  fetchSubdivisionHouseholds,
   fetchSubdivisionName,
 } from './repository';
 
 /* The MSW mocks of the test setup: AssembleEvents/mocks.ts (the fictional halls), BrowseDirectory/mocks.ts,
-   SupperMeeting_DetailsBlock/mocks.ts and CacheControl_AllLocalities/mocks.ts (TST recordings, non-person data),
+   containers/SupperMeetingDetails/mocks.ts (DataActionGetSubdivision: a TST recording, non-person data;
+   DataActionGetSubdivisionHouseholds: the fictional households), CacheControl_AllLocalities/mocks.ts (a TST recording),
    Locality_Details/mocks.ts (the recorded locality and the fictional tag cards), LDM_MyEvents_V2/mocks.ts (the
    localities of the fictional past events) and Connect2_LegacyShared/lib/mocks.ts (the fictional localities and
    halls). */
@@ -220,6 +222,20 @@ describe('locality repository: screen and block data actions', () => {
     expect(details.Subdivision_Card.SubdivisionId).toBe('2820');
     expect(details.Subdivision_Card.Subdivision_Card_Content.Name).toBe('Zapiola (Main Meeting Room)');
     expect(details).not.toHaveProperty('Subdivision_Actions');
+  });
+
+  it('fetchSubdivisionHouseholds calls DataActionGetSubdivisionHouseholds with In_SubdivisionId and unwraps the cards', async () => {
+    const households = await fetchSubdivisionHouseholds('1210');
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: 'SupperMeeting_HouseholdList',
+        action: 'DataActionGetSubdivisionHouseholds',
+        inputNames: ['In_SubdivisionId'],
+      }),
+    ]);
+    expect(households.map((h) => h.HouseholdId)).toEqual(householdsOfSupperMeeting('1210').map((h) => h.id));
+    expect(Object.keys(households[0] ?? {}).sort()).toEqual(['ChildrenNames', 'HouseholdId', 'HouseholdName']);
   });
 
   it('fetchAllLocalities calls DataActionGetCacheInfo of CacheControl_AllLocalities with the inputs as they are', async () => {

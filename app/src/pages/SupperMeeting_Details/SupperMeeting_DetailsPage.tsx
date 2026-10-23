@@ -1,26 +1,28 @@
-/** @origin UBTConnect.Directory_SupperMeetings.SupperMeeting_Details */
 import { useSearchParams } from 'react-router';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { SupperMeetingDetails } from '@/components/directory/SupperMeetingDetails';
+import { SupperMeetingDetailsContainer, useSupperMeetingDetailsFlags } from '@/containers';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
-import { readSupperMeetingDetailsInputs } from './api';
+import { readSupperMeetingDetailsInputs } from './inputs';
 
-/** UBTConnect.Directory_SupperMeetings.SupperMeeting_Details (SupperMeeting_Details.mvc.js: model :1-70, view
-    :71-243, controller :244-293): Layout_DetailPage (In_AlignTitleLeft False, primary header) titled by CustomText
-    "Supper Meeting" with default TextOptions, SupperMeeting_DetailsBlock as content (Placeholder_CarouselTag empty),
-    no bottom bar, CommonUI_InsideLayout. No variable besides the input, no lifecycle event and no call of its own
-    (:259-261, :275-279). */
+/** @origin UBTConnect.Directory_SupperMeetings.SupperMeeting_Details
+    The details of a supper meeting: Layout_DetailPage (In_AlignTitleLeft False, primary header) titled by CustomText
+    "Supper Meeting" with the default TextOptions, the supper meeting details container (SupperMeeting_DetailsBlock,
+    Placeholder_CarouselTag empty) as content, no bottom bar, CommonUI_InsideLayout. No variable besides the input, no
+    lifecycle event and no call of its own. */
 export default function SupperMeeting_Details() {
   const [params] = useSearchParams();
   const { In_SubdivsionId } = readSupperMeetingDetailsInputs(params);
+  const supperMeetingDetailsFlags = useSupperMeetingDetailsFlags();
 
   return (
     <Layout_DetailPage
       id="$b1"
       inAlignTitleLeft={false}
       placeholderHeaderTitle={<CustomText id="$b2" inText="Supper Meeting" inTextOptions={{}} />}
-      content={<SupperMeetingDetails id="$b3" inSubdivsionId={In_SubdivsionId} />}
+      content={
+        <SupperMeetingDetailsContainer id="$b3" subdivisionId={In_SubdivsionId} flags={supperMeetingDetailsFlags} />
+      }
       placeholderCommonUIInsideLayout={<CommonUiLayout id="$b4" />}
     />
   );
