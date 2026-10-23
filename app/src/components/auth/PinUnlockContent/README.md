@@ -6,7 +6,7 @@ OutSystems: `UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper` · pack
 Shape: container + component. `PinUnlockContent` renders from props only. The flows are in two hooks in
 `src/platform/session/`: `usePinUnlockContent` (this block) and `usePinCodeUnlock` (its Pincode_Unlock). The container
 `PinUnlockContentContainer` (`src/platform/feedback/dialogs/`) runs both hooks and renders this component with the
-InactivityTimer and CacheControl_Policies. The lock dialog (`BlockPinUnlock.tsx`, as Block_PINUnlock: ShowForgotPIN,
+InactivityTimer, CacheControl_Policies and the PreventBackNavigation block of the keypad. The lock dialog (`BlockPinUnlock.tsx`, as Block_PINUnlock: ShowForgotPIN,
 ShowPolicy) and PINChange render the container. Its props are the block inputs and events below.
 
 | Input           | Type    | Prop (container) | Default                 |
@@ -22,8 +22,9 @@ ShowPolicy) and PINChange render the container. Its props are the block inputs a
 Events: `Unlock` → `onUnlock`, `NavigateTo_PINRegister` → `onNavigateToPINRegister`. Placeholders: none.
 
 The component takes the same inputs except In_ForceVisible, and the result of the hooks: `showFingerprintReader`,
-`isKeypadVisible`, `policies`, `isPoliciesFetched`, `onSetPin`, `onForgotPin`, `onClickPolicy`, `onPinUnlockSuccess` and
-`onPinUnlockError` (the fingerprint scanner), and the blocks `renderInactivityTimer` and `renderCacheControlPolicies`.
+`isKeypadVisible`, `policies`, `isPoliciesFetched`, `onSetPin`, `onBeforeSetPin`, `onForgotPin`, `onClickPolicy`,
+`onPinUnlockSuccess` and `onPinUnlockError` (the fingerprint scanner), and the blocks `renderInactivityTimer`,
+`renderCacheControlPolicies` and `renderPreventBackNavigation`.
 
 Fills `PinUnlock_MobileWrapper` (PIN length 4): logo, unlock text, erase icon, Forgot PIN (→
 `/UBTConnect/Login?In_IsFromResetPIN=True`), "Need help? Contact Us" or the policy links (CacheControl_Policies).

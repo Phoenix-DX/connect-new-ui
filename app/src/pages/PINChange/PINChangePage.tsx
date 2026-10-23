@@ -1,5 +1,3 @@
-/** @origin UBTConnect.App_PIN.PINChange */
-import { useState } from 'react';
 import { OSLink } from '@/shared/lib/OSLink';
 import { PinRegisterContent } from '@/components/auth/PinRegisterContent';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
@@ -14,50 +12,26 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { PinUnlockContentContainer, useNoCommonUi } from '@/platform/feedback/dialogs';
-import { feedbackMessageAutoClose } from '@/platform/feedback';
-import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
-import { APP_ID } from '@/platform/navigation/paths';
+import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { usePinRegisterContent } from '@/platform/session/usePinRegisterContent';
+import { usePINChange } from './hooks/usePINChange';
 
-/** UBTConnect App_PIN.PINChange (p:UBTConnect.App_PIN.PINChange.mvc.js; view :122-326, controller :331-443).
-    No input, no data action, no lifecycle handler (:61, 348, 427-431). Locals isScreenUnlocked = False, UseOverlay = True
-    (:13-18).
-    - Layout_LoginFlow In_HasOverlay = UseOverlay, In_ExtendedClass = If(isScreenUnlocked, "", "ubt-lock-screen")
-      (:135-141); header: Link → IconText "Change PIN" (Small spacing, Inherit / Small / SemiBold) with Icon ArrowLeftAlt
-      (Inherit, Base_24) (:159-238).
-    - Content: isScreenUnlocked → Block_PINRegister_ContentWrapper ("Enter new PIN", "Confirm new PIN", isFromMenu, UseOverlay)
-      (:239-262, not captured: Q1 → A pending); else Block_PINUnlock_ContentWrapper (no Forgot PIN, ForceVisible, no policy,
-      UseOverlay, "Enter your current PIN", no Need help, isFromMenu) whose Unlock and NavigateTo_PINRegister both run
-      Block_PINUnlockUnlock (:263-320).
-    - Placeholder_CommonUI_Inside_Layout is empty (:321): no CommonUI, so `useNoCommonUi()` (shell guide). */
+/** @origin UBTConnect.App_PIN.PINChange
+    The PIN change route of the menu: the login layout with its overlay (local UseOverlay = True) and the class
+    `ubt-lock-screen` until the screen is unlocked, and the "Change PIN" link (IconText with the ArrowLeftAlt icon) as
+    header.
+    - Content before the unlock: Block_PINUnlock_ContentWrapper ("Enter your current PIN", from the menu, ForceVisible,
+      no Forgot PIN, no policy, no Need help). Its Unlock and NavigateTo_PINRegister events both unlock the screen.
+    - Content after the unlock: Block_PINRegister_ContentWrapper ("Enter new PIN", "Confirm new PIN", from the menu).
+      No capture shows it.
+    - The CommonUI placeholder of the layout is empty, so the page calls `useNoCommonUi()` (shell guide).
+    The screen flows are in `usePINChange`, the flows of the register block in `usePinRegisterContent`. */
 export default function PINChange() {
   useNoCommonUi();
-  const navigate = useOsNavigate();
-  const [isScreenUnlocked, setIsScreenUnlocked] = useState(false);
   const useOverlay = true;
-  // The flows of Block_PINRegister_ContentWrapper; it is on the screen only after the unlock.
+  const { isScreenUnlocked, onClickBackToLogin, onUnlock } = usePINChange();
+  // Block_PINRegister_ContentWrapper is on the screen only after the unlock: its flows wait for it.
   const registration = usePinRegisterContent({ isFromMenu: true, enabled: isScreenUnlocked });
-
-  // OnClick_BackToLogin (:350-376): AllowUpcomingNavigation; Destination /UBTConnect/Menu (Default transition).
-  const onClickBackToLogin = () => {
-    allowUpcomingNavigation();
-    navigate(`/${APP_ID}/Menu`);
-  };
-
-  // Block_PINUnlockUnlock (:377-404): isScreenUnlocked = True; FeedbackMessage_AutoClose("", "Please provide a new PIN",
-  // Success, True, "", 0, False).
-  const block_PINUnlockUnlock = () => {
-    setIsScreenUnlocked(true);
-    feedbackMessageAutoClose({
-      title: '',
-      message: 'Please provide a new PIN',
-      messageType: 'success',
-      encodedHtml: true,
-      extendedClass: '',
-      delayMs: 0,
-      useDebounce: false,
-    });
-  };
 
   return (
     <LoginLayout
@@ -95,6 +69,8 @@ export default function PINChange() {
             useOverlay={useOverlay}
             isFirstUse={registration.isFirstUse}
             onSetPin={registration.onSetPin}
+            onBeforeSetPin={registration.onBeforeSetPin}
+            renderPreventBackNavigation={(blockId) => <PreventBackNavigation id={blockId} />}
           />
         ) : (
           <PinUnlockContentContainer
@@ -106,8 +82,8 @@ export default function PINChange() {
             unlockText="Enter your current PIN"
             showNeedHelp={false}
             isFromMenu
-            onUnlock={block_PINUnlockUnlock}
-            onNavigateToPINRegister={block_PINUnlockUnlock}
+            onUnlock={onUnlock}
+            onNavigateToPINRegister={onUnlock}
           />
         )
       }

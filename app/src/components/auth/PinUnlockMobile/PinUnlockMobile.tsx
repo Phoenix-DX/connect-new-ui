@@ -30,8 +30,12 @@ export interface PinUnlockMobileProps {
   placeholderContent?: ReactNode;
   /** SetPin of the Pincode_Unlock keypad (its flow: `usePinCodeUnlock` onSetPin). */
   onSetPin?: (pinCode: string) => void | Promise<void>;
+  /** The keypad runs it before SetPin: ReplaceOnUpcomingNavigation (`usePinCodeUnlock` onBeforeSetPin). */
+  onBeforeSetPin?: () => void;
   /** The InactivityTimer block of Pincode_Unlock, with its instance id. */
   renderInactivityTimer?: (id: string | undefined) => ReactNode;
+  /** The PreventBackNavigation block of the keypad (platform/navigation), with its instance id. */
+  renderPreventBackNavigation?: (id: string | undefined) => ReactNode;
   /** Event PinUnlockSuccess of the fingerprint scanner (Unlock). The keypad's success comes from its flow. */
   onPinUnlockSuccess?: () => void | Promise<void>;
   /** Event PincodeChange(InputLength). */
@@ -65,7 +69,9 @@ export function PinUnlockMobile({
   placeholderBottomKeyboard,
   placeholderContent,
   onSetPin,
+  onBeforeSetPin,
   renderInactivityTimer,
+  renderPreventBackNavigation,
   onPinUnlockSuccess,
   onPincodeChange,
   onKeyPressed,
@@ -82,7 +88,9 @@ export function PinUnlockMobile({
         inExtendedClasses={inExtendedClasses}
         inAllowBackNavigation={inAllowBackNavigation}
         onSetPin={onSetPin}
+        onBeforeSetPin={onBeforeSetPin}
         renderInactivityTimer={renderInactivityTimer}
+        renderPreventBackNavigation={renderPreventBackNavigation}
         onPincodeChange={onPincodeChange}
         onKeyPressed={onKeyPressed}
         headerBar={<div>{placeholderHeaderBar}</div>}

@@ -14,6 +14,14 @@ const renderCacheControlPolicies = (id: string | undefined) => (
   </OSBlock>
 );
 
+/** The PreventBackNavigation block of the keypad as the caller gives it (platform/navigation): its wrapper and its
+    nested BackNavigationHandler. */
+const renderPreventBackNavigation = (id: string | undefined) => (
+  <OSBlock name="NavigationHandler.PreventBackNavigation" id={id}>
+    <OSBlock name="NavigationHandler.BackNavigationHandler" />
+  </OSBlock>
+);
+
 /** Fictional policy documents with neutral URLs. */
 const policy = (name: string) => ({
   Policy_ContentType: 'application/pdf',
@@ -31,7 +39,7 @@ const meta = {
       </MemoryRouter>
     ),
   ],
-  args: { renderInactivityTimer, renderCacheControlPolicies },
+  args: { renderInactivityTimer, renderCacheControlPolicies, renderPreventBackNavigation },
 } satisfies Meta<typeof PinUnlockContent>;
 export default meta;
 type Story = StoryObj<typeof meta>;

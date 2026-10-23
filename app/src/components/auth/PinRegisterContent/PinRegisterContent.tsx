@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { OSLink } from '@/shared/lib/OSLink';
@@ -30,13 +31,17 @@ export interface PinRegisterContentProps {
   isFirstUse?: boolean;
   /** OnSetPin: the SetPin event of the keypad, with the entered PIN. */
   onSetPin?: (pinCode: string) => void | Promise<void>;
+  /** The keypad runs it before SetPin: ReplaceOnUpcomingNavigation (`usePinRegisterContent` onBeforeSetPin). */
+  onBeforeSetPin?: () => void;
+  /** The PreventBackNavigation block of the keypad (platform/navigation), with its instance id. */
+  renderPreventBackNavigation?: (id: string | undefined) => ReactNode;
 }
 
 /** Registration content of PINRegister and PINChange: Pincode_Register (PIN length 4) with the Connect logo, the
     register and confirm texts (with "Welcome <UserName>" when EnableName is set), the erase icon and "Need help?
     Contact Us" unless isFromMenu. The flows (OnInitialize, PinRegistrationSuccess, PinRegistrationError and the flows
-    of Pincode_Register) are `usePinRegisterContent` of `platform/session`, which gives `userName`, `isFirstUse` and
-    `onSetPin`.
+    of Pincode_Register) are `usePinRegisterContent` of `platform/session`, which gives `userName`, `isFirstUse`,
+    `onSetPin` and `onBeforeSetPin`. The page gives the PreventBackNavigation block.
     @origin UBTConnect.App_PIN.Block_PINRegister_ContentWrapper */
 export function PinRegisterContent({
   id,
@@ -48,6 +53,8 @@ export function PinRegisterContent({
   userName = '',
   isFirstUse = true,
   onSetPin,
+  onBeforeSetPin,
+  renderPreventBackNavigation,
 }: PinRegisterContentProps) {
   const prefix = id?.replace('$', '');
   const childId = (n: number) => (prefix === undefined ? undefined : `${prefix}-$b${String(n)}`);
@@ -74,6 +81,8 @@ export function PinRegisterContent({
         inExtendedClasses={`connect-pin-screen${useOverlay ? ' ubt-pin-overlay' : ''}`}
         isFirstUse={isFirstUse}
         onSetPin={onSetPin}
+        onBeforeSetPin={onBeforeSetPin}
+        renderPreventBackNavigation={renderPreventBackNavigation}
         titlePlaceholder={
           <img
             className="login-screen__connect-logo"

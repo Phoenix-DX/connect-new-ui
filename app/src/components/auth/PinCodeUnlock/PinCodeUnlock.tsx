@@ -9,6 +9,10 @@ export interface PinCodeUnlockProps {
   inPinLength?: number;
   inExtendedClasses?: string;
   inAllowBackNavigation?: boolean;
+  /** The PreventBackNavigation block of the keypad (platform/navigation), with its instance id. */
+  renderPreventBackNavigation?: (id: string | undefined) => ReactNode;
+  /** The keypad runs it before SetPin: ReplaceOnUpcomingNavigation (`usePinCodeUnlock` onBeforeSetPin). */
+  onBeforeSetPin?: () => void;
   /** The keypad shows (In_ForceVisible, or PIN_SessionInactivity_Use and PIN_IsLocked); else the InactivityTimer. */
   isKeypadVisible?: boolean;
   /** Placeholder HeaderBar. */
@@ -37,12 +41,14 @@ export interface PinCodeUnlockProps {
 
 /** PIN unlock: the keypad (PinCode) inside `pincode-unlock` while it shows, else the InactivityTimer. The flows
     (initialize, In_ForceVisible, the PIN check, the timeout) are in the hook `usePinCodeUnlock`; the component that
-    renders this block calls it and passes `isKeypadVisible` and `onSetPin`. */
+    renders this block calls it and passes `isKeypadVisible`, `onSetPin` and `onBeforeSetPin`. */
 export function PinCodeUnlock({
   id,
   inPinLength = 0,
   inExtendedClasses = '',
   inAllowBackNavigation = false,
+  renderPreventBackNavigation,
+  onBeforeSetPin,
   isKeypadVisible = false,
   headerBar,
   titlePlaceholder,
@@ -67,7 +73,9 @@ export function PinCodeUnlock({
             length={inPinLength}
             inExtendedClasses={inExtendedClasses}
             inAllowBackNavigation={inAllowBackNavigation}
+            renderPreventBackNavigation={renderPreventBackNavigation}
             onKeyPressed={onKeyPressed}
+            onBeforeSetPin={onBeforeSetPin}
             onSetPin={onSetPin}
             onPincodeChange={onPincodeChange}
             headerBar={<div>{headerBar}</div>}

@@ -64,6 +64,8 @@ describe('PINRegister page', () => {
     );
     expect(container.querySelector('.ubt-layout--login__header')?.textContent).toBe('Back to login');
     expect(container.querySelector('.ubt-pin-overlay')).not.toBeNull();
+    // The keypad prevents back navigation (the page gives the block).
+    expect(container.querySelector('[data-block="NavigationHandler.PreventBackNavigation"]')?.id).toBe('b4-b1-b1-$b1');
     await waitFor(() => {
       expect(message()).toBe('Welcome Matías VitaleRegister a PIN code');
     });

@@ -1,5 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { replaceOnUpcomingNavigation } from '@/platform/navigation';
 import { freshPage } from '@/test/testSupport';
 import { MOCK_USER_ID } from './mockUser';
 import { verifyPin } from './pin';
@@ -57,6 +58,11 @@ describe('Pincode_Register flows (usePinCodeRegister)', () => {
     expect(onPinRegistrationError).toHaveBeenLastCalledWith('Confirm PIN does not match Register PIN!');
     expect(result.current.isFirstUse).toBe(false);
     expect(getShellState().hasLocalPin).toBe(false);
+  });
+
+  it('gives the keypad ReplaceOnUpcomingNavigation as its before-SetPin event', () => {
+    const { result } = setup({});
+    expect(result.current.onBeforeSetPin).toBe(replaceOnUpcomingNavigation);
   });
 
   it('raises PinRegistrationError when nobody is signed in', () => {

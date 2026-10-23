@@ -58,12 +58,14 @@ in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the us
 The PIN registration flow is in two hooks of `src/platform/session/`: `usePinCodeRegister` (first and second entry, rules,
 `registerPin`) and `usePinRegisterContent` (name read, success routes, error messages). PINRegister and PINChange call
 `usePinRegisterContent` and pass the result as props to the blocks `PinRegisterContent` and `PinCodeRegister`.
+`PinCode` (in `src/components/auth/`) is props-only: the PreventBackNavigation block comes in `renderPreventBackNavigation`
+and the event before SetPin in `onBeforeSetPin`, which the hooks `usePinCodeRegister` and `usePinCodeUnlock` supply.
 
 The PIN unlock flow is in two hooks of `src/platform/session/`: `usePinUnlockContent` (unlock result, policies, Forgot PIN,
 error messages) and `usePinCodeUnlock` (lock state, `setPin`). `PinUnlockContentContainer` in
 `src/platform/feedback/dialogs/` runs both hooks and renders the props-only blocks `PinUnlockContent`, `PinUnlockMobile`
 and `PinCodeUnlock`. The lock dialog (`BlockPinUnlock`) and PINChange render the container. The PINUnlock page has its own
-hook, `usePINUnlock`.
+hook, `usePINUnlock`. The PINChange page has its own hook, `usePINChange` (the unlock state and the back link).
 
 - Without a local PIN, `signIn()` goes to PINRegister. Otherwise it goes to the resume link, the sign-in callback that
   the gate keeps, or HomeFeed.

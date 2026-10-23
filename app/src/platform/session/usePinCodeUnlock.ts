@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
+import { replaceOnUpcomingNavigation } from '@/platform/navigation';
 import { lock, verifyPin, type PinUnlockError } from '@/platform/session/pin';
 import { currentUserId, useClientVar } from '@/platform/session/session';
 
@@ -20,6 +21,8 @@ export interface PinCodeUnlockState {
   isKeypadVisible: boolean;
   /** SetPin of the keypad: checks the PIN, then raises PinUnlockSuccess or PinUnlockError. */
   onSetPin: (pinCode: string) => Promise<void>;
+  /** The keypad (PinCode) runs it before SetPin: ReplaceOnUpcomingNavigation. */
+  onBeforeSetPin: () => void;
   /** Timeout of the InactivityTimer: raises Timeout, then locks the app. */
   onTimeout: () => Promise<void>;
 }
@@ -31,6 +34,8 @@ export interface PinCodeUnlockState {
     - OnSetPin: `verifyPin` (PIN_Get and the comparison) → PinUnlockSuccess (verifyPin already set PIN_HasUnlocked and
       PIN_IsLocked = False), then LastForceVisible = False; or PinUnlockError with the original text.
     - OnTimeout: Timeout, then PIN_IsLocked = True.
+    - The Validate action of the keypad (PinCode) runs ReplaceOnUpcomingNavigation before SetPin. The keypad is a
+      component without platform imports, so the hook gives it as `onBeforeSetPin`.
     @origin UBT_AppManager.PIN.Pincode_Unlock */
 export function usePinCodeUnlock(inForceVisible: boolean, events: PinCodeUnlockEvents): PinCodeUnlockState {
   const inactivityUse = useClientVar('UBT_AppManager.PIN_SessionInactivity_Use');
@@ -67,5 +72,10 @@ export function usePinCodeUnlock(inForceVisible: boolean, events: PinCodeUnlockE
     lock();
   };
 
-  return { isKeypadVisible: inForceVisible || (inactivityUse && isLocked), onSetPin, onTimeout };
+  return {
+    isKeypadVisible: inForceVisible || (inactivityUse && isLocked),
+    onSetPin,
+    onBeforeSetPin: replaceOnUpcomingNavigation,
+    onTimeout,
+  };
 }

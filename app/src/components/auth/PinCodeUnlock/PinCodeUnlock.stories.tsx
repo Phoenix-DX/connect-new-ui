@@ -1,22 +1,22 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { MemoryRouter } from 'react-router';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PinCodeUnlock } from './PinCodeUnlock';
 
 /** The InactivityTimer block as the caller gives it: the block renders an empty wrapper (platform/session). */
 const renderInactivityTimer = (id: string | undefined) => <OSBlock name="PIN.InactivityTimer" id={id} />;
 
+/** The PreventBackNavigation block as the caller gives it (platform/navigation): its wrapper and its nested
+    BackNavigationHandler. */
+const renderPreventBackNavigation = (id: string | undefined) => (
+  <OSBlock name="NavigationHandler.PreventBackNavigation" id={id}>
+    <OSBlock name="NavigationHandler.BackNavigationHandler" />
+  </OSBlock>
+);
+
 const meta = {
   title: 'Shared/UBT_AppManager/Pincode_Unlock',
   component: PinCodeUnlock,
-  decorators: [
-    (Story) => (
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    ),
-  ],
-  args: { renderInactivityTimer },
+  args: { renderInactivityTimer, renderPreventBackNavigation },
 } satisfies Meta<typeof PinCodeUnlock>;
 export default meta;
 type Story = StoryObj<typeof meta>;

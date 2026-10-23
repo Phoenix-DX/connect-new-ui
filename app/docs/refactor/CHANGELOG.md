@@ -309,3 +309,8 @@
 
 - `src/pages/PINUnlock` is now a page with one hook (`usePINUnlock`). `api.ts`, `types.ts` and `mocks.ts` are deleted. The flows of `PinUnlockContent` and `PinCodeUnlock` moved to `usePinUnlockContent` and `usePinCodeUnlock` in `src/platform/session/`; the three unlock components render from props only.
 - New `PinUnlockContentContainer` in `src/platform/feedback/dialogs/` (dialogs export), used by the lock dialog and PINChange. Gate W13: 29 rows deleted from `arch-baseline.csv`. By decision W14, the 2 `PinCode.tsx` rows go to owner `P6-G1-B-PINChange` and the `FingerprintScanner.tsx` row to `P7`.
+
+## P6-G1-B-PINChange - refactor(P6-G1-B): PINChange as page
+
+- `src/pages/PINChange` is now a page with one hook (`usePINChange`). `api.ts`, `types.ts` and `mocks.ts` are deleted. `move-map.csv`: PINChange row `moved`.
+- Decision W14: `components/auth/PinCode` is props-only (`renderPreventBackNavigation`, `onBeforeSetPin`) at both call sites. The 2 PinCode rows of `arch-baseline.csv` are deleted; no G1 row is left.

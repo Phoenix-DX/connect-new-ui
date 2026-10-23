@@ -66,6 +66,15 @@ describe('Pincode_Register', () => {
     expect(onSetPin).toHaveBeenCalledWith('1357');
   });
 
+  it('gives the keypad the PreventBackNavigation block and the before-SetPin event of the caller', async () => {
+    const onBeforeSetPin = vi.fn();
+    const renderPreventBackNavigation = vi.fn((id: string | undefined) => <span data-prevent={id} />);
+    const { container, type } = setup({ id: 'b4-$b1', onBeforeSetPin, renderPreventBackNavigation });
+    expect(container.querySelector('[data-prevent="b4-b1-b1-$b1"]')).not.toBeNull();
+    await type('1357');
+    expect(onBeforeSetPin).toHaveBeenCalledTimes(1);
+  });
+
   it('puts the placeholders in their containers', () => {
     const { container } = setup({
       headerBar: <span id="header" />,

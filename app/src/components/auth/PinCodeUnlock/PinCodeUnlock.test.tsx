@@ -43,6 +43,20 @@ describe('Pincode_Unlock', () => {
     expect(onSetPin).toHaveBeenCalledWith('1357');
   });
 
+  it('gives the keypad the PreventBackNavigation block and the before-SetPin event of the caller', async () => {
+    const onBeforeSetPin = vi.fn();
+    const renderPreventBackNavigation = vi.fn((id: string | undefined) => <span data-prevent={id} />);
+    const { container, type } = setup({
+      id: 'b5-b1-$b1',
+      isKeypadVisible: true,
+      onBeforeSetPin,
+      renderPreventBackNavigation,
+    });
+    expect(container.querySelector('[data-prevent="b5-b1-b1-b1-$b1"]')).not.toBeNull();
+    await type('1357');
+    expect(onBeforeSetPin).toHaveBeenCalledTimes(1);
+  });
+
   it('shows the InactivityTimer with its instance id while the keypad is hidden', () => {
     const renderInactivityTimer = vi.fn((id: string | undefined) => <span data-timer={id} />);
     const { container } = setup({ id: 'b1-$b1', renderInactivityTimer });

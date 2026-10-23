@@ -1,9 +1,6 @@
 /** @origin UBT_AppManager.PIN.PinCode */
-// @os-block UBT_AppManager.PIN.PinCode
 import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { replaceOnUpcomingNavigation } from '@/platform/navigation';
-import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 
 export interface PinCodeProps {
   /** OutSystems instance id of the block. */
@@ -11,8 +8,14 @@ export interface PinCodeProps {
   /** Length: digits of the PIN; 0 = any length, confirmed with an OK key; below 0 → 4 (OnInitialize). */
   length?: number;
   inExtendedClasses?: string;
-  /** In_AllowBackNavigation: false → PreventBackNavigation while the keypad shows. */
+  /** In_AllowBackNavigation: false → the PreventBackNavigation block (`renderPreventBackNavigation`) while the keypad
+      shows. */
   inAllowBackNavigation?: boolean;
+  /** The PreventBackNavigation block (platform/navigation), with its instance id. The caller gives it; the keypad
+      renders it unless In_AllowBackNavigation. */
+  renderPreventBackNavigation?: (id: string | undefined) => ReactNode;
+  /** Validate runs it before SetPin: ReplaceOnUpcomingNavigation (platform/navigation), given by the caller. */
+  onBeforeSetPin?: () => void;
   /** Placeholder HeaderBar. */
   headerBar?: ReactNode;
   /** Placeholder TitlePlaceholder. */
@@ -58,20 +61,24 @@ const KEY_COLUMNS = [
   [3, 6, 9],
 ] as const;
 
-/** The PIN keypad (p:UBT_AppManager.PIN.PinCode.mvc.js view :196-966, controller :1003-1475). The model variables
-    (pincode, PinDisplay, ButtonsEnabled, Counter, DigitList) live in a ref the actions read and write, and in state for
-    rendering, as the OutSystems model does.
-    - DigitClick (:1220-1290): KeyPressed, append the digit, ValidateButtonsEnabled (keys off once Length digits are in),
+/** The PIN keypad. The model variables (pincode, PinDisplay, ButtonsEnabled, Counter, DigitList) live in a ref the
+    actions read and write, and in state for rendering, as the OutSystems model does.
+    - DigitClick: KeyPressed, append the digit, ValidateButtonsEnabled (keys off once Length digits are in),
       PincodeChange; at Length digits ValidateInPromise starts Validate without waiting for it.
-    - Validate (:1003-1060): DelayResetVariables (clear after 500 ms unless destroyed), ReplaceOnUpcomingNavigation,
-      then SetPin(pincode). EraseClick (:1321-1365) drops the last digit; the erase key is enabled with a digit in.
+    - Validate: DelayResetVariables (clear after 500 ms unless destroyed), ReplaceOnUpcomingNavigation
+      (`onBeforeSetPin`), then SetPin(pincode). EraseClick drops the last digit; the erase key is enabled with a digit
+      in.
     - Length 0 grows DigitList per digit and shows an OK key (Validate) instead of the Option placeholder.
-    - OnInitialize also calls PIN_SessionInactivity_Destroy: not here, the shell's LockHost owns the timer (README). */
+    - OnInitialize also calls PIN_SessionInactivity_Destroy: not here, the shell's LockHost owns the timer (README).
+    - The platform pieces (ReplaceOnUpcomingNavigation and the PreventBackNavigation block) come from the caller as
+      props, so the component renders from props only. */
 export function PinCode({
   id,
   length = 0,
   inExtendedClasses = '',
   inAllowBackNavigation = false,
+  renderPreventBackNavigation,
+  onBeforeSetPin,
   headerBar,
   titlePlaceholder,
   message,
@@ -87,9 +94,9 @@ export function PinCode({
   const [view, setView] = useState(() => initial(len));
   const model = useRef<Pin>(view);
   const destroyCallback = useRef<(() => void) | null>(null);
-  const events = useRef({ onKeyPressed, onSetPin, onPincodeChange });
+  const events = useRef({ onKeyPressed, onBeforeSetPin, onSetPin, onPincodeChange });
   useLayoutEffect(() => {
-    events.current = { onKeyPressed, onSetPin, onPincodeChange };
+    events.current = { onKeyPressed, onBeforeSetPin, onSetPin, onPincodeChange };
   });
   useEffect(() => {
     const callback = destroyCallback;
@@ -128,7 +135,7 @@ export function PinCode({
       destroyed = true;
       window.clearTimeout(timeout);
     };
-    replaceOnUpcomingNavigation();
+    events.current.onBeforeSetPin?.();
     await events.current.onSetPin?.(finalPincode);
   };
   const digitClick = async (digit: number) => {
@@ -241,7 +248,7 @@ export function PinCode({
           </div>
           <div className="ubt-pincode__keyboard-content">{contentPlaceholder}</div>
         </div>
-        {!inAllowBackNavigation && <PreventBackNavigation id={prefix === undefined ? undefined : `${prefix}-$b1`} />}
+        {!inAllowBackNavigation && renderPreventBackNavigation?.(prefix === undefined ? undefined : `${prefix}-$b1`)}
       </div>
     </OSBlock>
   );

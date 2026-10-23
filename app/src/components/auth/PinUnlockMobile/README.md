@@ -17,7 +17,9 @@ Shape: component (props only). The flows of the nested Pincode_Unlock are in `us
 
 Events: `PinUnlockSuccess` and `PinUnlockError(ErrorMessage)` of the fingerprint scanner, `PincodeChange(InputLength)`,
 `KeyPressed` → `on` + name. The keypad's PinUnlockSuccess, PinUnlockError, UserLoggedOut and Timeout are raised by the
-hook. Pincode_Unlock wiring: `onSetPin` (SetPin of the keypad) and `renderInactivityTimer`. Placeholders:
+hook. Pincode_Unlock wiring: `onSetPin` (SetPin of the keypad), `onBeforeSetPin` (ReplaceOnUpcomingNavigation of the
+keypad), `renderInactivityTimer` and `renderPreventBackNavigation` (the PreventBackNavigation block of the keypad).
+Placeholders:
 `Placeholder_HeaderBar`, `Placeholder_TitlePlaceholder`, `Placeholder_UnlockText`, `Placeholder_FingerprintIcon`,
 `Placeholder_EraseButton`, `Placeholder_BottomKeyboard`, `Placeholder_Content` → `placeholder` + rest (underscores
 dropped).

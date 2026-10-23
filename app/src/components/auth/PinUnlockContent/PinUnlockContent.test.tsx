@@ -51,6 +51,18 @@ describe('Block_PINUnlock_ContentWrapper', () => {
     expect(onSetPin).toHaveBeenCalledWith('1357');
   });
 
+  it('gives the keypad the PreventBackNavigation block (unless isFromMenu) and the before-SetPin event', async () => {
+    const onBeforeSetPin = vi.fn();
+    const renderPreventBackNavigation = vi.fn((id: string | undefined) => <span data-prevent={id} />);
+    const { container, type } = setup({ id: 'b1-$b4', onBeforeSetPin, renderPreventBackNavigation });
+    expect(container.querySelector('[data-prevent="b1-b4-b1-b1-b1-$b1"]')).not.toBeNull();
+    await type('1357');
+    expect(onBeforeSetPin).toHaveBeenCalledTimes(1);
+    renderPreventBackNavigation.mockClear();
+    setup({ isFromMenu: true, renderPreventBackNavigation });
+    expect(renderPreventBackNavigation).not.toHaveBeenCalled();
+  });
+
   it('Forgot PIN raises its event', () => {
     const onForgotPin = vi.fn();
     const { container } = setup({ showForgotPIN: true, onForgotPin });

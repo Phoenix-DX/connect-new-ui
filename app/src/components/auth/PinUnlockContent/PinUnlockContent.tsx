@@ -43,8 +43,12 @@ export interface PinUnlockContentProps {
   renderCacheControlPolicies?: (id: string | undefined) => ReactNode;
   /** The InactivityTimer block of Pincode_Unlock, with its instance id. */
   renderInactivityTimer?: (id: string | undefined) => ReactNode;
+  /** The PreventBackNavigation block of the keypad (platform/navigation), with its instance id. */
+  renderPreventBackNavigation?: (id: string | undefined) => ReactNode;
   /** SetPin of the keypad (`usePinCodeUnlock` onSetPin). */
   onSetPin?: (pinCode: string) => void | Promise<void>;
+  /** The keypad runs it before SetPin: ReplaceOnUpcomingNavigation (`usePinCodeUnlock` onBeforeSetPin). */
+  onBeforeSetPin?: () => void;
   /** PinUnlockSuccess of the fingerprint scanner: the block's Unlock. */
   onPinUnlockSuccess?: () => void | Promise<void>;
   /** PinUnlockError of the fingerprint scanner (Event_Pincode_PinUnlockError). */
@@ -77,7 +81,9 @@ export function PinUnlockContent({
   isPoliciesFetched = false,
   renderCacheControlPolicies,
   renderInactivityTimer,
+  renderPreventBackNavigation,
   onSetPin,
+  onBeforeSetPin,
   onPinUnlockSuccess,
   onPinUnlockError,
   onForgotPin,
@@ -109,7 +115,9 @@ export function PinUnlockContent({
         inAllowBackNavigation={isFromMenu}
         inPinLength={4}
         onSetPin={onSetPin}
+        onBeforeSetPin={onBeforeSetPin}
         renderInactivityTimer={renderInactivityTimer}
+        renderPreventBackNavigation={renderPreventBackNavigation}
         onPinUnlockError={onPinUnlockError}
         onPinUnlockSuccess={onPinUnlockSuccess}
         placeholderTitlePlaceholder={

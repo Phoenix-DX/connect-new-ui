@@ -19,6 +19,14 @@ import { PinUnlockMobile } from './PinUnlockMobile';
 /** The InactivityTimer block as the caller gives it: the block renders an empty wrapper (platform/session). */
 const renderInactivityTimer = (id: string | undefined) => <OSBlock name="PIN.InactivityTimer" id={id} />;
 
+/** The PreventBackNavigation block as the caller gives it (platform/navigation): its wrapper and its nested
+    BackNavigationHandler. */
+const renderPreventBackNavigation = (id: string | undefined) => (
+  <OSBlock name="NavigationHandler.PreventBackNavigation" id={id}>
+    <OSBlock name="NavigationHandler.BackNavigationHandler" />
+  </OSBlock>
+);
+
 const meta = {
   title: 'Shared/UBT_AppManager_Mobile/PinUnlock_MobileWrapper',
   component: PinUnlockMobile,
@@ -29,7 +37,7 @@ const meta = {
       </MemoryRouter>
     ),
   ],
-  args: { renderInactivityTimer },
+  args: { renderInactivityTimer, renderPreventBackNavigation },
 } satisfies Meta<typeof PinUnlockMobile>;
 export default meta;
 type Story = StoryObj<typeof meta>;

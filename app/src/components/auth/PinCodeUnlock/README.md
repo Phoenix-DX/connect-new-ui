@@ -4,7 +4,9 @@ OutSystems: `UBT_AppManager.PIN.Pincode_Unlock` · pack `migration/blocks/UBT_Ap
 
 Shape: hook + component. The flows are in `usePinCodeUnlock(inForceVisible, events)`
 (`src/platform/session/usePinCodeUnlock.ts`). The component that renders this block calls the hook and passes
-`isKeypadVisible`, `onSetPin` and the InactivityTimer (`renderInactivityTimer`). The component renders from props only.
+`isKeypadVisible`, `onSetPin`, `onBeforeSetPin` (ReplaceOnUpcomingNavigation of the keypad), the InactivityTimer
+(`renderInactivityTimer`) and the PreventBackNavigation block of the keypad (`renderPreventBackNavigation`). The
+component renders from props only.
 
 | Input                  | Type    | Prop / hook argument                      | Default |
 | ---------------------- | ------- | ----------------------------------------- | ------- |

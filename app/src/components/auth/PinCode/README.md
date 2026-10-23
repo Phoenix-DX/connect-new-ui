@@ -24,6 +24,17 @@ Keypad of the PIN screens:
 A full PIN raises SetPin and clears after 500 ms (DelayResetVariables). Keys are off while the PIN is full. The block
 uses PreventBackNavigation unless In_AllowBackNavigation is true.
 
+The component renders from props only. It does not import `platform/`. The caller gives the two platform pieces of the
+block:
+
+- `renderPreventBackNavigation(id)`: the PreventBackNavigation block (`platform/navigation`), rendered with its
+  instance id unless In_AllowBackNavigation.
+- `onBeforeSetPin`: Validate runs it just before SetPin. The callers give ReplaceOnUpcomingNavigation, from the hooks
+  `usePinCodeUnlock` and `usePinCodeRegister` (`src/platform/session/`).
+
+The containers and pages give both: `PinUnlockContentContainer` (lock dialog, PINUnlock, PINChange), the PINRegister
+page and the PINChange page.
+
 ## Captured variants (3 tested)
 
 The pack variants stop at depth 7 (keys); the captures are the full blocks from the screen DOMs, nested blocks

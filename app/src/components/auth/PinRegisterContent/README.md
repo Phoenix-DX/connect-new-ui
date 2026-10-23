@@ -17,11 +17,12 @@ The component renders from props only. It does not import `platform/`. The keypa
 `onSetPin`.
 
 The flow (OnInitialize, name read, success routes, error messages) is in the hook `usePinRegisterContent`
-(`src/platform/session/usePinRegisterContent.ts`). It wraps `usePinCodeRegister` and returns `userName`, `isFirstUse` and
-`onSetPin`.
+(`src/platform/session/usePinRegisterContent.ts`). It wraps `usePinCodeRegister` and returns `userName`, `isFirstUse`,
+`onSetPin` and `onBeforeSetPin` (ReplaceOnUpcomingNavigation of the keypad).
 
-PINRegister and PINChange call the hook and pass the result as props. The hook is in `platform/session/`
-because two pages use it. The option `enabled` (default `true`) is `false` on PINChange until the unlock.
+PINRegister and PINChange call the hook and pass the result as props. They also pass the PreventBackNavigation block
+of the keypad (`renderPreventBackNavigation`). The hook is in `platform/session/` because two pages use it. The option
+`enabled` (default `true`) is `false` on PINChange until the unlock.
 
 Events: none (the hook handles them). Placeholders: none. The block fills `Pincode_Register` (PIN length 4). Errors go through
 `feedbackMessageAutoClose` (error). User name: the shell's `getUserInformation` (FirstName LastName).

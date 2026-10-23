@@ -5,6 +5,7 @@ import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import { LoginLayout } from '@/components/layout/LoginLayout';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { usePinRegisterContent } from '@/platform/session/usePinRegisterContent';
 import { usePINRegister } from './hooks/usePINRegister';
 import { UBT_Icons2_ArrowLeftAlt, UBT_IconsSize_Base_24 } from './staticEntities';
@@ -56,6 +57,8 @@ export default function PINRegister() {
           userName={registration.userName}
           isFirstUse={registration.isFirstUse}
           onSetPin={registration.onSetPin}
+          onBeforeSetPin={registration.onBeforeSetPin}
+          renderPreventBackNavigation={(blockId) => <PreventBackNavigation id={blockId} />}
         />
       }
       placeholderCommonUIInsideLayout={

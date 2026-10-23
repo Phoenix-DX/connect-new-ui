@@ -2,11 +2,17 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
+import * as navigation from '@/platform/navigation';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { isLocked, registerPin } from '@/platform/session/pin';
 import { setClientVar, setSignedInUser, writePin } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
 import { PinUnlockContentContainer, type PinUnlockContentContainerProps } from './PinUnlockContentContainer';
+
+vi.mock('@/platform/navigation', async (importOriginal) => {
+  const original = await importOriginal<typeof import('@/platform/navigation')>();
+  return { ...original, replaceOnUpcomingNavigation: vi.fn(original.replaceOnUpcomingNavigation) };
+});
 
 const setup = (props: PinUnlockContentContainerProps) => {
   const router = createMemoryRouter([{ path: '*', element: <PinUnlockContentContainer inForceVisible {...props} /> }], {
@@ -36,6 +42,7 @@ describe('PinUnlockContentContainer (Block_PINUnlock_ContentWrapper with its flo
     setClientVar('UBT_AppManager.PIN_SessionInactivity_Seconds', 1200);
     setSignedInUser(MOCK_USER_ID);
     await registerPin('1357');
+    vi.mocked(navigation.replaceOnUpcomingNavigation).mockClear();
   });
   afterEach(() => {
     setSignedInUser(null);
@@ -107,6 +114,20 @@ describe('PinUnlockContentContainer (Block_PINUnlock_ContentWrapper with its flo
     expect(container.querySelector('[data-block="PIN.Pincode_Unlock"]')?.innerHTML).toBe(
       '<div class="OSBlockWidget" data-block="PIN.InactivityTimer" id="b13-b2-b4-b1-b1-$b2"></div>',
     );
+  });
+
+  it('not from the menu: PreventBackNavigation in the keypad; ReplaceOnUpcomingNavigation before SetPin', async () => {
+    const onUnlock = vi.fn();
+    const { container, type } = setup({ id: 'b1-$b4', onUnlock });
+    const prevent = container.querySelector('[data-block="NavigationHandler.PreventBackNavigation"]');
+    expect(prevent?.id).toBe('b1-b4-b1-b1-b1-$b1');
+    expect(prevent?.querySelector('[data-block="NavigationHandler.BackNavigationHandler"]')).not.toBeNull();
+    expect(navigation.replaceOnUpcomingNavigation).not.toHaveBeenCalled();
+    await type('1357');
+    await waitFor(() => {
+      expect(onUnlock).toHaveBeenCalledTimes(1);
+    });
+    expect(navigation.replaceOnUpcomingNavigation).toHaveBeenCalledTimes(1);
   });
 
   it('isFromMenu: back navigation allowed (no PreventBackNavigation)', () => {

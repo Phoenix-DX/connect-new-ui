@@ -1,7 +1,5 @@
 file,import,rule,owner
 src/components/auth/FingerprintScanner/FingerprintScanner.tsx,@/platform/feedback/NotCaptured,rule-4,P7
-src/components/auth/PinCode/PinCode.tsx,@/platform/navigation,rule-4,P6-G1-B-PINChange
-src/components/auth/PinCode/PinCode.tsx,@/platform/navigation/PreventBackNavigation,rule-4,P6-G1-B-PINChange
 src/components/layout/BlankLayout/BlankLayout.tsx,@/platform/device/OfflineDataSync,rule-4,P7
 src/components/layout/BottomBar/BottomBar.stories.tsx,@/platform/session/session,rule-4,P7
 src/components/layout/BottomBar/BottomBar.test.tsx,@/platform/flags/flags,rule-4,P7

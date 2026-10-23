@@ -97,10 +97,31 @@ describe('PinCode', () => {
     expect(onSetPin).toHaveBeenCalledWith('89');
   });
 
-  it('prevents back navigation unless In_AllowBackNavigation', () => {
+  it('renders the PreventBackNavigation block of the caller, with its instance id, unless In_AllowBackNavigation', () => {
+    const renderPreventBackNavigation = vi.fn((id: string | undefined) => <span data-prevent={id} />);
     const blocks = (props: PinCodeProps) =>
-      setup(props).container.querySelectorAll('[data-block="NavigationHandler.PreventBackNavigation"]').length;
-    expect(blocks({ length: 4 })).toBe(1);
+      setup({ renderPreventBackNavigation, ...props }).container.querySelectorAll('[data-prevent]').length;
+    expect(blocks({ id: 'b4-b1-$b1', length: 4 })).toBe(1);
+    expect(renderPreventBackNavigation).toHaveBeenLastCalledWith('b4-b1-b1-$b1');
+    renderPreventBackNavigation.mockClear();
     expect(blocks({ length: 4, inAllowBackNavigation: true })).toBe(0);
+    expect(renderPreventBackNavigation).not.toHaveBeenCalled();
+  });
+
+  it('Validate runs the before-SetPin event (ReplaceOnUpcomingNavigation) just before SetPin', async () => {
+    const order: string[] = [];
+    const { key, press } = setup({
+      length: 4,
+      onBeforeSetPin: () => {
+        order.push('before');
+      },
+      onSetPin: (pin) => {
+        order.push(`set ${pin}`);
+      },
+    });
+    for (const d of [2, 4, 6]) await press(key(d));
+    expect(order).toEqual([]);
+    await press(key(8));
+    expect(order).toEqual(['before', 'set 2468']);
   });
 });

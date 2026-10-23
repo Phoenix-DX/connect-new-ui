@@ -304,3 +304,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T21:04:07 P6-G1-B-PINUnlock stage test
 - 2026-10-23T21:12:24 P6-G1-B-PINUnlock stage docs
 - 2026-10-23T21:13:48 P6-G1-B-PINUnlock stage commit
+- 2026-10-23T21:13:49 P6-G1-B-PINUnlock done 751b33b: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (29 rows removed, 39 left, 3 re-owned W14); bundle within +5% (Login 192.92 of 193.8 kB)
+- 2026-10-23T21:28:48 P6-G1-B-PINChange started
+- 2026-10-23T21:28:48 P6-G1-B-PINChange stage dev
+- 2026-10-23T21:29:40 P6-G1-B-PINChange stage test
+- 2026-10-23T21:39:11 P6-G1-B-PINChange stage docs
+- 2026-10-23T21:40:30 P6-G1-B-PINChange stage commit

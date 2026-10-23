@@ -1,7 +1,8 @@
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, renderHook, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { PinCodeUnlock } from '@/components/auth/PinCodeUnlock';
+import { replaceOnUpcomingNavigation } from '@/platform/navigation';
 import { InactivityTimer } from '@/platform/session/InactivityTimer';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { isLocked, registerPin } from '@/platform/session/pin';
@@ -19,6 +20,7 @@ function Harness({ inForceVisible = false, ...events }: HarnessProps) {
       inPinLength={4}
       isKeypadVisible={unlock.isKeypadVisible}
       onSetPin={unlock.onSetPin}
+      onBeforeSetPin={unlock.onBeforeSetPin}
       renderInactivityTimer={(id) => <InactivityTimer id={id} onTimeout={() => void unlock.onTimeout()} />}
     />
   );
@@ -99,6 +101,11 @@ describe('usePinCodeUnlock (Pincode_Unlock)', () => {
     setClientVar('UBT_AppManager.PIN_IsLocked', false);
     update({ inForceVisible: true });
     expect(isLocked()).toBe(false);
+  });
+
+  it('gives the keypad ReplaceOnUpcomingNavigation as its before-SetPin event', () => {
+    const { result } = renderHook(() => usePinCodeUnlock(false, {}));
+    expect(result.current.onBeforeSetPin).toBe(replaceOnUpcomingNavigation);
   });
 
   it('raises UserLoggedOut when nobody is signed in', () => {

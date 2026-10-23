@@ -16,6 +16,14 @@ import {
 import { OSLink } from '@/shared/lib/OSLink';
 import { PinCode } from './PinCode';
 
+/** The PreventBackNavigation block as the caller gives it (platform/navigation): its wrapper and its nested
+    BackNavigationHandler. */
+const renderPreventBackNavigation = (id: string | undefined) => (
+  <OSBlock name="NavigationHandler.PreventBackNavigation" id={id}>
+    <OSBlock name="NavigationHandler.BackNavigationHandler" />
+  </OSBlock>
+);
+
 const meta = {
   title: 'Shared/UBT_AppManager/PinCode',
   component: PinCode,
@@ -26,6 +34,7 @@ const meta = {
       </MemoryRouter>
     ),
   ],
+  args: { renderPreventBackNavigation },
 } satisfies Meta<typeof PinCode>;
 export default meta;
 type Story = StoryObj<typeof meta>;

@@ -94,5 +94,10 @@ export function usePinRegisterContent({
     );
   }, [enabled, enableName]);
 
-  return { userName, isFirstUse: pinCode.isFirstUse, onSetPin: pinCode.onSetPin };
+  return {
+    userName,
+    isFirstUse: pinCode.isFirstUse,
+    onSetPin: pinCode.onSetPin,
+    onBeforeSetPin: pinCode.onBeforeSetPin,
+  };
 }

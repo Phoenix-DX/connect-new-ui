@@ -1,4 +1,5 @@
 import { PinUnlockContent } from '@/components/auth/PinUnlockContent';
+import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { InactivityTimer } from '@/platform/session/InactivityTimer';
 import { usePinCodeUnlock } from '@/platform/session/usePinCodeUnlock';
 import { usePinUnlockContent } from '@/platform/session/usePinUnlockContent';
@@ -24,8 +25,8 @@ export interface PinUnlockContentContainerProps {
 }
 
 /** The PIN unlock content with its flows, for the lock dialog (BlockPinUnlock) and PINChange. It runs the hooks of
-    the content and of its Pincode_Unlock, and renders PinUnlockContent with their result, the InactivityTimer and
-    CacheControl_Policies (plan v2 §2.3 criterion 2). The flows start and stop with this block, as the block's own
+    the content and of its Pincode_Unlock, and renders PinUnlockContent with their result, the InactivityTimer,
+    CacheControl_Policies and the PreventBackNavigation block of the keypad (plan v2 §2.3 criterion 2). The flows start and stop with this block, as the block's own
     flows did: the lock dialog does not render it for an unsupported system.
     @origin UBTConnect.App_PIN.Block_PINUnlock_ContentWrapper */
 export function PinUnlockContentContainer({
@@ -62,7 +63,9 @@ export function PinUnlockContentContainer({
         <CacheControl_Policies id={blockId} onResult={content.onPoliciesResult} />
       )}
       renderInactivityTimer={(blockId) => <InactivityTimer id={blockId} onTimeout={() => void unlock.onTimeout()} />}
+      renderPreventBackNavigation={(blockId) => <PreventBackNavigation id={blockId} />}
       onSetPin={unlock.onSetPin}
+      onBeforeSetPin={unlock.onBeforeSetPin}
       onPinUnlockSuccess={onUnlock}
       onPinUnlockError={content.onPinUnlockError}
       onForgotPin={content.onForgotPin}

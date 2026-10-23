@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { replaceOnUpcomingNavigation } from '@/platform/navigation';
 import { pIN_ValidateRules } from '@/shared/UBT_AppManager/lib/actions';
 import { registerPin } from './pin';
 import { currentUserId } from './session';
@@ -17,6 +18,8 @@ export interface PinCodeRegisterFlow {
   isFirstUse: boolean;
   /** OnSetPin: the SetPin event of the keypad, with the entered PIN. */
   onSetPin: (pinCode: string) => Promise<void>;
+  /** The keypad (PinCode) runs it before SetPin: ReplaceOnUpcomingNavigation. */
+  onBeforeSetPin: () => void;
 }
 
 /** The flows of Pincode_Register: the PIN is entered twice (knowledge/auth.md "PINRegister").
@@ -26,6 +29,8 @@ export interface PinCodeRegisterFlow {
       PIN_SessionInactivity_Start and PIN_HasUnlocked (`registerPin`; LockHost restarts the timer), then
       PinRegistrationSuccess; another PIN → PinRegistrationError("Confirm PIN does not match Register PIN!").
     - OnDestroy: clears the pending timeout (ClearTimeOutsJS).
+    - The Validate action of the keypad (PinCode) runs ReplaceOnUpcomingNavigation before SetPin. The keypad is a
+      component without platform imports, so the hook gives it as `onBeforeSetPin`.
     `enabled` False: the block is not on the screen yet (PINChange shows it after the unlock). OnInitialize runs when
     `enabled` turns True, and OnDestroy when it turns False or the caller unmounts.
     @origin UBT_AppManager.PIN.Pincode_Register */
@@ -67,5 +72,5 @@ export function usePinCodeRegister(events: PinCodeRegisterEvents, enabled = true
     }
   };
 
-  return { isFirstUse, onSetPin };
+  return { isFirstUse, onSetPin, onBeforeSetPin: replaceOnUpcomingNavigation };
 }

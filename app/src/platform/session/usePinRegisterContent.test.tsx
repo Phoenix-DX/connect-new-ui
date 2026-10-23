@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { MemoryRouter, useLocation } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
+import { replaceOnUpcomingNavigation } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';
 import { freshPage } from '@/test/testSupport';
 import { MOCK_USER_ID } from './mockUser';
@@ -104,6 +105,11 @@ describe('Block_PINRegister_ContentWrapper flows (usePinRegisterContent)', () =>
       expect(named.result.current.flow.userName).toBe('Matías Vitale');
     });
     expect(calls()).toContain('ActionGetUserInformation');
+  });
+
+  it("passes on the keypad's before-SetPin event of Pincode_Register (ReplaceOnUpcomingNavigation)", () => {
+    const { result } = setup({});
+    expect(result.current.flow.onBeforeSetPin).toBe(replaceOnUpcomingNavigation);
   });
 
   it('enabled false: OnInitialize waits until the block is on the screen', async () => {

@@ -491,3 +491,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,review,35467,refactor-advisor,,"W14, fable"
 2026-10-23,refactor,verify,28624,refactor-test,,P6-G1-B-PINUnlock sonnet
 2026-10-23,refactor,other,28841,refactor-docs,,P6-G1-B-PINUnlock sonnet
+2026-10-23,refactor,build,244999,refactor-dev,,P6-G1-B-PINChange opus
+2026-10-23,refactor,verify,24121,refactor-test,,P6-G1-B-PINChange sonnet
+2026-10-23,refactor,other,28010,refactor-docs,,P6-G1-B-PINChange sonnet

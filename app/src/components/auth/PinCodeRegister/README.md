@@ -11,13 +11,15 @@ knowledge `migration/knowledge/auth.md` (PINRegister)
 | IsFirstUse (local)     | Boolean | `isFirstUse`            | `true`  |
 
 The component renders from props only. It does not import `platform/`. Event `KeyPressed` → `onKeyPressed`. The keypad
-`SetPin` event goes to the prop `onSetPin`.
+`SetPin` event goes to the prop `onSetPin`. The keypad's platform pieces are props too: `onBeforeSetPin`
+(ReplaceOnUpcomingNavigation before SetPin) and `renderPreventBackNavigation` (the PreventBackNavigation block, unless
+In_AllowBackNavigation).
 
 The flow (first and second entry, rules, `registerPin`) is in the hook
 `usePinCodeRegister` (`src/platform/session/usePinCodeRegister.ts`). The hook takes the events
 `PinRegistrationSuccess` (`onPinRegistrationSuccess`) and `PinRegistrationError(ErrorMessage)`
-(`onPinRegistrationError`), and returns `isFirstUse` and `onSetPin`. The option `enabled` (default `true`) delays
-OnInitialize until the block is on the screen.
+(`onPinRegistrationError`), and returns `isFirstUse`, `onSetPin` and `onBeforeSetPin`. The option `enabled` (default
+`true`) delays OnInitialize until the block is on the screen.
 
 Placeholders: `HeaderBar` (inside a `text-align:
 left` container), `TitlePlaceholder`, `RegistrationText` (first entry) / `ConfirmationText` (second entry),

@@ -71,6 +71,17 @@ describe('Block_PINRegister_ContentWrapper', () => {
     expect(onSetPin).toHaveBeenCalledWith('1357');
   });
 
+  it('gives the keypad the PreventBackNavigation block (unless isFromMenu) and the before-SetPin event', async () => {
+    const onBeforeSetPin = vi.fn();
+    const renderPreventBackNavigation = vi.fn((id: string | undefined) => <span data-prevent={id} />);
+    const { container, type, rerender } = setup({ id: '$b4', onBeforeSetPin, renderPreventBackNavigation });
+    expect(container.querySelector('[data-prevent="b4-b1-b1-$b1"]')).not.toBeNull();
+    await type('1357');
+    expect(onBeforeSetPin).toHaveBeenCalledTimes(1);
+    rerender({ id: '$b4', isFromMenu: true, renderPreventBackNavigation });
+    expect(container.querySelector('[data-prevent]')).toBeNull();
+  });
+
   it('"Need help?" and the white logo with the overlay; none from the menu, the dark logo without the overlay', () => {
     const { container, rerender } = setup({});
     expect(container.querySelector('.text-neutral-10')?.textContent).toBe('Need help? Contact Us');
