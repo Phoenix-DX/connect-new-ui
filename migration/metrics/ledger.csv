@@ -549,3 +549,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,177705,refactor-dev,,P6-G2-B-EmailTarget opus
 2026-10-24,refactor,verify,35068,refactor-test,,P6-G2-B-EmailTarget sonnet
 2026-10-24,refactor,other,27787,refactor-docs,,P6-G2-B-EmailTarget sonnet
+2026-10-24,refactor,build,22967,refactor-dev,,P6-G2-C sonnet
+2026-10-24,refactor,verify,22452,refactor-test,,P6-G2-C sonnet
+2026-10-24,refactor,other,29458,refactor-docs,,P6-G2-C sonnet
+2026-10-24,refactor,review,40628,refactor-advisor,,"W19, opus"
+2026-10-24,refactor,review,40368,refactor-advisor,,"W19, fable"

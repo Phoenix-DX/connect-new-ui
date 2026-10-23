@@ -398,3 +398,9 @@
 - EmailTarget is a page with `inputs.ts` (replaces `api.ts` and `types.ts`), `hooks/useHouseholdEmail.ts`, two state files (`householdEmailState.ts`, `emailTargetState.ts`) and the props-only view `components/HouseholdEmailView.tsx`; `ScreenBlock_Household_Email.tsx` is deleted.
 - The page no longer sets `key={params.toString()}` on the block: `ScreenTransitionGroup` mounts one page per `location.key`, so a new query string mounts a new page (test.md). `ValidationServiceProvider` moved from the block to the page; the DOM is the same.
 - Follow-up F15: a committed test for a new query string on the same route (no such test exists).
+
+## P6-G2-C - refactor(P6-G2-C): prune group G2
+
+- Prune: `knip` finds no unused file in the G2 folders (9 unused files in the whole app, all outside G2). `jscpd` finds 1 clone of 11 lines in 125 files: mock data in `pages/ContactByEmailOrbitHelpdesk/mocks.ts` and `pages/ContactByEmailOrbitHost/mocks.ts`. It is left as is. Follow-up F16.
+- Group gate G2: `ci` exit 0; parity `visual --all` 64/64 clean on both references; `e2e:pwa` 9/9. `arch_baseline.py check` exit 0 (47 rows, no P6-G2 owner). Report: `reports/P6-G2.md`.
+- Watch item: first-load Login is 193.08 kB gzip, 0.76 kB under the +5 percent limit (193.84); HomeFeed margin is 3.29 kB. Follow-up F14.

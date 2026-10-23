@@ -402,3 +402,11 @@ One line per event. Written by rf.py.
 - 2026-10-24T00:06:49 P6-G2-B-EmailTarget stage test
 - 2026-10-24T00:10:30 P6-G2-B-EmailTarget stage docs
 - 2026-10-24T00:11:50 P6-G2-B-EmailTarget stage commit
+- 2026-10-24T00:11:51 P6-G2-B-EmailTarget done e67279e8: ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self) (EmailTarget has no capture; unit tests); arch baseline 0 new; bundle within +5% (Login 193.08 of 193.84 kB)
+- 2026-10-24T00:11:52 P6-G2-C started
+- 2026-10-24T00:11:52 P6-G2-C stage dev
+- 2026-10-24T00:13:59 P6-G2-C stage test
+- 2026-10-24T00:22:52 P6-G2-C stage docs
+- 2026-10-24T00:24:16 P6-G2-C waits for the user: Review the routes of group G2 on localhost (links in the step report): ContactUsMenu, ContactUsDetails, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactByEmailLDMCoordinator, ContactByEmailOrbitHelpdesk, ContactByEmailOrbitHost, EmailContact, EmailTarget. Then confirm the group.
+- 2026-10-24T00:24:16 P6-G2-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W19 group G2 confirmed — Opus confirm (high), Fable confirm (high). Conditions: run P6-F15 (W18) next; keep follow-up F15 (committed remount test for EmailTarget) open; LDMCoordinator, OrbitHost and EmailTarget rest on unit tests and diff review (no parity states)."
+- 2026-10-24T00:24:16 P6-G2-C stage commit

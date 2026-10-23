@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G2-B-EmailTarget",
+  "step": "P6-G2-C",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T00:11:50"
+  "since": "2026-10-24T00:24:16"
  },
  "steps": {
   "P0-1": {
@@ -755,12 +755,25 @@
    "finished": "2026-10-24T00:05:46"
   },
   "P6-G2-B-EmailTarget": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T00:05:47",
    "tokens": {
     "dev": 177705,
     "test": 35068,
     "docs": 27787
+   },
+   "commit": "e67279e8",
+   "gate": "ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self) (EmailTarget has no capture; unit tests); arch baseline 0 new; bundle within +5% (Login 193.08 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-24T00:11:51"
+  },
+  "P6-G2-C": {
+   "status": "active",
+   "started": "2026-10-24T00:11:52",
+   "tokens": {
+    "dev": 22967,
+    "test": 22452,
+    "docs": 29458
    }
   }
  },
@@ -794,6 +807,12 @@
    "by": "user",
    "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W16 group G1 confirmed — Opus confirm (high), Fable confirm (high). Conditions: watch the Login bundle margin (0.88 kB); a later step that would pass the limit stops and asks, the limit is not raised; the commit notes that the C tester took knip/jscpd from the dev report.",
    "at": "2026-10-23T22:20:05"
+  },
+  "P6-G2-C:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W19 group G2 confirmed — Opus confirm (high), Fable confirm (high). Conditions: run P6-F15 (W18) next; keep follow-up F15 (committed remount test for EmailTarget) open; LDMCoordinator, OrbitHost and EmailTarget rest on unit tests and diff review (no parity states).",
+   "at": "2026-10-24T00:24:16"
   }
  },
  "questions": [
