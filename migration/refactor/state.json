@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G4-B-Shared",
+  "step": "P6-G4-B-BrowseCountries",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T03:53:24"
+  "since": "2026-10-24T04:30:16"
  },
  "steps": {
   "P0-1": {
@@ -976,12 +976,25 @@
    "finished": "2026-10-24T03:39:47"
   },
   "P6-G4-B-Shared": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T03:39:47",
    "tokens": {
     "dev": 66931,
     "test": 37635,
     "docs": 36630
+   },
+   "commit": "6be34914",
+   "gate": "ci: pass; diffcheck --move ok except declared lines; handlers 155, same set; parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline 87 rows (38 added under W15, check --move-step ok, selfcheck ok); bundle HomeFeed 244.19/248.22, Login 184.16/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T03:53:36"
+  },
+  "P6-G4-B-BrowseCountries": {
+   "status": "active",
+   "started": "2026-10-24T03:53:45",
+   "tokens": {
+    "dev": 185505,
+    "test": 23283,
+    "docs": 25630
    }
   }
  },

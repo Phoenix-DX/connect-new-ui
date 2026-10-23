@@ -47,7 +47,6 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 
 | File                                                                              | Module                | Actions                                                                            |
 | --------------------------------------------------------------------------------- | --------------------- | ---------------------------------------------------------------------------------- |
-| `screens/BrowseCountries/api.ts`                                                  | UBTConnect            | `BrowseCountries/DataActionGetCountriesStatistics`                                 |
 | `screens/CountryDetails/api.ts`                                                   | UBTConnect            | `CountryDetails/DataActionGetLocalityStatistics`                                   |
 | `screens/CountryList/api.ts`                                                      | UBTConnect            | `CountryList/DataActionGetCountriesStatistics`                                     |
 | `screens/Profile/api.ts`                                                          | UBTConnect            | `Profile/DataActionGetCountryInfo`                                                 |
@@ -83,6 +82,8 @@ P5-2-update: the 9 actions of this table (5 files, 9 distinct actions, counts un
 P6-G3-B-Updates_SingleList: `pages/Updates_SingleList/api.ts` is deleted. The page hook calls `fetchUpdateDateRangeIds`, `fetchUpdatesList`, `markUpdateItemAsRead`, `markUpdateItemAsUnread` and `markAllUpdateItemsAsRead` of `@/api/update` directly. The 5 actions of the row above are unchanged.
 
 P6-G3-B-HomeFeed-Page: `pages/HomeFeed/api.ts` is deleted (its rows in the update and service tables). The hooks `useFeedUpdates` and `useFeedServices` import the update calls from `@/api/update`. `FeedBlock_Services/DataActionGetServices` is `fetchFeedServices` and `useFeedServicesQuery` in `src/api/service`, with the key `serviceKeys.feed()`.
+
+P6-G4-B-BrowseCountries: `pages/BrowseCountries/api.ts` is deleted (its row in the country table). The hook `useBrowseCountries` calls `fetchBrowseCountriesStatistics` of `@/api/country` directly.
 
 P6-G1-B-Menu: `ActionRequestPhotoUpdate` moved to `src/api/member/repository.ts` (decision W9). The domain comes from the data that the call owns: the photo of the signed-in member. The tables now list it under member. `screens/Menu/api.ts` is deleted. `pages/Menu/hooks/useMenu.ts` calls `requestPhotoUpdate`.
 
