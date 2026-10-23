@@ -47,7 +47,7 @@ How a screen validates:
 5. Continue only when the call returns true.
 
 These files use the service: `src/screens/Profile/index.tsx`, `src/screens/Login/index.tsx` (validate with no visible
-widget), `src/screens/ContactUsDetails/index.tsx` (`components/TextArea_Message.tsx`) and the shared Input block
+widget), `src/pages/ContactUsDetails/ContactUsDetailsPage.tsx` (`components/MessageTextArea.tsx`) and the shared Input block
 (`src/shared/UBTConnectLibrary/Input/Input.tsx`).
 Tests: `OSValidation.test.tsx`.
 

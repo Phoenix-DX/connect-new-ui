@@ -355,3 +355,9 @@
 
 - ContactUsMenu is a page plus a hook: `src/pages/ContactUsMenu/hooks/useContactUsMenu.ts` and the pure state file `hooks/contactUsMenuState.ts`.
 - The page renders `DetailLayout` without the `Layout_DetailPage` adapter. `api.ts`, `types.ts` and `mocks.ts` of the page are deleted.
+
+## P6-G2-B-ContactUsDetails - refactor(P6-G2-B): ContactUsDetails as page
+
+- ContactUsDetails is a page plus a hook: `src/pages/ContactUsDetails/hooks/useContactUsDetails.ts` and the pure state file `hooks/contactUsDetailsState.ts`. Route inputs are in `inputs.ts`; there is no container. `api.ts` and `types.ts` are deleted. The hook calls `@/api/message` directly.
+- The page renders `DetailLayout` directly and has 6 page components (`components/`).
+- Follow-up for P6-G2-C: `Type_ContactSubject` is defined twice (`pages/ContactUsDetails/staticEntities.ts` and `pages/ContactUsMenu/components/staticEntities.ts`).

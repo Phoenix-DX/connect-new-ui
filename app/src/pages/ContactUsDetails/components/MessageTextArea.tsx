@@ -1,22 +1,24 @@
 import { useRef } from 'react';
 import { useInputWithVariableValidation } from '@/components/ui/os/OSValidation';
 
-/** OSWidgets.TextArea TextArea_Message (P:1075-1110: Mandatory True, variable ContactUsForm.Message of type Text, max
-    length 500, 3 rows), inside Form_ContactUs. Markup as captured (dom/default.html): `<span>` > textarea; the platform
-    validation adds " not-valid" and the validation message after the textarea, in the span (TextArea has no
-    aria-describedby, OutSystemsReactWidgets.js ≈81231, ≈81662). Nothing on this screen validates it or assigns its Valid,
-    so it stays valid and counts as such in Form_ContactUs.Valid. */
-export function TextArea_Message({
-  value,
-  disabled,
-  placeholder,
-  onChange,
-}: {
+export interface MessageTextAreaProps {
+  /** ContactUsForm.Message. */
   value: string;
+  /** isSubmiting: the message cannot change while it is sent. */
   disabled: boolean;
+  /** MessagePrompt. */
   placeholder: string;
+  /** The OnChange of the widget, with the new message. */
   onChange: (value: string) => void;
-}) {
+}
+
+/** The OSWidgets.TextArea TextArea_Message of the screen (Mandatory True, variable ContactUsForm.Message of type Text,
+    max length 500, 3 rows), in Form_ContactUs. The markup is as captured: `<span>` > textarea. The platform validation
+    adds " not-valid" and the validation message after the textarea, in the span (TextArea has no aria-describedby).
+    Nothing on this screen validates it or assigns its Valid, so it stays valid and counts as valid in
+    Form_ContactUs.Valid.
+    @origin UBTConnect.App_Menu_ContactUs.ContactUsDetails */
+export function MessageTextArea({ value, disabled, placeholder, onChange }: MessageTextAreaProps) {
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const validation = useInputWithVariableValidation({
     id: 'TextArea_Message',
