@@ -95,7 +95,11 @@ GROUP_ORDER = {"G1": ["Login", "Splash", "AcceptPendingPolicies", "Menu", "PINRe
                       "PINBiometricsMenu", "TermsAndPoliciesMenu", "Profile"],
                # master scheduling (2026-10-24): prefetched steps first; W22 keeps HomeFeed-Page after Services
                "G3": ["HomeFeed", "Services", "Search", "MessageList", "MessageDetail", "FeedItemDetail",
-                      "Updates_SingleList", "Notifications"]}
+                      "Updates_SingleList", "Notifications"],
+               "G4": ["BrowseCountries", "BrowseDirectory", "CountryList", "HouseholdCarousel", "Photobook",
+                      "CountryDetails", "Household_Relations", "Locality_Details", "OneSchoolGlobalDetails",
+                      "SupperMeeting_Carousel", "SupperMeeting_Details", "CommunityBusinessDetails_CoomingSoon",
+                      "Assemble_BrowseByCountry"]}
 SHARED_MOVE_AFTER = {"G1": "Menu"}
 # W22 (Opus + Fable, auto-accepted user instruction 2026-10-23 13:43): steps that run after a route step of a group
 AFTER_ROUTE = {

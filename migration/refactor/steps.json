@@ -1348,23 +1348,6 @@
    ]
   },
   {
-   "id": "P6-G4-B-CountryDetails",
-   "phase": "P6",
-   "title": "CountryDetails as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.27,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route CountryDetails only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
-   "deps": [
-    "P6-G4-B-CountryList"
-   ]
-  },
-  {
    "id": "P6-G4-B-HouseholdCarousel",
    "phase": "P6",
    "title": "HouseholdCarousel as page",
@@ -1378,7 +1361,41 @@
    "anchor": "### Phase 6",
    "extra": "This step is step B (restructure) of group G4 for the route HouseholdCarousel only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G4-B-CountryDetails"
+    "P6-G4-B-CountryList"
+   ]
+  },
+  {
+   "id": "P6-G4-B-Photobook",
+   "phase": "P6",
+   "title": "Photobook as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route Photobook only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G4-B-HouseholdCarousel"
+   ]
+  },
+  {
+   "id": "P6-G4-B-CountryDetails",
+   "phase": "P6",
+   "title": "CountryDetails as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route CountryDetails only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G4-B-Photobook"
    ]
   },
   {
@@ -1395,7 +1412,7 @@
    "anchor": "### Phase 6",
    "extra": "This step is step B (restructure) of group G4 for the route Household_Relations only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G4-B-HouseholdCarousel"
+    "P6-G4-B-CountryDetails"
    ]
   },
   {
@@ -1433,23 +1450,6 @@
    ]
   },
   {
-   "id": "P6-G4-B-Photobook",
-   "phase": "P6",
-   "title": "Photobook as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.27,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route Photobook only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
-   "deps": [
-    "P6-G4-B-OneSchoolGlobalDetails"
-   ]
-  },
-  {
    "id": "P6-G4-B-SupperMeeting_Carousel",
    "phase": "P6",
    "title": "SupperMeeting_Carousel as page",
@@ -1463,7 +1463,7 @@
    "anchor": "### Phase 6",
    "extra": "This step is step B (restructure) of group G4 for the route SupperMeeting_Carousel only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G4-B-Photobook"
+    "P6-G4-B-OneSchoolGlobalDetails"
    ]
   },
   {
