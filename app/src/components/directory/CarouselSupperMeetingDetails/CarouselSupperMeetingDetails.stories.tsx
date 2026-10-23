@@ -1,23 +1,20 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
-import { setClientVar } from '@/platform/session/session';
 import { CarouselTag } from '@/components/directory/CarouselTag';
 import { CarouselSupperMeetingDetails } from './CarouselSupperMeetingDetails';
 
 const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
-/** SupperMeeting_DetailsBlock needs the query client and a router; bookmarks and notes are synched (as captured). */
-const providers: Decorator = (Story) => {
-  setClientVar('UBTConnect.Bookmarks_IsSynched', true);
-  setClientVar('UBTConnect.Notes_IsSynched', true);
-  return (
-    <QueryClientProvider client={client}>
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    </QueryClientProvider>
-  );
-};
+/** SupperMeeting_DetailsBlock needs the query client and a router. The story does not set the synched bookmarks and
+    notes (rule 4: no `platform/` import), so its call-to-action section stays loading until another story sets them
+    (README). */
+const providers: Decorator = (Story) => (
+  <QueryClientProvider client={client}>
+    <MemoryRouter>
+      <Story />
+    </MemoryRouter>
+  </QueryClientProvider>
+);
 
 const meta = {
   title: 'Shared/UBTConnect/EntitiesCarouse_lSupperMeetingDetails',

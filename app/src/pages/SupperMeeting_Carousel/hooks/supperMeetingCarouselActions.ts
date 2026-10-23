@@ -1,9 +1,10 @@
 import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
 import type { EntitiesCarousel_Item } from '@/shared/UBTConnect/lib/structures';
-import type { PreloadedSupperMeetings } from '@/pages/SupperMeeting_Carousel/types';
+import type { PreloadedSupperMeetings } from '@/pages/SupperMeeting_Carousel/inputs';
 
-/* Client logic of ScreenEvent_OnInitialize (SupperMeeting_Carousel.mvc.js controller `_screenEvent_OnInitialize$Action`),
-   without React. */
+/** The client logic of ScreenEvent_OnInitialize of SupperMeeting_Carousel, without React. useSupperMeetingCarousel
+    calls it.
+    @origin UBTConnect.Directory_SupperMeetings.SupperMeeting_Carousel */
 
 export const EMPTY_PRELOAD: PreloadedSupperMeetings = { SupperMeetingIds: [] };
 
@@ -31,3 +32,27 @@ export function startingPosition(preload: PreloadedSupperMeetings, startingSuppe
     LongIntegerToText(TextToLongInteger(LongIntegerToText(id)))}) (OnInitialize). */
 export const toEntitiesCarouselItems = (preload: PreloadedSupperMeetings): EntitiesCarousel_Item[] =>
   preload.SupperMeetingIds.map((id) => ({ EntityId: textToLongInteger(id) }));
+
+/** The screen variables that OnInitialize assigns. */
+export interface SupperMeetingCarouselInitialVariables {
+  /** SupperMeetingsIdList. */
+  preload: PreloadedSupperMeetings;
+  /** EntitieslCarousel_Items (sic). */
+  items: EntitiesCarousel_Item[];
+  /** StartingPosition. */
+  position: number;
+}
+
+/** OnInitialize, only while SupperMeetingsIdList.SupperMeetingIds is empty: AssignFromObject of the preload object,
+    StartingPosition, then one EntitiesCarousel_Item per id. */
+export function supperMeetingCarouselOnInitialize(
+  preloadObject: unknown,
+  startingSupperMeetingId: string,
+): SupperMeetingCarouselInitialVariables {
+  const preload = assignFromObject(preloadObject);
+  return {
+    preload,
+    items: toEntitiesCarouselItems(preload),
+    position: startingPosition(preload, startingSupperMeetingId),
+  };
+}

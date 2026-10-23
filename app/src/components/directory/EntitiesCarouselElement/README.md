@@ -16,7 +16,7 @@
 Event `Event_SetHeader(Event_Header)` → `onEventSetHeader` (from the household details only). No placeholder.
 Slot `renderHouseholdDetails`: HouseholdDetails_Block of a household slide, passed on to
 EntitiesCarousel_HouseholdDetails (README there). The supper meeting slide (EntitiesCarouse_lSupperMeetingDetails) is
-still rendered here; its own step (SupperMeeting_Carousel) changes it.
+still rendered here (the step SupperMeeting_Carousel left it).
 
 - OnReady / OnParametersChanged (:397-470), derived on render: inside the buffer of the active or the next active element
   → rendered, and it stays rendered (IsSinglePassRender True); IsSkeletonOnly = not inside the active element's buffer.
@@ -35,6 +35,6 @@ Not captured, tested: skeleton-only element (next active buffer only), staying r
 
 The stories V1 and V2 give a stand-in of HouseholdDetails_Block in the slot. V3 renders the real supper meeting slide
 with the query client and a router. The stories cannot set the synched bookmarks and notes (rule 4: no `platform/`
-import), so in Storybook the call-to-action section of V3 stays loading until another story sets them. The capture
-compares only the wrapper of the nested block, and the stories of EntitiesCarouse_lSupperMeetingDetails show the
-synched state.
+import). In Storybook the call-to-action section of V3 stays loading until another story sets them. The capture
+compares only the wrapper of the nested block. The stories of EntitiesCarouse_lSupperMeetingDetails do not set the
+synched state either.

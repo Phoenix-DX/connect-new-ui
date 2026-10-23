@@ -548,3 +548,9 @@
 - `pages/OneSchoolGlobalDetails` is a page. The screen flow is in `useOneSchoolGlobalDetails` (on `useFlowState`) and the pure `oneSchoolGlobalDetailsState.ts`. `api.ts` became `inputs.ts`; `types.ts` is deleted.
 - The call is the query hook `useOneSchoolGlobalDetailsQuery` in `api/locality` (same query options as the old port, so W23 behavior is kept).
 - depcruise warnings 212 to 210 (2 rule-9 warnings of the route are gone).
+
+## P6-G4-B-SupperMeeting_Carousel - refactor(P6-G4-B): SupperMeeting_Carousel as page
+
+- `pages/SupperMeeting_Carousel` is a page with the hook `useSupperMeetingCarousel` (`useViewState`, no server call). The client logic is in `hooks/supperMeetingCarouselActions.ts`. `inputs.ts` holds the input reader and the mock preload. `api.ts` and `types.ts` are deleted.
+- `CarouselSupperMeetingDetails` is props-only: its stories no longer import `platform/`. Its 1 row is removed from `arch-baseline.csv` (74 rows left: SupperMeeting_Details 7, P7 66, pre-existing 1).
+- depcruise warnings are unchanged (212 at the base); none are in the new folders.

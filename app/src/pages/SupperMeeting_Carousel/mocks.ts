@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { registerMockPreload } from './api';
+import { registerMockPreload } from './inputs';
 
 /* SupperMeeting_Carousel calls no action of its own (SupperMeeting_Carousel.mvc.js controller
    `dataFetchActionNames = []`): GetSubdivision, GetSubdivisionHouseholds, contact details and signed images are answered

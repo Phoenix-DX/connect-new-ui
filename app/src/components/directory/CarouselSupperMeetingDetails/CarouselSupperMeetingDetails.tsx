@@ -1,5 +1,4 @@
 /** @origin UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails */
-// @os-block UBTConnect.Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { SupperMeetingDetails } from '@/components/directory/SupperMeetingDetails';

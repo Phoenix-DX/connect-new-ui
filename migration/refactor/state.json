@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G4-B-OneSchoolGlobalDetails",
+  "step": "P6-G4-B-SupperMeeting_Carousel",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T05:40:26"
+  "since": "2026-10-24T05:51:29"
  },
  "steps": {
   "P0-1": {
@@ -1093,11 +1093,24 @@
    "finished": "2026-10-24T05:29:50"
   },
   "P6-G4-B-OneSchoolGlobalDetails": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T05:29:50",
    "tokens": {
     "dev": 316669,
-    "test": 30795
+    "test": 30795,
+    "docs": 33036
+   },
+   "commit": "9faeb9e6",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.18 kB, Login 184.19 kB",
+   "loops": 0,
+   "finished": "2026-10-24T05:40:28"
+  },
+  "P6-G4-B-SupperMeeting_Carousel": {
+   "status": "active",
+   "started": "2026-10-24T05:40:44",
+   "tokens": {
+    "dev": 166203,
+    "test": 25987
    }
   }
  },

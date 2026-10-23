@@ -1,43 +1,21 @@
-/** @origin UBTConnect.Directory_SupperMeetings.SupperMeeting_Carousel */
-import { useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { EntitiesCarousel } from '@/components/directory/EntitiesCarousel';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
-import { usePreloadObject, useViewState } from '@/platform/navigation';
-import { mockPreload, readSupperMeetingCarouselInputs } from './api';
-import { assignFromObject, startingPosition, toEntitiesCarouselItems } from './components/logic';
-import type { PreloadedSupperMeetings } from './types';
+import { useSupperMeetingCarousel } from './hooks/useSupperMeetingCarousel';
+import { readSupperMeetingCarouselInputs } from './inputs';
 
-/** UBTConnect.Directory_SupperMeetings.SupperMeeting_Carousel (SupperMeeting_Carousel.mvc.js): Layout_DetailPage
-    (In_AlignTitleLeft False, primary header) titled by CustomText "Supper Meeting" with default TextOptions,
-    EntitiesCarousel of the preloaded supper meetings as content (its events are not handled), no bottom bar,
-    CommonUI_InsideLayout. No call of its own. */
+/** @origin UBTConnect.Directory_SupperMeetings.SupperMeeting_Carousel
+    The carousel of supper meetings: Layout_DetailPage (In_AlignTitleLeft False, primary header) titled by CustomText
+    "Supper Meeting" with the default TextOptions, EntitiesCarousel of the preloaded supper meetings as content (its
+    events are not handled), no bottom bar, CommonUI_InsideLayout. No call of its own. The screen variables are in
+    useSupperMeetingCarousel. */
 export default function SupperMeeting_Carousel() {
   const [params] = useSearchParams();
-  const { In_StartingSupperMeetingId } = readSupperMeetingCarouselInputs(params);
-  const preloadObject = usePreloadObject();
-
-  /* ScreenEvent_OnInitialize: only while SupperMeetingsIdList.SupperMeetingIds is empty: AssignFromObject of the
-     waiting preload (mock phase without one: the route's mock preload, Q1 → A), StartingPosition, then one
-     EntitiesCarousel_Item per id. The screen variables are kept by the view cache (P-BACK); a restored list that is
-     not empty keeps the restored variables. */
-  const [initial] = useState(() => {
-    const preload = assignFromObject(preloadObject ?? mockPreload(In_StartingSupperMeetingId));
-    return {
-      preload,
-      items: toEntitiesCarouselItems(preload),
-      position: startingPosition(preload, In_StartingSupperMeetingId),
-    };
-  });
-  const [storedPreload] = useViewState<PreloadedSupperMeetings>('SupperMeetingsIdList', initial.preload);
-  const [storedItems] = useViewState('EntitieslCarousel_Items', initial.items);
-  const [storedPosition] = useViewState('StartingPosition', initial.position);
-  const restored = storedPreload.SupperMeetingIds.length > 0;
-  const entitiesCarouselItems = restored ? storedItems : initial.items;
-  const startingPositionValue = restored ? storedPosition : initial.position;
+  const inputs = readSupperMeetingCarouselInputs(params);
+  const carousel = useSupperMeetingCarousel(inputs);
 
   return (
     <Layout_DetailPage
@@ -48,8 +26,8 @@ export default function SupperMeeting_Carousel() {
         <EntitiesCarousel
           id="$b3"
           inConnectEntityTypeId={Connect_Entity.SupperMeetings_aka_Subdivisions}
-          inStartingPosition={startingPositionValue}
-          inEntitiesCarouselItems={entitiesCarouselItems}
+          inStartingPosition={carousel.startingPosition}
+          inEntitiesCarouselItems={carousel.entitiesCarouselItems}
         />
       }
       placeholderCommonUIInsideLayout={<CommonUiLayout id="$b4" />}
