@@ -570,3 +570,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T05:41:26 P6-G4-B-SupperMeeting_Carousel stage test
 - 2026-10-24T05:49:54 P6-G4-B-SupperMeeting_Carousel stage docs
 - 2026-10-24T05:51:29 P6-G4-B-SupperMeeting_Carousel stage commit
+- 2026-10-24T05:51:31 P6-G4-B-SupperMeeting_Carousel done 810fba69: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 74 rows, 0 new (1 owned row removed); HomeFeed 244.13 kB, Login 184.16 kB
+- 2026-10-24T05:51:31 P6-G4-B-CommunityBusinessDetails_CoomingSoon started
+- 2026-10-24T05:51:31 P6-G4-B-CommunityBusinessDetails_CoomingSoon stage dev
+- 2026-10-24T05:52:24 P6-G4-B-CommunityBusinessDetails_CoomingSoon stage test
+- 2026-10-24T05:56:25 P6-G4-B-CommunityBusinessDetails_CoomingSoon stage docs
+- 2026-10-24T05:57:20 P6-G4-B-CommunityBusinessDetails_CoomingSoon stage commit

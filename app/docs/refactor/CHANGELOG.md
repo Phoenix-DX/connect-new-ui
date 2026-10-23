@@ -554,3 +554,8 @@
 - `pages/SupperMeeting_Carousel` is a page with the hook `useSupperMeetingCarousel` (`useViewState`, no server call). The client logic is in `hooks/supperMeetingCarouselActions.ts`. `inputs.ts` holds the input reader and the mock preload. `api.ts` and `types.ts` are deleted.
 - `CarouselSupperMeetingDetails` is props-only: its stories no longer import `platform/`. Its 1 row is removed from `arch-baseline.csv` (74 rows left: SupperMeeting_Details 7, P7 66, pre-existing 1).
 - depcruise warnings are unchanged (212 at the base); none are in the new folders.
+
+## P6-G4-B-CommunityBusinessDetails_CoomingSoon - refactor(P6-G4-B): CommunityBusinessDetails_CoomingSoon as page
+
+- `pages/CommunityBusinessDetails_CoomingSoon` is a page with no hook: the screen is static (no event, variable or call). `inputs.ts` holds the input reader and type.
+- `api.ts`, `types.ts` and the empty `mocks.ts` are deleted. A page test was added (5 tests). No shared block changed.
