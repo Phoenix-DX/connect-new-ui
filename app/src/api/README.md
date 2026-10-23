@@ -22,12 +22,12 @@ The seven old caller files re-export it under their old names. The household cal
 
 `update/` has the same files. It holds 8 actions.
 
-- DataActionFetchUpdates, ServiceAPIAction_UI_UpdateItem_MarkAsRead and MarkAsUnread (HomeFeed)
+- DataActionFetchUpdates, ServiceAPIAction_UI_UpdateItem_MarkAsRead and MarkAsUnread (HomeFeed; imported directly by `useFeedUpdates`)
 - DataActionFetchUpdates, DataActionGetDateRanges and the service actions MarkAsRead, MarkAsUnread and MarkAllAsRead (Updates_SingleList)
 - ActionUpdateItem_MarkAsRead (HouseholdCarousel)
 - ServiceAPIGet_UI_UpdateItems_UnreadCount_All (`shared/UBTConnect/lib/actions.ts`).
 
-One `UpdateItem` type has two mappers: `toFeedUpdateItem` keeps the null date "1900-01-01" (HomeFeed) and `toUpdateItem` gives "" for it (Updates_SingleList). The old `api.ts` and `types.ts` files of HomeFeed, Updates_SingleList, HouseholdCarousel re-export the domain under their old names.
+One `UpdateItem` type has two mappers: `toFeedUpdateItem` keeps the null date "1900-01-01" (HomeFeed) and `toUpdateItem` gives "" for it (Updates_SingleList). The old `api.ts` and `types.ts` files of HouseholdCarousel re-export the domain under their old names.
 
 `directory_Updates_RefreshBottomBarCount` in `shared/UBTConnect/lib/actions.ts` gets the unread count from `fetchUnreadUpdateItemsCount`.
 
@@ -86,9 +86,9 @@ The domain has 2 query hooks and 2 mutation hooks with no caller yet.
 
 `feed/` has the same files, without a mapper. It holds one call: DataActionGetFeedConfig of Embedded_FeedCMS. `useFeedConfigQuery` (inputs FeedItemId and B2CTenant) is called by `useEmbeddedFeed` in `platform/session`, which gives the answer to the `FeedCms` component as `config`. The block reads the wire record as it is.
 
-`service/` has the same files. It holds 2 calls of Services: DataActionGetServices (`fetchUserServices`) and Service_ConnectServices_ChangeOrder_Bulk (`changeServicesOrder`). The domain is chosen by the data that it owns (decision W8): no other domain owns Connect_Services_CS.
+`service/` has the same files. It holds 3 calls: DataActionGetServices of Services (`fetchUserServices`), Service_ConnectServices_ChangeOrder_Bulk of Services (`changeServicesOrder`) and DataActionGetServices of FeedBlock_Services in HomeFeed (`fetchFeedServices`). The domain is chosen by the data that it owns (decision W8): no other domain owns Connect_Services_CS.
 
-The route's `api.ts` and `types.ts` are deleted. `useUserServicesQuery` keeps the old options (`gcTime: 0`, `staleTime: Infinity`, `retry: false`); its key is `serviceKeys.user()`. `changeServicesOrder` has no hook: the page flow calls it.
+The route's `api.ts` and `types.ts` are deleted. `useUserServicesQuery` keeps the old options (`gcTime: 0`, `staleTime: Infinity`, `retry: false`); its key is `serviceKeys.user()`. `changeServicesOrder` has no hook: the page flow calls it. `useFeedServicesQuery` has the key `serviceKeys.feed()` (`['service', 'feed']`), separate from `serviceKeys.user()`, and keeps `retry: false`; `useFeedServices` in `pages/HomeFeed/hooks` calls it.
 
 `search/` has the same files. It holds 2 calls of Search: DataActionFetchSearchResults (`fetchSearchResults`) and ScreenDataSetGet_SearchBirthdayOptions (`fetchBirthdayOptions`). The domain is chosen by the data that it owns (decision W8): the directory search results and their options.
 

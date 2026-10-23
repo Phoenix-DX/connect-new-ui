@@ -1,11 +1,5 @@
-// @os-block UBTConnect.Home.FeedBlock_Services
-import { useCallback, useMemo, useState } from 'react';
+import type { ExternalAppPopUpInfo, ServiceItem, ServicesPage } from '@/api/service';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { useFlagOn } from '@/platform/flags/flags';
-import { confirmAction } from '@/platform/feedback/dialogs';
-import { feedbackMessageAutoClose } from '@/platform/feedback';
-import { useOsNavigate } from '@/platform/navigation';
-import { APP_ID } from '@/platform/navigation/paths';
 import { Carousel } from '@/shared/osui/Carousel';
 import { Gallery } from '@/shared/osui/Gallery';
 import { CarouselNavigation } from '@/shared/osui/lib/staticEntities';
@@ -21,150 +15,62 @@ import {
   UBT_ColumnBehaviour,
   UBT_FontSize,
   UBT_FontWeight,
-  UBT_Icons,
   UBT_IconsSize,
   UBT_Shape,
   UBT_Size,
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { openInApp_OpenExternalLink } from '@/shared/UBTConnect_Utils/lib/actions';
 import { UBT_IconSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { useGetServices } from '@/pages/HomeFeed/api';
-import type { ExternalAppPopUpInfo, ServiceItem, ServicesData, ServicesPage } from '@/pages/HomeFeed/types';
+import { MAIN_ELEMENT_CLASS } from '@/pages/HomeFeed/hooks/feedServicesState';
+import { UBT_Shadow_Small, UBT_Icons2 } from '@/pages/HomeFeed/staticEntities';
 import { Dialog_GoExternalApp } from './Dialog_GoExternalApp';
-import { Connect_Services, UBT_Icons2, UBT_Shadow_Small } from './staticEntities';
-
-const MAIN_ELEMENT_CLASS = 'ubt-services-carousel';
-const EMPTY_SERVICE: ServiceItem = { id: '', iconId: '', name: '', order: 0 };
-const EMPTY_POPUP_INFO: ExternalAppPopUpInfo = { appName: '', packageName: '', iconId: '' };
-/** OnInitialize (Services.mvc.js:820-835): one page of five empty services, shown as skeletons until the fetch. */
-const INITIAL_PAGES: ServicesPage[] = [{ pageNumber: 1, serviceItems: Array.from({ length: 5 }, () => EMPTY_SERVICE) }];
-
-/** OnAfterFetch_GetServices (Services.mvc.js:836-900): optional "Add Service" item, then pages of ItemPerPage items. */
-function toPages(data: ServicesData, itemPerPage: number, forceAddService: boolean): ServicesPage[] {
-  const list = data.services.map((s) => ({ id: s.id, iconId: s.iconId, name: s.label, order: s.order }));
-  if (forceAddService) {
-    // AddCircle icon id not captured (ForceAddService is False on HomeFeed).
-    list.push({ id: '', iconId: '', name: 'Add Service', order: list.length + 1 });
-  }
-  const pages: ServicesPage[] = [];
-  for (let i = 0, page = 1; i < list.length; i += itemPerPage, page++) {
-    pages.push({ pageNumber: page, serviceItems: list.slice(i, i + itemPerPage) });
-  }
-  return pages;
-}
 
 export interface FeedBlock_ServicesProps {
   /** Block instance id (HomeFeed: `$b5`). */
   id: string;
-  itemPerPage?: number;
-  forceAddService?: boolean;
+  /** GetHasCustomEvents (`C2EnableCustomServices`): the settings button. */
+  hasCustomEvents: boolean;
+  /** Local_ServicesPerPage: the slides of the carousel. */
+  pages: ServicesPage[];
+  /** GetServices has data: the list keys of the fetched pages. */
+  hasData: boolean;
+  /** The services show as skeletons. */
+  isLoading: boolean;
+  /** The app that Dialog_GoExternalApp shows. */
+  externalAppPopUpInfo: ExternalAppPopUpInfo;
+  /** The OnPopUpReady event of Dialog_GoExternalApp. */
+  onPopUpReady: (popUpId: string) => void;
+  /** OnClick_ServiceSettings. */
+  onClickServiceSettings: () => void;
+  /** OnClick_Service. */
+  onClickService: (service: ServiceItem) => void;
+  /** The confirm of Dialog_GoExternalApp. */
+  onGoToExternalApp: () => void;
 }
 
-/** UBTConnect Home.FeedBlock_Services (p:UBTConnect.Home.FeedBlock_Services.mvc.js view :188-660): "Services" card
-    with the settings button (GetHasCustomEvents) and a Dots carousel of service pages; Dialog_GoExternalApp for the
-    external apps. Captured dom/default.html:130-433 (data), dom/loading.html (skeleton page). */
-export function FeedBlock_Services({ id, itemPerPage = 6, forceAddService = false }: FeedBlock_ServicesProps) {
+/** The "Services" card of the home feed: the title, the settings button when GetHasCustomEvents, and a carousel with
+    dots of the pages of services, each service a round button with its label in a skeleton. Dialog_GoExternalApp
+    opens for the external apps. The flows are in useFeedServices. Captured dom/default.html (data) and
+    dom/loading.html (the skeleton page).
+    @origin UBTConnect.Home.FeedBlock_Services */
+export function FeedBlock_Services({
+  id,
+  hasCustomEvents,
+  pages,
+  hasData,
+  isLoading,
+  externalAppPopUpInfo,
+  onPopUpReady,
+  onClickServiceSettings,
+  onClickService,
+  onGoToExternalApp,
+}: FeedBlock_ServicesProps) {
   const scope = id.replace('$', '');
-  const navigate = useOsNavigate();
-  const hasCustomEvents = useFlagOn('C2EnableCustomServices'); // GetHasCustomEvents (default-only, on)
-  const hasNewLDM = useFlagOn('C2NewLDM'); // GetHasNewLDM (default-only, on)
-  const [externalAppPopUpId, setExternalAppPopUpId] = useState('');
-  const [popUpInfo, setPopUpInfo] = useState<ExternalAppPopUpInfo>(EMPTY_POPUP_INFO);
-  const services = useGetServices(() => ({
-    mainElementClass: MAIN_ELEMENT_CLASS,
-    servicesPerPage: INITIAL_PAGES,
-    // fetched at start, before Dialog_GoExternalApp's OnReady and any click: both still empty
-    externalAppPopUpId: '',
-    externalAppPopUpInfo: EMPTY_POPUP_INFO,
-    itemPerPage,
-    forceAddService,
-  }));
-  const pages = useMemo(
-    () => (services.data ? toPages(services.data, itemPerPage, forceAddService) : INITIAL_PAGES),
-    [services.data, itemPerPage, forceAddService],
-  );
-  const isLoading = !services.isSuccess || services.isError; // not IsDataFetched or HasFetchError
-  // Runtime list keys of the capture: skeleton page `l2-52_0` > `l2-53_i`; fetched pages `l2-53_<p>` > `l2-100_i`.
-  const pageKey = (p: number) => (services.data ? `l2-53_${p + 1}` : `l2-52_${p}`);
-  const itemKey = (i: number) => (services.data ? `l2-100_${i}` : `l2-53_${i}`);
-
-  const onPopUpReady = useCallback((popUpId: string) => {
-    setExternalAppPopUpId(popUpId);
-  }, []);
-
-  // OnClick_Service (Services.mvc.js:940-1090), Connect_Services ids = TST values (components/staticEntities.ts).
-  const onClickService = async (selected: ServiceItem) => {
-    const go = (screen: string) => {
-      navigate(`/${APP_ID}/${screen}`);
-    };
-    const S = Connect_Services;
-    const is = (record: string) => selected.id === record;
-    if (is(S.Orbit)) {
-      go('OrbitLanding');
-      return;
-    }
-    if (is(S.LDM)) {
-      if (hasNewLDM) {
-        go('LDM_MyEvents_V2');
-        return;
-      } // off branch (LDM_MyEvents) not built: default-only
-      return undefined;
-    }
-    if (is(S.MyCalendar)) {
-      go('MyEntertaining');
-      return;
-    }
-    if (is(S.Assemble)) {
-      go('AssembleEvents');
-      return;
-    }
-    if (is(S.OrbitAdmin)) {
-      go('OrbitAdminLanding');
-      return;
-    }
-    if (is(S.MyNotes)) {
-      go('Notes');
-      return;
-    }
-    const data = services.data;
-    let info: ExternalAppPopUpInfo;
-    if (is(S.Trove)) {
-      info = { appName: 'Trove', packageName: data?.externalPackagesTrove ?? '', iconId: UBT_Icons2.Trove };
-    } else if (is(S.HR100)) {
-      info = { appName: 'HR100', packageName: data?.externalPackagesHR100 ?? '', iconId: UBT_Icons.SVG_HR100 };
-    } else if (is(S.CommunityTradelink)) {
-      info = {
-        appName: 'Community Tradelink',
-        packageName: data?.externalPackagesCommunityTradelink ?? '',
-        iconId: UBT_Icons.SVG_CommunityTradelink,
-      };
-    } else if (is(S.ElGusto)) {
-      // ExternalLink = GetServices.ExternalLinks_ElGusto; OpenInApp_OpenExternalLink(ExternalLink, False)
-      // (FeedBlock_Services.mvc.js:1042-1046; shared since CR-HomeFeed-1).
-      openInApp_OpenExternalLink(data?.externalLinksElGusto ?? '', false);
-      return undefined;
-    } else if (is(S.OneSchoolGlobal)) {
-      feedbackMessageAutoClose({
-        title: 'Coming soon',
-        message: 'This feature will be coming soon.',
-        messageType: 'info',
-        encodedHtml: true,
-        extendedClass: '',
-        delayMs: 0,
-        useDebounce: false,
-      });
-      return undefined;
-    } else {
-      return undefined;
-    }
-    setPopUpInfo(info);
-    // ConfirmAction(ExternalAppPopUp_Id) (raw FeedBlock_Services.mvc.js:1064-1066): Dialog_GoExternalApp's confirm runs
-    // GoToExternalApp → OpenInApp_OpenApp(PackageName) (CR-HomeFeed-1).
-    await confirmAction(externalAppPopUpId);
-    return undefined;
-  };
+  // The runtime list keys of the capture: the skeleton page `l2-52_0` > `l2-53_i`; the fetched pages `l2-53_<p>` >
+  // `l2-100_i`.
+  const pageKey = (p: number) => (hasData ? `l2-53_${p + 1}` : `l2-52_${p}`);
+  const itemKey = (i: number) => (hasData ? `l2-100_${i}` : `l2-53_${i}`);
 
   return (
     <OSBlock name="Home.FeedBlock_Services" id={id}>
@@ -202,9 +108,7 @@ export function FeedBlock_Services({ id, itemPerPage = 6, forceAddService = fals
                 sizeId={UBT_AvatarSize.ExtraSmall_32}
                 borderColorId={UBT_Color.Neutral3}
                 backgroundColorId={UBT_Color.Neutral0}
-                onOnClick={() => {
-                  navigate(`/${APP_ID}/Services`);
-                }} // OnClick_ServiceSettings
+                onOnClick={onClickServiceSettings}
                 icon={
                   <Icon
                     id={`${scope}-$b5`}
@@ -259,7 +163,9 @@ export function FeedBlock_Services({ id, itemPerPage = 6, forceAddService = fals
                               sizeId={UBT_AvatarSize.Large_65}
                               backgroundColorId={UBT_Color.Neutral0}
                               paddingSize={isSvg ? undefined : UBT_Size.Small}
-                              onOnClick={() => void onClickService(service)}
+                              onOnClick={() => {
+                                onClickService(service);
+                              }}
                               icon={
                                 <Icon
                                   id={`${itemScope}-$b11`}
@@ -280,7 +186,12 @@ export function FeedBlock_Services({ id, itemPerPage = 6, forceAddService = fals
           </Carousel>
         </CustomContainer>
       </CustomContainer>
-      <Dialog_GoExternalApp id={`${scope}-$b12`} externalAppPopUpInfo={popUpInfo} onOnPopUpReady={onPopUpReady} />
+      <Dialog_GoExternalApp
+        id={`${scope}-$b12`}
+        externalAppPopUpInfo={externalAppPopUpInfo}
+        onOnPopUpReady={onPopUpReady}
+        onGoToExternalApp={onGoToExternalApp}
+      />
     </OSBlock>
   );
 }

@@ -1,10 +1,17 @@
 import { callAction } from '@/api/client/callAction';
 import { wireList } from '@/legacy/os/os-wire';
-import { toChangeServicesOrderInputs, toUserServices, type ServiceWire } from './mapper';
-import type { CurrentService, UserServices } from './types';
+import {
+  toChangeServicesOrderInputs,
+  toFeedServices,
+  toFeedServicesVariablesWire,
+  toUserServices,
+  type ServiceWire,
+} from './mapper';
+import type { CurrentService, FeedServices, FeedServicesVariables, UserServices } from './types';
 
-/** The two calls of the Services screen, with their OutSystems names: the data action that reads the services of the
-    user and the service action that saves the favourites.
+/** The calls of the services, with their OutSystems names: the data action of the Services screen that reads the
+    services of the user, the service action that saves the favourites, and the data action of the services card of the
+    home feed (FeedBlock_Services).
     @origin UBTConnect.App_Services.Services */
 
 /** The screen variables that the data action sends: their values at fetch time, which are the initial values (the
@@ -18,6 +25,14 @@ const FETCH_VARIABLES = {
 /** DataActionGetServices: the favourites of the user and the services that the user can add. */
 export async function fetchUserServices(): Promise<UserServices> {
   return toUserServices(await callAction('UBTConnect', 'Services/DataActionGetServices', FETCH_VARIABLES));
+}
+
+/** DataActionGetServices of FeedBlock_Services: the favourites of the user for the services card of the home feed,
+    and the links of the external apps. It sends the screen variables of the block. */
+export async function fetchFeedServices(variables: FeedServicesVariables): Promise<FeedServices> {
+  return toFeedServices(
+    await callAction('UBTConnect', 'FeedBlock_Services/DataActionGetServices', toFeedServicesVariablesWire(variables)),
+  );
 }
 
 /** Service_ConnectServices_ChangeOrder_Bulk: saves the whole list of favourites in its order. No outputs. A write: the

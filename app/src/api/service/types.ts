@@ -1,6 +1,6 @@
 /* Domain types of the Connect services (Connect_Services_CS): the services of the app and the choice of the signed-in
-   user, that is the favourites and their order. The Services screen reads and saves them. The wire types stay in
-   src/api/schema.d.ts. */
+   user, that is the favourites and their order. The Services screen reads and saves them; the services card of the
+   home feed (FeedBlock_Services) reads the favourites. The wire types stay in src/api/schema.d.ts. */
 
 /** A service record (Connect_Services_CS.Connect_Services). */
 export interface Service {
@@ -37,4 +37,46 @@ export interface CurrentService {
 export interface UserServices {
   availableServices: Service[];
   currentServices: CurrentService[];
+}
+
+/** One service of a page of the services carousel (UBTConnect.UI_ServiceItem). */
+export interface ServiceItem {
+  id: string;
+  iconId: string;
+  name: string;
+  order: number;
+}
+
+/** One slide of the services carousel (UBTConnect.UI_ServicesPage). */
+export interface ServicesPage {
+  pageNumber: number;
+  serviceItems: ServiceItem[];
+}
+
+/** The external app that the dialog Dialog_GoExternalApp opens (UBTConnect_Utils.ExternalApp_PopUpInfo). */
+export interface ExternalAppPopUpInfo {
+  appName: string;
+  packageName: string;
+  iconId: string;
+}
+
+/** The screen variables of FeedBlock_Services that its data action GetServices sends, with their values at fetch
+    time. */
+export interface FeedServicesVariables {
+  mainElementClass: string;
+  servicesPerPage: ServicesPage[];
+  externalAppPopUpId: string;
+  externalAppPopUpInfo: ExternalAppPopUpInfo;
+  itemPerPage: number;
+  forceAddService: boolean;
+}
+
+/** The services card of the home feed (DataActionGetServices of FeedBlock_Services): the favourites of the user in
+    their order, the link of El Gusto and the store packages of the external apps. */
+export interface FeedServices {
+  services: Service[];
+  externalLinksElGusto: string;
+  externalPackagesCommunityTradelink: string;
+  externalPackagesHR100: string;
+  externalPackagesTrove: string;
 }

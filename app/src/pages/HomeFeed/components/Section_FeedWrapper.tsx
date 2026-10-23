@@ -1,4 +1,3 @@
-// @os-block UBTConnect.Home.Section_FeedWrapper
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
@@ -14,8 +13,8 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_IconSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_Icons2 } from '@/pages/HomeFeed/staticEntities';
 import { Section } from './Section';
-import { UBT_Icons2 } from './staticEntities';
 
 export interface Section_FeedWrapperProps {
   /** Instance id of the block on the screen (HomeFeed: the widget names `Section_Services`, …). */
@@ -36,7 +35,8 @@ export interface Section_FeedWrapperProps {
 
 /** UBTConnect Home.Section_FeedWrapper (Section_FeedWrapper.mvc.js:200-330): a Section with, when ShowHeader, a
     Columns_Two header (Title | "View all" IconText raising OnClick_ViewAll when showViewAll). Defaults from the model
-    (:10-45). Captured: dom/default.html:122-129 (no header), :481-550 (header with View all). */
+    (:10-45). Captured: dom/default.html:122-129 (no header), :481-550 (header with View all).
+    @origin UBTConnect.Home.Section_FeedWrapper */
 export function Section_FeedWrapper({
   id,
   scope,

@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-F16",
+  "step": "P6-G3-B-HomeFeed-Page",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T03:05:43"
+  "since": "2026-10-24T03:17:02"
  },
  "steps": {
   "P0-1": {
@@ -924,12 +924,25 @@
    "finished": "2026-10-24T02:56:48"
   },
   "P6-F16": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T02:56:48",
    "tokens": {
     "dev": 210378,
     "test": 30562,
     "docs": 25096
+   },
+   "commit": "d5d59692",
+   "gate": "ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self), call check clean; e2e:pwa 9/9; mock-free production build ok; bundle HomeFeed 246.02 -> 243.05, Login 187.01 -> 184.02 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T03:05:44"
+  },
+  "P6-G3-B-HomeFeed-Page": {
+   "status": "active",
+   "started": "2026-10-24T03:05:44",
+   "tokens": {
+    "dev": 336188,
+    "test": 30449,
+    "docs": 41589
    }
   }
  },

@@ -2,11 +2,25 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { isCommunicationException } from '@/legacy/os/exceptions';
 import { freshPage, recordBodies } from '@/test/testSupport';
 import type { CurrentServiceWire } from './mapper';
-import { changeServicesOrder, fetchUserServices } from './repository';
+import { changeServicesOrder, fetchFeedServices, fetchUserServices } from './repository';
+import type { FeedServicesVariables } from './types';
 
 /* The MSW mocks of the test setup: Services/mocks.ts answers the recorded TST services (six favourites, three
    suggestions) from two in-memory collections; ChangeOrder_Bulk replaces the favourites with the list sent. The
-   collections live as long as this test file, so the tests run in order: read, then save. */
+   collections live as long as this test file, so the tests run in order: read, then save. HomeFeed/mocks.ts answers
+   the recorded TST answer of FeedBlock_Services. */
+
+/** The variables of FeedBlock_Services at fetch time on HomeFeed. */
+const FEED_VARIABLES: FeedServicesVariables = {
+  mainElementClass: 'ubt-services-carousel',
+  servicesPerPage: [
+    { pageNumber: 1, serviceItems: Array.from({ length: 5 }, () => ({ id: '', iconId: '', name: '', order: 0 })) },
+  ],
+  externalAppPopUpId: '',
+  externalAppPopUpInfo: { appName: '', packageName: '', iconId: '' },
+  itemPerPage: 6,
+  forceAddService: false,
+};
 
 beforeEach(() => {
   freshPage();
@@ -37,6 +51,28 @@ describe('service repository', () => {
       ['MyNotes', 6, false],
     ]);
     expect(services.availableServices.map((s) => s.id)).toEqual(['HR100', 'ElGusto', 'CommunityTradelink']);
+  });
+
+  it('fetchFeedServices calls DataActionGetServices of FeedBlock_Services with the variables of the block', async () => {
+    const bodies = recordBodies('UBTConnect/FeedBlock_Services/DataActionGetServices');
+    const feed = await fetchFeedServices(FEED_VARIABLES);
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({ module: 'UBTConnect', owner: 'FeedBlock_Services', action: 'DataActionGetServices' }),
+    ]);
+    const emptyItem = { Id: '', IconId: '', Name: '', Order: 0 };
+    expect(bodies).toEqual([
+      {
+        MainElementClass: 'ubt-services-carousel',
+        Local_ServicesPerPage: { List: [{ PageNumber: 1, ServiceItem: { List: Array(5).fill(emptyItem) } }] },
+        ExternalAppPopUp_Id: '',
+        Local_ExternalApp_PopUpInfo: { AppName: '', PackageName: '', IconId: '' },
+        ItemPerPage: 6,
+        ForceAddService: false,
+      },
+    ]);
+    expect(feed.services.map((s) => s.id)).toEqual(['Orbit', 'LDM', 'Assemble', 'Trove', 'MyCalendar', 'MyNotes']);
+    expect(feed.externalLinksElGusto).toBe('https://elgustoglobal.com/');
+    expect(feed.externalPackagesTrove).not.toBe('');
   });
 
   it('a failed fetch raises the CommunicationException of callAction', async () => {

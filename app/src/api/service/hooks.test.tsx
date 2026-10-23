@@ -2,8 +2,18 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { useUserServicesQuery } from './hooks';
+import { useFeedServicesQuery, useUserServicesQuery } from './hooks';
 import { serviceKeys } from './keys';
+import type { FeedServicesVariables } from './types';
+
+const FEED_VARIABLES: FeedServicesVariables = {
+  mainElementClass: 'ubt-services-carousel',
+  servicesPerPage: [],
+  externalAppPopUpId: '',
+  externalAppPopUpInfo: { appName: '', packageName: '', iconId: '' },
+  itemPerPage: 6,
+  forceAddService: false,
+};
 
 /** A client with the library defaults (retry 3), so the tests see the options of the hook. */
 function providerOf(client: QueryClient) {
@@ -24,6 +34,38 @@ afterEach(() => {
 describe('service query keys', () => {
   it('the user key has no input', () => {
     expect(serviceKeys.user()).toEqual(['service', 'user']);
+  });
+
+  it('the feed key has no input, and is not the user key', () => {
+    expect(serviceKeys.feed()).toEqual(['service', 'feed']);
+  });
+});
+
+describe('useFeedServicesQuery', () => {
+  it('keeps the services after the block closes, shows them on the next mount and fetches again', async () => {
+    const client = new QueryClient();
+    const first = renderHook(() => useFeedServicesQuery(FEED_VARIABLES), { wrapper: providerOf(client) });
+    await waitFor(() => {
+      expect(first.result.current.isSuccess).toBe(true);
+    });
+    expect(first.result.current.data?.services).toHaveLength(6);
+    first.unmount();
+    const second = renderHook(() => useFeedServicesQuery(FEED_VARIABLES), { wrapper: providerOf(client) });
+    expect(second.result.current.data?.services).toHaveLength(6);
+    await waitFor(() => {
+      expect(calls()).toEqual(['DataActionGetServices', 'DataActionGetServices']);
+    });
+  });
+
+  it('does not retry a failed call', async () => {
+    sessionStorage.setItem('mock:mock', 'error');
+    const { result } = renderHook(() => useFeedServicesQuery(FEED_VARIABLES), {
+      wrapper: providerOf(new QueryClient()),
+    });
+    await waitFor(() => {
+      expect(result.current.isError).toBe(true);
+    });
+    expect(calls()).toEqual(['DataActionGetServices']);
   });
 });
 

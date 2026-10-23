@@ -1,30 +1,33 @@
-/** @origin UBTConnect.Home.HomeFeed */
 import { useCallback, useEffect, useState } from 'react';
-import { DialogExitConfirmation, useViewState } from '@/platform/navigation';
-import { NotificationIcon } from '@/components/notification/NotificationIcon';
-import { BottomBar } from '@/components/layout/BottomBar';
-import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { CommunityPopulation } from '@/components/feed/CommunityPopulation';
-import { EmbeddedFeed } from '@/components/feed/EmbeddedFeed';
-import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
-import { HomeLayout } from '@/components/layout/HomeLayout';
-import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UpdateListItem } from '@/components/feed/UpdateListItem';
-import { Connect_BottomBar_Items, Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/lib/structures';
-import { ShareableObject } from '@/components/share/ShareableObject';
-import { ShareSheetContainer } from '@/containers/ShareSheet';
-import { useOsNavigate } from '@/platform/navigation';
+import { useCommunityPopulationQuery } from '@/api/member';
+import type { UpdateItem } from '@/api/update';
+import { DialogExitConfirmation, useOsNavigate, useViewState } from '@/platform/navigation';
+import { useFlagOn } from '@/platform/flags/flags';
 import { APP_ID } from '@/platform/navigation/paths';
 import { useEmbeddedFeed } from '@/platform/session/useEmbeddedFeed';
 import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
-import { useCommunityPopulationQuery } from '@/api/member';
-import { NULL_DATE } from './api';
+import { NotificationIcon } from '@/components/notification/NotificationIcon';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
+import { HomeLayout } from '@/components/layout/HomeLayout';
+import { CommunityPopulation } from '@/components/feed/CommunityPopulation';
+import { EmbeddedFeed } from '@/components/feed/EmbeddedFeed';
+import { UpdateListItem } from '@/components/feed/UpdateListItem';
+import { ShareableObject } from '@/components/share/ShareableObject';
+import { ShareSheetContainer } from '@/containers/ShareSheet';
+import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Connect_BottomBar_Items, Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/lib/structures';
 import { AppLogo_White } from './components/AppLogo_White';
 import { FeedBlock_Services } from './components/FeedBlock_Services';
 import { FeedBlock_Updates } from './components/FeedBlock_Updates';
 import { Section_FeedWrapper } from './components/Section_FeedWrapper';
-import type { UpdateItem } from './types';
+import { useFeedServices } from './hooks/useFeedServices';
+import { useFeedUpdates, type FeedUpdatesEvents } from './hooks/useFeedUpdates';
+
+/** OutSystems NullDate() as it travels on the wire: the In_UpdateDate of ShareSheet when nothing is shared. */
+const NULL_DATE = '1900-01-01';
 
 const EMPTY_UPDATE_ITEM: UpdateItem = {
   updateItemId: '0',
@@ -42,7 +45,32 @@ const EMPTY_UPDATE_ITEM: UpdateItem = {
   hasShare: false,
 };
 
-/** UBTConnect Home.HomeFeed (p:UBTConnect.Home.HomeFeed.mvc.js: model :1-79, view :140-640, controller :645-1150). */
+/* The two blocks of the screen with flows. Each one is a small component that calls the hook of the block and gives the
+   result to the view of the block, so the flows live as long as the block, and a change of the block state renders only
+   the block, as in OutSystems:
+   - FeedBlock_Services `$b5`, with the inputs of HomeFeed (ItemPerPage default 6, ForceAddService False).
+   - FeedBlock_Updates `$b9`. Section_Updates removes it after Event_NoUpdates, so a view that the view cache restores
+     with HasUpdates False does not fetch the updates. */
+
+function FeedServices() {
+  const hasCustomEvents = useFlagOn('C2EnableCustomServices'); // GetHasCustomEvents (default-only, on)
+  const hasNewLDM = useFlagOn('C2NewLDM'); // GetHasNewLDM (default-only, on)
+  const services = useFeedServices({ itemPerPage: 6, forceAddService: false }, { hasNewLDM });
+  return <FeedBlock_Services id="$b5" hasCustomEvents={hasCustomEvents} {...services} />;
+}
+
+function FeedUpdates(events: FeedUpdatesEvents) {
+  const hasCarouselEnabled = useFlagOn('C2EnableCarousel'); // GetHasCarouselEnabled (default-only, on)
+  const hasExtendedShare = useFlagOn('C2ExtendedShare'); // GetHasExtendedShare (default-only, on)
+  return <FeedBlock_Updates id="$b9" {...useFeedUpdates(events, { hasCarouselEnabled, hasExtendedShare })} />;
+}
+
+/** @origin UBTConnect.Home.HomeFeed
+    The home screen: the home layout with the logo, the notification bell and the search, then the services card, the
+    community population, the latest updates (with "View all") and the feed, the bottom bar, and the share sheet for an
+    update or a feed item. The flows of the shared blocks are in their hooks (useNotificationIcon,
+    useCommunityPopulationQuery, useEmbeddedFeed); the flows of the blocks of the screen are in useFeedServices and
+    useFeedUpdates. */
 export default function HomeFeed() {
   const navigate = useOsNavigate();
   // The flows of the shared blocks: App_NotificationIcon, FeedBlock_CommunityPopulation (DataActionFetchCount) and
@@ -50,14 +78,14 @@ export default function HomeFeed() {
   const notificationIcon = useNotificationIcon();
   const communityPopulation = useCommunityPopulationQuery();
   const embeddedFeed = useEmbeddedFeed();
-  // Screen variables kept by the view cache (P-BACK).
+  // Screen variables that the view cache keeps (P-BACK).
   const [hasUpdates, setHasUpdates] = useViewState('HasUpdates', true);
   const [shareableUpdateItem, setShareableUpdateItem] = useViewState('ShareableUpdateItem', EMPTY_UPDATE_ITEM);
   const [isShareOpen, setIsShareOpen] = useViewState('IsShareOpen', false);
   const [shareableObjectId, setShareableObjectId] = useViewState('ShareableObjectId', '');
   const [shareObjectTypeId, setShareObjectTypeId] = useViewState('ShareObjectTypeId', '');
   const [shareableFeedItem, setShareableFeedItem] = useViewState<UI_ShareableObject_Generic>('ShareableFeedItem', {});
-  // OnInitialize: IsScreenInitialized = False; OnReady: True (:700-720, :820-830).
+  // IsScreenInitialized: False in OnInitialize, True in OnReady.
   const [isScreenInitialized, setIsScreenInitialized] = useState(false);
   useEffect(() => {
     let alive = true;
@@ -69,10 +97,11 @@ export default function HomeFeed() {
     };
   }, []);
 
+  // Handler_NoUpdates
   const onNoUpdates = useCallback(() => {
     setHasUpdates(false);
-  }, [setHasUpdates]); // Handler_NoUpdates
-  // Handler_ShareUpdate (:840-860)
+  }, [setHasUpdates]);
+  // Handler_ShareUpdate
   const onShareUpdate = useCallback(
     (_updateItemId: string, item: UpdateItem) => {
       setShareObjectTypeId(Type_ShareObject.Update);
@@ -82,7 +111,7 @@ export default function HomeFeed() {
     },
     [setShareObjectTypeId, setShareableObjectId, setShareableUpdateItem, setIsShareOpen],
   );
-  // Handler_ShareFeed (:745-790)
+  // Handler_ShareFeed
   const onShareFeed = (shareId: string, title: string, subtitle: string, imageUrl: string) => {
     setShareObjectTypeId(Type_ShareObject.Feed);
     setShareableObjectId(shareId);
@@ -103,7 +132,7 @@ export default function HomeFeed() {
         id="$b1"
         sVGHeight="260px"
         contentBackgroundColor={UBT_Color.Neutral4}
-        // OnSearchClick → OnClick_Search: navigate to /UBTConnect/Search (HomeFeed.mvc.js:159-166, :708-723)
+        // OnSearchClick → OnClick_Search
         onOnSearchClick={() => {
           navigate(`/${APP_ID}/Search`);
         }}
@@ -119,7 +148,7 @@ export default function HomeFeed() {
               showHeader={false}
               showViewAll={false}
             >
-              <FeedBlock_Services id="$b5" forceAddService={false} />
+              <FeedServices />
             </Section_FeedWrapper>
             <Section_FeedWrapper
               id="Section_CommunityPopulation"
@@ -150,7 +179,7 @@ export default function HomeFeed() {
                   navigate(`/${APP_ID}/Updates_SingleList`);
                 }} // Section_UpdatesOnClick_ViewAll
               >
-                <FeedBlock_Updates id="$b9" onEventNoUpdates={onNoUpdates} onEventShare={onShareUpdate} />
+                <FeedUpdates onEventNoUpdates={onNoUpdates} onEventShare={onShareUpdate} />
               </Section_FeedWrapper>
             )}
             <EmbeddedFeed id="$b10" {...embeddedFeed} onEventShare={onShareFeed} />

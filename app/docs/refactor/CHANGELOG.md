@@ -472,3 +472,8 @@
 
 - MSW is out of the entry: `src/mocks/scenarioParams.ts` holds `scenario` and `latency`; `scenario.ts` re-exports them. The app-start unread-messages call is in `src/api/message/unreadMessages.ts` (W18 narrow module); `repository.ts` and `mapper.ts` re-export it.
 - HomeFeed first load 246.02 to 243.05 kB gzip (limit 248.22); Login 184.02 kB. Later trim candidates: Vite preload map, the two generated route tables, Leaflet json and bookmark code in `shared/UBTConnect/lib/actions.ts` (see F17).
+
+## P6-G3-B-HomeFeed-Page - refactor(P6-G3-B): HomeFeed page part
+
+- FeedBlock_Services, FeedBlock_Updates and Dialog_GoExternalApp are hooks in `pages/HomeFeed/hooks` (`useFeedServices`, `useFeedUpdates`, `goToExternalApp`), called from two binding components in the page file, plus props-only components. GetServices is in `api/service` with the key `['service', 'feed']`. `api.ts` and `types.ts` are deleted; `// @os-block` is now `@origin` in Section, Section_FeedWrapper and AppLogo_White.
+- HomeFeed first load grew 1.11 kB gzip. W24 accepted this once. After P6-F16 the margin is 4.20 kB (244.02 kB, limit 248.22).

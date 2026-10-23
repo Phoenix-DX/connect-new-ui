@@ -1,4 +1,3 @@
-// @os-block UBTConnect.App_Common_Blocks.Section
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
@@ -19,7 +18,8 @@ export interface SectionProps {
 
 /** UBTConnect App_Common_Blocks.Section (Section.mvc.js:172-235): one CustomContainer (transparent or neutral-0
     background, vertical padding small, horizontal base when AddHorizontalPadding, margin top) holding the Header and
-    Content placeholders (captured dom/default.html:123-129). */
+    Content placeholders (captured dom/default.html:123-129).
+    @origin UBTConnect.App_Common_Blocks.Section */
 export function Section({
   id,
   isTransparentBackground = false,

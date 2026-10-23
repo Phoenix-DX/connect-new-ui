@@ -3,6 +3,8 @@ import {
   fromCurrentService,
   toChangeServicesOrderInputs,
   toCurrentService,
+  toFeedServices,
+  toFeedServicesVariablesWire,
   toUserServices,
   type CurrentServiceWire,
   type ServiceWire,
@@ -119,5 +121,56 @@ describe('service mapper', () => {
       ['Trove', '0'],
     ]);
     expect(inputs.CurrentServices.List[1]?.Connect_Service_User.LastChangedOn).toBe('1900-01-01T00:00:00');
+  });
+
+  it('toFeedServices keeps the favourites in the server order, and the external links and packages', () => {
+    const feed = toFeedServices({
+      List: { List: [serviceWire('Orbit', 'Orbit', 1), serviceWire('Trove', 'Trove', 2)] },
+      ExternalLinks_ElGusto: 'https://gusto.example.org/',
+      ExterrnalPackages_CommunityTradelink: 'org.example.tradelink',
+      ExterrnalPackages_HR100: 'org.example.hr100',
+      ExterrnalPackages_Trove: 'org.example.trove',
+    });
+    expect(feed.services.map((s) => [s.id, s.label, s.order, s.iconId])).toEqual([
+      ['Orbit', 'Orbit', 1, 'connect-icon-orbit'],
+      ['Trove', 'Trove', 2, 'connect-icon-trove'],
+    ]);
+    expect(feed).toEqual(
+      expect.objectContaining({
+        externalLinksElGusto: 'https://gusto.example.org/',
+        externalPackagesCommunityTradelink: 'org.example.tradelink',
+        externalPackagesHR100: 'org.example.hr100',
+        externalPackagesTrove: 'org.example.trove',
+      }),
+    );
+  });
+
+  it('toFeedServicesVariablesWire sends the screen variables of the block, with the keys in the wire order', () => {
+    const wire = toFeedServicesVariablesWire({
+      mainElementClass: 'ubt-services-carousel',
+      servicesPerPage: [{ pageNumber: 1, serviceItems: [{ id: '', iconId: '', name: '', order: 0 }] }],
+      externalAppPopUpId: '',
+      externalAppPopUpInfo: { appName: '', packageName: '', iconId: '' },
+      itemPerPage: 6,
+      forceAddService: false,
+    });
+    expect(wire).toEqual({
+      MainElementClass: 'ubt-services-carousel',
+      Local_ServicesPerPage: {
+        List: [{ PageNumber: 1, ServiceItem: { List: [{ Id: '', IconId: '', Name: '', Order: 0 }] } }],
+      },
+      ExternalAppPopUp_Id: '',
+      Local_ExternalApp_PopUpInfo: { AppName: '', PackageName: '', IconId: '' },
+      ItemPerPage: 6,
+      ForceAddService: false,
+    });
+    expect(Object.keys(wire)).toEqual([
+      'MainElementClass',
+      'Local_ServicesPerPage',
+      'ExternalAppPopUp_Id',
+      'Local_ExternalApp_PopUpInfo',
+      'ItemPerPage',
+      'ForceAddService',
+    ]);
   });
 });

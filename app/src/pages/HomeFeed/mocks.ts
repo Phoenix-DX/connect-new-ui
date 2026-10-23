@@ -1,8 +1,13 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { recordedHandler } from '@/mocks/fixtures';
 import { updateItems } from '@/shared/UBTConnect/Directory_Updates/mocks';
-import type { UpdateItemWire } from './types';
+
+/** Connect_Updates_CS.UI_UpdateItem (FetchUpdates.UI_UpdateItemList), as the contract describes it. */
+type UpdateItemWire = ActionOutputs<
+  PathOf<'UBTConnect', 'FeedBlock_Updates/DataActionFetchUpdates'>
+>['UI_UpdateItemList']['List'][number];
 
 /* HomeFeed own blocks (FeedBlock_CommunityPopulation, Embedded_FeedCMS, App_NotificationIcon, the bottom bar and the
    app start calls are mocked by their shared / shell owners).
