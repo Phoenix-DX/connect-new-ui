@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
+import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
 import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
 import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
 import { UBT_ImageCardType, UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
@@ -88,7 +88,7 @@ export function OneSchoolGlobal_List({
                     inShowSubtitle
                     placeholderBottomSectionContent={
                       <StopPropagationHelper id={`${item}-$b5`}>
-                        <Directory_EntityDetailsActions
+                        <EntityDetailsActionsContainer
                           id={`${item}-$b6`}
                           entityType={Connect_Entity.OneSchoolGlobal}
                           entityId={card.communityBusinessId}

@@ -6,7 +6,7 @@ import { isOn } from '@/platform/flags/flags';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { setPreloadObject, useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { Directory_EmptyState } from '@/shared/UBTConnect/Directory_EmptyState';
+import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
@@ -104,7 +104,7 @@ export function Locality_Households_HouseholdList({
       >
         <SkeletonSection id={`${b}-$b2`} inIsLoading={!state.isDataFetched}>
           {state.list.length === 0 ? (
-            <Directory_EmptyState id={`${b}-$b3`} entityTypeId={Connect_Entity.Household} />
+            <DirectoryEmptyState id={`${b}-$b3`} entityTypeId={Connect_Entity.Household} />
           ) : (
             <OSList
               id={`${b}-locality_Households`}

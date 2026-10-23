@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { Directory_EmptyState } from '@/shared/UBTConnect/Directory_EmptyState';
+import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
@@ -133,7 +133,7 @@ export function Locality_OneSchoolGlobal({
         }}
       >
         {state.out_OneSchoolGlobal_List2.length === 0 ? (
-          <Directory_EmptyState id={`${b}-$b2`} entityTypeId={Connect_Entity.OneSchoolGlobal} />
+          <DirectoryEmptyState id={`${b}-$b2`} entityTypeId={Connect_Entity.OneSchoolGlobal} />
         ) : (
           <OneSchoolGlobal_List
             id={`${b}-$b3`}

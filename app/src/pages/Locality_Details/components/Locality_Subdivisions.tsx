@@ -6,8 +6,8 @@ import { isOn } from '@/platform/flags/flags';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { setPreloadObject, useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { Directory_EmptyState } from '@/shared/UBTConnect/Directory_EmptyState';
-import { SupperMeeting_ImageCard_Content } from '@/shared/UBTConnect/SupperMeeting_ImageCard_Content';
+import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
+import { SupperMeetingCardContent } from '@/components/directory/SupperMeetingCardContent';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
 import { UBT_Color, UBT_ImageCardType, UBT_ImageSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
@@ -150,7 +150,7 @@ export function Locality_Subdivisions({ id, localityId = '0' }: Locality_Subdivi
           }}
         >
           {list.length === 0 && !state.subdivision_Card_List_IsLoading ? (
-            <Directory_EmptyState id={`${b}-$b3`} entityTypeId={Connect_Entity.SupperMeetings_aka_Subdivisions} />
+            <DirectoryEmptyState id={`${b}-$b3`} entityTypeId={Connect_Entity.SupperMeetings_aka_Subdivisions} />
           ) : (
             <OSList
               id={`${b}-Subdivision_List`}
@@ -181,10 +181,7 @@ export function Locality_Subdivisions({ id, localityId = '0' }: Locality_Subdivi
                         />
                       }
                       placeholderContent={
-                        <SupperMeeting_ImageCard_Content
-                          id={`${item}-$b6`}
-                          inSubdivisionCardContent={row.card.content}
-                        />
+                        <SupperMeetingCardContent id={`${item}-$b6`} inSubdivisionCardContent={row.card.content} />
                       }
                     />
                   </div>

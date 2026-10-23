@@ -32,10 +32,10 @@ import {
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
-import { NonMember_ListItem } from '@/shared/UBTConnectLibrary/NonMember_ListItem';
+import { NonMemberListItem } from '@/components/household/NonMemberListItem';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { Button } from '@/shared/UBTConnect_Utils/Button';
-import { NotesSheet } from '@/shared/UBTConnect_Utils/NotesSheet';
+import { NotesSheet } from '@/components/note/NotesSheet';
 import { UBT_ImageSize as UBTConnect_Utils_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import {
@@ -451,7 +451,7 @@ export function HouseholdRelations_Block({
                     sourceDataFetchStatus={variables.Get_ParentHouseholdDetails.dataFetchStatus}
                   >
                     {(sibling) => (
-                      <NonMember_ListItem
+                      <NonMemberListItem
                         isEnabled
                         title={sibling.Title ?? ''}
                         marriedPartnerTakenText={sibling.MarriagePartnerTakenText ?? ''}

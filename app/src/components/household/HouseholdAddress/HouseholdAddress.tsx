@@ -11,7 +11,7 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { SeeMoreSection } from '@/shared/UBTConnectLibrary/SeeMoreSection';
-import { AddressPopup_Wrapper } from '@/shared/UBTConnect_Utils/AddressPopup_Wrapper';
+import { AddressPopupWrapper } from '@/components/contact/AddressPopupWrapper';
 import type { Directory_Coordinates } from '@/shared/UBTConnect_Utils/lib/structures';
 import { UBT_Icons2 as UBTConnect_Icons2, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
 import type { UI_Household_Card_Content } from '@/shared/UBTConnect/lib/structures';
@@ -54,7 +54,7 @@ export function HouseholdAddress({
       {isShownHousehold(content) && (content.Address ?? '') !== '' && (
         <div className="householdAddress" data-container="">
           <CustomContainer options={linkContainerOptions}>
-            <AddressPopup_Wrapper
+            <AddressPopupWrapper
               iconVisible
               isEnabled={isEnabled}
               inAddress={content.Address ?? ''}

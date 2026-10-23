@@ -504,3 +504,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T03:31:41 P6-G4-A stage test
 - 2026-10-24T03:38:32 P6-G4-A stage docs
 - 2026-10-24T03:39:43 P6-G4-A stage commit
+- 2026-10-24T03:39:47 P6-G4-A done 8d304bde: ci: pass (rerun; flakes F11, F20); diffcheck --move ok (94 renames, 13 origin tags); parity strict: 13/0 (OutSystems), 13/0 (self); arch baseline 0 new; bundle HomeFeed 244.13/248.22, Login 184.17/193.84 kB gzip
+- 2026-10-24T03:39:47 P6-G4-B-Shared started
+- 2026-10-24T03:39:47 P6-G4-B-Shared stage dev
+- 2026-10-24T03:41:49 P6-G4-B-Shared stage test
+- 2026-10-24T03:51:43 P6-G4-B-Shared stage docs
+- 2026-10-24T03:53:24 P6-G4-B-Shared stage commit

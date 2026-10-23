@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { legacyBookmarksCollection, legacyBookmarksOfGroup } from '@/shared/Connect2_MyBookmarks_MUI/mocks';
-import { bookmarksCollection } from '@/shared/UBTConnect/Directory_EntityDetailsActions/mocks';
+import { bookmarksCollection } from '@/containers/EntityDetailsActions/mocks';
 import {
   addAssembleBookmark,
   addC2Bookmark,

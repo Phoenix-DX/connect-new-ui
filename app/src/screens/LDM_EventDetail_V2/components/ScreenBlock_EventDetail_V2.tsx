@@ -9,7 +9,7 @@ import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { EventDetail_SubSection } from '@/shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection';
 import { ErrorScreen } from '@/shared/Connect2_OrbitMobile_MUI/ErrorScreen';
-import { ContactByMessage_Wrapper } from '@/shared/UBTConnect_Utils/ContactByMessage_Wrapper';
+import { ContactByMessage } from '@/components/contact/ContactByMessage';
 import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { cleanAddressForMaps, getOperatingSystem } from '@/shared/UBTConnect_Utils/lib/actions';
@@ -559,7 +559,7 @@ export function ScreenBlock_EventDetail_V2({
               onEventCall={closeContactByPhone}
               onEventCancel={closeContactByPhone}
             />
-            <ContactByMessage_Wrapper
+            <ContactByMessage
               id={`${scope}-$b18`}
               inContactPopupData={state.contactByMessageData}
               onEventCancel={closeContactByMessage}

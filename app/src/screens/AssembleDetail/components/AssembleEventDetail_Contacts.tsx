@@ -7,7 +7,7 @@ import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
 import { NC_Result_Item__Image } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Image';
 import { Person_Contact_Options } from '@/shared/Connect2_LegacyShared/Person_Contact_Options';
 import { getCacheableSignedPhotoURL, getSignedPhotosInBulk } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { ContactByMessage_Wrapper } from '@/shared/UBTConnect_Utils/ContactByMessage_Wrapper';
+import { ContactByMessage } from '@/components/contact/ContactByMessage';
 import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import type { ContactByPhonePopupData } from '@/components/contact/ContactPopupByPhone/types';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
@@ -232,7 +232,7 @@ export function AssembleEventDetail_Contact({
         onEventCall={closeCallPopup}
         onEventCancel={closeCallPopup}
       />
-      <ContactByMessage_Wrapper
+      <ContactByMessage
         id={`${scope}-$b5`}
         inContactPopupData={{ Email: c.Email, Phone: c.MobilePhoneNumber, ContactPopupData: contactPopupData }}
         onEventCancel={() => {

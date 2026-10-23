@@ -56,8 +56,8 @@ The `Bookmark` type has `dateCreatedUtc`, the sort key of the `MyBookmarks` memo
 `note/` has the same files. It holds 6 calls.
 
 - DataActionGetNotes and ActionGet_NotePills_ByNoteCategoryIds (Notes)
-- DataActionFetchNotes (Directory_EntityDetailsActions)
-- ServiceAPIUpdateNote and ServiceAPIDeleteNoteByNoteId (NoteListActions)
+- DataActionFetchNotes (EntityDetailsActionsContainer)
+- ServiceAPIUpdateNote and ServiceAPIDeleteNoteByNoteId (NoteListActionsContainer)
 - ServiceAPIAddNote (NotesSheet).
 
 The old `api.ts` files of these four owners re-export it under their old names. `screens/Notes/types.ts` keeps the screen types. The client actions `Get_Note_DynamicPills` and `GetNotes_FilterYear` stay in `screens/Notes/api.ts`, because they read the local notes and the session (`platform/`), and `api/` does not import `platform/`.
@@ -66,7 +66,7 @@ The AddNote mapper drops `ItemId` and `NoteCategoryId` of the answer, because no
 
 `message/` has the same files. It holds 19 calls of 11 screens: ContactByEmailLDMCoordinator, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactByEmailOrbitHelpdesk, ContactByEmailOrbitHost, ContactUsDetails, EmailContact, EmailTarget, LDM_Email_V2, MessageDetail and MessageList. It also holds DataActionFetchContactDetails (Directory_EntityDetailsActions), GetMemberContactByCacheKey and GetNumberUnreadMessages (`platform/bootstrap/startup.ts`).
 
-The old `api.ts` and `types.ts` files of these screens re-export it under their old names. `Directory_EntityDetailsActions/api.ts` re-exports `fetchEntityContactDetails` as `fetchContactDetails`. `shared/Connect2_LegacyShared/lib` uses the domain too.
+The old `api.ts` and `types.ts` files of these screens re-export it under their old names. `containers/EntityDetailsActions/api.ts` re-exports `fetchEntityContactDetails` as `fetchContactDetails`. `shared/Connect2_LegacyShared/lib` uses the domain too.
 
 The domain has one e-mail form type, `ContactByEmailForm`, and one mapper, `toOrbitContactEmailInputs`, for three screens that had their own copies. `sendContactEmail` returns IsSuccess. `fetchEntityContactDetails` does not return LocalityId, because no code reads it. Wrapper_NotificationOpened and Wrapper_MarkAllAsReadNotifications are in `notification/`.
 

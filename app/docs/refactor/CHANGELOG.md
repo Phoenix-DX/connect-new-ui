@@ -488,3 +488,10 @@
 
 - The 13 G4 routes (BrowseCountries, BrowseDirectory, CountryList, CountryDetails, HouseholdCarousel, Household_Relations, Locality_Details, OneSchoolGlobalDetails, Photobook, SupperMeeting_Carousel, SupperMeeting_Details, CommunityBusinessDetails_CoomingSoon, Assemble_BrowseByCountry) moved from `src/screens/<R>` to `src/pages/<R>`. `index.tsx` is now `<R>Page.tsx`, with one `@origin` tag per page.
 - Shared blocks of these routes stay in `shared/` until step B. Parity `strict` on 13 routes: clean on both references.
+
+## P6-G4-B-Shared - refactor(P6-G4-B): move the shared blocks of group G4
+
+- 38 blocks of `src/shared/` (293 files, phase P6-G4 rows of `move-map.csv`) moved to `src/components/{assemble,contact,directory,household,layout,note}/`, `src/containers/NoteListActions/` and `src/containers/EntityDetailsActions/`. 31 files took the target name (path, component and `<Name>Props`). Each block has an `@origin` tag. The 38 rows are set to `moved`.
+- Gate W15: `arch-baseline.csv` got 38 rows for Rule 4 warnings that the move made visible. Owners: 2 to P6-G4-B-CountryList, 10 to P6-G4-B-HouseholdCarousel, 1 to P6-G4-B-SupperMeeting_Carousel, 7 to P6-G4-B-SupperMeeting_Details, 18 to P7.
+- Six colocated `mocks.ts` moved. Four are under `components/` (LocalityListDetail, SupperMeetingDetails, SupperMeetingHouseholdList, NotesSheet). Two are under `containers/` (NoteListActions, EntityDetailsActions). The globs of `src/mocks/handlers.ts` pick them up. The handler set is unchanged (155).
+- Tool fix: `migration/tools/refactor/arch_baseline.py check --move-step` now counts an old import of a module that moves in the same phase as the same module under its new path. Self-check: `migration/tools/refactor/arch_baseline_selfcheck.py`.

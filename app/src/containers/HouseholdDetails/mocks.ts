@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { contractHandler } from '@/mocks/contract';
 import { markNoPhoto } from '@/shared/UBTConnect_Utils/UBT_LazyImage/mocks';
-import { markContactOnly } from '@/shared/UBTConnect/Directory_EntityDetailsActions/mocks';
+import { markContactOnly } from '@/containers/EntityDetailsActions/mocks';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { HOUSEHOLD_DETAILS_ID, membersOf, sampleHouseholds } from './mockData';
 

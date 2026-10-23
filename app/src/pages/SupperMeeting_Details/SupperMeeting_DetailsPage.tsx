@@ -1,7 +1,7 @@
 /** @origin UBTConnect.Directory_SupperMeetings.SupperMeeting_Details */
 import { useSearchParams } from 'react-router';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { SupperMeeting_DetailsBlock } from '@/shared/UBTConnect/SupperMeeting_DetailsBlock';
+import { SupperMeetingDetails } from '@/components/directory/SupperMeetingDetails';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { readSupperMeetingDetailsInputs } from './api';
@@ -20,7 +20,7 @@ export default function SupperMeeting_Details() {
       id="$b1"
       inAlignTitleLeft={false}
       placeholderHeaderTitle={<CustomText id="$b2" inText="Supper Meeting" inTextOptions={{}} />}
-      content={<SupperMeeting_DetailsBlock id="$b3" inSubdivsionId={In_SubdivsionId} />}
+      content={<SupperMeetingDetails id="$b3" inSubdivsionId={In_SubdivsionId} />}
       placeholderCommonUIInsideLayout={<CommonUiLayout id="$b4" />}
     />
   );

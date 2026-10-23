@@ -15,7 +15,7 @@ import { ComingSoon } from '@/shared/UBTConnectLibrary/ComingSoon';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { HorizontalTagList } from '@/shared/UBTConnectLibrary/HorizontalTagList';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { Layout_MainPages } from '@/shared/UBTConnectLibrary/Layout_MainPages';
+import { MainLayout } from '@/components/layout/MainLayout';
 import {
   UBT_ColumnBehaviour,
   UBT_Color,
@@ -249,7 +249,7 @@ function Locality_DetailsScreen() {
   );
 
   return (
-    <Layout_MainPages
+    <MainLayout
       id={b(1)}
       placeholderHeaderTitle="Directory"
       placeholderHeaderInput={

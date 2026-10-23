@@ -1,12 +1,12 @@
 // @os-block UBTConnect.Directory_Interchange.Directory_Interchange_StatisticsList
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Directory_EmptyState } from '@/shared/UBTConnect/Directory_EmptyState';
-import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
+import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
+import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { Statistics_ListItem } from '@/shared/UBTConnectLibrary/Statistics_ListItem';
+import { StatisticsListItem } from '@/components/directory/StatisticsListItem';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import type { InterchangeItem } from '@/pages/Locality_Details/types';
 
@@ -63,7 +63,7 @@ export function Directory_Interchange_StatisticsList({
             {(item, i) => {
               const row = `${b}-l1-3679_${String(i)}`;
               return (
-                <Statistics_ListItem
+                <StatisticsListItem
                   id={`${row}-$b3`}
                   inHasActionsMenu
                   inHighlightWords={inHighlightWords}
@@ -74,7 +74,7 @@ export function Directory_Interchange_StatisticsList({
                     handlerClicked(item);
                   }}
                   actionsMenu={
-                    <Directory_EntityDetailsActions
+                    <EntityDetailsActionsContainer
                       id={`${row}-$b4`}
                       entityType={Connect_Entity.Interchange}
                       entityId={item.interchangeLocalityId}
@@ -89,7 +89,7 @@ export function Directory_Interchange_StatisticsList({
           </OSList>
         </SkeletonSection>
         {inInterchangeList.length === 0 && !inIsLoading && (
-          <Directory_EmptyState id={`${b}-$b5`} entityTypeId={Connect_Entity.Interchange} location="in this locality" />
+          <DirectoryEmptyState id={`${b}-$b5`} entityTypeId={Connect_Entity.Interchange} location="in this locality" />
         )}
       </CustomContainer>
     </OSBlock>

@@ -2,7 +2,7 @@
 import { useSearchParams } from 'react-router';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { BlankSlate } from '@/shared/osui/BlankSlate';
-import { Layout_MainPages } from '@/shared/UBTConnectLibrary/Layout_MainPages';
+import { MainLayout } from '@/components/layout/MainLayout';
 import { StaticInput } from '@/shared/UBTConnectLibrary/StaticInput';
 import { readCommunityBusinessDetailsInputs } from './api';
 
@@ -18,7 +18,7 @@ export default function CommunityBusinessDetails_CoomingSoon() {
   readCommunityBusinessDetailsInputs(params);
 
   return (
-    <Layout_MainPages
+    <MainLayout
       id="$b1"
       // StaticInput binds only _handleError (:159-178): clicking it does nothing on this screen.
       placeholderHeaderInput={<StaticInput id="$b2" />}

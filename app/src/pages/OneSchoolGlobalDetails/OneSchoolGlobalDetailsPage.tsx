@@ -5,10 +5,10 @@ import { OSList } from '@/components/ui/os/OSList';
 import { useFlagOn } from '@/platform/flags/flags';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
+import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
 import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
-import { SubLayout_DirectoryDetailScreen } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen';
+import { DirectoryDetailLayout } from '@/components/layout/DirectoryDetailLayout';
 import { ComingSoon } from '@/shared/UBTConnectLibrary/ComingSoon';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
@@ -28,7 +28,7 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { AddressPopup_Wrapper } from '@/shared/UBTConnect_Utils/AddressPopup_Wrapper';
+import { AddressPopupWrapper } from '@/components/contact/AddressPopupWrapper';
 import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
@@ -172,7 +172,7 @@ export default function OneSchoolGlobalDetails() {
                   }}
                 >
                   <div className={isDataFetched ? 'school-address' : 'margin-top-s margin-bottom-xs'} data-container="">
-                    <AddressPopup_Wrapper
+                    <AddressPopupWrapper
                       id="$b11"
                       inCoordinates={coordinates}
                       inAddress={card.address}
@@ -210,7 +210,7 @@ export default function OneSchoolGlobalDetails() {
         PaddingSize: { GeneralSizeId: UBT_Size.Base },
       }}
     >
-      <Directory_EntityDetailsActions
+      <EntityDetailsActionsContainer
         id="$b14"
         contactPopUpOverrideOptions={contactOverrides}
         entityType={Connect_Entity.OneSchoolGlobal}
@@ -307,7 +307,7 @@ export default function OneSchoolGlobalDetails() {
       id="$b1"
       placeholderHeaderTitle={<CustomText id="$b2" inText="OneSchool Global" />}
       content={
-        <SubLayout_DirectoryDetailScreen
+        <DirectoryDetailLayout
           id="$b3"
           placeholderDetailCard={detailCard}
           placeholderCallToAction={callToAction}

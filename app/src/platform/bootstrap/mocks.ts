@@ -16,7 +16,7 @@ import {
   ORBIT_VEHICLE_TYPES,
 } from '@/mocks/fictional/orbit';
 import { allLegacyBookmarks } from '@/shared/Connect2_MyBookmarks_MUI/mocks';
-import { notesCollection } from '@/shared/UBTConnect_Utils/NoteListActions/mocks';
+import { notesCollection } from '@/containers/NoteListActions/mocks';
 import { currentUserId } from '@/platform/session/session';
 import { mockUserInformation } from '@/platform/session/mockUser';
 

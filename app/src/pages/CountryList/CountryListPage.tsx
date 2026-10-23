@@ -21,15 +21,15 @@ import { BottomBar } from '@/components/layout/BottomBar';
 import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
 import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { Directory_LegendBottomSheet } from '@/shared/UBTConnect/Directory_LegendBottomSheet';
+import { DirectoryLegendSheet } from '@/components/directory/DirectoryLegendSheet';
 import { CommunityPopulation } from '@/components/feed/CommunityPopulation';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
-import { Statistics_TypedItem } from '@/shared/UBTConnect/Statistics_TypedItem';
+import { StatisticsTypedItem } from '@/components/directory/StatisticsTypedItem';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { Layout_MainPages } from '@/shared/UBTConnectLibrary/Layout_MainPages';
+import { MainLayout } from '@/components/layout/MainLayout';
 import { getFlagURLByCountryCode } from '@/shared/UBTConnectLibrary/lib/actions';
 import type { ContainerOptions, TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
 import {
@@ -207,7 +207,7 @@ export default function CountryList() {
 
   return (
     <>
-      <Layout_MainPages
+      <MainLayout
         id="$b1"
         addHeaderGap={false}
         isGrayBackground
@@ -335,7 +335,7 @@ export default function CountryList() {
                       onStatisticsClicked(c.countryCode).catch(raiseToFlowHandler);
                     }}
                   >
-                    <Statistics_TypedItem
+                    <StatisticsTypedItem
                       id={`l1-${LIST_KEY}_${i}-$b24`}
                       inHasImage={c.avatarURL !== ''}
                       uICountryStatistics={{ UI_StatisticsTexts: c.texts, Name: c.title, ImageURL: c.avatarURL }}
@@ -350,7 +350,7 @@ export default function CountryList() {
         placeholderCommonUIInsideLayout={<CommonUiLayout id="$b26" />}
       />
       <CacheControl_UserInfo_Wrapper id="$b27" onResult={onUserInfo} />
-      <Directory_LegendBottomSheet
+      <DirectoryLegendSheet
         id="$b28"
         // no ShowLocalities: CountryList passes no input (view :1091-1093), the block's default True applies
         onSheetInitialized={(sheetId) => {

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { NULL_DATE_TIME, notesCollection } from '@/shared/UBTConnect_Utils/NoteListActions/mocks';
+import { NULL_DATE_TIME, notesCollection } from '@/containers/NoteListActions/mocks';
 import { addNote, deleteNote, fetchEntityNotes, fetchNoteCards, fetchNotePills, updateNote } from './repository';
 import type { EntityNotesCallInputs, NotesVariables } from './types';
 

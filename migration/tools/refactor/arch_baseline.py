@@ -7,7 +7,8 @@
   arch_baseline.py check --move-step <phase> --base <commit>
                            move-step mode (W15): a warning outside the baseline is accepted as a new row only when
                            its file is in a target folder of a src/shared/ row of move-map.csv with that phase and the
-                           same resolved module was imported by the old file at <base>; accepted rows are printed as
+                           same resolved module was imported by the old file at <base> (an old import of a module that also moves
+                           in this phase counts as the import of its new path); accepted rows are printed as
                            ADD lines (append them with an owner), any other new row fails
   arch_baseline.py list    rows and counts per owner
   arch_baseline.py write   create the baseline from the current warnings (first time only; refuses to overwrite)
@@ -116,10 +117,41 @@ def old_path_of(file: str, phase: str) -> str | None:
     return None
 
 
+def moved_modules(phase: str) -> list[tuple[str, str, str]]:
+    """(old dir, new dir, new stem) of each src/shared/ row of the phase, from move-map.csv."""
+    out = []
+    with (APP / "docs/refactor/move-map.csv").open(newline="") as fh:
+        for r in csv.DictReader(fh):
+            if r["phase"] == phase and r["source"].startswith("src/shared/"):
+                out.append((r["source"], posixpath.dirname(r["target"]), posixpath.basename(r["target"]).split(".")[0]))
+    return out
+
+
+def translate(module: str, moved: list[tuple[str, str, str]]) -> set[str]:
+    """New-path forms of an old resolved module that moves in this phase (same module under its new path)."""
+    for old_dir, new_dir, new_stem in moved:
+        if module == old_dir or module.startswith(old_dir + "/"):
+            rest = module[len(old_dir):]
+            old_stem = posixpath.basename(old_dir)
+            if rest.startswith("/" + old_stem):
+                rest = "/" + new_stem + rest[len(old_stem) + 1:]
+            out = {new_dir + rest}
+            if rest == "":
+                out.add(new_dir + "/" + new_stem)
+            return out
+    return set()
+
+
 def move_step_ok(row: tuple[str, str, str], phase: str, base: str) -> bool:
     f, spec, _ = row
     old = old_path_of(f, phase)
-    return old is not None and resolve(spec, f) in old_imports(base, old)
+    if old is None:
+        return False
+    moved = moved_modules(phase)
+    seen = old_imports(base, old)
+    for m in list(seen):
+        seen |= translate(m, moved)
+    return resolve(spec, f) in seen
 
 
 def cmd_check(argv: list[str]) -> int:

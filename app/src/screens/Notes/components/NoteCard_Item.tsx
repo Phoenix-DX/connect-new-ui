@@ -1,8 +1,8 @@
 // @os-block UBTConnect.Notes.NoteCard_Item
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { NoteListActions } from '@/shared/UBTConnect_Utils/NoteListActions';
-import { NotesSheet } from '@/shared/UBTConnect_Utils/NotesSheet';
+import { NoteListActionsContainer } from '@/containers/NoteListActions';
+import { NotesSheet } from '@/components/note/NotesSheet';
 import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
 import type { NoteCardItem } from '@/screens/Notes/types';
 import { child, scopeOf } from './ids';
@@ -74,7 +74,7 @@ export function NoteCard_Item({
         onOnClickTotalNotesIcon={openNoteSheet}
         notes={
           (notes.Note_Item_List ?? []).length > 0 && (
-            <NoteListActions
+            <NoteListActionsContainer
               id={child(p, 2)}
               inNoteCategoryId={item.noteCategoryId}
               inSearchString={inSearchString}

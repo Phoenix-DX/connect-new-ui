@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { HouseholdDetailsView } from '@/components/household';
 import { ShareableObject } from '@/components/share/ShareableObject';
 import { ShareSheetContainer } from '@/containers/ShareSheet';
-import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
+import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
 import { Connect_Entity, Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
 import type { HouseholdPreviewStructure, UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
 import {
@@ -71,7 +71,7 @@ export function HouseholdDetailsContainer({
   const { state, content } = details;
 
   const entityActions = (
-    <Directory_EntityDetailsActions
+    <EntityDetailsActionsContainer
       entityId={householdId}
       contactPopUpOverrideOptions={{ Name: content.Name ?? '' }}
       isEnabled={isEnabled}
@@ -84,7 +84,7 @@ export function HouseholdDetailsContainer({
     />
   );
   const renderMemberActions = (member: UI_HouseholdMember) => (
-    <Directory_EntityDetailsActions
+    <EntityDetailsActionsContainer
       enableOptions={{
         EnableCall: member.IsDeceased !== true,
         EnableEmail: member.IsDeceased !== true,

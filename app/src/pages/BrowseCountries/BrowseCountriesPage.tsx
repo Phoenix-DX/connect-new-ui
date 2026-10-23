@@ -3,7 +3,7 @@ import { useEffect, useReducer, useRef } from 'react';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
-import { StatisticsList, type TextStatisticsOptionsRecord } from '@/shared/UBTConnect/StatisticsList';
+import { StatisticsList, type TextStatisticsOptionsRecord } from '@/components/directory/StatisticsList';
 import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';

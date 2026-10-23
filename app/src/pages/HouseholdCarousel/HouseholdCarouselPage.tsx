@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { EntitiesCarousel } from '@/shared/UBTConnect/EntitiesCarousel';
+import { EntitiesCarousel } from '@/components/directory/EntitiesCarousel';
 import { Connect_Entity, Type_CarouselItemSwipeAction } from '@/shared/UBTConnect/lib/staticEntities';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';

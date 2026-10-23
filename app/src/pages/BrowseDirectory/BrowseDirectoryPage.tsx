@@ -6,18 +6,18 @@ import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { map_InvalidateSize } from '@/shared/Leaflet/lib/actions';
 import {
-  LeafletMap,
+  DirectoryMap,
   type MapOptions,
   type MarkerWithWindow,
   type TileLayer,
   type ZoomControlOptions,
-} from '@/shared/Leaflet/LeafletMap';
+} from '@/components/directory/DirectoryMap';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
-import { StatisticsList } from '@/shared/UBTConnect/StatisticsList';
-import { SubLayout_Browse_Section } from '@/shared/UBTConnect/SubLayout_Browse_Section';
+import { StatisticsList } from '@/components/directory/StatisticsList';
+import { BrowseSection } from '@/components/layout/BrowseSection';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
@@ -244,7 +244,7 @@ export default function BrowseDirectory() {
         <span data-expression="">{model.countryName === '' ? 'Browse Directory' : model.countryName}</span>
       }
       content={
-        <SubLayout_Browse_Section
+        <BrowseSection
           id="$b2"
           placeholderTopSection={
             <CustomContainer id="$b3" options={TOP_CONTAINER}>
@@ -266,7 +266,7 @@ export default function BrowseDirectory() {
           placeholderBottomSection={
             <>
               {model.Center.length !== 0 ? (
-                <LeafletMap
+                <DirectoryMap
                   id="LeafletMap"
                   tileLayer={TILE_LAYER}
                   markersList={model.MarkersList}

@@ -5,7 +5,7 @@ import { NotRegisteredException, UserException } from '@/legacy/os/os-exceptions
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { ContactByMessage_Wrapper } from '@/shared/UBTConnect_Utils/ContactByMessage_Wrapper';
+import { ContactByMessage } from '@/components/contact/ContactByMessage';
 import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import type {
@@ -332,7 +332,7 @@ export function ScreenBlock_MyEvents_V2({
               onEventCancel={closeContactByPhone}
               onEventCall={closeContactByPhone}
             />
-            <ContactByMessage_Wrapper
+            <ContactByMessage
               id={`${scope}-$b14`}
               inContactPopupData={state.contactByMessageData}
               onEventEmail={onHandleContactByMessageClickedEmail}

@@ -13,7 +13,7 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Member_ListItem } from '@/shared/UBTConnectLibrary/Member_ListItem';
-import { NonMember_ListItem } from '@/shared/UBTConnectLibrary/NonMember_ListItem';
+import { NonMemberListItem } from '@/components/household/NonMemberListItem';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import { getSkeletonList_UI_HouseholdMembers } from '@/shared/UBTConnect/lib/actions';
@@ -149,7 +149,7 @@ export function HouseholdMemberList({
             sourceDataFetchStatus={nonMembersDataFetchStatus}
           >
             {(member) => (
-              <NonMember_ListItem
+              <NonMemberListItem
                 marriageHighlightText={member.MarriageHighlightText ?? ''}
                 marriedPartnerTakenText={member.MarriagePartnerTakenText ?? ''}
                 deceasedCaption={member.LifeCycleText ?? ''}

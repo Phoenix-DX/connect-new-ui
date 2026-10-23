@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CarouselTag } from '@/shared/UBTConnect/CarouselTag';
+import { CarouselTag } from '@/components/directory/CarouselTag';
 import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
 import { UBT_ImageCardType } from '@/shared/UBTConnectLibrary/lib/staticEntities';

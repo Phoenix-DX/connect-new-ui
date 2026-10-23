@@ -1,10 +1,10 @@
 // @os-block Connect2_Assemble_MUI.Assemble.ScreenBlock_Assemble_Filter
 import { useEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Assemble_FilterLocalityByCountry } from '@/shared/Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry';
+import { AssembleLocalityFilter } from '@/components/assemble/AssembleLocalityFilter';
 import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
-import { LocalityListDetail } from '@/shared/Connect2_LegacyShared/LocalityListDetail';
+import { LocalityListDetail } from '@/components/assemble/LocalityListDetail';
 import { removeDiacritics } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIcon } from '@/components/layout/MenuIcon';
@@ -193,7 +193,7 @@ export function ScreenBlock_Assemble_Filter({
       {!showLocalitiesList ? (
         countryList
       ) : (
-        <Assemble_FilterLocalityByCountry
+        <AssembleLocalityFilter
           id={`${scope}-$b6`}
           countryName={countryName}
           countryCode={countryCode}

@@ -6,11 +6,11 @@ import { OSList } from '@/components/ui/os/OSList';
 import type L from '@/shared/Leaflet/lib/leaflet';
 import { map_InvalidateSize } from '@/shared/Leaflet/lib/actions';
 import type { MapOptions, MarkerWithWindow, TileLayer, ZoomControlOptions } from '@/shared/Leaflet/lib/structures';
-import { LeafletMap } from '@/shared/Leaflet/LeafletMap';
+import { DirectoryMap } from '@/components/directory/DirectoryMap';
 import { bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { Directory_LegendBottomSheet } from '@/shared/UBTConnect/Directory_LegendBottomSheet';
+import { DirectoryLegendSheet } from '@/components/directory/DirectoryLegendSheet';
 import { FilterSheetContainer } from '@/containers/FilterSheet';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
 import { Choice, Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
@@ -20,8 +20,8 @@ import type {
   Filter_Common_Options,
   UI_TypedStatistics,
 } from '@/shared/UBTConnect/lib/structures';
-import { Statistics_TypedItem } from '@/shared/UBTConnect/Statistics_TypedItem';
-import { SubLayout_Browse_Section } from '@/shared/UBTConnect/SubLayout_Browse_Section';
+import { StatisticsTypedItem } from '@/components/directory/StatisticsTypedItem';
+import { BrowseSection } from '@/components/layout/BrowseSection';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
@@ -272,7 +272,7 @@ export default function CountryDetails() {
         id="$b1"
         placeholderHeaderTitle={<span data-expression="">{countryName === '' ? 'Browse Directory' : countryName}</span>}
         content={
-          <SubLayout_Browse_Section
+          <BrowseSection
             id="$b2"
             placeholderTopSection={
               <CustomContainer
@@ -311,7 +311,7 @@ export default function CountryDetails() {
             placeholderBottomSection={
               <>
                 {mapOptions !== null && isLoaded ? (
-                  <LeafletMap
+                  <DirectoryMap
                     id="LeafletMap"
                     useClustering
                     markersList={markersList}
@@ -409,7 +409,7 @@ export default function CountryDetails() {
                     <SkeletonSection id="$b20" inIsLoading>
                       {(['$b21', '$b22', '$b23'] as const).map((id) => (
                         <div key={id} data-container="">
-                          <Statistics_TypedItem
+                          <StatisticsTypedItem
                             id={id}
                             inImageEntityTypeId={Connect_Entity.SupperMeetings_aka_Subdivisions}
                             inHasImage
@@ -439,7 +439,7 @@ export default function CountryDetails() {
                             statisticsListClicked(item.localityId);
                           }}
                         >
-                          <Statistics_TypedItem
+                          <StatisticsTypedItem
                             id={`l1-122_${i}-$b25`}
                             inHasImage
                             uICountryStatistics={{ UI_StatisticsTexts: item.typedStatisticsTexts, Name: item.name }}
@@ -475,7 +475,7 @@ export default function CountryDetails() {
           handler_FilterSheetApplyFilters(optionLists, hasFilters);
         }}
       />
-      <Directory_LegendBottomSheet
+      <DirectoryLegendSheet
         id="$b29"
         showLocalities={false}
         onSheetInitialized={(id) => {

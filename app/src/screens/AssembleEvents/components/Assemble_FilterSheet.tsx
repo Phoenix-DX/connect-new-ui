@@ -1,9 +1,9 @@
 // @os-block Connect2_Assemble_MUI.Assemble.Assemble_FilterSheet
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Assemble_FilterLocalityByCountry } from '@/shared/Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry';
+import { AssembleLocalityFilter } from '@/components/assemble/AssembleLocalityFilter';
 import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
-import { LocalityListDetail } from '@/shared/Connect2_LegacyShared/LocalityListDetail';
+import { LocalityListDetail } from '@/components/assemble/LocalityListDetail';
 import { removeDiacritics } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
@@ -170,7 +170,7 @@ export function Assemble_FilterSheet({ id, scope, onCancel, onNavigateToSubdivis
             )}
           </>
         ) : (
-          <Assemble_FilterLocalityByCountry
+          <AssembleLocalityFilter
             id={`${scope}-$b4`}
             countryCode={countryCode}
             countryName={countryName}

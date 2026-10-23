@@ -38,7 +38,7 @@ import type {
   UI_HouseholdTimelineImages,
   UI_Screen_HouseholdDetails,
 } from '@/shared/UBTConnect/lib/structures';
-import { SubLayout_DirectoryDetailScreen } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen';
+import { DirectoryDetailLayout } from '@/components/layout/DirectoryDetailLayout';
 
 /** The household that the view shows (the outputs of DataActionGetHousehold). */
 export interface HouseholdDetailsData {
@@ -232,7 +232,7 @@ export function HouseholdDetailsView({
 
   return (
     <OSBlock name="Directory_Household.HouseholdDetails_Block" id={id}>
-      <SubLayout_DirectoryDetailScreen
+      <DirectoryDetailLayout
         hideActions={hideActions && isAbout}
         placeholderDetailCard={detailCard}
         placeholderCallToAction={callToAction}
