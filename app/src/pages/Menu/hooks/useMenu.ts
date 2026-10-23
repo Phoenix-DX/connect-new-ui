@@ -7,7 +7,7 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { TransitionAnimation, useOsNavigate } from '@/platform/navigation';
 import { signOut } from '@/platform/session/auth';
 import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
-import type { UI_ListMenuOption, UI_MenuSection } from '@/shared/UBTConnect/Menu_List/types';
+import type { UI_ListMenuOption, UI_MenuSection } from '@/components/menu/MenuList/types';
 import { openInApp_OpenExternalLink } from '@/shared/UBTConnect_Utils/lib/actions';
 import { initialMenuState, menuReducer, type MenuState } from './menuState';
 

@@ -291,3 +291,11 @@
 
 - `src/pages/Menu` is now a page with one hook (`useMenu`, with the pure `menuState`) and one component (`MenuUserHeader`). The route's `api.ts` and `types.ts` are deleted. The page renders `DetailLayout` directly.
 - `requestPhotoUpdate` moved from `src/api/update` to `src/api/member` (decision W9). No shared block moved. Visual parity `--changed`: clean for both references. `move-map.csv`: Menu row set to `moved`.
+
+## P6-G1-B-Shared - refactor(P6-G1-B): move the shared blocks of group G1
+
+- 30 blocks of `src/shared/` (phase P6-G1 rows of `move-map.csv`) moved to `src/platform/{navigation,session,device}` and `src/components/{auth,layout,menu,version}`. 21 of them took the target name (path, component and `<Name>Props`), for example `Pincode_Register` to `PinCodeRegister` and `BottomBarMenu` to `BottomBar`. Each main file has an `@origin` tag. No re-export is left in `src/shared/`. The 30 rows are set to `moved`.
+- Gate W13: `app/docs/refactor/arch-baseline.csv` lists the 88 `lint:arch` Rule 4 warnings that the move created (a `components/` file imports `platform/`). A row holds the file, the import, the rule and an owner. The list is moved debt and only shrinks.
+- `python3 migration/tools/refactor/arch_baseline.py check` replaces "no new warning" in the gate. It fails on a new warning and on a row without a warning. Each owner deletes its rows: P6-G1-B-PINRegister (20), P6-G1-B-PINUnlock (32), P7 (35), `pre-existing` (1, `OSPopup`). The file is empty before P9-1.
+- Tool change W12: `rf.py diffcheck --move` accepts the renames that `move-map.csv` declares (the block name to the target name, and `<Name>Props`). Strings, comments and any other change still fail.
+- Deviation from plan v2 §1.4 and §2.2 (decisions W12 and W13, Window 4): the plan has no baseline file. Plan v2 §2.2 names `containers/BottomBar`; the move map puts `BottomBar` in `components/layout` because criterion 2 is not met (`move-map.csv`, row `UBTConnect/BottomBarMenu`).

@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_MilestoneWrapper } from './components/ScreenBlock_MilestoneWrapper';
@@ -56,7 +56,7 @@ export default function MilestoneDetail() {
         In_OrbitMilestoneTypeId={params.get('In_OrbitMilestoneTypeId') ?? ''}
         In_MilestoneName={params.get('In_MilestoneName') ?? ''}
         In_EventName={inEventName}
-        commonUIElementsAccomodationHost={<CommonUI_InsideLayout id="$b5" />}
+        commonUIElementsAccomodationHost={<CommonUiLayout id="$b5" />}
         onNavigateToGuestArrangements={(memberId, milestoneTypeId, milestoneTitle, hostId) => {
           // OnHandle_NavigateTo_GuestArrangements (S :530-617)
           withOrbitAccess(() => {
@@ -87,7 +87,7 @@ export default function MilestoneDetail() {
           });
         }}
       />
-      <CommonUI_InsideLayout id="$b6" />
+      <CommonUiLayout id="$b6" />
     </>
   );
 }

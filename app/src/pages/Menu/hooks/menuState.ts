@@ -1,7 +1,7 @@
 import { Connect_Menu_Items, UBT_Icons_Menu } from '@/pages/Menu/staticEntities';
 import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
 import { UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
-import type { UI_ListMenuOption } from '@/shared/UBTConnect/Menu_List/types';
+import type { UI_ListMenuOption } from '@/components/menu/MenuList/types';
 
 /** The state of the Menu screen and its reducer, with the client actions of the screen as pure functions.
     @origin UBTConnect.App_Menu.Menu */

@@ -15,8 +15,8 @@ import { APP_ID } from '@/platform/navigation/paths';
 import { getClientVar } from '@/platform/session/session';
 import { ScrollAnchor } from '@/shared/NavigationHandler/ScrollAnchor';
 import { App_NotificationIcon } from '@/shared/UBTConnect/App_NotificationIcon';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { FilterSheet_Icon } from '@/shared/UBTConnect/FilterSheet_Icon';
 import {
   directory_Updates_GetCarouselPreloadedHouseholds,
@@ -640,8 +640,8 @@ export default function Updates_SingleList() {
             </OSList>
           )
         }
-        bottom={<BottomBarMenu id="$b18" activeItem={Connect_BottomBar_Items.Updates} isRootPage />}
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b19" />}
+        bottom={<BottomBar id="$b18" activeItem={Connect_BottomBar_Items.Updates} isRootPage />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b19" />}
       />
       <Directory_Updates_FilterSheet
         id="$b20"

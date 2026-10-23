@@ -13,7 +13,7 @@ import { preventNavigation, type NavigationEvent } from '@/shared/NavigationHand
 import { ButtonLoading } from '@/shared/osui/ButtonLoading';
 import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
 import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Dialog_Navigation } from '@/shared/UBTConnect/Dialog_Navigation';
 import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
 import { SubLayout_DirectoryDetailScreen_Section } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
@@ -508,7 +508,7 @@ export default function ContactUsDetails() {
         inAlignTitleLeft
         placeholderHeaderTitle={<span data-expression="">{inputs.In_ContactSubjectTitle}</span>}
         content={content}
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b25" inIgnorePolicy={init.ignorePolices} />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b25" inIgnorePolicy={init.ignorePolices} />}
       />
       {isLogged && (
         <CacheControl_UserInfo_Wrapper

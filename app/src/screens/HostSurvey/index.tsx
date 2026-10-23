@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useNavigateBack } from '@/platform/navigation';
 import { dateTimeInput } from './api';
 import { ScreenBlock_HostSurvey } from './components/ScreenBlock_HostSurvey';
@@ -14,7 +14,7 @@ export default function HostSurvey() {
   const navigateBack = useNavigateBack();
   return (
     <>
-      <CommonUI_InsideLayout id="$b1" />
+      <CommonUiLayout id="$b1" />
       <ScreenBlock_HostSurvey
         id="$b2"
         In_EventId={params.get('In_EventId') ?? '0'}

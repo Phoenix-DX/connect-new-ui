@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_TransportDetail } from './components/ScreenBlock_TransportDetail';
@@ -53,7 +53,7 @@ export default function TransportDetail() {
           });
         }}
       />
-      <CommonUI_InsideLayout id="$b2" />
+      <CommonUiLayout id="$b2" />
     </>
   );
 }

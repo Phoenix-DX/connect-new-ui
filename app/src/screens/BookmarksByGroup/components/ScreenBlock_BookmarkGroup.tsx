@@ -13,7 +13,7 @@ import { MessageList_NoResults } from '@/shared/Connect2_LegacyShared/MessageLis
 import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
 import { NoBookmarks } from '@/shared/Connect2_MyBookmarks_MUI/NoBookmarks';
-import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { ScrollAnchor } from '@/shared/NavigationHandler/ScrollAnchor';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';

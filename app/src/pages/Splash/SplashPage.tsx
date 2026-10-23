@@ -1,7 +1,7 @@
 import { BlankLayout } from '@/components/layout';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
-import { NavigationHandler } from '@/shared/NavigationHandler/NavigationHandler';
-import { HandleOnResumeOpenLink } from '@/shared/UBTConnect/HandleOnResumeOpenLink';
+import { NavigationHandler } from '@/platform/navigation/NavigationHandler';
+import { OpenLinkOnResume } from '@/platform/navigation/OpenLinkOnResume';
 import { ApplicationLoadEvents } from './components/ApplicationLoadEvents';
 import { LoadingDots } from './components/LoadingDots';
 import { useSplash } from './hooks/useSplash';
@@ -30,7 +30,7 @@ export default function Splash() {
               onAnimationComplete={onLoadingDotsAnimationComplete}
             />
             <ApplicationLoadEvents id="$b3" />
-            <HandleOnResumeOpenLink id="$b4" />
+            <OpenLinkOnResume id="$b4" />
           </>
         }
       />

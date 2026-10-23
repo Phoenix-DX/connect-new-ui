@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_HelperDetails } from './components/ScreenBlock_HelperDetails';
@@ -56,7 +56,7 @@ export default function HelpersDetail() {
           });
         }}
       />
-      <CommonUI_InsideLayout id="$b2" />
+      <CommonUiLayout id="$b2" />
     </>
   );
 }

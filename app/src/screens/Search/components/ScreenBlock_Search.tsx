@@ -2,8 +2,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { FilterSheet } from '@/shared/UBTConnect/FilterSheet';
 import { FilterSheet_Icon } from '@/shared/UBTConnect/FilterSheet_Icon';
 import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
@@ -629,8 +629,8 @@ export function ScreenBlock_Search({
             )}
           </>
         }
-        bottom={inIsInScreenSearch ? undefined : <BottomBarMenu id="b1-$b37" />}
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="b1-$b38" />}
+        bottom={inIsInScreenSearch ? undefined : <BottomBar id="b1-$b37" />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="b1-$b38" />}
       />
       <FilterSheet
         id="b1-$b39"

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { App_NotificationIcon } from '@/shared/UBTConnect/App_NotificationIcon';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { scrollTop } from '@/shared/UBTConnect/lib/actions';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
@@ -257,8 +257,8 @@ export default function Notes() {
             onOnLoadMore={notes_CardListOnLoadMore}
           />
         }
-        bottom={<BottomBarMenu id="$b9" />}
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b10" />}
+        bottom={<BottomBar id="$b9" />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b10" />}
       />
       {isInitialized && (
         <Notes_FilterSheet

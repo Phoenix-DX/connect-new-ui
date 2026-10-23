@@ -1,6 +1,6 @@
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { getNameAndSurname_ByFullName } from '@/shared/UBTConnect/lib/actions';
 import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_MyEvents_V2 } from './components/ScreenBlock_MyEvents_V2';
@@ -27,7 +27,7 @@ export default function LDM_MyEvents_V2() {
     <>
       <ScreenBlock_MyEvents_V2
         id="$b1"
-        bottomBar={<BottomBarMenu id="$b2" />}
+        bottomBar={<BottomBar id="$b2" />}
         onNavigateToEventDetail={(eventHostId, eventId) => {
           navigate('/UBTConnect/LDM_EventDetail_V2', { EventId: eventId, EventHostId: eventHostId });
         }}
@@ -56,7 +56,7 @@ export default function LDM_MyEvents_V2() {
           });
         }}
       />
-      <CommonUI_InsideLayout id="$b3" />
+      <CommonUiLayout id="$b3" />
     </>
   );
 }

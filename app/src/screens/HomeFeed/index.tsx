@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { DialogExitConfirmation, useViewState } from '@/platform/navigation';
 import { App_NotificationIcon } from '@/shared/UBTConnect/App_NotificationIcon';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { FeedBlock_CommunityPopulation } from '@/shared/UBTConnect/FeedBlock_CommunityPopulation';
 import { Feed_Embeded } from '@/shared/UBTConnect/Feed_Embeded';
 import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
-import { Layout_HomePage } from '@/shared/UBTConnectLibrary/Layout_HomePage';
+import { HomeLayout } from '@/components/layout/HomeLayout';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Update_ListItem } from '@/shared/UBTConnectLibrary/Update_ListItem';
 import { Connect_BottomBar_Items, Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
@@ -90,7 +90,7 @@ export default function HomeFeed() {
 
   return (
     <>
-      <Layout_HomePage
+      <HomeLayout
         id="$b1"
         sVGHeight="260px"
         contentBackgroundColor={UBT_Color.Neutral4}
@@ -141,8 +141,8 @@ export default function HomeFeed() {
             {isScreenInitialized && <DialogExitConfirmation id="$b11" />}
           </>
         }
-        bottom={<BottomBarMenu id="$b12" activeItem={Connect_BottomBar_Items.Home} isRootPage />}
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b13" />}
+        bottom={<BottomBar id="$b12" activeItem={Connect_BottomBar_Items.Home} isRootPage />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b13" />}
       />
       <ShareSheet
         id="$b14"

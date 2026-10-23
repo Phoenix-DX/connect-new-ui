@@ -11,8 +11,8 @@ import {
   type TileLayer,
   type ZoomControlOptions,
 } from '@/shared/Leaflet/LeafletMap';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { StatisticsList } from '@/shared/UBTConnect/StatisticsList';
@@ -301,8 +301,8 @@ export default function BrowseDirectory() {
           }
         />
       }
-      bottom={<BottomBarMenu id="$b12" activeItem={Connect_BottomBar_Items.Directory} />}
-      placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b13" />}
+      bottom={<BottomBar id="$b12" activeItem={Connect_BottomBar_Items.Directory} />}
+      placeholderCommonUIInsideLayout={<CommonUiLayout id="$b13" />}
     />
   );
 }

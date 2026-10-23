@@ -1,8 +1,8 @@
 import { useEffect, useReducer, useRef } from 'react';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { UserException } from '@/legacy/os/os-exceptions';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/shared/UBTConnect/lib/actions';
 import { Badge } from '@/shared/UBTConnectLibrary/Badge';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
@@ -324,8 +324,8 @@ export default function Notifications() {
             />
           )
         }
-        bottom={<BottomBarMenu id="$b18" activeItem="" />}
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b19" />}
+        bottom={<BottomBar id="$b18" activeItem="" />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b19" />}
       />
       <Notifications_SortSheet
         id="$b20"

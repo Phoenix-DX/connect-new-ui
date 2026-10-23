@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
-import { OfflineDataSyncEvents } from '@/shared/UBTConnect/OfflineDataSyncEvents';
+import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
+import { OfflineDataSync } from '@/platform/device/OfflineDataSync';
 
 export interface BlankLayoutProps {
   /** OutSystems instance id of the block. */
@@ -34,7 +34,7 @@ export function BlankLayout({
     (enableAccessibilityFeatures ? ' has-accessible-features' : '');
   return (
     <OSBlock name="App_Common.LayoutBlank" id={id}>
-      <LayoutRuntime_Top id={`${prefix}-$b1`} />
+      <LayoutRuntimeTop id={`${prefix}-$b1`} />
       <div className={className} data-container="">
         <div className="content" data-container="">
           <div className="main-content" id={`${prefix}-Content`} role="main">
@@ -42,7 +42,7 @@ export function BlankLayout({
           </div>
         </div>
         <div className="offline-data-sync" data-container="">
-          <OfflineDataSyncEvents id={`${prefix}-$b2`} />
+          <OfflineDataSync id={`${prefix}-$b2`} />
         </div>
       </div>
     </OSBlock>

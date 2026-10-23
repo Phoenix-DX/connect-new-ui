@@ -1,8 +1,8 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet
 import { useEffect, useReducer, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
-import type { BackNavigationEvent } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
+import type { BackNavigationEvent } from '@/platform/navigation/BackNavigationHandler';
 import { CacheControl_AllCountries } from '@/shared/UBTConnect_Utils/CacheControl_AllCountries';
 import type { CacheControl_AllCountriesRec as AllCountries } from '@/shared/UBTConnect_Utils/CacheControl_AllCountries';
 import { CacheControl_AllLocalities } from '@/shared/UBTConnect_Utils/CacheControl_AllLocalities';

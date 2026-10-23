@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';
-import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import type { CarouselPreloadedHouseholds } from '@/shared/UBTConnect/lib/structures';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { UBT_Color, UBT_Display, UBT_FontSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
@@ -100,8 +100,8 @@ export default function Photobook() {
 
   return (
     <>
-      <LayoutRuntime_Top id="$b1" />
-      <CommonUI_InsideLayout id="$b2" />
+      <LayoutRuntimeTop id="$b1" />
+      <CommonUiLayout id="$b2" />
       <SkeletonSection id="$b3" inIsLoading={isLoading}>
         {!isLoading && fetched !== null ? (
           <Photobook_Carousel

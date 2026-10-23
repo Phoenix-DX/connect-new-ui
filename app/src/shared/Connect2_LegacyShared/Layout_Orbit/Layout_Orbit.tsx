@@ -2,7 +2,7 @@
 import { useEffect, useLayoutEffect, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { setThemeClassToBody } from '@/legacy/os/bodyTheme';
-import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
+import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { BaseLayout_UpdatedOSUI } from '@/shared/Connect2_LegacyShared/BaseLayout_UpdatedOSUI';
 import { iOSMetaTags, iOSPreventSwipe } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { ThemeClass } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
@@ -67,7 +67,7 @@ export function Layout_Orbit({
   }, []);
   return (
     <OSBlock name="Layout_OrbitTheme.Layout_Orbit" id={id}>
-      <LayoutRuntime_Top id={child('$b1')} />
+      <LayoutRuntimeTop id={child('$b1')} />
       <div className="orbit-theme backwards-compatibility" data-container="">
         <BaseLayout_UpdatedOSUI
           id={child('$b2')}

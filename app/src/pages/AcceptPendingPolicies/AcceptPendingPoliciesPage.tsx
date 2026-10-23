@@ -1,8 +1,8 @@
 import { osImage } from '@/legacy/os/os-assets';
 import { showCommunicationExceptionMessage } from '@/platform/feedback';
-import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
-import { Layout_LoginFlow } from '@/shared/UBTConnectLibrary/Layout_LoginFlow';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
+import { LoginLayout } from '@/components/layout/LoginLayout';
 import { PendingPoliciesForm } from './components/PendingPoliciesForm/PendingPoliciesForm';
 import { PoliciesHeader } from './components/PoliciesHeader/PoliciesHeader';
 import { useAcceptPendingPolicies } from './hooks/useAcceptPendingPolicies';
@@ -25,7 +25,7 @@ export default function AcceptPendingPolicies() {
   );
 
   return (
-    <Layout_LoginFlow
+    <LoginLayout
       id="$b1"
       inHasOverlay={screen.useOverlay}
       inExtendedClass="ubt-policies"
@@ -56,7 +56,7 @@ export default function AcceptPendingPolicies() {
           />
         </>
       }
-      placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b9" inIgnorePolicy />}
+      placeholderCommonUIInsideLayout={<CommonUiLayout id="$b9" inIgnorePolicy />}
     />
   );
 }

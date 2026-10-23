@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { EntitiesCarousel } from '@/shared/UBTConnect/EntitiesCarousel';
 import { Connect_Entity, Type_CarouselItemSwipeAction } from '@/shared/UBTConnect/lib/staticEntities';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
@@ -95,8 +95,8 @@ export default function HouseholdCarousel() {
           )}
         </>
       }
-      bottom={<BottomBarMenu id="$b5" />}
-      placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b6" />}
+      bottom={<BottomBar id="$b5" />}
+      placeholderCommonUIInsideLayout={<CommonUiLayout id="$b6" />}
     />
   );
 }

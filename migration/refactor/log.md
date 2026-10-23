@@ -284,3 +284,11 @@ One line per event. Written by rf.py.
 - 2026-10-23T19:30:48 P6-G1-B-Menu stage test
 - 2026-10-23T19:38:06 P6-G1-B-Menu stage docs
 - 2026-10-23T19:39:40 P6-G1-B-Menu stage commit
+- 2026-10-23T19:39:41 P6-G1-B-Menu done 37c2d62: ci: pass (2111 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); lint:arch no new warning; bundle within +5%
+- 2026-10-23T19:39:49 P6-G1-B-Shared started
+- 2026-10-23T19:39:49 P6-G1-B-Shared stage dev
+- 2026-10-23T19:45:55 P6-G1-B-Shared stage test
+- 2026-10-23T20:03:55 P6-G1-B-Shared test failed, fix loop 1
+- 2026-10-23T20:14:07 P6-G1-B-Shared stage test
+- 2026-10-23T20:17:24 P6-G1-B-Shared stage docs
+- 2026-10-23T20:19:20 P6-G1-B-Shared stage commit

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
 import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { dateTimeParam, useOsNavigate } from '@/platform/navigation';
@@ -33,13 +33,13 @@ export default function AssembleEvents() {
 
   return (
     <>
-      <CommonUI_InsideLayout id="$b1" />
+      <CommonUiLayout id="$b1" />
       <ScreenBlock_AssembleEvents
         id="$b2"
         subdivisionId={subdivisionId}
         showBackNavigation={showBackNavigation}
         isUserSubdivision={isUserSubdivision}
-        bottomBar={<BottomBarMenu id="$b3" />}
+        bottomBar={<BottomBar id="$b3" />}
         onNavigateToAssembleLocationFilters={() => {
           // Handler_NavigateTo_AssembleLocationFilters (:330-350).
           if (useNewFilterSheet) bottomSheetOpen(sheetId);

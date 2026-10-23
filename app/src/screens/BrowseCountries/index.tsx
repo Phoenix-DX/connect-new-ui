@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useRef } from 'react';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
 import { StatisticsList, type TextStatisticsOptionsRecord } from '@/shared/UBTConnect/StatisticsList';
 import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
@@ -103,8 +103,8 @@ export default function BrowseCountries() {
           }}
         />
       }
-      bottom={<BottomBarMenu id="$b3" activeItem={Connect_BottomBar_Items.Directory} />}
-      placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b4" />}
+      bottom={<BottomBar id="$b3" activeItem={Connect_BottomBar_Items.Directory} />}
+      placeholderCommonUIInsideLayout={<CommonUiLayout id="$b4" />}
     />
   );
 }

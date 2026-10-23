@@ -1,5 +1,5 @@
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useOsNavigate } from '@/platform/navigation';
 import { getMilestoneScanFF, wireDateTimeParam } from './api';
 import { ScreenBlock_AdminLanding } from './components/ScreenBlock_AdminLanding';
@@ -17,7 +17,7 @@ export default function OrbitAdminLanding() {
     <>
       <ScreenBlock_AdminLanding
         id="$b1"
-        bottomBar={<BottomBarMenu id="$b2" />}
+        bottomBar={<BottomBar id="$b2" />}
         onNavigateToEventDetail={async (eventId, eventName, startDate, endDate, location, typeFriendly) => {
           const isScanPerMilestone = await getMilestoneScanFF();
           if (isScanPerMilestone) {
@@ -34,7 +34,7 @@ export default function OrbitAdminLanding() {
           });
         }}
       />
-      <CommonUI_InsideLayout id="$b3" />
+      <CommonUiLayout id="$b3" />
     </>
   );
 }

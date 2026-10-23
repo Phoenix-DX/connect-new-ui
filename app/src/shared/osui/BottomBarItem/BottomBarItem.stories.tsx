@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { App_IconBadge } from '@/shared/UBTConnect/App_IconBadge';
+import { BottomBarIconBadge } from '@/components/layout/BottomBarIconBadge';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { BottomBarItem } from './BottomBarItem';
@@ -29,7 +29,9 @@ export const V1: Story = {
 /** BookmarksByGroup/default: Updates item with its badge */
 export const V2: Story = {
   args: {
-    icon: <App_IconBadge badgeNumber="3" maxNotifications={9} iconId="connect-icon-list_alt" iconColor="neutral-6" />,
+    icon: (
+      <BottomBarIconBadge badgeNumber="3" maxNotifications={9} iconId="connect-icon-list_alt" iconColor="neutral-6" />
+    ),
     text: label('Updates'),
   },
 };

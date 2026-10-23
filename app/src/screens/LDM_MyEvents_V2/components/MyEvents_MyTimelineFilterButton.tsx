@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
-import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';
+import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { getEventLocalitiesForFilter } from '@/screens/LDM_MyEvents_V2/api';
 import type { EventLocality } from '@/screens/LDM_MyEvents_V2/types';

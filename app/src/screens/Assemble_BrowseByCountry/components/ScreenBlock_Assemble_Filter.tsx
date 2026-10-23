@@ -9,7 +9,7 @@ import { removeDiacritics } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
-import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';

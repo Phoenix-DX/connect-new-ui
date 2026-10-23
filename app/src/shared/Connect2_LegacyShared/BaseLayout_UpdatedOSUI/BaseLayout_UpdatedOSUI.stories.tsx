@@ -2,10 +2,10 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
-import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
 import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
@@ -77,7 +77,7 @@ export const V1: Story = {
     commonUI: (
       <div>
         <div>
-          <CommonUI_InsideLayout id="$b2" />
+          <CommonUiLayout id="$b2" />
         </div>
       </div>
     ),
@@ -141,7 +141,7 @@ export const V2: Story = {
       <div>
         <div>
           <div data-container="">
-            <BottomBarMenu id="$b2" />
+            <BottomBar id="$b2" />
           </div>
         </div>
       </div>
@@ -149,7 +149,7 @@ export const V2: Story = {
     commonUI: (
       <div>
         <div>
-          <CommonUI_InsideLayout id="$b3" />
+          <CommonUiLayout id="$b3" />
         </div>
       </div>
     ),
@@ -186,14 +186,14 @@ export const V3: Story = {
     bottom: (
       <div>
         <div>
-          <BottomBarMenu id="$b3" />
+          <BottomBar id="$b3" />
         </div>
       </div>
     ),
     commonUI: (
       <div>
         <div>
-          <CommonUI_InsideLayout id="$b4" />
+          <CommonUiLayout id="$b4" />
           <BackNavigationHandler id="$b5" />
         </div>
       </div>

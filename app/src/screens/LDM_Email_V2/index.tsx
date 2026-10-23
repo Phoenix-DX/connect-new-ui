@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { readInputs } from './api';
 import { ScreenBlock_Event_Email_V2 } from './components/ScreenBlock_Event_Email_V2';
 
@@ -21,9 +21,9 @@ export default function LDM_Email_V2() {
         key={`${inputs.In_EventHostId}-${inputs.In_EventId}`}
         id="$b1"
         inputs={inputs}
-        bottomBar={<BottomBarMenu id="$b2" />}
+        bottomBar={<BottomBar id="$b2" />}
       />
-      <CommonUI_InsideLayout id="$b3" />
+      <CommonUiLayout id="$b3" />
     </>
   );
 }

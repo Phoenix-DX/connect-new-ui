@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { SupperMeeting_DetailsBlock } from '@/shared/UBTConnect/SupperMeeting_DetailsBlock';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
@@ -20,7 +20,7 @@ export default function SupperMeeting_Details() {
       inAlignTitleLeft={false}
       placeholderHeaderTitle={<CustomText id="$b2" inText="Supper Meeting" inTextOptions={{}} />}
       content={<SupperMeeting_DetailsBlock id="$b3" inSubdivsionId={In_SubdivsionId} />}
-      placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b4" />}
+      placeholderCommonUIInsideLayout={<CommonUiLayout id="$b4" />}
     />
   );
 }

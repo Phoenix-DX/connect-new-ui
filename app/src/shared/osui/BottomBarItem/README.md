@@ -17,7 +17,7 @@ Events: none. Placeholders: `Icon` → `icon`, `Text` → `text`. Both placehold
 | v1      | BookmarksByGroup/default (Icon + CustomText)                   |
 | v2      | BookmarksByGroup/default (App_IconBadge + CustomText: Updates) |
 
-Every instance is rendered by `UBTConnect/BottomBarMenu` (full markup checked there against HomeFeed/default).
+Every instance is rendered by `UBTConnect/BottomBarMenu` (now `components/layout/BottomBar`; full markup checked there against HomeFeed/default).
 
 ## Not captured
 

@@ -4,8 +4,8 @@ import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
 import { BlankSlate } from '@/shared/osui/BlankSlate';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Layout_MainPages } from './Layout_MainPages';
@@ -51,8 +51,8 @@ export const V2: Story = {
     isGrayBackground: true,
     placeholderHeaderTitle: 'Countries',
     content: <CustomContainer id="Content">Country list</CustomContainer>,
-    bottom: <BottomBarMenu id="$b25" activeItem={Connect_BottomBar_Items.Directory} />,
-    placeholderCommonUIInsideLayout: <CommonUI_InsideLayout id="$b26" />,
+    bottom: <BottomBar id="$b25" activeItem={Connect_BottomBar_Items.Directory} />,
+    placeholderCommonUIInsideLayout: <CommonUiLayout id="$b26" />,
   },
 };
 
@@ -71,8 +71,8 @@ export const V3: Story = {
       </>
     ),
     content: <PendingBlock name="Directory_Locality.Locality_Households" />,
-    bottom: <BottomBarMenu id="$b23" activeItem={Connect_BottomBar_Items.Directory} />,
-    placeholderCommonUIInsideLayout: <CommonUI_InsideLayout id="$b24" />,
+    bottom: <BottomBar id="$b23" activeItem={Connect_BottomBar_Items.Directory} />,
+    placeholderCommonUIInsideLayout: <CommonUiLayout id="$b24" />,
   },
 };
 

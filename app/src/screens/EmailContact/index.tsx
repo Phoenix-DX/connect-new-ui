@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { useNavigateBack, useOsNavigate } from '@/platform/navigation';
 import { readInputs } from './api';
@@ -36,7 +36,7 @@ export default function EmailContact() {
       <ScreenBlock_ContactForm
         id="$b1"
         inputs={inputs}
-        bottomBar={<BottomBarMenu id="$b2" />}
+        bottomBar={<BottomBar id="$b2" />}
         onSubmitted={() => {
           // OnHandle_Submitted (S :334-376)
           if (hasOrbitAccess) {
@@ -47,7 +47,7 @@ export default function EmailContact() {
           navigate('/UBTConnect/HomeFeed', {});
         }}
       />
-      <CommonUI_InsideLayout id="$b3" />
+      <CommonUiLayout id="$b3" />
     </>
   );
 }

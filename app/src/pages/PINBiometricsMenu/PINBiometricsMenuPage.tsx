@@ -1,7 +1,7 @@
 /** @origin UBTConnect.App_Menu.PINBiometricsMenu */
 import { useMemo, useState } from 'react';
-import { Menu_List } from '@/shared/UBTConnect/Menu_List';
-import type { UI_MenuSection } from '@/shared/UBTConnect/Menu_List';
+import { MenuList } from '@/components/menu/MenuList';
+import type { UI_MenuSection } from '@/components/menu/MenuList';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
@@ -70,7 +70,7 @@ export default function PINBiometricsMenu() {
     <Layout_DetailPage
       id="$b1"
       placeholderHeaderTitle="PIN & Biometrics"
-      content={<Menu_List id="$b2" inMenuSection={inMenuSection} onOnClickMenuOption={onClickMenuOption} />}
+      content={<MenuList id="$b2" inMenuSection={inMenuSection} onOnClickMenuOption={onClickMenuOption} />}
     />
   );
 }

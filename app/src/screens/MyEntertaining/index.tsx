@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { readMyEntertainingInputs } from './api';
 import { MyEntertaining_Embedded } from './components/MyEntertaining_Embedded';
 
@@ -10,7 +10,7 @@ export default function MyEntertaining() {
   const inputs = readMyEntertainingInputs(params);
   return (
     <>
-      <CommonUI_InsideLayout id="$b1" />
+      <CommonUiLayout id="$b1" />
       <MyEntertaining_Embedded id="$b2" inInitialEventSouceId={inputs.MyCalendarEventSourceId} />
     </>
   );

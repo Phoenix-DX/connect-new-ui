@@ -1,9 +1,9 @@
 import { useSearchParams } from 'react-router';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import { DialogExitConfirmation } from '@/platform/navigation';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
-import { OfflineDataSyncEvents } from '@/shared/UBTConnect/OfflineDataSyncEvents';
-import { Layout_LoginFlow } from '@/shared/UBTConnectLibrary/Layout_LoginFlow';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
+import { OfflineDataSync } from '@/platform/device/OfflineDataSync';
+import { LoginLayout } from '@/components/layout/LoginLayout';
 import { AppManagerEvents } from './components/AppManagerEvents';
 import { LoginCard } from './components/LoginCard';
 import { LoginFooter } from './components/LoginFooter';
@@ -22,7 +22,7 @@ export default function Login() {
   );
 
   return (
-    <Layout_LoginFlow
+    <LoginLayout
       id="$b1"
       inHasOverlay
       placeholderContent={
@@ -44,7 +44,7 @@ export default function Login() {
       }
       placeholderCommonUIInsideLayout={
         <>
-          <OfflineDataSyncEvents id="$b11" />
+          <OfflineDataSync id="$b11" />
           <AppManagerEvents id="$b12" />
           <ActionConfirmationDialog
             widgetId="ConfirmationDialog_ResetPassword"
@@ -60,7 +60,7 @@ export default function Login() {
             confirmLabel="Continue"
             dismissLabel="Cancel"
           />
-          <CommonUI_InsideLayout id="$b14" inIgnoreLockScreen inIgnorePolicy />
+          <CommonUiLayout id="$b14" inIgnoreLockScreen inIgnorePolicy />
         </>
       }
     />

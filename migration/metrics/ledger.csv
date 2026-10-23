@@ -474,3 +474,12 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,191363,refactor-dev,,P6-G1-B-Menu opus
 2026-10-23,refactor,verify,37253,refactor-test,,P6-G1-B-Menu sonnet
 2026-10-23,refactor,other,33398,refactor-docs,,P6-G1-B-Menu sonnet
+2026-10-23,refactor,build,57852,refactor-dev,,P6-G1-B-Shared sonnet
+2026-10-23,refactor,verify,34578,refactor-test,,P6-G1-B-Shared sonnet
+2026-10-23,refactor,review,37307,refactor-advisor,,"W12, opus"
+2026-10-23,refactor,review,36443,refactor-advisor,,"W12, fable"
+2026-10-23,refactor,review,37621,refactor-advisor,,"W13, opus"
+2026-10-23,refactor,review,37634,refactor-advisor,,"W13, fable"
+2026-10-23,refactor,fix,64795,refactor-dev,,P6-G1-B-Shared loop 1 sonnet
+2026-10-23,refactor,verify,22207,refactor-test,,P6-G1-B-Shared loop 1 sonnet
+2026-10-23,refactor,other,51590,refactor-docs,,P6-G1-B-Shared loop 1 sonnet

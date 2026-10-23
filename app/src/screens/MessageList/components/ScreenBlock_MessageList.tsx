@@ -9,7 +9,7 @@ import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MessageList_NoResults } from '@/shared/Connect2_LegacyShared/MessageList_NoResults';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
 import { currDateTime } from '@/shared/lib/osDateTime';
-import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { Animate } from '@/shared/osui/Animate';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';

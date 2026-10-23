@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_EventBooklet } from './components/ScreenBlock_EventBooklet';
 
@@ -22,7 +22,7 @@ export default function EventBooklet() {
           navigate('/UBTConnect/HouseholdDetails', { HouseholdId: householdId });
         }}
       />
-      <CommonUI_InsideLayout id="$b2" />
+      <CommonUiLayout id="$b2" />
     </>
   );
 }

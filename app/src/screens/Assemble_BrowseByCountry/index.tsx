@@ -1,4 +1,4 @@
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { allowUpcomingNavigation, useNavigateBack, useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_Assemble_Filter } from './components/ScreenBlock_Assemble_Filter';
 
@@ -13,7 +13,7 @@ export default function Assemble_BrowseByCountry() {
   const navigateBack = useNavigateBack();
   return (
     <>
-      <CommonUI_InsideLayout id="$b1" />
+      <CommonUiLayout id="$b1" />
       <ScreenBlock_Assemble_Filter
         id="$b2"
         onCancel={() => {

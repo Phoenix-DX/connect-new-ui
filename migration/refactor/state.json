@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G1-B-Menu",
+  "step": "P6-G1-B-Shared",
   "stage": "commit",
-  "loop": 0,
-  "since": "2026-10-23T19:39:40"
+  "loop": 1,
+  "since": "2026-10-23T20:19:20"
  },
  "steps": {
   "P0-1": {
@@ -508,12 +508,25 @@
    "finished": "2026-10-23T19:30:05"
   },
   "P6-G1-B-Menu": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T19:30:11",
    "tokens": {
     "dev": 191363,
     "test": 37253,
     "docs": 33398
+   },
+   "commit": "37c2d62",
+   "gate": "ci: pass (2111 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); lint:arch no new warning; bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T19:39:41"
+  },
+  "P6-G1-B-Shared": {
+   "status": "active",
+   "started": "2026-10-23T19:39:49",
+   "tokens": {
+    "dev": 122647,
+    "test": 56785,
+    "docs": 51590
    }
   }
  },

@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnect/lib/staticEntities';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
@@ -42,8 +42,8 @@ export default function Household_Relations() {
           onRelationsDetailsFetched={setPageTitle}
         />
       }
-      bottom={<BottomBarMenu id="$b4" />}
-      placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b5" />}
+      bottom={<BottomBar id="$b4" />}
+      placeholderCommonUIInsideLayout={<CommonUiLayout id="$b5" />}
     />
   );
 }

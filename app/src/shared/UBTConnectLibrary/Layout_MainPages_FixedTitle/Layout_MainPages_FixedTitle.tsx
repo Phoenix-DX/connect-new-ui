@@ -1,7 +1,7 @@
 // @os-block UBTConnectLibrary.Layouts.Layout_MainPages_FixedTitle
 import { useEffect, useId, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
+import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { PullToRefresh } from '@/shared/osui/PullToRefresh';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
 import {
@@ -91,7 +91,7 @@ export function Layout_MainPages_FixedTitle({
   const prefix = id?.replace('$', '') ?? `layout${fallback}`;
   return (
     <OSBlock name="Layouts.Layout_MainPages_FixedTitle" id={id}>
-      <LayoutRuntime_Top id={`${prefix}-$b1`} />
+      <LayoutRuntimeTop id={`${prefix}-$b1`} />
       <div
         className={`layout layout-side layout-native ios-bounce ubt-layout-main layout-sticky-title hide-header-on-scroll${extendedClass === '' ? '' : ` ${extendedClass}`}${enableAccessibilityFeatures ? ' has-accessible-features' : ''}${isGrayBackground ? ' layout-gray-background' : ''}`}
         data-container=""

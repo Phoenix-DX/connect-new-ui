@@ -8,7 +8,7 @@ import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInforma
 import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler/BackNavigationHandler';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler/BackNavigationHandler';
 import { Accordion } from '@/shared/osui/Accordion';
 import { AccordionItem } from '@/shared/osui/AccordionItem';
 import {

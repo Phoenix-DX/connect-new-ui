@@ -1,7 +1,7 @@
 // @os-block UBTConnectLibrary.Layouts.Layout_MainPages
 import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
+import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { PullToRefresh } from '@/shared/osui/PullToRefresh';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
 import {
@@ -96,7 +96,7 @@ export function Layout_MainPages({
   }, []);
   return (
     <OSBlock name="Layouts.Layout_MainPages" id={id}>
-      <LayoutRuntime_Top id={`${prefix}-$b1`} />
+      <LayoutRuntimeTop id={`${prefix}-$b1`} />
       <div
         className={`layout layout-side layout-native ios-bounce ubt-layout-main hide-header-on-scroll${extendedClass === '' ? '' : ` ${extendedClass}`}${enableAccessibilityFeatures ? ' has-accessible-features' : ''}${isGrayBackground ? ' layout-gray-background' : ''}`}
         data-container=""

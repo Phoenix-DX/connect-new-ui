@@ -6,7 +6,7 @@ import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import { NewConnectContent } from '@/shared/Connect2_LegacyShared/NewConnectContent';
-import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { getPreloadObject, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import type { AssembleDetailInputs } from '@/screens/AssembleDetail/types';
 import { navigationStorage } from './actions';

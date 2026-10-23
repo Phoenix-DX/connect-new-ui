@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
-import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';
+import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { Button } from '@/shared/UBTConnectLibrary/Button';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';

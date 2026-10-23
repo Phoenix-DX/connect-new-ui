@@ -2,7 +2,7 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
-import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';
+import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
 import { CircleButton_WithLabel } from '@/shared/UBTConnectLibrary/CircleButton_WithLabel';

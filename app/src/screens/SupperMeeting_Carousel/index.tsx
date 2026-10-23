@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { EntitiesCarousel } from '@/shared/UBTConnect/EntitiesCarousel';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
@@ -51,7 +51,7 @@ export default function SupperMeeting_Carousel() {
           inEntitiesCarouselItems={entitiesCarouselItems}
         />
       }
-      placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b4" />}
+      placeholderCommonUIInsideLayout={<CommonUiLayout id="$b4" />}
     />
   );
 }

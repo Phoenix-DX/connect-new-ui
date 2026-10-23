@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
 import { Layout } from './Layout';
 
@@ -41,7 +41,7 @@ export const V1: Story = {
     bottomBar: <div />,
     commonUIElements: (
       <div>
-        <CommonUI_InsideLayout id="$b2" />
+        <CommonUiLayout id="$b2" />
       </div>
     ),
   },

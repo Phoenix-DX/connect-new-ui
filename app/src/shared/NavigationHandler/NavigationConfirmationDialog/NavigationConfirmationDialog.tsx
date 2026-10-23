@@ -4,8 +4,8 @@ import { createPortal } from 'react-dom';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
 import { resumeNavigation, wasNavigationPrevented, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
-import { NavigationHandler } from '@/shared/NavigationHandler/NavigationHandler';
-import { PreventBackNavigation } from '@/shared/NavigationHandler/PreventBackNavigation';
+import { NavigationHandler } from '@/platform/navigation/NavigationHandler';
+import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 
 export interface NavigationConfirmationDialogProps {
   /** OutSystems instance id of the block. */

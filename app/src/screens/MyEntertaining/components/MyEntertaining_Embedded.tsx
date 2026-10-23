@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Calendar.MyEntertaining_Embedded
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { openInApp_OpenExternalLink } from '@/shared/UBTConnect_Utils/lib/actions';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
@@ -62,7 +62,7 @@ export function MyEntertaining_Embedded({ id, inInitialEventSouceId = '' }: MyEn
             }}
           />
         }
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id={`${prefix}-$b3`} />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id={`${prefix}-$b3`} />}
       />
     </OSBlock>
   );

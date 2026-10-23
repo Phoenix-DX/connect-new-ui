@@ -1,6 +1,6 @@
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Connect_BottomBar_Items, Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_MyBookmarks } from './components/ScreenBlock_MyBookmarks';
@@ -16,7 +16,7 @@ export default function MyBookmarks() {
     <>
       <ScreenBlock_MyBookmarks
         id="$b1"
-        bottomBar={<BottomBarMenu id="$b2" isRootPage activeItem={Connect_BottomBar_Items.Bookmarks} />}
+        bottomBar={<BottomBar id="$b2" isRootPage activeItem={Connect_BottomBar_Items.Bookmarks} />}
         onNavigateToHouseholds={(selectedHouseholdId, _itemsLength, _itemPosition, _searchString, householdIdList) => {
           /* OnHandle_NavigateTo_HouseholdCarousel (W:285-345): GetHasCarouselEnabled (C2EnableCarousel, TST on) →
              PreloadedHouseholds.CarouselHouseholdItem = HouseholdIdList, SetPreloadObject, HouseholdCarousel; else
@@ -49,7 +49,7 @@ export default function MyBookmarks() {
           navigate('/UBTConnect/BookmarksByGroup', { BookmarkGroup: bookmarkGroup });
         }}
       />
-      <CommonUI_InsideLayout id="$b3" />
+      <CommonUiLayout id="$b3" />
     </>
   );
 }

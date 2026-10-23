@@ -20,7 +20,7 @@ Number, IsLight; Size, Shape and ExtendedClass left to the Badge defaults).
 | ------- | --------------------------------------------------------- |
 | v1      | BookmarksByGroup/default (Updates item of the bottom bar) |
 
-Every captured instance is inside `UBTConnect/App_IconBadge` (full markup checked there against HomeFeed/default).
+Every captured instance is inside `UBTConnect/App_IconBadge` (now `components/layout/BottomBarIconBadge`; full markup checked there against HomeFeed/default).
 
 ## Not captured
 

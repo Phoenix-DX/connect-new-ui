@@ -1,7 +1,7 @@
 // @os-block UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
+import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import {
   clearScrollTimeout,
@@ -57,7 +57,7 @@ export function Layout_MainPages_Upgrade({
   }, []);
   return (
     <OSBlock name="Layouts.Layout_MainPages_Upgrade" id="$b1">
-      <LayoutRuntime_Top id="b1-$b1" />
+      <LayoutRuntimeTop id="b1-$b1" />
       <div
         className={`layout layout-side layout-native ios-bounce ubt-layout-main layout-sticky-title mainpage-upgrade-container${isGrayBackground ? ' layout-gray-background' : ''}`}
         data-container=""

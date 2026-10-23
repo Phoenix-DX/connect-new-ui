@@ -7,8 +7,8 @@ import { map_InvalidateSize } from '@/shared/Leaflet/lib/actions';
 import type { MapOptions, MarkerWithWindow, TileLayer, ZoomControlOptions } from '@/shared/Leaflet/lib/structures';
 import { LeafletMap } from '@/shared/Leaflet/LeafletMap';
 import { bottomSheetOpen } from '@/shared/osui/lib/actions';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Directory_LegendBottomSheet } from '@/shared/UBTConnect/Directory_LegendBottomSheet';
 import { FilterSheet } from '@/shared/UBTConnect/FilterSheet';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
@@ -454,8 +454,8 @@ export default function CountryDetails() {
             }
           />
         }
-        bottom={<BottomBarMenu id="$b26" activeItem={Connect_BottomBar_Items.Directory} />}
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b27" />}
+        bottom={<BottomBar id="$b26" activeItem={Connect_BottomBar_Items.Directory} />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b27" />}
       />
       <FilterSheet
         id="$b28"

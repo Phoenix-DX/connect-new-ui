@@ -1,10 +1,10 @@
 /** @origin UBTConnect.App_PIN.PINRegister */
 import { OSLink } from '@/shared/lib/OSLink';
-import { Block_PINRegister_ContentWrapper } from '@/shared/UBTConnect/Block_PINRegister_ContentWrapper';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { PinRegisterContent } from '@/components/auth/PinRegisterContent';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { Layout_LoginFlow } from '@/shared/UBTConnectLibrary/Layout_LoginFlow';
+import { LoginLayout } from '@/components/layout/LoginLayout';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { signOut } from '@/platform/session/auth';
 import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
@@ -30,7 +30,7 @@ export default function PINRegister() {
   };
 
   return (
-    <Layout_LoginFlow
+    <LoginLayout
       id="$b1"
       inHasOverlay={useOverlay}
       placeholderHeader={
@@ -58,9 +58,9 @@ export default function PINRegister() {
           </IconText>
         </OSLink>
       }
-      placeholderContent={<Block_PINRegister_ContentWrapper id="$b4" useOverlay={useOverlay} enableName />}
+      placeholderContent={<PinRegisterContent id="$b4" useOverlay={useOverlay} enableName />}
       placeholderCommonUIInsideLayout={
-        <CommonUI_InsideLayout id="$b5" inShowLockScreen={false} inIgnorePolicy inIgnoreLockScreen />
+        <CommonUiLayout id="$b5" inShowLockScreen={false} inIgnorePolicy inIgnoreLockScreen />
       }
     />
   );

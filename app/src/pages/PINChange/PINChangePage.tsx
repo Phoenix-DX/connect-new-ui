@@ -1,11 +1,11 @@
 /** @origin UBTConnect.App_PIN.PINChange */
 import { useState } from 'react';
 import { OSLink } from '@/shared/lib/OSLink';
-import { Block_PINRegister_ContentWrapper } from '@/shared/UBTConnect/Block_PINRegister_ContentWrapper';
-import { Block_PINUnlock_ContentWrapper } from '@/shared/UBTConnect/Block_PINUnlock_ContentWrapper';
+import { PinRegisterContent } from '@/components/auth/PinRegisterContent';
+import { PinUnlockContent } from '@/components/auth/PinUnlockContent';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { Layout_LoginFlow } from '@/shared/UBTConnectLibrary/Layout_LoginFlow';
+import { LoginLayout } from '@/components/layout/LoginLayout';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -58,7 +58,7 @@ export default function PINChange() {
   };
 
   return (
-    <Layout_LoginFlow
+    <LoginLayout
       id="$b1"
       inHasOverlay={useOverlay}
       inExtendedClass={isScreenUnlocked ? '' : 'ubt-lock-screen'}
@@ -85,7 +85,7 @@ export default function PINChange() {
       }
       placeholderContent={
         isScreenUnlocked ? (
-          <Block_PINRegister_ContentWrapper
+          <PinRegisterContent
             id="$b4"
             registerText="Enter new PIN"
             confirmText="Confirm new PIN"
@@ -93,7 +93,7 @@ export default function PINChange() {
             useOverlay={useOverlay}
           />
         ) : (
-          <Block_PINUnlock_ContentWrapper
+          <PinUnlockContent
             id="$b5"
             showForgotPIN={false}
             inForceVisible

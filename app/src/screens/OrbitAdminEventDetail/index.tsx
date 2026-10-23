@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { readInputs } from './api';
 import { ScreenBlock_AdminEventDetail } from './components/ScreenBlock_AdminEventDetail';
 
@@ -15,8 +15,8 @@ export default function OrbitAdminEventDetail() {
   const inputs = readInputs(params);
   return (
     <>
-      <ScreenBlock_AdminEventDetail id="$b1" bottomBar={<BottomBarMenu id="$b2" />} {...inputs} />
-      <CommonUI_InsideLayout id="$b3" />
+      <ScreenBlock_AdminEventDetail id="$b1" bottomBar={<BottomBar id="$b2" />} {...inputs} />
+      <CommonUiLayout id="$b3" />
     </>
   );
 }

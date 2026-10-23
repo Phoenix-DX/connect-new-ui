@@ -1,5 +1,5 @@
 /** @origin UBTConnect.App_PIN.PINUnlock */
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { BlockPinUnlock } from '@/platform/feedback/dialogs';
 import { replaceOnUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
@@ -35,7 +35,7 @@ export default function PINUnlock() {
       id="$b1"
       inForceVisible
       onUnlock={onUnlock}
-      placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b2" inIgnoreLockScreen inIgnorePolicy />}
+      placeholderCommonUIInsideLayout={<CommonUiLayout id="$b2" inIgnoreLockScreen inIgnorePolicy />}
     />
   );
 }

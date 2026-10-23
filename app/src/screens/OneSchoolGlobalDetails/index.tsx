@@ -2,8 +2,8 @@ import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 import { OSList } from '@/components/ui/os/OSList';
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
 import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
@@ -313,8 +313,8 @@ export default function OneSchoolGlobalDetails() {
           placeholderContent={content}
         />
       }
-      bottom={<BottomBarMenu id="$b27" />}
-      placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b28" />}
+      bottom={<BottomBar id="$b27" />}
+      placeholderCommonUIInsideLayout={<CommonUiLayout id="$b28" />}
     />
   );
 }

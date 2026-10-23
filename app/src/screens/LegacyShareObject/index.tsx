@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { DialogAccessRestrictedAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { getUserInformation } from '@/platform/session/userInfo';
@@ -34,7 +34,7 @@ export default function LegacyShareObject() {
         userAgeVisibility={userAgeVisibility}
         shareObjectTypeId={inputs.In_ShareObjectTypeId}
         inCustomTitle={inputs.In_CustomTitle}
-        commonUIElements={<CommonUI_InsideLayout id="$b2" />}
+        commonUIElements={<CommonUiLayout id="$b2" />}
         onSubscriptionDenied={showUpgradePopUp}
       />
       <DialogAccessRestrictedAction id="SubscriptionDenied" extendedClass="connect-legacy-compatibily-containter" />

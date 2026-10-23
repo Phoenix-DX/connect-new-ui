@@ -1,10 +1,10 @@
 // @os-block UBTConnect.App_PIN.Block_PINUnlock
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
-import { Block_PINUnlock_ContentWrapper } from '@/shared/UBTConnect/Block_PINUnlock_ContentWrapper';
+import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
+import { PinUnlockContent } from '@/components/auth/PinUnlockContent';
 import { get_IsUnsupportedSystem } from '@/shared/UBTConnect/lib/actions';
-import { UnsupportedVersion_Wrapper } from '@/shared/UBTConnect/UnsupportedVersion_Wrapper';
+import { UnsupportedVersionWrapper } from '@/components/version/UnsupportedVersionWrapper';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { SVG_Background_LoginWrapper } from '@/shared/UBTConnectLibrary/SVG_Background_LoginWrapper';
 import { UBT_Color, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
@@ -52,7 +52,7 @@ export function BlockPinUnlock({
   return (
     <OSBlock name="App_PIN.Block_PINUnlock" id={id}>
       <OSBlock name="Layouts.Layout_LoginFlow" id={`${s}-$b1`}>
-        {!inIsCommonBlock && <LayoutRuntime_Top id={`${s}-b1-$b1`} />}
+        {!inIsCommonBlock && <LayoutRuntimeTop id={`${s}-b1-$b1`} />}
         <div
           className="ubt-layout--login ubt-lock-screen connect-legacy-compatibily-containter"
           data-container=""
@@ -76,11 +76,11 @@ export function BlockPinUnlock({
                     BorderOptions: { Radius: { GeneralSizeId: UBT_Shape.Large } },
                   }}
                 >
-                  <UnsupportedVersion_Wrapper id={`${s}-$b3`} />
+                  <UnsupportedVersionWrapper id={`${s}-$b3`} />
                 </CustomContainer>
               </div>
             ) : (
-              <Block_PINUnlock_ContentWrapper
+              <PinUnlockContent
                 id={`${s}-$b4`}
                 showForgotPIN
                 showPolicy

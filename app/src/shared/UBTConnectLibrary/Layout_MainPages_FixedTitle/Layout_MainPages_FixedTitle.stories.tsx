@@ -3,8 +3,8 @@ import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
@@ -43,8 +43,8 @@ export const V1: Story = {
     placeholderHeaderInput: <PendingBlock name="ConnectPatterns.Input" />,
     headerContent: <CustomContainer id="Filter_Pills" />,
     content: <PendingBlock name="Notes.NoteCard_List" />,
-    bottom: <BottomBarMenu id="$b9" activeItem={Connect_BottomBar_Items.Menu} />,
-    placeholderCommonUIInsideLayout: <CommonUI_InsideLayout id="$b10" />,
+    bottom: <BottomBar id="$b9" activeItem={Connect_BottomBar_Items.Menu} />,
+    placeholderCommonUIInsideLayout: <CommonUiLayout id="$b10" />,
   },
 };
 
@@ -77,7 +77,7 @@ export const V2: Story = {
         ))}
       </div>
     ),
-    bottom: <BottomBarMenu id="$b18" activeItem={Connect_BottomBar_Items.Updates} />,
-    placeholderCommonUIInsideLayout: <CommonUI_InsideLayout id="$b19" />,
+    bottom: <BottomBar id="$b18" activeItem={Connect_BottomBar_Items.Updates} />,
+    placeholderCommonUIInsideLayout: <CommonUiLayout id="$b19" />,
   },
 };

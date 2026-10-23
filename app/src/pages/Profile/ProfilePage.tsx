@@ -14,7 +14,7 @@ import { bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
 import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
 import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Dialog_CustomChoice } from '@/shared/UBTConnect/Dialog_CustomChoice';
 import { Dialog_Navigation } from '@/shared/UBTConnect/Dialog_Navigation';
 import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
@@ -28,7 +28,7 @@ import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { Layout_HomePage } from '@/shared/UBTConnectLibrary/Layout_HomePage';
+import { HomeLayout } from '@/components/layout/HomeLayout';
 import {
   UBT_AlignItems,
   UBT_ButtonType,
@@ -310,7 +310,7 @@ export default function Profile() {
 
   return (
     <ValidationServiceProvider service={validation}>
-      <Layout_HomePage
+      <HomeLayout
         id="$b1"
         extendedClass="ubt-profile-screen"
         sVGHeight="calc(200px - var(--header-size))"
@@ -659,7 +659,7 @@ export default function Profile() {
             )}
           </>
         }
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b55" />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b55" />}
       />
       <CacheControl_UserInfo_Wrapper id="$b56" onResult={onUserInfoResult} />
       {hasChanges && (

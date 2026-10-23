@@ -1,5 +1,5 @@
 import { useSearchParams } from 'react-router';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Feed_Embeded } from '@/shared/UBTConnect/Feed_Embeded';
 import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
@@ -42,7 +42,7 @@ export default function FeedItemDetail() {
         id="$b1"
         placeholderHeaderTitle="Feed Item"
         content={<Feed_Embeded id="$b2" feedItemId={FeedItemId} onEventShare={onShareFeed} />}
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b3" />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b3" />}
       />
       <ShareSheet
         id="$b4"

@@ -1,6 +1,6 @@
 import { useEffect, useId, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
+import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { clearScrollTimeout, removeScrollEvents, setScrollShadow } from '@/shared/UBTConnectLibrary/lib/actions';
 import { UBT_Color, UBT_IconSize, UBT_Icons } from '@/shared/UBTConnectLibrary/lib/staticEntities';
@@ -75,7 +75,7 @@ export function DetailLayout({
 
   return (
     <OSBlock name="Layouts.Layout_DetailPage" id={id}>
-      {initializeNavigationHandler && <LayoutRuntime_Top id={`${prefix}-$b1`} />}
+      {initializeNavigationHandler && <LayoutRuntimeTop id={`${prefix}-$b1`} />}
       <div
         className={`layout layout-side layout-native ios-bounce ubt-layout-detail${isPrimaryColor ? ' ubt-layout-detail--primary' : ''}${extendedClass === '' ? '' : ` ${extendedClass}`}${enableAccessibilityFeatures ? ' has-accessible-features' : ''}`}
         data-container=""

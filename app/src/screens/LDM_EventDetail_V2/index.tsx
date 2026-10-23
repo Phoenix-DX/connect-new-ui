@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { getNameAndSurname_ByFullName } from '@/shared/UBTConnect/lib/actions';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
 import { generateScreenURL, setPreloadObject, useOsNavigate } from '@/platform/navigation';
@@ -35,7 +35,7 @@ export default function LDM_EventDetail_V2() {
         key={`${inputs.EventHostId}-${inputs.EventId}`}
         id="$b1"
         inputs={inputs}
-        bottomBar={<BottomBarMenu id="$b2" />}
+        bottomBar={<BottomBar id="$b2" />}
         onNavigateToHouseholdCarousel={(householdId, householdIdList) => {
           if (hasCarouselEnabled) {
             setPreloadObject({ CarouselHouseholdItem: householdIdList.map((id) => ({ Household: id })) });
@@ -77,7 +77,7 @@ export default function LDM_EventDetail_V2() {
           });
         }}
       />
-      <CommonUI_InsideLayout id="$b3" />
+      <CommonUiLayout id="$b3" />
     </>
   );
 }

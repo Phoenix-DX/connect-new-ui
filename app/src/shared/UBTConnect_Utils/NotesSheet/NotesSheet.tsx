@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { createOrUpdate_LocalNote } from '@/platform/storage/localEntities';
-import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { AddNote } from '@/shared/UBTConnectLibrary/AddNote';
 import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
 import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';

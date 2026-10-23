@@ -14,10 +14,10 @@ import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform
 import { APP_ID } from '@/platform/navigation/paths';
 import { bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { App_NotificationIcon } from '@/shared/UBTConnect/App_NotificationIcon';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { BottomBar } from '@/components/layout/BottomBar';
 import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
 import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Directory_LegendBottomSheet } from '@/shared/UBTConnect/Directory_LegendBottomSheet';
 import { FeedBlock_CommunityPopulation } from '@/shared/UBTConnect/FeedBlock_CommunityPopulation';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
@@ -333,8 +333,8 @@ export default function CountryList() {
             </SkeletonSection>
           </CustomContainer>
         }
-        bottom={<BottomBarMenu id="$b25" activeItem={Connect_BottomBar_Items.Directory} isRootPage />}
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b26" />}
+        bottom={<BottomBar id="$b25" activeItem={Connect_BottomBar_Items.Directory} isRootPage />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b26" />}
       />
       <CacheControl_UserInfo_Wrapper id="$b27" onResult={onUserInfo} />
       <Directory_LegendBottomSheet

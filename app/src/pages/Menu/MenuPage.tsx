@@ -1,11 +1,11 @@
 import { DetailLayout } from '@/components/layout';
 import { useNavigateBack } from '@/platform/navigation';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
+import { BottomBar } from '@/components/layout/BottomBar';
 import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Dialog_CustomChoice } from '@/shared/UBTConnect/Dialog_CustomChoice';
-import { Menu_List } from '@/shared/UBTConnect/Menu_List';
-import { Version } from '@/shared/UBTConnect/Version';
+import { MenuList } from '@/components/menu/MenuList';
+import { AppVersion } from '@/components/version/AppVersion';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
@@ -69,7 +69,7 @@ export default function Menu() {
                 fullName={user?.FullName ?? ''}
                 onEditYourAccount={onEditYourAccount}
               />
-              <Menu_List id="$b10" inMenuSection={menuSection} onOnClickMenuOption={onMenuOption} />
+              <MenuList id="$b10" inMenuSection={menuSection} onOnClickMenuOption={onMenuOption} />
             </div>
             <CustomContainer
               id="$b11"
@@ -79,12 +79,12 @@ export default function Menu() {
                 DisplayOptions: { Display: UBT_Display.Flex, JustifyContent: UBT_JustifyContent.Center },
               }}
             >
-              <Version id="$b12" />
+              <AppVersion id="$b12" />
             </CustomContainer>
           </CustomContainer>
         }
-        bottom={<BottomBarMenu id="$b13" activeItem={Connect_BottomBar_Items.Menu} isRootPage />}
-        commonUI={<CommonUI_InsideLayout id="$b14" />}
+        bottom={<BottomBar id="$b13" activeItem={Connect_BottomBar_Items.Menu} isRootPage />}
+        commonUI={<CommonUiLayout id="$b14" />}
       />
       <Dialog_CustomChoice
         id="PopUp_Logout"

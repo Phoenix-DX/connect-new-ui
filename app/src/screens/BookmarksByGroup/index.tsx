@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { readInputs } from './api';
@@ -24,7 +24,7 @@ export default function BookmarksByGroup() {
       <ScreenBlock_BookmarkGroup
         id="$b1"
         bookmarkGroup={inputs.BookmarkGroup}
-        bottomBar={<BottomBarMenu id="$b2" activeItem={Connect_BottomBar_Items.Bookmarks} />}
+        bottomBar={<BottomBar id="$b2" activeItem={Connect_BottomBar_Items.Bookmarks} />}
         onNavigateToHouseholdCarousel={(selectedHouseholdId, _itemPosition, householdIdList) => {
           // OnHandle_NavigateTo_HouseholdCarousel (:530-600): GetHasCarouselEnabled → preload the ids and open the
           // carousel, else HouseholdDetails.
@@ -52,7 +52,7 @@ export default function BookmarksByGroup() {
           navigate('/UBTConnect/SupperMeeting_Details', { In_SubdivsionId: subdivisionId });
         }}
       />
-      <CommonUI_InsideLayout id="$b3" />
+      <CommonUiLayout id="$b3" />
     </>
   );
 }

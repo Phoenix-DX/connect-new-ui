@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { readInputs } from './api';
 import { addAuditEventDetailEvent, ApplicationEvents_LDM } from './components/actions';
 import { ScreenBlock_Household_Email } from './components/ScreenBlock_Household_Email';
@@ -24,7 +24,7 @@ export default function EmailTarget() {
         emailTo={inputs.EmailTo}
         contactBusinessType={inputs.ContactBusinessType}
         initialEmailSubject={inputs.InitialEmailSubject}
-        bottomBar={<BottomBarMenu id="$b2" />}
+        bottomBar={<BottomBar id="$b2" />}
         onEmailSubmitted={() => {
           // OnEmailLDMEventParticipant_Handler (S :320-360): IsFromLDM → AddAuditEventDetailEvent(EmailHost ?
           // MyTimelineHostEmailed : MyTimelineGuessEmailed, 0, "", EventDate, EventLocality).
@@ -38,7 +38,7 @@ export default function EmailTarget() {
             );
         }}
       />
-      <CommonUI_InsideLayout id="$b3" />
+      <CommonUiLayout id="$b3" />
     </>
   );
 }

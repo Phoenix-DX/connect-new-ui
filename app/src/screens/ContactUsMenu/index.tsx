@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { OSList } from '@/components/ui/os/OSList';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
-import { Menu_List } from '@/shared/UBTConnect/Menu_List';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
+import { MenuList } from '@/components/menu/MenuList';
 import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
@@ -83,7 +83,7 @@ export default function ContactUsMenu() {
               keyOf={(_s, i) => `${LIST_KEY}_${i}`}
             >
               {(section, i) => (
-                <Menu_List
+                <MenuList
                   id={`l1-${LIST_KEY}_${i}-$b3`}
                   inMenuSection={section}
                   onOnClickMenuOption={(option) => {
@@ -101,7 +101,7 @@ export default function ContactUsMenu() {
         </>
       }
       placeholderCommonUIInsideLayout={
-        <CommonUI_InsideLayout id="$b5" inIgnorePolicy={ignore.polices} inIgnoreLockScreen={ignore.lockedScreen} />
+        <CommonUiLayout id="$b5" inIgnorePolicy={ignore.polices} inIgnoreLockScreen={ignore.lockedScreen} />
       }
     />
   );

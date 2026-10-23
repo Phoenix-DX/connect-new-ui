@@ -1,6 +1,6 @@
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { useOsNavigate } from '@/platform/navigation';
 import { ScreenBlock_OrbitLanding } from './components/ScreenBlock_OrbitLanding';
@@ -36,7 +36,7 @@ export default function OrbitLanding() {
     <>
       <ScreenBlock_OrbitLanding
         id="$b1"
-        bottomBar={<BottomBarMenu id="$b2" />}
+        bottomBar={<BottomBar id="$b2" />}
         onNavigateToEventDetail={(eventId, eventName, memberId) => {
           // OnHandle_NavigateToEventDetail (:476-510)
           if (!hasOrbitAccess) {
@@ -77,7 +77,7 @@ export default function OrbitLanding() {
           navigate('/UBTConnect/MyEntertaining', { MyCalendarEventSourceId: Type_MyCalendarEventSource_Orbit });
         }}
       />
-      <CommonUI_InsideLayout id="$b3" />
+      <CommonUiLayout id="$b3" />
     </>
   );
 }

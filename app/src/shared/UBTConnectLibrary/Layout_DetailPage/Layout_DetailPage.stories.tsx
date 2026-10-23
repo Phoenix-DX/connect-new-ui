@@ -3,8 +3,8 @@ import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
@@ -39,8 +39,8 @@ export const V1: Story = {
     id: '$b1',
     placeholderHeaderTitle: 'Browse by country',
     content: <PendingBlock name="Directory_Locality.StatisticsList" />,
-    bottom: <BottomBarMenu id="$b3" activeItem={Connect_BottomBar_Items.Directory} />,
-    placeholderCommonUIInsideLayout: <CommonUI_InsideLayout id="$b4" />,
+    bottom: <BottomBar id="$b3" activeItem={Connect_BottomBar_Items.Directory} />,
+    placeholderCommonUIInsideLayout: <CommonUiLayout id="$b4" />,
   },
 };
 
@@ -51,8 +51,8 @@ export const V2: Story = {
     id: '$b1',
     placeholderHeaderTitle: <span data-expression="">Argentina</span>,
     content: <PendingBlock name="SubLayout.SubLayout_Browse_Section" />,
-    bottom: <BottomBarMenu id="$b12" activeItem={Connect_BottomBar_Items.Directory} />,
-    placeholderCommonUIInsideLayout: <CommonUI_InsideLayout id="$b13" />,
+    bottom: <BottomBar id="$b12" activeItem={Connect_BottomBar_Items.Directory} />,
+    placeholderCommonUIInsideLayout: <CommonUiLayout id="$b13" />,
   },
 };
 
@@ -106,7 +106,7 @@ export const V5: Story = {
         </div>
       </>
     ),
-    placeholderCommonUIInsideLayout: <CommonUI_InsideLayout id="$b25" />,
+    placeholderCommonUIInsideLayout: <CommonUiLayout id="$b25" />,
   },
 };
 
@@ -118,7 +118,7 @@ export const V6: Story = {
     inIsPrimaryColor: false,
     placeholderHeaderTitle: <SkeletonSection id="$b2" />,
     content: <PendingBlock name="Directory_Caroussel.EntitiesCarousel" />,
-    bottom: <BottomBarMenu id="$b5" activeItem={Connect_BottomBar_Items.Directory} />,
-    placeholderCommonUIInsideLayout: <CommonUI_InsideLayout id="$b6" />,
+    bottom: <BottomBar id="$b5" activeItem={Connect_BottomBar_Items.Directory} />,
+    placeholderCommonUIInsideLayout: <CommonUiLayout id="$b6" />,
   },
 };

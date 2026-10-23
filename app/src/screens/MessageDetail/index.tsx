@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router';
-import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { getHasNewNotifications } from '@/shared/UBTConnect_Utils/lib/actions';
 import { useOsNavigate } from '@/platform/navigation';
 import { useShellState } from '@/platform/session/session';
@@ -23,10 +23,10 @@ export default function MessageDetail() {
     <ScreenBlock_MessageDetail
       id="$b1"
       {...inputs}
-      bottomBar={signedIn ? <BottomBarMenu id="$b3" /> : undefined}
+      bottomBar={signedIn ? <BottomBar id="$b3" /> : undefined}
       commonUIElements={
         <>
-          <CommonUI_InsideLayout id="$b4" />
+          <CommonUiLayout id="$b4" />
           <BackNavigationHandler
             id="$b5"
             onBackNavigation={(event) => {

@@ -5,7 +5,7 @@ import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getClientVar, useClientVar } from '@/platform/session/session';
 import { getHasNewNotifications } from '@/shared/UBTConnect_Utils/lib/actions';
-import { App_IconBadge } from '@/shared/UBTConnect/App_IconBadge';
+import { BottomBarIconBadge } from '@/components/layout/BottomBarIconBadge';
 import { App_NotificationRefresh } from '@/shared/UBTConnect/App_NotificationRefresh';
 import { UBT_Color, UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
 
@@ -29,7 +29,7 @@ export function App_NotificationIcon({ id }: App_NotificationIconProps) {
   };
   return (
     <OSBlock name="App_Common_Blocks.App_NotificationIcon" id={id}>
-      <App_IconBadge
+      <BottomBarIconBadge
         isLoading={!isSynched}
         badgeNumber={String(localNotifications)}
         maxNotifications={9}

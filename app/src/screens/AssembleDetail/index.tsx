@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { getNameAndSurname_ByFullName } from '@/shared/UBTConnect/lib/actions';
 import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
 import { getPreloadObject, setPreloadObject, useOsNavigate, useViewState } from '@/platform/navigation';
@@ -42,12 +42,12 @@ export default function AssembleDetail() {
 
   return (
     <>
-      <CommonUI_InsideLayout id="$b1" />
+      <CommonUiLayout id="$b1" />
       <ScreenBlock_AssembleDetail
         key={`${inputs.EventId}-${inputs.SeriesId}-${inputs.Start}`}
         id="$b2"
         inputs={inputs}
-        bottomBar={<BottomBarMenu id="$b3" />}
+        bottomBar={<BottomBar id="$b3" />}
         onNavigateToHousehold={navigateToHousehold}
         onNavigateToHouseholdCarousel={(_itemPosition, selectedHouseholdId) => {
           const preload = getPreloadObject();

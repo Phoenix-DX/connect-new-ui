@@ -10,7 +10,7 @@ import { NoResults } from '@/shared/Connect2_OrbitMobile_MUI/NoResults';
 import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import { checkDirectoryAccess, setBookletMaxRows } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { DirectoryAPIFilter, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { BackNavigationHandler, type BackNavigationEvent } from '@/shared/NavigationHandler/BackNavigationHandler';
+import { BackNavigationHandler, type BackNavigationEvent } from '@/platform/navigation/BackNavigationHandler';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';

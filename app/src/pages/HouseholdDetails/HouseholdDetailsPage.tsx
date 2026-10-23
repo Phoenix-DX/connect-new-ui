@@ -2,8 +2,8 @@ import { useSearchParams } from 'react-router';
 import { DetailLayout } from '@/components/layout';
 import { HouseholdDetailsContainer, useHouseholdDetailsFlags } from '@/containers';
 import { useNavigateBack, useViewState } from '@/platform/navigation';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { readHouseholdDetailsInputs } from './inputs';
 
 /** @origin UBTConnect.Directory_Household.HouseholdDetails
@@ -48,8 +48,8 @@ export default function HouseholdDetails() {
           onHouseholdDataFetched={onHouseholdDataFetched}
         />
       }
-      bottom={<BottomBarMenu id="$b3" />}
-      commonUI={<CommonUI_InsideLayout id="$b4" />}
+      bottom={<BottomBar id="$b3" />}
+      commonUI={<CommonUiLayout id="$b4" />}
     />
   );
 }

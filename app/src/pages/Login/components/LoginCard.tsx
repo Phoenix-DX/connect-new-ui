@@ -1,6 +1,6 @@
 import { ButtonLoading } from '@/shared/osui/ButtonLoading';
-import { UnsupportedVersion_Wrapper } from '@/shared/UBTConnect/UnsupportedVersion_Wrapper';
-import { WelcomeToConnect } from '@/shared/UBTConnect/WelcomeToConnect';
+import { UnsupportedVersionWrapper } from '@/components/version/UnsupportedVersionWrapper';
+import { WelcomeToConnect } from '@/components/auth/WelcomeToConnect';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Tile } from './Tile';
@@ -32,7 +32,7 @@ export function LoginCard({
     <Tile id="$b2" extendedClasses="ubt-zindex-2 connect-login-card">
       <div className="connect-login-card__content" data-container="">
         {isUnsupportedSystem ? (
-          <UnsupportedVersion_Wrapper id="$b3" />
+          <UnsupportedVersionWrapper id="$b3" />
         ) : (
           <>
             <WelcomeToConnect id="$b4" />

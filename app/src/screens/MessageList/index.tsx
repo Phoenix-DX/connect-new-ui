@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useOsNavigate } from '@/platform/navigation';
 import { useShellState } from '@/platform/session/session';
 import { ScreenBlock_MessageList } from './components/ScreenBlock_MessageList';
@@ -21,11 +21,11 @@ export default function MessageList() {
       bottomBar={
         signedIn ? (
           <div data-container="">
-            <BottomBarMenu id="$b2" />
+            <BottomBar id="$b2" />
           </div>
         ) : undefined
       }
-      commonUIElements={<CommonUI_InsideLayout id="$b3" />}
+      commonUIElements={<CommonUiLayout id="$b3" />}
       onNavigateToMessageDetail={(messageInstanceId) => {
         navigate('/UBTConnect/MessageDetail', { MessageInstanceId: messageInstanceId });
       }}

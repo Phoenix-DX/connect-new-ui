@@ -7,8 +7,8 @@ import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { BottomBarMenu } from '@/shared/UBTConnect/BottomBarMenu';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { BottomBar } from '@/components/layout/BottomBar';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
 import { ComingSoon } from '@/shared/UBTConnectLibrary/ComingSoon';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
@@ -387,8 +387,8 @@ function Locality_DetailsScreen() {
           )}
         </>
       }
-      bottom={<BottomBarMenu id={b(23)} activeItem={Connect_BottomBar_Items.Directory} />}
-      placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id={b(24)} />}
+      bottom={<BottomBar id={b(23)} activeItem={Connect_BottomBar_Items.Directory} />}
+      placeholderCommonUIInsideLayout={<CommonUiLayout id={b(24)} />}
     />
   );
 }

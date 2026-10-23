@@ -1,8 +1,8 @@
 /** @origin UBTConnect.App_Menu.TermsAndPoliciesMenu */
 import { useMemo } from 'react';
-import { CommonUI_InsideLayout } from '@/shared/UBTConnect/CommonUI_InsideLayout';
+import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
-import { Menu_List, type UI_ListMenuOption, type UI_MenuSection } from '@/shared/UBTConnect/Menu_List';
+import { MenuList, type UI_ListMenuOption, type UI_MenuSection } from '@/components/menu/MenuList';
 import { CacheControl_Policies } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
@@ -62,10 +62,10 @@ export default function TermsAndPoliciesMenu() {
         placeholderHeaderTitle="Terms & Policies"
         content={
           <SkeletonSection id="$b2" inIsLoading={!localPolicies.isFetched}>
-            <Menu_List id="$b3" inMenuSection={menuSection} onOnClickMenuOption={onClickMenuOption} />
+            <MenuList id="$b3" inMenuSection={menuSection} onOnClickMenuOption={onClickMenuOption} />
           </SkeletonSection>
         }
-        placeholderCommonUIInsideLayout={<CommonUI_InsideLayout id="$b4" />}
+        placeholderCommonUIInsideLayout={<CommonUiLayout id="$b4" />}
       />
       {/* CacheControl_PoliciesResult (SCR controller): LocalCacheControl_Policies = {response, isFetched True}. */}
       <CacheControl_Policies
