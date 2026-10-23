@@ -30,6 +30,15 @@ export interface FlowStateOptions<S, A, P, E = undefined> {
   /** OnReady. It runs once, after the first render. `restored` is true when the view cache restored the view (a back
       navigation), false on a new visit. */
   onReady?: (isAlive: IsAlive, restored: boolean) => Promise<void>;
+  /** Runs `onReady` before the first paint (decision W28). Set it when the old port of the screen or block ran OnReady
+      in a `useLayoutEffect`. The hook reads it at the mount only; `onParametersChanged` does not change.
+      - Off (the default): `onReady` runs in a passive effect, after the paint. StrictMode (dev) runs it twice: the
+        first run's `isAlive` turns false at once.
+      - On: `onReady` runs once, in a layout effect. A state write at its start renders before the screen paints, so
+        the first frame does not show the state before OnReady. StrictMode (dev) runs it once.
+      - On: `isAlive` is true until the unmount (it guards the state writes only, decision W23). `restored` and the
+        flow handler are the same as in the default; a rejection goes to the flow handler, also after the unmount. */
+  beforePaint?: boolean;
   /** OnParametersChanged. It runs after a render in which the parameters key changed, never after the first render. */
   onParametersChanged?: (isAlive: IsAlive) => Promise<void>;
 }
@@ -61,6 +70,7 @@ export function useFlowState<S, A, P, E = undefined>({
   parameters,
   events,
   onReady,
+  beforePaint = false,
   onParametersChanged,
 }: FlowStateOptions<S, A, P, E>): FlowState<S, A, P, E> {
   const restoredFromCache = useWasRestoredFromCache();
@@ -89,7 +99,24 @@ export function useFlowState<S, A, P, E = undefined>({
   });
 
   const restoredRef = useRef(restoredFromCache);
+  // The mode is fixed at the mount: one of the two effects below runs OnReady.
+  const beforePaintRef = useRef(beforePaint);
+  const readyStarted = useRef(false);
+  const readyAlive = useRef(false);
+  useLayoutEffect(() => {
+    if (!beforePaintRef.current) return undefined;
+    // StrictMode (dev) runs this effect again on the same view: the second run only turns the liveness check on again.
+    readyAlive.current = true;
+    if (!readyStarted.current) {
+      readyStarted.current = true;
+      flowsRef.current.onReady?.(() => readyAlive.current, restoredRef.current).catch(raiseToFlowHandler);
+    }
+    return () => {
+      readyAlive.current = false;
+    };
+  }, []);
   useEffect(() => {
+    if (beforePaintRef.current) return undefined;
     let alive = true;
     flowsRef.current.onReady?.(() => alive, restoredRef.current).catch(raiseToFlowHandler);
     return () => {

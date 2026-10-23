@@ -61,6 +61,10 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
     first render. Then `onReady` runs once (`restored` is true after a back navigation). `onParametersChanged` runs
     only when the parameters key changes, never after the first render. `isAlive` turns false at the next run and on
     unmount. A rejection of either flow goes to the flow handler.
+  - Optional `beforePaint: true` (decision W28): set it when the old port of the screen or block ran OnReady in a
+    `useLayoutEffect`. The default runs it after the paint. With the option, `onReady` runs once, before the first
+    paint, also in StrictMode. A state write at its start shows in the first frame. `isAlive` is true until the
+    unmount. `restored` and the flow handler do not change, and a rejection goes to the flow handler after the unmount.
   - Rule for `isAlive` (decision W23): `isAlive` guards state writes only.
     - App-level side effects of a flow that already started run to the end after unmount: toast, navigation,
       counters, notification-opened and other server calls. Do not put them behind `isAlive`.

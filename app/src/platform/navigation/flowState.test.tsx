@@ -1,10 +1,12 @@
-import type { ReactNode } from 'react';
+import { StrictMode, useEffect, type ReactNode } from 'react';
+import { flushSync } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { act, render, renderHook, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type IsAlive } from './flowState';
+import { useFlowState, type FlowState, type IsAlive } from './flowState';
 import { useOsNavigate } from './osNavigate';
 import { renderRoutes, resetNavigation } from './testRouter';
 
@@ -361,5 +363,205 @@ describe('useFlowState OnReady', () => {
     await vi.waitFor(() => {
       expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
     });
+  });
+});
+
+/* The option beforePaint (decision W28), in both modes. Off is the default: the tests above cover it too. */
+describe.each([
+  { beforePaint: false, mode: 'after the paint (default)' },
+  { beforePaint: true, mode: 'before the paint' },
+])('useFlowState OnReady $mode', ({ beforePaint }) => {
+  type ReadyFlow = (isAlive: IsAlive, restored: boolean, dispatch: (action: CounterAction) => void) => Promise<void>;
+
+  function ModeScreen({
+    onReady,
+    reducer = counterReducer,
+    log,
+  }: {
+    onReady: ReadyFlow;
+    reducer?: (state: Counter, action: CounterAction) => Counter;
+    log?: string[];
+  }) {
+    const flow: FlowState<Counter, CounterAction, object> = useFlowState({
+      viewName: 'Counter',
+      reducer,
+      initial: INITIAL,
+      parameters: {},
+      beforePaint,
+      onReady: (isAlive, restored) => onReady(isAlive, restored, flow.dispatch),
+    });
+    const { state } = flow;
+    return (
+      <>
+        <p>count: {state.count}</p>
+        {log && <PassiveProbe log={log} />}
+      </>
+    );
+  }
+
+  /** A child: React runs its passive effects before the ones of its parent. */
+  function PassiveProbe({ log }: { log: string[] }) {
+    useEffect(() => {
+      log.push('passive effect');
+    }, [log]);
+    return null;
+  }
+
+  /** OnReady writes the state at its start, then waits for an answer that never comes. */
+  const loadingFlow: ReadyFlow = (_isAlive, _restored, dispatch) => {
+    dispatch({ type: 'add', by: 1 });
+    return new Promise<void>(() => undefined);
+  };
+
+  /* The browser paints when React gives control back. flushSync outside act renders the mount and the updates that
+     it must render before it returns; an update of a passive effect waits for the scheduler. */
+  test('the first paint shows the state that OnReady writes at its start only before the paint', async () => {
+    const actEnvironment = globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean };
+    const previous = actEnvironment.IS_REACT_ACT_ENVIRONMENT;
+    actEnvironment.IS_REACT_ACT_ENVIRONMENT = false;
+    const container = document.createElement('div');
+    document.body.append(container);
+    const root = createRoot(container);
+    try {
+      flushSync(() => {
+        root.render(
+          <MemoryRouter>
+            <ModeScreen onReady={loadingFlow} />
+          </MemoryRouter>,
+        );
+      });
+      expect(container.textContent).toBe(beforePaint ? 'count: 1' : 'count: 0');
+
+      await vi.waitFor(() => {
+        expect(container.textContent).toBe('count: 1');
+      });
+    } finally {
+      flushSync(() => {
+        root.unmount();
+      });
+      container.remove();
+      actEnvironment.IS_REACT_ACT_ENVIRONMENT = previous;
+    }
+  });
+
+  test('OnReady runs before the passive effects of the mount only before the paint', () => {
+    const log: string[] = [];
+    render(
+      <ModeScreen
+        log={log}
+        onReady={() => {
+          log.push('ready');
+          return Promise.resolve();
+        }}
+      />,
+      { wrapper: inRouter },
+    );
+    expect(log).toEqual(beforePaint ? ['ready', 'passive effect'] : ['passive effect', 'ready']);
+  });
+
+  test('StrictMode runs OnReady twice after the paint, once before the paint', () => {
+    const checks: IsAlive[] = [];
+    const { unmount } = render(
+      <StrictMode>
+        <MemoryRouter>
+          <ModeScreen
+            onReady={(isAlive) => {
+              checks.push(isAlive);
+              return Promise.resolve();
+            }}
+          />
+        </MemoryRouter>
+      </StrictMode>,
+    );
+    // After the paint, the first run's isAlive turns false when StrictMode runs the effect again.
+    expect(checks.map((check) => check())).toEqual(beforePaint ? [true] : [false, true]);
+
+    unmount();
+    expect(checks.map((check) => check())).toEqual(beforePaint ? [false] : [false, false]);
+  });
+
+  /* Decision W23: after the unmount, the flow runs to its end (its side effects run once); only its state writes
+     stop. A rejection still goes to the flow handler. */
+  test('an unmount while OnReady is pending stops the state writes, not the flow', async () => {
+    const reducer = vi.fn(counterReducer);
+    const sideEffect = vi.fn();
+    let answer: () => void = () => undefined;
+    const answered = new Promise<void>((resolve) => {
+      answer = resolve;
+    });
+    const error = new Error('GetMilestone failed');
+    const { unmount } = render(
+      <ModeScreen
+        reducer={reducer}
+        onReady={async (isAlive, _restored, dispatch) => {
+          dispatch({ type: 'add', by: 1 });
+          await answered;
+          sideEffect();
+          if (isAlive()) dispatch({ type: 'add', by: 10 });
+          throw error;
+        }}
+      />,
+      { wrapper: inRouter },
+    );
+    expect(screen.getByText('count: 1')).toBeInTheDocument();
+    unmount();
+    const writes = reducer.mock.calls.length;
+
+    await act(async () => {
+      answer();
+      await answered;
+    });
+
+    expect(sideEffect).toHaveBeenCalledTimes(1);
+    expect(reducer).toHaveBeenCalledTimes(writes);
+    await vi.waitFor(() => {
+      expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    });
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+  });
+
+  test('restored is true after a back-navigation remount, false on a new visit', async () => {
+    const restoredValues: boolean[] = [];
+    function ListScreen() {
+      const go = useOsNavigate();
+      useFlowState({
+        viewName: 'Counter',
+        reducer: counterReducer,
+        initial: INITIAL,
+        parameters: {},
+        beforePaint,
+        onReady: (_isAlive, restored) => {
+          restoredValues.push(restored);
+          return Promise.resolve();
+        },
+      });
+      return (
+        <button
+          type="button"
+          onClick={() => {
+            go('/UBTConnect/Detail');
+          }}
+        >
+          open detail
+        </button>
+      );
+    }
+    const { router } = renderRoutes(
+      { '/UBTConnect/List': <ListScreen />, '/UBTConnect/Detail': <p>detail</p> },
+      '/UBTConnect/List',
+    );
+    expect(restoredValues).toEqual([false]);
+
+    const openDetail = async () => {
+      await userEvent.click(screen.getByText('open detail'));
+      expect(await screen.findByText('detail')).toBeInTheDocument();
+    };
+    await openDetail();
+    await act(() => router.navigate(-1));
+    expect(restoredValues).toEqual([false, true]);
+
+    await openDetail();
+    await act(() => router.navigate('/UBTConnect/List'));
+    expect(restoredValues).toEqual([false, true, false]);
   });
 });

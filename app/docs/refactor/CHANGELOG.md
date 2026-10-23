@@ -577,3 +577,8 @@
 - Architecture: no change. `knip` found no unused file in the G4 folders; `jscpd` found only small clones, left as is.
 - Group gate passes: parity `visual --all` 64/64 clean on both references, `e2e:pwa` 9/9, arch baseline 67 rows (P7 66, pre-existing 1).
 - Group report: `app/docs/refactor/reports/P6-G4.md`. Open follow-ups F21 and F22.
+
+## P6-F17 - refactor(P6-F17): OnReady before paint option in useFlowState
+
+- `useFlowState` (`platform/navigation/flowState.ts`) has the opt-in option `beforePaint` (decision W28). When it is set, OnReady runs once in a layout effect, before the first paint.
+- The default is off: no page changes. `isAlive` guards state writes only (W23). The guide `docs/guides/page-template.md` names the option.

@@ -666,3 +666,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,other,29704,refactor-docs,,P6-G4-C sonnet
 2026-10-24,refactor,review,41973,refactor-advisor,,"W29, opus"
 2026-10-24,refactor,review,42172,refactor-advisor,,"W29, fable"
+2026-10-24,refactor,build,74965,refactor-dev,,P6-F17 opus
+2026-10-24,refactor,verify,22379,refactor-test,,P6-F17 sonnet

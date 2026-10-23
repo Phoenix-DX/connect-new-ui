@@ -596,3 +596,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T06:33:33 P6-G4-C waits for the user: Review the routes of group G4 on localhost (links in the step report): BrowseCountries, BrowseDirectory, CountryList, CountryDetails, HouseholdCarousel, Household_Relations, Locality_Details, OneSchoolGlobalDetails, Photobook, SupperMeeting_Carousel, SupperMeeting_Details, CommunityBusinessDetails_CoomingSoon, Assemble_BrowseByCountry. Then confirm the group.
 - 2026-10-24T06:35:00 P6-G4-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W29 group G4 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: F22 inherited from the old port, raise it with W27's follow-up in the G5 report; keep the F17 watch; P6-F17 gate re-runs parity on the beforePaint pages."
 - 2026-10-24T06:35:00 P6-G4-C stage commit
+- 2026-10-24T06:35:13 P6-G4-C done 66f01e66: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 67 rows, no P6-G4 owner; knip/jscpd match; bundle HomeFeed 244.14/248.22, Login 184.19/193.84 kB gzip; group confirm W29 (Opus + Fable, delegated)
+- 2026-10-24T06:35:23 P6-F17 started
+- 2026-10-24T06:35:24 P6-F17 stage dev
+- 2026-10-24T06:38:47 P6-F17 stage test
+- 2026-10-24T06:49:27 P6-F17 stage docs
+- 2026-10-24T06:51:15 P6-F17 stage commit
