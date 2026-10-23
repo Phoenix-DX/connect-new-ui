@@ -99,7 +99,13 @@ GROUP_ORDER = {"G1": ["Login", "Splash", "AcceptPendingPolicies", "Menu", "PINRe
 SHARED_MOVE_AFTER = {"G1": "Menu"}
 # W22 (Opus + Fable, auto-accepted user instruction 2026-10-23 13:43): steps that run after a route step of a group
 AFTER_ROUTE = {
-    ("G3", "Notifications"): [("P6-G3-B-HomeFeed-Page", "HomeFeed page part", "change", "visual", "opus", None, 0.25,
+    ("G3", "Notifications"): [("P6-F16", "HomeFeed first load trim", "change", "strict", "opus", None, 0.5,
+                          "This step is the entry trim of decisions W21 and W24: make the HomeFeed first load at least "
+                          "about 2 kB gzip smaller without a behavior change (for example a slimmer route table or "
+                          "lazy-route manifest, or narrow imports on the app-start path as P6-F15 did). Target: after "
+                          "P6-G3-B-HomeFeed-Page (+1.11 kB) lands, the HomeFeed margin to its limit is at least 2.0 "
+                          "kB. Gate: parity strict --all with the call check, bundle report."),
+                         ("P6-G3-B-HomeFeed-Page", "HomeFeed page part", "change", "visual", "opus", None, 0.25,
                           "This step finishes P6-G3-B-HomeFeed (W22): FeedBlock_Services, FeedBlock_Updates and "
                           "Dialog_GoExternalApp of pages/HomeFeed become hooks and props-only components; GetServices "
                           "moves to api/service (created by P6-G3-B-Services); pages/HomeFeed/api.ts and types.ts go "
