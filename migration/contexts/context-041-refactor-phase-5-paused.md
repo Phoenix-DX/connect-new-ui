@@ -21,8 +21,9 @@
 3. Order: P5-2-app, P5-3-event, P5-3-bookmark, P5-3-note, then P5-3-message and P5-3-notification (no developer work
    yet), then P5-4 (after-gate: exemption list, Opus/Fable).
 4. `P5-3-event.patch` conflicts with locality in `screens/LDM_MyEvents_V2/api.ts` and `types.ts`: let a developer (mode
-   loop) resolve it on the main tree; do not resolve it by hand. The bookmark and note patches were made on a base
-   that holds the app, update and bookmark diffs, so apply them after those steps.
+   loop) resolve it on the main tree; do not resolve it by hand. The bookmark patch was made on a base with the
+   locality, update and app diffs; the note patch on a base with the update, app and bookmark diffs: apply each after
+   those steps.
 5. Tester prompts: no `sleep` or polling loops (a rejected `sleep` loop stopped a tester at 12:55); foreground commands
    with a timeout; `--jobs 2` when a prefetch developer runs at the same time.
 
