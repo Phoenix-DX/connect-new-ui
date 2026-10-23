@@ -7,7 +7,10 @@ Part A (session, app start, sign-in, PIN, inactivity lock) is described in `docs
   does; `UBTConnect_Notes_MCS` LocalNote actions and aggregates (who reads them offline: header of `localNotes.ts`).
   Tests use `memoryDatabase`. `exceptions.ts`: UserException / system checks and `raiseToFlowHandler` (App_Common handler).
 - `auth/`: the `AuthProvider` interface, `mockAuth` (behind `MOCKS_BUILT`) and `authProvider()`; `null` in a production build.
-- `bootstrap/appStartSteps.ts`: the app start as 7 named steps; `bootstrap/postLogin.ts`: the post-login calls.
+- `bootstrap/appStartSteps.ts`: the app start as 8 named steps (`fetchFlags` comes after `synchAppContext`); `bootstrap/postLogin.ts`: the post-login calls.
+- `flags/`: the typed registry of 21 flags, `resolveFlags` (default < server < override), the store, `useFlag` and `flagValue`.
+  `FLAG_OVERRIDES_BUILT` gates `?ff=` and `FlagPanel`. `flags.ts` is the adapter (`useFlagOn`, `isOn`, `setFlag`) for the old readers.
+  OutSystems names: `legacy/os/flagNames.ts`. The routes with `meta.flagRedirect` redirect in `useOsNavigate`, not on a direct URL.
 - `startup.ts` exports `synchronizeNumberUnreadMessages()` (Connect2_LegacyShared `SynchronizeNumberUnreadMessages`):
   the app start uses it, and screens call it where the original does (MessageList Mark All as Read, Notifications;
   CR-MessageList-1).

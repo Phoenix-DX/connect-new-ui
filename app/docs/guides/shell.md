@@ -18,9 +18,9 @@ The shell depends on no screen. Screens call the APIs below.
     `.LocalBookmarksC2`). The mock user has no local bookmarks.
   - SyncNotes (UC:1145): the local notes copy becomes the `LocalEntities_App.LocalNotes` of Sync_Info_GetMain.
     A sign-in fetches its own Sync_Info_GetMain first (UC:1121).
-- The app start is a list of 7 named steps, `APP_START_STEPS`: `synchAppContext`, `initializeWebComponents`,
+- The app start is a list of 8 named steps, `APP_START_STEPS`: `synchAppContext`, `fetchFlags`, `initializeWebComponents`,
   `bottomBarSlider`, `waitForFirstScreen`, `syncInfoMain`, `setLoggedContext` and `cacheableMapData`. Each step checks its
-  own condition. There is no `fetchFlags` step until P4-5. `postLogin.ts` holds the post-login calls
+  own condition. `fetchFlags` makes no call in the mock phase: the flags keep the registry defaults. `postLogin.ts` holds the post-login calls
   (`Connect_SetLoggedContext`), which the app start and the sign-in share.
 - The mock answers one local note per note of the notes mock collection (`notesCollection`).
 

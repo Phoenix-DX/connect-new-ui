@@ -56,7 +56,8 @@ const where = () => screen.getByTestId('where').textContent;
 
 describe('BottomBarMenu', () => {
   afterEach(() => {
-    for (const f of ['C2EnableC1DirectoryView', 'C2NewBookmarks', 'mobileDirectoryBookmarkNote']) setFlag(f, null);
+    for (const f of ['C2EnableC1DirectoryView', 'C2NewBookmarks', 'mobileDirectoryBookmarkNote'] as const)
+      setFlag(f, null);
   });
 
   testCapturedVariants(capturedStories, captures);

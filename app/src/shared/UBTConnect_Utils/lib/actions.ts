@@ -2,7 +2,7 @@
    (copy in migration/screens/Login/analysis/sources/raw/). */
 import { callAction } from '@/api/client/callAction';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import { isOn } from '@/platform/flags/flags';
+import { flagValue } from '@/platform/flags';
 import { log } from '@/platform/log/log';
 import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
@@ -44,15 +44,15 @@ export async function get_ConnectVersionDetails(): Promise<ConnectVersionDetails
 }
 
 /* Feature-flag helpers (migration/knowledge/feature-flag-helpers.md): HasAccess of the per-user permission check,
-   read through lib/flags (decided flags, flags.generated.json). */
+   read through platform/flags (flagValue of the flag registry). */
 /** GetHasNewNotifications: OutSystems_FF C2NewNotifications (D11: bell → Notifications when on, MessageList when off). */
-export const getHasNewNotifications = (): boolean => isOn('C2NewNotifications');
+export const getHasNewNotifications = (): boolean => flagValue('C2NewNotifications');
 /** GetHasNewBookmarks: OutSystems_FF C2NewBookmarks. */
-export const getHasNewBookmarks = (): boolean => isOn('C2NewBookmarks');
+export const getHasNewBookmarks = (): boolean => flagValue('C2NewBookmarks');
 /** GetHasC1DirectoryView: OutSystems_FF C2EnableC1DirectoryView. */
-export const getHasC1DirectoryView = (): boolean => isOn('C2EnableC1DirectoryView');
+export const getHasC1DirectoryView = (): boolean => flagValue('C2EnableC1DirectoryView');
 /** Connect_LaunchDarkly_PermissionCheck(LaunchDarkly_FF record).HasAccess, for the records with a decided flag. */
-export const connect_LaunchDarkly_PermissionCheck = (flag: 'mobileDirectoryBookmarkNote'): boolean => isOn(flag);
+export const connect_LaunchDarkly_PermissionCheck = (flag: 'mobileDirectoryBookmarkNote'): boolean => flagValue(flag);
 
 /** BottomBar_GetList (:153-245): the bottom bar items. The useMapsItems branch (Explore, Bookmarked and, for a
     householder, Settings) has identifiers no capture shows: the caller renders it as NotCaptured, so this returns
@@ -98,7 +98,7 @@ export function getImageType_FromEntity(entityType: string): string {
 
 /* ---- Wave 2C (CW_CTA_PopUps) ---- */
 /** GetHasExtendedShare: OutSystems_FF C2ExtendedShare (migration/knowledge/feature-flag-helpers.md; TST: true). */
-export const getHasExtendedShare = (): boolean => isOn('C2ExtendedShare');
+export const getHasExtendedShare = (): boolean => flagValue('C2ExtendedShare');
 
 /** GetComingSoonMessage (UBTConnect_Utils.controller.js, BookmarksByGroup copy): the fixed text. */
 export const getComingSoonMessage = (): string => 'This feature will be available soon';
@@ -163,7 +163,7 @@ export async function cache_SignedImageURL_Get(entityId: string, type: string, s
 
 /* ---- Wave 2E (Home.Feed_Embeded) ---- */
 /** GetHasFeedEnabled: OutSystems_FF C2EnableFeed (migration/knowledge/feature-flag-helpers.md; TST: true). */
-export const getHasFeedEnabled = (): boolean => isOn('C2EnableFeed');
+export const getHasFeedEnabled = (): boolean => flagValue('C2EnableFeed');
 
 /** OutSystems Index(Text, Search, 0, False, True) <> -1: Search found anywhere in Text, ignoring case. */
 const containsIgnoreCase = (text: string, search: string) => text.toLowerCase().includes(search.toLowerCase());
@@ -290,7 +290,7 @@ export function bookmark_SendFeedbackMessage(isCreate = false, isError = false):
 /** GetHasPhotobookAccess (UBTConnect_Utils.controller.js:3537-3575, BookmarksByGroup copy): HasAccess of
     Connect_LaunchDarkly_PermissionCheck(LaunchDarkly_FF.MobilePhotobook) (migration/knowledge/feature-flag-helpers.md;
     flag `mobilePhotobook`, TST: true). */
-export const getHasPhotobookAccess = (): boolean => isOn('mobilePhotobook');
+export const getHasPhotobookAccess = (): boolean => flagValue('mobilePhotobook');
 
 /* ---- F11 (CR-MilestoneDetail-3): open a document ---- */
 

@@ -9,6 +9,8 @@ export {
   screenUrl,
   useNavigateBack,
   useOsNavigate,
+  type NavigationRedirect,
+  type NavigationTarget,
   type OsNavigate,
   type OsNavigateOptions,
   type OsParams,

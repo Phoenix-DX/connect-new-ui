@@ -5,8 +5,8 @@ import { RouterProvider } from 'react-router/dom';
 import { router } from './app/router';
 import './styles/review.css'; // original OutSystems CSS: per screen, by shell/StylesheetHost (public/UBTConnect/css)
 import { applyDeviceClasses } from './platform/device/device';
-import { initFlags } from './platform/flags/flags';
-import { config, MOCKS_BUILT } from './platform/config/config';
+import { initFlagOverrides } from './platform/flags';
+import { config, FLAG_OVERRIDES_BUILT, MOCKS_BUILT } from './platform/config/config';
 import { ErrorBoundary } from './app/ErrorBoundary';
 import { bootPlan } from './pwa/bootPlan';
 import { clearStaleServiceWorkers, registerAppServiceWorker } from './pwa/register';
@@ -14,7 +14,7 @@ import { clearStaleServiceWorkers, registerAppServiceWorker } from './pwa/regist
 // OutSystems UI sets device classes (phone/tablet/desktop, portrait/landscape) from JavaScript; so does the clone.
 applyDeviceClasses();
 window.addEventListener('resize', applyDeviceClasses);
-initFlags();
+if (FLAG_OVERRIDES_BUILT) initFlagOverrides(); // ?ff= (dev and demo builds; plan v2 §3.1)
 
 // OutSystems keeps --viewport-height on <body> in sync with the window.
 const syncViewport = () => {

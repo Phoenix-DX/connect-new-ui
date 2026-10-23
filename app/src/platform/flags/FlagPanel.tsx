@@ -1,29 +1,32 @@
-import { useState } from 'react';
-import { flagDefs, flagValue, setFlag } from '@/platform/flags/flags';
+import { useSyncExternalStore } from 'react';
+import { setFlagOverride } from './overrides';
+import { FLAGS } from './registry';
+import { FLAG_KEYS } from './resolve';
+import { getFlags, subscribeFlags } from './store';
 
-/* Review tool, not part of the original UI: open with ?ffpanel=1. Switches flag branches the user decided to build. */
+const VALUES = ['on', 'off'] as const;
+
+/* Review tool, not part of the original UI: open with ?ffpanel=1. Switches the flags of the registry (overrides, kept
+   for the tab). AppFrame renders it only when FLAG_OVERRIDES_BUILT is true (dev and demo builds). */
 export function FlagPanel() {
-  const [, force] = useState(0);
+  const flags = useSyncExternalStore(subscribeFlags, getFlags);
   if (!new URL(window.location.href).searchParams.has('ffpanel')) return null;
-  const defs = flagDefs();
   return (
     <div className="rv-flags">
       <b>Feature flags</b>
-      {Object.keys(defs).length === 0 && <span>none decided (flags.py export)</span>}
-      {Object.entries(defs).map(([name, d]) => (
-        <label key={name}>
-          <span>{name}</span>
+      {FLAG_KEYS.map((key) => (
+        <label key={key}>
+          <span>{key}</span>
           <select
-            value={flagValue(name)}
+            value={flags[key] ? 'on' : 'off'}
             onChange={(e) => {
-              setFlag(name, e.target.value);
-              force((x) => x + 1);
+              setFlagOverride(key, e.target.value === 'on');
             }}
           >
-            {(d.values.length ? d.values : ['on', 'off']).map((v) => (
+            {VALUES.map((v) => (
               <option key={v} value={v}>
                 {v}
-                {v === d.default ? ' (default)' : ''}
+                {(v === 'on') === FLAGS[key].default ? ' (default)' : ''}
               </option>
             ))}
           </select>

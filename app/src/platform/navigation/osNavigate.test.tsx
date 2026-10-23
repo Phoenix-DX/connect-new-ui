@@ -8,6 +8,7 @@ import {
   resetReplaceOnUpcomingNavigation,
   screenUrl,
   useOsNavigate,
+  type NavigationTarget,
   type OsParams,
 } from './osNavigate';
 import { renderRoutes, resetNavigation } from './testRouter';
@@ -83,6 +84,21 @@ test('ReplaceOnUpcomingNavigation: the next navigation away from the marked scre
 
   await userEvent.click(screen.getByText('go /UBTConnect/Menu'));
   expect(router.state.historyAction).toBe('PUSH');
+});
+
+test("a navigation goes where NavigationHost's redirect sends it (the flag redirects of the route table)", async () => {
+  const redirect = (target: NavigationTarget): NavigationTarget =>
+    target.path === '/UBTConnect/Menu'
+      ? { path: '/UBTConnect/Login', params: { ...target.params, In_IsFromResetPIN: true } }
+      : target;
+  const { at, unmount } = renderRoutes(routes, '/UBTConnect/HomeFeed', undefined, redirect);
+  await userEvent.click(screen.getByText('go /UBTConnect/Menu'));
+  expect(at()).toBe('/UBTConnect/Login?In_IsFromResetPIN=True');
+  unmount();
+  // without a redirect (a block rendered alone) the navigation goes where it is sent
+  const alone = renderRoutes(routes, '/UBTConnect/HomeFeed');
+  await userEvent.click(screen.getByText('go /UBTConnect/Menu'));
+  expect(alone.at()).toBe('/UBTConnect/Menu');
 });
 
 test('ResetReplaceOnUpcomingNavigation cancels the mark', async () => {

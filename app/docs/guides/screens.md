@@ -21,7 +21,7 @@ Rules (checked before a screen is finished):
 
 - import only from the screen's folder and `src/shared`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/mocks`;
 - no `fetch`, browser storage, CSS files, inline visual styles, raw HTML or `console.log`;
-- server data only through `callAction` (types from the contract); flags only through `useFlag` / `useFlagOn`;
+- server data only through `callAction` (types from the contract); flags only through `useFlag` (`@/platform/flags`; old code uses the adapter `useFlagOn`);
 - anything the capture does not show renders `<NotCaptured name="…">` with what is known, never an invented design;
 - a needed change in shared code is a change request (`migration/change-requests/`), not an edit.
 

@@ -108,21 +108,22 @@ sequenceDiagram
 
 ## Runtime pieces worth knowing
 
-| Piece                 | Where                                                                                                                | Guide                                            |
-| --------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| Request timeouts      | `SERVER_REQUEST_TIMEOUT` in `src/api/client/callAction.ts` (20 s for `UBTConnect`, 10 s for other modules)           | [API and mock data](../guides/api-and-mocks.md)  |
-| Navigation guard      | `src/platform/navigation/navigationGate.ts`: `dx-before-navigation`, prevent / resume                                | [Shell](../guides/shell.md)                      |
-| Platform validation   | `src/components/ui/os/OSValidation`                                                                                  | [Platform widgets](../guides/os-widgets.md)      |
-| Popups                | `src/components/ui/os/OSPopup/usePopupWidget.ts`                                                                     | [Platform widgets](../guides/os-widgets.md)      |
-| Session status        | `src/platform/session/machine.ts` (7 statuses, pure `transition`; selectors in `session.ts`)                         | [Shell](../guides/shell.md)                      |
-| Route meta, guard     | `src/app/routes.ts` (`meta.access`, `meta.lock`, `NO_ROUTE_META`), `src/app/RouteGuard.tsx` (one redirect table)     | [Shell](../guides/shell.md)                      |
-| Auth provider         | `src/platform/auth` (`AuthProvider`, `mockAuth` behind `MOCKS_BUILT`, `authProvider()`)                              | [Shell](../guides/shell.md)                      |
-| App start             | `src/platform/bootstrap/appStartSteps.ts` (7 named steps), `postLogin.ts`                                            | [Shell](../guides/shell.md)                      |
-| Settings store        | `src/platform/settings` (11 typed server settings from `synchAppContext`; adapter `src/legacy/os/clientVarNames.ts`) | [Shell](../guides/shell.md)                      |
-| Local entities        | `src/platform/storage/localEntities` (IndexedDB; bookmark sync in one transaction, ADR-8)                            | [Shell](../guides/shell.md)                      |
-| Vendored scripts      | `src/vendor/panzoom` (ADR-7), `src/shared/osui/DropdownSearch/vendor` (ADR-5)                                        | [Shared code](../guides/shared-code.md)          |
-| Mock scenarios, store | `src/mocks`, `?mock=`, `?mocksession=`                                                                               | [API and mock data](../guides/api-and-mocks.md)  |
-| Known original bugs   | B1-B13                                                                                                               | [Known original bugs](../known-original-bugs.md) |
+| Piece                 | Where                                                                                                                                 | Guide                                            |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Request timeouts      | `SERVER_REQUEST_TIMEOUT` in `src/api/client/callAction.ts` (20 s for `UBTConnect`, 10 s for other modules)                            | [API and mock data](../guides/api-and-mocks.md)  |
+| Navigation guard      | `src/platform/navigation/navigationGate.ts`: `dx-before-navigation`, prevent / resume                                                 | [Shell](../guides/shell.md)                      |
+| Platform validation   | `src/components/ui/os/OSValidation`                                                                                                   | [Platform widgets](../guides/os-widgets.md)      |
+| Popups                | `src/components/ui/os/OSPopup/usePopupWidget.ts`                                                                                      | [Platform widgets](../guides/os-widgets.md)      |
+| Session status        | `src/platform/session/machine.ts` (7 statuses, pure `transition`; selectors in `session.ts`)                                          | [Shell](../guides/shell.md)                      |
+| Route meta, guard     | `src/app/routes.ts` (`meta.access`, `meta.lock`, `meta.flagRedirect`, `NO_ROUTE_META`), `src/app/RouteGuard.tsx` (one redirect table) | [Shell](../guides/shell.md)                      |
+| Auth provider         | `src/platform/auth` (`AuthProvider`, `mockAuth` behind `MOCKS_BUILT`, `authProvider()`)                                               | [Shell](../guides/shell.md)                      |
+| App start             | `src/platform/bootstrap/appStartSteps.ts` (8 named steps, with `fetchFlags`), `postLogin.ts`                                          | [Shell](../guides/shell.md)                      |
+| Feature flags         | `src/platform/flags` (21-flag registry, `resolve`, `store`, `overrides`, `server`, `useFlag`; `FLAG_OVERRIDES_BUILT`)                 | [Shell](../guides/shell.md)                      |
+| Settings store        | `src/platform/settings` (11 typed server settings from `synchAppContext`; adapter `src/legacy/os/clientVarNames.ts`)                  | [Shell](../guides/shell.md)                      |
+| Local entities        | `src/platform/storage/localEntities` (IndexedDB; bookmark sync in one transaction, ADR-8)                                             | [Shell](../guides/shell.md)                      |
+| Vendored scripts      | `src/vendor/panzoom` (ADR-7), `src/shared/osui/DropdownSearch/vendor` (ADR-5)                                                         | [Shared code](../guides/shared-code.md)          |
+| Mock scenarios, store | `src/mocks`, `?mock=`, `?mocksession=`                                                                                                | [API and mock data](../guides/api-and-mocks.md)  |
+| Known original bugs   | B1-B13                                                                                                                                | [Known original bugs](../known-original-bugs.md) |
 
 ## Where decisions live
 
@@ -130,7 +131,7 @@ sequenceDiagram
 - Target architecture of the refactor: ADR-15 in `migration/stack.json` (accepted at the gate of P0-5), the full text in
   [refactor-plan-v2.md](refactor-plan-v2.md), and the plan for each block in [move-map.csv](../refactor/move-map.csv).
   Phases 1 and 2 moved the code to `platform/`, `legacy/os/`, `api/<domain>/`, `pages/`, `containers/` and `components/`.
-  Phase 3 removed the import cycles and added the folder-direction rules; its numbers are in
+  Phase 4 added the typed settings, the session state machine, the auth provider, the route meta and the flag registry in `platform/`. Phase 3 removed the import cycles and added the folder-direction rules; its numbers are in
   [reports/P3.md](../refactor/reports/P3.md). The other screens stay in `src/screens/` and the other blocks in `src/shared/` until their phase.
 - Implementation patterns with reference code: `migration/patterns/P-*.md`.
 - Feature flag decisions: [reference/flags.md](../reference/flags.md).

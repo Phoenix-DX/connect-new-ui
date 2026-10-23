@@ -37,12 +37,17 @@ const FIXTURE_RECORD = /["']?module["']?:[^,]{1,80},["']?action["']?:[^,]{1,160}
 /** src/mocks/fixtures.ts's warning text. */
 const FIXTURE_LOADER = '[mock] no recorded call';
 const MOCK_FILE = /mock|fixture|msw/i;
+/** The storage key of the flag overrides (src/platform/flags/overrides.ts): present where `?ff=` and the flag panel are
+    bundled, which only FLAG_OVERRIDES_BUILT builds do (plan v2 §3.1). */
+const FLAG_OVERRIDES_CODE = 'ff:overrides';
+const bundles = (outDir: string, text: string): boolean =>
+  scriptsOf(outDir).some((name) => readFileSync(join(outDir, 'assets', name), 'utf8').includes(text));
 /** A precached URL without the content hash of a built asset (`assets/<name>-<hash>.<ext>`): a hash can spell "msw"
     (`assets/useQuery-Bu8xmswu.js`). */
 const withoutHash = (url: string): string => url.replace(/^(assets\/.+)-[\w-]{8}(\.\w+)$/, '$1$2');
 
 describe('mock-free production build', () => {
-  it('production build: no mock chunk, MSW code, fixture or mock public file, none precached', () => {
+  it('production build: no mock chunk, MSW code, fixture, flag override or mock public file, none precached', () => {
     const out = build('production', { VITE_USE_MOCKS: 'false' });
     const scripts = scriptsOf(out);
     expect(scripts.filter((file) => MOCK_CHUNK.test(file))).toEqual([]);
@@ -51,6 +56,7 @@ describe('mock-free production build', () => {
       expect(code.includes(MSW_CODE), `${file} bundles MSW`).toBe(false);
       expect(code.includes(FIXTURE_LOADER), `${file} bundles the fixture loader`).toBe(false);
       expect(FIXTURE_RECORD.test(code), `${file} bundles a recorded fixture`).toBe(false);
+      expect(code.includes(FLAG_OVERRIDES_CODE), `${file} bundles the flag overrides`).toBe(false);
     }
     for (const entry of MOCK_PUBLIC_FILES) expect(existsSync(join(out, entry)), entry).toBe(false);
     expect(existsSync(join(out, 'embed/feeds/index.html'))).toBe(false);
@@ -65,6 +71,7 @@ describe('mock-free production build', () => {
     const out = build('mock', { VITE_USE_MOCKS: 'true', VITE_DEMO: 'false' });
     for (const entry of MOCK_PUBLIC_FILES) expect(existsSync(join(out, entry)), entry).toBe(true);
     expect(scriptsOf(out).some((file) => /^fixtures-[\w-]+\.js$/.test(file))).toBe(true);
+    expect(bundles(out, FLAG_OVERRIDES_CODE)).toBe(true); // ?ff= and the flag panel
   }, 180_000);
 
   it('demo build: mock files kept and precached for offline use', () => {
@@ -73,6 +80,7 @@ describe('mock-free production build', () => {
     const urls = precacheOf(out);
     expect(urls.some((url) => /^assets\/fixtures-[\w-]+\.js$/.test(url))).toBe(true);
     expect(urls.some((url) => url.startsWith('mock-images/'))).toBe(true);
+    expect(bundles(out, FLAG_OVERRIDES_CODE)).toBe(true); // ?ff= and the flag panel
   }, 180_000);
 });
 

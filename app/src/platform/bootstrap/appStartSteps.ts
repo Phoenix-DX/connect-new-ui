@@ -1,4 +1,5 @@
 import { callAction } from '@/api/client/callAction';
+import { loadFlags } from '@/platform/flags';
 import { log } from '@/platform/log/log';
 import { onApplicationReady_BottomBarSlider } from '@/shared/UBTConnectLibrary/lib/actions';
 import { deviceContext } from '@/platform/device/deviceContext';
@@ -30,6 +31,7 @@ export interface AppStartContext {
 
 export type AppStartStepName =
   | 'synchAppContext'
+  | 'fetchFlags'
   | 'initializeWebComponents'
   | 'bottomBarSlider'
   | 'waitForFirstScreen'
@@ -124,7 +126,9 @@ function waitForFirstScreen(): Promise<void> {
 }
 
 /** The steps of the app start, in the order of OnApplicationReady (UC:15265-15400). Each step checks its own condition
-    when it starts, as the original does. */
+    when it starts, as the original does. `fetchFlags` is not in OnApplicationReady (each OutSystems flag is a server
+    check where it is read): the flags of the user load before the session status leaves `starting` (plan v2 §3.1
+    rule 3). In the mock phase it makes no call: the server values are the registry defaults. */
 export const APP_START_STEPS: readonly AppStartStep[] = [
   {
     name: 'synchAppContext',
@@ -132,6 +136,7 @@ export const APP_START_STEPS: readonly AppStartStep[] = [
       context.config = await synchAppContext();
     },
   },
+  { name: 'fetchFlags', run: () => loadFlags() },
   { name: 'initializeWebComponents', run: (context) => initializeWebComponents(context.config) },
   // CheckKeyboardPlugin (native only), OnApplicationReady_BottomBarSlider (UC:15318-15326, CR-HomeFeed-3)
   {

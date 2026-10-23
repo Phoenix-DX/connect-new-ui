@@ -6,7 +6,7 @@ import { resetBackQueue } from './backQueue';
 import { resetHistoryStack } from './historyStack';
 import { resetNavigationGate } from './navigationGate';
 import { NavigationHost } from './NavigationHost';
-import { resetReplaceOnUpcomingNavigation } from './osNavigate';
+import { resetReplaceOnUpcomingNavigation, type NavigationRedirect } from './osNavigate';
 import { clearPreloadObject } from './preload';
 import { ScreenFrame } from './ScreenFrame';
 import { resetTransitionEvents } from './transitionEvents';
@@ -24,14 +24,19 @@ export function resetNavigation(): void {
   resetTransitionEvents();
 }
 
-export function renderRoutes(routes: Record<string, ReactNode>, initialPath: string, queryClient = new QueryClient()) {
+export function renderRoutes(
+  routes: Record<string, ReactNode>,
+  initialPath: string,
+  queryClient = new QueryClient(),
+  redirect?: NavigationRedirect,
+) {
   const router = createMemoryRouter(
     [
       {
         path: '/',
         element: (
           <>
-            <NavigationHost />
+            <NavigationHost redirect={redirect} />
             <Outlet />
           </>
         ),

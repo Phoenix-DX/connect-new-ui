@@ -8,6 +8,7 @@ import { setReviewMarkers } from '@/legacy/os/reviewMarkers';
 import { resetAppStart } from '@/platform/bootstrap/appStartSteps';
 import { writeItem } from '@/platform/storage/storage';
 import { TAB_STARTED } from '@/platform/session/testSession';
+import { clearFlagOverrides, setFlagOverride, type FlagKey, type FlagValues } from '@/platform/flags';
 
 /* Test helpers of the shell: a fresh page (empty storage, no in-memory state) and the calls the app made. Tabs count as
    already started, so tests see the original app without the demo-default mock session (testSession.ts), and review
@@ -43,6 +44,12 @@ export function reloadPage({ newTab = false } = {}): void {
   clearMemoryCache();
   resetAppStart();
   pinSessionInactivityDestroy();
+}
+
+/** The flags of a test (plan v2 §3.1): these overrides, and no other one; `setFlags({})` goes back to the defaults. */
+export function setFlags(values: Partial<FlagValues>): void {
+  clearFlagOverrides();
+  for (const [key, value] of Object.entries(values) as [FlagKey, boolean][]) setFlagOverride(key, value);
 }
 
 /** Actions called so far, in call order (data actions as Owner/Action). */

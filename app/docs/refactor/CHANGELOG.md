@@ -150,3 +150,14 @@
 - New `src/app/routes.ts` (generated routes plus `meta.access` and `meta.lock`; `NO_ROUTE_META` for a path that shows no screen) and `src/app/RouteGuard.tsx` (one guard, one redirect table, one unit test per row). `paths.ts` no longer has `ANONYMOUS_SCREENS`, `LOCK_SCREEN_IGNORED`, `isProtectedPath` and `ignoresLockScreen`; the redirects left `startup.ts`.
 - Differences from plan v2 §3.2 (which still names `startup.ts` as today's code): the guard reads the session machine status; `LockHost` gets an optional `ignoresLockScreen` prop (`platform/` does not import `app/`); `flagRedirect` comes in P4-5. New e2e journey "deep link signed out".
 - Strict parity 64/64 for the original; 63/64 for the self reference, with the known EventDetail/default 1-pixel flake (F6). `move-map.csv` is unchanged.
+
+## P4-5 - refactor(P4-5): typed flag registry and resolver
+
+- New `src/platform/flags`: a typed registry of 21 flags, `resolve`, `store`, `overrides`, `server`, the typed `useFlag` and `flagValue`. `FLAG_OVERRIDES_BUILT` keeps `?ff=` and the panel out of a production build. The step `fetchFlags` runs after `synchAppContext` and makes no call in the mock phase.
+- `meta.flagRedirect` is on 6 routes in `src/app/routes.ts`, and `useOsNavigate` applies it. The adapter `platform/flags/flags.ts` serves the 30 old readers; `UBTConnect_Utils/lib/actions.ts` calls `flagValue`. OutSystems names: `legacy/os/flagNames.ts`.
+- Differences: call sites keep their flag checks until Phase 6; a URL that is opened directly is not redirected (as before); `mobileDirectoryLocalityContacts` is added (default off); `kind`, `owner` and `removeBy` are null (P9-2 needs `removeBy`). `capture-plan.json` has no flag variants. Strict parity 64/64 for both references. `move-map.csv` is unchanged.
+
+## Phase P4 - platform services
+
+- Steps P4-1 to P4-5: `platform/` has the typed settings store and the session state machine. It also has the auth provider, 8 named app-start steps, the route meta with one guard, and the flag registry.
+- Gate of P4-5: `ci` passes; strict parity 64/64 for both references; HomeFeed 238.66 kB and Login 187.19 kB gzip, within 5 percent of the baseline.

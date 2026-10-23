@@ -71,16 +71,34 @@ const isReplacePending = (): boolean => replaceFromKey !== null && replaceFromKe
 
 export type OsNavigate = (path: string, params?: OsParams, options?: OsNavigateOptions) => void;
 
-/** Navigates to an original screen path with its parameters. The history entry carries its transition
-    (BaseNavigationCallbacks.goTo: location state `{ transition }`), read by the screen transition and reversed by a
-    back navigation from it. */
+/** A screen path and its parameters. */
+export interface NavigationTarget {
+  path: string;
+  params: OsParams;
+}
+
+/** Gives the target of a navigation: the flag redirects of the route table (plan v2 §3.1 rule 2; app/routes.ts
+    flagRedirectTarget, which AppFrame gives to NavigationHost). */
+export type NavigationRedirect = (target: NavigationTarget) => NavigationTarget;
+
+/* None when no NavigationHost has one (a block rendered alone in a test): the navigation goes where it is sent. */
+let redirect: NavigationRedirect | null = null;
+
+export function setNavigationRedirect(next: NavigationRedirect | null): void {
+  redirect = next;
+}
+
+/** Navigates to an original screen path with its parameters, after the flag redirects of the route table. The history
+    entry carries its transition (BaseNavigationCallbacks.goTo: location state `{ transition }`), read by the screen
+    transition and reversed by a back navigation from it. */
 export function useOsNavigate(): OsNavigate {
   const navigate = useNavigate();
   return useCallback(
     (path, params, options) => {
+      const target = redirect === null ? { path, params } : redirect({ path, params: params ?? {} });
       const replace = options?.replace === true || isReplacePending();
       const transition = createTransition(options?.transition, DEFAULT_TRANSITION) ?? DEFAULT_TRANSITION;
-      void navigate(screenUrl(path, params), { replace, state: transitionState(transition) });
+      void navigate(screenUrl(target.path, target.params), { replace, state: transitionState(transition) });
     },
     [navigate],
   );

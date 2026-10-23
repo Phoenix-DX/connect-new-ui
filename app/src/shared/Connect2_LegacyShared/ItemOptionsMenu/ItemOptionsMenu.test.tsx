@@ -21,7 +21,7 @@ async function open() {
    :179-490, controller :493-655. */
 describe('ItemOptionsMenu', () => {
   afterEach(() => {
-    for (const f of ['C2ExtendedShare', 'WalletAccess']) setFlag(f, null);
+    for (const f of ['C2ExtendedShare', 'WalletAccess'] as const) setFlag(f, null);
   });
 
   testCapturedVariants(stories, captures);

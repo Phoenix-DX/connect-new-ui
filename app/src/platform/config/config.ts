@@ -21,6 +21,11 @@ const env = import.meta.env;
     build/mockFree.ts fails a production build that still bundles mock code (docs/guides/pwa.md "Build modes"). */
 export const MOCKS_BUILT: boolean = import.meta.env.VITE_USE_MOCKS !== 'false';
 
+/** Build-time constant of the flag overrides (`?ff=` and the flag panel `?ffpanel=1`, platform/flags overrides.ts): true
+    on the dev server and in the mock and demo builds, false in a production build (VITE_USE_MOCKS=false), which drops
+    their code (plan v2 §3.1). Callers keep them behind it, as the mock imports are behind MOCKS_BUILT. */
+export const FLAG_OVERRIDES_BUILT: boolean = import.meta.env.DEV || MOCKS_BUILT;
+
 export const config: AppConfig = Object.freeze({
   env: env.VITE_APP_ENV ?? 'local',
   useMocks: MOCKS_BUILT,

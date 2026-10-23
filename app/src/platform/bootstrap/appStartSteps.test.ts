@@ -7,6 +7,7 @@ import { registerPin } from '@/platform/session/pin';
 import { getClientVar, getShellState, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { getSessionStatus } from '@/platform/session/machine';
 import { getSetting, getSettings, setSettings } from '@/platform/settings';
+import { flagValue } from '@/platform/flags';
 import {
   APP_START_STEPS,
   newAppStartContext,
@@ -16,7 +17,7 @@ import {
 } from './appStartSteps';
 import { getLocalOrbitMilestoneTypeById, getLocalSurveyStatusByJSONName } from '@/platform/storage/localEntities';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { calledActions, freshPage, recordBodies, reloadPage } from '@/test/testSupport';
+import { calledActions, freshPage, recordBodies, reloadPage, setFlags } from '@/test/testSupport';
 
 /* The bottom-bar slider step: the real OnApplicationReady_BottomBarSlider runs, and the test counts its calls. */
 const slider = vi.hoisted(() => ({ calls: 0 }));
@@ -333,9 +334,10 @@ describe('the named steps of the app start (plan v2 §3.2)', () => {
     return context;
   };
 
-  test('in the order of OnApplicationReady (UC:15265-15400)', () => {
+  test('in the order of OnApplicationReady (UC:15265-15400), with the flags after SynchAppContext', () => {
     expect(APP_START_STEPS.map((s) => s.name)).toEqual([
       'synchAppContext',
+      'fetchFlags',
       'initializeWebComponents',
       'bottomBarSlider',
       'waitForFirstScreen',
@@ -350,6 +352,19 @@ describe('the named steps of the app start (plan v2 §3.2)', () => {
     expect(calledActions()).toEqual(['ActionAppManager_SynchAppContext']);
     expect(context.config?.CheckDeviceOnReady).toBe(true);
     expect(getSetting('pin.enabled')).toBe(true);
+  });
+
+  test('fetchFlags: no call in the mock phase; the server values are the defaults, below the overrides', async () => {
+    setFlags({ C2NewNotifications: true });
+    try {
+      await run('fetchFlags');
+      expect(calledActions()).toEqual([]);
+      expect(flagValue('C2NewNotifications')).toBe(true); // override
+      expect(flagValue('C2EnableCarousel')).toBe(true); // default on
+      expect(flagValue('C2NewBookmarks')).toBe(false); // default off
+    } finally {
+      setFlags({});
+    }
   });
 
   test('initializeWebComponents: PIN_IsLocked reset; AfterInitialize only signed in, with CheckDeviceOnReady', async () => {
