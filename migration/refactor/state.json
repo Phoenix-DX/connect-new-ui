@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G2-B-ContactByEmailLDMCoordinator",
+  "step": "P6-G2-B-ContactByEmailOrbitHelpdesk",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T23:45:00"
+  "since": "2026-10-23T23:51:13"
  },
  "steps": {
   "P0-1": {
@@ -703,12 +703,25 @@
    "finished": "2026-10-23T23:35:27"
   },
   "P6-G2-B-ContactByEmailLDMCoordinator": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T23:35:27",
    "tokens": {
     "dev": 87846,
     "test": 30104,
     "docs": 29690
+   },
+   "commit": "dec00e0",
+   "gate": "ci: pass (2263 tests); no parity states for this route (unit tests + diff); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.08 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T23:45:01"
+  },
+  "P6-G2-B-ContactByEmailOrbitHelpdesk": {
+   "status": "active",
+   "started": "2026-10-23T23:45:02",
+   "tokens": {
+    "dev": 86900,
+    "test": 29952,
+    "docs": 25220
    }
   }
  },

@@ -536,3 +536,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,87846,refactor-dev,,P6-G2-B-ContactByEmailLDMCoordinator opus
 2026-10-23,refactor,verify,30104,refactor-test,,P6-G2-B-ContactByEmailLDMCoordinator sonnet
 2026-10-23,refactor,other,29690,refactor-docs,,P6-G2-B-ContactByEmailLDMCoordinator sonnet
+2026-10-23,refactor,build,86900,refactor-dev,,P6-G2-B-ContactByEmailOrbitHelpdesk opus
+2026-10-23,refactor,verify,0,refactor-test,,P6-G2-B-ContactByEmailOrbitHelpdesk sonnet
+2026-10-23,refactor,verify,29952,refactor-test,,P6-G2-B-ContactByEmailOrbitHelpdesk sonnet
+2026-10-23,refactor,other,25220,refactor-docs,,P6-G2-B-ContactByEmailOrbitHelpdesk sonnet

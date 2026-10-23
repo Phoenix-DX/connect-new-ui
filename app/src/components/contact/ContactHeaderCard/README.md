@@ -18,4 +18,4 @@ The blocks keep the instance ids of the screens (`$b3` to `$b5`).
 None of its own: the route captures of ContactByEmailOneSchoolGlobal and ContactByEmailOrbitHelpdesk cover it (route
 parity; LDMCoordinator was not captured). The tests check the image source, the texts and the instance ids.
 
-Status: built in P6-G2-B-ContactByEmailMember with the pattern. ContactByEmailOneSchoolGlobal and ContactByEmailLDMCoordinator use it. ContactByEmailOrbitHelpdesk uses it from its own step B.
+Status: built in P6-G2-B-ContactByEmailMember with the pattern. ContactByEmailOneSchoolGlobal, ContactByEmailLDMCoordinator and ContactByEmailOrbitHelpdesk use it.

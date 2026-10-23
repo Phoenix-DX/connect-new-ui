@@ -377,3 +377,8 @@
 
 - ContactByEmailLDMCoordinator follows the ContactByEmail pattern of the pilot: `config.ts`, `inputs.ts` (replaces `api.ts` and `types.ts`), `actions.ts` (moved from `components/`) and `hooks/useContactByEmailLDMCoordinatorSubmit.ts`. Its card is the shared `ContactHeaderCard`; the page has a new test (7 tests).
 - The route has no parity states. It was checked by the unit tests and the diff against HEAD (same send order and request body), not by parity.
+
+## P6-G2-B-ContactByEmailOrbitHelpdesk - refactor(P6-G2-B): ContactByEmailOrbitHelpdesk as page
+
+- ContactByEmailOrbitHelpdesk follows the ContactByEmail pattern of the pilot: `config.ts`, `inputs.ts` (replaces `api.ts` and `types.ts`), `actions.ts` (moved from `components/`) and `hooks/useContactByEmailOrbitHelpdeskSubmit.ts`. It has no `staticEntities.ts`.
+- Its card is the shared `ContactHeaderCard`; the page has a new test (5 tests). Parity visual is clean for the 2 routes with states.
