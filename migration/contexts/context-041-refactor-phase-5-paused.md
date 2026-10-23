@@ -33,8 +33,10 @@
 - The "app" table of `calls-by-domain.md` has about 20 non-app-start calls with no step (F10).
 
 ## Open issues
-- Follow-ups F10 (domains of the other "app" calls, before P6); gaps for the user: G1 (SecurityException branch), G2
-  (`MyBookmarks` cache record shapes). The user reviews Q10 to Q15, M1 to M12, G-P2-4, U1.
+- F10 (domains of the other "app" calls): the user decides at the start of P6. G1 (SecurityException branch): accepted
+  (U2), do right after P5-4. G2 (`MyBookmarks` cache): accepted (U3), fix on `main` in a worktree with a dev server on
+  5175 (`handoffs/G2/brief.md`; route BookmarksByGroup feedback F1, status fixing); after the user's review: finish,
+  commit on `main`, merge `main` into `refactor/architecture` before P5-3-bookmark.
 
 ## Next
 - Resume P5 as above; stop after P5-4 and wait for the user.
