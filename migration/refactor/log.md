@@ -416,3 +416,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T00:24:59 P6-F15 stage test
 - 2026-10-24T00:33:01 P6-F15 stage docs
 - 2026-10-24T00:34:20 P6-F15 stage commit
+- 2026-10-24T00:34:21 P6-F15 done 584af145: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self), call check clean; bundle Login 193.08 -> 186.87 kB gzip (limit 193.84), HomeFeed 245.51 (limit 248.22); arch baseline 0 new
+- 2026-10-24T00:34:21 P6-G3-A started
+- 2026-10-24T00:34:21 P6-G3-A stage dev
+- 2026-10-24T00:35:05 P6-G3-A stage test
+- 2026-10-24T00:39:37 P6-G3-A stage docs
+- 2026-10-24T00:41:43 P6-G3-A stage commit

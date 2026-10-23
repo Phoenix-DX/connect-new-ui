@@ -410,3 +410,9 @@
 - Architecture: first-load Login goes from 193.08 to 186.87 kB gzip. The app-start path uses the deep imports `@/api/message/repository` in `platform/bootstrap/startup.ts` and `@/api/bookmark/keys` in `shared/Connect2_LegacyShared/lib/actions.ts` (W18).
 - `get_IsUnsupportedVersion`, `get_IsUnsupportedSystem`, `UNSUPPORTED_BROWSER_SCENARIO` and its type moved to `shared/UBTConnect/lib/unsupportedVersion.ts`.
 - Watch item: HomeFeed is 245.51 of 248.22 kB gzip. Follow-up F17.
+
+## P6-G3-A - refactor(P6-G3-A): move G3 to pages/
+
+- The 8 G3 routes (HomeFeed, FeedItemDetail, Updates_SingleList, Services, Search, Notifications, MessageList, MessageDetail) moved from `src/screens/<R>` to `src/pages/<R>`. `index.tsx` is now `<R>Page.tsx`, with one `@origin` tag per page.
+- Shared blocks of these routes stay in `shared/` until step B. Parity `strict` on 8 routes: 0 differences on both references.
+- Watch item: HomeFeed is 245.58 of 248.22 kB gzip. Follow-up F17.
