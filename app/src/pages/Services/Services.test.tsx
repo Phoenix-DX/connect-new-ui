@@ -129,9 +129,10 @@ describe('Services page', () => {
     expect(rowLabels('FavouriteList')).toHaveLength(7);
     expect(rowLabels('FavouriteList')[6]).toBe('El Gusto');
     expect(rowLabels('SuggestionList')).toEqual(['HR100', 'Community Tradelink']);
-    await act(async () => {
-      fireEvent.click(saveButton());
-      await new Promise((resolve) => setTimeout(resolve, 20));
+    fireEvent.click(saveButton());
+    // Wait for the outcome (not a fixed delay): under the full suite the save answers later than 20 ms.
+    await waitFor(() => {
+      expect(getFeedbackMessage()?.message).toBe('Your changes were saved.');
     });
     expect(calledActions()).toEqual([
       'Services/DataActionGetServices',
