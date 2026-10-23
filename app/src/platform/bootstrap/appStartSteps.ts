@@ -1,4 +1,4 @@
-import { callAction } from '@/api/client/callAction';
+import { afterInitialize, fetchCacheableHouseholds, fetchCacheableMapEntities, type ClientConfig } from '@/api/app';
 import { loadFlags } from '@/platform/flags';
 import { log } from '@/platform/log/log';
 import { onApplicationReady_BottomBarSlider } from '@/shared/UBTConnectLibrary/lib/actions';
@@ -9,7 +9,7 @@ import { screenOf } from '@/platform/navigation/paths';
 import { isSignedIn, markAppReady, reloadSessionState, setClientVar } from '@/platform/session/session';
 import { holdUserInfoForAppStart, releaseUserInfoForAppStart } from '@/platform/session/userInfo';
 import { connectSetLoggedContext } from './postLogin';
-import { NO_LOCAL_ENTITIES, syncInfoMain, synchAppContext, type ClientConfig, type SyncLocalEntities } from './startup';
+import { NO_LOCAL_ENTITIES, syncInfoMain, synchAppContext, type SyncLocalEntities } from './startup';
 
 /* App start (app-shell.spec.md section 10; UBTConnect.OnApplicationReady UC:15265-15400) as a list of named steps
    (plan v2 §3.2), with the same calls in the same order and conditions as TST:
@@ -57,7 +57,7 @@ async function initializeWebComponents(config: ClientConfig | null): Promise<voi
   const context = deviceContext(config?.AppManager_ClientCache.PackageName ?? '');
   setClientVar('UBT_AppManager.PIN_IsLocked', false);
   if (!config?.CheckDeviceOnReady || !isSignedIn()) return;
-  await callAction('UBT_AppManager', 'ActionAppManager_AfterInitialize', {
+  await afterInitialize({
     EspaceName: config.EspaceName,
     AppManager_MobileContext: context,
     TOTP: '', // Streamline TOTP callback: none on the web
@@ -72,7 +72,7 @@ const cacheMapObject = (name: string, value: unknown) => {
 
 /** Async_FetchCacheableMapEntitiesJS (UC:15514-15519): both requests start together and are not awaited. */
 function fetchCacheableMapData(): void {
-  void callAction('UBTConnect', 'ServiceAPIFetchData_CacheableMapEntities', {})
+  void fetchCacheableMapEntities()
     .then((out) => {
       cacheMapObject('GlobalEntities', out.GlobalLocations_Markers);
       cacheMapObject('CountriesMarker', out.Countries_Markers);
@@ -83,14 +83,11 @@ function fetchCacheableMapData(): void {
     .catch((e: unknown) => {
       log.warn('Get_Cacheable_MapEntities failed', e);
     });
-  void callAction('UBTConnect', 'ServiceAPIFetchData_CacheableHouseholds', {})
-    .then((out) => {
-      // one list per part of each record, as the original splits them (UC:3534-3560)
-      const records = out.Household_Markers.List;
-      const markers = records.map((r) => r.MarkerWithWindow);
-      const exploreItems = records.map((r) => r.MapExploreItem);
-      cacheMapObject('Households', markers);
-      cacheMapObject('HouseholdsExploreItems', exploreItems);
+  void fetchCacheableHouseholds()
+    .then((households) => {
+      // one list per part of each record, as the original splits them (the mapper of api/app)
+      cacheMapObject('Households', households.markers);
+      cacheMapObject('HouseholdsExploreItems', households.exploreItems);
     })
     .catch((e: unknown) => {
       log.warn('Get_Cacheable_MapHouseholds failed', e);

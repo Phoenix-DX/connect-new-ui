@@ -217,3 +217,9 @@
 
 - New `src/api/update/` (types, mapper, repository, keys, hooks, barrel) for 9 actions. One `UpdateItem` type has two mappers (feed keeps the date "1900-01-01", list gives ""). The old `api.ts` and `types.ts` of HomeFeed, Updates_SingleList, HouseholdCarousel and Menu re-export it; `shared/UBTConnect/lib/actions.ts` gets the bottom-bar unread count from the repository.
 - The developer worked in a prefetch worktree (M8). `requestPhotoUpdate` sits in `api/update` only because of its name; a later step can move it to `api/member`. The first test run failed on `loading` states at a load average of about 110. A rerun at normal load gave 64/64 on both references (load flakes). `move-map.csv` is unchanged (no row for these calls).
+
+## P5-2-app - refactor(P5-2): add api/app
+
+- New `src/api/app/` (types, mapper, repository, keys, hooks, barrel) for the 6 app-start calls (SynchAppContext, AfterInitialize, Sync_Info_GetMain, CacheableMapEntities, CacheableHouseholds, CacheControl_Policies). `platform/bootstrap` and the `CacheControl_Policies` block call the repository functions; `ClientConfig` moved from `startup.ts` to `api/app`.
+- Not moved: GetUserInformation (P5-4), GetNumberUnreadMessages (P5-3), and the other 20 files of the "app" table in `calls-by-domain.md`, which are not app-start calls. `usePoliciesQuery` has no caller yet (P5-4).
+- Strict parity `--changed`: 64 of 64 routes clean for both references; exemptions `[]`. `move-map.csv` is unchanged (the row of `CacheControl_Policies` already points to `src/api/app/hooks.ts`; P5-4 rewrites the block).

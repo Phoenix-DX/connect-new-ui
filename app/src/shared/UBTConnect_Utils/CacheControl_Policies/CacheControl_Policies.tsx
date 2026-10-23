@@ -1,7 +1,7 @@
 // @os-block UBTConnect_Utils.CacheControl.CacheControl_Policies
 import { useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { callAction } from '@/api/client/callAction';
+import { fetchPolicies } from '@/api/app';
 import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
 import { getClientVar } from '@/platform/session/session';
 import { CacheControl } from '@/shared/UBTConnect_Utils/CacheControl';
@@ -36,13 +36,13 @@ export function CacheControl_Policies({
     latest.current?.(object as CacheControl_PoliciesRec);
   };
   const onNonCacheHit = async () => {
-    const out = await callAction('UBTConnect_Utils', 'CacheControl_Policies/DataActionGetCacheInfo', {
+    const response = await fetchPolicies({
       CacheKey: key,
       CacheTypeId: CACHE_TYPE.policies,
       TimeToLiveSeconds: timeToLiveSeconds,
     });
-    putCacheableObject(CACHE_TYPE.policies, key, out.CacheControl_Response, timeToLiveSeconds);
-    latest.current?.(out.CacheControl_Response);
+    putCacheableObject(CACHE_TYPE.policies, key, response, timeToLiveSeconds);
+    latest.current?.(response);
   };
   return (
     <OSBlock name="CacheControl.CacheControl_Policies" id={id}>

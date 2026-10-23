@@ -1,4 +1,4 @@
-import type { components } from '@/api/schema';
+import { fetchAppContext, fetchSyncInfoMain, type ClientConfig } from '@/api/app';
 import { callAction } from '@/api/client/callAction';
 import { log } from '@/platform/log/log';
 import { CommunicationException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
@@ -15,9 +15,8 @@ import { setSettings } from '@/platform/settings';
 
 /* The server actions that the app start (appStartSteps.ts), the post-login sequence (postLogin.ts), the sign-out
    (platform/session/auth.ts) and screens share: AppManager_SynchAppContext, Sync_Info_Main and
-   SynchronizeNumberUnreadMessages. The redirects that follow the app start are the route guard's
-   (app/RouteGuard.tsx). */
-export type ClientConfig = components['schemas']['UBT_AppManager_CS__AppManager_ConfigClient'];
+   SynchronizeNumberUnreadMessages. The calls of the first two are in the domain api/app. The redirects that follow the
+   app start are the route guard's (app/RouteGuard.tsx). */
 
 /** OutSystems CommunicationException of a server call (runtime-sources/OutSystems.js:3, raised by callAction): a failed
     request, or an answer that is not ok and is neither a 404 (ViewHasChangedException) nor the server's own exception
@@ -34,7 +33,7 @@ const isNetworkError = (e: unknown) => isInstanceOf(e, CommunicationException); 
 export async function synchAppContext(): Promise<ClientConfig | null> {
   let out;
   try {
-    out = await callAction('UBT_AppManager', 'ActionAppManager_SynchAppContext', { EspaceName: APP_ID });
+    out = await fetchAppContext(APP_ID);
   } catch (e) {
     if (!isNetworkError(e)) throw e;
     log.warn('AppManager_SynchAppContext: communication error, empty config', e);
@@ -76,15 +75,11 @@ export const NO_LOCAL_ENTITIES: SyncLocalEntities = { bookmarks: [], bookmarks_C
     (UC:16605) and Sync_SetSiteProperties (UC:16608). */
 export async function syncInfoMain(isFromLogin: boolean): Promise<SyncLocalEntities> {
   try {
-    const out = await callAction('UBTConnect', 'ActionSync_Info_GetMain', { isFromLogin });
-    if (!isFromLogin) await syncAllOrbitStaticEntities(out.OrbitStaticEntities);
-    setClientVar('UBTConnect.Embedd_B2CTenant', out.B2CTenant);
-    setClientVar('UBTConnect.Directory_Updates_MonthsToShow', out.Sync_SiteProperties.UpdatesFeed_MonthsToShow);
-    return {
-      bookmarks: out.LocalEntities_App.LocalBookmark.List,
-      bookmarks_C2: out.LocalEntities_App.LocalBookmarksC2.List,
-      notes: out.LocalEntities_App.LocalNotes.List,
-    };
+    const main = await fetchSyncInfoMain(isFromLogin);
+    if (!isFromLogin) await syncAllOrbitStaticEntities(main.orbitStaticEntities);
+    setClientVar('UBTConnect.Embedd_B2CTenant', main.b2cTenant);
+    setClientVar('UBTConnect.Directory_Updates_MonthsToShow', main.updatesFeedMonthsToShow);
+    return main.localEntities;
   } catch (e) {
     log.warn('Sync_Info_Main failed', e);
     return NO_LOCAL_ENTITIES;

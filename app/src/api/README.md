@@ -33,3 +33,7 @@ One `UpdateItem` type has two mappers: `toFeedUpdateItem` keeps the null date "1
 `useFeedUpdatesQuery` has the key `updateKeys.feed()` and keeps `retry: false`. The other calls stay imperative calls in their flows.
 
 `requestPhotoUpdate` is in `update/` only because of its name. A later step can move it to `member/`.
+
+`app/` has the same files. It holds the 6 app-start calls: AppManager_SynchAppContext and AppManager_AfterInitialize (UBT_AppManager), Sync_Info_GetMain, FetchData_CacheableMapEntities and FetchData_CacheableHouseholds (UBTConnect), and DataActionGetCacheInfo of CacheControl_Policies. `platform/bootstrap` (`startup.ts`, `appStartSteps.ts`) and the `CacheControl_Policies` block call the repository functions. `ClientConfig` is defined in `app/types.ts`.
+
+The mappers drop only fields that no code in `src` reads. The local-entity records, the map objects, the household marker parts and the policy records stay whole. `usePoliciesQuery` has no caller yet (P5-4). GetUserInformation (P5-4) and GetNumberUnreadMessages (P5-3) are not in `app/`.

@@ -399,3 +399,10 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,review,44254,refactor-advisor,,"G1 SecurityException gap, fable, 42 s (port after P5, high)"
 2026-10-23,refactor,review,0,refactor-advisor,,"G2 MyBookmarks cache, fable (fix now, high) - tokens in next row"
 2026-10-23,refactor,review,51400,refactor-advisor,,"G2 MyBookmarks cache, fable, 70 s (fix now, high)"
+2026-10-23,refactor,build,215437,refactor-dev,,P5-2-app opus
+2026-10-23,BookmarksByGroup,fix,201583,g2-dev,,"G2 MyBookmarks cache fix on main, opus (pass)"
+2026-10-23,BookmarksByGroup,fix,125011,g2-dev,,"G2 duplicate developer, opus, backed off (another G2 developer was already running)"
+2026-10-23,refactor,verify,26663,refactor-test,,P5-2-app sonnet
+2026-10-23,refactor,review,35878,refactor-advisor,,"W1 G2 cache fields, opus (a, medium)"
+2026-10-23,refactor,review,35441,refactor-advisor,,"W1 G2 cache fields, fable (a, high)"
+2026-10-23,refactor,other,28543,refactor-docs,,P5-2-app sonnet

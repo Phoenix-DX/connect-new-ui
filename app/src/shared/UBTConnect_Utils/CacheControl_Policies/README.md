@@ -9,11 +9,11 @@ OutSystems: `UBTConnect_Utils.CacheControl.CacheControl_Policies` · pack
 | TimeToLiveSeconds | Integer | `timeToLiveSeconds` | `7200`                    |
 
 (The pack lists no inputs; both are inputs in the compiled model.) Events: `Result(CacheControl_Response)` →
-`onResult(response)` (structure `CacheControl_Policies` of `../lib/structures.ts`, exported here as `CacheControl_PoliciesRec` because the block has the same name). Placeholders: none. Child block:
+`onResult(response)` (the `Policies` type of `@/api/app`). Placeholders: none. Child block:
 `CacheControl` (CacheTypeId `CACHE_TYPE.policies`).
 
-Hit: the cached object is the response. Miss: `callAction('UBTConnect_Utils', 'CacheControl_Policies/DataActionGetCacheInfo',
-{ CacheKey, CacheTypeId, TimeToLiveSeconds })` (recorded mock), `putCacheableObject`, then `Result`.
+Hit: the cached object is the response. Miss: `fetchPolicies` of `@/api/app` (action `CacheControl_Policies/DataActionGetCacheInfo`,
+inputs `CacheKey`, `CacheTypeId`, `TimeToLiveSeconds`; recorded mock), `putCacheableObject`, then `Result`.
 
 ## Captured variants (1 distinct; 1 tested)
 

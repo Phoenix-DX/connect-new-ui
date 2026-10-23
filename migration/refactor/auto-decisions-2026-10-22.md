@@ -63,3 +63,15 @@ confidence.
 | M12 | P5-3-event | The event domain step changes 44 code files (9 new in `api/event/`, 32 screen adapter files, 3 shared `structures.ts`/`actions.ts`), over the guideline of about 40. | (a) accept; (b) split the domain | (a) accept | A guideline, not a gate (as M1): the 29 calls of one domain belong together, every screen file only re-exports, and a split would leave half the event table in old files between commits. | master (no advisor) |
 | U2 | G1 | Gap G1: the clone has no App_Common SecurityException branch (forced logout). Fable (high): port it as a separate migration fix right after Phase 5, before any BFF work, with a mock scenario and tests. | (a) port after P5; (b) wait for the BFF | (a) | Fable's proposal (`followups.md` G1). | **User** (2026-10-23): "oki tôi accept 2 quyết định của Fable" |
 | U3 | G2 | Gap G2: BookmarksByGroup writes its own camelCase record shape into the shared `MyBookmarks` cache; bookmarking a household in AssembleDetail after that raises a TypeError. Fable (high): a port bug; fix it now on `main` before the demo, then merge `main` into `refactor/architecture` before P5-3-bookmark. | (a) fix now on `main` and merge; (b) fix later on the refactor branch | (a) | Fable's proposal (`followups.md` G2); the demo runs from `main`. | **User** (2026-10-23): "oki tôi accept 2 quyết định của Fable" |
+
+## Window 4: 2026-10-23 13:43 +07, open-ended
+
+The user's instruction (13:43): "Khi có quyết định nhờ tôi quyết thì hãy để Fable + opus thay tôi ra quyết định ko cần
+đợi tôi." (English: "When a decision needs me, let Fable and Opus decide for me; do not wait for me.") Marker:
+"auto-accepted (user instruction 2026-10-23 13:43)". Opus and Fable get the same narrow question in parallel. When they
+agree, the choice is theirs. When they do not agree, the choice is the more conservative and reversible option, and the
+row is marked "split". The scope of the run stays "finish P5, then stop".
+
+| id | step | context | options | choice | reason | advisors |
+|----|------|---------|---------|--------|--------|----------|
+| W1 | G2 | The BookmarksByGroup domain row keeps 9 fewer fields than the server record (`Type`, `PhotoDetails`, 7 `DetailsJson` fields), and `Group` comes from the route input. So the rows it writes to the `MyBookmarks` cache get record defaults for these fields, while OutSystems keeps the server values. In the compiled code, nothing reads these fields from the cache. | (a) keep the defaults; (b) keep the 9 fields and the server Group in the domain row | (a) | No reader, so no behavior difference. Widen the row in `api/bookmark` only when a reader appears (trigger recorded in `followups.md` G2). The G2 test already checks add and remove on rows written by BookmarksByGroup. | Fable high, Opus medium (agree) |
