@@ -21,6 +21,8 @@
  *        [--diff-ref <path>]     the diff png path named in pixel differences (exemptions match on it); default the --out one
  *        [--fixed-time <iso>]    fix the page clock (Date.now, new Date) at this time, timers keep running (self reference: clocks)
  *        [--freeze-animations]   before the snapshot: finish finite animations and transitions, pause endless ones at their start
+ *        [--preload-fonts]       start loading every @font-face font as soon as a stylesheet is in (both pages), so no
+ *                                font arrives after the first paint of the content (see preloadFonts)
  *        [--self-ref <dir>]      compare against such a record (the self-parity reference) instead of --expect
  *   node parity_check.cjs --self-test             checks buildDom against a fixture (nested <a>, svg/xlink, entities, ...)
  *
@@ -413,6 +415,18 @@ function diffTrees(a, b, X, opts) {
   return { diffs: out, exemptionsUsed: used, masks, skipped };
 }
 
+/* --preload-fonts, an init script of both pages: a browser loads a web font only when some text needs it, so an icon
+ * font can arrive after the content that uses it has painted. The layout then moves, and a composited layer (for
+ * example `.btn { transform: translateZ(0) }` of the legacy CSS) keeps the sub-pixel offset of its first position:
+ * the text in it renders 0.33 px apart from a run where the font came first (EventDetail/default, P4-F6). Loading every
+ * declared font at once makes the font come first in every run. The final render does not change: the snapshot waits
+ * for document.fonts.ready anyway, and a loaded font that no text uses paints nothing. */
+function preloadFonts() {
+  const loadAll = () => { for (const f of document.fonts) if (f.status === 'unloaded') f.load().catch(() => {}); };
+  document.addEventListener('load', e => { if (e.target && e.target.tagName === 'LINK') loadAll(); }, true);
+  document.addEventListener('DOMContentLoaded', loadAll);
+}
+
 /* runs in a blank page: pixel diff of two PNGs (base64) with masked rectangles, pixelmatch-style YIQ distance */
 async function pixelDiff({ a, b, masksA, masksB, threshold }) {
   const img = async src => { const i = new Image(); i.src = 'data:image/png;base64,' + src; await i.decode(); return i; };
@@ -569,8 +583,28 @@ async function selfTest() {
     if (r.built !== expected) fails.push(`buildDom tree:\n  got  ${r.built}\n  want ${expected}`);
     if (r.parsed === r.built) fails.push('the HTML parser keeps the fixture as is: it no longer tests a rebuilt structure');
     if (r.stats.endTagMismatch || r.stats.unclosed || r.stats.elements !== 24) fails.push(`buildDom stats ${JSON.stringify(r.stats)}`);
+    // preloadFonts (--preload-fonts): a declared font that no text uses starts to load; without the script it stays unloaded
+    const fontStatus = async withPreload => {
+      const c = await browser.newContext();
+      if (withPreload) await c.addInitScript(preloadFonts);
+      const pg = await c.newPage();
+      await pg.route('http://parity.test/**', rt => {
+        const url = rt.request().url();
+        if (url.endsWith('/f.css')) return rt.fulfill({ contentType: 'text/css', body: '@font-face { font-family: Unused; src: url(/f.woff2); }' });
+        if (url.endsWith('/f.woff2')) return rt.fulfill({ status: 404, body: '' });
+        return rt.fulfill({ contentType: 'text/html', body: '<!doctype html><html><head><link rel="stylesheet" href="/f.css"></head><body>text</body></html>' });
+      });
+      await pg.goto('http://parity.test/', { waitUntil: 'load' });
+      await pg.waitForTimeout(200);
+      const s = await pg.evaluate(() => [...document.fonts].filter(f => f.family.replace(/"/g, '') === 'Unused').map(f => f.status).join(','));
+      await c.close();
+      return s;
+    };
+    const [preloaded, plain] = [await fontStatus(true), await fontStatus(false)];
+    if (!['loading', 'loaded', 'error'].includes(preloaded)) fails.push(`preloadFonts: an unused font is "${preloaded}" with the init script (want loading, loaded or error)`);
+    if (plain !== 'unloaded') fails.push(`preloadFonts: an unused font is "${plain}" without the init script (want unloaded)`);
   } finally { await browser.close(); }
-  console.log(fails.length ? `self-test FAILED\n${fails.join('\n')}` : 'self-test ok: buildDom keeps nested <a>, <div> in <p>, rows without <tbody>, nested <form>, svg/xlink, entities, void elements');
+  console.log(fails.length ? `self-test FAILED\n${fails.join('\n')}` : 'self-test ok: buildDom keeps nested <a>, <div> in <p>, rows without <tbody>, nested <form>, svg/xlink, entities, void elements; preloadFonts loads an unused font');
   process.exitCode = fails.length ? 1 : 0;
 }
 
@@ -599,6 +633,7 @@ async function main() {
   const ctxOpts = { viewport: { width: w, height: h }, deviceScaleFactor: 1, reducedMotion: 'reduce' };
   const ctx = await browser.newContext(ctxOpts);
   const expCtx = await browser.newContext({ ...ctxOpts, serviceWorkers: 'block' });
+  if (o['preload-fonts']) for (const c of [ctx, expCtx]) await c.addInitScript(preloadFonts);
   try {
     const app = await ctx.newPage();
     const u = new URL(o.route, o.app);

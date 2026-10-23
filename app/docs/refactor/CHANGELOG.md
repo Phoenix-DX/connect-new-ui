@@ -166,3 +166,14 @@
 
 - New `src/platform/navigation/flowState.ts`: `useFlowState` gives a flow hook its state, `dispatch`, `latest`, the newest `parameters` and `events`, and the OnReady and OnParametersChanged flows. `useHouseholdDetails.ts` uses it.
 - `SharePopup.tsx`, `UBT_LazyImage.tsx` and `HouseholdRelations_Block.tsx` keep the old pattern until Phase 6. Strict parity for the 4 routes passes; `move-map.csv` is unchanged.
+
+## P4-F6 - fix(parity): font preload and partial re-records for the EventDetail/default flake
+
+- Architecture: no change. Cause of the flake: the `orbit-icon` font loaded late, so the layout moved. The "View Guests" button keeps the sub-pixel offset of its first position in its `translateZ(0)` layer (legacy `.btn` rule). 256 px differed in 6 of 15 tries.
+- `parity_check.cjs` has the option `--preload-fonts` (off by default, so `route.py parity` is unchanged); `refactor_parity.py` always passes it. `--record-self` has `--source-commit <rev>`, and the manifest has `rerecorded` entries for partial records.
+- EventDetail self record is again from 3b25ddd (decisions Q13 and Q14). Proof: 10 of 10 and 3 of 3 EventDetail runs; `--all` gives 64/0 for both references. `move-map.csv` is unchanged.
+
+## P4-F5 - test: open "Preview Household Profile" from Profile
+
+- Architecture: no change. New test `src/screens/Profile/Profile.test.tsx`: it opens the HouseholdDetails container in `preview` mode and checks the VITALE household members (`VITALE.members`) and the section titles.
+- No app code and no parity state changed. `move-map.csv` is unchanged.

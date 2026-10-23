@@ -24,7 +24,7 @@ Node comes from `~/.nvm/versions/node/v24.21.0/bin`, and Playwright from `node_m
 
 ```
 python3 migration/tools/refactor_parity.py --level strict|visual [--all | --routes R1 R2 | --changed [--since <commit>]]
-    [--ref outsystems|self|both] [--record-self] [--report <file.md>] [--app URL] [--jobs 4]
+    [--ref outsystems|self|both] [--record-self [--source-commit <rev>]] [--report <file.md>] [--app URL] [--jobs 4]
 ```
 
 | Option | Effect |
@@ -33,6 +33,7 @@ python3 migration/tools/refactor_parity.py --level strict|visual [--all | --rout
 | `--level visual` | Skips `structure`, `class`, `attr`; `style` and `pseudo` only on elements that are visible on both sides |
 | `--ref` | `outsystems`: the capture, exemptions `migration/parity-exemptions.json`. `self`: the self-parity reference, exemptions `migration/refactor-exemptions.json`. Default `both` |
 | `--record-self` | Records the running app as the self-parity reference in `migration/refactor-reference/<Route>/<state>/` (`tree.json`, `screenshot.png`), then stops. About 2 min for 64 routes, 160 MB, so the folder is in `.gitignore`: record it again on a new clone, at the commit that is the reference |
+| `--source-commit` | With `--record-self`: the commit of the code that the app at `--app` serves, written to the manifest. Give it when the app runs from another worktree (for example the reference commit on port 5175). Default: `HEAD` of this tree |
 | `--changed` | Routes whose import closure holds a changed file (`git diff --name-only <since>` and untracked files; default `HEAD~1`). The closure comes from `app/docs/refactor/graph.json` (dependency-cruiser, `modules[].dependencies[].resolved`); the tool runs `npm --prefix app run graph` first when the file is missing or older than the newest commit. Entry of a route: `src/screens/<R>/index.tsx` or `src/pages/<R>/<R>Page.tsx`. A change in `app/src/app`, `platform`, `api/client`, `legacy/os`, `styles`, `shell`, `mocks`, `app/public`, `app/index.html`, the app build config or the exemption files selects all routes (`shared`, `lib` and `components` are not global: the closure covers them). `--files <path>...` replaces the git diff; `--explain` prints the selected routes and the files that selected them, then exits |
 | `--report` | Markdown: one line per route and state, a total per reference. Default `migration/refactor-parity/last/report.md` |
 | `--jobs` | Parallel browser runs (default 4) |
@@ -50,6 +51,32 @@ Self-parity details: the reference stores the serialized tree (computed styles, 
 calls of each state. Both the recording and the comparison fix the page clock (`2026-03-12T10:30:00Z`), finish finite
 animations and pause endless ones at their start. Calls are compared as the set of distinct calls per phase (order and
 repeat counts depend on timing).
+
+Fonts: every run (the record and both references) passes `--preload-fonts` to `parity_check.cjs`. A browser loads a
+web font only when some text needs it. Thus an icon font can arrive after the content that uses it has painted. The
+layout then moves, and a composited layer keeps the sub-pixel offset of its first position.
+
+On EventDetail/default, the "View Guests" button (`.btn`, `transform: translateZ(0)` in the legacy CSS) had two
+renders 256 px apart: 6 of 15 tries failed before the fix (P4-F6). With all fonts loading at once, the font comes first
+in every run. The final render does not change.
+
+Reference manifest (`migration/refactor-reference/manifest.json`):
+
+- A record of all finished routes writes the full-record data: `commit` (the source commit), `at`, `app`, `routes`,
+  `states`, `errors`, `bytes`, and an empty `rerecorded` list.
+- A record of some routes (`--routes`, `--changed`) keeps that data and adds or replaces one `rerecorded` entry per
+  route: `route`, `states`, `errors`, `commit`, `at`, `app`. Of the full-record data, it changes only `bytes`.
+
+To record routes from older code, run the app of a worktree at that commit:
+
+```
+git worktree add --detach <dir> <commit>        # then npm ci in <dir>/app (own node_modules and Vite cache)
+<dir>/app/node_modules/.bin/vite --port 5175 --strictPort    # from <dir>/app, Node 24, in the background
+python3 migration/tools/refactor_parity.py --record-self --routes <R> --source-commit <commit> --app http://localhost:5175
+```
+
+Then stop that server (its PID) and run `git worktree remove <dir>`. The full record and the EventDetail record of
+P4-F6 come from `3b25ddd` (the Phase 0 code).
 
 `migration/refactor-exemptions.json` is a list; each entry (same matching as `parity-exemptions.json` rules):
 
@@ -71,6 +98,9 @@ the named routes). Add an entry only with the user's confirm.
 - `--fixed-time <iso>`: fix the page clock.
 - `--freeze-animations`: finish finite animations and pause endless ones.
 - `--diff-ref <path>`: the diff image path named in pixel details.
+- `--preload-fonts`: an init script of both pages (app and replayed capture) starts loading every `@font-face` font
+  as soon as a stylesheet is in. Test: `node .claude/skills/outsystems-screen-spec/scripts/parity_check.cjs
+  --self-test` (an unused font starts to load with the script and stays unloaded without it).
 
 With `--self-ref`, the script normalizes local origins before the style, attribute and call comparison, on both sides:
 `http(s)://localhost:<port>` and `http(s)://127.0.0.1:<port>` become `http://localhost:*`

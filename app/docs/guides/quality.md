@@ -20,6 +20,9 @@
 | Parity           | `route.py parity <Screen>` (project root)                           | DOM, styles and calls per captured state against the original                                                                                                                       |
 | Refactor parity  | `migration/tools/refactor_parity.py` (project root)                 | refactor gate: `--level strict` (all checks) or `visual` (no structure, class, attribute); `--changed` for the routes of a diff, `--all` for all 64; `--ref outsystems\|self\|both` |
 
+The refactor parity tool starts every run with `--preload-fonts`. `--record-self --routes <R>` records only those routes
+and keeps the other data of the reference (`rerecorded` list in the manifest; `--source-commit` names the code commit).
+
 Tests sit next to the code (`*.test.ts(x)`). Each shared block has a DOM snapshot test per captured state. Platform widgets
 (`src/components/*`), the shell (`src/platform`) and local entities have their own unit tests. Each vendored script has an
 `index.test.ts` for the wrapper. The test `src/mocks/contract.test.ts` checks the mock handlers against the contract.

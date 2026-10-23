@@ -366,3 +366,11 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,fix,38903,refactor-developer,,P4-F4 loop 1 opus
 2026-10-23,refactor,verify,27105,refactor-tester,,P4-F4 sonnet
 2026-10-23,refactor,other,31951,refactor-documenter,,P4-F4 sonnet
+2026-10-23,refactor,build,192457,refactor-developer,,P4-F6 opus (question)
+2026-10-23,refactor,review,0,refactor-advisor,,"P4-F6 Q13 flake fix, opus (b, high) - tokens in next row"
+2026-10-23,refactor,review,42538,refactor-advisor,,"P4-F6 Q13 flake fix, opus, 12 s (b, high)"
+2026-10-23,refactor,build,26807,refactor-developer,,P4-F5 sonnet
+2026-10-23,refactor,fix,13006,refactor-developer,,P4-F5 loop 1 sonnet
+2026-10-23,refactor,fix,56182,refactor-developer,,P4-F6 loop 1 opus
+2026-10-23,refactor,verify,33900,refactor-tester,,P4-F6 + P4-F5 sonnet
+2026-10-23,refactor,other,31208,refactor-documenter,,P4-F6 + P4-F5 sonnet
