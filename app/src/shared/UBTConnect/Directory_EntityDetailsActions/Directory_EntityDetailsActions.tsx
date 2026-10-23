@@ -19,7 +19,7 @@ import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/shared/UBTConnectLibrary/
 import type { ActionsMenuEnableOptions, ActionsMenuOptions, Notes } from '@/shared/UBTConnectLibrary/lib/structures';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { ContactByMessage_Wrapper } from '@/shared/UBTConnect_Utils/ContactByMessage_Wrapper';
-import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import { getHasExtendedShare, getHasNewBookmarks } from '@/shared/UBTConnect_Utils/lib/actions';
 import type { ContactPopupData, ContactPopUp_OverrideOptions } from '@/shared/UBTConnect_Utils/lib/structures';
 import { NotesSheet } from '@/shared/UBTConnect_Utils/NotesSheet';
@@ -465,7 +465,7 @@ export function Directory_EntityDetailsActions({
         }}
         onEventEmail={handleMailPage}
       />
-      <ContactPopup_ByPhone
+      <ContactPopupByPhone
         inCallPopupData={{
           ContactPopupData: { ...popupData(showCallPopUp), TitleTerminator: contact.TitleTerminator ?? '' },
           Phone: details?.Phone ?? '',

@@ -8,8 +8,8 @@ import {
   ValidationServiceProvider,
 } from '@/components/ui/os/OSValidation';
 import { InputCounter } from '@/shared/Connect2_LegacyShared/InputCounter';
-import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { OrbitLayout } from '@/components/layout/OrbitLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
 import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
 import { DEPRECATED_ButtonLoading } from '@/shared/osui/DEPRECATED_ButtonLoading';
@@ -278,10 +278,10 @@ export function ScreenBlock_ContactForm({
   return (
     <OSBlock name="Orbit_ScreenBlocks.ScreenBlock_ContactForm" id={id}>
       <ValidationServiceProvider service={validation}>
-        <Layout_Orbit
+        <OrbitLayout
           id={`${prefix}-$b1`}
           menu={<div id={`${prefix}-Menu`}>{menu}</div>}
-          headerLeft={<MenuIcon__UpdatedOSUI id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
+          headerLeft={<MenuIcon id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
           title={<span data-expression="">{`Contact ${helpdesk ? 'Orbit Helpdesk' : 'Host'}`}</span>}
           content={
             <OSForm id={ids.form} style="form card orbit-contact-form OSFillParent">

@@ -2,8 +2,8 @@
 import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { OrbitLayout } from '@/components/layout/OrbitLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { Accordion_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
 import { Card_MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/Card_MemberInformation';
 import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
@@ -450,11 +450,11 @@ export function ScreenBlock_GuestArrangements(props: ScreenBlock_GuestArrangemen
 
   return (
     <OSBlock name="Orbit_ScreenBlocks.ScreenBlock_GuestArrangements" id={id}>
-      <Layout_Orbit
+      <OrbitLayout
         id={`${prefix}-$b1`}
         customClass="orbit-detail"
         menu={<div id={`${prefix}-Menu`}>{props.menu}</div>}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
+        headerLeft={<MenuIcon id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
         title={
           <MilestoneHeader
             id={`${prefix}-$b3`}

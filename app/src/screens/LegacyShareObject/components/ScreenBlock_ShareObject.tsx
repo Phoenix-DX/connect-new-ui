@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
 import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
@@ -230,7 +230,7 @@ export function ScreenBlock_ShareObject({
 
   return (
     <OSBlock name="Share_UI.ScreenBlock_ShareObject" id={id}>
-      <Layout
+      <LegacyLayout
         id={`${scope}-$b1`}
         headerLeft={<MenuIcon_Back id={`${scope}-$b2`} />}
         title={

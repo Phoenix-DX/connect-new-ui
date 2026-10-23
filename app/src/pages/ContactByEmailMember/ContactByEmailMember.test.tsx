@@ -3,7 +3,7 @@ import { act, render, screen } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { ContactByEmailFormProps } from '@/shared/UBTConnect/ContactByEmailForm';
+import type { ContactEmailFormProps } from '@/components/contact/ContactEmailForm';
 import ContactByEmailMember from './ContactByEmailMemberPage';
 import { OrbitApplicationEvent_EmailHost } from './components/staticEntities';
 
@@ -11,16 +11,16 @@ import { OrbitApplicationEvent_EmailHost } from './components/staticEntities';
    The shared form is replaced by a wrapper that keeps its props to raise Event_SubmitForm; the server action, the back
    navigation, the feedback message and the flow handler are spied. */
 const spy = vi.hoisted(() => ({
-  form: undefined as ContactByEmailFormProps | undefined,
+  form: undefined as ContactEmailFormProps | undefined,
   send: vi.fn<(form: unknown) => Promise<void>>(),
   back: vi.fn(),
   feedback: vi.fn(),
   raise: vi.fn(),
 }));
-vi.mock('@/shared/UBTConnect/ContactByEmailForm', async () => {
+vi.mock('@/components/contact/ContactEmailForm', async () => {
   const { OSBlock } = await import('@/components/ui/os/OSBlock');
   return {
-    ContactByEmailForm: (props: ContactByEmailFormProps & { children?: ReactNode }) => {
+    ContactEmailForm: (props: ContactEmailFormProps & { children?: ReactNode }) => {
       spy.form = props;
       return (
         <OSBlock name="ContactFlow.ContactByEmailForm" id={props.id}>

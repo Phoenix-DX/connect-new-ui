@@ -2,9 +2,9 @@
 // @os-block NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack
 import { useEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { NewConnectContent } from '@/shared/Connect2_LegacyShared/NewConnectContent';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { getPreloadObject, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
@@ -92,10 +92,10 @@ export function ScreenBlock_AssembleDetail({ id, inputs, bottomBar, ...events }:
 
   return (
     <OSBlock name="Assemble.ScreenBlock_AssembleDetail" id={id}>
-      <Layout
+      <LegacyLayout
         id={`${scope}-Layout`}
         menu={<div id={`${scope}-Menu`} />}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${scope}-$b2`} menuAction={MenuAction.Back} />}
+        headerLeft={<MenuIcon id={`${scope}-$b2`} menuAction={MenuAction.Back} />}
         title={<span data-expression="">{title}</span>}
         content={
           <NewConnectContent id={`${scope}-$b3`}>

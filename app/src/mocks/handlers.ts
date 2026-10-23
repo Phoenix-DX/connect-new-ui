@@ -13,6 +13,7 @@ const pageMocks: MockModules = import.meta.glob('../pages/*/mocks.ts', { eager: 
 const legacyScreenMocks: MockModules = import.meta.glob('../screens/*/mocks.ts', { eager: true });
 const containers: MockModules = import.meta.glob('../containers/*/mocks.ts', { eager: true });
 const shared: MockModules = import.meta.glob('../shared/**/mocks.ts', { eager: true });
+const components: MockModules = import.meta.glob('../components/**/mocks.ts', { eager: true });
 const platform: MockModules = import.meta.glob('../platform/**/mocks.ts', { eager: true });
 
 /** Pages and not yet migrated screens in one group, ordered by folder name as the single screens glob was. */
@@ -26,4 +27,4 @@ export function collectHandlers(...groups: MockModules[]): RequestHandler[] {
   return groups.flatMap((group) => Object.values(group).flatMap((m) => m.handlers ?? []));
 }
 
-export const handlers: RequestHandler[] = collectHandlers(screens, containers, shared, platform);
+export const handlers: RequestHandler[] = collectHandlers(screens, containers, shared, components, platform);

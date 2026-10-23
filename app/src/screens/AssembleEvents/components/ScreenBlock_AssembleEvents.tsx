@@ -1,9 +1,9 @@
 // @os-block Connect2_Assemble_MUI.Assemble.ScreenBlock_AssembleEvents
 import { useEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { NewConnectContent } from '@/shared/Connect2_LegacyShared/NewConnectContent';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
@@ -68,14 +68,11 @@ export function ScreenBlock_AssembleEvents({
 
   return (
     <OSBlock name="Assemble.ScreenBlock_AssembleEvents" id={id}>
-      <Layout
+      <LegacyLayout
         id={`${scope}-$b1`}
         menu={<div id={`${scope}-Menu`} />}
         headerLeft={
-          <MenuIcon__UpdatedOSUI
-            id={`${scope}-$b2`}
-            menuAction={showBackNavigation ? MenuAction.Back : MenuAction.Menu}
-          />
+          <MenuIcon id={`${scope}-$b2`} menuAction={showBackNavigation ? MenuAction.Back : MenuAction.Menu} />
         }
         title={
           <>

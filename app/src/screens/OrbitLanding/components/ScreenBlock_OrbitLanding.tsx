@@ -2,8 +2,8 @@
 import { useEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { OrbitLayout } from '@/components/layout/OrbitLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { Card_Event } from '@/shared/Connect2_OrbitMobile_MUI/Card_Event';
 import { Card_Milestone } from '@/shared/Connect2_OrbitMobile_MUI/Card_Milestone';
 import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
@@ -311,10 +311,10 @@ export function ScreenBlock_OrbitLanding({
 
   return (
     <OSBlock name="Orbit_ScreenBlocks.ScreenBlock_OrbitLanding" id={id}>
-      <Layout_Orbit
+      <OrbitLayout
         id={`${prefix}-$b1`}
         menu={<div id={`${prefix}-Menu`} />}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${prefix}-$b2`} menuAction={MenuAction_Menu} />}
+        headerLeft={<MenuIcon id={`${prefix}-$b2`} menuAction={MenuAction_Menu} />}
         title={<i className="icon menu-icon-Orbit fa fa-flag fa-1x" data-icon="" />}
         headerRight={
           s.selectedMemberId !== NULL_ID && s.selectedMemberId === s.currentMemberId ? (

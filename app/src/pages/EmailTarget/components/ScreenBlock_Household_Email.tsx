@@ -8,8 +8,8 @@ import {
   ValidationServiceProvider,
 } from '@/components/ui/os/OSValidation';
 import { InputCounter } from '@/shared/Connect2_LegacyShared/InputCounter';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
 import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
@@ -240,10 +240,10 @@ export function ScreenBlock_Household_Email({
   return (
     <OSBlock name="Email.ScreenBlock_Household_Email" id={id}>
       <ValidationServiceProvider service={validation}>
-        <Layout
+        <LegacyLayout
           id={`${scope}-$b1`}
           menu={<div id={`${scope}-Menu`}>{menu}</div>}
-          headerLeft={<MenuIcon__UpdatedOSUI id={`${scope}-$b2`} menuAction={MenuAction.Back} />}
+          headerLeft={<MenuIcon id={`${scope}-$b2`} menuAction={MenuAction.Back} />}
           title={
             <div className="text-align-center" data-container="">
               <span data-expression="">{`Contact ${title}`}</span>

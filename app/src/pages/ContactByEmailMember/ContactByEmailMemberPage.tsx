@@ -1,7 +1,7 @@
 /** @origin UBTConnect.ContactFlow.ContactByEmailMember */
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { ContactByEmailForm } from '@/shared/UBTConnect/ContactByEmailForm';
+import { ContactEmailForm } from '@/components/contact/ContactEmailForm';
 import { Connect_Entity, UBT_FontWeight, UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
 import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import { UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
@@ -113,7 +113,7 @@ export default function ContactByEmailMember() {
         </span>
       }
       content={
-        <ContactByEmailForm
+        <ContactEmailForm
           id="$b2"
           inMessagePlaceholder="Add a message"
           inSubjectPlaceholder="Add a subject"
@@ -165,7 +165,7 @@ export default function ContactByEmailMember() {
               }
             />
           </CustomContainer>
-        </ContactByEmailForm>
+        </ContactEmailForm>
       }
     />
   );

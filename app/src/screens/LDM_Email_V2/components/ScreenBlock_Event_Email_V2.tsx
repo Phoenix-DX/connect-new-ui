@@ -9,14 +9,14 @@ import {
 } from '@/components/ui/os/OSValidation';
 import { osImage } from '@/legacy/os/os-assets';
 import { InputCounter } from '@/shared/Connect2_LegacyShared/InputCounter';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { NetworkWarning } from '@/shared/Connect2_LegacyShared/NetworkWarning';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { ErrorScreen } from '@/shared/Connect2_OrbitMobile_MUI/ErrorScreen';
 import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
 import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
-import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import type { ContactByPhonePopupData } from '@/shared/UBTConnect_Utils/lib/structures';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import type { AppManager_CachedUserInfoRec } from '@/platform/session/types';
@@ -483,12 +483,12 @@ export function ScreenBlock_Event_Email_V2({
   return (
     <OSBlock name="LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2" id={id}>
       <ValidationServiceProvider service={validation}>
-        <Layout
+        <LegacyLayout
           id={`${scope}-$b1`}
           menu={<div id={`${scope}-Menu`}>{menu}</div>}
           headerLeft={
             // MenuAction Auto of the Orbit module rendered as the back icon (Q2 → A, as LDM_MyEvents_V2's capture).
-            <MenuIcon__UpdatedOSUI id={`${scope}-$b2`} menuAction={MenuAction.Back} />
+            <MenuIcon id={`${scope}-$b2`} menuAction={MenuAction.Back} />
           }
           title={
             <div className="text-align-center" data-container="">
@@ -515,7 +515,7 @@ export function ScreenBlock_Event_Email_V2({
                   />
                 </div>
               )}
-              <ContactPopup_ByPhone
+              <ContactPopupByPhone
                 id={`${scope}-$b7`}
                 inCallPopupData={state.callPopupData}
                 onEventCall={closeCallPopup}

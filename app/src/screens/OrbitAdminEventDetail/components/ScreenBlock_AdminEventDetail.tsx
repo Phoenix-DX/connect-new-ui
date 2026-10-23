@@ -3,8 +3,8 @@ import { useEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { checkBarcodePlugin, scanBarcode, SCANNER_CLOSED_BY_USER } from '@/platform/device/barcodePlugin';
 import { UserException } from '@/legacy/os/os-exceptions';
-import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { OrbitLayout } from '@/components/layout/OrbitLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
 import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
@@ -387,11 +387,11 @@ export function ScreenBlock_AdminEventDetail({
 
   return (
     <OSBlock name="Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail" id={id}>
-      <Layout_Orbit
+      <OrbitLayout
         id={`${prefix}-$b1`}
         customClass="orbit-detail"
         menu={<div id={`${prefix}-Menu`} />}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${prefix}-$b2`} menuAction={MenuAction_Auto} />}
+        headerLeft={<MenuIcon id={`${prefix}-$b2`} menuAction={MenuAction_Auto} />}
         title={
           <>
             <div data-container="">

@@ -13,7 +13,7 @@ import { get_LookupSection, getSkeleton_UI_SubdivisionDetails } from '@/shared/U
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import type { CarouselPreloadedHouseholds, UI_Screen_SubdivisionDetails } from '@/shared/UBTConnect/lib/structures';
 import { SubLayout_DirectoryDetailScreen } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen';
-import { SubLayout_DirectoryDetailScreen_Section } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
+import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSection';
 import { SupperMeeting_HouseholdList } from '@/shared/UBTConnect/SupperMeeting_HouseholdList';
 import { SupperMeeting_ImageCard_Content } from '@/shared/UBTConnect/SupperMeeting_ImageCard_Content';
 import { getSubdivision } from './api';
@@ -99,14 +99,14 @@ export function SupperMeeting_DetailsBlock({
         placeholderCallToAction={
           <SkeletonSection inIsLoading={isLoading}>
             <div data-container="">
-              <SubLayout_DirectoryDetailScreen_Section inTitle={get_LookupSection(false).Actions.Plural}>
+              <DirectoryDetailSection inTitle={get_LookupSection(false).Actions.Plural}>
                 <Directory_EntityDetailsActions
                   entityType={Connect_Entity.SupperMeetings_aka_Subdivisions}
                   contactPopUpOverrideOptions={{ Name: content.Name ?? '' }}
                   entityId={subdivisionId}
                   enableOptions={{ EnableNotes: true }}
                 />
-              </SubLayout_DirectoryDetailScreen_Section>
+              </DirectoryDetailSection>
             </div>
           </SkeletonSection>
         }

@@ -2,7 +2,7 @@
 import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
+import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
 import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
@@ -143,7 +143,7 @@ export function ScreenBlock_MilestoneWrapper(props: ScreenBlock_MilestoneWrapper
     body = <Skeleton_Loading id={`${prefix}-$b9`} inSkeletonLoadingId={OrbitSkeletonLoading.MilestoneWrapper} />;
   } else if (In_FromNotification && !r.Status.Success) {
     body = (
-      <Layout_Orbit
+      <OrbitLayout
         id={`${prefix}-$b7`}
         customClass="orbit-detail"
         menu={<div id={`${prefix}-Menu_Failed`} />}

@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G2-A",
+  "step": "P6-G2-B-Shared",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T22:26:09"
+  "since": "2026-10-23T22:42:06"
  },
  "steps": {
   "P0-1": {
@@ -625,12 +625,25 @@
    "finished": "2026-10-23T22:20:14"
   },
   "P6-G2-A": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T22:20:43",
    "tokens": {
     "dev": 23713,
     "test": 20014,
     "docs": 26026
+   },
+   "commit": "1633175",
+   "gate": "ci: pass; diffcheck --move ok (55 renames, 9 origin tags); parity strict --changed: 9/0 (OutSystems), 9/0 (self); arch baseline 0 new; bundle within +5% (Login 193.10 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T22:27:06"
+  },
+  "P6-G2-B-Shared": {
+   "status": "active",
+   "started": "2026-10-23T22:27:18",
+   "tokens": {
+    "dev": 57826,
+    "test": 37325,
+    "docs": 35858
    }
   }
  },

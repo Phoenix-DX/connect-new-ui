@@ -19,7 +19,7 @@ import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import { getSkeletonList_UI_HouseholdMembers } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity, Connect_HouseholdMemberRole } from '@/shared/UBTConnect/lib/staticEntities';
 import type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
-import { SubLayout_DirectoryDetailScreen_Section } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
+import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSection';
 
 const NO_MEMBERS: UI_HouseholdMember[] = [];
 const AVATAR_SIZE = { Height: UBT_ImageSize.Base_52, Width: UBT_ImageSize.Square };
@@ -85,7 +85,7 @@ export function HouseholdMemberList({
     <OSBlock name="Directory_Household_Blocks.HouseholdDetails_Members_Block" id={id}>
       <SkeletonSection inIsLoading={isLoading}>
         <CustomContainer options={{ MarginSize: { BottomSizeId: UBT_Size.ExtraSmall } }}>
-          <SubLayout_DirectoryDetailScreen_Section inTitle="Household members">
+          <DirectoryDetailSection inTitle="Household members">
             <OSList
               source={shownMembers}
               keyOf={memberKey}
@@ -137,13 +137,9 @@ export function HouseholdMemberList({
                 />
               )}
             </OSList>
-          </SubLayout_DirectoryDetailScreen_Section>
+          </DirectoryDetailSection>
         </CustomContainer>
-        <SubLayout_DirectoryDetailScreen_Section
-          inPaddingBottom={UBT_Size.Base}
-          inPaddingTop={UBT_Size.Small}
-          inTitle=""
-        >
+        <DirectoryDetailSection inPaddingBottom={UBT_Size.Base} inPaddingTop={UBT_Size.Small} inTitle="">
           <OSList
             source={nonMembers}
             keyOf={memberKey}
@@ -195,7 +191,7 @@ export function HouseholdMemberList({
               />
             )}
           </OSList>
-        </SubLayout_DirectoryDetailScreen_Section>
+        </DirectoryDetailSection>
       </SkeletonSection>
     </OSBlock>
   );

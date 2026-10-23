@@ -3,8 +3,8 @@ import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { UserException } from '@/legacy/os/os-exceptions';
-import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { OrbitLayout } from '@/components/layout/OrbitLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { HostSurvey_PillItem } from '@/shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';
 import { NoResults } from '@/shared/Connect2_OrbitMobile_MUI/NoResults';
 import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
@@ -976,12 +976,12 @@ export function ScreenBlock_EventBooklet(props: ScreenBlock_EventBookletProps) {
 
   return (
     <OSBlock name="Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet" id={id}>
-      <Layout_Orbit
+      <OrbitLayout
         id={`${prefix}-$b1`}
         customClass="orbit-detail orbit-header-center"
         extendedClasses="orbit-booklet"
         menu={<div id={`${prefix}-Menu`}>{props.menu}</div>}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
+        headerLeft={<MenuIcon id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
         title={title}
         headerRight={
           <div className={`flex-center-all${fetchedFilterData ? '' : ' opacity-0-50'}`} data-container="">

@@ -17,9 +17,9 @@ import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_Use
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Dialog_Navigation } from '@/shared/UBTConnect/Dialog_Navigation';
 import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
-import { SubLayout_DirectoryDetailScreen_Section } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
+import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSection';
 import { Button } from '@/shared/UBTConnect_Utils/Button';
-import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import { CircleButton_WithLabel } from '@/shared/UBTConnectLibrary/CircleButton_WithLabel';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
@@ -339,7 +339,7 @@ export default function ContactUsDetails() {
           )}
         </CustomContainer>
         <SectionSeparator id="$b6" />
-        <SubLayout_DirectoryDetailScreen_Section id="$b7" inTitle="">
+        <DirectoryDetailSection id="$b7" inTitle="">
           {init.rate_ShowRate && (
             <NotCaptured name="App_Menu_ContactUs.ContactUs_Rate (SelectedRate, isEnabled = not isSubmiting; Q2 → A)" />
           )}
@@ -425,7 +425,7 @@ export default function ContactUsDetails() {
               )}
             </OSForm>
           </SkeletonSection>
-        </SubLayout_DirectoryDetailScreen_Section>
+        </DirectoryDetailSection>
       </div>
       <FixedFooter id="$b15" expectedFooterHeight={FOOTER_HEIGHT} contentContainerId="Content" useBottomBar={false}>
         <CustomContainer
@@ -490,7 +490,7 @@ export default function ContactUsDetails() {
             placeholderBody={<span data-expression="">Are you sure you want to delete this message?</span>}
           />
         )}
-        <ContactPopup_ByPhone
+        <ContactPopupByPhone
           id="$b24"
           inCallPopupData={callPopupData}
           inImageSizeId={UBT_ImageSize.Auto}

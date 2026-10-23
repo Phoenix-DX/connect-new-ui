@@ -8,8 +8,8 @@ import {
   SystemException,
   UserException,
 } from '@/legacy/os/os-exceptions';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
 import { NoBookmarks } from '@/shared/Connect2_MyBookmarks_MUI/NoBookmarks';
@@ -352,10 +352,10 @@ export function ScreenBlock_MyBookmarks({
 
   return (
     <OSBlock name="MyBookmarksFlow.ScreenBlock_MyBookmarks" id={id}>
-      <Layout
+      <LegacyLayout
         id={`${scope}-$b1`}
         menu={<div id={`${scope}-Menu`} />}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${scope}-$b2`} menuAction={MenuAction.Menu} />}
+        headerLeft={<MenuIcon id={`${scope}-$b2`} menuAction={MenuAction.Menu} />}
         title={
           <div data-container="" style={{ textAlign: 'center' }}>
             My Bookmarks

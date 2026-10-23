@@ -3,11 +3,11 @@ import { useEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Assemble_FilterLocalityByCountry } from '@/shared/Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry';
 import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { LocalityListDetail } from '@/shared/Connect2_LegacyShared/LocalityListDetail';
 import { removeDiacritics } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
@@ -243,10 +243,10 @@ export function ScreenBlock_Assemble_Filter({
 
   return (
     <OSBlock name="Assemble.ScreenBlock_Assemble_Filter" id={id}>
-      <Layout
+      <LegacyLayout
         id={`${scope}-$b1`}
         menu={<div id={`${scope}-Menu`} />}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${scope}-$b2`} menuAction={MenuAction.Back} />}
+        headerLeft={<MenuIcon id={`${scope}-$b2`} menuAction={MenuAction.Back} />}
         title={
           <div className="text-ellipsis" data-container="" id={`${scope}-DIV_ScreenTitle`}>
             <span data-expression="" id={`${scope}-ScreenTitle2`}>

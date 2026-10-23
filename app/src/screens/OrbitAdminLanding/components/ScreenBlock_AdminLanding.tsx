@@ -2,8 +2,8 @@
 import { useEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { OrbitLayout } from '@/components/layout/OrbitLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { Card_Event } from '@/shared/Connect2_OrbitMobile_MUI/Card_Event';
 import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
 import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
@@ -178,10 +178,10 @@ export function ScreenBlock_AdminLanding({ id, bottomBar, onNavigateToEventDetai
 
   return (
     <OSBlock name="Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding" id={id}>
-      <Layout_Orbit
+      <OrbitLayout
         id={`${prefix}-$b1`}
         menu={<div id={`${prefix}-Menu`} />}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${prefix}-$b2`} menuAction={MenuAction_Menu} />}
+        headerLeft={<MenuIcon id={`${prefix}-$b2`} menuAction={MenuAction_Menu} />}
         title={<i className="icon menu-icon-Orbit fa fa-flag fa-1x" data-icon="" />}
         headerContent={
           <div className="orbit-admin-header-cont" data-container="">

@@ -2,8 +2,8 @@ import { useEffect, useLayoutEffect, useReducer, useRef, type ReactNode } from '
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { OrbitLayout } from '@/components/layout/OrbitLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
 import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
@@ -423,11 +423,11 @@ export function ScreenBlock_HostSurvey(props: ScreenBlock_HostSurveyProps) {
 
   return (
     <OSBlock name="Orbit_ScreenBlocks_HostSurvey.ScreenBlock_HostSurvey" id={id}>
-      <Layout_Orbit
+      <OrbitLayout
         id={`${prefix}-$b1`}
         customClass={`orbit-detail orbit-host-survey${!s.hasDataSteps ? ' orbit-host-survey-no-steps' : ''}`}
         menu={<div id={`${prefix}-Menu`}>{props.menu}</div>}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
+        headerLeft={<MenuIcon id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
         title={
           <>
             <div className="orbit-host-survey-header-title" data-container="">

@@ -2,8 +2,8 @@
 import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { OrbitLayout } from '@/components/layout/OrbitLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { Accordion_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
 import { Card_MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/Card_MemberInformation';
@@ -15,8 +15,8 @@ import { checkDirectoryAccess } from '@/shared/Connect2_OrbitMobile_MUI/lib/acti
 import { DirectoryAPIFilter, ImageSigningSize } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
-import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
-import type { ContactByPhonePopupData } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone/types';
+import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
+import type { ContactByPhonePopupData } from '@/components/contact/ContactPopupByPhone/types';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
@@ -330,11 +330,11 @@ export function ScreenBlock_HelperDetails(props: ScreenBlock_HelperDetailsProps)
 
   return (
     <OSBlock name="Orbit_ScreenBlocks.ScreenBlock_HelperDetails" id={id}>
-      <Layout_Orbit
+      <OrbitLayout
         id={`${prefix}-$b1`}
         customClass="orbit-detail"
         menu={<div id={`${prefix}-Menu`}>{props.menu}</div>}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
+        headerLeft={<MenuIcon id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
         title={
           <MilestoneHeader
             id={`${prefix}-$b3`}
@@ -352,7 +352,7 @@ export function ScreenBlock_HelperDetails(props: ScreenBlock_HelperDetailsProps)
         commonUIElements={<div id={`${prefix}-CommonUI_Elements`}>{props.commonUIElements}</div>}
       />
       <Dialog_AccessRestrictedAction_Legacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b10`} />
-      <ContactPopup_ByPhone
+      <ContactPopupByPhone
         id={`${prefix}-$b11`}
         inCallPopupData={s.contactByPhoneData}
         onEventCancel={onHandleContactByPhoneCancel}

@@ -2,11 +2,11 @@
 import { useEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { NotRegisteredException, UserException } from '@/legacy/os/os-exceptions';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { ContactByMessage_Wrapper } from '@/shared/UBTConnect_Utils/ContactByMessage_Wrapper';
-import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import type {
   ContactByPhonePopupData,
@@ -265,7 +265,7 @@ export function ScreenBlock_MyEvents_V2({
 
   return (
     <OSBlock name="LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2" id={id}>
-      <Layout
+      <LegacyLayout
         id={`${scope}-$b1`}
         extendedClasses="my-events"
         menu={<div id={`${scope}-Menu`} />}
@@ -273,7 +273,7 @@ export function ScreenBlock_MyEvents_V2({
           <div data-container="" style={{ alignItems: 'center', display: 'flex' }}>
             <div data-container="" style={{ flex: '1 0 20%' }}>
               {/* MenuAction Auto of the Orbit module: rendered as the back icon (dom/default.html:201). */}
-              <MenuIcon__UpdatedOSUI id={`${scope}-$b2`} menuAction={MenuAction.Back} />
+              <MenuIcon id={`${scope}-$b2`} menuAction={MenuAction.Back} />
             </div>
             <div
               className="month-header ThemeGrid_Width1"
@@ -326,7 +326,7 @@ export function ScreenBlock_MyEvents_V2({
               }}
             />
             <Dialog_AccessRestrictedAction_Legacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b12`} />
-            <ContactPopup_ByPhone
+            <ContactPopupByPhone
               id={`${scope}-$b13`}
               inCallPopupData={state.contactByPhoneData}
               onEventCancel={closeContactByPhone}

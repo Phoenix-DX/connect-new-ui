@@ -11,7 +11,7 @@ import { getUserInformation } from '@/platform/session/userInfo';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity, NoteCategory2 } from '@/shared/UBTConnect/lib/staticEntities';
 import type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
-import { SubLayout_DirectoryDetailScreen_Section } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
+import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSection';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
@@ -395,7 +395,7 @@ export function HouseholdRelations_Block({
       <SkeletonSection inIsLoading={variables.isLoading}>
         {hasRelations ? (
           <>
-            <SubLayout_DirectoryDetailScreen_Section
+            <DirectoryDetailSection
               id="b3-Relations"
               inPaddingBottom={UBT_Size.Base}
               inTitle="Relations"
@@ -438,9 +438,9 @@ export function HouseholdRelations_Block({
                   </OSList>
                 </div>
               </CustomContainer>
-            </SubLayout_DirectoryDetailScreen_Section>
+            </DirectoryDetailSection>
             {siblings.length > 0 && (
-              <SubLayout_DirectoryDetailScreen_Section id="b3-Household" inTitle="Household">
+              <DirectoryDetailSection id="b3-Household" inTitle="Household">
                 <CustomContainer options={{ PaddingSize: { TopSizeId: UBT_Size.Small }, MarginSize: {} }}>
                   <OSList
                     source={siblings}
@@ -486,7 +486,7 @@ export function HouseholdRelations_Block({
                     )}
                   </OSList>
                 </CustomContainer>
-              </SubLayout_DirectoryDetailScreen_Section>
+              </DirectoryDetailSection>
             )}
           </>
         ) : (

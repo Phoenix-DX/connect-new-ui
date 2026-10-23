@@ -111,7 +111,7 @@ A route scenario is a handler that returns `undefined` unless `scenario()` equal
 Every other request falls through to the next handler (usually the app-start mocks of `platform/bootstrap`).
 
 `src/mocks/handlers.ts` collects the handlers with one glob per folder, in this order: `pages/*/mocks.ts` and `screens/*/mocks.ts`
-(merged and sorted by folder name), `shared/**/mocks.ts`, `platform/**/mocks.ts`. MSW uses the first handler that matches, so the order is a rule:
+(merged and sorted by folder name), `containers/*/mocks.ts`, `shared/**/mocks.ts`, `components/**/mocks.ts`, `platform/**/mocks.ts`. MSW uses the first handler that matches, so the order is a rule:
 the app-start mocks must stay last. `src/mocks/handlers.test.ts` fails when the order changes.
 
 ## Mock store for writes

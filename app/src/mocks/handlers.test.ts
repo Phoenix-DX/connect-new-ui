@@ -36,7 +36,13 @@ describe('mock handler order', () => {
     const all = handlers;
     const first = Math.min(...platform.handlers.map((h) => all.indexOf(h)));
     const screenModules = import.meta.glob<{ handlers?: RequestHandler[] }>(
-      ['../pages/*/mocks.ts', '../screens/*/mocks.ts', '../containers/*/mocks.ts', '../shared/**/mocks.ts'],
+      [
+        '../pages/*/mocks.ts',
+        '../screens/*/mocks.ts',
+        '../containers/*/mocks.ts',
+        '../shared/**/mocks.ts',
+        '../components/**/mocks.ts',
+      ],
       { eager: true },
     );
     const last = Math.max(...positions(screenModules));

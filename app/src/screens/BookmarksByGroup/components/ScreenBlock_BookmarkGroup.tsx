@@ -5,10 +5,10 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { useFlagOn } from '@/platform/flags/flags';
 import { osImage } from '@/legacy/os/os-assets';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { getCachedMyBookmarks, putCachedMyBookmarks } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { MenuAction, ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MessageList_NoResults } from '@/shared/Connect2_LegacyShared/MessageList_NoResults';
 import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
@@ -675,10 +675,10 @@ export function ScreenBlock_BookmarkGroup({
 
   return (
     <OSBlock name="MyBookmarksFlow.ScreenBlock_BookmarkGroup" id={id}>
-      <Layout
+      <LegacyLayout
         id={`${scope}-$b1`}
         menu={<div id={`${scope}-Menu`} />}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${scope}-$b2`} menuAction={MenuAction.Back} />}
+        headerLeft={<MenuIcon id={`${scope}-$b2`} menuAction={MenuAction.Back} />}
         title={
           <div className="text-align-center" data-container="">
             <span data-expression="">{'My ' + bookmarkGroup}</span>

@@ -1,7 +1,7 @@
 /** @origin UBTConnect.ContactFlow.ContactByEmailLDMCoordinator */
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router';
-import { ContactByEmailForm } from '@/shared/UBTConnect/ContactByEmailForm';
+import { ContactEmailForm } from '@/components/contact/ContactEmailForm';
 import { UBT_FontWeight } from '@/shared/UBTConnect/lib/staticEntities';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
@@ -76,7 +76,7 @@ export default function ContactByEmailLDMCoordinator() {
       inAlignTitleLeft
       placeholderHeaderTitle={<span data-expression="">Email</span>}
       content={
-        <ContactByEmailForm
+        <ContactEmailForm
           id="$b2"
           inMessagePlaceholder="Add a message"
           inSubjectPlaceholder="Add a subject"
@@ -123,7 +123,7 @@ export default function ContactByEmailLDMCoordinator() {
               </CustomContainer>
             </CustomContainer>
           </div>
-        </ContactByEmailForm>
+        </ContactEmailForm>
       }
     />
   );

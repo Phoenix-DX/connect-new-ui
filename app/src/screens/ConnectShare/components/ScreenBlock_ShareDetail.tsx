@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { ConnectBlankSlate } from '@/shared/Connect2_LegacyShared/ConnectBlankSlate';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
 import { NavigationLanding } from './NavigationLanding';
 
@@ -34,7 +34,7 @@ export function ScreenBlock_ShareDetail({
   const scope = id.replace('$', '');
   return (
     <OSBlock name="Share_UI.ScreenBlock_ShareDetail" id={id}>
-      <Layout
+      <LegacyLayout
         id={`${scope}-$b1`}
         menu={<div id={`${scope}-Menu`}>{menu}</div>}
         headerLeft={<MenuIcon_Back id={`${scope}-$b2`} />}

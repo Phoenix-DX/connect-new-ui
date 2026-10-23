@@ -2,9 +2,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useRef, type KeyboardEvent, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MessageList_NoResults } from '@/shared/Connect2_LegacyShared/MessageList_NoResults';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
@@ -397,7 +397,7 @@ export function ScreenBlock_MessageList({
         onClick={() => void onClickCloseSearchAndFilter()}
       />
     ) : (
-      <MenuIcon__UpdatedOSUI id={`${prefix}-$b2`} menuAction={MenuAction.Menu} />
+      <MenuIcon id={`${prefix}-$b2`} menuAction={MenuAction.Menu} />
     )
   ) : (
     <MenuIcon_Back id={`${prefix}-$b3`} />
@@ -582,7 +582,7 @@ export function ScreenBlock_MessageList({
 
   return (
     <OSBlock name="MyNotifications.ScreenBlock_MessageList" id={id}>
-      <Layout
+      <LegacyLayout
         id={`${prefix}-$b1`}
         usePullToRefresh
         onOnPullToRefresh={() => void pullToRefresh()}

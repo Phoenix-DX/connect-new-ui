@@ -1,7 +1,7 @@
 // @os-block UBTConnect_Utils.CW_CTA_PopUps.ContactPopup_ByMessage
 import { useMemo } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ContactPopup } from '@/shared/UBTConnect_Utils/ContactPopup';
+import { ContactPopup } from '@/components/contact/ContactPopup';
 import { Type_MessageChannel, UBT_ImageSize, UBT_Icons } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import type { ContactByMessagePopupData, ContactPopupButton } from './types';
 

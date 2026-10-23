@@ -3,8 +3,8 @@ import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { useFlagOn } from '@/platform/flags/flags';
-import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { OrbitLayout } from '@/components/layout/OrbitLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { Accordion_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
 import { Card_Milestone } from '@/shared/Connect2_OrbitMobile_MUI/Card_Milestone';
 import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
@@ -604,11 +604,11 @@ export function ScreenBlock_EventDetail(props: ScreenBlock_EventDetailProps) {
 
   return (
     <OSBlock name="Orbit_ScreenBlocks.ScreenBlock_EventDetail" id={id}>
-      <Layout_Orbit
+      <OrbitLayout
         id={`${prefix}-$b1`}
         customClass="orbit-detail orbit-header-center"
         menu={<div id={`${prefix}-Menu`} />}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${prefix}-$b2`} menuAction={MenuAction_Auto} />}
+        headerLeft={<MenuIcon id={`${prefix}-$b2`} menuAction={MenuAction_Auto} />}
         title={<span data-expression="">{In_EventName !== '' ? In_EventName : e.EventName}</span>}
         headerRight={
           s.isFetchingData ? null : (

@@ -4,13 +4,13 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { osImage } from '@/legacy/os/os-assets';
 import { UserException } from '@/legacy/os/os-exceptions';
-import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { EventDetail_SubSection } from '@/shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection';
 import { ErrorScreen } from '@/shared/Connect2_OrbitMobile_MUI/ErrorScreen';
 import { ContactByMessage_Wrapper } from '@/shared/UBTConnect_Utils/ContactByMessage_Wrapper';
-import { ContactPopup_ByPhone } from '@/shared/UBTConnect_Utils/ContactPopup_ByPhone';
+import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { cleanAddressForMaps, getOperatingSystem } from '@/shared/UBTConnect_Utils/lib/actions';
 import type {
@@ -535,10 +535,10 @@ export function ScreenBlock_EventDetail_V2({
 
   return (
     <OSBlock name="LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2" id={id}>
-      <Layout
+      <LegacyLayout
         id={`${scope}-$b1`}
         menu={<div id={`${scope}-Menu`} />}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${scope}-$b2`} menuAction={MenuAction.Back} />}
+        headerLeft={<MenuIcon id={`${scope}-$b2`} menuAction={MenuAction.Back} />}
         title={
           <div className="text-align-center" data-container="">
             {!state.isFetching ? (
@@ -553,7 +553,7 @@ export function ScreenBlock_EventDetail_V2({
         content={
           <>
             {content}
-            <ContactPopup_ByPhone
+            <ContactPopupByPhone
               id={`${scope}-$b17`}
               inCallPopupData={state.contactByPhoneData}
               onEventCall={closeContactByPhone}

@@ -342,3 +342,11 @@
 
 - The 9 G2 routes moved from `src/screens/<R>` to `src/pages/<R>`. `index.tsx` is now `<R>Page.tsx`, with one `@origin` tag per page. The code did not change.
 - `move-map.csv`: the 9 G2 page rows are set to `moved`. The 2 block rows of EmailContact and EmailTarget stay open for step B.
+
+## P6-G2-B-Shared - refactor(P6-G2-B): move the shared blocks of group G2
+
+- 9 blocks of `src/shared/` (62 files, phase P6-G2 rows of `move-map.csv`) moved to `src/components/layout/` (BaseLayout, LegacyLayout, OrbitLayout, MenuIcon, DirectoryDetailSection, SectionLayout) and `src/components/contact/` (ContactPopup, ContactPopupByPhone, ContactEmailForm). They took the target name (path, component and `<Name>Props`). Each has an `@origin` tag. The 9 rows are set to `moved`.
+- Gate W15: `arch-baseline.csv` got 11 rows (48 in total) for Rule 4 warnings that the move made visible. Owners: ContactEmailForm (1) to P6-G2-B-ContactByEmailMember; ContactPopup (2), BaseLayout (4), LegacyLayout (3) and MenuIcon (1) to P7.
+- New mode `arch_baseline.py check --move-step <phase> --base <commit>` lists a new row as ADD. It does so only for a file that is a move target of that phase. The old file must have imported the same module at the base commit.
+- Decision W17 (Window 4): ContactEmailForm has a colocated `mocks.ts` (handler SendContactMemberEmail). `src/mocks/handlers.ts` has a new glob `../components/**/mocks.ts`, placed after `shared` and before `platform`. `handlers.test.ts` checks the new order. `rf.py diffcheck --move` flags only these lines, and the handler set is unchanged (155 handlers).
+- Later groups reuse the glob.

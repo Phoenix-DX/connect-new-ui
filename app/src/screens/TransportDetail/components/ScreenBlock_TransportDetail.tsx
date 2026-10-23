@@ -1,8 +1,8 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_TransportDetail
 import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Layout_Orbit } from '@/shared/Connect2_LegacyShared/Layout_Orbit';
-import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
+import { OrbitLayout } from '@/components/layout/OrbitLayout';
+import { MenuIcon } from '@/components/layout/MenuIcon';
 import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
 import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
 import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
@@ -186,11 +186,11 @@ export function ScreenBlock_TransportDetail(props: ScreenBlock_TransportDetailPr
 
   return (
     <OSBlock name="Orbit_ScreenBlocks.ScreenBlock_TransportDetail" id={id}>
-      <Layout_Orbit
+      <OrbitLayout
         id={`${prefix}-$b1`}
         customClass={`orbit-detail orbit-header-center orbit-transport-detail ${In_HeaderClass}`}
         menu={<div id={`${prefix}-Menu`}>{props.menu}</div>}
-        headerLeft={<MenuIcon__UpdatedOSUI id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
+        headerLeft={<MenuIcon id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
         title={<span data-expression="">{s.title}</span>}
         content={content}
         bottomBar={<ContactHelpdesk_Footer id={`${prefix}-$b5`} onClick={onHandleContactHelpdesk} />}

@@ -2,7 +2,7 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { osImage } from '@/legacy/os/os-assets';
-import { ContactByEmailForm } from '@/shared/UBTConnect/ContactByEmailForm';
+import { ContactEmailForm } from '@/components/contact/ContactEmailForm';
 import { UBT_FontWeight } from '@/shared/UBTConnect/lib/staticEntities';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
@@ -74,7 +74,7 @@ export default function ContactByEmailOrbitHelpdesk() {
       inAlignTitleLeft
       placeholderHeaderTitle={<span data-expression="">Email</span>}
       content={
-        <ContactByEmailForm
+        <ContactEmailForm
           id="$b2"
           inMessagePlaceholder="Add a message"
           inSubjectPlaceholder="Add a subject"
@@ -113,7 +113,7 @@ export default function ContactByEmailOrbitHelpdesk() {
               </CustomContainer>
             </CustomContainer>
           </div>
-        </ContactByEmailForm>
+        </ContactEmailForm>
       }
     />
   );

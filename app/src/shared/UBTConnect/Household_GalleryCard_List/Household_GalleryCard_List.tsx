@@ -8,7 +8,7 @@ import { Household_GalleryCard } from '@/shared/UBTConnect/Household_GalleryCard
 import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
-import { SubLayout_DirectoryDetailScreen_Section } from '@/shared/UBTConnect/SubLayout_DirectoryDetailScreen_Section';
+import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSection';
 
 /** Local ItemsPerRow (default 2; p:…Household_GalleryCard_List.mvc.js:13-15). */
 const ITEMS_PER_ROW = 2;
@@ -44,7 +44,7 @@ export function Household_GalleryCard_List({
   return (
     <OSBlock name="Directory_Household_Blocks.Household_GalleryCard_List" id={id}>
       <SkeletonSection inIsLoading={inIsLoading}>
-        <SubLayout_DirectoryDetailScreen_Section inTitle={get_LookupSection(false).Households.Plural}>
+        <DirectoryDetailSection inTitle={get_LookupSection(false).Households.Plural}>
           {inHouseholdGalleryCardList.length === 0 ? (
             <Directory_EmptyState entityTypeId={Connect_Entity.Household} />
           ) : (
@@ -67,7 +67,7 @@ export function Household_GalleryCard_List({
               </OSList>
             </Gallery>
           )}
-        </SubLayout_DirectoryDetailScreen_Section>
+        </DirectoryDetailSection>
       </SkeletonSection>
     </OSBlock>
   );
