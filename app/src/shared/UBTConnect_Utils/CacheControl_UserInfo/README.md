@@ -9,7 +9,7 @@ OutSystems: `UBTConnect_Utils.CacheControl.CacheControl_UserInfo` · pack
 
 (The pack lists no inputs; CacheKey is an input in the compiled model.) Events: `Result(CacheControl_Response)` →
 `onResult(response)` (structure `CacheControl_UserInformation`). Placeholders: none. Child block: `CacheControl`
-(CacheTypeId `CACHE_TYPE.directoryUser`, the type the shell's `getUserInformation` uses, so both share one entry).
+(CacheTypeId `memberCache.userInfoType`, the type the shell's `getUserInformation` uses, so both share one entry).
 
 Miss: `callAction('UBTConnect_Utils', 'CacheControl_UserInfo/DataActionGetCacheInfo', { CacheKey, CacheTypeId })`, then
 `putCacheableObject` with the returned `TTL` and `Result`. Mock: the shell's `CacheControl_UserInfo` handler

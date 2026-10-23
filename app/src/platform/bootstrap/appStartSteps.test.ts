@@ -1,7 +1,9 @@
 import { http, HttpResponse } from 'msw';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { server } from '@/test/setup';
-import { CACHE_TYPE, peekCacheableObject, putCacheableObject } from '@/platform/storage/memoryCache';
+import { appCache } from '@/api/app';
+import { peekCacheableObject, putCacheableObject } from '@/api/client/cache';
+import { memberCache } from '@/api/member';
 import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
 import { registerPin } from '@/platform/session/pin';
 import { getClientVar, getShellState, setClientVar, setSignedInUser } from '@/platform/session/session';
@@ -39,7 +41,7 @@ beforeEach(() => {
 
 const waitForMapCalls = () =>
   vi.waitFor(() => {
-    expect(peekCacheableObject('CacheableMapObjects.Households', 'CacheableMapObjects.Households').hit).toBe(true);
+    expect(peekCacheableObject(appCache.mapObject('Households')).hit).toBe(true);
   });
 
 describe('signed-out load (spec 10; shell-observed U1)', () => {
@@ -147,7 +149,7 @@ describe('signed-in load (spec 10; shell-observed U3)', () => {
   });
 
   test('a user-info cache hit (CacheControl_UserInfo on Menu) skips GetUserInformation', async () => {
-    putCacheableObject(CACHE_TYPE.directoryUser, 'Unique', mockUserInformation(), 7200);
+    putCacheableObject(memberCache.userInfo('Unique'), mockUserInformation());
     await startApp();
     expect(calledActions()).not.toContain('ActionGetUserInformation');
   });
@@ -265,12 +267,7 @@ describe('first screen before AfterInitialize (CR-Search-3; calls.json of Search
         expect(calledActions()).toEqual(['ActionAppManager_SynchAppContext', 'ActionAppManager_AfterInitialize']);
       });
       // the screen's CacheControl_UserInfo answer (CacheControl_UserInfo.tsx:35-40), then ScreenFrame's first event
-      putCacheableObject(
-        CACHE_TYPE.directoryUser,
-        getClientVar('UBTConnect_Utils.UniqueCacheKey'),
-        mockUserInformation(),
-        7200,
-      );
+      putCacheableObject(memberCache.userInfo(getClientVar('UBTConnect_Utils.UniqueCacheKey')), mockUserInformation());
       firstScreen();
       await start;
       expect(calledActions()).not.toContain('ActionGetUserInformation');

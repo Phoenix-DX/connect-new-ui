@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
+import { clearMemoryCache, putCacheableObject } from '@/api/client/cache';
+import { memberCache } from '@/api/member';
 import { mockUserInformation } from '@/platform/session/mockUser';
 import { CacheControl_UserInfo_Wrapper } from './CacheControl_UserInfo_Wrapper';
 
@@ -13,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 /** ContactUsDetails/default (from a cache hit: Storybook has no mock API). */
 export const V1: Story = {
   beforeEach: () => {
-    putCacheableObject(CACHE_TYPE.directoryUser, 'Unique', mockUserInformation(), 60);
+    putCacheableObject(memberCache.userInfo('Unique', 60), mockUserInformation());
     return clearMemoryCache;
   },
 };

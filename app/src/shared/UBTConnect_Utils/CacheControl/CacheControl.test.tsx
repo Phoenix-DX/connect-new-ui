@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
+import { appCache } from '@/api/app';
+import { clearMemoryCache, putCacheableObject } from '@/api/client/cache';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { CacheControl } from './CacheControl';
 import * as stories from './CacheControl.stories';
@@ -12,12 +13,12 @@ describe('CacheControl', () => {
   testCapturedVariants(stories, captures);
 
   it('raises OnCacheHit with the cached object', () => {
-    putCacheableObject(CACHE_TYPE.policies, 'Unique', { cached: true }, 60);
+    putCacheableObject(appCache.policies('Unique', 60), { cached: true });
     const onCacheHit = vi.fn();
     const onNonCacheHit = vi.fn();
     render(
       <CacheControl
-        cacheTypeId={CACHE_TYPE.policies}
+        cacheTypeId={appCache.policiesType}
         cacheKey="Unique"
         onCacheHit={onCacheHit}
         onNonCacheHit={onNonCacheHit}
@@ -31,9 +32,9 @@ describe('CacheControl', () => {
     const onCacheHit = vi.fn();
     const onNonCacheHit = vi.fn();
     const { rerender } = render(
-      <CacheControl cacheTypeId={CACHE_TYPE.policies} cacheKey="Other" onNonCacheHit={onNonCacheHit} />,
+      <CacheControl cacheTypeId={appCache.policiesType} cacheKey="Other" onNonCacheHit={onNonCacheHit} />,
     );
-    rerender(<CacheControl cacheTypeId={CACHE_TYPE.policies} cacheKey="Other" onNonCacheHit={onNonCacheHit} />);
+    rerender(<CacheControl cacheTypeId={appCache.policiesType} cacheKey="Other" onNonCacheHit={onNonCacheHit} />);
     expect(onNonCacheHit).toHaveBeenCalledTimes(1);
     expect(onCacheHit).not.toHaveBeenCalled();
   });

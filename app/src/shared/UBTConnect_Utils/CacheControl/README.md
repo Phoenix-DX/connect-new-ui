@@ -11,7 +11,7 @@ OutSystems: `UBTConnect_Utils.CacheControl.CacheControl` · pack `migration/bloc
 
 Events: `OnCacheHit(Object)` → `onCacheHit(object)`, `OnNonCacheHit` → `onNonCacheHit()`. Placeholders: none.
 Renders an empty wrapper. On initialize (once) it looks the object up in the shell's memory cache
-(`peekCacheableObject`, `src/platform/storage/memoryCache.ts`) and raises one of the two events.
+(`peekCacheableObject`, `src/api/client/cache.ts`) and raises one of the two events.
 
 ## Captured variants (1 distinct; 1 tested)
 

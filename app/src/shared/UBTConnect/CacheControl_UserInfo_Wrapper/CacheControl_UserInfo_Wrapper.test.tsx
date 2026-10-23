@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
+import { clearMemoryCache, putCacheableObject } from '@/api/client/cache';
+import { memberCache } from '@/api/member';
 import { mockUserInformation } from '@/platform/session/mockUser';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
@@ -16,7 +17,7 @@ describe('CacheControl_UserInfo_Wrapper', () => {
   });
   it('sets App_Policies_HasPolicyToAccept and raises Result with Directory_UserCurrent', () => {
     const info = { ...mockUserInformation(), HasPoliciesToAccept: true };
-    putCacheableObject(CACHE_TYPE.directoryUser, 'Unique', info, 60);
+    putCacheableObject(memberCache.userInfo('Unique', 60), info);
     const onResult = vi.fn();
     render(<CacheControl_UserInfo_Wrapper onResult={onResult} />);
     expect(onResult).toHaveBeenCalledWith(info.Directory_UserCurrent);

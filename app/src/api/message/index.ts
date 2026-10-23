@@ -20,7 +20,7 @@ export {
   type MessageQueryOptions,
   type SendContactUsMessageVariables,
 } from './hooks';
-export { messageKeys } from './keys';
+export { messageCache, messageKeys } from './keys';
 export {
   fetchCountryNames,
   fetchEntityContactDetails,

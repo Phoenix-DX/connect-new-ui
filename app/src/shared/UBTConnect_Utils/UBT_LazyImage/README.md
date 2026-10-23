@@ -29,7 +29,7 @@ none. Children: SkeletonSection (In_IsLoading = not isFetched) around LazyImage.
     (GetImageType_FromEntity) asks Cache_SignedImageURL_Get. It is in `UBTConnect_Utils/lib/actions.ts`: memory cache
     `getCacheableObjectInBulk`, TTL 300 s, timeout 10, bulk of 15, server action GetSignedImagesInBulk. In this case,
     the loading skeleton shows until Cache_SignedImageURL_Get answers.
-  - A failed GetSignedImagesInBulk answers "" through the memory cache (`platform/storage/memoryCache.ts` flushBulk; every
+  - A failed GetSignedImagesInBulk answers "" through the memory cache (`api/client/cache.ts`; every
     `offline` capture shows the fallback, not the skeleton).
   - If an exception occurs, the skeleton stays (the original OnReady stops at it).
   - The block applies the synchronous part before the first paint.

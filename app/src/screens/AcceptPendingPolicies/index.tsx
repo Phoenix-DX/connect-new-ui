@@ -8,11 +8,12 @@ import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTC
 import { jSUtils_SetStyleProperty } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { osImage } from '@/legacy/os/os-assets';
 import { showCommunicationExceptionMessage } from '@/platform/feedback';
-import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
+import { putCacheableObject } from '@/api/client/cache';
+import { memberCache } from '@/api/member';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { allowUpcomingNavigation, replaceOnUpcomingNavigation, useNavigateBack } from '@/platform/navigation';
 import { getClientVar, setClientVar } from '@/platform/session/session';
-import { getUserInformation, USER_INFO_TTL_SECONDS } from '@/platform/session/userInfo';
+import { getUserInformation } from '@/platform/session/userInfo';
 import { getSVGMetric } from './components/actions';
 import { Policy_Custom_AcceptPendingPolicies } from './components/Policy_Custom_AcceptPendingPolicies';
 import { Connect_Applications, UBT_FontSize_Heading3 } from './components/staticEntities';
@@ -51,12 +52,10 @@ export default function AcceptPendingPolicies() {
   // AllowUpcomingNavigation; PreviousScreen.
   const acceptedAll = async () => {
     const info = await getUserInformation();
-    putCacheableObject(
-      CACHE_TYPE.directoryUser,
-      getClientVar('UBTConnect_Utils.UniqueCacheKey'),
-      { ...info, HasPoliciesToAccept: false },
-      USER_INFO_TTL_SECONDS,
-    );
+    putCacheableObject(memberCache.userInfo(getClientVar('UBTConnect_Utils.UniqueCacheKey')), {
+      ...info,
+      HasPoliciesToAccept: false,
+    });
     setClientVar('UBTConnect.App_Policies_HasPolicyToAccept', false);
     replaceOnUpcomingNavigation();
     allowUpcomingNavigation();

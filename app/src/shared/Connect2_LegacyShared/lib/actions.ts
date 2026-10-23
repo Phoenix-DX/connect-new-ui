@@ -1,10 +1,6 @@
 /* Client actions of Connect2_LegacyShared, ported 1:1 from migration/runtime-sources/Connect2_LegacyShared.controller.js
    (fetched read-only from TST, 2026-10-15; cited below as controller.js:<line>). */
-import { callAction } from '@/api/client/callAction';
-import { fetchCountryLocalities, fetchRegionSubscribedCountries } from '@/api/country';
-import { osList, wireList } from '@/legacy/os/os-wire';
-import { fetchBulkSubdivisions, fetchLocalityInformation } from '@/api/locality';
-import { fetchMemberContacts } from '@/api/message';
+import { bookmarkCache } from '@/api/bookmark';
 import {
   cacheKeyPart,
   getCacheKeyParts,
@@ -13,14 +9,21 @@ import {
   peekCacheableObject,
   putCacheableObject,
   type BulkCacheResult,
-} from '@/platform/storage/memoryCache';
+} from '@/api/client/cache';
+import { callAction } from '@/api/client/callAction';
+import { countryCache, fetchCountryLocalities, fetchRegionSubscribedCountries } from '@/api/country';
+import { imageCache } from '@/api/image';
+import { osList, wireList } from '@/legacy/os/os-wire';
+import { fetchBulkSubdivisions, fetchLocalityInformation, localityCache } from '@/api/locality';
+import { memberCache } from '@/api/member';
+import { fetchMemberContacts, messageCache } from '@/api/message';
 import { log } from '@/platform/log/log';
 import { UserException } from '@/legacy/os/os-exceptions';
 import { isSignedIn } from '@/platform/session/session';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { checkAppLauncherPlugin, getOperatingSystem } from '@/shared/UBTConnect_Utils/lib/actions';
 import { Mobile_OperatingSystem } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { DirectoryCacheType, MapNavigationRedirect } from './staticEntities';
+import { MapNavigationRedirect } from './staticEntities';
 import type {
   BookmarkItem,
   BulkSignedPhotoParameters,
@@ -49,13 +52,6 @@ export const getSignedPhotosInBulk: GetSignedPhotosInBulk = async (parameters) =
   return osList(out.Results);
 };
 
-/** TimeToLive and Timeout locals of GetCacheableSignedPhotoURL (controller.js:4025-4064). */
-const SIGNED_PHOTO_TTL_SECONDS = 300;
-const SIGNED_PHOTO_TIMEOUT = 10;
-/** The bulk-size input of GetCacheableObjectInBulk is left at its default, LongInteger 0 (controller.js:3985). How
-    MemoryClientCache reads 0 is not in the sources; the shell cache then asks for each key at once. */
-const SIGNED_PHOTO_BULK_SIZE = 0;
-
 /** GetBulkSignedPhotosParameters (controller.js:2901-2952): each cache key split back (GetCacheKeyParts) into
     Bucket, Path and Type. */
 export function getBulkSignedPhotosParameters(cacheKeys: string[]): BulkSignedPhotoParameters[] {
@@ -81,9 +77,9 @@ export async function getBulkSignedPhotosURL(
 }
 
 /** GetCacheableSignedPhotoURL (controller.js:3947-4115): with Bucket, Path and Type all set, the signed URL from the
-    memory cache (type DirectoryCacheType.Photos, key CacheKeyPart(Bucket) + CacheKeyPart(Path) + CacheKeyPart(Type),
-    TTL 300 s, timeout 10) whose misses go to GetBulkSignedPhotosURL (Callbacks JS :4109-4113); ResultURL JS
-    (:4104-4108) turns a missing object into "". Otherwise "". */
+    memory cache (imageCache.signedPhoto: type DirectoryCacheType.Photos, key CacheKeyPart(Bucket) + CacheKeyPart(Path)
+    + CacheKeyPart(Type), TTL 300 s, timeout 10, bulk size 0) whose misses go to GetBulkSignedPhotosURL (Callbacks JS
+    :4109-4113); ResultURL JS (:4104-4108) turns a missing object into "". Otherwise "". */
 export async function getCacheableSignedPhotoURL(
   bucket: string,
   path: string,
@@ -92,12 +88,8 @@ export async function getCacheableSignedPhotoURL(
 ): Promise<string> {
   if (bucket === '' || path === '' || type === '') return '';
   const object = await getCacheableObjectInBulk(
-    DirectoryCacheType.Photos,
-    cacheKeyPart(bucket) + cacheKeyPart(path) + cacheKeyPart(type),
-    SIGNED_PHOTO_TTL_SECONDS,
-    SIGNED_PHOTO_TIMEOUT,
+    imageCache.signedPhoto(cacheKeyPart(bucket) + cacheKeyPart(path) + cacheKeyPart(type)),
     (keys) => getBulkSignedPhotosURL(keys, server),
-    SIGNED_PHOTO_BULK_SIZE,
   );
   return object ?? '';
 }
@@ -283,7 +275,7 @@ export const getCountryInformation = fetchCountryLocalities;
     the callers; CacheResult has no reader). */
 export async function getCacheableCountryInfo(countryCode = ''): Promise<LocalityResultItemWithGPS[]> {
   if (countryCode === '') throw objectNotFound('Invalid country id');
-  return getCacheableObject(DirectoryCacheType.Countries, countryCode, 1200, () => getCountryInformation(countryCode));
+  return getCacheableObject(countryCache.countryLocalities(countryCode), () => getCountryInformation(countryCode));
 }
 
 /** GetLocalityInformation(LocalityId): the server action GetLocalityInformation, in the domain api/locality
@@ -297,7 +289,7 @@ export const getLocalityInformation = fetchLocalityInformation;
     :3343-3360) whose miss runs GetLocalityInformation; AssignFromObject → LocalityInformation. */
 export async function getCacheableLocality(localityId = '0'): Promise<CacheableLocalityInformation> {
   if (localityId === '0' || localityId === '') throw objectNotFound('Invalid locality id');
-  return getCacheableObject(DirectoryCacheType.Localities, localityId, 1200, () => getLocalityInformation(localityId));
+  return getCacheableObject(localityCache.locality(localityId), () => getLocalityInformation(localityId));
 }
 
 /** GetCacheableUserInfo (controller.js:4391-4520): GetUserId() = NullIdentifier raises ObjectNotFound "User is not
@@ -306,7 +298,7 @@ export async function getCacheableLocality(localityId = '0'): Promise<CacheableL
     its PutCachedSignedPhotoURL of the member photo is not ported); UserInformation = CacheableUserDetails. */
 export async function getCacheableUserInfo(): Promise<Users_Current_GETResponse> {
   if (!isSignedIn()) throw objectNotFound('User is not logged in');
-  return getCacheableObject(DirectoryCacheType.User, 'UserInfo', 7200, async () => {
+  return getCacheableObject(memberCache.legacyUserInfo(), async () => {
     const out = await callAction('Connect2_LegacyShared', 'ActionGetUserInformation', {});
     return out.UserInformation;
   });
@@ -327,7 +319,7 @@ export async function getCacheableRegionSubscribedCountries(
   subscriptionRegionId = '',
 ): Promise<CountryWithMapPosition[]> {
   if (subscriptionRegionId === '') throw objectNotFound('Invalid country id');
-  return getCacheableObject(DirectoryCacheType.RegionSubscribedCountries, subscriptionRegionId, 1200, () =>
+  return getCacheableObject(countryCache.regionSubscribedCountries(subscriptionRegionId), () =>
     getRegionSubscribedCountries(subscriptionRegionId),
   );
 }
@@ -358,7 +350,7 @@ export async function getCacheableMemberContactList(
   memberIdList: readonly string[],
 ): Promise<MemberContactWithTimezone[]> {
   const cacheKey = buildMemberContactsCacheKey(memberIdList);
-  return getCacheableObject(DirectoryCacheType.MemberContact, cacheKey, 300, () => getMemberContactList(cacheKey));
+  return getCacheableObject(messageCache.memberContacts(cacheKey), () => getMemberContactList(cacheKey));
 }
 
 /** GetTimezoneInformation(LocalityId) → TimezoneInformation (controller.js:5500-5575): server action
@@ -380,7 +372,7 @@ export async function getTimezoneInformation(localityId: string): Promise<Timezo
     callback is GetTimezoneInformation(Number(LocalityId)) (CallbacksJS :4381-4388). */
 export async function getCacheableTimezoneInfo(localityId: string): Promise<Timezone> {
   if (localityId === '0' || localityId === '') throw objectNotFound('Invalid country id');
-  return getCacheableObject(DirectoryCacheType.Timezone, localityId, 1200, () => getTimezoneInformation(localityId));
+  return getCacheableObject(localityCache.timezone(localityId), () => getTimezoneInformation(localityId));
 }
 
 /* ---- F11 (CR-LDM_EventDetail_V2-1) ---- */
@@ -412,17 +404,10 @@ export async function getBulkSubdivision_V2(
   return results.map((result) => ({ key: result.CacheKey, error: result.Error, value: result.Value }));
 }
 
-/** TimeToLive and Timeout locals of GetCacheableSubdivision_V2 (controller.js:4190-4205). */
-const SUBDIVISION_TTL_SECONDS = 300;
-const SUBDIVISION_TIMEOUT = 10;
-/** The bulk-size input of GetCacheableObjectInBulk is left at its default, LongInteger 0 (controller.js:4149), as for
-    the signed photos. */
-const SUBDIVISION_BULK_SIZE = 0;
-
 /** GetCacheableSubdivision_V2(SubdivisionId) (controller.js:4115-4244): SubdivisionId 0 raises ObjectNotFound "Invalid
-    subdivision id"; otherwise the memory cache (type DirectoryCacheType.AssembleSubdivision, key
-    LongIntegerToText(SubdivisionId), TTL 300 s, timeout 10, :4149) whose misses go, collected per type, to
-    GetBulkSubdivision_V2 (Callbacks JS :4245-4249); the shell cache shares a miss already waiting. AssignFromObject →
+    subdivision id"; otherwise the memory cache (localityCache.subdivision: type DirectoryCacheType.AssembleSubdivision,
+    key LongIntegerToText(SubdivisionId), TTL 300 s, timeout 10, bulk size 0, :4149) whose misses go, collected per
+    type, to GetBulkSubdivision_V2 (Callbacks JS :4245-4249); the cache shares a miss already waiting. AssignFromObject →
     SubdivisionInformation (CacheResult has no reader). AssignFromObject skips a missing object (NavigationHandler
     AssignJS `if ($parameters.ObjectValue)`), so a key answered with an error gives undefined = the record at its
     default (empty HouseholdListResponse, Locality.Id 0, Country.Code ""). */
@@ -430,34 +415,23 @@ export async function getCacheableSubdivision_V2(
   subdivisionId = '0',
 ): Promise<CacheableSubdivisionInformation | undefined> {
   if (subdivisionId === '0' || subdivisionId === '') throw objectNotFound('Invalid subdivision id');
-  return getCacheableObjectInBulk(
-    DirectoryCacheType.AssembleSubdivision,
-    subdivisionId,
-    SUBDIVISION_TTL_SECONDS,
-    SUBDIVISION_TIMEOUT,
-    getBulkSubdivision_V2,
-    SUBDIVISION_BULK_SIZE,
-  );
+  return getCacheableObjectInBulk(localityCache.subdivision(subdivisionId), getBulkSubdivision_V2);
 }
 
 /* ---- F15 (CR-AssembleDetail-2): the legacy bookmarks cache and feedback of ToggleBookmarkItem ---- */
 
-/** MemoryClientCache UnlimitedTimeToLiveSeconds(): 604800 s (runtime-sources/MemoryClientCache.controller.js,
-    unlimitedTimeToLiveSeconds$Action), the TTL of PutCachedMyBookmarks (controller.js:6407 ff.). */
-const UNLIMITED_TIME_TO_LIVE_SECONDS = 604800;
-
-/** GetCachedMyBookmarks(Group) (controller.js:4529 ff.): GetCachedObject(DirectoryCacheType.MyBookmarks, Group); on a hit
-    AssignFromObject → Bookmarks (a copy) and CacheHit True. */
+/** GetCachedMyBookmarks(Group) (controller.js:4529 ff.): GetCachedObject(DirectoryCacheType.MyBookmarks, Group)
+    (bookmarkCache.myBookmarks); on a hit AssignFromObject → Bookmarks (a copy) and CacheHit True. */
 export function getCachedMyBookmarks(group: string): { cacheHit: boolean; bookmarks: BookmarkItem[] } {
-  const cached = peekCacheableObject(DirectoryCacheType.MyBookmarks, group);
+  const cached = peekCacheableObject(bookmarkCache.myBookmarks(group));
   if (!cached.hit || !Array.isArray(cached.value)) return { cacheHit: false, bookmarks: [] };
   return { cacheHit: true, bookmarks: [...(cached.value as BookmarkItem[])] };
 }
 
 /** PutCachedMyBookmarks(Group, Bookmarks) (controller.js:6407 ff.): PutCacheableObject(DirectoryCacheType.MyBookmarks,
-    Group, Bookmarks, UnlimitedTimeToLiveSeconds). */
+    Group, Bookmarks, UnlimitedTimeToLiveSeconds = 604800 s) (bookmarkCache.myBookmarks). */
 export function putCachedMyBookmarks(group: string, bookmarks: readonly BookmarkItem[]): void {
-  putCacheableObject(DirectoryCacheType.MyBookmarks, group, [...bookmarks], UNLIMITED_TIME_TO_LIVE_SECONDS);
+  putCacheableObject(bookmarkCache.myBookmarks(group), [...bookmarks]);
 }
 
 /** AddBookmarkToCache(In_Bookmark) (controller.js:1-60): BookmarkGroup = In_Bookmark.Group; GetCachedMyBookmarks; on a

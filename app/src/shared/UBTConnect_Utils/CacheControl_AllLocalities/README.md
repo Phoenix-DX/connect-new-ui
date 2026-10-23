@@ -9,7 +9,7 @@ OutSystems: `UBTConnect_Utils.CacheControl.CacheControl_AllLocalities` · pack `
 
 (The pack lists no inputs; both are inputs in the compiled model.) Events: `Result(CacheControl_Response)` →
 `onResult(response)` (structure `CacheControl_AllLocalities` of `../lib/structures.ts`, exported as `CacheControl_AllLocalitiesRec`). Placeholders: none.
-Child block: `CacheControl` (CacheTypeId `CACHE_TYPE.allLocalities`).
+Child block: `CacheControl` (CacheTypeId `localityCache.allLocalitiesType`).
 
 Hit: the cached object is the response. Miss: `callAction('UBTConnect_Utils', 'CacheControl_AllLocalities/DataActionGetCacheInfo',
 { CacheKey, CacheTypeId, TimeToLiveSeconds })`, `putCacheableObject`, then `Result`. Mock: `mocks.ts` serves the

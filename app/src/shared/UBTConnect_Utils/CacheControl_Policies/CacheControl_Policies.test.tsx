@@ -1,6 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CACHE_TYPE, clearMemoryCache, peekCacheableObject } from '@/platform/storage/memoryCache';
+import { appCache } from '@/api/app';
+import { clearMemoryCache, peekCacheableObject } from '@/api/client/cache';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { CacheControl_Policies } from './CacheControl_Policies';
 import * as stories from './CacheControl_Policies.stories';
@@ -22,7 +23,7 @@ describe('CacheControl_Policies', () => {
     });
     const response: unknown = first.mock.calls[0]?.[0];
     expect(response).toHaveProperty('PolicyInformation_PrivacyPolicy');
-    expect(peekCacheableObject(CACHE_TYPE.policies, 'Unique')).toEqual({ hit: true, value: response });
+    expect(peekCacheableObject(appCache.policies('Unique', 7200))).toEqual({ hit: true, value: response });
     expect(policyCalls()).toHaveLength(1);
 
     const second = vi.fn();
@@ -37,7 +38,7 @@ describe('CacheControl_Policies', () => {
     await waitFor(() => {
       expect(onResult).toHaveBeenCalled();
     });
-    expect(peekCacheableObject(CACHE_TYPE.policies, 'Other').hit).toBe(true);
+    expect(peekCacheableObject(appCache.policies('Other', 7200)).hit).toBe(true);
     expect(policyCalls()[0]?.inputNames).toEqual(['CacheKey', 'CacheTypeId', 'TimeToLiveSeconds']);
   });
 

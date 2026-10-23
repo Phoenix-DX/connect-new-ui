@@ -1,12 +1,12 @@
 // @os-block UBTConnect_Utils.CacheControl.CacheControl
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { peekCacheableObject } from '@/platform/storage/memoryCache';
+import { cacheQueryKey, peekCacheableObject } from '@/api/client/cache';
 
 export interface CacheControlProps {
   /** OutSystems instance id of the block. */
   id?: string;
-  /** Connect_CacheType identifier (`CACHE_TYPE` of src/shell/memoryCache). */
+  /** Connect_CacheType identifier (the `…Type` of the domain cache entries, for example `appCache.policiesType`). */
   cacheTypeId?: string;
   cacheKey?: string;
   /** Default 7200. Passed to GetCacheableObject in the original; a lookup does not need it here (README). */
@@ -30,7 +30,7 @@ export function CacheControl({ id, cacheTypeId = '', cacheKey = '', onCacheHit, 
   useEffect(() => {
     if (initialized.current) return;
     initialized.current = true;
-    const found = peekCacheableObject(cacheTypeId, cacheKey);
+    const found = peekCacheableObject({ queryKey: cacheQueryKey(cacheTypeId, cacheKey) });
     if (found.hit) void events.current.onCacheHit?.(found.value);
     else void events.current.onNonCacheHit?.();
   }, [cacheTypeId, cacheKey]);

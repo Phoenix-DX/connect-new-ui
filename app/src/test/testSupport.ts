@@ -2,7 +2,7 @@ import { server } from '@/test/setup';
 import { pinSessionInactivityDestroy } from '@/platform/session/inactivity';
 import { setOrbitStaticEntitiesDatabase } from '@/platform/storage/localEntities/orbitStaticEntities';
 import { setRecentSearchDatabase } from '@/platform/storage/localEntities/recentSearch';
-import { clearMemoryCache } from '@/platform/storage/memoryCache';
+import { clearMemoryCache } from '@/api/client/cache';
 import { getResumeLoginLink } from '@/platform/session/resume';
 import { setReviewMarkers } from '@/legacy/os/reviewMarkers';
 import { resetAppStart } from '@/platform/bootstrap/appStartSteps';

@@ -1,5 +1,5 @@
 export { useBookmarkGroupQuery, useBookmarkGroupSummariesQuery, type BookmarkQueryOptions } from './hooks';
-export { bookmarkKeys } from './keys';
+export { bookmarkCache, bookmarkKeys } from './keys';
 /* ScreenBlock_BookmarkGroup maps the BookmarkItem records of the MyBookmarks cache back to its rows. */
 export { toBookmark } from './mapper';
 export {

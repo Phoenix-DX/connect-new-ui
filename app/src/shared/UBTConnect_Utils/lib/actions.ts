@@ -1,18 +1,13 @@
 /* Client actions of UBTConnect_Utils used by the shared blocks, ported 1:1 from UBTConnect_Utils.controller.js
    (copy in migration/screens/Login/analysis/sources/raw/). */
+import { cacheKeyPart, getCacheableObjectInBulk, getCacheKeyParts, type BulkCacheResult } from '@/api/client/cache';
 import { callAction } from '@/api/client/callAction';
+import { imageCache } from '@/api/image';
 import { osList, wireList } from '@/legacy/os/os-wire';
 import { flagValue } from '@/platform/flags';
 import { log } from '@/platform/log/log';
 import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
-import {
-  CACHE_TYPE,
-  cacheKeyPart,
-  getCacheableObjectInBulk,
-  getCacheKeyParts,
-  type BulkCacheResult,
-} from '@/platform/storage/memoryCache';
 import { getClientVar } from '@/platform/session/session';
 import { jSUtils_PageOpenInNewTab } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { dropdownClose } from '@/shared/osui/lib/actions';
@@ -116,17 +111,12 @@ export function showComingSoonMessage(): void {
   });
 }
 
-/* Wave 2C (CR-W2A-1): signed image URLs through the memory cache. */
-const SIGNED_IMAGE_TTL_SECONDS = 300;
-const SIGNED_IMAGE_TIMEOUT = 10;
-const SIGNED_IMAGE_BULK_SIZE = 15;
+/* Wave 2C (CR-W2A-1): signed image URLs through the memory cache (imageCache.signedImage of api/image: the cache type
+   Image + the image type of Cache_SignedImageURL_GetCacheKey, UC:711-745, TTL 300 s, timeout 10, bulk of 15). */
 
 /** TextToInteger then IntegerToLongInteger (UBT_LazyImage OnReady, :740): a non-number gives 0. */
 export const textToLongInteger = (text: string): string =>
   /^\s*-?\d+\s*$/.test(text) ? String(Number.parseInt(text, 10)) : '0';
-
-/** Cache_SignedImageURL_GetCacheKey (UC:711-745): the cache type of a signed image = Image + the image type. */
-export const cache_SignedImageURL_GetCacheKey = (type: string): string => CACHE_TYPE.image + type;
 
 /** Cache_SignedImageURL_GetCallback (UC:767-805), with Cache_SignedImageURL_GetParameters (UC:854-900): one
     GetSignedImagesInBulk call for the waiting keys (Id, Type, Size), one answer per image (key, Error, SignedURL). */
@@ -151,12 +141,8 @@ export async function cache_SignedImageURL_Get(entityId: string, type: string, s
   const id = textToLongInteger(entityId);
   if (id === '0' || type === '') return '';
   const object = await getCacheableObjectInBulk(
-    cache_SignedImageURL_GetCacheKey(type),
-    cacheKeyPart(id) + cacheKeyPart(type) + cacheKeyPart(size),
-    SIGNED_IMAGE_TTL_SECONDS,
-    SIGNED_IMAGE_TIMEOUT,
+    imageCache.signedImage(type, cacheKeyPart(id) + cacheKeyPart(type) + cacheKeyPart(size)),
     cache_SignedImageURL_GetCallback,
-    SIGNED_IMAGE_BULK_SIZE,
   );
   return object ?? '';
 }

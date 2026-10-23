@@ -1,10 +1,16 @@
-import { afterInitialize, fetchCacheableHouseholds, fetchCacheableMapEntities, type ClientConfig } from '@/api/app';
+import {
+  afterInitialize,
+  appCache,
+  fetchCacheableHouseholds,
+  fetchCacheableMapEntities,
+  type ClientConfig,
+} from '@/api/app';
+import { putCacheableObject } from '@/api/client/cache';
 import { loadFlags } from '@/platform/flags';
 import { log } from '@/platform/log/log';
 import { onApplicationReady_BottomBarSlider } from '@/shared/UBTConnectLibrary/lib/actions';
 import { deviceContext } from '@/platform/device/deviceContext';
 import { loadOrbitStaticEntities } from '@/platform/storage/localEntities';
-import { putCacheableObject } from '@/platform/storage/memoryCache';
 import { screenOf } from '@/platform/navigation/paths';
 import { isSignedIn, markAppReady, reloadSessionState, setClientVar } from '@/platform/session/session';
 import { holdUserInfoForAppStart, releaseUserInfoForAppStart } from '@/platform/session/userInfo';
@@ -64,10 +70,9 @@ async function initializeWebComponents(config: ClientConfig | null): Promise<voi
   });
 }
 
-/** Map objects cached for 7200 s under the CacheableMapObjects static entity (UC:3469-3610). */
-const MAP_TTL_SECONDS = 7200;
+/** Map objects cached for 7200 s under the CacheableMapObjects static entity (UC:3469-3610; appCache.mapObject). */
 const cacheMapObject = (name: string, value: unknown) => {
-  putCacheableObject(`CacheableMapObjects.${name}`, `CacheableMapObjects.${name}`, value, MAP_TTL_SECONDS);
+  putCacheableObject(appCache.mapObject(name), value);
 };
 
 /** Async_FetchCacheableMapEntitiesJS (UC:15514-15519): both requests start together and are not awaited. */

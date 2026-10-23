@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
+import { clearMemoryCache, putCacheableObject } from '@/api/client/cache';
+import { countryCache } from '@/api/country';
 import { CacheControl_AllCountries } from './CacheControl_AllCountries';
 
 const meta = {
@@ -12,7 +13,7 @@ type Story = StoryObj<typeof meta>;
 /** CountryDetails/default. Storybook has no mock API, so the story starts from a cache hit (the test uses the miss path). */
 export const V1: Story = {
   beforeEach: () => {
-    putCacheableObject(CACHE_TYPE.allCountries, 'Unique', { CountryList: { List: [] } }, 60);
+    putCacheableObject(countryCache.allCountries('Unique', 60), { CountryList: { List: [] } });
     return clearMemoryCache;
   },
 };

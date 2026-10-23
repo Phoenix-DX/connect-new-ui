@@ -10,7 +10,7 @@ OutSystems: `UBTConnect_Utils.CacheControl.CacheControl_Policies` · pack
 
 (The pack lists no inputs; both are inputs in the compiled model.) Events: `Result(CacheControl_Response)` →
 `onResult(response)` (the `Policies` type of `@/api/app`). Placeholders: none. Child block:
-`CacheControl` (CacheTypeId `CACHE_TYPE.policies`).
+`CacheControl` (CacheTypeId `appCache.policiesType`).
 
 Hit: the cached object is the response. Miss: `fetchPolicies` of `@/api/app` (action `CacheControl_Policies/DataActionGetCacheInfo`,
 inputs `CacheKey`, `CacheTypeId`, `TimeToLiveSeconds`; recorded mock), `putCacheableObject`, then `Result`.

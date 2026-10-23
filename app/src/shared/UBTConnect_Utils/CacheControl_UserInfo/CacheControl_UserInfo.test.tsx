@@ -1,6 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CACHE_TYPE, clearMemoryCache, peekCacheableObject } from '@/platform/storage/memoryCache';
+import { clearMemoryCache, peekCacheableObject } from '@/api/client/cache';
+import { memberCache } from '@/api/member';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { CacheControl_UserInfo } from './CacheControl_UserInfo';
 import * as stories from './CacheControl_UserInfo.stories';
@@ -23,7 +24,7 @@ describe('CacheControl_UserInfo', () => {
     const response: unknown = first.mock.calls[0]?.[0];
     expect(response).toHaveProperty('Directory_UserCurrent');
     expect(response).toHaveProperty('HasPoliciesToAccept', false);
-    expect(peekCacheableObject(CACHE_TYPE.directoryUser, 'Unique')).toEqual({ hit: true, value: response });
+    expect(peekCacheableObject(memberCache.userInfo('Unique'))).toEqual({ hit: true, value: response });
     expect(calls()[0]?.inputNames).toEqual(['CacheKey', 'CacheTypeId']);
 
     const second = vi.fn();

@@ -1,10 +1,8 @@
+import { getCacheableObject } from '@/api/client/cache';
 import { callAction } from '@/api/client/callAction';
-import { CACHE_TYPE, getCacheableObject } from '@/platform/storage/memoryCache';
+import { memberCache } from '@/api/member';
 import type { UserInformation } from './mockUser';
 import { getClientVar, isSignedIn, setClientVar } from './session';
-
-/** Cache_UserInfo_Get TimeToLiveSeconds default (UBTConnect_Utils.controller.js, Cache_UserInfo_Get$vars). */
-export const USER_INFO_TTL_SECONDS = 7200;
 
 /* While a signed-in app start runs, readers wait for its GetUserInformation_Wrapper step (Connect_SetLoggedContext,
    UC:1092-1160): in TST the app start fills the user-info cache and screens read it afterwards, e.g. PINRegister's
@@ -41,9 +39,7 @@ export async function getUserInformation(): Promise<UserInformation> {
 export async function getUserInformation_Wrapper(): Promise<UserInformation> {
   if (!isSignedIn()) throw new Error('User is not logged in'); // Cache_UserInfo_Get raises ObjectNotFound
   const info = await getCacheableObject(
-    CACHE_TYPE.directoryUser,
-    getClientVar('UBTConnect_Utils.UniqueCacheKey'),
-    USER_INFO_TTL_SECONDS,
+    memberCache.userInfo(getClientVar('UBTConnect_Utils.UniqueCacheKey')),
     async () => (await callAction('UBTConnect_Utils', 'ActionGetUserInformation', {})).UserInformation,
   );
   setClientVar('UBTConnect.App_Policies_HasPolicyToAccept', info.HasPoliciesToAccept);

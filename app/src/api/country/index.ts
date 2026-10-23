@@ -4,7 +4,7 @@ export {
   useCountryLocalityStatisticsQuery,
   type CountryQueryOptions,
 } from './hooks';
-export { countryKeys } from './keys';
+export { countryCache, countryKeys } from './keys';
 export {
   fetchAllCountries,
   fetchBrowseCountriesStatistics,

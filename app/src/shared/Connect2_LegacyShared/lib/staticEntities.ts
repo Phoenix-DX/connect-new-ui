@@ -25,26 +25,10 @@ export const ThemeClass = {
   SubscriptionsAndPayments: 'subpay-theme',
 } as const;
 
-/* ---- Task Y (GetCacheableSignedPhotoURL) ---- */
-
-/** DirectoryCacheType (static-entities-tst.json `Connect2_LegacyShared.directoryCacheType`): the MemoryClientCache
-    type of a cached object. Photos keys the signed photo URLs (Connect2_LegacyShared.controller.js:3979); Countries,
-    Localities and User key GetCacheableCountryInfo (:3142), GetCacheableLocality (:3278) and GetCacheableUserInfo (:4391);
-    MemberContact and Timezone key GetCacheableMemberContactList (:3414) and GetCacheableTimezoneInfo (:4251). */
-export const DirectoryCacheType = {
-  Photos: 'Photos',
-  Countries: 'Countries',
-  Localities: 'Localities',
-  User: 'User',
-  MemberContact: 'MemberContact',
-  Timezone: 'Timezone',
-  /** GetCacheableRegionSubscribedCountries (controller.js:3584). */
-  RegionSubscribedCountries: 'RegionSubscribedCountries',
-  /** GetCacheableSubdivision_V2 (controller.js:4149, CR-AssembleDetail-1). */
-  AssembleSubdivision: 'AssembleSubdivision',
-  /** GetCachedMyBookmarks / PutCachedMyBookmarks (controller.js:4529, :6407; CR-AssembleDetail-2). */
-  MyBookmarks: 'MyBookmarks',
-} as const;
+/* DirectoryCacheType (static-entities-tst.json `Connect2_LegacyShared.directoryCacheType`), the MemoryClientCache type
+   of a cached object, is part of the cache entries of the domains (P5-4): memberCache.legacyUserInfo (User),
+   countryCache (Countries, RegionSubscribedCountries), localityCache (Localities, Timezone, AssembleSubdivision),
+   messageCache (MemberContact), bookmarkCache (MyBookmarks) and imageCache (Photos, ImagesMember, ImagesHousehold). */
 
 /* ---- Wave 8 O-B1 (NavigateToMaps) ---- */
 

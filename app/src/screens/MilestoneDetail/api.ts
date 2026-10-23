@@ -1,12 +1,8 @@
+import { cacheKeyPart, getCacheableObjectInBulk, getCacheKeyParts, type BulkCacheResult } from '@/api/client/cache';
 import { callAction } from '@/api/client/callAction';
+import { imageCache } from '@/api/image';
 import { osList, wireList } from '@/legacy/os/os-wire';
 import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
-import {
-  cacheKeyPart,
-  getCacheableObjectInBulk,
-  getCacheKeyParts,
-  type BulkCacheResult,
-} from '@/platform/storage/memoryCache';
 
 /* The two data actions of ScreenBlock_AccommodationHost (DataActionGetAccommodationHost, then DataActionGet_Document,
    both on demand from OnReady; the server reads the block variables) and DataActionGetGmpMilestoneHost of
@@ -22,15 +18,6 @@ export {
 /* Connect2_LegacyShared GetCacheableSignedImageURL (runtime-sources/Connect2_LegacyShared.controller.js, `LS:<n>`), the
    photo source of Card_MemberInformation (its getSignedImageURL input). Captured call #3: one
    Connect2_LegacyShared/ActionGetSignedImagesInBulk for the guests' photos. */
-const SIGNED_IMAGE_TTL_SECONDS = 300; // LS:3796-3800 (TimeToLive default)
-const SIGNED_IMAGE_TIMEOUT = 10; // LS:3804-3808 (Timeout default)
-const SIGNED_IMAGE_BULK_SIZE = 15; // LS:3726
-
-/** GetCacheableSignedImageURLCacheKey (LS:3862-3936): ImagesHousehold for a household, else ImagesMember
-    (static entity Connect2_LegacyShared.directoryCacheType). */
-const signedImageCacheType = (type: string): string =>
-  type === 'Household' ? 'DirectoryCacheType.ImagesHousehold' : 'DirectoryCacheType.ImagesMember';
-
 /** GetBulkSignedImageURL (LS:2816-2890) with GetBulkSignedImageParameters: one GetSignedImagesInBulk call for the
     waiting keys (Id, Type, Size), one answer per image (key, Error, SignedURL). */
 async function getBulkSignedImageURL(cacheKeys: string[]): Promise<BulkCacheResult<string>[]> {
@@ -49,17 +36,14 @@ async function getBulkSignedImageURL(cacheKeys: string[]): Promise<BulkCacheResu
 }
 
 /** GetCacheableSignedImageURL(EntityId, Type, Size) (LS:3692-3837): "" for a null entity id or an empty type; else
-    GetCacheableObjectInBulk (TTL 300 s, timeout 10, bulk of 15) and ResultURL: Object || "". */
+    GetCacheableObjectInBulk (imageCache.legacySignedImage: TTL 300 s, timeout 10, bulk of 15) and ResultURL:
+    Object || "". */
 export async function getCacheableSignedImageURL(entityId: string, type: string, size: string): Promise<string> {
   const id = textToLongInteger(entityId);
   if (id === '0' || type === '') return '';
   const object = await getCacheableObjectInBulk(
-    signedImageCacheType(type),
-    cacheKeyPart(id) + cacheKeyPart(type) + cacheKeyPart(size),
-    SIGNED_IMAGE_TTL_SECONDS,
-    SIGNED_IMAGE_TIMEOUT,
+    imageCache.legacySignedImage(type, cacheKeyPart(id) + cacheKeyPart(type) + cacheKeyPart(size)),
     getBulkSignedImageURL,
-    SIGNED_IMAGE_BULK_SIZE,
   );
   return object ?? '';
 }

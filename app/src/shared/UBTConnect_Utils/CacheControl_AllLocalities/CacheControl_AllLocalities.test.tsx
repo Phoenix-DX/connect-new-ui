@@ -1,6 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { CACHE_TYPE, clearMemoryCache, peekCacheableObject } from '@/platform/storage/memoryCache';
+import { clearMemoryCache, peekCacheableObject } from '@/api/client/cache';
+import { localityCache } from '@/api/locality';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { CacheControl_AllLocalities } from './CacheControl_AllLocalities';
 import * as stories from './CacheControl_AllLocalities.stories';
@@ -24,7 +25,7 @@ describe('CacheControl_AllLocalities', () => {
     });
     const response = first.mock.calls[0]?.[0] as { LocalityList: { List: unknown[] } };
     expect(response.LocalityList.List.length).toBeGreaterThan(0);
-    expect(peekCacheableObject(CACHE_TYPE.allLocalities, 'Unique')).toEqual({ hit: true, value: response });
+    expect(peekCacheableObject(localityCache.allLocalities('Unique', 7200))).toEqual({ hit: true, value: response });
     expect(calls()[0]?.inputNames).toEqual(['CacheKey', 'CacheTypeId', 'TimeToLiveSeconds']);
 
     const second = vi.fn();

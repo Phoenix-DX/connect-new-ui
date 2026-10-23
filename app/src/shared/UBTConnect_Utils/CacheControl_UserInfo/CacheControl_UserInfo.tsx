@@ -1,8 +1,9 @@
 // @os-block UBTConnect_Utils.CacheControl.CacheControl_UserInfo
 import { useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
+import { putCacheableObject } from '@/api/client/cache';
 import { callAction } from '@/api/client/callAction';
-import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
+import { memberCache } from '@/api/member';
 import { getClientVar } from '@/platform/session/session';
 import { CacheControl } from '@/shared/UBTConnect_Utils/CacheControl';
 import type { CacheControl_UserInformation } from './types';
@@ -34,16 +35,16 @@ export function CacheControl_UserInfo({ id, cacheKey = '', onResult }: CacheCont
   const onNonCacheHit = async () => {
     const out = await callAction('UBTConnect_Utils', 'CacheControl_UserInfo/DataActionGetCacheInfo', {
       CacheKey: key,
-      CacheTypeId: CACHE_TYPE.directoryUser,
+      CacheTypeId: memberCache.userInfoType,
     });
     setTtl(out.TTL);
-    putCacheableObject(CACHE_TYPE.directoryUser, key, out.CacheControl_Response, out.TTL);
+    putCacheableObject(memberCache.userInfo(key, out.TTL), out.CacheControl_Response);
     latest.current?.(out.CacheControl_Response);
   };
   return (
     <OSBlock name="CacheControl.CacheControl_UserInfo" id={id}>
       <CacheControl
-        cacheTypeId={CACHE_TYPE.directoryUser}
+        cacheTypeId={memberCache.userInfoType}
         cacheKey={key}
         timeToLiveSeconds={ttl}
         onCacheHit={onCacheHit}

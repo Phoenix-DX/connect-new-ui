@@ -6,7 +6,7 @@ export {
   useSubdivisionDetailsQuery,
   type LocalityQueryOptions,
 } from './hooks';
-export { localityKeys } from './keys';
+export { localityCache, localityKeys } from './keys';
 export {
   fetchAllLocalities,
   fetchBulkSubdivisions,

@@ -15,7 +15,11 @@ import {
   recentSearchSchemas,
   syncOrbitMilestoneTypes,
 } from '@/platform/storage/localEntities';
-import { CACHE_TYPE, peekCacheableObject, putCacheableObject } from '@/platform/storage/memoryCache';
+import { appCache } from '@/api/app';
+import { bookmarkCache } from '@/api/bookmark';
+import { peekCacheableObject, putCacheableObject } from '@/api/client/cache';
+import { queryClient } from '@/api/client/queryClient';
+import { memberCache } from '@/api/member';
 import { getSessionStatus, subscribeSessionStatus } from './machine';
 import { MOCK_USER_ID } from './mockUser';
 import { registerPin } from './pin';
@@ -128,19 +132,25 @@ describe('signOut (Connect_Logout)', () => {
   });
 
   test('invalidates the user-info cache, so the next sign-in asks again', async () => {
-    putCacheableObject(CACHE_TYPE.directoryUser, 'Unique', {}, 7200);
+    putCacheableObject(memberCache.userInfo('Unique'), {});
     await signOut();
-    expect(peekCacheableObject(CACHE_TYPE.directoryUser, 'Unique').hit).toBe(false);
+    expect(peekCacheableObject(memberCache.userInfo('Unique')).hit).toBe(false);
     await signIn();
     expect(calledActions()).toContain('ActionGetUserInformation');
   });
 
   test('ADR-10 (added): clears the whole memory cache, map objects of the app start included', async () => {
-    putCacheableObject('CacheableMapObjects.Households', 'CacheableMapObjects.Households', [], 7200);
-    putCacheableObject('Directory.MyBookmarks', 'All', [{ BookmarkId: 'b-1' }], 604800);
+    putCacheableObject(appCache.mapObject('Households'), []);
+    putCacheableObject(bookmarkCache.myBookmarks('All'), [{ BookmarkId: 'b-1' }]);
     await signOut();
-    expect(peekCacheableObject('CacheableMapObjects.Households', 'CacheableMapObjects.Households').hit).toBe(false);
-    expect(peekCacheableObject('Directory.MyBookmarks', 'All').hit).toBe(false);
+    expect(peekCacheableObject(appCache.mapObject('Households')).hit).toBe(false);
+    expect(peekCacheableObject(bookmarkCache.myBookmarks('All')).hit).toBe(false);
+    // the objects are gone from the app QueryClient, not only out of reach
+    const kept = queryClient
+      .getQueryCache()
+      .findAll({ queryKey: ['memoryCache'] })
+      .filter((query) => query.state.data !== undefined);
+    expect(kept).toEqual([]);
   });
 
   test('signedOutRemotely (the server ended the session) ends as signOut: status, session user, client variables, PIN, caches, calls', async () => {
@@ -148,8 +158,8 @@ describe('signOut (Connect_Logout)', () => {
     const noteTables = localNotesSchemas().map((s) => s.tableName);
     /** The signed-in device of the beforeEach, with a cache entry and a local note row. */
     const fillDevice = async () => {
-      putCacheableObject(CACHE_TYPE.directoryUser, 'Unique', {}, 7200);
-      putCacheableObject('Directory.MyBookmarks', 'All', [{ BookmarkId: 'b-1' }], 604800);
+      putCacheableObject(memberCache.userInfo('Unique'), {});
+      putCacheableObject(bookmarkCache.myBookmarks('All'), [{ BookmarkId: 'b-1' }]);
       await notes.transaction(noteTables, 'readwrite', async (tx) => {
         for (const s of localNotesSchemas()) {
           await tx.put(s.tableName, Object.fromEntries(s.keyPath.map((k) => [k, `x-${k}`])));
@@ -178,8 +188,8 @@ describe('signOut (Connect_Logout)', () => {
         localStorage: storageOf(localStorage),
         sessionStorage: storageOf(sessionStorage),
         caches: [
-          peekCacheableObject(CACHE_TYPE.directoryUser, 'Unique').hit,
-          peekCacheableObject('Directory.MyBookmarks', 'All').hit,
+          peekCacheableObject(memberCache.userInfo('Unique')).hit,
+          peekCacheableObject(bookmarkCache.myBookmarks('All')).hit,
         ],
         noteRows: await notes.transaction(noteTables, 'readonly', async (tx) =>
           (await Promise.all(noteTables.map((table) => tx.getAll(table)))).flat(),

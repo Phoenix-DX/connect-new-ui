@@ -5,6 +5,6 @@ export {
   type EditMemberDetailsVariables,
   type MemberQueryOptions,
 } from './hooks';
-export { memberKeys } from './keys';
+export { memberCache, memberKeys } from './keys';
 export { editMemberDetails, fetchAvailableMembers, fetchMember } from './repository';
 export type * from './types';

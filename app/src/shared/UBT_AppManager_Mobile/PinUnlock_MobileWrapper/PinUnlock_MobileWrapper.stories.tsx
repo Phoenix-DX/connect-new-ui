@@ -1,7 +1,8 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { osImage } from '@/legacy/os/os-assets';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
+import { appCache } from '@/api/app';
+import { clearMemoryCache, putCacheableObject } from '@/api/client/cache';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { OSLink } from '@/shared/lib/OSLink';
@@ -47,7 +48,7 @@ export const V1: Story = {
 /** PINUnlock/default: as Block_PINUnlock_ContentWrapper fills it on the PINUnlock screen (keypad and placeholders) */
 export const V2: Story = {
   beforeEach: () => {
-    putCacheableObject(CACHE_TYPE.policies, getClientVar('UBTConnect_Utils.UniqueCacheKey'), {}, 60);
+    putCacheableObject(appCache.policies(getClientVar('UBTConnect_Utils.UniqueCacheKey'), 60), {});
     return clearMemoryCache;
   },
   args: {

@@ -5,7 +5,7 @@ import { DEFAULT_TRANSITION, transitionState } from '@/platform/navigation/scree
 import { postLogin } from '@/platform/bootstrap/postLogin';
 import { synchAppContext } from '@/platform/bootstrap/startup';
 import { clearAllLocalEntities } from '@/platform/storage/localEntities';
-import { clearMemoryCache, invalidateEverything } from '@/platform/storage/memoryCache';
+import { clearMemoryCache } from '@/api/client/cache';
 import { PATHS } from '@/platform/navigation/paths';
 import { sendSessionEvent } from './machine';
 import { deletePin, pinCheck } from './pin';
@@ -80,7 +80,8 @@ export async function signedOutRemotely(): Promise<void> {
 
 /** Connect_Logout; `event` is the session event that tells why the session ends. */
 async function connectLogout(event: 'signOut' | 'signedOutRemotely'): Promise<void> {
-  invalidateEverything();
+  // Cache_InvalidateEverything (UBTConnect_Utils.controller.js:429-466: the seven Connect cache types), then the rest
+  // of the memory cache (ADR-10): one clear does both.
   clearMemoryCache();
   await clearAllLocalEntities();
   await authProvider()?.signOut();

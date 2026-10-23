@@ -1,7 +1,8 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router/dom';
+import { queryClient } from './api/client/queryClient';
 import { router } from './app/router';
 import './styles/review.css'; // original OutSystems CSS: per screen, by shell/StylesheetHost (public/UBTConnect/css)
 import { applyDeviceClasses } from './platform/device/device';
@@ -22,8 +23,6 @@ const syncViewport = () => {
 };
 syncViewport();
 window.addEventListener('resize', syncViewport);
-
-const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } } });
 
 // which mocks and which service worker this build starts (src/pwa/bootPlan.ts, app/docs/guides/pwa.md)
 const plan = bootPlan(config);

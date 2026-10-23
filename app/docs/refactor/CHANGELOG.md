@@ -178,6 +178,11 @@
 - Architecture: no change. New test `src/screens/Profile/Profile.test.tsx`: it opens the HouseholdDetails container in `preview` mode and checks the VITALE household members (`VITALE.members`) and the section titles.
 - No app code and no parity state changed. `move-map.csv` is unchanged.
 
+## Phase P5 - api layer
+
+- Steps P5-1 to P5-4: `src/api/` has `client/` (ApiError, callAction, QueryClient, memory cache) and 11 domains: member, country, locality, update, app, event, bookmark, note, message, notification and image. Each domain has types, mapper, repository, keys and hooks. `memoryCache.ts` is deleted.
+- Gate of P5-4: `ci` passes; strict parity 64/64 for both references; exemptions `[]`; HomeFeed +3.27 percent and Login +4.15 percent gzip over the baseline. The user confirms the exemption list of Phase 5.
+
 ## P5-1 - refactor(P5-1): api/client with ApiError
 
 - New `src/api/client/apiError.ts`: `ApiError` with `kind` (`timeout`, `network`, `server`, `security`, `viewChanged`) and `cause` (the OutSystems exception). `src/legacy/os/os-exceptions.ts` maps both ways (`ApiErrorKind` is declared there, to avoid an import cycle). `callAction` is unchanged.
@@ -249,3 +254,9 @@
 
 - New `src/api/notification/` (types, mapper, repository, keys, hooks, barrel) for 4 calls of 3 screens. The old `api.ts` files of Notifications, MessageDetail and MessageList re-export it; `MessageList/api.ts` keeps an adapter for the four block variables.
 - `api/notification` does not import `api/message`. The 4 hooks have no caller yet. Strict parity `--changed`: 64 of 64 routes clean for both references; `move-map.csv` is unchanged.
+
+## P5-4 - refactor(P5-4): memory cache as query options
+
+- `src/platform/storage/memoryCache.ts` is deleted. `src/api/client/cache.ts` keeps the memory cache as queries of the one QueryClient (`src/api/client/queryClient.ts`). The entries (type, key, time to live) are in the `keys.ts` of `api/app`, `bookmark`, `country`, `locality`, `member`, `message` and the new `api/image`. The time to live is the `staleTime` (7200 s for map objects and user information). `CACHE_TYPE` and `invalidateEverything` are removed.
+- Accepted behavior change (decision Q13): a reader that comes more than 10 s after a pending miss now shares the running call. QueueJS started a second call. A logout raises a session epoch, so a reader after a logout never joins a miss of the session before.
+- Strict parity `--all`: 64 of 64 routes clean for both references; exemptions `[]`. `move-map.csv` is unchanged (the rows of the `CacheControl*` blocks already say that P5-4 rewrites them where they are).

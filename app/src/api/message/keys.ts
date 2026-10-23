@@ -1,3 +1,4 @@
+import { cacheEntry } from '@/api/client/cache';
 import type {
   ContactUsCallInputs,
   ContactUsCountriesCallInputs,
@@ -22,4 +23,12 @@ export const messageKeys = {
   messageInstanceExists: (query: MessageListQuery) => [...messageKeys.all, 'messageInstanceExists', query] as const,
   entityContactDetails: (inputs: EntityContactCallInputs) =>
     [...messageKeys.all, 'entityContactDetails', inputs] as const,
+};
+
+/** The memory-cache entries of the message domain (api/client/cache.ts): the TTL is the staleTime. */
+export const messageCache = {
+  /** GetCacheableMemberContactList (Connect2_LegacyShared.controller.js:3414-3545): type DirectoryCacheType
+      .MemberContact (static-entities-tst.json `Connect2_LegacyShared.directoryCacheType`), key
+      BuildMemberContactsCacheKey(MemberIdList), TimeToLive 300 s. */
+  memberContacts: (cacheKey: string) => cacheEntry('MemberContact', cacheKey, 300),
 };

@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { osImage } from '@/legacy/os/os-assets';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
+import { appCache } from '@/api/app';
+import { clearMemoryCache, putCacheableObject } from '@/api/client/cache';
 import { getClientVar } from '@/platform/session/session';
 import { CacheControl_Policies } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
@@ -121,7 +122,7 @@ export const V2: Story = {
 /** PINUnlock/default: Pincode_Unlock inside PinUnlock_MobileWrapper, with Forgot PIN and the policy links */
 export const V3: Story = {
   beforeEach: () => {
-    putCacheableObject(CACHE_TYPE.policies, getClientVar('UBTConnect_Utils.UniqueCacheKey'), {}, 60);
+    putCacheableObject(appCache.policies(getClientVar('UBTConnect_Utils.UniqueCacheKey'), 60), {});
     return clearMemoryCache;
   },
   args: {

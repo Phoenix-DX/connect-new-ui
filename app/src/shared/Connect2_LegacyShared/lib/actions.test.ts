@@ -36,7 +36,7 @@ import {
   inputCounterMaxLength,
   inputCounterOnInitialize,
 } from './actions';
-import { cacheKeyPart } from '@/platform/storage/memoryCache';
+import { cacheKeyPart } from '@/api/client/cache';
 import { MapNavigationRedirect } from './staticEntities';
 
 const keyOf = (bucket: string, path: string, type: string) =>

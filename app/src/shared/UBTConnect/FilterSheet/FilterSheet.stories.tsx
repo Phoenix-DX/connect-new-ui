@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CACHE_TYPE, clearMemoryCache, putCacheableObject } from '@/platform/storage/memoryCache';
+import { clearMemoryCache, putCacheableObject } from '@/api/client/cache';
+import { countryCache } from '@/api/country';
+import { localityCache } from '@/api/locality';
+import { memberCache } from '@/api/member';
 import { mockUserInformation } from '@/platform/session/mockUser';
 import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
 import { FilterSheet } from './FilterSheet';
@@ -13,32 +16,24 @@ type Story = StoryObj<typeof meta>;
 
 /* Storybook has no mock API: the caches start filled (the tests use the recorded mocks). */
 const fillCaches = () => {
-  putCacheableObject(
-    CACHE_TYPE.allCountries,
-    'Unique',
-    { CountryList: { List: [{ CountryName: 'Country A', CountryCode: 'AU', Latitude: '', Longitude: '' }] } },
-    60,
-  );
-  putCacheableObject(
-    CACHE_TYPE.allLocalities,
-    'Unique',
-    {
-      LocalityList: {
-        List: [
-          {
-            LocalityId: '1',
-            Name: 'Locality A',
-            CountryName: 'Country A',
-            CountryCode: 'AU',
-            Latitude: '',
-            Longitude: '',
-          },
-        ],
-      },
+  putCacheableObject(countryCache.allCountries('Unique', 60), {
+    CountryList: { List: [{ CountryName: 'Country A', CountryCode: 'AU', Latitude: '', Longitude: '' }] },
+  });
+  putCacheableObject(localityCache.allLocalities('Unique', 60), {
+    LocalityList: {
+      List: [
+        {
+          LocalityId: '1',
+          Name: 'Locality A',
+          CountryName: 'Country A',
+          CountryCode: 'AU',
+          Latitude: '',
+          Longitude: '',
+        },
+      ],
     },
-    60,
-  );
-  putCacheableObject(CACHE_TYPE.directoryUser, 'Unique', mockUserInformation(), 60);
+  });
+  putCacheableObject(memberCache.userInfo('Unique', 60), mockUserInformation());
   return clearMemoryCache;
 };
 

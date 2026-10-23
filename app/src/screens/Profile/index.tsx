@@ -54,10 +54,11 @@ import {
   raiseToFlowHandler,
 } from '@/legacy/os/exceptions';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
-import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
+import { putCacheableObject } from '@/api/client/cache';
+import { memberCache } from '@/api/member';
 import { useNavigateBack } from '@/platform/navigation';
 import { getClientVar } from '@/platform/session/session';
-import { getUserInformation, USER_INFO_TTL_SECONDS } from '@/platform/session/userInfo';
+import { getUserInformation } from '@/platform/session/userInfo';
 import { member_EditDetails_Service, useGetCountryInfo } from './api';
 import {
   EMPTY_ACCOUNT_FORM,
@@ -267,23 +268,18 @@ export default function Profile() {
       // ChangedVisibilityPreferences (:3631-3648): Original = AccountForm was just assigned, so the condition holds
       const info = await getUserInformation();
       const current = info.Directory_UserCurrent;
-      putCacheableObject(
-        CACHE_TYPE.directoryUser,
-        getClientVar('UBTConnect_Utils.UniqueCacheKey'),
-        {
-          ...info,
-          Directory_UserCurrent: {
-            ...current,
-            Directory_UserCurrent_Visibility: {
-              ...current.Directory_UserCurrent_Visibility,
-              DisplayAge: form.AccountForm_PersonalInformation.ShowLifeCycleDates,
-              DisplayMobilePhone: form.AccountForm_ContactInformation.ShowMobileNumber,
-              DisplayWorkPhone: form.AccountForm_ContactInformation.ShowWorkNumber,
-            },
+      putCacheableObject(memberCache.userInfo(getClientVar('UBTConnect_Utils.UniqueCacheKey')), {
+        ...info,
+        Directory_UserCurrent: {
+          ...current,
+          Directory_UserCurrent_Visibility: {
+            ...current.Directory_UserCurrent_Visibility,
+            DisplayAge: form.AccountForm_PersonalInformation.ShowLifeCycleDates,
+            DisplayMobilePhone: form.AccountForm_ContactInformation.ShowMobileNumber,
+            DisplayWorkPhone: form.AccountForm_ContactInformation.ShowWorkNumber,
           },
         },
-        USER_INFO_TTL_SECONDS,
-      );
+      });
       changeFields(form, form);
       feedbackMessageAutoClose({
         title: '',

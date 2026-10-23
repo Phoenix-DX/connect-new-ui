@@ -1,6 +1,7 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
+import { appCache } from '@/api/app';
+import { putCacheableObject } from '@/api/client/cache';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { Block_PINUnlock_ContentWrapper } from './Block_PINUnlock_ContentWrapper';
@@ -24,12 +25,10 @@ const seedPolicies = () => {
     Policy_FileName: `${name}.pdf`,
     Policy_Url: `https://example.com/${name}.pdf`,
   });
-  putCacheableObject(
-    CACHE_TYPE.policies,
-    getClientVar('UBTConnect_Utils.UniqueCacheKey'),
-    { PolicyInformation_TermsAndConditions: policy('terms'), PolicyInformation_PrivacyPolicy: policy('privacy') },
-    60,
-  );
+  putCacheableObject(appCache.policies(getClientVar('UBTConnect_Utils.UniqueCacheKey'), 60), {
+    PolicyInformation_TermsAndConditions: policy('terms'),
+    PolicyInformation_PrivacyPolicy: policy('privacy'),
+  });
 };
 
 const meta = {

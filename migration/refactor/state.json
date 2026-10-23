@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P5-3-notification",
+  "step": "P5-4",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T15:06:04"
+  "since": "2026-10-23T15:53:46"
  },
  "steps": {
   "P0-1": {
@@ -430,12 +430,25 @@
    "finished": "2026-10-23T14:56:23"
   },
   "P5-3-notification": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T14:58:05",
    "tokens": {
     "dev": 171252,
     "test": 25896,
     "docs": 22571
+   },
+   "commit": "f674c24",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+4.1%)",
+   "loops": 0,
+   "finished": "2026-10-23T15:06:12"
+  },
+  "P5-4": {
+   "status": "active",
+   "started": "2026-10-23T15:10:42",
+   "tokens": {
+    "dev": 452052,
+    "test": 36715,
+    "docs": 50795
    }
   }
  },
@@ -457,6 +470,12 @@
    "by": "user",
    "text": "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (B, medium) and Fable (B, high) review: confirm with changes. 3 routes OK (links 200 on 5174, build.png match, parity 64/64 both refs). Changes (Markdown, applied by the documenter before the commit): page-template.md hook shape = repository fetch* functions, query hooks unused for now; container rule (hook/state/mocks in containers/<Name>/, containers never import pages; pilot is a temporary exception); standard state shape written down; screens/*/api.ts split (calls to api/<domain>/repository.ts, route inputs to pages/<Route>/inputs.ts). Code moves deferred as follow-ups F1-F5 in migration/refactor/followups.md (more conservative option where the two differed).",
    "at": "2026-10-22T21:21:54"
+  },
+  "P5-4:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): confirm the Phase 5 exemption list (0 entries). Opus (high) and Fable (high) agree: the list covers only parity-visible call differences; no call moved into a query with a caller; P5-4 full strict parity 64/64 clean on both references with the call check clean; the parity-invisible behavior changes are in the decision log and the CHANGELOG (W6).",
+   "at": "2026-10-23T15:53:46"
   }
  },
  "questions": [
@@ -579,6 +598,36 @@
    "answer": "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (high) chose C: add signedOutRemotely() in platform/session/auth.ts as the single entry point for 'the server ended the session', used now only by the existing forced-logout branch (exceptionMessages.ts), same order of steps; the 401/SecurityException triggers wait for the BFF. A unit test must show that the signedOutRemotely event ends in the same state and storage as signOut() today. B (port the App_Common SecurityException branch) is recorded as a known parity gap for the user, outside the refactor.",
    "by": "user",
    "answeredAt": "2026-10-23T09:39:15"
+  },
+  {
+   "id": "Q13",
+   "step": "P5-4",
+   "text": "Q1 behavior: how do the 27 memoryCache uses move to TanStack Query? A: cache entries become queries (fetchQuery, TTL stored with the data and read by a staleTime function, gcTime Infinity, networkMode always, falsy answers removed, a batcher in api/client for the bulk calls, logout removes idle cache queries); two hard-to-reach edge cases change (second call after a 10 s pending miss; a reader between logout and the end of a pending miss joins it). B: exact port, api/client/cache.ts keeps the queue, timeout and bulk logic and uses the QueryClient only as storage. Developer recommends A.",
+   "status": "answered",
+   "at": "2026-10-23T15:10:42",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): A. Opus (medium) and Fable (high) both chose A: the cache entries become TanStack queries (fetchQuery, the stored TTL read by a staleTime function, gcTime Infinity, networkMode always, falsy answers removed, a batcher in api/client keeps the bulk calls the same). It meets the plan target; B keeps a second cache engine. Condition (Opus caveat): a reader after a logout must never join a pending miss of the previous session (keep the original outcome, for example with a session epoch in the cache keys, and add a test). The remaining change (no second call when a reader comes more than 10 s after a pending miss) is accepted; replace its unit test and record it in dev.md and the CHANGELOG.",
+   "by": "user",
+   "answeredAt": "2026-10-23T15:12:02"
+  },
+  {
+   "id": "Q14",
+   "step": "P5-4",
+   "text": "Q2 scope: the step needs about 46 code files (rule about 40). a: one step, one commit; b: split into P5-4a (single-object caches, CacheControl blocks, map objects, MyBookmarks, logout; about 30 files) and P5-4b (bulk image, photo and subdivision caches, then delete memoryCache.ts; about 16 files). Developer recommends a.",
+   "status": "answered",
+   "at": "2026-10-23T15:10:42",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): a, one step and one commit. Opus (medium) and Fable (medium-high) agree: about 46 files, mostly mechanical import and key changes plus small new files; a split would leave two cache systems live for one commit and double the gate. Opus caveat: if the bulk caches turn out not to be a simple key mapping, tell the master before the change grows.",
+   "by": "user",
+   "answeredAt": "2026-10-23T15:12:02"
+  },
+  {
+   "id": "Q15",
+   "step": "P5-4",
+   "text": "Q3 placement: three caches have no domain (user info, timezone, signed images and photos) but plan 2.7 puts options in api/<domain>/keys.ts. a: user info in api/member, timezone in api/locality, MyBookmarks in api/bookmark, member contacts in api/message, new api/image/keys.ts, calls stay until P6; b: one shared api/client/cacheKeys.ts; c: as a and also move the four calls into those domains. Developer recommends a.",
+   "status": "answered",
+   "at": "2026-10-23T15:10:42",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): a. Opus (high) and Fable (high): options in the domain that owns the data (user info in api/member, timezone in api/locality, MyBookmarks in api/bookmark, member contacts in api/message, new api/image/keys.ts); the calls stay where they are until Phase 6.",
+   "by": "user",
+   "answeredAt": "2026-10-23T15:12:02"
   }
  ]
 }

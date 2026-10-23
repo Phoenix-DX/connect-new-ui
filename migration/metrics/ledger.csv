@@ -430,3 +430,15 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,171252,refactor-dev,,P5-3-notification opus
 2026-10-23,refactor,verify,25896,refactor-test,,P5-3-notification sonnet
 2026-10-23,refactor,other,22571,refactor-docs,,P5-3-notification sonnet
+2026-10-23,refactor,build,137202,refactor-dev,,P5-4 opus
+2026-10-23,refactor,review,35940,refactor-advisor,,"W3 P5-4, opus"
+2026-10-23,refactor,review,35656,refactor-advisor,,"W3 P5-4, fable"
+2026-10-23,refactor,review,34831,refactor-advisor,,"W4 P5-4, opus"
+2026-10-23,refactor,review,34828,refactor-advisor,,"W4 P5-4, fable"
+2026-10-23,refactor,review,34733,refactor-advisor,,"W5 P5-4, opus"
+2026-10-23,refactor,review,34590,refactor-advisor,,"W5 P5-4, fable"
+2026-10-23,refactor,build,314850,refactor-dev,,P5-4 opus
+2026-10-23,refactor,verify,36715,refactor-test,,P5-4 sonnet
+2026-10-23,refactor,review,36245,refactor-advisor,,"W6 P5-4 gate, opus (confirm, high)"
+2026-10-23,refactor,review,36114,refactor-advisor,,"W6 P5-4 gate, fable (confirm, high)"
+2026-10-23,refactor,other,50795,refactor-docs,,P5-4 sonnet
