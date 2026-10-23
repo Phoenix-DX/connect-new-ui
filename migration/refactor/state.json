@@ -6,12 +6,7 @@
   "text": "Giờ tôi sẽ đi ăn tới 3h30 chiều việt nam. Bạn hãy chạy Refactory plan, nếu định hỏi gì thì hãy nhờ opus suggest và auto chọn recommand nhé, ko cần chờ tôi.",
   "at": "2026-10-22T11:44:17"
  },
- "current": {
-  "step": "P5-2-update",
-  "stage": "commit",
-  "loop": 0,
-  "since": "2026-10-23T13:11:19"
- },
+ "current": null,
  "steps": {
   "P0-1": {
    "status": "done",
@@ -352,12 +347,17 @@
    "finished": "2026-10-23T12:10:53"
   },
   "P5-2-update": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T12:10:53",
    "tokens": {
     "dev": 210561,
-    "test": 45441
-   }
+    "test": 45441,
+    "docs": 35237
+   },
+   "commit": "64fee33",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self) on the rerun (first run at load average ~110: loading-state load flakes); exemptions []; bundle within +5% (+2.0%)",
+   "loops": 0,
+   "finished": "2026-10-23T13:11:19"
   }
  },
  "gates": {
