@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G2-B-EmailContact",
+  "step": "P6-G2-B-EmailTarget",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T00:05:45"
+  "since": "2026-10-24T00:11:50"
  },
  "steps": {
   "P0-1": {
@@ -742,12 +742,25 @@
    "finished": "2026-10-23T23:59:48"
   },
   "P6-G2-B-EmailContact": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T23:59:48",
    "tokens": {
     "dev": 214669,
     "test": 26571,
     "docs": 24077
+   },
+   "commit": "6e603912",
+   "gate": "ci: pass (2291 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.10 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-24T00:05:46"
+  },
+  "P6-G2-B-EmailTarget": {
+   "status": "active",
+   "started": "2026-10-24T00:05:47",
+   "tokens": {
+    "dev": 177705,
+    "test": 35068,
+    "docs": 27787
    }
   }
  },

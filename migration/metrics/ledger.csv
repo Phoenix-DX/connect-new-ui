@@ -546,3 +546,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,214669,refactor-dev,,P6-G2-B-EmailContact opus
 2026-10-24,refactor,verify,26571,refactor-test,,P6-G2-B-EmailContact sonnet
 2026-10-24,refactor,other,24077,refactor-docs,,P6-G2-B-EmailContact sonnet
+2026-10-24,refactor,build,177705,refactor-dev,,P6-G2-B-EmailTarget opus
+2026-10-24,refactor,verify,35068,refactor-test,,P6-G2-B-EmailTarget sonnet
+2026-10-24,refactor,other,27787,refactor-docs,,P6-G2-B-EmailTarget sonnet

@@ -392,3 +392,9 @@
 
 - EmailContact is a page with `inputs.ts` (replaces `api.ts` and `types.ts`), `actions.ts` (moved from `components/`) and two hooks: `useOrbitContactForm` (flows of ScreenBlock_ContactForm, with the pure `orbitContactFormState.ts`) and `useEmailContact` (OnHandle_Submitted).
 - The form is the props-only view `OrbitContactFormView`; `ScreenBlock_ContactForm.tsx` is deleted. The page does not use the shared `ContactEmailForm` (user decision Q6). A temporary old-vs-new test (7 scenarios, now deleted) showed the same DOM and calls.
+
+## P6-G2-B-EmailTarget - refactor(P6-G2-B): EmailTarget as page
+
+- EmailTarget is a page with `inputs.ts` (replaces `api.ts` and `types.ts`), `hooks/useHouseholdEmail.ts`, two state files (`householdEmailState.ts`, `emailTargetState.ts`) and the props-only view `components/HouseholdEmailView.tsx`; `ScreenBlock_Household_Email.tsx` is deleted.
+- The page no longer sets `key={params.toString()}` on the block: `ScreenTransitionGroup` mounts one page per `location.key`, so a new query string mounts a new page (test.md). `ValidationServiceProvider` moved from the block to the page; the DOM is the same.
+- Follow-up F15: a committed test for a new query string on the same route (no such test exists).
