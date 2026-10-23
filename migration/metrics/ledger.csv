@@ -457,3 +457,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,other,0,refactor-docs,,P6-G1-A sonnet
 2026-10-23,refactor,other,25006,refactor-docs,,P6-G1-A sonnet
 2026-10-23,refactor,build,141525,refactor-dev,,P6-G1-B-Login opus
+2026-10-23,refactor,review,35383,refactor-advisor,,"W9, opus"
+2026-10-23,refactor,review,35367,refactor-advisor,,"W9, fable"
+2026-10-23,refactor,review,36738,refactor-advisor,,"W10, opus"
+2026-10-23,refactor,review,36978,refactor-advisor,,"W10, fable"
+2026-10-23,refactor,verify,25019,refactor-test,,P6-G1-B-Login sonnet
+2026-10-23,refactor,other,24866,refactor-docs,,P6-G1-B-Login sonnet

@@ -1,4 +1,3 @@
-// @os-block UBTConnectLibrary.ConnectPatterns.Tile
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
@@ -16,9 +15,10 @@ export interface TileProps {
 
 const MAIN_CONTAINER_CLASS = 'ubt-tile';
 
-/** ConnectPatterns.Tile (p:UBTConnectLibrary.ConnectPatterns.Tile.mvc.js:147-210): a CustomContainer with background
-    neutral-0, padding base and radius large, classes FormatClasses(MainContainerClass "ubt-tile", ExtendedClasses),
-    and the Content placeholder (captured `<div id="b2-Content">`, dom/default.html:39-41). */
+/** A card: a CustomContainer with background neutral-0, padding base and radius large, the classes
+    FormatClasses(MainContainerClass "ubt-tile", ExtendedClasses), and the Content placeholder (captured
+    `<div id="b2-Content">`).
+    @origin UBTConnectLibrary.ConnectPatterns.Tile */
 export function Tile({ id, extendedClasses = '', children }: TileProps) {
   const prefix = id?.replace('$', '');
   return (

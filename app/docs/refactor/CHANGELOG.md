@@ -270,3 +270,8 @@
 
 - The 10 routes of group G1 (Login, Splash, PINRegister, PINUnlock, PINChange, PINBiometricsMenu, AcceptPendingPolicies, Menu, TermsAndPoliciesMenu, Profile) moved from `src/screens/<R>` to `src/pages/<R>`. `index.tsx` is now `<R>Page.tsx`, with one `@origin` tag per file. Only paths, imports and tags changed.
 - Tool fix P6-F12 (from the test of this step): `rf.py diffcheck --move` accepts added `@origin` tags in renamed files, and `app/build/bundle-report.mjs` finds `pages/<R>/<R>Page.tsx`. `move-map.csv` is unchanged (its rows name shared blocks, not these screens).
+
+## P6-G1-B-Login - refactor(P6-G1-B): Login as page
+
+- `src/pages/Login` is now a page (`LoginPage.tsx`), one hook (`hooks/useLogin.ts`: OnInitialize, OnReady, login action) and components (`LoginCard`, `LoginFooter`, `LoginVersion`, `AppManagerEvents`, `Tile`). `api.ts` and `types.ts` became `inputs.ts` (the route had no server call).
+- No shared block moved. `useLogin` keeps plain `useState`, not `useFlowState`, so back navigation behaves as before. Visual parity `--changed`: clean for both references. `move-map.csv`: Login row set to `moved`.

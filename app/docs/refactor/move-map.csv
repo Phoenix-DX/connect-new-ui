@@ -299,7 +299,7 @@ src/screens/LDM_EventDetail_V2/index.tsx,UBTConnect.Legacy_LDMEventsFlow_V2.LDM_
 src/screens/LDM_MyEvents_V2/index.tsx,UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2,page,src/pages/LDM_MyEvents_V2/LDM_MyEvents_V2Page.tsx,P6-G5,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
 src/screens/LegacyShareObject/index.tsx,UBTConnect.Legacy_Share.LegacyShareObject,page,src/pages/LegacyShareObject/LegacyShareObjectPage.tsx,P6-G6,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
 src/screens/Locality_Details/index.tsx,UBTConnect.Directory_Locality.Locality_Details,page,src/pages/Locality_Details/Locality_DetailsPage.tsx,P6-G4,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
-src/screens/Login/index.tsx,UBTConnect.App_Common.Login,page,src/pages/Login/LoginPage.tsx,P6-G1,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
+src/screens/Login/index.tsx,UBTConnect.App_Common.Login,page,src/pages/Login/LoginPage.tsx,P6-G1,1,moved,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
 src/screens/Menu/index.tsx,UBTConnect.App_Menu.Menu,page,src/pages/Menu/MenuPage.tsx,P6-G1,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
 src/screens/MessageDetail/index.tsx,UBTConnect.Legacy_MyNotificationsFlow.MessageDetail,page,src/pages/MessageDetail/MessageDetailPage.tsx,P6-G3,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
 src/screens/MessageList/index.tsx,UBTConnect.Legacy_MyNotificationsFlow.MessageList,page,src/pages/MessageList/MessageListPage.tsx,P6-G3,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
