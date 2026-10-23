@@ -410,3 +410,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T00:24:16 P6-G2-C waits for the user: Review the routes of group G2 on localhost (links in the step report): ContactUsMenu, ContactUsDetails, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactByEmailLDMCoordinator, ContactByEmailOrbitHelpdesk, ContactByEmailOrbitHost, EmailContact, EmailTarget. Then confirm the group.
 - 2026-10-24T00:24:16 P6-G2-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W19 group G2 confirmed — Opus confirm (high), Fable confirm (high). Conditions: run P6-F15 (W18) next; keep follow-up F15 (committed remount test for EmailTarget) open; LDMCoordinator, OrbitHost and EmailTarget rest on unit tests and diff review (no parity states)."
 - 2026-10-24T00:24:16 P6-G2-C stage commit
+- 2026-10-24T00:24:17 P6-G2-C done 7c722883: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 47 rows, no P6-G2 owner; knip/jscpd re-run match; bundle HomeFeed 244.93/248.22, Login 193.08/193.84 kB gzip; group confirm W19 (Opus + Fable, delegated)
+- 2026-10-24T00:24:24 P6-F15 started
+- 2026-10-24T00:24:24 P6-F15 stage dev
+- 2026-10-24T00:24:59 P6-F15 stage test
+- 2026-10-24T00:33:01 P6-F15 stage docs
+- 2026-10-24T00:34:20 P6-F15 stage commit

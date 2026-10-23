@@ -6,6 +6,8 @@
 
 `household/` is the first domain folder: `types.ts`, `mapper.ts`, `repository.ts`, `keys.ts`, `hooks.ts` and the barrel `index.ts`. The hooks set `staleTime: 0` and `gcTime: 0`.
 
+Other code imports a domain through its barrel `index.ts`. One exception (decision W18): the app-start path uses deep imports to keep the entry chunk small. `platform/bootstrap/startup.ts` imports `@/api/message/repository` and `shared/Connect2_LegacyShared/lib/actions.ts` imports `@/api/bookmark/keys`.
+
 `member/` has the same files. It holds GetAvailableMembers (ShareSheet), GetMemberByMemberId (OrbitAdminEventDetail), Member_EditDetails_Service (Profile) and ActionRequestPhotoUpdate (Menu). The three old `api.ts` files re-export it under their old names. The Menu page calls `requestPhotoUpdate` from `@/api/member`: the domain comes from the data that the call owns, the photo of the signed-in member (decision W9). `useAvailableMembersQuery` sets `staleTime: 0` and `gcTime: 0`. `useMemberQuery` and `useEditMemberDetailsMutation` have no caller yet: the flows call the repository functions.
 
 `country/` has the same files. It holds 7 calls: DataActionGetCountriesStatistics (BrowseCountries and CountryList, two shapes `CountryCard` and `CountrySummary`), DataActionGetLocalityStatistics (CountryDetails), DataActionGetCountryInfo (Profile), GetUserLocalitiesForCountryCodeWithGPS and GetCountriesBySubscription (Connect2_LegacyShared), and DataActionGetCacheInfo (CacheControl_AllCountries). The old `api.ts` and `types.ts` files of the four screens re-export it under their old names. `Connect2_LegacyShared/lib/actions.ts` and `CacheControl_AllCountries` call the repository functions.

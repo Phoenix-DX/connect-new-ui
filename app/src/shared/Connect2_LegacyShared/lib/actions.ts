@@ -1,6 +1,6 @@
 /* Client actions of Connect2_LegacyShared, ported 1:1 from migration/runtime-sources/Connect2_LegacyShared.controller.js
    (fetched read-only from TST, 2026-10-15; cited below as controller.js:<line>). */
-import { bookmarkCache } from '@/api/bookmark';
+import { bookmarkCache } from '@/api/bookmark/keys';
 import {
   cacheKeyPart,
   getCacheKeyParts,

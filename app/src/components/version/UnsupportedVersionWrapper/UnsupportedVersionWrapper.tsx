@@ -5,7 +5,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { get_IsUnsupportedVersion, type IsUnsupportedVersion } from '@/shared/UBTConnect/lib/actions';
+import { get_IsUnsupportedVersion, type IsUnsupportedVersion } from '@/shared/UBTConnect/lib/unsupportedVersion';
 import { UnsupportedVersionBrowser } from '@/components/version/UnsupportedVersionBrowser';
 import { UnsupportedVersionNative } from '@/components/version/UnsupportedVersionNative';
 import { UnsupportedVersionWebView } from '@/components/version/UnsupportedVersionWebView';

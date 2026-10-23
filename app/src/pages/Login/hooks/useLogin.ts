@@ -4,7 +4,7 @@ import { delayedMessageShow, showExceptionMessage } from '@/platform/feedback';
 import { useWasRestoredFromCache } from '@/platform/navigation';
 import { signOut, useSignIn } from '@/platform/session/auth';
 import { setAppCallback } from '@/platform/session/resume';
-import { get_IsUnsupportedSystem } from '@/shared/UBTConnect/lib/actions';
+import { get_IsUnsupportedSystem } from '@/shared/UBTConnect/lib/unsupportedVersion';
 import type { LoginInputs } from '@/pages/Login/inputs';
 
 /** AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice: only compared with CallbackType, never written, so its

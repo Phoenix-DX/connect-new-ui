@@ -3,7 +3,7 @@ import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { PinUnlockContentContainer } from '@/platform/feedback/dialogs/PinUnlockContentContainer';
-import { get_IsUnsupportedSystem } from '@/shared/UBTConnect/lib/actions';
+import { get_IsUnsupportedSystem } from '@/shared/UBTConnect/lib/unsupportedVersion';
 import { UnsupportedVersionWrapper } from '@/components/version/UnsupportedVersionWrapper';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { SVG_Background_LoginWrapper } from '@/shared/UBTConnectLibrary/SVG_Background_LoginWrapper';

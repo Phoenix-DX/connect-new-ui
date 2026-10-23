@@ -1,5 +1,5 @@
 import { fetchAppContext, fetchSyncInfoMain, type ClientConfig } from '@/api/app';
-import { fetchNumberUnreadMessages } from '@/api/message';
+import { fetchNumberUnreadMessages } from '@/api/message/repository';
 import { log } from '@/platform/log/log';
 import { CommunicationException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
 import {

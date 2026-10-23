@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UNSUPPORTED_BROWSER_SCENARIO } from '@/shared/UBTConnect/lib/actions';
+import { UNSUPPORTED_BROWSER_SCENARIO } from '@/shared/UBTConnect/lib/unsupportedVersion';
 import { UnsupportedVersionWrapper } from './UnsupportedVersionWrapper';
 
 const meta = {
