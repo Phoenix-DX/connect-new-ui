@@ -188,3 +188,9 @@
 
 - Architecture: no change. `migration/tools/refactor_parity.py` has the option `--out <dir>`. The default (`migration/refactor-parity/last`) is unchanged, and the P5-1 tester confirmed it.
 - Only `<dir>` is deleted at the start of a run, and `<dir>` must be under `migration/refactor-parity/`. `migration/refactor/README.md` has a "Parallel runs" section for the Phase 6 worktrees.
+
+## P5-2-member - refactor(P5-2): add api/member
+
+- New `src/api/member/` (types, mapper, repository, keys, hooks, barrel) for GetAvailableMembers (ShareSheet), GetMemberByMemberId (OrbitAdminEventDetail) and Member_EditDetails_Service (Profile). The 3 old `api.ts` files re-export it under their old names.
+- M9: OrbitLanding's `DataActionGet_EventsByMemberId` moves to `api/event` (P5-3); its row in `calls-by-domain.md` moved to the event table. M10: `useUserInfoQuery` stays for P5-4 (`CacheControl_UserInfo` in `move-map.csv` is unchanged).
+- M11: `useAvailableMembersQuery` has `gcTime: 0` (plan 5.4), so a reopened ShareSheet shows the skeleton during the call, like the OutSystems block. Strict parity `--changed`: 13 routes, both references clean. `move-map.csv` has no row for these calls.

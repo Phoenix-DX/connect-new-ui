@@ -46,18 +46,9 @@ export async function getEventInformation(vars: AdminEventDetailVariablesWire): 
   return { hasQRCode: out.HasQRCode, orbitEventType: out.OrbitEventType };
 }
 
-/** GetMemberByMemberId(MemberId) (server action of the block, SB ctrl :783-805): the scanned member. */
-export async function getMemberByMemberId(memberId: string): Promise<ScannedMember> {
-  const out = await callAction(MODULE, 'ActionGetMemberByMemberId', { MemberId: memberId });
-  const r = out.Response;
-  return {
-    Id: r.Id,
-    FirstName: r.FirstName,
-    Lastname: r.Lastname,
-    LocalityName: r.LocalityName,
-    CountryName: r.CountryName,
-  };
-}
+/* GetMemberByMemberId(MemberId) (server action of the block): the scanned member. It is in the domain api/member; this
+   module keeps the name that the block uses, until it imports the domain name. */
+export { fetchMember as getMemberByMemberId } from '@/api/member';
 
 /** The scanning admin as ScannerAdminInfo takes it (from the cached user record, SB ctrl :1008-1016). */
 export interface ScannerAdmin {

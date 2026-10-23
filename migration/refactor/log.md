@@ -181,3 +181,8 @@ One line per event. Written by rf.py.
 - 2026-10-23T09:50:40 P5-1 stage docs
 - 2026-10-23T09:51:51 P5-1 stage commit
 - 2026-10-23T09:51:59 P5-1 done 1be0c50: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self); bundle within +5% (+1.4%)
+- 2026-10-23T09:52:10 P5-2-member started
+- 2026-10-23T09:52:10 P5-2-member stage dev
+- 2026-10-23T10:08:47 P5-2-member stage test
+- 2026-10-23T10:14:24 P5-2-member stage docs
+- 2026-10-23T10:15:22 P5-2-member stage commit

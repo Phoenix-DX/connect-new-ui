@@ -1,4 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
+import type { Member } from '@/api/member';
 import type { OrbitEventTypeRecord } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 
 /* ---- Wire shapes (api.ts and mocks.ts only) ----
@@ -59,14 +60,8 @@ export interface EventInformation {
   orbitEventType: OrbitEventTypeRecord;
 }
 
-/** Directory_MemberById (APIDomain_Directory_IS): the scanned member. */
-export interface ScannedMember {
-  Id: string;
-  FirstName: string;
-  Lastname: string;
-  LocalityName: string;
-  CountryName: string;
-}
+/** Directory_MemberById (APIDomain_Directory_IS): the scanned member, the domain type of api/member. */
+export type ScannedMember = Member;
 
 /** QRCodeSeatItemRec. */
 export interface QRCodeSeatItem {

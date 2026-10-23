@@ -29,18 +29,9 @@ export function useGetRecentlyShared(variables: ShareSheetVariables, fetchId: nu
   });
 }
 
-/** DataActionGetAvailableMembers (ShareSheet.mvc.js:2011-2037), refreshed per submitted search (`fetchId`). */
-export function useGetAvailableMembers(variables: ShareSheetVariables, fetchId: number) {
-  return useQuery({
-    queryKey: ['ShareSheet', 'DataActionGetAvailableMembers', { ...variables, fetchId }],
-    queryFn: async (): Promise<SearchResult[]> => {
-      const out = await callAction('UBTConnect_Utils', 'ShareSheet/DataActionGetAvailableMembers', { ...variables });
-      return osList(out.Out_SearchResultItemList);
-    },
-    enabled: fetchId > 0,
-    retry: false,
-  });
-}
+/* DataActionGetAvailableMembers is in the domain api/member. This module keeps the name that the block uses, until it
+   imports the domain name. The second argument is the number of the submitted search (`fetchId`). */
+export { useAvailableMembersQuery as useGetAvailableMembers } from '@/api/member';
 
 /** Action_SubmitShare (ShareSheet.mvc.js:3084-3183): Cache_UserInfo_Get (the user-info cache, shell/userInfo), then
     CS_ShareObject with the sharer's "FirstName LastName" and the target CB user ids. */

@@ -9,11 +9,11 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 | Domain       | Files | Actions (distinct) |
 | ------------ | ----: | -----------------: |
 | household    |     9 |                 12 |
-| member       |     4 |                  4 |
+| member       |     3 |                  3 |
 | country      |     6 |                  7 |
 | locality     |     7 |                 11 |
 | update       |     5 |                  9 |
-| event        |    16 |                 28 |
+| event        |    17 |                 29 |
 | bookmark     |     4 |                 10 |
 | note         |     4 |                  6 |
 | message      |    14 |                 19 |
@@ -36,12 +36,11 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 
 ## member
 
-| File                                        | Module           | Actions                                                   |
-| ------------------------------------------- | ---------------- | --------------------------------------------------------- |
-| `screens/OrbitAdminEventDetail/api.ts`      | <MODULE>         | `ActionGetMemberByMemberId`                               |
-| `screens/OrbitLanding/api.ts`               | <MODULE>         | `ScreenBlock_OrbitLanding/DataActionGet_EventsByMemberId` |
-| `screens/Profile/api.ts`                    | UBTConnect       | `ServiceAPIMember_EditDetails_Service`                    |
-| `shared/UBTConnect_Utils/ShareSheet/api.ts` | UBTConnect_Utils | `ShareSheet/DataActionGetAvailableMembers`                |
+| File                                        | Module           | Actions                                    |
+| ------------------------------------------- | ---------------- | ------------------------------------------ |
+| `screens/OrbitAdminEventDetail/api.ts`      | <MODULE>         | `ActionGetMemberByMemberId`                |
+| `screens/Profile/api.ts`                    | UBTConnect       | `ServiceAPIMember_EditDetails_Service`     |
+| `shared/UBTConnect_Utils/ShareSheet/api.ts` | UBTConnect_Utils | `ShareSheet/DataActionGetAvailableMembers` |
 
 ## country
 
@@ -93,6 +92,7 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 | `screens/OrbitAdminEventDetail/api.ts`           | <MODULE>                 | `ActionGetScanEventQRCode`, `ScreenBlock_AdminEventDetail/DataActionGet_EventInformation`                                                                                                                               |
 | `screens/OrbitAdminLanding/api.ts`               | Connect2_OrbitMobile_MUI | `ScreenBlock_AdminLanding/DataActionGet_AdminEventsList`                                                                                                                                                                |
 | `screens/OrbitAdminLanding/api.ts`               | UBTConnect               | `ActionGetMilestoneScanFF`                                                                                                                                                                                              |
+| `screens/OrbitLanding/api.ts`                    | <MODULE>                 | `ScreenBlock_OrbitLanding/DataActionGet_EventsByMemberId`                                                                                                                                                               |
 | `screens/QRCodeGenerate/api.ts`                  | <MODULE>                 | `ScreenBlock_GenerateQRCode/DataActionGet_EventQRCode`                                                                                                                                                                  |
 | `screens/TransportDetail/api.ts`                 | <MODULE>                 | `ScreenBlock_TransportDetail/DataActionGet_TransportDetail`                                                                                                                                                             |
 | `screens/ViewDocuments/api.ts`                   | <MODULE>                 | `ScreenBlock_ViewDocuments/DataActionGetEventDocuments`                                                                                                                                                                 |

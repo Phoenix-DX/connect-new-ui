@@ -42,7 +42,7 @@ The block raises one event: `Event_ClosedShareSheet` → `onEventClosedShareShee
 The block uses these calls (`api.ts`, mocks in `mocks.ts`):
 
 - DataActionGetRecentlyShared runs each time the sheet opens.
-- DataActionGetAvailableMembers runs on each submitted search.
+- DataActionGetAvailableMembers runs on each submitted search. It lives in `src/api/member/`; `api.ts` re-exports `useAvailableMembersQuery` as `useGetAvailableMembers`. A reopened sheet shows the skeleton while the call runs (`gcTime: 0`).
 - ActionCS_ShareObject runs in two cases:
   - The user clicks Send. The call uses the HouseholderIds of the selected members.
   - The user clicks a recently shared member.

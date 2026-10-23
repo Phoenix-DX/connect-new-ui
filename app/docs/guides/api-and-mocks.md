@@ -72,6 +72,8 @@ after a delay. The delay is the Server Request Timeout of the module that makes 
 
 The helpers are in `src/legacy/os/os-wire.ts`. The `api.ts` of each screen does the mapping. Components see only domain types.
 
+Domain folders in `src/api/` (`household/`, `member/`) hold the mapping and the calls of their domain. The old `api.ts` files of the screens re-export them under the old names. Read `src/api/README.md`.
+
 ## Mock data
 
 | Data                                                                            | Source                                                                                  |
