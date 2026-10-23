@@ -1,12 +1,4 @@
-import { callAction } from '@/api/client/callAction';
-
-/** AddNote (ServiceAPIAddNote, NotesSheet.mvc.js:432-460): Handler_OnAddNoteRequested, ItemId as text. A write: the
-    mock adds to the notes collection (P-MUTATION), nothing is written for real. */
-export async function addNote(noteCategoryId: string, itemId: string, note: string) {
-  const out = await callAction('UBTConnect_Utils', 'ServiceAPIAddNote', {
-    NoteCategoryId: noteCategoryId,
-    ItemId: itemId,
-    Note: note,
-  });
-  return { success: out.Success, noteAdded: out.Note_Added };
-}
+/* The service action AddNote of CW_Notes.NotesSheet (Handler_OnAddNoteRequested, ItemId as text) is in the domain
+   api/note. A write: the mock adds to the notes collection (P-MUTATION), nothing is written for real. This module keeps
+   the name that the block uses. */
+export { addNote } from '@/api/note';

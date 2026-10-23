@@ -1,6 +1,4 @@
 import { callAction, type ActionInputs, type PathOf } from '@/api/client/callAction';
-import { osList } from '@/legacy/os/os-wire';
-import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
 
 /** The screen variables sent with both data actions of the block (x-os-inputs: screen-variables). */
 export type EntityDetailsActionsVariables = ActionInputs<
@@ -13,8 +11,6 @@ export async function fetchContactDetails(variables: EntityDetailsActionsVariabl
   return callAction('UBTConnect', 'Directory_EntityDetailsActions/DataActionFetchContactDetails', variables);
 }
 
-/** DataActionFetchNotes (block controller fetchNotes$DataActRefresh): refreshed by Action_RefreshFetchNotes. */
-export async function fetchNotes(variables: EntityDetailsActionsVariables): Promise<Notes> {
-  const out = await callAction('UBTConnect', 'Directory_EntityDetailsActions/DataActionFetchNotes', variables);
-  return { Total: out.Notes.Total, Note_Item_List: osList(out.Notes.Note_Item_List) };
-}
+/* DataActionFetchNotes (refreshed by Action_RefreshFetchNotes, sent with the block variables) is in the domain
+   api/note. This module keeps the name that the block uses. */
+export { fetchEntityNotes as fetchNotes } from '@/api/note';

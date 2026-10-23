@@ -233,3 +233,8 @@
 
 - New `src/api/bookmark/` (types, mapper, repository, keys, hooks, barrel) for 9 calls. The old `api.ts` and `types.ts` of BookmarksByGroup and MyBookmarks re-export it; the two shared `actions.ts` files (Connect2_Assemble_MUI, UBTConnect) call the repository functions.
 - `Bookmark` keeps `dateCreatedUtc` and the barrel exports `toBookmark` for the G2 cache code. The 2 hooks have no caller yet. Strict parity `--changed`: 64 of 64 routes clean for both references; exemptions `[]`. `move-map.csv` is unchanged.
+
+## P5-3-note - refactor(P5-3-note): Domain api/note
+
+- New `src/api/note/` (types, mapper, repository, keys, hooks, barrel) for 6 calls. The old `api.ts` files of Notes, Directory_EntityDetailsActions, NoteListActions and NotesSheet re-export it; `Notes/types.ts` lost 4 unused types.
+- Not moved: the client actions `Get_Note_DynamicPills` and `GetNotes_FilterYear` (they use `platform/`). The 2 hooks have no caller yet. Strict parity `--changed`: 64 of 64 routes clean for both references; `move-map.csv` is unchanged.

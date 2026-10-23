@@ -420,3 +420,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,83197,refactor-dev,,P5-3-bookmark opus
 2026-10-23,refactor,verify,28751,refactor-test,,P5-3-bookmark sonnet
 2026-10-23,refactor,other,29069,refactor-docs,,P5-3-bookmark sonnet
+2026-10-23,refactor,build,187973,refactor-dev,,P5-3-note opus
+2026-10-23,refactor,verify,27603,refactor-test,,P5-3-note sonnet
+2026-10-23,refactor,other,27259,refactor-docs,,P5-3-note sonnet

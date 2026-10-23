@@ -53,3 +53,14 @@ The shared record types (for example `EventInfo`, `Milestone_Screen`, `MemberInf
 The old `api.ts` and `types.ts` files of BookmarksByGroup and MyBookmarks re-export it under their old names. `shared/Connect2_Assemble_MUI/lib/actions.ts` and `shared/UBTConnect/lib/actions.ts` call the repository functions.
 
 The `Bookmark` type has `dateCreatedUtc`, the sort key of the `MyBookmarks` memory cache. The barrel exports the mapper `toBookmark` (the screen re-exports it as `toBookmarkItem`), because `fromCacheRecord` in BookmarksByGroup needs it. `AssembleBookmarkAdded`, `C2BookmarkAdded` and `BookmarkDeleted` keep the OutSystems names. The two hooks (`useBookmarkGroupQuery`, `useBookmarkGroupSummariesQuery`) have no caller yet; they set `staleTime: 0`, `gcTime: 0` and `retry: false`.
+
+`note/` has the same files. It holds 6 calls.
+
+- DataActionGetNotes and ActionGet_NotePills_ByNoteCategoryIds (Notes)
+- DataActionFetchNotes (Directory_EntityDetailsActions)
+- ServiceAPIUpdateNote and ServiceAPIDeleteNoteByNoteId (NoteListActions)
+- ServiceAPIAddNote (NotesSheet).
+
+The old `api.ts` files of these four owners re-export it under their old names. `screens/Notes/types.ts` keeps the screen types. The client actions `Get_Note_DynamicPills` and `GetNotes_FilterYear` stay in `screens/Notes/api.ts`, because they read the local notes and the session (`platform/`), and `api/` does not import `platform/`. DataActionFetchContactDetails stays in `Directory_EntityDetailsActions/api.ts` for the message domain.
+
+The AddNote mapper drops `ItemId` and `NoteCategoryId` of the answer, because no code reads them. The two hooks (`useNoteCardsQuery`, `useEntityNotesQuery`) have no caller yet; they set `staleTime: 0`, `gcTime: 0` and `retry: false`.
