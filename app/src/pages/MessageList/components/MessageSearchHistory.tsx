@@ -1,4 +1,3 @@
-// @os-block Connect2_LegacyShared.UtilityFlow.MessageSearchHistory
 import { useEffect, useState } from 'react';
 import {
   getFilteredUserSearchHistory,
@@ -19,16 +18,15 @@ export interface MessageSearchHistoryProps {
   showOnlyOnCorrectTerm?: boolean;
   /** Input HasBottomBorder (default False). */
   hasBottomBorder?: boolean;
-  /** Event SelectedItem(SelectedItemString); ScreenBlock_MessageList sets no handler (its view :664-680). */
+  /** Event SelectedItem(SelectedItemString); ScreenBlock_MessageList sets no handler. */
   onSelectedItem?: (selectedItemString: string) => void;
 }
 
-/** MessageSearchHistory (p:Connect2_LegacyShared.UtilityFlow.MessageSearchHistory.mvc.js view :309-449): when the
-    client aggregate GetFilteredUserSearchHistory (controller :494-600, fetched at start (:649 dataFetchActionNames) and
-    again in OnParametersChanged (:717-745); MaxRecords 5; shell adapter src/shell/localEntities/localSearchHistory.ts,
-    CR-MessageList-3) is not empty, Search_History_List: one `search-history-item` per record with the flag icon and
-    the searched string. Item click (OnClick_Search_History_List_Item :755-830): LocalSearchHistory_Update, then the
-    event SelectedItem. */
+/** The recent searches. When the client aggregate GetFilteredUserSearchHistory (fetched at start and again in
+    OnParametersChanged; MaxRecords 5; adapter platform/storage/localEntities/localSearchHistory.ts, CR-MessageList-3)
+    is not empty, Search_History_List: one `search-history-item` per record with the flag icon and the searched
+    string. Item click (OnClick_Search_History_List_Item): LocalSearchHistory_Update, then the event SelectedItem.
+    @origin Connect2_LegacyShared.UtilityFlow.MessageSearchHistory */
 export function MessageSearchHistory({
   id,
   searchString,

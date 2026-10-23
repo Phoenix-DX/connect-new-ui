@@ -1,4 +1,3 @@
-// @os-block Connect2_LegacyShared.Reusable.TwoButtonsAligned
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
@@ -11,8 +10,8 @@ export interface TwoButtonsAlignedProps {
   right: ReactNode;
 }
 
-/** TwoButtonsAligned (p:Connect2_LegacyShared.Reusable.TwoButtonsAligned.mvc.js view :140-178): the
-    `two-buttons-aligned` container (extended style "bottom: 0;") with the placeholders Left and Right. */
+/** The `two-buttons-aligned` container (extended style "bottom: 0;") with the placeholders Left and Right.
+    @origin Connect2_LegacyShared.Reusable.TwoButtonsAligned */
 export function TwoButtonsAligned({ id, prefix, left, right }: TwoButtonsAlignedProps) {
   return (
     <OSBlock name="Reusable.TwoButtonsAligned" id={id}>

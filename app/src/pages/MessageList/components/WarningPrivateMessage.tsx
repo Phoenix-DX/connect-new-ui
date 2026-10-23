@@ -1,7 +1,6 @@
-// @os-block Connect2_LegacyShared.Reusable.Warning_PrivateMessage
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
-export interface Warning_PrivateMessageProps {
+export interface WarningPrivateMessageProps {
   id?: string;
   /** Input Message. */
   message: string;
@@ -11,10 +10,10 @@ export interface Warning_PrivateMessageProps {
   onDismiss: () => void;
 }
 
-/** Warning_PrivateMessage (survey source Connect2_LegacyShared.Reusable.Warning_PrivateMessage.mvc.js view): a
-    `card warning-card` with the lock icon, the message and the Dismiss / Login buttons. Shown only to a signed-out
-    user (ShowWarning False); not captured: built from the compiled view. */
-export function Warning_PrivateMessage({ id, message, onNavigateToLogin, onDismiss }: Warning_PrivateMessageProps) {
+/** A `card warning-card` with the lock icon, the message and the Dismiss / Login buttons. Shown only to a signed-out
+    user (ShowWarning False); not captured: built from the compiled view.
+    @origin Connect2_LegacyShared.Reusable.Warning_PrivateMessage */
+export function WarningPrivateMessage({ id, message, onNavigateToLogin, onDismiss }: WarningPrivateMessageProps) {
   return (
     <OSBlock name="Reusable.Warning_PrivateMessage" id={id}>
       <div className="card warning-card" data-container="">

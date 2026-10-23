@@ -448,3 +448,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T02:02:58 P6-G3-B-Search stage test
 - 2026-10-24T02:07:49 P6-G3-B-Search stage docs
 - 2026-10-24T02:09:45 P6-G3-B-Search stage commit
+- 2026-10-24T02:09:48 P6-G3-B-Search done cf6fd207: ci: pass (2416 tests); parity visual on the 6 filter-sheet routes: 6/0 (OutSystems), 6/0 (self) (full run at G3-C); arch baseline 52 rows (9 removed); bundle HomeFeed 246.06/248.22, Login 187.05/193.84 kB gzip; W23 holds
+- 2026-10-24T02:09:48 P6-G3-B-MessageList started
+- 2026-10-24T02:09:48 P6-G3-B-MessageList stage dev
+- 2026-10-24T02:10:58 P6-G3-B-MessageList stage test
+- 2026-10-24T02:16:21 P6-G3-B-MessageList stage docs
+- 2026-10-24T02:18:12 P6-G3-B-MessageList stage commit

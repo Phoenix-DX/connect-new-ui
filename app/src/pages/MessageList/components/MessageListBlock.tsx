@@ -1,33 +1,32 @@
-// @os-block Connect2_LegacyShared.MyNotifications.MessageListBlock
+import type { MessagesList } from '@/api/message';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList, OSListItem, OSListItemAction } from '@/components/ui/os/OSList';
-import type { MessagesList } from '@/pages/MessageList/types';
+import { MessagePriority } from '@/pages/MessageList/staticEntities';
 import { MessageListItem } from './MessageListItem';
-import { MessagePriority } from './staticEntities';
 
 export interface MessageListBlockProps {
   id?: string;
   isShowLoading: boolean;
   messagesList: MessagesList;
-  /** Event SwipeEventsClear (left ListItemAction "Clear", view :296-318). */
+  /** Event SwipeEventsClear (the left ListItemAction "Clear"). */
   onSwipeEventsClear: (messageInstanceId: string) => Promise<void>;
   /** Event MarkAllRead ("Mark All as Read"). */
   onMarkAllRead: () => void;
-  /** Event OnClick_GoToMessageDetail (ListItem OnClick, view :275-288); its Promise keeps the item "active". */
+  /** Event OnClick_GoToMessageDetail (the ListItem OnClick); its Promise keeps the item "active". */
   onClickGoToMessageDetail: (messageInstanceId: string, isRead: boolean) => Promise<void>;
-  /** Event SwipeEventsRead (right ListItemAction "Mark as Read", visible when not read, view :357-379). */
+  /** Event SwipeEventsRead (the right ListItemAction "Mark as Read", visible when not read). */
   onSwipeEventsRead: (messageInstanceId: string) => Promise<void>;
-  /** Event OnScrollEnding of Messages_List (view :231-243). */
+  /** Event OnScrollEnding of Messages_List. */
   onScrollEnding: () => Promise<void>;
 }
 
-/** MessageListBlock (p:Connect2_LegacyShared.MyNotifications.MessageListBlock.mvc.js view :145-394): the sticky
-    "Mark All as Read" bar (visible when not loading and MessagesList.HasUnreadMessages), then Messages_List (OS List,
-    `list list-group`, virtualization thresholds 1000). Each row: a container visible when not IsClear, the ListItem
-    (`list-item`, plus `background-blue-lightest` when not read) with MessageListItem (SentFromName "", IsUrgent =
-    priority Urgent). Messages_List and its ListItem are the shared OSList / OSListItem (P-LIST, Q1): the swipe
-    (Q2) shows the left action "Clear" (SwipeEventsClear) and the right action "Mark as Read" (SwipeEventsRead,
-    visible when not read), both triggered on a full swipe (view :289-290); at rest both containers are empty. */
+/** The sticky "Mark All as Read" bar (visible when not loading and MessagesList.HasUnreadMessages), then
+    Messages_List (OS List, `list list-group`, virtualization thresholds 1000). Each row: a container visible when not
+    IsClear, the ListItem (`list-item`, plus `background-blue-lightest` when not read) with MessageListItem
+    (SentFromName "", IsUrgent = priority Urgent). Messages_List and its ListItem are the shared OSList / OSListItem
+    (P-LIST, Q1): the swipe (Q2) shows the left action "Clear" (SwipeEventsClear) and the right action "Mark as Read"
+    (SwipeEventsRead, visible when not read), both triggered on a full swipe; at rest both containers are empty.
+    @origin Connect2_LegacyShared.MyNotifications.MessageListBlock */
 export function MessageListBlock({
   id,
   isShowLoading,

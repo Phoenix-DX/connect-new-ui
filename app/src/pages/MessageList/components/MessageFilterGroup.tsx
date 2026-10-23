@@ -1,9 +1,8 @@
-// @os-block Connect2_LegacyShared.MyNotifications.MessageFilterGroup
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
+import { Space } from '@/pages/MessageList/staticEntities';
 import { Separator } from '@/shared/osui/Separator';
-import { textEllipsis } from './actions';
-import { Space } from './staticEntities';
+import { textEllipsis } from './textEllipsis';
 
 export interface MessageFilterGroupProps {
   id: string;
@@ -13,8 +12,9 @@ export interface MessageFilterGroupProps {
   children?: ReactNode;
 }
 
-/** MessageFilterGroup (p:Connect2_LegacyShared.MyNotifications.MessageFilterGroup.mvc.js view :194-269): the group
-    title (TextEllipsis(Title, 30)), the placeholder and a horizontal Separator of Space.small. */
+/** A group of the filters: the group title (TextEllipsis(Title, 30)), the placeholder and a horizontal Separator of
+    Space.small.
+    @origin Connect2_LegacyShared.MyNotifications.MessageFilterGroup */
 export function MessageFilterGroup({ id, prefix, title, children }: MessageFilterGroupProps) {
   return (
     <OSBlock name="MyNotifications.MessageFilterGroup" id={id}>

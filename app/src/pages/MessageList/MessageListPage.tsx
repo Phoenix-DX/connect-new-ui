@@ -1,24 +1,40 @@
-/** @origin UBTConnect.Legacy_MyNotificationsFlow.MessageList */
 import { useState } from 'react';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useOsNavigate } from '@/platform/navigation';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { useShellState } from '@/platform/session/session';
-import { ScreenBlock_MessageList } from './components/ScreenBlock_MessageList';
+import { MessageListView } from './components/MessageListView';
+import { useMessageList } from './hooks/useMessageList';
 
-/** UBTConnect Legacy_MyNotificationsFlow.MessageList (p:UBTConnect.Legacy_MyNotificationsFlow.MessageList.mvc.js: model
-    :1-66, view :68-273, controller :275-591). Renders ScreenBlock_MessageList with Trigger_PullToRefresh; the bottom
-    bar (BottomBarMenu in a container) only when signed in; CommonUI_InsideLayout. OnReady runs ClearAllNotifications
-    (UBTConnect_Utils): the Firebase plugin is unavailable on the web, so it does nothing (rule 14).
-    Layout_OnEventNotificationReceived (sets Trigger_PullToRefresh) has no caller in the view: not wired. */
+/** @origin UBTConnect.Legacy_MyNotificationsFlow.MessageList
+    The legacy list of messages: the message list block (instance `$b1`) with its flows (useMessageList), the bottom
+    bar (BottomBarMenu in a container) only when signed in, and CommonUI_InsideLayout. OnReady runs
+    ClearAllNotifications (UBTConnect_Utils): the Firebase plugin is not available on the web, so it does nothing
+    (rule 14). Layout_OnEventNotificationReceived sets Trigger_PullToRefresh, but no widget of the view raises it: it
+    is not wired, and the trigger stays False. */
 export default function MessageList() {
   const { signedIn } = useShellState();
   const navigate = useOsNavigate();
   const [triggerPullToRefresh, setTriggerPullToRefresh] = useState(false);
+  const list = useMessageList(
+    { signedIn, triggerPullToRefresh },
+    {
+      onNavigateToMessageDetail: (messageInstanceId) => {
+        navigate('/UBTConnect/MessageDetail', { MessageInstanceId: messageInstanceId });
+      },
+      onPullToRefreshTriggered: () => {
+        setTriggerPullToRefresh(false);
+      },
+    },
+  );
+  const { onBackNavigation, ...view } = list;
   return (
-    <ScreenBlock_MessageList
+    <MessageListView
       id="$b1"
-      triggerPullToRefresh={triggerPullToRefresh}
+      signedIn={signedIn}
+      {...view}
+      backNavigationHandler={<BackNavigationHandler id="b1-$b15" onBackNavigation={onBackNavigation} />}
       bottomBar={
         signedIn ? (
           <div data-container="">
@@ -27,12 +43,6 @@ export default function MessageList() {
         ) : undefined
       }
       commonUIElements={<CommonUiLayout id="$b3" />}
-      onNavigateToMessageDetail={(messageInstanceId) => {
-        navigate('/UBTConnect/MessageDetail', { MessageInstanceId: messageInstanceId });
-      }}
-      onPullToRefreshTriggered={() => {
-        setTriggerPullToRefresh(false);
-      }}
     />
   );
 }

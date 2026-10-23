@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G3-B-Search",
+  "step": "P6-G3-B-MessageList",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T02:09:45"
+  "since": "2026-10-24T02:18:12"
  },
  "steps": {
   "P0-1": {
@@ -846,12 +846,25 @@
    "finished": "2026-10-24T02:02:10"
   },
   "P6-G3-B-Search": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T02:02:10",
    "tokens": {
     "dev": 393384,
     "test": 45114,
     "docs": 35774
+   },
+   "commit": "cf6fd207",
+   "gate": "ci: pass (2416 tests); parity visual on the 6 filter-sheet routes: 6/0 (OutSystems), 6/0 (self) (full run at G3-C); arch baseline 52 rows (9 removed); bundle HomeFeed 246.06/248.22, Login 187.05/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T02:09:48"
+  },
+  "P6-G3-B-MessageList": {
+   "status": "active",
+   "started": "2026-10-24T02:09:48",
+   "tokens": {
+    "dev": 312595,
+    "test": 36150,
+    "docs": 28303
    }
   }
  },

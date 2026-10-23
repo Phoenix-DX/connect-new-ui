@@ -1,10 +1,9 @@
-// @os-block Connect2_LegacyShared.MyNotifications.MessageList_NoNotifications_Banner
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
-/** MessageList_NoNotifications_Banner (survey source Connect2_LegacyShared.MyNotifications.MessageList_NoNotifications_
-    Banner.mvc.js view): the inbox icon and "You have no notifications". No input, no event. Not captured (shown only
-    for an empty list): built from the compiled view. */
-export function MessageList_NoNotifications_Banner({ id }: { id?: string }) {
+/** The inbox icon and "You have no notifications". No input, no event. Not captured (shown only for an empty list):
+    built from the compiled view.
+    @origin Connect2_LegacyShared.MyNotifications.MessageList_NoNotifications_Banner */
+export function MessageListNoNotificationsBanner({ id }: { id?: string }) {
   return (
     <OSBlock name="MyNotifications.MessageList_NoNotifications_Banner" id={id}>
       <div

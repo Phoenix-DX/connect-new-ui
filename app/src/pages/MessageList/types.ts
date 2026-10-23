@@ -15,13 +15,3 @@ export interface MessageWire {
   MessageInfoTypeId: number;
   MessageSenderTargetName: string;
 }
-
-/* The block variable MessagesList (LongIntegerBooleanMessageListItemListRecord: the rows and HasUnreadMessages), the
-   outputs of DataActionGetMessages that OnAfterFetch_GetMessages reads and the ScreenBlock_MessageList variables that
-   OutSystems sends with its data actions (screenData.variables) are domain types of api/message; this module keeps
-   the names that the screen uses. */
-export type {
-  MessageListCallInputs as MessageListVariables,
-  MessagesList,
-  MessagesResult as GetMessagesResult,
-} from '@/api/message';

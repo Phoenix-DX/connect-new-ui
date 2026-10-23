@@ -439,3 +439,9 @@
 - Search is a page: hook `hooks/useSearch.ts`, pure state `hooks/searchState.ts`, components `SearchView` and `RecentSearch`. `api.ts` and `types.ts` are deleted; the two calls are in the new domain `api/search` (W8).
 - FilterSheet, FilterSheetIcon and FilterOptionList are props-only. The data, the cache blocks, the back-navigation block and the upgrade popup come from the new `containers/FilterSheet`. Call sites changed: CountryDetails, Notes_FilterSheet and Directory_Updates_FilterSheet (import and tag), Updates_SingleList (prop `onShowUpgradePopUp`). 9 baseline rows removed.
 - Kept quirk: SearchView passes new `inOptions` and `inStartFilter` records on each render, which resets the sheet's country selection (follow-up F18). HomeFeed first load 246.06 kB gzip (limit 248.22).
+
+## P6-G3-B-MessageList - refactor(P6-G3-B): MessageList as page
+
+- MessageList is a page: hook `hooks/useMessageList.ts`, pure state `hooks/messageListState.ts`, props-only `components/MessageListView.tsx`. `api.ts` is deleted; `types.ts` keeps `MessageWire` for the mocks.
+- The GetMessages query key `['MessageList','DataActionGetMessages']` stays in the hook on purpose: it keeps the back-navigation restore. MessageDetail keeps its own `decrementReadMessagesCounter`; P6-G3-C removes the duplicate.
+- HomeFeed first load 246.03 kB gzip (limit 248.22).

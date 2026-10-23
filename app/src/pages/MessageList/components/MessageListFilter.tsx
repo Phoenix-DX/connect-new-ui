@@ -1,11 +1,10 @@
-// @os-block Connect2_LegacyShared.MyNotifications.MessageList_Filter
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CircledCheckbox } from './CircledCheckbox';
 import { MessageFilterGroup } from './MessageFilterGroup';
 import { MessageFilterItem } from './MessageFilterItem';
 import { TwoButtonsAligned } from './TwoButtonsAligned';
 
-export interface MessageList_FilterProps {
+export interface MessageListFilterProps {
   /** OutSystems instance id of the block (`b1-$b13`). */
   id: string;
   /** Input Filter_OrderASC. */
@@ -20,8 +19,8 @@ export interface MessageList_FilterProps {
   onApplyFilters: () => void;
 }
 
-/** OSWidgets.Checkbox with the extended property type "radio" (OutSystemsReactWidgets.js Checkbox render: a span
-    around `<input data-checkbox class type>`, click propagation stopped; no validation message when valid). */
+/** OSWidgets.Checkbox with the extended property type "radio" (the Checkbox render of the OutSystems React widgets:
+    a span around `<input data-checkbox class type>`, click propagation stopped; no validation message when valid). */
 function SortRadio({ id, checked, onChecked }: { id: string; checked: boolean; onChecked: () => void }) {
   return (
     <span>
@@ -40,17 +39,18 @@ function SortRadio({ id, checked, onChecked }: { id: string; checked: boolean; o
   );
 }
 
-/** MessageList_Filter (p:Connect2_LegacyShared.MyNotifications.MessageList_Filter.mvc.js view :219-579, controller
-    :586-670): the "Sort" group with "Newest to Oldest" (NewToOld_Checkbox, Filter_OrderDESC → MessageSort(False)) and
-    "Oldest to Newest" (OldToNew_Checkbox, Filter_OrderASC → MessageSort(True)), then Reset / Apply at the bottom. */
-export function MessageList_Filter({
+/** The sort filters: the "Sort" group with "Newest to Oldest" (NewToOld_Checkbox, Filter_OrderDESC →
+    MessageSort(False)) and "Oldest to Newest" (OldToNew_Checkbox, Filter_OrderASC → MessageSort(True)), then Reset /
+    Apply at the bottom.
+    @origin Connect2_LegacyShared.MyNotifications.MessageList_Filter */
+export function MessageListFilter({
   id,
   filterOrderASC,
   filterOrderDESC,
   onMessageSort,
   onResetFilters,
   onApplyFilters,
-}: MessageList_FilterProps) {
+}: MessageListFilterProps) {
   const p = `${id.replace('$', '')}-`;
   return (
     <OSBlock name="MyNotifications.MessageList_Filter" id={id}>

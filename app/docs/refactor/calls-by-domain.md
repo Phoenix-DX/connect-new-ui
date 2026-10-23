@@ -138,18 +138,18 @@ P6-G1-B-Menu: `ActionRequestPhotoUpdate` moved to `src/api/member/repository.ts`
 | `screens/EmailTarget/api.ts`                              | Connect2_LegacyShared    | `ActionUserContactUser`                                                                                                                                             |
 | `screens/LDM_Email_V2/api.ts`                             | <MODULE>                 | `ActionEventContact`, `ScreenBlock_Event_Email_V2/DataActionGetCoordinatorDetails`                                                                                  |
 | `screens/MessageDetail/api.ts`                            | Connect2_LegacyShared    | `ScreenBlock_MessageDetail/DataActionGetMessageInstance`, `ScreenBlock_MessageDetail/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`                  |
-| `screens/MessageList/api.ts`                              | Connect2_LegacyShared    | `ActionMarkMessageAsClear`, `ActionMarkMessageAsRead`, `ScreenBlock_MessageList/DataActionGetMessageInstanceById2`, `ScreenBlock_MessageList/DataActionGetMessages` |
+| `pages/MessageList/hooks/useMessageList.ts`               | Connect2_LegacyShared    | `ActionMarkMessageAsClear`, `ActionMarkMessageAsRead`, `ScreenBlock_MessageList/DataActionGetMessageInstanceById2`, `ScreenBlock_MessageList/DataActionGetMessages` |
 | `shared/Connect2_LegacyShared/lib/actions.ts`             | Connect2_LegacyShared    | `ActionGetMemberContactByCacheKey`                                                                                                                                  |
 | `shared/UBTConnect/Directory_EntityDetailsActions/api.ts` | UBTConnect               | `Directory_EntityDetailsActions/DataActionFetchContactDetails`                                                                                                      |
 | `shell/startup.ts`                                        | Connect2_LegacyShared    | `ActionGetNumberUnreadMessages`                                                                                                                                     |
 
 ## notification
 
-| File                           | Module                | Actions                                                                               |
-| ------------------------------ | --------------------- | ------------------------------------------------------------------------------------- |
-| `screens/MessageDetail/api.ts` | Connect2_LegacyShared | `ActionWrapper_NotificationOpened`                                                    |
-| `screens/MessageList/api.ts`   | Connect2_LegacyShared | `ActionWrapper_MarkAllAsReadNotifications`                                            |
-| `screens/Notifications/api.ts` | UBTConnect            | `Notifications/DataActionFetchNotifications`, `Notifications/DataActionGetDateRanges` |
+| File                                        | Module                | Actions                                                                               |
+| ------------------------------------------- | --------------------- | ------------------------------------------------------------------------------------- |
+| `screens/MessageDetail/api.ts`              | Connect2_LegacyShared | `ActionWrapper_NotificationOpened`                                                    |
+| `pages/MessageList/hooks/useMessageList.ts` | Connect2_LegacyShared | `ActionWrapper_MarkAllAsReadNotifications`                                            |
+| `screens/Notifications/api.ts`              | UBTConnect            | `Notifications/DataActionFetchNotifications`, `Notifications/DataActionGetDateRanges` |
 
 ## app
 

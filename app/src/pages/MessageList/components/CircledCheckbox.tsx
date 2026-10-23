@@ -1,4 +1,3 @@
-// @os-block Connect2_LegacyShared.Reusable.CircledCheckbox
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
@@ -11,8 +10,8 @@ export interface CircledCheckboxProps {
   checkbox: ReactNode;
 }
 
-/** CircledCheckbox (p:Connect2_LegacyShared.Reusable.CircledCheckbox.mvc.js view :140-153): the placeholder
-    CheckboxPlaceholder with the class `circle-checkbox`. */
+/** The placeholder CheckboxPlaceholder with the class `circle-checkbox`.
+    @origin Connect2_LegacyShared.Reusable.CircledCheckbox */
 export function CircledCheckbox({ id, prefix, checkbox }: CircledCheckboxProps) {
   return (
     <OSBlock name="Reusable.CircledCheckbox" id={id}>

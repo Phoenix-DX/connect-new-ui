@@ -1,10 +1,9 @@
-// @os-block Connect2_LegacyShared.MyNotifications.MessageListItem
 import { useEffect, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
+import { Connect_Entity, ImageSize } from '@/pages/MessageList/staticEntities';
 import { formatDateTime } from '@/shared/lib/osDateTime';
 import { cache_SignedImageURL_Get } from '@/shared/UBTConnect_Utils/lib/actions';
-import { Connect_Entity, ImageSize } from './staticEntities';
 
 export interface MessageListItemProps {
   /** OutSystems instance id of the block (`…-Messages_List_Item_Private`). */
@@ -29,10 +28,10 @@ const infoText = (sentFromName: string, dateTime: string): string =>
     'h:mm tt',
   ).toLowerCase()}`;
 
-/** MessageListItem (p:Connect2_LegacyShared.MyNotifications.MessageListItem.mvc.js view :216-400, controller
-    :420-470). OnReady: when IconURL is "" and UserId is set and no photo yet, IsFetchingUserPhoto, then
+/** One message row. OnReady: when IconURL is "" and UserId is set and no photo yet, IsFetchingUserPhoto, then
     Cache_SignedImageURL_Get(MemberId, Member, Small) → UserPhotoURL. Image: IconURL (external) / fetching placeholder /
-    User_rectangle when no photo / the photo with the ubtlogo error placeholder. Urgent rows show the red "!" icon. */
+    User_rectangle when no photo / the photo with the ubtlogo error placeholder. Urgent rows show the red "!" icon.
+    @origin Connect2_LegacyShared.MyNotifications.MessageListItem */
 export function MessageListItem({
   id,
   prefix,
