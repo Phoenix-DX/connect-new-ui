@@ -84,7 +84,7 @@ Evidence:
   They share the `Input_Subject` markup and `label.mandatory OSFillParent`. The header, the button classes
   (`btn btn-primary full-width` against `btn btn-primary OSFillParent`), the layout and the send action
   (`Connect2_OrbitMobile_MUI/ActionSendContactEmail` against `Connect2_LegacyShared/ActionUserContactUser`) are different.
-  jscpd: `ContactByEmailLDMCoordinator/components/actions.ts` and `EmailTarget/components/actions.ts` share 16 lines
+  jscpd: `ContactByEmailLDMCoordinator/actions.ts` and `EmailTarget/components/actions.ts` share 16 lines
   (the application-event helpers).
 - `LDM_Email_V2` (`ScreenBlock_Event_Email_V2`, 532 lines, G5) is a third form of the second family. The plan does not
   list it.

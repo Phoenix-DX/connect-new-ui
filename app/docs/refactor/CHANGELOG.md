@@ -372,3 +372,8 @@
 
 - ContactByEmailOneSchoolGlobal follows the ContactByEmail pattern of the pilot: `config.ts`, `inputs.ts` (replaces `api.ts` and `types.ts`), `actions.ts` and `hooks/useContactByEmailOneSchoolGlobalSubmit.ts`. `staticEntities.ts` moves to the page root.
 - Its card is the shared `ContactHeaderCard` (first page caller). `config.ts` exports a constant, not a function, because no value depends on an input.
+
+## P6-G2-B-ContactByEmailLDMCoordinator - refactor(P6-G2-B): ContactByEmailLDMCoordinator as page
+
+- ContactByEmailLDMCoordinator follows the ContactByEmail pattern of the pilot: `config.ts`, `inputs.ts` (replaces `api.ts` and `types.ts`), `actions.ts` (moved from `components/`) and `hooks/useContactByEmailLDMCoordinatorSubmit.ts`. Its card is the shared `ContactHeaderCard`; the page has a new test (7 tests).
+- The route has no parity states. It was checked by the unit tests and the diff against HEAD (same send order and request body), not by parity.

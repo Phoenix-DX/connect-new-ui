@@ -190,3 +190,5 @@ P6-G2-B-ContactUsDetails: `screens/ContactUsDetails/api.ts` is deleted (its row 
 P6-G2-B-ContactByEmailMember: `screens/ContactByEmailMember/api.ts` is deleted (its row in the message table above). The caller of `ServiceAPISendContactMemberEmail` is now `pages/ContactByEmailMember/hooks/useContactByEmailMemberSubmit.ts`, which imports it from `@/api/message`.
 
 P6-G2-B-ContactByEmailOneSchoolGlobal: `screens/ContactByEmailOneSchoolGlobal/api.ts` is deleted (its row in the message table above). The caller of `ServiceAPISendContactMemberEmail` is now `pages/ContactByEmailOneSchoolGlobal/hooks/useContactByEmailOneSchoolGlobalSubmit.ts`, which imports it from `@/api/message`.
+
+P6-G2-B-ContactByEmailLDMCoordinator: `screens/ContactByEmailLDMCoordinator/api.ts` is deleted (its row in the message table above). The caller of `ServiceAPISendContactLDMCoordinatorEmail` is now `pages/ContactByEmailLDMCoordinator/hooks/useContactByEmailLDMCoordinatorSubmit.ts`, which imports it from `@/api/message`.

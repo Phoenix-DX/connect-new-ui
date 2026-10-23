@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G2-B-ContactByEmailOneSchoolGlobal",
+  "step": "P6-G2-B-ContactByEmailLDMCoordinator",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T23:35:26"
+  "since": "2026-10-23T23:45:00"
  },
  "steps": {
   "P0-1": {
@@ -690,12 +690,25 @@
    "finished": "2026-10-23T23:27:08"
   },
   "P6-G2-B-ContactByEmailOneSchoolGlobal": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T23:27:08",
    "tokens": {
     "dev": 80075,
     "test": 34131,
     "docs": 23946
+   },
+   "commit": "5bc69ce",
+   "gate": "ci: pass (2nd run; 1st run PopupMenu flake F11); parity visual --changed: 5/0 (OutSystems), 5/0 (self); arch baseline 0 new; bundle within +5% (Login 193.07 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T23:35:27"
+  },
+  "P6-G2-B-ContactByEmailLDMCoordinator": {
+   "status": "active",
+   "started": "2026-10-23T23:35:27",
+   "tokens": {
+    "dev": 87846,
+    "test": 30104,
+    "docs": 29690
    }
   }
  },
