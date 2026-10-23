@@ -6,6 +6,7 @@ import { OSList } from '@/components/ui/os/OSList';
 import { useFlagOn } from '@/platform/flags/flags';
 import { osImage } from '@/legacy/os/os-assets';
 import { Layout } from '@/shared/Connect2_LegacyShared/Layout';
+import { getCachedMyBookmarks, putCachedMyBookmarks } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { MenuAction, ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIcon__UpdatedOSUI } from '@/shared/Connect2_LegacyShared/MenuIcon__UpdatedOSUI';
 import { MessageList_NoResults } from '@/shared/Connect2_LegacyShared/MessageList_NoResults';
@@ -32,10 +33,10 @@ import {
 import type { BookmarkItem, BookmarkNote } from '@/screens/BookmarksByGroup/types';
 import {
   auditBookmarkSubscriptionEvent,
-  getCachedMyBookmarks,
-  putCachedMyBookmarks,
+  fromCacheRecord,
   sendBookmarkedFeedbackMessage,
   sendBookmarkedHiddenFeedbackMessage,
+  toCacheRecord,
 } from './actions';
 import { BookmarkNoteAddEdit, BookmarkNoteDelete } from './BookmarkNoteDialogs';
 import { ItemOptionsMenu } from '@/shared/Connect2_LegacyShared/ItemOptionsMenu';
@@ -114,11 +115,13 @@ export function ScreenBlock_BookmarkGroup({
   const isFromNavigationHistory = useWasRestoredFromCache();
   const hasBookmarkNote = useFlagOn('mobileDirectoryBookmarkNote');
   const hasExtendedShare = useFlagOn('C2ExtendedShare');
+  // PreloadListSource_Bookmarks (:2894-2957): restored → GetCachedMyBookmarks(BookmarkGroup); on a hit BookmarkedItems
+  // and UpdatedTotal = its length.
   const [initial] = useState(() =>
-    isFromNavigationHistory ? getCachedMyBookmarks(bookmarkGroup) : { cacheHit: false, bookmarks: [] },
+    isFromNavigationHistory ? getCachedMyBookmarks(bookmarkGroup).bookmarks.map(fromCacheRecord) : [],
   );
-  const [items, setItems] = useState<BookmarkItem[]>(initial.bookmarks);
-  const [updatedTotal, setUpdatedTotal] = useState(String(initial.bookmarks.length));
+  const [items, setItems] = useState<BookmarkItem[]>(initial);
+  const [updatedTotal, setUpdatedTotal] = useState(String(initial.length));
   const [isFetching, setIsFetching] = useState(false);
   const [wasSearched, setWasSearched] = useState(false);
   // EditingBookmarkNote: set only by Handler_EditNote / Handler_DeleteNote (see bookmarkNote below).
@@ -145,6 +148,14 @@ export function ScreenBlock_BookmarkGroup({
     Type_ShareObjectId: share.typeId,
   });
 
+  /** PutCachedMyBookmarks(BookmarkGroup, BookmarkedItems): the Connect2_LegacyShared cache of BookmarkItem records. */
+  const putCachedBookmarkedItems = (list: readonly BookmarkItem[]) => {
+    putCachedMyBookmarks(
+      bookmarkGroup,
+      list.map((row) => toCacheRecord(row, bookmarkGroup)),
+    );
+  };
+
   /** Refresh Query GetAllBookmarksByGroup, then OnAfterFetch_GetAllBookmarksByGroup (:2138-2172): BookmarkedItems,
       UpdatedTotal, IsFetchingBookmarks False, PutCachedMyBookmarks. */
   const fetchBookmarks = async () => {
@@ -153,7 +164,7 @@ export function ScreenBlock_BookmarkGroup({
     setItems(out.results);
     setUpdatedTotal(out.total);
     setIsFetching(false);
-    putCachedMyBookmarks(bookmarkGroup, out.results);
+    putCachedBookmarkedItems(out.results);
   };
 
   /** RefreshBookmarkData(IsScrollToTop) (:1919-1996): IsFetchingBookmarks True, refresh, SetScrollToTop when asked;
@@ -211,7 +222,7 @@ export function ScreenBlock_BookmarkGroup({
       setUpdatedTotal(String(Number(updatedTotal) - 1));
       // Connect2_LegacyShared Delete_LocalBookmarkByBookmarkId (:3169-3172; CR-BookmarksByGroup-2).
       await legacyDelete_LocalBookmarkByBookmarkId(bookmarkId);
-      putCachedMyBookmarks(bookmarkGroup, next);
+      putCachedBookmarkedItems(next);
     } else {
       showFeedbackMessage('Bookmark could not be removed. Please try again later.', 0);
     }
@@ -268,7 +279,7 @@ export function ScreenBlock_BookmarkGroup({
       .catch(raiseToFlowHandler);
     const next = items.map((it) => (it.id === note.bookmarkId ? { ...it, note: note.note.trim() } : it));
     setItems(next);
-    putCachedMyBookmarks(bookmarkGroup, next);
+    putCachedBookmarkedItems(next);
   };
 
   /** OnClick_BookmarkedItem (:2728-2892): GetBookmarkById (CR-BookmarksByGroup-1); found → not available (hidden
@@ -291,7 +302,7 @@ export function ScreenBlock_BookmarkGroup({
       return;
     }
     const list = items;
-    putCachedMyBookmarks(bookmarkGroup, list);
+    putCachedBookmarkedItems(list);
     if (bookmarkGroup === MyBookmarks_Group.Contacts) {
       // NavigateTo_HouseholdsCarousel (:1998-2091): the block's preload, then the screen's (which replaces it).
       setPreloadObject({

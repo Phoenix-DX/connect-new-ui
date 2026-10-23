@@ -15,7 +15,7 @@ export function readInputs(params: URLSearchParams): BookmarksByGroupInputs {
   return { BookmarkGroup: params.get('BookmarkGroup') ?? '' };
 }
 
-/** Wire BookmarkItem → domain (DetailsJson fields the block reads). */
+/** Wire BookmarkItem → domain (DetailsJson fields the block reads; DateCreatedUtc for the MyBookmarks cache). */
 export const toBookmarkItem = (w: BookmarkItemWire): BookmarkItem => ({
   id: w.Id,
   objectId: w.ObjectId,
@@ -25,6 +25,7 @@ export const toBookmarkItem = (w: BookmarkItemWire): BookmarkItem => ({
   note: w.Note,
   recordDisabled: w.RecordDisabled,
   recordNotAvailable: w.RecordNotAvailable,
+  dateCreatedUtc: w.DateCreatedUtc,
   details: {
     areasServed: w.DetailsJson.AreasServed,
     childrenNames: w.DetailsJson.ChildrenNames,

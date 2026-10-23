@@ -129,5 +129,37 @@
   "answer": "confirm (auto-confirmed: user instruction 2026-10-15 16:59)",
   "answeredBy": "user",
   "answeredAt": "2026-10-16T11:23:31"
+ },
+ {
+  "id": "Q7",
+  "kind": "review",
+  "topic": "review round 3",
+  "question": "Please test this route and confirm, or tell me what to change. Decisions to confirm: Q1 → A (answered, auto-accepted 2026-10-15 [questions.md Q1]): the row-click flow was built behind a null adapter. CR-BookmarksByGroup-1 is applied (foundation F7b, 2026-10-15); `getBookmarkById` now calls the contract [CR-BookmarksByGroup-1.md].; Q2 → A (answered, auto-accepted 2026-10-15 [questions.md Q2]): Locations / Entities built from the compiled view (Result_Item_Badge own), fictional mock rows;; Q3 → A (answered, auto-accepted 2026-10-15 [questions.md Q3]): CR-BookmarksByGroup-2 is applied (foundation F7b, 2026-10-15); the local delete runs after UpdatedTotal [CR-BookmarksByGroup-2.md].; Q4 (fact, answered by code): cache TTL 604800 s.; Mock: 7 fictional contacts with the captured object ids and text lengths. Row 1 has narrow-glyph names, so the masked; Mock error scenario: network failure for the data action (offline state).; Proposed exemptions: `proposed-exemptions.json` (masked photos; loading timeout content and toast).; CR-BookmarksByGroup-3 (optional shared consolidation with MyBookmarks): rejected (foundation F7b, 2026-10-15) [CR-BookmarksByGroup-3.md]. Fixed since the last review: F1 MyBookmarks cache holds two record shapes: BookmarksByGroup writes its own camelCase BookmarkItem with its own cache writer, Connect2_LegacyShared and Assemble use the OutSystems BookmarkItem; after opening BookmarksByGroup, bookmarking a household in AssembleDetail raises a TypeError in addBookmarkToCache. Fix: one cache shape as in OutSystems (Fable proposal accepted by the user 2026-10-23, gap G2). → One MyBookmarks cache shape (OutSystems BookmarkItem): BookmarksByGroup uses the Connect2_LegacyShared cache actions with toCacheRecord/fromCacheRecord; local cache writer deleted; failing-first test in Connect2_LegacyShared/lib/actions.test.ts (gap G2, dev.md in migration/refactor/handoffs/G2/ of the refactor branch) Feature flags: action:connect_LaunchDarkly_PermissionCheck → not a flag (false positive): shared wrapper that reads LaunchDarkly flags (the flags are decided one by one); behaviour built as in the original (user, 2026-10-14); action:getHasBookmarNote → default-only: TST value off (user, 2026-10-14); action:getHasC1DirectoryView → default-only: TST value on (user, 2026-10-14); action:getHasCarouselEnabled → default-only: TST value on (user, 2026-10-14); action:getHasExtendedShare → default-only: TST value on (user, 2026-10-14); action:getHasNewBookmarks → default-only: TST value off (user, 2026-10-14); action:getHasWalletAccess → default-only: TST value off (user, 2026-10-14); clientVar:App_PIN_BiometricEnabled → not a flag (false positive): user setting for biometric unlock, kept in a client variable; behaviour built as in the original (user, 2026-10-14); launchDarkly_FF.mobileDirectoryBookmarkNote → default-only: TST value off (user, 2026-10-14); registeredCallbackEvents.onToggle → not a flag (false positive): bottom sheet toggle event; behaviour built as in the original (user, 2026-10-14)",
+  "evidence": "route-spec.md, parity reports, feedback.md",
+  "mcp": "",
+  "options": [
+   "confirm",
+   "change (say what)"
+  ],
+  "recommend": "",
+  "blocking": true,
+  "status": "answered",
+  "askedAt": "2026-10-23T13:45:47",
+  "items": [
+   "Q1 → A (answered, auto-accepted 2026-10-15 [questions.md Q1]): the row-click flow was built behind a null adapter. CR-BookmarksByGroup-1 is applied (foundation F7b, 2026-10-15); `getBookmarkById` now calls the contract [CR-BookmarksByGroup-1.md].",
+   "Q2 → A (answered, auto-accepted 2026-10-15 [questions.md Q2]): Locations / Entities built from the compiled view (Result_Item_Badge own), fictional mock rows;",
+   "Q3 → A (answered, auto-accepted 2026-10-15 [questions.md Q3]): CR-BookmarksByGroup-2 is applied (foundation F7b, 2026-10-15); the local delete runs after UpdatedTotal [CR-BookmarksByGroup-2.md].",
+   "Q4 (fact, answered by code): cache TTL 604800 s.",
+   "Mock: 7 fictional contacts with the captured object ids and text lengths. Row 1 has narrow-glyph names, so the masked",
+   "Mock error scenario: network failure for the data action (offline state).",
+   "Proposed exemptions: `proposed-exemptions.json` (masked photos; loading timeout content and toast).",
+   "CR-BookmarksByGroup-3 (optional shared consolidation with MyBookmarks): rejected (foundation F7b, 2026-10-15) [CR-BookmarksByGroup-3.md]."
+  ],
+  "fixed": [
+   "F1"
+  ],
+  "answer": "confirm (auto-confirmed, user instruction 2026-10-23 13:43: Fable + Opus decide for the user): Opus (high) and Fable (high) both chose confirm. The only change since round 2 is the G2 fix (one OutSystems BookmarkItem cache shape through the Connect2_LegacyShared actions); the failing-first cross-screen test passes, npm run ci passes (1458 tests), parity 0 differences in default, loading and offline, tester diff review pass; AssembleDetail (no capture) is covered by the new test; W1 keeps record defaults for 9 unread cache fields.",
+  "answeredBy": "user",
+  "answeredAt": "2026-10-23T13:46:53"
  }
 ]

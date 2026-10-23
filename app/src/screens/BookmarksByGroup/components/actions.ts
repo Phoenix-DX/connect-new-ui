@@ -1,33 +1,61 @@
 import { log } from '@/platform/log/log';
+import type { BookmarkItem as BookmarkItemRecord } from '@/shared/Connect2_LegacyShared/lib/structures';
 import { showFeedbackMessage } from '@/platform/feedback';
-import { peekCacheableObject, putCacheableObject } from '@/platform/storage/memoryCache';
+import { toBookmarkItem } from '@/screens/BookmarksByGroup/api';
 import type { BookmarkItem } from '@/screens/BookmarksByGroup/types';
-import {
-  APPLICATION_EVENT_SUBSCRIPTION_REQUIRED,
-  DIRECTORY_CACHE_TYPE_MY_BOOKMARKS,
-  MyBookmarks_ObjectType,
-} from './staticEntities';
+import { APPLICATION_EVENT_SUBSCRIPTION_REQUIRED, MyBookmarks_ObjectType } from './staticEntities';
 
 /* Client actions of other modules that only this route calls. C = Connect2_LegacyShared.controller.js and
    M = Connect2_MyBookmarks_MUI.controller.js (migration/screens/BookmarksByGroup/analysis/sources/raw, prettified). */
 
-/** MemoryClientCache UnlimitedTimeToLiveSeconds(): TimeToLiveSeconds = 604800 (7 days)
-    (runtime-sources/MemoryClientCache.controller.js, unlimitedTimeToLiveSeconds$Action; Q4 answered by code). */
-const UNLIMITED_TIME_TO_LIVE_SECONDS = 604800;
+/* The MyBookmarks cache. The block's BookmarkedItems is a list of Connect2_MyBookmarks_IS.BookmarkItem records
+   (ScreenBlock_BookmarkGroup.mvc.js model :32), and the block calls the Connect2_LegacyShared GetCachedMyBookmarks
+   (:2921-2932) and PutCachedMyBookmarks (:2163-2164, :2345-2346, :2774-2775, :3173-3174) with that list. AddBookmarkToCache
+   and RemoveBookmarkFromCache (AssembleDetail) use the same cache type, group key and record. So the block calls the
+   Connect2_LegacyShared actions (shared/Connect2_LegacyShared/lib/actions.ts) and converts its rows with the two
+   functions below. */
 
-/** PutCachedMyBookmarks(Group, Bookmarks) (C putCachedMyBookmarks$Action): PutCacheableObject(DirectoryCacheType
-    MyBookmarks, Group, Bookmarks, UnlimitedTimeToLiveSeconds). A copy of the list, as the record list is cloned. */
-export function putCachedMyBookmarks(group: string, bookmarks: readonly BookmarkItem[]): void {
-  putCacheableObject(DIRECTORY_CACHE_TYPE_MY_BOOKMARKS, group, [...bookmarks], UNLIMITED_TIME_TO_LIVE_SECONDS);
-}
+/** Domain row → the BookmarkItem record of the cache. Group = the block's BookmarkGroup input (the group that
+    DataActionGetAllBookmarksByGroup was asked for); DateCreatedUtc from the wire row. The domain row does not keep
+    Type, PhotoDetails and the DetailsJson attributes CountryCode, HouseHolderId, HouseholderName, MemberID,
+    ServiceType, SubdivisionID and SubdivisionName: they get the record defaults (Text "", Long Integer 0). No reader of
+    the cache uses them (AddBookmarkToCache reads ObjectId and DateCreatedUtc, RemoveBookmarkFromCache ObjectId, the
+    block the domain fields). */
+export const toCacheRecord = (row: BookmarkItem, group: string): BookmarkItemRecord => ({
+  Id: row.id,
+  Group: group,
+  ObjectType: row.objectType,
+  ObjectId: row.objectId,
+  Title: row.title,
+  DateCreatedUtc: row.dateCreatedUtc,
+  Image: row.image,
+  PhotoDetails: { Bucket: '', Path: '', SignedPath: '', Type: '' },
+  RecordDisabled: row.recordDisabled,
+  RecordNotAvailable: row.recordNotAvailable,
+  Note: row.note,
+  DetailsJson: {
+    AreasServed: row.details.areasServed,
+    ChildrenNames: row.details.childrenNames,
+    CountryCode: '',
+    CountryName: row.details.countryName,
+    HouseHolderId: '0',
+    HouseholdCount: row.details.householdCount,
+    HouseholderName: '',
+    IsDeceased: row.details.isDeceased,
+    IsMainHall: row.details.isMainHall,
+    LocalityID: row.details.localityId,
+    LocalityName: row.details.localityName,
+    MemberID: '0',
+    ServiceType: '',
+    ShareObjectTypeId: row.details.shareObjectTypeId,
+    SubdivisionID: '0',
+    SubdivisionName: '',
+  },
+  Type: '',
+});
 
-/** GetCachedMyBookmarks(Group) (C getCachedMyBookmarks$Action): GetCachedObject; on a hit AssignFromObject → Bookmarks
-    and CacheHit True. */
-export function getCachedMyBookmarks(group: string): { cacheHit: boolean; bookmarks: BookmarkItem[] } {
-  const cached = peekCacheableObject(DIRECTORY_CACHE_TYPE_MY_BOOKMARKS, group);
-  if (!cached.hit || !Array.isArray(cached.value)) return { cacheHit: false, bookmarks: [] };
-  return { cacheHit: true, bookmarks: [...(cached.value as BookmarkItem[])] };
-}
+/** BookmarkItem record of the cache → domain row: the record is the wire structure, so the wire mapper applies. */
+export const fromCacheRecord = (record: BookmarkItemRecord): BookmarkItem => toBookmarkItem(record);
 
 /** SendBookmarkedFeedbackMessage(IsCreate) (M:168-210): success message. */
 export function sendBookmarkedFeedbackMessage(isCreate: boolean): void {
