@@ -455,3 +455,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,fix,21411,refactor-dev,,P6-F12 sonnet (pass)
 2026-10-23,refactor,verify,15708,refactor-test,,P6-G1-A sonnet
 2026-10-23,refactor,other,0,refactor-docs,,P6-G1-A sonnet
+2026-10-23,refactor,other,25006,refactor-docs,,P6-G1-A sonnet
+2026-10-23,refactor,build,141525,refactor-dev,,P6-G1-B-Login opus

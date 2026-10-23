@@ -260,3 +260,7 @@ One line per event. Written by rf.py.
 - 2026-10-23T16:38:42 P6-G1-A stage test
 - 2026-10-23T16:51:47 P6-G1-A stage docs
 - 2026-10-23T16:52:26 P6-G1-A stage commit
+- 2026-10-23T16:52:27 P6-G1-A done 4146e93: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); diffcheck --move ok (10 origin tags); bundle within +5% (+4.3%)
+- 2026-10-23T16:52:37 P6-G1-B-Login started
+- 2026-10-23T16:52:37 P6-G1-B-Login stage dev
+- 2026-10-23T17:04:44 P6-G1-B-Login stage test
