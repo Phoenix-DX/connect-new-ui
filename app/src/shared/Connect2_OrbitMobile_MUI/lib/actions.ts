@@ -3,6 +3,7 @@
    migration/runtime-sources/Connect2_OrbitMobile_MUI.TimeFormat.js (global `TimeFormat`). A Date is "yyyy-MM-dd",
    handed to the JS nodes as a local-midnight Date (shared/lib/osDateTime.ts parseOsDate). */
 import { callAction } from '@/api/client/callAction';
+import { fetchBookletGuestsMaxRows, fetchBookletHelpersMaxRows } from '@/api/event';
 import { log } from '@/platform/log/log';
 import { setClientVar } from '@/platform/session/session';
 import { parseOsDate } from '@/shared/lib/osDateTime';
@@ -264,19 +265,17 @@ export async function checkDirectoryAccess(id: string, type: string): Promise<bo
   return !out.Response.RecordDisabled;
 }
 
-/** Set_BookletGuestsMaxRows (C:6515-6556): server action GetBookletGuestsMaxRows (no inputs;
-    `Connect2_OrbitMobile_MUI/ActionGetBookletGuestsMaxRows`, C:8466-8487, output BookletGuestsMaxRows Integer), then
-    the client variable BookletGuestsMaxRows = its output. A server error propagates (the flow has no handler). */
+/** Set_BookletGuestsMaxRows: the server action GetBookletGuestsMaxRows (no inputs; in the domain api/event,
+    fetchBookletGuestsMaxRows), then the client variable BookletGuestsMaxRows = its output (Integer). A server error
+    propagates (the flow has no handler). */
 export async function set_BookletGuestsMaxRows(): Promise<void> {
-  const out = await callAction('Connect2_OrbitMobile_MUI', 'ActionGetBookletGuestsMaxRows', {});
-  setClientVar('Connect2_OrbitMobile_MUI.BookletGuestsMaxRows', out.BookletGuestsMaxRows);
+  setClientVar('Connect2_OrbitMobile_MUI.BookletGuestsMaxRows', await fetchBookletGuestsMaxRows());
 }
 
-/** Set_BookletHelpersMaxRows (C:6557-6598): server action GetBookletHelpersMaxRows (C:8488-8509), then the client
-    variable BookletHelpersMaxRows = its output. */
+/** Set_BookletHelpersMaxRows: the server action GetBookletHelpersMaxRows (in the domain api/event,
+    fetchBookletHelpersMaxRows), then the client variable BookletHelpersMaxRows = its output. */
 export async function set_BookletHelpersMaxRows(): Promise<void> {
-  const out = await callAction('Connect2_OrbitMobile_MUI', 'ActionGetBookletHelpersMaxRows', {});
-  setClientVar('Connect2_OrbitMobile_MUI.BookletHelpersMaxRows', out.BookletHelpersMaxRows);
+  setClientVar('Connect2_OrbitMobile_MUI.BookletHelpersMaxRows', await fetchBookletHelpersMaxRows());
 }
 
 /** SetBookletMaxRows (C:6599-6620): Set_BookletGuestsMaxRows, then Set_BookletHelpersMaxRows (sequential: the second

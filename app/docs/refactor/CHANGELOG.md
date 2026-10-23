@@ -223,3 +223,8 @@
 - New `src/api/app/` (types, mapper, repository, keys, hooks, barrel) for the 6 app-start calls (SynchAppContext, AfterInitialize, Sync_Info_GetMain, CacheableMapEntities, CacheableHouseholds, CacheControl_Policies). `platform/bootstrap` and the `CacheControl_Policies` block call the repository functions; `ClientConfig` moved from `startup.ts` to `api/app`.
 - Not moved: GetUserInformation (P5-4), GetNumberUnreadMessages (P5-3), and the other 20 files of the "app" table in `calls-by-domain.md`, which are not app-start calls. `usePoliciesQuery` has no caller yet (P5-4).
 - Strict parity `--changed`: 64 of 64 routes clean for both references; exemptions `[]`. `move-map.csv` is unchanged (the row of `CacheControl_Policies` already points to `src/api/app/hooks.ts`; P5-4 rewrites the block).
+
+## P5-3-event - refactor(P5-3): add api/event
+
+- New `src/api/event/` (types, mapper, repository, keys, hooks, barrel) for 25 data actions and one mutation of 16 screens. The old `api.ts` and `types.ts` of these screens re-export it; the shared record types moved into `api/event/types.ts` and the two `structures.ts` files re-export them.
+- 25 hooks have no caller yet. Strict parity `--changed`: 64 of 64 routes clean for both references; exemptions `[]`. `move-map.csv` is unchanged.

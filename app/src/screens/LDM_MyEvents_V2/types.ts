@@ -1,43 +1,13 @@
-import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import type { EventFilterLocality } from '@/api/locality';
 
-/* Wire shapes of DataActionGetEventsForMyTimeline (analysis/calls.md; contract src/api/openapi.yaml). Long Integers
-   stay text. The wire shapes of DataActionGetEventLocalitiesForFilter are in the domain api/locality. */
-export type GetEventsForMyTimelineWire = ActionOutputs<
-  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_MyEvents_V2/DataActionGetEventsForMyTimeline'>
->;
-export type TimelineEventGroup_V2Wire = GetEventsForMyTimelineWire['Out_PastEvents']['List'][number];
-export type EventCalendar_V2Wire = GetEventsForMyTimelineWire['Out_UpcomingEvents']['List'][number];
-export type CalendarGuestItem_V2Wire = EventCalendar_V2Wire['Guests']['List'][number];
-
-/** CalendarGuestItem_V2 (Connect2_OrbitMobile_IS): one guest household of an event. */
-export type CalendarGuestItem = CalendarGuestItem_V2Wire;
-
-/** EventCalendar_V2 (Connect2_OrbitMobile_IS) with its guest list unwrapped. EventDate is Text (the view reads
-    TextToDate(EventDate), EventCard_Info_V2.mvc.js view), GuestCount is Text (In_GuestCount of EventCard_Guests). */
-export interface EventCalendar extends Omit<EventCalendar_V2Wire, 'Guests'> {
-  Guests: CalendarGuestItem[];
-}
-
-/** TimelineEventGroup_V2 (Connect2_OrbitMobile_BL): the past events of one month. */
-export interface TimelineEventGroup {
-  CurrentMonthDate: string;
-  EventsCalendar: EventCalendar[];
-}
+/* The wire shapes of DataActionGetEventLocalitiesForFilter are in the domain api/locality, and the wire shapes of
+   DataActionGetEventsForMyTimeline are in the domain api/event (contract src/api/openapi.yaml). */
 
 /** EventLocalitiesFilter (Connect2_OrbitMobile_BL): one locality choice of the timeline filter, the domain type of
     api/locality. */
 export type EventLocality = EventFilterLocality;
 
-/** EventCalendarFiltersAsText (Connect2_OrbitMobile_BL): PastEventFilters / SelectedFilters (dates "YYYY-MM-DD"). */
-export interface EventCalendarFiltersAsText {
-  FromDate: string;
-  ToDate: string;
-  Localities: EventLocality[];
-}
-
-/** GetEventsForMyTimeline outputs. */
-export interface MyTimelineData {
-  pastEvents: TimelineEventGroup[];
-  upcomingEvents: EventCalendar[];
-}
+/* The events of DataActionGetEventsForMyTimeline (EventCalendar_V2 with its guests CalendarGuestItem_V2, the past
+   events by month TimelineEventGroup_V2) and its filter EventCalendarFiltersAsText (dates "YYYY-MM-DD") are domain
+   types of api/event; this module keeps the names that the screen uses. */
+export type { CalendarGuestItem, EventCalendar, EventCalendarFiltersAsText, TimelineEventGroup } from '@/api/event';

@@ -1,9 +1,9 @@
 ## Result
 status: pass
-summary: Added the domain `app/src/api/event/` (types, mapper, repository, keys, hooks, index, 3 tests) with all 29 calls of the "event" table, including OrbitLanding's GetEventsByMemberId (M9). The 16 screen `api.ts`/`types.ts` re-export the domain under their old names; Connect2_OrbitMobile_MUI calls the booklet max-rows functions; the shared Orbit and Assemble records moved to the domain and are re-exported. Inputs and mappings are unchanged. Typecheck, lint, format, arch, the full test suite and the build pass.
+summary: Resolved the two conflicts of the prefetch patch on the main tree (LDM_MyEvents_V2 api.ts and types.ts): the locality re-exports of P5-2-locality and the event re-exports of this step both stay, and the event code is removed. I also removed one import in AssembleEvents/api.ts that the merge left unused. Typecheck, eslint, prettier and the 34 test files of the changed folders pass.
 
 ## Files changed
-Made in the prefetch worktree `/private/tmp/claude-501/-Users-khaitruong-Projects-connect-new/b1c0f7f3-a5be-42a8-b170-074abce216da/scratchpad/wt-event` (branch rf/prefetch-P5-3-event, base 35296b3). Nothing is committed. 44 code files, which is a little more than the limit of about 40. The step was not split.
+Main tree, branch refactor/architecture. Nothing is committed. 44 code files (9 new, 32 screen adapters, 3 shared), which is a little more than the limit of about 40. The step was not split.
 
 Added (9):
 app/src/api/event/types.ts
@@ -55,30 +55,27 @@ app/src/shared/Connect2_Assemble_MUI/lib/structures.ts
 app/src/shared/Connect2_OrbitMobile_MUI/lib/actions.ts
 app/src/shared/Connect2_OrbitMobile_MUI/lib/structures.ts
 
-Handoff (main tree):
+Handoff:
 migration/refactor/handoffs/P5-3-event/dev.md
 migration/refactor/handoffs/P5-3-event/exemptions.json
 
-Possible merge conflicts with the other prefetched patches:
-- api/locality also changes `screens/AssembleEvents/api.ts` (getSubdivisionName) and `screens/LDM_MyEvents_V2/api.ts` and `types.ts` (getEventLocalitiesForFilter, EventLocality). This step does not change these functions or that type. It replaces the two event calls and their types around them, so expect conflicts there. `LDM_MyEvents_V2/types.ts` keeps `EventLocality` as the wire type. The domain type `EventCalendarFiltersAsText.Localities` uses the same contract schema (Connect2_OrbitMobile_BL__EventLocalitiesFilter), so a locality domain type with the same fields can be assigned to it.
-- No file in common with api/update or api/app. This step does not change `shared/Connect2_LegacyShared/**`, `shared/UBTConnect_Utils/**`, `shared/UBTConnect/lib/actions.ts` or `platform/bootstrap/**`.
-- The functions of other domains stay in the changed screen files and keep their names: the signed-image helpers (ActionGetSignedImagesInBulk, app), getHouseholdCoordinates and getHouseholdMembers (household), the member re-export (OrbitAdminEventDetail), getAssembleEventContacts (message) and checkDirectoryAccess in OrbitMobile actions.ts (app).
+Index state: the master applied the patch with `git apply --3way`, so the 44 files are staged. I staged the two resolved files (LDM_MyEvents_V2 api.ts and types.ts) with `git add`. The fix in `app/src/screens/AssembleEvents/api.ts` (unused import removed) is NOT staged: that file shows `MM`. Stage it before the commit.
 
 ## Commands run
-All commands ran in the worktree with Node 24.21.0.
+All commands ran on the main tree with Node 24.21.0.
+git ls-files -u; grep for conflict markers in app/src → none after the resolution
 npm --prefix app run typecheck → exit 0
-npx vitest run src/api/event → exit 0; 3 files, 142 tests (mapper 16, repository 71, hooks 55)
-npx vitest run src/api/event src/shared/Connect2_OrbitMobile_MUI src/shared/Connect2_Assemble_MUI src/screens/AssembleEvents → exit 0; 31 files, 266 tests
-npx vitest run (full suite) → exit 0; 355 files, 1830 tests passed
-npx eslint <the 44 changed files> → exit 0; 0 problems
-npm run lint (eslint .) → 0 errors, 1 warning that was already there (src/components/ui/os/OSPopup/usePopupWidget.ts, rule 4)
-npx prettier --list-different <the 44 changed files>; npm run format:check → all files formatted
-npm run arch → 0 errors, 198 warnings. The 44 changed files have no new warning. The 9 api.ts files that no longer import legacy/os/os-wire (AssembleDetail, AssembleEvents, EventBooklet, EventDetail, HostSurvey, LDM_EventDetail_V2, OrbitAdminLanding, TransportDetail, ViewDocuments) no longer give a rule-9 warning. The rule-9 warnings of GuestArrangements, HelpersDetail, MilestoneDetail, OrbitAdminEventDetail, QRCodeGenerate (signed images), OrbitLanding (household) and LDM_MyEvents_V2 (locality) were there before. api/event imports only api/client and legacy/os (rule 7).
-npx vite build → exit 0 (built; the warning about chunks larger than 500 kB was already there)
-Parity was not run: there is no dev server for the worktree. The tester runs it.
+npx eslint <the 44 changed files> → first run: 1 error, `callAction` unused in src/screens/AssembleEvents/api.ts (both P5-2-locality and this step removed its last caller); after the fix: exit 0, 0 problems
+npx prettier --list-different <the 44 changed files> → exit 0, all formatted
+npx vitest run --maxWorkers=2 src/api/event src/api/locality src/shared/Connect2_Assemble_MUI src/shared/Connect2_OrbitMobile_MUI <the 16 changed screen folders> → exit 0; 34 files, 298 tests passed
+npm run lint:arch → 0 errors, 194 warnings (198 on the prefetch base); no warning in a changed api.ts or types.ts file; eslint . → 0 errors, 1 warning that was already there (OSPopup/usePopupWidget.ts)
+The full test suite, the build and parity were not run on the main tree: the tester runs them. The prefetch worktree ran the full suite (355 files, 1830 tests) and the build on the older base (35296b3).
 
 ## Deviations from the brief
-- File count: 44 code files, a little more than about 40 (9 new, 32 screen adapters, 3 shared). The step was not split.
+- Conflict resolution of `screens/LDM_MyEvents_V2/api.ts`: the file now holds only two re-exports. `getEventLocalitiesForFilter` comes from `fetchEventFilterLocalities` of api/locality (as committed in P5-2-locality), and `getEventsForMyTimeline` comes from `fetchEventsForMyTimeline` of api/event (this step). The local timeline call, `toEventCalendar` and `MyEventsVariables` (no importer) are removed. The `callAction` and `osList` imports are removed because nothing uses them.
+- Conflict resolution of `screens/LDM_MyEvents_V2/types.ts`: `EventLocality` stays the api/locality type `EventFilterLocality` (P5-2-locality). The event types come from api/event (this step). The timeline wire aliases (GetEventsForMyTimelineWire, TimelineEventGroup_V2Wire, EventCalendar_V2Wire, CalendarGuestItem_V2Wire) and the locality wire aliases are removed: no file imports them. `EventFilterLocality` can be assigned to the domain filter type `EventCalendarFiltersAsText.Localities` (typecheck passes).
+- `screens/AssembleEvents/api.ts`: the merge applied cleanly, but the `callAction` import was left with no user. I removed it. This is the only change to the main tree besides the two resolved files.
+- File count: 44 code files, a little more than about 40. The step was not split.
 - No call moved into a query. The screens still call the functions in their flows, under the old names. §5.4 therefore adds no exemption: exemptions.json is `[]`. The domain has 25 query hooks (one for each data action, staleTime 0, gcTime 0, no retry by default) and one mutation (GetScanEventQRCode). None of them has a caller yet, the same as useMemberQuery and useAllCountriesQuery. The three server-action reads (GetMilestoneScanFF, GetBookletGuestsMaxRows, GetBookletHelpersMaxRows) have no hook: only flows call them.
 - Shared record types moved into the domain, the same as CountryWithMapPosition in P5-2-country. These are DayFilter, OrbitEventTypeRecord, EventInfo, Event_Screen, OrbitMilestoneTypeRecord, MilestoneInfo, Milestone_Screen, MemberInformation, AssembleEventSummary and AssembleEventType. They are now defined in `api/event/types.ts`, and the two shared `structures.ts` files re-export them. The fields did not change.
 - The mappers are the old adapter code, moved as it was. The only change: the 8 local copies of the null-date helper are now one helper with the same result. Two copies of the MemberInformation mapper and the hand-written Assemble wire interfaces were also replaced by one mapper and the contract types. No field is dropped that was not dropped before. MemberInformation still drops Accommodation and HouseHolderId2. A search of src outside the mocks and the schema found no reader of either field.

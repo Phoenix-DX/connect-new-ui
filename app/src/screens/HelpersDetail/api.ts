@@ -1,6 +1,5 @@
 import { callAction } from '@/api/client/callAction';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
 import {
   cacheKeyPart,
@@ -8,57 +7,11 @@ import {
   getCacheKeyParts,
   type BulkCacheResult,
 } from '@/platform/storage/memoryCache';
-import type { HelperData, HelperDetailsVariablesWire, MemberInformationWire } from './types';
 
-/** Module and owner of the data action (screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/
-    ScreenBlock_HelperDetails/DataActionGetHelperDetails). On demand (dataFetchDependentsGraph without a start fetch,
-    HB :718-720): OnReady → RefreshData (HB :1309-1342), as captured (calls.md #1). HB =
-    analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_HelperDetails.mvc.js. */
-const MODULE = 'Connect2_OrbitMobile_MUI';
-
-/** OutSystems null DateTime / Date: kept as "" for the components (lib/actions.ts formatters treat "" as null). */
-const date = (value: string): string => (value.startsWith('1900-01-01') ? '' : value);
-
-/** MemberInformationRec → the record Card_MemberInformation takes (same field names). */
-const toMember = (w: MemberInformationWire): MemberInformation => ({
-  HouseholderId: w.HouseholderId,
-  MemberId: w.MemberId,
-  LocalityId: w.LocalityId,
-  Locality: w.Locality,
-  CountryCode: w.CountryCode,
-  FirstName: w.FirstName,
-  LastName: w.LastName,
-  Title: w.Title,
-  IsHouseholder: w.IsHouseholder,
-  IsSpouse: w.IsSpouse,
-  Age: w.Age,
-  Phone: w.Phone,
-  MiddayMeal: w.MiddayMeal,
-  EveningMeal: w.EveningMeal,
-  HasGuestArrangements: w.HasGuestArrangements,
-  HasOrbitAdminRole: w.HasOrbitAdminRole,
-  SignedPhotoURL: w.SignedPhotoURL,
-});
-
-/** DataActionGetHelperDetails (HB :726-752): Response.GetHelperHost_Response, the HelperData of OnAfterFetch_GetHelperHost
-    (HB :757-785). The server reads the block variables (In_EventId, In_HostId). */
-export async function getHelperDetails(vars: HelperDetailsVariablesWire): Promise<HelperData> {
-  const out = await callAction(MODULE, 'ScreenBlock_HelperDetails/DataActionGetHelperDetails', vars);
-  const r = out.Response.GetHelperHost_Response;
-  return {
-    EventDetails: {
-      Id: r.EventDetails.Id,
-      Name: r.EventDetails.Name,
-      Location: r.EventDetails.Location,
-      StartDate: date(r.EventDetails.StartDate),
-      EndDate: date(r.EventDetails.EndDate),
-    },
-    Helpers: osList(r.Helpers).map((h) => ({
-      Role: h.Role,
-      MemberInformation: osList(h.MemberInformation).map(toMember),
-    })),
-  };
-}
+/* DataActionGetHelperDetails of ScreenBlock_HelperDetails (on demand: OnReady → RefreshData; the server reads the
+   block variables In_EventId and In_HostId) is in the domain api/event. This module keeps the name that the screen
+   uses. */
+export { fetchHelperDetails as getHelperDetails } from '@/api/event';
 
 /* Connect2_LegacyShared GetCacheableSignedImageURL (runtime-sources/Connect2_LegacyShared.controller.js, `LS:<n>`): the
    photo source of Card_MemberInformation (its getSignedImageURL input) and of BuildMemberCallData (HB :1043-1060). */

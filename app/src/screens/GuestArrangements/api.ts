@@ -7,85 +7,11 @@ import {
   getCacheKeyParts,
   type BulkCacheResult,
 } from '@/platform/storage/memoryCache';
-import type {
-  GuestArrangementsResult,
-  GuestArrangementsVariablesWire,
-  MilestoneTransportItem,
-  MilestoneTransportScreenWire,
-} from './types';
 
-/** Module and owner of the data action (screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks/
-    ScreenBlock_GuestArrangements/DataActionGetGuestArrangements). On demand (dataFetchActionNames without a start
-    fetch, SB :1463): OnReady → RefreshData (SB :1549-1582). SB = analysis/sources/Connect2_OrbitMobile_MUI.
-    Orbit_ScreenBlocks.ScreenBlock_GuestArrangements.mvc.js. */
-const MODULE = 'Connect2_OrbitMobile_MUI';
-
-/** OutSystems null DateTime / Date: kept as "" for the components (the formatters treat "" as null). */
-const dateTime = (value: string): string => (value === '' || value.startsWith('1900-01-01') ? '' : value);
-
-const transport = (w: MilestoneTransportScreenWire): MilestoneTransportItem => {
-  const t = w.MilestoneTransport;
-  return {
-    MilestoneTransport: {
-      Title: t.Title,
-      Type: t.Type,
-      TravelIdentifier: t.TravelIdentifier,
-      Notes: t.Notes,
-      SequenceNo: t.SequenceNo,
-      MilestoneInfo: {
-        DepartureLocation: t.MilestoneInfo.DepartureLocation,
-        ArrivalLocation: t.MilestoneInfo.ArrivalLocation,
-        MilestoneStartDateTime: dateTime(t.MilestoneInfo.MilestoneStartDateTime),
-        MilestoneEndDateTime: dateTime(t.MilestoneInfo.MilestoneEndDateTime),
-      },
-    },
-    OrbitMilestoneType: {
-      IconTransportDeparture: w.OrbitMilestoneType.IconTransportDeparture,
-      IconTransportArrival: w.OrbitMilestoneType.IconTransportArrival,
-    },
-  };
-};
-
-/** DataActionGetGuestArrangements (SB :1435-1460): Response (GetGuestArrangements_ScreenRec), which
-    OnAfterFetch_GetGuestArrangements copies into GuestArrangementsData (SB :1521-1548), and HasData (the view's data
-    branch and the footer, SB :335, :1342). The server reads the block variables (In_MemberId, In_EventId, …). */
-export async function getGuestArrangements(vars: GuestArrangementsVariablesWire): Promise<GuestArrangementsResult> {
-  const out = await callAction(MODULE, 'ScreenBlock_GuestArrangements/DataActionGetGuestArrangements', vars);
-  const r = out.Response;
-  return {
-    HasData: out.HasData,
-    Response: {
-      MemberId: r.MemberId,
-      Title: r.Title,
-      FirstName: r.FirstName,
-      LastName: r.LastName,
-      EventDetails: {
-        Id: r.EventDetails.Id,
-        Name: r.EventDetails.Name,
-        Location: r.EventDetails.Location,
-        StartDate: dateTime(r.EventDetails.StartDate),
-        EndDate: dateTime(r.EventDetails.EndDate),
-      },
-      SpecialNeeds: osList(r.SpecialNeeds).map((s) => ({
-        HouseholderId: s.HouseholderId,
-        MemberId: s.MemberId,
-        LocalityId: s.LocalityId,
-        Title: s.Title,
-        FirstName: s.FirstName,
-        LastName: s.LastName,
-        SignedPhotoURL: s.SignedPhotoURL,
-        SpecialNeeds: osList(s.SpecialNeeds).map((n) => ({ Category: n.Category, Type: n.Type, Notes: n.Notes })),
-      })),
-      ArrivalDetails: osList(r.ArrivalDetails).map(transport),
-      MealDetails: osList(r.MealDetails).map((m) => ({
-        MilestoneDateTime: dateTime(m.MilestoneDateTime),
-        MiddayMeal: m.MiddayMeal,
-        EveningMeal: m.EveningMeal,
-      })),
-      DepartureDetails: osList(r.DepartureDetails).map(transport),
-    },
-  };
-}
+/* DataActionGetGuestArrangements of ScreenBlock_GuestArrangements (on demand: OnReady → RefreshData; the server reads
+   the block variables In_MemberId, In_EventId, ...) is in the domain api/event. This module keeps the name that the
+   screen uses. */
+export { fetchGuestArrangements as getGuestArrangements } from '@/api/event';
 
 /* Connect2_LegacyShared GetCacheableSignedImageURL (runtime-sources/Connect2_LegacyShared.controller.js, `LS:<n>`): the
    photo source of Card_MemberInformation (its getSignedImageURL input), as in HelpersDetail. */

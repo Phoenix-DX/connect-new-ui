@@ -1,33 +1,18 @@
-import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { Event_Screen } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 
-/* ---- Wire shapes (api.ts and mocks.ts only) ----
-   The data action of ScreenBlock_AdminLanding and the screen's server action GetMilestoneScanFF, typed by the API
-   contract (src/api/openapi.yaml; captured shape analysis/calls.md § DataActionGet_AdminEventsList). */
+/* ---- Wire shapes (mocks.ts only) ----
+   The data action of ScreenBlock_AdminLanding, typed by the API contract (src/api/openapi.yaml; captured shape
+   analysis/calls.md § DataActionGet_AdminEventsList). */
 
-/** Endpoint of the data action of ScreenBlock_AdminLanding (screenservices/Connect2_OrbitMobile_MUI/
-    Orbit_ScreenBlocks_AdminFlow/ScreenBlock_AdminLanding/DataActionGet_AdminEventsList). */
-type AdminEventsListPath = PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList'>;
-
-export type Get_AdminEventsListWire = ActionOutputs<AdminEventsListPath>;
+export type Get_AdminEventsListWire = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList'>
+>;
 
 /** GetAdminOrbitEvents_ScreenRec: OrbitSummaryItem (AdminOrbitSummaryItemRec) + OrbitEventType. */
 export type AdminOrbitEventsWire = Get_AdminEventsListWire['Response']['List'][number];
 
-/** The block variables OutSystems sends with the data action (screenData.variables, analysis/calls.md: IsFetchingData,
-    EventsSummary, UserFirstName, UserMemberId). EventsSummary echoes the client list and is left out, as in the other
-    routes' data actions (the contract makes every variable optional). */
-export type AdminLandingVariablesWire = Required<
-  Pick<ActionInputs<AdminEventsListPath>, 'IsFetchingData' | 'UserFirstName' | 'UserMemberId'>
->;
-
-export type GetMilestoneScanFFWire = ActionOutputs<PathOf<'UBTConnect', 'ActionGetMilestoneScanFF'>>;
-
-/* ---- Domain (components) ---- */
-
-/** One row of EventsSummary: the record Card_Event takes (the view's typeConvertRecord to Event_ScreenRec,
-    ScreenBlock_AdminLanding.mvc.js view :301-308) and the row's TypeFriendly, which the card click passes on (:325). */
-export interface AdminEventItem {
-  event: Event_Screen;
-  typeFriendly: string;
-}
+/* ---- Domain (components) ----
+   The block variables that the data action sends (IsFetchingData, UserFirstName, UserMemberId) and one row of
+   EventsSummary (the Event_ScreenRec of Card_Event and the TypeFriendly that the card click passes on) are domain
+   types of api/event; this module keeps the names that the screen uses. */
+export type { AdminEventItem, AdminEventsCallInputs as AdminLandingVariablesWire } from '@/api/event';

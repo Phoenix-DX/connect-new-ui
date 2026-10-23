@@ -7,29 +7,11 @@ import {
   getCacheKeyParts,
   type BulkCacheResult,
 } from '@/platform/storage/memoryCache';
-import type { EventQRCodeData, EventQRCodeVariablesWire } from './types';
 
-/** Module and owner of the data action (screenservices/Connect2_OrbitMobile_MUI/Orbit_ScreenBlocks_QRCode/
-    ScreenBlock_GenerateQRCode/DataActionGet_EventQRCode). On demand (dataFetchDependentsGraph without a start fetch,
-    SB :621-626): OnReady → RefreshData → Refresh Query (SB :749-812). SB = analysis/sources/Connect2_OrbitMobile_MUI.
-    Orbit_ScreenBlocks_QRCode.ScreenBlock_GenerateQRCode.mvc.js. */
-const MODULE = 'Connect2_OrbitMobile_MUI';
-
-/** DataActionGet_EventQRCode (SB :632-659): Response (GetEventQRCode_ScreenRec), which OnAfterFetch copies into
-    QRCodeData (SB :813-836). The server reads the block variables (In_EventId, In_MemberId, …). */
-export async function getEventQRCode(vars: EventQRCodeVariablesWire): Promise<EventQRCodeData> {
-  const out = await callAction(MODULE, 'ScreenBlock_GenerateQRCode/DataActionGet_EventQRCode', vars);
-  const r = out.Response.GetEventQRCodeResponse;
-  return {
-    GetEventQRCodeResponse: {
-      GuestRole: r.GuestRole,
-      QrCodeImage: r.QrCodeImage,
-      Seats: osList(r.Seats).map((s) => ({ MilestoneName: s.MilestoneName, SeatAllocation: s.SeatAllocation })),
-      Tag: r.Tag,
-    },
-    QRCodeAsBinary: out.Response.QRCodeAsBinary,
-  };
-}
+/* DataActionGet_EventQRCode of ScreenBlock_GenerateQRCode (on demand: OnReady → RefreshData → Refresh Query; the
+   server reads the block variables In_EventId, In_MemberId, ...) is in the domain api/event. This module keeps the name
+   that the screen uses. */
+export { fetchEventQRCode as getEventQRCode } from '@/api/event';
 
 /* Connect2_LegacyShared GetCacheableSignedImageURL (runtime-sources/Connect2_LegacyShared.controller.js, `LS:<n>`): the
    photo of the pass (SB :781-789). Same port as the other Orbit routes' api.ts. */

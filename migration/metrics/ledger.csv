@@ -406,3 +406,11 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,review,35878,refactor-advisor,,"W1 G2 cache fields, opus (a, medium)"
 2026-10-23,refactor,review,35441,refactor-advisor,,"W1 G2 cache fields, fable (a, high)"
 2026-10-23,refactor,other,28543,refactor-docs,,P5-2-app sonnet
+2026-10-23,refactor,build,448485,refactor-dev,,P5-3-event opus
+2026-10-23,BookmarksByGroup,fix,32935,g2-test,,"G2 tester sonnet: ci pass, diff pass, parity blocked (no Playwright in the worktree)"
+2026-10-23,BookmarksByGroup,fix,15243,g2-test,,"G2 parity rerun sonnet: 3 states, 0 differences"
+2026-10-23,BookmarksByGroup,review,36345,refactor-advisor,,"W2 G2 review, opus (confirm, high)"
+2026-10-23,BookmarksByGroup,review,36146,refactor-advisor,,"W2 G2 review, fable (confirm, high)"
+2026-10-23,refactor,build,49144,refactor-dev,,P5-3-event opus
+2026-10-23,refactor,verify,24145,refactor-test,,P5-3-event sonnet
+2026-10-23,refactor,other,27516,refactor-docs,,P5-3-event sonnet

@@ -1,16 +1,11 @@
 # Test: G2 (one record shape in the MyBookmarks cache), worktree wt-main
 
-Status: blocked (parity could not run; everything else passes)
+Status: pass
 
 ## Commands run (from the worktree root, Node 24)
 - Server check: 5175 returns 200 for /UBTConnect/HomeFeed; vite cwd is the worktree `app`.
 - `npm --prefix app run ci`: exit 0 (gen:api, typecheck, lint, format:check, 324 files / 1458 tests, vite build).
-- `route.py parity BookmarksByGroup --app http://localhost:5175`: "3 states with differences or errors", but the cause is the
-  environment, not the code. First run: "playwright not found" (the worktree has no root node_modules). Second run with
-  NODE_PATH=<worktree>/app/node_modules: "browserType.launch: Executable doesn't exist
-  .../ms-playwright/chromium_headless_shell-1234/..." (the installed Playwright expects a browser build that is not in the
-  cache). No page was rendered, so the parity result does not count. I did not install anything (not allowed).
-  Fix for the master: `npx playwright install` (or run parity with the Playwright of the main tree), then re-run step 2.
+- `NODE_PATH=<main>/node_modules route.py parity BookmarksByGroup --app http://localhost:5175` (re-run): parity clean; default, loading, offline: 0 differences in every category, only exempted entries; pixels 0.06% / 10.57% (exempted loading timeout) / 0.01%.
 
 ## Diff review
 1. openapi.yaml, mocks fixtures, CSS: no change. Pass.

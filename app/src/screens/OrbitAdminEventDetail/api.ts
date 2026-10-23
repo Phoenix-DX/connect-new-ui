@@ -7,19 +7,10 @@ import {
   getCacheKeyParts,
   type BulkCacheResult,
 } from '@/platform/storage/memoryCache';
-import type {
-  AdminEventDetailInputs,
-  AdminEventDetailVariablesWire,
-  EventInformation,
-  ScanEventQRCodeResult,
-  ScannedMember,
-  ScannedQRCodeInfoWire,
-} from './types';
+import type { AdminEventDetailInputs } from './types';
 
 /* SB = migration/runtime-sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail
    .mvc.js; SCR = migration/runtime-sources/UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminEventDetail.mvc.js. */
-
-const MODULE = 'Connect2_OrbitMobile_MUI';
 
 /** OutSystems null DateTime as a URL input (ServerDataConverter.asString of the null date). */
 const NULL_DATE_TIME = '1900-01-01T00:00:00';
@@ -38,72 +29,19 @@ export function readInputs(params: URLSearchParams): AdminEventDetailInputs {
   };
 }
 
-/** DataActionGet_EventInformation (data action of ScreenBlock_AdminEventDetail, on demand: RefreshData, SB ctrl
-    :840-870, :1321-1354; dataFetchDependenciesOriginal -1 :774-776). No input parameters; the block variables travel
-    as screenData.variables. */
-export async function getEventInformation(vars: AdminEventDetailVariablesWire): Promise<EventInformation> {
-  const out = await callAction(MODULE, 'ScreenBlock_AdminEventDetail/DataActionGet_EventInformation', vars);
-  return { hasQRCode: out.HasQRCode, orbitEventType: out.OrbitEventType };
-}
+/* DataActionGet_EventInformation of ScreenBlock_AdminEventDetail (on demand: RefreshData; the block variables travel
+   with it) and the server action GetScanEventQRCode of the block (the check-in of the scanned member: ScannedQRCodeInfo
+   with EventId, the id, names, locality and country of the member, and the admin from the cached user record) are in
+   the domain api/event. This module keeps the names that the block uses. */
+export type { ScannerAdmin } from '@/api/event';
+export {
+  fetchAdminEventInformation as getEventInformation,
+  fetchScanEventQRCode as getScanEventQRCode,
+} from '@/api/event';
 
 /* GetMemberByMemberId(MemberId) (server action of the block): the scanned member. It is in the domain api/member; this
    module keeps the name that the block uses, until it imports the domain name. */
 export { fetchMember as getMemberByMemberId } from '@/api/member';
-
-/** The scanning admin as ScannerAdminInfo takes it (from the cached user record, SB ctrl :1008-1016). */
-export interface ScannerAdmin {
-  MemberId: string;
-  FirstName: string;
-  LastName: string;
-  Locality: string;
-  Country: string;
-}
-
-/** GetScanEventQRCode(ScannedQRCodeInfo) (server action of the block, SB ctrl :806-839): the check-in of the scanned
-    member at the event. ScannedQRCodeInfo as OnHandle_ScanCode builds it (SB ctrl :996-1018): EventId, the scanned
-    member's id, names, locality and country, and the admin; the other attributes keep their defaults. */
-export async function getScanEventQRCode(
-  eventId: string,
-  memberId: string,
-  member: ScannedMember,
-  admin: ScannerAdmin,
-): Promise<ScanEventQRCodeResult> {
-  const scannedQRCodeInfo: ScannedQRCodeInfoWire = {
-    EventId: eventId,
-    MilestoneId: '',
-    MilestoneType: '',
-    ScanDate: NULL_DATE_TIME,
-    ScannedUserInformation: {
-      MemberId: memberId,
-      MemberFirstName: member.FirstName,
-      MemberLastName: member.Lastname,
-      MemberLocality: member.LocalityName,
-      MemberCountry: member.CountryName,
-      MemberRole: '',
-      MemberGuestRole: '',
-      MemberTag: '',
-      MemberRowAllocation: '',
-      MemberRowAllocations: wireList([]),
-      MemberSeatingPlan: '',
-    },
-    ScannerAdminInfo: {
-      AdminMemberId: admin.MemberId,
-      AdminFirstName: admin.FirstName,
-      AdminLastName: admin.LastName,
-      AdminLocality: admin.Locality,
-      AdminCountry: admin.Country,
-    },
-  };
-  const out = await callAction(MODULE, 'ActionGetScanEventQRCode', { ScannedQRCodeInfo: scannedQRCodeInfo });
-  const r = out.Response;
-  return {
-    UserRole: r.UserRole,
-    Seats: osList(r.Seats).map((s) => ({ MilestoneName: s.MilestoneName, SeatAllocation: s.SeatAllocation })),
-    Tag: r.Tag,
-    GuestRole: r.GuestRole,
-    Status: { Success: r.Status.Success, ErrorMessage: r.Status.ErrorMessage },
-  };
-}
 
 /* Connect2_LegacyShared GetCacheableSignedImageURL (runtime-sources/Connect2_LegacyShared.controller.js, `LS:<n>`),
    called by OnHandle_ScanCode for the scanned member's photo (SB ctrl :972-976). Same port as HelpersDetail's (the

@@ -1,5 +1,4 @@
-import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { Event_Screen, Milestone_Screen } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 
 /* ---- Wire shapes (api.ts and mocks.ts only) ----
    The two data actions of ScreenBlock_OrbitLanding, typed by the API contract (CR-OrbitLanding-1;
@@ -21,52 +20,15 @@ export type HouseholdMemberWire = Get_HouseholdMembersWire['Response']['List'][n
 export type OrbitEventsSummaryWire = Get_EventsByMemberIdWire['Response']['List'][number];
 export type OrbitSummaryItemWire = OrbitEventsSummaryWire['OrbitSummaryItem'];
 
-/** The block variables OutSystems sends with both data actions (screenData.variables; analysis/calls.md). The list
-    and record variables (HouseholdMembersList, EventsSummary, YearsSelection, PopupMeasurements) echo the client
-    state and are left out, as in the other routes' data actions (the contract makes every variable optional). */
-export type OrbitLandingVariablesWire = Required<
-  Pick<
-    ActionInputs<OrbitLandingPath<'DataActionGet_EventsByMemberId'>>,
-    | 'SelectedMemberId'
-    | 'IsFetchingData'
-    | 'EventFilter'
-    | 'SortEventsASC'
-    | 'Popup_SortByOpened'
-    | 'Popup_FiltersOpened'
-    | 'CurrentMemberId'
-  >
->;
-
-/* ---- Domain (components) ---- */
+/* ---- Domain (components) ----
+   The block variables that both data actions send, one row of EventsSummary (an event or a milestone, as the record
+   that its card takes), a year of the Filters popup and the outputs of DataActionGet_EventsByMemberId are domain types
+   of api/event; this module keeps the names that the screen uses. */
+export type { EventsSummaryItem, OrbitLandingCallInputs as OrbitLandingVariablesWire, YearItem } from '@/api/event';
 
 /** A household member of the selection bar. */
 export interface HouseholdMember {
   memberId: string;
   firstName: string;
   isSelected: boolean;
-}
-
-/** One row of EventsSummary: an event or a milestone, already converted to the record its card takes (the view's
-    typeConvertRecord, ScreenBlock_OrbitLanding.mvc.js view :566-575 and :612-620). Dates are null when OutSystems
-    has its null date. */
-export interface EventsSummaryItem {
-  /** OrbitMilestoneType.Id <> NullTextIdentifier() (view :562). */
-  isMilestone: boolean;
-  sequenceNo: number;
-  /** End of the row for the Upcoming / Past filter: MilestoneEndDateTime of a milestone, EndEventDate of an event. */
-  endDateTime: string | null;
-  event: Event_Screen;
-  milestone: Milestone_Screen;
-}
-
-/** A year of the Filters popup. */
-export interface YearItem {
-  year: string;
-  isSelected: boolean;
-  count: number;
-}
-
-export interface EventsByMemberIdResult {
-  events: EventsSummaryItem[];
-  yearFilter: YearItem[];
 }

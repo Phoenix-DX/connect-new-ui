@@ -210,3 +210,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T13:30:21 P5-2-app stage test
 - 2026-10-23T13:43:36 P5-2-app stage docs
 - 2026-10-23T13:44:37 P5-2-app stage commit
+- 2026-10-23T13:44:46 P5-2-app done 36df9c9: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+1.9%)
+- 2026-10-23T13:44:58 P5-3-event started
+- 2026-10-23T13:44:59 P5-3-event stage dev
+- 2026-10-23T13:49:04 P5-3-event stage test
+- 2026-10-23T13:58:58 P5-3-event stage docs
+- 2026-10-23T13:59:42 P5-3-event stage commit
