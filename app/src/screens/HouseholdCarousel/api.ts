@@ -1,4 +1,3 @@
-import { callAction } from '@/api/client/callAction';
 import type { CarouselPreloadedHouseholds } from '@/shared/UBTConnect/lib/structures';
 import type { HouseholdCarouselInputs } from './types';
 
@@ -6,18 +5,15 @@ import type { HouseholdCarouselInputs } from './types';
    :371); EntitiesCarousel's HouseholdDetails_Block slides, BottomBarMenu and CommonUI_InsideLayout make their own calls.
    Its one server call is the swipe action's UpdateItem_MarkAsRead (below). */
 
+/* The server action UpdateItem_MarkAsRead (In_UpdateItemId) of the swipe action Directory_Updates_CarouselSwipeAction
+   is in the domain api/update. No outputs (CR-HouseholdCarousel-1). This module keeps the name that the screen uses. */
+export { markCarouselUpdateItemAsRead as updateItemMarkAsRead } from '@/api/update';
+
 const osLongInput = (v: string | null): string => (v === null || v === '' ? '0' : v);
 
 /** In_StartingHouseholdId (Long Integer) from the query string, OutSystems default 0 when absent (mvc.js :77-79). */
 export function readHouseholdCarouselInputs(params: URLSearchParams): HouseholdCarouselInputs {
   return { In_StartingHouseholdId: osLongInput(params.get('In_StartingHouseholdId')) };
-}
-
-/** Server action UpdateItem_MarkAsRead(In_UpdateItemId) of Directory_Updates_CarouselSwipeAction
-    (`screenservices/UBTConnect/ActionUpdateItem_MarkAsRead`, UBTConnect.controller.js:18574-18584): no output
-    (CR-HouseholdCarousel-1). */
-export async function updateItemMarkAsRead(updateItemId: string): Promise<void> {
-  await callAction('UBTConnect', 'ActionUpdateItem_MarkAsRead', { In_UpdateItemId: updateItemId });
 }
 
 /* Mock phase only (Q1 → A): the original gets its households only from the previous screen's preload object and is

@@ -1,8 +1,3 @@
-import { callAction } from '@/api/client/callAction';
-
-/** RequestPhotoUpdate (Menu.mvc.js:723-745, screenservices/UBTConnect/App_Menu/Menu/ActionRequestPhotoUpdate): no
-    inputs; Out_IsSuccess is returned but the screen does not read it (:1020-1025). */
-export async function requestPhotoUpdate(): Promise<boolean> {
-  const out = await callAction('UBTConnect', 'ActionRequestPhotoUpdate', {});
-  return out.Out_IsSuccess;
-}
+/* The server action RequestPhotoUpdate of the screen (no inputs; the screen does not read Out_IsSuccess) is in the
+   domain api/update. This module keeps the name that the screen uses. */
+export { requestPhotoUpdate } from '@/api/update';

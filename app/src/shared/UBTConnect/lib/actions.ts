@@ -8,6 +8,7 @@ import type {
   UI_SubdivisionHousehold,
 } from './structures';
 import { callAction } from '@/api/client/callAction';
+import { fetchUnreadUpdateItemsCount } from '@/api/update';
 import { MOCKS_BUILT } from '@/platform/config/config';
 import { log } from '@/platform/log/log';
 import { osList } from '@/legacy/os/os-wire';
@@ -91,13 +92,12 @@ const diffMinutes = (from: string, to: string) => Math.trunc((Date.parse(`${to}Z
 
 /** Directory_Updates_RefreshBottomBarCount (UBTConnect.controller.js): when the last check is older than
     Directory_Updates_UnreadCount_CheckFrequency_Minut minutes (or ForceRefresh), Get_UI_UpdateItems_UnreadCount_All
-    sets Directory_Updates_UnreadCount and the check time. */
+    (api/update) sets Directory_Updates_UnreadCount and the check time. */
 export async function directory_Updates_RefreshBottomBarCount(forceRefresh = false): Promise<void> {
   const lastCheck = getClientVar('UBTConnect.Directory_Updates_UnreadCount_LastCheck');
   const frequency = getClientVar('UBTConnect.Directory_Updates_UnreadCount_CheckFrequency_Minut');
   if (!(diffMinutes(lastCheck, currDateTime()) >= frequency || forceRefresh)) return;
-  const out = await callAction('UBTConnect', 'ServiceAPIGet_UI_UpdateItems_UnreadCount_All', {});
-  setClientVar('UBTConnect.Directory_Updates_UnreadCount', out.UnreadCount);
+  setClientVar('UBTConnect.Directory_Updates_UnreadCount', await fetchUnreadUpdateItemsCount());
   setClientVar('UBTConnect.Directory_Updates_UnreadCount_LastCheck', currDateTime());
 }
 

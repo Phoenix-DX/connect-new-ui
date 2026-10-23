@@ -17,3 +17,19 @@ Two mappers keep only the fields that the UI reads: GetUserLocalitiesForCountryC
 The seven old caller files re-export it under their old names. The household calls of Locality_Details stay for the household domain.
 
 `GetLocalityInformation` keeps the full contract record (`LocalityInformation`), because the memory cache and the client action that bookmarks a locality clone it. The mappers of subdivision details, all localities and bulk subdivisions keep only the fields that the UI reads. The five hooks (`useLocalityCardListQuery`, `useLocalityDetailsQuery`, `useInterchangesQuery`, `useSubdivisionDetailsQuery`, `useAllLocalitiesQuery`) have no caller yet; they set `staleTime: 0`, `gcTime: 0` and `retry: false`.
+
+`update/` has the same files. It holds 9 actions.
+
+- DataActionFetchUpdates, ServiceAPIAction_UI_UpdateItem_MarkAsRead and MarkAsUnread (HomeFeed)
+- DataActionFetchUpdates, DataActionGetDateRanges and the service actions MarkAsRead, MarkAsUnread and MarkAllAsRead (Updates_SingleList)
+- ActionUpdateItem_MarkAsRead (HouseholdCarousel)
+- ActionRequestPhotoUpdate (Menu)
+- ServiceAPIGet_UI_UpdateItems_UnreadCount_All (`shared/UBTConnect/lib/actions.ts`).
+
+One `UpdateItem` type has two mappers: `toFeedUpdateItem` keeps the null date "1900-01-01" (HomeFeed) and `toUpdateItem` gives "" for it (Updates_SingleList). The old `api.ts` and `types.ts` files of HomeFeed, Updates_SingleList, HouseholdCarousel and Menu re-export the domain under their old names.
+
+`directory_Updates_RefreshBottomBarCount` in `shared/UBTConnect/lib/actions.ts` gets the unread count from `fetchUnreadUpdateItemsCount`.
+
+`useFeedUpdatesQuery` has the key `updateKeys.feed()` and keeps `retry: false`. The other calls stay imperative calls in their flows.
+
+`requestPhotoUpdate` is in `update/` only because of its name. A later step can move it to `member/`.

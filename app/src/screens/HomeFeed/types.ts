@@ -1,5 +1,4 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { LongId } from '@/legacy/os/os-wire';
 
 /* Wire types from the contract (src/api/openapi.yaml), through the callAction types. */
 type GetServicesPath = PathOf<'UBTConnect', 'FeedBlock_Services/DataActionGetServices'>;
@@ -41,20 +40,7 @@ export interface ExternalAppPopUpInfo {
   iconId: string;
 }
 
-/** Connect_Updates_CS.UI_UpdateItem as FeedBlock_Updates and the share sheet use it. */
-export interface UpdateItem {
-  updateItemId: LongId;
-  updateItemTypeId: string;
-  householdId: LongId;
-  memberId: string;
-  name: string;
-  /** Date, `YYYY-MM-DD`; `1900-01-01` stays as OutSystems sends it (Update_ListItem formats it). */
-  date: string;
-  genderId: string;
-  locationString: string;
-  parentsNames: string;
-  birthType: string;
-  isRead: boolean;
-  hasAccess: boolean;
-  hasShare: boolean;
-}
+/* An update item of FeedBlock_Updates and the share sheet (Connect_Updates_CS UI_UpdateItem; the date "1900-01-01"
+   stays as OutSystems sends it) is a domain type of api/update. This module keeps the name that the screen and the
+   block use. */
+export type { UpdateItem } from '@/api/update';

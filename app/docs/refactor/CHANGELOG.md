@@ -212,3 +212,8 @@
 - New `src/api/locality/` (types, mapper, repository, keys, hooks, barrel) for 11 calls. They are in BrowseDirectory, AssembleEvents, LDM_MyEvents_V2, Locality_Details (4), Connect2_LegacyShared (2), SupperMeeting_DetailsBlock and CacheControl_AllLocalities. The 7 old caller files re-export it under their old names. The 5 hooks have no caller yet.
 - `GetLocalityInformation` keeps its full record, because the client action that bookmarks a locality clones it. Mappers keep only the fields that the UI reads for `SubdivisionDetails`, `AllLocalities` and `SubdivisionInformation`. The developer worked in a prefetch worktree (M8).
 - Strict parity `--changed`: 64 of 64 routes clean for both references. `move-map.csv` has one row for these calls, `CacheControl_AllLocalities`, which already points to `src/api/locality/hooks.ts` and is unchanged.
+
+## P5-2-update - refactor(P5-2): add api/update
+
+- New `src/api/update/` (types, mapper, repository, keys, hooks, barrel) for 9 actions. One `UpdateItem` type has two mappers (feed keeps the date "1900-01-01", list gives ""). The old `api.ts` and `types.ts` of HomeFeed, Updates_SingleList, HouseholdCarousel and Menu re-export it; `shared/UBTConnect/lib/actions.ts` gets the bottom-bar unread count from the repository.
+- The developer worked in a prefetch worktree (M8). `requestPhotoUpdate` sits in `api/update` only because of its name; a later step can move it to `api/member`. The first test run failed on `loading` states at a load average of about 110. A rerun at normal load gave 64/64 on both references (load flakes). `move-map.csv` is unchanged (no row for these calls).

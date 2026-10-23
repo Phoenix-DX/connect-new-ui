@@ -79,6 +79,8 @@ P5-2-locality: the 11 actions of this table (7 files, 11 distinct actions, count
 | `screens/Updates_SingleList/api.ts` | UBTConnect | `ServiceAPIAction_UI_UpdateItem_MarkAllAsRead`, `ServiceAPIAction_UI_UpdateItem_MarkAsRead`, `ServiceAPIAction_UI_UpdateItem_MarkAsUnread`, `Updates_SingleList/DataActionFetchUpdates`, `Updates_SingleList/DataActionGetDateRanges` |
 | `shared/UBTConnect/lib/actions.ts`  | UBTConnect | `ServiceAPIGet_UI_UpdateItems_UnreadCount_All`                                                                                                                                                                                        |
 
+P5-2-update: the 9 actions of this table (5 files, 9 distinct actions, counts unchanged) are now in `src/api/update/repository.ts`. The `api.ts` files above re-export it; `shared/UBTConnect/lib/actions.ts` calls `fetchUnreadUpdateItemsCount`. Open item: `ActionRequestPhotoUpdate` is in this table only because of its name; a later step can move `requestPhotoUpdate` to `api/member`.
+
 ## event
 
 | File                                             | Module                   | Actions                                                                                                                                                                                                                 |

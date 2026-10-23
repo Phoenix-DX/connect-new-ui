@@ -1,7 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { callAction } from '@/api/client/callAction';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import type { ExternalAppPopUpInfo, ServicesData, ServicesPage, UpdateItem, UpdateItemWire } from './types';
+import type { ExternalAppPopUpInfo, ServicesData, ServicesPage } from './types';
+
+/* DataActionFetchUpdates of FeedBlock_Updates and the two read-state service actions are in the domain api/update.
+   This module keeps the names that the block uses. */
+export {
+  markUpdateItemAsRead as markAsRead,
+  markUpdateItemAsUnread as markAsUnread,
+  useFeedUpdatesQuery as useFetchUpdates,
+} from '@/api/update';
 
 /** OutSystems NullDate() as it travels on the wire (ShareSheet In_UpdateDate when nothing is shared). */
 export const NULL_DATE = '1900-01-01';
@@ -52,45 +60,4 @@ export function useGetServices(variables: () => GetServicesVariables) {
     },
     retry: false,
   });
-}
-
-const toUpdateItem = (w: UpdateItemWire): UpdateItem => ({
-  updateItemId: w.UpdateItemId,
-  updateItemTypeId: w.UpdateItemTypeId,
-  householdId: w.HouseholdId,
-  memberId: w.MemberId,
-  name: w.Name,
-  date: w.Date,
-  genderId: w.GenderId,
-  locationString: w.LocationString,
-  parentsNames: w.ParentsNames,
-  birthType: w.BirthType,
-  isRead: w.IsRead,
-  hasAccess: w.HasAccess,
-  hasShare: w.HasShare,
-});
-
-/** DataActionFetchUpdates of FeedBlock_Updates (Updates.mvc.js:609-625), fetched at start; sends the block's
-    CarouselPreloadedHouseholds variable (empty at fetch time). */
-export function useFetchUpdates() {
-  return useQuery({
-    queryKey: ['HomeFeed', 'FeedBlock_Updates/DataActionFetchUpdates'],
-    queryFn: async (): Promise<UpdateItem[]> => {
-      const out = await callAction('UBTConnect', 'FeedBlock_Updates/DataActionFetchUpdates', {
-        CarouselPreloadedHouseholds: { CarouselHouseholdItem: wireList([]) },
-      });
-      return osList(out.UI_UpdateItemList).map(toUpdateItem);
-    },
-    retry: false,
-  });
-}
-
-/** Action_UI_UpdateItem_MarkAsRead (Updates.mvc.js:583-590): UpdateItemId as Long Integer text. */
-export async function markAsRead(updateItemId: string): Promise<void> {
-  await callAction('UBTConnect', 'ServiceAPIAction_UI_UpdateItem_MarkAsRead', { UpdateItemId: updateItemId });
-}
-
-/** Action_UI_UpdateItem_MarkAsUnread (Updates.mvc.js:592-599). */
-export async function markAsUnread(updateItemId: string): Promise<void> {
-  await callAction('UBTConnect', 'ServiceAPIAction_UI_UpdateItem_MarkAsUnread', { UpdateItemId: updateItemId });
 }

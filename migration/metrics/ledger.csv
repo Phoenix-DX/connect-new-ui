@@ -392,3 +392,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,verify,1667,refactor-tester,,P5-F9 sonnet (rest of 31667)
 2026-10-23,refactor,build,334575,refactor-dev,,P5-2-locality opus
 2026-10-23,refactor,verify,69967,refactor-test,,P5-2-locality sonnet
+2026-10-23,refactor,build,210561,refactor-dev,,P5-2-update opus
+2026-10-23,refactor,other,47784,refactor-docs,,P5-2-locality sonnet
+2026-10-23,refactor,verify,45441,refactor-test,,P5-2-update sonnet

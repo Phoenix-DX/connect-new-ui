@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P5-2-locality",
+  "step": "P5-2-update",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T12:10:52"
+  "since": "2026-10-23T13:11:19"
  },
  "steps": {
   "P0-1": {
@@ -339,11 +339,24 @@
    "finished": "2026-10-23T10:26:50"
   },
   "P5-2-locality": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T12:00:07",
    "tokens": {
     "dev": 334575,
-    "test": 69967
+    "test": 69967,
+    "docs": 47784
+   },
+   "commit": "b314574",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+1.5%)",
+   "loops": 0,
+   "finished": "2026-10-23T12:10:53"
+  },
+  "P5-2-update": {
+   "status": "active",
+   "started": "2026-10-23T12:10:53",
+   "tokens": {
+    "dev": 210561,
+    "test": 45441
    }
   }
  },
