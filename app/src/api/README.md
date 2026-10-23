@@ -86,6 +86,10 @@ The domain has 2 query hooks and 2 mutation hooks with no caller yet.
 
 `feed/` has the same files, without a mapper. It holds one call: DataActionGetFeedConfig of Embedded_FeedCMS. `useFeedConfigQuery` (inputs FeedItemId and B2CTenant) is called by `useEmbeddedFeed` in `platform/session`, which gives the answer to the `FeedCms` component as `config`. The block reads the wire record as it is.
 
+`service/` has the same files. It holds 2 calls of Services: DataActionGetServices (`fetchUserServices`) and Service_ConnectServices_ChangeOrder_Bulk (`changeServicesOrder`). The domain is chosen by the data that it owns (decision W8): no other domain owns Connect_Services_CS.
+
+The route's `api.ts` and `types.ts` are deleted. `useUserServicesQuery` keeps the old options (`gcTime: 0`, `staleTime: Infinity`, `retry: false`); its key is `serviceKeys.user()`. `changeServicesOrder` has no hook: the page flow calls it.
+
 `member/` also holds DataActionFetchCount (FeedBlock_CommunityPopulation). `useCommunityPopulationQuery` is called by HomeFeed and CountryList.
 
 The queries of `feed/` and the count query of `member/` set `staleTime: 0`, `gcTime: 0`, `retry: false` and `refetchOnReconnect: false`, as the old effects did. They set `meta.errorLog` (a message). `logQueryError` in `client/queryClient.ts` logs it with `log.warn` when the fetch fails, so that `api/` does not import `platform/log`.

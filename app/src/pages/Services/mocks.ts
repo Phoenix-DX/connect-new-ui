@@ -1,9 +1,16 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { fixtureData } from '@/mocks/fixtures';
 import { collection } from '@/mocks/store';
 import { osList } from '@/legacy/os/os-wire';
-import type { ConnectServicesWire, CurrentServiceWire } from './types';
+
+/** DataActionGetServices of the Services screen, as the contract describes it. */
+type GetServicesOutputsWire = ActionOutputs<PathOf<'UBTConnect', 'Services/DataActionGetServices'>>;
+/** Connect_Services_CS.Connect_Services. */
+type ConnectServicesWire = GetServicesOutputsWire['AvailableServices']['List'][number];
+/** UBTConnect.Connect_ServicesConnect_Service_UserRecord. */
+type CurrentServiceWire = GetServicesOutputsWire['CurrentServices']['List'][number];
 
 /* Services (P-MOCKS, P-MUTATION).
    - Services/DataActionGetServices: the recorded TST answer (fixture 02-f72786df.json, re-recorded read-only with the

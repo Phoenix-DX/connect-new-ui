@@ -1,7 +1,6 @@
-// @os-block SortableJS.Sortable.SortableList
 import { useEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { setupList, type DragEndHandler } from './actions';
+import { setupList, type DragEndHandler } from './setupList';
 
 export interface SortableListProps {
   /** OutSystems instance id of the block (e.g. `$b3`). */
@@ -17,7 +16,8 @@ export interface SortableListProps {
 }
 
 /** SortableJS Sortable.SortableList (SortableList.mvc.js view :160-176): a ListPlaceholder container; OnReady runs
-    SetupList on it (controller :320-345, GetObj JS node passes the Handler that raises OnDragEnd). */
+    SetupList on it (controller :320-345, GetObj JS node passes the Handler that raises OnDragEnd).
+    @origin SortableJS.Sortable.SortableList */
 export function SortableList({
   id,
   group = '',

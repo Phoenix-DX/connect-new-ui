@@ -427,3 +427,9 @@
 
 - CommunityPopulation, EmbeddedFeed, FeedCms and NotificationIcon are props-only. Their flows are in `platform/session/useNotificationIcon.ts` and `useEmbeddedFeed.ts`. Calls: `useCommunityPopulationQuery` in `api/member`, `useFeedConfigQuery` in the new domain `api/feed`. 17 baseline rows removed.
 - HomeFeed first load is 245.99 kB gzip (+0.42 kB, limit 248.22), accepted under W21 with a tripwire on F17. The page part (FeedBlock_* split, `pages/HomeFeed/api.ts`) moves to the step P6-G3-B-HomeFeed-Page (W22). The HomeFeed page row of `move-map.csv` stays open.
+
+## P6-G3-B-Services - refactor(P6-G3-B): Services as page
+
+- Services is a page: hook `hooks/useServices.ts`, pure state `hooks/servicesState.ts` (Action_ChangeOrderLocal), 7 props-only components. `api.ts` and `types.ts` are deleted.
+- New domain `api/service` (W8) and new module `platform/feedback/bubbleErrors.ts` (`raiseBubbledToFlowHandler`). The query key changed to `serviceKeys.user()`; no other code reads it.
+- HomeFeed first load 245.91 kB gzip (limit 248.22). Decision W23 (`isAlive` guards state writes only) is in `page-template.md`.

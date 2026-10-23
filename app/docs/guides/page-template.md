@@ -57,6 +57,12 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
     first render. Then `onReady` runs once (`restored` is true after a back navigation). `onParametersChanged` runs
     only when the parameters key changes, never after the first render. `isAlive` turns false at the next run and on
     unmount. A rejection of either flow goes to the flow handler.
+  - Rule for `isAlive` (decision W23): `isAlive` guards state writes only.
+    - App-level side effects of a flow that already started run to the end after unmount: toast, navigation,
+      counters, notification-opened and other server calls. Do not put them behind `isAlive`.
+    - Use a once-guard so that StrictMode does not run them twice.
+    - Write one unit test per screen. It unmounts the screen while the flow is pending. The side effects must run
+      once and no state may change.
   - Example, from `containers/HouseholdDetails/hooks/useHouseholdDetails.ts`:
 
     ```ts

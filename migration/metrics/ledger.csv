@@ -572,3 +572,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,review,36292,refactor-advisor,,"W22, fable"
 2026-10-24,refactor,verify,29268,refactor-test,,P6-G3-B-HomeFeed sonnet
 2026-10-24,refactor,other,45977,refactor-docs,,P6-G3-B-HomeFeed sonnet
+2026-10-24,refactor,build,279075,refactor-dev,,P6-G3-B-Services opus
+2026-10-24,refactor,review,41726,refactor-advisor,,"W23, opus"
+2026-10-24,refactor,review,42319,refactor-advisor,,"W23, fable"
+2026-10-24,refactor,verify,31880,refactor-test,,P6-G3-B-Services sonnet
+2026-10-24,refactor,other,41855,refactor-docs,,P6-G3-B-Services sonnet

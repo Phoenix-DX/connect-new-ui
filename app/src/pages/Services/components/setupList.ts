@@ -1,9 +1,8 @@
 import Sortable, { type MoveEvent, type SortableEvent } from 'sortablejs';
-import type { CurrentService, Service } from '@/pages/Services/types';
 
 /* ---- SortableJS.SetupList (SortableJS.controller.js:94-492, JavaScript node), web port ----
-   Expando properties of the original (placeholder._dropMarker / _pendingMove / _dragStart, list._sortableInstance) are
-   kept in WeakMaps. */
+   The SortableList block runs it on its ListPlaceholder when it is ready. Expando properties of the original
+   (placeholder._dropMarker / _pendingMove / _dragStart, list._sortableInstance) are kept in WeakMaps. */
 
 export type DragEndHandler = (fromId: string, toId: string, oldIndex: number, newIndex: number, itemId: string) => void;
 
@@ -215,83 +214,4 @@ export function setupList(
     }
     sortableInstances.set(list, new Sortable(list, options));
   });
-}
-
-/* ---- Services.Action_ChangeOrderLocal (Services.mvc.js:1380-1535) ---- */
-
-export interface ServicesLists {
-  currentServices: CurrentService[];
-  availableServices: Service[];
-}
-
-/** OutSystems List insert / remove / getItem check the index and raise on a wrong one (OutSystems.js checkIndex). */
-function checkIndex(length: number, index: number, allowEnd = false): void {
-  if (index < 0 || index > length || (index === length && !allowEnd)) throw new Error('Index out of range');
-}
-
-/** The lists after the move, or null when NewOrder = OldOrder (nothing changes, HasChanges stays). Ported as is,
-    including the zero-based adjustment (NewOrder - 1, OldOrder - 1) applied to every caller. */
-export function action_ChangeOrderLocal(
-  lists: ServicesLists,
-  referenceServices: Service[],
-  newOrderIn: number,
-  oldOrderIn: number,
-  isFromFavoriteList: boolean,
-  isToFavoriteList: boolean,
-  itemId: string,
-  userId: number,
-): ServicesLists | null {
-  if (newOrderIn === oldOrderIn) return null;
-  const current = [...lists.currentServices];
-  const available = [...lists.availableServices];
-  const isReorderingFavorites = isFromFavoriteList && isToFavoriteList;
-  const isRemovingFavorites = isFromFavoriteList && !isToFavoriteList;
-  const isAddingFavorites = isToFavoriteList && !isFromFavoriteList;
-  const newOrder = newOrderIn - 1;
-  const oldOrder = oldOrderIn - 1;
-  let localService: CurrentService;
-  if (isAddingFavorites) {
-    // GetReferenceService (ListFilter) .Current: the first match, or the default record when none
-    const reference = referenceServices.find((p) => p.id === itemId);
-    localService = {
-      service: reference ?? {
-        id: '',
-        label: '',
-        order: 0,
-        isActive: false,
-        iconId: '',
-        isMandatory: false,
-        startAsDefault: false,
-      },
-      serviceUser: { id: null, connectServiceId: itemId, userId, order: 0, lastChangedOn: null },
-    };
-  } else {
-    const position = current.findIndex((p) => p.service.id === itemId); // GetCurrentService (ListIndexOf)
-    checkIndex(current.length, position);
-    localService = current[position] as CurrentService;
-  }
-  let insert = true;
-  if (isRemovingFavorites) {
-    checkIndex(current.length, oldOrder);
-    current.splice(oldOrder, 1); // ListRemove
-    available.splice(0, 0, localService.service); // ListInsert3 at 0
-    insert = false;
-  } else if (isReorderingFavorites) {
-    checkIndex(current.length, oldOrder);
-    current.splice(oldOrder, 1); // ListRemove2
-  } else if (isAddingFavorites) {
-    const position = available.findIndex((p) => p.id === itemId); // GetAvailableItem
-    if (position !== -1) available.splice(position, 1); // ListRemove3
-  } else {
-    insert = false; // neither list is Favourites: break
-  }
-  if (insert) {
-    checkIndex(current.length, newOrder, true);
-    current.splice(newOrder, 0, localService); // ListInsert2
-  }
-  // Foreach CurrentServices: Connect_Service_User.Order = CurrentRowNumber + 1
-  return {
-    currentServices: current.map((c, i) => ({ ...c, serviceUser: { ...c.serviceUser, order: i + 1 } })),
-    availableServices: available,
-  };
 }
