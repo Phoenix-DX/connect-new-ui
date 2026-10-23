@@ -1,12 +1,12 @@
-// @os-block UBTConnect.App_Notifications.NotificationsListBreakpoints
+/** @origin UBTConnect.App_Notifications.NotificationsListBreakpoints */
+import type { NotificationBreakpoint, NotificationItem } from '@/api/notification';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import type { Breakpoint, NotificationItem } from '@/pages/Notifications/types';
 import { NotificationsList } from './NotificationsList';
 import { Notifications_Header } from './Notifications_Header';
 
 export interface NotificationsListBreakpointsProps {
   id?: string;
-  breakpoints: Breakpoint[];
+  breakpoints: NotificationBreakpoint[];
   isLoading?: boolean;
   uiNotificationItemList: NotificationItem[];
 }

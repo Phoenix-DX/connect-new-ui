@@ -1,4 +1,4 @@
-// @os-block UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem
+/** @origin UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem */
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { SanitizedHtml } from '@/shared/ReactiveHtmlSanitizer/SanitizedHtml';

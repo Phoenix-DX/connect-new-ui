@@ -147,11 +147,10 @@ P6-G1-B-Menu: `ActionRequestPhotoUpdate` moved to `src/api/member/repository.ts`
 
 ## notification
 
-| File                                        | Module                | Actions                                                                               |
-| ------------------------------------------- | --------------------- | ------------------------------------------------------------------------------------- |
-| `api/notification/repository.ts`            | Connect2_LegacyShared | `ActionWrapper_NotificationOpened`                                                    |
-| `pages/MessageList/hooks/useMessageList.ts` | Connect2_LegacyShared | `ActionWrapper_MarkAllAsReadNotifications`                                            |
-| `screens/Notifications/api.ts`              | UBTConnect            | `Notifications/DataActionFetchNotifications`, `Notifications/DataActionGetDateRanges` |
+| File                                        | Module                            | Actions                                                                                                                   |
+| ------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `api/notification/repository.ts`            | Connect2_LegacyShared, UBTConnect | `ActionWrapper_NotificationOpened`, `Notifications/DataActionFetchNotifications`, `Notifications/DataActionGetDateRanges` |
+| `pages/MessageList/hooks/useMessageList.ts` | Connect2_LegacyShared             | `ActionWrapper_MarkAllAsReadNotifications`                                                                                |
 
 ## app
 

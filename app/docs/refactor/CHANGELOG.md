@@ -462,3 +462,8 @@
 - Updates_SingleList is a page: hook `hooks/useUpdatesSingleList.ts` (on `useFlowState`, new optional `restore(saved)` option), pure state `hooks/updatesSingleListState.ts`, component `UpdatesList`. `api.ts` and `types.ts` are deleted; the page calls `@/api/update`.
 - MainLayoutFixedTitle: the stories use empty OSBlock stand-ins, so its 3 baseline rows are removed (49 rows left).
 - The Updates_SingleList chunk is +0.60 kB gzip, because it now loads `useFlowState`. The HouseholdDetails, Profile and Search chunks are 0.11 to 0.16 kB smaller. HomeFeed first load is 246.00 kB gzip (limit 248.22).
+
+## P6-G3-B-Notifications - refactor(P6-G3-B): Notifications as page
+
+- Notifications is a page: hook `hooks/useNotifications.ts`, pure state `hooks/notificationsState.ts`. It uses `useReducer` and a `latest` ref, not `useFlowState`: the view cache keeps 3 variables, and `useFlowState` restores the old list too. One record `App_Notifications.Notifications` replaces 3 keys.
+- `api.ts` and `types.ts` are deleted; the hook calls `@/api/notification`. W23 tests cover the unmount case. The `// @os-block` tags are now `@origin` (script `migration/tools/refactor/os-block-to-origin.py`).

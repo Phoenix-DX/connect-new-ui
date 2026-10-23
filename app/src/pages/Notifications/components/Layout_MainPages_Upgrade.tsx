@@ -1,4 +1,4 @@
-// @os-block UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade
+/** @origin UBTConnectLibrary.Layouts.Layout_MainPages_Upgrade */
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';

@@ -1,9 +1,14 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { recordedHandler } from '@/mocks/fixtures';
 import { currDateTime } from '@/shared/lib/osDateTime';
 import { wireList } from '@/legacy/os/os-wire';
-import type { MessageListItemWire } from './types';
+
+/** The wire shape of a notification (Connect2_Notification_CS.MessageListItem), as the contract types it. */
+type MessageListItemWire = ActionOutputs<
+  PathOf<'UBTConnect', 'Notifications/DataActionFetchNotifications'>
+>['UI_NotificationItemList']['List'][number];
 
 /* DataActionGetDateRanges: the recorded fixture (UBTConnect/DataActionGetDateRanges/01-e1d555a6.json, re-recorded
    read-only with the static-entity ids kept: Today, Last 7 Days, Last 30 Days, Older; Q1, user 2026-10-15). The answer

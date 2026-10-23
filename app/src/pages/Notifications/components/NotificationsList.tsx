@@ -1,9 +1,9 @@
-// @os-block UBTConnect.App_Notifications.NotificationsList
+/** @origin UBTConnect.App_Notifications.NotificationsList */
 import { useState } from 'react';
+import type { NotificationBreakpoint, NotificationItem } from '@/api/notification';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import type { Breakpoint, NotificationItem } from '@/pages/Notifications/types';
 import { dateTimeToText, itemsOfRange } from './actions';
 import { Notification_ListItem } from './Notification_ListItem';
 
@@ -11,7 +11,7 @@ export interface NotificationsListProps {
   id: string;
   inNotificationItemList: NotificationItem[];
   isLoading?: boolean;
-  currentBreakpoint: Breakpoint;
+  currentBreakpoint: NotificationBreakpoint;
 }
 
 /** UBTConnect.App_Notifications.NotificationsList (p:…NotificationsList.mvc.js): OnInitialize keeps the items of the

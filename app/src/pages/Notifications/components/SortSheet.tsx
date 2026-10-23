@@ -1,4 +1,4 @@
-// @os-block UBTConnect.App_CommonBlocks_Filter.SortSheet
+/** @origin UBTConnect.App_CommonBlocks_Filter.SortSheet */
 import { useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';

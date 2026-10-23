@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G3-B-Updates_SingleList",
+  "step": "P6-G3-B-Notifications",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T02:45:02"
+  "since": "2026-10-24T02:56:46"
  },
  "steps": {
   "P0-1": {
@@ -898,12 +898,25 @@
    "finished": "2026-10-24T02:34:03"
   },
   "P6-G3-B-Updates_SingleList": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T02:34:14",
    "tokens": {
     "dev": 313215,
     "test": 39501,
     "docs": 31414
+   },
+   "commit": "830c8e5a",
+   "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); arch baseline 49 rows (3 removed); bundle HomeFeed 246.00/248.22, Login 187.00/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T02:45:03"
+  },
+  "P6-G3-B-Notifications": {
+   "status": "active",
+   "started": "2026-10-24T02:45:03",
+   "tokens": {
+    "dev": 243732,
+    "test": 32943,
+    "docs": 29225
    }
   }
  },
