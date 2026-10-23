@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { toHousehold, toHouseholdCoordinates, type HouseholdWire } from './mapper';
+import {
+  toHousehold,
+  toHouseholdCaption,
+  toHouseholdCaptionInputs,
+  toHouseholdCoordinates,
+  toLocalityHouseholdIds,
+  toLocalityHouseholdIdsInputs,
+  type HouseholdWire,
+} from './mapper';
 
 type MemberWire = HouseholdWire['Out_HouseholdMembers']['List'][number];
 
@@ -190,5 +198,77 @@ describe('household mapper', () => {
         HouseholdCoordinates: { Latitude: '-41.2865', Longitude: '174.7762', UseCoordinates: true },
       }),
     ).toEqual({ Latitude: '-41.2865', Longitude: '174.7762', UseCoordinates: true });
+  });
+});
+
+/* The two calls of the Photobook screen. Fictional households. */
+describe('household mapper: Photobook', () => {
+  const marlowe = { householdId: '7001', householdName: 'Ada & Tom Marlowe', locality: 'Nelson' };
+  const harlow = { householdId: '7002', householdName: 'Ben Harlow', locality: 'Nelson' };
+
+  it('toLocalityHouseholdIds unwraps the list in the server order', () => {
+    expect(
+      toLocalityHouseholdIds({
+        Out_LocalityHouseholdIds: {
+          List: [
+            { HouseholdId: '7001', HouseholdName: 'Ada & Tom Marlowe', Locality: 'Nelson' },
+            { HouseholdId: '7002', HouseholdName: 'Ben Harlow', Locality: 'Nelson' },
+          ],
+        },
+      }),
+    ).toEqual([marlowe, harlow]);
+    expect(toLocalityHouseholdIds({ Out_LocalityHouseholdIds: { List: [] } })).toEqual([]);
+  });
+
+  it('toLocalityHouseholdIdsInputs sends the screen variables and inputs with their wire names, in screen order', () => {
+    const wire = toLocalityHouseholdIdsInputs({
+      inHouseholdId: '7002',
+      inLocalityId: '252',
+      isLoading: true,
+      selectedHousehold: { id: '7002', position: 0 },
+    });
+    expect(wire).toEqual({
+      IsLoading: true,
+      SelectedHousehold: { Id: '7002', Position: 0 },
+      In_HouseholdId: '7002',
+      In_LocalityId: '252',
+    });
+    expect(Object.keys(wire)).toEqual(['IsLoading', 'SelectedHousehold', 'In_HouseholdId', 'In_LocalityId']);
+  });
+
+  it('toHouseholdCaptionInputs sends the block inputs and variables with their wire names, in block order', () => {
+    const wire = toHouseholdCaptionInputs({
+      inCurrentHousehold: harlow,
+      inIsShow: true,
+      inMainContainerClass: 'photobook-carousel',
+      infoSheetId: 'sheet-1',
+      lastFetched: marlowe,
+      isLoading: true,
+    });
+    expect(wire).toEqual({
+      In_CurrentHousehold: { HouseholdId: '7002', HouseholdName: 'Ben Harlow', Locality: 'Nelson' },
+      In_IsShow: true,
+      In_MainContainerClass: 'photobook-carousel',
+      InfoSheetId: 'sheet-1',
+      LastFetched: { HouseholdId: '7001', HouseholdName: 'Ada & Tom Marlowe', Locality: 'Nelson' },
+      isLoading: true,
+    });
+    expect(Object.keys(wire)).toEqual([
+      'In_CurrentHousehold',
+      'In_IsShow',
+      'In_MainContainerClass',
+      'InfoSheetId',
+      'LastFetched',
+      'isLoading',
+    ]);
+  });
+
+  it('toHouseholdCaption keeps the caption and the household it belongs to', () => {
+    expect(
+      toHouseholdCaption({
+        HouseholdCaption: 'HARLOW (Ben - Nelson)',
+        LastFetchedHousehold: { HouseholdId: '7002', HouseholdName: 'Ben Harlow', Locality: 'Nelson' },
+      }),
+    ).toEqual({ householdCaption: 'HARLOW (Ben - Nelson)', lastFetchedHousehold: harlow });
   });
 });

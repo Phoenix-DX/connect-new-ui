@@ -97,3 +97,5 @@ The route's `api.ts` and `types.ts` are deleted; `useSearch` in `pages/Search/ho
 `member/` also holds DataActionFetchCount (FeedBlock_CommunityPopulation). `useCommunityPopulationQuery` is called by HomeFeed and CountryList.
 
 The queries of `feed/` and the count query of `member/` set `staleTime: 0`, `gcTime: 0`, `retry: false` and `refetchOnReconnect: false`, as the old effects did. They set `meta.errorLog` (a message). `logQueryError` in `client/queryClient.ts` logs it with `log.warn` when the fetch fails, so that `api/` does not import `platform/log`.
+
+`household/` also holds the two Photobook calls: DataActionGetLocalityHouseholdIds (`fetchLocalityHouseholdIds`, called by `usePhotobook`) and DataActionGetHouseholdCaption (`fetchHouseholdCaption`, called by `useHouseholdCaption`). The old `api.ts` and `types.ts` of Photobook are deleted. The request shapes are `LocalityHouseholdIdsCallInputs` and `HouseholdCaptionCallInputs`; `SelectedHousehold`, `PhotobookHousehold` and `HouseholdCaption` are in `household/types.ts`. The flows call the repository functions.

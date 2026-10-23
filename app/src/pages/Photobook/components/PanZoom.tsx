@@ -1,4 +1,4 @@
-// @os-block PanZoom.PanZoom
+/** @origin PanZoom.PanZoom.PanZoom */
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { panzoom } from '@/vendor/panzoom';
 

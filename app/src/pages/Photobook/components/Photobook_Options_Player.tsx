@@ -1,4 +1,4 @@
-// @os-block Directory_Photobook.Photobook_Options_Player
+/** @origin UBTConnect.Directory_Photobook.Photobook_Options_Player */
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';

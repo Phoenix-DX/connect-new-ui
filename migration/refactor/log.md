@@ -534,3 +534,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T04:42:58 P6-G4-B-HouseholdCarousel stage test
 - 2026-10-24T05:01:53 P6-G4-B-HouseholdCarousel stage docs
 - 2026-10-24T05:03:14 P6-G4-B-HouseholdCarousel stage commit
+- 2026-10-24T05:03:16 P6-G4-B-HouseholdCarousel done b2d3c2de: ci: pass (re-run after F20, 2681 tests); parity visual --changed: 4/0 (OutSystems), 4/0 (self); arch baseline 75 rows (10 removed); bundle HomeFeed 244.19/248.22, Login 184.19/193.84 kB gzip; W23 holds
+- 2026-10-24T05:03:16 P6-G4-B-Photobook started
+- 2026-10-24T05:03:16 P6-G4-B-Photobook stage dev
+- 2026-10-24T05:04:03 P6-G4-B-Photobook stage test
+- 2026-10-24T05:08:06 P6-G4-B-Photobook stage docs
+- 2026-10-24T05:09:05 P6-G4-B-Photobook stage commit

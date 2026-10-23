@@ -630,3 +630,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,P6-F20,19990,refactor-developer,,"F20 flake fix, sonnet"
 2026-10-24,refactor,verify,14451,refactor-test,,P6-G4-B-HouseholdCarousel sonnet
 2026-10-24,refactor,other,34937,refactor-docs,,P6-G4-B-HouseholdCarousel sonnet
+2026-10-24,refactor,build,291411,refactor-dev,,P6-G4-B-Photobook opus
+2026-10-24,refactor,verify,35625,refactor-test,,P6-G4-B-Photobook sonnet
+2026-10-24,refactor,other,34130,refactor-docs,,P6-G4-B-Photobook sonnet

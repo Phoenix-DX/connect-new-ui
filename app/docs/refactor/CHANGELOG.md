@@ -518,3 +518,9 @@
 - `pages/HouseholdCarousel` is a page with the hook `useHouseholdCarousel`, the actions file `householdCarouselActions.ts` (from `components/logic.ts`) and `inputs.ts`. `api.ts` and `types.ts` are deleted. The hook keeps `useViewState` and an `unmounted` guard on the state writes (W23). A failed MarkAsRead during a swipe still shows no message, as before.
 - EntitiesCarousel, EntitiesCarousel_Element and EntitiesCarousel_HouseholdDetails have props only, with the slot `renderHouseholdDetails`. The page renders `HouseholdDetailsContainer` in it. 10 rows removed from `arch-baseline.csv`.
 - SupperMeeting_Carousel first load about -9.4 kB gzip (it no longer loads the container). Storybook: story V3 of EntitiesCarousel_Element keeps its call-to-action section loading.
+
+## P6-G4-B-Photobook - refactor(P6-G4-B): Photobook as page
+
+- `pages/Photobook` is a page. The screen flow is in `usePhotobook` (on `useFlowState`) and the pure `photobookState.ts`; the caption flow is in `useHouseholdCaption`, which `Photobook_Options_Left` calls. `inputs.ts` holds the call inputs. `api.ts` and `types.ts` are deleted.
+- The 2 calls (GetLocalityHouseholdIds, GetHouseholdCaption) are in `api/household`. A back navigation with a restored list does not call again; a restored view without a list calls again.
+- W23: after unmount only state writes are skipped. A late failure of GetLocalityHouseholdIds is not raised, as in the old page; the caption flow still raises.

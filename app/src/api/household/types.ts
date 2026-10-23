@@ -86,3 +86,46 @@ export interface HouseholdCoordinates {
   Longitude?: string;
   UseCoordinates?: boolean;
 }
+
+/* The households of the Photobook screen (Directory_Photobook): its list of the locality households and the caption
+   of one household (Photobook_Options_Left). */
+
+/** A household of the Photobook (Connect_Household_CS UI_PhotobookHousehold). */
+export interface PhotobookHousehold {
+  householdId: string;
+  householdName: string;
+  locality: string;
+}
+
+/** The selected household of the Photobook (UBTConnect SelectedHousehold): its id and its position in the list. */
+export interface SelectedHousehold {
+  id: string;
+  position: number;
+}
+
+/** What DataActionGetLocalityHouseholdIds sends: the screen inputs and the screen variables, read at fetch time. The
+    server action has no inputs of its own. */
+export interface LocalityHouseholdIdsCallInputs {
+  inHouseholdId: string;
+  inLocalityId: string;
+  isLoading: boolean;
+  selectedHousehold: SelectedHousehold;
+}
+
+/** What DataActionGetHouseholdCaption sends: the block inputs and the block variables of Photobook_Options_Left. */
+export interface HouseholdCaptionCallInputs {
+  inCurrentHousehold: PhotobookHousehold;
+  inIsShow: boolean;
+  inMainContainerClass: string;
+  infoSheetId: string;
+  lastFetched: PhotobookHousehold;
+  isLoading: boolean;
+}
+
+/** The outputs of DataActionGetHouseholdCaption. */
+export interface HouseholdCaption {
+  /** The caption as HTML text (the block sanitizes it). */
+  householdCaption: string;
+  /** The household of the caption. */
+  lastFetchedHousehold: PhotobookHousehold;
+}

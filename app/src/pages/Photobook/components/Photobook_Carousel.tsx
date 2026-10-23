@@ -1,5 +1,6 @@
-// @os-block Directory_Photobook.Photobook_Carousel
+/** @origin UBTConnect.Directory_Photobook.Photobook_Carousel */
 import { useEffect, useRef, useState } from 'react';
+import type { PhotobookHousehold, SelectedHousehold } from '@/api/household';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { Carousel } from '@/shared/osui/Carousel';
@@ -8,7 +9,6 @@ import { carousel_SetCurrentPosition } from '@/shared/UBTConnect/lib/actions';
 import type { SplideConfigs } from '@/shared/osui/lib/structures';
 import { BooleanTypes, CarouselNavigation, Photobook_Speed } from '@/shared/UBTConnect/lib/staticEntities';
 import { getClientVar, setClientVar } from '@/platform/session/session';
-import type { PhotobookHousehold, SelectedHousehold } from '@/pages/Photobook/types';
 import { Photobook_Gallery } from './Photobook_Gallery';
 import { Photobook_Item } from './Photobook_Item';
 import { Photobook_Options_Left } from './Photobook_Options_Left';

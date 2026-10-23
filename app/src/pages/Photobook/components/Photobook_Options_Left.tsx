@@ -1,17 +1,12 @@
-// @os-block Directory_Photobook.Photobook_Options_Left
-import { useState } from 'react';
+import type { PhotobookHousehold } from '@/api/household';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { SanitizedHtml } from '@/shared/ReactiveHtmlSanitizer/SanitizedHtml';
 import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { UBT_Color, UBT_Display, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { useWasRestoredFromCache } from '@/platform/navigation';
-import { getHouseholdCaption } from '@/pages/Photobook/api';
-import type { PhotobookHousehold } from '@/pages/Photobook/types';
+import { useHouseholdCaption } from '@/pages/Photobook/hooks/useHouseholdCaption';
 import {
   UBT_AlignItems,
   UBT_FlexDirection,
@@ -20,14 +15,6 @@ import {
   UBT_JustifyContent,
   UBT_Visibility,
 } from './staticEntities';
-
-/** GetSkeleton_UI_PhotobookCaption (UBTConnect.controller.js, raw copy in analysis/sources/raw): the caption shown
-    until DataActionGetHouseholdCaption answers. */
-const SKELETON_CAPTION =
-  'SURNAME (Name - Local) Name & Name (Name Name* - Locality, AA) First name m, Name m, Name m (Locality) Name 00/00, Name';
-const EMPTY_HOUSEHOLD: PhotobookHousehold = { householdId: '0', householdName: '', locality: '' };
-const sameHousehold = (a: PhotobookHousehold, b: PhotobookHousehold) =>
-  a.householdId === b.householdId && a.householdName === b.householdName && a.locality === b.locality;
 
 /** Top button options shared by the round buttons (Photobook_Options_Left / _Right view): neutral 9 at 0.6, padding
     small, border medium neutral 0, circle. */
@@ -52,13 +39,11 @@ export interface Photobook_Options_LeftProps {
   onClosed?: () => void;
 }
 
-/** Directory_Photobook.Photobook_Options_Left (Photobook_Options_Left.mvc.js view :120-330, controller :331-700): the
-    info button (top left, hidden unless In_IsShow) and, while In_IsShow, the info BottomSheet titled with the current
-    locality: a SkeletonSection around the sanitized household caption (AllowedTags nobr,sup).
-    OnInitialize: unless restored from the cache, the caption starts as the skeleton caption. Handler_ClickedInfo:
-    BottomSheetOpen, then DataActionGetHouseholdCaption when the current household is not the last fetched one
-    (isLoading True until OnAfterFetch sets it False and LastFetched). The sheet's OnToggle raises SheetIsOpen / Closed,
-    OnClose runs BottomSheetClose. */
+/** The info button (top left, hidden unless In_IsShow) and, while In_IsShow, the info BottomSheet titled with the
+    current locality: a SkeletonSection around the sanitized household caption (AllowedTags nobr,sup). The flows of
+    the block (the caption and its data action) are in useHouseholdCaption. The sheet's OnToggle raises SheetIsOpen /
+    Closed; its OnClose runs ToggleInfoSheet(False).
+    @origin UBTConnect.Directory_Photobook.Photobook_Options_Left */
 export function Photobook_Options_Left({
   id,
   inMainContainerClass,
@@ -68,38 +53,11 @@ export function Photobook_Options_Left({
   onClosed,
 }: Photobook_Options_LeftProps) {
   const prefix = id.replace('$', '');
-  const restored = useWasRestoredFromCache();
-  const [infoSheetId, setInfoSheetId] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-  const [lastFetched, setLastFetched] = useState<PhotobookHousehold>(EMPTY_HOUSEHOLD);
-  const [caption, setCaption] = useState(restored ? '' : SKELETON_CAPTION);
-
-  const toggleInfoSheet = (isOpen: boolean) => {
-    if (isOpen) bottomSheetOpen(infoSheetId);
-    else bottomSheetClose(infoSheetId);
-  };
-  const handlerClickedInfo = () => {
-    toggleInfoSheet(true);
-    if (sameHousehold(lastFetched, inCurrentHousehold)) return;
-    setIsLoading(true);
-    getHouseholdCaption({
-      inCurrentHousehold,
-      inIsShow,
-      inMainContainerClass,
-      infoSheetId,
-      lastFetched,
-      isLoading: true,
-    }).then(
-      (out) => {
-        setCaption(out.householdCaption);
-        setIsLoading(false);
-        setLastFetched(out.lastFetchedHousehold);
-      },
-      (error: unknown) => {
-        raiseToFlowHandler(error);
-      },
-    );
-  };
+  const { caption, isLoading, onSheetInitialized, onClickedInfo, onCloseSheet } = useHouseholdCaption({
+    inCurrentHousehold,
+    inIsShow,
+    inMainContainerClass,
+  });
   const handlerToggleInfoSheet = (isOpen: boolean) => {
     if (isOpen) onSheetIsOpen?.();
     else onClosed?.();
@@ -111,7 +69,7 @@ export function Photobook_Options_Left({
         id={`${prefix}-Photobook_Options_Top_Left`}
         extendedClasses={`${inMainContainerClass}--top-left`}
         options={{ ...ROUND_BUTTON, Visibility: inIsShow ? UBT_Visibility.Visible : UBT_Visibility.Hidden }}
-        onClicked={handlerClickedInfo}
+        onClicked={onClickedInfo}
       >
         <Icon
           id={`${prefix}-Photobook_Options_Top_Info`}
@@ -126,10 +84,8 @@ export function Photobook_Options_Left({
           extendedClasses={`${inMainContainerClass}-bottom-sheet ${inMainContainerClass}-bottom-sheet--info`}
           title={inCurrentHousehold.locality}
           onOnToggle={handlerToggleInfoSheet}
-          onOnClose={() => {
-            toggleInfoSheet(false);
-          }}
-          onInitialized={setInfoSheetId}
+          onOnClose={onCloseSheet}
+          onInitialized={onSheetInitialized}
           content={
             <SkeletonSection inIsLoading={isLoading}>
               <CustomContainer

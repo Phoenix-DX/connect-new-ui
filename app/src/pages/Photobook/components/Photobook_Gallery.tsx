@@ -1,5 +1,6 @@
-// @os-block Directory_Photobook.Photobook_Gallery
+/** @origin UBTConnect.Directory_Photobook.Photobook_Gallery */
 import { useEffect, useState } from 'react';
+import type { SelectedHousehold } from '@/api/household';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { TouchEvents } from '@/shared/osui/TouchEvents';
@@ -15,7 +16,6 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
-import type { SelectedHousehold } from '@/pages/Photobook/types';
 import {
   UBT_AlignItems,
   UBT_FlexDirection,

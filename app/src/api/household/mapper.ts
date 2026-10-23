@@ -1,6 +1,16 @@
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { osList } from '@/legacy/os/os-wire';
-import type { Household, HouseholdCardContent, HouseholdCoordinates, HouseholdDetails, HouseholdMember } from './types';
+import type {
+  Household,
+  HouseholdCaption,
+  HouseholdCaptionCallInputs,
+  HouseholdCardContent,
+  HouseholdCoordinates,
+  HouseholdDetails,
+  HouseholdMember,
+  LocalityHouseholdIdsCallInputs,
+  PhotobookHousehold,
+} from './types';
 
 /** The outputs of DataActionGetHousehold, as the contract describes them. */
 export type HouseholdWire = ActionOutputs<PathOf<'UBTConnect', 'HouseholdDetails_Block/DataActionGetHousehold'>>;
@@ -72,4 +82,53 @@ export const toHouseholdCoordinates = (wire: HouseholdCoordinatesWire): Househol
   Latitude: wire.HouseholdCoordinates.Latitude,
   Longitude: wire.HouseholdCoordinates.Longitude,
   UseCoordinates: wire.HouseholdCoordinates.UseCoordinates,
+});
+
+/** The outputs of DataActionGetLocalityHouseholdIds (Photobook), as the contract describes them. */
+type LocalityHouseholdIdsWire = ActionOutputs<PathOf<'UBTConnect', 'Photobook/DataActionGetLocalityHouseholdIds'>>;
+/** The outputs of DataActionGetHouseholdCaption (Photobook_Options_Left), as the contract describes them. */
+type HouseholdCaptionWire = ActionOutputs<PathOf<'UBTConnect', 'Photobook_Options_Left/DataActionGetHouseholdCaption'>>;
+/** UI_PhotobookHousehold on the wire. */
+type PhotobookHouseholdWire = HouseholdCaptionWire['LastFetchedHousehold'];
+
+/** A Photobook household from the wire. */
+const toPhotobookHousehold = (w: PhotobookHouseholdWire): PhotobookHousehold => ({
+  householdId: w.HouseholdId,
+  householdName: w.HouseholdName,
+  locality: w.Locality,
+});
+
+/** A Photobook household as the calls send it. */
+const toPhotobookHouseholdWire = (h: PhotobookHousehold): PhotobookHouseholdWire => ({
+  HouseholdId: h.householdId,
+  HouseholdName: h.householdName,
+  Locality: h.locality,
+});
+
+/** The inputs of DataActionGetLocalityHouseholdIds, with the wire names and the order of the screen variables. */
+export const toLocalityHouseholdIdsInputs = (inputs: LocalityHouseholdIdsCallInputs) => ({
+  IsLoading: inputs.isLoading,
+  SelectedHousehold: { Id: inputs.selectedHousehold.id, Position: inputs.selectedHousehold.position },
+  In_HouseholdId: inputs.inHouseholdId,
+  In_LocalityId: inputs.inLocalityId,
+});
+
+/** The households of DataActionGetLocalityHouseholdIds, in the server order (list unwrapped). */
+export const toLocalityHouseholdIds = (wire: LocalityHouseholdIdsWire): PhotobookHousehold[] =>
+  osList(wire.Out_LocalityHouseholdIds).map(toPhotobookHousehold);
+
+/** The inputs of DataActionGetHouseholdCaption, with the wire names and the order of the block variables. */
+export const toHouseholdCaptionInputs = (inputs: HouseholdCaptionCallInputs) => ({
+  In_CurrentHousehold: toPhotobookHouseholdWire(inputs.inCurrentHousehold),
+  In_IsShow: inputs.inIsShow,
+  In_MainContainerClass: inputs.inMainContainerClass,
+  InfoSheetId: inputs.infoSheetId,
+  LastFetched: toPhotobookHouseholdWire(inputs.lastFetched),
+  isLoading: inputs.isLoading,
+});
+
+/** The caption of DataActionGetHouseholdCaption and the household it belongs to. */
+export const toHouseholdCaption = (wire: HouseholdCaptionWire): HouseholdCaption => ({
+  householdCaption: wire.HouseholdCaption,
+  lastFetchedHousehold: toPhotobookHousehold(wire.LastFetchedHousehold),
 });
