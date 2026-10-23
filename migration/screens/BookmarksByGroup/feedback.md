@@ -1,3 +1,7 @@
 # Feedback: BookmarksByGroup
 
 Found by the user while testing. open → fixed → in-review → closed (at finish).
+
+## F1 [bug] closed
+- Reported 2026-10-23T13:27:11: MyBookmarks cache holds two record shapes: BookmarksByGroup writes its own camelCase BookmarkItem with its own cache writer, Connect2_LegacyShared and Assemble use the OutSystems BookmarkItem; after opening BookmarksByGroup, bookmarking a household in AssembleDetail raises a TypeError in addBookmarkToCache. Fix: one cache shape as in OutSystems (Fable proposal accepted by the user 2026-10-23, gap G2).
+- Done 2026-10-23T13:40:55: One MyBookmarks cache shape (OutSystems BookmarkItem): BookmarksByGroup uses the Connect2_LegacyShared cache actions with toCacheRecord/fromCacheRecord; local cache writer deleted; failing-first test in Connect2_LegacyShared/lib/actions.test.ts (gap G2, dev.md in migration/refactor/handoffs/G2/ of the refactor branch)
