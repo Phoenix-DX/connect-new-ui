@@ -3,8 +3,10 @@ export { householdKeys } from './keys';
 export {
   fetchHousehold,
   fetchHouseholdCaption,
+  fetchHouseholdCardMembers,
   fetchHouseholdCoordinates,
   fetchLocalityHouseholdIds,
+  fetchLocalityHouseholds,
   fetchMemberRelations,
   fetchSiblingRelations,
 } from './repository';

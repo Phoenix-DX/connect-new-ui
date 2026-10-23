@@ -159,3 +159,29 @@ export interface MemberRelations {
 export interface SiblingRelations {
   Out_siblingRelations: HouseholdMember[];
 }
+
+/* ---- Locality_Households_HouseholdList and Household_Card (Locality_Details) ---- */
+
+/** A household of a locality (Connect_Household_CS UI_LocalityHousehold, GetLocalityHouseholds.LocalityHouseholds),
+    with the field names of the household list. */
+export interface LocalityHousehold {
+  householdId: string;
+  householdName: string;
+  childrenNames: string;
+  isBookmarked: boolean;
+  localityName: string;
+  countryName: string;
+}
+
+/** One image of a lazy image list (UBTConnect_Utils LazyImage): a member avatar of a household card. */
+export interface LazyImageItem {
+  imageURL: string;
+  entityId: string;
+  entityType: string;
+}
+
+/** The member avatars of a household card: the outputs of DataActionGetMembers, with the list unwrapped. */
+export interface HouseholdCardMembers {
+  members: LazyImageItem[];
+  visibleAvatars: number;
+}

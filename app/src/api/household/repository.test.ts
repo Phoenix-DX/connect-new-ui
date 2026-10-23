@@ -2,8 +2,10 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import {
   fetchHousehold,
   fetchHouseholdCaption,
+  fetchHouseholdCardMembers,
   fetchHouseholdCoordinates,
   fetchLocalityHouseholdIds,
+  fetchLocalityHouseholds,
   fetchMemberRelations,
   fetchSiblingRelations,
 } from './repository';
@@ -171,5 +173,48 @@ describe('household repository of the relations', () => {
   it('a failed relations call raises the exception of callAction', async () => {
     sessionStorage.setItem('mock:mock', 'error');
     await expect(fetchSiblingRelations(relationsInputs)).rejects.toThrow('Request failed with status 500');
+  });
+});
+
+/* The MSW mocks of Locality_Details answer the 23 fictional households of locality 252 and two member avatars per
+   household (one for a single householder). */
+describe('locality household repository', () => {
+  it('fetchLocalityHouseholds calls DataActionGetLocalityHouseholds of Locality_Households_HouseholdList', async () => {
+    const households = await fetchLocalityHouseholds('252');
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: 'Locality_Households_HouseholdList',
+        action: 'DataActionGetLocalityHouseholds',
+        inputNames: ['In_LocalityId'],
+      }),
+    ]);
+    expect(households).toHaveLength(23);
+    expect(households[0]).toMatchObject({
+      householdId: '42438',
+      isBookmarked: false,
+      localityName: 'Bahia Blanca',
+      countryName: 'Argentina',
+    });
+  });
+
+  it('fetchHouseholdCardMembers calls DataActionGetMembers of Household_Card with the household row', async () => {
+    const [household] = await fetchLocalityHouseholds('252');
+    window.__osCalls = [];
+    if (!household) throw new Error('no household');
+    const members = await fetchHouseholdCardMembers(household);
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: 'Household_Card',
+        action: 'DataActionGetMembers',
+        inputNames: ['Household'],
+      }),
+    ]);
+    expect(members.visibleAvatars).toBe(5);
+    expect(members.members).toEqual([
+      { imageURL: '', entityId: '92001', entityType: 'Member' },
+      { imageURL: '', entityId: '92002', entityType: 'Member' },
+    ]);
   });
 });

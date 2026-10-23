@@ -5,9 +5,11 @@ import type {
   HouseholdCaption,
   HouseholdCaptionCallInputs,
   HouseholdCardContent,
+  HouseholdCardMembers,
   HouseholdCoordinates,
   HouseholdDetails,
   HouseholdMember,
+  LocalityHousehold,
   LocalityHouseholdIdsCallInputs,
   MemberRelations,
   PhotobookHousehold,
@@ -173,4 +175,49 @@ export const toMemberRelations = (wire: MemberRelationsWire): MemberRelations =>
 /** The siblings of DataActionGet_ParentHouseholdDetails (the list unwrapped). */
 export const toSiblingRelations = (wire: SiblingRelationsWire): SiblingRelations => ({
   Out_siblingRelations: osList(wire.Out_siblingRelations).map(toRelationMember),
+});
+
+/* ---- Locality_Households_HouseholdList and Household_Card (Locality_Details) ---- */
+
+/** The outputs of DataActionGetLocalityHouseholds, as the contract describes them. */
+type LocalityHouseholdsWire = ActionOutputs<
+  PathOf<'UBTConnect', 'Locality_Households_HouseholdList/DataActionGetLocalityHouseholds'>
+>;
+/** One row of LocalityHouseholds (UI_LocalityHousehold). A field that the answer leaves out gets the OutSystems
+    default. */
+type LocalityHouseholdWire = Partial<LocalityHouseholdsWire['LocalityHouseholds']['List'][number]>;
+/** The outputs of DataActionGetMembers, as the contract describes them. */
+type HouseholdCardMembersWire = ActionOutputs<PathOf<'UBTConnect', 'Household_Card/DataActionGetMembers'>>;
+
+const toLocalityHousehold = (w: LocalityHouseholdWire): LocalityHousehold => ({
+  householdId: w.HouseholdId ?? '0',
+  householdName: w.HouseholdName ?? '',
+  childrenNames: w.ChildrenNames ?? '',
+  isBookmarked: w.IsBookmarked ?? false,
+  localityName: w.LocalityName ?? '',
+  countryName: w.CountryName ?? '',
+});
+
+/** The households of DataActionGetLocalityHouseholds, unwrapped. */
+export const toLocalityHouseholds = (wire: LocalityHouseholdsWire): LocalityHousehold[] =>
+  osList(wire.LocalityHouseholds).map(toLocalityHousehold);
+
+/** A household row with the OutSystems names: the Household input of DataActionGetMembers. */
+export const toLocalityHouseholdWire = (h: LocalityHousehold) => ({
+  HouseholdId: h.householdId,
+  HouseholdName: h.householdName,
+  ChildrenNames: h.childrenNames,
+  IsBookmarked: h.isBookmarked,
+  LocalityName: h.localityName,
+  CountryName: h.countryName,
+});
+
+/** The member avatars of DataActionGetMembers: the list unwrapped and VisibleAvatars. */
+export const toHouseholdCardMembers = (wire: HouseholdCardMembersWire): HouseholdCardMembers => ({
+  members: osList(wire.HouseholdMembers).map((m) => ({
+    imageURL: m.ImageURL,
+    entityId: m.EntityId,
+    entityType: m.EntityType,
+  })),
+  visibleAvatars: wire.VisibleAvatars,
 });

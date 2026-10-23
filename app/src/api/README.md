@@ -16,7 +16,7 @@ Two mappers keep only the fields that the UI reads: GetUserLocalitiesForCountryC
 
 `locality/` has the same files. It holds 11 calls. DataActionGetSubdivisionName is from AssembleEvents, DataActionGetLocalityStatistics from BrowseDirectory and DataActionGetEventLocalitiesForFilter from LDM_MyEvents_V2. Locality_Details has four (locality details, subdivision list, interchanges, OneSchoolGlobal list). The others are GetLocalityInformation and GetBulkSubdivisions_V2 (Connect2_LegacyShared), DataActionGetSubdivision (SupperMeeting_DetailsBlock) and DataActionGetCacheInfo (CacheControl_AllLocalities).
 
-The seven old caller files re-export it under their old names. The household calls of Locality_Details stay for the household domain.
+Six old caller files re-export it under their old names. The `api.ts` of Locality_Details is deleted: its four hooks call `fetchLocalityDetails`, `fetchSubdivisionCards`, `fetchInterchanges` and `fetchOneSchoolCards` directly.
 
 `GetLocalityInformation` keeps the full contract record (`LocalityInformation`), because the memory cache and the client action that bookmarks a locality clone it. The mappers of subdivision details, all localities and bulk subdivisions keep only the fields that the UI reads. The five hooks (`useLocalityCardListQuery`, `useLocalityDetailsQuery`, `useInterchangesQuery`, `useSubdivisionDetailsQuery`, `useAllLocalitiesQuery`) have no caller yet; they set `staleTime: 0`, `gcTime: 0` and `retry: false`.
 
@@ -101,3 +101,5 @@ The queries of `feed/` and the count query of `member/` set `staleTime: 0`, `gcT
 `household/` also holds the two Photobook calls: DataActionGetLocalityHouseholdIds (`fetchLocalityHouseholdIds`, called by `usePhotobook`) and DataActionGetHouseholdCaption (`fetchHouseholdCaption`, called by `useHouseholdCaption`). The old `api.ts` and `types.ts` of Photobook are deleted. The request shapes are `LocalityHouseholdIdsCallInputs` and `HouseholdCaptionCallInputs`; `SelectedHousehold`, `PhotobookHousehold` and `HouseholdCaption` are in `household/types.ts`. The flows call the repository functions.
 
 `household/` also holds the two Household_Relations calls: DataActionGet_MemberDetails (`fetchMemberRelations`) and DataActionGet_ParentHouseholdDetails (`fetchSiblingRelations`), called by `useHouseholdRelations`. The old `api.ts` and `types.ts` of Household_Relations are deleted. The types are `MemberRelationsCallInputs`, `MemberRelations` and `SiblingRelations`. The mapper keeps the 13 member fields that the relations UI reads; `HouseholdMember` gets the optional field `FormattedLocality`.
+
+`household/` also holds the two Locality_Details calls: DataActionGetLocalityHouseholds (`fetchLocalityHouseholds`, called by `useLocalityHouseholdList`) and DataActionGetMembers (`fetchHouseholdCardMembers`, called by `useHouseholdCardMembers`). The old `api.ts` and `types.ts` of Locality_Details are deleted. The flows call the repository functions.

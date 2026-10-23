@@ -1,4 +1,3 @@
-// @os-block UBTConnect.Directory_Locality.Locality_DateTimeLabel
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { getLocalityCurrentTimeLabel } from './actions';
@@ -10,9 +9,9 @@ export interface Locality_DateTimeLabelProps {
   inTimezoneOffset?: number;
 }
 
-/** Directory_Locality.Locality_DateTimeLabel (p:UBTConnect.Directory_Locality.Locality_DateTimeLabel.mvc.js): an
-    expression GetLocalityCurrentTimeLabel(In_TimezoneOffset, LocalDateTime) and a Timer (default 1 s) whose
-    Event_IntervalElapsed sets LocalDateTime = CurrDateTime(), as OnInitialize does. */
+/** The local time of a locality: an expression GetLocalityCurrentTimeLabel(In_TimezoneOffset, LocalDateTime) and a
+    Timer (default 1 s) whose Event_IntervalElapsed sets LocalDateTime = CurrDateTime(), as OnInitialize does.
+    @origin UBTConnect.Directory_Locality.Locality_DateTimeLabel */
 export function Locality_DateTimeLabel({ id, inTimezoneOffset = 0 }: Locality_DateTimeLabelProps) {
   const [localDateTime, setLocalDateTime] = useState(() => new Date());
   const b = id?.replace('$', '') ?? '';

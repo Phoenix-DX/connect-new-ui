@@ -3,9 +3,12 @@ import {
   toHousehold,
   toHouseholdCaption,
   toHouseholdCaptionInputs,
+  toHouseholdCardMembers,
   toHouseholdCoordinates,
   toLocalityHouseholdIds,
   toLocalityHouseholdIdsInputs,
+  toLocalityHouseholds,
+  toLocalityHouseholdWire,
   toMemberRelations,
   toSiblingRelations,
 } from './mapper';
@@ -14,7 +17,9 @@ import type {
   HouseholdCallInputs,
   HouseholdCaption,
   HouseholdCaptionCallInputs,
+  HouseholdCardMembers,
   HouseholdCoordinates,
+  LocalityHousehold,
   LocalityHouseholdIdsCallInputs,
   MemberRelations,
   MemberRelationsCallInputs,
@@ -72,5 +77,27 @@ export async function fetchMemberRelations(inputs: MemberRelationsCallInputs): P
 export async function fetchSiblingRelations(inputs: MemberRelationsCallInputs): Promise<SiblingRelations> {
   return toSiblingRelations(
     await callAction('UBTConnect', 'HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails', inputs),
+  );
+}
+
+/* ---- Locality_Households_HouseholdList and Household_Card (Locality_Details) ---- */
+
+/** DataActionGetLocalityHouseholds of Locality_Households_HouseholdList (UBTConnect): the households of a locality
+    (the block input In_LocalityId). The block's OnReady refreshes it. */
+export async function fetchLocalityHouseholds(localityId: string): Promise<LocalityHousehold[]> {
+  return toLocalityHouseholds(
+    await callAction('UBTConnect', 'Locality_Households_HouseholdList/DataActionGetLocalityHouseholds', {
+      In_LocalityId: localityId,
+    }),
+  );
+}
+
+/** DataActionGetMembers of Household_Card (UBTConnect): the member avatars of a household card (the block input
+    Household). The card's OnReady and OnParametersChanged refresh it. */
+export async function fetchHouseholdCardMembers(household: LocalityHousehold): Promise<HouseholdCardMembers> {
+  return toHouseholdCardMembers(
+    await callAction('UBTConnect', 'Household_Card/DataActionGetMembers', {
+      Household: toLocalityHouseholdWire(household),
+    }),
   );
 }

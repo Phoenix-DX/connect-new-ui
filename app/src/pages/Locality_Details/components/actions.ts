@@ -1,9 +1,8 @@
-import { isOn } from '@/platform/flags/flags';
+import type { OneSchoolCard, SubdivisionCard } from '@/api/locality';
 import { get_LocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { currDateTime, formatDateTime } from '@/shared/lib/osDateTime';
 import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '@/shared/UBTConnectLibrary/lib/actions';
 import type { LookupItem, Tag } from '@/shared/UBTConnectLibrary/lib/structures';
-import type { OneSchoolCard, SubdivisionCard } from '@/pages/Locality_Details/types';
 import { LocalityMenu } from './staticEntities';
 
 /* Client actions of the UBTConnect module this route calls (UC = UBTConnect.controller.js, copy in
@@ -17,15 +16,16 @@ const tag = (text: string, isSelected: boolean): Tag => ({
   Enabled: true,
 });
 
-/** GetSample_FilterTags(ShowMyHouseholdTag) (UC:10825+): Households (selected), My Household when ShowMyHouseholdTag,
-    Supper Meetings, Interchange, OneSchool Global, then Locality Contacts when Connect_LaunchDarkly_PermissionCheck(
-    mobileDirectoryLocalityContacts) has access (flag still undecided: Q2, read through the flag store, off by default). */
-export function getSample_FilterTags(showMyHouseholdTag: boolean): Tag[] {
+/** GetSample_FilterTags(ShowMyHouseholdTag): Households (selected), My Household when ShowMyHouseholdTag, Supper
+    Meetings, Interchange, OneSchool Global, then Locality Contacts when Connect_LaunchDarkly_PermissionCheck(
+    mobileDirectoryLocalityContacts) has access (flag still undecided: Q2, off by default). The page reads the flag
+    and gives it as `hasLocalityContacts`. */
+export function getSample_FilterTags(showMyHouseholdTag: boolean, hasLocalityContacts: boolean): Tag[] {
   const tags = [tag(LocalityMenu.Households, true)];
   if (showMyHouseholdTag) tags.push(tag(LocalityMenu.MyHousehold, false));
   tags.push(tag(LocalityMenu.Subdivsion, false), tag(LocalityMenu.Interchange, false));
   tags.push(tag(LocalityMenu.OneSchoolGlobal, false));
-  if (isOn('mobileDirectoryLocalityContacts')) tags.push(tag(LocalityMenu.LocalityContacts, false));
+  if (hasLocalityContacts) tags.push(tag(LocalityMenu.LocalityContacts, false));
   return tags;
 }
 

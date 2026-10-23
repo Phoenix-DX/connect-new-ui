@@ -1,4 +1,3 @@
-// @os-block UBTConnect_Utils.Utils.Timer
 import { useEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
@@ -10,9 +9,9 @@ export interface TimerProps {
   onEventIntervalElapsed?: () => void;
 }
 
-/** Utils.Timer (p:UBTConnect_Utils.Utils.Timer.mvc.js): an empty block; OnInitialize StartIntervalJS
-    (`window.setInterval(Action_IntervalElapsed, In_Delay * 1000)`, :253, :370), OnDestroy RemoveIntervalJS
-    (`clearInterval`, :365). Action_IntervalElapsed raises Event_IntervalElapsed. */
+/** An empty block; OnInitialize StartIntervalJS (`window.setInterval(Action_IntervalElapsed, In_Delay * 1000)`),
+    OnDestroy RemoveIntervalJS (`clearInterval`). Action_IntervalElapsed raises Event_IntervalElapsed.
+    @origin UBTConnect_Utils.Utils.Timer */
 export function Timer({ id, inDelay = 1, onEventIntervalElapsed }: TimerProps) {
   const onElapsed = useRef(onEventIntervalElapsed);
   useEffect(() => {

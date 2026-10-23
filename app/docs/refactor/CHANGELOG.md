@@ -536,3 +536,9 @@
 - `pages/Household_Relations` is a page with the flow hook `useHouseholdRelations` (on `useFlowState`), the pure `householdRelationsState.ts` and the props-only `HouseholdRelationsView`. `api.ts` became `inputs.ts`; `types.ts` is deleted.
 - The 2 calls are in `api/household` (`fetchMemberRelations`, `fetchSiblingRelations`). W23: after unmount no further call starts, as the compiled block does.
 - depcruise warnings 213 to 210. The last old-pattern `useFlowState` file in `screens/` is gone from the page-template list.
+
+## P6-G4-B-Locality_Details - refactor(P6-G4-B): Locality_Details as page
+
+- `pages/Locality_Details` is a page. The screen flow is in `useLocalityDetails` (on `useFlowState`, W23 once-guard) and the pure `localityDetailsState.ts`. `api.ts` became `inputs.ts`; `types.ts` is deleted.
+- The 4 tag blocks and `Household_Card` call their own hooks (`localityBlocksState.ts`), because they mount with the selected tag. The 2 household calls are in `api/household`.
+- depcruise warnings 213 to 206 (7 rule-9 warnings of the flow files are gone).

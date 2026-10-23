@@ -1,4 +1,3 @@
-// @os-block UBTConnectLibrary.Layouts.SubHeader_MainPages
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
@@ -22,10 +21,11 @@ export interface SubHeader_MainPagesProps {
   onClickSearch?: () => void;
 }
 
-/** Layouts.SubHeader_MainPages (p:UBTConnectLibrary.Layouts.SubHeader_MainPages.mvc.js view :131-255): container
-    "ubt-sub-header-main-pages" with Columns_Two (ReduceLast, spacing Small, vertical Center): Placeholder_Title on the
-    left; on the right "ubt-sub-header-main-pages__right" with the search Icon (Neutral0, "padding-xxs", Base_24,
-    visible = In_IsShowSearchIcon, Click raises Click_Search) and Placeholder_Icons ("ubt-sub-header-main-pages__icons"). */
+/** The sub-header of the main pages: container "ubt-sub-header-main-pages" with Columns_Two (ReduceLast, spacing
+    Small, vertical Center): Placeholder_Title on the left; on the right "ubt-sub-header-main-pages__right" with the
+    search Icon (Neutral0, "padding-xxs", Base_24, visible = In_IsShowSearchIcon, Click raises Click_Search) and
+    Placeholder_Icons ("ubt-sub-header-main-pages__icons").
+    @origin UBTConnectLibrary.Layouts.SubHeader_MainPages */
 export function SubHeader_MainPages({
   id,
   inIsShowSearchIcon = false,

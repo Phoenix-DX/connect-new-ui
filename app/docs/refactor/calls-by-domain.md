@@ -207,3 +207,5 @@ P6-G2-B-EmailContact: `screens/EmailContact/api.ts` is deleted (its row in the m
 P6-G4-B-Household_Relations: `pages/Household_Relations/api.ts` is deleted (its row in the household table; `inputs.ts` holds the route inputs). The flow hook `useHouseholdRelations` calls `fetchMemberRelations` and `fetchSiblingRelations` of `@/api/household`.
 
 P6-G4-B-Photobook: `pages/Photobook/api.ts` is deleted (its rows in the household and caption tables). The flow hooks `usePhotobook` and `useHouseholdCaption` call `fetchLocalityHouseholdIds` and `fetchHouseholdCaption` of `@/api/household`.
+
+P6-G4-B-Locality_Details: `pages/Locality_Details/api.ts` is deleted (its rows in the household and locality tables). The flow hooks call `fetchLocalityHouseholds` and `fetchHouseholdCardMembers` of `@/api/household`, and `fetchLocalityDetails`, `fetchSubdivisionCards`, `fetchInterchanges` and `fetchOneSchoolCards` of `@/api/locality`.

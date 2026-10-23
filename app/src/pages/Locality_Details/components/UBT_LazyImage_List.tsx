@@ -1,11 +1,10 @@
-// @os-block UBTConnect_Utils.CW_Image.UBT_LazyImage_List
+import type { LazyImageItem } from '@/api/household';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { formatClasses, getClasses_AvatarSize } from '@/shared/UBTConnectLibrary/lib/actions';
 import { UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
-import type { LazyImageItem } from '@/pages/Locality_Details/types';
 
 export interface UBT_LazyImage_ListProps {
   id?: string;
@@ -40,11 +39,12 @@ function refreshList(items: LazyImageItem[], maxLimit: number): { localItems: Lo
   return { localItems: items.map((lazyImage) => ({ lazyImage, extraNumber: 0 })), hitLimit: false };
 }
 
-/** CW_Image.UBT_LazyImage_List (p:UBTConnect_Utils.CW_Image.UBT_LazyImage_List.mvc.js view :189-300): a List
-    ("list list-group " + FormatClasses(MainContainerClass, GetClasses_AvatarSize(ImageSize.Height)), virtualization
-    disabled) of OSInline containers (width auto; "z-index: Length - Row" when InvertOrder; the last one gets
-    "<MainContainerClass>__counter" when HitLimit) holding a UBT_LazyImage (Height of ImageSize, width Square), or the
-    AvatarImage "+N" counter when ExtraNumber > 0 (:261; not captured). */
+/** A list of lazy images: a List ("list list-group " + FormatClasses(MainContainerClass,
+    GetClasses_AvatarSize(ImageSize.Height)), virtualization disabled) of OSInline containers (width auto;
+    "z-index: Length - Row" when InvertOrder; the last one gets "<MainContainerClass>__counter" when HitLimit) holding a
+    UBT_LazyImage (Height of ImageSize, width Square), or the AvatarImage "+N" counter when ExtraNumber > 0 (not
+    captured).
+    @origin UBTConnect_Utils.CW_Image.UBT_LazyImage_List */
 export function UBT_LazyImage_List({
   id,
   items = [],

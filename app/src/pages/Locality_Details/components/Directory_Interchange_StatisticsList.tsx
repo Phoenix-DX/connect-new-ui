@@ -1,4 +1,4 @@
-// @os-block UBTConnect.Directory_Interchange.Directory_Interchange_StatisticsList
+import type { Interchange } from '@/api/locality';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
@@ -8,7 +8,6 @@ import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntiti
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { StatisticsListItem } from '@/components/directory/StatisticsListItem';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import type { InterchangeItem } from '@/pages/Locality_Details/types';
 
 export interface Directory_Interchange_StatisticsListProps {
   /** OutSystems instance id of the block. */
@@ -16,20 +15,20 @@ export interface Directory_Interchange_StatisticsListProps {
   inIsLoading?: boolean;
   inShowSubtitle?: boolean;
   inHighlightWords?: string;
-  inInterchangeList?: readonly InterchangeItem[];
+  inInterchangeList?: readonly Interchange[];
   /** Event Event_NavigateToLocality(LocalityId, CountryName). */
   onEventNavigateToLocality?: (localityId: string, countryName: string) => void;
 }
 
-const EMPTY: InterchangeItem[] = [];
+const EMPTY: Interchange[] = [];
 
-/** Directory_Interchange.Directory_Interchange_StatisticsList (p:migration/screens/Locality_Details/analysis/sources/
-    pretty/UBTConnect.Directory_Interchange.Directory_Interchange_StatisticsList.mvc.js view :342-685, controller
-    :743-887): CustomContainer (Neutral0, padding y Small x Base) with a SkeletonSection (In_IsLoading) around the List
-    ("list list-group list--gap-s") of Statistics_ListItem (actions menu; "ubt-statistics-item__bookmarked" when
-    bookmarked) whose ActionsMenu is Directory_EntityDetailsActions (Interchange, bookmark and notes, popup name = the
-    statistics title), then Directory_EmptyState (Interchange, "in this locality") for an empty list not loading.
-    Handler_Clicked: nothing while loading, else Event_NavigateToLocality(InterchangeLocalityId, CountryName). */
+/** The statistics list of interchange localities: CustomContainer (Neutral0, padding y Small x Base) with a
+    SkeletonSection (In_IsLoading) around the List ("list list-group list--gap-s") of Statistics_ListItem (actions
+    menu; "ubt-statistics-item__bookmarked" when bookmarked) whose ActionsMenu is Directory_EntityDetailsActions
+    (Interchange, bookmark and notes, popup name = the statistics title), then Directory_EmptyState (Interchange,
+    "in this locality") for an empty list not loading.
+    Handler_Clicked: nothing while loading, else Event_NavigateToLocality(InterchangeLocalityId, CountryName).
+    @origin UBTConnect.Directory_Interchange.Directory_Interchange_StatisticsList */
 export function Directory_Interchange_StatisticsList({
   id,
   inIsLoading = false,
@@ -38,7 +37,7 @@ export function Directory_Interchange_StatisticsList({
   inInterchangeList = EMPTY,
   onEventNavigateToLocality,
 }: Directory_Interchange_StatisticsListProps) {
-  const handlerClicked = (item: InterchangeItem) => {
+  const handlerClicked = (item: Interchange) => {
     if (inIsLoading) return;
     onEventNavigateToLocality?.(item.interchangeLocalityId, item.interchangeCountryName);
   };

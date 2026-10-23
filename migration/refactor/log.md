@@ -552,3 +552,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T05:18:44 P6-G4-B-Household_Relations stage test
 - 2026-10-24T05:23:04 P6-G4-B-Household_Relations stage docs
 - 2026-10-24T05:23:58 P6-G4-B-Household_Relations stage commit
+- 2026-10-24T05:24:00 P6-G4-B-Household_Relations done f6eb6d54: ci: pass; parity visual --changed: 7/0 (OutSystems), 7/0 (self); arch baseline 0 new; HomeFeed 244.13 kB, Login 184.18 kB
+- 2026-10-24T05:24:10 P6-G4-B-Locality_Details started
+- 2026-10-24T05:24:10 P6-G4-B-Locality_Details stage dev
+- 2026-10-24T05:24:54 P6-G4-B-Locality_Details stage test
+- 2026-10-24T05:28:56 P6-G4-B-Locality_Details stage docs
+- 2026-10-24T05:29:48 P6-G4-B-Locality_Details stage commit

@@ -3,9 +3,12 @@ import {
   toHousehold,
   toHouseholdCaption,
   toHouseholdCaptionInputs,
+  toHouseholdCardMembers,
   toHouseholdCoordinates,
   toLocalityHouseholdIds,
   toLocalityHouseholdIdsInputs,
+  toLocalityHouseholds,
+  toLocalityHouseholdWire,
   toMemberRelations,
   toSiblingRelations,
   type HouseholdWire,
@@ -325,5 +328,68 @@ describe('household mapper of the relations (HouseholdRelations_Block)', () => {
       expect.objectContaining({ Id: '31', Title: 'Owen Harlow', FormattedLocality: 'Napier, New Zealand' }),
     ]);
     expect(toSiblingRelations({ Out_siblingRelations: { List: [] } })).toEqual({ Out_siblingRelations: [] });
+  });
+});
+
+describe('locality household mapper', () => {
+  const row = {
+    HouseholdId: '91002',
+    HouseholdName: 'Ferreyra Household',
+    ChildrenNames: 'Lucia, Tomas',
+    IsBookmarked: true,
+    LocalityName: 'Bahia Blanca',
+    CountryName: 'Argentina',
+  };
+
+  it('toLocalityHouseholds unwraps the list and keeps every field of a row', () => {
+    expect(toLocalityHouseholds({ LocalityHouseholds: { List: [row] } })).toEqual([
+      {
+        householdId: '91002',
+        householdName: 'Ferreyra Household',
+        childrenNames: 'Lucia, Tomas',
+        isBookmarked: true,
+        localityName: 'Bahia Blanca',
+        countryName: 'Argentina',
+      },
+    ]);
+  });
+
+  it('toLocalityHouseholds gives the OutSystems defaults for the fields that the answer leaves out', () => {
+    const partial = { HouseholdName: 'Ferreyra Household' } as typeof row;
+    expect(toLocalityHouseholds({ LocalityHouseholds: { List: [partial] } })).toEqual([
+      {
+        householdId: '0',
+        householdName: 'Ferreyra Household',
+        childrenNames: '',
+        isBookmarked: false,
+        localityName: '',
+        countryName: '',
+      },
+    ]);
+  });
+
+  it('toLocalityHouseholdWire gives the row back with the OutSystems names', () => {
+    const [household] = toLocalityHouseholds({ LocalityHouseholds: { List: [row] } });
+    expect(household && toLocalityHouseholdWire(household)).toEqual(row);
+  });
+
+  it('toHouseholdCardMembers unwraps the member images and keeps VisibleAvatars', () => {
+    expect(
+      toHouseholdCardMembers({
+        HouseholdMembers: {
+          List: [
+            { ImageURL: '', EntityId: '92011', EntityType: 'Member' },
+            { ImageURL: '/img/92012.png', EntityId: '92012', EntityType: 'Member' },
+          ],
+        },
+        VisibleAvatars: 5,
+      }),
+    ).toEqual({
+      members: [
+        { imageURL: '', entityId: '92011', entityType: 'Member' },
+        { imageURL: '/img/92012.png', entityId: '92012', entityType: 'Member' },
+      ],
+      visibleAvatars: 5,
+    });
   });
 });

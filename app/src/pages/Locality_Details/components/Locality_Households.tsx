@@ -1,4 +1,3 @@
-// @os-block UBTConnect.Directory_Locality.Locality_Households
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
@@ -12,6 +11,7 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import type { LocalityHouseholdListFlags } from '@/pages/Locality_Details/hooks/useLocalityHouseholdList';
 import { Locality_Households_HouseholdList } from './Locality_Households_HouseholdList';
 
 export interface Locality_HouseholdsProps {
@@ -21,6 +21,8 @@ export interface Locality_HouseholdsProps {
   inHouseholdCount?: number;
   /** Event_NavigateToHouseholdDetails(HouseholdId). */
   onEventNavigateToHouseholdDetails?: (householdId: string) => void;
+  /** The flags of the household list, which the page reads. */
+  flags: LocalityHouseholdListFlags;
 }
 
 const COUNTER_TEXT: TextOptions = {
@@ -29,17 +31,18 @@ const COUNTER_TEXT: TextOptions = {
   FontWeight: UBT_FontWeight.SemiBold,
 };
 
-/** Directory_Locality.Locality_Households (p:UBTConnect.Directory_Locality.Locality_Households.mvc.js view :180-560):
-    Neutral4 container (top padding ExtraSmall) with a Neutral0 one (horizontal padding Base) holding "locality-count"
-    (flex, vertical padding Small): "<In_BretherenCount> Brethren" (PersonFill, Purple) and "<In_HouseholdCount>
-    Households" (Household, Primary); then Locality_Households_HouseholdList(In_LocalityId), whose
-    Event_NavigateToHouseholdDetails is raised as is. */
+/** The Households tag: a Neutral4 container (top padding ExtraSmall) with a Neutral0 one (horizontal padding Base)
+    holding "locality-count" (flex, vertical padding Small): "<In_BretherenCount> Brethren" (PersonFill, Purple) and
+    "<In_HouseholdCount> Households" (Household, Primary); then Locality_Households_HouseholdList(In_LocalityId), whose
+    Event_NavigateToHouseholdDetails is raised as is.
+    @origin UBTConnect.Directory_Locality.Locality_Households */
 export function Locality_Households({
   id,
   inLocalityId = '0',
   inBretherenCount = 0,
   inHouseholdCount = 0,
   onEventNavigateToHouseholdDetails,
+  flags,
 }: Locality_HouseholdsProps) {
   const b = id?.replace('$', '') ?? '';
   return (
@@ -92,6 +95,7 @@ export function Locality_Households({
           id={`${b}-$b10`}
           inLocalityId={inLocalityId}
           onEventNavigateToHouseholdDetails={onEventNavigateToHouseholdDetails}
+          flags={flags}
         />
       </CustomContainer>
     </OSBlock>
