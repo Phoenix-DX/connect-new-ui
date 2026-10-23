@@ -319,3 +319,8 @@
 
 - `src/pages/PINBiometricsMenu` is now a page with one hook (`usePINBiometricsMenu`, with the pure `pinBiometricsMenuState`). The page renders `DetailLayout` directly. `api.ts`, `types.ts` and `mocks.ts` are deleted; `staticEntities.ts` moved to the page root.
 - The hook reads `App_PIN_BiometricEnabled` on every initialization. This is a storage read: the tester confirmed no visible effect and no call effect. `move-map.csv`: PINBiometricsMenu row `moved`.
+
+## P6-G1-B-TermsAndPoliciesMenu - refactor(P6-G1-B): TermsAndPoliciesMenu as page
+
+- `src/pages/TermsAndPoliciesMenu` is now a page with one hook (`useTermsAndPoliciesMenu`). The page renders `DetailLayout` directly. `api.ts`, `types.ts` and the re-export `components/actions.ts` are deleted; `staticEntities.ts` moved to the page root.
+- The test of `openPolicy` moved to `src/shared/UBTConnect_Utils/lib/openPolicy.test.ts`. `move-map.csv`: TermsAndPoliciesMenu row set to `moved`.

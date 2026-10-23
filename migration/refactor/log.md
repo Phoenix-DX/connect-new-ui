@@ -316,3 +316,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T21:41:06 P6-G1-B-PINBiometricsMenu stage test
 - 2026-10-23T21:50:19 P6-G1-B-PINBiometricsMenu stage docs
 - 2026-10-23T21:51:14 P6-G1-B-PINBiometricsMenu stage commit
+- 2026-10-23T21:51:15 P6-G1-B-PINBiometricsMenu done b1e8f48: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (37 rows); bundle within +5%
+- 2026-10-23T21:51:15 P6-G1-B-TermsAndPoliciesMenu started
+- 2026-10-23T21:51:15 P6-G1-B-TermsAndPoliciesMenu stage dev
+- 2026-10-23T21:51:50 P6-G1-B-TermsAndPoliciesMenu stage test
+- 2026-10-23T21:55:22 P6-G1-B-TermsAndPoliciesMenu stage docs
+- 2026-10-23T21:56:59 P6-G1-B-TermsAndPoliciesMenu stage commit
