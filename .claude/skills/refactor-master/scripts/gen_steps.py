@@ -81,6 +81,17 @@ GROUP_DAYS = {"G1": 2, "G2": 3, "G3": 4, "G4": 4, "G5": 4, "G6": 1}
 GROUP_ORDER = {"G1": ["Login", "Splash", "AcceptPendingPolicies", "Menu", "PINRegister", "PINUnlock", "PINChange",
                       "PINBiometricsMenu", "TermsAndPoliciesMenu", "Profile"]}
 SHARED_MOVE_AFTER = {"G1": "Menu"}
+# W18 (Opus + Fable, auto-accepted user instruction 2026-10-23 13:43): fix steps that run after the step C of a group
+AFTER_GROUP = {
+    "G2": [("P6-F15", "Login first load under its limit", "change", "strict", "sonnet", None, 0.5,
+            "This step is the bundle fix of decision W18 (migration/refactor/auto-decisions-2026-10-22.md). Take "
+            "api/message and api/bookmark (and api/update) out of the entry chunk: the app-start call in "
+            "platform/bootstrap/startup.ts imports narrowly (deep import or a small module, static, same call "
+            "order); get_IsUnsupportedSystem moves out of shared/**/lib/actions.ts so the lock dialog does not pull "
+            "the bookmark and update domains. Target: Login first load at least 2.5 kB smaller (about 190.6 kB "
+            "gzip or less); if not reached, also shrink the route table manifest. No behavior change: parity strict "
+            "--all with the call check.")],
+}
 STRETCH_PHASES = {"P8", "P9"}  # R1 (b): phases 8 and 9 run only on the user's request
 
 
@@ -157,6 +168,10 @@ def phase6(plan: str) -> list[dict]:
                          ("after", f"Review the routes of group {g} on localhost (links in the step report): "
                                    f"{names}. Then confirm the group."), 0.25, anchor,
                          f"This step is step C (prune) of group {g} and the gate of the group. Routes: {names}."))
+        for row in AFTER_GROUP.get(g, []):
+            fix = entry(*row[:7], anchor, row[7])
+            fix["fullParity"] = True
+            out.append(fix)
     out.append(entry("P6-end", "Delete screens/ and shared/", "change", "visual", "sonnet", None, 0.25, anchor,
                      "This step is the end of Phase 6: the paragraph that starts with 'After G6'."))
     return out

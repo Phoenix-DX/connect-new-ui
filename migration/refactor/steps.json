@@ -1022,6 +1022,23 @@
    ]
   },
   {
+   "id": "P6-F15",
+   "phase": "P6",
+   "title": "Login first load under its limit",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is the bundle fix of decision W18 (migration/refactor/auto-decisions-2026-10-22.md). Take api/message and api/bookmark (and api/update) out of the entry chunk: the app-start call in platform/bootstrap/startup.ts imports narrowly (deep import or a small module, static, same call order); get_IsUnsupportedSystem moves out of shared/**/lib/actions.ts so the lock dialog does not pull the bookmark and update domains. Target: Login first load at least 2.5 kB smaller (about 190.6 kB gzip or less); if not reached, also shrink the route table manifest. No behavior change: parity strict --all with the call check.",
+   "deps": [
+    "P6-G2-C"
+   ]
+  },
+  {
    "id": "P6-G3-A",
    "phase": "P6",
    "title": "Move group G3 to pages/",
@@ -1035,7 +1052,7 @@
    "anchor": "### Phase 6",
    "extra": "This step is step A (move) of group G3 only. Routes: HomeFeed, FeedItemDetail, Updates_SingleList, Services, Search, Notifications, MessageList, MessageDetail.",
    "deps": [
-    "P6-G2-C"
+    "P6-F15"
    ]
   },
   {
