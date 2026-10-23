@@ -58,8 +58,6 @@ src/components/directory/CarouselHouseholdDetails/CarouselHouseholdDetails.stori
 src/components/directory/CarouselHouseholdDetails/CarouselHouseholdDetails.stories.tsx,@/platform/session/session,rule-4,P6-G4-B-HouseholdCarousel
 src/components/directory/CarouselHouseholdDetails/CarouselHouseholdDetails.tsx,@/containers,rule-4,P6-G4-B-HouseholdCarousel
 src/components/directory/CarouselSupperMeetingDetails/CarouselSupperMeetingDetails.stories.tsx,@/platform/session/session,rule-4,P6-G4-B-SupperMeeting_Carousel
-src/components/directory/DirectoryLegendSheet/DirectoryLegendSheet.test.tsx,@/platform/navigation/backQueue,rule-4,P6-G4-B-CountryList
-src/components/directory/DirectoryLegendSheet/DirectoryLegendSheet.tsx,@/platform/navigation/PreventBackNavigation,rule-4,P6-G4-B-CountryList
 src/components/directory/EntitiesCarousel/EntitiesCarousel.stories.tsx,@/containers/HouseholdDetails/mockData,rule-4,P6-G4-B-HouseholdCarousel
 src/components/directory/EntitiesCarousel/EntitiesCarousel.stories.tsx,@/platform/session/mockUser,rule-4,P6-G4-B-HouseholdCarousel
 src/components/directory/EntitiesCarousel/EntitiesCarousel.stories.tsx,@/platform/session/session,rule-4,P6-G4-B-HouseholdCarousel

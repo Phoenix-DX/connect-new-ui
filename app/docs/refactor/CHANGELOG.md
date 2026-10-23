@@ -506,3 +506,9 @@
 - `pages/BrowseDirectory` is a page with a flow hook `useBrowseDirectory` (on `useFlowState`, W23 once-guard and write guard) and a pure state file `browseDirectoryState`. The page renders `DetailLayout` with `useNavigateBack`, not the `Layout_DetailPage` adapter.
 - `api.ts`, `types.ts` and `components/actions.ts` are deleted; the flow calls `fetchLocalityCardList` of `api/locality` on demand. `useLocalityCardListQuery` has no caller yet: a query refetches on return and drop the 10 placeholder rows.
 - The view cache key is now `Directory_Locality.BrowseDirectory`.
+
+## P6-G4-B-CountryList - refactor(P6-G4-B): CountryList as page
+
+- `pages/CountryList` is a page with a flow hook `useCountryList` (on `useFlowState`, W23 once-guard and write guard), a pure state file `countryListState` and the props-only `CountryListContent`. `api.ts` and `types.ts` are deleted.
+- `DirectoryLegendSheet` is props-only: the new prop `preventBackNavigation` takes the slot; CountryList and CountryDetails give `PreventBackNavigation` (2 lines in CountryDetails). 2 rows removed from `arch-baseline.csv`.
+- CountryList chunk +0.74 kB gzip from the shared `flowState` chunk.

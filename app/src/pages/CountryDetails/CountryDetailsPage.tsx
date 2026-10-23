@@ -48,6 +48,7 @@ import { jSUtils_String_RemoveAccents } from '@/shared/UBTJavaScriptUtils/lib/ac
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState } from '@/platform/navigation';
+import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { useGetLocalityStatistics } from './api';
 import {
   directory_BrowseByCountry_TooltipBuilder,
@@ -481,6 +482,7 @@ export default function CountryDetails() {
         onSheetInitialized={(id) => {
           bottomSheetId.current = id;
         }}
+        preventBackNavigation={PreventBackNavigation}
       />
     </>
   );

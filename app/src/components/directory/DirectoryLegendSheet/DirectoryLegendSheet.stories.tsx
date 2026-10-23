@@ -1,9 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DirectoryLegendSheet } from './DirectoryLegendSheet';
+
+/** A stand-in for the PreventBackNavigation block that the page gives (platform/navigation): its wrapper and its
+    nested BackNavigationHandler. */
+function PreventBackNavigationStandIn() {
+  return (
+    <OSBlock name="NavigationHandler.PreventBackNavigation">
+      <OSBlock name="NavigationHandler.BackNavigationHandler" />
+    </OSBlock>
+  );
+}
 
 const meta = {
   title: 'Shared/UBTConnect/Directory_LegendBottomSheet',
   component: DirectoryLegendSheet,
+  args: { preventBackNavigation: PreventBackNavigationStandIn },
 } satisfies Meta<typeof DirectoryLegendSheet>;
 export default meta;
 type Story = StoryObj<typeof meta>;

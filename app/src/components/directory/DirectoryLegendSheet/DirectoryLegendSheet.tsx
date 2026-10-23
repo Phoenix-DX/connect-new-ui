@@ -1,8 +1,6 @@
 /** @origin UBTConnect.Directory_Locality.Directory_LegendBottomSheet */
-// @os-block UBTConnect.Directory_Locality.Directory_LegendBottomSheet
-import { useRef, useState, type ReactNode } from 'react';
+import { useRef, useState, type ComponentType, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { bottomSheetClose } from '@/shared/osui/lib/actions';
 import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
@@ -22,6 +20,16 @@ export interface DirectoryLegendSheetProps {
   showLocalities?: boolean;
   /** Event SheetInitialized(Id): the BottomSheet id (the screen opens it with BottomSheetOpen). */
   onSheetInitialized?: (id: string) => void;
+  /** The PreventBackNavigation block of NavigationHandler (`platform/navigation`), as a component. The page gives it,
+      because a component does not import `platform/` (rule 4). The block renders it while the sheet is open; a
+      prevented back navigation calls `onBackNavigationPrevented` (BottomSheetOnClose). */
+  preventBackNavigation?: ComponentType<PreventBackNavigationSlotProps>;
+}
+
+/** The props that the block gives the PreventBackNavigation slot. */
+export interface PreventBackNavigationSlotProps {
+  /** Event BackNavigationPrevented. */
+  onBackNavigationPrevented: () => void;
 }
 
 /** TextOptions of every legend line (Neutral7, Small). */
@@ -45,9 +53,15 @@ function legend(text: string, iconId: string, colorId: string) {
     (p:UBTConnect.Directory_Locality.Directory_LegendBottomSheet.mvc.js:150-790): ConnectPatterns BottomSheet (header,
     no back button, Neutral0 content, padding x Base and bottom DoubleExtraLarge, `directory-legend-explanation`) with
     the legend lines Brethren, Households, Localities or Supper Meetings (ShowLocalities), Brothers, Sisters, with the
-    icons and colours of Statistics_Icons. While open (IsOpened, set by OnToggle) PreventBackNavigation closes it:
-    BottomSheetOnClose = BottomSheetOnToggle(False) + OutSystems UI BottomSheetClose(BottomSheetId). */
-export function DirectoryLegendSheet({ id, showLocalities = true, onSheetInitialized }: DirectoryLegendSheetProps) {
+    icons and colours of Statistics_Icons. While open (IsOpened, set by OnToggle) PreventBackNavigation (the
+    `preventBackNavigation` slot) closes it: BottomSheetOnClose = BottomSheetOnToggle(False) + OutSystems UI
+    BottomSheetClose(BottomSheetId). */
+export function DirectoryLegendSheet({
+  id,
+  showLocalities = true,
+  onSheetInitialized,
+  preventBackNavigation: PreventBackNavigation,
+}: DirectoryLegendSheetProps) {
   const [isOpened, setIsOpened] = useState(false);
   const bottomSheetId = useRef('');
   const bottomSheetOnClose = () => {
@@ -95,7 +109,9 @@ export function DirectoryLegendSheet({ id, showLocalities = true, onSheetInitial
           </>
         }
       />
-      {isOpened && <PreventBackNavigation onBackNavigationPrevented={bottomSheetOnClose} />}
+      {isOpened && PreventBackNavigation !== undefined && (
+        <PreventBackNavigation onBackNavigationPrevented={bottomSheetOnClose} />
+      )}
     </OSBlock>
   );
 }

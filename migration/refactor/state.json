@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G4-B-BrowseDirectory",
+  "step": "P6-G4-B-CountryList",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T04:36:25"
+  "since": "2026-10-24T04:42:14"
  },
  "steps": {
   "P0-1": {
@@ -1002,12 +1002,25 @@
    "finished": "2026-10-24T04:30:17"
   },
   "P6-G4-B-BrowseDirectory": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T04:30:17",
    "tokens": {
     "dev": 207150,
     "test": 25863,
     "docs": 28594
+   },
+   "commit": "cf7e275d",
+   "gate": "ci: pass (2645 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle HomeFeed 244.15/248.22, Login 184.17/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T04:36:26"
+  },
+  "P6-G4-B-CountryList": {
+   "status": "active",
+   "started": "2026-10-24T04:36:27",
+   "tokens": {
+    "dev": 269521,
+    "test": 29066,
+    "docs": 31232
    }
   }
  },
