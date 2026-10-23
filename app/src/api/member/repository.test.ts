@@ -2,12 +2,12 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ORBIT_MEMBERS } from '@/mocks/fictional/orbit';
 import { orbitAdminMember } from '@/mocks/fictional/orbitAdmin';
 import { collection } from '@/mocks/store';
-import { editMemberDetails, fetchAvailableMembers, fetchMember } from './repository';
+import { editMemberDetails, fetchAvailableMembers, fetchMember, requestPhotoUpdate } from './repository';
 import type { AvailableMembersCallInputs, MemberAccountForm } from './types';
 
 /* The MSW mocks of the test setup: ShareSheet/mocks.ts (six fictional members, filtered by the search term),
-   OrbitAdminEventDetail/mocks.ts (the members that an admin can scan) and Profile/mocks.ts (the save is kept in the
-   collection Profile.editRequests). */
+   OrbitAdminEventDetail/mocks.ts (the members that an admin can scan), Profile/mocks.ts (the save is kept in the
+   collection Profile.editRequests) and Menu/mocks.ts (the answer to the photo update request). */
 const searchInputs: AvailableMembersCallInputs = {
   In_ShareObjectTypeId: 'Household',
   In_ShareableObjectId: '7001',
@@ -92,6 +92,13 @@ describe('member repository', () => {
     ]);
     expect(editRequests.all().slice(before)).toEqual([
       expect.objectContaining({ UI_AccountForm: accountForm, isRequireRequestCreation: true }),
+    ]);
+  });
+
+  it('requestPhotoUpdate calls RequestPhotoUpdate with no input and answers Out_IsSuccess', async () => {
+    expect(await requestPhotoUpdate()).toBe(true);
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({ module: 'UBTConnect', action: 'ActionRequestPhotoUpdate', inputNames: [] }),
     ]);
   });
 

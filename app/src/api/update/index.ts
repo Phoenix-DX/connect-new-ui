@@ -9,6 +9,5 @@ export {
   markCarouselUpdateItemAsRead,
   markUpdateItemAsRead,
   markUpdateItemAsUnread,
-  requestPhotoUpdate,
 } from './repository';
 export type * from './types';

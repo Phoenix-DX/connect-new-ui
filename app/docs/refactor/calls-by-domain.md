@@ -9,10 +9,10 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 | Domain       | Files | Actions (distinct) |
 | ------------ | ----: | -----------------: |
 | household    |     9 |                 12 |
-| member       |     3 |                  3 |
+| member       |     4 |                  4 |
 | country      |     6 |                  7 |
 | locality     |     7 |                 11 |
-| update       |     5 |                  9 |
+| update       |     4 |                  8 |
 | event        |    17 |                 29 |
 | bookmark     |     4 |                 10 |
 | note         |     4 |                  6 |
@@ -39,6 +39,7 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 | File                                        | Module           | Actions                                    |
 | ------------------------------------------- | ---------------- | ------------------------------------------ |
 | `screens/OrbitAdminEventDetail/api.ts`      | <MODULE>         | `ActionGetMemberByMemberId`                |
+| `pages/Menu/hooks/useMenu.ts`               | UBTConnect       | `ActionRequestPhotoUpdate`                 |
 | `screens/Profile/api.ts`                    | UBTConnect       | `ServiceAPIMember_EditDetails_Service`     |
 | `shared/UBTConnect_Utils/ShareSheet/api.ts` | UBTConnect_Utils | `ShareSheet/DataActionGetAvailableMembers` |
 
@@ -75,11 +76,12 @@ P5-2-locality: the 11 actions of this table (7 files, 11 distinct actions, count
 | ----------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `screens/HomeFeed/api.ts`           | UBTConnect | `FeedBlock_Updates/DataActionFetchUpdates`, `ServiceAPIAction_UI_UpdateItem_MarkAsRead`, `ServiceAPIAction_UI_UpdateItem_MarkAsUnread`                                                                                                |
 | `screens/HouseholdCarousel/api.ts`  | UBTConnect | `ActionUpdateItem_MarkAsRead`                                                                                                                                                                                                         |
-| `screens/Menu/api.ts`               | UBTConnect | `ActionRequestPhotoUpdate`                                                                                                                                                                                                            |
 | `screens/Updates_SingleList/api.ts` | UBTConnect | `ServiceAPIAction_UI_UpdateItem_MarkAllAsRead`, `ServiceAPIAction_UI_UpdateItem_MarkAsRead`, `ServiceAPIAction_UI_UpdateItem_MarkAsUnread`, `Updates_SingleList/DataActionFetchUpdates`, `Updates_SingleList/DataActionGetDateRanges` |
 | `shared/UBTConnect/lib/actions.ts`  | UBTConnect | `ServiceAPIGet_UI_UpdateItems_UnreadCount_All`                                                                                                                                                                                        |
 
-P5-2-update: the 9 actions of this table (5 files, 9 distinct actions, counts unchanged) are now in `src/api/update/repository.ts`. The `api.ts` files above re-export it; `shared/UBTConnect/lib/actions.ts` calls `fetchUnreadUpdateItemsCount`. Open item: `ActionRequestPhotoUpdate` is in this table only because of its name; a later step can move `requestPhotoUpdate` to `api/member`.
+P5-2-update: the 9 actions of this table (5 files, 9 distinct actions, counts unchanged) are now in `src/api/update/repository.ts`. The `api.ts` files above re-export it; `shared/UBTConnect/lib/actions.ts` calls `fetchUnreadUpdateItemsCount`.
+
+P6-G1-B-Menu: `ActionRequestPhotoUpdate` moved to `src/api/member/repository.ts` (decision W9). The domain comes from the data that the call owns: the photo of the signed-in member. The tables now list it under member. `screens/Menu/api.ts` is deleted. `pages/Menu/hooks/useMenu.ts` calls `requestPhotoUpdate`.
 
 ## event
 

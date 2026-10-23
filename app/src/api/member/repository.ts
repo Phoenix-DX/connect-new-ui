@@ -31,3 +31,11 @@ export async function editMemberDetails(
     toEditMemberDetailsInputs(accountForm, isRequireRequestCreation),
   );
 }
+
+/** RequestPhotoUpdate (server action of UBTConnect, screen Menu): asks for an update of the photo of the signed-in
+    member. No inputs; the screen does not read Out_IsSuccess. A write: the mocks answer it, the real server never gets
+    it. */
+export async function requestPhotoUpdate(): Promise<boolean> {
+  const out = await callAction('UBTConnect', 'ActionRequestPhotoUpdate', {});
+  return out.Out_IsSuccess;
+}

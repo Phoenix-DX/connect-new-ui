@@ -278,3 +278,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T19:19:42 P6-G1-B-AcceptPendingPolicies stage test
 - 2026-10-23T19:28:23 P6-G1-B-AcceptPendingPolicies stage docs
 - 2026-10-23T19:30:04 P6-G1-B-AcceptPendingPolicies stage commit
+- 2026-10-23T19:30:05 P6-G1-B-AcceptPendingPolicies done 9b8b211: ci: pass (2092 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); lint:arch no new warning; bundle within +5%
+- 2026-10-23T19:30:11 P6-G1-B-Menu started
+- 2026-10-23T19:30:11 P6-G1-B-Menu stage dev
+- 2026-10-23T19:30:48 P6-G1-B-Menu stage test
+- 2026-10-23T19:38:06 P6-G1-B-Menu stage docs
+- 2026-10-23T19:39:40 P6-G1-B-Menu stage commit

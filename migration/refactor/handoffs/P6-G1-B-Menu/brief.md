@@ -15,7 +15,7 @@ Written by rf.py brief. Read this file, then the files that the step names under
 
 ## Scope of this step
 
-This step is step B (restructure) of group G1 for the route Menu only. Do not change the other routes of the group.
+This step is step B (restructure) of group G1 for the route Menu only. Do not change the other routes of the group. Step B item 3 is the step P6-G1-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.
 
 ## The step in the plan
 

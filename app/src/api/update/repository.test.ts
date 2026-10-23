@@ -9,14 +9,12 @@ import {
   markCarouselUpdateItemAsRead,
   markUpdateItemAsRead,
   markUpdateItemAsUnread,
-  requestPhotoUpdate,
 } from './repository';
 import type { FilterUpdates, UpdatesListVariables } from './types';
 
 /* The MSW mocks of the test setup: the fictional update items of HomeFeed (shared/UBTConnect/Directory_Updates/mocks.ts,
-   three unread items, changed by the read-state handlers) and of Updates_SingleList (88 items, 4 read), the recorded
-   date ranges of Updates_SingleList and unread count of all the update items, and the Menu answer to the photo update
-   request. */
+   three unread items, changed by the read-state handlers) and of Updates_SingleList (88 items, 4 read), and the
+   recorded date ranges of Updates_SingleList and unread count of all the update items. */
 const feedItems = collection('HomeFeed.updateItems', () => [], 'UpdateItemId');
 const listItems = collection('Updates_SingleList.updateItems', () => [], 'UpdateItemId');
 
@@ -198,13 +196,6 @@ describe('update repository', () => {
         action: 'ServiceAPIGet_UI_UpdateItems_UnreadCount_All',
         inputNames: [],
       }),
-    ]);
-  });
-
-  it('requestPhotoUpdate calls RequestPhotoUpdate with no input and answers Out_IsSuccess', async () => {
-    expect(await requestPhotoUpdate()).toBe(true);
-    expect(window.__osCalls).toEqual([
-      expect.objectContaining({ module: 'UBTConnect', action: 'ActionRequestPhotoUpdate', inputNames: [] }),
     ]);
   });
 

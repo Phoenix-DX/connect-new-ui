@@ -286,3 +286,8 @@
 - `src/pages/AcceptPendingPolicies` is now a page with two hooks (`useAcceptPendingPolicies`, `usePendingPoliciesForm`) and two components (`PoliciesHeader`, `PendingPoliciesForm`). The route's `api.ts` and `types.ts` are deleted.
 - New domain `src/api/policy` (decision W8): `fetchPendingPolicies`, `acceptPolicies`, `usePendingPoliciesQuery`. `platform/feedback/flowErrors.ts` re-exports `isCommunicationException`.
 - No shared block moved. Visual parity `--changed`: clean for both references. `move-map.csv`: 4 rows set to `moved`.
+
+## P6-G1-B-Menu - refactor(P6-G1-B): Menu as page
+
+- `src/pages/Menu` is now a page with one hook (`useMenu`, with the pure `menuState`) and one component (`MenuUserHeader`). The route's `api.ts` and `types.ts` are deleted. The page renders `DetailLayout` directly.
+- `requestPhotoUpdate` moved from `src/api/update` to `src/api/member` (decision W9). No shared block moved. Visual parity `--changed`: clean for both references. `move-map.csv`: Menu row set to `moved`.

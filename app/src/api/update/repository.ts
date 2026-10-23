@@ -11,9 +11,9 @@ import {
 import type { FilterUpdates, UpdateItem, UpdatesList, UpdatesListVariables } from './types';
 
 /* The server calls of the update domain, called with their OutSystems names and owners: the update items of the block
-   FeedBlock_Updates (HomeFeed) and of the screen Updates_SingleList, the read state of an update item, the unread count
-   of the bottom bar, and the photo update request of the screen Menu. Each function makes one call. The callers decide
-   when to call (screen flows, the query hook, the bottom bar). */
+   FeedBlock_Updates (HomeFeed) and of the screen Updates_SingleList, the read state of an update item and the unread
+   count of the bottom bar. Each function makes one call. The callers decide when to call (screen flows, the query
+   hook, the bottom bar). */
 
 /** DataActionFetchUpdates of FeedBlock_Updates: the latest update items of the home feed. The call sends the block
     variable CarouselPreloadedHouseholds, which is empty at fetch time. */
@@ -71,11 +71,4 @@ export async function markCarouselUpdateItemAsRead(updateItemId: string): Promis
     bottom bar). */
 export async function fetchUnreadUpdateItemsCount(): Promise<number> {
   return toUnreadCount(await callAction('UBTConnect', 'ServiceAPIGet_UI_UpdateItems_UnreadCount_All', {}));
-}
-
-/** The server action RequestPhotoUpdate of the screen Menu: asks for an update of the user's photo. No inputs. The
-    screen does not read Out_IsSuccess. */
-export async function requestPhotoUpdate(): Promise<boolean> {
-  const out = await callAction('UBTConnect', 'ActionRequestPhotoUpdate', {});
-  return out.Out_IsSuccess;
 }

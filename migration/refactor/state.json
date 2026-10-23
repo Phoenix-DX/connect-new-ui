@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G1-B-AcceptPendingPolicies",
+  "step": "P6-G1-B-Menu",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T19:30:04"
+  "since": "2026-10-23T19:39:40"
  },
  "steps": {
   "P0-1": {
@@ -495,12 +495,25 @@
    "finished": "2026-10-23T19:19:17"
   },
   "P6-G1-B-AcceptPendingPolicies": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T19:19:22",
    "tokens": {
     "dev": 277303,
     "test": 25273,
     "docs": 42447
+   },
+   "commit": "9b8b211",
+   "gate": "ci: pass (2092 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); lint:arch no new warning; bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T19:30:05"
+  },
+  "P6-G1-B-Menu": {
+   "status": "active",
+   "started": "2026-10-23T19:30:11",
+   "tokens": {
+    "dev": 191363,
+    "test": 37253,
+    "docs": 33398
    }
   }
  },
