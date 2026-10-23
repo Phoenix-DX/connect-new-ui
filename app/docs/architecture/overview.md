@@ -42,7 +42,7 @@ flowchart LR
 flowchart TB
   subgraph Browser
     direction TB
-    platform[src/platform<br/>error handling, sign-in and PIN mock,<br/>navigation guard, view cache, toasts,<br/>local entities IndexedDB]
+    platform[src/platform<br/>error handling, auth provider, PIN,<br/>navigation guard, view cache, toasts,<br/>local entities IndexedDB]
     pages[src/pages/&lt;Route&gt;<br/>&lt;Route&gt;Page.tsx · hooks · inputs.ts · mocks.ts]
     containers[src/containers<br/>a container only by the criterion of the page template,<br/>with its hooks and mocks]
     comps[src/components/&lt;domain&gt;<br/>props-only components with stories and tests]
@@ -115,6 +115,8 @@ sequenceDiagram
 | Platform validation   | `src/components/ui/os/OSValidation`                                                                                  | [Platform widgets](../guides/os-widgets.md)      |
 | Popups                | `src/components/ui/os/OSPopup/usePopupWidget.ts`                                                                     | [Platform widgets](../guides/os-widgets.md)      |
 | Session status        | `src/platform/session/machine.ts` (7 statuses, pure `transition`; selectors in `session.ts`)                         | [Shell](../guides/shell.md)                      |
+| Auth provider         | `src/platform/auth` (`AuthProvider`, `mockAuth` behind `MOCKS_BUILT`, `authProvider()`)                              | [Shell](../guides/shell.md)                      |
+| App start             | `src/platform/bootstrap/appStartSteps.ts` (7 named steps), `postLogin.ts`                                            | [Shell](../guides/shell.md)                      |
 | Settings store        | `src/platform/settings` (11 typed server settings from `synchAppContext`; adapter `src/legacy/os/clientVarNames.ts`) | [Shell](../guides/shell.md)                      |
 | Local entities        | `src/platform/storage/localEntities` (IndexedDB; bookmark sync in one transaction, ADR-8)                            | [Shell](../guides/shell.md)                      |
 | Vendored scripts      | `src/vendor/panzoom` (ADR-7), `src/shared/osui/DropdownSearch/vendor` (ADR-5)                                        | [Shared code](../guides/shared-code.md)          |

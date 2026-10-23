@@ -5,7 +5,7 @@ import { setRecentSearchDatabase } from '@/platform/storage/localEntities/recent
 import { clearMemoryCache } from '@/platform/storage/memoryCache';
 import { getResumeLoginLink } from '@/platform/session/resume';
 import { setReviewMarkers } from '@/legacy/os/reviewMarkers';
-import { resetAppStart } from '@/platform/bootstrap/startup';
+import { resetAppStart } from '@/platform/bootstrap/appStartSteps';
 import { writeItem } from '@/platform/storage/storage';
 import { TAB_STARTED } from '@/platform/session/testSession';
 

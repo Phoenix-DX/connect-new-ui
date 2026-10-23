@@ -78,15 +78,18 @@ describe('mock-free production build', () => {
 
 describe('forbiddenMockModules (the production build guard of build/mockFree.ts)', () => {
   const root = '/app';
-  it('flags MSW, src/mocks and the mocks.ts of screens, blocks and the shell', () => {
+  it('flags MSW, src/mocks, the mocks.ts of screens, blocks and the shell, and the mock identity provider', () => {
     const ids = [
       '/app/node_modules/msw/lib/core/http.mjs',
       '/app/node_modules/@mswjs/interceptors/lib/browser/index.mjs',
       '/app/src/mocks/fixtures.ts',
       '/app/src/mocks/fixtures/UBTConnect/ActionGetUserInformation.json',
+      '/app/src/mocks/fictional/directory.ts',
       '/app/src/screens/HomeFeed/mocks.ts',
       '/app/src/shell/mocks.ts',
       '/app/src/shared/UBTConnect/HouseholdDetails_Block/mockData.ts',
+      '/app/src/platform/auth/mockAuth.ts',
+      '/app/src/platform/session/mockUser.ts',
     ];
     expect(forbiddenMockModules(ids, root)).toEqual(ids);
   });
@@ -94,8 +97,8 @@ describe('forbiddenMockModules (the production build guard of build/mockFree.ts)
   it('passes app code and the known leftovers', () => {
     const ids = [
       '/app/src/main.tsx',
-      '/app/src/shell/testSession.ts',
-      '/app/src/shell/mockUser.ts',
+      '/app/src/platform/session/testSession.ts',
+      '/app/src/platform/auth/authProvider.ts',
       '/app/node_modules/react/index.js',
       ...KNOWN_MOCK_LEFTOVERS.map((file) => `${root}/${file}`),
     ];

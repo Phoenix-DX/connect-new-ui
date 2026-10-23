@@ -1,4 +1,4 @@
-import { config } from '@/platform/config/config';
+import { MOCKS_BUILT } from '@/platform/config/config';
 import { mockCachedUserIdentity } from './mockUser';
 import { getClientVar, setClientVar } from './session';
 import type { AppManager_CachedUserInfoRec } from './types';
@@ -31,7 +31,8 @@ function parse(json: string): unknown {
     record (the runtime's JSON deserializer is not in local code).
     Mock phase (CR-OrbitAdminLanding-1, CR-QRCodeGenerate-1): when the variable holds a record (the mock sign-in wrote
     it), the mock user's FirstName, LastName, MemberId, Locality and Country are merged in from memory into the fields the
-    stored record leaves empty. They are never written back: the stored record keeps only CountryCode (rule 16). */
+    stored record leaves empty. They are never written back: the stored record keeps only CountryCode (rule 16).
+    MOCKS_BUILT is a build-time constant: production builds drop the merge and the mock user (build/mockFree.ts). */
 export function appManager_GetCachedUserInfo(): AppManager_CachedUserInfoRec {
   const data = parse(getClientVar('UBT_AppManager.AppManager_UserExtended'));
   const rec = { ...EMPTY_CACHED_USER_INFO };
@@ -41,7 +42,7 @@ export function appManager_GetCachedUserInfo(): AppManager_CachedUserInfoRec {
     const field = name as keyof AppManager_CachedUserInfoRec;
     if (typeof value === typeof rec[field]) Object.assign(rec, { [field]: value });
   }
-  if (config.useMocks) {
+  if (MOCKS_BUILT) {
     for (const [field, value] of Object.entries(mockCachedUserIdentity())) {
       const key = field as keyof typeof rec;
       if (rec[key] === '') Object.assign(rec, { [key]: value });

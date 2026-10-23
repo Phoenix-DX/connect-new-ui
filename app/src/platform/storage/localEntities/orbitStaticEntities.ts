@@ -37,8 +37,8 @@ import {
    Reads: the screens read at their first render, synchronously (MilestoneHeader, HostAllocation_HelperItem,
    ScreenBlock_EventDetail), where the original's reads are asynchronous IndexedDB reads. So the module keeps an
    in-memory mirror of the two stores:
-   - filled from the database at app start (loadOrbitStaticEntities, called by startup.ts runAppStart, as the runtime
-     opens the device database before OnApplicationReady), and re-read after each sync's transaction, so it holds the
+   - filled from the database at app start (loadOrbitStaticEntities, called by appStartSteps.ts runAppStart, as the
+     runtime opens the device database before OnApplicationReady), and re-read after each sync's transaction, so it holds the
      stored rows (ids given by the database included), in primary-key order as the IndexedDB store returns them;
    - a sync also writes its rows to the mirror when it is called, before its transaction (write-through), and re-reads
      the table if the transaction fails: readers see the new rows a few milliseconds early (the original's readers see

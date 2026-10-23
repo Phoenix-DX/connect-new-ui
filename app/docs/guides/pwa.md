@@ -26,10 +26,10 @@ Production is mock-free (`build/mockFree.ts`, checked by `build/mockFreeBuild.te
   value but sits in a frozen object that Rollup cannot fold. Do not gate an import on it.
 - The production build copies `public/` without `mockServiceWorker.js`, `mock-embeds/` and `mock-images/`
   (`MOCK_PUBLIC_FILES`). Dev, the mock build and the demo build keep them.
-- The build fails when a chunk still renders a mock module, and names it. Two small mock modules are still allowed
-  (`KNOWN_MOCK_LEFTOVERS`, no fixture, no MSW): `src/mocks/scenario.ts` (`?mock=unsupported-browser` in
-  `src/shared/UBTConnect/lib/actions.ts`) and `src/mocks/fictional/directory.ts` (the mock user of the mock sign-in,
-  `src/platform/session/auth.ts`, until the identity provider exists). Remove an entry when the app gates its importer.
+- The build fails when a chunk still renders a mock module, and names it. `KNOWN_MOCK_LEFTOVERS` (`build/mockFree.ts`)
+  is empty since P4-3: `src/platform/auth/authProvider.ts` reaches `mockAuth` only behind `MOCKS_BUILT`, and the
+  production-only plugin `mock-modules-without-side-effects` marks mock modules as free of side effects, so Rollup drops
+  them. Add an entry only for a small mock module with no fixture and no MSW. Remove it when the app gates its importer.
 
 - Only one service worker per scope. At start, `clearStaleServiceWorkers()` (`src/pwa/register.ts`) removes the other
   mode's worker.

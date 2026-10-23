@@ -10,7 +10,7 @@ export const USER_INFO_TTL_SECONDS = 7200;
    UC:1092-1160): in TST the app start fills the user-info cache and screens read it afterwards, e.g. PINRegister's
    only GetUserInformation comes after Sync_Info_GetMain (migration/screens/PINRegister/analysis/calls.json), the
    original block reading the cached user (AppManager_GetCachedUserInfo). The clone's first screen renders before that
-   step (startup.ts waitForFirstScreen), so without this wait a screen's reader would call first (CR-Search-3). */
+   step (appStartSteps.ts waitForFirstScreen), so without this wait a screen's reader would call first (CR-Search-3). */
 let appStartStep: Promise<void> | null = null;
 let releaseAppStartStep: (() => void) | null = null;
 

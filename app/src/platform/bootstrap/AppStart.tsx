@@ -1,7 +1,8 @@
 import { useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 import { DEFAULT_TRANSITION, transitionState } from '@/platform/navigation/screenTransition';
-import { pinUnlockRedirect, signedOutRedirect, startApp } from './startup';
+import { startApp } from './appStartSteps';
+import { pinUnlockRedirect, signedOutRedirect } from './startup';
 import { applyTestSession } from '@/platform/session/testSession';
 import { useShellState } from '@/platform/session/session';
 

@@ -4,7 +4,7 @@
 
    | From                   | Event             | To                                 | Sent by                       |
    | ---------------------- | ----------------- | ---------------------------------- | ----------------------------- |
-   | starting               | appStartDone      | signedOut, needPinRegister, locked | startup.ts runAppStart        |
+   | starting               | appStartDone      | signedOut, needPinRegister, locked | appStartSteps.ts runAppStart  |
    |                        |                   | or unlocked: the stored session    | (session.ts markAppReady)     |
    | signedOut              | signIn            | signingIn                          | auth.ts signIn                |
    | signingIn              | postLoginDone     | needPinRegister (no PIN), unlocked | auth.ts signIn                |
@@ -44,7 +44,7 @@ export interface SessionFacts {
 }
 
 export type SessionEvent =
-  // OnApplicationReady finished (startup.ts runAppStart)
+  // OnApplicationReady finished (appStartSteps.ts runAppStart)
   | ({ type: 'appStartDone' } & SessionFacts)
   // "Login with UBT One" (auth.ts signIn)
   | { type: 'signIn' }
@@ -115,7 +115,7 @@ export function sendSessionEvent(event: SessionEvent): void {
   setStatus(transition(current, event));
 }
 
-/** Back to `starting`, as a new page load (startup.ts resetAppStart, tests). */
+/** Back to `starting`, as a new page load (appStartSteps.ts resetAppStart, tests). */
 export function resetSessionStatus(): void {
   setStatus(STARTING);
 }

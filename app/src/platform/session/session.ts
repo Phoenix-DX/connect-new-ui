@@ -215,8 +215,8 @@ export function clearClientVarsAfterLogout(): void {
   emit();
 }
 
-/** The app start finished (startup.ts runAppStart): the session status leaves `starting` with the status of the stored
-    session (machine.ts `appStartDone`). */
+/** The app start finished (appStartSteps.ts runAppStart): the session status leaves `starting` with the status of the
+    stored session (machine.ts `appStartDone`). */
 export function markAppReady(): void {
   sendSessionEvent({ type: 'appStartDone', ...storedSessionFacts() });
 }

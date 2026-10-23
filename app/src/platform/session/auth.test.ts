@@ -21,7 +21,7 @@ import { MOCK_USER_ID } from './mockUser';
 import { registerPin } from './pin';
 import { setAppCallback, setResumeLoginLink } from './resume';
 import { getClientVar, getShellState, readPin, setClientVar, setSignedInUser } from './session';
-import { startApp } from '@/platform/bootstrap/startup';
+import { startApp } from '@/platform/bootstrap/appStartSteps';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 
 beforeEach(async () => {

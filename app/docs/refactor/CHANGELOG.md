@@ -138,3 +138,9 @@
 - New `src/platform/session/machine.ts` holds the session status and the events of plan v2 §3.2, with one unit test per transition. `session.ts`, `auth.ts` and `pin.ts` send the events; the selectors keep their names and values. `LockHost` sends through `pin.ts lock()`.
 - Differences from §3.2: `isLocked()` and `hasUnlocked()` keep reading the stored values; the mock-only event `userChanged`; `signOut` from `signingIn`; `policiesPending` is not reached yet.
 - Strict parity 64/64 for both references. Known flake F6: EventDetail/default differed by 1 pixel in 2 of 5 reruns. `move-map.csv` is unchanged.
+
+## P4-3 - refactor(P4-3): auth provider and named app-start steps
+
+- New `src/platform/auth`: the `AuthProvider` interface, `mockAuth` (reached only behind `MOCKS_BUILT`) and `authProvider()`. `src/platform/bootstrap/appStartSteps.ts` runs the app start as 7 named steps (`synchAppContext` to `cacheableMapData`), and `postLogin.ts` holds the post-login calls. `build/mockFree.ts` has a production-only plugin, so `KNOWN_MOCK_LEFTOVERS` is empty.
+- Differences from plan v2: the file is `appStartSteps.ts`, not `appStart.ts` (it clashes with `AppStart.tsx` on a case-insensitive file system). There is no `fetchFlags` step until P4-5. `mockUser.ts` stays in `platform/session` until a later move step.
+- One behavior change, as the plan asks: a production build has no identity provider. "Login with UBT One" shows "Sign-in is not available: no identity provider is configured." Dev, mock and demo builds sign in as before. Strict parity 64/64 for both references. `move-map.csv` is unchanged.

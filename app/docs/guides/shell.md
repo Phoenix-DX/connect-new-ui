@@ -7,7 +7,7 @@ The shell depends on no screen. Screens call the APIs below.
 
 ## What runs on every page load
 
-`<AppStart />` (mounted in `AppFrame`) runs `startApp()` once, in the order and with the conditions of TST
+`<AppStart />` (mounted in `AppFrame`) runs `startApp()` (`platform/bootstrap/appStartSteps.ts`) once, in the order and with the conditions of TST
 (spec section 10; `knowledge/shell-observed.md` U1/U3):
 
 - Signed out: SynchAppContext, Sync_Info_GetMain.
@@ -18,6 +18,10 @@ The shell depends on no screen. Screens call the APIs below.
     `.LocalBookmarksC2`). The mock user has no local bookmarks.
   - SyncNotes (UC:1145): the local notes copy becomes the `LocalEntities_App.LocalNotes` of Sync_Info_GetMain.
     A sign-in fetches its own Sync_Info_GetMain first (UC:1121).
+- The app start is a list of 7 named steps, `APP_START_STEPS`: `synchAppContext`, `initializeWebComponents`,
+  `bottomBarSlider`, `waitForFirstScreen`, `syncInfoMain`, `setLoggedContext` and `cacheableMapData`. Each step checks its
+  own condition. There is no `fetchFlags` step until P4-5. `postLogin.ts` holds the post-login calls
+  (`Connect_SetLoggedContext`), which the app start and the sign-in share.
 - The mock answers one local note per note of the notes mock collection (`notesCollection`).
 
 The mock user answers GetUserInformation and the CacheControl_UserInfo cache call. The mock user is a fictional person
@@ -37,7 +41,7 @@ in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the us
 | Module              | API                                                                                                                                                                       | Original                                                              |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `session.ts`        | `useShellState()`, `getShellState()`, `useClientVar(name)`, `getClientVar` / `setClientVar`                                                                               | client variables (spec 9b), session                                   |
-| `auth.ts`           | `signIn()` → destination path; `useSignIn()` (navigates, replace); `signOut()`                                                                                            | Login callback (U4), `Connect_Logout`                                 |
+| `auth.ts`           | `signIn()` → destination path (through `authProvider()`); `useSignIn()` (navigates, replace); `signOut()`                                                                 | Login callback (U4), `Connect_Logout`                                 |
 | `pin.ts`            | `pinCheck()`, `registerPin(pin)`, `verifyPin(pin)`, `isLocked()`, `lock()`                                                                                                | `PIN_Check`, `Pincode_Register/_Unlock`                               |
 | `resume.ts`         | `setResumeLoginLink`, `getResumeLoginLink` (clears), `setAppCallback(url)`, `getColdStartLinkURL()` (`''` on the web, U14)                                                | resume link (U14), `AppManager_SetAppCallback`, `GetColdStartLinkURL` |
 | `userInfo.ts`       | `getUserInformation()` (cached 7200 s)                                                                                                                                    | `GetUserInformation_Wrapper`                                          |
@@ -56,7 +60,7 @@ in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the us
   load starts at `starting`. The statuses are `starting`, `signedOut`, `signingIn`, `needPinRegister`, `locked`,
   `unlocked` and `policiesPending`. The pure `transition(state, event)` changes the status, `sendSessionEvent` applies
   an event, and `getSessionStatus` reads it. Each row has a test in `machine.test.ts`.
-  - Events and senders: `appStartDone` (`session.ts markAppReady`, called by `runAppStart`), `signIn` and
+  - Events and senders: `appStartDone` (`session.ts markAppReady`, called by `runAppStart` in `appStartSteps.ts`), `signIn` and
     `postLoginDone` (`auth.ts signIn`), `pinRegistered` (`pin.ts registerPin`), `inactivityTimeout` (`pin.ts lock`,
     which LockHost calls at the timeout), `pinVerified` (`pin.ts verifyPin`), `signOut` (`auth.ts signOut`).
   - Differences from §3.2: `signOut` also applies from `signingIn` (a 401 during the post-login calls). The event
@@ -107,7 +111,7 @@ Local entities in practice:
 - **Orbit static entities (F12, CR-HelpersDetail-1).** They live in IndexedDB like the others, so rows of earlier app
   starts survive a page load whose Sync_Info_GetMain fails or never answers.
   - Blocks read them synchronously at first render, so the adapter keeps an in-memory mirror.
-  - `loadOrbitStaticEntities()` fills the mirror at app start (`runAppStart`).
+  - `loadOrbitStaticEntities()` fills the mirror at app start (`runAppStart` in `appStartSteps.ts`).
   - Each sync writes the mirror at once and reads the table back after its transaction.
   - `useOrbitStaticEntitiesVersion()` re-renders readers after every change.
   - `getLocalOrbitMilestoneTypeById` raises `DataBaseException` for a missing id, as Entity.get does.
@@ -368,3 +372,14 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
 Tests: `src/platform/session/inactivity.test.ts`, `src/platform/navigation/LockHost.test.tsx`.
 
 Tests: `src/platform/feedback/*.test.tsx`, `src/platform/feedback/dialogs/*.test.tsx`.
+
+## Identity provider (`platform/auth`)
+
+- `AuthProvider` (`auth/provider.ts`) is the interface of the identity provider. `authProvider()` (`auth/authProvider.ts`)
+  returns `mockAuth` when `MOCKS_BUILT` is true, and `null` otherwise. `mockAuth` keeps the stored session and the cached
+  user record of the mock user. `auth.ts signIn()` calls `provider.signIn` before the `signIn` event, so a provider
+  failure leaves the status at `signedOut`. `signOut()` calls `provider.signOut()` before the session ends.
+- A production build has no identity provider (`bffAuth` is not part of the refactor). `signIn()` then rejects with
+  "Sign-in is not available: no identity provider is configured.", and Login shows it. Dev, mock and demo builds sign in
+  as before.
+- `mockUser.ts` stays in `platform/session` (more than 40 importers); a later move step moves it.

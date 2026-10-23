@@ -99,8 +99,8 @@ async function seedCapturedTabClientVars(): Promise<void> {
 /* The same tab also kept the device's local entities of those runs (client entities persist, as the client variables
    do). Directory_EntityDetailsActions OnReady (Get_LocalBookmarkByObjectId) and Locality_Households_HouseholdList
    OnAfterFetch (GetLocal_Bookmark) read the local bookmarks while this app start's Sync_Info_GetMain has not answered yet
-   (startup.ts waits for the first screen), so the captures show the bookmarks the earlier runs synced: the bookmarks of
-   the Sync_Info_GetMain mock (CR-HouseholdDetails-2 §2, CR-Locality_Details-1). The app start then replaces them with
+   (appStartSteps.ts waits for the first screen), so the captures show the bookmarks the earlier runs synced: the
+   bookmarks of the Sync_Info_GetMain mock (CR-HouseholdDetails-2 §2, CR-Locality_Details-1). The app start then replaces them with
    the same rows (SynchBookmarks).
    Likewise the Orbit static entities (LocalOrbitMilestoneType, LocalSurveyStatus): earlier app starts synced them, so
    the captures' MilestoneHeader shows the milestone type even when this start's Sync_Info_GetMain never answers (the
