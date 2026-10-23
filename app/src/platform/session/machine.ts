@@ -12,6 +12,7 @@
    | unlocked               | inactivityTimeout | locked                             | pin.ts lock (LockHost)        |
    | locked                 | pinVerified       | unlocked                           | pin.ts verifyPin              |
    | signingIn, signed in   | signOut           | signedOut                          | auth.ts signOut (401, Logout) |
+   | signingIn, signed in   | signedOutRemotely | signedOut                          | auth.ts signedOutRemotely     |
    | not starting/signingIn | userChanged       | the status of the new user         | session.ts emit (mock)        |
 
    Any other event leaves the status as it is (the same object). No event leads to `policiesPending` yet: §3.2 has no
@@ -58,6 +59,9 @@ export type SessionEvent =
   | { type: 'pinVerified' }
   // Connect_Logout (auth.ts signOut)
   | { type: 'signOut' }
+  // Connect_Logout because the server ended the session: ShowExceptionMessage with ForceLogout (auth.ts
+  // signedOutRemotely)
+  | { type: 'signedOutRemotely' }
   // the stored session user of the mock identity provider, at each change of the session store (session.ts emit)
   | ({ type: 'userChanged' } & SessionFacts);
 
@@ -90,6 +94,7 @@ export function transition(state: SessionStatus, event: SessionEvent): SessionSt
     case 'pinVerified':
       return state.status === 'locked' ? { status: 'unlocked', userId: state.userId } : state;
     case 'signOut':
+    case 'signedOutRemotely':
       return state.status === 'starting' || state.status === 'signedOut' ? state : { status: 'signedOut' };
     case 'userChanged':
       // while starting, the app start resolves the session; while signing in, the post-login step does

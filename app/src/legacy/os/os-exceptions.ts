@@ -56,6 +56,9 @@ export class CommunicationException extends Exception {
     (OutSystems.js:3, offset 74168). The shell's exception messages and Connect2_LegacyShared IsTimeoutExceptionMessage
     test this text. */
 export const CONNECTION_TIMED_OUT = 'The connection has timed out';
+/** The message of the CommunicationException a server call raises when the request fails (fetch rejects): the
+    request's onError (OutSystems.js:3). */
+export const REQUEST_FAILED = 'Request failed with an error';
 export class SecurityException extends Exception {
   override get exception(): string {
     return 'SecurityException';
@@ -142,4 +145,61 @@ export function isInstanceOf(error: unknown, type: ExceptionClass, specificType 
     type === Exception ||
     (error instanceof type && (specificType === '' || (!!error.specificType && error.specificType === specificType)))
   );
+}
+
+/* The kind of a failed server call (api/client ApiError, plan v2 P5-1) and the OutSystems exception of each kind, in
+   both directions. The kind is declared here, next to the mapping, so that api/client imports legacy/os and not the
+   other way round.
+
+     kind          OutSystems exception that callAction raises (OutSystems.js:3)
+     timeout       CommunicationException 'The connection has timed out'      no answer within the module timeout
+     network       CommunicationException 'Request failed with an error'      the request failed (fetch rejects)
+     security      SecurityException (InvalidLoginException, NotRegisteredException), or
+                   CommunicationException 'Request failed with status 401'     the server refused the session
+     viewChanged   ViewHasChangedException                                    404 without an exception
+     server        any other exception: the server's own (UserException, ServerException, DataBaseException, ...), or
+                   CommunicationException 'Request failed with status <N>'    another answer that is not ok */
+
+/** What went wrong in a server call. */
+export type ApiErrorKind = 'timeout' | 'network' | 'server' | 'security' | 'viewChanged';
+
+/** The text of the CommunicationException for an answer that is not ok (OutSystems.js:3: "Request failed with status
+    " + statusCode); callAction builds the same text. */
+const FAILED_STATUS = /^Request failed with status (\d+)$/;
+
+/** The HTTP status of a CommunicationException raised for an answer that is not ok, else null. */
+function failedStatusOf(error: CommunicationException): number | null {
+  const match = FAILED_STATUS.exec(error.message);
+  return match ? Number(match[1]) : null;
+}
+
+/** The kind of an exception that a server call raised. */
+export function apiErrorKindOf(error: Exception): ApiErrorKind {
+  if (error instanceof ViewHasChangedException) return 'viewChanged';
+  if (error instanceof SecurityException) return 'security';
+  if (error instanceof CommunicationException) {
+    if (error.message === CONNECTION_TIMED_OUT) return 'timeout';
+    const status = failedStatusOf(error);
+    if (status === 401) return 'security';
+    return status === null ? 'network' : 'server';
+  }
+  return 'server';
+}
+
+/** The OutSystems exception of a kind, for a failure that comes without one: `message` and `specificType` are kept by
+    the kinds whose exception has them (security: SecurityException; server: ServerException). A flow handler then
+    catches it as it catches the exception that callAction raises for the same kind. */
+export function exceptionOfApiErrorKind(kind: ApiErrorKind, message = '', specificType = ''): Exception {
+  switch (kind) {
+    case 'timeout':
+      return new CommunicationException(CONNECTION_TIMED_OUT);
+    case 'network':
+      return new CommunicationException(REQUEST_FAILED);
+    case 'security':
+      return new SecurityException(message);
+    case 'viewChanged':
+      return new ViewHasChangedException();
+    case 'server':
+      return new ServerException(message, specificType);
+  }
 }

@@ -6,7 +6,12 @@
   "text": "Giờ tôi sẽ đi ăn tới 3h30 chiều việt nam. Bạn hãy chạy Refactory plan, nếu định hỏi gì thì hãy nhờ opus suggest và auto chọn recommand nhé, ko cần chờ tôi.",
   "at": "2026-10-22T11:44:17"
  },
- "current": null,
+ "current": {
+  "step": "P5-1",
+  "stage": "commit",
+  "loop": 0,
+  "since": "2026-10-23T09:51:51"
+ },
  "steps": {
   "P0-1": {
    "status": "done",
@@ -293,6 +298,15 @@
    "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self) (capture-plan has no flag variants; unit tests cover on and off); ?ff= works on dev; bundle within +5% (+1.0%)",
    "loops": 0,
    "finished": "2026-10-23T08:24:20"
+  },
+  "P5-1": {
+   "status": "active",
+   "started": "2026-10-23T09:29:25",
+   "tokens": {
+    "dev": 153320,
+    "test": 34424,
+    "docs": 41975
+   }
   }
  },
  "gates": {
@@ -425,6 +439,16 @@
    "answer": "auto-accepted (user instruction 2026-10-22 19:41, overnight): SPLIT: Opus (c, medium), Fable (b, high). Master took the more conservative and reversible option (b): revert the 8 stories to the real blocks as at HEAD, drop StandInBlock, and exclude *.stories.tsx (and test files) from the cycle and layer rules in .dependency-cruiser.cjs; production code keeps the strict rules (the 2 new direction rules stay for non-story files).",
    "by": "user",
    "answeredAt": "2026-10-22T22:02:31"
+  },
+  {
+   "id": "Q12",
+   "step": "P5-1",
+   "text": "The plan says the 401 and SecurityException path calls session.signedOutRemotely(). The clone today has no SecurityException branch (toast only); OutSystems App_Common forces logout for a signed-in user and sends an anonymous user to Login?In_IsFromInvalidPermissions=True; no mock answers 401 or SecurityException. A: callAction calls signedOutRemotely on 401/SecurityException (new behavior); B: port the App_Common branch into raiseToFlowHandler (matches OutSystems, behavior change, no mock reaches it); C: add signedOutRemotely as the single entry point, used only by the existing forced-logout branch; 401/SecurityException triggers wait for the BFF (no behavior change).",
+   "status": "answered",
+   "at": "2026-10-23T09:38:49",
+   "answer": "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (high) chose C: add signedOutRemotely() in platform/session/auth.ts as the single entry point for 'the server ended the session', used now only by the existing forced-logout branch (exceptionMessages.ts), same order of steps; the 401/SecurityException triggers wait for the BFF. A unit test must show that the signedOutRemotely event ends in the same state and storage as signOut() today. B (port the App_Common SecurityException branch) is recorded as a known parity gap for the user, outside the refactor.",
+   "by": "user",
+   "answeredAt": "2026-10-23T09:39:15"
   }
  ]
 }

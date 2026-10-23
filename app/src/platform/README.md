@@ -7,6 +7,8 @@ Part A (session, app start, sign-in, PIN, inactivity lock) is described in `docs
   does; `UBTConnect_Notes_MCS` LocalNote actions and aggregates (who reads them offline: header of `localNotes.ts`).
   Tests use `memoryDatabase`. `exceptions.ts`: UserException / system checks and `raiseToFlowHandler` (App_Common handler).
 - `auth/`: the `AuthProvider` interface, `mockAuth` (behind `MOCKS_BUILT`) and `authProvider()`; `null` in a production build.
+- `session/auth.ts`: `signOut()` and `signedOutRemotely()` (the single entry point for "the server ended the session") share one Connect_Logout body.
+  The only caller of `signedOutRemotely()` is the forced-logout branch of `feedback/exceptionMessages.ts`. The 401 and SecurityException triggers wait for the BFF.
 - `bootstrap/appStartSteps.ts`: the app start as 8 named steps (`fetchFlags` comes after `synchAppContext`); `bootstrap/postLogin.ts`: the post-login calls.
 - `flags/`: the typed registry of 21 flags, `resolveFlags` (default < server < override), the store, `useFlag` and `flagValue`.
   `FLAG_OVERRIDES_BUILT` gates `?ff=` and `FlagPanel`. `flags.ts` is the adapter (`useFlagOn`, `isOn`, `setFlag`) for the old readers.

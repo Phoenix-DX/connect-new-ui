@@ -173,3 +173,10 @@ One line per event. Written by rf.py.
 - 2026-10-23T08:22:08 P4-5 stage docs
 - 2026-10-23T08:24:13 P4-5 stage commit
 - 2026-10-23T08:24:20 P4-5 done c6db947: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self) (capture-plan has no flag variants; unit tests cover on and off); ?ff= works on dev; bundle within +5% (+1.0%)
+- 2026-10-23T09:29:25 P5-1 started
+- 2026-10-23T09:29:25 P5-1 stage dev
+- 2026-10-23T09:38:49 Q12 (P5-1) asked: The plan says the 401 and SecurityException path calls session.signedOutRemotely(). The clone today has no SecurityException branch (toast only); OutSystems App_Common forces logout for a signed-in user and sends an anonymous user to Login?In_IsFromInvalidPermissions=True; no mock answers 401 or SecurityException. A: callAction calls signedOutRemotely on 401/SecurityException (new behavior); B: port the App_Common branch into raiseToFlowHandler (matches OutSystems, behavior change, no mock reaches it); C: add signedOutRemotely as the single entry point, used only by the existing forced-logout branch; 401/SecurityException triggers wait for the BFF (no behavior change).
+- 2026-10-23T09:39:15 Q12 answered by the user: "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (high) chose C: add signedOutRemotely() in platform/session/auth.ts as the single entry point for 'the server ended the session', used now only by the existing forced-logout branch (exceptionMessages.ts), same order of steps; the 401/SecurityException triggers wait for the BFF. A unit test must show that the signedOutRemotely event ends in the same state and storage as signOut() today. B (port the App_Common SecurityException branch) is recorded as a known parity gap for the user, outside the refactor."
+- 2026-10-23T09:42:00 P5-1 stage test
+- 2026-10-23T09:50:40 P5-1 stage docs
+- 2026-10-23T09:51:51 P5-1 stage commit

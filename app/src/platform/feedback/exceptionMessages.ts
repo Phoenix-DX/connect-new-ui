@@ -1,4 +1,4 @@
-import { signOut } from '@/platform/session/auth';
+import { signedOutRemotely } from '@/platform/session/auth';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getClientVar } from '@/platform/session/session';
 import { feedbackMessageAutoClose, type UbtMessageType } from './feedbackMessageAutoClose';
@@ -120,7 +120,7 @@ export async function showExceptionMessage(exceptionMessage: string, forceLogout
     useDebounce: true,
   });
   if (forceLogout || display.forceLogout === true) {
-    await signOut();
+    await signedOutRemotely(); // Connect_Logout: the server ended the session
     pageRedirect(`\\${APP_ID}\\Login`, true); // "\" + GetEntryEspaceName() + "\Login"
   }
 }

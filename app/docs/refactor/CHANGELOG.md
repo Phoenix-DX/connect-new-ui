@@ -177,3 +177,14 @@
 
 - Architecture: no change. New test `src/screens/Profile/Profile.test.tsx`: it opens the HouseholdDetails container in `preview` mode and checks the VITALE household members (`VITALE.members`) and the section titles.
 - No app code and no parity state changed. `move-map.csv` is unchanged.
+
+## P5-1 - refactor(P5-1): api/client with ApiError
+
+- New `src/api/client/apiError.ts`: `ApiError` with `kind` (`timeout`, `network`, `server`, `security`, `viewChanged`) and `cause` (the OutSystems exception). `src/legacy/os/os-exceptions.ts` maps both ways (`ApiErrorKind` is declared there, to avoid an import cycle). `callAction` is unchanged.
+- New `signedOutRemotely()` in `src/platform/session/auth.ts`: the single entry point for "the server ended the session". It shares the Connect_Logout body with `signOut()` and sends the machine event `signedOutRemotely`. Its only caller is the forced-logout branch of `src/platform/feedback/exceptionMessages.ts`.
+- The 401 and SecurityException triggers wait for the BFF (decision Q12, option C). The App_Common SecurityException branch is the known gap G1 in `migration/refactor/followups.md`, for the user to decide outside the refactor. Strict parity 64/64 for both references. `move-map.csv` is unchanged.
+
+## P5-F8 - fix(P5-F8): parity runs in parallel with --out
+
+- Architecture: no change. `migration/tools/refactor_parity.py` has the option `--out <dir>`. The default (`migration/refactor-parity/last`) is unchanged, and the P5-1 tester confirmed it.
+- Only `<dir>` is deleted at the start of a run, and `<dir>` must be under `migration/refactor-parity/`. `migration/refactor/README.md` has a "Parallel runs" section for the Phase 6 worktrees.

@@ -20,7 +20,8 @@ import {
 } from './session';
 
 /* Sign-in and sign-out through the identity provider of the build (platform/auth: the mock provider, decisions D3(a),
-   U4). Both send their events to the session machine (machine.ts): signIn, postLoginDone, signOut. */
+   U4). They send their events to the session machine (machine.ts): signIn, postLoginDone, signOut,
+   signedOutRemotely. */
 
 /** "Login with UBT One": the identity provider signs the user in (the mock provider: at once, as the mock user), then
     the post-login sequence runs (platform/bootstrap/postLogin.ts: Connect_SetLoggedContext(isFromLogin = True) and
@@ -64,13 +65,28 @@ export function useSignIn(): () => Promise<void> {
     (IndexedDB) are cleared, so no data of this user stays on the device; the original steps keep their order.
     Session status: signedOut, when the session ends (any signed-in status). */
 export async function signOut(): Promise<void> {
+  await connectLogout('signOut');
+}
+
+/** The single entry point for "the server ended the session": Connect_Logout (the same steps as signOut, in the same
+    order), with the session event `signedOutRemotely`. Today ShowExceptionMessage calls it for ForceLogout (the server
+    texts of a refused session, platform/feedback/exceptionMessages.ts); the caller navigates.
+    The App_Common SecurityException branch (signed in: ForceLogout) is not ported: known gap G1 of
+    migration/refactor/followups.md. A 401 or a SecurityException of a server call does not call it in the mock phase:
+    those triggers come with the BFF identity provider. */
+export async function signedOutRemotely(): Promise<void> {
+  await connectLogout('signedOutRemotely');
+}
+
+/** Connect_Logout; `event` is the session event that tells why the session ends. */
+async function connectLogout(event: 'signOut' | 'signedOutRemotely'): Promise<void> {
   invalidateEverything();
   clearMemoryCache();
   await clearAllLocalEntities();
   await authProvider()?.signOut();
   const userId = currentUserId();
   const deviceUuid = getClientVar('UBT_AppManager.DeviceInfo_UUID');
-  sendSessionEvent({ type: 'signOut' });
+  sendSessionEvent({ type: event });
   setSignedInUser(null);
   clearClientVarsAfterLogout();
   deletePin(userId);

@@ -374,3 +374,10 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,fix,56182,refactor-developer,,P4-F6 loop 1 opus
 2026-10-23,refactor,verify,33900,refactor-tester,,P4-F6 + P4-F5 sonnet
 2026-10-23,refactor,other,31208,refactor-documenter,,P4-F6 + P4-F5 sonnet
+2026-10-23,refactor,build,33192,refactor-developer,,P5-F8 sonnet
+2026-10-23,refactor,verify,20182,refactor-tester,,P5-F8 sonnet
+2026-10-23,refactor,build,132028,refactor-dev,,P5-1 opus
+2026-10-23,refactor,review,39535,refactor-advisor,,"P5-1 Q15 (rf Q12) 401 path, opus, 11 s (C, high)"
+2026-10-23,refactor,build,21292,refactor-dev,,P5-1 opus
+2026-10-23,refactor,verify,34424,refactor-test,,P5-1 sonnet
+2026-10-23,refactor,other,41975,refactor-docs,,P5-1 sonnet

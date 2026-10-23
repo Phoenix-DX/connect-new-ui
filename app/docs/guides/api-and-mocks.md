@@ -31,6 +31,19 @@ when a flow can catch that one by name.
 | no answer within the module's timeout | `CommunicationException` `'The connection has timed out'` (request aborted)        |
 | any other failed answer, network down | `CommunicationException` (`'Request failed with status <N>'` / `… with an error'`) |
 
+`src/api/client/apiError.ts` wraps these exceptions for code that does not use the OutSystems classes. `ApiError` has a `kind`
+(`timeout`, `network`, `server`, `security`, `viewChanged`) and `cause`, the OutSystems exception. `asApiError(e)` wraps an OutSystems exception
+(other errors give `null`), and `ApiError.ofKind` goes the other way through `exceptionOfApiErrorKind` in `os-exceptions.ts`.
+The kinds:
+
+- `timeout`: `CommunicationException` with the timeout text.
+- `network`: any other `CommunicationException`.
+- `security`: `SecurityException`, or status 401.
+- `viewChanged`: `ViewHasChangedException`.
+- `server`: every other exception.
+
+`callAction` is unchanged. The 401 and `SecurityException` triggers do not call `signedOutRemotely()` yet: they wait for the BFF.
+
 Flows test exceptions with `src/legacy/os/exceptions.ts` (`isUserException(e, specificType?)`, `isCommunicationException`,
 `isInstanceOf`, `isSystemException`; `raiseToFlowHandler` for the unhandled ones).
 In a mock, throw the exception from the answer: `contractHandler(..., () => raiseUserException('Not allowed', 'Module.Name'))`,

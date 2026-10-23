@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test, vi } from 'vitest';
-import { signIn, signOut } from './auth';
+import { signIn, signOut, signedOutRemotely } from './auth';
 import type { LocalDatabase, TableSchema } from '@/platform/storage/localEntities/database';
 import {
   getLocalOrbitMilestoneTypesById,
@@ -141,6 +141,73 @@ describe('signOut (Connect_Logout)', () => {
     await signOut();
     expect(peekCacheableObject('CacheableMapObjects.Households', 'CacheableMapObjects.Households').hit).toBe(false);
     expect(peekCacheableObject('Directory.MyBookmarks', 'All').hit).toBe(false);
+  });
+
+  test('signedOutRemotely (the server ended the session) ends as signOut: status, session user, client variables, PIN, caches, calls', async () => {
+    const notes = localNotesDatabase();
+    const noteTables = localNotesSchemas().map((s) => s.tableName);
+    /** The signed-in device of the beforeEach, with a cache entry and a local note row. */
+    const fillDevice = async () => {
+      putCacheableObject(CACHE_TYPE.directoryUser, 'Unique', {}, 7200);
+      putCacheableObject('Directory.MyBookmarks', 'All', [{ BookmarkId: 'b-1' }], 604800);
+      await notes.transaction(noteTables, 'readwrite', async (tx) => {
+        for (const s of localNotesSchemas()) {
+          await tx.put(s.tableName, Object.fromEntries(s.keyPath.map((k) => [k, `x-${k}`])));
+        }
+      });
+      window.__osCalls = [];
+    };
+    const storageOf = (storage: Storage) =>
+      Object.fromEntries(
+        Array.from({ length: storage.length }, (_, i) => storage.key(i) ?? '')
+          .sort()
+          .map((key) => [key, storage.getItem(key)]),
+      );
+    /** What a logout leaves: the machine, the shell state, the PIN, both storages, the caches, the rows, the calls. */
+    const endStateOf = async (logout: () => Promise<void>) => {
+      await fillDevice();
+      const statuses: string[] = [];
+      const stop = subscribeSessionStatus(() => statuses.push(getSessionStatus().status));
+      await logout();
+      stop();
+      return {
+        statuses,
+        status: getSessionStatus(),
+        shell: getShellState(),
+        pin: readPin(),
+        localStorage: storageOf(localStorage),
+        sessionStorage: storageOf(sessionStorage),
+        caches: [
+          peekCacheableObject(CACHE_TYPE.directoryUser, 'Unique').hit,
+          peekCacheableObject('Directory.MyBookmarks', 'All').hit,
+        ],
+        noteRows: await notes.transaction(noteTables, 'readonly', async (tx) =>
+          (await Promise.all(noteTables.map((table) => tx.getAll(table)))).flat(),
+        ),
+        calls: calledActions(),
+      };
+    };
+
+    const bySignOut = await endStateOf(signOut);
+    // the same signed-in device again (beforeEach), then the remote sign-out
+    await signIn();
+    await registerPin('1357');
+    setClientVar('UBTConnect.App_NetworkStatus_IsOnline_IsPersistent', false);
+    const bySignedOutRemotely = await endStateOf(signedOutRemotely);
+
+    expect(bySignedOutRemotely).toEqual(bySignOut);
+    expect(bySignOut).toMatchObject({
+      statuses: ['signedOut'],
+      status: { status: 'signedOut' },
+      shell: { signedIn: false, hasLocalPin: false },
+      pin: null,
+      caches: [false, false],
+      noteRows: [],
+      calls: ['ActionAppManager_SynchAppContext'],
+    });
+    // the storages are not empty: the *_IsPersistent variable and the device id stay after both
+    expect(getClientVar('UBTConnect.App_NetworkStatus_IsOnline_IsPersistent')).toBe(false);
+    expect(Object.keys(bySignOut.localStorage).length).toBeGreaterThan(0);
   });
 
   test('ADR-10 (added): clears every local entity store, metadata included; the original calls are unchanged', async () => {

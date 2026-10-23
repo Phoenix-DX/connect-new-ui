@@ -83,6 +83,14 @@ describe('transitions of plan v2 §3.2, one test per row', () => {
       expect(transition(state, { type: 'signOut' })).toEqual(signedOut);
     },
   );
+
+  test.each([signingIn, needPinRegister, locked, policiesPending, unlocked])(
+    '$status → signedOut: the server ended the session (signedOutRemotely), as signOut',
+    (state) => {
+      expect(transition(state, { type: 'signedOutRemotely' })).toEqual(signedOut);
+      expect(transition(state, { type: 'signedOutRemotely' })).toEqual(transition(state, { type: 'signOut' }));
+    },
+  );
 });
 
 describe('userChanged: the mock identity provider changes the session user (not a row of §3.2)', () => {
@@ -122,6 +130,8 @@ describe('an event that the table does not list keeps the status (the same objec
     { from: policiesPending, event: { type: 'pinVerified' } },
     { from: starting, event: { type: 'signOut' } },
     { from: signedOut, event: { type: 'signOut' } },
+    { from: starting, event: { type: 'signedOutRemotely' } },
+    { from: signedOut, event: { type: 'signedOutRemotely' } },
   ];
 
   test.each(cases)('$from.status, $event.type', ({ from, event }) => {

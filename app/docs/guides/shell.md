@@ -46,7 +46,7 @@ in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the us
 | Module              | API                                                                                                                                                                       | Original                                                              |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | `session.ts`        | `useShellState()`, `getShellState()`, `useClientVar(name)`, `getClientVar` / `setClientVar`                                                                               | client variables (spec 9b), session                                   |
-| `auth.ts`           | `signIn()` → destination path (through `authProvider()`); `useSignIn()` (navigates, replace); `signOut()`                                                                 | Login callback (U4), `Connect_Logout`                                 |
+| `auth.ts`           | `signIn()` → destination path (through `authProvider()`); `useSignIn()` (navigates, replace); `signOut()`; `signedOutRemotely()`                                          | Login callback (U4), `Connect_Logout`                                 |
 | `pin.ts`            | `pinCheck()`, `registerPin(pin)`, `verifyPin(pin)`, `isLocked()`, `lock()`                                                                                                | `PIN_Check`, `Pincode_Register/_Unlock`                               |
 | `resume.ts`         | `setResumeLoginLink`, `getResumeLoginLink` (clears), `setAppCallback(url)`, `getColdStartLinkURL()` (`''` on the web, U14)                                                | resume link (U14), `AppManager_SetAppCallback`, `GetColdStartLinkURL` |
 | `userInfo.ts`       | `getUserInformation()` (cached 7200 s)                                                                                                                                    | `GetUserInformation_Wrapper`                                          |
@@ -323,7 +323,7 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
 - **Exceptions.**
   - `showExceptionMessage` maps the server texts of the compiled action (timeouts and failed requests → communication
     message).
-  - `forceLogout` → `signOut()`, then a full page load of `\UBTConnect\Login`.
+  - `forceLogout` → `signedOutRemotely()` (same end state as `signOut()`), then a full page load of `\UBTConnect\Login`.
   - The app start does not toast yet: App_Common toasts a `ScreenController_RaiseError` only if a plain `Error` is not
     "system" (open).
   - Server calls raise the OutSystems exceptions of `src/legacy/os/os-exceptions.ts` (see `api-and-mocks.md`).

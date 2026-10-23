@@ -103,6 +103,8 @@ sequenceDiagram
   not compile.
 - Mock data: reference, place and organisation data are recorded from TST and anonymised. Data about a person is
   fictional, with the recorded structure and counts.
+- `src/api/client/apiError.ts` has `ApiError` (`kind`: timeout, network, server, security, viewChanged; `cause`: the OutSystems exception). `src/legacy/os/os-exceptions.ts` maps both ways. `callAction` still raises the OutSystems exceptions.
+- `signedOutRemotely()` (`src/platform/session/auth.ts`) is the single entry point for "the server ended the session". Today only the forced-logout branch of `src/platform/feedback/exceptionMessages.ts` calls it. The 401 and SecurityException triggers wait for the BFF.
 - Later, the backend implements the same contract. Only the `src/api/client/callAction.ts` configuration and the mappers in `api.ts`
   can change. The screens do not change.
 
