@@ -336,3 +336,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T22:20:05 P6-G1-C waits for the user: Review the routes of group G1 on localhost (links in the step report): Login, Splash, PINRegister, PINUnlock, PINChange, PINBiometricsMenu, AcceptPendingPolicies, Menu, TermsAndPoliciesMenu, Profile. Then confirm the group.
 - 2026-10-23T22:20:05 P6-G1-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W16 group G1 confirmed — Opus confirm (high), Fable confirm (high). Conditions: watch the Login bundle margin (0.88 kB); a later step that would pass the limit stops and asks, the limit is not raised; the commit notes that the C tester took knip/jscpd from the dev report."
 - 2026-10-23T22:20:05 P6-G1-C stage commit
+- 2026-10-23T22:20:14 P6-G1-C done 12f9d24: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 37 rows, no P6-G1 owner; bundle HomeFeed 244.80/248.22, Login 192.96/193.84 kB gzip; knip/jscpd from the dev report (C changed no tracked code); group confirm W16 (Opus + Fable, delegated)
+- 2026-10-23T22:20:43 P6-G2-A started
+- 2026-10-23T22:20:43 P6-G2-A stage dev
+- 2026-10-23T22:20:57 P6-G2-A stage test
+- 2026-10-23T22:24:41 P6-G2-A stage docs
+- 2026-10-23T22:26:09 P6-G2-A stage commit

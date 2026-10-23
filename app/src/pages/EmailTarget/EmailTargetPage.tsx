@@ -1,3 +1,4 @@
+/** @origin UBTConnect.Legacy_LDMEventsFlow.EmailTarget */
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 import { BottomBar } from '@/components/layout/BottomBar';

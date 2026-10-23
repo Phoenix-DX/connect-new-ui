@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G1-C",
+  "step": "P6-G2-A",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T22:20:05"
+  "since": "2026-10-23T22:26:09"
  },
  "steps": {
   "P0-1": {
@@ -612,12 +612,25 @@
    "finished": "2026-10-23T22:04:42"
   },
   "P6-G1-C": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T22:04:42",
    "tokens": {
     "dev": 27767,
     "test": 22611,
     "docs": 34401
+   },
+   "commit": "12f9d24",
+   "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 37 rows, no P6-G1 owner; bundle HomeFeed 244.80/248.22, Login 192.96/193.84 kB gzip; knip/jscpd from the dev report (C changed no tracked code); group confirm W16 (Opus + Fable, delegated)",
+   "loops": 0,
+   "finished": "2026-10-23T22:20:14"
+  },
+  "P6-G2-A": {
+   "status": "active",
+   "started": "2026-10-23T22:20:43",
+   "tokens": {
+    "dev": 23713,
+    "test": 20014,
+    "docs": 26026
    }
   }
  },

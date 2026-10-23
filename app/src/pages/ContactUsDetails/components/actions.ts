@@ -1,4 +1,4 @@
-import type { CallPopupData, UI_ContactUsForm } from '@/screens/ContactUsDetails/types';
+import type { CallPopupData, UI_ContactUsForm } from '@/pages/ContactUsDetails/types';
 import { Type_ContactSubject } from './staticEntities';
 
 /* Client actions of ContactUsDetails and the library actions it calls ("P" = analysis/sources/pretty/

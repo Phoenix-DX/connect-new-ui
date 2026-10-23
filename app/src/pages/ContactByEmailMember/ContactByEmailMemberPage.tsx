@@ -1,3 +1,4 @@
+/** @origin UBTConnect.ContactFlow.ContactByEmailMember */
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { ContactByEmailForm } from '@/shared/UBTConnect/ContactByEmailForm';

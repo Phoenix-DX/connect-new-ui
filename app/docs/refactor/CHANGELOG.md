@@ -337,3 +337,8 @@
 - Group gate G1: `ci` exit 0; parity `visual --all` 64/64 clean on both references; `e2e:pwa` 9/9.
   `arch_baseline.py check` exit 0 (37 rows, no P6-G1 owner). Report: `reports/P6-G1.md`.
 - Watch item: first-load Login is 192.96 kB gzip, 0.88 kB under the +5 percent limit (193.84); HomeFeed margin is 3.42 kB. Follow-up F14 in `migration/refactor/followups.md`.
+
+## P6-G2-A - refactor(P6-G2-A): move G2 to pages/
+
+- The 9 G2 routes moved from `src/screens/<R>` to `src/pages/<R>`. `index.tsx` is now `<R>Page.tsx`, with one `@origin` tag per page. The code did not change.
+- `move-map.csv`: the 9 G2 page rows are set to `moved`. The 2 block rows of EmailContact and EmailTarget stay open for step B.

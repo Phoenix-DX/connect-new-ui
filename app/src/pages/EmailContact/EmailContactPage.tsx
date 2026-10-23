@@ -1,3 +1,4 @@
+/** @origin UBTConnect.Legacy_OrbitEventsFlow.EmailContact */
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';

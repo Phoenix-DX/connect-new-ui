@@ -2,7 +2,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import ContactByEmailOneSchoolGlobal from './index';
+import ContactByEmailOneSchoolGlobal from './ContactByEmailOneSchoolGlobalPage';
 
 /* The sending state, the success path and the error branch were not captured (compiled controller only, :471-529). */
 const spy = vi.hoisted(() => ({

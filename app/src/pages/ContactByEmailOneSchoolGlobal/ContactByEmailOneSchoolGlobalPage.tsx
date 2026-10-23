@@ -1,3 +1,4 @@
+/** @origin UBTConnect.ContactFlow.ContactByEmailOneSchoolGlobal */
 import { useRef, useState } from 'react';
 import { useSearchParams } from 'react-router';
 import { log } from '@/platform/log/log';

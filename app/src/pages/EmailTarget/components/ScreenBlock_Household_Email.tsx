@@ -18,7 +18,7 @@ import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo'
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { useNavigateBack } from '@/platform/navigation';
-import { userContactUser } from '@/screens/EmailTarget/api';
+import { userContactUser } from '@/pages/EmailTarget/api';
 import {
   ApplicationEvents_Directory_EmailHousehold,
   CommunityBusinessType,

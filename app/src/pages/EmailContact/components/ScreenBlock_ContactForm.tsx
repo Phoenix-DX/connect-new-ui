@@ -16,8 +16,8 @@ import { DEPRECATED_ButtonLoading } from '@/shared/osui/DEPRECATED_ButtonLoading
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import { sendContactEmail } from '@/screens/EmailContact/api';
-import type { EmailContactInputs } from '@/screens/EmailContact/types';
+import { sendContactEmail } from '@/pages/EmailContact/api';
+import type { EmailContactInputs } from '@/pages/EmailContact/types';
 import {
   getTextAreaLineHeight,
   onApplicationEvent_ContactHelpdesk,

@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { ContactByEmailFormProps } from '@/shared/UBTConnect/ContactByEmailForm';
-import ContactByEmailMember from './index';
+import ContactByEmailMember from './ContactByEmailMemberPage';
 import { OrbitApplicationEvent_EmailHost } from './components/staticEntities';
 
 /* The submit flow was not captured (write blocked, Q1): tested from the compiled Handler_SubmitForm (mvc.js:641-747).
