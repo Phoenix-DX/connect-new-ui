@@ -540,3 +540,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,verify,0,refactor-test,,P6-G2-B-ContactByEmailOrbitHelpdesk sonnet
 2026-10-23,refactor,verify,29952,refactor-test,,P6-G2-B-ContactByEmailOrbitHelpdesk sonnet
 2026-10-23,refactor,other,25220,refactor-docs,,P6-G2-B-ContactByEmailOrbitHelpdesk sonnet
+2026-10-23,refactor,build,89630,refactor-dev,,P6-G2-B-ContactByEmailOrbitHost opus
+2026-10-23,refactor,verify,30070,refactor-test,,P6-G2-B-ContactByEmailOrbitHost sonnet
+2026-10-23,refactor,other,24789,refactor-docs,,P6-G2-B-ContactByEmailOrbitHost sonnet

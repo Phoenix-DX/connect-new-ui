@@ -382,3 +382,8 @@
 
 - ContactByEmailOrbitHelpdesk follows the ContactByEmail pattern of the pilot: `config.ts`, `inputs.ts` (replaces `api.ts` and `types.ts`), `actions.ts` (moved from `components/`) and `hooks/useContactByEmailOrbitHelpdeskSubmit.ts`. It has no `staticEntities.ts`.
 - Its card is the shared `ContactHeaderCard`; the page has a new test (5 tests). Parity visual is clean for the 2 routes with states.
+
+## P6-G2-B-ContactByEmailOrbitHost - refactor(P6-G2-B): ContactByEmailOrbitHost as page
+
+- ContactByEmailOrbitHost follows the ContactByEmail pattern of the pilot: `config.ts`, `inputs.ts` (replaces `api.ts` and `types.ts`) and `hooks/useContactByEmailOrbitHostSubmit.ts`. The route has no `components/` folder. Its card is the shared `ContactPersonCard` (second page caller).
+- The route has no parity states. It was checked by 6 new unit tests and the diff (same send order and request body), not by parity.

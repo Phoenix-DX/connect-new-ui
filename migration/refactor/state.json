@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G2-B-ContactByEmailOrbitHelpdesk",
+  "step": "P6-G2-B-ContactByEmailOrbitHost",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T23:51:13"
+  "since": "2026-10-23T23:59:47"
  },
  "steps": {
   "P0-1": {
@@ -716,12 +716,25 @@
    "finished": "2026-10-23T23:45:01"
   },
   "P6-G2-B-ContactByEmailOrbitHelpdesk": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T23:45:02",
    "tokens": {
     "dev": 86900,
     "test": 29952,
     "docs": 25220
+   },
+   "commit": "ea95154",
+   "gate": "ci: pass (2268 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.07 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T23:51:14"
+  },
+  "P6-G2-B-ContactByEmailOrbitHost": {
+   "status": "active",
+   "started": "2026-10-23T23:51:14",
+   "tokens": {
+    "dev": 89630,
+    "test": 30070,
+    "docs": 24789
    }
   }
  },
