@@ -468,3 +468,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,review,36074,refactor-advisor,,"W11, opus"
 2026-10-23,refactor,review,36592,refactor-advisor,,"W11, fable"
 2026-10-23,refactor,other,25422,refactor-docs,,P6-G1-B-Splash sonnet
+2026-10-23,refactor,build,277303,refactor-dev,,P6-G1-B-AcceptPendingPolicies opus
+2026-10-23,refactor,verify,25273,refactor-test,,P6-G1-B-AcceptPendingPolicies sonnet
+2026-10-23,refactor,other,42447,refactor-docs,,P6-G1-B-AcceptPendingPolicies sonnet

@@ -4,7 +4,7 @@ import { ViewHasChangedException, isInstanceOf } from '@/legacy/os/os-exceptions
    import legacy/os/. The barrel of platform/feedback does not export this module, because legacy/os/exceptions
    imports that barrel (an import cycle). */
 
-export { raiseToFlowHandler } from '@/legacy/os/exceptions';
+export { isCommunicationException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 
 /** The server answered that the screen changed version (ViewHasChangedException, an ignorable system exception): a
     data source keeps its fetch status then. */

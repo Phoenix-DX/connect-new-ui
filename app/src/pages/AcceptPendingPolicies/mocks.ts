@@ -1,8 +1,13 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { fixtureData } from '@/mocks/fixtures';
 import { collection } from '@/mocks/store';
-import type { PolicyAcceptanceInformationWire } from './types';
+
+/** ApplicationPolicies_CW.PolicyAcceptanceInformation, as the contract describes it. */
+type PolicyAcceptanceInformationWire = ActionOutputs<
+  PathOf<'UBTConnect', 'Policy_Custom_AcceptPendingPolicies/DataActionGetPendingPolicies'>
+>['Policies']['List'][number];
 
 /* DataActionGetPendingPolicies was never recorded (the test account has no pending policy, Q7 c): two fictional
    Connect policies (Q3) whose Url, file name and content type are the recorded TST policies of CacheControl_Policies

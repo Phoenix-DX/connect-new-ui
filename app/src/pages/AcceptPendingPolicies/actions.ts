@@ -1,9 +1,10 @@
-import type { DeviceInfo } from '@/pages/AcceptPendingPolicies/types';
+/* The JavaScript nodes of the page: GetSVGMetric (a client action of UBTConnect, used by the screen) and GetDeviceInfo
+   (a node of ContinueOnClick in Policy_Custom_AcceptPendingPolicies). They read the page and the browser only. */
 
-/** GetSVGMetric (UBTConnect.controller.js, TST copy in migration/screens/MessageList/analysis/sources/raw/, :13422-13504,
-    JavaScript1 node): height of `.ubt-header-svg svg path` and the largest V and Q values of its `d`;
-    HeightWithoutCurve = HeightPx * MaxV / MaxQ. Without the path (or its `d`) the node returns early and every output
-    keeps its default 0. */
+/** GetSVGMetric (UBTConnect client action, JavaScript1 node; TST copy of UBTConnect.controller.js in
+    migration/screens/MessageList/analysis/sources/raw/): height of `.ubt-header-svg svg path` and the largest V and Q
+    values of its `d`; HeightWithoutCurve = HeightPx * MaxV / MaxQ. Without the path (or its `d`) the node returns
+    early and every output keeps its default 0. */
 export function getSVGMetric(): { HeightPx: number; HeightWithoutCurve: number } {
   let heightPx = 0;
   let maxV = 0;
@@ -37,10 +38,19 @@ export function getSVGMetric(): { HeightPx: number; HeightWithoutCurve: number }
   return { HeightPx: heightPx, HeightWithoutCurve: (heightPx * maxV) / maxQ };
 }
 
+/** Outputs of the GetDeviceInfo JS node of ContinueOnClick (web branch). */
+export interface DeviceInfo {
+  UserAgent: string;
+  UniqueId: string;
+  Manufacturer: string;
+  Model: string;
+  Platform: string;
+}
+
 /** UniqueId of this page: the original keeps it in localStorage['UUID']; kept in memory only (AGENTS rule 16, Q4). */
 let pageUniqueId: string | undefined;
 
-/** GetDeviceInfo JS node of ContinueOnClick (Policy_Custom_AcceptPendingPolicies.mvc.js controller.ContinueOnClick.
+/** GetDeviceInfo JS node of ContinueOnClick (Policy_Custom_AcceptPendingPolicies, controller ContinueOnClick,
     GetDeviceInfoJS), web branch only (rule 14: the Cordova `window.device` branch is native). */
 export function getDeviceInfo(): DeviceInfo {
   const info: DeviceInfo = {
@@ -53,10 +63,4 @@ export function getDeviceInfo(): DeviceInfo {
   info.Platform = window.matchMedia('(display-mode: standalone)').matches ? 'PWA' : 'Web';
   if (typeof window.crypto.randomUUID === 'function') info.UniqueId = pageUniqueId ??= window.crypto.randomUUID();
   return info;
-}
-
-/** JSUtils_PageOpenInNewTab (UBTJavaScriptUtils.controller.js, TST copy in migration/shell/sources, :2133-2177):
-    `window.open(URL, '_blank')`. */
-export function jSUtils_PageOpenInNewTab(url: string): void {
-  window.open(url, '_blank');
 }

@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G1-B-Splash",
+  "step": "P6-G1-B-AcceptPendingPolicies",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T19:19:15"
+  "since": "2026-10-23T19:30:04"
  },
  "steps": {
   "P0-1": {
@@ -482,12 +482,25 @@
    "finished": "2026-10-23T19:11:17"
   },
   "P6-G1-B-Splash": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T19:11:30",
    "tokens": {
     "dev": 189857,
     "test": 29397,
     "docs": 25422
+   },
+   "commit": "c1da652",
+   "gate": "ci: pass; parity visual --changed: 25/0 (OutSystems), 25/0 (self); lint:arch no new warning; bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T19:19:17"
+  },
+  "P6-G1-B-AcceptPendingPolicies": {
+   "status": "active",
+   "started": "2026-10-23T19:19:22",
+   "tokens": {
+    "dev": 277303,
+    "test": 25273,
+    "docs": 42447
    }
   }
  },

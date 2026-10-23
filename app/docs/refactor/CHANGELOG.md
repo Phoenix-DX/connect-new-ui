@@ -280,3 +280,9 @@
 
 - `src/pages/Splash` is now a page with hooks (`useSplash`, `useApplicationLoadEvents`, `useLoadingDotsAnimation`) and two components. `api.ts`, `types.ts` and `mocks.ts` are deleted: they had no call, input or route mock.
 - `LayoutBlank` moved to `src/components/layout/BlankLayout` (props only). The page calls `useNoCommonUi()`. Shared blocks that Splash uses did not move in this step. Visual parity `--changed`: clean for both references. `move-map.csv`: 4 Splash rows set to `moved`.
+
+## P6-G1-B-AcceptPendingPolicies - refactor(P6-G1-B): AcceptPendingPolicies as page
+
+- `src/pages/AcceptPendingPolicies` is now a page with two hooks (`useAcceptPendingPolicies`, `usePendingPoliciesForm`) and two components (`PoliciesHeader`, `PendingPoliciesForm`). The route's `api.ts` and `types.ts` are deleted.
+- New domain `src/api/policy` (decision W8): `fetchPendingPolicies`, `acceptPolicies`, `usePendingPoliciesQuery`. `platform/feedback/flowErrors.ts` re-exports `isCommunicationException`.
+- No shared block moved. Visual parity `--changed`: clean for both references. `move-map.csv`: 4 rows set to `moved`.

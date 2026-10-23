@@ -78,3 +78,9 @@ The domain has 8 query hooks and 9 mutation hooks with no caller yet. They set `
 The old `api.ts` files of these three owners re-export it under their old names. `MessageList/api.ts` keeps a small adapter: `wrapper_MarkAllAsReadNotifications` maps the four block variables to the camelCase inputs of `markAllNotificationsAsRead`. `api/notification` does not import `api/message`. `screens/Notifications/types.ts` keeps `MessageListItemWire` for the mocks.
 
 The domain has 2 query hooks and 2 mutation hooks with no caller yet.
+
+`policy/` has the same files. It holds 2 calls of AcceptPendingPolicies: DataActionGetPendingPolicies and ActionAcceptPolicies. The domain is chosen by the data that it owns (decision W8): the acceptance records of the application policies. The route's `api.ts` and `types.ts` are deleted; the page uses the domain directly.
+
+`usePendingPoliciesQuery` keeps the options of the old block query: `keepPreviousData`, `retry: false` and the library default cache times. It does not set `staleTime: 0` and `gcTime: 0`, because that changes what the page shows on a second visit. The key is `policyKeys.pending(inputs)`; `IsAllSelected` is sent but is not in the key.
+
+`acceptPolicies` has no hook: the page flow calls the repository function. The policy documents (`DataActionGetCacheInfo` of CacheControl_Policies) stay in `app/`, because TermsAndPoliciesMenu, PINChange and the lock dialog also read them. A later step can move them to `policy/`.
