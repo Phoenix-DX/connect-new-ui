@@ -367,3 +367,8 @@
 - Pilot of the ContactByEmail pattern (decision Q6). `ContactEmailForm` is props only: the new prop `onBeforeSubmitForm` replaces its `@/platform/navigation` import, and its row is removed from `arch-baseline.csv` (47 rows). New cards in `components/contact/`: `ContactPersonCard` (used by Member) and `ContactHeaderCard` (no page caller yet).
 - `src/pages/ContactByEmailMember` has `config.ts`, `inputs.ts` (replaces `api.ts` and `types.ts`) and `hooks/useContactByEmailMemberSubmit.ts`. The other 4 ContactByEmail pages change at the call site only: one prop `onBeforeSubmitForm={allowUpcomingNavigation}`.
 - Parity visual is clean for the 3 routes with states; LDMCoordinator and OrbitHost have no parity states (their call-site change is checked by the diff and unit tests). `move-map.csv`: notes of the ContactByEmailMember and ContactByEmailForm rows. The pattern is in `docs/guides/page-template.md`.
+
+## P6-G2-B-ContactByEmailOneSchoolGlobal - refactor(P6-G2-B): ContactByEmailOneSchoolGlobal as page
+
+- ContactByEmailOneSchoolGlobal follows the ContactByEmail pattern of the pilot: `config.ts`, `inputs.ts` (replaces `api.ts` and `types.ts`), `actions.ts` and `hooks/useContactByEmailOneSchoolGlobalSubmit.ts`. `staticEntities.ts` moves to the page root.
+- Its card is the shared `ContactHeaderCard` (first page caller). `config.ts` exports a constant, not a function, because no value depends on an input.

@@ -8,23 +8,25 @@ import ContactByEmailOneSchoolGlobal from './ContactByEmailOneSchoolGlobalPage';
 const spy = vi.hoisted(() => ({
   send: vi.fn<(form: unknown) => Promise<void>>(),
   back: vi.fn(),
+  allow: vi.fn(),
   message: vi.fn(),
   raise: vi.fn(),
 }));
-vi.mock('./api', async (original) => ({
-  ...(await original<typeof import('./api')>()),
+vi.mock('@/api/message', async (original) => ({
+  ...(await original<typeof import('@/api/message')>()),
   sendContactMemberEmail: spy.send,
 }));
 vi.mock('@/platform/navigation', async (original) => ({
   ...(await original<typeof import('@/platform/navigation')>()),
+  allowUpcomingNavigation: spy.allow,
   useNavigateBack: () => spy.back,
 }));
 vi.mock('@/platform/feedback', async (original) => ({
   ...(await original<typeof import('@/platform/feedback')>()),
   showFeedbackMessage: spy.message,
 }));
-vi.mock('@/legacy/os/exceptions', async (original) => ({
-  ...(await original<typeof import('@/legacy/os/exceptions')>()),
+vi.mock('@/platform/feedback/flowErrors', async (original) => ({
+  ...(await original<typeof import('@/platform/feedback/flowErrors')>()),
   raiseToFlowHandler: spy.raise,
 }));
 
@@ -105,6 +107,17 @@ describe('ContactByEmailOneSchoolGlobal (ContactByEmailOneSchoolGlobal.mvc.js)',
       vi.advanceTimersByTime(500);
     });
     expect(spy.message).toHaveBeenCalledWith('Your message has been sent.', 1);
+  });
+
+  it('OnClick_SubmitForm of the form: AllowUpcomingNavigation runs once, before the send', async () => {
+    spy.send.mockResolvedValue(undefined);
+    const { container } = renderScreen();
+    fillAndSend(container);
+    await act(async () => {
+      await Promise.resolve();
+    });
+    expect(spy.allow).toHaveBeenCalledTimes(1);
+    expect(spy.allow.mock.invocationCallOrder[0]).toBeLessThan(spy.send.mock.invocationCallOrder[0] ?? 0);
   });
 
   it('on a send error keeps IsLoading True and raises to the flow handler (Q2 → A)', async () => {

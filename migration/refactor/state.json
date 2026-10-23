@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G2-B-ContactByEmailMember",
+  "step": "P6-G2-B-ContactByEmailOneSchoolGlobal",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T23:27:06"
+  "since": "2026-10-23T23:35:26"
  },
  "steps": {
   "P0-1": {
@@ -677,12 +677,25 @@
    "finished": "2026-10-23T23:19:15"
   },
   "P6-G2-B-ContactByEmailMember": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T23:19:15",
    "tokens": {
     "dev": 209513,
     "test": 41879,
     "docs": 38416
+   },
+   "commit": "3b30db5",
+   "gate": "ci: pass; parity visual --changed: 6 routes 0 differences (OutSystems, self), ContactByEmail routes with states 3/0; arch baseline 0 new (1 row removed, 47 left); bundle within +5% (Login 193.03 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T23:27:08"
+  },
+  "P6-G2-B-ContactByEmailOneSchoolGlobal": {
+   "status": "active",
+   "started": "2026-10-23T23:27:08",
+   "tokens": {
+    "dev": 80075,
+    "test": 34131,
+    "docs": 23946
    }
   }
  },
