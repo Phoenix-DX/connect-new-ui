@@ -642,6 +642,57 @@
    ]
   },
   {
+   "id": "P6-G1-B-AcceptPendingPolicies",
+   "phase": "P6",
+   "title": "AcceptPendingPolicies as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route AcceptPendingPolicies only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-B-Splash"
+   ]
+  },
+  {
+   "id": "P6-G1-B-Menu",
+   "phase": "P6",
+   "title": "Menu as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route Menu only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-B-AcceptPendingPolicies"
+   ]
+  },
+  {
+   "id": "P6-G1-B-Shared",
+   "phase": "P6",
+   "title": "Move the shared blocks of group G1",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B item 3 of group G1 for all its routes at once (W10). Move every src/shared/ row of app/docs/refactor/move-map.csv with the phase P6-G1 to its target, rewrite all importers, add @origin tags. Move and rename only: no other change in the blocks, no re-export left in src/shared/, rows of other phases stay. Gate: diffcheck --move, parity strict --all, lint:arch with no new warning, bundle.",
+   "deps": [
+    "P6-G1-B-Menu"
+   ]
+  },
+  {
    "id": "P6-G1-B-PINRegister",
    "phase": "P6",
    "title": "PINRegister as page",
@@ -655,7 +706,7 @@
    "anchor": "### Phase 6",
    "extra": "This step is step B (restructure) of group G1 for the route PINRegister only. Do not change the other routes of the group.",
    "deps": [
-    "P6-G1-B-Splash"
+    "P6-G1-B-Shared"
    ]
   },
   {
@@ -710,40 +761,6 @@
    ]
   },
   {
-   "id": "P6-G1-B-AcceptPendingPolicies",
-   "phase": "P6",
-   "title": "AcceptPendingPolicies as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.15,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route AcceptPendingPolicies only. Do not change the other routes of the group.",
-   "deps": [
-    "P6-G1-B-PINBiometricsMenu"
-   ]
-  },
-  {
-   "id": "P6-G1-B-Menu",
-   "phase": "P6",
-   "title": "Menu as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.15,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route Menu only. Do not change the other routes of the group.",
-   "deps": [
-    "P6-G1-B-AcceptPendingPolicies"
-   ]
-  },
-  {
    "id": "P6-G1-B-TermsAndPoliciesMenu",
    "phase": "P6",
    "title": "TermsAndPoliciesMenu as page",
@@ -757,7 +774,7 @@
    "anchor": "### Phase 6",
    "extra": "This step is step B (restructure) of group G1 for the route TermsAndPoliciesMenu only. Do not change the other routes of the group.",
    "deps": [
-    "P6-G1-B-Menu"
+    "P6-G1-B-PINBiometricsMenu"
    ]
   },
   {

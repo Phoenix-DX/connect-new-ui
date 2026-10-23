@@ -74,6 +74,12 @@ STEPS = [
     ("P9-4", "Report", "report", "strict", "sonnet", None, 1),
 ]
 GROUP_DAYS = {"G1": 2, "G2": 3, "G3": 4, "G4": 4, "G5": 4, "G6": 1}
+# W10 (Opus + Fable, auto-accepted user instruction 2026-10-23 13:43): in group G1, AcceptPendingPolicies and Menu run
+# before the PIN routes (their diffs were prefetched), and one codemod step moves the shared blocks of 2 or more pages
+# (step B item 3) after the route named here, so the later B steps import from the final paths.
+GROUP_ORDER = {"G1": ["Login", "Splash", "AcceptPendingPolicies", "Menu", "PINRegister", "PINUnlock", "PINChange",
+                      "PINBiometricsMenu", "TermsAndPoliciesMenu", "Profile"]}
+SHARED_MOVE_AFTER = {"G1": "Menu"}
 STRETCH_PHASES = {"P8", "P9"}  # R1 (b): phases 8 and 9 run only on the user's request
 
 
@@ -119,6 +125,10 @@ def phase6(plan: str) -> list[dict]:
     for g, routes in route_groups(plan).items():
         days = GROUP_DAYS[g]
         names = ", ".join(routes)
+        if g in GROUP_ORDER:
+            if sorted(GROUP_ORDER[g]) != sorted(routes):
+                raise SystemExit(f"GROUP_ORDER[{g}] differs from the routes of section 8: {routes}")
+            routes = GROUP_ORDER[g]
         out.append(entry(f"P6-{g}-A", f"Move group {g} to pages/", "move", "strict", "sonnet", None, 0.25, anchor,
                          f"This step is step A (move) of group {g} only. Routes: {names}."))
         per_route = round((days - 0.5) / len(routes), 2)
@@ -126,6 +136,16 @@ def phase6(plan: str) -> list[dict]:
             out.append(entry(f"P6-{g}-B-{r}", f"{r} as page", "change", "visual", "opus", None, per_route, anchor,
                              f"This step is step B (restructure) of group {g} for the route {r} only. "
                              f"Do not change the other routes of the group."))
+            if SHARED_MOVE_AFTER.get(g) == r:
+                shared = entry(f"P6-{g}-B-Shared", f"Move the shared blocks of group {g}", "move", "strict", "sonnet",
+                               None, 0.25, anchor,
+                               f"This step is step B item 3 of group {g} for all its routes at once (W10). Move every "
+                               f"src/shared/ row of app/docs/refactor/move-map.csv with the phase P6-{g} to its "
+                               f"target, rewrite all importers, add @origin tags. Move and rename only: no other "
+                               f"change in the blocks, no re-export left in src/shared/, rows of other phases stay. "
+                               f"Gate: diffcheck --move, parity strict --all, lint:arch with no new warning, bundle.")
+                shared["fullParity"] = True
+                out.append(shared)
         out.append(entry(f"P6-{g}-C", f"Prune group {g} and group gate", "report", "visual", "sonnet",
                          ("after", f"Review the routes of group {g} on localhost (links in the step report): "
                                    f"{names}. Then confirm the group."), 0.25, anchor,
