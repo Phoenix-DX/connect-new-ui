@@ -27,12 +27,17 @@ The shell depends on no screen. Screens call the APIs below.
 The mock user answers GetUserInformation and the CacheControl_UserInfo cache call. The mock user is a fictional person
 in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the user is on:
 
-- Signed out on a protected screen: `OutSystems_LastURL` = the path, then `/UBTConnect/Login?In_IsFromInvalidPermissions=True`
+- The redirects below come from `src/app/RouteGuard.tsx` (one guard, mounted in `AppFrame`). It reads the session status
+  (`getSessionStatus()`) and the `meta` of the route in `src/app/routes.ts`. `routes.ts` adds `meta.access`
+  (`anonymous` or `member`) and `meta.lock` (`enforce` or `ignore`) to each generated route. A path that shows no screen
+  has `NO_ROUTE_META` (anonymous, enforce). `LockHost` gets `ignoresLockScreen` from `AppLockHost` (a prop), because
+  `platform/` does not import `app/`.
+- Signed out (status `signedOut`) on a protected screen (`meta.access` is `member`): `OutSystems_LastURL` = the path, then `/UBTConnect/Login?In_IsFromInvalidPermissions=True`
   (U1). The check runs again on every later navigation.
-  - A protected screen is every screen but Splash, Login, InvalidPermissions, PINBiometricsMenu, ContactUsMenu,
+  - An anonymous screen is Splash, Login, InvalidPermissions, PINBiometricsMenu, ContactUsMenu,
     ContactUsDetails, Locality_Details, MessageList, MessageDetail.
-- Signed in, a local PIN, and this tab not unlocked yet: `/UBTConnect/PINUnlock` (U3), once per load. This does not
-  happen on Login, PINUnlock, PINRegister (their CommonUI ignores the lock screen).
+- Signed in, a local PIN, and this tab not unlocked yet (status `locked` at the first check): `/UBTConnect/PINUnlock` (U3),
+  once per load. This does not happen on a route with `meta.lock` `ignore`: Login, PINUnlock, PINRegister, Splash.
 
 `<LockHost />` runs the inactivity timer (spec 9, U6) and renders the lock container (part C) unless CommonUI hides it.
 
@@ -48,7 +53,7 @@ in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the us
 | `cachedUserInfo.ts` | `appManager_GetCachedUserInfo()`, `appManager_SetCachedUserInfo(rec)` (client variable `UBT_AppManager.AppManager_UserExtended`; the mock sign-in fills CountryCode only) | `AppManager_GetCachedUserInfo` / `_SetCachedUserInfo`                 |
 | `memoryCache.ts`    | `getCacheableObject`, `putCacheableObject`, `CACHE_TYPE`, `invalidateEverything`                                                                                          | MemoryClientCache, `CacheControl_*` blocks                            |
 | `mockUser.ts`       | `mockUserInformation()`, `mockDirectoryUser()`, `MOCK_USER_ID`                                                                                                            | fictional user (U7)                                                   |
-| `paths.ts`          | `PATHS`, `isProtectedPath`, `ignoresLockScreen`                                                                                                                           | `checkRegistered`, CommonUI inputs                                    |
+| `paths.ts`          | `PATHS`, `screenOf(pathname)`                                                                                                                                             | screen URLs                                                           |
 
 - Without a local PIN, `signIn()` goes to PINRegister. Otherwise it goes to the resume link, the sign-in callback that
   the gate keeps, or HomeFeed.

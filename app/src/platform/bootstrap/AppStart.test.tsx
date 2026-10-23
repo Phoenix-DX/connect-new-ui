@@ -1,6 +1,7 @@
 import { render, waitFor } from '@testing-library/react';
 import { createMemoryRouter, Outlet, RouterProvider } from 'react-router';
 import { beforeEach, expect, test, vi } from 'vitest';
+import { RouteGuard } from '@/app/RouteGuard';
 import { AppStart } from './AppStart';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { registerPin } from '@/platform/session/pin';
@@ -12,6 +13,7 @@ beforeEach(() => {
   vi.spyOn(console, 'warn').mockImplementation(() => undefined);
 });
 
+/** The app start and the route guard, as AppFrame mounts them. */
 function renderAt(path: string) {
   const router = createMemoryRouter(
     [
@@ -20,6 +22,7 @@ function renderAt(path: string) {
         element: (
           <>
             <AppStart />
+            <RouteGuard />
             <Outlet />
           </>
         ),

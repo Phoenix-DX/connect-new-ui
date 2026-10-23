@@ -229,6 +229,21 @@ describe('demo build (serve.mjs, mocks in the page, app service worker at /)', (
     await expectHomeFeedWithMockData(locked);
     await expect.poll(() => keys.count(), { timeout: 10_000 }).toBe(0); // PINUnlock left with its transition
   });
+
+  it('deep link signed out: a member screen opens Login with the flag; signing in returns to the link', async () => {
+    const page = await pageOf(await profile());
+    // a device with the mock user's PIN (the locked session sets it), then the user is signed out
+    await page.goto(`${demoServer.origin}${HOME}?mocksession=locked&latency=0`);
+    await page.waitForURL('**/UBTConnect/PINUnlock', { timeout: 20_000 });
+
+    await page.goto(`${demoServer.origin}/UBTConnect/Notes?mocksession=out&latency=0`);
+    await page.waitForURL(
+      (url) => url.pathname === '/UBTConnect/Login' && url.searchParams.get('In_IsFromInvalidPermissions') === 'True',
+      { timeout: 20_000 },
+    );
+    await page.getByRole('button', { name: 'Login with UBT One' }).click();
+    await page.waitForURL('**/UBTConnect/Notes', { timeout: 20_000 }); // the sign-in callback kept by the route guard
+  });
 });
 
 describe('production build (vite preview, no mocks, app service worker at /UBTConnect/)', () => {

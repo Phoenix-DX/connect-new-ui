@@ -9,15 +9,14 @@ import {
   type LocalBookmark,
   type LocalNote,
 } from '@/platform/storage/localEntities';
-import { APP_ID, PATHS, ignoresLockScreen, isProtectedPath } from '@/platform/navigation/paths';
-import { pinCheck } from '@/platform/session/pin';
-import { setAppCallbackCurrentLocation } from '@/platform/session/resume';
-import { getClientVar, isSignedIn, setClientVar } from '@/platform/session/session';
+import { APP_ID } from '@/platform/navigation/paths';
+import { getClientVar, setClientVar } from '@/platform/session/session';
 import { setSettings } from '@/platform/settings';
 
 /* The server actions that the app start (appStartSteps.ts), the post-login sequence (postLogin.ts), the sign-out
    (platform/session/auth.ts) and screens share: AppManager_SynchAppContext, Sync_Info_Main and
-   SynchronizeNumberUnreadMessages. Also the two redirects that follow the app start (AppStart.tsx). */
+   SynchronizeNumberUnreadMessages. The redirects that follow the app start are the route guard's
+   (app/RouteGuard.tsx). */
 export type ClientConfig = components['schemas']['UBT_AppManager_CS__AppManager_ConfigClient'];
 
 /** OutSystems CommunicationException of a server call (runtime-sources/OutSystems.js:3, raised by callAction): a failed
@@ -113,23 +112,4 @@ export async function synchronizeNumberUnreadMessages(): Promise<void> {
       throw e;
     log.warn('GetNumberUnreadMessages: communication error', e);
   }
-}
-
-/** Signed-out user on a protected screen (shell-facts U1; ACF:61-89): keep the path as the sign-in callback, then Login. */
-export function signedOutRedirect(pathname: string): string | null {
-  if (isSignedIn() || !isProtectedPath(pathname)) return null;
-  setAppCallbackCurrentLocation(pathname);
-  return PATHS.loginFromInvalidPermissions;
-}
-
-/** App-start PIN check (shell-observed U3): a signed-in tab that was not unlocked and has a local PIN goes to
-    PINUnlock. Screens whose CommonUI ignores the lock screen (Login, PINUnlock, PINRegister) are left alone. */
-export function pinUnlockRedirect(pathname: string): string | null {
-  if (!isSignedIn() || ignoresLockScreen(pathname)) return null;
-  if (!pinCheck().needUnlock || getClientVar('UBT_AppManager.PIN_HasUnlocked')) return null;
-  setAppCallbackCurrentLocation(pathname);
-  // after the unlock the original returns to the screen that was opened (shell-observed: Menu → PINUnlock → Menu);
-  // PINUnlock reads UBTConnect.LastURL (CR-PINUnlock-1)
-  setClientVar('UBTConnect.LastURL', `${pathname}${window.location.search}`);
-  return PATHS.pinUnlock;
 }

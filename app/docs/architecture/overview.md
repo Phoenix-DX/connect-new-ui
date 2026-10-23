@@ -115,6 +115,7 @@ sequenceDiagram
 | Platform validation   | `src/components/ui/os/OSValidation`                                                                                  | [Platform widgets](../guides/os-widgets.md)      |
 | Popups                | `src/components/ui/os/OSPopup/usePopupWidget.ts`                                                                     | [Platform widgets](../guides/os-widgets.md)      |
 | Session status        | `src/platform/session/machine.ts` (7 statuses, pure `transition`; selectors in `session.ts`)                         | [Shell](../guides/shell.md)                      |
+| Route meta, guard     | `src/app/routes.ts` (`meta.access`, `meta.lock`, `NO_ROUTE_META`), `src/app/RouteGuard.tsx` (one redirect table)     | [Shell](../guides/shell.md)                      |
 | Auth provider         | `src/platform/auth` (`AuthProvider`, `mockAuth` behind `MOCKS_BUILT`, `authProvider()`)                              | [Shell](../guides/shell.md)                      |
 | App start             | `src/platform/bootstrap/appStartSteps.ts` (7 named steps), `postLogin.ts`                                            | [Shell](../guides/shell.md)                      |
 | Settings store        | `src/platform/settings` (11 typed server settings from `synchAppContext`; adapter `src/legacy/os/clientVarNames.ts`) | [Shell](../guides/shell.md)                      |

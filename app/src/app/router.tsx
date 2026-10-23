@@ -4,7 +4,7 @@ import { AppFrame } from './AppFrame';
 import { NotMigrated } from './NotMigrated';
 import { RouteError } from '@/app/RouteError';
 import { ScreenFrame } from '@/platform/navigation';
-import { APP, ROUTES, HOME } from './routes.generated';
+import { APP, ROUTES, HOME } from './routes';
 import { lazyScreen } from './screens';
 
 // A screen is picked up automatically when src/screens/<Screen>/index.tsx exists (default export).

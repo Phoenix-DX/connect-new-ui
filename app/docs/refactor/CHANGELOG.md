@@ -144,3 +144,9 @@
 - New `src/platform/auth`: the `AuthProvider` interface, `mockAuth` (reached only behind `MOCKS_BUILT`) and `authProvider()`. `src/platform/bootstrap/appStartSteps.ts` runs the app start as 7 named steps (`synchAppContext` to `cacheableMapData`), and `postLogin.ts` holds the post-login calls. `build/mockFree.ts` has a production-only plugin, so `KNOWN_MOCK_LEFTOVERS` is empty.
 - Differences from plan v2: the file is `appStartSteps.ts`, not `appStart.ts` (it clashes with `AppStart.tsx` on a case-insensitive file system). There is no `fetchFlags` step until P4-5. `mockUser.ts` stays in `platform/session` until a later move step.
 - One behavior change, as the plan asks: a production build has no identity provider. "Login with UBT One" shows "Sign-in is not available: no identity provider is configured." Dev, mock and demo builds sign in as before. Strict parity 64/64 for both references. `move-map.csv` is unchanged.
+
+## P4-4 - refactor(P4-4): route meta and one route guard
+
+- New `src/app/routes.ts` (generated routes plus `meta.access` and `meta.lock`; `NO_ROUTE_META` for a path that shows no screen) and `src/app/RouteGuard.tsx` (one guard, one redirect table, one unit test per row). `paths.ts` no longer has `ANONYMOUS_SCREENS`, `LOCK_SCREEN_IGNORED`, `isProtectedPath` and `ignoresLockScreen`; the redirects left `startup.ts`.
+- Differences from plan v2 §3.2 (which still names `startup.ts` as today's code): the guard reads the session machine status; `LockHost` gets an optional `ignoresLockScreen` prop (`platform/` does not import `app/`); `flagRedirect` comes in P4-5. New e2e journey "deep link signed out".
+- Strict parity 64/64 for the original; 63/64 for the self reference, with the known EventDetail/default 1-pixel flake (F6). `move-map.csv` is unchanged.

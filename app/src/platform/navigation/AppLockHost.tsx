@@ -5,9 +5,9 @@ import { LockHost } from './LockHost';
    the lock container from the block (CR-PINUnlock-3). None on a screen that declares no CommonUI (useNoCommonUi):
    Block_PINUnlock exists only inside CommonUI_InsideLayout (and the PINUnlock screen), so the original has no lock
    container and no PIN_OnTimeout handler there; the timer of the previous screen keeps running and its timeout locks
-   nothing (CR-Services-1; inactivity.ts). */
-export function AppLockHost() {
+   nothing (CR-Services-1; inactivity.ts). `ignoresLockScreen` goes to LockHost (the route meta, app/routes.ts). */
+export function AppLockHost({ ignoresLockScreen }: { ignoresLockScreen: (pathname: string) => boolean }) {
   const commonUiMounted = useIsCommonUiMounted();
   const commonUiAbsent = useIsCommonUiAbsent();
-  return commonUiMounted || commonUiAbsent ? null : <LockHost />;
+  return commonUiMounted || commonUiAbsent ? null : <LockHost ignoresLockScreen={ignoresLockScreen} />;
 }

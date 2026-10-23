@@ -4,7 +4,6 @@ import { BlockPinUnlock } from '@/platform/feedback/dialogs/BlockPinUnlock';
 import { isCommonUiAbsentNow } from '@/platform/feedback/dialogs/commonUiPresence';
 import { pinSessionInactivityStart, registerInactivityTimeoutHandler } from '@/platform/session/inactivity';
 import { usePreventBackNavigation } from '@/platform/navigation';
-import { ignoresLockScreen } from './paths';
 import { lock } from '@/platform/session/pin';
 import { useClientVar, useShellState } from '@/platform/session/session';
 
@@ -13,13 +12,16 @@ import { useClientVar, useShellState } from '@/platform/session/session';
    (Pincode_Unlock:188, 348): it registers the PIN_OnTimeout handler and restarts the app-wide timer on every screen (each
    screen mounts its own CommonUI); on timeout Pincode_Unlock sets PIN_IsLocked (Pincode_Unlock:660-666) and the content
    shows. Unmounting removes the handler only; the timer keeps running (inactivity.ts, CR-Services-1). While the content
-   shows, back navigation is prevented at the lock-screen priority 100000 (spec section 9 "Back navigation", NH:664-705). */
-export function LockHost() {
+   shows, back navigation is prevented at the lock-screen priority 100000 (spec section 9 "Back navigation", NH:664-705).
+   `ignoresLockScreen`: the screens that ignore the lock screen, by path. The app-level host (AppLockHost) gives the
+   route meta `lock` (app/routes.ts). CommonUI_InsideLayout gives none: its In_IgnoreLockScreen input already leaves
+   the host out on those screens (Login, PINUnlock, PINRegister; Splash has no CommonUI). */
+export function LockHost({ ignoresLockScreen }: { ignoresLockScreen?: (pathname: string) => boolean }) {
   const { pathname } = useLocation();
   const { signedIn, hasLocalPin, locked } = useShellState();
   const pinUse = useClientVar('UBT_AppManager.PIN_Use');
   const inactivityUse = useClientVar('UBT_AppManager.PIN_SessionInactivity_Use');
-  const ignored = ignoresLockScreen(pathname);
+  const ignored = ignoresLockScreen?.(pathname) ?? false;
   const hidden = !signedIn || ignored || (pinUse && !hasLocalPin);
   const contentVisible = inactivityUse && locked; // Pincode_Unlock:192-196 (In_ForceVisible not used by the shell)
 

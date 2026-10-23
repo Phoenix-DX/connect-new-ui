@@ -1,6 +1,7 @@
 import { act, render } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import { afterEach, beforeEach, expect, test, vi } from 'vitest';
+import { ignoresLockScreen } from '@/app/routes';
 import { AppLockHost } from './AppLockHost';
 import { useNoCommonUi } from '@/platform/feedback/dialogs/commonUiPresence';
 import { LockHost } from './LockHost';
@@ -27,7 +28,9 @@ afterEach(() => {
 });
 
 function renderAt(path: string) {
-  const router = createMemoryRouter([{ path: '*', element: <LockHost /> }], { initialEntries: [path] });
+  const router = createMemoryRouter([{ path: '*', element: <LockHost ignoresLockScreen={ignoresLockScreen} /> }], {
+    initialEntries: [path],
+  });
   render(<RouterProvider router={router} />);
   return router;
 }
@@ -94,6 +97,15 @@ test('no lock where CommonUI hides it: signed out, Login/PIN screens, PIN not re
   expect(getClientVar('UBT_AppManager.PIN_IsLocked')).toBe(false);
 });
 
+test('without ignoresLockScreen (CommonUI_InsideLayout, whose In_IgnoreLockScreen hides it) no path is ignored', async () => {
+  const router = createMemoryRouter([{ path: '*', element: <LockHost /> }], {
+    initialEntries: ['/UBTConnect/PINRegister'],
+  });
+  render(<RouterProvider router={router} />);
+  await idle(1_210_000);
+  expect(overlay()).not.toBeNull();
+});
+
 test('?locksecs= shortens the timeout for testing', async () => {
   window.history.replaceState(null, '', '/UBTConnect/Menu?locksecs=5');
   renderAt('/UBTConnect/Menu');
@@ -115,11 +127,11 @@ test('a screen without CommonUI has no lock container; the running timer fires t
         element: (
           <>
             <NoCommonUiScreen />
-            <AppLockHost />
+            <AppLockHost ignoresLockScreen={ignoresLockScreen} />
           </>
         ),
       },
-      { path: '*', element: <AppLockHost /> },
+      { path: '*', element: <AppLockHost ignoresLockScreen={ignoresLockScreen} /> },
     ],
     { initialEntries: ['/UBTConnect/Menu'] },
   );

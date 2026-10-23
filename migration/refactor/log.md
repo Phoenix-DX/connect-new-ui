@@ -160,3 +160,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T07:20:28 P4-3 stage test
 - 2026-10-23T07:21:00 P4-3 stage docs
 - 2026-10-23T07:22:16 P4-3 stage commit
+- 2026-10-23T07:22:17 P4-3 done d015386: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 8/8; mock-free production build; demo build signs in; bundle within +5% (+0.8%)
+- 2026-10-23T07:22:18 P4-4 started
+- 2026-10-23T07:22:18 P4-4 stage dev
+- 2026-10-23T07:39:40 P4-4 stage test
+- 2026-10-23T07:48:10 P4-4 stage docs
+- 2026-10-23T07:49:28 P4-4 stage commit
