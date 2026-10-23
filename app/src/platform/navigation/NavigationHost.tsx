@@ -3,7 +3,7 @@ import { QueryClientContext } from '@tanstack/react-query';
 import { useBlocker, useLocation, useNavigate, useNavigationType, type BlockerFunction } from 'react-router';
 import { commitEntry } from './historyStack';
 import { shouldBlockNavigation } from './navigationGate';
-import { setNavigationRedirect, type NavigationRedirect } from './osNavigate';
+import { setHostNavigate, setNavigationRedirect, type NavigationRedirect } from './osNavigate';
 import { dropViews } from './viewCache';
 
 export interface NavigationHostProps {
@@ -12,7 +12,8 @@ export interface NavigationHostProps {
 }
 
 /* Mounted once in AppFrame: the router's only blocker runs the navigation gate (back-navigation queue, view cache),
-   and every shown entry is recorded in the history stack. A prevented back navigation stays where it is. */
+   and every shown entry is recorded in the history stack. A prevented back navigation stays where it is. It also
+   gives the router's navigate to osNavigateTo, for the navigations that do not start in a component. */
 export function NavigationHost({ redirect }: NavigationHostProps): null {
   const location = useLocation();
   const navigationType = useNavigationType();
@@ -41,6 +42,13 @@ export function NavigationHost({ redirect }: NavigationHostProps): null {
   useLayoutEffect(() => {
     dropViews(commitEntry(location.key, navigationType));
   }, [location.key, navigationType]);
+
+  useLayoutEffect(() => {
+    setHostNavigate(navigate);
+    return () => {
+      setHostNavigate(null);
+    };
+  }, [navigate]);
 
   useLayoutEffect(() => {
     if (redirect === undefined) return undefined;

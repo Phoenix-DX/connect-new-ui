@@ -18,8 +18,8 @@ Keys: `AM`/`UC` = `migration/screens/HomeFeed/analysis/sources/raw/UBT_AppManage
   - Login with that flag skips `AppManager_SetAppCallback("")`, so the protected path stays as the sign-in callback (`migration/screens/Login/analysis/sources/pretty/UBTConnect.App_Common.Login.mvc.js:950-953`).
   - Screen handlers re-raise `NotRegisteredException` so that it reaches the flow (survey:UBTConnect.Directory_Locality.CountryList.mvc.js:1394-1404).
 - InvalidPermissions: no code navigates to it. Content: title "Invalid Permissions". A warning BlankSlate with "You don't have permissions to view the required screen.". A button to `/UBTConnect/Login` (survey:UBTConnect.App_Common.InvalidPermissions.mvc.js:163-165, 201-213).
+- `InvalidLoginException` and `NotRegisteredException` extend `SecurityException` (`migration/runtime-sources/OutSystems.js` line 2). They take the SecurityException branch (G1, 2026-10-23).
 - Open:
-  - Is `NotRegisteredException` a `SecurityException` subtype? This is the OutSystems hierarchy; `OutSystems.js` is not captured.
   - Does `/UBTConnect/` render Splash first? See U3.
   - A private-window run on TST, or the runtime/index scripts, can settle both.
 

@@ -1,5 +1,5 @@
 import { useCallback } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, type NavigateFunction } from 'react-router';
 import { parseOsDate } from '@/shared/lib/osDateTime';
 import { currentEntry } from './historyStack';
 import {
@@ -88,6 +88,14 @@ export function setNavigationRedirect(next: NavigationRedirect | null): void {
   redirect = next;
 }
 
+/** A navigation of useOsNavigate and osNavigateTo through the router's `navigate`. */
+function goTo(navigate: NavigateFunction, path: string, params?: OsParams, options?: OsNavigateOptions): void {
+  const target = redirect === null ? { path, params } : redirect({ path, params: params ?? {} });
+  const replace = options?.replace === true || isReplacePending();
+  const transition = createTransition(options?.transition, DEFAULT_TRANSITION) ?? DEFAULT_TRANSITION;
+  void navigate(screenUrl(target.path, target.params), { replace, state: transitionState(transition) });
+}
+
 /** Navigates to an original screen path with its parameters, after the flag redirects of the route table. The history
     entry carries its transition (BaseNavigationCallbacks.goTo: location state `{ transition }`), read by the screen
     transition and reversed by a back navigation from it. */
@@ -95,13 +103,29 @@ export function useOsNavigate(): OsNavigate {
   const navigate = useNavigate();
   return useCallback(
     (path, params, options) => {
-      const target = redirect === null ? { path, params } : redirect({ path, params: params ?? {} });
-      const replace = options?.replace === true || isReplacePending();
-      const transition = createTransition(options?.transition, DEFAULT_TRANSITION) ?? DEFAULT_TRANSITION;
-      void navigate(screenUrl(target.path, target.params), { replace, state: transitionState(transition) });
+      goTo(navigate, path, params, options);
     },
     [navigate],
   );
+}
+
+/* The router's navigate for a navigation that does not start in a component (the App_Common flow handler,
+   legacy/os/exceptions.ts): NavigationHost sets it. None when no NavigationHost is mounted. */
+let hostNavigate: NavigateFunction | null = null;
+
+export function setHostNavigate(next: NavigateFunction | null): void {
+  hostNavigate = next;
+}
+
+/** OS.Navigation.navigateTo outside a component: the navigation of useOsNavigate, through the router of the
+    NavigationHost. Without a router, the runtime's navigateTo changes the window location instead
+    (runtime-sources/OutSystems.js:8, navigateTo: no router goTo → changeWindowLocation), so this sets `location.href`. */
+export function osNavigateTo(path: string, params?: OsParams, options?: OsNavigateOptions): void {
+  if (hostNavigate === null) {
+    window.location.href = screenUrl(path, params);
+    return;
+  }
+  goTo(hostNavigate, path, params, options);
 }
 
 /** The shell's back action: a history back, which runs the back-navigation queue like the device back button.

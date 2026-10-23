@@ -329,8 +329,13 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
   - Server calls raise the OutSystems exceptions of `src/legacy/os/os-exceptions.ts` (see `api-and-mocks.md`).
   - A ported Handle Error tests them with `src/legacy/os/exceptions.ts`: `isUserException(e[, '<Module>.<Name>'])`,
     `isCommunicationException(e)`, `isInstanceOf(e, SecurityException)`, AllExceptions = `!isSystemException(e)`.
-  - An unhandled exception goes to `raiseToFlowHandler(e)` (communication message, else
-    `showExceptionMessage(message, false)`).
+  - An unhandled exception goes to `raiseToFlowHandler(e)`, in the order of App_Common:
+    - communication message for a `CommunicationException`;
+    - `SecurityException` (and its subtypes `InvalidLoginException`, `NotRegisteredException`): signed in →
+      `showExceptionMessage(message, true)`, that is, the forced-logout path above; anonymous → `osNavigateTo` to
+      `/UBTConnect/Login?In_IsFromInvalidPermissions=True` after `setAppCallbackCurrentLocation()`;
+    - every other error: `showExceptionMessage(message, false)`.
+  - Try it by hand with `?mock=security` on ContactUsDetails (signed in and signed out).
 - **Network (U11).**
   - `online`/`offline` events and `navigator.onLine` at start set `App_NetworkStatus_IsOnline_IsPersistent`. The variable
     only picks the communication text.

@@ -442,3 +442,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,review,36245,refactor-advisor,,"W6 P5-4 gate, opus (confirm, high)"
 2026-10-23,refactor,review,36114,refactor-advisor,,"W6 P5-4 gate, fable (confirm, high)"
 2026-10-23,refactor,other,50795,refactor-docs,,P5-4 sonnet
+2026-10-23,refactor,review,35040,refactor-advisor,,"W7, opus"
+2026-10-23,refactor,review,35349,refactor-advisor,,"W7, fable"
+2026-10-23,refactor,review,35330,refactor-advisor,,"W8, opus"
+2026-10-23,refactor,review,35249,refactor-advisor,,"W8, fable"
+2026-10-23,refactor,fix,207433,refactor-dev,,"G1 SecurityException branch, opus (pass)"
+2026-10-23,refactor,verify,36667,refactor-test,,"G1 tester sonnet: ci pass, parity 64/0 both, manual security scenario ok"

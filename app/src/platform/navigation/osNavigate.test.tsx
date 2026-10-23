@@ -1,9 +1,10 @@
-import { screen } from '@testing-library/react';
+import { act, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { beforeEach, describe, expect, test } from 'vitest';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 import {
   dateTimeParam,
   generateScreenURL,
+  osNavigateTo,
   replaceOnUpcomingNavigation,
   resetReplaceOnUpcomingNavigation,
   screenUrl,
@@ -11,6 +12,7 @@ import {
   type NavigationTarget,
   type OsParams,
 } from './osNavigate';
+import { DEFAULT_TRANSITION, TransitionAnimation, transitionState } from './screenTransition';
 import { renderRoutes, resetNavigation } from './testRouter';
 
 beforeEach(resetNavigation);
@@ -107,6 +109,63 @@ test('ResetReplaceOnUpcomingNavigation cancels the mark', async () => {
   await userEvent.click(screen.getByText('reset replace'));
   await userEvent.click(screen.getByText('go /UBTConnect/HomeFeed'));
   expect(router.state.historyAction).toBe('PUSH');
+});
+
+describe('osNavigateTo (OS.Navigation.navigateTo outside a component: the App_Common flow handler, G1)', () => {
+  test("navigates as useOsNavigate through the NavigationHost's router: transition, push, ReplaceOnUpcomingNavigation", async () => {
+    const { router, at } = renderRoutes(routes, '/UBTConnect/HomeFeed');
+    act(() => {
+      osNavigateTo(
+        '/UBTConnect/Login',
+        { In_IsFromInvalidPermissions: true },
+        { transition: TransitionAnimation.Default },
+      );
+    });
+    await waitFor(() => {
+      expect(at()).toBe('/UBTConnect/Login?In_IsFromInvalidPermissions=True');
+    });
+    expect(router.state.historyAction).toBe('PUSH');
+    expect(router.state.location.state).toEqual(transitionState(DEFAULT_TRANSITION));
+
+    await userEvent.click(screen.getByText('mark replace'));
+    act(() => {
+      osNavigateTo('/UBTConnect/Menu', undefined, { transition: TransitionAnimation.Fade });
+    });
+    await waitFor(() => {
+      expect(at()).toBe('/UBTConnect/Menu');
+    });
+    expect(router.state.historyAction).toBe('REPLACE');
+    expect(router.state.location.state).toEqual(transitionState('fade'));
+  });
+
+  test("goes where NavigationHost's redirect sends it", async () => {
+    const redirect = (target: NavigationTarget): NavigationTarget =>
+      target.path === '/UBTConnect/Menu' ? { path: '/UBTConnect/Login', params: { In_IsFromResetPIN: true } } : target;
+    const { at } = renderRoutes(routes, '/UBTConnect/HomeFeed', undefined, redirect);
+    act(() => {
+      osNavigateTo('/UBTConnect/Menu');
+    });
+    await waitFor(() => {
+      expect(at()).toBe('/UBTConnect/Login?In_IsFromResetPIN=True');
+    });
+  });
+
+  test('without a NavigationHost (no router, or it unmounted): location.href = the screen URL (changeWindowLocation)', () => {
+    const { unmount } = renderRoutes(routes, '/UBTConnect/HomeFeed');
+    unmount();
+    const location = { href: 'http://localhost:3000/UBTConnect/HomeFeed' };
+    vi.stubGlobal('location', location);
+    try {
+      osNavigateTo(
+        '/UBTConnect/Login',
+        { In_IsFromInvalidPermissions: true },
+        { transition: TransitionAnimation.Default },
+      );
+    } finally {
+      vi.unstubAllGlobals();
+    }
+    expect(location.href).toBe('/UBTConnect/Login?In_IsFromInvalidPermissions=True');
+  });
 });
 
 describe('generateScreenURL (OS.Navigation, CR-LDM_EventDetail_V2-1)', () => {

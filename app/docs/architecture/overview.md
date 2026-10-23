@@ -105,7 +105,7 @@ sequenceDiagram
   fictional, with the recorded structure and counts.
 - `src/api/client/apiError.ts` has `ApiError` (`kind`: timeout, network, server, security, viewChanged; `cause`: the OutSystems exception). `src/legacy/os/os-exceptions.ts` maps both ways. `callAction` still raises the OutSystems exceptions.
 - `src/api/client/queryClient.ts` has the one QueryClient of the app. `src/api/client/cache.ts` keeps the memory cache as queries of this client. The time to live of an entry is its `staleTime`. The entries are in `src/api/<domain>/keys.ts`. `clearMemoryCache` at logout raises a session epoch that is part of every key.
-- `signedOutRemotely()` (`src/platform/session/auth.ts`) is the single entry point for "the server ended the session". Today only the forced-logout branch of `src/platform/feedback/exceptionMessages.ts` calls it. The 401 and SecurityException triggers wait for the BFF.
+- `signedOutRemotely()` (`src/platform/session/auth.ts`) is the single entry point for "the server ended the session". The forced-logout branch of `src/platform/feedback/exceptionMessages.ts` calls it. A SecurityException reaches that branch through `raiseToFlowHandler` (`src/legacy/os/exceptions.ts`) for a signed-in user. For an anonymous user, the app goes to `/UBTConnect/Login?In_IsFromInvalidPermissions=True` through `osNavigateTo` (`src/platform/navigation/osNavigate.ts`). The 401 trigger waits for the BFF.
 - Later, the backend implements the same contract. Only the `src/api/client/callAction.ts` configuration and the mappers in `api.ts`
   can change. The screens do not change.
 

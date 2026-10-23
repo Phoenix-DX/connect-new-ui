@@ -69,11 +69,11 @@ export async function signOut(): Promise<void> {
 }
 
 /** The single entry point for "the server ended the session": Connect_Logout (the same steps as signOut, in the same
-    order), with the session event `signedOutRemotely`. Today ShowExceptionMessage calls it for ForceLogout (the server
-    texts of a refused session, platform/feedback/exceptionMessages.ts); the caller navigates.
-    The App_Common SecurityException branch (signed in: ForceLogout) is not ported: known gap G1 of
-    migration/refactor/followups.md. A 401 or a SecurityException of a server call does not call it in the mock phase:
-    those triggers come with the BFF identity provider. */
+    order), with the session event `signedOutRemotely`. ShowExceptionMessage calls it for ForceLogout
+    (platform/feedback/exceptionMessages.ts): the server texts of a refused session, and the App_Common
+    SecurityException branch of a signed-in user (legacy/os/exceptions.ts raiseToFlowHandler, ACF:66-75; G1 of
+    migration/refactor/followups.md). The caller navigates. A 401 of a server call does not call it in the mock phase:
+    that trigger comes with the BFF identity provider. */
 export async function signedOutRemotely(): Promise<void> {
   await connectLogout('signedOutRemotely');
 }

@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { SecurityException } from '@/legacy/os/os-exceptions';
 import { SCHOOLS, exampleEmail } from '@/mocks/fictional/directory';
 import { ldmEventById, ldmEventDay, ldmEventName } from '@/mocks/fictional/ldm';
 import { ORBIT_HELPDESK_EMAIL } from '@/mocks/fictional/orbit';
@@ -140,6 +141,7 @@ const listVariables = (fields: Partial<MessageListCallInputs> = {}): MessageList
   ...fields,
 });
 const emptyList: MessagesList = { items: [], hasUnreadMessages: false };
+const emptyContactUsForm = { FullName: '', Email: '', Country: '', Locality: '', PhoneNumber: '', Message: '' };
 
 beforeEach(() => {
   sessionStorage.setItem('mock:latency', '0');
@@ -463,5 +465,16 @@ describe('message repository: errors', () => {
     await expect(sendContactMemberEmail(form)).rejects.toThrow('Request failed with status 500');
     await expect(fetchNumberUnreadMessages('WEB_test')).rejects.toThrow('Request failed with status 500');
     await expect(fetchLocalityTimezone(contactUsInputs)).rejects.toThrow('Request failed with status 500');
+  });
+
+  it('scenario security (G1): both ContactUsDetails data actions raise a SecurityException, the write answers', async () => {
+    sessionStorage.setItem('mock:mock', 'security');
+    const security = { message: 'You do not have access to this information.', exception: 'SecurityException' };
+    await expect(fetchLocalityTimezone(contactUsInputs)).rejects.toBeInstanceOf(SecurityException);
+    await expect(fetchLocalityTimezone(contactUsInputs)).rejects.toMatchObject(security);
+    await expect(fetchCountryNames(contactUsInputs)).rejects.toMatchObject(security);
+    await expect(sendContactUsMessage(emptyContactUsForm, 'account', 0, false)).resolves.toEqual({
+      out_ErrorMessage: '',
+    });
   });
 });

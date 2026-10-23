@@ -260,3 +260,8 @@
 - `src/platform/storage/memoryCache.ts` is deleted. `src/api/client/cache.ts` keeps the memory cache as queries of the one QueryClient (`src/api/client/queryClient.ts`). The entries (type, key, time to live) are in the `keys.ts` of `api/app`, `bookmark`, `country`, `locality`, `member`, `message` and the new `api/image`. The time to live is the `staleTime` (7200 s for map objects and user information). `CACHE_TYPE` and `invalidateEverything` are removed.
 - Accepted behavior change (decision Q13): a reader that comes more than 10 s after a pending miss now shares the running call. QueueJS started a second call. A logout raises a session epoch, so a reader after a logout never joins a miss of the session before.
 - Strict parity `--all`: 64 of 64 routes clean for both references; exemptions `[]`. `move-map.csv` is unchanged (the rows of the `CacheControl*` blocks already say that P5-4 rewrites them where they are).
+
+## G1 - fix(G1): App_Common SecurityException branch (outside the refactor steps)
+
+- Behavior change outside the refactor steps (decisions U2 and W7). `raiseToFlowHandler` (`src/legacy/os/exceptions.ts`) ports `UBTConnect.App_Common.controller.js:61-89`: signed in, the forced-logout path (`signedOutRemotely()`); anonymous, Login with `In_IsFromInvalidPermissions=True`.
+- New `osNavigateTo` in `src/platform/navigation/osNavigate.ts`, registered by `NavigationHost`. New scenario `?mock=security` in `src/screens/ContactUsDetails/mocks.ts`.
