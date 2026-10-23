@@ -46,8 +46,5 @@ src/components/layout/LegacyLayout/LegacyLayout.stories.tsx,@/platform/session/m
 src/components/layout/LegacyLayout/LegacyLayout.stories.tsx,@/platform/session/session,rule-4,P7
 src/components/layout/LegacyLayout/LegacyLayout.test.tsx,@/platform/session/session,rule-4,P7
 src/components/layout/MenuIcon/MenuIcon.tsx,@/platform/navigation,rule-4,P7
-src/components/layout/MainLayoutFixedTitle/MainLayoutFixedTitle.stories.tsx,@/platform/session/mockUser,rule-4,P6-G3-B-Updates_SingleList
-src/components/layout/MainLayoutFixedTitle/MainLayoutFixedTitle.stories.tsx,@/platform/session/session,rule-4,P6-G3-B-Updates_SingleList
-src/components/layout/MainLayoutFixedTitle/MainLayoutFixedTitle.test.tsx,@/platform/session/session,rule-4,P6-G3-B-Updates_SingleList
 src/components/layout/MenuIconBack/MenuIconBack.tsx,@/platform/navigation,rule-4,P7
 src/components/share/SharePopup/SharePopup.test.tsx,@/platform/flags/flags,rule-4,P7

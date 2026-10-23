@@ -466,3 +466,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T02:28:43 P6-G3-B-FeedItemDetail stage test
 - 2026-10-24T02:32:56 P6-G3-B-FeedItemDetail stage docs
 - 2026-10-24T02:34:02 P6-G3-B-FeedItemDetail stage commit
+- 2026-10-24T02:34:03 P6-G3-B-FeedItemDetail done f1fedc70: ci: pass; no parity capture for this route (hook and page tests); parity of the neighbours clean; arch baseline 0 new; bundle HomeFeed 246.04/248.22, Login 187.02/193.84 kB gzip
+- 2026-10-24T02:34:14 P6-G3-B-Updates_SingleList started
+- 2026-10-24T02:34:14 P6-G3-B-Updates_SingleList stage dev
+- 2026-10-24T02:34:56 P6-G3-B-Updates_SingleList stage test
+- 2026-10-24T02:43:20 P6-G3-B-Updates_SingleList stage docs
+- 2026-10-24T02:45:02 P6-G3-B-Updates_SingleList stage commit

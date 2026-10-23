@@ -53,6 +53,10 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
   - Returns: `state` (rendered), `dispatch` (updates `latest` at once, saves the state, renders),
     `latest` (newest state), `parameters` and `events` (newest inputs and event handlers). The flows read `latest`,
     `parameters` and `events`, never the rendered values.
+  - Optional `restore(saved) => state`: OnInitialize of a restored view. The initialiser applies it to the saved
+    state, so the first render of a back navigation shows the restored state. Use it when OnInitialize changes
+    variables on a restored view (`hooks/useUpdatesSingleList.ts`). Do not use a `dispatch` in `onReady` for this:
+    it renders the old state first. Without `restore`, the saved state is used as it is.
   - Order, as in OutSystems: OnInitialize is `initial` (a restored view starts from its saved state instead), then the
     first render. Then `onReady` runs once (`restored` is true after a back navigation). `onParametersChanged` runs
     only when the parameters key changes, never after the first render. `isAlive` turns false at the next run and on

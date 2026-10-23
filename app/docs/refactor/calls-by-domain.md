@@ -81,6 +81,8 @@ P5-2-locality: the 11 actions of this table (7 files, 11 distinct actions, count
 
 P5-2-update: the 9 actions of this table (5 files, 9 distinct actions, counts unchanged) are now in `src/api/update/repository.ts`. The `api.ts` files above re-export it; `shared/UBTConnect/lib/actions.ts` calls `fetchUnreadUpdateItemsCount`.
 
+P6-G3-B-Updates_SingleList: `pages/Updates_SingleList/api.ts` is deleted. The page hook calls `fetchUpdateDateRangeIds`, `fetchUpdatesList`, `markUpdateItemAsRead`, `markUpdateItemAsUnread` and `markAllUpdateItemsAsRead` of `@/api/update` directly. The 5 actions of the row above are unchanged.
+
 P6-G1-B-Menu: `ActionRequestPhotoUpdate` moved to `src/api/member/repository.ts` (decision W9). The domain comes from the data that the call owns: the photo of the signed-in member. The tables now list it under member. `screens/Menu/api.ts` is deleted. `pages/Menu/hooks/useMenu.ts` calls `requestPhotoUpdate`.
 
 ## event

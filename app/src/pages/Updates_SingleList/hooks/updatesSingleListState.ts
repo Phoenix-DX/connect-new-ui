@@ -1,7 +1,77 @@
+import type {
+  FilterUpdates,
+  UpdateBreakpoint,
+  UpdateDateRange,
+  UpdateItem,
+  UpdatesListVariables,
+  UpdateTypeOption,
+} from '@/api/update';
 import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
 import { Connect_UpdateTypeId } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { Breakpoint, DateRange, FilterUpdates, UpdateItem } from '@/pages/Updates_SingleList/types';
-import { Updates_DateRanges } from './staticEntities';
+import { Updates_DateRanges } from '@/pages/Updates_SingleList/components/staticEntities';
+
+/** The variables of the Updates_SingleList screen and the client actions that it calls (the Directory_Updates user
+    client actions and the screen's own). Pure: the flows are in useUpdatesSingleList.
+    @origin UBTConnect.Directory_Updates.Updates_SingleList */
+
+/** FetchUpdates data fetch status, as the List shows it (`list-loading` until it succeeds). */
+export type FetchStatus = 'notFetched' | 'ok' | 'error';
+
+/** The screen variables (the inputs of its two data actions) and the outputs of FetchUpdates. */
+export interface UpdatesSingleListState extends UpdatesListVariables {
+  /** FetchUpdates.UI_UpdateItemList (skeleton rows while loading). */
+  items: UpdateItem[];
+  unreadCount: number;
+  fetchStatus: FetchStatus;
+  isDataFetched: boolean;
+  /** GetDateRanges failed (offline): the runtime list key of that capture. */
+  dateRangesFailed: boolean;
+  /** Bumped by SetupScrollListener: the scroll-end correction runs after the next commit. */
+  scrollListenerSeq: number;
+}
+
+/** An assignment of one or more screen variables. */
+export type UpdatesSingleListPatch = Partial<UpdatesSingleListState>;
+
+/** The reducer of the screen: each flow step assigns variables, as the OutSystems Assign nodes do. */
+export const updatesSingleListReducer = (
+  state: UpdatesSingleListState,
+  patch: UpdatesSingleListPatch,
+): UpdatesSingleListState => ({ ...state, ...patch });
+
+const EMPTY_FILTER: FilterUpdates = {
+  dateFrom: '',
+  dateTo: '',
+  searchText: '',
+  updateTypeId: '',
+  countryIds: [],
+  localitiesIds: [],
+  readOnly: '',
+  sortByNewest: '',
+};
+const EMPTY_ITEM: UpdateItem = {
+  updateItemId: '0',
+  updateItemTypeId: '',
+  name: '',
+  date: '',
+  genderId: '',
+  locationString: '',
+  isRead: false,
+  hasAccess: false,
+  hasShare: false,
+  householdId: '0',
+  parentsNames: '',
+  birthType: '',
+  memberId: '',
+};
+
+/** UpdateFilterTypesOptions: All (null identifier, selected), Birth, Marriage, Taken. */
+const FILTER_TYPE_OPTIONS: UpdateTypeOption[] = [
+  { text: 'All', identifier: '', isSelected: true },
+  { text: 'Birth', identifier: Connect_UpdateTypeId.Birth, isSelected: false },
+  { text: 'Marriage', identifier: Connect_UpdateTypeId.Marriage, isSelected: false },
+  { text: 'Taken', identifier: Connect_UpdateTypeId.Taken, isSelected: false },
+];
 
 const pad = (n: number) => String(n).padStart(2, '0');
 /** A local Date as an OutSystems Date "yyyy-MM-dd". */
@@ -16,13 +86,74 @@ const dateOf = (s: string) => {
   return new Date(y, m - 1, d);
 };
 
-export const EMPTY_DATE_RANGE: DateRange = { range: '', from: '', to: '' };
-export const EMPTY_BREAKPOINT: Breakpoint = {
+export const EMPTY_DATE_RANGE: UpdateDateRange = { range: '', from: '', to: '' };
+export const EMPTY_BREAKPOINT: UpdateBreakpoint = {
   position: 0,
   sectionName: '',
   badgeCount: 0,
   dateRange: EMPTY_DATE_RANGE,
 };
+
+/** The screen variables with their defaults, then ScreenEvent_OnInitialize of a new visit: CurrentBreakpoint
+    {0, Today, 0} and UpdateFilterTypesOptions. */
+export const INITIAL_UPDATES_SINGLE_LIST_STATE: UpdatesSingleListState = {
+  filter_UpdateTypeOptions: FILTER_TYPE_OPTIONS,
+  filter_BottomSheetId: '',
+  filter_Updates: EMPTY_FILTER,
+  filter_DefaultState: EMPTY_FILTER,
+  hasFiltersApplied: false,
+  showMarkAll: false,
+  dateRanges: [],
+  isLoading: false,
+  bottomSheetId_IsLoaded: false,
+  bottomSheetId_ShowSubscription: false,
+  breakpoints: [],
+  currentBreakpoint: { ...EMPTY_BREAKPOINT, sectionName: Updates_DateRanges.Today },
+  isHeaderScrolled: false,
+  shareableUpdateItem: EMPTY_ITEM,
+  isShareOpen: false,
+  shareableObjectId: '',
+  isToggleSearch: false,
+  focusedScrollAnchorId: '',
+  currentSearchString: '',
+  items: [],
+  unreadCount: 0,
+  fetchStatus: 'notFetched',
+  isDataFetched: false,
+  dateRangesFailed: false,
+  scrollListenerSeq: 0,
+};
+
+/** ScreenEvent_OnInitialize of a restored view: the updates swiped in the carousel (the preload object
+    EntitiesCarousel_SwippedItems: rows with ListPosition and EntityItemId) become read; UnreadCount and the BadgeCount
+    of their breakpoint go down by one. Any other preload object leaves the saved variables as they are. */
+export function restoreUpdatesSingleListState(saved: UpdatesSingleListState, preload: unknown): UpdatesSingleListState {
+  if (!Array.isArray(preload)) return saved;
+  const items = [...saved.items];
+  const breakpoints = [...saved.breakpoints];
+  let unreadCount = saved.unreadCount;
+  for (const row of preload as { ListPosition?: number; EntityItemId?: unknown }[]) {
+    const pos = row.ListPosition ?? -1;
+    const item = items[pos];
+    if (pos < 0 || !item || String(row.EntityItemId) !== item.updateItemId) continue;
+    unreadCount -= 1;
+    items[pos] = { ...item, isRead: true };
+    const b = breakpoints.findIndex((p) => item.date >= p.dateRange.from && item.date <= p.dateRange.to);
+    const bp = breakpoints[b];
+    if (bp) breakpoints[b] = { ...bp, badgeCount: bp.badgeCount - 1 };
+  }
+  return { ...saved, items, breakpoints, unreadCount };
+}
+
+const NULL_DATE = '1900-01-01';
+
+/** A domain date ('' = null) as a block input that takes the OutSystems null date (ShareSheet In_UpdateDate). */
+export const osDateInput = (date: string): string => date || NULL_DATE;
+
+/** The runtime key of the List rows, as captured: 478 after FetchUpdates, 129 after a failed GetDateRanges, 106 while
+    loading. */
+export const listKeyOf = (state: Pick<UpdatesSingleListState, 'fetchStatus' | 'dateRangesFailed'>): string =>
+  state.fetchStatus === 'ok' ? '478' : state.dateRangesFailed ? '129' : '106';
 
 /** DiffDays(Date, CurrDateTime): calendar days from the date to now (runtime OutSystems.js `Y(e,t,864e5,!0)`). */
 export function diffDays(date: string, now = new Date()): number {
@@ -51,9 +182,9 @@ export function directory_Updates_AugmentDateRanges(
   ids: string[],
   monthsToShow: number,
   now = new Date(),
-): DateRange[] {
+): UpdateDateRange[] {
   const t = today(now);
-  const out: DateRange[] = [];
+  const out: UpdateDateRange[] = [];
   for (const id of ids) {
     if (id === Updates_DateRanges.Today) out.push({ range: id, from: osDateOf(t), to: osDateOf(t) });
     else if (id === Updates_DateRanges.Last7Days)
@@ -67,13 +198,16 @@ export function directory_Updates_AugmentDateRanges(
 }
 
 /* Date >= From and Date <= To ('' From is the null date: every date is after it). */
-const inRange = (item: UpdateItem, r: DateRange) => item.date >= r.from && item.date <= r.to;
+const inRange = (item: UpdateItem, r: UpdateDateRange) => item.date >= r.from && item.date <= r.to;
 
 /** Directory_Updates_GetBreakpoints (UC): per range with items, Position = first index, SectionName = Range,
     BadgeCount = unread items of the range; sorted by Position. Empty without updates. */
-export function directory_Updates_GetBreakpoints(items: UpdateItem[], dateRanges: DateRange[]): Breakpoint[] {
+export function directory_Updates_GetBreakpoints(
+  items: UpdateItem[],
+  dateRanges: UpdateDateRange[],
+): UpdateBreakpoint[] {
   if (items.length === 0) return [];
-  const out: Breakpoint[] = [];
+  const out: UpdateBreakpoint[] = [];
   for (const r of dateRanges) {
     const inR = items.filter((i) => inRange(i, r));
     if (inR.length === 0) continue;
@@ -90,12 +224,12 @@ export function directory_Updates_GetBreakpoints(items: UpdateItem[], dateRanges
 /** Directory_Updates_GetListBreakpoint (UC): the breakpoint whose boundary lies between the previous and the current
     update date (swapped when ascending); empty when either date is null or no rule matches. */
 export function directory_Updates_GetListBreakpoint(
-  breakpoints: Breakpoint[],
+  breakpoints: UpdateBreakpoint[],
   currentUpdateDate: string,
   previousUpdateDate: string,
   isAscending: boolean,
   now = new Date(),
-): Breakpoint {
+): UpdateBreakpoint {
   if (currentUpdateDate === '' || previousUpdateDate === '') return EMPTY_BREAKPOINT;
   const [cur, prev] = isAscending ? [previousUpdateDate, currentUpdateDate] : [currentUpdateDate, previousUpdateDate];
   const dc = diffDays(cur, now);
@@ -115,9 +249,9 @@ export function directory_Updates_GetListBreakpoint(
 export function directory_Updates_GetUpdatedBreakpoints(
   items: UpdateItem[],
   selectedPosition: number,
-  dateRanges: DateRange[],
-  breakpoints: Breakpoint[],
-): { changedBreakpoint: Breakpoint; updatedBreakpoints: Breakpoint[] } {
+  dateRanges: UpdateDateRange[],
+  breakpoints: UpdateBreakpoint[],
+): { changedBreakpoint: UpdateBreakpoint; updatedBreakpoints: UpdateBreakpoint[] } {
   let changed = EMPTY_BREAKPOINT;
   for (const b of breakpoints) if (selectedPosition >= b.position) changed = b;
   const updated = [...breakpoints];
@@ -157,12 +291,12 @@ const skeletonItem = (): UpdateItem => ({
 export const getSkeletonList_UI_Updates = (listLength: number): UpdateItem[] =>
   Array.from({ length: listLength }, skeletonItem);
 
-/** SetDefaultFilters (SCR ctrl :1477-1565): dates Older.From .. Today.To when either is null, ReadOnly None, Sort Yes,
+/** SetDefaultFilters (screen action): dates Older.From .. Today.To when either is null, ReadOnly None, Sort Yes,
     CountryIds / LocalitiesIds [None] when empty; Filter_DefaultState = Filter_Updates while its CountryIds is empty. */
 export function setDefaultFilters(
   f: FilterUpdates,
   defaultState: FilterUpdates,
-  dateRanges: DateRange[],
+  dateRanges: UpdateDateRange[],
 ): { filter: FilterUpdates; defaultState: FilterUpdates } {
   const next = { ...f };
   if (f.dateFrom === '' || f.dateTo === '') {

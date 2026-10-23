@@ -103,6 +103,64 @@ describe('useFlowState state', () => {
 
     expect(screen.getByText('count: 0')).toBeInTheDocument();
   });
+
+  /** A screen with OnInitialize on a restored view: it adds 10 to the saved count. */
+  function RestoringScreen({ restore }: { restore: (saved: Counter) => Counter }) {
+    const go = useOsNavigate();
+    const { state, dispatch, latest } = useFlowState({
+      viewName: 'Counter',
+      reducer: counterReducer,
+      initial: INITIAL,
+      restore,
+      parameters: {},
+    });
+    return (
+      <div>
+        <button
+          type="button"
+          onClick={() => {
+            dispatch({ type: 'add', by: 1 });
+          }}
+        >
+          count: {state.count}, latest: {latest.current.count}
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            go('/UBTConnect/Detail');
+          }}
+        >
+          open detail
+        </button>
+      </div>
+    );
+  }
+
+  test('restore: a back navigation starts from restore(saved) in the first render; a new visit does not call it', async () => {
+    const restore = vi.fn((saved: Counter): Counter => ({ count: saved.count + 10 }));
+    const { router } = renderRoutes(
+      { '/UBTConnect/Counter': <RestoringScreen restore={restore} />, '/UBTConnect/Detail': <p>detail</p> },
+      '/UBTConnect/Counter',
+    );
+    expect(restore).not.toHaveBeenCalled();
+    await userEvent.click(screen.getByText('count: 0, latest: 0'));
+    await userEvent.click(screen.getByText('open detail'));
+    expect(await screen.findByText('detail')).toBeInTheDocument();
+
+    await act(() => router.navigate(-1));
+
+    expect(restore).toHaveBeenCalledWith({ count: 1 });
+    expect(screen.getByText('count: 11, latest: 11')).toBeInTheDocument();
+    await userEvent.click(screen.getByText('count: 11, latest: 11'));
+    expect(screen.getByText('count: 12, latest: 12')).toBeInTheDocument();
+
+    restore.mockClear();
+    await userEvent.click(screen.getByText('open detail'));
+    expect(await screen.findByText('detail')).toBeInTheDocument();
+    await act(() => router.navigate('/UBTConnect/Counter'));
+    expect(restore).not.toHaveBeenCalled();
+    expect(screen.getByText('count: 0, latest: 0')).toBeInTheDocument();
+  });
 });
 
 describe('useFlowState OnParametersChanged', () => {

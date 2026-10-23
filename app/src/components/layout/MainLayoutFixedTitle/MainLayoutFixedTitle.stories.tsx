@@ -1,28 +1,15 @@
-import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
-import { MemoryRouter } from 'react-router';
-import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import { setClientVar, setSignedInUser } from '@/platform/session/session';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { BottomBar } from '@/components/layout/BottomBar';
-import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import { MainLayoutFixedTitle } from './MainLayoutFixedTitle';
 
-/** Stories only: the signed-in session of the captures (BottomBarMenu, CommonUI_InsideLayout), checked just now. */
-const session =
-  (path: string): Decorator =>
-  (Story) => {
-    setSignedInUser(MOCK_USER_ID);
-    setClientVar('UBTConnect.Directory_Updates_UnreadCount', 3);
-    setClientVar('UBTConnect.Directory_Updates_UnreadCount_LastCheck', new Date().toISOString().slice(0, 19));
-    return (
-      <MemoryRouter initialEntries={[path]}>
-        <Story />
-      </MemoryRouter>
-    );
-  };
+/* The screen gives the bottom bar (App_Common.BottomBarMenu) and CommonUI_InsideLayout. They read the session, so the
+   stories use stand-ins with the same root wrapper (the capture tests compare only that wrapper for nested blocks);
+   the stories of BottomBar and CommonUiLayout show them. */
+const bottomBar = (id: string) => <OSBlock name="App_Common.BottomBarMenu" id={id} />;
+const commonUi = (id: string) => <OSBlock name="App_Common.CommonUI_InsideLayout" id={id} />;
 
 const meta = {
   title: 'Shared/UBTConnectLibrary/Layout_MainPages_FixedTitle',
@@ -34,7 +21,6 @@ type Story = StoryObj<typeof meta>;
 /** Notes/default: gray background, "My Notes" title with the notification bell, search input, filter pills, note
     list, bottom bar, CommonUI. */
 export const V1: Story = {
-  decorators: [session('/UBTConnect/Notes')],
   args: {
     id: '$b1',
     isGrayBackground: true,
@@ -43,15 +29,14 @@ export const V1: Story = {
     placeholderHeaderInput: <PendingBlock name="ConnectPatterns.Input" />,
     headerContent: <CustomContainer id="Filter_Pills" />,
     content: <PendingBlock name="Notes.NoteCard_List" />,
-    bottom: <BottomBar id="$b9" activeItem={Connect_BottomBar_Items.Menu} />,
-    placeholderCommonUIInsideLayout: <CommonUiLayout id="$b10" />,
+    bottom: bottomBar('$b9'),
+    placeholderCommonUIInsideLayout: commonUi('$b10'),
   },
 };
 
 /** Updates_SingleList/loading: "Updates" title, search input and filter icon, list header, the loading list of
     skeletons, bottom bar, CommonUI. */
 export const V2: Story = {
-  decorators: [session('/UBTConnect/Updates_SingleList')],
   args: {
     id: '$b1',
     isGrayBackground: true,
@@ -77,7 +62,7 @@ export const V2: Story = {
         ))}
       </div>
     ),
-    bottom: <BottomBar id="$b18" activeItem={Connect_BottomBar_Items.Updates} />,
-    placeholderCommonUIInsideLayout: <CommonUiLayout id="$b19" />,
+    bottom: bottomBar('$b18'),
+    placeholderCommonUIInsideLayout: commonUi('$b19'),
   },
 };

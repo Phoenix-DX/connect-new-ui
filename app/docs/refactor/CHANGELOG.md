@@ -456,3 +456,9 @@
 
 - FeedItemDetail is a page: hook `hooks/useFeedItemDetail.ts` (4 share variables, 2 handlers), input reader in `inputs.ts`. The page renders `DetailLayout` with `useNavigateBack`, not the `Layout_DetailPage` adapter (16 importers keep it). `api.ts`, `types.ts` and the empty `mocks.ts` are deleted.
 - No parity capture exists for this route. The hook tests and the page tests (back arrow, view-cache restore) cover it. HomeFeed first load 246.04 kB gzip (limit 248.22).
+
+## P6-G3-B-Updates_SingleList - refactor(P6-G3-B): Updates_SingleList as page
+
+- Updates_SingleList is a page: hook `hooks/useUpdatesSingleList.ts` (on `useFlowState`, new optional `restore(saved)` option), pure state `hooks/updatesSingleListState.ts`, component `UpdatesList`. `api.ts` and `types.ts` are deleted; the page calls `@/api/update`.
+- MainLayoutFixedTitle: the stories use empty OSBlock stand-ins, so its 3 baseline rows are removed (49 rows left).
+- The Updates_SingleList chunk is +0.60 kB gzip, because it now loads `useFlowState`. The HouseholdDetails, Profile and Search chunks are 0.11 to 0.16 kB smaller. HomeFeed first load is 246.00 kB gzip (limit 248.22).

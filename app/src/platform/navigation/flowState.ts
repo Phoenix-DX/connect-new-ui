@@ -20,6 +20,9 @@ export interface FlowStateOptions<S, A, P, E = undefined> {
   /** The state of a view that the view cache does not restore: the variables after OnInitialize. A restored view
       starts from its saved state instead. */
   initial: S;
+  /** OnInitialize of a restored view (OutSystems runs OnInitialize on a back navigation too): it gets the saved state
+      and gives the state of the first render. Without it, a restored view starts from its saved state as it is. */
+  restore?: (saved: S) => S;
   /** The input parameters of the screen or block, as plain data: their JSON is the parameters key. */
   parameters: P;
   /** The event handlers that the parent gives (the block events). The flows call the newest ones through `events`. */
@@ -54,13 +57,17 @@ export function useFlowState<S, A, P, E = undefined>({
   viewName,
   reducer,
   initial,
+  restore,
   parameters,
   events,
   onReady,
   onParametersChanged,
 }: FlowStateOptions<S, A, P, E>): FlowState<S, A, P, E> {
+  const restoredFromCache = useWasRestoredFromCache();
   const [saved, setSaved] = useViewState<S>(viewName, initial);
-  const [state, dispatchToView] = useReducer(reducer, saved);
+  const [state, dispatchToView] = useReducer(reducer, saved, (s: S) =>
+    restoredFromCache && restore !== undefined ? restore(s) : s,
+  );
   const latest = useRef(state);
   const dispatch = useCallback(
     (action: A) => {
@@ -81,7 +88,6 @@ export function useFlowState<S, A, P, E = undefined>({
     flowsRef.current = { onReady, onParametersChanged };
   });
 
-  const restoredFromCache = useWasRestoredFromCache();
   const restoredRef = useRef(restoredFromCache);
   useEffect(() => {
     let alive = true;

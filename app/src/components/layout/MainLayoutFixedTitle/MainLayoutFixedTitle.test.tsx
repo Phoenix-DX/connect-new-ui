@@ -1,6 +1,5 @@
 import { act, render } from '@testing-library/react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
-import { setSignedInUser } from '@/platform/session/session';
+import { describe, expect, it, vi } from 'vitest';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { MainLayoutFixedTitle } from './MainLayoutFixedTitle';
 import * as stories from './MainLayoutFixedTitle.stories';
@@ -8,10 +7,6 @@ import * as stories from './MainLayoutFixedTitle.stories';
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
 
 describe('Layout_MainPages_FixedTitle', () => {
-  afterEach(() => {
-    setSignedInUser(null);
-  });
-
   testCapturedVariants(stories, captures);
 
   it('title in the h2, search row placeholders, flag classes, PullToRefresh', () => {

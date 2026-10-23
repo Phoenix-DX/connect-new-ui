@@ -1,9 +1,14 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { recordedHandler } from '@/mocks/fixtures';
 import { collection, statefulHandler } from '@/mocks/store';
 import { wireList } from '@/legacy/os/os-wire';
-import type { UpdateItemWire } from './types';
+
+/** Connect_Updates_CS.UI_UpdateItem as the server sends it (Long Integers as text, Date "yyyy-MM-dd"). */
+type UpdateItemWire = ActionOutputs<
+  PathOf<'UBTConnect', 'Updates_SingleList/DataActionFetchUpdates'>
+>['UI_UpdateItemList']['List'][number];
 
 /* DataActionGetDateRanges: the recorded fixture (UBTConnect/DataActionGetDateRanges/02-0400bafb.json, re-recorded
    read-only with the static-entity ids kept: Today, Last 7 Days, Last 30 Days, Older). The answer does not depend on

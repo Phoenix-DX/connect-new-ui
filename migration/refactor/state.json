@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G3-B-FeedItemDetail",
+  "step": "P6-G3-B-Updates_SingleList",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T02:34:02"
+  "since": "2026-10-24T02:45:02"
  },
  "steps": {
   "P0-1": {
@@ -885,12 +885,25 @@
    "finished": "2026-10-24T02:28:07"
   },
   "P6-G3-B-FeedItemDetail": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T02:28:08",
    "tokens": {
     "dev": 124589,
     "test": 28566,
     "docs": 22499
+   },
+   "commit": "f1fedc70",
+   "gate": "ci: pass; no parity capture for this route (hook and page tests); parity of the neighbours clean; arch baseline 0 new; bundle HomeFeed 246.04/248.22, Login 187.02/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T02:34:03"
+  },
+  "P6-G3-B-Updates_SingleList": {
+   "status": "active",
+   "started": "2026-10-24T02:34:14",
+   "tokens": {
+    "dev": 313215,
+    "test": 39501,
+    "docs": 31414
    }
   }
  },

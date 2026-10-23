@@ -42,3 +42,6 @@ Columns_Two (compared as nested blocks); the unit test checks the h2 / header-ri
 - OutSystems UI LayoutReady / SetLang / LayoutDestroy / SkipToContent: not ported (as Layout_HomePage). AddFavicon's
   result (the `shortcut icon` link) is static in `index.html`.
 - Screen blocks in the placeholders (notification icon, Input, FilterSheet_Icon, lists) are PendingBlock in stories.
+  The bottom bar (`App_Common.BottomBarMenu`) and `App_Common.CommonUI_InsideLayout` read the session, so the stories
+  give an empty `OSBlock` with the same wrapper. The stories of BottomBar and CommonUiLayout show them. The stories and
+  the test import no `platform/` module.
