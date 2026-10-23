@@ -92,11 +92,14 @@ GROUP_DAYS = {"G1": 2, "G2": 3, "G3": 4, "G4": 4, "G5": 4, "G6": 1}
 # step A ("A"), or after the route named here: in group G1, AcceptPendingPolicies and Menu ran before the PIN routes
 # (their diffs were prefetched) and the move came after Menu.
 GROUP_ORDER = {"G1": ["Login", "Splash", "AcceptPendingPolicies", "Menu", "PINRegister", "PINUnlock", "PINChange",
-                      "PINBiometricsMenu", "TermsAndPoliciesMenu", "Profile"]}
+                      "PINBiometricsMenu", "TermsAndPoliciesMenu", "Profile"],
+               # master scheduling (2026-10-24): prefetched steps first; W22 keeps HomeFeed-Page after Services
+               "G3": ["HomeFeed", "Services", "Search", "MessageList", "MessageDetail", "FeedItemDetail",
+                      "Updates_SingleList", "Notifications"]}
 SHARED_MOVE_AFTER = {"G1": "Menu"}
 # W22 (Opus + Fable, auto-accepted user instruction 2026-10-23 13:43): steps that run after a route step of a group
 AFTER_ROUTE = {
-    ("G3", "Services"): [("P6-G3-B-HomeFeed-Page", "HomeFeed page part", "change", "visual", "opus", None, 0.25,
+    ("G3", "Notifications"): [("P6-G3-B-HomeFeed-Page", "HomeFeed page part", "change", "visual", "opus", None, 0.25,
                           "This step finishes P6-G3-B-HomeFeed (W22): FeedBlock_Services, FeedBlock_Updates and "
                           "Dialog_GoExternalApp of pages/HomeFeed become hooks and props-only components; GetServices "
                           "moves to api/service (created by P6-G3-B-Services); pages/HomeFeed/api.ts and types.ts go "

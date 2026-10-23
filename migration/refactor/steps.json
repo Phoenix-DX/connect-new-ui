@@ -1090,40 +1090,6 @@
    ]
   },
   {
-   "id": "P6-G3-B-FeedItemDetail",
-   "phase": "P6",
-   "title": "FeedItemDetail as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.44,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G3 for the route FeedItemDetail only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
-   "deps": [
-    "P6-G3-B-HomeFeed"
-   ]
-  },
-  {
-   "id": "P6-G3-B-Updates_SingleList",
-   "phase": "P6",
-   "title": "Updates_SingleList as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.44,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G3 for the route Updates_SingleList only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
-   "deps": [
-    "P6-G3-B-FeedItemDetail"
-   ]
-  },
-  {
    "id": "P6-G3-B-Services",
    "phase": "P6",
    "title": "Services as page",
@@ -1137,24 +1103,7 @@
    "anchor": "### Phase 6",
    "extra": "This step is step B (restructure) of group G3 for the route Services only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G3-B-Updates_SingleList"
-   ]
-  },
-  {
-   "id": "P6-G3-B-HomeFeed-Page",
-   "phase": "P6",
-   "title": "HomeFeed page part",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.25,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step finishes P6-G3-B-HomeFeed (W22): FeedBlock_Services, FeedBlock_Updates and Dialog_GoExternalApp of pages/HomeFeed become hooks and props-only components; GetServices moves to api/service (created by P6-G3-B-Services); pages/HomeFeed/api.ts and types.ts go to domain hooks or inputs.ts and are deleted. Old-vs-new check for HomeFeed; HomeFeed first load must not grow (F17 tripwire, W21).",
-   "deps": [
-    "P6-G3-B-Services"
+    "P6-G3-B-HomeFeed"
    ]
   },
   {
@@ -1171,24 +1120,7 @@
    "anchor": "### Phase 6",
    "extra": "This step is step B (restructure) of group G3 for the route Search only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G3-B-HomeFeed-Page"
-   ]
-  },
-  {
-   "id": "P6-G3-B-Notifications",
-   "phase": "P6",
-   "title": "Notifications as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.44,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G3 for the route Notifications only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
-   "deps": [
-    "P6-G3-B-Search"
+    "P6-G3-B-Services"
    ]
   },
   {
@@ -1205,7 +1137,7 @@
    "anchor": "### Phase 6",
    "extra": "This step is step B (restructure) of group G3 for the route MessageList only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G3-B-Notifications"
+    "P6-G3-B-Search"
    ]
   },
   {
@@ -1226,6 +1158,74 @@
    ]
   },
   {
+   "id": "P6-G3-B-FeedItemDetail",
+   "phase": "P6",
+   "title": "FeedItemDetail as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route FeedItemDetail only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G3-B-MessageDetail"
+   ]
+  },
+  {
+   "id": "P6-G3-B-Updates_SingleList",
+   "phase": "P6",
+   "title": "Updates_SingleList as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route Updates_SingleList only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G3-B-FeedItemDetail"
+   ]
+  },
+  {
+   "id": "P6-G3-B-Notifications",
+   "phase": "P6",
+   "title": "Notifications as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route Notifications only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G3-B-Updates_SingleList"
+   ]
+  },
+  {
+   "id": "P6-G3-B-HomeFeed-Page",
+   "phase": "P6",
+   "title": "HomeFeed page part",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step finishes P6-G3-B-HomeFeed (W22): FeedBlock_Services, FeedBlock_Updates and Dialog_GoExternalApp of pages/HomeFeed become hooks and props-only components; GetServices moves to api/service (created by P6-G3-B-Services); pages/HomeFeed/api.ts and types.ts go to domain hooks or inputs.ts and are deleted. Old-vs-new check for HomeFeed; HomeFeed first load must not grow (F17 tripwire, W21).",
+   "deps": [
+    "P6-G3-B-Notifications"
+   ]
+  },
+  {
    "id": "P6-G3-C",
    "phase": "P6",
    "title": "Prune group G3 and group gate",
@@ -1242,7 +1242,7 @@
    "anchor": "### Phase 6",
    "extra": "This step is step C (prune) of group G3 and the gate of the group. Routes: HomeFeed, FeedItemDetail, Updates_SingleList, Services, Search, Notifications, MessageList, MessageDetail.",
    "deps": [
-    "P6-G3-B-MessageDetail"
+    "P6-G3-B-HomeFeed-Page"
    ]
   },
   {
