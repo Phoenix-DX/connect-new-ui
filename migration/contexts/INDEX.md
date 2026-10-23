@@ -6,7 +6,7 @@ section "Context notes".
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
 - 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)).
-- Branch `refactor/architecture`: Phases 0 to 3 of the refactor done by the agent team (2026-10-22/23, contexts 036 to 039); the run continues with P4-1 (`/refactor-master continue` resumes) (this repo's dev server on port 5174: 5173 is another clone). Auto decisions Q1–Q11, M1, G-P2-4, U1 wait for the user's review.
+- Branch `refactor/architecture`: Phases 0 to 4 of the refactor done by the agent team (2026-10-22/23, contexts 036 to 040); next the hand-written steps P4-F4, P4-F6, P4-F5, P4-F7, then P5-1 (`/refactor-master continue` resumes) (this repo's dev server on port 5174: 5173 is another clone). Auto decisions Q1–Q12, M1–M6, G-P2-4, U1 wait for the user's review.
 - Auto mode ON overnight from 19:41 (2026-10-22), until P2–P7 are done. Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`). Tools: `migration/tools/` (README).
 
@@ -53,3 +53,4 @@ section "Context notes".
 | [037](context-037-refactor-phase-1.md) | 2026-10-22 | Refactor Phase 1 (P1-1 to P1-4): moves, `@/` imports; P1 parity had used another clone on 5173, re-run found 2 regressions, fixed (P1-fix); Q8–Q9 | current |
 | [038](context-038-refactor-phase-2.md) | 2026-10-22 | Refactor Phase 2 (P2-1 to P2-4) overnight: HouseholdDetails pilot page, page template, gate G-P2-4 by Opus + Fable; follow-ups F1–F5 | current |
 | [039](context-039-refactor-phase-3.md) | 2026-10-23 | Refactor Phase 3 (P3-1 to P3-4): 0 import cycles, folder-direction rules, phase report; 6 h stall fixed (act on the agent report); F6 parity flake | current |
+| [040](context-040-refactor-phase-4.md) | 2026-10-23 | Refactor Phase 4 (P4-1 to P4-5): settings store, session machine, AuthProvider, route guard, flag registry; Q12, M2–M6; F7 (ADR-15 generated file) | current |

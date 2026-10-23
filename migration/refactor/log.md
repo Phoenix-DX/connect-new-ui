@@ -172,3 +172,4 @@ One line per event. Written by rf.py.
 - 2026-10-23T08:15:37 P4-5 stage test
 - 2026-10-23T08:22:08 P4-5 stage docs
 - 2026-10-23T08:24:13 P4-5 stage commit
+- 2026-10-23T08:24:20 P4-5 done c6db947: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self) (capture-plan has no flag variants; unit tests cover on and off); ?ff= works on dev; bundle within +5% (+1.0%)
