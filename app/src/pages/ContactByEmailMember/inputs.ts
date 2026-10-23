@@ -1,11 +1,25 @@
-import type { ContactByEmailMemberInputs } from './types';
-
-/* ContactByEmailMember has no data action (controller `dataFetchActionNames = []`, mvc.js:640). The calls of the
-   capture (Sync_Info_GetMain, GetUserInformation, CacheableMapEntities, CacheableHouseholds) are the shell's app start
-   (src/shell/startup.ts). Its only server action is SendContactMemberEmail, on Send (Q1 → A pending): the screen's
-   ContactByEmailForm record as In_UI_ContactByEmailForm, a write, mocked (P-MUTATION), never the real server. It is in
-   the domain api/message; this module keeps the name that the screen uses. */
-export { sendContactMemberEmail } from '@/api/message';
+/** The route inputs of ContactByEmailMember, from the query string by their original names, with their OutSystems
+    defaults. Long Integers stay strings ("0" by default); In_LDMEventDate is "" for the null date. The screen has no
+    data action: its only server action is SendContactMemberEmail (`@/api/message`), on Send.
+    @origin UBTConnect.ContactFlow.ContactByEmailMember */
+export interface ContactByEmailMemberInputs {
+  In_AvatarURL: string;
+  In_ContactName: string;
+  In_ContactSurname: string;
+  In_ContactLocality: string;
+  In_ContactCountry: string;
+  In_EmailTo: string;
+  In_EntityType: string;
+  In_EntityId: string;
+  In_LDMEventDate: string;
+  In_LDMEventLocality: string;
+  In_AuditEventId: string;
+  In_OrbitEventTitle: string;
+  In_OrbitEventId: string;
+  In_OrbitMilestoneId: string;
+  In_IsHousehold: boolean;
+  In_HouseholdHeaderName: string;
+}
 
 /** OutSystems Boolean input from the query string ("True"/"False", any case). */
 const osBoolean = (value: string | null): boolean => value?.toLowerCase() === 'true';
@@ -15,7 +29,7 @@ const osLongInput = (value: string | null): string => (value === null || value =
 const osDateInput = (value: string | null): string =>
   value === null || value === '' || value.startsWith('1900-01-01') ? '' : value;
 
-/** Screen inputs from the query string with the original names (mvc.js:160-224). */
+/** Screen inputs from the query string with the original names. */
 export function readContactByEmailMemberInputs(params: URLSearchParams): ContactByEmailMemberInputs {
   const text = (name: string) => params.get(name) ?? '';
   return {

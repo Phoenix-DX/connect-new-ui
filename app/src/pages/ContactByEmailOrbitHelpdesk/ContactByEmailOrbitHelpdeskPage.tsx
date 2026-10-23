@@ -10,7 +10,7 @@ import { UBT_Color, UBT_FontSize, UBT_Size } from '@/shared/UBTConnectLibrary/li
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { useNavigateBack } from '@/platform/navigation';
+import { allowUpcomingNavigation, useNavigateBack } from '@/platform/navigation';
 import { readInputs, sendContactEmail } from './api';
 import { onApplicationEvent_ContactHelpdesk, scheduleFeedbackMessageAfterTransition } from './components/actions';
 
@@ -81,6 +81,7 @@ export default function ContactByEmailOrbitHelpdesk() {
           inSubject={inputs.In_Subject}
           isLoading={isLoading}
           inUseDynamicTextAreaSubject
+          onBeforeSubmitForm={allowUpcomingNavigation}
           onEventSubmitForm={(subject, message) => {
             void handlerSubmitForm(subject, message);
           }}

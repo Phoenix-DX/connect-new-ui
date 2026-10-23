@@ -95,6 +95,20 @@ and passes props to components. Write the choice in `move-map.csv`, column `shap
 A component cannot import a container (rule 4). So the container gives the view these blocks as slots:
 `entityActions`, `renderMemberActions`, `shareSheet`.
 
+## Pattern of a form page with a config (ContactByEmail)
+
+For pages that differ only in values, use a config and not a container (decision Q6). The pilot is
+`pages/ContactByEmailMember/`. Each page has:
+
+- `inputs.ts`: the route input type and its reader.
+- `config.ts`: a function `<route>Config(inputs)` that returns a `ContactEmailPageConfig` (title, primary colour, form
+  settings). The types are in `components/contact/ContactEmailForm/types.ts`.
+- `hooks/use<Route>Submit.ts`: the submit flow of the screen. It returns a `ContactEmailFormSubmit`
+  (`isLoading`, `onBeforeSubmitForm`, `onEventSubmitForm`). The platform step `allowUpcomingNavigation` comes from this
+  hook, so the form stays props only.
+- A card in `components/contact/`: `ContactPersonCard` or `ContactHeaderCard`.
+- The page: layout, `ContactEmailForm` with `{...config.form}` and `{...submit}`, and the card as its child.
+
 ## Test and story shape
 
 - Each component folder has `<Name>.tsx`, `<Name>.stories.tsx` and `<Name>.test.tsx`. The test uses `composeStories`

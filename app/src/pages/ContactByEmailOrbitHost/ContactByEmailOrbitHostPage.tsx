@@ -21,7 +21,7 @@ import {
 import { showFeedbackMessage } from '@/platform/feedback';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { useNavigateBack } from '@/platform/navigation';
+import { allowUpcomingNavigation, useNavigateBack } from '@/platform/navigation';
 import { readInputs, sendContactEmail } from './api';
 
 /** ScheduleFeedbackMessageAfterTransition JS node (S :772-779): after 500 ms,
@@ -85,6 +85,7 @@ export default function ContactByEmailOrbitHost() {
           inUseDynamicTextAreaSubject
           inMessagePlaceholder="Add a message"
           isLoading={isLoading}
+          onBeforeSubmitForm={allowUpcomingNavigation}
           onEventSubmitForm={(subject, message) => {
             void handlerSubmitForm(subject, message);
           }}

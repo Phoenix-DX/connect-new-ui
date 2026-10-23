@@ -11,7 +11,7 @@ import { UBT_Color, UBT_FontSize, UBT_Size } from '@/shared/UBTConnectLibrary/li
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { showFeedbackMessage } from '@/platform/feedback';
-import { useNavigateBack } from '@/platform/navigation';
+import { allowUpcomingNavigation, useNavigateBack } from '@/platform/navigation';
 import { readContactByEmailOneSchoolGlobalInputs, sendContactMemberEmail } from './api';
 import { ApplicationEvents_Directory_EmailHousehold } from './components/staticEntities';
 import type { ContactByEmailFormRecord } from './types';
@@ -92,6 +92,7 @@ export default function ContactByEmailOneSchoolGlobal() {
           inSubjectPlaceholder="Add a subject"
           isLoading={isLoading}
           inUseDynamicTextAreaSubject
+          onBeforeSubmitForm={allowUpcomingNavigation}
           onEventSubmitForm={(subject, message) => {
             void handler_SubmitForm(subject, message);
           }}

@@ -361,3 +361,9 @@
 - ContactUsDetails is a page plus a hook: `src/pages/ContactUsDetails/hooks/useContactUsDetails.ts` and the pure state file `hooks/contactUsDetailsState.ts`. Route inputs are in `inputs.ts`; there is no container. `api.ts` and `types.ts` are deleted. The hook calls `@/api/message` directly.
 - The page renders `DetailLayout` directly and has 6 page components (`components/`).
 - Follow-up for P6-G2-C: `Type_ContactSubject` is defined twice (`pages/ContactUsDetails/staticEntities.ts` and `pages/ContactUsMenu/components/staticEntities.ts`).
+
+## P6-G2-B-ContactByEmailMember - refactor(P6-G2-B): ContactByEmailMember as page
+
+- Pilot of the ContactByEmail pattern (decision Q6). `ContactEmailForm` is props only: the new prop `onBeforeSubmitForm` replaces its `@/platform/navigation` import, and its row is removed from `arch-baseline.csv` (47 rows). New cards in `components/contact/`: `ContactPersonCard` (used by Member) and `ContactHeaderCard` (no page caller yet).
+- `src/pages/ContactByEmailMember` has `config.ts`, `inputs.ts` (replaces `api.ts` and `types.ts`) and `hooks/useContactByEmailMemberSubmit.ts`. The other 4 ContactByEmail pages change at the call site only: one prop `onBeforeSubmitForm={allowUpcomingNavigation}`.
+- Parity visual is clean for the 3 routes with states; LDMCoordinator and OrbitHost have no parity states (their call-site change is checked by the diff and unit tests). `move-map.csv`: notes of the ContactByEmailMember and ContactByEmailForm rows. The pattern is in `docs/guides/page-template.md`.

@@ -12,8 +12,6 @@ const { V1, OneSchoolGlobal } = composeStories(stories);
 const captured = { default: stories.default, V1: stories.V1 };
 const capture = (name: string) => captures[`./__captures__/${name}.html`] ?? '';
 
-vi.mock('@/platform/navigation', () => ({ allowUpcomingNavigation: vi.fn() }));
-
 describe('ContactByEmailForm', () => {
   testCapturedVariants(captured, captures);
 
@@ -27,10 +25,17 @@ describe('ContactByEmailForm', () => {
     expectToMatchCapture(container.querySelector('form'), capture('form-oneschoolglobal'));
   });
 
-  it('Send is enabled once Subject and Message are filled; OnClick_SubmitForm raises Event_SubmitForm', async () => {
-    const { allowUpcomingNavigation } = await import('@/platform/navigation');
-    const onSubmit = vi.fn();
-    render(<ContactEmailForm onEventSubmitForm={onSubmit} inMessagePlaceholder="Add a message" />);
+  it('Send is enabled once Subject and Message are filled; OnClick_SubmitForm runs onBeforeSubmitForm (AllowUpcomingNavigation), then raises Event_SubmitForm', async () => {
+    const calls: string[] = [];
+    const onBefore = vi.fn(() => calls.push('before'));
+    const onSubmit = vi.fn(() => calls.push('submit'));
+    render(
+      <ContactEmailForm
+        onBeforeSubmitForm={onBefore}
+        onEventSubmitForm={onSubmit}
+        inMessagePlaceholder="Add a message"
+      />,
+    );
     const send = screen.getByRole('button');
     expect(send).toBeDisabled();
     fireEvent.change(screen.getByRole('textbox', { name: 'Subject' }), { target: { value: 'Hello' } });
@@ -40,8 +45,17 @@ describe('ContactByEmailForm', () => {
       fireEvent.click(send);
       await Promise.resolve();
     });
-    expect(allowUpcomingNavigation).toHaveBeenCalled();
+    expect(onBefore).toHaveBeenCalledTimes(1);
     expect(onSubmit).toHaveBeenCalledWith('Hello', 'A message');
+    expect(calls).toEqual(['before', 'submit']);
+  });
+
+  it('without onBeforeSubmitForm, Send still raises Event_SubmitForm', () => {
+    const onSubmit = vi.fn();
+    render(<ContactEmailForm inSubject="Fixed" onEventSubmitForm={onSubmit} inMessagePlaceholder="Add a message" />);
+    fireEvent.change(screen.getByPlaceholderText('Add a message'), { target: { value: 'A message' } });
+    fireEvent.click(screen.getByRole('button'));
+    expect(onSubmit).toHaveBeenCalledWith('Fixed', 'A message');
   });
 
   it('In_Subject set: Subject starts with it, the field is disabled and has no counter; IsLoading disables the message', () => {

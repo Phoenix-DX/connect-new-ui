@@ -3,17 +3,19 @@ import { act, render, screen } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { addLogSink, type LogEntry } from '@/platform/log/log';
 import type { ContactEmailFormProps } from '@/components/contact/ContactEmailForm';
 import ContactByEmailMember from './ContactByEmailMemberPage';
-import { OrbitApplicationEvent_EmailHost } from './components/staticEntities';
+import { ApplicationEvents_Directory_EmailHousehold, OrbitApplicationEvent_EmailHost } from './staticEntities';
 
-/* The submit flow was not captured (write blocked, Q1): tested from the compiled Handler_SubmitForm (mvc.js:641-747).
+/* The submit flow was not captured (write blocked, Q1): tested from the compiled Handler_SubmitForm.
    The shared form is replaced by a wrapper that keeps its props to raise Event_SubmitForm; the server action, the back
-   navigation, the feedback message and the flow handler are spied. */
+   navigation, AllowUpcomingNavigation, the feedback message and the flow handler are spied. */
 const spy = vi.hoisted(() => ({
   form: undefined as ContactEmailFormProps | undefined,
   send: vi.fn<(form: unknown) => Promise<void>>(),
   back: vi.fn(),
+  allow: vi.fn(),
   feedback: vi.fn(),
   raise: vi.fn(),
 }));
@@ -30,20 +32,21 @@ vi.mock('@/components/contact/ContactEmailForm', async () => {
     },
   };
 });
-vi.mock('./api', async (original) => ({
-  ...(await original<typeof import('./api')>()),
+vi.mock('@/api/message', async (original) => ({
+  ...(await original<typeof import('@/api/message')>()),
   sendContactMemberEmail: spy.send,
 }));
 vi.mock('@/platform/navigation', async (original) => ({
   ...(await original<typeof import('@/platform/navigation')>()),
+  allowUpcomingNavigation: spy.allow,
   useNavigateBack: () => spy.back,
 }));
 vi.mock('@/platform/feedback', async (original) => ({
   ...(await original<typeof import('@/platform/feedback')>()),
   showFeedbackMessage: spy.feedback,
 }));
-vi.mock('@/legacy/os/exceptions', async (original) => ({
-  ...(await original<typeof import('@/legacy/os/exceptions')>()),
+vi.mock('@/platform/feedback/flowErrors', async (original) => ({
+  ...(await original<typeof import('@/platform/feedback/flowErrors')>()),
   raiseToFlowHandler: spy.raise,
 }));
 
@@ -130,6 +133,34 @@ describe('ContactByEmailMember (ContactByEmailMember.mvc.js)', () => {
     expect(spy.back).not.toHaveBeenCalled();
     expect(spy.feedback).not.toHaveBeenCalled();
     expect(spy.form?.isLoading).toBe(true);
+  });
+
+  it('OnClick_SubmitForm of the form: onBeforeSubmitForm is AllowUpcomingNavigation, before the send', async () => {
+    renderScreen(CAPTURE);
+    expect(spy.form?.onBeforeSubmitForm).toBe(spy.allow);
+    await act(async () => {
+      spy.form?.onBeforeSubmitForm?.();
+      spy.form?.onEventSubmitForm?.('Hello', 'A message');
+      await Promise.resolve();
+    });
+    expect(spy.allow).toHaveBeenCalledTimes(1);
+    expect(spy.allow.mock.invocationCallOrder[0]).toBeLessThan(spy.send.mock.invocationCallOrder[0] ?? 0);
+  });
+
+  it('LDM event locality: AddAuditEventDetailEvent, then the EmailHousehold event with the e-mail JSON', async () => {
+    renderScreen(`${CAPTURE}&In_LDMEventLocality=Ashford`);
+    const entries: LogEntry[] = [];
+    const remove = addLogSink((entry) => entries.push(entry));
+    await submit('Hello', 'A message');
+    remove();
+    expect(entries.map((e) => [e.message, e.data])).toEqual([
+      [
+        'AddAuditEventDetailEvent (not ported, Q2)',
+        { EventId: ApplicationEvents_Directory_EmailHousehold, HasDate: false, HasLocality: true },
+      ],
+      ['ApplicationEvent', { EventId: ApplicationEvents_Directory_EmailHousehold, HasAttachment: true }],
+    ]);
+    expect(spy.back).toHaveBeenCalledTimes(1);
   });
 
   it('an error goes to the flow handler; IsLoading stays True (:846-848, Q3)', async () => {

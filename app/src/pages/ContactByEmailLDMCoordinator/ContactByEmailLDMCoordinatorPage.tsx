@@ -9,7 +9,7 @@ import { UBT_Color, UBT_FontSize, UBT_Size } from '@/shared/UBTConnectLibrary/li
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { useNavigateBack } from '@/platform/navigation';
+import { allowUpcomingNavigation, useNavigateBack } from '@/platform/navigation';
 import { readInputs, sendContactLDMCoordinatorEmail } from './api';
 import {
   addAuditEventDetailEvent,
@@ -82,6 +82,7 @@ export default function ContactByEmailLDMCoordinator() {
           inSubjectPlaceholder="Add a subject"
           inSubject={inputs.In_Subject}
           isLoading={isLoading}
+          onBeforeSubmitForm={allowUpcomingNavigation}
           onEventSubmitForm={(subject, message) => {
             void handlerSubmitForm(subject, message);
           }}

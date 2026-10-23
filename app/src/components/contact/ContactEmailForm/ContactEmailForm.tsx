@@ -1,8 +1,6 @@
 /** @origin UBTConnect.ContactFlow.ContactByEmailForm */
-// @os-block UBTConnect.ContactFlow.ContactByEmailForm
 import { useId, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { allowUpcomingNavigation } from '@/platform/navigation';
 import { preventNavigation, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
 import { ButtonLoading } from '@/shared/osui/ButtonLoading';
 import { Button } from '@/shared/UBTConnect_Utils/Button';
@@ -29,6 +27,9 @@ export interface ContactEmailFormProps {
   inUseDynamicTextAreaSubject?: boolean;
   /** In_MessageLabel: label of the message text area (default "Message"). */
   inMessageLabel?: string;
+  /** OnClick_SubmitForm runs it before Event_SubmitForm: AllowUpcomingNavigation (platform/navigation), given by the
+      caller (the submit hook of the page), so the form renders from props only. */
+  onBeforeSubmitForm?: () => void;
   /** Event Event_SubmitForm(Subject, Message). */
   onEventSubmitForm?: (subject: string, message: string) => void;
   /** Placeholder Placeholder_ContactCard. */
@@ -38,14 +39,14 @@ export interface ContactEmailFormProps {
 /** Height the FixedFooter reserves under the content (compiled ExpectedFooterHeight). */
 const FOOTER_HEIGHT = 'calc(2 * var(--space-base) + var(--ubt-button-height-m))';
 
-/** E-mail form of the contact flow (p:UBTConnect.ContactFlow.ContactByEmailForm.mvc.js, ContactByEmailMember copy;
-    view :526-1000, controller :1010-1100). Div_Content (the FixedFooter adds its class and height) > CustomContainer
-    (padding x Base, top Small, bottom Base) > Placeholder_ContactCard (margin bottom Base) and Form1: the Subject label
-    with either an Input (maxlength 100) or, In_UseDynamicTextAreaSubject, a DynamicTextArea (bounded, one line) in a
-    font-size Small container; both enabled only when In_Subject = "" and not IsLoading, with an InputCounter when
-    In_Subject = ""; then TextArea_WithCounter with the message label and text area (3 lines, maxlength 1000).
-    FixedFooter: ButtonLoading(IsLoading) > Button "Send", disabled until Subject and Message are not "".
-    Dialog_Navigation ("Delete message?") is on while Subject <> In_Subject or Trim(Message) <> "". */
+/** E-mail form of the contact flow, shared by the 5 ContactByEmail pages. Div_Content (the FixedFooter adds its class
+    and height) > CustomContainer (padding x Base, top Small, bottom Base) > Placeholder_ContactCard (margin bottom Base)
+    and Form1: the Subject label with either an Input (maxlength 100) or, In_UseDynamicTextAreaSubject, a
+    DynamicTextArea (bounded, one line) in a font-size Small container; both enabled only when In_Subject = "" and not
+    IsLoading, with an InputCounter when In_Subject = ""; then TextArea_WithCounter with the message label and text area
+    (3 lines, maxlength 1000). FixedFooter: ButtonLoading(IsLoading) > Button "Send", disabled until Subject and
+    Message are not "". Dialog_Navigation ("Delete message?") is on while Subject <> In_Subject or Trim(Message) <> "".
+    The platform step of OnClick_SubmitForm (AllowUpcomingNavigation) comes from the caller as `onBeforeSubmitForm`. */
 export function ContactEmailForm({
   id,
   isLoading = false,
@@ -54,6 +55,7 @@ export function ContactEmailForm({
   inSubject = '',
   inUseDynamicTextAreaSubject = false,
   inMessageLabel = 'Message',
+  onBeforeSubmitForm,
   onEventSubmitForm,
   children,
 }: ContactEmailFormProps) {
@@ -62,19 +64,19 @@ export function ContactEmailForm({
   const subjectInputId = `${uid}Input_Subject`;
   const subjectTextAreaId = `${uid}TextArea_Subject`;
   const messageId = `${uid}TextArea_Message`;
-  // OnInitialize (controller :1043-1058): Subject = In_Subject.
+  // OnInitialize: Subject = In_Subject.
   const [subject, setSubject] = useState(inSubject);
   const [message, setMessage] = useState('');
   const subjectEnabled = inSubject === '' && !isLoading;
   const counter = (inputId: string) =>
     inSubject !== '' ? null : <InputCounter inInputId={inputId} inInitialLength={0} />;
 
-  // OnClick_SubmitForm (controller :1012-1040): AllowUpcomingNavigation, then Event_SubmitForm(Subject, Message).
+  // OnClick_SubmitForm: AllowUpcomingNavigation (`onBeforeSubmitForm`), then Event_SubmitForm(Subject, Message).
   const onClickSubmitForm = () => {
-    allowUpcomingNavigation();
+    onBeforeSubmitForm?.();
     onEventSubmitForm?.(subject, message);
   };
-  // OnBackNavigation_PreventNavigation (controller :1060-1080): PreventNavigation(Event_NavigationEvent).
+  // OnBackNavigation_PreventNavigation: PreventNavigation(Event_NavigationEvent).
   const onBackNavigationPreventNavigation = (event: NavigationEvent) => {
     preventNavigation(event);
   };

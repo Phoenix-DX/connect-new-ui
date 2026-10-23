@@ -186,3 +186,5 @@ P6-G1-B-AcceptPendingPolicies (decision W8, domain by data ownership): the 2 act
 P6-G1-B-Profile: `screens/Profile/api.ts` is deleted (rows `ServiceAPIMember_EditDetails_Service` and `Profile/DataActionGetCountryInfo` above). `pages/Profile/hooks/useProfile.ts` imports `useCountryInfoQuery` from `@/api/country` and `editMemberDetails` from `@/api/member`.
 
 P6-G2-B-ContactUsDetails: `screens/ContactUsDetails/api.ts` is deleted (its row in the message table above). `pages/ContactUsDetails/hooks/useContactUsDetails.ts` imports `fetchCountryNames`, `fetchLocalityTimezone` and `sendContactUsMessage` from `@/api/message`.
+
+P6-G2-B-ContactByEmailMember: `screens/ContactByEmailMember/api.ts` is deleted (its row in the message table above). The caller of `ServiceAPISendContactMemberEmail` is now `pages/ContactByEmailMember/hooks/useContactByEmailMemberSubmit.ts`, which imports it from `@/api/message`.
