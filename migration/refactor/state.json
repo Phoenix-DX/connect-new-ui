@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G1-B-PINChange",
+  "step": "P6-G1-B-PINBiometricsMenu",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T21:40:30"
+  "since": "2026-10-23T21:51:14"
  },
  "steps": {
   "P0-1": {
@@ -560,12 +560,25 @@
    "finished": "2026-10-23T21:13:49"
   },
   "P6-G1-B-PINChange": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T21:28:48",
    "tokens": {
     "dev": 244999,
     "test": 24121,
     "docs": 28010
+   },
+   "commit": "7dbb71b",
+   "gate": "ci: pass (2148 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (2 PinCode rows removed, 37 left, no G1 owner); bundle within +5% (Login 193.02 of 193.8 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T21:40:31"
+  },
+  "P6-G1-B-PINBiometricsMenu": {
+   "status": "active",
+   "started": "2026-10-23T21:40:31",
+   "tokens": {
+    "dev": 110329,
+    "test": 27534,
+    "docs": 20415
    }
   }
  },

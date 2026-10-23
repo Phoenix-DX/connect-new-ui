@@ -314,3 +314,8 @@
 
 - `src/pages/PINChange` is now a page with one hook (`usePINChange`). `api.ts`, `types.ts` and `mocks.ts` are deleted. `move-map.csv`: PINChange row `moved`.
 - Decision W14: `components/auth/PinCode` is props-only (`renderPreventBackNavigation`, `onBeforeSetPin`) at both call sites. The 2 PinCode rows of `arch-baseline.csv` are deleted; no G1 row is left.
+
+## P6-G1-B-PINBiometricsMenu - refactor(P6-G1-B): PINBiometricsMenu as page
+
+- `src/pages/PINBiometricsMenu` is now a page with one hook (`usePINBiometricsMenu`, with the pure `pinBiometricsMenuState`). The page renders `DetailLayout` directly. `api.ts`, `types.ts` and `mocks.ts` are deleted; `staticEntities.ts` moved to the page root.
+- The hook reads `App_PIN_BiometricEnabled` on every initialization. This is a storage read: the tester confirmed no visible effect and no call effect. `move-map.csv`: PINBiometricsMenu row `moved`.

@@ -310,3 +310,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T21:29:40 P6-G1-B-PINChange stage test
 - 2026-10-23T21:39:11 P6-G1-B-PINChange stage docs
 - 2026-10-23T21:40:30 P6-G1-B-PINChange stage commit
+- 2026-10-23T21:40:31 P6-G1-B-PINChange done 7dbb71b: ci: pass (2148 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (2 PinCode rows removed, 37 left, no G1 owner); bundle within +5% (Login 193.02 of 193.8 kB)
+- 2026-10-23T21:40:31 P6-G1-B-PINBiometricsMenu started
+- 2026-10-23T21:40:32 P6-G1-B-PINBiometricsMenu stage dev
+- 2026-10-23T21:41:06 P6-G1-B-PINBiometricsMenu stage test
+- 2026-10-23T21:50:19 P6-G1-B-PINBiometricsMenu stage docs
+- 2026-10-23T21:51:14 P6-G1-B-PINBiometricsMenu stage commit

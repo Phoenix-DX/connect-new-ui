@@ -494,3 +494,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,244999,refactor-dev,,P6-G1-B-PINChange opus
 2026-10-23,refactor,verify,24121,refactor-test,,P6-G1-B-PINChange sonnet
 2026-10-23,refactor,other,28010,refactor-docs,,P6-G1-B-PINChange sonnet
+2026-10-23,refactor,build,110329,refactor-dev,,P6-G1-B-PINBiometricsMenu opus
+2026-10-23,refactor,verify,27534,refactor-test,,P6-G1-B-PINBiometricsMenu sonnet
+2026-10-23,refactor,other,20415,refactor-docs,,P6-G1-B-PINBiometricsMenu sonnet
