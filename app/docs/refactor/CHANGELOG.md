@@ -416,3 +416,9 @@
 - The 8 G3 routes (HomeFeed, FeedItemDetail, Updates_SingleList, Services, Search, Notifications, MessageList, MessageDetail) moved from `src/screens/<R>` to `src/pages/<R>`. `index.tsx` is now `<R>Page.tsx`, with one `@origin` tag per page.
 - Shared blocks of these routes stay in `shared/` until step B. Parity `strict` on 8 routes: 0 differences on both references.
 - Watch item: HomeFeed is 245.58 of 248.22 kB gzip. Follow-up F17.
+
+## P6-G3-B-Shared - refactor(P6-G3-B): move the shared blocks of group G3
+
+- 19 blocks of `src/shared/` (135 files, phase P6-G3 rows of `move-map.csv`) moved to `src/components/{layout,feed,search,share,notification,filter}/`, `src/containers/ShareSheet/` and `src/platform/navigation/ScrollAnchor/`. 16 files took the target name (path, component and `<Name>Props`). Each block has an `@origin` tag. The 19 rows are set to `moved`.
+- Gate W15: `arch-baseline.csv` got 31 rows for Rule 4 warnings that the move made visible. Owners: 17 to P6-G3-B-HomeFeed, 9 to P6-G3-B-Search, 3 to P6-G3-B-Updates_SingleList, 2 to P7.
+- Two blocks have a colocated `mocks.ts`: `FeedCms` (now in `components/feed`) and `ShareSheet` (now in `containers/ShareSheet`). The existing globs `../components/**/mocks.ts` and `../containers/*/mocks.ts` of `src/mocks/handlers.ts` pick them up; the handler set is unchanged.

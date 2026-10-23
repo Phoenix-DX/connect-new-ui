@@ -12,10 +12,10 @@ import { NC_Result_Item_Badge } from '@/shared/Connect2_LegacyShared/NC_Result_I
 import { NC_Result_Item__Image } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Image';
 import { flipHouseholdName, getCacheableSubdivision_V2 } from '@/shared/Connect2_LegacyShared/lib/actions';
 import type { CacheableSubdivisionInformation } from '@/shared/Connect2_LegacyShared/lib/structures';
-import { ScrollAnchor } from '@/shared/NavigationHandler/ScrollAnchor';
+import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
-import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
+import { ShareSheetContainer } from '@/containers/ShareSheet';
+import { ShareableObject } from '@/components/share/ShareableObject';
 import type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/lib/structures';
 import { confirmAction } from '@/platform/feedback/dialogs/confirmAction';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
@@ -430,7 +430,7 @@ export function AssembleEventDetail_AttendeeSubdivision({
         />
       )}
       <Dialog_AccessRestrictedAction_Legacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b9`} />
-      <ShareSheet
+      <ShareSheetContainer
         id={`${scope}-$b10`}
         inShareableObjectId={shareableObjectId}
         inShareObjectTypeId={SHARE_OBJECT_HOUSEHOLD}
@@ -441,8 +441,8 @@ export function AssembleEventDetail_AttendeeSubdivision({
           setShareableObjectId('');
         }}
       >
-        {shareableObjectId !== '' && <ShareableObject_Generic id={`${scope}-$b11`} inShareableObject={shareable} />}
-      </ShareSheet>
+        {shareableObjectId !== '' && <ShareableObject id={`${scope}-$b11`} inShareableObject={shareable} />}
+      </ShareSheetContainer>
     </OSBlock>
   );
 }

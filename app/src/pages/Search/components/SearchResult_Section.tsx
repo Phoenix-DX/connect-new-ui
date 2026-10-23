@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Directory_Search.SearchResult_Section
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
-import { SearchResult_Item } from '@/shared/UBTConnect_Utils/SearchResult_Item';
+import { SearchResultItem } from '@/components/search/SearchResultItem';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
@@ -80,7 +80,7 @@ export function SearchResult_Section({
         />
         <div className="list list-group OSFillParent" data-list="">
           {items.map((item) => (
-            <SearchResult_Item
+            <SearchResultItem
               key={`${item.type}-${item.id}`}
               inSearchResult={{
                 Id: item.id,

@@ -4,8 +4,8 @@ import type { ReactNode } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setFlag } from '@/platform/flags/flags';
-import type { Embedded_FeedCMSProps } from '@/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS';
-import type { ShareSheetProps } from '@/shared/UBTConnect_Utils/ShareSheet';
+import type { FeedCmsProps } from '@/components/feed/FeedCms';
+import type { ShareSheetContainerProps } from '@/containers/ShareSheet';
 import { NULL_DATE } from './api';
 import FeedItemDetail from './FeedItemDetailPage';
 
@@ -13,22 +13,22 @@ import FeedItemDetail from './FeedItemDetailPage';
    replaced by its wrapper and its props are kept to raise the event; ShareSheet is replaced by its wrapper to read the
    inputs the screen gives it (its own behaviour is tested in shared/). */
 const spy = vi.hoisted(() => ({
-  feed: undefined as Embedded_FeedCMSProps | undefined,
-  sheet: undefined as ShareSheetProps | undefined,
+  feed: undefined as FeedCmsProps | undefined,
+  sheet: undefined as ShareSheetContainerProps | undefined,
 }));
-vi.mock('@/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS', async () => {
+vi.mock('@/components/feed/FeedCms', async () => {
   const { OSBlock } = await import('@/components/ui/os/OSBlock');
   return {
-    Embedded_FeedCMS: (props: Embedded_FeedCMSProps) => {
+    FeedCms: (props: FeedCmsProps) => {
       spy.feed = props;
       return <OSBlock name="Blocks.Embedded_FeedCMS" id={props.id} />;
     },
   };
 });
-vi.mock('@/shared/UBTConnect_Utils/ShareSheet', async () => {
+vi.mock('@/containers/ShareSheet', async () => {
   const { OSBlock } = await import('@/components/ui/os/OSBlock');
   return {
-    ShareSheet: (props: ShareSheetProps & { children?: ReactNode }) => {
+    ShareSheetContainer: (props: ShareSheetContainerProps & { children?: ReactNode }) => {
       spy.sheet = props;
       return (
         <OSBlock name="CW_Share.ShareSheet" id={props.id}>

@@ -17,7 +17,7 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { Update_ListItem } from '@/shared/UBTConnectLibrary/Update_ListItem';
+import { UpdateListItem } from '@/components/feed/UpdateListItem';
 import { markAsRead, markAsUnread, useFetchUpdates } from '@/pages/HomeFeed/api';
 import type { UpdateItem } from '@/pages/HomeFeed/types';
 
@@ -144,7 +144,7 @@ export function FeedBlock_Updates({ id, onEventNoUpdates, onEventShare }: FeedBl
                   },
                 }}
               >
-                <Update_ListItem
+                <UpdateListItem
                   id={`${itemScope}-$b3`}
                   inDate={item.date}
                   isEnabled={item.hasAccess}

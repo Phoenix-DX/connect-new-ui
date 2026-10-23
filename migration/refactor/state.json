@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G3-A",
+  "step": "P6-G3-B-Shared",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T00:41:43"
+  "since": "2026-10-24T00:53:28"
  },
  "steps": {
   "P0-1": {
@@ -794,12 +794,25 @@
    "finished": "2026-10-24T00:34:21"
   },
   "P6-G3-A": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T00:34:21",
    "tokens": {
     "dev": 23628,
     "test": 23723,
     "docs": 27193
+   },
+   "commit": "445a09d3",
+   "gate": "ci: pass; diffcheck --move ok (81 renames, 8 origin tags); parity strict: 8/0 (OutSystems), 8/0 (self); arch baseline 0 new; bundle HomeFeed 245.58/248.22, Login 186.94/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T00:41:46"
+  },
+  "P6-G3-B-Shared": {
+   "status": "active",
+   "started": "2026-10-24T00:41:46",
+   "tokens": {
+    "dev": 56920,
+    "test": 27369,
+    "docs": 28534
    }
   }
  },

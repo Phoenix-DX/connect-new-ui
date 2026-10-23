@@ -7,7 +7,7 @@ import { PendingBlock } from '@/shared/test/PendingBlock';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
+import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
 import { BaseLayout } from './BaseLayout';
@@ -48,7 +48,7 @@ export const V1: Story = {
     ),
     headerLeft: (
       <div>
-        <MenuIcon_Back id="b1-$b2" />
+        <MenuIconBack id="b1-$b2" />
       </div>
     ),
     title: (
@@ -166,7 +166,7 @@ export const V3: Story = {
     navigation: <div />,
     headerLeft: (
       <div>
-        <MenuIcon_Back id="b1-$b2" />
+        <MenuIconBack id="b1-$b2" />
       </div>
     ),
     title: (

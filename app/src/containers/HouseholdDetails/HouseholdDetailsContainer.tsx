@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { HouseholdDetailsView } from '@/components/household';
-import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
-import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
+import { ShareableObject } from '@/components/share/ShareableObject';
+import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { Directory_EntityDetailsActions } from '@/shared/UBTConnect/Directory_EntityDetailsActions/Directory_EntityDetailsActions';
 import { Connect_Entity, Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
 import type { HouseholdPreviewStructure, UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
@@ -95,13 +95,13 @@ export function HouseholdDetailsContainer({
     />
   );
   const shareSheet = (
-    <ShareSheet
+    <ShareSheetContainer
       inShareableObjectId={householdId}
       inIsOpen={state.isShareOpen}
       inShareObjectTypeId={Type_ShareObject.MyHousehold}
       onEventClosedShareSheet={details.onShareSheetClosed}
     >
-      <ShareableObject_Generic
+      <ShareableObject
         inShareableObject={{
           ConnectEntityTypeId: Connect_Entity.Household,
           Id: householdId,
@@ -110,7 +110,7 @@ export function HouseholdDetailsContainer({
           Location: `${content.LocalityName ?? ''}, ${content.CountryName ?? ''}`,
         }}
       />
-    </ShareSheet>
+    </ShareSheetContainer>
   );
 
   return (

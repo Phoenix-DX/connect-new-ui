@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
+import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
 import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';
 import { UBT_AvatarSize, UBT_Color, UBT_Shape } from '@/shared/UBTConnectLibrary/lib/staticEntities';
@@ -232,7 +232,7 @@ export function ScreenBlock_ShareObject({
     <OSBlock name="Share_UI.ScreenBlock_ShareObject" id={id}>
       <LegacyLayout
         id={`${scope}-$b1`}
-        headerLeft={<MenuIcon_Back id={`${scope}-$b2`} />}
+        headerLeft={<MenuIconBack id={`${scope}-$b2`} />}
         title={
           <div className="text-align-center" data-container="">
             <span data-expression="">{'Share ' + (label.data ?? '')}</span>

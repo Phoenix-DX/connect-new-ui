@@ -3,7 +3,7 @@ import { useEffect, useRef, type ReactNode } from 'react';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
-import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
+import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
 import { cache_SignedImageURL_Get } from '@/shared/UBTConnect_Utils/lib/actions';
 import { Connect_Entity, ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
@@ -264,7 +264,7 @@ export function ScreenBlock_MessageDetail({
     <OSBlock name="MyNotifications.ScreenBlock_MessageDetail" id={id}>
       <LegacyLayout
         id={`${prefix}-$b1`}
-        headerLeft={<MenuIcon_Back id={`${prefix}-$b2`} />}
+        headerLeft={<MenuIconBack id={`${prefix}-$b2`} />}
         title={
           <div className="notification-detail-title-overflow" data-container="" style={{ textAlign: 'center' }}>
             <span data-expression="">{title}</span>

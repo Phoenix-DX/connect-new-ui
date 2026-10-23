@@ -1,13 +1,13 @@
 /** @origin UBTConnect.Home.FeedItemDetail */
 import { useSearchParams } from 'react-router';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { Feed_Embeded } from '@/shared/UBTConnect/Feed_Embeded';
+import { EmbeddedFeed } from '@/components/feed/EmbeddedFeed';
 import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/lib/structures';
-import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
-import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
+import { ShareableObject } from '@/components/share/ShareableObject';
+import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { useViewState } from '@/platform/navigation';
 import { NULL_DATE, readFeedItemDetailInputs } from './api';
 
@@ -42,10 +42,10 @@ export default function FeedItemDetail() {
       <Layout_DetailPage
         id="$b1"
         placeholderHeaderTitle="Feed Item"
-        content={<Feed_Embeded id="$b2" feedItemId={FeedItemId} onEventShare={onShareFeed} />}
+        content={<EmbeddedFeed id="$b2" feedItemId={FeedItemId} onEventShare={onShareFeed} />}
         placeholderCommonUIInsideLayout={<CommonUiLayout id="$b3" />}
       />
-      <ShareSheet
+      <ShareSheetContainer
         id="$b4"
         inShareableObjectId={shareableObjectId}
         inUpdateType=""
@@ -56,8 +56,8 @@ export default function FeedItemDetail() {
           setIsShareOpen(false);
         }} // Handler_CloseShareSheet (:518-562)
       >
-        <ShareableObject_Generic id="$b5" inShareableObject={shareableFeedItem} />
-      </ShareSheet>
+        <ShareableObject id="$b5" inShareableObject={shareableFeedItem} />
+      </ShareSheetContainer>
     </>
   );
 }

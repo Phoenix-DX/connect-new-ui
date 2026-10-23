@@ -3,7 +3,7 @@ import { useFlagOn } from '@/platform/flags/flags';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { getNameAndSurname_ByFullName } from '@/shared/UBTConnect/lib/actions';
-import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
+import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { getPreloadObject, setPreloadObject, useOsNavigate, useViewState } from '@/platform/navigation';
 import { readInputs } from './api';
 import { ScreenBlock_AssembleDetail } from './components/ScreenBlock_AssembleDetail';
@@ -78,7 +78,7 @@ export default function AssembleDetail() {
           navigate('/UBTConnect/LegacyShareObject', { In_ShareObjectTypeId: shareObjectTypeId, In_ObjectId: objectId });
         }}
       />
-      <ShareSheet
+      <ShareSheetContainer
         id="$b4"
         inShareObjectTypeId={SHARE_OBJECT_HOUSEHOLD}
         inIsOpen={isShareOpen}

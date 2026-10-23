@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Notes.Notes_FilterSheet
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { FilterSheet } from '@/shared/UBTConnect/FilterSheet';
+import { FilterSheet } from '@/components/filter/FilterSheet';
 import type {
   Filter_Common_Control_Choice,
   Filter_Common_Control_List,

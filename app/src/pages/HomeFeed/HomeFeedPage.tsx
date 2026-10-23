@@ -1,19 +1,19 @@
 /** @origin UBTConnect.Home.HomeFeed */
 import { useCallback, useEffect, useState } from 'react';
 import { DialogExitConfirmation, useViewState } from '@/platform/navigation';
-import { App_NotificationIcon } from '@/shared/UBTConnect/App_NotificationIcon';
+import { NotificationIcon } from '@/components/notification/NotificationIcon';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { FeedBlock_CommunityPopulation } from '@/shared/UBTConnect/FeedBlock_CommunityPopulation';
-import { Feed_Embeded } from '@/shared/UBTConnect/Feed_Embeded';
+import { CommunityPopulation } from '@/components/feed/CommunityPopulation';
+import { EmbeddedFeed } from '@/components/feed/EmbeddedFeed';
 import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
 import { HomeLayout } from '@/components/layout/HomeLayout';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { Update_ListItem } from '@/shared/UBTConnectLibrary/Update_ListItem';
+import { UpdateListItem } from '@/components/feed/UpdateListItem';
 import { Connect_BottomBar_Items, Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/lib/structures';
-import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
-import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
+import { ShareableObject } from '@/components/share/ShareableObject';
+import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { NULL_DATE } from './api';
@@ -100,7 +100,7 @@ export default function HomeFeed() {
           navigate(`/${APP_ID}/Search`);
         }}
         placeholderHeaderTitle={<AppLogo_White id="$b2" />}
-        placeholderHeaderRight={<App_NotificationIcon id="$b3" />}
+        placeholderHeaderRight={<NotificationIcon id="$b3" />}
         content={
           <>
             <Section_FeedWrapper
@@ -120,7 +120,7 @@ export default function HomeFeed() {
               isTransparentBackground
               showViewAll={false}
             >
-              <FeedBlock_CommunityPopulation id="$b7" />
+              <CommunityPopulation id="$b7" />
             </Section_FeedWrapper>
             {hasUpdates && (
               <Section_FeedWrapper
@@ -138,14 +138,14 @@ export default function HomeFeed() {
                 <FeedBlock_Updates id="$b9" onEventNoUpdates={onNoUpdates} onEventShare={onShareUpdate} />
               </Section_FeedWrapper>
             )}
-            <Feed_Embeded id="$b10" onEventShare={onShareFeed} />
+            <EmbeddedFeed id="$b10" onEventShare={onShareFeed} />
             {isScreenInitialized && <DialogExitConfirmation id="$b11" />}
           </>
         }
         bottom={<BottomBar id="$b12" activeItem={Connect_BottomBar_Items.Home} isRootPage />}
         placeholderCommonUIInsideLayout={<CommonUiLayout id="$b13" />}
       />
-      <ShareSheet
+      <ShareSheetContainer
         id="$b14"
         inShareObjectTypeId={shareObjectTypeId}
         inShareableObjectId={shareableObjectId}
@@ -157,7 +157,7 @@ export default function HomeFeed() {
         }} // Handler_CloseShareSheet
       >
         {isUpdate && (
-          <Update_ListItem
+          <UpdateListItem
             id="$b15"
             hasBorderBottom={false}
             showImage={false}
@@ -174,9 +174,9 @@ export default function HomeFeed() {
           />
         )}
         {shareObjectTypeId === Type_ShareObject.Feed && (
-          <ShareableObject_Generic id="$b16" inShareableObject={shareableFeedItem} />
+          <ShareableObject id="$b16" inShareableObject={shareableFeedItem} />
         )}
-      </ShareSheet>
+      </ShareSheetContainer>
     </>
   );
 }

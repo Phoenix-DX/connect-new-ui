@@ -560,3 +560,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,23628,refactor-dev,,P6-G3-A sonnet
 2026-10-24,refactor,verify,23723,refactor-test,,P6-G3-A sonnet
 2026-10-24,refactor,other,27193,refactor-docs,,P6-G3-A sonnet
+2026-10-24,refactor,build,56920,refactor-dev,,P6-G3-B-Shared sonnet
+2026-10-24,refactor,verify,27369,refactor-test,,P6-G3-B-Shared sonnet
+2026-10-24,refactor,other,28534,refactor-docs,,P6-G3-B-Shared sonnet

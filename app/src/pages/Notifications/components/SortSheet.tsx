@@ -3,7 +3,7 @@ import { useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import type { BackNavigationEvent } from '@/platform/navigation';
-import { FilterSheet_OptionChoice_Item } from '@/shared/UBTConnect/FilterSheet_OptionChoice_Item';
+import { FilterOptionChoice } from '@/components/filter/FilterOptionChoice';
 import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
 import { Button } from '@/shared/UBTConnectLibrary/Button';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
@@ -79,7 +79,7 @@ export function SortSheet({ id, yesLabel, noLabel, onSheetInitialized, onApplySo
             id={`${p}-Options_Choices`}
             style={{ position: 'relative' }}
           >
-            <FilterSheet_OptionChoice_Item
+            <FilterOptionChoice
               id={`${p}-l1-69_1-$b2`}
               filterCommonControlChoice={{
                 Title: '',

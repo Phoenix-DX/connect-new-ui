@@ -4,7 +4,7 @@ import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { PendingBlock } from '@/shared/test/PendingBlock';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
+import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { LegacyLayout } from './LegacyLayout';
 
 const meta = {
@@ -30,7 +30,7 @@ export const V1: Story = {
   args: {
     id: 'b1-$b1',
     menu: <div />,
-    headerLeft: <MenuIcon_Back id="b1-$b2" />,
+    headerLeft: <MenuIconBack id="b1-$b2" />,
     title: (
       <div className="text-align-center" data-container="">
         Connect Share

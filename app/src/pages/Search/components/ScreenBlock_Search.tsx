@@ -4,8 +4,8 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useFlagOn } from '@/platform/flags/flags';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { FilterSheet } from '@/shared/UBTConnect/FilterSheet';
-import { FilterSheet_Icon } from '@/shared/UBTConnect/FilterSheet_Icon';
+import { FilterSheet } from '@/components/filter/FilterSheet';
+import { FilterSheetIcon } from '@/components/filter/FilterSheetIcon';
 import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
@@ -485,7 +485,7 @@ export function ScreenBlock_Search({
           />
         }
         placeholderHeaderRight={
-          <FilterSheet_Icon
+          <FilterSheetIcon
             id="b1-$b3"
             showSubscriptionOnClick={filterShowSubscription}
             isLoaded={filterIsLoaded}

@@ -23,9 +23,9 @@ import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import { getHasExtendedShare, getHasNewBookmarks } from '@/shared/UBTConnect_Utils/lib/actions';
 import type { ContactPopupData, ContactPopUp_OverrideOptions } from '@/shared/UBTConnect_Utils/lib/structures';
 import { NotesSheet } from '@/shared/UBTConnect_Utils/NotesSheet';
-import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
-import { SharePopup } from '@/shared/UBTConnect_Utils/SharePopup';
-import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
+import { ShareableObject } from '@/components/share/ShareableObject';
+import { SharePopup } from '@/components/share/SharePopup';
+import { ShareSheetContainer } from '@/containers/ShareSheet';
 import {
   bookmarkServerActions,
   get_NoteCategoryId_ByEntityTypeId,
@@ -517,7 +517,7 @@ export function Directory_EntityDetailsActions({
                   role="dialog"
                 >
                   <div className="popup-content">
-                    <ShareSheet
+                    <ShareSheetContainer
                       inIsOpen={showSharePopup}
                       inShareObjectTypeId={shareType}
                       inShareableObjectId={entityId}
@@ -525,7 +525,7 @@ export function Directory_EntityDetailsActions({
                         setShowSharePopup(false);
                       }}
                     >
-                      <ShareableObject_Generic
+                      <ShareableObject
                         inShareableObject={{
                           ConnectEntityTypeId: entityType,
                           Id: entityId,
@@ -535,7 +535,7 @@ export function Directory_EntityDetailsActions({
                           Location: `${details?.LocalityName ?? ''}, ${details?.CountryName ?? ''}`,
                         }}
                       />
-                    </ShareSheet>
+                    </ShareSheetContainer>
                   </div>
                 </div>
               </div>

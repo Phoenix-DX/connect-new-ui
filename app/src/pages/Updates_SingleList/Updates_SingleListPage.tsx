@@ -14,26 +14,26 @@ import {
 } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getClientVar } from '@/platform/session/session';
-import { ScrollAnchor } from '@/shared/NavigationHandler/ScrollAnchor';
-import { App_NotificationIcon } from '@/shared/UBTConnect/App_NotificationIcon';
+import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
+import { NotificationIcon } from '@/components/notification/NotificationIcon';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { FilterSheet_Icon } from '@/shared/UBTConnect/FilterSheet_Icon';
+import { FilterSheetIcon } from '@/components/filter/FilterSheetIcon';
 import {
   directory_Updates_GetCarouselPreloadedHouseholds,
   directory_Updates_RefreshBottomBarCount,
   scrollTop,
 } from '@/shared/UBTConnect/lib/actions';
 import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
-import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
+import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { HorizontalTagList } from '@/shared/UBTConnectLibrary/HorizontalTagList';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { Input } from '@/shared/UBTConnectLibrary/Input';
-import { Layout_MainPages_FixedTitle } from '@/shared/UBTConnectLibrary/Layout_MainPages_FixedTitle';
+import { MainLayoutFixedTitle } from '@/components/layout/MainLayoutFixedTitle';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { Update_ListItem } from '@/shared/UBTConnectLibrary/Update_ListItem';
+import { UpdateListItem } from '@/components/feed/UpdateListItem';
 import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
 import {
   Connect_UpdateTypeId,
@@ -453,7 +453,7 @@ export default function Updates_SingleList() {
     IsSyncValueWithInput: true,
   };
   const filterIcon = (id: string) => (
-    <FilterSheet_Icon
+    <FilterSheetIcon
       id={id}
       haveFiltersApplied={v.hasFiltersApplied}
       isLoaded={v.bottomSheetId_IsLoaded}
@@ -476,7 +476,7 @@ export default function Updates_SingleList() {
 
   return (
     <>
-      <Layout_MainPages_FixedTitle
+      <MainLayoutFixedTitle
         id="$b1"
         isGrayBackground
         onOnHeaderScrolled={(isHeaderScrolled) => {
@@ -533,7 +533,7 @@ export default function Updates_SingleList() {
                 {filterIcon('Icon_FilterSheet_PostScroll')}
               </>
             )}
-            <App_NotificationIcon id="$b7" />
+            <NotificationIcon id="$b7" />
           </>
         }
         placeholderHeaderInput={
@@ -607,7 +607,7 @@ export default function Updates_SingleList() {
                           }}
                         />
                       )}
-                      <Update_ListItem
+                      <UpdateListItem
                         id={`${r}-UpdateItem`}
                         inHasShare={item.hasShare}
                         inLocation={item.locationString}
@@ -655,7 +655,7 @@ export default function Updates_SingleList() {
           set({ filter_BottomSheetId: sheetId });
         }}
       />
-      <ShareSheet
+      <ShareSheetContainer
         id="$b21"
         inShareObjectTypeId={Type_ShareObject.Update}
         inUpdateType={v.shareableUpdateItem.updateItemTypeId}
@@ -666,7 +666,7 @@ export default function Updates_SingleList() {
           set({ isShareOpen: false });
         }}
       >
-        <Update_ListItem
+        <UpdateListItem
           inName={v.shareableUpdateItem.name}
           hasBorderBottom={false}
           inDate={v.shareableUpdateItem.date}
@@ -680,7 +680,7 @@ export default function Updates_SingleList() {
           inParentsNames={v.shareableUpdateItem.parentsNames}
           inIsRead={false}
         />
-      </ShareSheet>
+      </ShareSheetContainer>
     </>
   );
 }

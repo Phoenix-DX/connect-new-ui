@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { App_NotificationIcon } from '@/shared/UBTConnect/App_NotificationIcon';
+import { NotificationIcon } from '@/components/notification/NotificationIcon';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { scrollTop } from '@/shared/UBTConnect/lib/actions';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { Input } from '@/shared/UBTConnectLibrary/Input';
-import { Layout_MainPages_FixedTitle } from '@/shared/UBTConnectLibrary/Layout_MainPages_FixedTitle';
+import { MainLayoutFixedTitle } from '@/components/layout/MainLayoutFixedTitle';
 import { UBT_Color, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
@@ -178,7 +178,7 @@ export default function Notes() {
 
   return (
     <>
-      <Layout_MainPages_FixedTitle
+      <MainLayoutFixedTitle
         id="$b1"
         isGrayBackground
         onOnHeaderScrolled={(isHeaderScrolled) => {
@@ -198,7 +198,7 @@ export default function Notes() {
                 }}
               />
             )}
-            <App_NotificationIcon id="$b3" />
+            <NotificationIcon id="$b3" />
           </>
         }
         placeholderHeaderInput={

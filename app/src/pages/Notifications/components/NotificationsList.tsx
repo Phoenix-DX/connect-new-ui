@@ -1,7 +1,7 @@
 // @os-block UBTConnect.App_Notifications.NotificationsList
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ScrollAnchor } from '@/shared/NavigationHandler/ScrollAnchor';
+import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
 import type { Breakpoint, NotificationItem } from '@/pages/Notifications/types';
 import { dateTimeToText, itemsOfRange } from './actions';

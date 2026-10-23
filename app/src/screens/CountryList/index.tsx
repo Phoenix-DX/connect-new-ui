@@ -13,13 +13,13 @@ import {
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { bottomSheetOpen } from '@/shared/osui/lib/actions';
-import { App_NotificationIcon } from '@/shared/UBTConnect/App_NotificationIcon';
+import { NotificationIcon } from '@/components/notification/NotificationIcon';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
 import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Directory_LegendBottomSheet } from '@/shared/UBTConnect/Directory_LegendBottomSheet';
-import { FeedBlock_CommunityPopulation } from '@/shared/UBTConnect/FeedBlock_CommunityPopulation';
+import { CommunityPopulation } from '@/components/feed/CommunityPopulation';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
 import { Statistics_TypedItem } from '@/shared/UBTConnect/Statistics_TypedItem';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
@@ -206,7 +206,7 @@ export default function CountryList() {
         addHeaderGap={false}
         isGrayBackground
         placeholderHeaderTitle="Directory"
-        placeholderHeaderRight={<App_NotificationIcon id="$b2" />}
+        placeholderHeaderRight={<NotificationIcon id="$b2" />}
         placeholderHeaderInput={
           <StaticInput
             id="$b3"
@@ -283,7 +283,7 @@ export default function CountryList() {
               />
             </SkeletonSection>
             <CustomContainer id="Population" options={{ PaddingSize: { TopSizeId: UBT_Size.Base } }}>
-              <FeedBlock_CommunityPopulation id="$b18" />
+              <CommunityPopulation id="$b18" />
             </CustomContainer>
             <CustomContainer id="Legend" options={{ PaddingSize: { VerticalSizeId: UBT_Size.Base } }}>
               <Columns_Two

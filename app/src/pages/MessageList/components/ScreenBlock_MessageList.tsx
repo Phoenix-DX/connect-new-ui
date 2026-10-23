@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useRef, type KeyboardEvent, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
-import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
+import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MessageList_NoResults } from '@/shared/Connect2_LegacyShared/MessageList_NoResults';
@@ -400,7 +400,7 @@ export function ScreenBlock_MessageList({
       <MenuIcon id={`${prefix}-$b2`} menuAction={MenuAction.Menu} />
     )
   ) : (
-    <MenuIcon_Back id={`${prefix}-$b3`} />
+    <MenuIconBack id={`${prefix}-$b3`} />
   );
 
   const title =

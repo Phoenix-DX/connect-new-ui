@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { ConnectBlankSlate } from '@/shared/Connect2_LegacyShared/ConnectBlankSlate';
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
-import { MenuIcon_Back } from '@/shared/Connect2_LegacyShared/MenuIcon_Back';
+import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { NavigationLanding } from './NavigationLanding';
 
 export interface ScreenBlock_ShareDetailProps {
@@ -37,7 +37,7 @@ export function ScreenBlock_ShareDetail({
       <LegacyLayout
         id={`${scope}-$b1`}
         menu={<div id={`${scope}-Menu`}>{menu}</div>}
-        headerLeft={<MenuIcon_Back id={`${scope}-$b2`} />}
+        headerLeft={<MenuIconBack id={`${scope}-$b2`} />}
         title={
           <div className="text-align-center" data-container="">
             Connect Share

@@ -14,11 +14,11 @@ import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Im
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
 import { NoBookmarks } from '@/shared/Connect2_MyBookmarks_MUI/NoBookmarks';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
-import { ScrollAnchor } from '@/shared/NavigationHandler/ScrollAnchor';
+import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic';
-import { ShareSheet } from '@/shared/UBTConnect_Utils/ShareSheet';
-import type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/ShareableObject_Generic/types';
+import { ShareableObject } from '@/components/share/ShareableObject';
+import { ShareSheetContainer } from '@/containers/ShareSheet';
+import type { UI_ShareableObject_Generic } from '@/components/share/ShareableObject/types';
 import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { showFeedbackMessage } from '@/platform/feedback';
@@ -688,7 +688,7 @@ export function ScreenBlock_BookmarkGroup({
         bottomBar={<div id={`${scope}-BottomBar`}>{bottomBar}</div>}
         commonUIElements={<div id={`${scope}-CommonUI_Elements`} />}
       />
-      <ShareSheet
+      <ShareSheetContainer
         id={`${scope}-$b25`}
         inShareObjectTypeId={share.typeId}
         inIsOpen={share.isOpen}
@@ -697,9 +697,9 @@ export function ScreenBlock_BookmarkGroup({
         onEventClosedShareSheet={onCloseShareSheet}
       >
         {share.object.ConnectEntityTypeId !== '' && (
-          <ShareableObject_Generic id={`${scope}-$b26`} inShareableObject={share.object} />
+          <ShareableObject id={`${scope}-$b26`} inShareableObject={share.object} />
         )}
-      </ShareSheet>
+      </ShareSheetContainer>
     </OSBlock>
   );
 }
