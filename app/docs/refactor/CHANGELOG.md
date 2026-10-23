@@ -445,3 +445,9 @@
 - MessageList is a page: hook `hooks/useMessageList.ts`, pure state `hooks/messageListState.ts`, props-only `components/MessageListView.tsx`. `api.ts` is deleted; `types.ts` keeps `MessageWire` for the mocks.
 - The GetMessages query key `['MessageList','DataActionGetMessages']` stays in the hook on purpose: it keeps the back-navigation restore. MessageDetail keeps its own `decrementReadMessagesCounter`; P6-G3-C removes the duplicate.
 - HomeFeed first load 246.03 kB gzip (limit 248.22).
+
+## P6-G3-B-MessageDetail - refactor(P6-G3-B): MessageDetail as page
+
+- MessageDetail is a page: hook `hooks/useMessageDetail.ts` (on `useFlowState`), pure state `hooks/messageDetailState.ts`, props-only `components/MessageDetailView.tsx`. `api.ts` and `types.ts` are deleted; the input type is in `inputs.ts`. The view cache now uses one key, `MyNotifications.ScreenBlock_MessageDetail`.
+- Decision W23 is applied: only the state writes are gated after an unmount; the side effects run once. A StrictMode once-guard stops a second OnReady run. MessageDetail keeps its own `decrementReadMessagesCounter` (as MessageList does); P6-G3-C removes the duplicate.
+- The shared chunk `flowState` is new (+0.03 kB gzip on HomeFeed, +0.01 kB on Login; limit 248.22).

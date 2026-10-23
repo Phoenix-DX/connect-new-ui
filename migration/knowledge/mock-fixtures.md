@@ -60,3 +60,8 @@ salads chosen only for glyph width.
   real words of those lengths).
 - Skeleton placeholders of the ORIGINAL app ("Subdivision Name Example", "Example & Example"…) are not mock data. Keep
   them 1:1.
+
+## MessageList rows are private (demo note, 2026-10-24)
+- The MessageList mock rows have MessageTemplateTypeId 1 (Private) and MessageInstance.UserId 0. The MessageDetail mock copies both values.
+- When you open a row while signed in, MessageDetail shows "You don't have access to that message" and goes back to the list.
+- The old port did the same. The refactor of P6-G3-B-MessageDetail did not change it (`src/pages/MessageDetail/hooks/useMessageDetail.ts`).

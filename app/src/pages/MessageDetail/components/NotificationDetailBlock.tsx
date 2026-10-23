@@ -1,4 +1,3 @@
-// @os-block Connect2_LegacyShared.Widgets.NotificationDetailBlock
 import { useEffect, type ReactNode } from 'react';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
@@ -6,6 +5,9 @@ import { osImage } from '@/legacy/os/os-assets';
 import { Card } from '@/shared/osui/Card';
 import { SanitizedHtml } from '@/shared/ReactiveHtmlSanitizer/SanitizedHtml';
 import { formatDateTime } from '@/shared/lib/osDateTime';
+
+/** The card of one message, props only: only MessageDetail uses it.
+    @origin Connect2_LegacyShared.Widgets.NotificationDetailBlock */
 
 export interface NotificationDetailBlockProps {
   /** OutSystems instance id of the block (`b1-NotificationDetailBlock`). */
@@ -28,15 +30,14 @@ export interface NotificationDetailBlockProps {
   actionButton?: ReactNode;
 }
 
-/** Message_List_Item_Info (view :601-604): "ddd dd/MM/yyyy" + " " + ToLower("h:mm tt"), "" for the null date. */
+/** Message_List_Item_Info: "ddd dd/MM/yyyy" + " " + ToLower("h:mm tt"), "" for the null date. */
 const dateInfo = (d: string | null): string =>
   d === null ? '' : `${formatDateTime(d, 'ddd dd/MM/yyyy')} ${formatDateTime(d, 'h:mm tt').toLowerCase()}`;
 
-/** NotificationDetailBlock (p:Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js, view :285-640): a Card with
-    the sender icon (External image, or the User_rectangle static image when ProfileIconURL = ""), title, summary,
-    urgent icon, the body (adaptive card, MessageDetails placeholder or the sanitized HTML), the date and the action
-    button placeholder. OnReady (:770-790) runs OpenLinksInSystemBrowserJS (:828-845) on the Card: web branch, links
-    open in a new tab. */
+/** NotificationDetailBlock: a Card with the sender icon (External image, or the User_rectangle static image when
+    ProfileIconURL = ""), title, summary, urgent icon, the body (adaptive card, MessageDetails placeholder or the
+    sanitized HTML), the date and the action button placeholder. OnReady runs OpenLinksInSystemBrowserJS on the Card:
+    web branch, links open in a new tab. */
 export function NotificationDetailBlock({
   id,
   prefix,
@@ -72,7 +73,7 @@ export function NotificationDetailBlock({
     };
   }, [cardId]);
 
-  // Style expression (view :331-337), trailing space trimmed as the DOM shows it.
+  // Style expression of the icon container, trailing space trimmed as the DOM shows it.
   const iconClass = (
     'notification-detail-icon-badge ' + (forceNoIconBorder ? 'no-border' : profileIconURL === '' ? 'no-border' : '')
   ).trim();
@@ -128,7 +129,7 @@ export function NotificationDetailBlock({
               </span>
             </div>
             {summary !== '' && (
-              // SummaryContainer (view :405-431): not in any captured state; its inline style is not captured either.
+              // SummaryContainer: not in any captured state; its inline style is not captured either.
               <NotCaptured name={`Summary (${prefix}-SummaryContainer)`}>{summary}</NotCaptured>
             )}
           </div>
@@ -138,7 +139,7 @@ export function NotificationDetailBlock({
             style={{ textAlign: 'center', marginLeft: 5, marginTop: 10, padding: 0 }}
           >
             {isUrgent && (
-              // Urgent icon (view :448-476): not in any captured state; its inline style is not captured either.
+              // Urgent icon: not in any captured state; its inline style is not captured either.
               <NotCaptured name={`Urgent icon (${prefix}-Message_List_Item_Icon)`} />
             )}
           </div>

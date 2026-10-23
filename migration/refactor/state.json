@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G3-B-MessageList",
+  "step": "P6-G3-B-MessageDetail",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T02:18:12"
+  "since": "2026-10-24T02:28:06"
  },
  "steps": {
   "P0-1": {
@@ -859,12 +859,25 @@
    "finished": "2026-10-24T02:09:48"
   },
   "P6-G3-B-MessageList": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T02:09:48",
    "tokens": {
     "dev": 312595,
     "test": 36150,
     "docs": 28303
+   },
+   "commit": "4739384c",
+   "gate": "ci: pass (2450 tests); parity visual --changed: 5/0 (OutSystems), 5/0 (self); arch baseline 0 new; bundle HomeFeed 246.03/248.22, Login 187.03/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T02:18:15"
+  },
+  "P6-G3-B-MessageDetail": {
+   "status": "active",
+   "started": "2026-10-24T02:20:25",
+   "tokens": {
+    "dev": 249800,
+    "test": 28839,
+    "docs": 36636
    }
   }
  },
