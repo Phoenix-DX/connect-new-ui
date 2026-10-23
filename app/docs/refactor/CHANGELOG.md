@@ -161,3 +161,8 @@
 
 - Steps P4-1 to P4-5: `platform/` has the typed settings store and the session state machine. It also has the auth provider, 8 named app-start steps, the route meta with one guard, and the flag registry.
 - Gate of P4-5: `ci` passes; strict parity 64/64 for both references; HomeFeed 238.66 kB and Login 187.19 kB gzip, within 5 percent of the baseline.
+
+## P4-F4 - one platform hook for the standard flow state
+
+- New `src/platform/navigation/flowState.ts`: `useFlowState` gives a flow hook its state, `dispatch`, `latest`, the newest `parameters` and `events`, and the OnReady and OnParametersChanged flows. `useHouseholdDetails.ts` uses it.
+- `SharePopup.tsx`, `UBT_LazyImage.tsx` and `HouseholdRelations_Block.tsx` keep the old pattern until Phase 6. Strict parity for the 4 routes passes; `move-map.csv` is unchanged.

@@ -11,6 +11,7 @@ Part A (session, app start, sign-in, PIN, inactivity lock) is described in `docs
 - `flags/`: the typed registry of 21 flags, `resolveFlags` (default < server < override), the store, `useFlag` and `flagValue`.
   `FLAG_OVERRIDES_BUILT` gates `?ff=` and `FlagPanel`. `flags.ts` is the adapter (`useFlagOn`, `isOn`, `setFlag`) for the old readers.
   OutSystems names: `legacy/os/flagNames.ts`. The routes with `meta.flagRedirect` redirect in `useOsNavigate`, not on a direct URL.
+- `navigation/flowState.ts`: `useFlowState`, the state and the OnReady and OnParametersChanged flows of a flow hook (guide: `docs/guides/page-template.md`). It builds on `useViewState` (view cache) in `navigation/hooks.ts`.
 - `startup.ts` exports `synchronizeNumberUnreadMessages()` (Connect2_LegacyShared `SynchronizeNumberUnreadMessages`):
   the app start uses it, and screens call it where the original does (MessageList Mark All as Read, Notifications;
   CR-MessageList-1).

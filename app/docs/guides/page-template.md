@@ -46,9 +46,39 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
   `api/<domain>/`. They never call `callAction` or `fetch` themselves.
 - The `use<Thing>Query` hooks of `api/<domain>/` are for data that a component reads on render only. They come later
   (P5/P6). `useHouseholdQuery` and `useHouseholdCoordinatesQuery` have no caller yet.
-- Standard state shape of a flow hook: a `latest` ref that holds the current state, `useReducer`, the `useViewState`
-  dispatch, and `flowsRef` and `parametersKey` for OnParametersChanged. It moves into one platform hook in P4
-  (follow-up F4), so pages do not copy it.
+- State and flows of a flow hook: call `useFlowState` (`@/platform/navigation`, `platform/navigation/flowState.ts`).
+  Do not write the `latest` ref, `useReducer`, the `useViewState` dispatch, `flowsRef` or `parametersKey` again.
+  - Options: `viewName` (the view cache key), `reducer`, `initial`, `parameters` (plain data; their JSON is the
+    parameters key) and the optional `events`, `onReady(isAlive, restored)` and `onParametersChanged(isAlive)`.
+  - Returns: `state` (rendered), `dispatch` (updates `latest` at once, saves the state, renders),
+    `latest` (newest state), `parameters` and `events` (newest inputs and event handlers). The flows read `latest`,
+    `parameters` and `events`, never the rendered values.
+  - Order, as in OutSystems: OnInitialize is `initial` (a restored view starts from its saved state instead), then the
+    first render. Then `onReady` runs once (`restored` is true after a back navigation). `onParametersChanged` runs
+    only when the parameters key changes, never after the first render. `isAlive` turns false at the next run and on
+    unmount. A rejection of either flow goes to the flow handler.
+  - Example, from `containers/HouseholdDetails/hooks/useHouseholdDetails.ts`:
+
+    ```ts
+    const {
+      state,
+      dispatch,
+      latest,
+      parameters,
+      events: eventsRef,
+    } = useFlowState({
+      viewName: `Directory_Household.HouseholdDetails_Block#${householdId}`,
+      reducer: householdDetailsReducer,
+      initial: INITIAL_HOUSEHOLD_DETAILS_STATE,
+      parameters: inputs,
+      events,
+      onReady: (isAlive, restored) => onInitialize(isAlive, restored),
+      onParametersChanged: (isAlive) => onParametersChanged(isAlive),
+    });
+    ```
+
+  - 3 files still have the old pattern and change in Phase 6, with their page: `SharePopup.tsx`, `UBT_LazyImage.tsx`
+    (both in `shared/UBTConnect_Utils/`) and `screens/Household_Relations/components/HouseholdRelations_Block.tsx`.
 - Flags are read by the page (`useFlag`) and passed in as a `flags` argument. A component never reads a flag (rule 4).
 - A failed data action goes to the flow handler (`platform/feedback/flowErrors.ts`).
 

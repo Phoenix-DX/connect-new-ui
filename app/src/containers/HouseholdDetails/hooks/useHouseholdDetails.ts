@@ -1,24 +1,17 @@
-import { useEffect, useLayoutEffect, useReducer, useRef } from 'react';
 import { fetchHousehold, fetchHouseholdCoordinates, type Household, type HouseholdCallInputs } from '@/api/household';
 import { cardContent, isDeceasedOrAncestry } from '@/components/household';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { isViewHasChangedException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlagOn } from '@/platform/flags/flags';
-import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
+import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
 import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
 import { showComingSoonMessage } from '@/shared/UBTConnect_Utils/lib/actions';
 import { getSkeleton_UI_HouseholdDetails, hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
 import type { HouseholdPreviewStructure, UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
-import {
-  handlePreviewData,
-  householdDetailsReducer,
-  INITIAL_HOUSEHOLD_DETAILS_STATE,
-  type HouseholdDetailsAction,
-  type HouseholdDetailsState,
-} from './householdDetailsState';
+import { handlePreviewData, householdDetailsReducer, INITIAL_HOUSEHOLD_DETAILS_STATE } from './householdDetailsState';
 
 /** The flows of the household details (the block HouseholdDetails_Block): the data actions, the events of the view
     and the navigation.
@@ -60,38 +53,38 @@ export interface HouseholdDetailsEvents {
   onHouseholdDataFetched?: (localityName: string, countryName: string, deceasedOrAncestryView: boolean) => void;
 }
 
-type IsAlive = () => boolean;
-
 /** The state and the event handlers of the household details.
     OnInitialize = OnReady: GetUserInformation; unless the view cache restored the view with the same age visibility,
     the skeleton household, IsSkeletonOnly = the input, and the refresh of both data actions; then the two tags.
     OnParametersChanged: with a preview, its age visibility and GetHousehold; then, when In_IsSkeletonOnly turned
-    false, the refresh of both data actions. The flows read the latest state, as OutSystems assigns variables at once:
-    `latest` follows every dispatch, and the reducer state renders. */
+    false, the refresh of both data actions. The state and the triggers of both flows come from useFlowState: the
+    flows read `latest`, `parameters` and `eventsRef`, as OutSystems assigns variables at once. */
 export function useHouseholdDetails(
   inputs: HouseholdDetailsParameters,
   flags: HouseholdDetailsFlags,
   events: HouseholdDetailsEvents = {},
 ) {
   const { householdId, isEnabled } = inputs;
-  const [saved, setSaved] = useViewState<HouseholdDetailsState>(
-    `Directory_Household.HouseholdDetails_Block#${householdId}`,
-    INITIAL_HOUSEHOLD_DETAILS_STATE,
-  );
-  const [state, dispatchToView] = useReducer(householdDetailsReducer, saved);
-  const latest = useRef(state);
-  const dispatch = (action: HouseholdDetailsAction) => {
-    latest.current = householdDetailsReducer(latest.current, action);
-    setSaved(latest.current);
-    dispatchToView(action);
-  };
-  const inputsRef = useRef(inputs);
-  const eventsRef = useRef(events);
-  const restoredFromCache = useWasRestoredFromCache();
+  const {
+    state,
+    dispatch,
+    latest,
+    parameters,
+    events: eventsRef,
+  } = useFlowState({
+    viewName: `Directory_Household.HouseholdDetails_Block#${householdId}`,
+    reducer: householdDetailsReducer,
+    initial: INITIAL_HOUSEHOLD_DETAILS_STATE,
+    parameters: inputs,
+    events,
+    // The flows are defined below; the hook calls the ones of the newest render.
+    onReady: (isAlive, restored) => onInitialize(isAlive, restored),
+    onParametersChanged: (isAlive) => onParametersChanged(isAlive),
+  });
   const navigate = useOsNavigate();
 
   const callInputs = (): HouseholdCallInputs => {
-    const p = inputsRef.current;
+    const p = parameters.current;
     return {
       HouseholdId: p.householdId,
       isEnabled: p.isEnabled,
@@ -116,7 +109,7 @@ export function useHouseholdDetails(
       throw error;
     }
     if (!isAlive()) return;
-    const household = handlePreviewData(fetched, inputsRef.current.preview);
+    const household = handlePreviewData(fetched, parameters.current.preview);
     const content = cardContent(household.Household);
     dispatch({ type: 'householdFetched', household });
     eventsRef.current.onHouseholdDataFetched?.(
@@ -148,7 +141,7 @@ export function useHouseholdDetails(
         type: 'initialized',
         userAgeVisibility: displayAge,
         skeleton: getSkeleton_UI_HouseholdDetails(),
-        isSkeletonOnly: inputsRef.current.isSkeletonOnly,
+        isSkeletonOnly: parameters.current.isSkeletonOnly,
       });
       refreshes(isAlive);
     }
@@ -157,7 +150,7 @@ export function useHouseholdDetails(
 
   /** OnParametersChanged. */
   const onParametersChanged = async (isAlive: IsAlive) => {
-    const p = inputsRef.current;
+    const p = parameters.current;
     if (p.preview.UsePreview === true) {
       dispatch({
         type: 'previewAgeVisibilitySet',
@@ -170,34 +163,6 @@ export function useHouseholdDetails(
       refreshes(isAlive);
     }
   };
-
-  const flowsRef = useRef({ onInitialize, onParametersChanged });
-  useLayoutEffect(() => {
-    inputsRef.current = inputs;
-    eventsRef.current = events;
-    flowsRef.current = { onInitialize, onParametersChanged };
-  });
-
-  const restoredRef = useRef(restoredFromCache);
-  useEffect(() => {
-    let alive = true;
-    flowsRef.current.onInitialize(() => alive, restoredRef.current).catch(raiseToFlowHandler);
-    return () => {
-      alive = false;
-    };
-  }, []);
-
-  const parametersKey = JSON.stringify(inputs);
-  const parametersKeyRef = useRef(parametersKey);
-  useEffect(() => {
-    if (parametersKeyRef.current === parametersKey) return;
-    parametersKeyRef.current = parametersKey;
-    let alive = true;
-    flowsRef.current.onParametersChanged(() => alive).catch(raiseToFlowHandler);
-    return () => {
-      alive = false;
-    };
-  }, [parametersKey]);
 
   const content = cardContent(state.household.Household);
   const deceasedOrAncestry = isDeceasedOrAncestry(content);

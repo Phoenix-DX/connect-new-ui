@@ -8,7 +8,7 @@ Locality_Details.
 
 | File                                                                 | Role                                                                                                      |
 | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `containers/HouseholdDetails/hooks/useHouseholdDetails.ts`           | The flows (OnInitialize, OnParametersChanged, refreshes) with `useReducer`.                               |
+| `containers/HouseholdDetails/hooks/useHouseholdDetails.ts`           | The flows (OnInitialize, OnParametersChanged, refreshes) with `useFlowState`.                             |
 | `containers/HouseholdDetails/hooks/householdDetailsState.ts`         | The state record, the reducer and the client actions (tested in `householdDetailsState.test.ts`).         |
 | `containers/HouseholdDetails/HouseholdDetailsContainer.tsx`          | Takes `source` (`server` or `preview`) and `flags`; fills the slots; renders the view.                    |
 | `components/household/HouseholdDetailsView/HouseholdDetailsView.tsx` | The card, props only. Uses HouseholdTags, HouseholdAddress, HouseholdMemberList, HouseholdTimelinePhotos. |

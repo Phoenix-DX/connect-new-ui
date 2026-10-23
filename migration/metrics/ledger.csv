@@ -362,3 +362,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,verify,50362,refactor-test,,P4-5 sonnet
 2026-10-23,refactor,other,51054,refactor-docs,,P4-5 sonnet
 2026-10-23,refactor,other,33909,refactor-documenter,,P4-F7 sonnet
+2026-10-23,refactor,build,99758,refactor-developer,,P4-F4 opus
+2026-10-23,refactor,fix,38903,refactor-developer,,P4-F4 loop 1 opus
+2026-10-23,refactor,verify,27105,refactor-tester,,P4-F4 sonnet
+2026-10-23,refactor,other,31951,refactor-documenter,,P4-F4 sonnet
