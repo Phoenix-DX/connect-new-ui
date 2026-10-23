@@ -4,9 +4,9 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { BackNavigationHandler } from '@/shared/NavigationHandler/BackNavigationHandler';
 import type { BackNavigationEvent } from '@/shared/NavigationHandler/BackNavigationHandler';
 import { CacheControl_AllCountries } from '@/shared/UBTConnect_Utils/CacheControl_AllCountries';
+import type { CacheControl_AllCountriesRec as AllCountries } from '@/shared/UBTConnect_Utils/CacheControl_AllCountries';
 import { CacheControl_AllLocalities } from '@/shared/UBTConnect_Utils/CacheControl_AllLocalities';
 import type {
-  CacheControl_AllCountries as AllCountries,
   CacheControl_AllLocalities as AllLocalities,
   Directory_UserCurrent,
 } from '@/shared/UBTConnect_Utils/lib/structures';

@@ -384,3 +384,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,198618,refactor-dev,,P5-2-member opus
 2026-10-23,refactor,verify,30757,refactor-test,,P5-2-member sonnet
 2026-10-23,refactor,other,31925,refactor-docs,,P5-2-member sonnet
+2026-10-23,refactor,build,260182,refactor-dev,,P5-2-country opus
+2026-10-23,refactor,verify,60208,refactor-test,,P5-2-country sonnet

@@ -6,7 +6,12 @@
   "text": "Giờ tôi sẽ đi ăn tới 3h30 chiều việt nam. Bạn hãy chạy Refactory plan, nếu định hỏi gì thì hãy nhờ opus suggest và auto chọn recommand nhé, ko cần chờ tôi.",
   "at": "2026-10-22T11:44:17"
  },
- "current": null,
+ "current": {
+  "step": "P5-2-country",
+  "stage": "commit",
+  "loop": 0,
+  "since": "2026-10-23T10:26:48"
+ },
  "steps": {
   "P0-1": {
    "status": "done",
@@ -319,6 +324,14 @@
    "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed: 13/0 (OutSystems), 13/0 (self); exemptions []; bundle within +5% (+1.4%)",
    "loops": 0,
    "finished": "2026-10-23T10:15:23"
+  },
+  "P5-2-country": {
+   "status": "active",
+   "started": "2026-10-23T10:15:29",
+   "tokens": {
+    "dev": 260182,
+    "test": 60208
+   }
   }
  },
  "gates": {

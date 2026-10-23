@@ -53,6 +53,8 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 | `shared/Connect2_LegacyShared/lib/actions.ts`                                     | Connect2_LegacyShared | `ActionGetCountriesBySubscription`, `ActionGetUserLocalitiesForCountryCodeWithGPS` |
 | `shared/UBTConnect_Utils/CacheControl_AllCountries/CacheControl_AllCountries.tsx` | UBTConnect_Utils      | `CacheControl_AllCountries/DataActionGetCacheInfo`                                 |
 
+P5-2-country: the 7 actions of this table (6 files, 7 distinct actions, counts unchanged) are now in `src/api/country/repository.ts`. The `api.ts` files above re-export it; `Connect2_LegacyShared/lib/actions.ts` and `CacheControl_AllCountries` call its functions.
+
 ## locality
 
 | File                                                                                | Module                | Actions                                                                                                                                                                                                                               |

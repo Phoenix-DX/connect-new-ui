@@ -72,7 +72,7 @@ after a delay. The delay is the Server Request Timeout of the module that makes 
 
 The helpers are in `src/legacy/os/os-wire.ts`. The `api.ts` of each screen does the mapping. Components see only domain types.
 
-Domain folders in `src/api/` (`household/`, `member/`) hold the mapping and the calls of their domain. The old `api.ts` files of the screens re-export them under the old names. Read `src/api/README.md`.
+Domain folders in `src/api/` (`household/`, `member/`, `country/`) hold the mapping and the calls of their domain. The old `api.ts` files of the screens re-export them under the old names. `country/` holds 7 calls: the statistics of BrowseCountries, CountryList and CountryDetails, `GetCountryInfo` (Profile), the two shared actions of Connect2_LegacyShared and the cache info of CacheControl_AllCountries. Two mappers keep only the fields that the UI reads. Read `src/api/README.md`.
 
 ## Mock data
 

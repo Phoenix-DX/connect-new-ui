@@ -194,3 +194,9 @@
 - New `src/api/member/` (types, mapper, repository, keys, hooks, barrel) for GetAvailableMembers (ShareSheet), GetMemberByMemberId (OrbitAdminEventDetail) and Member_EditDetails_Service (Profile). The 3 old `api.ts` files re-export it under their old names.
 - M9: OrbitLanding's `DataActionGet_EventsByMemberId` moves to `api/event` (P5-3); its row in `calls-by-domain.md` moved to the event table. M10: `useUserInfoQuery` stays for P5-4 (`CacheControl_UserInfo` in `move-map.csv` is unchanged).
 - M11: `useAvailableMembersQuery` has `gcTime: 0` (plan 5.4), so a reopened ShareSheet shows the skeleton during the call, like the OutSystems block. Strict parity `--changed`: 13 routes, both references clean. `move-map.csv` has no row for these calls.
+
+## P5-2-country - refactor(P5-2): add api/country
+
+- New `src/api/country/` (types, mapper, repository, keys, hooks, barrel) for 7 calls (statistics of 3 screens, GetCountryInfo, 2 shared actions, CacheControl_AllCountries). The old `api.ts` and `types.ts` of the 4 screens re-export it; Connect2_LegacyShared and CacheControl_AllCountries call the domain functions. Two mappers keep only the fields the UI reads.
+- The developer worked in a prefetch worktree (M8). The wire alias `CacheControl_AllCountries` in `shared/UBTConnect_Utils/lib/structures.ts` has no importer now: remove it later.
+- Strict parity `--changed`: 33 routes clean for both references. The first run had a CountryDetails/default self difference under load; it did not repeat (follow-up F9). `move-map.csv` is unchanged.

@@ -21,26 +21,15 @@ export interface BulkSignedPhotoResult {
 }
 
 /* ---- Wave 8 O-B2 (LocalityListDetail) ---- */
-/** CountryWithMapPosition (Connect2_LegacyShared.model.js `CountryWithMapPositionRec`, SupperMeeting_Details raw copy):
-    Code, Name "", RegionId / LocalitiesCount / HouseholdersCount / MembersCount 0 (Long Integer → number), InitialLatitude
-    / InitialLongitude 0 (Decimal), InitialZoom 5, WithinSubscription False. */
-export interface CountryWithMapPosition {
-  Code?: string;
-  Name?: string;
-  RegionId?: number;
-  LocalitiesCount?: number;
-  HouseholdersCount?: number;
-  MembersCount?: number;
-  InitialLatitude?: number;
-  InitialLongitude?: number;
-  InitialZoom?: number;
-  WithinSubscription?: boolean;
-}
+/** CountryWithMapPosition (Connect2_LegacyShared.model.js `CountryWithMapPositionRec`): the domain type of api/country,
+    which GetRegionSubscribedCountries answers. */
+export type { CountryWithMapPosition } from '@/api/country';
 
 /* ---- Wave 8 O-B3 (Assemble filters): records of the server actions, typed by the API contract. ---- */
 type Schemas = components['schemas'];
-/** LocalityResultItemWithGPS: one locality of GetUserLocalitiesForCountryCodeWithGPS (GetCacheableCountryInfo). */
-export type LocalityResultItemWithGPS = Schemas['Connect2_LegacyShared__LocalityResultItemWithGPS'];
+/** LocalityResultItemWithGPS: one locality of GetUserLocalitiesForCountryCodeWithGPS (GetCacheableCountryInfo), with
+    the fields that the UI reads (the domain type CountryLocality of api/country). */
+export type { CountryLocality as LocalityResultItemWithGPS } from '@/api/country';
 /** CacheableLocalityInformation: GetLocalityInformation's locality (GetCacheableLocality). */
 export type CacheableLocalityInformation = Schemas['Connect2_LegacyShared__CacheableLocalityInformation'];
 /** SubdivisionsItem: one supper meeting of CacheableLocalityInformation.LocalitySubdivisionsList. */

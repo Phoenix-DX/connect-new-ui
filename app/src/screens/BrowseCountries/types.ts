@@ -1,15 +1,3 @@
-import type { ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { StatisticsOptions } from '@/shared/UBTConnect/StatisticsList';
-
-/* Wire types from the contract (src/api/openapi.yaml), through the callAction types. */
-type GetCountriesStatisticsPath = PathOf<'UBTConnect', 'BrowseCountries/DataActionGetCountriesStatistics'>;
-/** Connect_Geography_CS.UI_CountryStatistics as the server sends it. */
-export type CountryStatisticsWire =
-  ActionOutputs<GetCountriesStatisticsPath>['Out_CountriesStatistics']['List'][number];
-
-/** Connect_Geography_CS.UI_CountryStatistics in the domain shape: the fields the screen uses
-    (UI_TypedStatisticsTexts is not read by BrowseCountries.mvc.js). */
-export interface CountryStatistics {
-  countryCode: string;
-  statistics: StatisticsOptions;
-}
+/* A country row of the screen (Connect_Geography_CS UI_CountryStatistics: the code and the statistics card) is a domain
+   type of api/country. This module keeps the name that the screen and its client actions use. */
+export type { CountryCard as CountryStatistics } from '@/api/country';

@@ -1,6 +1,7 @@
 /* Client actions of Connect2_LegacyShared, ported 1:1 from migration/runtime-sources/Connect2_LegacyShared.controller.js
    (fetched read-only from TST, 2026-10-15; cited below as controller.js:<line>). */
 import { callAction } from '@/api/client/callAction';
+import { fetchCountryLocalities, fetchRegionSubscribedCountries } from '@/api/country';
 import { osList, wireList } from '@/legacy/os/os-wire';
 import {
   cacheKeyPart,
@@ -271,15 +272,9 @@ export function removeDiacritics(text = ''): string {
 /** ObjectNotFound (Connect2_LegacyShared user exception), raised by the cacheable getters below. */
 const objectNotFound = (message: string) => new UserException(message, 'Connect2_LegacyShared.ObjectNotFound');
 
-/** GetCountryInformation(CountryCode) (controller.js:4716-4772): server action GetUserLocalitiesForCountryCodeWithGPS
-    (:7940-7960, contract operation `Connect2_LegacyShared/ActionGetUserLocalitiesForCountryCodeWithGPS`, added through
-    migration/contract/extra-actions.json in O-B3); LocalitiesList = Results. */
-export async function getCountryInformation(countryCode = ''): Promise<LocalityResultItemWithGPS[]> {
-  const out = await callAction('Connect2_LegacyShared', 'ActionGetUserLocalitiesForCountryCodeWithGPS', {
-    CountryCode: countryCode,
-  });
-  return osList(out.Results);
-}
+/** GetCountryInformation(CountryCode): the server action GetUserLocalitiesForCountryCodeWithGPS, in the domain
+    api/country (fetchCountryLocalities); LocalitiesList = Results, with the fields that the UI reads. */
+export const getCountryInformation = fetchCountryLocalities;
 
 /** GetCacheableCountryInfo(CountryCode) (controller.js:3142-3275): CountryCode "" raises ObjectNotFound "Invalid country
     id"; otherwise the memory cache (type DirectoryCacheType.Countries, key CountryCode, TTL 1200 s :3242-3249) whose
@@ -321,26 +316,10 @@ export async function getCacheableUserInfo(): Promise<Users_Current_GETResponse>
 
 /* ---- Assemble routes (Assemble_BrowseByCountry, AssembleEvents): the region's subscribed countries ---- */
 
-/** GetRegionSubscribedCountries(SubscriptionRegionId) (controller.js:5281-5337): server action GetCountriesBySubscription
-    (:7724, contract operation `Connect2_LegacyShared/ActionGetCountriesBySubscription`); CountryWithMapPosition =
-    Countries. Long Integers and Decimals become numbers (structures.ts CountryWithMapPosition). */
-export async function getRegionSubscribedCountries(subscriptionRegionId = ''): Promise<CountryWithMapPosition[]> {
-  const out = await callAction('Connect2_LegacyShared', 'ActionGetCountriesBySubscription', {
-    SubscriptionRegionId: subscriptionRegionId,
-  });
-  return osList(out.Countries).map((c) => ({
-    Code: c.Code,
-    Name: c.Name,
-    RegionId: Number(c.RegionId),
-    LocalitiesCount: Number(c.LocalitiesCount),
-    HouseholdersCount: Number(c.HouseholdersCount),
-    MembersCount: Number(c.MembersCount),
-    InitialLatitude: Number(c.InitialLatitude),
-    InitialLongitude: Number(c.InitialLongitude),
-    InitialZoom: c.InitialZoom,
-    WithinSubscription: c.WithinSubscription,
-  }));
-}
+/** GetRegionSubscribedCountries(SubscriptionRegionId): the server action GetCountriesBySubscription, in the domain
+    api/country (fetchRegionSubscribedCountries); CountryWithMapPosition = Countries. Long Integers and Decimals become
+    numbers. */
+export const getRegionSubscribedCountries = fetchRegionSubscribedCountries;
 
 /** GetCacheableRegionSubscribedCountries(SubscriptionRegionId) (controller.js:3551-3679): SubscriptionRegionId ""
     raises ObjectNotFound "Invalid country id"; otherwise the memory cache (type DirectoryCacheType

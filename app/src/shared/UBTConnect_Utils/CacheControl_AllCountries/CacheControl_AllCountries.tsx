@@ -1,7 +1,7 @@
 // @os-block UBTConnect_Utils.CacheControl.CacheControl_AllCountries
 import { useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { callAction } from '@/api/client/callAction';
+import { fetchAllCountries } from '@/api/country';
 import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
 import { getClientVar } from '@/platform/session/session';
 import { CacheControl } from '@/shared/UBTConnect_Utils/CacheControl';
@@ -36,13 +36,13 @@ export function CacheControl_AllCountries({
     latest.current?.(object as CacheControl_AllCountriesRec);
   };
   const onNonCacheHit = async () => {
-    const out = await callAction('UBTConnect_Utils', 'CacheControl_AllCountries/DataActionGetCacheInfo', {
+    const response = await fetchAllCountries({
       CacheKey: key,
       CacheTypeId: CACHE_TYPE.allCountries,
       TimeToLiveSeconds: timeToLiveSeconds,
     });
-    putCacheableObject(CACHE_TYPE.allCountries, key, out.CacheControl_Response, timeToLiveSeconds);
-    latest.current?.(out.CacheControl_Response);
+    putCacheableObject(CACHE_TYPE.allCountries, key, response, timeToLiveSeconds);
+    latest.current?.(response);
   };
   return (
     <OSBlock name="CacheControl.CacheControl_AllCountries" id={id}>
