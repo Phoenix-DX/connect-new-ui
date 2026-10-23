@@ -25,7 +25,8 @@ export interface BookmarkDetails {
   shareObjectTypeId: string;
 }
 
-/** BookmarkItem (Connect2_MyBookmarks_IS.BookmarkItemRec), the fields the block reads. */
+/** BookmarkItem (Connect2_MyBookmarks_IS.BookmarkItemRec), the fields the block reads, and DateCreatedUtc for the
+    MyBookmarks cache (components/actions.ts, toCacheRecord). */
 export interface BookmarkItem {
   /** Id (Long Integer): the bookmark id. */
   id: string;
@@ -37,6 +38,8 @@ export interface BookmarkItem {
   note: string;
   recordDisabled: boolean;
   recordNotAvailable: boolean;
+  /** DateCreatedUtc (Date Time, text): the sort key of AddBookmarkToCache in the MyBookmarks cache. */
+  dateCreatedUtc: string;
   details: BookmarkDetails;
 }
 

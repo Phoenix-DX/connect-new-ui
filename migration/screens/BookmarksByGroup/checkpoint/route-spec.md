@@ -6,10 +6,13 @@ B = `Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js`;
 
 ## 0. Summary
 
-The list of the user's bookmarks of one group (route input `BookmarkGroup`: Contacts, Locations, Entities), reached
-from MyBookmarks. Legacy layout with back arrow and title "My " + group (B:237-276), one list per group (B:294-1490),
-NoBookmarks / MessageList_NoResults when empty, Spinner while fetching (B:1576-1677), bottom bar with Bookmarks active
-(S view). Each row has an ellipsis menu (Unmark, Share). TST branch only (D2(a), user 2026-10-14: C2NewBookmarks off,
+This screen shows the user's bookmarks of one group (route input `BookmarkGroup`: Contacts, Locations, Entities).
+The user reaches it from MyBookmarks. It uses the legacy layout with a back arrow and the title "My " + group (B:237-276).
+
+It has one list per group (B:294-1490). When the list is empty, it shows NoBookmarks / MessageList_NoResults.
+While the screen fetches the bookmarks, it shows a Spinner (B:1576-1677). The bottom bar has Bookmarks active (S view).
+
+Each row has an ellipsis menu (Unmark, Share). The screen follows the TST branch only (D2(a), user 2026-10-14: C2NewBookmarks off,
 mobileDirectoryBookmarkNote off). Captured: Contacts, states default / loading / offline (`analysis/states.json`).
 
 ## 1. Entry and routing
@@ -20,9 +23,11 @@ mobileDirectoryBookmarkNote off). Captured: Contacts, states default / loading /
 
 Screen `index.tsx` → `ScreenBlock_BookmarkGroup` ($b1) [own] → Layout (shared) with MenuIcon__UpdatedOSUI, OSList
 rows (ScrollAnchor + Result_Item_Image shared / Result_Item_Badge [own] + ItemOptionsMenu [own] → Widgets_PopupMenu
-[own]), BookmarkNoteAddEdit / BookmarkNoteDelete [own, shell ActionConfirmationDialog], Dialog_AccessRestrictedAction_Legacy,
-NoBookmarks, MessageList_NoResults, Spinner, BackNavigationHandler (shared), ShareSheet + ShareableObject_Generic
-(shared); BottomBarMenu ($b2) and CommonUI_InsideLayout ($b3) from the screen.
+[own]).
+The tree continues with BookmarkNoteAddEdit / BookmarkNoteDelete [own, shell ActionConfirmationDialog], Dialog_AccessRestrictedAction_Legacy,
+NoBookmarks, MessageList_NoResults, Spinner, BackNavigationHandler (shared).
+
+The tree also has ShareSheet + ShareableObject_Generic (shared). The screen supplies BottomBarMenu ($b2) and CommonUI_InsideLayout ($b3).
 
 ## 2a. Architecture diagram
 
@@ -34,10 +39,13 @@ index.tsx ──inputs──▶ ScreenBlock_BookmarkGroup ──api.ts──▶ 
 
 ## 3. DOM and markup contract
 
-`analysis/dom/default.html` (pack "Markup"): `bookmark-list-cont` > `list list-group OSFillParent` (data-virtualization-
-disabled, id `b1-List_Contacts`) > `bookmark-list-item` rows (margin-bottom var(--space-base) except the last, B:351-355),
-then the two note dialogs, then FreeSubscriptionAlert outside the container (dom:463-495). Popup menu markup:
-`dx-popup-menu … backwards-compatibility` with anchor, container and backdrop (dom:99-115; PopupMenu view :163-249).
+`analysis/dom/default.html` (pack "Markup") has this structure:
+1. `bookmark-list-cont` > `list list-group OSFillParent` (data-virtualization-
+disabled, id `b1-List_Contacts`) > `bookmark-list-item` rows (margin-bottom var(--space-base) except the last, B:351-355).
+2. The two note dialogs.
+3. FreeSubscriptionAlert, outside the container (dom:463-495).
+
+The markup of the menu widget is `dx-popup-menu … backwards-compatibility` with anchor, container and backdrop (dom:99-115; PopupMenu view :163-249).
 
 ## 4. Visual specification
 
@@ -58,7 +66,7 @@ subset), BookmarksByGroupResult (Results, Total, WasSearched), BookmarkNote.
 | DataActionGetAllBookmarksByGroup (on demand) | OnReady → RefreshBookmarkData (B:2408-2442); not-found click | `getAllBookmarksByGroup` (scalar block variables) |
 | ActionDeleteBookmarkByBookmarkId | Unmark (B:3131-3211) | `deleteBookmarkByBookmarkId` (mock write) |
 | ActionNew_UpdateBookmarkNote | note save (B:3213-3273) | `new_UpdateBookmarkNote` (mock write) |
-| ActionGetBookmarkById | row click (M:17-142) | null until CR-BookmarksByGroup-1 |
+| ActionGetBookmarkById | row click (M:17-142) | `getBookmarkById` (contract call; CR-BookmarksByGroup-1 applied, foundation F7b, 2026-10-15) [CR-BookmarksByGroup-1.md] |
 App-start calls (SynchAppContext … CacheableHouseholds) come from the shell (calls.json).
 
 ## 7. State and lifecycle
@@ -76,12 +84,17 @@ ChildrenNames, tag when locality or country, image placeholder when deceased wit
 
 ## 9. Interactions and navigation
 
-Unmark → delete; success: remove row, "Removed from your Bookmarks" (success), total − 1, local delete (CR-2),
-PutCachedMyBookmarks; failure: "Bookmark could not be removed. Please try again later." (info). Share → "Coming soon"
-without share type, UpgradeSubscription when disabled, else ShareSheet open (B:2174-2308). Row click → CR-1 (Q1).
-Navigation after GetBookmarkById: HouseholdCarousel(In_StartingHouseholdId, preload) or HouseholdDetails(HouseholdId)
-by C2EnableCarousel; OneSchoolGlobalDetails / CommunityBusinessDetails_CoomingSoon; Locality_Details(LocalityId);
-SupperMeeting_Details(In_SubdivsionId) (S:298-600). Back: Contacts → SetPreloadObject(BookmarkedItems) (B:3078-3129).
+- Unmark → delete.
+  - Success: remove row, "Removed from your Bookmarks" (success), total − 1, local delete (CR-2), PutCachedMyBookmarks.
+  - Failure: "Bookmark could not be removed. Please try again later." (info).
+- Share → "Coming soon" without share type, UpgradeSubscription when disabled, else ShareSheet open (B:2174-2308).
+- Row click → CR-1 (Q1).
+- Navigation after GetBookmarkById (S:298-600):
+  - HouseholdCarousel(In_StartingHouseholdId, preload) or HouseholdDetails(HouseholdId), by C2EnableCarousel
+  - OneSchoolGlobalDetails / CommunityBusinessDetails_CoomingSoon
+  - Locality_Details(LocalityId)
+  - SupperMeeting_Details(In_SubdivsionId)
+- Back: Contacts → SetPreloadObject(BookmarkedItems) (B:3078-3129).
 
 ## 10. Sequence diagrams
 
@@ -97,9 +110,16 @@ offline: "Request failed with an error"). Other server errors → flow handler.
 
 ## 12. Strings
 
-"My ", "Information not available", "You'll find your / bookmarks here", "You can get back to a page that's /
-important to you by adding a bookmark ", "Make sure that all words are spelled correctly.", "Try different keyword.",
-"Unmark", "Bookmark", "Share", "Share to Connect", "Coming soon", "That bookmark isn’t available", note dialog texts.
+- "My "
+- "Information not available"
+- "You'll find your / bookmarks here"
+- "You can get back to a page that's /
+important to you by adding a bookmark "
+- "Make sure that all words are spelled correctly."
+- "Try different keyword."
+- "Unmark", "Bookmark", "Share", "Share to Connect", "Coming soon"
+- "That bookmark isn’t available"
+- note dialog texts
 
 ## 13. Accessibility, platform and security notes
 
@@ -115,8 +135,8 @@ not read by this route's code.
 
 ## 14. Unclear points
 
-- Q1 GetBookmarkById missing from the contract (decision). Q2 Locations/Entities not captured (decision).
-- Q3 legacy local delete missing in the shell (decision). Q4 UnlimitedTimeToLiveSeconds: answered by code, 604800 s
+- Q1 GetBookmarkById was missing from the contract (decision, answered A; CR-BookmarksByGroup-1 applied [questions.md Q1]). Q2 Locations/Entities not captured (decision, answered A [questions.md Q2]).
+- Q3 legacy local delete was missing in the shell (decision, answered A; CR-BookmarksByGroup-2 applied [questions.md Q3]). Q4 UnlimitedTimeToLiveSeconds: answered by code, 604800 s
   (runtime-sources/MemoryClientCache.controller.js, fetched 2026-10-15).
 - Uncaptured list ids (Locations "l2_<n>", Entities "l3_<n>"): runtime iteration numbers unknown.
 
@@ -126,15 +146,16 @@ default / loading / offline parity (with the proposed exemptions), call parity, 
 
 ## 16. Decisions to confirm
 
-- Q1 → A (pending orchestrator answer): row-click flow built behind a null adapter; CR-BookmarksByGroup-1.
-- Q2 → A (pending): Locations / Entities built from the compiled view (Result_Item_Badge own), fictional mock rows;
+- Q1 → A (answered, auto-accepted 2026-10-15 [questions.md Q1]): the row-click flow was built behind a null adapter. CR-BookmarksByGroup-1 is applied (foundation F7b, 2026-10-15); `getBookmarkById` now calls the contract [CR-BookmarksByGroup-1.md].
+- Q2 → A (answered, auto-accepted 2026-10-15 [questions.md Q2]): Locations / Entities built from the compiled view (Result_Item_Badge own), fictional mock rows;
   Supper Meeting main-hall colours left out (NotCaptured marker) until a Locations state is captured.
-- Q3 → A (pending): CR-BookmarksByGroup-2; local delete skipped until it lands.
+- Q3 → A (answered, auto-accepted 2026-10-15 [questions.md Q3]): CR-BookmarksByGroup-2 is applied (foundation F7b, 2026-10-15); the local delete runs after UpdatedTotal [CR-BookmarksByGroup-2.md].
 - Q4 (fact, answered by code): cache TTL 604800 s.
-- Mock: 7 fictional contacts with the captured object ids and text lengths (narrow-glyph names on row 1 so the masked
-  one-line description stays one line); error scenario = network failure for the data action (offline state).
+- Mock: 7 fictional contacts with the captured object ids and text lengths. Row 1 has narrow-glyph names, so the masked
+  one-line description stays one line.
+- Mock error scenario: network failure for the data action (offline state).
 - Proposed exemptions: `proposed-exemptions.json` (masked photos; loading timeout content and toast).
-- CR-BookmarksByGroup-3 (optional shared consolidation with MyBookmarks).
+- CR-BookmarksByGroup-3 (optional shared consolidation with MyBookmarks): rejected (foundation F7b, 2026-10-15) [CR-BookmarksByGroup-3.md].
 
 ## 17. Patterns used
 

@@ -1,14 +1,14 @@
 {
- "finishedAt": "2026-10-16T11:23:32",
+ "finishedAt": "2026-10-23T13:46:54",
  "files": {
-  "src/screens/BookmarksByGroup/api.ts": "b15003d8da12924e",
+  "src/screens/BookmarksByGroup/api.ts": "a000689d42dddc0e",
   "src/screens/BookmarksByGroup/components/BookmarkNoteDialogs.tsx": "0b7642fdf802cae2",
   "src/screens/BookmarksByGroup/components/Result_Item_Badge.tsx": "75f6d7300e0ba906",
-  "src/screens/BookmarksByGroup/components/ScreenBlock_BookmarkGroup.tsx": "c5f92cd048fbf7df",
-  "src/screens/BookmarksByGroup/components/actions.ts": "8bcb5e5174031b4f",
-  "src/screens/BookmarksByGroup/components/staticEntities.ts": "9aa5e199a05cb474",
+  "src/screens/BookmarksByGroup/components/ScreenBlock_BookmarkGroup.tsx": "ca1d20a053ba747e",
+  "src/screens/BookmarksByGroup/components/actions.ts": "1d3a8670887c67d7",
+  "src/screens/BookmarksByGroup/components/staticEntities.ts": "b1e293274b8bb2fc",
   "src/screens/BookmarksByGroup/index.tsx": "2d078d1abaa85d46",
   "src/screens/BookmarksByGroup/mocks.ts": "35e4e887190a21a1",
-  "src/screens/BookmarksByGroup/types.ts": "5fb1f900e0b6d8aa"
+  "src/screens/BookmarksByGroup/types.ts": "b05129002ad74e71"
  }
 }

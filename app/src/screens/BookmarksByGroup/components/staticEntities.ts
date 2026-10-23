@@ -28,8 +28,5 @@ export const Type_ShareObject_SupperMeeting = 'Supper Meeting';
 /** CommunityBusinessType2 (CommunityBusinessCarouselPreloadedItem.CommunityBusinessTypeId). */
 export const CommunityBusinessType2 = { CampusCo: 'Campus&Co', OneSchoolGlobal: 'OneSchool Global' } as const;
 
-/** Connect2_LegacyShared DirectoryCacheType.MyBookmarks (Get/PutCachedMyBookmarks). */
-export const DIRECTORY_CACHE_TYPE_MY_BOOKMARKS = 'MyBookmarks';
-
 /** Connect2_LegacyShared ApplicationEvents_Directory.SubscriptionRequired (AuditBookmarkSubscriptionEvent). */
 export const APPLICATION_EVENT_SUBSCRIPTION_REQUIRED = 'c4ff6519-a3b7-4d54-9f88-f0c4b76c51a2';

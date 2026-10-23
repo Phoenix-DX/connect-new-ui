@@ -1,11 +1,11 @@
 {
  "state": "default",
- "route": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts&mocksession=unlocked",
+ "route": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts",
  "mock": "real",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "0e92f1244eadd9bfdc8e",
+ "fingerprint": "eb2a5c63c40ccdb1b765",
  "options": {
   "text": true,
   "style": true,
@@ -24,7 +24,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:48:36.443Z",
+ "at": "2026-10-23T06:45:27.139Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-MASKED-PHOTO-BOOKMARKSBYGROUP": 12,
