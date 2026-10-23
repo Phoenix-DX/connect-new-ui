@@ -10,7 +10,7 @@ import { bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Directory_LegendBottomSheet } from '@/shared/UBTConnect/Directory_LegendBottomSheet';
-import { FilterSheet } from '@/components/filter/FilterSheet';
+import { FilterSheetContainer } from '@/containers/FilterSheet';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
 import { Choice, Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import type {
@@ -457,7 +457,7 @@ export default function CountryDetails() {
         bottom={<BottomBar id="$b26" activeItem={Connect_BottomBar_Items.Directory} />}
         placeholderCommonUIInsideLayout={<CommonUiLayout id="$b27" />}
       />
-      <FilterSheet
+      <FilterSheetContainer
         id="$b28"
         extendedClasses="bottom-sheet-higher-z-index"
         inStartFilter={startFilter}

@@ -1,4 +1,4 @@
-// @os-block UBTConnect.Directory_Search.SearchResult_Section
+/** @origin UBTConnect.Directory_Search.SearchResult_Section */
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
 import { SearchResultItem } from '@/components/search/SearchResultItem';
@@ -13,7 +13,7 @@ import {
   UBT_Size,
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { SearchResult } from '@/pages/Search/types';
+import type { SearchResult } from '@/api/search';
 import { UBT_FontWeight_Bold } from './staticEntities';
 
 export interface SearchResult_SectionProps {

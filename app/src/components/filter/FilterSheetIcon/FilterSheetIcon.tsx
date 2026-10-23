@@ -1,7 +1,6 @@
 /** @origin UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon */
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
@@ -14,6 +13,9 @@ export interface FilterSheetIconProps {
   bottomSheetId?: string;
   isLoaded?: boolean;
   showSubscriptionOnClick?: boolean;
+  /** App_Subscription_ShowUpgradePopUp (platform/feedback/dialogs), given by the caller: a click opens it when
+      ShowSubscriptionOnClick. */
+  onShowUpgradePopUp?: () => void | Promise<void>;
 }
 
 /** Header filter icon (p:UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon.mvc.js): a skeleton while not loaded, a red
@@ -25,10 +27,11 @@ export function FilterSheetIcon({
   bottomSheetId = '',
   isLoaded = false,
   showSubscriptionOnClick = false,
+  onShowUpgradePopUp,
 }: FilterSheetIconProps) {
   const onClick = () => {
     if (!isLoaded) return;
-    if (showSubscriptionOnClick) void showUpgradePopUp();
+    if (showSubscriptionOnClick) void onShowUpgradePopUp?.();
     else bottomSheetOpen(bottomSheetId);
   };
   return (

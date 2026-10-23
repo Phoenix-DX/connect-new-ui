@@ -32,4 +32,21 @@ describe('FilterSheet_Icon', () => {
     expect(open).toHaveBeenCalledWith('sheet');
     open.mockRestore();
   });
+
+  it('opens the upgrade popup of the caller instead of the sheet when ShowSubscriptionOnClick', () => {
+    const open = vi.spyOn(osuiActions, 'bottomSheetOpen').mockImplementation(() => undefined);
+    const onShowUpgradePopUp = vi.fn();
+    const { container } = render(
+      <FilterSheetIcon
+        bottomSheetId="sheet"
+        isLoaded
+        showSubscriptionOnClick
+        onShowUpgradePopUp={onShowUpgradePopUp}
+      />,
+    );
+    fireEvent.click(container.querySelector('.connect-icon-tune') as HTMLElement);
+    expect(onShowUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(open).not.toHaveBeenCalled();
+    open.mockRestore();
+  });
 });

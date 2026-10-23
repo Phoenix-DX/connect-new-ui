@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Notes.Notes_FilterSheet
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { FilterSheet } from '@/components/filter/FilterSheet';
+import { FilterSheetContainer } from '@/containers/FilterSheet';
 import type {
   Filter_Common_Control_Choice,
   Filter_Common_Control_List,
@@ -68,7 +68,7 @@ export function Notes_FilterSheet({
   };
   return (
     <OSBlock name="Notes.Notes_FilterSheet" id={id}>
-      <FilterSheet
+      <FilterSheetContainer
         id={child(p, 1)}
         inStartFilter={startFilter}
         inOptions={options}

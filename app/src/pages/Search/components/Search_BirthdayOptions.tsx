@@ -1,10 +1,10 @@
-// @os-block UBTConnect.Directory_Search.Search_BirthdayOptions
+/** @origin UBTConnect.Directory_Search.Search_BirthdayOptions */
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { SearchBirthdayOption } from '@/pages/Search/types';
+import type { SearchBirthdayOption } from '@/api/search';
 import { UBT_Icons2_Search } from './staticEntities';
 
 export interface Search_BirthdayOptionsProps {

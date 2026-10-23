@@ -1,7 +1,7 @@
 // @os-block UBTConnect.Directory_Updates.Directory_Updates_FilterSheet
 import { useMemo } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { FilterSheet } from '@/components/filter/FilterSheet';
+import { FilterSheetContainer } from '@/containers/FilterSheet';
 import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
 import type {
   Filter_Common_Control_Choice,
@@ -79,7 +79,7 @@ export function Directory_Updates_FilterSheet({
 
   return (
     <OSBlock name="Directory_Updates.Directory_Updates_FilterSheet" id={id}>
-      <FilterSheet
+      <FilterSheetContainer
         id={`${scope}-$b1`}
         inOptions={options}
         inStartFilter={startFilter}

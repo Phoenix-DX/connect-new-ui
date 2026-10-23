@@ -16,6 +16,21 @@ lists, FilterSheet_OptionChoice_Item and flat SelectionOption_Lists, or FilterSh
 Apply; CacheControl_AllCountries, CacheControl_AllLocalities, CacheControl_UserInfo_Wrapper (only for enabled place
 filters); BackNavigationHandler (closes an open sheet and prevents the navigation).
 
+The component has props only (rule 4). The callers use `containers/FilterSheet` (`FilterSheetContainer`), which gives
+these props:
+
+| Prop                          | What the container gives                                                                 |
+| ----------------------------- | ---------------------------------------------------------------------------------------- |
+| `cacheBlocks`                 | The three cache blocks. The sheet renders them after the bottom sheet, as captured.      |
+| `countries`                   | The Result of CacheControl_AllCountries (`CountryList.List`); undefined until it came.   |
+| `localities`                  | The Result of CacheControl_AllLocalities (`LocalityList.List`); undefined until it came. |
+| `userSubscription`            | `Directory_UserCurrent_Subscription` of the CacheControl_UserInfo_Wrapper Result.        |
+| `renderBackNavigationHandler` | The BackNavigationHandler block (`platform/navigation`) with the sheet's handler.        |
+| `onShowUpgradePopUp`          | App_Subscription_ShowUpgradePopUp, for a disabled option of FilterSheet_OptionList_Item. |
+
+A new result runs the action of its Result handler (`setCountries`, `setLocalities`, `setUser`), in the order of the
+blocks; the user result then raises Loaded. The stories give the results and the block wrappers as arguments.
+
 The React component ports the controller action by action (`createActions`, controller :1201-2900) on a mutable copy of
 the block variables; a render follows each event. Helpers `app_CommonFilter_DefineOptionNames` / `_CheckCountry` are in
 `../lib/actions.ts`, `Choice` / `Connect_Subscription_Plan` in `../lib/staticEntities.ts`.

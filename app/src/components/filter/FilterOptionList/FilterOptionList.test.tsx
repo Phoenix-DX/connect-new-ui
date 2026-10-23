@@ -29,6 +29,24 @@ describe('FilterSheet_OptionList_Item', () => {
     expect(onOnChange).toHaveBeenCalledWith(['CH'], 'Countries');
   });
 
+  it('a disabled option opens the upgrade popup of the caller and does not raise OnChange', () => {
+    const onOnChange = vi.fn();
+    const onShowUpgradePopUp = vi.fn();
+    const { getByText } = render(
+      <FilterOptionList
+        filterCommonControlList={{
+          ...list,
+          In_Options: [{ Id: 'CH', DisplayText: 'Switzerland', CountryCode: 'CH', isEnabled: false }],
+        }}
+        onOnChange={onOnChange}
+        onShowUpgradePopUp={onShowUpgradePopUp}
+      />,
+    );
+    fireEvent.click(getByText('Switzerland'));
+    expect(onShowUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(onOnChange).not.toHaveBeenCalled();
+  });
+
   it('header "All <Title>" raises OnBack; a search without match shows the no-results texts', async () => {
     vi.useFakeTimers();
     const onOnBack = vi.fn();

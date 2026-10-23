@@ -577,3 +577,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,review,42319,refactor-advisor,,"W23, fable"
 2026-10-24,refactor,verify,31880,refactor-test,,P6-G3-B-Services sonnet
 2026-10-24,refactor,other,41855,refactor-docs,,P6-G3-B-Services sonnet
+2026-10-24,refactor,build,393384,refactor-dev,,P6-G3-B-Search opus
+2026-10-24,refactor,verify,45114,refactor-test,,P6-G3-B-Search sonnet
+2026-10-24,refactor,other,35774,refactor-docs,,P6-G3-B-Search sonnet

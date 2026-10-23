@@ -10,7 +10,8 @@ OutSystems: `UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item` · 
 | ForceUpdate                | Boolean                           | `forceUpdate`             | `false` |
 
 Events: `OnChange(SelectedIds, Title)` → `onOnChange`, `OnBack` → `onOnBack`, `Event_Input_OnReady(Id)` →
-`onEventInputOnReady`. A disabled option opens `showUpgradePopUp` (App_Subscription_ShowUpgradePopUp, shell). Children:
+`onEventInputOnReady`. A disabled option opens App_Subscription_ShowUpgradePopUp: the caller gives it as
+`onShowUpgradePopUp` (FilterSheet passes on the `showUpgradePopUp` of `platform/feedback/dialogs`). Children:
 CustomContainer "Selections", header IconText (ShowHeader), Input (search, debounce 300), no-results texts or
 SelectionOption_List.
 

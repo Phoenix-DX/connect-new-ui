@@ -2,7 +2,6 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item
 import { useMemo, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
@@ -35,6 +34,9 @@ export interface FilterOptionListProps {
   onOnBack?: () => void;
   /** Event Event_Input_OnReady(Id): the search input's widget id. */
   onEventInputOnReady?: (id: string) => void;
+  /** App_Subscription_ShowUpgradePopUp (platform/feedback/dialogs), given by the caller: a click on a disabled option
+      (NotEnabledOnClick of the SelectionOption_List) opens it. */
+  onShowUpgradePopUp?: () => void | Promise<void>;
 }
 
 /** JSUtils_String_RemoveAccents: its JavaScript is in no captured source (README, question); the text is kept as is. */
@@ -83,6 +85,7 @@ export function FilterOptionList({
   onOnChange,
   onOnBack,
   onEventInputOnReady,
+  onShowUpgradePopUp,
 }: FilterOptionListProps) {
   const [input, setInput] = useState(filterCommonControlList);
   const [list, setList] = useState(filterCommonControlList);
@@ -165,7 +168,7 @@ export function FilterOptionList({
               PaddingSize: { VerticalSizeId: UBT_Size.Small },
               BorderOptions: { Color: UBT_Color.Neutral3, Size: { BottomSizeId: UBT_Size.Small } },
             }}
-            onNotEnabledOnClick={() => void showUpgradePopUp()}
+            onNotEnabledOnClick={() => void onShowUpgradePopUp?.()}
             onOnSelectionChange={(selectedItems) => {
               const selectedIds = selectedItems.map((o) => o.Id ?? '');
               setList((l) => ({ ...l, SelectedIds: selectedIds }));

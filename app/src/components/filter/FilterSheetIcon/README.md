@@ -10,7 +10,9 @@ OutSystems: `UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon` · pack
 | isLoaded                | Boolean | `isLoaded`                | `false` |
 | ShowSubscriptionOnClick | Boolean | `showSubscriptionOnClick` | `false` |
 
-Events: none. Click (when loaded): `showUpgradePopUp` (shell, App_Subscription_ShowUpgradePopUp) or `bottomSheetOpen`.
+Events: none. Click (when loaded): App_Subscription_ShowUpgradePopUp when ShowSubscriptionOnClick, else
+`bottomSheetOpen(BottomSheetId)`. The popup is a platform action (`showUpgradePopUp` of `platform/feedback/dialogs`):
+the caller gives it as `onShowUpgradePopUp`, so the component imports no `platform/` module (rule 4).
 
 ## Captured variants (1 distinct; 1 tested)
 

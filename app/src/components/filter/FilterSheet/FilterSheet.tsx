@@ -1,12 +1,8 @@
 /** @origin UBTConnect.App_CommonBlocks_Filter.FilterSheet */
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet
-import { useEffect, useReducer, useState } from 'react';
+import { useEffect, useLayoutEffect, useReducer, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
-import type { BackNavigationEvent } from '@/platform/navigation/BackNavigationHandler';
-import { CacheControl_AllCountries } from '@/shared/UBTConnect_Utils/CacheControl_AllCountries';
 import type { CacheControl_AllCountriesRec as AllCountries } from '@/shared/UBTConnect_Utils/CacheControl_AllCountries';
-import { CacheControl_AllLocalities } from '@/shared/UBTConnect_Utils/CacheControl_AllLocalities';
 import type {
   CacheControl_AllLocalities as AllLocalities,
   Directory_UserCurrent,
@@ -35,7 +31,6 @@ import {
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { ContainerOptions, SelectionOption_Item } from '@/shared/UBTConnectLibrary/lib/structures';
 import { bottomSheetClose } from '@/shared/osui/lib/actions';
-import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
 import { FilterOptionChoice } from '@/components/filter/FilterOptionChoice';
 import { FilterOptionList } from '@/components/filter/FilterOptionList';
 import { app_CommonFilter_CheckCountry, app_CommonFilter_DefineOptionNames } from '@/shared/UBTConnect/lib/actions';
@@ -54,12 +49,40 @@ export interface OptionControl {
   OptionFlatList_Control: Filter_Common_Control_List[];
 }
 
+/** The country rows of the CacheControl_AllCountries Result. */
+export type FilterSheetCountry = AllCountries['CountryList']['List'][number];
+/** The locality rows of the CacheControl_AllLocalities Result. */
+export type FilterSheetLocality = AllLocalities['LocalityList']['List'][number];
+/** The subscription of the user information (CacheControl_UserInfo_Wrapper Result): the only part the block reads. */
+export type FilterSheetSubscription = Directory_UserCurrent['Directory_UserCurrent_Subscription'];
+/** The back-navigation event of the BackNavigationHandler block: the sheet prevents the navigation when it is open. */
+export interface FilterSheetBackNavigationEvent {
+  preventDefault(): void;
+}
+
 export interface FilterSheetProps {
   /** OutSystems instance id of the block. */
   id?: string;
   inOptions?: Filter_Common_Options;
   inStartFilter?: Filter_Common;
   extendedClasses?: string;
+  /** The Result of CacheControl_AllCountries (HasCountries); undefined until it came. */
+  countries?: FilterSheetCountry[];
+  /** The Result of CacheControl_AllLocalities (HasLocalities); undefined until it came. */
+  localities?: FilterSheetLocality[];
+  /** The subscription of the CacheControl_UserInfo_Wrapper Result (HasCountries or HasLocalities); undefined until it
+      came. Its arrival raises Loaded. */
+  userSubscription?: FilterSheetSubscription;
+  /** The three cache blocks that give `countries`, `localities` and `userSubscription` (they read the server and the
+      memory cache). The caller renders them (containers/FilterSheet); the sheet places them after the bottom sheet, as
+      captured. */
+  cacheBlocks?: ReactNode;
+  /** The BackNavigationHandler block (platform/navigation), given by the caller with the sheet's BackNavigation
+      handler: an open sheet closes and prevents the navigation. Rendered last, as captured. */
+  renderBackNavigationHandler?: (onBackNavigation: (event: FilterSheetBackNavigationEvent) => void) => ReactNode;
+  /** App_Subscription_ShowUpgradePopUp (platform/feedback/dialogs), given by the caller: a disabled option of an option
+      list opens it. */
+  onShowUpgradePopUp?: () => void | Promise<void>;
   /** Event Loaded(ShowSubscriptionOnClick): after the user information arrived. */
   onLoaded?: (showSubscriptionOnClick: boolean) => void;
   /** Event SheetInitialized(Id): the bottom sheet's widget id. */
@@ -99,7 +122,7 @@ interface Vars {
   optionListSelected: Filter_Common_Control_List;
   countries: { list: AllCountries['CountryList']['List']; isFetched: boolean };
   localities: { list: AllLocalities['LocalityList']['List']; isFetched: boolean };
-  user: { info?: Directory_UserCurrent; isFetched: boolean };
+  user: { subscription?: FilterSheetSubscription; isFetched: boolean };
   optionControl: OptionControl;
   lastSearched: OptionControl;
   empty: OptionControl;
@@ -111,7 +134,7 @@ interface Vars {
 
 /** The flow of p:UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (controller :1201-2900), action by action. */
 function createActions(v: Vars, opt: () => Filter_Common_Options, start: () => Filter_Common) {
-  const subscription = () => v.user.info?.Directory_UserCurrent_Subscription;
+  const subscription = () => v.user.subscription;
   const subscribed = () => subscription()?.SubscribedCountries.List ?? [];
   const isFree = () => subscription()?.SubscriptionType === Connect_Subscription_Plan.Free;
   const lists = () => v.optionControl.OptionList_Control;
@@ -343,12 +366,12 @@ function createActions(v: Vars, opt: () => Filter_Common_Options, start: () => F
       v.localities = { list, isFetched: true };
       a.defineLocalities();
     },
-    setUser: (info: Directory_UserCurrent) => {
-      v.user = { info, isFetched: true };
+    setUser: (subscription: FilterSheetSubscription) => {
+      v.user = { subscription, isFetched: true };
       a.defineCountries();
       a.defineLocalities();
     },
-    backNavigation: (event: BackNavigationEvent) => {
+    backNavigation: (event: FilterSheetBackNavigationEvent) => {
       if (!v.isOpenLocal) return;
       bottomSheetClose(v.bottomSheetId);
       event.preventDefault(); // PreventNavigation
@@ -395,12 +418,20 @@ const NO_START_FILTER: Filter_Common = {};
 
 /** Sort & filter bottom sheet of the list screens (p:UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js, view
     :140-1190): main state with the option lists, choices and flat lists, or the selected option list; footer Clear /
-    Apply; the country, locality and user caches it needs; back navigation closes the open sheet. */
+    Apply; back navigation closes the open sheet. The country, locality and user results come as props from the cache
+    blocks that the caller renders (`cacheBlocks`): each new result runs the action of its Result handler, as the block
+    did. */
 export function FilterSheet({
   id,
   inOptions = NO_OPTIONS,
   inStartFilter = NO_START_FILTER,
   extendedClasses = '',
+  countries,
+  localities,
+  userSubscription,
+  cacheBlocks,
+  renderBackNavigationHandler,
+  onShowUpgradePopUp,
   onLoaded,
   onSheetInitialized,
   onApplyFilters,
@@ -413,6 +444,10 @@ export function FilterSheet({
     action();
     rerender();
   };
+  const onLoadedRef = useRef(onLoaded);
+  useLayoutEffect(() => {
+    onLoadedRef.current = onLoaded;
+  });
   // OnInitialize and OnParametersChanged: Action_Define_OptionControl.
   const [initialized] = useState(() => {
     actions.defineOptionControl();
@@ -423,6 +458,37 @@ export function FilterSheet({
     run(actions.defineOptionControl);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- runs on new parameters only
   }, [inOptions, inStartFilter]);
+  // The Result handlers of the three cache blocks, in the order of the blocks: a result that comes runs its action.
+  useEffect(() => {
+    if (countries === undefined) return;
+    run(() => {
+      actions.setCountries(countries);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs when a result comes
+  }, [countries]);
+  useEffect(() => {
+    if (localities === undefined) return;
+    run(() => {
+      actions.setLocalities(localities);
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs when a result comes
+  }, [localities]);
+  useEffect(() => {
+    if (userSubscription === undefined) return;
+    run(() => {
+      actions.setUser(userSubscription);
+    });
+    // Loaded(ShowSubscriptionOnClick): False with other filters, else True for a Free subscription.
+    const o = model.props.inOptions;
+    const hasOtherFilters =
+      (o.Extra_OptionLists ?? []).length > 0 ||
+      (o.Extra_OptionChoices ?? []).length > 0 ||
+      (o.HasSorting?.Enable ?? false);
+    onLoadedRef.current?.(
+      hasOtherFilters ? false : userSubscription.SubscriptionType === Connect_Subscription_Plan.Free,
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs when a result comes
+  }, [userSubscription]);
 
   const v = model.vars;
   const oc = v.optionControl;
@@ -583,6 +649,7 @@ export function FilterSheet({
                   actions.onChangeListOption(selectedIds, title);
                 });
               }}
+              onShowUpgradePopUp={onShowUpgradePopUp}
             />
           )
         }
@@ -621,45 +688,8 @@ export function FilterSheet({
           </CustomContainer>
         }
       />
-      {hasCountries && (
-        <CacheControl_AllCountries
-          onResult={(response) => {
-            run(() => {
-              actions.setCountries(response.CountryList.List);
-            });
-          }}
-        />
-      )}
-      {hasLocalities && (
-        <CacheControl_AllLocalities
-          onResult={(response) => {
-            run(() => {
-              actions.setLocalities(response.LocalityList.List);
-            });
-          }}
-        />
-      )}
-      {(hasCountries || hasLocalities) && (
-        <CacheControl_UserInfo_Wrapper
-          onResult={(userInformation) => {
-            run(() => {
-              actions.setUser(userInformation);
-            });
-            const o = model.props.inOptions;
-            const hasOtherFilters =
-              (o.Extra_OptionLists ?? []).length > 0 ||
-              (o.Extra_OptionChoices ?? []).length > 0 ||
-              (o.HasSorting?.Enable ?? false);
-            onLoaded?.(
-              hasOtherFilters
-                ? false
-                : userInformation.Directory_UserCurrent_Subscription.SubscriptionType ===
-                    Connect_Subscription_Plan.Free,
-            );
-          }}
-        />
-      )}
-      <BackNavigationHandler onBackNavigation={actions.backNavigation} />
+      {cacheBlocks}
+      {renderBackNavigationHandler?.(actions.backNavigation)}
     </OSBlock>
   );
 }

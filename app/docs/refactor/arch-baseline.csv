@@ -46,15 +46,6 @@ src/components/layout/LegacyLayout/LegacyLayout.stories.tsx,@/platform/session/m
 src/components/layout/LegacyLayout/LegacyLayout.stories.tsx,@/platform/session/session,rule-4,P7
 src/components/layout/LegacyLayout/LegacyLayout.test.tsx,@/platform/session/session,rule-4,P7
 src/components/layout/MenuIcon/MenuIcon.tsx,@/platform/navigation,rule-4,P7
-src/components/filter/FilterOptionList/FilterOptionList.tsx,@/platform/feedback/dialogs/subscription,rule-4,P6-G3-B-Search
-src/components/filter/FilterSheet/FilterSheet.stories.tsx,@/api/client/cache,rule-4,P6-G3-B-Search
-src/components/filter/FilterSheet/FilterSheet.stories.tsx,@/api/country,rule-4,P6-G3-B-Search
-src/components/filter/FilterSheet/FilterSheet.stories.tsx,@/api/locality,rule-4,P6-G3-B-Search
-src/components/filter/FilterSheet/FilterSheet.stories.tsx,@/api/member,rule-4,P6-G3-B-Search
-src/components/filter/FilterSheet/FilterSheet.stories.tsx,@/platform/session/mockUser,rule-4,P6-G3-B-Search
-src/components/filter/FilterSheet/FilterSheet.test.tsx,@/api/client/cache,rule-4,P6-G3-B-Search
-src/components/filter/FilterSheet/FilterSheet.tsx,@/platform/navigation/BackNavigationHandler,rule-4,P6-G3-B-Search
-src/components/filter/FilterSheetIcon/FilterSheetIcon.tsx,@/platform/feedback/dialogs/subscription,rule-4,P6-G3-B-Search
 src/components/layout/MainLayoutFixedTitle/MainLayoutFixedTitle.stories.tsx,@/platform/session/mockUser,rule-4,P6-G3-B-Updates_SingleList
 src/components/layout/MainLayoutFixedTitle/MainLayoutFixedTitle.stories.tsx,@/platform/session/session,rule-4,P6-G3-B-Updates_SingleList
 src/components/layout/MainLayoutFixedTitle/MainLayoutFixedTitle.test.tsx,@/platform/session/session,rule-4,P6-G3-B-Updates_SingleList

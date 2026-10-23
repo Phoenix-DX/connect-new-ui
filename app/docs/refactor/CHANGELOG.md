@@ -433,3 +433,9 @@
 - Services is a page: hook `hooks/useServices.ts`, pure state `hooks/servicesState.ts` (Action_ChangeOrderLocal), 7 props-only components. `api.ts` and `types.ts` are deleted.
 - New domain `api/service` (W8) and new module `platform/feedback/bubbleErrors.ts` (`raiseBubbledToFlowHandler`). The query key changed to `serviceKeys.user()`; no other code reads it.
 - HomeFeed first load 245.91 kB gzip (limit 248.22). Decision W23 (`isAlive` guards state writes only) is in `page-template.md`.
+
+## P6-G3-B-Search - refactor(P6-G3-B): Search as page
+
+- Search is a page: hook `hooks/useSearch.ts`, pure state `hooks/searchState.ts`, components `SearchView` and `RecentSearch`. `api.ts` and `types.ts` are deleted; the two calls are in the new domain `api/search` (W8).
+- FilterSheet, FilterSheetIcon and FilterOptionList are props-only. The data, the cache blocks, the back-navigation block and the upgrade popup come from the new `containers/FilterSheet`. Call sites changed: CountryDetails, Notes_FilterSheet and Directory_Updates_FilterSheet (import and tag), Updates_SingleList (prop `onShowUpgradePopUp`). 9 baseline rows removed.
+- Kept quirk: SearchView passes new `inOptions` and `inStartFilter` records on each render, which resets the sheet's country selection (follow-up F18). HomeFeed first load 246.06 kB gzip (limit 248.22).

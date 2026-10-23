@@ -20,6 +20,7 @@ import { NotificationIcon } from '@/components/notification/NotificationIcon';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { FilterSheetIcon } from '@/components/filter/FilterSheetIcon';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import {
   directory_Updates_GetCarouselPreloadedHouseholds,
   directory_Updates_RefreshBottomBarCount,
@@ -461,6 +462,7 @@ export default function Updates_SingleList() {
       isLoaded={v.bottomSheetId_IsLoaded}
       bottomSheetId={v.filter_BottomSheetId}
       showSubscriptionOnClick={v.bottomSheetId_ShowSubscription}
+      onShowUpgradePopUp={showUpgradePopUp}
     />
   );
   const tags: Tag[] = v.filter_UpdateTypeOptions.map((o) => ({

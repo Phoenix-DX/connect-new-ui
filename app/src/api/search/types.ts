@@ -1,20 +1,8 @@
-import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 import type { LongId } from '@/legacy/os/os-wire';
 
-/* Wire types from the contract (src/api/openapi.yaml), through the callAction types. */
-type FetchSearchResultsPath = PathOf<'UBTConnect', 'ScreenBlock_Search/DataActionFetchSearchResults'>;
-type FetchSearchResultsOutputs = ActionOutputs<FetchSearchResultsPath>;
-/** DataActionFetchSearchResults inputs: the block variables OutSystems sends (screenData.variables). */
-export type FetchSearchResultsInputsWire = ActionInputs<FetchSearchResultsPath>;
-/** Connect_Search_CS.SearchResult. */
-export type SearchResultWire = FetchSearchResultsOutputs['Households']['List'][number];
-/** Output of DataActionFetchSearchResults. */
-export type FetchSearchResultsWire = FetchSearchResultsOutputs;
-type BirthdayOptionsOutputs = ActionOutputs<
-  PathOf<'UBTConnect', 'ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions'>
->;
-/** One row of Get_SearchBirthdayOptions (Connect_SearchBirthdayOptions). */
-export type SearchBirthdayOptionWire = BirthdayOptionsOutputs['List']['List'][number];
+/* Domain types of the directory search (Connect_Search_CS): the results of the search block
+   Directory_Search.ScreenBlock_Search and its birthday options. The wire types stay in src/api/schema.d.ts; mapper.ts
+   names them. */
 
 /** Connect_Search_CS.SearchResult as the block uses it (ids are Text on the wire). */
 export interface SearchResult {
@@ -58,4 +46,14 @@ export interface SearchVariables {
   isBirthdayKeyWord: boolean;
   isBirthdaySearchEnabled: boolean;
   inSearchTargetId: string;
+}
+
+/** One row of the block variable TagList (UBTConnectLibrary Tag), as DataActionFetchSearchResults sends it. A field
+    that is not set keeps its default: texts "", IsSelected and Enabled True. */
+export interface SearchTag {
+  Text?: string;
+  Identifier?: string;
+  IconId?: string;
+  IsSelected?: boolean;
+  Enabled?: boolean;
 }

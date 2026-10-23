@@ -2,7 +2,7 @@ import type { RequestHandler } from 'msw';
 import { contractHandler } from '@/mocks/contract';
 import { recordedHandler } from '@/mocks/fixtures';
 import { wireList } from '@/legacy/os/os-wire';
-import type { SearchResultWire } from './types';
+import type { SearchResultWire } from '@/api/search';
 import { LOCALITY, LOCALITY_HOUSEHOLDS, householdName, type CastHousehold } from '@/mocks/fictional/directory';
 
 /* Get_SearchBirthdayOptions: recorded (fixture UBTConnect ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions).
