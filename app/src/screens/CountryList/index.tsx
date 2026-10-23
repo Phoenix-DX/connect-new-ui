@@ -12,6 +12,8 @@ import {
 } from '@/legacy/os/exceptions';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
+import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
+import { useCommunityPopulationQuery } from '@/api/member';
 import { bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { NotificationIcon } from '@/components/notification/NotificationIcon';
 import { BottomBar } from '@/components/layout/BottomBar';
@@ -114,6 +116,9 @@ const LIST_KEY = '66';
     controller :1130-1720). GetCountriesStatistics is refresh-only (:1139-1179); OnReady drives Action_RefreshData. */
 export default function CountryList() {
   const navigate = useOsNavigate();
+  // The flows of App_NotificationIcon and FeedBlock_CommunityPopulation (DataActionFetchCount).
+  const notificationIcon = useNotificationIcon();
+  const communityPopulation = useCommunityPopulationQuery();
   const restored = useWasRestoredFromCache();
   const [saved, setSaved] = useViewState<Model | null>('Model', null);
   const [state, dispatch] = useReducer(
@@ -206,7 +211,7 @@ export default function CountryList() {
         addHeaderGap={false}
         isGrayBackground
         placeholderHeaderTitle="Directory"
-        placeholderHeaderRight={<NotificationIcon id="$b2" />}
+        placeholderHeaderRight={<NotificationIcon id="$b2" {...notificationIcon} />}
         placeholderHeaderInput={
           <StaticInput
             id="$b3"
@@ -283,7 +288,14 @@ export default function CountryList() {
               />
             </SkeletonSection>
             <CustomContainer id="Population" options={{ PaddingSize: { TopSizeId: UBT_Size.Base } }}>
-              <CommunityPopulation id="$b18" />
+              <CommunityPopulation
+                id="$b18"
+                isLoading={communityPopulation.isPending}
+                total={communityPopulation.data ?? '0'}
+                onClick={() => {
+                  navigate(`/${APP_ID}/Updates_SingleList`); // OnClick_Block of the block
+                }}
+              />
             </CustomContainer>
             <CustomContainer id="Legend" options={{ PaddingSize: { VerticalSizeId: UBT_Size.Base } }}>
               <Columns_Two

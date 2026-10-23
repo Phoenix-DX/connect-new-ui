@@ -14,6 +14,7 @@ import {
 } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getClientVar } from '@/platform/session/session';
+import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { NotificationIcon } from '@/components/notification/NotificationIcon';
 import { BottomBar } from '@/components/layout/BottomBar';
@@ -175,6 +176,7 @@ function restoredModel(saved: Model): Model {
     SetupScrollThreshold / DestroyEventListener never get a listener object (no-ops). */
 export default function Updates_SingleList() {
   const navigate = useOsNavigate();
+  const notificationIcon = useNotificationIcon(); // the flows of App_NotificationIcon
   const restored = useWasRestoredFromCache();
   const hasCarouselEnabled = useFlagOn('C2EnableCarousel'); // GetHasCarouselEnabled (default-only, on)
   const hasExtendedShare = useFlagOn('C2ExtendedShare'); // GetHasExtendedShare (default-only, on)
@@ -533,7 +535,7 @@ export default function Updates_SingleList() {
                 {filterIcon('Icon_FilterSheet_PostScroll')}
               </>
             )}
-            <NotificationIcon id="$b7" />
+            <NotificationIcon id="$b7" {...notificationIcon} />
           </>
         }
         placeholderHeaderInput={

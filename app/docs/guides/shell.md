@@ -61,6 +61,11 @@ The PIN registration flow is in two hooks of `src/platform/session/`: `usePinCod
 `PinCode` (in `src/components/auth/`) is props-only: the PreventBackNavigation block comes in `renderPreventBackNavigation`
 and the event before SetPin in `onBeforeSetPin`, which the hooks `usePinCodeRegister` and `usePinCodeUnlock` supply.
 
+Two more hooks of `src/platform/session/` serve props-only blocks of `src/components/`. `useNotificationIcon` (client
+variables, flag C2NewNotifications, navigation) serves `NotificationIcon`. `useEmbeddedFeed(feedItemId)` (feed flags,
+B2C tenant, feed configuration, download, share to Connect) serves `EmbeddedFeed`. The pages spread the result of the hook
+into the block.
+
 The PIN unlock flow is in two hooks of `src/platform/session/`: `usePinUnlockContent` (unlock result, policies, Forgot PIN,
 error messages) and `usePinCodeUnlock` (lock state, `setPin`). `PinUnlockContentContainer` in
 `src/platform/feedback/dialogs/` runs both hooks and renders the props-only blocks `PinUnlockContent`, `PinUnlockMobile`

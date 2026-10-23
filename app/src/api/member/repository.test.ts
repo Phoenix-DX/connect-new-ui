@@ -2,12 +2,19 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ORBIT_MEMBERS } from '@/mocks/fictional/orbit';
 import { orbitAdminMember } from '@/mocks/fictional/orbitAdmin';
 import { collection } from '@/mocks/store';
-import { editMemberDetails, fetchAvailableMembers, fetchMember, requestPhotoUpdate } from './repository';
+import {
+  editMemberDetails,
+  fetchAvailableMembers,
+  fetchCommunityPopulation,
+  fetchMember,
+  requestPhotoUpdate,
+} from './repository';
 import type { AvailableMembersCallInputs, MemberAccountForm } from './types';
 
 /* The MSW mocks of the test setup: ShareSheet/mocks.ts (six fictional members, filtered by the search term),
    OrbitAdminEventDetail/mocks.ts (the members that an admin can scan), Profile/mocks.ts (the save is kept in the
-   collection Profile.editRequests) and Menu/mocks.ts (the answer to the photo update request). */
+   collection Profile.editRequests), Menu/mocks.ts (the answer to the photo update request) and
+   CommunityPopulation/mocks.ts (the recorded member count). */
 const searchInputs: AvailableMembersCallInputs = {
   In_ShareObjectTypeId: 'Household',
   In_ShareableObjectId: '7001',
@@ -77,6 +84,19 @@ describe('member repository', () => {
     ]);
     expect(member).toEqual(orbitAdminMember(memberId));
     expect(member.FirstName).not.toBe('');
+  });
+
+  it('fetchCommunityPopulation calls DataActionFetchCount of FeedBlock_CommunityPopulation and answers the count', async () => {
+    const total = await fetchCommunityPopulation();
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: 'FeedBlock_CommunityPopulation',
+        action: 'DataActionFetchCount',
+        inputNames: [],
+      }),
+    ]);
+    expect(total).toBe('54461'); // the recorded aggregate count (no person data)
   });
 
   it('editMemberDetails calls Member_EditDetails_Service with the form as it is', async () => {

@@ -5,6 +5,8 @@ import type { AvailableMembersCallInputs } from './types';
 export const memberKeys = {
   all: ['member'] as const,
   detail: (memberId: string) => [...memberKeys.all, 'detail', memberId] as const,
+  /** The member count of FeedBlock_CommunityPopulation. The call has no input. */
+  communityPopulation: () => [...memberKeys.all, 'communityPopulation'] as const,
   /** `requestId` counts the Refresh Query requests of the caller: each new request is a new key, so it fetches again. */
   availableMembers: (inputs: AvailableMembersCallInputs, requestId: number) =>
     [...memberKeys.all, 'availableMembers', inputs, requestId] as const,

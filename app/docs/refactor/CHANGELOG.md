@@ -422,3 +422,8 @@
 - 19 blocks of `src/shared/` (135 files, phase P6-G3 rows of `move-map.csv`) moved to `src/components/{layout,feed,search,share,notification,filter}/`, `src/containers/ShareSheet/` and `src/platform/navigation/ScrollAnchor/`. 16 files took the target name (path, component and `<Name>Props`). Each block has an `@origin` tag. The 19 rows are set to `moved`.
 - Gate W15: `arch-baseline.csv` got 31 rows for Rule 4 warnings that the move made visible. Owners: 17 to P6-G3-B-HomeFeed, 9 to P6-G3-B-Search, 3 to P6-G3-B-Updates_SingleList, 2 to P7.
 - Two blocks have a colocated `mocks.ts`: `FeedCms` (now in `components/feed`) and `ShareSheet` (now in `containers/ShareSheet`). The existing globs `../components/**/mocks.ts` and `../containers/*/mocks.ts` of `src/mocks/handlers.ts` pick them up; the handler set is unchanged.
+
+## P6-G3-B-HomeFeed - refactor(P6-G3-B): shared blocks of HomeFeed (page part deferred)
+
+- CommunityPopulation, EmbeddedFeed, FeedCms and NotificationIcon are props-only. Their flows are in `platform/session/useNotificationIcon.ts` and `useEmbeddedFeed.ts`. Calls: `useCommunityPopulationQuery` in `api/member`, `useFeedConfigQuery` in the new domain `api/feed`. 17 baseline rows removed.
+- HomeFeed first load is 245.99 kB gzip (+0.42 kB, limit 248.22), accepted under W21 with a tripwire on F17. The page part (FeedBlock_* split, `pages/HomeFeed/api.ts`) moves to the step P6-G3-B-HomeFeed-Page (W22). The HomeFeed page row of `move-map.csv` stays open.

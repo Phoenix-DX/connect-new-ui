@@ -1,57 +1,69 @@
 /** @origin UBTConnect.Home.Feed_Embeded */
-// @os-block UBTConnect.Home.Feed_Embeded
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { useOsNavigate } from '@/platform/navigation';
-import { APP_ID } from '@/platform/navigation/paths';
-import { getClientVar } from '@/platform/session/session';
-import { FeedCms } from '@/components/feed/FeedCms';
-import {
-  getHasExtendedShare,
-  getHasFeedEnabled,
-  openInApp_TryOpenFileInApp,
-  textToLongInteger,
-} from '@/shared/UBTConnect_Utils/lib/actions';
+import { FeedCms, type FeedCmsConfig } from '@/components/feed/FeedCms';
+import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { SharePopup } from '@/components/share/SharePopup';
-import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface EmbeddedFeedProps {
   /** OutSystems instance id of the block. */
   id?: string;
   /** FeedItemId: one feed item (FeedItemDetail, MessageDetail) instead of the feed list. */
   feedItemId?: string;
+  /** GetHasFeedEnabled: the Feed CMS embed is shown. */
+  isFeedEnabled: boolean;
+  /** GetHasExtendedShare: a share of the feed raises Event_Share instead of opening the share popup. */
+  hasExtendedShare: boolean;
+  /** The client variable UBTConnect.Embedd_B2CTenant, the B2CTenant input of Embedded_FeedCMS. */
+  b2CTenant: string;
+  /** The answer of DataActionGetFeedConfig of Embedded_FeedCMS; undefined while it loads or after it failed. */
+  feedConfig?: FeedCmsConfig;
+  /** Handle_Download: the handler of Embedded_FeedCMS OnDownloaded (opens the file). */
+  onDownloaded: (url: string, filename: string) => void;
+  /** Handle_Share_Connect after the popup closed: the caller opens LegacyShareObject for the feed item. */
+  onShareToConnect: (shareId: string, feedItemTitle: string) => void;
   /** Event Event_Share(ShareId, FeedItemTitle, FeedItemSubtitle, FeedItemImageURL): raised instead of the share popup
       when GetHasExtendedShare. */
   onEventShare?: (shareId: string, feedItemTitle: string, feedItemSubtitle: string, feedItemImageURL: string) => void;
 }
 
-/** Feed embed of the home screens (p:UBTConnect.Home.Feed_Embeded.mvc.js view from :155): the Feed CMS embed when
-    GetHasFeedEnabled (:157), the share popup it opens, and the FileTransfer plugin's download handler (renders nothing).
-    Local variables (:13-24): SharePopUp_Show, SharePopUp_Id, ShareFeedItem_Title (isLoadingDocument is only written by
-    the download handlers, never read). */
-export function EmbeddedFeed({ id, feedItemId = '', onEventShare }: EmbeddedFeedProps) {
+/** Feed embed of the home screens: the Feed CMS embed when GetHasFeedEnabled, the share popup it opens, and the
+    FileTransfer plugin's download handler (renders nothing). The local variables SharePopUp_Show, SharePopUp_Id and
+    ShareFeedItem_Title are the popup state (isLoadingDocument is only written by the download handlers, never read).
+    The flows that use the platform (flags, client variable, feed configuration, download, navigation) come from the
+    caller (`useEmbeddedFeed` of `platform/session`). */
+export function EmbeddedFeed({
+  id,
+  feedItemId = '',
+  isFeedEnabled,
+  hasExtendedShare,
+  b2CTenant,
+  feedConfig,
+  onDownloaded,
+  onShareToConnect,
+  onEventShare,
+}: EmbeddedFeedProps) {
   const prefix = id?.replace('$', '');
   const childId = (n: number) => (prefix === undefined ? undefined : `${prefix}-$b${String(n)}`);
-  const navigate = useOsNavigate();
   const [sharePopUpShow, setSharePopUpShow] = useState(false);
   const [sharePopUpId, setSharePopUpId] = useState('');
   const [shareFeedItemTitle, setShareFeedItemTitle] = useState('');
 
-  // Handle_Share (:381-405): SharePopUp_Show = In_isOpen.
+  // Handle_Share: SharePopUp_Show = In_isOpen.
   const handle_Share = (isOpen: boolean) => {
     setSharePopUpShow(isOpen);
   };
 
-  /* Embedded_FeedCMSOnShare (:455-505): with the extended share, raise Event_Share; otherwise open the share popup for
-     the item (the JSUtils_Console_Log(ShareId) call is not ported, as in Embedded_FeedCMS). */
+  /* Embedded_FeedCMSOnShare: with the extended share, raise Event_Share; otherwise open the share popup for the item
+     (the JSUtils_Console_Log(ShareId) call is not ported, as in Embedded_FeedCMS). */
   const embedded_FeedCMSOnShare = (
     shareId: string,
     feedItemTitle: string,
     feedItemSubtitle: string,
     feedItemImageURL: string,
   ) => {
-    if (getHasExtendedShare()) {
+    if (hasExtendedShare) {
       onEventShare?.(shareId, feedItemTitle, feedItemSubtitle, feedItemImageURL);
       return;
     }
@@ -60,37 +72,25 @@ export function EmbeddedFeed({ id, feedItemId = '', onEventShare }: EmbeddedFeed
     setShareFeedItemTitle(feedItemTitle);
   };
 
-  /* Handle_Download (:685-722), the handler of Embedded_FeedCMS OnDownloaded (:169-182):
-     OpenInApp_TryOpenFileInApp(Filename, URL, "connect-feed-documents", "pdf"); its outputs are not used. */
-  const handle_Download = (url: string, filename: string) => {
-    openInApp_TryOpenFileInApp(filename, url, 'connect-feed-documents', 'pdf');
-  };
-
-  /* Handle_Share_Connect (:418-453): close the popup, yield (YieldJS :879-885: one resolved promise), then
-     LegacyShareObject(In_ShareObjectTypeId Feed, In_CustomTitle, In_ObjectId) with the default transition. */
+  // Handle_Share_Connect: close the popup, then the caller's step (YieldJS, LegacyShareObject).
   const handle_Share_Connect = () => {
     handle_Share(false);
-    void Promise.resolve().then(() => {
-      navigate(`/${APP_ID}/LegacyShareObject`, {
-        In_ShareObjectTypeId: Type_ShareObject.Feed,
-        In_CustomTitle: shareFeedItemTitle,
-        In_ObjectId: sharePopUpId,
-      });
-    });
+    onShareToConnect(sharePopUpId, shareFeedItemTitle);
   };
 
   return (
     <OSBlock name="Home.Feed_Embeded" id={id}>
-      {getHasFeedEnabled() && (
+      {isFeedEnabled && (
         <FeedCms
           id={childId(1)}
-          b2CTenant={getClientVar('UBTConnect.Embedd_B2CTenant')}
+          b2CTenant={b2CTenant}
           feedItemId={feedItemId}
+          config={feedConfig}
           onOnShare={embedded_FeedCMSOnShare}
-          onOnDownloaded={handle_Download}
+          onOnDownloaded={onDownloaded}
         />
       )}
-      {/* In_ContactPopupData (:212-239): the record as built there; the other fields keep their defaults. */}
+      {/* In_ContactPopupData: the record as the block builds it; the other fields keep their defaults. */}
       <SharePopup
         id={childId(2)}
         inContactPopupData={{
@@ -113,8 +113,8 @@ export function EmbeddedFeed({ id, feedItemId = '', onEventShare }: EmbeddedFeed
         }}
         onEventShareToConnect={handle_Share_Connect}
       />
-      {/* FileTransferPlugin.FileTransfer.HandleDownload (:296): a Cordova plugin block that renders nothing
-          (captured with 0 nodes); its download events are not wired (README). */}
+      {/* FileTransferPlugin.FileTransfer.HandleDownload: a Cordova plugin block that renders nothing (captured with 0
+          nodes); its download events are not wired (README). */}
       <OSBlock name="FileTransfer.HandleDownload" id={childId(3)} />
     </OSBlock>
   );

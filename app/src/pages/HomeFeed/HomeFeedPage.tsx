@@ -16,6 +16,9 @@ import { ShareableObject } from '@/components/share/ShareableObject';
 import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
+import { useEmbeddedFeed } from '@/platform/session/useEmbeddedFeed';
+import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
+import { useCommunityPopulationQuery } from '@/api/member';
 import { NULL_DATE } from './api';
 import { AppLogo_White } from './components/AppLogo_White';
 import { FeedBlock_Services } from './components/FeedBlock_Services';
@@ -42,6 +45,11 @@ const EMPTY_UPDATE_ITEM: UpdateItem = {
 /** UBTConnect Home.HomeFeed (p:UBTConnect.Home.HomeFeed.mvc.js: model :1-79, view :140-640, controller :645-1150). */
 export default function HomeFeed() {
   const navigate = useOsNavigate();
+  // The flows of the shared blocks: App_NotificationIcon, FeedBlock_CommunityPopulation (DataActionFetchCount) and
+  // Feed_Embeded (the feed list: no FeedItemId).
+  const notificationIcon = useNotificationIcon();
+  const communityPopulation = useCommunityPopulationQuery();
+  const embeddedFeed = useEmbeddedFeed();
   // Screen variables kept by the view cache (P-BACK).
   const [hasUpdates, setHasUpdates] = useViewState('HasUpdates', true);
   const [shareableUpdateItem, setShareableUpdateItem] = useViewState('ShareableUpdateItem', EMPTY_UPDATE_ITEM);
@@ -100,7 +108,7 @@ export default function HomeFeed() {
           navigate(`/${APP_ID}/Search`);
         }}
         placeholderHeaderTitle={<AppLogo_White id="$b2" />}
-        placeholderHeaderRight={<NotificationIcon id="$b3" />}
+        placeholderHeaderRight={<NotificationIcon id="$b3" {...notificationIcon} />}
         content={
           <>
             <Section_FeedWrapper
@@ -120,7 +128,14 @@ export default function HomeFeed() {
               isTransparentBackground
               showViewAll={false}
             >
-              <CommunityPopulation id="$b7" />
+              <CommunityPopulation
+                id="$b7"
+                isLoading={communityPopulation.isPending}
+                total={communityPopulation.data ?? '0'}
+                onClick={() => {
+                  navigate(`/${APP_ID}/Updates_SingleList`);
+                }} // OnClick_Block
+              />
             </Section_FeedWrapper>
             {hasUpdates && (
               <Section_FeedWrapper
@@ -138,7 +153,7 @@ export default function HomeFeed() {
                 <FeedBlock_Updates id="$b9" onEventNoUpdates={onNoUpdates} onEventShare={onShareUpdate} />
               </Section_FeedWrapper>
             )}
-            <EmbeddedFeed id="$b10" onEventShare={onShareFeed} />
+            <EmbeddedFeed id="$b10" {...embeddedFeed} onEventShare={onShareFeed} />
             {isScreenInitialized && <DialogExitConfirmation id="$b11" />}
           </>
         }

@@ -11,16 +11,21 @@ OutSystems: `UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS` · pack
 Events: `OnShare(ItemId, FeedItemTitle, FeedItemSubtitle, FeedItemImageURL)` → `onOnShare`, `OnDownloaded(URL, Filename)`
 → `onOnDownloaded`, `OnLoaded` → `onOnLoaded`. No placeholders.
 
-Data: `DataActionGetFeedConfig` (`api.ts`, contract `UBTConnect_EmbedFeed/Embedded_FeedCMS/DataActionGetFeedConfig`,
-fictional). Mock (`mocks.ts`): BaseURL = `public/mock-embeds/feed-cms.html`, no token. Decision D8 (b, user 2026-10-14):
-the feed iframe is a same-size mock page; **BaseURL is the single switch point** for the real CMS.
+Data: `DataActionGetFeedConfig` (contract `UBTConnect_EmbedFeed/Embedded_FeedCMS/DataActionGetFeedConfig`, fictional).
+
+The component renders from props only. The caller fetches the answer with `useFeedConfigQuery` of `api/feed` and gives
+it as `config`. The inputs are FeedItemId and B2CTenant. The query logs a failure, as the block did. `useEmbeddedFeed`
+(`platform/session`) does this for Feed_Embeded.
+
+Mock (`mocks.ts`): BaseURL is the app's own origin, with no token. Decision D8 (b, user 2026-10-14): the feed iframe is
+a same-size mock page. **BaseURL is the single switch point** for the real CMS.
 
 Flow (compiled controller):
 
 - OnInitialize builds the skeleton list (5 items; 1 with FeedItemId).
 - OnReady sets isLoading.
-- After GetFeedConfig, the InitializeFeed JS node configures the Connect2Feed SDK once. It loads the feed (or one
-  item) into `<id>-connect2feeds`.
+- When `config` arrives (GetFeedConfig OnAfterFetch), the InitializeFeed JS node configures the Connect2Feed SDK once. It
+  loads the feed (or one item) into `<id>-connect2feeds`. Without `config` (loading or failed), the skeleton stays.
 - The SDK's completion runs Action_OnFeedComplete (isLoading False, OnLoaded) and handleFeedScroll (iframe `scrolling`
   yes / no around a 60 px threshold of the `.active-screen.screen-container` scroll).
 - OnDestroy removes the scroll listener.

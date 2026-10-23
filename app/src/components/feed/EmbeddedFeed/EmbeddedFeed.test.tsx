@@ -1,12 +1,9 @@
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
-import type { ReactElement } from 'react';
-import { MemoryRouter, Route, Routes, useLocation } from 'react-router';
+import { MemoryRouter } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { setFlag } from '@/platform/flags/flags';
-import { setClientVar } from '@/platform/session/session';
-import type { FeedCmsProps } from '@/components/feed/FeedCms';
+import type { FeedCmsConfig, FeedCmsProps } from '@/components/feed/FeedCms';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
-import { EmbeddedFeed } from './EmbeddedFeed';
+import { EmbeddedFeed, type EmbeddedFeedProps } from './EmbeddedFeed';
 import * as stories from './EmbeddedFeed.stories';
 
 /* The mock feed SDK raises no OnShare (Embedded_FeedCMS README, D8 b): the child is replaced by its root wrapper (the
@@ -24,18 +21,19 @@ vi.mock('@/components/feed/FeedCms', async () => {
 
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
 
-function Location() {
-  const location = useLocation();
-  return <p data-testid="location">{location.pathname + location.search}</p>;
-}
-
-function renderOnHomeFeed(ui: ReactElement) {
+/** The block on HomeFeed with the TST values (feed and extended share on); the share popup's contact popup needs a
+    router. */
+function renderBlock(over: Partial<EmbeddedFeedProps> = {}) {
   return render(
     <MemoryRouter initialEntries={['/UBTConnect/HomeFeed']}>
-      <Routes>
-        <Route path="/UBTConnect/HomeFeed" element={ui} />
-        <Route path="*" element={<Location />} />
-      </Routes>
+      <EmbeddedFeed
+        isFeedEnabled
+        hasExtendedShare
+        b2CTenant=""
+        onDownloaded={() => undefined}
+        onShareToConnect={() => undefined}
+        {...over}
+      />
     </MemoryRouter>,
   );
 }
@@ -47,24 +45,28 @@ function raiseOnShare() {
 }
 
 afterEach(() => {
-  setFlag('C2ExtendedShare', null);
-  setFlag('C2EnableFeed', null);
-  setClientVar('UBTConnect.Embedd_B2CTenant', '');
   feed.props = undefined;
 });
 
+/* The flows that use the platform (flags, the B2C tenant client variable, the feed configuration, the download and
+   the LegacyShareObject navigation) are tested with useEmbeddedFeed (platform/session/useEmbeddedFeed.test.tsx). */
 describe('Feed_Embeded', () => {
   testCapturedVariants(stories, captures);
 
-  it('passes FeedItemId and the Embedd_B2CTenant client variable to Embedded_FeedCMS', () => {
-    setClientVar('UBTConnect.Embedd_B2CTenant', 'tenant-a');
-    renderOnHomeFeed(<EmbeddedFeed id="$b3" feedItemId="7" />);
-    expect(feed.props).toMatchObject({ id: 'b3-$b1', b2CTenant: 'tenant-a', feedItemId: '7' });
+  it('passes FeedItemId, B2CTenant and the feed configuration to Embedded_FeedCMS', () => {
+    const feedConfig: FeedCmsConfig = {
+      BaseURL: 'https://cms.example',
+      Token: '',
+      TokenType: '',
+      B2CClientId: '',
+      B2CPolicy: '',
+    };
+    renderBlock({ id: '$b3', feedItemId: '7', b2CTenant: 'tenant-a', feedConfig });
+    expect(feed.props).toMatchObject({ id: 'b3-$b1', b2CTenant: 'tenant-a', feedItemId: '7', config: feedConfig });
   });
 
   it('GetHasFeedEnabled off: no feed embed; the share popup and download handler stay', () => {
-    setFlag('C2EnableFeed', 'off');
-    const { container } = renderOnHomeFeed(<EmbeddedFeed id="$b10" />);
+    const { container } = renderBlock({ id: '$b10', isFeedEnabled: false });
     expect(feed.props).toBeUndefined();
     const blocks = [...container.querySelectorAll('[data-block]')].map((el) => el.getAttribute('data-block'));
     expect(blocks).not.toContain('Blocks.Embedded_FeedCMS');
@@ -72,42 +74,39 @@ describe('Feed_Embeded', () => {
     expect(blocks).toContain('FileTransfer.HandleDownload');
   });
 
-  it('OnDownloaded: Handle_Download opens the file through OpenInApp_TryOpenFileInApp (web fallback: a new tab)', () => {
-    const open = vi.spyOn(window, 'open').mockReturnValue(null);
-    renderOnHomeFeed(<EmbeddedFeed />);
+  it('OnDownloaded: raises onDownloaded (Handle_Download) with the URL and the file name', () => {
+    const onDownloaded = vi.fn();
+    renderBlock({ onDownloaded });
     act(() => {
       feed.props?.onOnDownloaded?.('https://example.test/doc.pdf', 'doc.pdf');
     });
-    expect(open).toHaveBeenCalledWith('https://example.test/doc.pdf', '_blank', 'noopener');
-    open.mockRestore();
+    expect(onDownloaded).toHaveBeenCalledWith('https://example.test/doc.pdf', 'doc.pdf');
   });
 
   it('OnShare with the extended share (TST): raises Event_Share; the popup stays closed', () => {
     const onEventShare = vi.fn();
-    renderOnHomeFeed(<EmbeddedFeed onEventShare={onEventShare} />);
+    renderBlock({ onEventShare });
     raiseOnShare();
     expect(onEventShare).toHaveBeenCalledWith('42', 'Item title', 'Item subtitle', 'https://example.test/item.png');
     expect(screen.queryByText('Share to Connect')).toBeNull();
   });
 
-  it('OnShare without the extended share: the share popup; Share to Connect closes it and opens LegacyShareObject', async () => {
-    setFlag('C2ExtendedShare', 'off');
+  it('OnShare without the extended share: the share popup; Share to Connect closes it and raises onShareToConnect', async () => {
     const onEventShare = vi.fn();
-    renderOnHomeFeed(<EmbeddedFeed onEventShare={onEventShare} />);
+    const onShareToConnect = vi.fn();
+    renderBlock({ hasExtendedShare: false, onEventShare, onShareToConnect });
     raiseOnShare();
     expect(onEventShare).not.toHaveBeenCalled();
     expect(document.body.textContent).toContain('Share Item title');
     fireEvent.click(screen.getByText('Share to Connect'));
+    expect(onShareToConnect).toHaveBeenCalledWith('42', 'Item title');
     await waitFor(() => {
-      expect(screen.getByTestId('location').textContent).toBe(
-        '/UBTConnect/LegacyShareObject?In_ShareObjectTypeId=Feed&In_CustomTitle=Item%20title&In_ObjectId=42',
-      );
+      expect(screen.queryByText('Share to Connect')).toBeNull();
     });
   });
 
   it('Cancel closes the share popup', async () => {
-    setFlag('C2ExtendedShare', 'off');
-    renderOnHomeFeed(<EmbeddedFeed />);
+    renderBlock({ hasExtendedShare: false });
     raiseOnShare();
     fireEvent.click(screen.getByText('Cancel'));
     await waitFor(() => {

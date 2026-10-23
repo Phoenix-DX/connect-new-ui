@@ -1,6 +1,6 @@
 import { useMutation, useQuery, type UseQueryOptions } from '@tanstack/react-query';
 import { memberKeys } from './keys';
-import { editMemberDetails, fetchAvailableMembers, fetchMember } from './repository';
+import { editMemberDetails, fetchAvailableMembers, fetchCommunityPopulation, fetchMember } from './repository';
 import type { AvailableMembersCallInputs, Member, MemberAccountForm, MemberSearchResult } from './types';
 
 /** The query options that a caller can set. The key, the query function and the cache times are fixed. */
@@ -35,6 +35,21 @@ export function useMemberQuery(memberId: string, options: MemberQueryOptions<Mem
     ...options,
     queryKey: memberKeys.detail(memberId),
     queryFn: () => fetchMember(memberId),
+    ...NO_CACHE,
+  });
+}
+
+/** DataActionFetchCount of FeedBlock_CommunityPopulation as a query, with the options of the block flow that it
+    replaces: it fetches when the caller mounts, without a cache (each mount calls the server), without a retry and
+    without a refetch when the network comes back. A failed fetch logs "DataActionFetchCount failed"
+    (`meta.errorLog`, api/client/queryClient.ts), as the block did. */
+export function useCommunityPopulationQuery() {
+  return useQuery({
+    queryKey: memberKeys.communityPopulation(),
+    queryFn: () => fetchCommunityPopulation(),
+    retry: false,
+    refetchOnReconnect: false,
+    meta: { errorLog: 'DataActionFetchCount failed' },
     ...NO_CACHE,
   });
 }

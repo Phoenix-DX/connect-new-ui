@@ -6,13 +6,22 @@ const meta = {
   title: 'Shared/UBTConnect/Feed_Embeded',
   component: EmbeddedFeed,
   decorators: [
-    /* Share to Connect navigates (LegacyShareObject). */
+    /* The share popup's contact popup keeps the back navigation of the screen. */
     (Story) => (
       <MemoryRouter>
         <Story />
       </MemoryRouter>
     ),
   ],
+  /* The TST values: the feed and the extended share are on; the B2C tenant is empty in the mock app; the feed
+     configuration has not answered yet. */
+  args: {
+    isFeedEnabled: true,
+    hasExtendedShare: true,
+    b2CTenant: '',
+    onDownloaded: () => undefined,
+    onShareToConnect: () => undefined,
+  },
 } satisfies Meta<typeof EmbeddedFeed>;
 export default meta;
 type Story = StoryObj<typeof meta>;

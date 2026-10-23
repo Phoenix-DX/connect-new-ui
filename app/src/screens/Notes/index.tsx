@@ -11,6 +11,7 @@ import { UBT_Color, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/s
 import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useOsNavigate } from '@/platform/navigation';
+import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
 import { fetchNotes, getNotes_FilterYear, getNotes_Pills } from './api';
 import { FilterSheet_Icon_Label } from './components/FilterSheet_Icon_Label';
 import { Horizontal_Filter_TagList } from './components/Horizontal_Filter_TagList';
@@ -76,6 +77,7 @@ function toWireTag(t: Tag) {
     as the original actions do; `render()` publishes a copy (`vars`) that the view reads. */
 export default function Notes() {
   const navigate = useOsNavigate();
+  const notificationIcon = useNotificationIcon(); // the flows of App_NotificationIcon
   const [initial] = useState(initializedVariables);
   const v = useRef<NotesVariables>(initial);
   const [vars, setVars] = useState<NotesVariables>(initial);
@@ -198,7 +200,7 @@ export default function Notes() {
                 }}
               />
             )}
-            <NotificationIcon id="$b3" />
+            <NotificationIcon id="$b3" {...notificationIcon} />
           </>
         }
         placeholderHeaderInput={

@@ -1,8 +1,6 @@
 /** @origin UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS */
-// @os-block UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { log } from '@/platform/log/log';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { LazyImage } from '@/shared/UBTConnectLibrary/LazyImage';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
@@ -15,8 +13,17 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { getIframeObject, getScrollContainer } from '@/shared/UBTConnect_EmbedFeed/lib/actions';
-import { getFeedConfig, type FeedConfig } from './api';
 import { embed } from './connect2Feed';
+
+/** The outputs of DataActionGetFeedConfig that InitializeFeed reads (the OutSystems names). The caller fetches them
+    (`useFeedConfigQuery` of `api/feed`). */
+export interface FeedCmsConfig {
+  Token: string;
+  BaseURL: string;
+  B2CClientId: string;
+  B2CPolicy: string;
+  TokenType: string;
+}
 
 export interface FeedCmsProps {
   /** OutSystems instance id of the block. */
@@ -24,6 +31,8 @@ export interface FeedCmsProps {
   /** One feed item (FeedItemDetail, MessageDetail) instead of the feed list. */
   feedItemId?: string;
   b2CTenant?: string;
+  /** The answer of DataActionGetFeedConfig; undefined while it loads or after it failed (the skeleton stays). */
+  config?: FeedCmsConfig;
   /** Event OnShare(ItemId, FeedItemTitle, FeedItemSubtitle, FeedItemImageURL). */
   onOnShare?: (itemId: string, feedItemTitle: string, feedItemSubtitle: string, feedItemImageURL: string) => void;
   /** Event OnDownloaded(URL, Filename). */
@@ -48,7 +57,7 @@ const feedControl: Partial<FeedActions> & { start?: number } = {};
     then loads the feed list or the single item into the container. handleFeedScroll lets the iframe scroll by itself
     only once the container reaches the top (60 px threshold). */
 function initializeFeed(
-  p: { config: FeedConfig; b2CTenant: string; containerId: string; feedItemId: string },
+  p: { config: FeedCmsConfig; b2CTenant: string; containerId: string; feedItemId: string },
   a: FeedActions,
 ) {
   feedControl.onFeedComplete = a.onFeedComplete;
@@ -114,12 +123,20 @@ function initializeFeed(
   else embed.loadFeeds({ containerId: p.containerId, height: '100%', hideActions: false });
 }
 
-/** Feed CMS embed (p:UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.mvc.js view): a skeleton while loading, then the
-    `connect2feeds` container the feed SDK fills with its iframe (D8 b: a mock page). OnInitialize builds the skeleton
-    list (5 items, 1 for a single item); OnReady shows it; GetFeedConfig → InitializeFeed; OnFeedComplete hides it and
-    raises OnLoaded; OnDestroy removes the scroll listener. OnShare / OnDownloaded come from the SDK's `feed:share` /
+/** Feed CMS embed: a skeleton while loading, then the `connect2feeds` container the feed SDK fills with its iframe
+    (D8 b: a mock page). OnInitialize builds the skeleton list (5 items, 1 for a single item); OnReady shows it; the
+    answer of GetFeedConfig (`config`, fetched by the caller) → InitializeFeed; OnFeedComplete hides it and raises
+    OnLoaded; OnDestroy removes the scroll listener. OnShare / OnDownloaded come from the SDK's `feed:share` /
     `feed:download` messages (connect2Feed.ts). */
-export function FeedCms({ id, feedItemId = '', b2CTenant = '', onOnShare, onOnDownloaded, onOnLoaded }: FeedCmsProps) {
+export function FeedCms({
+  id,
+  feedItemId = '',
+  b2CTenant = '',
+  config,
+  onOnShare,
+  onOnDownloaded,
+  onOnLoaded,
+}: FeedCmsProps) {
   const prefix = id?.replace('$', '');
   const fallbackId = useId();
   const containerId = prefix === undefined ? `connect2feeds${fallbackId}` : `${prefix}-connect2feeds`;
@@ -136,40 +153,35 @@ export function FeedCms({ id, feedItemId = '', b2CTenant = '', onOnShare, onOnDo
     blockEvents.current = { onOnShare, onOnDownloaded };
   });
 
+  /* GetFeedConfig OnAfterFetch → InitializeFeed, once the caller has the answer (a new answer for new inputs). */
   useEffect(() => {
+    if (!config) return;
     let scrollListener: (() => void) | null = null;
     let alive = true;
-    getFeedConfig({ FeedItemId: feedItemId, B2CTenant: b2CTenant })
-      .then((config) => {
-        if (!alive) return;
-        initializeFeed(
-          { config, b2CTenant, containerId, feedItemId },
-          {
-            onFeedComplete: () => {
-              if (!alive) return;
-              setIsLoading(false);
-              loaded.current?.();
-            },
-            setListenerScroll: (listener) => {
-              scrollListener = listener;
-            },
-            onFeedShare: (itemId, title, subtitle, imageURL) => {
-              if (alive) blockEvents.current.onOnShare?.(itemId, title, subtitle, imageURL);
-            },
-            onFeedDownload: (url, filename) => {
-              if (alive) blockEvents.current.onOnDownloaded?.(url, filename);
-            },
-          },
-        );
-      })
-      .catch((e: unknown) => {
-        log.warn('DataActionGetFeedConfig failed', e);
-      });
+    initializeFeed(
+      { config, b2CTenant, containerId, feedItemId },
+      {
+        onFeedComplete: () => {
+          if (!alive) return;
+          setIsLoading(false);
+          loaded.current?.();
+        },
+        setListenerScroll: (listener) => {
+          scrollListener = listener;
+        },
+        onFeedShare: (itemId, title, subtitle, imageURL) => {
+          if (alive) blockEvents.current.onOnShare?.(itemId, title, subtitle, imageURL);
+        },
+        onFeedDownload: (url, filename) => {
+          if (alive) blockEvents.current.onOnDownloaded?.(url, filename);
+        },
+      },
+    );
     return () => {
       alive = false;
       if (scrollListener) getScrollContainer()?.removeEventListener('scroll', scrollListener);
     };
-  }, [feedItemId, b2CTenant, containerId]);
+  }, [config, feedItemId, b2CTenant, containerId]);
 
   return (
     <OSBlock name="Blocks.Embedded_FeedCMS" id={id}>

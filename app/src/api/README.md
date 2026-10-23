@@ -83,3 +83,9 @@ The domain has 2 query hooks and 2 mutation hooks with no caller yet.
 `usePendingPoliciesQuery` keeps the options of the old block query: `keepPreviousData`, `retry: false` and the library default cache times. It does not set `staleTime: 0` and `gcTime: 0`, because that changes what the page shows on a second visit. The key is `policyKeys.pending(inputs)`; `IsAllSelected` is sent but is not in the key.
 
 `acceptPolicies` has no hook: the page flow calls the repository function. The policy documents (`DataActionGetCacheInfo` of CacheControl_Policies) stay in `app/`, because TermsAndPoliciesMenu, PINChange and the lock dialog also read them. A later step can move them to `policy/`.
+
+`feed/` has the same files, without a mapper. It holds one call: DataActionGetFeedConfig of Embedded_FeedCMS. `useFeedConfigQuery` (inputs FeedItemId and B2CTenant) is called by `useEmbeddedFeed` in `platform/session`, which gives the answer to the `FeedCms` component as `config`. The block reads the wire record as it is.
+
+`member/` also holds DataActionFetchCount (FeedBlock_CommunityPopulation). `useCommunityPopulationQuery` is called by HomeFeed and CountryList.
+
+The queries of `feed/` and the count query of `member/` set `staleTime: 0`, `gcTime: 0`, `retry: false` and `refetchOnReconnect: false`, as the old effects did. They set `meta.errorLog` (a message). `logQueryError` in `client/queryClient.ts` logs it with `log.warn` when the fetch fails, so that `api/` does not import `platform/log`.

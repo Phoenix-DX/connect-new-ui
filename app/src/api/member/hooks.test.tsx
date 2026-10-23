@@ -1,8 +1,15 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { useAvailableMembersQuery, useEditMemberDetailsMutation, useMemberQuery } from './hooks';
+import { logQueryError } from '@/api/client/queryClient';
+import { addLogSink, type LogEntry } from '@/platform/log/log';
+import {
+  useAvailableMembersQuery,
+  useCommunityPopulationQuery,
+  useEditMemberDetailsMutation,
+  useMemberQuery,
+} from './hooks';
 import { memberKeys } from './keys';
 import type { AvailableMembersCallInputs, MemberAccountForm } from './types';
 
@@ -51,6 +58,7 @@ afterEach(() => {
 describe('member query keys', () => {
   it('the inputs and the request id are part of the key', () => {
     expect(memberKeys.detail('11')).toEqual(['member', 'detail', '11']);
+    expect(memberKeys.communityPopulation()).toEqual(['member', 'communityPopulation']);
     expect(memberKeys.availableMembers(inputs, 2)).toEqual(['member', 'availableMembers', inputs, 2]);
   });
 });
@@ -121,6 +129,42 @@ describe('useMemberQuery', () => {
     await new Promise((resolve) => setTimeout(resolve, 20));
     expect(result.current.fetchStatus).toBe('idle');
     expect(calls()).toEqual([]);
+  });
+});
+
+describe('useCommunityPopulationQuery', () => {
+  it('calls DataActionFetchCount on each mount and keeps nothing in the cache', async () => {
+    const client = new QueryClient();
+    const first = renderHook(() => useCommunityPopulationQuery(), { wrapper: providerOf(client) });
+    expect(first.result.current.isPending).toBe(true);
+    await waitFor(() => {
+      expect(first.result.current.isSuccess).toBe(true);
+    });
+    expect(first.result.current.data).toBe('54461');
+    first.unmount();
+    await waitFor(() => {
+      expect(client.getQueryCache().find({ queryKey: memberKeys.communityPopulation() })).toBeUndefined();
+    });
+    const second = renderHook(() => useCommunityPopulationQuery(), { wrapper: providerOf(client) });
+    await waitFor(() => {
+      expect(second.result.current.isSuccess).toBe(true);
+    });
+    expect(calls()).toEqual(['DataActionFetchCount', 'DataActionFetchCount']);
+  });
+
+  it('does not retry a failed call and logs "DataActionFetchCount failed"', async () => {
+    sessionStorage.setItem('mock:mock', 'error');
+    const logged: LogEntry[] = [];
+    const removeSink = addLogSink((entry) => logged.push(entry));
+    const client = new QueryClient({ queryCache: new QueryCache({ onError: logQueryError }) });
+    const { result } = renderHook(() => useCommunityPopulationQuery(), { wrapper: providerOf(client) });
+    await waitFor(() => {
+      expect(result.current.isError).toBe(true);
+    });
+    expect(result.current.data).toBeUndefined();
+    expect(calls()).toEqual(['DataActionFetchCount']);
+    expect(logged.filter((e) => e.level === 'warn').map((e) => e.message)).toEqual(['DataActionFetchCount failed']);
+    removeSink();
   });
 });
 

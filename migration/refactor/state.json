@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G3-B-Shared",
+  "step": "P6-G3-B-HomeFeed",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T00:53:28"
+  "since": "2026-10-24T01:50:00"
  },
  "steps": {
   "P0-1": {
@@ -807,12 +807,25 @@
    "finished": "2026-10-24T00:41:46"
   },
   "P6-G3-B-Shared": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T00:41:46",
    "tokens": {
     "dev": 56920,
     "test": 27369,
     "docs": 28534
+   },
+   "commit": "4806c6fe",
+   "gate": "ci: pass; diffcheck --move ok; handlers 155, same set; parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline 78 rows (31 added under W15, check --move-step ok); bundle HomeFeed 245.57/248.22, Login 186.94/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T00:53:36"
+  },
+  "P6-G3-B-HomeFeed": {
+   "status": "active",
+   "started": "2026-10-24T00:53:45",
+   "tokens": {
+    "dev": 410670,
+    "test": 29268,
+    "docs": 45977
    }
   }
  },
@@ -1004,6 +1017,16 @@
    "answer": "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): a. Opus (high) and Fable (high): options in the domain that owns the data (user info in api/member, timezone in api/locality, MyBookmarks in api/bookmark, member contacts in api/message, new api/image/keys.ts); the calls stay where they are until Phase 6.",
    "by": "user",
    "answeredAt": "2026-10-23T15:12:02"
+  },
+  {
+   "id": "Q16",
+   "step": "P6-G3-B-HomeFeed",
+   "text": "W21: HomeFeed first load +0.42 kB gzip (245.57 -> 245.99, limit 248.22): accept, split useCommunityPopulationQuery (-0.1 kB), or keep blocks fetching. W22: the page part (FeedBlock_Services, FeedBlock_Updates, Dialog_GoExternalApp, api.ts/types.ts) is not done (42 files): follow-up step after Services, or a fix loop now (~54 files).",
+   "status": "answered",
+   "at": "2026-10-24T01:38:31",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed evening): W21 (a) accept +0.42 kB with the F17 tripwire (margin < 1.0 kB or a step > 0.3 kB → stop and trim the entry; limit not raised); W22 (a) commit the shared-block part, add step P6-G3-B-HomeFeed-Page after P6-G3-B-Services, before P6-G3-C. Opus high, Fable high (agree) for both.",
+   "by": "user",
+   "answeredAt": "2026-10-24T01:39:21"
   }
  ]
 }

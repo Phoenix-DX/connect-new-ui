@@ -428,3 +428,11 @@ One line per event. Written by rf.py.
 - 2026-10-24T00:42:52 P6-G3-B-Shared stage test
 - 2026-10-24T00:52:09 P6-G3-B-Shared stage docs
 - 2026-10-24T00:53:28 P6-G3-B-Shared stage commit
+- 2026-10-24T00:53:36 P6-G3-B-Shared done 4806c6fe: ci: pass; diffcheck --move ok; handlers 155, same set; parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline 78 rows (31 added under W15, check --move-step ok); bundle HomeFeed 245.57/248.22, Login 186.94/193.84 kB gzip
+- 2026-10-24T00:53:45 P6-G3-B-HomeFeed started
+- 2026-10-24T00:53:45 P6-G3-B-HomeFeed stage dev
+- 2026-10-24T01:38:31 Q16 (P6-G3-B-HomeFeed) asked: W21: HomeFeed first load +0.42 kB gzip (245.57 -> 245.99, limit 248.22): accept, split useCommunityPopulationQuery (-0.1 kB), or keep blocks fetching. W22: the page part (FeedBlock_Services, FeedBlock_Updates, Dialog_GoExternalApp, api.ts/types.ts) is not done (42 files): follow-up step after Services, or a fix loop now (~54 files).
+- 2026-10-24T01:39:21 Q16 answered by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed evening): W21 (a) accept +0.42 kB with the F17 tripwire (margin < 1.0 kB or a step > 0.3 kB → stop and trim the entry; limit not raised); W22 (a) commit the shared-block part, add step P6-G3-B-HomeFeed-Page after P6-G3-B-Services, before P6-G3-C. Opus high, Fable high (agree) for both."
+- 2026-10-24T01:39:29 P6-G3-B-HomeFeed stage test
+- 2026-10-24T01:47:38 P6-G3-B-HomeFeed stage docs
+- 2026-10-24T01:50:00 P6-G3-B-HomeFeed stage commit

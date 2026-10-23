@@ -19,6 +19,13 @@ export async function fetchMember(memberId: string): Promise<Member> {
   return toMember(await callAction('Connect2_OrbitMobile_MUI', 'ActionGetMemberByMemberId', { MemberId: memberId }));
 }
 
+/** DataActionFetchCount of FeedBlock_CommunityPopulation (UBTConnect): the number of members of the community
+    (UI_MembersStatistics.TotalNumberOfMembers, a Long Integer as text). No screen variables. */
+export async function fetchCommunityPopulation(): Promise<string> {
+  const out = await callAction('UBTConnect', 'FeedBlock_CommunityPopulation/DataActionFetchCount', {});
+  return out.UI_MembersStatistics.TotalNumberOfMembers;
+}
+
 /** Member_EditDetails_Service (service action of UBTConnect): saves the account form of the Profile screen. No
     outputs. A write: the mocks answer it, the real server never gets it. */
 export async function editMemberDetails(

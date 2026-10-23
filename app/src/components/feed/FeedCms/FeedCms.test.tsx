@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { expectToMatchCapture } from '@/test/dom';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { embed, resetConnect2Feed } from './connect2Feed';
-import { FeedCms } from './FeedCms';
+import { FeedCms, type FeedCmsConfig } from './FeedCms';
 import * as stories from './FeedCms.stories';
 import { FEED_CMS_MOCK_URL } from './mocks';
 
@@ -12,6 +12,9 @@ import { FEED_CMS_MOCK_URL } from './mocks';
 const capturedStories = { default: stories.default, V2: stories.V2 };
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
 const { V1 } = composeStories(stories);
+
+/** The answer of DataActionGetFeedConfig that the caller gives (the mock CMS, mocks.ts). */
+const config: FeedCmsConfig = { BaseURL: FEED_CMS_MOCK_URL, Token: '', TokenType: '', B2CClientId: '', B2CPolicy: '' };
 
 /* The CMS answers through postMessage (connect2Feed.ts, SDK :182-315): a message whose origin is the configured
    BaseURL and whose source is the feed iframe. jsdom keeps the origin string as given. */
@@ -57,7 +60,7 @@ describe('Embedded_FeedCMS', () => {
 
   it('a single feed item: one skeleton item, `feed--single-item`; OnLoaded once the feed completes', async () => {
     const onLoaded = vi.fn();
-    const { container } = render(<FeedCms id="$b1" feedItemId="42" onOnLoaded={onLoaded} />);
+    const { container } = render(<FeedCms id="$b1" feedItemId="42" config={config} onOnLoaded={onLoaded} />);
     expect(container.querySelectorAll('[data-block="ConnectPatterns.LazyImage"]')).toHaveLength(1);
     expect(container.querySelector('#b1-connect2feeds')).toHaveClass('feed--single-item', 'display-none');
     await loadFeed(container);
@@ -66,11 +69,19 @@ describe('Embedded_FeedCMS', () => {
     });
   });
 
+  it('no configuration yet (GetFeedConfig loading or failed): the skeleton stays and the SDK does not start', () => {
+    const { container } = render(<FeedCms id="$b1" />);
+    expect(container.querySelectorAll('[data-block="ConnectPatterns.LazyImage"]')).toHaveLength(5);
+    expect(container.querySelector('#b1-connect2feeds')).toHaveClass('display-none');
+    expect(container.querySelector('iframe')).toBeNull();
+    expect(embed.isConfigured()).toBe(false);
+  });
+
   it('scroll lock: the iframe scrolls by itself only once the container is at the top', async () => {
     const screen = document.createElement('div');
     screen.className = 'active-screen screen-container';
     document.body.appendChild(screen);
-    const { container } = render(<FeedCms id="$b1" />, {
+    const { container } = render(<FeedCms id="$b1" config={config} />, {
       container: screen.appendChild(document.createElement('div')),
     });
     const iframe = await loadFeed(container);
@@ -81,7 +92,7 @@ describe('Embedded_FeedCMS', () => {
   });
 
   it('a feed item opens its own iframe: <BaseURL>/embed/feeds/item/<id> (SDK :691-709)', async () => {
-    const { container } = render(<FeedCms id="$b1" feedItemId="4 2" />);
+    const { container } = render(<FeedCms id="$b1" feedItemId="4 2" config={config} />);
     const iframe = await loadFeed(container);
     expect(iframe.getAttribute('src')).toBe(`${FEED_CMS_MOCK_URL}/embed/feeds/item/4%202`);
     expect(iframe.id).toBe('connect2-feed-item-4 2');
@@ -91,7 +102,9 @@ describe('Embedded_FeedCMS', () => {
   it('feed:share raises OnShare and feed:download OnDownloaded; other origins are ignored', async () => {
     const onShare = vi.fn();
     const onDownloaded = vi.fn();
-    const { container } = render(<FeedCms id="$b1" onOnShare={onShare} onOnDownloaded={onDownloaded} />);
+    const { container } = render(
+      <FeedCms id="$b1" config={config} onOnShare={onShare} onOnDownloaded={onDownloaded} />,
+    );
     const iframe = await loadFeed(container);
     fromCms(iframe, { type: 'feed:share', feedId: '7', feedTitle: 'Title', subtitle: 'Sub', image: 'img.png' });
     fromCms(iframe, { type: 'feed:download', url: 'file.pdf', fileName: 'File' });

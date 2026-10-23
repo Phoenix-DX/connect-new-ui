@@ -9,6 +9,7 @@ import type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/lib/s
 import { ShareableObject } from '@/components/share/ShareableObject';
 import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { useViewState } from '@/platform/navigation';
+import { useEmbeddedFeed } from '@/platform/session/useEmbeddedFeed';
 import { NULL_DATE, readFeedItemDetailInputs } from './api';
 
 /** UBTConnect.Home.FeedItemDetail (FeedItemDetail.mvc.js: model :1-164, view :165-478, controller :479-797):
@@ -17,6 +18,7 @@ import { NULL_DATE, readFeedItemDetailInputs } from './api';
 export default function FeedItemDetail() {
   const [params] = useSearchParams();
   const { FeedItemId } = readFeedItemDetailInputs(params);
+  const embeddedFeed = useEmbeddedFeed(FeedItemId); // the flows of Feed_Embeded
   // Screen variables (:25-82), kept by the view cache (P-BACK).
   const [isShareOpen, setIsShareOpen] = useViewState('IsShareOpen', false);
   const [shareableObjectId, setShareableObjectId] = useViewState('ShareableObjectId', '');
@@ -42,7 +44,7 @@ export default function FeedItemDetail() {
       <Layout_DetailPage
         id="$b1"
         placeholderHeaderTitle="Feed Item"
-        content={<EmbeddedFeed id="$b2" feedItemId={FeedItemId} onEventShare={onShareFeed} />}
+        content={<EmbeddedFeed id="$b2" feedItemId={FeedItemId} {...embeddedFeed} onEventShare={onShareFeed} />}
         placeholderCommonUIInsideLayout={<CommonUiLayout id="$b3" />}
       />
       <ShareSheetContainer

@@ -1,11 +1,5 @@
 /** @origin UBTConnect.App_Common_Blocks.App_NotificationIcon */
-// @os-block UBTConnect.App_Common_Blocks.App_NotificationIcon
-import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { useOsNavigate } from '@/platform/navigation';
-import { APP_ID } from '@/platform/navigation/paths';
-import { getClientVar, useClientVar } from '@/platform/session/session';
-import { getHasNewNotifications } from '@/shared/UBTConnect_Utils/lib/actions';
 import { BottomBarIconBadge } from '@/components/layout/BottomBarIconBadge';
 import { NotificationRefresh } from '@/components/notification/NotificationRefresh';
 import { UBT_Color, UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
@@ -13,37 +7,39 @@ import { UBT_Color, UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
 export interface NotificationIconProps {
   /** OutSystems instance id of the block. */
   id?: string;
+  /** isLoading of App_IconBadge: the notifications are not synchronised yet (skeleton). */
+  isLoading: boolean;
+  /** LocalNotifications: the number of unread notifications on the badge. */
+  unreadNumber: number;
+  /** Datetime of App_NotificationRefresh: the client variable UBTConnect.Notifications_LastChecked. */
+  lastChecked: string;
+  /** IconClick: the caller opens Notifications or MessageList. */
+  onIconClick: () => void;
+  /** Updated of App_NotificationRefresh: the caller reads the unread number again. */
+  onRefreshUpdated: () => void;
 }
 
-/** GetUnreadNotificationNumber (Connect2_LegacyShared): the client variable UnreadNotificationsNumber. */
-const getUnreadNotificationNumber = () => getClientVar('Connect2_LegacyShared.UnreadNotificationsNumber');
-
-export function NotificationIcon({ id }: NotificationIconProps) {
-  const navigate = useOsNavigate();
-  const isSynched = useClientVar('UBTConnect.Notifications_IsSynched');
-  const lastChecked = useClientVar('UBTConnect.Notifications_LastChecked');
-  /* LocalNotifications: set by OnReady, and again when App_NotificationRefresh reports a new LastChecked. */
-  const [localNotifications, setLocalNotifications] = useState(getUnreadNotificationNumber);
-  /* IconClick: GetHasNewNotifications (C2NewNotifications, decision D11) → Notifications, else MessageList. */
-  const iconClick = () => {
-    navigate(getHasNewNotifications() ? `/${APP_ID}/Notifications` : `/${APP_ID}/MessageList`);
-  };
+/** The bell of the home headers: App_IconBadge (at most 9, icon notifications in neutral-0) and App_NotificationRefresh.
+    The flows come from the caller (`useNotificationIcon` of `platform/session`). */
+export function NotificationIcon({
+  id,
+  isLoading,
+  unreadNumber,
+  lastChecked,
+  onIconClick,
+  onRefreshUpdated,
+}: NotificationIconProps) {
   return (
     <OSBlock name="App_Common_Blocks.App_NotificationIcon" id={id}>
       <BottomBarIconBadge
-        isLoading={!isSynched}
-        badgeNumber={String(localNotifications)}
+        isLoading={isLoading}
+        badgeNumber={String(unreadNumber)}
         maxNotifications={9}
         iconColor={UBT_Color.Neutral0}
         iconId={UBT_Icons2.Notifications}
-        onOnClick={iconClick}
+        onOnClick={onIconClick}
       />
-      <NotificationRefresh
-        datetime={lastChecked}
-        onUpdated={() => {
-          setLocalNotifications(getUnreadNotificationNumber());
-        }}
-      />
+      <NotificationRefresh datetime={lastChecked} onUpdated={onRefreshUpdated} />
     </OSBlock>
   );
 }

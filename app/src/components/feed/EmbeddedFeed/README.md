@@ -18,6 +18,22 @@ Children:
 - `FileTransferPlugin.FileTransfer.HandleDownload`: a Cordova plugin block that renders nothing. It is an empty
   `OSBlock`, as `HandleOnResumeOpenLink` does for its plugin blocks.
 
+## Props from the caller
+
+The component renders from props only; it keeps the share popup state (SharePopUp_Show, SharePopUp_Id,
+ShareFeedItem_Title). The flows that use the platform are in `useEmbeddedFeed(feedItemId)`
+(`platform/session/useEmbeddedFeed.ts`). HomeFeed and FeedItemDetail call the hook and give the result to the component
+with `id`, `feedItemId` and `onEventShare`:
+
+| Prop               | From the hook                                                                       |
+| ------------------ | ----------------------------------------------------------------------------------- |
+| `isFeedEnabled`    | GetHasFeedEnabled (flag C2EnableFeed)                                               |
+| `hasExtendedShare` | GetHasExtendedShare (flag C2ExtendedShare)                                          |
+| `b2CTenant`        | the client variable `UBTConnect.Embedd_B2CTenant`                                   |
+| `feedConfig`       | DataActionGetFeedConfig of Embedded_FeedCMS (`useFeedConfigQuery` of `api/feed`)    |
+| `onDownloaded`     | Handle_Download: OpenInApp_TryOpenFileInApp                                         |
+| `onShareToConnect` | Handle_Share_Connect after the popup closed: yield, then the LegacyShareObject page |
+
 ## Wiring
 
 - Embedded_FeedCMS only when GetHasFeedEnabled (flag C2EnableFeed, TST on; :157), with B2CTenant = client variable

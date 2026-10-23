@@ -5,9 +5,18 @@ OutSystems: `UBTConnect.Home.FeedBlock_CommunityPopulation` · pack
 
 Inputs, events, placeholders: none. Click (OnClick_Block) → `/UBTConnect/Updates_SingleList`.
 
-Data: `DataActionFetchCount` (`api.ts`; contract `UBTConnect/FeedBlock_CommunityPopulation/DataActionFetchCount`,
-recorded). Mock (`mocks.ts`): the recorded fixture (aggregate count, no person data). While it loads the count is
-`00000` inside a loading SkeletonSection; after an error, `0`. FormatDecimal(…, 0, "", ","): no group separator.
+The component renders from props only:
+
+| Prop        | What it is                                                                          |
+| ----------- | ----------------------------------------------------------------------------------- |
+| `isLoading` | DataActionFetchCount has not answered yet: `00000` inside a loading SkeletonSection |
+| `total`     | TotalNumberOfMembers (text); `0` after an error                                     |
+| `onClick`   | OnClick_Block: the caller opens Updates_SingleList                                  |
+
+Data: `DataActionFetchCount` (contract `UBTConnect/FeedBlock_CommunityPopulation/DataActionFetchCount`, recorded). The
+callers (HomeFeed, CountryList) fetch it with `useCommunityPopulationQuery` of `api/member` (no cache, no retry; a
+failure logs "DataActionFetchCount failed"). Mock (`mocks.ts`): the recorded fixture (aggregate count, no person data).
+FormatDecimal(…, 0, "", ","): no group separator.
 
 ## Captured variants (2 tested)
 
@@ -18,4 +27,4 @@ recorded). Mock (`mocks.ts`): the recorded fixture (aggregate count, no person d
 
 ## Not captured / not settled
 
-- The loading state (skeleton) and the error state: from the compiled code only, tested.
+- The loading state (skeleton, story `Loading`) and the error state: from the compiled code only, tested.
