@@ -27,6 +27,9 @@ difference or a state could not run, 0 otherwise. A run that differs is repeated
 counts as clean and the report names it (timing flake). Self runs fix the page clock and finish or pause animations.
 Every run (record and both references) passes --preload-fonts: all web fonts start to load at once, so no font arrives
 after the first paint of the content (a late icon font moved the "View Guests" button text of EventDetail, P4-F6).
+Self runs and the record also pass --hold-third-party: under the fixed clock, Leaflet keeps any tile of an earlier zoom
+level that loaded before a zoom change, so third-party requests (map tiles) wait for the page's startup (CountryDetails,
+P5-F9).
 
 Reference manifest (migration/refactor-reference/manifest.json): a record of every finished route writes the full-record
 data (source commit, date, app, counts, size). A record of some routes keeps that data and adds or replaces one entry per
@@ -169,7 +172,7 @@ def build_cmd(c, args, route, state, meta, ref, plan):
         cmd += ["--settle", str(plan["settle"])]
     refdir = os.path.join(REFERENCE, route, state)
     if args.record_self:
-        return cmd + ["--record-self", refdir, "--freeze-animations", "--fixed-time", FIXED_TIME]
+        return cmd + ["--record-self", refdir, "--freeze-animations", "--fixed-time", FIXED_TIME, "--hold-third-party"]
     out = os.path.join(RUNS, ref, route, f"{state}.json")
     cmd += ["--out", out]
     if args.level == "visual":
@@ -182,7 +185,7 @@ def build_cmd(c, args, route, state, meta, ref, plan):
         if os.path.exists("migration/parity-exemptions.json"):
             cmd += ["--exemptions", "migration/parity-exemptions.json"]
     else:
-        cmd += ["--self-ref", refdir, "--freeze-animations", "--fixed-time", FIXED_TIME]
+        cmd += ["--self-ref", refdir, "--freeze-animations", "--fixed-time", FIXED_TIME, "--hold-third-party"]
         rules = self_rules(route)
         if rules:
             ex = os.path.join(RUNS, ref, route, f"{state}.exemptions.json")

@@ -48,7 +48,7 @@ details, because the entries of `parity-exemptions.json` match on it.
 ### Parallel runs (Phase 6 worktrees)
 
 Runs at the same time need a different `--out` and a different `--app` each; nothing else is shared (the reference folder
-is read-only in a compare run). Use a lower `--jobs` when 3 to 4 runs share the machine. `--changed` reads `git diff` of
+is read-only in a compare run). Each self run starts its own `--hold-third-party` proxy on a free port of `127.0.0.1`. Use a lower `--jobs` when 3 to 4 runs share the machine. `--changed` reads `git diff` of
 the main tree, so a tester of a worktree names the routes or the files:
 
 ```
@@ -76,6 +76,28 @@ layout then moves, and a composited layer keeps the sub-pixel offset of its firs
 On EventDetail/default, the "View Guests" button (`.btn`, `transform: translateZ(0)` in the legacy CSS) had two
 renders 256 px apart: 6 of 15 tries failed before the fix (P4-F6). With all fonts loading at once, the font comes first
 in every run. The final render does not change.
+
+Third-party hosts: self runs and the record pass `--hold-third-party` to `parity_check.cjs`; the `outsystems` runs do
+not (no fixed clock there). Leaflet fades a loaded map tile in with `Date` steps. Under the fixed clock, no tile becomes
+active. Thus Leaflet keeps every loaded tile of an earlier zoom level as a stand-in.
+
+On CountryDetails/default, the map opens at zoom 5. A `setTimeout(…, 0)` and the next frame then fit the bounds
+(zoom 4). A zoom-5 tile that loaded in this gap stayed in the tree as a second tile level. Before the fix, 2 of 15 tries
+under load failed with structure, style, layout and position differences (P5-F9).
+
+With the option, the browser context of the app uses a local proxy. The app host and loopback addresses go direct. The
+proxy holds each connection to another host (here the map tile servers) until two conditions are true:
+
+1. The own requests of the page are idle for 500 ms. A host stops being "own" when the browser connects to it through
+   the proxy. MSW answers mocked hosts in the service worker, so their calls stay own requests.
+2. The page ran its queued timers and two animation frames.
+
+Thus every zoom-5 tile is still loading at the zoom change, and Leaflet cancels it. The page requests for held tiles stay
+in flight, so `networkidle` waits for them. The tiles load before the settle time, and the final render does not change.
+
+Do not use `page.route` for this hold. A Playwright route turns on request interception. Then Playwright reports a
+request that the MSW service worker answers only when its response arrives. Thus `networkidle` does not wait for mocked
+calls in flight. In a test, HouseholdDetails/default then took its snapshot with 7 skeleton sections still on the page.
 
 Reference manifest (`migration/refactor-reference/manifest.json`):
 
@@ -118,6 +140,9 @@ the named routes). Add an entry only with the user's confirm.
 - `--preload-fonts`: an init script of both pages (app and replayed capture) starts loading every `@font-face` font
   as soon as a stylesheet is in. Test: `node .claude/skills/outsystems-screen-spec/scripts/parity_check.cjs
   --self-test` (an unused font starts to load with the script and stays unloaded without it).
+- `--hold-third-party`: with `--fixed-time`, the app context uses a local proxy. A connection to a third-party host
+  waits for idle own requests of the page, then for its queued timers and two frames. Test: `--self-test` (the
+  third-party request goes on after the own request and after the queued frame; `networkidle` waits for it).
 
 With `--self-ref`, the script normalizes local origins before the style, attribute and call comparison, on both sides:
 `http(s)://localhost:<port>` and `http(s)://127.0.0.1:<port>` become `http://localhost:*`
