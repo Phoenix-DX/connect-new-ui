@@ -24,7 +24,7 @@ Node comes from `~/.nvm/versions/node/v24.21.0/bin`, and Playwright from `node_m
 
 ```
 python3 migration/tools/refactor_parity.py --level strict|visual [--all | --routes R1 R2 | --changed [--since <commit>]]
-    [--ref outsystems|self|both] [--record-self [--source-commit <rev>]] [--report <file.md>] [--app URL] [--jobs 4]
+    [--ref outsystems|self|both] [--record-self [--source-commit <rev>]] [--report <file.md>] [--out <dir>] [--app URL] [--jobs 4]
 ```
 
 | Option | Effect |
@@ -35,14 +35,31 @@ python3 migration/tools/refactor_parity.py --level strict|visual [--all | --rout
 | `--record-self` | Records the running app as the self-parity reference in `migration/refactor-reference/<Route>/<state>/` (`tree.json`, `screenshot.png`), then stops. About 2 min for 64 routes, 160 MB, so the folder is in `.gitignore`: record it again on a new clone, at the commit that is the reference |
 | `--source-commit` | With `--record-self`: the commit of the code that the app at `--app` serves, written to the manifest. Give it when the app runs from another worktree (for example the reference commit on port 5175). Default: `HEAD` of this tree |
 | `--changed` | Routes whose import closure holds a changed file (`git diff --name-only <since>` and untracked files; default `HEAD~1`). The closure comes from `app/docs/refactor/graph.json` (dependency-cruiser, `modules[].dependencies[].resolved`); the tool runs `npm --prefix app run graph` first when the file is missing or older than the newest commit. Entry of a route: `src/screens/<R>/index.tsx` or `src/pages/<R>/<R>Page.tsx`. A change in `app/src/app`, `platform`, `api/client`, `legacy/os`, `styles`, `shell`, `mocks`, `app/public`, `app/index.html`, the app build config or the exemption files selects all routes (`shared`, `lib` and `components` are not global: the closure covers them). `--files <path>...` replaces the git diff; `--explain` prints the selected routes and the files that selected them, then exits |
-| `--report` | Markdown: one line per route and state, a total per reference. Default `migration/refactor-parity/last/report.md` |
+| `--report` | Markdown: one line per route and state, a total per reference. Default `<out>/report.md` |
+| `--out` | Output folder of the run, under `migration/refactor-parity/` (anything else is refused). Default `migration/refactor-parity/last`. Only this folder is deleted at the start of a run |
 | `--jobs` | Parallel browser runs (default 4) |
 
 Run time: about 4.3 min for `--all --ref both` (298 runs, 4 jobs). Exit code 1 when a route has a difference or
 a state did not run. A run that differs is repeated once; when the second try is clean, the run counts as clean and the report names it.
-Outputs of a run (reports, screenshots, diff images) go to `migration/refactor-parity/last/` (replaced at each run, in
+Outputs of a run (reports, screenshots, diff images) go to `--out` (default `migration/refactor-parity/last/`; replaced at each run, in
 `.gitignore`). The OutSystems side names the frozen `migration/screens/<R>/parity/<state>.diff.png` path in pixel
 details, because the entries of `parity-exemptions.json` match on it.
+
+### Parallel runs (Phase 6 worktrees)
+
+Runs at the same time need a different `--out` and a different `--app` each; nothing else is shared (the reference folder
+is read-only in a compare run). Use a lower `--jobs` when 3 to 4 runs share the machine. `--changed` reads `git diff` of
+the main tree, so a tester of a worktree names the routes or the files:
+
+```
+python3 migration/tools/refactor_parity.py --routes Profile Menu --ref both --jobs 2 \
+    --app http://localhost:5176 --out migration/refactor-parity/p6-3
+python3 migration/tools/refactor_parity.py --changed --files app/src/pages/Profile/ProfilePage.tsx --jobs 2 \
+    --app http://localhost:5176 --out migration/refactor-parity/p6-3
+```
+
+Do not start `--record-self` or `--changed` without `--files` in parallel (the first writes the shared reference; the
+second may run `npm --prefix app run graph`, which rewrites `app/docs/refactor/graph.json`).
 
 Reports written with `--report app/docs/refactor/reports/<step>.md` are generated output. `app/.prettierignore` lists
 `docs/refactor/reports`, so they never break `format:check` in `npm --prefix app run ci`.

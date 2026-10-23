@@ -6,7 +6,8 @@ Run from the project root, with the dev server up (npm --prefix app run dev):
         [--all | --routes R1 R2 ... | --changed [--since <commit>]]
         [--ref outsystems|self|both]      default both
         [--record-self [--source-commit <rev>]]   record the self-parity reference from the running app, then stop
-        [--report app/docs/refactor/reports/<name>.md]   default migration/refactor-parity/last/report.md
+        [--report app/docs/refactor/reports/<name>.md]   default <out>/report.md
+        [--out migration/refactor-parity/<name>]   output folder, default migration/refactor-parity/last
         [--app http://localhost:5173] [--jobs 4]
 
 Levels (skill checks of parity_check.cjs):
@@ -19,7 +20,8 @@ References:
     self        migration/refactor-reference/<Route>/<state>/ (tree.json, screenshot.png, calls), recorded by
                 --record-self; exemptions migration/refactor-exemptions.json (a list, see migration/tools/README.md)
 
-Outputs: reports and screenshots in migration/refactor-parity/last/<ref>/<Route>/ (replaced at each run, not committed);
+Outputs: reports and screenshots in <out>/<ref>/<Route>/ (<out> is replaced at each run, not committed; --out lets runs
+with other --app URLs go at the same time, each with its own folder, which must be under migration/refactor-parity/);
 the Markdown report has one line per route and state and a total per reference. Exit code 1 when a route has a
 difference or a state could not run, 0 otherwise. A run that differs is repeated once; when the second try is clean it
 counts as clean and the report names it (timing flake). Self runs fix the page clock and finish or pause animations.
@@ -58,6 +60,15 @@ GLOBAL_PATHS = ("app/src/app/", "app/src/platform/", "app/src/api/client", "app/
 
 sys.path.insert(0, SK)
 import route as skill  # noqa: E402  (the skill's route.py: state loading, URL and plan helpers; main() is guarded)
+
+
+def resolve_out(path):
+    """--out must be a folder under migration/refactor-parity/ (it is deleted at the start of a run); exits otherwise."""
+    root = os.path.realpath("migration/refactor-parity")
+    full = os.path.realpath(path)
+    if not full.startswith(root + os.sep):
+        sys.exit(f"--out {path}: must be a folder under migration/refactor-parity/")
+    return os.path.relpath(full)
 
 
 def git(*a):
@@ -239,6 +250,7 @@ def summarize(out):
 
 
 def main():
+    global RUNS
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--level", choices=["strict", "visual"], default="strict")
     g = ap.add_mutually_exclusive_group()
@@ -252,7 +264,9 @@ def main():
     ap.add_argument("--record-self", action="store_true")
     ap.add_argument("--source-commit", help="with --record-self: the commit of the code that the app at --app serves "
                     "(when it runs from another worktree); default HEAD of this tree")
-    ap.add_argument("--report", default=os.path.join(RUNS, "report.md"))
+    ap.add_argument("--report", help="Markdown report file; default <out>/report.md")
+    ap.add_argument("--out", default=RUNS, help="output folder under migration/refactor-parity/ (default %(default)s); "
+                    "only this folder is deleted at the start of a run")
     ap.add_argument("--app", default="http://localhost:5173")
     ap.add_argument("--jobs", type=int, default=4)
     ap.add_argument("--node", default=os.path.join(NODE_BIN, "node"))
@@ -262,6 +276,8 @@ def main():
     if args.source_commit and not args.record_self:
         ap.error("--source-commit goes with --record-self")
     commit = source_commit(args.source_commit or "HEAD") if args.record_self else None
+    RUNS = resolve_out(args.out)
+    args.report = args.report or os.path.join(RUNS, "report.md")
 
     started = time.time()
     c = skill.Ctx(SimpleNamespace(migration_dir="migration", app_dir="app"))
