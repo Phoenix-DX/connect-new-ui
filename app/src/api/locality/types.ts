@@ -1,0 +1,269 @@
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
+
+/* Domain types of the locality calls: the fields that the UI reads. The readers are the screens BrowseDirectory,
+   Locality_Details (and its tag blocks), AssembleEvents and LDM_MyEvents_V2, the blocks SupperMeeting_DetailsBlock
+   and FilterSheet (through CacheControl_AllLocalities), and the Assemble blocks (through Connect2_LegacyShared). Each
+   type has the shape that its readers use today, so no caller changes: camelCase fields where a screen mapped the
+   record, the OutSystems names and nesting where the reader takes the record as it is. The wire types stay in
+   src/api/schema.d.ts. Long Integer ids are text. */
+
+/* ---- Statistics cards (UBTConnectLibrary) ---- */
+
+/** One count of a statistics card (UBTConnectLibrary TextTextUBT_ColorIdentifierUBT_IconsIdentifier). */
+export interface StatisticsCount {
+  Name?: string;
+  Value?: string;
+  /** UBT_Color identifier. */
+  IconColorId?: string;
+  /** UBT_Icons identifier; "" (null identifier) = no icon. */
+  IconId?: string;
+}
+
+/** A statistics card (UBTConnectLibrary StatisticsOptions): the title, the subtitle, the avatar and the counts. */
+export interface StatisticsCard {
+  Title?: string;
+  Subtitle?: string;
+  AvatarURL?: string;
+  Statistics?: StatisticsCount[];
+}
+
+/* ---- AssembleEvents: DataActionGetSubdivisionName ---- */
+
+/** The inputs of DataActionGetSubdivisionName besides SubdivisionName (the block variables that its flow sets;
+    SubdivisionName is sent empty). A type alias, not an interface: the contract inputs have an index signature. */
+export type SubdivisionNameCallInputs = {
+  SubdivisionId: string;
+  ShowBackNavigation: boolean;
+  IsUserSubdivision: boolean;
+};
+
+/* ---- BrowseDirectory: DataActionGetLocalityStatistics ---- */
+
+/** A locality of BrowseDirectory (Connect_Geography_CS UI_LocalityStatistics): the id, the name, the coordinates and
+    the statistics card. The screen does not read UI_TypedStatisticsTexts or MainHallSubdivisionId. */
+export interface LocalityCard {
+  /** LocalityId (Long Integer as text; "0" = the record default). */
+  localityId: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  statistics: StatisticsCard;
+}
+
+/** The localities of a country with their cards, and the country name: the outputs of
+    DataActionGetLocalityStatistics of BrowseDirectory, with the list unwrapped. */
+export interface LocalityCardList {
+  localities: LocalityCard[];
+  countryName: string;
+}
+
+/* ---- LDM_MyEvents_V2: DataActionGetEventLocalitiesForFilter ---- */
+
+/** The inputs of DataActionGetEventLocalitiesForFilter: the variables of MyEvents_MyTimelineFilterButton that the
+    server reads. A type alias: the contract inputs have an index signature. */
+export type EventLocalitiesCallInputs = {
+  In_HasLoaded: boolean;
+  In_DefaultDateRangeInMonths: number;
+  In_IsShowing: boolean;
+  IsShowFilters: boolean;
+  HasLocalityData: boolean;
+};
+
+/** A locality choice of the timeline filter (Connect2_OrbitMobile_BL EventLocalitiesFilter). The filter sends the
+    record back in SelectedFilters.Localities, so every attribute stays. */
+export interface EventFilterLocality {
+  IdAsText: string;
+  IsSelected: boolean;
+  Name: string;
+}
+
+/* ---- Locality_Details: the locality and its tag blocks ---- */
+
+/** A tag of the screen (UBTConnectLibrary Tag), as the screen keeps it in TagsList. Absent attributes take their
+    OutSystems default when the call sends them. */
+export interface LocalityTag {
+  Text?: string;
+  Identifier?: string;
+  IconId?: string;
+  IsSelected?: boolean;
+  Enabled?: boolean;
+}
+
+/** The screen variables that OutSystems sends with DataActionGet_LocalityDetails (the recorded call's inputs,
+    src/mocks/fixtures/UBTConnect/DataActionGet_LocalityDetails/01-a5fd3a96.json). */
+export type LocalityDetailsCallInputs = {
+  TagsList: LocalityTag[];
+  HeaderIsScrolled: boolean;
+  TagsList_SelectedTag: string;
+  IsUserLocality: boolean;
+  LocalityLabel: string;
+  IsScreenInitialized: boolean;
+  LocalityId: string;
+  PreloadedLocalityLabel: string;
+};
+
+/** Connect_Geography_CS UI_LocalityDetails_ForHousehold (Get_LocalityDetails.LocalityDetails), flattened. */
+export interface LocalityDetails {
+  bretherenCount: number;
+  householdCount: number;
+  maiinHallLatitude: string;
+  mainHallLongitude: string;
+  localityName: string;
+  countryName: string;
+  countryCode: string;
+  timezoneName: string;
+  /** UI_LocalityTimezone.TimezoneOffset: seconds, Long Integer as text. */
+  timezoneOffset: string;
+}
+
+/** Connect_Subdivision_CS UI_Subdivision_Card_Content: the name, the address and the counts of a supper meeting. */
+export interface SubdivisionCardContent {
+  Address?: string;
+  BretherenCount?: number;
+  BrothersCount?: number;
+  HouseholdCount?: number;
+  Name?: string;
+  SistersCount?: number;
+}
+
+/** Connect_Subdivision_CS UI_Subdivision_Card (Get_Subdivision_List.Out_Subdivision_Card_List), as Locality_Details
+    keeps it. */
+export interface SubdivisionCard {
+  subdivisionId: string;
+  content: SubdivisionCardContent;
+}
+
+/** The block variables that OutSystems sends with DataActionGet_Subdivision_List (Locality_Subdivisions model). */
+export interface SubdivisionListCallInputs {
+  getSubdivisions_StartIndex: number;
+  getSubdivisions_Offset: number;
+  subdivision_Card_List: SubdivisionCard[];
+  subdivision_Card_List_IsLoading: boolean;
+  isPaginated: boolean;
+  localityId: string;
+}
+
+/** Connect_Subdivision_CS UI_Interchange (GetInterchangesByLocalityId.Out_InterchangeList). */
+export interface Interchange {
+  interchangeLocalityId: string;
+  interchangeLocalityName: string;
+  interchangeCountryName: string;
+  interchangeDistance: string;
+  isBookmarked: boolean;
+  interchangeStatistics: StatisticsCard;
+}
+
+/** Connect_CommunityBusiness_CS UI_OneSchool_Card (Get_OneSchoolGlobal_List.Out_OneSchoolGlobal_List), flattened. */
+export interface OneSchoolCard {
+  communityBusinessId: string;
+  signedURL: string;
+  name: string;
+  localityName: string;
+  localityId: string;
+  countryName: string;
+  countryCode: string;
+  phone: string;
+  email: string;
+}
+
+/** Connect_Geography_CS UI_LocalityTimezone: the time zone name and its offset in seconds (Long Integer as text). */
+export interface LocalityTimezone {
+  TimezoneName: string;
+  TimezoneOffset: string;
+}
+
+/** The block variables that OutSystems sends with DataActionGet_OneSchoolGlobal_List (Locality_OneSchoolGlobal model). */
+export interface OneSchoolListCallInputs {
+  getOneSchoolGlobal_List_StartIndex: number;
+  getOneSchoolGlobal_List_Offset: number;
+  get_OneSchoolGlobal_List_IsLoading: boolean;
+  out_OneSchoolGlobal_List2: OneSchoolCard[];
+  in_LocalityId: string;
+  in_LocalityTimezoneData: LocalityTimezone;
+}
+
+/* ---- SupperMeeting_DetailsBlock: DataActionGetSubdivision ---- */
+
+/** Connect_Subdivision_CS UI_Screen_SubdivisionDetails: the card of a supper meeting, with the OutSystems names that
+    the block reads. The block does not read Subdivision_Actions. */
+export interface SubdivisionDetails {
+  Subdivision_Card: {
+    SubdivisionId: string;
+    Subdivision_Card_Content: SubdivisionCardContent;
+  };
+}
+
+/* ---- CacheControl_AllLocalities: DataActionGetCacheInfo ---- */
+
+/** A locality of the list of all localities (UBTConnect_Utils UI_LocalityDetails): the fields that FilterSheet reads. */
+export interface LocalityListItem {
+  LocalityId: string;
+  Name: string;
+  CountryCode: string;
+}
+
+/** The list of all localities (UBTConnect_Utils CacheControl_AllLocalities). The list stays wrapped
+    (`LocalityList.List`): the block CacheControl_AllLocalities puts the record in the memory cache and raises it in its
+    Result event, and FilterSheet reads it as it is. */
+export interface AllLocalities {
+  LocalityList: { List: LocalityListItem[] };
+}
+
+/** The inputs of DataActionGetCacheInfo of CacheControl_AllLocalities. A type alias: the contract inputs have an index
+    signature. */
+export type AllLocalitiesCallInputs = {
+  CacheKey: string;
+  CacheTypeId: string;
+  TimeToLiveSeconds: number;
+};
+
+/* ---- Connect2_LegacyShared server actions (the Assemble blocks, through the memory cache) ---- */
+
+/** Connect2_LegacyShared CacheableLocalityInformation: the locality of GetLocalityInformation. The record stays as the
+    contract describes it: GetCacheableLocality keeps it in the memory cache, and GetLocalBookmarkedLocalityInformation
+    (Connect2_Assemble_MUI) clones it and sets IsBookmarked in the locality and in its interchange, household, supper
+    meeting, school and store lists, as the original client action does. */
+export type LocalityInformation = ActionOutputs<
+  PathOf<'Connect2_LegacyShared', 'ActionGetLocalityInformation'>
+>['CacheableLocalityInformation'];
+
+/** A signed photo (APIDomain_Directory_IS ImageData): the parts that the attendee rows read. */
+export interface SignedPhoto {
+  Bucket: string;
+  Path: string;
+  Type: string;
+  SignedURL: string;
+}
+
+/** A household of a supper meeting (APIDomain_Directory_IS LocalityHouseholdsResultItem): the fields that the
+    attendee rows of AssembleEventDetail_Localities read. */
+export interface SubdivisionHousehold {
+  Id: string;
+  Name: string;
+  Family: string;
+  Location: string;
+  IsBookmarked: boolean;
+  Photo340: SignedPhoto;
+}
+
+/** Connect2_LegacyShared CacheableSubdivisionInformation: the households of a supper meeting and the locality and
+    country of its hall, with the OutSystems names and nesting that AssembleEventDetail_Localities reads. The household
+    list stays wrapped (`HouseholdListResponse.List`). */
+export interface SubdivisionInformation {
+  HouseholdListResponse: { List: SubdivisionHousehold[] };
+  Subdivision: {
+    Locality: {
+      /** Long Integer, as text. */
+      Id: string;
+      Country: { Code: string };
+    };
+  };
+}
+
+/** One answer of GetBulkSubdivisions_V2 (Connect2_LegacyShared CacheableSubdivisionInformationTextTextRecord): the
+    cache key (a hall id), an error text ("" = none) and the record. */
+export interface SubdivisionInformationResult {
+  CacheKey: string;
+  Error: string;
+  Value: SubdivisionInformation;
+}

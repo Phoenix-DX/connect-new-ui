@@ -22,6 +22,7 @@
 
 The refactor parity tool starts every run with `--preload-fonts`. `--record-self --routes <R>` records only those routes
 and keeps the other data of the reference (`rerecorded` list in the manifest; `--source-commit` names the code commit).
+It also passes `--hold-third-party` on self runs and on `--record-self`. A local proxy then holds map tile requests until the page is idle (15 s at most).
 
 Tests sit next to the code (`*.test.ts(x)`). Each shared block has a DOM snapshot test per captured state. Platform widgets
 (`src/components/*`), the shell (`src/platform`) and local entities have their own unit tests. Each vendored script has an

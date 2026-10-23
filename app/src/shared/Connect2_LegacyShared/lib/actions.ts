@@ -3,6 +3,7 @@
 import { callAction } from '@/api/client/callAction';
 import { fetchCountryLocalities, fetchRegionSubscribedCountries } from '@/api/country';
 import { osList, wireList } from '@/legacy/os/os-wire';
+import { fetchBulkSubdivisions, fetchLocalityInformation } from '@/api/locality';
 import {
   cacheKeyPart,
   getCacheKeyParts,
@@ -25,7 +26,6 @@ import type {
   BulkSignedPhotoResult,
   CacheableLocalityInformation,
   CacheableSubdivisionInformation,
-  CacheableSubdivisionInformationTextText,
   CountryWithMapPosition,
   LocalityResultItemWithGPS,
   MemberContactWithTimezone,
@@ -285,14 +285,11 @@ export async function getCacheableCountryInfo(countryCode = ''): Promise<Localit
   return getCacheableObject(DirectoryCacheType.Countries, countryCode, 1200, () => getCountryInformation(countryCode));
 }
 
-/** GetLocalityInformation(LocalityId) (controller.js:5124-5170): server action GetLocalityInformation (:7743-7800,
-    contract operation `Connect2_LegacyShared/ActionGetLocalityInformation`, O-B3); LocalityInformation =
-    CacheableLocalityInformation. Not ported: the Foreach SignedPhotosPreload → PutCachedSignedPhotoURL (no built block
-    reads those photos yet; the fictional mock sends none). */
-export async function getLocalityInformation(localityId = '0'): Promise<CacheableLocalityInformation> {
-  const out = await callAction('Connect2_LegacyShared', 'ActionGetLocalityInformation', { LocalityId: localityId });
-  return out.CacheableLocalityInformation;
-}
+/** GetLocalityInformation(LocalityId): the server action GetLocalityInformation, in the domain api/locality
+    (fetchLocalityInformation); LocalityInformation = CacheableLocalityInformation, as it is. Not ported: the Foreach
+    SignedPhotosPreload → PutCachedSignedPhotoURL (no built block reads those photos yet; the fictional mock sends
+    none). */
+export const getLocalityInformation = fetchLocalityInformation;
 
 /** GetCacheableLocality(LocalityId) (controller.js:3278-3342): LocalityId 0 raises ObjectNotFound "Invalid locality
     id"; otherwise the memory cache (type DirectoryCacheType.Localities, key LongIntegerToText(LocalityId), TTL 1200 s
@@ -403,15 +400,9 @@ export function flipHouseholdName(originalName: string): string {
 
 /* ---- F15 (CR-AssembleDetail-1): GetCacheableSubdivision_V2 ---- */
 
-/** Server action GetBulkSubdivisions_V2 (controller.js:7691-7704, `screenservices/Connect2_LegacyShared/
-    ActionGetBulkSubdivisions_V2`, added through migration/contract/extra-actions.json): CacheKeys (Text list) in,
-    Results (CacheableSubdivisionInformationTextText list) out. */
-export async function getBulkSubdivisions_V2(cacheKeys: string[]): Promise<CacheableSubdivisionInformationTextText[]> {
-  const out = await callAction('Connect2_LegacyShared', 'ActionGetBulkSubdivisions_V2', {
-    CacheKeys: wireList(cacheKeys),
-  });
-  return osList(out.Results);
-}
+/** Server action GetBulkSubdivisions_V2, in the domain api/locality (fetchBulkSubdivisions): CacheKeys (Text list) in,
+    Results (CacheableSubdivisionInformationTextText list, with the fields that the UI reads) out. */
+export const getBulkSubdivisions_V2 = fetchBulkSubdivisions;
 
 /** GetBulkSubdivision_V2(CacheKeys) (controller.js:3070-3110), the bulk callback of the subdivision cache:
     Results = GetBulkSubdivisions_V2.Results, each as (CacheKey, Error, Value) for the memory cache. */

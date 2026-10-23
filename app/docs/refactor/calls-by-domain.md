@@ -67,6 +67,8 @@ P5-2-country: the 7 actions of this table (6 files, 7 distinct actions, counts u
 | `shared/UBTConnect/SupperMeeting_DetailsBlock/api.ts`                               | UBTConnect            | `SupperMeeting_DetailsBlock/DataActionGetSubdivision`                                                                                                                                                                                 |
 | `shared/UBTConnect_Utils/CacheControl_AllLocalities/CacheControl_AllLocalities.tsx` | UBTConnect_Utils      | `CacheControl_AllLocalities/DataActionGetCacheInfo`                                                                                                                                                                                   |
 
+P5-2-locality: the 11 actions of this table (7 files, 11 distinct actions, counts unchanged) are now in `src/api/locality/repository.ts`. The `api.ts` files above re-export it; `Connect2_LegacyShared/lib/actions.ts` and `CacheControl_AllLocalities` call its functions. The household calls of `screens/Locality_Details/api.ts` stay in the household table.
+
 ## update
 
 | File                                | Module     | Actions                                                                                                                                                                                                                               |

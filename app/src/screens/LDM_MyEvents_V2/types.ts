@@ -1,16 +1,14 @@
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
+import type { EventFilterLocality } from '@/api/locality';
 
-/* Wire shapes of the two data actions (analysis/calls.md; contract src/api/openapi.yaml). Long Integers stay text. */
+/* Wire shapes of DataActionGetEventsForMyTimeline (analysis/calls.md; contract src/api/openapi.yaml). Long Integers
+   stay text. The wire shapes of DataActionGetEventLocalitiesForFilter are in the domain api/locality. */
 export type GetEventsForMyTimelineWire = ActionOutputs<
   PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_MyEvents_V2/DataActionGetEventsForMyTimeline'>
->;
-export type GetEventLocalitiesForFilterWire = ActionOutputs<
-  PathOf<'Connect2_OrbitMobile_MUI', 'MyEvents_MyTimelineFilterButton/DataActionGetEventLocalitiesForFilter'>
 >;
 export type TimelineEventGroup_V2Wire = GetEventsForMyTimelineWire['Out_PastEvents']['List'][number];
 export type EventCalendar_V2Wire = GetEventsForMyTimelineWire['Out_UpcomingEvents']['List'][number];
 export type CalendarGuestItem_V2Wire = EventCalendar_V2Wire['Guests']['List'][number];
-export type EventLocalitiesFilterWire = GetEventLocalitiesForFilterWire['EventLocalities']['List'][number];
 
 /** CalendarGuestItem_V2 (Connect2_OrbitMobile_IS): one guest household of an event. */
 export type CalendarGuestItem = CalendarGuestItem_V2Wire;
@@ -27,8 +25,9 @@ export interface TimelineEventGroup {
   EventsCalendar: EventCalendar[];
 }
 
-/** EventLocalitiesFilter (Connect2_OrbitMobile_BL): one locality choice of the timeline filter. */
-export type EventLocality = EventLocalitiesFilterWire;
+/** EventLocalitiesFilter (Connect2_OrbitMobile_BL): one locality choice of the timeline filter, the domain type of
+    api/locality. */
+export type EventLocality = EventFilterLocality;
 
 /** EventCalendarFiltersAsText (Connect2_OrbitMobile_BL): PastEventFilters / SelectedFilters (dates "YYYY-MM-DD"). */
 export interface EventCalendarFiltersAsText {

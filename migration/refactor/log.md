@@ -193,3 +193,8 @@ One line per event. Written by rf.py.
 - 2026-10-23T10:25:44 P5-2-country stage docs
 - 2026-10-23T10:26:48 P5-2-country stage commit
 - 2026-10-23T10:26:50 P5-2-country done d91327c: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed: 33/0 (OutSystems), 33/0 (self) (first run self 32/1: CountryDetails/default under load, F9; 3/3 and a full rerun clean); exemptions []; bundle within +5% (+1.4%)
+- 2026-10-23T12:00:07 P5-2-locality started
+- 2026-10-23T12:00:07 P5-2-locality stage dev
+- 2026-10-23T12:00:16 P5-2-locality stage test
+- 2026-10-23T12:09:27 P5-2-locality stage docs
+- 2026-10-23T12:10:52 P5-2-locality stage commit

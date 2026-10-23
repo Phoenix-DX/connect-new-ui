@@ -47,8 +47,9 @@ export type UI_ShareableObject_Generic = Partial<Schemas['Connect2_Sharing_CS__U
 export type CacheControl_UserInformation = Schemas['UBTConnect_Utils__CacheControl_UserInformation'];
 /** CacheControl_AllCountries structure: Result of CacheControl_AllCountries (CountryList of UI_CountryDetails). */
 export type CacheControl_AllCountries = Schemas['UBTConnect_Utils__CacheControl_AllCountries'];
-/** CacheControl_AllLocalities structure: Result of CacheControl_AllLocalities (LocalityList of UI_LocalityDetails). */
-export type CacheControl_AllLocalities = Schemas['UBTConnect_Utils__CacheControl_AllLocalities'];
+/** CacheControl_AllLocalities structure: Result of CacheControl_AllLocalities (LocalityList of UI_LocalityDetails), the
+    domain type AllLocalities of api/locality: the fields that the UI reads. */
+export type { AllLocalities as CacheControl_AllLocalities } from '@/api/locality';
 /** Directory_UserCurrent structure (APIDomain_Directory_IS): the Result of CacheControl_UserInfo_Wrapper. */
 export type Directory_UserCurrent = Schemas['APIDomain_Directory_IS__Directory_UserCurrent'];
 

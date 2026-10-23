@@ -200,3 +200,15 @@
 - New `src/api/country/` (types, mapper, repository, keys, hooks, barrel) for 7 calls (statistics of 3 screens, GetCountryInfo, 2 shared actions, CacheControl_AllCountries). The old `api.ts` and `types.ts` of the 4 screens re-export it; Connect2_LegacyShared and CacheControl_AllCountries call the domain functions. Two mappers keep only the fields the UI reads.
 - The developer worked in a prefetch worktree (M8). The wire alias `CacheControl_AllCountries` in `shared/UBTConnect_Utils/lib/structures.ts` has no importer now: remove it later.
 - Strict parity `--changed`: 33 routes clean for both references. The first run had a CountryDetails/default self difference under load; it did not repeat (follow-up F9). `move-map.csv` is unchanged.
+
+## P5-F9 - fix(P5-F9): remove the CountryDetails/default parity flake under load
+
+- Architecture: no change. Cause: in the self runs, the map opens at zoom 5 and `fitBounds` starts the zoom to 4 in the next frame. A zoom-5 tile that loaded in this gap stays in the tree, because the fixed clock stops Leaflet's tile fade. Under load, 2 of 15 tries failed.
+- New option `parity_check.cjs --hold-third-party` (off by default, so `route.py parity` is unchanged). A local proxy holds each third-party connection. It lets the connection go when the own requests are idle (15 s at most) and the page ran its queued timers and two frames. `refactor_parity.py` passes it on self runs and on `--record-self`.
+- Proof: CountryDetails/default 15 of 15 tries under load (before: 13 of 15); `--all --ref both` gives 64/0 on both references. Open point: the self runs of CountryDetails and BrowseDirectory still load map tiles from the live tile servers. `move-map.csv` is unchanged.
+
+## P5-2-locality - refactor(P5-2): add api/locality
+
+- New `src/api/locality/` (types, mapper, repository, keys, hooks, barrel) for 11 calls. They are in BrowseDirectory, AssembleEvents, LDM_MyEvents_V2, Locality_Details (4), Connect2_LegacyShared (2), SupperMeeting_DetailsBlock and CacheControl_AllLocalities. The 7 old caller files re-export it under their old names. The 5 hooks have no caller yet.
+- `GetLocalityInformation` keeps its full record, because the client action that bookmarks a locality clones it. Mappers keep only the fields that the UI reads for `SubdivisionDetails`, `AllLocalities` and `SubdivisionInformation`. The developer worked in a prefetch worktree (M8).
+- Strict parity `--changed`: 64 of 64 routes clean for both references. `move-map.csv` has one row for these calls, `CacheControl_AllLocalities`, which already points to `src/api/locality/hooks.ts` and is unchanged.

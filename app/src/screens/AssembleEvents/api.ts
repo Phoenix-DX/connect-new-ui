@@ -21,18 +21,9 @@ const filterWire = (f: AssembleEventFilter) => ({
   AssembleEventType: { List: f.AssembleEventType },
 });
 
-/** ScreenBlock_AssembleEvents DataActionGetSubdivisionName (OnReady with a SubdivisionId) → SelectedSubdivisionName. */
-export async function getSubdivisionName(vars: {
-  SubdivisionId: string;
-  ShowBackNavigation: boolean;
-  IsUserSubdivision: boolean;
-}): Promise<string> {
-  const out = await callAction('Connect2_Assemble_MUI', 'ScreenBlock_AssembleEvents/DataActionGetSubdivisionName', {
-    ...vars,
-    SubdivisionName: '',
-  });
-  return out.SelectedSubdivisionName;
-}
+/* ScreenBlock_AssembleEvents DataActionGetSubdivisionName (OnReady with a SubdivisionId) → SelectedSubdivisionName is
+   in the domain api/locality. This module keeps the name that the block uses, until it imports the domain name. */
+export { fetchSubdivisionName as getSubdivisionName } from '@/api/locality';
 
 /** GetCacheableUserInfo (Connect2_LegacySharedController) → the Subdivision the blocks read (Id, Name). */
 export async function getUserSubdivision(): Promise<{ Id: string; Name: string }> {

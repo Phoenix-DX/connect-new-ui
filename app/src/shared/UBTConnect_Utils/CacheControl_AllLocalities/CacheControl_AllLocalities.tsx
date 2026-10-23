@@ -1,7 +1,7 @@
 // @os-block UBTConnect_Utils.CacheControl.CacheControl_AllLocalities
 import { useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { callAction } from '@/api/client/callAction';
+import { fetchAllLocalities } from '@/api/locality';
 import { CACHE_TYPE, putCacheableObject } from '@/platform/storage/memoryCache';
 import { getClientVar } from '@/platform/session/session';
 import { CacheControl } from '@/shared/UBTConnect_Utils/CacheControl';
@@ -36,13 +36,13 @@ export function CacheControl_AllLocalities({
     latest.current?.(object as CacheControl_AllLocalitiesRec);
   };
   const onNonCacheHit = async () => {
-    const out = await callAction('UBTConnect_Utils', 'CacheControl_AllLocalities/DataActionGetCacheInfo', {
+    const response = await fetchAllLocalities({
       CacheKey: key,
       CacheTypeId: CACHE_TYPE.allLocalities,
       TimeToLiveSeconds: timeToLiveSeconds,
     });
-    putCacheableObject(CACHE_TYPE.allLocalities, key, out.CacheControl_Response, timeToLiveSeconds);
-    latest.current?.(out.CacheControl_Response);
+    putCacheableObject(CACHE_TYPE.allLocalities, key, response, timeToLiveSeconds);
+    latest.current?.(response);
   };
   return (
     <OSBlock name="CacheControl.CacheControl_AllLocalities" id={id}>

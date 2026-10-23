@@ -1,14 +1,8 @@
 import { callAction } from '@/api/client/callAction';
 import { osList } from '@/legacy/os/os-wire';
-import type {
-  EventCalendar,
-  EventCalendar_V2Wire,
-  EventCalendarFiltersAsText,
-  EventLocality,
-  MyTimelineData,
-} from './types';
+import type { EventCalendar, EventCalendar_V2Wire, EventCalendarFiltersAsText, MyTimelineData } from './types';
 
-/** Module of both data actions (screenservices/Connect2_OrbitMobile_MUI/…). */
+/** Module of the timeline data action (screenservices/Connect2_OrbitMobile_MUI/…). */
 const MODULE = 'Connect2_OrbitMobile_MUI';
 
 const toEventCalendar = (w: EventCalendar_V2Wire): EventCalendar => ({ ...w, Guests: osList(w.Guests) });
@@ -22,18 +16,10 @@ export interface MyEventsVariables {
   PastEventFilters: EventCalendarFiltersAsText;
 }
 
-/** DataActionGetEventLocalitiesForFilter (data action of MyEvents_MyTimelineFilterButton, on demand:
-    GetEventLocalitiesData, MyEvents_MyTimelineFilterButton.mvc.js ctrl :410-420; captured call 2, phase load). */
-export async function getEventLocalitiesForFilter(vars: {
-  In_HasLoaded: boolean;
-  In_DefaultDateRangeInMonths: number;
-  In_IsShowing: boolean;
-  IsShowFilters: boolean;
-  HasLocalityData: boolean;
-}): Promise<EventLocality[]> {
-  const out = await callAction(MODULE, 'MyEvents_MyTimelineFilterButton/DataActionGetEventLocalitiesForFilter', vars);
-  return osList(out.EventLocalities);
-}
+/* DataActionGetEventLocalitiesForFilter (data action of MyEvents_MyTimelineFilterButton, on demand:
+   GetEventLocalitiesData; captured call 2, phase load) is in the domain api/locality. This module keeps the name that
+   the block uses, until it imports the domain name. */
+export { fetchEventFilterLocalities as getEventLocalitiesForFilter } from '@/api/locality';
 
 /** DataActionGetEventsForMyTimeline (data action of ScreenBlock_MyEvents_V2, on demand: GetMyTimelineData,
     ScreenBlock_MyEvents_V2.mvc.js ctrl :1200-1215; captured call 3, phase load). */

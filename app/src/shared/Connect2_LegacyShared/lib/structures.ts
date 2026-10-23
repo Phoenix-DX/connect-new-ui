@@ -49,11 +49,8 @@ export type Timezone = Schemas['APIDomain_Directory_IS__Timezone'];
 
 /* ---- F15 (CR-AssembleDetail-1, CR-AssembleDetail-2) ---- */
 /** CacheableSubdivisionInformation (model.js:5755): the hall (SubdivisionExtended) and its households
-    (HouseholdListResponse, LocalityHouseholdsResultItem list), as GetBulkSubdivisions_V2 sends it. */
-export type CacheableSubdivisionInformation = Schemas['Connect2_LegacyShared__CacheableSubdivisionInformation'];
-/** CacheableSubdivisionInformationTextTextRecord (model.js:7171): one answer of GetBulkSubdivisions_V2 (CacheKey, Error,
-    Value). */
-export type CacheableSubdivisionInformationTextText =
-  Schemas['Connect2_LegacyShared__CacheableSubdivisionInformationTextTextRecord'];
+    (HouseholdListResponse, LocalityHouseholdsResultItem list), the domain type SubdivisionInformation of api/locality:
+    the fields that the UI reads. */
+export type { SubdivisionInformation as CacheableSubdivisionInformation } from '@/api/locality';
 /** Connect2_MyBookmarks_IS BookmarkItem: a legacy bookmark (AddBookmarkToCache, the MyBookmarks cache). */
 export type BookmarkItem = Schemas['Connect2_MyBookmarks_IS__BookmarkItem'];
