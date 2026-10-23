@@ -500,3 +500,9 @@
 
 - `pages/BrowseCountries` is a page with a flow hook `useBrowseCountries` (on `useFlowState`, W23 once-guard and isAlive write guard) and a pure state file `browseCountriesState`. It has no container.
 - `api.ts`, `types.ts` and `components/actions.ts` are deleted; the hook calls `fetchBrowseCountriesStatistics` of `api/country`. The view cache key is now `Directory_Locality.BrowseCountries`.
+
+## P6-G4-B-BrowseDirectory - refactor(P6-G4-B): BrowseDirectory as page
+
+- `pages/BrowseDirectory` is a page with a flow hook `useBrowseDirectory` (on `useFlowState`, W23 once-guard and write guard) and a pure state file `browseDirectoryState`. The page renders `DetailLayout` with `useNavigateBack`, not the `Layout_DetailPage` adapter.
+- `api.ts`, `types.ts` and `components/actions.ts` are deleted; the flow calls `fetchLocalityCardList` of `api/locality` on demand. `useLocalityCardListQuery` has no caller yet: a query refetches on return and drop the 10 placeholder rows.
+- The view cache key is now `Directory_Locality.BrowseDirectory`.

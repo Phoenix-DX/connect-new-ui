@@ -85,6 +85,8 @@ P6-G3-B-HomeFeed-Page: `pages/HomeFeed/api.ts` is deleted (its rows in the updat
 
 P6-G4-B-BrowseCountries: `pages/BrowseCountries/api.ts` is deleted (its row in the country table). The hook `useBrowseCountries` calls `fetchBrowseCountriesStatistics` of `@/api/country` directly.
 
+P6-G4-B-BrowseDirectory: `pages/BrowseDirectory/api.ts` is deleted (its row in the locality table). The hook `useBrowseDirectory` calls `fetchLocalityCardList` of `@/api/locality` directly. `GetLocalityStatistics` is unchanged.
+
 P6-G1-B-Menu: `ActionRequestPhotoUpdate` moved to `src/api/member/repository.ts` (decision W9). The domain comes from the data that the call owns: the photo of the signed-in member. The tables now list it under member. `screens/Menu/api.ts` is deleted. `pages/Menu/hooks/useMenu.ts` calls `requestPhotoUpdate`.
 
 ## event

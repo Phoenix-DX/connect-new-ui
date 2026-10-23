@@ -516,3 +516,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T04:10:16 P6-G4-B-BrowseCountries stage test
 - 2026-10-24T04:19:32 P6-G4-B-BrowseCountries stage docs
 - 2026-10-24T04:30:16 P6-G4-B-BrowseCountries stage commit
+- 2026-10-24T04:30:17 P6-G4-B-BrowseCountries done 73016cf9: ci: pass (2618 tests); parity visual: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; bundle HomeFeed 244.17/248.22, Login 184.20/193.84 kB gzip; W23 holds
+- 2026-10-24T04:30:17 P6-G4-B-BrowseDirectory started
+- 2026-10-24T04:30:18 P6-G4-B-BrowseDirectory stage dev
+- 2026-10-24T04:30:57 P6-G4-B-BrowseDirectory stage test
+- 2026-10-24T04:35:03 P6-G4-B-BrowseDirectory stage docs
+- 2026-10-24T04:36:25 P6-G4-B-BrowseDirectory stage commit
