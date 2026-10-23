@@ -1538,6 +1538,23 @@
    ]
   },
   {
+   "id": "P6-F17",
+   "phase": "P6",
+   "title": "OnReady before paint option in useFlowState",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is the platform fix of decision W28 (migration/refactor/auto-decisions-2026-10-22.md). Add an opt-in `beforePaint` option to `useFlowState` (platform/navigation/flowState.ts): when it is set, OnReady runs once in a layout effect, before the first paint, as the old G5 and G6 blocks ran it. StrictMode runs it once; `isAlive` is true until the unmount and guards the state writes only (W23); a rejection goes to the flow handler, also after the unmount. The option is off by default, so no page changes. Unit tests for both modes: the state of the first paint, one run in StrictMode, unmount while OnReady is pending, the restored flag. Document the option in docs/guides/page-template.md: a page sets it when the old block ran OnReady in a useLayoutEffect. Reference: the page-local hook useReadyBeforePaint of the MilestoneDetail prefetch.",
+   "deps": [
+    "P6-G4-C"
+   ]
+  },
+  {
    "id": "P6-G5-A",
    "phase": "P6",
    "title": "Move group G5 to pages/",
@@ -1551,7 +1568,7 @@
    "anchor": "### Phase 6",
    "extra": "This step is step A (move) of group G5 only. Routes: OrbitLanding, OrbitAdminLanding, OrbitAdminEventDetail, EventDetail, EventBooklet, MilestoneDetail, GuestArrangements, HelpersDetail, HostSurvey, TransportDetail, MyEntertaining, LDM_MyEvents_V2, LDM_EventDetail_V2, LDM_Email_V2, AssembleEvents, AssembleDetail.",
    "deps": [
-    "P6-G4-C"
+    "P6-F17"
    ]
   },
   {

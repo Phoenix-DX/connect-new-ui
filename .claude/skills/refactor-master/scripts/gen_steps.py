@@ -126,6 +126,17 @@ AFTER_GROUP = {
             "the bookmark and update domains. Target: Login first load at least 2.5 kB smaller (about 190.6 kB "
             "gzip or less); if not reached, also shrink the route table manifest. No behavior change: parity strict "
             "--all with the call check.")],
+    # W28 (Opus + Fable, auto-accepted user instruction 2026-10-23 13:43)
+    "G4": [("P6-F17", "OnReady before paint option in useFlowState", "change", "visual", "opus", None, 0.25,
+            "This step is the platform fix of decision W28 (migration/refactor/auto-decisions-2026-10-22.md). Add an "
+            "opt-in `beforePaint` option to `useFlowState` (platform/navigation/flowState.ts): when it is set, OnReady "
+            "runs once in a layout effect, before the first paint, as the old G5 and G6 blocks ran it. StrictMode runs "
+            "it once; `isAlive` is true until the unmount and guards the state writes only (W23); a rejection goes to "
+            "the flow handler, also after the unmount. The option is off by default, so no page changes. Unit tests "
+            "for both modes: the state of the first paint, one run in StrictMode, unmount while OnReady is pending, "
+            "the restored flag. Document the option in docs/guides/page-template.md: a page sets it when the old block "
+            "ran OnReady in a useLayoutEffect. Reference: the page-local hook useReadyBeforePaint of the "
+            "MilestoneDetail prefetch.")],
 }
 STRETCH_PHASES = {"P8", "P9"}  # R1 (b): phases 8 and 9 run only on the user's request
 
