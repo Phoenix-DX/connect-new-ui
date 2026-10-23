@@ -1,4 +1,3 @@
-import { callAction } from '@/api/client/callAction';
 import type { MessageDetailInputs } from './types';
 
 const osBoolean = (v: string | null): boolean => v !== null && v.toLowerCase() === 'true';
@@ -22,10 +21,6 @@ export function readMessageDetailInputs(params: URLSearchParams): MessageDetailI
      StartIndex 0 by GetMessageInstanceByIdOnAfterFetch. */
 export { fetchMessageInstance, fetchMessageTemplateParameters } from '@/api/message';
 
-/** Wrapper_NotificationOpened(MessageInstanceId) → IsRetracted (controller :685-706). */
-export async function wrapper_NotificationOpened(messageInstanceId: string): Promise<boolean> {
-  const out = await callAction('Connect2_LegacyShared', 'ActionWrapper_NotificationOpened', {
-    MessageInstanceId: messageInstanceId,
-  });
-  return out.IsRetracted;
-}
+/* Wrapper_NotificationOpened(MessageInstanceId) → IsRetracted (controller :685-706) is in the domain
+   api/notification; this module keeps the name that the screen uses. */
+export { markNotificationOpened as wrapper_NotificationOpened } from '@/api/notification';

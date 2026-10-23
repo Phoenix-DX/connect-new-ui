@@ -1,4 +1,4 @@
-import { callAction } from '@/api/client/callAction';
+import { markAllNotificationsAsRead } from '@/api/notification';
 import type { MessageListVariables } from './types';
 
 /* The two data actions and the two message marks of ScreenBlock_MessageList are in the domain api/message; this
@@ -13,13 +13,13 @@ import type { MessageListVariables } from './types';
    TotalCount 0, never assigned in the block). */
 export { fetchMessageInstanceExists, fetchMessages, markMessageAsClear, markMessageAsRead } from '@/api/message';
 
-/** Wrapper_MarkAllAsReadNotifications(IsPublic, IsPrivate, DeviceHardwareId, SearchTerm) → TotalChange. */
-export async function wrapper_MarkAllAsReadNotifications(v: MessageListVariables): Promise<number> {
-  const out = await callAction('Connect2_LegacyShared', 'ActionWrapper_MarkAllAsReadNotifications', {
-    IsPublic: v.Filter_MessageTypePublic,
-    IsPrivate: v.Filter_MessageTypePrivate,
-    DeviceHardwareId: v.DeviceHardwareId,
-    SearchTerm: v.SelectedHistorySearch,
+/** Wrapper_MarkAllAsReadNotifications(IsPublic, IsPrivate, DeviceHardwareId, SearchTerm) → TotalChange: the block
+    sends its message-type filters, the device and the selected search. The call is in the domain api/notification. */
+export function wrapper_MarkAllAsReadNotifications(v: MessageListVariables): Promise<number> {
+  return markAllNotificationsAsRead({
+    isPublic: v.Filter_MessageTypePublic,
+    isPrivate: v.Filter_MessageTypePrivate,
+    deviceHardwareId: v.DeviceHardwareId,
+    searchTerm: v.SelectedHistorySearch,
   });
-  return out.TotalChange;
 }

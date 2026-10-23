@@ -234,3 +234,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T14:44:04 P5-3-message stage test
 - 2026-10-23T14:55:37 P5-3-message stage docs
 - 2026-10-23T14:56:13 P5-3-message stage commit
+- 2026-10-23T14:56:23 P5-3-message done cf0d7a5: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+4.0%)
+- 2026-10-23T14:58:05 P5-3-notification started
+- 2026-10-23T14:58:05 P5-3-notification stage dev
+- 2026-10-23T14:58:28 P5-3-notification stage test
+- 2026-10-23T15:05:25 P5-3-notification stage docs
+- 2026-10-23T15:06:04 P5-3-notification stage commit

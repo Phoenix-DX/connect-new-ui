@@ -244,3 +244,8 @@
 - New `src/api/message/` (types, mapper, repository, keys, hooks, barrel) for 19 calls of 11 screens. The old `api.ts` and `types.ts` files re-export it; `Directory_EntityDetailsActions/api.ts`, `Connect2_LegacyShared/lib` and `platform/bootstrap/startup.ts` use it.
 - Three e-mail screens now share one form type and one mapper (only the JSON key order changes). Wrapper_NotificationOpened and Wrapper_MarkAllAsReadNotifications stay in the screens. The 17 hooks have no caller yet.
 - Strict parity `--changed`: 64 of 64 routes clean for both references. `move-map.csv` is unchanged.
+
+## P5-3-notification - refactor(P5-3-notification): Domain api/notification
+
+- New `src/api/notification/` (types, mapper, repository, keys, hooks, barrel) for 4 calls of 3 screens. The old `api.ts` files of Notifications, MessageDetail and MessageList re-export it; `MessageList/api.ts` keeps an adapter for the four block variables.
+- `api/notification` does not import `api/message`. The 4 hooks have no caller yet. Strict parity `--changed`: 64 of 64 routes clean for both references; `move-map.csv` is unchanged.

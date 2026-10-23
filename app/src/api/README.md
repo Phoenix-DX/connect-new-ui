@@ -69,6 +69,12 @@ The AddNote mapper drops `ItemId` and `NoteCategoryId` of the answer, because no
 
 The old `api.ts` and `types.ts` files of these screens re-export it under their old names. `Directory_EntityDetailsActions/api.ts` re-exports `fetchEntityContactDetails` as `fetchContactDetails`. `shared/Connect2_LegacyShared/lib` uses the domain too.
 
-The domain has one e-mail form type, `ContactByEmailForm`, and one mapper, `toOrbitContactEmailInputs`, for three screens that had their own copies. `sendContactEmail` returns IsSuccess. `fetchEntityContactDetails` does not return LocalityId, because no code reads it. Wrapper_NotificationOpened and Wrapper_MarkAllAsReadNotifications stay in the screens (the inventory lists them under "notification").
+The domain has one e-mail form type, `ContactByEmailForm`, and one mapper, `toOrbitContactEmailInputs`, for three screens that had their own copies. `sendContactEmail` returns IsSuccess. `fetchEntityContactDetails` does not return LocalityId, because no code reads it. Wrapper_NotificationOpened and Wrapper_MarkAllAsReadNotifications are in `notification/`.
 
 The domain has 8 query hooks and 9 mutation hooks with no caller yet. They set `staleTime: 0`, `gcTime: 0` and no retry by default. GetNumberUnreadMessages and GetMemberContactByCacheKey are server-action reads and have no hook.
+
+`notification/` has the same files. It holds 4 calls: DataActionFetchNotifications and DataActionGetDateRanges (Notifications), Wrapper_NotificationOpened (MessageDetail) and Wrapper_MarkAllAsReadNotifications (MessageList).
+
+The old `api.ts` files of these three owners re-export it under their old names. `MessageList/api.ts` keeps a small adapter: `wrapper_MarkAllAsReadNotifications` maps the four block variables to the camelCase inputs of `markAllNotificationsAsRead`. `api/notification` does not import `api/message`. `screens/Notifications/types.ts` keeps `MessageListItemWire` for the mocks.
+
+The domain has 2 query hooks and 2 mutation hooks with no caller yet.
