@@ -636,3 +636,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,201390,refactor-dev,,P6-G4-B-CountryDetails opus
 2026-10-24,refactor,verify,26099,refactor-test,,P6-G4-B-CountryDetails sonnet
 2026-10-24,refactor,other,34910,refactor-docs,,P6-G4-B-CountryDetails sonnet
+2026-10-24,refactor,build,367455,refactor-dev,,P6-G4-B-Household_Relations opus
+2026-10-24,refactor,verify,33637,refactor-test,,P6-G4-B-Household_Relations sonnet

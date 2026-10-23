@@ -6,6 +6,8 @@ import {
   toHouseholdCoordinates,
   toLocalityHouseholdIds,
   toLocalityHouseholdIdsInputs,
+  toMemberRelations,
+  toSiblingRelations,
 } from './mapper';
 import type {
   Household,
@@ -14,7 +16,10 @@ import type {
   HouseholdCaptionCallInputs,
   HouseholdCoordinates,
   LocalityHouseholdIdsCallInputs,
+  MemberRelations,
+  MemberRelationsCallInputs,
   PhotobookHousehold,
+  SiblingRelations,
 } from './types';
 
 /** The two data actions of HouseholdDetails_Block, called with their OutSystems names. They are fetched on demand
@@ -50,5 +55,22 @@ export async function fetchHouseholdCaption(inputs: HouseholdCaptionCallInputs):
       'Photobook_Options_Left/DataActionGetHouseholdCaption',
       toHouseholdCaptionInputs(inputs),
     ),
+  );
+}
+
+/* The two data actions of HouseholdRelations_Block (the relations of a member), on demand only: the block refreshes
+   Get_MemberDetails in its OnReady, then Get_ParentHouseholdDetails after it. Both send the same inputs. */
+
+/** DataActionGet_MemberDetails: the member name, the family name, the father, the mother and the previous spouses. */
+export async function fetchMemberRelations(inputs: MemberRelationsCallInputs): Promise<MemberRelations> {
+  return toMemberRelations(
+    await callAction('UBTConnect', 'HouseholdRelations_Block/DataActionGet_MemberDetails', inputs),
+  );
+}
+
+/** DataActionGet_ParentHouseholdDetails: the siblings of the member, from the household of his parents. */
+export async function fetchSiblingRelations(inputs: MemberRelationsCallInputs): Promise<SiblingRelations> {
+  return toSiblingRelations(
+    await callAction('UBTConnect', 'HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails', inputs),
   );
 }

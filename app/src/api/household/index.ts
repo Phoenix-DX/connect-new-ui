@@ -5,5 +5,7 @@ export {
   fetchHouseholdCaption,
   fetchHouseholdCoordinates,
   fetchLocalityHouseholdIds,
+  fetchMemberRelations,
+  fetchSiblingRelations,
 } from './repository';
 export type * from './types';

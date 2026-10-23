@@ -4,8 +4,10 @@ import {
   fetchHouseholdCaption,
   fetchHouseholdCoordinates,
   fetchLocalityHouseholdIds,
+  fetchMemberRelations,
+  fetchSiblingRelations,
 } from './repository';
-import type { HouseholdCallInputs } from './types';
+import type { HouseholdCallInputs, MemberRelationsCallInputs } from './types';
 
 /* The MSW mocks of the test setup answer the fictional household of HouseholdDetails/default (5 members, no married
    children, visible) for an unknown HouseholdId. */
@@ -124,5 +126,50 @@ describe('household repository: Photobook', () => {
         selectedHousehold: { id: '0', position: 0 },
       }),
     ).rejects.toThrow('Request failed with status 500');
+  });
+});
+
+/* The MSW mocks of the route Household_Relations answer the relations of the fictional Vitale householder for any
+   member: the parents in one household, no previous spouse and four siblings. */
+const relationsInputs: MemberRelationsCallInputs = {
+  HouseholdId: '42438',
+  MemberId: '7100',
+  UserAge_Visibility: false,
+  isLoading: true,
+  ShowNotesSheet: false,
+};
+
+describe('household repository of the relations', () => {
+  it('fetchMemberRelations calls DataActionGet_MemberDetails of HouseholdRelations_Block with the inputs', async () => {
+    const relations = await fetchMemberRelations(relationsInputs);
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: 'HouseholdRelations_Block',
+        action: 'DataActionGet_MemberDetails',
+        inputNames: Object.keys(relationsInputs).sort(),
+      }),
+    ]);
+    expect(relations.FamilyName).toBe('The Vitales');
+    expect(relations.FormerSpouses).toEqual([]);
+    expect(relations.Father.HouseholdId).toBe(relations.ParentHouseholdId);
+  });
+
+  it('fetchSiblingRelations calls DataActionGet_ParentHouseholdDetails with the same inputs', async () => {
+    const siblings = await fetchSiblingRelations(relationsInputs);
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: 'HouseholdRelations_Block',
+        action: 'DataActionGet_ParentHouseholdDetails',
+        inputNames: Object.keys(relationsInputs).sort(),
+      }),
+    ]);
+    expect(siblings.Out_siblingRelations).toHaveLength(4);
+  });
+
+  it('a failed relations call raises the exception of callAction', async () => {
+    sessionStorage.setItem('mock:mock', 'error');
+    await expect(fetchSiblingRelations(relationsInputs)).rejects.toThrow('Request failed with status 500');
   });
 });

@@ -1,5 +1,5 @@
-/* Domain types of a household: the fields that the household UI reads (HouseholdDetails_Block, its client actions
-   and HouseholdDetails_Members_Block). The names and the nesting are those of the OutSystems records
+/* Domain types of a household: the fields that the household UI reads (HouseholdDetails_Block, its client actions,
+   HouseholdDetails_Members_Block and HouseholdRelations_Block). The names and the nesting are those of the OutSystems records
    (Connect_Household_CS), because the block reads them as they are. Every field is optional, as an OutSystems record
    with its default values. The wire types stay in src/api/schema.d.ts. Long Integer ids are text. */
 
@@ -61,6 +61,8 @@ export interface HouseholdMember {
   HasNavigation?: boolean;
   LocalityName?: string;
   CountryName?: string;
+  /** "Locality, Country": the relations of a member show it (HouseholdRelations_Block). */
+  FormattedLocality?: string;
   MarriageText?: string;
   MarriageHighlightText?: string;
   MarriagePartnerTakenText?: string;
@@ -128,4 +130,32 @@ export interface HouseholdCaption {
   householdCaption: string;
   /** The household of the caption. */
   lastFetchedHousehold: PhotobookHousehold;
+}
+
+/** The inputs that the two data actions of HouseholdRelations_Block send: the block inputs and the block variables
+    UserAge_Visibility, isLoading and ShowNotesSheet. A type alias, not an interface: the contract inputs have an index
+    signature. */
+export type MemberRelationsCallInputs = {
+  HouseholdId: string;
+  MemberId: string;
+  UserAge_Visibility: boolean;
+  isLoading: boolean;
+  ShowNotesSheet: boolean;
+};
+
+/** A member with his parents and previous spouses: the outputs of DataActionGet_MemberDetails, with the list
+    unwrapped. */
+export interface MemberRelations {
+  MemberName: string;
+  /** The family name, the title of the relations screen. */
+  FamilyName: string;
+  Father: HouseholdMember;
+  Mother: HouseholdMember;
+  FormerSpouses: HouseholdMember[];
+  ParentHouseholdId: string;
+}
+
+/** The siblings of a member: the outputs of DataActionGet_ParentHouseholdDetails, with the list unwrapped. */
+export interface SiblingRelations {
+  Out_siblingRelations: HouseholdMember[];
 }

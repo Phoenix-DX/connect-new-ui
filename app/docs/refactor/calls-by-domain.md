@@ -204,4 +204,6 @@ P6-G2-B-ContactByEmailOrbitHost: `screens/ContactByEmailOrbitHost/api.ts` is del
 
 P6-G2-B-EmailContact: `screens/EmailContact/api.ts` is deleted (its row in the message table above). The caller of `ActionSendContactEmail` is now `pages/EmailContact/hooks/useOrbitContactForm.ts`, which imports it from `@/api/message`.
 
+P6-G4-B-Household_Relations: `pages/Household_Relations/api.ts` is deleted (its row in the household table; `inputs.ts` holds the route inputs). The flow hook `useHouseholdRelations` calls `fetchMemberRelations` and `fetchSiblingRelations` of `@/api/household`.
+
 P6-G4-B-Photobook: `pages/Photobook/api.ts` is deleted (its rows in the household and caption tables). The flow hooks `usePhotobook` and `useHouseholdCaption` call `fetchLocalityHouseholdIds` and `fetchHouseholdCaption` of `@/api/household`.

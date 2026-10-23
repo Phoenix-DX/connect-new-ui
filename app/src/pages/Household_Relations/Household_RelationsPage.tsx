@@ -1,22 +1,36 @@
-/** @origin UBTConnect.Directory_Household.Household_Relations */
+import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
+import { useViewState } from '@/platform/navigation';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnect/lib/staticEntities';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
-import { useViewState } from '@/platform/navigation';
-import { readHousehold_RelationsInputs } from './api';
-import { HouseholdRelations_Block } from './components/HouseholdRelations_Block';
+import { HouseholdRelationsView } from './components/HouseholdRelationsView';
+import { useHouseholdRelations, type HouseholdRelationsEvents } from './hooks/useHouseholdRelations';
+import { readHousehold_RelationsInputs } from './inputs';
 
-/** UBTConnect.Directory_Household.Household_Relations (Household_Relations.mvc.js: model :1-82, view :84-289,
-    controller :291-453): Layout_DetailPage (In_IsPrimaryColor False) titled with PageTitle, HouseholdRelations_Block as
-    content, BottomBarMenu without inputs and CommonUI_InsideLayout. No lifecycle event and no call of its own
-    (`dataFetchActionNames = []`, :308). */
+/** HouseholdRelations_Block on the screen: its flows (useHouseholdRelations) and its view. The hook runs here, at the
+    place of the block, so that OnReady starts before the OnReady of BottomBarMenu, as in OutSystems (the call order
+    stays the same), and a change of the block state renders only the block. */
+function HouseholdRelations({
+  householdId,
+  memberId,
+  onRelationsDetailsFetched,
+}: { householdId: string; memberId: string } & HouseholdRelationsEvents) {
+  const relations = useHouseholdRelations({ householdId, memberId }, { onRelationsDetailsFetched });
+  return <HouseholdRelationsView id="$b3" memberId={memberId} {...relations} />;
+}
+
+/** @origin UBTConnect.Directory_Household.Household_Relations
+    The relations of a member: Layout_DetailPage (In_IsPrimaryColor False) with the PageTitle as header title,
+    HouseholdRelations_Block as content, BottomBarMenu without inputs and CommonUI_InsideLayout. The screen has no
+    lifecycle event and no call of its own. Handler_OnRelationsDetailsFetched sets PageTitle to the RelationsTitle of
+    the block. */
 export default function Household_Relations() {
   const [params] = useSearchParams();
-  const { HouseholdId, MemberId } = readHousehold_RelationsInputs(params);
-  // Screen variable PageTitle (:13-15), kept by the view cache (P-BACK).
+  const { HouseholdId, MemberId } = useMemo(() => readHousehold_RelationsInputs(params), [params]);
+  // Screen variable PageTitle, kept by the view cache.
   const [pageTitle, setPageTitle] = useViewState('PageTitle', '');
 
   return (
@@ -35,13 +49,7 @@ export default function Household_Relations() {
         />
       }
       content={
-        <HouseholdRelations_Block
-          id="$b3"
-          householdId={HouseholdId}
-          memberId={MemberId}
-          // Handler_OnRelationsDetailsFetched (:310-347): PageTitle = RelationsTitle.
-          onRelationsDetailsFetched={setPageTitle}
-        />
+        <HouseholdRelations householdId={HouseholdId} memberId={MemberId} onRelationsDetailsFetched={setPageTitle} />
       }
       bottom={<BottomBar id="$b4" />}
       placeholderCommonUIInsideLayout={<CommonUiLayout id="$b5" />}

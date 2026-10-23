@@ -91,8 +91,8 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
     variables). It saves and restores the whole state record, so a back navigation shows the old list. Keep
     `useReducer` and a `latest` ref and write one `useViewState` record
     (`pages/Notifications/hooks/useNotifications.ts`).
-  - 3 files still have the old pattern and change in Phase 6, with their page: `components/share/SharePopup/SharePopup.tsx`,
-    `shared/UBTConnect_Utils/UBT_LazyImage/UBT_LazyImage.tsx` and `screens/Household_Relations/components/HouseholdRelations_Block.tsx`.
+  - 2 files still have the old pattern and change in Phase 6, with their page: `components/share/SharePopup/SharePopup.tsx` and
+    `shared/UBTConnect_Utils/UBT_LazyImage/UBT_LazyImage.tsx`. `pages/Household_Relations/hooks/useHouseholdRelations.ts` now uses `useFlowState`.
 - Flags are read by the page (`useFlag`) and passed in as a `flags` argument. A component never reads a flag (rule 4).
 - A failed data action goes to the flow handler (`platform/feedback/flowErrors.ts`).
 

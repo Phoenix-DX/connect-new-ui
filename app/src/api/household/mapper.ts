@@ -9,7 +9,9 @@ import type {
   HouseholdDetails,
   HouseholdMember,
   LocalityHouseholdIdsCallInputs,
+  MemberRelations,
   PhotobookHousehold,
+  SiblingRelations,
 } from './types';
 
 /** The outputs of DataActionGetHousehold, as the contract describes them. */
@@ -131,4 +133,44 @@ export const toHouseholdCaptionInputs = (inputs: HouseholdCaptionCallInputs) => 
 export const toHouseholdCaption = (wire: HouseholdCaptionWire): HouseholdCaption => ({
   householdCaption: wire.HouseholdCaption,
   lastFetchedHousehold: toPhotobookHousehold(wire.LastFetchedHousehold),
+});
+
+/** The outputs of DataActionGet_MemberDetails (HouseholdRelations_Block), as the contract describes them. */
+type MemberRelationsWire = ActionOutputs<PathOf<'UBTConnect', 'HouseholdRelations_Block/DataActionGet_MemberDetails'>>;
+/** The outputs of DataActionGet_ParentHouseholdDetails (HouseholdRelations_Block), as the contract describes them. */
+type SiblingRelationsWire = ActionOutputs<
+  PathOf<'UBTConnect', 'HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails'>
+>;
+
+/** A relative of the member (father, mother, previous spouse or sibling), with the fields that the relations UI
+    reads. */
+const toRelationMember = (w: HouseholdMemberWire): HouseholdMember => ({
+  Id: w.Id,
+  HouseholdId: w.HouseholdId,
+  Title: w.Title,
+  LifeCycleText: w.LifeCycleText,
+  LifeCycleText_IsItallic: w.LifeCycleText_IsItallic,
+  IsDeceased: w.IsDeceased,
+  HasNavigation: w.HasNavigation,
+  LocalityName: w.LocalityName,
+  CountryName: w.CountryName,
+  FormattedLocality: w.FormattedLocality,
+  MarriageText: w.MarriageText,
+  MarriageHighlightText: w.MarriageHighlightText,
+  MarriagePartnerTakenText: w.MarriagePartnerTakenText,
+});
+
+/** The member and his parents and previous spouses of DataActionGet_MemberDetails (the list unwrapped). */
+export const toMemberRelations = (wire: MemberRelationsWire): MemberRelations => ({
+  MemberName: wire.MemberName,
+  FamilyName: wire.FamilyName,
+  Father: toRelationMember(wire.Father),
+  Mother: toRelationMember(wire.Mother),
+  FormerSpouses: osList(wire.FormerSpouses).map(toRelationMember),
+  ParentHouseholdId: wire.ParentHouseholdId,
+});
+
+/** The siblings of DataActionGet_ParentHouseholdDetails (the list unwrapped). */
+export const toSiblingRelations = (wire: SiblingRelationsWire): SiblingRelations => ({
+  Out_siblingRelations: osList(wire.Out_siblingRelations).map(toRelationMember),
 });

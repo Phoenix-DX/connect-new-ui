@@ -530,3 +530,9 @@
 - `pages/CountryDetails` is a page with the hook `useCountryDetails`: the `api/country` query, `useViewState` for 4 variables, no `useFlowState`, no `isAlive`.
 - It also has the pure `countryDetailsState.ts`, the props-only `CountryDetailsContent` and `inputs.ts`. `api.ts` and `types.ts` are deleted.
 - `raiseToFlowHandler` now comes from `@/platform/feedback/flowErrors`: depcruise warnings 212 to 211. Baseline rows unchanged.
+
+## P6-G4-B-Household_Relations - refactor(P6-G4-B): Household_Relations as page
+
+- `pages/Household_Relations` is a page with the flow hook `useHouseholdRelations` (on `useFlowState`), the pure `householdRelationsState.ts` and the props-only `HouseholdRelationsView`. `api.ts` became `inputs.ts`; `types.ts` is deleted.
+- The 2 calls are in `api/household` (`fetchMemberRelations`, `fetchSiblingRelations`). W23: after unmount no further call starts, as the compiled block does.
+- depcruise warnings 213 to 210. The last old-pattern `useFlowState` file in `screens/` is gone from the page-template list.

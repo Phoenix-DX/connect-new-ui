@@ -6,6 +6,8 @@ import {
   toHouseholdCoordinates,
   toLocalityHouseholdIds,
   toLocalityHouseholdIdsInputs,
+  toMemberRelations,
+  toSiblingRelations,
   type HouseholdWire,
 } from './mapper';
 
@@ -270,5 +272,58 @@ describe('household mapper: Photobook', () => {
         LastFetchedHousehold: { HouseholdId: '7002', HouseholdName: 'Ben Harlow', Locality: 'Nelson' },
       }),
     ).toEqual({ householdCaption: 'HARLOW (Ben - Nelson)', lastFetchedHousehold: harlow });
+  });
+});
+
+describe('household mapper of the relations (HouseholdRelations_Block)', () => {
+  const father = memberWire({
+    Id: '31',
+    HouseholdId: '7010',
+    FirstName: 'Owen',
+    Title: 'Owen Harlow',
+    LifeCycleText: 'Born 4 Apr 1941',
+    HasNavigation: true,
+    LocalityName: 'Napier',
+    CountryName: 'New Zealand',
+    FormattedLocality: 'Napier, New Zealand',
+    Email: 'owen@example.org',
+  });
+
+  it('toMemberRelations keeps the fields that the relations UI reads and unwraps the previous spouses', () => {
+    const relations = toMemberRelations({
+      MemberName: 'Ada Harlow',
+      FamilyName: 'The Harlows',
+      Father: father,
+      Mother: memberWire({ Id: '32', HouseholdId: '7010', Title: 'Ruth Lane', IsDeceased: true }),
+      FormerSpouses: { List: [memberWire({ Id: '33', Title: 'Tom Reed', MarriageText: 'Divorced' })] },
+      ParentHouseholdId: '7010',
+    });
+    expect(relations.MemberName).toBe('Ada Harlow');
+    expect(relations.FamilyName).toBe('The Harlows');
+    expect(relations.ParentHouseholdId).toBe('7010');
+    expect(relations.Father).toEqual({
+      Id: '31',
+      HouseholdId: '7010',
+      Title: 'Owen Harlow',
+      LifeCycleText: 'Born 4 Apr 1941',
+      LifeCycleText_IsItallic: false,
+      IsDeceased: false,
+      HasNavigation: true,
+      LocalityName: 'Napier',
+      CountryName: 'New Zealand',
+      FormattedLocality: 'Napier, New Zealand',
+      MarriageText: '',
+      MarriageHighlightText: '',
+      MarriagePartnerTakenText: '',
+    });
+    expect(relations.Mother).toMatchObject({ Id: '32', Title: 'Ruth Lane', IsDeceased: true });
+    expect(relations.FormerSpouses).toEqual([expect.objectContaining({ Id: '33', MarriageText: 'Divorced' })]);
+  });
+
+  it('toSiblingRelations unwraps the siblings', () => {
+    expect(toSiblingRelations({ Out_siblingRelations: { List: [father] } }).Out_siblingRelations).toEqual([
+      expect.objectContaining({ Id: '31', Title: 'Owen Harlow', FormattedLocality: 'Napier, New Zealand' }),
+    ]);
+    expect(toSiblingRelations({ Out_siblingRelations: { List: [] } })).toEqual({ Out_siblingRelations: [] });
   });
 });
