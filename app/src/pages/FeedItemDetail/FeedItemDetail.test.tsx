@@ -1,13 +1,17 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { act, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { setFlag } from '@/platform/flags/flags';
+import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
+import { freshPage } from '@/test/testSupport';
 import type { FeedCmsProps } from '@/components/feed/FeedCms';
 import type { ShareSheetContainerProps } from '@/containers/ShareSheet';
-import { NULL_DATE } from './api';
 import FeedItemDetail from './FeedItemDetailPage';
+
+/** In_UpdateDate of the ShareSheet: NullDate() in the view. */
+const NULL_DATE = '1900-01-01';
 
 /* Built from the compiled view only (no capture). The mock CMS never raises OnShare (D8 b), so Embedded_FeedCMS is
    replaced by its wrapper and its props are kept to raise the event; ShareSheet is replaced by its wrapper to read the
@@ -116,5 +120,50 @@ describe('FeedItemDetail (FeedItemDetail.mvc.js)', () => {
     });
     expect(spy.sheet?.inIsOpen).toBe(false);
     expect(spy.sheet?.inShareableObjectId).toBe('7001');
+  });
+});
+
+/* The page in the app frame on a memory router: the back arrow of the detail layout and the view cache. */
+describe('FeedItemDetail page in the app frame', () => {
+  const PATH = '/UBTConnect/FeedItemDetail';
+  const routes = {
+    '/UBTConnect/HomeFeed': <p>HomeFeed screen</p>,
+    '/UBTConnect/Search': <p>Search screen</p>,
+    [PATH]: <FeedItemDetail />,
+  };
+
+  beforeEach(() => {
+    freshPage();
+    resetNavigation();
+  });
+  afterEach(() => {
+    spy.feed = undefined;
+    spy.sheet = undefined;
+  });
+
+  it('the back arrow goes to the previous screen', async () => {
+    const { router, at } = renderRoutes(routes, '/UBTConnect/HomeFeed');
+    await act(() => router.navigate('/UBTConnect/Search'));
+    await act(() => router.navigate(`${PATH}?FeedItemId=7001`));
+    // The back arrow: the Icon block b1-$b2 of the layout header.
+    const back = document.getElementById('b1-$b2')?.firstElementChild;
+    if (back == null) throw new Error('back arrow not rendered');
+    fireEvent.click(back);
+    expect(await screen.findByText('Search screen')).toBeInTheDocument();
+    expect(at()).toBe('/UBTConnect/Search');
+  });
+
+  it('a back navigation to the screen restores the share variables (view cache)', async () => {
+    const { router, at } = renderRoutes(routes, `${PATH}?FeedItemId=7001`);
+    act(() => {
+      spy.feed?.onOnShare?.('7001', 'Item title', 'Item subtitle', '');
+    });
+    expect(spy.sheet).toMatchObject({ inIsOpen: true, inShareableObjectId: '7001', inShareObjectTypeId: 'Feed' });
+    await act(() => router.navigate('/UBTConnect/Search'));
+    expect(await screen.findByText('Search screen')).toBeInTheDocument();
+    await act(() => router.navigate(-1));
+    expect(at()).toBe(`${PATH}?FeedItemId=7001`);
+    expect(spy.sheet).toMatchObject({ inIsOpen: true, inShareableObjectId: '7001', inShareObjectTypeId: 'Feed' });
+    expect(screen.getByText('Item title')).toBeInTheDocument();
   });
 });

@@ -460,3 +460,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T02:21:04 P6-G3-B-MessageDetail stage test
 - 2026-10-24T02:26:14 P6-G3-B-MessageDetail stage docs
 - 2026-10-24T02:28:06 P6-G3-B-MessageDetail stage commit
+- 2026-10-24T02:28:07 P6-G3-B-MessageDetail done e7bd6f58: ci: pass (2504 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle HomeFeed 246.02/248.22, Login 187.01/193.84 kB gzip; W23 applied (side effects run after unmount)
+- 2026-10-24T02:28:08 P6-G3-B-FeedItemDetail started
+- 2026-10-24T02:28:08 P6-G3-B-FeedItemDetail stage dev
+- 2026-10-24T02:28:43 P6-G3-B-FeedItemDetail stage test
+- 2026-10-24T02:32:56 P6-G3-B-FeedItemDetail stage docs
+- 2026-10-24T02:34:02 P6-G3-B-FeedItemDetail stage commit

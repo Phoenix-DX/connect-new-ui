@@ -451,3 +451,8 @@
 - MessageDetail is a page: hook `hooks/useMessageDetail.ts` (on `useFlowState`), pure state `hooks/messageDetailState.ts`, props-only `components/MessageDetailView.tsx`. `api.ts` and `types.ts` are deleted; the input type is in `inputs.ts`. The view cache now uses one key, `MyNotifications.ScreenBlock_MessageDetail`.
 - Decision W23 is applied: only the state writes are gated after an unmount; the side effects run once. A StrictMode once-guard stops a second OnReady run. MessageDetail keeps its own `decrementReadMessagesCounter` (as MessageList does); P6-G3-C removes the duplicate.
 - The shared chunk `flowState` is new (+0.03 kB gzip on HomeFeed, +0.01 kB on Login; limit 248.22).
+
+## P6-G3-B-FeedItemDetail - refactor(P6-G3-B): FeedItemDetail as page
+
+- FeedItemDetail is a page: hook `hooks/useFeedItemDetail.ts` (4 share variables, 2 handlers), input reader in `inputs.ts`. The page renders `DetailLayout` with `useNavigateBack`, not the `Layout_DetailPage` adapter (16 importers keep it). `api.ts`, `types.ts` and the empty `mocks.ts` are deleted.
+- No parity capture exists for this route. The hook tests and the page tests (back arrow, view-cache restore) cover it. HomeFeed first load 246.04 kB gzip (limit 248.22).
