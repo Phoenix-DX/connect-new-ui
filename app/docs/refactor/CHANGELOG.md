@@ -238,3 +238,9 @@
 
 - New `src/api/note/` (types, mapper, repository, keys, hooks, barrel) for 6 calls. The old `api.ts` files of Notes, Directory_EntityDetailsActions, NoteListActions and NotesSheet re-export it; `Notes/types.ts` lost 4 unused types.
 - Not moved: the client actions `Get_Note_DynamicPills` and `GetNotes_FilterYear` (they use `platform/`). The 2 hooks have no caller yet. Strict parity `--changed`: 64 of 64 routes clean for both references; `move-map.csv` is unchanged.
+
+## P5-3-message - refactor(P5-3-message): Domain api/message
+
+- New `src/api/message/` (types, mapper, repository, keys, hooks, barrel) for 19 calls of 11 screens. The old `api.ts` and `types.ts` files re-export it; `Directory_EntityDetailsActions/api.ts`, `Connect2_LegacyShared/lib` and `platform/bootstrap/startup.ts` use it.
+- Three e-mail screens now share one form type and one mapper (only the JSON key order changes). Wrapper_NotificationOpened and Wrapper_MarkAllAsReadNotifications stay in the screens. The 17 hooks have no caller yet.
+- Strict parity `--changed`: 64 of 64 routes clean for both references. `move-map.csv` is unchanged.

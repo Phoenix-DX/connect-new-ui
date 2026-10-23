@@ -1,8 +1,7 @@
 import { fetchAppContext, fetchSyncInfoMain, type ClientConfig } from '@/api/app';
-import { callAction } from '@/api/client/callAction';
+import { fetchNumberUnreadMessages } from '@/api/message';
 import { log } from '@/platform/log/log';
 import { CommunicationException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
-import { osNumber } from '@/legacy/os/os-wire';
 import {
   syncAllOrbitStaticEntities,
   type LegacyLocalBookmark,
@@ -15,8 +14,8 @@ import { setSettings } from '@/platform/settings';
 
 /* The server actions that the app start (appStartSteps.ts), the post-login sequence (postLogin.ts), the sign-out
    (platform/session/auth.ts) and screens share: AppManager_SynchAppContext, Sync_Info_Main and
-   SynchronizeNumberUnreadMessages. The calls of the first two are in the domain api/app. The redirects that follow the
-   app start are the route guard's (app/RouteGuard.tsx). */
+   SynchronizeNumberUnreadMessages. The calls of the first two are in the domain api/app, GetNumberUnreadMessages is in
+   the domain api/message. The redirects that follow the app start are the route guard's (app/RouteGuard.tsx). */
 
 /** OutSystems CommunicationException of a server call (runtime-sources/OutSystems.js:3, raised by callAction): a failed
     request, or an answer that is not ok and is neither a 404 (ViewHasChangedException) nor the server's own exception
@@ -95,13 +94,9 @@ export async function synchronizeNumberUnreadMessages(): Promise<void> {
   const deviceId = getClientVar('UBT_AppManager.DeviceInfo_UUID');
   if (deviceId === '') return;
   try {
-    const out = await callAction('Connect2_LegacyShared', 'ActionGetNumberUnreadMessages', { DeviceId: deviceId });
-    const publicCount = osNumber(out.NumberPublicUnreadMessages);
-    setClientVar(
-      'Connect2_LegacyShared.UnreadNotificationsNumber',
-      publicCount + osNumber(out.NumberPrivateUnreadMessages),
-    );
-    setClientVar('Connect2_LegacyShared.UnreadPublicMessagesNumber', publicCount);
+    const counts = await fetchNumberUnreadMessages(deviceId);
+    setClientVar('Connect2_LegacyShared.UnreadNotificationsNumber', counts.publicCount + counts.privateCount);
+    setClientVar('Connect2_LegacyShared.UnreadPublicMessagesNumber', counts.publicCount);
   } catch (e) {
     if (!isNetworkError(e) && !isInstanceOf(e, UserException, 'Connect2_LegacyShared.OnlineCommunicationException'))
       throw e;

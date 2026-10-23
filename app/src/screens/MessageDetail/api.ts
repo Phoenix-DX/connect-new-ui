@@ -1,6 +1,5 @@
 import { callAction } from '@/api/client/callAction';
-import { osDate, osList } from '@/legacy/os/os-wire';
-import type { GetMessageInstanceResult, MessageDetailInputs, MessageDetailVariables, MessageParameter } from './types';
+import type { MessageDetailInputs } from './types';
 
 const osBoolean = (v: string | null): boolean => v !== null && v.toLowerCase() === 'true';
 const osLongInput = (v: string | null): string => (v === null || v === '' ? '0' : v);
@@ -15,53 +14,13 @@ export function readMessageDetailInputs(params: URLSearchParams): MessageDetailI
   };
 }
 
-/** GetMessageInstance (DataActionGetMessageInstance, ScreenBlock controller :839-866): on demand only (OnReady and the
-    adaptive-card submit); the block variables travel as screenData.variables. */
-export async function fetchMessageInstance(v: MessageDetailVariables): Promise<GetMessageInstanceResult> {
-  const out = await callAction('Connect2_LegacyShared', 'ScreenBlock_MessageDetail/DataActionGetMessageInstance', {
-    ...v,
-  });
-  const m = out.Message;
-  const instanceId = m.MessageInstance.Id;
-  return {
-    message: {
-      messageInstanceId: instanceId === '' || instanceId === '0' ? null : instanceId,
-      messageInstanceUserId: m.MessageInstance.UserId,
-      isRead: m.MessageInstance.IsRead,
-      dateTimeCreated: osDate(m.MessageInstance.DateTimeCreated),
-      title: m.MessageTemplate.Title,
-      summary: m.MessageTemplate.Summary,
-      isAdaptiveCard: m.MessageTemplate.IsAdaptiveCard,
-      messageTemplateTypeId: m.MessageTemplate.MessageTemplateTypeId,
-      messageTemplatePriorityId: m.MessageTemplate.MessageTemplatePriorityId,
-      messageInfoTypeId: m.MessageTemplate.MessageInfoTypeId,
-      sentAs: m.MessageTemplate.SentAs === 0 ? null : m.MessageTemplate.SentAs,
-      senderTargetId: m.MessageSenderTarget.Id,
-      senderTargetName: m.MessageSenderTarget.Name,
-      profileIconURL: m.MessageSenderTarget.ProfileIconURL,
-      messageContent: m.MessageContent.MessageContent,
-      adaptiveCardContent: m.AdaptiveCardJSON.AdaptiveCardContent,
-      userName: m.User.Name,
-      createdByMemberId: m.CreatedByMemberId,
-    },
-    isRetracted: out.IsRetracted,
-    isCleared: out.IsCleared,
-  };
-}
-
-/** GetMessageTemplateParametersByMessageTemplateId (aggregate, controller :811-838): refreshed with MaxRecords 50,
-    StartIndex 0 by GetMessageInstanceByIdOnAfterFetch. */
-export async function fetchMessageTemplateParameters(v: MessageDetailVariables): Promise<MessageParameter[]> {
-  const out = await callAction(
-    'Connect2_LegacyShared',
-    'ScreenBlock_MessageDetail/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId',
-    { ...v, MaxRecords: 50, StartIndex: 0 },
-  );
-  return osList(out.List).map((row) => ({
-    parameterNameId: row.MessageParameter.ParameterNameId,
-    parameterValue: row.MessageParameter.ParameterValue,
-  }));
-}
+/* The two data actions of ScreenBlock_MessageDetail are in the domain api/message; this module keeps the names that the
+   screen uses:
+   - GetMessageInstance (DataActionGetMessageInstance, ScreenBlock controller :839-866): on demand only (OnReady and
+     the adaptive-card submit); the block variables travel as screenData.variables.
+   - GetMessageTemplateParametersByMessageTemplateId (aggregate, controller :811-838): refreshed with MaxRecords 50,
+     StartIndex 0 by GetMessageInstanceByIdOnAfterFetch. */
+export { fetchMessageInstance, fetchMessageTemplateParameters } from '@/api/message';
 
 /** Wrapper_NotificationOpened(MessageInstanceId) → IsRetracted (controller :685-706). */
 export async function wrapper_NotificationOpened(messageInstanceId: string): Promise<boolean> {

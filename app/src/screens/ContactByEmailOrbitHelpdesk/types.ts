@@ -13,21 +13,5 @@ export interface ContactByEmailOrbitHelpdeskInputs {
   In_FormattedDateTime: string;
 }
 
-/** What Handler_SubmitForm sends with SendContactEmail (S :535-560): the e-mail and its OrbitEmailInformation. */
-export interface OrbitContactEmail {
-  isContactHelpdesk: boolean;
-  eventId: string;
-  milestoneId: string;
-  targetMemberId: string;
-  subject: string;
-  userSubject: string;
-  message: string;
-  emailInfo: {
-    EventName: string;
-    SenderFullName: string;
-    HostName: string;
-    HostEmail: string;
-    MilestoneName: string;
-    FormattedDateTime: string;
-  };
-}
+/* What Handler_SubmitForm sends with SendContactEmail (S :535-560), the e-mail and its OrbitEmailInformation, is the
+   domain type OrbitContactEmail of api/message. */

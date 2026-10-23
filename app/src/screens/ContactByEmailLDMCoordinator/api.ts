@@ -1,8 +1,9 @@
-import { callAction } from '@/api/client/callAction';
-import type { ContactByEmailForm, ContactByEmailLDMCoordinatorInputs } from './types';
+import type { ContactByEmailLDMCoordinatorInputs } from './types';
 
 /* ContactByEmailLDMCoordinator has no data action (`dataFetchActionNames = []`, S :478). Its only server call is
-   SendContactLDMCoordinatorEmail, on the form's Event_SubmitForm. */
+   SendContactLDMCoordinatorEmail, on the form's Event_SubmitForm: a write, mocked (P-MUTATION), never the real server.
+   It is in the domain api/message; this module keeps the name that the screen uses. */
+export { sendContactLDMCoordinatorEmail } from '@/api/message';
 
 /** Date input: "" for an absent value or the OutSystems null date 1900-01-01, else its "YYYY-MM-DD" part. */
 const osDateInput = (value: string | null): string =>
@@ -19,18 +20,4 @@ export function readInputs(params: URLSearchParams): ContactByEmailLDMCoordinato
     In_EventDate: osDateInput(params.get('In_EventDate')),
     In_EventLocality: text('In_EventLocality'),
   };
-}
-
-/** SendContactLDMCoordinatorEmail(In_UI_ContactByEmailForm) (service action, S :466-476). A write: mocked
-    (P-MUTATION), never the real server. */
-export async function sendContactLDMCoordinatorEmail(form: ContactByEmailForm): Promise<void> {
-  await callAction('UBTConnect', 'ServiceAPISendContactLDMCoordinatorEmail', {
-    In_UI_ContactByEmailForm: {
-      FirstName: form.firstName,
-      ContactMember: form.contactMember,
-      EmailTo: form.emailTo,
-      Subject: form.subject,
-      Message: form.message,
-    },
-  });
 }

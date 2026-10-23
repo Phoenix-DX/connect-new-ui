@@ -8,49 +8,8 @@ export interface MessageDetailInputs {
   HardwareId: string;
 }
 
-/** ScreenBlock_MessageDetail variables (model :40-91) sent with its data actions (screenData.variables). */
-export interface MessageDetailVariables {
-  IsEntryScreen: boolean;
-  IsLoading: boolean;
-  ShowAssembleAction: boolean;
-  MessageInstanceId: LongId;
-  MessageTemplateId: LongId;
-  HardwareId: string;
-  isOriginPushNotification: boolean;
-}
-
-/** GetMessageInstance.Message, the fields the block reads (domain shape; null for "" / NullIdentifier / 1900-01-01). */
-export interface MessageDetail {
-  messageInstanceId: LongId | null;
-  messageInstanceUserId: number;
-  isRead: boolean;
-  dateTimeCreated: string | null;
-  title: string;
-  summary: string;
-  isAdaptiveCard: boolean;
-  messageTemplateTypeId: number;
-  messageTemplatePriorityId: number;
-  messageInfoTypeId: number;
-  /** MessageTemplate.SentAs (sender target id); null = NullIdentifier (sent as a user). */
-  sentAs: number | null;
-  senderTargetId: number;
-  senderTargetName: string;
-  profileIconURL: string;
-  messageContent: string;
-  adaptiveCardContent: string;
-  userName: string;
-  createdByMemberId: LongId;
-}
-
-/** GetMessageInstance outputs. */
-export interface GetMessageInstanceResult {
-  message: MessageDetail;
-  isRetracted: boolean;
-  isCleared: boolean;
-}
-
-/** GetMessageTemplateParametersByMessageTemplateId row (MessageParameter). */
-export interface MessageParameter {
-  parameterNameId: number;
-  parameterValue: string;
-}
+/* The ScreenBlock_MessageDetail variables (model :40-91) sent with its data actions (screenData.variables), the fields
+   of GetMessageInstance.Message that the block reads (null for "" / NullIdentifier / 1900-01-01) and a row of
+   GetMessageTemplateParametersByMessageTemplateId (MessageParameter) are domain types of api/message; this module
+   keeps the names that the screen uses. */
+export type { MessageDetail, MessageDetailCallInputs as MessageDetailVariables, MessageParameter } from '@/api/message';

@@ -20,7 +20,7 @@ OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â
 
 ## Data actions and mocks
 
-- `DataActionFetchContactDetails` (`api.ts`) runs with the screen variables. It runs when both conditions are true:
+- `DataActionFetchContactDetails` (`api.ts` re-exports it from `api/message`) runs with the screen variables. It runs when both conditions are true:
   - EntityId is set.
   - The menu has call, email or share.
 

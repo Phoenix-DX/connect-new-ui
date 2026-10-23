@@ -40,8 +40,8 @@ export type Users_Current_GETResponse = Schemas['APIDomain_Directory_IS__Users_C
 /* ---- F11 (CR-MilestoneDetail-2: call popup data) ---- */
 
 /** MemberContactWithTimezone (Connect2_LegacyShared.model.js:8348-8400): a member's phones, e-mail, locality and
-    timezone (Timezone: TextLongIntegerRecord TimezoneLabel / OffsetSeconds). */
-export type MemberContactWithTimezone = Schemas['Connect2_LegacyShared__MemberContactWithTimezone'];
+    timezone (Timezone: TextLongIntegerRecord TimezoneLabel / OffsetSeconds), the domain type of api/message. */
+export type { MemberContactWithTimezone } from '@/api/message';
 
 /** TimezoneRec (APIDomain_Directory_IS): TimezoneLabel, OffsetSeconds (Long Integer), TimezoneAbreviation,
     CountryName. */

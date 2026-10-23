@@ -1,9 +1,12 @@
-import { callAction } from '@/api/client/callAction';
-import type { EmailContactInputs, OrbitContactEmail } from './types';
+import type { EmailContactInputs } from './types';
 
 /* EmailContact has no data action (screen and ScreenBlock_ContactForm: `dataFetchActionNames = []`, CF :895). Its only
    server call is SendContactEmail, on the Submit button (CF :1228-1372). CF = analysis/sources/Connect2_OrbitMobile_MUI.
-   Orbit_ScreenBlocks.ScreenBlock_ContactForm.mvc.js. */
+   Orbit_ScreenBlocks.ScreenBlock_ContactForm.mvc.js. SendContactEmail → IsSuccess (server action of
+   Connect2_OrbitMobile_BL through `Connect2_OrbitMobile_MUI/ActionSendContactEmail`) is a write, mocked (P-MUTATION),
+   never the real server; EmailInfo's SenderEmail and TargetHelpdeskEmail stay "" (the block does not set them). It is
+   in the domain api/message; this module keeps the name that the screen uses. */
+export { sendContactFormEmail as sendContactEmail } from '@/api/message';
 
 /** Long Integer input: "0" for an absent or empty value. */
 const longInteger = (value: string | null): string => (value === null || value === '' ? '0' : value);
@@ -24,21 +27,4 @@ export function readInputs(params: URLSearchParams): EmailContactInputs {
     In_HostEmail: text('In_HostEmail'),
     In_FormattedDateTime: text('In_FormattedDateTime'),
   };
-}
-
-/** SendContactEmail(IsContactHelpdesk, EventId, MilestoneId, TargetMemberId, Subject, UserSubject, Message, EmailInfo)
-    → IsSuccess (CF :863-896; server action of Connect2_OrbitMobile_BL). A write: mocked (P-MUTATION), never the real
-    server. EmailInfo's SenderEmail and TargetHelpdeskEmail stay "" (the block does not set them, CF :1265-1273). */
-export async function sendContactEmail(email: OrbitContactEmail): Promise<boolean> {
-  const out = await callAction('Connect2_OrbitMobile_MUI', 'ActionSendContactEmail', {
-    IsContactHelpdesk: email.isContactHelpdesk,
-    EventId: email.eventId,
-    MilestoneId: email.milestoneId,
-    TargetMemberId: email.targetMemberId,
-    Subject: email.subject,
-    UserSubject: email.userSubject,
-    Message: email.message,
-    EmailInfo: { ...email.emailInfo, SenderEmail: '', TargetHelpdeskEmail: '' },
-  });
-  return out.IsSuccess;
 }

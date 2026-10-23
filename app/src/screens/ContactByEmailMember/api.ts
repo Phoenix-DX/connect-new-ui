@@ -1,9 +1,11 @@
-import { callAction } from '@/api/client/callAction';
-import type { ContactByEmailForm, ContactByEmailMemberInputs } from './types';
+import type { ContactByEmailMemberInputs } from './types';
 
 /* ContactByEmailMember has no data action (controller `dataFetchActionNames = []`, mvc.js:640). The calls of the
    capture (Sync_Info_GetMain, GetUserInformation, CacheableMapEntities, CacheableHouseholds) are the shell's app start
-   (src/shell/startup.ts). Its only server action is SendContactMemberEmail, on Send (Q1 → A pending). */
+   (src/shell/startup.ts). Its only server action is SendContactMemberEmail, on Send (Q1 → A pending): the screen's
+   ContactByEmailForm record as In_UI_ContactByEmailForm, a write, mocked (P-MUTATION), never the real server. It is in
+   the domain api/message; this module keeps the name that the screen uses. */
+export { sendContactMemberEmail } from '@/api/message';
 
 /** OutSystems Boolean input from the query string ("True"/"False", any case). */
 const osBoolean = (value: string | null): boolean => value?.toLowerCase() === 'true';
@@ -34,18 +36,4 @@ export function readContactByEmailMemberInputs(params: URLSearchParams): Contact
     In_IsHousehold: osBoolean(params.get('In_IsHousehold')),
     In_HouseholdHeaderName: text('In_HouseholdHeaderName'),
   };
-}
-
-/** SendContactMemberEmail (mvc.js:628-636): the screen's ContactByEmailForm record as In_UI_ContactByEmailForm. A
-    write: mocked (P-MUTATION), never the real server. */
-export async function sendContactMemberEmail(form: ContactByEmailForm): Promise<void> {
-  await callAction('UBTConnect', 'ServiceAPISendContactMemberEmail', {
-    In_UI_ContactByEmailForm: {
-      FirstName: form.firstName,
-      ContactMember: form.contactMember,
-      EmailTo: form.emailTo,
-      Subject: form.subject,
-      Message: form.message,
-    },
-  });
 }

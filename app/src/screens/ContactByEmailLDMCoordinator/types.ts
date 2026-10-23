@@ -10,11 +10,6 @@ export interface ContactByEmailLDMCoordinatorInputs {
   In_EventLocality: string;
 }
 
-/** Connect_Communication_CS.UI_ContactByEmailFormRec (screen local ContactByEmailForm, S model :15-17). */
-export interface ContactByEmailForm {
-  firstName: string;
-  contactMember: string;
-  emailTo: string;
-  subject: string;
-  message: string;
-}
+/** Connect_Communication_CS.UI_ContactByEmailFormRec (screen local ContactByEmailForm, S model :15-17), a domain type
+    of api/message. */
+export type { ContactByEmailForm } from '@/api/message';

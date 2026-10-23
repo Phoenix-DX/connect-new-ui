@@ -1,4 +1,4 @@
-import { callAction } from '@/api/client/callAction';
+import { sendContactEmail as sendOrbitContactEmail } from '@/api/message';
 import type { ContactByEmailOrbitHostInputs } from './types';
 
 /* ContactByEmailOrbitHost has no data action (`dataFetchActionNames = []`, S :608). Its only server call is
@@ -27,30 +27,28 @@ export function readInputs(params: URLSearchParams): ContactByEmailOrbitHostInpu
 /** SendContactEmail(False, EventId 0, MilestoneId "", TargetMemberId 0, Subject = In_Subject, UserSubject = the
     form's subject, Message, EmailInfo {EventName, SenderFullName "", SenderEmail "", HostName, HostEmail,
     MilestoneName = In_MilestoneTitle, FormattedDateTime}) (server action of Connect2_OrbitMobile_BL, S :578-600,
-    :625-650; `UBTConnect/ActionSendContactEmail`). A write: mocked (P-MUTATION), never the real server. Its output
-    IsSuccess is not read by the screen. */
+    :625-650; `UBTConnect/ActionSendContactEmail`, in the domain api/message). A write: mocked (P-MUTATION), never the
+    real server. Its output IsSuccess is not read by the screen. */
 export async function sendContactEmail(
   inputs: ContactByEmailOrbitHostInputs,
   userSubject: string,
   message: string,
 ): Promise<void> {
-  await callAction('UBTConnect', 'ActionSendContactEmail', {
-    IsContactHelpdesk: false,
-    EventId: '0',
-    MilestoneId: '',
-    TargetMemberId: '0',
-    Subject: inputs.In_Subject,
-    UserSubject: userSubject,
-    Message: message,
-    EmailInfo: {
+  await sendOrbitContactEmail({
+    isContactHelpdesk: false,
+    eventId: '0',
+    milestoneId: '',
+    targetMemberId: '0',
+    subject: inputs.In_Subject,
+    userSubject,
+    message,
+    emailInfo: {
       EventName: inputs.In_EventName,
       SenderFullName: '',
-      SenderEmail: '',
       HostName: inputs.In_HostName,
       HostEmail: inputs.In_HostEmail,
       MilestoneName: inputs.In_MilestoneTitle,
       FormattedDateTime: inputs.In_FormattedDateTime,
-      TargetHelpdeskEmail: '',
     },
   });
 }

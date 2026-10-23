@@ -1,8 +1,10 @@
-import { callAction } from '@/api/client/callAction';
-import type { ContactByEmailOrbitHelpdeskInputs, OrbitContactEmail } from './types';
+import type { ContactByEmailOrbitHelpdeskInputs } from './types';
 
 /* ContactByEmailOrbitHelpdesk has no data action (`dataFetchActionNames = []`, S :481). Its only server call is
-   SendContactEmail, on the form's Event_SubmitForm (call-sites.md). */
+   SendContactEmail, on the form's Event_SubmitForm (call-sites.md): the server action of Connect2_OrbitMobile_BL
+   through `UBTConnect/ActionSendContactEmail`, a write, mocked (P-MUTATION), never the real server. The screen does
+   not read its output IsSuccess. It is in the domain api/message; this module keeps the name that the screen uses. */
+export { sendContactEmail } from '@/api/message';
 
 /** Long Integer input: "0" for an absent or empty value. */
 const longInteger = (value: string | null): string => (value === null || value === '' ? '0' : value);
@@ -21,20 +23,4 @@ export function readInputs(params: URLSearchParams): ContactByEmailOrbitHelpdesk
     In_HostEmail: text('In_HostEmail'),
     In_FormattedDateTime: text('In_FormattedDateTime'),
   };
-}
-
-/** SendContactEmail(IsContactHelpdesk, EventId, MilestoneId, TargetMemberId, Subject, UserSubject, Message, EmailInfo)
-    (server action of Connect2_OrbitMobile_BL, S :448-480; `UBTConnect/ActionSendContactEmail`). A write: mocked
-    (P-MUTATION), never the real server. Its output IsSuccess is not read by the screen. */
-export async function sendContactEmail(email: OrbitContactEmail): Promise<void> {
-  await callAction('UBTConnect', 'ActionSendContactEmail', {
-    IsContactHelpdesk: email.isContactHelpdesk,
-    EventId: email.eventId,
-    MilestoneId: email.milestoneId,
-    TargetMemberId: email.targetMemberId,
-    Subject: email.subject,
-    UserSubject: email.userSubject,
-    Message: email.message,
-    EmailInfo: { ...email.emailInfo, SenderEmail: '', TargetHelpdeskEmail: '' },
-  });
 }

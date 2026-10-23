@@ -1,8 +1,10 @@
-import { callAction } from '@/api/client/callAction';
-import type { EmailTargetInputs, UserContactRequest } from './types';
+import type { EmailTargetInputs } from './types';
 
 /* EmailTarget and ScreenBlock_Household_Email have no data action (S :318, H :706). The only server call is
-   UserContactUser, on the Send click. */
+   UserContactUser(UserContactRequest), the server action of ScreenBlock_Household_Email, on the Send click: a write,
+   mocked (P-MUTATION), never the real server. It is in the domain api/message; this module keeps the name that the
+   screen uses. */
+export { sendUserContactEmail as userContactUser } from '@/api/message';
 
 /** OutSystems Boolean input from the query string ("True"/"False", any case). */
 const osBoolean = (value: string | null): boolean => value?.toLowerCase() === 'true';
@@ -24,10 +26,4 @@ export function readInputs(params: URLSearchParams): EmailTargetInputs {
     EventDate: osDateInput(params.get('EventDate')),
     EventLocality: text('EventLocality'),
   };
-}
-
-/** Server action UserContactUser(UserContactRequest) of ScreenBlock_Household_Email (H :695-709). A write: mocked
-    (P-MUTATION), never the real server. */
-export async function userContactUser(request: UserContactRequest): Promise<void> {
-  await callAction('Connect2_LegacyShared', 'ActionUserContactUser', { UserContactRequest: request });
 }

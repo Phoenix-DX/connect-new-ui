@@ -4,6 +4,7 @@ import { callAction } from '@/api/client/callAction';
 import { fetchCountryLocalities, fetchRegionSubscribedCountries } from '@/api/country';
 import { osList, wireList } from '@/legacy/os/os-wire';
 import { fetchBulkSubdivisions, fetchLocalityInformation } from '@/api/locality';
+import { fetchMemberContacts } from '@/api/message';
 import {
   cacheKeyPart,
   getCacheKeyParts,
@@ -344,12 +345,10 @@ export function buildMemberContactsCacheKey(memberIdList: readonly string[]): st
     .join(',');
 }
 
-/** GetMemberContactList(CacheKey) → CacheableAssembleEventContactList (controller.js:5210-5290): server action
-    GetMemberContactByCacheKey (`Connect2_LegacyShared/ActionGetMemberContactByCacheKey`, :7780-7800). */
-export async function getMemberContactList(cacheKey: string): Promise<MemberContactWithTimezone[]> {
-  const out = await callAction('Connect2_LegacyShared', 'ActionGetMemberContactByCacheKey', { CacheKey: cacheKey });
-  return osList(out.MemberContactList);
-}
+/** GetMemberContactList(CacheKey) → CacheableAssembleEventContactList (controller.js:5210-5290): the server action
+    GetMemberContactByCacheKey, in the domain api/message (fetchMemberContacts); MemberContactList, each record as it
+    is. */
+export const getMemberContactList = fetchMemberContacts;
 
 /** GetCacheableMemberContactList(MemberIdList) → MemberContactList (controller.js:3414-3545): the memory cache (type
     DirectoryCacheType.MemberContact, key BuildMemberContactsCacheKey(MemberIdList), TimeToLive 300 s, Timeout 10 s);

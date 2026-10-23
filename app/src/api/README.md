@@ -36,7 +36,7 @@ One `UpdateItem` type has two mappers: `toFeedUpdateItem` keeps the null date "1
 
 `app/` has the same files. It holds the 6 app-start calls: AppManager_SynchAppContext and AppManager_AfterInitialize (UBT_AppManager), Sync_Info_GetMain, FetchData_CacheableMapEntities and FetchData_CacheableHouseholds (UBTConnect), and DataActionGetCacheInfo of CacheControl_Policies. `platform/bootstrap` (`startup.ts`, `appStartSteps.ts`) and the `CacheControl_Policies` block call the repository functions. `ClientConfig` is defined in `app/types.ts`.
 
-The mappers drop only fields that no code in `src` reads. The local-entity records, the map objects, the household marker parts and the policy records stay whole. `usePoliciesQuery` has no caller yet (P5-4). GetUserInformation (P5-4) and GetNumberUnreadMessages (P5-3) are not in `app/`.
+The mappers drop only fields that no code in `src` reads. The local-entity records, the map objects, the household marker parts and the policy records stay whole. `usePoliciesQuery` has no caller yet (P5-4). GetUserInformation (P5-4) is not in `app/`. GetNumberUnreadMessages is in `message/`.
 
 `event/` has the same files. It holds 25 data actions and one mutation (GetScanEventQRCode) of 16 screens: AssembleDetail, AssembleEvents, EventBooklet, EventDetail, GuestArrangements, HelpersDetail, HostSurvey, LDM_EventDetail_V2, LDM_MyEvents_V2, MilestoneDetail, OrbitAdminEventDetail, OrbitAdminLanding, OrbitLanding, QRCodeGenerate, TransportDetail and ViewDocuments. The old `api.ts` and `types.ts` files of these screens re-export it under their old names. The three server-action reads (GetMilestoneScanFF, GetBookletGuestsMaxRows, GetBookletHelpersMaxRows) have no hook.
 
@@ -61,6 +61,14 @@ The `Bookmark` type has `dateCreatedUtc`, the sort key of the `MyBookmarks` memo
 - ServiceAPIUpdateNote and ServiceAPIDeleteNoteByNoteId (NoteListActions)
 - ServiceAPIAddNote (NotesSheet).
 
-The old `api.ts` files of these four owners re-export it under their old names. `screens/Notes/types.ts` keeps the screen types. The client actions `Get_Note_DynamicPills` and `GetNotes_FilterYear` stay in `screens/Notes/api.ts`, because they read the local notes and the session (`platform/`), and `api/` does not import `platform/`. DataActionFetchContactDetails stays in `Directory_EntityDetailsActions/api.ts` for the message domain.
+The old `api.ts` files of these four owners re-export it under their old names. `screens/Notes/types.ts` keeps the screen types. The client actions `Get_Note_DynamicPills` and `GetNotes_FilterYear` stay in `screens/Notes/api.ts`, because they read the local notes and the session (`platform/`), and `api/` does not import `platform/`.
 
 The AddNote mapper drops `ItemId` and `NoteCategoryId` of the answer, because no code reads them. The two hooks (`useNoteCardsQuery`, `useEntityNotesQuery`) have no caller yet; they set `staleTime: 0`, `gcTime: 0` and `retry: false`.
+
+`message/` has the same files. It holds 19 calls of 11 screens: ContactByEmailLDMCoordinator, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactByEmailOrbitHelpdesk, ContactByEmailOrbitHost, ContactUsDetails, EmailContact, EmailTarget, LDM_Email_V2, MessageDetail and MessageList. It also holds DataActionFetchContactDetails (Directory_EntityDetailsActions), GetMemberContactByCacheKey and GetNumberUnreadMessages (`platform/bootstrap/startup.ts`).
+
+The old `api.ts` and `types.ts` files of these screens re-export it under their old names. `Directory_EntityDetailsActions/api.ts` re-exports `fetchEntityContactDetails` as `fetchContactDetails`. `shared/Connect2_LegacyShared/lib` uses the domain too.
+
+The domain has one e-mail form type, `ContactByEmailForm`, and one mapper, `toOrbitContactEmailInputs`, for three screens that had their own copies. `sendContactEmail` returns IsSuccess. `fetchEntityContactDetails` does not return LocalityId, because no code reads it. Wrapper_NotificationOpened and Wrapper_MarkAllAsReadNotifications stay in the screens (the inventory lists them under "notification").
+
+The domain has 8 query hooks and 9 mutation hooks with no caller yet. They set `staleTime: 0`, `gcTime: 0` and no retry by default. GetNumberUnreadMessages and GetMemberContactByCacheKey are server-action reads and have no hook.

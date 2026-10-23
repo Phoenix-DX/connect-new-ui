@@ -19,11 +19,6 @@ export interface ContactByEmailMemberInputs {
   In_HouseholdHeaderName: string;
 }
 
-/** Connect_Communication_CS.UI_ContactByEmailFormRec (screen local ContactByEmailForm, mvc.js model :9-11). */
-export interface ContactByEmailForm {
-  firstName: string;
-  contactMember: string;
-  emailTo: string;
-  subject: string;
-  message: string;
-}
+/** Connect_Communication_CS.UI_ContactByEmailFormRec (screen local ContactByEmailForm, mvc.js model :9-11), a domain
+    type of api/message. */
+export type { ContactByEmailForm } from '@/api/message';
