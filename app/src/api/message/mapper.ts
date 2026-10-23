@@ -19,7 +19,6 @@ import type {
   MessagesResult,
   OrbitContactEmail,
   SendContactUsMessageResult,
-  UnreadMessageCounts,
 } from './types';
 
 /* ---- Wire types (as the contract describes them) ---- */
@@ -74,8 +73,8 @@ export type MessageExistsWire = ActionOutputs<
 export type MarkMessageInputsWire = ActionInputs<LegacySharedPath<'ActionMarkMessageAsRead'>>;
 /** The outputs of MarkMessageAsClear. */
 export type MessageClearWire = ActionOutputs<LegacySharedPath<'ActionMarkMessageAsClear'>>;
-/** The outputs of GetNumberUnreadMessages. */
-export type UnreadMessageCountsWire = ActionOutputs<LegacySharedPath<'ActionGetNumberUnreadMessages'>>;
+/** The outputs of GetNumberUnreadMessages: in unreadMessages.ts (decision W18). */
+export type { UnreadMessageCountsWire } from './unreadMessages';
 /** The outputs of GetMemberContactByCacheKey. */
 export type MemberContactsWire = ActionOutputs<LegacySharedPath<'ActionGetMemberContactByCacheKey'>>;
 /** The outputs of DataActionFetchContactDetails. */
@@ -306,11 +305,8 @@ export const toMessageClearResult = (wire: MessageClearWire): MessageClearResult
   isRead: wire.IsRead,
 });
 
-/** The two counts of GetNumberUnreadMessages (Long Integer texts → numbers). */
-export const toUnreadMessageCounts = (wire: UnreadMessageCountsWire): UnreadMessageCounts => ({
-  publicCount: osNumber(wire.NumberPublicUnreadMessages),
-  privateCount: osNumber(wire.NumberPrivateUnreadMessages),
-});
+/** The two counts of GetNumberUnreadMessages: in unreadMessages.ts, with the app-start call (decision W18). */
+export { toUnreadMessageCounts } from './unreadMessages';
 
 /* ---- Contact details and member contacts ---- */
 

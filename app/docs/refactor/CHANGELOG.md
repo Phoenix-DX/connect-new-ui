@@ -467,3 +467,8 @@
 
 - Notifications is a page: hook `hooks/useNotifications.ts`, pure state `hooks/notificationsState.ts`. It uses `useReducer` and a `latest` ref, not `useFlowState`: the view cache keeps 3 variables, and `useFlowState` restores the old list too. One record `App_Notifications.Notifications` replaces 3 keys.
 - `api.ts` and `types.ts` are deleted; the hook calls `@/api/notification`. W23 tests cover the unmount case. The `// @os-block` tags are now `@origin` (script `migration/tools/refactor/os-block-to-origin.py`).
+
+## P6-F16 - refactor: trim the HomeFeed entry (W21, W24)
+
+- MSW is out of the entry: `src/mocks/scenarioParams.ts` holds `scenario` and `latency`; `scenario.ts` re-exports them. The app-start unread-messages call is in `src/api/message/unreadMessages.ts` (W18 narrow module); `repository.ts` and `mapper.ts` re-export it.
+- HomeFeed first load 246.02 to 243.05 kB gzip (limit 248.22); Login 184.02 kB. Later trim candidates: Vite preload map, the two generated route tables, Leaflet json and bookmark code in `shared/UBTConnect/lib/actions.ts` (see F17).

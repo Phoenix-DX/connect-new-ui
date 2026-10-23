@@ -1,8 +1,8 @@
 import { MOCKS_BUILT } from '@/platform/config/config';
-import { scenario } from '@/mocks/scenario';
+import { scenario } from '@/mocks/scenarioParams';
 
 /* Kept apart from actions.ts so that the entry (the PIN lock dialog) and Login do not pull the bookmark and update
-   domains that actions.ts imports. */
+   domains that actions.ts imports. It reads the scenario from scenarioParams.ts, not scenario.ts, which pulls MSW. */
 
 /** Outputs of Get_IsUnsupportedVersion. */
 export interface IsUnsupportedVersion {

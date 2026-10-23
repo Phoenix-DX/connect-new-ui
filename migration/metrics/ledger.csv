@@ -597,3 +597,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,243732,refactor-dev,,P6-G3-B-Notifications opus
 2026-10-24,refactor,verify,32943,refactor-test,,P6-G3-B-Notifications sonnet
 2026-10-24,refactor,other,29225,refactor-docs,,P6-G3-B-Notifications sonnet
+2026-10-24,refactor,build,210378,refactor-dev,,P6-F16 opus
+2026-10-24,refactor,verify,30562,refactor-test,,P6-F16 sonnet
+2026-10-24,refactor,other,25096,refactor-docs,,P6-F16 sonnet

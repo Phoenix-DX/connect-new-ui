@@ -18,7 +18,6 @@ import {
   toOrbitContactEmailInputs,
   toSendContactUsMessageInputs,
   toSendContactUsMessageResult,
-  toUnreadMessageCounts,
 } from './mapper';
 import type {
   ContactByEmailForm,
@@ -41,7 +40,6 @@ import type {
   MessagesResult,
   OrbitContactEmail,
   SendContactUsMessageResult,
-  UnreadMessageCounts,
   UserContactRequest,
 } from './types';
 
@@ -214,13 +212,8 @@ export async function markMessageAsClear(
   );
 }
 
-/** GetNumberUnreadMessages(DeviceId) (server action of Connect2_LegacyShared), called by
-    SynchronizeNumberUnreadMessages: the unread public and private messages of the device. */
-export async function fetchNumberUnreadMessages(deviceId: string): Promise<UnreadMessageCounts> {
-  return toUnreadMessageCounts(
-    await callAction(LEGACY_SHARED, 'ActionGetNumberUnreadMessages', { DeviceId: deviceId }),
-  );
-}
+/** GetNumberUnreadMessages: in unreadMessages.ts, the app-start call (decision W18). */
+export { fetchNumberUnreadMessages } from './unreadMessages';
 
 /* ---- Contact details and member contacts ---- */
 

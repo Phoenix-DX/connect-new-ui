@@ -91,7 +91,7 @@ Otherwise `har_to_fixtures.py check` fails.
 
 ## Mock scenarios and test switches
 
-`src/mocks/scenario.ts` and `src/platform` read the switches and remember them for the tab (sessionStorage).
+`src/mocks/scenarioParams.ts` (`scenario`, `latency`; no MSW import, so the entry chunk stays small) and `src/platform` read the switches and remember them for the tab (sessionStorage).
 The switches work only while the app runs on mocks (`VITE_USE_MOCKS` is not `false`).
 
 | Switch                                      | Effect                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
