@@ -1,10 +1,26 @@
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
-import type { CarouselHouseholdItem, EntitiesCarousel_Item } from '@/shared/UBTConnect/lib/structures';
-import type { EntitiesCarousel_SwippedItem, HouseholdPreload } from '@/pages/HouseholdCarousel/types';
+import type {
+  CarouselHouseholdItem,
+  CarouselPreloadedHouseholds,
+  EntitiesCarousel_Item,
+} from '@/shared/UBTConnect/lib/structures';
 
-/* Client actions of UBTConnect.Directory_Household.HouseholdCarousel (HouseholdCarousel.mvc.js controller :376-605)
-   and the module action Directory_Updates_CarouselSwipeAction (UBTConnect.controller.js:1625-1660), without React. */
+/** The client actions of HouseholdCarousel (OnInitialize, Handler_EventMoved) and the module action
+    Directory_Updates_CarouselSwipeAction, without React. useHouseholdCarousel calls them.
+    @origin UBTConnect.Directory_Household.HouseholdCarousel */
+
+/** EntitiesCarousel_SwippedItem (UBTConnect.model.js:5873-5891): an update marked read by a swipe, handed back to the
+    previous screen on back (FeedBlock_Updates, Updates_SingleList read it). */
+export interface EntitiesCarousel_SwippedItem {
+  /** EntityItemId (Text): the UpdateItemId. */
+  EntityItemId: string;
+  /** ListPosition: the slide index. */
+  ListPosition: number;
+}
+
+/** The preload object the callers set (CarouselPreloadedHouseholds, UBTConnect.model.js:16052-16075). */
+export type HouseholdPreload = Required<CarouselPreloadedHouseholds>;
 
 export const EMPTY_PRELOAD: HouseholdPreload = { CarouselHouseholdItem: [] };
 
@@ -40,6 +56,29 @@ export function startingPosition(preload: HouseholdPreload, startingHouseholdId:
   const start = textToLongInteger(startingHouseholdId);
   const index = preload.CarouselHouseholdItem.findIndex((p) => textToLongInteger(p.Household ?? '0') === start);
   return index !== -1 ? index : 0;
+}
+
+/** The screen variables that OnInitialize assigns. */
+export interface HouseholdCarouselInitialVariables {
+  /** HouseholdPreload. */
+  preload: HouseholdPreload;
+  /** EntitiesCarousel_Items. */
+  items: EntitiesCarousel_Item[];
+  /** StartingPosition. */
+  position: number;
+}
+
+/** OnInitialize: AssignFromObject of the preload object, then EntitiesCarousel_Items and StartingPosition. */
+export function householdCarouselOnInitialize(
+  preloadObject: unknown,
+  startingHouseholdId: string,
+): HouseholdCarouselInitialVariables {
+  const preload = assignFromObject(preloadObject);
+  return {
+    preload,
+    items: toEntitiesCarouselItems(preload),
+    position: startingPosition(preload, startingHouseholdId),
+  };
 }
 
 /** Directory_Updates_CarouselSwipeAction(In_Parameters) (UC:1625-1660): JSON Deserialize

@@ -72,7 +72,6 @@ P5-2-locality: the 11 actions of this table (7 files, 11 distinct actions, count
 
 | File                                | Module     | Actions                                                                                                                                                                                                                               |
 | ----------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `screens/HouseholdCarousel/api.ts`  | UBTConnect | `ActionUpdateItem_MarkAsRead`                                                                                                                                                                                                         |
 | `screens/Updates_SingleList/api.ts` | UBTConnect | `ServiceAPIAction_UI_UpdateItem_MarkAllAsRead`, `ServiceAPIAction_UI_UpdateItem_MarkAsRead`, `ServiceAPIAction_UI_UpdateItem_MarkAsUnread`, `Updates_SingleList/DataActionFetchUpdates`, `Updates_SingleList/DataActionGetDateRanges` |
 | `shared/UBTConnect/lib/actions.ts`  | UBTConnect | `ServiceAPIGet_UI_UpdateItems_UnreadCount_All`                                                                                                                                                                                        |
 
@@ -87,6 +86,8 @@ P6-G4-B-BrowseCountries: `pages/BrowseCountries/api.ts` is deleted (its row in t
 P6-G4-B-BrowseDirectory: `pages/BrowseDirectory/api.ts` is deleted (its row in the locality table). The hook `useBrowseDirectory` calls `fetchLocalityCardList` of `@/api/locality` directly. `GetLocalityStatistics` is unchanged.
 
 P6-G4-B-CountryList: `pages/CountryList/api.ts` is deleted (its row in the country table). The hook `useCountryList` calls `fetchCountryListStatistics` of `@/api/country` directly.
+
+P6-G4-B-HouseholdCarousel: `pages/HouseholdCarousel/api.ts` is deleted (its row in the update table). The hook `useHouseholdCarousel` calls `markCarouselUpdateItemAsRead` of `@/api/update` directly.
 
 P6-G1-B-Menu: `ActionRequestPhotoUpdate` moved to `src/api/member/repository.ts` (decision W9). The domain comes from the data that the call owns: the photo of the signed-in member. The tables now list it under member. `screens/Menu/api.ts` is deleted. `pages/Menu/hooks/useMenu.ts` calls `requestPhotoUpdate`.
 

@@ -623,3 +623,10 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,269521,refactor-dev,,P6-G4-B-CountryList opus
 2026-10-24,refactor,verify,29066,refactor-test,,P6-G4-B-CountryList sonnet
 2026-10-24,refactor,other,31232,refactor-docs,,P6-G4-B-CountryList sonnet
+2026-10-24,refactor,build,276627,refactor-dev,,P6-G4-B-HouseholdCarousel opus
+2026-10-24,refactor,verify,30877,refactor-test,,P6-G4-B-HouseholdCarousel sonnet
+2026-10-24,refactor,review,40925,refactor-advisor,,"W26, opus"
+2026-10-24,refactor,review,40711,refactor-advisor,,"W26, fable"
+2026-10-24,refactor,P6-F20,19990,refactor-developer,,"F20 flake fix, sonnet"
+2026-10-24,refactor,verify,14451,refactor-test,,P6-G4-B-HouseholdCarousel sonnet
+2026-10-24,refactor,other,34937,refactor-docs,,P6-G4-B-HouseholdCarousel sonnet

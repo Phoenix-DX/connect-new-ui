@@ -1,6 +1,5 @@
 /** @origin UBTConnect.Directory_Caroussel.EntitiesCarousel */
-// @os-block UBTConnect.Directory_Caroussel.EntitiesCarousel
-import { useId, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { Carousel } from '@/shared/osui/Carousel';
@@ -12,6 +11,7 @@ import {
   type SplideEventHandler,
 } from '@/shared/osui/lib/actions';
 import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import type { CarouselHouseholdDetailsSlot } from '@/components/directory/CarouselHouseholdDetails';
 import { EntitiesCarouselElement } from '@/components/directory/EntitiesCarouselElement';
 import { EntitiesCarouselHeader } from '@/components/directory/EntitiesCarouselHeader';
 import { BooleanTypes, CarouselNavigation } from '@/shared/UBTConnect/lib/staticEntities';
@@ -35,6 +35,9 @@ export interface EntitiesCarouselProps {
   onEventSetHeader?: (eventHeader: string) => void;
   /** Event Event_Moved(Event_Index): the carousel moved to slide Event_Index. */
   onEventMoved?: (eventIndex: number) => void;
+  /** HouseholdDetails_Block of each household slide: the page renders the household details container with the slot
+      inputs (a component does not import a container, rule 4). */
+  renderHouseholdDetails?: (slot: CarouselHouseholdDetailsSlot) => ReactNode;
 }
 
 /** Swipeable entities carousel of HouseholdCarousel and SupperMeeting_Carousel
@@ -47,6 +50,7 @@ export function EntitiesCarousel({
   inConnectEntityTypeId = '',
   onEventSetHeader,
   onEventMoved,
+  renderHouseholdDetails,
 }: EntitiesCarouselProps) {
   const fallback = useId();
   const prefix = id?.replace('$', '') ?? `entities${fallback}`;
@@ -132,6 +136,7 @@ export function EntitiesCarousel({
                 onEventSetHeader={(eventHeader) => {
                   handleSetHeaderList(eventHeader, index);
                 }}
+                renderHouseholdDetails={renderHouseholdDetails}
               />
             </div>
           )}

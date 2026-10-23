@@ -1,7 +1,7 @@
 # HouseholdDetailsContainer
 
 `UBTConnect.Directory_Household.HouseholdDetails_Block`: the household details card, actions and members. Used by
-HouseholdDetailsPage, EntitiesCarousel_HouseholdDetails (HouseholdCarousel), Profile_HouseholdPreview (Profile) and
+HouseholdDetailsPage, the HouseholdCarousel page (in the `renderHouseholdDetails` slot of EntitiesCarousel_HouseholdDetails), Profile_HouseholdPreview (Profile) and
 Locality_Details.
 
 ## Structure (P2-3)

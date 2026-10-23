@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
 import { LOCALITY_HOUSEHOLDS } from '@/mocks/fictional/directory';
-import { registerMockPreload } from './api';
+import { registerMockPreload } from './inputs';
 
 /* HouseholdCarousel calls no action of its own (HouseholdCarousel.mvc.js :371): GetHousehold, _Coordinates, contact
    details and signed images are answered by the shared blocks' mocks (fictional households, captured counts).

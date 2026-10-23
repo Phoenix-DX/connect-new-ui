@@ -512,3 +512,9 @@
 - `pages/CountryList` is a page with a flow hook `useCountryList` (on `useFlowState`, W23 once-guard and write guard), a pure state file `countryListState` and the props-only `CountryListContent`. `api.ts` and `types.ts` are deleted.
 - `DirectoryLegendSheet` is props-only: the new prop `preventBackNavigation` takes the slot; CountryList and CountryDetails give `PreventBackNavigation` (2 lines in CountryDetails). 2 rows removed from `arch-baseline.csv`.
 - CountryList chunk +0.74 kB gzip from the shared `flowState` chunk.
+
+## P6-G4-B-HouseholdCarousel - refactor(P6-G4-B): HouseholdCarousel as page
+
+- `pages/HouseholdCarousel` is a page with the hook `useHouseholdCarousel`, the actions file `householdCarouselActions.ts` (from `components/logic.ts`) and `inputs.ts`. `api.ts` and `types.ts` are deleted. The hook keeps `useViewState` and an `unmounted` guard on the state writes (W23). A failed MarkAsRead during a swipe still shows no message, as before.
+- EntitiesCarousel, EntitiesCarousel_Element and EntitiesCarousel_HouseholdDetails have props only, with the slot `renderHouseholdDetails`. The page renders `HouseholdDetailsContainer` in it. 10 rows removed from `arch-baseline.csv`.
+- SupperMeeting_Carousel first load about -9.4 kB gzip (it no longer loads the container). Storybook: story V3 of EntitiesCarousel_Element keeps its call-to-action section loading.

@@ -53,17 +53,7 @@ src/components/assemble/AssembleLocalityFilter/AssembleLocalityFilter.test.tsx,@
 src/components/assemble/AssembleSubdivisionFilter/AssembleSubdivisionFilter.test.tsx,@/platform/session/testSession,rule-4,P7
 src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx,@/platform/device/deviceContext,rule-4,P7
 src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx,@/platform/feedback,rule-4,P7
-src/components/directory/CarouselHouseholdDetails/CarouselHouseholdDetails.stories.tsx,@/containers/HouseholdDetails/mockData,rule-4,P6-G4-B-HouseholdCarousel
-src/components/directory/CarouselHouseholdDetails/CarouselHouseholdDetails.stories.tsx,@/platform/session/mockUser,rule-4,P6-G4-B-HouseholdCarousel
-src/components/directory/CarouselHouseholdDetails/CarouselHouseholdDetails.stories.tsx,@/platform/session/session,rule-4,P6-G4-B-HouseholdCarousel
-src/components/directory/CarouselHouseholdDetails/CarouselHouseholdDetails.tsx,@/containers,rule-4,P6-G4-B-HouseholdCarousel
 src/components/directory/CarouselSupperMeetingDetails/CarouselSupperMeetingDetails.stories.tsx,@/platform/session/session,rule-4,P6-G4-B-SupperMeeting_Carousel
-src/components/directory/EntitiesCarousel/EntitiesCarousel.stories.tsx,@/containers/HouseholdDetails/mockData,rule-4,P6-G4-B-HouseholdCarousel
-src/components/directory/EntitiesCarousel/EntitiesCarousel.stories.tsx,@/platform/session/mockUser,rule-4,P6-G4-B-HouseholdCarousel
-src/components/directory/EntitiesCarousel/EntitiesCarousel.stories.tsx,@/platform/session/session,rule-4,P6-G4-B-HouseholdCarousel
-src/components/directory/EntitiesCarouselElement/EntitiesCarouselElement.stories.tsx,@/containers/HouseholdDetails/mockData,rule-4,P6-G4-B-HouseholdCarousel
-src/components/directory/EntitiesCarouselElement/EntitiesCarouselElement.stories.tsx,@/platform/session/mockUser,rule-4,P6-G4-B-HouseholdCarousel
-src/components/directory/EntitiesCarouselElement/EntitiesCarouselElement.stories.tsx,@/platform/session/session,rule-4,P6-G4-B-HouseholdCarousel
 src/components/directory/SupperMeetingDetails/SupperMeetingDetails.stories.tsx,@/platform/session/session,rule-4,P6-G4-B-SupperMeeting_Details
 src/components/directory/SupperMeetingDetails/SupperMeetingDetails.tsx,@/platform/flags/flags,rule-4,P6-G4-B-SupperMeeting_Details
 src/components/directory/SupperMeetingDetails/SupperMeetingDetails.tsx,@/platform/navigation,rule-4,P6-G4-B-SupperMeeting_Details

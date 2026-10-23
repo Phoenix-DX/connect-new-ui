@@ -1,10 +1,12 @@
 /** @origin UBTConnect.Directory_Caroussel.EntitiesCarousel_Element */
-// @os-block UBTConnect.Directory_Caroussel.EntitiesCarousel_Element
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CarouselTag } from '@/components/directory/CarouselTag';
 import { CarouselSupperMeetingDetails } from '@/components/directory/CarouselSupperMeetingDetails';
-import { CarouselHouseholdDetails } from '@/components/directory/CarouselHouseholdDetails';
+import {
+  CarouselHouseholdDetails,
+  type CarouselHouseholdDetailsSlot,
+} from '@/components/directory/CarouselHouseholdDetails';
 import { get_IsInsideRenderBuffer } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 
@@ -28,6 +30,9 @@ export interface EntitiesCarouselElementProps {
   inRenderBuffer?: number;
   /** Event Event_SetHeader(Event_Header). */
   onEventSetHeader?: (eventHeader: string) => void;
+  /** HouseholdDetails_Block of a household slide (EntitiesCarousel_HouseholdDetails): the page renders the household
+      details container with the slot inputs. */
+  renderHouseholdDetails?: (slot: CarouselHouseholdDetailsSlot) => ReactNode;
 }
 
 /** One slide of EntitiesCarousel (p:UBTConnect.Directory_Caroussel.EntitiesCarousel_Element.mvc.js): rendered only
@@ -43,6 +48,7 @@ export function EntitiesCarouselElement({
   inIndexCurrentElement = 0,
   inRenderBuffer = 0,
   onEventSetHeader,
+  renderHouseholdDetails,
 }: EntitiesCarouselElementProps) {
   const prefix = id?.replace('$', '');
   const childId = (name: string) => (prefix === undefined ? undefined : `${prefix}-${name}`);
@@ -76,6 +82,7 @@ export function EntitiesCarouselElement({
               inHouseholdId={inEntityId}
               inIsSkeletonOnly={isSkeletonOnly}
               onEventSetHeader={(eventHeader) => onEventSetHeader?.(eventHeader)}
+              renderHouseholdDetails={renderHouseholdDetails}
             >
               {carouselTag('$b4')}
             </CarouselHouseholdDetails>

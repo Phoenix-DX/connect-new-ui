@@ -6,9 +6,10 @@ import {
   assignFromObject,
   clearSwipeAction,
   directory_Updates_CarouselSwipeAction,
+  householdCarouselOnInitialize,
   startingPosition,
   toEntitiesCarouselItems,
-} from './logic';
+} from './householdCarouselActions';
 
 const preload = assignFromObject({
   CarouselHouseholdItem: [
@@ -28,6 +29,15 @@ describe('HouseholdCarousel OnInitialize', () => {
     expect(toEntitiesCarouselItems(preload)).toEqual([{ EntityId: '11' }, { EntityId: '12' }]);
     expect(startingPosition(preload, '12')).toBe(1);
     expect(startingPosition(preload, '99')).toBe(0);
+  });
+
+  it('assigns HouseholdPreload, EntitiesCarousel_Items and StartingPosition from the preload object', () => {
+    expect(householdCarouselOnInitialize(preload, '12')).toEqual({
+      preload,
+      items: [{ EntityId: '11' }, { EntityId: '12' }],
+      position: 1,
+    });
+    expect(householdCarouselOnInitialize(null, '12')).toEqual({ preload: EMPTY_PRELOAD, items: [], position: 0 });
   });
 });
 

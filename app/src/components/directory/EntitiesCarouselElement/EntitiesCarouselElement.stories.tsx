@@ -1,27 +1,45 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { MemoryRouter } from 'react-router';
-import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import { isSignedIn, setClientVar, setSignedInUser } from '@/platform/session/session';
-import { HOUSEHOLD_DETAILS_ID } from '@/containers/HouseholdDetails/mockData';
+import type { CarouselHouseholdDetailsSlot } from '@/components/directory/CarouselHouseholdDetails';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { VITALE } from '@/mocks/fictional/directory';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { EntitiesCarouselElement } from './EntitiesCarouselElement';
 
 const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
-/** The details blocks run inside the signed-in app with the query client and a router; bookmarks and notes are
-    synched (as captured). */
-const providers: Decorator = (Story) => {
-  if (!isSignedIn()) setSignedInUser(MOCK_USER_ID);
-  setClientVar('UBTConnect.Bookmarks_IsSynched', true);
-  setClientVar('UBTConnect.Notes_IsSynched', true);
+/** The supper meeting details block (V3) runs with the query client and a router. */
+const providers: Decorator = (Story) => (
+  <QueryClientProvider client={client}>
+    <MemoryRouter>
+      <Story />
+    </MemoryRouter>
+  </QueryClientProvider>
+);
+
+/** A stand-in for the household details container that the page renders in the slot: the HouseholdDetails_Block
+    wrapper with the carousel tag placeholder. After its first render it raises HouseholdDataFetched once, with the
+    locality and the country of the fictional household, as the container does when GetHousehold answers. */
+function HouseholdDetailsStandIn({ id, carouselTag, onHouseholdDataFetched }: CarouselHouseholdDetailsSlot) {
+  const raise = useRef(onHouseholdDataFetched);
+  useLayoutEffect(() => {
+    raise.current = onHouseholdDataFetched;
+  });
+  useEffect(() => {
+    const fetched = setTimeout(() => {
+      raise.current(VITALE.localityName, VITALE.countryName);
+    });
+    return () => {
+      clearTimeout(fetched);
+    };
+  }, []);
   return (
-    <QueryClientProvider client={client}>
-      <MemoryRouter>
-        <Story />
-      </MemoryRouter>
-    </QueryClientProvider>
+    <OSBlock name="Directory_Household.HouseholdDetails_Block" id={id}>
+      {carouselTag}
+    </OSBlock>
   );
-};
+}
 
 const meta = {
   title: 'Shared/UBTConnect/EntitiesCarousel_Element',
@@ -35,11 +53,12 @@ type Story = StoryObj<typeof meta>;
     RenderBuffer 3. */
 const household = {
   inConnectEntityTypeId: Connect_Entity.Household,
-  inEntityId: HOUSEHOLD_DETAILS_ID,
+  inEntityId: VITALE.id,
   inCarouselLength: 23,
   inIndexActiveElement: 0,
   inIndexNextActiveElement: -1,
   inRenderBuffer: 3,
+  renderHouseholdDetails: (slot: CarouselHouseholdDetailsSlot) => <HouseholdDetailsStandIn {...slot} />,
 };
 
 /** HouseholdCarousel/default (pack variant 1): element 0 of 23, inside the render buffer: the household details. */
