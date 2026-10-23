@@ -2,14 +2,14 @@
 
 ## Result
 - Group G2 done (12 steps, gate W19, last commit 7c722883); P6-F15 (Login first load −6.2 kB) done.
-- Group G3 done up to C: 10 page steps (HomeFeed split into a shared-block step and HomeFeed-Page, W22) and P6-F16
-  (HomeFeed and Login first load −3 kB). Group gate: see the P6-G3-C commit and `app/docs/refactor/reports/P6-G3.md`.
+- Group G3 done: 10 page steps (HomeFeed split into a shared-block step and HomeFeed-Page, W22) and P6-F16
+  (HomeFeed and Login first load −3 kB). Group gate W25 confirmed (168255a4); report `app/docs/refactor/reports/P6-G3.md`. HomeFeed 244.00 kB (margin 4.22), Login 184.00 kB (margin 9.84).
 - Prefetched and waiting as patches in `migration/refactor/prefetch/`: P6-G4-A, P6-G4-B-Shared, P6-G5-A,
   P6-G5-B-Shared, P6-G6-A, P6-G6-B-Shared (built on a chain of pending patches; apply in catalog order with --3way).
 
 ## Decisions (who, date)
 - User 2026-10-23 evening: run every in-scope step (P6, P7) automatically; P8/P9 only on an explicit order.
-- W17–W24 (Opus + Fable, all agree): `migration/refactor/auto-decisions-2026-10-22.md`, Window 4. Key rules:
+- W17–W25 (Opus + Fable, all agree): `migration/refactor/auto-decisions-2026-10-22.md`, Window 4. Key rules:
   W17 `components/**/mocks.ts` glob; W18/W24 bundle fix steps (narrow modules on the app-start path, no limit
   raise); W20 P6-end deletes `screens/` only, P7-0 and P7-6 empty `shared/`; W21 tripwire (HomeFeed margin under
   1.0 kB or a step over +0.3 kB → stop and trim); W23 `isAlive` guards state writes only, side effects of a started
