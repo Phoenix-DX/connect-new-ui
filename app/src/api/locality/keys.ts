@@ -10,6 +10,10 @@ export const localityKeys = {
     [...localityKeys.all, 'interchanges', interchangeLocalityId] as const,
   subdivisionDetails: (subdivisionId: string) => [...localityKeys.all, 'subdivisionDetails', subdivisionId] as const,
   allLocalities: (inputs: AllLocalitiesCallInputs) => [...localityKeys.all, 'allLocalities', inputs] as const,
+  /** OneSchoolGlobalDetails: only the screen input In_OneSchoolGlobalId. The screen variables that the call also sends
+      are read when it starts; a change of them does not fetch again. */
+  oneSchoolGlobalDetails: (oneSchoolGlobalId: string) =>
+    [...localityKeys.all, 'oneSchoolGlobalDetails', oneSchoolGlobalId] as const,
 };
 
 /** Connect_CacheType.AllLocalities (UBTConnect_Utils static entity; the name stands in for the identifier, which was

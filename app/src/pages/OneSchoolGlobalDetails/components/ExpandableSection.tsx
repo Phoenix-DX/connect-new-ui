@@ -1,4 +1,3 @@
-// @os-block UBTConnectLibrary.ConnectPatterns.ExpandableSection
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
@@ -6,7 +5,7 @@ import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
 import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_Icons_ExpandMore } from './staticEntities';
+import { UBT_Icons_ExpandMore } from '@/pages/OneSchoolGlobalDetails/staticEntities';
 
 export interface ExpandableSectionProps {
   /** OutSystems instance id of the block. */
@@ -30,7 +29,8 @@ const MAIN_CONTAINER_CLASS = 'ubt-expandable-section';
     spacing xs, centred: the title placeholder (OSInline) and the expand icon, whose container click is
     Action_IconOnClick) and the content (CustomContainer padding y small / x base > the content placeholder). The
     original CSS shows or hides the content from the `expanded` / `closed` class. Action_IconOnClick (:420): isExpanded
-    = not isExpanded; OnReady (:445): isExpanded = StartExpanded (model default False before it). */
+    = not isExpanded; OnReady (:445): isExpanded = StartExpanded (model default False before it).
+    @origin UBTConnectLibrary.ConnectPatterns.ExpandableSection */
 export function ExpandableSection({
   id,
   startExpanded = true,

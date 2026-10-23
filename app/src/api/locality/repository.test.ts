@@ -12,6 +12,7 @@ import {
   fetchLocalityDetails,
   fetchLocalityInformation,
   fetchOneSchoolCards,
+  fetchOneSchoolGlobalDetails,
   fetchSubdivisionCards,
   fetchSubdivisionDetails,
   fetchSubdivisionName,
@@ -266,5 +267,48 @@ describe('locality repository: Connect2_LegacyShared server actions', () => {
     expect(results[0]?.Value.HouseholdListResponse.List.map((h) => h.Id)).toEqual(
       householdsOfSupperMeeting('1210').map((h) => h.id),
     );
+  });
+});
+
+/* ---- OneSchoolGlobalDetails: DataActionGetOneSchoolGlobalDetails ---- */
+
+describe('locality repository: OneSchoolGlobalDetails', () => {
+  it('fetchOneSchoolGlobalDetails calls DataActionGetOneSchoolGlobalDetails with the screen variables', async () => {
+    const details = await fetchOneSchoolGlobalDetails({
+      lookupSections: {
+        Actions: { Singular: 'Action', Plural: 'Actions' },
+        Households: { Singular: 'Household', Plural: 'Households' },
+        OneSchoolStatistitics: { Singular: 'Show student numbers', Plural: 'Show student numbers' },
+      },
+      selected_OneschoolGlobal_SubsectionId: 'Upcoming events',
+      type_OneschoolGlobal_SubsectionId: { UpcomingEvents: 'Upcoming events', AboutOurCampus: 'About our campus' },
+      localIsBookmarked: false,
+      in_OneSchoolGlobalId: '1430',
+    });
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'UBTConnect',
+        owner: 'OneSchoolGlobalDetails',
+        action: 'DataActionGetOneSchoolGlobalDetails',
+        inputNames: [
+          'In_OneSchoolGlobalId',
+          'LocalIsBookmarked',
+          'LookupSections',
+          'Selected_OneschoolGlobal_SubsectionId',
+          'Type_OneschoolGlobal_SubsectionId',
+        ],
+      }),
+    ]);
+    // The mock of the page: the recorded card with the cast name of school 1430 and the neutral landscape photo.
+    const { signedURL, ...card } = details.card;
+    expect(signedURL).toMatch(/mock-images\/placeholder-landscape\.svg$/);
+    expect(card).toEqual({
+      communityBusinessId: '4281',
+      name: 'OneSchool Alem',
+      address: 'et Voluptate Sed Commodo Nostrud',
+      areasServed: 'Bahia Blanca',
+      businessLinks: [{ text: 'tst', link: 'https://bw.campusandco.us', id: '0' }],
+    });
+    expect(details.householdCoordinates).toEqual({ Longitude: '0.0', Latitude: '0.0', UseCoordinates: false });
   });
 });

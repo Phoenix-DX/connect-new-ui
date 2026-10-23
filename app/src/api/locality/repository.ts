@@ -10,6 +10,8 @@ import {
   toLocalityDetailsInputs,
   toLocalityInformation,
   toOneSchoolCards,
+  toOneSchoolGlobalDetails,
+  toOneSchoolGlobalDetailsInputs,
   toOneSchoolListInputs,
   toSubdivisionCards,
   toSubdivisionDetails,
@@ -29,6 +31,8 @@ import type {
   LocalityDetailsCallInputs,
   LocalityInformation,
   OneSchoolCard,
+  OneSchoolGlobalDetails,
+  OneSchoolGlobalDetailsCallInputs,
   OneSchoolListCallInputs,
   SubdivisionCard,
   SubdivisionDetails,
@@ -150,5 +154,21 @@ export async function fetchLocalityInformation(localityId: string): Promise<Loca
 export async function fetchBulkSubdivisions(cacheKeys: string[]): Promise<SubdivisionInformationResult[]> {
   return toSubdivisionInformationResults(
     await callAction('Connect2_LegacyShared', 'ActionGetBulkSubdivisions_V2', toBulkSubdivisionsInputs(cacheKeys)),
+  );
+}
+
+/* ---- OneSchoolGlobalDetails: DataActionGetOneSchoolGlobalDetails ---- */
+
+/** DataActionGetOneSchoolGlobalDetails of OneSchoolGlobalDetails (UBTConnect): the detail card of a school and the
+    coordinates of its address. The screen refreshes it in ScreenEvent_OnReady and sends its variables with the call. */
+export async function fetchOneSchoolGlobalDetails(
+  inputs: OneSchoolGlobalDetailsCallInputs,
+): Promise<OneSchoolGlobalDetails> {
+  return toOneSchoolGlobalDetails(
+    await callAction(
+      'UBTConnect',
+      'OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails',
+      toOneSchoolGlobalDetailsInputs(inputs),
+    ),
   );
 }

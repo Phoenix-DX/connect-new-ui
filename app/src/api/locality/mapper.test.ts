@@ -15,6 +15,8 @@ import {
   toLocalityDetailsInputs,
   toLocalityInformation,
   toOneSchoolCards,
+  toOneSchoolGlobalDetails,
+  toOneSchoolGlobalDetailsInputs,
   toOneSchoolListInputs,
   toSubdivisionCards,
   toSubdivisionDetails,
@@ -27,6 +29,7 @@ import {
   type InterchangesWire,
   type LocalityCardListWire,
   type LocalityDetailsWire,
+  type OneSchoolGlobalDetailsWire,
   type OneSchoolListWire,
   type SubdivisionDetailsWire,
   type SubdivisionListWire,
@@ -489,5 +492,92 @@ describe('locality mapper: Connect2_LegacyShared', () => {
         Value: { HouseholdListResponse: { List: [] }, Subdivision: { Locality: { Id: '0', Country: { Code: '' } } } },
       },
     ]);
+  });
+});
+
+/* ---- OneSchoolGlobalDetails: DataActionGetOneSchoolGlobalDetails ---- */
+
+describe('locality mapper: OneSchoolGlobalDetails', () => {
+  it('toOneSchoolGlobalDetailsInputs sends the screen variables with their OutSystems names, "" for an absent label', () => {
+    expect(
+      toOneSchoolGlobalDetailsInputs({
+        lookupSections: {
+          Actions: { Singular: 'Action', Plural: 'Actions' },
+          Households: { Singular: 'Household', Plural: 'Households' },
+          OneSchoolStatistitics: {
+            Singular: 'Show student numbers',
+            Plural: 'Show student numbers',
+            Icon: 'connect-icon-school',
+          },
+        },
+        selected_OneschoolGlobal_SubsectionId: 'About our campus',
+        type_OneschoolGlobal_SubsectionId: { UpcomingEvents: 'Upcoming events', AboutOurCampus: 'About our campus' },
+        localIsBookmarked: true,
+        in_OneSchoolGlobalId: '1430',
+      }),
+    ).toEqual({
+      LookupSections: {
+        Actions: { Singular: 'Action', Plural: 'Actions', Icon: '', Icon_Color: '' },
+        Households: { Singular: 'Household', Plural: 'Households', Icon: '', Icon_Color: '' },
+        OneSchoolStatistitics: {
+          Singular: 'Show student numbers',
+          Plural: 'Show student numbers',
+          Icon: 'connect-icon-school',
+          Icon_Color: '',
+        },
+      },
+      Selected_OneschoolGlobal_SubsectionId: 'About our campus',
+      Type_OneschoolGlobal_SubsectionId: { UpcomingEvents: 'Upcoming events', AboutOurCampus: 'About our campus' },
+      LocalIsBookmarked: true,
+      In_OneSchoolGlobalId: '1430',
+    });
+  });
+
+  it('toOneSchoolGlobalDetails flattens the detail card, unwraps the links and keeps the coordinates', () => {
+    const coordinates = { Longitude: '-62.27', Latitude: '-38.72', UseCoordinates: true };
+    const wire = {
+      Out_OneSchoolGlobal: {
+        OneSchoolGlobal_DetailCard: {
+          CommunityBusinessId: '1430',
+          SignedURL: '/mock-images/placeholder-landscape.svg',
+          UI_OneSchool_Card_Content: {
+            Name: 'OneSchool Alem',
+            LocalityName: 'Bahia Blanca',
+            LocalityId: '252',
+            CountryName: 'Argentina',
+            CountryCode: 'AR',
+            Phone: '',
+            Email: '',
+          },
+          OneSchoolGlobal__DetailCard_Content: {
+            Address: '1240 Avenida Colon, Bahia Blanca',
+            AreasServed: 'Bahia Blanca, Tandil',
+            BusinesLinks: {
+              List: [
+                { Text: 'Campus website', Link: 'https://campus.example.org', ID: '7' },
+                { Text: 'Enrolments', Link: 'https://campus.example.org/enrol', ID: '8' },
+              ],
+            },
+          },
+        },
+      },
+      HouseholdCoordinates: coordinates,
+    } as unknown as OneSchoolGlobalDetailsWire;
+    const details = toOneSchoolGlobalDetails(wire);
+    expect(details).toEqual({
+      card: {
+        communityBusinessId: '1430',
+        signedURL: '/mock-images/placeholder-landscape.svg',
+        name: 'OneSchool Alem',
+        address: '1240 Avenida Colon, Bahia Blanca',
+        areasServed: 'Bahia Blanca, Tandil',
+        businessLinks: [
+          { text: 'Campus website', link: 'https://campus.example.org', id: '7' },
+          { text: 'Enrolments', link: 'https://campus.example.org/enrol', id: '8' },
+        ],
+      },
+      householdCoordinates: coordinates,
+    });
+    expect(details.householdCoordinates).toBe(coordinates);
   });
 });

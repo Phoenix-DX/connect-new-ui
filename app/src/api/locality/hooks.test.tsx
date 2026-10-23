@@ -2,15 +2,17 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { recordBodies } from '@/test/testSupport';
 import {
   useAllLocalitiesQuery,
   useInterchangesQuery,
   useLocalityCardListQuery,
   useLocalityDetailsQuery,
+  useOneSchoolGlobalDetailsQuery,
   useSubdivisionDetailsQuery,
 } from './hooks';
 import { localityKeys } from './keys';
-import type { AllLocalitiesCallInputs, LocalityDetailsCallInputs } from './types';
+import type { AllLocalitiesCallInputs, LocalityDetailsCallInputs, OneSchoolGlobalDetailsCallInputs } from './types';
 
 const detailsInputs: LocalityDetailsCallInputs = {
   TagsList: [{ Text: 'Households', Identifier: 'Households', IsSelected: true }],
@@ -121,5 +123,76 @@ describe('locality queries', () => {
     });
     expect(result.current.data?.LocalityList.List.length).toBeGreaterThan(0);
     expect(calls()).toEqual(['DataActionGetCacheInfo']);
+  });
+});
+
+/* ---- OneSchoolGlobalDetails: DataActionGetOneSchoolGlobalDetails ---- */
+
+describe('useOneSchoolGlobalDetailsQuery', () => {
+  /** The screen variables, with the selected sub-section of the moment. */
+  const variablesOf = (selected: string): OneSchoolGlobalDetailsCallInputs => ({
+    lookupSections: {
+      Actions: { Singular: 'Action', Plural: 'Actions' },
+      Households: { Singular: 'Household', Plural: 'Households' },
+      OneSchoolStatistitics: { Singular: 'Show student numbers', Plural: 'Show student numbers' },
+    },
+    selected_OneschoolGlobal_SubsectionId: selected,
+    type_OneschoolGlobal_SubsectionId: { UpcomingEvents: 'Upcoming events', AboutOurCampus: 'About our campus' },
+    localIsBookmarked: false,
+    in_OneSchoolGlobalId: '1430',
+  });
+  const ACTION_PATH = 'UBTConnect/OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails';
+
+  it('the key is the school id only', () => {
+    expect(localityKeys.oneSchoolGlobalDetails('1430')).toEqual(['locality', 'oneSchoolGlobalDetails', '1430']);
+  });
+
+  it('calls once with the variables of the moment the fetch starts, and keeps nothing after the screen', async () => {
+    const client = new QueryClient();
+    const bodies = recordBodies(ACTION_PATH);
+    let selected = 'Upcoming events';
+    const { result, rerender, unmount } = renderHook(
+      () => useOneSchoolGlobalDetailsQuery('1430', () => variablesOf(selected), true),
+      { wrapper: providerOf(client) },
+    );
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBe(true);
+    });
+    expect(result.current.data?.card.name).toBe('OneSchool Alem');
+    // A later change of a variable does not fetch again (staleTime Infinity).
+    selected = 'About our campus';
+    rerender();
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    expect(calls()).toEqual(['DataActionGetOneSchoolGlobalDetails']);
+    expect(bodies).toHaveLength(1);
+    expect(bodies[0]).toMatchObject({ Selected_OneschoolGlobal_SubsectionId: 'Upcoming events' });
+    unmount();
+    await waitFor(() => {
+      expect(client.getQueryCache().find({ queryKey: localityKeys.oneSchoolGlobalDetails('1430') })).toBeUndefined();
+    });
+  });
+
+  it('does not call the server when the screen disables it', async () => {
+    const client = new QueryClient();
+    const { result } = renderHook(
+      () => useOneSchoolGlobalDetailsQuery('1430', () => variablesOf('Upcoming events'), false),
+      { wrapper: providerOf(client) },
+    );
+    await new Promise((resolve) => setTimeout(resolve, 20));
+    expect(result.current.fetchStatus).toBe('idle');
+    expect(calls()).toEqual([]);
+  });
+
+  it('does not retry a failed call', async () => {
+    sessionStorage.setItem('mock:mock', 'error');
+    const client = new QueryClient();
+    const { result } = renderHook(
+      () => useOneSchoolGlobalDetailsQuery('1430', () => variablesOf('Upcoming events'), true),
+      { wrapper: providerOf(client) },
+    );
+    await waitFor(() => {
+      expect(result.current.isError).toBe(true);
+    });
+    expect(calls()).toEqual(['DataActionGetOneSchoolGlobalDetails']);
   });
 });

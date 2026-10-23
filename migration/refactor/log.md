@@ -558,3 +558,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T05:24:54 P6-G4-B-Locality_Details stage test
 - 2026-10-24T05:28:56 P6-G4-B-Locality_Details stage docs
 - 2026-10-24T05:29:48 P6-G4-B-Locality_Details stage commit
+- 2026-10-24T05:29:50 P6-G4-B-Locality_Details done 5a228484: ci: pass; parity visual --changed: 6/0 (OutSystems), 6/0 (self); arch baseline 0 new; HomeFeed 244.21 kB, Login 184.22 kB
+- 2026-10-24T05:29:50 P6-G4-B-OneSchoolGlobalDetails started
+- 2026-10-24T05:29:50 P6-G4-B-OneSchoolGlobalDetails stage dev
+- 2026-10-24T05:30:39 P6-G4-B-OneSchoolGlobalDetails stage test
+- 2026-10-24T05:39:14 P6-G4-B-OneSchoolGlobalDetails stage docs
+- 2026-10-24T05:40:26 P6-G4-B-OneSchoolGlobalDetails stage commit

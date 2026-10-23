@@ -1,14 +1,16 @@
-/** @origin UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails */
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { OSList } from '@/components/ui/os/OSList';
-import { useFlagOn } from '@/platform/flags/flags';
+import { AddressPopupWrapper } from '@/components/contact/AddressPopupWrapper';
+import { DetailLayout } from '@/components/layout';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
-import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
-import { Connect_Entity, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
 import { DirectoryDetailLayout } from '@/components/layout/DirectoryDetailLayout';
+import { OSList } from '@/components/ui/os/OSList';
+import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
+import { useFlag } from '@/platform/flags';
+import { useNavigateBack } from '@/platform/navigation';
+import { Connect_Entity, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
 import { ComingSoon } from '@/shared/UBTConnectLibrary/ComingSoon';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
@@ -16,7 +18,6 @@ import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
 import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
-import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_Color,
@@ -28,97 +29,49 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { AddressPopupWrapper } from '@/components/contact/AddressPopupWrapper';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
-import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { readOneSchoolGlobalDetailsInputs, useGetOneSchoolGlobalDetails } from './api';
 import { ButtonGroup } from './components/ButtonGroup';
 import { ExpandableSection } from './components/ExpandableSection';
 import { External_Link } from './components/External_Link';
-import { FLAG_MobileStudentInformation, Type_OneschoolGlobal_Subsection } from './components/staticEntities';
-import type { OneSchoolGlobalDetailCard, OneSchoolGlobalDetails } from './types';
+import { listStatusClassOf, SKELETON_DETAIL_CARD } from './hooks/oneSchoolGlobalDetailsState';
+import { useOneSchoolGlobalDetails } from './hooks/useOneSchoolGlobalDetails';
+import { readOneSchoolGlobalDetailsInputs } from './inputs';
+import { FLAG_MobileStudentInformation, Type_OneschoolGlobal_Subsection } from './staticEntities';
 
-/** GetSkeleton_UI_OneSchoolGlobal_DetailCard (UBTConnect.controller.js:11952-11990, raw copy in analysis/sources/raw):
-    a UI_OneSchoolGlobal_DetailCardRec with Name "OneSchool Global" and Address "9 Park Ave, Aberfoyle  Park SA 5159"
-    (two spaces, as compiled). */
-const SKELETON_CARD: OneSchoolGlobalDetailCard = {
-  communityBusinessId: '0',
-  signedURL: '',
-  name: 'OneSchool Global',
-  address: '9 Park Ave, Aberfoyle  Park SA 5159',
-  areasServed: '',
-  businessLinks: [],
-};
-
-/** EnableOptions (view :603-609): a new ActionsMenuEnableOptionsRec with EnableNotes True. */
+/** EnableOptions of Directory_EntityDetailsActions: a new ActionsMenuEnableOptionsRec with EnableNotes True. */
 const ENABLE_OPTIONS = { ...ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT, EnableNotes: true };
-/** Container border of the "Coming Soon" boxes (view :783-799, :1044-1058): neutral 3, small, radius large. */
+/** The container border of the "Coming Soon" boxes: neutral 3, small, radius large. */
 const COMING_SOON_BORDER = {
   Color: UBT_Color.Neutral3,
   Size: { GeneralSizeId: UBT_Size.Small },
   Radius: { GeneralSizeId: UBT_Shape.Large },
 };
-/** ComingSoon In_TextOptions of both instances (view :821-829, :1081-1089): neutral 7, base, semi-bold. */
+/** In_TextOptions of both ComingSoon instances: neutral 7, base, semi-bold. */
 const COMING_SOON_TEXT = {
   Color: UBT_Color.Neutral7,
   FontSize: UBT_FontSize.Base,
   FontWeight: UBT_FontWeight.SemiBold,
 };
 
-/** UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails (OneSchoolGlobalDetails.mvc.js: model :1-104, view
-    :105-1173, controller :1174-1462). Layout_DetailPage titled "OneSchool Global" with SubLayout_DirectoryDetailScreen:
-    the detail card (photo, name, areas served, address popup, business links), the actions menu, and the content
-    (student numbers section when mobileStudentInformation is on, the Upcoming events / About our campus button group,
-    a "Coming Soon" box). OnInitialize (:1221-1261): Selected_OneschoolGlobal_SubsectionId = UpcomingEvents unless the
-    view is restored from the cache. OnReady (:1271-1337): unless restored with its data, LookupSections =
-    Get_LookupSection(False), the card = the skeleton card, then DataActionGetOneSchoolGlobalDetails. */
+/** @origin UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails
+    The detail page of a school: the detail layout titled "OneSchool Global" with SubLayout_DirectoryDetailScreen as
+    content. Its detail card has the photo, the name, the areas served, the address popup and the business links; its
+    call to action is the actions menu (Directory_EntityDetailsActions); its content has the student numbers section
+    (flag mobileStudentInformation), the button group "Upcoming events" / "About our campus" and a "Coming Soon" box.
+    The skeleton shows until GetOneSchoolGlobalDetails answers. The bottom bar and CommonUI_InsideLayout are in the
+    layout. The variables and the data action are in useOneSchoolGlobalDetails. */
 export default function OneSchoolGlobalDetails() {
   const [params] = useSearchParams();
-  const inputs = readOneSchoolGlobalDetailsInputs(params);
-  const restored = useWasRestoredFromCache();
-  const hasStudentInformation = useFlagOn(FLAG_MobileStudentInformation);
+  const inputs = useMemo(() => readOneSchoolGlobalDetailsInputs(params), [params]);
+  const navigateBack = useNavigateBack();
+  const hasStudentInformation = useFlag(FLAG_MobileStudentInformation);
+  const { state, details, hasFetchError, onSubsectionChange, onChangeBookmark } = useOneSchoolGlobalDetails(inputs);
 
-  /* Screen variables (model :35-55), kept by the view cache (P-BACK). OnReady (:1300-1323), unless the view is
-     restored from the cache with its data fetched: LookupSections = Get_LookupSection(False), the card = the skeleton
-     card, then the fetch. The model defaults (empty lookup and card) only last until OnReady, so the state starts
-     from the OnReady values. */
-  const [lookupSections] = useViewState('LookupSections', get_LookupSection(false));
-  const [selectedSubsection, setSelectedSubsection] = useViewState<string>(
-    'Selected_OneschoolGlobal_SubsectionId',
-    Type_OneschoolGlobal_Subsection.UpcomingEvents,
-  );
-  const [localIsBookmarked, setLocalIsBookmarked] = useViewState('LocalIsBookmarked', false);
-  const [saved, setSaved] = useViewState<OneSchoolGlobalDetails | null>('GetOneSchoolGlobalDetails', null);
-  const skipFetch = restored && saved !== null;
+  const isDataFetched = details !== null;
+  const card = details?.card ?? SKELETON_DETAIL_CARD;
+  const coordinates = details?.householdCoordinates ?? {};
+  const listStatusClass = listStatusClassOf(isDataFetched, hasFetchError);
 
-  const details = useGetOneSchoolGlobalDetails(
-    inputs,
-    () => ({
-      lookupSections,
-      selected_OneschoolGlobal_SubsectionId: selectedSubsection,
-      localIsBookmarked,
-      in_OneSchoolGlobalId: inputs.In_OneSchoolGlobalId,
-    }),
-    !skipFetch,
-  );
-  useEffect(() => {
-    if (details.data) setSaved(details.data);
-  }, [details.data, setSaved]);
-  /* A failed fetch goes to the screen's handleError → Directory_OneSchoolGlobal flow handler (:1450-1452; Q1). */
-  useEffect(() => {
-    if (details.error) raiseToFlowHandler(details.error);
-  }, [details.error]);
-
-  const fetched = skipFetch ? saved : (details.data ?? null);
-  const isDataFetched = fetched !== null;
-  const card = fetched?.card ?? SKELETON_CARD;
-  const coordinates = fetched?.householdCoordinates ?? {};
-  /* List source_dataFetchStatus (view :483; OutSystemsReactWidgets.js List render): Fetching → list-loading,
-     Error → list-error. */
-  const listStatusClass = isDataFetched ? '' : details.isError ? ' list-error' : ' list-loading';
-
-  /* ContactPopUp_OverrideOptions (view :588-599): ImageURL = SignedURL, Name = Trim(Name), cached on both. */
+  /* ContactPopUp_OverrideOptions: ImageURL = SignedURL, Name = Trim(Name). */
   const contactOverrides = useMemo(
     () => ({ ImageURL: card.signedURL, Name: card.name.trim() }),
     [card.signedURL, card.name],
@@ -128,7 +81,7 @@ export default function OneSchoolGlobalDetails() {
     <SkeletonSection id="$b4" inIsLoading={!isDataFetched}>
       <ImageCard_LazyLoading
         id="$b5"
-        inIsBookmarked={localIsBookmarked}
+        inIsBookmarked={state.LocalIsBookmarked}
         inCardTypeId={UBT_ImageCardType.Detail}
         lazyImagePlaceholder={
           <UBT_LazyImage
@@ -216,7 +169,7 @@ export default function OneSchoolGlobalDetails() {
         entityType={Connect_Entity.OneSchoolGlobal}
         entityId={inputs.In_OneSchoolGlobalId}
         enableOptions={ENABLE_OPTIONS}
-        onOnChangeBookmark={setLocalIsBookmarked}
+        onOnChangeBookmark={onChangeBookmark}
       />
     </CustomContainer>
   );
@@ -233,13 +186,13 @@ export default function OneSchoolGlobalDetails() {
                 id="$b18"
                 textOptions={{ FontWeight: UBT_FontWeight.SemiBold }}
                 spacingSize={UBT_Size.Small}
-                text={lookupSections.OneSchoolStatistitics.Singular ?? ''}
+                text={state.LookupSections.OneSchoolStatistitics.Singular ?? ''}
               >
                 <Icon
                   id="$b19"
                   inColorId={UBT_Color.CyanDarker}
                   inSizeId={UBT_IconsSize.Base_24}
-                  inIconId={lookupSections.OneSchoolStatistitics.Icon ?? ''}
+                  inIconId={state.LookupSections.OneSchoolStatistitics.Icon ?? ''}
                 />
               </IconText>
             }
@@ -267,8 +220,8 @@ export default function OneSchoolGlobalDetails() {
           <ButtonGroup
             id="ButtonGroup1"
             style="button-group ubt-skeleton-section__element"
-            value={selectedSubsection}
-            onChange={setSelectedSubsection}
+            value={state.Selected_OneschoolGlobal_SubsectionId}
+            onChange={onSubsectionChange}
             items={[
               {
                 id: 'ButtonGroupItem1',
@@ -303,9 +256,10 @@ export default function OneSchoolGlobalDetails() {
   );
 
   return (
-    <Layout_DetailPage
+    <DetailLayout
       id="$b1"
-      placeholderHeaderTitle={<CustomText id="$b2" inText="OneSchool Global" />}
+      onBack={navigateBack}
+      headerTitle={<CustomText id="$b2" inText="OneSchool Global" />}
       content={
         <DirectoryDetailLayout
           id="$b3"
@@ -315,7 +269,7 @@ export default function OneSchoolGlobalDetails() {
         />
       }
       bottom={<BottomBar id="$b27" />}
-      placeholderCommonUIInsideLayout={<CommonUiLayout id="$b28" />}
+      commonUI={<CommonUiLayout id="$b28" />}
     />
   );
 }

@@ -5,6 +5,7 @@ import {
   fetchInterchanges,
   fetchLocalityCardList,
   fetchLocalityDetails,
+  fetchOneSchoolGlobalDetails,
   fetchSubdivisionDetails,
 } from './repository';
 import type {
@@ -14,11 +15,12 @@ import type {
   LocalityCardList,
   LocalityDetails,
   LocalityDetailsCallInputs,
+  OneSchoolGlobalDetailsCallInputs,
   SubdivisionDetails,
 } from './types';
 
-/* The locality calls as queries. No caller yet: the screens and blocks call the repository functions in their own
-   flows. Each query has no cache and no retry by default, as for the household and member queries. */
+/* The locality calls as queries. Only `useOneSchoolGlobalDetailsQuery` has a caller (`useOneSchoolGlobalDetails`): the
+   other screens and blocks call the repository functions in their own flows. Each query has no cache and no retry by default, as for the household and member queries. */
 
 /** The query options that a caller can set (for example `enabled`). The key, the query function and the cache times
     are fixed. */
@@ -91,5 +93,28 @@ export function useAllLocalitiesQuery(
     queryKey: localityKeys.allLocalities(inputs),
     queryFn: () => fetchAllLocalities(inputs),
     ...NO_CACHE,
+  });
+}
+
+/* ---- OneSchoolGlobalDetails: DataActionGetOneSchoolGlobalDetails ---- */
+
+/** DataActionGetOneSchoolGlobalDetails of OneSchoolGlobalDetails as a query, with the options that the screen had
+    before the domain:
+    - The key is the school id only. `variables` gives the screen variables when the fetch starts, as OutSystems reads
+      them when it sends the call.
+    - `enabled` is the OnReady decision of the screen: no fetch for a view that the view cache restored with its data.
+    - No retry. `gcTime: 0` and `staleTime: Infinity`: no cache after the screen, and no second call while it shows. */
+export function useOneSchoolGlobalDetailsQuery(
+  oneSchoolGlobalId: string,
+  variables: () => OneSchoolGlobalDetailsCallInputs,
+  enabled: boolean,
+) {
+  return useQuery({
+    queryKey: localityKeys.oneSchoolGlobalDetails(oneSchoolGlobalId),
+    queryFn: () => fetchOneSchoolGlobalDetails(variables()),
+    enabled,
+    gcTime: 0,
+    staleTime: Infinity,
+    retry: false,
   });
 }

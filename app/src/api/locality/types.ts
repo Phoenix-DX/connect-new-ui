@@ -267,3 +267,60 @@ export interface SubdivisionInformationResult {
   Error: string;
   Value: SubdivisionInformation;
 }
+
+/* ---- OneSchoolGlobalDetails: DataActionGetOneSchoolGlobalDetails ---- */
+
+/** A link of a school (UBTConnect BusinessLinkItem): the In_Link of External_Link. */
+export interface BusinessLinkItem {
+  text: string;
+  link: string;
+  /** Long Integer, as text. */
+  id: string;
+}
+
+/** Connect_CommunityBusiness_CS UI_OneSchoolGlobal_DetailCard (GetOneSchoolGlobalDetails.Out_OneSchoolGlobal
+    .OneSchoolGlobal_DetailCard): the fields that the screen reads, flattened. */
+export interface OneSchoolGlobalDetailCard {
+  /** Long Integer, as text. */
+  communityBusinessId: string;
+  signedURL: string;
+  name: string;
+  address: string;
+  areasServed: string;
+  businessLinks: BusinessLinkItem[];
+}
+
+/** APIDomain_Directory_IS Directory_Coordinates: the map coordinates of an address. */
+export interface DirectoryCoordinates {
+  Latitude?: string;
+  Longitude?: string;
+  UseCoordinates?: boolean;
+}
+
+/** The outputs of DataActionGetOneSchoolGlobalDetails that the screen reads: the detail card and the coordinates of
+    the school address (the output HouseholdCoordinates, kept as the server sends it). */
+export interface OneSchoolGlobalDetails {
+  card: OneSchoolGlobalDetailCard;
+  householdCoordinates: DirectoryCoordinates;
+}
+
+/** A label of the screen's LookupSections (UBTConnectLibrary LookupItem). An absent attribute is sent as "". */
+export interface LookupLabel {
+  Singular?: string;
+  Plural?: string;
+  Icon?: string;
+  Icon_Color?: string;
+}
+
+/** The screen variables that OutSystems sends with DataActionGetOneSchoolGlobalDetails (screenData.variables; the
+    recorded call's inputs, src/mocks/fixtures/UBTConnect/DataActionGetOneSchoolGlobalDetails/01-5a0e2715.json). */
+export interface OneSchoolGlobalDetailsCallInputs {
+  /** LookupSections (UBTConnect LookupSections). */
+  lookupSections: { Actions: LookupLabel; Households: LookupLabel; OneSchoolStatistitics: LookupLabel };
+  selected_OneschoolGlobal_SubsectionId: string;
+  /** Type_OneschoolGlobal_SubsectionId: the record of the two sub-section values. */
+  type_OneschoolGlobal_SubsectionId: { UpcomingEvents: string; AboutOurCampus: string };
+  localIsBookmarked: boolean;
+  /** In_OneSchoolGlobalId (Long Integer, as text). */
+  in_OneSchoolGlobalId: string;
+}

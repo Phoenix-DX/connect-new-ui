@@ -21,3 +21,6 @@ export {
   fetchSubdivisionName,
 } from './repository';
 export type * from './types';
+
+/* OneSchoolGlobalDetails: DataActionGetOneSchoolGlobalDetails. */
+export { useOneSchoolGlobalDetailsQuery } from './hooks';

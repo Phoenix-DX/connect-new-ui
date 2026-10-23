@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G4-B-Locality_Details",
+  "step": "P6-G4-B-OneSchoolGlobalDetails",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T05:29:48"
+  "since": "2026-10-24T05:40:26"
  },
  "steps": {
   "P0-1": {
@@ -1080,11 +1080,24 @@
    "finished": "2026-10-24T05:24:00"
   },
   "P6-G4-B-Locality_Details": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T05:24:10",
    "tokens": {
     "dev": 376412,
-    "test": 32829
+    "test": 32829,
+    "docs": 34300
+   },
+   "commit": "5a228484",
+   "gate": "ci: pass; parity visual --changed: 6/0 (OutSystems), 6/0 (self); arch baseline 0 new; HomeFeed 244.21 kB, Login 184.22 kB",
+   "loops": 0,
+   "finished": "2026-10-24T05:29:50"
+  },
+  "P6-G4-B-OneSchoolGlobalDetails": {
+   "status": "active",
+   "started": "2026-10-24T05:29:50",
+   "tokens": {
+    "dev": 316669,
+    "test": 30795
    }
   }
  },

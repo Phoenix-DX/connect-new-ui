@@ -542,3 +542,9 @@
 - `pages/Locality_Details` is a page. The screen flow is in `useLocalityDetails` (on `useFlowState`, W23 once-guard) and the pure `localityDetailsState.ts`. `api.ts` became `inputs.ts`; `types.ts` is deleted.
 - The 4 tag blocks and `Household_Card` call their own hooks (`localityBlocksState.ts`), because they mount with the selected tag. The 2 household calls are in `api/household`.
 - depcruise warnings 213 to 206 (7 rule-9 warnings of the flow files are gone).
+
+## P6-G4-B-OneSchoolGlobalDetails - refactor(P6-G4-B): OneSchoolGlobalDetails as page
+
+- `pages/OneSchoolGlobalDetails` is a page. The screen flow is in `useOneSchoolGlobalDetails` (on `useFlowState`) and the pure `oneSchoolGlobalDetailsState.ts`. `api.ts` became `inputs.ts`; `types.ts` is deleted.
+- The call is the query hook `useOneSchoolGlobalDetailsQuery` in `api/locality` (same query options as the old port, so W23 behavior is kept).
+- depcruise warnings 212 to 210 (2 rule-9 warnings of the route are gone).

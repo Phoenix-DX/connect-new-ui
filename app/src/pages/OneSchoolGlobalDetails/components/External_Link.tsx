@@ -1,4 +1,4 @@
-// @os-block UBTConnect.App_Common_Blocks.External_Link
+import type { BusinessLinkItem } from '@/api/locality';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
@@ -11,7 +11,6 @@ import {
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { openInApp_OpenExternalLink } from '@/shared/UBTConnect_Utils/lib/actions';
-import type { BusinessLinkItem } from '@/pages/OneSchoolGlobalDetails/types';
 
 export interface External_LinkProps {
   /** OutSystems instance id of the block. */
@@ -39,7 +38,8 @@ function checkIOsPlatform(): boolean {
     only OneSchoolGlobalDetails uses it, catalog/blocks.md:199). View: IconText (text In_Link.Text, spacing xs, text
     primary when enabled else neutral 7, font size FontSize, regular, underlined) with the Icon OpenNew (same colour,
     NonStandard_16, visible IconVisible). Clicked → LinkClicked (:284-318): on iOS Navigate to In_Link.Link (runtime
-    navigateTo: an external URL loads the page), otherwise OpenInApp_OpenExternalLink(In_Link.Link, False). */
+    navigateTo: an external URL loads the page), otherwise OpenInApp_OpenExternalLink(In_Link.Link, False).
+    @origin UBTConnect.App_Common_Blocks.External_Link */
 export function External_Link({ id, inLink, isEnabled = true, iconVisible = true }: External_LinkProps) {
   const navigateToPage = useScreenController_NavigateToPage();
   const color = isEnabled ? UBT_Color.Primary : Library_Color.Neutral7;

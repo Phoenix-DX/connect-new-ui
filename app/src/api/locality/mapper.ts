@@ -8,7 +8,10 @@ import type {
   LocalityDetails,
   LocalityDetailsCallInputs,
   LocalityInformation,
+  LookupLabel,
   OneSchoolCard,
+  OneSchoolGlobalDetails,
+  OneSchoolGlobalDetailsCallInputs,
   OneSchoolListCallInputs,
   StatisticsCard,
   SubdivisionCard,
@@ -315,3 +318,60 @@ export const toSubdivisionInformationResults = (wire: BulkSubdivisionsWire): Sub
       },
     },
   }));
+
+/* ---- OneSchoolGlobalDetails: DataActionGetOneSchoolGlobalDetails ---- */
+
+/** The inputs and the outputs of DataActionGetOneSchoolGlobalDetails (OneSchoolGlobalDetails). */
+export type OneSchoolGlobalDetailsInputsWire = ActionInputs<
+  PathOf<'UBTConnect', 'OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails'>
+>;
+export type OneSchoolGlobalDetailsWire = ActionOutputs<
+  PathOf<'UBTConnect', 'OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails'>
+>;
+
+/** A label of LookupSections as OutSystems sends it: every attribute, "" when absent. */
+const toLookupLabelWire = (label: LookupLabel) => ({
+  Singular: label.Singular ?? '',
+  Plural: label.Plural ?? '',
+  Icon: label.Icon ?? '',
+  Icon_Color: label.Icon_Color ?? '',
+});
+
+/** The inputs of DataActionGetOneSchoolGlobalDetails: the screen variables, with their OutSystems names. */
+export const toOneSchoolGlobalDetailsInputs = (
+  inputs: OneSchoolGlobalDetailsCallInputs,
+): OneSchoolGlobalDetailsInputsWire => ({
+  LookupSections: {
+    Actions: toLookupLabelWire(inputs.lookupSections.Actions),
+    Households: toLookupLabelWire(inputs.lookupSections.Households),
+    OneSchoolStatistitics: toLookupLabelWire(inputs.lookupSections.OneSchoolStatistitics),
+  },
+  Selected_OneschoolGlobal_SubsectionId: inputs.selected_OneschoolGlobal_SubsectionId,
+  Type_OneschoolGlobal_SubsectionId: {
+    UpcomingEvents: inputs.type_OneschoolGlobal_SubsectionId.UpcomingEvents,
+    AboutOurCampus: inputs.type_OneschoolGlobal_SubsectionId.AboutOurCampus,
+  },
+  LocalIsBookmarked: inputs.localIsBookmarked,
+  In_OneSchoolGlobalId: inputs.in_OneSchoolGlobalId,
+});
+
+/** The detail card of DataActionGetOneSchoolGlobalDetails, flattened, with the business links unwrapped, and the
+    coordinates of the school address as the server sends them. */
+export const toOneSchoolGlobalDetails = (wire: OneSchoolGlobalDetailsWire): OneSchoolGlobalDetails => {
+  const card = wire.Out_OneSchoolGlobal.OneSchoolGlobal_DetailCard;
+  return {
+    card: {
+      communityBusinessId: card.CommunityBusinessId,
+      signedURL: card.SignedURL,
+      name: card.UI_OneSchool_Card_Content.Name,
+      address: card.OneSchoolGlobal__DetailCard_Content.Address,
+      areasServed: card.OneSchoolGlobal__DetailCard_Content.AreasServed,
+      businessLinks: osList(card.OneSchoolGlobal__DetailCard_Content.BusinesLinks).map((l) => ({
+        text: l.Text,
+        link: l.Link,
+        id: l.ID,
+      })),
+    },
+    householdCoordinates: wire.HouseholdCoordinates,
+  };
+};
