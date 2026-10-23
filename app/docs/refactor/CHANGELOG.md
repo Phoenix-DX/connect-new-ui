@@ -350,3 +350,8 @@
 - New mode `arch_baseline.py check --move-step <phase> --base <commit>` lists a new row as ADD. It does so only for a file that is a move target of that phase. The old file must have imported the same module at the base commit.
 - Decision W17 (Window 4): ContactEmailForm has a colocated `mocks.ts` (handler SendContactMemberEmail). `src/mocks/handlers.ts` has a new glob `../components/**/mocks.ts`, placed after `shared` and before `platform`. `handlers.test.ts` checks the new order. `rf.py diffcheck --move` flags only these lines, and the handler set is unchanged (155 handlers).
 - Later groups reuse the glob.
+
+## P6-G2-B-ContactUsMenu - refactor(P6-G2-B): ContactUsMenu as page
+
+- ContactUsMenu is a page plus a hook: `src/pages/ContactUsMenu/hooks/useContactUsMenu.ts` and the pure state file `hooks/contactUsMenuState.ts`.
+- The page renders `DetailLayout` without the `Layout_DetailPage` adapter. `api.ts`, `types.ts` and `mocks.ts` of the page are deleted.

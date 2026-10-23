@@ -1,5 +1,42 @@
 import type { UI_ListMenuOption, UI_MenuSection } from '@/components/menu/MenuList';
-import { Type_ContactSubject, UBT_Icons2_Local } from './staticEntities';
+import { Type_ContactSubject, UBT_Icons2_Local } from '@/pages/ContactUsMenu/staticEntities';
+
+/** The screen variables of the Contact Us menu and the client actions that build its sections, as pure code.
+    @origin UBTConnect.App_Menu_ContactUs.ContactUsMenu */
+
+/** [IgnorePolices] and [IgnoreLockedScreen]: the CommonUI_InsideLayout inputs that ScreenEvent_OnInitialize sets. */
+export interface ContactUsMenuIgnore {
+  /** IgnorePolices = GetUserId = NullIdentifier() or PIN_Check.NeedRegister. */
+  polices: boolean;
+  /** IgnoreLockedScreen = GetUserId <> NullIdentifier() and PIN_Check.NeedRegister. */
+  lockedScreen: boolean;
+}
+
+/** ScreenEvent_OnInitialize after PIN_Check: the two ignore variables from the signed-in state and NeedRegister. */
+export function initialIgnore(isSignedIn: boolean, needRegister: boolean): ContactUsMenuIgnore {
+  return { polices: !isSignedIn || needRegister, lockedScreen: isSignedIn && needRegister };
+}
+
+/** Inputs of ContactUsDetails that OnClick_MenuOption sends, all Text. */
+export interface ContactUsDetailsParams {
+  In_ContactSubjectId: string;
+  In_ContactSubjectTitle: string;
+  In_ListMenuOptionLabel: string;
+}
+
+/** OnClick_MenuOption(Event_ListMenuOptionId) of a section's Menu_List: ListIndexOf(the section's MenuOptions,
+    Id = Event_ListMenuOptionId), then the ContactUsDetails inputs: the row's Id (TextToIdentifier, as Text), the
+    section title and the row's Label. A row that is not found gives the record default (empty texts). */
+export function contactUsDetailsParams(section: UI_MenuSection, eventListMenuOptionId: string): ContactUsDetailsParams {
+  const options = section.MenuOptions ?? [];
+  const position = options.findIndex((p) => (p.Id ?? '') === eventListMenuOptionId);
+  const row = options[position] ?? {};
+  return {
+    In_ContactSubjectId: row.Id ?? '',
+    In_ContactSubjectTitle: section.SectionTitle ?? '',
+    In_ListMenuOptionLabel: row.Label ?? '',
+  };
+}
 
 /** UBTConnect Lookup_ContactUsMenuOptions: one UI_ListMenuOption per contact subject. */
 interface Lookup_ContactUsMenuOptions {

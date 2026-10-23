@@ -519,3 +519,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,review,52636,refactor-advisor,,"bundle analysis (W18 facts), sonnet"
 2026-10-23,refactor,verify,37325,refactor-test,,P6-G2-B-Shared sonnet
 2026-10-23,refactor,other,35858,refactor-docs,,P6-G2-B-Shared sonnet
+2026-10-23,refactor,review,48410,refactor-advisor,,"W18, opus"
+2026-10-23,refactor,review,46678,refactor-advisor,,"W18, fable"
+2026-10-23,refactor,build,122809,refactor-dev,,P6-G2-B-ContactUsMenu opus
+2026-10-23,refactor,verify,26477,refactor-test,,P6-G2-B-ContactUsMenu sonnet
+2026-10-23,refactor,other,21082,refactor-docs,,P6-G2-B-ContactUsMenu sonnet
