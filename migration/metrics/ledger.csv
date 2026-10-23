@@ -396,3 +396,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,other,47784,refactor-docs,,P5-2-locality sonnet
 2026-10-23,refactor,verify,45441,refactor-test,,P5-2-update sonnet
 2026-10-23,refactor,other,35237,refactor-docs,,P5-2-update sonnet
+2026-10-23,refactor,review,44254,refactor-advisor,,"G1 SecurityException gap, fable, 42 s (port after P5, high)"
+2026-10-23,refactor,review,0,refactor-advisor,,"G2 MyBookmarks cache, fable (fix now, high) - tokens in next row"
+2026-10-23,refactor,review,51400,refactor-advisor,,"G2 MyBookmarks cache, fable, 70 s (fix now, high)"
