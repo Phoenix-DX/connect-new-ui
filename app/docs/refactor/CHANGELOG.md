@@ -524,3 +524,9 @@
 - `pages/Photobook` is a page. The screen flow is in `usePhotobook` (on `useFlowState`) and the pure `photobookState.ts`; the caption flow is in `useHouseholdCaption`, which `Photobook_Options_Left` calls. `inputs.ts` holds the call inputs. `api.ts` and `types.ts` are deleted.
 - The 2 calls (GetLocalityHouseholdIds, GetHouseholdCaption) are in `api/household`. A back navigation with a restored list does not call again; a restored view without a list calls again.
 - W23: after unmount only state writes are skipped. A late failure of GetLocalityHouseholdIds is not raised, as in the old page; the caption flow still raises.
+
+## P6-G4-B-CountryDetails - refactor(P6-G4-B): CountryDetails as page
+
+- `pages/CountryDetails` is a page with the hook `useCountryDetails`: the `api/country` query, `useViewState` for 4 variables, no `useFlowState`, no `isAlive`.
+- It also has the pure `countryDetailsState.ts`, the props-only `CountryDetailsContent` and `inputs.ts`. `api.ts` and `types.ts` are deleted.
+- `raiseToFlowHandler` now comes from `@/platform/feedback/flowErrors`: depcruise warnings 212 to 211. Baseline rows unchanged.

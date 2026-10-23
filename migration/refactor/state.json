@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G4-B-Photobook",
+  "step": "P6-G4-B-CountryDetails",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T05:09:05"
+  "since": "2026-10-24T05:15:12"
  },
  "steps": {
   "P0-1": {
@@ -1041,12 +1041,25 @@
    "finished": "2026-10-24T05:03:16"
   },
   "P6-G4-B-Photobook": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T05:03:16",
    "tokens": {
     "dev": 291411,
     "test": 35625,
     "docs": 34130
+   },
+   "commit": "892cf6c3",
+   "gate": "ci: pass; parity visual --changed: 5/0 (OutSystems), 5/0 (self); arch baseline 0 new; bundle HomeFeed 244.19/248.22, Login 184.19/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T05:09:08"
+  },
+  "P6-G4-B-CountryDetails": {
+   "status": "active",
+   "started": "2026-10-24T05:09:08",
+   "tokens": {
+    "dev": 201390,
+    "test": 26099,
+    "docs": 34910
    }
   }
  },

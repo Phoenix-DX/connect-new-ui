@@ -46,7 +46,6 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 
 | File                                                                              | Module                | Actions                                                                            |
 | --------------------------------------------------------------------------------- | --------------------- | ---------------------------------------------------------------------------------- |
-| `screens/CountryDetails/api.ts`                                                   | UBTConnect            | `CountryDetails/DataActionGetLocalityStatistics`                                   |
 | `screens/Profile/api.ts`                                                          | UBTConnect            | `Profile/DataActionGetCountryInfo`                                                 |
 | `shared/Connect2_LegacyShared/lib/actions.ts`                                     | Connect2_LegacyShared | `ActionGetCountriesBySubscription`, `ActionGetUserLocalitiesForCountryCodeWithGPS` |
 | `shared/UBTConnect_Utils/CacheControl_AllCountries/CacheControl_AllCountries.tsx` | UBTConnect_Utils      | `CacheControl_AllCountries/DataActionGetCacheInfo`                                 |
@@ -85,6 +84,8 @@ P6-G4-B-BrowseCountries: `pages/BrowseCountries/api.ts` is deleted (its row in t
 P6-G4-B-BrowseDirectory: `pages/BrowseDirectory/api.ts` is deleted (its row in the locality table). The hook `useBrowseDirectory` calls `fetchLocalityCardList` of `@/api/locality` directly. `GetLocalityStatistics` is unchanged.
 
 P6-G4-B-CountryList: `pages/CountryList/api.ts` is deleted (its row in the country table). The hook `useCountryList` calls `fetchCountryListStatistics` of `@/api/country` directly.
+
+P6-G4-B-CountryDetails: `pages/CountryDetails/api.ts` is deleted (its row in the country table). The hook `useCountryDetails` calls `useCountryLocalityStatisticsQuery` of `@/api/country` directly.
 
 P6-G4-B-HouseholdCarousel: `pages/HouseholdCarousel/api.ts` is deleted (its row in the update table). The hook `useHouseholdCarousel` calls `markCarouselUpdateItemAsRead` of `@/api/update` directly.
 
