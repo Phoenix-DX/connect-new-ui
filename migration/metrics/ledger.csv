@@ -463,3 +463,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,review,36978,refactor-advisor,,"W10, fable"
 2026-10-23,refactor,verify,25019,refactor-test,,P6-G1-B-Login sonnet
 2026-10-23,refactor,other,24866,refactor-docs,,P6-G1-B-Login sonnet
+2026-10-23,refactor,build,189857,refactor-dev,,P6-G1-B-Splash opus
+2026-10-23,refactor,verify,29397,refactor-test,,P6-G1-B-Splash sonnet
+2026-10-23,refactor,review,36074,refactor-advisor,,"W11, opus"
+2026-10-23,refactor,review,36592,refactor-advisor,,"W11, fable"
+2026-10-23,refactor,other,25422,refactor-docs,,P6-G1-B-Splash sonnet

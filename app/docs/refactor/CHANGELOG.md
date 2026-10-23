@@ -275,3 +275,8 @@
 
 - `src/pages/Login` is now a page (`LoginPage.tsx`), one hook (`hooks/useLogin.ts`: OnInitialize, OnReady, login action) and components (`LoginCard`, `LoginFooter`, `LoginVersion`, `AppManagerEvents`, `Tile`). `api.ts` and `types.ts` became `inputs.ts` (the route had no server call).
 - No shared block moved. `useLogin` keeps plain `useState`, not `useFlowState`, so back navigation behaves as before. Visual parity `--changed`: clean for both references. `move-map.csv`: Login row set to `moved`.
+
+## P6-G1-B-Splash - refactor(P6-G1-B): Splash as page
+
+- `src/pages/Splash` is now a page with hooks (`useSplash`, `useApplicationLoadEvents`, `useLoadingDotsAnimation`) and two components. `api.ts`, `types.ts` and `mocks.ts` are deleted: they had no call, input or route mock.
+- `LayoutBlank` moved to `src/components/layout/BlankLayout` (props only). The page calls `useNoCommonUi()`. Shared blocks that Splash uses did not move in this step. Visual parity `--changed`: clean for both references. `move-map.csv`: 4 Splash rows set to `moved`.

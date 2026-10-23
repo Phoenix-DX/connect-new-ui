@@ -1,78 +1,24 @@
-/** @origin UBTConnect.App_Common.Splash */
-import { useRef, useState } from 'react';
-import { HandleOnResumeOpenLink } from '@/shared/UBTConnect/HandleOnResumeOpenLink';
-import { set_InitialClientVariables } from '@/shared/UBTConnect/lib/actions';
+import { BlankLayout } from '@/components/layout';
+import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { NavigationHandler } from '@/shared/NavigationHandler/NavigationHandler';
-import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
-import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
-import { PATHS } from '@/platform/navigation/paths';
-import { pinCheck } from '@/platform/session/pin';
-import { getColdStartLinkURL, setResumeLoginLink } from '@/platform/session/resume';
-import { getClientVar, isSignedIn, setClientVar, useClientVar } from '@/platform/session/session';
+import { HandleOnResumeOpenLink } from '@/shared/UBTConnect/HandleOnResumeOpenLink';
 import { ApplicationLoadEvents } from './components/ApplicationLoadEvents';
-import { LayoutBlank } from './components/LayoutBlank';
 import { LoadingDots } from './components/LoadingDots';
+import { useSplash } from './hooks/useSplash';
 
-/** UBTConnect App_Common.Splash (p:UBTConnect.App_Common.Splash.mvc.js; view :137-300, controller :324-560). */
+/** The splash screen: the blank layout with the loading dots, the application load events and
+    HandleOnResumeOpenLink, and NavigationHandler beside the layout. The flows are `useSplash`. The screen has no
+    input and no server call of its own: the calls of its capture (Sync_Info_GetMain, CacheableHouseholds,
+    CacheableMapEntities) are the app start's (platform/bootstrap), which also mocks them.
+    @origin UBTConnect.App_Common.Splash */
 export default function Splash() {
-  const navigate = useOsNavigate();
-  const screenController_NavigateToPage = useScreenController_NavigateToPage();
-  const [triggerAnimation, setTriggerAnimation] = useState(false);
-  const navigationObject = useRef<Event | null>(null);
-  const percentage = useRef(0);
-  const headerFinalHeightPercentage = useClientVar('UBTConnect.App_PIN_Header_FinalHeightPercentage');
-
-  // Handler_OnNavigation (:324-350): PreventNavigation (stopPropagation + preventDefault, NavigationHandler.controller.js
-  // :1543-1548), NavigationObject = NavigationEvent.
-  const handlerOnNavigation = (navigationEvent: Event) => {
-    navigationEvent.stopPropagation();
-    navigationEvent.preventDefault();
-    navigationObject.current = navigationEvent;
-  };
-
-  // OnUpgradeProgress (:364-390): Percentage = Trunc(Completed / Total * 150); nothing renders it (:191-195).
-  const onUpgradeProgress = (completed: number, total: number) => {
-    percentage.current = Math.trunc((completed / total) * 150);
-  };
-
-  // OnLoadComplete (:410-435): TriggerAnimation = True; LastURL = In_RedirectURL unless a navigation was caught and
-  // LastURL is set.
-  const onLoadComplete = (redirectUrl: string) => {
-    setTriggerAnimation(true);
-    if (navigationObject.current !== null && getClientVar('UBTConnect.LastURL') !== '') return;
-    setClientVar('UBTConnect.LastURL', redirectUrl);
-  };
-
-  // LoadingDotsAnimationComplete (:455-524).
-  const loadingDotsAnimationComplete = () => {
-    set_InitialClientVariables();
-    const pin = pinCheck();
-    const coldStartLinkUrl = getColdStartLinkURL();
-    allowUpcomingNavigation();
-    const signedIn = isSignedIn();
-    if (coldStartLinkUrl !== '' && (pin.needRegister || pin.needUnlock || !signedIn)) {
-      setResumeLoginLink(coldStartLinkUrl);
-    }
-    if (signedIn) {
-      if (pin.needRegister) {
-        navigate(PATHS.pinRegister);
-        return;
-      }
-      if (pin.needUnlock) {
-        navigate(PATHS.pinUnlock);
-        return;
-      }
-    }
-    // ScreenController_NavigateToPage(link, else LastURL, True) (Q3 answered A: as compiled).
-    screenController_NavigateToPage(
-      coldStartLinkUrl !== '' ? coldStartLinkUrl : getClientVar('UBTConnect.LastURL'),
-      true,
-    );
-  };
+  const { triggerAnimation, headerFinalHeightPercentage, onNavigation, onLoadingDotsAnimationComplete } = useSplash();
+  // The blank layout has no CommonUI_InsideLayout: the shell mounts no CommonUI stand-in (CR-Splash-3).
+  useNoCommonUi();
 
   return (
     <>
-      <LayoutBlank
+      <BlankLayout
         id="$b1"
         content={
           <>
@@ -81,19 +27,14 @@ export default function Splash() {
               isTriggerAnimation={triggerAnimation}
               inFinalCurvaturePercentage={headerFinalHeightPercentage}
               inHeaderFinalHeightPercentage={headerFinalHeightPercentage}
-              onAnimationComplete={loadingDotsAnimationComplete}
+              onAnimationComplete={onLoadingDotsAnimationComplete}
             />
-            <ApplicationLoadEvents
-              id="$b3"
-              minimumDisplayTimeMs={1500}
-              onUpgradeProgress={onUpgradeProgress}
-              onLoadComplete={onLoadComplete}
-            />
+            <ApplicationLoadEvents id="$b3" />
             <HandleOnResumeOpenLink id="$b4" />
           </>
         }
       />
-      <NavigationHandler id="$b5" onNavigation={handlerOnNavigation} />
+      <NavigationHandler id="$b5" onNavigation={onNavigation} />
     </>
   );
 }

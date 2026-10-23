@@ -369,7 +369,7 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
 - **Who starts it.** Only `LockHost` (mounted by the shell while the screen has CommonUI) starts it. It registers a
   handler that calls `lock()`, then calls `pinSessionInactivityStart()`. Screens never call these functions.
 - **Screens without CommonUI.** A screen whose layout has an empty `Placeholder_CommonUI_Inside_Layout` calls
-  `useNoCommonUi()` from `src/platform/feedback/dialogs` (Services: Services.mvc.js:1207; Splash: App_Common.LayoutBlank).
+  `useNoCommonUi()` from `src/platform/feedback/dialogs` (Services: Services.mvc.js:1207; Splash: App_Common.LayoutBlank, called by `SplashPage` since P6-G1-B).
   - The shell then mounts no Access Restricted dialog and no lock layer (`useIsCommonUiAbsent`).
   - `LockHost` skips its start in that commit (`isCommonUiAbsentNow`).
   - As in the original, the timer started on the previous screen keeps running.

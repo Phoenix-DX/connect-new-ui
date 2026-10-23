@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G1-B-Login",
+  "step": "P6-G1-B-Splash",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T19:11:08"
+  "since": "2026-10-23T19:19:15"
  },
  "steps": {
   "P0-1": {
@@ -469,12 +469,25 @@
    "finished": "2026-10-23T16:52:27"
   },
   "P6-G1-B-Login": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T16:52:37",
    "tokens": {
     "dev": 141525,
     "test": 25019,
     "docs": 24866
+   },
+   "commit": "7517102",
+   "gate": "ci: pass (2052 tests); parity visual --changed: 1/0 (OutSystems), 1/0 (self); lint:arch no new warning; bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T19:11:17"
+  },
+  "P6-G1-B-Splash": {
+   "status": "active",
+   "started": "2026-10-23T19:11:30",
+   "tokens": {
+    "dev": 189857,
+    "test": 29397,
+    "docs": 25422
    }
   }
  },

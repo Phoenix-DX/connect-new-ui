@@ -1,31 +1,32 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntime_Top } from '@/shared/NavigationHandler/LayoutRuntime_Top';
-import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { OfflineDataSyncEvents } from '@/shared/UBTConnect/OfflineDataSyncEvents';
 
-export interface LayoutBlankProps {
+export interface BlankLayoutProps {
   /** OutSystems instance id of the block. */
   id: string;
+  /** Extra classes of the layout container. */
   extendedClass?: string;
+  /** The accessibility features: the `has-accessible-features` class. */
   enableAccessibilityFeatures?: boolean;
-  /** Placeholder Content. */
+  /** The main content. */
   content?: ReactNode;
 }
 
-/** UBTConnect App_Common.LayoutBlank (p:UBTConnect.App_Common.LayoutBlank.mvc.js view :145-330): LayoutRuntime_Top,
-    the `layout layout-native blank` container (ExtendedClass, EnableAccessibilityFeatures → has-accessible-features)
-    with the Content placeholder, and OfflineDataSyncEvents (its sync events are only re-raised, nobody listens here).
-    OnReady LayoutReady / SetLang("") and OnDestroy LayoutDestroy are OSUI runtime layout helpers that no layout of the
-    app ports (route-spec.md "Decisions to confirm"); AddFavicon("favicon.png")'s link is static in index.html. It has no
-    Placeholder_CommonUI_Inside_Layout, so it tells the shell to mount no CommonUI stand-in (CR-Splash-3). */
-export function LayoutBlank({
+/** The blank layout: LayoutRuntime_Top, the `layout layout-native blank` container (extended and accessibility
+    classes) with the content in the main area, and OfflineDataSyncEvents (it only raises its sync events again, and
+    nothing listens to them here). The OSUI runtime layout helpers of OnReady (LayoutReady, SetLang) and OnDestroy
+    (LayoutDestroy) are not ported by any layout of the app; the favicon link of AddFavicon is static in index.html.
+    The layout has no CommonUI_InsideLayout placeholder: the page that renders it calls `useNoCommonUi`, so the shell
+    mounts no CommonUI stand-in (CR-Splash-3).
+    @origin UBTConnect.App_Common.LayoutBlank */
+export function BlankLayout({
   id,
   extendedClass = '',
   enableAccessibilityFeatures = false,
   content,
-}: LayoutBlankProps) {
-  useNoCommonUi();
+}: BlankLayoutProps) {
   const prefix = id.replace('$', '');
   const className =
     'layout layout-native blank' +

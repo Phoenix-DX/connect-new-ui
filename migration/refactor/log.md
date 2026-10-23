@@ -266,3 +266,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T17:04:44 P6-G1-B-Login stage test
 - 2026-10-23T19:10:07 P6-G1-B-Login stage docs
 - 2026-10-23T19:11:08 P6-G1-B-Login stage commit
+- 2026-10-23T19:11:17 P6-G1-B-Login done 7517102: ci: pass (2052 tests); parity visual --changed: 1/0 (OutSystems), 1/0 (self); lint:arch no new warning; bundle within +5%
+- 2026-10-23T19:11:30 P6-G1-B-Splash started
+- 2026-10-23T19:11:31 P6-G1-B-Splash stage dev
+- 2026-10-23T19:12:08 P6-G1-B-Splash stage test
+- 2026-10-23T19:18:08 P6-G1-B-Splash stage docs
+- 2026-10-23T19:19:15 P6-G1-B-Splash stage commit
