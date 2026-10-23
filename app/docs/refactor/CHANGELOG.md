@@ -387,3 +387,8 @@
 
 - ContactByEmailOrbitHost follows the ContactByEmail pattern of the pilot: `config.ts`, `inputs.ts` (replaces `api.ts` and `types.ts`) and `hooks/useContactByEmailOrbitHostSubmit.ts`. The route has no `components/` folder. Its card is the shared `ContactPersonCard` (second page caller).
 - The route has no parity states. It was checked by 6 new unit tests and the diff (same send order and request body), not by parity.
+
+## P6-G2-B-EmailContact - refactor(P6-G2-B): EmailContact as page
+
+- EmailContact is a page with `inputs.ts` (replaces `api.ts` and `types.ts`), `actions.ts` (moved from `components/`) and two hooks: `useOrbitContactForm` (flows of ScreenBlock_ContactForm, with the pure `orbitContactFormState.ts`) and `useEmailContact` (OnHandle_Submitted).
+- The form is the props-only view `OrbitContactFormView`; `ScreenBlock_ContactForm.tsx` is deleted. The page does not use the shared `ContactEmailForm` (user decision Q6). A temporary old-vs-new test (7 scenarios, now deleted) showed the same DOM and calls.

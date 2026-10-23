@@ -543,3 +543,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,89630,refactor-dev,,P6-G2-B-ContactByEmailOrbitHost opus
 2026-10-23,refactor,verify,30070,refactor-test,,P6-G2-B-ContactByEmailOrbitHost sonnet
 2026-10-23,refactor,other,24789,refactor-docs,,P6-G2-B-ContactByEmailOrbitHost sonnet
+2026-10-23,refactor,build,214669,refactor-dev,,P6-G2-B-EmailContact opus
+2026-10-24,refactor,verify,26571,refactor-test,,P6-G2-B-EmailContact sonnet
+2026-10-24,refactor,other,24077,refactor-docs,,P6-G2-B-EmailContact sonnet

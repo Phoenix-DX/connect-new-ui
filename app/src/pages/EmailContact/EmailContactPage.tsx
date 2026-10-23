@@ -1,52 +1,50 @@
-/** @origin UBTConnect.Legacy_OrbitEventsFlow.EmailContact */
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { useFlagOn } from '@/platform/flags/flags';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { showFeedbackMessage } from '@/platform/feedback';
-import { useNavigateBack, useOsNavigate } from '@/platform/navigation';
-import { readInputs } from './api';
-import { ScreenBlock_ContactForm } from './components/ScreenBlock_ContactForm';
+import { useFlag } from '@/platform/flags';
+import { OrbitContactFormView } from './components/OrbitContactFormView';
+import { useEmailContact } from './hooks/useEmailContact';
+import { useOrbitContactForm } from './hooks/useOrbitContactForm';
+import { readEmailContactInputs } from './inputs';
 
-const NO_ORBIT_ACCESS = "You don't have access to Orbit. Please contact the Orbit Helpdesk if you have any questions.";
+/** The instance id of ScreenBlock_ContactForm on the screen. */
+const CONTACT_FORM_ID = '$b1';
 
-/** Connect2_LegacyShared FeedbackMessageAfterTransition (runtime-sources/Connect2_LegacyShared.controller.js
-    :2030-2085): its JS node shows the message 500 ms later, after the navigation that follows. */
-function feedbackMessageAfterTransition(message: string, messageType: number): void {
-  window.setTimeout(() => {
-    showFeedbackMessage(message, messageType);
-  }, 500);
-}
-
-/** UBTConnect Legacy_OrbitEventsFlow.EmailContact (S = analysis/sources/UBTConnect.Legacy_OrbitEventsFlow.EmailContact.mvc.js:
-    model :1-157, view :158-315, controller :316-409). Inputs In_IsContactHelpdesk, In_EventId, In_MilestoneId,
-    In_TargetMemberId, In_Subject, In_MilestoneTitle, In_EventName, In_HostName, In_HostEmail, In_FormattedDateTime
-    (S :12-61). ScreenBlock_ContactForm (In_MilestoneName = In_MilestoneTitle; Menu and CommonUI_Elements empty,
-    BottomBar = BottomBarMenu, S :226-291), then CommonUI_InsideLayout (S :292-306). No built screen links to it
-    (EmailContact Q2: review URLs). OnHandle_Submitted (S :334-376): GetHasOrbitAccess (flag mobileOrbitAccess,
-    default-only on) → the previous screen; otherwise the no-access message after the transition and HomeFeed. */
+/** @origin UBTConnect.Legacy_OrbitEventsFlow.EmailContact
+    The Orbit contact route: the e-mail to the Orbit helpdesk of an event (In_IsContactHelpdesk) or to a host. The
+    screen renders ScreenBlock_ContactForm with the screen inputs (In_MilestoneName = In_MilestoneTitle; Menu and
+    CommonUI_Elements empty, BottomBar = BottomBarMenu), then CommonUI_InsideLayout. No built screen links to it
+    (EmailContact Q2: review URLs). The screen reads the flag mobileOrbitAccess (GetHasOrbitAccess, default-only on).
+    The block flows are in hooks/useOrbitContactForm.ts, the screen action OnHandle_Submitted in
+    hooks/useEmailContact.ts. */
 export default function EmailContact() {
   const [params] = useSearchParams();
-  const inputs = useMemo(() => readInputs(params), [params]);
-  const navigate = useOsNavigate();
-  const navigateBack = useNavigateBack();
-  const hasOrbitAccess = useFlagOn('mobileOrbitAccess');
+  const inputs = useMemo(() => readEmailContactInputs(params), [params]);
+  const hasOrbitAccess = useFlag('mobileOrbitAccess');
+  const screen = useEmailContact({ hasOrbitAccess });
+  const form = useOrbitContactForm(CONTACT_FORM_ID, inputs, { onSubmitted: screen.onSubmitted });
   return (
     <>
-      <ScreenBlock_ContactForm
-        id="$b1"
-        inputs={inputs}
+      <OrbitContactFormView
+        id={CONTACT_FORM_ID}
+        validation={form.validation}
+        isContactHelpdesk={inputs.In_IsContactHelpdesk}
+        hostName={inputs.In_HostName}
+        subject={form.state.subject}
+        lineCount={form.state.lineCount}
+        userSubject={form.state.userSubject}
+        message={form.state.message}
+        isSubmitting={form.state.isSubmitting}
         bottomBar={<BottomBar id="$b2" />}
-        onSubmitted={() => {
-          // OnHandle_Submitted (S :334-376)
-          if (hasOrbitAccess) {
-            navigateBack();
-            return;
-          }
-          feedbackMessageAfterTransition(NO_ORBIT_ACCESS, 3);
-          navigate('/UBTConnect/HomeFeed', {});
-        }}
+        onUserSubjectChange={form.onUserSubjectChange}
+        onUserSubjectBlur={form.onUserSubjectBlur}
+        onMessageChange={form.onMessageChange}
+        onMessageBlur={form.onMessageBlur}
+        onMessageKeyDown={form.onMessageKeyDown}
+        onMessageKeyUp={form.onMessageKeyUp}
+        onSubmitClick={form.onSubmitClick}
+        onNavigation={form.onNavigation}
       />
       <CommonUiLayout id="$b3" />
     </>

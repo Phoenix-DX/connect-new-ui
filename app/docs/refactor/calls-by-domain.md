@@ -196,3 +196,5 @@ P6-G2-B-ContactByEmailLDMCoordinator: `screens/ContactByEmailLDMCoordinator/api.
 P6-G2-B-ContactByEmailOrbitHelpdesk: `screens/ContactByEmailOrbitHelpdesk/api.ts` is deleted (its row in the message table above). The caller of `ActionSendContactEmail` is now `pages/ContactByEmailOrbitHelpdesk/hooks/useContactByEmailOrbitHelpdeskSubmit.ts`, which imports it from `@/api/message`.
 
 P6-G2-B-ContactByEmailOrbitHost: `screens/ContactByEmailOrbitHost/api.ts` is deleted (its row in the message table above). The caller of `ActionSendContactEmail` is now `pages/ContactByEmailOrbitHost/hooks/useContactByEmailOrbitHostSubmit.ts`, which imports it from `@/api/message`.
+
+P6-G2-B-EmailContact: `screens/EmailContact/api.ts` is deleted (its row in the message table above). The caller of `ActionSendContactEmail` is now `pages/EmailContact/hooks/useOrbitContactForm.ts`, which imports it from `@/api/message`.
