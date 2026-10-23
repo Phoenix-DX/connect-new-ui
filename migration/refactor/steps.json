@@ -2005,7 +2005,7 @@
   {
    "id": "P6-end",
    "phase": "P6",
-   "title": "Delete screens/ and shared/",
+   "title": "Delete screens/",
    "kind": "change",
    "level": "visual",
    "devModel": "sonnet",
@@ -2014,9 +2014,26 @@
    "stretch": false,
    "fullParity": true,
    "anchor": "### Phase 6",
-   "extra": "This step is the end of Phase 6: the paragraph that starts with 'After G6'.",
+   "extra": "This step is the end of Phase 6: the paragraph that starts with 'After G6', changed by W20: delete src/screens/ and the fallback in app/screens.ts only; src/shared/ stays until P7-6. Guard: no file left in src/screens/ and no import of screens/; ci and parity strict --all.",
    "deps": [
     "P6-G6-C"
+   ]
+  },
+  {
+   "id": "P7-0",
+   "phase": "P7",
+   "title": "Move the P7 shared rows",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 7",
+   "extra": "This step is a pure move before P7-1 (W20): move every src/shared/ row of app/docs/refactor/move-map.csv with the phase P7, except shared/osui/* (P7-1 moves those), to its target, as the P6 B-Shared steps did (move-map renames W12, @origin tags, importers follow, W15 baseline rows). Gate: diffcheck --move, parity strict --all.",
+   "deps": [
+    "P6-end"
    ]
   },
   {
@@ -2033,7 +2050,7 @@
    "anchor": "**P7-1 ",
    "extra": null,
    "deps": [
-    "P6-end"
+    "P7-0"
    ]
   },
   {
@@ -2088,6 +2105,23 @@
    ]
   },
   {
+   "id": "P7-6",
+   "phase": "P7",
+   "title": "Place shared/*/lib and delete shared/",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 7",
+   "extra": "This step empties and deletes src/shared/ (W20), before the report P7-5. Commit 1 (docs only): add a move-map.csv row for each file left in src/shared/ (the <package>/lib/ helpers, shared/lib, shared/test, the mock files, the README), with a target by data ownership: api/<domain>, platform/<area>, lib/ (rule 6: lib/ imports only lib/), pages/<R> when one page uses it, src/test/ for test setup; the master gets the rows approved by Opus + Fable before any move. Commit 2: pure move to those targets (diffcheck --move, parity strict --all, W15 baseline rows); delete src/shared/ only when it has no file, and remove its alias and lint rules in the same commit.",
+   "deps": [
+    "P7-4"
+   ]
+  },
+  {
    "id": "P7-5",
    "phase": "P7",
    "title": "Report",
@@ -2101,7 +2135,7 @@
    "anchor": "**P7-5 ",
    "extra": null,
    "deps": [
-    "P7-4"
+    "P7-6"
    ]
   },
   {

@@ -61,10 +61,23 @@ STEPS = [
     ("P5-4", "Memory cache to query options", "change", "strict", "opus",
      ("after", "Confirm the exemption list of Phase 5 (migration/refactor-exemptions.json)."), 1),
     # Phase 6 is expanded from the section 8 table (see phase6()).
+    # W20 (Opus + Fable, auto-accepted user instruction 2026-10-23 13:43): P7-0 and P7-6 empty src/shared/
+    ("P7-0", "Move the P7 shared rows", "move", "strict", "sonnet", None, 0.5, "### Phase 7",
+     "This step is a pure move before P7-1 (W20): move every src/shared/ row of app/docs/refactor/move-map.csv with "
+     "the phase P7, except shared/osui/* (P7-1 moves those), to its target, as the P6 B-Shared steps did (move-map "
+     "renames W12, @origin tags, importers follow, W15 baseline rows). Gate: diffcheck --move, parity strict --all."),
     ("P7-1", "components/ui from osui", "move", "visual", "sonnet", None, 1),
     ("P7-2", "Dialogs", "change", "visual", "opus", None, 1),
     ("P7-3", "Empty states and skeletons", "change", "visual", "opus", None, 1),
     ("P7-4", "Cards and carousels, by evidence", "change", "visual", "opus", None, 1.5),
+    ("P7-6", "Place shared/*/lib and delete shared/", "change", "strict", "opus", None, 1, "### Phase 7",
+     "This step empties and deletes src/shared/ (W20), before the report P7-5. Commit 1 (docs only): add a "
+     "move-map.csv row for each file left in src/shared/ (the <package>/lib/ helpers, shared/lib, shared/test, the "
+     "mock files, the README), with a target by data ownership: api/<domain>, platform/<area>, lib/ (rule 6: lib/ "
+     "imports only lib/), pages/<R> when one page uses it, src/test/ for test setup; the master gets the rows "
+     "approved by Opus + Fable before any move. Commit 2: pure move to those targets (diffcheck --move, parity "
+     "strict --all, W15 baseline rows); delete src/shared/ only when it has no file, and remove its alias and lint "
+     "rules in the same commit."),
     ("P7-5", "Report", "report", "visual", "sonnet", None, 0.5),
     ("P8-1", "Tokens and layers", "change", "visual", "opus", None, 1),
     ("P8-2", "Delete unused CSS", "change", "visual", "sonnet", None, 2),
@@ -172,8 +185,10 @@ def phase6(plan: str) -> list[dict]:
             fix = entry(*row[:7], anchor, row[7])
             fix["fullParity"] = True
             out.append(fix)
-    out.append(entry("P6-end", "Delete screens/ and shared/", "change", "visual", "sonnet", None, 0.25, anchor,
-                     "This step is the end of Phase 6: the paragraph that starts with 'After G6'."))
+    out.append(entry("P6-end", "Delete screens/", "change", "visual", "sonnet", None, 0.25, anchor,
+                     "This step is the end of Phase 6: the paragraph that starts with 'After G6', changed by W20: "
+                     "delete src/screens/ and the fallback in app/screens.ts only; src/shared/ stays until P7-6. "
+                     "Guard: no file left in src/screens/ and no import of screens/; ci and parity strict --all."))
     return out
 
 
@@ -185,6 +200,8 @@ def build(plan: str) -> dict:
             domain = e["id"].split("-", 2)[2]
             e["extra"] = (f"This step covers the domain api/{domain} only. The other domains of the same plan step "
                           f"are separate steps.")
+        if e["id"] in ("P7-0", "P7-6"):
+            e["fullParity"] = True
         steps.append(e)
         if e["id"] == "P5-4":
             steps.extend(phase6(plan))
