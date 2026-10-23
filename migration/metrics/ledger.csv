@@ -608,3 +608,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,other,26695,refactor-docs,,P6-G3-C sonnet
 2026-10-24,refactor,review,41062,refactor-advisor,,"W25, opus"
 2026-10-24,refactor,review,40427,refactor-advisor,,"W25, fable"
+2026-10-24,refactor,build,28756,refactor-dev,,P6-G4-A sonnet
+2026-10-24,refactor,verify,20392,refactor-test,,P6-G4-A sonnet
+2026-10-24,refactor,other,26380,refactor-docs,,P6-G4-A sonnet

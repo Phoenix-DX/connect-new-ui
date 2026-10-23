@@ -498,3 +498,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T03:30:22 P6-G3-C waits for the user: Review the routes of group G3 on localhost (links in the step report): HomeFeed, FeedItemDetail, Updates_SingleList, Services, Search, Notifications, MessageList, MessageDetail. Then confirm the group.
 - 2026-10-24T03:30:22 P6-G3-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W25 group G3 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: open FeedItemDetail by hand once in the P6-end review (no parity states); add @origin to platform/session/unreadCounters.ts at the next touch; F18 and F19 stay open."
 - 2026-10-24T03:30:22 P6-G3-C stage commit
+- 2026-10-24T03:30:23 P6-G3-C done 168255a4: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 49 rows, no P6-G3 owner; knip/jscpd re-run match; bundle HomeFeed 244.00/248.22, Login 184.00/193.84 kB gzip; group confirm W25 (Opus + Fable, delegated)
+- 2026-10-24T03:30:44 P6-G4-A started
+- 2026-10-24T03:30:44 P6-G4-A stage dev
+- 2026-10-24T03:31:41 P6-G4-A stage test
+- 2026-10-24T03:38:32 P6-G4-A stage docs
+- 2026-10-24T03:39:43 P6-G4-A stage commit
