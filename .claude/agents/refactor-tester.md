@@ -47,6 +47,7 @@ A gate passes when:
 | ------------------------ | --------------------------------------------------------------------------------------------------------------------- |
 | `npm run ci`             | exit code 0                                                                                                           |
 | `lint:arch`              | no boundary or cycle warning in the files that the step changed (`cd app && npx eslint <changed files>`)              |
+| arch baseline (W13)      | `python3 migration/tools/refactor/arch_baseline.py check` exits 0: a warning in `app/docs/refactor/arch-baseline.csv` is moved debt, not new; report the rows printed as gone |
 | parity                   | no route with a new difference against either reference, except entries of the exemption files                        |
 | `parity_sweep.py`        | (before P0-2) the same total as the baseline, 64/0                                                                    |
 | bundle report            | the first-load size of HomeFeed and Login is not above the baseline of `app/docs/refactor/baseline.md` plus 5 percent |

@@ -248,6 +248,68 @@ class TestDiffcheck(Repo):
         self.assertIn("untracked app/src/new.ts", self.fails("diffcheck", "--move"))
 
 
+FILLER = "".join(f"export const filler{i} = {i};\\n" for i in range(12))
+
+
+class TestDiffcheckRenames(Repo):
+    """Identifier renames declared by app/docs/refactor/move-map.csv."""
+
+    OLD = "app/src/shared/Lib/Old_Block"
+    NEW = "app/src/components/x/NewBlock"
+
+    def setUp(self):
+        super().setUp()
+        self.write(
+            "app/docs/refactor/move-map.csv",
+            "source,origin,shape,target,phase,routes,status,notes\n"
+            "src/shared/Lib/Old_Block,Lib.Old_Block,component,src/components/x/NewBlock/NewBlock.tsx,P6-G1,2,,\n",
+        )
+        self.write(
+            f"{self.OLD}/Old_Block.tsx",
+            "export interface Old_BlockProps { id: string }\n"
+            "export function Old_Block(p: Old_BlockProps) {\n"
+            "  return <div className=\"Old_Block\">{p.id + 1}</div>;\n"
+            "}\n" + FILLER,
+        )
+        self.write(f"{self.OLD}/index.ts", "export * from './Old_Block';\nexport { Old_Block } from './Old_Block';\n")
+        sh(self.tmp, "git", "add", "-A")
+        sh(self.tmp, "git", "commit", "-q", "-m", "block")
+        sh(self.tmp, "git", "mv", f"{self.OLD}/Old_Block.tsx", f"{self.OLD}/NewBlock.tsx")
+        (self.tmp / "app/src/components/x").mkdir(parents=True)
+        sh(self.tmp, "git", "mv", self.OLD, self.NEW)
+        # The index.ts is rewritten, so git sees a delete plus an add.
+        sh(self.tmp, "git", "rm", "-q", "-f", f"{self.NEW}/index.ts")
+        self.write(f"{self.NEW}/index.ts", "export * from './NewBlock';\nexport { NewBlock } from './NewBlock';\n")
+        sh(self.tmp, "git", "add", f"{self.NEW}/index.ts")
+
+    def block(self, body: str):
+        self.write(f"{self.NEW}/NewBlock.tsx", body)
+
+    def renamed(self, id_expr="p.id + 1", cls="Old_Block") -> str:
+        return (
+            "export interface NewBlockProps { id: string }\n"
+            "export function NewBlock(p: NewBlockProps) {\n"
+            f"  return <div className=\"{cls}\">{{{id_expr}}}</div>;\n"
+            "}\n" + FILLER
+        )
+
+    def test_mapped_rename_passes(self):
+        self.block(self.renamed())
+        self.assertIn("diffcheck --move: ok", self.ok("diffcheck", "--move"))
+
+    def test_rename_with_logic_change_fails(self):
+        self.block(self.renamed(id_expr="p.id + 2"))
+        self.assertIn("NOT A MOVE", self.fails("diffcheck", "--move"))
+
+    def test_string_literal_change_fails(self):
+        self.block(self.renamed(cls="NewBlock"))
+        self.assertIn("NOT A MOVE", self.fails("diffcheck", "--move"))
+
+    def test_unmapped_rename_fails(self):
+        self.block(self.renamed().replace("NewBlockProps", "OtherProps"))
+        self.assertIn("NOT A MOVE", self.fails("diffcheck", "--move"))
+
+
 class TestCatalog(unittest.TestCase):
     def test_catalog_matches_the_plan(self):
         old = Path.cwd()
