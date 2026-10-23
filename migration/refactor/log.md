@@ -298,3 +298,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T20:42:44 P6-G1-B-PINRegister stage test
 - 2026-10-23T20:50:10 P6-G1-B-PINRegister stage docs
 - 2026-10-23T20:51:40 P6-G1-B-PINRegister stage commit
+- 2026-10-23T20:51:51 P6-G1-B-PINRegister done 2c99612: ci: pass (2125 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (20 rows removed, 68 left); bundle within +5%
+- 2026-10-23T21:02:45 P6-G1-B-PINUnlock started
+- 2026-10-23T21:02:45 P6-G1-B-PINUnlock stage dev
+- 2026-10-23T21:04:07 P6-G1-B-PINUnlock stage test
+- 2026-10-23T21:12:24 P6-G1-B-PINUnlock stage docs
+- 2026-10-23T21:13:48 P6-G1-B-PINUnlock stage commit

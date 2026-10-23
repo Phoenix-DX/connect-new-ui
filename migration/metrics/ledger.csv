@@ -486,3 +486,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,209650,refactor-dev,,P6-G1-B-PINRegister opus
 2026-10-23,refactor,verify,29886,refactor-test,,P6-G1-B-PINRegister sonnet
 2026-10-23,refactor,other,32234,refactor-docs,,P6-G1-B-PINRegister sonnet
+2026-10-23,refactor,build,356110,refactor-dev,,P6-G1-B-PINUnlock opus
+2026-10-23,refactor,review,35391,refactor-advisor,,"W14, opus"
+2026-10-23,refactor,review,35467,refactor-advisor,,"W14, fable"
+2026-10-23,refactor,verify,28624,refactor-test,,P6-G1-B-PINUnlock sonnet
+2026-10-23,refactor,other,28841,refactor-docs,,P6-G1-B-PINUnlock sonnet

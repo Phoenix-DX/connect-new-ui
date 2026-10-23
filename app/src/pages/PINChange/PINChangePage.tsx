@@ -2,7 +2,6 @@
 import { useState } from 'react';
 import { OSLink } from '@/shared/lib/OSLink';
 import { PinRegisterContent } from '@/components/auth/PinRegisterContent';
-import { PinUnlockContent } from '@/components/auth/PinUnlockContent';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
 import { IconText } from '@/shared/UBTConnectLibrary/IconText';
 import { LoginLayout } from '@/components/layout/LoginLayout';
@@ -14,7 +13,7 @@ import {
   UBT_IconsSize,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { useNoCommonUi } from '@/platform/feedback/dialogs';
+import { PinUnlockContentContainer, useNoCommonUi } from '@/platform/feedback/dialogs';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
@@ -98,7 +97,7 @@ export default function PINChange() {
             onSetPin={registration.onSetPin}
           />
         ) : (
-          <PinUnlockContent
+          <PinUnlockContentContainer
             id="$b5"
             showForgotPIN={false}
             inForceVisible

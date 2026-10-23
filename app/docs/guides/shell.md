@@ -59,6 +59,12 @@ The PIN registration flow is in two hooks of `src/platform/session/`: `usePinCod
 `registerPin`) and `usePinRegisterContent` (name read, success routes, error messages). PINRegister and PINChange call
 `usePinRegisterContent` and pass the result as props to the blocks `PinRegisterContent` and `PinCodeRegister`.
 
+The PIN unlock flow is in two hooks of `src/platform/session/`: `usePinUnlockContent` (unlock result, policies, Forgot PIN,
+error messages) and `usePinCodeUnlock` (lock state, `setPin`). `PinUnlockContentContainer` in
+`src/platform/feedback/dialogs/` runs both hooks and renders the props-only blocks `PinUnlockContent`, `PinUnlockMobile`
+and `PinCodeUnlock`. The lock dialog (`BlockPinUnlock`) and PINChange render the container. The PINUnlock page has its own
+hook, `usePINUnlock`.
+
 - Without a local PIN, `signIn()` goes to PINRegister. Otherwise it goes to the resume link, the sign-in callback that
   the gate keeps, or HomeFeed.
 - `verifyPin` answers the original event texts (`Pin does not match`, `User not found`…). The screen maps them to its
@@ -306,15 +312,16 @@ Tests: `src/platform/navigation/*.test.tsx` (`testRouter.tsx` renders routes ins
 online/offline listener. Per screen (remounted on each navigation), it also mounts Access Restricted and the CommonUI
 back handler. It is a stand-in until the layouts render CommonUI in `Placeholder_CommonUI_Inside_Layout`.
 
-| API                                                                                                                    | Original                                                      |
-| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `feedbackMessageAutoClose({ title?, message, messageType?, encodedHtml?, extendedClass?, delayMs?, useDebounce? })`    | `UBTJavaScriptUtils.FeedbackMessage_AutoClose` (U9)           |
-| `showFeedbackMessage(message, type, encodedHtml?, extraClasses?, closeOnClick?)`                                       | platform `FeedbackMessageShow` (type 0-3: info…error)         |
-| `showExceptionMessage(message, forceLogout)`, `showCommunicationExceptionMessage()`                                    | UBTConnect actions of the same name (U10)                     |
-| `useFeedback()`                                                                                                        | the four functions above, for components                      |
-| `confirmAction(dialogId)` → `Promise<boolean>`, `<ActionConfirmationDialog>`                                           | NavigationHandler `ConfirmAction`, `ActionConfirmationDialog` |
-| `showUpgradePopUp()`, `navigateToUpgrade()`, `<DialogAccessRestrictedAction>`                                          | `App_Subscription_ShowUpgradePopUp` / `_NavigateToUpgrade`    |
-| `useCommonUiBackHandler()`, `<BlockPinUnlock inIsCommonBlock inForceVisible onUnlock placeholderCommonUIInsideLayout>` | CommonUI back handling, `App_PIN.Block_PINUnlock`             |
+| API                                                                                                                    | Original                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `feedbackMessageAutoClose({ title?, message, messageType?, encodedHtml?, extendedClass?, delayMs?, useDebounce? })`    | `UBTJavaScriptUtils.FeedbackMessage_AutoClose` (U9)                                 |
+| `showFeedbackMessage(message, type, encodedHtml?, extraClasses?, closeOnClick?)`                                       | platform `FeedbackMessageShow` (type 0-3: info…error)                               |
+| `showExceptionMessage(message, forceLogout)`, `showCommunicationExceptionMessage()`                                    | UBTConnect actions of the same name (U10)                                           |
+| `useFeedback()`                                                                                                        | the four functions above, for components                                            |
+| `confirmAction(dialogId)` → `Promise<boolean>`, `<ActionConfirmationDialog>`                                           | NavigationHandler `ConfirmAction`, `ActionConfirmationDialog`                       |
+| `showUpgradePopUp()`, `navigateToUpgrade()`, `<DialogAccessRestrictedAction>`                                          | `App_Subscription_ShowUpgradePopUp` / `_NavigateToUpgrade`                          |
+| `useCommonUiBackHandler()`, `<BlockPinUnlock inIsCommonBlock inForceVisible onUnlock placeholderCommonUIInsideLayout>` | CommonUI back handling, `App_PIN.Block_PINUnlock`                                   |
+| `<PinUnlockContentContainer …>` (dialogs barrel)                                                                       | runs `usePinUnlockContent` and `usePinCodeUnlock` for the lock dialog and PINChange |
 
 - **Messages.**
   - One message at a time shows in `#feedbackMessageContainer`. The first message creates the container before

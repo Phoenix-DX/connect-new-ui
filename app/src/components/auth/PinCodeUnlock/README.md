@@ -2,17 +2,22 @@
 
 OutSystems: `UBT_AppManager.PIN.Pincode_Unlock` · pack `migration/blocks/UBT_AppManager.PIN.Pincode_Unlock.md`
 
-| Input                  | Type    | Prop                    | Default |
-| ---------------------- | ------- | ----------------------- | ------- |
-| In_PinLength           | Integer | `inPinLength`           | `0`     |
-| In_ExtendedClasses     | Text    | `inExtendedClasses`     | `''`    |
-| In_ForceVisible        | Boolean | `inForceVisible`        | `false` |
-| In_AllowBackNavigation | Boolean | `inAllowBackNavigation` | `false` |
+Shape: hook + component. The flows are in `usePinCodeUnlock(inForceVisible, events)`
+(`src/platform/session/usePinCodeUnlock.ts`). The component that renders this block calls the hook and passes
+`isKeypadVisible`, `onSetPin` and the InactivityTimer (`renderInactivityTimer`). The component renders from props only.
 
-Events: `KeyPressed`, `PinUnlockSuccess`, `PinUnlockError(ErrorMessage)`, `PincodeChange(InputLength)`,
-`UserLoggedOut`, `Timeout` → `on` + name. Placeholders: `HeaderBar`, `TitlePlaceholder`, `UnlockText`, `Option`,
-`EraseButton`, `Placeholder_BottomKeyboard` (→ `placeholderBottomKeyboard`), `ContentPlaceholder`, each passed to
-`PinCode` inside its own placeholder div. PIN check and lock state: `src/platform/session/pin.ts` (`verifyPin`, `lock`).
+| Input                  | Type    | Prop / hook argument                      | Default |
+| ---------------------- | ------- | ----------------------------------------- | ------- |
+| In_PinLength           | Integer | `inPinLength`                             | `0`     |
+| In_ExtendedClasses     | Text    | `inExtendedClasses`                       | `''`    |
+| In_ForceVisible        | Boolean | hook `inForceVisible` → `isKeypadVisible` | `false` |
+| In_AllowBackNavigation | Boolean | `inAllowBackNavigation`                   | `false` |
+
+Events: `KeyPressed`, `PincodeChange(InputLength)` → `on` + name on the component. `PinUnlockSuccess`,
+`PinUnlockError(ErrorMessage)`, `UserLoggedOut`, `Timeout` → `on` + name in the hook's events. Placeholders:
+`HeaderBar`, `TitlePlaceholder`, `UnlockText`, `Option`, `EraseButton`, `Placeholder_BottomKeyboard` (→
+`placeholderBottomKeyboard`), `ContentPlaceholder`, each passed to `PinCode` inside its own placeholder div. PIN check
+and lock state: `src/platform/session/pin.ts` (`verifyPin`, `lock`).
 
 ## Captured variants (2 tested)
 
@@ -23,7 +28,8 @@ Events: `KeyPressed`, `PinUnlockSuccess`, `PinUnlockError(ErrorMessage)`, `Pinco
 
 ## Not captured / not settled
 
-- Unlock, wrong PIN, In_ForceVisible changes, signed out: from the compiled code, tested in `Pincode_Unlock.test.tsx`.
+- Unlock, wrong PIN, In_ForceVisible changes, signed out: from the compiled code, tested in
+  `src/platform/session/usePinCodeUnlock.test.tsx`.
 - Order: the original raises PinUnlockSuccess before it sets PIN_HasUnlocked / PIN_IsLocked; `verifyPin` sets them
   first, then the event is raised.
 - OnInitialize stores OnUnlockSuccess as `obj_PinUnlockCallback` in the AppManager element cache for the native

@@ -1,25 +1,22 @@
-import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import { setClientVar, setSignedInUser } from '@/platform/session/session';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PinCodeUnlock } from './PinCodeUnlock';
 
-/** Stories only: the signed-in, unlocked tab the captures were taken in. */
-const session: Decorator = (Story) => {
-  setSignedInUser(MOCK_USER_ID);
-  setClientVar('UBT_AppManager.PIN_SessionInactivity_Use', true);
-  setClientVar('UBT_AppManager.PIN_IsLocked', false);
-  return (
-    <MemoryRouter>
-      <Story />
-    </MemoryRouter>
-  );
-};
+/** The InactivityTimer block as the caller gives it: the block renders an empty wrapper (platform/session). */
+const renderInactivityTimer = (id: string | undefined) => <OSBlock name="PIN.InactivityTimer" id={id} />;
 
 const meta = {
   title: 'Shared/UBT_AppManager/Pincode_Unlock',
   component: PinCodeUnlock,
-  decorators: [session],
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
+  args: { renderInactivityTimer },
 } satisfies Meta<typeof PinCodeUnlock>;
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -31,7 +28,7 @@ export const V2: Story = {
   args: {
     id: 'b5-b1-$b1',
     inPinLength: 4,
-    inForceVisible: true,
+    isKeypadVisible: true,
     inAllowBackNavigation: true,
     inExtendedClasses: 'connect-pin-screen ubt-pin-overlay',
   },

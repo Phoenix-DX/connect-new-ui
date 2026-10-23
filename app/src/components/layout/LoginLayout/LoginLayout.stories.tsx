@@ -97,7 +97,7 @@ export const V3: Story = {
         <IconText id="$b2" text="Change PIN" />
       </OSLink>
     ),
-    placeholderContent: <PinUnlockContent id="$b5" inForceVisible isFromMenu unlockText="Enter your current PIN" />,
+    placeholderContent: <PinUnlockContent id="$b5" isKeypadVisible isFromMenu unlockText="Enter your current PIN" />,
   },
 };
 

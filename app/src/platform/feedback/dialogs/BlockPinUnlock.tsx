@@ -2,7 +2,7 @@
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
-import { PinUnlockContent } from '@/components/auth/PinUnlockContent';
+import { PinUnlockContentContainer } from '@/platform/feedback/dialogs/PinUnlockContentContainer';
 import { get_IsUnsupportedSystem } from '@/shared/UBTConnect/lib/actions';
 import { UnsupportedVersionWrapper } from '@/components/version/UnsupportedVersionWrapper';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
@@ -80,7 +80,7 @@ export function BlockPinUnlock({
                 </CustomContainer>
               </div>
             ) : (
-              <PinUnlockContent
+              <PinUnlockContentContainer
                 id={`${s}-$b4`}
                 showForgotPIN
                 showPolicy

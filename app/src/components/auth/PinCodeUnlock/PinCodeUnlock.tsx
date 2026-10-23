@@ -1,10 +1,6 @@
 /** @origin UBT_AppManager.PIN.Pincode_Unlock */
-// @os-block UBT_AppManager.PIN.Pincode_Unlock
-import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { lock, verifyPin, type PinUnlockError } from '@/platform/session/pin';
-import { currentUserId, useClientVar } from '@/platform/session/session';
-import { InactivityTimer } from '@/platform/session/InactivityTimer';
 import { PinCode } from '@/components/auth/PinCode';
 
 export interface PinCodeUnlockProps {
@@ -12,9 +8,9 @@ export interface PinCodeUnlockProps {
   id?: string;
   inPinLength?: number;
   inExtendedClasses?: string;
-  /** In_ForceVisible: show the keypad even when not locked; when it turns on, the app is locked. */
-  inForceVisible?: boolean;
   inAllowBackNavigation?: boolean;
+  /** The keypad shows (In_ForceVisible, or PIN_SessionInactivity_Use and PIN_IsLocked); else the InactivityTimer. */
+  isKeypadVisible?: boolean;
   /** Placeholder HeaderBar. */
   headerBar?: ReactNode;
   /** Placeholder TitlePlaceholder. */
@@ -31,31 +27,23 @@ export interface PinCodeUnlockProps {
   contentPlaceholder?: ReactNode;
   /** Event KeyPressed. */
   onKeyPressed?: () => void | Promise<void>;
-  /** Event PinUnlockSuccess. */
-  onPinUnlockSuccess?: () => void | Promise<void>;
-  /** Event PinUnlockError(ErrorMessage): the original texts (`shell/pin.ts` PinUnlockError). */
-  onPinUnlockError?: (errorMessage: PinUnlockError) => void | Promise<void>;
   /** Event PincodeChange(InputLength). */
   onPincodeChange?: (inputLength: number) => void | Promise<void>;
-  /** Event UserLoggedOut: no signed-in user on initialize. */
-  onUserLoggedOut?: () => void | Promise<void>;
-  /** Event Timeout (of the InactivityTimer). */
-  onTimeout?: () => void | Promise<void>;
+  /** SetPin of the keypad: the block's flow checks the PIN (`usePinCodeUnlock` in platform/session). */
+  onSetPin?: (pinCode: string) => void | Promise<void>;
+  /** The InactivityTimer block (platform/session), with its instance id; shown while the keypad is hidden. */
+  renderInactivityTimer?: (id: string | undefined) => ReactNode;
 }
 
-/** PIN unlock (p:UBT_AppManager.PIN.Pincode_Unlock.mvc.js). The keypad shows when In_ForceVisible or
-    PIN_SessionInactivity_Use and PIN_IsLocked (:191-196), else the InactivityTimer (:349-381).
-    - OnInitialize (:684-760): signed out → UserLoggedOut; else Action_HandleForceVisible (LastForceVisible =
-      In_ForceVisible; True → PIN_IsLocked = True). OnParametersChanged calls it again when In_ForceVisible changed.
-    - OnSetPin (:508-612): the shell's `verifyPin` (PIN_Get and the comparison) → OnUnlockSuccess (PinUnlockSuccess,
-      PIN_HasUnlocked, PIN_IsLocked = False, LastForceVisible = False) or PinUnlockError with the original text.
-    - OnTimeout (:652-682): Timeout, then PIN_IsLocked = True. */
+/** PIN unlock: the keypad (PinCode) inside `pincode-unlock` while it shows, else the InactivityTimer. The flows
+    (initialize, In_ForceVisible, the PIN check, the timeout) are in the hook `usePinCodeUnlock`; the component that
+    renders this block calls it and passes `isKeypadVisible` and `onSetPin`. */
 export function PinCodeUnlock({
   id,
   inPinLength = 0,
   inExtendedClasses = '',
-  inForceVisible = false,
   inAllowBackNavigation = false,
+  isKeypadVisible = false,
   headerBar,
   titlePlaceholder,
   unlockText,
@@ -64,51 +52,15 @@ export function PinCodeUnlock({
   placeholderBottomKeyboard,
   contentPlaceholder,
   onKeyPressed,
-  onPinUnlockSuccess,
-  onPinUnlockError,
   onPincodeChange,
-  onUserLoggedOut,
-  onTimeout,
+  onSetPin,
+  renderInactivityTimer,
 }: PinCodeUnlockProps) {
-  const inactivityUse = useClientVar('UBT_AppManager.PIN_SessionInactivity_Use');
-  const isLocked = useClientVar('UBT_AppManager.PIN_IsLocked');
-  const events = useRef({ onPinUnlockSuccess, onPinUnlockError, onUserLoggedOut, onTimeout });
-  useLayoutEffect(() => {
-    events.current = { onPinUnlockSuccess, onPinUnlockError, onUserLoggedOut, onTimeout };
-  });
-  const initialized = useRef(false);
-  const lastForceVisible = useRef(false);
-  useEffect(() => {
-    if (!initialized.current) {
-      initialized.current = true;
-      if (currentUserId() === null) {
-        void events.current.onUserLoggedOut?.();
-        return;
-      }
-    } else if (inForceVisible === lastForceVisible.current) return;
-    lastForceVisible.current = inForceVisible; // Action_HandleForceVisible
-    if (inForceVisible) lock();
-  }, [inForceVisible]);
-
-  const onSetPin = async (pinCode: string) => {
-    const result = await verifyPin(pinCode);
-    if (result.status === 'unlocked') {
-      await events.current.onPinUnlockSuccess?.();
-      lastForceVisible.current = false;
-    } else {
-      await events.current.onPinUnlockError?.(result.error);
-    }
-  };
-  const onTimeoutHandler = async () => {
-    await events.current.onTimeout?.();
-    lock();
-  };
-
   const prefix = id?.replace('$', '');
   const childId = (n: number) => (prefix === undefined ? undefined : `${prefix}-$b${String(n)}`);
   return (
     <OSBlock name="PIN.Pincode_Unlock" id={id}>
-      {inForceVisible || (inactivityUse && isLocked) ? (
+      {isKeypadVisible ? (
         <div className="pincode-unlock" data-container="">
           <PinCode
             id={childId(1)}
@@ -128,7 +80,7 @@ export function PinCodeUnlock({
           />
         </div>
       ) : (
-        <InactivityTimer id={childId(2)} onTimeout={() => void onTimeoutHandler()} />
+        renderInactivityTimer?.(childId(2))
       )}
     </OSBlock>
   );

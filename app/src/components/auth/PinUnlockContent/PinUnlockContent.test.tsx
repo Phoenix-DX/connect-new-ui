@@ -1,22 +1,31 @@
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
-import { createMemoryRouter, RouterProvider } from 'react-router';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
-import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import { isLocked, registerPin } from '@/platform/session/pin';
-import { setClientVar, setSignedInUser, writePin } from '@/platform/session/session';
-import { freshPage } from '@/test/testSupport';
+import { act, fireEvent, render } from '@testing-library/react';
+import { MemoryRouter } from 'react-router';
+import { describe, expect, it, vi } from 'vitest';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { PinUnlockContent, type PinUnlockContentProps } from './PinUnlockContent';
 import * as stories from './PinUnlockContent.stories';
 
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
 
+/* The flows (the PIN check, the error messages, Forgot PIN, the policies) are tested with the container that runs
+   them: src/platform/feedback/dialogs/PinUnlockContentContainer.test.tsx. */
+const terms = {
+  Policy_ContentType: 'application/pdf',
+  Policy_FileName: 'terms.pdf',
+  Policy_Url: 'https://example.com/t',
+};
+const privacy = {
+  Policy_ContentType: 'application/pdf',
+  Policy_FileName: 'p.pdf',
+  Policy_Url: 'https://example.com/p',
+};
+
 const setup = (props: PinUnlockContentProps) => {
-  const router = createMemoryRouter([{ path: '*', element: <PinUnlockContent inForceVisible {...props} /> }], {
-    initialEntries: ['/UBTConnect/PINUnlock'],
-  });
-  const { container } = render(<RouterProvider router={router} />);
+  const { container } = render(
+    <MemoryRouter>
+      <PinUnlockContent isKeypadVisible {...props} />
+    </MemoryRouter>,
+  );
   const type = async (pin: string) => {
     for (const digit of pin) {
       const key = [...container.querySelectorAll<HTMLButtonElement>('.ubt-pincode__button')].find(
@@ -29,88 +38,73 @@ const setup = (props: PinUnlockContentProps) => {
       });
     }
   };
-  return { container, router, type };
+  return { container, type };
 };
 
 describe('Block_PINUnlock_ContentWrapper', () => {
-  beforeEach(async () => {
-    freshPage();
-    resetFeedbackMessages();
-    setClientVar('UBT_AppManager.PIN_SessionInactivity_Use', true);
-    setClientVar('UBT_AppManager.PIN_SessionInactivity_Seconds', 1200);
-    setSignedInUser(MOCK_USER_ID);
-    await registerPin('1357');
-  });
-  afterEach(() => {
-    setSignedInUser(null);
-    setClientVar('UBT_AppManager.PIN_IsLocked', false);
-  });
   testCapturedVariants(stories, captures);
 
-  it('raises Unlock for the right PIN', async () => {
-    const onUnlock = vi.fn();
-    const { type } = setup({ onUnlock });
+  it('passes the PIN of the 4-digit keypad to SetPin', async () => {
+    const onSetPin = vi.fn();
+    const { type } = setup({ onSetPin });
     await type('1357');
-    await waitFor(() => {
-      expect(onUnlock).toHaveBeenCalledTimes(1);
-    });
-    expect(isLocked()).toBe(false);
+    expect(onSetPin).toHaveBeenCalledWith('1357');
   });
 
-  it('maps "Pin does not match" to its message', async () => {
-    const { type } = setup({});
-    await type('2468');
-    await waitFor(() => {
-      expect(getFeedbackMessage()?.message).toBe('Your current PIN is not correct!');
-    });
-  });
-
-  it('"User not found": message and NavigateTo_PINRegister', async () => {
-    writePin(null);
-    const onNavigateToPINRegister = vi.fn();
-    const { type } = setup({ onNavigateToPINRegister });
-    await type('1357');
-    await waitFor(() => {
-      expect(onNavigateToPINRegister).toHaveBeenCalledTimes(1);
-    });
-    expect(getFeedbackMessage()?.message).toBe('No matching user. Please Register a PIN.');
-  });
-
-  it('Forgot PIN opens Login with In_IsFromResetPIN', () => {
-    const { container, router } = setup({ showForgotPIN: true });
+  it('Forgot PIN raises its event', () => {
+    const onForgotPin = vi.fn();
+    const { container } = setup({ showForgotPIN: true, onForgotPin });
     const link = container.querySelector('.border-bottom-s.OSInline a');
     if (!link) throw new Error('no Forgot PIN link');
     fireEvent.click(link);
-    expect(router.state.location.pathname + router.state.location.search).toBe(
-      '/UBTConnect/Login?In_IsFromResetPIN=True',
-    );
+    expect(onForgotPin).toHaveBeenCalledTimes(1);
   });
 
-  it('ShowPolicy: each policy link runs OpenPolicy with its cached policy (web: a new tab)', async () => {
-    const open = vi.spyOn(window, 'open').mockReturnValue(null);
-    const { container } = setup({ showPolicy: true });
-    let links: HTMLAnchorElement[] = [];
-    await waitFor(() => {
-      links = [...container.querySelectorAll<HTMLAnchorElement>('[data-block="BasePatterns.Columns_Two"] a')];
-      expect(links).toHaveLength(2);
+  it('ShowPolicy: the skeleton until the policies are fetched, then a link per policy with a URL', () => {
+    const renderCacheControlPolicies = vi.fn((id: string | undefined) => <span data-cache={id} />);
+    const onClickPolicy = vi.fn();
+    const links = (props: PinUnlockContentProps) => [
+      ...setup({
+        id: 'b1-$b4',
+        showPolicy: true,
+        renderCacheControlPolicies,
+        onClickPolicy,
+        ...props,
+      }).container.querySelectorAll<HTMLAnchorElement>('[data-block="BasePatterns.Columns_Two"] a'),
+    ];
+    expect(links({})).toHaveLength(0);
+    expect(renderCacheControlPolicies).toHaveBeenCalledWith('b1-b4-$b11');
+    const fetched = links({
+      isPoliciesFetched: true,
+      policies: { PolicyInformation_TermsAndConditions: terms, PolicyInformation_PrivacyPolicy: privacy },
     });
-    fireEvent.click(links[0] as HTMLAnchorElement);
-    fireEvent.click(links[1] as HTMLAnchorElement);
-    expect(open).toHaveBeenCalledTimes(2);
-    for (const call of open.mock.calls) {
-      expect(call[0]).toMatch(/^https?:/);
-      expect(call[1]).toBe('_blank');
-    }
-    expect(open.mock.calls[0]?.[0]).not.toBe(open.mock.calls[1]?.[0]);
-    open.mockRestore();
+    expect(fetched.map((a) => a.textContent)).toEqual(['Terms & Conditions', 'Our Privacy Policy']);
+    fireEvent.click(fetched[0] as HTMLAnchorElement);
+    fireEvent.click(fetched[1] as HTMLAnchorElement);
+    expect(onClickPolicy.mock.calls).toEqual([[terms], [privacy]]);
+    const onlyTerms = links({
+      isPoliciesFetched: true,
+      policies: {
+        PolicyInformation_TermsAndConditions: terms,
+        PolicyInformation_PrivacyPolicy: { ...privacy, Policy_Url: '' },
+      },
+    });
+    expect(onlyTerms.map((a) => a.textContent)).toEqual(['Terms & Conditions']);
   });
 
   it('ShowNeedHelp: "Need help? Contact Us" instead of the policies; the plain logo without overlay', () => {
-    const { container } = setup({ showNeedHelp: true, showPolicy: true, useOverlay: false });
+    const renderCacheControlPolicies = vi.fn(() => null);
+    const { container } = setup({
+      showNeedHelp: true,
+      showPolicy: true,
+      useOverlay: false,
+      renderCacheControlPolicies,
+    });
     const help = container.querySelector('.ubt-custom-container.text-neutral-10');
     expect(help?.textContent).toBe('Need help? Contact Us');
     expect(help?.querySelector('a')).toHaveAttribute('href', '/UBTConnect/ContactUsMenu');
     expect(container.querySelector('[data-block="ConnectPatterns.SkeletonSection"]')).toBeNull();
+    expect(renderCacheControlPolicies).not.toHaveBeenCalled();
     expect(container.querySelector('.ubt-pincode')).toHaveClass('connect-pin-screen');
     expect(container.querySelector('.ubt-pincode')).not.toHaveClass('ubt-pin-overlay');
     expect(container.querySelector('img')?.getAttribute('src')).toMatch(/UBTConnect\.ConnectLogo\.svg$/);

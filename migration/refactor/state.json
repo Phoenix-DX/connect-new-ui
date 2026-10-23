@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G1-B-PINRegister",
+  "step": "P6-G1-B-PINUnlock",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T20:51:40"
+  "since": "2026-10-23T21:13:48"
  },
  "steps": {
   "P0-1": {
@@ -534,12 +534,25 @@
    "finished": "2026-10-23T20:19:56"
   },
   "P6-G1-B-PINRegister": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T20:20:43",
    "tokens": {
     "dev": 209650,
     "test": 29886,
     "docs": 32234
+   },
+   "commit": "2c99612",
+   "gate": "ci: pass (2125 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (20 rows removed, 68 left); bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T20:51:51"
+  },
+  "P6-G1-B-PINUnlock": {
+   "status": "active",
+   "started": "2026-10-23T21:02:45",
+   "tokens": {
+    "dev": 356110,
+    "test": 28624,
+    "docs": 28841
    }
   }
  },

@@ -1,5 +1,4 @@
 /** @origin UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper */
-// @os-block UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PinCodeUnlock } from '@/components/auth/PinCodeUnlock';
@@ -11,9 +10,10 @@ export interface PinUnlockMobileProps {
   inPinLength?: number;
   inExtendedClasses?: string;
   inIsScanFingerprintOnReady?: boolean;
-  inForceVisible?: boolean;
   inAllowBackNavigation?: boolean;
   inHideFingerprint?: boolean;
+  /** Pincode_Unlock shows the keypad (`usePinCodeUnlock`, from In_ForceVisible and the lock state). */
+  isKeypadVisible?: boolean;
   /** Placeholder Placeholder_HeaderBar. */
   placeholderHeaderBar?: ReactNode;
   /** Placeholder Placeholder_TitlePlaceholder. */
@@ -28,36 +28,35 @@ export interface PinUnlockMobileProps {
   placeholderBottomKeyboard?: ReactNode;
   /** Placeholder Placeholder_Content. */
   placeholderContent?: ReactNode;
-  /** Event PinUnlockSuccess (PIN or fingerprint). */
+  /** SetPin of the Pincode_Unlock keypad (its flow: `usePinCodeUnlock` onSetPin). */
+  onSetPin?: (pinCode: string) => void | Promise<void>;
+  /** The InactivityTimer block of Pincode_Unlock, with its instance id. */
+  renderInactivityTimer?: (id: string | undefined) => ReactNode;
+  /** Event PinUnlockSuccess of the fingerprint scanner (Unlock). The keypad's success comes from its flow. */
   onPinUnlockSuccess?: () => void | Promise<void>;
   /** Event PincodeChange(InputLength). */
   onPincodeChange?: (inputLength: number) => void | Promise<void>;
   /** Event KeyPressed. */
   onKeyPressed?: () => void | Promise<void>;
-  /** Event UserLoggedOut. */
-  onUserLoggedOut?: () => void | Promise<void>;
-  /** Event PinUnlockError(ErrorMessage). */
+  /** Event PinUnlockError(ErrorMessage) of the fingerprint scanner (UnlockError). The keypad's errors come from its flow. */
   onPinUnlockError?: (errorMessage: string) => void | Promise<void>;
-  /** Event Timeout. */
-  onTimeout?: () => void | Promise<void>;
 }
 
 /** AppManager_GetPIN_FingerprintReaderAvailable: no fingerprint reader in a browser (biometric unlock hidden on the
     web, decision U13; the captured PINUnlock / PINChange Option placeholders are empty). */
 const fingerprintReaderAvailable = (): boolean => false;
 
-/** Pincode_Unlock with the fingerprint button in its Option placeholder
-    (p:UBT_AppManager_Mobile.Fingerprint.PinUnlock_MobileWrapper.mvc.js view). Every event is forwarded; the scanner's
-    Unlock / UnlockError raise PinUnlockSuccess / PinUnlockError. The option container shows only with a reader and
-    not In_HideFingerprint. */
+/** Pincode_Unlock with the fingerprint button in its Option placeholder. The keypad events and the InactivityTimer go
+    to Pincode_Unlock; the scanner's Unlock / UnlockError raise PinUnlockSuccess / PinUnlockError. The option container
+    shows only with a reader and not In_HideFingerprint. */
 export function PinUnlockMobile({
   id,
   inPinLength = 0,
   inExtendedClasses = '',
   inIsScanFingerprintOnReady = false,
-  inForceVisible = false,
   inAllowBackNavigation = false,
   inHideFingerprint = false,
+  isKeypadVisible = false,
   placeholderHeaderBar,
   placeholderTitlePlaceholder,
   placeholderUnlockText,
@@ -65,12 +64,12 @@ export function PinUnlockMobile({
   placeholderEraseButton,
   placeholderBottomKeyboard,
   placeholderContent,
+  onSetPin,
+  renderInactivityTimer,
   onPinUnlockSuccess,
   onPincodeChange,
   onKeyPressed,
-  onUserLoggedOut,
   onPinUnlockError,
-  onTimeout,
 }: PinUnlockMobileProps) {
   const prefix = id?.replace('$', '');
   const childId = (n: number) => (prefix === undefined ? undefined : `${prefix}-$b${String(n)}`);
@@ -79,15 +78,13 @@ export function PinUnlockMobile({
       <PinCodeUnlock
         id={childId(1)}
         inPinLength={inPinLength}
-        inForceVisible={inForceVisible}
+        isKeypadVisible={isKeypadVisible}
         inExtendedClasses={inExtendedClasses}
         inAllowBackNavigation={inAllowBackNavigation}
-        onPinUnlockSuccess={onPinUnlockSuccess}
+        onSetPin={onSetPin}
+        renderInactivityTimer={renderInactivityTimer}
         onPincodeChange={onPincodeChange}
         onKeyPressed={onKeyPressed}
-        onUserLoggedOut={onUserLoggedOut}
-        onPinUnlockError={onPinUnlockError}
-        onTimeout={onTimeout}
         headerBar={<div>{placeholderHeaderBar}</div>}
         titlePlaceholder={<div>{placeholderTitlePlaceholder}</div>}
         unlockText={<div>{placeholderUnlockText}</div>}

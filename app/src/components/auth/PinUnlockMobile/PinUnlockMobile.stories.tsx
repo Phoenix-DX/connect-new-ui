@@ -1,12 +1,8 @@
-import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { appCache } from '@/api/app';
-import { clearMemoryCache, putCacheableObject } from '@/api/client/cache';
-import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { OSLink } from '@/shared/lib/OSLink';
-import { CacheControl_Policies } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
@@ -20,22 +16,20 @@ import {
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { PinUnlockMobile } from './PinUnlockMobile';
 
-/** Stories only: the signed-in, unlocked tab of the captures. */
-const session: Decorator = (Story) => {
-  setSignedInUser(MOCK_USER_ID);
-  setClientVar('UBT_AppManager.PIN_SessionInactivity_Use', true);
-  setClientVar('UBT_AppManager.PIN_IsLocked', false);
-  return (
-    <MemoryRouter>
-      <Story />
-    </MemoryRouter>
-  );
-};
+/** The InactivityTimer block as the caller gives it: the block renders an empty wrapper (platform/session). */
+const renderInactivityTimer = (id: string | undefined) => <OSBlock name="PIN.InactivityTimer" id={id} />;
 
 const meta = {
   title: 'Shared/UBT_AppManager_Mobile/PinUnlock_MobileWrapper',
   component: PinUnlockMobile,
-  decorators: [session],
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
+  args: { renderInactivityTimer },
 } satisfies Meta<typeof PinUnlockMobile>;
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -45,16 +39,13 @@ export const V1: Story = {
   args: { id: 'b3-b2-b4-$b1', inPinLength: 4, inExtendedClasses: 'connect-pin-screen ubt-pin-overlay' },
 };
 
-/** PINUnlock/default: as Block_PINUnlock_ContentWrapper fills it on the PINUnlock screen (keypad and placeholders) */
+/** PINUnlock/default: as Block_PINUnlock_ContentWrapper fills it on the PINUnlock screen (keypad and placeholders).
+    CacheControl_Policies is nested in the capture: its empty wrapper stands for it (it has its own tests). */
 export const V2: Story = {
-  beforeEach: () => {
-    putCacheableObject(appCache.policies(getClientVar('UBTConnect_Utils.UniqueCacheKey'), 60), {});
-    return clearMemoryCache;
-  },
   args: {
     id: 'b1-b4-$b1',
     inPinLength: 4,
-    inForceVisible: true,
+    isKeypadVisible: true,
     inExtendedClasses: 'connect-pin-screen ubt-pin-overlay',
     placeholderTitlePlaceholder: (
       <img className="login-screen__connect-logo" data-image="" src={osImage('img/UBTConnect.ConnectLogoWhite.svg')} />
@@ -86,7 +77,7 @@ export const V2: Story = {
     placeholderContent: (
       <>
         <SkeletonSection id="b1-b4-$b7" />
-        <CacheControl_Policies id="b1-b4-$b11" />
+        <OSBlock name="CacheControl.CacheControl_Policies" id="b1-b4-$b11" />
       </>
     ),
   },

@@ -1,10 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { appCache } from '@/api/app';
-import { clearMemoryCache, putCacheableObject } from '@/api/client/cache';
-import { getClientVar } from '@/platform/session/session';
-import { CacheControl_Policies } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';
@@ -119,12 +116,9 @@ export const V2: Story = {
   },
 };
 
-/** PINUnlock/default: Pincode_Unlock inside PinUnlock_MobileWrapper, with Forgot PIN and the policy links */
+/** PINUnlock/default: Pincode_Unlock inside PinUnlock_MobileWrapper, with Forgot PIN and the policy links.
+    CacheControl_Policies is nested in the capture: its empty wrapper stands for it (it has its own tests). */
 export const V3: Story = {
-  beforeEach: () => {
-    putCacheableObject(appCache.policies(getClientVar('UBTConnect_Utils.UniqueCacheKey'), 60), {});
-    return clearMemoryCache;
-  },
   args: {
     id: 'b1-b4-b1-b1-$b1',
     length: 4,
@@ -167,7 +161,7 @@ export const V3: Story = {
       <div className="content-placeholder">
         <div>
           <SkeletonSection id="b1-b4-$b7" />
-          <CacheControl_Policies id="b1-b4-$b11" />
+          <OSBlock name="CacheControl.CacheControl_Policies" id="b1-b4-$b11" />
         </div>
       </div>
     ),
