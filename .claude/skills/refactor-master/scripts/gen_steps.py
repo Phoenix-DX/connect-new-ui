@@ -94,6 +94,15 @@ GROUP_DAYS = {"G1": 2, "G2": 3, "G3": 4, "G4": 4, "G5": 4, "G6": 1}
 GROUP_ORDER = {"G1": ["Login", "Splash", "AcceptPendingPolicies", "Menu", "PINRegister", "PINUnlock", "PINChange",
                       "PINBiometricsMenu", "TermsAndPoliciesMenu", "Profile"]}
 SHARED_MOVE_AFTER = {"G1": "Menu"}
+# W22 (Opus + Fable, auto-accepted user instruction 2026-10-23 13:43): steps that run after a route step of a group
+AFTER_ROUTE = {
+    ("G3", "Services"): [("P6-G3-B-HomeFeed-Page", "HomeFeed page part", "change", "visual", "opus", None, 0.25,
+                          "This step finishes P6-G3-B-HomeFeed (W22): FeedBlock_Services, FeedBlock_Updates and "
+                          "Dialog_GoExternalApp of pages/HomeFeed become hooks and props-only components; GetServices "
+                          "moves to api/service (created by P6-G3-B-Services); pages/HomeFeed/api.ts and types.ts go "
+                          "to domain hooks or inputs.ts and are deleted. Old-vs-new check for HomeFeed; HomeFeed "
+                          "first load must not grow (F17 tripwire, W21).")],
+}
 # W18 (Opus + Fable, auto-accepted user instruction 2026-10-23 13:43): fix steps that run after the step C of a group
 AFTER_GROUP = {
     "G2": [("P6-F15", "Login first load under its limit", "change", "strict", "sonnet", None, 0.5,
@@ -177,6 +186,8 @@ def phase6(plan: str) -> list[dict]:
                              f"targets and do not move them."))
             if after == r:
                 out.append(shared)
+            for row in AFTER_ROUTE.get((g, r), []):
+                out.append(entry(*row[:7], anchor, row[7]))
         out.append(entry(f"P6-{g}-C", f"Prune group {g} and group gate", "report", "visual", "sonnet",
                          ("after", f"Review the routes of group {g} on localhost (links in the step report): "
                                    f"{names}. Then confirm the group."), 0.25, anchor,
