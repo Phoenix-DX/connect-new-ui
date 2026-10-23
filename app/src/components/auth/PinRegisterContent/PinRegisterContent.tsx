@@ -1,16 +1,6 @@
-/** @origin UBTConnect.App_PIN.Block_PINRegister_ContentWrapper */
-// @os-block UBTConnect.App_PIN.Block_PINRegister_ContentWrapper
-import { useEffect, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { feedbackMessageAutoClose } from '@/platform/feedback';
-import { replaceOnUpcomingNavigation, TransitionAnimation, useOsNavigate } from '@/platform/navigation';
-import { APP_ID, PATHS } from '@/platform/navigation/paths';
-import { getResumeLoginLink } from '@/platform/session/resume';
-import { getClientVar, setClientVar } from '@/platform/session/session';
-import { getUserInformation } from '@/platform/session/userInfo';
 import { OSLink } from '@/shared/lib/OSLink';
-import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { PinCodeRegister } from '@/components/auth/PinCodeRegister';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
@@ -28,22 +18,26 @@ export interface PinRegisterContentProps {
   id?: string;
   /** UseOverlay: white logo and `ubt-pin-overlay` (default True). */
   useOverlay?: boolean;
-  /** isFromMenu: PIN change from the menu (back allowed, no "Need help?", back to Menu on success). */
+  /** isFromMenu: PIN change from the menu (back allowed, no "Need help?"). */
   isFromMenu?: boolean;
   registerText?: string;
   confirmText?: string;
-  /** EnableName: "Welcome <first> <last>" above the texts, which turn regular. */
+  /** EnableName: "Welcome <UserName>" above the texts, which turn regular. */
   enableName?: boolean;
+  /** UserName of OnInitialize (EnableName only). */
+  userName?: string;
+  /** IsFirstUse of Pincode_Register: the register text, else the confirm text. */
+  isFirstUse?: boolean;
+  /** OnSetPin: the SetPin event of the keypad, with the entered PIN. */
+  onSetPin?: (pinCode: string) => void | Promise<void>;
 }
 
-/** Registration content of PINRegister / PINChange (p:UBTConnect.App_PIN.Block_PINRegister_ContentWrapper.mvc.js; view
-    :134-506, controller :507-737).
-    - OnInitialize (:563-597): with EnableName, UserName = FirstName + " " + LastName of the cached user info.
-    - Pincode_Register (length 4): logo, the register / confirm texts, erase icon, "Need help? Contact Us" unless
-      isFromMenu. PinRegistrationError → FeedbackMessage_AutoClose(error).
-    - PinRegistrationSuccess (:599-680): ReplaceOnUpcomingNavigation; from the menu → "Your PIN has been changed."
-      (success) and Menu; else IsNavigateToHomeOnBack = True and GetResumeLoginLink, else LastURL, else
-      IsNavigateToHomeOnBack = False and HomeFeed. */
+/** Registration content of PINRegister and PINChange: Pincode_Register (PIN length 4) with the Connect logo, the
+    register and confirm texts (with "Welcome <UserName>" when EnableName is set), the erase icon and "Need help?
+    Contact Us" unless isFromMenu. The flows (OnInitialize, PinRegistrationSuccess, PinRegistrationError and the flows
+    of Pincode_Register) are `usePinRegisterContent` of `platform/session`, which gives `userName`, `isFirstUse` and
+    `onSetPin`.
+    @origin UBTConnect.App_PIN.Block_PINRegister_ContentWrapper */
 export function PinRegisterContent({
   id,
   useOverlay = true,
@@ -51,61 +45,10 @@ export function PinRegisterContent({
   registerText = 'Register a PIN code',
   confirmText = 'Confirm PIN code',
   enableName = false,
+  userName = '',
+  isFirstUse = true,
+  onSetPin,
 }: PinRegisterContentProps) {
-  const navigate = useOsNavigate();
-  const screenController_NavigateToPage = useScreenController_NavigateToPage();
-  const [userName, setUserName] = useState('');
-  useEffect(() => {
-    if (!enableName) return;
-    getUserInformation().then(
-      (info) => {
-        setUserName(`${info.Directory_UserCurrent.FirstName} ${info.Directory_UserCurrent.LastName}`);
-      },
-      () => undefined, // no cached user: the name stays empty, as AppManager_GetCachedUserInfo returns an empty record
-    );
-  }, [enableName]);
-
-  const onRegistrationSuccess = () => {
-    replaceOnUpcomingNavigation();
-    if (isFromMenu) {
-      feedbackMessageAutoClose({
-        title: '',
-        message: 'Your PIN has been changed.',
-        messageType: 'success',
-        encodedHtml: true,
-        extendedClass: '',
-        delayMs: 0,
-        useDebounce: false,
-      });
-      navigate(`/${APP_ID}/Menu`, undefined, { transition: TransitionAnimation.SlideFromRight }); // :618
-      return;
-    }
-    const resumeLink = getResumeLoginLink();
-    setClientVar('UBTConnect.IsNavigateToHomeOnBack', true);
-    if (resumeLink !== '') {
-      screenController_NavigateToPage(resumeLink, true); // ScreenController_NavigateToPage2 (:636-640)
-      return;
-    }
-    const lastUrl = getClientVar('UBTConnect.LastURL');
-    if (lastUrl !== '') {
-      screenController_NavigateToPage(lastUrl, true); // ScreenController_NavigateToPage (:645-649)
-      return;
-    }
-    setClientVar('UBTConnect.IsNavigateToHomeOnBack', false);
-    navigate(PATHS.home);
-  };
-  const onRegistrationError = (errorMessage: string) => {
-    feedbackMessageAutoClose({
-      title: '',
-      message: errorMessage,
-      messageType: 'error',
-      encodedHtml: true,
-      extendedClass: '',
-      delayMs: 0,
-      useDebounce: false,
-    });
-  };
-
   const prefix = id?.replace('$', '');
   const childId = (n: number) => (prefix === undefined ? undefined : `${prefix}-$b${String(n)}`);
   const welcome = (n: number) =>
@@ -129,8 +72,8 @@ export function PinRegisterContent({
         inAllowBackNavigation={isFromMenu}
         inPinLength={4}
         inExtendedClasses={`connect-pin-screen${useOverlay ? ' ubt-pin-overlay' : ''}`}
-        onPinRegistrationSuccess={onRegistrationSuccess}
-        onPinRegistrationError={onRegistrationError}
+        isFirstUse={isFirstUse}
+        onSetPin={onSetPin}
         titlePlaceholder={
           <img
             className="login-screen__connect-logo"

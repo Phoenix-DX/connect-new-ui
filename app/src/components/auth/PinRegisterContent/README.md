@@ -10,8 +10,20 @@ OutSystems: `UBTConnect.App_PIN.Block_PINRegister_ContentWrapper` · pack
 | RegisterText | Text    | `registerText` | `'Register a PIN code'` |
 | ConfirmText  | Text    | `confirmText`  | `'Confirm PIN code'`    |
 | EnableName   | Boolean | `enableName`   | `false`                 |
+| UserName     | Text    | `userName`     | `''`                    |
+| IsFirstUse   | Boolean | `isFirstUse`   | `true`                  |
 
-Events: none. Placeholders: none. The block fills `Pincode_Register` (PIN length 4). Errors go through
+The component renders from props only. It does not import `platform/`. The keypad `SetPin` event goes to the prop
+`onSetPin`.
+
+The flow (OnInitialize, name read, success routes, error messages) is in the hook `usePinRegisterContent`
+(`src/platform/session/usePinRegisterContent.ts`). It wraps `usePinCodeRegister` and returns `userName`, `isFirstUse` and
+`onSetPin`.
+
+PINRegister and PINChange call the hook and pass the result as props. The hook is in `platform/session/`
+because two pages use it. The option `enabled` (default `true`) is `false` on PINChange until the unlock.
+
+Events: none (the hook handles them). Placeholders: none. The block fills `Pincode_Register` (PIN length 4). Errors go through
 `feedbackMessageAutoClose` (error). User name: the shell's `getUserInformation` (FirstName LastName).
 
 Success navigates:
@@ -28,7 +40,8 @@ Success navigates:
 
 ## Not captured / not settled
 
-- The confirmation step, errors, the three success routes and isFromMenu: from the compiled code, tested.
+- The confirmation step, errors, the three success routes and isFromMenu: from the compiled code, tested in
+  `usePinRegisterContent.test.tsx`.
 - `ScreenController_NavigateToPage(URL, True)` (resume link, LastURL; :636-649) is the shared
   `useScreenController_NavigateToPage()` of `UBTJavaScriptUtils/lib/actions.ts` (CR-Splash-2). It is a replace
   navigation. A same-origin href becomes its in-app path (Splash stores `window.location.href` in LastURL).

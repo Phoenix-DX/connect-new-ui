@@ -483,3 +483,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,fix,64795,refactor-dev,,P6-G1-B-Shared loop 1 sonnet
 2026-10-23,refactor,verify,22207,refactor-test,,P6-G1-B-Shared loop 1 sonnet
 2026-10-23,refactor,other,51590,refactor-docs,,P6-G1-B-Shared loop 1 sonnet
+2026-10-23,refactor,build,209650,refactor-dev,,P6-G1-B-PINRegister opus
+2026-10-23,refactor,verify,29886,refactor-test,,P6-G1-B-PINRegister sonnet
+2026-10-23,refactor,other,32234,refactor-docs,,P6-G1-B-PINRegister sonnet

@@ -1,23 +1,18 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import { setSignedInUser } from '@/platform/session/session';
 import { PinCodeRegister } from './PinCodeRegister';
 
-/** Stories only: the signed-in user who registers a PIN after the first sign-in. */
-const session: Decorator = (Story) => {
-  setSignedInUser(MOCK_USER_ID);
-  return (
-    <MemoryRouter>
-      <Story />
-    </MemoryRouter>
-  );
-};
+/** Stories only: the router of the keypad (PreventBackNavigation). */
+const router: Decorator = (Story) => (
+  <MemoryRouter>
+    <Story />
+  </MemoryRouter>
+);
 
 const meta = {
   title: 'Shared/UBT_AppManager/Pincode_Register',
   component: PinCodeRegister,
-  decorators: [session],
+  decorators: [router],
 } satisfies Meta<typeof PinCodeRegister>;
 export default meta;
 type Story = StoryObj<typeof meta>;

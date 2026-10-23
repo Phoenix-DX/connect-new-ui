@@ -55,6 +55,10 @@ in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the us
 | `mockUser.ts`       | `mockUserInformation()`, `mockDirectoryUser()`, `MOCK_USER_ID`                                                                                                            | fictional user (U7)                                                   |
 | `paths.ts`          | `PATHS`, `screenOf(pathname)`                                                                                                                                             | screen URLs                                                           |
 
+The PIN registration flow is in two hooks of `src/platform/session/`: `usePinCodeRegister` (first and second entry, rules,
+`registerPin`) and `usePinRegisterContent` (name read, success routes, error messages). PINRegister and PINChange call
+`usePinRegisterContent` and pass the result as props to the blocks `PinRegisterContent` and `PinCodeRegister`.
+
 - Without a local PIN, `signIn()` goes to PINRegister. Otherwise it goes to the resume link, the sign-in callback that
   the gate keeps, or HomeFeed.
 - `verifyPin` answers the original event texts (`Pin does not match`, `User not found`…). The screen maps them to its

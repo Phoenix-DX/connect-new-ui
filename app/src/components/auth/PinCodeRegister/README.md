@@ -8,9 +8,16 @@ knowledge `migration/knowledge/auth.md` (PINRegister)
 | In_PinLength           | Integer | `inPinLength`           | `0`     |
 | In_ExtendedClasses     | Text    | `inExtendedClasses`     | `''`    |
 | In_AllowBackNavigation | Boolean | `inAllowBackNavigation` | `false` |
+| IsFirstUse (local)     | Boolean | `isFirstUse`            | `true`  |
 
-Events: `KeyPressed` → `onKeyPressed`, `PinRegistrationSuccess` → `onPinRegistrationSuccess`,
-`PinRegistrationError(ErrorMessage)` → `onPinRegistrationError`.
+The component renders from props only. It does not import `platform/`. Event `KeyPressed` → `onKeyPressed`. The keypad
+`SetPin` event goes to the prop `onSetPin`.
+
+The flow (first and second entry, rules, `registerPin`) is in the hook
+`usePinCodeRegister` (`src/platform/session/usePinCodeRegister.ts`). The hook takes the events
+`PinRegistrationSuccess` (`onPinRegistrationSuccess`) and `PinRegistrationError(ErrorMessage)`
+(`onPinRegistrationError`), and returns `isFirstUse` and `onSetPin`. The option `enabled` (default `true`) delays
+OnInitialize until the block is on the screen.
 
 Placeholders: `HeaderBar` (inside a `text-align:
 left` container), `TitlePlaceholder`, `RegistrationText` (first entry) / `ConfirmationText` (second entry),
@@ -28,6 +35,6 @@ Rules: `pIN_ValidateRules` (`UBT_AppManager/lib/actions.ts`). Storage: the `regi
 ## Not captured / not settled
 
 - The confirmation step, rule errors, mismatch and success: from the compiled code, tested in
-  `Pincode_Register.test.tsx`.
+  `usePinCodeRegister.test.tsx` (flow) and `PinCodeRegister.test.tsx` (view).
 - `AppManager_SetPIN_IsRegistering` (True on initialize, False on destroy) is not ported: the shell has no such client
   variable. To settle with the PINRegister screen if anything reads it.

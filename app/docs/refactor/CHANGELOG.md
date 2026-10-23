@@ -299,3 +299,8 @@
 - `python3 migration/tools/refactor/arch_baseline.py check` replaces "no new warning" in the gate. It fails on a new warning and on a row without a warning. Each owner deletes its rows: P6-G1-B-PINRegister (20), P6-G1-B-PINUnlock (32), P7 (35), `pre-existing` (1, `OSPopup`). The file is empty before P9-1.
 - Tool change W12: `rf.py diffcheck --move` accepts the renames that `move-map.csv` declares (the block name to the target name, and `<Name>Props`). Strings, comments and any other change still fail.
 - Deviation from plan v2 §1.4 and §2.2 (decisions W12 and W13, Window 4): the plan has no baseline file. Plan v2 §2.2 names `containers/BottomBar`; the move map puts `BottomBar` in `components/layout` because criterion 2 is not met (`move-map.csv`, row `UBTConnect/BottomBarMenu`).
+
+## P6-G1-B-PINRegister - refactor(P6-G1-B): PINRegister as page
+
+- `src/pages/PINRegister` is now a page with one hook (`usePINRegister`). `api.ts`, `types.ts` and `mocks.ts` are deleted (no call, input or mock). `PinRegisterContent` and `PinCodeRegister` render from props only. Their flows moved to `usePinRegisterContent` and `usePinCodeRegister` in `src/platform/session/` (two pages use them). PINRegister and PINChange call the hook and pass props.
+- Gate W13: the 20 rows of owner P6-G1-B-PINRegister are deleted from `arch-baseline.csv` (68 rows left). `move-map.csv`: PINRegister row `moved`; Pincode_Register and Block_PINRegister_ContentWrapper rows are `hook+component`.

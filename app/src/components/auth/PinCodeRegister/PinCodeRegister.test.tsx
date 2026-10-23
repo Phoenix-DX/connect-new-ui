@@ -1,27 +1,29 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import { verifyPin } from '@/platform/session/pin';
-import { getShellState, setClientVar, setSignedInUser } from '@/platform/session/session';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { freshPage } from '@/test/testSupport';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { PinCodeRegister, type PinCodeRegisterProps } from './PinCodeRegister';
 import * as stories from './PinCodeRegister.stories';
 
+/* The view of Pincode_Register. Its flows (rules, confirmation, registration) are tested with usePinCodeRegister in
+   platform/session/usePinCodeRegister.test.tsx. */
+
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
 
+const view = (props: PinCodeRegisterProps) => (
+  <MemoryRouter>
+    <PinCodeRegister
+      inPinLength={4}
+      registrationText={<span id="register" />}
+      confirmationText={<span id="confirm" />}
+      {...props}
+    />
+  </MemoryRouter>
+);
+
 const setup = (props: PinCodeRegisterProps) => {
-  const { container } = render(
-    <MemoryRouter>
-      <PinCodeRegister
-        inPinLength={4}
-        registrationText={<span id="register" />}
-        confirmationText={<span id="confirm" />}
-        {...props}
-      />
-    </MemoryRouter>,
-  );
+  const { container, rerender } = render(view(props));
   const type = async (pin: string) => {
     for (const digit of pin) {
       const key = [...container.querySelectorAll<HTMLButtonElement>('.ubt-pincode__button')].find(
@@ -35,49 +37,44 @@ const setup = (props: PinCodeRegisterProps) => {
     }
     await act(() => new Promise((resolve) => setTimeout(resolve, 600))); // keypad reset (500 ms)
   };
-  return { container, type };
+  const update = (next: PinCodeRegisterProps) => {
+    rerender(view(next));
+  };
+  return { container, type, rerender: update };
 };
 
 describe('Pincode_Register', () => {
   beforeEach(() => {
     freshPage();
-    setClientVar('UBT_AppManager.PIN_SessionInactivity_Seconds', 1200);
-    setSignedInUser(MOCK_USER_ID);
-  });
-  afterEach(() => {
-    setSignedInUser(null);
   });
   testCapturedVariants(stories, captures);
 
-  it('registers after the same PIN is entered twice', async () => {
-    const onPinRegistrationSuccess = vi.fn();
-    const { container, type } = setup({ onPinRegistrationSuccess });
+  it('shows the registration text on the first entry and the confirmation text on the second', () => {
+    const { container, rerender } = setup({});
     expect(container.querySelector('#register')).not.toBeNull();
-    await type('1357');
+    expect(container.querySelector('#confirm')).toBeNull();
+    rerender({ isFirstUse: false });
+    expect(container.querySelector('#register')).toBeNull();
     expect(container.querySelector('#confirm')).not.toBeNull();
-    expect(getShellState().hasLocalPin).toBe(false);
-    await type('1357');
-    expect(onPinRegistrationSuccess).toHaveBeenCalledTimes(1);
-    expect(getShellState().hasLocalPin).toBe(true);
-    expect((await verifyPin('1357')).status).toBe('unlocked');
   });
 
-  it('rejects a PIN that breaks a rule, then a confirmation that differs', async () => {
-    const onPinRegistrationError = vi.fn();
-    const { container, type } = setup({ onPinRegistrationError });
-    await type('1234');
-    expect(onPinRegistrationError).toHaveBeenLastCalledWith('PIN must not contain any 3 consecutive numbers.');
-    expect(container.querySelector('#register')).not.toBeNull();
+  it('raises SetPin with the PIN entered on the keypad', async () => {
+    const onSetPin = vi.fn();
+    const { type } = setup({ onSetPin });
     await type('1357');
-    await type('2468');
-    expect(onPinRegistrationError).toHaveBeenLastCalledWith('Confirm PIN does not match Register PIN!');
-    expect(getShellState().hasLocalPin).toBe(false);
+    expect(onSetPin).toHaveBeenCalledTimes(1);
+    expect(onSetPin).toHaveBeenCalledWith('1357');
   });
 
-  it('raises PinRegistrationError when nobody is signed in', () => {
-    setSignedInUser(null);
-    const onPinRegistrationError = vi.fn();
-    setup({ onPinRegistrationError });
-    expect(onPinRegistrationError).toHaveBeenCalledWith('User not logged in.');
+  it('puts the placeholders in their containers', () => {
+    const { container } = setup({
+      headerBar: <span id="header" />,
+      optionPlaceholder: <span id="option" />,
+      contentPlaceholder: <span id="content" />,
+    });
+    expect(container.querySelector('.pincode-registration')).toHaveStyle({ textAlign: 'center' });
+    expect(container.querySelector('#header')?.parentElement?.parentElement).toHaveStyle({ textAlign: 'left' });
+    expect(container.querySelector('.pincode-button #option')).not.toBeNull();
+    expect(container.querySelector('.content-placeholder #content')).not.toBeNull();
   });
 });

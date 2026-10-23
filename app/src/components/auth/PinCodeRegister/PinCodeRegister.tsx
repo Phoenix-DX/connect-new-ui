@@ -1,10 +1,5 @@
-/** @origin UBT_AppManager.PIN.Pincode_Register */
-// @os-block UBT_AppManager.PIN.Pincode_Register
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { registerPin } from '@/platform/session/pin';
-import { currentUserId } from '@/platform/session/session';
-import { pIN_ValidateRules } from '@/shared/UBT_AppManager/lib/actions';
 import { PinCode } from '@/components/auth/PinCode';
 
 export interface PinCodeRegisterProps {
@@ -13,6 +8,8 @@ export interface PinCodeRegisterProps {
   inPinLength?: number;
   inExtendedClasses?: string;
   inAllowBackNavigation?: boolean;
+  /** IsFirstUse: True shows RegistrationText (first entry), False shows ConfirmationText (second entry). */
+  isFirstUse?: boolean;
   /** Placeholder HeaderBar. */
   headerBar?: ReactNode;
   /** Placeholder TitlePlaceholder. */
@@ -29,24 +26,21 @@ export interface PinCodeRegisterProps {
   contentPlaceholder?: ReactNode;
   /** Event KeyPressed. */
   onKeyPressed?: () => void | Promise<void>;
-  /** Event PinRegistrationSuccess. */
-  onPinRegistrationSuccess?: () => void | Promise<void>;
-  /** Event PinRegistrationError(ErrorMessage). */
-  onPinRegistrationError?: (errorMessage: string) => void | Promise<void>;
+  /** OnSetPin: the SetPin event of the keypad, with the entered PIN. */
+  onSetPin?: (pinCode: string) => void | Promise<void>;
 }
 
-/** PIN registration, entered twice (p:UBT_AppManager.PIN.Pincode_Register.mvc.js; knowledge/auth.md "PINRegister").
-    - OnInitialize: signed out → PinRegistrationError("User not logged in.").
-    - OnSetPin, first entry: PIN_ValidateRules; valid → keep it and ShowConfirm (IsFirstUse = False) after a 0 ms
-      timeout (DelayChangeJS), invalid → PinRegistrationError(rule message). Second entry: same PIN → PIN_Set,
-      PIN_SessionInactivity_Start, PIN_HasUnlocked (the shell's `registerPin`; LockHost restarts the timer), then
-      PinRegistrationSuccess; else PinRegistrationError("Confirm PIN does not match Register PIN!").
-    - OnDestroy: clears the pending timeout (ClearTimeOutsJS). */
+/** PIN registration, entered twice: the PinCode keypad (`pincode-registration`) with the registration text on the
+    first entry and the confirmation text on the second. The flows (the PIN rules, the confirmation, the registration
+    and the PinRegistrationSuccess and PinRegistrationError events) are `usePinCodeRegister` of `platform/session`,
+    which gives `isFirstUse` and `onSetPin`.
+    @origin UBT_AppManager.PIN.Pincode_Register */
 export function PinCodeRegister({
   id,
   inPinLength = 0,
   inExtendedClasses = '',
   inAllowBackNavigation = false,
+  isFirstUse = true,
   headerBar,
   titlePlaceholder,
   registrationText,
@@ -55,45 +49,8 @@ export function PinCodeRegister({
   erasePlaceholder,
   contentPlaceholder,
   onKeyPressed,
-  onPinRegistrationSuccess,
-  onPinRegistrationError,
+  onSetPin,
 }: PinCodeRegisterProps) {
-  const [isFirstUse, setIsFirstUse] = useState(true);
-  const model = useRef({ isFirstUse: true, newPinCode: '' });
-  const switchScreen = useRef<number | undefined>(undefined);
-  const events = useRef({ onPinRegistrationSuccess, onPinRegistrationError });
-  useLayoutEffect(() => {
-    events.current = { onPinRegistrationSuccess, onPinRegistrationError };
-  });
-  useEffect(() => {
-    if (currentUserId() === null) void events.current.onPinRegistrationError?.('User not logged in.');
-    const timeout = switchScreen;
-    return () => {
-      window.clearTimeout(timeout.current);
-    };
-  }, []);
-
-  const showConfirm = () => {
-    model.current.isFirstUse = false;
-    setIsFirstUse(false);
-  };
-  const onSetPin = async (pinCode: string) => {
-    if (model.current.isFirstUse) {
-      const rules = pIN_ValidateRules(pinCode);
-      if (rules.IsValid) {
-        model.current.newPinCode = pinCode;
-        switchScreen.current = window.setTimeout(showConfirm, 0);
-      } else {
-        await events.current.onPinRegistrationError?.(rules.Message);
-      }
-    } else if (pinCode === model.current.newPinCode) {
-      await registerPin(pinCode);
-      await events.current.onPinRegistrationSuccess?.();
-    } else {
-      await events.current.onPinRegistrationError?.('Confirm PIN does not match Register PIN!');
-    }
-  };
-
   const prefix = id?.replace('$', '');
   return (
     <OSBlock name="PIN.Pincode_Register" id={id}>

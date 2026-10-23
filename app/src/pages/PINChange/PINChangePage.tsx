@@ -18,6 +18,7 @@ import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
+import { usePinRegisterContent } from '@/platform/session/usePinRegisterContent';
 
 /** UBTConnect App_PIN.PINChange (p:UBTConnect.App_PIN.PINChange.mvc.js; view :122-326, controller :331-443).
     No input, no data action, no lifecycle handler (:61, 348, 427-431). Locals isScreenUnlocked = False, UseOverlay = True
@@ -35,6 +36,8 @@ export default function PINChange() {
   const navigate = useOsNavigate();
   const [isScreenUnlocked, setIsScreenUnlocked] = useState(false);
   const useOverlay = true;
+  // The flows of Block_PINRegister_ContentWrapper; it is on the screen only after the unlock.
+  const registration = usePinRegisterContent({ isFromMenu: true, enabled: isScreenUnlocked });
 
   // OnClick_BackToLogin (:350-376): AllowUpcomingNavigation; Destination /UBTConnect/Menu (Default transition).
   const onClickBackToLogin = () => {
@@ -91,6 +94,8 @@ export default function PINChange() {
             confirmText="Confirm new PIN"
             isFromMenu
             useOverlay={useOverlay}
+            isFirstUse={registration.isFirstUse}
+            onSetPin={registration.onSetPin}
           />
         ) : (
           <PinUnlockContent

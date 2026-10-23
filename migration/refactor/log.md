@@ -292,3 +292,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T20:14:07 P6-G1-B-Shared stage test
 - 2026-10-23T20:17:24 P6-G1-B-Shared stage docs
 - 2026-10-23T20:19:20 P6-G1-B-Shared stage commit
+- 2026-10-23T20:19:56 P6-G1-B-Shared done 43946ee: ci: pass (2111 tests); diffcheck --move ok (200 renames, 30 origin tags, move-map renames W12); parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (88 moved-debt rows, W13); bundle within +5%
+- 2026-10-23T20:20:43 P6-G1-B-PINRegister started
+- 2026-10-23T20:20:43 P6-G1-B-PINRegister stage dev
+- 2026-10-23T20:42:44 P6-G1-B-PINRegister stage test
+- 2026-10-23T20:50:10 P6-G1-B-PINRegister stage docs
+- 2026-10-23T20:51:40 P6-G1-B-PINRegister stage commit
