@@ -296,6 +296,7 @@
 
 - 30 blocks of `src/shared/` (phase P6-G1 rows of `move-map.csv`) moved to `src/platform/{navigation,session,device}` and `src/components/{auth,layout,menu,version}`. 21 of them took the target name (path, component and `<Name>Props`), for example `Pincode_Register` to `PinCodeRegister` and `BottomBarMenu` to `BottomBar`. Each main file has an `@origin` tag. No re-export is left in `src/shared/`. The 30 rows are set to `moved`.
 - Gate W13: `app/docs/refactor/arch-baseline.csv` lists the 88 `lint:arch` Rule 4 warnings that the move created (a `components/` file imports `platform/`). A row holds the file, the import, the rule and an owner. The list is moved debt and only shrinks.
+- Decision W15 (Window 4, amends W13): the list grows only in `P6-G<n>-B-Shared` steps. The gate (`arch_baseline.py`) accepts a new row only when its file is a move-map target of that step. The old `src/shared/` file must have imported the same resolved module at the base commit. Each new row has an owner (a B step of the group, or P7); every other step only removes rows.
 - `python3 migration/tools/refactor/arch_baseline.py check` replaces "no new warning" in the gate. It fails on a new warning and on a row without a warning. Each owner deletes its rows: P6-G1-B-PINRegister (20), P6-G1-B-PINUnlock (32), P7 (35), `pre-existing` (1, `OSPopup`). The file is empty before P9-1.
 - Tool change W12: `rf.py diffcheck --move` accepts the renames that `move-map.csv` declares (the block name to the target name, and `<Name>Props`). Strings, comments and any other change still fail.
 - Deviation from plan v2 §1.4 and §2.2 (decisions W12 and W13, Window 4): the plan has no baseline file. Plan v2 §2.2 names `containers/BottomBar`; the move map puts `BottomBar` in `components/layout` because criterion 2 is not met (`move-map.csv`, row `UBTConnect/BottomBarMenu`).
@@ -329,3 +330,10 @@
 
 - `src/pages/Profile` is now a page with one hook (`useProfile`, with the pure `profileState`) and 9 components. `api.ts`, `types.ts` and `components/actions.ts` are deleted; the page calls `@/api/country` and `@/api/member` directly.
 - No new container: the page gives `HouseholdDetailsContainer` to the preview sheet through a slot. `move-map.csv`: Profile row `moved`.
+
+## P6-G1-C - refactor(P6-G1-C): prune group G1
+
+- Prune: `knip` finds no unused file in the G1 folders (10 unused files in the whole app, all outside G1: later groups, `src/shared/`, `.storybook/withFlags.ts`). `jscpd` finds 0 clones in 210 files of the G1 folders. The only removal: 10 empty directories `src/screens/<G1 route>` were removed (not tracked by git).
+- Group gate G1: `ci` exit 0; parity `visual --all` 64/64 clean on both references; `e2e:pwa` 9/9.
+  `arch_baseline.py check` exit 0 (37 rows, no P6-G1 owner). Report: `reports/P6-G1.md`.
+- Watch item: first-load Login is 192.96 kB gzip, 0.88 kB under the +5 percent limit (193.84); HomeFeed margin is 3.42 kB. Follow-up F14 in `migration/refactor/followups.md`.

@@ -503,3 +503,10 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,236195,refactor-dev,,P6-G1-B-Profile opus
 2026-10-23,refactor,verify,38694,refactor-test,,P6-G1-B-Profile sonnet
 2026-10-23,refactor,other,20976,refactor-docs,,P6-G1-B-Profile sonnet
+2026-10-23,refactor,build,27767,refactor-dev,,P6-G1-C sonnet
+2026-10-23,refactor,review,35707,refactor-advisor,,"W15, opus"
+2026-10-23,refactor,review,36116,refactor-advisor,,"W15, fable"
+2026-10-23,refactor,verify,22611,refactor-test,,P6-G1-C sonnet
+2026-10-23,refactor,other,34401,refactor-docs,,P6-G1-C sonnet
+2026-10-23,refactor,review,40682,refactor-advisor,,"W16, opus"
+2026-10-23,refactor,review,40551,refactor-advisor,,"W16, fable"

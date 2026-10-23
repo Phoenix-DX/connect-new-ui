@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G1-B-Profile",
+  "step": "P6-G1-C",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T22:04:40"
+  "since": "2026-10-23T22:20:05"
  },
  "steps": {
   "P0-1": {
@@ -599,12 +599,25 @@
    "finished": "2026-10-23T21:57:00"
   },
   "P6-G1-B-Profile": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T21:57:00",
    "tokens": {
     "dev": 236195,
     "test": 38694,
     "docs": 20976
+   },
+   "commit": "86f7682",
+   "gate": "ci: pass (2194 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline check 0 new (37 rows); bundle within +5% (Login 192.96 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T22:04:42"
+  },
+  "P6-G1-C": {
+   "status": "active",
+   "started": "2026-10-23T22:04:42",
+   "tokens": {
+    "dev": 27767,
+    "test": 22611,
+    "docs": 34401
    }
   }
  },
@@ -632,6 +645,12 @@
    "by": "user",
    "text": "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): confirm the Phase 5 exemption list (0 entries). Opus (high) and Fable (high) agree: the list covers only parity-visible call differences; no call moved into a query with a caller; P5-4 full strict parity 64/64 clean on both references with the call check clean; the parity-invisible behavior changes are in the decision log and the CHANGELOG (W6).",
    "at": "2026-10-23T15:53:46"
+  },
+  "P6-G1-C:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W16 group G1 confirmed — Opus confirm (high), Fable confirm (high). Conditions: watch the Login bundle margin (0.88 kB); a later step that would pass the limit stops and asks, the limit is not raised; the commit notes that the C tester took knip/jscpd from the dev report.",
+   "at": "2026-10-23T22:20:05"
   }
  },
  "questions": [

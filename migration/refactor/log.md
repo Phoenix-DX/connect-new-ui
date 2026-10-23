@@ -328,3 +328,11 @@ One line per event. Written by rf.py.
 - 2026-10-23T21:57:35 P6-G1-B-Profile stage test
 - 2026-10-23T22:03:02 P6-G1-B-Profile stage docs
 - 2026-10-23T22:04:40 P6-G1-B-Profile stage commit
+- 2026-10-23T22:04:42 P6-G1-B-Profile done 86f7682: ci: pass (2194 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline check 0 new (37 rows); bundle within +5% (Login 192.96 of 193.84 kB)
+- 2026-10-23T22:04:42 P6-G1-C started
+- 2026-10-23T22:04:42 P6-G1-C stage dev
+- 2026-10-23T22:07:05 P6-G1-C stage test
+- 2026-10-23T22:17:39 P6-G1-C stage docs
+- 2026-10-23T22:20:05 P6-G1-C waits for the user: Review the routes of group G1 on localhost (links in the step report): Login, Splash, PINRegister, PINUnlock, PINChange, PINBiometricsMenu, AcceptPendingPolicies, Menu, TermsAndPoliciesMenu, Profile. Then confirm the group.
+- 2026-10-23T22:20:05 P6-G1-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W16 group G1 confirmed — Opus confirm (high), Fable confirm (high). Conditions: watch the Login bundle margin (0.88 kB); a later step that would pass the limit stops and asks, the limit is not raised; the commit notes that the C tester took knip/jscpd from the dev report."
+- 2026-10-23T22:20:05 P6-G1-C stage commit
