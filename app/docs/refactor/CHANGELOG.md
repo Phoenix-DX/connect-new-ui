@@ -324,3 +324,8 @@
 
 - `src/pages/TermsAndPoliciesMenu` is now a page with one hook (`useTermsAndPoliciesMenu`). The page renders `DetailLayout` directly. `api.ts`, `types.ts` and the re-export `components/actions.ts` are deleted; `staticEntities.ts` moved to the page root.
 - The test of `openPolicy` moved to `src/shared/UBTConnect_Utils/lib/openPolicy.test.ts`. `move-map.csv`: TermsAndPoliciesMenu row set to `moved`.
+
+## P6-G1-B-Profile - refactor(P6-G1-B): Profile as page
+
+- `src/pages/Profile` is now a page with one hook (`useProfile`, with the pure `profileState`) and 9 components. `api.ts`, `types.ts` and `components/actions.ts` are deleted; the page calls `@/api/country` and `@/api/member` directly.
+- No new container: the page gives `HouseholdDetailsContainer` to the preview sheet through a slot. `move-map.csv`: Profile row `moved`.

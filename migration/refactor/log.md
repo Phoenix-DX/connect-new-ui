@@ -322,3 +322,9 @@ One line per event. Written by rf.py.
 - 2026-10-23T21:51:50 P6-G1-B-TermsAndPoliciesMenu stage test
 - 2026-10-23T21:55:22 P6-G1-B-TermsAndPoliciesMenu stage docs
 - 2026-10-23T21:56:59 P6-G1-B-TermsAndPoliciesMenu stage commit
+- 2026-10-23T21:57:00 P6-G1-B-TermsAndPoliciesMenu done c46440f: ci: pass (2165 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline check 0 new (37 rows); no shared code changed
+- 2026-10-23T21:57:00 P6-G1-B-Profile started
+- 2026-10-23T21:57:00 P6-G1-B-Profile stage dev
+- 2026-10-23T21:57:35 P6-G1-B-Profile stage test
+- 2026-10-23T22:03:02 P6-G1-B-Profile stage docs
+- 2026-10-23T22:04:40 P6-G1-B-Profile stage commit

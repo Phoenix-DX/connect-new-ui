@@ -500,3 +500,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,build,116035,refactor-dev,,P6-G1-B-TermsAndPoliciesMenu opus
 2026-10-23,refactor,verify,28267,refactor-test,,P6-G1-B-TermsAndPoliciesMenu sonnet
 2026-10-23,refactor,other,22739,refactor-docs,,P6-G1-B-TermsAndPoliciesMenu sonnet
+2026-10-23,refactor,build,236195,refactor-dev,,P6-G1-B-Profile opus
+2026-10-23,refactor,verify,38694,refactor-test,,P6-G1-B-Profile sonnet
+2026-10-23,refactor,other,20976,refactor-docs,,P6-G1-B-Profile sonnet

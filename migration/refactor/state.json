@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G1-B-TermsAndPoliciesMenu",
+  "step": "P6-G1-B-Profile",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-23T21:56:59"
+  "since": "2026-10-23T22:04:40"
  },
  "steps": {
   "P0-1": {
@@ -586,12 +586,25 @@
    "finished": "2026-10-23T21:51:15"
   },
   "P6-G1-B-TermsAndPoliciesMenu": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-23T21:51:15",
    "tokens": {
     "dev": 116035,
     "test": 28267,
     "docs": 22739
+   },
+   "commit": "c46440f",
+   "gate": "ci: pass (2165 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline check 0 new (37 rows); no shared code changed",
+   "loops": 0,
+   "finished": "2026-10-23T21:57:00"
+  },
+  "P6-G1-B-Profile": {
+   "status": "active",
+   "started": "2026-10-23T21:57:00",
+   "tokens": {
+    "dev": 236195,
+    "test": 38694,
+    "docs": 20976
    }
   }
  },

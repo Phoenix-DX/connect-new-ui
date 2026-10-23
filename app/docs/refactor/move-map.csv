@@ -317,7 +317,7 @@ src/screens/PINChange/index.tsx,UBTConnect.App_PIN.PINChange,page,src/pages/PINC
 src/screens/PINRegister/index.tsx,UBTConnect.App_PIN.PINRegister,page,src/pages/PINRegister/PINRegisterPage.tsx,P6-G1,1,moved,"page with hooks/usePINRegister.ts; api.ts, types.ts, mocks.ts deleted (no call, no input)"
 src/screens/PINUnlock/index.tsx,UBTConnect.App_PIN.PINUnlock,page,src/pages/PINUnlock/PINUnlockPage.tsx,P6-G1,1,moved,"the folder moves with it (api.ts, types.ts, mocks.ts, components/); hook usePINUnlock"
 src/screens/Photobook/index.tsx,UBTConnect.Directory_Photobook.Photobook,page,src/pages/Photobook/PhotobookPage.tsx,P6-G4,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
-src/screens/Profile/index.tsx,UBTConnect.App_Profile.Profile,page,src/pages/Profile/ProfilePage.tsx,P6-G1,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
+src/screens/Profile/index.tsx,UBTConnect.App_Profile.Profile,page,src/pages/Profile/ProfilePage.tsx,P6-G1,1,moved,"page + hook useProfile + components, no new container; HouseholdDetailsContainer through a slot (renderHousehold)"
 src/screens/QRCodeGenerate/index.tsx,UBTConnect.Legacy_OrbitQRCodeFlow.QRCodeGenerate,page,src/pages/QRCodeGenerate/QRCodeGeneratePage.tsx,P6-G6,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
 src/screens/Search/index.tsx,UBTConnect.Directory_Search.Search,page,src/pages/Search/SearchPage.tsx,P6-G3,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"
 src/screens/Services/index.tsx,UBTConnect.App_Services.Services,page,src/pages/Services/ServicesPage.tsx,P6-G3,1,,"the folder moves with it (api.ts, types.ts, mocks.ts, components/)"

@@ -45,7 +45,7 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
 - Flows that refresh on block events (OnReady, OnParametersChanged) call the repository functions `fetch<Thing>()` of
   `api/<domain>/`. They never call `callAction` or `fetch` themselves.
 - The `use<Thing>Query` hooks of `api/<domain>/` are for data that a component reads on render only. They come later
-  (P5/P6). `useHouseholdQuery` and `useHouseholdCoordinatesQuery` have no caller yet. `useCountryLocalityStatisticsQuery` (CountryDetails) and `useCountryInfoQuery` (Profile) have callers through the re-exports of the old `api.ts` files.
+  (P5/P6). `useHouseholdQuery` and `useHouseholdCoordinatesQuery` have no caller yet. `useCountryLocalityStatisticsQuery` (CountryDetails) and `useCountryInfoQuery` (Profile) have callers: CountryDetails through the re-export of its old `api.ts`; Profile calls `@/api/country` directly.
 - State and flows of a flow hook: call `useFlowState` (`@/platform/navigation`, `platform/navigation/flowState.ts`).
   Do not write the `latest` ref, `useReducer`, the `useViewState` dispatch, `flowsRef` or `parametersKey` again.
   - Options: `viewName` (the view cache key), `reducer`, `initial`, `parameters` (plain data; their JSON is the

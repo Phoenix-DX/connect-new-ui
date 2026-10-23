@@ -183,3 +183,5 @@ P6-G1-B-Menu: `ActionRequestPhotoUpdate` moved to `src/api/member/repository.ts`
 | `shell/userInfo.ts`                                                       | UBTConnect_Utils               | `ActionGetUserInformation`                                                                                                                                                   |
 
 P6-G1-B-AcceptPendingPolicies (decision W8, domain by data ownership): the 2 actions of `screens/AcceptPendingPolicies/api.ts` (`ActionAcceptPolicies`, `Policy_Custom_AcceptPendingPolicies/DataActionGetPendingPolicies`) are now in `src/api/policy/repository.ts`. They read and write the policy acceptance records, so they are in the new domain `policy`, not in `app`. The route's `api.ts` is deleted. The counts above are the P0-4 baseline and do not change. `CacheControl_Policies/DataActionGetCacheInfo` stays in `api/app`.
+
+P6-G1-B-Profile: `screens/Profile/api.ts` is deleted (rows `ServiceAPIMember_EditDetails_Service` and `Profile/DataActionGetCountryInfo` above). `pages/Profile/hooks/useProfile.ts` imports `useCountryInfoQuery` from `@/api/country` and `editMemberDetails` from `@/api/member`.
