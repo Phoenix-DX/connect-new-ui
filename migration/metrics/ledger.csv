@@ -448,3 +448,10 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,review,35249,refactor-advisor,,"W8, fable"
 2026-10-23,refactor,fix,207433,refactor-dev,,"G1 SecurityException branch, opus (pass)"
 2026-10-23,refactor,verify,36667,refactor-test,,"G1 tester sonnet: ci pass, parity 64/0 both, manual security scenario ok"
+2026-10-23,refactor,other,32300,refactor-docs,,G1 documenter sonnet
+2026-10-23,refactor,build,39442,refactor-dev,,P6-G1-A sonnet
+2026-10-23,refactor,verify,25033,refactor-test,,P6-G1-A sonnet
+2026-10-23,refactor,fix,0,refactor-dev,,P6-F12 sonnet - tokens in next row
+2026-10-23,refactor,fix,21411,refactor-dev,,P6-F12 sonnet (pass)
+2026-10-23,refactor,verify,15708,refactor-test,,P6-G1-A sonnet
+2026-10-23,refactor,other,0,refactor-docs,,P6-G1-A sonnet

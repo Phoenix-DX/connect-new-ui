@@ -265,3 +265,8 @@
 
 - Behavior change outside the refactor steps (decisions U2 and W7). `raiseToFlowHandler` (`src/legacy/os/exceptions.ts`) ports `UBTConnect.App_Common.controller.js:61-89`: signed in, the forced-logout path (`signedOutRemotely()`); anonymous, Login with `In_IsFromInvalidPermissions=True`.
 - New `osNavigateTo` in `src/platform/navigation/osNavigate.ts`, registered by `NavigationHost`. New scenario `?mock=security` in `src/screens/ContactUsDetails/mocks.ts`.
+
+## P6-G1-A - refactor(P6-G1-A): move G1 to pages/
+
+- The 10 routes of group G1 (Login, Splash, PINRegister, PINUnlock, PINChange, PINBiometricsMenu, AcceptPendingPolicies, Menu, TermsAndPoliciesMenu, Profile) moved from `src/screens/<R>` to `src/pages/<R>`. `index.tsx` is now `<R>Page.tsx`, with one `@origin` tag per file. Only paths, imports and tags changed.
+- Tool fix P6-F12 (from the test of this step): `rf.py diffcheck --move` accepts added `@origin` tags in renamed files, and `app/build/bundle-report.mjs` finds `pages/<R>/<R>Page.tsx`. `move-map.csv` is unchanged (its rows name shared blocks, not these screens).

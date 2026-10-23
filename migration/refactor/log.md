@@ -255,3 +255,8 @@ One line per event. Written by rf.py.
 - 2026-10-23T15:53:46 P5-4 waits for the user: Confirm the exemption list of Phase 5 (migration/refactor-exemptions.json).
 - 2026-10-23T15:53:46 P5-4 after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): confirm the Phase 5 exemption list (0 entries). Opus (high) and Fable (high) agree: the list covers only parity-visible call differences; no call moved into a query with a caller; P5-4 full strict parity 64/64 clean on both references with the call check clean; the parity-invisible behavior changes are in the decision log and the CHANGELOG (W6)."
 - 2026-10-23T15:53:56 P5-4 done a966278: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+4.2%); after-gate confirmed (W6)
+- 2026-10-23T16:35:44 P6-G1-A started
+- 2026-10-23T16:35:50 P6-G1-A stage dev
+- 2026-10-23T16:38:42 P6-G1-A stage test
+- 2026-10-23T16:51:47 P6-G1-A stage docs
+- 2026-10-23T16:52:26 P6-G1-A stage commit
