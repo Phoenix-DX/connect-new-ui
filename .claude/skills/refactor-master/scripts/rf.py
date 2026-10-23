@@ -578,21 +578,24 @@ IMPORT_SHAPE = re.compile(r"^\s*((import|export)(\s+type)?\s*(\{|\*)?|\}\s*from)
 CODE_EXT = (".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs")
 
 
-def changed_lines(c: Ctx, path: str, old: str | None) -> list[str]:
+ORIGIN_TAG = re.compile(r"^\s*(/\*\* @origin [A-Za-z0-9_.]+ \*/|\* @origin [A-Za-z0-9_.]+)\s*$")
+
+
+def changed_lines(c: Ctx, path: str, old: str | None, signed: bool = False) -> list[str]:
     args = ["diff", "HEAD", "-M", "-U0", "--"] + ([old, path] if old else [path])
     out = []
     for ln in git(c, *args).splitlines():
         if ln.startswith(("+++", "---")):
             continue
         if ln.startswith(("+", "-")):
-            out.append(ln[1:])
+            out.append(ln if signed else ln[1:])
     return out
 
 
 def cmd_diffcheck(c: Ctx, a) -> int:
     if not a.move:
         raise RfError("only --move is supported")
-    bad, other, renames = [], [], 0
+    bad, other, renames, origins = [], [], 0, 0
     for line in git(c, "diff", "HEAD", "-M", "--name-status").splitlines():
         parts = line.split("\t")
         code, paths = parts[0], parts[1:]
@@ -611,7 +614,11 @@ def cmd_diffcheck(c: Ctx, a) -> int:
             if code == "M":
                 other.append(f"M {path}")
             continue
-        for ln in changed_lines(c, path, old):
+        for sl in changed_lines(c, path, old, signed=True):
+            ln = sl[1:]
+            if sl[0] == "+" and old and ORIGIN_TAG.match(ln):
+                origins += 1
+                continue
             if ln.strip() == "" or PATH_IN_LINE.search(ln) or IMPORT_SHAPE.match(ln):
                 continue
             bad.append(f"{path}: {ln.strip()[:120]}")
@@ -622,6 +629,7 @@ def cmd_diffcheck(c: Ctx, a) -> int:
         if st.startswith("??"):
             (bad if p.endswith(CODE_EXT) else other).append(f"untracked {p}")
     print(f"renames: {renames}")
+    print(f"origin tags: {origins}")
     for o in other:
         print(f"other file (review it): {o}")
     for b in bad:
