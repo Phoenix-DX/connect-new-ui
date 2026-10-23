@@ -4,7 +4,7 @@
 import { dayOfWeek, formatDateTime } from '@/shared/lib/osDateTime';
 import { log } from '@/platform/log/log';
 import { osList } from '@/legacy/os/os-wire';
-import { callAction } from '@/api/client/callAction';
+import { addAssembleBookmark, deleteAssembleBookmark } from '@/api/bookmark';
 import {
   get_LocalBookmarkByObjectId,
   getLocalBookmarksByObjectType,
@@ -160,23 +160,12 @@ export async function hasAccessToRegion(countryCode = '', localityId = '0'): Pro
 
 /* ---- F15 (CR-AssembleDetail-2): ToggleBookmarkItem ---- */
 
-/** Server action AddBookmark(ObjectType, ObjectId, Group, Note) (controller.js:1687-1723, `screenservices/
-    Connect2_Assemble_MUI/ActionAddBookmark`, a Connect2_MyBookmarks_BL write): Success and CreatedBookmarkResponse
-    (Connect2_MyBookmarks_IS BookmarkItem). */
-export function addBookmark(objectType: string, objectId: string, group: string, note: string) {
-  return callAction('Connect2_Assemble_MUI', 'ActionAddBookmark', {
-    ObjectType: objectType,
-    ObjectId: objectId,
-    Group: group,
-    Note: note,
-  });
-}
+/** Server action AddBookmark(ObjectType, ObjectId, Group, Note), in the domain api/bookmark (addAssembleBookmark):
+    Success and CreatedBookmarkResponse (Connect2_MyBookmarks_IS BookmarkItem, every field). */
+export const addBookmark = addAssembleBookmark;
 
-/** Server action DeleteBookmarkByBookmarkId(BookmarkId) (controller.js:1725-1749, `screenservices/Connect2_Assemble_MUI/
-    ActionDeleteBookmarkByBookmarkId`): Success. */
-export function deleteBookmarkByBookmarkId(bookmarkId: string) {
-  return callAction('Connect2_Assemble_MUI', 'ActionDeleteBookmarkByBookmarkId', { BookmarkId: bookmarkId });
-}
+/** Server action DeleteBookmarkByBookmarkId(BookmarkId), in the domain api/bookmark (deleteAssembleBookmark): Success. */
+export const deleteBookmarkByBookmarkId = deleteAssembleBookmark;
 
 /** ToggleBookmarkItem(In_IsBookmarked, In_ObjectType, In_ObjectId, In_Group, In_Note) (controller.js:1493-1686):
     - bookmarked: Get_LocalBookmarkByObjectId(ObjectType, ObjectId) (the legacy local copy), DeleteBookmarkByBookmarkId

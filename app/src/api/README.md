@@ -41,3 +41,15 @@ The mappers drop only fields that no code in `src` reads. The local-entity recor
 `event/` has the same files. It holds 25 data actions and one mutation (GetScanEventQRCode) of 16 screens: AssembleDetail, AssembleEvents, EventBooklet, EventDetail, GuestArrangements, HelpersDetail, HostSurvey, LDM_EventDetail_V2, LDM_MyEvents_V2, MilestoneDetail, OrbitAdminEventDetail, OrbitAdminLanding, OrbitLanding, QRCodeGenerate, TransportDetail and ViewDocuments. The old `api.ts` and `types.ts` files of these screens re-export it under their old names. The three server-action reads (GetMilestoneScanFF, GetBookletGuestsMaxRows, GetBookletHelpersMaxRows) have no hook.
 
 The shared record types (for example `EventInfo`, `Milestone_Screen`, `MemberInformation`, `AssembleEventSummary`) are defined in `event/types.ts`. The `structures.ts` files of Connect2_Assemble_MUI and Connect2_OrbitMobile_MUI re-export them. The 8 local copies of the null-date helper are one helper. The 25 hooks have no caller yet; the flows call the repository functions. They set `staleTime: 0`, `gcTime: 0` and no retry by default.
+
+`bookmark/` has the same files. It holds 9 calls.
+
+- DataActionGetAllBookmarksByGroup (BookmarksByGroup) and DataActionGetGroupSummaries (MyBookmarks)
+- GetBookmarkById and New_GetBookmarkById (one function: the client action picks the second when the bookmark has a note)
+- DeleteBookmarkByBookmarkId and New_UpdateBookmarkNote (Connect2_MyBookmarks_MUI)
+- AddBookmark and DeleteBookmarkByBookmarkId (Connect2_Assemble_MUI)
+- ServiceAPIAddBookmark2 and ServiceAPIDeleteBookmarkByBookmarkId2 (UBTConnect).
+
+The old `api.ts` and `types.ts` files of BookmarksByGroup and MyBookmarks re-export it under their old names. `shared/Connect2_Assemble_MUI/lib/actions.ts` and `shared/UBTConnect/lib/actions.ts` call the repository functions.
+
+The `Bookmark` type has `dateCreatedUtc`, the sort key of the `MyBookmarks` memory cache. The barrel exports the mapper `toBookmark` (the screen re-exports it as `toBookmarkItem`), because `fromCacheRecord` in BookmarksByGroup needs it. `AssembleBookmarkAdded`, `C2BookmarkAdded` and `BookmarkDeleted` keep the OutSystems names. The two hooks (`useBookmarkGroupQuery`, `useBookmarkGroupSummariesQuery`) have no caller yet; they set `staleTime: 0`, `gcTime: 0` and `retry: false`.

@@ -228,3 +228,8 @@
 
 - New `src/api/event/` (types, mapper, repository, keys, hooks, barrel) for 25 data actions and one mutation of 16 screens. The old `api.ts` and `types.ts` of these screens re-export it; the shared record types moved into `api/event/types.ts` and the two `structures.ts` files re-export them.
 - 25 hooks have no caller yet. Strict parity `--changed`: 64 of 64 routes clean for both references; exemptions `[]`. `move-map.csv` is unchanged.
+
+## P5-3-bookmark - refactor(P5-3): add api/bookmark
+
+- New `src/api/bookmark/` (types, mapper, repository, keys, hooks, barrel) for 9 calls. The old `api.ts` and `types.ts` of BookmarksByGroup and MyBookmarks re-export it; the two shared `actions.ts` files (Connect2_Assemble_MUI, UBTConnect) call the repository functions.
+- `Bookmark` keeps `dateCreatedUtc` and the barrel exports `toBookmark` for the G2 cache code. The 2 hooks have no caller yet. Strict parity `--changed`: 64 of 64 routes clean for both references; exemptions `[]`. `move-map.csv` is unchanged.

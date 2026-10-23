@@ -416,3 +416,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-23,refactor,other,27516,refactor-docs,,P5-3-event sonnet
 2026-10-23,refactor,build,65507,refactor-dev,,G2-merge opus: 3 import conflicts resolved
 2026-10-23,refactor,verify,24854,refactor-test,,"G2-merge sonnet: ci pass, parity BookmarksByGroup 6/6 clean"
+2026-10-23,refactor,build,245157,refactor-dev,,P5-3-bookmark opus
+2026-10-23,refactor,build,83197,refactor-dev,,P5-3-bookmark opus
+2026-10-23,refactor,verify,28751,refactor-test,,P5-3-bookmark sonnet
+2026-10-23,refactor,other,29069,refactor-docs,,P5-3-bookmark sonnet

@@ -1,6 +1,6 @@
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 
-/** Wire shapes (P-DATA): only api.ts and mocks.ts use them. */
+/** Wire shapes (P-DATA): only mocks.ts uses them. */
 type GetAllBookmarksByGroupOutput = ActionOutputs<
   PathOf<'Connect2_MyBookmarks_MUI', 'ScreenBlock_BookmarkGroup/DataActionGetAllBookmarksByGroup'>
 >;
@@ -12,69 +12,20 @@ export interface BookmarksByGroupInputs {
   BookmarkGroup: string;
 }
 
-/** DetailsJson of a bookmark (Connect2_MyBookmarks_IS.DetailsJsonRec); Long Integers stay text. */
-export interface BookmarkDetails {
-  areasServed: string;
-  childrenNames: string;
-  countryName: string;
-  householdCount: string;
-  isDeceased: boolean;
-  isMainHall: boolean;
-  localityId: string;
-  localityName: string;
-  shareObjectTypeId: string;
-}
-
-/** BookmarkItem (Connect2_MyBookmarks_IS.BookmarkItemRec), the fields the block reads, and DateCreatedUtc for the
-    MyBookmarks cache (components/actions.ts, toCacheRecord). */
-export interface BookmarkItem {
-  /** Id (Long Integer): the bookmark id. */
-  id: string;
-  /** ObjectId (Text): the bookmarked household, locality, subdivision or entity. */
-  objectId: string;
-  objectType: string;
-  title: string;
-  image: string;
-  note: string;
-  recordDisabled: boolean;
-  recordNotAvailable: boolean;
-  /** DateCreatedUtc (Date Time, text): the sort key of AddBookmarkToCache in the MyBookmarks cache. */
-  dateCreatedUtc: string;
-  details: BookmarkDetails;
-}
-
-/** Output of DataActionGetAllBookmarksByGroup: GetBookmarksGroupResponse (Results, Total) and WasSearched. */
-export interface BookmarksByGroupResult {
-  results: BookmarkItem[];
-  /** Total (Long Integer, text). */
-  total: string;
-  wasSearched: boolean;
-}
-
-/** The block variables DataActionGetAllBookmarksByGroup sends (screenData; see api.ts). */
-export interface BookmarkGroupVariables {
-  BookmarkGroup: string;
-  ShowSearch: boolean;
-  SearchString: string;
-  SortColumn: string;
-  IsFetchingBookmarks: boolean;
-  UpdatedTotal: string;
-  WasSearchDone: boolean;
-  SearchString_SearchDone: string;
-  IsFromNavigationHistory: boolean;
-  IsShareOpen: boolean;
-  ShareableObjectId: string;
-  Type_ShareObjectId: string;
-}
+/* A bookmark of the block (Connect2_MyBookmarks_IS BookmarkItem with its DetailsJson fields, and DateCreatedUtc for the
+   MyBookmarks cache: components/actions.ts, toCacheRecord), the outputs of DataActionGetAllBookmarksByGroup and of
+   GetBookmarkById, and the block variables that the data action sends are domain types of api/bookmark. This module
+   keeps the names that the block and its client actions use. */
+export type {
+  Bookmark as BookmarkItem,
+  BookmarkByIdResult as GetBookmarkByIdResult,
+  BookmarkDetails,
+  BookmarkGroupList as BookmarksByGroupResult,
+  BookmarkGroupListCallInputs as BookmarkGroupVariables,
+} from '@/api/bookmark';
 
 /** BookmarkNote (Connect2_LegacyShared.BookmarkNoteRec). */
 export interface BookmarkNote {
   bookmarkId: string;
   note: string;
-}
-
-/** GetBookmarkById outputs (Connect2_MyBookmarks_MUI.GetBookmarkById$outVars): Out_BookmarkItem, IsBookmarkFound. */
-export interface GetBookmarkByIdResult {
-  item: BookmarkItem;
-  isBookmarkFound: boolean;
 }

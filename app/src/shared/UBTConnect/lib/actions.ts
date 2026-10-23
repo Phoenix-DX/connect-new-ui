@@ -7,7 +7,7 @@ import type {
   UI_Screen_SubdivisionDetails,
   UI_SubdivisionHousehold,
 } from './structures';
-import { callAction } from '@/api/client/callAction';
+import { addC2Bookmark, deleteC2Bookmark, type BookmarkDeleted, type C2BookmarkAdded } from '@/api/bookmark';
 import { fetchUnreadUpdateItemsCount } from '@/api/update';
 import { MOCKS_BUILT } from '@/platform/config/config';
 import { log } from '@/platform/log/log';
@@ -281,25 +281,17 @@ export function getBookmarkType_FromEntity(entityType: string): { BookmarkType: 
 export interface BookmarkServerActions {
   /** ServiceAPIAddBookmark2(In_BookmarkCategoryId, In_ItemId as text) (UC:18251-18286): Success, Bookmark_Added
       (Connect_Bookmarks_CS UI_Bookmark_Added; Id and DateCreatedUtc are used). */
-  addBookmark2(
-    in_BookmarkCategoryId: string,
-    in_ItemId: string,
-  ): Promise<{ Success: boolean; Bookmark_Added: { Id: string; DateCreatedUtc: string } }>;
+  addBookmark2(in_BookmarkCategoryId: string, in_ItemId: string): Promise<C2BookmarkAdded>;
   /** ServiceAPIDeleteBookmarkByBookmarkId2(BookmarkId) (UC:18312-18336): Success. */
-  deleteBookmarkByBookmarkId2(bookmarkId: string): Promise<{ Success: boolean }>;
+  deleteBookmarkByBookmarkId2(bookmarkId: string): Promise<BookmarkDeleted>;
 }
 
-/** The two server actions through the API contract (migration/contract/extra-actions.json, CR-W4A-1):
-    `screenservices/UBTConnect/ServiceAPIAddBookmark2` and `…/ServiceAPIDeleteBookmarkByBookmarkId2`; mocks in
+/** The two server actions in the domain api/bookmark (addC2Bookmark and deleteC2Bookmark; contract operations
+    `UBTConnect/ServiceAPIAddBookmark2` and `…/ServiceAPIDeleteBookmarkByBookmarkId2`, CR-W4A-1); mocks in
     `../Directory_EntityDetailsActions/mocks.ts`. Typed nullable so callers keep their guard. */
 export const bookmarkServerActions: BookmarkServerActions | null = {
-  addBookmark2: (in_BookmarkCategoryId, in_ItemId) =>
-    callAction('UBTConnect', 'ServiceAPIAddBookmark2', {
-      In_BookmarkCategoryId: in_BookmarkCategoryId,
-      In_ItemId: in_ItemId,
-    }),
-  deleteBookmarkByBookmarkId2: (bookmarkId) =>
-    callAction('UBTConnect', 'ServiceAPIDeleteBookmarkByBookmarkId2', { BookmarkId: bookmarkId }),
+  addBookmark2: addC2Bookmark,
+  deleteBookmarkByBookmarkId2: deleteC2Bookmark,
 };
 
 /** ToggleBookmarkItem_C2(In_ItemId, In_BookmarkType, IsBookmarked_C2) (UC:17105-17280):

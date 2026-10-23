@@ -74,7 +74,7 @@ OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â
 
 - **Server calls**:
   - The API contract has the calls ServiceAPIAddBookmark2 and ServiceAPIDeleteBookmarkByBookmarkId2
-    (`migration/contract/extra-actions.json`). `bookmarkServerActions` calls them through `callAction`.
+    (`migration/contract/extra-actions.json`). `bookmarkServerActions` calls them through the repository of `api/bookmark`.
   - Their fictional mocks (`mocks.ts`) change the in-memory `bookmarksCollection`. The collection is empty at the start,
     as in the Sync_Info_GetMain mock.
   - With C2NewBookmarks off, AddBookmark2 gets an empty category (known original bug B4).
