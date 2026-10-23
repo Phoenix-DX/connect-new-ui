@@ -6,8 +6,8 @@ section "Context notes".
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
 - 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)).
-- Branch `refactor/architecture`: Phases 0 to 5 done; gap G1 fixed; P6 group G1 started and PAUSED (2026-10-23 17:2x, [context-043](context-043-refactor-g1-fix-p6-g1-paused.md)): P6-G1-A done, B-Login at test (uncommitted), prefetch patches Splash, AcceptPendingPolicies, Menu. Resume `/refactor-master continue`; after group G1, stop (P6 runs only on the user's order). Dev server of this repo on port 5174.
-- Auto mode ON since 2026-10-23 13:43: Fable + Opus decide for the user (Window 4). Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
+- Branch `refactor/architecture`: Phases 0 to 5 done; P6 group G1 done (12f9d24, [context-044](context-044-refactor-p6-g1-done.md)); G2 running. Scope (user 2026-10-23 evening): all in-scope steps (P6, P7) run automatically, P8/P9 only on order. Resume `/refactor-master continue`. Dev server of this repo on port 5174.
+- Auto mode ON since 2026-10-23 13:43 (re-confirmed evening, 5-minute reports): Fable + Opus decide for the user (Window 4). Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`). Tools: `migration/tools/` (README).
 
 ## Contexts
@@ -56,4 +56,5 @@ section "Context notes".
 | [040](context-040-refactor-phase-4.md) | 2026-10-23 | Refactor Phase 4 (P4-1 to P4-5): settings store, session machine, AuthProvider, route guard, flag registry; Q12, M2–M6; F7 (ADR-15 generated file) | current |
 | [041](context-041-refactor-phase-5-paused.md) | 2026-10-23 | Refactor Phase 5 in progress (P5-1, P5-2 member/country/locality/update; P5-F8, P5-F9), paused for the user; resume steps, prefetch patches, F10, G1, G2 | superseded by context-042 |
 | [042](context-042-refactor-phase-5.md) | 2026-10-23 | Refactor Phase 5 done (P5-2-app to P5-4): api domains, memory cache on TanStack Query; G2 fixed on main and merged; W1–W6 by Opus + Fable | current |
-| [043](context-043-refactor-g1-fix-p6-g1-paused.md) | 2026-10-23 | Gap G1 fixed; P6-F12 tool fix; P6-G1-A done; B-Login at test, 3 prefetch patches; paused for the user | current |
+| [043](context-043-refactor-g1-fix-p6-g1-paused.md) | 2026-10-23 | Gap G1 fixed; P6-F12 tool fix; P6-G1-A done; B-Login at test, 3 prefetch patches; paused for the user | superseded by context-044 |
+| [044](context-044-refactor-p6-g1-done.md) | 2026-10-23 | P6 group G1 done (13 steps, B-Shared per group, arch baseline); W9–W16; scope widened to P6+P7 auto; prefetch method | current |
