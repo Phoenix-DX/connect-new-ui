@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G4-B-CommunityBusinessDetails_CoomingSoon",
+  "step": "P6-G4-B-Assemble_BrowseByCountry",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T05:57:20"
+  "since": "2026-10-24T06:05:07"
  },
  "steps": {
   "P0-1": {
@@ -1119,12 +1119,24 @@
    "finished": "2026-10-24T05:51:31"
   },
   "P6-G4-B-CommunityBusinessDetails_CoomingSoon": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T05:51:31",
    "tokens": {
     "dev": 95269,
     "test": 25441,
     "docs": 26087
+   },
+   "commit": "703a5ea9",
+   "gate": "ci: pass; parity visual --changed: 3/0 (OutSystems), 3/0 (self); arch baseline 0 new; HomeFeed 244.19 kB, Login 184.20 kB",
+   "loops": 0,
+   "finished": "2026-10-24T05:57:21"
+  },
+  "P6-G4-B-Assemble_BrowseByCountry": {
+   "status": "active",
+   "started": "2026-10-24T05:57:22",
+   "tokens": {
+    "dev": 228664,
+    "test": 30043
    }
   }
  },

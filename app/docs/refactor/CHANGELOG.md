@@ -559,3 +559,9 @@
 
 - `pages/CommunityBusinessDetails_CoomingSoon` is a page with no hook: the screen is static (no event, variable or call). `inputs.ts` holds the input reader and type.
 - `api.ts`, `types.ts` and the empty `mocks.ts` are deleted. A page test was added (5 tests). No shared block changed.
+
+## P6-G4-B-Assemble_BrowseByCountry - refactor(P6-G4-B): Assemble_BrowseByCountry as page
+
+- `pages/Assemble_BrowseByCountry` is a page with the hook `useAssembleFilter` (`useFlowState`), the state file `assembleFilterState.ts` and the props-only view `AssembleFilterView`. `api.ts`, `types.ts` and `ScreenBlock_Assemble_Filter.tsx` are deleted.
+- The 2 adapters of `api.ts` are private functions of the hook (they call client actions, which `api/country` may not import). `AssembleEvents` still has its own copy (follow-up F21).
+- depcruise warnings 210 to 209 (the rule-9 warning of the old block is gone).

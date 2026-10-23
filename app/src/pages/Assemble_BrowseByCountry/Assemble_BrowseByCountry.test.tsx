@@ -127,6 +127,49 @@ describe('Assemble_BrowseByCountry', () => {
     });
   });
 
+  it('back from AssembleEvents restores the block variables from the view cache; OnReady does not fetch again', async () => {
+    withRegion('1');
+    const { container, router, at } = renderRoutes(
+      {
+        [PATH]: <Assemble_BrowseByCountry />,
+        '/UBTConnect/HomeFeed': <div id="home" />,
+        '/UBTConnect/AssembleEvents': <div id="assemble-events" />,
+      },
+      '/UBTConnect/HomeFeed',
+    );
+    await act(() => router.navigate(PATH));
+    await waitFor(() => {
+      expect(countryNames(container)).toHaveLength(ASSEMBLE_COUNTRIES.length);
+    });
+    fireEvent.click(screen.getByText('Argentina'));
+    fireEvent.click(await screen.findByText('Bahia Blanca'));
+    const meeting = SUPPER_MEETINGS[1];
+    fireEvent.click(await screen.findByText(meeting.name));
+    const apply = () => container.querySelector<HTMLButtonElement>('#b2-ButtonApply');
+    await waitFor(() => {
+      expect(apply()).toBeEnabled();
+    });
+    fireEvent.click(apply() as HTMLButtonElement);
+    await waitFor(() => {
+      expect(container.querySelector('#assemble-events')).not.toBeNull();
+    });
+    await act(() => router.navigate(-1));
+    await waitFor(() => {
+      expect(at()).toBe(PATH);
+    });
+    // The first render after the back navigation already shows the restored variables: no Spinner.
+    expect(title(container)).toBe('Filter by Locality');
+    expect(container.querySelector('[data-block="Reusable.Spinner"][id^="b2-"]')).toBeNull();
+    expect(container.querySelector('[data-block="Assemble.Assemble_FilterLocalityByCountry"]')).not.toBeNull();
+    expect(apply()).toBeEnabled();
+    // Back on the localities: the country list comes back from the restored CountryDetailList.
+    await act(() => router.navigate(-1));
+    await waitFor(() => {
+      expect(title(container)).toBe('Browse by Country');
+    });
+    expect(countryNames(container)).toHaveLength(ASSEMBLE_COUNTRIES.length);
+  });
+
   it("an empty SubscriptionRegionId (today's mock user) raises ObjectNotFound: the Spinner stays", async () => {
     withRegion('');
     const { container } = renderScreen();
