@@ -25,6 +25,8 @@ import { useIsAlive, useReadyOnce } from './blockLifecycle';
 /** The flows of the block AssembleEventDetail_AttendeeSubdivision: OnReady, the hall header, the household click, the
     bookmark and share options of the context menu, and the share sheet. The component
     AssembleEventDetail_AttendeeSubdivision calls this hook.
+    OnParametersChanged is ported too (it re-reads the local bookmarks); no path reaches it today, and the port compares
+    the parameters by JSON (OutSystems by its runtime rule).
     @origin Connect2_Assemble_MUI.Assemble.AssembleEventDetail_AttendeeSubdivision */
 
 /** The flags of the block, read by the page. */
@@ -98,6 +100,7 @@ export function useAttendeeSubdivision(
     parameters: { subdivision },
     // The flow is defined below; the hook calls the one of the newest render.
     onReady: (_isAlive, restored) => readyOnce(() => onReady(restored)),
+    onParametersChanged,
   });
   const bookmarkNote = useRef('');
 
@@ -105,6 +108,13 @@ export function useAttendeeSubdivision(
   const write = (action: AttendeeSubdivisionAction) => {
     if (isAlive()) dispatch(action);
   };
+
+  /** OnParametersChanged: Set_SelectedAssembleAttendeeListBookmarks only. The rows stay as they are (no copy of the
+      new input, no reload); only IsBookmarked is read again from the local bookmarks. Safe to run more than once. */
+  async function onParametersChanged(isAlive: () => boolean) {
+    const bookmarks = await getLocalBookmarksByObjectType(MyBookmarks_ObjectType.Contact);
+    if (isAlive()) write({ type: 'set', patch: { rows: withLocalBookmarks(latest.current.rows, bookmarks) } });
+  }
 
   async function onReady(restored: boolean) {
     let list = latest.current.rows;

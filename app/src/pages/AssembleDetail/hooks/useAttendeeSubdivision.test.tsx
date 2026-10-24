@@ -144,3 +144,26 @@ describe('useAttendeeSubdivision: OnReady', () => {
     expect(getCacheableSubdivision_V2).toHaveBeenCalledTimes(2);
   });
 });
+
+describe('useAttendeeSubdivision: OnParametersChanged', () => {
+  it('a new hall record: the bookmark marks are read again, the rows stay, no new call', async () => {
+    const { result, rerender } = renderHook(
+      ({ hall }: { hall: AssembleAttendeeSubdivision }) =>
+        useAttendeeSubdivision('b2-b4-b14-b1-0-$b3-0', hall, FLAGS, EVENTS),
+      { wrapper, initialProps: { hall: HALL } },
+    );
+    await waitForHall(result);
+    await waitFor(() => {
+      expect(getLocalBookmarksByObjectType).toHaveBeenCalledTimes(1);
+    });
+    expect(result.current.state.rows[0]?.IsBookmarked).toBe(false);
+
+    vi.mocked(getLocalBookmarksByObjectType).mockResolvedValue([BOOKMARK]);
+    rerender({ hall: { ...HALL, Name: 'Zapiola (Annex)' } });
+    await waitFor(() => {
+      expect(result.current.state.rows[0]?.IsBookmarked).toBe(true);
+    });
+    expect(ids(result.current.state.rows)).toEqual(['91004']);
+    expect(getCacheableSubdivision_V2).toHaveBeenCalledTimes(1);
+  });
+});

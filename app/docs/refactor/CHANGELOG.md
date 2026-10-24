@@ -840,3 +840,9 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - Architecture: a back navigation restores the saved view state and makes no call, with no time limit (user decision option C, 2026-10-24). Three places: `containers/SupperMeetingDetails`, `pages/MilestoneDetail/hooks/useAccommodationHost.ts`, the blocks of `pages/AssembleDetail` (new `hooks/useLocalitySubdivisionList.ts`).
 - Skip rule: OnReady skips a call when the view is "restored and the block's saved state has its data". Without saved data, the block fetches as on a forward visit. The 2 former MilestoneDetail crash paths now restore with no call.
 - Gate: ci: pass; parity visual --all: 64/64 (OutSystems), 64/64 (self); arch baseline 0 new.
+
+## F39 - hall block OnParametersChanged (AssembleDetail)
+
+- Architecture: no folder change. `pages/AssembleDetail/hooks/useAttendeeSubdivision.ts` sets `onParametersChanged` on `useFlowState`. It reads the local contact bookmarks again and marks the rows already in the block state (OutSystems `AssembleEventDetail_AttendeeSubdivision`, advisors W35, 2026-10-24).
+- It makes no API call, does not copy the new input and does not reload. No path reaches it today; it guards a later refresh of the event data.
+- Gate: ci: pass; parity visual --all: 64/64 (OutSystems), 64/64 (self); arch baseline 0 new.
