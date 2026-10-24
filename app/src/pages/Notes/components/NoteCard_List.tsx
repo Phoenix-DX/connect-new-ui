@@ -1,0 +1,126 @@
+// @os-block UBTConnect.Notes.NoteCard_List
+import { useEffect, useRef, useState } from 'react';
+import { OSBlock } from '@/components/ui/os/OSBlock';
+import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { EmptyList } from '@/shared/UBTConnectLibrary/EmptyList';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import type { NoteCardItem } from '@/pages/Notes/types';
+import { child, scopeOf } from './ids';
+import { NoteCard_Item } from './NoteCard_Item';
+import { UBT_Icons2_Bookmark } from './staticEntities';
+
+export interface NoteCard_ListProps {
+  id?: string;
+  inNotes: NoteCardItem[];
+  inIsLoading?: boolean;
+  inSearchString?: string;
+  /** Event OnClick_NoteCardItem(ObjectId, NoteCategoryTypeId). */
+  onOnClickNoteCardItem?: (objectId: string, noteCategoryTypeId: string) => void;
+  onOnLoadMore?: () => void;
+}
+
+/** Notes list (Notes.NoteCard_List.mvc.js view :160-330): a SkeletonSection with EmptyList ("No Notes found") when
+    In_Notes is empty, else the List of NoteCard_Item ("list list-group list--gap-s"). Handler_UpdateNoteCardsList
+    removes the card whose Id, ItemId and NoteCategoryId match. The List's OnScrollEnding raises OnLoadMore. */
+export function NoteCard_List({
+  id,
+  inNotes,
+  inIsLoading = false,
+  inSearchString = '',
+  onOnClickNoteCardItem,
+  onOnLoadMore,
+}: NoteCard_ListProps) {
+  const p = scopeOf(id);
+  const [input, setInput] = useState(inNotes);
+  const [notes, setNotes] = useState(inNotes);
+  if (input !== inNotes) {
+    setInput(inNotes);
+    setNotes(inNotes);
+  }
+  const listRef = useRef<HTMLDivElement>(null);
+  const loadMore = useRef(onOnLoadMore);
+  useEffect(() => {
+    loadMore.current = onOnLoadMore;
+  }, [onOnLoadMore]);
+  // OSWidgets.List onScrollEnding: the end of the list reaches the viewport while scrolling
+  useEffect(() => {
+    const onScroll = () => {
+      const list = listRef.current;
+      if (list && list.getBoundingClientRect().bottom <= window.innerHeight) loadMore.current?.();
+    };
+    document.addEventListener('scroll', onScroll, true);
+    return () => {
+      document.removeEventListener('scroll', onScroll, true);
+    };
+  }, []);
+  const handler_UpdateNoteCardsList = (cardId: string, itemId: string, noteCategoryId: string) => {
+    setNotes((prev) => {
+      const index = prev.findIndex(
+        (n) => n.id === cardId && n.itemId === itemId && n.noteCategoryId === noteCategoryId,
+      );
+      return index === -1 ? prev : prev.filter((_, i) => i !== index);
+    });
+  };
+  const textOptions = { Color: UBT_Color.Neutral10, FontSize: UBT_FontSize.Small };
+  return (
+    <OSBlock name="Notes.NoteCard_List" id={id}>
+      <CustomContainer
+        id={child(p, 1)}
+        options={{
+          Background: { BackgroundColor: UBT_Color.Neutral0 },
+          PaddingSize: { HorizontalSizeId: UBT_Size.Base, TopSizeId: UBT_Size.Base },
+        }}
+      >
+        <SkeletonSection id={child(p, 2)} inIsLoading={inIsLoading}>
+          {notes.length === 0 ? (
+            <EmptyList
+              id={child(p, 3)}
+              iconId={UBT_Icons2_Bookmark}
+              titlePlaceholder={
+                <CustomText
+                  id={child(p, 4)}
+                  inText="No Notes found"
+                  inTextOptions={{
+                    Color: UBT_Color.Neutral9,
+                    FontSize: UBT_FontSize.Base,
+                    FontWeight: UBT_FontWeight.SemiBold,
+                  }}
+                />
+              }
+              textPlaceholder={
+                <>
+                  <CustomText
+                    id={child(p, 5)}
+                    inText="We were unable to find any Notes to"
+                    inTextOptions={textOptions}
+                  />
+                  <CustomText id={child(p, 6)} inText="display." inTextOptions={textOptions} />
+                </>
+              }
+            />
+          ) : (
+            <div
+              ref={listRef}
+              className="list list-group list--gap-s OSFillParent"
+              data-list=""
+              style={{ position: 'relative' }}
+            >
+              {notes.map((note, i) => (
+                <NoteCard_Item
+                  key={`${note.id}|${note.itemId}|${String(i)}`}
+                  id={`${p}-l1-61_${String(i)}-$b7`}
+                  noteCardItem={note}
+                  inSearchString={inSearchString}
+                  onOnClickCardItem={() => onOnClickNoteCardItem?.(note.itemId, note.noteCategoryId)}
+                  onUpdateNoteCardsList={handler_UpdateNoteCardsList}
+                />
+              ))}
+            </div>
+          )}
+        </SkeletonSection>
+      </CustomContainer>
+    </OSBlock>
+  );
+}

@@ -723,3 +723,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T10:19:43 P6-G5-C waits for the user: Review the routes of group G5 on localhost (links in the step report): OrbitLanding, OrbitAdminLanding, OrbitAdminEventDetail, EventDetail, EventBooklet, MilestoneDetail, GuestArrangements, HelpersDetail, HostSurvey, TransportDetail, MyEntertaining, LDM_MyEvents_V2, LDM_EventDetail_V2, LDM_Email_V2, AssembleEvents, AssembleDetail. Then confirm the group.
 - 2026-10-24T10:21:59 P6-G5-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W31 group G5 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: raise F22/F24/F26 and F25 to the user; F23 flakes before P7 gates; F27 parity coverage wording (53 of 64 routes have states); F17 watch."
 - 2026-10-24T10:21:59 P6-G5-C stage commit
+- 2026-10-24T10:22:00 P6-G5-C done e466ea57: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self) (53 routes with states; 6 G5 routes without, F27); e2e:pwa 9/9; arch baseline 69 rows, no P6-G5 owner; knip/jscpd match; bundle HomeFeed 244.39/248.22, Login 184.42/193.84 kB gzip; group confirm W31 (Opus + Fable, delegated); G5-A parity-level slip covered by the G5-B-Shared strict --all re-run
+- 2026-10-24T10:22:07 P6-G6-A started
+- 2026-10-24T10:22:08 P6-G6-A stage dev
+- 2026-10-24T10:22:53 P6-G6-A stage test
+- 2026-10-24T10:29:28 P6-G6-A stage docs
+- 2026-10-24T10:30:08 P6-G6-A stage commit

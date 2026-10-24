@@ -735,3 +735,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,other,30562,refactor-docs,,P6-G5-C sonnet
 2026-10-24,refactor,review,68231,refactor-advisor,,"W31, opus"
 2026-10-24,refactor,review,56716,refactor-advisor,,"W31, fable"
+2026-10-24,refactor,build,25617,refactor-dev,,P6-G6-A sonnet
+2026-10-24,refactor,verify,20970,refactor-test,,P6-G6-A sonnet

@@ -692,3 +692,8 @@
 
 - Architecture: no folder change. The prune deleted 2 empty `types.ts` files in `src/components/orbit`. Group report: `app/docs/refactor/reports/P6-G5.md`.
 - Gate: parity visual `--all` 64/64 clean on both references; `ci` 3666 tests; baseline 69 rows, 0 new.
+
+## P6-G6-A - refactor(P6-G6-A): move G6 to pages/
+
+- The 7 G6 routes (MyBookmarks, BookmarksByGroup, Notes, ConnectShare, LegacyShareObject, QRCodeGenerate, ViewDocuments) moved from `src/screens/<R>` to `src/pages/<R>`. `index.tsx` is now `<R>Page.tsx`, with one `@origin` tag per page.
+- Shared blocks stay in `shared/` until step B. `screens/` still holds no G6 route.
