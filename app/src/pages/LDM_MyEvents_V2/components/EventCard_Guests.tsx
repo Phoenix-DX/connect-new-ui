@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { osImage } from '@/legacy/os/os-assets';
 import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
-import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
+import { ResultItemImage } from '@/components/ui/ResultItemImage';
 import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
@@ -160,7 +160,7 @@ export function EventCard_Guests({
                 keyOf={(g) => g.EventGuestId}
               >
                 {(g, row) => (
-                  <Result_Item_Image
+                  <ResultItemImage
                     id={`${scope}-List_Item_Guest`}
                     inHasBorder={validateBottomBorderOnListItem(row, guests.length)}
                     inShowTag={false}

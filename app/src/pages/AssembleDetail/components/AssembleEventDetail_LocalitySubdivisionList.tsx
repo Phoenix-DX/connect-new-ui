@@ -2,8 +2,8 @@ import { useState } from 'react';
 import type { AssembleLocalityDetails } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { NC_Result_Item_Badge } from '@/shared/Connect2_LegacyShared/NC_Result_Item_Badge';
-import { NC_Result_Item__Image } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Image';
+import { ResultItemBadge } from '@/components/ui/ResultItemBadge';
+import { ResultItemMedia } from '@/components/ui/ResultItemMedia';
 import type {
   AttendeeSubdivisionEvents,
   AttendeeSubdivisionFlags,
@@ -44,14 +44,14 @@ export function AssembleEventDetail_LocalitySubdivisionList({
           setIsSelected((v) => !v);
         }}
       >
-        <NC_Result_Item__Image
+        <ResultItemMedia
           id={`${scope}-$b1`}
           showPlaceholderForImage
           inIsRoundImage
           imagePlaceholder={
-            <NC_Result_Item_Badge id={`${scope}-$b2`}>
+            <ResultItemBadge id={`${scope}-$b2`}>
               <i className="icon fa-map-marker font-size-h4 text-neutral-6 fa fa-map-marker fa-1x" data-icon="" />
-            </NC_Result_Item_Badge>
+            </ResultItemBadge>
           }
           titlePlaceholder={
             <span className="font-size-s" data-expression="">

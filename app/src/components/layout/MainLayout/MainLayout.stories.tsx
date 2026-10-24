@@ -7,7 +7,7 @@ import { PendingBlock } from '@/shared/test/PendingBlock';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { MainLayout } from './MainLayout';
 
 /** Stories only: the signed-in session of the captures (BottomBarMenu, CommonUI_InsideLayout), checked just now. */

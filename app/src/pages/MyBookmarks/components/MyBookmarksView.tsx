@@ -5,7 +5,7 @@ import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { Spinner } from '@/components/ui/Spinner';
 import { MyBookmarks_Group } from '@/shared/UBTConnect/lib/staticEntities';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { MyBookmarks_Album } from './MyBookmarks_Album';

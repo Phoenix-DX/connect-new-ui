@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { NewConnectContent } from '@/shared/Connect2_LegacyShared/NewConnectContent';
-import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { NewConnectContent } from '@/components/ui/NewConnectContent';
+import { Input } from '@/components/ui/Input';
 import { Shape } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { usePreventBackNavigation } from '@/platform/navigation';
 import type { AssembleEventFilter, AssembleEventTypeSelection } from '@/api/event';

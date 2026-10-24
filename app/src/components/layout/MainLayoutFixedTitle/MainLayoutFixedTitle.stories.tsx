@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { MainLayoutFixedTitle } from './MainLayoutFixedTitle';
 
 /* The screen gives the bottom bar (App_Common.BottomBarMenu) and CommonUI_InsideLayout. They read the session, so the

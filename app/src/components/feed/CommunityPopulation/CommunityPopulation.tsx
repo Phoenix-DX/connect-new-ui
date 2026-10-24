@@ -1,8 +1,8 @@
 /** @origin UBTConnect.Home.FeedBlock_CommunityPopulation */
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import {
   UBT_Color,
   UBT_FontSize,

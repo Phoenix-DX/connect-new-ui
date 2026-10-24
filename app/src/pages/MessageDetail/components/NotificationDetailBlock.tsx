@@ -3,7 +3,7 @@ import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { Card } from '@/shared/osui/Card';
-import { SanitizedHtml } from '@/shared/ReactiveHtmlSanitizer/SanitizedHtml';
+import { SanitizedHtml } from '@/components/ui/SanitizedHtml';
 import { formatDateTime } from '@/shared/lib/osDateTime';
 
 /** The card of one message, props only: only MessageDetail uses it.

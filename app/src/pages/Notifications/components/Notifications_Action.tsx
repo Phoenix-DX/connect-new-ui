@@ -1,11 +1,11 @@
 /** @origin UBTConnect.App_Notifications.Notifications_Action */
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -60,7 +60,7 @@ export function Notifications_Action({
           MarginSize: { TopSizeId: UBT_Size.Base },
         }}
       >
-        <Columns_Two
+        <ColumnsTwo
           id="b11-$b2"
           columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast }}
           left={

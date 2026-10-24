@@ -1,5 +1,5 @@
 import { UBT_FontWeight } from '@/shared/UBTConnect/lib/staticEntities';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_FontSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface ContactHeaderCardProps {

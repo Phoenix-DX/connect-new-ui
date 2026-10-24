@@ -5,11 +5,11 @@ import { osImage } from '@/legacy/os/os-assets';
 import { OSLink } from '@/shared/lib/OSLink';
 import { PinUnlockMobile } from '@/components/auth/PinUnlockMobile';
 import type { CacheControl_PoliciesRec } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -188,7 +188,7 @@ export function PinUnlockContent({
             showPolicy && (
               <>
                 <SkeletonSection id={childId(7)} inIsLoading={!isPoliciesFetched}>
-                  <Columns_Two
+                  <ColumnsTwo
                     id={childId(8)}
                     left={policyLink(9, policies?.PolicyInformation_TermsAndConditions, 'Terms & Conditions', 'left')}
                     right={policyLink(10, policies?.PolicyInformation_PrivacyPolicy, 'Our Privacy Policy', 'right')}

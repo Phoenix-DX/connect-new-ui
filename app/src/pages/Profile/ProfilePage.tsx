@@ -6,14 +6,14 @@ import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { useNavigateBack } from '@/platform/navigation';
 import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
 import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
-import { Dialog_CustomChoice } from '@/shared/UBTConnect/Dialog_CustomChoice';
-import { Dialog_Navigation } from '@/shared/UBTConnect/Dialog_Navigation';
-import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ChoiceDialog } from '@/components/ui/Dialog';
+import { NavigationDialog } from '@/components/ui/Dialog';
+import { SectionSeparator } from '@/components/ui/SectionSeparator';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { ProfileDetailsForm } from './components/ProfileDetailsForm';
 import { ProfileFooter } from './components/ProfileFooter';
 import { ProfileHeader } from './components/ProfileHeader';
@@ -108,7 +108,7 @@ export default function Profile() {
       />
       <CacheControl_UserInfo_Wrapper id="$b56" onResult={onUserInformation} />
       {state.hasChanges && (
-        <Dialog_Navigation
+        <NavigationDialog
           id="$b59"
           // Event_OnBackNavigation_ConfirmDiscard: PreventNavigation, so the dialog asks.
           onEventOnBackNavigation={preventNavigation}
@@ -131,7 +131,7 @@ export default function Profile() {
           )}
         />
       )}
-      <Dialog_CustomChoice
+      <ChoiceDialog
         id="AgeConfirmation_PopUp"
         scope="b61"
         placeholderBody={

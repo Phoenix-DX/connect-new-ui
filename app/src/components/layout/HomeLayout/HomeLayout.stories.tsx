@@ -6,9 +6,9 @@ import { PendingBlock } from '@/shared/test/PendingBlock';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
+import { FixedFooter } from '@/components/ui/FixedFooter';
 import { UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { HomeLayout } from './HomeLayout';
 
 /** Stories only: the signed-in session of the captures, 3 unread updates checked just now (no refresh call). */

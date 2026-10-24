@@ -3,9 +3,9 @@ import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { RadioButton, RadioGroup } from '@/components/ui/os/OSRadioGroup';
 import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
-import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
 import { Photobook_Speed } from '@/shared/UBTConnect/lib/staticEntities';
 import { UBT_Color, UBT_Display, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { ROUND_BUTTON } from './Photobook_Options_Left';
@@ -111,7 +111,7 @@ export function Photobook_Options_Right({
         </CustomContainer>
       </CustomContainer>
       {inIsShow && (
-        <BottomSheet
+        <ConnectBottomSheet
           id={`${prefix}-BottomSheet_Speed`}
           extendedClasses={`${inMainContainerClass}-bottom-sheet ${inMainContainerClass}-bottom-sheet--speed`}
           title="Speed setting"

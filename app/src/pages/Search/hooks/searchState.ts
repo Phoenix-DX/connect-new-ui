@@ -1,7 +1,7 @@
 import type { SearchResult, SearchResults } from '@/api/search';
 import { Connect_SearchCategories } from '@/pages/Search/components/staticEntities';
 import type { ConnectSearch_RecentClickedResults } from '@/platform/storage/localEntities';
-import type { Tag } from '@/shared/UBTConnectLibrary/HorizontalTagList';
+import type { Tag } from '@/components/ui/HorizontalTagList';
 
 /** The state of the search block ScreenBlock_Search and its reducer, with the client actions of the block as pure
     functions.

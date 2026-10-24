@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { NC_Card_Item_Text__Skeleton } from '@/shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
+import { CardTextSkeleton } from '@/components/ui/CardTextSkeleton';
 
 export interface AssembleEventDetail_SectionProps {
   /** OutSystems instance id of the block. */
@@ -34,7 +34,7 @@ export function AssembleEventDetail_Section({
           <div className="section-header margin-top-base" data-container="" id={`${scope}-Section_Header`}>
             {isLoading ? (
               <div className="ThemeGrid_Width7" data-container="">
-                <NC_Card_Item_Text__Skeleton id={`${scope}-$b1`} />
+                <CardTextSkeleton id={`${scope}-$b1`} />
               </div>
             ) : (
               <div id={`${scope}-Placeholder_Header`}>{header}</div>

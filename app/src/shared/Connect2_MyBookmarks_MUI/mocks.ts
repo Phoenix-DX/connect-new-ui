@@ -2,7 +2,7 @@ import type { RequestHandler } from 'msw';
 import type { components } from '@/api/schema.d';
 import { contractHandler } from '@/mocks/contract';
 import { collection } from '@/mocks/store';
-import { MOCK_SIGNED_PHOTO_URL } from '@/shared/Connect2_LegacyShared/Result_Item_Image/mocks';
+import { MOCK_SIGNED_PHOTO_URL } from '@/components/ui/ResultItemImage/mocks';
 import {
   BOOKMARKED_ELSEWHERE,
   BOOKMARKED_PLACES,

@@ -68,3 +68,6 @@ src/components/note/NotesSheet/NotesSheet.tsx,@/containers/NoteListActions,rule-
 src/components/note/NotesSheet/mocks.ts,@/containers/NoteListActions/mocks,rule-4,P7
 src/components/bookmark/ItemOptionsMenu/ItemOptionsMenu.test.tsx,@/platform/flags/flags,rule-4,P7
 src/components/bookmark/ItemOptionsMenu/ItemOptionsMenu.tsx,@/platform/flags/flags,rule-4,P7
+src/components/ui/ImageLoadErrorHandler/ImageLoadErrorHandler.tsx,@/platform/log/log,rule-4,P7
+src/components/ui/Dialog/ChoiceDialog.test.tsx,@/platform/feedback/dialogs,rule-4,P7
+src/components/ui/Dialog/ChoiceDialog.tsx,@/platform/feedback/dialogs,rule-4,P7

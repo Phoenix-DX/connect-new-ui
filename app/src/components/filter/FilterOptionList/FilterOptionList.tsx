@@ -2,12 +2,12 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionList_Item
 import { useMemo, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { Input } from '@/shared/UBTConnectLibrary/Input';
-import { SelectionOption_List } from '@/shared/UBTConnectLibrary/SelectionOption_List';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
+import { Input } from '@/components/ui/Input';
+import { SelectionOptionList } from '@/components/ui/SelectionOptionList';
 import {
   Shape,
   UBT_Color,
@@ -159,7 +159,7 @@ export function FilterOptionList({
             </CustomContainer>
           </>
         ) : (
-          <SelectionOption_List
+          <SelectionOptionList
             selectionOptionItemList={options}
             isMultiselect={false}
             lastItemStyleOptions={{ BorderOptions: { Size: { GeneralSizeId: UBT_Size.None } } }}

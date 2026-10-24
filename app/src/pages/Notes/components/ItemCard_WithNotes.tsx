@@ -1,12 +1,12 @@
 /** @origin UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes */
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { AvatarImage } from '@/components/ui/AvatarImage';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   UBT_AlignItems,
   UBT_Color,
@@ -110,7 +110,7 @@ export function ItemCard_WithNotes({
           >
             <CustomContainer id={child(p, 4)} />
           </CustomContainer>
-          <Columns_Two
+          <ColumnsTwo
             id={child(p, 5)}
             columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast }}
             left={

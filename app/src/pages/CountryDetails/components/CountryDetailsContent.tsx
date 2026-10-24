@@ -8,12 +8,12 @@ import type L from '@/shared/Leaflet/lib/leaflet';
 import type { MapOptions, MarkerWithWindow, TileLayer, ZoomControlOptions } from '@/shared/Leaflet/lib/structures';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import type { UI_TypedStatistics } from '@/shared/UBTConnect/lib/structures';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
+import { Input } from '@/components/ui/Input';
 import { getClass_Color } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   Shape,
@@ -27,7 +27,7 @@ import {
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { SearchInput } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { imageEntityIdOf } from '@/pages/CountryDetails/hooks/countryDetailsState';
 import { UBT_Icons2 } from './staticEntities';
 
@@ -129,7 +129,7 @@ export function CountryDetailsContent({
           }}
         >
           <div data-container="" style={{ cursor: 'pointer' }} onClick={onSelectCountryClicked}>
-            <Columns_Two
+            <ColumnsTwo
               id="$b4"
               extendedClasses="margin-left-base"
               columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast }}
@@ -189,7 +189,7 @@ export function CountryDetailsContent({
               />
             </CustomContainer>
             <CustomContainer id="Legend" options={{ PaddingSize: { VerticalSizeId: UBT_Size.Base } }}>
-              <Columns_Two
+              <ColumnsTwo
                 id="Title"
                 columnOptions={{
                   ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast,

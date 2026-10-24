@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Input } from '@/components/ui/Input';
 import {
   Shape,
   UBT_Color,
@@ -13,7 +13,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { StatisticsListItem } from '@/components/directory/StatisticsListItem';
 import { jSUtils_String_RemoveAccents } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import type { TextStatisticsOptionsRecord } from '@/shared/UBTConnect/lib/structures';

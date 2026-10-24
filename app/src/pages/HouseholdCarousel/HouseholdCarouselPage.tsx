@@ -7,7 +7,7 @@ import { HouseholdDetailsContainer, useHouseholdDetailsFlags } from '@/container
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { useHouseholdCarousel } from './hooks/useHouseholdCarousel';
 import { readHouseholdCarouselInputs } from './inputs';
 

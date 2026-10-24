@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
-import { SVG_Background_LoginWrapper } from '@/shared/UBTConnectLibrary/SVG_Background_LoginWrapper';
+import { SvgBackgroundLogin } from '@/components/ui/SvgBackgroundLogin';
 
 export interface LoginLayoutProps {
   /** OutSystems instance id of the block. */
@@ -55,7 +55,7 @@ export function LoginLayout({
       <div className={`ubt-layout--login ${inExtendedClass}`} data-container="" id={mainId}>
         {inHasOverlay && (
           <div className="ubt-layout--login__svg" data-container="">
-            <SVG_Background_LoginWrapper id={childId(2)} onOnPathCalculated={onOnPathCalculated} />
+            <SvgBackgroundLogin id={childId(2)} onOnPathCalculated={onOnPathCalculated} />
           </div>
         )}
         <div className="ubt-layout--login__header">{placeholderHeader}</div>

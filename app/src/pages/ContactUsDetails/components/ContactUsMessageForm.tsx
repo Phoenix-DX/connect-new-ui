@@ -2,12 +2,12 @@ import { OSForm, UnbuiltValidationWidget } from '@/components/ui/os/OSValidation
 import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSection';
 import { UBT_Icons2_Local } from '@/pages/ContactUsDetails/staticEntities';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { TextArea_WithCounter } from '@/shared/UBTConnectLibrary/TextArea_WithCounter';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { TextAreaWithCounter } from '@/components/ui/TextAreaWithCounter';
 import { MessageTextArea } from './MessageTextArea';
 
 export interface ContactUsMessageFormProps {
@@ -90,7 +90,7 @@ export function ContactUsMessageForm({
             </>
           )}
           <div data-container="">
-            <TextArea_WithCounter id="$b12" inInitialLength={0}>
+            <TextAreaWithCounter id="$b12" inInitialLength={0}>
               <label className="mandatory OSFillParent" data-label="" htmlFor="TextArea_Message">
                 Message
               </label>
@@ -100,7 +100,7 @@ export function ContactUsMessageForm({
                 value={message}
                 onChange={onMessageChange}
               />
-            </TextArea_WithCounter>
+            </TextAreaWithCounter>
           </div>
           {showRate && (
             <IconText

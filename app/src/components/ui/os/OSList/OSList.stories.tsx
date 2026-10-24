@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { TagToggle } from '@/shared/UBTConnectLibrary/TagToggle';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { TagToggle } from '@/components/ui/TagToggle';
 import { PendingBlock } from '@/shared/test/PendingBlock';
 import { OSList } from './OSList';
 import { OSListItem, OSListItemAction } from './OSListItem';

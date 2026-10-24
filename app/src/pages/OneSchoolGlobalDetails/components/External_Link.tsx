@@ -1,8 +1,8 @@
 import type { BusinessLinkItem } from '@/api/locality';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   UBT_Color as Library_Color,
   UBT_FontSize,

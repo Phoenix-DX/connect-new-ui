@@ -4,9 +4,9 @@ import {
   MERGE_DURATION_IN_SECONDS,
   useLoadingDotsAnimation,
 } from '@/pages/Splash/hooks/useLoadingDotsAnimation';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { CustomText } from '@/components/ui/CustomText';
 import { UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SVG_Background_Custom } from '@/shared/UBTConnectLibrary/SVG_Background_Custom';
+import { SvgBackground } from '@/components/ui/SvgBackground';
 import { UBT_Color_Primary } from './staticEntities';
 
 export interface LoadingDotsProps {
@@ -43,7 +43,7 @@ export function LoadingDots({
   const dotStyle = isTriggerAnimation ? { transition: `left ${MERGE_DURATION_IN_SECONDS}s` } : undefined;
   return (
     <OSBlock name="ConnectPatterns.LoadingDots" id={id}>
-      <SVG_Background_Custom id={`${prefix}-$b1`} inPath={INITIAL_D} inExtendedClass="ubt-loading-svg " />
+      <SvgBackground id={`${prefix}-$b1`} inPath={INITIAL_D} inExtendedClass="ubt-loading-svg " />
       <div
         className={`ubt-loading-dots${isTriggerAnimation ? ' ubt-loading-header-animation' : ''}${hidden ? ' ubt-hide' : ''}`}
         data-container=""

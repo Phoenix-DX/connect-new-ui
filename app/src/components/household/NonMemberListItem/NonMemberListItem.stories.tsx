@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
-import { CircleButton } from '@/shared/UBTConnectLibrary/CircleButton';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
+import { CircleButton } from '@/components/ui/CircleButton';
 import { NonMemberListItem } from './NonMemberListItem';
 
 const meta = {
@@ -17,7 +17,7 @@ const married = {
   title: 'Ana',
   marriedCaption: 'Married to Pablo Ortiz and recently moved to Rosario',
   marriageHighlightText: 'Pablo Ortiz',
-  placeholderLeft: <UBT_LazyImage />,
+  placeholderLeft: <EntityLazyImage />,
   actions: <CircleButton />,
 };
 /** HouseholdCarousel/default (pack: wrapper only): married relative. */
@@ -26,5 +26,5 @@ export const V1: Story = { args: married };
 export const V2: Story = { args: married };
 /** Household_Relations/default: name only. */
 export const V3: Story = {
-  args: { title: 'Ana', placeholderLeft: <UBT_LazyImage />, actions: <CircleButton /> },
+  args: { title: 'Ana', placeholderLeft: <EntityLazyImage />, actions: <CircleButton /> },
 };

@@ -1,9 +1,9 @@
 import { SHADOW_EXTRA_SMALL_TOP } from '@/pages/Profile/staticEntities';
 import { ButtonLoading } from '@/shared/osui/ButtonLoading';
-import { Button } from '@/shared/UBTConnect_Utils/Button';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
+import { ActionButton } from '@/components/ui/ActionButton';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { FixedFooter } from '@/components/ui/FixedFooter';
 import { UBT_ButtonType, UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface ProfileFooterProps {
@@ -42,11 +42,11 @@ export function ProfileFooter({
       expectedFooterHeight="calc(2 * var(--space-base) + var(--ubt-button-height-m))"
     >
       <CustomContainer id="$b50" options={FOOTER_OPTIONS}>
-        <Columns_Two
+        <ColumnsTwo
           id="$b51"
           columnOptions={{ SpacingSize: UBT_Size.Small }}
           left={
-            <Button
+            <ActionButton
               id="$b52"
               isDisabled={isLoadingSubmit}
               buttonOptions={{ UBT_ButtonTypeId: UBT_ButtonType.Secondary }}
@@ -56,7 +56,7 @@ export function ProfileFooter({
           }
           right={
             <ButtonLoading id="$b53" isLoading={isLoadingSubmit}>
-              <Button
+              <ActionButton
                 id="$b54"
                 isDisabled={!hasChanges || isLoadingSubmit}
                 buttonOptions={{ UBT_ButtonTypeId: UBT_ButtonType.Primary }}

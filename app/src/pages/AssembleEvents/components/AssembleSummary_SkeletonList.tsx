@@ -2,8 +2,8 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { AssembleSummarySkeleton } from '@/components/assemble/AssembleSummarySkeleton';
-import { NC_Card_Item_Text__Skeleton } from '@/shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
-import { NC_Result_Item_Badge } from '@/shared/Connect2_LegacyShared/NC_Result_Item_Badge';
+import { CardTextSkeleton } from '@/components/ui/CardTextSkeleton';
+import { ResultItemBadge } from '@/components/ui/ResultItemBadge';
 
 export interface AssembleSummary_SkeletonListProps {
   id: string;
@@ -31,20 +31,20 @@ export function AssembleSummary_SkeletonList({ id, skeletonListLength }: Assembl
                   placeholderSubtitleTop={
                     <>
                       <div className="font-size-h6 margin-bottom-s ThemeGrid_Width8" data-container="">
-                        <NC_Card_Item_Text__Skeleton id={`${p}-$b2`} />
+                        <CardTextSkeleton id={`${p}-$b2`} />
                       </div>
                       <div className="font-size-xs ThemeGrid_Width5" data-container="">
-                        <NC_Card_Item_Text__Skeleton id={`${p}-$b3`} />
+                        <CardTextSkeleton id={`${p}-$b3`} />
                       </div>
                     </>
                   }
                   placeholderTitle={
                     <div className="ThemeGrid_Width7" data-container="">
-                      <NC_Card_Item_Text__Skeleton id={`${p}-$b4`} />
+                      <CardTextSkeleton id={`${p}-$b4`} />
                     </div>
                   }
                   placeholderSubtitleBottom={<span data-expression=""> </span>}
-                  placeholderRight={<NC_Result_Item_Badge id={`${p}-$b5`} size="73px" />}
+                  placeholderRight={<ResultItemBadge id={`${p}-$b5`} size="73px" />}
                   placeholderLocation={
                     <OSBlock name="NewConnect_Utilities.NC_Result_Item__Card__Location" id={`${p}-$b6`}>
                       <div
@@ -52,7 +52,7 @@ export function AssembleSummary_SkeletonList({ id, skeletonListLength }: Assembl
                         id={`${p}-b6-Placeholder_Location`}
                       >
                         <div className="ThemeGrid_Width6" data-container="">
-                          <NC_Card_Item_Text__Skeleton id={`${p}-$b7`} />
+                          <CardTextSkeleton id={`${p}-$b7`} />
                         </div>
                       </div>
                     </OSBlock>

@@ -6,12 +6,12 @@ import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
-import { Button } from '@/shared/UBTConnectLibrary/Button';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { LazyImage } from '@/shared/UBTConnectLibrary/LazyImage';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Button } from '@/components/ui/Button';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
+import { LazyImage } from '@/components/ui/LazyImage';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import {
   UBT_ButtonSize,
   UBT_ButtonType,
@@ -21,7 +21,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import {
   UBT_FontSize,
   UBT_IconSize,
@@ -122,7 +122,7 @@ export function ContactPopup({
           <SkeletonSection inIsLoading={isLoading && imageURL === ''}>
             {(data.IsAvatarImage ?? false) ? (
               <div className="ubt-object-fit-avatar-img" data-container="">
-                <UBT_LazyImage
+                <EntityLazyImage
                   imageSize={{ Height: inImageSizeId, Width: UBT_ImageSize.Square }}
                   imageURL={imageURL}
                   inBorderRadius={UBT_Shape.Circle}

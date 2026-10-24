@@ -2,11 +2,11 @@
 import { useRef, useState, type ComponentType, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { bottomSheetClose } from '@/shared/osui/lib/actions';
-import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import { UBT_Color, UBT_FontSize, UBT_Icons2, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
 import { getEntityType_Icon } from '@/shared/UBTConnect_Utils/lib/actions';
@@ -70,7 +70,7 @@ export function DirectoryLegendSheet({
   };
   return (
     <OSBlock name="Directory_Locality.Directory_LegendBottomSheet" id={id}>
-      <BottomSheet
+      <ConnectBottomSheet
         showBackButton={false}
         title="About the numbers"
         extendedClasses="directory-legend-explanation"

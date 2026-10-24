@@ -794,3 +794,8 @@ One line per event. Written by rf.py.
 - 2026-10-24T12:14:59 P6-end stage docs
 - 2026-10-24T12:16:29 P6-end stage commit
 - 2026-10-24T12:16:30 P6-end done ad857bd3: ci: pass (loop 1 formatting fix; rerun once, Services flake F23); parity strict --all: 64/0 (OutSystems), 64/0 (self); step guard: no file or import of src/screens/; arch baseline 69 rows, 0 new; HomeFeed 244.46 kB, Login 184.48 kB
+- 2026-10-24T12:18:59 P7-0 started
+- 2026-10-24T12:18:59 P7-0 stage dev
+- 2026-10-24T12:23:16 P7-0 stage test
+- 2026-10-24T12:32:55 P7-0 stage docs
+- 2026-10-24T12:34:09 P7-0 stage commit

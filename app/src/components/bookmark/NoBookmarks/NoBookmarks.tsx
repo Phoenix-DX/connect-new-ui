@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { ConnectBlankSlate } from '@/shared/Connect2_LegacyShared/ConnectBlankSlate';
+import { ConnectBlankSlate } from '@/components/ui/ConnectBlankSlate';
 
 export interface NoBookmarksProps {
   /** OutSystems instance id of the block. */

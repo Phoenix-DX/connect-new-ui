@@ -1,8 +1,8 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.Member_ListItem
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { ColumnsThree } from '@/components/ui/ColumnsThree';
+import { CustomText } from '@/components/ui/CustomText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -45,7 +45,7 @@ export function Member_ListItem({
   };
   return (
     <OSBlock name="ConnectCorePatterns.Member_ListItem" id={id}>
-      <Columns_Three
+      <ColumnsThree
         columnOptions={{
           ColumnBehaviour: UBT_ColumnBehaviour.ExpandMiddle,
           SpacingSize: UBT_Size.Base,

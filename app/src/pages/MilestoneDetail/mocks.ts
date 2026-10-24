@@ -4,7 +4,7 @@ import { osList, wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { orbitEvents, type OrbitMilestone, type OrbitRoom } from '@/mocks/fictional/orbit';
 import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { mockSignedImageURL } from '@/shared/UBTConnect_Utils/UBT_LazyImage/mocks';
+import { mockSignedImageURL } from '@/components/ui/EntityLazyImage/mocks';
 
 /* Wire shapes of DataActionGetAccommodationHost, typed by the API contract (captured shape: analysis/calls.md
    § DataActionGetAccommodationHost). */

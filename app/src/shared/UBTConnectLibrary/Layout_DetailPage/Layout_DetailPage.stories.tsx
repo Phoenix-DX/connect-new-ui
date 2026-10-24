@@ -6,9 +6,9 @@ import { PendingBlock } from '@/shared/test/PendingBlock';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { FixedFooter } from '@/components/ui/FixedFooter';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { Layout_DetailPage } from './Layout_DetailPage';
 
 /** Stories only: the signed-in session of the captures (BottomBarMenu, CommonUI_InsideLayout), checked just now. */

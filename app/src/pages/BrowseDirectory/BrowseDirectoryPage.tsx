@@ -14,14 +14,14 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useNavigateBack } from '@/platform/navigation';
 import { UBT_Icons2 as UBTConnect_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import { getClass_Color, getLookupConcepts } from '@/shared/UBTConnectLibrary/lib/actions';
 import { UBT_Color, UBT_ColumnBehaviour, UBT_Icons2, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { ContainerOptions } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { useBrowseDirectory } from './hooks/useBrowseDirectory';
 import { readBrowseDirectoryInputs } from './inputs';
 import { UBT_Icons2_Add, UBT_Icons2_MyLocationFill, UBT_Icons2_Remove } from './staticEntities';
@@ -95,7 +95,7 @@ export default function BrowseDirectory() {
           placeholderTopSection={
             <CustomContainer id="$b3" options={TOP_CONTAINER}>
               <div data-container="" style={{ cursor: 'pointer' }} onClick={onBrowseCountries}>
-                <Columns_Two
+                <ColumnsTwo
                   id="$b4"
                   columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast }}
                   extendedClasses="margin-left-base"

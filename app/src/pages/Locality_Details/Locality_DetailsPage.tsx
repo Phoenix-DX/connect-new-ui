@@ -4,11 +4,11 @@ import { HouseholdDetailsContainer, useHouseholdDetailsFlags } from '@/container
 import { useFlagOn } from '@/platform/flags/flags';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { ComingSoon } from '@/shared/UBTConnectLibrary/ComingSoon';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { HorizontalTagList } from '@/shared/UBTConnectLibrary/HorizontalTagList';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { ComingSoon } from '@/components/ui/ComingSoon';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { HorizontalTagList } from '@/components/ui/HorizontalTagList';
+import { Icon } from '@/components/ui/Icon';
 import { MainLayout } from '@/components/layout/MainLayout';
 import {
   UBT_ColumnBehaviour,
@@ -18,8 +18,8 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { ContainerOptions } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { StaticInput } from '@/shared/UBTConnectLibrary/StaticInput';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { StaticInput } from '@/components/ui/StaticInput';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { Locality_DateTimeLabel } from './components/Locality_DateTimeLabel';
 import { Locality_Households } from './components/Locality_Households';
@@ -102,7 +102,7 @@ function Locality_DetailsScreen() {
                     </NotCaptured>
                   )}
                   <div data-container="" style={{ cursor: 'pointer' }} onClick={onNavigateToBrowseByLocation}>
-                    <Columns_Two
+                    <ColumnsTwo
                       id={b(5)}
                       columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast }}
                       extendedClasses="fit-content"

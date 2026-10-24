@@ -1,10 +1,10 @@
 /** @origin UBTConnect.Directory_Search.SearchResult_Section */
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
+import { SectionSeparator } from '@/components/ui/SectionSeparator';
 import { SearchResultItem } from '@/components/search/SearchResultItem';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -51,7 +51,7 @@ export function SearchResult_Section({
           },
         }}
       >
-        <Columns_Two
+        <ColumnsTwo
           columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast, VerticalAlign: UBT_VerticalAlign.Center }}
           left={
             <CustomText

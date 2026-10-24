@@ -7,7 +7,7 @@ import { MenuIcon } from '@/components/layout/MenuIcon';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { assembleFilterIds } from '@/pages/Assemble_BrowseByCountry/hooks/assembleFilterState';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { Spinner } from '@/components/ui/Spinner';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 

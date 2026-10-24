@@ -1,11 +1,11 @@
 import type { PhotobookHousehold } from '@/api/household';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { SanitizedHtml } from '@/shared/ReactiveHtmlSanitizer/SanitizedHtml';
-import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { SanitizedHtml } from '@/components/ui/SanitizedHtml';
+import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
 import { UBT_Color, UBT_Display, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { useHouseholdCaption } from '@/pages/Photobook/hooks/useHouseholdCaption';
 import {
   UBT_AlignItems,
@@ -79,7 +79,7 @@ export function Photobook_Options_Left({
         />
       </CustomContainer>
       {inIsShow && (
-        <BottomSheet
+        <ConnectBottomSheet
           id={`${prefix}-BottomSheet_Info`}
           extendedClasses={`${inMainContainerClass}-bottom-sheet ${inMainContainerClass}-bottom-sheet--info`}
           title={inCurrentHousehold.locality}

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Button } from '@/shared/UBTConnect_Utils/Button';
+import { ActionButton } from '@/components/ui/ActionButton';
 import { ButtonLoading } from './ButtonLoading';
 
 const meta = { title: 'Shared/osui/ButtonLoading', component: ButtonLoading } satisfies Meta<typeof ButtonLoading>;
@@ -15,7 +15,7 @@ const loginButton = (className: string, label: string) => (
 );
 
 /** ContactByEmailMember/default: CW_Common.Button "Send", label hidden while loading (pack variant) */
-export const V1: Story = { args: { children: <Button buttonText="Send" isDisabled /> } };
+export const V1: Story = { args: { children: <ActionButton buttonText="Send" isDisabled /> } };
 /** Login/default: "Login with UBT One" */
 export const V2: Story = {
   args: {
@@ -33,4 +33,4 @@ export const V3: Story = {
   },
 };
 /** ContactByEmailMember/default: as V1, the whole button (spinner aria-hidden) */
-export const V4: Story = { args: { children: <Button buttonText="Send" isDisabled /> } };
+export const V4: Story = { args: { children: <ActionButton buttonText="Send" isDisabled /> } };

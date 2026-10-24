@@ -2,12 +2,12 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
 import { SupperMeetingCardContent } from '@/components/directory/SupperMeetingCardContent';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { ImageCard } from '@/components/ui/ImageCard';
 import { UBT_Color, UBT_ImageCardType, UBT_ImageSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import {
   useLocalitySubdivisions,
   type LocalitySubdivisionsFlags,
@@ -57,14 +57,14 @@ export function Locality_Subdivisions({ id, localityId = '0', flags }: Locality_
                 const item = `${b}-l1-3598_${String(row.key)}`;
                 return (
                   <div data-container="">
-                    <ImageCard_LazyLoading
+                    <ImageCard
                       id={`${item}-$b4`}
                       inCardTypeId={UBT_ImageCardType.List}
                       onEventClick={() => {
                         onClickSubdivision(row.card.subdivisionId);
                       }}
                       lazyImagePlaceholder={
-                        <UBT_LazyImage
+                        <EntityLazyImage
                           id={`${item}-$b5`}
                           entityType={Connect_Entity.SupperMeetings_aka_Subdivisions}
                           imageSize={{ Width: UBT_ImageSize.MaxWidth_100vw }}

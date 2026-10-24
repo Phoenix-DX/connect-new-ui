@@ -1,7 +1,7 @@
 import type { CurrentService } from '@/api/service';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
 import { UBT_Color, UBT_ColumnBehaviour, UBT_IconsSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { FAVOURITE_LIST, SORTABLE_GROUP } from '@/pages/Services/hooks/servicesState';
 import { UBT_Icons2 } from '@/pages/Services/staticEntities';
@@ -50,12 +50,12 @@ export function FavouriteServiceList({
           const scope = `l1-38_${String(i)}`;
           return (
             <CustomContainer key={`${current.service.id}-${String(i)}`} id={`${scope}-$b6`} options={ROW_CONTAINER}>
-              <Columns_Two
+              <ColumnsTwo
                 id={`${scope}-$b7`}
                 columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast }}
                 left={
                   <SortableList_Draggable id={`${scope}-$b8`} itemId={current.service.id} useCustomDragHandle>
-                    <Columns_Two
+                    <ColumnsTwo
                       id={`${scope}-$b9`}
                       columnOptions={ICON_TEXT_COLUMNS}
                       left={<ServiceDragHandle containerId={`${scope}-$b10`} iconId={`${scope}-$b11`} />}

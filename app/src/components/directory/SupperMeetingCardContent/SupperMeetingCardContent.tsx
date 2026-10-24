@@ -1,8 +1,8 @@
 /** @origin UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content */
 // @os-block UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { ImageCardContent } from '@/components/ui/ImageCardContent';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { AddressPopupWrapper } from '@/components/contact/AddressPopupWrapper';
 import { getDescriptor_Subdivision_GenderSplit } from '@/shared/UBTConnect/lib/actions';
@@ -29,7 +29,7 @@ export function SupperMeetingCardContent({
   const content = inSubdivisionCardContent;
   return (
     <OSBlock name="Directory_SupperMeetings.SupperMeeting_ImageCard_Content" id={id}>
-      <ImageCard__Content
+      <ImageCardContent
         inTitle={content.Name ?? ''}
         placeholderBottomSectionContent={
           <>

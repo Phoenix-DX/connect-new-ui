@@ -2,10 +2,10 @@ import type { CountrySummary } from '@/api/country';
 import { StatisticsTypedItem } from '@/components/directory/StatisticsTypedItem';
 import { CommunityPopulation } from '@/components/feed/CommunityPopulation';
 import { OSList } from '@/components/ui/os/OSList';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
 import { getFlagURLByCountryCode } from '@/shared/UBTConnectLibrary/lib/actions';
 import type { ContainerOptions, TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
 import {
@@ -18,9 +18,9 @@ import {
   UBT_Size,
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { Connect_Entity, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { countText, type CountriesFetchStatus, type UserGeography } from '@/pages/CountryList/hooks/countryListState';
 import { UBT_Icons2_CountryList } from './staticEntities';
 
@@ -99,13 +99,13 @@ export function CountryListContent({
   return (
     <CustomContainer id="Content" options={{ PaddingSize: { GeneralSizeId: UBT_Size.Base } }}>
       <SkeletonSection id="HeaderLoading" inIsLoading={!user.isFetched}>
-        <Columns_Two
+        <ColumnsTwo
           id="HeaderColumns"
           columnOptions={{ SpacingSize: UBT_Size.Small }}
           left={
             <CustomContainer id="$b7" options={CARD_OPTIONS} onClicked={onMyLocalityClicked}>
               <div data-container="" style={{ textAlign: 'center' }}>
-                <UBT_LazyImage
+                <EntityLazyImage
                   id="$b8"
                   inBorderRadius={UBT_Shape.Circle}
                   entityType={Connect_Entity.Locality}
@@ -125,7 +125,7 @@ export function CountryListContent({
           right={
             <CustomContainer id="$b12" options={CARD_OPTIONS} onClicked={onMyCountryClicked}>
               <div data-container="" style={{ textAlign: 'center' }}>
-                <UBT_LazyImage
+                <EntityLazyImage
                   id="$b13"
                   imageURL={getFlagURLByCountryCode(user.countryCode)}
                   inBorderRadius={UBT_Shape.Circle}
@@ -155,7 +155,7 @@ export function CountryListContent({
         />
       </CustomContainer>
       <CustomContainer id="Legend" options={{ PaddingSize: { VerticalSizeId: UBT_Size.Base } }}>
-        <Columns_Two
+        <ColumnsTwo
           id="Title"
           columnOptions={{
             ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast,

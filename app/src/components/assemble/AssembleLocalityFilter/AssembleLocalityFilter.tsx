@@ -5,7 +5,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList, OSListItem } from '@/components/ui/os/OSList';
 import { getCacheableCountryInfo, getCacheableUserInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
 import type { LocalityResultItemWithGPS } from '@/shared/Connect2_LegacyShared/lib/structures';
-import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { Spinner } from '@/components/ui/Spinner';
 import { scrollToElement } from '@/shared/osui/lib/actions';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
 import { AssembleSubdivisionFilter } from '@/components/assemble/AssembleSubdivisionFilter';

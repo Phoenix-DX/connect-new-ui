@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
-import { CircleButton } from '@/shared/UBTConnectLibrary/CircleButton';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
+import { CircleButton } from '@/components/ui/CircleButton';
 import { Member_ListItem } from './Member_ListItem';
 
 const meta = {
@@ -18,7 +18,7 @@ export const V1: Story = {
     id: 'ParentsAndChildren',
     title: 'Member Example',
     lifeCycleText: 'Example life cycle',
-    placeholderLeft: <UBT_LazyImage />,
+    placeholderLeft: <EntityLazyImage />,
     actions: <CircleButton />,
   },
 };

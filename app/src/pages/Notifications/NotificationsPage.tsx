@@ -1,10 +1,10 @@
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { Badge } from '@/shared/UBTConnectLibrary/Badge';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { Badge } from '@/components/ui/Badge';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
+import { Input } from '@/components/ui/Input';
 import {
   Shape,
   UBT_AlignItems,

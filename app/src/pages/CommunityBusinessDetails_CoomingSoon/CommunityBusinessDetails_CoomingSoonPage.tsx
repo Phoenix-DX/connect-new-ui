@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { BlankSlate } from '@/shared/osui/BlankSlate';
-import { StaticInput } from '@/shared/UBTConnectLibrary/StaticInput';
+import { StaticInput } from '@/components/ui/StaticInput';
 import { readCommunityBusinessDetailsInputs } from './inputs';
 
 /** @origin UBTConnect.zDEV_Directory_CommunityBusinessBlocks.CommunityBusinessDetails_CoomingSoon

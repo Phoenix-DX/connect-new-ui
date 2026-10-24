@@ -10,14 +10,14 @@ import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions
 import { useFlag } from '@/platform/flags';
 import { useNavigateBack } from '@/platform/navigation';
 import { Connect_Entity, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
-import { ComingSoon } from '@/shared/UBTConnectLibrary/ComingSoon';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
-import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
+import { ComingSoon } from '@/components/ui/ComingSoon';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
+import { ImageCardContent } from '@/components/ui/ImageCardContent';
+import { ImageCard } from '@/components/ui/ImageCard';
 import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_Color,
@@ -28,7 +28,7 @@ import {
   UBT_Shape,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { ButtonGroup } from './components/ButtonGroup';
 import { ExpandableSection } from './components/ExpandableSection';
 import { External_Link } from './components/External_Link';
@@ -79,12 +79,12 @@ export default function OneSchoolGlobalDetails() {
 
   const detailCard = (
     <SkeletonSection id="$b4" inIsLoading={!isDataFetched}>
-      <ImageCard_LazyLoading
+      <ImageCard
         id="$b5"
         inIsBookmarked={state.LocalIsBookmarked}
         inCardTypeId={UBT_ImageCardType.Detail}
         lazyImagePlaceholder={
-          <UBT_LazyImage
+          <EntityLazyImage
             id="$b6"
             imageURL={card.signedURL}
             imageSize={{ Width: UBT_ImageSize.MaxWidth_100vw }}
@@ -94,7 +94,7 @@ export default function OneSchoolGlobalDetails() {
           />
         }
         placeholderContent={
-          <ImageCard__Content
+          <ImageCardContent
             id="$b7"
             inTitle={card.name}
             placeholderBottomSectionContent={

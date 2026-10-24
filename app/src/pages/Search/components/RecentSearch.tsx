@@ -2,12 +2,12 @@ import type {
   ConnectSearch_RecentClickedResults,
   ConnectSearch_RecentSearchTerm,
 } from '@/platform/storage/localEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import { Gallery } from '@/shared/osui/Gallery';
 import {
   UBT_Color,
@@ -67,7 +67,7 @@ export function RecentSearch({
       {hasRecent ? (
         <>
           <CustomContainer options={{ PaddingSize: { BottomSizeId: UBT_Size.Small } }}>
-            <Columns_Two
+            <ColumnsTwo
               left={
                 <CustomText
                   inText="Recent search"
@@ -107,7 +107,7 @@ export function RecentSearch({
                       onRecentResultClick(r);
                     }}
                   >
-                    <UBT_LazyImage
+                    <EntityLazyImage
                       entityId={r.EntityId}
                       entityType={r.EntityType}
                       imageSize={{ Height: UBT_ImageSize.ExtraSmall_32 }}
@@ -135,7 +135,7 @@ export function RecentSearch({
                   BorderOptions: { Color: UBT_Color.Neutral3, Size: { BottomSizeId: UBT_Size.Small } },
                 }}
               >
-                <Columns_Two
+                <ColumnsTwo
                   columnOptions={{
                     ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast,
                     VerticalAlign: UBT_VerticalAlign.Center,

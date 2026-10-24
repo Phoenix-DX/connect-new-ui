@@ -1,6 +1,6 @@
 import type { Service } from '@/api/service';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   UBT_Color,
   UBT_FontSize,

@@ -8,7 +8,7 @@ import { PinRegisterContent } from '@/components/auth/PinRegisterContent';
 import { PinUnlockContent } from '@/components/auth/PinUnlockContent';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { OfflineDataSync } from '@/platform/device/OfflineDataSync';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { IconText } from '@/components/ui/IconText';
 import { LoginLayout } from './LoginLayout';
 
 /** Stories only: the session and screen of the capture. */

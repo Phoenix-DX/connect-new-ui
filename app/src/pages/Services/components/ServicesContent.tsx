@@ -1,5 +1,5 @@
 import type { CurrentService, Service } from '@/api/service';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import type { ServicesLists } from '@/pages/Services/hooks/servicesState';
 import { FavouriteServiceList } from './FavouriteServiceList';
 import type { DragEndHandler } from './setupList';

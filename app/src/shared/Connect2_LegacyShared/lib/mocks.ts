@@ -9,7 +9,7 @@ import {
   LOCALITY,
   SUPPER_MEETINGS,
 } from '@/mocks/fictional/directory';
-import { MOCK_SIGNED_PHOTO_URL } from '@/shared/Connect2_LegacyShared/Result_Item_Image/mocks';
+import { MOCK_SIGNED_PHOTO_URL } from '@/components/ui/ResultItemImage/mocks';
 import { ORBIT_HOSTED_ROOMS, type OrbitGuestHousehold, type OrbitGuestMember } from '@/mocks/fictional/orbit';
 import { wireList } from '@/legacy/os/os-wire';
 import type { MemberContactWithTimezone } from './structures';

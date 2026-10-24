@@ -3,14 +3,14 @@ import { useId, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { preventNavigation, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
 import { ButtonLoading } from '@/shared/osui/ButtonLoading';
-import { Button } from '@/shared/UBTConnect_Utils/Button';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { DynamicTextArea } from '@/shared/UBTConnectLibrary/DynamicTextArea';
-import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
-import { InputCounter } from '@/shared/UBTConnectLibrary/InputCounter';
+import { ActionButton } from '@/components/ui/ActionButton';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { DynamicTextArea } from '@/components/ui/DynamicTextArea';
+import { FixedFooter } from '@/components/ui/FixedFooter';
+import { InputCounter } from '@/components/ui/InputCounter';
 import { UBT_Color, UBT_FontSize, UBT_Shadow, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { TextArea_WithCounter } from '@/shared/UBTConnectLibrary/TextArea_WithCounter';
-import { Dialog_Navigation } from '@/shared/UBTConnect/Dialog_Navigation';
+import { TextAreaWithCounter } from '@/components/ui/TextAreaWithCounter';
+import { NavigationDialog } from '@/components/ui/Dialog';
 
 export interface ContactEmailFormProps {
   /** OutSystems instance id of the block. */
@@ -146,7 +146,7 @@ export function ContactEmailForm({
               )}
             </div>
             <div data-container="">
-              <TextArea_WithCounter inInitialLength={0}>
+              <TextAreaWithCounter inInitialLength={0}>
                 <label className="OSFillParent" data-label="" htmlFor={messageId}>
                   <span data-expression="">{inMessageLabel}</span>
                 </label>
@@ -165,7 +165,7 @@ export function ContactEmailForm({
                     }}
                   />
                 </span>
-              </TextArea_WithCounter>
+              </TextAreaWithCounter>
             </div>
           </form>
         </CustomContainer>
@@ -179,7 +179,7 @@ export function ContactEmailForm({
           }}
         >
           <ButtonLoading isLoading={isLoading}>
-            <Button
+            <ActionButton
               buttonText="Send"
               isDisabled={!(subject !== '' && message !== '')}
               onButtonOnClick={onClickSubmitForm}
@@ -188,7 +188,7 @@ export function ContactEmailForm({
         </CustomContainer>
       </FixedFooter>
       {(subject !== inSubject || message.trim() !== '') && (
-        <Dialog_Navigation
+        <NavigationDialog
           onEventOnBackNavigation={onBackNavigationPreventNavigation}
           placeholderHeader={<span data-expression="">Delete message?</span>}
           placeholderBody={<span data-expression="">Are you sure you want to delete this message?</span>}

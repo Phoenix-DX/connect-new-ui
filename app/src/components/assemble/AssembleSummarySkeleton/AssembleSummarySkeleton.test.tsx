@@ -3,18 +3,15 @@ import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { expectToMatchCapture } from '@/test/dom';
-import * as cardStories from '@/shared/Connect2_LegacyShared/NC_Result_Item__Card/NC_Result_Item__Card.stories';
+import * as cardStories from '@/components/ui/ResultItemCard/ResultItemCard.stories';
 import * as stories from './AssembleSummarySkeleton.stories';
 
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
-const cardCaptures = import.meta.glob<string>(
-  '../../../shared/Connect2_LegacyShared/NC_Result_Item__Card/__captures__/*.html',
-  {
-    query: '?raw',
-    import: 'default',
-    eager: true,
-  },
-);
+const cardCaptures = import.meta.glob<string>('../../ui/ResultItemCard/__captures__/*.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
 
 describe('AssembleSummaryDetailHeader_Skeleton', () => {
   testCapturedVariants(stories, captures);

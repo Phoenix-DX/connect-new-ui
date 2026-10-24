@@ -4,8 +4,8 @@ import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } f
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { PullToRefresh } from '@/shared/osui/PullToRefresh';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { Icon } from '@/components/ui/Icon';
 import { formatClasses, getClass_BackgroundColor, initialize_SvgScroll } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_Color,
@@ -16,7 +16,7 @@ import {
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { HomeSearchSection } from '@/components/layout/HomeSearchSection';
-import { SVG_Background_Custom } from '@/shared/UBTConnectLibrary/SVG_Background_Custom';
+import { SvgBackground } from '@/components/ui/SvgBackground';
 
 export interface HomeLayoutProps {
   /** OutSystems instance id of the block. */
@@ -149,7 +149,7 @@ export function HomeLayout({
                 data-container=""
               >
                 <div className="ubt-layout-home__title" data-container="">
-                  <Columns_Two
+                  <ColumnsTwo
                     id={`${prefix}-$b2`}
                     columnOptions={{
                       ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast,
@@ -194,7 +194,7 @@ export function HomeLayout({
               role="main"
             >
               <div className="content-middle" data-container="">
-                <SVG_Background_Custom id={`${prefix}-SVG`} />
+                <SvgBackground id={`${prefix}-SVG`} />
                 {addSearchBar && <HomeSearchSection id={`${prefix}-SearchInput`} onClickedSearch={onOnSearchClick} />}
                 <div className="ubt-zindex-2">{content}</div>
               </div>

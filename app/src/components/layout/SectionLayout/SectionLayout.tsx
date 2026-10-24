@@ -2,7 +2,7 @@
 // @os-block UBTConnectLibrary.Layouts.SubLayout_Section
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 

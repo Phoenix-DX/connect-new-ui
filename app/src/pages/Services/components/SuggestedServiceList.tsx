@@ -1,8 +1,8 @@
 import type { Service } from '@/api/service';
-import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
-import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { SectionSeparator } from '@/components/ui/SectionSeparator';
+import { ColumnsThree } from '@/components/ui/ColumnsThree';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
 import { UBT_Color, UBT_ColumnBehaviour, UBT_IconsSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import {
   FAVOURITE_LIST,
@@ -68,7 +68,7 @@ export function SuggestedServiceList({
                 useCustomDragHandle
               >
                 <CustomContainer id={`${scope}-$b20`} options={ROW_CONTAINER}>
-                  <Columns_Three
+                  <ColumnsThree
                     id={`${scope}-$b21`}
                     columnOptions={{ ...ICON_TEXT_COLUMNS, ColumnBehaviour: UBT_ColumnBehaviour.ExpandMiddle }}
                     left={<ServiceDragHandle containerId={`${scope}-$b22`} iconId={`${scope}-$b23`} />}

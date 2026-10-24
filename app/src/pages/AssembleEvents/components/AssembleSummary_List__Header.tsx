@@ -1,6 +1,6 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleSummary_List__Header
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { NC_Card_Item_Text__Skeleton } from '@/shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
+import { CardTextSkeleton } from '@/components/ui/CardTextSkeleton';
 
 const POINTER = { cursor: 'pointer' };
 
@@ -70,7 +70,7 @@ export function AssembleSummary_List__Header({
           <div data-container="">
             {isLoading ? (
               <div className="ThemeGrid_Width6" data-container="">
-                <NC_Card_Item_Text__Skeleton id={`${scope}-$b1`} />
+                <CardTextSkeleton id={`${scope}-$b1`} />
               </div>
             ) : (
               <span data-expression="">{listHeaderLabel}</span>

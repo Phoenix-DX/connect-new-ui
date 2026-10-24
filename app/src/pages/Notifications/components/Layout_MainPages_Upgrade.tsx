@@ -2,7 +2,7 @@
 import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Icon } from '@/components/ui/Icon';
 import {
   clearScrollTimeout,
   removeScrollEvents,

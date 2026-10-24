@@ -1,7 +1,7 @@
 /** @origin Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails */
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { NewConnectContent } from '@/shared/Connect2_LegacyShared/NewConnectContent';
+import { NewConnectContent } from '@/components/ui/NewConnectContent';
 import { VirtualMeetingDetailsEntry } from '@/components/assemble/VirtualMeetingDetailsEntry';
 
 export interface VirtualMeetingDetailsProps {

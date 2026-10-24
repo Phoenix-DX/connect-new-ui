@@ -2,7 +2,7 @@ import type { CountryWithMapPosition } from '@/api/country';
 import { AssembleLocalityFilter } from '@/components/assemble/AssembleLocalityFilter';
 import { LocalityListDetail } from '@/components/assemble/LocalityListDetail';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { Spinner } from '@/components/ui/Spinner';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 

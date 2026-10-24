@@ -1,8 +1,8 @@
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -10,7 +10,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SeeMoreSection } from '@/shared/UBTConnectLibrary/SeeMoreSection';
+import { SeeMoreSection } from '@/components/ui/SeeMoreSection';
 import { AddressPopupWrapper } from '@/components/contact/AddressPopupWrapper';
 import type { Directory_Coordinates } from '@/shared/UBTConnect_Utils/lib/structures';
 import { UBT_Icons2 as UBTConnect_Icons2, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
@@ -69,7 +69,7 @@ export function HouseholdAddress({
             extendedClasses="see-more-locality-cont"
             options={{ PaddingSize: { BottomSizeId: UBT_Size.Small }, BorderOptions: {} }}
           >
-            <Columns_Two
+            <ColumnsTwo
               columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceFirst, ColumnSizes: {} }}
               left={
                 <IconText spacingSize={UBT_Size.ExtraSmall} text="Locality: " textOptions={labelTextOptions}>
@@ -92,7 +92,7 @@ export function HouseholdAddress({
             />
           </CustomContainer>
           <CustomContainer options={{ PaddingSize: { TopSizeId: UBT_Size.Small } }}>
-            <Columns_Two
+            <ColumnsTwo
               columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceFirst, ColumnSizes: {} }}
               left={
                 <IconText text="Supper Meeting: " spacingSize={UBT_Size.ExtraSmall} textOptions={labelTextOptions}>

@@ -1,5 +1,5 @@
-import { ComingSoon } from '@/shared/UBTConnectLibrary/ComingSoon';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { ComingSoon } from '@/components/ui/ComingSoon';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import {
   UBT_Color,
   UBT_FontSize,

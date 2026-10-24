@@ -1,7 +1,7 @@
 import { OSLink } from '@/shared/lib/OSLink';
 import { PinRegisterContent } from '@/components/auth/PinRegisterContent';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import { LoginLayout } from '@/components/layout/LoginLayout';
 import {
   UBT_Color,

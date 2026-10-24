@@ -1,7 +1,7 @@
 import { ButtonLoading } from '@/shared/osui/ButtonLoading';
 import { UnsupportedVersionWrapper } from '@/components/version/UnsupportedVersionWrapper';
 import { WelcomeToConnect } from '@/components/auth/WelcomeToConnect';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Tile } from './Tile';
 

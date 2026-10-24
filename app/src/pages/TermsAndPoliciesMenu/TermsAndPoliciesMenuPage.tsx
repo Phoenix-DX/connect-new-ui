@@ -3,7 +3,7 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { MenuList } from '@/components/menu/MenuList';
 import { useNavigateBack } from '@/platform/navigation';
 import { CacheControl_Policies } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { useTermsAndPoliciesMenu } from './hooks/useTermsAndPoliciesMenu';
 
 /** @origin UBTConnect.App_Menu.TermsAndPoliciesMenu

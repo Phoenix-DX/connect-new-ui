@@ -1,8 +1,8 @@
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
 import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
 import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_Icons_ExpandMore } from '@/pages/OneSchoolGlobalDetails/staticEntities';
@@ -51,7 +51,7 @@ export function ExpandableSection({
         <CustomContainer
           options={{ PaddingSize: { VerticalSizeId: UBT_Size.Medium, HorizontalSizeId: UBT_Size.Base } }}
         >
-          <Columns_Two
+          <ColumnsTwo
             columnOptions={{
               ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast,
               SpacingSize: UBT_Size.ExtraSmall,

@@ -301,7 +301,7 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
   - `resumeNavigation(event)` continues a prevented navigation later (`detail.resume()`: a back navigation goes back,
     a forward one navigates to the saved location).
   - Both actions live in `src/shared/NavigationHandler/lib/actions.ts`, together with `wasNavigationPrevented`.
-  - How a screen asks the user: it renders `Dialog_Navigation` (`src/shared/UBTConnect/Dialog_Navigation`), which wraps
+  - How a screen asks the user: it renders `Dialog_Navigation` (`src/components/ui/Dialog/NavigationDialog.tsx`), which wraps
     `NavigationConfirmationDialog` (`src/shared/NavigationHandler/NavigationConfirmationDialog`).
     - The block raises the event to the caller (`onEventOnBackNavigation`).
     - The caller calls `preventNavigation`. The dialog opens and keeps the event.

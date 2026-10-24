@@ -9,7 +9,7 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { Spinner } from '@/components/ui/Spinner';
 import { BaseLayout } from './BaseLayout';
 
 /** Stories only: the signed-in session of the captures (BottomBarMenu, CommonUI_InsideLayout), checked just now. */

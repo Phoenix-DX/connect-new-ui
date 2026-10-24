@@ -2,11 +2,11 @@
 // @os-block UBTConnect_Utils.CW_Search.SearchResult_Item
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import { UBT_ColumnBehaviour, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import {
   Connect_Entity,
@@ -19,7 +19,7 @@ import {
   UBT_Shape,
   UBT_Size,
 } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import type { SearchResult } from './types';
 
 export interface SearchResultItemProps {
@@ -83,17 +83,17 @@ export function SearchResultItem({
         }}
         onClicked={() => onOnClick?.(inSearchResult)}
       >
-        <Columns_Two
+        <ColumnsTwo
           columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast, VerticalAlign: UBT_VerticalAlign.Center }}
           left={
-            <Columns_Two
+            <ColumnsTwo
               columnOptions={{
                 ColumnBehaviour: UBT_ColumnBehaviour.ReduceFirst,
                 SpacingSize: UBT_Size.Small,
                 VerticalAlign: UBT_VerticalAlign.Center,
               }}
               left={
-                <UBT_LazyImage
+                <EntityLazyImage
                   entityId={inSearchResult.Id ?? ''}
                   inBorderRadius={image.shape}
                   imageSize={{ Height: image.height, Width: image.width }}

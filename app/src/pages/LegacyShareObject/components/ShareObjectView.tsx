@@ -6,11 +6,11 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import type { ShareObjectHousehold } from '@/pages/LegacyShareObject/hooks/shareObjectState';
 import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
-import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';
+import { ResultItemImage } from '@/components/ui/ResultItemImage';
+import { AvatarImage } from '@/components/ui/AvatarImage';
 import { UBT_AvatarSize, UBT_Color, UBT_Shape } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Connect_Entity, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { FEED_ITEM_ICON, Type_ShareObject } from './staticEntities';
 
 export interface ShareObjectViewProps {
@@ -76,7 +76,7 @@ export function ShareObjectView({
     <div className="padding" data-container="">
       <div className="border-radius-soft border-neutral-4" data-container="">
         {shareObjectTypeId === Type_ShareObject.Household && (
-          <Result_Item_Image
+          <ResultItemImage
             id={`${scope}-Household_List_Item`}
             inShowDescription={household.description !== ''}
             inIsNavigationLoading={isLoading}
@@ -86,7 +86,7 @@ export function ShareObjectView({
             inShowTag={household.tag !== ''}
             inHasBorder={false}
             imagePlaceholder={
-              <UBT_LazyImage
+              <EntityLazyImage
                 id={`${scope}-$b4`}
                 entityType={Connect_Entity.Household}
                 imageSize={{ Width: UBT_ImageSize.Large_65 }}
@@ -116,7 +116,7 @@ export function ShareObjectView({
         )}
         {(shareObjectTypeId === Type_ShareObject.OneSchoolGlobal ||
           shareObjectTypeId === Type_ShareObject.CampusCo) && (
-          <Result_Item_Image
+          <ResultItemImage
             id={`${scope}-CommunityBusiness_List_Item`}
             inType={cb.photoType}
             inShowTag={cb.countryName !== '' || cb.areasServed !== ''}
@@ -143,7 +143,7 @@ export function ShareObjectView({
           />
         )}
         {shareObjectTypeId === Type_ShareObject.Feed && (
-          <Result_Item_Image
+          <ResultItemImage
             id={`${scope}-Feed_List_Item`}
             inShowDescription
             inHasAction={false}

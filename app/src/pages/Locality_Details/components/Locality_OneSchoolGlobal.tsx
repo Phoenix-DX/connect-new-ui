@@ -1,7 +1,7 @@
 import type { LocalityTimezone } from '@/api/locality';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { useLocalityOneSchoolGlobal } from '@/pages/Locality_Details/hooks/useLocalityOneSchoolGlobal';

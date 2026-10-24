@@ -1,7 +1,7 @@
 import { ButtonLoading } from '@/shared/osui/ButtonLoading';
-import { Button } from '@/shared/UBTConnect_Utils/Button';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
+import { ActionButton } from '@/components/ui/ActionButton';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { FixedFooter } from '@/components/ui/FixedFooter';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { ContainerOptions } from '@/shared/UBTConnectLibrary/lib/structures';
 import { UBT_Shadow_ExtraSmallTop } from '@/pages/Services/staticEntities';
@@ -36,7 +36,7 @@ export function ServicesFooter({ contentContainerId, isLoading, onSaveChanges }:
     >
       <CustomContainer id="$b28" options={FOOTER_OPTIONS}>
         <ButtonLoading id="$b29" isLoading={isLoading}>
-          <Button id="$b30" buttonText="Save changes" isDisabled={isLoading} onButtonOnClick={onSaveChanges} />
+          <ActionButton id="$b30" buttonText="Save changes" isDisabled={isLoading} onButtonOnClick={onSaveChanges} />
         </ButtonLoading>
       </CustomContainer>
     </FixedFooter>

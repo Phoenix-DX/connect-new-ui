@@ -3,7 +3,7 @@
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useFlagOn } from '@/platform/flags/flags';
-import { PopupMenu } from '@/shared/Connect2_LegacyShared/PopupMenu';
+import { LegacyPopupMenu } from '@/components/ui/LegacyPopupMenu';
 
 export interface ItemOptionsMenuProps {
   /** OutSystems instance id of the block (`b1-l1-57_0-$b5`). */
@@ -80,7 +80,7 @@ export function ItemOptionsMenu({
   return (
     <OSBlock name="Utility.ItemOptionsMenu" id={id}>
       {inIsRecordAvailable && (
-        <PopupMenu
+        <LegacyPopupMenu
           id={`${scope}-$b1`}
           extendedClass="backwards-compatibility"
           anchor={<div id={`${scope}-Anchor_Placeholder`}>{anchorPlaceholder}</div>}

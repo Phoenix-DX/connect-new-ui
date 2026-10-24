@@ -2,14 +2,14 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.Note_Item_List
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Button } from '@/shared/UBTConnectLibrary/Button';
-import { CircleButton } from '@/shared/UBTConnectLibrary/CircleButton';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Button } from '@/components/ui/Button';
+import { CircleButton } from '@/components/ui/CircleButton';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
 import { NoteItem } from '@/components/note/NoteItem';
-import { Popup } from '@/shared/UBTConnectLibrary/Popup';
+import { Popup } from '@/components/ui/Popup';
 import {
   UBT_AlignItems,
   UBT_AvatarSize,
@@ -191,7 +191,7 @@ export function NoteList({
           </>
         }
         footer={
-          <Columns_Two
+          <ColumnsTwo
             columnOptions={{ SpacingSize: UBT_Size.Small }}
             left={
               <Button

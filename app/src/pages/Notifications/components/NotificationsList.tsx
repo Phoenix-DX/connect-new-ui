@@ -3,7 +3,7 @@ import { useState } from 'react';
 import type { NotificationBreakpoint, NotificationItem } from '@/api/notification';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { dateTimeToText, itemsOfRange } from './actions';
 import { Notification_ListItem } from './Notification_ListItem';
 

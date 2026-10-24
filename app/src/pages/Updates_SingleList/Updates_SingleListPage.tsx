@@ -10,10 +10,10 @@ import { useFlagOn } from '@/platform/flags/flags';
 import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
 import { Choice, Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { HorizontalTagList } from '@/shared/UBTConnectLibrary/HorizontalTagList';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { HorizontalTagList } from '@/components/ui/HorizontalTagList';
+import { Icon } from '@/components/ui/Icon';
+import { Input } from '@/components/ui/Input';
 import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
 import {
   Shape,

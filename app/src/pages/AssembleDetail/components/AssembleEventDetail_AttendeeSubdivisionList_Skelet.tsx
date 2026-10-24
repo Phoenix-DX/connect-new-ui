@@ -1,6 +1,6 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { NC_Card_Item_Text__Skeleton } from '@/shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
+import { CardTextSkeleton } from '@/components/ui/CardTextSkeleton';
 import { NC_Result_Item__Image__Skeleton } from './NC_Result_Item__Image__Skeleton';
 
 export interface AssembleEventDetail_AttendeeSubdivisionList_SkeletProps {
@@ -22,7 +22,7 @@ export function AssembleEventDetail_AttendeeSubdivisionList_Skelet({
   return (
     <OSBlock name="Assemble.AssembleEventDetail_AttendeeSubdivisionList_Skelet" id={id}>
       <div className="margin-bottom-base ThemeGrid_Width4" data-container="">
-        <NC_Card_Item_Text__Skeleton id={`${scope}-$b1`} />
+        <CardTextSkeleton id={`${scope}-$b1`} />
       </div>
       <OSList className="list list-group margin-bottom-s" animateItems source={skeletonList} keyOf={(i) => i}>
         {(i) => (

@@ -2,10 +2,10 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.AddNote
 import { useId, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CircleButton_IconPrimary } from '@/shared/UBTConnectLibrary/CircleButton_IconPrimary';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { InputCounter } from '@/shared/UBTConnectLibrary/InputCounter';
+import { CircleButtonIconPrimary } from '@/components/ui/CircleButtonIconPrimary';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { InputCounter } from '@/components/ui/InputCounter';
 import { UBT_Color, UBT_ColumnBehaviour, UBT_Icons, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface AddNoteProps {
@@ -35,7 +35,7 @@ export function AddNote({ id, onOnSubmitRequested }: AddNoteProps) {
           BorderOptions: { Color: UBT_Color.Neutral3, Size: { TopSizeId: UBT_Size.Small } },
         }}
       >
-        <Columns_Two
+        <ColumnsTwo
           columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast, SpacingSize: UBT_Size.ExtraSmall }}
           left={
             <>
@@ -58,7 +58,7 @@ export function AddNote({ id, onOnSubmitRequested }: AddNoteProps) {
             </>
           }
           right={
-            <CircleButton_IconPrimary
+            <CircleButtonIconPrimary
               iconBackgroundColorId={UBT_Color.Primary}
               iconId={UBT_Icons.Send}
               iconColorId={UBT_Color.Neutral0}

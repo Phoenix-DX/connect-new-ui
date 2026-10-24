@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Icon } from '@/components/ui/Icon';
 import {
   Connect_Entity,
   UBT_Color,

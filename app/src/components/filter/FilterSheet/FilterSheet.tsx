@@ -7,14 +7,14 @@ import type {
   CacheControl_AllLocalities as AllLocalities,
   Directory_UserCurrent,
 } from '@/shared/UBTConnect_Utils/lib/structures';
-import { Button } from '@/shared/UBTConnectLibrary/Button';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { SelectionOption_List } from '@/shared/UBTConnectLibrary/SelectionOption_List';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { Button } from '@/components/ui/Button';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { SelectionOptionList } from '@/components/ui/SelectionOptionList';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import {
   UBT_ButtonSize,
   UBT_ButtonType,
@@ -544,7 +544,7 @@ export function FilterSheet({
               });
             }}
           >
-            <Columns_Two
+            <ColumnsTwo
               columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast }}
               left={
                 <div data-container="" style={{ textAlign: 'left' }}>
@@ -595,7 +595,7 @@ export function FilterSheet({
                 extendedClasses="text-align-left"
               />
             </CustomContainer>
-            <SelectionOption_List
+            <SelectionOptionList
               lastItemStyleOptions={{ MarginSize: { BottomSizeId: UBT_Size.None } }}
               isMultiselect
               selectionOptionItemList={flat.In_Options}
@@ -614,7 +614,7 @@ export function FilterSheet({
 
   return (
     <OSBlock name="App_CommonBlocks_Filter.FilterSheet" id={id}>
-      <BottomSheet
+      <ConnectBottomSheet
         contentBackgroundColorId={UBT_Color.Neutral2}
         title={isMain ? 'Sort & Filter' : (v.optionListSelected.SheetTitle ?? '') + ' Filter'}
         contentPadding={{ GeneralSizeId: UBT_Size.Small }}
@@ -661,7 +661,7 @@ export function FilterSheet({
               ShadowId: UBT_Shadow.ExtraSmall,
             }}
           >
-            <Columns_Two
+            <ColumnsTwo
               columnOptions={{ SpacingSize: UBT_Size.Small }}
               left={
                 <Button

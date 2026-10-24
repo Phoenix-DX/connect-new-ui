@@ -1,7 +1,7 @@
 import { ButtonLoading } from '@/shared/osui/ButtonLoading';
-import { Button } from '@/shared/UBTConnect_Utils/Button';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
+import { ActionButton } from '@/components/ui/ActionButton';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { FixedFooter } from '@/components/ui/FixedFooter';
 import { UBT_Color, UBT_Shadow, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface ContactUsDetailsFooterProps {
@@ -41,7 +41,7 @@ export function ContactUsDetailsFooter({
     >
       <CustomContainer id="$b16" options={FOOTER_OPTIONS}>
         <ButtonLoading id="$b17" isLoading={isSubmiting}>
-          <Button id="$b18" buttonText="Send" isDisabled={isDisabled} onButtonOnClick={onSend} />
+          <ActionButton id="$b18" buttonText="Send" isDisabled={isDisabled} onButtonOnClick={onSend} />
         </ButtonLoading>
       </CustomContainer>
     </FixedFooter>

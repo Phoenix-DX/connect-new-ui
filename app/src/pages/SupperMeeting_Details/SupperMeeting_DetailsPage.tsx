@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { SupperMeetingDetailsContainer, useSupperMeetingDetailsFlags } from '@/containers';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { CustomText } from '@/components/ui/CustomText';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { readSupperMeetingDetailsInputs } from './inputs';
 

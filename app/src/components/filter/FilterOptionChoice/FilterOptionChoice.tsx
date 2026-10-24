@@ -2,9 +2,9 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item
 import { useMemo } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { SelectionOption_List } from '@/shared/UBTConnectLibrary/SelectionOption_List';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { SelectionOptionList } from '@/components/ui/SelectionOptionList';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -66,7 +66,7 @@ export function FilterOptionChoice({ id, filterCommonControlChoice = NO_CHOICE, 
             />
           </CustomContainer>
         )}
-        <SelectionOption_List
+        <SelectionOptionList
           selectionOptionItemList={options}
           isMultiselect={false}
           lastItemStyleOptions={{ MarginSize: { BottomSizeId: UBT_Size.None } }}

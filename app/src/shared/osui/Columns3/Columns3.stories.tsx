@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { Columns3 } from './Columns3';
 
 const meta = { title: 'Shared/osui/Columns3', component: Columns3 } satisfies Meta<typeof Columns3>;
@@ -47,7 +47,7 @@ export const V2: Story = {
 export const V3: Story = {
   args: {
     extendedClass: 'ubt-columns ubt-columns--three-columns ubt-columns-expand-middle align-items-center',
-    column1: column('left', <UBT_LazyImage />),
+    column1: column('left', <EntityLazyImage />),
     column2: column(
       'middle',
       <>

@@ -3,8 +3,8 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { MenuList } from '@/components/menu/MenuList';
 import { OSList } from '@/components/ui/os/OSList';
 import { useNavigateBack } from '@/platform/navigation';
-import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { SectionSeparator } from '@/components/ui/SectionSeparator';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_FontSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { useContactUsMenu } from './hooks/useContactUsMenu';
 

@@ -32,7 +32,7 @@ import {
   saveRecentSearchTerm,
 } from '@/platform/storage/localEntities';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import type { Tag } from '@/shared/UBTConnectLibrary/HorizontalTagList';
+import type { Tag } from '@/components/ui/HorizontalTagList';
 import {
   INITIAL_SEARCH_STATE,
   recentAsResult,

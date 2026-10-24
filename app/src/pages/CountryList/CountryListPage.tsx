@@ -7,7 +7,7 @@ import { NotificationIcon } from '@/components/notification/NotificationIcon';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
 import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
-import { StaticInput } from '@/shared/UBTConnectLibrary/StaticInput';
+import { StaticInput } from '@/components/ui/StaticInput';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { CountryListContent } from './components/CountryListContent';
 import { useCountryList } from './hooks/useCountryList';

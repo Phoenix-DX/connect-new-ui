@@ -1,11 +1,11 @@
 /** @origin UBTConnect.Notes.NoteCard_List */
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { EmptyList } from '@/shared/UBTConnectLibrary/EmptyList';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { EmptyList } from '@/components/ui/EmptyList';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import type { NoteCardItem } from '@/api/note';
 import { child, scopeOf } from './ids';
 import { NoteCard_Item } from './NoteCard_Item';

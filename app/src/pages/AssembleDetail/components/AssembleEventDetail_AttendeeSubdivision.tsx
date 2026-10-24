@@ -4,8 +4,8 @@ import { OSList } from '@/components/ui/os/OSList';
 import { ShareableObject } from '@/components/share/ShareableObject';
 import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
-import { NC_Result_Item_Badge } from '@/shared/Connect2_LegacyShared/NC_Result_Item_Badge';
-import { NC_Result_Item__Image } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Image';
+import { ResultItemBadge } from '@/components/ui/ResultItemBadge';
+import { ResultItemMedia } from '@/components/ui/ResultItemMedia';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { SHARE_OBJECT_HOUSEHOLD, SKELETON_ID } from '@/pages/AssembleDetail/hooks/attendeeSubdivisionState';
 import {
@@ -54,14 +54,14 @@ export function AssembleEventDetail_AttendeeSubdivision({
           id={`${scope}-DIV_SubdivisionHousehold_Header`}
           onClick={flows.onToggleSelected}
         >
-          <NC_Result_Item__Image
+          <ResultItemMedia
             id={`${scope}-$b1`}
             inIsRoundImage
             showPlaceholderForImage
             imagePlaceholder={
-              <NC_Result_Item_Badge id={`${scope}-$b2`}>
+              <ResultItemBadge id={`${scope}-$b2`}>
                 <i className="icon connect-icon-groups font-size-h4 text-neutral-6 fa fa-flag fa-1x" data-icon="" />
-              </NC_Result_Item_Badge>
+              </ResultItemBadge>
             }
             titlePlaceholder={
               <span className="font-size-s" data-expression="">
@@ -98,7 +98,7 @@ export function AssembleEventDetail_AttendeeSubdivision({
                   {r.Id !== SKELETON_ID ? (
                     <>
                       <ScrollAnchor id={`${scope}-$b3-${String(i)}`} idIn={r.Id} />
-                      <NC_Result_Item__Image
+                      <ResultItemMedia
                         id={`${scope}-$b4-${String(i)}`}
                         inBucket={r.AvatarURL.Bucket}
                         inImageHeight={45}

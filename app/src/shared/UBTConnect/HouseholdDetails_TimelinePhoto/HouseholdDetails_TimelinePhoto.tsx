@@ -1,6 +1,6 @@
 // @os-block UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { formatClasses, getClasses_BackgroundImageSize } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_AlignItems,
@@ -11,7 +11,7 @@ import {
   UBT_Shape,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 
 /** Local MainContainerClass (default "ubt-household-image-card"; p:…HouseholdDetails_TimelinePhoto.mvc.js:12-14). */
@@ -68,7 +68,7 @@ export function HouseholdDetails_TimelinePhoto({
         )}
         onClicked={() => onSelected?.(date)}
       >
-        <UBT_LazyImage
+        <EntityLazyImage
           imageURL={inBackgroundURL}
           inBorderRadius={UBT_Shape.Soft}
           imageSize={{ Height: UBT_ImageSize.Large_65, Width: UBT_ImageSize.Auto }}

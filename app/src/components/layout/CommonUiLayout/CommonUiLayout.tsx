@@ -15,7 +15,7 @@ import {
 } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';
 import { getClientVar, setClientVar, useClientVar } from '@/platform/session/session';
-import { HandleImageLoadError } from '@/shared/Connect2_LegacyShared/HandleImageLoadError';
+import { ImageLoadErrorHandler } from '@/components/ui/ImageLoadErrorHandler';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { OpenLinkOnResume } from '@/platform/navigation/OpenLinkOnResume';
@@ -75,7 +75,7 @@ export function CommonUiLayout({ id, inIgnorePolicy = false, inIgnoreLockScreen 
       {!inIgnorePolicy && hasPolicyToAccept && <PolicyChecker id={childId(3)} />}
       <DialogAccessRestrictedAction id={childId(4)} />
       <OpenLinkOnResume id={childId(5)} />
-      <HandleImageLoadError id={childId(6)} />
+      <ImageLoadErrorHandler id={childId(6)} />
       {isNavigateToHomeOnBack ? (
         <PreventBackNavigation id={childId(7)} onBackNavigationPrevented={redirectHome} />
       ) : (

@@ -6,13 +6,13 @@ import { FilterSheetContainer } from '@/containers/FilterSheet';
 import type { SearchFlows } from '@/pages/Search/hooks/useSearch';
 import { showsCategory } from '@/pages/Search/hooks/searchState';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { HorizontalTagList } from '@/shared/UBTConnectLibrary/HorizontalTagList';
-import { Input } from '@/shared/UBTConnectLibrary/Input';
+import { SectionSeparator } from '@/components/ui/SectionSeparator';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { HorizontalTagList } from '@/components/ui/HorizontalTagList';
+import { Input } from '@/components/ui/Input';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import {
   Shape,
   UBT_Color,

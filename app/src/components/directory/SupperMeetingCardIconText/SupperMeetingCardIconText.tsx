@@ -1,8 +1,8 @@
 /** @origin UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_IconText */
 // @os-block UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_IconText
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import { UBT_FontWeight, UBT_IconsSize, UBT_Size } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface SupperMeetingCardIconTextProps {

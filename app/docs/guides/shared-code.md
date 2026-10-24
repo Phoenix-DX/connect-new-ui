@@ -2,7 +2,8 @@
 
 - `src/shared/<Block>/`: one component per OutSystems block that two or more screens use. Props have the names of the
   block inputs. Events have the names of the block events. Placeholders become children. The component file carries
-  `@os-block <Module.Flow.Block>`.
+  `@os-block <Module.Flow.Block>`. Step P7-0 moved most of these blocks to `src/components/ui/<Name>/`; the `lib/` folders and
+  three rows that P7-2 handles stay in `src/shared/`.
 - `src/shared/osui/<Pattern>/`: OutSystems UI patterns (BottomSheet, Carousel, Gallery…). Use the same provider library
   and version as the original, where the original has one ([stack](../reference/stack.md)).
 - `src/platform/`: app-wide logic (error handling, sign-in and PIN mock, navigation, preload, feedback messages).

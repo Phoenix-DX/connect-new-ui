@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { get_ConnectVersionDetails } from '@/shared/UBTConnect_Utils/lib/actions';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { CustomText } from '@/components/ui/CustomText';
 import { UBT_Color } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface AppVersionProps {

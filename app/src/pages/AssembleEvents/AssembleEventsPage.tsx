@@ -4,7 +4,7 @@ import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { dateTimeParam, useOsNavigate } from '@/platform/navigation';
 import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
-import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import { Assemble_FilterSheet } from './components/Assemble_FilterSheet';
 import { AssembleEventsView } from './components/AssembleEventsView';
 import { AssembleSummary_List } from './components/AssembleSummary_List';
@@ -114,7 +114,7 @@ export default function AssembleEvents() {
           navigate('/UBTConnect/AssembleDetail', { Start: dateTimeParam(start), EventId: eventId, SeriesId: seriesId });
         }}
       />
-      <BottomSheet
+      <ConnectBottomSheet
         id="BottomSheet_AssembleFilter"
         title="Test"
         closeOnClickOutsite

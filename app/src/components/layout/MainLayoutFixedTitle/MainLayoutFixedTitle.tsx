@@ -4,7 +4,7 @@ import { useEffect, useId, useLayoutEffect, useRef, type ReactNode } from 'react
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { PullToRefresh } from '@/shared/osui/PullToRefresh';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import {
   clearScrollTimeout,
   removeScrollEvents,
@@ -118,7 +118,7 @@ export function MainLayoutFixedTitle({
                 data-container=""
               >
                 <div className="ubt-layout-main__title" data-container="">
-                  <Columns_Two
+                  <ColumnsTwo
                     id={`${prefix}-$b2`}
                     columnOptions={COLUMNS}
                     left={
@@ -137,7 +137,7 @@ export function MainLayoutFixedTitle({
                 data-container=""
               >
                 <div className="ubt-layout-main__search" data-container="">
-                  <Columns_Two
+                  <ColumnsTwo
                     id={`${prefix}-$b3`}
                     columnOptions={COLUMNS}
                     left={<div>{placeholderHeaderInput}</div>}

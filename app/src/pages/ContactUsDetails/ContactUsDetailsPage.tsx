@@ -6,8 +6,8 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { ValidationServiceProvider } from '@/components/ui/os/OSValidation';
 import { useNavigateBack } from '@/platform/navigation';
 import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
-import { Dialog_Navigation } from '@/shared/UBTConnect/Dialog_Navigation';
-import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
+import { NavigationDialog } from '@/components/ui/Dialog';
+import { SectionSeparator } from '@/components/ui/SectionSeparator';
 import { UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { ContactUsDetailsFooter } from './components/ContactUsDetailsFooter';
 import { ContactUsDetailsHeader } from './components/ContactUsDetailsHeader';
@@ -74,7 +74,7 @@ export default function ContactUsDetails() {
       <div data-container="" id="PopUps">
         <SubmittedConfirmationDialog />
         {state.isAnyFilled && (
-          <Dialog_Navigation
+          <NavigationDialog
             id="$b23"
             onEventOnBackNavigation={onBackNavigation}
             placeholderHeader={<span data-expression="">Delete message?</span>}

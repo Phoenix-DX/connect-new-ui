@@ -3,8 +3,8 @@ import { useState } from 'react';
 import type { PhotobookHousehold } from '@/api/household';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
 import {
   UBT_Color,
   UBT_Display,
@@ -12,7 +12,7 @@ import {
   UBT_Shape,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { PanZoom } from './PanZoom';
 import {
   UBT_AlignItems,
@@ -69,7 +69,7 @@ export function Photobook_Item({
         options={{ DisplayOptions: CENTER }}
       >
         <div className={`${inMainContainerClass}-item-cont`} data-container="" id={`${prefix}-DIV_BackgroundImage`}>
-          <UBT_LazyImage
+          <EntityLazyImage
             id={`${prefix}-Background_Image`}
             entityId={inHousehold.householdId}
             entityType={Connect_Entity.Household}
@@ -83,7 +83,7 @@ export function Photobook_Item({
             onZoomIn={handlerZoomIn}
             onMinZoomReached={handlerMinZoomReached}
             image={
-              <UBT_LazyImage
+              <EntityLazyImage
                 id={`${prefix}-Foreground_Image`}
                 extendedClass={`${inMainContainerClass}-foreground-image`}
                 entityId={inHousehold.householdId}

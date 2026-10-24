@@ -1,5 +1,5 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnect/lib/staticEntities';
 import { AppVersion } from '@/components/version/AppVersion';
 import { UBT_FontSize_DoubleExtraSmall } from './staticEntities';

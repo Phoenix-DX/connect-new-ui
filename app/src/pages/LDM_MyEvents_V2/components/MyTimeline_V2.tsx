@@ -1,7 +1,7 @@
 import type { EventCalendar, TimelineEventGroup } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { NetworkWarning } from '@/shared/Connect2_LegacyShared/NetworkWarning';
+import { NetworkWarning } from '@/components/ui/NetworkWarning';
 import { OrbitErrorScreen } from '@/components/orbit/OrbitErrorScreen';
 import { EventDetailSubSection } from '@/components/orbit/EventDetailSubSection';
 import type {

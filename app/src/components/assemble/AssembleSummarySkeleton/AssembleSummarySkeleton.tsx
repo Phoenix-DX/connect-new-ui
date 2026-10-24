@@ -2,7 +2,7 @@
 // @os-block Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { NC_Result_Item__Card } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Card';
+import { ResultItemCard } from '@/components/ui/ResultItemCard';
 
 export interface AssembleSummarySkeletonProps {
   /** OutSystems instance id of the block. */
@@ -36,7 +36,7 @@ export function AssembleSummarySkeleton({
 }: AssembleSummarySkeletonProps) {
   return (
     <OSBlock name="AssembleSkeleton.AssembleSummaryDetailHeader_Skeleton" id={id}>
-      <NC_Result_Item__Card
+      <ResultItemCard
         cardVisual={<div>{placeholderImage}</div>}
         placeholder1={<div>{placeholderSubtitleTop}</div>}
         placeholder2={<div>{placeholderTitle}</div>}

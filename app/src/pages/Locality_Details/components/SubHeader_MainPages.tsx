@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { Icon } from '@/components/ui/Icon';
 import {
   UBT_ColumnBehaviour,
   UBT_Color,
@@ -37,7 +37,7 @@ export function SubHeader_MainPages({
   return (
     <OSBlock name="Layouts.SubHeader_MainPages" id={id}>
       <div className="ubt-sub-header-main-pages" data-container="">
-        <Columns_Two
+        <ColumnsTwo
           id={`${b}-$b1`}
           columnOptions={{
             ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast,

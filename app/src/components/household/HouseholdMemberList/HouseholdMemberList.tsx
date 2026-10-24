@@ -1,8 +1,8 @@
 import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DataFetchStatus, OSList } from '@/components/ui/os/OSList';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
 import {
   UBT_AlignItems,
   UBT_Color,
@@ -14,8 +14,8 @@ import {
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Member_ListItem } from '@/shared/UBTConnectLibrary/Member_ListItem';
 import { NonMemberListItem } from '@/components/household/NonMemberListItem';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { getSkeletonList_UI_HouseholdMembers } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity, Connect_HouseholdMemberRole } from '@/shared/UBTConnect/lib/staticEntities';
 import type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
@@ -104,7 +104,7 @@ export function HouseholdMemberList({
                     memberOnClick(member.MemberRole !== Connect_HouseholdMemberRole.Child ? (member.Id ?? '0') : '0');
                   }}
                   placeholderLeft={
-                    <UBT_LazyImage
+                    <EntityLazyImage
                       entityId={member.Id ?? '0'}
                       entityType={Connect_Entity.Member}
                       imageSize={AVATAR_SIZE}
@@ -159,7 +159,7 @@ export function HouseholdMemberList({
                 marriedCaption={member.MarriageText ?? ''}
                 onOnClickPerson={nonMemberClick(member)}
                 placeholderLeft={
-                  <UBT_LazyImage
+                  <EntityLazyImage
                     imageSize={AVATAR_SIZE}
                     entityType={Connect_Entity.Member}
                     entityId={member.Id ?? '0'}

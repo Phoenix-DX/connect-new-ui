@@ -1,11 +1,11 @@
 /** @origin UBTConnectLibrary.ConnectCorePatterns.Notification_ListItem */
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { SanitizedHtml } from '@/shared/ReactiveHtmlSanitizer/SanitizedHtml';
-import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';
-import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { SanitizedHtml } from '@/components/ui/SanitizedHtml';
+import { AvatarImage } from '@/components/ui/AvatarImage';
+import { ColumnsThree } from '@/components/ui/ColumnsThree';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
 import { getBackgroundColor_IsRead } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_AvatarSize,
@@ -49,7 +49,7 @@ export function Notification_ListItem({
           BorderOptions: {},
         }}
       >
-        <Columns_Three
+        <ColumnsThree
           id={`${p}-b2-$b2`}
           extendedClasses="ubt-notification-item__columns"
           columnOptions={{

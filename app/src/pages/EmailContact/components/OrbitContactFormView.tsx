@@ -8,7 +8,7 @@ import {
   ValidationServiceProvider,
   type ValidationService,
 } from '@/components/ui/os/OSValidation';
-import { InputCounter } from '@/shared/Connect2_LegacyShared/InputCounter';
+import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
 import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
 import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
 import { DEPRECATED_ButtonLoading } from '@/shared/osui/DEPRECATED_ButtonLoading';
@@ -232,7 +232,7 @@ export function OrbitContactFormView({
                       onChange={onUserSubjectChange}
                       onBlur={onUserSubjectBlur}
                     />
-                    <InputCounter id={`${prefix}-$b3`} inputId={ids.subject} />
+                    <LegacyInputCounter id={`${prefix}-$b3`} inputId={ids.subject} />
                   </div>
                 </>
               )}
@@ -255,7 +255,7 @@ export function OrbitContactFormView({
                   onKeyDown={onMessageKeyDown}
                   onKeyUp={onMessageKeyUp}
                 />
-                <InputCounter id={`${prefix}-$b4`} inputId={ids.message} />
+                <LegacyInputCounter id={`${prefix}-$b4`} inputId={ids.message} />
               </div>
               <div data-container="">
                 <DEPRECATED_ButtonLoading id={`${prefix}-$b5`} isLoading={isSubmitting} extendedClass="full-width">

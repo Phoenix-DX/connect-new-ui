@@ -5,11 +5,11 @@ import {
   IMAGE_SIZE_DOUBLE_EXTRA_LARGE_176,
 } from '@/pages/Profile/staticEntities';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   UBT_AlignItems,
   UBT_Color,
@@ -48,7 +48,7 @@ const HEADER_OPTIONS = {
 export function ProfileHeader({ memberId, photoUrl, fullName, onViewPreview }: ProfileHeaderProps) {
   return (
     <CustomContainer id="Header" options={HEADER_OPTIONS}>
-      <UBT_LazyImage
+      <EntityLazyImage
         id="$b6"
         entityId={memberId}
         imageSize={{ Height: IMAGE_SIZE_DOUBLE_EXTRA_LARGE_176, Width: UBT_ImageSize.Square }}

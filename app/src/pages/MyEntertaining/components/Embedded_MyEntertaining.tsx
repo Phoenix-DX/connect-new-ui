@@ -1,9 +1,9 @@
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import type { EntertainingConfig } from '@/api/entertaining';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { LazyImage } from '@/shared/UBTConnectLibrary/LazyImage';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { LazyImage } from '@/components/ui/LazyImage';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import {
   UBT_Color,
   UBT_FontSize,

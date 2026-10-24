@@ -2,7 +2,7 @@
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails_Entry
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSLink } from '@/shared/lib/OSLink';
-import { LabelWithCopyIcon } from '@/shared/Connect2_LegacyShared/LabelWithCopyIcon';
+import { LabelWithCopyIcon } from '@/components/ui/LabelWithCopyIcon';
 import { checkSupportedBrowserVersion, openExternalURL } from '@/shared/Connect2_LegacyShared/lib/actions';
 
 export interface VirtualMeetingDetailsEntryProps {

@@ -2,12 +2,12 @@ import type { OneSchoolCard } from '@/api/locality';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
-import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
-import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
+import { ImageCard } from '@/components/ui/ImageCard';
+import { ImageCardContent } from '@/components/ui/ImageCardContent';
 import { UBT_ImageCardType, UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import type { ListRow } from '@/pages/Locality_Details/hooks/localityBlocksState';
 import { StopPropagationHelper } from './StopPropagationHelper';
 
@@ -55,7 +55,7 @@ export function OneSchoolGlobal_List({
           {({ key, card }) => {
             const item = `${b}-l1-3709_${String(key)}`;
             return (
-              <ImageCard_LazyLoading
+              <ImageCard
                 id={`${item}-$b2`}
                 inShowAvatarList={false}
                 inExtendedClass="padding-bottom-s"
@@ -64,7 +64,7 @@ export function OneSchoolGlobal_List({
                 onEventClick={() => onEventOnClick?.(card.communityBusinessId)}
                 lazyImagePlaceholder={
                   <div data-container="">
-                    <UBT_LazyImage
+                    <EntityLazyImage
                       id={`${item}-$b3`}
                       entityId={card.communityBusinessId}
                       imageURL={card.signedURL}
@@ -75,7 +75,7 @@ export function OneSchoolGlobal_List({
                   </div>
                 }
                 placeholderContent={
-                  <ImageCard__Content
+                  <ImageCardContent
                     id={`${item}-$b4`}
                     inTitle={card.name}
                     inSubtitle={card.localityName}

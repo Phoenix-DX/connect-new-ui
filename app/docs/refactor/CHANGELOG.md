@@ -761,3 +761,9 @@
 - All 64 routes are pages in `src/pages/`. Group reports: [P6-G1](reports/P6-G1.md), [P6-G2](reports/P6-G2.md), [P6-G3](reports/P6-G3.md), [P6-G4](reports/P6-G4.md), [P6-G5](reports/P6-G5.md), [P6-G6](reports/P6-G6.md). Step report: [P6-end](reports/P6-end.md).
 - Manual review list (routes without parity states, so the DOM evidence is a developer probe): FeedItemDetail, ContactByEmailLDMCoordinator, ContactByEmailOrbitHost, EmailTarget, EventBooklet, TransportDetail, LDM_Email_V2, OrbitAdminEventDetail, GuestArrangements, AssembleDetail, QRCodeGenerate, ViewDocuments.
 - Follow-up F27 is open: "64/64 clean" counts the routes with 0 states as clean. The report must print "N of 64 routes checked".
+
+## P7-0 - refactor(P7-0): move the P7 shared rows to components/ui
+
+- Architecture: 67 blocks of `src/shared/{Connect2_LegacyShared,UBTConnect,UBTConnect_Utils,UBTConnectLibrary,ReactiveHtmlSanitizer}` moved to `src/components/ui/<Name>/` (517 files), 29 renamed to the target names, `@origin` tags added. `shared/osui`, the `lib/` folders and 3 rows (MultiResolutionImageLoader, Dialog_AccessRestrictedAction_Legacy, NavigationConfirmationDialog) stay for P7-1/P7-2.
+- Dialog_CustomChoice and Dialog_Navigation share `components/ui/Dialog/`: hand-merged barrel `index.ts` (two `export *` lines); P7-2 rewrites it.
+- Gate: parity strict `--all` 64/64 clean on both references; `ci` 3931 tests; baseline +3 rows (owner P7), 72 rows, 0 new.

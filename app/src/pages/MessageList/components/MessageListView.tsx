@@ -6,8 +6,8 @@ import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AnimationType, RecentSearchType, Speed } from '@/pages/MessageList/staticEntities';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { MessageList_NoResults } from '@/shared/Connect2_LegacyShared/MessageList_NoResults';
-import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { MessageListNoResults } from '@/components/ui/MessageListNoResults';
+import { Spinner } from '@/components/ui/Spinner';
 import { Animate } from '@/shared/osui/Animate';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
 import { MessageListBlock } from './MessageListBlock';
@@ -222,7 +222,7 @@ export function MessageListView({
     isDataFetched && filteredOrSearched ? (
       isEmpty && !vars.IsEmptyMessage ? (
         <div data-container="">
-          <MessageList_NoResults
+          <MessageListNoResults
             id={`${prefix}-$b8`}
             placeholder1="Make sure that all words are spelled correctly."
             placeholder2="Try different keyword."

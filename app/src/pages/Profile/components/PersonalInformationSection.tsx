@@ -1,7 +1,7 @@
 import type { AccountForm } from '@/pages/Profile/hooks/profileState';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { FormInput } from './FormInput';
 import { FormSwitch } from './FormSwitch';
@@ -72,7 +72,7 @@ export function PersonalInformationSection({ personal, onChange, onShowAgeChange
         inTextOptions={NOTE_S}
         inPaddingOptions={{ TopSizeId: UBT_Size.Base, BottomSizeId: UBT_Size.Base }}
       />
-      <Columns_Two
+      <ColumnsTwo
         id="BirthDateandAge"
         columnOptions={SWITCH_COLUMNS}
         left={

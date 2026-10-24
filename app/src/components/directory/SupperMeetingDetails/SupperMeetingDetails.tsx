@@ -1,10 +1,10 @@
 /** @origin UBTConnect.Directory_SupperMeetings.SupperMeeting_DetailsBlock */
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
+import { ImageCard } from '@/components/ui/ImageCard';
 import { UBT_ImageCardType, UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import type { UI_Screen_SubdivisionDetails, UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
@@ -65,10 +65,10 @@ export function SupperMeetingDetails({
       <DirectoryDetailLayout
         placeholderDetailCard={
           <SkeletonSection inIsLoading={isLoading}>
-            <ImageCard_LazyLoading
+            <ImageCard
               inCardTypeId={UBT_ImageCardType.Detail}
               lazyImagePlaceholder={
-                <UBT_LazyImage
+                <EntityLazyImage
                   entityType={Connect_Entity.SupperMeetings_aka_Subdivisions}
                   hasErrorMessage
                   entityId={card.SubdivisionId ?? '0'}

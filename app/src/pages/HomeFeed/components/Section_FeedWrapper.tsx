@@ -1,10 +1,10 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -57,7 +57,7 @@ export function Section_FeedWrapper({
         header={
           showHeader ? (
             <CustomContainer id={`${scope}-$b2`} options={{ MarginSize: { VerticalSizeId: UBT_Size.Base } }}>
-              <Columns_Two
+              <ColumnsTwo
                 id={`${scope}-$b3`}
                 columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast }}
                 left={

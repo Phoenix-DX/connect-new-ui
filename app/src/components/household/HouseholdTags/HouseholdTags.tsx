@@ -1,8 +1,8 @@
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { HorizontalTagList } from '@/shared/UBTConnectLibrary/HorizontalTagList';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { KebabButtonMenu } from '@/shared/UBTConnectLibrary/KebabButtonMenu';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { HorizontalTagList } from '@/components/ui/HorizontalTagList';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
+import { KebabButtonMenu } from '@/components/ui/KebabButtonMenu';
 import {
   UBT_AlignItems,
   UBT_Display,

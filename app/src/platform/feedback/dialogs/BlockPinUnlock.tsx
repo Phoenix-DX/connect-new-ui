@@ -5,8 +5,8 @@ import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { PinUnlockContentContainer } from '@/platform/feedback/dialogs/PinUnlockContentContainer';
 import { get_IsUnsupportedSystem } from '@/shared/UBTConnect/lib/unsupportedVersion';
 import { UnsupportedVersionWrapper } from '@/components/version/UnsupportedVersionWrapper';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { SVG_Background_LoginWrapper } from '@/shared/UBTConnectLibrary/SVG_Background_LoginWrapper';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { SvgBackgroundLogin } from '@/components/ui/SvgBackgroundLogin';
 import { UBT_Color, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { useOsNavigate } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';
@@ -61,7 +61,7 @@ export function BlockPinUnlock({
           <div className="ubt-layout--login__svg" data-container="">
             {/* Both instances draw the compiled SVGCode (preserveAspectRatio="none", gradient x1..y2): TST renders them
                 (observed 2026-10-14, migration/knowledge/shell-observed.md); the captures' DOM serializer drops them. */}
-            <SVG_Background_LoginWrapper id={`${s}-b1-$b2`} />
+            <SvgBackgroundLogin id={`${s}-b1-$b2`} />
           </div>
           <div className="ubt-layout--login__header" id={`${s}-b1-Placeholder_Header`}></div>
           <div className="ubt-layout--login__content" id={`${s}-b1-Placeholder_Content`}>

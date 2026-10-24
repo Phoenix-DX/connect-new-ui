@@ -10,8 +10,8 @@ import {
   ValidationServiceProvider,
   type ValidationService,
 } from '@/components/ui/os/OSValidation';
-import { InputCounter } from '@/shared/Connect2_LegacyShared/InputCounter';
-import { NetworkWarning } from '@/shared/Connect2_LegacyShared/NetworkWarning';
+import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
+import { NetworkWarning } from '@/components/ui/NetworkWarning';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
 import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
@@ -256,7 +256,7 @@ export function LdmEventEmailView({
             onChange={onMessageChange}
           />
         </FormRow>
-        <InputCounter id={`${scope}-$b3`} inputId={ids.message} />
+        <LegacyInputCounter id={`${scope}-$b3`} inputId={ids.message} />
         <div className="text-align-center margin-top-m" data-container="">
           <button
             className="btn btn-secondary blue-gradient-button"

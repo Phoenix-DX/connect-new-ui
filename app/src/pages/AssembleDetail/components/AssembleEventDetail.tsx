@@ -1,7 +1,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AssembleSummarySkeleton } from '@/components/assemble/AssembleSummarySkeleton';
 import { AssembleSummaryCardContainer } from '@/containers/AssembleSummaryCard';
-import { NC_Card_Item_Text__Skeleton } from '@/shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
+import { CardTextSkeleton } from '@/components/ui/CardTextSkeleton';
 import { isMeetingNotFound } from '@/pages/AssembleDetail/hooks/assembleEventDetailState';
 import {
   useAssembleEventDetail,
@@ -83,15 +83,15 @@ export function AssembleEventDetail({
           {!isDataFetched && (summary?.EventId ?? '') === '' ? (
             <AssembleSummarySkeleton
               id={`${scope}-$b2`}
-              placeholderImage={<NC_Card_Item_Text__Skeleton id={`${scope}-$b3`} />}
+              placeholderImage={<CardTextSkeleton id={`${scope}-$b3`} />}
               placeholderSubtitleTop={
                 <div className="ThemeGrid_Width9" data-container="">
-                  <NC_Card_Item_Text__Skeleton id={`${scope}-$b4`} extendedClass="border-radius-bottom-none" />
+                  <CardTextSkeleton id={`${scope}-$b4`} extendedClass="border-radius-bottom-none" />
                 </div>
               }
               placeholderTitle={
                 <div className="ThemeGrid_Width9" data-container="">
-                  <NC_Card_Item_Text__Skeleton
+                  <CardTextSkeleton
                     id={`${scope}-$b5`}
                     extendedClass="border-radius-top-none border-radius-bottom-none"
                   />
@@ -99,7 +99,7 @@ export function AssembleEventDetail({
               }
               placeholderSubtitleBottom={
                 <div className="ThemeGrid_Width9" data-container="">
-                  <NC_Card_Item_Text__Skeleton id={`${scope}-$b6`} extendedClass="border-radius-top-none" />
+                  <CardTextSkeleton id={`${scope}-$b6`} extendedClass="border-radius-top-none" />
                 </div>
               }
             />
@@ -119,7 +119,7 @@ export function AssembleEventDetail({
             }
             contentLoading={
               <div className="padding-y-s" data-container="">
-                <NC_Card_Item_Text__Skeleton id={`${scope}-$b9`} />
+                <CardTextSkeleton id={`${scope}-$b9`} />
               </div>
             }
             content={

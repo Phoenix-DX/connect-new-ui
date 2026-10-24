@@ -1,10 +1,10 @@
 import type { PendingPolicy } from '@/api/policy';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { FixedFooter } from '@/shared/UBTConnectLibrary/FixedFooter';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { FixedFooter } from '@/components/ui/FixedFooter';
+import { Icon } from '@/components/ui/Icon';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -14,7 +14,7 @@ import {
   UBT_Shadow,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { Button } from '@/shared/UBTConnect_Utils/Button';
+import { ActionButton } from '@/components/ui/ActionButton';
 import { Separator } from '@/shared/osui/Separator';
 import { UBT_Icons2_Checkbox, UBT_Icons2_CheckboxOutlineBlank } from '@/pages/AcceptPendingPolicies/staticEntities';
 
@@ -83,7 +83,7 @@ export function PendingPoliciesForm({
   } else {
     content = (
       <>
-        <Columns_Two
+        <ColumnsTwo
           id={childId(1)}
           columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast, FlexDirection: UBT_FlexDirection.Column }}
           extendedClasses="ubt-policies--columns"
@@ -151,7 +151,12 @@ export function PendingPoliciesForm({
               ShadowId: UBT_Shadow.ExtraSmallTop,
             }}
           >
-            <Button id={childId(12)} isDisabled={!isAllSelected} buttonText="Continue" onButtonOnClick={onContinue} />
+            <ActionButton
+              id={childId(12)}
+              isDisabled={!isAllSelected}
+              buttonText="Continue"
+              onButtonOnClick={onContinue}
+            />
           </CustomContainer>
         </FixedFooter>
       </>

@@ -11,7 +11,7 @@ import {
   childrenText,
   householdName,
 } from '@/mocks/fictional/directory';
-import { markNoPhoto } from '@/shared/UBTConnect_Utils/UBT_LazyImage/mocks';
+import { markNoPhoto } from '@/components/ui/EntityLazyImage/mocks';
 
 /* DataActionGet_LocalityDetails: the recorded fixture (UBTConnect/DataActionGet_LocalityDetails/01-a5fd3a96.json:
    counts, main hall coordinates, locality/country names and time zone, no person data). Its LocalityId was remapped by

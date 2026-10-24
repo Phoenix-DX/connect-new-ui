@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { formatClasses, getClasses_AvatarSize } from '@/shared/UBTConnectLibrary/lib/actions';
 import { UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 
 export interface UBT_LazyImage_ListProps {
   id?: string;
@@ -72,7 +72,7 @@ export function UBT_LazyImage_List({
             {item.extraNumber > 0 ? (
               <NotCaptured name="UBT_LazyImage_List counter (AvatarImage)">{`+${String(item.extraNumber)}`}</NotCaptured>
             ) : (
-              <UBT_LazyImage
+              <EntityLazyImage
                 id={`${b}-l1-345_${String(i)}-$b2`}
                 imageURL={item.lazyImage.imageURL}
                 entityType={item.lazyImage.entityType}

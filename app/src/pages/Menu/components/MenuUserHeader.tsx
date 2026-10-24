@@ -1,9 +1,9 @@
 import { OSLink } from '@/shared/lib/OSLink';
 import { Connect_Entity, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -11,7 +11,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 
 export interface MenuUserHeaderProps {
   /** The user record has not come yet: the skeleton shows. */
@@ -36,11 +36,11 @@ export function MenuUserHeader({ isLoading, memberId, photoUrl, fullName, onEdit
         id="Header"
         options={{ PaddingSize: { VerticalSizeId: UBT_Size.Small, HorizontalSizeId: UBT_Size.Base } }}
       >
-        <Columns_Two
+        <ColumnsTwo
           id="$b6"
           columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceFirst, SpacingSize: UBT_Size.Base }}
           left={
-            <UBT_LazyImage
+            <EntityLazyImage
               id="$b7"
               entityId={memberId}
               imageSize={{ Height: UBT_ImageSize.Small_40, Width: UBT_ImageSize.Square }}

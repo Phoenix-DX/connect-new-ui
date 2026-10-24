@@ -1,6 +1,6 @@
 /** @origin UBTConnect.App_Common_Blocks.ItemCardActions */
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { child, scopeOf } from './ids';
 import { ItemCard_ActionBar, type ActionBarOptions } from './ItemCard_ActionBar';

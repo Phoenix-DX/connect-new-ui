@@ -1,9 +1,9 @@
 /** @origin UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_Statistics */
 // @os-block UBTConnect.Directory_SupperMeetings.SupperMeeting_ImageCard_Content_Statistics
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { ImageCard__Content__Tag } from '@/shared/UBTConnectLibrary/ImageCard__Content__Tag';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { ImageCardTag } from '@/components/ui/ImageCardTag';
 import { getLookupConcepts } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   getDescriptor_BretherenCount,
@@ -37,7 +37,7 @@ export function SupperMeetingCardStatistics({
       <CustomContainer options={{ MarginSize: {}, TextOptions: { FontSize: UBT_FontSize.ExtraSmall } }}>
         <div className="display-flex gap-s flex-wrap flex-direction-column" data-container="">
           <div data-container="">
-            <Columns_Two
+            <ColumnsTwo
               columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceFirst, SpacingSize: UBT_Size.Small }}
               left={
                 <SupperMeetingCardIconText
@@ -47,7 +47,7 @@ export function SupperMeetingCardStatistics({
                   inFontSize={fontSize}
                 />
               }
-              right={<ImageCard__Content__Tag content={inGenderSplit} />}
+              right={<ImageCardTag content={inGenderSplit} />}
             />
           </div>
           <div data-container="">

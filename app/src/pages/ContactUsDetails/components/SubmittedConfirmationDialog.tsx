@@ -1,7 +1,7 @@
 import { UBT_Color_Local, UBT_Icons2_Local } from '@/pages/ContactUsDetails/staticEntities';
-import { CircleButton_WithLabel } from '@/shared/UBTConnectLibrary/CircleButton_WithLabel';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { CircleButtonWithLabel } from '@/components/ui/CircleButtonWithLabel';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
 import { UBT_AvatarSize, UBT_FontSize, UBT_IconsSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { InformationDialog } from './InformationDialog';
 
@@ -19,7 +19,7 @@ export function SubmittedConfirmationDialog() {
       body={
         <>
           <div className="text-align-center" data-container="">
-            <CircleButton_WithLabel
+            <CircleButtonWithLabel
               id="$b20"
               sizeId={UBT_AvatarSize.Base_52}
               backgroundColorId={UBT_Color_Local.GreenLightest}

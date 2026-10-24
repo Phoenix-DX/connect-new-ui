@@ -4,7 +4,7 @@ import { MenuIcon } from '@/components/layout/MenuIcon';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSForm, useInputWithVariableValidation } from '@/components/ui/os/OSValidation';
 import { householdEmailIds } from '@/pages/EmailTarget/hooks/householdEmailState';
-import { InputCounter } from '@/shared/Connect2_LegacyShared/InputCounter';
+import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
 import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
@@ -144,12 +144,12 @@ export function HouseholdEmailView({
                   Subject
                 </label>
                 <SubjectInput id={ids.subject} value={subject} onChange={onSubjectChange} />
-                <InputCounter id={`${scope}-$b3`} inputId={ids.subject} />
+                <LegacyInputCounter id={`${scope}-$b3`} inputId={ids.subject} />
                 <label className="mandatory OSFillParent" data-label="" htmlFor={ids.message}>
                   Message
                 </label>
                 <MessageTextArea id={ids.message} value={message} onChange={onMessageChange} />
-                <InputCounter id={`${scope}-$b4`} inputId={ids.message} />
+                <LegacyInputCounter id={`${scope}-$b4`} inputId={ids.message} />
                 <div data-container="" style={{ textAlign: 'center' }}>
                   <DEPRECATED_ButtonLoading id={`${scope}-$b5`} isLoading={isSending}>
                     <button className="btn btn-primary OSFillParent" data-button="" type="submit" onClick={onSubmit}>

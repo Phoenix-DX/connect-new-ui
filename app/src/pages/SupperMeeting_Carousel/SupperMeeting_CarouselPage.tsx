@@ -4,7 +4,7 @@ import type { CarouselSupperMeetingDetailsSlot } from '@/components/directory/Ca
 import { EntitiesCarousel } from '@/components/directory/EntitiesCarousel';
 import { SupperMeetingDetailsContainer, useSupperMeetingDetailsFlags } from '@/containers';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { CustomText } from '@/components/ui/CustomText';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { useSupperMeetingCarousel } from './hooks/useSupperMeetingCarousel';
 import { readSupperMeetingCarouselInputs } from './inputs';

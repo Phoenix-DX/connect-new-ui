@@ -3,7 +3,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DataFetchStatus, OSList } from '@/components/ui/os/OSList';
 import { Gallery } from '@/shared/osui/Gallery';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
 import { HouseholdGalleryCard } from '@/components/household/HouseholdGalleryCard';
 import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';

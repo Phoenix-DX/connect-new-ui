@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { get_IsUnsupportedVersion, type IsUnsupportedVersion } from '@/shared/UBTConnect/lib/unsupportedVersion';
 import { UnsupportedVersionBrowser } from '@/components/version/UnsupportedVersionBrowser';

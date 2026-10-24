@@ -49,7 +49,7 @@ flowchart TB
     domain[src/api/&lt;domain&gt;<br/>types · mapper · repository · keys · hooks]
     widgets[src/components<br/>platform widgets in components/ui/os:<br/>validation, popup, list, radio group]
     vendor[src/vendor and osui vendor folders<br/>third-party scripts copied from the original]
-    shared[src/shared<br/>one component per OutSystems block<br/>src/shared/osui for OutSystems UI patterns]
+    shared[src/shared<br/>blocks not yet moved to components/ui<br/>src/shared/osui for OutSystems UI patterns]
     lib[src/api/client · src/platform/{config, log, flags, device}<br/>src/legacy/os: os-wire, os-exceptions, os-assets]
     mocks[src/mocks<br/>MSW handlers · recorded fixtures · mock store]
     css[public/UBTConnect/css<br/>original OutSystems CSS per screen]
@@ -135,7 +135,7 @@ sequenceDiagram
   Phases 1 and 2 moved the code to `platform/`, `legacy/os/`, `api/<domain>/`, `pages/`, `containers/` and `components/`.
   Phase 4 added the typed settings, the session state machine, the auth provider, the route meta and the flag registry in `platform/`. Phase 3 removed the import cycles and added the folder-direction rules; its numbers are in
   [reports/P3.md](../refactor/reports/P3.md).
-- Phase 6 moved every route to `src/pages/` and deleted `src/screens/` ([P6-end](../refactor/reports/P6-end.md)). The blocks in `src/shared/` stay until P7-6.
+- Phase 6 moved every route to `src/pages/` and deleted `src/screens/` ([P6-end](../refactor/reports/P6-end.md)). Step P7-0 moved 67 blocks from `src/shared/` to `src/components/ui/` ([move map](../refactor/move-map.csv)); the `lib/` folders, `osui` and 3 rows for P7-2 stay in `src/shared/` until P7-6.
 - Implementation patterns with reference code: `migration/patterns/P-*.md`.
 - Feature flag decisions: [reference/flags.md](../reference/flags.md).
 - Per screen: `migration/screens/<Screen>/route-spec.md`.

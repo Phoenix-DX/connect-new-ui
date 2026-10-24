@@ -5,7 +5,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { appManager_GetIsNative } from '@/platform/device/deviceContext';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { CustomText } from '@/components/ui/CustomText';
 import { changeWindowLocation, jSUtils_CopyToClipboard } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { AddressPopup } from '@/components/contact/AddressPopup';
 import { cleanAddressForMaps } from '@/shared/UBTConnect_Utils/lib/actions';

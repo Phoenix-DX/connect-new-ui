@@ -1,10 +1,10 @@
 /** @origin UBTConnect.Directory_Household_Blocks.Household_GalleryCard */
 // @os-block UBTConnect.Directory_Household_Blocks.Household_GalleryCard
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
-import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
+import { ImageCard } from '@/components/ui/ImageCard';
+import { ImageCardContent } from '@/components/ui/ImageCardContent';
 import { UBT_ImageCardType, UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 
@@ -30,20 +30,20 @@ export function HouseholdGalleryCard({
   const household = subdivisionHouseholdGalleryCard;
   return (
     <OSBlock name="Directory_Household_Blocks.Household_GalleryCard" id={id}>
-      <ImageCard_LazyLoading
+      <ImageCard
         inItemsPerRow={itemsPerRow}
         inExtendedClass="gallery-card"
         inCardTypeId={UBT_ImageCardType.Gallery}
         onEventClick={() => onEventOnClick?.()}
         lazyImagePlaceholder={
-          <UBT_LazyImage
+          <EntityLazyImage
             entityType={Connect_Entity.Household}
             imageSize={{ Width: UBT_ImageSize.HalfWidth_50vw }}
             entityId={household.HouseholdId ?? '0'}
           />
         }
         placeholderContent={
-          <ImageCard__Content
+          <ImageCardContent
             inSubtitle={household.ChildrenNames ?? ''}
             inShowSubtitle
             inTitle={household.HouseholdName ?? ''}

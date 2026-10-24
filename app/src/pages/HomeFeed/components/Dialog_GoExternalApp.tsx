@@ -3,10 +3,10 @@ import type { ExternalAppPopUpInfo } from '@/api/service';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
-import { CircleButton } from '@/shared/UBTConnectLibrary/CircleButton';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { CircleButton } from '@/components/ui/CircleButton';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
 import {
   UBT_AvatarSize,
   UBT_Color,

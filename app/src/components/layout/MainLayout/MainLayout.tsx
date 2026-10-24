@@ -4,7 +4,7 @@ import { useEffect, useId, useLayoutEffect, useRef, useState, type ReactNode } f
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { PullToRefresh } from '@/shared/osui/PullToRefresh';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import {
   clearScrollTimeout,
   getClass_BackgroundColor,
@@ -123,7 +123,7 @@ export function MainLayout({
                 data-container=""
               >
                 <div className="ubt-layout-main__title" data-container="">
-                  <Columns_Two
+                  <ColumnsTwo
                     id={`${prefix}-$b2`}
                     columnOptions={{
                       ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast,
@@ -139,7 +139,7 @@ export function MainLayout({
                   />
                 </div>
                 <div className="ubt-layout-main__search" data-container="">
-                  <Columns_Two
+                  <ColumnsTwo
                     id={`${prefix}-$b3`}
                     columnOptions={{
                       ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast,

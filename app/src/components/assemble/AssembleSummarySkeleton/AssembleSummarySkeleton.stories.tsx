@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { NC_Result_Item_Badge } from '@/shared/Connect2_LegacyShared/NC_Result_Item_Badge';
+import { ResultItemBadge } from '@/components/ui/ResultItemBadge';
 import { PendingBlock } from '@/shared/test/PendingBlock';
 import { AssembleSummarySkeleton } from './AssembleSummarySkeleton';
 
@@ -24,7 +24,7 @@ export const V1: Story = {
     ),
     placeholderTitle: <div className="ThemeGrid_Width7" data-container="" />,
     placeholderSubtitleBottom: <span data-expression="" />,
-    placeholderRight: <NC_Result_Item_Badge id="b2-b4-b7-l1-75_0-$b5" size="73px" />,
+    placeholderRight: <ResultItemBadge id="b2-b4-b7-l1-75_0-$b5" size="73px" />,
     placeholderLocation: <PendingBlock name="NewConnect_Utilities.NC_Result_Item__Card__Location" />,
   },
 };

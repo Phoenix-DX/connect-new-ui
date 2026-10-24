@@ -4,7 +4,7 @@ import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useViewState } from '@/platform/navigation';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnect/lib/staticEntities';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { CustomText } from '@/components/ui/CustomText';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
 import { HouseholdRelationsView } from './components/HouseholdRelationsView';
 import { useHouseholdRelations, type HouseholdRelationsEvents } from './hooks/useHouseholdRelations';

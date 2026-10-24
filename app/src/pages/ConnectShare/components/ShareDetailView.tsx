@@ -3,7 +3,7 @@ import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { ConnectBlankSlate } from '@/shared/Connect2_LegacyShared/ConnectBlankSlate';
+import { ConnectBlankSlate } from '@/components/ui/ConnectBlankSlate';
 import { NavigationLanding } from './NavigationLanding';
 
 export interface ShareDetailViewProps {

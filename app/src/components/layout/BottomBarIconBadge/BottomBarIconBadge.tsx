@@ -2,9 +2,9 @@
 // @os-block UBTConnect.App_Common_Blocks.App_IconBadge
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSLink } from '@/shared/lib/OSLink';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconBadge } from '@/shared/UBTConnectLibrary/IconBadge';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Icon } from '@/components/ui/Icon';
+import { IconBadge } from '@/components/ui/IconBadge';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { UBT_Color, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface BottomBarIconBadgeProps {

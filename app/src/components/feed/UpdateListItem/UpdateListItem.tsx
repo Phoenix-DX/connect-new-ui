@@ -2,15 +2,15 @@
 // @os-block UBTConnectLibrary.ConnectCorePatterns.Update_ListItem
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { AvatarDouble } from '@/shared/UBTConnectLibrary/AvatarDouble';
-import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';
-import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { ContextMenu } from '@/shared/UBTConnectLibrary/ContextMenu';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { AvatarDouble } from '@/components/ui/AvatarDouble';
+import { AvatarImage } from '@/components/ui/AvatarImage';
+import { ColumnsThree } from '@/components/ui/ColumnsThree';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { ContextMenu } from '@/components/ui/ContextMenu';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   formatConnectDate_WithYear,
   getBackgroundColor_IsRead,
@@ -37,7 +37,7 @@ import type {
   SpacingOptions,
   TextGenderIdentifier,
 } from '@/shared/UBTConnectLibrary/lib/structures';
-import { TagContent } from '@/shared/UBTConnectLibrary/TagContent';
+import { TagContent } from '@/components/ui/TagContent';
 
 export interface UpdateListItemProps {
   /** OutSystems instance id of the block. */
@@ -126,7 +126,7 @@ export function UpdateListItem({
   );
   const typeAndDate = (
     <div data-container="">
-      <Columns_Two
+      <ColumnsTwo
         columnOptions={{
           ColumnBehaviour: UBT_ColumnBehaviour.ReduceFirst,
           SpacingSize: UBT_Size.ExtraSmall,
@@ -184,7 +184,7 @@ export function UpdateListItem({
         onClicked={onOnClick}
       >
         {showImage ? (
-          <Columns_Three
+          <ColumnsThree
             columnOptions={{
               ColumnBehaviour: UBT_ColumnBehaviour.ExpandMiddle,
               SpacingSize: UBT_Size.Small,
@@ -221,7 +221,7 @@ export function UpdateListItem({
             })}
           />
         ) : (
-          <Columns_Two
+          <ColumnsTwo
             columnOptions={{
               ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast,
               SpacingSize: UBT_Size.Small,

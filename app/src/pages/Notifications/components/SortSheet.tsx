@@ -4,10 +4,10 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import type { BackNavigationEvent } from '@/platform/navigation';
 import { FilterOptionChoice } from '@/components/filter/FilterOptionChoice';
-import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
-import { Button } from '@/shared/UBTConnectLibrary/Button';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
+import { Button } from '@/components/ui/Button';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import {
   UBT_ButtonSize,
   UBT_ButtonType,
@@ -56,7 +56,7 @@ export function SortSheet({ id, yesLabel, noLabel, onSheetInitialized, onApplySo
   };
   return (
     <OSBlock name="App_CommonBlocks_Filter.SortSheet" id={id}>
-      <BottomSheet
+      <ConnectBottomSheet
         id={`${p}-$b1`}
         title="Sort"
         contentBackgroundColorId={UBT_Color.Neutral2}
@@ -104,7 +104,7 @@ export function SortSheet({ id, yesLabel, noLabel, onSheetInitialized, onApplySo
               ShadowId: UBT_Shadow.ExtraSmall,
             }}
           >
-            <Columns_Two
+            <ColumnsTwo
               id={`${p}-$b4`}
               columnOptions={{ SpacingSize: UBT_Size.Small }}
               left={

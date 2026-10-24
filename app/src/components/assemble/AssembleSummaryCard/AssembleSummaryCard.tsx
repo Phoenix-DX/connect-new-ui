@@ -1,9 +1,9 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { OSLink } from '@/shared/lib/OSLink';
-import { NC_Card_Item_Visual } from '@/shared/Connect2_LegacyShared/NC_Card_Item_Visual';
-import { NC_Result_Item__Card } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Card';
-import { NC_Result_Item__Image } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Image';
+import { CardItemVisual } from '@/components/ui/CardItemVisual';
+import { ResultItemCard } from '@/components/ui/ResultItemCard';
+import { ResultItemMedia } from '@/components/ui/ResultItemMedia';
 import { VirtualMeetingUrl, type MeetingInfoActions } from '@/components/assemble/VirtualMeetingUrl';
 import { AssembleSummaryCardHeader } from '@/components/assemble/AssembleSummaryCardHeader';
 import { AssembleSummaryCardRow } from '@/components/assemble/AssembleSummaryCardRow';
@@ -77,10 +77,10 @@ export function AssembleSummaryCard({
   return (
     <OSBlock name="Assemble.AssembleSummaryCard" id={id}>
       <div data-container="">
-        <NC_Result_Item__Card
+        <ResultItemCard
           cardVisual={
             !isListItem && (
-              <NC_Card_Item_Visual
+              <CardItemVisual
                 inImageCoverPositionY={Position.Center}
                 inSignedURL={virtualOrHallPhoto('img/Connect2_LegacyShared.BGTAudioRecording.svg')}
                 inResultType={ResultListType.Subdivision}
@@ -120,7 +120,7 @@ export function AssembleSummaryCard({
           }
           placeholderRight={
             isListItem && (
-              <NC_Result_Item__Image
+              <ResultItemMedia
                 inResultType={ResultListType.Subdivision}
                 showPlaceholderForImage={false}
                 customClass="assemble-summary__card__header"

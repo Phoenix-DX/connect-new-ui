@@ -6,7 +6,7 @@ import { isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { createOrUpdate_LocalNote } from '@/platform/storage/localEntities';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { AddNote } from '@/components/note/AddNote';
-import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
 import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { note_SendFeedbackMessages } from '@/shared/UBTConnect_Utils/lib/actions';
@@ -130,7 +130,7 @@ export function NotesSheet({
   return (
     <OSBlock name="CW_Notes.NotesSheet" id={id}>
       {isSheetOpen && (
-        <BottomSheet
+        <ConnectBottomSheet
           title="Note"
           extendedClasses={extendedClasses}
           showHeader

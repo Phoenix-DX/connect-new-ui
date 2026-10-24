@@ -5,13 +5,13 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
-import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
-import { CircleButton_WithLabel } from '@/shared/UBTConnectLibrary/CircleButton_WithLabel';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { EmptyList } from '@/shared/UBTConnectLibrary/EmptyList';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { Input } from '@/shared/UBTConnectLibrary/Input';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
+import { CircleButtonWithLabel } from '@/components/ui/CircleButtonWithLabel';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { EmptyList } from '@/components/ui/EmptyList';
+import { Icon } from '@/components/ui/Icon';
+import { Input } from '@/components/ui/Input';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import {
   Shape,
   UBT_ButtonSize,
@@ -19,7 +19,7 @@ import {
   UBT_Color as LibraryColor,
   UBT_Display,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { Button } from '@/shared/UBTConnect_Utils/Button';
+import { ActionButton } from '@/components/ui/ActionButton';
 import type { SearchResult } from '@/shared/UBTConnect_Utils/lib/structures';
 import {
   Connect_Entity,
@@ -36,7 +36,7 @@ import {
 import { SearchResultItem } from '@/components/search/SearchResultItem';
 import { ShareSheetSection } from '@/components/share/ShareSheetSection';
 import { ShareSheetSectionTitle } from '@/components/share/ShareSheetSectionTitle';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { cs_ShareObject, useGetAvailableMembers, useGetRecentlyShared } from './api';
 import { delaySetIsOpen, scrollToTop, shareSheet_IsSharing } from './jsNodes';
 
@@ -239,7 +239,7 @@ export function ShareSheetContainer({
   return (
     <OSBlock name="CW_Share.ShareSheet" id={id}>
       {isOpen && (
-        <BottomSheet
+        <ConnectBottomSheet
           id={sheetBlockId}
           extendedClasses={
             'connect-share-sheet background-neutral-2 ubt-bottom-sheet--dynamic-height' +
@@ -328,7 +328,7 @@ export function ShareSheetContainer({
                               <div className="negative-margin-right-base" data-container="">
                                 <div className={`${horizontalList} OSFillParent`} data-list="">
                                   {recentlyShared.map((item, index) => (
-                                    <CircleButton_WithLabel
+                                    <CircleButtonWithLabel
                                       key={`${item.Id ?? ''}-${String(index)}`}
                                       borderColorId={
                                         locals.sharingRecentMemberId === item.Id
@@ -342,7 +342,7 @@ export function ShareSheetContainer({
                                         onClickRecentMember(item);
                                       }}
                                       icon={
-                                        <UBT_LazyImage
+                                        <EntityLazyImage
                                           entityType={Connect_Entity.Member}
                                           entityId={item.Id ?? ''}
                                           imageSize={{ Height: UBT_ImageSize.Square, Width: UBT_ImageSize.Small_40 }}
@@ -393,7 +393,7 @@ export function ShareSheetContainer({
                           <div className="negative-margin-right-s" data-container="">
                             <div className={`${horizontalList} OSFillParent`} data-list="">
                               {selectedMembers.map((item, index) => (
-                                <CircleButton_WithLabel
+                                <CircleButtonWithLabel
                                   key={item.Id}
                                   extendedClasses={lastPadding(index, selectedMembers.length)}
                                   borderColorId={UBT_Color.Primary}
@@ -403,7 +403,7 @@ export function ShareSheetContainer({
                                     onClickSelected(item);
                                   }}
                                   icon={
-                                    <UBT_LazyImage
+                                    <EntityLazyImage
                                       entityType={Connect_Entity.Member}
                                       imageSize={{ Height: UBT_ImageSize.Square, Width: UBT_ImageSize.Small_40 }}
                                       entityId={item.Id ?? ''}
@@ -505,14 +505,14 @@ export function ShareSheetContainer({
               }}
             >
               {isSearchStep ? (
-                <Button
+                <ActionButton
                   isDisabled={selectedMembers.length === 0}
                   buttonText="Send"
                   buttonOptions={{ UBT_ButtonSizeId: UBT_ButtonSize.Small }}
                   onButtonOnClick={onClickSend}
                 />
               ) : (
-                <Button
+                <ActionButton
                   buttonText="Cancel"
                   buttonOptions={{ UBT_ButtonSizeId: UBT_ButtonSize.Small, UBT_ButtonTypeId: UBT_ButtonType.Tertiary }}
                   onButtonOnClick={() => onClosed.current?.()}

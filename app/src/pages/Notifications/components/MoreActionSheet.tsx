@@ -3,11 +3,11 @@ import { useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import type { BackNavigationEvent } from '@/platform/navigation';
-import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
-import { Button } from '@/shared/UBTConnectLibrary/Button';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
+import { Button } from '@/components/ui/Button';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   UBT_ButtonSize,
   UBT_ButtonType,
@@ -60,7 +60,7 @@ export function MoreActionSheet({
   );
   return (
     <OSBlock name="App_CommonBlocks_Filter.MoreActionSheet" id={id}>
-      <BottomSheet
+      <ConnectBottomSheet
         id={`${p}-$b1`}
         showHeader={false}
         contentBackgroundColorId={UBT_Color.Neutral2}

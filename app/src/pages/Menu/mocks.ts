@@ -5,7 +5,7 @@ import { fixtureData } from '@/mocks/fixtures';
 import { mockDelay, scenario } from '@/mocks/scenario';
 import { mockUserInformation, mockUserToggles } from '@/platform/session/mockUser';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { mockSignedImageURL } from '@/shared/UBTConnect_Utils/UBT_LazyImage/mocks';
+import { mockSignedImageURL } from '@/components/ui/EntityLazyImage/mocks';
 
 /* Menu mocks (P-MOCKS).
    - ActionRequestPhotoUpdate: never recorded (a write, blocked on TST); fictional answer Out_IsSuccess = True (contract

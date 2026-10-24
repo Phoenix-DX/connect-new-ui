@@ -3,12 +3,12 @@ import { useNavigateBack } from '@/platform/navigation';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { Dialog_CustomChoice } from '@/shared/UBTConnect/Dialog_CustomChoice';
+import { ChoiceDialog } from '@/components/ui/Dialog';
 import { MenuList } from '@/components/menu/MenuList';
 import { AppVersion } from '@/components/version/AppVersion';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
 import {
   UBT_Color,
   UBT_Display,
@@ -86,7 +86,7 @@ export default function Menu() {
         bottom={<BottomBar id="$b13" activeItem={Connect_BottomBar_Items.Menu} isRootPage />}
         commonUI={<CommonUiLayout id="$b14" />}
       />
-      <Dialog_CustomChoice
+      <ChoiceDialog
         id="PopUp_Logout"
         scope="b15"
         placeholderHeader="Logout"
@@ -95,7 +95,7 @@ export default function Menu() {
         placeholderDismissButtonLabe="No"
       />
       <CacheControl_UserInfo_Wrapper id="$b16" onResult={onUserInformation} />
-      <Dialog_CustomChoice
+      <ChoiceDialog
         id="Popup_SubmitPhotoRequest"
         scope="b17"
         placeholderHeader={<span data-expression="">Photo Request?</span>}

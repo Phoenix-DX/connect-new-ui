@@ -11,13 +11,13 @@ import { HouseholdTags } from '@/components/household/HouseholdTags/HouseholdTag
 import { HouseholdTimelinePhotos } from '@/components/household/HouseholdTimelinePhotos/HouseholdTimelinePhotos';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DataFetchStatus } from '@/components/ui/os/OSList';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
-import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
+import { ImageCardContent } from '@/components/ui/ImageCardContent';
+import { ImageCard } from '@/components/ui/ImageCard';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -29,9 +29,9 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import type { Directory_Coordinates } from '@/shared/UBTConnect_Utils/lib/structures';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { Connect_Entity, UBT_Icons2 as UBTConnect_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
 import type {
   UI_HouseholdMember,
@@ -136,11 +136,11 @@ export function HouseholdDetailsView({
 
   const detailCard = (
     <SkeletonSection inIsLoading={isLoading}>
-      <ImageCard_LazyLoading
+      <ImageCard
         inIsBookmarked={isBookmarked}
         inCardTypeId={UBT_ImageCardType.Detail}
         lazyImagePlaceholder={
-          <UBT_LazyImage
+          <EntityLazyImage
             hasErrorMessage
             imageSize={{ Width: UBT_ImageSize.MaxWidth_100vw }}
             entityType={Connect_Entity.Household}
@@ -149,7 +149,7 @@ export function HouseholdDetailsView({
         }
         placeholderImageTag={<div>{carouselTag}</div>}
         placeholderContent={
-          <ImageCard__Content
+          <ImageCardContent
             inTitle={isAbout ? (content.Name ?? '') : 'Household gallery'}
             inSubtitle={isAbout ? (content.FamilyNames ?? '') : ''}
             inShowSubtitle={isAbout && (content.FamilyNames ?? '') !== ''}
@@ -215,7 +215,7 @@ export function HouseholdDetailsView({
             }}
             onClicked={onPhotobookClick}
           >
-            <Columns_Two
+            <ColumnsTwo
               columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast, SpacingSize: UBT_Size.Small }}
               left={
                 <IconText text="Photobook" spacingSize={UBT_Size.Base}>

@@ -48,7 +48,7 @@ How a screen validates:
 
 These files use the service: `src/pages/Profile/ProfilePage.tsx`, `src/pages/Login/LoginPage.tsx` (validate with no visible
 widget), `src/pages/ContactUsDetails/ContactUsDetailsPage.tsx` (`components/MessageTextArea.tsx`) and the shared Input block
-(`src/shared/UBTConnectLibrary/Input/Input.tsx`).
+(`src/components/ui/Input/Input.tsx`).
 Tests: `OSValidation.test.tsx`.
 
 ## OSPopup
@@ -63,7 +63,7 @@ the widget is in the screen, open or not. `OSPopupWidget` calls it when the call
   block that owns the Popup widget in the same way. A closed dialog later in the tree therefore removes the class that an
   open dialog added, as on TST.
 
-These files use it: `src/shared/UBTConnectLibrary/Popup/Popup.tsx`, `NavigationConfirmationDialog`, `ContactPopup`,
+These files use it: `src/components/ui/Popup/Popup.tsx`, `NavigationConfirmationDialog`, `ContactPopup`,
 `EntityDetailsActionsContainer` (`src/containers/EntityDetailsActions`) and the shell dialogs (`src/platform/feedback/dialogs`, `DialogExitConfirmation`).
 Tests: `usePopupWidget.test.tsx`.
 

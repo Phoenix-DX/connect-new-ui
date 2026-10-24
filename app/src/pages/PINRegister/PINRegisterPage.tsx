@@ -1,8 +1,8 @@
 import { OSLink } from '@/shared/lib/OSLink';
 import { PinRegisterContent } from '@/components/auth/PinRegisterContent';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import { LoginLayout } from '@/components/layout/LoginLayout';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';

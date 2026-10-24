@@ -2,8 +2,8 @@
 // @os-block UBTConnect.App_Common.UnsupportedVersion
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Button } from '@/shared/UBTConnect_Utils/Button';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
+import { ActionButton } from '@/components/ui/ActionButton';
+import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Display, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_Color, UBT_FontSize, UBT_Icons2, UBT_JustifyContent } from '@/shared/UBTConnect/lib/staticEntities';
 import { WelcomeToConnect } from '@/components/auth/WelcomeToConnect';
@@ -46,7 +46,7 @@ export function UnsupportedVersion({
             options={{ DisplayOptions: { Display: UBT_Display.Flex, JustifyContent: UBT_JustifyContent.Center } }}
           >
             <div data-container="">
-              <Button
+              <ActionButton
                 isIconOnRight
                 buttonText="Upgrade From Google Play"
                 iconId={UBT_Icons2.OpenNew}

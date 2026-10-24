@@ -17,9 +17,9 @@ import type { BookmarkNote } from '@/pages/BookmarksByGroup/types';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { MenuAction, ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { MessageList_NoResults } from '@/shared/Connect2_LegacyShared/MessageList_NoResults';
-import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
-import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { MessageListNoResults } from '@/components/ui/MessageListNoResults';
+import { ResultItemImage } from '@/components/ui/ResultItemImage';
+import { Spinner } from '@/components/ui/Spinner';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { BookmarkNoteAddEdit } from './BookmarkNoteAddEdit';
 import { BookmarkNoteDelete } from './BookmarkNoteDelete';
@@ -119,7 +119,7 @@ export function BookmarkGroupView({
     return (
       <div className="bookmark-list-item" data-container="" style={gap(index, items.length)}>
         <ScrollAnchor id={`${p}-$b3`} idIn={item.objectId} />
-        <Result_Item_Image
+        <ResultItemImage
           id={`${p}-Household_List_Item`}
           inHasBorder={false}
           inShowDescription={d.childrenNames !== ''}
@@ -241,7 +241,7 @@ export function BookmarkGroupView({
             {/* The title and tag colours of the compiled view (main hall: primary, else neutral) are computed inline
                 styles that the clone may only render once captured (rule 21): left out until then. */}
             <NotCaptured name="Supper Meeting row: main-hall title and tag colours (Locations not captured)" />
-            <Result_Item_Image
+            <ResultItemImage
               id={`${p}-Subdivisions_List_Item`}
               inHasAction
               inShowTag
@@ -298,7 +298,7 @@ export function BookmarkGroupView({
     return (
       <div className="bookmark-list-item" data-container="" style={gap(index, items.length)}>
         <ScrollAnchor id={`${p}-$b14`} idIn={item.objectId} />
-        <Result_Item_Image
+        <ResultItemImage
           id={`${p}-Entity_List_Item`}
           inHasAction
           inShowTag={d.localityName !== '' || d.countryName !== ''}
@@ -405,7 +405,7 @@ export function BookmarkGroupView({
             }
           />
         ) : (
-          <MessageList_NoResults
+          <MessageListNoResults
             id={`${scope}-$b22`}
             placeholder1="Make sure that all words are spelled correctly."
             placeholder2="Try different keyword."

@@ -2,14 +2,14 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.Note_Item
 import { useId, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Button } from '@/shared/UBTConnectLibrary/Button';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Button } from '@/components/ui/Button';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
 import { BookmarkNotesKebab } from '@/components/note/BookmarkNotesKebab';
-import { TextArea_WithCounter } from '@/shared/UBTConnectLibrary/TextArea_WithCounter';
-import { TextEllipsis } from '@/shared/UBTConnectLibrary/TextEllipsis';
+import { TextAreaWithCounter } from '@/components/ui/TextAreaWithCounter';
+import { TextEllipsis } from '@/components/ui/TextEllipsis';
 import { getRelativeTimeTag } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_ButtonSize,
@@ -82,10 +82,10 @@ export function NoteItem({
   return (
     <OSBlock name="ConnectPatterns.Note_Item" id={id}>
       {!isEditing ? (
-        <Columns_Two
+        <ColumnsTwo
           columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast, SpacingSize: UBT_Size.ExtraSmall }}
           left={
-            <Columns_Two
+            <ColumnsTwo
               columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceFirst }}
               extendedClasses="padding-top-xs"
               left={
@@ -133,12 +133,12 @@ export function NoteItem({
         />
       ) : (
         <>
-          <Columns_Two
+          <ColumnsTwo
             columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceFirst, SpacingSize: UBT_Size.ExtraSmall }}
             extendedClasses="padding-top-xs"
             left={<Icon inIconId={UBT_Icons.ListAltFill} inColorId={UBT_Color.CyanDark} />}
             right={
-              <TextArea_WithCounter inInitialLength={edittingNote.length}>
+              <TextAreaWithCounter inInitialLength={edittingNote.length}>
                 <span>
                   <textarea
                     className="form-control OSFillParent"
@@ -151,11 +151,11 @@ export function NoteItem({
                     }}
                   />
                 </span>
-              </TextArea_WithCounter>
+              </TextAreaWithCounter>
             }
           />
           <CustomContainer options={{}}>
-            <Columns_Two
+            <ColumnsTwo
               columnOptions={{ SpacingSize: UBT_Size.ExtraSmall }}
               left={
                 <Button

@@ -6,7 +6,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { isOrbitKind, messageTitle } from '@/pages/MessageDetail/hooks/messageDetailState';
 import { MessageInfoType, MessagePriority, MessageSenderTarget } from '@/pages/MessageDetail/staticEntities';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
-import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
+import { Spinner } from '@/components/ui/Spinner';
 import { NotificationDetailBlock } from './NotificationDetailBlock';
 
 /** The view of the message detail, props only: the legacy layout with the back icon and the sender as title, the

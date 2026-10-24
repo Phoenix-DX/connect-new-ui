@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { bindDragToOpen } from '@/shared/UBTConnectLibrary/BottomSheet/jsNodes';
-import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { bindDragToOpen } from '@/components/ui/ConnectBottomSheet/jsNodes';
+import { ColumnsThree } from '@/components/ui/ColumnsThree';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { jSUtils_SetStyleProperty } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { bottomSheetOpen } from '@/shared/osui/lib/actions';
 import { Shape } from '@/shared/osui/lib/staticEntities';
@@ -41,7 +41,7 @@ export const V1: Story = {
   args: {
     shape: Shape.Rounded,
     extendedClass: filterSheet,
-    topBar: <Columns_Three />,
+    topBar: <ColumnsThree />,
     content: placeholder(
       'padding-s',
       <PendingBlock name="App_CommonBlocks_Filter.FilterSheet_OptionList_Item" />,
@@ -55,7 +55,7 @@ export const V2: Story = {
   args: {
     shape: Shape.Rounded,
     extendedClass: 'ubt-bottom-sheet background-neutral-0 custom-padding directory-legend-explanation',
-    topBar: <Columns_Three />,
+    topBar: <ColumnsThree />,
     content: placeholder(
       'padding-x-base padding-bottom-xxl',
       <>
@@ -74,7 +74,7 @@ export const V3: Story = {
   args: {
     shape: Shape.Rounded,
     extendedClass: filterSheet,
-    topBar: <Columns_Three />,
+    topBar: <ColumnsThree />,
     content: placeholder('padding-s', <SkeletonSection />, <CustomContainer />),
   },
   render: (args) => <AsConnectBottomSheet {...args} footerHeight="72px" />,
@@ -84,7 +84,7 @@ export const V4: Story = {
   args: {
     shape: Shape.Rounded,
     extendedClass: 'ubt-bottom-sheet background-neutral-2 custom-padding',
-    topBar: <Columns_Three />,
+    topBar: <ColumnsThree />,
     content: placeholder('padding-s', <SkeletonSection />, <CustomContainer />),
   },
   render: (args) => <AsConnectBottomSheet {...args} footerHeight="72px" />,

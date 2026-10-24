@@ -1,11 +1,11 @@
 import { Connect_Entity, UBT_FontWeight, UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ColumnsThree } from '@/components/ui/ColumnsThree';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -45,7 +45,7 @@ export function ContactPersonCard({
   const localityLine = locality + (locality !== '' && country !== '' ? ', ' : '') + country;
   return (
     <CustomContainer id="$b3" options={{ PaddingSize: { HorizontalSizeId: UBT_Size.ExtraSmall } }}>
-      <Columns_Three
+      <ColumnsThree
         id="$b4"
         columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ExpandMiddle }}
         left={
@@ -54,7 +54,7 @@ export function ContactPersonCard({
             extendedClasses="ubt-object-fit-avatar-img"
             options={{ PaddingSize: { RightSizeId: UBT_Size.Base } }}
           >
-            <UBT_LazyImage
+            <EntityLazyImage
               id="$b6"
               entityType={entityType === '' ? Connect_Entity.Member : entityType}
               entityId={entityId}

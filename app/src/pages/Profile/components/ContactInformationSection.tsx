@@ -1,7 +1,7 @@
 import type { AccountForm } from '@/pages/Profile/hooks/profileState';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { FormInput } from './FormInput';
 import { FormSwitch } from './FormSwitch';
@@ -62,7 +62,7 @@ export function ContactInformationSection({
         }}
       />
       <CustomContainer id="MobileNumber_Container" options={SWITCH_ROW_PADDING}>
-        <Columns_Two
+        <ColumnsTwo
           id="MobileNumber"
           columnOptions={SWITCH_COLUMNS}
           left={<CustomText id="MobileNumberText" inText="Mobile Number" inTextOptions={FIELD_LABEL} />}
@@ -97,7 +97,7 @@ export function ContactInformationSection({
         />
       )}
       <CustomContainer id="WorkNumberContainer" options={SWITCH_ROW_PADDING}>
-        <Columns_Two
+        <ColumnsTwo
           id="WorkNumber"
           columnOptions={SWITCH_COLUMNS}
           left={<CustomText id="WorkNumberText" inText="Work Number" inTextOptions={FIELD_LABEL} />}

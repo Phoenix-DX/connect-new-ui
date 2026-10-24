@@ -9,8 +9,8 @@ import { APP_ID } from '@/platform/navigation/paths';
 import { useClientVar } from '@/platform/session/session';
 import { OSLink } from '@/shared/lib/OSLink';
 import { BottomBarItem } from '@/shared/osui/BottomBarItem';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
 import { bottomBarSlider_ForceRefresh } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   bottomBar_GetList,

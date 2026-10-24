@@ -1,7 +1,7 @@
 import { useEffect, useId, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Icon } from '@/components/ui/Icon';
 import { clearScrollTimeout, removeScrollEvents, setScrollShadow } from '@/shared/UBTConnectLibrary/lib/actions';
 import { UBT_Color, UBT_IconSize, UBT_Icons } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 

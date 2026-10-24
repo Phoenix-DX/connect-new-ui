@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { Gallery } from '@/shared/osui/Gallery';
 import { CarouselNavigation } from '@/shared/osui/lib/staticEntities';
 import { Carousel } from './Carousel';

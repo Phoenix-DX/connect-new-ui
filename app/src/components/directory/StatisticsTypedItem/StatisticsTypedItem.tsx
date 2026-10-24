@@ -1,10 +1,10 @@
 /** @origin UBTConnect.Directory_Locality.Statistics_TypedItem */
 // @os-block UBTConnect.Directory_Locality.Statistics_TypedItem
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { ColumnsThree } from '@/components/ui/ColumnsThree';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
 import {
   UBT_AlignItems,
   UBT_ColumnBehaviour,
@@ -17,7 +17,7 @@ import {
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import type { UI_TypedStatistics } from '@/shared/UBTConnect/lib/structures';
 import { StatisticsIcons } from '@/components/directory/StatisticsIcons';
 
@@ -70,7 +70,7 @@ export function StatisticsTypedItem({
           DisplayOptions: { AlignItems: UBT_AlignItems.Center },
         }}
       >
-        <Columns_Three
+        <ColumnsThree
           columnOptions={{
             ColumnBehaviour: UBT_ColumnBehaviour.ExpandMiddle,
             SpacingSize: UBT_Size.Base,
@@ -78,7 +78,7 @@ export function StatisticsTypedItem({
           }}
           left={
             imageURL !== '' || inHasImage ? (
-              <UBT_LazyImage
+              <EntityLazyImage
                 extendedClass="country-flag"
                 imageSize={{ Height: UBT_ImageSize.Small_40, Width: UBT_ImageSize.Square }}
                 inBorderRadius={UBT_Shape.Circle}

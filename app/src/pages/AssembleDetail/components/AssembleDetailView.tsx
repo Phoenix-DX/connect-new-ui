@@ -3,7 +3,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { NewConnectContent } from '@/shared/Connect2_LegacyShared/NewConnectContent';
+import { NewConnectContent } from '@/components/ui/NewConnectContent';
 
 export interface AssembleDetailViewProps {
   /** OutSystems instance id of the block (`$b2`). */

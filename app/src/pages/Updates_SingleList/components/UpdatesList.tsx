@@ -4,7 +4,7 @@ import { OSList } from '@/components/ui/os/OSList';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { dateToText, listKeyOf, type FetchStatus } from '@/pages/Updates_SingleList/hooks/updatesSingleListState';
 import { SectionHeader } from './SectionHeader';
 

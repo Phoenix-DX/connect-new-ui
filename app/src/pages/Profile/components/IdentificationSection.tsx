@@ -1,8 +1,8 @@
 import { ICON_CONTENT_COPY } from '@/pages/Profile/staticEntities';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
 import { UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { FormInput } from './FormInput';
 import {

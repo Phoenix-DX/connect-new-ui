@@ -5,9 +5,9 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { TouchEvents } from '@/shared/osui/TouchEvents';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   UBT_Color,
   UBT_Display,
@@ -15,7 +15,7 @@ import {
   UBT_Shape,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import {
   UBT_AlignItems,
   UBT_FlexDirection,
@@ -129,7 +129,7 @@ function Photobook_Gallery_Item({
           onClicked(inHouseholdId);
         }}
       >
-        <UBT_LazyImage
+        <EntityLazyImage
           id={`${prefix}-$b2`}
           entityType={Connect_Entity.Household}
           inBorderRadius={UBT_Shape.Soft}

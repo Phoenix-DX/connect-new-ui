@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { OSForm } from '@/components/ui/os/OSValidation';
 import type { AccountForm } from '@/pages/Profile/hooks/profileState';
-import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
+import { SectionSeparator } from '@/components/ui/SectionSeparator';
 import { ContactInformationSection } from './ContactInformationSection';
 import { IdentificationSection } from './IdentificationSection';
 import { PersonalInformationSection } from './PersonalInformationSection';

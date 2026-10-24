@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { BottomSheet } from '@/shared/UBTConnectLibrary/BottomSheet';
+import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface ProfileHouseholdPreviewProps {
@@ -23,7 +23,7 @@ export function ProfileHouseholdPreview({ id, onOnInitialized, renderHousehold }
   const scope = id?.replace('$', '') ?? 'b60';
   return (
     <OSBlock name="App_Profile.Profile_HouseholdPreview" id={id}>
-      <BottomSheet
+      <ConnectBottomSheet
         id={`${scope}-$b1`}
         title="Preview Household Profile"
         contentPadding={CONTENT_PADDING}

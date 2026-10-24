@@ -2,7 +2,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
 import { ContactByMessage } from '@/components/contact/ContactByMessage';
 import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
-import { NC_Result_Item__Image } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Image';
+import { ResultItemMedia } from '@/components/ui/ResultItemMedia';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import type { AssembleEventContact } from '@/pages/AssembleDetail/hooks/assembleEventContacts';
 import {
@@ -37,7 +37,7 @@ export function AssembleEventDetail_Contact({
   return (
     <OSBlock name="Assemble.AssembleEventDetail_Contact" id={id}>
       <div className="padding-y-s" data-container="" id={`${scope}-Div_EventContacts__Content__HostContact`}>
-        <NC_Result_Item__Image
+        <ResultItemMedia
           id={`${scope}-Block_HostContact`}
           inSignedURL={avatar.SignedURL}
           inIsRoundImage

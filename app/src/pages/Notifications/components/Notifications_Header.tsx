@@ -1,10 +1,10 @@
 /** @origin UBTConnect.App_Notifications.Notifications_Header */
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Badge } from '@/shared/UBTConnectLibrary/Badge';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { Badge } from '@/components/ui/Badge';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { IconText } from '@/components/ui/IconText';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_Color_RedDark } from './staticEntities';
 
@@ -36,7 +36,7 @@ export function Notifications_Header({
           BorderOptions: { Color: UBT_Color.Neutral4, Size: { TopSizeId: UBT_Size.Large } },
         }}
       >
-        <Columns_Two
+        <ColumnsTwo
           left={
             <SkeletonSection inIsLoading={isLoading}>
               <IconText

@@ -3,11 +3,11 @@
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ColumnsThree } from '@/components/ui/ColumnsThree';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -18,8 +18,8 @@ import {
   UBT_Size,
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { SectionSeparator } from '@/shared/UBTConnect/SectionSeparator';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { SectionSeparator } from '@/components/ui/SectionSeparator';
 import type { UI_ListMenuOption, UI_MenuSection } from './types';
 
 export interface MenuListProps {
@@ -96,7 +96,7 @@ export function MenuList({ id, inMenuSection = {}, onOnClickMenuOption }: MenuLi
                   }}
                   onClicked={() => onOnClickMenuOption?.(current(option, index))}
                 >
-                  <Columns_Three
+                  <ColumnsThree
                     columnOptions={{
                       ColumnBehaviour: UBT_ColumnBehaviour.ExpandMiddle,
                       SpacingSize: UBT_Size.Small,

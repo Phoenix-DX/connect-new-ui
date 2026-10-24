@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
-import { InputCounter } from '@/shared/Connect2_LegacyShared/InputCounter';
+import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
 
 export interface BookmarkNoteAddEditProps {
   /** Instance id (`<scope>-Bookmark_Note`): the id that ConfirmAction looks up. */
@@ -39,7 +39,11 @@ export function BookmarkNoteAddEdit({ id, onSaveNote }: BookmarkNoteAddEditProps
                   setNote(e.target.value);
                 }}
               />
-              <InputCounter id={`${scope}-$b2`} inputId={`${scope}-TextArea_Note`} noteInitialLength={note.length} />
+              <LegacyInputCounter
+                id={`${scope}-$b2`}
+                inputId={`${scope}-TextArea_Note`}
+                noteInitialLength={note.length}
+              />
             </div>
           }
           confirmLabel="SAVE"

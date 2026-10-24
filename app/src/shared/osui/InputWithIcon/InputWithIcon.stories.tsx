@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { Icon } from '@/components/ui/Icon';
 import { InputWithIcon } from './InputWithIcon';
 
 const meta = { title: 'Shared/osui/InputWithIcon', component: InputWithIcon } satisfies Meta<typeof InputWithIcon>;

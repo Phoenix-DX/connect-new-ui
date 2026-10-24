@@ -1,7 +1,7 @@
 /** @origin UBTConnect.Directory_Caroussel.CarouselTag */
 // @os-block UBTConnect.Directory_Caroussel.CarouselTag
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { TagContent } from '@/shared/UBTConnectLibrary/TagContent';
+import { TagContent } from '@/components/ui/TagContent';
 import { UBT_Color } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface CarouselTagProps {

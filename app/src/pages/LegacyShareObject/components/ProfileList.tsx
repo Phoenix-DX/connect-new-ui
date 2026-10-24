@@ -5,7 +5,7 @@ import { UpgradeSubscriptionDialog } from '@/pages/LegacyShareObject/components/
 import type { ProfileListResults, ShareProfile } from '@/pages/LegacyShareObject/hooks/profileListState';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
+import { ResultItemImage } from '@/components/ui/ResultItemImage';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
 import { HighlightSearch } from './HighlightSearch';
 import { ListBlankSlate } from './ListBlankSlate';
@@ -73,7 +73,7 @@ export function ProfileList({
           const item = `${scope}-l1-39_${String(index)}`;
           return (
             <div className="border-radius-soft border-neutral-4 margin-bottom-s" data-container="">
-              <Result_Item_Image
+              <ResultItemImage
                 id={`${item}-Household_List_Item`}
                 inType={profile.cdn.type}
                 inPath={profile.cdn.path}

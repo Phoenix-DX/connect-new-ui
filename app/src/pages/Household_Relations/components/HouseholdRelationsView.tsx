@@ -5,10 +5,10 @@ import { NotesSheet } from '@/components/note/NotesSheet';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList, type DataFetchStatus } from '@/components/ui/os/OSList';
 import { Connect_Entity, NoteCategory2 } from '@/shared/UBTConnect/lib/staticEntities';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
 import {
   UBT_AlignItems,
   UBT_ButtonSize,
@@ -25,10 +25,10 @@ import {
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
-import { Button } from '@/shared/UBTConnect_Utils/Button';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { ActionButton } from '@/components/ui/ActionButton';
 import { UBT_ImageSize as UBTConnect_Utils_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { MemberRelation_ListItem } from './MemberRelation_ListItem';
 import { UBT_AlignItems_Baseline } from './staticEntities';
 
@@ -113,7 +113,7 @@ export function HouseholdRelationsView({
     hasHousehold(father) || hasHousehold(mother) || formerSpouses.length > 0 || siblings.length > 0 || isLoading;
 
   const relationAvatar = (member: HouseholdMember) => (
-    <UBT_LazyImage entityId={member.Id ?? '0'} entityType={Connect_Entity.Member} imageSize={RELATION_AVATAR} />
+    <EntityLazyImage entityId={member.Id ?? '0'} entityType={Connect_Entity.Member} imageSize={RELATION_AVATAR} />
   );
   /** The chevron of the father, the mother or a previous spouse. */
   const relationChevron = (member: HouseholdMember) => (
@@ -150,7 +150,7 @@ export function HouseholdRelationsView({
               },
             }}
           >
-            <UBT_LazyImage entityType={Connect_Entity.Member} entityId={memberId} imageSize={MEMBER_AVATAR} />
+            <EntityLazyImage entityType={Connect_Entity.Member} entityId={memberId} imageSize={MEMBER_AVATAR} />
           </CustomContainer>
           <CustomContainer
             options={{
@@ -175,10 +175,10 @@ export function HouseholdRelationsView({
             MarginSize: { VerticalSizeId: UBT_Size.Base, HorizontalSizeId: UBT_Size.Base },
           }}
         >
-          <Columns_Two
+          <ColumnsTwo
             columnOptions={{ SpacingSize: UBT_Size.Base, VerticalAlign: UBT_VerticalAlign.Center }}
             left={
-              <Button
+              <ActionButton
                 buttonOptions={{ UBT_ButtonSizeId: UBT_ButtonSize.Small, UBT_ButtonTypeId: UBT_ButtonType.Secondary }}
                 iconId={UBT_Icons.Tooltip}
                 isDisabled={false}
@@ -188,7 +188,7 @@ export function HouseholdRelationsView({
               />
             }
             right={
-              <Button
+              <ActionButton
                 buttonOptions={{ UBT_ButtonSizeId: UBT_ButtonSize.Small, UBT_ButtonTypeId: UBT_ButtonType.Primary }}
                 iconId={UBT_Icons.Bookmark}
                 isDisabled

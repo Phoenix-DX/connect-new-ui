@@ -1,9 +1,9 @@
 import type { LocalityHousehold } from '@/api/household';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
-import { ImageCard_LazyLoading } from '@/shared/UBTConnectLibrary/ImageCard_LazyLoading';
-import { ImageCard__Content } from '@/shared/UBTConnectLibrary/ImageCard__Content';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
+import { ImageCard } from '@/components/ui/ImageCard';
+import { ImageCardContent } from '@/components/ui/ImageCardContent';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -13,9 +13,9 @@ import {
   UBT_ImageSize,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { Connect_Entity, UBT_ImageSize as UBT_ImageSize_Utils } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
+import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { useHouseholdCardMembers } from '@/pages/Locality_Details/hooks/useHouseholdCardMembers';
 import { UBT_Icons2_Locality } from './staticEntities';
 import { UBT_LazyImage_List } from './UBT_LazyImage_List';
@@ -39,7 +39,7 @@ export function Household_Card({ id, household, onEventOnClickHousehold }: House
   const b = id?.replace('$', '') ?? '';
   return (
     <OSBlock name="Directory_Household_Blocks.Household_Card" id={id}>
-      <ImageCard_LazyLoading
+      <ImageCard
         id={`${b}-$b1`}
         inCardTypeId={UBT_ImageCardType.List}
         inBookmarkModifier="bookmark--rounded"
@@ -48,7 +48,7 @@ export function Household_Card({ id, household, onEventOnClickHousehold }: House
         inIsBookmarked={household.isBookmarked}
         onEventClick={() => onEventOnClickHousehold?.(household.householdId)}
         lazyImagePlaceholder={
-          <UBT_LazyImage
+          <EntityLazyImage
             id={`${b}-$b2`}
             hasErrorMessage
             entityType={Connect_Entity.Household}
@@ -68,7 +68,7 @@ export function Household_Card({ id, household, onEventOnClickHousehold }: House
           </SkeletonSection>
         }
         placeholderContent={
-          <ImageCard__Content
+          <ImageCardContent
             id={`${b}-$b5`}
             inShowSubtitle={household.childrenNames !== ''}
             inTitle={household.householdName}

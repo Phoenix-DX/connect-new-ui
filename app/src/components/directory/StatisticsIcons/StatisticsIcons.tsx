@@ -2,10 +2,10 @@
 // @os-block UBTConnect.Directory_Locality.Statistics_Icons
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import type { UI_StatisticsTexts } from '@/shared/Connect_Geography_CS/lib/structures';
-import { Columns_Three } from '@/shared/UBTConnectLibrary/Columns_Three';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
-import { IconText } from '@/shared/UBTConnectLibrary/IconText';
+import { ColumnsThree } from '@/components/ui/ColumnsThree';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import {
   UBT_ColumnBehaviour,
   UBT_Color,
@@ -47,7 +47,7 @@ export function StatisticsIcons({ id, uIStatisticsTexts = {} }: StatisticsIconsP
   const supperMeetings = t.SupperMeetings ?? '';
   return (
     <OSBlock name="Directory_Locality.Statistics_Icons" id={id}>
-      <Columns_Three
+      <ColumnsThree
         columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.SameSize }}
         left={count(t.Members ?? '', getEntityType_Icon(Connect_Entity.Member), UBT_Color.Purple)}
         middle={count(t.Households ?? '', getEntityType_Icon(Connect_Entity.Household), UBT_Color.Primary)}
@@ -68,7 +68,7 @@ export function StatisticsIcons({ id, uIStatisticsTexts = {} }: StatisticsIconsP
           )
         }
       />
-      <Columns_Three
+      <ColumnsThree
         columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.SameSize }}
         left={count(t.Brothers ?? '', UBT_Icons2.Boy, UBT_Color.BlueNonStandarDarker)}
         middle={count(t.Sisters ?? '', UBT_Icons2.Girl, UBT_Color.PinkNonStandardDarker)}

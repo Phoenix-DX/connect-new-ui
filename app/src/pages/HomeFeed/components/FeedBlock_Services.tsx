@@ -3,12 +3,12 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Carousel } from '@/shared/osui/Carousel';
 import { Gallery } from '@/shared/osui/Gallery';
 import { CarouselNavigation } from '@/shared/osui/lib/staticEntities';
-import { CircleButton } from '@/shared/UBTConnectLibrary/CircleButton';
-import { CircleButton_WithLabel } from '@/shared/UBTConnectLibrary/CircleButton_WithLabel';
-import { Columns_Two } from '@/shared/UBTConnectLibrary/Columns_Two';
-import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
-import { CustomText } from '@/shared/UBTConnectLibrary/CustomText';
-import { Icon } from '@/shared/UBTConnectLibrary/Icon';
+import { CircleButton } from '@/components/ui/CircleButton';
+import { CircleButtonWithLabel } from '@/components/ui/CircleButtonWithLabel';
+import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
+import { CustomContainer } from '@/components/ui/CustomContainer';
+import { CustomText } from '@/components/ui/CustomText';
+import { Icon } from '@/components/ui/Icon';
 import {
   UBT_AvatarSize,
   UBT_Color,
@@ -20,7 +20,7 @@ import {
   UBT_Size,
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
+import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { UBT_IconSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { MAIN_ELEMENT_CLASS } from '@/pages/HomeFeed/hooks/feedServicesState';
 import { UBT_Shadow_Small, UBT_Icons2 } from '@/pages/HomeFeed/staticEntities';
@@ -85,7 +85,7 @@ export function FeedBlock_Services({
           ShadowId: UBT_Shadow_Small,
         }}
       >
-        <Columns_Two
+        <ColumnsTwo
           id={`${scope}-$b2`}
           extendedClasses="padding-x-s"
           columnOptions={{
@@ -157,7 +157,7 @@ export function FeedBlock_Services({
                         const isSvg = service.iconId.includes('SVG_');
                         return (
                           <SkeletonSection key={itemScope} id={`${itemScope}-$b9`} inIsLoading={isLoading}>
-                            <CircleButton_WithLabel
+                            <CircleButtonWithLabel
                               id={`${itemScope}-$b10`}
                               borderColorId={UBT_Color.Neutral3}
                               sizeId={UBT_AvatarSize.Large_65}
