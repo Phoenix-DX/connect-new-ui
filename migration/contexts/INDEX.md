@@ -6,7 +6,7 @@ section "Context notes".
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
 - 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)).
-- Branch `refactor/architecture`: Phases 0 to 6 done ([context-048](context-048-refactor-phase6-done.md)); next P7-0 … P7-4, P7-6, P7-5 (patches prefetched), then stop. Scope (user 2026-10-23 evening): all in-scope steps (P6, P7) run automatically, P8/P9 only on order. Resume `/refactor-master continue`. Dev server of this repo on port 5174.
+- Branch `refactor/architecture`: Phases 0 to 7 done ([context-049](context-049-refactor-phase7-done.md)); the in-scope run (P6 + P7) is finished. P8/P9 (stretch) only on the user's order; open user decisions F22/F24/F26, F25, F28, F29, F33. Dev server of this repo on port 5174.
 - Auto mode ON since 2026-10-23 13:43 (re-confirmed evening, 5-minute reports): Fable + Opus decide for the user (Window 4). Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`). Tools: `migration/tools/` (README).
 
@@ -61,4 +61,5 @@ section "Context notes".
 | [045](context-045-refactor-p6-g2-g3.md) | 2026-10-24 | P6 groups G2 and G3 done; bundle fixes P6-F15/F16; W17–W25; G4–G6 A/B-Shared patches prefetched | superseded by context-046 |
 | [046](context-046-refactor-p6-g4.md) | 2026-10-24 | P6 group G4 done (13 pages); W26–W29; fix step P6-F17 (beforePaint) before G5; chain worktree method | superseded by context-047 |
 | [047](context-047-refactor-p6-g5.md) | 2026-10-24 | P6-F17 and group G5 done (16 pages); W27–W31; 6 routes without parity states; G6/P6-end/P7-0..2 prefetched | superseded by context-048 |
-| [048](context-048-refactor-phase6-done.md) | 2026-10-24 | Phase 6 done (G6, P6-end, F23 fix); W30, W32, W33; P7 prefetched (P7-6 in 5 parts) | current |
+| [048](context-048-refactor-phase6-done.md) | 2026-10-24 | Phase 6 done (G6, P6-end, F23 fix); W30, W32, W33; P7 prefetched (P7-6 in 5 parts) | superseded by context-049 |
+| [049](context-049-refactor-phase7-done.md) | 2026-10-24 | Phase 7 done (P7-0…P7-6, P7-5 report); in-scope run finished; user decisions and owned debt listed | current |
