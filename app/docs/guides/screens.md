@@ -1,20 +1,19 @@
 # Add or change a screen
 
 Each screen of the original app has one folder, named exactly as the OutSystems screen, served at the original route
-(`src/app/routes.generated.ts`). A screen appears automatically once `index.tsx` exists.
+(`src/app/routes.generated.ts`). A screen appears automatically once `<Screen>Page.tsx` exists.
 
-A migrated screen lives in `src/pages/<Screen>/` and its page file is `<Screen>Page.tsx` instead of `index.tsx`
-(HouseholdDetails since P2-1). `src/app/screens.ts` loads `pages/*/<Screen>Page.tsx` first and falls back to
-`screens/*/index.tsx` during the transition. The other files keep their names. The full recipe (hook, container criterion, test and story shape) is the
+The screen lives in `src/pages/<Screen>/` and its page file is `<Screen>Page.tsx`.
+`src/app/screens.ts` loads `pages/*/<Screen>Page.tsx`. The full recipe (hook, container criterion, test and story shape) is the
 [page template](page-template.md).
 
 ```
-src/screens/<Screen>/
-  index.tsx     default export: the screen (markup and class names as in the original)
-  api.ts        TanStack Query hooks; callAction(...) with OutSystems input names; wire → domain mapping
-  types.ts      wire types (from the contract) and domain types
-  mocks.ts      export const handlers = [...]: recordedHandler(...) or fictional data with the recorded shapes
-  components/   blocks used only by this screen
+src/pages/<Screen>/
+  <Screen>Page.tsx  default export: the screen (markup and class names as in the original)
+  hooks/            the flow hook of the page; server calls come from the domain hooks in src/api/<domain>
+  inputs.ts         reader of the route input
+  mocks.ts          export const handlers = [...]: recordedHandler(...) or fictional data with the recorded shapes
+  components/       blocks used only by this screen
 ```
 
 Rules (checked before a screen is finished):

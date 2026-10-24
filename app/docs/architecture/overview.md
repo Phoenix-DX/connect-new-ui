@@ -47,7 +47,6 @@ flowchart TB
     containers[src/containers<br/>a container only by the criterion of the page template,<br/>with its hooks and mocks; or the platform actions<br/>of a component that 2 pages share]
     comps[src/components/&lt;domain&gt;<br/>props-only components with stories and tests]
     domain[src/api/&lt;domain&gt;<br/>types · mapper · repository · keys · hooks]
-    screens[src/screens/&lt;Screen&gt;<br/>screens not yet moved: index.tsx · api.ts · mocks.ts · types.ts]
     widgets[src/components<br/>platform widgets in components/ui/os:<br/>validation, popup, list, radio group]
     vendor[src/vendor and osui vendor folders<br/>third-party scripts copied from the original]
     shared[src/shared<br/>one component per OutSystems block<br/>src/shared/osui for OutSystems UI patterns]
@@ -62,9 +61,9 @@ flowchart TB
   containers --> comps
   containers --> domain
   domain --> lib
-  screens --> shared
-  screens --> lib
-  screens --> widgets
+  pages --> shared
+  pages --> lib
+  pages --> widgets
   shared --> widgets
   shared --> vendor
   platform --> lib
@@ -76,7 +75,7 @@ flowchart TB
 
 Rules that keep it this way (`consistency_check.py` checks them before a screen is finished):
 
-- A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (ESLint, `app/eslint.config.js`). Only `pages/<Route>/` imports `pages/<Route>/`, and `src/shared` imports no `src/screens` or `src/app`. Inside `src/shared`, `UBTConnectLibrary` imports neither `UBTConnect_Utils` nor `UBTConnect`, and `UBTConnect_Utils` does not import `UBTConnect`.
+- A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (ESLint, `app/eslint.config.js`). Only `pages/<Route>/` imports `pages/<Route>/`, and `src/shared` imports no `src/app`. Inside `src/shared`, `UBTConnectLibrary` imports neither `UBTConnect_Utils` nor `UBTConnect`, and `UBTConnect_Utils` does not import `UBTConnect`.
 - Also in `src/shared`: `shared/osui` imports no other app module in `shared/` (only `shared/lib`), `Connect2_LegacyShared` does not import `UBTConnect`, and `Connect2_MyBookmarks_MUI` does not import `Connect2_Assemble_MUI` (dependency-cruiser warnings, `app/.dependency-cruiser.cjs`). The import graph of `src/` has no cycle (`no-circular` is an error). The recipe is the [page template](../guides/page-template.md). Only HouseholdDetails is a page so far.
 - Story and test files are outside the cycle rule and these folder rules (decision Q11, P3-2; the P3-3 rules use the same exception). A story renders the real blocks of the captured screen, so it may import across the three modules.
 - A screen imports only from its own folder and from `src/shared`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/mocks`.
@@ -87,8 +86,8 @@ Rules that keep it this way (`consistency_check.py` checks them before a screen 
 
 ```mermaid
 sequenceDiagram
-  participant C as Screen component
-  participant A as screens/X/api.ts (TanStack Query hook)
+  participant C as Page component
+  participant A as domain hook in api/&lt;domain&gt;/hooks.ts (TanStack Query)
   participant L as api/client/callAction.ts
   participant M as MSW handler (mocks.ts)
   C->>A: useXxx(inputs)
@@ -96,7 +95,7 @@ sequenceDiagram
   L->>M: POST /api/Module/Action
   M-->>L: { data: outputs } (recorded fixture or fictional data)
   L-->>A: typed outputs (from the contract)
-  A-->>C: domain types (wire shapes mapped in api.ts)
+  A-->>C: domain types (wire shapes mapped in api/&lt;domain&gt;/mapper.ts)
 ```
 
 - Types of inputs and outputs come from the contract (`npm run gen:api`). An action that is not in the contract does
@@ -135,7 +134,8 @@ sequenceDiagram
   [refactor-plan-v2.md](refactor-plan-v2.md), and the plan for each block in [move-map.csv](../refactor/move-map.csv).
   Phases 1 and 2 moved the code to `platform/`, `legacy/os/`, `api/<domain>/`, `pages/`, `containers/` and `components/`.
   Phase 4 added the typed settings, the session state machine, the auth provider, the route meta and the flag registry in `platform/`. Phase 3 removed the import cycles and added the folder-direction rules; its numbers are in
-  [reports/P3.md](../refactor/reports/P3.md). The other screens stay in `src/screens/` and the other blocks in `src/shared/` until their phase.
+  [reports/P3.md](../refactor/reports/P3.md).
+- Phase 6 moved every route to `src/pages/` and deleted `src/screens/` ([P6-end](../refactor/reports/P6-end.md)). The blocks in `src/shared/` stay until P7-6.
 - Implementation patterns with reference code: `migration/patterns/P-*.md`.
 - Feature flag decisions: [reference/flags.md](../reference/flags.md).
 - Per screen: `migration/screens/<Screen>/route-spec.md`.

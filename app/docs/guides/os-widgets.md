@@ -46,7 +46,7 @@ How a screen validates:
 4. Call `validation.validate()` (or `validate('<FormId>')`) in the button action, before the screen logic.
 5. Continue only when the call returns true.
 
-These files use the service: `src/screens/Profile/index.tsx`, `src/screens/Login/index.tsx` (validate with no visible
+These files use the service: `src/pages/Profile/ProfilePage.tsx`, `src/pages/Login/LoginPage.tsx` (validate with no visible
 widget), `src/pages/ContactUsDetails/ContactUsDetailsPage.tsx` (`components/MessageTextArea.tsx`) and the shared Input block
 (`src/shared/UBTConnectLibrary/Input/Input.tsx`).
 Tests: `OSValidation.test.tsx`.
@@ -82,7 +82,7 @@ in the folder.
 `RadioGroup` (`value`, `onValueChange`, `validationMessage`) and `RadioButton` render
 `div[data-radio-group][role=radiogroup]`. `RadioGroup` has an optional `onChange` that runs after paint.
 `aria-activedescendant` is set to the selected button. The validation message span is present when a message is set.
-`src/screens/Photobook/components/Photobook_Options_Right.tsx` uses these components.
+`src/pages/Photobook/components/Photobook_Options_Right.tsx` uses these components.
 
 ## OSBlock
 

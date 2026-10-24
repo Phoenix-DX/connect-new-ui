@@ -74,7 +74,7 @@ The domain has 8 query hooks and 9 mutation hooks with no caller yet. They set `
 
 `notification/` has the same files. It holds 4 calls: DataActionFetchNotifications and DataActionGetDateRanges (Notifications), Wrapper_NotificationOpened (MessageDetail) and Wrapper_MarkAllAsReadNotifications (MessageList).
 
-The old `api.ts` files of these three owners re-export it under their old names. `pages/MessageList/hooks/useMessageList.ts` keeps a small adapter, `markAllAsReadFilter`, that maps the four block variables to the camelCase inputs of `markAllNotificationsAsRead`. `api/notification` does not import `api/message`. `screens/Notifications/types.ts` keeps `MessageListItemWire` for the mocks.
+`pages/MessageList/hooks/useMessageList.ts` keeps a small adapter, `markAllAsReadFilter`, that maps the four block variables to the camelCase inputs of `markAllNotificationsAsRead`. `api/notification` does not import `api/message`. `MessageListItemWire` is exported by `api/message/mapper.ts`; `pages/Notifications/mocks.ts` uses it.
 
 The domain has 2 query hooks and 2 mutation hooks with no caller yet.
 

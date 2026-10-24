@@ -785,3 +785,11 @@ One line per event. Written by rf.py.
 - 2026-10-24T11:55:41 P6-G6-C waits for the user: Review the routes of group G6 on localhost (links in the step report): MyBookmarks, BookmarksByGroup, Notes, ConnectShare, LegacyShareObject, QRCodeGenerate, ViewDocuments. Then confirm the group.
 - 2026-10-24T11:56:52 P6-G6-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W33 group G6 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: QRCodeGenerate and ViewDocuments on the P6-end manual review list; F22/F24/F26, F25, F28 as one user batch; F23 flakes before the P7 gates; F27; F17 watch."
 - 2026-10-24T11:56:52 P6-G6-C stage commit
+- 2026-10-24T11:56:53 P6-G6-C done 15c6a1e4: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self) (50 of 64 routes have states, F27); e2e:pwa 9/9; arch baseline 69 rows, no P6-G6 owner; knip/jscpd match; bundle HomeFeed 244.48/248.22, Login 184.50/193.84 kB gzip; group confirm W33 (Opus + Fable, delegated)
+- 2026-10-24T11:57:07 P6-end started
+- 2026-10-24T11:57:07 P6-end stage dev
+- 2026-10-24T11:57:43 P6-end stage test
+- 2026-10-24T12:07:34 P6-end test failed, fix loop 1
+- 2026-10-24T12:08:36 P6-end stage test
+- 2026-10-24T12:14:59 P6-end stage docs
+- 2026-10-24T12:16:29 P6-end stage commit

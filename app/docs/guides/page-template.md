@@ -22,7 +22,7 @@ Where the files of a container go:
 - `containers/` never imports `pages/`.
 - Shared fictional data lives in `src/mocks/fictional/`.
 
-A `screens/<Route>/api.ts` splits in two. Server calls go to `api/<domain>/repository.ts`. The reader of the route
+The old `api.ts` of a route (now deleted in every page) split in two. Server calls go to `api/<domain>/repository.ts`. The reader of the route
 input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that holds only input types folds into `inputs.ts`.
 
 ## Files of the pilot

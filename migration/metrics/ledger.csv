@@ -772,3 +772,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,other,32572,refactor-docs,,P6-G6-C sonnet
 2026-10-24,refactor,review,76586,refactor-advisor,,"W33, opus"
 2026-10-24,refactor,review,48528,refactor-advisor,,"W33, fable"
+2026-10-24,refactor,build,32682,refactor-dev,,P6-end sonnet
+2026-10-24,refactor,verify,0,refactor-test,,P6-end sonnet
+2026-10-24,refactor,verify,32459,refactor-test,,P6-end loop 1 sonnet
+2026-10-24,refactor,fix,13110,refactor-dev,,P6-end loop 1 sonnet
+2026-10-24,refactor,verify,18297,refactor-test,,P6-end loop 1 sonnet
+2026-10-24,refactor,verify,719,refactor-test,,P6-end loop 1 sonnet

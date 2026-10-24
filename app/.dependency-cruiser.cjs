@@ -32,7 +32,7 @@ module.exports = {
     {
       name: 'pages-imported-by-own-route-only',
       comment:
-        'Only pages/<Route>/ imports pages/<Route>/: containers/, components/, shared/, screens/ and every other folder ' +
+        'Only pages/<Route>/ imports pages/<Route>/: containers/, components/, shared/ and every other folder ' +
         'never import pages/ (P2-4 follow-up F1; rule 3 covers the other pages). app/ finds the pages with ' +
         'import.meta.glob, which dependency-cruiser does not follow.',
       severity: 'warn',
@@ -41,11 +41,10 @@ module.exports = {
     },
     {
       name: 'shared-no-import-of-screens-or-app',
-      comment:
-        'P3-1: shared/ does not import screens/ or app/. Values come through props or a platform/ module or context.',
+      comment: 'P3-1: shared/ does not import app/. Values come through props or a platform/ module or context.',
       severity: 'warn',
       from: { path: '^src/shared/', pathNot: STORY_OR_TEST },
-      to: { path: '^src/(screens|app)/' },
+      to: { path: '^src/app/' },
     },
     {
       name: 'ubtconnect-library-no-import-of-utils-or-ubtconnect',

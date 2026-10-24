@@ -114,11 +114,9 @@ def closure(graph, entry):
 
 
 def route_entry(graph, route):
-    """src/screens/<R>/index.tsx now, src/pages/<R>/<R>Page.tsx after the moves of plan v2."""
-    for e in (f"src/screens/{route}/index.tsx", f"src/pages/{route}/{route}Page.tsx"):
-        if e in graph:
-            return e
-    return None
+    """src/pages/<R>/<R>Page.tsx, or None when the graph does not hold it."""
+    entry = f"src/pages/{route}/{route}Page.tsx"
+    return entry if entry in graph else None
 
 
 def changed_routes(since, all_routes, files=None, explain=None):

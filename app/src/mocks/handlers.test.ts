@@ -17,11 +17,8 @@ describe('mock handler order', () => {
     expect(collectHandlers({ m: { handlers: a } }, { m: { handlers: b } })).toEqual([...a, ...b]);
   });
 
-  it('puts the container mocks after the page and screen mocks and before the shared mocks', () => {
-    const pagesAndScreens = import.meta.glob<{ handlers?: RequestHandler[] }>(
-      ['../pages/*/mocks.ts', '../screens/*/mocks.ts'],
-      { eager: true },
-    );
+  it('puts the container mocks after the page mocks and before the shared mocks', () => {
+    const pagesAndScreens = import.meta.glob<{ handlers?: RequestHandler[] }>('../pages/*/mocks.ts', { eager: true });
     const containers = import.meta.glob<{ handlers?: RequestHandler[] }>('../containers/*/mocks.ts', { eager: true });
     const shared = import.meta.glob<{ handlers?: RequestHandler[] }>('../shared/**/mocks.ts', { eager: true });
     const own = positions(containers);
@@ -31,18 +28,12 @@ describe('mock handler order', () => {
     expect(Math.max(...own)).toBeLessThan(Math.min(...positions(shared)));
   });
 
-  it('puts the platform/bootstrap fallback after screens, containers and shared mocks', async () => {
+  it('puts the platform/bootstrap fallback after pages, containers and shared mocks', async () => {
     const platform = await import('../platform/bootstrap/mocks');
     const all = handlers;
     const first = Math.min(...platform.handlers.map((h) => all.indexOf(h)));
     const screenModules = import.meta.glob<{ handlers?: RequestHandler[] }>(
-      [
-        '../pages/*/mocks.ts',
-        '../screens/*/mocks.ts',
-        '../containers/*/mocks.ts',
-        '../shared/**/mocks.ts',
-        '../components/**/mocks.ts',
-      ],
+      ['../pages/*/mocks.ts', '../containers/*/mocks.ts', '../shared/**/mocks.ts', '../components/**/mocks.ts'],
       { eager: true },
     );
     const last = Math.max(...positions(screenModules));

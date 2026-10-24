@@ -7,7 +7,7 @@ import { ScreenFrame } from '@/platform/navigation';
 import { APP, ROUTES, HOME } from './routes';
 import { lazyScreen } from './screens';
 
-// A screen is picked up automatically when src/screens/<Screen>/index.tsx exists (default export).
+// A screen is picked up automatically when src/pages/<Screen>/<Screen>Page.tsx exists (default export).
 // ScreenFrame (preload lifetime, view-cache scroll restore) sits inside the Suspense boundary: it runs once the screen
 // rendered. Only the page's first screen can suspend: later ones are loaded before their transition (screens.ts).
 const children: RouteObject[] = ROUTES.map((r) => {

@@ -749,3 +749,15 @@
 
 - Architecture: no folder change. The prune deleted no file (knip: none in G6; jscpd: 2 small clones left for P7). Group report: `app/docs/refactor/reports/P6-G6.md`.
 - Gate: parity visual `--all` 64/64 clean on both references; `ci` 3931 tests; baseline 69 rows, 0 new.
+
+## P6-end - refactor(P6-end): delete screens/
+
+- Architecture: `src/screens/` is deleted (only its README was left). `src/app/screens.ts` and the `src/mocks/handlers.ts` glob load `pages/` only. `src/shared/` stays until P7-6 (W20).
+- The dependency-cruiser shared rule now forbids `^src/app/` only. Parity `--all` 64/64 clean on both references; `ci` 3931 tests; baseline 0 new.
+- Docs: overview, the guides `screens`, `page-template`, `os-widgets`, `getting-started`, `api-and-mocks`, `shared-code`, `src/api/README.md` and the tools README no longer name `src/screens/`.
+
+## Phase 6 done
+
+- All 64 routes are pages in `src/pages/`. Group reports: [P6-G1](reports/P6-G1.md), [P6-G2](reports/P6-G2.md), [P6-G3](reports/P6-G3.md), [P6-G4](reports/P6-G4.md), [P6-G5](reports/P6-G5.md), [P6-G6](reports/P6-G6.md). Step report: [P6-end](reports/P6-end.md).
+- Manual review list (routes without parity states, so the DOM evidence is a developer probe): FeedItemDetail, ContactByEmailLDMCoordinator, ContactByEmailOrbitHost, EmailTarget, EventBooklet, TransportDetail, LDM_Email_V2, OrbitAdminEventDetail, GuestArrangements, AssembleDetail, QRCodeGenerate, ViewDocuments.
+- Follow-up F27 is open: "64/64 clean" counts the routes with 0 states as clean. The report must print "N of 64 routes checked".
