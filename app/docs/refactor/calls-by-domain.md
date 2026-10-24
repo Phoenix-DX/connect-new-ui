@@ -238,3 +238,5 @@ P6-G5-B-LDM_Email_V2: `pages/LDM_Email_V2/api.ts` is deleted (its row in the mes
 P6-G5-B-AssembleEvents: `pages/AssembleEvents/api.ts` is deleted (its rows in the locality and event tables). The hooks call `fetchSubdivisionName` of `@/api/locality`, and `fetchAssembleEventTypes` and `fetchAssembleMeetings` of `@/api/event`.
 
 P6-G5-B-AssembleDetail: `pages/AssembleDetail/api.ts` is deleted (its row in the event table above). The hook `useAssembleEventDetail` calls `fetchAssembleEvent` (DataActionGetAssembleEvent) of `@/api/event` directly. The client action GetCacheableMemberContactList (Connect2_LegacyShared) is a private function of `useAssembleEventContactList`, because `api/` cannot import `shared/` (rule 7). No file of `api/` changed.
+
+P6-G6-B-QRCodeGenerate: `pages/QRCodeGenerate/api.ts` is deleted (its row in the app table and its row in the Connect2_LegacyShared table above). The hook `useGenerateQrCode` calls `fetchEventQRCode` (DataActionGet_EventQRCode) of `@/api/event` and `fetchLegacySignedImageURL` (`ActionGetSignedImagesInBulk`) of `@/api/image`.

@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G6-B-LegacyShareObject",
+  "step": "P6-G6-B-QRCodeGenerate",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T11:22:22"
+  "since": "2026-10-24T11:32:26"
  },
  "steps": {
   "P0-1": {
@@ -1509,12 +1509,24 @@
    "finished": "2026-10-24T11:11:09"
   },
   "P6-G6-B-LegacyShareObject": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T11:11:09",
    "tokens": {
     "dev": 446939,
     "test": 36014,
-    "docs": 34309
+    "docs": 35845
+   },
+   "commit": "9c8f4869",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.52 kB, Login 184.51 kB",
+   "loops": 0,
+   "finished": "2026-10-24T11:22:23"
+  },
+  "P6-G6-B-QRCodeGenerate": {
+   "status": "active",
+   "started": "2026-10-24T11:22:24",
+   "tokens": {
+    "dev": 281335,
+    "test": 35644
    }
   }
  },

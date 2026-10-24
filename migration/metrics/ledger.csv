@@ -760,3 +760,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,review,108532,refactor-advisor,,"W32, fable"
 2026-10-24,refactor,verify,36014,refactor-test,,P6-G6-B-LegacyShareObject sonnet
 2026-10-24,refactor,other,34309,refactor-docs,,P6-G6-B-LegacyShareObject sonnet
+2026-10-24,refactor,build,281335,refactor-dev,,P6-G6-B-QRCodeGenerate opus
+2026-10-24,refactor,other,1536,refactor-docs,,P6-G6-B-LegacyShareObject sonnet
+2026-10-24,refactor,verify,35644,refactor-test,,P6-G6-B-QRCodeGenerate sonnet

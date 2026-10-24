@@ -1,8 +1,7 @@
 import type { RequestHandler } from 'msw';
-import { wireList } from '@/legacy/os/os-wire';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { ORBIT_EVENT_PASSES } from '@/mocks/fictional/orbit';
-import type { GetEventQRCodeWire } from './types';
 
 /* DataActionGet_EventQRCode was never recorded (no capture, no-capture.json): fictional answers from the shared Orbit
    world (src/mocks/fictional/orbit.ts ORBIT_EVENT_PASSES, QRCodeGenerate Q1) in the contract's shape. The server
@@ -15,6 +14,12 @@ import type { GetEventQRCodeWire } from './types';
 
 const MODULE = 'Connect2_OrbitMobile_MUI';
 
+/** DataActionGet_EventQRCode of ScreenBlock_GenerateQRCode, typed by the API contract (shape from
+    Connect2_OrbitMobile_BL.GetEventQRCode_ScreenRec). */
+type GetEventQRCodeWire = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_GenerateQRCode/DataActionGet_EventQRCode'>
+>;
+
 /** The answer for event `eventId` and member `memberId`. */
 export function eventQRCodeAnswer(eventId: string, memberId: string): GetEventQRCodeWire {
   const pass = ORBIT_EVENT_PASSES.find((p) => p.EventId === eventId && p.MemberId === memberId);
@@ -23,7 +28,8 @@ export function eventQRCodeAnswer(eventId: string, memberId: string): GetEventQR
       GetEventQRCodeResponse: {
         GuestRole: pass?.GuestRole ?? '',
         QrCodeImage: pass?.payload ?? '',
-        Seats: wireList((pass?.Seats ?? []).map((s) => ({ ...s }))),
+        // The seat list as OutSystems wraps a list.
+        Seats: { List: (pass?.Seats ?? []).map((s) => ({ ...s })) },
         Tag: pass?.Tag ?? '',
       },
       QRCodeAsBinary: pass?.qrCodePngBase64 ?? '',

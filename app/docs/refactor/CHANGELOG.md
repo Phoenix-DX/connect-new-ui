@@ -733,3 +733,9 @@
 - `pages/LegacyShareObject` is a page with two flow hooks (`hooks/useShareObject.ts`, `hooks/useProfileList.ts` on `useFlowState`), their state modules and `inputs.ts`. `ScreenBlock_ShareObject` is now `components/ShareObjectView.tsx`; `ProfileList` is props only. `api.ts` and `types.ts` are deleted.
 - The 5 calls are in `api/share` (3, with `keys.ts` and `hooks.ts`), `api/household` (`fetchHouseholdShareCard`) and `api/locality` (`fetchCommunityBusinessShareCard`).
 - HomeFeed gzip 244.52 kB, Login 184.51 kB; arch baseline 69 rows, 0 new.
+
+## P6-G6-B-QRCodeGenerate - refactor(P6-G6-B): QRCodeGenerate as page
+
+- `pages/QRCodeGenerate` is a page with a flow hook (`hooks/useGenerateQrCode.ts` on `useFlowState` with `beforePaint: true`, W28), a state module (`hooks/generateQrCodeState.ts`), `hooks/useBinaryImageURL.ts`, `inputs.ts` and a props-only view (`components/GenerateQrCodeView.tsx`). `api.ts`, `types.ts`, the ScreenBlock and `components/actions.ts` are deleted.
+- The calls are `fetchEventQRCode` (`api/event`) and `fetchLegacySignedImageURL` (`api/image`, W8). W23 holds: after an unmount the flow skips the state writes and still calls Get_EventQRCode once.
+- QRCodeGenerate has no parity states; the evidence is the developer's old-vs-new DOM test (14 scenarios, equal). HomeFeed gzip 244.47 kB, Login 184.50 kB; 3 rule-9 warnings gone (arch 189 to 186); baseline 0 new.
