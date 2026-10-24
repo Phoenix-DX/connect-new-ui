@@ -2,6 +2,7 @@ import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callActio
 import { osList, osNumber, wireList } from '@/legacy/os/os-wire';
 import type {
   AllLocalities,
+  CommunityBusinessShareCard,
   EventFilterLocality,
   Interchange,
   LocalityCardList,
@@ -388,5 +389,26 @@ export const toOneSchoolGlobalDetails = (wire: OneSchoolGlobalDetailsWire): OneS
       })),
     },
     householdCoordinates: wire.HouseholdCoordinates,
+  };
+};
+
+/* ---- ScreenBlock_ShareObject (LegacyShareObject): Get_UI_CommunityBusinessShareCard ---- */
+
+/** The outputs of Get_UI_CommunityBusinessShareCard of Connect2_LegacyShared, as the contract describes them. */
+type CommunityBusinessShareCardWire = ActionOutputs<
+  PathOf<'Connect2_LegacyShared', 'ServiceAPIGet_UI_CommunityBusinessShareCard'>
+>;
+
+/** The share card of a community business (Out_UI_CommunityBusiness_ShareCard), without its Type. */
+export const toCommunityBusinessShareCard = (wire: CommunityBusinessShareCardWire): CommunityBusinessShareCard => {
+  const card = wire.Out_UI_CommunityBusiness_ShareCard;
+  return {
+    name: card.Name,
+    areasServed: card.AreasServed,
+    countryName: card.CountryName,
+    photoBucket: card.PhotoBucket,
+    photoPath: card.PhotoPath,
+    photoType: card.PhotoType,
+    photoSignedPath: card.PhotoSignedPath,
   };
 };

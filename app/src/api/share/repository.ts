@@ -13,3 +13,37 @@ export async function fetchShareDetails(shareId: string): Promise<ShareDetails> 
     await callAction('UBTConnect', 'ActionGet_ShareDetails', { ShareId: shareId, IncludeDeceased: false }),
   );
 }
+
+/* ---- LegacyShareObject: ScreenBlock_ShareObject and ProfileList (Connect2_LegacyShared Share_UI) ---- */
+
+import { toAvailableUsers, toShareObjectInputs, toShareObjectResult, toShareObjectTypeLabel } from './mapper';
+import type {
+  AvailableUsers,
+  AvailableUsersCallInputs,
+  ShareObjectCallInputs,
+  ShareObjectResult,
+  ShareObjectTypeCallInputs,
+} from './types';
+
+/** ScreenDataSetGetShareObjectTypeById (the aggregate of ScreenBlock_ShareObject, max 50 records from 0): the Label of
+    the current record of Type_ShareObject, "" when there is none. The block fetches it at start and on each change of
+    its variables. */
+export async function fetchShareObjectTypeLabel(inputs: ShareObjectTypeCallInputs): Promise<string> {
+  return toShareObjectTypeLabel(
+    await callAction('Connect2_LegacyShared', 'ScreenBlock_ShareObject/ScreenDataSetGetShareObjectTypeById', inputs),
+  );
+}
+
+/** DataActionGetAvailableUsers (the data action of ProfileList): the users that the object can be shared with, and the
+    Label of the list. ProfileList fetches it at start and on each Refresh Query. */
+export async function fetchAvailableUsers(inputs: AvailableUsersCallInputs): Promise<AvailableUsers> {
+  return toAvailableUsers(await callAction('Connect2_LegacyShared', 'ProfileList/DataActionGetAvailableUsers', inputs));
+}
+
+/** ShareObject (the server action of DeferredHandleShareObjectList in ProfileList): shares the object with one user. A
+    write: the mocks answer it, the real server never gets it. */
+export async function shareObject(inputs: ShareObjectCallInputs): Promise<ShareObjectResult> {
+  return toShareObjectResult(
+    await callAction('Connect2_LegacyShared', 'ActionShareObject', toShareObjectInputs(inputs)),
+  );
+}

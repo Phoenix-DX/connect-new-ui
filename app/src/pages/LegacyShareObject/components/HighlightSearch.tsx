@@ -1,4 +1,3 @@
-// @os-block Connect2_LegacyShared.Directory.HighlightSearch
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { removeRegexSpecialCharacters } from '@/shared/UBTConnectLibrary/lib/actions';
 
@@ -20,10 +19,9 @@ interface Part {
 const normalizeText = (text: string) => text.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
 const escapeRegex = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-/** Highlight JS node (Connect2_LegacyShared.Directory.HighlightSearch.mvc.js controller.OnReady.HighlightJS
-    :325-409, OnReady :223-245): every space-separated term is matched (case-insensitive, word bound when asked) in the text, else in the
-    accent-free text; matches are sorted and overlapping ones merged; the text is written as text nodes with the
-    matches in `<mark>`. Returned as parts instead of rewriting the DOM. */
+/** The Highlight JS node of OnReady: every space-separated term is matched (case-insensitive, word bound when asked)
+    in the text, else in the accent-free text; matches are sorted and overlapping ones merged; the text is written as
+    text nodes with the matches in `<mark>`. Returned as parts instead of rewriting the DOM. */
 export function highlightParts(searchText: string, searchTerms: string, useWordbound: boolean): Part[] {
   const terms = searchTerms ? searchTerms.split(' ') : [];
   const wordBoundary = useWordbound ? '\\b' : '';
@@ -62,9 +60,9 @@ export function highlightParts(searchText: string, searchTerms: string, useWordb
   return parts;
 }
 
-/** Directory.HighlightSearch (view :168-190): container "Contents" (`display: inline;`) whose content the OnReady /
-    OnParametersChanged Highlight node writes from Text and RemoveRegexSpecialCharacters(SearchTerms)
-    (Connect2_LegacyShared.controller.js:6859-6864, same expression as the UBTConnectLibrary port). */
+/** The container "Contents" (`display: inline;`) whose content the OnReady / OnParametersChanged Highlight node writes
+    from Text and RemoveRegexSpecialCharacters(SearchTerms) (the same expression as the UBTConnectLibrary port).
+    @origin Connect2_LegacyShared.Directory.HighlightSearch */
 export function HighlightSearch({ id, text = '', searchTerms = '', isWordbound = false }: HighlightSearchProps) {
   const scope = id.replace('$', '');
   const parts = highlightParts(text, removeRegexSpecialCharacters(searchTerms), isWordbound);

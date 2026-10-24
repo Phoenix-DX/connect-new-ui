@@ -25,3 +25,6 @@ export type * from './types';
 
 /* OneSchoolGlobalDetails: DataActionGetOneSchoolGlobalDetails. */
 export { useOneSchoolGlobalDetailsQuery } from './hooks';
+
+/* LegacyShareObject: Get_UI_CommunityBusinessShareCard. */
+export { fetchCommunityBusinessShareCard } from './repository';

@@ -5,6 +5,7 @@ export {
   fetchHouseholdCaption,
   fetchHouseholdCardMembers,
   fetchHouseholdCoordinates,
+  fetchHouseholdShareCard,
   fetchLocalityHouseholdIds,
   fetchLocalityHouseholds,
   fetchMemberRelations,

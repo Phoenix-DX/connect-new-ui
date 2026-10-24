@@ -78,3 +78,86 @@ describe('share mapper', () => {
     expect(toShareDetails(shareWire('Household', '42438', '42438', '')).householderId).toBe('0');
   });
 });
+
+/* ---- LegacyShareObject: ScreenBlock_ShareObject and ProfileList ---- */
+
+import {
+  toAvailableUsers,
+  toShareObjectInputs,
+  toShareObjectResult,
+  toShareObjectTypeLabel,
+  type AvailableUserWire,
+} from './mapper';
+
+/** A fictional user of GetAvailableUsers, with every field. */
+const userWire = (id: string, fullName: string): AvailableUserWire => ({
+  Id: id,
+  Email: '',
+  FirstName: '',
+  LastName: '',
+  FullName: fullName,
+  LocalityId: '0',
+  LocalityName: 'Nelson',
+  CountryCode: '',
+  CountryName: 'New Zealand',
+  Photo: { Bucket: 'bucket', Path: 'path', Type: 'image/png', SignedPath: 'signed' },
+  CountryId: 'NZ',
+  Source: '',
+  MemberId: '0',
+  HasAccess: true,
+});
+
+describe('share mapper (LegacyShareObject)', () => {
+  it('toShareObjectTypeLabel gives the Label of the first record, "" for an empty list', () => {
+    const type = { Id: 'Feed', Label: 'Feed item', LabelPrefix: '', Order: 0, Is_Active: true };
+    const record = { Type_ShareObject: { ...type, NotificationTitle: '', APIKey: '' } };
+    expect(toShareObjectTypeLabel({ List: { List: [record, record] }, Count: 2 })).toBe('Feed item');
+    expect(toShareObjectTypeLabel({ List: { List: [] }, Count: 0 })).toBe('');
+  });
+
+  it('toAvailableUsers keeps the Label and the fields that OnAfterFetch reads', () => {
+    const wire = {
+      Label: 'Contacts list',
+      Response: { Type: '', Items: { List: [userWire('7001', 'Hana Kowalczyk')] } },
+    };
+    expect(toAvailableUsers(wire)).toEqual({
+      label: 'Contacts list',
+      items: [
+        {
+          id: '7001',
+          fullName: 'Hana Kowalczyk',
+          localityName: 'Nelson',
+          countryName: 'New Zealand',
+          photo: { bucket: 'bucket', path: 'path', type: 'image/png', signedPath: 'signed' },
+        },
+      ],
+    });
+  });
+
+  it('toShareObjectInputs sends In_UpdateType "" and the null date', () => {
+    expect(
+      toShareObjectInputs({
+        shareObjectTypeId: 'Household',
+        sharedObjectId: '42438',
+        sharingProfileName: 'Kai Andersen',
+        targetCBUserId: '7001',
+      }),
+    ).toEqual({
+      In_ShareObjectTypeId: 'Household',
+      In_SharedObjectId: '42438',
+      In_SharingProfileName: 'Kai Andersen',
+      In_TargetCBUserId: '7001',
+      In_UpdateType: '',
+      In_UpdateDate: '1900-01-01',
+    });
+  });
+
+  it('toShareObjectResult keeps the four outputs', () => {
+    expect(toShareObjectResult({ IsAllowed: true, IsSuccess: false, Message: 'Try later', ShareId: '0' })).toEqual({
+      isAllowed: true,
+      isSuccess: false,
+      message: 'Try later',
+      shareId: '0',
+    });
+  });
+});

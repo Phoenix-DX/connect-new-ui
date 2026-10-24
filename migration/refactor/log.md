@@ -759,3 +759,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T11:05:05 P6-G6-B-ConnectShare stage test
 - 2026-10-24T11:10:04 P6-G6-B-ConnectShare stage docs
 - 2026-10-24T11:11:07 P6-G6-B-ConnectShare stage commit
+- 2026-10-24T11:11:09 P6-G6-B-ConnectShare done 93c9e547: ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; HomeFeed 244.49 kB, Login 184.49 kB; W23 equal to the old port (re-judged)
+- 2026-10-24T11:11:09 P6-G6-B-LegacyShareObject started
+- 2026-10-24T11:11:10 P6-G6-B-LegacyShareObject stage dev
+- 2026-10-24T11:11:49 P6-G6-B-LegacyShareObject stage test
+- 2026-10-24T11:20:38 P6-G6-B-LegacyShareObject stage docs
+- 2026-10-24T11:22:22 P6-G6-B-LegacyShareObject stage commit

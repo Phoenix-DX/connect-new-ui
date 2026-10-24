@@ -1,10 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { VITALE, childrenText, householdName } from '@/mocks/fictional/directory';
 import {
   fetchHousehold,
   fetchHouseholdCaption,
   fetchHouseholdCardMembers,
   fetchHouseholdCoordinates,
   fetchHouseholdCoordinatesById,
+  fetchHouseholdShareCard,
   fetchLocalityHouseholdIds,
   fetchLocalityHouseholds,
   fetchMemberRelations,
@@ -274,6 +276,30 @@ describe('household repository: LDM_EventDetail_V2', () => {
       Latitude: '0',
       Longitude: '0',
       UseCoordinates: false,
+    });
+  });
+});
+
+/* LegacyShareObject/mocks.ts answers the household of the directory cast for the id, else the Vitale household. */
+describe('household share card repository', () => {
+  it('fetchHouseholdShareCard calls GetHouseholdDetails of Connect2_LegacyShared and reads the card content', async () => {
+    const card = await fetchHouseholdShareCard({
+      HouseholdId: '42438',
+      User_AgeVisibility: true,
+      CheckVisibility: false,
+    });
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'Connect2_LegacyShared',
+        action: 'ServiceAPIGetHouseholdDetails',
+        inputNames: ['CheckVisibility', 'HouseholdId', 'User_AgeVisibility'],
+      }),
+    ]);
+    expect(card).toEqual({
+      name: householdName(VITALE),
+      familyNames: childrenText(VITALE.children),
+      localityName: 'Bahia Blanca',
+      countryName: 'Argentina',
     });
   });
 });

@@ -1,120 +1,76 @@
-// @os-block Connect2_LegacyShared.Share_UI.ScreenBlock_ShareObject
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import type { CommunityBusinessShareCard } from '@/api/locality';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
+import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { LegacyLayout } from '@/components/layout/LegacyLayout';
+import type { ShareObjectHousehold } from '@/pages/LegacyShareObject/hooks/shareObjectState';
 import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
 import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';
 import { UBT_AvatarSize, UBT_Color, UBT_Shape } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Connect_Entity, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { UBT_LazyImage } from '@/shared/UBTConnect_Utils/UBT_LazyImage';
-import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import {
-  getCommunityBusinessShareCard,
-  getHouseholdDetails,
-  useShareObjectTypeLabel,
-} from '@/pages/LegacyShareObject/api';
-import type { CommunityBusinessShareCard } from '@/pages/LegacyShareObject/types';
-import { ProfileList } from './ProfileList';
 import { FEED_ITEM_ICON, Type_ShareObject } from './staticEntities';
 
-export interface ScreenBlock_ShareObjectProps {
+export interface ShareObjectViewProps {
   /** OutSystems instance id of the block (`$b1`). */
   id: string;
+  /** ShareObjectTypeId: the Text identifier of Type_ShareObject. */
   shareObjectTypeId: string;
+  /** ObjectId: the entity of the household image. */
   objectId: string;
-  inCustomTitle: string;
-  userAgeVisibility: boolean;
+  /** In_CustomTitle: the title of the feed card. */
+  customTitle: string;
+  /** The Label of GetShareObjectTypeById: the title is "Share " + the label. */
+  shareObjectTypeLabel: string;
+  /** IsLoading: the cards show their loading state. */
+  isLoading: boolean;
+  household: ShareObjectHousehold;
+  communityBusiness: CommunityBusinessShareCard;
+  /** The block ProfileList (instance `<scope>-$b8`) with its flows. */
+  profileList: ReactNode;
   /** Placeholder BottomBar. */
   bottomBar?: ReactNode;
   /** Placeholder CommonUI_Elements. */
   commonUIElements?: ReactNode;
-  /** Event SubscriptionDenied (raised by ProfileList). */
-  onSubscriptionDenied: () => Promise<void>;
 }
 
 const TAG_CLASS =
   'font-size-0-75em text-align-left padding-x-xs padding-y-xs border-radius-soft background-neutral-2 text-neutral-6';
-/** Extended style "color: #000; font-size: 0.8em;" of the tag expressions (captured dom/default.html:101). */
+/** Extended style "color: #000; font-size: 0.8em;" of the tag expressions (captured dom/default.html). */
 const TAG_STYLE = { color: 'rgb(0, 0, 0)', fontSize: '0.8em' };
 
-const EMPTY_COMMUNITY_BUSINESS: CommunityBusinessShareCard = {
-  name: '',
-  areasServed: '',
-  countryName: '',
-  photoBucket: '',
-  photoPath: '',
-  photoType: '',
-  photoSignedPath: '',
-};
+/** The SignedURL of the community business card: the card's signed photo when Bucket, Path, Type and SignedPath are
+    all set, else the "photo coming soon" image of Campus&Co or of OneSchool Global. */
+function communityBusinessImage(card: CommunityBusinessShareCard, shareObjectTypeId: string): string {
+  if (card.photoBucket !== '' && card.photoPath !== '' && card.photoType !== '' && card.photoSignedPath !== '') {
+    return card.photoSignedPath;
+  }
+  return shareObjectTypeId === Type_ShareObject.CampusCo
+    ? osImage('img/Connect2_LegacyShared.CampusCo_PhotoComingSoon.png')
+    : osImage('img/Connect2_LegacyShared.OneSchool_PhotoComingSoon.png');
+}
 
-/** Share_UI.ScreenBlock_ShareObject (Connect2_LegacyShared.Share_UI.ScreenBlock_ShareObject.mvc.js: model :1-155,
-    view :213-693, controller :699-1240). Layout with the back arrow and "Share " + the share type label; the card of
-    the shared object (Household / Campus&Co or OneSchool Global / Feed) and ProfileList.
-    OnInitialize (:969-992) IsLoading = True; OnReady (:1039-1135) loads the card, then IsLoading = False (an exception
-    leaves it True and goes to the flow handler); OnParametersChanged (:938-967) refreshes the aggregate (query key).
-    HandleShareProfileList / DeferredHandleShareProfileList (:886-936, :994-1037) answer ProfileList's Share event,
-    which ProfileList never raises (its controller only declares share$Action): not wired. */
-export function ScreenBlock_ShareObject({
+/** The layout with the back arrow and the title "Share " + the type label; the card of the shared object (a household,
+    a Campus&Co or OneSchool Global business, or a feed item) and the ProfileList slot. Props only; the flows are in
+    useShareObject. The ProfileList event Share is never raised, so HandleShareProfileList and
+    DeferredHandleShareProfileList have no port.
+    @origin Connect2_LegacyShared.Share_UI.ScreenBlock_ShareObject */
+export function ShareObjectView({
   id,
   shareObjectTypeId,
   objectId,
-  inCustomTitle,
-  userAgeVisibility,
+  customTitle,
+  shareObjectTypeLabel,
+  isLoading,
+  household,
+  communityBusiness: cb,
+  profileList,
   bottomBar,
   commonUIElements,
-  onSubscriptionDenied,
-}: ScreenBlock_ShareObjectProps) {
+}: ShareObjectViewProps) {
   const scope = id.replace('$', '');
-  const [isLoading, setIsLoading] = useState(true);
-  const [household, setHousehold] = useState({ name: '', description: '', tag: '' });
-  const [communityBusiness, setCommunityBusiness] = useState(EMPTY_COMMUNITY_BUSINESS);
-  const label = useShareObjectTypeLabel({
-    ShareObjectTypeId: shareObjectTypeId,
-    ObjectId: objectId,
-    In_CustomTitle: inCustomTitle,
-    User_AgeVisibility: userAgeVisibility,
-  });
-
-  // OnReady: once, with the inputs at that time.
-  const ready = useRef(false);
-  useEffect(() => {
-    if (ready.current) return;
-    ready.current = true;
-    const onReady = async () => {
-      if (shareObjectTypeId === Type_ShareObject.Household) {
-        const card = await getHouseholdDetails(objectId, userAgeVisibility);
-        // Bucket, Path, Type and SignedURL are set to "" (they stay at their default).
-        setHousehold({
-          name: card.name,
-          description: card.familyNames,
-          tag: card.localityName + ', ' + card.countryName,
-        });
-      } else if (
-        shareObjectTypeId === Type_ShareObject.CampusCo ||
-        shareObjectTypeId === Type_ShareObject.OneSchoolGlobal
-      ) {
-        const card = await getCommunityBusinessShareCard(objectId);
-        setCommunityBusiness({
-          ...card,
-          areasServed: card.areasServed + (card.countryName !== '' ? ', ' + card.countryName : ''),
-        });
-      }
-      setIsLoading(false);
-    };
-    onReady().catch(raiseToFlowHandler);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const cb = communityBusiness;
-  const cbSignedURL =
-    cb.photoBucket !== '' && cb.photoPath !== '' && cb.photoType !== '' && cb.photoSignedPath !== ''
-      ? cb.photoSignedPath
-      : shareObjectTypeId === Type_ShareObject.CampusCo
-        ? osImage('img/Connect2_LegacyShared.CampusCo_PhotoComingSoon.png')
-        : osImage('img/Connect2_LegacyShared.OneSchool_PhotoComingSoon.png');
 
   const content = (
     <div className="padding" data-container="">
@@ -164,7 +120,7 @@ export function ScreenBlock_ShareObject({
             id={`${scope}-CommunityBusiness_List_Item`}
             inType={cb.photoType}
             inShowTag={cb.countryName !== '' || cb.areasServed !== ''}
-            inSignedURL={cbSignedURL}
+            inSignedURL={communityBusinessImage(cb, shareObjectTypeId)}
             inPath={cb.photoPath}
             inIsNavigationLoading={isLoading}
             inBucket={cb.photoBucket}
@@ -211,19 +167,14 @@ export function ScreenBlock_ShareObject({
             }
             titlePlaceholder={
               <span className="font-size-0-9em bold" data-expression="" id={`${scope}-Feed_Title`}>
-                {inCustomTitle}
+                {customTitle}
               </span>
             }
           />
         )}
       </div>
       <div className="margin-top-base" data-container="">
-        <ProfileList
-          id={`${scope}-$b8`}
-          shareObjectTypeId={shareObjectTypeId}
-          shareObjectId={objectId}
-          onSubscriptionDenied={onSubscriptionDenied}
-        />
+        {profileList}
       </div>
     </div>
   );
@@ -235,7 +186,7 @@ export function ScreenBlock_ShareObject({
         headerLeft={<MenuIconBack id={`${scope}-$b2`} />}
         title={
           <div className="text-align-center" data-container="">
-            <span data-expression="">{'Share ' + (label.data ?? '')}</span>
+            <span data-expression="">{'Share ' + shareObjectTypeLabel}</span>
           </div>
         }
         content={content}

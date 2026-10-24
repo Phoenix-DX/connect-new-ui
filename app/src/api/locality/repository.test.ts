@@ -6,6 +6,7 @@ import { MOCK_LOCALITY_SUBDIVISIONS } from '@/shared/Connect2_LegacyShared/lib/m
 import {
   fetchAllLocalities,
   fetchBulkSubdivisions,
+  fetchCommunityBusinessShareCard,
   fetchEventFilterLocalities,
   fetchInterchanges,
   fetchLocalityCardList,
@@ -326,5 +327,28 @@ describe('locality repository: OneSchoolGlobalDetails', () => {
       businessLinks: [{ text: 'tst', link: 'https://bw.campusandco.us', id: '0' }],
     });
     expect(details.householdCoordinates).toEqual({ Longitude: '0.0', Latitude: '0.0', UseCoordinates: false });
+  });
+});
+
+/* LegacyShareObject/mocks.ts answers one fictional share card with empty photo fields. */
+describe('locality repository: community business share card', () => {
+  it('fetchCommunityBusinessShareCard calls Get_UI_CommunityBusinessShareCard with In_CommunityBusinessId', async () => {
+    const card = await fetchCommunityBusinessShareCard('1430');
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'Connect2_LegacyShared',
+        action: 'ServiceAPIGet_UI_CommunityBusinessShareCard',
+        inputNames: ['In_CommunityBusinessId'],
+      }),
+    ]);
+    expect(card).toEqual({
+      name: 'OneSchool Global Bahia Blanca',
+      areasServed: 'Bahia Blanca',
+      countryName: 'Argentina',
+      photoBucket: '',
+      photoPath: '',
+      photoType: '',
+      photoSignedPath: '',
+    });
   });
 });

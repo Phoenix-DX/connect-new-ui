@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G6-B-ConnectShare",
+  "step": "P6-G6-B-LegacyShareObject",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T11:11:07"
+  "since": "2026-10-24T11:22:22"
  },
  "steps": {
   "P0-1": {
@@ -1496,11 +1496,25 @@
    "finished": "2026-10-24T11:04:26"
   },
   "P6-G6-B-ConnectShare": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T11:04:26",
    "tokens": {
     "dev": 255681,
-    "test": 32985
+    "test": 32985,
+    "docs": 33095
+   },
+   "commit": "93c9e547",
+   "gate": "ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; HomeFeed 244.49 kB, Login 184.49 kB; W23 equal to the old port (re-judged)",
+   "loops": 0,
+   "finished": "2026-10-24T11:11:09"
+  },
+  "P6-G6-B-LegacyShareObject": {
+   "status": "active",
+   "started": "2026-10-24T11:11:09",
+   "tokens": {
+    "dev": 446939,
+    "test": 36014,
+    "docs": 34309
    }
   }
  },

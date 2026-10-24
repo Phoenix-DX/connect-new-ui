@@ -727,3 +727,9 @@
 - `pages/ConnectShare` is a page with a flow hook (`hooks/useConnectShare.ts`), a state module (`hooks/connectShareState.ts`) on `useFlowState`, client actions (`hooks/connectShareActions.ts`) and `inputs.ts`. `ScreenBlock_ShareDetail` is now `components/ShareDetailView.tsx`. `api.ts` and `types.ts` are deleted.
 - New domain `api/share` (W8) with Get_ShareDetails. After an unmount, the delayed upgrade popup is not started or is dropped, exactly as in the old port. W23 holds; the tester compared it with HEAD. The 4 screen variables are one cache record.
 - HomeFeed gzip 244.49 kB, Login 184.49 kB; arch baseline 69 rows, 0 new.
+
+## P6-G6-B-LegacyShareObject - refactor(P6-G6-B): LegacyShareObject as page
+
+- `pages/LegacyShareObject` is a page with two flow hooks (`hooks/useShareObject.ts`, `hooks/useProfileList.ts` on `useFlowState`), their state modules and `inputs.ts`. `ScreenBlock_ShareObject` is now `components/ShareObjectView.tsx`; `ProfileList` is props only. `api.ts` and `types.ts` are deleted.
+- The 5 calls are in `api/share` (3, with `keys.ts` and `hooks.ts`), `api/household` (`fetchHouseholdShareCard`) and `api/locality` (`fetchCommunityBusinessShareCard`).
+- HomeFeed gzip 244.52 kB, Login 184.51 kB; arch baseline 69 rows, 0 new.

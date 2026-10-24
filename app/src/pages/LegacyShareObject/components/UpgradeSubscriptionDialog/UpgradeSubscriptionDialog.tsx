@@ -1,5 +1,4 @@
 /** @origin Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog */
-// @os-block Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog
 import { useId } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs/ActionConfirmationDialog';

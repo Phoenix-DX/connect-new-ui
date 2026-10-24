@@ -209,3 +209,23 @@ export interface OrbitHouseholdMember {
   firstName: string;
   isSelected: boolean;
 }
+
+/* ---- ScreenBlock_ShareObject (LegacyShareObject) ---- */
+
+/** The inputs of GetHouseholdDetails of Connect2_LegacyShared. A type alias, not an interface: the contract inputs
+    have an index signature. */
+export type HouseholdShareCardCallInputs = {
+  /** The household (a Long Integer as text). */
+  HouseholdId: string;
+  User_AgeVisibility: boolean;
+  CheckVisibility: boolean;
+};
+
+/** The fields of the household card content (UI_Household_Card_Content) that the share card of
+    ScreenBlock_ShareObject reads. */
+export interface HouseholdShareCard {
+  name: string;
+  familyNames: string;
+  localityName: string;
+  countryName: string;
+}

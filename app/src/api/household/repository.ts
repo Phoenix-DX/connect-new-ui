@@ -6,6 +6,7 @@ import {
   toHouseholdCardMembers,
   toHouseholdCoordinates,
   toHouseholdCoordinatesById,
+  toHouseholdShareCard,
   toLocalityHouseholdIds,
   toLocalityHouseholdIdsInputs,
   toLocalityHouseholds,
@@ -21,6 +22,8 @@ import type {
   HouseholdCaptionCallInputs,
   HouseholdCardMembers,
   HouseholdCoordinates,
+  HouseholdShareCard,
+  HouseholdShareCardCallInputs,
   LocalityHousehold,
   LocalityHouseholdIdsCallInputs,
   MemberRelations,
@@ -125,4 +128,12 @@ export async function fetchHouseholdCoordinatesById(householdId: string): Promis
   return toHouseholdCoordinatesById(
     await callAction('Connect2_OrbitMobile_MUI', 'ActionGetHouseholdCoordinates', { HouseholdId: householdId }),
   );
+}
+
+/* ---- ScreenBlock_ShareObject (LegacyShareObject) ---- */
+
+/** GetHouseholdDetails (the service action of Connect2_LegacyShared): the household card of the shared household. The
+    OnReady of ScreenBlock_ShareObject calls it for a household. */
+export async function fetchHouseholdShareCard(inputs: HouseholdShareCardCallInputs): Promise<HouseholdShareCard> {
+  return toHouseholdShareCard(await callAction('Connect2_LegacyShared', 'ServiceAPIGetHouseholdDetails', inputs));
 }

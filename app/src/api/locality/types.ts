@@ -334,3 +334,17 @@ export interface OneSchoolGlobalDetailsCallInputs {
   /** In_OneSchoolGlobalId (Long Integer, as text). */
   in_OneSchoolGlobalId: string;
 }
+
+/* ---- ScreenBlock_ShareObject (LegacyShareObject): Get_UI_CommunityBusinessShareCard ---- */
+
+/** The share card of a community business, Campus&Co or OneSchool Global
+    (Connect_CommunityBusiness_CS.UI_CommunityBusiness_ShareCard). */
+export interface CommunityBusinessShareCard {
+  name: string;
+  areasServed: string;
+  countryName: string;
+  photoBucket: string;
+  photoPath: string;
+  photoType: string;
+  photoSignedPath: string;
+}

@@ -1,11 +1,11 @@
 import type { RequestHandler } from 'msw';
+import type { AvailableUserWire, ShareObjectTypeByIdWire } from '@/api/share';
 import { contractHandler } from '@/mocks/contract';
 import { fixtureData } from '@/mocks/fixtures';
 import { VITALE, childrenText, householdById, householdName } from '@/mocks/fictional/directory';
 import { collection } from '@/mocks/store';
 import { mockUserToggles } from '@/platform/session/mockUser';
 import { Type_ShareObject } from './components/staticEntities';
-import type { AvailableUserWire, ShareObjectTypeByIdWire } from './types';
 
 /* Mocks of LegacyShareObject (P-MOCKS, P-MUTATION). Scenarios: real (default), empty, error, loading (src/mocks).
    - ScreenDataSetGetShareObjectTypeById: recorded for Household only (fixture 01-585887a6, Label "Household"); any other

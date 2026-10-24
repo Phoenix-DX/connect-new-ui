@@ -2,6 +2,7 @@ import { callAction } from '@/api/client/callAction';
 import {
   toAllLocalities,
   toBulkSubdivisionsInputs,
+  toCommunityBusinessShareCard,
   toEventFilterLocalities,
   toInterchanges,
   toLocalityCardList,
@@ -24,6 +25,7 @@ import {
 import type {
   AllLocalities,
   AllLocalitiesCallInputs,
+  CommunityBusinessShareCard,
   EventFilterLocality,
   EventLocalitiesCallInputs,
   Interchange,
@@ -182,5 +184,20 @@ export async function fetchOneSchoolGlobalDetails(
       'OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails',
       toOneSchoolGlobalDetailsInputs(inputs),
     ),
+  );
+}
+
+/* ---- ScreenBlock_ShareObject (LegacyShareObject): Get_UI_CommunityBusinessShareCard ---- */
+
+/** Get_UI_CommunityBusinessShareCard (the service action of Connect2_LegacyShared): the share card of a Campus&Co or
+    OneSchool Global business (`communityBusinessId`, a Long Integer as text). The OnReady of ScreenBlock_ShareObject
+    calls it. */
+export async function fetchCommunityBusinessShareCard(
+  communityBusinessId: string,
+): Promise<CommunityBusinessShareCard> {
+  return toCommunityBusinessShareCard(
+    await callAction('Connect2_LegacyShared', 'ServiceAPIGet_UI_CommunityBusinessShareCard', {
+      In_CommunityBusinessId: communityBusinessId,
+    }),
   );
 }

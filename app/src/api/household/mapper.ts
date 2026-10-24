@@ -9,6 +9,7 @@ import type {
   HouseholdCoordinates,
   HouseholdDetails,
   HouseholdMember,
+  HouseholdShareCard,
   LocalityHousehold,
   LocalityHouseholdIdsCallInputs,
   MemberRelations,
@@ -243,3 +244,20 @@ export const toHouseholdCoordinatesById = (wire: HouseholdCoordinatesByIdWire): 
   Longitude: wire.Response.Longitude,
   UseCoordinates: wire.Response.UseCoordinates,
 });
+
+/* ---- ScreenBlock_ShareObject (LegacyShareObject) ---- */
+
+/** The outputs of GetHouseholdDetails of Connect2_LegacyShared, as the contract describes them. */
+type HouseholdShareCardWire = ActionOutputs<PathOf<'Connect2_LegacyShared', 'ServiceAPIGetHouseholdDetails'>>;
+
+/** The card content of GetHouseholdDetails (UI_Screen_HouseholdDetails.HouseholdCard.Household_Card_Content), with
+    the fields that the share card reads. */
+export const toHouseholdShareCard = (wire: HouseholdShareCardWire): HouseholdShareCard => {
+  const content = wire.UI_Screen_HouseholdDetails.HouseholdCard.Household_Card_Content;
+  return {
+    name: content.Name,
+    familyNames: content.FamilyNames,
+    localityName: content.LocalityName,
+    countryName: content.CountryName,
+  };
+};

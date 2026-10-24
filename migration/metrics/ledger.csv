@@ -754,3 +754,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,other,4224,refactor-docs,,P6-G6-B-Notes sonnet
 2026-10-24,refactor,verify,28042,refactor-test,,P6-G6-B-ConnectShare sonnet
 2026-10-24,refactor,verify,4943,refactor-test,,P6-G6-B-ConnectShare sonnet
+2026-10-24,refactor,build,446939,refactor-dev,,P6-G6-B-LegacyShareObject opus
+2026-10-24,refactor,other,33095,refactor-docs,,P6-G6-B-ConnectShare sonnet
+2026-10-24,refactor,review,161849,refactor-advisor,,"W32, opus"
+2026-10-24,refactor,review,108532,refactor-advisor,,"W32, fable"
+2026-10-24,refactor,verify,36014,refactor-test,,P6-G6-B-LegacyShareObject sonnet
+2026-10-24,refactor,other,34309,refactor-docs,,P6-G6-B-LegacyShareObject sonnet
