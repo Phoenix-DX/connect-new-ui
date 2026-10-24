@@ -832,3 +832,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T13:34:11 P7-6 stage test
 - 2026-10-24T13:47:02 P7-6 stage docs
 - 2026-10-24T13:53:08 P7-6 stage commit
+- 2026-10-24T13:53:10 P7-6 done 88214923: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); W32 conditions met (diffcheck declared lines only, rule-6 = 55 ceiling, MSW order kept, coverage 89.39 % >= 49.22 %, arch baseline 0 new, no shared/ left); commits cca9b514, 14f5a615, 1d9baa51, 468e880b and this one
+- 2026-10-24T13:53:16 P7-5 started
+- 2026-10-24T13:53:16 P7-5 stage dev
+- 2026-10-24T13:55:21 P7-5 stage test
+- 2026-10-24T14:05:48 P7-5 stage docs
+- 2026-10-24T14:06:42 P7-5 stage commit

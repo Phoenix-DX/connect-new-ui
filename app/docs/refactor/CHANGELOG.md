@@ -800,3 +800,20 @@
 - Debt: the module client actions in `lib/<module>/actions.ts` break rule 6; the count of 55 is a ceiling that may only go down (F35). Other debt: F36 (OSLink), F37 (CacheControl). The rule-5 drop of 110 is a reclassification, not a fix (F38). Table: `migration/refactor/handoffs/P7-6/rows.md`, "Debt created".
 - Gate: dependency-cruiser 269 to 222 (rule-6 +55, rule-9 +4, rule-8 +1, rule-5 -109 net). Parity strict `--all` 64/64 clean on both references; `ci` 3939 tests; coverage 89.39%.
 - W21: HomeFeed 244.69 kB gzip (+0.03), Login 184.71 kB (0.00). Baseline 78 rows, 0 new. Closed: F30, F34.
+
+## P7-5 - refactor(P7-5): Phase 7 report
+
+- Architecture: no code change. New `app/docs/refactor/reports/P7.md` and `app/src/components/ui/README.md` (93 component folders, groups, rules, how to add a component).
+- Gate: parity visual `--all` 64/64 clean on both references; `ci` 3939 tests; baseline 72 rows, 0 new; HomeFeed 244.69 kB, Login 184.71 kB gzip.
+
+## Phase 7 done
+
+Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shared/` is deleted.
+
+- Open user decisions:
+  - F22, F24 and F26 (one decision): restore the view state after a back navigation, or keep the port behavior.
+  - F25: back handler of the Unable-to-Host survey.
+  - F28 (low priority): overlapping bookmark answers.
+  - F29: delete or keep the 4 unused OSUI patterns, at the P9 knip cleanup.
+  - F33: which `NetworkWarning` DOM stays.
+- Owned debt, to clear before P9-1 makes rule 6 an error: F35 (split the module client actions in `lib/<module>/actions.ts`, ceiling 55), F36 (`OSLink` imports `platform/navigation`), F37 (CacheControl blocks in `legacy/os/cache/`).

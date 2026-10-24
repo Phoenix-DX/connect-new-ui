@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P7-6",
+  "step": "P7-5",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T13:53:08"
+  "since": "2026-10-24T14:06:42"
  },
  "steps": {
   "P0-1": {
@@ -1639,12 +1639,24 @@
    "finished": "2026-10-24T13:21:45"
   },
   "P7-6": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T13:21:45",
    "tokens": {
     "dev": 595037,
     "test": 47710,
     "docs": 112378
+   },
+   "commit": "88214923",
+   "gate": "ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); W32 conditions met (diffcheck declared lines only, rule-6 = 55 ceiling, MSW order kept, coverage 89.39 % >= 49.22 %, arch baseline 0 new, no shared/ left); commits cca9b514, 14f5a615, 1d9baa51, 468e880b and this one",
+   "loops": 0,
+   "finished": "2026-10-24T13:53:10"
+  },
+  "P7-5": {
+   "status": "active",
+   "started": "2026-10-24T13:53:16",
+   "tokens": {
+    "dev": 66191,
+    "test": 35982
    }
   }
  },
