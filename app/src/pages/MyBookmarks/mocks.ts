@@ -1,4 +1,5 @@
 import { http, HttpResponse, type RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { mockDelay, scenario } from '@/mocks/scenario';
@@ -8,7 +9,14 @@ import {
   type LegacyBookmarkItem,
 } from '@/shared/Connect2_MyBookmarks_MUI/mocks';
 import { MyBookmarks_Group } from '@/shared/UBTConnect/lib/staticEntities';
-import type { BookmarkItemWire, GroupSummaryWire } from './types';
+
+/* Wire shapes of the contract (Connect2_MyBookmarks_IS structures, src/api/openapi.yaml), taken from the outputs of
+   GetGroupSummaries. */
+type GetGroupSummariesOutput = ActionOutputs<
+  PathOf<'Connect2_MyBookmarks_MUI', 'ScreenBlock_MyBookmarks/DataActionGetGroupSummaries'>
+>;
+type GroupSummaryWire = GetGroupSummariesOutput['Bookmarks_Contacts'];
+type BookmarkItemWire = GroupSummaryWire['Bookmarks']['List'][number];
 
 /* DataActionGetGroupSummaries was never recorded (bookmarks are person data, knowledge/mock-fixtures.md; contract
    x-mock-source fictional). The answer is built from the shared collection of the mock user's legacy bookmarks

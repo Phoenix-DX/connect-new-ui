@@ -1,11 +1,11 @@
-// @os-block Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Album
+/** @origin Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Album */
+import type { GroupSummaryBookmark as BookmarkItem } from '@/api/bookmark';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { osImage } from '@/legacy/os/os-assets';
 import { DEPRECATED_GalleryV2 } from '@/shared/osui/DEPRECATED_GalleryV2';
 import { Space } from '@/shared/osui/lib/staticEntities';
 import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/shared/UBTConnect/lib/staticEntities';
-import type { BookmarkItem } from '@/pages/MyBookmarks/types';
 
 export interface MyBookmarks_AlbumProps {
   /** OutSystems instance id of the block (`b1-MyBookmarksAlbum_Contacts`). */

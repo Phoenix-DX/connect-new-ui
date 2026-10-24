@@ -1,4 +1,4 @@
-// @os-block Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Card
+/** @origin Connect2_MyBookmarks_MUI.MyBookmarksFlow.MyBookmarks_Card */
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 

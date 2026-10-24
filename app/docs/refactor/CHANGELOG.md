@@ -702,3 +702,10 @@
 
 - 2 blocks of `src/shared/` (13 files, phase P6-G6 rows of `move-map.csv`) moved: `NoBookmarks` to `src/components/bookmark/NoBookmarks/`, and `FreeSubscriptionActionDialog` to `src/pages/LegacyShareObject/components/UpgradeSubscriptionDialog/` (component and `<Name>Props` renamed). Each block has an `@origin` tag. The 2 rows are set to `moved`.
 - No baseline row changed. `shared/Connect2_MyBookmarks_MUI/` keeps only `mocks.ts` and `mocks.test.ts` (no move-map row).
+
+## P6-G6-B-MyBookmarks - refactor(P6-G6-B): MyBookmarks as page
+
+- `pages/MyBookmarks` is a page with a flow hook (`hooks/useMyBookmarks.ts`, `hooks/myBookmarksState.ts` on `useFlowState`) and a props-only view (`components/MyBookmarksView.tsx`). It has no container. The ScreenBlock, `api.ts`, `types.ts` and `staticEntities.ts` are deleted; the hook calls `@/api/bookmark`.
+- Edge case 1: `restoreMyBookmarks` returns the defaults for a view that was left before its first assignment, as the old block did.
+- Edge case 2 (F28): the user leaves while both calls run and GetGroupSummaries answers first. The preload then uses the lists of the last write before the unmount (W23).
+- HomeFeed gzip +0.02 kB, Login +0.02 kB; dependency-cruiser warnings 189 to 188.

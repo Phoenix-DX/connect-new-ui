@@ -740,3 +740,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,25616,refactor-dev,,P6-G6-B-Shared sonnet
 2026-10-24,refactor,other,23925,refactor-docs,,P6-G6-A sonnet
 2026-10-24,refactor,verify,21685,refactor-test,,P6-G6-B-Shared sonnet
+2026-10-24,refactor,build,330676,refactor-dev,,P6-G6-B-MyBookmarks opus
+2026-10-24,refactor,other,20413,refactor-docs,,P6-G6-B-Shared sonnet
+2026-10-24,refactor,verify,29550,refactor-test,,P6-G6-B-MyBookmarks sonnet
