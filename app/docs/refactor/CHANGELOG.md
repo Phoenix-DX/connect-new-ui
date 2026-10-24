@@ -786,3 +786,8 @@
 - Props renamed to the `components/ui` names: `title`, `text`; `isLoading`, `extendedClass`, `isActiveWhileLoading`. 63 user files.
 - Evidence: harness 432 + 108 prop combinations, 85 call sites, 536 stories and 4171 end-of-test snapshots, 0 differences outside run-to-run timing. W21: HomeFeed 244.65 kB (+0.02), Login 184.70 kB (+0.01) gzip. Gate: parity visual `--changed` 64 routes on both references, 0 differences; baseline 71 rows, 0 new.
 - Committed as one commit, because 2 user files (`NoteCard_List.tsx`, `ShareSheetContainer.tsx`) are in both merges. New tool: `migration/tools/refactor/p7-3-rename-props.ts`.
+
+## P7-4 - refactor(P7-4): Cards and carousels by evidence (no merge)
+
+- Architecture: no code change. No group has the verdict "same" and a `jscpd` clone. Cards, carousels, PopupMenu and Layout_MainPages stay as domain components ([duplicates.md](duplicates.md), result of P7-4).
+- `jscpd`: 36 clones, 665 lines (P0-3: 63 clones, 1289 lines). Follow-ups F31 to F34 (Orbit client actions, PopupMenu, NetworkWarning, Member_ListItem row).

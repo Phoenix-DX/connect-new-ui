@@ -198,6 +198,11 @@ Evidence:
 Plan: keep all. `Card_*` → `components/orbit` (G5) as `OrbitCard`, `OrbitEventCard`, `MilestoneCard`,
 `MemberInformationCard`. `ImageCard_*`, `NC_*` → `components/ui` (P7). P7-4 merges nothing here.
 
+Result of P7-4: kept as domain components. jscpd still reports one clone, inside
+`components/orbit/MilestoneCard/MilestoneCard.tsx` (15 lines). The two parts are two branches of one OutSystems If
+(meal and accommodation milestones). The DOM differs: the margin of the location row, the time row and the button
+condition.
+
 ### Group 5: carousels
 
 Verdict: **different** (layers, not copies).
@@ -209,6 +214,9 @@ Evidence: `osui/Carousel` (OSUI pattern, `osui-carousel__*`, Splide provider) is
 
 Plan: `osui/Carousel` → `components/ui/Carousel` (P7). The `EntitiesCarousel*` family → `components/directory` (G4).
 The element gets the details as a render prop from the page (rule 4: a component does not import a container).
+
+Result of P7-4: kept as domain components. jscpd reports 0 clones. `components/ui/Carousel` is the engine and the
+`components/directory` family uses it: layers, not copies.
 
 ### Group 6: `DEPRECATED_*` patterns in `shared/osui`
 
@@ -228,19 +236,21 @@ Decided (Q5, option a, auto-accepted under the delegation of the user, 2026-10-2
 with business names in `components/ui/legacy/`: `LegacyAccordion`, `SectionExpandable`, `LegacyButtonLoading` and
 `GridGallery`. The phase is P7 and the shape is `ui`. They are not deleted. `move-map.csv` shows this.
 
+Result of P7-4: kept (Q5). jscpd reports 0 clones.
+
 ## Other pairs found (jscpd and same names)
 
-| Pair                                                                            | Verdict   | Evidence                                                                   | Plan                                                                                                          |
-| ------------------------------------------------------------------------------- | --------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `UBTConnectLibrary/PopupMenu`, `Connect2_LegacyShared/PopupMenu`                | partly    | Both `dx-popup-menu-anchor`, `-content`; the Connect2 one adds `-backdrop` | Keep (`PopupMenu`, `LegacyPopupMenu`). P7-4 may merge with a `backdrop` prop if the rest of the DOM is equal. |
-| `UBTConnectLibrary/InputCounter`, `Connect2_LegacyShared/InputCounter`          | different | Connect2: `text-align-right`, `text-neutral-6 font-size-0-75em`            | Keep (`InputCounter`, `LegacyInputCounter`).                                                                  |
-| `UBTConnectLibrary/Button`, `UBTConnect_Utils/Button`                           | layers    | The Utils one wraps the library button with an icon and a spinner          | Keep (`Button`, `ActionButton`).                                                                              |
-| `osui/BottomSheet`, `UBTConnectLibrary/BottomSheet`                             | layers    | The library one wraps the OSUI one                                         | Keep (`BottomSheet`, `ConnectBottomSheet`).                                                                   |
-| `Layout_MainPages`, `Layout_MainPages_FixedTitle`                               | partly    | jscpd: 2 clones of 18 lines                                                | Keep in G3/G4; P7-4 merge candidate (`fixedTitle`) if the DOM of each variant stays.                          |
-| `Member_ListItem`, `NonMember_ListItem`                                         | partly    | jscpd: 27 lines                                                            | Keep (`MemberListItem`, `NonMemberListItem`); a shared helper when P2 or G4 rewrites them.                    |
-| `DropdownSearch`, `DropdownTags`                                                | partly    | jscpd: 14 and 26 lines                                                     | OSUI patterns: keep; an internal helper in P7-1.                                                              |
-| `Connect2_LegacyShared/Layout`, `Layout_Orbit`                                  | partly    | Same structure, theme class `connect-theme` against `orbit-theme`          | Keep (`LegacyLayout`, `OrbitLayout`).                                                                         |
-| `BrowseDirectory`, `CountryDetails` (`index.tsx`); `BrowseDirectory` (`api.ts`) | partly    | jscpd: 14 and 16 lines                                                     | G4: the calls go to `api/country`.                                                                            |
+| Pair                                                                            | Verdict   | Evidence                                                                   | Plan                                                                                       |
+| ------------------------------------------------------------------------------- | --------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `UBTConnectLibrary/PopupMenu`, `Connect2_LegacyShared/PopupMenu`                | partly    | Both `dx-popup-menu-anchor`, `-content`; the Connect2 one adds `-backdrop` | Kept (P7-4): the rest of the DOM is not equal, see the result of P7-4 below.               |
+| `UBTConnectLibrary/InputCounter`, `Connect2_LegacyShared/InputCounter`          | different | Connect2: `text-align-right`, `text-neutral-6 font-size-0-75em`            | Keep (`InputCounter`, `LegacyInputCounter`).                                               |
+| `UBTConnectLibrary/Button`, `UBTConnect_Utils/Button`                           | layers    | The Utils one wraps the library button with an icon and a spinner          | Keep (`Button`, `ActionButton`).                                                           |
+| `osui/BottomSheet`, `UBTConnectLibrary/BottomSheet`                             | layers    | The library one wraps the OSUI one                                         | Keep (`BottomSheet`, `ConnectBottomSheet`).                                                |
+| `Layout_MainPages`, `Layout_MainPages_FixedTitle`                               | partly    | jscpd: 2 clones of 18 lines                                                | Kept (P7-4): the DOM differs in 7 places, see the result of P7-4 below.                    |
+| `Member_ListItem`, `NonMember_ListItem`                                         | partly    | jscpd: 27 lines                                                            | Keep (`MemberListItem`, `NonMemberListItem`); a shared helper when P2 or G4 rewrites them. |
+| `DropdownSearch`, `DropdownTags`                                                | partly    | jscpd: 14 and 26 lines                                                     | OSUI patterns: keep; an internal helper in P7-1.                                           |
+| `Connect2_LegacyShared/Layout`, `Layout_Orbit`                                  | partly    | Same structure, theme class `connect-theme` against `orbit-theme`          | Keep (`LegacyLayout`, `OrbitLayout`).                                                      |
+| `BrowseDirectory`, `CountryDetails` (`index.tsx`); `BrowseDirectory` (`api.ts`) | partly    | jscpd: 14 and 16 lines                                                     | G4: the calls go to `api/country`.                                                         |
 
 ### The subscribed countries of the Assemble filters (F21, P6-G5-B-AssembleEvents)
 
@@ -263,3 +273,25 @@ Plan: keep the 2 copies.
 - `components/` and `containers/` (rule 2) do not hold data functions.
 - Look again when `getCacheableRegionSubscribedCountries` moves from `shared/` to `api/country`: rule 7 allows all
   its imports there. Then each copy is one line.
+
+## Result of P7-4 (cards and carousels, by evidence)
+
+P7-4 merged nothing. A group merges when this file gives it the verdict "same" and `jscpd` still reports it.
+
+Two groups have the verdict "same". The base dialogs of group 2 were merged in P7-2. The Assemble
+`fetchSubscribedCountries` has 6 lines, below the `minLines` of 10 of `jscpd`, so `jscpd` does not report it.
+
+`jscpd` now reports 36 clones and 665 lines (0.52 %). P0-3 reported 63 clones and 1289 lines.
+Evidence: `migration/refactor/handoffs/P7-4/dev.md`.
+
+| Group or pair                             | Result                                                                                                                                                                                                                                                                                          |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 4 Cards                                   | Kept as domain components (reason above).                                                                                                                                                                                                                                                       |
+| 5 Carousels                               | Kept as domain components (layers).                                                                                                                                                                                                                                                             |
+| `PopupMenu`, `LegacyPopupMenu`            | Kept. Besides `dx-popup-menu-backdrop`, the legacy one has the block name `Widgets.PopupMenu` (the other: `ConnectPatterns.PopupMenu`) and the ids `<scope>-Root`, `<scope>-Anchor`, `<scope>-PopupMenu` (the other: none). `jscpd` finds 2 clones (59 and 30 lines). See follow-up F32.        |
+| `Layout_MainPages`, `_FixedTitle`         | Kept. The verdict is "partly". The DOM differs in 7 places: block name, wrapper class `layout-sticky-title`, one `header-top` row against `header-top-title` and `header-top-search`, `addHeaderGap`, the gradient class while scrolled, `setMainScroll` against `setMainFixedScroll`, columns. |
+| `Member_ListItem`, `NonMember_ListItem`   | Kept. One clone (29 lines). The row plans a shared helper, not a merge. The move-map row of `shared/UBTConnectLibrary/Member_ListItem` (phase P2) still has no status and its file is still in `shared/`; P7-6 handles it (F34).                                                                |
+| `DropdownSearch`, `DropdownTags`          | Kept. Two OSUI patterns; 2 clones (15 and 27 lines).                                                                                                                                                                                                                                            |
+| `NetworkWarning` (`ui` and `MyBookmarks`) | Kept. Two ports of one block; the DOM differs (the id `<scope>-$b1` on the inner Animate block in the MyBookmarks copy). A merge changes the DOM ids: a user decision (F33).                                                                                                                    |
+| Other pairs of the table above            | Kept (verdict "different" or "layers"; 0 clones, except `BrowseDirectory`, `CountryDetails` with the `toMarker` clone of 15 lines: inputs differ, rule 3).                                                                                                                                      |
+| Orbit client actions copied per page      | Kept. No verdict yet; see follow-up F31.                                                                                                                                                                                                                                                        |

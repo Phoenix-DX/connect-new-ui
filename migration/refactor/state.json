@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P7-3",
+  "step": "P7-4",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T13:12:16"
+  "since": "2026-10-24T13:21:44"
  },
  "steps": {
   "P0-1": {
@@ -1613,11 +1613,24 @@
    "finished": "2026-10-24T13:02:38"
   },
   "P7-3": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T13:02:38",
    "tokens": {
     "dev": 287119,
     "test": 33005,
+    "docs": 35374
+   },
+   "commit": "1f7f495b",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); old-vs-new harness 0 differences; arch baseline 71 rows, 0 new; HomeFeed 244.66 kB, Login 184.71 kB; one commit for 2 merges (2 shared user files)",
+   "loops": 0,
+   "finished": "2026-10-24T13:12:19"
+  },
+  "P7-4": {
+   "status": "active",
+   "started": "2026-10-24T13:12:19",
+   "tokens": {
+    "dev": 156151,
+    "test": 26425,
     "docs": 0
    }
   }
