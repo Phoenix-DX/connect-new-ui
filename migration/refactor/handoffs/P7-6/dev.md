@@ -47,3 +47,38 @@ The `git add -A` of this part also staged the untracked `migration/refactor/hand
 ### Questions for the user
 
 none
+
+## Part 2 (tool: arch_baseline.py file rows, T5) — tree `P7-6-part2.tree`
+
+### Result
+
+status: pass
+summary: `old_path_of` in `migration/tools/refactor/arch_baseline.py` now knows three row kinds: a file row (a source
+with an extension: the target file and its test/spec/stories companions), a folder row with a folder target (names
+kept), and the block folder row of before. File rows come first, and a file row that does not match goes on to the next
+row. `moved_modules` and `translate` handle the same kinds, so an old import of a moved file counts under its new path.
+`arch_baseline_selfcheck.py` tests all three kinds.
+
+### Files changed
+
+migration/tools/refactor/arch_baseline.py (`MOVE_MAP`, `phase_rows`, `is_file_path`; `old_path_of`, `moved_modules` and
+`translate` extended; the folder-row behavior is unchanged)
+migration/tools/refactor/arch_baseline_selfcheck.py (17 new asserts on a temporary move map: file rows, companions, a
+file that was already in the target folder, the file row before its folder row, a folder target, another phase, a
+delete row)
+migration/refactor/handoffs/P7-6/dev.md
+
+### Commands run
+
+- `python3 migration/tools/refactor/arch_baseline_selfcheck.py` → ok
+- `python3 migration/tools/refactor/arch_baseline.py check` → 77 warnings, 77 baseline rows, 0 new, 0 gone
+- `old_path_of` on the real P7-6 rows (OSLink, a CacheControl block, the adapter story, the wrapper types, a mocks
+  test, jsUtils.test, src/test, Leaflet) → the expected `src/shared/` path for each
+
+### Deviations from the brief
+
+none
+
+### Questions for the user
+
+none

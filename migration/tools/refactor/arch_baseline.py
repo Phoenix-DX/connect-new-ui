@@ -31,6 +31,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 APP = ROOT / "app"
 BASELINE = APP / "docs/refactor/arch-baseline.csv"
+MOVE_MAP = APP / "docs/refactor/move-map.csv"
 COLUMNS = ["file", "import", "rule", "owner"]
 MESSAGE = re.compile(r"^'([^']+)' import is restricted .*?\bRule (\d+):")
 
@@ -99,37 +100,89 @@ def old_imports(base: str, old_path: str) -> set[str]:
     return {resolve(s, old_path) for s in IMPORT_RE.findall(out.stdout)}
 
 
+def phase_rows(phase: str) -> list[dict[str, str]]:
+    """src/shared/ rows of move-map.csv with this phase and a target."""
+    with MOVE_MAP.open(newline="") as fh:
+        return [
+            r for r in csv.DictReader(fh)
+            if r["phase"] == phase and r["source"].startswith("src/shared/") and r["target"]
+        ]
+
+
+def is_file_path(path: str) -> bool:
+    """A move-map source or target that names a file (it has an extension), not a folder."""
+    return posixpath.splitext(posixpath.basename(path))[1] != ""
+
+
 def old_path_of(file: str, phase: str) -> str | None:
-    """Old src/shared/ path of a moved file, from the move map rows of the phase (main file, test, stories renamed)."""
-    with (APP / "docs/refactor/move-map.csv").open(newline="") as fh:
-        for r in csv.DictReader(fh):
-            if r["phase"] != phase or not r["source"].startswith("src/shared/"):
-                continue
-            tdir = posixpath.dirname(r["target"])
-            if posixpath.dirname(file) != tdir:
-                continue
-            new_stem = posixpath.basename(r["target"]).split(".")[0]
-            old_stem = posixpath.basename(r["source"])
-            name = posixpath.basename(file)
-            if name.startswith(new_stem + "."):
-                name = old_stem + name[len(new_stem):]
-            return posixpath.join(r["source"], name)
+    """Old src/shared/ path of a moved file, from the move map rows of the phase (main file, test, stories renamed).
+
+    Three row kinds: a file row (source is a file: the target file and its test/spec/stories companions), a folder row
+    with a folder target (names kept), and a block folder row whose target names the main file (stem renamed)."""
+    rows = phase_rows(phase)
+    for r in rows:
+        src, tgt = r["source"], r["target"]
+        if not is_file_path(src) or posixpath.dirname(file) != posixpath.dirname(tgt):
+            continue
+        name = posixpath.basename(file)
+        if name == posixpath.basename(tgt):
+            return src
+        tstem = posixpath.splitext(posixpath.basename(tgt))[0]
+        companion = re.match(rf"{re.escape(tstem)}(\.(?:test|spec|stories)\.[^.]+)$", name)
+        if companion:
+            sstem = posixpath.splitext(posixpath.basename(src))[0]
+            return posixpath.join(posixpath.dirname(src), sstem + companion.group(1))
+    for r in rows:
+        src, tgt = r["source"], r["target"]
+        if is_file_path(src):
+            continue
+        if not is_file_path(tgt):
+            if file.startswith(tgt + "/"):
+                return src + file[len(tgt):]
+            continue
+        tdir = posixpath.dirname(tgt)
+        if posixpath.dirname(file) != tdir:
+            continue
+        new_stem = posixpath.basename(tgt).split(".")[0]
+        old_stem = posixpath.basename(src)
+        name = posixpath.basename(file)
+        if name.startswith(new_stem + "."):
+            name = old_stem + name[len(new_stem):]
+        return posixpath.join(src, name)
     return None
 
 
-def moved_modules(phase: str) -> list[tuple[str, str, str]]:
-    """(old dir, new dir, new stem) of each src/shared/ row of the phase, from move-map.csv."""
-    out = []
-    with (APP / "docs/refactor/move-map.csv").open(newline="") as fh:
-        for r in csv.DictReader(fh):
-            if r["phase"] == phase and r["source"].startswith("src/shared/"):
-                out.append((r["source"], posixpath.dirname(r["target"]), posixpath.basename(r["target"]).split(".")[0]))
-    return out
+def moved_modules(phase: str) -> list[tuple[str, ...]]:
+    """(old path, new dir, new stem[, kind]) of each src/shared/ row of the phase, from move-map.csv; file rows first.
+
+    kind "file": the old module path without extension; kind "dir": a folder row with a folder target (names kept);
+    no kind: a block folder row whose target names the main file."""
+    files, folders = [], []
+    for r in phase_rows(phase):
+        src, tgt = r["source"], r["target"]
+        tstem = posixpath.splitext(posixpath.basename(tgt))[0]
+        if is_file_path(src):
+            files.append((posixpath.splitext(src)[0], posixpath.dirname(tgt), tstem, "file"))
+        elif not is_file_path(tgt):
+            folders.append((src, tgt, "", "dir"))
+        else:
+            folders.append((src, posixpath.dirname(tgt), tgt.rsplit("/", 1)[-1].split(".")[0]))
+    return files + folders
 
 
-def translate(module: str, moved: list[tuple[str, str, str]]) -> set[str]:
+def translate(module: str, moved: list[tuple[str, ...]]) -> set[str]:
     """New-path forms of an old resolved module that moves in this phase (same module under its new path)."""
-    for old_dir, new_dir, new_stem in moved:
+    for entry in moved:
+        old_dir, new_dir, new_stem = entry[:3]
+        kind = entry[3] if len(entry) > 3 else "block"
+        if kind == "file":
+            if module == old_dir:
+                return {posixpath.join(new_dir, new_stem)}
+            continue
+        if kind == "dir":
+            if module == old_dir or module.startswith(old_dir + "/"):
+                return {new_dir + module[len(old_dir):]}
+            continue
         if module == old_dir or module.startswith(old_dir + "/"):
             rest = module[len(old_dir):]
             old_stem = posixpath.basename(old_dir)
