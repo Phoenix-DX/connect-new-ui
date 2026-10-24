@@ -1,18 +1,10 @@
-/** @origin Connect2_Assemble_MUI.Assemble.AssembleSummaryCard */
-// @os-block Connect2_Assemble_MUI.Assemble.AssembleSummaryCard
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { UserException } from '@/legacy/os/os-exceptions';
-import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
-import { pageRedirect } from '@/platform/feedback/pageRedirect';
-import { generateScreenURL } from '@/platform/navigation';
 import { OSLink } from '@/shared/lib/OSLink';
 import { NC_Card_Item_Visual } from '@/shared/Connect2_LegacyShared/NC_Card_Item_Visual';
 import { NC_Result_Item__Card } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Card';
 import { NC_Result_Item__Image } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Image';
-import { navigateToMaps } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { MapNavigationRedirect } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { VirtualMeetingUrl } from '@/components/assemble/VirtualMeetingUrl';
+import { VirtualMeetingUrl, type MeetingInfoActions } from '@/components/assemble/VirtualMeetingUrl';
 import { AssembleSummaryCardHeader } from '@/components/assemble/AssembleSummaryCardHeader';
 import { AssembleSummaryCardRow } from '@/components/assemble/AssembleSummaryCardRow';
 import {
@@ -23,50 +15,18 @@ import {
 import { Position, ResultListType } from '@/shared/Connect2_Assemble_MUI/lib/staticEntities';
 import type { AssembleEventSummary } from './types';
 
-export interface AssembleSummaryCardProps {
+export interface AssembleSummaryCardProps extends MeetingInfoActions {
   /** OutSystems instance id of the block. */
   id?: string;
   /** AssembleEventSummary (record; default all empty). */
   assembleEventSummary?: AssembleEventSummary;
   /** IsListItem (default False): list layout (round image on the right, header in Placeholder_2). */
   isListItem?: boolean;
+  /** LinkAddressOnClick: the address link of a hall meeting was clicked, with the card's AssembleEventSummary. */
+  onAddressClick?: (summary: AssembleEventSummary) => void;
 }
 
-/** LinkAddressOnClick (p:AssembleSummaryCard.mvc.js controller :649-787): no formatted address → Info message "Map is
-    not available"; else NavigateToMaps and, by its redirect: AndroidBrowser → `geo:0,0?q=<address>`; IPhoneBrowser →
-    `comgooglemapsurl://?q=<address>`; any other id (also the offline 0) → `https://www.google.com/maps/dir/?api=1`
-    with api=1 and query=<address>. AndroidNative (Cordova app launcher LaunchWithData of Google Maps) cannot happen
-    without Cordova (CheckAppLauncherPlugin is False) and is not ported. Errors: "application not found for uri." →
-    UserException GoogleMapsNotInstalled "Please install and enable Google Maps", else UnknownError with the message.
-    The original runs as an async flow; nothing on the browser path waits, so the port is synchronous. */
-export function linkAddressOnClick(summary: AssembleEventSummary): void {
-  try {
-    const address = summary.HostingSubdivisionFormattedAddress ?? '';
-    if (address === '') {
-      showFeedbackMessage('Map is not available', PLATFORM_MESSAGE_TYPE.info);
-      return;
-    }
-    const redirect = navigateToMaps();
-    if (redirect === MapNavigationRedirect.AndroidBrowser) {
-      pageRedirect(generateScreenURL('geo:0,0', { q: address }));
-      return;
-    }
-    if (redirect === MapNavigationRedirect.AndroidNative) return; // LaunchWithData: Cordova only (see above)
-    if (redirect === MapNavigationRedirect.IPhoneBrowser) {
-      pageRedirect(generateScreenURL('comgooglemapsurl://', { q: address }));
-      return;
-    }
-    pageRedirect(generateScreenURL('https://www.google.com/maps/dir/?api=1', { api: '1', query: address }));
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    if (message.toLowerCase() === 'application not found for uri.')
-      throw new UserException('Please install and enable Google Maps', 'Connect2_Assemble_MUI.GoogleMapsNotInstalled');
-    throw new UserException(message, 'Connect2_Assemble_MUI.UnknownError');
-  }
-}
-
-/** Assemble event card (p:migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleSummaryCard.mvc.js; view
-    :141-626): a container > NC_Result_Item__Card with
+/** Assemble event card, props only: a container > NC_Result_Item__Card with
     - Card_Visual (not IsListItem): NC_Card_Item_Visual (cover centre, Subdivision) of the PBCC / virtual image or the
       hall photo;
     - Placeholder_1 (not IsListItem): `margin-bottom-s` > header; Placeholder_2 (IsListItem): the header
@@ -76,8 +36,18 @@ export function linkAddressOnClick(summary: AssembleEventSummary): void {
       counts (or "Invitee numbers unavailable at the moment");
     - Placeholder_Right (IsListItem): NC_Result_Item__Image 73px round, reversed, `assemble-summary__card__header`;
     - Placeholder_Location: unless IsUnavailable, `padding-y-s border-top-s text-neutral-2 margin-top-s` with
-      AssembleCommon_VirtualMeetingURL (IsVirtual) or a link (LinkAddressOnClick) to the place row. */
-export function AssembleSummaryCard({ id, assembleEventSummary = {}, isListItem = false }: AssembleSummaryCardProps) {
+      AssembleCommon_VirtualMeetingURL (IsVirtual; it gets the MeetingInfo actions) or a link (`onAddressClick`) to
+      the place row.
+    The caller gives the actions: `containers/AssembleSummaryCard` (LinkAddressOnClick, ConfirmAction and the dialog).
+    @origin Connect2_Assemble_MUI.Assemble.AssembleSummaryCard */
+export function AssembleSummaryCard({
+  id,
+  assembleEventSummary = {},
+  isListItem = false,
+  onAddressClick,
+  onMeetingInfoToggle,
+  renderMeetingInfoDialog,
+}: AssembleSummaryCardProps) {
   const s = assembleEventSummary;
   const headerLabel = getAssembleEventSummaryHeaderLabel(s);
   const hostedAt = getAssembleHostedAtComponents(
@@ -170,11 +140,13 @@ export function AssembleSummaryCard({ id, assembleEventSummary = {}, isListItem 
                     virtualMeetingId={s.VirtualMeetingId ?? ''}
                     virtualMeetingPassword={s.VirtualMeetingPassword ?? ''}
                     virtualMeetingPlatform={s.VirtualMeetingTypeLabel ?? ''}
+                    onMeetingInfoToggle={onMeetingInfoToggle}
+                    renderMeetingInfoDialog={renderMeetingInfoDialog}
                   />
                 ) : (
                   <OSLink
                     onClick={() => {
-                      linkAddressOnClick(s);
+                      onAddressClick?.(s);
                     }}
                   >
                     <AssembleSummaryCardRow

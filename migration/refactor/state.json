@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G5-B-AssembleEvents",
+  "step": "P6-G5-B-AssembleDetail",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T09:27:45"
+  "since": "2026-10-24T10:06:32"
  },
  "steps": {
   "P0-1": {
@@ -1392,11 +1392,24 @@
    "finished": "2026-10-24T09:22:17"
   },
   "P6-G5-B-AssembleEvents": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T09:22:17",
    "tokens": {
     "dev": 423247,
-    "test": 33227
+    "test": 33227,
+    "docs": 37461
+   },
+   "commit": "d1bbd3aa",
+   "gate": "ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; HomeFeed 244.45 kB, Login 184.46 kB; F21 done (2 copies kept)",
+   "loops": 0,
+   "finished": "2026-10-24T09:27:47"
+  },
+  "P6-G5-B-AssembleDetail": {
+   "status": "active",
+   "started": "2026-10-24T09:27:47",
+   "tokens": {
+    "dev": 791744,
+    "test": 47470
    }
   }
  },

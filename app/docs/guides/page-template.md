@@ -113,6 +113,14 @@ and passes props to components. Write the choice in `move-map.csv`, column `shap
 A component cannot import a container (rule 4). So the container gives the view these blocks as slots:
 `entityActions`, `renderMemberActions`, `shareSheet`.
 
+One exception to the two points above: `containers/AssembleSummaryCard` has no data hook and no state. It exists
+because the actions of the card (address link, MeetingInfo dialog) call `platform/`. 2 pages (AssembleDetail,
+AssembleEvents) need them (plan §2.4 rule 2).
+
+The component `AssembleSummaryCard` is props only. It has the prop
+`onAddressClick` and, through `VirtualMeetingUrl`, the props `onMeetingInfoToggle` and the slot
+`renderMeetingInfoDialog`. The container fills them.
+
 A component between a page and a container passes a slot down: `renderHouseholdDetails` and `renderSupperMeetingDetails` go through `EntitiesCarousel` and `EntitiesCarousel_Element`, and the page fills them with `HouseholdDetailsContainer` or `SupperMeetingDetailsContainer`.
 
 ## Pattern of a form page with a config (ContactByEmail)

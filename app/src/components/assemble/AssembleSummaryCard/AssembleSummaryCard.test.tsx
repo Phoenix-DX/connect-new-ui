@@ -1,9 +1,6 @@
 import { composeStories } from '@storybook/react-vite';
 import { fireEvent, render } from '@testing-library/react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
-import * as pageRedirectModule from '@/platform/feedback/pageRedirect';
-import * as feedback from '@/platform/feedback/feedbackStore';
-import { linkAddressOnClick } from './AssembleSummaryCard';
+import { describe, expect, it, vi } from 'vitest';
 import * as stories from './AssembleSummaryCard.stories';
 
 const { HallMeeting, VirtualListItem, Unavailable } = composeStories(stories);
@@ -11,12 +8,9 @@ const { HallMeeting, VirtualListItem, Unavailable } = composeStories(stories);
 const rowTexts = (container: HTMLElement) =>
   [...container.querySelectorAll('.flex1 .assemble-summary-row__content-placeholder')].map((r) => r.textContent);
 
-/* Never captured: the markup follows the compiled view (AssembleSummaryCard.mvc.js :141-626). */
+/* Never captured: the markup follows the compiled view (AssembleSummaryCard.mvc.js :141-626). LinkAddressOnClick and
+   the MeetingInfo dialog are tested with the container (containers/AssembleSummaryCard). */
 describe('AssembleSummaryCard', () => {
-  afterEach(() => {
-    vi.restoreAllMocks();
-  });
-
   it('detail layout: visual, header in Placeholder_1, hosted-at / time / invitee rows, address link', () => {
     const { container } = render(<HallMeeting />);
     const card = container.querySelector(
@@ -67,31 +61,23 @@ describe('AssembleSummaryCard', () => {
     expect(container.querySelector('.border-top-s')).toBeNull();
   });
 
-  it('LinkAddressOnClick: no address → "Map is not available"; a desktop browser → geo: link (AndroidBrowser)', async () => {
-    const show = vi.spyOn(feedback, 'showFeedbackMessage').mockImplementation(() => undefined);
-    const redirect = vi.spyOn(pageRedirectModule, 'pageRedirect').mockImplementation(() => undefined);
-    linkAddressOnClick({});
-    expect(show).toHaveBeenCalledWith('Map is not available', 0);
-    vi.spyOn(window.navigator, 'platform', 'get').mockReturnValue('MacIntel');
-    const { container } = render(<HallMeeting />);
+  it('LinkAddressOnClick: the address link raises onAddressClick with the AssembleEventSummary', () => {
+    const onAddressClick = vi.fn();
+    const { container } = render(<HallMeeting onAddressClick={onAddressClick} />);
     fireEvent.click(container.querySelector('.connect-icon-place') as Element);
-    await vi.waitFor(() => {
-      expect(redirect).toHaveBeenCalledWith('geo:0,0?q=Calle%20Ficticia%20100%2C%20Bahia%20Blanca');
-    });
+    expect(onAddressClick).toHaveBeenCalledExactlyOnceWith(
+      expect.objectContaining({ HostingSubdivisionFormattedAddress: 'Calle Ficticia 100, Bahia Blanca' }),
+    );
   });
 
-  it('LinkAddressOnClick offline: Google Maps directions URL (NavigateToMaps gives the null id)', () => {
-    vi.spyOn(window.navigator, 'onLine', 'get').mockReturnValue(false);
-    vi.spyOn(feedback, 'showFeedbackMessage').mockImplementation(() => undefined);
-    const redirect = vi.spyOn(pageRedirectModule, 'pageRedirect').mockImplementation(() => undefined);
-    linkAddressOnClick({ HostingSubdivisionFormattedAddress: 'Calle Ficticia 100' });
-    expect(redirect).toHaveBeenCalledWith('https://www.google.com/maps/dir/?api=1?api=1&query=Calle%20Ficticia%20100');
-  });
-
-  it('LinkAddressOnClick on an iPhone: comgooglemapsurl://', () => {
-    vi.spyOn(window.navigator, 'platform', 'get').mockReturnValue('iPhone');
-    const redirect = vi.spyOn(pageRedirectModule, 'pageRedirect').mockImplementation(() => undefined);
-    linkAddressOnClick({ HostingSubdivisionFormattedAddress: 'Calle Ficticia 100' });
-    expect(redirect).toHaveBeenCalledWith('comgooglemapsurl://?q=Calle%20Ficticia%20100');
+  it('virtual: the MeetingInfo actions reach AssembleCommon_VirtualMeetingURL', () => {
+    const onMeetingInfoToggle = vi.fn();
+    const { container } = render(<VirtualListItem onMeetingInfoToggle={onMeetingInfoToggle} />);
+    const dialog = container.querySelector(
+      '.assemble-meeting-info-popup [data-block="ConfirmationDialogs.ActionConfirmationDialog"]',
+    );
+    expect(dialog?.id).toMatch(/-MeetingInfo$/);
+    fireEvent.click(container.querySelector('.connect-icon-info-fill') as Element);
+    expect(onMeetingInfoToggle).toHaveBeenCalledExactlyOnceWith(dialog?.id);
   });
 });

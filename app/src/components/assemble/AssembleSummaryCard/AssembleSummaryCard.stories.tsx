@@ -1,12 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
+import type { MeetingInfoDialogSlot } from '@/components/assemble/VirtualMeetingUrl';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LOCALITY } from '@/mocks/fictional/directory';
 import type { AssembleEventSummary } from './types';
 import { AssembleSummaryCard } from './AssembleSummaryCard';
 
+/** A stand-in for the MeetingInfo dialog that the container renders in the slot: the closed ActionConfirmationDialog
+    block with the dialog id. */
+function MeetingInfoDialogStandIn({ dialogId }: MeetingInfoDialogSlot) {
+  return <OSBlock name="ConfirmationDialogs.ActionConfirmationDialog" id={dialogId} />;
+}
+
 const meta = {
   title: 'Shared/Connect2_Assemble_MUI/AssembleSummaryCard',
   component: AssembleSummaryCard,
+  args: { renderMeetingInfoDialog: (slot: MeetingInfoDialogSlot) => <MeetingInfoDialogStandIn {...slot} /> },
   // OSLink navigates with the router
   decorators: [
     (Story) => (

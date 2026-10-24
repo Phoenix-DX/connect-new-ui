@@ -709,3 +709,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T09:22:57 P6-G5-B-AssembleEvents stage test
 - 2026-10-24T09:26:48 P6-G5-B-AssembleEvents stage docs
 - 2026-10-24T09:27:45 P6-G5-B-AssembleEvents stage commit
+- 2026-10-24T09:27:47 P6-G5-B-AssembleEvents done d1bbd3aa: ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; HomeFeed 244.45 kB, Login 184.46 kB; F21 done (2 copies kept)
+- 2026-10-24T09:27:47 P6-G5-B-AssembleDetail started
+- 2026-10-24T09:27:47 P6-G5-B-AssembleDetail stage dev
+- 2026-10-24T09:54:51 P6-G5-B-AssembleDetail stage test
+- 2026-10-24T10:04:33 P6-G5-B-AssembleDetail stage docs
+- 2026-10-24T10:06:32 P6-G5-B-AssembleDetail stage commit

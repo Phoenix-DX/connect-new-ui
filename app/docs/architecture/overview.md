@@ -44,7 +44,7 @@ flowchart TB
     direction TB
     platform[src/platform<br/>error handling, auth provider, PIN,<br/>navigation guard, view cache, toasts,<br/>local entities IndexedDB]
     pages[src/pages/&lt;Route&gt;<br/>&lt;Route&gt;Page.tsx · hooks · inputs.ts · mocks.ts]
-    containers[src/containers<br/>a container only by the criterion of the page template,<br/>with its hooks and mocks]
+    containers[src/containers<br/>a container only by the criterion of the page template,<br/>with its hooks and mocks; or the platform actions<br/>of a component that 2 pages share]
     comps[src/components/&lt;domain&gt;<br/>props-only components with stories and tests]
     domain[src/api/&lt;domain&gt;<br/>types · mapper · repository · keys · hooks]
     screens[src/screens/&lt;Screen&gt;<br/>screens not yet moved: index.tsx · api.ts · mocks.ts · types.ts]

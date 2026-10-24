@@ -12,3 +12,6 @@ export const isViewHasChangedException = (error: unknown): boolean => isInstance
 
 /** A user exception, of one type when `specificType` is set ("Handle Error: <Module>.<UserException>"). */
 export { isUserException } from '@/legacy/os/exceptions';
+
+/** The class of a user exception, for a client action that raises one (`new UserException(message, specificType)`). */
+export { UserException } from '@/legacy/os/os-exceptions';

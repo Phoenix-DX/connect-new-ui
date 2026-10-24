@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import type { AssembleEventFilter, AssembleMeeting } from '@/api/event';
-import { AssembleSummaryCard } from '@/components/assemble/AssembleSummaryCard';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
+import { AssembleSummaryCardContainer } from '@/containers/AssembleSummaryCard';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { ViewmodeType } from './actions';
 import { AssembleSummary_FilterDrawer } from './AssembleSummary_FilterDrawer';
@@ -13,7 +13,7 @@ import { NC_ErrorScreen } from './NC_ErrorScreen';
 
 /** The view of the block AssembleSummary_List, props only. StickyHeader (HorizontalTags Upcoming / Past, the list
     header), NC_ErrorScreen when the fetched list is empty, else List_AssembleSummaryCards (ScrollAnchor and
-    AssembleSummaryCard per meeting), the skeleton list until the meetings are fetched, and the filter drawer. Not
+    AssembleSummaryCard with its actions per meeting), the skeleton list until the meetings are fetched, and the filter drawer. Not
     ported: RememberFocusedScrollAnchor (no shell helper; the ScrollAnchor block renders). The flows are in
     useAssembleSummaryList.
     @origin Connect2_Assemble_MUI.Assemble.AssembleSummary_List */
@@ -139,7 +139,11 @@ export function AssembleSummary_List({
                   }}
                 >
                   <ScrollAnchor id={`${scope}-l1-${String(index)}-$b5`} idIn={m.EventId} />
-                  <AssembleSummaryCard id={`${scope}-l1-${String(index)}-$b6`} assembleEventSummary={m} isListItem />
+                  <AssembleSummaryCardContainer
+                    id={`${scope}-l1-${String(index)}-$b6`}
+                    assembleEventSummary={m}
+                    isListItem
+                  />
                 </div>
               )}
             </OSList>

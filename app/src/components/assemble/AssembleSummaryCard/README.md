@@ -13,13 +13,22 @@ No events or placeholders. Structure: `../lib/structures.ts` (Connect2_Assemble_
 from the attributes the compiled code reads).
 
 Ported: GetAssembleEventSummaryHeaderLabel, GetAssembleHostedAtComponents, GetAssembleEventSummaryDateTimeString
-(`../lib/actions.ts`), LinkAddressOnClick (controller :649-787, exported for tests) with NavigateToMaps
-(`Connect2_LegacyShared/lib/actions.ts`).
+(`../lib/actions.ts`).
+
+The component has props only (rule 4). The caller gives the actions:
+
+| Prop                                             | Action                                                                   |
+| ------------------------------------------------ | ------------------------------------------------------------------------ |
+| `onAddressClick`                                 | LinkAddressOnClick (controller :649-787), with the AssembleEventSummary. |
+| `onMeetingInfoToggle`, `renderMeetingInfoDialog` | Passed to AssembleCommon_VirtualMeetingURL (see its README).             |
+
+The pages render `containers/AssembleSummaryCard` (`AssembleSummaryCardContainer`). It gives LinkAddressOnClick with
+NavigateToMaps (`Connect2_LegacyShared/lib/actions.ts`), ConfirmAction and the MeetingInfo dialog.
 
 ## Captured variants (0)
 
 AssembleDetail has no capture and AssembleEvents shows no event card: stories `HallMeeting`, `VirtualListItem`,
-`Unavailable`; `AssembleSummaryCard.test.tsx` checks both layouts and the address link.
+`Unavailable`; `AssembleSummaryCard.test.tsx` checks both layouts, the address link and the MeetingInfo actions.
 
 ## Not settled
 

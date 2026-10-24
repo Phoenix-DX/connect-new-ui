@@ -681,3 +681,9 @@
 - `pages/AssembleEvents` is a page with 3 flow hooks (`useAssembleEvents`, `useAssembleSummaryList`, `useAssembleFilterSheet`), 2 state files and props-only views. It has no container. The ScreenBlock, `api.ts` and `types.ts` are deleted; `inputs.ts` is new; the hooks call `@/api/event` and `@/api/locality`.
 - F21: the 2 copies of `fetchSubscribedCountries` stay (section in `duplicates.md`).
 - HomeFeed gzip +0.05 kB, Login +0.04 kB (chunk hashes only); dependency-cruiser warnings 189 to 186.
+
+## P6-G5-B-AssembleDetail - refactor(P6-G5-B): AssembleDetail as page
+
+- `pages/AssembleDetail` is a page with flow hooks (`useAssembleDetail`, `useAssembleEventDetail`) and a props-only view (`components/AssembleDetailView.tsx`). `api.ts` and `types.ts` are deleted; `inputs.ts` is new. One file per block. The contact and hall blocks keep React state (follow-up F26).
+- New `containers/AssembleSummaryCard` (no data hook): it gives the actions that call `platform/` to the props-only `AssembleSummaryCard` and `VirtualMeetingUrl`, for AssembleDetail and AssembleEvents. `platform/feedback/flowErrors.ts` re-exports `UserException`.
+- The 6 owned rows of `arch-baseline.csv` are gone (69 rows). HomeFeed gzip 244.39 kB, Login 184.42 kB (no change).

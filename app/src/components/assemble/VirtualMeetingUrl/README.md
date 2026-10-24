@@ -14,12 +14,24 @@ OutSystems: `Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL` ·
 No events or placeholders. `scope` (not an OutSystems input) names the MeetingInfo dialog (`<scope>-MeetingInfo`),
 the id ConfirmAction looks up, as Dialog_CustomChoice does.
 
-Ported actions: MeetingInfo_Toggle (controller :405-438) = ConfirmAction(MeetingInfo) (shell `confirmAction`);
-LinkVirtualAddressOnClick (:439-470) = CheckSupportedBrowserVersion + OpenExternalURL(URL, IsApple).
+The component has props only (rule 4). The caller gives the MeetingInfo actions (`MeetingInfoActions`):
+
+| Prop                      | What the caller does                                                                                      |
+| ------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `onMeetingInfoToggle`     | MeetingInfo_Toggle (controller :405-438): ConfirmAction(MeetingInfo) with the dialog id.                  |
+| `renderMeetingInfoDialog` | Renders the MeetingInfo dialog from `MeetingInfoDialogSlot` (`dialogId`, `body`, `dismissLabel` "Close"). |
+
+`containers/AssembleSummaryCard` gives both: the shell's `confirmAction` and ActionConfirmationDialog. The component
+places the slot in the container `backwards-compatibility assemble-meeting-info-popup`, as the original places the
+dialog.
+
+LinkVirtualAddressOnClick (:439-470) stays in the component: CheckSupportedBrowserVersion + OpenExternalURL(URL,
+IsApple).
 
 ## Captured variants (0)
 
-The Assemble captures show no virtual meeting card: stories `WithLink` and `NoLink`.
+The Assemble captures show no virtual meeting card: stories `WithLink` and `NoLink`. The stories fill the dialog slot
+with a stand-in (the closed ActionConfirmationDialog block).
 
 ## Not settled
 

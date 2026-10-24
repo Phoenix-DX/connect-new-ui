@@ -1,14 +1,30 @@
-/** @origin Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL */
-// @os-block Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL
-import { useId, type MouseEvent } from 'react';
+import { useId, type MouseEvent, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ActionConfirmationDialog, confirmAction } from '@/platform/feedback/dialogs';
 import { OSLink } from '@/shared/lib/OSLink';
 import { checkSupportedBrowserVersion, openExternalURL } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { VirtualMeetingDetails } from '@/components/assemble/VirtualMeetingDetails';
 import { AssembleSummaryCardRow } from '@/components/assemble/AssembleSummaryCardRow';
 
-export interface VirtualMeetingUrlProps {
+/** What the MeetingInfo dialog slot gets: the dialog id (the id that MeetingInfo_Toggle opens), the body and the
+    dismiss label. The caller renders the dialog (ActionConfirmationDialog) with them. */
+export interface MeetingInfoDialogSlot {
+  /** `<scope>-MeetingInfo`: the widget id and the id prefix of the dialog. */
+  dialogId: string;
+  /** AssembleCommon_VirtualMeetingDetails with the link, the meeting id and the passcode. */
+  body: ReactNode;
+  /** "Close". The dialog has no header and no confirm label. */
+  dismissLabel: string;
+}
+
+/** The MeetingInfo actions that the caller gives AssembleCommon_VirtualMeetingURL (and AssembleSummaryCard passes on). */
+export interface MeetingInfoActions {
+  /** MeetingInfo_Toggle: the info icon was clicked; open the dialog with this id (ConfirmAction). */
+  onMeetingInfoToggle?: (dialogId: string) => void;
+  /** Renders the MeetingInfo dialog in the `backwards-compatibility assemble-meeting-info-popup` container. */
+  renderMeetingInfoDialog?: (slot: MeetingInfoDialogSlot) => ReactNode;
+}
+
+export interface VirtualMeetingUrlProps extends MeetingInfoActions {
   /** OutSystems instance id of the block. */
   id?: string;
   /** Id prefix of the block's own elements (the MeetingInfo dialog is `<scope>-MeetingInfo`); defaults to `id`
@@ -24,14 +40,14 @@ export interface VirtualMeetingUrlProps {
   virtualMeetingPassword?: string;
 }
 
-/** Virtual meeting row and its info dialog (p:migration/blocks/sources/Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL.mvc.js;
-    view :169-382): container `font-regular` > AssembleSummary_Card_Row with the video camera icon, the text
-    ("Link is not available, refer to local signal chat" when there is no URL, else "Join with <platform>: " and a
-    `[Tap here]` link, target _blank) and, when any of URL / id / passcode is set, the info icon link; then container
-    `backwards-compatibility assemble-meeting-info-popup` > ActionConfirmationDialog MeetingInfo (body
-    AssembleCommon_VirtualMeetingDetails, dismiss label "Close", no header or confirm label).
-    MeetingInfo_Toggle (controller :405-438): ConfirmAction(MeetingInfo). LinkVirtualAddressOnClick (:439-470):
-    CheckSupportedBrowserVersion, then OpenExternalURL(VirtualMeetingURL, IsApple). */
+/** Virtual meeting row and its info dialog, props only. Container `font-regular` > AssembleSummary_Card_Row with the
+    video camera icon, the text ("Link is not available, refer to local signal chat" when there is no URL, else
+    "Join with <platform>: " and a `[Tap here]` link, target _blank) and, when any of URL / id / passcode is set, the
+    info icon link; then container `backwards-compatibility assemble-meeting-info-popup` with the MeetingInfo dialog
+    slot (body AssembleCommon_VirtualMeetingDetails, dismiss label "Close").
+    - MeetingInfo_Toggle: `onMeetingInfoToggle` with the dialog id (the caller runs ConfirmAction).
+    - LinkVirtualAddressOnClick: CheckSupportedBrowserVersion, then OpenExternalURL(VirtualMeetingURL, IsApple).
+    @origin Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingURL */
 export function VirtualMeetingUrl({
   id,
   scope: scopeProp,
@@ -39,12 +55,14 @@ export function VirtualMeetingUrl({
   virtualMeetingURL = '',
   virtualMeetingId = '',
   virtualMeetingPassword = '',
+  onMeetingInfoToggle,
+  renderMeetingInfoDialog,
 }: VirtualMeetingUrlProps) {
   const reactId = useId().replace(/:/g, '');
   const scope = scopeProp ?? (id !== undefined ? id.replace('$', '') : reactId);
   const meetingInfoId = `${scope}-MeetingInfo`;
   const meetingInfo_Toggle = () => {
-    void confirmAction(meetingInfoId);
+    onMeetingInfoToggle?.(meetingInfoId);
   };
   const linkVirtualAddressOnClick = (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault(); // a Link without URL only runs its OnClick (as OSLink)
@@ -84,18 +102,17 @@ export function VirtualMeetingUrl({
         />
       </div>
       <div className="backwards-compatibility assemble-meeting-info-popup" data-container="">
-        <ActionConfirmationDialog
-          widgetId={meetingInfoId}
-          scope={meetingInfoId}
-          body={
+        {renderMeetingInfoDialog?.({
+          dialogId: meetingInfoId,
+          body: (
             <VirtualMeetingDetails
               virtualMeetingLink={virtualMeetingURL}
               virtualMeetingId={virtualMeetingId}
               virtualMeetingPassword={virtualMeetingPassword}
             />
-          }
-          dismissLabel="Close"
-        />
+          ),
+          dismissLabel: 'Close',
+        })}
       </div>
     </OSBlock>
   );
