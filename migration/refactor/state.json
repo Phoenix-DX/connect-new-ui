@@ -1651,7 +1651,8 @@
    "started": "2026-10-24T13:53:16",
    "tokens": {
     "dev": 66191,
-    "test": 35982
+    "test": 35982,
+    "docs": 26059
    },
    "commit": "fedda59c",
    "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 72 rows, 0 new; HomeFeed 244.69/248.22 kB, Login 184.71/193.84 kB gzip",
