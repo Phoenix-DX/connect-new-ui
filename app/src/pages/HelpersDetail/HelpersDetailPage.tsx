@@ -1,62 +1,84 @@
-/** @origin UBTConnect.Legacy_OrbitEventsFlow.HelpersDetail */
+import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { useFlagOn } from '@/platform/flags/flags';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { showFeedbackMessage } from '@/platform/feedback';
+import { useFlagOn } from '@/platform/flags/flags';
 import { useOsNavigate } from '@/platform/navigation';
-import { ScreenBlock_HelperDetails } from './components/ScreenBlock_HelperDetails';
+import { HelperDetailsView } from './components/HelperDetailsView';
+import { useHelperDetails, type HelperDetailsEvents } from './hooks/useHelperDetails';
+import type { HelperDetailsInputs } from './hooks/helperDetailsState';
+import { readHelpersDetailInputs, type HelpersDetailInputs } from './inputs';
 
 const NO_ORBIT_ACCESS = "You don't have access to Orbit. Please contact the Orbit Helpdesk if you have any questions.";
 
-/** Connect2_LegacyShared FeedbackMessageAfterTransition (runtime-sources/Connect2_LegacyShared.controller.js
-    :2030-2085): its JS node shows the message 500 ms later, after the navigation that follows. */
+/** Connect2_LegacyShared FeedbackMessageAfterTransition: its JS node shows the message 500 ms later, after the
+    navigation that follows. */
 function feedbackMessageAfterTransition(message: string, messageType: number): void {
   window.setTimeout(() => {
     showFeedbackMessage(message, messageType);
   }, 500);
 }
 
-/** UBTConnect Legacy_OrbitEventsFlow.HelpersDetail (S = analysis/sources/pretty/UBTConnect.Legacy_OrbitEventsFlow.
-    HelpersDetail.mvc.js: view :167-245, controller :250-420). Inputs In_EventId, In_OrbitMilestoneTypeId,
-    In_MilestoneName, In_EventName, In_HostId. ScreenBlock_HelperDetails (In_PreloadEventName = In_EventName,
-    In_PreloadMilestoneName = In_MilestoneName; placeholders Menu and CommonUI_Elements empty, S :180-235), then
-    CommonUI_InsideLayout (S :236-245). OnHandle_ContactHelpdesk (S :270-320) checks GetHasOrbitAccess (flag
-    mobileOrbitAccess, default-only on): ContactByEmailOrbitHelpdesk, otherwise the no-access message after the
-    transition and HomeFeed. OnHandle_NavigateToHouseholdDetail (S :335-370) goes straight to HouseholdDetails. */
+/** ScreenBlock_HelperDetails on the screen: its flows (useHelperDetails) and its view. The hook runs here, at the place
+    of the block, so that its OnReady keeps its order with the other blocks of the screen. */
+function HelperDetails({ inputs, events }: { inputs: HelperDetailsInputs; events: HelperDetailsEvents }) {
+  const flows = useHelperDetails(inputs, events);
+  return (
+    <HelperDetailsView
+      id="$b1"
+      preloadEventName={inputs.In_PreloadEventName}
+      preloadMilestoneName={inputs.In_PreloadMilestoneName}
+      orbitMilestoneTypeId={inputs.In_OrbitMilestoneTypeId}
+      {...flows}
+    />
+  );
+}
+
+/** @origin UBTConnect.Legacy_OrbitEventsFlow.HelpersDetail
+    The helpers of a hosting household for an event: ScreenBlock_HelperDetails (In_PreloadEventName = In_EventName,
+    In_PreloadMilestoneName = In_MilestoneName; the placeholders Menu and CommonUI_Elements are empty), then
+    CommonUI_InsideLayout. The screen has no lifecycle event and no call of its own.
+    - OnHandle_NavigateToHouseholdDetail goes to HouseholdDetails.
+    - OnHandle_ContactHelpdesk checks GetHasOrbitAccess (flag mobileOrbitAccess): with access ContactByEmailOrbitHelpdesk
+      (In_MilestoneId "", as compiled); without it the no-access message after the transition, and HomeFeed. */
 export default function HelpersDetail() {
   const [params] = useSearchParams();
   const navigate = useOsNavigate();
   const hasOrbitAccess = useFlagOn('mobileOrbitAccess');
-  const inEventId = params.get('In_EventId') ?? '0';
+  const route = useMemo<HelpersDetailInputs>(() => readHelpersDetailInputs(params), [params]);
+  const inputs = useMemo<HelperDetailsInputs>(
+    () => ({
+      In_EventId: route.In_EventId,
+      In_PreloadEventName: route.In_EventName,
+      In_PreloadMilestoneName: route.In_MilestoneName,
+      In_OrbitMilestoneTypeId: route.In_OrbitMilestoneTypeId,
+      In_HostId: route.In_HostId,
+    }),
+    [route],
+  );
+
+  const events: HelperDetailsEvents = {
+    onNavigateToHouseholdDetail: (householdId) => {
+      navigate('/UBTConnect/HouseholdDetails', { HouseholdId: householdId });
+    },
+    onNavigateToContactHelpdesk: (subject, eventName) => {
+      if (!hasOrbitAccess) {
+        feedbackMessageAfterTransition(NO_ORBIT_ACCESS, 3);
+        navigate('/UBTConnect/HomeFeed', {});
+        return;
+      }
+      navigate('/UBTConnect/ContactByEmailOrbitHelpdesk', {
+        In_EventName: eventName,
+        In_Subject: subject,
+        In_EventId: route.In_EventId,
+        In_MilestoneId: '',
+      });
+    },
+  };
 
   return (
     <>
-      <ScreenBlock_HelperDetails
-        id="$b1"
-        In_EventId={inEventId}
-        In_HostId={params.get('In_HostId') ?? '0'}
-        In_OrbitMilestoneTypeId={params.get('In_OrbitMilestoneTypeId') ?? ''}
-        In_PreloadEventName={params.get('In_EventName') ?? ''}
-        In_PreloadMilestoneName={params.get('In_MilestoneName') ?? ''}
-        onNavigateToHouseholdDetail={(householdId) => {
-          // OnHandle_NavigateToHouseholdDetail (S :335-370)
-          navigate('/UBTConnect/HouseholdDetails', { HouseholdId: householdId });
-        }}
-        onNavigateToContactHelpdesk={(subject, eventName) => {
-          // OnHandle_ContactHelpdesk (S :270-320): In_MilestoneId "" as compiled
-          if (!hasOrbitAccess) {
-            feedbackMessageAfterTransition(NO_ORBIT_ACCESS, 3);
-            navigate('/UBTConnect/HomeFeed', {});
-            return;
-          }
-          navigate('/UBTConnect/ContactByEmailOrbitHelpdesk', {
-            In_EventName: eventName,
-            In_Subject: subject,
-            In_EventId: inEventId,
-            In_MilestoneId: '',
-          });
-        }}
-      />
+      <HelperDetails inputs={inputs} events={events} />
       <CommonUiLayout id="$b2" />
     </>
   );

@@ -661,3 +661,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T08:23:35 P6-G5-B-GuestArrangements stage test
 - 2026-10-24T08:31:15 P6-G5-B-GuestArrangements stage docs
 - 2026-10-24T08:32:48 P6-G5-B-GuestArrangements stage commit
+- 2026-10-24T08:32:50 P6-G5-B-GuestArrangements done c343990f: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.46 kB, Login 184.48 kB; W28 beforePaint
+- 2026-10-24T08:32:50 P6-G5-B-HelpersDetail started
+- 2026-10-24T08:32:50 P6-G5-B-HelpersDetail stage dev
+- 2026-10-24T08:33:28 P6-G5-B-HelpersDetail stage test
+- 2026-10-24T08:40:59 P6-G5-B-HelpersDetail stage docs
+- 2026-10-24T08:42:04 P6-G5-B-HelpersDetail stage commit

@@ -698,3 +698,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,317637,refactor-dev,,P6-G5-B-GuestArrangements opus
 2026-10-24,refactor,other,39258,refactor-docs,,P6-G5-B-MilestoneDetail sonnet
 2026-10-24,refactor,verify,33283,refactor-test,,P6-G5-B-GuestArrangements sonnet
+2026-10-24,refactor,build,350113,refactor-dev,,P6-G5-B-HelpersDetail opus
+2026-10-24,refactor,other,40207,refactor-docs,,P6-G5-B-GuestArrangements sonnet
+2026-10-24,refactor,review,35587,refactor-advisor,,"W30, opus"
+2026-10-24,refactor,review,35349,refactor-advisor,,"W30, fable"
+2026-10-24,refactor,verify,27365,refactor-test,,P6-G5-B-HelpersDetail sonnet

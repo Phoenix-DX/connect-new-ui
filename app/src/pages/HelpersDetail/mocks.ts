@@ -1,9 +1,17 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { orbitEventHelpers, orbitEvents, type OrbitHelperGroup } from '@/mocks/fictional/orbit';
 import { scenario } from '@/mocks/scenario';
-import type { GetHelperDetailsWire, HelperDetailsResponseWire, HelperWire } from './types';
+
+/** DataActionGetHelperDetails of ScreenBlock_HelperDetails as it travels (the API contract). */
+type GetHelperDetailsWire = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_HelperDetails/DataActionGetHelperDetails'>
+>;
+/** GetHelperDetailsResponse (Connect2_OrbitMobile_IS) as it travels. */
+type HelperDetailsResponseWire = GetHelperDetailsWire['Response']['GetHelperHost_Response'];
+type HelperWire = HelperDetailsResponseWire['Helpers']['List'][number];
 
 /* DataActionGetHelperDetails was recorded without data (calls.md: OrbitMilestoneType and EventDetails empty, null dates,
    Helpers empty): fictional answers from the shared Orbit world (src/mocks/fictional/orbit.ts) in the captured shape.
