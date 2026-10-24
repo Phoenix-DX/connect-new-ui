@@ -1,15 +1,14 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import type { ShareDetails } from '@/api/share';
 import { CommunicationException, ServerException, ViewHasChangedException } from '@/legacy/os/os-exceptions';
-import type { ShareDetails } from '@/pages/ConnectShare/types';
-import { onInitializeSharingScreen } from './actions';
+import { onInitializeSharingScreen } from './connectShareActions';
 
-/* OnInitializeSharingScreen (UBTConnect.controller.js:15603-15700): every branch, with Get_ShareDetails and the
-   audit's GetUserInformation_Wrapper spied. */
+/* OnInitializeSharingScreen: every branch, with Get_ShareDetails and the audit's GetUserInformation_Wrapper spied. */
 const spy = vi.hoisted(() => ({
   share: vi.fn<(shareId: string) => Promise<ShareDetails>>(),
   userInfo: vi.fn<() => Promise<unknown>>(),
 }));
-vi.mock('@/pages/ConnectShare/api', () => ({ get_ShareDetails: spy.share }));
+vi.mock('@/api/share', () => ({ fetchShareDetails: spy.share }));
 vi.mock('@/platform/session/userInfo', () => ({ getUserInformation: spy.userInfo }));
 
 const share = (patch: Partial<ShareDetails>): ShareDetails => ({

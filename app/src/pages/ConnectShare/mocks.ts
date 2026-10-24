@@ -1,8 +1,8 @@
 import type { RequestHandler } from 'msw';
+import type { ShareDetailsWire } from '@/api/share';
 import { ServerException } from '@/legacy/os/os-exceptions';
 import { contractHandler } from '@/mocks/contract';
 import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
-import type { Get_ShareDetailsWire } from './types';
 
 /* Get_ShareDetails was not recorded (share data is person data, migration/knowledge/mock-fixtures.md): fictional.
    - Every ShareId not listed below (the capture's 00000000-0000-0000-0000-000000000000 included) raises the exception
@@ -13,7 +13,7 @@ import type { Get_ShareDetailsWire } from './types';
      the redirects go to the ids the built target screens were captured with (HouseholdId 42438,
      In_OneSchoolGlobalId 1430, In_SubdivsionId 1210) and a fictional FeedItemId. */
 
-type ShareWire = Get_ShareDetailsWire;
+type ShareWire = ShareDetailsWire;
 
 const NULL_DATE = '1900-01-01';
 const NULL_DATETIME = '1900-01-01T00:00:00Z';

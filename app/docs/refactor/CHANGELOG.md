@@ -721,3 +721,9 @@
 - `pages/Notes` is a page with a flow hook (`hooks/useNotes.ts`) and a state module (`hooks/notesState.ts`) on `useFlowState`. `api.ts` and `types.ts` are deleted; the hook calls `@/api/note`. The 8 blocks in `components/` carry `@origin`.
 - Deviations, none user-visible (tester): (1) OnReady runs in its own effect after OnInitialize, as the old page did; (2) the flows write to an `afterUnmount` copy after the unmount (W23); (3) `restore` returns the initial state, so a back navigation starts from OnInitialize; (4) the first page assigns the list after the pills call; a search submit in that call sends the skeleton list, which the server ignores; (5) in StrictMode (dev) the year options are read once.
 - HomeFeed gzip 244.46 kB, Login 184.49 kB; dependency-cruiser warnings 189 to 188; baseline 69 rows, 0 new.
+
+## P6-G6-B-ConnectShare - refactor(P6-G6-B): ConnectShare as page
+
+- `pages/ConnectShare` is a page with a flow hook (`hooks/useConnectShare.ts`), a state module (`hooks/connectShareState.ts`) on `useFlowState`, client actions (`hooks/connectShareActions.ts`) and `inputs.ts`. `ScreenBlock_ShareDetail` is now `components/ShareDetailView.tsx`. `api.ts` and `types.ts` are deleted.
+- New domain `api/share` (W8) with Get_ShareDetails. After an unmount, the delayed upgrade popup is not started or is dropped, exactly as in the old port. W23 holds; the tester compared it with HEAD. The 4 screen variables are one cache record.
+- HomeFeed gzip 244.49 kB, Login 184.49 kB; arch baseline 69 rows, 0 new.

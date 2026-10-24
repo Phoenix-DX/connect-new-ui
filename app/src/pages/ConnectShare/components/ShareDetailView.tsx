@@ -1,13 +1,12 @@
-// @os-block Connect2_LegacyShared.Share_UI.ScreenBlock_ShareDetail
 import type { ReactNode } from 'react';
+import { LegacyLayout } from '@/components/layout/LegacyLayout';
+import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { ConnectBlankSlate } from '@/shared/Connect2_LegacyShared/ConnectBlankSlate';
-import { LegacyLayout } from '@/components/layout/LegacyLayout';
-import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { NavigationLanding } from './NavigationLanding';
 
-export interface ScreenBlock_ShareDetailProps {
+export interface ShareDetailViewProps {
   /** OutSystems instance id of the block (`$b1`). */
   id: string;
   /** Input StatusMessage (Text). */
@@ -20,17 +19,12 @@ export interface ScreenBlock_ShareDetailProps {
   commonUIElements?: ReactNode;
 }
 
-/** Share_UI.ScreenBlock_ShareDetail (p:Connect2_LegacyShared.Share_UI.ScreenBlock_ShareDetail.mvc.js, view :131-260):
-    Layout with the Menu placeholder, MenuIcon_Back, the title "Connect Share", NavigationLanding on the right, and a
-    ConnectBlankSlate with the share_unavailable_icon image and the StatusMessage expression as title (empty subtitle);
-    the BottomBar and CommonUI_Elements placeholders. No action or lifecycle of its own. */
-export function ScreenBlock_ShareDetail({
-  id,
-  statusMessage,
-  menu,
-  bottomBar,
-  commonUIElements,
-}: ScreenBlock_ShareDetailProps) {
+/** Share_UI.ScreenBlock_ShareDetail, props only: the layout with the Menu placeholder, MenuIcon_Back, the title
+    "Connect Share", NavigationLanding on the right, and a ConnectBlankSlate with the share_unavailable_icon image and
+    the StatusMessage expression as title (empty subtitle); the BottomBar and CommonUI_Elements placeholders. The block
+    has no action and no lifecycle of its own.
+    @origin Connect2_LegacyShared.Share_UI.ScreenBlock_ShareDetail */
+export function ShareDetailView({ id, statusMessage, menu, bottomBar, commonUIElements }: ShareDetailViewProps) {
   const scope = id.replace('$', '');
   return (
     <OSBlock name="Share_UI.ScreenBlock_ShareDetail" id={id}>

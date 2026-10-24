@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G6-B-Notes",
+  "step": "P6-G6-B-ConnectShare",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T11:04:25"
+  "since": "2026-10-24T11:11:07"
  },
  "steps": {
   "P0-1": {
@@ -1483,12 +1483,24 @@
    "finished": "2026-10-24T10:54:19"
   },
   "P6-G6-B-Notes": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T10:54:19",
    "tokens": {
     "dev": 387149,
     "test": 32361,
-    "docs": 37014
+    "docs": 41238
+   },
+   "commit": "ff889fdc",
+   "gate": "ci: pass; parity visual --changed: 47/0 (OutSystems), 47/0 (self); arch baseline 0 new; HomeFeed 244.46 kB, Login 184.49 kB",
+   "loops": 0,
+   "finished": "2026-10-24T11:04:26"
+  },
+  "P6-G6-B-ConnectShare": {
+   "status": "active",
+   "started": "2026-10-24T11:04:26",
+   "tokens": {
+    "dev": 255681,
+    "test": 32985
    }
   }
  },
