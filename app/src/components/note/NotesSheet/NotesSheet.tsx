@@ -8,7 +8,7 @@ import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandl
 import { AddNote } from '@/components/note/AddNote';
 import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
-import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import { note_SendFeedbackMessages } from '@/shared/UBTConnect_Utils/lib/actions';
 import { NoteActionType } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { NoteListActionsContainer } from '@/containers/NoteListActions';

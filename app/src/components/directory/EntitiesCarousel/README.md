@@ -27,7 +27,7 @@ HouseholdDetails_Block.
 
 - OnInitialize: active index = In_StartingPosition, next active index -1, Index_Initial = start (Carousel
   StartingPosition, AutoPlay and Loop False, Navigation None, `ubt-entities-carousel`).
-- Carousel Initialized calls these actions (`osui/lib/actions.ts`):
+- Carousel Initialized calls these actions (`components/ui/lib/actions.ts`):
   - CarouselDisableOnRender.
   - SetSplideConfigs (fixedHeight `var(--carousel-slide-custom-height)`, perMove 1, flickPower 100, flickMaxPages 1,
     waitForTransition true). Speed 0 equals the record default, so the call does not send it.

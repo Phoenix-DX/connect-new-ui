@@ -1,7 +1,7 @@
 /** @origin UBTConnectLibrary.ConnectPatterns.AvatarImage */
 // @os-block UBTConnectLibrary.ConnectPatterns.AvatarImage
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { InlineSVG } from '@/shared/osui/InlineSVG';
+import { InlineSVG } from '@/components/ui/InlineSVG';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { formatClasses, getClasses_AvatarSize } from '@/shared/UBTConnectLibrary/lib/actions';

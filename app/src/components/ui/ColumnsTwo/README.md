@@ -18,7 +18,7 @@ ExtendedClasses + `ubt-columns--two-columns` + GetClasses_Column.
 | ------- | ----------------------- | ------------------------------------------ |
 | v1      | BrowseCountries/default | the only distinct variant (1005 instances) |
 
-The Columns2 captures (all rendered by this block) are also checked here: `osui/Columns2/__captures__/v2.html` and
+The Columns2 captures (all rendered by this block) are also checked here: `components/ui/Columns2/__captures__/v2.html` and
 `v3.html` (gutter from SpacingSize, vertical align).
 
 ## Not captured

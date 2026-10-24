@@ -17,7 +17,7 @@ import {
 } from '@/pages/HelpersDetail/hooks/helperDetailsActions';
 import type { HelperDetailsFlows } from '@/pages/HelpersDetail/hooks/useHelperDetails';
 import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
-import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
+import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 
 /** The view of the helpers of a hosting household, props only. The flows are in `useHelperDetails`.
@@ -66,7 +66,7 @@ export function HelperDetailsView(props: HelperDetailsViewProps) {
           keyOf={(h: HelperItem, i) => `${h.Role}-${String(i)}`}
         >
           {(h, i) => (
-            <DEPRECATED_AccordionItem
+            <SectionExpandable
               id={`${prefix}-l6_${String(i)}-$b5`}
               usePadding={false}
               extendedClass={`orbit-accordion-item${i !== 0 ? ' margin-top-s' : ''}`}

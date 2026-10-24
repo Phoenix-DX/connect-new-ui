@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import * as osuiActions from '@/shared/osui/lib/actions';
+import * as osuiActions from '@/components/ui/lib/actions';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { FilterSheetIcon } from './FilterSheetIcon';
 import * as stories from './FilterSheetIcon.stories';

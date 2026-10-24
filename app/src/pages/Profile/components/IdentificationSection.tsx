@@ -1,5 +1,5 @@
 import { ICON_CONTENT_COPY } from '@/pages/Profile/staticEntities';
-import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';

@@ -3,8 +3,8 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSLink } from '@/shared/lib/OSLink';
-import { BottomSheet as OSUIBottomSheet } from '@/shared/osui/BottomSheet';
-import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { BottomSheet as OSUIBottomSheet } from '@/components/ui/BottomSheet';
+import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import { jSUtils_SetStyleProperty } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { ColumnsThree } from '@/components/ui/ColumnsThree';
 import { CustomText } from '@/components/ui/CustomText';

@@ -49,7 +49,7 @@ flowchart TB
     domain[src/api/&lt;domain&gt;<br/>types · mapper · repository · keys · hooks]
     widgets[src/components<br/>platform widgets in components/ui/os:<br/>validation, popup, list, radio group]
     vendor[src/vendor and osui vendor folders<br/>third-party scripts copied from the original]
-    shared[src/shared<br/>blocks not yet moved to components/ui<br/>src/shared/osui for OutSystems UI patterns]
+    shared[src/shared<br/>blocks not yet moved to components/ui<br/>(the OutSystems UI patterns now live in components/ui)]
     lib[src/api/client · src/platform/{config, log, flags, device}<br/>src/legacy/os: os-wire, os-exceptions, os-assets]
     mocks[src/mocks<br/>MSW handlers · recorded fixtures · mock store]
     css[public/UBTConnect/css<br/>original OutSystems CSS per screen]
@@ -76,7 +76,7 @@ flowchart TB
 Rules that keep it this way (`consistency_check.py` checks them before a screen is finished):
 
 - A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (ESLint, `app/eslint.config.js`). Only `pages/<Route>/` imports `pages/<Route>/`, and `src/shared` imports no `src/app`. Inside `src/shared`, `UBTConnectLibrary` imports neither `UBTConnect_Utils` nor `UBTConnect`, and `UBTConnect_Utils` does not import `UBTConnect`.
-- Also in `src/shared`: `shared/osui` imports no other app module in `shared/` (only `shared/lib`), `Connect2_LegacyShared` does not import `UBTConnect`, and `Connect2_MyBookmarks_MUI` does not import `Connect2_Assemble_MUI` (dependency-cruiser warnings, `app/.dependency-cruiser.cjs`). The import graph of `src/` has no cycle (`no-circular` is an error). The recipe is the [page template](../guides/page-template.md). Only HouseholdDetails is a page so far.
+- Also in `src/shared`: `Connect2_LegacyShared` does not import `UBTConnect`, and `Connect2_MyBookmarks_MUI` does not import `Connect2_Assemble_MUI` (dependency-cruiser warnings, `app/.dependency-cruiser.cjs`). The import graph of `src/` has no cycle (`no-circular` is an error). The recipe is the [page template](../guides/page-template.md). Only HouseholdDetails is a page so far.
 - Story and test files are outside the cycle rule and these folder rules (decision Q11, P3-2; the P3-3 rules use the same exception). A story renders the real blocks of the captured screen, so it may import across the three modules.
 - A screen imports only from its own folder and from `src/shared`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/mocks`.
 - A screen has no `fetch`, browser storage, route CSS, inline visual styles, raw HTML or `console.log`.
@@ -123,7 +123,7 @@ sequenceDiagram
 | Feature flags         | `src/platform/flags` (21-flag registry, `resolve`, `store`, `overrides`, `server`, `useFlag`; `FLAG_OVERRIDES_BUILT`)                 | [Shell](../guides/shell.md)                      |
 | Settings store        | `src/platform/settings` (11 typed server settings from `synchAppContext`; adapter `src/legacy/os/clientVarNames.ts`)                  | [Shell](../guides/shell.md)                      |
 | Local entities        | `src/platform/storage/localEntities` (IndexedDB; bookmark sync in one transaction, ADR-8)                                             | [Shell](../guides/shell.md)                      |
-| Vendored scripts      | `src/vendor/panzoom` (ADR-7), `src/shared/osui/DropdownSearch/vendor` (ADR-5)                                                         | [Shared code](../guides/shared-code.md)          |
+| Vendored scripts      | `src/vendor/panzoom` (ADR-7), `src/components/ui/DropdownSearch/vendor` (ADR-5)                                                       | [Shared code](../guides/shared-code.md)          |
 | Mock scenarios, store | `src/mocks`, `?mock=`, `?mocksession=`                                                                                                | [API and mock data](../guides/api-and-mocks.md)  |
 | Known original bugs   | B1-B13                                                                                                                                | [Known original bugs](../known-original-bugs.md) |
 

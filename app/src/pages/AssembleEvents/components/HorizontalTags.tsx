@@ -1,7 +1,7 @@
 // @os-block Connect2_LegacyShared.Reusable.HorizontalTags
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Tag } from '@/shared/osui/Tag';
+import { Tag } from '@/components/ui/Tag';
 
 /** Connect2_LegacyShared Tag (Id, Label). */
 export interface TagItem {

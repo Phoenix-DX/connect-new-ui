@@ -3,8 +3,8 @@ import type { GroupSummaryBookmark as BookmarkItem } from '@/api/bookmark';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { osImage } from '@/legacy/os/os-assets';
-import { DEPRECATED_GalleryV2 } from '@/shared/osui/DEPRECATED_GalleryV2';
-import { Space } from '@/shared/osui/lib/staticEntities';
+import { GridGallery } from '@/components/ui/legacy/GridGallery';
+import { Space } from '@/components/ui/lib/staticEntities';
 import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface MyBookmarks_AlbumProps {
@@ -69,7 +69,7 @@ export function MyBookmarks_Album({
   const imageClass = 'bookmark-card-image' + (bookmarkGroup === G.Contacts ? ' bookmark-card-image-household' : '');
   return (
     <OSBlock name="MyBookmarksFlow.MyBookmarks_Album" id={id}>
-      <DEPRECATED_GalleryV2
+      <GridGallery
         id={`${scope}-DEPRECATED_GalleryV2_BookmarkedImages`}
         gutterSize={Space.Small}
         itemInPhone={String(count)}
@@ -115,7 +115,7 @@ export function MyBookmarks_Album({
             );
           }}
         </OSList>
-      </DEPRECATED_GalleryV2>
+      </GridGallery>
     </OSBlock>
   );
 }

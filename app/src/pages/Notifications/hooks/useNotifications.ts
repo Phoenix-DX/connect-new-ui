@@ -4,7 +4,7 @@ import { UserException, exceptionMessage, isSystemException } from '@/legacy/os/
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useViewState } from '@/platform/navigation';
 import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/shared/UBTConnect/lib/actions';
-import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import {
   INITIAL_CACHED_VARIABLES,
   app_Notifications_AugmentDateRanges,

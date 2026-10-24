@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
+import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
 import { insideNativeLayout } from '@/shared/test/nativeLayout';
 import { PendingBlock } from '@/shared/test/PendingBlock';
 import { OrbitAccordion } from './OrbitAccordion';
@@ -20,7 +20,7 @@ export const V1: Story = {
     id: 'b1-$b4',
     inColoredContent: true,
     children: (
-      <DEPRECATED_AccordionItem
+      <SectionExpandable
         id="b1-$b5"
         usePadding={false}
         extendedClass="orbit-accordion-item"
@@ -49,7 +49,7 @@ export const MilestoneRooms: Story = {
     children: (
       <div className="list list-group OSFillParent" data-list="" data-virtualization-disabled="">
         {ROOMS.map((room, i) => (
-          <DEPRECATED_AccordionItem
+          <SectionExpandable
             key={room}
             usePadding={false}
             extendedClass={i === 0 ? 'orbit-accordion-item' : 'orbit-accordion-item margin-top-s'}

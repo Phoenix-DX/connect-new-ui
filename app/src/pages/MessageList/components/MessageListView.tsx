@@ -8,8 +8,8 @@ import { AnimationType, RecentSearchType, Speed } from '@/pages/MessageList/stat
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { MessageListNoResults } from '@/components/ui/MessageListNoResults';
 import { Spinner } from '@/components/ui/Spinner';
-import { Animate } from '@/shared/osui/Animate';
-import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { Animate } from '@/components/ui/Animate';
+import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { MessageListBlock } from './MessageListBlock';
 import { MessageListFilter } from './MessageListFilter';
 import { MessageListNoNotificationsBanner } from './MessageListNoNotificationsBanner';

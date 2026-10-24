@@ -11,7 +11,7 @@ import {
 } from '@/shared/Leaflet/lib/actions';
 import type L from '@/shared/Leaflet/lib/leaflet';
 import type { MapOptions, MarkerWithWindow } from '@/shared/Leaflet/lib/structures';
-import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import {
   directory_BrowseByCountry_TooltipBuilder,
   getLocalityLabel,

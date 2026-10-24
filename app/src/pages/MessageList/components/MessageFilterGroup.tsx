@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Space } from '@/pages/MessageList/staticEntities';
-import { Separator } from '@/shared/osui/Separator';
+import { Separator } from '@/components/ui/Separator';
 import { textEllipsis } from './textEllipsis';
 
 export interface MessageFilterGroupProps {

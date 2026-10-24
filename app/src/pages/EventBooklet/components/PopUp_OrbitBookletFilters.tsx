@@ -4,9 +4,9 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DaySelectorList } from '@/components/orbit/DaySelectorList';
 import { FooterWithActions } from '@/pages/EventBooklet/components/FooterWithActions';
 import { styleFromCssText } from '@/shared/lib/cssText';
-import { DropdownTags } from '@/shared/osui/DropdownTags';
-import { dropdownClear, dropdownClearValidation, dropdownTogglePopup } from '@/shared/osui/lib/actions';
-import type { DropdownOption } from '@/shared/osui/lib/structures';
+import { DropdownTags } from '@/components/ui/DropdownTags';
+import { dropdownClear, dropdownClearValidation, dropdownTogglePopup } from '@/components/ui/lib/actions';
+import type { DropdownOption } from '@/components/ui/lib/structures';
 import { dropdownTags_CloseOtherOnClick } from '@/shared/UBTConnect_Utils/lib/actions';
 import type { PopupFilters } from '@/pages/EventBooklet/types';
 

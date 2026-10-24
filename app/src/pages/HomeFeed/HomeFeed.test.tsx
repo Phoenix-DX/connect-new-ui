@@ -1,7 +1,7 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
-import { stubCarouselLayout } from '@/shared/osui/Carousel/testLayout';
+import { stubCarouselLayout } from '@/components/ui/Carousel/testLayout';
 import { calledActions, freshPage } from '@/test/testSupport';
 import HomeFeed from './HomeFeedPage';
 

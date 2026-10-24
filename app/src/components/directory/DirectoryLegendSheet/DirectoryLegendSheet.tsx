@@ -1,7 +1,7 @@
 /** @origin UBTConnect.Directory_Locality.Directory_LegendBottomSheet */
 import { useRef, useState, type ComponentType, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { bottomSheetClose } from '@/shared/osui/lib/actions';
+import { bottomSheetClose } from '@/components/ui/lib/actions';
 import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';

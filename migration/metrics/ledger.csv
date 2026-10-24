@@ -782,3 +782,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,fix,47282,refactor-developer,,"F23 test flakes (Updates_SingleList, EventBooklet, Services), sonnet"
 2026-10-24,refactor,build,85786,refactor-dev,,P7-0 sonnet
 2026-10-24,refactor,verify,23958,refactor-test,,P7-0 sonnet
+2026-10-24,refactor,other,34800,refactor-docs,,P7-0 sonnet
+2026-10-24,refactor,build,65430,refactor-dev,,P7-1 sonnet
+2026-10-24,refactor,verify,23214,refactor-test,,P7-1 sonnet

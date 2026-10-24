@@ -4,7 +4,7 @@
   block inputs. Events have the names of the block events. Placeholders become children. The component file carries
   `@os-block <Module.Flow.Block>`. Step P7-0 moved most of these blocks to `src/components/ui/<Name>/`; the `lib/` folders and
   three rows that P7-2 handles stay in `src/shared/`.
-- `src/shared/osui/<Pattern>/`: OutSystems UI patterns (BottomSheet, Carousel, Gallery…). Use the same provider library
+- `src/components/ui/<Pattern>/`: OutSystems UI patterns (moved from `src/shared/osui/` in P7-1; shared actions in `src/components/ui/lib/`; the 4 `DEPRECATED_*` patterns are in `src/components/ui/legacy/` with business names) (BottomSheet, Carousel, Gallery…). Use the same provider library
   and version as the original, where the original has one ([stack](../reference/stack.md)).
 - `src/platform/`: app-wide logic (error handling, sign-in and PIN mock, navigation, preload, feedback messages).
 - `src/api/client/`: the typed `callAction` client. `src/legacy/os/`: OutSystems wire helpers, exceptions and assets.
@@ -26,7 +26,7 @@ IconInline_Internal, HighlightSearch, SkeletonSection, Button; OSUI Columns2, In
 
 - **Folders.**
   - Put a block in `src/shared/<Module>/<Block>/` (module = OutSystems module, e.g. `UBTConnectLibrary`).
-  - Put OutSystems UI patterns in `src/shared/osui/<Pattern>/`.
+  - Put OutSystems UI patterns in `src/components/ui/<Pattern>/`.
   - Put module code in `src/shared/<Module>/lib/`:
     - `structures.ts`: structures. Name fields exactly as in OutSystems. All fields are optional (= OutSystems default).
     - `staticEntities.ts`: identifier values, each with its evidence.
@@ -95,7 +95,7 @@ licence). Never edit the copies.
 | Script                                                 | Folder                                                  | Used by                                                             | Decision |
 | ------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------------------- | -------- |
 | PanZoom (anvaka panzoom, customised by the original)   | `src/vendor/panzoom/` (`index.ts` is the typed wrapper) | the Photobook screen (`src/pages/Photobook/components/PanZoom.tsx`) | ADR-7    |
-| Virtual Select 1.3.0, as bundled by OutSystems UI 2.23 | `src/shared/osui/DropdownSearch/vendor/`                | the DropdownSearch OSUI pattern                                     | ADR-5    |
+| Virtual Select 1.3.0, as bundled by OutSystems UI 2.23 | `src/components/ui/DropdownSearch/vendor/`              | the DropdownSearch OSUI pattern                                     | ADR-5    |
 
 Why vendored: the original customises PanZoom (options that upstream does not have), and npm stops at Virtual Select
 1.1.0. Behaviour must match the original, so the app keeps the same file.

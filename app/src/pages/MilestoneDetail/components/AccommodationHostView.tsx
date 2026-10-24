@@ -21,7 +21,7 @@ import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { styleFromCssText } from '@/shared/lib/cssText';
-import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
+import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 
 /** Connect2_OrbitMobile_MUI.menuAction.auto: the MenuAction the block passes to MenuIcon__UpdatedOSUI. */
@@ -115,7 +115,7 @@ export function AccommodationHostView(props: AccommodationHostViewProps) {
       id={`${prefix}-$b${accordion}`}
       inExtendedClass={noSpecialNeeds ? ' orbit-accordion-no-margin' : ''}
     >
-      <DEPRECATED_AccordionItem
+      <SectionExpandable
         id={`${prefix}-$b${item}`}
         usePadding={false}
         extendedClass="orbit-accordion-item"
@@ -303,7 +303,7 @@ export function AccommodationHostView(props: AccommodationHostViewProps) {
           keyOf={(room, r) => `${room.RoomId}-${String(r)}`}
         >
           {(room, r) => (
-            <DEPRECATED_AccordionItem
+            <SectionExpandable
               id={`${prefix}-l5-142864_${String(r)}-$b8`}
               usePadding={false}
               extendedClass={`orbit-accordion-item${r !== 0 ? ' margin-top-s' : ''}`}

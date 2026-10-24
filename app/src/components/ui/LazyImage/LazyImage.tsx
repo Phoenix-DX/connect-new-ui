@@ -2,7 +2,7 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.LazyImage
 import { useState, type SyntheticEvent } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { InlineSVG } from '@/shared/osui/InlineSVG';
+import { InlineSVG } from '@/components/ui/InlineSVG';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';

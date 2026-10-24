@@ -12,7 +12,7 @@ import {
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
 import { getFlagURLByCountryCode } from '@/shared/UBTConnectLibrary/lib/actions';

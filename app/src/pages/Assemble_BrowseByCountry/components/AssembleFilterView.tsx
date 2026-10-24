@@ -8,7 +8,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { assembleFilterIds } from '@/pages/Assemble_BrowseByCountry/hooks/assembleFilterState';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { Spinner } from '@/components/ui/Spinner';
-import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 
 /** The view of the Assemble filter, props only. The legacy layout has the back arrow and ScreenTitle. The content is

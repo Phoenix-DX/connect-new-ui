@@ -1,7 +1,7 @@
 /** @origin UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon */
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { Icon } from '@/components/ui/Icon';
 import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';

@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { ServicesPage } from '@/api/service';
-import { stubCarouselLayout } from '@/shared/osui/Carousel/testLayout';
+import { stubCarouselLayout } from '@/components/ui/Carousel/testLayout';
 import { EMPTY_POPUP_INFO, INITIAL_PAGES } from '@/pages/HomeFeed/hooks/feedServicesState';
 import { FeedBlock_Services, type FeedBlock_ServicesProps } from './FeedBlock_Services';
 

@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router';
 import { MainLayout } from '@/components/layout/MainLayout';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
-import { BlankSlate } from '@/shared/osui/BlankSlate';
+import { BlankSlate } from '@/components/ui/BlankSlate';
 import { StaticInput } from '@/components/ui/StaticInput';
 import { readCommunityBusinessDetailsInputs } from './inputs';
 

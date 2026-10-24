@@ -20,7 +20,7 @@ import {
   UBT_Shape,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { bottomSheetClose } from '@/shared/osui/lib/actions';
+import { bottomSheetClose } from '@/components/ui/lib/actions';
 import { UBT_Color_Error, UBT_Icons2_Notifications } from './staticEntities';
 
 export interface MoreActionSheetProps {

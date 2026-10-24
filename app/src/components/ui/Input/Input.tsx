@@ -9,7 +9,7 @@ import {
   withNotValidClass,
   type WidgetValidationRecord,
 } from '@/components/ui/os/OSValidation';
-import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { Icon } from '@/components/ui/Icon';
 import { Shape, UBT_Color, UBT_Icons, UBT_IconSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { SearchInput } from '@/shared/UBTConnectLibrary/lib/structures';

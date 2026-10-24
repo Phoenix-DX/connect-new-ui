@@ -2,7 +2,7 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
-import { BlankSlate } from '@/shared/osui/BlankSlate';
+import { BlankSlate } from '@/components/ui/BlankSlate';
 import { PendingBlock } from '@/shared/test/PendingBlock';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';

@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
-import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import { CircleButtonWithLabel } from '@/components/ui/CircleButtonWithLabel';
 import { CustomContainer } from '@/components/ui/CustomContainer';

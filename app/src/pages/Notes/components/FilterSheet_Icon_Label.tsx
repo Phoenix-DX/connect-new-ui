@@ -1,7 +1,7 @@
 /** @origin UBTConnect.App_CommonBlocks_Filter.FilterSheet_Icon_Label */
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
-import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';

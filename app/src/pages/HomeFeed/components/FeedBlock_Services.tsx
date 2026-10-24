@@ -1,8 +1,8 @@
 import type { ExternalAppPopUpInfo, ServiceItem, ServicesPage } from '@/api/service';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Carousel } from '@/shared/osui/Carousel';
-import { Gallery } from '@/shared/osui/Gallery';
-import { CarouselNavigation } from '@/shared/osui/lib/staticEntities';
+import { Carousel } from '@/components/ui/Carousel';
+import { Gallery } from '@/components/ui/Gallery';
+import { CarouselNavigation } from '@/components/ui/lib/staticEntities';
 import { CircleButton } from '@/components/ui/CircleButton';
 import { CircleButtonWithLabel } from '@/components/ui/CircleButtonWithLabel';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';

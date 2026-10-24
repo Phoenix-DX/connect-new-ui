@@ -1,8 +1,8 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { expectToMatchCapture } from '@/test/dom';
-import columns2V2 from '@/shared/osui/Columns2/__captures__/v2.html?raw';
-import columns2V3 from '@/shared/osui/Columns2/__captures__/v3.html?raw';
+import columns2V2 from '@/components/ui/Columns2/__captures__/v2.html?raw';
+import columns2V3 from '@/components/ui/Columns2/__captures__/v3.html?raw';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { PendingBlock } from '@/shared/test/PendingBlock';
 import { CustomText } from '@/components/ui/CustomText';

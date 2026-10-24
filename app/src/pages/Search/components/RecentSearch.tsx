@@ -8,7 +8,7 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { Gallery } from '@/shared/osui/Gallery';
+import { Gallery } from '@/components/ui/Gallery';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,

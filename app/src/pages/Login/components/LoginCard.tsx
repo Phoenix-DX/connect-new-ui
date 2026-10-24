@@ -1,4 +1,4 @@
-import { ButtonLoading } from '@/shared/osui/ButtonLoading';
+import { ButtonLoading } from '@/components/ui/ButtonLoading';
 import { UnsupportedVersionWrapper } from '@/components/version/UnsupportedVersionWrapper';
 import { WelcomeToConnect } from '@/components/auth/WelcomeToConnect';
 import { CustomContainer } from '@/components/ui/CustomContainer';

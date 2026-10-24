@@ -4,7 +4,7 @@ import { LOCALITY_HOUSEHOLDS, VITALE, householdName } from '@/mocks/fictional/di
 import { resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { usePreloadObject } from '@/platform/navigation';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
-import { stubCarouselLayout } from '@/shared/osui/Carousel/testLayout';
+import { stubCarouselLayout } from '@/components/ui/Carousel/testLayout';
 import { calledActions, freshPage, recordBodies, setFlags } from '@/test/testSupport';
 import Photobook from './PhotobookPage';
 

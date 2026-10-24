@@ -1,7 +1,7 @@
 /** @origin Connect2_LegacyShared.Widgets.NetworkWarning */
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Animate } from '@/shared/osui/Animate';
-import { AnimationType, Speed } from '@/shared/osui/lib/staticEntities';
+import { Animate } from '@/components/ui/Animate';
+import { AnimationType, Speed } from '@/components/ui/lib/staticEntities';
 
 export interface NetworkWarningProps {
   /** OutSystems instance id of the block (`b1-$b11`). */

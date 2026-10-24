@@ -11,7 +11,7 @@ import {
 import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
 import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
 import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
-import { DEPRECATED_ButtonLoading } from '@/shared/osui/DEPRECATED_ButtonLoading';
+import { LegacyButtonLoading } from '@/components/ui/legacy/LegacyButtonLoading';
 import { MESSAGE_MAX_LENGTH, orbitContactFormIds } from '@/pages/EmailContact/hooks/orbitContactFormState';
 
 /** Connect2_OrbitMobile_MUI.menuAction.auto: the MenuAction that the block gives MenuIcon__UpdatedOSUI. */
@@ -258,11 +258,11 @@ export function OrbitContactFormView({
                 <LegacyInputCounter id={`${prefix}-$b4`} inputId={ids.message} />
               </div>
               <div data-container="">
-                <DEPRECATED_ButtonLoading id={`${prefix}-$b5`} isLoading={isSubmitting} extendedClass="full-width">
+                <LegacyButtonLoading id={`${prefix}-$b5`} isLoading={isSubmitting} extendedClass="full-width">
                   <button className="btn btn-primary full-width" data-button="" type="submit" onClick={onSubmitClick}>
                     <span data-expression="">{helpdesk ? 'Submit' : 'Send Email'}</span>
                   </button>
-                </DEPRECATED_ButtonLoading>
+                </LegacyButtonLoading>
               </div>
             </OSForm>
           }

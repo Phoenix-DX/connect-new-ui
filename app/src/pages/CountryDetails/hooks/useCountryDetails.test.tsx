@@ -12,13 +12,13 @@ import {
   map_SetPopupBindingCallback,
 } from '@/shared/Leaflet/lib/actions';
 import type L from '@/shared/Leaflet/lib/leaflet';
-import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import { useCountryDetails } from './useCountryDetails';
 
-vi.mock('@/shared/osui/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/osui/lib/actions')>()),
+vi.mock('@/components/ui/lib/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/components/ui/lib/actions')>()),
   bottomSheetOpen: vi.fn(),
 }));
 vi.mock('@/shared/Leaflet/lib/actions', async (importOriginal) => ({

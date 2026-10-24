@@ -21,7 +21,7 @@ OutSystems: `UBTConnectLibrary.ConnectPatterns.BottomSheet` · pack
 
 The pack lists 7 inputs; the 13 above are from the compiled model (`…ConnectPatterns.BottomSheet.mvc.js` :13-97).
 Events: `OnToggle(IsOpen)` → `onOnToggle`, `Initialized(BottomSheetId)` → `onInitialized` (the id callers give to
-`bottomSheetOpen` / `bottomSheetClose` from `osui/lib/actions.ts`), `OnClose` → `onOnClose`, `OnBack` → `onOnBack`.
+`bottomSheetOpen` / `bottomSheetClose` from `components/ui/lib/actions.ts`), `OnClose` → `onOnClose`, `OnBack` → `onOnBack`.
 Placeholders: `Content` → `content` (`div.ubt-bottom-sheet--content` + padding classes), `Footer` → `footer`
 (`div.ubt-bottom-sheet--footer`).
 

@@ -2,7 +2,7 @@
 // @os-block UBTConnectLibrary.BasePatterns.Columns_Two
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Columns2 } from '@/shared/osui/Columns2';
+import { Columns2 } from '@/components/ui/Columns2';
 import { styleFromCssText } from '@/shared/lib/cssText';
 import {
   convertUbtSizeToGutterSize,

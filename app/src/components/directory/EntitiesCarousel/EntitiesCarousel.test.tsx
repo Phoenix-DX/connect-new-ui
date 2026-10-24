@@ -1,16 +1,16 @@
 import { composeStories } from '@storybook/react-vite';
 import { act, render, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { stubCarouselLayout } from '@/shared/osui/Carousel/testLayout';
-import * as osuiActions from '@/shared/osui/lib/actions';
-import type { SplideEventHandler } from '@/shared/osui/lib/actions';
+import { stubCarouselLayout } from '@/components/ui/Carousel/testLayout';
+import * as osuiActions from '@/components/ui/lib/actions';
+import type { SplideEventHandler } from '@/components/ui/lib/actions';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import * as stories from './EntitiesCarousel.stories';
 
 /* The real OutSystems UI actions, spied on; SetSplideEvent also records the handlers it binds. */
 const bound = vi.hoisted(() => new Map<string, (...args: number[]) => void>());
-vi.mock('@/shared/osui/lib/actions', async (importOriginal) => {
-  const real = await importOriginal<typeof import('@/shared/osui/lib/actions')>();
+vi.mock('@/components/ui/lib/actions', async (importOriginal) => {
+  const real = await importOriginal<typeof import('@/components/ui/lib/actions')>();
   return {
     ...real,
     carouselDisableOnRender: vi.fn(real.carouselDisableOnRender),

@@ -2,7 +2,7 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Accordion_Orbit
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { DEPRECATED_Accordion } from '@/shared/osui/DEPRECATED_Accordion';
+import { LegacyAccordion } from '@/components/ui/legacy/LegacyAccordion';
 
 export interface OrbitAccordionProps {
   /** OutSystems instance id of the block. */
@@ -32,13 +32,13 @@ export function OrbitAccordion({
   const prefix = id?.replace('$', '');
   return (
     <OSBlock name="Orbit_Generic_Blocks.Accordion_Orbit" id={id}>
-      <DEPRECATED_Accordion
+      <LegacyAccordion
         id={prefix === undefined ? undefined : `${prefix}-$b1`}
         extendedClass={`orbit-accordion${inColoredContent ? ' orbit-accordion-colored-content' : ''}${inExtendedClass !== '' ? ` ${inExtendedClass}` : ''}`}
         multipleItems={inMultipleItems}
       >
         <div>{children}</div>
-      </DEPRECATED_Accordion>
+      </LegacyAccordion>
     </OSBlock>
   );
 }

@@ -15,7 +15,7 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { ActionButton } from '@/components/ui/ActionButton';
-import { Separator } from '@/shared/osui/Separator';
+import { Separator } from '@/components/ui/Separator';
 import { UBT_Icons2_Checkbox, UBT_Icons2_CheckboxOutlineBlank } from '@/pages/AcceptPendingPolicies/staticEntities';
 
 export interface PendingPoliciesFormProps {

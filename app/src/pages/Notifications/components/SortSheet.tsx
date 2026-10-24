@@ -16,7 +16,7 @@ import {
   UBT_Shadow,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { bottomSheetClose } from '@/shared/osui/lib/actions';
+import { bottomSheetClose } from '@/components/ui/lib/actions';
 import { Choice } from './staticEntities';
 
 export interface SortSheetProps {

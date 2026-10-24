@@ -10,7 +10,7 @@ import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } 
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
 import { getClientVar } from '@/platform/session/session';
 import { jSUtils_PageOpenInNewTab } from '@/shared/UBTJavaScriptUtils/lib/actions';
-import { dropdownClose } from '@/shared/osui/lib/actions';
+import { dropdownClose } from '@/components/ui/lib/actions';
 import {
   Connect_BottomBar_Items,
   Connect_Entity,

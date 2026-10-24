@@ -2,14 +2,14 @@
 import { useId, useLayoutEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { Carousel } from '@/shared/osui/Carousel';
+import { Carousel } from '@/components/ui/Carousel';
 import {
   carouselDisableOnRender,
   setSplideConfigs,
   setSplideEvent,
   unsetSplideEvent,
   type SplideEventHandler,
-} from '@/shared/osui/lib/actions';
+} from '@/components/ui/lib/actions';
 import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
 import type { CarouselHouseholdDetailsSlot } from '@/components/directory/CarouselHouseholdDetails';
 import type { CarouselSupperMeetingDetailsSlot } from '@/components/directory/CarouselSupperMeetingDetails';

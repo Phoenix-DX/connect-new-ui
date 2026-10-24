@@ -3,7 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
-import { stubCarouselLayout } from '@/shared/osui/Carousel/testLayout';
+import { stubCarouselLayout } from '@/components/ui/Carousel/testLayout';
 import { freshPage } from '@/test/testSupport';
 import HouseholdCarousel from './HouseholdCarouselPage';
 

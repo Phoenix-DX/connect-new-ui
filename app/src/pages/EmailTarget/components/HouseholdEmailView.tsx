@@ -8,7 +8,7 @@ import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
 import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
-import { DEPRECATED_ButtonLoading } from '@/shared/osui/DEPRECATED_ButtonLoading';
+import { LegacyButtonLoading } from '@/components/ui/legacy/LegacyButtonLoading';
 
 /** The view of the e-mail to a household, props only. The flows are in `useHouseholdEmail`; the page renders this
     view inside the ValidationServiceProvider of the hook's validation service.
@@ -151,7 +151,7 @@ export function HouseholdEmailView({
                 <MessageTextArea id={ids.message} value={message} onChange={onMessageChange} />
                 <LegacyInputCounter id={`${scope}-$b4`} inputId={ids.message} />
                 <div data-container="" style={{ textAlign: 'center' }}>
-                  <DEPRECATED_ButtonLoading id={`${scope}-$b5`} isLoading={isSending}>
+                  <LegacyButtonLoading id={`${scope}-$b5`} isLoading={isSending}>
                     <button className="btn btn-primary OSFillParent" data-button="" type="submit" onClick={onSubmit}>
                       <div className="btn-loading margin-right-s OSInline" data-container="">
                         <div className="loading-spinner" data-container="" />
@@ -160,7 +160,7 @@ export function HouseholdEmailView({
                         send email
                       </div>
                     </button>
-                  </DEPRECATED_ButtonLoading>
+                  </LegacyButtonLoading>
                 </div>
               </OSForm>
             </div>

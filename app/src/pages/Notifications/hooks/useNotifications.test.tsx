@@ -6,7 +6,7 @@ import { fetchNotificationDateRanges, fetchNotifications, type NotificationItem 
 import { CommunicationException, SystemException, UserException } from '@/legacy/os/exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/shared/UBTConnect/lib/actions';
-import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { useNotifications } from './useNotifications';
 
 /* The flows of the Notifications screen, with the two data actions, the bottom bar count, the scroll, the bottom
@@ -36,8 +36,8 @@ vi.mock('@/shared/UBTConnect/lib/actions', async (importOriginal) => ({
   directory_Updates_RefreshBottomBarCount: vi.fn(() => Promise.resolve()),
   scrollTop: vi.fn(),
 }));
-vi.mock('@/shared/osui/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/osui/lib/actions')>()),
+vi.mock('@/components/ui/lib/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/components/ui/lib/actions')>()),
   bottomSheetOpen: vi.fn(),
 }));
 vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({

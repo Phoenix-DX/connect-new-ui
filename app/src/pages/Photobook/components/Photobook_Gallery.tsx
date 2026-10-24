@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import type { SelectedHousehold } from '@/api/household';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { TouchEvents } from '@/shared/osui/TouchEvents';
+import { TouchEvents } from '@/components/ui/TouchEvents';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';

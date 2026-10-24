@@ -767,3 +767,9 @@
 - Architecture: 67 blocks of `src/shared/{Connect2_LegacyShared,UBTConnect,UBTConnect_Utils,UBTConnectLibrary,ReactiveHtmlSanitizer}` moved to `src/components/ui/<Name>/` (517 files), 29 renamed to the target names, `@origin` tags added. `shared/osui`, the `lib/` folders and 3 rows (MultiResolutionImageLoader, Dialog_AccessRestrictedAction_Legacy, NavigationConfirmationDialog) stay for P7-1/P7-2.
 - Dialog_CustomChoice and Dialog_Navigation share `components/ui/Dialog/`: hand-merged barrel `index.ts` (two `export *` lines); P7-2 rewrites it.
 - Gate: parity strict `--all` 64/64 clean on both references; `ci` 3931 tests; baseline +3 rows (owner P7), 72 rows, 0 new.
+
+## P7-1 - refactor(P7-1): move shared/osui to components/ui
+
+- Architecture: 230 files of `src/shared/osui/` (31 patterns and `lib/`) moved to `src/components/ui/<Pattern>/` and `src/components/ui/lib/`; `src/shared/osui/` no longer exists. The 4 `DEPRECATED_*` patterns are kept in `components/ui/legacy/` with business names (Q5): LegacyAccordion, SectionExpandable, LegacyButtonLoading, GridGallery.
+- Columns4, RangeSlider, SwipeEvents and Tooltip have no importer and stay moved (W30, Q18); delete-or-keep is a user decision at the P9 knip cleanup (F29).
+- Gate: parity visual 64/64 clean on both references; `ci` passes; baseline 73 rows, 0 new (+1 row: `ui/DropdownSearch/provider.ts`, owner P7). The dependency-cruiser rule `osui-no-import-of-app-modules` matches nothing now (F30).

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { fetchHouseholdCaption, type PhotobookHousehold } from '@/api/household';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useWasRestoredFromCache } from '@/platform/navigation';
-import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 
 /** The variables and the flows of the block Photobook_Options_Left: the info sheet and the household caption that it
     shows. The block calls this hook and renders the info button and the sheet with the result.

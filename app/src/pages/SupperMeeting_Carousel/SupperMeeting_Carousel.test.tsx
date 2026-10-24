@@ -4,7 +4,7 @@ import { setPreloadObject } from '@/platform/navigation';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
-import { stubCarouselLayout } from '@/shared/osui/Carousel/testLayout';
+import { stubCarouselLayout } from '@/components/ui/Carousel/testLayout';
 import { freshPage } from '@/test/testSupport';
 import SupperMeeting_Carousel from './SupperMeeting_CarouselPage';
 

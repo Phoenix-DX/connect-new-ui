@@ -2,7 +2,7 @@
 import { useId, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { preventNavigation, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
-import { ButtonLoading } from '@/shared/osui/ButtonLoading';
+import { ButtonLoading } from '@/components/ui/ButtonLoading';
 import { ActionButton } from '@/components/ui/ActionButton';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { DynamicTextArea } from '@/components/ui/DynamicTextArea';

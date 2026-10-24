@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { dateTimeParam, useOsNavigate } from '@/platform/navigation';
-import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import { Assemble_FilterSheet } from './components/Assemble_FilterSheet';
 import { AssembleEventsView } from './components/AssembleEventsView';

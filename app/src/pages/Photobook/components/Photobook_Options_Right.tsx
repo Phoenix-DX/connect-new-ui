@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { RadioButton, RadioGroup } from '@/components/ui/os/OSRadioGroup';
-import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';

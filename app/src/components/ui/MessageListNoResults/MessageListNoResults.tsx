@@ -2,7 +2,7 @@
 // @os-block Connect2_LegacyShared.Reusable.MessageList_NoResults
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { AlignCenter } from '@/shared/osui/AlignCenter';
+import { AlignCenter } from '@/components/ui/AlignCenter';
 
 export interface MessageListNoResultsProps {
   /** OutSystems instance id of the block. */

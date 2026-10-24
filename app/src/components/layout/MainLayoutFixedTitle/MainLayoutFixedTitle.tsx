@@ -3,7 +3,7 @@
 import { useEffect, useId, useLayoutEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
-import { PullToRefresh } from '@/shared/osui/PullToRefresh';
+import { PullToRefresh } from '@/components/ui/PullToRefresh';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import {
   clearScrollTimeout,

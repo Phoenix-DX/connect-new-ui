@@ -28,7 +28,7 @@ import {
 } from './staticEntities';
 import { getLookupConcepts, setLookupLabel_MaybeLowercase } from '@/shared/UBTConnectLibrary/lib/actions';
 import { jSUtils_String_Split } from '@/shared/UBTJavaScriptUtils/lib/actions';
-import { setCarouselStartingPosition } from '@/shared/osui/lib/actions';
+import { setCarouselStartingPosition } from '@/components/ui/lib/actions';
 import { bookmark_SendFeedbackMessage } from '@/shared/UBTConnect_Utils/lib/actions';
 import {
   create_LocalBookmark,

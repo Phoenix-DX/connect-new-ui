@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P7-0",
+  "step": "P7-1",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T12:34:09"
+  "since": "2026-10-24T12:45:55"
  },
  "steps": {
   "P0-1": {
@@ -1574,11 +1574,24 @@
    "finished": "2026-10-24T12:16:30"
   },
   "P7-0": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T12:18:59",
    "tokens": {
     "dev": 85786,
-    "test": 23958
+    "test": 23958,
+    "docs": 34800
+   },
+   "commit": "d0fdbef2",
+   "gate": "ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); diffcheck --move: 9 declared lines (glob path, 6 one-line barrels); arch baseline 72 rows (+3 owner P7), 0 new; HomeFeed 244.43 kB, Login 184.46 kB",
+   "loops": 0,
+   "finished": "2026-10-24T12:34:31"
+  },
+  "P7-1": {
+   "status": "active",
+   "started": "2026-10-24T12:34:31",
+   "tokens": {
+    "dev": 65430,
+    "test": 23214
    }
   }
  },
@@ -1814,6 +1827,16 @@
    "answer": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W27 = (a) — Opus (a, high), Fable (a, high). Keep the old-port reload on restore; record the 2 former crash paths as 'old: crash, new: reload'; the OutSystems-like restore is a follow-up next to F22.",
    "by": "user",
    "answeredAt": "2026-10-24T08:12:08"
+  },
+  {
+   "id": "Q18",
+   "step": "P7-1",
+   "text": "4 OSUI patterns have no importer (Columns4, RangeSlider, SwipeEvents, Tooltip); the move map says 'P7-1 deletes it unless the user keeps the OSUI set'. Delete now, or keep them moved?",
+   "status": "answered",
+   "at": "2026-10-24T12:34:31",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W30 = (a) — Opus (a, high), Fable (a, high). Keep the 4 patterns moved in components/ui/; the user decides delete-or-keep at the P9 knip cleanup; P7-5 lists them.",
+   "by": "user",
+   "answeredAt": "2026-10-24T12:34:52"
   }
  ]
 }

@@ -4,7 +4,7 @@ import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { searchInputId, type EventBookletState } from '@/pages/EventBooklet/hooks/eventBookletState';
 import type { PopupFilters } from '@/pages/EventBooklet/types';
-import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { BookletPopup } from './BookletPopup';
 import { DoubleAction } from './DoubleAction';
 import { EventBookletGuestView } from './EventBookletGuestView';

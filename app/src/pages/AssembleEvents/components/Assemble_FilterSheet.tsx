@@ -3,7 +3,7 @@ import { AssembleLocalityFilter } from '@/components/assemble/AssembleLocalityFi
 import { LocalityListDetail } from '@/components/assemble/LocalityListDetail';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Spinner } from '@/components/ui/Spinner';
-import { InputWithIcon } from '@/shared/osui/InputWithIcon';
+import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 
 /** The view of the block Assemble_FilterSheet (the bottom-sheet twin of ScreenBlock_Assemble_Filter), props only: the

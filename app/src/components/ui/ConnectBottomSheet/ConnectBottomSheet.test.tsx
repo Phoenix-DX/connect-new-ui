@@ -2,7 +2,7 @@ import { act, fireEvent, render as renderUi, screen } from '@testing-library/rea
 import type { ReactElement } from 'react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
-import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { ConnectBottomSheet } from './ConnectBottomSheet';
 import * as stories from './ConnectBottomSheet.stories';

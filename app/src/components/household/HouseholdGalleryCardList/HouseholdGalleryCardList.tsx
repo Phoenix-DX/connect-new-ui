@@ -2,7 +2,7 @@
 // @os-block UBTConnect.Directory_Household_Blocks.Household_GalleryCard_List
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DataFetchStatus, OSList } from '@/components/ui/os/OSList';
-import { Gallery } from '@/shared/osui/Gallery';
+import { Gallery } from '@/components/ui/Gallery';
 import { SkeletonSection } from '@/components/ui/SkeletonSection';
 import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
 import { HouseholdGalleryCard } from '@/components/household/HouseholdGalleryCard';

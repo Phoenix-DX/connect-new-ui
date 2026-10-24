@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchHouseholdCaption, type HouseholdCaption, type PhotobookHousehold } from '@/api/household';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { bottomSheetClose, bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import { SKELETON_CAPTION, useHouseholdCaption, type HouseholdCaptionInputs } from './useHouseholdCaption';
 
 vi.mock('@/api/household', async (importOriginal) => ({
@@ -15,8 +15,8 @@ vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
   raiseToFlowHandler: vi.fn(),
 }));
-vi.mock('@/shared/osui/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/osui/lib/actions')>()),
+vi.mock('@/components/ui/lib/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/components/ui/lib/actions')>()),
   bottomSheetOpen: vi.fn(),
   bottomSheetClose: vi.fn(),
 }));

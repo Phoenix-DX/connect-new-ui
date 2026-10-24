@@ -17,7 +17,7 @@ the search (`Input_SearchTerm` "Search Locality", max 50) and the list of locali
 locality has a chevron-down. The open locality has a blue chevron-up instead, and its `Assemble_FilterSubdivisionByLocality`
 shows below it.
 
-OnReady runs these actions in this order: ScrollToElement (`DIV_Title`, `../../osui/lib/actions.ts`),
+OnReady runs these actions in this order: ScrollToElement (`DIV_Title`, `components/ui/lib/actions.ts`),
 GetCacheableUserInfo, then GetCacheableCountryInfo (`../../Connect2_LegacyShared/lib/actions.ts`).
 
 A locality click runs HasAccessToRegion (`../lib/actions.ts`).

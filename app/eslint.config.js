@@ -20,7 +20,7 @@ export default tseslint.config(
       'public',
       'src/api/schema.d.ts',
       'src/vendor/**/*.js',
-      'src/shared/osui/*/vendor/**/*.js',
+      'src/components/ui/*/vendor/**/*.js',
     ],
   },
   js.configs.recommended,

@@ -17,7 +17,7 @@ import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { getFormattedDateTime, type GetCacheableSignedImageURL } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
+import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 
 /** The view of the guest arrangements of a visiting member, props only. Layout_Orbit (CustomClass "orbit-detail")
@@ -208,7 +208,7 @@ export function GuestArrangementsView({
       ("orbit-accordion-item", no padding) titled `title`. */
   const section = (accordion: number, title: string, content: ReactNode) => (
     <OrbitAccordion id={`${prefix}-$b${String(accordion)}`}>
-      <DEPRECATED_AccordionItem
+      <SectionExpandable
         id={`${prefix}-$b${String(accordion + 1)}`}
         isExpanded
         usePadding={false}

@@ -2,7 +2,7 @@ import { useEffect, type ReactNode } from 'react';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { Card } from '@/shared/osui/Card';
+import { Card } from '@/components/ui/Card';
 import { SanitizedHtml } from '@/components/ui/SanitizedHtml';
 import { formatDateTime } from '@/shared/lib/osDateTime';
 

@@ -8,7 +8,7 @@ import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { confirmAction } from '@/platform/feedback/dialogs';
 import { mockDirectoryUser, mockUserInformation } from '@/platform/session/mockUser';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { jSUtils_CopyToClipboard } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { useProfile } from './useProfile';
 
@@ -40,8 +40,8 @@ vi.mock('@/platform/session/userInfo', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/session/userInfo')>()),
   getUserInformation: vi.fn(),
 }));
-vi.mock('@/shared/osui/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/osui/lib/actions')>()),
+vi.mock('@/components/ui/lib/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/components/ui/lib/actions')>()),
   bottomSheetOpen: vi.fn(),
 }));
 vi.mock('@/shared/UBTJavaScriptUtils/lib/actions', async (importOriginal) => ({

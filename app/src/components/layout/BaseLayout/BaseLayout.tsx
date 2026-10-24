@@ -2,7 +2,7 @@
 // @os-block Connect2_LegacyShared.Layout.BaseLayout_UpdatedOSUI
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { PullToRefresh } from '@/shared/osui/PullToRefresh';
+import { PullToRefresh } from '@/components/ui/PullToRefresh';
 import { SideMenuBehavior } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 
 export interface BaseLayoutProps {

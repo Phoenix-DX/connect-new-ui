@@ -2,7 +2,7 @@ import { act, fireEvent, render as renderUi } from '@testing-library/react';
 import type { ReactElement } from 'react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
-import { bottomSheetOpen } from '@/shared/osui/lib/actions';
+import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { DirectoryLegendSheet, type PreventBackNavigationSlotProps } from './DirectoryLegendSheet';
 import * as stories from './DirectoryLegendSheet.stories';

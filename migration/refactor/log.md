@@ -799,3 +799,11 @@ One line per event. Written by rf.py.
 - 2026-10-24T12:23:16 P7-0 stage test
 - 2026-10-24T12:32:55 P7-0 stage docs
 - 2026-10-24T12:34:09 P7-0 stage commit
+- 2026-10-24T12:34:31 P7-0 done d0fdbef2: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); diffcheck --move: 9 declared lines (glob path, 6 one-line barrels); arch baseline 72 rows (+3 owner P7), 0 new; HomeFeed 244.43 kB, Login 184.46 kB
+- 2026-10-24T12:34:31 P7-1 started
+- 2026-10-24T12:34:31 Q18 (P7-1) asked: 4 OSUI patterns have no importer (Columns4, RangeSlider, SwipeEvents, Tooltip); the move map says 'P7-1 deletes it unless the user keeps the OSUI set'. Delete now, or keep them moved?
+- 2026-10-24T12:34:52 Q18 answered by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W30 = (a) — Opus (a, high), Fable (a, high). Keep the 4 patterns moved in components/ui/; the user decides delete-or-keep at the P9 knip cleanup; P7-5 lists them."
+- 2026-10-24T12:34:52 P7-1 stage dev
+- 2026-10-24T12:35:51 P7-1 stage test
+- 2026-10-24T12:44:28 P7-1 stage docs
+- 2026-10-24T12:45:55 P7-1 stage commit

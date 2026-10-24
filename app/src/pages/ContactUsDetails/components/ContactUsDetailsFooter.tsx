@@ -1,4 +1,4 @@
-import { ButtonLoading } from '@/shared/osui/ButtonLoading';
+import { ButtonLoading } from '@/components/ui/ButtonLoading';
 import { ActionButton } from '@/components/ui/ActionButton';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { FixedFooter } from '@/components/ui/FixedFooter';

@@ -1,5 +1,5 @@
 import { SHADOW_EXTRA_SMALL_TOP } from '@/pages/Profile/staticEntities';
-import { ButtonLoading } from '@/shared/osui/ButtonLoading';
+import { ButtonLoading } from '@/components/ui/ButtonLoading';
 import { ActionButton } from '@/components/ui/ActionButton';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';

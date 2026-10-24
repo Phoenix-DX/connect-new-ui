@@ -30,7 +30,7 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { ContainerOptions, SelectionOption_Item } from '@/shared/UBTConnectLibrary/lib/structures';
-import { bottomSheetClose } from '@/shared/osui/lib/actions';
+import { bottomSheetClose } from '@/components/ui/lib/actions';
 import { FilterOptionChoice } from '@/components/filter/FilterOptionChoice';
 import { FilterOptionList } from '@/components/filter/FilterOptionList';
 import { app_CommonFilter_CheckCountry, app_CommonFilter_DefineOptionNames } from '@/shared/UBTConnect/lib/actions';

@@ -71,3 +71,4 @@ src/components/bookmark/ItemOptionsMenu/ItemOptionsMenu.tsx,@/platform/flags/fla
 src/components/ui/ImageLoadErrorHandler/ImageLoadErrorHandler.tsx,@/platform/log/log,rule-4,P7
 src/components/ui/Dialog/ChoiceDialog.test.tsx,@/platform/feedback/dialogs,rule-4,P7
 src/components/ui/Dialog/ChoiceDialog.tsx,@/platform/feedback/dialogs,rule-4,P7
+src/components/ui/DropdownSearch/provider.ts,@/platform/device/device,rule-4,P7

@@ -14,7 +14,7 @@ import type { EventDetailState } from '@/pages/EventDetail/hooks/eventDetailStat
 import type { EventDetailHandlers } from '@/pages/EventDetail/hooks/useEventDetail';
 import { MenuAction_Auto, OrbitEventType, SurveyStatus } from '@/pages/EventDetail/staticEntities';
 import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
+import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
 import { EventDateSelection } from './EventDateSelection';
 import { HostAllocation_List } from './HostAllocation_List';
 
@@ -70,7 +70,7 @@ export function EventDetailView({
   /** The Host Allocation accordion (with milestones, and without milestones when the event has helpers). */
   const accordion = (a: string, item: string, list: string) => (
     <OrbitAccordion id={`${prefix}-$b${a}`} inColoredContent>
-      <DEPRECATED_AccordionItem
+      <SectionExpandable
         id={`${prefix}-$b${item}`}
         isExpanded={false}
         usePadding={false}
