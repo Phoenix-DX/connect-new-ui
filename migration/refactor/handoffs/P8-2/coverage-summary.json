@@ -1,0 +1,63 @@
+{
+ "Connect2_LegacyShared.Widgets.AdaptiveCardViewer.css": {
+  "status": "restored-third-party-guard",
+  "bytes": 888,
+  "bytesAfter": 888,
+  "gzip": 366,
+  "gzipAfter": 366,
+  "rules": {
+   "restored": 6
+  }
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem.css": {
+  "status": "pruned",
+  "bytes": 564,
+  "bytesAfter": 3,
+  "gzip": 256,
+  "gzipAfter": 23,
+  "rules": {
+   "deleted": 3
+  }
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AdminNotes.css": {
+  "status": "pruned",
+  "bytes": 321,
+  "bytesAfter": 3,
+  "gzip": 212,
+  "gzipAfter": 23,
+  "rules": {
+   "deleted": 1
+  }
+ },
+ "UBTConnect.App_Menu_ContactUs.ContactUs_Rate.css": {
+  "status": "restored-third-party-guard",
+  "bytes": 7779,
+  "bytesAfter": 7779,
+  "gzip": 942,
+  "gzipAfter": 942,
+  "rules": {
+   "restored": 13
+  }
+ },
+ "UBTConnect.App_Notifications.Notifications.css": {
+  "status": "pruned",
+  "bytes": 200,
+  "bytesAfter": 60,
+  "gzip": 169,
+  "gzipAfter": 73,
+  "rules": {
+   "deleted": 1,
+   "kept:used": 1
+  }
+ },
+ "UBTConnect.App_Services.Services.css": {
+  "status": "restored-third-party-guard",
+  "bytes": 57,
+  "bytesAfter": 57,
+  "gzip": 75,
+  "gzipAfter": 75,
+  "rules": {
+   "restored": 1
+  }
+ }
+}

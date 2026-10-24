@@ -272,6 +272,18 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
     `migration/tools/refactor/p8-1-tokens.py`; 238 variables that every route CSS set puts on `:root` with the same
     value) and `styles/review.css`. `styles/tokens.test.ts` fails when a token differs from the legacy `:root` value
     on any route. A future Content-Security-Policy must allow `style-src data:` (follow-up F44).
+  - Remove unused legacy CSS (P8-2; run again in P9-3). The tools are in `migration/tools/refactor/`:
+    `css-coverage-preload.cjs` records the CSS rule usage of Chromium, `css-coverage-node.sh` starts `node` with it, and
+    `css-prune.py` deletes the unused rules.
+  - Step 1: run the parity with `CSS_COVERAGE_DIR=<raw>` and `--node migration/tools/refactor/css-coverage-node.sh`
+    (the full command is in the docstring of `css-prune.py`). Each run writes one JSON file of used rule ranges.
+  - Step 2: `python3 migration/tools/refactor/css-prune.py --raw <raw> --out <handoff>/ plan [files...]` writes only the
+    summary (sizes and rule counts). The `apply` mode changes the files in `public/UBTConnect/css/` and writes the
+    deleted selectors to `<handoff>/deleted-selectors/`.
+  - Guards: the tool keeps at-rules other than `@media`, state selectors, custom properties, vendor pseudo-classes and
+    third-party widget CSS. It skips each stylesheet that a screen without parity states loads (follow-up F27).
+    `plan --relax` is an estimate only (`apply` refuses it).
+  - After `apply`, run the parity `visual` `--all`. Restore each stylesheet with a difference from git.
   - Tests: `screenTransition.test.ts`, `ScreenTransitionGroup.test.tsx`. Mid-transition headless check: sample the
     classes at ~50 / ~150 ms after a bottom-bar click.
 - **Back queue.** Priorities: lock screen 100000, modal 10000, drawer 1000, exit dialog −1, CommonUI −10000.

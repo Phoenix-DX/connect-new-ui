@@ -1,0 +1,504 @@
+{
+ "Connect2_LegacyShared.AssembleTheme.css": {
+  "status": "pruned",
+  "bytes": 28627,
+  "bytesAfter": 22754,
+  "gzip": 6613,
+  "gzipAfter": 5648,
+  "rules": {
+   "kept:used": 29,
+   "kept:at-rule font-face": 2,
+   "deleted": 52,
+   "kept:class-in-app-source": 38,
+   "kept:state-selector": 24,
+   "kept:media-not-covered": 3,
+   "kept:at-rule keyframes": 1
+  }
+ },
+ "Connect2_LegacyShared.Calendars.DayCalendar.css": {
+  "status": "pruned",
+  "bytes": 243,
+  "bytesAfter": 3,
+  "gzip": 160,
+  "gzipAfter": 23,
+  "rules": {
+   "deleted": 3
+  }
+ },
+ "Connect2_LegacyShared.Calendars.EventCalendarWeekMonth.css": {
+  "status": "pruned",
+  "bytes": 1655,
+  "bytesAfter": 218,
+  "gzip": 550,
+  "gzipAfter": 163,
+  "rules": {
+   "deleted": 10,
+   "kept:class-in-app-source": 3
+  }
+ },
+ "Connect2_LegacyShared.ConnectMobile.css": {
+  "status": "pruned",
+  "bytes": 16896,
+  "bytesAfter": 16718,
+  "gzip": 3593,
+  "gzipAfter": 3560,
+  "rules": {
+   "kept:used": 15,
+   "kept:class-in-app-source": 61,
+   "kept:state-selector": 17,
+   "kept:at-rule keyframes": 1,
+   "kept:media-not-covered": 4,
+   "kept:vendor-pseudo": 3,
+   "deleted": 1
+  }
+ },
+ "Connect2_LegacyShared.ConnectMobileCommonTheme.css": {
+  "status": "pruned",
+  "bytes": 138186,
+  "bytesAfter": 137230,
+  "gzip": 18777,
+  "gzipAfter": 18606,
+  "rules": {
+   "kept:used": 68,
+   "deleted": 8,
+   "kept:class-in-app-source": 627,
+   "kept:at-rule keyframes": 5,
+   "kept:vendor-pseudo": 16,
+   "kept:state-selector": 110,
+   "kept:at-rule -webkit-keyframes": 2,
+   "kept:media-not-covered": 3,
+   "kept:custom-property": 4
+  }
+ },
+ "Connect2_LegacyShared.OrbitTheme.css": {
+  "status": "pruned",
+  "bytes": 90057,
+  "bytesAfter": 76695,
+  "gzip": 12900,
+  "gzipAfter": 11382,
+  "rules": {
+   "kept:used": 177,
+   "kept:at-rule font-face": 1,
+   "kept:class-in-app-source": 195,
+   "deleted": 128,
+   "kept:state-selector": 50,
+   "kept:at-rule keyframes": 2,
+   "kept:vendor-pseudo": 5
+  }
+ },
+ "Connect2_LegacyShared.UBTConnect.css": {
+  "status": "pruned",
+  "bytes": 47400,
+  "bytesAfter": 35515,
+  "gzip": 9779,
+  "gzipAfter": 7947,
+  "rules": {
+   "kept:used": 73,
+   "kept:class-in-app-source": 61,
+   "kept:state-selector": 28,
+   "kept:custom-property": 5,
+   "deleted": 83,
+   "kept:vendor-pseudo": 1
+  }
+ },
+ "Connect2_LegacyShared.UBTConnect_LegacyChain.css": {
+  "status": "nothing to delete",
+  "bytes": 691,
+  "bytesAfter": 691,
+  "gzip": 368,
+  "gzipAfter": 368,
+  "rules": {
+   "kept:used": 1,
+   "kept:class-in-app-source": 2,
+   "kept:state-selector": 1,
+   "kept:vendor-pseudo": 1
+  }
+ },
+ "Connect2_LegacyShared.UBTMobileTheme_UpdatedOSUI.css": {
+  "status": "pruned",
+  "bytes": 156256,
+  "bytesAfter": 143368,
+  "gzip": 23728,
+  "gzipAfter": 21510,
+  "rules": {
+   "kept:used": 173,
+   "kept:custom-property": 5,
+   "deleted": 195,
+   "kept:vendor-pseudo": 2,
+   "kept:class-in-app-source": 546,
+   "kept:state-selector": 107,
+   "kept:at-rule font-face": 23,
+   "kept:media-not-covered": 5,
+   "kept:import/statement": 1,
+   "kept:at-rule keyframes": 6,
+   "kept:root": 2
+  }
+ },
+ "Connect2_LegacyShared.Widgets.AdaptiveCardViewer.css": {
+  "status": "pruned",
+  "bytes": 888,
+  "bytesAfter": 132,
+  "gzip": 366,
+  "gzipAfter": 115,
+  "rules": {
+   "deleted": 5,
+   "kept:class-in-app-source": 1
+  }
+ },
+ "Connect2_LegacyShared.Widgets.OverlappingImages.css": {
+  "status": "nothing to delete",
+  "bytes": 720,
+  "bytesAfter": 720,
+  "gzip": 330,
+  "gzipAfter": 330,
+  "rules": {}
+ },
+ "Connect2_OrbitMobile_MUI.LDM_Blocks.MonthYearSelector.css": {
+  "status": "pruned",
+  "bytes": 351,
+  "bytesAfter": 136,
+  "gzip": 197,
+  "gzipAfter": 118,
+  "rules": {
+   "deleted": 3,
+   "kept:class-in-app-source": 1
+  }
+ },
+ "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks.ScreenBlock_Event_Email.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 278
+ },
+ "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 278
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem.css": {
+  "status": "nothing to delete",
+  "bytes": 3,
+  "bytesAfter": 3,
+  "gzip": 23,
+  "gzipAfter": 23,
+  "rules": {}
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AdminNotes.css": {
+  "status": "nothing to delete",
+  "bytes": 3,
+  "bytesAfter": 3,
+  "gzip": 23,
+  "gzipAfter": 23,
+  "rules": {}
+ },
+ "Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 294
+ },
+ "FullCalendarReactive.FullCalendarReactive.EnhancedFullCalendar.css": {
+  "status": "skipped: third-party widget CSS (its classes are toggled by script on interaction)",
+  "bytes": 53630
+ },
+ "Leaflet.Leaflet.LeafletMap.css": {
+  "status": "skipped: third-party widget CSS (its classes are toggled by script on interaction)",
+  "bytes": 18878
+ },
+ "Leaflet.Leaflet.LeafletMap_Updated.css": {
+  "status": "skipped: third-party widget CSS (its classes are toggled by script on interaction)",
+  "bytes": 18878
+ },
+ "OutSystemsReactWidgets.css": {
+  "status": "pruned",
+  "bytes": 43962,
+  "bytesAfter": 18327,
+  "gzip": 10390,
+  "gzipAfter": 4859,
+  "rules": {
+   "kept:at-rule font-face": 1,
+   "kept:used": 59,
+   "deleted": 613,
+   "kept:class-in-app-source": 25,
+   "kept:at-rule -webkit-keyframes": 3,
+   "kept:at-rule keyframes": 3,
+   "kept:root": 1,
+   "kept:state-selector": 56,
+   "kept:vendor-pseudo": 4
+  }
+ },
+ "OutSystemsUI_2_23.OutSystemsUI.css": {
+  "status": "pruned",
+  "bytes": 758828,
+  "bytesAfter": 620365,
+  "gzip": 207516,
+  "gzipAfter": 192907,
+  "rules": {
+   "kept:import/statement": 1,
+   "kept:used": 437,
+   "kept:state-selector": 1049,
+   "deleted": 1018,
+   "kept:class-in-app-source": 474,
+   "kept:custom-property": 24,
+   "kept:vendor-pseudo": 37,
+   "kept:at-rule -webkit-keyframes": 26,
+   "kept:at-rule keyframes": 26,
+   "kept:at-supports": 2,
+   "kept:media-not-covered": 6
+  }
+ },
+ "OutSystemsUI_2_23.OutSystemsUI.extra.css": {
+  "status": "pruned",
+  "bytes": 5874,
+  "bytesAfter": 3968,
+  "gzip": 1023,
+  "gzipAfter": 768,
+  "rules": {
+   "kept:used": 8,
+   "deleted": 32,
+   "kept:class-in-app-source": 10,
+   "kept:state-selector": 24
+  }
+ },
+ "SortableJS.Sortable.SortableList.css": {
+  "status": "skipped: third-party widget CSS (its classes are toggled by script on interaction)",
+  "bytes": 508
+ },
+ "UBTConnect.App_Menu_ContactUs.ContactUs_Rate.css": {
+  "status": "pruned",
+  "bytes": 7779,
+  "bytesAfter": 5617,
+  "gzip": 942,
+  "gzipAfter": 538,
+  "rules": {
+   "kept:custom-property": 11,
+   "deleted": 13,
+   "kept:state-selector": 1
+  }
+ },
+ "UBTConnect.App_Notifications.MessageListItem.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 1750
+ },
+ "UBTConnect.App_Notifications.Notifications.css": {
+  "status": "nothing to delete",
+  "bytes": 60,
+  "bytesAfter": 60,
+  "gzip": 73,
+  "gzipAfter": 73,
+  "rules": {
+   "kept:class-in-app-source": 1
+  }
+ },
+ "UBTConnect.App_Policies.AcceptPendingPolicies.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 596
+ },
+ "UBTConnect.App_Services.Services.css": {
+  "status": "nothing to delete",
+  "bytes": 57,
+  "bytesAfter": 57,
+  "gzip": 75,
+  "gzipAfter": 75,
+  "rules": {
+   "kept:class-in-app-source": 1
+  }
+ },
+ "UBTConnect.Calendar.MyCalendar.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 3507
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventDetails.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 308
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventForm.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 308
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.Recurrence.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 59
+ },
+ "UBTConnect.Deprecated_Calendar_PersonalEvent.Reminder.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 59
+ },
+ "UBTConnect.Directory_Caroussel.EntitiesCarousel.css": {
+  "status": "nothing to delete",
+  "bytes": 689,
+  "bytesAfter": 689,
+  "gzip": 311,
+  "gzipAfter": 311,
+  "rules": {
+   "kept:used": 7
+  }
+ },
+ "UBTConnect.Directory_Locality.BrowseDirectory.css": {
+  "status": "nothing to delete",
+  "bytes": 46,
+  "bytesAfter": 46,
+  "gzip": 65,
+  "gzipAfter": 65,
+  "rules": {
+   "kept:used": 1
+  }
+ },
+ "UBTConnect.Directory_Locality.CountryDetails.css": {
+  "status": "nothing to delete",
+  "bytes": 48,
+  "bytesAfter": 48,
+  "gzip": 67,
+  "gzipAfter": 67,
+  "rules": {
+   "kept:used": 1
+  }
+ },
+ "UBTConnect.Directory_Locality.Directory_LegendBottomSheet.css": {
+  "status": "nothing to delete",
+  "bytes": 106,
+  "bytesAfter": 106,
+  "gzip": 119,
+  "gzipAfter": 119,
+  "rules": {
+   "kept:used": 1
+  }
+ },
+ "UBTConnect.Directory_Locality.Directory_LegendBottomSheet2.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 106
+ },
+ "UBTConnect.Directory_Locality.StatisticsList.css": {
+  "status": "nothing to delete",
+  "bytes": 104,
+  "bytesAfter": 104,
+  "gzip": 105,
+  "gzipAfter": 105,
+  "rules": {
+   "kept:used": 1
+  }
+ },
+ "UBTConnect.Directory_Updates.Updates_SingleList.css": {
+  "status": "nothing to delete",
+  "bytes": 200,
+  "bytesAfter": 200,
+  "gzip": 169,
+  "gzipAfter": 169,
+  "rules": {
+   "kept:used": 2
+  }
+ },
+ "UBTConnect.Map.Map.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 4103
+ },
+ "UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css": {
+  "status": "nothing to delete",
+  "bytes": 49,
+  "bytesAfter": 49,
+  "gzip": 68,
+  "gzipAfter": 68,
+  "rules": {
+   "kept:class-in-app-source": 1
+  }
+ },
+ "UBTConnectLibrary.ConnectPatterns.Note_Item.css": {
+  "status": "nothing to delete",
+  "bytes": 44,
+  "bytesAfter": 44,
+  "gzip": 63,
+  "gzipAfter": 63,
+  "rules": {
+   "kept:class-in-app-source": 1
+  }
+ },
+ "UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css": {
+  "status": "skipped: no captured state loads it",
+  "bytes": 345
+ },
+ "UBTConnectLibrary.UBTConnectBase.css": {
+  "status": "pruned",
+  "bytes": 118537,
+  "bytesAfter": 69572,
+  "gzip": 22473,
+  "gzipAfter": 14399,
+  "rules": {
+   "kept:used": 155,
+   "kept:at-rule font-face": 6,
+   "deleted": 521,
+   "kept:class-in-app-source": 45,
+   "kept:state-selector": 42,
+   "kept:vendor-pseudo": 4,
+   "kept:media-not-covered": 30,
+   "kept:custom-property": 110
+  }
+ },
+ "UBTConnectLibrary.UBTConnectLibrary.css": {
+  "status": "pruned",
+  "bytes": 68137,
+  "bytesAfter": 62200,
+  "gzip": 12638,
+  "gzipAfter": 11674,
+  "rules": {
+   "kept:used": 253,
+   "kept:class-in-app-source": 49,
+   "kept:state-selector": 37,
+   "kept:at-rule keyframes": 6,
+   "deleted": 39,
+   "kept:custom-property": 23,
+   "kept:vendor-pseudo": 1
+  }
+ },
+ "UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.css": {
+  "status": "pruned",
+  "bytes": 461,
+  "bytesAfter": 410,
+  "gzip": 226,
+  "gzipAfter": 196,
+  "rules": {
+   "kept:used": 4,
+   "deleted": 1
+  }
+ },
+ "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.css": {
+  "status": "nothing to delete",
+  "bytes": 435,
+  "bytesAfter": 435,
+  "gzip": 201,
+  "gzipAfter": 201,
+  "rules": {
+   "kept:used": 4
+  }
+ },
+ "UBT_AppManager.PIN.PinCode.css": {
+  "status": "nothing to delete",
+  "bytes": 2280,
+  "bytesAfter": 2280,
+  "gzip": 569,
+  "gzipAfter": 569,
+  "rules": {
+   "kept:used": 10
+  }
+ },
+ "UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css": {
+  "status": "nothing to delete",
+  "bytes": 377,
+  "bytesAfter": 377,
+  "gzip": 186,
+  "gzipAfter": 186,
+  "rules": {
+   "kept:state-selector": 2
+  }
+ },
+ "_Basic.css": {
+  "status": "pruned",
+  "bytes": 10892,
+  "bytesAfter": 9954,
+  "gzip": 3323,
+  "gzipAfter": 3115,
+  "rules": {
+   "kept:at-rule font-face": 1,
+   "kept:used": 18,
+   "kept:class-in-app-source": 2,
+   "deleted": 8,
+   "kept:state-selector": 14,
+   "kept:at-rule -webkit-keyframes": 2,
+   "kept:at-rule keyframes": 2
+  }
+ }
+}

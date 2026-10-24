@@ -8,9 +8,9 @@
  },
  "current": {
   "step": "P8-2",
-  "stage": "dev",
-  "loop": 0,
-  "since": "2026-10-24T22:59:47"
+  "stage": "commit",
+  "loop": 1,
+  "since": "2026-10-24T23:36:16"
  },
  "steps": {
   "P0-1": {
@@ -1680,7 +1680,11 @@
   "P8-2": {
    "status": "active",
    "started": "2026-10-24T22:57:19",
-   "tokens": {}
+   "tokens": {
+    "dev": 122358,
+    "test": 42365,
+    "docs": 0
+   }
   }
  },
  "gates": {

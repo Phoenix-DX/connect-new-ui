@@ -860,3 +860,18 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,verify,0,refactor-tester,,F43 re-test loop 1 (sonnet): ci pass 3975 tests (tokens pending)
 2026-10-24,refactor,verify,15573,refactor-tester,,F43 re-test loop 1 (sonnet) tokens from notification
 2026-10-24,refactor,other,27392,refactor-documenter,,"F43 docs (sonnet): CHANGELOG, api-and-mocks, shared-code, overview"
+2026-10-24,refactor,build,0,refactor-developer,,"P8-2 dev (sonnet): pass, 6 stylesheets pruned (-4 kB), question on relaxing rule 1 (tokens pending)"
+2026-10-24,refactor,build,97584,refactor-dev,,P8-2 sonnet
+2026-10-24,refactor,other,39028,advisor-opus,,"P8-2 scope advisor (Opus): (a) keep conservative, high"
+2026-10-24,refactor,build,0,refactor-developer,,"P9-1 dev prefetch (sonnet): pass, rules to error + baselines; question knip exports (tokens pending)"
+2026-10-24,refactor,other,39567,advisor-fable,,"P8-2 scope advisor (Fable): (a) keep conservative, high"
+2026-10-24,refactor,build,63626,refactor-developer,,P9-1 dev prefetch (sonnet) tokens from notification
+2026-10-24,refactor,other,38447,advisor-opus,,"P9-1 knip advisor (Opus): (b) baseline exports/types, medium"
+2026-10-24,refactor,other,38201,advisor-fable,,"P9-1 knip advisor (Fable): (b) baseline exports/types, medium-high"
+2026-10-24,refactor,build,27653,refactor-developer,,P9-1 dev resume W41 (sonnet): knip exports/types baseline 1130 rows
+2026-10-24,refactor,verify,0,refactor-test,,P8-2 sonnet
+2026-10-24,refactor,verify,24851,refactor-test,,P8-2 loop 1 sonnet
+2026-10-24,refactor,fix,24774,refactor-dev,,P8-2 loop 1 sonnet
+2026-10-24,refactor,verify,0,refactor-test,,P8-2 loop 1 sonnet
+2026-10-24,refactor,verify,17514,refactor-test,,P8-2 loop 1 sonnet
+2026-10-24,refactor,other,0,refactor-docs,,P8-2 loop 1 sonnet

@@ -1,9 +1,3 @@
-﻿.updates-list__list-section-header{
-   /* z-index: var(--layer-global-navigation);*/
-  /*  position: sticky;*/
-   /* top: 120px;*/
-}
-
-.list.list-group.updates-list{
+﻿.list.list-group.updates-list{
     overflow: visible;
 }

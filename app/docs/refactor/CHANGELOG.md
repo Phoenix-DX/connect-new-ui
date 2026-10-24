@@ -864,3 +864,9 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - Architecture: `lib/os-wire.ts`, `lib/os-assets.ts` and `lib/os-assets.manifest.json` moved from `legacy/os/` back to `lib/`, as plan v2 §2.2 says (decisions W38, W39). The codemod rewrote about 107 imports; no other code change.
 - Dependency-cruiser warnings 222 -> 146: rule 9 98 -> 34, rule 6 55 -> 50.
 - Gate: ci: pass; parity visual --all: 64/64 (OutSystems), 64/64 (self); arch baseline 0 new.
+
+## P8-2 - refactor(P8-2): delete unused legacy CSS
+
+- Architecture: 3 original stylesheets lost their unused rules (HostSurvey_AccommodationItem, HostSurvey_AdminNotes, Notifications). Legacy CSS: 1,605,845 -> 1,604,826 B (-1,019 B).
+- New tools in `migration/tools/refactor/`: `css-coverage-preload.cjs`, `css-coverage-node.sh`, `css-prune.py` (P9-3 reuses them). Usage: `app/docs/guides/shell.md`.
+- Gate: parity visual --all: 64/64 (OutSystems), 64/64 (self). Relaxed rule (-272 kB): follow-up F45.
