@@ -858,3 +858,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T23:36:40 P9-1 stage test
 - 2026-10-24T23:49:12 P9-1 stage docs
 - 2026-10-24T23:50:00 P9-1 stage commit
+- 2026-10-24T23:50:01 P9-1 done df225389: ci: pass; parity strict --changed 64/64 (OutSystems), 64/64 (self); baselines 0 new
+- 2026-10-24T23:50:09 P9-2 started
+- 2026-10-24T23:50:09 P9-2 stage dev
+- 2026-10-24T23:50:09 P9-2 stage test
+- 2026-10-24T23:54:28 P9-2 stage docs
+- 2026-10-24T23:58:09 P9-2 stage commit

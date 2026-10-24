@@ -14,6 +14,7 @@
 | Dependency graph | `npm run graph` (not in `ci`)                                                                           | writes `docs/refactor/graph.json` (local file, not committed)                                                                                                                       |
 | Duplicates       | `npm run dup` (in `ci`)                                                                                 | copied code (`app/.jscpd.json`); threshold 0.57 percent (P7-5 value 0.52 plus 10 percent)                                                                                           |
 | Unused code      | `npm run unused` (in `ci`)                                                                              | knip (`app/knip.json`): unused files, dependencies, unlisted, unresolved, binaries, duplicates; then `build/check-unused-exports.mjs` for exports and types (frozen baseline)       |
+| Flags            | `npm run flags` (in `ci`)                                                                               | `build/check-flags.mjs`: flag registry against the readers in `src/` (see Flag check below)                                                                                         |
 | Bundle size      | `node build/bundle-report.mjs` (after `npm run build`, not in `ci`)                                     | first-load size (entry, route chunk, shared chunks) of HomeFeed and Login, from `dist/`; limits in plan v2 section 7                                                                |
 | PWA e2e          | `npm run e2e:pwa` (not in `ci`)                                                                         | service worker, manifest, offline, update, PIN, mock-free production (headless Chrome; [pwa.md](pwa.md#testing))                                                                    |
 | Lighthouse       | `npm run lighthouse` (not in `ci`)                                                                      | demo build scores and warning budgets, reports local only ([pwa.md](pwa.md#lighthouse-npm-run-lighthouse))                                                                          |
@@ -42,6 +43,40 @@ When you fix a row:
 
 Each remaining row has an owner in `migration/refactor/followups.md`: F35 (rule 6), F36 (OSLink), F37 (CacheControl),
 N1 (rule 4), N2 (rule 5), N3 (rule 8), N4 (rule 9 leftovers), N5 (knip rows).
+
+## Flag check (P9-2)
+
+`node build/check-flags.mjs` (`npm run flags`, in `ci`) reads `src/platform/flags/registry.ts` and scans `src/` for
+literal flag keys (`useFlag`, `useFlagOn`, `flagValue`, `isOn`, `flag: 'Key'`, `FLAG_x = 'Key'`). It skips tests,
+`platform/flags`, `legacy` and `mocks`. It fails in these cases:
+
+| Message              | Case                                                                                                 |
+| -------------------- | ---------------------------------------------------------------------------------------------------- |
+| `NO READER`          | a registry key has no reader in `src/` and is not in `UNREAD_ALLOWED`                                |
+| `UNKNOWN KEY`        | a reader uses a key that is not in the registry                                                      |
+| `EXPIRED`            | `removeBy` of a key is before today (`--today=YYYY-MM-DD` sets the date; keys with no date are free) |
+| `NEW OUTSIDE READER` | a file outside pages, hooks and containers reads a flag and the pair file + flag is not in the lists |
+
+Two more messages keep the lists honest: `STALE ALLOW` (an allowed key gains a reader or leaves the registry) and
+`STALE OWNED` (a listed file + flag pair is gone).
+
+Unread keys that stay on purpose (`UNREAD_ALLOWED` in the script, decision W43):
+
+| Key                                        | Reason                                                      | Exit                                                    |
+| ------------------------------------------ | ----------------------------------------------------------- | ------------------------------------------------------- |
+| `mobileAssemble`                           | MessageDetail Assemble and Sharing parts are not built (Q1) | remove when those parts are built                       |
+| `mobileDirectoryUpdateFeedDeceasedProfile` | same as above                                               | remove when those parts are built                       |
+| `getHasOrbitEventBooklet`                  | alias of `mobileOrbitEventBooklet` (read in EventDetail)    | remove when the owner decides to delete the alias (F53) |
+
+Metric of plan v2 section 7, "readers of flags outside pages, hooks and containers": the check prints
+`4 = 1 by design + 3 owned, target 0`. The one by design is `app/routes.ts` (`OUTSIDE_BY_DESIGN`, plan section 3.1
+rule 2). The 3 owned files are in `OUTSIDE_OWNED`: `lib/ubtConnectUtils/actions.ts` (F35), `components/bookmark/ItemOptionsMenu`
+(F51) and `platform/storage/localEntities/orbitStaticEntities.ts` (F52). The scan sees literal keys only; the key
+passed to `connect_LaunchDarkly_PermissionCheck(flag)` is not seen.
+
+The lists only shrink. When you fix a reader or build a screen that reads an allowed key, run `npm run flags`, then
+delete the stale entry from `UNREAD_ALLOWED` or `OUTSIDE_OWNED`. Do not add an entry to hide a new failure. Read the
+flag in a page, hook or container and pass it down. The flag registry reference is generated (`reference/flags.md`).
 
 Rule 9 does not check mock handlers (`src/mocks/**`, `**/mocks.ts`) and test helpers (`src/test/**`), as it already skips
 stories and tests. This is a reclassification, not a fix (follow-up F38): rule 9 went from 34 to 30 rows.

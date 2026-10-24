@@ -876,3 +876,8 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - Architecture: all folder rules and the ESLint rule-4 restriction are errors; 142 dependency-cruiser, 72 ESLint and 1,130 knip rows are frozen in shrink-only baselines (`app/.dependency-cruiser-known-violations.json`, `arch-baseline.csv`, `app/.knip-known-unused.json`). Rule 9 skips mock handlers and test helpers (34 -> 30, a reclassification, F38).
 - `npm run ci` also runs `arch`, `arch:baselines`, `dup` (jscpd threshold 0.57 percent) and `unused` (knip). Owners of the remaining rows: F35 to F37, F46 to F50. Guide: `app/docs/guides/quality.md`.
 - Gate: ci: pass (154 s); parity strict --changed: 64/64 (OutSystems), 64/64 (self).
+
+## P9-2 - refactor(P9-2): flag check
+
+- Architecture: new check `app/build/check-flags.mjs` (`npm run flags`, in `ci`). It fails on 4 cases: a key with no reader, an unknown key, a past `removeBy`, a new flag reader outside pages, hooks and containers.
+- Shrink-only lists: 3 unread keys (W43) and 3 owned outside readers (W42), metric 4 = 1 by design + 3 owned. Owners: F35, F51 to F53; guide: `app/docs/guides/quality.md`.

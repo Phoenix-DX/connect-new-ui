@@ -891,3 +891,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,verify,30158,refactor-test,,P9-1 sonnet
 2026-10-24,refactor,build,26344,refactor-developer,,P9-2 dev resume (sonnet) tokens from notification
 2026-10-24,refactor,other,0,refactor-docs,,P9-1 sonnet
+2026-10-24,refactor,other,32568,refactor-docs,,P9-1 sonnet
+2026-10-24,refactor,build,70655,refactor-dev,,P9-2 sonnet
+2026-10-24,refactor,build,-70655,refactor-dev,,correction: P9-2 dev tokens were also recorded as 2 ledger rows (44311 + 26344) before rf.py tokens
+2026-10-24,refactor,verify,0,refactor-test,,P9-2 sonnet
+2026-10-24,refactor,verify,28998,refactor-test,,P9-2 sonnet
+2026-10-24,refactor,other,35964,refactor-docs,,P9-2 sonnet
