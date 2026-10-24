@@ -651,3 +651,9 @@
 - `pages/TransportDetail` is a page with a flow hook (`hooks/useTransportDetail.ts`, `hooks/transportDetailState.ts`), a screen handler hook (`hooks/useContactHelpdeskNavigation.ts`) and a props-only view (`components/TransportDetailView.tsx`). It has no container. The hook sets `beforePaint: true` (decision W28) because the old block ran OnReady in a `useLayoutEffect`.
 - `api.ts`, `types.ts` and the ScreenBlock are deleted; `actions.ts` moves to the page root. The hook calls `fetchTransportDetail` of `api/event`. Dependency-cruiser warnings 198 to 197.
 - TransportDetail has no parity states, so its DOM evidence is the developer's 16-scenario old-vs-new test (`dev.md`). HomeFeed and Login are unchanged (dev.md).
+
+## P6-G5-B-MyEntertaining - refactor(P6-G5-B): MyEntertaining as page
+
+- `pages/MyEntertaining` is a page with 2 hooks (`hooks/useMyEntertaining.ts`, `hooks/useEntertainingCalendar.ts`) and 2 props-only views (`components/`). It has no container. `inputs.ts` is new; `staticEntities.ts` moves to the page root.
+- `api.ts` and `types.ts` are deleted. The new domain `api/entertaining` (decision W8) holds the 2 calls; the Layout_DetailPage adapter is replaced by `DetailLayout`.
+- HomeFeed and Login raw sizes do not grow; the MyEntertaining chunk has 7 chunks (was 8) (dev.md).

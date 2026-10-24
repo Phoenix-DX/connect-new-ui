@@ -1,7 +1,6 @@
-// @os-block UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining
 import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
+import type { EntertainingConfig } from '@/api/entertaining';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { log } from '@/platform/log/log';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { LazyImage } from '@/shared/UBTConnectLibrary/LazyImage';
 import { SkeletonSection } from '@/shared/UBTConnectLibrary/SkeletonSection';
@@ -13,12 +12,13 @@ import {
   UBT_Shape,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { appManager_Get_UserIdToken, useGetEntertainingConfig } from '@/pages/MyEntertaining/api';
 import { loadedEmbed, requireEmbed } from './connect2Entertaining';
 
-/** MaxLoadingItems (Embedded_MyEntertaining.mvc.js model, default 5). */
+/** The defaults of the inputs View and Theme. */
+export const EMBEDDED_MY_ENTERTAINING_DEFAULTS = { view: 'timeline', theme: 'light' } as const;
+/** MaxLoadingItems (default 5): the items of the skeleton list. */
 const MAX_LOADING_ITEMS = 5;
-/** Token refresh period of InitializeCalendarJS (:1288-1291): 10 minutes. */
+/** The token refresh period of InitializeCalendar: 10 minutes. */
 const REFRESH_INTERVAL_MS = 10 * 60 * 1000;
 
 export interface Embedded_MyEntertainingProps {
@@ -32,6 +32,11 @@ export interface Embedded_MyEntertainingProps {
   sources?: string;
   /** Input B2CTenant (default ""). */
   b2CTenant?: string;
+  /** The answer of DataActionGetEntertainingConfig, fetched by the caller with the four inputs
+      (`useEntertainingCalendar`); undefined while it loads or after it failed (the skeleton stays). */
+  config?: EntertainingConfig;
+  /** Action_RefreshToken: the caller gets a new ID token and gives it to `applyIdToken`. */
+  onRefreshToken?: (applyIdToken: (idToken: string) => void) => Promise<void>;
   /** Event OnReady. */
   onOnReady?: () => void;
   /** Event OnAuthenticated. */
@@ -44,28 +49,31 @@ export interface Embedded_MyEntertainingProps {
   onOnOpenMap?: (lat: string, lng: string, label: string) => void;
 }
 
-/** Action_RefreshToken (:1020-1040): AppManager_Get_UserIdToken, then RefreshEmbedTokenJS (:1295-1301). */
-async function refreshToken(): Promise<void> {
-  try {
-    const idToken = await appManager_Get_UserIdToken();
-    const embed = loadedEmbed();
-    if (embed?.isConfigured()) embed.refreshToken(idToken);
-  } catch (e: unknown) {
-    log.warn('AppManager_Get_UserIdToken failed', e);
-  }
+/** RefreshEmbedTokenJS: the new token goes to the SDK when it is configured. */
+function applyIdToken(idToken: string): void {
+  const embed = loadedEmbed();
+  if (embed?.isConfigured()) embed.refreshToken(idToken);
 }
 
-/** UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining (view :229-410, controller :413-1205): the
-    `connect2entertaining` container the calendar SDK fills (D8 b: the stand-in of connect2Entertaining.ts), hidden with a
-    skeleton list while isLoading. OnInitialize builds the 5 loading items; after GetEntertainingConfig the script is
-    required and InitializeCalendar runs; the SDK's onComplete ends the loading; OnParametersChanged applies the sources;
-    OnDestroy runs CleanupCalendar. */
+/** @origin UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining
+    The calendar embed: the `connect2entertaining` container that the calendar SDK fills (decision D8 b: the stand-in of
+    connect2Entertaining.ts), hidden under a skeleton list while isLoading. Props only: the caller fetches the
+    configuration and the token.
+    - OnInitialize builds the loading items.
+    - With the configuration (OnAfterFetch of GetEntertainingConfig) the SDK script is required and InitializeCalendar
+      runs: it configures the SDK, listens to the `embed:open-map` messages of the calendar origin, and refreshes the
+      token every 10 minutes.
+    - The SDK's onComplete ends the loading (Action_OnComplete) and raises OnComplete.
+    - OnParametersChanged applies the sources (ApplySourcesJS).
+    - OnDestroy runs CleanupCalendar. */
 export function Embedded_MyEntertaining({
   id,
-  view = 'timeline',
-  theme = 'light',
+  view = EMBEDDED_MY_ENTERTAINING_DEFAULTS.view,
+  theme = EMBEDDED_MY_ENTERTAINING_DEFAULTS.theme,
   sources = '',
   b2CTenant = '',
+  config,
+  onRefreshToken,
   onOnReady,
   onOnAuthenticated,
   onOnComplete,
@@ -76,22 +84,20 @@ export function Embedded_MyEntertaining({
   const fallbackId = useId();
   const containerId = prefix === undefined ? `connect2entertaining${fallbackId}` : `${prefix}-connect2entertaining`;
   const [isLoading, setIsLoading] = useState(true);
-  // ScreenEvent_OnInitialize (:603-640): LoadingList = "Loading 1" .. "Loading <MaxLoadingItems>".
+  // OnInitialize: LoadingList = "Loading 1" .. "Loading <MaxLoadingItems>".
   const [loadingList] = useState(() => Array.from({ length: MAX_LOADING_ITEMS }, (_, i) => `Loading ${String(i + 1)}`));
   const latest = useRef({
-    inputs: { View: view, Theme: theme, Sources: sources, B2CTenant: b2CTenant },
-    events: { onOnReady, onOnAuthenticated, onOnComplete, onOnError, onOnOpenMap },
+    inputs: { view, theme, sources, b2CTenant },
+    events: { onRefreshToken, onOnReady, onOnAuthenticated, onOnComplete, onOnError, onOnOpenMap },
   });
   useLayoutEffect(() => {
     latest.current = {
-      inputs: { View: view, Theme: theme, Sources: sources, B2CTenant: b2CTenant },
-      events: { onOnReady, onOnAuthenticated, onOnComplete, onOnError, onOnOpenMap },
+      inputs: { view, theme, sources, b2CTenant },
+      events: { onRefreshToken, onOnReady, onOnAuthenticated, onOnComplete, onOnError, onOnOpenMap },
     };
   });
 
-  const { data: config } = useGetEntertainingConfig(() => latest.current.inputs);
-
-  // OnAfterFetch_GetEntertainingConfig (:922-960) → InitializeCalendarJS (:1231-1293); cleanup = CleanupCalendarJS.
+  // OnAfterFetch of GetEntertainingConfig → InitializeCalendar; the cleanup is CleanupCalendar.
   useEffect(() => {
     if (!config) return;
     let alive = true;
@@ -104,13 +110,13 @@ export function Embedded_MyEntertaining({
       embed.init({
         baseUrl: config.baseURL,
         containerId,
-        view: inputs.View,
-        theme: inputs.Theme,
+        view: inputs.view,
+        theme: inputs.theme,
         height: '100%',
         autoResize: false,
-        sources: inputs.Sources || null,
+        sources: inputs.sources || null,
         getIdToken: () => config.token,
-        b2cTenants: inputs.B2CTenant,
+        b2cTenants: inputs.b2CTenant,
         b2cClientIds: config.b2CClientId,
         b2cPolicy: config.b2CPolicy,
         onReady: () => {
@@ -146,7 +152,7 @@ export function Embedded_MyEntertaining({
       };
       window.addEventListener('message', messageListener);
       refreshIntervalId = window.setInterval(() => {
-        void refreshToken();
+        void latest.current.events.onRefreshToken?.(applyIdToken);
       }, REFRESH_INTERVAL_MS);
     });
     return () => {
@@ -158,7 +164,7 @@ export function Embedded_MyEntertaining({
     };
   }, [config, containerId]);
 
-  // ScreenEvent_OnParametersChanged (:551-575) → Action_SetSources → ApplySourcesJS (:1224-1230).
+  // OnParametersChanged → Action_SetSources → ApplySourcesJS (not on the first render).
   const mounted = useRef(false);
   useEffect(() => {
     if (!mounted.current) {

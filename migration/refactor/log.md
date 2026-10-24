@@ -679,3 +679,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T08:51:55 P6-G5-B-TransportDetail stage test
 - 2026-10-24T08:55:39 P6-G5-B-TransportDetail stage docs
 - 2026-10-24T08:56:24 P6-G5-B-TransportDetail stage commit
+- 2026-10-24T08:56:26 P6-G5-B-TransportDetail done 978b04cd: ci: pass; parity visual --changed: 0 new differences on both references (TransportDetail has no parity states; old-vs-new 16 scenarios equal); arch baseline 0 new; HomeFeed 244.41 kB, Login 184.43 kB; W28 beforePaint
+- 2026-10-24T08:56:26 P6-G5-B-MyEntertaining started
+- 2026-10-24T08:56:26 P6-G5-B-MyEntertaining stage dev
+- 2026-10-24T08:57:04 P6-G5-B-MyEntertaining stage test
+- 2026-10-24T09:00:48 P6-G5-B-MyEntertaining stage docs
+- 2026-10-24T09:01:47 P6-G5-B-MyEntertaining stage commit

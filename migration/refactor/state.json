@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G5-B-TransportDetail",
+  "step": "P6-G5-B-MyEntertaining",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T08:56:24"
+  "since": "2026-10-24T09:01:47"
  },
  "steps": {
   "P0-1": {
@@ -1327,11 +1327,24 @@
    "finished": "2026-10-24T08:51:17"
   },
   "P6-G5-B-TransportDetail": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T08:51:17",
    "tokens": {
     "dev": 305850,
-    "test": 26809
+    "test": 26809,
+    "docs": 27234
+   },
+   "commit": "978b04cd",
+   "gate": "ci: pass; parity visual --changed: 0 new differences on both references (TransportDetail has no parity states; old-vs-new 16 scenarios equal); arch baseline 0 new; HomeFeed 244.41 kB, Login 184.43 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T08:56:26"
+  },
+  "P6-G5-B-MyEntertaining": {
+   "status": "active",
+   "started": "2026-10-24T08:56:26",
+   "tokens": {
+    "dev": 292476,
+    "test": 34105
    }
   }
  },

@@ -86,6 +86,10 @@ The domain has 2 query hooks and 2 mutation hooks with no caller yet.
 
 `feed/` has the same files, without a mapper. It holds one call: DataActionGetFeedConfig of Embedded_FeedCMS. `useFeedConfigQuery` (inputs FeedItemId and B2CTenant) is called by `useEmbeddedFeed` in `platform/session`, which gives the answer to the `FeedCms` component as `config`. The block reads the wire record as it is.
 
+`entertaining/` has the same files. It holds 2 calls of the module UBTConnect_EmbedMyEntertaining: DataActionGetEntertainingConfig (`fetchEntertainingConfig`) and ActionAppManager_Get_UserIdToken (`fetchUserIdToken`). The domain follows the data that it owns (decision W8). The answer is the configuration of the Connect2Entertaining calendar SDK, like `feed/` for the feed SDK.
+
+`useEntertainingConfigQuery` is called by `useEntertainingCalendar` in `pages/MyEntertaining`. It keeps `staleTime: Infinity`, `gcTime: 0` and `retry: false`, and its key `entertainingKeys.config()` has no inputs, as the block fetched once. `fetchUserIdToken` has no hook: the 10-minute refresh timer of the calendar calls it.
+
 `service/` has the same files. It holds 3 calls: DataActionGetServices of Services (`fetchUserServices`), Service_ConnectServices_ChangeOrder_Bulk of Services (`changeServicesOrder`) and DataActionGetServices of FeedBlock_Services in HomeFeed (`fetchFeedServices`). The domain is chosen by the data that it owns (decision W8): no other domain owns Connect_Services_CS.
 
 The route's `api.ts` and `types.ts` are deleted. `useUserServicesQuery` keeps the old options (`gcTime: 0`, `staleTime: Infinity`, `retry: false`); its key is `serviceKeys.user()`. `changeServicesOrder` has no hook: the page flow calls it. `useFeedServicesQuery` has the key `serviceKeys.feed()` (`['service', 'feed']`), separate from `serviceKeys.user()`, and keeps `retry: false`; `useFeedServices` in `pages/HomeFeed/hooks` calls it.
