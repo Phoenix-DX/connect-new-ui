@@ -2,7 +2,7 @@
    migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_Assemble_MUI.controller.js (cited as C:<line>).
    DateTimes are "yyyy-MM-ddTHH:mm:ss" wall-clock strings (shared/lib/osDateTime). */
 import { currDateTime, formatDateTime } from '@/shared/lib/osDateTime';
-import type { AssembleEventFilter } from '@/pages/AssembleEvents/types';
+import type { AssembleEventFilter } from '@/api/event';
 
 /** ViewmodeType (static-entities-tst.json `Connect2_Assemble_MUI.viewmodeType`): Id = label. */
 export const ViewmodeType = {
@@ -50,7 +50,7 @@ export function geAssembleSummaryListFilterLabel(filter: AssembleEventFilter): s
     : `Meeting Types (${String(selected.length)})`;
 }
 
-/** GetAssembleHeaderDateString(HeaderDate, AssembleFilterTimeOptionId) (C:453-527): "" for the null date (api.ts maps it to ""), else
+/** GetAssembleHeaderDateString(HeaderDate, AssembleFilterTimeOptionId) (C:453-527): "" for the null date (the api/event mapper maps it to ""), else
     FormatDateTime(HeaderDate, "MMMM yyyy") with "From " (upcoming) or "Since " (past) in front. */
 export function getAssembleHeaderDateString(headerDate: string, timeOptionId: string): string {
   if (headerDate === '') return '';

@@ -675,3 +675,9 @@
 - `pages/LDM_Email_V2` is a page with a flow hook (`hooks/useLdmEventEmail.ts`, `hooks/ldmEventEmailState.ts`) and a props-only view (`components/LdmEventEmailView.tsx`). It has no container. The ScreenBlock, `api.ts` and `types.ts` are deleted; `inputs.ts` is new; the hook calls `@/api/message` directly.
 - The page `@origin` is corrected to `UBTConnect.Legacy_LDMEventsFlow_V2.LDM_Email_V2`; now all 3 LDM V2 pages are correct. LDM_Email_V2 has no parity reference, so its DOM evidence is the developer's 21-scenario old-vs-new test (temporary, deleted).
 - Dependency-cruiser warnings 189 to 188. HomeFeed gzip +0.08 kB, Login +0.03 kB; LDM_Email_V2 first load +1.05 kB gzip.
+
+## P6-G5-B-AssembleEvents - refactor(P6-G5-B): AssembleEvents as page
+
+- `pages/AssembleEvents` is a page with 3 flow hooks (`useAssembleEvents`, `useAssembleSummaryList`, `useAssembleFilterSheet`), 2 state files and props-only views. It has no container. The ScreenBlock, `api.ts` and `types.ts` are deleted; `inputs.ts` is new; the hooks call `@/api/event` and `@/api/locality`.
+- F21: the 2 copies of `fetchSubscribedCountries` stay (section in `duplicates.md`).
+- HomeFeed gzip +0.05 kB, Login +0.04 kB (chunk hashes only); dependency-cruiser warnings 189 to 186.

@@ -703,3 +703,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T09:15:44 P6-G5-B-LDM_Email_V2 stage test
 - 2026-10-24T09:21:02 P6-G5-B-LDM_Email_V2 stage docs
 - 2026-10-24T09:22:16 P6-G5-B-LDM_Email_V2 stage commit
+- 2026-10-24T09:22:17 P6-G5-B-LDM_Email_V2 done 727a2197: ci: pass; parity visual --changed: 11/0 (OutSystems), 11/0 (self) (LDM_Email_V2 has no parity reference; old-vs-new 21 scenarios equal); arch baseline 0 new; HomeFeed 244.37 kB, Login 184.42 kB
+- 2026-10-24T09:22:17 P6-G5-B-AssembleEvents started
+- 2026-10-24T09:22:17 P6-G5-B-AssembleEvents stage dev
+- 2026-10-24T09:22:57 P6-G5-B-AssembleEvents stage test
+- 2026-10-24T09:26:48 P6-G5-B-AssembleEvents stage docs
+- 2026-10-24T09:27:45 P6-G5-B-AssembleEvents stage commit

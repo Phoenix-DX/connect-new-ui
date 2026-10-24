@@ -223,3 +223,25 @@ with business names in `components/ui/legacy/`: `LegacyAccordion`, `SectionExpan
 | `DropdownSearch`, `DropdownTags`                                                | partly    | jscpd: 14 and 26 lines                                                     | OSUI patterns: keep; an internal helper in P7-1.                                                              |
 | `Connect2_LegacyShared/Layout`, `Layout_Orbit`                                  | partly    | Same structure, theme class `connect-theme` against `orbit-theme`          | Keep (`LegacyLayout`, `OrbitLayout`).                                                                         |
 | `BrowseDirectory`, `CountryDetails` (`index.tsx`); `BrowseDirectory` (`api.ts`) | partly    | jscpd: 14 and 16 lines                                                     | G4: the calls go to `api/country`.                                                                            |
+
+### The subscribed countries of the Assemble filters (F21, P6-G5-B-AssembleEvents)
+
+Verdict: **same** function, 2 copies kept.
+
+Evidence:
+
+- `pages/Assemble_BrowseByCountry/hooks/useAssembleFilter.ts` and `pages/AssembleEvents/hooks/useAssembleFilterSheet.ts`
+  have the same private function `fetchSubscribedCountries` (6 lines).
+- The function reads Cache_UserInfo_Get (`platform/session/userInfo`). Then it calls
+  `getCacheableRegionSubscribedCountries` (`shared/Connect2_LegacyShared`) with the SubscriptionRegionId of the user.
+- In OutSystems, each block has its own FetchCountries action: ScreenBlock_Assemble_Filter and its bottom-sheet twin
+  Assemble_FilterSheet. For the same reason, `assembleFilterState.ts` and `assembleFilterSheetState.ts` have the same
+  variables.
+
+Plan: keep the 2 copies.
+
+- Rule 3 forbids a page-to-page import.
+- The function imports `platform/` and `shared/`, so rule 7 keeps it out of `api/country`.
+- `components/` and `containers/` (rule 2) do not hold data functions.
+- Look again when `getCacheableRegionSubscribedCountries` moves from `shared/` to `api/country`: rule 7 allows all
+  its imports there. Then each copy is one line.

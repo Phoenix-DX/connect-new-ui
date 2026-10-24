@@ -1,49 +1,67 @@
-// @os-block Connect2_Assemble_MUI.Assemble.AssembleSummary_List
-import { useEffect, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
+import type { AssembleEventFilter, AssembleMeeting } from '@/api/event';
+import { AssembleSummaryCard } from '@/components/assemble/AssembleSummaryCard';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { AssembleSummaryCard } from '@/components/assemble/AssembleSummaryCard';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
-import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { setPreloadObject, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import { getAssembleEventTypes, getAssembleMeetingSummaryList, getUserSubdivision } from '@/pages/AssembleEvents/api';
-import type { AssembleEventFilter, AssembleMeeting, TagItem } from '@/pages/AssembleEvents/types';
-import {
-  geAssembleSummaryListFilterLabel,
-  getAssembleEventListDateRangeFilter,
-  getAssembleHeaderDateString,
-  getIANATimezone,
-  offsetDateTimeByUserUTCOffset,
-  ViewmodeType,
-} from './actions';
+import { ViewmodeType } from './actions';
 import { AssembleSummary_FilterDrawer } from './AssembleSummary_FilterDrawer';
 import { AssembleSummary_List__Header } from './AssembleSummary_List__Header';
 import { AssembleSummary_SkeletonList } from './AssembleSummary_SkeletonList';
-import { HorizontalTags } from './HorizontalTags';
+import { HorizontalTags, type TagItem } from './HorizontalTags';
 import { NC_ErrorScreen } from './NC_ErrorScreen';
 
+/** The view of the block AssembleSummary_List, props only. StickyHeader (HorizontalTags Upcoming / Past, the list
+    header), NC_ErrorScreen when the fetched list is empty, else List_AssembleSummaryCards (ScrollAnchor and
+    AssembleSummaryCard per meeting), the skeleton list until the meetings are fetched, and the filter drawer. Not
+    ported: RememberFocusedScrollAnchor (no shell helper; the ScrollAnchor block renders). The flows are in
+    useAssembleSummaryList.
+    @origin Connect2_Assemble_MUI.Assemble.AssembleSummary_List */
+
+export interface AssembleSummary_ListProps {
+  /** OutSystems instance id of the block (`b2-$b4`). */
+  id: string;
+  /** EventList: the meetings of the list. */
+  eventList: AssembleMeeting[];
+  /** EventList_Filter: the active time tag, and the filter that the drawer edits. */
+  filter: AssembleEventFilter;
+  /** EventList_FilterLabel. */
+  filterLabel: string;
+  /** The label of the list header ("From <month>", "Since <month>" or ""). */
+  listHeaderLabel: string;
+  /** IsHeaderLoading: the list header shows a text skeleton. */
+  isHeaderLoading: boolean;
+  /** EventList_IsFiltered: the Clear link shows. */
+  isFiltered: boolean;
+  /** GetAssembleMeetingSummaryList is fetched: the skeleton list hides, an empty list shows NC_ErrorScreen. */
+  isSummaryFetched: boolean;
+  /** IsShow_FilterDrawer. */
+  isShowFilterDrawer: boolean;
+  /** A time tag was clicked, with its Id. */
+  onClickTag: (tagId: string) => void;
+  /** The header click and the Close event of the drawer. */
+  onToggleFilterDrawer: () => void;
+  /** The Clear link of the header. */
+  onClearFilters: () => void;
+  /** The ApplyFilters event of the drawer, with the edited filter. */
+  onApplyFilters: (filter: AssembleEventFilter) => void;
+  /** The OnScrollEnding event of List_AssembleSummaryCards. */
+  onScrollEnding: () => void;
+  /** A card was clicked: the meeting and its index in the list. */
+  onClickMeeting: (meeting: AssembleMeeting, index: number) => void;
+}
+
 const POINTER = { cursor: 'pointer' };
-const MAX_RECORDS = 10;
 const SKELETON_LIST_LENGTH = 3;
-/** BuildHeaderMenu (L:396-418): Upcoming Meetings and Past Meetings, Id = Label. */
+/** BuildHeaderMenu: Upcoming Meetings and Past Meetings, Id = Label. */
 const HEADER_MENU: TagItem[] = [
   { Id: ViewmodeType.UpcomingMeetings, Label: ViewmodeType.UpcomingMeetings },
   { Id: ViewmodeType.PastMeetings, Label: ViewmodeType.PastMeetings },
 ];
 
-type FetchStatus = 'none' | 'fetching' | 'fetched' | 'error';
-
-export interface AssembleSummary_ListProps {
-  id: string;
-  /** Input SubdivisionId (Long Integer; "0" = the user's own). */
-  subdivisionId: string;
-  /** Event NavigateTo_AssembleDetail(SeriesId, EventId, Start). */
-  onNavigateToAssembleDetail: (seriesId: string, eventId: string, start: string) => void;
-}
-
-/** Share.StickyHeader (p:…/Connect2_LegacyShared.Share.StickyHeader.mvc.js view): the Content placeholder with
-    "sticky absolute-top z-index1 background-neutral-0 " + ExtendedClass (empty here). */
-function StickyHeader({ id, children }: { id: string; children: React.ReactNode }) {
+/** Share.StickyHeader: the Content placeholder with "sticky absolute-top z-index1 background-neutral-0 " +
+    ExtendedClass (empty here). */
+function StickyHeader({ id, children }: { id: string; children: ReactNode }) {
   const scope = id.replace('$', '');
   return (
     <OSBlock name="Share.StickyHeader" id={id}>
@@ -54,150 +72,24 @@ function StickyHeader({ id, children }: { id: string; children: React.ReactNode 
   );
 }
 
-/** Assemble.AssembleSummary_List (p:…/Connect2_Assemble_MUI.Assemble.AssembleSummary_List.mvc.js, cited as L:<line> in
-    the condensed reading; view :135-281, controller :286-790). StickyHeader (HorizontalTags Upcoming / Past, the list
-    header), NC_ErrorScreen when the fetched list is empty else List_AssembleSummaryCards (ScrollAnchor +
-    AssembleSummaryCard per meeting), the skeleton list until the summary list is fetched, and the filter drawer.
-    OnInitialize: Upcoming Meetings and its date range, header menu, filter label, device time zone. OnReady: restored
-    from cache → fetch only what is missing; else SetLocalSubdivisonId (GetCacheableUserInfo when SubdivisionId is 0)
-    and the FetchData JS (both data actions; errors to the screen's handler). The capture issued GetAssembleEventTypes
-    before GetAssembleMeetingSummaryList (calls.json #6, #8), the order kept here. Not ported: RememberFocusedScrollAnchor
-    (no shell helper; the ScrollAnchor block renders). */
-export function AssembleSummary_List({ id, subdivisionId, onNavigateToAssembleDetail }: AssembleSummary_ListProps) {
+export function AssembleSummary_List({
+  id,
+  eventList,
+  filter,
+  filterLabel,
+  listHeaderLabel,
+  isHeaderLoading,
+  isFiltered,
+  isSummaryFetched,
+  isShowFilterDrawer,
+  onClickTag,
+  onToggleFilterDrawer,
+  onClearFilters,
+  onApplyFilters,
+  onScrollEnding,
+  onClickMeeting,
+}: AssembleSummary_ListProps) {
   const scope = id.replace('$', '');
-  const fromCache = useWasRestoredFromCache();
-  // OnInitialize (L:629-644): Upcoming Meetings and its date range when no time option is set yet.
-  const [init] = useState(() => {
-    const f: AssembleEventFilter = { AssembleFilterTimeOptionId: ViewmodeType.UpcomingMeetings, AssembleEventType: [] };
-    return { filter: f, range: getAssembleEventListDateRangeFilter(f.AssembleFilterTimeOptionId) };
-  });
-  const [eventList, setEventList] = useViewState<AssembleMeeting[]>('EventList', []);
-  const [filter, setFilter] = useViewState<AssembleEventFilter>('EventList_Filter', init.filter);
-  const [isShowFilterDrawer, setIsShowFilterDrawer] = useViewState('IsShow_FilterDrawer', false);
-  const [filterLabel, setFilterLabel] = useViewState(
-    'EventList_FilterLabel',
-    geAssembleSummaryListFilterLabel(init.filter),
-  );
-  const [range, setRange] = useViewState('EventList_Range', init.range);
-  const [pageNumber, setPageNumber] = useViewState('EventList_PageNumber', 1);
-  const [isFiltered, setIsFiltered] = useViewState('EventList_IsFiltered', false);
-  const [hasMoreRecords, setHasMoreRecords] = useViewState('EventList_HasMoreRecords', false);
-  const [localSubdivisionId, setLocalSubdivisionId] = useViewState('LocalSubdivisionId', '0');
-  const [deviceTimezone, setDeviceTimezone] = useViewState('DeviceTimezone', getIANATimezone());
-  const [isHeaderLoading, setIsHeaderLoading] = useViewState('IsHeaderLoading', true);
-  const [summaryStatus, setSummaryStatus] = useViewState<FetchStatus>('GetAssembleMeetingSummaryList', 'none');
-  const [eventTypesStatus, setEventTypesStatus] = useViewState<FetchStatus>('GetAssembleEventTypes', 'none');
-
-  /** Refresh GetAssembleMeetingSummaryList and its OnAfterFetch (L:596-621): append each meeting (DateTime through
-      OffsetDateTimeByUserUTCOffset), HasMoreRecords = a full page, IsHeaderLoading False. */
-  const refreshSummaryList = async (q: {
-    filter: AssembleEventFilter;
-    range: { StartDateTime: string; EndDateTime: string };
-    page: number;
-    local: string;
-    timezone: string;
-    append: boolean;
-  }) => {
-    setSummaryStatus('fetching');
-    try {
-      const page = await getAssembleMeetingSummaryList({
-        SubdivisionId: subdivisionId,
-        LocalSubdivisionId: q.local,
-        EventList_Filter: q.filter,
-        EventList_RangeFrom: offsetDateTimeByUserUTCOffset(q.range.StartDateTime),
-        EventsList_RangeTo: offsetDateTimeByUserUTCOffset(q.range.EndDateTime),
-        EventList_PageNumber: q.page,
-        MaxRecords: MAX_RECORDS,
-        DeviceTimezone: q.timezone,
-      });
-      const rows = page.map((m) => ({ ...m, DateTime: offsetDateTimeByUserUTCOffset(m.DateTime) }));
-      setEventList((list) => (q.append ? [...list, ...rows] : rows));
-      setHasMoreRecords(rows.length > 0 && !(rows.length < MAX_RECORDS));
-      setIsHeaderLoading(false);
-      setSummaryStatus('fetched');
-    } catch (e) {
-      setSummaryStatus('error');
-      throw e;
-    }
-  };
-
-  /** Refresh GetAssembleEventTypes and its OnAfterFetch (L:436-464): the filter's types, IsSelected from
-      SelectedMettingTypeIds (never filled: False). */
-  const refreshEventTypes = async () => {
-    setEventTypesStatus('fetching');
-    try {
-      const types = await getAssembleEventTypes();
-      setFilter((f) => ({
-        ...f,
-        AssembleEventType: types.map((t) => ({ AssembleEventType: t, IsSelected: false })),
-      }));
-      setEventTypesStatus('fetched');
-    } catch (e) {
-      setEventTypesStatus('error');
-      throw e;
-    }
-  };
-
-  const ready = useRef(false);
-  useEffect(() => {
-    if (ready.current) return;
-    ready.current = true;
-    void (async () => {
-      let fetchSummary = true;
-      let fetchEventTypes = true;
-      let local = localSubdivisionId;
-      if (fromCache) {
-        if (eventTypesStatus === 'fetched' && summaryStatus === 'fetched') return;
-        fetchSummary = summaryStatus !== 'fetched';
-        fetchEventTypes = filter.AssembleEventType.length === 0 && eventTypesStatus !== 'fetched';
-      } else {
-        // SetLocalSubdivisonId (L:480-494).
-        local = subdivisionId === '0' || subdivisionId === '' ? (await getUserSubdivision()).Id : subdivisionId;
-        setLocalSubdivisionId(local);
-      }
-      if (fetchEventTypes) refreshEventTypes().catch(raiseToFlowHandler);
-      if (fetchSummary)
-        refreshSummaryList({ filter, range, page: pageNumber, local, timezone: deviceTimezone, append: false }).catch(
-          raiseToFlowHandler,
-        );
-    })().catch(raiseToFlowHandler);
-    // OnReady runs once.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  /** Refresh_EventList (L:505-534): IsFiltered, ScrollToTop JS, filter label, list cleared, page 1, date range and
-      time zone again, then the summary list. */
-  const refreshEventList = async (f: AssembleEventFilter) => {
-    setIsFiltered(f.AssembleEventType.some((t) => t.IsSelected));
-    const content = document.querySelector('.content');
-    if (content) content.scrollTop = 0;
-    setFilterLabel(geAssembleSummaryListFilterLabel(f));
-    setEventList([]);
-    setPageNumber(1);
-    const r = getAssembleEventListDateRangeFilter(f.AssembleFilterTimeOptionId);
-    setRange(r);
-    const tz = getIANATimezone();
-    setDeviceTimezone(tz);
-    await refreshSummaryList({ filter: f, range: r, page: 1, local: localSubdivisionId, timezone: tz, append: false });
-  };
-
-  /** Handler_ApplyFilters(In_AssembleMeetingFilter) (L:576-586). */
-  const applyFilters = (f: AssembleEventFilter) => {
-    setFilter(f);
-    setIsShowFilterDrawer(false);
-    refreshEventList(f).catch(raiseToFlowHandler);
-  };
-
-  const first = eventList[0];
-  const listHeaderLabel =
-    first === undefined
-      ? ''
-      : getAssembleHeaderDateString(
-          first.DateTime === '' ? '' : `${first.DateTime.slice(0, 10)}T00:00:00`,
-          filter.AssembleFilterTimeOptionId,
-        );
-  const summaryFetched = summaryStatus === 'fetched';
-
   return (
     <OSBlock name="Assemble.AssembleSummary_List" id={id}>
       <div data-container="" id={`${scope}-DIV_Root`}>
@@ -207,10 +99,7 @@ export function AssembleSummary_List({ id, subdivisionId, onNavigateToAssembleDe
               id={`${scope}-$b2`}
               tagList={HEADER_MENU}
               activeTagId={filter.AssembleFilterTimeOptionId}
-              onClickTag={(tagId) => {
-                // HorizontalTagsOnClickTag (L:645-653).
-                applyFilters({ ...filter, AssembleFilterTimeOptionId: tagId });
-              }}
+              onClickTag={onClickTag}
             />
           </div>
           <AssembleSummary_List__Header
@@ -219,21 +108,11 @@ export function AssembleSummary_List({ id, subdivisionId, onNavigateToAssembleDe
             listHeaderLabel={listHeaderLabel}
             isLoading={isHeaderLoading}
             showClear={isFiltered}
-            onClick={() => {
-              setIsShowFilterDrawer((v) => !v);
-            }}
-            onClear={() => {
-              // Handler_ClearFilters (L:419-435).
-              const f = {
-                ...filter,
-                AssembleEventType: filter.AssembleEventType.map((t) => ({ ...t, IsSelected: false })),
-              };
-              setFilter(f);
-              refreshEventList(f).catch(raiseToFlowHandler);
-            }}
+            onClick={onToggleFilterDrawer}
+            onClear={onClearFilters}
           />
         </StickyHeader>
-        {eventList.length === 0 && summaryFetched ? (
+        {eventList.length === 0 && isSummaryFetched ? (
           <NC_ErrorScreen
             id={`${scope}-$b4`}
             inErrorMessage="We were unable to find any meetings to display."
@@ -248,20 +127,7 @@ export function AssembleSummary_List({ id, subdivisionId, onNavigateToAssembleDe
               className="background-neutral-1 list list-group"
               animateItems
               disableVirtualization
-              onScrollEnding={() => {
-                // List_AssembleSummaryCardsOnScrollEnding (L:535-549).
-                if (!summaryFetched || !hasMoreRecords) return;
-                const page = pageNumber + 1;
-                setPageNumber(page);
-                refreshSummaryList({
-                  filter,
-                  range,
-                  page,
-                  local: localSubdivisionId,
-                  timezone: deviceTimezone,
-                  append: true,
-                }).catch(raiseToFlowHandler);
-              }}
+              onScrollEnding={onScrollEnding}
             >
               {(m, index) => (
                 <div
@@ -269,11 +135,7 @@ export function AssembleSummary_List({ id, subdivisionId, onNavigateToAssembleDe
                   data-container=""
                   style={POINTER}
                   onClick={() => {
-                    // OnClick_AssembleMeetingSummaryCard (L:550-566): nothing for an unavailable meeting; else the
-                    // AssembleDetailsPreloading object, then NavigateTo_AssembleDetail(SeriesId, EventId, DateTime).
-                    if (m.IsUnavailable) return;
-                    setPreloadObject({ AssembleEventSummary: m, PreloadedFromListIndex: index });
-                    onNavigateToAssembleDetail(m.SeriesId, m.EventId, m.DateTime);
+                    onClickMeeting(m, index);
                   }}
                 >
                   <ScrollAnchor id={`${scope}-l1-${String(index)}-$b5`} idIn={m.EventId} />
@@ -283,17 +145,15 @@ export function AssembleSummary_List({ id, subdivisionId, onNavigateToAssembleDe
             </OSList>
           </div>
         )}
-        {!summaryFetched && (
+        {!isSummaryFetched && (
           <AssembleSummary_SkeletonList id={`${scope}-$b7`} skeletonListLength={SKELETON_LIST_LENGTH} />
         )}
         <AssembleSummary_FilterDrawer
           id={`${scope}-$b8`}
           isOpen={isShowFilterDrawer}
           assembleMeetingFilter={filter}
-          onApplyFilters={applyFilters}
-          onClose={() => {
-            setIsShowFilterDrawer((v) => !v);
-          }}
+          onApplyFilters={onApplyFilters}
+          onClose={onToggleFilterDrawer}
         />
       </div>
     </OSBlock>

@@ -233,3 +233,5 @@ P6-G5-B-LDM_MyEvents_V2: `pages/LDM_MyEvents_V2/api.ts` is deleted (its rows in 
 P6-G5-B-LDM_EventDetail_V2: `pages/LDM_EventDetail_V2/api.ts` is deleted (its rows in the app tables above). The hook `useLdmEventDetail` calls the two event data actions of `@/api/event`. It calls `fetchHouseholdCoordinatesById` (`ActionGetHouseholdCoordinates`) of `@/api/household` on a click only.
 
 P6-G5-B-LDM_Email_V2: `pages/LDM_Email_V2/api.ts` is deleted (its row in the message table above). The hook `useLdmEventEmail` calls `fetchEventEmailCoordinator` and `sendEventContactEmail` of `@/api/message` directly.
+
+P6-G5-B-AssembleEvents: `pages/AssembleEvents/api.ts` is deleted (its rows in the locality and event tables). The hooks call `fetchSubdivisionName` of `@/api/locality`, and `fetchAssembleEventTypes` and `fetchAssembleMeetings` of `@/api/event`.

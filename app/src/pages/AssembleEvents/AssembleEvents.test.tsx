@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
 import { ASSEMBLE_MEETINGS, USER_HALL_ID } from '@/mocks/fictional/assemble';
 import { resetNavigation, renderRoutes } from '@/platform/navigation/testRouter';
@@ -24,6 +24,12 @@ const NOW_DAY = `${NOW.getFullYear()}-${pad(NOW.getMonth() + 1)}-${pad(NOW.getDa
 const PATH = '/UBTConnect/AssembleEvents';
 const cards = (container: HTMLElement) =>
   container.querySelectorAll('#b2-b4-List_AssembleSummaryCards > [data-container]');
+/** The data actions of the screen in the call log. */
+const assembleCalls = () => (window.__osCalls ?? []).map((c) => c.action).filter((a) => a.startsWith('DataActionGet'));
+const settle = (ms: number) =>
+  act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, ms));
+  });
 
 function renderScreen(search = '') {
   return renderRoutes(
@@ -75,5 +81,49 @@ describe('AssembleEvents', () => {
       expect(container.querySelector('#b2-b4-b3-DIV_ListHeader')?.textContent).toMatch(/^Since /);
     });
     expect(container.querySelector('.connect-tag-active')).toHaveTextContent('Past Meetings');
+  });
+
+  it('back from AssembleDetail: the view cache restores the title and the list on the first render, with no new call', async () => {
+    const { container, at, router } = renderScreen();
+    await waitFor(() => {
+      expect(cards(container)).toHaveLength(10);
+    });
+    fireEvent.click(screen.getByText('Past Meetings'));
+    await waitFor(() => {
+      expect(container.querySelector('#b2-b4-b3-DIV_ListHeader')?.textContent).toMatch(/^Since /);
+    });
+    fireEvent.click(cards(container)[0] as HTMLElement);
+    await waitFor(() => {
+      expect(at()).toContain('/UBTConnect/AssembleDetail?');
+    });
+    window.__osCalls = [];
+    await act(() => router.navigate(-1));
+    expect(cards(container)).toHaveLength(10);
+    expect(container.querySelector('.connect-tag-active')).toHaveTextContent('Past Meetings');
+    expect(container.querySelector('#b2-DIV_SMName')).toHaveTextContent('Zapiola (Main Meeting Room)');
+    await settle(20);
+    expect(assembleCalls()).toEqual([]);
+  });
+
+  it('W23: a navigation away while OnReady waits runs each call once after the unmount, and nothing renders', async () => {
+    sessionStorage.setItem('mock:latency', '40');
+    const { container, router } = renderRoutes(
+      { [PATH]: <AssembleEvents />, '/UBTConnect/HomeFeed': <div id="home" /> },
+      '/UBTConnect/HomeFeed',
+    );
+    window.__osCalls = [];
+    await act(() => router.navigate(PATH));
+    await settle(5);
+    await act(() => router.navigate(-1));
+    await settle(200);
+    expect(container.querySelector('[data-block="Assemble.ScreenBlock_AssembleEvents"]')).toBeNull();
+    const calls = (window.__osCalls ?? []).map((c) => `${c.module}/${c.action}`);
+    for (const action of [
+      'Connect2_LegacyShared/ActionGetUserInformation',
+      'Connect2_Assemble_MUI/DataActionGetAssembleEventTypes',
+      'Connect2_Assemble_MUI/DataActionGetAssembleMeetingSummaryList',
+      'Connect2_LegacyShared/ActionGetCountriesBySubscription',
+    ])
+      expect(calls.filter((a) => a === action)).toHaveLength(1);
   });
 });

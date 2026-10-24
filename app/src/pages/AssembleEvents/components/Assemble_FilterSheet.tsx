@@ -1,107 +1,80 @@
-// @os-block Connect2_Assemble_MUI.Assemble.Assemble_FilterSheet
-import { useEffect, useRef, useState } from 'react';
-import { OSBlock } from '@/components/ui/os/OSBlock';
+import type { CountryWithMapPosition } from '@/api/country';
 import { AssembleLocalityFilter } from '@/components/assemble/AssembleLocalityFilter';
-import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
 import { LocalityListDetail } from '@/components/assemble/LocalityListDetail';
-import { removeDiacritics } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
 import { InputWithIcon } from '@/shared/osui/InputWithIcon';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
-import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { getSubscribedCountries, getUserSubdivision } from '@/pages/AssembleEvents/api';
-import type { CountryWithMapPosition } from '@/pages/AssembleEvents/types';
 
-const BROWSE_BY_COUNTRY = 'Browse by Country';
-const NULL_ID = '0';
-/** Grid width of ButtonApply (F:440-445). */
-const APPLY_BUTTON_STYLE = { width: '100px' };
-
-const run = (p: Promise<unknown>) => {
-  p.catch(raiseToFlowHandler);
-};
+/** The view of the block Assemble_FilterSheet (the bottom-sheet twin of ScreenBlock_Assemble_Filter), props only: the
+    header row (Link_Back while the localities show, ScreenTitle), the country search "Search Country" with
+    LocalityListDetail or "No results found" once the countries are fetched (else the Spinner), or
+    Assemble_FilterLocalityByCountry; the FreeSubscriptionAlert dialog; Cancel and Apply while a country is chosen.
+    Its show and hide animation (DIV_StickyBottom) is not reproduced. The flows are in useAssembleFilterSheet.
+    @origin Connect2_Assemble_MUI.Assemble.Assemble_FilterSheet */
 
 export interface Assemble_FilterSheetProps {
   /** Instance id (`Assemble_FilterSheet_Instance`). */
   id: string;
   /** Id prefix of its own elements (`b5`). */
   scope: string;
-  /** Event Cancel. */
+  /** ScreenTitle. */
+  screenTitle: string;
+  /** ShowLocalitiesList: Assemble_FilterLocalityByCountry shows instead of the countries. */
+  showLocalitiesList: boolean;
+  /** SearchTerm: the value of Input_SearchTerm. */
+  searchTerm: string;
+  /** IsCountriesDataFetched: false shows the Spinner. */
+  isCountriesDataFetched: boolean;
+  /** TempCountryDetailList: the countries that the list shows. */
+  countries: CountryWithMapPosition[];
+  /** CountryCode of the chosen country. */
+  countryCode: string;
+  /** CountryName of the chosen country. */
+  countryName: string;
+  /** DIV_StickyBottom shows (CountryCode <> ""). */
+  isBottomBarVisible: boolean;
+  /** ButtonApply is enabled (SubdivisionId <> NullIdentifier()). */
+  isApplyEnabled: boolean;
+  /** Input_SearchTerm changed, with the new value. */
+  onSearchTermChange: (value: string) => void;
+  /** A country row was clicked, with its Code. */
+  onCountryClicked: (countryCode: string) => void;
+  /** Link_Back. */
+  onBackToCountries: () => void;
+  /** SelectedSubdivision of the locality filter. */
+  onSelectedSubdivision: (subdivisionId: string) => void;
+  /** FreeSubscriptionAlert of the locality filter. */
+  onFreeSubscriptionAlert: () => void;
+  /** The Cancel button, and the Cancel event of the locality filter. */
   onCancel: () => void;
-  /** Event NavigateToSubdivision(SubdivisionId, IsUserSubdivision). */
-  onNavigateToSubdivision: (subdivisionId: string, isUserSubdivision: boolean) => void;
+  /** ButtonApply. */
+  onApply: () => void;
 }
 
-/** Assemble.Assemble_FilterSheet (p:…/Connect2_Assemble_MUI.Assemble.Assemble_FilterSheet.mvc.js, cited as F:<line>;
-    view :140-560, controller :560-1050; dom/default.html:518-1170), the bottom-sheet twin of ScreenBlock_Assemble_Filter:
-    header row (Link_Back while ShowLocalitiesList, ScreenTitle), the country search "Search Country" with
-    LocalityListDetail or "No results found" once IsCountriesDataFetched (else the Spinner), or
-    Assemble_FilterLocalityByCountry; FreeSubscriptionAlert; Cancel / Apply while a country is chosen. OnReady (F:609-649,
-    no view-cache check): GetCacheableUserInfo, FetchCountries. Its show/hide animation (DIV_StickyBottom) is not
-    reproduced. */
-export function Assemble_FilterSheet({ id, scope, onCancel, onNavigateToSubdivision }: Assemble_FilterSheetProps) {
-  const [screenTitle, setScreenTitle] = useState(BROWSE_BY_COUNTRY);
-  const [countryDetailList, setCountryDetailList] = useState<CountryWithMapPosition[]>([]);
-  const [tempCountryDetailList, setTempCountryDetailList] = useState<CountryWithMapPosition[]>([]);
-  const [showLocalitiesList, setShowLocalitiesList] = useState(false);
-  const [countryCode, setCountryCode] = useState('');
-  const [countryName, setCountryName] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [isCountriesDataFetched, setIsCountriesDataFetched] = useState(false);
-  const [userSubdivisionId, setUserSubdivisionId] = useState(NULL_ID);
-  const [subdivisionId, setSubdivisionId] = useState(NULL_ID);
+/** Grid width of ButtonApply. */
+const APPLY_BUTTON_STYLE = { width: '100px' };
 
-  const ready = useRef(false);
-  useEffect(() => {
-    if (ready.current) return;
-    ready.current = true;
-    run(
-      (async () => {
-        setUserSubdivisionId((await getUserSubdivision()).Id);
-        // FetchCountries (F:794-848).
-        setIsCountriesDataFetched(false);
-        const countries = await getSubscribedCountries();
-        setCountryDetailList(countries);
-        setTempCountryDetailList(countries);
-        setIsCountriesDataFetched(true);
-      })(),
-    );
-  }, []);
-
-  /** OnChange_SearchTearm (F:650-722), as ScreenBlock_Assemble_Filter. */
-  const onChangeSearchTerm = async (value: string) => {
-    if (value === '') {
-      const countries = await getSubscribedCountries();
-      setCountryDetailList(countries);
-      setTempCountryDetailList(countries);
-    } else {
-      const term = removeDiacritics(value.trim().toLowerCase()).toLowerCase();
-      setTempCountryDetailList(countryDetailList.filter((p) => (p.Name ?? '').toLowerCase().includes(term)));
-    }
-  };
-
-  /** Handler_GoToBrowseCountry(InCountryCode) (F:849-937). */
-  const onGoToBrowseCountry = async (inCountryCode: string) => {
-    if (inCountryCode === '') return;
-    if (!(await hasAccessToRegion(inCountryCode, '0'))) {
-      await confirmAction(`${scope}-FreeSubscriptionAlert`);
-      return;
-    }
-    setCountryCode(inCountryCode);
-    setCountryName(tempCountryDetailList.filter((p) => p.Code === inCountryCode)[0]?.Name ?? '');
-    setScreenTitle('Filter by Locality');
-    setShowLocalitiesList(true);
-  };
-
-  /** Handler_GoBackToCountries (F:723-756). */
-  const goBackToCountries = () => {
-    setShowLocalitiesList(false);
-    setScreenTitle(BROWSE_BY_COUNTRY);
-    setSubdivisionId(NULL_ID);
-    setCountryCode('');
-  };
-
+export function Assemble_FilterSheet({
+  id,
+  scope,
+  screenTitle,
+  showLocalitiesList,
+  searchTerm,
+  isCountriesDataFetched,
+  countries,
+  countryCode,
+  countryName,
+  isBottomBarVisible,
+  isApplyEnabled,
+  onSearchTermChange,
+  onCountryClicked,
+  onBackToCountries,
+  onSelectedSubdivision,
+  onFreeSubscriptionAlert,
+  onCancel,
+  onApply,
+}: Assemble_FilterSheetProps) {
   return (
     <OSBlock name="Assemble.Assemble_FilterSheet" id={id}>
       <div className="padding-x-base padding-y-base" data-container="" id={`${scope}-DIV_Root`}>
@@ -113,7 +86,7 @@ export function Assemble_FilterSheet({ id, scope, onCancel, onNavigateToSubdivis
               id={`${scope}-Link_Back`}
               onClick={(e) => {
                 e.preventDefault();
-                goBackToCountries();
+                onBackToCountries();
               }}
             >
               <i className="icon margin-right-xs fa fa-chevron-left fa-1x" data-icon="" />
@@ -141,9 +114,7 @@ export function Assemble_FilterSheet({ id, scope, onCancel, onNavigateToSubdivis
                       type="search"
                       value={searchTerm}
                       onChange={(e) => {
-                        const value = e.currentTarget.value;
-                        setSearchTerm(value);
-                        run(onChangeSearchTerm(value));
+                        onSearchTermChange(e.currentTarget.value);
                       }}
                     />
                   </span>
@@ -151,14 +122,12 @@ export function Assemble_FilterSheet({ id, scope, onCancel, onNavigateToSubdivis
               />
             </div>
             {isCountriesDataFetched ? (
-              tempCountryDetailList.length > 0 ? (
+              countries.length > 0 ? (
                 <LocalityListDetail
                   id={`${scope}-$b2`}
                   hideHeader
-                  countryDetailList={tempCountryDetailList}
-                  onOnClickGoToBrowseCountry={(code) => {
-                    run(onGoToBrowseCountry(code));
-                  }}
+                  countryDetailList={countries}
+                  onOnClickGoToBrowseCountry={onCountryClicked}
                 />
               ) : (
                 <div className="margin-y-base" data-container="" id={`${scope}-DIV_NoResultsFound`}>
@@ -174,18 +143,13 @@ export function Assemble_FilterSheet({ id, scope, onCancel, onNavigateToSubdivis
             id={`${scope}-$b4`}
             countryCode={countryCode}
             countryName={countryName}
-            onSelectedSubdivision={(selected) => {
-              // Handler_SelectedSubdivision (F:757-793).
-              setSubdivisionId(selected);
-            }}
-            onFreeSubscriptionAlert={() => {
-              run(showUpgradePopUp());
-            }}
+            onSelectedSubdivision={onSelectedSubdivision}
+            onFreeSubscriptionAlert={onFreeSubscriptionAlert}
             onCancel={onCancel}
           />
         )}
         <Dialog_AccessRestrictedAction_Legacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b5`} />
-        {countryCode !== '' && (
+        {isBottomBarVisible && (
           <div
             className="text-align-center assemble-filter-actions margin-top-base"
             data-container=""
@@ -200,14 +164,11 @@ export function Assemble_FilterSheet({ id, scope, onCancel, onNavigateToSubdivis
               <button
                 className="btn btn-primary"
                 data-button=""
-                disabled={subdivisionId === NULL_ID}
+                disabled={!isApplyEnabled}
                 id={`${scope}-ButtonApply`}
                 style={APPLY_BUTTON_STYLE}
                 type="button"
-                onClick={() => {
-                  // OnClickApply (F:568-608).
-                  onNavigateToSubdivision(subdivisionId, subdivisionId === userSubdivisionId);
-                }}
+                onClick={onApply}
               >
                 Apply
               </button>

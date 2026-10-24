@@ -2,7 +2,12 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { Tag } from '@/shared/osui/Tag';
-import type { TagItem } from '@/pages/AssembleEvents/types';
+
+/** Connect2_LegacyShared Tag (Id, Label). */
+export interface TagItem {
+  Id: string;
+  Label: string;
+}
 
 const POINTER = { cursor: 'pointer' };
 

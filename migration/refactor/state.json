@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G5-B-LDM_Email_V2",
+  "step": "P6-G5-B-AssembleEvents",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T09:22:16"
+  "since": "2026-10-24T09:27:45"
  },
  "steps": {
   "P0-1": {
@@ -1379,12 +1379,24 @@
    "finished": "2026-10-24T09:15:04"
   },
   "P6-G5-B-LDM_Email_V2": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T09:15:04",
    "tokens": {
     "dev": 277027,
     "test": 31174,
-    "docs": 35451
+    "docs": 36810
+   },
+   "commit": "727a2197",
+   "gate": "ci: pass; parity visual --changed: 11/0 (OutSystems), 11/0 (self) (LDM_Email_V2 has no parity reference; old-vs-new 21 scenarios equal); arch baseline 0 new; HomeFeed 244.37 kB, Login 184.42 kB",
+   "loops": 0,
+   "finished": "2026-10-24T09:22:17"
+  },
+  "P6-G5-B-AssembleEvents": {
+   "status": "active",
+   "started": "2026-10-24T09:22:17",
+   "tokens": {
+    "dev": 423247,
+    "test": 33227
    }
   }
  },
