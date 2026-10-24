@@ -669,3 +669,9 @@
 - `pages/LDM_EventDetail_V2` is a page with a flow hook (`hooks/useLdmEventDetail.ts`, `hooks/ldmEventDetailState.ts`) and a props-only view (`components/LdmEventDetailView.tsx`). It has no container. The ScreenBlock, `api.ts` and `types.ts` are deleted; `inputs.ts` is new. `api/household` gets `fetchHouseholdCoordinatesById`.
 - The page `@origin` is corrected to `UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2` (G5-A had written it without `_V2`). LDM_Email_V2 still has the same error.
 - HomeFeed gzip +0.06 kB and Login +0.04 kB (entry dependency list and chunk hashes); dependency-cruiser route warnings 4 to 3.
+
+## P6-G5-B-LDM_Email_V2 - refactor(P6-G5-B): LDM_Email_V2 as page
+
+- `pages/LDM_Email_V2` is a page with a flow hook (`hooks/useLdmEventEmail.ts`, `hooks/ldmEventEmailState.ts`) and a props-only view (`components/LdmEventEmailView.tsx`). It has no container. The ScreenBlock, `api.ts` and `types.ts` are deleted; `inputs.ts` is new; the hook calls `@/api/message` directly.
+- The page `@origin` is corrected to `UBTConnect.Legacy_LDMEventsFlow_V2.LDM_Email_V2`; now all 3 LDM V2 pages are correct. LDM_Email_V2 has no parity reference, so its DOM evidence is the developer's 21-scenario old-vs-new test (temporary, deleted).
+- Dependency-cruiser warnings 189 to 188. HomeFeed gzip +0.08 kB, Login +0.03 kB; LDM_Email_V2 first load +1.05 kB gzip.
