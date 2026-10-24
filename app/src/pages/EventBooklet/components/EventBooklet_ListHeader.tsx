@@ -1,4 +1,4 @@
-// @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_ListHeader
+/** @origin Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_ListHeader */
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 

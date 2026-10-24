@@ -16,21 +16,9 @@ export type EventBookletFiltersResponseWire = GetEventBookletFiltersWire['Respon
 export type SelectedFiltersWire = EventBookletCallInputs['SelectedFilters'];
 export type PaginationSettingsWire = EventBookletCallInputs['PaginationSettings'];
 
-/* ---- Domain (components) ----
-   Field names as in OutSystems. Dates stay "yyyy-MM-dd", DateTimes OutSystems values as text ("" = null); Long
-   Integers as text. The block variables that the data actions send, the members, the event and the filter values,
-   the selected filters and the paging are domain types of api/event; this module keeps the names that the screen
-   uses. */
-export type {
-  EventBookletCallInputs as EventBookletVariablesWire,
-  EventBookletEventInfo,
-  EventBookletFiltersResponse,
-  EventBookletMember,
-  EventBookletPaginationSettings as PaginationSettings,
-  EventBookletSelectedFilters as SelectedFilters,
-} from '@/api/event';
-
-export type { DayFilter, DropdownOption };
+/* ---- Structures of the booklet blocks ----
+   Records of Connect2_OrbitMobile_MUI that the booklet blocks use. The members, the event, the selected filters and
+   the paging are domain types of api/event. */
 
 /** BookletMembers_ByLocalityRec (Connect2_OrbitMobile_MUI). */
 export interface BookletMembersByLocality {

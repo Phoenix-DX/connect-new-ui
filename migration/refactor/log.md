@@ -641,3 +641,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T07:54:18 P6-G5-B-EventDetail stage test
 - 2026-10-24T08:04:05 P6-G5-B-EventDetail stage docs
 - 2026-10-24T08:05:01 P6-G5-B-EventDetail stage commit
+- 2026-10-24T08:05:04 P6-G5-B-EventDetail done fff324fa: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.48 kB, Login 184.46 kB; W28 beforePaint
+- 2026-10-24T08:05:04 P6-G5-B-EventBooklet started
+- 2026-10-24T08:05:05 P6-G5-B-EventBooklet stage dev
+- 2026-10-24T08:06:14 P6-G5-B-EventBooklet stage test
+- 2026-10-24T08:10:32 P6-G5-B-EventBooklet stage docs
+- 2026-10-24T08:11:45 P6-G5-B-EventBooklet stage commit

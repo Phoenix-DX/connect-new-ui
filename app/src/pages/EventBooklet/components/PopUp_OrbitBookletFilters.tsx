@@ -1,4 +1,4 @@
-// @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters
+/** @origin Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters */
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DaySelectorList } from '@/components/orbit/DaySelectorList';
@@ -6,8 +6,9 @@ import { FooterWithActions } from '@/pages/EventBooklet/components/FooterWithAct
 import { styleFromCssText } from '@/shared/lib/cssText';
 import { DropdownTags } from '@/shared/osui/DropdownTags';
 import { dropdownClear, dropdownClearValidation, dropdownTogglePopup } from '@/shared/osui/lib/actions';
+import type { DropdownOption } from '@/shared/osui/lib/structures';
 import { dropdownTags_CloseOtherOnClick } from '@/shared/UBTConnect_Utils/lib/actions';
-import type { DropdownOption, PopupFilters } from '@/pages/EventBooklet/types';
+import type { PopupFilters } from '@/pages/EventBooklet/types';
 
 /* PopUp_OrbitBookletFilters (PF = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters.mvc.js:
    model :1-89, view :90-685, controller :686-1507). No capture: markup from the compiled view. The OutSystems UI

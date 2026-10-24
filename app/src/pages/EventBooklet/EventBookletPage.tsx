@@ -1,27 +1,41 @@
-/** @origin UBTConnect.Legacy_OrbitEventsFlow.EventBooklet */
 import { useSearchParams } from 'react-router';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useOsNavigate } from '@/platform/navigation';
-import { ScreenBlock_EventBooklet } from './components/ScreenBlock_EventBooklet';
+import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
+import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { EventBookletView } from './components/EventBookletView';
+import { useEventBooklet } from './hooks/useEventBooklet';
+import { readEventBookletInputs } from './inputs';
 
-/** UBTConnect Legacy_OrbitEventsFlow.EventBooklet (S = analysis/sources/UBTConnect.Legacy_OrbitEventsFlow.
-    EventBooklet.mvc.js: model :1-77, view :78-207, controller :208-298). Inputs In_EventId (Long Integer), In_EventName
-    (S :12-23). ScreenBlock_EventBooklet (placeholders Menu and CommonUI_Elements empty, S :146-183), then
-    CommonUI_InsideLayout (S :184-199). Reached from EventDetail (flag mobileOrbitEventBooklet, no access check).
-    OnHandle_NavigateToHouseholdDetail (S :226-260) goes straight to HouseholdDetails. */
+/** The instance id of the booklet block in the screen. */
+const BLOCK_ID = '$b1';
+
+/** @origin UBTConnect.Legacy_OrbitEventsFlow.EventBooklet
+    The guest list of an Orbit event: the booklet block (instance `$b1`, its flows in useEventBooklet, its Menu and
+    CommonUI_Elements placeholders empty), then CommonUI_InsideLayout. Inputs In_EventId and In_EventName. Reached from
+    EventDetail (flag mobileOrbitEventBooklet, no access check). OnHandle_NavigateToHouseholdDetail opens
+    HouseholdDetails at once. */
 export default function EventBooklet() {
   const [params] = useSearchParams();
   const navigate = useOsNavigate();
+  const inputs = readEventBookletInputs(params);
+  const { onBackNavigation, ...booklet } = useEventBooklet(BLOCK_ID, inputs, {
+    // OnHandle_NavigateToHouseholdDetail
+    onNavigateToHouseholdDetail: (householdId) => {
+      navigate('/UBTConnect/HouseholdDetails', { HouseholdId: householdId });
+    },
+  });
+  const prefix = BLOCK_ID.replace('$', '');
   return (
     <>
-      <ScreenBlock_EventBooklet
-        id="$b1"
-        In_EventId={params.get('In_EventId') ?? '0'}
-        In_EventName={params.get('In_EventName') ?? ''}
-        onNavigateToHouseholdDetail={(householdId) => {
-          // OnHandle_NavigateToHouseholdDetail (S :226-260)
-          navigate('/UBTConnect/HouseholdDetails', { HouseholdId: householdId });
-        }}
+      <EventBookletView
+        id={BLOCK_ID}
+        inEventName={inputs.In_EventName}
+        {...booklet}
+        backNavigationHandler={<BackNavigationHandler id={`${prefix}-$b23`} onBackNavigation={onBackNavigation} />}
+        accessRestrictedDialog={
+          <Dialog_AccessRestrictedAction_Legacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b24`} />
+        }
       />
       <CommonUiLayout id="$b2" />
     </>

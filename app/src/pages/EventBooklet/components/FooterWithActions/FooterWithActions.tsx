@@ -1,5 +1,4 @@
 /** @origin Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_FooterWithActions */
-// @os-block Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_FooterWithActions
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { styleFromCssText } from '@/shared/lib/cssText';

@@ -113,3 +113,5 @@ The queries of `feed/` and the count query of `member/` set `staleTime: 0`, `gcT
 Later G5 and G6 pages will also call it. The repository has its own `textToLongInteger`, because `api/` does not import `shared/`. It has no mapper and no hook.
 
 `event/` also holds the four EventDetail calls: Get_EventDetails, Get_HostSurveyStatus, Get_HasDocuments and Get_HasQRCode (`fetchEventDetails`, `fetchHostSurveyStatus`, `fetchHasDocuments`, `fetchHasQRCode`, called by `useEventDetail`). The old `api.ts` and `types.ts` of EventDetail are deleted. The hook calls the repository functions.
+
+`event/` also holds the three EventBooklet calls: Get_EventBookletFilters, Get_EventBookletGuests and Get_EventBookletHelpers (`fetchEventBookletFilters`, `fetchEventBookletGuests`, `fetchEventBookletHelpers`, called by `useEventBooklet`). The old `api.ts` of EventBooklet is deleted, and its `types.ts` no longer re-exports `api/event`. The hook calls the repository functions.

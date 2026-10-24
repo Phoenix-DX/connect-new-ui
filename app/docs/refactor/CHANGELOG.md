@@ -616,3 +616,9 @@
 - `pages/EventDetail` is a page with a flow hook (`hooks/useEventDetail.ts`, `hooks/eventDetailState.ts`) and a props-only view (`components/EventDetailView.tsx`). It has no container. The hook sets `beforePaint: true` (decision W28) because the old block ran OnReady in a `useLayoutEffect`.
 - `api.ts` and `types.ts` are deleted; the hook calls `fetchEventDetails`, `fetchHostSurveyStatus`, `fetchHasDocuments` and `fetchHasQRCode` of `api/event`. Dependency-cruiser warnings 210 to 209 (rule 9 of the old block gone).
 - The EventDetail chunk grows 1.06 kB gzip (not an entry route); HomeFeed and Login change by +0.05 and +0.02 kB (W21 tripwire not reached).
+
+## P6-G5-B-EventBooklet - refactor(P6-G5-B): EventBooklet as page
+
+- `pages/EventBooklet` is a page with a flow hook (`hooks/useEventBooklet.ts`, `hooks/eventBookletState.ts`) and a props-only view (`components/EventBookletView.tsx` with guest, helper and list parts). It has no container. The hook sets `beforePaint: true` (decision W28) because the old block ran OnReady before the paint.
+- `api.ts` is deleted; the hook calls `fetchEventBookletFilters`, `fetchEventBookletGuests` and `fetchEventBookletHelpers` of `api/event`. Dependency-cruiser warnings 210 to 209.
+- EventBooklet has no parity states, so its DOM evidence is the developer's 16-scenario old-vs-new test (`dev.md`). The EventBooklet chunk grows 1.74 kB gzip (not an entry route); HomeFeed and Login change by +0.00 and +0.01 kB.

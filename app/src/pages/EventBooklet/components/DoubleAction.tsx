@@ -1,4 +1,4 @@
-// @os-block Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction
+/** @origin Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction */
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
