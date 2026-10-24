@@ -663,3 +663,9 @@
 - `pages/LDM_MyEvents_V2` is a page with a flow hook (`hooks/useLdmMyEvents.ts`, `hooks/ldmMyEventsState.ts`), a filter hook (`hooks/useMyTimelineFilterButton.ts`) and a props-only view (`components/LdmMyEventsView.tsx`). It has no container. The ScreenBlock, `api.ts` and `types.ts` are deleted; the hooks call `@/api/event` and `@/api/locality` directly.
 - The page `@origin` is corrected to `UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2` (G5-A had written it without `_V2`). LDM_EventDetail_V2 and LDM_Email_V2 still have the same error in their `@origin`.
 - Dependency-cruiser warnings 198 to 196. HomeFeed gzip +0.02 kB (the page now uses the shared `flowState` chunk); Login is unchanged within 0.01 kB.
+
+## P6-G5-B-LDM_EventDetail_V2 - refactor(P6-G5-B): LDM_EventDetail_V2 as page
+
+- `pages/LDM_EventDetail_V2` is a page with a flow hook (`hooks/useLdmEventDetail.ts`, `hooks/ldmEventDetailState.ts`) and a props-only view (`components/LdmEventDetailView.tsx`). It has no container. The ScreenBlock, `api.ts` and `types.ts` are deleted; `inputs.ts` is new. `api/household` gets `fetchHouseholdCoordinatesById`.
+- The page `@origin` is corrected to `UBTConnect.Legacy_LDMEventsFlow_V2.LDM_EventDetail_V2` (G5-A had written it without `_V2`). LDM_Email_V2 still has the same error.
+- HomeFeed gzip +0.06 kB and Login +0.04 kB (entry dependency list and chunk hashes); dependency-cruiser route warnings 4 to 3.

@@ -1,4 +1,3 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
@@ -14,7 +13,8 @@ export interface EventDetail_SectionProps {
 
 /** Section of the LDM event detail (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section.mvc.js
     view :140-200): the title in `event-detail-section-title` + `-host` or `-guest`, then Section_Placeholder
-    (`event-detail-section-placeholder` + ` border-bottom-neutral-4` when In_HasBottomBorder). No controller logic. */
+    (`event-detail-section-placeholder` + ` border-bottom-neutral-4` when In_HasBottomBorder). No controller logic.
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Section */
 export function EventDetail_Section({
   id,
   scope,

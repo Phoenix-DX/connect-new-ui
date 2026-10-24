@@ -691,3 +691,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T09:02:27 P6-G5-B-LDM_MyEvents_V2 stage test
 - 2026-10-24T09:05:57 P6-G5-B-LDM_MyEvents_V2 stage docs
 - 2026-10-24T09:07:19 P6-G5-B-LDM_MyEvents_V2 stage commit
+- 2026-10-24T09:07:21 P6-G5-B-LDM_MyEvents_V2 done ff306efd: ci: pass; parity visual --changed: 0 differences on both references; arch baseline 0 new; HomeFeed 244.38 kB, Login 184.42 kB
+- 2026-10-24T09:07:21 P6-G5-B-LDM_EventDetail_V2 started
+- 2026-10-24T09:07:21 P6-G5-B-LDM_EventDetail_V2 stage dev
+- 2026-10-24T09:08:02 P6-G5-B-LDM_EventDetail_V2 stage test
+- 2026-10-24T09:13:29 P6-G5-B-LDM_EventDetail_V2 stage docs
+- 2026-10-24T09:15:02 P6-G5-B-LDM_EventDetail_V2 stage commit

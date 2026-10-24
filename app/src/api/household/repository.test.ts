@@ -4,6 +4,7 @@ import {
   fetchHouseholdCaption,
   fetchHouseholdCardMembers,
   fetchHouseholdCoordinates,
+  fetchHouseholdCoordinatesById,
   fetchLocalityHouseholdIds,
   fetchLocalityHouseholds,
   fetchMemberRelations,
@@ -249,5 +250,30 @@ describe('household repository: Orbit landing', () => {
   it('a failed Orbit landing call raises the exception of callAction', async () => {
     sessionStorage.setItem('mock:mock', 'error');
     await expect(fetchOrbitHouseholdMembers(orbitInputs)).rejects.toThrow('Request failed with status 500');
+  });
+});
+
+/* ---- LDM_EventDetail_V2: the server action GetHouseholdCoordinates ----
+   The MSW mocks of the route answer the coordinates of the household's locality (the fictional Ortiz household in
+   Rosario), and zero coordinates without UseCoordinates for a household that no LDM meal has. */
+describe('household repository: LDM_EventDetail_V2', () => {
+  it('fetchHouseholdCoordinatesById calls the server action GetHouseholdCoordinates with HouseholdId', async () => {
+    const coordinates = await fetchHouseholdCoordinatesById('93001');
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'Connect2_OrbitMobile_MUI',
+        action: 'ActionGetHouseholdCoordinates',
+        inputNames: ['HouseholdId'],
+      }),
+    ]);
+    expect(coordinates).toEqual({ Latitude: '-32.9442', Longitude: '-60.6505', UseCoordinates: true });
+  });
+
+  it('fetchHouseholdCoordinatesById answers zero coordinates for a household without a place', async () => {
+    await expect(fetchHouseholdCoordinatesById('1')).resolves.toEqual({
+      Latitude: '0',
+      Longitude: '0',
+      UseCoordinates: false,
+    });
   });
 });

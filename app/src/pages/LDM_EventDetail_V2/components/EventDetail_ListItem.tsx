@@ -1,4 +1,3 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { styleFromCssText } from '@/shared/lib/cssText';
 import { osImage } from '@/legacy/os/os-assets';
@@ -8,7 +7,7 @@ import type {
   UI_ContactByMessage_WrapperData,
 } from '@/shared/UBTConnect_Utils/lib/structures';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import type { DetailGuestItem } from '@/pages/LDM_EventDetail_V2/types';
+import type { DetailGuestItem } from '@/api/event';
 import { flipHouseholdName } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { getLocalityName } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 
@@ -38,7 +37,8 @@ const plural = (n: number, one: string, many: string) => `${String(n)}${n > 1 ? 
     is hidden (`visibility: hidden`) when the household is not displayed. OnHandle_CallClicked (L:570-620):
     OnClick_PhoneCall with the household's contact data. OnHandle_EmailClicked (L:650-720): online, OnClick_Message
     with the email, the mobile phone and the flipped name; offline, the Info message "Please check your network
-    connection and try again". */
+    connection and try again".
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_ListItem */
 export function EventDetail_ListItem({
   id,
   scope,

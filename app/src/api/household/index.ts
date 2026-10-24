@@ -12,3 +12,5 @@ export {
   fetchSiblingRelations,
 } from './repository';
 export type * from './types';
+/* LDM_EventDetail_V2: the server action GetHouseholdCoordinates. */
+export { fetchHouseholdCoordinatesById } from './repository';

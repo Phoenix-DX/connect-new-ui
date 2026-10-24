@@ -5,6 +5,7 @@ import {
   toHouseholdCaptionInputs,
   toHouseholdCardMembers,
   toHouseholdCoordinates,
+  toHouseholdCoordinatesById,
   toLocalityHouseholdIds,
   toLocalityHouseholdIdsInputs,
   toLocalityHouseholds,
@@ -412,5 +413,19 @@ describe('household mapper: Orbit landing', () => {
       { memberId: '7102', firstName: 'Owen', isSelected: true },
     ]);
     expect(toOrbitHouseholdMembers({ Response: { List: [] } })).toEqual([]);
+  });
+});
+
+/* ---- LDM_EventDetail_V2: the server action GetHouseholdCoordinates ---- */
+describe('household mapper: LDM_EventDetail_V2', () => {
+  it('toHouseholdCoordinatesById keeps the three attributes of Response', () => {
+    expect(
+      toHouseholdCoordinatesById({ Response: { Latitude: '-38.7196', Longitude: '-62.2724', UseCoordinates: true } }),
+    ).toEqual({ Latitude: '-38.7196', Longitude: '-62.2724', UseCoordinates: true });
+    expect(toHouseholdCoordinatesById({ Response: { Latitude: '0', Longitude: '0', UseCoordinates: false } })).toEqual({
+      Latitude: '0',
+      Longitude: '0',
+      UseCoordinates: false,
+    });
   });
 });

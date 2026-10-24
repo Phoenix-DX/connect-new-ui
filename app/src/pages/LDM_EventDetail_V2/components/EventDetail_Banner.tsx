@@ -1,4 +1,3 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useWasRestoredFromCache } from '@/platform/navigation';
@@ -29,7 +28,8 @@ export interface EventDetail_BannerProps {
     the coordinator is available; `min-height: 51px` for a guest). OnInitialize / OnParametersChanged (B:700-790):
     SetActiveHeight (ActiveHeight = In_MinHeight). OnReady (B:600-660): CorrectHeightJS reads the text box's
     offsetHeight; a different height becomes ActiveHeight and raises SetContainerHeight. A view restored from the
-    cache skips all three. */
+    cache skips all three.
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_Banner */
 export function EventDetail_Banner({
   id,
   inImageURL,

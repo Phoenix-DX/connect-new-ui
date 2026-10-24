@@ -5,6 +5,7 @@ import {
   toHouseholdCaptionInputs,
   toHouseholdCardMembers,
   toHouseholdCoordinates,
+  toHouseholdCoordinatesById,
   toLocalityHouseholdIds,
   toLocalityHouseholdIdsInputs,
   toLocalityHouseholds,
@@ -112,5 +113,16 @@ export async function fetchOrbitHouseholdMembers(
 ): Promise<OrbitHouseholdMember[]> {
   return toOrbitHouseholdMembers(
     await callAction('Connect2_OrbitMobile_MUI', 'ScreenBlock_OrbitLanding/DataActionGet_HouseholdMembers', inputs),
+  );
+}
+
+/* ---- LDM_EventDetail_V2: the server action GetHouseholdCoordinates (Connect2_OrbitMobile_MUI) ---- */
+
+/** The server action GetHouseholdCoordinates(HouseholdId) of Connect2_OrbitMobile_MUI: the map coordinates of a
+    household. OnHandle_HostCardAddress of ScreenBlock_EventDetail_V2 calls it when the user asks for the directions
+    to the host. */
+export async function fetchHouseholdCoordinatesById(householdId: string): Promise<Required<HouseholdCoordinates>> {
+  return toHouseholdCoordinatesById(
+    await callAction('Connect2_OrbitMobile_MUI', 'ActionGetHouseholdCoordinates', { HouseholdId: householdId }),
   );
 }

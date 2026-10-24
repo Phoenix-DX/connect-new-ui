@@ -1,4 +1,3 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { styleFromCssText } from '@/shared/lib/cssText';
@@ -18,7 +17,8 @@ export interface EventDetail_SpecialNeeds_ListItemProps {
 /** One special need of a guest (capture/survey-UBTConnect.json sources
     "Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem.mvc.js", view): the square photo of
     MaxPhotoPx (or the blank `fa-users` box), then Title_Placeholder and Info_Placeholder in
-    `event-detail-list-sp-item-info` (+ ` border-bottom-neutral-4` when In_HasBottomBorder). No controller logic. */
+    `event-detail-list-sp-item-info` (+ ` border-bottom-neutral-4` when In_HasBottomBorder). No controller logic.
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_SpecialNeeds_ListItem */
 export function EventDetail_SpecialNeeds_ListItem({
   id,
   scope,

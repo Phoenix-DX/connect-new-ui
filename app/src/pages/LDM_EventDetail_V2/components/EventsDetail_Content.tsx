@@ -1,4 +1,3 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
@@ -14,7 +13,8 @@ export interface EventsDetail_ContentProps {
 /** Frame of the LDM event detail (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content.mvc.js
     view :170-215): the top part with Banner_Placeholder (`height` ActiveBannerHeight px) and GuestView_Placeholder,
     then Content_Placeholder. OnInitialize / OnParametersChanged (controller :20-100): ActiveBannerHeight =
-    In_MinBannerHeight, so the height follows the input. */
+    In_MinBannerHeight, so the height follows the input.
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventsDetail_Content */
 export function EventsDetail_Content({
   id,
   scope,

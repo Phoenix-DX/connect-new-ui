@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G5-B-LDM_MyEvents_V2",
+  "step": "P6-G5-B-LDM_EventDetail_V2",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T09:07:19"
+  "since": "2026-10-24T09:15:02"
  },
  "steps": {
   "P0-1": {
@@ -1353,11 +1353,24 @@
    "finished": "2026-10-24T09:01:48"
   },
   "P6-G5-B-LDM_MyEvents_V2": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T09:01:48",
    "tokens": {
     "dev": 283643,
-    "test": 29513
+    "test": 29513,
+    "docs": 43911
+   },
+   "commit": "ff306efd",
+   "gate": "ci: pass; parity visual --changed: 0 differences on both references; arch baseline 0 new; HomeFeed 244.38 kB, Login 184.42 kB",
+   "loops": 0,
+   "finished": "2026-10-24T09:07:21"
+  },
+  "P6-G5-B-LDM_EventDetail_V2": {
+   "status": "active",
+   "started": "2026-10-24T09:07:21",
+   "tokens": {
+    "dev": 367452,
+    "test": 36516
    }
   }
  },

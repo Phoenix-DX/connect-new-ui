@@ -1,4 +1,3 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { styleFromCssText } from '@/shared/lib/cssText';
 import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
@@ -33,7 +32,8 @@ export interface EventDetail_HostCardProps {
     published: the host photo (an assigned host with a photo) or the blank `fa-users` box, "Host" and the host name
     ("Your Host" when empty, "Host Allocation Pending" when not assigned), Person_Contact_Options (Phone, Email) and the
     angle-right (visible when HouseholdDisplay); a click on the host or the arrow raises HostInformation. An assigned
-    host also shows the address and the "Directions" button (both raise Address). No controller logic of its own. */
+    host also shows the address and the "Directions" button (both raise Address). No controller logic of its own.
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventDetail_HostCard */
 export function EventDetail_HostCard({
   id,
   scope,

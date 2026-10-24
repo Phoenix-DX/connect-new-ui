@@ -231,3 +231,15 @@ type OrbitHouseholdMembersWire = ActionOutputs<
 /** The members of DataActionGet_HouseholdMembers, in the server order (list unwrapped). */
 export const toOrbitHouseholdMembers = (wire: OrbitHouseholdMembersWire): OrbitHouseholdMember[] =>
   osList(wire.Response).map((w) => ({ memberId: w.MemberId, firstName: w.FirstName, isSelected: w.IsSelected }));
+
+/* ---- LDM_EventDetail_V2: the server action GetHouseholdCoordinates (Connect2_OrbitMobile_MUI) ---- */
+
+/** The outputs of the server action GetHouseholdCoordinates, as the contract describes them. */
+type HouseholdCoordinatesByIdWire = ActionOutputs<PathOf<'Connect2_OrbitMobile_MUI', 'ActionGetHouseholdCoordinates'>>;
+
+/** GetHouseholdCoordinates.Response (Directory_Coordinates): the three attributes as the server sends them. */
+export const toHouseholdCoordinatesById = (wire: HouseholdCoordinatesByIdWire): Required<HouseholdCoordinates> => ({
+  Latitude: wire.Response.Latitude,
+  Longitude: wire.Response.Longitude,
+  UseCoordinates: wire.Response.UseCoordinates,
+});
