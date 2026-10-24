@@ -828,3 +828,9 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 
 - Architecture: one `NetworkWarning` in `components/ui`. The inner Animate gets the id `<scope>-$b1` as in the OutSystems capture (user decision, 2026-10-24). The copy in `pages/MyBookmarks/components/` is deleted. The LDM routes gain the Animate id.
 - Gate: ci: pass (after loop 1); parity visual --all: 64/64 (OutSystems), 64/64 (self); jscpd 35 clones (was 36).
+
+## F25 - navigationGate: "navigating away" guard and re-entry block
+
+- Architecture: `platform/navigation/navigationGate.ts` blocks a back navigation while the screen being left is still in the document (OutSystems NH:903-917, user decision option A, 2026-10-24). A back that starts inside the gate is blocked too.
+- Unable-to-Host `HostSurvey` back goes back one screen (it recursed before). Documented in `app/docs/guides/shell.md`.
+- Gate: ci: pass; parity visual --all: 64/64 (OutSystems), 64/64 (self); e2e:pwa 9/9; browser check 4/4.

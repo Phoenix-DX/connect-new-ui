@@ -1,5 +1,6 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { collection } from '@/mocks/store';
 import { orbitStaticEntities } from '@/platform/bootstrap/mocks';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { useOsNavigate } from '@/platform/navigation';
@@ -15,6 +16,7 @@ import HostSurvey from './HostSurveyPage';
    of the Sync_Info_GetMain mock, as an earlier app start synced them. */
 const PATH = '/UBTConnect/HostSurvey';
 const EVENT = '/UBTConnect/EventDetail';
+const HOME = '/UBTConnect/HomeFeed';
 const GET = 'ScreenBlock_HostSurvey/DataActionGetHostSurvey';
 
 /** A route that the page opens or comes from: its name, and a back link. */
@@ -33,6 +35,7 @@ function Stub({ name }: { name: string }) {
 }
 
 const routes = {
+  [HOME]: <Stub name="HomeFeed" />,
   [EVENT]: <Stub name="EventDetail" />,
   [PATH]: <HostSurvey />,
   '/UBTConnect/HelpersDetail': <Stub name="HelpersDetail" />,
@@ -42,6 +45,14 @@ const block = () => document.querySelector('[data-block="Orbit_ScreenBlocks_Host
 const isSkeleton = () => document.getElementById('b2-$b36') !== null;
 const items = () => [...document.querySelectorAll('[data-block="Orbit_Blocks.HostSurvey_Item"]')];
 const surveyCalls = () => calledActions().filter((action) => action === GET);
+
+/** Event 7302: the survey of event 7301 with the status Unable to Host, in the mock store of the surveys (mocks.ts). */
+function storeUnableToHostSurvey(): void {
+  const surveys = collection('HostSurvey.surveys', () => [], 'EventId');
+  const survey = structuredClone(surveys.get('7301')?.Survey) as { SurveyInfo: Record<string, unknown> };
+  survey.SurveyInfo = { ...survey.SurveyInfo, EventId: '7302', HostProfileSurveyStatus: 'unable_to_host' };
+  surveys.upsert({ EventId: '7302', Survey: survey });
+}
 
 /** Opens the page from EventDetail and waits for the survey. */
 async function open(search: string) {
@@ -137,5 +148,52 @@ describe('HostSurvey page', () => {
     await act(() => new Promise((resolve) => setTimeout(resolve, 20)));
     expect(isSkeleton()).toBe(true);
     expect(getFeedbackMessage()).toBeNull();
+  });
+
+  describe('device back (BackNavigationHandler b2-$b43): HomeFeed → EventDetail → HostSurvey', () => {
+    /** The navigations that went through (dx-navigation of the navigation gate). */
+    const navigations: string[] = [];
+    const record = (event: Event) => {
+      navigations.push((event as CustomEvent<{ location: { pathname: string } }>).detail.location.pathname);
+    };
+    beforeEach(() => {
+      navigations.length = 0;
+      window.addEventListener('dx-navigation', record);
+    });
+    afterEach(() => {
+      window.removeEventListener('dx-navigation', record);
+    });
+
+    async function openFromHome(search: string) {
+      const view = renderRoutes(routes, HOME);
+      await act(() => view.router.navigate(EVENT));
+      await act(() => view.router.navigate(`${PATH}${search}`));
+      await waitFor(() => {
+        expect(isSkeleton()).toBe(false);
+      });
+      navigations.length = 0;
+      return view;
+    }
+
+    it('Unable to Host: NavigateTo_Back without PreventNavigation gives one back, no recursion', async () => {
+      storeUnableToHostSurvey();
+      const view = await openFromHome('?In_EventId=7302');
+      expect(view.container.textContent).toContain('This Survey is no longer available for you.');
+
+      await act(() => view.router.navigate(-1));
+      expect(view.at()).toBe(EVENT);
+      expect(navigations).toEqual([EVENT]);
+
+      await act(() => view.router.navigate(-1));
+      expect(view.at()).toBe(HOME);
+      expect(navigations).toEqual([EVENT, HOME]);
+    });
+
+    it('a confirmed survey: one normal back', async () => {
+      const view = await openFromHome('?In_EventId=7301');
+      await act(() => view.router.navigate(-1));
+      expect(view.at()).toBe(EVENT);
+      expect(navigations).toEqual([EVENT]);
+    });
   });
 });

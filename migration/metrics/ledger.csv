@@ -819,3 +819,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,verify,24142,refactor-test,,F33 sonnet (fail: format)
 2026-10-24,refactor,build,26305,refactor-dev,,F33 sonnet (loop 1)
 2026-10-24,refactor,other,22327,refactor-docs,,F33 sonnet
+2026-10-24,refactor,verify,13159,refactor-test,,F33 sonnet (re-test)
+2026-10-24,refactor,build,232451,refactor-dev,,F25 opus
+2026-10-24,refactor,build,341490,refactor-dev,,F22-26 opus
+2026-10-24,refactor,verify,26405,refactor-test,,F25 sonnet

@@ -290,8 +290,13 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
     `useWasRestoredFromCache()` where the original tests it.
 
 - **Navigation guard (`dx-before-navigation`).** `src/platform/navigation/navigationGate.ts` (`shouldBlockNavigation`) runs
-  as the blocker of the router before every navigation. Unless `allowUpcomingNavigation()` was called, it does two
-  things:
+  as the blocker of the router before every navigation.
+  - It blocks a back navigation (POP) while the app navigates away from a screen (NavigationHandler `NH:903-914`).
+    This is the case when the container that the last navigation leaves is still in the document, or when the frame
+    shows no screen.
+    A POP that starts inside the gate (a back handler's `NavigateBack`) is also blocked. A blocked POP runs no handler and
+    does not use the `allowUpcomingNavigation()` flag. Unable to Host on HostSurvey goes back one screen because of this.
+  - Unless `allowUpcomingNavigation()` was called, it then does two things:
   1. For a back navigation, it runs the back queue.
   2. It dispatches the cancelable window event `dx-before-navigation` (`detail.location`, `detail.replace`,
      `detail.resume()`).
