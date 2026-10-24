@@ -2,9 +2,11 @@ import { log } from '@/platform/log/log';
 import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 
-/* Client actions of Connect2_OrbitMobile_MUI that ScreenBlock_GuestArrangements calls, ported 1:1 (as in
-   MilestoneDetail). `C:<n>` = line of migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js. Dates are
-   OutSystems values as text; "" is the null date. */
+/** Client actions of Connect2_OrbitMobile_MUI that ScreenBlock_GuestArrangements calls, ported 1:1 (as in
+    MilestoneDetail), without React. useGuestArrangements and the page call them. `C:<n>` = line of
+    migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js. Dates are OutSystems values as text; "" is the
+    null date.
+    @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_GuestArrangements */
 
 /** GetContactHelpdeskSubject_Milestone(MilestoneTypeId, EventName, MilestoneName, DateTime, Location) →
     Out_FormattedSubject (C:2052-2132): EventName [+ " - " when a name, location or date follows], MilestoneName
@@ -39,7 +41,7 @@ export function getSkeletonLoadingIdFromMilestoneTypeId(milestoneTypeId: string)
 }
 
 /** OnApplicationEvent_ViewHousehold(AuditPayload_ViewHousehold: TargetHouseholdId, MilestoneId, MilestoneTitle,
-    EventId, EventTitle, EventLocation) (SB :1646-1656). Telemetry is not wired in the mock phase (decision U17): the
+    EventId, EventTitle, EventLocation), after NavigateTo_HouseholdDetail in OnHandle_ClickedMember. Telemetry is not wired in the mock phase (decision U17): the
     event goes to the log with its ids only. */
 export function onApplicationEvent_ViewHousehold(
   targetHouseholdId: string,

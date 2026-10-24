@@ -1,8 +1,17 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { orbitEvents, orbitGuestArrangements, type OrbitGuestTransport } from '@/mocks/fictional/orbit';
-import type { GetGuestArrangementsWire, GuestArrangementsScreenWire, MilestoneTransportScreenWire } from './types';
+
+/* The wire shapes of DataActionGetGuestArrangements, typed by the API contract
+   (Connect2_OrbitMobile_BL.GetGuestArrangements_ScreenRec). */
+type GetGuestArrangementsWire = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_GuestArrangements/DataActionGetGuestArrangements'>
+>;
+/** GetGuestArrangements_Screen (Connect2_OrbitMobile_BL) as it travels. */
+type GuestArrangementsScreenWire = GetGuestArrangementsWire['Response'];
+type MilestoneTransportScreenWire = GuestArrangementsScreenWire['ArrivalDetails']['List'][number];
 
 /* DataActionGetGuestArrangements was never recorded (no capture, no-capture.json): fictional answers from the shared
    Orbit world (src/mocks/fictional/orbit.ts orbitGuestArrangements, GuestArrangements Q1) in the contract's shape.
@@ -94,7 +103,7 @@ export function guestArrangementsAnswer(memberId: string, eventId: string): GetG
 }
 
 /* GetDirectoryAccess and the signed photos of the member cards are answered by the shared mocks
-   (shared/Connect2_OrbitMobile_MUI/lib/mocks.ts, shared/Connect2_LegacyShared). */
+   (GetDirectoryAccess: shared/Connect2_OrbitMobile_MUI/lib/mocks.ts; ActionGetSignedImagesInBulk: pages/MilestoneDetail/mocks.ts). */
 export const handlers: RequestHandler[] = [
   contractHandler(
     MODULE,

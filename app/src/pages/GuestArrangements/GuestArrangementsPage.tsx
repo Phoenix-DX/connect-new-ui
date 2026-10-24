@@ -1,60 +1,82 @@
-/** @origin UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements */
+import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { useFlagOn } from '@/platform/flags/flags';
+import { fetchLegacySignedImageURL } from '@/api/image';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { showFeedbackMessage } from '@/platform/feedback';
+import { useFlagOn } from '@/platform/flags/flags';
 import { useOsNavigate } from '@/platform/navigation';
-import { ScreenBlock_GuestArrangements } from './components/ScreenBlock_GuestArrangements';
+import { GuestArrangementsView } from './components/GuestArrangementsView';
+import { getSkeletonLoadingIdFromMilestoneTypeId } from './hooks/guestArrangementsActions';
+import type { GuestArrangementsBlockInputs } from './hooks/guestArrangementsState';
+import { useGuestArrangements, type GuestArrangementsEvents } from './hooks/useGuestArrangements';
+import { readGuestArrangementsInputs, toGuestArrangementsBlockInputs } from './inputs';
 
 const NO_ORBIT_ACCESS = "You don't have access to Orbit. Please contact the Orbit Helpdesk if you have any questions.";
 
-/** Connect2_LegacyShared FeedbackMessageAfterTransition (runtime-sources/Connect2_LegacyShared.controller.js
-    :2030-2085): its JS node shows the message 500 ms later, after the navigation that follows. */
+/** Connect2_LegacyShared FeedbackMessageAfterTransition: its JS node shows the message 500 ms later, after the
+    navigation that follows. */
 function feedbackMessageAfterTransition(message: string, messageType: number): void {
   window.setTimeout(() => {
     showFeedbackMessage(message, messageType);
   }, 500);
 }
 
-/** UBTConnect Legacy_OrbitEventsFlow.GuestArrangements (S = analysis/sources/UBTConnect.Legacy_OrbitEventsFlow.
-    GuestArrangements.mvc.js: model :1-127, view :128-276, controller :277-438). Inputs In_MilestoneId, In_EventId,
-    In_MemberId, In_HostId, In_OrbitMilestoneTypeId, In_MilestoneTitle, In_EventName (S :12-55).
-    ScreenBlock_GuestArrangements (In_PreloadMilestoneName = In_MilestoneTitle, In_PreloadEventName = In_EventName;
-    placeholders Menu and CommonUI_Elements empty, S :196-252), then CommonUI_InsideLayout (S :253-268). Reached from
-    MilestoneDetail (accommodation host, a guest with guest arrangements). OnHandle_ContactHelpdesk (S :295-345) checks
-    GetHasOrbitAccess (flag mobileOrbitAccess, default-only on): ContactByEmailOrbitHelpdesk, otherwise the no-access
-    message after the transition and HomeFeed. OnHandle_NavigateToHouseholdDetail (S :361-385) goes straight to
-    HouseholdDetails. */
+/** ScreenBlock_GuestArrangements on the screen: its flows (useGuestArrangements) and its view. The hook runs here, at
+    the place of the block, so that its OnReady runs before the lifecycle of CommonUI_InsideLayout, as in OutSystems,
+    and a change of the block state renders only the block. The placeholders Menu and CommonUI_Elements are empty. */
+function GuestArrangementsBlock({
+  inputs,
+  ...events
+}: { inputs: GuestArrangementsBlockInputs } & GuestArrangementsEvents) {
+  const { state, onClickedMember, onContactHelpdesk } = useGuestArrangements(inputs, events);
+  return (
+    <GuestArrangementsView
+      id="$b1"
+      preloadEventName={inputs.In_PreloadEventName}
+      preloadMilestoneName={inputs.In_PreloadMilestoneName}
+      orbitMilestoneTypeId={inputs.In_OrbitMilestoneTypeId}
+      skeletonLoadingId={getSkeletonLoadingIdFromMilestoneTypeId(inputs.In_OrbitMilestoneTypeId)}
+      isFetchingData={state.isFetchingData}
+      isDataFetched={state.isDataFetched}
+      hasData={state.hasData}
+      guestArrangements={state.guestArrangementsData}
+      getSignedImageURL={fetchLegacySignedImageURL}
+      onClickedMember={onClickedMember}
+      onContactHelpdesk={onContactHelpdesk}
+    />
+  );
+}
+
+/** @origin UBTConnect.Legacy_OrbitEventsFlow.GuestArrangements
+    The guest arrangements of a visiting member, reached from MilestoneDetail (accommodation host, a guest with guest
+    arrangements): ScreenBlock_GuestArrangements (In_PreloadMilestoneName = In_MilestoneTitle, In_PreloadEventName =
+    In_EventName), then CommonUI_InsideLayout. The screen handles the two events of the block:
+    - OnHandle_NavigateToHouseholdDetail goes to HouseholdDetails.
+    - OnHandle_ContactHelpdesk checks GetHasOrbitAccess (flag mobileOrbitAccess): with access
+      ContactByEmailOrbitHelpdesk (In_MilestoneId "", as compiled); without it the no-access message after the
+      transition, and HomeFeed. */
 export default function GuestArrangements() {
   const [params] = useSearchParams();
+  const inputs = useMemo(() => readGuestArrangementsInputs(params), [params]);
+  const blockInputs = useMemo(() => toGuestArrangementsBlockInputs(inputs), [inputs]);
   const navigate = useOsNavigate();
   const hasOrbitAccess = useFlagOn('mobileOrbitAccess');
-  const inEventId = params.get('In_EventId') ?? '0';
 
   return (
     <>
-      <ScreenBlock_GuestArrangements
-        id="$b1"
-        In_OrbitMilestoneTypeId={params.get('In_OrbitMilestoneTypeId') ?? ''}
-        In_PreloadMilestoneName={params.get('In_MilestoneTitle') ?? ''}
-        In_HostId={params.get('In_HostId') ?? '0'}
-        In_PreloadEventName={params.get('In_EventName') ?? ''}
-        In_MemberId={params.get('In_MemberId') ?? '0'}
-        In_MilestoneId={params.get('In_MilestoneId') ?? ''}
-        In_EventId={inEventId}
+      <GuestArrangementsBlock
+        inputs={blockInputs}
         onNavigateToHouseholdDetail={(householdId) => {
-          // OnHandle_NavigateToHouseholdDetail (S :361-385)
           navigate('/UBTConnect/HouseholdDetails', { HouseholdId: householdId });
         }}
         onContactHelpdesk={(subject, eventName) => {
-          // OnHandle_ContactHelpdesk (S :295-345): In_MilestoneId "" as compiled
           if (!hasOrbitAccess) {
             feedbackMessageAfterTransition(NO_ORBIT_ACCESS, 3);
             navigate('/UBTConnect/HomeFeed', {});
             return;
           }
           navigate('/UBTConnect/ContactByEmailOrbitHelpdesk', {
-            In_EventId: inEventId,
+            In_EventId: inputs.In_EventId,
             In_Subject: subject,
             In_EventName: eventName,
             In_MilestoneId: '',

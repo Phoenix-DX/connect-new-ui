@@ -695,3 +695,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,other,38092,refactor-docs,,P6-G5-B-EventBooklet sonnet
 2026-10-24,refactor,build,468964,refactor-dev,,P6-G5-B-MilestoneDetail opus
 2026-10-24,refactor,verify,31623,refactor-test,,P6-G5-B-MilestoneDetail sonnet
+2026-10-24,refactor,build,317637,refactor-dev,,P6-G5-B-GuestArrangements opus
+2026-10-24,refactor,other,39258,refactor-docs,,P6-G5-B-MilestoneDetail sonnet
+2026-10-24,refactor,verify,33283,refactor-test,,P6-G5-B-GuestArrangements sonnet

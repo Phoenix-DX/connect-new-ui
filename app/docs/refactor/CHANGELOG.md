@@ -627,3 +627,9 @@
 
 - `pages/MilestoneDetail` is a page with 2 flow hooks (`hooks/useMilestoneWrapper.ts`, `hooks/useAccommodationHost.ts`, each with a pure state file) and 2 props-only views. It has no container. Both hooks set `beforePaint: true` (decision W28). `api.ts`, `types.ts` and `components/actions.ts` are deleted; the hooks call `api/event` and `api/image`.
 - Back navigation (W27): the accommodation block reloads its data, as the old port did. The old page crashed on 2 paths: an optional input missing, or a visit from a notification, then member and back. Both are "old: crash, new: reload". OutSystems keeps the state: follow-up F24.
+
+## P6-G5-B-GuestArrangements - refactor(P6-G5-B): GuestArrangements as page
+
+- `pages/GuestArrangements` is a page with a flow hook (`hooks/useGuestArrangements.ts`, `hooks/guestArrangementsState.ts`, `hooks/guestArrangementsActions.ts`) and a props-only view (`components/GuestArrangementsView.tsx`). It has no container. The hook sets `beforePaint: true` (decision W28) because the old block ran OnReady in a `useLayoutEffect`.
+- `api.ts` and `types.ts` are deleted; the hook calls `fetchGuestArrangements` of `api/event` and the page calls `fetchLegacySignedImageURL` of `api/image`. Dependency-cruiser warnings of the folder 3 to 1.
+- The GuestArrangements chunk grows 0.87 kB gzip (not an entry route); HomeFeed and Login are unchanged (dev.md).

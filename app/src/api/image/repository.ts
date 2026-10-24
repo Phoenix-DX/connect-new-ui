@@ -30,8 +30,9 @@ async function fetchLegacySignedImagesInBulk(cacheKeys: string[]): Promise<BulkC
 
 /** GetCacheableSignedImageURL(EntityId, Type, Size) (Connect2_LegacyShared): the signed URL of an entity image. It is
     "" for a null entity id or an empty type. Else it comes from the memory cache or from one bulk server call
-    (imageCache.legacySignedImage: TTL 300 s, timeout 10, bulk of 15); ResultURL is the object or "". OrbitAdminEventDetail
-    calls it for the photo of a scanned member. */
+    (imageCache.legacySignedImage: TTL 300 s, timeout 10, bulk of 15); ResultURL is the object or "". It is called for
+    the photo of a scanned member (OrbitAdminEventDetail), the host photo (MilestoneDetail) and the member cards
+    (GuestArrangements). */
 export async function fetchLegacySignedImageURL(entityId: string, type: string, size: string): Promise<string> {
   const id = textToLongInteger(entityId);
   if (id === '0' || type === '') return '';
