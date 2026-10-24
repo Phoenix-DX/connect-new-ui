@@ -16,7 +16,7 @@ import {
   get_Note_DynamicFilter_YearOptions,
   getLocalNotesCategoryIds_ByUserId,
 } from '@/platform/storage/localEntities';
-import { scrollTop } from '@/shared/UBTConnect/lib/actions';
+import { scrollTop } from '@/lib/ubtConnect/actions';
 import { INITIAL_NOTES_STATE, skeletonNotes, type NotesState } from './notesState';
 import { useNotes } from './useNotes';
 
@@ -36,8 +36,8 @@ vi.mock('@/platform/session/session', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/session/session')>()),
   currentUserId: () => '990001',
 }));
-vi.mock('@/shared/UBTConnect/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect/lib/actions')>()),
+vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnect/actions')>()),
   scrollTop: vi.fn(),
 }));
 vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({

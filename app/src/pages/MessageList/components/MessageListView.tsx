@@ -5,7 +5,7 @@ import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AnimationType, RecentSearchType, Speed } from '@/pages/MessageList/staticEntities';
-import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuAction } from '@/lib/legacyShared/staticEntities';
 import { MessageListNoResults } from '@/components/ui/MessageListNoResults';
 import { Spinner } from '@/components/ui/Spinner';
 import { Animate } from '@/components/ui/Animate';

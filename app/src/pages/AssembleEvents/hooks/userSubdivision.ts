@@ -1,4 +1,4 @@
-import { getCacheableUserInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { getCacheableUserInfo } from '@/lib/legacyShared/actions';
 
 /* The user's own supper meeting, which the three blocks of AssembleEvents read (ScreenBlock_AssembleEvents,
    AssembleSummary_List and Assemble_FilterSheet). */

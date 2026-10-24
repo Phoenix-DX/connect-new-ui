@@ -2,7 +2,7 @@
 // @os-block UBTConnect.App_Common_Blocks.SectionSeparator
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { UBT_Color, UBT_Size } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_Size } from '@/lib/ubtConnect/staticEntities';
 
 export interface SectionSeparatorProps {
   /** OutSystems instance id of the block. */

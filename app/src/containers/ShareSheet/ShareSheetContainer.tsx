@@ -18,9 +18,9 @@ import {
   UBT_ButtonType,
   UBT_Color as LibraryColor,
   UBT_Display,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { ActionButton } from '@/components/ui/ActionButton';
-import type { SearchResult } from '@/shared/UBTConnect_Utils/lib/structures';
+import type { SearchResult } from '@/lib/ubtConnectUtils/structures';
 import {
   Connect_Entity,
   UBT_AvatarSize,
@@ -32,7 +32,7 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnect_Utils/lib/staticEntities';
+} from '@/lib/ubtConnectUtils/staticEntities';
 import { SearchResultItem } from '@/components/search/SearchResultItem';
 import { ShareSheetSection } from '@/components/share/ShareSheetSection';
 import { ShareSheetSectionTitle } from '@/components/share/ShareSheetSectionTitle';

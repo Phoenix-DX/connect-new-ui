@@ -1,5 +1,5 @@
 import type { NotificationDateRange, NotificationItem } from '@/api/notification';
-import { parseOsDate } from '@/shared/lib/osDateTime';
+import { parseOsDate } from '@/lib/osDateTime';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 /** DateTimeToDate of a client DateTime. */

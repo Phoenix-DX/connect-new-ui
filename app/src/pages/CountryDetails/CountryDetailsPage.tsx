@@ -4,9 +4,9 @@ import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { FilterSheetContainer } from '@/containers/FilterSheet';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
-import type { Filter_Common_Options } from '@/shared/UBTConnect/lib/structures';
-import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import type { Filter_Common_Options } from '@/lib/ubtConnect/structures';
+import { Connect_BottomBar_Items } from '@/lib/ubtConnectUtils/staticEntities';
+import { DetailLayoutContainer } from '@/containers/DetailLayout';
 import { CountryDetailsContent } from './components/CountryDetailsContent';
 import { useCountryDetails } from './hooks/useCountryDetails';
 import { readCountryDetailsInputs } from './inputs';
@@ -46,7 +46,7 @@ export default function CountryDetails() {
 
   return (
     <>
-      <Layout_DetailPage
+      <DetailLayoutContainer
         id="$b1"
         placeholderHeaderTitle={<span data-expression="">{countryName === '' ? 'Browse Directory' : countryName}</span>}
         content={

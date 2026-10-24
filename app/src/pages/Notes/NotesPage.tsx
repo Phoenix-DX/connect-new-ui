@@ -6,7 +6,7 @@ import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { Input } from '@/components/ui/Input';
-import { UBT_Color, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_Shape, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { FilterSheet_Icon_Label } from './components/FilterSheet_Icon_Label';
 import { Horizontal_Filter_TagList } from './components/Horizontal_Filter_TagList';
 import { NoteCard_List } from './components/NoteCard_List';

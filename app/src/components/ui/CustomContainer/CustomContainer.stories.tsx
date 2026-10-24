@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { osImage } from '@/legacy/os/os-assets';
-import { PendingBlock } from '@/shared/test/PendingBlock';
+import { PendingBlock } from '@/test/PendingBlock';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomText } from '@/components/ui/CustomText';
-import { UBT_Display } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Display } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { CustomContainer } from './CustomContainer';
 

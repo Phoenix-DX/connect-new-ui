@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
-import { setDefaults } from '@/shared/ReactiveHtmlSanitizer/lib/actions';
+import { testCapturedVariants } from '@/test/capturedVariants';
+import { setDefaults } from '@/lib/sanitizeHtml';
 import { SanitizedHtml } from './SanitizedHtml';
 import * as stories from './SanitizedHtml.stories';
 

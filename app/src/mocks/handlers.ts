@@ -11,7 +11,7 @@ type MockModules = Record<string, { handlers?: RequestHandler[] }>;
  */
 const pageMocks: MockModules = import.meta.glob('../pages/*/mocks.ts', { eager: true });
 const containers: MockModules = import.meta.glob('../containers/*/mocks.ts', { eager: true });
-const shared: MockModules = import.meta.glob('../shared/**/mocks.ts', { eager: true });
+const shared: MockModules = import.meta.glob('./modules/**/mocks.ts', { eager: true });
 const components: MockModules = import.meta.glob('../components/**/mocks.ts', { eager: true });
 const platform: MockModules = import.meta.glob('../platform/**/mocks.ts', { eager: true });
 

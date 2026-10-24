@@ -2,8 +2,8 @@ import { fetchGuestArrangements } from '@/api/event';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, type IsAlive } from '@/platform/navigation';
-import { checkDirectoryAccess } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { DirectoryAPIFilter } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { checkDirectoryAccess } from '@/lib/orbit/actions';
+import { DirectoryAPIFilter } from '@/lib/orbit/staticEntities';
 import { getContactHelpdeskSubject_Milestone, onApplicationEvent_ViewHousehold } from './guestArrangementsActions';
 import {
   guestArrangementsCallInputs,

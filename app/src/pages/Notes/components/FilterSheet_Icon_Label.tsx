@@ -15,7 +15,7 @@ import {
   UBT_Icons2,
   UBT_IconsSize,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { child, scopeOf } from './ids';
 import { UBT_Icons2_ExpandMore } from './staticEntities';

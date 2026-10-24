@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
-import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { ContainerOptions, TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
+import type { ContainerOptions, TextOptions } from '@/lib/ubtConnectLibrary/structures';
 import { UBT_FontSize_Heading6 } from '@/pages/Services/staticEntities';
 
 export interface ServiceListSectionProps {

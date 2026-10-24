@@ -4,8 +4,8 @@ import type {
   BookmarkSummariesVariables,
   GroupSummaryBookmark,
 } from '@/api/bookmark';
-import { MyBookmarks_ObjectType } from '@/shared/UBTConnect/lib/staticEntities';
-import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import { MyBookmarks_ObjectType } from '@/lib/ubtConnect/staticEntities';
+import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 
 /** The variables of the block ScreenBlock_MyBookmarks, the reducer and the client actions. Pure; the flows are in
     useMyBookmarks.

@@ -18,8 +18,8 @@ import { log } from '@/platform/log/log';
 import { useFlowState, type BackNavigationEvent, type IsAlive } from '@/platform/navigation';
 import { getClientVar } from '@/platform/session/session';
 import { getLocalHelperRoles } from '@/platform/storage/localEntities';
-import { checkDirectoryAccess, setBookletMaxRows } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { DirectoryAPIFilter } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { checkDirectoryAccess, setBookletMaxRows } from '@/lib/orbit/actions';
+import { DirectoryAPIFilter } from '@/lib/orbit/staticEntities';
 import {
   canFetchNextPage,
   eventBookletReducer,

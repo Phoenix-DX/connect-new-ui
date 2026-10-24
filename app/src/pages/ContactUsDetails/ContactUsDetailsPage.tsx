@@ -5,10 +5,10 @@ import { DetailLayout } from '@/components/layout';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { ValidationServiceProvider } from '@/components/ui/os/OSValidation';
 import { useNavigateBack } from '@/platform/navigation';
-import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
+import { UserInfoCache } from '@/platform/session/UserInfoCache';
 import { NavigationDialog } from '@/components/ui/Dialog';
 import { SectionSeparator } from '@/components/ui/SectionSeparator';
-import { UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_ImageSize } from '@/lib/ubtConnectLibrary/staticEntities';
 import { ContactUsDetailsFooter } from './components/ContactUsDetailsFooter';
 import { ContactUsDetailsHeader } from './components/ContactUsDetailsHeader';
 import { ContactUsMessageForm } from './components/ContactUsMessageForm';
@@ -104,7 +104,7 @@ export default function ContactUsDetails() {
         content={content}
         commonUI={<CommonUiLayout id="$b25" inIgnorePolicy={state.ignorePolices} />}
       />
-      {state.isLogged && <CacheControl_UserInfo_Wrapper id="$b26" onResult={onUserInformation} />}
+      {state.isLogged && <UserInfoCache id="$b26" onResult={onUserInformation} />}
     </ValidationServiceProvider>
   );
 }

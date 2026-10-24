@@ -1,6 +1,6 @@
 import type { EventEmailCoordinatorData, UserContactRequest } from '@/api/message';
 import type { AppManager_CachedUserInfoRec } from '@/platform/session/types';
-import type { ContactByPhonePopupData } from '@/shared/UBTConnect_Utils/lib/structures';
+import type { ContactByPhonePopupData } from '@/lib/ubtConnectUtils/structures';
 import {
   ApplicationEvents_Directory_EmailHousehold,
   ApplicationEvents_LDM,

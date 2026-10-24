@@ -6,7 +6,7 @@ import { AvatarImage } from '@/components/ui/AvatarImage';
 import { ColumnsThree } from '@/components/ui/ColumnsThree';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
-import { getBackgroundColor_IsRead } from '@/shared/UBTConnectLibrary/lib/actions';
+import { getBackgroundColor_IsRead } from '@/lib/ubtConnectLibrary/actions';
 import {
   UBT_AvatarSize,
   UBT_Color,
@@ -15,7 +15,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { get_ElapsedTime_Notification } from './actions';
 
 export interface Notification_ListItemProps {

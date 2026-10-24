@@ -24,8 +24,8 @@ import {
   UBT_JustifyContent,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { Note_Item as NoteItemRecord, Notes } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { Note_Item as NoteItemRecord, Notes } from '@/lib/ubtConnectLibrary/structures';
 
 export interface NoteListProps {
   /** OutSystems instance id of the block. */

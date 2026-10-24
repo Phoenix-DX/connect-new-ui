@@ -1,8 +1,8 @@
 /** @origin UBTConnectLibrary.OutSystemsUIOverrides.Badge */
 // @os-block UBTConnectLibrary.OutSystemsUIOverrides.Badge
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { getClass_BackgroundColor } from '@/shared/UBTConnectLibrary/lib/actions';
-import { Shape, UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { getClass_BackgroundColor } from '@/lib/ubtConnectLibrary/actions';
+import { Shape, UBT_Color } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface BadgeProps {
   /** OutSystems instance id of the block. */

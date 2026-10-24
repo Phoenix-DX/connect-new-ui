@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useEffect, useState } from 'react';
 import { MemoryRouter } from 'react-router';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import { ShareableObject } from '@/components/share/ShareableObject';
 import { ShareSheetContainer, type ShareSheetContainerProps } from './ShareSheetContainer';
 

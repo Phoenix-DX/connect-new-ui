@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
@@ -13,7 +13,7 @@ import {
   UBT_FontWeight,
   UBT_Icons2,
   UBT_IconsSize,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { PinUnlockMobile } from './PinUnlockMobile';
 
 /** The InactivityTimer block as the caller gives it: the block renders an empty wrapper (platform/session). */

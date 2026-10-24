@@ -1,7 +1,7 @@
 import { fetchShareDetails } from '@/api/share';
 import { exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
+import { Type_ShareObject } from '@/lib/ubtConnect/staticEntities';
 
 /** The client actions of the UBTConnect module that ConnectShare runs, without React: OnInitializeSharingScreen and
     AuditShareViewEvent. useConnectShare calls them.

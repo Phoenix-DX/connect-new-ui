@@ -3,7 +3,7 @@ import {
   defaultActionGetLocalityInformation_Output,
   defaultCacheableSubdivisionInformation,
   defaultLocalityHouseholdsResultItem,
-} from '@/shared/Connect2_LegacyShared/lib/mockDefaults';
+} from '@/mocks/modules/Connect2_LegacyShared/mockDefaults';
 import {
   toAllLocalities,
   toBulkSubdivisionsInputs,

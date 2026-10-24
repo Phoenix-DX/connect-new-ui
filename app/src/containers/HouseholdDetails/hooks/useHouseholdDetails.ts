@@ -7,10 +7,10 @@ import { useFlagOn } from '@/platform/flags/flags';
 import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
-import { showComingSoonMessage } from '@/shared/UBTConnect_Utils/lib/actions';
-import { getSkeleton_UI_HouseholdDetails, hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
-import type { HouseholdPreviewStructure, UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
+import { showComingSoonMessage } from '@/lib/ubtConnectUtils/actions';
+import { getSkeleton_UI_HouseholdDetails, hasAccessToRegion } from '@/lib/ubtConnect/actions';
+import type { HouseholdPreviewStructure, UI_HouseholdMember } from '@/lib/ubtConnect/structures';
 import { handlePreviewData, householdDetailsReducer, INITIAL_HOUSEHOLD_DETAILS_STATE } from './householdDetailsState';
 
 /** The flows of the household details (the block HouseholdDetails_Block): the data actions, the events of the view

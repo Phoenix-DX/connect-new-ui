@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { subdivisionHousehold } from '@/components/household/HouseholdGalleryCardList/mockData';
 import { householdsOfSupperMeeting } from '@/mocks/fictional/directory';
-import { getSkeletonList_UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/actions';
+import { getSkeletonList_UI_SubdivisionHousehold } from '@/lib/ubtConnect/actions';
 import { SupperMeetingHouseholdList } from './SupperMeetingHouseholdList';
 
 const meta = {

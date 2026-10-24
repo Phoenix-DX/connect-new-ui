@@ -1,7 +1,7 @@
 import { useId, type MouseEvent, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { OSLink } from '@/shared/lib/OSLink';
-import { checkSupportedBrowserVersion, openExternalURL } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { OSLink } from '@/components/ui/os/OSLink';
+import { checkSupportedBrowserVersion, openExternalURL } from '@/lib/legacyShared/actions';
 import { VirtualMeetingDetails } from '@/components/assemble/VirtualMeetingDetails';
 import { AssembleSummaryCardRow } from '@/components/assemble/AssembleSummaryCardRow';
 

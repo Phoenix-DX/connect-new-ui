@@ -23,8 +23,8 @@ import { calledActions, freshPage, recordBodies, reloadPage, setFlags } from '@/
 
 /* The bottom-bar slider step: the real OnApplicationReady_BottomBarSlider runs, and the test counts its calls. */
 const slider = vi.hoisted(() => ({ calls: 0 }));
-vi.mock('@/shared/UBTConnectLibrary/lib/actions', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@/shared/UBTConnectLibrary/lib/actions')>();
+vi.mock('@/lib/ubtConnectLibrary/actions', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/lib/ubtConnectLibrary/actions')>();
   return {
     ...actual,
     onApplicationReady_BottomBarSlider: () => {

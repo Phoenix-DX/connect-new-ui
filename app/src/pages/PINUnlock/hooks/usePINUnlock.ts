@@ -2,7 +2,7 @@ import { replaceOnUpcomingNavigation, useOsNavigate } from '@/platform/navigatio
 import { PATHS } from '@/platform/navigation/paths';
 import { getResumeLoginLink } from '@/platform/session/resume';
 import { getClientVar } from '@/platform/session/session';
-import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { useScreenController_NavigateToPage } from '@/lib/jsUtils';
 
 export interface PINUnlockState {
   /** Block_PINUnlockUnlock, the Unlock event of Block_PINUnlock (the right PIN). */

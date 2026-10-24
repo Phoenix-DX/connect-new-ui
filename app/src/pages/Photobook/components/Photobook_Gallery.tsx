@@ -4,17 +4,11 @@ import type { SelectedHousehold } from '@/api/household';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { TouchEvents } from '@/components/ui/TouchEvents';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import {
-  UBT_Color,
-  UBT_Display,
-  UBT_FontSize,
-  UBT_Shape,
-  UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_Display, UBT_FontSize, UBT_Shape, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import {
   UBT_AlignItems,

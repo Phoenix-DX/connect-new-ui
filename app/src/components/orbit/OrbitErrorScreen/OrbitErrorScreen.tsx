@@ -3,7 +3,7 @@
 import { useCallback, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 
 export interface OrbitErrorScreenProps {
   /** OutSystems instance id of the block. */

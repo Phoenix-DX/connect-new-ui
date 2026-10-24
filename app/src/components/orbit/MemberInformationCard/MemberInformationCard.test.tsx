@@ -2,7 +2,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { MemberInformationCard } from './MemberInformationCard';
 import * as stories from './MemberInformationCard.stories';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });
 const member = {

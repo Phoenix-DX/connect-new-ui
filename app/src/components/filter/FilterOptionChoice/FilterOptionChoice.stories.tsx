@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
+import { Choice } from '@/lib/ubtConnect/staticEntities';
 import { FilterOptionChoice } from './FilterOptionChoice';
 
 const meta = {

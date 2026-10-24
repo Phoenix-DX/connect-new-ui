@@ -1,6 +1,6 @@
 import { act, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { MainLayoutFixedTitle } from './MainLayoutFixedTitle';
 import * as stories from './MainLayoutFixedTitle.stories';
 

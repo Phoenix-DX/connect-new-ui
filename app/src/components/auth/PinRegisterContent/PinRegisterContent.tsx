@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 import { PinCodeRegister } from '@/components/auth/PinCodeRegister';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
@@ -12,7 +12,7 @@ import {
   UBT_FontWeight,
   UBT_Icons2,
   UBT_IconsSize,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface PinRegisterContentProps {
   /** OutSystems instance id of the block. */

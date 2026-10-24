@@ -16,7 +16,7 @@ import {
 import type { BookmarkNote } from '@/pages/BookmarksByGroup/types';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
-import { MenuAction, ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuAction, ResultListType } from '@/lib/legacyShared/staticEntities';
 import { MessageListNoResults } from '@/components/ui/MessageListNoResults';
 import { ResultItemImage } from '@/components/ui/ResultItemImage';
 import { Spinner } from '@/components/ui/Spinner';

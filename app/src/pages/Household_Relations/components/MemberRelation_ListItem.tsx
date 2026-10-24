@@ -12,7 +12,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { UBT_IconSize_NonStandard_14, UBT_Icons_HomePIn } from './staticEntities';
 
 export interface MemberRelation_ListItemProps {

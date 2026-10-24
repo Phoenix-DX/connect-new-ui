@@ -1,6 +1,6 @@
 import { DataFetchStatus } from '@/components/ui/os/OSList';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { getSkeletonList_UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/actions';
+import { getSkeletonList_UI_SubdivisionHousehold } from '@/lib/ubtConnect/actions';
 import { HouseholdGalleryCardList } from './HouseholdGalleryCardList';
 import { sampleSubdivisionHouseholds } from './mockData';
 

@@ -1,13 +1,13 @@
 import type { Household, HouseholdCoordinates, HouseholdDetails } from '@/api/household';
 import { cardContent, HOUSEHOLD_TAG_ABOUT, HOUSEHOLD_TAG_PHOTOS, isShownHousehold } from '@/components/household';
 import { DataFetchStatus } from '@/components/ui/os/OSList';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
-import { HouseholdDetailTags } from '@/shared/UBTConnect/lib/staticEntities';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
+import { HouseholdDetailTags } from '@/lib/ubtConnect/staticEntities';
 import type {
   HouseholdPreviewStructure,
   UI_Household_Card_Content,
   UI_HouseholdTimelineImages,
-} from '@/shared/UBTConnect/lib/structures';
+} from '@/lib/ubtConnect/structures';
 
 /** The state of the household details and its reducer, with the client actions of the block as pure functions.
     @origin UBTConnect.Directory_Household.HouseholdDetails_Block */

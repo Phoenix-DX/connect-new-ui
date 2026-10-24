@@ -16,7 +16,7 @@ import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
 import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { getFormattedDateTime, type GetCacheableSignedImageURL } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { getFormattedDateTime, type GetCacheableSignedImageURL } from '@/lib/orbit/actions';
 import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
 import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 

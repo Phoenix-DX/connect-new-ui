@@ -1,7 +1,7 @@
 /** @origin Connect2_LegacyShared.Reusable.Person_Contact_Options */
 // @os-block Connect2_LegacyShared.Reusable.Person_Contact_Options
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 
 export interface PersonContactOptionsProps {
   /** OutSystems instance id of the block. */

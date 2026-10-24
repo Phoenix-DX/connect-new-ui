@@ -2,7 +2,7 @@ import type { CurrentService } from '@/api/service';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
-import { UBT_Color, UBT_ColumnBehaviour, UBT_IconsSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_ColumnBehaviour, UBT_IconsSize } from '@/lib/ubtConnectLibrary/staticEntities';
 import { FAVOURITE_LIST, SORTABLE_GROUP } from '@/pages/Services/hooks/servicesState';
 import { UBT_Icons2 } from '@/pages/Services/staticEntities';
 import { ServiceDragHandle } from './ServiceDragHandle';

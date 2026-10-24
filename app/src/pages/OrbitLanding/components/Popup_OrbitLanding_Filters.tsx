@@ -5,7 +5,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { RadioButton, RadioGroup } from '@/components/ui/os/OSRadioGroup';
 import { OrbitLandingFilter } from '@/pages/OrbitLanding/staticEntities';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 
 export interface Popup_OrbitLanding_FiltersProps {
   /** OutSystems instance id of the block (`b1-$b8`). */

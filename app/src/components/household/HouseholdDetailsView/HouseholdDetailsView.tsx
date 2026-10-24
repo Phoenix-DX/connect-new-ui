@@ -27,17 +27,17 @@ import {
   UBT_ImageCardType,
   UBT_ImageSize,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import { Skeleton } from '@/components/ui/Skeleton';
-import type { Directory_Coordinates } from '@/shared/UBTConnect_Utils/lib/structures';
+import type { Directory_Coordinates } from '@/lib/ubtConnectUtils/structures';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
-import { Connect_Entity, UBT_Icons2 as UBTConnect_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity, UBT_Icons2 as UBTConnect_Icons2 } from '@/lib/ubtConnect/staticEntities';
 import type {
   UI_HouseholdMember,
   UI_HouseholdTimelineImages,
   UI_Screen_HouseholdDetails,
-} from '@/shared/UBTConnect/lib/structures';
+} from '@/lib/ubtConnect/structures';
 import { DirectoryDetailLayout } from '@/components/layout/DirectoryDetailLayout';
 
 /** The household that the view shows (the outputs of DataActionGetHousehold). */

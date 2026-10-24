@@ -11,15 +11,9 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { HorizontalTagList } from '@/components/ui/HorizontalTagList';
 import { Input } from '@/components/ui/Input';
-import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { DetailLayoutContainer } from '@/containers/DetailLayout';
 import { Skeleton } from '@/components/ui/Skeleton';
-import {
-  Shape,
-  UBT_Color,
-  UBT_FontSize,
-  UBT_FontWeight,
-  UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Shape, UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { RecentSearch } from './RecentSearch';
 import { SearchResult_Section } from './SearchResult_Section';
 import { Search_BirthdayOptions } from './Search_BirthdayOptions';
@@ -81,7 +75,7 @@ export function SearchView({
 
   return (
     <OSBlock name="Directory_Search.ScreenBlock_Search" id={id}>
-      <Layout_DetailPage
+      <DetailLayoutContainer
         id="b1-$b1"
         inInitializeNavigationHandler={!inIsInScreenSearch}
         placeholderHeaderTitle={

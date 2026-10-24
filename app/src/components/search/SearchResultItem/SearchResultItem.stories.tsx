@@ -7,7 +7,7 @@ import {
   UBT_Icons,
   UBT_ImageSize,
   UBT_Size,
-} from '@/shared/UBTConnect_Utils/lib/staticEntities';
+} from '@/lib/ubtConnectUtils/staticEntities';
 import { SearchResultItem } from './SearchResultItem';
 
 const meta = { title: 'Shared/UBTConnect_Utils/SearchResult_Item', component: SearchResultItem } satisfies Meta<

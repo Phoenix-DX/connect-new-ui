@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { Card } from '@/components/ui/Card';
 import { SanitizedHtml } from '@/components/ui/SanitizedHtml';
-import { formatDateTime } from '@/shared/lib/osDateTime';
+import { formatDateTime } from '@/lib/osDateTime';
 
 /** The card of one message, props only: only MessageDetail uses it.
     @origin Connect2_LegacyShared.Widgets.NotificationDetailBlock */

@@ -19,8 +19,8 @@ import {
   UBT_Icons,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { AvatarImage as AvatarImageRec, TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { AvatarImage as AvatarImageRec, TextOptions } from '@/lib/ubtConnectLibrary/structures';
 import { child, scopeOf } from './ids';
 import {
   UBT_AlignItems_FlexEnd,

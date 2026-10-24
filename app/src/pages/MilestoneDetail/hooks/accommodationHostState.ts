@@ -5,8 +5,8 @@ import type {
   AccommodationHostResult,
 } from '@/api/event';
 import type { ContactByPhonePopupData } from '@/components/contact/ContactPopupByPhone/types';
-import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDateTimeById } from '@/lib/orbit/actions';
+import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 
 /** The state, the reducer and the client actions of ScreenBlock_AccommodationHost (the client actions are those of
     Connect2_OrbitMobile_MUI). Dates are OutSystems values as text; "" is the null date.

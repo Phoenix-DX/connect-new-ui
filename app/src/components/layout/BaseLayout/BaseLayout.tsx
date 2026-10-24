@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PullToRefresh } from '@/components/ui/PullToRefresh';
-import { SideMenuBehavior } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { SideMenuBehavior } from '@/lib/legacyShared/staticEntities';
 
 export interface BaseLayoutProps {
   /** OutSystems instance id of the block. */

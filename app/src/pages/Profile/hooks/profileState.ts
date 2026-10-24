@@ -1,6 +1,6 @@
 import type { MemberAccountForm } from '@/api/member';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
+import type { Directory_UserCurrent } from '@/platform/session/UserInfoCache/types';
 
 /** The state of the Profile screen and its reducer, with the client actions of the screen as pure functions.
     @origin UBTConnect.App_Profile.Profile */

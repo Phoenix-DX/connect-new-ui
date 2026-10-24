@@ -1,5 +1,5 @@
-import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
-import type { EntitiesCarousel_Item } from '@/shared/UBTConnect/lib/structures';
+import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
+import type { EntitiesCarousel_Item } from '@/lib/ubtConnect/structures';
 import type { PreloadedSupperMeetings } from '@/pages/SupperMeeting_Carousel/inputs';
 
 /** The client logic of ScreenEvent_OnInitialize of SupperMeeting_Carousel, without React. useSupperMeetingCarousel

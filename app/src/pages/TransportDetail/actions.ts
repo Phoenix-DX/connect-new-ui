@@ -1,6 +1,6 @@
 import type { TransportMilestoneType, TravelInfo } from '@/api/event';
-import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDateTimeById } from '@/lib/orbit/actions';
+import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 
 /* Client actions of Connect2_OrbitMobile_MUI that the TransportDetail blocks call, ported 1:1. The flows of the page
    (hooks/) and its components (components/) both call them, so they sit at the page root. `C:<n>` = line of

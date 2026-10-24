@@ -4,7 +4,7 @@ import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSecti
 import { NotesSheet } from '@/components/note/NotesSheet';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList, type DataFetchStatus } from '@/components/ui/os/OSList';
-import { Connect_Entity, NoteCategory2 } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity, NoteCategory2 } from '@/lib/ubtConnect/staticEntities';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
@@ -23,11 +23,11 @@ import {
   UBT_JustifyContent,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { ActionButton } from '@/components/ui/ActionButton';
-import { UBT_ImageSize as UBTConnect_Utils_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_ImageSize as UBTConnect_Utils_ImageSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { MemberRelation_ListItem } from './MemberRelation_ListItem';
 import { UBT_AlignItems_Baseline } from './staticEntities';

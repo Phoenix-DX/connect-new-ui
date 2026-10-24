@@ -2,7 +2,7 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.HighlightSearch
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { IconInline } from '@/components/ui/IconInline';
-import { removeRegexSpecialCharacters } from '@/shared/UBTConnectLibrary/lib/actions';
+import { removeRegexSpecialCharacters } from '@/lib/ubtConnectLibrary/actions';
 import { highlight_V3 } from './highlight';
 import type { InlineIcon } from './types';
 

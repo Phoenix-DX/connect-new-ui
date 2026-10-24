@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { TagToggle } from '@/components/ui/TagToggle';
-import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
+import { formatClasses } from '@/lib/ubtConnectLibrary/actions';
 import type { Tag } from './types';
 
 export interface HorizontalTagListProps {

@@ -3,8 +3,8 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { styleFromCssText } from '@/shared/lib/cssText';
-import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { styleFromCssText } from '@/lib/cssText';
+import { ResultListType } from '@/lib/legacyShared/staticEntities';
 import { useLoadPhotoAsync } from '@/components/ui/ResultItemImage/useLoadPhotoAsync';
 
 export interface ResultItemMediaProps {

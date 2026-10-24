@@ -9,7 +9,7 @@ import type {
 import type { EventDetailInputs } from '@/pages/EventDetail/inputs';
 import { OrbitEventType, SurveyStatus } from '@/pages/EventDetail/staticEntities';
 import type { LocalSurveyStatus } from '@/platform/storage/localEntities';
-import { MilestoneTimeType, OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { MilestoneTimeType, OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 import { filterMilestonesByDateGroup, getHostAllocation } from './eventDetailActions';
 
 /** The state of ScreenBlock_EventDetail: the block variables and the outputs of the data actions that the view reads,

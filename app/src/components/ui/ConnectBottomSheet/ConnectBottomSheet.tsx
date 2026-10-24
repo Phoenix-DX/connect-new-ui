@@ -2,14 +2,14 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.BottomSheet
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 import { BottomSheet as OSUIBottomSheet } from '@/components/ui/BottomSheet';
 import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
-import { jSUtils_SetStyleProperty } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { jSUtils_SetStyleProperty } from '@/lib/jsUtils';
 import { ColumnsThree } from '@/components/ui/ColumnsThree';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
-import { formatClasses, getClass_BackgroundColor, getSpacingOptions } from '@/shared/UBTConnectLibrary/lib/actions';
+import { formatClasses, getClass_BackgroundColor, getSpacingOptions } from '@/lib/ubtConnectLibrary/actions';
 import {
   Shape,
   UBT_Color,
@@ -20,8 +20,8 @@ import {
   UBT_IconSize,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { SpacingOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { SpacingOptions } from '@/lib/ubtConnectLibrary/structures';
 import {
   addTransitionListener,
   bindDragToOpen,

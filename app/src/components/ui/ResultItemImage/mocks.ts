@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import { osList, wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '@/mocks/contract';
-import type { GetSignedPhotosInBulk } from '@/shared/Connect2_LegacyShared/lib/actions';
+import type { GetSignedPhotosInBulk } from '@/lib/legacyShared/actions';
 
 /* Mock answer of GetSignedPhotosInBulk (contract operation since CR-W3Y-1), by the person-image rule of
    migration/knowledge/mock-fixtures.md (Q-W2C-1, user 2026-10-14) as UBT_LazyImage/mocks.ts applies it: where TST showed

@@ -3,8 +3,8 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { DaySelector } from '@/components/orbit/DaySelector';
-import { getFormattedDate_Single, getFormattedDate_Weekday } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { MilestoneTimeType, TimeFormat } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDate_Single, getFormattedDate_Weekday } from '@/lib/orbit/actions';
+import { MilestoneTimeType, TimeFormat } from '@/lib/orbit/staticEntities';
 import type { DayFilter } from './types';
 
 export interface DaySelectorListProps {

@@ -9,7 +9,7 @@ import {
   UBT_FlexDirection,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import type { TextOptions } from './types';
 
 export interface IconTextProps {

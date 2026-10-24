@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
-import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { testCapturedVariants } from '@/test/capturedVariants';
+import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import { OrbitSkeleton } from './OrbitSkeleton';
 import * as stories from './OrbitSkeleton.stories';
 

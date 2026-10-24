@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { fetchEventFilterLocalities, type EventFilterLocality } from '@/api/locality';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/lib/orbit/actions';
 
 /** What the filter button renders. */
 export interface MyTimelineFilterButtonFlows {

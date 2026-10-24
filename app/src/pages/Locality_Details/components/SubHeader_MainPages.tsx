@@ -9,7 +9,7 @@ import {
   UBT_IconsSize,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface SubHeader_MainPagesProps {
   id?: string;

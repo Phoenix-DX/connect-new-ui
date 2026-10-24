@@ -9,7 +9,7 @@ import { confirmAction } from '@/platform/feedback/dialogs';
 import { mockDirectoryUser, mockUserInformation } from '@/platform/session/mockUser';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
-import { jSUtils_CopyToClipboard } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { jSUtils_CopyToClipboard } from '@/lib/jsUtils';
 import { useProfile } from './useProfile';
 
 vi.mock('@/api/member', async (importOriginal) => ({
@@ -44,8 +44,8 @@ vi.mock('@/components/ui/lib/actions', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/components/ui/lib/actions')>()),
   bottomSheetOpen: vi.fn(),
 }));
-vi.mock('@/shared/UBTJavaScriptUtils/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTJavaScriptUtils/lib/actions')>()),
+vi.mock('@/lib/jsUtils', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/jsUtils')>()),
   jSUtils_CopyToClipboard: vi.fn(() => Promise.resolve()),
 }));
 

@@ -5,7 +5,7 @@ import type { LocalityDetailsInputs } from '@/pages/Locality_Details/inputs';
 import { useFlowState, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import {
   initialLocalityDetailsState,
   initializeScreen,

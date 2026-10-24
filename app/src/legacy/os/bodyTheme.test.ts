@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it } from 'vitest';
-import { ThemeClass } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { ThemeClass } from '@/lib/legacyShared/staticEntities';
 import { setThemeClassToBody } from './bodyTheme';
 
 describe('setThemeClassToBody', () => {

@@ -5,7 +5,7 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useOsNavigate } from '@/platform/navigation';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { useShellState } from '@/platform/session/session';
-import { getHasNewNotifications } from '@/shared/UBTConnect_Utils/lib/actions';
+import { getHasNewNotifications } from '@/lib/ubtConnectUtils/actions';
 import { MessageDetailView } from './components/MessageDetailView';
 import { useMessageDetail } from './hooks/useMessageDetail';
 import { readMessageDetailInputs } from './inputs';

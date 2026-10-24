@@ -1,7 +1,7 @@
 /** @origin UBTConnect.Directory_Locality.Statistics_Icons */
 // @os-block UBTConnect.Directory_Locality.Statistics_Icons
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import type { UI_StatisticsTexts } from '@/shared/Connect_Geography_CS/lib/structures';
+import type { UI_StatisticsTexts } from '@/lib/geography/structures';
 import { ColumnsThree } from '@/components/ui/ColumnsThree';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
@@ -12,10 +12,10 @@ import {
   UBT_FontSize,
   UBT_Icons2,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
-import { getEntityType_Icon } from '@/shared/UBTConnect_Utils/lib/actions';
-import { Connect_Entity, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { TextOptions } from '@/lib/ubtConnectLibrary/structures';
+import { getEntityType_Icon } from '@/lib/ubtConnectUtils/actions';
+import { Connect_Entity, UBT_IconsSize } from '@/lib/ubtConnect/staticEntities';
 
 export interface StatisticsIconsProps {
   /** OutSystems instance id of the block. */

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { TagToggle } from '@/components/ui/TagToggle';
-import { PendingBlock } from '@/shared/test/PendingBlock';
+import { PendingBlock } from '@/test/PendingBlock';
 import { OSList } from './OSList';
 import { OSListItem, OSListItemAction } from './OSListItem';
 

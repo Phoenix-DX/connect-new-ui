@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { stubCarouselLayout } from '@/components/ui/Carousel/testLayout';
 import * as osuiActions from '@/components/ui/lib/actions';
 import type { SplideEventHandler } from '@/components/ui/lib/actions';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import * as stories from './EntitiesCarousel.stories';
 
 /* The real OutSystems UI actions, spied on; SetSplideEvent also records the handlers it binds. */

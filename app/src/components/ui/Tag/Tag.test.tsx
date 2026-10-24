@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { tagClass } from './Tag';
 import * as stories from './Tag.stories';
 

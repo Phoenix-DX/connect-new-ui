@@ -20,15 +20,9 @@ import {
   UBT_FontSize as UBT_FontSize_Library,
   UBT_FontWeight,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
-import {
-  UBT_FontSize,
-  UBT_IconSize,
-  UBT_Icons,
-  UBT_ImageSize,
-  UBT_Shape,
-} from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_FontSize, UBT_IconSize, UBT_Icons, UBT_ImageSize, UBT_Shape } from '@/lib/ubtConnectUtils/staticEntities';
 import type { ContactPopupButton, ContactPopupData } from './types';
 
 export interface ContactPopupProps {

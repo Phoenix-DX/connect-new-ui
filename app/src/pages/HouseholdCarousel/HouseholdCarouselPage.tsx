@@ -5,8 +5,8 @@ import type { CarouselHouseholdDetailsSlot } from '@/components/directory/Carous
 import { EntitiesCarousel } from '@/components/directory/EntitiesCarousel';
 import { HouseholdDetailsContainer, useHouseholdDetailsFlags } from '@/containers';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
-import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
+import { DetailLayoutContainer } from '@/containers/DetailLayout';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { useHouseholdCarousel } from './hooks/useHouseholdCarousel';
 import { readHouseholdCarouselInputs } from './inputs';
@@ -34,7 +34,7 @@ export default function HouseholdCarousel() {
   );
 
   return (
-    <Layout_DetailPage
+    <DetailLayoutContainer
       id="$b1"
       inIsPrimaryColor={false}
       placeholderHeaderTitle={

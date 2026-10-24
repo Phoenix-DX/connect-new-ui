@@ -7,8 +7,8 @@ import {
   emptyLegacyBookmarkItem,
   legacyBookmarksOfGroup,
   type LegacyBookmarkItem,
-} from '@/shared/Connect2_MyBookmarks_MUI/mocks';
-import { MyBookmarks_Group } from '@/shared/UBTConnect/lib/staticEntities';
+} from '@/mocks/modules/Connect2_MyBookmarks_MUI/mocks';
+import { MyBookmarks_Group } from '@/lib/ubtConnect/staticEntities';
 
 /* Wire shapes of the contract (Connect2_MyBookmarks_IS structures, src/api/openapi.yaml), taken from the outputs of
    GetGroupSummaries. */

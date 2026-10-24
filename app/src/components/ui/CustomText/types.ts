@@ -1,1 +1,1 @@
-export type { InlineIcon, SpacingOptions, TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+export type { InlineIcon, SpacingOptions, TextOptions } from '@/lib/ubtConnectLibrary/structures';

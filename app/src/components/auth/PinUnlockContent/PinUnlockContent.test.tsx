@@ -1,7 +1,7 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { PinUnlockContent, type PinUnlockContentProps } from './PinUnlockContent';
 import * as stories from './PinUnlockContent.stories';
 

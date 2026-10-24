@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { calledActions } from '@/test/testSupport';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { AppVersion } from './AppVersion';
 import * as stories from './AppVersion.stories';
 

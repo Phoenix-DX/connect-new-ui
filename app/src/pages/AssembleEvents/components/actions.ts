@@ -1,7 +1,7 @@
 /* Client actions of Connect2_Assemble_MUI used only by AssembleEvents, ported from
    migration/screens/AssembleEvents/analysis/sources/pretty/Connect2_Assemble_MUI.controller.js (cited as C:<line>).
    DateTimes are "yyyy-MM-ddTHH:mm:ss" wall-clock strings (shared/lib/osDateTime). */
-import { currDateTime, formatDateTime } from '@/shared/lib/osDateTime';
+import { currDateTime, formatDateTime } from '@/lib/osDateTime';
 import type { AssembleEventFilter } from '@/api/event';
 
 /** ViewmodeType (static-entities-tst.json `Connect2_Assemble_MUI.viewmodeType`): Id = label. */

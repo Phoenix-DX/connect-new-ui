@@ -3,7 +3,7 @@ import { fetchNotificationDateRanges, fetchNotifications } from '@/api/notificat
 import { UserException, exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useViewState } from '@/platform/navigation';
-import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/shared/UBTConnect/lib/actions';
+import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/lib/ubtConnect/actions';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import {
   INITIAL_CACHED_VARIABLES,

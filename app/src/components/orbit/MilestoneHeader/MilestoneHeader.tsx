@@ -7,7 +7,7 @@ import {
   getLocalOrbitMilestoneTypeById,
   localOrbitMilestoneTypesRead,
   useOrbitStaticEntitiesVersion,
-} from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+} from '@/lib/orbit/actions';
 import type { LocalOrbitMilestoneType } from './types';
 
 export interface MilestoneHeaderProps {

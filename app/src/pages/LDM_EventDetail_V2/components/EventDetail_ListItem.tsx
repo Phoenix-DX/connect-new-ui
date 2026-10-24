@@ -1,15 +1,12 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 import { osImage } from '@/legacy/os/os-assets';
 import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
-import type {
-  ContactByPhonePopupData,
-  UI_ContactByMessage_WrapperData,
-} from '@/shared/UBTConnect_Utils/lib/structures';
+import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import type { DetailGuestItem } from '@/api/event';
-import { flipHouseholdName } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { getLocalityName } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { flipHouseholdName } from '@/lib/legacyShared/actions';
+import { getLocalityName } from '@/lib/orbit/actions';
 
 export interface EventDetail_ListItemProps {
   id: string;

@@ -5,8 +5,8 @@ import {
   UBT_FontWeight,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { SpacingOptions, TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { SpacingOptions, TextOptions } from '@/lib/ubtConnectLibrary/structures';
 
 /* The text, padding and column options that the parts of the Profile screen repeat. */
 

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuAction } from '@/lib/legacyShared/staticEntities';
 import { NewConnectContent } from '@/components/ui/NewConnectContent';
 
 export interface AssembleDetailViewProps {

@@ -1,6 +1,6 @@
 import type { CountryCard } from '@/api/country';
 import type { TextStatisticsOptionsRecord } from '@/components/directory/StatisticsList';
-import { getFlagURLByCountryCode } from '@/shared/UBTConnectLibrary/lib/actions';
+import { getFlagURLByCountryCode } from '@/lib/ubtConnectLibrary/actions';
 
 /** The state of the BrowseCountries screen and its reducer, with the client actions of the screen as pure functions.
     @origin UBTConnect.Directory_Locality.BrowseCountries */

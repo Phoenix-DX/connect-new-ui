@@ -3,7 +3,7 @@ import { useSearchParams } from 'react-router';
 import { osImage } from '@/legacy/os/os-assets';
 import { ContactEmailForm } from '@/components/contact/ContactEmailForm';
 import { ContactHeaderCard } from '@/components/contact/ContactHeaderCard';
-import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { DetailLayoutContainer } from '@/containers/DetailLayout';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { contactByEmailOneSchoolGlobalConfig } from './config';
 import { useContactByEmailOneSchoolGlobalSubmit } from './hooks/useContactByEmailOneSchoolGlobalSubmit';
@@ -23,7 +23,7 @@ export default function ContactByEmailOneSchoolGlobal() {
   const submit = useContactByEmailOneSchoolGlobalSubmit(inputs);
 
   return (
-    <Layout_DetailPage
+    <DetailLayoutContainer
       id="$b1"
       inAlignTitleLeft
       inIsPrimaryColor={config.isPrimaryColor}

@@ -8,9 +8,9 @@ import {
 } from '@/components/filter/FilterSheet';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
-import { CacheControl_AllCountries } from '@/shared/UBTConnect_Utils/CacheControl_AllCountries';
-import { CacheControl_AllLocalities } from '@/shared/UBTConnect_Utils/CacheControl_AllLocalities';
-import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
+import { AllCountriesCacheControl } from '@/legacy/os/cache/AllCountriesCacheControl';
+import { AllLocalitiesCacheControl } from '@/legacy/os/cache/AllLocalitiesCacheControl';
+import { UserInfoCache } from '@/platform/session/UserInfoCache';
 
 /** The inputs and events of FilterSheet. The container gives the data, the cache blocks, the back navigation and the
     upgrade popup. */
@@ -44,21 +44,21 @@ export function FilterSheetContainer(props: FilterSheetContainerProps) {
       cacheBlocks={
         <>
           {hasCountries && (
-            <CacheControl_AllCountries
+            <AllCountriesCacheControl
               onResult={(response) => {
                 setCountries(response.CountryList.List);
               }}
             />
           )}
           {hasLocalities && (
-            <CacheControl_AllLocalities
+            <AllLocalitiesCacheControl
               onResult={(response) => {
                 setLocalities(response.LocalityList.List);
               }}
             />
           )}
           {(hasCountries || hasLocalities) && (
-            <CacheControl_UserInfo_Wrapper
+            <UserInfoCache
               onResult={(userInformation) => {
                 setUserSubscription(userInformation.Directory_UserCurrent_Subscription);
               }}

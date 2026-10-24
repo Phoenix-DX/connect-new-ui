@@ -4,12 +4,12 @@ import { useEffect, useId, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { osList } from '@/legacy/os/os-wire';
-import type { SubdivisionsItem } from '@/shared/Connect2_LegacyShared/lib/structures';
+import type { SubdivisionsItem } from '@/lib/legacyShared/structures';
 import { RadioButtonListItem } from '@/components/ui/RadioButtonListItem';
 import { Spinner } from '@/components/ui/Spinner';
 import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { Separator } from '@/components/ui/Separator';
-import { getLocality, listFilterByName } from '@/shared/Connect2_Assemble_MUI/lib/actions';
+import { getLocality, listFilterByName } from '@/lib/assemble/actions';
 
 export interface AssembleSubdivisionFilterProps {
   /** OutSystems instance id of the block. */

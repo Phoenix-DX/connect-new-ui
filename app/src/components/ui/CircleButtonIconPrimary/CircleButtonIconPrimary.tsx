@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CircleButtonWithLabel } from '@/components/ui/CircleButtonWithLabel';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
-import { UBT_AvatarSize, UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_AvatarSize, UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface CircleButtonIconPrimaryProps {
   /** OutSystems instance id of the block. */

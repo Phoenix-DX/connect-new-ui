@@ -8,7 +8,7 @@ import type { HouseholdClick } from '@/pages/LDM_MyEvents_V2/components/EventCar
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { addAuditEvent_LDM } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { addAuditEvent_LDM } from '@/lib/orbit/actions';
 import { ldmMyEventsReducer } from './ldmMyEventsState';
 import { useLdmMyEvents, type LdmMyEventsEvents, type LdmMyEventsFlows } from './useLdmMyEvents';
 
@@ -21,8 +21,8 @@ vi.mock('@/api/event', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/event')>()),
   fetchEventsForMyTimeline: vi.fn(),
 }));
-vi.mock('@/shared/Connect2_OrbitMobile_MUI/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Connect2_OrbitMobile_MUI/lib/actions')>()),
+vi.mock('@/lib/orbit/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/orbit/actions')>()),
   addAuditEvent_LDM: vi.fn(),
 }));
 vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({

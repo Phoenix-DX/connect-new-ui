@@ -8,8 +8,8 @@ import {
   removeScrollEvents,
   setMainFixedScroll,
   setScrollShadow,
-} from '@/shared/UBTConnectLibrary/lib/actions';
-import { UBT_Color, UBT_IconSize, UBT_Icons2 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/actions';
+import { UBT_Color, UBT_IconSize, UBT_Icons2 } from '@/lib/ubtConnectLibrary/staticEntities';
 import { useNavigateBack } from '@/platform/navigation';
 
 export interface Layout_MainPages_UpgradeProps {

@@ -16,9 +16,9 @@ import {
   UBT_Icons2,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { SelectionOption_Item } from '@/shared/UBTConnectLibrary/lib/structures';
-import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { SelectionOption_Item } from '@/lib/ubtConnectLibrary/structures';
+import { Choice } from '@/lib/ubtConnect/staticEntities';
 import type { Filter_Common_Control_List } from './types';
 
 export interface FilterOptionListProps {

@@ -5,7 +5,7 @@ import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { TextAreaWithCounter } from '@/components/ui/TextAreaWithCounter';
 import { MessageTextArea } from './MessageTextArea';

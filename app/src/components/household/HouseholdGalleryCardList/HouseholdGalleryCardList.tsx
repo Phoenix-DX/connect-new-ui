@@ -6,9 +6,9 @@ import { Gallery } from '@/components/ui/Gallery';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
 import { HouseholdGalleryCard } from '@/components/household/HouseholdGalleryCard';
-import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
-import type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
+import { get_LookupSection } from '@/lib/ubtConnect/actions';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
+import type { UI_SubdivisionHousehold } from '@/lib/ubtConnect/structures';
 import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSection';
 
 /** Local ItemsPerRow (default 2; p:…Household_GalleryCard_List.mvc.js:13-15). */

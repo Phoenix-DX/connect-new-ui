@@ -1,1 +1,1 @@
-export type { ContactByMessagePopupData, ContactPopupButton } from '@/shared/UBTConnect_Utils/lib/structures';
+export type { ContactByMessagePopupData, ContactPopupButton } from '@/lib/ubtConnectUtils/structures';

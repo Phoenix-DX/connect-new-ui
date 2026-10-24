@@ -21,7 +21,7 @@ import type { BackNavigationEvent } from '@/platform/navigation';
 import { resetViewCache } from '@/platform/navigation/viewCache';
 import { setClientVar } from '@/platform/session/session';
 import { getLocalHelperRoles, type LocalHelperRole } from '@/platform/storage/localEntities';
-import { checkDirectoryAccess, setBookletMaxRows } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { checkDirectoryAccess, setBookletMaxRows } from '@/lib/orbit/actions';
 import { useEventBooklet, type EventBookletEvents, type EventBookletFlows } from './useEventBooklet';
 
 /** Every write of a flow to the screen state (the dispatch of useFlowState). */
@@ -49,8 +49,8 @@ vi.mock('@/api/event', async (importOriginal) => ({
   fetchEventBookletGuests: vi.fn(),
   fetchEventBookletHelpers: vi.fn(),
 }));
-vi.mock('@/shared/Connect2_OrbitMobile_MUI/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Connect2_OrbitMobile_MUI/lib/actions')>()),
+vi.mock('@/lib/orbit/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/orbit/actions')>()),
   setBookletMaxRows: vi.fn(),
   checkDirectoryAccess: vi.fn(),
 }));

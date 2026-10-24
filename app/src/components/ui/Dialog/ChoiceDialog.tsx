@@ -2,7 +2,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { ConfirmDialog } from './ConfirmDialog';
 
 export interface ChoiceDialogProps {

@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LazyImage } from '@/components/ui/LazyImage';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { cache_SignedImageURL_Get } from '@/shared/UBTConnect_Utils/lib/actions';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { cache_SignedImageURL_Get } from '@/lib/ubtConnectUtils/actions';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import { onInitialize } from './onInitialize';
 import type { LazyImageSize } from './types';
 

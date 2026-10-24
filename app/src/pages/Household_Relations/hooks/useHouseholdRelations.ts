@@ -12,8 +12,8 @@ import { isViewHasChangedException, raiseToFlowHandler } from '@/platform/feedba
 import { useFlowState, useOsNavigate, useWasRestoredFromCache, type IsAlive } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
-import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
+import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import {
   householdRelationsReducer,
   initialHouseholdRelationsState,

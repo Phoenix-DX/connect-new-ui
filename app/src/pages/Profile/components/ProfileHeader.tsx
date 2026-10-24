@@ -4,7 +4,7 @@ import {
   ICONS_SIZE_MEDIUM_20,
   IMAGE_SIZE_DOUBLE_EXTRA_LARGE_176,
 } from '@/pages/Profile/staticEntities';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
@@ -19,7 +19,7 @@ import {
   UBT_FontWeight,
   UBT_ImageSize,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { textOptions } from './formOptions';
 
 export interface ProfileHeaderProps {

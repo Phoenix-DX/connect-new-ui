@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UBT_Icons } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Icons } from '@/lib/ubtConnectLibrary/staticEntities';
 import { ContextMenuItem } from './ContextMenuItem';
 
 const meta = { title: 'Shared/UBTConnectLibrary/ContextMenu_Item', component: ContextMenuItem } satisfies Meta<

@@ -1,7 +1,7 @@
 /** @origin Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.Orbit_FooterWithActions */
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 
 export interface FooterWithActionsProps {
   /** OutSystems instance id of the block. */

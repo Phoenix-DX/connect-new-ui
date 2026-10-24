@@ -13,7 +13,7 @@ import {
 import { collection } from '@/mocks/store';
 import { sampleHouseholds } from '@/containers/HouseholdDetails/mockData';
 import { notesCollection } from '@/containers/NoteListActions/mocks';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 
 /* The C2 bookmark writes of UBTConnect ToggleBookmarkItem_C2 (UBTConnect.controller.js:17105-17280, copy in
    migration/screens/BookmarksByGroup/analysis/sources/raw/), called by this block's Handle_Bookmark: AddBookmark2

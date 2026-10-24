@@ -4,8 +4,8 @@ import type { SeatItem, StopItem, TransportDetails, TransportLocation } from '@/
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { getFormattedTime_FromTime, getFormattedTimeDifference } from '@/pages/TransportDetail/actions';
-import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDateTimeById } from '@/lib/orbit/actions';
+import { OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 import { TransportDetail_TravelInfo } from './TransportDetail_TravelInfo';
 
 /* TransportDetail (TD = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail.mvc.js: model :1-100,

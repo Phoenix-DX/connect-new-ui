@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { getFlagURLByCountryCode } from '@/shared/UBTConnectLibrary/lib/actions';
+import { getFlagURLByCountryCode } from '@/lib/ubtConnectLibrary/actions';
 import { StatisticsListItem } from './StatisticsListItem';
 
 const meta = {

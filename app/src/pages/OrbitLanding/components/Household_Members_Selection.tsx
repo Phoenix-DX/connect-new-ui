@@ -4,7 +4,7 @@ import type { OrbitHouseholdMember } from '@/api/household';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { isItemAvailable, scrollToSelectMember } from '@/pages/OrbitLanding/actions';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 
 export interface Household_Members_SelectionProps {
   /** OutSystems instance id of the block (`b1-$b3`). */

@@ -1,10 +1,10 @@
 import { getClientVar, setClientVar } from '@/platform/session/session';
-import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 import type {
   CarouselHouseholdItem,
   CarouselPreloadedHouseholds,
   EntitiesCarousel_Item,
-} from '@/shared/UBTConnect/lib/structures';
+} from '@/lib/ubtConnect/structures';
 
 /** The client actions of HouseholdCarousel (OnInitialize, Handler_EventMoved) and the module action
     Directory_Updates_CarouselSwipeAction, without React. useHouseholdCarousel calls them.

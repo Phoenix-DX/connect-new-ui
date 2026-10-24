@@ -12,11 +12,11 @@ import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { isUserException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { log } from '@/platform/log/log';
 import { useFlowState, type IsAlive } from '@/platform/navigation';
-import { useHandleDownload } from '@/shared/FileTransferPlugin/lib/handleDownload';
-import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { addExtensionToFile, checkDirectoryAccess } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { DirectoryAPIFilter, ImageSigningSize } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { openInApp_TryOpenFileInApp } from '@/shared/UBTConnect_Utils/lib/actions';
+import { useHandleDownload } from '@/platform/device/handleDownload';
+import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/lib/legacyShared/actions';
+import { addExtensionToFile, checkDirectoryAccess } from '@/lib/orbit/actions';
+import { DirectoryAPIFilter, ImageSigningSize } from '@/lib/orbit/staticEntities';
+import { openInApp_TryOpenFileInApp } from '@/lib/ubtConnectUtils/actions';
 import {
   accommodationHostCallInputs,
   accommodationHostReducer,

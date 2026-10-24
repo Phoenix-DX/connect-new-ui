@@ -4,7 +4,7 @@ import { ActionButton } from '@/components/ui/ActionButton';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { FixedFooter } from '@/components/ui/FixedFooter';
-import { UBT_ButtonType, UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_ButtonType, UBT_Color, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface ProfileFooterProps {
   /** MainContainerId: the content container of the layout, which the fixed footer pads. */

@@ -6,7 +6,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import type { AccommodationHostInputs } from '@/pages/MilestoneDetail/hooks/accommodationHostState';
 import type { MilestoneWrapperBody } from '@/pages/MilestoneDetail/hooks/milestoneWrapperState';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
-import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 
 /** What the wrapper gives the block of the accommodation host: its instance id, its inputs and its placeholders. */
 export interface AccommodationHostSlot {

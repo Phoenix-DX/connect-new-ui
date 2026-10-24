@@ -5,8 +5,8 @@ import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/f
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
-import { addBookmarkToCache, getCachedMyBookmarks } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { addLegacyBookmark, legacyBookmarksCollection } from '@/shared/Connect2_MyBookmarks_MUI/mocks';
+import { addBookmarkToCache, getCachedMyBookmarks } from '@/lib/legacyShared/actions';
+import { addLegacyBookmark, legacyBookmarksCollection } from '@/mocks/modules/Connect2_MyBookmarks_MUI/mocks';
 import { calledActions, freshPage, recordBodies, setFlags } from '@/test/testSupport';
 import BookmarksByGroup from './BookmarksByGroupPage';
 

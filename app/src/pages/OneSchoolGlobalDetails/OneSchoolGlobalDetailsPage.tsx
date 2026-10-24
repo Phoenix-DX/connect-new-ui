@@ -9,7 +9,7 @@ import { OSList } from '@/components/ui/os/OSList';
 import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
 import { useFlag } from '@/platform/flags';
 import { useNavigateBack } from '@/platform/navigation';
-import { Connect_Entity, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity, UBT_IconsSize } from '@/lib/ubtConnect/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { ComingSoon } from '@/components/ui/ComingSoon';
 import { CustomContainer } from '@/components/ui/CustomContainer';
@@ -18,7 +18,7 @@ import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
 import { ImageCardContent } from '@/components/ui/ImageCardContent';
 import { ImageCard } from '@/components/ui/ImageCard';
-import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/shared/UBTConnectLibrary/lib/actions';
+import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/lib/ubtConnectLibrary/actions';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -27,7 +27,7 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { ButtonGroup } from './components/ButtonGroup';
 import { ExpandableSection } from './components/ExpandableSection';

@@ -6,8 +6,8 @@ import type {
   UpdatesListVariables,
   UpdateTypeOption,
 } from '@/api/update';
-import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
-import { Connect_UpdateTypeId } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Choice } from '@/lib/ubtConnect/staticEntities';
+import { Connect_UpdateTypeId } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Updates_DateRanges } from '@/pages/Updates_SingleList/components/staticEntities';
 
 /** The variables of the Updates_SingleList screen and the client actions that it calls (the Directory_Updates user

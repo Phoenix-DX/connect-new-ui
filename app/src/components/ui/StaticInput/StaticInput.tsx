@@ -2,7 +2,7 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.StaticInput
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Icon } from '@/components/ui/Icon';
-import { UBT_Color, UBT_Icons, UBT_IconSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_Icons, UBT_IconSize } from '@/lib/ubtConnectLibrary/staticEntities';
 import { TextEllipsis } from '@/components/ui/TextEllipsis';
 
 export interface StaticInputProps {

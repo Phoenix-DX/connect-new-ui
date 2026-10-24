@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { osImage } from '@/legacy/os/os-assets';
-import { UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_ImageSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from './EntityLazyImage';
 
 const meta = { title: 'Shared/UBTConnect_Utils/UBT_LazyImage', component: EntityLazyImage } satisfies Meta<

@@ -5,11 +5,11 @@ import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import type { ShareObjectHousehold } from '@/pages/LegacyShareObject/hooks/shareObjectState';
-import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { ResultListType } from '@/lib/legacyShared/staticEntities';
 import { ResultItemImage } from '@/components/ui/ResultItemImage';
 import { AvatarImage } from '@/components/ui/AvatarImage';
-import { UBT_AvatarSize, UBT_Color, UBT_Shape } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { Connect_Entity, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_AvatarSize, UBT_Color, UBT_Shape } from '@/lib/ubtConnectLibrary/staticEntities';
+import { Connect_Entity, UBT_ImageSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { FEED_ITEM_ICON, Type_ShareObject } from './staticEntities';
 

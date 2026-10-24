@@ -4,10 +4,10 @@ import { OSList } from '@/components/ui/os/OSList';
 import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
 import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { StatisticsListItem } from '@/components/directory/StatisticsListItem';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 
 export interface Directory_Interchange_StatisticsListProps {
   /** OutSystems instance id of the block. */

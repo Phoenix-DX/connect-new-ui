@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
 import { StrictMode } from 'react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
-import { get_CurrentEntityHeader } from '@/shared/UBTConnect/lib/actions';
-import type { HeaderList } from '@/shared/UBTConnect/lib/structures';
+import { testCapturedVariants } from '@/test/capturedVariants';
+import { get_CurrentEntityHeader } from '@/lib/ubtConnect/actions';
+import type { HeaderList } from '@/lib/ubtConnect/structures';
 import { EntitiesCarouselHeader } from './EntitiesCarouselHeader';
 import * as stories from './EntitiesCarouselHeader.stories';
 

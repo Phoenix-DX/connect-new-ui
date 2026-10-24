@@ -14,8 +14,8 @@ import { replaceOnUpcomingNavigation, useFlowState, type IsAlive } from '@/platf
 import { currentUserId, isSignedIn } from '@/platform/session/session';
 import { decrementReadMessagesCounter } from '@/platform/session/unreadCounters';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { cache_SignedImageURL_Get } from '@/shared/UBTConnect_Utils/lib/actions';
-import { Connect_Entity, ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { cache_SignedImageURL_Get } from '@/lib/ubtConnectUtils/actions';
+import { Connect_Entity, ImageSize } from '@/lib/ubtConnectUtils/staticEntities';
 import {
   addFirstSentence,
   decrementReadWhatsNewsCounter,

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 import { ContactEmailForm } from '@/components/contact/ContactEmailForm';
 import { ContactHeaderCard } from '@/components/contact/ContactHeaderCard';
-import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { DetailLayoutContainer } from '@/containers/DetailLayout';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { contactByEmailLDMCoordinatorConfig } from './config';
 import { useContactByEmailLDMCoordinatorSubmit } from './hooks/useContactByEmailLDMCoordinatorSubmit';
@@ -23,7 +23,7 @@ export default function ContactByEmailLDMCoordinator() {
   const submit = useContactByEmailLDMCoordinatorSubmit(inputs);
 
   return (
-    <Layout_DetailPage
+    <DetailLayoutContainer
       id="$b1"
       inAlignTitleLeft
       inIsPrimaryColor={config.isPrimaryColor}

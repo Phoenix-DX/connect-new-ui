@@ -3,10 +3,10 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ImageCard } from '@/components/ui/ImageCard';
 import { ImageCardContent } from '@/components/ui/ImageCardContent';
-import { UBT_ImageCardType, UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_ImageCardType, UBT_ImageSize } from '@/lib/ubtConnectLibrary/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
-import type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import type { UI_SubdivisionHousehold } from '@/lib/ubtConnect/structures';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 
 export interface HouseholdGalleryCardProps {
   /** OutSystems instance id of the block. */

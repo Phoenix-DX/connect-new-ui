@@ -1,4 +1,4 @@
-import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 
 /** The route inputs of OrbitAdminEventDetail, from the query string by their original names (P-PARAMS). OrbitAdminLanding
     opens the screen with them. The server calls of the screen are in the domains api/event, api/member and api/image.

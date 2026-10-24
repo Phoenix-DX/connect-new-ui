@@ -5,4 +5,4 @@ export type {
   MarkerWithWindow,
   TileLayer,
   ZoomControlOptions,
-} from '@/shared/Leaflet/lib/structures';
+} from '@/lib/leaflet/structures';

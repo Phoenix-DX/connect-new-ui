@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setFlag } from '@/platform/flags/flags';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { testCapturedVariants } from '@/test/capturedVariants';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import { SharePopup } from './SharePopup';
 import * as stories from './SharePopup.stories';
 

@@ -17,8 +17,8 @@ import {
   directory_Updates_GetCarouselPreloadedHouseholds,
   directory_Updates_RefreshBottomBarCount,
   scrollTop,
-} from '@/shared/UBTConnect/lib/actions';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnect/actions';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import {
   directory_Updates_AugmentDateRanges,
   directory_Updates_GetBreakpoints,

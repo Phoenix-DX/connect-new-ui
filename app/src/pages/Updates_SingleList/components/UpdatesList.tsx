@@ -3,7 +3,7 @@ import { UpdateListItem } from '@/components/feed/UpdateListItem';
 import { OSList } from '@/components/ui/os/OSList';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
-import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { dateToText, listKeyOf, type FetchStatus } from '@/pages/Updates_SingleList/hooks/updatesSingleListState';
 import { SectionHeader } from './SectionHeader';

@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { osImage } from '@/legacy/os/os-assets';
-import { PendingBlock } from '@/shared/test/PendingBlock';
+import { PendingBlock } from '@/test/PendingBlock';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
-import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { ResultListType } from '@/lib/legacyShared/staticEntities';
 import { ResultItemImage } from './ResultItemImage';
 
 const meta = {

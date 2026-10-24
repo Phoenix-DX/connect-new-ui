@@ -3,7 +3,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ContextMenu } from '@/components/ui/ContextMenu';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { Position } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Position } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface KebabButtonMenuProps {
   /** OutSystems instance id of the block. */

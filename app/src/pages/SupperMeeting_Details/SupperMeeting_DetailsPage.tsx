@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { SupperMeetingDetailsContainer, useSupperMeetingDetailsFlags } from '@/containers';
 import { CustomText } from '@/components/ui/CustomText';
-import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { DetailLayoutContainer } from '@/containers/DetailLayout';
 import { readSupperMeetingDetailsInputs } from './inputs';
 
 /** @origin UBTConnect.Directory_SupperMeetings.SupperMeeting_Details
@@ -16,7 +16,7 @@ export default function SupperMeeting_Details() {
   const supperMeetingDetailsFlags = useSupperMeetingDetailsFlags();
 
   return (
-    <Layout_DetailPage
+    <DetailLayoutContainer
       id="$b1"
       inAlignTitleLeft={false}
       placeholderHeaderTitle={<CustomText id="$b2" inText="Supper Meeting" inTextOptions={{}} />}

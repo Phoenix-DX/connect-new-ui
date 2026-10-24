@@ -3,7 +3,7 @@ import type { Location } from 'react-router';
 import { afterEach, expect, test, vi } from 'vitest';
 import { NavigationDialog } from '@/components/ui/Dialog';
 import { createBackEvent, resetBackQueue, runBackHandlers } from '@/platform/navigation/backQueue';
-import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
+import { preventNavigation } from '@/lib/navigationEvent';
 
 /* connectDialogs (run by the test setup, as main.tsx does) joins the dialogs of components/ui/Dialog to the platform
    back-navigation queue. ConfirmDialog with ConfirmAction: platform/feedback/dialogs/useActionConfirmation.test. */

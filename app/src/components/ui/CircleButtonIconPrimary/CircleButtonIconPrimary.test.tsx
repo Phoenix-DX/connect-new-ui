@@ -1,6 +1,6 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { CircleButtonIconPrimary } from './CircleButtonIconPrimary';
 import * as stories from './CircleButtonIconPrimary.stories';
 

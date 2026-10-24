@@ -3,11 +3,11 @@ import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { PinUnlockContentContainer } from '@/platform/feedback/dialogs/PinUnlockContentContainer';
-import { get_IsUnsupportedSystem } from '@/shared/UBTConnect/lib/unsupportedVersion';
+import { get_IsUnsupportedSystem } from '@/lib/ubtConnect/unsupportedVersion';
 import { UnsupportedVersionWrapper } from '@/components/version/UnsupportedVersionWrapper';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { SvgBackgroundLogin } from '@/components/ui/SvgBackgroundLogin';
-import { UBT_Color, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_Shape, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { useOsNavigate } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';
 

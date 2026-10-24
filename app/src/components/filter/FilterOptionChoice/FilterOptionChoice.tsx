@@ -5,15 +5,9 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { SelectionOptionList } from '@/components/ui/SelectionOptionList';
-import {
-  UBT_Color,
-  UBT_FontSize,
-  UBT_FontWeight,
-  UBT_Shape,
-  UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { SelectionOption_Item } from '@/shared/UBTConnectLibrary/lib/structures';
-import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
+import type { SelectionOption_Item } from '@/lib/ubtConnectLibrary/structures';
+import { Choice } from '@/lib/ubtConnect/staticEntities';
 import type { Filter_Common_Control_Choice } from './types';
 
 export interface FilterOptionChoiceProps {

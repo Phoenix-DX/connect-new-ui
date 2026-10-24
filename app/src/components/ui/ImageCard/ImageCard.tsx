@@ -10,14 +10,14 @@ import {
   getClasses_ImageCard,
   getSpacingOptions_ImageCardContent,
   getTextOptions_ImageCard,
-} from '@/shared/UBTConnectLibrary/lib/actions';
+} from '@/lib/ubtConnectLibrary/actions';
 import {
   UBT_AlignItems,
   UBT_AvatarSize,
   UBT_Color,
   UBT_Display,
   UBT_JustifyContent,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface ImageCardProps {
   /** OutSystems instance id of the block. */

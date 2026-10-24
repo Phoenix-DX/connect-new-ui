@@ -1,9 +1,9 @@
 /** @origin Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails_Entry */
 // @os-block Connect2_Assemble_MUI.Assemble.AssembleCommon_VirtualMeetingDetails_Entry
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 import { LabelWithCopyIcon } from '@/components/ui/LabelWithCopyIcon';
-import { checkSupportedBrowserVersion, openExternalURL } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { checkSupportedBrowserVersion, openExternalURL } from '@/lib/legacyShared/actions';
 
 export interface VirtualMeetingDetailsEntryProps {
   /** OutSystems instance id of the block. */

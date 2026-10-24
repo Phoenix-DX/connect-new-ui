@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { DirectoryEmptyState } from './DirectoryEmptyState';
 
 /* No capture: the compiled view (Directory_EmptyState.mvc.js:154-225) is the reference. */

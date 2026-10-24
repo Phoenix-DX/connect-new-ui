@@ -4,15 +4,15 @@ import { ValidationServiceProvider } from '@/components/ui/os/OSValidation';
 import { HouseholdDetailsContainer, useHouseholdDetailsFlags } from '@/containers';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { useNavigateBack } from '@/platform/navigation';
-import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
-import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
+import { preventNavigation } from '@/lib/navigationEvent';
+import { UserInfoCache } from '@/platform/session/UserInfoCache';
 import { ChoiceDialog } from '@/components/ui/Dialog';
 import { NavigationDialog } from '@/components/ui/Dialog';
 import { SectionSeparator } from '@/components/ui/SectionSeparator';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { ProfileDetailsForm } from './components/ProfileDetailsForm';
 import { ProfileFooter } from './components/ProfileFooter';
@@ -106,7 +106,7 @@ export default function Profile() {
         }
         placeholderCommonUIInsideLayout={<CommonUiLayout id="$b55" />}
       />
-      <CacheControl_UserInfo_Wrapper id="$b56" onResult={onUserInformation} />
+      <UserInfoCache id="$b56" onResult={onUserInformation} />
       {state.hasChanges && (
         <NavigationDialog
           variant="connect"

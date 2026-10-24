@@ -12,7 +12,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import type { SearchResult } from '@/api/search';
 import { UBT_FontWeight_Bold } from './staticEntities';
 

@@ -7,7 +7,7 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { TransitionAnimation } from '@/platform/navigation';
 import { signOut } from '@/platform/session/auth';
 import { mockDirectoryUser } from '@/platform/session/mockUser';
-import { openInApp_OpenExternalLink } from '@/shared/UBTConnect_Utils/lib/actions';
+import { openInApp_OpenExternalLink } from '@/lib/ubtConnectUtils/actions';
 import { useMenu } from './useMenu';
 
 const navigate = vi.fn();
@@ -36,8 +36,8 @@ vi.mock('@/api/member', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/member')>()),
   requestPhotoUpdate: vi.fn(() => Promise.resolve(true)),
 }));
-vi.mock('@/shared/UBTConnect_Utils/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect_Utils/lib/actions')>()),
+vi.mock('@/lib/ubtConnectUtils/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnectUtils/actions')>()),
   openInApp_OpenExternalLink: vi.fn(),
 }));
 

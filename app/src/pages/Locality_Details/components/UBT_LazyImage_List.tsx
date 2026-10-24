@@ -2,8 +2,8 @@ import type { LazyImageItem } from '@/api/household';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { formatClasses, getClasses_AvatarSize } from '@/shared/UBTConnectLibrary/lib/actions';
-import { UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { formatClasses, getClasses_AvatarSize } from '@/lib/ubtConnectLibrary/actions';
+import { UBT_ImageSize } from '@/lib/ubtConnectLibrary/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 
 export interface UBT_LazyImage_ListProps {

@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { InlineSVG } from '@/components/ui/InlineSVG';
-import { formatClasses, sVGHeader_GetPath } from '@/shared/UBTConnectLibrary/lib/actions';
+import { formatClasses, sVGHeader_GetPath } from '@/lib/ubtConnectLibrary/actions';
 
 export interface SvgBackgroundProps {
   /** OutSystems instance id of the block. */

@@ -1,7 +1,7 @@
 /* Theme class of the body (CR-W3A-1), ported from migration/runtime-sources/Connect2_LegacyShared.controller.js. The
    shell owns the body classes; a layout sets its theme when it initializes (Layout.Layout OnInitialize sets
    ThemeClass.Connect). Nothing removes the class when the layout leaves (Layout.Layout has no OnDestroy). */
-import { ThemeClass } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { ThemeClass } from '@/lib/legacyShared/staticEntities';
 
 /** AddThemeClassToBody (controller.js:235-283, AddThemeJS :278-283). */
 function addThemeClassToBody(themeName: string): void {

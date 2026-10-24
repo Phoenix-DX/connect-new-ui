@@ -1,14 +1,14 @@
 /** @origin UBTConnect.ContactFlow.ContactByEmailForm */
 import { useId, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { preventNavigation, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
+import { preventNavigation, type NavigationEvent } from '@/lib/navigationEvent';
 import { ButtonLoading } from '@/components/ui/ButtonLoading';
 import { ActionButton } from '@/components/ui/ActionButton';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { DynamicTextArea } from '@/components/ui/DynamicTextArea';
 import { FixedFooter } from '@/components/ui/FixedFooter';
 import { InputCounter } from '@/components/ui/InputCounter';
-import { UBT_Color, UBT_FontSize, UBT_Shadow, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_Shadow, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { TextAreaWithCounter } from '@/components/ui/TextAreaWithCounter';
 import { NavigationDialog } from '@/components/ui/Dialog';
 

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UBT_ButtonSize, UBT_ButtonType, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_ButtonSize, UBT_ButtonType, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { ActionButton } from './ActionButton';
 
 const meta = { title: 'Shared/UBTConnect_Utils/Button', component: ActionButton } satisfies Meta<typeof ActionButton>;

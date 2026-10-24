@@ -2,7 +2,7 @@ import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { expectToMatchCapture } from '@/test/dom';
 import templateV3 from '@/components/orbit/OrbitCard/__captures__/v3.html?raw';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { OrbitEventCard } from './OrbitEventCard';
 import * as stories from './OrbitEventCard.stories';
 import { THREE_DAY_MEETINGS } from './fixtures';

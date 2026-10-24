@@ -1,10 +1,10 @@
 /** @origin Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Event */
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Event
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 import { OrbitCard } from '@/components/orbit/OrbitCard';
-import { getCSSVarFromMainColor, getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitColorShade } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getCSSVarFromMainColor, getFormattedDateTime } from '@/lib/orbit/actions';
+import { OrbitColorShade } from '@/lib/orbit/staticEntities';
 import type { Event_Screen } from './types';
 
 export interface OrbitEventCardProps {

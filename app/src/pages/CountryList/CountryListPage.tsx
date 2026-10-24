@@ -6,9 +6,9 @@ import { MainLayout } from '@/components/layout/MainLayout';
 import { NotificationIcon } from '@/components/notification/NotificationIcon';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
-import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
+import { UserInfoCache } from '@/platform/session/UserInfoCache';
 import { StaticInput } from '@/components/ui/StaticInput';
-import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_BottomBar_Items } from '@/lib/ubtConnectUtils/staticEntities';
 import { CountryListContent } from './components/CountryListContent';
 import { useCountryList } from './hooks/useCountryList';
 
@@ -62,7 +62,7 @@ export default function CountryList() {
         bottom={<BottomBar id="$b25" activeItem={Connect_BottomBar_Items.Directory} isRootPage />}
         placeholderCommonUIInsideLayout={<CommonUiLayout id="$b26" />}
       />
-      <CacheControl_UserInfo_Wrapper id="$b27" onResult={onUserInfo} />
+      <UserInfoCache id="$b27" onResult={onUserInfo} />
       {/* No ShowLocalities: CountryList passes no input, so the default True of the block applies. */}
       <DirectoryLegendSheet
         id="$b28"

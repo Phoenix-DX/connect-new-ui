@@ -7,7 +7,7 @@ import { createBackEvent, runBackHandlers } from '@/platform/navigation/backQueu
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
-import { BOOKLET_MAX_ROWS } from '@/shared/Connect2_OrbitMobile_MUI/lib/mocks';
+import { BOOKLET_MAX_ROWS } from '@/mocks/modules/Connect2_OrbitMobile_MUI/mocks';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import EventBooklet from './EventBookletPage';
 

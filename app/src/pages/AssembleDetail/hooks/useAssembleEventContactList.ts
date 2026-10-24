@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useWasRestoredFromCache } from '@/platform/navigation';
-import { getCacheableMemberContactList } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { getCacheableMemberContactList } from '@/lib/legacyShared/actions';
 import { emptyContact, toAssembleEventContact, type AssembleEventContact } from './assembleEventContacts';
 import { useIsAlive, useReadyOnce } from './blockLifecycle';
 

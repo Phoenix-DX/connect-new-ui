@@ -17,7 +17,7 @@ import {
   UBT_IconsSize,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { SectionSeparator } from '@/components/ui/SectionSeparator';
 import type { UI_ListMenuOption, UI_MenuSection } from './types';

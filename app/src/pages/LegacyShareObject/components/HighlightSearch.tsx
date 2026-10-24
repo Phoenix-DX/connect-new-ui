@@ -1,5 +1,5 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { removeRegexSpecialCharacters } from '@/shared/UBTConnectLibrary/lib/actions';
+import { removeRegexSpecialCharacters } from '@/lib/ubtConnectLibrary/actions';
 
 export interface HighlightSearchProps {
   /** OutSystems instance id of the block (`<prefix>-$b3`); the container is `<prefix>-b3-Contents`. */

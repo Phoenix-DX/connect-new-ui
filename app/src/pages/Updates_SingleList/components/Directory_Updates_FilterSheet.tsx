@@ -3,12 +3,12 @@ import { useMemo } from 'react';
 import type { FilterUpdates } from '@/api/update';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { FilterSheetContainer } from '@/containers/FilterSheet';
-import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
+import { Choice } from '@/lib/ubtConnect/staticEntities';
 import type {
   Filter_Common_Control_Choice,
   Filter_Common_Control_List,
   Filter_Common_Options,
-} from '@/shared/UBTConnect/lib/structures';
+} from '@/lib/ubtConnect/structures';
 
 /** FilterByStatus_Title (DUFS model default). */
 const FILTER_BY_STATUS_TITLE = 'Filter by status';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Connect_UpdateTypeId, Gender, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Connect_UpdateTypeId, Gender, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { UpdateListItem } from './UpdateListItem';
 
 const meta = {

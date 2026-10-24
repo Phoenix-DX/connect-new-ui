@@ -10,8 +10,8 @@ import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/
 import { UserException } from '@/platform/feedback/flowErrors';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
 import { generateScreenURL } from '@/platform/navigation';
-import { navigateToMaps } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { MapNavigationRedirect } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { navigateToMaps } from '@/lib/legacyShared/actions';
+import { MapNavigationRedirect } from '@/lib/legacyShared/staticEntities';
 
 /** The inputs of AssembleSummaryCard. The container gives the actions. */
 export type AssembleSummaryCardContainerProps = Omit<

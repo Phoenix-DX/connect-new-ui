@@ -3,9 +3,9 @@ import { useSearchParams } from 'react-router';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useViewState } from '@/platform/navigation';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/lib/ubtConnect/staticEntities';
 import { CustomText } from '@/components/ui/CustomText';
-import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { DetailLayoutContainer } from '@/containers/DetailLayout';
 import { HouseholdRelationsView } from './components/HouseholdRelationsView';
 import { useHouseholdRelations, type HouseholdRelationsEvents } from './hooks/useHouseholdRelations';
 import { readHousehold_RelationsInputs } from './inputs';
@@ -34,7 +34,7 @@ export default function Household_Relations() {
   const [pageTitle, setPageTitle] = useViewState('PageTitle', '');
 
   return (
-    <Layout_DetailPage
+    <DetailLayoutContainer
       id="$b1"
       inIsPrimaryColor={false}
       placeholderHeaderTitle={

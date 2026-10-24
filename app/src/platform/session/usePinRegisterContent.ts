@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { replaceOnUpcomingNavigation, TransitionAnimation, useOsNavigate } from '@/platform/navigation';
 import { APP_ID, PATHS } from '@/platform/navigation/paths';
-import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { useScreenController_NavigateToPage } from '@/lib/jsUtils';
 import { getResumeLoginLink } from './resume';
 import { getClientVar, setClientVar } from './session';
 import { usePinCodeRegister, type PinCodeRegisterFlow } from './usePinCodeRegister';

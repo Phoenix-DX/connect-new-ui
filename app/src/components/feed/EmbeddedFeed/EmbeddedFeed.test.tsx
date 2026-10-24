@@ -2,7 +2,7 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { FeedCmsConfig, FeedCmsProps } from '@/components/feed/FeedCms';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { EmbeddedFeed, type EmbeddedFeedProps } from './EmbeddedFeed';
 import * as stories from './EmbeddedFeed.stories';
 

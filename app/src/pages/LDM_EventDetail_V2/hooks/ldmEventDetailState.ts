@@ -1,13 +1,13 @@
 import type { CoordinatorDetails, CoordinatorDetailsData, LdmEventDetail, LdmEventHost } from '@/api/event';
 import type { HouseholdCoordinates } from '@/api/household';
-import { flipHouseholdName } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { getLocalityName } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { cleanAddressForMaps } from '@/shared/UBTConnect_Utils/lib/actions';
+import { flipHouseholdName } from '@/lib/legacyShared/actions';
+import { getLocalityName } from '@/lib/orbit/actions';
+import { cleanAddressForMaps } from '@/lib/ubtConnectUtils/actions';
 import type {
   ContactByPhonePopupData,
   ContactPopupData,
   UI_ContactByMessage_WrapperData,
-} from '@/shared/UBTConnect_Utils/lib/structures';
+} from '@/lib/ubtConnectUtils/structures';
 
 /** The variables of ScreenBlock_EventDetail_V2 that the view reads, the outputs of its two data actions, and the pure
     client actions of its flows. The hook useLdmEventDetail keeps the state with useFlowState.

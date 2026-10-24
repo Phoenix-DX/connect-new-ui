@@ -1,4 +1,4 @@
-import type { UI_Household_Card_Content, UI_Screen_HouseholdDetails } from '@/shared/UBTConnect/lib/structures';
+import type { UI_Household_Card_Content, UI_Screen_HouseholdDetails } from '@/lib/ubtConnect/structures';
 
 /** The expressions of the household card that the view and the flows of the household details share.
     @origin UBTConnect.Directory_Household.HouseholdDetails_Block */

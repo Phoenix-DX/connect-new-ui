@@ -7,8 +7,8 @@ import { CommunicationException, UserException } from '@/legacy/os/exceptions';
 import type { ViewDocumentsInputs } from '@/pages/ViewDocuments/inputs';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import type { HandleDownloadEvents } from '@/shared/FileTransferPlugin/lib/handleDownload';
-import { openInApp_TryOpenFileInApp } from '@/shared/UBTConnect_Utils/lib/actions';
+import type { HandleDownloadEvents } from '@/platform/device/handleDownload';
+import { openInApp_TryOpenFileInApp } from '@/lib/ubtConnectUtils/actions';
 import { getContactHelpdeskSubject_Event, viewDocumentsReducer } from './viewDocumentsState';
 import { useViewDocuments } from './useViewDocuments';
 
@@ -32,14 +32,14 @@ vi.mock('@/platform/navigation', async (importOriginal) => ({
   useOsNavigate: () => navigate,
 }));
 /* OpenInApp_TryOpenFileInApp: the browser answer by default (the document opens in a new tab). */
-vi.mock('@/shared/UBTConnect_Utils/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect_Utils/lib/actions')>()),
+vi.mock('@/lib/ubtConnectUtils/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnectUtils/actions')>()),
   openInApp_TryOpenFileInApp: vi.fn(() => ({ IsInApp: false, Filepath: '' })),
 }));
 /* HandleDownload: the test raises its events (only a FileTransfer download in the app does). */
 const download = vi.hoisted((): { events: HandleDownloadEvents } => ({ events: {} }));
-vi.mock('@/shared/FileTransferPlugin/lib/handleDownload', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/FileTransferPlugin/lib/handleDownload')>()),
+vi.mock('@/platform/device/handleDownload', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/device/handleDownload')>()),
   useHandleDownload: (events: HandleDownloadEvents) => {
     download.events = events;
   },

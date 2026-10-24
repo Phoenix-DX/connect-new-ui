@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Badge } from './Badge';
 
 const meta = { title: 'Shared/UBTConnectLibrary/Badge', component: Badge } satisfies Meta<typeof Badge>;

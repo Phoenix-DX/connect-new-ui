@@ -2,7 +2,7 @@ import type { RequestHandler } from 'msw';
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { recordedHandler } from '@/mocks/fixtures';
-import { currDateTime } from '@/shared/lib/osDateTime';
+import { currDateTime } from '@/lib/osDateTime';
 import { wireList } from '@/legacy/os/os-wire';
 
 /** The wire shape of a notification (Connect2_Notification_CS.MessageListItem), as the contract types it. */

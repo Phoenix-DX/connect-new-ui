@@ -1,5 +1,5 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 
 export interface NavigationLandingProps {
   /** OutSystems instance id of the block. */

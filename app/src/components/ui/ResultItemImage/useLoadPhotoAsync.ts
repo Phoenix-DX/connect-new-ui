@@ -3,7 +3,7 @@ import {
   getCacheableSignedPhotoURL,
   getSignedPhotosInBulk,
   type GetSignedPhotosInBulk,
-} from '@/shared/Connect2_LegacyShared/lib/actions';
+} from '@/lib/legacyShared/actions';
 
 interface LoadedPhoto {
   bucket: string;

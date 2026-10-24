@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setSignedInUser } from '@/platform/session/session';
 import { expectToMatchCapture } from '@/test/dom';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import baseV1 from '@/components/layout/BaseLayout/__captures__/v1.html?raw';
 import { LegacyLayout } from './LegacyLayout';
 import * as stories from './LegacyLayout.stories';

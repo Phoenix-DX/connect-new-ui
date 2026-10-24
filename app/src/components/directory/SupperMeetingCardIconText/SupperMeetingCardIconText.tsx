@@ -3,7 +3,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { UBT_FontWeight, UBT_IconsSize, UBT_Size } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_FontWeight, UBT_IconsSize, UBT_Size } from '@/lib/ubtConnect/staticEntities';
 
 export interface SupperMeetingCardIconTextProps {
   /** OutSystems instance id of the block. */

@@ -1,1 +1,1 @@
-export type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
+export type { UI_SubdivisionHousehold } from '@/lib/ubtConnect/structures';

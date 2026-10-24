@@ -4,8 +4,8 @@ import { useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
-import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { formatClasses } from '@/lib/ubtConnectLibrary/actions';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface SeeMoreSectionProps {
   /** OutSystems instance id of the block. */

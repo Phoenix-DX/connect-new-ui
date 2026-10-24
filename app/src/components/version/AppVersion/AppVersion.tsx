@@ -2,9 +2,9 @@
 // @os-block UBTConnect.App_Common.Version
 import { useEffect, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { get_ConnectVersionDetails } from '@/shared/UBTConnect_Utils/lib/actions';
+import { get_ConnectVersionDetails } from '@/lib/ubtConnectUtils/actions';
 import { CustomText } from '@/components/ui/CustomText';
-import { UBT_Color } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color } from '@/lib/ubtConnect/staticEntities';
 
 export interface AppVersionProps {
   /** OutSystems instance id of the block. */

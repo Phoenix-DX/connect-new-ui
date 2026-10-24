@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Type_MyCalendarEventSource } from '@/pages/MyEntertaining/staticEntities';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { useClientVar } from '@/platform/session/session';
-import { openInApp_OpenExternalLink } from '@/shared/UBTConnect_Utils/lib/actions';
+import { openInApp_OpenExternalLink } from '@/lib/ubtConnectUtils/actions';
 
 /** What MyEntertaining_Embedded gives its Embedded_MyEntertaining: two inputs and two event handlers. */
 export interface MyEntertainingFlow {

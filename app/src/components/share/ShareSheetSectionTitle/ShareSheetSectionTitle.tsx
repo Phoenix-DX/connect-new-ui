@@ -2,7 +2,7 @@
 // @os-block UBTConnect_Utils.CW_Share.ShareSheet_SectionTitle
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectUtils/staticEntities';
 
 export interface ShareSheetSectionTitleProps {
   /** OutSystems instance id of the block. */

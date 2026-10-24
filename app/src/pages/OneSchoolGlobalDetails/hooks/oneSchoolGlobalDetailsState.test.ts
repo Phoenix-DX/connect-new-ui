@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { OneSchoolGlobalDetails } from '@/api/locality';
-import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
+import { get_LookupSection } from '@/lib/ubtConnect/actions';
 import {
   INITIAL_ONE_SCHOOL_GLOBAL_DETAILS_STATE,
   listStatusClassOf,

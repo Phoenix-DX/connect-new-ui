@@ -2,7 +2,7 @@ import { act, fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { freshPage } from '@/test/testSupport';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { PinRegisterContent, type PinRegisterContentProps } from './PinRegisterContent';
 import * as stories from './PinRegisterContent.stories';
 

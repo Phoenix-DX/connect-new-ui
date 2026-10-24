@@ -6,7 +6,7 @@ import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { PullToRefresh } from '@/components/ui/PullToRefresh';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { Icon } from '@/components/ui/Icon';
-import { formatClasses, getClass_BackgroundColor, initialize_SvgScroll } from '@/shared/UBTConnectLibrary/lib/actions';
+import { formatClasses, getClass_BackgroundColor, initialize_SvgScroll } from '@/lib/ubtConnectLibrary/actions';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -14,7 +14,7 @@ import {
   UBT_IconSize,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { HomeSearchSection } from '@/components/layout/HomeSearchSection';
 import { SvgBackground } from '@/components/ui/SvgBackground';
 

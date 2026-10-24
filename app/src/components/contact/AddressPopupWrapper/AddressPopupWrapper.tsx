@@ -6,9 +6,9 @@ import { appManager_GetIsNative } from '@/platform/device/deviceContext';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { CustomText } from '@/components/ui/CustomText';
-import { changeWindowLocation, jSUtils_CopyToClipboard } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { changeWindowLocation, jSUtils_CopyToClipboard } from '@/lib/jsUtils';
 import { AddressPopup } from '@/components/contact/AddressPopup';
-import { cleanAddressForMaps } from '@/shared/UBTConnect_Utils/lib/actions';
+import { cleanAddressForMaps } from '@/lib/ubtConnectUtils/actions';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -16,7 +16,7 @@ import {
   UBT_IconSize,
   UBT_Icons,
   UBT_Size,
-} from '@/shared/UBTConnect_Utils/lib/staticEntities';
+} from '@/lib/ubtConnectUtils/staticEntities';
 import type { Directory_Coordinates } from './types';
 
 export interface AddressPopupWrapperProps {

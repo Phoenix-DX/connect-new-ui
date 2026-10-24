@@ -3,8 +3,8 @@ import { fetchBrowseCountriesStatistics } from '@/api/country';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
-import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
-import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
+import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 import {
   browseCountriesReducer,
   INITIAL_BROWSE_COUNTRIES_STATE,

@@ -2,9 +2,9 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import {
   useLocalityHouseholdList,
   type LocalityHouseholdListFlags,

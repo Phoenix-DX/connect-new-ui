@@ -2,8 +2,8 @@
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { FeedCms, type FeedCmsConfig } from '@/components/feed/FeedCms';
-import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import { SharePopup } from '@/components/share/SharePopup';
 
 export interface EmbeddedFeedProps {

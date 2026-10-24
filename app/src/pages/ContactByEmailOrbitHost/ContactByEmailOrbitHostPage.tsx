@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
 import { ContactEmailForm } from '@/components/contact/ContactEmailForm';
 import { ContactPersonCard } from '@/components/contact/ContactPersonCard';
-import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { DetailLayoutContainer } from '@/containers/DetailLayout';
 import { useNoCommonUi } from '@/platform/feedback/dialogs';
 import { contactByEmailOrbitHostConfig } from './config';
 import { useContactByEmailOrbitHostSubmit } from './hooks/useContactByEmailOrbitHostSubmit';
@@ -23,7 +23,7 @@ export default function ContactByEmailOrbitHost() {
   const submit = useContactByEmailOrbitHostSubmit(inputs);
 
   return (
-    <Layout_DetailPage
+    <DetailLayoutContainer
       id="$b1"
       inAlignTitleLeft
       inIsPrimaryColor={config.isPrimaryColor}

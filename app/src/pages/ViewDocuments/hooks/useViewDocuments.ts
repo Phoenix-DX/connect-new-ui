@@ -5,13 +5,9 @@ import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } 
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { log } from '@/platform/log/log';
 import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
-import {
-  useHandleDownload,
-  type FileDownloadResult,
-  type FileTransferError,
-} from '@/shared/FileTransferPlugin/lib/handleDownload';
-import { addExtensionToFile } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { openInApp_TryOpenFileInApp } from '@/shared/UBTConnect_Utils/lib/actions';
+import { useHandleDownload, type FileDownloadResult, type FileTransferError } from '@/platform/device/handleDownload';
+import { addExtensionToFile } from '@/lib/orbit/actions';
+import { openInApp_TryOpenFileInApp } from '@/lib/ubtConnectUtils/actions';
 import {
   eventDocumentsCallInputs,
   FILE_EXTENSION_PDF,

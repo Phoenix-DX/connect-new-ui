@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { LOCALITY } from '@/mocks/fictional/directory';
-import { MOCK_LOCALITY_SUBDIVISIONS } from '@/shared/Connect2_LegacyShared/lib/mocks';
-import { mockApiSession } from '@/shared/test/mockApiSession';
+import { MOCK_LOCALITY_SUBDIVISIONS } from '@/mocks/modules/Connect2_LegacyShared/mocks';
+import { mockApiSession } from '@/test/mockApiSession';
 import { AssembleSubdivisionFilter } from './AssembleSubdivisionFilter';
 
 const meta = {

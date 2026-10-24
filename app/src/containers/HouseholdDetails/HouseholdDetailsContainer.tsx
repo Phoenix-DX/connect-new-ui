@@ -3,8 +3,8 @@ import { HouseholdDetailsView } from '@/components/household';
 import { ShareableObject } from '@/components/share/ShareableObject';
 import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
-import { Connect_Entity, Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
-import type { HouseholdPreviewStructure, UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
+import { Connect_Entity, Type_ShareObject } from '@/lib/ubtConnect/staticEntities';
+import type { HouseholdPreviewStructure, UI_HouseholdMember } from '@/lib/ubtConnect/structures';
 import {
   useHouseholdDetails,
   type HouseholdDetailsFlags,

@@ -2,7 +2,7 @@ import { composeStories } from '@storybook/react-vite';
 import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { expectToMatchCapture } from '@/test/dom';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import daySelectorV1 from '@/components/orbit/DaySelector/__captures__/v1.html?raw';
 import daySelectorV2 from '@/components/orbit/DaySelector/__captures__/v2.html?raw';
 import { DaySelectorList } from './DaySelectorList';

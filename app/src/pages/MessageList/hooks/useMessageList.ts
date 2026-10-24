@@ -15,7 +15,7 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, useWasRestoredFromCache, type BackNavigationEvent } from '@/platform/navigation';
 import { getClientVar } from '@/platform/session/session';
 import { decrementReadMessagesCounter } from '@/platform/session/unreadCounters';
-import { currDateTime } from '@/shared/lib/osDateTime';
+import { currDateTime } from '@/lib/osDateTime';
 import type { MessageListViewEvents, MessageListViewState } from '@/pages/MessageList/components/MessageListView';
 import { INCREMENT_RECORDS, initialMessageListState, messageListReducer } from './messageListState';
 import { setUnreadNotificationsNumber } from './unreadNotifications';

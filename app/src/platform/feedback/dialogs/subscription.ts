@@ -1,5 +1,5 @@
 import { getClientVar } from '@/platform/session/session';
-import { openInApp_OpenExternalLink } from '@/shared/UBTConnect_Utils/lib/actions';
+import { openInApp_OpenExternalLink } from '@/lib/ubtConnectUtils/actions';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { confirmAction } from './confirmAction';
 

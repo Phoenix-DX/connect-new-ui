@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { UBT_Color, UBT_IconSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_IconSize, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface ContextMenuItemProps {
   /** OutSystems instance id of the block. */

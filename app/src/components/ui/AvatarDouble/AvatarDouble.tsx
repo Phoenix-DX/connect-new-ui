@@ -3,7 +3,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AvatarImage } from '@/components/ui/AvatarImage';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { getClasses_AvatarSize } from '@/shared/UBTConnectLibrary/lib/actions';
+import { getClasses_AvatarSize } from '@/lib/ubtConnectLibrary/actions';
 import type { AvatarImageRecord } from './types';
 
 export interface AvatarDoubleProps {

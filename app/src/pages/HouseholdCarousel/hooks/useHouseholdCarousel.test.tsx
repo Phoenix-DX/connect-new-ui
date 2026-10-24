@@ -7,7 +7,7 @@ import { LOCALITY_HOUSEHOLDS } from '@/mocks/fictional/directory';
 import { getPreloadObject, setPreloadObject } from '@/platform/navigation';
 import { resetNavigation } from '@/platform/navigation/testRouter';
 import { getClientVar, setClientVar } from '@/platform/session/session';
-import { Type_CarouselItemSwipeAction } from '@/shared/UBTConnect/lib/staticEntities';
+import { Type_CarouselItemSwipeAction } from '@/lib/ubtConnect/staticEntities';
 import { useHouseholdCarousel } from './useHouseholdCarousel';
 
 /* The variables and handlers of HouseholdCarousel, with UpdateItem_MarkAsRead and the view cache writes (the setter

@@ -10,8 +10,8 @@ import {
   removeScrollEvents,
   setMainFixedScroll,
   setScrollShadow,
-} from '@/shared/UBTConnectLibrary/lib/actions';
-import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/actions';
+import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface MainLayoutFixedTitleProps {
   /** OutSystems instance id of the block. */

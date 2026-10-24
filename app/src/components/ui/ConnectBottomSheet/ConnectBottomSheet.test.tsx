@@ -3,7 +3,7 @@ import type { ReactElement } from 'react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { ConnectBottomSheet } from './ConnectBottomSheet';
 import * as stories from './ConnectBottomSheet.stories';
 

@@ -12,9 +12,9 @@ import {
   UBT_ImageCardType,
   UBT_ImageSize,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { Connect_Entity, UBT_ImageSize as UBT_ImageSize_Utils } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_Entity, UBT_ImageSize as UBT_ImageSize_Utils } from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { useHouseholdCardMembers } from '@/pages/Locality_Details/hooks/useHouseholdCardMembers';
 import { UBT_Icons2_Locality } from './staticEntities';

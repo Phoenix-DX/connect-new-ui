@@ -1,1 +1,1 @@
-export type { SpacingOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+export type { SpacingOptions } from '@/lib/ubtConnectLibrary/structures';

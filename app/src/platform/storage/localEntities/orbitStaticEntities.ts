@@ -2,10 +2,7 @@ import { useSyncExternalStore } from 'react';
 import type { components } from '@/api/schema';
 import { isOn } from '@/platform/flags/flags';
 import { DataBaseException } from '@/legacy/os/os-exceptions';
-import type {
-  LocalOrbitMilestoneType,
-  OrbitMilestoneTypeRecord,
-} from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { LocalOrbitMilestoneType, OrbitMilestoneTypeRecord } from '@/lib/orbit/structures';
 import { indexedDbDatabase, memoryDatabase, type LocalDatabase } from './database';
 import {
   DATABASE_NAME,

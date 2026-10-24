@@ -11,14 +11,14 @@ import {
   UBT_ImageSize,
   UBT_JustifyContent,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { Member_ListItem } from '@/shared/UBTConnectLibrary/Member_ListItem';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import { MemberListItem } from '@/components/household/MemberListItem';
 import { NonMemberListItem } from '@/components/household/NonMemberListItem';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
-import { getSkeletonList_UI_HouseholdMembers } from '@/shared/UBTConnect/lib/actions';
-import { Connect_Entity, Connect_HouseholdMemberRole } from '@/shared/UBTConnect/lib/staticEntities';
-import type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
+import { getSkeletonList_UI_HouseholdMembers } from '@/lib/ubtConnect/actions';
+import { Connect_Entity, Connect_HouseholdMemberRole } from '@/lib/ubtConnect/staticEntities';
+import type { UI_HouseholdMember } from '@/lib/ubtConnect/structures';
 import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSection';
 
 const NO_MEMBERS: UI_HouseholdMember[] = [];
@@ -95,7 +95,7 @@ export function HouseholdMemberList({
               sourceDataFetchStatus={membersDataFetchStatus}
             >
               {(member) => (
-                <Member_ListItem
+                <MemberListItem
                   isEnabled={isEnabled}
                   lifeCycleText={member.LifeCycleText ?? ''}
                   title={member.Title ?? ''}

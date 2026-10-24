@@ -17,9 +17,9 @@ import { confirmAction } from '@/platform/feedback/dialogs';
 import { getClientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
-import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
-import type { HouseholdPreviewStructure } from '@/shared/UBTConnect/lib/structures';
-import { jSUtils_CopyToClipboard } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import type { Directory_UserCurrent } from '@/platform/session/UserInfoCache/types';
+import type { HouseholdPreviewStructure } from '@/lib/ubtConnect/structures';
+import { jSUtils_CopyToClipboard } from '@/lib/jsUtils';
 import {
   action_FormatAddress,
   initialProfileState,

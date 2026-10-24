@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { NoteListActionsContainer } from '@/containers/NoteListActions';
 import { NotesSheet } from '@/components/note/NotesSheet';
-import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 import type { NoteCardItem } from '@/api/note';
 import { child, scopeOf } from './ids';
 import { ItemCard_WithNotes } from './ItemCard_WithNotes';

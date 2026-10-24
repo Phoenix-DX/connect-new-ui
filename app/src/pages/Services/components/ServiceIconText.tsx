@@ -7,8 +7,8 @@ import {
   UBT_FontWeight,
   UBT_IconsSize,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { TextOptions } from '@/lib/ubtConnectLibrary/structures';
 
 export interface ServiceIconTextProps {
   /** OutSystems instance id of the IconText. */

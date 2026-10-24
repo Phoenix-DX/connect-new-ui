@@ -11,7 +11,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface NonMemberListItemProps {
   /** OutSystems instance id of the block. */

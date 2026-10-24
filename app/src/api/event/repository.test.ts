@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { ASSEMBLE_MEETINGS, USER_HALL_ID } from '@/mocks/fictional/assemble';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import { BOOKLET_MAX_ROWS } from '@/shared/Connect2_OrbitMobile_MUI/lib/mocks';
+import { BOOKLET_MAX_ROWS } from '@/mocks/modules/Connect2_OrbitMobile_MUI/mocks';
 import { server } from '@/test/setup';
 import { toEventBookletPaginationInput, toEventBookletSelectedFiltersInput } from './mapper';
 import {

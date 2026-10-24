@@ -1,1 +1,1 @@
-export type { AvatarIconOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+export type { AvatarIconOptions } from '@/lib/ubtConnectLibrary/structures';

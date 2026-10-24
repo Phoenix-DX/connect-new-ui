@@ -1,5 +1,5 @@
 import type { CountryWithMapPosition } from '@/api/country';
-import { removeDiacritics } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { removeDiacritics } from '@/lib/legacyShared/actions';
 
 /** The variables of the block ScreenBlock_Assemble_Filter, the reducer and the client actions. Pure; the flows are in
     useAssembleFilter.

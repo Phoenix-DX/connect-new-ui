@@ -6,7 +6,7 @@ import { CircleButtonIconPrimary } from '@/components/ui/CircleButtonIconPrimary
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { InputCounter } from '@/components/ui/InputCounter';
-import { UBT_Color, UBT_ColumnBehaviour, UBT_Icons, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_ColumnBehaviour, UBT_Icons, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface AddNoteProps {
   /** OutSystems instance id of the block. */

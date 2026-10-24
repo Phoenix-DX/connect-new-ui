@@ -5,8 +5,8 @@ import type {
 } from '@/api/locality';
 import type { OneSchoolGlobalDetailsInputs } from '@/pages/OneSchoolGlobalDetails/inputs';
 import { Type_OneschoolGlobal_Subsection } from '@/pages/OneSchoolGlobalDetails/staticEntities';
-import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
-import type { LookupSections } from '@/shared/UBTConnect/lib/structures';
+import { get_LookupSection } from '@/lib/ubtConnect/actions';
+import type { LookupSections } from '@/lib/ubtConnect/structures';
 
 /** The state of the OneSchoolGlobalDetails screen and its reducer, and the pure parts of its flows: the skeleton card
     of OnReady, the class of the business link list and the screen variables that the data action sends.

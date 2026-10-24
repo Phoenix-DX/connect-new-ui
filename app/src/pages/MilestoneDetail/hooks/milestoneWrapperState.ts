@@ -1,6 +1,6 @@
 import type { GmpMilestoneHost } from '@/api/event';
 import type { MilestoneDetailInputs } from '@/pages/MilestoneDetail/inputs';
-import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 import type { AccommodationHostInputs } from './accommodationHostState';
 
 /** The state of ScreenBlock_MilestoneWrapper: its variables and the answer of DataActionGetGmpMilestoneHost. The view

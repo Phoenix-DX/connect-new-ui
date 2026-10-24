@@ -2,7 +2,7 @@
 // @os-block UBTConnectLibrary.Layouts.SubLayout_HomePageSearch
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { StaticInput } from '@/components/ui/StaticInput';
 
 export interface HomeSearchSectionProps {

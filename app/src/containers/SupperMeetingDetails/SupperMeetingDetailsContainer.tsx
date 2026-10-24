@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { SupperMeetingDetails } from '@/components/directory/SupperMeetingDetails';
 import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { useSupperMeetingDetails, type SupperMeetingDetailsFlags } from './hooks/useSupperMeetingDetails';
 
 export interface SupperMeetingDetailsContainerProps {

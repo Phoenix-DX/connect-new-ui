@@ -1,6 +1,6 @@
-import { Connect_Entity, UBT_FontWeight, UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity, UBT_FontWeight, UBT_Icons2 } from '@/lib/ubtConnect/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
-import { UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_ImageSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { ColumnsThree } from '@/components/ui/ColumnsThree';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
@@ -12,7 +12,7 @@ import {
   UBT_FontSize,
   UBT_IconsSize,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface ContactPersonCardProps {
   /** Entity type of the avatar (UBT_LazyImage EntityType); "" → Connect_Entity.Member. */

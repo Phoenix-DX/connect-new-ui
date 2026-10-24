@@ -6,7 +6,7 @@ import type {
   Filter_Common_Control_Choice,
   Filter_Common_Control_List,
   Filter_Common_Options,
-} from '@/shared/UBTConnect/lib/structures';
+} from '@/lib/ubtConnect/structures';
 import type { NotesFilter } from '@/api/note';
 import { child, scopeOf } from './ids';
 

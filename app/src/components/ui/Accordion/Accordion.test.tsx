@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { AccordionItem } from '@/components/ui/AccordionItem';
 import { Accordion } from './Accordion';
 import * as stories from './Accordion.stories';

@@ -10,13 +10,13 @@ import {
   unsetSplideEvent,
   type SplideEventHandler,
 } from '@/components/ui/lib/actions';
-import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 import type { CarouselHouseholdDetailsSlot } from '@/components/directory/CarouselHouseholdDetails';
 import type { CarouselSupperMeetingDetailsSlot } from '@/components/directory/CarouselSupperMeetingDetails';
 import { EntitiesCarouselElement } from '@/components/directory/EntitiesCarouselElement';
 import { EntitiesCarouselHeader } from '@/components/directory/EntitiesCarouselHeader';
-import { BooleanTypes, CarouselNavigation } from '@/shared/UBTConnect/lib/staticEntities';
-import type { EntitiesCarousel_Item, HeaderList } from '@/shared/UBTConnect/lib/structures';
+import { BooleanTypes, CarouselNavigation } from '@/lib/ubtConnect/staticEntities';
+import type { EntitiesCarousel_Item, HeaderList } from '@/lib/ubtConnect/structures';
 
 const NO_ITEMS: readonly EntitiesCarousel_Item[] = [];
 

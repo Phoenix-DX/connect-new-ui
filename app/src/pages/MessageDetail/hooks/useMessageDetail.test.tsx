@@ -16,7 +16,7 @@ import { replaceOnUpcomingNavigation } from '@/platform/navigation';
 import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { cache_SignedImageURL_Get } from '@/shared/UBTConnect_Utils/lib/actions';
+import { cache_SignedImageURL_Get } from '@/lib/ubtConnectUtils/actions';
 import { messageDetailReducer } from './messageDetailState';
 import { useMessageDetail, type MessageDetailFlows } from './useMessageDetail';
 
@@ -35,8 +35,8 @@ vi.mock('@/api/notification', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/notification')>()),
   markNotificationOpened: vi.fn(() => Promise.resolve(false)),
 }));
-vi.mock('@/shared/UBTConnect_Utils/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect_Utils/lib/actions')>()),
+vi.mock('@/lib/ubtConnectUtils/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnectUtils/actions')>()),
   cache_SignedImageURL_Get: vi.fn(() => Promise.resolve('/img/member-900114.png')),
 }));
 vi.mock('@/platform/session/userInfo', async (importOriginal) => ({

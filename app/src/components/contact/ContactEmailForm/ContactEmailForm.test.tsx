@@ -2,7 +2,7 @@ import { composeStories } from '@storybook/react-vite';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { expectToMatchCapture } from '@/test/dom';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { ContactEmailForm } from './ContactEmailForm';
 import * as stories from './ContactEmailForm.stories';
 

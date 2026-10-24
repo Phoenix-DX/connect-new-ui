@@ -3,7 +3,7 @@ import { SectionSeparator } from '@/components/ui/SectionSeparator';
 import { ColumnsThree } from '@/components/ui/ColumnsThree';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
-import { UBT_Color, UBT_ColumnBehaviour, UBT_IconsSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_ColumnBehaviour, UBT_IconsSize } from '@/lib/ubtConnectLibrary/staticEntities';
 import {
   FAVOURITE_LIST,
   SORTABLE_GROUP,

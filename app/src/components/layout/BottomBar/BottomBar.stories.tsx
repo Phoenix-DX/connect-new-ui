@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { setClientVar } from '@/platform/session/session';
-import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_BottomBar_Items } from '@/lib/ubtConnectUtils/staticEntities';
 import { BottomBar } from './BottomBar';
 
 const meta = {

@@ -10,7 +10,7 @@ import { Icon } from '@/components/ui/Icon';
 import { BookmarkNotesKebab } from '@/components/note/BookmarkNotesKebab';
 import { TextAreaWithCounter } from '@/components/ui/TextAreaWithCounter';
 import { TextEllipsis } from '@/components/ui/TextEllipsis';
-import { getRelativeTimeTag } from '@/shared/UBTConnectLibrary/lib/actions';
+import { getRelativeTimeTag } from '@/lib/ubtConnectLibrary/actions';
 import {
   UBT_ButtonSize,
   UBT_ButtonType,
@@ -22,7 +22,7 @@ import {
   UBT_FontWeight,
   UBT_Icons,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface NoteItemProps {
   /** OutSystems instance id of the block. */

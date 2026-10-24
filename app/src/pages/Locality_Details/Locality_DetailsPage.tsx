@@ -16,11 +16,11 @@ import {
   UBT_Display,
   UBT_FontSize,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { ContainerOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { ContainerOptions } from '@/lib/ubtConnectLibrary/structures';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { StaticInput } from '@/components/ui/StaticInput';
-import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_BottomBar_Items } from '@/lib/ubtConnectUtils/staticEntities';
 import { Locality_DateTimeLabel } from './components/Locality_DateTimeLabel';
 import { Locality_Households } from './components/Locality_Households';
 import { Locality_Interchange } from './components/Locality_Interchange';

@@ -2,8 +2,8 @@
 // @os-block UBTConnect.Directory_CommonBlocks.Directory_EmptyState
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { EmptyState } from '@/components/ui/EmptyState';
-import { getEntityType_Icon } from '@/shared/UBTConnect_Utils/lib/actions';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { getEntityType_Icon } from '@/lib/ubtConnectUtils/actions';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 
 export interface DirectoryEmptyStateProps {
   /** OutSystems instance id of the block. */

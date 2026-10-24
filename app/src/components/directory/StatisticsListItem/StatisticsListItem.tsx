@@ -9,7 +9,7 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
+import { formatClasses } from '@/lib/ubtConnectLibrary/actions';
 import {
   UBT_AvatarSize,
   UBT_Color,
@@ -19,8 +19,8 @@ import {
   UBT_IconSize,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { StatisticsOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { StatisticsOptions } from '@/lib/ubtConnectLibrary/structures';
 
 export interface StatisticsListItemProps {
   /** OutSystems instance id of the block. */

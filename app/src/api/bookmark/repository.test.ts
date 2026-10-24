@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { legacyBookmarksCollection, legacyBookmarksOfGroup } from '@/shared/Connect2_MyBookmarks_MUI/mocks';
+import { legacyBookmarksCollection, legacyBookmarksOfGroup } from '@/mocks/modules/Connect2_MyBookmarks_MUI/mocks';
 import { bookmarksCollection } from '@/containers/EntityDetailsActions/mocks';
 import {
   addAssembleBookmark,

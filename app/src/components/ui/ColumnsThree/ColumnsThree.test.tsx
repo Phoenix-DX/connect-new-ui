@@ -4,13 +4,13 @@ import { expectToMatchCapture } from '@/test/dom';
 import columns3V1 from '@/components/ui/Columns3/__captures__/v1.html?raw';
 import columns3V2 from '@/components/ui/Columns3/__captures__/v2.html?raw';
 import columns3V4 from '@/components/ui/Columns3/__captures__/v4.html?raw';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/lib/ubtConnectLibrary/staticEntities';
 import { ColumnsThree } from './ColumnsThree';
 import * as stories from './ColumnsThree.stories';
 

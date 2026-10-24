@@ -2,7 +2,7 @@ import type { RequestHandler } from 'msw';
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { recordedHandler } from '@/mocks/fixtures';
-import { updateItems } from '@/shared/UBTConnect/Directory_Updates/mocks';
+import { updateItems } from '@/mocks/modules/UBTConnect/Directory_Updates/mocks';
 
 /** Connect_Updates_CS.UI_UpdateItem (FetchUpdates.UI_UpdateItemList), as the contract describes it. */
 type UpdateItemWire = ActionOutputs<

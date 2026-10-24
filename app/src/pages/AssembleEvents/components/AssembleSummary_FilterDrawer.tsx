@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { NewConnectContent } from '@/components/ui/NewConnectContent';
 import { Input } from '@/components/ui/Input';
-import { Shape } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Shape } from '@/lib/ubtConnectLibrary/staticEntities';
 import { usePreventBackNavigation } from '@/platform/navigation';
 import type { AssembleEventFilter, AssembleEventTypeSelection } from '@/api/event';
 import { compareAssembleFilters, emptyFilter } from './actions';

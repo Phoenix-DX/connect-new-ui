@@ -10,8 +10,8 @@ import {
   CarouselHouseholdDetails,
   type CarouselHouseholdDetailsSlot,
 } from '@/components/directory/CarouselHouseholdDetails';
-import { get_IsInsideRenderBuffer } from '@/shared/UBTConnect/lib/actions';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { get_IsInsideRenderBuffer } from '@/lib/ubtConnect/actions';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 
 /** Block variable IsSinglePassRender (mvc.js model, default True, never assigned): an element rendered once stays. */
 const BLOCK_VARIABLES = { IsSinglePassRender: true as boolean };

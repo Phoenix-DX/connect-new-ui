@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { log } from '@/platform/log/log';
-import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDateTimeById } from '@/lib/orbit/actions';
+import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import {
   getContactHelpdeskSubject_Milestone,
   getSkeletonLoadingIdFromMilestoneTypeId,

@@ -1,7 +1,7 @@
 import { composeStories } from '@storybook/react-vite';
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { expectToMatchCapture } from '@/test/dom';
 import * as cardStories from '@/components/ui/ResultItemCard/ResultItemCard.stories';
 import * as stories from './AssembleSummarySkeleton.stories';

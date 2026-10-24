@@ -3,8 +3,8 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
-import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
+import type { TextOptions } from '@/lib/ubtConnectLibrary/structures';
 
 export interface ComingSoonProps {
   /** OutSystems instance id of the block. */

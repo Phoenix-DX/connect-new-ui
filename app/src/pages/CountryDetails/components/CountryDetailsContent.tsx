@@ -4,17 +4,17 @@ import { StatisticsTypedItem } from '@/components/directory/StatisticsTypedItem'
 import { BrowseSection } from '@/components/layout/BrowseSection';
 import { OSList } from '@/components/ui/os/OSList';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
-import type L from '@/shared/Leaflet/lib/leaflet';
-import type { MapOptions, MarkerWithWindow, TileLayer, ZoomControlOptions } from '@/shared/Leaflet/lib/structures';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
-import type { UI_TypedStatistics } from '@/shared/UBTConnect/lib/structures';
+import type L from '@/lib/leaflet/leaflet';
+import type { MapOptions, MarkerWithWindow, TileLayer, ZoomControlOptions } from '@/lib/leaflet/structures';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
+import type { UI_TypedStatistics } from '@/lib/ubtConnect/structures';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
 import { Input } from '@/components/ui/Input';
-import { getClass_Color } from '@/shared/UBTConnectLibrary/lib/actions';
+import { getClass_Color } from '@/lib/ubtConnectLibrary/actions';
 import {
   Shape,
   UBT_Color,
@@ -25,8 +25,8 @@ import {
   UBT_Icons2 as UBT_Icons2_Library,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { SearchInput } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { SearchInput } from '@/lib/ubtConnectLibrary/structures';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { imageEntityIdOf } from '@/pages/CountryDetails/hooks/countryDetailsState';
 import { UBT_Icons2 } from './staticEntities';

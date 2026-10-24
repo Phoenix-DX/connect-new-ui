@@ -1,6 +1,6 @@
 import type { PhotoURL } from '@/api/event';
 import type { MemberContactWithTimezone } from '@/api/message';
-import type { ContactPopupData } from '@/shared/UBTConnect_Utils/lib/structures';
+import type { ContactPopupData } from '@/lib/ubtConnectUtils/structures';
 
 /** The contact record of AssembleEventDetail_ContactList and the client logic that AssembleEventDetail_Contact applies
     to one record. Pure; the flows are in useAssembleEventContactList and useAssembleEventContact.

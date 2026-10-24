@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
 import { contractHandler } from '@/mocks/contract';
-import { currDateTime } from '@/shared/lib/osDateTime';
+import { currDateTime } from '@/lib/osDateTime';
 import { NULL_DATE_TIME, notesCollection } from '@/containers/NoteListActions/mocks';
 
 /* AddNote was never recorded (x-mock-source fictional): the note joins the in-memory notes collection (P-MUTATION),

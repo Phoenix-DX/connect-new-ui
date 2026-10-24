@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import { OrbitSkeleton } from './OrbitSkeleton';
 
 const meta = {

@@ -1,5 +1,5 @@
 import type { CountrySummary } from '@/api/country';
-import type { Directory_UserCurrent } from '@/shared/UBTConnect_Utils/lib/structures';
+import type { Directory_UserCurrent } from '@/lib/ubtConnectUtils/structures';
 
 /** The variables of the screen CountryList, the reducer and the client actions. Pure; the flows are in
     useCountryList.

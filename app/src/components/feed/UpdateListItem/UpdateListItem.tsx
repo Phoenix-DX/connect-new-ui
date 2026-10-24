@@ -18,7 +18,7 @@ import {
   get_BackgroundColor_Tag_UpdateItem,
   get_FontColor_Avatar_UpdateItem,
   get_FontColor_Tag_UpdateItem,
-} from '@/shared/UBTConnectLibrary/lib/actions';
+} from '@/lib/ubtConnectLibrary/actions';
 import {
   Connect_UpdateTypeId,
   UBT_AvatarSize,
@@ -30,13 +30,13 @@ import {
   UBT_IconSize,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import type {
   AvatarImage as AvatarImageRecord,
   ContextMenuOptions,
   SpacingOptions,
   TextGenderIdentifier,
-} from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/structures';
 import { TagContent } from '@/components/ui/TagContent';
 
 export interface UpdateListItemProps {

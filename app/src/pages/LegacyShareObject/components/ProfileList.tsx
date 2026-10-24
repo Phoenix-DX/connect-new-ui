@@ -4,7 +4,7 @@ import { OSList } from '@/components/ui/os/OSList';
 import { UpgradeSubscriptionDialog } from '@/pages/LegacyShareObject/components/UpgradeSubscriptionDialog';
 import type { ProfileListResults, ShareProfile } from '@/pages/LegacyShareObject/hooks/profileListState';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
-import { ResultListType } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { ResultListType } from '@/lib/legacyShared/staticEntities';
 import { ResultItemImage } from '@/components/ui/ResultItemImage';
 import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { HighlightSearch } from './HighlightSearch';

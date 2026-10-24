@@ -5,7 +5,7 @@ import { OSList } from '@/components/ui/os/OSList';
 import { useNavigateBack } from '@/platform/navigation';
 import { SectionSeparator } from '@/components/ui/SectionSeparator';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { UBT_Color, UBT_FontSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { useContactUsMenu } from './hooks/useContactUsMenu';
 
 /** Runtime key of the sections List in the captures (`l1-37_<n>`). */

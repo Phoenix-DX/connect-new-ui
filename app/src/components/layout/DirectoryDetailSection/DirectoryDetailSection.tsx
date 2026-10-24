@@ -5,7 +5,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { SectionLayout } from '@/components/layout/SectionLayout';
-import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnect/staticEntities';
 
 export interface DirectoryDetailSectionProps {
   /** OutSystems instance id of the block. */

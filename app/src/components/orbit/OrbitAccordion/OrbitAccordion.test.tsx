@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { expectToMatchCapture } from '@/test/dom';
 import accordionV1 from '@/components/ui/legacy/LegacyAccordion/__captures__/v1.html?raw';
 import accordionV2 from '@/components/ui/legacy/LegacyAccordion/__captures__/v2.html?raw';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { OrbitAccordion } from './OrbitAccordion';
 import * as stories from './OrbitAccordion.stories';
 

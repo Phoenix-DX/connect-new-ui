@@ -5,7 +5,7 @@ import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback'
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useNavigateBack } from '@/platform/navigation';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
-import { preventNavigation, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
+import { preventNavigation, type NavigationEvent } from '@/lib/navigationEvent';
 import {
   ApplicationEvents_Directory_EmailHousehold,
   emailHouseholdEventAttachment,

@@ -14,7 +14,7 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnect_Utils/lib/staticEntities';
+} from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import type { UI_ShareableObject_Generic } from './types';
 

@@ -11,8 +11,8 @@ import {
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_IconSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import { UBT_IconSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { UBT_Icons2 } from '@/pages/HomeFeed/staticEntities';
 import { Section } from './Section';
 

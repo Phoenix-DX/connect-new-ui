@@ -2,11 +2,11 @@
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet
 import { useEffect, useLayoutEffect, useReducer, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import type { CacheControl_AllCountriesRec as AllCountries } from '@/shared/UBTConnect_Utils/CacheControl_AllCountries';
+import type { CacheControl_AllCountriesRec as AllCountries } from '@/legacy/os/cache/AllCountriesCacheControl';
 import type {
   CacheControl_AllLocalities as AllLocalities,
   Directory_UserCurrent,
-} from '@/shared/UBTConnect_Utils/lib/structures';
+} from '@/lib/ubtConnectUtils/structures';
 import { Button } from '@/components/ui/Button';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
@@ -28,13 +28,13 @@ import {
   UBT_Shadow,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { ContainerOptions, SelectionOption_Item } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { ContainerOptions, SelectionOption_Item } from '@/lib/ubtConnectLibrary/structures';
 import { bottomSheetClose } from '@/components/ui/lib/actions';
 import { FilterOptionChoice } from '@/components/filter/FilterOptionChoice';
 import { FilterOptionList } from '@/components/filter/FilterOptionList';
-import { app_CommonFilter_CheckCountry, app_CommonFilter_DefineOptionNames } from '@/shared/UBTConnect/lib/actions';
-import { Choice, Connect_Subscription_Plan } from '@/shared/UBTConnect/lib/staticEntities';
+import { app_CommonFilter_CheckCountry, app_CommonFilter_DefineOptionNames } from '@/lib/ubtConnect/actions';
+import { Choice, Connect_Subscription_Plan } from '@/lib/ubtConnect/staticEntities';
 import type {
   Filter_Common,
   Filter_Common_Control_Choice,

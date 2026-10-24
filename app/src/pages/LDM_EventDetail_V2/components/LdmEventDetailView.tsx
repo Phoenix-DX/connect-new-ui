@@ -16,7 +16,7 @@ import {
   MAX_PHOTO_WIDTH,
   SQUARE_PHOTO_PX,
 } from '@/pages/LDM_EventDetail_V2/hooks/ldmEventDetailState';
-import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuAction } from '@/lib/legacyShared/staticEntities';
 import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 import { formatDateForEventBanner } from './actions';
 import { EventDetail_Banner } from './EventDetail_Banner';

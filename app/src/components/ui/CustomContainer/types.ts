@@ -8,4 +8,4 @@ export type {
   SizeOptions,
   SpacingOptions,
   TextOptions,
-} from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/structures';

@@ -12,9 +12,9 @@ import {
   WARD_SUPPER_MEETING,
   type CastHousehold,
 } from '@/mocks/fictional/directory';
-import { getSkeleton_UI_HouseholdDetails } from '@/shared/UBTConnect/lib/actions';
-import type { UI_HouseholdMember, UI_Screen_HouseholdDetails } from '@/shared/UBTConnect/lib/structures';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import { getSkeleton_UI_HouseholdDetails } from '@/lib/ubtConnect/actions';
+import type { UI_HouseholdMember, UI_Screen_HouseholdDetails } from '@/lib/ubtConnect/structures';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import { HouseholdDetailsView, type HouseholdDetailsViewProps } from './HouseholdDetailsView';
 
 const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });

@@ -5,10 +5,10 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { isSystemException, isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { createOrUpdate_LocalNote, delete_LocalNoteByNoteId } from '@/platform/storage/localEntities';
 import { NoteList } from '@/components/note/NoteList';
-import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
-import { currDateTime } from '@/shared/lib/osDateTime';
-import { note_SendFeedbackMessages } from '@/shared/UBTConnect_Utils/lib/actions';
-import { NoteActionType } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
+import { currDateTime } from '@/lib/osDateTime';
+import { note_SendFeedbackMessages } from '@/lib/ubtConnectUtils/actions';
+import { NoteActionType } from '@/lib/ubtConnectUtils/staticEntities';
 import { deleteNoteByNoteId, updateNote } from './api';
 
 export interface NoteListActionsContainerProps {

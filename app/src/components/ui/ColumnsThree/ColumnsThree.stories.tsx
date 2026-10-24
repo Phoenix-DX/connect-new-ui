@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { IconText } from '@/components/ui/IconText';
-import { UBT_ColumnBehaviour } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_ColumnBehaviour } from '@/lib/ubtConnectLibrary/staticEntities';
 import { ColumnsThree } from './ColumnsThree';
 
 const meta = { title: 'Shared/UBTConnectLibrary/Columns_Three', component: ColumnsThree } satisfies Meta<

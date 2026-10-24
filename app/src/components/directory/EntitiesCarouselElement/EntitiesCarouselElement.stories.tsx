@@ -4,7 +4,7 @@ import type { CarouselHouseholdDetailsSlot } from '@/components/directory/Carous
 import type { CarouselSupperMeetingDetailsSlot } from '@/components/directory/CarouselSupperMeetingDetails';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { VITALE } from '@/mocks/fictional/directory';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { EntitiesCarouselElement } from './EntitiesCarouselElement';
 
 /** A stand-in for the household details container that the page renders in the slot: the HouseholdDetails_Block

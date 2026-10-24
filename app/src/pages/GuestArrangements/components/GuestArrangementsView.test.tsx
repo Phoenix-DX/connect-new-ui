@@ -2,8 +2,8 @@ import { act, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
 import type { GuestArrangementsData, MilestoneTransportItem } from '@/api/event';
-import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDateTime } from '@/lib/orbit/actions';
+import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import { EMPTY_GUEST_ARRANGEMENTS_DATA } from '@/pages/GuestArrangements/hooks/guestArrangementsState';
 import { GuestArrangementsView, type GuestArrangementsViewProps } from './GuestArrangementsView';
 

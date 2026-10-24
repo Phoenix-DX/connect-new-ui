@@ -2,7 +2,7 @@ import { ButtonLoading } from '@/components/ui/ButtonLoading';
 import { ActionButton } from '@/components/ui/ActionButton';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { FixedFooter } from '@/components/ui/FixedFooter';
-import { UBT_Color, UBT_Shadow, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_Shadow, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface ContactUsDetailsFooterProps {
   /** ContentContainerId: the content container that the fixed footer pads. */

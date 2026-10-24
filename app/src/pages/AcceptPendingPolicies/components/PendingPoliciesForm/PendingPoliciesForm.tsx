@@ -13,7 +13,7 @@ import {
   UBT_FontWeight,
   UBT_Shadow,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { ActionButton } from '@/components/ui/ActionButton';
 import { Separator } from '@/components/ui/Separator';
 import { UBT_Icons2_Checkbox, UBT_Icons2_CheckboxOutlineBlank } from '@/pages/AcceptPendingPolicies/staticEntities';

@@ -4,7 +4,7 @@ import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback'
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { getPreloadObject, setPreloadObject, useOsNavigate, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { directory_Updates_GetCarouselPreloadedHouseholds } from '@/shared/UBTConnect/lib/actions';
+import { directory_Updates_GetCarouselPreloadedHouseholds } from '@/lib/ubtConnect/actions';
 import { loadingItems, swipedItemsRead, withReadOverrides, type ReadOverrides } from './feedUpdatesState';
 
 /** The variables and the flows of the updates card of HomeFeed: the data action FetchUpdates, the read state of the

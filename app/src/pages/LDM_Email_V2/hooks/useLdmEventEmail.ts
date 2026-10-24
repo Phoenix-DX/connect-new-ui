@@ -6,8 +6,8 @@ import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback'
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { allowUpcomingNavigation, useFlowState, useNavigateBack, type IsAlive } from '@/platform/navigation';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
-import type { ContactByPhonePopupData } from '@/shared/UBTConnect_Utils/lib/structures';
-import { preventNavigation, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
+import type { ContactByPhonePopupData } from '@/lib/ubtConnectUtils/structures';
+import { preventNavigation, type NavigationEvent } from '@/lib/navigationEvent';
 import {
   addAuditEventDetailEvent,
   ApplicationEvents_LDM,

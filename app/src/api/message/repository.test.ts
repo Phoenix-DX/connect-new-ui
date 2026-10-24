@@ -4,7 +4,7 @@ import { SCHOOLS, exampleEmail } from '@/mocks/fictional/directory';
 import { ldmEventById, ldmEventDay, ldmEventName } from '@/mocks/fictional/ldm';
 import { ORBIT_HELPDESK_EMAIL } from '@/mocks/fictional/orbit';
 import { collection } from '@/mocks/store';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { recordBodies } from '@/test/testSupport';
 import {
   fetchCountryNames,

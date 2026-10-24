@@ -5,7 +5,7 @@ import { CircleButtonIconPrimary } from '@/components/ui/CircleButtonIconPrimary
 import { ContextMenuItem } from '@/components/ui/ContextMenuItem';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
-import { Position, UBT_Color, UBT_Icons, UBT_Shadow, UBT_Shape } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Position, UBT_Color, UBT_Icons, UBT_Shadow, UBT_Shape } from '@/lib/ubtConnectLibrary/staticEntities';
 import { PopupMenu } from '@/components/ui/PopupMenu';
 import type { ContextMenuOptions } from './types';
 

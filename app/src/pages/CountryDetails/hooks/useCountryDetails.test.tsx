@@ -10,10 +10,10 @@ import {
   map_InvalidateSize,
   map_Marker_OpenPopUp,
   map_SetPopupBindingCallback,
-} from '@/shared/Leaflet/lib/actions';
-import type L from '@/shared/Leaflet/lib/leaflet';
+} from '@/lib/leaflet/actions';
+import type L from '@/lib/leaflet/leaflet';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
-import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import { useCountryDetails } from './useCountryDetails';
 
@@ -21,15 +21,15 @@ vi.mock('@/components/ui/lib/actions', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/components/ui/lib/actions')>()),
   bottomSheetOpen: vi.fn(),
 }));
-vi.mock('@/shared/Leaflet/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Leaflet/lib/actions')>()),
+vi.mock('@/lib/leaflet/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/leaflet/actions')>()),
   map_FitBoundsAuto: vi.fn(),
   map_InvalidateSize: vi.fn(),
   map_Marker_OpenPopUp: vi.fn(),
   map_SetPopupBindingCallback: vi.fn(),
 }));
-vi.mock('@/shared/UBTConnect/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect/lib/actions')>()),
+vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnect/actions')>()),
   hasAccessToRegion: vi.fn(),
 }));
 vi.mock('@/platform/feedback/dialogs', async (importOriginal) => ({

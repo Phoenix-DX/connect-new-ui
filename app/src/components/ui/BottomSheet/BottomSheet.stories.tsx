@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { ReactNode } from 'react';
-import { PendingBlock } from '@/shared/test/PendingBlock';
+import { PendingBlock } from '@/test/PendingBlock';
 import { bindDragToOpen } from '@/components/ui/ConnectBottomSheet/jsNodes';
 import { ColumnsThree } from '@/components/ui/ColumnsThree';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { jSUtils_SetStyleProperty } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { jSUtils_SetStyleProperty } from '@/lib/jsUtils';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { Shape } from '@/components/ui/lib/staticEntities';
 import { BottomSheet, type BottomSheetProps } from './BottomSheet';

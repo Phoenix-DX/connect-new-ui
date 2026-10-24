@@ -4,7 +4,7 @@ import { contractHandler } from '@/mocks/contract';
 import { fixtureData } from '@/mocks/fixtures';
 import { mockDelay, scenario } from '@/mocks/scenario';
 import { mockUserInformation, mockUserToggles } from '@/platform/session/mockUser';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import { mockSignedImageURL } from '@/components/ui/EntityLazyImage/mocks';
 
 /* Menu mocks (P-MOCKS).

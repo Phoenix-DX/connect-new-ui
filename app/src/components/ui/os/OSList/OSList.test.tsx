@@ -1,7 +1,7 @@
 import { composeStories } from '@storybook/react-vite';
 import { act, fireEvent, render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi, type MockInstance } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { DataFetchStatus, OSList } from './OSList';
 import { OSListItem, OSListItemAction } from './OSListItem';
 import * as stories from './OSList.stories';

@@ -15,7 +15,7 @@ import {
   UBT_FlexBehavior,
   UBT_Shadow,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { bottomSheetClose } from '@/components/ui/lib/actions';
 import { Choice } from './staticEntities';
 

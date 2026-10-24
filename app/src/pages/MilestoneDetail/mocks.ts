@@ -3,7 +3,7 @@ import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { osList, wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { orbitEvents, type OrbitMilestone, type OrbitRoom } from '@/mocks/fictional/orbit';
-import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 import { mockSignedImageURL } from '@/components/ui/EntityLazyImage/mocks';
 
 /* Wire shapes of DataActionGetAccommodationHost, typed by the API contract (captured shape: analysis/calls.md

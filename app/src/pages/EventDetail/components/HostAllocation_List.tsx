@@ -2,8 +2,8 @@ import { useState } from 'react';
 import type { Milestone_Screen } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { getFormattedDateTime, getLocalOrbitMilestoneTypesById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDateTime, getLocalOrbitMilestoneTypesById } from '@/lib/orbit/actions';
+import { OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 
 /** The host allocation blocks of the Host Allocation accordion item (sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks
     .HostAllocation_List.mvc.js = HL, …HostAllocation_ListItem.mvc.js = HI, …HostAllocation_HelperItem.mvc.js = HH;

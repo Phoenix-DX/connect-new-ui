@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchTransportDetail, type TransportDetails } from '@/api/event';
 import { CommunicationException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import {
   EMPTY_TRANSPORT_DETAILS,
   transportDetailReducer,

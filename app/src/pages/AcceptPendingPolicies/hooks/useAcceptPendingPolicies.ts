@@ -5,7 +5,7 @@ import { allowUpcomingNavigation, replaceOnUpcomingNavigation, useNavigateBack }
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { jSUtils_SetStyleProperty } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { jSUtils_SetStyleProperty } from '@/lib/jsUtils';
 import { getSVGMetric } from '@/pages/AcceptPendingPolicies/actions';
 
 /** @origin UBTConnect.App_Policies.AcceptPendingPolicies

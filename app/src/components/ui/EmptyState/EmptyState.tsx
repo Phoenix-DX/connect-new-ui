@@ -14,7 +14,7 @@ import {
   UBT_JustifyContent,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface EmptyStateProps {
   /** OutSystems instance id of the block. */

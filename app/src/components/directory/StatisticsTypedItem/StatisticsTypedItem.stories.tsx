@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { osImage } from '@/legacy/os/os-assets';
-import { withLoadedImages } from '@/shared/test/loadedImages';
+import { withLoadedImages } from '@/test/loadedImages';
 import { StatisticsTypedItem } from './StatisticsTypedItem';
 
 const meta = {

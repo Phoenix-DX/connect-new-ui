@@ -2,7 +2,7 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.IconInline_Internal
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Icon } from '@/components/ui/Icon';
-import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import type { InlineIcon } from './types';
 
 export interface IconInlineProps {

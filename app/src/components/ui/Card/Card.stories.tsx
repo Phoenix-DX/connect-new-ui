@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { styleFromCssText } from '@/shared/lib/cssText';
-import { PendingBlock } from '@/shared/test/PendingBlock';
+import { styleFromCssText } from '@/lib/cssText';
+import { PendingBlock } from '@/test/PendingBlock';
 import { Card } from './Card';
 
 const meta = { title: 'Shared/osui/Card', component: Card } satisfies Meta<typeof Card>;

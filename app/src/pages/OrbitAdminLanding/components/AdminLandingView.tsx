@@ -8,7 +8,7 @@ import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { MenuAction_Menu } from '@/pages/OrbitAdminLanding/staticEntities';
-import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 
 /** The view of the Orbit admin landing, props only: Layout_Orbit with the back MenuIcon, the Orbit flag as title and
     the admin's first name in the header. The content is the OrbitLanding skeleton while fetching, then the Card_Event

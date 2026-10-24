@@ -1,9 +1,9 @@
 import { composeStories } from '@storybook/react-vite';
 import { render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import type { CarouselHouseholdDetailsProps } from '@/components/directory/CarouselHouseholdDetails';
-import { get_IsInsideRenderBuffer } from '@/shared/UBTConnect/lib/actions';
+import { get_IsInsideRenderBuffer } from '@/lib/ubtConnect/actions';
 import * as stories from './EntitiesCarouselElement.stories';
 
 /* Records the inputs EntitiesCarousel_HouseholdDetails receives; it still renders the real block. */

@@ -3,8 +3,8 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
-import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
-import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { formatClasses } from '@/lib/ubtConnectLibrary/actions';
+import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/lib/ubtConnectLibrary/staticEntities';
 import { UBT_Icons_ExpandMore } from '@/pages/OneSchoolGlobalDetails/staticEntities';
 
 export interface ExpandableSectionProps {

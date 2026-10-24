@@ -3,11 +3,11 @@ import { describe, expect, it } from 'vitest';
 import { expectToMatchCapture } from '@/test/dom';
 import columns2V2 from '@/components/ui/Columns2/__captures__/v2.html?raw';
 import columns2V3 from '@/components/ui/Columns2/__captures__/v3.html?raw';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
-import { PendingBlock } from '@/shared/test/PendingBlock';
+import { testCapturedVariants } from '@/test/capturedVariants';
+import { PendingBlock } from '@/test/PendingBlock';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
-import { UBT_Size, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Size, UBT_VerticalAlign } from '@/lib/ubtConnectLibrary/staticEntities';
 import { ColumnsTwo } from './ColumnsTwo';
 import * as stories from './ColumnsTwo.stories';
 

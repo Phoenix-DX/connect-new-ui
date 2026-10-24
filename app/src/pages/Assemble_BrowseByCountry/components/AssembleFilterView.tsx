@@ -6,7 +6,7 @@ import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { assembleFilterIds } from '@/pages/Assemble_BrowseByCountry/hooks/assembleFilterState';
-import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuAction } from '@/lib/legacyShared/staticEntities';
 import { Spinner } from '@/components/ui/Spinner';
 import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';

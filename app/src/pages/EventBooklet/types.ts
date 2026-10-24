@@ -1,6 +1,6 @@
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import type { EventBookletCallInputs, EventBookletMember } from '@/api/event';
-import type { DayFilter } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { DayFilter } from '@/lib/orbit/structures';
 import type { DropdownOption } from '@/components/ui/lib/structures';
 
 /* ---- Wire shapes (mocks.ts only) ----

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { AccommodationHostResult } from '@/api/event';
-import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDateTimeById } from '@/lib/orbit/actions';
+import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import {
   accommodationHostCallInputs,
   accommodationHostReducer,

@@ -2,13 +2,13 @@ import { act, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { setSignedInUser } from '@/platform/session/session';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { MainLayout } from './MainLayout';
 import * as stories from './MainLayout.stories';
 
 const scroll = vi.hoisted(() => ({ callback: undefined as ((isHeaderScrolled: boolean) => void) | undefined }));
-vi.mock('@/shared/UBTConnectLibrary/lib/actions', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@/shared/UBTConnectLibrary/lib/actions')>();
+vi.mock('@/lib/ubtConnectLibrary/actions', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/lib/ubtConnectLibrary/actions')>();
   return {
     ...actual,
     setMainScroll: (cb: (isHeaderScrolled: boolean) => void) => {

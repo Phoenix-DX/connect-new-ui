@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { expectToMatchCapture } from '@/test/dom';
 import { carouselGoTo, carouselToggleDrag, setCarouselStartingPosition } from '@/components/ui/lib/actions';
 import { CarouselNavigation } from '@/components/ui/lib/staticEntities';
-import { carousel_SetCurrentPosition } from '@/shared/UBTConnect/lib/actions';
+import { carousel_SetCurrentPosition } from '@/lib/ubtConnect/actions';
 import { Carousel, splideOptions, type CarouselConfig } from './Carousel';
 import * as stories from './Carousel.stories';
 import { browserCalc, stubCarouselLayout } from './testLayout';

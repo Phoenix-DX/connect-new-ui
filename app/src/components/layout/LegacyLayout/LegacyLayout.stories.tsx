@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
-import { PendingBlock } from '@/shared/test/PendingBlock';
+import { PendingBlock } from '@/test/PendingBlock';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { LegacyLayout } from './LegacyLayout';

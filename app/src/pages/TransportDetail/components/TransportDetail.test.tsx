@@ -2,7 +2,7 @@ import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import type { TransportDetails } from '@/api/event';
 import { EMPTY_TRANSPORT_DETAILS } from '@/pages/TransportDetail/hooks/transportDetailState';
-import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 import { TransportDetail } from './TransportDetail';
 
 /* The TransportDetail block and its TransportDetail_TravelInfo block, props only. Fictional transports: the Thursday

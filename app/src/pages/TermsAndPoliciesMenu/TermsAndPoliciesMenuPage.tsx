@@ -2,7 +2,7 @@ import { DetailLayout } from '@/components/layout';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { MenuList } from '@/components/menu/MenuList';
 import { useNavigateBack } from '@/platform/navigation';
-import { CacheControl_Policies } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
+import { PoliciesCacheControl } from '@/legacy/os/cache/PoliciesCacheControl';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { useTermsAndPoliciesMenu } from './hooks/useTermsAndPoliciesMenu';
 
@@ -29,7 +29,7 @@ export default function TermsAndPoliciesMenu() {
         }
         commonUI={<CommonUiLayout id="$b4" />}
       />
-      <CacheControl_Policies id="$b5" onResult={onPoliciesResult} />
+      <PoliciesCacheControl id="$b5" onResult={onPoliciesResult} />
     </>
   );
 }

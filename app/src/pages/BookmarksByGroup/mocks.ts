@@ -1,7 +1,7 @@
 import { http, HttpResponse, type RequestHandler } from 'msw';
 import { contractHandler } from '@/mocks/contract';
 import { mockDelay, scenario } from '@/mocks/scenario';
-import { legacyBookmarksOfGroup } from '@/shared/Connect2_MyBookmarks_MUI/mocks';
+import { legacyBookmarksOfGroup } from '@/mocks/modules/Connect2_MyBookmarks_MUI/mocks';
 import type { BookmarkItemWire } from './types';
 
 /* DataActionGetAllBookmarksByGroup was not recorded (bookmarks are person data, knowledge/mock-fixtures.md): it answers

@@ -2,7 +2,7 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.SkeletonSection
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { getClasses_UBTSkeletonSection } from '@/shared/UBTConnectLibrary/lib/actions';
+import { getClasses_UBTSkeletonSection } from '@/lib/ubtConnectLibrary/actions';
 
 export interface SkeletonProps {
   /** OutSystems instance id of the block. */

@@ -3,13 +3,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Skeleton } from '@/components/ui/Skeleton';
-import {
-  UBT_Color,
-  UBT_FontSize,
-  UBT_FontWeight,
-  UBT_Shape,
-  UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface CommunityPopulationProps {
   /** OutSystems instance id of the block. */

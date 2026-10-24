@@ -6,7 +6,7 @@ import type {
   EventBookletSelectedFilters,
 } from '@/api/event';
 import type { LocalHelperRole } from '@/platform/storage/localEntities';
-import type { DayFilter } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { DayFilter } from '@/lib/orbit/structures';
 import type {
   BookletMembersByLocality,
   BookletMembersByRole,

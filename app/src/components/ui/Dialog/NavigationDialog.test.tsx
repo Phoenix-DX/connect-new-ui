@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
+import { preventNavigation } from '@/lib/navigationEvent';
 import { NavigationDialog } from './NavigationDialog';
 
 /* No captured DOM exists for these blocks: the checks follow the compiled views and controller

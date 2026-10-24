@@ -16,13 +16,13 @@ import {
 import { get_LocalBookmarkByObjectId, getLocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { useClientVar } from '@/platform/session/session';
 import { ActionsMenu } from '@/components/ui/ActionsMenu';
-import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/shared/UBTConnectLibrary/lib/actions';
-import type { ActionsMenuEnableOptions, ActionsMenuOptions, Notes } from '@/shared/UBTConnectLibrary/lib/structures';
+import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/lib/ubtConnectLibrary/actions';
+import type { ActionsMenuEnableOptions, ActionsMenuOptions, Notes } from '@/lib/ubtConnectLibrary/structures';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { ContactByMessage } from '@/components/contact/ContactByMessage';
 import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
-import { getHasExtendedShare, getHasNewBookmarks } from '@/shared/UBTConnect_Utils/lib/actions';
-import type { ContactPopupData, ContactPopUp_OverrideOptions } from '@/shared/UBTConnect_Utils/lib/structures';
+import { getHasExtendedShare, getHasNewBookmarks } from '@/lib/ubtConnectUtils/actions';
+import type { ContactPopupData, ContactPopUp_OverrideOptions } from '@/lib/ubtConnectUtils/structures';
 import { NotesSheet } from '@/components/note/NotesSheet';
 import { ShareableObject } from '@/components/share/ShareableObject';
 import { SharePopup } from '@/components/share/SharePopup';
@@ -36,8 +36,8 @@ import {
   getShareType_FromEntity,
   toggleBookmarkItem_C2,
   type BookmarkServerActions,
-} from '@/shared/UBTConnect/lib/actions';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+} from '@/lib/ubtConnect/actions';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { fetchContactDetails, fetchNotes, type EntityDetailsActionsVariables } from './api';
 
 export interface EntityDetailsActionsContainerProps {

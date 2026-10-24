@@ -5,7 +5,7 @@ import { OSList } from '@/components/ui/os/OSList';
 import { osImage } from '@/legacy/os/os-assets';
 import { GridGallery } from '@/components/ui/legacy/GridGallery';
 import { Space } from '@/components/ui/lib/staticEntities';
-import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/shared/UBTConnect/lib/staticEntities';
+import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/lib/ubtConnect/staticEntities';
 
 export interface MyBookmarks_AlbumProps {
   /** OutSystems instance id of the block (`b1-MyBookmarksAlbum_Contacts`). */

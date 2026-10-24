@@ -1,6 +1,6 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { Accordion } from '@/components/ui/Accordion';
 import { AccordionIconPosition, AccordionIconType } from '@/components/ui/lib/staticEntities';
 import { AccordionItem } from './AccordionItem';

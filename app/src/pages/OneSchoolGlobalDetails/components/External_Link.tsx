@@ -1,6 +1,6 @@
 import type { BusinessLinkItem } from '@/api/locality';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '@/lib/ubtConnect/staticEntities';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
 import {
@@ -8,9 +8,9 @@ import {
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
-import { openInApp_OpenExternalLink } from '@/shared/UBTConnect_Utils/lib/actions';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import { useScreenController_NavigateToPage } from '@/lib/jsUtils';
+import { openInApp_OpenExternalLink } from '@/lib/ubtConnectUtils/actions';
 
 export interface External_LinkProps {
   /** OutSystems instance id of the block. */

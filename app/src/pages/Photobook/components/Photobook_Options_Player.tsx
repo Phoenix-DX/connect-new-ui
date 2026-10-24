@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
-import { UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color } from '@/lib/ubtConnectLibrary/staticEntities';
 import { UBT_Icons2, UBT_IconsSize, UBT_Visibility } from './staticEntities';
 
 export interface Photobook_Options_PlayerProps {

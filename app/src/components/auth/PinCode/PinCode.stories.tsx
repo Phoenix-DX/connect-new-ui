@@ -12,8 +12,8 @@ import {
   UBT_FontWeight,
   UBT_Icons2,
   UBT_IconsSize,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { OSLink } from '@/shared/lib/OSLink';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import { OSLink } from '@/components/ui/os/OSLink';
 import { PinCode } from './PinCode';
 
 /** The PreventBackNavigation block as the caller gives it (platform/navigation): its wrapper and its nested

@@ -9,8 +9,8 @@ import {
   UBT_FontWeight,
   UBT_Icons,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { TextOptions } from '@/lib/ubtConnectLibrary/structures';
 import type { LocalityHouseholdListFlags } from '@/pages/Locality_Details/hooks/useLocalityHouseholdList';
 import { Locality_Households_HouseholdList } from './Locality_Households_HouseholdList';
 

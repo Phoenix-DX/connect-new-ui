@@ -2,7 +2,7 @@ import type { AccountForm } from '@/pages/Profile/hooks/profileState';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
-import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { FormInput } from './FormInput';
 import { FormSwitch } from './FormSwitch';
 import {

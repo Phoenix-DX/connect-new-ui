@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router';
 import { afterEach, describe, expect, it } from 'vitest';
 import { resetBackQueue } from '@/platform/navigation/backQueue';
 import { setClientVar, setSignedInUser } from '@/platform/session/session';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { CommonUiLayout, type CommonUiLayoutProps } from './CommonUiLayout';
 import * as stories from './CommonUiLayout.stories';
 

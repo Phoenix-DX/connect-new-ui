@@ -70,3 +70,4 @@ src/components/bookmark/ItemOptionsMenu/ItemOptionsMenu.test.tsx,@/platform/flag
 src/components/bookmark/ItemOptionsMenu/ItemOptionsMenu.tsx,@/platform/flags/flags,rule-4,P7
 src/components/ui/ImageLoadErrorHandler/ImageLoadErrorHandler.tsx,@/platform/log/log,rule-4,P7
 src/components/ui/DropdownSearch/provider.ts,@/platform/device/device,rule-4,P7
+src/components/ui/os/OSLink.tsx,@/platform/navigation,rule-4,FU-OSLink-navigation

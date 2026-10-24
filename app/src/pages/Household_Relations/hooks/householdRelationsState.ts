@@ -1,6 +1,6 @@
 import type { HouseholdMember, MemberRelations, SiblingRelations } from '@/api/household';
 import { DataFetchStatus } from '@/components/ui/os/OSList';
-import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
+import type { Notes } from '@/lib/ubtConnectLibrary/structures';
 
 /** The variables of HouseholdRelations_Block as one record, its reducer and its pure parts. The view cache keeps the
     record, so a view restored from the cache keeps them. `dataFetchStatus` is the OS.Model.DataFetchStatus of each data

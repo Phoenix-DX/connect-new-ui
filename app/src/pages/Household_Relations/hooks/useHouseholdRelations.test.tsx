@@ -16,7 +16,7 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { MOCK_USER_ID, mockUserInformation } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
 import { householdRelationsReducer, MEMBER_DEFAULTS } from './householdRelationsState';
 import { useHouseholdRelations, type HouseholdRelationsFlows } from './useHouseholdRelations';
 
@@ -34,8 +34,8 @@ vi.mock('@/platform/session/userInfo', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/session/userInfo')>()),
   getUserInformation: vi.fn(),
 }));
-vi.mock('@/shared/UBTConnect/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect/lib/actions')>()),
+vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnect/actions')>()),
   hasAccessToRegion: vi.fn(() => Promise.resolve(true)),
 }));
 vi.mock('@/platform/feedback/dialogs', async (importOriginal) => ({

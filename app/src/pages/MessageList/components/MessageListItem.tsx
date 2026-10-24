@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { Connect_Entity, ImageSize } from '@/pages/MessageList/staticEntities';
-import { formatDateTime } from '@/shared/lib/osDateTime';
-import { cache_SignedImageURL_Get } from '@/shared/UBTConnect_Utils/lib/actions';
+import { formatDateTime } from '@/lib/osDateTime';
+import { cache_SignedImageURL_Get } from '@/lib/ubtConnectUtils/actions';
 
 export interface MessageListItemProps {
   /** OutSystems instance id of the block (`…-Messages_List_Item_Private`). */

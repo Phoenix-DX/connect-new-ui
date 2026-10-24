@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { UBT_Color, UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_Icons2 } from '@/lib/ubtConnect/staticEntities';
 import { BottomBarIconBadge } from './BottomBarIconBadge';
 
 const meta = {

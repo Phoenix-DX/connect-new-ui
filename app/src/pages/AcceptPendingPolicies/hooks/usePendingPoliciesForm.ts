@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { acceptPolicies, usePendingPoliciesQuery, type PendingPoliciesInputs, type PendingPolicy } from '@/api/policy';
 import { isCommunicationException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { jSUtils_PageOpenInNewTab } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { jSUtils_PageOpenInNewTab } from '@/lib/jsUtils';
 import { getDeviceInfo } from '@/pages/AcceptPendingPolicies/actions';
 
 /** @origin UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies

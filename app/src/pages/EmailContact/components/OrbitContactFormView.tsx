@@ -9,7 +9,7 @@ import {
   type ValidationService,
 } from '@/components/ui/os/OSValidation';
 import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
-import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
+import type { NavigationEvent } from '@/lib/navigationEvent';
 import { LegacyButtonLoading } from '@/components/ui/legacy/LegacyButtonLoading';
 import { MESSAGE_MAX_LENGTH, orbitContactFormIds } from '@/pages/EmailContact/hooks/orbitContactFormState';
 import { NavigationDialog } from '@/components/ui/Dialog';

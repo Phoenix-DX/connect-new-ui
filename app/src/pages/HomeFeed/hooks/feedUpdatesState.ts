@@ -1,5 +1,5 @@
 import type { UpdateItem } from '@/api/update';
-import { Connect_UpdateTypeId, Gender } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Connect_UpdateTypeId, Gender } from '@/lib/ubtConnectLibrary/staticEntities';
 
 /** The initial variables and the read state of the updates card. Pure, without React.
     @origin UBTConnect.Home.FeedBlock_Updates */

@@ -8,12 +8,9 @@ import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, type IsAlive } from '@/platform/navigation';
-import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { getOperatingSystem } from '@/shared/UBTConnect_Utils/lib/actions';
-import type {
-  ContactByPhonePopupData,
-  UI_ContactByMessage_WrapperData,
-} from '@/shared/UBTConnect_Utils/lib/structures';
+import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/lib/orbit/actions';
+import { getOperatingSystem } from '@/lib/ubtConnectUtils/actions';
+import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
 import {
   closedMessagePopup,
   closedPhonePopup,

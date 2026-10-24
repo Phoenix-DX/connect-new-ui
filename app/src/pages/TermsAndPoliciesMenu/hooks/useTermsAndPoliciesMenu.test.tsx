@@ -3,13 +3,13 @@ import { act, renderHook } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Policies } from '@/api/app';
-import { UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
-import { openPolicy, POLICY_NOT_FOUND } from '@/shared/UBTConnect_Utils/lib/actions';
+import { UBT_Icons2 } from '@/lib/ubtConnect/staticEntities';
+import { openPolicy, POLICY_NOT_FOUND } from '@/lib/ubtConnectUtils/actions';
 import { UBT_Icons2_Contacts } from '@/pages/TermsAndPoliciesMenu/staticEntities';
 import { PRIVACY_POLICY_NAME, TERMS_AND_CONDITIONS_NAME, useTermsAndPoliciesMenu } from './useTermsAndPoliciesMenu';
 
-vi.mock('@/shared/UBTConnect_Utils/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect_Utils/lib/actions')>()),
+vi.mock('@/lib/ubtConnectUtils/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnectUtils/actions')>()),
   openPolicy: vi.fn(),
 }));
 

@@ -15,10 +15,10 @@ import {
   UBT_Shape,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import { UBT_ImageSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
-import type { UI_TypedStatistics } from '@/shared/UBTConnect/lib/structures';
+import type { UI_TypedStatistics } from '@/lib/ubtConnect/structures';
 import { StatisticsIcons } from '@/components/directory/StatisticsIcons';
 
 export interface StatisticsTypedItemProps {

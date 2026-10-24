@@ -1,6 +1,6 @@
 import type { NavigationTarget } from '@/platform/navigation';
-import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
-import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import { Type_ShareObject } from '@/lib/ubtConnect/staticEntities';
+import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 import type { OnInitializeSharingScreenResult } from './connectShareActions';
 
 /** The state of the ConnectShare screen and its reducer, with the target part of Action_Redirect as a pure function.

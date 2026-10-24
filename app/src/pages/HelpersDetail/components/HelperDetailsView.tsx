@@ -16,7 +16,7 @@ import {
   getSkeletonLoadingIdFromMilestoneTypeId,
 } from '@/pages/HelpersDetail/hooks/helperDetailsActions';
 import type { HelperDetailsFlows } from '@/pages/HelpersDetail/hooks/useHelperDetails';
-import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
+import type { MemberInformation } from '@/lib/orbit/structures';
 import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
 import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 

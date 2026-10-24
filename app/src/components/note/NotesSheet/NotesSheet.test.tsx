@@ -13,7 +13,7 @@ import {
 } from '@/platform/storage/localEntities';
 import { setSignedInUser } from '@/platform/session/session';
 import { server } from '@/test/setup';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { SAMPLE_NOTES } from '@/containers/NoteListActions/NoteListActionsContainer.stories';
 import { NotesSheet } from './NotesSheet';
 import * as stories from './NotesSheet.stories';

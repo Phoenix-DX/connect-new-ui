@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
-import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface ProfileHouseholdPreviewProps {
   /** OutSystems instance id of the block. */

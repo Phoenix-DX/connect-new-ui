@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { LocalityStatistics } from '@/api/country';
-import { Choice, Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { Choice, Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import {
   appliedCountryCode,
   defineList,

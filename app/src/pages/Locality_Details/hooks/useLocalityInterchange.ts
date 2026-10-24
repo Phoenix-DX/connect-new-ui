@@ -3,7 +3,7 @@ import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { getLocalityLabel, hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { getLocalityLabel, hasAccessToRegion } from '@/lib/ubtConnect/actions';
 import {
   INITIAL_LOCALITY_INTERCHANGE,
   localityInterchangeReducer,

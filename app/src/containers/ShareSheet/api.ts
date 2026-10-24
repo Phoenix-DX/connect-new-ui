@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { callAction } from '@/api/client/callAction';
 import { osList, wireList } from '@/legacy/os/os-wire';
 import { getUserInformation } from '@/platform/session/userInfo';
-import type { SearchResult } from '@/shared/UBTConnect_Utils/lib/structures';
+import type { SearchResult } from '@/lib/ubtConnectUtils/structures';
 
 /* Server data and actions of CW_Share.ShareSheet (P-DATA / P-CALLS). Both data actions are fetched only on demand
    (no capture records them on a screen load): GetRecentlyShared when the sheet opens (OnParametersChanged :2172-2176),

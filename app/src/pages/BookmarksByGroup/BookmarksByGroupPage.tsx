@@ -6,7 +6,7 @@ import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { useFlagOn } from '@/platform/flags/flags';
 import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
-import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_BottomBar_Items } from '@/lib/ubtConnectUtils/staticEntities';
 import { BookmarkGroupView } from './components/BookmarkGroupView';
 import { bookmarkGroupIds } from './hooks/bookmarkGroupState';
 import { useBookmarkGroup } from './hooks/useBookmarkGroup';

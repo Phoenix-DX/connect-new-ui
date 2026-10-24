@@ -11,7 +11,7 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { loadedEmbed, requireEmbed } from './connect2Entertaining';
 
 /** The defaults of the inputs View and Theme. */

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Shape } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Shape } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Input } from './Input';
 
 const meta = { title: 'Shared/UBTConnectLibrary/Input', component: Input } satisfies Meta<typeof Input>;

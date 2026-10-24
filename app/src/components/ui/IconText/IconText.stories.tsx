@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Icon } from '@/components/ui/Icon';
-import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { IconText } from './IconText';
 
 const meta = { title: 'Shared/UBTConnectLibrary/IconText', component: IconText } satisfies Meta<typeof IconText>;

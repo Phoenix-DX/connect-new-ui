@@ -2,7 +2,7 @@
 // @os-block Connect2_LegacyShared.Layout.MenuIcon_Back
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useNavigateBack } from '@/platform/navigation';
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 
 export interface MenuIconBackProps {
   /** OutSystems instance id of the block. */

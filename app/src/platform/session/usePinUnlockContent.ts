@@ -3,8 +3,8 @@ import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { useOsNavigate } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';
 import { getClientVar } from '@/platform/session/session';
-import type { CacheControl_PoliciesRec } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
-import { openPolicy, POLICY_NOT_FOUND } from '@/shared/UBTConnect_Utils/lib/actions';
+import type { CacheControl_PoliciesRec } from '@/legacy/os/cache/PoliciesCacheControl';
+import { openPolicy, POLICY_NOT_FOUND } from '@/lib/ubtConnectUtils/actions';
 
 /** One cached policy document (LocalCacheControlPolicies.CacheControl_Policies.PolicyInformation_<policy>). */
 export type PolicyInformation = CacheControl_PoliciesRec['PolicyInformation_TermsAndConditions'];

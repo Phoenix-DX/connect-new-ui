@@ -3,7 +3,7 @@ import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigati
 import { InactivityTimer } from '@/platform/session/InactivityTimer';
 import { usePinCodeUnlock } from '@/platform/session/usePinCodeUnlock';
 import { usePinUnlockContent } from '@/platform/session/usePinUnlockContent';
-import { CacheControl_Policies } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
+import { PoliciesCacheControl } from '@/legacy/os/cache/PoliciesCacheControl';
 
 export interface PinUnlockContentContainerProps {
   /** OutSystems instance id of the block. */
@@ -60,7 +60,7 @@ export function PinUnlockContentContainer({
       policies={content.policies}
       isPoliciesFetched={content.isPoliciesFetched}
       renderCacheControlPolicies={(blockId) => (
-        <CacheControl_Policies id={blockId} onResult={content.onPoliciesResult} />
+        <PoliciesCacheControl id={blockId} onResult={content.onPoliciesResult} />
       )}
       renderInactivityTimer={(blockId) => <InactivityTimer id={blockId} onTimeout={() => void unlock.onTimeout()} />}
       renderPreventBackNavigation={(blockId) => <PreventBackNavigation id={blockId} />}

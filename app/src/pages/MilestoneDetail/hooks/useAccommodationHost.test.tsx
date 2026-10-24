@@ -14,9 +14,9 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { addLogSink, type LogEntry } from '@/platform/log/log';
 import { useWasRestoredFromCache } from '@/platform/navigation/hooks';
 import { resetViewCache } from '@/platform/navigation/viewCache';
-import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { checkDirectoryAccess, getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { openInApp_TryOpenFileInApp } from '@/shared/UBTConnect_Utils/lib/actions';
+import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/lib/legacyShared/actions';
+import { checkDirectoryAccess, getFormattedDateTimeById } from '@/lib/orbit/actions';
+import { openInApp_TryOpenFileInApp } from '@/lib/ubtConnectUtils/actions';
 import { accommodationHostReducer, type AccommodationHostInputs } from './accommodationHostState';
 import {
   useAccommodationHost,
@@ -38,17 +38,17 @@ vi.mock('@/api/image', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/image')>()),
   fetchLegacySignedImageURL: vi.fn(),
 }));
-vi.mock('@/shared/Connect2_OrbitMobile_MUI/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Connect2_OrbitMobile_MUI/lib/actions')>()),
+vi.mock('@/lib/orbit/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/orbit/actions')>()),
   checkDirectoryAccess: vi.fn(),
 }));
-vi.mock('@/shared/Connect2_LegacyShared/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Connect2_LegacyShared/lib/actions')>()),
+vi.mock('@/lib/legacyShared/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/legacyShared/actions')>()),
   getCacheableMemberContactList: vi.fn(),
   getCacheableTimezoneInfo: vi.fn(),
 }));
-vi.mock('@/shared/UBTConnect_Utils/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect_Utils/lib/actions')>()),
+vi.mock('@/lib/ubtConnectUtils/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnectUtils/actions')>()),
   openInApp_TryOpenFileInApp: vi.fn(),
 }));
 vi.mock('@/platform/feedback/dialogs/subscription', async (importOriginal) => ({

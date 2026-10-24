@@ -2,7 +2,7 @@
 import type { TransportMilestoneType, TravelInfo } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { transportDetails_ShowGeneralInformation } from '@/pages/TransportDetail/actions';
-import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 
 /* TransportDetail_TravelInfo (TI = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail_TravelInfo
    .mvc.js: model :1-94, view :150-734; no client action). No capture: markup from the compiled view; a Container is a

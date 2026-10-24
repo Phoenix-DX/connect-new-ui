@@ -1,12 +1,12 @@
 import { DetailLayout } from '@/components/layout';
 import { useNavigateBack } from '@/platform/navigation';
 import { BottomBar } from '@/components/layout/BottomBar';
-import { CacheControl_UserInfo_Wrapper } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper';
+import { UserInfoCache } from '@/platform/session/UserInfoCache';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { ChoiceDialog } from '@/components/ui/Dialog';
 import { MenuList } from '@/components/menu/MenuList';
 import { AppVersion } from '@/components/version/AppVersion';
-import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_BottomBar_Items } from '@/lib/ubtConnectUtils/staticEntities';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import {
@@ -17,7 +17,7 @@ import {
   UBT_FontWeight,
   UBT_JustifyContent,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { MenuUserHeader } from './components/MenuUserHeader';
 import { useMenu } from './hooks/useMenu';
 import { UBT_FontSize_Heading5 } from './staticEntities';
@@ -94,7 +94,7 @@ export default function Menu() {
         confirmLabel="Yes"
         dismissLabel="No"
       />
-      <CacheControl_UserInfo_Wrapper id="$b16" onResult={onUserInformation} />
+      <UserInfoCache id="$b16" onResult={onUserInformation} />
       <ChoiceDialog
         id="Popup_SubmitPhotoRequest"
         scope="b17"

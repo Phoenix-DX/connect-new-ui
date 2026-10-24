@@ -5,8 +5,8 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, type IsAlive } from '@/platform/navigation';
 import { getUserInformation } from '@/platform/session/userInfo';
 import type { Assemble_FilterSheetProps } from '@/pages/AssembleEvents/components/Assemble_FilterSheet';
-import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
-import { getCacheableRegionSubscribedCountries } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { hasAccessToRegion } from '@/lib/assemble/actions';
+import { getCacheableRegionSubscribedCountries } from '@/lib/legacyShared/actions';
 import {
   assembleFilterSheetReducer,
   COUNTRY_STEP,

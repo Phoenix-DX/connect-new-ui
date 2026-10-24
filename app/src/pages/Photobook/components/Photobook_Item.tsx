@@ -2,16 +2,10 @@
 import { useState } from 'react';
 import type { PhotobookHousehold } from '@/api/household';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
-import {
-  UBT_Color,
-  UBT_Display,
-  UBT_FontSize,
-  UBT_Shape,
-  UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_Display, UBT_FontSize, UBT_Shape, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { PanZoom } from './PanZoom';
 import {

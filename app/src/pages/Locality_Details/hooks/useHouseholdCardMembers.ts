@@ -6,7 +6,7 @@ import {
   type LocalityHousehold,
 } from '@/api/household';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 
 /** What the household card renders. */
 export interface HouseholdCardMembersView {

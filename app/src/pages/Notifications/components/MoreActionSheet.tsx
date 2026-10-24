@@ -19,7 +19,7 @@ import {
   UBT_Shadow,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { bottomSheetClose } from '@/components/ui/lib/actions';
 import { UBT_Color_Error, UBT_Icons2_Notifications } from './staticEntities';
 

@@ -3,7 +3,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnect/staticEntities';
 
 export interface WelcomeToConnectProps {
   /** OutSystems instance id of the block. */

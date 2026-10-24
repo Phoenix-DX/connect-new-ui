@@ -21,7 +21,7 @@ import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback'
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { setPreloadObject } from '@/platform/navigation';
-import { connect_LaunchDarkly_PermissionCheck } from '@/shared/UBTConnect_Utils/lib/actions';
+import { connect_LaunchDarkly_PermissionCheck } from '@/lib/ubtConnectUtils/actions';
 import {
   emptyGroupSummary,
   INITIAL_MY_BOOKMARKS_STATE,
@@ -57,8 +57,8 @@ vi.mock('@/platform/navigation', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/navigation')>()),
   setPreloadObject: vi.fn(),
 }));
-vi.mock('@/shared/UBTConnect_Utils/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect_Utils/lib/actions')>()),
+vi.mock('@/lib/ubtConnectUtils/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnectUtils/actions')>()),
   connect_LaunchDarkly_PermissionCheck: vi.fn(() => false),
 }));
 /** A back navigation that the view cache restores (wasCurrentViewRestoredFromCache), with the saved variables. */

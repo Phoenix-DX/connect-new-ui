@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { expectToMatchCapture } from '@/test/dom';
 import templateV1 from '@/components/orbit/OrbitCard/__captures__/v1.html?raw';
 import templateV2 from '@/components/orbit/OrbitCard/__captures__/v2.html?raw';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { MilestoneCard } from './MilestoneCard';
 import * as stories from './MilestoneCard.stories';
 import { ACCOMMODATION, FLIGHT, MEAL_HOST, MEETING } from './fixtures';

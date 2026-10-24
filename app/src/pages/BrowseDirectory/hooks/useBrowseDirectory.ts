@@ -10,8 +10,8 @@ import {
   map_InvalidateSize,
   map_Marker_OpenPopUp,
   map_SetPopupBindingCallback,
-} from '@/shared/Leaflet/lib/actions';
-import { directory_BrowseByCountry_TooltipBuilder, hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+} from '@/lib/leaflet/actions';
+import { directory_BrowseByCountry_TooltipBuilder, hasAccessToRegion } from '@/lib/ubtConnect/actions';
 import {
   asLongText,
   browseDirectoryReducer,

@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import type { DayFilter, EventDateFilters } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DaySelectorList } from '@/components/orbit/DaySelectorList';
-import { MilestoneTimeType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { MilestoneTimeType } from '@/lib/orbit/staticEntities';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 
 /** EventDateSelection (sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection.mvc.js = ES; captured

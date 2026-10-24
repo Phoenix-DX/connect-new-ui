@@ -7,7 +7,7 @@ import type {
 } from '@/api/message';
 import type { ContactUsDetailsInputs } from '@/pages/ContactUsDetails/inputs';
 import { Type_ContactSubject } from '@/pages/ContactUsDetails/staticEntities';
-import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
+import type { Directory_UserCurrent } from '@/platform/session/UserInfoCache/types';
 
 /** The state of the ContactUsDetails screen and its reducer, with the client actions of the screen and the library
     actions that it calls as pure functions.

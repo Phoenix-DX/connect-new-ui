@@ -2,7 +2,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { BottomBarIconBadge } from '@/components/layout/BottomBarIconBadge';
 import { NotificationRefresh } from '@/components/notification/NotificationRefresh';
-import { UBT_Color, UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_Icons2 } from '@/lib/ubtConnect/staticEntities';
 
 export interface NotificationIconProps {
   /** OutSystems instance id of the block. */

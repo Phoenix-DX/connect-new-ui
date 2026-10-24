@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { UpdateItem } from '@/api/update';
-import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
+import { Choice } from '@/lib/ubtConnect/staticEntities';
 import {
   dateToText,
   directory_Updates_AugmentDateRanges,

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { CountryCard } from '@/api/country';
-import { getFlagURLByCountryCode } from '@/shared/UBTConnectLibrary/lib/actions';
+import { getFlagURLByCountryCode } from '@/lib/ubtConnectLibrary/actions';
 import {
   browseCountriesReducer,
   getSkeletonList_UI_CountryStatistics,

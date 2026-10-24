@@ -5,8 +5,8 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { setThemeClassToBody } from '@/legacy/os/bodyTheme';
 import { LayoutRuntimeTop } from '@/components/layout/LayoutRuntimeTop';
 import { BaseLayout } from '@/components/layout/BaseLayout';
-import { iOSMetaTags, iOSPreventSwipe } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { ThemeClass } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { iOSMetaTags, iOSPreventSwipe } from '@/lib/legacyShared/actions';
+import { ThemeClass } from '@/lib/legacyShared/staticEntities';
 
 export interface LegacyLayoutProps {
   /** OutSystems instance id of the block. */

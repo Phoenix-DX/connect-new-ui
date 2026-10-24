@@ -9,7 +9,7 @@ import type {
   ContactByPhonePopupData,
   ContactPopupData,
   UI_ContactByMessage_WrapperData,
-} from '@/shared/UBTConnect_Utils/lib/structures';
+} from '@/lib/ubtConnectUtils/structures';
 
 /* The state, the reducer and the client actions of the "My Timeline" block. Pure: no React and no call. */
 

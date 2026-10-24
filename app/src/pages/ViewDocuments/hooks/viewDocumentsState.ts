@@ -1,6 +1,6 @@
 import type { EventDocumentItem, EventDocumentsCallInputs } from '@/api/event';
 import type { ViewDocumentsInputs } from '@/pages/ViewDocuments/inputs';
-import { addExtensionToFile, getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { addExtensionToFile, getFormattedDateTime } from '@/lib/orbit/actions';
 
 /** The state of ScreenBlock_ViewDocuments and its reducer, and the pure parts of its flows: the block variables that
     the data action sends, the document that Action_OpenDoc marks as viewed, and the helpdesk subject.

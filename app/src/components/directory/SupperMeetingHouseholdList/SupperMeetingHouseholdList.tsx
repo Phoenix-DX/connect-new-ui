@@ -2,7 +2,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DataFetchStatus } from '@/components/ui/os/OSList';
 import { HouseholdGalleryCardList } from '@/components/household/HouseholdGalleryCardList';
-import type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
+import type { UI_SubdivisionHousehold } from '@/lib/ubtConnect/structures';
 
 const NO_HOUSEHOLDS: UI_SubdivisionHousehold[] = [];
 

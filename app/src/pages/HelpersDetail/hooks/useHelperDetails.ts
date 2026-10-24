@@ -5,9 +5,9 @@ import type { ContactByPhonePopupData } from '@/components/contact/ContactPopupB
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, type IsAlive } from '@/platform/navigation';
-import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { checkDirectoryAccess, type GetCacheableSignedImageURL } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { DirectoryAPIFilter, ImageSigningSize } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/lib/legacyShared/actions';
+import { checkDirectoryAccess, type GetCacheableSignedImageURL } from '@/lib/orbit/actions';
+import { DirectoryAPIFilter, ImageSigningSize } from '@/lib/orbit/staticEntities';
 import {
   getContactHelpdeskSubject_Event,
   onApplicationEvent_CallMember,

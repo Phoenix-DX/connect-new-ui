@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import { MorphSVGPlugin } from 'gsap/MorphSVGPlugin';
 import { useLayoutEffect, useRef, useState } from 'react';
-import { sVGHeader_GetPath } from '@/shared/UBTConnectLibrary/lib/actions';
+import { sVGHeader_GetPath } from '@/lib/ubtConnectLibrary/actions';
 
 /** The local variable MergeDurationInSeconds with its default: the time the dots take to merge. */
 export const MERGE_DURATION_IN_SECONDS = 1;

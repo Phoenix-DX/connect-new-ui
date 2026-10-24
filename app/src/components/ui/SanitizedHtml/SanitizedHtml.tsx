@@ -11,7 +11,7 @@ import {
   disallowTags,
   sanitizeHtml,
   setDefaults,
-} from '@/shared/ReactiveHtmlSanitizer/lib/actions';
+} from '@/lib/sanitizeHtml';
 
 export interface SanitizedHtmlProps {
   /** OutSystems instance id of the block. */

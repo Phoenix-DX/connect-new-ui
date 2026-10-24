@@ -3,11 +3,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { subdivisionHousehold } from '@/components/household/HouseholdGalleryCardList/mockData';
 import { householdsOfSupperMeeting, SUPPER_MEETINGS } from '@/mocks/fictional/directory';
-import {
-  getSkeletonList_UI_SubdivisionHousehold,
-  getSkeleton_UI_SubdivisionDetails,
-} from '@/shared/UBTConnect/lib/actions';
-import type { UI_Screen_SubdivisionDetails } from '@/shared/UBTConnect/lib/structures';
+import { getSkeletonList_UI_SubdivisionHousehold, getSkeleton_UI_SubdivisionDetails } from '@/lib/ubtConnect/actions';
+import type { UI_Screen_SubdivisionDetails } from '@/lib/ubtConnect/structures';
 import { SupperMeetingDetails, type SupperMeetingDetailsProps } from './SupperMeetingDetails';
 
 const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });

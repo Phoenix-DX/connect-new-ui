@@ -1,10 +1,10 @@
 import type { LocalityStatistics } from '@/api/country';
-import type { UI_LocalityStatistics } from '@/shared/Connect_Geography_CS/lib/structures';
-import type { MapOptions, MarkerWithWindow } from '@/shared/Leaflet/lib/structures';
-import { getSkeletonList_UI_LocalityStatistics as getSkeletonList } from '@/shared/UBTConnect/lib/actions';
-import { Choice, Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
-import type { Filter_Common_Control_List } from '@/shared/UBTConnect/lib/structures';
-import { jSUtils_String_RemoveAccents } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import type { UI_LocalityStatistics } from '@/lib/geography/structures';
+import type { MapOptions, MarkerWithWindow } from '@/lib/leaflet/structures';
+import { getSkeletonList_UI_LocalityStatistics as getSkeletonList } from '@/lib/ubtConnect/actions';
+import { Choice, Connect_Entity } from '@/lib/ubtConnect/staticEntities';
+import type { Filter_Common_Control_List } from '@/lib/ubtConnect/structures';
+import { jSUtils_String_RemoveAccents } from '@/lib/jsUtils';
 
 /** The client actions and the pure logic of the CountryDetails screen: the skeleton rows, Action_DefineList, the map
     options and markers of OnAfterFetch_GetLocalityStatistics, and the country that the FilterSheet selects. No React:

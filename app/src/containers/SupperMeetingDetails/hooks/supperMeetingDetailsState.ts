@@ -1,8 +1,5 @@
-import {
-  getSkeletonList_UI_SubdivisionHousehold,
-  getSkeleton_UI_SubdivisionDetails,
-} from '@/shared/UBTConnect/lib/actions';
-import type { UI_Screen_SubdivisionDetails, UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
+import { getSkeletonList_UI_SubdivisionHousehold, getSkeleton_UI_SubdivisionDetails } from '@/lib/ubtConnect/actions';
+import type { UI_Screen_SubdivisionDetails, UI_SubdivisionHousehold } from '@/lib/ubtConnect/structures';
 
 /** The state of the supper meeting details: the data action of the block SupperMeeting_DetailsBlock and the data action
     of its child block SupperMeeting_HouseholdList.

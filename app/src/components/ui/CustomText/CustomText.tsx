@@ -3,7 +3,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { HighlightSearch } from '@/components/ui/HighlightSearch';
 import { IconInline } from '@/components/ui/IconInline';
-import { formatClasses, getClasses_Text, getSpacingOptions } from '@/shared/UBTConnectLibrary/lib/actions';
+import { formatClasses, getClasses_Text, getSpacingOptions } from '@/lib/ubtConnectLibrary/actions';
 import type { InlineIcon, SpacingOptions, TextOptions } from './types';
 
 export interface CustomTextProps {

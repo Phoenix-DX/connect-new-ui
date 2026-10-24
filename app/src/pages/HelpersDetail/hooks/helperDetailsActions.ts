@@ -1,6 +1,6 @@
 import { log } from '@/platform/log/log';
-import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDateTime } from '@/lib/orbit/actions';
+import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 
 /** The client actions of Connect2_OrbitMobile_MUI that ScreenBlock_HelperDetails calls, ported 1:1. Dates are
     OutSystems values as text; "" is the null date.

@@ -1,11 +1,8 @@
 import type { LocalityCard, LocalityCardList } from '@/api/locality';
 import type { MarkerWithWindow } from '@/components/directory/DirectoryMap';
-import type { UI_LocalityStatistics } from '@/shared/Connect_Geography_CS/lib/structures';
-import {
-  getLocalityLabel,
-  getSkeletonList_UI_LocalityStatistics as getSkeletonList,
-} from '@/shared/UBTConnect/lib/actions';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import type { UI_LocalityStatistics } from '@/lib/geography/structures';
+import { getLocalityLabel, getSkeletonList_UI_LocalityStatistics as getSkeletonList } from '@/lib/ubtConnect/actions';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 
 /** The state of the BrowseDirectory screen and its reducer, and the pure parts of its flows: the skeleton rows, the
     markers of OnAfterFetch_GetLocalityStatistics, the text conversions and the locality label of

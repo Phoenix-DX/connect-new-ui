@@ -4,8 +4,8 @@ import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CircleButton } from '@/components/ui/CircleButton';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { formatClasses, getClasses_AvatarSize } from '@/shared/UBTConnectLibrary/lib/actions';
-import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { formatClasses, getClasses_AvatarSize } from '@/lib/ubtConnectLibrary/actions';
+import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import type { AvatarIconOptions } from './types';
 
 export interface CircleButtonWithLabelProps {

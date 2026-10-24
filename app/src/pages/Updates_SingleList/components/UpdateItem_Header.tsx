@@ -12,7 +12,7 @@ import {
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { UBT_Color_RedDark } from './staticEntities';
 
 export interface UpdateItem_HeaderProps {

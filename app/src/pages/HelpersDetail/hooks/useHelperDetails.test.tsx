@@ -6,9 +6,9 @@ import { fetchHelperDetails, type HelperData } from '@/api/event';
 import { fetchLegacySignedImageURL } from '@/api/image';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
-import type { MemberContactWithTimezone } from '@/shared/Connect2_LegacyShared/lib/structures';
-import { checkDirectoryAccess } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/lib/legacyShared/actions';
+import type { MemberContactWithTimezone } from '@/lib/legacyShared/structures';
+import { checkDirectoryAccess } from '@/lib/orbit/actions';
 import { onApplicationEvent_CallMember, onApplicationEvent_ViewHousehold } from './helperDetailsActions';
 import { helperDetailsReducer } from './helperDetailsState';
 import { useHelperDetails, type HelperDetailsFlows } from './useHelperDetails';
@@ -31,13 +31,13 @@ vi.mock('@/api/image', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/image')>()),
   fetchLegacySignedImageURL: vi.fn(() => Promise.resolve('https://images.example/lucia.jpg')),
 }));
-vi.mock('@/shared/Connect2_LegacyShared/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Connect2_LegacyShared/lib/actions')>()),
+vi.mock('@/lib/legacyShared/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/legacyShared/actions')>()),
   getCacheableMemberContactList: vi.fn(),
   getCacheableTimezoneInfo: vi.fn(),
 }));
-vi.mock('@/shared/Connect2_OrbitMobile_MUI/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Connect2_OrbitMobile_MUI/lib/actions')>()),
+vi.mock('@/lib/orbit/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/orbit/actions')>()),
   checkDirectoryAccess: vi.fn(() => Promise.resolve(true)),
 }));
 vi.mock('@/platform/feedback/dialogs', async (importOriginal) => ({

@@ -18,9 +18,9 @@ import {
   type AccommodationHostInputs,
 } from '@/pages/MilestoneDetail/hooks/accommodationHostState';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
-import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { getFormattedDateTimeById } from '@/lib/orbit/actions';
+import type { MemberInformation } from '@/lib/orbit/structures';
+import { styleFromCssText } from '@/lib/cssText';
 import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
 import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 

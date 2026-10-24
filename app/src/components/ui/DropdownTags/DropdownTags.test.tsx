@@ -1,6 +1,6 @@
 import { act, render } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { dropdownTags_CloseOtherOnClick } from '@/shared/UBTConnect_Utils/lib/actions';
+import { dropdownTags_CloseOtherOnClick } from '@/lib/ubtConnectUtils/actions';
 import { dropdownClear, dropdownClearValidation, dropdownTogglePopup } from '@/components/ui/lib/actions';
 import { DropdownTags } from './DropdownTags';
 

@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { eventLocalities } from '@/mocks/fictional/ldm';
 import { householdsOfSupperMeeting } from '@/mocks/fictional/directory';
 import { sampleInterchanges, sampleOneSchools, sampleSubdivisions } from '@/pages/Locality_Details/mocks';
-import { MOCK_LOCALITY_SUBDIVISIONS } from '@/shared/Connect2_LegacyShared/lib/mocks';
+import { MOCK_LOCALITY_SUBDIVISIONS } from '@/mocks/modules/Connect2_LegacyShared/mocks';
 import {
   fetchAllLocalities,
   fetchBulkSubdivisions,

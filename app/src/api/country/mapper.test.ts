@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { defaultLocalityResultItemWithGPS } from '@/shared/Connect2_LegacyShared/lib/mockDefaults';
+import { defaultLocalityResultItemWithGPS } from '@/mocks/modules/Connect2_LegacyShared/mockDefaults';
 import {
   toAllCountries,
   toCountryCards,

@@ -1,5 +1,5 @@
 import type { NoteCardItem, NotePill, NotePillTag, NotesVariables } from '@/api/note';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import { NoteCategory2 } from '@/pages/Notes/components/staticEntities';
 
 /** The state of the Notes screen and its reducer, with the client actions of the screen as pure functions.

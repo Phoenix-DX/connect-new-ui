@@ -2,7 +2,7 @@ import type { RequestHandler } from 'msw';
 import type { components } from '@/api/schema.d';
 import { contractHandler } from '@/mocks/contract';
 import { SHARE_MEMBERS } from '@/mocks/fictional/content';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 
 type SearchResultWire = components['schemas']['Connect_Search_CS__SearchResult'];
 

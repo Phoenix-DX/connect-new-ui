@@ -8,7 +8,7 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { allowUpcomingNavigation } from '@/platform/navigation';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import type { AppManager_CachedUserInfoRec } from '@/platform/session/types';
-import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
+import { preventNavigation } from '@/lib/navigationEvent';
 import {
   addAuditEventDetailEvent,
   ApplicationEvents_LDM,
@@ -51,8 +51,8 @@ vi.mock('@/platform/navigation', async (importOriginal) => ({
   allowUpcomingNavigation: vi.fn(),
   useNavigateBack: () => navigateBack,
 }));
-vi.mock('@/shared/NavigationHandler/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/NavigationHandler/lib/actions')>()),
+vi.mock('@/lib/navigationEvent', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/navigationEvent')>()),
   preventNavigation: vi.fn(),
 }));
 vi.mock('@/pages/LDM_Email_V2/components/actions', async (importOriginal) => ({

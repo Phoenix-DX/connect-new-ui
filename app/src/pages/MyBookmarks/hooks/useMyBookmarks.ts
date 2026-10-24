@@ -11,8 +11,8 @@ import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback'
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { setPreloadObject, useFlowState, type IsAlive } from '@/platform/navigation';
-import { MyBookmarks_ObjectType } from '@/shared/UBTConnect/lib/staticEntities';
-import { connect_LaunchDarkly_PermissionCheck, textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import { MyBookmarks_ObjectType } from '@/lib/ubtConnect/staticEntities';
+import { connect_LaunchDarkly_PermissionCheck, textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 import {
   bookmarkedHiddenFeedbackMessage,
   clearedLocalLists,

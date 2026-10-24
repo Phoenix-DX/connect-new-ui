@@ -1,1 +1,1 @@
-export type { UI_StatisticsTexts } from '@/shared/Connect_Geography_CS/lib/structures';
+export type { UI_StatisticsTexts } from '@/lib/geography/structures';

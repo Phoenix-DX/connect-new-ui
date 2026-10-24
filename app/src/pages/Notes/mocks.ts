@@ -3,7 +3,7 @@ import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { scenario } from '@/mocks/scenario';
 import { osList, wireList } from '@/legacy/os/os-wire';
-import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
+import { Choice } from '@/lib/ubtConnect/staticEntities';
 import { NULL_DATE_TIME, notesCollection, type NoteRow } from '@/containers/NoteListActions/mocks';
 
 /** The wire shape of a note card (Connect_Notes_CS UI_Note_CardItem), as the contract types it. */

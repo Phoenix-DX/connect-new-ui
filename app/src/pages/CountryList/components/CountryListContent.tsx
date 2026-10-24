@@ -6,8 +6,8 @@ import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
-import { getFlagURLByCountryCode } from '@/shared/UBTConnectLibrary/lib/actions';
-import type { ContainerOptions, TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import { getFlagURLByCountryCode } from '@/lib/ubtConnectLibrary/actions';
+import type { ContainerOptions, TextOptions } from '@/lib/ubtConnectLibrary/structures';
 import {
   UBT_ColumnBehaviour,
   UBT_Color,
@@ -17,9 +17,9 @@ import {
   UBT_Shape,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { Connect_Entity, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_Entity, UBT_ImageSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { countText, type CountriesFetchStatus, type UserGeography } from '@/pages/CountryList/hooks/countryListState';
 import { UBT_Icons2_CountryList } from './staticEntities';

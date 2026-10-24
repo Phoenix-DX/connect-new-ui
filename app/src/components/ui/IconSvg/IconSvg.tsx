@@ -2,7 +2,7 @@
 // @os-block UBTConnectLibrary.ConnectPatterns.IconSVG
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { UBT_Icons } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Icons } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface IconSvgProps {
   /** OutSystems instance id of the block. */

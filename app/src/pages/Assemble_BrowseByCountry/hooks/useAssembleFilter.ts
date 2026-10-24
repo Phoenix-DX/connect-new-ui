@@ -4,11 +4,8 @@ import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, type BackNavigationEvent, type IsAlive } from '@/platform/navigation';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
-import {
-  getCacheableRegionSubscribedCountries,
-  getCacheableUserInfo,
-} from '@/shared/Connect2_LegacyShared/lib/actions';
+import { hasAccessToRegion } from '@/lib/assemble/actions';
+import { getCacheableRegionSubscribedCountries, getCacheableUserInfo } from '@/lib/legacyShared/actions';
 import {
   assembleFilterIds,
   assembleFilterReducer,

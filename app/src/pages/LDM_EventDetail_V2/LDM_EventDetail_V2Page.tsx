@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router';
 import { useFlagOn } from '@/platform/flags/flags';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { getNameAndSurname_ByFullName } from '@/shared/UBTConnect/lib/actions';
+import { getNameAndSurname_ByFullName } from '@/lib/ubtConnect/actions';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
 import { generateScreenURL, setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { LdmEventDetailView } from './components/LdmEventDetailView';

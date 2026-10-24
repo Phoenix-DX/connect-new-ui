@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { UBT_Icons } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Icons } from '@/lib/ubtConnectLibrary/staticEntities';
 import { IconSvg } from './IconSvg';
 
 const meta = { title: 'Shared/UBTConnectLibrary/IconSVG', component: IconSvg } satisfies Meta<typeof IconSvg>;

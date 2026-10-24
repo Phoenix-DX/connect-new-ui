@@ -4,9 +4,9 @@ import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState'
 import { SupperMeetingCardContent } from '@/components/directory/SupperMeetingCardContent';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { ImageCard } from '@/components/ui/ImageCard';
-import { UBT_Color, UBT_ImageCardType, UBT_ImageSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_ImageCardType, UBT_ImageSize, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import {
   useLocalitySubdivisions,

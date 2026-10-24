@@ -1,6 +1,6 @@
-import { UBT_FontWeight } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_FontWeight } from '@/lib/ubtConnect/staticEntities';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { UBT_Color, UBT_FontSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface ContactHeaderCardProps {
   /** Source of the header image; undefined → the image has no src attribute. The page resolves an OutSystems

@@ -12,9 +12,9 @@ import {
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_Icons2 as UBT_Icons_Connect } from '@/shared/UBTConnect/lib/staticEntities';
-import { UBT_IconSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import { UBT_Icons2 as UBT_Icons_Connect } from '@/lib/ubtConnect/staticEntities';
+import { UBT_IconSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { ConfirmDialog } from '@/components/ui/Dialog';
 
 export interface Dialog_GoExternalAppProps {

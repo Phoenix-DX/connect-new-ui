@@ -11,8 +11,8 @@ import {
 } from '@/components/ui/os/OSValidation';
 import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { Icon } from '@/components/ui/Icon';
-import { Shape, UBT_Color, UBT_Icons, UBT_IconSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { SearchInput } from '@/shared/UBTConnectLibrary/lib/structures';
+import { Shape, UBT_Color, UBT_Icons, UBT_IconSize } from '@/lib/ubtConnectLibrary/staticEntities';
+import type { SearchInput } from '@/lib/ubtConnectLibrary/structures';
 
 export interface InputProps {
   /** OutSystems instance id of the block. */

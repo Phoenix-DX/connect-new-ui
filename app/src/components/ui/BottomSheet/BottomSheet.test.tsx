@@ -1,6 +1,6 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import { BottomSheet } from './BottomSheet';
 import * as stories from './BottomSheet.stories';

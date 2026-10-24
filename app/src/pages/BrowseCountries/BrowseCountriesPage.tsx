@@ -3,8 +3,8 @@ import { DetailLayout } from '@/components/layout';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useNavigateBack } from '@/platform/navigation';
-import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
-import { getLookupConcepts } from '@/shared/UBTConnectLibrary/lib/actions';
+import { Connect_BottomBar_Items } from '@/lib/ubtConnectUtils/staticEntities';
+import { getLookupConcepts } from '@/lib/ubtConnectLibrary/actions';
 import { toStatisticsRecords } from './hooks/browseCountriesState';
 import { useBrowseCountries } from './hooks/useBrowseCountries';
 

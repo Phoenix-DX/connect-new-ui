@@ -8,16 +8,16 @@ import {
   map_InvalidateSize,
   map_Marker_OpenPopUp,
   map_SetPopupBindingCallback,
-} from '@/shared/Leaflet/lib/actions';
-import type L from '@/shared/Leaflet/lib/leaflet';
-import type { MapOptions, MarkerWithWindow } from '@/shared/Leaflet/lib/structures';
+} from '@/lib/leaflet/actions';
+import type L from '@/lib/leaflet/leaflet';
+import type { MapOptions, MarkerWithWindow } from '@/lib/leaflet/structures';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import {
   directory_BrowseByCountry_TooltipBuilder,
   getLocalityLabel,
   hasAccessToRegion,
-} from '@/shared/UBTConnect/lib/actions';
-import type { Filter_Common, Filter_Common_Control_List } from '@/shared/UBTConnect/lib/structures';
+} from '@/lib/ubtConnect/actions';
+import type { Filter_Common, Filter_Common_Control_List } from '@/lib/ubtConnect/structures';
 import {
   appliedCountryCode,
   defineList,

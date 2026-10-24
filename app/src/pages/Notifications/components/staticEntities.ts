@@ -20,4 +20,4 @@ export const Updates_DateRanges = {
 } as const;
 
 /** UBTConnect.Choice (TST), as the shared filter blocks use it. */
-export { Choice } from '@/shared/UBTConnect/lib/staticEntities';
+export { Choice } from '@/lib/ubtConnect/staticEntities';

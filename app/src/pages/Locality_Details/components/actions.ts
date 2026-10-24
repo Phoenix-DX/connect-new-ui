@@ -1,8 +1,8 @@
 import type { OneSchoolCard, SubdivisionCard } from '@/api/locality';
 import { get_LocalBookmarkByObjectId } from '@/platform/storage/localEntities';
-import { currDateTime, formatDateTime } from '@/shared/lib/osDateTime';
-import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '@/shared/UBTConnectLibrary/lib/actions';
-import type { LookupItem, Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import { currDateTime, formatDateTime } from '@/lib/osDateTime';
+import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '@/lib/ubtConnectLibrary/actions';
+import type { LookupItem, Tag } from '@/lib/ubtConnectLibrary/structures';
 import { LocalityMenu } from './staticEntities';
 
 /* Client actions of the UBTConnect module this route calls (UC = UBTConnect.controller.js, copy in

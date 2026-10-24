@@ -2,7 +2,7 @@
 // @os-block Connect2_LegacyShared.Layout.MenuIcon__UpdatedOSUI
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { useNavigateBack } from '@/platform/navigation';
-import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuAction } from '@/lib/legacyShared/staticEntities';
 
 export interface MenuIconProps {
   /** OutSystems instance id of the block. */

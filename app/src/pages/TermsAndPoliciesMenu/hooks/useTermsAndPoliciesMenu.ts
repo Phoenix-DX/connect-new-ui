@@ -2,8 +2,8 @@ import { useMemo } from 'react';
 import type { Policies } from '@/api/app';
 import type { UI_ListMenuOption, UI_MenuSection } from '@/components/menu/MenuList';
 import { useViewState } from '@/platform/navigation';
-import { UBT_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
-import { openPolicy, POLICY_NOT_FOUND } from '@/shared/UBTConnect_Utils/lib/actions';
+import { UBT_Icons2 } from '@/lib/ubtConnect/staticEntities';
+import { openPolicy, POLICY_NOT_FOUND } from '@/lib/ubtConnectUtils/actions';
 import { UBT_Icons2_Contacts } from '@/pages/TermsAndPoliciesMenu/staticEntities';
 
 /** @origin UBTConnect.App_Menu.TermsAndPoliciesMenu

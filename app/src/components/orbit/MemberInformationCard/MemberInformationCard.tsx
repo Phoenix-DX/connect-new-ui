@@ -3,7 +3,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 import {
   cardMemberInformationOnReady,
   MEMBER_PHOTO_PLACEHOLDER,
@@ -11,7 +11,7 @@ import {
   memberInformationLocation,
   memberInformationName,
   type GetCacheableSignedImageURL,
-} from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+} from '@/lib/orbit/actions';
 import type { MemberInformation } from './types';
 
 export interface MemberInformationCardProps {

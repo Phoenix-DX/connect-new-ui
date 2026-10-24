@@ -7,8 +7,8 @@ import {
   get_Note_DynamicFilter_YearOptions,
   getLocalNotesCategoryIds_ByUserId,
 } from '@/platform/storage/localEntities';
-import { scrollTop } from '@/shared/UBTConnect/lib/actions';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import { scrollTop } from '@/lib/ubtConnect/actions';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import {
   canLoadMore,
   INITIAL_NOTES_STATE,

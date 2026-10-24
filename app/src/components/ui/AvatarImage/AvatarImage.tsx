@@ -4,14 +4,8 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { InlineSVG } from '@/components/ui/InlineSVG';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
-import { formatClasses, getClasses_AvatarSize } from '@/shared/UBTConnectLibrary/lib/actions';
-import {
-  UBT_Color,
-  UBT_FontSize,
-  UBT_FontWeight,
-  UBT_Shape,
-  UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { formatClasses, getClasses_AvatarSize } from '@/lib/ubtConnectLibrary/actions';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import type { AvatarImageRecord } from './types';
 
 export interface AvatarImageProps {

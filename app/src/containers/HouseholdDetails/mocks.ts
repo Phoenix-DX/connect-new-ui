@@ -2,7 +2,7 @@ import type { RequestHandler } from 'msw';
 import { contractHandler } from '@/mocks/contract';
 import { markNoPhoto } from '@/components/ui/EntityLazyImage/mocks';
 import { markContactOnly } from '@/containers/EntityDetailsActions/mocks';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { HOUSEHOLD_DETAILS_ID, membersOf, sampleHouseholds } from './mockData';
 
 /* The household details (this container, used by HouseholdDetails, HouseholdCarousel, Profile and Locality_Details)

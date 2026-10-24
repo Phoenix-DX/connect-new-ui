@@ -11,7 +11,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import type { PopupMeasurements } from '@/pages/OrbitLanding/hooks/orbitLandingState';
 import { MenuAction_Menu, OrbitLandingFilter } from '@/pages/OrbitLanding/staticEntities';
-import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import { Household_Members_Selection } from './Household_Members_Selection';
 import { OrbitLandingPopup } from './OrbitLandingPopup';
 import { Popup_OrbitLanding_Filters } from './Popup_OrbitLanding_Filters';

@@ -4,10 +4,7 @@ import { OSList } from '@/components/ui/os/OSList';
 import { NetworkWarning } from '@/components/ui/NetworkWarning';
 import { OrbitErrorScreen } from '@/components/orbit/OrbitErrorScreen';
 import { EventDetailSubSection } from '@/components/orbit/EventDetailSubSection';
-import type {
-  ContactByPhonePopupData,
-  UI_ContactByMessage_WrapperData,
-} from '@/shared/UBTConnect_Utils/lib/structures';
+import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
 import { EventCard_V2, type HouseholdClick } from './EventCard_V2';
 
 export interface MyTimeline_V2Props {

@@ -1,1 +1,1 @@
-export type { ColumnOptions, ColumnSizes } from '@/shared/UBTConnectLibrary/lib/structures';
+export type { ColumnOptions, ColumnSizes } from '@/lib/ubtConnectLibrary/structures';

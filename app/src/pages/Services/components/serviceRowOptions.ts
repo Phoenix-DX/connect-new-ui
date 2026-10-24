@@ -1,10 +1,5 @@
-import {
-  UBT_Color,
-  UBT_ColumnBehaviour,
-  UBT_Size,
-  UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { ColumnOptions, ContainerOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import { UBT_Color, UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/lib/ubtConnectLibrary/staticEntities';
+import type { ColumnOptions, ContainerOptions } from '@/lib/ubtConnectLibrary/structures';
 
 /* The options that the rows of the two lists share. */
 

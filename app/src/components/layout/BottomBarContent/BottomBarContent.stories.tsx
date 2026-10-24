@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { MemoryRouter } from 'react-router';
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 import { BottomBarItem } from '@/components/ui/BottomBarItem';
 import { BottomBarContent } from './BottomBarContent';
 

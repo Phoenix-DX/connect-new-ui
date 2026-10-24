@@ -1,1 +1,1 @@
-export type { EntitiesCarousel_Item } from '@/shared/UBTConnect/lib/structures';
+export type { EntitiesCarousel_Item } from '@/lib/ubtConnect/structures';

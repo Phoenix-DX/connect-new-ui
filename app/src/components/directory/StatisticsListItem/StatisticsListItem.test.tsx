@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
-import { UBT_Color, UBT_Icons } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { testCapturedVariants } from '@/test/capturedVariants';
+import { UBT_Color, UBT_Icons } from '@/lib/ubtConnectLibrary/staticEntities';
 import { StatisticsListItem } from './StatisticsListItem';
 import * as stories from './StatisticsListItem.stories';
 

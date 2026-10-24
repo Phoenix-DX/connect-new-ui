@@ -2,7 +2,7 @@ import type { LocalityDetails, LocalityDetailsCallInputs } from '@/api/locality'
 import { getSample_FilterTags } from '@/pages/Locality_Details/components/actions';
 import { LocalityMenu } from '@/pages/Locality_Details/components/staticEntities';
 import type { LocalityDetailsInputs } from '@/pages/Locality_Details/inputs';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 
 /** The screen variables of Locality_Details, its reducer and the pure parts of its flows. The flows are in
     useLocalityDetails. Long Integers stay text.

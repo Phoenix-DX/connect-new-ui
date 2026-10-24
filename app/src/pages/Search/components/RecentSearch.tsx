@@ -19,7 +19,7 @@ import {
   UBT_Shape,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { Space_ExtraSmall, UBT_Icons2_Search } from './staticEntities';
 
 export interface RecentSearchProps {

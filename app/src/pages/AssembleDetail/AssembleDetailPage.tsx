@@ -4,7 +4,7 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { useFlagOn } from '@/platform/flags/flags';
 import { getPreloadObject, setPreloadObject, useOsNavigate, useViewState } from '@/platform/navigation';
-import { getNameAndSurname_ByFullName } from '@/shared/UBTConnect/lib/actions';
+import { getNameAndSurname_ByFullName } from '@/lib/ubtConnect/actions';
 import { AssembleDetailView } from './components/AssembleDetailView';
 import { AssembleEventDetail } from './components/AssembleEventDetail';
 import { FocusScrollAnchorOnBack } from './components/FocusScrollAnchorOnBack';

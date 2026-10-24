@@ -1,7 +1,7 @@
 import { toBookmark, type Bookmark } from '@/api/bookmark';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { log } from '@/platform/log/log';
-import type { BookmarkItem as BookmarkItemRecord } from '@/shared/Connect2_LegacyShared/lib/structures';
+import type { BookmarkItem as BookmarkItemRecord } from '@/lib/legacyShared/structures';
 import {
   APPLICATION_EVENT_SUBSCRIPTION_REQUIRED,
   MyBookmarks_ObjectType,

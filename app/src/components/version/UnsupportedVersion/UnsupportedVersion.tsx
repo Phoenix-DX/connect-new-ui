@@ -4,8 +4,8 @@ import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionButton } from '@/components/ui/ActionButton';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { UBT_Display, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { UBT_Color, UBT_FontSize, UBT_Icons2, UBT_JustifyContent } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Display, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_Icons2, UBT_JustifyContent } from '@/lib/ubtConnect/staticEntities';
 import { WelcomeToConnect } from '@/components/auth/WelcomeToConnect';
 
 export interface UnsupportedVersionProps {

@@ -5,7 +5,7 @@ import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { OSList } from '@/components/ui/os/OSList';
 import { OrbitNoResults } from '@/pages/EventBooklet/components/OrbitNoResults';
 import type { BookletMembersByLocality } from '@/pages/EventBooklet/types';
-import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import { EventBooklet_ListHeader } from './EventBooklet_ListHeader';
 import { EventBooklet_MembersItem } from './EventBooklet_MembersItem';
 

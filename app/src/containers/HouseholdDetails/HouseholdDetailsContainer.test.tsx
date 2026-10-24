@@ -3,9 +3,9 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { LOCALITY_HOUSEHOLDS, ORTIZ } from '@/mocks/fictional/directory';
 import { setFlag } from '@/platform/flags/flags';
-import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
 import { diffAgainstCapture } from '@/test/dom';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import * as stories from './HouseholdDetailsContainer.stories';
 
 const navigate = vi.hoisted(() => vi.fn());
@@ -14,8 +14,8 @@ vi.mock('@/platform/navigation', async (importOriginal) => ({
   useOsNavigate: () => navigate,
 }));
 /* HasAccessToRegion reads the signed-in user's subscription (shell getUserInformation): stubbed here. */
-vi.mock('@/shared/UBTConnect/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect/lib/actions')>()),
+vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnect/actions')>()),
   hasAccessToRegion: vi.fn(() => Promise.resolve(true)),
 }));
 

@@ -3,4 +3,4 @@ export type {
   ImageBorderOptions,
   LazyImageSize,
   SpacingOptions,
-} from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/structures';

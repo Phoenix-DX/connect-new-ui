@@ -1,7 +1,7 @@
 import { useFlagOn } from '@/platform/flags/flags';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { getNameAndSurname_ByFullName } from '@/shared/UBTConnect/lib/actions';
+import { getNameAndSurname_ByFullName } from '@/lib/ubtConnect/actions';
 import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { LdmMyEventsView } from './components/LdmMyEventsView';
 import { useLdmMyEvents } from './hooks/useLdmMyEvents';

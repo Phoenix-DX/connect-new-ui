@@ -2,12 +2,12 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ImageCard } from '@/components/ui/ImageCard';
-import { UBT_ImageCardType, UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_ImageCardType, UBT_ImageSize } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
-import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
-import type { UI_Screen_SubdivisionDetails, UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
+import { get_LookupSection } from '@/lib/ubtConnect/actions';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
+import type { UI_Screen_SubdivisionDetails, UI_SubdivisionHousehold } from '@/lib/ubtConnect/structures';
 import { DirectoryDetailLayout } from '@/components/layout/DirectoryDetailLayout';
 import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSection';
 import { SupperMeetingHouseholdList } from '@/components/directory/SupperMeetingHouseholdList';

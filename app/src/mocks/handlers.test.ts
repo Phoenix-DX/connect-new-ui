@@ -20,7 +20,7 @@ describe('mock handler order', () => {
   it('puts the container mocks after the page mocks and before the shared mocks', () => {
     const pagesAndScreens = import.meta.glob<{ handlers?: RequestHandler[] }>('../pages/*/mocks.ts', { eager: true });
     const containers = import.meta.glob<{ handlers?: RequestHandler[] }>('../containers/*/mocks.ts', { eager: true });
-    const shared = import.meta.glob<{ handlers?: RequestHandler[] }>('../shared/**/mocks.ts', { eager: true });
+    const shared = import.meta.glob<{ handlers?: RequestHandler[] }>('./modules/**/mocks.ts', { eager: true });
     const own = positions(containers);
     expect(own.length).toBeGreaterThan(0);
     expect(own).not.toContain(-1);
@@ -33,7 +33,7 @@ describe('mock handler order', () => {
     const all = handlers;
     const first = Math.min(...platform.handlers.map((h) => all.indexOf(h)));
     const screenModules = import.meta.glob<{ handlers?: RequestHandler[] }>(
-      ['../pages/*/mocks.ts', '../containers/*/mocks.ts', '../shared/**/mocks.ts', '../components/**/mocks.ts'],
+      ['../pages/*/mocks.ts', '../containers/*/mocks.ts', './modules/**/mocks.ts', '../components/**/mocks.ts'],
       { eager: true },
     );
     const last = Math.max(...positions(screenModules));

@@ -7,7 +7,7 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { UBT_ColumnBehaviour, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_ColumnBehaviour, UBT_VerticalAlign } from '@/lib/ubtConnectLibrary/staticEntities';
 import {
   Connect_Entity,
   UBT_Color,
@@ -18,7 +18,7 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnect_Utils/lib/staticEntities';
+} from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import type { SearchResult } from './types';
 

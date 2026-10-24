@@ -2,8 +2,8 @@ import { ButtonLoading } from '@/components/ui/ButtonLoading';
 import { ActionButton } from '@/components/ui/ActionButton';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { FixedFooter } from '@/components/ui/FixedFooter';
-import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { ContainerOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+import { UBT_Color, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
+import type { ContainerOptions } from '@/lib/ubtConnectLibrary/structures';
 import { UBT_Shadow_ExtraSmallTop } from '@/pages/Services/staticEntities';
 
 export interface ServicesFooterProps {

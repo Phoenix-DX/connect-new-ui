@@ -7,7 +7,7 @@ import type {
 } from '@/api/notification';
 import { isInRange } from '@/pages/Notifications/components/actions';
 import { Updates_DateRanges } from '@/pages/Notifications/components/staticEntities';
-import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
+import { Choice } from '@/lib/ubtConnect/staticEntities';
 
 /** The state of the Notifications screen and its reducer, with the client actions of the screen as pure functions.
     @origin UBTConnect.App_Notifications.Notifications */

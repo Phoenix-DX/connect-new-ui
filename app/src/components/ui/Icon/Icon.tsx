@@ -1,8 +1,8 @@
 /** @origin UBTConnectLibrary.ConnectPatterns.Icon */
 // @os-block UBTConnectLibrary.ConnectPatterns.Icon
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { formatClasses, getClass_Color } from '@/shared/UBTConnectLibrary/lib/actions';
-import { UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { formatClasses, getClass_Color } from '@/lib/ubtConnectLibrary/actions';
+import { UBT_Color } from '@/lib/ubtConnectLibrary/staticEntities';
 import { IconSvg } from '@/components/ui/IconSvg';
 
 export interface IconProps {

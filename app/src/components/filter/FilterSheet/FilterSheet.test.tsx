@@ -1,7 +1,7 @@
 import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
-import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
+import { testCapturedVariants } from '@/test/capturedVariants';
+import { Choice } from '@/lib/ubtConnect/staticEntities';
 import { FilterSheet, type FilterSheetBackNavigationEvent, type FilterSheetSubscription } from './FilterSheet';
 import * as stories from './FilterSheet.stories';
 

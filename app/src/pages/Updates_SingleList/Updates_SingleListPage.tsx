@@ -8,13 +8,13 @@ import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { useFlagOn } from '@/platform/flags/flags';
 import { useNotificationIcon } from '@/platform/session/useNotificationIcon';
-import { Choice, Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
-import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Choice, Type_ShareObject } from '@/lib/ubtConnect/staticEntities';
+import { Connect_BottomBar_Items } from '@/lib/ubtConnectUtils/staticEntities';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { HorizontalTagList } from '@/components/ui/HorizontalTagList';
 import { Icon } from '@/components/ui/Icon';
 import { Input } from '@/components/ui/Input';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import {
   Shape,
   UBT_AlignItems,
@@ -23,7 +23,7 @@ import {
   UBT_Icons2,
   UBT_IconsSize,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { Directory_Updates_FilterSheet } from './components/Directory_Updates_FilterSheet';
 import { UBT_FlexDirection_Row, UBT_Icons2_Updates } from './components/staticEntities';
 import { UpdateItem_Header } from './components/UpdateItem_Header';

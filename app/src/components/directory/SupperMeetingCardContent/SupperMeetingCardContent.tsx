@@ -3,10 +3,10 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { ImageCardContent } from '@/components/ui/ImageCardContent';
-import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { AddressPopupWrapper } from '@/components/contact/AddressPopupWrapper';
-import { getDescriptor_Subdivision_GenderSplit } from '@/shared/UBTConnect/lib/actions';
-import type { UI_Subdivision_Card_Content } from '@/shared/UBTConnect/lib/structures';
+import { getDescriptor_Subdivision_GenderSplit } from '@/lib/ubtConnect/actions';
+import type { UI_Subdivision_Card_Content } from '@/lib/ubtConnect/structures';
 import { SupperMeetingCardStatistics } from '@/components/directory/SupperMeetingCardStatistics';
 
 export interface SupperMeetingCardContentProps {

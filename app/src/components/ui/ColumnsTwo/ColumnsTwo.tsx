@@ -3,13 +3,13 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Columns2 } from '@/components/ui/Columns2';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 import {
   convertUbtSizeToGutterSize,
   formatClasses,
   getClasses_Column,
   getLocalVariable_ColumnSize,
-} from '@/shared/UBTConnectLibrary/lib/actions';
+} from '@/lib/ubtConnectLibrary/actions';
 import type { ColumnOptions } from './types';
 
 export interface ColumnsTwoProps {

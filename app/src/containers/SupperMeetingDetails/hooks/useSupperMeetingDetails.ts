@@ -8,7 +8,7 @@ import {
 import { useFlag } from '@/platform/flags';
 import { setPreloadObject, useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import type { CarouselPreloadedHouseholds } from '@/shared/UBTConnect/lib/structures';
+import type { CarouselPreloadedHouseholds } from '@/lib/ubtConnect/structures';
 import {
   INITIAL_SUPPER_MEETING_DETAILS_STATE,
   supperMeetingDetailsReducer,

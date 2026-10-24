@@ -13,7 +13,7 @@ import { eventDateRange } from '@/pages/EventDetail/hooks/eventDetailActions';
 import type { EventDetailState } from '@/pages/EventDetail/hooks/eventDetailState';
 import type { EventDetailHandlers } from '@/pages/EventDetail/hooks/useEventDetail';
 import { MenuAction_Auto, OrbitEventType, SurveyStatus } from '@/pages/EventDetail/staticEntities';
-import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
 import { EventDateSelection } from './EventDateSelection';
 import { HostAllocation_List } from './HostAllocation_List';

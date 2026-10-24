@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { replaceOnUpcomingNavigation } from '@/platform/navigation';
-import { pIN_ValidateRules } from '@/shared/UBT_AppManager/lib/actions';
+import { pIN_ValidateRules } from '@/platform/session/pinRules';
 import { registerPin } from './pin';
 import { currentUserId } from './session';
 

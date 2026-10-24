@@ -1,14 +1,8 @@
 import { ComingSoon } from '@/components/ui/ComingSoon';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import {
-  UBT_Color,
-  UBT_FontSize,
-  UBT_FontWeight,
-  UBT_Shape,
-  UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { HouseholdDetails_TimelinePhoto_List } from '@/shared/UBTConnect/HouseholdDetails_TimelinePhoto_List';
-import type { UI_HouseholdTimelineImages } from '@/shared/UBTConnect/lib/structures';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
+import { HouseholdTimelinePhotoList } from '@/components/household/HouseholdTimelinePhotoList';
+import type { UI_HouseholdTimelineImages } from '@/lib/ubtConnect/structures';
 
 export interface HouseholdTimelinePhotosProps {
   /** The timeline images of the household (the household details never fill them: the list is empty). */
@@ -24,7 +18,7 @@ export function HouseholdTimelinePhotos({ images, onDateSelected }: HouseholdTim
   return (
     <>
       <div data-container="">
-        <HouseholdDetails_TimelinePhoto_List inHouseholdTimelineImages={images} onEventDateSelected={onDateSelected} />
+        <HouseholdTimelinePhotoList inHouseholdTimelineImages={images} onEventDateSelected={onDateSelected} />
       </div>
       <CustomContainer
         options={{

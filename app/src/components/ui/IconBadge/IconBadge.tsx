@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Badge } from '@/components/ui/Badge';
-import { UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface IconBadgeProps {
   /** OutSystems instance id of the block. */

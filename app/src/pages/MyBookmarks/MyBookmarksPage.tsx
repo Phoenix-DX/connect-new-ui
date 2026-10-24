@@ -2,7 +2,7 @@ import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useFlagOn } from '@/platform/flags/flags';
 import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
-import { Connect_BottomBar_Items, Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Connect_BottomBar_Items, Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import { MyBookmarksView } from './components/MyBookmarksView';
 import { useMyBookmarks, type MyBookmarksEvents } from './hooks/useMyBookmarks';
 

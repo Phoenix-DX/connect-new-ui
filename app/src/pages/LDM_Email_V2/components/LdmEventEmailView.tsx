@@ -12,9 +12,9 @@ import {
 } from '@/components/ui/os/OSValidation';
 import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
 import { NetworkWarning } from '@/components/ui/NetworkWarning';
-import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
-import type { ContactByPhonePopupData } from '@/shared/UBTConnect_Utils/lib/structures';
+import { MenuAction } from '@/lib/legacyShared/staticEntities';
+import type { NavigationEvent } from '@/lib/navigationEvent';
+import type { ContactByPhonePopupData } from '@/lib/ubtConnectUtils/structures';
 import { ldmEventEmailIds } from '@/pages/LDM_Email_V2/hooks/ldmEventEmailState';
 import { NavigationDialog } from '@/components/ui/Dialog';
 

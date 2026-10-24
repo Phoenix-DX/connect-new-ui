@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchBrowseCountriesStatistics, type CountryCard } from '@/api/country';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
 import {
   browseCountriesReducer,
   getSkeletonList_UI_CountryStatistics,
@@ -23,8 +23,8 @@ vi.mock('@/api/country', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/country')>()),
   fetchBrowseCountriesStatistics: vi.fn(),
 }));
-vi.mock('@/shared/UBTConnect/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect/lib/actions')>()),
+vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnect/actions')>()),
   hasAccessToRegion: vi.fn(() => Promise.resolve(true)),
 }));
 vi.mock('@/platform/feedback/dialogs', async (importOriginal) => ({

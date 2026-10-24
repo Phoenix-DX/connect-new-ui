@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '@/shared/test/PendingBlock';
-import { UBT_ButtonSize, UBT_ButtonType } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { PendingBlock } from '@/test/PendingBlock';
+import { UBT_ButtonSize, UBT_ButtonType } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Button } from './Button';
 
 const meta = { title: 'Shared/UBTConnectLibrary/Button', component: Button } satisfies Meta<typeof Button>;

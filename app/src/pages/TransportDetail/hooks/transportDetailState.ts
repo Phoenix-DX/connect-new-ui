@@ -1,6 +1,6 @@
 import type { TransportDetailCallInputs, TransportDetails } from '@/api/event';
 import { getContactHelpdeskSubject_Transport } from '@/pages/TransportDetail/actions';
-import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 
 /** The variables of ScreenBlock_TransportDetail as one record, its reducer and its pure parts. The view cache keeps the
     record, so a view restored from the cache keeps them.

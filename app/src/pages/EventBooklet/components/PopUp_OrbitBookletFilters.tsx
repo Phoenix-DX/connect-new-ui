@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DaySelectorList } from '@/components/orbit/DaySelectorList';
 import { FooterWithActions } from '@/pages/EventBooklet/components/FooterWithActions';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 import { DropdownTags } from '@/components/ui/DropdownTags';
 import { dropdownClear, dropdownClearValidation, dropdownTogglePopup } from '@/components/ui/lib/actions';
 import type { DropdownOption } from '@/components/ui/lib/structures';
-import { dropdownTags_CloseOtherOnClick } from '@/shared/UBTConnect_Utils/lib/actions';
+import { dropdownTags_CloseOtherOnClick } from '@/lib/ubtConnectUtils/actions';
 import type { PopupFilters } from '@/pages/EventBooklet/types';
 
 /* PopUp_OrbitBookletFilters (PF = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters.mvc.js:

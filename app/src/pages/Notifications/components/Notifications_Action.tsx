@@ -12,7 +12,7 @@ import {
   UBT_Icons2,
   UBT_IconsSize,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { UBT_Icons2_Notifications } from './staticEntities';

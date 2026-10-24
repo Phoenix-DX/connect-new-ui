@@ -19,9 +19,9 @@ import {
   UBT_Shape,
   UBT_Size,
   UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { UBT_IconSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { UBT_IconSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { MAIN_ELEMENT_CLASS } from '@/pages/HomeFeed/hooks/feedServicesState';
 import { UBT_Shadow_Small, UBT_Icons2 } from '@/pages/HomeFeed/staticEntities';
 import { Dialog_GoExternalApp } from './Dialog_GoExternalApp';

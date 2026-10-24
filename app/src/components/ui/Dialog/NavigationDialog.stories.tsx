@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
+import { preventNavigation } from '@/lib/navigationEvent';
 import { NavigationDialog } from './NavigationDialog';
 
 const meta = {

@@ -2,9 +2,9 @@
 import { useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
-import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+import { formatClasses } from '@/lib/ubtConnectLibrary/actions';
+import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { TagToggle } from '@/components/ui/TagToggle';
 import { child, scopeOf } from './ids';

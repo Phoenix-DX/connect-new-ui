@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { insideNativeLayout } from '@/shared/test/nativeLayout';
-import { PendingBlock } from '@/shared/test/PendingBlock';
+import { insideNativeLayout } from '@/test/nativeLayout';
+import { PendingBlock } from '@/test/PendingBlock';
 import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
 import { LegacyAccordion } from './LegacyAccordion';
 

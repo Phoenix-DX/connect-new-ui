@@ -11,9 +11,9 @@ import {
   map_InvalidateSize,
   map_Marker_OpenPopUp,
   map_SetPopupBindingCallback,
-} from '@/shared/Leaflet/lib/actions';
-import type L from '@/shared/Leaflet/lib/leaflet';
-import { hasAccessToRegion } from '@/shared/UBTConnect/lib/actions';
+} from '@/lib/leaflet/actions';
+import type L from '@/lib/leaflet/leaflet';
+import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
 import { browseDirectoryReducer } from './browseDirectoryState';
 import { useBrowseDirectory, type BrowseDirectoryFlows } from './useBrowseDirectory';
 
@@ -26,12 +26,12 @@ vi.mock('@/api/locality', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/locality')>()),
   fetchLocalityCardList: vi.fn(),
 }));
-vi.mock('@/shared/UBTConnect/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect/lib/actions')>()),
+vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnect/actions')>()),
   hasAccessToRegion: vi.fn(() => Promise.resolve(true)),
 }));
-vi.mock('@/shared/Leaflet/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Leaflet/lib/actions')>()),
+vi.mock('@/lib/leaflet/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/leaflet/actions')>()),
   map_FitBoundsAuto: vi.fn(),
   map_InvalidateSize: vi.fn(),
   map_Marker_OpenPopUp: vi.fn(),

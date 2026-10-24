@@ -1,4 +1,4 @@
-import type { UI_SubdivisionHousehold } from '@/shared/UBTConnect/lib/structures';
+import type { UI_SubdivisionHousehold } from '@/lib/ubtConnect/structures';
 import {
   LOCALITY_HOUSEHOLDS,
   childrenText,

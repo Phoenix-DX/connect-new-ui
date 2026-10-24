@@ -13,7 +13,7 @@ import {
   UBT_Icons2,
   UBT_IconsSize,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { Layout_MainPages_Upgrade } from './components/Layout_MainPages_Upgrade';
 import { Notifications_MoreActionSheet } from './components/MoreActionSheet';
 import { NotificationsListBreakpoints } from './components/NotificationsListBreakpoints';

@@ -7,10 +7,10 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { UBT_Color, UBT_FontSize, UBT_Icons2, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
-import { getEntityType_Icon } from '@/shared/UBTConnect_Utils/lib/actions';
-import { Connect_Entity, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_Icons2, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
+import type { TextOptions } from '@/lib/ubtConnectLibrary/structures';
+import { getEntityType_Icon } from '@/lib/ubtConnectUtils/actions';
+import { Connect_Entity, UBT_IconsSize } from '@/lib/ubtConnect/staticEntities';
 
 export interface DirectoryLegendSheetProps {
   /** OutSystems instance id of the block. */

@@ -1,6 +1,6 @@
 import type { ExternalAppPopUpInfo } from '@/api/service';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
-import { openInApp_OpenApp } from '@/shared/UBTConnect_Utils/lib/actions';
+import { openInApp_OpenApp } from '@/lib/ubtConnectUtils/actions';
 
 /** GoToExternalApp, the confirm of the dialog Dialog_GoExternalApp:
     - With no store package, the message "Not available". The original gives MessageType

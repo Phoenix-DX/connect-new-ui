@@ -1,5 +1,5 @@
-import { OSLink } from '@/shared/lib/OSLink';
-import { Connect_Entity, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { OSLink } from '@/components/ui/os/OSLink';
+import { Connect_Entity, UBT_ImageSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
@@ -10,7 +10,7 @@ import {
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 
 export interface MenuUserHeaderProps {

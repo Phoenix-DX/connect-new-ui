@@ -3,8 +3,8 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { resumeNavigation, wasNavigationPrevented, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
-import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { resumeNavigation, wasNavigationPrevented, type NavigationEvent } from '@/lib/navigationEvent';
+import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Dialog } from './Dialog';
 import { usePreventBackNavigationTrigger, type DialogTrigger } from './dialogTriggers';
 

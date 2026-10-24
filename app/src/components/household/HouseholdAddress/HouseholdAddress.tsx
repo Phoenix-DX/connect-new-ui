@@ -9,12 +9,12 @@ import {
   UBT_FontSize,
   UBT_FontWeight,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { SeeMoreSection } from '@/components/ui/SeeMoreSection';
 import { AddressPopupWrapper } from '@/components/contact/AddressPopupWrapper';
-import type { Directory_Coordinates } from '@/shared/UBTConnect_Utils/lib/structures';
-import { UBT_Icons2 as UBTConnect_Icons2, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
-import type { UI_Household_Card_Content } from '@/shared/UBTConnect/lib/structures';
+import type { Directory_Coordinates } from '@/lib/ubtConnectUtils/structures';
+import { UBT_Icons2 as UBTConnect_Icons2, UBT_IconsSize } from '@/lib/ubtConnect/staticEntities';
+import type { UI_Household_Card_Content } from '@/lib/ubtConnect/structures';
 import { isDeceasedOrAncestry, isShownHousehold } from '@/components/household/householdCard';
 
 export interface HouseholdAddressProps {

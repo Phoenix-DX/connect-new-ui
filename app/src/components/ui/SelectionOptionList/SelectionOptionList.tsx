@@ -8,7 +8,7 @@ import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
 import { LazyImage } from '@/components/ui/LazyImage';
-import { getFlagURLByCountryCode, merge_StyleOptions } from '@/shared/UBTConnectLibrary/lib/actions';
+import { getFlagURLByCountryCode, merge_StyleOptions } from '@/lib/ubtConnectLibrary/actions';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -17,7 +17,7 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import type { ContainerOptions, SelectionOption_Item } from './types';
 
 export interface SelectionOptionListProps {

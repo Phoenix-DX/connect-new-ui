@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface InputCounterProps {
   /** OutSystems instance id of the block. */

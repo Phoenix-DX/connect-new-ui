@@ -20,7 +20,7 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { clearPreloadObject, getPreloadObject } from '@/platform/navigation/preload';
 import { createBackEvent } from '@/platform/navigation/backQueue';
 import { legacyDelete_LocalBookmarkByBookmarkId } from '@/platform/storage/localEntities';
-import { getCachedMyBookmarks, putCachedMyBookmarks } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { getCachedMyBookmarks, putCachedMyBookmarks } from '@/lib/legacyShared/actions';
 import { toCacheRecord } from './bookmarkGroupActions';
 import { bookmarkGroupReducer } from './bookmarkGroupState';
 import { useBookmarkGroup, type BookmarkGroupEvents, type BookmarkGroupFlags } from './useBookmarkGroup';

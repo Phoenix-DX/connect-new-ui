@@ -1,4 +1,4 @@
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 import { LoginVersion } from './LoginVersion';
 
 /** Under the login card: "Need help? Contact Us" (a link to ContactUsMenu) and the app version. The instance id is the

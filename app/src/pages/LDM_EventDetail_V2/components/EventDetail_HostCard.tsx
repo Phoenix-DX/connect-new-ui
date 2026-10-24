@@ -1,7 +1,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
-import { flipHouseholdName } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { flipHouseholdName } from '@/lib/legacyShared/actions';
 
 export interface EventDetail_HostCardProps {
   id: string;

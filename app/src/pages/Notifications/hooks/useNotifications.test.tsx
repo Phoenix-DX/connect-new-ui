@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchNotificationDateRanges, fetchNotifications, type NotificationItem } from '@/api/notification';
 import { CommunicationException, SystemException, UserException } from '@/legacy/os/exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/shared/UBTConnect/lib/actions';
+import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/lib/ubtConnect/actions';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { useNotifications } from './useNotifications';
 
@@ -31,8 +31,8 @@ vi.mock('@/api/notification', async (importOriginal) => ({
     Promise.resolve({ items: ITEMS, hasUnreadMessages: true, unreadNotificationsCount: 2 }),
   ),
 }));
-vi.mock('@/shared/UBTConnect/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/UBTConnect/lib/actions')>()),
+vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnect/actions')>()),
   directory_Updates_RefreshBottomBarCount: vi.fn(() => Promise.resolve()),
   scrollTop: vi.fn(),
 }));

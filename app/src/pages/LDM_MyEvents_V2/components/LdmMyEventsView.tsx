@@ -6,7 +6,7 @@ import { MenuIcon } from '@/components/layout/MenuIcon';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DEFAULT_DATE_RANGE_IN_MONTHS } from '@/pages/LDM_MyEvents_V2/hooks/ldmMyEventsState';
 import type { LdmMyEventsFlows } from '@/pages/LDM_MyEvents_V2/hooks/useLdmMyEvents';
-import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuAction } from '@/lib/legacyShared/staticEntities';
 import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 import { MyEvents_MyTimelineFilterButton } from './MyEvents_MyTimelineFilterButton';
 import { MyTimeline_V2 } from './MyTimeline_V2';

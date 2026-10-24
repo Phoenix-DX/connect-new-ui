@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CircleButtonIconPrimary } from '@/components/ui/CircleButtonIconPrimary';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT, getLookupActions } from '@/shared/UBTConnectLibrary/lib/actions';
-import { UBT_Display, UBT_JustifyContent } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT, getLookupActions } from '@/lib/ubtConnectLibrary/actions';
+import { UBT_Display, UBT_JustifyContent } from '@/lib/ubtConnectLibrary/staticEntities';
 import type { ActionsMenuEnableOptions, ActionsMenuOptions } from './types';
 
 export interface ActionsMenuProps {

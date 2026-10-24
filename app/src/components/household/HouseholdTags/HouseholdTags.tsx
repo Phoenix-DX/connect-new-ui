@@ -10,14 +10,14 @@ import {
   UBT_FontWeight,
   UBT_JustifyContent,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import type { Tag } from '@/lib/ubtConnectLibrary/structures';
 import {
   UBT_Color as UBTConnect_Color,
   UBT_FlexDirection,
   UBT_Icons2 as UBTConnect_Icons2,
   UBT_IconsSize,
-} from '@/shared/UBTConnect/lib/staticEntities';
+} from '@/lib/ubtConnect/staticEntities';
 
 export interface HouseholdTagsProps {
   /** False: the tags and the kebab menu do not react. */

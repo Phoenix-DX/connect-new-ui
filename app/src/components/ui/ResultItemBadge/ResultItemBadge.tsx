@@ -2,7 +2,7 @@
 // @os-block Connect2_LegacyShared.NewConnect_Utilities.NC_Result_Item_Badge
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 
 export interface ResultItemBadgeProps {
   /** OutSystems instance id of the block. */

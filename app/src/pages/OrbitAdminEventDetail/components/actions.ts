@@ -1,4 +1,4 @@
-import { timeFormatGetWeekDay } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { timeFormatGetWeekDay } from '@/lib/orbit/actions';
 
 /* The client action of Connect2_OrbitMobile_MUI that Popup_QRCodeScan calls (runtime-sources/Connect2_OrbitMobile_MUI
    .controller.js = C, Connect2_OrbitMobile_MUI.TimeFormat.js = TF). The client actions of the scan flow are in

@@ -1,1 +1,1 @@
-export type { ContainerOptions, SelectionOption_Item } from '@/shared/UBTConnectLibrary/lib/structures';
+export type { ContainerOptions, SelectionOption_Item } from '@/lib/ubtConnectLibrary/structures';

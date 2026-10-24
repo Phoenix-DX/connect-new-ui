@@ -5,7 +5,7 @@ import {
   useLoadingDotsAnimation,
 } from '@/pages/Splash/hooks/useLoadingDotsAnimation';
 import { CustomText } from '@/components/ui/CustomText';
-import { UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_FontSize, UBT_FontWeight } from '@/lib/ubtConnectLibrary/staticEntities';
 import { SvgBackground } from '@/components/ui/SvgBackground';
 import { UBT_Color_Primary } from './staticEntities';
 

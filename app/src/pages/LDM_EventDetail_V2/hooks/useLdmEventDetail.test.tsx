@@ -15,7 +15,7 @@ import { coordinatorDetails, eventCalendarDetail, ldmEventById } from '@/mocks/f
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { addAuditEvent_LDM } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { addAuditEvent_LDM } from '@/lib/orbit/actions';
 import { INITIAL_LDM_EVENT_DETAIL_STATE, ldmEventDetailReducer, type LdmEventDetailState } from './ldmEventDetailState';
 import { useLdmEventDetail, type LdmEventDetailEvents } from './useLdmEventDetail';
 
@@ -34,8 +34,8 @@ vi.mock('@/api/household', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/household')>()),
   fetchHouseholdCoordinatesById: vi.fn(),
 }));
-vi.mock('@/shared/Connect2_OrbitMobile_MUI/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Connect2_OrbitMobile_MUI/lib/actions')>()),
+vi.mock('@/lib/orbit/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/orbit/actions')>()),
   addAuditEvent_LDM: vi.fn(),
 }));
 vi.mock('@/platform/feedback/dialogs', async (importOriginal) => ({

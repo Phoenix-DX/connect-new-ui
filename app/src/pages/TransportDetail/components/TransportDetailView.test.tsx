@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
 import type { TransportDetails } from '@/api/event';
 import { EMPTY_TRANSPORT_DETAILS } from '@/pages/TransportDetail/hooks/transportDetailState';
-import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import { TransportDetailView, type TransportDetailViewProps } from './TransportDetailView';
 
 /* The props-only view of ScreenBlock_TransportDetail. Fictional transport: the Saturday pick-up in Rosario. */

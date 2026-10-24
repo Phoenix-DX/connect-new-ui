@@ -10,8 +10,8 @@ import { useFlowState, type IsAlive } from '@/platform/navigation';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import type { AdminEventDetailInputs } from '@/pages/OrbitAdminEventDetail/inputs';
 import { CameraDirection, ScanOrientation } from '@/pages/OrbitAdminEventDetail/staticEntities';
-import { DirectoryAPIFilter, ImageSigningSize } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import { textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
+import { DirectoryAPIFilter, ImageSigningSize } from '@/lib/orbit/staticEntities';
+import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 import { deserializeQRCodeInformation, onApplicationEvent_Orbit } from './adminEventDetailActions';
 import {
   adminEventDetailReducer,

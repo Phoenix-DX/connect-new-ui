@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { ResultItemBadge } from '@/components/ui/ResultItemBadge';
-import { PendingBlock } from '@/shared/test/PendingBlock';
+import { PendingBlock } from '@/test/PendingBlock';
 import { AssembleSummarySkeleton } from './AssembleSummarySkeleton';
 
 const meta = {

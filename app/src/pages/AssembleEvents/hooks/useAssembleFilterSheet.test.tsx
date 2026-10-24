@@ -7,8 +7,8 @@ import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { mockUserInformation } from '@/platform/session/mockUser';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
-import { getCacheableRegionSubscribedCountries } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { hasAccessToRegion } from '@/lib/assemble/actions';
+import { getCacheableRegionSubscribedCountries } from '@/lib/legacyShared/actions';
 import { assembleFilterSheetReducer, SHEET_TITLE_COUNTRIES, SHEET_TITLE_LOCALITIES } from './assembleFilterSheetState';
 import { useAssembleFilterSheet, type AssembleFilterSheetEvents } from './useAssembleFilterSheet';
 import { fetchUserSubdivision, type UserSubdivision } from './userSubdivision';
@@ -22,16 +22,16 @@ vi.mock('./userSubdivision', async (importOriginal) => ({
   ...(await importOriginal<typeof import('./userSubdivision')>()),
   fetchUserSubdivision: vi.fn(),
 }));
-vi.mock('@/shared/Connect2_LegacyShared/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Connect2_LegacyShared/lib/actions')>()),
+vi.mock('@/lib/legacyShared/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/legacyShared/actions')>()),
   getCacheableRegionSubscribedCountries: vi.fn(),
 }));
 vi.mock('@/platform/session/userInfo', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/session/userInfo')>()),
   getUserInformation: vi.fn(),
 }));
-vi.mock('@/shared/Connect2_Assemble_MUI/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Connect2_Assemble_MUI/lib/actions')>()),
+vi.mock('@/lib/assemble/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/assemble/actions')>()),
   hasAccessToRegion: vi.fn(),
 }));
 vi.mock('@/platform/feedback/dialogs', async (importOriginal) => ({

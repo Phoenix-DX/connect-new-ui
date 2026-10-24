@@ -7,7 +7,7 @@ import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
 import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 
 /** Connect2_OrbitMobile_MUI.menuAction.auto: the MenuAction that the block gives MenuIcon__UpdatedOSUI. */
 const MENU_ACTION_AUTO = 'Auto';

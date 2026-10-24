@@ -1,7 +1,7 @@
 import type { UI_ShareableObject_Generic } from '@/components/share/ShareableObject';
 import { useViewState } from '@/platform/navigation';
-import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
-import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { Type_ShareObject } from '@/lib/ubtConnect/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 
 /** The screen variables of FeedItemDetail that the ShareSheet reads, and the two handlers of the screen. */
 export interface FeedItemDetailShare {

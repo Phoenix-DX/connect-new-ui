@@ -12,8 +12,8 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useNavigateBack } from '@/platform/navigation';
 import { pinCheck } from '@/platform/session/pin';
 import { currentUserId } from '@/platform/session/session';
-import { preventNavigation, type NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
-import type { Directory_UserCurrent } from '@/shared/UBTConnect/CacheControl_UserInfo_Wrapper/types';
+import { preventNavigation, type NavigationEvent } from '@/lib/navigationEvent';
+import type { Directory_UserCurrent } from '@/platform/session/UserInfoCache/types';
 import {
   contactUsDetailsReducer,
   countriesCallInputs,

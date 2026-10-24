@@ -7,14 +7,8 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { formatClasses, getClasses_LazyImageSize_Dev } from '@/shared/UBTConnectLibrary/lib/actions';
-import {
-  UBT_Color,
-  UBT_FontSize,
-  UBT_FontWeight,
-  UBT_Shape,
-  UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { formatClasses, getClasses_LazyImageSize_Dev } from '@/lib/ubtConnectLibrary/actions';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Shape, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import type { AvatarImageFallbackoptions, ImageBorderOptions, LazyImageSize, SpacingOptions } from './types';
 
 export interface LazyImageProps {

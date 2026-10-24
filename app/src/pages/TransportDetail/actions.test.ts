@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { TransportMilestoneType, TravelInfo } from '@/api/event';
-import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import {
   getContactHelpdeskSubject_Transport,
   getFormattedTime_FromTime,

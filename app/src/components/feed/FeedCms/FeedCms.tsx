@@ -11,8 +11,8 @@ import {
   UBT_ImageSize,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { getIframeObject, getScrollContainer } from '@/shared/UBTConnect_EmbedFeed/lib/actions';
+} from '@/lib/ubtConnectLibrary/staticEntities';
+import { getIframeObject, getScrollContainer } from '@/components/feed/FeedCms/embedFeed';
 import { embed } from './connect2Feed';
 
 /** The outputs of DataActionGetFeedConfig that InitializeFeed reads (the OutSystems names). The caller fetches them

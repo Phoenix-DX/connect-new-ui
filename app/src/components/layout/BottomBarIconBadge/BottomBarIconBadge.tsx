@@ -1,11 +1,11 @@
 /** @origin UBTConnect.App_Common_Blocks.App_IconBadge */
 // @os-block UBTConnect.App_Common_Blocks.App_IconBadge
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 import { Icon } from '@/components/ui/Icon';
 import { IconBadge } from '@/components/ui/IconBadge';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { UBT_Color, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
+import { UBT_Color, UBT_IconsSize } from '@/lib/ubtConnect/staticEntities';
 
 export interface BottomBarIconBadgeProps {
   /** OutSystems instance id of the block. */

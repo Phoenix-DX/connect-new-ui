@@ -3,7 +3,7 @@ import { useEffect, useLayoutEffect, useRef } from 'react';
 import type { CarouselHouseholdDetailsSlot } from '@/components/directory/CarouselHouseholdDetails';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { VITALE } from '@/mocks/fictional/directory';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { EntitiesCarousel } from './EntitiesCarousel';
 
 /** A stand-in for the household details container that the page renders in the slot of each household slide: the

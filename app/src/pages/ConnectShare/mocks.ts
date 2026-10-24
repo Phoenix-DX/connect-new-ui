@@ -2,7 +2,7 @@ import type { RequestHandler } from 'msw';
 import type { ShareDetailsWire } from '@/api/share';
 import { ServerException } from '@/legacy/os/os-exceptions';
 import { contractHandler } from '@/mocks/contract';
-import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
+import { Type_ShareObject } from '@/lib/ubtConnect/staticEntities';
 
 /* Get_ShareDetails was not recorded (share data is person data, migration/knowledge/mock-fixtures.md): fictional.
    - Every ShareId not listed below (the capture's 00000000-0000-0000-0000-000000000000 included) raises the exception

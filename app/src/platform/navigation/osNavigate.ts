@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useNavigate, type NavigateFunction } from 'react-router';
-import { parseOsDate } from '@/shared/lib/osDateTime';
+import { parseOsDate } from '@/lib/osDateTime';
 import { currentEntry } from './historyStack';
 import {
   createTransition,

@@ -1,8 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import {
-  getSkeletonList_UI_SubdivisionHousehold,
-  getSkeleton_UI_SubdivisionDetails,
-} from '@/shared/UBTConnect/lib/actions';
+import { getSkeletonList_UI_SubdivisionHousehold, getSkeleton_UI_SubdivisionDetails } from '@/lib/ubtConnect/actions';
 import { INITIAL_SUPPER_MEETING_DETAILS_STATE, supperMeetingDetailsReducer } from './supperMeetingDetailsState';
 
 const SUBDIVISION = {

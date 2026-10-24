@@ -1,1 +1,1 @@
-export type { CountryWithMapPosition } from '@/shared/Connect2_LegacyShared/lib/structures';
+export type { CountryWithMapPosition } from '@/lib/legacyShared/structures';

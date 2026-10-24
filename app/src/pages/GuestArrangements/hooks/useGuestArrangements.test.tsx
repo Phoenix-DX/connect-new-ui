@@ -7,7 +7,7 @@ import { CommunicationException } from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { log } from '@/platform/log/log';
-import { checkDirectoryAccess } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { checkDirectoryAccess } from '@/lib/orbit/actions';
 import { getContactHelpdeskSubject_Milestone } from './guestArrangementsActions';
 import {
   EMPTY_GUEST_ARRANGEMENTS_DATA,
@@ -25,8 +25,8 @@ vi.mock('@/api/event', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/event')>()),
   fetchGuestArrangements: vi.fn(),
 }));
-vi.mock('@/shared/Connect2_OrbitMobile_MUI/lib/actions', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/shared/Connect2_OrbitMobile_MUI/lib/actions')>()),
+vi.mock('@/lib/orbit/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/orbit/actions')>()),
   checkDirectoryAccess: vi.fn(() => Promise.resolve(true)),
 }));
 vi.mock('@/platform/feedback/dialogs/subscription', async (importOriginal) => ({

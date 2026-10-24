@@ -1,6 +1,6 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 import { CardItemVisual } from '@/components/ui/CardItemVisual';
 import { ResultItemCard } from '@/components/ui/ResultItemCard';
 import { ResultItemMedia } from '@/components/ui/ResultItemMedia';
@@ -11,8 +11,8 @@ import {
   getAssembleEventSummaryDateTimeString,
   getAssembleEventSummaryHeaderLabel,
   getAssembleHostedAtComponents,
-} from '@/shared/Connect2_Assemble_MUI/lib/actions';
-import { Position, ResultListType } from '@/shared/Connect2_Assemble_MUI/lib/staticEntities';
+} from '@/lib/assemble/actions';
+import { Position, ResultListType } from '@/lib/assemble/staticEntities';
 import type { AssembleEventSummary } from './types';
 
 export interface AssembleSummaryCardProps extends MeetingInfoActions {

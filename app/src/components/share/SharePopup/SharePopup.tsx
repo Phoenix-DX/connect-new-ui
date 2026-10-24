@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ContactPopup } from '@/components/contact/ContactPopup';
-import { getHasExtendedShare, showComingSoonMessage } from '@/shared/UBTConnect_Utils/lib/actions';
-import { Connect_Entity, UBT_Icons, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { getHasExtendedShare, showComingSoonMessage } from '@/lib/ubtConnectUtils/actions';
+import { Connect_Entity, UBT_Icons, UBT_ImageSize } from '@/lib/ubtConnectUtils/staticEntities';
 import type { ContactPopupButton, ContactPopupData } from './types';
 
 export interface SharePopupProps {

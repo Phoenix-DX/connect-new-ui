@@ -1,1 +1,1 @@
-export type { TextOptions } from '@/shared/UBTConnectLibrary/lib/structures';
+export type { TextOptions } from '@/lib/ubtConnectLibrary/structures';

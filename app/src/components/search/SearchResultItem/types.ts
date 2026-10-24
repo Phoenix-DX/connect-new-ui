@@ -1,1 +1,1 @@
-export type { SearchResult } from '@/shared/UBTConnect_Utils/lib/structures';
+export type { SearchResult } from '@/lib/ubtConnectUtils/structures';

@@ -2,7 +2,7 @@ import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { MemoryRouter } from 'react-router';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import type { UI_HouseholdMember } from '@/shared/UBTConnect/lib/structures';
+import type { UI_HouseholdMember } from '@/lib/ubtConnect/structures';
 import { HouseholdMemberList } from './HouseholdMemberList';
 import { VITALE } from '@/mocks/fictional/directory';
 

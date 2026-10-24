@@ -3,7 +3,7 @@ import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
-import { UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color } from '@/lib/ubtConnectLibrary/staticEntities';
 import { FormInput } from './FormInput';
 import {
   FIELD_LABEL,

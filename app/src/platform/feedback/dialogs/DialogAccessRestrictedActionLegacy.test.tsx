@@ -2,7 +2,7 @@ import { act, render } from '@testing-library/react';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { resetBackQueue } from '@/platform/navigation/backQueue';
 import { getClientVar } from '@/platform/session/session';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { freshPage } from '@/test/testSupport';
 import { confirmAction } from './confirmAction';
 import { DialogAccessRestrictedActionLegacy } from './DialogAccessRestrictedActionLegacy';

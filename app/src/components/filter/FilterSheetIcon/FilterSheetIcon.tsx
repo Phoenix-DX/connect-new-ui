@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { Icon } from '@/components/ui/Icon';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface FilterSheetIconProps {
   /** OutSystems instance id of the block. */

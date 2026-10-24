@@ -1,7 +1,7 @@
 import type { EventQRCodeCallInputs, EventQRCodeData } from '@/api/event';
 import type { QRCodeGenerateInputs } from '@/pages/QRCodeGenerate/inputs';
 import type { AppManager_CachedUserInfoRec } from '@/platform/session/types';
-import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { getFormattedDateTime } from '@/lib/orbit/actions';
 
 /** The variables of ScreenBlock_GenerateQRCode, the reducer and the client actions. Pure; the flows are in
     useGenerateQrCode.

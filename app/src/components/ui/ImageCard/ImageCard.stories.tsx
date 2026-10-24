@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CarouselTag } from '@/components/directory/CarouselTag';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { ImageCardContent } from '@/components/ui/ImageCardContent';
-import { UBT_ImageCardType } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_ImageCardType } from '@/lib/ubtConnectLibrary/staticEntities';
 import { ImageCard } from './ImageCard';
 
 const meta = {

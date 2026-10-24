@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '@/shared/test/PendingBlock';
+import { PendingBlock } from '@/test/PendingBlock';
 import { CustomText } from '@/components/ui/CustomText';
 import { ColumnsTwo } from './ColumnsTwo';
 

@@ -3,9 +3,9 @@ import type { ContactByPhonePopupData } from '@/components/contact/ContactPopupB
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
-import { getCacheableSignedPhotoURL, getSignedPhotosInBulk } from '@/shared/Connect2_LegacyShared/lib/actions';
-import type { ContactPopupData } from '@/shared/UBTConnect_Utils/lib/structures';
+import { hasAccessToRegion } from '@/lib/assemble/actions';
+import { getCacheableSignedPhotoURL, getSignedPhotosInBulk } from '@/lib/legacyShared/actions';
+import type { ContactPopupData } from '@/lib/ubtConnectUtils/structures';
 import {
   contactEmail,
   contactPhone,

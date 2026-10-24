@@ -2,8 +2,8 @@ import { useFeedConfigQuery, type FeedConfig } from '@/api/feed';
 import { flagValue } from '@/platform/flags';
 import { useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { Type_ShareObject } from '@/shared/UBTConnect/lib/staticEntities';
-import { openInApp_TryOpenFileInApp } from '@/shared/UBTConnect_Utils/lib/actions';
+import { Type_ShareObject } from '@/lib/ubtConnect/staticEntities';
+import { openInApp_TryOpenFileInApp } from '@/lib/ubtConnectUtils/actions';
 import { getClientVar } from './session';
 
 /** What Feed_Embeded needs from the platform: its flags, the B2C tenant and the feed configuration of the nested

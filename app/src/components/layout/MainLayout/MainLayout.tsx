@@ -11,13 +11,8 @@ import {
   removeScrollEvents,
   setMainScroll,
   setScrollShadow,
-} from '@/shared/UBTConnectLibrary/lib/actions';
-import {
-  UBT_Color,
-  UBT_ColumnBehaviour,
-  UBT_Size,
-  UBT_VerticalAlign,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/actions';
+import { UBT_Color, UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface MainLayoutProps {
   /** OutSystems instance id of the block. */

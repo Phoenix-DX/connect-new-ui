@@ -2,7 +2,7 @@ import { UBT_Color_Local, UBT_Icons2_Local } from '@/pages/ContactUsDetails/stat
 import { CircleButtonWithLabel } from '@/components/ui/CircleButtonWithLabel';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
-import { UBT_AvatarSize, UBT_FontSize, UBT_IconsSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_AvatarSize, UBT_FontSize, UBT_IconsSize, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { InformationDialog } from './InformationDialog';
 
 const TEXT_OPTIONS = { MarginSize: { TopSizeId: UBT_Size.Base }, TextOptions: { FontSize: UBT_FontSize.Small } };

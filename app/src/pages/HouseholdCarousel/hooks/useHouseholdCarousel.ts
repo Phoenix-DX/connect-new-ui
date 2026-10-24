@@ -1,8 +1,8 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { markCarouselUpdateItemAsRead } from '@/api/update';
 import { setPreloadObject, usePreloadObject, useViewState } from '@/platform/navigation';
-import { Type_CarouselItemSwipeAction } from '@/shared/UBTConnect/lib/staticEntities';
-import type { EntitiesCarousel_Item } from '@/shared/UBTConnect/lib/structures';
+import { Type_CarouselItemSwipeAction } from '@/lib/ubtConnect/staticEntities';
+import type { EntitiesCarousel_Item } from '@/lib/ubtConnect/structures';
 import { mockPreload, type HouseholdCarouselInputs } from '@/pages/HouseholdCarousel/inputs';
 import {
   appendSwippedItem,

@@ -12,7 +12,7 @@ import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { setPreloadObject, useFlowState, type BackNavigationEvent, type IsAlive } from '@/platform/navigation';
 import { legacyDelete_LocalBookmarkByBookmarkId } from '@/platform/storage/localEntities';
-import { getCachedMyBookmarks, putCachedMyBookmarks } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { getCachedMyBookmarks, putCachedMyBookmarks } from '@/lib/legacyShared/actions';
 import {
   CommunityBusinessType2,
   Connect_Entity,

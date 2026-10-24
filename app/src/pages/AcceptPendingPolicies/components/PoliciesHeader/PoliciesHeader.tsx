@@ -1,6 +1,6 @@
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { UBT_FontSize_Heading3 } from '@/pages/AcceptPendingPolicies/staticEntities';
 
 const TEXT_BASE_SEMIBOLD = {

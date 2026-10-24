@@ -4,8 +4,8 @@ import { PATHS } from '@/platform/navigation/paths';
 import { pinCheck } from '@/platform/session/pin';
 import { getColdStartLinkURL, setResumeLoginLink } from '@/platform/session/resume';
 import { getClientVar, isSignedIn, setClientVar, useClientVar } from '@/platform/session/session';
-import { set_InitialClientVariables } from '@/shared/UBTConnect/lib/actions';
-import { useScreenController_NavigateToPage } from '@/shared/UBTJavaScriptUtils/lib/actions';
+import { set_InitialClientVariables } from '@/lib/ubtConnect/actions';
+import { useScreenController_NavigateToPage } from '@/lib/jsUtils';
 import { useApplicationLoadEvents } from './useApplicationLoadEvents';
 
 /** MinimumDisplayTimeMs of the screen's ApplicationLoadEvents. */

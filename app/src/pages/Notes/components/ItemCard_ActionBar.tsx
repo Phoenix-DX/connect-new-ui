@@ -3,7 +3,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { UBT_Color, UBT_Display, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_Display, UBT_FontSize, UBT_FontWeight } from '@/lib/ubtConnectLibrary/staticEntities';
 import { child, scopeOf } from './ids';
 import { UBT_IconSize_NonStandard_18, UBT_Icons_BorderColor, UBT_JustifyContent_FlexStart } from './staticEntities';
 

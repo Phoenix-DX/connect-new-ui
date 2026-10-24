@@ -2,9 +2,9 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_Template
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '@/shared/lib/cssText';
-import { getCSSVarFromMainColor } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitColorShade, OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { styleFromCssText } from '@/lib/cssText';
+import { getCSSVarFromMainColor } from '@/lib/orbit/actions';
+import { OrbitColorShade, OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 
 export interface OrbitCardProps {
   /** OutSystems instance id of the block. */

@@ -2,7 +2,7 @@ import { composeStories } from '@storybook/react-vite';
 import { act, render, waitFor } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { expectToMatchCapture } from '@/test/dom';
-import { testCapturedVariants } from '@/shared/test/capturedVariants';
+import { testCapturedVariants } from '@/test/capturedVariants';
 import { embed, resetConnect2Feed } from './connect2Feed';
 import { FeedCms, type FeedCmsConfig } from './FeedCms';
 import * as stories from './FeedCms.stories';

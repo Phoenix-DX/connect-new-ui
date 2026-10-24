@@ -5,7 +5,7 @@ import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { IconText } from '@/components/ui/IconText';
 import { Skeleton } from '@/components/ui/Skeleton';
-import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { UBT_Color_RedDark } from './staticEntities';
 
 export interface Notifications_HeaderProps {

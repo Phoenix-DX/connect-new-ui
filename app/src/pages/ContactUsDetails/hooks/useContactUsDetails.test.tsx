@@ -12,7 +12,7 @@ import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { MOCK_USER_ID, mockDirectoryUser } from '@/platform/session/mockUser';
 import { pinCheck } from '@/platform/session/pin';
 import { setSignedInUser } from '@/platform/session/session';
-import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
+import type { NavigationEvent } from '@/lib/navigationEvent';
 import { emptyCallPopupData } from './contactUsDetailsState';
 import { useContactUsDetails } from './useContactUsDetails';
 

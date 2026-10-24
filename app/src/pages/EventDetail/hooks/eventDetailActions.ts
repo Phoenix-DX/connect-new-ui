@@ -1,8 +1,8 @@
 import type { Milestone_Screen } from '@/api/event';
 import { ApplicationEvents_Orbit_GenerateQRCode } from '@/pages/EventDetail/staticEntities';
 import { log } from '@/platform/log/log';
-import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { MilestoneTimeType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDateTime } from '@/lib/orbit/actions';
+import { MilestoneTimeType } from '@/lib/orbit/staticEntities';
 
 /** The client actions of Connect2_OrbitMobile_MUI that ScreenBlock_EventDetail calls, ported 1:1, without React.
     useEventDetail, the reducer of eventDetailState and EventDetailView call them. `C:<n>` = line of

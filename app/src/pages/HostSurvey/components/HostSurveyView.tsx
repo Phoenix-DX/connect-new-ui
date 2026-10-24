@@ -10,8 +10,8 @@ import { SurveyStatus, type HostSurveyState } from '@/pages/HostSurvey/hooks/hos
 import type { HostSurveyInputs } from '@/pages/HostSurvey/inputs';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { HostSurveyStep, type LocalLabelledRecord } from '@/platform/storage/localEntities';
-import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
-import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { getFormattedDateTime } from '@/lib/orbit/actions';
+import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import { Accordion } from '@/components/ui/Accordion';
 import { AccordionItem } from '@/components/ui/AccordionItem';
 import { HostSurvey_AccommodationPills } from './HostSurvey_AccommodationPills';

@@ -6,8 +6,8 @@ import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
-import { Photobook_Speed } from '@/shared/UBTConnect/lib/staticEntities';
-import { UBT_Color, UBT_Display, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Photobook_Speed } from '@/lib/ubtConnect/staticEntities';
+import { UBT_Color, UBT_Display, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { ROUND_BUTTON } from './Photobook_Options_Left';
 import {
   UBT_AlignItems,

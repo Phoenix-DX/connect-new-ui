@@ -3,9 +3,9 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import type { CarouselSupperMeetingDetailsSlot } from '@/components/directory/CarouselSupperMeetingDetails';
 import { EntitiesCarousel } from '@/components/directory/EntitiesCarousel';
 import { SupperMeetingDetailsContainer, useSupperMeetingDetailsFlags } from '@/containers';
-import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnect/staticEntities';
 import { CustomText } from '@/components/ui/CustomText';
-import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
+import { DetailLayoutContainer } from '@/containers/DetailLayout';
 import { useSupperMeetingCarousel } from './hooks/useSupperMeetingCarousel';
 import { readSupperMeetingCarouselInputs } from './inputs';
 
@@ -31,7 +31,7 @@ export default function SupperMeeting_Carousel() {
   );
 
   return (
-    <Layout_DetailPage
+    <DetailLayoutContainer
       id="$b1"
       inAlignTitleLeft={false}
       placeholderHeaderTitle={<CustomText id="$b2" inText="Supper Meeting" inTextOptions={{}} />}

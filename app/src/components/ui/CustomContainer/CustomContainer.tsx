@@ -2,14 +2,14 @@
 // @os-block UBTConnectLibrary.BasePatterns.CustomContainer
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { styleFromCssText } from '@/shared/lib/cssText';
+import { styleFromCssText } from '@/lib/cssText';
 import {
   formatClasses,
   getClasses_Container,
   getStyle_BackgroundImage,
   getStyle_Opacity,
   getStyle_SizeOptions,
-} from '@/shared/UBTConnectLibrary/lib/actions';
+} from '@/lib/ubtConnectLibrary/actions';
 import type { ContainerOptions } from './types';
 
 export interface CustomContainerProps {

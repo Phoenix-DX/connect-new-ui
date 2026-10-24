@@ -6,17 +6,11 @@ import { OSList } from '@/components/ui/os/OSList';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Input } from '@/components/ui/Input';
-import {
-  Shape,
-  UBT_Color,
-  UBT_FontSize,
-  UBT_FontWeight,
-  UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { Shape, UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { StatisticsListItem } from '@/components/directory/StatisticsListItem';
-import { jSUtils_String_RemoveAccents } from '@/shared/UBTJavaScriptUtils/lib/actions';
-import type { TextStatisticsOptionsRecord } from '@/shared/UBTConnect/lib/structures';
+import { jSUtils_String_RemoveAccents } from '@/lib/jsUtils';
+import type { TextStatisticsOptionsRecord } from '@/lib/ubtConnect/structures';
 
 export interface StatisticsListProps {
   /** OutSystems instance id of the block. */

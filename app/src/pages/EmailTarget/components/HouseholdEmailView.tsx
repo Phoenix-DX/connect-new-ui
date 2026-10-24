@@ -5,8 +5,8 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSForm, useInputWithVariableValidation } from '@/components/ui/os/OSValidation';
 import { householdEmailIds } from '@/pages/EmailTarget/hooks/householdEmailState';
 import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
-import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
+import { MenuAction } from '@/lib/legacyShared/staticEntities';
+import type { NavigationEvent } from '@/lib/navigationEvent';
 import { LegacyButtonLoading } from '@/components/ui/legacy/LegacyButtonLoading';
 import { NavigationDialog } from '@/components/ui/Dialog';
 

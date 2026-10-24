@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
+import { MenuAction } from '@/lib/legacyShared/staticEntities';
 import { NewConnectContent } from '@/components/ui/NewConnectContent';
 
 /** The view of the block ScreenBlock_AssembleEvents, props only. The legacy layout has the back arrow when

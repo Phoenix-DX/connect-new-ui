@@ -4,9 +4,9 @@ import { confirmAction } from '@/platform/feedback/dialogs/confirmAction';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { setPreloadObject, useWasRestoredFromCache } from '@/platform/navigation';
 import { getLocalBookmarksByObjectType } from '@/platform/storage/localEntities';
-import { toggleBookmarkItem } from '@/shared/Connect2_Assemble_MUI/lib/actions';
-import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/shared/Connect2_Assemble_MUI/lib/staticEntities';
-import { getCacheableSubdivision_V2 } from '@/shared/Connect2_LegacyShared/lib/actions';
+import { toggleBookmarkItem } from '@/lib/assemble/actions';
+import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/lib/assemble/staticEntities';
+import { getCacheableSubdivision_V2 } from '@/lib/legacyShared/actions';
 import { maybeDisplaySubscriptionPopup } from '@/pages/AssembleDetail/components/actions';
 import {
   attendeeSubdivisionReducer,

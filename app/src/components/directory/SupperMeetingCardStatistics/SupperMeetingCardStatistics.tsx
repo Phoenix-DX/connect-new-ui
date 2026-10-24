@@ -4,12 +4,9 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { ImageCardTag } from '@/components/ui/ImageCardTag';
-import { getLookupConcepts } from '@/shared/UBTConnectLibrary/lib/actions';
-import {
-  getDescriptor_BretherenCount,
-  getDescriptor_Subdivision_HouseholdCount,
-} from '@/shared/UBTConnect/lib/actions';
-import { UBT_ColumnBehaviour, UBT_FontSize, UBT_Size } from '@/shared/UBTConnect/lib/staticEntities';
+import { getLookupConcepts } from '@/lib/ubtConnectLibrary/actions';
+import { getDescriptor_BretherenCount, getDescriptor_Subdivision_HouseholdCount } from '@/lib/ubtConnect/actions';
+import { UBT_ColumnBehaviour, UBT_FontSize, UBT_Size } from '@/lib/ubtConnect/staticEntities';
 import { SupperMeetingCardIconText } from '@/components/directory/SupperMeetingCardIconText';
 
 export interface SupperMeetingCardStatisticsProps {

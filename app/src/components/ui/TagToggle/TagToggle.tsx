@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
+import { formatClasses } from '@/lib/ubtConnectLibrary/actions';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -12,7 +12,7 @@ import {
   UBT_IconSize,
   UBT_Shape,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import type { Tag } from './types';
 
 export interface TagToggleProps {

@@ -4,7 +4,7 @@ import type { QRCodeGenerateInputs } from '@/pages/QRCodeGenerate/inputs';
 import { useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
-import { DirectoryAPIFilter, ImageSigningSize } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
+import { DirectoryAPIFilter, ImageSigningSize } from '@/lib/orbit/staticEntities';
 import {
   afterFetchOf,
   eventQRCodeCallInputs,

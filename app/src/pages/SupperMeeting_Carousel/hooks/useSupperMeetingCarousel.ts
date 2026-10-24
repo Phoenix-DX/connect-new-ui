@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { usePreloadObject, useViewState } from '@/platform/navigation';
-import type { EntitiesCarousel_Item } from '@/shared/UBTConnect/lib/structures';
+import type { EntitiesCarousel_Item } from '@/lib/ubtConnect/structures';
 import {
   mockPreload,
   type PreloadedSupperMeetings,

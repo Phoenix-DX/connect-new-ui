@@ -1,4 +1,4 @@
-import { OSLink } from '@/shared/lib/OSLink';
+import { OSLink } from '@/components/ui/os/OSLink';
 import { PinRegisterContent } from '@/components/auth/PinRegisterContent';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
@@ -10,7 +10,7 @@ import {
   UBT_Icons2,
   UBT_IconsSize,
   UBT_Size,
-} from '@/shared/UBTConnectLibrary/lib/staticEntities';
+} from '@/lib/ubtConnectLibrary/staticEntities';
 import { PinUnlockContentContainer, useNoCommonUi } from '@/platform/feedback/dialogs';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
 import { usePinRegisterContent } from '@/platform/session/usePinRegisterContent';

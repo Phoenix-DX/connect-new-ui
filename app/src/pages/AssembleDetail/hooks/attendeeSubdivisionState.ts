@@ -1,8 +1,8 @@
 import type { AssembleAttendeeGuest, AssembleAttendeeSubdivision } from '@/api/event';
 import type { SubdivisionInformation } from '@/api/locality';
 import type { LegacyLocalBookmark } from '@/platform/storage/localEntities';
-import { flipHouseholdName } from '@/shared/Connect2_LegacyShared/lib/actions';
-import type { UI_ShareableObject_Generic } from '@/shared/UBTConnect_Utils/lib/structures';
+import { flipHouseholdName } from '@/lib/legacyShared/actions';
+import type { UI_ShareableObject_Generic } from '@/lib/ubtConnectUtils/structures';
 
 /** The variables of the block AssembleEventDetail_AttendeeSubdivision, the reducer and its client actions. Pure; the
     flows are in useAttendeeSubdivision.

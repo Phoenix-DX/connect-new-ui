@@ -1,4 +1,4 @@
-import type { CarouselPreloadedHouseholds } from '@/shared/UBTConnect/lib/structures';
+import type { CarouselPreloadedHouseholds } from '@/lib/ubtConnect/structures';
 
 /** The inputs of HouseholdCarousel: the route input from the query string, and the preload object of the previous
     screen. The screen has no data action of its own. The household details of the slides, BottomBarMenu and

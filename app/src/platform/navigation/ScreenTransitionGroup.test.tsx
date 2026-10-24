@@ -1,7 +1,7 @@
 import { act, render } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider, useLocation, type Location } from 'react-router';
 import { afterEach, beforeEach, expect, test, vi } from 'vitest';
-import { onApplicationReady_BottomBarSlider } from '@/shared/UBTConnectLibrary/lib/actions';
+import { onApplicationReady_BottomBarSlider } from '@/lib/ubtConnectLibrary/actions';
 import { resetScreenTransition, setTransitionOverride, transitionState } from './screenTransition';
 import { ScreenTransitionGroup, type ScreenTransitionGroupProps } from './ScreenTransitionGroup';
 import { onceScreenTransitionEnd, resetTransitionEvents, type NavigationTransitionDetail } from './transitionEvents';

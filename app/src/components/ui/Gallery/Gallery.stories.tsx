@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { PendingBlock } from '@/shared/test/PendingBlock';
+import { PendingBlock } from '@/test/PendingBlock';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { Carousel } from '@/components/ui/Carousel';
 import * as carousel from '@/components/ui/Carousel/Carousel.stories';
