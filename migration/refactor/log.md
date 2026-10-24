@@ -715,3 +715,11 @@ One line per event. Written by rf.py.
 - 2026-10-24T09:54:51 P6-G5-B-AssembleDetail stage test
 - 2026-10-24T10:04:33 P6-G5-B-AssembleDetail stage docs
 - 2026-10-24T10:06:32 P6-G5-B-AssembleDetail stage commit
+- 2026-10-24T10:06:34 P6-G5-B-AssembleDetail done a11439f6: ci: pass; parity visual --changed (all 64): 64/0 (self), 63/1 then 64/0 on rerun (OutSystems; HostSurvey render flake, F23); arch baseline 69 rows (6 owned rows removed); HomeFeed 244.39 kB, Login 184.42 kB
+- 2026-10-24T10:06:35 P6-G5-C started
+- 2026-10-24T10:06:35 P6-G5-C stage dev
+- 2026-10-24T10:08:42 P6-G5-C stage test
+- 2026-10-24T10:18:33 P6-G5-C stage docs
+- 2026-10-24T10:19:43 P6-G5-C waits for the user: Review the routes of group G5 on localhost (links in the step report): OrbitLanding, OrbitAdminLanding, OrbitAdminEventDetail, EventDetail, EventBooklet, MilestoneDetail, GuestArrangements, HelpersDetail, HostSurvey, TransportDetail, MyEntertaining, LDM_MyEvents_V2, LDM_EventDetail_V2, LDM_Email_V2, AssembleEvents, AssembleDetail. Then confirm the group.
+- 2026-10-24T10:21:59 P6-G5-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W31 group G5 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: raise F22/F24/F26 and F25 to the user; F23 flakes before P7 gates; F27 parity coverage wording (53 of 64 routes have states); F17 watch."
+- 2026-10-24T10:21:59 P6-G5-C stage commit

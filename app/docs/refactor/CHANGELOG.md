@@ -687,3 +687,8 @@
 - `pages/AssembleDetail` is a page with flow hooks (`useAssembleDetail`, `useAssembleEventDetail`) and a props-only view (`components/AssembleDetailView.tsx`). `api.ts` and `types.ts` are deleted; `inputs.ts` is new. One file per block. The contact and hall blocks keep React state (follow-up F26).
 - New `containers/AssembleSummaryCard` (no data hook): it gives the actions that call `platform/` to the props-only `AssembleSummaryCard` and `VirtualMeetingUrl`, for AssembleDetail and AssembleEvents. `platform/feedback/flowErrors.ts` re-exports `UserException`.
 - The 6 owned rows of `arch-baseline.csv` are gone (69 rows). HomeFeed gzip 244.39 kB, Login 184.42 kB (no change).
+
+## P6-G5-C - refactor(P6-G5-C): prune group G5 and group gate
+
+- Architecture: no folder change. The prune deleted 2 empty `types.ts` files in `src/components/orbit`. Group report: `app/docs/refactor/reports/P6-G5.md`.
+- Gate: parity visual `--all` 64/64 clean on both references; `ci` 3666 tests; baseline 69 rows, 0 new.

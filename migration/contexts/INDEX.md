@@ -6,7 +6,7 @@ section "Context notes".
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
 - 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)).
-- Branch `refactor/architecture`: Phases 0 to 5 done; P6 groups G1–G4 done ([context-046](context-046-refactor-p6-g4.md)); next fix step P6-F17 (W28 `beforePaint`), then G5 (patches prefetched). Scope (user 2026-10-23 evening): all in-scope steps (P6, P7) run automatically, P8/P9 only on order. Resume `/refactor-master continue`. Dev server of this repo on port 5174.
+- Branch `refactor/architecture`: Phases 0 to 5 done; P6 groups G1–G5 done ([context-047](context-047-refactor-p6-g5.md)); next G6 (patches prefetched), P6-end, P7 (P7-0…P7-2 prefetched). Scope (user 2026-10-23 evening): all in-scope steps (P6, P7) run automatically, P8/P9 only on order. Resume `/refactor-master continue`. Dev server of this repo on port 5174.
 - Auto mode ON since 2026-10-23 13:43 (re-confirmed evening, 5-minute reports): Fable + Opus decide for the user (Window 4). Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`). Tools: `migration/tools/` (README).
 
@@ -59,4 +59,5 @@ section "Context notes".
 | [043](context-043-refactor-g1-fix-p6-g1-paused.md) | 2026-10-23 | Gap G1 fixed; P6-F12 tool fix; P6-G1-A done; B-Login at test, 3 prefetch patches; paused for the user | superseded by context-044 |
 | [044](context-044-refactor-p6-g1-done.md) | 2026-10-23 | P6 group G1 done (13 steps, B-Shared per group, arch baseline); W9–W16; scope widened to P6+P7 auto; prefetch method | superseded by context-045 |
 | [045](context-045-refactor-p6-g2-g3.md) | 2026-10-24 | P6 groups G2 and G3 done; bundle fixes P6-F15/F16; W17–W25; G4–G6 A/B-Shared patches prefetched | superseded by context-046 |
-| [046](context-046-refactor-p6-g4.md) | 2026-10-24 | P6 group G4 done (13 pages); W26–W29; fix step P6-F17 (beforePaint) before G5; chain worktree method | current |
+| [046](context-046-refactor-p6-g4.md) | 2026-10-24 | P6 group G4 done (13 pages); W26–W29; fix step P6-F17 (beforePaint) before G5; chain worktree method | superseded by context-047 |
+| [047](context-047-refactor-p6-g5.md) | 2026-10-24 | P6-F17 and group G5 done (16 pages); W27–W31; 6 routes without parity states; G6/P6-end/P7-0..2 prefetched | current |

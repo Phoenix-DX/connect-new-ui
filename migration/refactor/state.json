@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G5-B-AssembleDetail",
+  "step": "P6-G5-C",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T10:06:32"
+  "since": "2026-10-24T10:21:59"
  },
  "steps": {
   "P0-1": {
@@ -1405,11 +1405,25 @@
    "finished": "2026-10-24T09:27:47"
   },
   "P6-G5-B-AssembleDetail": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T09:27:47",
    "tokens": {
     "dev": 791744,
-    "test": 47470
+    "test": 47470,
+    "docs": 54973
+   },
+   "commit": "a11439f6",
+   "gate": "ci: pass; parity visual --changed (all 64): 64/0 (self), 63/1 then 64/0 on rerun (OutSystems; HostSurvey render flake, F23); arch baseline 69 rows (6 owned rows removed); HomeFeed 244.39 kB, Login 184.42 kB",
+   "loops": 0,
+   "finished": "2026-10-24T10:06:34"
+  },
+  "P6-G5-C": {
+   "status": "active",
+   "started": "2026-10-24T10:06:35",
+   "tokens": {
+    "dev": 26017,
+    "test": 25634,
+    "docs": 30562
    }
   }
  },
@@ -1461,6 +1475,12 @@
    "by": "user",
    "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W29 group G4 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: F22 inherited from the old port, raise it with W27's follow-up in the G5 report; keep the F17 watch; P6-F17 gate re-runs parity on the beforePaint pages.",
    "at": "2026-10-24T06:35:00"
+  },
+  "P6-G5-C:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W31 group G5 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: raise F22/F24/F26 and F25 to the user; F23 flakes before P7 gates; F27 parity coverage wording (53 of 64 routes have states); F17 watch.",
+   "at": "2026-10-24T10:21:59"
   }
  },
  "questions": [
