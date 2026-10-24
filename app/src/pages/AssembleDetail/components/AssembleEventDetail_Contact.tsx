@@ -3,12 +3,12 @@ import { PersonContactOptions } from '@/components/contact/PersonContactOptions'
 import { ContactByMessage } from '@/components/contact/ContactByMessage';
 import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import { ResultItemMedia } from '@/components/ui/ResultItemMedia';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import type { AssembleEventContact } from '@/pages/AssembleDetail/hooks/assembleEventContacts';
 import {
   useAssembleEventContact,
   type AssembleEventContactEvents,
 } from '@/pages/AssembleDetail/hooks/useAssembleEventContact';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 
 export interface AssembleEventDetail_ContactProps extends AssembleEventContactEvents {
   /** OutSystems instance id of the block. */
@@ -59,7 +59,7 @@ export function AssembleEventDetail_Contact({
           }
         />
       </div>
-      <Dialog_AccessRestrictedAction_Legacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b3`} />
+      <DialogAccessRestrictedActionLegacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b3`} />
       <ContactPopupByPhone
         id={`${scope}-$b4`}
         inCallPopupData={flows.callPopup}

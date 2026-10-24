@@ -15,24 +15,43 @@ const simulateNavigation = () => {
   );
 };
 
-/** Not captured: the compiled view with the texts of ContactUsDetails (UBTConnect.App_Menu_ContactUs.ContactUsDetails
-    .mvc.js:1472-1520). The caller prevents every navigation; the button dispatches `dx-before-navigation`. */
+const withNavigationButton: Story['render'] = (args) => (
+  <>
+    <button type="button" onClick={simulateNavigation}>
+      Simulate navigation
+    </button>
+    <NavigationDialog {...args} />
+  </>
+);
+
+/** Not captured: Dialog_Navigation (variant connect) with the texts of ContactUsDetails. The caller prevents every
+    navigation; the button dispatches `dx-before-navigation`. */
 export const CompiledView: Story = {
   args: {
     id: '$b23',
-    onEventOnBackNavigation: preventNavigation,
-    placeholderHeader: 'Delete message?',
-    placeholderBody: 'Are you sure you want to delete this message?',
+    variant: 'connect',
+    onNavigation: preventNavigation,
+    header: 'Delete message?',
+    body: 'Are you sure you want to delete this message?',
   },
-  render: (args) => (
-    <>
-      <button type="button" onClick={simulateNavigation}>
-        Simulate navigation
-      </button>
-      <NavigationDialog {...args} />
-    </>
-  ),
+  render: withNavigationButton,
 };
 
-/** Not captured: closed. */
-export const Closed: Story = { args: { id: '$b23' } };
+/** Not captured: Dialog_Navigation (variant connect), closed. */
+export const Closed: Story = { args: { id: '$b23', variant: 'connect' } };
+
+/** Not captured: NavigationConfirmationDialog alone (variant plain), the compiled view. The caller prevents every
+    navigation, so the button that dispatches `dx-before-navigation` opens the dialog. */
+export const PlainCompiledView: Story = {
+  args: {
+    onNavigation: preventNavigation,
+    header: <span>Discard your changes?</span>,
+    body: <span>Your note has not been saved yet.</span>,
+    confirmLabel: 'Yes',
+    dismissLabel: 'No',
+  },
+  render: withNavigationButton,
+};
+
+/** Not captured: NavigationConfirmationDialog alone, closed (Root with the NavigationHandler only). */
+export const PlainClosed: Story = { args: { id: '$b1' } };

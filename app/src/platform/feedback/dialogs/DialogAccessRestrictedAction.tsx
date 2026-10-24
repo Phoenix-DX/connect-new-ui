@@ -1,26 +1,25 @@
-// @os-block UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction
+/** @origin UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction */
 import { useEffect } from 'react';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { setClientVar } from '@/platform/session/session';
-import { ActionConfirmationDialog } from './ActionConfirmationDialog';
+import { ConfirmDialogView } from './dialogViews';
 import { navigateToUpgrade } from './subscription';
-
-/* UBTConnect_Utils CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction, in CommonUI on every screen
-   (HF p:UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction.mvc.js, "DAR").
-   Closed markup captured (HF dom:1157-1165). Open state not captured (U21): the placeholders below follow the compiled
-   view (DAR:186-525); their CustomText / CustomContainer / Icon blocks are library blocks built with the foundation
-   queue (catalog/infra.json), so they stay NotCaptured with the compiled texts inside. */
 
 const LIBRARY = '(library block, built with the foundation queue)';
 
 export interface DialogAccessRestrictedActionProps {
-  /** block instance id inside CommonUI (HomeFeed: `b13-$b4`) */
+  /** Block instance id inside CommonUI (HomeFeed: `b13-$b4`). */
   id?: string;
-  /** In_ExtendedClass */
+  /** In_ExtendedClass. */
   extendedClass?: string;
 }
 
+/** The "Access Restricted" upgrade question, in CommonUI on every screen and, through
+    DialogAccessRestrictedActionLegacy, on the legacy screens. Closed markup captured (HomeFeed). The open state is not captured: its library blocks
+    (CustomText, CustomContainer, Icon) stay NotCaptured with the compiled texts. OnReady stores the id of its popup in
+    the client variable App_SubscriptionPopUp (App_Subscription_ShowUpgradePopUp opens that popup); Confirmed runs
+    App_Subscription_NavigateToUpgrade. */
 export function DialogAccessRestrictedAction({
   id = 'b13-$b4',
   extendedClass = '',
@@ -28,7 +27,7 @@ export function DialogAccessRestrictedAction({
   const scope = id.replace('$', '');
   const widgetId = `${scope}-PopUp`;
 
-  // OnReady: App_SubscriptionPopUp = PopUp.Id (DAR:563-564)
+  // OnReady: App_SubscriptionPopUp = PopUp.Id
   useEffect(() => {
     setClientVar('UBTConnect_Utils.App_SubscriptionPopUp', widgetId);
   }, [widgetId]);
@@ -37,7 +36,7 @@ export function DialogAccessRestrictedAction({
   return (
     <OSBlock name="CW_App_Common_Blocks_PopupDialogs.Dialog_AccessRestrictedAction" id={id}>
       <div className={extendedClass ? `${wrapperClass} ${extendedClass}` : wrapperClass} data-container="">
-        <ActionConfirmationDialog
+        <ConfirmDialogView
           widgetId={widgetId}
           scope={`${scope}-b1`}
           header={
@@ -72,7 +71,7 @@ export function DialogAccessRestrictedAction({
             </NotCaptured>
           }
           dismissLabel="Close"
-          onConfirmed={navigateToUpgrade} // Confirmed → App_Subscription_NavigateToUpgrade (DAR:580-590)
+          onConfirmed={navigateToUpgrade} // Confirmed → App_Subscription_NavigateToUpgrade
         />
       </div>
     </OSBlock>

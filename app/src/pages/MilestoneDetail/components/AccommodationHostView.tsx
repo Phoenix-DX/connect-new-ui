@@ -22,7 +22,7 @@ import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/
 import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { styleFromCssText } from '@/shared/lib/cssText';
 import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 
 /** Connect2_OrbitMobile_MUI.menuAction.auto: the MenuAction the block passes to MenuIcon__UpdatedOSUI. */
 const MENU_ACTION_AUTO = 'Auto';
@@ -356,7 +356,7 @@ export function AccommodationHostView(props: AccommodationHostViewProps) {
         }
         commonUIElements={<div id={`${prefix}-CommonUI_Elements`}>{props.commonUIElements}</div>}
       />
-      <Dialog_AccessRestrictedAction_Legacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b18`} />
+      <DialogAccessRestrictedActionLegacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b18`} />
       {/* FileTransfer.HandleDownload: no markup; its events are wired by useAccommodationHost. */}
       <OSBlock name="FileTransfer.HandleDownload" id={`${prefix}-$b19`} />
       <ContactPopupByPhone

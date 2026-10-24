@@ -6,13 +6,13 @@ import { ShareSheetContainer } from '@/containers/ShareSheet';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { ResultItemBadge } from '@/components/ui/ResultItemBadge';
 import { ResultItemMedia } from '@/components/ui/ResultItemMedia';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
 import { SHARE_OBJECT_HOUSEHOLD, SKELETON_ID } from '@/pages/AssembleDetail/hooks/attendeeSubdivisionState';
 import {
   useAttendeeSubdivision,
   type AttendeeSubdivisionEvents,
   type AttendeeSubdivisionFlags,
 } from '@/pages/AssembleDetail/hooks/useAttendeeSubdivision';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 import { BookmarkNoteAddEdit } from './BookmarkNoteAddEdit';
 import { ContextMenu } from './ContextMenu';
 import { NC_Result_Item__Image__Skeleton } from './NC_Result_Item__Image__Skeleton';
@@ -153,7 +153,7 @@ export function AssembleEventDetail_AttendeeSubdivision({
         )}
       </div>
       {flags.hasBookmarkNote && <BookmarkNoteAddEdit id={`${scope}-Bookmark_Note`} onSaveNote={flows.onSaveNote} />}
-      <Dialog_AccessRestrictedAction_Legacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b9`} />
+      <DialogAccessRestrictedActionLegacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b9`} />
       <ShareSheetContainer
         id={`${scope}-$b10`}
         inShareableObjectId={state.shareableObjectId}

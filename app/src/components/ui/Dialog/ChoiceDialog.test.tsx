@@ -1,6 +1,5 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
-import { confirmAction } from '@/platform/feedback/dialogs';
+import { describe, expect, it, vi } from 'vitest';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
 import { ChoiceDialog } from './ChoiceDialog';
 import * as stories from './ChoiceDialog.stories';
@@ -13,12 +12,25 @@ const renderLogout = (stackButtonsVertically?: boolean) =>
       id="PopUp_Logout"
       scope="b15"
       stackButtonsVertically={stackButtonsVertically}
-      placeholderHeader="Logout"
-      placeholderBody="Are you sure you wish to logout?"
-      placeholderButtonLabel="Yes"
-      placeholderDismissButtonLabe="No"
+      header="Logout"
+      body="Are you sure you wish to logout?"
+      confirmLabel="Yes"
+      dismissLabel="No"
     />,
   );
+
+/** What `confirmAction(id)` does (platform/feedback/dialogs): `dx-show` with the resolve callback to the event hub of
+    the dialog inside the block `id`. */
+const confirmAction = (id: string) => {
+  const resolve = vi.fn<(answer: boolean) => void>();
+  act(() => {
+    document
+      .getElementById(id)
+      ?.querySelector('[data-dx-event-hub]')
+      ?.dispatchEvent(new CustomEvent('dx-show', { detail: { resolve } }));
+  });
+  return resolve;
+};
 
 describe('Dialog_CustomChoice', () => {
   testCapturedVariants(stories, captures);
@@ -33,10 +45,7 @@ describe('Dialog_CustomChoice', () => {
 
   it('ConfirmAction(id) opens it: header and body containers, labels; Yes → True, No → False', async () => {
     renderLogout();
-    let answer: Promise<boolean> = Promise.resolve(false);
-    act(() => {
-      answer = confirmAction('PopUp_Logout');
-    });
+    const yes = confirmAction('PopUp_Logout');
     const header = document.body.querySelector('.dx-dialog-header .ubt-custom-container');
     expect(header).toHaveClass('margin-bottom-base', 'text-neutral-10', 'font-semi-bold');
     expect(header?.querySelector(':scope > .text-align-center > div')).toHaveTextContent('Logout');
@@ -46,14 +55,15 @@ describe('Dialog_CustomChoice', () => {
     expect(document.body.querySelector('.portal-class')?.className).toBe(
       'portal-class connect-dialog-popup connect-dialog-popup--custom-choice',
     );
-    fireEvent.click(screen.getByText('Yes'));
-    await expect(answer).resolves.toBe(true);
-
-    act(() => {
-      answer = confirmAction('PopUp_Logout');
+    await act(async () => {
+      fireEvent.click(screen.getByText('Yes'));
+      await Promise.resolve();
     });
+    expect(yes).toHaveBeenCalledWith(true);
+
+    const no = confirmAction('PopUp_Logout');
     fireEvent.click(screen.getByText('No'));
-    await expect(answer).resolves.toBe(false);
+    expect(no).toHaveBeenCalledWith(false);
     expect(document.body.querySelector('.popup-dialog')).toBeNull();
   });
 });

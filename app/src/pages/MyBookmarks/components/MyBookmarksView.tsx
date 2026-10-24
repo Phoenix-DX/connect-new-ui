@@ -7,7 +7,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { Spinner } from '@/components/ui/Spinner';
 import { MyBookmarks_Group } from '@/shared/UBTConnect/lib/staticEntities';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 import { MyBookmarks_Album } from './MyBookmarks_Album';
 import { MyBookmarks_Card } from './MyBookmarks_Card';
 import { NetworkWarning } from './NetworkWarning';
@@ -126,7 +126,7 @@ export function MyBookmarksView({
                   </MyBookmarks_Card>
                 ),
             )}
-            <Dialog_AccessRestrictedAction_Legacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b9`} />
+            <DialogAccessRestrictedActionLegacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b9`} />
           </>
         ) : (
           <NoBookmarks

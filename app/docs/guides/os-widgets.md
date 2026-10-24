@@ -63,7 +63,7 @@ the widget is in the screen, open or not. `OSPopupWidget` calls it when the call
   block that owns the Popup widget in the same way. A closed dialog later in the tree therefore removes the class that an
   open dialog added, as on TST.
 
-These files use it: `src/components/ui/Popup/Popup.tsx`, `NavigationConfirmationDialog`, `ContactPopup`,
+These files use it: `src/components/ui/Popup/Popup.tsx`, `src/components/ui/Dialog/Dialog.tsx`, `ContactPopup`,
 `EntityDetailsActionsContainer` (`src/containers/EntityDetailsActions`) and the shell dialogs (`src/platform/feedback/dialogs`, `DialogExitConfirmation`).
 Tests: `usePopupWidget.test.tsx`.
 

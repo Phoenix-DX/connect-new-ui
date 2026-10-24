@@ -109,11 +109,12 @@ export default function Profile() {
       <CacheControl_UserInfo_Wrapper id="$b56" onResult={onUserInformation} />
       {state.hasChanges && (
         <NavigationDialog
+          variant="connect"
           id="$b59"
           // Event_OnBackNavigation_ConfirmDiscard: PreventNavigation, so the dialog asks.
-          onEventOnBackNavigation={preventNavigation}
-          placeholderHeader={<span data-expression="">Confirm</span>}
-          placeholderBody={<span data-expression="">Are you sure you want to discard the changes?</span>}
+          onNavigation={preventNavigation}
+          header={<span data-expression="">Confirm</span>}
+          body={<span data-expression="">Are you sure you want to discard the changes?</span>}
         />
       )}
       {user !== null && (
@@ -134,15 +135,15 @@ export default function Profile() {
       <ChoiceDialog
         id="AgeConfirmation_PopUp"
         scope="b61"
-        placeholderBody={
+        body={
           <span data-expression="">
             {accountForm.AccountForm_PersonalInformation.ShowLifeCycleDates
               ? 'By selecting this option, your Month and Date of Birth, and your Age will display in Directory. You will also be able to see the Birth Date and Age information for other Members who have selected this option.'
               : 'By deselecting this option, your Month and Date of Birth, and your Age will be hidden so will not display in Directory. You will also not be able to see the Birth Date and Age information for other Members.'}
           </span>
         }
-        placeholderButtonLabel="Update Preference"
-        placeholderDismissButtonLabe="Cancel"
+        confirmLabel="Update Preference"
+        dismissLabel="Cancel"
       />
     </ValidationServiceProvider>
   );

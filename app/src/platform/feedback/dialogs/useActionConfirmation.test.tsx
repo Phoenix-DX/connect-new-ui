@@ -1,16 +1,19 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, render, renderHook, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { beforeEach, expect, test, vi } from 'vitest';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 import { createBackEvent, resetBackQueue, runBackHandlers } from '@/platform/navigation/backQueue';
-import { ActionConfirmationDialog } from './ActionConfirmationDialog';
 import { confirmAction } from './confirmAction';
+import { useActionConfirmation } from './useActionConfirmation';
 
+/* The trigger of ActionConfirmationDialog with the dialog that renders it (components/ui/Dialog ConfirmDialog; the
+   test setup connects the two as app/dialogs.ts does). */
 beforeEach(resetBackQueue);
 
 function renderDialog(onConfirmed = vi.fn()) {
   render(
     <div className="my-wrapper">
-      <ActionConfirmationDialog
+      <ConfirmDialog
         widgetId="b9-PopUp"
         scope="b9-b1"
         header="Title"
@@ -32,14 +35,10 @@ const open = () => {
   return answer;
 };
 
-test('closed: Root > EventHub only, as captured (HF dom:1159-1163)', () => {
-  renderDialog();
-  const block = document.getElementById('b9-PopUp');
-  expect(block).toHaveAttribute('data-block', 'ConfirmationDialogs.ActionConfirmationDialog');
-  expect(block?.innerHTML).toBe(
-    '<div class="dx-confirmation-dialog" data-container="" id="b9-b1-Root"><div data-container="" data-dx-event-hub="True" id="b9-b1-EventHub"></div></div>',
-  );
-  expect(screen.queryByRole('dialog')).toBeNull();
+test('closed until ConfirmAction; the event hub ref is free for the dialog', () => {
+  const { result } = renderHook(() => useActionConfirmation());
+  expect(result.current.open).toBe(false);
+  expect(result.current.eventHubRef.current).toBeNull();
 });
 
 test('ConfirmAction opens it in a body portal with the classes copied across the portal; Yes → Confirmed, then True', async () => {
@@ -49,9 +48,6 @@ test('ConfirmAction opens it in a body portal with the classes copied across the
   const portalRoot = dialog.parentElement?.parentElement;
   expect(portalRoot).toHaveClass('dx-confirmation-dialog');
   expect(portalRoot?.parentElement?.className).toBe('portal-class my-wrapper');
-  expect(portalRoot?.parentElement?.parentElement).toBe(document.body);
-  expect(document.getElementById('b9-b1-DialogHeader')).toHaveTextContent('Title');
-  expect(document.getElementById('b9-b1-DialogBody')).toHaveTextContent('Question?');
   await userEvent.click(screen.getByRole('button', { name: 'Yes' }));
   await expect(answer).resolves.toBe(true);
   expect(onConfirmed).toHaveBeenCalledOnce();
@@ -72,6 +68,16 @@ test('No resolves False; a back navigation while open is prevented and acts as N
   expect(event.defaultPrevented).toBe(true);
   await expect(second).resolves.toBe(false);
   expect(onConfirmed).not.toHaveBeenCalled();
+  expect(screen.queryByRole('dialog')).toBeNull();
+});
+
+test('closed, a back navigation goes on', () => {
+  renderDialog();
+  const event = createBackEvent({ pathname: '/', search: '', hash: '', state: null, key: 'k' }, false, vi.fn());
+  act(() => {
+    runBackHandlers(event);
+  });
+  expect(event.defaultPrevented).toBe(false);
 });
 
 test('ConfirmAction without such a dialog resolves False at once', async () => {

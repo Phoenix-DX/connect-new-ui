@@ -773,3 +773,9 @@
 - Architecture: 230 files of `src/shared/osui/` (31 patterns and `lib/`) moved to `src/components/ui/<Pattern>/` and `src/components/ui/lib/`; `src/shared/osui/` no longer exists. The 4 `DEPRECATED_*` patterns are kept in `components/ui/legacy/` with business names (Q5): LegacyAccordion, SectionExpandable, LegacyButtonLoading, GridGallery.
 - Columns4, RangeSlider, SwipeEvents and Tooltip have no importer and stay moved (W30, Q18); delete-or-keep is a user decision at the P9 knip cleanup (F29).
 - Gate: parity visual 64/64 clean on both references; `ci` passes; baseline 73 rows, 0 new (+1 row: `ui/DropdownSearch/provider.ts`, owner P7). The dependency-cruiser rule `osui-no-import-of-app-modules` matches nothing now (F30).
+
+## P7-2 - refactor(P7-2): Dialog with the variants ConfirmDialog, ChoiceDialog and NavigationDialog
+
+- Architecture: `components/ui/Dialog` has `Dialog` and the variants `ConfirmDialog` (was the platform ActionConfirmationDialog), `ChoiceDialog` and `NavigationDialog` (`variant="connect"` is Dialog_Navigation). `DialogExitConfirmation` and `DialogAccessRestrictedAction` use the `Dialog` markup. `Dialog_AccessRestrictedAction_Legacy` is `platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx`. 4 merges, 29 user files; ChoiceDialog and NavigationDialog take the props `header`, `body`, `confirmLabel`, `dismissLabel`.
+- Deviations: no host moved to `app/`; `src/app/dialogs.ts` (`connectDialogs()`) connects both ways. NavigationDialog keeps its own `dx-before-navigation` listener (no `useNavigationConfirmation`). The legacy dialog is its own module (W21). Committed as one commit, because the merges share 6 files.
+- W21 first load: HomeFeed +0.28 kB, Login +0.25 kB gzip, under the 0.3 tripwire; HomeFeed margin now 3.55 kB. Gate: parity visual `--changed` 64 routes on both references, 0 differences; `ci` 3940 tests; baseline 71 rows, 0 new, 2 rows gone.

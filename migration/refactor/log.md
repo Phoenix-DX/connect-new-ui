@@ -807,3 +807,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T12:35:51 P7-1 stage test
 - 2026-10-24T12:44:28 P7-1 stage docs
 - 2026-10-24T12:45:55 P7-1 stage commit
+- 2026-10-24T12:46:05 P7-1 done ba5c2154: ci: pass; parity visual: 64/0 (OutSystems), 64/0 (self); diffcheck --move: 1 declared line (vendor glob); arch baseline 73 rows (+1 owner P7), 0 new; HomeFeed 244.39 kB, Login 184.46 kB; W30 (Q18) 4 unused OSUI patterns kept
+- 2026-10-24T12:46:05 P7-2 started
+- 2026-10-24T12:46:05 P7-2 stage dev
+- 2026-10-24T12:52:48 P7-2 stage test
+- 2026-10-24T13:00:56 P7-2 stage docs
+- 2026-10-24T13:02:35 P7-2 stage commit

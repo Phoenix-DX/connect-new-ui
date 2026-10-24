@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { useOsNavigate } from '@/platform/navigation';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 import { EventBookletView } from './components/EventBookletView';
 import { useEventBooklet } from './hooks/useEventBooklet';
 import { readEventBookletInputs } from './inputs';
@@ -34,7 +34,7 @@ export default function EventBooklet() {
         {...booklet}
         backNavigationHandler={<BackNavigationHandler id={`${prefix}-$b23`} onBackNavigation={onBackNavigation} />}
         accessRestrictedDialog={
-          <Dialog_AccessRestrictedAction_Legacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b24`} />
+          <DialogAccessRestrictedActionLegacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b24`} />
         }
       />
       <CommonUiLayout id="$b2" />

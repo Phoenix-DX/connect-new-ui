@@ -4,7 +4,8 @@ import {
   type AssembleSummaryCardProps,
 } from '@/components/assemble/AssembleSummaryCard';
 import type { MeetingInfoDialogSlot } from '@/components/assemble/VirtualMeetingUrl';
-import { ActionConfirmationDialog, confirmAction } from '@/platform/feedback/dialogs';
+import { ConfirmDialog } from '@/components/ui/Dialog';
+import { confirmAction } from '@/platform/feedback/dialogs';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { UserException } from '@/platform/feedback/flowErrors';
 import { pageRedirect } from '@/platform/feedback/pageRedirect';
@@ -59,10 +60,11 @@ function meetingInfoToggle(dialogId: string): void {
   void confirmAction(dialogId);
 }
 
-/** The MeetingInfo dialog of AssembleCommon_VirtualMeetingURL: the shell's ActionConfirmationDialog with the id, the
-    body and the dismiss label of the slot (no header, no confirm label). */
+/** The MeetingInfo dialog of AssembleCommon_VirtualMeetingURL: ConfirmDialog (ActionConfirmationDialog, connected to
+    ConfirmAction by app/dialogs.ts) with the id, the body and the dismiss label of the slot (no header, no confirm
+    label). */
 function renderMeetingInfoDialog({ dialogId, body, dismissLabel }: MeetingInfoDialogSlot) {
-  return <ActionConfirmationDialog widgetId={dialogId} scope={dialogId} body={body} dismissLabel={dismissLabel} />;
+  return <ConfirmDialog widgetId={dialogId} scope={dialogId} body={body} dismissLabel={dismissLabel} />;
 }
 
 /** AssembleSummaryCard with its actions: LinkAddressOnClick on the address link, and the MeetingInfo dialog and

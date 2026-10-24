@@ -75,10 +75,11 @@ export default function ContactUsDetails() {
         <SubmittedConfirmationDialog />
         {state.isAnyFilled && (
           <NavigationDialog
+            variant="connect"
             id="$b23"
-            onEventOnBackNavigation={onBackNavigation}
-            placeholderHeader={<span data-expression="">Delete message?</span>}
-            placeholderBody={<span data-expression="">Are you sure you want to delete this message?</span>}
+            onNavigation={onBackNavigation}
+            header={<span data-expression="">Delete message?</span>}
+            body={<span data-expression="">Are you sure you want to delete this message?</span>}
           />
         )}
         <ContactPopupByPhone

@@ -9,6 +9,7 @@ import { applyDeviceClasses } from './platform/device/device';
 import { initFlagOverrides } from './platform/flags';
 import { config, FLAG_OVERRIDES_BUILT, MOCKS_BUILT } from './platform/config/config';
 import { ErrorBoundary } from './app/ErrorBoundary';
+import { connectDialogs } from './app/dialogs';
 import { bootPlan } from './pwa/bootPlan';
 import { clearStaleServiceWorkers, registerAppServiceWorker } from './pwa/register';
 
@@ -16,6 +17,7 @@ import { clearStaleServiceWorkers, registerAppServiceWorker } from './pwa/regist
 applyDeviceClasses();
 window.addEventListener('resize', applyDeviceClasses);
 if (FLAG_OVERRIDES_BUILT) initFlagOverrides(); // ?ff= (dev and demo builds; plan v2 §3.1)
+connectDialogs(); // components/ui/Dialog markup with the platform triggers (app/dialogs.ts)
 
 // OutSystems keeps --viewport-height on <body> in sync with the window.
 const syncViewport = () => {

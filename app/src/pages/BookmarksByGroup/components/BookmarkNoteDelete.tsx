@@ -1,5 +1,5 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 
 /** The delete dialog of a bookmark note. ActionConfirmationDialog "Delete note", "Are you sure you would like to
     delete this note?", "YES" / "NO"; Confirmed → DeleteNoteConfirm(bookmarkId). Closed in every captured state (only
@@ -20,7 +20,7 @@ export function BookmarkNoteDelete({ id, scope, bookmarkId, onDeleteNoteConfirm 
   return (
     <OSBlock name="MyBookmarksFlow.BookmarkNoteDelete" id={id}>
       <div className="bookmark-note-action-dialog backwards-compatibility" data-container="">
-        <ActionConfirmationDialog
+        <ConfirmDialog
           widgetId={`${scope}-$b1`}
           scope={`${scope}-b1`}
           header="Delete note"

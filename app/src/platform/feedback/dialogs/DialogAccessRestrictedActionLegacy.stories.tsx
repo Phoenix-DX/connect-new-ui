@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Dialog_AccessRestrictedAction_Legacy } from './Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from './DialogAccessRestrictedActionLegacy';
 
 const meta = {
-  title: 'Shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy',
-  component: Dialog_AccessRestrictedAction_Legacy,
-} satisfies Meta<typeof Dialog_AccessRestrictedAction_Legacy>;
+  title: 'Platform/feedback/DialogAccessRestrictedActionLegacy',
+  component: DialogAccessRestrictedActionLegacy,
+} satisfies Meta<typeof DialogAccessRestrictedActionLegacy>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 

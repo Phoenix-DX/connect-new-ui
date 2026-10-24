@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 
 export interface BookmarkNoteAddEditProps {
   /** Instance id (`<scope>-Bookmark_Note`): the id that ConfirmAction looks up. */
@@ -22,7 +22,7 @@ export function BookmarkNoteAddEdit({ id, onSaveNote }: BookmarkNoteAddEditProps
   return (
     <OSBlock name="MyBookmarks.BookmarkNoteAddEdit" id={id}>
       <div className="bookmark-note-action-dialog backwards-compatibility" data-container="">
-        <ActionConfirmationDialog
+        <ConfirmDialog
           widgetId={`${scope}-$b1`}
           scope={`${scope}-b1`}
           header={<span data-expression="">{(inNote === '' ? 'Add ' : 'Edit ') + 'note'}</span>}

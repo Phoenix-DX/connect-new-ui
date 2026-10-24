@@ -7,8 +7,8 @@ import { householdEmailIds } from '@/pages/EmailTarget/hooks/householdEmailState
 import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
-import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
 import { LegacyButtonLoading } from '@/components/ui/legacy/LegacyButtonLoading';
+import { NavigationDialog } from '@/components/ui/Dialog';
 
 /** The view of the e-mail to a household, props only. The flows are in `useHouseholdEmail`; the page renders this
     view inside the ValidationServiceProvider of the hook's validation service.
@@ -165,13 +165,13 @@ export function HouseholdEmailView({
               </OSForm>
             </div>
             <div className="backwards-compatibility" data-container="">
-              <NavigationConfirmationDialog
+              <NavigationDialog
                 id={`${scope}-$b6`}
                 onNavigation={onNavigation}
-                dialogHeader="Confirm"
-                dialogBody="Are you sure you want to discard the changes?"
-                buttonLabelConfirm="Confirm"
-                buttonLabelDismiss="Cancel"
+                header="Confirm"
+                body="Are you sure you want to discard the changes?"
+                confirmLabel="Confirm"
+                dismissLabel="Cancel"
               />
             </div>
           </>

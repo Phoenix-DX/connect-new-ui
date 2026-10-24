@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 import { ShareDetailView } from './components/ShareDetailView';
 import { useConnectShare } from './hooks/useConnectShare';
 import { readConnectShareInputs } from './inputs';
@@ -18,7 +18,7 @@ export default function ConnectShare() {
   return (
     <>
       <ShareDetailView id="$b1" statusMessage={state.statusMessage} commonUIElements={<CommonUiLayout id="$b2" />} />
-      <Dialog_AccessRestrictedAction_Legacy id="SubscriptionDenied" scope="b3" />
+      <DialogAccessRestrictedActionLegacy id="SubscriptionDenied" scope="b3" />
     </>
   );
 }

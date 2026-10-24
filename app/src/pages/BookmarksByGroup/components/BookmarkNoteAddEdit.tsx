@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import type { BookmarkNote } from '@/pages/BookmarksByGroup/types';
-import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 
 /** The add or edit dialog of a bookmark note. A `bookmark-note-action-dialog` container with ActionConfirmationDialog:
     header "Add note" / "Edit note" (In_Note = Trim(BookmarkNote.Note), set on parameter change), body TextArea_Note
@@ -39,7 +39,7 @@ export function BookmarkNoteAddEdit({ id, scope, bookmarkNote, onSaveNote }: Boo
   return (
     <OSBlock name="MyBookmarksFlow.BookmarkNoteAddEdit" id={id}>
       <div className="bookmark-note-action-dialog backwards-compatibility" data-container="">
-        <ActionConfirmationDialog
+        <ConfirmDialog
           widgetId={`${scope}-$b1`}
           scope={`${scope}-b1`}
           header={<span data-expression="">{(inNote === '' ? 'Add ' : 'Edit ') + 'note'}</span>}

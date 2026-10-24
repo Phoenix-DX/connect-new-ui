@@ -189,9 +189,10 @@ export function ContactEmailForm({
       </FixedFooter>
       {(subject !== inSubject || message.trim() !== '') && (
         <NavigationDialog
-          onEventOnBackNavigation={onBackNavigationPreventNavigation}
-          placeholderHeader={<span data-expression="">Delete message?</span>}
-          placeholderBody={<span data-expression="">Are you sure you want to delete this message?</span>}
+          variant="connect"
+          onNavigation={onBackNavigationPreventNavigation}
+          header={<span data-expression="">Delete message?</span>}
+          body={<span data-expression="">Are you sure you want to delete this message?</span>}
         />
       )}
     </OSBlock>

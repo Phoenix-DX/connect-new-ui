@@ -103,6 +103,8 @@ Plan:
 
 ### Group 2: dialogs (6 blocks)
 
+Status: **done in P7-2** (see "Result of P7-2" below the plan).
+
 Verdict: **partly**. Two base dialogs render the same DOM. The 6 blocks are wrappers or presets of them.
 
 Evidence:
@@ -139,6 +141,18 @@ Plan (P7-2):
   `pages/LegacyShareObject/components/UpgradeSubscriptionDialog`, `DialogExitConfirmation` stays in
   `platform/navigation` and uses the DOM of `Dialog` through `app/`.
 - `Dialog_AccessRestrictedAction_Legacy` merges into the platform dialog; its `OSBlock` element stays in the DOM.
+
+Result of P7-2 (evidence: `src/components/ui/Dialog/Dialog.README.md`, `src/app/dialogs.ts`):
+
+- `Dialog`, `ConfirmDialog`, `ChoiceDialog` and `NavigationDialog` are in `components/ui/Dialog`. `Dialog_Navigation` is
+  `NavigationDialog` with `variant="connect"`. `ChoiceDialog` and `NavigationDialog` take the prop names `header`, `body`,
+  `confirmLabel` and `dismissLabel`.
+- No host moved to `app/`. `app/dialogs.ts` (`connectDialogs()`) connects both ways: the triggers go into
+  `components/ui/Dialog` and the `Dialog` markup goes into the platform dialogs.
+- `NavigationDialog` keeps its own `dx-before-navigation` listener (W21): there is no `useNavigationConfirmation` in
+  `platform/navigation`.
+- `Dialog_AccessRestrictedAction_Legacy` is its own module, `platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx`,
+  so that only the legacy screens load it (W21).
 
 ### Group 3: empty states (4 blocks)
 

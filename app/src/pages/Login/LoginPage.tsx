@@ -1,9 +1,9 @@
 import { useSearchParams } from 'react-router';
-import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import { DialogExitConfirmation } from '@/platform/navigation';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { OfflineDataSync } from '@/platform/device/OfflineDataSync';
 import { LoginLayout } from '@/components/layout/LoginLayout';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 import { AppManagerEvents } from './components/AppManagerEvents';
 import { LoginCard } from './components/LoginCard';
 import { LoginFooter } from './components/LoginFooter';
@@ -46,7 +46,7 @@ export default function Login() {
         <>
           <OfflineDataSync id="$b11" />
           <AppManagerEvents id="$b12" />
-          <ActionConfirmationDialog
+          <ConfirmDialog
             widgetId="ConfirmationDialog_ResetPassword"
             scope="b13"
             header="Security Warning"

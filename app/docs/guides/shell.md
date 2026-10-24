@@ -301,8 +301,9 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
   - `resumeNavigation(event)` continues a prevented navigation later (`detail.resume()`: a back navigation goes back,
     a forward one navigates to the saved location).
   - Both actions live in `src/shared/NavigationHandler/lib/actions.ts`, together with `wasNavigationPrevented`.
-  - How a screen asks the user: it renders `Dialog_Navigation` (`src/components/ui/Dialog/NavigationDialog.tsx`), which wraps
-    `NavigationConfirmationDialog` (`src/shared/NavigationHandler/NavigationConfirmationDialog`).
+  - How a screen asks the user: it renders `NavigationDialog` (`src/components/ui/Dialog/NavigationDialog.tsx`). The default variant is
+    `NavigationConfirmationDialog`; `variant="connect"` is `Dialog_Navigation`. NavigationDialog listens to `dx-before-navigation` itself and
+    gets the back-navigation queue (`usePreventBackNavigation`) from `src/app/dialogs.ts`.
     - The block raises the event to the caller (`onEventOnBackNavigation`).
     - The caller calls `preventNavigation`. The dialog opens and keeps the event.
     - Yes closes the dialog and calls `resumeNavigation`. No closes the dialog, forgets the event and dispatches
@@ -319,13 +320,18 @@ Tests: `src/platform/navigation/*.test.tsx` (`testRouter.tsx` renders routes ins
 online/offline listener. Per screen (remounted on each navigation), it also mounts Access Restricted and the CommonUI
 back handler. It is a stand-in until the layouts render CommonUI in `Placeholder_CommonUI_Inside_Layout`.
 
+The markup of the dialogs is in `src/components/ui/Dialog` (`Dialog`, `ConfirmDialog`, `ChoiceDialog`, `NavigationDialog`), which may
+not import `platform/`. `src/app/dialogs.ts` (`connectDialogs()`, called by `main.tsx`) joins the two sides: `ConfirmDialog` gets
+`useActionConfirmation` (`confirmAction`, back navigation) and the platform dialogs (`DialogAccessRestrictedAction`,
+`DialogExitConfirmation`) get the `Dialog` markup. See `src/components/ui/Dialog/Dialog.README.md`.
+
 | API                                                                                                                    | Original                                                                            |
 | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `feedbackMessageAutoClose({ title?, message, messageType?, encodedHtml?, extendedClass?, delayMs?, useDebounce? })`    | `UBTJavaScriptUtils.FeedbackMessage_AutoClose` (U9)                                 |
 | `showFeedbackMessage(message, type, encodedHtml?, extraClasses?, closeOnClick?)`                                       | platform `FeedbackMessageShow` (type 0-3: info…error)                               |
 | `showExceptionMessage(message, forceLogout)`, `showCommunicationExceptionMessage()`                                    | UBTConnect actions of the same name (U10)                                           |
 | `useFeedback()`                                                                                                        | the four functions above, for components                                            |
-| `confirmAction(dialogId)` → `Promise<boolean>`, `<ActionConfirmationDialog>`                                           | NavigationHandler `ConfirmAction`, `ActionConfirmationDialog`                       |
+| `confirmAction(dialogId)` → `Promise<boolean>`, `<ConfirmDialog>` (`components/ui/Dialog`)                             | NavigationHandler `ConfirmAction`, `ActionConfirmationDialog`                       |
 | `showUpgradePopUp()`, `navigateToUpgrade()`, `<DialogAccessRestrictedAction>`                                          | `App_Subscription_ShowUpgradePopUp` / `_NavigateToUpgrade`                          |
 | `useCommonUiBackHandler()`, `<BlockPinUnlock inIsCommonBlock inForceVisible onUnlock placeholderCommonUIInsideLayout>` | CommonUI back handling, `App_PIN.Block_PINUnlock`                                   |
 | `<PinUnlockContentContainer …>` (dialogs barrel)                                                                       | runs `usePinUnlockContent` and `usePinCodeUnlock` for the lock dialog and PINChange |

@@ -18,7 +18,7 @@ import {
 import type { HelperDetailsFlows } from '@/pages/HelpersDetail/hooks/useHelperDetails';
 import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 
 /** The view of the helpers of a hosting household, props only. The flows are in `useHelperDetails`.
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_HelperDetails */
@@ -136,7 +136,7 @@ export function HelperDetailsView(props: HelperDetailsViewProps) {
         }
         commonUIElements={<div id={`${prefix}-CommonUI_Elements`}>{props.commonUIElements}</div>}
       />
-      <Dialog_AccessRestrictedAction_Legacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b10`} />
+      <DialogAccessRestrictedActionLegacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b10`} />
       <ContactPopupByPhone
         id={`${prefix}-$b11`}
         inCallPopupData={props.contactByPhoneData}

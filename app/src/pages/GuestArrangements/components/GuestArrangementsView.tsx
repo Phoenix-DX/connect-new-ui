@@ -18,7 +18,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { getFormattedDateTime, type GetCacheableSignedImageURL } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 
 /** The view of the guest arrangements of a visiting member, props only. Layout_Orbit (CustomClass "orbit-detail")
     with the Auto MenuIcon and the MilestoneHeader of the preloaded names. Content: the skeleton of the milestone type
@@ -356,7 +356,7 @@ export function GuestArrangementsView({
         bottomBar={hasData ? <ContactHelpdeskFooter id={`${prefix}-$b15`} onClick={onContactHelpdesk} /> : null}
         commonUIElements={<div id={`${prefix}-CommonUI_Elements`}>{commonUIElements}</div>}
       />
-      <Dialog_AccessRestrictedAction_Legacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b16`} />
+      <DialogAccessRestrictedActionLegacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b16`} />
     </OSBlock>
   );
 }

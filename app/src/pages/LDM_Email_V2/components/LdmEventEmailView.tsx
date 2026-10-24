@@ -14,9 +14,9 @@ import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
 import { NetworkWarning } from '@/components/ui/NetworkWarning';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
-import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
 import type { ContactByPhonePopupData } from '@/shared/UBTConnect_Utils/lib/structures';
 import { ldmEventEmailIds } from '@/pages/LDM_Email_V2/hooks/ldmEventEmailState';
+import { NavigationDialog } from '@/components/ui/Dialog';
 
 export interface LdmEventEmailViewProps {
   /** OutSystems instance id of the block (`$b1`). */
@@ -303,13 +303,13 @@ export function LdmEventEmailView({
               {content}
               {!callPopupData.ContactPopupData?.ShowPopup && (
                 <div className="backwards-compatibility" data-container="">
-                  <NavigationConfirmationDialog
+                  <NavigationDialog
                     id={`${scope}-$b6`}
                     onNavigation={onNavigation}
-                    dialogHeader="Confirm"
-                    dialogBody="Are you sure you want to discard the changes?"
-                    buttonLabelConfirm="Confirm"
-                    buttonLabelDismiss="Cancel"
+                    header="Confirm"
+                    body="Are you sure you want to discard the changes?"
+                    confirmLabel="Confirm"
+                    dismissLabel="Cancel"
                   />
                 </div>
               )}

@@ -89,19 +89,19 @@ export default function Menu() {
       <ChoiceDialog
         id="PopUp_Logout"
         scope="b15"
-        placeholderHeader="Logout"
-        placeholderBody="Are you sure you wish to logout?"
-        placeholderButtonLabel="Yes"
-        placeholderDismissButtonLabe="No"
+        header="Logout"
+        body="Are you sure you wish to logout?"
+        confirmLabel="Yes"
+        dismissLabel="No"
       />
       <CacheControl_UserInfo_Wrapper id="$b16" onResult={onUserInformation} />
       <ChoiceDialog
         id="Popup_SubmitPhotoRequest"
         scope="b17"
-        placeholderHeader={<span data-expression="">Photo Request?</span>}
-        placeholderBody={<span data-expression="">Are you sure you wish to request a photo update?</span>}
-        placeholderButtonLabel="Submit"
-        placeholderDismissButtonLabe="Cancel"
+        header={<span data-expression="">Photo Request?</span>}
+        body={<span data-expression="">Are you sure you wish to request a photo update?</span>}
+        confirmLabel="Submit"
+        dismissLabel="Cancel"
       />
     </>
   );

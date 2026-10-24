@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import type { ExternalAppPopUpInfo } from '@/api/service';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import { CircleButton } from '@/components/ui/CircleButton';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
@@ -16,6 +15,7 @@ import {
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_Icons2 as UBT_Icons_Connect } from '@/shared/UBTConnect/lib/staticEntities';
 import { UBT_IconSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 
 export interface Dialog_GoExternalAppProps {
   /** Block instance id (FeedBlock_Services: `b5-$b12`). */
@@ -55,7 +55,7 @@ export function Dialog_GoExternalApp({
         className={`subscription-pop-up connect-dialog-popup connect-dialog-popup--access-restricted ${inExtendedClass}`.trimEnd()}
         data-container=""
       >
-        <ActionConfirmationDialog
+        <ConfirmDialog
           widgetId={widgetId}
           scope={`${scope}-b1`}
           header={

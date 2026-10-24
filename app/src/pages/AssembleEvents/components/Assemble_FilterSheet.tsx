@@ -4,7 +4,7 @@ import { LocalityListDetail } from '@/components/assemble/LocalityListDetail';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Spinner } from '@/components/ui/Spinner';
 import { InputWithIcon } from '@/components/ui/InputWithIcon';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 
 /** The view of the block Assemble_FilterSheet (the bottom-sheet twin of ScreenBlock_Assemble_Filter), props only: the
     header row (Link_Back while the localities show, ScreenTitle), the country search "Search Country" with
@@ -148,7 +148,7 @@ export function Assemble_FilterSheet({
             onCancel={onCancel}
           />
         )}
-        <Dialog_AccessRestrictedAction_Legacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b5`} />
+        <DialogAccessRestrictedActionLegacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b5`} />
         {isBottomBarVisible && (
           <div
             className="text-align-center assemble-filter-actions margin-top-base"

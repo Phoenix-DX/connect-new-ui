@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P7-1",
+  "step": "P7-2",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T12:45:55"
+  "since": "2026-10-24T13:02:35"
  },
  "steps": {
   "P0-1": {
@@ -1587,11 +1587,24 @@
    "finished": "2026-10-24T12:34:31"
   },
   "P7-1": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T12:34:31",
    "tokens": {
     "dev": 65430,
-    "test": 23214
+    "test": 23214,
+    "docs": 50948
+   },
+   "commit": "ba5c2154",
+   "gate": "ci: pass; parity visual: 64/0 (OutSystems), 64/0 (self); diffcheck --move: 1 declared line (vendor glob); arch baseline 73 rows (+1 owner P7), 0 new; HomeFeed 244.39 kB, Login 184.46 kB; W30 (Q18) 4 unused OSUI patterns kept",
+   "loops": 0,
+   "finished": "2026-10-24T12:46:05"
+  },
+  "P7-2": {
+   "status": "active",
+   "started": "2026-10-24T12:46:05",
+   "tokens": {
+    "dev": 660281,
+    "test": 32883
    }
   }
  },

@@ -10,9 +10,9 @@ import {
 } from '@/components/ui/os/OSValidation';
 import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
 import type { NavigationEvent } from '@/shared/NavigationHandler/lib/actions';
-import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
 import { LegacyButtonLoading } from '@/components/ui/legacy/LegacyButtonLoading';
 import { MESSAGE_MAX_LENGTH, orbitContactFormIds } from '@/pages/EmailContact/hooks/orbitContactFormState';
+import { NavigationDialog } from '@/components/ui/Dialog';
 
 /** Connect2_OrbitMobile_MUI.menuAction.auto: the MenuAction that the block gives MenuIcon__UpdatedOSUI. */
 const MENU_ACTION_AUTO = 'Auto';
@@ -270,13 +270,13 @@ export function OrbitContactFormView({
           commonUIElements={<div id={`${prefix}-CommonUI_Elements`}>{commonUIElements}</div>}
         />
         <div className="orbit-confirm-popup backwards-compatibility" data-container="">
-          <NavigationConfirmationDialog
+          <NavigationDialog
             id={`${prefix}-$b6`}
             onNavigation={onNavigation}
-            dialogHeader="Confirm Discard Changes"
-            dialogBody="Are you sure you want to discard this message?"
-            buttonLabelConfirm="Yes"
-            buttonLabelDismiss="Cancel"
+            header="Confirm Discard Changes"
+            body="Are you sure you want to discard this message?"
+            confirmLabel="Yes"
+            dismissLabel="Cancel"
           />
         </div>
       </ValidationServiceProvider>

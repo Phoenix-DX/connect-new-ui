@@ -2,7 +2,7 @@ import { act, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import { afterEach, beforeEach, expect, test } from 'vitest';
 import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
-import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
+import { NavigationDialog } from '@/components/ui/Dialog';
 import { allowUpcomingNavigation } from './navigationGate';
 import { useOsNavigate } from './osNavigate';
 import { renderRoutes, resetNavigation } from './testRouter';
@@ -54,12 +54,7 @@ function Form() {
       >
         to other
       </button>
-      <NavigationConfirmationDialog
-        onNavigation={preventNavigation}
-        dialogHeader="Leave?"
-        buttonLabelConfirm="Yes"
-        buttonLabelDismiss="No"
-      />
+      <NavigationDialog onNavigation={preventNavigation} header="Leave?" confirmLabel="Yes" dismissLabel="No" />
     </div>
   );
 }

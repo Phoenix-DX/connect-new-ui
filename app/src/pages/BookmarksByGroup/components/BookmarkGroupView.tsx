@@ -20,7 +20,7 @@ import { MenuAction, ResultListType } from '@/shared/Connect2_LegacyShared/lib/s
 import { MessageListNoResults } from '@/components/ui/MessageListNoResults';
 import { ResultItemImage } from '@/components/ui/ResultItemImage';
 import { Spinner } from '@/components/ui/Spinner';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 import { BookmarkNoteAddEdit } from './BookmarkNoteAddEdit';
 import { BookmarkNoteDelete } from './BookmarkNoteDelete';
 import { LegacyResultItemBadge } from './LegacyResultItemBadge';
@@ -383,7 +383,7 @@ export function BookmarkGroupView({
                 }}
               />
             </div>
-            <Dialog_AccessRestrictedAction_Legacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b20`} />
+            <DialogAccessRestrictedActionLegacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b20`} />
           </>
         ) : !wasSearched ? (
           <NoBookmarks

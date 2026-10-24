@@ -17,7 +17,7 @@ import {
   SQUARE_PHOTO_PX,
 } from '@/pages/LDM_EventDetail_V2/hooks/ldmEventDetailState';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 import { formatDateForEventBanner } from './actions';
 import { EventDetail_Banner } from './EventDetail_Banner';
 import { EventDetail_HostCard } from './EventDetail_HostCard';
@@ -282,7 +282,7 @@ export function LdmEventDetailView({ id, bottomBar, commonUIElements, ...flows }
         bottomBar={<div id={`${scope}-BottomBar`}>{bottomBar}</div>}
         commonUIElements={<div id={`${scope}-CommonUI_Elements`}>{commonUIElements}</div>}
       />
-      <Dialog_AccessRestrictedAction_Legacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b19`} />
+      <DialogAccessRestrictedActionLegacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b19`} />
     </OSBlock>
   );
 }

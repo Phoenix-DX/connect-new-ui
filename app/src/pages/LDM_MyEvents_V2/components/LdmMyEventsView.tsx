@@ -7,7 +7,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DEFAULT_DATE_RANGE_IN_MONTHS } from '@/pages/LDM_MyEvents_V2/hooks/ldmMyEventsState';
 import type { LdmMyEventsFlows } from '@/pages/LDM_MyEvents_V2/hooks/useLdmMyEvents';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 import { MyEvents_MyTimelineFilterButton } from './MyEvents_MyTimelineFilterButton';
 import { MyTimeline_V2 } from './MyTimeline_V2';
 
@@ -102,7 +102,7 @@ export function LdmMyEventsView({
               onScrollEnding={onScrollEnding}
               onTryAgain={onTryAgain}
             />
-            <Dialog_AccessRestrictedAction_Legacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b12`} />
+            <DialogAccessRestrictedActionLegacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b12`} />
             <ContactPopupByPhone
               id={`${scope}-$b13`}
               inCallPopupData={state.contactByPhoneData}

@@ -1,8 +1,8 @@
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 
 export interface InformationDialogProps {
   /** OutSystems instance id of the block (ContactUsDetails: `SubmittedConfirmation`); `confirmAction(id)` opens it. */
@@ -33,7 +33,7 @@ export function InformationDialog({ id, scope, header, body, buttonLabel }: Info
   return (
     <OSBlock name="App_Common_Blocks_PopupDialogs.Dialog_Information" id={id}>
       <div className="connect-dialog-popup connect-dialog-popup--information" data-container="">
-        <ActionConfirmationDialog
+        <ConfirmDialog
           widgetId={`${scope}-$b1`}
           scope={`${scope}-b1`}
           // DialogHeader: CustomContainer margin bottom base, neutral 10, semi-bold > text-align-center.

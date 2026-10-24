@@ -21,7 +21,7 @@ The component has props only (rule 4). The caller gives the MeetingInfo actions 
 | `onMeetingInfoToggle`     | MeetingInfo_Toggle (controller :405-438): ConfirmAction(MeetingInfo) with the dialog id.                  |
 | `renderMeetingInfoDialog` | Renders the MeetingInfo dialog from `MeetingInfoDialogSlot` (`dialogId`, `body`, `dismissLabel` "Close"). |
 
-`containers/AssembleSummaryCard` gives both: the shell's `confirmAction` and ActionConfirmationDialog. The component
+`containers/AssembleSummaryCard` gives both: the shell's `confirmAction` and ConfirmDialog (`components/ui/Dialog`). The component
 places the slot in the container `backwards-compatibility assemble-meeting-info-popup`, as the original places the
 dialog.
 
@@ -31,9 +31,10 @@ IsApple).
 ## Captured variants (0)
 
 The Assemble captures show no virtual meeting card: stories `WithLink` and `NoLink`. The stories fill the dialog slot
-with a stand-in (the closed ActionConfirmationDialog block).
+with a stand-in (the closed ConfirmDialog).
 
 ## Not settled
 
-- The dialog is the shell's ActionConfirmationDialog (NavigationHandler); its open markup follows its own README.
+- The dialog is ConfirmDialog of `components/ui/Dialog` (the ActionConfirmationDialog block of NavigationHandler); its
+  open markup follows `Dialog.README.md`.
 - OpenExternalURL's Cordova InAppBrowser branch is not ported (no Cordova in the clone).

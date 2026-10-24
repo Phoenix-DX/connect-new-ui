@@ -9,7 +9,7 @@ import { assembleFilterIds } from '@/pages/Assemble_BrowseByCountry/hooks/assemb
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { Spinner } from '@/components/ui/Spinner';
 import { InputWithIcon } from '@/components/ui/InputWithIcon';
-import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
+import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 
 /** The view of the Assemble filter, props only. The legacy layout has the back arrow and ScreenTitle. The content is
     the country list (the search "Search Country" and LocalityListDetail, or "No results found") once the countries
@@ -144,7 +144,7 @@ export function AssembleFilterView({
           onSelectedSubdivision={onSelectedSubdivision}
         />
       )}
-      <Dialog_AccessRestrictedAction_Legacy id={freeSubscriptionAlert} scope={`${scope}-b7`} />
+      <DialogAccessRestrictedActionLegacy id={freeSubscriptionAlert} scope={`${scope}-b7`} />
       {backNavigationHandler}
     </>
   );

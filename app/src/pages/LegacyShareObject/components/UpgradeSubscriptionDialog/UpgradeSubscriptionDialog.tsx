@@ -1,8 +1,8 @@
 /** @origin Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog */
 import { useId } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ActionConfirmationDialog } from '@/platform/feedback/dialogs/ActionConfirmationDialog';
 import { getUserInformation } from '@/platform/session/userInfo';
+import { ConfirmDialog } from '@/components/ui/Dialog';
 
 export interface UpgradeSubscriptionDialogProps {
   /** OutSystems instance id of the block: callers show the dialog with `confirmAction(id)` (it finds the event hub
@@ -30,7 +30,7 @@ export function UpgradeSubscriptionDialog({ id }: UpgradeSubscriptionDialogProps
   return (
     <OSBlock name="Utility.FreeSubscriptionActionDialog" id={id}>
       <div className="upgrade-subscription-action-dialog backwards-compatibility" data-container="">
-        <ActionConfirmationDialog
+        <ConfirmDialog
           widgetId={`${scope}-$b1`}
           scope={`${scope}-b1`}
           header="Access Restricted"
