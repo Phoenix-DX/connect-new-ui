@@ -9,3 +9,6 @@ export { isCommunicationException, raiseToFlowHandler } from '@/legacy/os/except
 /** The server answered that the screen changed version (ViewHasChangedException, an ignorable system exception): a
     data source keeps its fetch status then. */
 export const isViewHasChangedException = (error: unknown): boolean => isInstanceOf(error, ViewHasChangedException);
+
+/** A user exception, of one type when `specificType` is set ("Handle Error: <Module>.<UserException>"). */
+export { isUserException } from '@/legacy/os/exceptions';

@@ -647,3 +647,11 @@ One line per event. Written by rf.py.
 - 2026-10-24T08:06:14 P6-G5-B-EventBooklet stage test
 - 2026-10-24T08:10:32 P6-G5-B-EventBooklet stage docs
 - 2026-10-24T08:11:45 P6-G5-B-EventBooklet stage commit
+- 2026-10-24T08:11:47 P6-G5-B-EventBooklet done 27fd2cec: ci: pass; parity visual --changed: 6/0 (OutSystems), 6/0 (self) (EventBooklet has no parity states; old-vs-new 16 scenarios equal); arch baseline 0 new; HomeFeed 244.44 kB, Login 184.44 kB; W28 beforePaint
+- 2026-10-24T08:12:00 P6-G5-B-MilestoneDetail started
+- 2026-10-24T08:12:00 Q17 (P6-G5-B-MilestoneDetail) asked: Back navigation to MilestoneDetail: (a) keep the old-port reload on restore (the 2 old crash paths are gone), OutSystems-like restore as a follow-up next to F22; (b) keep the state now as OutSystems does.
+- 2026-10-24T08:12:08 Q17 answered by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W27 = (a) — Opus (a, high), Fable (a, high). Keep the old-port reload on restore; record the 2 former crash paths as 'old: crash, new: reload'; the OutSystems-like restore is a follow-up next to F22."
+- 2026-10-24T08:12:17 P6-G5-B-MilestoneDetail stage dev
+- 2026-10-24T08:13:08 P6-G5-B-MilestoneDetail stage test
+- 2026-10-24T08:21:40 P6-G5-B-MilestoneDetail stage docs
+- 2026-10-24T08:22:54 P6-G5-B-MilestoneDetail stage commit

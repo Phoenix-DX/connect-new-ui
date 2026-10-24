@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G5-B-EventBooklet",
+  "step": "P6-G5-B-MilestoneDetail",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T08:11:45"
+  "since": "2026-10-24T08:22:54"
  },
  "steps": {
   "P0-1": {
@@ -1262,12 +1262,24 @@
    "finished": "2026-10-24T08:05:04"
   },
   "P6-G5-B-EventBooklet": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T08:05:04",
    "tokens": {
     "dev": 488700,
     "test": 33926,
     "docs": 38092
+   },
+   "commit": "27fd2cec",
+   "gate": "ci: pass; parity visual --changed: 6/0 (OutSystems), 6/0 (self) (EventBooklet has no parity states; old-vs-new 16 scenarios equal); arch baseline 0 new; HomeFeed 244.44 kB, Login 184.44 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T08:11:47"
+  },
+  "P6-G5-B-MilestoneDetail": {
+   "status": "active",
+   "started": "2026-10-24T08:12:00",
+   "tokens": {
+    "dev": 468964,
+    "test": 31623
    }
   }
  },
@@ -1481,6 +1493,16 @@
    "answer": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed evening): W21 (a) accept +0.42 kB with the F17 tripwire (margin < 1.0 kB or a step > 0.3 kB → stop and trim the entry; limit not raised); W22 (a) commit the shared-block part, add step P6-G3-B-HomeFeed-Page after P6-G3-B-Services, before P6-G3-C. Opus high, Fable high (agree) for both.",
    "by": "user",
    "answeredAt": "2026-10-24T01:39:21"
+  },
+  {
+   "id": "Q17",
+   "step": "P6-G5-B-MilestoneDetail",
+   "text": "Back navigation to MilestoneDetail: (a) keep the old-port reload on restore (the 2 old crash paths are gone), OutSystems-like restore as a follow-up next to F22; (b) keep the state now as OutSystems does.",
+   "status": "answered",
+   "at": "2026-10-24T08:12:00",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W27 = (a) — Opus (a, high), Fable (a, high). Keep the old-port reload on restore; record the 2 former crash paths as 'old: crash, new: reload'; the OutSystems-like restore is a follow-up next to F22.",
+   "by": "user",
+   "answeredAt": "2026-10-24T08:12:08"
   }
  ]
 }

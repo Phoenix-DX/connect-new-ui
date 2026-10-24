@@ -622,3 +622,8 @@
 - `pages/EventBooklet` is a page with a flow hook (`hooks/useEventBooklet.ts`, `hooks/eventBookletState.ts`) and a props-only view (`components/EventBookletView.tsx` with guest, helper and list parts). It has no container. The hook sets `beforePaint: true` (decision W28) because the old block ran OnReady before the paint.
 - `api.ts` is deleted; the hook calls `fetchEventBookletFilters`, `fetchEventBookletGuests` and `fetchEventBookletHelpers` of `api/event`. Dependency-cruiser warnings 210 to 209.
 - EventBooklet has no parity states, so its DOM evidence is the developer's 16-scenario old-vs-new test (`dev.md`). The EventBooklet chunk grows 1.74 kB gzip (not an entry route); HomeFeed and Login change by +0.00 and +0.01 kB.
+
+## P6-G5-B-MilestoneDetail - refactor(P6-G5-B): MilestoneDetail as page
+
+- `pages/MilestoneDetail` is a page with 2 flow hooks (`hooks/useMilestoneWrapper.ts`, `hooks/useAccommodationHost.ts`, each with a pure state file) and 2 props-only views. It has no container. Both hooks set `beforePaint: true` (decision W28). `api.ts`, `types.ts` and `components/actions.ts` are deleted; the hooks call `api/event` and `api/image`.
+- Back navigation (W27): the accommodation block reloads its data, as the old port did. The old page crashed on 2 paths: an optional input missing, or a visit from a notification, then member and back. Both are "old: crash, new: reload". OutSystems keeps the state: follow-up F24.

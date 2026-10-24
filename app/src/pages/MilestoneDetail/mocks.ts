@@ -1,10 +1,20 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { osList, wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { orbitEvents, type OrbitMilestone, type OrbitRoom } from '@/mocks/fictional/orbit';
 import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import { mockSignedImageURL } from '@/shared/UBTConnect_Utils/UBT_LazyImage/mocks';
-import type { AccommodationResponseWire, GetAccommodationHostWire, GuestWire, RoomWire } from './types';
+
+/* Wire shapes of DataActionGetAccommodationHost, typed by the API contract (captured shape: analysis/calls.md
+   § DataActionGetAccommodationHost). */
+type GetAccommodationHostWire = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_AccommodationHost/DataActionGetAccommodationHost'>
+>;
+/** GetAccommodationHostResponse (Connect2_OrbitMobile_IS) as it travels. */
+type AccommodationResponseWire = GetAccommodationHostWire['Response']['GetAccommodationHostResponse'];
+type RoomWire = AccommodationResponseWire['Rooms']['List'][number];
+type GuestWire = RoomWire['Guests']['List'][number];
 
 /* The two data actions of ScreenBlock_AccommodationHost were not recorded: fictional data from the shared Orbit world
    (src/mocks/fictional/orbit.ts, ORBIT_HOSTED_ROOMS) in the captured shapes (analysis/calls.md). Captured

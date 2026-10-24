@@ -216,3 +216,5 @@ P6-G5-B-OrbitAdminEventDetail: `pages/OrbitAdminEventDetail/api.ts` is deleted (
 P6-G5-B-EventDetail: `pages/EventDetail/api.ts` is deleted (its row in the app table above). The hook `useEventDetail` calls `fetchEventDetails`, `fetchHostSurveyStatus`, `fetchHasDocuments` and `fetchHasQRCode` of `@/api/event` directly.
 
 P6-G5-B-EventBooklet: `pages/EventBooklet/api.ts` is deleted (its row in the app table above). The hook `useEventBooklet` calls `fetchEventBookletFilters`, `fetchEventBookletGuests` and `fetchEventBookletHelpers` of `@/api/event` directly.
+
+P6-G5-B-MilestoneDetail: `pages/MilestoneDetail/api.ts` is deleted (its rows in the app and Connect2_LegacyShared tables above). The hook `useMilestoneWrapper` calls `fetchGmpMilestoneHost` (DataActionGetGmpMilestoneHost) of `@/api/event`. The hook `useAccommodationHost` calls `fetchAccommodationHost` (DataActionGetAccommodationHost) and `fetchAccommodationHostDocument` (DataActionGet_Document) of `@/api/event`, and `fetchLegacySignedImageURL` (`ActionGetSignedImagesInBulk`) of `@/api/image`.
