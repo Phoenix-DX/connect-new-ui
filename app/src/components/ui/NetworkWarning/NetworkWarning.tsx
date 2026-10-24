@@ -5,7 +5,8 @@ import { Animate } from '@/components/ui/Animate';
 import { AnimationType, Speed } from '@/components/ui/lib/staticEntities';
 
 export interface NetworkWarningProps {
-  /** OutSystems instance id of the block. */
+  /** OutSystems instance id of the block (`b1-b9-$b5`). The inner Animate gets `<id without $>-$b1` (capture v1:
+      `b1-b9-b5-$b1`); without an id the Animate has none. */
   id?: string;
   /** Event TryAgain: the parent's handler (the block's own `tryAgain$Action` is empty). */
   onTryAgain?: () => void;
@@ -16,9 +17,10 @@ export interface NetworkWarningProps {
     Button OnClick calls the event TryAgain, controller `tryAgain$Action` :237 is `Promise.resolve()`). It sits in
     an Animate (topToBottom, normal, no Delay input). */
 export function NetworkWarning({ id, onTryAgain }: NetworkWarningProps) {
+  const animateId = id === undefined ? undefined : `${id.replace('$', '')}-$b1`;
   return (
     <OSBlock name="Widgets.NetworkWarning" id={id}>
-      <Animate animationType={AnimationType.TopToBottom} speed={Speed.Normal}>
+      <Animate id={animateId} animationType={AnimationType.TopToBottom} speed={Speed.Normal}>
         <div className="card background-orange-dark" data-container="">
           <div data-container="">
             <i className="icon fa fa-wifi fa-1x" data-icon="" />

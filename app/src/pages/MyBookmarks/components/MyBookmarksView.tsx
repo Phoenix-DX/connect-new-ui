@@ -10,7 +10,7 @@ import { MyBookmarks_Group } from '@/lib/ubtConnect/staticEntities';
 import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
 import { MyBookmarks_Album } from './MyBookmarks_Album';
 import { MyBookmarks_Card } from './MyBookmarks_Card';
-import { NetworkWarning } from './NetworkWarning';
+import { NetworkWarning } from '@/components/ui/NetworkWarning';
 
 /** The block variables that the view reads. */
 export interface MyBookmarksViewState {

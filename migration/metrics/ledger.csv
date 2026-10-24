@@ -814,3 +814,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,36465,refactor-dev,,"F29 sonnet (pass 3, lib exports)"
 2026-10-24,refactor,other,25857,refactor-docs,,F29 sonnet
 2026-10-24,refactor,verify,21303,refactor-test,,F29 sonnet (re-test)
+2026-10-24,refactor,build,24550,refactor-dev,,F33 sonnet
+2026-10-24,refactor,other,32636,refactor-docs,,F29-stack sonnet
+2026-10-24,refactor,verify,24142,refactor-test,,F33 sonnet (fail: format)
+2026-10-24,refactor,build,26305,refactor-dev,,F33 sonnet (loop 1)
+2026-10-24,refactor,other,22327,refactor-docs,,F33 sonnet

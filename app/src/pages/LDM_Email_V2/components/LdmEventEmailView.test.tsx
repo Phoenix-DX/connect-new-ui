@@ -39,6 +39,7 @@ describe('LdmEventEmailView', () => {
     const onTryAgain = vi.fn();
     const { container } = render(<Offline onTryAgain={onTryAgain} />);
     expect(container.querySelector('[id="b1-$b5"]')).not.toBeNull();
+    expect(container.querySelector('[id="b1-b5-$b1"]')?.getAttribute('data-block')).toBe('Interaction.Animate');
     expect(container.querySelector('#b1-MarkReadLoading')).toBeNull();
     fireEvent.click(screen.getByRole('button', { name: /try again/i }));
     expect(onTryAgain).toHaveBeenCalledTimes(1);

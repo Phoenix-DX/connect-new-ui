@@ -21,4 +21,14 @@ describe('NetworkWarning', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Try again' }));
     expect(screen.getByText('Try again')).toBeInTheDocument();
   });
+
+  it('the Animate gets the id <scope>-$b1 (capture v1: b1-b9-b5-$b1)', () => {
+    const { container } = render(<NetworkWarning id="b1-b9-$b5" />);
+    expect(container.querySelector('[data-block="Interaction.Animate"]')).toHaveAttribute('id', 'b1-b9-b5-$b1');
+  });
+
+  it('without an id the Animate has no id', () => {
+    const { container } = render(<NetworkWarning />);
+    expect(container.querySelector('[data-block="Interaction.Animate"]')).not.toHaveAttribute('id');
+  });
 });

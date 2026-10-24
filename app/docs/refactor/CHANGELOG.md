@@ -823,3 +823,8 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - Architecture: `components/ui/` loses `Columns4`, `RangeSlider`, `SwipeEvents` and `Tooltip` (user decision, 2026-10-24). No page, container or hook used them.
 - Also removed: packages `nouislider` and `wnumb`, `src/types/vendor.d.ts`, and the exports `Orientation`, `Trigger`, `Position` and `RangeSliderOptionalConfigs` in `components/ui/lib`.
 - Gate: ci: pass; parity visual --all: 64/64 (OutSystems), 64/64 (self).
+
+## F33 - one NetworkWarning with the OutSystems DOM ids
+
+- Architecture: one `NetworkWarning` in `components/ui`. The inner Animate gets the id `<scope>-$b1` as in the OutSystems capture (user decision, 2026-10-24). The copy in `pages/MyBookmarks/components/` is deleted. The LDM routes gain the Animate id.
+- Gate: ci: pass (after loop 1); parity visual --all: 64/64 (OutSystems), 64/64 (self); jscpd 35 clones (was 36).
