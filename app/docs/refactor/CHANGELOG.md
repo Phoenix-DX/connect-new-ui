@@ -582,3 +582,8 @@
 
 - `useFlowState` (`platform/navigation/flowState.ts`) has the opt-in option `beforePaint` (decision W28). When it is set, OnReady runs once in a layout effect, before the first paint.
 - The default is off: no page changes. `isAlive` guards state writes only (W23). The guide `docs/guides/page-template.md` names the option.
+
+## P6-G5-A - refactor(P6-G5-A): move G5 to pages/
+
+- The 16 G5 routes (OrbitLanding, OrbitAdminLanding, OrbitAdminEventDetail, EventDetail, EventBooklet, MilestoneDetail, GuestArrangements, HelpersDetail, HostSurvey, TransportDetail, MyEntertaining, LDM_MyEvents_V2, LDM_EventDetail_V2, LDM_Email_V2, AssembleEvents, AssembleDetail) moved from `src/screens/<R>` to `src/pages/<R>`. `index.tsx` is now `<R>Page.tsx`, with one `@origin` tag per page.
+- Known issue: the 3 LDM V2 pages name the flow `Legacy_LDMEventsFlow` in `@origin`, not `Legacy_LDMEventsFlow_V2`. The LDM page steps fix it. Shared blocks stay in `shared/` until step B.

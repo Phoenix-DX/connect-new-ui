@@ -668,3 +668,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,review,42172,refactor-advisor,,"W29, fable"
 2026-10-24,refactor,build,74965,refactor-dev,,P6-F17 opus
 2026-10-24,refactor,verify,22379,refactor-test,,P6-F17 sonnet
+2026-10-24,refactor,other,30691,refactor-docs,,P6-F17 sonnet
+2026-10-24,refactor,build,30168,refactor-dev,,P6-G5-A sonnet
+2026-10-24,refactor,verify,22289,refactor-test,,P6-G5-A sonnet
+2026-10-24,refactor,fix,14108,refactor-dev,,P6-G5-A loop 1 sonnet
+2026-10-24,refactor,verify,16044,refactor-test,,P6-G5-A loop 1 sonnet
