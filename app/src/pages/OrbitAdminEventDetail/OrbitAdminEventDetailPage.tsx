@@ -1,22 +1,31 @@
-/** @origin UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminEventDetail */
 import { useSearchParams } from 'react-router';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { readInputs } from './api';
-import { ScreenBlock_AdminEventDetail } from './components/ScreenBlock_AdminEventDetail';
+import { AdminEventDetailView } from './components/AdminEventDetailView';
+import { useAdminEventDetail } from './hooks/useAdminEventDetail';
+import { readInputs } from './inputs';
 
-/** UBTConnect Legacy_OrbitAdminFlow.OrbitAdminEventDetail (migration/runtime-sources/UBTConnect.Legacy_OrbitAdminFlow
-    .OrbitAdminEventDetail.mvc.js: model :1-116, view :118-256, controller :258-305). Inputs In_EventId, In_EventName,
-    In_EventStartDate, In_EventEndDate, In_EventLocation, In_EventTypeFriendly (opened by OrbitAdminLanding).
-    ScreenBlock_AdminEventDetail with the six inputs and BottomBarMenu (default inputs) in its BottomBar, empty Menu /
-    CommonUI_Elements, then CommonUI_InsideLayout. No screen logic. Not captured (user decision 2026-10-16,
-    no-capture.json): built from the compiled code, reviewed by hand. */
+/** @origin UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminEventDetail
+    The event detail of an Orbit admin, opened by OrbitAdminLanding with the six inputs In_EventId, In_EventName,
+    In_EventStartDate, In_EventEndDate, In_EventLocation and In_EventTypeFriendly. The screen has no logic: it renders
+    ScreenBlock_AdminEventDetail with the inputs and BottomBarMenu (default inputs) in its BottomBar, with empty Menu and
+    CommonUI_Elements, then CommonUI_InsideLayout. The flows of the block are in useAdminEventDetail. Not captured
+    (user decision 2026-10-16, no-capture.json): built from the compiled code and reviewed by hand. */
 export default function OrbitAdminEventDetail() {
   const [params] = useSearchParams();
   const inputs = readInputs(params);
+  const { state, onScanQrCodeClicked, onScanEventDone, onErrorMessageOk } = useAdminEventDetail(inputs);
   return (
     <>
-      <ScreenBlock_AdminEventDetail id="$b1" bottomBar={<BottomBar id="$b2" />} {...inputs} />
+      <AdminEventDetailView
+        id="$b1"
+        bottomBar={<BottomBar id="$b2" />}
+        {...inputs}
+        state={state}
+        onScanQrCodeClicked={onScanQrCodeClicked}
+        onScanEventDone={onScanEventDone}
+        onErrorMessageOk={onErrorMessageOk}
+      />
       <CommonUiLayout id="$b3" />
     </>
   );

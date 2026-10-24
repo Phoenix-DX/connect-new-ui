@@ -1,9 +1,10 @@
-// @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan
+/** @origin Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_QRCodeScan */
+import type { QRCodeStatus } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { MEMBER_PHOTO_PLACEHOLDER } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { osImage } from '@/legacy/os/os-assets';
-import type { QRCodeStatus, ScannedUser } from '@/pages/OrbitAdminEventDetail/types';
+import type { ScannedUser } from '@/pages/OrbitAdminEventDetail/hooks/adminEventDetailState';
 import { getFormattedLocalDateTime } from './actions';
 
 export interface Popup_QRCodeScanProps {

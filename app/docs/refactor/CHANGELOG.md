@@ -605,3 +605,8 @@
 - `pages/OrbitAdminLanding` is a page with a flow hook (`hooks/useAdminLanding.ts`, `hooks/adminLandingState.ts`), a screen-handler hook (`hooks/useNavigateToEventDetail.ts`) and a props-only view (`components/AdminLandingView.tsx`). It has no container.
 - `api.ts` and `types.ts` are deleted. The hooks call `fetchAdminEvents` and `fetchMilestoneScanFF` of `api/event` directly.
 - The OrbitAdminLanding chunk grows 0.61 kB gzip (not an entry route); HomeFeed and Login change by -0.03 and -0.02 kB (dev.md).
+
+## P6-G5-B-OrbitAdminEventDetail - refactor(P6-G5-B): OrbitAdminEventDetail as page
+
+- `pages/OrbitAdminEventDetail` is a page with a flow hook (`hooks/useAdminEventDetail.ts`, `hooks/adminEventDetailState.ts`) and a props-only view (`components/AdminEventDetailView.tsx`). It has no container.
+- `api.ts` and `types.ts` are deleted. `api/image` gets `repository.ts` with `fetchLegacySignedImageURL`; the hook also calls `api/event` and `api/member`. The OrbitAdminEventDetail chunk grows 0.69 kB gzip (not an entry route).

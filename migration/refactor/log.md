@@ -629,3 +629,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T07:30:33 P6-G5-B-OrbitAdminLanding stage test
 - 2026-10-24T07:40:55 P6-G5-B-OrbitAdminLanding stage docs
 - 2026-10-24T07:41:51 P6-G5-B-OrbitAdminLanding stage commit
+- 2026-10-24T07:41:52 P6-G5-B-OrbitAdminLanding done b1982231: ci: pass (rerun once, Services flake F23); parity visual --changed: 10/0 (OutSystems), 10/0 (self); arch baseline 0 new; HomeFeed 244.41 kB, Login 184.42 kB
+- 2026-10-24T07:41:52 P6-G5-B-OrbitAdminEventDetail started
+- 2026-10-24T07:41:52 P6-G5-B-OrbitAdminEventDetail stage dev
+- 2026-10-24T07:42:33 P6-G5-B-OrbitAdminEventDetail stage test
+- 2026-10-24T07:52:13 P6-G5-B-OrbitAdminEventDetail stage docs
+- 2026-10-24T07:53:34 P6-G5-B-OrbitAdminEventDetail stage commit

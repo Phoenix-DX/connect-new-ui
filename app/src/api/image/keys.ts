@@ -5,7 +5,7 @@ import { bulkCacheEntry } from '@/api/client/cache';
 const IMAGE = 'Connect_CacheType.Image';
 
 /** The memory-cache entries of the signed image and photo URLs (api/client/cache.ts): bulk entries, so the misses of
-    one cache type go in one call. The TTL is the staleTime. The calls stay with their callers until Phase 6. */
+    one cache type go in one call. The TTL is the staleTime. `fetchLegacySignedImageURL` in `repository.ts` uses `legacySignedImage`; the other calls stay with their callers until Phase 6. */
 export const imageCache = {
   /** Cache_SignedImageURL_Get (UBTConnect_Utils, UC:543-700): type Image + the image type
       (Cache_SignedImageURL_GetCacheKey, UC:711-745), TTL 300 s, timeout 10, bulk of 15 (UC:576-585). */
