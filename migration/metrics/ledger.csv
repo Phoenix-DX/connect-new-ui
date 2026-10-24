@@ -828,3 +828,29 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,other,36074,refactor-docs,,F22-26 sonnet
 2026-10-24,refactor,build,47339,refactor-dev,,"F22-26 opus (loop 1, increment over 341490)"
 2026-10-24,refactor,verify,28337,refactor-test,,F22-26 sonnet (re-test)
+2026-10-24,refactor,other,35513,advisor-opus,,"F40 advisor (Opus): (a) keep port, high"
+2026-10-24,refactor,other,35359,advisor-fable,,"F40 advisor (Fable): (a) keep port, high"
+2026-10-24,refactor,other,72597,fact-sonnet,,F39 fact lookup (hall OnParametersChanged)
+2026-10-24,refactor,other,35769,advisor-opus,,"F39 advisor (Opus): (b) add handler, medium"
+2026-10-24,refactor,other,36024,advisor-fable,,"F39 advisor (Fable): (b) add handler, high"
+2026-10-24,refactor,other,106279,fact-sonnet,,F40 read-only check of restored re-run paths (23 hooks)
+2026-10-24,refactor,other,35197,advisor-opus,,"F40 LDM audit advisor (Opus): (a) skip audit on restored re-run, high"
+2026-10-24,refactor,other,35101,advisor-fable,,"F40 LDM audit advisor (Fable): (a) skip audit on restored re-run, high"
+2026-10-24,refactor,other,35399,advisor-opus,,"F40 Orbit hooks advisor (Opus): (b) align 3 hooks, high"
+2026-10-24,refactor,other,35412,advisor-fable,,"F40 Orbit hooks advisor (Fable): (b) align, high"
+2026-10-24,refactor,other,40177,advisor-opus,,"P9-1 scope advisor (Opus): (c) hybrid, medium"
+2026-10-24,refactor,other,40277,advisor-fable,,"P9-1 scope advisor (Fable): (c) hybrid, high"
+2026-10-24,refactor,build,28389,refactor-developer,,"F39 dev (sonnet): hall OnParametersChanged, pass"
+2026-10-24,refactor,build,0,refactor-developer,,"F40 dev (opus): 4 hooks one restored rule, pass (tokens pending notification)"
+2026-10-24,refactor,build,169937,refactor-developer,,F40 dev (opus) tokens from notification
+2026-10-24,refactor,verify,0,refactor-tester,,"F39 test (sonnet): pass; ci timeouts under load, reruns pass; parity 64/64 both (tokens pending)"
+2026-10-24,refactor,verify,42147,refactor-tester,,F39 test (sonnet) tokens from notification
+2026-10-24,refactor,other,21717,refactor-documenter,,F39 docs (sonnet): CHANGELOG + followups; commit 8537c849
+2026-10-24,refactor,verify,26629,refactor-tester,,"F40 test (sonnet): ci 3971 tests pass, parity 64/64 both, pass"
+2026-10-24,refactor,other,29368,refactor-documenter,,"F40 docs (sonnet): CHANGELOG, page-template, followups F41/F42 rows; commit 9695c8ee"
+2026-10-24,refactor,build,0,refactor-dev,,P8-1 opus
+2026-10-24,refactor,build,248427,refactor-dev,,P8-1 opus
+2026-10-24,refactor,build,20663,refactor-developer,,"F43 dev (sonnet): os-wire/os-assets to lib/ by codemod, pass"
+2026-10-24,refactor,verify,0,refactor-test,,P8-1 sonnet
+2026-10-24,refactor,verify,29210,refactor-test,,P8-1 sonnet
+2026-10-24,refactor,other,38846,refactor-docs,,P8-1 sonnet

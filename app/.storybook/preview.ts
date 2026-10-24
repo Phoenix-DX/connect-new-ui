@@ -1,4 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
+import '../src/styles/layers.css';
+import '../src/styles/tokens.css';
 import '../src/styles/review.css';
 import { setReviewMarkers } from '../src/legacy/os/reviewMarkers';
 import { clearFlagOverrides } from '../src/platform/flags';

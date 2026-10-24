@@ -42,7 +42,6 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 | OutSystems UI Carousel | same provider library as the original, pinned to the version in the manifest (@splidejs/splide 4.1.3) | confirmed | Pattern behaviour lives in OutSystems UI JavaScript, not in the captured .mvc.js; one shared implementation (P-OSUI) avoids a different version per route. | user 2026-10-14T13:13:51 |
 | OutSystems UI DropdownSearch | same provider library as the original, pinned to the version in the manifest (Virtual Select v1.3.0, vendored from TST) | confirmed | Pattern behaviour lives in OutSystems UI JavaScript, not in the captured .mvc.js; one shared implementation (P-OSUI) avoids a different version per route. | user 2026-10-14T13:32:54 |
 | OutSystems UI DropdownTags | same provider library as the original, pinned to the version in the manifest (Virtual Select v1.3.0, vendored from TST, as DropdownSearch) | confirmed | Pattern behaviour lives in OutSystems UI JavaScript, not in the captured .mvc.js; one shared implementation (P-OSUI) avoids a different version per route. | user 2026-10-16T07:09:41 |
-| OutSystems UI RangeSlider | same provider library as the original, pinned to the version in the manifest (noUiSlider + wNumb) | confirmed | Pattern behaviour lives in OutSystems UI JavaScript, not in the captured .mvc.js; one shared implementation (P-OSUI) avoids a different version per route. | user 2026-10-14T13:13:51 |
 | OutSystems UI Sidebar | out of scope: render NotCaptured | confirmed | Pattern behaviour lives in OutSystems UI JavaScript, not in the captured .mvc.js; one shared implementation (P-OSUI) avoids a different version per route. | user 2026-10-14T13:13:51 |
 | Web equivalent of FullCalendarReactive | out of scope: render NotCaptured | confirmed | Third-party component found in the survey; no default without knowing its use. | user 2026-10-14T13:13:51 |
 | Web equivalent of Leaflet | npm package leaflet 1.9.4 + leaflet.markercluster 1.5.3 | confirmed | Third-party component found in the survey; no default without knowing its use. | user 2026-10-14T13:13:51 |
@@ -59,13 +58,11 @@ Every route is built with exactly this stack and these patterns. Route agents ne
 | `gsap` | 3.13.0 | runtime |
 | `leaflet` | 1.9.4 | runtime |
 | `leaflet.markercluster` | 1.5.3 | runtime |
-| `nouislider` | 15.8.1 | runtime |
 | `openapi-fetch` | 0.15.2 | runtime |
 | `react` | 19.2.8 | runtime |
 | `react-dom` | 19.2.8 | runtime |
 | `react-router` | 7.18.2 | runtime |
 | `sortablejs` | 1.15.7 | runtime |
-| `wnumb` | 1.2.0 | runtime |
 | `workbox-core` | 7.4.1 | runtime |
 | `workbox-expiration` | 7.4.1 | runtime |
 | `workbox-precaching` | 7.4.1 | runtime |
@@ -248,7 +245,7 @@ Every route is built with exactly this stack and these patterns. Route agents ne
   - Rule 13 (§2.4, R4 b): each file that ports an OutSystems screen or block has one `@origin` tag. Inline references to compiled line numbers (`mvc.js:640-1150`) go away when the file is rewritten, not before.
   - Naming and OutSystems blocks (§2.5, §2.6): business names in PascalCase without a module prefix, and hooks named `use<Thing>`. Each `api/<domain>/` has `repository.ts`, `mapper.ts`, `keys.ts`, `hooks.ts` and `types.ts`; wire types stay in `src/api/schema.d.ts`. A UI-only block becomes a component, and a block with data or side effects becomes a hook and a component. A screen becomes `pages/<S>/<S>Page.tsx`, a layout block goes to `components/layout/` and an OutSystems UI pattern goes to `components/ui/`.
   - State (§2.7): TanStack Query is the only server-state store, and every call goes through `api/<domain>/`. Query options in `api/<domain>/keys.ts` replace `memoryCache`, after an exemption list (§5.4). View state moves to `platform/navigation/viewState.ts`; pages and hooks use it, and components do not. Client variables split into `platform/settings`, `platform/session` and `platform/navigation`.
-  - Styles (§2.8, R3 b): Phase 8 adds `styles/tokens.css` and puts the original CSS in `@layer legacy`. Existing components keep the legacy class names and CSS, and new components use CSS Modules with the tokens. Unused CSS goes away one stylesheet at a time, with coverage data from the parity captures, at the `visual` level.
+  - Styles (§2.8, R3 b): Phase 8 adds `styles/tokens.css` and puts the original CSS in `@layer legacy`. `styles/layers.css` sets the order `legacy, app` once. `StylesheetHost` loads each original file through a `<link>` to a `data:` stylesheet that only does `@import url(<file>) layer(legacy)`; the files stay unchanged. New CSS goes in `@layer app`. A future Content-Security-Policy must allow `style-src data:` (follow-up F44). Existing components keep the legacy class names and CSS, and new components use CSS Modules with the tokens. Unused CSS goes away one stylesheet at a time, with coverage data from the parity captures, at the `visual` level.
   - Feature flags (§3.1, R5 a): the `platform/flags` area has a typed registry, `resolveFlags` (precedence default < server < override) and `useFlag`. Only pages, hooks and containers read flags. The route table (`meta.flagRedirect`) handles the four flags that choose a screen. The app start waits for `fetchFlags()`. In production the flags come from one batch call through the BFF, with a parity exemption for the flag calls.
   - Session and PIN (§3.2, R6 a): a state machine in `platform/session/machine.ts` holds the session status, and the selectors keep their names. The `AuthProvider` interface in `platform/auth/` has the `mockAuth` implementation behind `MOCKS_BUILT`, and this refactor does not build `bffAuth`. The app start steps keep their calls, order and conditions, and `fetchFlags` is the only new step. PIN verification stays local, as in the original, and the security owner reviews it before the BFF phase.
     - Route guard: the route meta (`app/routes.ts`: `access`, `lock`, `flagRedirect`) and the one `RouteGuard` (`app/RouteGuard.tsx`, reads the session status) keep the redirect table of the old `startup.ts` unchanged. `platform/` does not import `app/`, so `LockHost` gets `ignoresLockScreen` as a prop.
@@ -268,4 +265,10 @@ Every route is built with exactly this stack and these patterns. Route agents ne
   - The memoryCache readers (`CacheControl`, `CacheControl_*`, `CacheControl_UserInfo_Wrapper`) are rewritten in P5-4, where they are; P6 only moves the files.
   - OSBlock placement (decision Q7, auto-accepted): OSBlock and the other presentational OS* widgets go to `components/ui/os/`, not `legacy/os/widgets/`. They render the DOM that R3 keeps forever, so they are permanent UI primitives that rule 5 allows. A widget that imports from `legacy/os` (check OSPopup and OSValidation) stays in `legacy/os/` behind a platform adapter. Plan v2 P1-3 needs a text change (components/OS* → components/ui/os/). The move map has no `src/components/OS*` rows, so none was added.
 - accepted by user 2026-10-22T14:16:26
+
+### ADR-16: Remove noUiSlider and wNumb (accepted)
+- Context: Step F29 (commit 9b88da40) deleted the unused RangeSlider pattern and uninstalled the packages nouislider and wnumb. ADR-3 had allowed both for the RangeSlider pattern.
+- Decision: Remove nouislider and wnumb from the allowed dependencies and remove the osui:RangeSlider item. ADR-3 stays as the record of the earlier decision (user, 2026-10-24).
+- Consequences: ContactUsDetails does not use a range slider library. A new use of a range slider needs a new ADR and a version check.
+- accepted by user 2026-10-24T00:00:00
 

@@ -3,7 +3,7 @@ import { createMemoryRouter, RouterProvider } from 'react-router';
 import { beforeEach, expect, test } from 'vitest';
 import { ROUTE_CSS } from '@/app/routes.css.generated';
 import { notifyScreenTransitionEnd } from '@/platform/navigation/transitionEvents';
-import { CSS_PATH, StylesheetHost, stylesheetsOf, syncStylesheets } from './StylesheetHost';
+import { CSS_PATH, legacyHref, StylesheetHost, stylesheetsOf, syncStylesheets } from './StylesheetHost';
 
 const HOME_FEED = ROUTE_CSS.HomeFeed ?? [];
 const MESSAGE_LIST = ROUTE_CSS.MessageList ?? [];
@@ -16,9 +16,9 @@ const THEMES = [
   'Connect2_LegacyShared.UBTConnect_LegacyChain.css',
 ];
 
-const originalLinks = () => [...document.head.querySelectorAll<HTMLLinkElement>(`link[href^="${CSS_PATH}"]`)];
-const files = () => originalLinks().map((l) => (l.getAttribute('href') ?? '').slice(CSS_PATH.length));
-const byFile = () => new Map(originalLinks().map((l) => [l.getAttribute('href'), l]));
+const originalLinks = () => [...document.head.querySelectorAll<HTMLLinkElement>('link[data-legacy-css]')];
+const files = () => originalLinks().map((l) => l.dataset.legacyCss ?? '');
+const byFile = () => new Map(originalLinks().map((l) => [`${CSS_PATH}${l.dataset.legacyCss ?? ''}`, l]));
 const loadAll = () => {
   for (const l of originalLinks()) l.dispatchEvent(new Event('load'));
 };
@@ -47,6 +47,17 @@ test('the first sync inserts the set in order, before the clone styles', () => {
   syncStylesheets(document.head, HOME_FEED);
   expect(files()).toEqual(HOME_FEED);
   expect(document.head.lastElementChild?.id).toBe('clone-styles');
+});
+
+test('each link imports its original file, unchanged, into the legacy cascade layer', () => {
+  syncStylesheets(document.head, ['_Basic.css']);
+  const [link] = originalLinks();
+  expect(link?.rel).toBe('stylesheet');
+  expect(link?.getAttribute('href')).toBe(legacyHref('_Basic.css', document.baseURI));
+  const href =
+    'data:text/css;charset=utf-8,' +
+    encodeURIComponent('@import url("https://ubt.test/UBTConnect/css/_Basic.css") layer(legacy);');
+  expect(legacyHref('_Basic.css', 'https://ubt.test/UBTConnect/HomeFeed')).toBe(href);
 });
 
 test('HomeFeed → MessageList → HomeFeed keeps shared links, adds and removes the others at their position', () => {

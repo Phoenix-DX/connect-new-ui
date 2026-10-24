@@ -194,7 +194,7 @@ describe('AddCSSJS', () => {
     addBarcodePluginCss();
     const sheets = document.head.querySelectorAll('style[title="barcode-plugin-css"]');
     expect(sheets).toHaveLength(1);
-    expect(sheets[0]?.textContent).toBe(BARCODE_PLUGIN_CSS);
+    expect(sheets[0]?.textContent).toBe(`@layer legacy{${BARCODE_PLUGIN_CSS}}`);
     expect(BARCODE_PLUGIN_CSS).toHaveLength(2316);
   });
 });

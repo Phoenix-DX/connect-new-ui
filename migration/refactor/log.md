@@ -839,3 +839,8 @@ One line per event. Written by rf.py.
 - 2026-10-24T14:05:48 P7-5 stage docs
 - 2026-10-24T14:06:42 P7-5 stage commit
 - 2026-10-24T14:06:43 P7-5 done fedda59c: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 72 rows, 0 new; HomeFeed 244.69/248.22 kB, Login 184.71/193.84 kB gzip
+- 2026-10-24T19:44:07 P8-1 started
+- 2026-10-24T19:44:21 P8-1 stage dev
+- 2026-10-24T22:38:20 P8-1 stage test
+- 2026-10-24T22:46:14 P8-1 stage docs
+- 2026-10-24T22:47:53 P8-1 stage commit

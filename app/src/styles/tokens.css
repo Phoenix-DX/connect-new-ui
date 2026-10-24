@@ -1,0 +1,292 @@
+/* Design tokens (plan v2 §2.8, R3): the --color-*, --space-* and --font-* variables of the original OutSystems CSS
+   (public/UBTConnect/css), named by the UBTConnectLibrary static entities UBT_Color, UBT_Size, UBT_FontSize and
+   UBT_FontWeight (migration/knowledge/static-entities-tst.json). Written by migration/tools/refactor/p8-1-tokens.py.
+   Each token is a variable that the original CSS sets on :root with this value on every route screen, so the tokens
+   change no rendering. They are in the app layer (styles/layers.css): while the original files load, a token wins
+   over the legacy :root value, and tokens.test.ts keeps the two equal. New CSS uses the tokens.
+   Legacy only (other values on some screens):
+     --color-neutral-11 --color-neutral-13
+   Legacy only (set on some screens only):
+     --color-alert --color-badge-menu --color-balance-summary --color-choices-menu --color-double-menu
+     --color-neutral-14 --color-neutral-14-rgb --color-neutral-15 --color-primary-HR100
+     --color-primary-bussiness-services --color-primary-community-trade-link --color-primary-connect
+     --color-primary-dark --color-primary-directory --color-primary-el-gusto --color-primary-gift-portal
+     --color-primary-ldm --color-primary-light --color-primary-media-hub --color-primary-orbit
+     --color-primary-photobook --color-primary-subscriptions --color-progress-bar-1 --color-progress-bar-2
+     --font-color-choices --font-size-14
+*/
+@layer app {
+  :root {
+    /* UBT_Color: the color of the text-<Id>, background-<Id> and border-color-<Id> classes */
+    --color-primary: var(--color-cyan-dark);
+    --color-secondary: var(--color-purple-dark);
+    --color-red: #e97575;
+    --color-red-dark: #dc2020;
+    --color-red-darker: #841313;
+    --color-orange: #f76707;
+    --color-yellow-lightest: #fdf6e5;
+    --color-yellow-lighter: #fae8bf;
+    --color-yellow-light: #f6d791;
+    --color-yellow: #f1c561;
+    --color-yellow-dark: #e9a100;
+    --color-yellow-darker: #8c6100;
+    --color-yellow-darkest: #2f2000;
+    --color-lime: #74b816;
+    --color-green-lightest: #eaf3eb;
+    --color-green-lighter: #cae0ce;
+    --color-green-light: #a3c9ab;
+    --color-green: #7ab285;
+    --color-green-dark: #29823b;
+    --color-green-darker: #194e23;
+    --color-green-darkest: #081a0c;
+    --color-teal: #087f5b;
+    --color-cyan-lightest: #edf6f8;
+    --color-cyan-lighter: #d2ebee;
+    --color-cyan-light: #aad8e0;
+    --color-cyan: #4eaec2;
+    --color-cyan-dark: #00819c;
+    --color-cyan-darker: #005668;
+    --color-cyan-darkest: #003945;
+    --color-blue-lightest: #e1e5ff;
+    --color-blue-lighter: #c4caee;
+    --color-blue-light: #99a4e1;
+    --color-blue: #6b7cd4;
+    --color-blue-dark: #112cba;
+    --color-blue-darker: #0e2395;
+    --color-blue-darkest: #07124a;
+    --color-indigo: #4263eb;
+    --color-violet: #7048e8;
+    --color-grape: #ae3ec9;
+    --color-pink: #d6336c;
+    --color-neutral-0: #ffffff;
+    --color-neutral-1: #f8f9fa;
+    --color-neutral-2: #f1f3f5;
+    --color-neutral-3: #e9ecef;
+    --color-neutral-4: #dee2e6;
+    --color-neutral-5: #ced4da;
+    --color-neutral-6: #adb5bd;
+    --color-neutral-7: #6a7178;
+    --color-neutral-8: #4f575e;
+    --color-neutral-9: #272b30;
+    --color-neutral-10: #101213;
+    --color-error: var(--color-red-darker);
+    --color-warning: var(--color-yellow-darker);
+    --color-success: var(--color-green-darker);
+    --color-info: var(--color-blue-dark);
+    --color-cyan-dark-linear-gradient: linear-gradient(
+      90deg,
+      var(--color-cyan-dark) 0%,
+      var(--color-purple-lightest) 85.1%
+    );
+    --color-purple-lightest: #f6f6fd;
+    --color-purple-lighter: #efefff;
+    --color-purple-light: #cacaff;
+    --color-purple: #9d9eff;
+    --color-purple-dark: #6e71ff;
+    --color-purple-darker: #494baa;
+    --color-purple-darkest: #252655;
+    --color-purple-dark-linear-gradient: linear-gradient(
+      90.31deg,
+      var(--color-purple-dark) 0.27%,
+      var(--color-purple-lighter) 85.14%
+    );
+    --color-peach-lightest: #fff0ef;
+    --color-peach-lighter: #ffd0cb;
+    --color-peach-light: #ffb0a8;
+    --color-peach: #ff8f84;
+    --color-peach-dark: #ff6f61;
+    --color-peach-darker: #bb4338;
+    --color-peach-darkest: #55150f;
+    --color-peach-dark-linear-gradient: linear-gradient(
+      90.31deg,
+      var(--color-peach-dark) 0.27%,
+      var(--color-peach-lightest) 85.14%
+    );
+    --color-primary-gradient-linear: linear-gradient(90deg, var(--color-primary) 0%, var(--color-cyan) 100%);
+    --color-primary-gradient-radial: radial-gradient(
+      63.8% 63.8% at 62.5% 55.47%,
+      var(--color-cyan) 17.79%,
+      var(--color-cyan-dark) 100%
+    );
+    --color-tertiary: var(--color-peach-dark);
+    --color-blue-dark-linear-gradient: linear-gradient(
+      90.3deg,
+      var(--color-blue-dark) 0.27%,
+      var(--color-blue-lightest) 100%
+    );
+    --color-blue-non-standard: #6ca0dc;
+    --color-blue-non-standard-darker: #1190d4;
+    --color-pink-non-standard-darker: #db178d;
+    --color-pink-non-standard: #f8b9d4;
+
+    /* UBT_Size: the padding-<Id>, margin-<Id> and gap-<Id> classes */
+    --space-none: 0;
+    --space-xs: 4px;
+    --space-s: 8px;
+    --space-base: 16px;
+    --space-m: 24px;
+    --space-l: 32px;
+    --space-xl: 40px;
+    --space-xxl: 48px;
+    --space-sb: 12px;
+
+    /* UBT_FontSize: the font-size-<Id> classes */
+    --font-size-h1: 2rem;
+    --font-size-h2: 1.75rem;
+    --font-size-h3: 1.625rem;
+    --font-size-h4: 1.375rem;
+    --font-size-h5: 1.25rem;
+    --font-size-h6: 1.125rem;
+    --font-size-display: 2.25rem;
+    --font-size-base: 1rem;
+    --font-size-s: 0.875rem;
+    --font-size-xs: 0.75rem;
+    --font-size-label: 0.688rem;
+    --font-size-xxs: 0.625rem;
+
+    /* UBT_FontWeight: the font-<Id> classes */
+    --font-light: 300;
+    --font-regular: 400;
+    --font-semi-bold: 600;
+    --font-bold: 700;
+    --font-medium: 500;
+
+    /* Other OutSystems color variables */
+    --color-primary-hover: #295fd6;
+    --color-primary-selected: var(--color-cyan-darker);
+    --color-primary-lightest: var(--color-cyan-lightest);
+    --color-focus-outer: #ffd337;
+    --color-focus-inner: var(--color-neutral-10);
+    --color-red-lightest: #fceaea;
+    --color-red-lighter: #f6c7c7;
+    --color-red-light: #f09f9f;
+    --color-red-darkest: #2c0606;
+    --color-orange-lightest: #fef0e6;
+    --color-orange-lighter: #fcc29c;
+    --color-orange-light: #f99551;
+    --color-orange-dark: #d25806;
+    --color-orange-darker: #ad4805;
+    --color-orange-darkest: #883904;
+    --color-lime-lightest: #f1f8e8;
+    --color-lime-lighter: #c7e3a2;
+    --color-lime-light: #9ecd5c;
+    --color-lime-dark: #639c13;
+    --color-lime-darker: #51810f;
+    --color-lime-darkest: #40650c;
+    --color-teal-lightest: #e6f2ef;
+    --color-teal-lighter: #9cccbd;
+    --color-teal-light: #52a58c;
+    --color-teal-dark: #076c4d;
+    --color-teal-darker: #065940;
+    --color-teal-darkest: #044632;
+    --color-indigo-lightest: #eceffd;
+    --color-indigo-lighter: #b3c1f7;
+    --color-indigo-light: #7b92f1;
+    --color-indigo-dark: #3854c8;
+    --color-indigo-darker: #2e45a5;
+    --color-indigo-darkest: #243681;
+    --color-violet-lightest: #f1edfd;
+    --color-violet-lighter: #c6b6f6;
+    --color-violet-light: #9b7fef;
+    --color-violet-dark: #5f3dc5;
+    --color-violet-darker: #4e32a2;
+    --color-violet-darkest: #3e2880;
+    --color-grape-lightest: #f7ecfa;
+    --color-grape-lighter: #dfb2e9;
+    --color-grape-light: #c678d9;
+    --color-grape-dark: #9435ab;
+    --color-grape-darker: #7a2b8d;
+    --color-grape-darkest: #60226f;
+    --color-pink-lightest: #fbebf0;
+    --color-pink-lighter: #efadc4;
+    --color-pink-light: #e27098;
+    --color-pink-dark: #b62b5c;
+    --color-pink-darker: #96244c;
+    --color-pink-darkest: #761c3b;
+    --color-error-light: var(--color-red-lightest);
+    --color-warning-light: var(--color-yellow-lightest);
+    --color-success-light: var(--color-green-lightest);
+    --color-info-light: var(--color-blue-lightest);
+    --color-background-body: var(--color-neutral-0);
+    --color-background-login: #ffffff;
+    --color-secondary-lightest: var(--color-purple-lightest);
+    --color-secondary-selected: var(--color-purple-darker);
+    --color-tertiary-lightest: var(--color-peach-lightest);
+    --color-tertiary-selected: var(--color-peach-darker);
+    --color-overlay-neutral-10: #101213d9;
+    --color-neutral-12: #68737d;
+    --color-grey-100: #f8f9f9;
+
+    /* RGB channels of the colors (r, g, b) */
+    --color-rgb-cyan-lightest: 237, 246, 248;
+    --color-rgb-cyan-lighter: 210, 235, 238;
+    --color-rgb-cyan-light: 170, 216, 224;
+    --color-rgb-cyan: 78, 174, 194;
+    --color-rgb-cyan-dark: 0, 129, 156;
+    --color-rgb-cyan-darker: 0, 86, 104;
+    --color-rgb-cyan-darkest: 0, 86, 104;
+    --color-rgb-purple-lightest: 246, 246, 253;
+    --color-rgb-purple-lighter: 239, 239, 255;
+    --color-rgb-purple-light: 202, 202, 255;
+    --color-rgb-purple: 157, 158, 255;
+    --color-rgb-purple-dark: 110, 113, 255;
+    --color-rgb-purple-darker: 73, 75, 170;
+    --color-rgb-purple-darkest: 37, 38, 85;
+    --color-rgb-peach-lightest: 255, 240, 239;
+    --color-rgb-peach-lighter: 255, 208, 203;
+    --color-rgb-peach-light: 255, 176, 168;
+    --color-rgb-peach: 255, 143, 132;
+    --color-rgb-peach-dark: 255, 111, 97;
+    --color-rgb-peach-darker: 187, 67, 56;
+    --color-rgb-peach-darkest: 85, 21, 15;
+    --color-rgb-primary: var(--color-rgb-cyan-dark);
+    --color-rgb-secondary: var(--color-rgb-purple-dark);
+    --color-rgb-tertiary: var(--color-rgb-peach-dark);
+    --color-rgb-blue-lightest: 225, 229, 255;
+    --color-rgb-blue-lighter: 196, 202, 238;
+    --color-rgb-blue-light: 153, 164, 225;
+    --color-rgb-blue: 107, 124, 212;
+    --color-rgb-blue-dark: 17, 44, 186;
+    --color-rgb-blue-darker: 14, 35, 149;
+    --color-rgb-blue-darkest: 7, 18, 74;
+    --color-rgb-green-lightest: 234, 243, 235;
+    --color-rgb-green-lighter: 202, 224, 206;
+    --color-rgb-green-light: 163, 201, 171;
+    --color-rgb-green: 122, 178, 133;
+    --color-rgb-green-dark: 41, 130, 59;
+    --color-rgb-green-darker: 25, 78, 35;
+    --color-rgb-green-darkest: 8, 26, 12;
+    --color-rgb-yellow-lightest: 253, 246, 229;
+    --color-rgb-yellow-lighter: 250, 232, 191;
+    --color-rgb-yellow-light: 246, 215, 145;
+    --color-rgb-yellow: 241, 197, 97;
+    --color-rgb-yellow-dark: 233, 161, 0;
+    --color-rgb-yellow-darker: 140, 97, 0;
+    --color-rgb-yellow-darkest: 47, 32, 0;
+    --color-rgb-red-lightest: 252, 234, 234;
+    --color-rgb-red-lighter: 246, 199, 199;
+    --color-rgb-red-light: 240, 159, 159;
+    --color-rgb-red: 233, 117, 117;
+    --color-rgb-red-dark: 220, 32, 32;
+    --color-rgb-red-darker: 132, 19, 19;
+    --color-rgb-red-darkest: 44, 6, 6;
+    --color-rgb-error: var(--color-rgb-red-darker);
+    --color-rgb-warning: var(--color-rgb-yellow-darker);
+    --color-rgb-success: var(--color-rgb-green-darker);
+    --color-rgb-info: var(--color-rgb-blue-dark);
+    --color-rgb-neutral-0: 255, 255, 255;
+    --color-rgb-neutral-1: 248, 249, 250;
+    --color-rgb-neutral-2: 241, 243, 245;
+    --color-rgb-neutral-3: 233, 236, 239;
+    --color-rgb-neutral-4: 222, 226, 230;
+    --color-rgb-neutral-5: 206, 212, 218;
+    --color-rgb-neutral-6: 173, 181, 189;
+    --color-rgb-neutral-7: 106, 113, 120;
+    --color-rgb-neutral-8: 79, 87, 94;
+    --color-rgb-neutral-9: 39, 43, 48;
+    --color-rgb-neutral-10: 16, 18, 19;
+
+    /* Other OutSystems space and font variables */
+    --font-size-h0: 3.625rem;
+  }
+}

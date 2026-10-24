@@ -12,10 +12,24 @@ import { screenOf } from '@/platform/navigation/paths';
    On a navigation the new screen's files are added at once and the others stay until the screen transition has ended,
    so the leaving screen keeps its styles while it leaves: BaseWebScreen.loadResources → CSSHelper.scheduleCSSPreparation
    (OutSystemsReactView.js offsets 181383, 200146) removes them on the runtime TransitionEnd, only when no newer
-   preparation started since. */
+   preparation started since.
+   Each file goes into the `legacy` cascade layer (styles/layers.css), so the CSS of the clone (`app` layer) wins over
+   it whatever the specificity. The files stay unchanged: each <link> loads a data: stylesheet that only imports its
+   file with `layer(legacy)`. A <link> and not a <style>: it keeps the load event (fired once the import has loaded)
+   and the stylesheet links that parity_check.cjs copies into the reference page. The import URL is absolute because a
+   data: URL is no base for a relative URL; inside the imported file, url()s still resolve against the file. */
 
 /** URL folder of the original stylesheets (public/UBTConnect/css). */
 export const CSS_PATH = '/UBTConnect/css/';
+
+/** The cascade layer of the original stylesheets (styles/layers.css). */
+const LEGACY_LAYER = 'legacy';
+
+/** The href of the link that loads an original stylesheet into the legacy layer; `base` resolves CSS_PATH. */
+export function legacyHref(file: string, base: string): string {
+  const url = new URL(CSS_PATH + file, base).href;
+  return `data:text/css;charset=utf-8,${encodeURIComponent(`@import url("${url}") layer(${LEGACY_LAYER});`)}`;
+}
 
 /** The ordered stylesheet files of the screen a URL path shows; unknown paths get the default screen's set. */
 export function stylesheetsOf(pathname: string): readonly string[] {
@@ -26,15 +40,16 @@ export function stylesheetsOf(pathname: string): readonly string[] {
 /** Settles when a link added by syncStylesheets has loaded (or failed: the original shows the screen then too). */
 const loading = new WeakMap<HTMLLinkElement, Promise<void>>();
 
+/** The original file of a link that syncStylesheets added (`data-legacy-css`), else null. */
 function fileOf(link: HTMLLinkElement): string | null {
-  const href = link.getAttribute('href') ?? '';
-  return link.rel === 'stylesheet' && href.startsWith(CSS_PATH) ? href.slice(CSS_PATH.length) : null;
+  return link.rel === 'stylesheet' ? (link.dataset.legacyCss ?? null) : null;
 }
 
 function createLink(doc: Document, file: string): HTMLLinkElement {
   const link = doc.createElement('link');
   link.rel = 'stylesheet';
-  link.href = CSS_PATH + file;
+  link.dataset.legacyCss = file;
+  link.href = legacyHref(file, doc.baseURI);
   loading.set(
     link,
     new Promise<void>((resolve) => {

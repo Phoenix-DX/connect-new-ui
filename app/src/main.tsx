@@ -4,7 +4,10 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router/dom';
 import { queryClient } from './api/client/queryClient';
 import { router } from './app/router';
-import './styles/review.css'; // original OutSystems CSS: per screen, by shell/StylesheetHost (public/UBTConnect/css)
+// layer order first (legacy, app); the original OutSystems CSS comes per screen, by legacy/os/StylesheetHost
+import './styles/layers.css';
+import './styles/tokens.css';
+import './styles/review.css';
 import { applyDeviceClasses } from './platform/device/device';
 import { initFlagOverrides } from './platform/flags';
 import { config, FLAG_OVERRIDES_BUILT, MOCKS_BUILT } from './platform/config/config';
