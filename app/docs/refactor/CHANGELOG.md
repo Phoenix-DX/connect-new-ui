@@ -610,3 +610,9 @@
 
 - `pages/OrbitAdminEventDetail` is a page with a flow hook (`hooks/useAdminEventDetail.ts`, `hooks/adminEventDetailState.ts`) and a props-only view (`components/AdminEventDetailView.tsx`). It has no container.
 - `api.ts` and `types.ts` are deleted. `api/image` gets `repository.ts` with `fetchLegacySignedImageURL`; the hook also calls `api/event` and `api/member`. The OrbitAdminEventDetail chunk grows 0.69 kB gzip (not an entry route).
+
+## P6-G5-B-EventDetail - refactor(P6-G5-B): EventDetail as page
+
+- `pages/EventDetail` is a page with a flow hook (`hooks/useEventDetail.ts`, `hooks/eventDetailState.ts`) and a props-only view (`components/EventDetailView.tsx`). It has no container. The hook sets `beforePaint: true` (decision W28) because the old block ran OnReady in a `useLayoutEffect`.
+- `api.ts` and `types.ts` are deleted; the hook calls `fetchEventDetails`, `fetchHostSurveyStatus`, `fetchHasDocuments` and `fetchHasQRCode` of `api/event`. Dependency-cruiser warnings 210 to 209 (rule 9 of the old block gone).
+- The EventDetail chunk grows 1.06 kB gzip (not an entry route); HomeFeed and Login change by +0.05 and +0.02 kB (W21 tripwire not reached).

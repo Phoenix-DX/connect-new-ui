@@ -212,3 +212,5 @@ P6-G5-B-OrbitLanding: `pages/OrbitLanding/api.ts` is deleted (its rows in the ho
 P6-G5-B-OrbitAdminLanding: `pages/OrbitAdminLanding/api.ts` is deleted (its 2 rows in the app table above). The hooks `useAdminLanding` and `useNavigateToEventDetail` call `fetchAdminEvents` (Get_AdminEventsList) and `fetchMilestoneScanFF` (ActionGetMilestoneScanFF) of `@/api/event` directly.
 
 P6-G5-B-OrbitAdminEventDetail: `pages/OrbitAdminEventDetail/api.ts` is deleted (its 3 rows in the member, event and app tables above). The hook `useAdminEventDetail` calls `fetchMember` of `@/api/member`, `fetchAdminEventInformation` and `fetchScanEventQRCode` of `@/api/event`, and `fetchLegacySignedImageURL` (GetCacheableSignedImageURL, `ActionGetSignedImagesInBulk` of Connect2_LegacyShared) of `@/api/image`.
+
+P6-G5-B-EventDetail: `pages/EventDetail/api.ts` is deleted (its row in the app table above). The hook `useEventDetail` calls `fetchEventDetails`, `fetchHostSurveyStatus`, `fetchHasDocuments` and `fetchHasQRCode` of `@/api/event` directly.

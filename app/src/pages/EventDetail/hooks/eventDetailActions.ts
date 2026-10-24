@@ -1,12 +1,14 @@
+import type { Milestone_Screen } from '@/api/event';
+import { ApplicationEvents_Orbit_GenerateQRCode } from '@/pages/EventDetail/staticEntities';
 import { log } from '@/platform/log/log';
 import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { MilestoneTimeType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { Milestone_Screen } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
-import { ApplicationEvents_Orbit_GenerateQRCode } from './staticEntities';
 
-/* Client actions of Connect2_OrbitMobile_MUI that ScreenBlock_EventDetail calls, ported 1:1. `C:<n>` = line of
-   migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js. Dates are OutSystems values as text; "" is the
-   null date. */
+/** The client actions of Connect2_OrbitMobile_MUI that ScreenBlock_EventDetail calls, ported 1:1, without React.
+    useEventDetail, the reducer of eventDetailState and EventDetailView call them. `C:<n>` = line of
+    migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js. Dates are OutSystems values as text; "" is the
+    null date.
+    @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_EventDetail */
 
 /** Long Integer SequenceNo as a number for ListSort. */
 const sequenceNo = (m: Milestone_Screen): number => Number(m.SequenceNo ?? '0') || 0;

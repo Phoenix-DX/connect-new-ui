@@ -1,4 +1,5 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import {
   ORBIT_MILESTONE_TYPES,
@@ -7,7 +8,14 @@ import {
   type OrbitMilestone,
   type OrbitMilestoneTypeMock,
 } from '@/mocks/fictional/orbit';
-import type { Get_EventDetailsWire, MilestoneWire } from './types';
+
+/** DataActionGet_EventDetails of ScreenBlock_EventDetail as it travels, typed by the API contract (captured shape:
+    analysis/calls.md § DataActionGet_EventDetails). */
+type Get_EventDetailsWire = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_EventDetail/DataActionGet_EventDetails'>
+>;
+/** Milestone_ScreenRec as it travels. */
+type MilestoneWire = Get_EventDetailsWire['Response']['Milestones']['List'][number];
 
 /* The four data actions of ScreenBlock_EventDetail were not recorded: fictional data from the shared Orbit world
    (src/mocks/fictional/orbit.ts) in the captured shapes (analysis/calls.md). Captured (dom/default.html): event 7301

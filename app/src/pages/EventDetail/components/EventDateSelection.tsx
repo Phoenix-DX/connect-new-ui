@@ -1,14 +1,13 @@
-// @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection
 import { useEffect, useRef } from 'react';
+import type { DayFilter, EventDateFilters } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DaySelectorList } from '@/components/orbit/DaySelectorList';
 import { MilestoneTimeType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { DayFilter } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
-import type { DateFilters } from '@/pages/EventDetail/types';
 
-/* EventDateSelection (sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection.mvc.js = ES; captured
-   dom/default.html:198-246). Only this route uses it. */
+/** EventDateSelection (sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection.mvc.js = ES; captured
+    dom/default.html:198-246). Only this route uses it.
+    @origin Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection */
 
 /** TimeTypeEndFilter: the before / after edge selection. */
 interface TimeTypeEndFilter {
@@ -27,7 +26,7 @@ export interface EventDateSelectionProps {
   /** OutSystems instance id of the block (`b1-$b7`). */
   id: string;
   /** In_DateList (DateFilterRec): read once in OnReady (the block has no OnParametersChanged). */
-  inDateList: DateFilters;
+  inDateList: EventDateFilters;
   /** Event ClickedDate(MilestoneTimeTypeId, SelectedDate, Position). */
   onClickedDate: (milestoneTimeTypeId: string, selectedDate: string, position: number) => void;
 }

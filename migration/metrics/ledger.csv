@@ -686,3 +686,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,308215,refactor-dev,,P6-G5-B-OrbitAdminEventDetail opus
 2026-10-24,refactor,other,31764,refactor-docs,,P6-G5-B-OrbitAdminLanding sonnet
 2026-10-24,refactor,verify,46056,refactor-test,,P6-G5-B-OrbitAdminEventDetail sonnet
+2026-10-24,refactor,build,394209,refactor-dev,,P6-G5-B-EventDetail opus
+2026-10-24,refactor,other,42737,refactor-docs,,P6-G5-B-OrbitAdminEventDetail sonnet
+2026-10-24,refactor,verify,31863,refactor-test,,P6-G5-B-EventDetail sonnet
