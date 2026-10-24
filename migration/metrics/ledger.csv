@@ -778,3 +778,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,fix,13110,refactor-dev,,P6-end loop 1 sonnet
 2026-10-24,refactor,verify,18297,refactor-test,,P6-end loop 1 sonnet
 2026-10-24,refactor,verify,719,refactor-test,,P6-end loop 1 sonnet
+2026-10-24,refactor,other,40733,refactor-docs,,P6-end sonnet
+2026-10-24,refactor,fix,47282,refactor-developer,,"F23 test flakes (Updates_SingleList, EventBooklet, Services), sonnet"

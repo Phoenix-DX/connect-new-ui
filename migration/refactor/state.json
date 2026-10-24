@@ -6,12 +6,7 @@
   "text": "Giờ tôi sẽ đi ăn tới 3h30 chiều việt nam. Bạn hãy chạy Refactory plan, nếu định hỏi gì thì hãy nhờ opus suggest và auto chọn recommand nhé, ko cần chờ tôi.",
   "at": "2026-10-22T11:44:17"
  },
- "current": {
-  "step": "P6-end",
-  "stage": "commit",
-  "loop": 1,
-  "since": "2026-10-24T12:16:29"
- },
+ "current": null,
  "steps": {
   "P0-1": {
    "status": "done",
@@ -1561,12 +1556,17 @@
    "finished": "2026-10-24T11:56:53"
   },
   "P6-end": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T11:57:07",
    "tokens": {
     "dev": 45792,
-    "test": 51475
-   }
+    "test": 51475,
+    "docs": 40733
+   },
+   "commit": "ad857bd3",
+   "gate": "ci: pass (loop 1 formatting fix; rerun once, Services flake F23); parity strict --all: 64/0 (OutSystems), 64/0 (self); step guard: no file or import of src/screens/; arch baseline 69 rows, 0 new; HomeFeed 244.46 kB, Login 184.48 kB",
+   "loops": 1,
+   "finished": "2026-10-24T12:16:30"
   }
  },
  "gates": {

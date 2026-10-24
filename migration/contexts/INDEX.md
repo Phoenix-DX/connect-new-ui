@@ -6,7 +6,7 @@ section "Context notes".
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
 - 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)).
-- Branch `refactor/architecture`: Phases 0 to 5 done; P6 groups G1–G5 done ([context-047](context-047-refactor-p6-g5.md)); next G6 (patches prefetched), P6-end, P7 (P7-0…P7-2 prefetched). Scope (user 2026-10-23 evening): all in-scope steps (P6, P7) run automatically, P8/P9 only on order. Resume `/refactor-master continue`. Dev server of this repo on port 5174.
+- Branch `refactor/architecture`: Phases 0 to 6 done ([context-048](context-048-refactor-phase6-done.md)); next P7-0 … P7-4, P7-6, P7-5 (patches prefetched), then stop. Scope (user 2026-10-23 evening): all in-scope steps (P6, P7) run automatically, P8/P9 only on order. Resume `/refactor-master continue`. Dev server of this repo on port 5174.
 - Auto mode ON since 2026-10-23 13:43 (re-confirmed evening, 5-minute reports): Fable + Opus decide for the user (Window 4). Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`). Tools: `migration/tools/` (README).
 
