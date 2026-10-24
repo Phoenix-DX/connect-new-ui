@@ -1,4 +1,4 @@
-import { act, fireEvent, waitFor } from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import type { Location } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { orbitEventBooklets } from '@/mocks/fictional/orbit';
@@ -118,7 +118,13 @@ describe('EventBooklet page', () => {
       expect(at()).toBe(`/UBTConnect/HouseholdDetails?HouseholdId=${first?.HouseholderId ?? ''}`);
     });
     const calls = calledActions().length;
-    fireEvent.click(document.querySelector('button') as Element);
+    // The booklet leaves the document after the screen transition (a timer). Wait for it: in a slow run the first
+    // button was still one of the booklet and the back click did not reach the stub.
+    const backButton = await screen.findByText('back from HouseholdDetails');
+    await waitFor(() => {
+      expect(rows()).toHaveLength(0);
+    });
+    fireEvent.click(backButton);
     await loaded();
     expect(at()).toBe(`${PATH}?In_EventId=7301`);
     expect(rows()).toHaveLength(shown);

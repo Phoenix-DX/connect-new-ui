@@ -4,6 +4,7 @@ import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/f
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
+import { server } from '@/test/setup';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import Services from './ServicesPage';
 
@@ -19,6 +20,14 @@ const routes = { [HOME]: <p>HomeFeed screen</p>, [MENU]: <p>Menu screen</p>, [PA
 const rowLabels = (listId: string) =>
   [...(document.getElementById(listId)?.children ?? [])].map((row) => row.textContent);
 const icon = (blockId: string) => document.getElementById(blockId)?.querySelector('div[data-container]') as Element;
+/** Resolves when the mock server has answered the save call: a failed save must be answered inside its own test, or
+    a late answer meets the next test (storage reset, mode no longer "error") and saves into the shared mock lists. */
+const saveAnswered = () =>
+  new Promise<void>((resolve) => {
+    server.events.on('response:mocked', ({ request }) => {
+      if (new URL(request.url).pathname === `/api/${SAVE}`) resolve();
+    });
+  });
 const saveButton = () => screen.getByRole('button', { name: 'Save changes' });
 
 /** Opens the page after HomeFeed and Menu, and waits for the lists. */
@@ -102,8 +111,10 @@ describe('Services page', () => {
     await open();
     fireEvent.click(icon('l2-37_0-$b26'));
     sessionStorage.setItem('mock:mock', 'error');
+    const answered = saveAnswered();
+    fireEvent.click(saveButton());
     await act(async () => {
-      fireEvent.click(saveButton());
+      await answered;
       await new Promise((resolve) => setTimeout(resolve, 20));
     });
     expect(calledActions()).toEqual([

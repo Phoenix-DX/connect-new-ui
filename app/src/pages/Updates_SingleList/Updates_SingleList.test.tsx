@@ -118,7 +118,14 @@ describe('Updates_SingleList page, read state', () => {
     });
     const fetches = calledActions().filter((c) => c.endsWith('DataActionFetchUpdates')).length;
 
-    fireEvent.click(await screen.findByText('back from the carousel'));
+    const backButton = await screen.findByText('back from the carousel');
+    // The list screen leaves the document after the screen transition (a timer). While it is still there, its
+    // CommonUiLayout back handler would run on the back click and redirect Home with its own timer; in a slow run
+    // that happened. Wait until the screen has left, as in a fast run.
+    await waitFor(() => {
+      expect(document.getElementById('List_Updates')).toBeNull();
+    });
+    fireEvent.click(backButton);
     await listLoaded();
 
     expect(at()).toBe(PATH);
