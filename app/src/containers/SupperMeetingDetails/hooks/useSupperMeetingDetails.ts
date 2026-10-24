@@ -41,17 +41,16 @@ export interface SupperMeetingDetailsFlows {
   onClickNavigateToHousehold: (householdId: string, householdIdList: string[]) => void;
 }
 
-/** A view that the view cache restores starts again from the skeletons, and OnReady refreshes both data actions: the
-    blocks keep no state over a back navigation (OutSystems skips the skeleton and the refresh of a restored view; the
-    port before the refactor did not, and this hook keeps that behavior). */
-const restartRestoredView = (): SupperMeetingDetailsState => INITIAL_SUPPER_MEETING_DETAILS_STATE;
-
-/** The state and the flows of the supper meeting details.
+/** The state and the flows of the supper meeting details. The view cache keeps the state of both blocks.
     - Neither block has OnParametersChanged: In_SubdivsionId is read once.
     - OnReady: the refresh of DataActionGetSubdivisionHouseholds (the child block SupperMeeting_HouseholdList), then
       the refresh of DataActionGetSubdivision, both started at once, in the call order of the port before the
       refactor. A failed GetSubdivision keeps the skeleton; a failed GetSubdivisionHouseholds sets the Error status and
       keeps the skeleton rows. Neither failure goes to the flow handler.
+    - A view that the view cache restored (a back navigation) keeps its saved state and makes no call: each block skips
+      its skeleton and its refresh when it is restored from the cache (Get_IsViewRestoredFromCache in OnReady). A
+      block whose data was not fetched in the saved state (no saved state, or the user left before the answer) refreshes
+      as on a new visit.
     - OnClick_NavigateToHousehold: with the carousel flag, the preload object of every listed household and
       HouseholdCarousel; otherwise HouseholdDetails.
     - Decision W23: OnReady runs once per mount (StrictMode runs the mount effect again: the second run only replaces
@@ -64,18 +63,17 @@ export function useSupperMeetingDetails(
   const navigate = useOsNavigate();
   const readyStarted = useRef(false);
   const newestReadyRun = useRef<IsAlive>(() => true);
-  const { state, dispatch } = useFlowState({
+  const { state, dispatch, latest } = useFlowState({
     viewName: `Directory_SupperMeetings.SupperMeeting_DetailsBlock#${subdivisionId}`,
     reducer: supperMeetingDetailsReducer,
     initial: INITIAL_SUPPER_MEETING_DETAILS_STATE,
-    restore: restartRestoredView,
     parameters: { subdivisionId },
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive) => {
+    onReady: (isAlive, restored) => {
       newestReadyRun.current = isAlive;
       if (readyStarted.current) return Promise.resolve();
       readyStarted.current = true;
-      return onReady();
+      return onReady(restored);
     },
   });
 
@@ -107,8 +105,13 @@ export function useSupperMeetingDetails(
     write({ type: 'subdivisionFetched', subdivision });
   };
 
-  const onReady = async () => {
-    await Promise.all([refreshHouseholds(), refreshSubdivision()]);
+  /** OnReady of both blocks. A block restored from the cache with its data does nothing. */
+  const onReady = async (restored: boolean) => {
+    const saved = latest.current;
+    await Promise.all([
+      restored && saved.households.isDataFetched ? undefined : refreshHouseholds(),
+      restored && saved.isDataFetched ? undefined : refreshSubdivision(),
+    ]);
   };
 
   const onClickNavigateToHousehold = (householdId: string, householdIdList: string[]) => {

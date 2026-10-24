@@ -87,6 +87,11 @@ export const INITIAL_ACCOMMODATION_HOST_STATE: AccommodationHostState = {
   hasData: false,
 };
 
+/** OnReady ended in this state: GetAccommodationHost answered and IsFetchingData is False again. A view that the view
+    cache restored with it keeps it and makes no call. */
+export const hasAccommodationHostData = (state: AccommodationHostState): boolean =>
+  state.isDataFetched && !state.isFetchingData;
+
 const withPopup = (state: AccommodationHostState, patch: Partial<ContactPopupData>): ContactByPhonePopupData => ({
   ...state.contactByPhoneData,
   ContactPopupData: { ...state.contactByPhoneData.ContactPopupData, ...patch },

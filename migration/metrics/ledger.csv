@@ -823,3 +823,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,232451,refactor-dev,,F25 opus
 2026-10-24,refactor,build,341490,refactor-dev,,F22-26 opus
 2026-10-24,refactor,verify,26405,refactor-test,,F25 sonnet
+2026-10-24,refactor,other,23539,refactor-docs,,F25 sonnet
+2026-10-24,refactor,verify,38259,refactor-test,,F22-26 sonnet
+2026-10-24,refactor,other,36074,refactor-docs,,F22-26 sonnet
+2026-10-24,refactor,build,47339,refactor-dev,,"F22-26 opus (loop 1, increment over 341490)"
+2026-10-24,refactor,verify,28337,refactor-test,,F22-26 sonnet (re-test)

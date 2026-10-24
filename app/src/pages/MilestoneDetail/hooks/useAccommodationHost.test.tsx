@@ -1,6 +1,6 @@
-import { act, render, renderHook } from '@testing-library/react';
+import { act, render, renderHook, waitFor } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter, useLocation } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   fetchAccommodationHost,
@@ -13,7 +13,7 @@ import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { addLogSink, type LogEntry } from '@/platform/log/log';
 import { useWasRestoredFromCache } from '@/platform/navigation/hooks';
-import { resetViewCache } from '@/platform/navigation/viewCache';
+import { enterView, resetViewCache, saveView } from '@/platform/navigation/viewCache';
 import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/lib/legacyShared/actions';
 import { checkDirectoryAccess, getFormattedDateTimeById } from '@/lib/orbit/actions';
 import { openInApp_TryOpenFileInApp } from '@/lib/ubtConnectUtils/actions';
@@ -103,8 +103,16 @@ const events = (): AccommodationHostEvents => ({
   onNavigateToGuestArrangements: vi.fn(),
 });
 const wrapper = ({ children }: { children: ReactNode }) => <MemoryRouter>{children}</MemoryRouter>;
+/** The history entry of the memory router: the view cache keeps its saved view under this key. */
+let entryKey = '';
 function renderFlows(handlers: AccommodationHostEvents = events()) {
-  const view = renderHook(() => useAccommodationHost(INPUTS, handlers), { wrapper });
+  const view = renderHook(
+    () => {
+      entryKey = useLocation().key;
+      return useAccommodationHost(INPUTS, handlers);
+    },
+    { wrapper },
+  );
   return { ...view, handlers };
 }
 const settle = () => act(() => Promise.resolve());
@@ -149,6 +157,8 @@ beforeEach(() => {
 afterEach(() => {
   removeSink();
   vi.clearAllMocks();
+  // A restore test sets it to true; the next test starts with a new visit.
+  vi.mocked(useWasRestoredFromCache).mockReturnValue(false);
 });
 
 describe('useAccommodationHost: OnReady', () => {
@@ -183,16 +193,67 @@ describe('useAccommodationHost: OnReady', () => {
     expect(result.current.hasDocument).toBe(true);
   });
 
-  it('fetches again on a view that the view cache restored, from the record defaults, as the old port (W27)', async () => {
+  it('a back navigation to the restored view keeps the saved state and makes no call (no skeleton)', async () => {
+    vi.mocked(fetchAccommodationHostDocument).mockResolvedValue({
+      DocumentURL: 'https://files.example.org/rooms.pdf',
+      DocumentName: 'Rooms',
+    });
+    const first = renderFlows();
+    await waitFor(() => {
+      expect(first.result.current).toEqual(
+        expect.objectContaining({ isFetchingData: false, isDataFetched: true, hasDocument: true }),
+      );
+    });
+    // The user leaves the entry (the view cache saves the block), then comes back to it by a back navigation.
+    saveView(entryKey, undefined);
+    first.unmount();
+    enterView(entryKey, true, undefined);
     vi.mocked(useWasRestoredFromCache).mockReturnValue(true);
     const { result } = renderFlows();
-    expect(result.current.isFetchingData).toBe(true);
-    expect(result.current.isDataFetched).toBe(false);
+    expect(result.current).toEqual(
+      expect.objectContaining({
+        isFetchingData: false,
+        isDataFetched: true,
+        hasData: true,
+        hasDocument: true,
+        accommodationData: RESULT.accommodationData,
+      }),
+    );
     await flush();
     vi.mocked(useWasRestoredFromCache).mockReturnValue(false);
     expect(fetchAccommodationHost).toHaveBeenCalledTimes(1);
     expect(fetchAccommodationHostDocument).toHaveBeenCalledTimes(1);
-    expect(result.current.isDataFetched).toBe(true);
+  });
+
+  it('a restored view without a saved state for the block fetches as a new visit, with no crash', async () => {
+    vi.mocked(useWasRestoredFromCache).mockReturnValue(true);
+    const { result } = renderFlows();
+    expect(result.current.isFetchingData).toBe(true);
+    expect(result.current.isDataFetched).toBe(false);
+    await waitFor(() => {
+      expect(result.current.isDataFetched).toBe(true);
+      expect(result.current.isFetchingData).toBe(false);
+    });
+    expect(fetchAccommodationHost).toHaveBeenCalledTimes(1);
+    expect(fetchAccommodationHostDocument).toHaveBeenCalledTimes(1);
+  });
+
+  it('a restored view saved before OnReady ended runs OnReady again', async () => {
+    const host = deferred<AccommodationHostResult>();
+    vi.mocked(fetchAccommodationHost).mockReturnValueOnce(host.promise);
+    // OnReady starts before the first paint: GetAccommodationHost is waiting when the user leaves.
+    const first = renderFlows();
+    expect(first.result.current.isFetchingData).toBe(true);
+    saveView(entryKey, undefined);
+    first.unmount();
+    enterView(entryKey, true, undefined);
+    vi.mocked(useWasRestoredFromCache).mockReturnValue(true);
+    const { result } = renderFlows();
+    await waitFor(() => {
+      expect(result.current.isDataFetched).toBe(true);
+      expect(result.current.isFetchingData).toBe(false);
+    });
+    expect(fetchAccommodationHost).toHaveBeenCalledTimes(2);
   });
 
   it('sends a failure of GetAccommodationHost to the flow handler and does not ask for the document', async () => {

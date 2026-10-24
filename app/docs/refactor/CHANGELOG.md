@@ -834,3 +834,9 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - Architecture: `platform/navigation/navigationGate.ts` blocks a back navigation while the screen being left is still in the document (OutSystems NH:903-917, user decision option A, 2026-10-24). A back that starts inside the gate is blocked too.
 - Unable-to-Host `HostSurvey` back goes back one screen (it recursed before). Documented in `app/docs/guides/shell.md`.
 - Gate: ci: pass; parity visual --all: 64/64 (OutSystems), 64/64 (self); e2e:pwa 9/9; browser check 4/4.
+
+## F22-26 - restored views as OutSystems (SupperMeeting, MilestoneDetail, AssembleDetail)
+
+- Architecture: a back navigation restores the saved view state and makes no call, with no time limit (user decision option C, 2026-10-24). Three places: `containers/SupperMeetingDetails`, `pages/MilestoneDetail/hooks/useAccommodationHost.ts`, the blocks of `pages/AssembleDetail` (new `hooks/useLocalitySubdivisionList.ts`).
+- Skip rule: OnReady skips a call when the view is "restored and the block's saved state has its data". Without saved data, the block fetches as on a forward visit. The 2 former MilestoneDetail crash paths now restore with no call.
+- Gate: ci: pass; parity visual --all: 64/64 (OutSystems), 64/64 (self); arch baseline 0 new.

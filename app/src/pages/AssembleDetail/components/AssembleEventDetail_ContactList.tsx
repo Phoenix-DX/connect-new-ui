@@ -20,7 +20,7 @@ export function AssembleEventDetail_ContactList({
   ...events
 }: AssembleEventDetail_ContactListProps) {
   const scope = id.replace(/\$/g, '');
-  const { contacts, isDataFetched } = useAssembleEventContactList(assembleEventContactIdList);
+  const { contacts, isDataFetched } = useAssembleEventContactList(id, assembleEventContactIdList);
   return (
     <OSBlock name="Assemble.AssembleEventDetail_ContactList" id={id}>
       <OSList

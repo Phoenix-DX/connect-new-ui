@@ -15,7 +15,7 @@ const CONNECT_ENTITY_HOUSEHOLD = 'Household';
 /** The id of a skeleton row (the null identifier). */
 export const SKELETON_ID = '0';
 
-/** The variables of the block (not kept by the view cache). */
+/** The variables of the block. The view cache keeps them. */
 export interface AttendeeSubdivisionState {
   /** IsSelected: the hall's households show. */
   isSelected: boolean;
@@ -56,20 +56,23 @@ export function withSkeletonRows(s: AssembleAttendeeSubdivision): AssembleAttend
   return rows;
 }
 
-/** The variables after OnReady's first assignments: a new visit has the local copy with the skeleton rows; a view
-    that the view cache restored has the hall's households of the input (collapsed in both cases). */
+/** The variables of a new visit after OnReady's first assignments: the local copy of the input, collapsed, with the
+    skeleton rows (BuildSkeletonList). A view that the view cache restored starts from its saved variables instead. */
 export const initialAttendeeSubdivisionState = (
   subdivision: AssembleAttendeeSubdivision,
-  restored: boolean,
 ): AttendeeSubdivisionState => ({
   isSelected: false,
-  rows: restored ? subdivision.SubdivisionHouseholdList : withSkeletonRows(subdivision),
+  rows: withSkeletonRows(subdivision),
   countryCode: '',
   localityId: '0',
   isShareOpen: false,
   shareableObjectId: '',
   shareable: {},
 });
+
+/** GetCacheableSubdivision_V2 answered with the hall: LocalityId is the hall's locality ("0" before). A view that the
+    view cache restored with it keeps its rows and makes no call. */
+export const hasHallHouseholds = (state: AttendeeSubdivisionState): boolean => state.localityId !== '0';
 
 /** The households of GetCacheableSubdivision_V2 as the hall's rows: Id, Name, FamilyNames = Family, Location,
     IsBookmarked and AvatarURL = Photo340's Bucket, Path, Type and SignedURL (IsDisabled at its default, False). A

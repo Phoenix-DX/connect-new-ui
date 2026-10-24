@@ -41,7 +41,7 @@ export function AssembleEventDetail_AttendeeSubdivision({
   ...events
 }: AssembleEventDetail_AttendeeSubdivisionProps) {
   const scope = id.replace(/\$/g, '');
-  const { state, ...flows } = useAttendeeSubdivision(subdivision, `${scope}-Bookmark_Note`, flags, events);
+  const { state, ...flows } = useAttendeeSubdivision(id, subdivision, flags, events);
   const { isSelected } = state;
   return (
     <OSBlock name="Assemble.AssembleEventDetail_AttendeeSubdivision" id={id}>

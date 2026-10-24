@@ -43,12 +43,12 @@ once, and the household list gets the same id.
 - OnClick_NavigateToHousehold (Event_OnClick_Household of the household list): with the flag, SetPreloadObject (the
   CarouselHouseholdItem of every listed household) and HouseholdCarousel(In_StartingHouseholdId); otherwise
   HouseholdDetails(HouseholdId).
+- A view that the view cache restores (a back navigation) starts from its saved state, with no skeleton. OnReady skips
+  a data action when the view is restored and the saved state has its data (`households.isDataFetched`,
+  `isDataFetched`). With no saved data, OnReady runs as on a new visit (user decision F22-26, 2026-10-24).
 - Decision W23: OnReady runs once per mount (a once-guard for StrictMode). After an unmount, a started flow skips its
   state writes only; its calls already ran. `hooks/useSupperMeetingDetails.test.tsx` covers it.
 
 ## Not settled
 
-- OutSystems skips the skeletons and the refreshes of a view that the view cache restores. The port before the
-  refactor kept no block state over a back navigation: it showed the skeletons and refreshed both data actions. The
-  hook keeps that behavior (`restore` gives the first state), and the page test covers it.
 - A failed fetch: the OutSystems runtime also hands the exception to the block's handleError; the port does not.

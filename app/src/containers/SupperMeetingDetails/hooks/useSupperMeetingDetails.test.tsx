@@ -1,6 +1,6 @@
-import { act, renderHook } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter, useLocation } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   fetchSubdivisionDetails,
@@ -11,6 +11,7 @@ import {
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { getPreloadObject } from '@/platform/navigation';
 import { resetNavigation } from '@/platform/navigation/testRouter';
+import { enterView, saveView } from '@/platform/navigation/viewCache';
 import { INITIAL_SUPPER_MEETING_DETAILS_STATE, supperMeetingDetailsReducer } from './supperMeetingDetailsState';
 import { useSupperMeetingDetails } from './useSupperMeetingDetails';
 
@@ -92,6 +93,37 @@ const callOrder = () =>
   ]
     .sort(([a], [b]) => a - b)
     .map(([, name]) => name);
+
+/** The history entry of the memory router: the view cache keeps its saved view under this key. */
+let entryKey = '';
+/** The hook in the first entry of a memory router (the entry of a later back navigation). */
+function renderInEntry() {
+  return renderHook(
+    () => {
+      entryKey = useLocation().key;
+      return useSupperMeetingDetails('1210', CAROUSEL_ON);
+    },
+    { wrapper },
+  );
+}
+/** The user leaves the entry (the view cache saves the mounted view), then comes back to it by a back navigation. */
+function leaveAndComeBack(view: { unmount: () => void }) {
+  saveView(entryKey, undefined);
+  view.unmount();
+  enterView(entryKey, true, undefined);
+}
+/** Waits until both data actions answered (the supper meeting and its households are shown). */
+async function waitForData(result: { current: ReturnType<typeof useSupperMeetingDetails> }) {
+  await waitFor(() => {
+    expect(result.current.state.isDataFetched).toBe(true);
+    expect(result.current.state.households).toEqual({ isDataFetched: true, isError: false, list: HOUSEHOLDS });
+  });
+}
+/** Runs the pending effects and the promises that they start (no timer). */
+const flushEffects = () =>
+  act(async () => {
+    await Promise.resolve();
+  });
 
 beforeEach(() => {
   resetNavigation();
@@ -198,6 +230,49 @@ describe('useSupperMeetingDetails', () => {
     await settle();
     expect(supperMeetingDetailsReducer).not.toHaveBeenCalled();
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('a back navigation to the restored view keeps the saved state and makes no call (no skeleton)', async () => {
+    const first = renderInEntry();
+    await waitForData(first.result);
+    leaveAndComeBack(first);
+    const { result } = renderInEntry();
+    expect(result.current.state.isDataFetched).toBe(true);
+    expect(result.current.state.subdivision).toEqual(SUBDIVISION);
+    expect(result.current.state.households).toEqual({ isDataFetched: true, isError: false, list: HOUSEHOLDS });
+    await flushEffects();
+    expect(fetchSubdivisionDetails).toHaveBeenCalledTimes(1);
+    expect(fetchSubdivisionHouseholds).toHaveBeenCalledTimes(1);
+  });
+
+  it('a restored view without a saved state for the block calls both data actions, as a new visit', async () => {
+    renderInEntry().unmount();
+    // The entry is saved while the block is not mounted: its saved view has no state of the block.
+    saveView(entryKey, undefined);
+    enterView(entryKey, true, undefined);
+    const { result } = renderInEntry();
+    expect(result.current.state).toEqual(INITIAL_SUPPER_MEETING_DETAILS_STATE);
+    await waitForData(result);
+    expect(fetchSubdivisionDetails).toHaveBeenCalledTimes(2);
+    expect(fetchSubdivisionHouseholds).toHaveBeenCalledTimes(2);
+  });
+
+  it('a restored view saved before GetSubdivisionHouseholds answered refreshes the households only', async () => {
+    const { subdivision } = pendingAnswers();
+    const first = renderInEntry();
+    subdivision.resolve(SUBDIVISION);
+    await waitFor(() => {
+      expect(first.result.current.state.isDataFetched).toBe(true);
+    });
+    leaveAndComeBack(first);
+    const { result } = renderInEntry();
+    expect(result.current.state.subdivision).toEqual(SUBDIVISION);
+    expect(result.current.state.households.isDataFetched).toBe(false);
+    await waitFor(() => {
+      expect(result.current.state.households.list).toEqual(HOUSEHOLDS);
+    });
+    expect(fetchSubdivisionDetails).toHaveBeenCalledTimes(1);
+    expect(fetchSubdivisionHouseholds).toHaveBeenCalledTimes(2);
   });
 
   it('OnClick_NavigateToHousehold with the carousel flag: every listed household preloaded, then HouseholdCarousel', async () => {

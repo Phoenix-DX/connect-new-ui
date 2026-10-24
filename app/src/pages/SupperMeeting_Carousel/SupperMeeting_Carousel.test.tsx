@@ -15,6 +15,11 @@ const OTHER = '/UBTConnect/Other';
 const routes = { [PATH]: <SupperMeeting_Carousel />, [OTHER]: <p>other</p> };
 
 const blocks = (container: HTMLElement, name: string) => container.querySelectorAll(`[data-block="${name}"]`);
+/** The calls of both data actions of the supper meeting details (all slides). */
+const calls = () =>
+  (window.__osCalls ?? []).filter(
+    (c) => c.action === 'DataActionGetSubdivision' || c.action === 'DataActionGetSubdivisionHouseholds',
+  ).length;
 /** The index of the active slide of the carousel. */
 const activeSlide = (container: HTMLElement) =>
   Array.from(container.querySelectorAll('.splide__slide')).findIndex((s) => s.classList.contains('is-active'));
@@ -58,6 +63,30 @@ describe('SupperMeeting_Carousel page', () => {
     await waitFor(() => {
       expect([cardsOf(slides[0]), cardsOf(slides[1]), cardsOf(slides[2])]).toEqual([11, 7, 5]);
     });
+  });
+
+  it('a back navigation restores the supper meeting of each slide with no call', async () => {
+    const { container, router } = renderRoutes(routes, `${PATH}?In_StartingSupperMeetingId=2820`);
+    const cards = () =>
+      Array.from(blocks(container, 'Directory_Caroussel.EntitiesCarouse_lSupperMeetingDetails')).map(
+        (slide) =>
+          slide.querySelectorAll('[data-block="Directory_SupperMeetings.SupperMeeting_HouseholdList"] .ubt-image-card')
+            .length,
+      );
+    await waitFor(() => {
+      expect(cards()).toEqual([11, 7, 5]);
+    });
+    const callsAtLeave = calls();
+    expect(callsAtLeave).toBe(6);
+    await act(() => router.navigate(OTHER));
+    await act(() => router.navigate(-1));
+    expect(cards()).toEqual([11, 7, 5]);
+    // A call starts in the OnReady effect: let the effects and their promises run before counting (no timer).
+    await act(async () => {
+      await Promise.resolve();
+    });
+    expect(calls()).toBe(callsAtLeave);
+    expect(cards()).toEqual([11, 7, 5]);
   });
 
   it('starts at In_StartingSupperMeetingId of the preload object, and a back navigation keeps the list', async () => {

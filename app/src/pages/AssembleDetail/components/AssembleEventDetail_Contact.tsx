@@ -32,7 +32,7 @@ export function AssembleEventDetail_Contact({
   onNavigateToHousehold,
 }: AssembleEventDetail_ContactProps) {
   const scope = id.replace(/\$/g, '');
-  const flows = useAssembleEventContact(c, { onEmailContact, onNavigateToHousehold });
+  const flows = useAssembleEventContact(id, c, { onEmailContact, onNavigateToHousehold });
   const avatar = c.ContactDetails.AvatarURL;
   return (
     <OSBlock name="Assemble.AssembleEventDetail_Contact" id={id}>

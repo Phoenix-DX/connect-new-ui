@@ -39,6 +39,17 @@ async function open(search: string) {
   await act(() => view.router.navigate(`${PATH}${search}`));
   return view;
 }
+/** Back to the page: the restored view shows the six rooms at once (no skeleton) and makes no call afterwards. */
+async function backToMilestone(view: Awaited<ReturnType<typeof open>>) {
+  await act(() => view.router.navigate(-1));
+  expect(view.at()).toMatch(/^\/UBTConnect\/MilestoneDetail\?/);
+  expect(rooms()).toBe(6);
+  // A call starts in the OnReady effect: let the effects and their promises run before the caller counts (no timer).
+  await act(async () => {
+    await Promise.resolve();
+  });
+  expect(rooms()).toBe(6);
+}
 /** The accordion items of the rooms (DEPRECATED_AccordionItem `b1-b5-l5-142864_<row>-$b8`). */
 const roomItems = () => [...document.querySelectorAll('[id^="b1-b5-l5-142864_"][id$="-$b8"]')];
 const rooms = () => roomItems().length;
@@ -129,7 +140,7 @@ describe('MilestoneDetail page', () => {
     );
   });
 
-  it('opens the household of a guest and logs ViewHousehold; back, the accommodation is fetched again', async () => {
+  it('opens the household of a guest and logs ViewHousehold; back, the accommodation is restored with no call', async () => {
     const view = await open(query());
     await waitFor(() => {
       expect(rooms()).toBe(6);
@@ -144,13 +155,33 @@ describe('MilestoneDetail page', () => {
     expect(logs.map((l) => l.data)).toEqual([
       { Event: 'ViewHousehold', TargetHouseholdId: '880101', MilestoneId: '7301-1', EventId: '7301' },
     ]);
-    await act(() => view.router.navigate(-1));
-    // As in the old port: the block starts again from its record defaults (see useAccommodationHost).
+    await backToMilestone(view);
+    expect(calls(GET_HOST)).toBe(1);
+    expect(calls(GET_DOCUMENT)).toBe(1);
+    expect(calls(GET_GMP)).toBe(0);
+  });
+
+  /* The two back navigations that crashed in the port before the refactor (decision W27): the wrapper calls
+     GetGmpMilestoneHost, then the accommodation block shows. Back, both blocks are restored with no call. */
+  it.each([
+    ['an optional input is missing', { In_HostId: '0' }],
+    ['a visit from a notification', { In_FromNotification: 'True', In_OrbitMilestoneTypeId: '', In_HostId: '0' }],
+  ])('%s, then a member and back: the restored view, no call, no crash', async (_name, patch) => {
+    const view = await open(query(patch));
     await waitFor(() => {
-      expect(calls(GET_DOCUMENT)).toBe(2);
+      expect(rooms()).toBe(6);
     });
-    expect(calls(GET_HOST)).toBe(2);
-    expect(rooms()).toBe(6);
+    await waitFor(() => {
+      expect(calls(GET_DOCUMENT)).toBe(1);
+    });
+    fireEvent.click(document.querySelector('.member-info-text-cont') as Element);
+    await waitFor(() => {
+      expect(view.at()).toBe('/UBTConnect/HouseholdDetails?HouseholdId=880101');
+    });
+    await backToMilestone(view);
+    expect(calls(GET_GMP)).toBe(1);
+    expect(calls(GET_HOST)).toBe(1);
+    expect(calls(GET_DOCUMENT)).toBe(1);
   });
 
   it('from a notification: GetGmpMilestoneHost, then the block with the type, host and title of the answer', async () => {

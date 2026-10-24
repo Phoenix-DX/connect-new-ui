@@ -1,9 +1,10 @@
 import type { PhotoURL } from '@/api/event';
 import type { MemberContactWithTimezone } from '@/api/message';
-import type { ContactPopupData } from '@/lib/ubtConnectUtils/structures';
+import type { ContactByPhonePopupData, ContactPopupData } from '@/lib/ubtConnectUtils/structures';
 
-/** The contact record of AssembleEventDetail_ContactList and the client logic that AssembleEventDetail_Contact applies
-    to one record. Pure; the flows are in useAssembleEventContactList and useAssembleEventContact.
+/** The contact record of AssembleEventDetail_ContactList, the variables of both blocks with their reducers, and the
+    client logic that AssembleEventDetail_Contact applies to one record. Pure; the flows are in
+    useAssembleEventContactList and useAssembleEventContact.
     @origin Connect2_Assemble_MUI.Assemble.AssembleEventDetail_ContactList */
 
 /** AssembleEventContact: MemberContactWithTimezone mapped field by field. */
@@ -76,6 +77,71 @@ export const toAssembleEventContact = (c: MemberContactWithTimezone): AssembleEv
   LocalityName: c.LocalityName,
   CountryName: c.CountryName,
 });
+
+/** The variables of the block AssembleEventDetail_ContactList. The view cache keeps them. */
+export interface AssembleEventContactListState {
+  /** AssembleEventContactList. */
+  contacts: AssembleEventContact[];
+  /** IsDataFetched. */
+  isDataFetched: boolean;
+}
+
+/** The assignment of the block AssembleEventDetail_ContactList: GetCacheableMemberContactList answered. */
+export type AssembleEventContactListAction = { type: 'contactsFetched'; contacts: AssembleEventContact[] };
+
+/** The variables of a new visit: OnReady appends one empty contact per id (the loading rows), IsDataFetched False. */
+export const initialAssembleEventContactListState = (contactIds: readonly string[]): AssembleEventContactListState => ({
+  contacts: contactIds.map(emptyContact),
+  isDataFetched: false,
+});
+
+/** AssembleEventContactList = the contacts, then IsDataFetched = True. */
+export const assembleEventContactListReducer = (
+  _state: AssembleEventContactListState,
+  action: AssembleEventContactListAction,
+): AssembleEventContactListState => ({ contacts: action.contacts, isDataFetched: true });
+
+/** The variables of the block AssembleEventDetail_Contact. The view cache keeps them. */
+export interface AssembleEventContactState {
+  /** ContactPopupData of ContactByMessage_Wrapper. */
+  contactPopupData: ContactPopupData;
+  /** CallPopup of ContactPopup_ByPhone. */
+  callPopup: ContactByPhonePopupData;
+}
+
+/** The assignments of the block AssembleEventDetail_Contact. */
+export type AssembleEventContactAction =
+  /** ContactPopupData = the record. */
+  | { type: 'contactPopupDataSet'; contactPopupData: ContactPopupData }
+  /** ContactPopupData.ShowPopup = False. */
+  | { type: 'contactPopupClosed' }
+  /** CallPopup = the record. */
+  | { type: 'callPopupSet'; callPopup: ContactByPhonePopupData }
+  /** CallPopup.ContactPopupData.ShowPopup = False. */
+  | { type: 'callPopupClosed' };
+
+/** The variables of a new visit (record defaults). */
+export const INITIAL_ASSEMBLE_EVENT_CONTACT_STATE: AssembleEventContactState = { contactPopupData: {}, callPopup: {} };
+
+/** The variables after an assignment. */
+export function assembleEventContactReducer(
+  state: AssembleEventContactState,
+  action: AssembleEventContactAction,
+): AssembleEventContactState {
+  switch (action.type) {
+    case 'contactPopupDataSet':
+      return { ...state, contactPopupData: action.contactPopupData };
+    case 'contactPopupClosed':
+      return { ...state, contactPopupData: { ...state.contactPopupData, ShowPopup: false } };
+    case 'callPopupSet':
+      return { ...state, callPopup: action.callPopup };
+    case 'callPopupClosed':
+      return {
+        ...state,
+        callPopup: { ...state.callPopup, ContactPopupData: { ...state.callPopup.ContactPopupData, ShowPopup: false } },
+      };
+  }
+}
 
 /** UnavailableContactValue of AssembleEventDetail_Contact. */
 export const UNAVAILABLE = 'Unavailable';

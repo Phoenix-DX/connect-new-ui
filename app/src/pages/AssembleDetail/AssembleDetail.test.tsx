@@ -25,6 +25,17 @@ const title = (container: HTMLElement) =>
     ?.textContent;
 const calls = (action: string) => (window.__osCalls ?? []).filter((c) => c.action === action).length;
 const byId = (id: string) => document.getElementById(id);
+/** The calls of the meeting, of the GMS contacts and of the halls (GetCacheableSubdivision_V2). */
+const blockCalls = () => ({
+  meeting: calls('DataActionGetAssembleEvent'),
+  contacts: calls('ActionGetMemberContactByCacheKey'),
+  halls: calls('ActionGetBulkSubdivisions_V2'),
+});
+/** The household ids of the open hall (its scroll anchors). */
+const hallHouseholdIds = () =>
+  [...(byId(`${HALL}-List_SubdivisionHousehold`)?.querySelectorAll('[data-dx-scroll-anchor-id]') ?? [])].map((a) =>
+    a.getAttribute('data-dx-scroll-anchor-id'),
+  );
 
 function renderScreen() {
   return renderRoutes(
@@ -144,6 +155,56 @@ describe('AssembleDetail', () => {
     expect(title(container)).toBe('Gospel Preaching');
     expect(container.querySelector('[data-block="Assemble.AssembleSummaryCard"]')).not.toBeNull();
     expect(calls('DataActionGetAssembleEvent')).toBe(1);
+  });
+
+  it('back from a household restores the GMS contacts, the open locality and the open hall (no loading rows)', async () => {
+    setFlags({ C2EnableCarousel: false });
+    const m = meetingOf('1210', '1');
+    const { container, router } = renderScreen();
+    await act(() => router.navigate(urlOf(m)));
+    await waitFor(() => {
+      expect(byId('b2-b4-b18-b1-0-Block_HostContact')).toHaveTextContent('Martín Herrera');
+    });
+    fireEvent.click(byId(`${LOCALITY}-DIV_Locality_Header`) as HTMLElement);
+    fireEvent.click(byId(`${HALL}-DIV_SubdivisionHousehold_Header`) as HTMLElement);
+    // Every call of the visit is made: the meeting, the contacts and one GetBulkSubdivisions_V2 per hall.
+    await waitFor(() => {
+      expect(byId(`${HALL}-$b3-0`)).not.toBeNull();
+      expect(blockCalls()).toEqual({ meeting: 1, contacts: 1, halls: 3 });
+    });
+    const households = hallHouseholdIds();
+    expect(households.length).toBeGreaterThan(0);
+    await act(() => router.navigate('/UBTConnect/HouseholdDetails?HouseholdId=91004'));
+    await act(() => router.navigate(-1));
+    // The first frame of the restored view: the contacts, the open locality and the open hall with its households.
+    expect(byId('b2-b4-b18-b1-0-Block_HostContact')).toHaveTextContent('Martín Herrera');
+    expect(container.querySelectorAll('[data-block="Assemble.AssembleEventDetail_Contact"]')).toHaveLength(2);
+    expect(byId(`${LOCALITY}-DIV_LocalitySubdivisions_List`)).not.toBeNull();
+    expect(hallHouseholdIds()).toEqual(households);
+    expect(byId(`${HALL}-$b7-0`)).toBeNull();
+    // A call starts in the OnReady effect: let the effects and their promises run before counting (no timer).
+    await act(async () => {
+      await Promise.resolve();
+    });
+    expect(blockCalls()).toEqual({ meeting: 1, contacts: 1, halls: 3 });
+  });
+
+  it('a locality closed when the user left: opened after the back navigation, its halls load as on a new visit', async () => {
+    const m = meetingOf('1210', '1');
+    const { router } = renderScreen();
+    await act(() => router.navigate(urlOf(m)));
+    await waitFor(() => {
+      expect(byId(`${LOCALITY}-DIV_Locality_Header`)).not.toBeNull();
+    });
+    await act(() => router.navigate('/UBTConnect/HouseholdDetails?HouseholdId=91004'));
+    await act(() => router.navigate(-1));
+    expect(byId(`${LOCALITY}-DIV_LocalitySubdivisions_List`)).toBeNull();
+    fireEvent.click(byId(`${LOCALITY}-DIV_Locality_Header`) as HTMLElement);
+    fireEvent.click(byId(`${HALL}-DIV_SubdivisionHousehold_Header`) as HTMLElement);
+    await waitFor(() => {
+      expect(byId(`${HALL}-$b3-0`)).not.toBeNull();
+      expect(calls('ActionGetBulkSubdivisions_V2')).toBe(3);
+    });
   });
 
   it('mock scenario notfound: "Meeting not found"', async () => {

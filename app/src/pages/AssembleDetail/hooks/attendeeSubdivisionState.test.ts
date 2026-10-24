@@ -4,6 +4,7 @@ import type { SubdivisionInformation } from '@/api/locality';
 import {
   attendeeSubdivisionReducer,
   hallLocationOf,
+  hasHallHouseholds,
   householdRowsOf,
   householdShareable,
   initialAttendeeSubdivisionState,
@@ -52,9 +53,9 @@ describe('attendeeSubdivisionState', () => {
     expect(rows[1]).toMatchObject({ Name: '', IsBookmarked: false, IsDisabled: false });
   });
 
-  it('a new visit starts collapsed with the skeleton rows; a restored view with the hall households', () => {
+  it('a new visit starts collapsed with the skeleton rows', () => {
     const h = hall([guest('91001', 'Vitale')], 1);
-    expect(initialAttendeeSubdivisionState(h, false)).toEqual({
+    expect(initialAttendeeSubdivisionState(h)).toEqual({
       isSelected: false,
       rows: withSkeletonRows(h),
       countryCode: '',
@@ -63,7 +64,17 @@ describe('attendeeSubdivisionState', () => {
       shareableObjectId: '',
       shareable: {},
     });
-    expect(initialAttendeeSubdivisionState(h, true).rows).toBe(h.SubdivisionHouseholdList);
+  });
+
+  it('a restored view keeps its rows only after GetCacheableSubdivision_V2 answered with the hall', () => {
+    const start = initialAttendeeSubdivisionState(hall());
+    expect(hasHallHouseholds(start)).toBe(false);
+    const fetched = attendeeSubdivisionReducer(start, {
+      type: 'set',
+      patch: { rows: householdRowsOf(info), ...hallLocationOf(info) },
+    });
+    expect(hasHallHouseholds(fetched)).toBe(true);
+    expect(hasHallHouseholds({ ...start, ...hallLocationOf(undefined) })).toBe(false);
   });
 
   it('GetCacheableSubdivision_V2: the households as rows (Photo340 as avatar) and the hall locality', () => {
@@ -102,7 +113,7 @@ describe('attendeeSubdivisionState', () => {
   });
 
   it('the reducer: assignments, the header toggle, a row bookmark and the share sheet close', () => {
-    const start = initialAttendeeSubdivisionState(hall([guest('91004', 'Molina'), guest('91005', 'Vitale')], 0), false);
+    const start = initialAttendeeSubdivisionState(hall([guest('91004', 'Molina'), guest('91005', 'Vitale')], 0));
     const toggled = attendeeSubdivisionReducer(start, { type: 'selectionToggled' });
     expect(toggled.isSelected).toBe(true);
     expect(attendeeSubdivisionReducer(toggled, { type: 'selectionToggled' }).isSelected).toBe(false);

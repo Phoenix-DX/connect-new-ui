@@ -1,17 +1,21 @@
 import { describe, expect, it } from 'vitest';
 import type { MemberContactWithTimezone } from '@/api/message';
 import {
+  assembleEventContactListReducer,
+  assembleEventContactReducer,
   contactEmail,
   contactPhone,
   contactPopupData,
   emptyContact,
+  initialAssembleEventContactListState,
+  INITIAL_ASSEMBLE_EVENT_CONTACT_STATE,
   toAssembleEventContact,
   UNAVAILABLE,
   type AssembleEventContact,
 } from './assembleEventContacts';
 
-/* The contact record of AssembleEventDetail_ContactList and the client logic of AssembleEventDetail_Contact.
-   Fictional member. */
+/* The contact record of AssembleEventDetail_ContactList, the variables of both blocks and the client logic of
+   AssembleEventDetail_Contact. Fictional member. */
 const contact = (patch: Partial<AssembleEventContact> = {}): AssembleEventContact => ({
   ...emptyContact(),
   Email: 'martin.herrera@example.org',
@@ -79,5 +83,35 @@ describe('assembleEventContacts', () => {
       TimezoneOffset: -10800,
       CountryName: 'Argentina',
     });
+  });
+
+  it('the contact list: one loading row per id, then the contacts and IsDataFetched True', () => {
+    const start = initialAssembleEventContactListState(['880101', '880102']);
+    expect(start).toEqual({ contacts: [emptyContact(), emptyContact()], isDataFetched: false });
+    expect(assembleEventContactListReducer(start, { type: 'contactsFetched', contacts: [contact()] })).toEqual({
+      contacts: [contact()],
+      isDataFetched: true,
+    });
+  });
+
+  it('the contact: the two popups are set and closed, and the other popup is kept', () => {
+    const start = INITIAL_ASSEMBLE_EVENT_CONTACT_STATE;
+    const message = assembleEventContactReducer(start, {
+      type: 'contactPopupDataSet',
+      contactPopupData: { ...contactPopupData(contact()), ShowPopup: true },
+    });
+    const call = assembleEventContactReducer(message, {
+      type: 'callPopupSet',
+      callPopup: { MobilePhone: '+54 291 455 0101', ContactPopupData: { Name: 'Martín Herrera', ShowPopup: true } },
+    });
+    expect(call.contactPopupData.ShowPopup).toBe(true);
+    const callClosed = assembleEventContactReducer(call, { type: 'callPopupClosed' });
+    expect(callClosed.callPopup).toEqual({
+      MobilePhone: '+54 291 455 0101',
+      ContactPopupData: { Name: 'Martín Herrera', ShowPopup: false },
+    });
+    expect(callClosed.contactPopupData.ShowPopup).toBe(true);
+    const messageClosed = assembleEventContactReducer(callClosed, { type: 'contactPopupClosed' });
+    expect(messageClosed.contactPopupData).toEqual({ ...contactPopupData(contact()), ShowPopup: false });
   });
 });

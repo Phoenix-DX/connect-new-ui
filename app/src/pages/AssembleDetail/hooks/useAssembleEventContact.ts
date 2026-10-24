@@ -1,15 +1,17 @@
-import { useState } from 'react';
 import type { ContactByPhonePopupData } from '@/components/contact/ContactPopupByPhone/types';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { useFlowState } from '@/platform/navigation';
 import { hasAccessToRegion } from '@/lib/assemble/actions';
 import { getCacheableSignedPhotoURL, getSignedPhotosInBulk } from '@/lib/legacyShared/actions';
 import type { ContactPopupData } from '@/lib/ubtConnectUtils/structures';
 import {
+  assembleEventContactReducer,
   contactEmail,
   contactPhone,
   contactPopupData,
+  INITIAL_ASSEMBLE_EVENT_CONTACT_STATE,
   UNAVAILABLE,
   type AssembleEventContact,
 } from './assembleEventContacts';
@@ -62,7 +64,9 @@ export interface AssembleEventContactFlows {
   onContactByEmail: () => void;
 }
 
-/** The state (not kept by the view cache) and the flows of one contact. A failure goes to the flow handler.
+/** The state and the flows of one contact. `blockId` is the block instance id. The state comes from useFlowState and
+    the view cache keeps it (the block has no OnReady: a restored view shows its saved popups). A failure goes to the
+    flow handler.
     - Handler_OnClickHostContact: HasAccessToRegion(CountryCode, LocalityId); without access
       App_Subscription_ShowUpgradePopUp, else NavigateTo_Household(HouseholdId).
     - Handler_OptionsCall: "Unavailable" → Info "Unfortunately, Phone Number is not available"; else the call popup
@@ -74,12 +78,23 @@ export interface AssembleEventContactFlows {
       NavigateTo_EmailContact(URL, name, "", locality, country, e-mail, member id).
     - Decision W23: after the unmount, a started flow skips its state writes only. */
 export function useAssembleEventContact(
+  blockId: string,
   contact: AssembleEventContact,
   { onEmailContact, onNavigateToHousehold }: AssembleEventContactEvents,
 ): AssembleEventContactFlows {
   const isAlive = useIsAlive();
-  const [popupData, setPopupData] = useState<ContactPopupData>({});
-  const [callPopup, setCallPopup] = useState<ContactByPhonePopupData>({});
+  const { state, dispatch } = useFlowState({
+    viewName: `Assemble.AssembleEventDetail_Contact#${blockId.replace(/\$/g, '')}`,
+    reducer: assembleEventContactReducer,
+    initial: INITIAL_ASSEMBLE_EVENT_CONTACT_STATE,
+    parameters: { contact },
+  });
+  const setPopupData = (data: ContactPopupData) => {
+    dispatch({ type: 'contactPopupDataSet', contactPopupData: data });
+  };
+  const setCallPopup = (callPopup: ContactByPhonePopupData) => {
+    dispatch({ type: 'callPopupSet', callPopup });
+  };
   const c = contact;
   const avatar = c.ContactDetails.AvatarURL;
   const signAvatar = () => getCacheableSignedPhotoURL(avatar.Bucket, avatar.Path, avatar.Type, getSignedPhotosInBulk);
@@ -95,7 +110,7 @@ export function useAssembleEventContact(
     if (isAlive()) setPopupData({ ...contactPopupData(c), ShowPopup: true, ImageURL: url, IsLoading: false });
   };
   const onContactByEmail = async () => {
-    setPopupData((d) => ({ ...d, ShowPopup: false }));
+    dispatch({ type: 'contactPopupClosed' });
     if (c.Email === UNAVAILABLE) {
       showFeedbackMessage('Unfortunately, Email is not available', PLATFORM_MESSAGE_TYPE.info);
       return;
@@ -129,16 +144,16 @@ export function useAssembleEventContact(
   return {
     phone: contactPhone(c),
     email: contactEmail(c),
-    contactPopupData: popupData,
-    callPopup,
+    contactPopupData: state.contactPopupData,
+    callPopup: state.callPopup,
     onClickHostContact: () => void onClickHostContact().catch(raiseToFlowHandler),
     onCallClicked: (n) => void onOptionsCall(n).catch(raiseToFlowHandler),
     onEmailClicked: () => void onContactByMessage().catch(raiseToFlowHandler),
     onCloseCallPopup: () => {
-      setCallPopup((p) => ({ ...p, ContactPopupData: { ...p.ContactPopupData, ShowPopup: false } }));
+      dispatch({ type: 'callPopupClosed' });
     },
     onCancelContactByMessage: () => {
-      setPopupData((d) => ({ ...d, ShowPopup: false }));
+      dispatch({ type: 'contactPopupClosed' });
     },
     onContactByEmail: () => void onContactByEmail().catch(raiseToFlowHandler),
   };

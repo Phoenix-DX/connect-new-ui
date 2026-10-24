@@ -8,6 +8,7 @@ import {
   getContactHelpdeskSubject_Milestone,
   getFormattedStringFromHelperType,
   getSkeletonLoadingIdFromMilestoneTypeId,
+  hasAccommodationHostData,
   INITIAL_ACCOMMODATION_HOST_STATE as INITIAL,
   type AccommodationHostInputs,
 } from './accommodationHostState';
@@ -75,6 +76,16 @@ describe('accommodationHostState', () => {
       false,
     );
     expect(accommodationHostReducer(s, { type: 'fetchFinished' }).isFetchingData).toBe(false);
+  });
+
+  it('has the data for a restored view only when OnReady ended', () => {
+    expect(hasAccommodationHostData(INITIAL)).toBe(false);
+    let s = accommodationHostReducer(INITIAL, { type: 'fetchStarted' });
+    expect(hasAccommodationHostData(s)).toBe(false);
+    s = accommodationHostReducer(s, { type: 'accommodationHostFetched', result: RESULT });
+    expect(hasAccommodationHostData(s)).toBe(false);
+    s = accommodationHostReducer(s, { type: 'fetchFinished' });
+    expect(hasAccommodationHostData(s)).toBe(true);
   });
 
   it('sets IsLoadingDocument', () => {

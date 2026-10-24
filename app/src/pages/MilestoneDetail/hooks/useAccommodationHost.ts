@@ -21,6 +21,7 @@ import {
   accommodationHostCallInputs,
   accommodationHostReducer,
   getContactHelpdeskSubject_Milestone,
+  hasAccommodationHostData,
   INITIAL_ACCOMMODATION_HOST_STATE,
   type AccommodationHostAction,
   type AccommodationHostInputs,
@@ -98,12 +99,13 @@ function onApplicationEvent_CallMember(milestoneId: string, eventId: string): vo
   log.info('ApplicationEvent', { Event: 'CallMember', MilestoneId: milestoneId, EventId: eventId });
 }
 
-/** The state and the flows of the block. The state comes from useFlowState.
+/** The state and the flows of the block. The state comes from useFlowState and the view cache keeps it.
     - OnReady, before the first paint: IsFetchingData, RefreshData (GetAccommodationHost →
       OnAfterFetch: AccommodationData), RefreshDocumentData (Get_Document → HasDocument), then IsFetchingData False.
-    - A back navigation fetches again from the record defaults, as the old port did: the old block shared its view
-      cache name with ScreenBlock_MilestoneWrapper and never got its own state back. The compiled OnReady does nothing
-      on a restored view; keeping the restored state is a follow-up after the refactor (decision W27).
+    - A view that the view cache restored (a back navigation) keeps its saved state and makes no call: the compiled
+      OnReady does nothing when WasCurrentViewRestoredFromCache is True. A restored view whose saved state does not
+      have the data (no saved state for the block, or the user left before OnReady ended) runs OnReady as a new
+      visit. The view name of the block is its own, so the restored state is always the state of this block.
     - Decision W23: a flow that started runs to its end after the unmount (its calls, the navigation and the
       application event); only its state writes stop (`isAlive`). */
 export function useAccommodationHost(
@@ -123,13 +125,12 @@ export function useAccommodationHost(
     viewName: 'Orbit_ScreenBlocks.ScreenBlock_AccommodationHost',
     reducer: accommodationHostReducer,
     initial: INITIAL_ACCOMMODATION_HOST_STATE,
-    restore: () => INITIAL_ACCOMMODATION_HOST_STATE,
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive) => {
+    onReady: (isAlive, restored) => {
       readyIsAlive.current = isAlive;
-      return onReady(isAlive);
+      return onReady(isAlive, restored);
     },
     // The old port ran OnReady in a layout effect: the first frame is the skeleton.
     beforePaint: true,
@@ -141,8 +142,9 @@ export function useAccommodationHost(
   /** The block variables that both data actions send, as they are now. */
   const callInputs = (): AccommodationHostCallInputs => accommodationHostCallInputs(latest.current, parameters.current);
 
-  /** OnReady. The `restored` flag is not read: a restored view fetches again, as in the old port (see above). */
-  const onReady = async (isReadyAlive: IsAlive) => {
+  /** OnReady. A view restored from the cache with its data does nothing (see above). */
+  const onReady = async (isReadyAlive: IsAlive, restored: boolean) => {
+    if (restored && hasAccommodationHostData(latest.current)) return;
     dispatch({ type: 'fetchStarted' });
     // RefreshData → OnAfterFetch_GetAccommodationHost
     const result = await fetchAccommodationHost(callInputs());

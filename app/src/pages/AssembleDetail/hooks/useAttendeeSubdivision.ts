@@ -1,8 +1,8 @@
-import { useReducer, useRef } from 'react';
+import { useRef } from 'react';
 import type { AssembleAttendeeGuest, AssembleAttendeeSubdivision } from '@/api/event';
 import { confirmAction } from '@/platform/feedback/dialogs/confirmAction';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { setPreloadObject, useWasRestoredFromCache } from '@/platform/navigation';
+import { setPreloadObject, useFlowState } from '@/platform/navigation';
 import { getLocalBookmarksByObjectType } from '@/platform/storage/localEntities';
 import { toggleBookmarkItem } from '@/lib/assemble/actions';
 import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/lib/assemble/staticEntities';
@@ -11,6 +11,7 @@ import { maybeDisplaySubscriptionPopup } from '@/pages/AssembleDetail/components
 import {
   attendeeSubdivisionReducer,
   hallLocationOf,
+  hasHallHouseholds,
   householdRowsOf,
   householdShareable,
   initialAttendeeSubdivisionState,
@@ -60,12 +61,14 @@ export interface AttendeeSubdivisionFlows {
   onCloseShareSheet: () => void;
 }
 
-/** The state (not kept by the view cache) and the flows of one hall. `bookmarkNoteId` is the id of the Bookmark_Note
-    dialog that ConfirmAction opens.
+/** The state and the flows of one hall. `blockId` is the block instance id; the Bookmark_Note dialog that
+    ConfirmAction opens is `<blockId>-Bookmark_Note`. The state comes from useFlowState and the view cache keeps it.
     - OnReady: a new visit calls GetCacheableSubdivision_V2(Id) (CR-AssembleDetail-1): the rows are its households,
-      CountryCode and LocalityId its hall's locality; then, also on a restored view,
-      Set_SelectedAssembleAttendeeListBookmarks (GetLocalBookmarksByObjectType(Contact)). A failure goes to the flow
-      handler.
+      CountryCode and LocalityId its hall's locality. A view that the view cache restored keeps its saved variables
+      (the expanded state and the rows) and makes no call; when its saved state has no answer of
+      GetCacheableSubdivision_V2 (no saved state for the block, or the user left before the answer), it calls as on a
+      new visit. Then, also on a restored view, Set_SelectedAssembleAttendeeListBookmarks
+      (GetLocalBookmarksByObjectType(Contact), a local read). A failure goes to the flow handler.
     - The household click: MaybeDisplaySubscriptionPopup(CountryCode, LocalityId); no popup → SetPreloadObject(the
       rows' ids) and NavigateTo_HouseholdCarousel(row number, id).
     - The bookmark: the popup check; a row that is not bookmarked → ConfirmAction(Bookmark_Note), confirmed →
@@ -79,16 +82,23 @@ export interface AttendeeSubdivisionFlows {
     - Decision W23: after the unmount, a started flow skips its state writes only; the calls, the dialogs, the preload
       object and the navigation still run. */
 export function useAttendeeSubdivision(
+  blockId: string,
   subdivision: AssembleAttendeeSubdivision,
-  bookmarkNoteId: string,
   flags: AttendeeSubdivisionFlags,
   { onNavigateToShareObject, onNavigateToHouseholdCarousel }: AttendeeSubdivisionEvents,
 ): AttendeeSubdivisionFlows {
-  const restored = useWasRestoredFromCache();
+  const scope = blockId.replace(/\$/g, '');
+  const bookmarkNoteId = `${scope}-Bookmark_Note`;
   const isAlive = useIsAlive();
-  const [state, dispatch] = useReducer(attendeeSubdivisionReducer, null, () =>
-    initialAttendeeSubdivisionState(subdivision, restored),
-  );
+  const readyOnce = useReadyOnce();
+  const { state, dispatch, latest } = useFlowState({
+    viewName: `Assemble.AssembleEventDetail_AttendeeSubdivision#${scope}`,
+    reducer: attendeeSubdivisionReducer,
+    initial: initialAttendeeSubdivisionState(subdivision),
+    parameters: { subdivision },
+    // The flow is defined below; the hook calls the one of the newest render.
+    onReady: (_isAlive, restored) => readyOnce(() => onReady(restored)),
+  });
   const bookmarkNote = useRef('');
 
   /** A state write after an await, skipped after the unmount (W23). */
@@ -96,16 +106,16 @@ export function useAttendeeSubdivision(
     if (isAlive()) dispatch(action);
   };
 
-  useReadyOnce(async () => {
-    let list = state.rows;
-    if (!restored) {
+  async function onReady(restored: boolean) {
+    let list = latest.current.rows;
+    if (!restored || !hasHallHouseholds(latest.current)) {
       const info = await getCacheableSubdivision_V2(subdivision.Id);
       list = householdRowsOf(info);
       write({ type: 'set', patch: { rows: list, ...hallLocationOf(info) } });
     }
     const bookmarks = await getLocalBookmarksByObjectType(MyBookmarks_ObjectType.Contact);
     write({ type: 'set', patch: { rows: withLocalBookmarks(list, bookmarks) } });
-  });
+  }
 
   const onClickHousehold = async (row: AssembleAttendeeGuest, index: number) => {
     if (await maybeDisplaySubscriptionPopup(state.countryCode, state.localityId)) return;

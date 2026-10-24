@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import type { AssembleLocalityDetails } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
@@ -8,6 +7,7 @@ import type {
   AttendeeSubdivisionEvents,
   AttendeeSubdivisionFlags,
 } from '@/pages/AssembleDetail/hooks/useAttendeeSubdivision';
+import { useLocalitySubdivisionList } from '@/pages/AssembleDetail/hooks/useLocalitySubdivisionList';
 import { AssembleEventDetail_AttendeeSubdivision } from './AssembleEventDetail_AttendeeSubdivision';
 
 export interface AssembleEventDetail_LocalitySubdivisionListProps extends AttendeeSubdivisionEvents {
@@ -23,7 +23,7 @@ export interface AssembleEventDetail_LocalitySubdivisionListProps extends Attend
     with NC_Result_Item__Image (round; the map-marker badge as image, the locality name as title, the angle up or down
     as action), and when it is selected DIV_LocalitySubdivisions_List > a List (`list list-group list-sticky-records
     margin-bottom-s`) of AssembleEventDetail_AttendeeSubdivision. OnReady: the local copy is the input, collapsed; the
-    view cache keeps no variable of the block.
+    view cache keeps IsSelected (useLocalitySubdivisionList).
     @origin Connect2_Assemble_MUI.Assemble.AssembleEventDetail_LocalitySubdivisionList */
 export function AssembleEventDetail_LocalitySubdivisionList({
   id,
@@ -31,7 +31,7 @@ export function AssembleEventDetail_LocalitySubdivisionList({
   ...attendee
 }: AssembleEventDetail_LocalitySubdivisionListProps) {
   const scope = id.replace(/\$/g, '');
-  const [isSelected, setIsSelected] = useState(false);
+  const { isSelected, onToggleSelected } = useLocalitySubdivisionList(id, locality);
   return (
     <OSBlock name="Assemble.AssembleEventDetail_LocalitySubdivisionList" id={id}>
       <div
@@ -40,9 +40,7 @@ export function AssembleEventDetail_LocalitySubdivisionList({
         }
         data-container=""
         id={`${scope}-DIV_Locality_Header`}
-        onClick={() => {
-          setIsSelected((v) => !v);
-        }}
+        onClick={onToggleSelected}
       >
         <ResultItemMedia
           id={`${scope}-$b1`}

@@ -92,8 +92,9 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
     ```
 
   - `restore: () => INITIAL_STATE`: use it when the old port kept no view state on a back navigation. A restored view
-    then starts from OnInitialize with the initial state (`pages/Notes/hooks/useNotes.ts`,
-    `pages/MilestoneDetail/hooks/useAccommodationHost.ts`).
+    then starts from OnInitialize with the initial state (`pages/Notes/hooks/useNotes.ts`).
+  - No `restore`: a restored view starts from its saved state. OnReady skips its calls when `restored` is true and the
+    saved state has the data (`pages/MilestoneDetail/hooks/useAccommodationHost.ts`).
   - OnReady in its own effect: use it when OnReady reads variables that OnInitialize assigns. Do not run OnReady in the
     same flow as OnInitialize. Run it in one effect that starts when `isInitialized` turns true. The blocks
     have then mounted and the variables are set (`pages/Notes/hooks/useNotes.ts`).
