@@ -13,7 +13,7 @@ import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { NetworkWarning } from '@/shared/Connect2_LegacyShared/NetworkWarning';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { ErrorScreen } from '@/shared/Connect2_OrbitMobile_MUI/ErrorScreen';
+import { OrbitErrorScreen } from '@/components/orbit/OrbitErrorScreen';
 import { NavigationConfirmationDialog } from '@/shared/NavigationHandler/NavigationConfirmationDialog';
 import { preventNavigation } from '@/shared/NavigationHandler/lib/actions';
 import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
@@ -349,7 +349,11 @@ export function ScreenBlock_Event_Email_V2({
       );
     if (!hasContent)
       return (
-        <ErrorScreen id={`${scope}-$b4`} inErrorMessage="No Event Organiser information." inMatchMainContentHeight />
+        <OrbitErrorScreen
+          id={`${scope}-$b4`}
+          inErrorMessage="No Event Organiser information."
+          inMatchMainContentHeight
+        />
       );
     return (
       <OSForm id={ids.form} style="form card contact-organiser-form OSFillParent">

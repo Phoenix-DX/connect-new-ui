@@ -6,7 +6,7 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { InputCounter } from '@/shared/Connect2_LegacyShared/InputCounter';
-import { ItemOptionsMenu } from '@/shared/Connect2_LegacyShared/ItemOptionsMenu';
+import { ItemOptionsMenu } from '@/components/bookmark/ItemOptionsMenu';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 

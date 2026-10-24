@@ -4,8 +4,8 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler/BackNavigationHandler';
@@ -385,9 +385,9 @@ export function ScreenBlock_HostSurvey(props: ScreenBlock_HostSurveyProps) {
   /** Content (HS view :571-2926): skeleton while fetching; Unable to Host → NoInformation; with data steps or a
       confirmed survey → the current step; otherwise "There is no setup for this household yet.". */
   const content: ReactNode = s.isFetchingData ? (
-    <Skeleton_Loading id={`${prefix}-$b36`} inSkeletonLoadingId={OrbitSkeletonLoading.HostSurvey} />
+    <OrbitSkeleton id={`${prefix}-$b36`} inSkeletonLoadingId={OrbitSkeletonLoading.HostSurvey} />
   ) : s.currentStatus.Id === SurveyStatus.unableToHost ? (
-    <NoInformation_Orbit
+    <OrbitNoInformation
       id={`${prefix}-$b35`}
       message="This Survey is no longer available for you. Please check again later or contact the Orbit Helpdesk if you have any questions."
     />

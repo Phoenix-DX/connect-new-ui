@@ -587,3 +587,9 @@
 
 - The 16 G5 routes (OrbitLanding, OrbitAdminLanding, OrbitAdminEventDetail, EventDetail, EventBooklet, MilestoneDetail, GuestArrangements, HelpersDetail, HostSurvey, TransportDetail, MyEntertaining, LDM_MyEvents_V2, LDM_EventDetail_V2, LDM_Email_V2, AssembleEvents, AssembleDetail) moved from `src/screens/<R>` to `src/pages/<R>`. `index.tsx` is now `<R>Page.tsx`, with one `@origin` tag per page.
 - Known issue: the 3 LDM V2 pages name the flow `Legacy_LDMEventsFlow` in `@origin`, not `Legacy_LDMEventsFlow_V2`. The LDM page steps fix it. Shared blocks stay in `shared/` until step B.
+
+## P6-G5-B-Shared - refactor(P6-G5-B): move the shared blocks of group G5
+
+- 25 blocks of `src/shared/` (163 files, phase P6-G5 rows of `move-map.csv`) moved to `src/components/{assemble,bookmark,contact,orbit}/` and `src/pages/EventBooklet/components/{OrbitNoResults,FooterWithActions}/`. 21 files took the target name (component and `<Name>Props`). Each block has an `@origin` tag. The 25 rows are set to `moved`.
+- Gate W15: `arch-baseline.csv` got 8 rows for Rule 4 warnings that the move made visible. Owners: 6 to P6-G5-B-AssembleDetail (AssembleSummaryCard, VirtualMeetingUrl), 2 to P7 (ItemOptionsMenu).
+- `shared/Connect2_Assemble_MUI/` and `shared/Connect2_OrbitMobile_MUI/` keep only `lib/`.

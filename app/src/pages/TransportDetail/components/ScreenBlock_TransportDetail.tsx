@@ -3,8 +3,8 @@ import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { ContactHelpdeskFooter } from '@/components/orbit/ContactHelpdeskFooter';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
@@ -176,7 +176,7 @@ export function ScreenBlock_TransportDetail(props: ScreenBlock_TransportDetailPr
   const prefix = id.replace('$', '');
 
   const content: ReactNode = s.isFetchingData ? (
-    <Skeleton_Loading
+    <OrbitSkeleton
       id={`${prefix}-$b4`}
       inSkeletonLoadingId={getSkeletonLoadingIdFromMilestoneTypeId(In_OrbitMilestoneTypeId)}
     />
@@ -193,7 +193,7 @@ export function ScreenBlock_TransportDetail(props: ScreenBlock_TransportDetailPr
         headerLeft={<MenuIcon id={`${prefix}-$b2`} menuAction={MENU_ACTION_AUTO} />}
         title={<span data-expression="">{s.title}</span>}
         content={content}
-        bottomBar={<ContactHelpdesk_Footer id={`${prefix}-$b5`} onClick={onHandleContactHelpdesk} />}
+        bottomBar={<ContactHelpdeskFooter id={`${prefix}-$b5`} onClick={onHandleContactHelpdesk} />}
         commonUIElements={<div id={`${prefix}-CommonUI_Elements`}>{props.commonUIElements}</div>}
       />
     </OSBlock>

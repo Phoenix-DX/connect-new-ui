@@ -5,12 +5,12 @@ import { OSList } from '@/components/ui/os/OSList';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { Accordion_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
-import { Card_MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/Card_MemberInformation';
-import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { MilestoneHeader } from '@/shared/Connect2_OrbitMobile_MUI/MilestoneHeader';
-import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { OrbitAccordion } from '@/components/orbit/OrbitAccordion';
+import { MemberInformationCard } from '@/components/orbit/MemberInformationCard';
+import { ContactHelpdeskFooter } from '@/components/orbit/ContactHelpdeskFooter';
+import { MilestoneHeader } from '@/components/orbit/MilestoneHeader';
+import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { checkDirectoryAccess } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { DirectoryAPIFilter, ImageSigningSize } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
@@ -272,7 +272,7 @@ export function ScreenBlock_HelperDetails(props: ScreenBlock_HelperDetailsProps)
       (Is_ShowPersonalInfo, no dot, In_HouseholderId of the member). Item ids follow the block aliases (not captured). */
   const helpersAccordion = (
     <div className="full-width margin-top-m" data-container="">
-      <Accordion_Orbit id={`${prefix}-$b4`} inExtendedClass="" inMultipleItems>
+      <OrbitAccordion id={`${prefix}-$b4`} inExtendedClass="" inMultipleItems>
         <OSList
           className="list list-group"
           animateItems
@@ -296,7 +296,7 @@ export function ScreenBlock_HelperDetails(props: ScreenBlock_HelperDetailsProps)
                 >
                   {(mi, k) => (
                     <div data-container="">
-                      <Card_MemberInformation
+                      <MemberInformationCard
                         id={`${prefix}-l6_${String(i)}-l9_${String(k)}-$b6`}
                         inMemberInformation={mi}
                         isShowPersonalInfo
@@ -313,19 +313,19 @@ export function ScreenBlock_HelperDetails(props: ScreenBlock_HelperDetailsProps)
             />
           )}
         </OSList>
-      </Accordion_Orbit>
+      </OrbitAccordion>
     </div>
   );
 
   const content: ReactNode = s.isFetchingData ? (
-    <Skeleton_Loading
+    <OrbitSkeleton
       id={`${prefix}-$b8`}
       inSkeletonLoadingId={getSkeletonLoadingIdFromMilestoneTypeId(In_OrbitMilestoneTypeId)}
     />
   ) : hasHelpers ? (
     helpersAccordion
   ) : s.isDataFetched ? (
-    <NoInformation_Orbit id={`${prefix}-$b7`} message="There is no Helper available." />
+    <OrbitNoInformation id={`${prefix}-$b7`} message="There is no Helper available." />
   ) : null;
 
   return (
@@ -346,7 +346,7 @@ export function ScreenBlock_HelperDetails(props: ScreenBlock_HelperDetailsProps)
         content={content}
         bottomBar={
           hasHelpers && !s.isFetchingData ? (
-            <ContactHelpdesk_Footer id={`${prefix}-$b9`} onClick={onHandleContactHelpdesk} />
+            <ContactHelpdeskFooter id={`${prefix}-$b9`} onClick={onHandleContactHelpdesk} />
           ) : null
         }
         commonUIElements={<div id={`${prefix}-CommonUI_Elements`}>{props.commonUIElements}</div>}

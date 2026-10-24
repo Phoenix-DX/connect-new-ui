@@ -5,8 +5,8 @@ import { checkBarcodePlugin, scanBarcode, SCANNER_CLOSED_BY_USER } from '@/platf
 import { UserException } from '@/legacy/os/os-exceptions';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import {
   DirectoryAPIFilter,
@@ -298,7 +298,7 @@ export function ScreenBlock_AdminEventDetail({
   const content = (
     <>
       {s.isFetchingData ? (
-        <Skeleton_Loading id={`${prefix}-$b5`} inSkeletonLoadingId={OrbitSkeletonLoading.AdminEventDetails} />
+        <OrbitSkeleton id={`${prefix}-$b5`} inSkeletonLoadingId={OrbitSkeletonLoading.AdminEventDetails} />
       ) : s.isDataFetched ? (
         <>
           <div className="font-size-0-9em padding-x-m padding-y-m" data-container="">
@@ -370,7 +370,7 @@ export function ScreenBlock_AdminEventDetail({
           </div>
         </>
       ) : (
-        <NoInformation_Orbit id={`${prefix}-$b4`} message={NO_EVENT_MESSAGE} />
+        <OrbitNoInformation id={`${prefix}-$b4`} message={NO_EVENT_MESSAGE} />
       )}
       <div className="backwards-compatibility" data-container="">
         <OrbitErrorMessage

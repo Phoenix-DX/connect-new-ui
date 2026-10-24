@@ -4,12 +4,12 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { Accordion_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
-import { Card_MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/Card_MemberInformation';
-import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { MilestoneHeader } from '@/shared/Connect2_OrbitMobile_MUI/MilestoneHeader';
-import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { OrbitAccordion } from '@/components/orbit/OrbitAccordion';
+import { MemberInformationCard } from '@/components/orbit/MemberInformationCard';
+import { ContactHelpdeskFooter } from '@/components/orbit/ContactHelpdeskFooter';
+import { MilestoneHeader } from '@/components/orbit/MilestoneHeader';
+import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { checkDirectoryAccess, getFormattedDateTime } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { DirectoryAPIFilter } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import { DEPRECATED_AccordionItem } from '@/shared/osui/DEPRECATED_AccordionItem';
@@ -217,7 +217,7 @@ export function ScreenBlock_GuestArrangements(props: ScreenBlock_GuestArrangemen
   /** One accordion section (SB :397-628 and the three after it): Accordion_Orbit with default inputs and one expanded
       DEPRECATED_AccordionItem ("orbit-accordion-item", no padding) titled `title`. */
   const section = (accordion: number, title: string, content: ReactNode) => (
-    <Accordion_Orbit id={`${prefix}-$b${String(accordion)}`}>
+    <OrbitAccordion id={`${prefix}-$b${String(accordion)}`}>
       <DEPRECATED_AccordionItem
         id={`${prefix}-$b${String(accordion + 1)}`}
         isExpanded
@@ -226,13 +226,13 @@ export function ScreenBlock_GuestArrangements(props: ScreenBlock_GuestArrangemen
         title={<span data-expression="">{title}</span>}
         content={content}
       />
-    </Accordion_Orbit>
+    </OrbitAccordion>
   );
 
   /** A member with special needs (SB :445-610): Card_MemberInformation (no location, no personal info, no dot) and,
       in Placeholder_Info, the list of needs when it is not empty (SB :511-602). */
   const specialNeedsRow = (item: SpecialNeedsItem, index: number) => (
-    <Card_MemberInformation
+    <MemberInformationCard
       id={`${prefix}-l2_${String(index)}-$b6`}
       inHouseholderId={item.HouseholderId}
       inHideMemberInfoLocation
@@ -433,7 +433,7 @@ export function ScreenBlock_GuestArrangements(props: ScreenBlock_GuestArrangemen
   );
 
   const content: ReactNode = s.isFetchingData ? (
-    <Skeleton_Loading
+    <OrbitSkeleton
       id={`${prefix}-$b14`}
       inSkeletonLoadingId={getSkeletonLoadingIdFromMilestoneTypeId(In_OrbitMilestoneTypeId)}
     />
@@ -441,7 +441,7 @@ export function ScreenBlock_GuestArrangements(props: ScreenBlock_GuestArrangemen
     s.hasData ? (
       arrangements
     ) : (
-      <NoInformation_Orbit
+      <OrbitNoInformation
         id={`${prefix}-$b13`}
         message="No guest arrangement data has been found. Please check again later or contact the Orbit Helpdesk if you have any questions."
       />
@@ -464,9 +464,7 @@ export function ScreenBlock_GuestArrangements(props: ScreenBlock_GuestArrangemen
           />
         }
         content={content}
-        bottomBar={
-          s.hasData ? <ContactHelpdesk_Footer id={`${prefix}-$b15`} onClick={onHandleContactHelpdesk} /> : null
-        }
+        bottomBar={s.hasData ? <ContactHelpdeskFooter id={`${prefix}-$b15`} onClick={onHandleContactHelpdesk} /> : null}
         commonUIElements={<div id={`${prefix}-CommonUI_Elements`}>{props.commonUIElements}</div>}
       />
       <Dialog_AccessRestrictedAction_Legacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b16`} />

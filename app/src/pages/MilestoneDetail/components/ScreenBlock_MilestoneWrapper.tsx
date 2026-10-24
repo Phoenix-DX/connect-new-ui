@@ -3,8 +3,8 @@ import { useLayoutEffect, useReducer, useRef, type ReactNode } from 'react';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
-import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
@@ -140,7 +140,7 @@ export function ScreenBlock_MilestoneWrapper(props: ScreenBlock_MilestoneWrapper
 
   let body: ReactNode = null;
   if (In_FromNotification && state.isFetchingData) {
-    body = <Skeleton_Loading id={`${prefix}-$b9`} inSkeletonLoadingId={OrbitSkeletonLoading.MilestoneWrapper} />;
+    body = <OrbitSkeleton id={`${prefix}-$b9`} inSkeletonLoadingId={OrbitSkeletonLoading.MilestoneWrapper} />;
   } else if (In_FromNotification && !r.Status.Success) {
     body = (
       <OrbitLayout
@@ -149,7 +149,7 @@ export function ScreenBlock_MilestoneWrapper(props: ScreenBlock_MilestoneWrapper
         menu={<div id={`${prefix}-Menu_Failed`} />}
         title={<span data-expression="">{props.In_EventName !== '' ? props.In_EventName : 'Event not found'}</span>}
         content={
-          <NoInformation_Orbit
+          <OrbitNoInformation
             id={`${prefix}-$b8`}
             message="This Event could not be found. Please check again later or contact the Orbit Helpdesk if you have any questions."
           />

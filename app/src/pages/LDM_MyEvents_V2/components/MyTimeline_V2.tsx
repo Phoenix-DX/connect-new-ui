@@ -2,8 +2,8 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { NetworkWarning } from '@/shared/Connect2_LegacyShared/NetworkWarning';
-import { ErrorScreen } from '@/shared/Connect2_OrbitMobile_MUI/ErrorScreen';
-import { EventDetail_SubSection } from '@/shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection';
+import { OrbitErrorScreen } from '@/components/orbit/OrbitErrorScreen';
+import { EventDetailSubSection } from '@/components/orbit/EventDetailSubSection';
 import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
@@ -72,7 +72,7 @@ export function MyTimeline_V2({
       {hasEvents ? (
         <div className="timeline-ldm-height" data-container="" id={`${scope}-MinHeight_Enforcer`}>
           {inUpcomingEventsData.length > 0 ? (
-            <EventDetail_SubSection
+            <EventDetailSubSection
               id={`${scope}-SubSection_UpcomingEvents`}
               inTitle={`Upcoming ${inUpcomingEventsData.length > 1 ? 'Events' : 'Event'}`}
               inHasBottomBorder
@@ -88,10 +88,10 @@ export function MyTimeline_V2({
               >
                 {(e, i) => card(e, `${scope}-l1-${String(i)}-b2`, `${scope}-l1-${String(i)}-ListItem_UpcomingEvent`)}
               </OSList>
-            </EventDetail_SubSection>
+            </EventDetailSubSection>
           ) : null}
           {inPastEventsData.length > 0 ? (
-            <EventDetail_SubSection id={`${scope}-SubSection_MyTimeline`} inTitle="Past Events">
+            <EventDetailSubSection id={`${scope}-SubSection_MyTimeline`} inTitle="Past Events">
               <OSList
                 id={`${scope}-List_PastEvents`}
                 className="list list-group past-event-list"
@@ -125,13 +125,13 @@ export function MyTimeline_V2({
                   </div>
                 )}
               </OSList>
-            </EventDetail_SubSection>
+            </EventDetailSubSection>
           ) : null}
         </div>
       ) : inHasFetchError ? (
         <NetworkWarning id={`${scope}-$b5`} onTryAgain={onTryAgain} />
       ) : inIsFetchingMyTimeline ? null : (
-        <ErrorScreen
+        <OrbitErrorScreen
           id={`${scope}-ErrorScreen`}
           inErrorMessage={
             inIsFiltering ? 'LDMs events not available.\r\nPlease try a different filter' : 'LDMs events not available.'

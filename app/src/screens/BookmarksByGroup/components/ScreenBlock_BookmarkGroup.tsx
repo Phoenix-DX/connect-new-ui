@@ -39,7 +39,7 @@ import {
   toCacheRecord,
 } from './actions';
 import { BookmarkNoteAddEdit, BookmarkNoteDelete } from './BookmarkNoteDialogs';
-import { ItemOptionsMenu } from '@/shared/Connect2_LegacyShared/ItemOptionsMenu';
+import { ItemOptionsMenu } from '@/components/bookmark/ItemOptionsMenu';
 import { Result_Item_Badge } from './Result_Item_Badge';
 import {
   CommunityBusinessType2,

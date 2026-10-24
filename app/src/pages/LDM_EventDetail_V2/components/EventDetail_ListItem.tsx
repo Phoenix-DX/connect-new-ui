@@ -2,7 +2,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { styleFromCssText } from '@/shared/lib/cssText';
 import { osImage } from '@/legacy/os/os-assets';
-import { Person_Contact_Options } from '@/shared/Connect2_LegacyShared/Person_Contact_Options';
+import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
 import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
@@ -163,7 +163,7 @@ export function EventDetail_ListItem({
               ) : null}
             </div>
             <div className="padding-left-xs" data-container="">
-              <Person_Contact_Options
+              <PersonContactOptions
                 id={`${scope}-$b1`}
                 phone={g.HomePhone + g.MobilePhone + g.WorkPhone}
                 emailAddress={g.Email}

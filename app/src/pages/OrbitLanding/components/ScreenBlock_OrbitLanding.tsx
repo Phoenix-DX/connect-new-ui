@@ -4,10 +4,10 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { Card_Event } from '@/shared/Connect2_OrbitMobile_MUI/Card_Event';
-import { Card_Milestone } from '@/shared/Connect2_OrbitMobile_MUI/Card_Milestone';
-import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { OrbitEventCard } from '@/components/orbit/OrbitEventCard';
+import { MilestoneCard } from '@/components/orbit/MilestoneCard';
+import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { Event_Screen, Milestone_Screen } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
@@ -277,7 +277,7 @@ export function ScreenBlock_OrbitLanding({
   /* Content (:524-711): If not fetching → (If fetched and not fetching → list or NoInformation_Orbit), else the
      OrbitLanding skeleton. */
   const events = s.isFetchingData ? (
-    <Skeleton_Loading id={`${prefix}-$b7`} inSkeletonLoadingId={OrbitSkeletonLoading.OrbitLanding} />
+    <OrbitSkeleton id={`${prefix}-$b7`} inSkeletonLoadingId={OrbitSkeletonLoading.OrbitLanding} />
   ) : !s.isEventsDataFetched ? null : s.eventsSummary.length > 0 ? (
     <OSList
       className="list list-group orbit-card-list"
@@ -289,14 +289,14 @@ export function ScreenBlock_OrbitLanding({
       {(p, i) => (
         <div className="orbit-card-list-cont" data-container="">
           {p.isMilestone ? (
-            <Card_Milestone
+            <MilestoneCard
               id={`${prefix}-l1-60_${String(i)}-$b4`}
               inMilestoneSummary={p.milestone}
               isSetUpMeals={false}
               onClickedMilestone={onHandleMilestoneCardClicked}
             />
           ) : (
-            <Card_Event
+            <OrbitEventCard
               id={`${prefix}-l1-60_${String(i)}-$b5`}
               inEventSummary={p.event}
               onClickedEvent={onHandleEventCardClicked}
@@ -306,7 +306,7 @@ export function ScreenBlock_OrbitLanding({
       )}
     </OSList>
   ) : (
-    <NoInformation_Orbit id={`${prefix}-$b6`} message={NO_EVENT_MESSAGE} />
+    <OrbitNoInformation id={`${prefix}-$b6`} message={NO_EVENT_MESSAGE} />
   );
 
   return (

@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { HostSurvey_PillItem } from '@/shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';
+import { HostSurveyPill } from '@/components/orbit/HostSurveyPill';
 import type { HostSurveyMeal, HostSurveyRoom } from '@/pages/HostSurvey/types';
 import { getFormattedDate_Survey, getGenderPreferenceByJSON_Name, getHouseFloorByJSON_Name } from './actions';
 import type { LocalLabelledRecord } from '@/platform/storage/localEntities';
@@ -100,7 +100,7 @@ export function HostSurvey_AccommodationPills({
 }) {
   const scope = id.replace(/\$(b\d+)$/, '$1');
   const pill = (n: number, iconClass: string, text: string) => (
-    <HostSurvey_PillItem
+    <HostSurveyPill
       id={`${scope}-$b${String(n)}`}
       inIsDisabled={inIsDisabled}
       inIconClass={iconClass}
@@ -146,7 +146,7 @@ export function HostSurvey_MealPills({
     <OSBlock name="Orbit_Blocks.HostSurvey_MealPills" id={id}>
       <div className="orbit-host-survey-pill-cont" data-container="">
         {meal.EventDate !== '' && (
-          <HostSurvey_PillItem
+          <HostSurveyPill
             id={`${scope}-$b1`}
             inIsDisabled={inIsDisabled}
             inIconClass="orbit-icon-meeting"
@@ -154,7 +154,7 @@ export function HostSurvey_MealPills({
           />
         )}
         {meal.ComfortableCapacity !== '' && meal.StretchCapacity !== '' && (
-          <HostSurvey_PillItem
+          <HostSurveyPill
             id={`${scope}-$b2`}
             inIsDisabled={inIsDisabled}
             inIconClass="orbit-icon-capacity"

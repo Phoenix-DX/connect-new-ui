@@ -6,12 +6,12 @@ import { OSList } from '@/components/ui/os/OSList';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/shared/Connect2_LegacyShared/lib/actions';
-import { Accordion_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
-import { Card_MemberInformation } from '@/shared/Connect2_OrbitMobile_MUI/Card_MemberInformation';
-import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { MilestoneHeader } from '@/shared/Connect2_OrbitMobile_MUI/MilestoneHeader';
-import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { OrbitAccordion } from '@/components/orbit/OrbitAccordion';
+import { MemberInformationCard } from '@/components/orbit/MemberInformationCard';
+import { ContactHelpdeskFooter } from '@/components/orbit/ContactHelpdeskFooter';
+import { MilestoneHeader } from '@/components/orbit/MilestoneHeader';
+import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import {
   addExtensionToFile,
   checkDirectoryAccess,
@@ -410,7 +410,7 @@ export function ScreenBlock_AccommodationHost(props: ScreenBlock_AccommodationHo
   /** The Helper/s accordion (SB :492-747, and :1240-1500 without rooms): per role its formatted name and member cards
       with the midday / evening meals. */
   const helpersAccordion = (accordion: string, item: string, card: string) => (
-    <Accordion_Orbit
+    <OrbitAccordion
       id={`${prefix}-$b${accordion}`}
       inExtendedClass={noSpecialNeeds ? ' orbit-accordion-no-margin' : ''}
     >
@@ -444,7 +444,7 @@ export function ScreenBlock_AccommodationHost(props: ScreenBlock_AccommodationHo
                 >
                   {(mi, k) => (
                     <div className="orbit-member-list-item" data-container="">
-                      <Card_MemberInformation
+                      <MemberInformationCard
                         id={`${prefix}-l${item}-15_${String(i)}-l${item}-19_${String(k)}-$b${card}`}
                         inDisplayDot={false}
                         inHouseholderId={mi.HouseholderId ?? ''}
@@ -476,7 +476,7 @@ export function ScreenBlock_AccommodationHost(props: ScreenBlock_AccommodationHo
           </OSList>
         }
       />
-    </Accordion_Orbit>
+    </OrbitAccordion>
   );
 
   /** One room (SB :760-1170): the room info row when a floor, type or beds is set, "Guest/s" and per household its
@@ -529,7 +529,7 @@ export function ScreenBlock_AccommodationHost(props: ScreenBlock_AccommodationHo
                 {(mi, k) => (
                   <div className="orbit-member-list-item" data-container="">
                     <div data-container="">
-                      <Card_MemberInformation
+                      <MemberInformationCard
                         id={`${prefix}-l5-142864_${String(r)}-l5-${String(142865 + 2 * r)}_${String(j)}-l5-${String(142866 + 2 * r)}_${String(k)}-$b9`}
                         inHouseholderId={g.HouseholderId}
                         inHouseholdCountryCode={g.CountryCode}
@@ -579,17 +579,17 @@ export function ScreenBlock_AccommodationHost(props: ScreenBlock_AccommodationHo
   };
 
   const content: ReactNode = s.isFetchingData ? (
-    <Skeleton_Loading
+    <OrbitSkeleton
       id={`${prefix}-$b16`}
       inSkeletonLoadingId={getSkeletonLoadingIdFromMilestoneTypeId(In_OrbitMilestoneTypeId)}
     />
   ) : !s.isDataFetched ? null : !s.hasData ? (
-    <NoInformation_Orbit id={`${prefix}-$b15`} message={BEING_ORGANISED} />
+    <OrbitNoInformation id={`${prefix}-$b15`} message={BEING_ORGANISED} />
   ) : hasRooms ? (
     <div className="full-width margin-top-m" data-container="">
       {allocationTitle}
       {hasHelpers && helpersAccordion('4', '5', '6')}
-      <Accordion_Orbit
+      <OrbitAccordion
         id={`${prefix}-$b7`}
         inExtendedClass={noSpecialNeeds && !hasHelpers ? ' orbit-accordion-no-margin' : ''}
         inMultipleItems
@@ -611,7 +611,7 @@ export function ScreenBlock_AccommodationHost(props: ScreenBlock_AccommodationHo
             />
           )}
         </OSList>
-      </Accordion_Orbit>
+      </OrbitAccordion>
     </div>
   ) : hasHelpers ? (
     <div className="full-width margin-top-m" data-container="">
@@ -619,7 +619,7 @@ export function ScreenBlock_AccommodationHost(props: ScreenBlock_AccommodationHo
       {helpersAccordion('11', '12', '13')}
     </div>
   ) : (
-    <NoInformation_Orbit id={`${prefix}-$b14`} message={NO_GUESTS} />
+    <OrbitNoInformation id={`${prefix}-$b14`} message={NO_GUESTS} />
   );
 
   return (
@@ -650,9 +650,7 @@ export function ScreenBlock_AccommodationHost(props: ScreenBlock_AccommodationHo
           ) : null
         }
         content={content}
-        bottomBar={
-          s.hasData ? <ContactHelpdesk_Footer id={`${prefix}-$b17`} onClick={onHandleContactHelpdesk} /> : null
-        }
+        bottomBar={s.hasData ? <ContactHelpdeskFooter id={`${prefix}-$b17`} onClick={onHandleContactHelpdesk} /> : null}
         commonUIElements={<div id={`${prefix}-CommonUI_Elements`}>{props.commonUIElements}</div>}
       />
       <Dialog_AccessRestrictedAction_Legacy id={`${prefix}-FreeSubscriptionAlert`} scope={`${prefix}-b18`} />

@@ -5,9 +5,9 @@ import { OSList } from '@/components/ui/os/OSList';
 import { UserException } from '@/legacy/os/os-exceptions';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { HostSurvey_PillItem } from '@/shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';
-import { NoResults } from '@/shared/Connect2_OrbitMobile_MUI/NoResults';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { HostSurveyPill } from '@/components/orbit/HostSurveyPill';
+import { OrbitNoResults } from '@/pages/EventBooklet/components/OrbitNoResults';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { checkDirectoryAccess, setBookletMaxRows } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { DirectoryAPIFilter, OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import { BackNavigationHandler, type BackNavigationEvent } from '@/platform/navigation/BackNavigationHandler';
@@ -735,7 +735,7 @@ export function ScreenBlock_EventBooklet(props: ScreenBlock_EventBookletProps) {
   const localityGroup = (g: BookletMembersByLocality, key: string, pillAlias: number, memberAlias: number) => (
     <div className="orbit-booklet-list-cont" data-container="">
       <div className="orbit-booklet-location-pill-cont" data-container="">
-        <HostSurvey_PillItem
+        <HostSurveyPill
           id={`${prefix}-${key}-$b${String(pillAlias)}`}
           inIsSmallIcon
           inExtendedClass="orbit-booklet-location-pill"
@@ -766,12 +766,12 @@ export function ScreenBlock_EventBooklet(props: ScreenBlock_EventBookletProps) {
   );
 
   const skeleton = (alias: number) => (
-    <Skeleton_Loading id={`${prefix}-$b${String(alias)}`} inSkeletonLoadingId={OrbitSkeletonLoading.EventBooklet} />
+    <OrbitSkeleton id={`${prefix}-$b${String(alias)}`} inSkeletonLoadingId={OrbitSkeletonLoading.EventBooklet} />
   );
 
   /** NoResults of a view (SB :816-866, :1375-1427). */
   const noResults = (alias: number, lastFilters: SelectedFilters, nothingAllocated: string) => (
-    <NoResults
+    <OrbitNoResults
       id={`${prefix}-$b${String(alias)}`}
       placeholderTitle={
         <span data-expression="">

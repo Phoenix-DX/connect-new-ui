@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { osImage } from '@/legacy/os/os-assets';
-import { Person_Contact_Options } from '@/shared/Connect2_LegacyShared/Person_Contact_Options';
+import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
 import { Result_Item_Image } from '@/shared/Connect2_LegacyShared/Result_Item_Image';
 import type {
   ContactByPhonePopupData,
@@ -184,7 +184,7 @@ export function EventCard_Guests({
                     }
                     resultItemPlaceholder={
                       <>
-                        <Person_Contact_Options
+                        <PersonContactOptions
                           emailAddress={g.Email}
                           phone={g.MobilePhone + g.WorkPhone + g.HomePhone}
                           onCallClicked={() => {

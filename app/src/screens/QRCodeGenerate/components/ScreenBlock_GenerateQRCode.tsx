@@ -4,9 +4,9 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { ContactHelpdeskFooter } from '@/components/orbit/ContactHelpdeskFooter';
+import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import {
   DirectoryAPIFilter,
   ImageSigningSize,
@@ -235,11 +235,11 @@ export function ScreenBlock_GenerateQRCode(props: ScreenBlock_GenerateQRCodeProp
   );
 
   const content: ReactNode = s.isFetchingData ? (
-    <Skeleton_Loading id={`${prefix}-$b4`} inSkeletonLoadingId={OrbitSkeletonLoading.MemberQRCode} />
+    <OrbitSkeleton id={`${prefix}-$b4`} inSkeletonLoadingId={OrbitSkeletonLoading.MemberQRCode} />
   ) : s.isDataFetched && s.responseQRCodeAsBinary !== '' ? (
     pass
   ) : (
-    <NoInformation_Orbit id={`${prefix}-$b3`} message={NO_QR_CODE} />
+    <OrbitNoInformation id={`${prefix}-$b3`} message={NO_QR_CODE} />
   );
 
   return (
@@ -252,7 +252,7 @@ export function ScreenBlock_GenerateQRCode(props: ScreenBlock_GenerateQRCodeProp
         title={<span data-expression="">{In_EventName}</span>}
         content={content}
         bottomBar={
-          !s.isFetchingData ? <ContactHelpdesk_Footer id={`${prefix}-$b5`} onClick={onHandleContactHelpdesk} /> : null
+          !s.isFetchingData ? <ContactHelpdeskFooter id={`${prefix}-$b5`} onClick={onHandleContactHelpdesk} /> : null
         }
         commonUIElements={<div id={`${prefix}-CommonUI_Elements`}>{props.commonUIElements}</div>}
       />

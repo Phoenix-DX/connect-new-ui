@@ -5,12 +5,12 @@ import { OSList } from '@/components/ui/os/OSList';
 import { useFlagOn } from '@/platform/flags/flags';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { Accordion_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/Accordion_Orbit';
-import { Card_Milestone } from '@/shared/Connect2_OrbitMobile_MUI/Card_Milestone';
-import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { HostSurvey_PillItem } from '@/shared/Connect2_OrbitMobile_MUI/HostSurvey_PillItem';
-import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { OrbitAccordion } from '@/components/orbit/OrbitAccordion';
+import { MilestoneCard } from '@/components/orbit/MilestoneCard';
+import { ContactHelpdeskFooter } from '@/components/orbit/ContactHelpdeskFooter';
+import { HostSurveyPill } from '@/components/orbit/HostSurveyPill';
+import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import {
   MilestoneTimeType,
   OrbitMilestoneType,
@@ -407,7 +407,7 @@ export function ScreenBlock_EventDetail(props: ScreenBlock_EventDetailProps) {
 
   /** The Host Allocation accordion (:961-1068 and :1200-1305). */
   const accordion = (a: string, item: string, list: string) => (
-    <Accordion_Orbit id={`${prefix}-$b${a}`} inColoredContent>
+    <OrbitAccordion id={`${prefix}-$b${a}`} inColoredContent>
       <DEPRECATED_AccordionItem
         id={`${prefix}-$b${item}`}
         isExpanded={false}
@@ -423,7 +423,7 @@ export function ScreenBlock_EventDetail(props: ScreenBlock_EventDetailProps) {
           />
         }
       />
-    </Accordion_Orbit>
+    </OrbitAccordion>
   );
 
   /** Host survey row of a host event (:775-958): Sent or Confirmed with the HostSurvey flag → "Complete / View Host
@@ -457,7 +457,7 @@ export function ScreenBlock_EventDetail(props: ScreenBlock_EventDetailProps) {
           </span>
           <i className="icon margin-left-m font-size-1-25em fa fa-angle-right fa-1x" data-icon="" />
         </div>
-        <HostSurvey_PillItem
+        <HostSurveyPill
           id={`${prefix}-$b3`}
           inIconClass={
             isSent ? 'orbit-icon-circle-warning color-orbit-orange-8' : 'orbit-icon-circle-check color-orbit-green-6'
@@ -479,7 +479,7 @@ export function ScreenBlock_EventDetail(props: ScreenBlock_EventDetailProps) {
   const dayAccordion: ReactNode = isConfirmed ? accordion('4', '5', '6') : null;
 
   const noInformation = (alias: string) => (
-    <NoInformation_Orbit
+    <OrbitNoInformation
       id={`${prefix}-$b${alias}`}
       message={In_FromNotification && s.isEventUnavailable ? NO_LONGER_AVAILABLE : NO_ITINERARY}
       isUrgent={s.isEventUnavailable}
@@ -560,7 +560,7 @@ export function ScreenBlock_EventDetail(props: ScreenBlock_EventDetailProps) {
   );
 
   const content: ReactNode = s.isFetchingData ? (
-    <Skeleton_Loading id={`${prefix}-$b14`} inSkeletonLoadingId={OrbitSkeletonLoading.EventDetail} />
+    <OrbitSkeleton id={`${prefix}-$b14`} inSkeletonLoadingId={OrbitSkeletonLoading.EventDetail} />
   ) : s.isEventUnavailable ? (
     s.isEventDetailsFetched ? (
       noInformation('13')
@@ -585,7 +585,7 @@ export function ScreenBlock_EventDetail(props: ScreenBlock_EventDetailProps) {
           >
             {(p, i) => (
               <div className="orbit-card-list-cont" data-container="">
-                <Card_Milestone
+                <MilestoneCard
                   id={`${prefix}-l1-142797_${String(i)}-$b8`}
                   inMilestoneSummary={p}
                   isOverrideMainColorVar=""
@@ -647,7 +647,7 @@ export function ScreenBlock_EventDetail(props: ScreenBlock_EventDetailProps) {
         content={content}
         bottomBar={
           s.responseMilestones.length > 0 && !s.isFetchingData ? (
-            <ContactHelpdesk_Footer id={`${prefix}-$b15`} onClick={onHandleContactHelpdesk} />
+            <ContactHelpdeskFooter id={`${prefix}-$b15`} onClick={onHandleContactHelpdesk} />
           ) : null
         }
         commonUIElements={<div id={`${prefix}-CommonUI_Elements`} />}

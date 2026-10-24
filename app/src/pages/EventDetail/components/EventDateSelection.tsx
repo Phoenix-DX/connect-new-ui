@@ -1,7 +1,7 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.EventDateSelection
 import { useEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ListOfDaySelectors } from '@/shared/Connect2_OrbitMobile_MUI/ListOfDaySelectors';
+import { DaySelectorList } from '@/components/orbit/DaySelectorList';
 import { MilestoneTimeType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { DayFilter } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
@@ -109,7 +109,7 @@ export function EventDateSelection({ id, inDateList, onClickedDate }: EventDateS
             B
           </div>
         )}
-        <ListOfDaySelectors
+        <DaySelectorList
           id={`${prefix}-$b1`}
           replaceSunday
           addWeekdayBelow

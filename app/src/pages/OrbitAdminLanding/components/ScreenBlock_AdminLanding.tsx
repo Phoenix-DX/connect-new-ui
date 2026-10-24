@@ -4,9 +4,9 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { Card_Event } from '@/shared/Connect2_OrbitMobile_MUI/Card_Event';
-import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { OrbitEventCard } from '@/components/orbit/OrbitEventCard';
+import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import type { Event_Screen } from '@/shared/Connect2_OrbitMobile_MUI/lib/structures';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
@@ -151,7 +151,7 @@ export function ScreenBlock_AdminLanding({ id, bottomBar, onNavigateToEventDetai
   /* Content (:260-388): If not fetching → (If fetched and not fetching → the card list or NoInformation_Orbit), else
      the OrbitLanding skeleton. */
   const content = s.isFetchingData ? (
-    <Skeleton_Loading id={`${prefix}-$b5`} inSkeletonLoadingId={OrbitSkeletonLoading.OrbitLanding} />
+    <OrbitSkeleton id={`${prefix}-$b5`} inSkeletonLoadingId={OrbitSkeletonLoading.OrbitLanding} />
   ) : !s.isDataFetched ? null : s.eventsSummary.length > 0 ? (
     <OSList
       className="list list-group orbit-card-list"
@@ -162,7 +162,7 @@ export function ScreenBlock_AdminLanding({ id, bottomBar, onNavigateToEventDetai
     >
       {(p, i) => (
         <div className="orbit-card-list-cont" data-container="">
-          <Card_Event
+          <OrbitEventCard
             id={`${prefix}-l1-7_${String(i)}-$b3`}
             inEventSummary={p.event}
             onClickedEvent={(eventSummary) => {
@@ -173,7 +173,7 @@ export function ScreenBlock_AdminLanding({ id, bottomBar, onNavigateToEventDetai
       )}
     </OSList>
   ) : (
-    <NoInformation_Orbit id={`${prefix}-$b4`} message={NO_ADMIN_EVENT_MESSAGE} />
+    <OrbitNoInformation id={`${prefix}-$b4`} message={NO_ADMIN_EVENT_MESSAGE} />
   );
 
   return (

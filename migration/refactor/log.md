@@ -610,3 +610,10 @@ One line per event. Written by rf.py.
 - 2026-10-24T07:04:48 P6-G5-A stage test
 - 2026-10-24T07:08:38 P6-G5-A stage docs
 - 2026-10-24T07:09:30 P6-G5-A stage commit
+- 2026-10-24T07:09:35 P6-G5-A done 16a20ef2: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); diffcheck --move ok (146 renames); arch baseline 0 new; HomeFeed 244.38 kB, Login 184.43 kB
+- 2026-10-24T07:09:35 P6-G5-B-Shared started
+- 2026-10-24T07:09:35 P6-G5-B-Shared stage dev
+- 2026-10-24T07:11:01 P6-G5-B-Shared stage test
+- 2026-10-24T07:20:59 P6-G5-B-Shared stage docs
+- 2026-10-24T07:30 master note: the tester prompts of P6-G5-A and P6-G5-B-Shared named `parity visual --changed` instead of the brief's `strict` level. P6-G5-A was committed (16a20ef2) with visual --changed 64/64; the P6-G5-B-Shared re-test ran the brief's `parity strict --all --ref both` on the tree that holds P6-G5-A: 64/64 clean on both references, so it covers the strict gate of P6-G5-A too. Tester prompts now say "run the brief's gate commands".
+- 2026-10-24T07:21:57 P6-G5-B-Shared stage commit

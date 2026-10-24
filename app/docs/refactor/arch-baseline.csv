@@ -66,3 +66,11 @@ src/components/note/NotesSheet/NotesSheet.stories.tsx,@/containers/NoteListActio
 src/components/note/NotesSheet/NotesSheet.test.tsx,@/containers/NoteListActions/NoteListActionsContainer.stories,rule-4,P7
 src/components/note/NotesSheet/NotesSheet.tsx,@/containers/NoteListActions,rule-4,P7
 src/components/note/NotesSheet/mocks.ts,@/containers/NoteListActions/mocks,rule-4,P7
+src/components/assemble/AssembleSummaryCard/AssembleSummaryCard.test.tsx,@/platform/feedback/feedbackStore,rule-4,P6-G5-B-AssembleDetail
+src/components/assemble/AssembleSummaryCard/AssembleSummaryCard.test.tsx,@/platform/feedback/pageRedirect,rule-4,P6-G5-B-AssembleDetail
+src/components/assemble/AssembleSummaryCard/AssembleSummaryCard.tsx,@/platform/feedback/feedbackStore,rule-4,P6-G5-B-AssembleDetail
+src/components/assemble/AssembleSummaryCard/AssembleSummaryCard.tsx,@/platform/feedback/pageRedirect,rule-4,P6-G5-B-AssembleDetail
+src/components/assemble/AssembleSummaryCard/AssembleSummaryCard.tsx,@/platform/navigation,rule-4,P6-G5-B-AssembleDetail
+src/components/assemble/VirtualMeetingUrl/VirtualMeetingUrl.tsx,@/platform/feedback/dialogs,rule-4,P6-G5-B-AssembleDetail
+src/components/bookmark/ItemOptionsMenu/ItemOptionsMenu.test.tsx,@/platform/flags/flags,rule-4,P7
+src/components/bookmark/ItemOptionsMenu/ItemOptionsMenu.tsx,@/platform/flags/flags,rule-4,P7

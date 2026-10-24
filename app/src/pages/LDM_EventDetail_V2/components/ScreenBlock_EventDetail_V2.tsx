@@ -7,8 +7,8 @@ import { UserException } from '@/legacy/os/os-exceptions';
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
-import { EventDetail_SubSection } from '@/shared/Connect2_OrbitMobile_MUI/EventDetail_SubSection';
-import { ErrorScreen } from '@/shared/Connect2_OrbitMobile_MUI/ErrorScreen';
+import { EventDetailSubSection } from '@/components/orbit/EventDetailSubSection';
+import { OrbitErrorScreen } from '@/components/orbit/OrbitErrorScreen';
 import { ContactByMessage } from '@/components/contact/ContactByMessage';
 import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';
@@ -403,7 +403,7 @@ export function ScreenBlock_EventDetail_V2({
 
   const content = (() => {
     if (state.hasEventFetchError)
-      return <ErrorScreen id={`${scope}-$b16`} inErrorMessage="No event information." inMatchMainContentHeight />;
+      return <OrbitErrorScreen id={`${scope}-$b16`} inErrorMessage="No event information." inMatchMainContentHeight />;
     if (state.isFetching)
       return (
         <div className="list-updating-cont" data-container="" id={`${scope}-MarkReadLoading`}>
@@ -411,7 +411,7 @@ export function ScreenBlock_EventDetail_V2({
         </div>
       );
     if (!state.hasInformation || !host)
-      return <ErrorScreen id={`${scope}-$b15`} inErrorMessage="No event information." inMatchMainContentHeight />;
+      return <OrbitErrorScreen id={`${scope}-$b15`} inErrorMessage="No event information." inMatchMainContentHeight />;
     const hasNeeds = needs.Mobility.length > 0 || needs.Diet.length > 0 || needs.Other.length > 0;
     return (
       <EventsDetail_Content
@@ -472,19 +472,19 @@ export function ScreenBlock_EventDetail_V2({
                 inTitle="Special Needs"
               >
                 {needs.Diet.length > 0 ? (
-                  <EventDetail_SubSection id={`${scope}-SubSection_Dietary`} inTitle="Dietary" inHasBottomBorder>
+                  <EventDetailSubSection id={`${scope}-SubSection_Dietary`} inTitle="Dietary" inHasBottomBorder>
                     {specialNeedsList('Dietary', needs.Diet)}
-                  </EventDetail_SubSection>
+                  </EventDetailSubSection>
                 ) : null}
                 {needs.Mobility.length > 0 ? (
-                  <EventDetail_SubSection id={`${scope}-SubSection_Mobility`} inTitle="Mobility" inHasBottomBorder>
+                  <EventDetailSubSection id={`${scope}-SubSection_Mobility`} inTitle="Mobility" inHasBottomBorder>
                     {specialNeedsList('Mobility', needs.Mobility)}
-                  </EventDetail_SubSection>
+                  </EventDetailSubSection>
                 ) : null}
                 {needs.Other.length > 0 ? (
-                  <EventDetail_SubSection id={`${scope}-SubSection_Other`} inTitle="Other" inHasBottomBorder>
+                  <EventDetailSubSection id={`${scope}-SubSection_Other`} inTitle="Other" inHasBottomBorder>
                     {specialNeedsList('Other', needs.Other)}
-                  </EventDetail_SubSection>
+                  </EventDetailSubSection>
                 ) : null}
               </EventDetail_Section>
             ) : null}

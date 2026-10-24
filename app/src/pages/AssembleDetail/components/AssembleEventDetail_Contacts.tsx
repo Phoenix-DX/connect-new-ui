@@ -5,7 +5,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { hasAccessToRegion } from '@/shared/Connect2_Assemble_MUI/lib/actions';
 import { NC_Result_Item__Image } from '@/shared/Connect2_LegacyShared/NC_Result_Item__Image';
-import { Person_Contact_Options } from '@/shared/Connect2_LegacyShared/Person_Contact_Options';
+import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
 import { getCacheableSignedPhotoURL, getSignedPhotosInBulk } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { ContactByMessage } from '@/components/contact/ContactByMessage';
 import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
@@ -215,7 +215,7 @@ export function AssembleEventDetail_Contact({
           titlePlaceholder={<span data-expression="">{c.ContactDetails.Name}</span>}
           descriptionPlaceholder={<span data-expression="">{c.ContactDetails.Location}</span>}
           actionPlaceholder={
-            <Person_Contact_Options
+            <PersonContactOptions
               id={`${scope}-$b2`}
               phone={phone}
               emailAddress={email}

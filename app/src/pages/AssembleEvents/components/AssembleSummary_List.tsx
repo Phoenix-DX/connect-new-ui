@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { AssembleSummaryCard } from '@/shared/Connect2_Assemble_MUI/AssembleSummaryCard';
+import { AssembleSummaryCard } from '@/components/assemble/AssembleSummaryCard';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { setPreloadObject, useViewState, useWasRestoredFromCache } from '@/platform/navigation';

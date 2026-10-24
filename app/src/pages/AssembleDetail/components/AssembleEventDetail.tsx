@@ -5,8 +5,8 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { AssembleSummaryCard } from '@/shared/Connect2_Assemble_MUI/AssembleSummaryCard';
-import { AssembleSummaryDetailHeader_Skeleton } from '@/shared/Connect2_Assemble_MUI/AssembleSummaryDetailHeader_Skeleton';
+import { AssembleSummaryCard } from '@/components/assemble/AssembleSummaryCard';
+import { AssembleSummarySkeleton } from '@/components/assemble/AssembleSummarySkeleton';
 import { NC_Card_Item_Text__Skeleton } from '@/shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
@@ -226,7 +226,7 @@ export function AssembleEventDetail({
       <div className="assemble-detail-content" data-container="">
         <div data-container="" id={`${scope}-DIV_DetailCard`}>
           {!isDataFetched && (summary?.EventId ?? '') === '' ? (
-            <AssembleSummaryDetailHeader_Skeleton
+            <AssembleSummarySkeleton
               id={`${scope}-$b2`}
               placeholderImage={<NC_Card_Item_Text__Skeleton id={`${scope}-$b3`} />}
               placeholderSubtitleTop={

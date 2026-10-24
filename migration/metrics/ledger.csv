@@ -673,3 +673,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,verify,22289,refactor-test,,P6-G5-A sonnet
 2026-10-24,refactor,fix,14108,refactor-dev,,P6-G5-A loop 1 sonnet
 2026-10-24,refactor,verify,16044,refactor-test,,P6-G5-A loop 1 sonnet
+2026-10-24,refactor,build,66045,refactor-dev,,P6-G5-B-Shared sonnet
+2026-10-24,refactor,other,36293,refactor-docs,,P6-G5-A sonnet
+2026-10-24,refactor,verify,21622,refactor-test,,P6-G5-B-Shared sonnet
+2026-10-24,refactor,verify,1643,refactor-test,,P6-G5-B-Shared sonnet

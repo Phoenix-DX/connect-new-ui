@@ -1,7 +1,7 @@
 // @os-block Connect2_Assemble_MUI.AssembleSkeleton.AssembleSummary_SkeletonList
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { AssembleSummaryDetailHeader_Skeleton } from '@/shared/Connect2_Assemble_MUI/AssembleSummaryDetailHeader_Skeleton';
+import { AssembleSummarySkeleton } from '@/components/assemble/AssembleSummarySkeleton';
 import { NC_Card_Item_Text__Skeleton } from '@/shared/Connect2_LegacyShared/NC_Card_Item_Text__Skeleton';
 import { NC_Result_Item_Badge } from '@/shared/Connect2_LegacyShared/NC_Result_Item_Badge';
 
@@ -26,7 +26,7 @@ export function AssembleSummary_SkeletonList({ id, skeletonListLength }: Assembl
           return (
             <div className="background-neutral-1 padding-bottom-s" data-container="">
               <div className="background-neutral-0" data-container="">
-                <AssembleSummaryDetailHeader_Skeleton
+                <AssembleSummarySkeleton
                   id={`${p}-$b1`}
                   placeholderSubtitleTop={
                     <>

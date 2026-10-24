@@ -1,8 +1,8 @@
 // @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters
 import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { ListOfDaySelectors } from '@/shared/Connect2_OrbitMobile_MUI/ListOfDaySelectors';
-import { Orbit_FooterWithActions } from '@/shared/Connect2_OrbitMobile_MUI/Orbit_FooterWithActions';
+import { DaySelectorList } from '@/components/orbit/DaySelectorList';
+import { FooterWithActions } from '@/pages/EventBooklet/components/FooterWithActions';
 import { styleFromCssText } from '@/shared/lib/cssText';
 import { DropdownTags } from '@/shared/osui/DropdownTags';
 import { dropdownClear, dropdownClearValidation, dropdownTogglePopup } from '@/shared/osui/lib/actions';
@@ -275,7 +275,7 @@ export function PopUp_OrbitBookletFilters({
           <div className="margin-bottom-s" data-container="">
             Day
           </div>
-          <ListOfDaySelectors
+          <DaySelectorList
             id={`${prefix}-$b1`}
             dateList={s.dynamicFilters.DateRange}
             addWeekdayBelow
@@ -338,7 +338,7 @@ export function PopUp_OrbitBookletFilters({
         </div>
       </div>
       <div className="sticky-to-bottom" data-container="">
-        <Orbit_FooterWithActions
+        <FooterWithActions
           id={`${prefix}-$b5`}
           inIsSmallButtons
           inHasSecondaryButton

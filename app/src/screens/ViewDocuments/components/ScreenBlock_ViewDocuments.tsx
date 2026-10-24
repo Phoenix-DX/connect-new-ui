@@ -5,9 +5,9 @@ import { OSList } from '@/components/ui/os/OSList';
 import { log } from '@/platform/log/log';
 import { OrbitLayout } from '@/components/layout/OrbitLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
-import { ContactHelpdesk_Footer } from '@/shared/Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer';
-import { NoInformation_Orbit } from '@/shared/Connect2_OrbitMobile_MUI/NoInformation_Orbit';
-import { Skeleton_Loading } from '@/shared/Connect2_OrbitMobile_MUI/Skeleton_Loading';
+import { ContactHelpdeskFooter } from '@/components/orbit/ContactHelpdeskFooter';
+import { OrbitNoInformation } from '@/components/orbit/OrbitNoInformation';
+import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { addExtensionToFile } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { OrbitSkeletonLoading } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
 import {
@@ -249,11 +249,11 @@ export function ScreenBlock_ViewDocuments(props: ScreenBlock_ViewDocumentsProps)
   );
 
   const content: ReactNode = s.isFetchingData ? (
-    <Skeleton_Loading id={`${prefix}-$b5`} inSkeletonLoadingId={OrbitSkeletonLoading.ViewDocument} />
+    <OrbitSkeleton id={`${prefix}-$b5`} inSkeletonLoadingId={OrbitSkeletonLoading.ViewDocument} />
   ) : s.hasResponseDocuments ? (
     documents
   ) : s.isDataFetched ? (
-    <NoInformation_Orbit id={`${prefix}-$b4`} message={NO_DOCUMENTS} />
+    <OrbitNoInformation id={`${prefix}-$b4`} message={NO_DOCUMENTS} />
   ) : null;
 
   return (
@@ -267,7 +267,7 @@ export function ScreenBlock_ViewDocuments(props: ScreenBlock_ViewDocumentsProps)
         content={content}
         bottomBar={
           s.eventDocuments.length > 0 ? (
-            <ContactHelpdesk_Footer id={`${prefix}-$b6`} onClick={onHandleContactHelpdesk} />
+            <ContactHelpdeskFooter id={`${prefix}-$b6`} onClick={onHandleContactHelpdesk} />
           ) : null
         }
         commonUIElements={
