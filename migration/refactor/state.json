@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G6-B-ViewDocuments",
+  "step": "P6-G6-C",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T11:44:41"
+  "since": "2026-10-24T11:56:52"
  },
  "steps": {
   "P0-1": {
@@ -1535,11 +1535,25 @@
    "finished": "2026-10-24T11:32:27"
   },
   "P6-G6-B-ViewDocuments": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T11:32:27",
    "tokens": {
     "dev": 240845,
-    "test": 37549
+    "test": 37549,
+    "docs": 29795
+   },
+   "commit": "b9e74761",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self) (ViewDocuments has no parity states; old-vs-new 7 scenarios / 44 observations equal); arch baseline 0 new; HomeFeed 244.48 kB, Login 184.50 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T11:44:42"
+  },
+  "P6-G6-C": {
+   "status": "active",
+   "started": "2026-10-24T11:44:42",
+   "tokens": {
+    "dev": 20398,
+    "test": 23968,
+    "docs": 32572
    }
   }
  },
@@ -1597,6 +1611,12 @@
    "by": "user",
    "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W31 group G5 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: raise F22/F24/F26 and F25 to the user; F23 flakes before P7 gates; F27 parity coverage wording (53 of 64 routes have states); F17 watch.",
    "at": "2026-10-24T10:21:59"
+  },
+  "P6-G6-C:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W33 group G6 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: QRCodeGenerate and ViewDocuments on the P6-end manual review list; F22/F24/F26, F25, F28 as one user batch; F23 flakes before the P7 gates; F27; F17 watch.",
+   "at": "2026-10-24T11:56:52"
   }
  },
  "questions": [

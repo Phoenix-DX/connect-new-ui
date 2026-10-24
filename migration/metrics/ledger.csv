@@ -766,3 +766,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,240845,refactor-dev,,P6-G6-B-ViewDocuments opus
 2026-10-24,refactor,other,35937,refactor-docs,,P6-G6-B-QRCodeGenerate sonnet
 2026-10-24,refactor,verify,37549,refactor-test,,P6-G6-B-ViewDocuments sonnet
+2026-10-24,refactor,other,29795,refactor-docs,,P6-G6-B-ViewDocuments sonnet
+2026-10-24,refactor,build,20398,refactor-dev,,P6-G6-C sonnet
+2026-10-24,refactor,verify,23968,refactor-test,,P6-G6-C sonnet
+2026-10-24,refactor,other,32572,refactor-docs,,P6-G6-C sonnet
+2026-10-24,refactor,review,76586,refactor-advisor,,"W33, opus"
+2026-10-24,refactor,review,48528,refactor-advisor,,"W33, fable"

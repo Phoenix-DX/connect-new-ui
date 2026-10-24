@@ -744,3 +744,8 @@
 
 - `pages/ViewDocuments` is a page with a flow hook (`hooks/useViewDocuments.ts` on `useFlowState` with `beforePaint: true`, W28), a state module (`hooks/viewDocumentsState.ts`), `inputs.ts` and a props-only view (`components/ViewDocumentsView.tsx`). `api.ts`, `types.ts`, the ScreenBlock and `components/actions.ts` are deleted; the call is `fetchEventDocuments` (`api/event`). W23 holds.
 - No parity states; DOM evidence: the developer's old-vs-new probe, 7 scenarios / 44 observations. HomeFeed gzip 244.48 kB, Login 184.50 kB; baseline 0 new.
+
+## P6-G6-C - refactor(P6-G6-C): prune group G6 and group gate
+
+- Architecture: no folder change. The prune deleted no file (knip: none in G6; jscpd: 2 small clones left for P7). Group report: `app/docs/refactor/reports/P6-G6.md`.
+- Gate: parity visual `--all` 64/64 clean on both references; `ci` 3931 tests; baseline 69 rows, 0 new.

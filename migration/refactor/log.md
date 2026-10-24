@@ -777,3 +777,11 @@ One line per event. Written by rf.py.
 - 2026-10-24T11:33:10 P6-G6-B-ViewDocuments stage test
 - 2026-10-24T11:43:29 P6-G6-B-ViewDocuments stage docs
 - 2026-10-24T11:44:41 P6-G6-B-ViewDocuments stage commit
+- 2026-10-24T11:44:42 P6-G6-B-ViewDocuments done b9e74761: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self) (ViewDocuments has no parity states; old-vs-new 7 scenarios / 44 observations equal); arch baseline 0 new; HomeFeed 244.48 kB, Login 184.50 kB; W28 beforePaint
+- 2026-10-24T11:44:42 P6-G6-C started
+- 2026-10-24T11:44:42 P6-G6-C stage dev
+- 2026-10-24T11:45:47 P6-G6-C stage test
+- 2026-10-24T11:54:29 P6-G6-C stage docs
+- 2026-10-24T11:55:41 P6-G6-C waits for the user: Review the routes of group G6 on localhost (links in the step report): MyBookmarks, BookmarksByGroup, Notes, ConnectShare, LegacyShareObject, QRCodeGenerate, ViewDocuments. Then confirm the group.
+- 2026-10-24T11:56:52 P6-G6-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W33 group G6 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: QRCodeGenerate and ViewDocuments on the P6-end manual review list; F22/F24/F26, F25, F28 as one user batch; F23 flakes before the P7 gates; F27; F17 watch."
+- 2026-10-24T11:56:52 P6-G6-C stage commit
