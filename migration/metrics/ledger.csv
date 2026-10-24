@@ -897,3 +897,14 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,verify,0,refactor-test,,P9-2 sonnet
 2026-10-24,refactor,verify,28998,refactor-test,,P9-2 sonnet
 2026-10-24,refactor,other,35964,refactor-docs,,P9-2 sonnet
+2026-10-25,refactor,build,0,refactor-dev,,P9-3 sonnet
+2026-10-25,refactor,build,100688,refactor-dev,,P9-3 sonnet
+2026-10-25,refactor,verify,0,refactor-test,,P9-3 sonnet
+2026-10-25,refactor,verify,40633,refactor-test,,P9-3 loop 1 sonnet
+2026-10-25,refactor,fix,27310,refactor-dev,,P9-3 loop 1 sonnet
+2026-10-25,refactor,build,0,refactor-developer,,F54 dev (sonnet): AssembleEvents test compares the full timestamp; no other date-dependent test (tokens pending)
+2026-10-25,refactor,build,36440,refactor-developer,,F54 dev (sonnet) tokens from notification
+2026-10-25,refactor,verify,0,refactor-test,,P9-3 loop 1 sonnet
+2026-10-25,refactor,verify,23121,refactor-test,,P9-3 loop 1 sonnet
+2026-10-25,refactor,verify,0,refactor-tester,,"F54 test (sonnet): ci pass, shared run with P9-3 re-test (tokens counted under P9-3)"
+2026-10-25,refactor,other,0,refactor-docs,,P9-3 loop 1 sonnet

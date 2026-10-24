@@ -18,11 +18,12 @@ src/pages/<Screen>/
 
 Rules (checked before a screen is finished):
 
-- import only from the screen's folder and `src/lib`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/mocks`;
+- import only from the screen's folder and `src/lib`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/containers`, `src/mocks`. Import through the barrels (`@/platform/<area>`, `@/api/<domain>`, `@/components/<domain>`); `npm run arch` checks the direction;
 - no `fetch`, browser storage, CSS files, inline visual styles, raw HTML or `console.log`;
 - server data only through `callAction` (types from the contract); flags only through `useFlag` (`@/platform/flags`; old code uses the adapter `useFlagOn`);
 - anything the capture does not show renders `<NotCaptured name="…">` with what is known, never an invented design;
-- a needed change in shared code is a change request (`migration/change-requests/`), not an edit.
+- a needed change in shared code is a change request (`migration/change-requests/`), not an edit;
+- only a page, a hook or a container reads a feature flag (`npm run flags`).
 
 How to verify a screen: write a route spec (`migration/screens/<Screen>/route-spec.md`) with evidence for every statement.
 Then run parity against each captured state of the original. The product owner then does the review.

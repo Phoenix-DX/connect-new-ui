@@ -881,3 +881,17 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 
 - Architecture: new check `app/build/check-flags.mjs` (`npm run flags`, in `ci`). It fails on 4 cases: a key with no reader, an unknown key, a past `removeBy`, a new flag reader outside pages, hooks and containers.
 - Shrink-only lists: 3 unread keys (W43) and 3 owned outside readers (W42), metric 4 = 1 by design + 3 owned. Owners: F35, F51 to F53; guide: `app/docs/guides/quality.md`.
+
+## P9-3 - refactor(P9-3): docs
+
+- Architecture: no code change. `app/README.md` has the folder map of `src/`. `docs/architecture/overview.md` has a new diagram of the folders and the import direction, and the rules text matches P9-1 and P9-2 (errors with baselines, flag check). The container diagram had a Mermaid syntax error (braces in a label); it renders now.
+- Stale paths fixed in `docs/README.md`, `docs/known-original-bugs.md`, `docs/guides/api-and-mocks.md` and `docs/guides/screens.md`. `docs/guides/page-template.md` is final. It has the OnParametersChanged rule (F39) and the gate list of P9. A note about two files that no longer have the old pattern is gone.
+- ADR-15 text updated (F43, P9-1, P9-2, restored views); status, `by` and `at` unchanged. `app/docs/reference/stack.md` regenerated; the other reference pages are unchanged.
+- `CLAUDE.md` is not edited. The proposed change is in `migration/refactor/handoffs/P9-3/claude-md-proposal.md`.
+- Left as it is (code): the comment in `app/index.html` names `src/shell/StylesheetHost.tsx`; the file is `src/legacy/os/StylesheetHost.tsx`.
+
+## F54 - AssembleEvents test compares the full timestamp
+
+- Architecture: no folder change, no app code change. `pages/AssembleEvents/AssembleEvents.test.tsx` compared only the day; the page asks for meetings from the full timestamp (`EventList_RangeFrom = <day>T12:00:00`). The test now uses the full stamp, so it passes on a day with a 06:00 meeting.
+- A sweep with fixed dates 2026-10-25 to 2026-10-31 and 2026-12-01 found no other date-dependent test. The mock programme is built from the real clock at load.
+- Gate: ci: pass (3975/3975 tests).

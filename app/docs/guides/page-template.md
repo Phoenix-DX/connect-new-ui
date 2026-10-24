@@ -22,7 +22,7 @@ Where the files of a container go:
 - `containers/` never imports `pages/`.
 - Shared fictional data lives in `src/mocks/fictional/`.
 
-The old `api.ts` of a route (now deleted in every page) split in two. Server calls go to `api/<domain>/repository.ts`. The reader of the route
+The old `api.ts` of a route (deleted in every page) split in two. Server calls go to `api/<domain>/repository.ts`. The reader of the route
 input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that holds only input types folds into `inputs.ts`.
 
 ## Files of the pilot
@@ -44,8 +44,8 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
   actions go to a separate pure file (`<thing>State.ts`) that a unit test covers without React.
 - Flows that refresh on block events (OnReady, OnParametersChanged) call the repository functions `fetch<Thing>()` of
   `api/<domain>/`. They never call `callAction` or `fetch` themselves.
-- The `use<Thing>Query` hooks of `api/<domain>/` are for data that a component reads on render only. They come later
-  (P5/P6). `useHouseholdQuery` and `useHouseholdCoordinatesQuery` have no caller yet. `useCountryLocalityStatisticsQuery` (CountryDetails) and `useCountryInfoQuery` (Profile) have callers: CountryDetails in `hooks/useCountryDetails.ts`, which imports it from `@/api/country`; Profile calls `@/api/country` directly.
+- The `use<Thing>Query` hooks of `api/<domain>/` are for data that a component reads on render only.
+  `useHouseholdQuery` and `useHouseholdCoordinatesQuery` have no caller yet. `useCountryLocalityStatisticsQuery` (CountryDetails) and `useCountryInfoQuery` (Profile) have callers: CountryDetails in `hooks/useCountryDetails.ts`, which imports it from `@/api/country`; Profile calls `@/api/country` directly.
 - State and flows of a flow hook: call `useFlowState` (`@/platform/navigation`, `platform/navigation/flowState.ts`).
   Do not write the `latest` ref, `useReducer`, the `useViewState` dispatch, `flowsRef` or `parametersKey` again.
   - Options: `viewName` (the view cache key), `reducer`, `initial`, `parameters` (plain data; their JSON is the
@@ -106,9 +106,11 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
     variables). It saves and restores the whole state record, so a back navigation shows the old list. Keep
     `useReducer` and a `latest` ref and write one `useViewState` record
     (`pages/Notifications/hooks/useNotifications.ts`).
-  - 2 files still have the old pattern and change in Phase 6, with their page: `components/share/SharePopup/SharePopup.tsx` and
-    `components/ui/EntityLazyImage/EntityLazyImage.tsx`. `pages/Household_Relations/hooks/useHouseholdRelations.ts` now uses `useFlowState`.
+  - OutSystems OnParametersChanged: a block that has this flow in OutSystems gets `onParametersChanged` in its hook.
+    Do not leave it out. A flow that the old port never had is new behavior, so ask the user first. F39 (the hall block
+    of `pages/AssembleDetail`) waits for this decision.
 - Flags are read by the page (`useFlag`) and passed in as a `flags` argument. A component never reads a flag (rule 4).
+  Only pages, hooks and containers read flags: `npm run flags` fails on a new reader elsewhere.
 - A failed data action goes to the flow handler (`platform/feedback/flowErrors.ts`).
 
 ## Container criterion
@@ -167,7 +169,10 @@ For pages that differ only in values, use a config and not a container (decision
 2. The step is a move or a change, never both. Moves use the codemod `migration/tools/refactor/move.ts`.
 3. No behavior change; no change to `openapi.yaml`, `src/mocks/` fixtures or `public/UBTConnect/css/`.
 4. Imports use `@/`; barrels only at the allowed boundaries (rule 12); no import cycle.
-5. `npm run ci`, `npm run lint:arch` (no new warning in the folders of the step) and `npm run format:check` pass.
+5. `npm run ci` passes. It runs the contract types, typecheck, lint, `arch`, `arch:baselines`, `dup`, `unused`, `flags`,
+   `format:check`, the tests and the build. A new violation or a stale baseline row fails it. `npm run lint:arch` also
+   passes. Never add a row to a baseline to hide a new violation
+   ([quality checks](quality.md#architecture-baselines-p9-1)).
 6. Parity: `python3 migration/tools/refactor_parity.py --level visual --all --ref both --report <report>`: every
    route OK for both references.
 7. `build` and `build/bundle-report.mjs` stay within the limits of plan §7.

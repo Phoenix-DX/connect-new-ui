@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P9-2",
+  "step": "P9-3",
   "stage": "commit",
-  "loop": 0,
-  "since": "2026-10-24T23:58:09"
+  "loop": 1,
+  "since": "2026-10-25T00:33:46"
  },
  "steps": {
   "P0-1": {
@@ -1704,12 +1704,25 @@
    "finished": "2026-10-24T23:50:01"
   },
   "P9-2": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T23:50:09",
    "tokens": {
     "dev": 70655,
     "test": 28998,
     "docs": 35964
+   },
+   "commit": "27a3732e",
+   "gate": "ci: pass; flags check 0 unknown, 0 expired, 4 probes fail as expected",
+   "loops": 0,
+   "finished": "2026-10-24T23:58:10"
+  },
+  "P9-3": {
+   "status": "active",
+   "started": "2026-10-24T23:58:27",
+   "tokens": {
+    "dev": 127998,
+    "test": 63754,
+    "docs": 0
    }
   }
  },

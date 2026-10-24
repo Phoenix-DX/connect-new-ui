@@ -864,3 +864,11 @@ One line per event. Written by rf.py.
 - 2026-10-24T23:50:09 P9-2 stage test
 - 2026-10-24T23:54:28 P9-2 stage docs
 - 2026-10-24T23:58:09 P9-2 stage commit
+- 2026-10-24T23:58:10 P9-2 done 27a3732e: ci: pass; flags check 0 unknown, 0 expired, 4 probes fail as expected
+- 2026-10-24T23:58:27 P9-3 started
+- 2026-10-24T23:58:28 P9-3 stage dev
+- 2026-10-25T00:03:32 P9-3 stage test
+- 2026-10-25T00:07:47 P9-3 test failed, fix loop 1
+- 2026-10-25T00:29:40 P9-3 stage test
+- 2026-10-25T00:33:09 P9-3 stage docs
+- 2026-10-25T00:33:46 P9-3 stage commit

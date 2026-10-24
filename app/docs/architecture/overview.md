@@ -48,9 +48,10 @@ flowchart TB
     comps[src/components/&lt;domain&gt;<br/>props-only components with stories and tests]
     domain[src/api/&lt;domain&gt;<br/>types · mapper · repository · keys · hooks]
     widgets[src/components<br/>platform widgets in components/ui/os:<br/>validation, popup, list, radio group]
-    vendor[src/vendor and osui vendor folders<br/>third-party scripts copied from the original]
+    vendor[src/vendor and components/ui/DropdownSearch/vendor<br/>third-party scripts copied from the original]
     mlib[src/lib/&lt;module&gt;<br/>pure helpers, structures, static entities,<br/>module client actions]
-    lib[src/api/client · src/platform/{config, log, flags, device}<br/>src/lib: os-wire, os-assets · src/legacy/os: os-exceptions]
+    lib["src/api/client · src/platform/(config, log, flags, device)<br/>src/lib: os-wire, os-assets · src/legacy/os: os-exceptions"]
+    appdir[src/app<br/>router, route table with meta, RouteGuard,<br/>error boundaries, dialog wiring]
     mocks[src/mocks<br/>MSW handlers · recorded fixtures · mock store]
     css[public/UBTConnect/css<br/>original OutSystems CSS per screen]
   end
@@ -69,16 +70,63 @@ flowchart TB
   lib -- callAction --> mocks
   contract -. types .-> lib
   contract -. validates .-> mocks
+  appdir --> pages
+  appdir --> platform
 ```
+
+## Folders of `src/` and the import direction
+
+Each arrow means "may import". A page is the top of the graph, and `lib/` is the bottom. Rule numbers are those of plan v2
+section 2.4. The checks are in [quality checks](../guides/quality.md).
+
+```mermaid
+flowchart TB
+  app[app<br/>router · route table · RouteGuard]
+  pages[pages/&lt;Route&gt;<br/>page · hooks · inputs · mocks]
+  containers[containers/&lt;Name&gt;]
+  components[components/&lt;domain&gt; · layout · ui]
+  platform[platform/&lt;area&gt;<br/>auth · session · settings · flags · navigation<br/>device · storage · bootstrap · feedback · config · log]
+  api[api/client · api/&lt;domain&gt;]
+  legacy[legacy/os<br/>OutSystems compatibility]
+  lib[lib<br/>pure helpers · lib/&lt;module&gt;]
+  styles[styles<br/>tokens · layers]
+  app --> pages
+  app --> platform
+  pages --> containers
+  pages --> components
+  pages --> platform
+  pages --> api
+  pages --> lib
+  containers --> components
+  containers --> platform
+  containers --> api
+  components --> lib
+  components --> styles
+  platform --> api
+  platform --> legacy
+  platform --> lib
+  api --> legacy
+  api --> lib
+  legacy --> lib
+```
+
+- A page imports no other page (rule 3); only `pages/<Route>/` imports `pages/<Route>/`.
+- `components/` imports no `api/`, `platform/`, `containers/`, `pages/` or `app/` (rule 4). `components/ui/` imports only `components/ui/`, `lib/` and `styles/` (rule 5).
+- `lib/` imports only `lib/` (rule 6). `api/<domain>/` imports only `api/client/`, `lib/` and `legacy/os/` (rule 7).
+- `platform/` imports no `pages/`, `components/`, `containers/` or `app/` (rule 8).
+- Only `platform/`, `api/` and `app/` import `legacy/os/` (rule 9).
+- `mocks/` and `styles/` are outside the graph: `mocks/` serves the contract at run time, and `styles/` holds the tokens and the layer order that `components/ui/` may read.
+- The remaining violations are frozen in baselines that only shrink ([Architecture baselines](../guides/quality.md#architecture-baselines-p9-1)).
 
 Rules that keep it this way (`consistency_check.py` checks them before a screen is finished):
 
-- A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (ESLint, `app/eslint.config.js`). Only `pages/<Route>/` imports `pages/<Route>/`, and `lib/` imports only `lib/` (dependency-cruiser rule 6). The module client actions in `src/lib/<module>/actions.ts` break it with 55 warnings. That count is a ceiling that may only go down (follow-up F35).
-- The folder rules are dependency-cruiser warnings (`app/.dependency-cruiser.cjs`). The import graph of `src/` has no cycle (`no-circular` is an error). The recipe is the [page template](../guides/page-template.md). Only HouseholdDetails is a page so far.
+- A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (dependency-cruiser and ESLint, `app/eslint.config.js`). Only `pages/<Route>/` imports `pages/<Route>/`, and `lib/` imports only `lib/` (rule 6). The module client actions in `src/lib/<module>/actions.ts` still break rule 6 (50 rows in the baseline, follow-up F35).
+- The folder rules are errors in `app/.dependency-cruiser.cjs`, and so is `no-circular`: the import graph of `src/` has no cycle. The violations that existed at P9-1 are frozen in shrink-only baselines (dependency-cruiser 142 rows, ESLint 72, knip 1,130), and a new one fails `npm run ci`. The recipe for a page is the [page template](../guides/page-template.md); all 64 routes are pages in `src/pages/`.
 - `src/components/ui/Dialog` and `src/platform/feedback/dialogs` may not import each other. `src/app/dialogs.ts` (`connectDialogs()`, called by `main.tsx`) joins them. The dialogs get `confirmAction` and the back-navigation queue. The platform dialogs get the `Dialog` markup. See `src/components/ui/Dialog/Dialog.README.md`.
 - Story and test files are outside the cycle rule and these folder rules (decision Q11, P3-2; the P3-3 rules use the same exception). A story renders the real blocks of the captured screen, so it may import across the three modules.
-- A screen imports only from its own folder and from `src/lib`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/mocks`.
-- A screen has no `fetch`, browser storage, route CSS, inline visual styles, raw HTML or `console.log`.
+- A page imports only from its own folder and from `src/lib`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/containers`, `src/mocks`.
+- A page has no `fetch`, browser storage, route CSS, inline visual styles, raw HTML or `console.log`.
+- Only pages, hooks and containers read feature flags. `npm run flags` (`app/build/check-flags.mjs`) checks the registry against the readers.
 - Packages come only from the pinned allow-list ([stack](../reference/stack.md)). A new package needs an ADR.
 
 ## Data flow of one server call
@@ -134,6 +182,7 @@ sequenceDiagram
   Phases 1 and 2 moved the code to `platform/`, `legacy/os/`, `api/<domain>/`, `pages/`, `containers/` and `components/`.
   Phase 4 added the typed settings, the session state machine, the auth provider, the route meta and the flag registry in `platform/`. Phase 3 removed the import cycles and added the folder-direction rules; its numbers are in
   [reports/P3.md](../refactor/reports/P3.md).
+- Phase 8 added `src/styles/` (design tokens, CSS layers) and loads the original stylesheets into `@layer legacy`. Phase 9 turned the folder rules into errors with frozen baselines and added the flag check; see [quality checks](../guides/quality.md).
 - Phase 6 moved every route to `src/pages/` and deleted `src/screens/` ([P6-end](../refactor/reports/P6-end.md)). Step P7-0 moved 67 blocks from `src/shared/` to `src/components/ui/` ([move map](../refactor/move-map.csv)); P7-6 (decision W32) emptied and deleted `src/shared/`. Block components went to `components/<domain>/`, `containers/DetailLayout`, `platform/session/UserInfoCache` and `legacy/os/cache/`. Module helpers went to `lib/<module>/`, MSW files to `mocks/modules/`, and test helpers to `src/test/`. Its debt is in [followups](../../../migration/refactor/followups.md) F35 to F38.
 - Implementation patterns with reference code: `migration/patterns/P-*.md`.
 - Feature flag decisions: [reference/flags.md](../reference/flags.md).
