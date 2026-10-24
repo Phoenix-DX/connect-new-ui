@@ -20,7 +20,8 @@ const NOW = vi.hoisted(() => {
   return noon;
 });
 const pad = (n: number) => String(n).padStart(2, '0');
-const NOW_DAY = `${NOW.getFullYear()}-${pad(NOW.getMonth() + 1)}-${pad(NOW.getDate())}`;
+/* The screen asks for meetings from "now" (noon), so the meetings of today before noon are not in the list. */
+const NOW_STAMP = `${NOW.getFullYear()}-${pad(NOW.getMonth() + 1)}-${pad(NOW.getDate())}T12:00:00`;
 const PATH = '/UBTConnect/AssembleEvents';
 const cards = (container: HTMLElement) =>
   container.querySelectorAll('#b2-b4-List_AssembleSummaryCards > [data-container]');
@@ -63,7 +64,7 @@ describe('AssembleEvents', () => {
     if (!(first instanceof HTMLElement)) throw new Error('no card');
     fireEvent.click(first);
     const next = ASSEMBLE_MEETINGS.filter((m) => m.HostingSubdivisionId === USER_HALL_ID).find(
-      (m) => m.DateTime >= NOW_DAY,
+      (m) => m.DateTime >= NOW_STAMP,
     );
     await waitFor(() => {
       expect(at()).toContain('/UBTConnect/AssembleDetail?Start=');
