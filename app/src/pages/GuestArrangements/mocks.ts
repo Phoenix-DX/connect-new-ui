@@ -103,7 +103,7 @@ export function guestArrangementsAnswer(memberId: string, eventId: string): GetG
 }
 
 /* GetDirectoryAccess and the signed photos of the member cards are answered by the shared mocks
-   (GetDirectoryAccess: shared/Connect2_OrbitMobile_MUI/lib/mocks.ts; ActionGetSignedImagesInBulk: pages/MilestoneDetail/mocks.ts). */
+   (GetDirectoryAccess: mocks/modules/Connect2_OrbitMobile_MUI/mocks.ts; ActionGetSignedImagesInBulk: pages/MilestoneDetail/mocks.ts). */
 export const handlers: RequestHandler[] = [
   contractHandler(
     MODULE,

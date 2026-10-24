@@ -25,7 +25,7 @@ OutSystems: `UBTConnect_Utils.CW_CTA_PopUps.AddressPopup_Wrapper` · pack
   `https://maps.google.com/maps?q=` + (lat,lon or EncodeUrl(CleanAddressForMaps(address))). Empty address → "Map is not
   available" (Info) and the dialog closes.
 - **Copy Address**: Handler_CopyAddress = JSUtils_CopyToClipboard(In_Address) (`navigator.clipboard.writeText`,
-  `src/shared/UBTJavaScriptUtils/lib/actions.ts`), then ToggleLocationPopup; a rejected copy goes to the flow handler.
+  `src/lib/jsUtils.ts`), then ToggleLocationPopup; a rejected copy goes to the flow handler.
 - **Native branch**: AppManager_GetIsNative reads the shell client variable `UBT_AppManager.DeviceInfo_IsNative`
   (`appManager_GetIsNative`, `src/platform/device/deviceContext.ts`), false in the browser: the `geo:` link and LaunchWithData stay
   unreachable. EncodeUrl → `encodeURIComponent`.

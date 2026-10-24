@@ -15,7 +15,7 @@ const NULL_DATE = '1900-01-01';
 
 /* Built from the compiled view only (no capture). The mock CMS never raises OnShare (D8 b), so Embedded_FeedCMS is
    replaced by its wrapper and its props are kept to raise the event; ShareSheet is replaced by its wrapper to read the
-   inputs the screen gives it (its own behaviour is tested in shared/). */
+   inputs the screen gives it (its own behaviour is tested in components/ui/). */
 const spy = vi.hoisted(() => ({
   feed: undefined as FeedCmsProps | undefined,
   sheet: undefined as ShareSheetContainerProps | undefined,

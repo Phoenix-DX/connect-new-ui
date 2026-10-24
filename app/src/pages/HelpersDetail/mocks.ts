@@ -99,7 +99,7 @@ export function helperDetailsAnswer(eventId: string, hostId: string): GetHelperD
 }
 
 /* GetDirectoryAccess, the member contacts, timezone and signed photos of the helper cards are answered by the shared
-   mocks (shared/Connect2_OrbitMobile_MUI/lib/mocks.ts, shared/Connect2_LegacyShared, MilestoneDetail/mocks.ts). */
+   mocks (mocks/modules/Connect2_OrbitMobile_MUI/mocks.ts, mocks/modules/Connect2_LegacyShared, MilestoneDetail/mocks.ts). */
 export const handlers: RequestHandler[] = [
   contractHandler(MODULE, 'ScreenBlock_HelperDetails/DataActionGetHelperDetails', ({ In_EventId, In_HostId }) =>
     helperDetailsAnswer(In_EventId ?? '', In_HostId ?? ''),

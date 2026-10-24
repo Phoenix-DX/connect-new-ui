@@ -3,7 +3,7 @@ import { showFeedbackMessage } from '@/platform/feedback';
 
 /* Client actions, JavaScript nodes and static-entity records the block uses (B = runtime-sources/Connect2_OrbitMobile_MUI
    .LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.mvc.js). Local copies (no import across routes; CR-LDM_EventDetail_V2-1
-   moves the LDM helpers to src/shared/Connect2_OrbitMobile_MUI/lib). Values are the TST values
+   moves the LDM helpers to src/lib/orbit). Values are the TST values
    (migration/knowledge/static-entities-tst.json). */
 
 /** Connect2_OrbitMobile_MUI.applicationEvents_LDM records the block sends (B :1260, :1271). */

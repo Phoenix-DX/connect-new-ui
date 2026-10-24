@@ -6,7 +6,7 @@ OutSystems: `UBTConnect.App_Common.UnsupportedVersion_Wrapper` · pack
 The block has no inputs (the `In_Is…` names are local variables). The block has no events and no placeholders. The child
 blocks are `CustomContainer`, `UnsupportedVersion_Native` / `_WebView` / `_Browser` and `PreventBackNavigation`.
 
-OnInitialize stores `get_IsUnsupportedVersion()` (`shared/UBTConnect/lib/unsupportedVersion.ts`).
+OnInitialize stores `get_IsUnsupportedVersion()` (`lib/ubtConnect/unsupportedVersion.ts`).
 
 When the app version or the browser version is unsupported, the block renders two parts:
 

@@ -825,3 +825,10 @@ One line per event. Written by rf.py.
 - 2026-10-24T13:12:20 P7-4 stage test
 - 2026-10-24T13:20:26 P7-4 stage docs
 - 2026-10-24T13:21:44 P7-4 stage commit
+- 2026-10-24T13:21:45 P7-4 done ba9c4750: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); no code change (no group is both 'same' in duplicates.md and still reported by jscpd); arch baseline 71 rows; HomeFeed 244.66 kB, Login 184.71 kB
+- 2026-10-24T13:21:45 P7-6 started
+- 2026-10-24T13:21:45 P7-6 stage dev
+- 2026-10-24T13:24 master: P7-6 part 3 deletes MultiResolutionImageLoader with its test and story, as decision W32 (T12) allows: no importer outside its folder (import graph + grep in handoffs/P7-6/dev.md); the move-map shape was already delete (P0-5); coverage is checked at the step gate.
+- 2026-10-24T13:34:11 P7-6 stage test
+- 2026-10-24T13:47:02 P7-6 stage docs
+- 2026-10-24T13:53:08 P7-6 stage commit

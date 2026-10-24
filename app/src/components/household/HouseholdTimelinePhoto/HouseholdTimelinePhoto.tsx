@@ -1,3 +1,4 @@
+/** @origin UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto */
 // @os-block UBTConnect.Directory_Household_Blocks.HouseholdDetails_TimelinePhoto
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';

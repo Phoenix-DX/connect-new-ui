@@ -149,7 +149,7 @@ Local entities in practice:
     the old or the new rows, never none.
   - Keep it that way (decision: [ADR-8](../reference/stack.md)).
 
-UBTConnect ToggleBookmarkItem_C2 (`src/shared/UBTConnect/lib/actions.ts`) uses the C2 bookmark actions. Its two server
+UBTConnect ToggleBookmarkItem_C2 (`src/lib/ubtConnect/actions.ts`) uses the C2 bookmark actions. Its two server
 calls (ServiceAPIAddBookmark2, ServiceAPIDeleteBookmarkByBookmarkId2) are not in the API contract yet
 (`bookmarkServerActions` null, CR-W4A-1).
 
@@ -212,19 +212,19 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
 - `<ScreenFrame>` (router.tsx) wraps every screen.
 - Do not call `useBlocker` in a screen.
 
-| API                                                                                                   | Original (spec 9 "Back navigation", "View cache & preload")                                                |
-| ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `useOsNavigate()(path, params?, { replace?, transition? })`, `screenUrl(path, p)`                     | screen navigation with input names (P-PARAMS); True/False, ids as strings; `transition` below              |
-| `replaceOnUpcomingNavigation()`, `resetReplaceOnUpcomingNavigation()`                                 | NavigationHandler actions of the same name (Login callback, Policy_Checker)                                |
-| `allowUpcomingNavigation()`                                                                           | NavigationHandler `AllowUpcomingNavigation`: the next navigation skips the back handlers                   |
-| `useScreenController_NavigateToPage()(url, replace)` (`src/shared/UBTJavaScriptUtils/lib/actions.ts`) | UBTJavaScriptUtils `ScreenController_NavigateToPage`: same-origin href or app path through `useOsNavigate` |
-| `useNavigateBack()(transition?)`                                                                      | history back: runs the back queue like the device back button; `navigateBack(transition)`                  |
-| `TransitionAnimation` (`None`, `Default`, `Fade`, `SlideFromLeft`, `SlideFromRight`, …)               | `OS.Transitions.TransitionAnimation`: pass what the compiled navigation passes                             |
-| `setPreloadObject(obj)`, `usePreloadObject()` / `getPreloadObject()`                                  | `SetPreloadObject` / `GetPreloadObject` (`unknown`: narrow it)                                             |
-| `useBackHandler(priority, handler, enabled?)`, `BACK_PRIORITY`                                        | `BackNavigationHandler` block in the `BeforeBackNavigation` queue                                          |
-| `usePreventBackNavigation(enabled, onPrevented?)`                                                     | `PreventBackNavigation` block (lock-screen priority)                                                       |
-| `<DialogExitConfirmation id="$b11" />`, `useExitConfirmation(force)`                                  | `Dialog_ExitConfirmation` of HomeFeed and Login (Force=True)                                               |
-| `useWasRestoredFromCache()`, `useViewState(name, initial)`                                            | `wasCurrentViewRestoredFromCache`, screen variables kept by the cache                                      |
+| API                                                                                     | Original (spec 9 "Back navigation", "View cache & preload")                                                |
+| --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `useOsNavigate()(path, params?, { replace?, transition? })`, `screenUrl(path, p)`       | screen navigation with input names (P-PARAMS); True/False, ids as strings; `transition` below              |
+| `replaceOnUpcomingNavigation()`, `resetReplaceOnUpcomingNavigation()`                   | NavigationHandler actions of the same name (Login callback, Policy_Checker)                                |
+| `allowUpcomingNavigation()`                                                             | NavigationHandler `AllowUpcomingNavigation`: the next navigation skips the back handlers                   |
+| `useScreenController_NavigateToPage()(url, replace)` (`src/lib/jsUtils.ts`)             | UBTJavaScriptUtils `ScreenController_NavigateToPage`: same-origin href or app path through `useOsNavigate` |
+| `useNavigateBack()(transition?)`                                                        | history back: runs the back queue like the device back button; `navigateBack(transition)`                  |
+| `TransitionAnimation` (`None`, `Default`, `Fade`, `SlideFromLeft`, `SlideFromRight`, …) | `OS.Transitions.TransitionAnimation`: pass what the compiled navigation passes                             |
+| `setPreloadObject(obj)`, `usePreloadObject()` / `getPreloadObject()`                    | `SetPreloadObject` / `GetPreloadObject` (`unknown`: narrow it)                                             |
+| `useBackHandler(priority, handler, enabled?)`, `BACK_PRIORITY`                          | `BackNavigationHandler` block in the `BeforeBackNavigation` queue                                          |
+| `usePreventBackNavigation(enabled, onPrevented?)`                                       | `PreventBackNavigation` block (lock-screen priority)                                                       |
+| `<DialogExitConfirmation id="$b11" />`, `useExitConfirmation(force)`                    | `Dialog_ExitConfirmation` of HomeFeed and Login (Force=True)                                               |
+| `useWasRestoredFromCache()`, `useViewState(name, initial)`                              | `wasCurrentViewRestoredFromCache`, screen variables kept by the cache                                      |
 
 - **Screen transitions (F18, CR-F18-1).** `ScreenTransitionGroup` ports the TransitionGroup of the runtime Root
   (`migration/runtime-sources/OutSystemsReactView.js` Root render; `screenTransition.ts` cites each rule):
@@ -300,7 +300,7 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
     `dx-navigation`.
   - `resumeNavigation(event)` continues a prevented navigation later (`detail.resume()`: a back navigation goes back,
     a forward one navigates to the saved location).
-  - Both actions live in `src/shared/NavigationHandler/lib/actions.ts`, together with `wasNavigationPrevented`.
+  - Both actions live in `src/lib/navigationEvent.ts`, together with `wasNavigationPrevented`.
   - How a screen asks the user: it renders `NavigationDialog` (`src/components/ui/Dialog/NavigationDialog.tsx`). The default variant is
     `NavigationConfirmationDialog`; `variant="connect"` is `Dialog_Navigation`. NavigationDialog listens to `dx-before-navigation` itself and
     gets the back-navigation queue (`usePreventBackNavigation`) from `src/app/dialogs.ts`.

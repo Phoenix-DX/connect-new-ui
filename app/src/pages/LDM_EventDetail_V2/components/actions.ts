@@ -1,7 +1,7 @@
 /* Client actions and JavaScript nodes the route's blocks call (runtime-sources/Connect2_OrbitMobile_MUI.controller.js
    = C, analysis/sources/pretty/*.mvc.js). The ones LDM_MyEvents_V2 calls too are shared (CR-LDM_EventDetail_V2-1):
-   flipHouseholdName (src/shared/Connect2_LegacyShared/lib), getLocalityName, addAuditEvent_LDM and
-   getCurrentTimeInMill (src/shared/Connect2_OrbitMobile_MUI/lib), generateScreenURL (src/shell/navigation). */
+   flipHouseholdName (src/lib/legacyShared), getLocalityName, addAuditEvent_LDM and
+   getCurrentTimeInMill (src/lib/orbit), generateScreenURL (src/shell/navigation). */
 
 const MONTHS = [
   'January',

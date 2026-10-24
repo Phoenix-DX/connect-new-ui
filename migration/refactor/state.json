@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P7-4",
+  "step": "P7-6",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T13:21:44"
+  "since": "2026-10-24T13:53:08"
  },
  "steps": {
   "P0-1": {
@@ -1626,12 +1626,25 @@
    "finished": "2026-10-24T13:12:19"
   },
   "P7-4": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T13:12:19",
    "tokens": {
     "dev": 156151,
     "test": 26425,
     "docs": 0
+   },
+   "commit": "ba9c4750",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); no code change (no group is both 'same' in duplicates.md and still reported by jscpd); arch baseline 71 rows; HomeFeed 244.66 kB, Login 184.71 kB",
+   "loops": 0,
+   "finished": "2026-10-24T13:21:45"
+  },
+  "P7-6": {
+   "status": "active",
+   "started": "2026-10-24T13:21:45",
+   "tokens": {
+    "dev": 595037,
+    "test": 47710,
+    "docs": 112378
    }
   }
  },

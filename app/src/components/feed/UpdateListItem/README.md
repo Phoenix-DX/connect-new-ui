@@ -26,7 +26,7 @@ Events: `OnClick` → `onOnClick`; `Event_SendGift`, `Event_MarkAsRead`, `Event_
 
 Ported actions (`lib/actions.ts`):
 GetBackgroundColor_IsRead, Get_{Background,Font}Color_{Avatar,Tag}_UpdateItem, FormatConnectDate_WithYear (with
-FormatConnectDate, GetConnectWeekdayLabel__, GetConnectDateFormat__; `shared/lib/osDateTime.ts`).
+FormatConnectDate, GetConnectWeekdayLabel__, GetConnectDateFormat__; `lib/osDateTime.ts`).
 
 ## Captured variants (4 tested)
 

@@ -1,7 +1,7 @@
 /* Client actions of Connect2_OrbitMobile_MUI ported 1:1 for the shared blocks. `C:<n>` = line of
    migration/runtime-sources/Connect2_OrbitMobile_MUI.controller.js; `TF:<n>` = line of the module script
    migration/runtime-sources/Connect2_OrbitMobile_MUI.TimeFormat.js (global `TimeFormat`). A Date is "yyyy-MM-dd",
-   handed to the JS nodes as a local-midnight Date (shared/lib/osDateTime.ts parseOsDate). */
+   handed to the JS nodes as a local-midnight Date (lib/osDateTime.ts parseOsDate). */
 import { callAction } from '@/api/client/callAction';
 import { fetchBookletGuestsMaxRows, fetchBookletHelpersMaxRows } from '@/api/event';
 import { log } from '@/platform/log/log';

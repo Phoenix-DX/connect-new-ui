@@ -36,7 +36,7 @@ function formatParam(value: string | number | boolean): string {
     DateTimeRevamp = false): the null DateTime (new Date(1900, 0, 1) local, `nativeDefaultDate`) gives
     "1900-01-01T00:00:00", any other value `this.date.toISOString()`, the instant in UTC with milliseconds and "Z"
     ("2026-10-18T12:30:00.000Z" for the wall clock 2026-10-18 19:30 at UTC+7). generateScreenURL then encodes it with
-    encodeURIComponent (":" → "%3A"). The clone's DateTimes are local wall-clock texts (shared/lib/osDateTime), so the
+    encodeURIComponent (":" → "%3A"). The clone's DateTimes are local wall-clock texts (lib/osDateTime), so the
     instant is that local time. */
 export function dateTimeParam(value: string): string {
   const date = parseOsDate(value);

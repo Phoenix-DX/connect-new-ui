@@ -16,8 +16,8 @@ import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/lib/ubtConnect/stat
    writer of the legacy bookmarks (CR-MyBookmarks-2, CR-BookmarksByGroup-2; P-MUTATION):
    - MyBookmarks DataActionGetGroupSummaries (screens/MyBookmarks/mocks.ts);
    - BookmarksByGroup DataActionGetAllBookmarksByGroup (screens/BookmarksByGroup/mocks.ts);
-   - Connect2_Assemble_MUI AddBookmark / DeleteBookmarkByBookmarkId (addLegacyBookmark below; shared/Connect2_Assemble_MUI
-     /lib/mocks.ts, CR-AssembleDetail-2);
+   - Connect2_Assemble_MUI AddBookmark / DeleteBookmarkByBookmarkId (addLegacyBookmark below; mocks/modules/Connect2_Assemble_MUI/
+     mocks.ts, CR-AssembleDetail-2);
    - the module's server actions below: GetBookmarkById / New_GetBookmarkById (CR-MyBookmarks-1, CR-BookmarksByGroup-1),
      DeleteBookmarkByBookmarkId and New_UpdateBookmarkNote;
    - the device copy the app start syncs: Sync_Info_GetMain LocalEntities_App.LocalBookmark (src/shell/mocks.ts

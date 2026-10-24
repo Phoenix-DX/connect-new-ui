@@ -20,7 +20,7 @@ Children: SubLayout_DirectoryDetailScreen, SkeletonSection, ImageCard_LazyLoadin
 SupperMeeting_ImageCard_Content, SubLayout_DirectoryDetailScreen_Section, the `entityActions` slot,
 SupperMeeting_HouseholdList (props only).
 
-Ported actions: Get_LookupSection, GetSkeleton_UI_SubdivisionDetails (`shared/UBTConnect/lib/actions.ts`).
+Ported actions: Get_LookupSection, GetSkeleton_UI_SubdivisionDetails (`lib/ubtConnect/actions.ts`).
 
 ## Captures
 

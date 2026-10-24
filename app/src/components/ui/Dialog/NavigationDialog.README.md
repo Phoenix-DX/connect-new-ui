@@ -20,7 +20,7 @@ variant, whose inner NavigationConfirmationDialog has no id). `variant`: `plain`
 Behaviour (`useNavigationConfirmation` in NavigationDialog.tsx; the back-navigation queue of `platform/navigation`
 comes through `app/dialogs.ts`): the NavigationHandler listens for `dx-before-navigation` while the dialog is mounted. A navigation that no other handler
 prevented raises Navigation; when the caller prevents it (PreventNavigation, in
-`src/shared/NavigationHandler/lib/actions.ts`) the dialog opens and keeps the event. Yes closes and resumes it
+`src/lib/navigationEvent.ts`) the dialog opens and keeps the event. Yes closes and resumes it
 (ResumeNavigation); No closes, forgets it and dispatches `dx-navigation-cancelled-by-user`; a back navigation while open
 is prevented and runs No. The Root container's update copies its classes and its parent's classes to the popup portal
 (CopyClassesAcrossPortal, in `Dialog`).

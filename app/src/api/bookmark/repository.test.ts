@@ -15,8 +15,8 @@ import {
 import type { BookmarkGroupListCallInputs, BookmarkSummariesVariables } from './types';
 
 /* The MSW mocks of the test setup answer the fictional legacy bookmarks of the mock user (7 Contacts, 4 Locations, no
-   Entities; shared/Connect2_MyBookmarks_MUI/mocks.ts) and the fictional C2 bookmarks (none at start;
-   shared/UBTConnect/Directory_EntityDetailsActions/mocks.ts). The writes change these collections. */
+   Entities; mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts) and the fictional C2 bookmarks (none at start;
+   containers/EntityDetailsActions/mocks.ts). The writes change these collections. */
 
 const groupInputs = (group: string): BookmarkGroupListCallInputs => ({
   BookmarkGroup: group,

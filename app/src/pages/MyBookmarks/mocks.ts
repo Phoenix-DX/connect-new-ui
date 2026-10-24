@@ -20,7 +20,7 @@ type BookmarkItemWire = GroupSummaryWire['Bookmarks']['List'][number];
 
 /* DataActionGetGroupSummaries was never recorded (bookmarks are person data, knowledge/mock-fixtures.md; contract
    x-mock-source fictional). The answer is built from the shared collection of the mock user's legacy bookmarks
-   (src/shared/Connect2_MyBookmarks_MUI/mocks.ts, CR-MyBookmarks-2; P-MUTATION: a delete in BookmarksByGroup shows
+   (src/mocks/modules/Connect2_MyBookmarks_MUI/mocks.ts, CR-MyBookmarks-2; P-MUTATION: a delete in BookmarksByGroup shows
    here), seeded with the captured counts: its first 4 contacts (the second without a photo) and its 4 locations
    (dom/default.html:55-174), no entity. Whether C2 bookmarks (AddBookmark2) appear here is open (Q3): conservatively
    they do not.

@@ -3,7 +3,7 @@ import { NULL_DATE_TIME, notesCollection } from '@/containers/NoteListActions/mo
 import { addNote, deleteNote, fetchEntityNotes, fetchNoteCards, fetchNotePills, updateNote } from './repository';
 import type { EntityNotesCallInputs, NotesVariables } from './types';
 
-/* The MSW mocks of the test setup answer from the fictional notes collection (shared/UBTConnect_Utils/NoteListActions/
+/* The MSW mocks of the test setup answer from the fictional notes collection (containers/NoteListActions/
    mocks.ts): three notes of the household item 1 (category Household), the newest first. The writes change this
    collection, so the tests run in order. */
 

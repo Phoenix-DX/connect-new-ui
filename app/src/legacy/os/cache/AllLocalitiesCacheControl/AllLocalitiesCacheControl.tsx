@@ -1,3 +1,4 @@
+/** @origin UBTConnect_Utils.CacheControl.CacheControl_AllLocalities */
 // @os-block UBTConnect_Utils.CacheControl.CacheControl_AllLocalities
 import { useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';

@@ -1,7 +1,7 @@
 # Platform widgets (`src/components`)
 
 OutSystems platform widgets (Form, Input validation, Popup, List, RadioGroup) are not OutSystems blocks. They do not
-live in `src/shared`. Each widget is a port of the OutSystems client runtime and has no `@os-block` tag. Each folder has
+live in `src/lib/<module>/`. Each widget is a port of the OutSystems client runtime and has no `@os-block` tag. Each folder has
 an `index.ts`; import from the folder. Header comments name the runtime file and the offsets that the port follows.
 
 | Component                   | Use it for                                              |

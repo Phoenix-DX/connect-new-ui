@@ -76,7 +76,7 @@ The helpers are in `src/legacy/os/os-wire.ts`. The `api.ts` of each screen does 
 
 Domain folders in `src/api/` (`household/`, `member/`, `country/`, `locality/`, `update/`) hold the mapping and the calls of their domain. `country/` holds 7 calls: the statistics of BrowseCountries, CountryList and CountryDetails, `GetCountryInfo` (Profile), the two shared actions of Connect2_LegacyShared and the cache info of CacheControl_AllCountries. Two mappers keep only the fields that the UI reads.
 
-`locality/` holds 11 calls of 7 caller files. `update/` holds 9 actions of 5 caller files, with one `UpdateItem` type and two mappers; the bottom-bar unread count in `shared/UBTConnect/lib/actions.ts` comes from its repository. Read `src/api/README.md`.
+`locality/` holds 11 calls of 7 caller files. `update/` holds 9 actions of 5 caller files, with one `UpdateItem` type and two mappers; the bottom-bar unread count in `lib/ubtConnect/actions.ts` comes from its repository. Read `src/api/README.md`.
 
 ## Mock data
 
@@ -111,7 +111,7 @@ A route scenario is a handler that returns `undefined` unless `scenario()` equal
 Every other request falls through to the next handler (usually the app-start mocks of `platform/bootstrap`).
 
 `src/mocks/handlers.ts` collects the handlers with one glob per folder, in this order: `pages/*/mocks.ts`
-(sorted by folder name), `containers/*/mocks.ts`, `shared/**/mocks.ts`, `components/**/mocks.ts`, `platform/**/mocks.ts`. MSW uses the first handler that matches, so the order is a rule:
+(sorted by folder name), `containers/*/mocks.ts`, `mocks/modules/**/mocks.ts`, `components/**/mocks.ts`, `platform/**/mocks.ts`. MSW uses the first handler that matches, so the order is a rule:
 the app-start mocks must stay last. `src/mocks/handlers.test.ts` fails when the order changes.
 
 ## Mock store for writes

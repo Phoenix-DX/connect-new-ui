@@ -16,7 +16,7 @@ state to SupperMeeting_DetailsBlock, and that block gives it to this one.
 - Event: `Event_OnClick_Household(HouseholdId, HouseholdIdList)` → `onEventOnClickHousehold`: the clicked id and the
   HouseholdId of every row.
 - Child: Household_GalleryCard_List (loading while not fetched; status Error, Fetched or Fetching).
-- The skeleton rows (GetSkeletonList_UI_SubdivisionHousehold(4), `shared/UBTConnect/lib/actions.ts`) are the initial
+- The skeleton rows (GetSkeletonList_UI_SubdivisionHousehold(4), `lib/ubtConnect/actions.ts`) are the initial
   `list` of the container.
 
 ## Captures

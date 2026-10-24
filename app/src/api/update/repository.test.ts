@@ -12,7 +12,7 @@ import {
 } from './repository';
 import type { FilterUpdates, UpdatesListVariables } from './types';
 
-/* The MSW mocks of the test setup: the fictional update items of HomeFeed (shared/UBTConnect/Directory_Updates/mocks.ts,
+/* The MSW mocks of the test setup: the fictional update items of HomeFeed (mocks/modules/UBTConnect/Directory_Updates/mocks.ts,
    three unread items, changed by the read-state handlers) and of Updates_SingleList (88 items, 4 read), and the
    recorded date ranges of Updates_SingleList and unread count of all the update items. */
 const feedItems = collection('HomeFeed.updateItems', () => [], 'UpdateItemId');

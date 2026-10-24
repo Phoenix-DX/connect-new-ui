@@ -88,4 +88,4 @@ CR-Photobook-1 (2026-10-15) covers these actions:
 Both actions answer Success, like the other actions.
 
 `setCarouselStartingPosition` writes the StartingPosition config. The next redraw reads this config. UBTConnect
-`carousel_SetCurrentPosition` uses it (`shared/UBTConnect/lib/actions.ts`).
+`carousel_SetCurrentPosition` uses it (`lib/ubtConnect/actions.ts`).

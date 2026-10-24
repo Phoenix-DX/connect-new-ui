@@ -49,7 +49,7 @@ flowchart TB
     domain[src/api/&lt;domain&gt;<br/>types · mapper · repository · keys · hooks]
     widgets[src/components<br/>platform widgets in components/ui/os:<br/>validation, popup, list, radio group]
     vendor[src/vendor and osui vendor folders<br/>third-party scripts copied from the original]
-    shared[src/shared<br/>blocks not yet moved to components/ui<br/>(the OutSystems UI patterns now live in components/ui)]
+    mlib[src/lib/&lt;module&gt;<br/>pure helpers, structures, static entities,<br/>module client actions]
     lib[src/api/client · src/platform/{config, log, flags, device}<br/>src/legacy/os: os-wire, os-exceptions, os-assets]
     mocks[src/mocks<br/>MSW handlers · recorded fixtures · mock store]
     css[public/UBTConnect/css<br/>original OutSystems CSS per screen]
@@ -61,13 +61,11 @@ flowchart TB
   containers --> comps
   containers --> domain
   domain --> lib
-  pages --> shared
+  pages --> mlib
   pages --> lib
   pages --> widgets
-  shared --> widgets
-  shared --> vendor
   platform --> lib
-  shared --> lib
+  mlib --> lib
   lib -- callAction --> mocks
   contract -. types .-> lib
   contract -. validates .-> mocks
@@ -75,11 +73,11 @@ flowchart TB
 
 Rules that keep it this way (`consistency_check.py` checks them before a screen is finished):
 
-- A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (ESLint, `app/eslint.config.js`). Only `pages/<Route>/` imports `pages/<Route>/`, and `src/shared` imports no `src/app`. Inside `src/shared`, `UBTConnectLibrary` imports neither `UBTConnect_Utils` nor `UBTConnect`, and `UBTConnect_Utils` does not import `UBTConnect`.
-- Also in `src/shared`: `Connect2_LegacyShared` does not import `UBTConnect`, and `Connect2_MyBookmarks_MUI` does not import `Connect2_Assemble_MUI` (dependency-cruiser warnings, `app/.dependency-cruiser.cjs`). The import graph of `src/` has no cycle (`no-circular` is an error). The recipe is the [page template](../guides/page-template.md). Only HouseholdDetails is a page so far.
+- A page (`src/pages`) never imports another page, and a component (`src/components`) imports no `api/`, `platform/`, `containers/` or `pages/` (ESLint, `app/eslint.config.js`). Only `pages/<Route>/` imports `pages/<Route>/`, and `lib/` imports only `lib/` (dependency-cruiser rule 6). The module client actions in `src/lib/<module>/actions.ts` break it with 55 warnings. That count is a ceiling that may only go down (follow-up F35).
+- The folder rules are dependency-cruiser warnings (`app/.dependency-cruiser.cjs`). The import graph of `src/` has no cycle (`no-circular` is an error). The recipe is the [page template](../guides/page-template.md). Only HouseholdDetails is a page so far.
 - `src/components/ui/Dialog` and `src/platform/feedback/dialogs` may not import each other. `src/app/dialogs.ts` (`connectDialogs()`, called by `main.tsx`) joins them. The dialogs get `confirmAction` and the back-navigation queue. The platform dialogs get the `Dialog` markup. See `src/components/ui/Dialog/Dialog.README.md`.
 - Story and test files are outside the cycle rule and these folder rules (decision Q11, P3-2; the P3-3 rules use the same exception). A story renders the real blocks of the captured screen, so it may import across the three modules.
-- A screen imports only from its own folder and from `src/shared`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/mocks`.
+- A screen imports only from its own folder and from `src/lib`, `src/platform`, `src/api`, `src/legacy`, `src/components`, `src/mocks`.
 - A screen has no `fetch`, browser storage, route CSS, inline visual styles, raw HTML or `console.log`.
 - Packages come only from the pinned allow-list ([stack](../reference/stack.md)). A new package needs an ADR.
 
@@ -136,7 +134,7 @@ sequenceDiagram
   Phases 1 and 2 moved the code to `platform/`, `legacy/os/`, `api/<domain>/`, `pages/`, `containers/` and `components/`.
   Phase 4 added the typed settings, the session state machine, the auth provider, the route meta and the flag registry in `platform/`. Phase 3 removed the import cycles and added the folder-direction rules; its numbers are in
   [reports/P3.md](../refactor/reports/P3.md).
-- Phase 6 moved every route to `src/pages/` and deleted `src/screens/` ([P6-end](../refactor/reports/P6-end.md)). Step P7-0 moved 67 blocks from `src/shared/` to `src/components/ui/` ([move map](../refactor/move-map.csv)); the `lib/` folders, `osui` and 3 rows for P7-2 stay in `src/shared/` until P7-6.
+- Phase 6 moved every route to `src/pages/` and deleted `src/screens/` ([P6-end](../refactor/reports/P6-end.md)). Step P7-0 moved 67 blocks from `src/shared/` to `src/components/ui/` ([move map](../refactor/move-map.csv)); P7-6 (decision W32) emptied and deleted `src/shared/`. Block components went to `components/<domain>/`, `containers/DetailLayout`, `platform/session/UserInfoCache` and `legacy/os/cache/`. Module helpers went to `lib/<module>/`, MSW files to `mocks/modules/`, and test helpers to `src/test/`. Its debt is in [followups](../../../migration/refactor/followups.md) F35 to F38.
 - Implementation patterns with reference code: `migration/patterns/P-*.md`.
 - Feature flag decisions: [reference/flags.md](../reference/flags.md).
 - Per screen: `migration/screens/<Screen>/route-spec.md`.

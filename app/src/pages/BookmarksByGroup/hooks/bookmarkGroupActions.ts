@@ -13,7 +13,7 @@ import {
 /* The MyBookmarks cache. The block's BookmarkedItems is a list of Connect2_MyBookmarks_IS.BookmarkItem records, and
    the block calls the Connect2_LegacyShared GetCachedMyBookmarks and PutCachedMyBookmarks with that list.
    AddBookmarkToCache and RemoveBookmarkFromCache (AssembleDetail) use the same cache type, group key and record. So the
-   flows call the Connect2_LegacyShared actions (shared/Connect2_LegacyShared/lib/actions.ts) and convert their rows with
+   flows call the Connect2_LegacyShared actions (lib/legacyShared/actions.ts) and convert their rows with
    the two functions below. */
 
 /** Domain row → the BookmarkItem record of the cache. Group = the block's BookmarkGroup input (the group that

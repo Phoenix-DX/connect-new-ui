@@ -14,7 +14,7 @@ type UpdateItemWire = ActionOutputs<
    - DataActionGetServices: the recorded TST answer (service labels, links and packages, no person data). Its Id and
      IconId were anonymized by the converter (Q1, open).
    - DataActionFetchUpdates: person data, never recorded (mock-fixtures.md): the three fictional unread items of the
-     update items collection (src/shared/UBTConnect/Directory_Updates/mocks.ts).
+     update items collection (src/mocks/modules/UBTConnect/Directory_Updates/mocks.ts).
    - MarkAsRead / MarkAsUnread: writes, never recorded; they change IsRead in the collection (P-MUTATION), so the next
      fetch (and Updates screens reading this collection) show it.
    Scenarios: real, empty (FetchUpdates empty → Section_Updates hidden), error, loading. */

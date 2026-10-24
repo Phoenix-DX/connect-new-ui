@@ -21,7 +21,7 @@ Events: none (the card click is the screen's, on its own wrapper). Placeholders:
 | v2      | `CountryDetails/analysis/dom/default.html` [0] | locality card, flag loaded, supper meetings |
 | v3      | `CountryList/analysis/dom/default.html` [0]    | country card, flag loaded, localities       |
 
-v2 / v3 were captured after the flag loaded: their stories use `withLoadedImages` (`src/shared/test/loadedImages.tsx`),
+v2 / v3 were captured after the flag loaded: their stories use `withLoadedImages` (`src/test/loadedImages.tsx`),
 which raises `load` on the rendered images.
 
 ## Not captured

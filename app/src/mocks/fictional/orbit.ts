@@ -14,7 +14,7 @@ import { LOCALITY, LOCALITY_HOUSEHOLDS, MOCK_USER, VITALE, type CastHousehold } 
    older than CurrDate() - 22 days, ScreenBlock_OrbitLanding.mvc.js ctrl :1796-1806) whenever the mock runs.
 
    Values here are domain data in OutSystems field names where a shared Orbit structure exists
-   (src/shared/Connect2_OrbitMobile_MUI/lib/structures.ts); each route maps them to its own wire shape in its mocks.ts. */
+   (src/lib/orbit/structures.ts); each route maps them to its own wire shape in its mocks.ts. */
 
 /** An Orbit member of the signed-in household. Long Integer ids as text. */
 export interface OrbitMember {
@@ -65,7 +65,7 @@ export const ORBIT_EVENT_TYPES = {
     meeting green with the video-meeting icon (:300-312); helper with the person-wave icon (:173-176). Only the
     accommodation type can be hosted (the host allocation lists the CanHost milestones, GetHostAllocation, and the
     capture lists only accommodation rows). Type "Host" of accommodation-host and helper-host: the " (Host)" of the
-    MilestoneHeader captures (shared/Connect2_OrbitMobile_MUI/MilestoneHeader/__captures__/v1.html, v2.html: Name + " ("
+    MilestoneHeader captures (components/orbit/MilestoneHeader/__captures__/v1.html, v2.html: Name + " ("
     + LocalOrbitMilestoneType.Type + ")"); meeting-host's Type is not captured. Order is fictional. The shell's app
     start syncs these records into LocalOrbitMilestoneType (shell/mocks.ts Sync_Info_GetMain, CR-EventDetail-1). */
 export const ORBIT_MILESTONE_TYPES = {

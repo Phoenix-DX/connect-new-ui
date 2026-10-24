@@ -1,3 +1,4 @@
+/** @origin UBTConnect_Utils.CacheControl.CacheControl_UserInfo */
 // @os-block UBTConnect_Utils.CacheControl.CacheControl_UserInfo
 import { useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';

@@ -5,7 +5,7 @@ import { legacyBookmarksOfGroup } from '@/mocks/modules/Connect2_MyBookmarks_MUI
 import type { BookmarkItemWire } from './types';
 
 /* DataActionGetAllBookmarksByGroup was not recorded (bookmarks are person data, knowledge/mock-fixtures.md): it answers
-   the group's rows of the shared collection of the mock user's legacy bookmarks (src/shared/Connect2_MyBookmarks_MUI/
+   the group's rows of the shared collection of the mock user's legacy bookmarks (src/mocks/modules/Connect2_MyBookmarks_MUI/
    mocks.ts, CR-BookmarksByGroup-2 / CR-MyBookmarks-2), most recent first. Contacts = the 7 captured households
    (analysis/dom/default.html:66-462) in the captured order, with the captured photo pattern, children and tag lengths;
    Locations = the 4 of the MyBookmarks capture (this list was not captured); Entities = none (MyBookmarks capture).

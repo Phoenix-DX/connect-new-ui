@@ -9,7 +9,7 @@ import {
 } from './bookmarkGroupActions';
 
 /* The client actions that the bookmark group flows call. The cache record mappers are tested with the MyBookmarks cache
-   in shared/Connect2_LegacyShared/lib/actions.test.ts. */
+   in lib/legacyShared/actions.test.ts. */
 afterEach(() => {
   resetFeedbackMessages();
 });

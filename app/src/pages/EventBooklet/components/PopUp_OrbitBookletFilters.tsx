@@ -12,8 +12,8 @@ import type { PopupFilters } from '@/pages/EventBooklet/types';
 
 /* PopUp_OrbitBookletFilters (PF = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.PopUp_OrbitBookletFilters.mvc.js:
    model :1-89, view :90-685, controller :686-1507). No capture: markup from the compiled view. The OutSystems UI
-   client actions DropdownClear / DropdownClearValidation / DropdownTogglePopup (shared/osui/lib/actions.ts) and
-   UBTConnect_Utils DropdownTags_CloseOtherOnClick (shared/UBTConnect_Utils/lib/actions.ts) as compiled
+   client actions DropdownClear / DropdownClearValidation / DropdownTogglePopup (components/ui/lib/actions.ts) and
+   UBTConnect_Utils DropdownTags_CloseOtherOnClick (lib/ubtConnectUtils/actions.ts) as compiled
    (CR-EventBooklet-2). */
 
 export interface PopUp_OrbitBookletFiltersProps {

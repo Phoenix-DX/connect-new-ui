@@ -6,7 +6,7 @@
 
 `household/` is the first domain folder: `types.ts`, `mapper.ts`, `repository.ts`, `keys.ts`, `hooks.ts` and the barrel `index.ts`. The hooks set `staleTime: 0` and `gcTime: 0`.
 
-Other code imports a domain through its barrel `index.ts`. One exception (decision W18): the app-start path uses deep imports to keep the entry chunk small. `platform/bootstrap/startup.ts` imports `@/api/message/unreadMessages` (the app-start call; `repository.ts` and `mapper.ts` re-export it) and `shared/Connect2_LegacyShared/lib/actions.ts` imports `@/api/bookmark/keys`.
+Other code imports a domain through its barrel `index.ts`. One exception (decision W18): the app-start path uses deep imports to keep the entry chunk small. `platform/bootstrap/startup.ts` imports `@/api/message/unreadMessages` (the app-start call; `repository.ts` and `mapper.ts` re-export it) and `lib/legacyShared/actions.ts` imports `@/api/bookmark/keys`.
 
 `member/` has the same files. It holds GetAvailableMembers (ShareSheet), GetMemberByMemberId (OrbitAdminEventDetail), Member_EditDetails_Service (Profile) and ActionRequestPhotoUpdate (Menu). The old `api.ts` files of ShareSheet and Profile re-export it under their old names, and `useAdminEventDetail` calls `fetchMember` directly. The Menu page calls `requestPhotoUpdate` from `@/api/member`: the domain comes from the data that the call owns, the photo of the signed-in member (decision W9). `useAvailableMembersQuery` sets `staleTime: 0` and `gcTime: 0`. `useMemberQuery` and `useEditMemberDetailsMutation` have no caller yet: the flows call the repository functions.
 
@@ -25,11 +25,11 @@ Six old caller files re-export it under their old names. The `api.ts` of Localit
 - DataActionFetchUpdates, ServiceAPIAction_UI_UpdateItem_MarkAsRead and MarkAsUnread (HomeFeed; imported directly by `useFeedUpdates`)
 - DataActionFetchUpdates, DataActionGetDateRanges and the service actions MarkAsRead, MarkAsUnread and MarkAllAsRead (Updates_SingleList)
 - ActionUpdateItem_MarkAsRead (HouseholdCarousel)
-- ServiceAPIGet_UI_UpdateItems_UnreadCount_All (`shared/UBTConnect/lib/actions.ts`).
+- ServiceAPIGet_UI_UpdateItems_UnreadCount_All (`lib/ubtConnect/actions.ts`).
 
 One `UpdateItem` type has two mappers: `toFeedUpdateItem` keeps the null date "1900-01-01" (HomeFeed) and `toUpdateItem` gives "" for it (Updates_SingleList). The old `api.ts` and `types.ts` files of HouseholdCarousel re-export the domain under their old names.
 
-`directory_Updates_RefreshBottomBarCount` in `shared/UBTConnect/lib/actions.ts` gets the unread count from `fetchUnreadUpdateItemsCount`.
+`directory_Updates_RefreshBottomBarCount` in `lib/ubtConnect/actions.ts` gets the unread count from `fetchUnreadUpdateItemsCount`.
 
 `useFeedUpdatesQuery` has the key `updateKeys.feed()` and keeps `retry: false`. The other calls stay imperative calls in their flows.
 
@@ -49,7 +49,7 @@ The shared record types (for example `EventInfo`, `Milestone_Screen`, `MemberInf
 - AddBookmark and DeleteBookmarkByBookmarkId (Connect2_Assemble_MUI)
 - ServiceAPIAddBookmark2 and ServiceAPIDeleteBookmarkByBookmarkId2 (UBTConnect).
 
-The hook of BookmarksByGroup (`pages/BookmarksByGroup/hooks/useBookmarkGroup.ts`) calls `fetchBookmarkGroup`, `fetchBookmarkById`, `deleteBookmark` and `updateBookmarkNote` directly; its `api.ts` is deleted. The hook of MyBookmarks (`pages/MyBookmarks/hooks/useMyBookmarks.ts`) calls `fetchBookmarkGroupSummaries` and `fetchBookmarkById` directly; its `api.ts` and `types.ts` are deleted. `shared/Connect2_Assemble_MUI/lib/actions.ts` and `shared/UBTConnect/lib/actions.ts` call the repository functions.
+The hook of BookmarksByGroup (`pages/BookmarksByGroup/hooks/useBookmarkGroup.ts`) calls `fetchBookmarkGroup`, `fetchBookmarkById`, `deleteBookmark` and `updateBookmarkNote` directly; its `api.ts` is deleted. The hook of MyBookmarks (`pages/MyBookmarks/hooks/useMyBookmarks.ts`) calls `fetchBookmarkGroupSummaries` and `fetchBookmarkById` directly; its `api.ts` and `types.ts` are deleted. `lib/assemble/actions.ts` and `lib/ubtConnect/actions.ts` call the repository functions.
 
 The `Bookmark` type has `dateCreatedUtc`, the sort key of the `MyBookmarks` memory cache. The barrel exports the mapper `toBookmark` (`pages/BookmarksByGroup/hooks/bookmarkGroupActions.ts` imports it for `fromCacheRecord`). `AssembleBookmarkAdded`, `C2BookmarkAdded` and `BookmarkDeleted` keep the OutSystems names. The two hooks (`useBookmarkGroupQuery`, `useBookmarkGroupSummariesQuery`) have no caller yet; they set `staleTime: 0`, `gcTime: 0` and `retry: false`.
 
@@ -66,7 +66,7 @@ The AddNote mapper drops `ItemId` and `NoteCategoryId` of the answer, because no
 
 `message/` has the same files. It holds 19 calls of 11 screens: ContactByEmailLDMCoordinator, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactByEmailOrbitHelpdesk, ContactByEmailOrbitHost, ContactUsDetails, EmailContact, EmailTarget, LDM_Email_V2, MessageDetail and MessageList. It also holds DataActionFetchContactDetails (Directory_EntityDetailsActions), GetMemberContactByCacheKey and GetNumberUnreadMessages (`platform/bootstrap/startup.ts`).
 
-The old `api.ts` and `types.ts` files of these screens re-export it under their old names, except LDM_Email_V2: its hook `useLdmEventEmail` calls `fetchEventEmailCoordinator` and `sendEventContactEmail` directly. `containers/EntityDetailsActions/api.ts` re-exports `fetchEntityContactDetails` as `fetchContactDetails`. `shared/Connect2_LegacyShared/lib` uses the domain too.
+The old `api.ts` and `types.ts` files of these screens re-export it under their old names, except LDM_Email_V2: its hook `useLdmEventEmail` calls `fetchEventEmailCoordinator` and `sendEventContactEmail` directly. `containers/EntityDetailsActions/api.ts` re-exports `fetchEntityContactDetails` as `fetchContactDetails`. `lib/legacyShared` uses the domain too.
 
 The domain has one e-mail form type, `ContactByEmailForm`, and one mapper, `toOrbitContactEmailInputs`, for three screens that had their own copies. `sendContactEmail` returns IsSuccess. `fetchEntityContactDetails` does not return LocalityId, because no code reads it. Wrapper_NotificationOpened and Wrapper_MarkAllAsReadNotifications are in `notification/`.
 
@@ -114,7 +114,7 @@ The queries of `feed/` and the count query of `member/` set `staleTime: 0`, `gcT
 
 `image/` has `keys.ts` (the memory-cache entries `imageCache`) and, since P6-G5-B-OrbitAdminEventDetail, `repository.ts` and the barrel `index.ts`. It holds one call: GetCacheableSignedImageURL of Connect2_LegacyShared (`ActionGetSignedImagesInBulk`, `fetchLegacySignedImageURL`). The domain is chosen by the data that it owns (decision W8): the signed image URLs. The hooks `useAdminEventDetail` (OrbitAdminEventDetail) and `useAccommodationHost` (MilestoneDetail), `useHelperDetails` (HelpersDetail), `useGenerateQrCode` (QRCodeGenerate) and the page `GuestArrangementsPage` (GuestArrangements) call it.
 
-Later G5 and G6 pages will also call it. The repository has its own `textToLongInteger`, because `api/` does not import `shared/`. It has no mapper and no hook.
+Later G5 and G6 pages will also call it. The repository has its own `textToLongInteger`, because `api/` does not import the module actions of `lib/`. It has no mapper and no hook.
 
 `event/` also holds the four EventDetail calls: Get_EventDetails, Get_HostSurveyStatus, Get_HasDocuments and Get_HasQRCode (`fetchEventDetails`, `fetchHostSurveyStatus`, `fetchHasDocuments`, `fetchHasQRCode`, called by `useEventDetail`). The old `api.ts` and `types.ts` of EventDetail are deleted. The hook calls the repository functions.
 

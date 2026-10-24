@@ -1,3 +1,4 @@
+/** @origin UBTConnectLibrary.Layouts.Layout_DetailPage */
 // @os-block UBTConnectLibrary.Layouts.Layout_DetailPage
 import type { ReactNode } from 'react';
 import { DetailLayout } from '@/components/layout';

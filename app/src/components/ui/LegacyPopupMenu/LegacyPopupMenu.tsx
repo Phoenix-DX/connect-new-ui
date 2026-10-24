@@ -24,7 +24,7 @@ const px = (value: string) => Number.parseFloat(value) || 0;
 
 /** Connect2_LegacyShared Widgets.PopupMenu (migration/screens/BookmarksByGroup/analysis/sources/pretty/Connect2_LegacyShared.Widgets.PopupMenu.mvc.js:
     view :163-249, controller :253-620, JS nodes :622-900). Its view and JS nodes are those of UBTConnectLibrary
-    ConnectPatterns.PopupMenu (`src/shared/UBTConnectLibrary/PopupMenu`, same AddEventHandlers/Update/Destroy code)
+    ConnectPatterns.PopupMenu (`src/components/ui/PopupMenu`, same AddEventHandlers/Update/Destroy code)
     plus a `dx-popup-menu-backdrop` container after the content (view :233-247) and the widget ids Root, Anchor and
     PopupMenu: the anchor toggles; opening raises OnOpen, then on the next frame adds `dx-popup-menu-open`, moves the
     container to <body> and follows the anchor every frame (shared `popupPosition`); a click outside the anchor,

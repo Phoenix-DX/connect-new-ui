@@ -791,3 +791,12 @@
 
 - Architecture: no code change. No group has the verdict "same" and a `jscpd` clone. Cards, carousels, PopupMenu and Layout_MainPages stay as domain components ([duplicates.md](duplicates.md), result of P7-4).
 - `jscpd`: 36 clones, 665 lines (P0-3: 63 clones, 1289 lines). Follow-ups F31 to F34 (Orbit client actions, PopupMenu, NetworkWarning, Member_ListItem row).
+
+## P7-6 - refactor(P7-6): empty and delete src/shared/ (5 commits)
+
+- Commits: part 1 `cca9b514` (move-map rows, docs only), part 2 `14f5a615` (`arch_baseline.py` reads file rows), part 3 `1d9baa51` (delete MultiResolutionImageLoader).
+- Part 4 is the pure move. Part 5 adds `@origin` tags to 10 block files.
+- Architecture: `src/shared/` is deleted with its alias and 6 dependency-cruiser rules (W20, W32). Blocks went to `components/household/`, `containers/DetailLayout/`, `platform/session/UserInfoCache/` and `legacy/os/cache/`; module helpers to `lib/<module>/`; MSW files to `mocks/modules/` (glob `mocks/modules/**/mocks.ts`); test helpers to `src/test/`; `OSLink` to `components/ui/os/`.
+- Debt: the module client actions in `lib/<module>/actions.ts` break rule 6; the count of 55 is a ceiling that may only go down (F35). Other debt: F36 (OSLink), F37 (CacheControl). The rule-5 drop of 110 is a reclassification, not a fix (F38). Table: `migration/refactor/handoffs/P7-6/rows.md`, "Debt created".
+- Gate: dependency-cruiser 269 to 222 (rule-6 +55, rule-9 +4, rule-8 +1, rule-5 -109 net). Parity strict `--all` 64/64 clean on both references; `ci` 3939 tests; coverage 89.39%.
+- W21: HomeFeed 244.69 kB gzip (+0.03), Login 184.71 kB (0.00). Baseline 78 rows, 0 new. Closed: F30, F34.
