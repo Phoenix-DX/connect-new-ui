@@ -60,4 +60,5 @@ section "Context notes".
 | [044](context-044-refactor-p6-g1-done.md) | 2026-10-23 | P6 group G1 done (13 steps, B-Shared per group, arch baseline); W9–W16; scope widened to P6+P7 auto; prefetch method | superseded by context-045 |
 | [045](context-045-refactor-p6-g2-g3.md) | 2026-10-24 | P6 groups G2 and G3 done; bundle fixes P6-F15/F16; W17–W25; G4–G6 A/B-Shared patches prefetched | superseded by context-046 |
 | [046](context-046-refactor-p6-g4.md) | 2026-10-24 | P6 group G4 done (13 pages); W26–W29; fix step P6-F17 (beforePaint) before G5; chain worktree method | superseded by context-047 |
-| [047](context-047-refactor-p6-g5.md) | 2026-10-24 | P6-F17 and group G5 done (16 pages); W27–W31; 6 routes without parity states; G6/P6-end/P7-0..2 prefetched | current |
+| [047](context-047-refactor-p6-g5.md) | 2026-10-24 | P6-F17 and group G5 done (16 pages); W27–W31; 6 routes without parity states; G6/P6-end/P7-0..2 prefetched | superseded by context-048 |
+| [048](context-048-refactor-phase6-done.md) | 2026-10-24 | Phase 6 done (G6, P6-end, F23 fix); W30, W32, W33; P7 prefetched (P7-6 in 5 parts) | current |
