@@ -563,23 +563,6 @@
    "note": "auto-accepted (user instruction 2026-10-16 night): now needed by in-scope Orbit/Assemble/LDM screens (user scope decision 2026-10-16)"
   },
   {
-   "key": "osui:RangeSlider",
-   "topic": "OutSystems UI RangeSlider",
-   "question": "OutSystems UI pattern OutSystemsUI_2_23.Interaction.RangeSlider is used by 1 screen(s) (ContactUsDetails). How is its behaviour reproduced (survey/osui.md lists the provider libraries the original loads)?",
-   "options": [
-    "same provider library as the original, pinned to the version in the manifest (name it)",
-    "hand-written component with the captured DOM and classes (no library)",
-    "out of scope: render NotCaptured"
-   ],
-   "proposed": null,
-   "why": "Pattern behaviour lives in OutSystems UI JavaScript, not in the captured .mvc.js; one shared implementation (P-OSUI) avoids a different version per route.",
-   "status": "confirmed",
-   "value": "same provider library as the original, pinned to the version in the manifest (noUiSlider + wNumb)",
-   "by": "user",
-   "at": "2026-10-14T13:13:51",
-   "note": "version read from OutSystemsUI_2_23.NoUISlider.js in the ADR-2 version list; user: any library that keeps the UI 1:1 (user, 2026-10-14)"
-  },
-  {
    "key": "osui:Sidebar",
    "topic": "OutSystems UI Sidebar",
    "question": "OutSystems UI pattern OutSystemsUI_2_23.Interaction.Sidebar is used by 1 screen(s) (Map). How is its behaviour reproduced (survey/osui.md lists the provider libraries the original loads)?",
@@ -674,8 +657,6 @@
   "leaflet.markercluster": "1.5.3",
   "sortablejs": "1.15.7",
   "@splidejs/splide": "4.1.3",
-  "nouislider": "15.8.1",
-  "wnumb": "1.2.0",
   "dompurify": "3.4.17",
   "openapi-fetch": "0.15.2",
   "gsap": "3.13.0",
@@ -941,6 +922,16 @@
    "status": "accepted",
    "by": "user",
    "at": "2026-10-22T14:16:26"
+  },
+  {
+   "id": "ADR-16",
+   "title": "Remove noUiSlider and wNumb",
+   "context": "Step F29 (commit 9b88da40) deleted the unused RangeSlider pattern and uninstalled the packages nouislider and wnumb. ADR-3 had allowed both for the RangeSlider pattern.",
+   "decision": "Remove nouislider and wnumb from the allowed dependencies and remove the osui:RangeSlider item. ADR-3 stays as the record of the earlier decision (user, 2026-10-24).",
+   "consequences": "ContactUsDetails does not use a range slider library. A new use of a range slider needs a new ADR and a version check.",
+   "status": "accepted",
+   "by": "user",
+   "at": "2026-10-24T00:00:00"
   }
  ]
 }
