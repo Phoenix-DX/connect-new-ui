@@ -1,7 +1,6 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_Info_V2
+import type { EventCalendar } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/legacy/os/os-assets';
-import type { EventCalendar } from '@/pages/LDM_MyEvents_V2/types';
 import { formatEventDate } from './actions';
 
 export interface EventCard_Info_V2Props {
@@ -17,7 +16,8 @@ export interface EventCard_Info_V2Props {
 /** The event lines of an LDM card (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_Info_V2
     .mvc.js view): the LDM logo and EventName, the clock and FormatDateTime(TextToDate(EventDate), "dddd, d MMMM
     yyyy"), the host icon with, when EventHostId > 0, NameLocation (HostFullName / "(" + HostLocality + ")"), else
-    HostFullName alone. A click anywhere triggers CardClicked (OnClick_CardInfo). */
+    HostFullName alone. A click anywhere triggers CardClicked (OnClick_CardInfo).
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_Info_V2 */
 export function EventCard_Info_V2({ id, scope, inEvent, onCardClicked }: EventCard_Info_V2Props) {
   return (
     <OSBlock name="LDM_Blocks_V2.EventCard_Info_V2" id={id}>

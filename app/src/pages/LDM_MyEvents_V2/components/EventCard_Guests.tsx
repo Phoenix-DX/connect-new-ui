@@ -1,5 +1,5 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests
 import { useState } from 'react';
+import type { CalendarGuestItem } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { osImage } from '@/legacy/os/os-assets';
@@ -9,7 +9,6 @@ import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
 } from '@/shared/UBTConnect_Utils/lib/structures';
-import type { CalendarGuestItem } from '@/pages/LDM_MyEvents_V2/types';
 import { OverlappingImages } from './OverlappingImages';
 import { flipHouseholdName } from '@/shared/Connect2_LegacyShared/lib/actions';
 import { getLocalityName } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
@@ -52,7 +51,8 @@ export interface EventCard_GuestsProps {
     OnHandle_HouseholdClicked (EG :700-760) triggers HouseholdClicked; its CarouselFilteredEventResults only lowers the
     row number, which the screen does not use for navigation (LDM_MyEvents_V2 Handler_NavigateTo_HouseholdCarousel).
     Call: OnClick_PhoneCall with the guest's contact data (EG :585-630). Email: OnClick_Message with the guest's
-    email and the flipped household name (EG :764-800; offline it does nothing, GetNetworkStatus). */
+    email and the flipped household name (EG :764-800; offline it does nothing, GetNetworkStatus).
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks.EventCard_Guests */
 export function EventCard_Guests({
   id,
   scope,

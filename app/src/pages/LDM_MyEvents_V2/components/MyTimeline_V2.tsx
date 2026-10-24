@@ -1,4 +1,4 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyTimeline_V2
+import type { EventCalendar, TimelineEventGroup } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { NetworkWarning } from '@/shared/Connect2_LegacyShared/NetworkWarning';
@@ -8,7 +8,6 @@ import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
 } from '@/shared/UBTConnect_Utils/lib/structures';
-import type { EventCalendar, TimelineEventGroup } from '@/pages/LDM_MyEvents_V2/types';
 import { EventCard_V2, type HouseholdClick } from './EventCard_V2';
 
 export interface MyTimeline_V2Props {
@@ -37,7 +36,8 @@ export interface MyTimeline_V2Props {
     when there are past events; a card is expandable when its event has guests. Without events: NetworkWarning on a
     fetch error, else nothing while fetching, else ErrorScreen "LDMs events not available." (+ "Please try a different
     filter" while filtering) with SwipeEvents (SwipeUp: not ported, the swipe gesture of the web is out of scope).
-    The list-updating loader shows while fetching without a fetch error. Both lists raise ScrollEnding. */
+    The list-updating loader shows while fetching without a fetch error. Both lists raise ScrollEnding.
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyTimeline_V2 */
 export function MyTimeline_V2({
   id,
   scope,

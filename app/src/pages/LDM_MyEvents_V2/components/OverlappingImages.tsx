@@ -1,4 +1,3 @@
-// @os-block Connect2_LegacyShared.Widgets.OverlappingImages
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { styleFromCssText } from '@/shared/lib/cssText';
@@ -31,7 +30,8 @@ const DEFAULT_PHOTO = '/UBT_CW/img/UBT_CW.User_rectangle.png';
     ImageURLs = the first In_MaxDisplayImage URLs. ImageList (view): one `overlapping-photo-cropper` per URL whose
     style sets the diameter, the photo (or the default image) and translateX((Length - (Row + 1)) × In_OverlapPercent %)
     (RTL: (Length - (Row + 1)) × 100 - Row × (100 - In_OverlapPercent) %); the last shown photo carries "+N" when
-    In_ShowRemainingCount and RemainingCount > 0. */
+    In_ShowRemainingCount and RemainingCount > 0.
+    @origin Connect2_LegacyShared.Widgets.OverlappingImages */
 export function OverlappingImages({
   id,
   scope,

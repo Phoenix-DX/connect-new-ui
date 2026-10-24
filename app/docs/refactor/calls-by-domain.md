@@ -228,3 +228,5 @@ P6-G5-B-HostSurvey: `pages/HostSurvey/api.ts` is deleted (its row in the app tab
 P6-G5-B-TransportDetail: `pages/TransportDetail/api.ts` is deleted (its row in the app table above). The hook `useTransportDetail` calls `fetchTransportDetail` (DataActionGet_TransportDetail) of `@/api/event` directly.
 
 P6-G5-B-MyEntertaining: `pages/MyEntertaining/api.ts` is deleted; its row in the app table above now names `api/entertaining/repository.ts`. The hook `useEntertainingCalendar` calls `useEntertainingConfigQuery` (DataActionGetEntertainingConfig) of `@/api/entertaining`; the 10-minute timer calls `fetchUserIdToken` (ActionAppManager_Get_UserIdToken) of the same domain.
+
+P6-G5-B-LDM_MyEvents_V2: `pages/LDM_MyEvents_V2/api.ts` is deleted (its rows in the event and locality tables above). The hook `useLdmMyEvents` calls `fetchEventsForMyTimeline` (DataActionGetEventsForMyTimeline) of `@/api/event`. The hook `useMyTimelineFilterButton` calls `fetchEventFilterLocalities` (DataActionGetEventLocalitiesForFilter) of `@/api/locality`.

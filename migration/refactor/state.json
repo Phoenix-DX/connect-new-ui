@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G5-B-MyEntertaining",
+  "step": "P6-G5-B-LDM_MyEvents_V2",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T09:01:47"
+  "since": "2026-10-24T09:07:19"
  },
  "steps": {
   "P0-1": {
@@ -1340,11 +1340,24 @@
    "finished": "2026-10-24T08:56:26"
   },
   "P6-G5-B-MyEntertaining": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T08:56:26",
    "tokens": {
     "dev": 292476,
-    "test": 34105
+    "test": 34105,
+    "docs": 31309
+   },
+   "commit": "f7a74f4b",
+   "gate": "ci: pass; parity visual --changed: 0 differences on both references; arch baseline 0 new; HomeFeed 244.44 kB, Login 184.45 kB",
+   "loops": 0,
+   "finished": "2026-10-24T09:01:48"
+  },
+  "P6-G5-B-LDM_MyEvents_V2": {
+   "status": "active",
+   "started": "2026-10-24T09:01:48",
+   "tokens": {
+    "dev": 283643,
+    "test": 29513
    }
   }
  },

@@ -1,14 +1,9 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyEvents_MyTimelineFilterButton
-import { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
-import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { getEventLocalitiesForFilter } from '@/pages/LDM_MyEvents_V2/api';
-import type { EventLocality } from '@/pages/LDM_MyEvents_V2/types';
-import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
+import { useMyTimelineFilterButton } from '@/pages/LDM_MyEvents_V2/hooks/useMyTimelineFilterButton';
 
 export interface MyEvents_MyTimelineFilterButtonProps {
   id?: string;
@@ -22,14 +17,12 @@ export interface MyEvents_MyTimelineFilterButtonProps {
   inDefaultDateRangeInMonths?: number;
 }
 
-/** The timeline filter button (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks_V2
-    .MyEvents_MyTimelineFilterButton.mvc.js = FB). View (FB :205-260): when In_IsShowing, the filter icon (clickable
-    when In_HasLoaded, else greyed `text-neutral-6`), then BlockPlaceholder > SearchFiltersRoot with, while
-    IsShowFilters, PreventBackNavigation and the Event_Filters_PopUp (popup-dialog my-events-popup-filters) holding
-    MyTimeline_Filters: not captured (Q1, NotCaptured; its Filter / Close / ResetFilters events are not reachable).
-    OnReady / OnParametersChanged (FB :595-625): when In_HasLoaded and HasLocalityData is False, GetEventLocalitiesData
-    (FB :760-775): Refresh GetEventLocalitiesForFilter, SelectedFilters.Localities = its EventLocalities,
-    HasLocalityData = True, AddAuditRequestAPIEvent(RequestAPI_EventLocalities, request time). */
+/** The timeline filter button. When In_IsShowing: the filter icon, clickable when In_HasLoaded, else greyed
+    (`text-neutral-6`). Then BlockPlaceholder > SearchFiltersRoot with, while IsShowFilters, PreventBackNavigation and
+    the Event_Filters_PopUp (popup-dialog my-events-popup-filters). Its content MyTimeline_Filters is not captured (Q1,
+    NotCaptured): its Filter, Close and ResetFilters events are not reachable. The flows are in
+    useMyTimelineFilterButton.
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyEvents_MyTimelineFilterButton */
 export function MyEvents_MyTimelineFilterButton({
   id,
   scope,
@@ -37,40 +30,12 @@ export function MyEvents_MyTimelineFilterButton({
   inIsShowing,
   inDefaultDateRangeInMonths = 24,
 }: MyEvents_MyTimelineFilterButtonProps) {
-  const [isShowFilters, setIsShowFilters] = useState(false);
-  const hasLocalityData = useRef(false);
-  const fetching = useRef(false);
-  const [, setLocalities] = useState<EventLocality[]>([]);
+  const { isShowFilters, toggleEventFilters } = useMyTimelineFilterButton(
+    inHasLoaded,
+    inIsShowing,
+    inDefaultDateRangeInMonths,
+  );
   usePopupWidget(isShowFilters);
-
-  /** ToggleEventFilters (FB :690-700). */
-  const toggleEventFilters = () => {
-    setIsShowFilters((v) => !v);
-  };
-
-  useEffect(() => {
-    if (!inHasLoaded || hasLocalityData.current || fetching.current) return;
-    fetching.current = true;
-    void (async () => {
-      try {
-        const start = getCurrentTimeInMill();
-        const localities = await getEventLocalitiesForFilter({
-          In_HasLoaded: inHasLoaded,
-          In_DefaultDateRangeInMonths: inDefaultDateRangeInMonths,
-          In_IsShowing: inIsShowing,
-          IsShowFilters: isShowFilters,
-          HasLocalityData: false,
-        });
-        setLocalities(localities);
-        hasLocalityData.current = true;
-        addAuditEvent_LDM('RequestAPI_EventLocalities', { RequestTime: String(getCurrentTimeInMill() - start) });
-      } catch (e) {
-        raiseToFlowHandler(e);
-      } finally {
-        fetching.current = false;
-      }
-    })();
-  }, [inHasLoaded, inDefaultDateRangeInMonths, inIsShowing, isShowFilters]);
 
   return (
     <OSBlock name="LDM_Blocks_V2.MyEvents_MyTimelineFilterButton" id={id}>

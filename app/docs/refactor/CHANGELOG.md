@@ -657,3 +657,9 @@
 - `pages/MyEntertaining` is a page with 2 hooks (`hooks/useMyEntertaining.ts`, `hooks/useEntertainingCalendar.ts`) and 2 props-only views (`components/`). It has no container. `inputs.ts` is new; `staticEntities.ts` moves to the page root.
 - `api.ts` and `types.ts` are deleted. The new domain `api/entertaining` (decision W8) holds the 2 calls; the Layout_DetailPage adapter is replaced by `DetailLayout`.
 - HomeFeed and Login raw sizes do not grow; the MyEntertaining chunk has 7 chunks (was 8) (dev.md).
+
+## P6-G5-B-LDM_MyEvents_V2 - refactor(P6-G5-B): LDM_MyEvents_V2 as page
+
+- `pages/LDM_MyEvents_V2` is a page with a flow hook (`hooks/useLdmMyEvents.ts`, `hooks/ldmMyEventsState.ts`), a filter hook (`hooks/useMyTimelineFilterButton.ts`) and a props-only view (`components/LdmMyEventsView.tsx`). It has no container. The ScreenBlock, `api.ts` and `types.ts` are deleted; the hooks call `@/api/event` and `@/api/locality` directly.
+- The page `@origin` is corrected to `UBTConnect.Legacy_LDMEventsFlow_V2.LDM_MyEvents_V2` (G5-A had written it without `_V2`). LDM_EventDetail_V2 and LDM_Email_V2 still have the same error in their `@origin`.
+- Dependency-cruiser warnings 198 to 196. HomeFeed gzip +0.02 kB (the page now uses the shared `flowState` chunk); Login is unchanged within 0.01 kB.

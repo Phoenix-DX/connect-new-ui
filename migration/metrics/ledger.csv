@@ -712,3 +712,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,292476,refactor-dev,,P6-G5-B-MyEntertaining opus
 2026-10-24,refactor,other,27234,refactor-docs,,P6-G5-B-TransportDetail sonnet
 2026-10-24,refactor,verify,34105,refactor-test,,P6-G5-B-MyEntertaining sonnet
+2026-10-24,refactor,build,283643,refactor-dev,,P6-G5-B-LDM_MyEvents_V2 opus
+2026-10-24,refactor,other,31309,refactor-docs,,P6-G5-B-MyEntertaining sonnet
+2026-10-24,refactor,verify,29513,refactor-test,,P6-G5-B-LDM_MyEvents_V2 sonnet

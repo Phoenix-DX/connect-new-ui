@@ -1,10 +1,9 @@
-// @os-block Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_V2
+import type { EventCalendar } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import type {
   ContactByPhonePopupData,
   UI_ContactByMessage_WrapperData,
 } from '@/shared/UBTConnect_Utils/lib/structures';
-import type { EventCalendar } from '@/pages/LDM_MyEvents_V2/types';
 import { EventCard_Box } from './EventCard_Box';
 import { EventCard_Guests } from './EventCard_Guests';
 import { EventCard_Info_V2 } from './EventCard_Info_V2';
@@ -44,7 +43,8 @@ export interface HouseholdClick {
 /** An LDM event card (analysis/sources/pretty/Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_V2.mvc.js view):
     EventCard_Box (In_EventType LDM) with EventCard_Info_V2 (CardClicked → EventClicked(EventHostId, EventId)) and
     EventCard_Guests (In_GuestCount, the guests, In_IsExpandable); HouseholdClicked adds the event's EventHostId,
-    EventId, Hosting and the HouseholderId list of its guests. */
+    EventId, Hosting and the HouseholderId list of its guests.
+    @origin Connect2_OrbitMobile_MUI.LDM_Blocks_V2.EventCard_V2 */
 export function EventCard_V2({
   id,
   scope,
