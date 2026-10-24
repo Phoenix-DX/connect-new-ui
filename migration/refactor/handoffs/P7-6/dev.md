@@ -63,7 +63,7 @@ row. `moved_modules` and `translate` handle the same kinds, so an old import of 
 
 migration/tools/refactor/arch_baseline.py (`MOVE_MAP`, `phase_rows`, `is_file_path`; `old_path_of`, `moved_modules` and
 `translate` extended; the folder-row behavior is unchanged)
-migration/tools/refactor/arch_baseline_selfcheck.py (17 new asserts on a temporary move map: file rows, companions, a
+migration/tools/refactor/arch_baseline_selfcheck.py (18 new asserts on a temporary move map: file rows, companions, a
 file that was already in the target folder, the file row before its folder row, a folder target, another phase, a
 delete row)
 migration/refactor/handoffs/P7-6/dev.md
@@ -77,7 +77,48 @@ migration/refactor/handoffs/P7-6/dev.md
 
 ### Deviations from the brief
 
+- I appended this Part 2 section with a shell heredoc. Later parts and the assert count (17 → 18, corrected in part 3)
+  use the Edit tool.
+
+### Questions for the user
+
 none
+
+## Part 3 (delete MultiResolutionImageLoader, T12) — tree `P7-6-part3.tree`
+
+### Result
+
+status: pass
+summary: Deleted `src/shared/Connect2_LegacyShared/MultiResolutionImageLoader/` (component, test with 2 cases, story,
+README, index), as the P0-5 shape `delete` and W32 T12 (a) say. Nothing in the app used it, and the typecheck passes.
+
+### Evidence
+
+- Import graph (dependency-cruiser JSON of the base): the 5 files have no dependent outside the folder. The component
+  imports only `components/ui/os/OSBlock`.
+- grep of `app/src`, `app/build` and `app/.storybook` for `MultiResolutionImageLoader`: no hit outside the folder (the
+  same before and after the move-map edit).
+- knip cannot prove it: `app/knip.json` makes every `src/**/*.stories.tsx` an entry, and the story imports the
+  component, so knip keeps it alive.
+- move-map row: shape `delete`, routes `0` (P0-5), and the P7-0 note "no importer outside its tests and stories".
+
+### Files changed
+
+app/src/shared/Connect2_LegacyShared/MultiResolutionImageLoader/MultiResolutionImageLoader.tsx (deleted)
+app/src/shared/Connect2_LegacyShared/MultiResolutionImageLoader/MultiResolutionImageLoader.test.tsx (deleted, 2 cases)
+app/src/shared/Connect2_LegacyShared/MultiResolutionImageLoader/MultiResolutionImageLoader.stories.tsx (deleted)
+app/src/shared/Connect2_LegacyShared/MultiResolutionImageLoader/README.md (deleted)
+app/src/shared/Connect2_LegacyShared/MultiResolutionImageLoader/index.ts (deleted)
+migration/refactor/handoffs/P7-6/dev.md
+
+### Commands run
+
+- `npm --prefix app run typecheck` → exit 0
+
+### Deviations from the brief
+
+- The deleted test is the test of dead code (agent rule 8: a deleted test needs approval). W32 approved T12 (a).
+- The move-map row status stays empty. The documenter sets the statuses of the P7-6 rows.
 
 ### Questions for the user
 
