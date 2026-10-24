@@ -110,12 +110,12 @@ P6-G1-B-Menu: `ActionRequestPhotoUpdate` moved to `src/api/member/repository.ts`
 
 ## bookmark
 
-| File                                          | Module                   | Actions                                                                                                                                                                                |
-| --------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `screens/BookmarksByGroup/api.ts`             | Connect2_MyBookmarks_MUI | `ActionDeleteBookmarkByBookmarkId`, `ActionGetBookmarkById`, `ActionNew_GetBookmarkById`, `ActionNew_UpdateBookmarkNote`, `ScreenBlock_BookmarkGroup/DataActionGetAllBookmarksByGroup` |
-| `pages/MyBookmarks/hooks/useMyBookmarks.ts`   | Connect2_MyBookmarks_MUI | `ActionGetBookmarkById`, `ActionNew_GetBookmarkById`, `ScreenBlock_MyBookmarks/DataActionGetGroupSummaries`                                                                            |
-| `shared/Connect2_Assemble_MUI/lib/actions.ts` | Connect2_Assemble_MUI    | `ActionAddBookmark`, `ActionDeleteBookmarkByBookmarkId`                                                                                                                                |
-| `shared/UBTConnect/lib/actions.ts`            | UBTConnect               | `ServiceAPIAddBookmark2`, `ServiceAPIDeleteBookmarkByBookmarkId2`                                                                                                                      |
+| File                                               | Module                   | Actions                                                                                                                                                                                |
+| -------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pages/BookmarksByGroup/hooks/useBookmarkGroup.ts` | Connect2_MyBookmarks_MUI | `ActionDeleteBookmarkByBookmarkId`, `ActionGetBookmarkById`, `ActionNew_GetBookmarkById`, `ActionNew_UpdateBookmarkNote`, `ScreenBlock_BookmarkGroup/DataActionGetAllBookmarksByGroup` |
+| `pages/MyBookmarks/hooks/useMyBookmarks.ts`        | Connect2_MyBookmarks_MUI | `ActionGetBookmarkById`, `ActionNew_GetBookmarkById`, `ScreenBlock_MyBookmarks/DataActionGetGroupSummaries`                                                                            |
+| `shared/Connect2_Assemble_MUI/lib/actions.ts`      | Connect2_Assemble_MUI    | `ActionAddBookmark`, `ActionDeleteBookmarkByBookmarkId`                                                                                                                                |
+| `shared/UBTConnect/lib/actions.ts`                 | UBTConnect               | `ServiceAPIAddBookmark2`, `ServiceAPIDeleteBookmarkByBookmarkId2`                                                                                                                      |
 
 ## note
 

@@ -4,7 +4,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { UserException } from '@/legacy/os/os-exceptions';
 import { VITALE_PARENTS } from '@/mocks/fictional/directory';
 import BookmarksByGroup from '@/pages/BookmarksByGroup/BookmarksByGroupPage';
-import { fromCacheRecord, toCacheRecord } from '@/pages/BookmarksByGroup/components/actions';
+import { fromCacheRecord, toCacheRecord } from '@/pages/BookmarksByGroup/hooks/bookmarkGroupActions';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { setSignedInUser } from '@/platform/session/session';

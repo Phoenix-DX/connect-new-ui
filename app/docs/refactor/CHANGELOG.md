@@ -709,3 +709,9 @@
 - Edge case 1: `restoreMyBookmarks` returns the defaults for a view that was left before its first assignment, as the old block did.
 - Edge case 2 (F28): the user leaves while both calls run and GetGroupSummaries answers first. The preload then uses the lists of the last write before the unmount (W23).
 - HomeFeed gzip +0.02 kB, Login +0.02 kB; dependency-cruiser warnings 189 to 188.
+
+## P6-G6-B-BookmarksByGroup - refactor(P6-G6-B): BookmarksByGroup as page
+
+- `pages/BookmarksByGroup` is a page with a flow hook (`hooks/useBookmarkGroup.ts`, `hooks/bookmarkGroupState.ts` on `useFlowState`, no `beforePaint`) and a props-only view (`components/BookmarkGroupView.tsx`). No container. `api.ts` and the ScreenBlock are deleted; `inputs.ts` is new.
+- Renames: `Result_Item_Badge` to `LegacyResultItemBadge` (move-map row 57 gives `ResultItemBadge` to `NC_Result_Item_Badge`); `BookmarkNoteDialogs` split into `BookmarkNoteAddEdit` and `BookmarkNoteDelete`.
+- Edge case (F28 family, W23/latest): the flows read `latest`. With two overlapping Unmark answers, ListRemove and UpdatedTotal apply to the newest list; the old port used the list of the click's render. HomeFeed gzip +0.00 kB, Login +0.01 kB.

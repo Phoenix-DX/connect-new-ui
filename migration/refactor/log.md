@@ -741,3 +741,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T10:39:55 P6-G6-B-MyBookmarks stage test
 - 2026-10-24T10:43:59 P6-G6-B-MyBookmarks stage docs
 - 2026-10-24T10:44:58 P6-G6-B-MyBookmarks stage commit
+- 2026-10-24T10:44:59 P6-G6-B-MyBookmarks done 57b6c6ad: ci: pass; parity visual --changed: 3/0 (OutSystems), 3/0 (self); arch baseline 0 new; HomeFeed 244.44 kB, Login 184.49 kB
+- 2026-10-24T10:44:59 P6-G6-B-BookmarksByGroup started
+- 2026-10-24T10:44:59 P6-G6-B-BookmarksByGroup stage dev
+- 2026-10-24T10:45:40 P6-G6-B-BookmarksByGroup stage test
+- 2026-10-24T10:52:57 P6-G6-B-BookmarksByGroup stage docs
+- 2026-10-24T10:54:18 P6-G6-B-BookmarksByGroup stage commit

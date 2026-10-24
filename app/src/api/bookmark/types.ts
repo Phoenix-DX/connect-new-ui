@@ -27,8 +27,8 @@ export interface BookmarkDetails {
 
 /** A legacy bookmark (Connect2_MyBookmarks_IS BookmarkItem) as ScreenBlock_BookmarkGroup reads it: a row of the group
     list, and the bookmark that the client action GetBookmarkById answers. The block puts its rows in the MyBookmarks
-    memory cache as BookmarkItem records (screens/BookmarksByGroup/components/actions.ts, toCacheRecord), so the row
-    also keeps DateCreatedUtc. */
+    memory cache as BookmarkItem records (pages/BookmarksByGroup/hooks/bookmarkGroupActions.ts, toCacheRecord), so the
+    row also keeps DateCreatedUtc. */
 export interface Bookmark {
   /** Id (Long Integer, as text): the bookmark id. */
   id: string;

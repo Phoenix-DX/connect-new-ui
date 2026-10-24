@@ -49,9 +49,9 @@ The shared record types (for example `EventInfo`, `Milestone_Screen`, `MemberInf
 - AddBookmark and DeleteBookmarkByBookmarkId (Connect2_Assemble_MUI)
 - ServiceAPIAddBookmark2 and ServiceAPIDeleteBookmarkByBookmarkId2 (UBTConnect).
 
-The old `api.ts` and `types.ts` files of BookmarksByGroup re-export it under their old names. The hook of MyBookmarks (`pages/MyBookmarks/hooks/useMyBookmarks.ts`) calls `fetchBookmarkGroupSummaries` and `fetchBookmarkById` directly; its `api.ts` and `types.ts` are deleted. `shared/Connect2_Assemble_MUI/lib/actions.ts` and `shared/UBTConnect/lib/actions.ts` call the repository functions.
+The hook of BookmarksByGroup (`pages/BookmarksByGroup/hooks/useBookmarkGroup.ts`) calls `fetchBookmarkGroup`, `fetchBookmarkById`, `deleteBookmark` and `updateBookmarkNote` directly; its `api.ts` is deleted. The hook of MyBookmarks (`pages/MyBookmarks/hooks/useMyBookmarks.ts`) calls `fetchBookmarkGroupSummaries` and `fetchBookmarkById` directly; its `api.ts` and `types.ts` are deleted. `shared/Connect2_Assemble_MUI/lib/actions.ts` and `shared/UBTConnect/lib/actions.ts` call the repository functions.
 
-The `Bookmark` type has `dateCreatedUtc`, the sort key of the `MyBookmarks` memory cache. The barrel exports the mapper `toBookmark` (the screen re-exports it as `toBookmarkItem`), because `fromCacheRecord` in BookmarksByGroup needs it. `AssembleBookmarkAdded`, `C2BookmarkAdded` and `BookmarkDeleted` keep the OutSystems names. The two hooks (`useBookmarkGroupQuery`, `useBookmarkGroupSummariesQuery`) have no caller yet; they set `staleTime: 0`, `gcTime: 0` and `retry: false`.
+The `Bookmark` type has `dateCreatedUtc`, the sort key of the `MyBookmarks` memory cache. The barrel exports the mapper `toBookmark` (`pages/BookmarksByGroup/hooks/bookmarkGroupActions.ts` imports it for `fromCacheRecord`). `AssembleBookmarkAdded`, `C2BookmarkAdded` and `BookmarkDeleted` keep the OutSystems names. The two hooks (`useBookmarkGroupQuery`, `useBookmarkGroupSummariesQuery`) have no caller yet; they set `staleTime: 0`, `gcTime: 0` and `retry: false`.
 
 `note/` has the same files. It holds 6 calls.
 

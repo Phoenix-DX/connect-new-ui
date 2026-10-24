@@ -1,19 +1,20 @@
+import { toBookmark, type Bookmark } from '@/api/bookmark';
+import { showFeedbackMessage } from '@/platform/feedback';
 import { log } from '@/platform/log/log';
 import type { BookmarkItem as BookmarkItemRecord } from '@/shared/Connect2_LegacyShared/lib/structures';
-import { showFeedbackMessage } from '@/platform/feedback';
-import { toBookmarkItem } from '@/pages/BookmarksByGroup/api';
-import type { BookmarkItem } from '@/pages/BookmarksByGroup/types';
-import { APPLICATION_EVENT_SUBSCRIPTION_REQUIRED, MyBookmarks_ObjectType } from './staticEntities';
+import {
+  APPLICATION_EVENT_SUBSCRIPTION_REQUIRED,
+  MyBookmarks_ObjectType,
+} from '@/pages/BookmarksByGroup/staticEntities';
 
-/* Client actions of other modules that only this route calls. C = Connect2_LegacyShared.controller.js and
-   M = Connect2_MyBookmarks_MUI.controller.js (migration/screens/BookmarksByGroup/analysis/sources/raw, prettified). */
+/* The client actions of other modules that only the bookmark group flows call: the MyBookmarks cache records, the
+   feedback messages of Connect2_MyBookmarks_MUI and the audit event of Connect2_LegacyShared. */
 
-/* The MyBookmarks cache. The block's BookmarkedItems is a list of Connect2_MyBookmarks_IS.BookmarkItem records
-   (ScreenBlock_BookmarkGroup.mvc.js model :32), and the block calls the Connect2_LegacyShared GetCachedMyBookmarks
-   (:2921-2932) and PutCachedMyBookmarks (:2163-2164, :2345-2346, :2774-2775, :3173-3174) with that list. AddBookmarkToCache
-   and RemoveBookmarkFromCache (AssembleDetail) use the same cache type, group key and record. So the block calls the
-   Connect2_LegacyShared actions (shared/Connect2_LegacyShared/lib/actions.ts) and converts its rows with the two
-   functions below. */
+/* The MyBookmarks cache. The block's BookmarkedItems is a list of Connect2_MyBookmarks_IS.BookmarkItem records, and
+   the block calls the Connect2_LegacyShared GetCachedMyBookmarks and PutCachedMyBookmarks with that list.
+   AddBookmarkToCache and RemoveBookmarkFromCache (AssembleDetail) use the same cache type, group key and record. So the
+   flows call the Connect2_LegacyShared actions (shared/Connect2_LegacyShared/lib/actions.ts) and convert their rows with
+   the two functions below. */
 
 /** Domain row → the BookmarkItem record of the cache. Group = the block's BookmarkGroup input (the group that
     DataActionGetAllBookmarksByGroup was asked for); DateCreatedUtc from the wire row. The domain row does not keep
@@ -21,7 +22,7 @@ import { APPLICATION_EVENT_SUBSCRIPTION_REQUIRED, MyBookmarks_ObjectType } from 
     ServiceType, SubdivisionID and SubdivisionName: they get the record defaults (Text "", Long Integer 0). No reader of
     the cache uses them (AddBookmarkToCache reads ObjectId and DateCreatedUtc, RemoveBookmarkFromCache ObjectId, the
     block the domain fields). */
-export const toCacheRecord = (row: BookmarkItem, group: string): BookmarkItemRecord => ({
+export const toCacheRecord = (row: Bookmark, group: string): BookmarkItemRecord => ({
   Id: row.id,
   Group: group,
   ObjectType: row.objectType,
@@ -55,14 +56,15 @@ export const toCacheRecord = (row: BookmarkItem, group: string): BookmarkItemRec
 });
 
 /** BookmarkItem record of the cache → domain row: the record is the wire structure, so the wire mapper applies. */
-export const fromCacheRecord = (record: BookmarkItemRecord): BookmarkItem => toBookmarkItem(record);
+export const fromCacheRecord = (record: BookmarkItemRecord): Bookmark => toBookmark(record);
 
-/** SendBookmarkedFeedbackMessage(IsCreate) (M:168-210): success message. */
+/** SendBookmarkedFeedbackMessage(IsCreate) of Connect2_MyBookmarks_MUI: the success message. */
 export function sendBookmarkedFeedbackMessage(isCreate: boolean): void {
   showFeedbackMessage(isCreate ? 'Added to your Bookmarks' : 'Removed from your Bookmarks', 1);
 }
 
-/** SendBookmarkedHiddenFeedbackMessage(ObjectType) (M:233-289): info message naming the kind of record. */
+/** SendBookmarkedHiddenFeedbackMessage(ObjectType) of Connect2_MyBookmarks_MUI: the info message that names the kind
+    of record. */
 export function sendBookmarkedHiddenFeedbackMessage(objectType: string): void {
   const kind =
     objectType === MyBookmarks_ObjectType.Contact
@@ -77,9 +79,10 @@ export function sendBookmarkedHiddenFeedbackMessage(objectType: string): void {
   showFeedbackMessage('This' + kind + 'is no longer available.', 0);
 }
 
-/** AuditBookmarkSubscriptionEvent(HouseholdId, LocalityId, CountryCode, EntityId) (C:443-576): SubscriptionEventInfo
-    serialized, then zOnApplicationEvent_Wrapper(SubscriptionRequired, JSON) → GetAppEventName → AzureInsights
-    CreateCustomEvent. Telemetry is not wired in the mock phase (decision U17): the event goes to the log. */
+/** AuditBookmarkSubscriptionEvent(HouseholdId, LocalityId, CountryCode, EntityId) of Connect2_LegacyShared:
+    SubscriptionEventInfo serialized, then zOnApplicationEvent_Wrapper(SubscriptionRequired, JSON) → GetAppEventName →
+    AzureInsights CreateCustomEvent. Telemetry is not wired in the mock phase (decision U17): the event goes to the
+    log. */
 export function auditBookmarkSubscriptionEvent(
   householdId: string,
   localityId: string,

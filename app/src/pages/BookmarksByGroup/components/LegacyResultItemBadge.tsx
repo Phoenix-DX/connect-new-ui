@@ -1,8 +1,15 @@
-// @os-block Connect2_LegacyShared.Utility.Result_Item_Badge
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
-export interface Result_Item_BadgeProps {
+/** The badge result item of Connect2_LegacyShared (the locality rows of the bookmark group). Not rendered in any
+    captured state (Locations group, Q2 → A pending): built from the compiled view. The visual column shows the badge:
+    an icon URL (static map-marker icon or the image) or the badge text, split around "&" when longer than one
+    character; the text column holds the Title, Description and Tag placeholders; Result_Item_Placeholder when
+    In_HasAction; BookmarkNote below. OnClick_Result_Item raises OnClick_Item. The name has the prefix Legacy because
+    ResultItemBadge is the name of NewConnect_Utilities.NC_Result_Item_Badge (move-map).
+    @origin Connect2_LegacyShared.Utility.Result_Item_Badge */
+
+export interface LegacyResultItemBadgeProps {
   /** OutSystems instance id of the block (`b1-l2-…-LocalitiesList_Item`). */
   id: string;
   /** Id prefix of the block's own elements. */
@@ -45,13 +52,8 @@ const styleOf = (text: string): Record<string, string> =>
       }),
   );
 
-/** Connect2_LegacyShared Utility.Result_Item_Badge (capture/survey-UBTConnect.json sources
-    `Connect2_LegacyShared.Utility.Result_Item_Badge.mvc.js`, view internalRender; defaults from its model). Not rendered
-    in any captured state (Locations group, Q2 → A pending): built from the compiled view. The visual column shows the
-    badge: an icon URL (static map-marker icon or the image) or the badge text, split around "&" when longer than one
-    character; the text column holds the Title, Description and Tag placeholders; Result_Item_Placeholder when
-    In_HasAction; BookmarkNote below. OnClick_Result_Item raises OnClick_Item. */
-export function Result_Item_Badge({
+/** The defaults of the props are the defaults of the block inputs. */
+export function LegacyResultItemBadge({
   id,
   scope,
   inShowDescription = false,
@@ -76,7 +78,7 @@ export function Result_Item_Badge({
   resultItemPlaceholder,
   bookmarkNote,
   onOnClickItem,
-}: Result_Item_BadgeProps) {
+}: LegacyResultItemBadgeProps) {
   const click = () => onOnClickItem?.();
   const className =
     'badge-item result-item ' +
