@@ -1,8 +1,15 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { orbitTransportLegs, type OrbitTransportLocation } from '@/mocks/fictional/orbit';
-import type { GetTransportDetailWire, TransportLocationWire } from './types';
+
+/* Wire shapes of DataActionGet_TransportDetail, typed by the API contract (no capture: shape from the contract,
+   Connect2_OrbitMobile_BL.GetTransportDetails_ScreenRec). */
+type GetTransportDetailWire = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_TransportDetail/DataActionGet_TransportDetail'>
+>;
+type TransportLocationWire = GetTransportDetailWire['Response']['TransportDetail']['DepartureLocation'];
 
 /* DataActionGet_TransportDetail was never recorded (no capture, no-capture.json): fictional answers from the shared
    Orbit world (src/mocks/fictional/orbit.ts orbitTransportLegs, TransportDetail Q1) in the contract's shape.

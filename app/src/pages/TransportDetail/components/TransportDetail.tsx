@@ -1,11 +1,11 @@
-// @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail
+/** @origin Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail */
 import { useState, type ReactNode } from 'react';
+import type { SeatItem, StopItem, TransportDetails, TransportLocation } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
+import { getFormattedTime_FromTime, getFormattedTimeDifference } from '@/pages/TransportDetail/actions';
 import { getFormattedDateTimeById } from '@/shared/Connect2_OrbitMobile_MUI/lib/actions';
 import { OrbitMilestoneType } from '@/shared/Connect2_OrbitMobile_MUI/lib/staticEntities';
-import type { SeatItem, StopItem, TransportDetails, TransportLocation } from '@/pages/TransportDetail/types';
-import { getFormattedTime_FromTime, getFormattedTimeDifference } from './actions';
 import { TransportDetail_TravelInfo } from './TransportDetail_TravelInfo';
 
 /* TransportDetail (TD = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail.mvc.js: model :1-100,

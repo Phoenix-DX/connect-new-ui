@@ -645,3 +645,9 @@
 - `pages/HostSurvey` is a page with a flow hook (`hooks/useHostSurvey.ts`, `hooks/hostSurveyState.ts`) and a props-only view (`components/HostSurveyView.tsx`). It has no container. The hook sets `beforePaint: true` (decision W28) because the old block ran OnReady in a `useLayoutEffect`. The 5 page blocks are split into one file each with `@origin`.
 - `api.ts` and `types.ts` are deleted; the hook calls `fetchHostSurvey` of `api/event`. A failed GetHostSurvey is now caught (old: unhandled rejection); the screen is the same.
 - HomeFeed and Login entries change by +0.03 and +0.01 kB gzip (the F17 `flowState.ts`); the HostSurvey chunk is not an entry route.
+
+## P6-G5-B-TransportDetail - refactor(P6-G5-B): TransportDetail as page
+
+- `pages/TransportDetail` is a page with a flow hook (`hooks/useTransportDetail.ts`, `hooks/transportDetailState.ts`), a screen handler hook (`hooks/useContactHelpdeskNavigation.ts`) and a props-only view (`components/TransportDetailView.tsx`). It has no container. The hook sets `beforePaint: true` (decision W28) because the old block ran OnReady in a `useLayoutEffect`.
+- `api.ts`, `types.ts` and the ScreenBlock are deleted; `actions.ts` moves to the page root. The hook calls `fetchTransportDetail` of `api/event`. Dependency-cruiser warnings 198 to 197.
+- TransportDetail has no parity states, so its DOM evidence is the developer's 16-scenario old-vs-new test (`dev.md`). HomeFeed and Login are unchanged (dev.md).

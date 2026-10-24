@@ -1,58 +1,42 @@
-/** @origin UBTConnect.Legacy_OrbitEventsFlow.TransportDetail */
+import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { useFlagOn } from '@/platform/flags/flags';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { showFeedbackMessage } from '@/platform/feedback';
-import { useOsNavigate } from '@/platform/navigation';
-import { ScreenBlock_TransportDetail } from './components/ScreenBlock_TransportDetail';
+import { useFlagOn } from '@/platform/flags/flags';
+import { TransportDetailView } from './components/TransportDetailView';
+import { useContactHelpdeskNavigation } from './hooks/useContactHelpdeskNavigation';
+import type { TransportDetailBlockInputs } from './hooks/transportDetailState';
+import { useTransportDetail, type TransportDetailEvents } from './hooks/useTransportDetail';
+import { readTransportDetailInputs } from './inputs';
 
-const NO_ORBIT_ACCESS = "You don't have access to Orbit. Please contact the Orbit Helpdesk if you have any questions.";
-
-/** Connect2_LegacyShared FeedbackMessageAfterTransition (runtime-sources/Connect2_LegacyShared.controller.js
-    :2030-2085): its JS node shows the message 500 ms later, after the navigation that follows. */
-function feedbackMessageAfterTransition(message: string, messageType: number): void {
-  window.setTimeout(() => {
-    showFeedbackMessage(message, messageType);
-  }, 500);
+/** ScreenBlock_TransportDetail on the screen: its flows (useTransportDetail) and its view. The hook runs here, at the
+    place of the block, so a change of the block state renders only the block. */
+function TransportDetailBlock({
+  onNavigateToContactHelpdesk,
+  ...inputs
+}: TransportDetailBlockInputs & TransportDetailEvents) {
+  const flows = useTransportDetail(inputs, { onNavigateToContactHelpdesk });
+  return <TransportDetailView id="$b1" headerClass={inputs.In_HeaderClass} {...flows} />;
 }
 
-/** UBTConnect Legacy_OrbitEventsFlow.TransportDetail (S = analysis/sources/UBTConnect.Legacy_OrbitEventsFlow.
-    TransportDetail.mvc.js: model :1-107, view :108-239, controller :240-360). No capture (no-capture.json, user
-    2026-10-16): built from the compiled code. Inputs In_MilestoneId, In_OrbitMilestoneTypeId, In_MilestoneName,
-    In_HeaderClass, In_TargetMemberId. ScreenBlock_TransportDetail (In_PreloadMilestoneName = In_MilestoneName; Menu and
-    CommonUI_Elements empty), then CommonUI_InsideLayout. OnHandle_ContactHelpdesk (S :259-307) checks GetHasOrbitAccess
-    (flag mobileOrbitAccess, default-only on): ContactByEmailOrbitHelpdesk with In_TargetMemberId, In_EventId
-    IntegerToLongInteger(NullIdentifier()) = 0 and In_MilestoneId; otherwise the no-access message after the transition
-    and HomeFeed. */
+/** @origin UBTConnect.Legacy_OrbitEventsFlow.TransportDetail
+    The detail of a transport milestone. No capture (no-capture.json, user 2026-10-16): built from the compiled code.
+    ScreenBlock_TransportDetail (In_PreloadMilestoneName = In_MilestoneName; Menu and CommonUI_Elements empty), then
+    CommonUI_InsideLayout. The block event NavigateTo_ContactHelpdesk goes to OnHandle_ContactHelpdesk
+    (useContactHelpdeskNavigation), which reads GetHasOrbitAccess (the flag mobileOrbitAccess). */
 export default function TransportDetail() {
   const [params] = useSearchParams();
-  const navigate = useOsNavigate();
+  const inputs = useMemo(() => readTransportDetailInputs(params), [params]);
   const hasOrbitAccess = useFlagOn('mobileOrbitAccess');
-  const inMilestoneId = params.get('In_MilestoneId') ?? '';
+  const onNavigateToContactHelpdesk = useContactHelpdeskNavigation(inputs, hasOrbitAccess);
 
   return (
     <>
-      <ScreenBlock_TransportDetail
-        id="$b1"
-        In_MilestoneId={inMilestoneId}
-        In_OrbitMilestoneTypeId={params.get('In_OrbitMilestoneTypeId') ?? ''}
-        In_PreloadMilestoneName={params.get('In_MilestoneName') ?? ''}
-        In_HeaderClass={params.get('In_HeaderClass') ?? ''}
-        onNavigateToContactHelpdesk={(subject, eventName) => {
-          // OnHandle_ContactHelpdesk (S :259-307)
-          if (!hasOrbitAccess) {
-            feedbackMessageAfterTransition(NO_ORBIT_ACCESS, 3);
-            navigate('/UBTConnect/HomeFeed', {});
-            return;
-          }
-          navigate('/UBTConnect/ContactByEmailOrbitHelpdesk', {
-            In_EventName: eventName,
-            In_Subject: subject,
-            In_TargetMemberId: params.get('In_TargetMemberId') ?? '0',
-            In_EventId: '0',
-            In_MilestoneId: inMilestoneId,
-          });
-        }}
+      <TransportDetailBlock
+        In_MilestoneId={inputs.In_MilestoneId}
+        In_OrbitMilestoneTypeId={inputs.In_OrbitMilestoneTypeId}
+        In_PreloadMilestoneName={inputs.In_MilestoneName}
+        In_HeaderClass={inputs.In_HeaderClass}
+        onNavigateToContactHelpdesk={onNavigateToContactHelpdesk}
       />
       <CommonUiLayout id="$b2" />
     </>
