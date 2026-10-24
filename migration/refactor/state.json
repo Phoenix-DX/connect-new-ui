@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G5-B-HelpersDetail",
+  "step": "P6-G5-B-HostSurvey",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T08:42:04"
+  "since": "2026-10-24T08:51:15"
  },
  "steps": {
   "P0-1": {
@@ -1301,11 +1301,24 @@
    "finished": "2026-10-24T08:32:50"
   },
   "P6-G5-B-HelpersDetail": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T08:32:50",
    "tokens": {
     "dev": 350113,
-    "test": 27365
+    "test": 27365,
+    "docs": 33312
+   },
+   "commit": "072d97d7",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.37 kB, Login 184.42 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T08:42:06"
+  },
+  "P6-G5-B-HostSurvey": {
+   "status": "active",
+   "started": "2026-10-24T08:42:06",
+   "tokens": {
+    "dev": 372180,
+    "test": 28183
    }
   }
  },

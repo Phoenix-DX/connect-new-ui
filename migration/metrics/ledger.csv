@@ -703,3 +703,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,review,35587,refactor-advisor,,"W30, opus"
 2026-10-24,refactor,review,35349,refactor-advisor,,"W30, fable"
 2026-10-24,refactor,verify,27365,refactor-test,,P6-G5-B-HelpersDetail sonnet
+2026-10-24,refactor,build,372180,refactor-dev,,P6-G5-B-HostSurvey opus
+2026-10-24,refactor,other,33312,refactor-docs,,P6-G5-B-HelpersDetail sonnet
+2026-10-24,refactor,verify,28183,refactor-test,,P6-G5-B-HostSurvey sonnet

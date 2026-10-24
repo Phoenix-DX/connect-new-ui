@@ -639,3 +639,9 @@
 - `pages/HelpersDetail` is a page with a flow hook (`hooks/useHelperDetails.ts`, `hooks/helperDetailsState.ts`, `hooks/helperDetailsActions.ts`) and a props-only view (`components/HelperDetailsView.tsx`). It has no container. The hook sets `beforePaint: true` (decision W28) because the old block ran OnReady in a `useLayoutEffect`.
 - `api.ts`, `types.ts` and the ScreenBlock are deleted; the hook calls `fetchHelperDetails` of `api/event` and `fetchLegacySignedImageURL` of `api/image`. Dependency-cruiser warnings 198 to 196.
 - HomeFeed and Login entries grow 3 bytes raw (dev.md); the HelpersDetail chunk grows 2.48 kB raw (not an entry route).
+
+## P6-G5-B-HostSurvey - refactor(P6-G5-B): HostSurvey as page
+
+- `pages/HostSurvey` is a page with a flow hook (`hooks/useHostSurvey.ts`, `hooks/hostSurveyState.ts`) and a props-only view (`components/HostSurveyView.tsx`). It has no container. The hook sets `beforePaint: true` (decision W28) because the old block ran OnReady in a `useLayoutEffect`. The 5 page blocks are split into one file each with `@origin`.
+- `api.ts` and `types.ts` are deleted; the hook calls `fetchHostSurvey` of `api/event`. A failed GetHostSurvey is now caught (old: unhandled rejection); the screen is the same.
+- HomeFeed and Login entries change by +0.03 and +0.01 kB gzip (the F17 `flowState.ts`); the HostSurvey chunk is not an entry route.

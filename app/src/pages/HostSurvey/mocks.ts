@@ -1,9 +1,9 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { osList, wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { orbitEvents, orbitHostSurveys, type OrbitHostSurvey } from '@/mocks/fictional/orbit';
 import { collection } from '@/mocks/store';
-import type { HostSurveyResponseWire } from './types';
 
 /* DataActionGetHostSurvey and PostHostSurvey: fictional answers from the shared Orbit world
    (src/mocks/fictional/orbit.ts, orbitHostSurveys) in the captured shape (calls.md § DataActionGetHostSurvey).
@@ -17,6 +17,10 @@ import type { HostSurveyResponseWire } from './types';
    - empty (every list emptied), loading (never answers: skeleton), error (HTTP 500): contractHandler. */
 
 const MODULE = 'Connect2_OrbitMobile_MUI';
+/** GetHostSurveyResponse (Connect2_OrbitMobile_IS) as it travels, typed by the API contract. */
+type HostSurveyResponseWire = ActionOutputs<
+  PathOf<typeof MODULE, 'ScreenBlock_HostSurvey/DataActionGetHostSurvey'>
+>['Response'];
 const NULL_DATE = '1900-01-01';
 const NULL_DATE_TIME = '1900-01-01T00:00:00';
 

@@ -19,7 +19,7 @@ export const getHouseFloorByJSON_Name = (jsonName: string, list: readonly LocalL
     + UTC year (TF:90-92). The block passes a Date: as an OutSystems DateTime it is the local midnight of that day. */
 export function getFormattedDate_Survey(dateValue: string): string {
   const m = /^(\d{4})-(\d{2})-(\d{2})/.exec(dateValue);
-  if (!m) return ''; // "" = the null date (api.ts)
+  if (!m) return ''; // "" = the null date (the mapper of api/event)
   const local = new Date(Number(m[1]), Number(m[2]) - 1, Number(m[3]));
   const month = local.getUTCMonth() + 1;
   return `${local.getUTCDate()}/${month < 10 ? `0${month}` : month}/${local.getUTCFullYear()}`;

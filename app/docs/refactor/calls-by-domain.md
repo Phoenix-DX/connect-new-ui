@@ -222,3 +222,5 @@ P6-G5-B-MilestoneDetail: `pages/MilestoneDetail/api.ts` is deleted (its rows in 
 P6-G5-B-GuestArrangements: `pages/GuestArrangements/api.ts` is deleted (its row in the event table and its row in the Connect2_LegacyShared table above). The hook `useGuestArrangements` calls `fetchGuestArrangements` (DataActionGetGuestArrangements) of `@/api/event`; the page calls `fetchLegacySignedImageURL` (`ActionGetSignedImagesInBulk`) of `@/api/image`.
 
 P6-G5-B-HelpersDetail: `pages/HelpersDetail/api.ts` is deleted (its row in the app table and its row in the Connect2_LegacyShared table above). The hook `useHelperDetails` calls `fetchHelperDetails` (DataActionGetHelperDetails) of `@/api/event` and `fetchLegacySignedImageURL` (`ActionGetSignedImagesInBulk`) of `@/api/image`.
+
+P6-G5-B-HostSurvey: `pages/HostSurvey/api.ts` is deleted (its row in the app table above). The hook `useHostSurvey` calls `fetchHostSurvey` (DataActionGetHostSurvey) of `@/api/event` directly.
