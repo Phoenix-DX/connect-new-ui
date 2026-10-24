@@ -3,7 +3,7 @@ import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { fixtureData } from '@/mocks/fixtures';
 import { collection } from '@/mocks/store';
-import { osList } from '@/legacy/os/os-wire';
+import { osList } from '@/lib/os-wire';
 
 /** DataActionGetServices of the Services screen, as the contract describes it. */
 type GetServicesOutputsWire = ActionOutputs<PathOf<'UBTConnect', 'Services/DataActionGetServices'>>;

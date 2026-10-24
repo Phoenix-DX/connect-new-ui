@@ -16,7 +16,7 @@
 - `src/components/ui/<Pattern>/`: OutSystems UI patterns (BottomSheet, Carousel, Gallery…). P7-1 moved them from the former `osui` folder. Shared actions are in `src/components/ui/lib/`. The 4 `DEPRECATED_*` patterns are in `src/components/ui/legacy/` with business names. Use the same provider library
   and version as the original, where the original has one ([stack](../reference/stack.md)).
 - `src/platform/`: app-wide logic (error handling, sign-in and PIN mock, navigation, preload, feedback messages).
-- `src/api/client/`: the typed `callAction` client. `src/legacy/os/`: OutSystems wire helpers, exceptions and assets.
+- `src/api/client/`: the typed `callAction` client. `src/lib/os-wire.ts` and `src/lib/os-assets.ts`: OutSystems wire and asset helpers. `src/legacy/os/`: OutSystems exceptions and other compatibility code.
   `src/platform/{config,log,flags,device}/`: providers and adapters.
 
 Every shared block has a DOM capture test per captured state and a Storybook story per state.

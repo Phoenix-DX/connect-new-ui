@@ -13,7 +13,7 @@ import {
 import { callAction } from '@/api/client/callAction';
 import { countryCache, fetchCountryLocalities, fetchRegionSubscribedCountries } from '@/api/country';
 import { imageCache } from '@/api/image';
-import { osList, wireList } from '@/legacy/os/os-wire';
+import { osList, wireList } from '@/lib/os-wire';
 import { fetchBulkSubdivisions, fetchLocalityInformation, localityCache } from '@/api/locality';
 import { memberCache } from '@/api/member';
 import { fetchMemberContacts, messageCache } from '@/api/message';

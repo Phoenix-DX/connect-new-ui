@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { ContactEmailForm } from '@/components/contact/ContactEmailForm';
 import { ContactHeaderCard } from '@/components/contact/ContactHeaderCard';
 import { DetailLayoutContainer } from '@/containers/DetailLayout';

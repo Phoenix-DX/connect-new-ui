@@ -8,7 +8,7 @@ import {
   USER_HALL_ID,
 } from '@/mocks/fictional/assemble';
 import { scenario } from '@/mocks/scenario';
-import { wireList } from '@/legacy/os/os-wire';
+import { wireList } from '@/lib/os-wire';
 
 /* Mocks of AssembleEvents (P-MOCKS), on the fictional Assemble world (src/mocks/fictional/assemble.ts).
    Scenarios: real (the hall's meetings), nomeetings (TST's captured account: no meeting, NC_ErrorScreen; Q1), empty,

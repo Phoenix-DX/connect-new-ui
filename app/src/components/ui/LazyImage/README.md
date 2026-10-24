@@ -31,7 +31,7 @@ Lifecycle (controller):
 - OnReady resets the error, sets Local_ImageURL, and sets isLoading = ImageURL <> "".
 - The load and error events of the image run OnLoad and OnError. The error event runs only with a `src`.
 
-Static app images come from `osImage()` (`src/legacy/os/os-assets.ts`); the mock data has no user photo URLs, so
+Static app images come from `osImage()` (`src/lib/os-assets.ts`); the mock data has no user photo URLs, so
 screens show the fallback.
 
 ## Captured variants (50 distinct; 4 tested)

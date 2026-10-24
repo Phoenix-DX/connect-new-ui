@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { callAction } from '@/api/client/callAction';
-import { osList, wireList } from '@/legacy/os/os-wire';
+import { osList, wireList } from '@/lib/os-wire';
 import { getUserInformation } from '@/platform/session/userInfo';
 import type { SearchResult } from '@/lib/ubtConnectUtils/structures';
 

@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P8-1",
-  "stage": "commit",
+  "step": "P8-2",
+  "stage": "dev",
   "loop": 0,
-  "since": "2026-10-24T22:47:53"
+  "since": "2026-10-24T22:59:47"
  },
  "steps": {
   "P0-1": {
@@ -1665,13 +1665,22 @@
    "finished": "2026-10-24T14:06:43"
   },
   "P8-1": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T19:44:07",
    "tokens": {
     "dev": 248427,
     "test": 29210,
     "docs": 38846
-   }
+   },
+   "commit": "e0063dfa",
+   "gate": "ci: pass; parity visual --all 64/64 (OutSystems), 64/64 (self); e2e:pwa 9/9",
+   "loops": 0,
+   "finished": "2026-10-24T22:47:53"
+  },
+  "P8-2": {
+   "status": "active",
+   "started": "2026-10-24T22:57:19",
+   "tokens": {}
   }
  },
  "gates": {

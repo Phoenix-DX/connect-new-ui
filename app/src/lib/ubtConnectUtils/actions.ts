@@ -3,7 +3,7 @@
 import { cacheKeyPart, getCacheableObjectInBulk, getCacheKeyParts, type BulkCacheResult } from '@/api/client/cache';
 import { callAction } from '@/api/client/callAction';
 import { imageCache } from '@/api/image';
-import { osList, wireList } from '@/legacy/os/os-wire';
+import { osList, wireList } from '@/lib/os-wire';
 import { flagValue } from '@/platform/flags';
 import { log } from '@/platform/log/log';
 import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';

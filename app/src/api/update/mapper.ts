@@ -1,5 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import { osList, osNumber, wireList } from '@/legacy/os/os-wire';
+import { osList, osNumber, wireList } from '@/lib/os-wire';
 import type {
   FilterUpdates,
   UpdateBreakpoint,

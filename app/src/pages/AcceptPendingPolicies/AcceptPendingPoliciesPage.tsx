@@ -1,4 +1,4 @@
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { showCommunicationExceptionMessage } from '@/platform/feedback';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';

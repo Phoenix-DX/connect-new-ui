@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { wireList } from '@/legacy/os/os-wire';
+import { wireList } from '@/lib/os-wire';
 import { mockDirectoryUser } from '@/platform/session/mockUser';
 import {
   EMPTY_ACCOUNT_FORM,

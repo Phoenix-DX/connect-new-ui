@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { log } from '@/platform/log/log';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 
 /** Default_Placeholder_URL passed by OnReady (p:Connect2_LegacyShared.Utility.HandleImageLoadError.mvc.js:425). */
 const DEFAULT_PLACEHOLDER_URL = osImage('img/Connect2_LegacyShared.User_rectangle.png');

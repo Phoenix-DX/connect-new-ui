@@ -1,5 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import type { LongId } from '@/legacy/os/os-wire';
+import type { LongId } from '@/lib/os-wire';
 
 /* Domain types of the message calls: the contact e-mails (UBTConnect ContactFlow, the Orbit contact form, the LDM and
    household e-mails), the Contact Us screen, the in-app messages (Connect2_LegacyShared MyNotifications), the unread

@@ -1,5 +1,5 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { PoliciesHeader } from './PoliciesHeader';
 
 /** The content area of the screen (Layout_LoginFlow with the class ubt-policies), so the white texts show on the

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { PendingBlock } from '@/test/PendingBlock';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { ResultListType } from '@/lib/legacyShared/staticEntities';

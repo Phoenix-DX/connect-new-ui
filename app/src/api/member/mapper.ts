@@ -1,5 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import { osList } from '@/legacy/os/os-wire';
+import { osList } from '@/lib/os-wire';
 import type { Member, MemberAccountForm, MemberSearchResult } from './types';
 
 /** The outputs of DataActionGetAvailableMembers, as the contract describes them. */

@@ -1,6 +1,6 @@
 import { cacheKeyPart, getCacheableObjectInBulk, getCacheKeyParts, type BulkCacheResult } from '@/api/client/cache';
 import { callAction } from '@/api/client/callAction';
-import { osList, wireList } from '@/legacy/os/os-wire';
+import { osList, wireList } from '@/lib/os-wire';
 import { imageCache } from './keys';
 
 /* The image calls, with their OutSystems names. Each caller decides when it calls. */

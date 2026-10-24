@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'msw';
-import { osList, wireList } from '@/legacy/os/os-wire';
+import { osList, wireList } from '@/lib/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import type { GetSignedPhotosInBulk } from '@/lib/legacyShared/actions';
 

@@ -3,7 +3,7 @@ import { flushSync } from 'react-dom';
 import { fetchCountryNames, fetchLocalityTimezone, sendContactUsMessage } from '@/api/message';
 import { useScreenValidationService, type ValidationService } from '@/components/ui/os/OSValidation';
 import { exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import type { ContactUsDetailsInputs } from '@/pages/ContactUsDetails/inputs';
 import { Type_ContactSubject } from '@/pages/ContactUsDetails/staticEntities';
 import { feedbackMessageAutoClose } from '@/platform/feedback';

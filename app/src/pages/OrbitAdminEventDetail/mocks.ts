@@ -7,7 +7,7 @@ import {
   orbitAdminQRCode,
 } from '@/mocks/fictional/orbitAdmin';
 import { scenario } from '@/mocks/scenario';
-import { wireList } from '@/legacy/os/os-wire';
+import { wireList } from '@/lib/os-wire';
 import {
   BarcodePluginEntities,
   setBarcodeScanner,

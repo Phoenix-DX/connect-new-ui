@@ -3,7 +3,7 @@ import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { recordedHandler } from '@/mocks/fixtures';
 import { collection, statefulHandler } from '@/mocks/store';
-import { wireList } from '@/legacy/os/os-wire';
+import { wireList } from '@/lib/os-wire';
 
 /** Connect_Updates_CS.UI_UpdateItem as the server sends it (Long Integers as text, Date "yyyy-MM-dd"). */
 type UpdateItemWire = ActionOutputs<

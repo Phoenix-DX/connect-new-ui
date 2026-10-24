@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { fetchEventEmailCoordinator, sendEventContactEmail } from '@/api/message';
 import { useScreenValidationService, type ValidationService } from '@/components/ui/os/OSValidation';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { allowUpcomingNavigation, useFlowState, useNavigateBack, type IsAlive } from '@/platform/navigation';

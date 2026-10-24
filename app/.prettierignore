@@ -10,7 +10,7 @@ src/app/routes.generated.ts
 src/app/routes.css.generated.ts
 src/platform/flags/flags.generated.json
 src/platform/device/device-classes.json
-src/legacy/os/os-assets.manifest.json
+src/lib/os-assets.manifest.json
 src/mocks/fixtures
 src/vendor
 src/components/ui/*/vendor/*.js

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import type { MarkerWithWindow } from '@/lib/leaflet/structures';
 import { DirectoryMap } from './DirectoryMap';
 

@@ -1,5 +1,5 @@
 import { callAction } from '@/api/client/callAction';
-import { wireList, type LongId } from '@/legacy/os/os-wire';
+import { wireList, type LongId } from '@/lib/os-wire';
 import { toAcceptPoliciesInputs, toPendingPolicies } from './mapper';
 import type { PendingPoliciesInputs, PendingPolicy, PolicyAcceptanceDevice } from './types';
 

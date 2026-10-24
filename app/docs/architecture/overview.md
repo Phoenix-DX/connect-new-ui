@@ -50,7 +50,7 @@ flowchart TB
     widgets[src/components<br/>platform widgets in components/ui/os:<br/>validation, popup, list, radio group]
     vendor[src/vendor and osui vendor folders<br/>third-party scripts copied from the original]
     mlib[src/lib/&lt;module&gt;<br/>pure helpers, structures, static entities,<br/>module client actions]
-    lib[src/api/client · src/platform/{config, log, flags, device}<br/>src/legacy/os: os-wire, os-exceptions, os-assets]
+    lib[src/api/client · src/platform/{config, log, flags, device}<br/>src/lib: os-wire, os-assets · src/legacy/os: os-exceptions]
     mocks[src/mocks<br/>MSW handlers · recorded fixtures · mock store]
     css[public/UBTConnect/css<br/>original OutSystems CSS per screen]
   end

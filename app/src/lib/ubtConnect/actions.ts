@@ -10,7 +10,7 @@ import type {
 import { addC2Bookmark, deleteC2Bookmark, type BookmarkDeleted, type C2BookmarkAdded } from '@/api/bookmark';
 import { fetchUnreadUpdateItemsCount } from '@/api/update';
 import { log } from '@/platform/log/log';
-import { osList } from '@/legacy/os/os-wire';
+import { osList } from '@/lib/os-wire';
 import { getClientVar, setClientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { SystemException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';

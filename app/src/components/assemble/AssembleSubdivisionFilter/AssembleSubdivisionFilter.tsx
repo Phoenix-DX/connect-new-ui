@@ -3,7 +3,7 @@
 import { useEffect, useId, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { osList } from '@/legacy/os/os-wire';
+import { osList } from '@/lib/os-wire';
 import type { SubdivisionsItem } from '@/lib/legacyShared/structures';
 import { RadioButtonListItem } from '@/components/ui/RadioButtonListItem';
 import { Spinner } from '@/components/ui/Spinner';

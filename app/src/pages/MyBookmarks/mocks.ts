@@ -1,6 +1,6 @@
 import { http, HttpResponse, type RequestHandler } from 'msw';
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
-import { wireList } from '@/legacy/os/os-wire';
+import { wireList } from '@/lib/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { mockDelay, scenario } from '@/mocks/scenario';
 import {

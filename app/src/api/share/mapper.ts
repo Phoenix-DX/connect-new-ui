@@ -1,5 +1,5 @@
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
-import { osLong } from '@/legacy/os/os-wire';
+import { osLong } from '@/lib/os-wire';
 import type { ShareDetails } from './types';
 
 /** Output of ActionGet_ShareDetails (contract UBTConnect__ActionGet_ShareDetails__Output). */
@@ -20,7 +20,7 @@ export const toShareDetails = (w: ShareDetailsWire): ShareDetails => {
 
 /* ---- LegacyShareObject: ScreenBlock_ShareObject and ProfileList (Connect2_LegacyShared Share_UI) ---- */
 
-import { osList } from '@/legacy/os/os-wire';
+import { osList } from '@/lib/os-wire';
 import type { AvailableUser, AvailableUsers, ShareObjectCallInputs, ShareObjectResult } from './types';
 
 /** The outputs of ScreenDataSetGetShareObjectTypeById (the aggregate of ScreenBlock_ShareObject), as the contract

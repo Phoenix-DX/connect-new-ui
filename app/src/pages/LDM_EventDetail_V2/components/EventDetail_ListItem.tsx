@@ -1,6 +1,6 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { styleFromCssText } from '@/lib/cssText';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
 import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';

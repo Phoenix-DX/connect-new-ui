@@ -4,7 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSPopupWidget } from '@/components/ui/os/OSPopup';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { NotRegisteredException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
 import { useOsNavigate } from '@/platform/navigation/osNavigate';
 import {

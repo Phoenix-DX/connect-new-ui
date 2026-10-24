@@ -1,5 +1,5 @@
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
-import { osList, osNumber } from '@/legacy/os/os-wire';
+import { osList, osNumber } from '@/lib/os-wire';
 import type {
   AllCountries,
   CountryCard,

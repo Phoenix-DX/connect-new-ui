@@ -3,7 +3,7 @@ import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { ORBIT_ADMIN_SCAN_PER_MILESTONE, orbitAdminEvents, type OrbitAdminEvent } from '@/mocks/fictional/orbitAdmin';
 import { scenario } from '@/mocks/scenario';
-import { wireList } from '@/legacy/os/os-wire';
+import { wireList } from '@/lib/os-wire';
 
 /** The answer of DataActionGet_AdminEventsList, as the API contract types it (src/api/openapi.yaml). */
 type Get_AdminEventsListWire = ActionOutputs<

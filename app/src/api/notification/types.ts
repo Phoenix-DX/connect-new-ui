@@ -1,4 +1,4 @@
-import type { LongId } from '@/legacy/os/os-wire';
+import type { LongId } from '@/lib/os-wire';
 
 /* Domain types of the notification calls: the screen Notifications of UBTConnect (App_Notifications, with its blocks
    and client actions), and the two notification wrappers of Connect2_LegacyShared that the blocks

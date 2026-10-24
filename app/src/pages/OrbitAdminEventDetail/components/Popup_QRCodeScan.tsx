@@ -3,7 +3,7 @@ import type { QRCodeStatus } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import { MEMBER_PHOTO_PLACEHOLDER } from '@/lib/orbit/actions';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import type { ScannedUser } from '@/pages/OrbitAdminEventDetail/hooks/adminEventDetailState';
 import { getFormattedLocalDateTime } from './actions';
 

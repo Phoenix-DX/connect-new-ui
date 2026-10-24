@@ -1,5 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import { osDate, osList, wireList } from '@/legacy/os/os-wire';
+import { osDate, osList, wireList } from '@/lib/os-wire';
 import type { CurrentService, FeedServices, FeedServicesVariables, Service, UserServices } from './types';
 
 /** DataActionGetServices of the Services screen. */

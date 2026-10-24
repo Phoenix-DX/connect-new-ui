@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { CalendarGuestItem } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { PersonContactOptions } from '@/components/contact/PersonContactOptions';
 import { ResultItemImage } from '@/components/ui/ResultItemImage';
 import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';

@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIconBack } from '@/components/layout/MenuIconBack';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { ConnectBlankSlate } from '@/components/ui/ConnectBlankSlate';
 import { NavigationLanding } from './NavigationLanding';
 

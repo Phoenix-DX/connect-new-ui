@@ -1,6 +1,6 @@
 import type { EventCalendar } from '@/api/event';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { formatEventDate } from './actions';
 
 export interface EventCard_Info_V2Props {

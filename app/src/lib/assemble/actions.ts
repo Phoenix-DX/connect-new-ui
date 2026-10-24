@@ -3,7 +3,7 @@
    controller.js:<line>). */
 import { dayOfWeek, formatDateTime } from '@/lib/osDateTime';
 import { log } from '@/platform/log/log';
-import { osList } from '@/legacy/os/os-wire';
+import { osList } from '@/lib/os-wire';
 import { addAssembleBookmark, deleteAssembleBookmark } from '@/api/bookmark';
 import {
   get_LocalBookmarkByObjectId,

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { Connect_Entity, ImageSize } from '@/pages/MessageList/staticEntities';
 import { formatDateTime } from '@/lib/osDateTime';
 import { cache_SignedImageURL_Get } from '@/lib/ubtConnectUtils/actions';

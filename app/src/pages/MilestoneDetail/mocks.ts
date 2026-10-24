@@ -1,6 +1,6 @@
 import type { RequestHandler } from 'msw';
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
-import { osList, wireList } from '@/legacy/os/os-wire';
+import { osList, wireList } from '@/lib/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { orbitEvents, type OrbitMilestone, type OrbitRoom } from '@/mocks/fictional/orbit';
 import { OrbitMilestoneType } from '@/lib/orbit/staticEntities';

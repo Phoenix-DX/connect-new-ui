@@ -2,7 +2,7 @@
 // @os-block Connect2_LegacyShared.Utility.Result_Item_Image
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { styleFromCssText } from '@/lib/cssText';
 import { ResultListType } from '@/lib/legacyShared/staticEntities';
 import { useLoadPhotoAsync } from './useLoadPhotoAsync';

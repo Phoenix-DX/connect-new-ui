@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { fetchCoordinatorDetails, fetchEventByEventId, type DetailGuestItem } from '@/api/event';
 import { fetchHouseholdCoordinatesById } from '@/api/household';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { UserException, exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
 import type { LdmEventDetailInputs } from '@/pages/LDM_EventDetail_V2/inputs';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';

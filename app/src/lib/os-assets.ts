@@ -1,4 +1,4 @@
-import manifest from './os-assets.manifest.json';
+import manifest from '@/lib/os-assets.manifest.json';
 
 /* Resolve an image referenced in OutSystems code ("img/Module.file.png") to the captured file,
    or to a visible "not captured" marker. */

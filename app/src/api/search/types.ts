@@ -1,4 +1,4 @@
-import type { LongId } from '@/legacy/os/os-wire';
+import type { LongId } from '@/lib/os-wire';
 
 /* Domain types of the directory search (Connect_Search_CS): the results of the search block
    Directory_Search.ScreenBlock_Search and its birthday options. The wire types stay in src/api/schema.d.ts; mapper.ts

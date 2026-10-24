@@ -1,4 +1,4 @@
-import type { LongId } from '@/legacy/os/os-wire';
+import type { LongId } from '@/lib/os-wire';
 
 /* Domain types of the application policies that the user must accept (ApplicationPolicies and ApplicationPolicies_CW):
    the pending policies of the block Policy_Custom_AcceptPendingPolicies and their acceptance. The policy documents of

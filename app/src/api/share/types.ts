@@ -1,4 +1,4 @@
-import type { LongId } from '@/legacy/os/os-wire';
+import type { LongId } from '@/lib/os-wire';
 
 /* Domain types of the shared items (Connect2_Sharing): the share that a share link opens. The wire types stay in
    src/api/schema.d.ts. */

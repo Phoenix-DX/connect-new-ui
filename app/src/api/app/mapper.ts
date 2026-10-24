@@ -1,5 +1,5 @@
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
-import { osList } from '@/legacy/os/os-wire';
+import { osList } from '@/lib/os-wire';
 import type {
   AppContext,
   CacheableHouseholds,

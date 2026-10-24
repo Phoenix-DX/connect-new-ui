@@ -1,6 +1,6 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { expectToMatchCapture } from '@/test/dom';
 import { testCapturedVariants } from '@/test/capturedVariants';
 import { Connect_Entity, ImageSize, UBT_ImageSize } from '@/lib/ubtConnectUtils/staticEntities';

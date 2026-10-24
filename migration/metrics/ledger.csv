@@ -854,3 +854,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,verify,0,refactor-test,,P8-1 sonnet
 2026-10-24,refactor,verify,29210,refactor-test,,P8-1 sonnet
 2026-10-24,refactor,other,38846,refactor-docs,,P8-1 sonnet
+2026-10-24,refactor,verify,0,refactor-tester,,F43 test (sonnet): fail format:check (.prettierignore old path); parity 64/64 both; tests 3975 pass
+2026-10-24,refactor,verify,22175,refactor-tester,,F43 test (sonnet) tokens from notification
+2026-10-24,refactor,build,16743,refactor-developer,,"F43 dev loop 1 (sonnet): .prettierignore path, README path"
+2026-10-24,refactor,verify,0,refactor-tester,,F43 re-test loop 1 (sonnet): ci pass 3975 tests (tokens pending)
+2026-10-24,refactor,verify,15573,refactor-tester,,F43 re-test loop 1 (sonnet) tokens from notification
+2026-10-24,refactor,other,27392,refactor-documenter,,"F43 docs (sonnet): CHANGELOG, api-and-mocks, shared-code, overview"

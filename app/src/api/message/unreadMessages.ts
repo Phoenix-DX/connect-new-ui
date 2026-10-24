@@ -1,5 +1,5 @@
 import { callAction, type ActionOutputs, type PathOf } from '@/api/client/callAction';
-import { osNumber } from '@/legacy/os/os-wire';
+import { osNumber } from '@/lib/os-wire';
 import type { UnreadMessageCounts } from './types';
 
 /* The app-start call of the message domain (SynchronizeNumberUnreadMessages, platform/bootstrap/startup.ts), kept apart

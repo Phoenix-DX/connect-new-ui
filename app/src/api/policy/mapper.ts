@@ -1,5 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import { osList, wireList, type LongId } from '@/legacy/os/os-wire';
+import { osList, wireList, type LongId } from '@/lib/os-wire';
 import type { PendingPolicy, PolicyAcceptanceDevice } from './types';
 
 /** DataActionGetPendingPolicies of Policy_Custom_AcceptPendingPolicies. */

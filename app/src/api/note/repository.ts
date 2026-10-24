@@ -1,5 +1,5 @@
 import { callAction } from '@/api/client/callAction';
-import { wireList } from '@/legacy/os/os-wire';
+import { wireList } from '@/lib/os-wire';
 import {
   toEntityNotes,
   toNoteAddResult,

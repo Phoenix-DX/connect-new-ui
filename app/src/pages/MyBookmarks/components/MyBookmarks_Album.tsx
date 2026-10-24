@@ -2,7 +2,7 @@
 import type { GroupSummaryBookmark as BookmarkItem } from '@/api/bookmark';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
-import { osImage } from '@/legacy/os/os-assets';
+import { osImage } from '@/lib/os-assets';
 import { GridGallery } from '@/components/ui/legacy/GridGallery';
 import { Space } from '@/components/ui/lib/staticEntities';
 import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/lib/ubtConnect/staticEntities';

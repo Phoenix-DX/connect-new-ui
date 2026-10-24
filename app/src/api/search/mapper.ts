@@ -1,5 +1,5 @@
 import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
-import { osList, wireList } from '@/legacy/os/os-wire';
+import { osList, wireList } from '@/lib/os-wire';
 import type { SearchBirthdayOption, SearchResult, SearchResults, SearchTag, SearchVariables } from './types';
 
 /* Wire types from the contract (src/api/openapi.yaml), through the callAction types. */
