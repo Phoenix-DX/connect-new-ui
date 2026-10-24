@@ -95,6 +95,10 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
     then starts from OnInitialize with the initial state (`pages/Notes/hooks/useNotes.ts`).
   - No `restore`: a restored view starts from its saved state. OnReady skips its calls when `restored` is true and the
     saved state has the data (`pages/MilestoneDetail/hooks/useAccommodationHost.ts`).
+  - Restored without data: the user may leave before the
+    answer, or the answer may fail. Then the saved state has no data and OnReady calls again. It makes reads only;
+    side effects such as audits run only on a forward visit. OutSystems keeps the skeleton in that case: an intended deviation (F40,
+    W34). `useLdmEventDetail`, `useAdminLanding`, `useAdminEventDetail` and `useOrbitLanding` follow this rule.
   - OnReady in its own effect: use it when OnReady reads variables that OnInitialize assigns. Do not run OnReady in the
     same flow as OnInitialize. Run it in one effect that starts when `isInitialized` turns true. The blocks
     have then mounted and the variables are set (`pages/Notes/hooks/useNotes.ts`).

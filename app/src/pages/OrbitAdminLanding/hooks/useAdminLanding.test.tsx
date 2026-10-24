@@ -29,6 +29,20 @@ vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
   raiseToFlowHandler: vi.fn(),
 }));
+/** A back navigation that the view cache restores, with the saved block variables, read by useFlowState. */
+const viewCache = vi.hoisted(() => {
+  const cache: { restored: boolean; saved: unknown } = { restored: false, saved: undefined };
+  return cache;
+});
+vi.mock('@/platform/navigation/hooks', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/navigation/hooks')>();
+  const { useState } = await import('react');
+  return {
+    ...actual,
+    useWasRestoredFromCache: () => viewCache.restored,
+    useViewState: <T,>(_name: string, initial: T) => useState<T>(() => (viewCache.saved as T | undefined) ?? initial),
+  };
+});
 
 /* The flows of ScreenBlock_AdminLanding, with Get_AdminEventsList, the cached user, the audit event and the flow
    handler replaced by spies. The admin and the events are fictional. */
@@ -101,6 +115,8 @@ function cachedUser(firstName: string, memberId: string) {
 }
 
 beforeEach(() => {
+  viewCache.restored = false;
+  viewCache.saved = undefined;
   vi.mocked(fetchAdminEvents).mockResolvedValue(EVENTS);
   cachedUser('Matías', '20517');
 });
@@ -155,6 +171,47 @@ describe('useAdminLanding', () => {
     await settle();
     expect(raised()).toEqual([error]);
     expect(result.current.state).toMatchObject({ isFetchingData: true, isDataFetched: false, eventsSummary: [] });
+  });
+
+  it('F40: a view left before the answer and restored runs OnReady again: one call, the skeleton clears', async () => {
+    pendingEvents();
+    const forward = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    const saved = forward.result.current.state;
+    expect(saved).toMatchObject({ isFetchingData: true, isDataFetched: false });
+    forward.unmount();
+    vi.mocked(fetchAdminEvents).mockClear();
+
+    viewCache.restored = true;
+    viewCache.saved = saved;
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    expect(result.current.state.isFetchingData).toBe(true);
+    await settle();
+    expect(fetchAdminEvents).toHaveBeenCalledTimes(1);
+    expect(fetchAdminEvents).toHaveBeenCalledWith({
+      IsFetchingData: true,
+      UserFirstName: 'Matías',
+      UserMemberId: '20517',
+    });
+    expect(result.current.state).toMatchObject({ isFetchingData: false, isDataFetched: true, eventsSummary: EVENTS });
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('a view restored with the events keeps them and makes no call', async () => {
+    const saved = {
+      isFetchingData: false,
+      eventsSummary: EVENTS,
+      userFirstName: 'Matías',
+      userMemberId: '20517',
+      isDataFetched: true,
+    };
+    viewCache.restored = true;
+    viewCache.saved = saved;
+    const { result } = renderHook(() => useAdminLanding(noEvents()), { wrapper });
+    await settle();
+    expect(result.current.state).toEqual(saved);
+    expect(fetchAdminEvents).not.toHaveBeenCalled();
+    expect(appManager_GetCachedUserInfo).not.toHaveBeenCalled();
   });
 
   it('a card click: NavigateTo_EventDetail with the TypeFriendly of the row, then the audit event', async () => {

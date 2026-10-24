@@ -69,7 +69,8 @@ export interface OrbitLandingFlows {
     - Both data actions are on demand. OnReady of a new visit: Refresh_GetHouseholdMembers → OnAfterFetch selects the
       first member → Refresh_GetEventsByMemberId → OnAfterFetch_Get_EventsByMemberId (FilterEvents, SetAndSortEvents
       (True, False): SortEventsASC is True after ResetFiltersAndSort, so it does not sort), then GetPopupMeasurements
-      and CurrentMemberId from the cached user information. A view that the view cache restores does nothing (P-BACK).
+      and CurrentMemberId from the cached user information. A view that the view cache restores with the events
+      answer does nothing (P-BACK); restored without it, OnReady runs again (F40).
     - A member click refreshes the events of that member. The Filters and Sort popups filter and sort the loaded
       answer again, without a server call.
     - Decision W23: after the unmount, a started flow writes no state. It goes on with its own copy of the variables,
@@ -98,9 +99,10 @@ export function useOrbitLanding(events: OrbitLandingEvents): OrbitLandingFlows {
       newestReadyRun.current = isAlive;
       if (readyStarted.current) return Promise.resolve();
       readyStarted.current = true;
-      /* A restored view does nothing, unless the view was left before its first assignment was rendered: it then
-         comes back with the initial variables and starts again. */
-      if (restored && latest.current !== INITIAL_ORBIT_LANDING_STATE) return Promise.resolve();
+      /* A view restored with the Get_EventsByMemberId answer does nothing. A view left before that answer comes back
+         with its saved variables and runs OnReady again. */
+      // restored without data: call again (F40; OutSystems keeps the skeleton)
+      if (restored && latest.current.isEventsDataFetched) return Promise.resolve();
       return onReady();
     },
   });

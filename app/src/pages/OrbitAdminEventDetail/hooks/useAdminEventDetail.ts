@@ -40,7 +40,8 @@ export interface AdminEventDetailFlows {
 }
 
 /** The flows of the block ScreenBlock_AdminEventDetail (the block controller).
-    - OnReady: a back navigation that the view cache restored with its state does nothing (P-BACK); else RefreshData.
+    - OnReady: a back navigation that the view cache restored with the Get_EventInformation answer does nothing
+      (P-BACK); else RefreshData, also for a restored view without the answer (F40).
     - RefreshData: IsFetchingData True, Get_EventInformation (on demand; the block variables travel with it), then
       OnAfterFetch: EventType, IsFetchingData False.
     - OnClick_ScanQrCode: with a QR code, CheckBarcodePlugin. When the plugin is available: IsProcessingData True, the
@@ -87,10 +88,11 @@ export function useAdminEventDetail(inputs: AdminEventDetailInputs): AdminEventD
     write({ eventType: info.orbitEventType, isFetchingData: false });
   };
 
-  /** OnReady. A view that the view cache restored keeps its saved state: the saved state is never the initial
-      record. useFlowState sends a rejection to the flow handler. */
+  /** OnReady. A view that the view cache restored with the Get_EventInformation answer keeps its saved state.
+      useFlowState sends a rejection to the flow handler. */
   const onReady = async (restored: boolean) => {
-    if (restored && latest.current !== INITIAL_ADMIN_EVENT_DETAIL_STATE) return;
+    // restored without data: call again (F40; OutSystems keeps the skeleton)
+    if (restored && latest.current.isDataFetched) return;
     await refreshData();
   };
 

@@ -46,10 +46,6 @@ export const adminEventsCallInputsOf = (state: AdminLandingState): AdminEventsCa
   UserMemberId: state.userMemberId,
 });
 
-/** OnReady ran on this view: it is fetching, or it fetched. A view that the view cache restores in this state keeps
-    it, and OnReady does nothing (WasCurrentViewRestoredFromCache). */
-export const hasStarted = (state: AdminLandingState): boolean => state.isFetchingData || state.isDataFetched;
-
 /** TextToLongIntegerValidate(MemberId) ? TextToLongInteger(MemberId) : NullIdentifier(). */
 export const textToLongIntegerOrNull = (value: string): string =>
   /^\s*-?\d+\s*$/.test(value) ? String(BigInt(value)) : NULL_ID;

@@ -52,6 +52,20 @@ vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
   raiseToFlowHandler: vi.fn(),
 }));
+/** A back navigation that the view cache restores, with the saved block variables, read by useFlowState. */
+const viewCache = vi.hoisted(() => {
+  const cache: { restored: boolean; saved: unknown } = { restored: false, saved: undefined };
+  return cache;
+});
+vi.mock('@/platform/navigation/hooks', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/navigation/hooks')>();
+  const { useState } = await import('react');
+  return {
+    ...actual,
+    useWasRestoredFromCache: () => viewCache.restored,
+    useViewState: <T,>(_name: string, initial: T) => useState<T>(() => (viewCache.saved as T | undefined) ?? initial),
+  };
+});
 
 /* The flows of ScreenBlock_AdminEventDetail with the server calls, the scanner, the messages and the flow handler
    replaced by spies. The admin scans the attendees of a fictional youth day. */
@@ -123,6 +137,8 @@ async function fetched(wrap = wrapper) {
 }
 
 beforeEach(() => {
+  viewCache.restored = false;
+  viewCache.saved = undefined;
   vi.mocked(fetchAdminEventInformation).mockResolvedValue(INFORMATION);
   vi.mocked(fetchMember).mockResolvedValue(MEMBER);
   vi.mocked(fetchLegacySignedImageURL).mockResolvedValue(PHOTO);
@@ -171,6 +187,49 @@ describe('useAdminEventDetail', () => {
     const { result } = await fetched();
     expect(raised()).toEqual([error]);
     expect(result.current.state).toMatchObject({ isFetchingData: true, isDataFetched: false });
+  });
+
+  it('F40: a view left before the answer and restored runs RefreshData again: one call, the skeleton clears', async () => {
+    pending(vi.mocked(fetchAdminEventInformation));
+    const forward = renderHook(() => useAdminEventDetail(INPUTS), { wrapper });
+    await settle();
+    const saved = forward.result.current.state;
+    expect(saved).toMatchObject({ isFetchingData: true, isDataFetched: false });
+    forward.unmount();
+    vi.mocked(fetchAdminEventInformation).mockClear();
+
+    viewCache.restored = true;
+    viewCache.saved = saved;
+    const { result } = renderHook(() => useAdminEventDetail(INPUTS), { wrapper });
+    expect(result.current.state.isFetchingData).toBe(true);
+    await settle();
+    expect(fetchAdminEventInformation).toHaveBeenCalledTimes(1);
+    expect(fetchAdminEventInformation).toHaveBeenCalledWith({
+      ...INPUTS,
+      IsFetchingData: true,
+      IsProcessingData: false,
+      QRCodePopupOpened: false,
+    });
+    expect(result.current.state).toMatchObject({
+      isFetchingData: false,
+      isDataFetched: true,
+      hasQRCode: true,
+      eventType: ADMIN_TYPE,
+    });
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('a view restored with the event information keeps it and makes no call', async () => {
+    const { result: loaded, unmount } = await fetched();
+    const saved = loaded.current.state;
+    unmount();
+    vi.mocked(fetchAdminEventInformation).mockClear();
+    viewCache.restored = true;
+    viewCache.saved = saved;
+    const { result } = renderHook(() => useAdminEventDetail(INPUTS), { wrapper });
+    await settle();
+    expect(result.current.state).toEqual(saved);
+    expect(fetchAdminEventInformation).not.toHaveBeenCalled();
   });
 
   it('a scan of an attendee: the check-in, the result popup and the two audit events', async () => {

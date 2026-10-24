@@ -33,6 +33,20 @@ vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
   raiseToFlowHandler: vi.fn(),
 }));
+/** A back navigation that the view cache restores, with the saved block variables, read by useFlowState. */
+const viewCache = vi.hoisted(() => {
+  const cache: { restored: boolean; saved: unknown } = { restored: false, saved: undefined };
+  return cache;
+});
+vi.mock('@/platform/navigation/hooks', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/navigation/hooks')>();
+  const { useState } = await import('react');
+  return {
+    ...actual,
+    useWasRestoredFromCache: () => viewCache.restored,
+    useViewState: <T,>(_name: string, initial: T) => useState<T>(() => (viewCache.saved as T | undefined) ?? initial),
+  };
+});
 
 /* The flows of ScreenBlock_OrbitLanding with the two data actions and the flow handler replaced by spies. Fictional
    members (the signed-in user is the second one) and rows. */
@@ -117,6 +131,8 @@ async function loaded(handlers = events()) {
 }
 
 beforeEach(() => {
+  viewCache.restored = false;
+  viewCache.saved = undefined;
   freshPage();
   appManager_SetCachedUserInfo({ CountryCode: 'AR' });
   vi.mocked(fetchOrbitHouseholdMembers).mockResolvedValue(MEMBERS);
@@ -188,6 +204,59 @@ describe('useOrbitLanding', () => {
     const { result } = await loaded();
     expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
     expect(result.current.state.isFetchingData).toBe(true);
+  });
+
+  it('F40: a view left before the events answer and restored runs OnReady again: the skeleton clears', async () => {
+    pendingEvents();
+    const forward = renderHook(() => useOrbitLanding(events()), { wrapper });
+    await settle();
+    const saved = forward.result.current.state;
+    expect(saved).toMatchObject({ isFetchingData: true, isEventsDataFetched: false, selectedMemberId: '7301' });
+    forward.unmount();
+    vi.mocked(fetchOrbitHouseholdMembers).mockClear();
+    vi.mocked(fetchEventsByMemberId).mockClear();
+
+    viewCache.restored = true;
+    viewCache.saved = saved;
+    const { result } = renderHook(() => useOrbitLanding(events()), { wrapper });
+    expect(result.current.state.isFetchingData).toBe(true);
+    await settle();
+    expect(fetchOrbitHouseholdMembers).toHaveBeenCalledTimes(1);
+    expect(fetchEventsByMemberId).toHaveBeenCalledTimes(1);
+    expect(eventsBodies()).toEqual([expect.objectContaining({ SelectedMemberId: '7301', EventFilter: 1 })]);
+    const { state } = result.current;
+    expect(state).toMatchObject({
+      isFetchingData: false,
+      isEventsDataFetched: true,
+      selectedMemberId: '7301',
+      currentMemberId: MOCK_USER_ID,
+    });
+    expect(state.eventsSummary.map((p) => p.sequenceNo)).toEqual([2, 1, 3]);
+    expect(auditEvents()).toEqual([]);
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  it('a view restored with the events keeps the filter and sort that the user set and makes no call', async () => {
+    const { result: loadedView, unmount } = await loaded();
+    act(() => {
+      loadedView.current.onToggleSortPopup();
+    });
+    act(() => {
+      loadedView.current.onApplySort(false);
+    });
+    const saved = loadedView.current.state;
+    expect(saved.sortEventsASC).toBe(false);
+    unmount();
+    vi.mocked(fetchOrbitHouseholdMembers).mockClear();
+    vi.mocked(fetchEventsByMemberId).mockClear();
+
+    viewCache.restored = true;
+    viewCache.saved = saved;
+    const { result } = renderHook(() => useOrbitLanding(events()), { wrapper });
+    await settle();
+    expect(result.current.state).toEqual(saved);
+    expect(fetchOrbitHouseholdMembers).not.toHaveBeenCalled();
+    expect(fetchEventsByMemberId).not.toHaveBeenCalled();
   });
 
   it('a click on another member refreshes its events, then the SwitchMember event', async () => {

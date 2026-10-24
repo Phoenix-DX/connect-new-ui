@@ -8,7 +8,6 @@ import {
   adminLandingReducer,
   clickEventPayloadOf,
   eventDetailTargetOf,
-  hasStarted,
   INITIAL_ADMIN_LANDING_STATE,
   textToLongIntegerOrNull,
   type AdminLandingPatch,
@@ -33,7 +32,8 @@ export interface AdminLandingFlows {
 }
 
 /** The flows of ScreenBlock_AdminLanding. The page calls this hook and gives the result to AdminLandingView.
-    - OnReady: a view that the view cache restored does nothing (WasCurrentViewRestoredFromCache). Otherwise
+    - OnReady: a view that the view cache restored with the Get_AdminEventsList answer does nothing
+      (WasCurrentViewRestoredFromCache); restored without the answer, OnReady runs again (F40). Otherwise
       IsFetchingData True, UserFirstName and UserMemberId from AppManager_GetCachedUserInfo (the MemberId as a Long
       Integer, else the null identifier), then Refresh_GetEventsByMemberId: Get_AdminEventsList (on demand; it sends
       the block variables) and OnAfterFetch (EventsSummary = Response, IsFetchingData False).
@@ -79,7 +79,8 @@ export function useAdminLanding(events: AdminLandingEvents): AdminLandingFlows {
 
   /** OnReady. A rejection goes to the flow handler (useFlowState); the skeleton stays. */
   const onReady = async (restored: boolean) => {
-    if (restored && hasStarted(latest.current)) return;
+    // restored without data: call again (F40; OutSystems keeps the skeleton)
+    if (restored && latest.current.isDataFetched) return;
     write({ isFetchingData: true });
     const userInformation = appManager_GetCachedUserInfo();
     write({

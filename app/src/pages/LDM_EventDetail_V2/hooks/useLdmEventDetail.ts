@@ -84,10 +84,11 @@ const LDM_LOGO = 'img/Connect2_OrbitMobile_MUI.LDM_Logo.svg';
 
 /** The state and the flows of the LDM event detail. `inputs` are the block inputs EventHostId and EventId; a change of
     them mounts a new block (the page keys it), as OnParametersChanged refreshes both data actions.
-    - Fetch at start and OnReady: a view that the view cache restored keeps its variables and does nothing. Otherwise
-      GetCoordinatorDetails (a failure keeps its defaults), then GetEventByEventId (OnAfterFetch: HasInformation =
-      Out_HasContent, IsFetching False) and AddAuditRequestAPIEvent(RequestAPI_EventDetail). A failure sets
-      HasFetchError and goes to the flow handler.
+    - Fetch at start and OnReady: a view that the view cache restored with the GetEventByEventId answer keeps its
+      variables and does nothing. Otherwise GetCoordinatorDetails (a failure keeps its defaults), then
+      GetEventByEventId (OnAfterFetch: HasInformation = Out_HasContent, IsFetching False) and, on a forward visit only,
+      AddAuditRequestAPIEvent(RequestAPI_EventDetail): a restored view without the answer fetches again without the
+      audit event (F40), so a visit sends one audit event. A failure sets HasFetchError and goes to the flow handler.
     - Decision W23: after an unmount, a started flow skips its state writes only. Its audit event, its calls, its
       navigation and its error still run, as in the old port. */
 export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEventDetailEvents): LdmEventDetailFlows {
@@ -117,17 +118,17 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
       return onReady(restored);
     },
   });
-  /** The view cache restored the variables of this block (read at the first render, as OnReady reads them). */
-  const savedAtMount = useRef(state.isSaved);
 
   /** A state write of a flow after an await, skipped after the unmount (W23). */
   const write = (patch: LdmEventDetailPatch) => {
     if (newestReadyRun.current()) dispatch(patch);
   };
 
-  /** Fetch at start and OnReady. useFlowState sends a rejection to the flow handler. */
+  /** Fetch at start and OnReady. `restored` is the flag of useFlowState: the restored re-run makes the same calls and
+      writes, without the audit event. useFlowState sends a rejection to the flow handler. */
   const onReady = async (restored: boolean) => {
-    if (restored && savedAtMount.current) return;
+    // restored without data: call again (F40; OutSystems keeps the skeleton)
+    if (restored && !latest.current.isFetching) return;
     const callInputs = parameters.current;
     fetchCoordinatorDetails(callInputs)
       .then((coordinator) => {
@@ -141,7 +142,10 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
       const out = await fetchEventByEventId(callInputs);
       // OnAfterFetch_GetEventByEventId: HasInformation = Out_HasContent; Toggle_IsFetching(False).
       write({ event: out.eventResponse, hasEventFetchError: false, hasInformation: out.hasContent, isFetching: false });
-      addAuditEvent_LDM('RequestAPI_EventDetail', { RequestTime: String(getCurrentTimeInMill() - start) });
+      // One audit event per forward visit: the forward flow sent it (also after the unmount, W23).
+      if (!restored) {
+        addAuditEvent_LDM('RequestAPI_EventDetail', { RequestTime: String(getCurrentTimeInMill() - start) });
+      }
     } catch (e) {
       write({ hasEventFetchError: true });
       throw e;

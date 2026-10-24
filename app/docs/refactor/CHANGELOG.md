@@ -846,3 +846,9 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - Architecture: no folder change. `pages/AssembleDetail/hooks/useAttendeeSubdivision.ts` sets `onParametersChanged` on `useFlowState`. It reads the local contact bookmarks again and marks the rows already in the block state (OutSystems `AssembleEventDetail_AttendeeSubdivision`, advisors W35, 2026-10-24).
 - It makes no API call, does not copy the new input and does not reload. No path reaches it today; it guards a later refresh of the event data.
 - Gate: ci: pass; parity visual --all: 64/64 (OutSystems), 64/64 (self); arch baseline 0 new.
+
+## F40 - restored view without data: one rule for four hooks
+
+- Architecture: no folder change. `useLdmEventDetail`, `useAdminLanding`, `useAdminEventDetail` and `useOrbitLanding` skip their calls only when `restored` and the saved state has the data. Without data they call again (reads only); `useLdmEventDetail` sends no audit event on that path.
+- OutSystems keeps the skeleton in that case: an intended deviation (advisors W34, W36, W37). `hasStarted` in `adminLandingState.ts` is removed.
+- Gate: see `migration/refactor/handoffs/F40/test.md`.

@@ -262,6 +262,67 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
     expect(fetchCoordinatorDetails).toHaveBeenCalledTimes(1);
     expect(fetchEventByEventId).toHaveBeenCalledTimes(1);
     expect(result.current.state.isFetching).toBe(false);
+    // F40: the restored re-run sends no audit event.
+    expect(addAuditEvent_LDM).not.toHaveBeenCalled();
+  });
+
+  it('F40: left after the coordinator answer and before the event, back: fetches again, one audit event in total', async () => {
+    const event = deferred<EventByEventIdData>();
+    const coordinator = deferred<CoordinatorDetailsData>();
+    vi.mocked(fetchEventByEventId).mockReturnValueOnce(event.promise);
+    vi.mocked(fetchCoordinatorDetails).mockReturnValueOnce(coordinator.promise);
+    const forward = renderFlows();
+    await settle();
+    coordinator.resolve(coordinatorAnswer('70342'));
+    await settle();
+    // The saved variables have the coordinator, not the event: the loader shows.
+    const saved = forward.result.current.state;
+    expect(saved).toMatchObject({ isSaved: true, isFetching: true, event: null });
+    forward.unmount();
+    // The forward flow sends its audit event after the unmount (W23).
+    event.resolve(eventAnswer('70342'));
+    await settle();
+    expect(addAuditEvent_LDM).toHaveBeenCalledTimes(1);
+    expectRequestAudit();
+
+    viewCache.restored = true;
+    viewCache.saved = saved;
+    const { result } = renderFlows();
+    expect(result.current.state.isFetching).toBe(true);
+    await settle();
+    expect(fetchCoordinatorDetails).toHaveBeenCalledTimes(2);
+    expect(fetchEventByEventId).toHaveBeenCalledTimes(2);
+    expect(fetchEventByEventId).toHaveBeenLastCalledWith(INPUTS);
+    expect(result.current.state).toMatchObject({
+      isFetching: false,
+      hasInformation: true,
+      hasEventFetchError: false,
+      event: eventAnswer('70342').eventResponse,
+      coordinator: coordinatorAnswer('70342'),
+    });
+    expect(addAuditEvent_LDM).toHaveBeenCalledTimes(1);
+  });
+
+  it('F40: a restored view after a failed GetEventByEventId fetches again, without the audit event', async () => {
+    viewCache.restored = true;
+    viewCache.saved = { ...INITIAL_LDM_EVENT_DETAIL_STATE, hasEventFetchError: true, isSaved: true };
+    const { result } = renderFlows();
+    await settle();
+    expect(fetchEventByEventId).toHaveBeenCalledTimes(1);
+    expect(result.current.state).toMatchObject({ isFetching: false, hasEventFetchError: false, hasInformation: true });
+    expect(addAuditEvent_LDM).not.toHaveBeenCalled();
+  });
+
+  it('F40: a failure of the restored re-run sets HasFetchError and goes to the flow handler, without an audit event', async () => {
+    const error = new Error('Request failed with status 500');
+    vi.mocked(fetchEventByEventId).mockRejectedValueOnce(error);
+    viewCache.restored = true;
+    viewCache.saved = INITIAL_LDM_EVENT_DETAIL_STATE;
+    const { result } = renderFlows();
+    await settle();
+    expect(result.current.state).toMatchObject({ isFetching: true, hasEventFetchError: true });
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(addAuditEvent_LDM).not.toHaveBeenCalled();
   });
 });
 

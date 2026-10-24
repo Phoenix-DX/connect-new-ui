@@ -5,7 +5,6 @@ import {
   adminLandingReducer,
   clickEventPayloadOf,
   eventDetailTargetOf,
-  hasStarted,
   INITIAL_ADMIN_LANDING_STATE,
   textToLongIntegerOrNull,
 } from './adminLandingState';
@@ -47,12 +46,6 @@ describe('adminLandingState', () => {
       UserFirstName: 'Matías',
       UserMemberId: '42',
     });
-  });
-
-  it('OnReady has started while fetching or after the fetch, not before', () => {
-    expect(hasStarted(INITIAL_ADMIN_LANDING_STATE)).toBe(false);
-    expect(hasStarted({ ...INITIAL_ADMIN_LANDING_STATE, isFetchingData: true })).toBe(true);
-    expect(hasStarted({ ...INITIAL_ADMIN_LANDING_STATE, isDataFetched: true })).toBe(true);
   });
 
   it('TextToLongIntegerValidate: a whole number as a Long Integer, else the null identifier', () => {
