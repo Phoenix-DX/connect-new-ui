@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P9-3",
+  "step": "P9-4",
   "stage": "commit",
-  "loop": 1,
-  "since": "2026-10-25T00:33:46"
+  "loop": 0,
+  "since": "2026-10-25T00:58:27"
  },
  "steps": {
   "P0-1": {
@@ -1717,11 +1717,24 @@
    "finished": "2026-10-24T23:58:10"
   },
   "P9-3": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T23:58:27",
    "tokens": {
     "dev": 127998,
     "test": 63754,
+    "docs": 26735
+   },
+   "commit": "95f0bad3",
+   "gate": "ci: pass; ste_lint 25 (HEAD 25); mermaid 4/4",
+   "loops": 1,
+   "finished": "2026-10-25T00:33:47"
+  },
+  "P9-4": {
+   "status": "active",
+   "started": "2026-10-25T00:33:52",
+   "tokens": {
+    "dev": 92215,
+    "test": 27389,
     "docs": 0
    }
   }

@@ -908,3 +908,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-25,refactor,verify,23121,refactor-test,,P9-3 loop 1 sonnet
 2026-10-25,refactor,verify,0,refactor-tester,,"F54 test (sonnet): ci pass, shared run with P9-3 re-test (tokens counted under P9-3)"
 2026-10-25,refactor,other,0,refactor-docs,,P9-3 loop 1 sonnet
+2026-10-25,refactor,other,26735,refactor-docs,,P9-3 sonnet
+2026-10-25,refactor,build,0,refactor-dev,,P9-4 sonnet
+2026-10-25,refactor,build,92215,refactor-dev,,P9-4 sonnet
+2026-10-25,refactor,verify,0,refactor-test,,P9-4 sonnet
+2026-10-25,refactor,verify,27389,refactor-test,,P9-4 sonnet
+2026-10-25,refactor,other,0,refactor-docs,,P9-4 sonnet

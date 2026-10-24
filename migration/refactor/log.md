@@ -872,3 +872,9 @@ One line per event. Written by rf.py.
 - 2026-10-25T00:29:40 P9-3 stage test
 - 2026-10-25T00:33:09 P9-3 stage docs
 - 2026-10-25T00:33:46 P9-3 stage commit
+- 2026-10-25T00:33:47 P9-3 done 95f0bad3: ci: pass; ste_lint 25 (HEAD 25); mermaid 4/4
+- 2026-10-25T00:33:52 P9-4 started
+- 2026-10-25T00:33:52 P9-4 stage dev
+- 2026-10-25T00:47:26 P9-4 stage test
+- 2026-10-25T00:57:20 P9-4 stage docs
+- 2026-10-25T00:58:27 P9-4 stage commit

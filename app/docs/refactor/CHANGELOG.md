@@ -895,3 +895,9 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - Architecture: no folder change, no app code change. `pages/AssembleEvents/AssembleEvents.test.tsx` compared only the day; the page asks for meetings from the full timestamp (`EventList_RangeFrom = <day>T12:00:00`). The test now uses the full stamp, so it passes on a day with a 06:00 meeting.
 - A sweep with fixed dates 2026-10-25 to 2026-10-31 and 2026-12-01 found no other date-dependent test. The mock programme is built from the real clock at load.
 - Gate: ci: pass (3975/3975 tests).
+
+## P9-4 - refactor(P9-4): final report
+
+- Architecture: no folder change, no app code change. The final report is `app/docs/refactor/reports/final.md` (metrics against plan section 7, phases, open work, advisor decisions W34-W43).
+- New tool `migration/tools/refactor/measure-final.mjs` (replaces `measure.mjs`, which needs the deleted `shared/` and `screens/`). Open items N-A to N-E are follow-ups F57 to F61.
+- Gate: ci: pass (3975/3975 tests); parity strict `--all` both references: 64/64; e2e:pwa 9/9.
