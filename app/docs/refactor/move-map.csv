@@ -98,7 +98,7 @@ src/shared/osui/Card,OutSystemsUI_2_23.Content.Card,ui,src/components/ui/Card/Ca
 src/shared/osui/Carousel,OutSystemsUI_2_23.Interaction.Carousel,ui,src/components/ui/Carousel/Carousel.tsx,P7,4,moved,routes: HomeFeed HouseholdCarousel Photobook SupperMeeting_Carousel
 src/shared/osui/Columns2,OutSystemsUI_2_23.Adaptive.Columns2,ui,src/components/ui/Columns2/Columns2.tsx,P7,64,moved,"42 route(s) by own code, 64 with src/shell/ (lock dialog)"
 src/shared/osui/Columns3,OutSystemsUI_2_23.Adaptive.Columns3,ui,src/components/ui/Columns3/Columns3.tsx,P7,27,moved,
-src/shared/osui/Columns4,OutSystemsUI_2_23.Adaptive.Columns4,ui,src/components/ui/Columns4/Columns4.tsx,P7,0,moved,no importer; kept moved (W30/Q18); user decides delete-or-keep at the P9 knip cleanup (followups.md F29)
+src/shared/osui/Columns4,OutSystemsUI_2_23.Adaptive.Columns4,ui,src/components/ui/Columns4/Columns4.tsx,P7,0,deleted,no importer; deleted by user decision 2026-10-24 (followups.md F29)
 src/shared/osui/DEPRECATED_Accordion,OutSystemsUI_2_23.Content.DEPRECATED_Accordion,ui,src/components/ui/legacy/LegacyAccordion/LegacyAccordion.tsx,P7,4,moved,"routes: EventDetail GuestArrangements HelpersDetail MilestoneDetail; legacy UI component, kept for the DOM of the original (R3); user decision Q5, 2026-10-22; duplicates.md group 6"
 src/shared/osui/DEPRECATED_AccordionItem,OutSystemsUI_2_23.Content.DEPRECATED_AccordionItem,ui,src/components/ui/legacy/SectionExpandable/SectionExpandable.tsx,P7,4,moved,"routes: EventDetail GuestArrangements HelpersDetail MilestoneDetail; legacy UI component, kept for the DOM of the original (R3); user decision Q5, 2026-10-22; duplicates.md group 6"
 src/shared/osui/DEPRECATED_ButtonLoading,OutSystemsUI_2_23.Utilities.DEPRECATED_ButtonLoading,ui,src/components/ui/legacy/LegacyButtonLoading/LegacyButtonLoading.tsx,P7,2,moved,"routes: EmailContact EmailTarget; legacy UI component, kept for the DOM of the original (R3); user decision Q5, 2026-10-22; duplicates.md group 6"
@@ -111,11 +111,11 @@ src/shared/osui/InputWithIcon,OutSystemsUI_2_23.Interaction.InputWithIcon,ui,src
 src/shared/osui/NetworkStatusChanged,OutSystemsUI_2_23.Private.NetworkStatusChanged,ui,src/components/ui/NetworkStatusChanged/NetworkStatusChanged.tsx,P7,55,moved,behavior pattern; check that it imports only ui and lib
 src/shared/osui/OfflineDataSyncCore,OutSystemsUI_2_23.Private.OfflineDataSyncCore,ui,src/components/ui/OfflineDataSyncCore/OfflineDataSyncCore.tsx,P7,55,moved,behavior pattern; check that it imports only ui and lib
 src/shared/osui/PullToRefresh,OutSystemsUI_2_23.Private.PullToRefresh,ui,src/components/ui/PullToRefresh/PullToRefresh.tsx,P7,33,moved,
-src/shared/osui/RangeSlider,OutSystemsUI_2_23.Interaction.RangeSlider,ui,src/components/ui/RangeSlider/RangeSlider.tsx,P7,0,moved,no importer; kept moved (W30/Q18); user decides delete-or-keep at the P9 knip cleanup (followups.md F29)
+src/shared/osui/RangeSlider,OutSystemsUI_2_23.Interaction.RangeSlider,ui,src/components/ui/RangeSlider/RangeSlider.tsx,P7,0,deleted,no importer; deleted by user decision 2026-10-24 (followups.md F29)
 src/shared/osui/Separator,OutSystemsUI_2_23.Utilities.Separator,ui,src/components/ui/Separator/Separator.tsx,P7,4,moved,routes: AcceptPendingPolicies AssembleEvents Assemble_BrowseByCountry MessageList
-src/shared/osui/SwipeEvents,OutSystemsUI_2_23.Utilities.SwipeEvents,ui,src/components/ui/SwipeEvents/SwipeEvents.tsx,P7,0,moved,no importer; kept moved (W30/Q18); user decides delete-or-keep at the P9 knip cleanup (followups.md F29)
+src/shared/osui/SwipeEvents,OutSystemsUI_2_23.Utilities.SwipeEvents,ui,src/components/ui/SwipeEvents/SwipeEvents.tsx,P7,0,deleted,no importer; deleted by user decision 2026-10-24 (followups.md F29)
 src/shared/osui/Tag,OutSystemsUI_2_23.Content.Tag,ui,src/components/ui/Tag/Tag.tsx,P7,1,moved,
-src/shared/osui/Tooltip,OutSystemsUI_2_23.Content.Tooltip,ui,src/components/ui/Tooltip/Tooltip.tsx,P7,0,moved,no importer; kept moved (W30/Q18); user decides delete-or-keep at the P9 knip cleanup (followups.md F29)
+src/shared/osui/Tooltip,OutSystemsUI_2_23.Content.Tooltip,ui,src/components/ui/Tooltip/Tooltip.tsx,P7,0,deleted,no importer; deleted by user decision 2026-10-24 (followups.md F29)
 src/shared/osui/TouchEvents,OutSystemsUI_2_23.Utilities.TouchEvents,ui,src/components/ui/TouchEvents/TouchEvents.tsx,P7,1,moved,
 src/shared/osui/lib,OutSystemsUI_2_23 (shared actions and structures),ui,src/components/ui/lib,P7,,moved,P7-1: no row before; ui patterns and shared/UBTConnectLibrary import it
 src/shared/ReactiveHtmlSanitizer/SanitizedHtml,ReactiveHtmlSanitizer.HtmlSanitizer.SanitizedHtml,ui,src/components/ui/SanitizedHtml/SanitizedHtml.tsx,P7,3,moved,routes: MessageDetail Notifications Photobook

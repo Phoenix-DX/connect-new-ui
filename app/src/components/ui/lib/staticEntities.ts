@@ -60,27 +60,8 @@ export const AnimationType = {
 /** Speed (Animate): written as a class as is; captured `normal` (MyBookmarks loading). */
 export const Speed = { Normal: 'normal' } as const;
 
-/* ---- W5-B (RangeSlider) ---- */
-/** Orientation: TST values (static-entities-tst.json `OutSystemsUI_2_23.orientation`); the RangeSlider provider adds
-    `osui-range-slider--is-vertical` for Vertical (OutSystemsUI_2_23.OutSystemsUI.js:21753-21760). */
-export const Orientation = { Horizontal: 'horizontal', Vertical: 'vertical' } as const;
-
-/* ---- Wave 8 O-B2 (Accordion, Tooltip) ---- */
+/* ---- Wave 8 O-B2 (Accordion) ---- */
 /** AccordionIconType (static-entities-tst.json `OutSystemsUI_2_23.accordionIconType`; OSUI Enum.IconType). */
 export const AccordionIconType = { Caret: 'Caret', Custom: 'Custom', PlusMinus: 'PlusMinus' } as const;
 /** AccordionIconPosition (static-entities-tst.json `OutSystemsUI_2_23.accordionIconPosition`). */
 export const AccordionIconPosition = { Left: 'left', Right: 'right' } as const;
-/** Trigger (static-entities-tst.json `OutSystemsUI_2_23.trigger`): Tooltip trigger. */
-export const Trigger = { OnClick: 'onclick', OnHover: 'onhover' } as const;
-/** Position (static-entities-tst.json `OutSystemsUI_2_23.position`). */
-export const Position = {
-  Bottom: 'bottom',
-  BottomLeft: 'bottom-left',
-  BottomRight: 'bottom-right',
-  Center: 'center',
-  Left: 'left',
-  Right: 'right',
-  Top: 'top',
-  TopLeft: 'top-left',
-  TopRight: 'top-right',
-} as const;

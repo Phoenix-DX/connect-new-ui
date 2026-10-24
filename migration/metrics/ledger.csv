@@ -804,3 +804,12 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,build,66191,refactor-dev,,P7-5 sonnet
 2026-10-24,refactor,verify,35982,refactor-test,,P7-5 sonnet
 2026-10-24,refactor,other,26059,refactor-docs,,P7-5 sonnet
+2026-10-24,refactor,other,47570,advisor,,F22-F26 cache question opus
+2026-10-24,refactor,other,45775,advisor,,F22-F26 cache question fable
+2026-10-24,refactor,build,26156,refactor-dev,,F29 sonnet (pass 1)
+2026-10-24,refactor,build,30234,refactor-dev,,"F29 sonnet (pass 2, packages)"
+2026-10-24,refactor,other,45441,advisor,,F25 back guard fable
+2026-10-24,refactor,other,59996,advisor,,F25 back guard opus
+2026-10-24,refactor,verify,22922,refactor-test,,F29 sonnet
+2026-10-24,refactor,build,36465,refactor-dev,,"F29 sonnet (pass 3, lib exports)"
+2026-10-24,refactor,other,25857,refactor-docs,,F29 sonnet

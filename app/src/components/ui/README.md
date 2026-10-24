@@ -7,7 +7,7 @@ steps P7-0 to P7-6; report: `app/docs/refactor/reports/P7.md`).
 
 | Group                           | Where                                                         | Origin                                                                                                                                                                                |
 | ------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| OutSystems UI patterns          | `components/ui/<Pattern>/` (P7-1)                             | `OutSystemsUI_2_23.*`: Accordion, Animate, BottomSheet, Card, Carousel, Columns2/3/4, DropdownSearch, Gallery, Tag, Tooltip and others. Moved from `shared/osui/`.                    |
+| OutSystems UI patterns          | `components/ui/<Pattern>/` (P7-1)                             | `OutSystemsUI_2_23.*`: Accordion, Animate, BottomSheet, Card, Carousel, Columns2/3, DropdownSearch, Gallery, Tag and others. Moved from `shared/osui/`.                               |
 | Shared blocks of the UBT module | `components/ui/<Name>/` (P7-0)                                | `UBTConnectLibrary.*`, `UBTConnect.*`, `UBTConnect_Utils.*`, `Connect2_LegacyShared.*`, `ReactiveHtmlSanitizer.*`. Business names from `move-map.csv`.                                |
 | Dialog family                   | `components/ui/Dialog/` (P7-2)                                | `Dialog` (one markup), `ConfirmDialog`, `ChoiceDialog`, `NavigationDialog`. See `Dialog/Dialog.README.md`.                                                                            |
 | Empty state and skeleton        | `components/ui/EmptyState/`, `components/ui/Skeleton/` (P7-3) | `EmptyList` and `SkeletonSection`, renamed, with component-library prop names. The DOM and the block names in the DOM did not change.                                                 |
@@ -15,8 +15,8 @@ steps P7-0 to P7-6; report: `app/docs/refactor/reports/P7.md`).
 | Platform widgets                | `components/ui/os/`                                           | `OSBlock`, `OSLink`, `OSList`, `OSPopup` (`usePopupWidget`), `OSRadioGroup`, `OSValidation`. See `docs/guides/os-widgets.md`.                                                         |
 | Pure helpers of the patterns    | `components/ui/lib/`                                          | The OSUI shared actions and structures (`actions.ts`, `deviceDetection.ts`, `staticEntities.ts`, `structures.ts`).                                                                    |
 
-`components/ui/` has 93 component folders. The groups above overlap (`Dialog`, `EmptyState` and `Skeleton` are in two
-groups), so their folder counts do not add up to 93. `legacy/`, `lib/` and `os/` are not counted.
+`components/ui/` has 89 component folders. The groups above overlap (`Dialog`, `EmptyState` and `Skeleton` are in two
+groups), so their folder counts do not add up to 89. `legacy/`, `lib/` and `os/` are not counted.
 
 Each component folder has a `README.md` (props, OutSystems name, captured variants). `Dialog/` has `Dialog.README.md`,
 `ChoiceDialog.README.md` and `NavigationDialog.README.md` instead. `legacy/`, `lib/` and `os/` have no README. A captured
@@ -24,11 +24,6 @@ folder has a `__captures__/` folder that the tests compare against.
 
 Each component folder has its own `index.ts`; import the
 folder (`@/components/ui/Icon`), not the files inside it. There is no `components/ui/index.ts`.
-
-### Unused patterns
-
-`Columns4`, `RangeSlider`, `SwipeEvents` and `Tooltip` have no importer. They are moved and kept (decision W30,
-follow-up F29). The user decides delete or keep at the P9 knip cleanup.
 
 ## Rules for components/**
 

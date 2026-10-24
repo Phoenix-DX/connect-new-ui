@@ -817,3 +817,9 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
   - F29: delete or keep the 4 unused OSUI patterns, at the P9 knip cleanup.
   - F33: which `NetworkWarning` DOM stays.
 - Owned debt, to clear before P9-1 makes rule 6 an error: F35 (split the module client actions in `lib/<module>/actions.ts`, ceiling 55), F36 (`OSLink` imports `platform/navigation`), F37 (CacheControl blocks in `legacy/os/cache/`).
+
+## F29 - delete the 4 unused OSUI patterns
+
+- Architecture: `components/ui/` loses `Columns4`, `RangeSlider`, `SwipeEvents` and `Tooltip` (user decision, 2026-10-24). No page, container or hook used them.
+- Also removed: packages `nouislider` and `wnumb`, `src/types/vendor.d.ts`, and the exports `Orientation`, `Trigger`, `Position` and `RangeSliderOptionalConfigs` in `components/ui/lib`.
+- Gate: ci: pass; parity visual --all: 64/64 (OutSystems), 64/64 (self).

@@ -62,7 +62,7 @@ export interface SplideConfigs {
   omitEnd?: string;
 }
 
-/* ---- W5-B (DropdownSearch, RangeSlider). Records of OutSystemsUI_2_23.model.js (ContactUsDetails raw copy). ---- */
+/* ---- W5-B (DropdownSearch). Records of OutSystemsUI_2_23.model.js (ContactUsDetails raw copy). ---- */
 /** DropdownOptionRec (model :1293-): JSON names value / label / image_url_or_class / group_name / description, all "". */
 export interface DropdownOption {
   Value?: string;
@@ -81,16 +81,6 @@ export interface DropdownOptionalConfigs {
   SearchPrompt?: string;
   NoOptionsText?: string;
   SanitizeDropdownValues?: boolean;
-}
-
-/** RangeSliderOptionalConfigsRec (model :4544-4562): ShowFloatingLabel False, Step 1, ShowTickMarks True,
-    TickMarksInterval 0, IsDisabled False. */
-export interface RangeSliderOptionalConfigs {
-  ShowFloatingLabel?: boolean;
-  Step?: number;
-  ShowTickMarks?: boolean;
-  TickMarksInterval?: number;
-  IsDisabled?: boolean;
 }
 
 /* ---- Wave 8 O-B2 (DropdownTags) ---- */
