@@ -4,6 +4,8 @@
   arch_baseline.py check   exit 1 when an ESLint boundary warning (no-restricted-imports, "Rule N")
                            is not in app/docs/refactor/arch-baseline.csv; print baseline rows that no longer
                            occur, so the step that removed them deletes those rows
+  arch_baseline.py check --strict
+                           as check, and exit 1 also on a baseline row that no longer occurs (P9-1: run by `npm run ci`)
   arch_baseline.py check --move-step <phase> --base <commit>
                            move-step mode (W15): a warning outside the baseline is accepted as a new row only when
                            its file is in a target folder of a src/shared/ row of move-map.csv with that phase and the
@@ -209,6 +211,8 @@ def move_step_ok(row: tuple[str, str, str], phase: str, base: str) -> bool:
 
 def cmd_check(argv: list[str]) -> int:
     phase = base_commit = None
+    strict = "--strict" in argv
+    argv = [a for a in argv if a != "--strict"]
     if argv:
         if len(argv) != 4 or argv[0] != "--move-step" or argv[2] != "--base":
             print(__doc__)
@@ -227,7 +231,7 @@ def cmd_check(argv: list[str]) -> int:
     for f, spec, rule in gone:
         print(f"GONE {f} | {spec} | {rule}  (delete this row from the baseline)")
     print(f"arch baseline: {len(now)} warnings, {len(base)} baseline rows, {len(new)} new, {len(gone)} gone")
-    return 1 if new else 0
+    return 1 if new or (strict and gone) else 0
 
 
 def cmd_list() -> int:

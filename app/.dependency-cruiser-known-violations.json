@@ -1,0 +1,1564 @@
+[
+  {
+    "type": "dependency",
+    "from": "src/components/auth/FingerprintScanner/FingerprintScanner.tsx",
+    "to": "src/platform/feedback/NotCaptured.tsx",
+    "unresolvedTo": "@/platform/feedback/NotCaptured",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/bookmark/ItemOptionsMenu/ItemOptionsMenu.tsx",
+    "to": "src/platform/flags/flags.ts",
+    "unresolvedTo": "@/platform/flags/flags",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx",
+    "to": "src/platform/device/deviceContext.ts",
+    "unresolvedTo": "@/platform/device/deviceContext",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx",
+    "to": "src/platform/feedback/index.ts",
+    "unresolvedTo": "@/platform/feedback",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/contact/ContactPopup/ContactPopup.tsx",
+    "to": "src/platform/feedback/NotCaptured.tsx",
+    "unresolvedTo": "@/platform/feedback/NotCaptured",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/contact/ContactPopup/ContactPopup.tsx",
+    "to": "src/platform/navigation/PreventBackNavigation/index.ts",
+    "unresolvedTo": "@/platform/navigation/PreventBackNavigation",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/BlankLayout/BlankLayout.tsx",
+    "to": "src/platform/device/OfflineDataSync/index.ts",
+    "unresolvedTo": "@/platform/device/OfflineDataSync",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/BottomBar/BottomBar.tsx",
+    "to": "src/platform/feedback/NotCaptured.tsx",
+    "unresolvedTo": "@/platform/feedback/NotCaptured",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/BottomBar/BottomBar.tsx",
+    "to": "src/platform/log/log.ts",
+    "unresolvedTo": "@/platform/log/log",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/BottomBar/BottomBar.tsx",
+    "to": "src/platform/navigation/index.ts",
+    "unresolvedTo": "@/platform/navigation",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/BottomBar/BottomBar.tsx",
+    "to": "src/platform/navigation/paths.ts",
+    "unresolvedTo": "@/platform/navigation/paths",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/BottomBar/BottomBar.tsx",
+    "to": "src/platform/session/session.ts",
+    "unresolvedTo": "@/platform/session/session",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/CommonUiLayout/CommonUiLayout.tsx",
+    "to": "src/platform/device/OfflineDataSync/index.ts",
+    "unresolvedTo": "@/platform/device/OfflineDataSync",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/CommonUiLayout/CommonUiLayout.tsx",
+    "to": "src/platform/feedback/dialogs/index.ts",
+    "unresolvedTo": "@/platform/feedback/dialogs",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/CommonUiLayout/CommonUiLayout.tsx",
+    "to": "src/platform/navigation/BackNavigationHandler/index.ts",
+    "unresolvedTo": "@/platform/navigation/BackNavigationHandler",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/CommonUiLayout/CommonUiLayout.tsx",
+    "to": "src/platform/navigation/index.ts",
+    "unresolvedTo": "@/platform/navigation",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/CommonUiLayout/CommonUiLayout.tsx",
+    "to": "src/platform/navigation/LockHost.tsx",
+    "unresolvedTo": "@/platform/navigation/LockHost",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/CommonUiLayout/CommonUiLayout.tsx",
+    "to": "src/platform/navigation/OpenLinkOnResume/index.ts",
+    "unresolvedTo": "@/platform/navigation/OpenLinkOnResume",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/CommonUiLayout/CommonUiLayout.tsx",
+    "to": "src/platform/navigation/paths.ts",
+    "unresolvedTo": "@/platform/navigation/paths",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/CommonUiLayout/CommonUiLayout.tsx",
+    "to": "src/platform/navigation/PreventBackNavigation/index.ts",
+    "unresolvedTo": "@/platform/navigation/PreventBackNavigation",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/CommonUiLayout/CommonUiLayout.tsx",
+    "to": "src/platform/session/PolicyChecker/index.ts",
+    "unresolvedTo": "@/platform/session/PolicyChecker",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/CommonUiLayout/CommonUiLayout.tsx",
+    "to": "src/platform/session/session.ts",
+    "unresolvedTo": "@/platform/session/session",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/MenuIcon/MenuIcon.tsx",
+    "to": "src/platform/navigation/index.ts",
+    "unresolvedTo": "@/platform/navigation",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/MenuIconBack/MenuIconBack.tsx",
+    "to": "src/platform/navigation/index.ts",
+    "unresolvedTo": "@/platform/navigation",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/note/NotesSheet/api.ts",
+    "to": "src/api/note/index.ts",
+    "unresolvedTo": "@/api/note",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "export"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/note/NotesSheet/mocks.ts",
+    "to": "src/containers/NoteListActions/mocks.ts",
+    "unresolvedTo": "@/containers/NoteListActions/mocks",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/note/NotesSheet/NotesSheet.tsx",
+    "to": "src/containers/NoteListActions/index.ts",
+    "unresolvedTo": "@/containers/NoteListActions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/note/NotesSheet/NotesSheet.tsx",
+    "to": "src/platform/navigation/BackNavigationHandler/index.ts",
+    "unresolvedTo": "@/platform/navigation/BackNavigationHandler",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/note/NotesSheet/NotesSheet.tsx",
+    "to": "src/platform/storage/localEntities/index.ts",
+    "unresolvedTo": "@/platform/storage/localEntities",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/ui/DropdownSearch/provider.ts",
+    "to": "src/platform/device/device.ts",
+    "unresolvedTo": "@/platform/device/device",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/ui/ImageLoadErrorHandler/ImageLoadErrorHandler.tsx",
+    "to": "src/platform/log/log.ts",
+    "unresolvedTo": "@/platform/log/log",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/ui/os/OSLink.tsx",
+    "to": "src/platform/navigation/index.ts",
+    "unresolvedTo": "@/platform/navigation",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/ui/os/OSPopup/usePopupWidget.ts",
+    "to": "src/platform/session/session.ts",
+    "unresolvedTo": "@/platform/session/session",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/version/UnsupportedVersionNative/UnsupportedVersionNative.tsx",
+    "to": "src/platform/feedback/NotCaptured.tsx",
+    "unresolvedTo": "@/platform/feedback/NotCaptured",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/version/UnsupportedVersionWebView/UnsupportedVersionWebView.tsx",
+    "to": "src/platform/feedback/NotCaptured.tsx",
+    "unresolvedTo": "@/platform/feedback/NotCaptured",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/version/UnsupportedVersionWrapper/UnsupportedVersionWrapper.tsx",
+    "to": "src/platform/navigation/PreventBackNavigation/index.ts",
+    "unresolvedTo": "@/platform/navigation/PreventBackNavigation",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-4-components-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/ui/DropdownSearch/provider.ts",
+    "to": "src/platform/device/device.ts",
+    "unresolvedTo": "@/platform/device/device",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-5-ui-imports-ui-lib-styles-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/ui/EntityLazyImage/mocks.ts",
+    "to": "src/mocks/contract.ts",
+    "unresolvedTo": "@/mocks/contract",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-5-ui-imports-ui-lib-styles-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/ui/ImageLoadErrorHandler/ImageLoadErrorHandler.tsx",
+    "to": "src/platform/log/log.ts",
+    "unresolvedTo": "@/platform/log/log",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-5-ui-imports-ui-lib-styles-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/ui/os/OSLink.tsx",
+    "to": "src/platform/navigation/index.ts",
+    "unresolvedTo": "@/platform/navigation",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-5-ui-imports-ui-lib-styles-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/ui/os/OSPopup/usePopupWidget.ts",
+    "to": "src/platform/session/session.ts",
+    "unresolvedTo": "@/platform/session/session",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-5-ui-imports-ui-lib-styles-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/ui/ResultItemImage/mocks.ts",
+    "to": "src/mocks/contract.ts",
+    "unresolvedTo": "@/mocks/contract",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-5-ui-imports-ui-lib-styles-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/assemble/actions.ts",
+    "to": "src/api/bookmark/index.ts",
+    "unresolvedTo": "@/api/bookmark",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/assemble/actions.ts",
+    "to": "src/platform/feedback/feedbackStore.ts",
+    "unresolvedTo": "@/platform/feedback/feedbackStore",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/assemble/actions.ts",
+    "to": "src/platform/log/log.ts",
+    "unresolvedTo": "@/platform/log/log",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/assemble/actions.ts",
+    "to": "src/platform/session/userInfo.ts",
+    "unresolvedTo": "@/platform/session/userInfo",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/assemble/actions.ts",
+    "to": "src/platform/storage/localEntities/index.ts",
+    "unresolvedTo": "@/platform/storage/localEntities",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/assemble/structures.ts",
+    "to": "src/api/event/index.ts",
+    "unresolvedTo": "@/api/event",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "type-only", "export"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/jsUtils.ts",
+    "to": "src/platform/navigation/index.ts",
+    "unresolvedTo": "@/platform/navigation",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/leaflet/actions.ts",
+    "to": "src/legacy/os/os-exceptions.ts",
+    "unresolvedTo": "@/legacy/os/os-exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/api/bookmark/keys.ts",
+    "unresolvedTo": "@/api/bookmark/keys",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/api/client/cache.ts",
+    "unresolvedTo": "@/api/client/cache",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/api/client/callAction.ts",
+    "unresolvedTo": "@/api/client/callAction",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/api/country/index.ts",
+    "unresolvedTo": "@/api/country",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/api/image/index.ts",
+    "unresolvedTo": "@/api/image",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/api/locality/index.ts",
+    "unresolvedTo": "@/api/locality",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/api/member/index.ts",
+    "unresolvedTo": "@/api/member",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/api/message/index.ts",
+    "unresolvedTo": "@/api/message",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/legacy/os/os-exceptions.ts",
+    "unresolvedTo": "@/legacy/os/os-exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/platform/feedback/feedbackStore.ts",
+    "unresolvedTo": "@/platform/feedback/feedbackStore",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/platform/log/log.ts",
+    "unresolvedTo": "@/platform/log/log",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/platform/session/session.ts",
+    "unresolvedTo": "@/platform/session/session",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/structures.ts",
+    "to": "src/api/country/index.ts",
+    "unresolvedTo": "@/api/country",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "type-only", "export"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/structures.ts",
+    "to": "src/api/locality/index.ts",
+    "unresolvedTo": "@/api/locality",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "type-only", "export"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/structures.ts",
+    "to": "src/api/message/index.ts",
+    "unresolvedTo": "@/api/message",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "type-only", "export"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/orbit/actions.ts",
+    "to": "src/api/client/callAction.ts",
+    "unresolvedTo": "@/api/client/callAction",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/orbit/actions.ts",
+    "to": "src/api/event/index.ts",
+    "unresolvedTo": "@/api/event",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/orbit/actions.ts",
+    "to": "src/platform/log/log.ts",
+    "unresolvedTo": "@/platform/log/log",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/orbit/actions.ts",
+    "to": "src/platform/session/session.ts",
+    "unresolvedTo": "@/platform/session/session",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/orbit/actions.ts",
+    "to": "src/platform/storage/localEntities/orbitStaticEntities.ts",
+    "unresolvedTo": "@/platform/storage/localEntities/orbitStaticEntities",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "export"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/orbit/structures.ts",
+    "to": "src/api/event/index.ts",
+    "unresolvedTo": "@/api/event",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "type-only", "export"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/actions.ts",
+    "to": "src/api/bookmark/index.ts",
+    "unresolvedTo": "@/api/bookmark",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/actions.ts",
+    "to": "src/api/update/index.ts",
+    "unresolvedTo": "@/api/update",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/actions.ts",
+    "to": "src/components/ui/lib/actions.ts",
+    "unresolvedTo": "@/components/ui/lib/actions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/actions.ts",
+    "to": "src/legacy/os/os-exceptions.ts",
+    "unresolvedTo": "@/legacy/os/os-exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/actions.ts",
+    "to": "src/platform/log/log.ts",
+    "unresolvedTo": "@/platform/log/log",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/actions.ts",
+    "to": "src/platform/session/session.ts",
+    "unresolvedTo": "@/platform/session/session",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/actions.ts",
+    "to": "src/platform/session/userInfo.ts",
+    "unresolvedTo": "@/platform/session/userInfo",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/actions.ts",
+    "to": "src/platform/storage/localEntities/index.ts",
+    "unresolvedTo": "@/platform/storage/localEntities",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/unsupportedVersion.ts",
+    "to": "src/mocks/scenarioParams.ts",
+    "unresolvedTo": "@/mocks/scenarioParams",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/unsupportedVersion.ts",
+    "to": "src/platform/config/config.ts",
+    "unresolvedTo": "@/platform/config/config",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectLibrary/actions.ts",
+    "to": "src/components/ui/lib/staticEntities.ts",
+    "unresolvedTo": "@/components/ui/lib/staticEntities",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/api/client/cache.ts",
+    "unresolvedTo": "@/api/client/cache",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/api/client/callAction.ts",
+    "unresolvedTo": "@/api/client/callAction",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/api/image/index.ts",
+    "unresolvedTo": "@/api/image",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/components/ui/lib/actions.ts",
+    "unresolvedTo": "@/components/ui/lib/actions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/platform/feedback/index.ts",
+    "unresolvedTo": "@/platform/feedback",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/platform/feedback/pageRedirect.ts",
+    "unresolvedTo": "@/platform/feedback/pageRedirect",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/platform/flags/index.ts",
+    "unresolvedTo": "@/platform/flags",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/platform/log/log.ts",
+    "unresolvedTo": "@/platform/log/log",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/actions.ts",
+    "to": "src/platform/session/session.ts",
+    "unresolvedTo": "@/platform/session/session",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnectUtils/structures.ts",
+    "to": "src/api/locality/index.ts",
+    "unresolvedTo": "@/api/locality",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "type-only", "export"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-6-lib-imports-lib-only"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/bootstrap/mocks.ts",
+    "to": "src/containers/NoteListActions/mocks.ts",
+    "unresolvedTo": "@/containers/NoteListActions/mocks",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/device/OfflineDataSync/OfflineDataSync.tsx",
+    "to": "src/components/ui/OfflineDataSyncCore/index.ts",
+    "unresolvedTo": "@/components/ui/OfflineDataSyncCore",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/device/OfflineDataSync/OfflineDataSync.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/feedback/dialogs/BlockPinUnlock.tsx",
+    "to": "src/components/layout/LayoutRuntimeTop/index.ts",
+    "unresolvedTo": "@/components/layout/LayoutRuntimeTop",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/feedback/dialogs/BlockPinUnlock.tsx",
+    "to": "src/components/ui/CustomContainer/index.ts",
+    "unresolvedTo": "@/components/ui/CustomContainer",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/feedback/dialogs/BlockPinUnlock.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/feedback/dialogs/BlockPinUnlock.tsx",
+    "to": "src/components/ui/SvgBackgroundLogin/index.ts",
+    "unresolvedTo": "@/components/ui/SvgBackgroundLogin",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/feedback/dialogs/BlockPinUnlock.tsx",
+    "to": "src/components/version/UnsupportedVersionWrapper/index.ts",
+    "unresolvedTo": "@/components/version/UnsupportedVersionWrapper",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/feedback/dialogs/DialogAccessRestrictedAction.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/feedback/dialogs/PinUnlockContentContainer.tsx",
+    "to": "src/components/auth/PinUnlockContent/index.ts",
+    "unresolvedTo": "@/components/auth/PinUnlockContent",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/navigation/BackNavigationHandler/BackNavigationHandler.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/navigation/DialogExitConfirmation.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/navigation/NavigationHandler/NavigationHandler.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/navigation/OpenLinkOnResume/OpenLinkOnResume.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/navigation/paths.ts",
+    "to": "src/app/routes.generated.ts",
+    "unresolvedTo": "@/app/routes.generated",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/navigation/PreventBackNavigation/PreventBackNavigation.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/navigation/ScrollAnchor/ScrollAnchor.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/session/InactivityTimer/InactivityTimer.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/session/PolicyChecker/PolicyChecker.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/platform/session/UserInfoCache/UserInfoCache.tsx",
+    "to": "src/components/ui/os/OSBlock.tsx",
+    "unresolvedTo": "@/components/ui/os/OSBlock",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-8-platform-no-upward-import"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/auth/PinUnlockContent/PinUnlockContent.tsx",
+    "to": "src/legacy/os/cache/PoliciesCacheControl/index.ts",
+    "unresolvedTo": "@/legacy/os/cache/PoliciesCacheControl",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "type-only", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/contact/AddressPopupWrapper/AddressPopupWrapper.tsx",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/filter/FilterSheet/FilterSheet.tsx",
+    "to": "src/legacy/os/cache/AllCountriesCacheControl/index.ts",
+    "unresolvedTo": "@/legacy/os/cache/AllCountriesCacheControl",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "type-only", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/LegacyLayout/LegacyLayout.tsx",
+    "to": "src/legacy/os/bodyTheme.ts",
+    "unresolvedTo": "@/legacy/os/bodyTheme",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/layout/OrbitLayout/OrbitLayout.tsx",
+    "to": "src/legacy/os/bodyTheme.ts",
+    "unresolvedTo": "@/legacy/os/bodyTheme",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/note/NotesSheet/NotesSheet.tsx",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/components/orbit/MilestoneHeader/MilestoneHeader.tsx",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx",
+    "to": "src/legacy/os/os-exceptions.ts",
+    "unresolvedTo": "@/legacy/os/os-exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/containers/FilterSheet/FilterSheetContainer.tsx",
+    "to": "src/legacy/os/cache/AllCountriesCacheControl/index.ts",
+    "unresolvedTo": "@/legacy/os/cache/AllCountriesCacheControl",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/containers/FilterSheet/FilterSheetContainer.tsx",
+    "to": "src/legacy/os/cache/AllLocalitiesCacheControl/index.ts",
+    "unresolvedTo": "@/legacy/os/cache/AllLocalitiesCacheControl",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/containers/NoteListActions/NoteListActionsContainer.tsx",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/leaflet/actions.ts",
+    "to": "src/legacy/os/os-exceptions.ts",
+    "unresolvedTo": "@/legacy/os/os-exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/legacyShared/actions.ts",
+    "to": "src/legacy/os/os-exceptions.ts",
+    "unresolvedTo": "@/legacy/os/os-exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/lib/ubtConnect/actions.ts",
+    "to": "src/legacy/os/os-exceptions.ts",
+    "unresolvedTo": "@/legacy/os/os-exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/BookmarksByGroup/hooks/useBookmarkGroup.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/ConnectShare/hooks/connectShareActions.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/ContactUsDetails/hooks/useContactUsDetails.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/CountryList/hooks/useCountryList.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/EventBooklet/hooks/useEventBooklet.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/LDM_EventDetail_V2/hooks/useLdmEventDetail.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/LDM_MyEvents_V2/hooks/useLdmMyEvents.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/MyBookmarks/hooks/useMyBookmarks.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/Notifications/hooks/useNotifications.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/OrbitAdminEventDetail/hooks/useAdminEventDetail.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/Profile/hooks/useProfile.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/Search/hooks/useSearch.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/TermsAndPoliciesMenu/TermsAndPoliciesMenuPage.tsx",
+    "to": "src/legacy/os/cache/PoliciesCacheControl/index.ts",
+    "unresolvedTo": "@/legacy/os/cache/PoliciesCacheControl",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/Updates_SingleList/hooks/useUpdatesSingleList.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/pages/ViewDocuments/hooks/useViewDocuments.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  }
+]

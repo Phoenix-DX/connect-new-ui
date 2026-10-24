@@ -875,3 +875,19 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,verify,0,refactor-test,,P8-2 loop 1 sonnet
 2026-10-24,refactor,verify,17514,refactor-test,,P8-2 loop 1 sonnet
 2026-10-24,refactor,other,0,refactor-docs,,P8-2 loop 1 sonnet
+2026-10-24,refactor,other,38798,refactor-docs,,P8-2 sonnet
+2026-10-24,refactor,build,91279,refactor-dev,,P9-1 sonnet
+2026-10-24,refactor,build,-91279,refactor-dev,,correction: P9-1 dev tokens were also recorded as 2 ledger rows (63626 + 27653) before rf.py tokens
+2026-10-24,refactor,build,44311,refactor-developer,,P9-2 dev prefetch (sonnet): question (3 unread keys; metric 4)
+2026-10-24,refactor,other,38687,advisor-opus,,"P9-2 metric advisor (Opus): (a), high"
+2026-10-24,refactor,other,0,advisor-fable,,"P9-2 metric advisor (Fable): (a), high (tokens pending)"
+2026-10-24,refactor,other,39388,advisor-fable,,P9-2 metric advisor (Fable) tokens from notification
+2026-10-24,refactor,other,0,fact-sonnet,,P9-2 unread flag keys fact lookup (tokens pending)
+2026-10-24,refactor,other,71067,fact-sonnet,,"P9-2 unread flag keys fact lookup, tokens from notification"
+2026-10-24,refactor,other,38500,advisor-opus,,"P9-2 unread keys advisor (Opus): (a), high"
+2026-10-24,refactor,other,0,advisor-fable,,"P9-2 unread keys advisor (Fable): (a), high (tokens pending)"
+2026-10-24,refactor,other,38630,advisor-fable,,P9-2 unread keys advisor (Fable) tokens from notification
+2026-10-24,refactor,build,0,refactor-developer,,P9-2 dev resume W42/W43 (sonnet): pass (tokens pending)
+2026-10-24,refactor,verify,30158,refactor-test,,P9-1 sonnet
+2026-10-24,refactor,build,26344,refactor-developer,,P9-2 dev resume (sonnet) tokens from notification
+2026-10-24,refactor,other,0,refactor-docs,,P9-1 sonnet

@@ -870,3 +870,9 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - Architecture: 3 original stylesheets lost their unused rules (HostSurvey_AccommodationItem, HostSurvey_AdminNotes, Notifications). Legacy CSS: 1,605,845 -> 1,604,826 B (-1,019 B).
 - New tools in `migration/tools/refactor/`: `css-coverage-preload.cjs`, `css-coverage-node.sh`, `css-prune.py` (P9-3 reuses them). Usage: `app/docs/guides/shell.md`.
 - Gate: parity visual --all: 64/64 (OutSystems), 64/64 (self). Relaxed rule (-272 kB): follow-up F45.
+
+## P9-1 - refactor(P9-1): rules to error with frozen baselines
+
+- Architecture: all folder rules and the ESLint rule-4 restriction are errors; 142 dependency-cruiser, 72 ESLint and 1,130 knip rows are frozen in shrink-only baselines (`app/.dependency-cruiser-known-violations.json`, `arch-baseline.csv`, `app/.knip-known-unused.json`). Rule 9 skips mock handlers and test helpers (34 -> 30, a reclassification, F38).
+- `npm run ci` also runs `arch`, `arch:baselines`, `dup` (jscpd threshold 0.57 percent) and `unused` (knip). Owners of the remaining rows: F35 to F37, F46 to F50. Guide: `app/docs/guides/quality.md`.
+- Gate: ci: pass (154 s); parity strict --changed: 64/64 (OutSystems), 64/64 (self).
