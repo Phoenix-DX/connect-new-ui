@@ -21,7 +21,7 @@ import { IconText } from '@/components/ui/IconText';
 import { getClass_Color, getLookupConcepts } from '@/shared/UBTConnectLibrary/lib/actions';
 import { UBT_Color, UBT_ColumnBehaviour, UBT_Icons2, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { ContainerOptions } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { useBrowseDirectory } from './hooks/useBrowseDirectory';
 import { readBrowseDirectoryInputs } from './inputs';
 import { UBT_Icons2_Add, UBT_Icons2_MyLocationFill, UBT_Icons2_Remove } from './staticEntities';
@@ -124,9 +124,9 @@ export default function BrowseDirectory() {
                   onOnMarkerClicked={onMarkerClicked}
                 />
               ) : (
-                <SkeletonSection id="$b9" inIsLoading>
+                <Skeleton id="$b9" isLoading>
                   <div className="leaflet-container" data-container="" />
-                </SkeletonSection>
+                </Skeleton>
               )}
               <CustomContainer id="$b10" options={LIST_CONTAINER}>
                 <StatisticsList

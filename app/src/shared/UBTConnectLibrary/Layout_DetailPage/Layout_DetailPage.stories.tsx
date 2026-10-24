@@ -8,7 +8,7 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { FixedFooter } from '@/components/ui/FixedFooter';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { Layout_DetailPage } from './Layout_DetailPage';
 
 /** Stories only: the signed-in session of the captures (BottomBarMenu, CommonUI_InsideLayout), checked just now. */
@@ -116,7 +116,7 @@ export const V6: Story = {
   args: {
     id: '$b1',
     inIsPrimaryColor: false,
-    placeholderHeaderTitle: <SkeletonSection id="$b2" />,
+    placeholderHeaderTitle: <Skeleton id="$b2" />,
     content: <PendingBlock name="Directory_Caroussel.EntitiesCarousel" />,
     bottom: <BottomBar id="$b5" activeItem={Connect_BottomBar_Items.Directory} />,
     placeholderCommonUIInsideLayout: <CommonUiLayout id="$b6" />,

@@ -3,7 +3,7 @@ import { useState } from 'react';
 import type { NotificationBreakpoint, NotificationItem } from '@/api/notification';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { dateTimeToText, itemsOfRange } from './actions';
 import { Notification_ListItem } from './Notification_ListItem';
 
@@ -38,7 +38,7 @@ export function NotificationsList({
         {items.map((item, i) => {
           const r = `${p}-b2-l1-127_${i}`;
           return (
-            <SkeletonSection key={item.id} id={`${r}-$b1`} inIsLoading={isLoading}>
+            <Skeleton key={item.id} id={`${r}-$b1`} isLoading={isLoading}>
               <div
                 className="updates-list__list-item"
                 data-container=""
@@ -53,7 +53,7 @@ export function NotificationsList({
                 />
                 <ScrollAnchor id={`${r}-$b3`} idIn={item.id} />
               </div>
-            </SkeletonSection>
+            </Skeleton>
           );
         })}
       </div>

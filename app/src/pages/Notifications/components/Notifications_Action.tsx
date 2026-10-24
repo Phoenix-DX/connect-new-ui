@@ -5,7 +5,7 @@ import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -64,7 +64,7 @@ export function Notifications_Action({
           id="b11-$b2"
           columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast }}
           left={
-            <SkeletonSection id="b11-$b3" inIsLoading={!isLoaded}>
+            <Skeleton id="b11-$b3" isLoading={!isLoaded}>
               {filterDot}
               <div className="display-flex" data-container="">
                 <IconText id="b11-$b5" text="Sort" textOptions={{ Color: UBT_Color.Primary }} onClicked={iconClick}>
@@ -84,10 +84,10 @@ export function Notifications_Action({
                   onClick={iconClick}
                 />
               </div>
-            </SkeletonSection>
+            </Skeleton>
           }
           right={
-            <SkeletonSection id="b11-$b8" inIsLoading={!isLoaded}>
+            <Skeleton id="b11-$b8" isLoading={!isLoaded}>
               {filterDot}
               <div className="display-flex" data-container="">
                 <label className="margin-right-s OSFillParent" data-label="">
@@ -106,7 +106,7 @@ export function Notifications_Action({
                   />
                 </span>
               </div>
-            </SkeletonSection>
+            </Skeleton>
           }
         />
       </CustomContainer>

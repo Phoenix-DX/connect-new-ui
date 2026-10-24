@@ -7,7 +7,7 @@ import { HouseholdDetailsContainer, useHouseholdDetailsFlags } from '@/container
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { useHouseholdCarousel } from './hooks/useHouseholdCarousel';
 import { readHouseholdCarouselInputs } from './inputs';
 
@@ -39,11 +39,11 @@ export default function HouseholdCarousel() {
       inIsPrimaryColor={false}
       placeholderHeaderTitle={
         // The header title: a skeleton while HouseholdHeader is "".
-        <SkeletonSection id="$b2" inIsLoading={carousel.householdHeader === ''}>
+        <Skeleton id="$b2" isLoading={carousel.householdHeader === ''}>
           <span data-expression="">
             {carousel.householdHeader !== '' ? carousel.householdHeader : 'Unavailable, Unavailable'}
           </span>
-        </SkeletonSection>
+        </Skeleton>
       }
       content={
         <>

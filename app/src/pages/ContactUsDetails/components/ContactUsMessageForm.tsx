@@ -6,7 +6,7 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { TextAreaWithCounter } from '@/components/ui/TextAreaWithCounter';
 import { MessageTextArea } from './MessageTextArea';
 
@@ -74,7 +74,7 @@ export function ContactUsMessageForm({
           <span data-expression="">All fields are required.</span>
         </CustomContainer>
       )}
-      <SkeletonSection id="$b11" inIsLoading={isLoading}>
+      <Skeleton id="$b11" isLoading={isLoading}>
         <OSForm id="Form_ContactUs" style="form OSFillParent">
           {!isLogged && (
             <>
@@ -116,7 +116,7 @@ export function ContactUsMessageForm({
             </IconText>
           )}
         </OSForm>
-      </SkeletonSection>
+      </Skeleton>
     </DirectoryDetailSection>
   );
 }

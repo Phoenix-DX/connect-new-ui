@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { PendingBlock } from '@/shared/test/PendingBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { MainLayoutFixedTitle } from './MainLayoutFixedTitle';
 
 /* The screen gives the bottom bar (App_Common.BottomBarMenu) and CommonUI_InsideLayout. They read the session, so the
@@ -58,7 +58,7 @@ export const V2: Story = {
         style={{ position: 'relative' }}
       >
         {Array.from({ length: 10 }, (_, i) => (
-          <SkeletonSection key={i} id={`l1-106_${String(i)}-$b14`} />
+          <Skeleton key={i} id={`l1-106_${String(i)}-$b14`} />
         ))}
       </div>
     ),

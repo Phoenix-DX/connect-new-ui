@@ -29,7 +29,7 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import type { Directory_Coordinates } from '@/shared/UBTConnect_Utils/lib/structures';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { Connect_Entity, UBT_Icons2 as UBTConnect_Icons2 } from '@/shared/UBTConnect/lib/staticEntities';
@@ -135,7 +135,7 @@ export function HouseholdDetailsView({
   const isLoading = dataFetchStatus !== DataFetchStatus.Fetched;
 
   const detailCard = (
-    <SkeletonSection inIsLoading={isLoading}>
+    <Skeleton isLoading={isLoading}>
       <ImageCard
         inIsBookmarked={isBookmarked}
         inCardTypeId={UBT_ImageCardType.Detail}
@@ -183,11 +183,11 @@ export function HouseholdDetailsView({
           />
         }
       />
-    </SkeletonSection>
+    </Skeleton>
   );
 
   const callToAction = hidePhotobookActions ? null : (
-    <SkeletonSection inIsLoading={isLoading}>
+    <Skeleton isLoading={isLoading}>
       <CustomContainer
         options={{
           Background: { BackgroundColor: UBT_Color.Neutral0 },
@@ -227,7 +227,7 @@ export function HouseholdDetailsView({
           </CustomContainer>
         )}
       </CustomContainer>
-    </SkeletonSection>
+    </Skeleton>
   );
 
   return (

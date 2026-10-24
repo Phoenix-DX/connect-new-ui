@@ -1,15 +1,22 @@
-# SkeletonSection
+# Skeleton
 
 OutSystems: `UBTConnectLibrary.ConnectPatterns.SkeletonSection` · pack `migration/blocks/UBTConnectLibrary.ConnectPatterns.SkeletonSection.md`
 
-| Input                   | Type    | Prop                     | Default |
-| ----------------------- | ------- | ------------------------ | ------- |
-| In_IsLoading            | Boolean | `inIsLoading`            | `false` |
-| In_ExtendedClass        | Text    | `inExtendedClass`        | `''`    |
-| In_IsActiveWhileLoading | Boolean | `inIsActiveWhileLoading` | `false` |
+The base skeleton of `components/ui` (P7-3; `docs/refactor/duplicates.md`, group 3). It renders the DOM of
+`SkeletonSection`: the block name in the DOM stays `ConnectPatterns.SkeletonSection`.
+
+| Input                   | Type    | Prop                   | Default |
+| ----------------------- | ------- | ---------------------- | ------- |
+| In_IsLoading            | Boolean | `isLoading`            | `false` |
+| In_ExtendedClass        | Text    | `extendedClass`        | `''`    |
+| In_IsActiveWhileLoading | Boolean | `isActiveWhileLoading` | `false` |
 
 Events: none. Placeholder: `Placeholder_LoadingSection` → `children`.
 Class: `In_ExtendedClass + " " + (In_IsLoading ? "ubt-skeleton-section" : "")`, kept verbatim.
+
+Users: 62 files in `components/`, `containers/` and `pages/` (46 routes by their own code). Not merged into this
+component: CardTextSkeleton, OrbitSkeleton, AssembleSummarySkeleton and the result-item skeletons of AssembleDetail and
+AssembleEvents. Each one has its own DOM.
 
 ## Captured variants (69 distinct; 4 tested)
 

@@ -18,7 +18,7 @@ import {
   UBT_Size,
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { SectionSeparator } from '@/components/ui/SectionSeparator';
 import type { UI_ListMenuOption, UI_MenuSection } from './types';
 
@@ -88,7 +88,7 @@ export function MenuList({ id, inMenuSection = {}, onOnClickMenuOption }: MenuLi
             const row = current(option, index);
             const iconRight = row.IconRight ?? UBT_Icons2.ChevronRight;
             return (
-              <SkeletonSection inIsLoading={row.IsLoading ?? false}>
+              <Skeleton isLoading={row.IsLoading ?? false}>
                 <CustomContainer
                   options={{
                     PaddingSize: { GeneralSizeId: UBT_Size.Small },
@@ -118,7 +118,7 @@ export function MenuList({ id, inMenuSection = {}, onOnClickMenuOption }: MenuLi
                       </>
                     }
                     right={
-                      <SkeletonSection inIsLoading={row.IconRightLoading ?? false}>
+                      <Skeleton isLoading={row.IconRightLoading ?? false}>
                         {row.useSwitch === true ? (
                           <div className="item-switch" data-container="">
                             <span>
@@ -153,11 +153,11 @@ export function MenuList({ id, inMenuSection = {}, onOnClickMenuOption }: MenuLi
                         ) : (
                           <Icon inIconId={iconRight} inSizeId={UBT_IconsSize.Base_24} inColorId={UBT_Color.Neutral7} />
                         )}
-                      </SkeletonSection>
+                      </Skeleton>
                     }
                   />
                 </CustomContainer>
-              </SkeletonSection>
+              </Skeleton>
             );
           }}
         </OSList>

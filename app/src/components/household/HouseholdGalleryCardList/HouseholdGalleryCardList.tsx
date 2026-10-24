@@ -3,7 +3,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DataFetchStatus, OSList } from '@/components/ui/os/OSList';
 import { Gallery } from '@/components/ui/Gallery';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
 import { HouseholdGalleryCard } from '@/components/household/HouseholdGalleryCard';
 import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
@@ -44,7 +44,7 @@ export function HouseholdGalleryCardList({
 }: HouseholdGalleryCardListProps) {
   return (
     <OSBlock name="Directory_Household_Blocks.Household_GalleryCard_List" id={id}>
-      <SkeletonSection inIsLoading={inIsLoading}>
+      <Skeleton isLoading={inIsLoading}>
         <DirectoryDetailSection inTitle={get_LookupSection(false).Households.Plural}>
           {inHouseholdGalleryCardList.length === 0 ? (
             <DirectoryEmptyState entityTypeId={Connect_Entity.Household} />
@@ -69,7 +69,7 @@ export function HouseholdGalleryCardList({
             </Gallery>
           )}
         </DirectoryDetailSection>
-      </SkeletonSection>
+      </Skeleton>
     </OSBlock>
   );
 }

@@ -18,7 +18,7 @@ import {
   UBT_Size,
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { Connect_Entity, UBT_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { countText, type CountriesFetchStatus, type UserGeography } from '@/pages/CountryList/hooks/countryListState';
@@ -98,7 +98,7 @@ export function CountryListContent({
   }`;
   return (
     <CustomContainer id="Content" options={{ PaddingSize: { GeneralSizeId: UBT_Size.Base } }}>
-      <SkeletonSection id="HeaderLoading" inIsLoading={!user.isFetched}>
+      <Skeleton id="HeaderLoading" isLoading={!user.isFetched}>
         <ColumnsTwo
           id="HeaderColumns"
           columnOptions={{ SpacingSize: UBT_Size.Small }}
@@ -145,7 +145,7 @@ export function CountryListContent({
             </CustomContainer>
           }
         />
-      </SkeletonSection>
+      </Skeleton>
       <CustomContainer id="Population" options={{ PaddingSize: { TopSizeId: UBT_Size.Base } }}>
         <CommunityPopulation
           id="$b18"
@@ -173,7 +173,7 @@ export function CountryListContent({
           }
         />
       </CustomContainer>
-      <SkeletonSection id="$b23" inIsLoading={isListLoading}>
+      <Skeleton id="$b23" isLoading={isListLoading}>
         <OSList
           className={listClass}
           animateItems
@@ -197,7 +197,7 @@ export function CountryListContent({
             </div>
           )}
         </OSList>
-      </SkeletonSection>
+      </Skeleton>
     </CustomContainer>
   );
 }

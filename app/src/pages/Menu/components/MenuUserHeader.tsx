@@ -11,7 +11,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 
 export interface MenuUserHeaderProps {
   /** The user record has not come yet: the skeleton shows. */
@@ -31,7 +31,7 @@ export interface MenuUserHeaderProps {
     @origin UBTConnect.App_Menu.Menu */
 export function MenuUserHeader({ isLoading, memberId, photoUrl, fullName, onEditYourAccount }: MenuUserHeaderProps) {
   return (
-    <SkeletonSection id="$b4" inIsLoading={isLoading}>
+    <Skeleton id="$b4" isLoading={isLoading}>
       <CustomContainer
         id="Header"
         options={{ PaddingSize: { VerticalSizeId: UBT_Size.Small, HorizontalSizeId: UBT_Size.Base } }}
@@ -77,6 +77,6 @@ export function MenuUserHeader({ isLoading, memberId, photoUrl, fullName, onEdit
           }
         />
       </CustomContainer>
-    </SkeletonSection>
+    </Skeleton>
   );
 }

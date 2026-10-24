@@ -5,7 +5,7 @@ import { osImage } from '@/legacy/os/os-assets';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -169,7 +169,7 @@ export const V3: Story = {
     contentPlaceholder: (
       <div className="content-placeholder">
         <div>
-          <SkeletonSection id="b1-b4-$b7" />
+          <Skeleton id="b1-b4-$b7" />
           <OSBlock name="CacheControl.CacheControl_Policies" id="b1-b4-$b11" />
         </div>
       </div>

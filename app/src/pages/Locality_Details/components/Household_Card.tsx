@@ -13,7 +13,7 @@ import {
   UBT_ImageSize,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { Connect_Entity, UBT_ImageSize as UBT_ImageSize_Utils } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { useHouseholdCardMembers } from '@/pages/Locality_Details/hooks/useHouseholdCardMembers';
@@ -57,7 +57,7 @@ export function Household_Card({ id, household, onEventOnClickHousehold }: House
           />
         }
         avatarList={
-          <SkeletonSection id={`${b}-$b3`} inIsLoading={!isDataFetched}>
+          <Skeleton id={`${b}-$b3`} isLoading={!isDataFetched}>
             <UBT_LazyImage_List
               id={`${b}-$b4`}
               maxLimit={visibleAvatars}
@@ -65,7 +65,7 @@ export function Household_Card({ id, household, onEventOnClickHousehold }: House
               invertOrder
               imageSizeHeight={UBT_ImageSize_Utils.Small_40}
             />
-          </SkeletonSection>
+          </Skeleton>
         }
         placeholderContent={
           <ImageCardContent

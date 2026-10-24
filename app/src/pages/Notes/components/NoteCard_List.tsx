@@ -3,9 +3,9 @@ import { useEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
-import { EmptyList } from '@/components/ui/EmptyList';
+import { EmptyState } from '@/components/ui/EmptyState';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import type { NoteCardItem } from '@/api/note';
 import { child, scopeOf } from './ids';
 import { NoteCard_Item } from './NoteCard_Item';
@@ -73,12 +73,12 @@ export function NoteCard_List({
           PaddingSize: { HorizontalSizeId: UBT_Size.Base, TopSizeId: UBT_Size.Base },
         }}
       >
-        <SkeletonSection id={child(p, 2)} inIsLoading={inIsLoading}>
+        <Skeleton id={child(p, 2)} isLoading={inIsLoading}>
           {notes.length === 0 ? (
-            <EmptyList
+            <EmptyState
               id={child(p, 3)}
               iconId={UBT_Icons2_Bookmark}
-              titlePlaceholder={
+              title={
                 <CustomText
                   id={child(p, 4)}
                   inText="No Notes found"
@@ -89,7 +89,7 @@ export function NoteCard_List({
                   }}
                 />
               }
-              textPlaceholder={
+              text={
                 <>
                   <CustomText
                     id={child(p, 5)}
@@ -119,7 +119,7 @@ export function NoteCard_List({
               ))}
             </div>
           )}
-        </SkeletonSection>
+        </Skeleton>
       </CustomContainer>
     </OSBlock>
   );

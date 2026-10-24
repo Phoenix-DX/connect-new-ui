@@ -3,7 +3,7 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { MenuList } from '@/components/menu/MenuList';
 import { useNavigateBack } from '@/platform/navigation';
 import { CacheControl_Policies } from '@/shared/UBTConnect_Utils/CacheControl_Policies';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { useTermsAndPoliciesMenu } from './hooks/useTermsAndPoliciesMenu';
 
 /** @origin UBTConnect.App_Menu.TermsAndPoliciesMenu
@@ -23,9 +23,9 @@ export default function TermsAndPoliciesMenu() {
         onBack={navigateBack}
         headerTitle="Terms & Policies"
         content={
-          <SkeletonSection id="$b2" inIsLoading={isLoading}>
+          <Skeleton id="$b2" isLoading={isLoading}>
             <MenuList id="$b3" inMenuSection={menuSection} onOnClickMenuOption={onClickMenuOption} />
-          </SkeletonSection>
+          </Skeleton>
         }
         commonUI={<CommonUiLayout id="$b4" />}
       />

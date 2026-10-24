@@ -223,7 +223,7 @@ src/shared/UBTConnectLibrary/ContextMenu_Item,UBTConnectLibrary.ConnectPatterns.
 src/shared/UBTConnectLibrary/CustomContainer,UBTConnectLibrary.BasePatterns.CustomContainer,ui,src/components/ui/CustomContainer/CustomContainer.tsx,P7,64,moved,"43 route(s) by own code, 64 with src/shell/ (lock dialog)"
 src/shared/UBTConnectLibrary/CustomText,UBTConnectLibrary.BasePatterns.CustomText,ui,src/components/ui/CustomText/CustomText.tsx,P7,64,moved,"53 route(s) by own code, 64 with src/shell/ (lock dialog)"
 src/shared/UBTConnectLibrary/DynamicTextArea,UBTConnectLibrary.ConnectPatterns.DynamicTextArea,ui,src/components/ui/DynamicTextArea/DynamicTextArea.tsx,P7,5,moved,
-src/shared/UBTConnectLibrary/EmptyList,UBTConnectLibrary.ConnectPatterns.EmptyList,ui,src/components/ui/EmptyList/EmptyList.tsx,P7,13,moved,P7-3 EmptyState base; duplicates.md group 3
+src/shared/UBTConnectLibrary/EmptyList,UBTConnectLibrary.ConnectPatterns.EmptyList,ui,src/components/ui/EmptyState/EmptyState.tsx,P7,13,moved,P7-3 EmptyState base (renamed); duplicates.md group 3
 src/shared/UBTConnectLibrary/FixedFooter,UBTConnectLibrary.ConnectPatterns.FixedFooter,ui,src/components/ui/FixedFooter/FixedFooter.tsx,P7,9,moved,
 src/shared/UBTConnectLibrary/HighlightSearch,UBTConnectLibrary.ConnectPatterns.HighlightSearch,ui,src/components/ui/HighlightSearch/HighlightSearch.tsx,P7,64,moved,"53 route(s) by own code, 64 with src/shell/ (lock dialog)"
 src/shared/UBTConnectLibrary/HorizontalTagList,UBTConnectLibrary.ConnectPatterns.HorizontalTagList,ui,src/components/ui/HorizontalTagList/HorizontalTagList.tsx,P7,7,moved,
@@ -253,7 +253,7 @@ src/shared/UBTConnectLibrary/Popup,UBTConnectLibrary.ConnectPatterns.Popup,ui,sr
 src/shared/UBTConnectLibrary/PopupMenu,UBTConnectLibrary.ConnectPatterns.PopupMenu,ui,src/components/ui/PopupMenu/PopupMenu.tsx,P7,13,moved,
 src/shared/UBTConnectLibrary/SeeMoreSection,UBTConnectLibrary.ConnectPatterns.SeeMoreSection,ui,src/components/ui/SeeMoreSection/SeeMoreSection.tsx,P7,5,moved,
 src/shared/UBTConnectLibrary/SelectionOption_List,UBTConnectLibrary.ConnectPatterns.SelectionOption_List,ui,src/components/ui/SelectionOptionList/SelectionOptionList.tsx,P7,5,moved,
-src/shared/UBTConnectLibrary/SkeletonSection,UBTConnectLibrary.ConnectPatterns.SkeletonSection,ui,src/components/ui/SkeletonSection/SkeletonSection.tsx,P7,64,moved,"46 route(s) by own code, 64 with src/shell/ (lock dialog); P7-3 Skeleton base"
+src/shared/UBTConnectLibrary/SkeletonSection,UBTConnectLibrary.ConnectPatterns.SkeletonSection,ui,src/components/ui/Skeleton/Skeleton.tsx,P7,64,moved,"46 route(s) by own code, 64 with src/shell/ (lock dialog); P7-3 Skeleton base (renamed)"
 src/shared/UBTConnectLibrary/StaticInput,UBTConnectLibrary.ConnectPatterns.StaticInput,ui,src/components/ui/StaticInput/StaticInput.tsx,P7,5,moved,
 src/shared/UBTConnectLibrary/Statistics_ListItem,UBTConnectLibrary.ConnectCorePatterns.Statistics_ListItem,component,src/components/directory/StatisticsListItem/StatisticsListItem.tsx,P6-G4,3,moved,routes: BrowseCountries BrowseDirectory Locality_Details
 src/shared/UBTConnectLibrary/SubLayout_HomePageSearch,UBTConnectLibrary.Layouts.SubLayout_HomePageSearch,layout,src/components/layout/HomeSearchSection/HomeSearchSection.tsx,P6-G1,2,moved,routes: HomeFeed Profile

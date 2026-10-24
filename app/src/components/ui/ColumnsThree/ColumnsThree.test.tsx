@@ -9,7 +9,7 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { UBT_ColumnBehaviour, UBT_Size, UBT_VerticalAlign } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { ColumnsThree } from './ColumnsThree';
 import * as stories from './ColumnsThree.stories';
@@ -47,7 +47,7 @@ describe('Columns_Three', () => {
         }}
         left={<Icon inIconId="connect-icon-mail" />}
         middle={<CustomText inText="Contact us" />}
-        right={<SkeletonSection />}
+        right={<Skeleton />}
       />,
     );
     expectToMatchCapture(columns3(container), columns3V2);

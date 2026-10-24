@@ -9,7 +9,7 @@ import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -187,13 +187,13 @@ export function PinUnlockContent({
           ) : (
             showPolicy && (
               <>
-                <SkeletonSection id={childId(7)} inIsLoading={!isPoliciesFetched}>
+                <Skeleton id={childId(7)} isLoading={!isPoliciesFetched}>
                   <ColumnsTwo
                     id={childId(8)}
                     left={policyLink(9, policies?.PolicyInformation_TermsAndConditions, 'Terms & Conditions', 'left')}
                     right={policyLink(10, policies?.PolicyInformation_PrivacyPolicy, 'Our Privacy Policy', 'right')}
                   />
-                </SkeletonSection>
+                </Skeleton>
                 {renderCacheControlPolicies?.(childId(11))}
               </>
             )

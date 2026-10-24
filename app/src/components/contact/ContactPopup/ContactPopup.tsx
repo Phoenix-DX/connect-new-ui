@@ -11,7 +11,7 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
 import { LazyImage } from '@/components/ui/LazyImage';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import {
   UBT_ButtonSize,
   UBT_ButtonType,
@@ -98,9 +98,9 @@ export function ContactPopup({
           </CustomContainer>
           {showTimezone &&
             ((data.IsFetchingTimezone ?? false) ? (
-              <SkeletonSection inIsLoading>
+              <Skeleton isLoading>
                 <span data-expression="">Fetching the user Timezone</span>
-              </SkeletonSection>
+              </Skeleton>
             ) : (
               <CustomContainer
                 options={{
@@ -119,7 +119,7 @@ export function ContactPopup({
             ))}
         </div>
         {(data.ShowImage ?? false) && (
-          <SkeletonSection inIsLoading={isLoading && imageURL === ''}>
+          <Skeleton isLoading={isLoading && imageURL === ''}>
             {(data.IsAvatarImage ?? false) ? (
               <div className="ubt-object-fit-avatar-img" data-container="">
                 <EntityLazyImage
@@ -142,7 +142,7 @@ export function ContactPopup({
                 </div>
               </div>
             )}
-          </SkeletonSection>
+          </Skeleton>
         )}
         {displayContactNumber !== '' && (
           <CustomContainer
@@ -154,7 +154,7 @@ export function ContactPopup({
             <span data-expression="">{displayContactNumber}</span>
           </CustomContainer>
         )}
-        <SkeletonSection inIsLoading={isLoading}>
+        <Skeleton isLoading={isLoading}>
           <CustomContainer options={{ PaddingSize: { TopSizeId: UBT_Size.Medium } }}>
             <div className="list list-group list--gap-s OSFillParent" data-list="">
               {buttons.map((button, row) => (
@@ -192,7 +192,7 @@ export function ContactPopup({
               </Button>
             </CustomContainer>
           </CustomContainer>
-        </SkeletonSection>
+        </Skeleton>
       </CustomContainer>
     </div>
   );

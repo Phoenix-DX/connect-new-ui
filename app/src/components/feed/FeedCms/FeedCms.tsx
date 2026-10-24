@@ -3,7 +3,7 @@ import { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { LazyImage } from '@/components/ui/LazyImage';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -186,7 +186,7 @@ export function FeedCms({
   return (
     <OSBlock name="Blocks.Embedded_FeedCMS" id={id}>
       {isLoading && (
-        <SkeletonSection id={prefix === undefined ? undefined : `${prefix}-$b1`} inIsLoading>
+        <Skeleton id={prefix === undefined ? undefined : `${prefix}-$b1`} isLoading>
           <CustomContainer options={{ Background: { BackgroundColor: UBT_Color.Neutral0 } }}>
             <div className="list list-group OSFillParent" data-list="">
               {loadingList.map((item) => (
@@ -201,7 +201,7 @@ export function FeedCms({
               ))}
             </div>
           </CustomContainer>
-        </SkeletonSection>
+        </Skeleton>
       )}
       <div
         className={`overflow-hidden ${isLoading ? 'display-none' : ''}${feedItemId !== '' ? ' feed--single-item' : ''}`}

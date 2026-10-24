@@ -5,7 +5,7 @@ import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { IconText } from '@/components/ui/IconText';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import {
   UBT_Color,
   UBT_ColumnBehaviour,
@@ -58,7 +58,7 @@ export function UpdateItem_Header({
           id={`${scope}-$b2`}
           columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast }}
           left={
-            <SkeletonSection id={`${scope}-$b3`} inIsLoading={isLoading}>
+            <Skeleton id={`${scope}-$b3`} isLoading={isLoading}>
               <IconText
                 id={`${scope}-$b4`}
                 isIconOnRight
@@ -80,7 +80,7 @@ export function UpdateItem_Header({
                   />
                 )}
               </IconText>
-            </SkeletonSection>
+            </Skeleton>
           }
           right={
             showMarkAll && (

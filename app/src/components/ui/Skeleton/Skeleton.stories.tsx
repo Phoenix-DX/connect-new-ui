@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { SkeletonSection } from './SkeletonSection';
+import { Skeleton } from './Skeleton';
 
 const meta = {
   title: 'Shared/UBTConnectLibrary/SkeletonSection',
-  component: SkeletonSection,
-} satisfies Meta<typeof SkeletonSection>;
+  component: Skeleton,
+} satisfies Meta<typeof Skeleton>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
@@ -33,6 +33,6 @@ export const V1: Story = {
 /** BrowseCountries/default */
 export const V2: Story = { args: { children: statisticsRows(17) } };
 /** BrowseCountries/loading */
-export const V3: Story = { args: { inIsLoading: true, children: statisticsRows(10) } };
+export const V3: Story = { args: { isLoading: true, children: statisticsRows(10) } };
 /** BrowseDirectory/default */
 export const V4: Story = { args: { children: statisticsRows(3) } };

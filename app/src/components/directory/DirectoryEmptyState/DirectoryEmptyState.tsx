@@ -1,7 +1,7 @@
 /** @origin UBTConnect.Directory_CommonBlocks.Directory_EmptyState */
 // @os-block UBTConnect.Directory_CommonBlocks.Directory_EmptyState
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import { EmptyList } from '@/components/ui/EmptyList';
+import { EmptyState } from '@/components/ui/EmptyState';
 import { getEntityType_Icon } from '@/shared/UBTConnect_Utils/lib/actions';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
 
@@ -13,19 +13,19 @@ export interface DirectoryEmptyStateProps {
   location?: string;
 }
 
-/** Empty directory list (migration/blocks/sources/UBTConnect.Directory_CommonBlocks.Directory_EmptyState.mvc.js:154-225,
-    no capture): EmptyList with the entity type's icon (GetEntityType_Icon), the title "No <entities> <location>" and
-    the text "There doesn't seem to be any <entity> in" + "this locality.". Interchange is pluralized in lower case. */
+/** Empty directory list, a preset of `EmptyState` (components/ui; the compiled view is the reference, no capture):
+    the entity type's icon (GetEntityType_Icon), the title "No <entities> <location>" and the text
+    "There doesn't seem to be any <entity> in" + "this locality.". Interchange is pluralized in lower case. */
 export function DirectoryEmptyState({ id, entityTypeId = '', location = 'found nearby' }: DirectoryEmptyStateProps) {
   const isInterchange = entityTypeId === Connect_Entity.Interchange;
   return (
     <OSBlock name="Directory_CommonBlocks.Directory_EmptyState" id={id}>
-      <EmptyList
+      <EmptyState
         iconId={getEntityType_Icon(entityTypeId)}
-        titlePlaceholder={
+        title={
           <span data-expression="">{`No ${isInterchange ? `${entityTypeId.toLowerCase()}s` : entityTypeId} ${location}`}</span>
         }
-        textPlaceholder={
+        text={
           <>
             <span data-expression="">{`There doesn't seem to be any ${entityTypeId.toLowerCase()}${isInterchange ? 's' : ''} in`}</span>
             <div data-container="">

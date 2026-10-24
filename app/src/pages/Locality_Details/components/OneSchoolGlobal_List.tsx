@@ -5,7 +5,7 @@ import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions
 import { ImageCard } from '@/components/ui/ImageCard';
 import { ImageCardContent } from '@/components/ui/ImageCardContent';
 import { UBT_ImageCardType, UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import type { ListRow } from '@/pages/Locality_Details/hooks/localityBlocksState';
@@ -43,7 +43,7 @@ export function OneSchoolGlobal_List({
   const b = id?.replace('$', '') ?? '';
   return (
     <OSBlock name="Directory_OneSchoolGlobal_Blocks.OneSchoolGlobal_List" id={id}>
-      <SkeletonSection id={`${b}-$b1`} inIsLoading={inIsLoading}>
+      <Skeleton id={`${b}-$b1`} isLoading={inIsLoading}>
         <OSList
           className="list list-group list--gap-s"
           animateItems
@@ -97,7 +97,7 @@ export function OneSchoolGlobal_List({
             );
           }}
         </OSList>
-      </SkeletonSection>
+      </Skeleton>
     </OSBlock>
   );
 }

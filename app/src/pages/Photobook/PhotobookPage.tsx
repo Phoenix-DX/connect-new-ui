@@ -9,7 +9,7 @@ import { APP_ID } from '@/platform/navigation/paths';
 import type { CarouselPreloadedHouseholds } from '@/shared/UBTConnect/lib/structures';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_Display, UBT_FontSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { Photobook_Carousel } from './components/Photobook_Carousel';
 import { UBT_AlignItems, UBT_FlexDirection, UBT_JustifyContent } from './components/staticEntities';
 import { usePhotobook } from './hooks/usePhotobook';
@@ -69,7 +69,7 @@ export default function Photobook() {
     <>
       <LayoutRuntimeTop id="$b1" />
       <CommonUiLayout id="$b2" />
-      <SkeletonSection id="$b3" inIsLoading={isLoading}>
+      <Skeleton id="$b3" isLoading={isLoading}>
         {!isLoading && households !== null ? (
           <Photobook_Carousel
             id="$b4"
@@ -80,7 +80,7 @@ export default function Photobook() {
         ) : (
           <CustomContainer id="$b5" options={LOADING_OPTIONS} />
         )}
-      </SkeletonSection>
+      </Skeleton>
     </>
   );
 }

@@ -3,7 +3,7 @@ import type { EntertainingConfig } from '@/api/entertaining';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { LazyImage } from '@/components/ui/LazyImage';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -179,7 +179,7 @@ export function Embedded_MyEntertaining({
     <OSBlock name="Blocks.Embedded_MyEntertaining" id={id}>
       <div className={`overflow-hidden ${isLoading ? 'display-none' : ''}`} data-container="" id={containerId} />
       {isLoading && (
-        <SkeletonSection id={prefix === undefined ? undefined : `${prefix}-$b1`} inIsLoading>
+        <Skeleton id={prefix === undefined ? undefined : `${prefix}-$b1`} isLoading>
           <CustomContainer
             id={prefix === undefined ? undefined : `${prefix}-$b2`}
             options={{ Background: { BackgroundColor: UBT_Color.Neutral0 } }}
@@ -202,7 +202,7 @@ export function Embedded_MyEntertaining({
               ))}
             </div>
           </CustomContainer>
-        </SkeletonSection>
+        </Skeleton>
       )}
     </OSBlock>
   );

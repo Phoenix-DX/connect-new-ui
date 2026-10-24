@@ -18,7 +18,7 @@ import { useClientVar } from '@/platform/session/session';
 import { ActionsMenu } from '@/components/ui/ActionsMenu';
 import { ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT } from '@/shared/UBTConnectLibrary/lib/actions';
 import type { ActionsMenuEnableOptions, ActionsMenuOptions, Notes } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { ContactByMessage } from '@/components/contact/ContactByMessage';
 import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import { getHasExtendedShare, getHasNewBookmarks } from '@/shared/UBTConnect_Utils/lib/actions';
@@ -422,7 +422,7 @@ export function EntityDetailsActionsContainer({
 
   return (
     <OSBlock name="Directory_CommonBlocks.Directory_EntityDetailsActions" id={id}>
-      <SkeletonSection inIsLoading={isLoading}>
+      <Skeleton isLoading={isLoading}>
         <ActionsMenu
           isEnabled={isEnabled}
           inShowLabels={showIconLabels}
@@ -454,7 +454,7 @@ export function EntityDetailsActionsContainer({
             handleMail(true);
           }}
         />
-      </SkeletonSection>
+      </Skeleton>
       <ContactByMessage
         inContactPopupData={{
           Email: details?.Email ?? '',

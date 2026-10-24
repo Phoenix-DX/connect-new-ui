@@ -1,5 +1,5 @@
 import type { CurrentService, Service } from '@/api/service';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import type { ServicesLists } from '@/pages/Services/hooks/servicesState';
 import { FavouriteServiceList } from './FavouriteServiceList';
 import type { DragEndHandler } from './setupList';
@@ -39,7 +39,7 @@ export function ServicesContent({
 }: ServicesContentProps) {
   return (
     <div data-container="" id={id}>
-      <SkeletonSection id="Content" inIsLoading={isSkeletonLoading}>
+      <Skeleton id="Content" isLoading={isSkeletonLoading}>
         <FavouriteServiceList
           services={lists.currentServices}
           isFetching={isFetching}
@@ -56,7 +56,7 @@ export function ServicesContent({
             onAdd={onAdd}
           />
         )}
-      </SkeletonSection>
+      </Skeleton>
     </div>
   );
 }

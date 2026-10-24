@@ -8,10 +8,10 @@ import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import { CircleButtonWithLabel } from '@/components/ui/CircleButtonWithLabel';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { EmptyList } from '@/components/ui/EmptyList';
+import { EmptyState } from '@/components/ui/EmptyState';
 import { Icon } from '@/components/ui/Icon';
 import { Input } from '@/components/ui/Input';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import {
   Shape,
   UBT_ButtonSize,
@@ -316,7 +316,7 @@ export function ShareSheetContainer({
                         </CustomContainer>
                       </div>
                       {!(recentFetched && recentlyShared.length === 0) && (
-                        <SkeletonSection inIsLoading={!recentFetched}>
+                        <Skeleton isLoading={!recentFetched}>
                           <ShareSheetSection
                             placeholderTitle={
                               <ShareSheetSectionTitle
@@ -355,7 +355,7 @@ export function ShareSheetContainer({
                               </div>
                             }
                           />
-                        </SkeletonSection>
+                        </Skeleton>
                       )}
                     </div>
                   </CustomContainer>
@@ -434,10 +434,10 @@ export function ShareSheetContainer({
                     >
                       {searchResultItemList.length === 0 && isSearching && availableFetched ? (
                         <div data-container="">
-                          <EmptyList
+                          <EmptyState
                             iconId={UBT_Icons.Search}
-                            titlePlaceholder={<span data-expression="">{`No results found for '${searchTerm}'`}</span>}
-                            textPlaceholder={
+                            title={<span data-expression="">{`No results found for '${searchTerm}'`}</span>}
+                            text={
                               <span data-expression="">
                                 Sorry, we couldn’t find any results for your search. Please check your spelling or try
                                 different keywords.
@@ -446,9 +446,7 @@ export function ShareSheetContainer({
                           />
                         </div>
                       ) : searchResultItemList.length === 0 && recentFetched && !isSearching ? null : (
-                        <SkeletonSection
-                          inIsLoading={(isSearching && !availableFetched) || (!isSearching && !recentFetched)}
-                        >
+                        <Skeleton isLoading={(isSearching && !availableFetched) || (!isSearching && !recentFetched)}>
                           <CustomContainer options={{ PaddingSize: { HorizontalSizeId: UBT_Size.Small } }}>
                             <ShareSheetSectionTitle inLabel={isSearching ? 'Results' : 'Recently shared'} />
                           </CustomContainer>
@@ -489,7 +487,7 @@ export function ShareSheetContainer({
                               </SearchResultItem>
                             ))}
                           </div>
-                        </SkeletonSection>
+                        </Skeleton>
                       )}
                     </div>
                   </CustomContainer>

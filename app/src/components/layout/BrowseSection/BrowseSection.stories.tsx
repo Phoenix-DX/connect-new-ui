@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PendingBlock } from '@/shared/test/PendingBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { BrowseSection } from './BrowseSection';
 
 const meta = {
@@ -32,7 +32,7 @@ export const V2: Story = {
     placeholderTopSection: <CustomContainer>Search</CustomContainer>,
     placeholderBottomSection: (
       <>
-        <SkeletonSection inIsLoading />
+        <Skeleton isLoading />
         <CustomContainer>List</CustomContainer>
       </>
     ),

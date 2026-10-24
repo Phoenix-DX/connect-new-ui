@@ -4,7 +4,7 @@ import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSLink } from '@/shared/lib/OSLink';
 import { Icon } from '@/components/ui/Icon';
 import { IconBadge } from '@/components/ui/IconBadge';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { UBT_Color, UBT_IconsSize } from '@/shared/UBTConnect/lib/staticEntities';
 
 export interface BottomBarIconBadgeProps {
@@ -34,7 +34,7 @@ export function BottomBarIconBadge({
   const iconClick = () => onOnClick?.();
   return (
     <OSBlock name="App_Common_Blocks.App_IconBadge" id={id}>
-      <SkeletonSection inIsLoading={isLoading || badgeNumber === '-1'}>
+      <Skeleton isLoading={isLoading || badgeNumber === '-1'}>
         {badgeNumber !== '0' ? (
           <OSLink onClick={iconClick}>
             <IconBadge
@@ -60,7 +60,7 @@ export function BottomBarIconBadge({
             onClick={iconClick}
           />
         )}
-      </SkeletonSection>
+      </Skeleton>
     </OSBlock>
   );
 }

@@ -158,6 +158,10 @@ The codemod runs on plain Node 24 (it loads ts-morph from `app/node_modules`). I
 - Only rewrite `../` imports to `@/`: `node migration/tools/refactor/move.ts --alias-only [--dry-run]`
 - `--no-typecheck` skips the typecheck at the end. `import.meta.glob` patterns are not rewritten; the tool prints a warning.
 
+## Refactor prop rename (P7-3)
+
+- `node migration/tools/refactor/p7-3-rename-props.ts <component file> <PropsInterface> old=new [old=new ...]`: renames props of a component in the component and in every user (ts-morph language service rename). Used for EmptyState and Skeleton.
+
 ## Refactor measurement (P0-4)
 
 - `node migration/tools/refactor/measure.mjs`: writes `app/docs/refactor/inventory.csv`, `routes.csv` and `calls-by-domain.md` from `app/src` (AST scan). Then run `npx prettier --write docs/refactor/calls-by-domain.md` in `app`.

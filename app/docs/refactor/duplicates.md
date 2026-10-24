@@ -173,6 +173,10 @@ Found while building the map: `ConnectBlankSlate` (3 routes), Orbit `NoResults` 
 Plan (P7-3): `EmptyState` = `EmptyList` renamed, the base in `components/ui`. `DirectoryEmptyState` stays a preset in
 `components/directory`. The others keep their DOM as their own components. No merge.
 
+Status: done in P7-3. `EmptyList` is `components/ui/EmptyState` (props `title`, `text`) and `SkeletonSection` is
+`components/ui/Skeleton` (props `isLoading`, `extendedClass`, `isActiveWhileLoading`): 2 renames, no merge. The
+empty-state and skeleton blocks of this group render other DOM and stay separate.
+
 Skeletons are the same case:
 `SkeletonSection` (ui), `Skeleton_Loading` (orbit), `NC_Card_Item_Text__Skeleton`, `AssembleSummaryDetailHeader_Skeleton`
 render different DOM; P7-3 keeps them.

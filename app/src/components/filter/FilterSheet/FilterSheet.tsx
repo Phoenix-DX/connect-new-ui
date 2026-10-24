@@ -13,7 +13,7 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { SelectionOptionList } from '@/components/ui/SelectionOptionList';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import {
   UBT_ButtonSize,
@@ -525,8 +525,8 @@ export function FilterSheet({
   };
 
   const main = (
-    <SkeletonSection
-      inIsLoading={
+    <Skeleton
+      isLoading={
         !(isFetched(v.localities) || isFetched(v.user)) &&
         hasLocalities &&
         !(isFetched(v.countries) || !isFetched(v.user)) &&
@@ -609,7 +609,7 @@ export function FilterSheet({
           </CustomContainer>
         ))}
       </div>
-    </SkeletonSection>
+    </Skeleton>
   );
 
   return (

@@ -25,7 +25,7 @@ import {
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { Notes } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { ActionButton } from '@/components/ui/ActionButton';
 import { UBT_ImageSize as UBTConnect_Utils_ImageSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
@@ -139,7 +139,7 @@ export function HouseholdRelationsView({
 
   return (
     <OSBlock name="Directory_Household.HouseholdRelations_Block" id={id}>
-      <SkeletonSection inIsLoading={isMemberDetailsLoading}>
+      <Skeleton isLoading={isMemberDetailsLoading}>
         <CustomContainer options={{ MarginSize: { TopSizeId: UBT_Size.Small } }}>
           <CustomContainer
             options={{
@@ -199,8 +199,8 @@ export function HouseholdRelationsView({
             }
           />
         </CustomContainer>
-      </SkeletonSection>
-      <SkeletonSection inIsLoading={isLoading}>
+      </Skeleton>
+      <Skeleton isLoading={isLoading}>
         {hasRelations ? (
           <>
             <DirectoryDetailSection
@@ -298,7 +298,7 @@ export function HouseholdRelationsView({
             No relation or household information avaialble.
           </div>
         )}
-      </SkeletonSection>
+      </Skeleton>
       <NotesSheet
         inNoteCategoryId={NoteCategory2.Member}
         inItemId={memberId}

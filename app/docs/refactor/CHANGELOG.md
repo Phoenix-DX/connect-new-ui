@@ -779,3 +779,10 @@
 - Architecture: `components/ui/Dialog` has `Dialog` and the variants `ConfirmDialog` (was the platform ActionConfirmationDialog), `ChoiceDialog` and `NavigationDialog` (`variant="connect"` is Dialog_Navigation). `DialogExitConfirmation` and `DialogAccessRestrictedAction` use the `Dialog` markup. `Dialog_AccessRestrictedAction_Legacy` is `platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx`. 4 merges, 29 user files; ChoiceDialog and NavigationDialog take the props `header`, `body`, `confirmLabel`, `dismissLabel`.
 - Deviations: no host moved to `app/`; `src/app/dialogs.ts` (`connectDialogs()`) connects both ways. NavigationDialog keeps its own `dx-before-navigation` listener (no `useNavigationConfirmation`). The legacy dialog is its own module (W21). Committed as one commit, because the merges share 6 files.
 - W21 first load: HomeFeed +0.28 kB, Login +0.25 kB gzip, under the 0.3 tripwire; HomeFeed margin now 3.55 kB. Gate: parity visual `--changed` 64 routes on both references, 0 differences; `ci` 3940 tests; baseline 71 rows, 0 new, 2 rows gone.
+
+## P7-3 - refactor(P7-3): EmptyState and Skeleton
+
+- Architecture: `components/ui/EmptyState` (was EmptyList; `DirectoryEmptyState` stays its preset) and `components/ui/Skeleton` (was SkeletonSection). 2 renames, no merge: the other empty-state and skeleton blocks render other DOM ([duplicates.md](duplicates.md) group 3, done).
+- Props renamed to the `components/ui` names: `title`, `text`; `isLoading`, `extendedClass`, `isActiveWhileLoading`. 63 user files.
+- Evidence: harness 432 + 108 prop combinations, 85 call sites, 536 stories and 4171 end-of-test snapshots, 0 differences outside run-to-run timing. W21: HomeFeed 244.65 kB (+0.02), Login 184.70 kB (+0.01) gzip. Gate: parity visual `--changed` 64 routes on both references, 0 differences; baseline 71 rows, 0 new.
+- Committed as one commit, because 2 user files (`NoteCard_List.tsx`, `ShareSheetContainer.tsx`) are in both merges. New tool: `migration/tools/refactor/p7-3-rename-props.ts`.

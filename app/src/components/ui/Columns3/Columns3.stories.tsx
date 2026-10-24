@@ -4,7 +4,7 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { Columns3 } from './Columns3';
 
@@ -40,7 +40,7 @@ export const V2: Story = {
     extendedClass: 'ubt-columns ubt-columns--three-columns ubt-columns-expand-middle align-items-center',
     column1: column('left', <Icon inIconId="connect-icon-mail" />),
     column2: column('middle', <CustomText inText="Contact us" />),
-    column3: column('right', <SkeletonSection />),
+    column3: column('right', <Skeleton />),
   },
 };
 /** CountryDetails/default */

@@ -5,7 +5,7 @@ import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState'
 import { EntityDetailsActionsContainer } from '@/containers/EntityDetailsActions/EntityDetailsActionsContainer';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { StatisticsListItem } from '@/components/directory/StatisticsListItem';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 
@@ -51,7 +51,7 @@ export function Directory_Interchange_StatisticsList({
           PaddingSize: { VerticalSizeId: UBT_Size.Small, HorizontalSizeId: UBT_Size.Base },
         }}
       >
-        <SkeletonSection id={`${b}-$b2`} inIsLoading={inIsLoading}>
+        <Skeleton id={`${b}-$b2`} isLoading={inIsLoading}>
           <OSList
             className="list list-group list--gap-s"
             animateItems
@@ -86,7 +86,7 @@ export function Directory_Interchange_StatisticsList({
               );
             }}
           </OSList>
-        </SkeletonSection>
+        </Skeleton>
         {inInterchangeList.length === 0 && !inIsLoading && (
           <DirectoryEmptyState id={`${b}-$b5`} entityTypeId={Connect_Entity.Interchange} location="in this locality" />
         )}

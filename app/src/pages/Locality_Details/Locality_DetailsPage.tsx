@@ -18,7 +18,7 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { ContainerOptions } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { StaticInput } from '@/components/ui/StaticInput';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { Locality_DateTimeLabel } from './components/Locality_DateTimeLabel';
@@ -107,13 +107,13 @@ function Locality_DetailsScreen() {
                       columnOptions={{ ColumnBehaviour: UBT_ColumnBehaviour.ReduceLast }}
                       extendedClasses="fit-content"
                       left={
-                        <SkeletonSection id={b(6)} inIsLoading={v.localityLabel === ''}>
+                        <Skeleton id={b(6)} isLoading={v.localityLabel === ''}>
                           <CustomContainer id={b(7)} options={FLEX_CENTER}>
                             <span className={LABEL_CLASS} data-expression="">
                               {v.localityLabel}
                             </span>
                           </CustomContainer>
-                        </SkeletonSection>
+                        </Skeleton>
                       }
                       right={
                         <CustomContainer id={b(8)} options={FLEX_CENTER}>
@@ -127,7 +127,7 @@ function Locality_DetailsScreen() {
                       }
                     />
                     {details.isDataFetched && details.localityDetails.timezoneName === '' ? null : (
-                      <SkeletonSection id={b(10)} inIsLoading={!details.isDataFetched || details.hasFetchError}>
+                      <Skeleton id={b(10)} isLoading={!details.isDataFetched || details.hasFetchError}>
                         <CustomContainer
                           id={b(11)}
                           options={{ TextOptions: { FontSize: UBT_FontSize.DoubleExtraSmall } }}
@@ -143,7 +143,7 @@ function Locality_DetailsScreen() {
                             />
                           )}
                         </CustomContainer>
-                      </SkeletonSection>
+                      </Skeleton>
                     )}
                   </div>
                 </>
@@ -156,7 +156,7 @@ function Locality_DetailsScreen() {
             extendedClasses="background-neutral-0"
             options={{ PaddingSize: { VerticalSizeId: UBT_Size.Small } }}
           >
-            <SkeletonSection id={b(15)} inIsLoading={!v.isScreenInitialized}>
+            <Skeleton id={b(15)} isLoading={!v.isScreenInitialized}>
               <HorizontalTagList
                 id={b(16)}
                 extendedClasses="household-tag"
@@ -166,7 +166,7 @@ function Locality_DetailsScreen() {
                 inIsSingleSelection
                 onChanged={onTagsChanged}
               />
-            </SkeletonSection>
+            </Skeleton>
           </CustomContainer>
         </>
       }

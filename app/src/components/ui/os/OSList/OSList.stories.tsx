@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { TagToggle } from '@/components/ui/TagToggle';
 import { PendingBlock } from '@/shared/test/PendingBlock';
 import { OSList } from './OSList';
@@ -24,7 +24,7 @@ export const V1: Story = {
       animateItems={false}
       disableVirtualization
     >
-      {() => <SkeletonSection />}
+      {() => <Skeleton />}
     </OSList>
   ),
 };

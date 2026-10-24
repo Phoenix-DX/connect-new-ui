@@ -5,7 +5,7 @@ import { SupperMeetingCardContent } from '@/components/directory/SupperMeetingCa
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { ImageCard } from '@/components/ui/ImageCard';
 import { UBT_Color, UBT_ImageCardType, UBT_ImageSize, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import {
@@ -33,7 +33,7 @@ export function Locality_Subdivisions({ id, localityId = '0', flags }: Locality_
   const b = id?.replace('$', '') ?? '';
   return (
     <OSBlock name="Directory_Locality.Locality_Subdivisions" id={id}>
-      <SkeletonSection id={`${b}-$b1`} inIsLoading={isLoading}>
+      <Skeleton id={`${b}-$b1`} isLoading={isLoading}>
         <CustomContainer
           id={`${b}-Block_SubdivisionListWrapper`}
           options={{
@@ -82,7 +82,7 @@ export function Locality_Subdivisions({ id, localityId = '0', flags }: Locality_
             </OSList>
           )}
         </CustomContainer>
-      </SkeletonSection>
+      </Skeleton>
     </OSBlock>
   );
 }

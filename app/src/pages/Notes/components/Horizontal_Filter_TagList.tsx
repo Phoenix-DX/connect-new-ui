@@ -5,7 +5,7 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { formatClasses } from '@/shared/UBTConnectLibrary/lib/actions';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { Tag } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { TagToggle } from '@/components/ui/TagToggle';
 import { child, scopeOf } from './ids';
 
@@ -80,7 +80,7 @@ export function Horizontal_Filter_TagList({
             {filter}
           </div>
         </CustomContainer>
-        <SkeletonSection id={child(p, 3)} inIsLoading={inTagsLoading}>
+        <Skeleton id={child(p, 3)} isLoading={inTagsLoading}>
           <div className={`${listClass} OSFillParent`} data-list="" data-virtualization-disabled="">
             {list.map((tag, i) => (
               <TagToggle
@@ -94,7 +94,7 @@ export function Horizontal_Filter_TagList({
               />
             ))}
           </div>
-        </SkeletonSection>
+        </Skeleton>
       </CustomContainer>
     </OSBlock>
   );

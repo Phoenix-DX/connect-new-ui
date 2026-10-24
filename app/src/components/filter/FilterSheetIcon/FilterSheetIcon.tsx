@@ -3,7 +3,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { Icon } from '@/components/ui/Icon';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { UBT_Color, UBT_Icons2, UBT_IconsSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
 export interface FilterSheetIconProps {
@@ -36,7 +36,7 @@ export function FilterSheetIcon({
   };
   return (
     <OSBlock name="App_CommonBlocks_Filter.FilterSheet_Icon" id={id}>
-      <SkeletonSection inIsLoading={!isLoaded}>
+      <Skeleton isLoading={!isLoaded}>
         {haveFiltersApplied && (
           <Icon
             inIconId={UBT_Icons2.ErrorFill}
@@ -51,7 +51,7 @@ export function FilterSheetIcon({
           inColorId={UBT_Color.Neutral0}
           onClick={onClick}
         />
-      </SkeletonSection>
+      </Skeleton>
     </OSBlock>
   );
 }

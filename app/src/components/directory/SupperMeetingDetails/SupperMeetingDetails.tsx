@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ImageCard } from '@/components/ui/ImageCard';
 import { UBT_ImageCardType, UBT_ImageSize } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { get_LookupSection } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity } from '@/shared/UBTConnect/lib/staticEntities';
@@ -64,7 +64,7 @@ export function SupperMeetingDetails({
     <OSBlock name="Directory_SupperMeetings.SupperMeeting_DetailsBlock" id={id}>
       <DirectoryDetailLayout
         placeholderDetailCard={
-          <SkeletonSection inIsLoading={isLoading}>
+          <Skeleton isLoading={isLoading}>
             <ImageCard
               inCardTypeId={UBT_ImageCardType.Detail}
               lazyImagePlaceholder={
@@ -78,16 +78,16 @@ export function SupperMeetingDetails({
               placeholderImageTag={<div>{placeholderCarouselTag}</div>}
               placeholderContent={<SupperMeetingCardContent inShowAddress inSubdivisionCardContent={content} />}
             />
-          </SkeletonSection>
+          </Skeleton>
         }
         placeholderCallToAction={
-          <SkeletonSection inIsLoading={isLoading}>
+          <Skeleton isLoading={isLoading}>
             <div data-container="">
               <DirectoryDetailSection inTitle={get_LookupSection(false).Actions.Plural}>
                 {entityActions}
               </DirectoryDetailSection>
             </div>
-          </SkeletonSection>
+          </Skeleton>
         }
         placeholderContent={
           <SupperMeetingHouseholdList

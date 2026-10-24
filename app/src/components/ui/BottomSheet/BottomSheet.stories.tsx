@@ -4,7 +4,7 @@ import { PendingBlock } from '@/shared/test/PendingBlock';
 import { bindDragToOpen } from '@/components/ui/ConnectBottomSheet/jsNodes';
 import { ColumnsThree } from '@/components/ui/ColumnsThree';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { jSUtils_SetStyleProperty } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import { Shape } from '@/components/ui/lib/staticEntities';
@@ -75,7 +75,7 @@ export const V3: Story = {
     shape: Shape.Rounded,
     extendedClass: filterSheet,
     topBar: <ColumnsThree />,
-    content: placeholder('padding-s', <SkeletonSection />, <CustomContainer />),
+    content: placeholder('padding-s', <Skeleton />, <CustomContainer />),
   },
   render: (args) => <AsConnectBottomSheet {...args} footerHeight="72px" />,
 };
@@ -85,7 +85,7 @@ export const V4: Story = {
     shape: Shape.Rounded,
     extendedClass: 'ubt-bottom-sheet background-neutral-2 custom-padding',
     topBar: <ColumnsThree />,
-    content: placeholder('padding-s', <SkeletonSection />, <CustomContainer />),
+    content: placeholder('padding-s', <Skeleton />, <CustomContainer />),
   },
   render: (args) => <AsConnectBottomSheet {...args} footerHeight="72px" />,
 };

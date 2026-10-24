@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PendingBlock } from '@/shared/test/PendingBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { DirectoryDetailLayout } from './DirectoryDetailLayout';
 
 const meta = {
@@ -15,8 +15,8 @@ type Story = StoryObj<typeof meta>;
 export const V1: Story = {
   args: {
     id: 'b2-DirectoryDetailScreenContent',
-    placeholderDetailCard: <SkeletonSection>Detail card</SkeletonSection>,
-    placeholderCallToAction: <SkeletonSection>Actions</SkeletonSection>,
+    placeholderDetailCard: <Skeleton>Detail card</Skeleton>,
+    placeholderCallToAction: <Skeleton>Actions</Skeleton>,
     placeholderContent: (
       <div className="" data-container="">
         <PendingBlock name="Directory_Household_Blocks.HouseholdDetails_Members_Block" />
@@ -41,9 +41,9 @@ export const V2: Story = {
 export const V3: Story = {
   args: {
     id: '$b3',
-    placeholderDetailCard: <SkeletonSection>Detail card</SkeletonSection>,
+    placeholderDetailCard: <Skeleton>Detail card</Skeleton>,
     placeholderCallToAction: <CustomContainer>Actions</CustomContainer>,
-    placeholderContent: <SkeletonSection>Content</SkeletonSection>,
+    placeholderContent: <Skeleton>Content</Skeleton>,
   },
 };
 

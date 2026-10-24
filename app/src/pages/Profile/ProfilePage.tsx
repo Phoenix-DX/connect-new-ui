@@ -13,7 +13,7 @@ import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { ProfileDetailsForm } from './components/ProfileDetailsForm';
 import { ProfileFooter } from './components/ProfileFooter';
 import { ProfileHeader } from './components/ProfileHeader';
@@ -69,7 +69,7 @@ export default function Profile() {
         }
         content={
           <>
-            <SkeletonSection id="Content" inIsLoading={!isFetched}>
+            <Skeleton id="Content" isLoading={!isFetched}>
               <ProfileHeader
                 memberId={user?.MemberID ?? '0'}
                 photoUrl={user?.Directory_UserCurrent_Member.Photo.SignedURL ?? ''}
@@ -92,7 +92,7 @@ export default function Profile() {
                 onContactChange={onContactChange}
                 onShowAgeChange={onShowAgeChange}
               />
-            </SkeletonSection>
+            </Skeleton>
             {state.mainContainerId !== '' && (
               <ProfileFooter
                 contentContainerId={state.mainContainerId}

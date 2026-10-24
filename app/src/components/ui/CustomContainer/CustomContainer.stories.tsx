@@ -4,7 +4,7 @@ import { PendingBlock } from '@/shared/test/PendingBlock';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomText } from '@/components/ui/CustomText';
 import { UBT_Display } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { CustomContainer } from './CustomContainer';
 
 const meta = {
@@ -33,7 +33,7 @@ export const V1: Story = {
         <CustomContainer options={{ MarginSize: { VerticalSizeId: 's' } }}>
           <PendingBlock name="ConnectPatterns.Input" />
         </CustomContainer>
-        <SkeletonSection />
+        <Skeleton />
       </>
     ),
   },

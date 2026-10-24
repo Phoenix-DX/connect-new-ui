@@ -2,7 +2,7 @@
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import {
   UBT_Color,
   UBT_FontSize,
@@ -48,7 +48,7 @@ export function CommunityPopulation({ id, isLoading, total, onClick }: Community
             FontWeight: UBT_FontWeight.SemiBold,
           }}
         />
-        <SkeletonSection inIsLoading={isLoading}>
+        <Skeleton isLoading={isLoading}>
           <CustomText
             inTextOptions={{
               Color: UBT_Color.Neutral0,
@@ -57,7 +57,7 @@ export function CommunityPopulation({ id, isLoading, total, onClick }: Community
             }}
             inText={isLoading ? '00000' : formatCount(total)}
           />
-        </SkeletonSection>
+        </Skeleton>
       </CustomContainer>
     </OSBlock>
   );

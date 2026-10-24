@@ -6,7 +6,7 @@ import { InlineSVG } from '@/components/ui/InlineSVG';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { formatClasses, getClasses_LazyImageSize_Dev } from '@/shared/UBTConnectLibrary/lib/actions';
 import {
   UBT_Color,
@@ -83,7 +83,7 @@ export function LazyImage({
 
   return (
     <OSBlock name="ConnectPatterns.LazyImage" id={id}>
-      <SkeletonSection inIsLoading={isLoading}>
+      <Skeleton isLoading={isLoading}>
         <CustomContainer
           extendedClasses={
             (showFallback ? 'hidden ' : '') +
@@ -148,7 +148,7 @@ export function LazyImage({
             )}
           </CustomContainer>
         )}
-      </SkeletonSection>
+      </Skeleton>
     </OSBlock>
   );
 }

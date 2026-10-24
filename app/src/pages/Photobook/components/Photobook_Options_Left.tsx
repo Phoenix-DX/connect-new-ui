@@ -5,7 +5,7 @@ import { ConnectBottomSheet } from '@/components/ui/ConnectBottomSheet';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { Icon } from '@/components/ui/Icon';
 import { UBT_Color, UBT_Display, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { useHouseholdCaption } from '@/pages/Photobook/hooks/useHouseholdCaption';
 import {
   UBT_AlignItems,
@@ -87,7 +87,7 @@ export function Photobook_Options_Left({
           onOnClose={onCloseSheet}
           onInitialized={onSheetInitialized}
           content={
-            <SkeletonSection inIsLoading={isLoading}>
+            <Skeleton isLoading={isLoading}>
               <CustomContainer
                 options={{
                   DisplayOptions: {
@@ -100,7 +100,7 @@ export function Photobook_Options_Left({
               >
                 <SanitizedHtml value={caption} resetWhitelist={false} allowedTags="nobr,sup" />
               </CustomContainer>
-            </SkeletonSection>
+            </Skeleton>
           }
         />
       )}

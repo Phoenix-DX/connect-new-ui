@@ -20,7 +20,7 @@ import {
   UBT_Size,
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { UBT_IconSize } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { MAIN_ELEMENT_CLASS } from '@/pages/HomeFeed/hooks/feedServicesState';
 import { UBT_Shadow_Small, UBT_Icons2 } from '@/pages/HomeFeed/staticEntities';
@@ -156,7 +156,7 @@ export function FeedBlock_Services({
                         const itemScope = `${pageScope}-${itemKey(i)}`;
                         const isSvg = service.iconId.includes('SVG_');
                         return (
-                          <SkeletonSection key={itemScope} id={`${itemScope}-$b9`} inIsLoading={isLoading}>
+                          <Skeleton key={itemScope} id={`${itemScope}-$b9`} isLoading={isLoading}>
                             <CircleButtonWithLabel
                               id={`${itemScope}-$b10`}
                               borderColorId={UBT_Color.Neutral3}
@@ -175,7 +175,7 @@ export function FeedBlock_Services({
                               }
                               text={<span data-expression="">{service.name}</span>}
                             />
-                          </SkeletonSection>
+                          </Skeleton>
                         );
                       })}
                     </div>

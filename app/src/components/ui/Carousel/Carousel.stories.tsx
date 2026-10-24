@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { Gallery } from '@/components/ui/Gallery';
 import { CarouselNavigation } from '@/components/ui/lib/staticEntities';
 import { Carousel } from './Carousel';
@@ -40,7 +40,7 @@ export const V1: Story = {
       >
         {list(
           'list list-group ubt-services-carousel__list-items OSFillParent',
-          range(6).map((i) => <SkeletonSection key={i} inIsLoading={false} />),
+          range(6).map((i) => <Skeleton key={i} isLoading={false} />),
         )}
       </Gallery>,
     ),

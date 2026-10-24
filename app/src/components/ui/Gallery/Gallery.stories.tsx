@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { PendingBlock } from '@/shared/test/PendingBlock';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { Carousel } from '@/components/ui/Carousel';
 import * as carousel from '@/components/ui/Carousel/Carousel.stories';
 import { Gallery } from './Gallery';
@@ -34,7 +34,7 @@ const servicesGallery = (id: string, n: number) => (
       >
         {list(
           'list list-group ubt-services-carousel__list-items OSFillParent',
-          range(n).map((i) => <SkeletonSection key={i} inIsLoading={false} />),
+          range(n).map((i) => <Skeleton key={i} isLoading={false} />),
         )}
       </Gallery>,
     )}

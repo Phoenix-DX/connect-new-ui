@@ -4,7 +4,7 @@ import { OSList } from '@/components/ui/os/OSList';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { dateToText, listKeyOf, type FetchStatus } from '@/pages/Updates_SingleList/hooks/updatesSingleListState';
 import { SectionHeader } from './SectionHeader';
 
@@ -68,7 +68,7 @@ export function UpdatesList({
       {(item, i) => {
         const r = `l1-${listKey}_${i}`;
         return (
-          <SkeletonSection id={`${r}-$b14`} inIsLoading={isLoading}>
+          <Skeleton id={`${r}-$b14`} isLoading={isLoading}>
             <div className="updates-list__list-item" data-container="" data-plus-date={dateToText(item.date)}>
               {i !== 0 && (
                 <SectionHeader
@@ -111,7 +111,7 @@ export function UpdatesList({
               />
               <ScrollAnchor id={`${r}-$b17`} idIn={item.updateItemId} />
             </div>
-          </SkeletonSection>
+          </Skeleton>
         );
       }}
     </OSList>

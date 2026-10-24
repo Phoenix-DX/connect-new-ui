@@ -8,7 +8,7 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Connect_BottomBar_Items } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { FixedFooter } from '@/components/ui/FixedFooter';
 import { UBT_Color } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { HomeLayout } from './HomeLayout';
 
 /** Stories only: the signed-in session of the captures, 3 unread updates checked just now (no refresh call). */
@@ -64,7 +64,7 @@ export const V2: Story = {
     sVGHeight: 'calc(200px - var(--header-size))',
     content: (
       <>
-        <SkeletonSection id="Content" inIsLoading={false} />
+        <Skeleton id="Content" isLoading={false} />
         <FixedFooter
           id="$b49"
           contentContainerId="b1-ContentWrapper"

@@ -16,18 +16,22 @@ import {
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 
-export interface EmptyListProps {
+export interface EmptyStateProps {
   /** OutSystems instance id of the block. */
   id?: string;
-  /** UBT_Icons identifier of the icon in the circle. */
+  /** UBT_Icons identifier of the icon in the circle (input IconId). */
   iconId?: string;
-  /** Placeholder TitlePlaceholder. */
-  titlePlaceholder?: ReactNode;
-  /** Placeholder TextPlaceholder. */
-  textPlaceholder?: ReactNode;
+  /** Title line (placeholder TitlePlaceholder). */
+  title?: ReactNode;
+  /** Text below the title (placeholder TextPlaceholder). */
+  text?: ReactNode;
 }
 
-export function EmptyList({ id, iconId = '', titlePlaceholder, textPlaceholder }: EmptyListProps) {
+/** The empty state of a list or a search: a bordered, centred box with an icon in a primary circle, a title and a
+    text. The base of the empty states (presets: `components/directory/DirectoryEmptyState`). The other empty-state
+    blocks of the app (BlankSlate, ConnectBlankSlate, MessageListNoResults, OrbitNoInformation, OrbitNoResults,
+    NoBookmarks) have their own markup and stay separate components (`docs/refactor/duplicates.md`, group 3). */
+export function EmptyState({ id, iconId = '', title, text }: EmptyStateProps) {
   return (
     <OSBlock name="ConnectPatterns.EmptyList" id={id}>
       <CustomContainer
@@ -56,10 +60,10 @@ export function EmptyList({ id, iconId = '', titlePlaceholder, textPlaceholder }
           </div>
           <div className="text-align-center" data-container="">
             <div data-container="">
-              <div className="font-semi-bold font-size-base text-neutral-9 margin-bottom-xs">{titlePlaceholder}</div>
+              <div className="font-semi-bold font-size-base text-neutral-9 margin-bottom-xs">{title}</div>
             </div>
             <div data-container="">
-              <div className="font-regular font-size-s text-neutral-10">{textPlaceholder}</div>
+              <div className="font-regular font-size-s text-neutral-10">{text}</div>
             </div>
           </div>
         </div>

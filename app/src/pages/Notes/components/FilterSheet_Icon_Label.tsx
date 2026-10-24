@@ -16,7 +16,7 @@ import {
   UBT_IconsSize,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { child, scopeOf } from './ids';
 import { UBT_Icons2_ExpandMore } from './staticEntities';
 
@@ -46,7 +46,7 @@ export function FilterSheet_Icon_Label({
   };
   return (
     <OSBlock name="App_CommonBlocks_Filter.FilterSheet_Icon_Label" id={id}>
-      <SkeletonSection id={child(p, 1)} inIsLoading={!isLoaded}>
+      <Skeleton id={child(p, 1)} isLoading={!isLoaded}>
         {haveFiltersApplied && (
           <Icon
             id={child(p, 2)}
@@ -89,7 +89,7 @@ export function FilterSheet_Icon_Label({
             onClick={iconClick}
           />
         </CustomContainer>
-      </SkeletonSection>
+      </Skeleton>
     </OSBlock>
   );
 }

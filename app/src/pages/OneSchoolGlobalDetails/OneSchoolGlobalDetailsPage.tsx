@@ -28,7 +28,7 @@ import {
   UBT_Shape,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { ButtonGroup } from './components/ButtonGroup';
 import { ExpandableSection } from './components/ExpandableSection';
 import { External_Link } from './components/External_Link';
@@ -78,7 +78,7 @@ export default function OneSchoolGlobalDetails() {
   );
 
   const detailCard = (
-    <SkeletonSection id="$b4" inIsLoading={!isDataFetched}>
+    <Skeleton id="$b4" isLoading={!isDataFetched}>
       <ImageCard
         id="$b5"
         inIsBookmarked={state.LocalIsBookmarked}
@@ -152,7 +152,7 @@ export default function OneSchoolGlobalDetails() {
           />
         }
       />
-    </SkeletonSection>
+    </Skeleton>
   );
 
   const callToAction = (
@@ -175,7 +175,7 @@ export default function OneSchoolGlobalDetails() {
   );
 
   const content = (
-    <SkeletonSection id="$b15" inIsLoading={!isDataFetched}>
+    <Skeleton id="$b15" isLoading={!isDataFetched}>
       {hasStudentInformation && (
         <CustomContainer id="Block_StudentNumbers" options={{ Background: { BackgroundColor: UBT_Color.Neutral0 } }}>
           <ExpandableSection
@@ -252,7 +252,7 @@ export default function OneSchoolGlobalDetails() {
           <ComingSoon id="ComingSoon4" inTextOptions={COMING_SOON_TEXT} />
         </CustomContainer>
       </CustomContainer>
-    </SkeletonSection>
+    </Skeleton>
   );
 
   return (

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { LazyImage } from '@/components/ui/LazyImage';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { cache_SignedImageURL_Get } from '@/shared/UBTConnect_Utils/lib/actions';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import { onInitialize } from './onInitialize';
@@ -91,7 +91,7 @@ export function EntityLazyImage({
   const isMember = entityType === Connect_Entity.Member;
   return (
     <OSBlock name="CW_Image.UBT_LazyImage" id={id}>
-      <SkeletonSection inIsLoading={!isFetched}>
+      <Skeleton isLoading={!isFetched}>
         <LazyImage
           imageURL={localImageURL}
           fallbackPadding={locals.fallbackPadding}
@@ -107,7 +107,7 @@ export function EntityLazyImage({
             isMember ? `inline-block ubt-avatar-image${extendedClass !== '' ? ` ${extendedClass}` : ''}` : extendedClass
           }
         />
-      </SkeletonSection>
+      </Skeleton>
     </OSBlock>
   );
 }

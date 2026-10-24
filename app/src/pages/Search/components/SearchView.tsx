@@ -12,7 +12,7 @@ import { CustomText } from '@/components/ui/CustomText';
 import { HorizontalTagList } from '@/components/ui/HorizontalTagList';
 import { Input } from '@/components/ui/Input';
 import { Layout_DetailPage } from '@/shared/UBTConnectLibrary/Layout_DetailPage';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import {
   Shape,
   UBT_Color,
@@ -172,7 +172,7 @@ export function SearchView({
                     inTextOptions={{ ...TEXT_XS_NEUTRAL9, FontWeight: UBT_FontWeight.SemiBold }}
                   />
                 </CustomContainer>
-                <SkeletonSection inIsLoading={isLoading}>
+                <Skeleton isLoading={isLoading}>
                   {/* Places, Households and Members, then the no-match texts. */}
                   {(hasPlaces || (isLoading && showsCategory(selectedCategory, Connect_SearchCategories.Places))) && (
                     <SearchResult_Section
@@ -241,7 +241,7 @@ export function SearchView({
                       </CustomContainer>
                     </>
                   )}
-                </SkeletonSection>
+                </Skeleton>
               </>
             )}
           </>

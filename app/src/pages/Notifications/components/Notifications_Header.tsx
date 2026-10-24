@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/Badge';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { IconText } from '@/components/ui/IconText';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { UBT_Color_RedDark } from './staticEntities';
 
@@ -38,7 +38,7 @@ export function Notifications_Header({
       >
         <ColumnsTwo
           left={
-            <SkeletonSection inIsLoading={isLoading}>
+            <Skeleton isLoading={isLoading}>
               <IconText
                 isIconOnRight
                 text={title}
@@ -51,7 +51,7 @@ export function Notifications_Header({
               >
                 <Badge number={String(badgeNumber)} color={UBT_Color_RedDark} size={UBT_Size.ExtraSmall} />
               </IconText>
-            </SkeletonSection>
+            </Skeleton>
           }
         />
       </CustomContainer>

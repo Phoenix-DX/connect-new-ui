@@ -3,7 +3,7 @@ import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_Shape, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { UpdateListItem } from '@/components/feed/UpdateListItem';
 
 export interface FeedBlock_UpdatesProps {
@@ -52,7 +52,7 @@ export function FeedBlock_Updates({
   const listKey = hasData ? '89' : '58'; // the runtime list keys of the capture (data / loading rows)
   return (
     <OSBlock name="Home.FeedBlock_Updates" id={id}>
-      <SkeletonSection id={`${scope}-$b1`} inIsLoading={isLoading}>
+      <Skeleton id={`${scope}-$b1`} isLoading={isLoading}>
         <div
           className={`list list-group home-page--update-list${hasFetchError ? ' list-error' : ''} OSFillParent`}
           data-list=""
@@ -126,7 +126,7 @@ export function FeedBlock_Updates({
             );
           })}
         </div>
-      </SkeletonSection>
+      </Skeleton>
     </OSBlock>
   );
 }

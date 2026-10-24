@@ -14,7 +14,7 @@ import {
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import { Member_ListItem } from '@/shared/UBTConnectLibrary/Member_ListItem';
 import { NonMemberListItem } from '@/components/household/NonMemberListItem';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
 import { getSkeletonList_UI_HouseholdMembers } from '@/shared/UBTConnect/lib/actions';
 import { Connect_Entity, Connect_HouseholdMemberRole } from '@/shared/UBTConnect/lib/staticEntities';
@@ -83,7 +83,7 @@ export function HouseholdMemberList({
 
   return (
     <OSBlock name="Directory_Household_Blocks.HouseholdDetails_Members_Block" id={id}>
-      <SkeletonSection inIsLoading={isLoading}>
+      <Skeleton isLoading={isLoading}>
         <CustomContainer options={{ MarginSize: { BottomSizeId: UBT_Size.ExtraSmall } }}>
           <DirectoryDetailSection inTitle="Household members">
             <OSList
@@ -192,7 +192,7 @@ export function HouseholdMemberList({
             )}
           </OSList>
         </DirectoryDetailSection>
-      </SkeletonSection>
+      </Skeleton>
     </OSBlock>
   );
 }

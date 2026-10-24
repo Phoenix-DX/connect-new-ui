@@ -13,7 +13,7 @@ import {
   UBT_FontWeight,
   UBT_Size,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { StatisticsListItem } from '@/components/directory/StatisticsListItem';
 import { jSUtils_String_RemoveAccents } from '@/shared/UBTJavaScriptUtils/lib/actions';
 import type { TextStatisticsOptionsRecord } from '@/shared/UBTConnect/lib/structures';
@@ -126,7 +126,7 @@ export function StatisticsList({
             }}
           />
         </CustomContainer>
-        <SkeletonSection inIsLoading={inIsLoading}>
+        <Skeleton isLoading={inIsLoading}>
           {localList.length === 0 && searchString !== '' ? (
             <>
               <CustomText
@@ -171,7 +171,7 @@ export function StatisticsList({
               )}
             </OSList>
           )}
-        </SkeletonSection>
+        </Skeleton>
       </CustomContainer>
     </OSBlock>
   );

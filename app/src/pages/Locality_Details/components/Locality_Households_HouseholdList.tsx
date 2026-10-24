@@ -3,7 +3,7 @@ import { OSList } from '@/components/ui/os/OSList';
 import { DirectoryEmptyState } from '@/components/directory/DirectoryEmptyState';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_Size } from '@/shared/UBTConnectLibrary/lib/staticEntities';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { Connect_Entity } from '@/shared/UBTConnect_Utils/lib/staticEntities';
 import {
   useLocalityHouseholdList,
@@ -48,7 +48,7 @@ export function Locality_Households_HouseholdList({
           MarginSize: {},
         }}
       >
-        <SkeletonSection id={`${b}-$b2`} inIsLoading={!isDataFetched}>
+        <Skeleton id={`${b}-$b2`} isLoading={!isDataFetched}>
           {list.length === 0 ? (
             <DirectoryEmptyState id={`${b}-$b3`} entityTypeId={Connect_Entity.Household} />
           ) : (
@@ -69,7 +69,7 @@ export function Locality_Households_HouseholdList({
               )}
             </OSList>
           )}
-        </SkeletonSection>
+        </Skeleton>
       </CustomContainer>
     </OSBlock>
   );

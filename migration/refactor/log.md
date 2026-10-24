@@ -813,3 +813,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T12:52:48 P7-2 stage test
 - 2026-10-24T13:00:56 P7-2 stage docs
 - 2026-10-24T13:02:35 P7-2 stage commit
+- 2026-10-24T13:02:38 P7-2 done 77416f3c: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); old-vs-new 38 call sites + 3 container scenarios, 0 differences; arch baseline 71 rows, 0 new; HomeFeed 244.67 kB (+0.28), Login 184.71 kB (+0.25), W21 tripwire 0.3 held after a trim; one commit for the 4 merges (they share 6 files)
+- 2026-10-24T13:02:38 P7-3 started
+- 2026-10-24T13:02:38 P7-3 stage dev
+- 2026-10-24T13:03:28 P7-3 stage test
+- 2026-10-24T13:11:00 P7-3 stage docs
+- 2026-10-24T13:12:16 P7-3 stage commit

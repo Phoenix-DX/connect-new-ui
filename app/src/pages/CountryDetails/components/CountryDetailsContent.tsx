@@ -27,7 +27,7 @@ import {
   UBT_VerticalAlign,
 } from '@/shared/UBTConnectLibrary/lib/staticEntities';
 import type { SearchInput } from '@/shared/UBTConnectLibrary/lib/structures';
-import { SkeletonSection } from '@/components/ui/SkeletonSection';
+import { Skeleton } from '@/components/ui/Skeleton';
 import { imageEntityIdOf } from '@/pages/CountryDetails/hooks/countryDetailsState';
 import { UBT_Icons2 } from './staticEntities';
 
@@ -166,9 +166,9 @@ export function CountryDetailsContent({
               onOnParametersChanged={onMapParametersChanged}
             />
           ) : (
-            <SkeletonSection id="$b9" inIsLoading>
+            <Skeleton id="$b9" isLoading>
               <div className="leaflet-container" data-container="" />
-            </SkeletonSection>
+            </Skeleton>
           )}
           <CustomContainer
             id="$b10"
@@ -218,7 +218,7 @@ export function CountryDetailsContent({
               />
               <CustomContainer id="LocalityCount" options={{ PaddingSize: { TopSizeId: UBT_Size.Base } }}>
                 <div data-container="" style={{ textAlign: 'right' }}>
-                  <SkeletonSection id="$b18" inIsLoading={!isLoaded}>
+                  <Skeleton id="$b18" isLoading={!isLoaded}>
                     <CustomText
                       id="$b19"
                       inText={`${localityCount}${localityCount === 1 ? ' Locality' : ' Localities'}`}
@@ -229,12 +229,12 @@ export function CountryDetailsContent({
                         FontWeight: UBT_FontWeight.Regular,
                       }}
                     />
-                  </SkeletonSection>
+                  </Skeleton>
                 </div>
               </CustomContainer>
             </CustomContainer>
             {!isLoaded ? (
-              <SkeletonSection id="$b20" inIsLoading>
+              <Skeleton id="$b20" isLoading>
                 {(['$b21', '$b22', '$b23'] as const).map((id) => (
                   <div key={id} data-container="">
                     <StatisticsTypedItem
@@ -245,7 +245,7 @@ export function CountryDetailsContent({
                     />
                   </div>
                 ))}
-              </SkeletonSection>
+              </Skeleton>
             ) : list.length === 0 && searchString !== '' ? (
               <NotCaptured name="ConnectPatterns.EmptyList $b24 (IconId search; not rendered in any captured state)">
                 {`No results found for '${searchString}'`} Sorry, we couldn&apos;t find any results for your search.
