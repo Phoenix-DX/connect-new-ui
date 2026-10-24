@@ -105,3 +105,5 @@ The queries of `feed/` and the count query of `member/` set `staleTime: 0`, `gcT
 `household/` also holds the two Locality_Details calls: DataActionGetLocalityHouseholds (`fetchLocalityHouseholds`, called by `useLocalityHouseholdList`) and DataActionGetMembers (`fetchHouseholdCardMembers`, called by `useHouseholdCardMembers`). The old `api.ts` and `types.ts` of Locality_Details are deleted. The flows call the repository functions.
 
 `household/` also holds the OrbitLanding call DataActionGet_HouseholdMembers (`fetchOrbitHouseholdMembers`, called by `useOrbitLanding`). The old `api.ts` and `types.ts` of OrbitLanding are deleted. The types are `OrbitHouseholdMembersCallInputs` and `OrbitHouseholdMember`. The flow calls the repository function.
+
+`event/` also holds the two OrbitAdminLanding calls: Get_AdminEventsList (`fetchAdminEvents`, called by `useAdminLanding`) and ActionGetMilestoneScanFF (`fetchMilestoneScanFF`, called by `useNavigateToEventDetail`). The old `api.ts` and `types.ts` of OrbitAdminLanding are deleted. The hooks call the repository functions.

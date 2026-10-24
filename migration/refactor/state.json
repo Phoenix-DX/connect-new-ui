@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G5-B-OrbitLanding",
+  "step": "P6-G5-B-OrbitAdminLanding",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T07:29:47"
+  "since": "2026-10-24T07:41:51"
  },
  "steps": {
   "P0-1": {
@@ -1210,11 +1210,24 @@
    "finished": "2026-10-24T07:22:05"
   },
   "P6-G5-B-OrbitLanding": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T07:22:05",
    "tokens": {
     "dev": 356158,
-    "test": 30575
+    "test": 30575,
+    "docs": 36351
+   },
+   "commit": "4a16e86b",
+   "gate": "ci: pass; parity visual --changed: 26/0 (OutSystems), 26/0 (self); arch baseline 0 new; HomeFeed 244.39 kB, Login 184.41 kB",
+   "loops": 0,
+   "finished": "2026-10-24T07:29:48"
+  },
+  "P6-G5-B-OrbitAdminLanding": {
+   "status": "active",
+   "started": "2026-10-24T07:29:49",
+   "tokens": {
+    "dev": 264747,
+    "test": 30109
    }
   }
  },

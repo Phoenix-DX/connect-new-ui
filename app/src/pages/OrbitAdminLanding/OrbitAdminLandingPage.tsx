@@ -1,39 +1,28 @@
-/** @origin UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding */
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { useOsNavigate } from '@/platform/navigation';
-import { getMilestoneScanFF, wireDateTimeParam } from './api';
-import { ScreenBlock_AdminLanding } from './components/ScreenBlock_AdminLanding';
+import { AdminLandingView } from './components/AdminLandingView';
+import { useAdminLanding } from './hooks/useAdminLanding';
+import { useNavigateToEventDetail } from './hooks/useNavigateToEventDetail';
 
-/** UBTConnect Legacy_OrbitAdminFlow.OrbitAdminLanding (analysis/sources/pretty/UBTConnect.Legacy_OrbitAdminFlow
-    .OrbitAdminLanding.mvc.js: view :115-205, controller :206-388). No inputs. ScreenBlock_AdminLanding with
-    BottomBarMenu (default inputs) in its BottomBar and empty Menu / CommonUI_Elements, then CommonUI_InsideLayout.
-    Its NavigateTo_EventDetail event runs OnHandle_NavigateToEventDetail (:245-300): GetMilestoneScanFF, then
-    OrbitAdminMilestones(EventId) when IsScanPerMilestone, else OrbitAdminEventDetail with the event's id, start date,
-    location, name, end date and friendly type (original parameter names and order). */
+/** @origin UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding
+    The landing of an Orbit admin. No inputs. ScreenBlock_AdminLanding (its flows in useAdminLanding, its view in
+    AdminLandingView) with BottomBarMenu (default inputs) in its BottomBar and empty Menu and CommonUI_Elements, then
+    CommonUI_InsideLayout. Its event NavigateTo_EventDetail runs OnHandle_NavigateToEventDetail
+    (useNavigateToEventDetail): OrbitAdminMilestones or OrbitAdminEventDetail. */
 export default function OrbitAdminLanding() {
-  const navigate = useOsNavigate();
+  const onNavigateToEventDetail = useNavigateToEventDetail();
+  const { state, onEventCardClicked } = useAdminLanding({ onNavigateToEventDetail });
 
   return (
     <>
-      <ScreenBlock_AdminLanding
+      <AdminLandingView
         id="$b1"
+        userFirstName={state.userFirstName}
+        isFetchingData={state.isFetchingData}
+        isDataFetched={state.isDataFetched}
+        eventsSummary={state.eventsSummary}
         bottomBar={<BottomBar id="$b2" />}
-        onNavigateToEventDetail={async (eventId, eventName, startDate, endDate, location, typeFriendly) => {
-          const isScanPerMilestone = await getMilestoneScanFF();
-          if (isScanPerMilestone) {
-            navigate('/UBTConnect/OrbitAdminMilestones', { EventId: eventId });
-            return;
-          }
-          navigate('/UBTConnect/OrbitAdminEventDetail', {
-            In_EventId: eventId,
-            In_EventStartDate: wireDateTimeParam(startDate),
-            In_EventLocation: location,
-            In_EventName: eventName,
-            In_EventEndDate: wireDateTimeParam(endDate),
-            In_EventTypeFriendly: typeFriendly,
-          });
-        }}
+        onEventCardClicked={onEventCardClicked}
       />
       <CommonUiLayout id="$b3" />
     </>

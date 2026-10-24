@@ -599,3 +599,9 @@
 - `pages/OrbitLanding` is a page with a flow hook (`hooks/useOrbitLanding.ts`, `hooks/orbitLandingState.ts`) and a props-only view (`components/OrbitLandingView.tsx`). It has no container.
 - `api.ts` and `types.ts` are deleted. DataActionGet_HouseholdMembers is `fetchOrbitHouseholdMembers` in `api/household`; the hook calls `fetchEventsByMemberId` of `api/event`.
 - The OrbitLanding chunk grows 1.64 kB gzip (it is not an entry route); HomeFeed and Login change by -0.02 kB.
+
+## P6-G5-B-OrbitAdminLanding - refactor(P6-G5-B): OrbitAdminLanding as page
+
+- `pages/OrbitAdminLanding` is a page with a flow hook (`hooks/useAdminLanding.ts`, `hooks/adminLandingState.ts`), a screen-handler hook (`hooks/useNavigateToEventDetail.ts`) and a props-only view (`components/AdminLandingView.tsx`). It has no container.
+- `api.ts` and `types.ts` are deleted. The hooks call `fetchAdminEvents` and `fetchMilestoneScanFF` of `api/event` directly.
+- The OrbitAdminLanding chunk grows 0.61 kB gzip (not an entry route); HomeFeed and Login change by -0.03 and -0.02 kB (dev.md).

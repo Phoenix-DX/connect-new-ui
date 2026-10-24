@@ -1,9 +1,17 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { ORBIT_ADMIN_SCAN_PER_MILESTONE, orbitAdminEvents, type OrbitAdminEvent } from '@/mocks/fictional/orbitAdmin';
 import { scenario } from '@/mocks/scenario';
 import { wireList } from '@/legacy/os/os-wire';
-import type { AdminOrbitEventsWire, Get_AdminEventsListWire } from './types';
+
+/** The answer of DataActionGet_AdminEventsList, as the API contract types it (src/api/openapi.yaml). */
+type Get_AdminEventsListWire = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList'>
+>;
+
+/** GetAdminOrbitEvents_ScreenRec: OrbitSummaryItem (AdminOrbitSummaryItemRec) + OrbitEventType. */
+type AdminOrbitEventsWire = Get_AdminEventsListWire['Response']['List'][number];
 
 /* Mocks of OrbitAdminLanding (P-MOCKS), on the fictional Orbit admin world (src/mocks/fictional/orbitAdmin.ts). Neither
    action was recorded with data: TST's full-permission account has no admin event (Response.List empty,
