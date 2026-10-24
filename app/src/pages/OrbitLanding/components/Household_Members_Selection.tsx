@@ -1,18 +1,18 @@
-// @os-block Connect2_OrbitMobile_MUI.Orbit_Blocks.Household_Members_Selection
+/** @origin Connect2_OrbitMobile_MUI.Orbit_Blocks.Household_Members_Selection */
 import { useEffect, useRef } from 'react';
+import type { OrbitHouseholdMember } from '@/api/household';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
+import { isItemAvailable, scrollToSelectMember } from '@/pages/OrbitLanding/actions';
 import { styleFromCssText } from '@/shared/lib/cssText';
-import type { HouseholdMember } from '@/pages/OrbitLanding/types';
-import { isItemAvailable, scrollToSelectMember } from './actions';
 
 export interface Household_Members_SelectionProps {
   /** OutSystems instance id of the block (`b1-$b3`). */
   id: string;
   /** In_HouseholdMembersList. */
-  inHouseholdMembersList: readonly HouseholdMember[];
+  inHouseholdMembersList: readonly OrbitHouseholdMember[];
   /** Event ClickedHouseholdMember(MemberList, MemberId). */
-  onClickedHouseholdMember: (memberList: HouseholdMember[], memberId: string) => void;
+  onClickedHouseholdMember: (memberList: OrbitHouseholdMember[], memberId: string) => void;
 }
 
 /** The household member bar of the Orbit landing (HM = analysis/sources/pretty/Connect2_OrbitMobile_MUI.Orbit_Blocks

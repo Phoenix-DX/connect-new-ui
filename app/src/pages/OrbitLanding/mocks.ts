@@ -1,13 +1,19 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { ORBIT_MEMBERS, orbitEventsOfMember, type OrbitEvent } from '@/mocks/fictional/orbit';
 import { contractHandler } from '@/mocks/contract';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
-import type {
-  Get_EventsByMemberIdWire,
-  Get_HouseholdMembersWire,
-  OrbitEventsSummaryWire,
-  OrbitSummaryItemWire,
-} from './types';
+
+/** The outputs of a data action of ScreenBlock_OrbitLanding, as the contract describes them. */
+type OrbitLandingOutputs<A extends string> = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', `ScreenBlock_OrbitLanding/${A}`>
+>;
+type Get_HouseholdMembersWire = OrbitLandingOutputs<'DataActionGet_HouseholdMembers'>;
+type Get_EventsByMemberIdWire = OrbitLandingOutputs<'DataActionGet_EventsByMemberId'>;
+/** GetOrbitEventsSummary_ScreenRec: an event row has the MilestoneId empty and MilestoneInfo dates at 1900-01-01; a
+    milestone row the reverse. */
+type OrbitEventsSummaryWire = Get_EventsByMemberIdWire['Response']['List'][number];
+type OrbitSummaryItemWire = OrbitEventsSummaryWire['OrbitSummaryItem'];
 
 /* The two data actions of ScreenBlock_OrbitLanding were not recorded: fictional data from the shared Orbit world
    (src/mocks/fictional/orbit.ts) in the captured shapes (analysis/calls.md). Captured counts: 5 household members

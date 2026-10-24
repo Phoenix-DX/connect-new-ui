@@ -7,6 +7,7 @@ import {
   fetchLocalityHouseholdIds,
   fetchLocalityHouseholds,
   fetchMemberRelations,
+  fetchOrbitHouseholdMembers,
   fetchSiblingRelations,
 } from './repository';
 import type { HouseholdCallInputs, MemberRelationsCallInputs } from './types';
@@ -216,5 +217,37 @@ describe('locality household repository', () => {
       { imageURL: '', entityId: '92001', entityType: 'Member' },
       { imageURL: '', entityId: '92002', entityType: 'Member' },
     ]);
+  });
+});
+
+/* The MSW mocks of the OrbitLanding route answer the fictional members of the signed-in household, none selected. */
+describe('household repository: Orbit landing', () => {
+  const orbitInputs = {
+    SelectedMemberId: '0',
+    IsFetchingData: true,
+    EventFilter: 0,
+    SortEventsASC: true,
+    Popup_SortByOpened: false,
+    Popup_FiltersOpened: false,
+    CurrentMemberId: '0',
+  };
+
+  it('fetchOrbitHouseholdMembers calls DataActionGet_HouseholdMembers of ScreenBlock_OrbitLanding with the block variables', async () => {
+    const members = await fetchOrbitHouseholdMembers(orbitInputs);
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({
+        module: 'Connect2_OrbitMobile_MUI',
+        owner: 'ScreenBlock_OrbitLanding',
+        action: 'DataActionGet_HouseholdMembers',
+        inputNames: Object.keys(orbitInputs).sort(),
+      }),
+    ]);
+    expect(members.length).toBeGreaterThan(1);
+    expect(members.every((m) => !m.isSelected && m.memberId !== '' && m.firstName !== '')).toBe(true);
+  });
+
+  it('a failed Orbit landing call raises the exception of callAction', async () => {
+    sessionStorage.setItem('mock:mock', 'error');
+    await expect(fetchOrbitHouseholdMembers(orbitInputs)).rejects.toThrow('Request failed with status 500');
   });
 });

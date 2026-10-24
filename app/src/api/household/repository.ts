@@ -10,6 +10,7 @@ import {
   toLocalityHouseholds,
   toLocalityHouseholdWire,
   toMemberRelations,
+  toOrbitHouseholdMembers,
   toSiblingRelations,
 } from './mapper';
 import type {
@@ -23,6 +24,8 @@ import type {
   LocalityHouseholdIdsCallInputs,
   MemberRelations,
   MemberRelationsCallInputs,
+  OrbitHouseholdMember,
+  OrbitHouseholdMembersCallInputs,
   PhotobookHousehold,
   SiblingRelations,
 } from './types';
@@ -99,5 +102,15 @@ export async function fetchHouseholdCardMembers(household: LocalityHousehold): P
     await callAction('UBTConnect', 'Household_Card/DataActionGetMembers', {
       Household: toLocalityHouseholdWire(household),
     }),
+  );
+}
+
+/** DataActionGet_HouseholdMembers of ScreenBlock_OrbitLanding (Connect2_OrbitMobile_MUI): the members of the
+    signed-in household for the member bar of the Orbit landing. Fetched on demand only, when the landing opens. */
+export async function fetchOrbitHouseholdMembers(
+  inputs: OrbitHouseholdMembersCallInputs,
+): Promise<OrbitHouseholdMember[]> {
+  return toOrbitHouseholdMembers(
+    await callAction('Connect2_OrbitMobile_MUI', 'ScreenBlock_OrbitLanding/DataActionGet_HouseholdMembers', inputs),
   );
 }

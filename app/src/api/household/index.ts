@@ -8,6 +8,7 @@ export {
   fetchLocalityHouseholdIds,
   fetchLocalityHouseholds,
   fetchMemberRelations,
+  fetchOrbitHouseholdMembers,
   fetchSiblingRelations,
 } from './repository';
 export type * from './types';

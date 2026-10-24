@@ -677,3 +677,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-24,refactor,other,36293,refactor-docs,,P6-G5-A sonnet
 2026-10-24,refactor,verify,21622,refactor-test,,P6-G5-B-Shared sonnet
 2026-10-24,refactor,verify,1643,refactor-test,,P6-G5-B-Shared sonnet
+2026-10-24,refactor,build,356158,refactor-dev,,P6-G5-B-OrbitLanding opus
+2026-10-24,refactor,other,32088,refactor-docs,,P6-G5-B-Shared sonnet
+2026-10-24,refactor,verify,30575,refactor-test,,P6-G5-B-OrbitLanding sonnet

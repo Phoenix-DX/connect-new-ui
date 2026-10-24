@@ -617,3 +617,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T07:20:59 P6-G5-B-Shared stage docs
 - 2026-10-24T07:30 master note: the tester prompts of P6-G5-A and P6-G5-B-Shared named `parity visual --changed` instead of the brief's `strict` level. P6-G5-A was committed (16a20ef2) with visual --changed 64/64; the P6-G5-B-Shared re-test ran the brief's `parity strict --all --ref both` on the tree that holds P6-G5-A: 64/64 clean on both references, so it covers the strict gate of P6-G5-A too. Tester prompts now say "run the brief's gate commands".
 - 2026-10-24T07:21:57 P6-G5-B-Shared stage commit
+- 2026-10-24T07:22:05 P6-G5-B-Shared done 72c3c193: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self) (also covers the strict gate of P6-G5-A); diffcheck --move ok but one forced glob path line; arch baseline 75 rows (+8 owned rows, W13); HomeFeed 244.41 kB, Login 184.42 kB
+- 2026-10-24T07:22:05 P6-G5-B-OrbitLanding started
+- 2026-10-24T07:22:06 P6-G5-B-OrbitLanding stage dev
+- 2026-10-24T07:22:59 P6-G5-B-OrbitLanding stage test
+- 2026-10-24T07:28:45 P6-G5-B-OrbitLanding stage docs
+- 2026-10-24T07:29:47 P6-G5-B-OrbitLanding stage commit

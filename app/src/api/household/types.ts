@@ -185,3 +185,27 @@ export interface HouseholdCardMembers {
   members: LazyImageItem[];
   visibleAvatars: number;
 }
+
+/* The members of the signed-in household on the Orbit landing (ScreenBlock_OrbitLanding of Connect2_OrbitMobile_MUI):
+   the member bar, in which the user selects the member whose events the landing shows. */
+
+/** What DataActionGet_HouseholdMembers sends: the block variables (screenData.variables), in the order of the block.
+    The list and record variables that echo the client state are not sent (the contract makes every variable
+    optional). A type alias, not an interface: the contract inputs have an index signature. */
+export type OrbitHouseholdMembersCallInputs = {
+  SelectedMemberId: string;
+  IsFetchingData: boolean;
+  /** OrbitLandingFilter identifier; 0 is the null identifier. */
+  EventFilter: number;
+  SortEventsASC: boolean;
+  Popup_SortByOpened: boolean;
+  Popup_FiltersOpened: boolean;
+  CurrentMemberId: string;
+};
+
+/** A member of the member bar (GetHouseholdMembersResponse_Screen). MemberId is a Long Integer (text). */
+export interface OrbitHouseholdMember {
+  memberId: string;
+  firstName: string;
+  isSelected: boolean;
+}

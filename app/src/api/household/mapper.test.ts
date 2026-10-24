@@ -10,6 +10,7 @@ import {
   toLocalityHouseholds,
   toLocalityHouseholdWire,
   toMemberRelations,
+  toOrbitHouseholdMembers,
   toSiblingRelations,
   type HouseholdWire,
 } from './mapper';
@@ -391,5 +392,25 @@ describe('locality household mapper', () => {
       ],
       visibleAvatars: 5,
     });
+  });
+});
+
+/* The member bar of the Orbit landing (DataActionGet_HouseholdMembers). Fictional members. */
+describe('household mapper: Orbit landing', () => {
+  it('toOrbitHouseholdMembers unwraps the list in the server order, with IsSelected as sent', () => {
+    expect(
+      toOrbitHouseholdMembers({
+        Response: {
+          List: [
+            { MemberId: '7101', FirstName: 'Greta', IsSelected: false },
+            { MemberId: '7102', FirstName: 'Owen', IsSelected: true },
+          ],
+        },
+      }),
+    ).toEqual([
+      { memberId: '7101', firstName: 'Greta', isSelected: false },
+      { memberId: '7102', firstName: 'Owen', isSelected: true },
+    ]);
+    expect(toOrbitHouseholdMembers({ Response: { List: [] } })).toEqual([]);
   });
 });

@@ -593,3 +593,9 @@
 - 25 blocks of `src/shared/` (163 files, phase P6-G5 rows of `move-map.csv`) moved to `src/components/{assemble,bookmark,contact,orbit}/` and `src/pages/EventBooklet/components/{OrbitNoResults,FooterWithActions}/`. 21 files took the target name (component and `<Name>Props`). Each block has an `@origin` tag. The 25 rows are set to `moved`.
 - Gate W15: `arch-baseline.csv` got 8 rows for Rule 4 warnings that the move made visible. Owners: 6 to P6-G5-B-AssembleDetail (AssembleSummaryCard, VirtualMeetingUrl), 2 to P7 (ItemOptionsMenu).
 - `shared/Connect2_Assemble_MUI/` and `shared/Connect2_OrbitMobile_MUI/` keep only `lib/`.
+
+## P6-G5-B-OrbitLanding - refactor(P6-G5-B): OrbitLanding as page
+
+- `pages/OrbitLanding` is a page with a flow hook (`hooks/useOrbitLanding.ts`, `hooks/orbitLandingState.ts`) and a props-only view (`components/OrbitLandingView.tsx`). It has no container.
+- `api.ts` and `types.ts` are deleted. DataActionGet_HouseholdMembers is `fetchOrbitHouseholdMembers` in `api/household`; the hook calls `fetchEventsByMemberId` of `api/event`.
+- The OrbitLanding chunk grows 1.64 kB gzip (it is not an entry route); HomeFeed and Login change by -0.02 kB.

@@ -12,6 +12,7 @@ import type {
   LocalityHousehold,
   LocalityHouseholdIdsCallInputs,
   MemberRelations,
+  OrbitHouseholdMember,
   PhotobookHousehold,
   SiblingRelations,
 } from './types';
@@ -221,3 +222,12 @@ export const toHouseholdCardMembers = (wire: HouseholdCardMembersWire): Househol
   })),
   visibleAvatars: wire.VisibleAvatars,
 });
+
+/** The outputs of DataActionGet_HouseholdMembers (ScreenBlock_OrbitLanding), as the contract describes them. */
+type OrbitHouseholdMembersWire = ActionOutputs<
+  PathOf<'Connect2_OrbitMobile_MUI', 'ScreenBlock_OrbitLanding/DataActionGet_HouseholdMembers'>
+>;
+
+/** The members of DataActionGet_HouseholdMembers, in the server order (list unwrapped). */
+export const toOrbitHouseholdMembers = (wire: OrbitHouseholdMembersWire): OrbitHouseholdMember[] =>
+  osList(wire.Response).map((w) => ({ memberId: w.MemberId, firstName: w.FirstName, isSelected: w.IsSelected }));
