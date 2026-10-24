@@ -240,3 +240,5 @@ P6-G5-B-AssembleEvents: `pages/AssembleEvents/api.ts` is deleted (its rows in th
 P6-G5-B-AssembleDetail: `pages/AssembleDetail/api.ts` is deleted (its row in the event table above). The hook `useAssembleEventDetail` calls `fetchAssembleEvent` (DataActionGetAssembleEvent) of `@/api/event` directly. The client action GetCacheableMemberContactList (Connect2_LegacyShared) is a private function of `useAssembleEventContactList`, because `api/` cannot import `shared/` (rule 7). No file of `api/` changed.
 
 P6-G6-B-QRCodeGenerate: `pages/QRCodeGenerate/api.ts` is deleted (its row in the app table and its row in the Connect2_LegacyShared table above). The hook `useGenerateQrCode` calls `fetchEventQRCode` (DataActionGet_EventQRCode) of `@/api/event` and `fetchLegacySignedImageURL` (`ActionGetSignedImagesInBulk`) of `@/api/image`.
+
+P6-G6-B-ViewDocuments: `pages/ViewDocuments/api.ts` is deleted (its row in the app table above). The hook `useViewDocuments` calls `fetchEventDocuments` (DataActionGetEventDocuments) of `@/api/event` directly.

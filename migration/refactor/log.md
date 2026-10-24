@@ -771,3 +771,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T11:23:05 P6-G6-B-QRCodeGenerate stage test
 - 2026-10-24T11:31:27 P6-G6-B-QRCodeGenerate stage docs
 - 2026-10-24T11:32:26 P6-G6-B-QRCodeGenerate stage commit
+- 2026-10-24T11:32:27 P6-G6-B-QRCodeGenerate done 1565f0db: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self) (QRCodeGenerate has no parity states; old-vs-new 14 scenarios equal); arch baseline 0 new; HomeFeed 244.47 kB, Login 184.50 kB; W28 beforePaint
+- 2026-10-24T11:32:27 P6-G6-B-ViewDocuments started
+- 2026-10-24T11:32:28 P6-G6-B-ViewDocuments stage dev
+- 2026-10-24T11:33:10 P6-G6-B-ViewDocuments stage test
+- 2026-10-24T11:43:29 P6-G6-B-ViewDocuments stage docs
+- 2026-10-24T11:44:41 P6-G6-B-ViewDocuments stage commit

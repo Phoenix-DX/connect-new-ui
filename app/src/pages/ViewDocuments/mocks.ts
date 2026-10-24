@@ -1,8 +1,8 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { wireList } from '@/legacy/os/os-wire';
 import { contractHandler } from '@/mocks/contract';
 import { orbitEventDocuments } from '@/mocks/fictional/orbit';
-import type { GetEventDocumentsWire } from './types';
 
 /* DataActionGetEventDocuments was never recorded (no capture, no-capture.json): fictional answers from the shared Orbit
    world (src/mocks/fictional/orbit.ts orbitEventDocuments, ViewDocuments Q1) in the contract's shape.
@@ -12,6 +12,10 @@ import type { GetEventDocumentsWire } from './types';
    - empty (no document), loading (never answers: skeleton), error (HTTP 500): contractHandler. */
 
 const MODULE = 'Connect2_OrbitMobile_MUI';
+const ACTION = 'ScreenBlock_ViewDocuments/DataActionGetEventDocuments';
+/** The answer of DataActionGetEventDocuments, typed by the API contract (Connect2_OrbitMobile_IS
+    GetEventDocumentsResponseRec). */
+type GetEventDocumentsWire = ActionOutputs<PathOf<typeof MODULE, typeof ACTION>>;
 
 /** The answer for event `eventId`. */
 export function eventDocumentsAnswer(eventId: string): GetEventDocumentsWire {
@@ -32,7 +36,5 @@ export function eventDocumentsAnswer(eventId: string): GetEventDocumentsWire {
 }
 
 export const handlers: RequestHandler[] = [
-  contractHandler(MODULE, 'ScreenBlock_ViewDocuments/DataActionGetEventDocuments', ({ In_EventId }) =>
-    eventDocumentsAnswer(In_EventId ?? ''),
-  ),
+  contractHandler(MODULE, ACTION, ({ In_EventId }) => eventDocumentsAnswer(In_EventId ?? '')),
 ];

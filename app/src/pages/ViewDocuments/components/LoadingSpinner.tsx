@@ -1,12 +1,10 @@
-// @os-block Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.LoadingSpinner
 import { useLayoutEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
 
-/* LoadingSpinner (LS = analysis/sources/Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.LoadingSpinner.mvc.js: model
-   :1-60, view :122-204, controller :205-280). No capture: markup from the compiled view and the platform Popup widget
-   (portal in <body>: div > div > popup-backdrop > popup-dialog > popup-content, as the shared Popup port). */
+/* No capture: the markup comes from the compiled view and the platform Popup widget (portal in <body>: div > div >
+   popup-backdrop > popup-dialog > popup-content, as the shared Popup port). */
 
 export interface LoadingSpinnerProps {
   /** OutSystems instance id of the block. */
@@ -15,13 +13,14 @@ export interface LoadingSpinnerProps {
 }
 
 /** Container Root_LoadingSpinner > Popup Popup_LoadingSpinner (ShowPopup = IsProcessingData, Style "popup-dialog")
-    > Container "orbit-spinner-cont" (visible IsProcessingData) > spinner Icon (2x) and the bold "Loading" text (LS
-    :135-198). Root componentDidUpdate → CopyClassesAcrossPortal(Root_LoadingSpinner, Popup_LoadingSpinner) (LS
-    :223-246; Connect2_LegacyShared.controller.js:1534-1553): the portal root gets the Root's classes, its parent
-    "portal-class" + the classes of the Root's grandparent, and loses its inline style. */
+    > Container "orbit-spinner-cont" (visible IsProcessingData) > spinner Icon (2x) and the bold "Loading" text. Root
+    componentDidUpdate → CopyClassesAcrossPortal(Root_LoadingSpinner, Popup_LoadingSpinner) (Connect2_LegacyShared):
+    the portal root gets the Root's classes, its parent "portal-class" + the classes of the Root's grandparent, and
+    loses its inline style.
+    @origin Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.LoadingSpinner */
 export function LoadingSpinner({ id, IsProcessingData }: LoadingSpinnerProps) {
   const prefix = id.replace('$', '');
-  usePopupWidget(IsProcessingData); // OSWidgets.Popup ShowPopup = IsProcessingData (LS :160-161)
+  usePopupWidget(IsProcessingData); // OSWidgets.Popup ShowPopup = IsProcessingData
   const rootRef = useRef<HTMLDivElement>(null);
   const portalParentRef = useRef<HTMLDivElement>(null);
   const portalRootRef = useRef<HTMLDivElement>(null);

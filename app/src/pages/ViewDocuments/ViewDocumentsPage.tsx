@@ -1,58 +1,34 @@
-/** @origin UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments */
+import { useMemo } from 'react';
 import { useSearchParams } from 'react-router';
-import { useFlagOn } from '@/platform/flags/flags';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
-import { showFeedbackMessage } from '@/platform/feedback';
-import { useOsNavigate } from '@/platform/navigation';
-import { ScreenBlock_ViewDocuments } from './components/ScreenBlock_ViewDocuments';
+import { useFlag } from '@/platform/flags';
+import { ViewDocumentsView } from './components/ViewDocumentsView';
+import { useViewDocuments } from './hooks/useViewDocuments';
+import { readViewDocumentsInputs } from './inputs';
 
-const NO_ORBIT_ACCESS = "You don't have access to Orbit. Please contact the Orbit Helpdesk if you have any questions.";
-
-/** Connect2_LegacyShared FeedbackMessageAfterTransition (runtime-sources/Connect2_LegacyShared.controller.js
-    :2030-2085): its JS node shows the message 500 ms later, after the navigation that follows. */
-function feedbackMessageAfterTransition(message: string, messageType: number): void {
-  window.setTimeout(() => {
-    showFeedbackMessage(message, messageType);
-  }, 500);
-}
-
-/** UBTConnect Legacy_OrbitEventsFlow.ViewDocuments (S = analysis/sources/UBTConnect.Legacy_OrbitEventsFlow.
-    ViewDocuments.mvc.js: model :1-117, view :118-251, controller :252-371). No capture (no-capture.json, user
-    2026-10-16): built from the compiled code. Inputs In_MemberId, In_EventId, In_EventName, In_EventStartDate,
-    In_EventEndDate, In_EventLocation. ScreenBlock_ViewDocuments (Menu and CommonUI_Elements empty, S :186-227), then
-    CommonUI_InsideLayout. OnHandle_ContactHelpdesk (S :270-318) checks GetHasOrbitAccess (flag mobileOrbitAccess,
-    default-only on): ContactByEmailOrbitHelpdesk (In_MilestoneId ""); otherwise the no-access message after the
-    transition and HomeFeed. */
+/** @origin UBTConnect.Legacy_OrbitEventsFlow.ViewDocuments
+    The documents of an Orbit event: ScreenBlock_ViewDocuments (its Menu and CommonUI_Elements placeholders are
+    empty), then CommonUI_InsideLayout. No capture (built from the compiled code). A document opens in a new tab; the
+    footer "Contact Orbit Helpdesk" opens ContactByEmailOrbitHelpdesk with Orbit access (flag mobileOrbitAccess), else
+    shows the no-access message and HomeFeed. The flows are in useViewDocuments. */
 export default function ViewDocuments() {
   const [params] = useSearchParams();
-  const navigate = useOsNavigate();
-  const hasOrbitAccess = useFlagOn('mobileOrbitAccess');
-  const inEventId = params.get('In_EventId') ?? '0';
+  const inputs = useMemo(() => readViewDocumentsInputs(params), [params]);
+  const hasOrbitAccess = useFlag('mobileOrbitAccess');
+  const { state, onDocumentClick, onContactHelpdesk } = useViewDocuments(inputs, { hasOrbitAccess });
 
   return (
     <>
-      <ScreenBlock_ViewDocuments
+      <ViewDocumentsView
         id="$b1"
-        In_MemberId={params.get('In_MemberId') ?? '0'}
-        In_EventId={inEventId}
-        In_EventName={params.get('In_EventName') ?? ''}
-        In_EventStartDate={params.get('In_EventStartDate') ?? ''}
-        In_EventEndDate={params.get('In_EventEndDate') ?? ''}
-        In_EventLocation={params.get('In_EventLocation') ?? ''}
-        onContactHelpdesk={(subject, eventName) => {
-          // OnHandle_ContactHelpdesk (S :270-318)
-          if (!hasOrbitAccess) {
-            feedbackMessageAfterTransition(NO_ORBIT_ACCESS, 3);
-            navigate('/UBTConnect/HomeFeed', {});
-            return;
-          }
-          navigate('/UBTConnect/ContactByEmailOrbitHelpdesk', {
-            In_Subject: subject,
-            In_EventId: inEventId,
-            In_EventName: eventName,
-            In_MilestoneId: '',
-          });
-        }}
+        eventName={inputs.In_EventName}
+        documents={state.eventDocuments}
+        isFetchingData={state.isFetchingData}
+        isLoadingDocument={state.isLoadingDocument}
+        isDataFetched={state.isDataFetched}
+        hasResponseDocuments={state.hasResponseDocuments}
+        onDocumentClick={onDocumentClick}
+        onContactHelpdesk={onContactHelpdesk}
       />
       <CommonUiLayout id="$b2" />
     </>

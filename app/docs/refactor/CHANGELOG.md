@@ -739,3 +739,8 @@
 - `pages/QRCodeGenerate` is a page with a flow hook (`hooks/useGenerateQrCode.ts` on `useFlowState` with `beforePaint: true`, W28), a state module (`hooks/generateQrCodeState.ts`), `hooks/useBinaryImageURL.ts`, `inputs.ts` and a props-only view (`components/GenerateQrCodeView.tsx`). `api.ts`, `types.ts`, the ScreenBlock and `components/actions.ts` are deleted.
 - The calls are `fetchEventQRCode` (`api/event`) and `fetchLegacySignedImageURL` (`api/image`, W8). W23 holds: after an unmount the flow skips the state writes and still calls Get_EventQRCode once.
 - QRCodeGenerate has no parity states; the evidence is the developer's old-vs-new DOM test (14 scenarios, equal). HomeFeed gzip 244.47 kB, Login 184.50 kB; 3 rule-9 warnings gone (arch 189 to 186); baseline 0 new.
+
+## P6-G6-B-ViewDocuments - refactor(P6-G6-B): ViewDocuments as page
+
+- `pages/ViewDocuments` is a page with a flow hook (`hooks/useViewDocuments.ts` on `useFlowState` with `beforePaint: true`, W28), a state module (`hooks/viewDocumentsState.ts`), `inputs.ts` and a props-only view (`components/ViewDocumentsView.tsx`). `api.ts`, `types.ts`, the ScreenBlock and `components/actions.ts` are deleted; the call is `fetchEventDocuments` (`api/event`). W23 holds.
+- No parity states; DOM evidence: the developer's old-vs-new probe, 7 scenarios / 44 observations. HomeFeed gzip 244.48 kB, Login 184.50 kB; baseline 0 new.
