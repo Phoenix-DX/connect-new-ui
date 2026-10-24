@@ -7,10 +7,10 @@
   "at": "2026-10-22T11:44:17"
  },
  "current": {
-  "step": "P6-G6-B-BookmarksByGroup",
+  "step": "P6-G6-B-Notes",
   "stage": "commit",
   "loop": 0,
-  "since": "2026-10-24T10:54:18"
+  "since": "2026-10-24T11:04:25"
  },
  "steps": {
   "P0-1": {
@@ -1470,11 +1470,25 @@
    "finished": "2026-10-24T10:44:59"
   },
   "P6-G6-B-BookmarksByGroup": {
-   "status": "active",
+   "status": "done",
    "started": "2026-10-24T10:44:59",
    "tokens": {
     "dev": 334060,
-    "test": 33751
+    "test": 33751,
+    "docs": 38388
+   },
+   "commit": "4bb175d1",
+   "gate": "ci: pass; parity visual --changed: 47/0 (OutSystems), 47/0 (self); arch baseline 0 new; HomeFeed 244.47 kB, Login 184.48 kB",
+   "loops": 0,
+   "finished": "2026-10-24T10:54:19"
+  },
+  "P6-G6-B-Notes": {
+   "status": "active",
+   "started": "2026-10-24T10:54:19",
+   "tokens": {
+    "dev": 387149,
+    "test": 32361,
+    "docs": 37014
    }
   }
  },

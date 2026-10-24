@@ -1,4 +1,4 @@
-// @os-block UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList
+/** @origin UBTConnectLibrary.ConnectPatterns.Horizontal_Filter_TagList */
 import { useRef, useState, type ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';

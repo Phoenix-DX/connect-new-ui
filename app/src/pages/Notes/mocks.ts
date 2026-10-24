@@ -1,10 +1,15 @@
 import type { RequestHandler } from 'msw';
+import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { scenario } from '@/mocks/scenario';
 import { osList, wireList } from '@/legacy/os/os-wire';
 import { Choice } from '@/shared/UBTConnect/lib/staticEntities';
 import { NULL_DATE_TIME, notesCollection, type NoteRow } from '@/containers/NoteListActions/mocks';
-import type { NoteCardItemWire } from './types';
+
+/** The wire shape of a note card (Connect_Notes_CS UI_Note_CardItem), as the contract types it. */
+type NoteCardItemWire = ActionOutputs<
+  PathOf<'UBTConnect', 'Notes/DataActionGetNotes'>
+>['Out_Notes']['NoteCardItem_List']['List'][number];
 
 /* Notes (P-MOCKS, P-MUTATION).
    - UBTConnect_Notes_MCS/ActionGet_NotePills_ByNoteCategoryIds: recorded only for an empty category list (fixture

@@ -121,8 +121,8 @@ P6-G1-B-Menu: `ActionRequestPhotoUpdate` moved to `src/api/member/repository.ts`
 
 | File                                                      | Module               | Actions                                                |
 | --------------------------------------------------------- | -------------------- | ------------------------------------------------------ |
-| `screens/Notes/api.ts`                                    | UBTConnect           | `Notes/DataActionGetNotes`                             |
-| `screens/Notes/api.ts`                                    | UBTConnect_Notes_MCS | `ActionGet_NotePills_ByNoteCategoryIds`                |
+| `pages/Notes/hooks/useNotes.ts`                           | UBTConnect           | `Notes/DataActionGetNotes`                             |
+| `pages/Notes/hooks/useNotes.ts`                           | UBTConnect_Notes_MCS | `ActionGet_NotePills_ByNoteCategoryIds`                |
 | `shared/UBTConnect/Directory_EntityDetailsActions/api.ts` | UBTConnect           | `Directory_EntityDetailsActions/DataActionFetchNotes`  |
 | `shared/UBTConnect_Utils/NoteListActions/api.ts`          | UBTConnect_Utils     | `ServiceAPIDeleteNoteByNoteId`, `ServiceAPIUpdateNote` |
 | `shared/UBTConnect_Utils/NotesSheet/api.ts`               | UBTConnect_Utils     | `ServiceAPIAddNote`                                    |

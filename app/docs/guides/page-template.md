@@ -91,6 +91,12 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
     });
     ```
 
+  - `restore: () => INITIAL_STATE`: use it when the old port kept no view state on a back navigation. A restored view
+    then starts from OnInitialize with the initial state (`pages/Notes/hooks/useNotes.ts`,
+    `pages/MilestoneDetail/hooks/useAccommodationHost.ts`).
+  - OnReady in its own effect: use it when OnReady reads variables that OnInitialize assigns. Do not run OnReady in the
+    same flow as OnInitialize. Run it in one effect that starts when `isInitialized` turns true. The blocks
+    have then mounted and the variables are set (`pages/Notes/hooks/useNotes.ts`).
   - Do not use `useFlowState` for a screen whose view cache keeps only some variables (Notifications keeps 3 of its
     variables). It saves and restores the whole state record, so a back navigation shows the old list. Keep
     `useReducer` and a `latest` ref and write one `useViewState` record

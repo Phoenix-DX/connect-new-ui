@@ -1,4 +1,4 @@
-// @os-block UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes
+/** @origin UBTConnectLibrary.ConnectPatterns.ItemCard_WithNotes */
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { AvatarImage } from '@/shared/UBTConnectLibrary/AvatarImage';

@@ -1,4 +1,4 @@
-// @os-block UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar
+/** @origin UBTConnectLibrary.ConnectCorePatterns.ItemCard_ActionBar */
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/shared/UBTConnectLibrary/CustomContainer';
 import { Icon } from '@/shared/UBTConnectLibrary/Icon';

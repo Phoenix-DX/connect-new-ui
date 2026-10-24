@@ -715,3 +715,9 @@
 - `pages/BookmarksByGroup` is a page with a flow hook (`hooks/useBookmarkGroup.ts`, `hooks/bookmarkGroupState.ts` on `useFlowState`, no `beforePaint`) and a props-only view (`components/BookmarkGroupView.tsx`). No container. `api.ts` and the ScreenBlock are deleted; `inputs.ts` is new.
 - Renames: `Result_Item_Badge` to `LegacyResultItemBadge` (move-map row 57 gives `ResultItemBadge` to `NC_Result_Item_Badge`); `BookmarkNoteDialogs` split into `BookmarkNoteAddEdit` and `BookmarkNoteDelete`.
 - Edge case (F28 family, W23/latest): the flows read `latest`. With two overlapping Unmark answers, ListRemove and UpdatedTotal apply to the newest list; the old port used the list of the click's render. HomeFeed gzip +0.00 kB, Login +0.01 kB.
+
+## P6-G6-B-Notes - refactor(P6-G6-B): Notes as page
+
+- `pages/Notes` is a page with a flow hook (`hooks/useNotes.ts`) and a state module (`hooks/notesState.ts`) on `useFlowState`. `api.ts` and `types.ts` are deleted; the hook calls `@/api/note`. The 8 blocks in `components/` carry `@origin`.
+- Deviations, none user-visible (tester): (1) OnReady runs in its own effect after OnInitialize, as the old page did; (2) the flows write to an `afterUnmount` copy after the unmount (W23); (3) `restore` returns the initial state, so a back navigation starts from OnInitialize; (4) the first page assigns the list after the pills call; a search submit in that call sends the skeleton list, which the server ignores; (5) in StrictMode (dev) the year options are read once.
+- HomeFeed gzip 244.46 kB, Login 184.49 kB; dependency-cruiser warnings 189 to 188; baseline 69 rows, 0 new.

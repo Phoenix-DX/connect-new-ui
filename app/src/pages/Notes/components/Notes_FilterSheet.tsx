@@ -1,4 +1,4 @@
-// @os-block UBTConnect.Notes.Notes_FilterSheet
+/** @origin UBTConnect.Notes.Notes_FilterSheet */
 import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { FilterSheetContainer } from '@/containers/FilterSheet';
@@ -7,7 +7,7 @@ import type {
   Filter_Common_Control_List,
   Filter_Common_Options,
 } from '@/shared/UBTConnect/lib/structures';
-import type { NotesFilter } from '@/pages/Notes/types';
+import type { NotesFilter } from '@/api/note';
 import { child, scopeOf } from './ids';
 
 export interface Notes_FilterSheetProps {

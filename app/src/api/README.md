@@ -60,7 +60,7 @@ The `Bookmark` type has `dateCreatedUtc`, the sort key of the `MyBookmarks` memo
 - ServiceAPIUpdateNote and ServiceAPIDeleteNoteByNoteId (NoteListActionsContainer)
 - ServiceAPIAddNote (NotesSheet).
 
-The old `api.ts` files of these four owners re-export it under their old names. `screens/Notes/types.ts` keeps the screen types. The client actions `Get_Note_DynamicPills` and `GetNotes_FilterYear` stay in `screens/Notes/api.ts`, because they read the local notes and the session (`platform/`), and `api/` does not import `platform/`.
+The old `api.ts` files of the three other owners re-export it under their old names. The hook of Notes (`pages/Notes/hooks/useNotes.ts`) calls `fetchNoteCards` and `fetchNotePills` directly; `pages/Notes/api.ts` and `types.ts` are deleted (the wire type `NoteCardItemWire` is in `pages/Notes/mocks.ts`). The client reads of the local notes (`get_Note_DynamicFilter_YearOptions`, `getLocalNotesCategoryIds_ByUserId`) are in `platform/storage/localEntities`, and the hook calls them, because `api/` does not import `platform/`.
 
 The AddNote mapper drops `ItemId` and `NoteCategoryId` of the answer, because no code reads them. The two hooks (`useNoteCardsQuery`, `useEntityNotesQuery`) have no caller yet; they set `staleTime: 0`, `gcTime: 0` and `retry: false`.
 
