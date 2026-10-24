@@ -2,8 +2,8 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { confirmAction } from '@/platform/feedback/dialogs/confirmAction';
 import { testCapturedVariants } from '@/shared/test/capturedVariants';
-import { FreeSubscriptionActionDialog } from './FreeSubscriptionActionDialog';
-import * as stories from './FreeSubscriptionActionDialog.stories';
+import { UpgradeSubscriptionDialog } from './UpgradeSubscriptionDialog';
+import * as stories from './UpgradeSubscriptionDialog.stories';
 
 vi.mock('@/platform/session/userInfo', () => ({
   getUserInformation: () =>
@@ -25,7 +25,7 @@ describe('FreeSubscriptionActionDialog', () => {
 
   it('confirmAction(id) shows the texts of the compiled view; Upgrade Subscription opens the manage link', async () => {
     const open = vi.spyOn(window, 'open').mockReturnValue(null);
-    render(<FreeSubscriptionActionDialog id="FreeSubscriptionAlert" />);
+    render(<UpgradeSubscriptionDialog id="FreeSubscriptionAlert" />);
     let answer: Promise<boolean> = Promise.resolve(false);
     act(() => {
       answer = confirmAction('FreeSubscriptionAlert');

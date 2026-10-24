@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { FreeSubscriptionActionDialog } from './FreeSubscriptionActionDialog';
+import { UpgradeSubscriptionDialog } from './UpgradeSubscriptionDialog';
 
 const meta = {
   title: 'Shared/Connect2_LegacyShared/FreeSubscriptionActionDialog',
-  component: FreeSubscriptionActionDialog,
-} satisfies Meta<typeof FreeSubscriptionActionDialog>;
+  component: UpgradeSubscriptionDialog,
+} satisfies Meta<typeof UpgradeSubscriptionDialog>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 

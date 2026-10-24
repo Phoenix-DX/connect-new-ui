@@ -1,10 +1,11 @@
+/** @origin Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog */
 // @os-block Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog
 import { useId } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { ActionConfirmationDialog } from '@/platform/feedback/dialogs/ActionConfirmationDialog';
 import { getUserInformation } from '@/platform/session/userInfo';
 
-export interface FreeSubscriptionActionDialogProps {
+export interface UpgradeSubscriptionDialogProps {
   /** OutSystems instance id of the block: callers show the dialog with `confirmAction(id)` (it finds the event hub
       of the ActionConfirmationDialog inside). */
   id?: string;
@@ -12,7 +13,7 @@ export interface FreeSubscriptionActionDialogProps {
 
 /** "Access Restricted" confirmation (Connect2_LegacyShared.Utility.FreeSubscriptionActionDialog.mvc.js,
     LegacyShareObject copy: view :150-230, OnConfirmed :232-262). */
-export function FreeSubscriptionActionDialog({ id }: FreeSubscriptionActionDialogProps) {
+export function UpgradeSubscriptionDialog({ id }: UpgradeSubscriptionDialogProps) {
   const scope = useId();
 
   // OnConfirmed: Cache_UserInfo_Get, then InAppBrowser Open(SubscriptionManageLink, Target SYSTEM) when the plugin is

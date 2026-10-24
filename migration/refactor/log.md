@@ -729,3 +729,9 @@ One line per event. Written by rf.py.
 - 2026-10-24T10:22:53 P6-G6-A stage test
 - 2026-10-24T10:29:28 P6-G6-A stage docs
 - 2026-10-24T10:30:08 P6-G6-A stage commit
+- 2026-10-24T10:30:11 P6-G6-A done e2e0b99f: ci: pass (rerun once, F11 flake); parity strict --changed: 7/0 (OutSystems), 7/0 (self); diffcheck --move ok (62 renames); arch baseline 0 new; HomeFeed 244.47 kB, Login 184.50 kB
+- 2026-10-24T10:30:11 P6-G6-B-Shared started
+- 2026-10-24T10:30:11 P6-G6-B-Shared stage dev
+- 2026-10-24T10:30:51 P6-G6-B-Shared stage test
+- 2026-10-24T10:38:43 P6-G6-B-Shared stage docs
+- 2026-10-24T10:39:14 P6-G6-B-Shared stage commit

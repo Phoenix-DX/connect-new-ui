@@ -697,3 +697,8 @@
 
 - The 7 G6 routes (MyBookmarks, BookmarksByGroup, Notes, ConnectShare, LegacyShareObject, QRCodeGenerate, ViewDocuments) moved from `src/screens/<R>` to `src/pages/<R>`. `index.tsx` is now `<R>Page.tsx`, with one `@origin` tag per page.
 - Shared blocks stay in `shared/` until step B. `screens/` still holds no G6 route.
+
+## P6-G6-B-Shared - refactor(P6-G6-B): move the shared blocks of group G6
+
+- 2 blocks of `src/shared/` (13 files, phase P6-G6 rows of `move-map.csv`) moved: `NoBookmarks` to `src/components/bookmark/NoBookmarks/`, and `FreeSubscriptionActionDialog` to `src/pages/LegacyShareObject/components/UpgradeSubscriptionDialog/` (component and `<Name>Props` renamed). Each block has an `@origin` tag. The 2 rows are set to `moved`.
+- No baseline row changed. `shared/Connect2_MyBookmarks_MUI/` keeps only `mocks.ts` and `mocks.test.ts` (no move-map row).

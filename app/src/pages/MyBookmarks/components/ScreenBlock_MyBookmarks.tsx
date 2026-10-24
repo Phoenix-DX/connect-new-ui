@@ -12,7 +12,7 @@ import { LegacyLayout } from '@/components/layout/LegacyLayout';
 import { MenuIcon } from '@/components/layout/MenuIcon';
 import { MenuAction } from '@/shared/Connect2_LegacyShared/lib/staticEntities';
 import { Spinner } from '@/shared/Connect2_LegacyShared/Spinner';
-import { NoBookmarks } from '@/shared/Connect2_MyBookmarks_MUI/NoBookmarks';
+import { NoBookmarks } from '@/components/bookmark/NoBookmarks';
 import { MyBookmarks_Group, MyBookmarks_ObjectType } from '@/shared/UBTConnect/lib/staticEntities';
 import { connect_LaunchDarkly_PermissionCheck, textToLongInteger } from '@/shared/UBTConnect_Utils/lib/actions';
 import { Dialog_AccessRestrictedAction_Legacy } from '@/shared/UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy';

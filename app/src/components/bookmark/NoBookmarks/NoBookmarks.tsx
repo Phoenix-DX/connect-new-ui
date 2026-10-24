@@ -1,3 +1,4 @@
+/** @origin Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks */
 // @os-block Connect2_MyBookmarks_MUI.MyBookmarksFlow.NoBookmarks
 import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
