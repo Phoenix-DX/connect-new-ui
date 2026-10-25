@@ -6,8 +6,8 @@ section "Context notes".
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
 - 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)).
-- Branch `refactor/architecture`: all 133 steps done (P0-P9, stretch included), final report `app/docs/refactor/reports/final.md` ([context-051](context-051-refactor-p8-p9-done.md)). Open: user decisions F52, F53, F55, F57-F61 in `migration/refactor/followups.md`. Dev server of this repo on port 5174.
-- Auto mode ON since 2026-10-24 evening until the user returns (window 5: P8, P9, F39, F40; Fable + Opus decide, W34-W43). Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
+- Branch `refactor/architecture`: all 133 plan steps done; the user's decisions of 2026-10-25 done (F52, F55, F57, F58, F59-a/b/c; [context-052](context-052-refactor-user-decisions-2026-10-25.md)); final report `app/docs/refactor/reports/final.md`. Open: owned debt rows in `migration/refactor/followups.md`. Dev server of this repo on port 5174.
+- Auto mode ON since 2026-10-25 ~01:30 (window 6, open-ended): Opus + Fable decide questions, summary to the user. Unattended runs: start `caffeinate -i -s -m` first. Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`). Tools: `migration/tools/` (README).
 
 ## Contexts
@@ -64,4 +64,5 @@ section "Context notes".
 | [048](context-048-refactor-phase6-done.md) | 2026-10-24 | Phase 6 done (G6, P6-end, F23 fix); W30, W32, W33; P7 prefetched (P7-6 in 5 parts) | superseded by context-049 |
 | [049](context-049-refactor-phase7-done.md) | 2026-10-24 | Phase 7 done (P7-0…P7-6, P7-5 report); in-scope run finished; user decisions and owned debt listed | superseded by context-051 |
 | [050](context-050-refactor-user-decisions-batch.md) | 2026-10-24 | User-decision batch: F25 back guard, F22-26 restored views, F33 NetworkWarning, F29 + stack cleanup | superseded by context-051 |
-| [051](context-051-refactor-p8-p9-done.md) | 2026-10-25 | P8 and P9 done (all 133 steps), F39, F40, F43, F54; advisor decisions W34-W43; final report | current |
+| [051](context-051-refactor-p8-p9-done.md) | 2026-10-25 | P8 and P9 done (all 133 steps), F39, F40, F43, F54; advisor decisions W34-W43; final report | superseded by context-052 |
+| [052](context-052-refactor-user-decisions-2026-10-25.md) | 2026-10-25 | User decisions of 2026-10-25 done: F52, F55 (CLAUDE.md), F57, F58, F59-a/b/c; W44, W45 | current |
