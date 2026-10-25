@@ -60,7 +60,13 @@ const UNREAD_ALLOWED = {
 // Readers outside pages, hooks and containers (plan v2 section 3.1 rule 1; target 0), keyed on exact file + flag.
 // BY_DESIGN: allowed for good (section 3.1 rule 2: the route table reads the flag of a route). OWNED: frozen,
 // shrink-only; a new pair fails, and a pair that is gone must be deleted from the list.
-const OUTSIDE_BY_DESIGN = new Set(['app/routes.ts']); // plan v2 section 3.1 rule 2
+const OUTSIDE_BY_DESIGN = new Set(['app/routes.ts']); // plan v2 section 3.1 rule 2: any flag
+// By design, keyed on file + flag (a new flag read in the same file still fails).
+const OUTSIDE_BY_DESIGN_PAIRS = {
+  // app-start sync, same point as OutSystems SyncAllOrbitStaticEntities (user, 2026-10-25, F52)
+  'platform/storage/localEntities/orbitStaticEntities.ts': ['mobileOrbitHostSurvey'],
+};
+const designPairs = new Set(Object.entries(OUTSIDE_BY_DESIGN_PAIRS).flatMap(([f, ks]) => ks.map((k) => `${f} | ${k}`)));
 const OUTSIDE_OWNED = {
   // owner F35 (OutSystems helper wrappers over flagValue)
   'lib/ubtConnectUtils/actions.ts': [
@@ -73,8 +79,6 @@ const OUTSIDE_OWNED = {
   ],
   // follow-up: flags via props
   'components/bookmark/ItemOptionsMenu/ItemOptionsMenu.tsx': ['C2ExtendedShare', 'WalletAccess'],
-  // follow-up: read out of the storage layer, owner review
-  'platform/storage/localEntities/orbitStaticEntities.ts': ['mobileOrbitHostSurvey'],
 };
 
 const used = new Map(); // key -> files
@@ -113,10 +117,13 @@ for (const key of Object.keys(UNREAD_ALLOWED)) {
 }
 const ownedPairs = new Set(Object.entries(OUTSIDE_OWNED).flatMap(([f, ks]) => ks.map((k) => `${f} | ${k}`)));
 for (const pair of outsidePairs)
-  if (!ownedPairs.has(pair) && !OUTSIDE_BY_DESIGN.has(pair.split(' | ')[0]))
+  if (!ownedPairs.has(pair) && !designPairs.has(pair) && !OUTSIDE_BY_DESIGN.has(pair.split(' | ')[0]))
     failures.push(`NEW OUTSIDE READER ${pair} (read the flag in a page, hook or container and pass it down)`);
 for (const pair of ownedPairs)
   if (!outsidePairs.has(pair)) failures.push(`STALE OWNED ${pair} (reader is gone; delete it from OUTSIDE_OWNED)`);
+for (const pair of designPairs)
+  if (!outsidePairs.has(pair))
+    failures.push(`STALE BY DESIGN ${pair} (reader is gone; delete it from OUTSIDE_BY_DESIGN_PAIRS)`);
 for (const row of unknown) failures.push(`UNKNOWN KEY ${row} (not in the registry)`);
 for (const key of keys) {
   const by = FLAGS[key].removeBy;
@@ -129,7 +136,7 @@ console.log(
   `flags: ${keys.length} in the registry, ${used.size} with a reader, ${unknown.length} unknown keys, ` +
     `${keys.filter((k) => FLAGS[k].removeBy && FLAGS[k].removeBy !== 'permanent' && FLAGS[k].removeBy < today).length} expired (today ${today})`,
 );
-const byDesign = [...outside].filter((f) => OUTSIDE_BY_DESIGN.has(f)).length;
+const byDesign = [...outside].filter((f) => OUTSIDE_BY_DESIGN.has(f) || f in OUTSIDE_BY_DESIGN_PAIRS).length;
 console.log(
   `readers of flags outside pages, hooks, containers: ${outside.size} = ${byDesign} by design + ${outside.size - byDesign} owned, target 0` +
     (outside.size ? ` -> ${[...outside].sort().join(', ')}` : ''),

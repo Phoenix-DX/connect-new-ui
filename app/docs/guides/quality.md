@@ -69,9 +69,13 @@ Unread keys that stay on purpose (`UNREAD_ALLOWED` in the script, decision W43):
 | `getHasOrbitEventBooklet`                  | alias of `mobileOrbitEventBooklet` (read in EventDetail)    | remove when the owner decides to delete the alias (F53) |
 
 Metric of plan v2 section 7, "readers of flags outside pages, hooks and containers": the check prints
-`4 = 1 by design + 3 owned, target 0`. The one by design is `app/routes.ts` (`OUTSIDE_BY_DESIGN`, plan section 3.1
-rule 2). The 3 owned files are in `OUTSIDE_OWNED`: `lib/ubtConnectUtils/actions.ts` (F35), `components/bookmark/ItemOptionsMenu`
-(F51) and `platform/storage/localEntities/orbitStaticEntities.ts` (F52). The scan sees literal keys only; the key
+`4 = 2 by design + 2 owned, target 0`. The two by design are `app/routes.ts` (`OUTSIDE_BY_DESIGN`, plan section 3.1
+rule 2, any flag). The other is the pair `platform/storage/localEntities/orbitStaticEntities.ts` + `mobileOrbitHostSurvey`
+(`OUTSIDE_BY_DESIGN_PAIRS`; the app-start sync reads it at the same point as OutSystems `SyncAllOrbitStaticEntities`;
+user, 2026-10-25, F52).
+
+A new flag read in that file fails, and so does a pair whose reader is gone. The 2 owned files
+are in `OUTSIDE_OWNED`: `lib/ubtConnectUtils/actions.ts` (F35) and `components/bookmark/ItemOptionsMenu` (F51). The scan sees literal keys only; the key
 passed to `connect_LaunchDarkly_PermissionCheck(flag)` is not seen.
 
 The lists only shrink. When you fix a reader or build a screen that reads an allowed key, run `npm run flags`, then
