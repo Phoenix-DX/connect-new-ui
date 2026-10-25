@@ -501,7 +501,6 @@
   "src/components/version/UnsupportedVersionWrapper/UnsupportedVersionWrapper.tsx | type | UnsupportedVersionWrapperProps",
   "src/containers/AssembleSummaryCard/AssembleSummaryCardContainer.tsx | type | AssembleSummaryCardContainerProps",
   "src/containers/DetailLayout/DetailLayoutContainer.tsx | type | DetailLayoutContainerProps",
-  "src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx | type | EntityDetailsActionsContainerProps",
   "src/containers/FilterSheet/FilterSheetContainer.tsx | type | FilterSheetContainerProps",
   "src/containers/HouseholdDetails/hooks/householdDetailsState.ts | type | HouseholdDetailsAction",
   "src/containers/HouseholdDetails/hooks/householdDetailsState.ts | type | HouseholdDetailsState",

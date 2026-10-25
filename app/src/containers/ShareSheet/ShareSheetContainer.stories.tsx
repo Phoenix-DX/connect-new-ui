@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { MemoryRouter } from 'react-router';
 import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import { ShareableObject } from '@/components/share/ShareableObject';
-import { ShareSheetContainer, type ShareSheetContainerProps } from './ShareSheetContainer';
+import { ShareSheetContainer } from './ShareSheetContainer';
+import type { ShareSheetContainerProps } from './types';
 
 const meta = { title: 'Shared/UBTConnect_Utils/ShareSheet', component: ShareSheetContainer } satisfies Meta<
   typeof ShareSheetContainer

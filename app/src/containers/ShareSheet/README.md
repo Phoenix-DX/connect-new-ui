@@ -90,3 +90,12 @@ Send, recent-member share and the link action.
   only `data-list`.
 - These static values come from the original CSS: `connect-icon-lock`, `connect-icon-checkbox_fill`,
   `connect-icon-checkbox_outline_blank`, `connect-icon-remove-fill`, `ubt-avatar-image-sb` (SmallBase_48).
+
+## Files
+
+- `ShareSheetContainer.tsx`: the view (root, bottom sheet, footer).
+- `useShareSheet.ts`: the state, the effects, the queries and the handlers.
+- `shareSheetState.ts`: pure helpers of the state.
+- `types.ts`: the props interface and `ShareSheetParams`. `index.ts` re-exports the props type.
+- `components/ShareSheetFirstStep.tsx`, `components/ShareSheetSearchStep.tsx`: the two steps of the sheet.
+- `jsNodes.ts`, `mocks.ts`: the ported JavaScript nodes and the mocks.

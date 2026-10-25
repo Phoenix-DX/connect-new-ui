@@ -1321,7 +1321,29 @@
   },
   {
     "type": "dependency",
-    "from": "src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx",
+    "from": "src/containers/EntityDetailsActions/useEntityDetailsActions.ts",
+    "to": "src/legacy/os/exceptions.ts",
+    "unresolvedTo": "@/legacy/os/exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/containers/EntityDetailsActions/useEntityDetailsActions.ts",
+    "to": "src/legacy/os/os-exceptions.ts",
+    "unresolvedTo": "@/legacy/os/os-exceptions",
+    "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],
+    "rule": {
+      "severity": "error",
+      "name": "rule-9-legacy-os-importers"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "src/containers/EntityDetailsActions/entityDetailsActionsState.ts",
     "to": "src/legacy/os/os-exceptions.ts",
     "unresolvedTo": "@/legacy/os/os-exceptions",
     "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "import"],

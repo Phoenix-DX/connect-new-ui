@@ -30,15 +30,16 @@ matches (a stale row).
 
 | Baseline                                        | Check                                                                       | Content                                                                      |
 | ----------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `app/.dependency-cruiser-known-violations.json` | `npm run arch` (`--ignore-known`) and `node build/check-arch-baselines.mjs` | 142 dependency-cruiser violations                                            |
+| `app/.dependency-cruiser-known-violations.json` | `npm run arch` (`--ignore-known`) and `node build/check-arch-baselines.mjs` | 144 dependency-cruiser violations                                            |
 | `app/docs/refactor/arch-baseline.csv`           | `python3 migration/tools/refactor/arch_baseline.py check --strict`          | 72 ESLint rows (rule 4); `eslint.config.js` sets `warn` for these files only |
-| `app/.knip-known-unused.json`                   | `node app/build/check-unused-exports.mjs` (part of `npm run unused`)        | 1,130 unused exports and types                                               |
+| `app/.knip-known-unused.json`                   | `node app/build/check-unused-exports.mjs` (part of `npm run unused`)        | 1,122 unused exports and types                                               |
 
 When you fix a row:
 
 1. Fix the code.
 2. Run the check of the baseline. It prints the stale row (`STALE` for knip).
 3. Delete that row from the baseline file. Do not add rows. Do not regenerate a baseline to hide a new violation.
+   A baseline may grow only when a move splits an existing row over more files (W44), never for new debt.
    For depcruise, `npx depcruise-baseline` rewrites the file; use it only after you checked that the new file is smaller.
 
 Each remaining row has an owner in `migration/refactor/followups.md`: F35 (rule 6), F36 (OSLink), F37 (CacheControl),

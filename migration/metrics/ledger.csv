@@ -930,3 +930,17 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-25,refactor,verify,25402,refactor-tester,,F57 re-test loop 1 (sonnet) tokens from notification
 2026-10-25,refactor,other,0,refactor-documenter,,F52 + F57 + 2026-10-25 decisions docs (sonnet) (tokens pending)
 2026-10-25,refactor,other,53974,refactor-documenter,,docs pass tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,"F59-a test (sonnet): pass, HomeFeed 245.30 (+0.25) (tokens pending)"
+2026-10-25,refactor,verify,35322,refactor-tester,,F59-a test (sonnet) tokens from notification
+2026-10-25,refactor,build,0,refactor-developer,,F59-b dev (sonnet): 2 containers split into 10 modules; question: depcruise baseline 142->144 (tokens pending)
+2026-10-25,refactor,build,92675,refactor-developer,,F59-b dev (sonnet) tokens from notification
+2026-10-25,refactor,other,40036,advisor-opus,,"F59-b baseline advisor (Opus): (c) keep 142, high"
+2026-10-25,refactor,other,39281,advisor-fable,,"F59-b baseline advisor (Fable): (a) accept 144, high"
+2026-10-25,refactor,other,37697,refactor-documenter,,F59-a docs (sonnet)
+2026-10-25,refactor,build,0,refactor-developer,,F58 dev (opus): 15 files to typed clientVar accessors; metric 22 -> 7 (tokens pending)
+2026-10-25,refactor,build,148724,refactor-developer,,F58 dev (opus) tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,F59-b test (sonnet): pass; HomeFeed +0.37 over W21 0.3 (tokens pending)
+2026-10-25,refactor,verify,28524,refactor-tester,,F59-b test (sonnet) tokens from notification
+2026-10-25,refactor,other,39403,advisor-opus,,"F59-b W21 advisor (Opus): (a) accept once, high/medium"
+2026-10-25,refactor,other,38541,advisor-fable,,"F59-b W21 advisor (Fable): (c) accept + trim step, high"
+2026-10-25,refactor,other,0,refactor-documenter,,F59-b docs (sonnet) (tokens pending)

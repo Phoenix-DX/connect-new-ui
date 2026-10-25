@@ -87,3 +87,11 @@ OutSystems: `UBTConnect.Directory_CommonBlocks.Directory_EntityDetailsActions` Â
 - Notes category of each entity type: the React app ports the branches of Get_NoteCategoryId_ByEntityTypeId
   (UBTConnect.controller.js:6403-6489) in `UBTConnect/lib/actions.ts`.
 - GetNameAndSurname_ByFullName uses the JSUtils_String_Split that the React app ports (UBTJavaScriptUtils).
+
+## Files
+
+- `EntityDetailsActionsContainer.tsx`: the view (menu and popups).
+- `useEntityDetailsActions.ts`: the state, the effects and the handlers of the block.
+- `entityDetailsActionsState.ts`: pure helpers of the state.
+- `types.ts`: the props interface.
+- `api.ts`, `mocks.ts`: the data actions and their mocks.
