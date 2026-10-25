@@ -1,13 +1,4 @@
 import { useRef } from 'react';
-import {
-  fetchEventBookletFilters,
-  fetchEventBookletGuests,
-  fetchEventBookletHelpers,
-  toEventBookletPaginationInput,
-  toEventBookletSelectedFiltersInput,
-  type EventBookletCallInputs,
-  type EventBookletMember,
-} from '@/api/event';
 import { UserException, exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
 import type { EventBookletInputs } from '@/pages/EventBooklet/inputs';
 import type { PopupFilters } from '@/pages/EventBooklet/types';
@@ -16,19 +7,17 @@ import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { log } from '@/platform/log/log';
 import { useFlowState, type BackNavigationEvent, type IsAlive } from '@/platform/navigation';
-import { clientVar } from '@/platform/session/session';
-import { getLocalHelperRoles } from '@/platform/storage/localEntities';
 import { checkDirectoryAccess, setBookletMaxRows } from '@/lib/orbit/actions';
 import { DirectoryAPIFilter } from '@/lib/orbit/staticEntities';
+import { useEventBookletDataFlows } from './eventBookletDataFlows';
 import {
   canFetchNextPage,
   eventBookletReducer,
   INITIAL_EVENT_BOOKLET_STATE,
   restoreEventBookletState,
   searchInputId,
-  type EventBookletAction,
-  type EventBookletState,
 } from './eventBookletState';
+import type { EventBookletAction, EventBookletState } from './eventBookletTypes';
 
 /** The flows of the event booklet block: OnInitialize, OnReady and the screen actions of the view. The state comes
     from useFlowState: the flows read the newest variables (`latest`), as OutSystems assigns the variables at once.
@@ -77,8 +66,6 @@ export interface EventBookletFlows {
 /** The name under which the view cache keeps the block variables. */
 const VIEW_NAME = 'Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet';
 const UNKNOWN_ERROR = 'Connect2_OrbitMobile_MUI.UnknownError';
-/** The Max. Records of the client aggregate GetLocalHelperRoles. */
-const HELPER_ROLES_MAX_RECORDS = 20;
 
 /** FocusOnInput(InputId): focus the element 150 ms later, when it exists. */
 function focusOnInput(inputId: string): void {
@@ -168,22 +155,6 @@ export function useEventBooklet(
     else detached.current = eventBookletReducer(vars(), action);
   };
 
-  /** The block variables that the three data actions send. */
-  const callInputs = (): EventBookletCallInputs => {
-    const s = vars();
-    return {
-      In_EventId: parameters.current.In_EventId,
-      In_EventName: parameters.current.In_EventName,
-      IsFetchingData: s.isFetchingData,
-      IsGuestView: s.isGuestView,
-      IsSearchMode: s.isSearchMode,
-      FiltersPopUp: s.filtersPopUp,
-      HasFiltersApplied: s.hasFiltersApplied,
-      SelectedFilters: toEventBookletSelectedFiltersInput(s.selectedFilters),
-      PaginationSettings: toEventBookletPaginationInput(s.paginationSettings),
-    };
-  };
-
   /** Handle Error (AllExceptions) of the Refresh* actions: a non-system exception sets IsFetchingData False and raises
       UnknownError with its message; a system one goes on as it is. */
   const asUnknownError = (e: unknown): never => {
@@ -194,113 +165,18 @@ export function useEventBooklet(
     throw e;
   };
 
-  /** SetCurrentView(SetGuestView). */
-  const setCurrentView = (isGuestView: boolean) => {
-    write({ type: 'currentViewSet', isGuestView });
-  };
-
-  /** ResetPaginationSettings(IsClearAll): MaxRows from the client variables BookletGuestsMaxRows and
-      BookletHelpersMaxRows. */
-  const resetPaginationSettings = (isClearAll: boolean) => {
-    write({
-      type: 'paginationReset',
-      isClearAll,
-      guestsMaxRows: clientVar.bookletGuestsMaxRows.get(),
-      helpersMaxRows: clientVar.bookletHelpersMaxRows.get(),
-    });
-  };
-
-  /** ResetData(IsClearAll). */
-  const resetData = (isClearAll: boolean) => {
-    write({ type: 'dataReset', isClearAll });
-  };
-
-  /** Refresh of the client aggregate GetLocalHelperRoles (Max. Records 20, no sort): the shell's LocalHelperRole rows,
-      then OnAfterFetch_GetLocalHelperRoles (LocalHelperRoles = the list; finished fetching). */
-  const refreshGetLocalHelperRoles = async () => {
-    await Promise.resolve();
-    const list = getLocalHelperRoles(HELPER_ROLES_MAX_RECORDS);
-    write({ type: 'localHelperRolesFetched', list });
-    write({ type: 'fetchingFinished' });
-  };
-
-  /** OnAfterFetch_GetEventBookletFilters: EventInfo and the event days; (after fetching the roles when not yet) the
-      helper roles with their labels, the countries and their localities; finished fetching. */
-  const onAfterFetchGetEventBookletFilters = async () => {
-    const response = vars().filtersResponse;
-    write({ type: 'availableDaysSet', response });
-    if (!vars().helperRolesFetched) await refreshGetLocalHelperRoles();
-    write({ type: 'availableOptionsSet', response });
-    write({ type: 'fetchingFinished' });
-  };
-
-  /** OnAfterFetch_GetEventBookletGuests: the page appended to the guest lists; SetCurrentView(True); IsFetchingData
-      False. */
-  const onAfterFetchGetEventBookletGuests = () => {
-    write({ type: 'guestsPageAdded' });
-    setCurrentView(true);
-    write({ type: 'fetchingDataSet', isFetchingData: false });
-  };
-
-  /** OnAfterFetch_GetEventBookletHelpers: the page appended to the helper list; SetCurrentView(False); IsFetchingData
-      False. */
-  const onAfterFetchGetEventBookletHelpers = () => {
-    write({ type: 'helpersPageAdded' });
-    setCurrentView(false);
-    write({ type: 'fetchingDataSet', isFetchingData: false });
-  };
-
-  /** RefreshHelperRoles: IsFetchingData True, refresh GetLocalHelperRoles. */
-  const refreshHelperRoles = async () => {
-    write({ type: 'fetchingDataSet', isFetchingData: true });
-    try {
-      await refreshGetLocalHelperRoles();
-    } catch (e) {
-      asUnknownError(e);
-    }
-  };
-
-  /** RefreshEventFilters: IsFetchingData True, refresh Get_EventBookletFilters. */
-  const refreshEventFilters = async () => {
-    write({ type: 'fetchingDataSet', isFetchingData: true });
-    try {
-      const response = await fetchEventBookletFilters(callInputs());
-      write({ type: 'eventFiltersFetched', response });
-      await onAfterFetchGetEventBookletFilters();
-    } catch (e) {
-      asUnknownError(e);
-    }
-  };
-
-  /** RefreshEventGuests: IsFetchingData True, refresh Get_EventBookletGuests. */
-  const refreshEventGuests = async () => {
-    write({ type: 'fetchingDataSet', isFetchingData: true });
-    try {
-      const response: EventBookletMember[] = await fetchEventBookletGuests(callInputs());
-      write({ type: 'eventGuestsFetched', response });
-      onAfterFetchGetEventBookletGuests();
-    } catch (e) {
-      asUnknownError(e);
-    }
-  };
-
-  /** RefreshEventHelpers: IsFetchingData True, refresh Get_EventBookletHelpers. */
-  const refreshEventHelpers = async () => {
-    write({ type: 'fetchingDataSet', isFetchingData: true });
-    try {
-      const response: EventBookletMember[] = await fetchEventBookletHelpers(callInputs());
-      write({ type: 'eventHelpersFetched', response });
-      onAfterFetchGetEventBookletHelpers();
-    } catch (e) {
-      asUnknownError(e);
-    }
-  };
-
-  /** Refreshes the data source of the current view. */
-  const refreshCurrentView = async () => {
-    if (vars().isGuestView) await refreshEventGuests();
-    else await refreshEventHelpers();
-  };
+  /* The Refresh* actions and the resets (eventBookletDataFlows.ts). */
+  const {
+    setCurrentView,
+    resetPaginationSettings,
+    resetData,
+    onAfterFetchGetEventBookletFilters,
+    refreshHelperRoles,
+    refreshEventFilters,
+    refreshEventGuests,
+    refreshEventHelpers,
+    refreshCurrentView,
+  } = useEventBookletDataFlows(write, vars, parameters, asUnknownError);
 
   /** OnReady, before the first paint (W28). A view that the view cache restores does nothing (P-BACK). */
   async function onReady(restored: boolean) {

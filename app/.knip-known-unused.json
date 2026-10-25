@@ -933,8 +933,6 @@
   "src/pages/Updates_SingleList/hooks/updatesSingleListState.ts | export | EMPTY_DATE_RANGE",
   "src/pages/Updates_SingleList/hooks/updatesSingleListState.ts | export | diffDays",
   "src/pages/Updates_SingleList/hooks/updatesSingleListState.ts | export | directory_Updates_MinDateToShow",
-  "src/pages/Updates_SingleList/hooks/useUpdatesSingleList.ts | type | UpdatesSingleListFlags",
-  "src/pages/Updates_SingleList/hooks/useUpdatesSingleList.ts | type | UpdatesSingleListFlows",
   "src/pages/ViewDocuments/components/LoadingSpinner.tsx | type | LoadingSpinnerProps",
   "src/pages/ViewDocuments/hooks/useViewDocuments.ts | type | ViewDocumentsFlags",
   "src/pages/ViewDocuments/hooks/useViewDocuments.ts | type | ViewDocumentsFlows",

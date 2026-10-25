@@ -2,12 +2,8 @@ import { fireEvent, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { describe, expect, it, vi } from 'vitest';
 import type { EventBookletMember } from '@/api/event';
-import {
-  eventBookletReducer,
-  INITIAL_EVENT_BOOKLET_STATE,
-  type EventBookletAction,
-  type EventBookletState,
-} from '@/pages/EventBooklet/hooks/eventBookletState';
+import { eventBookletReducer, INITIAL_EVENT_BOOKLET_STATE } from '@/pages/EventBooklet/hooks/eventBookletState';
+import type { EventBookletAction, EventBookletState } from '@/pages/EventBooklet/hooks/eventBookletTypes';
 import { EventBookletView, type EventBookletViewProps } from './EventBookletView';
 
 /* The event booklet block, props only: the state comes from the reducer. Fictional members of a fictional event. */

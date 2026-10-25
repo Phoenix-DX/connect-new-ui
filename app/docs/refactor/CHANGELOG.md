@@ -931,3 +931,9 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - Architecture: `platform/session/session.ts` exports `clientVar`, an object with 15 typed accessors (`get()`, `set(value)`; types from `CLIENT_VAR_DEFAULTS`). `useClientVar(accessor)` takes an accessor or a name. 15 files in pages, components and `app/` use them (no import changes, no behavior change).
 - Metric: `getClientVar` / `setClientVar` outside `platform/`: 22 to 7 (4 cache blocks F37, 3 `lib/*/actions.ts` F35). Three files still call `useClientVar` by name (F62).
 - Gate: ci: pass; parity visual `--all` both references: 64/64; HomeFeed 245.80 kB gzip (+0.13), Login 185.06 (+0.13).
+
+## F59-c - Split the 4 large page files (400 lines or less)
+
+- Architecture: 4 files split inside their own page folders, no logic change, 9 modules of 370 lines or less. `useEventBooklet.ts` 494 to 370 (+ `eventBookletDataFlows.ts` 165). `eventBookletState.ts` 482 to 336 (+ `eventBookletTypes.ts` 103, `eventBookletLists.ts` 67). `BookmarkGroupView.tsx` 439 to 187 (+ `bookmarkGroupRows.tsx` 299). `useUpdatesSingleList.ts` 408 to 362 (+ `updatesSingleListFlows.ts` 52).
+- `useEventBookletDataFlows` has a `use` name but calls no hook: the lint rule `react-hooks/refs` refuses a plain function that reads refs. `asUnknownError` stays in `useEventBooklet.ts` and is passed in, so the `legacy/os/exceptions` import (a depcruise row) does not move. Knip baseline: 2 rows removed (the Flags and Flows types are now used).
+- Gate: ci: pass; parity visual `--all` both references: 64/64; HomeFeed 245.90 kB gzip (+0.10; +1.03 since P9-4, W45 triggers not met), Login 185.10 (+0.04). The dependency-cruiser baseline stays 144.

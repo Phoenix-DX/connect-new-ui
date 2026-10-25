@@ -2,20 +2,21 @@ import { describe, expect, it } from 'vitest';
 import type { EventBookletFiltersResponse, EventBookletMember } from '@/api/event';
 import type { LocalHelperRole } from '@/platform/storage/localEntities';
 import {
-  canFetchNextPage,
   checkSelectedDates,
-  EMPTY_EVENT_BOOKLET_STATE,
-  eventBookletReducer,
   filtersApplied,
   getHelperRoleByJSON_Name,
   groupHelpersByRole,
   groupMembersByCountry,
+} from './eventBookletLists';
+import {
+  canFetchNextPage,
+  EMPTY_EVENT_BOOKLET_STATE,
+  eventBookletReducer,
   INITIAL_EVENT_BOOKLET_STATE,
   restoreEventBookletState,
   searchInputId,
-  type EventBookletAction,
-  type EventBookletState,
 } from './eventBookletState';
+import type { EventBookletAction, EventBookletState } from './eventBookletTypes';
 
 /* The pure state of the event booklet: the client actions of Connect2_OrbitMobile_MUI and the reducer. Fictional
    members of a fictional event. */

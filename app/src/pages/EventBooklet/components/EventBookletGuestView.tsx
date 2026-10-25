@@ -1,4 +1,4 @@
-import type { EventBookletState } from '@/pages/EventBooklet/hooks/eventBookletState';
+import type { EventBookletState } from '@/pages/EventBooklet/hooks/eventBookletTypes';
 import { OSList } from '@/components/ui/os/OSList';
 import type { BookletMembersByLocality } from '@/pages/EventBooklet/types';
 import {

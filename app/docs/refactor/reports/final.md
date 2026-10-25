@@ -126,6 +126,21 @@ Opus and Fable decided together; the user can review each one. Source: `migratio
 | W42 | P9-2: flag readers metric reported as 4 = 1 by design + 3 owned and frozen. |
 | W43 | P9-2: keep 3 registry keys without a reader on an allow list with an owner and an exit condition. |
 
+## After the report (2026-10-25)
+
+Steps that follow the user's decisions of 2026-10-25. Details: [CHANGELOG.md](../CHANGELOG.md).
+
+| Metric | At the report | Now | Step |
+| --- | --- | --- | --- |
+| Files that call `callAction` outside `api/` | 6 | 4 (owned by F35 and F37) | F57 |
+| `getClientVar` / `setClientVar` outside `platform/` | 22 | 7 (4 cache blocks F37, 3 `lib/*/actions.ts` F35) | F58 |
+| Flag readers outside pages, hooks and containers | 4 | 4 = 2 by design + 2 owned | F52 |
+| Files over 400 lines in `components/`, `containers/` and `pages/` | 10 | 0 (largest: `pages/Search/hooks/useSearch.ts`, 392) | F59-a, F59-b, F59-c |
+| HomeFeed first load (gzip) | 244.87 kB | 245.90 kB (+1.03; the W45 triggers are not met) | F57 to F59-c |
+| Dependency-cruiser baseline | 142 | 144 (W44; back to 142 under F49) | F59-b |
+
+Total JS+CSS growth is accepted (F60). Files over 400 lines outside these three folders (generated files, api types and mappers, `lib/*/actions.ts`) are accepted by the same decision.
+
 ## 5. How to measure again
 
 ```

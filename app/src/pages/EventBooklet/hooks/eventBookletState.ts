@@ -1,107 +1,21 @@
 import type {
   EventBookletEventInfo,
   EventBookletFiltersResponse,
-  EventBookletMember,
   EventBookletPaginationSettings,
   EventBookletSelectedFilters,
 } from '@/api/event';
-import type { LocalHelperRole } from '@/platform/storage/localEntities';
-import type { DayFilter } from '@/lib/orbit/structures';
-import type {
-  BookletMembersByLocality,
-  BookletMembersByRole,
-  CurrentFilters,
-  PopupFilters,
-} from '@/pages/EventBooklet/types';
+import type { CurrentFilters, PopupFilters } from '@/pages/EventBooklet/types';
+import {
+  filtersApplied,
+  getHelperRoleByJSON_Name,
+  groupHelpersByRole,
+  groupMembersByCountry,
+} from './eventBookletLists';
+import type { EventBookletAction, EventBookletState } from './eventBookletTypes';
 
-/** The state of the event booklet block: its variables, the state of its data sources, the reducer and the pure
-    client actions of Connect2_OrbitMobile_MUI that the block calls. Records are values: every assignment copies.
+/** The reducer, the defaults and the client actions of the event booklet block. The types: eventBookletTypes.ts;
+    the list helpers: eventBookletLists.ts.
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet */
-
-/** The block variables and the state of its data sources (IsDataFetched and Response). */
-export interface EventBookletState {
-  isFetchingData: boolean;
-  eventInfo: EventBookletEventInfo;
-  availableFilters: PopupFilters;
-  currentFilters: CurrentFilters;
-  selectedFilters: EventBookletSelectedFilters;
-  guests: BookletMembersByLocality[];
-  guests_InvitedList: BookletMembersByLocality[];
-  guests_HostingList: BookletMembersByLocality[];
-  helpers: BookletMembersByRole[];
-  isSearchMode: boolean;
-  filtersPopUp: boolean;
-  localHelperRoles: LocalHelperRole[];
-  isGuestView: boolean;
-  hasFiltersApplied: boolean;
-  lastFetchedGuests: EventBookletMember[];
-  lastFetchedHelpers: EventBookletMember[];
-  paginationSettings: EventBookletPaginationSettings;
-  lastFilters_Guest: EventBookletSelectedFilters;
-  lastFilters_Helpers: EventBookletSelectedFilters;
-  lastFetched_Guests_InvitedLocality: EventBookletMember[];
-  lastFetched_Guests_HostLocality: EventBookletMember[];
-  /** GetLocalHelperRoles.IsDataFetched. */
-  helperRolesFetched: boolean;
-  /** Get_EventBookletFilters.IsDataFetched and Response. */
-  filtersFetched: boolean;
-  filtersResponse: EventBookletFiltersResponse | null;
-  /** Get_EventBookletGuests.IsDataFetched and Response. */
-  guestsFetched: boolean;
-  guestsResponse: EventBookletMember[];
-  /** Get_EventBookletHelpers.IsDataFetched and Response. */
-  helpersFetched: boolean;
-  helpersResponse: EventBookletMember[];
-}
-
-/** The assignments of the block flows. */
-export type EventBookletAction =
-  /** SetCurrentView(SetGuestView). */
-  | { type: 'currentViewSet'; isGuestView: boolean }
-  /** ResetPaginationSettings(IsClearAll), with the client variables BookletGuestsMaxRows and BookletHelpersMaxRows. */
-  | { type: 'paginationReset'; isClearAll: boolean; guestsMaxRows: number; helpersMaxRows: number }
-  /** ResetData(IsClearAll). */
-  | { type: 'dataReset'; isClearAll: boolean }
-  /** IsFetchingData = the value. */
-  | { type: 'fetchingDataSet'; isFetchingData: boolean }
-  /** "Finished fetching?" of the OnAfterFetch actions. */
-  | { type: 'fetchingFinished' }
-  /** GetLocalHelperRoles fetched, and LocalHelperRoles = its list (OnAfterFetch_GetLocalHelperRoles). */
-  | { type: 'localHelperRolesFetched'; list: LocalHelperRole[] }
-  /** Get_EventBookletFilters fetched. */
-  | { type: 'eventFiltersFetched'; response: EventBookletFiltersResponse }
-  /** OnAfterFetch_GetEventBookletFilters, first part: EventInfo, the view and the event days. */
-  | { type: 'availableDaysSet'; response: EventBookletFiltersResponse | null }
-  /** OnAfterFetch_GetEventBookletFilters, second part: the helper roles, the countries and the localities. */
-  | { type: 'availableOptionsSet'; response: EventBookletFiltersResponse | null }
-  /** Get_EventBookletGuests fetched. */
-  | { type: 'eventGuestsFetched'; response: EventBookletMember[] }
-  /** OnAfterFetch_GetEventBookletGuests: the page appended to the guest lists. */
-  | { type: 'guestsPageAdded' }
-  /** Get_EventBookletHelpers fetched. */
-  | { type: 'eventHelpersFetched'; response: EventBookletMember[] }
-  /** OnAfterFetch_GetEventBookletHelpers: the page appended to the helper list. */
-  | { type: 'helpersPageAdded' }
-  /** ToggleSearchMode(ForceSearchMode): IsSearchMode kept when forced, else toggled. */
-  | { type: 'searchModeToggled'; forceSearchMode: boolean }
-  /** ToggleFiltersPopUp. */
-  | { type: 'filtersPopUpToggled' }
-  /** OnClick_ClearSearch: both search terms "". */
-  | { type: 'searchCleared' }
-  /** The search input changed CurrentFilters.SearchTerm. */
-  | { type: 'searchTermChanged'; searchTerm: string }
-  /** OnKeyUp_SearchTerm on Enter: SelectedFilters.SearchTerm = CurrentFilters.SearchTerm. */
-  | { type: 'searchTermSelected' }
-  /** ClearAllFilters: CurrentFilters and SelectedFilters back to empty records. */
-  | { type: 'filtersCleared' }
-  /** OnHandle_ApplyFilters: SelectedFilters from the popup filters. */
-  | { type: 'popupFiltersSelected'; filters: PopupFilters }
-  /** OnHandle_ApplyFilters, at the end: CurrentFilters = the popup filters. */
-  | { type: 'popupFiltersKept'; filters: PopupFilters }
-  /** OnScrollEnding_Guests: the next guest page. */
-  | { type: 'nextGuestPage' }
-  /** OnScrollEnding_Helpers: the next helper page. */
-  | { type: 'nextHelperPage' };
 
 const EMPTY_POPUP_FILTERS: PopupFilters = {
   IsGuest: false,
@@ -178,66 +92,6 @@ export const EMPTY_EVENT_BOOKLET_STATE: EventBookletState = {
 
 /** The id of the search input of the block instance `blockId` (`$b1` → `b1-Input_SearchTerm`). */
 export const searchInputId = (blockId: string): string => `${blockId.replace('$', '')}-Input_SearchTerm`;
-
-/** ListSort by OrderNo ascending (Long Integer). */
-const byOrderNo = (list: readonly EventBookletMember[]): EventBookletMember[] =>
-  [...list].sort((a, b) => Number(a.OrderNo) - Number(b.OrderNo));
-
-/** GroupMembersByCountry(MembersList) → MembersByLocality: sort by OrderNo; for each member whose country is not
-    grouped yet, its country's members, then one group per locality of that country (first-seen order) with that
-    locality's members. */
-export function groupMembersByCountry(membersList: readonly EventBookletMember[]): BookletMembersByLocality[] {
-  const members = byOrderNo(membersList);
-  const out: BookletMembersByLocality[] = [];
-  for (const m of members) {
-    if (out.some((g) => g.Country === m.Country)) continue;
-    const byCountry = members.filter((x) => x.Country === m.Country);
-    const temp: BookletMembersByLocality[] = [];
-    for (const c of byCountry) {
-      if (temp.some((g) => g.Locality === c.Locality)) continue;
-      temp.push({
-        Locality: c.Locality,
-        Country: c.Country,
-        Members: byCountry.filter((x) => x.Locality === c.Locality),
-      });
-    }
-    out.push(...temp);
-  }
-  return out;
-}
-
-/** GroupHelpersByRole(MembersList) → HelpersByRole: sort by OrderNo; one group per role (first-seen order) with
-    GroupMembersByCountry of that role's members. */
-export function groupHelpersByRole(membersList: readonly EventBookletMember[]): BookletMembersByRole[] {
-  const members = byOrderNo(membersList);
-  const out: BookletMembersByRole[] = [];
-  for (const m of members) {
-    if (out.some((g) => g.Role === m.Role)) continue;
-    out.push({ Role: m.Role, MembersByLocality: groupMembersByCountry(members.filter((x) => x.Role === m.Role)) });
-  }
-  return out;
-}
-
-/** CheckSelectedDates(DayFilterList) → HasSelected: True at the first selected day. */
-export const checkSelectedDates = (dayFilterList: readonly DayFilter[]): boolean =>
-  dayFilterList.some((d) => d.IsSelected === true);
-
-/** GetHelperRoleByJSON_Name(In_JSON_Name, In_HelperRoles) → Out_HelperRoles: the first role with that JSON_Name,
-    else the empty record (Label ""). */
-export function getHelperRoleByJSON_Name(
-  jsonName: string,
-  helperRoles: readonly LocalHelperRole[],
-): Pick<LocalHelperRole, 'Label' | 'JSON_Name'> {
-  return helperRoles.find((r) => r.JSON_Name === jsonName) ?? { Label: '', JSON_Name: '' };
-}
-
-/** HasFiltersApplied of the OnAfterFetch actions: a search term, a selected day, a role, a country or a locality. */
-export const filtersApplied = (f: EventBookletSelectedFilters): boolean =>
-  f.SearchTerm !== '' ||
-  checkSelectedDates(f.DateRange) ||
-  f.HelperRoles.length > 0 ||
-  f.Countries.length > 0 ||
-  f.Localities.length > 0;
 
 /** SetCurrentView(SetGuestView): IsGuestView, CurrentFilters.IsGuest / IsHelper. */
 const setCurrentView = (s: EventBookletState, isGuestView: boolean): EventBookletState => ({

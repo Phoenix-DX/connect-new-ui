@@ -1,5 +1,6 @@
 import { OSList } from '@/components/ui/os/OSList';
-import { getHelperRoleByJSON_Name, type EventBookletState } from '@/pages/EventBooklet/hooks/eventBookletState';
+import { getHelperRoleByJSON_Name } from '@/pages/EventBooklet/hooks/eventBookletLists';
+import type { EventBookletState } from '@/pages/EventBooklet/hooks/eventBookletTypes';
 import type { BookletMembersByLocality, BookletMembersByRole } from '@/pages/EventBooklet/types';
 import { EventBooklet_ListHeader } from './EventBooklet_ListHeader';
 import {

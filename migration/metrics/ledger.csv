@@ -948,3 +948,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-25,refactor,verify,0,refactor-tester,,"F58 test (sonnet): pass, e2e 9/9, HomeFeed 245.80 (+0.13) (tokens pending)"
 2026-10-25,refactor,verify,28441,refactor-tester,,F58 test (sonnet) tokens from notification
 2026-10-25,refactor,other,0,refactor-documenter,,F58 docs (sonnet) (tokens pending)
+2026-10-25,refactor,other,33637,refactor-documenter,,F58 docs tokens from notification
+2026-10-25,refactor,build,0,refactor-developer,,F59-c dev (sonnet): 4 page files split; baselines not grown (tokens pending)
+2026-10-25,refactor,build,98003,refactor-developer,,F59-c dev (sonnet) tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,"F59-c test (sonnet): pass, HomeFeed 245.90 (+0.10) (tokens pending)"
+2026-10-25,refactor,verify,35522,refactor-tester,,F59-c test (sonnet) tokens from notification
+2026-10-25,refactor,other,0,refactor-documenter,,F59-c docs and final.md after-report section (sonnet) (tokens pending)
