@@ -32,7 +32,15 @@ A new result runs the action of its Result handler (`setCountries`, `setLocaliti
 blocks; the user result then raises Loaded. The stories give the results and the block wrappers as arguments.
 
 The React component ports the controller action by action (`createActions`, controller :1201-2900) on a mutable copy of
-the block variables; a render follows each event. Helpers `app_CommonFilter_DefineOptionNames` / `_CheckCountry` are in
+the block variables; a render follows each event. Files:
+
+- `FilterSheet.tsx`: view and props.
+- `useFilterSheet.ts`: the model class and the hook, with the hooks in the order of the block.
+- `filterSheetActions.ts`: `createActions`.
+- `filterSheetState.ts`: constants, helpers, `Vars`.
+- `types.ts`: the exported types. The barrel re-exports them.
+
+Helpers `app_CommonFilter_DefineOptionNames` / `_CheckCountry` are in
 `../lib/actions.ts`, `Choice` / `Connect_Subscription_Plan` in `../lib/staticEntities.ts`.
 
 ## Captured variants (3 distinct; 3 tested)

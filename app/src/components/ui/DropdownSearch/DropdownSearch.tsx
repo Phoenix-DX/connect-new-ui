@@ -3,12 +3,8 @@
 import { useId, useLayoutEffect, useRef } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { registerDropdown } from '@/components/ui/lib/actions';
-import {
-  DropdownSearchProvider,
-  type DropdownOptionJson,
-  type DropdownSearchConfig,
-  type DropdownSearchProperty,
-} from './provider';
+import { DropdownSearchProvider } from './provider';
+import type { DropdownOptionJson, DropdownSearchConfig, DropdownSearchProperty } from './providerConfig';
 import type { DropdownOption, DropdownOptionalConfigs } from './types';
 
 export interface DropdownSearchProps {

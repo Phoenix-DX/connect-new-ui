@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { Choice } from '@/lib/ubtConnect/staticEntities';
-import { FilterSheet, type FilterSheetSubscription } from './FilterSheet';
+import { FilterSheet } from './FilterSheet';
+import type { FilterSheetSubscription } from './types';
 
 /** The BackNavigationHandler block as the caller gives it (platform/navigation): its wrapper. */
 const renderBackNavigationHandler = () => <OSBlock name="NavigationHandler.BackNavigationHandler" />;

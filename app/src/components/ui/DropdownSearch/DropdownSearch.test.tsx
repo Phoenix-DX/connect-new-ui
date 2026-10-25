@@ -1,7 +1,7 @@
 import { act, render } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { DropdownSearch, fromJson, internalConfigs } from './DropdownSearch';
-import { isImage, providerConfig, sanitize, startingValues } from './provider';
+import { isImage, providerConfig, sanitize, startingValues } from './providerConfig';
 
 const fake = vi.hoisted(() => ({
   init: vi.fn(),

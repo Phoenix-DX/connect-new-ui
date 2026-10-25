@@ -2,7 +2,8 @@ import { fireEvent, render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { testCapturedVariants } from '@/test/capturedVariants';
 import { Choice } from '@/lib/ubtConnect/staticEntities';
-import { FilterSheet, type FilterSheetBackNavigationEvent, type FilterSheetSubscription } from './FilterSheet';
+import { FilterSheet } from './FilterSheet';
+import type { FilterSheetBackNavigationEvent, FilterSheetSubscription } from './types';
 import * as stories from './FilterSheet.stories';
 
 const captures = import.meta.glob<string>('./__captures__/*.html', { query: '?raw', import: 'default', eager: true });

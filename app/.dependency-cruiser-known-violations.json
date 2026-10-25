@@ -1255,7 +1255,7 @@
   },
   {
     "type": "dependency",
-    "from": "src/components/filter/FilterSheet/FilterSheet.tsx",
+    "from": "src/components/filter/FilterSheet/types.ts",
     "to": "src/legacy/os/cache/AllCountriesCacheControl/index.ts",
     "unresolvedTo": "@/legacy/os/cache/AllCountriesCacheControl",
     "dependencyTypes": ["aliased", "aliased-tsconfig", "aliased-tsconfig-paths", "local", "type-only", "import"],

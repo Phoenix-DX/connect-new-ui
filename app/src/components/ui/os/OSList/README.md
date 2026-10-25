@@ -24,7 +24,10 @@ Platform widgets `OSWidgets.List` and `OSWidgets.ListItem`, the reference implem
 Always rendered: `data-list`. `tag` is "div" in all 200 Lists of the survey; `mode` (Custom in 4 Lists, e.g.
 BottomBarMenu) changes nothing in the captures, so neither is a prop.
 
-## OSListItem / OSListItemAction (`OSListItem.tsx`)
+## OSListItem / OSListItemAction (`OSListItem.tsx`, `ListItemSwipeable.tsx`, `Swipeable.tsx`)
+
+`OSListItem.tsx` has OSListItem (ListItemBasic) and OSListItemAction. `ListItemSwipeable.tsx` has ListItemSwipeable and
+`Swipeable.tsx` has the Swipeable touch tracking.
 
 Ported from `OutSystemsReactWidgets.js`; `W:<n>` = line of the readable copy
 `migration/screens/MessageList/analysis/sources/pretty/OutSystemsReactWidgets.js`.

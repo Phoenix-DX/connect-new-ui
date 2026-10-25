@@ -912,3 +912,9 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 
 - Architecture: no folder change. `app/build/check-flags.mjs` lists the pair `platform/storage/localEntities/orbitStaticEntities.ts` + `mobileOrbitHostSurvey` as by design (app-start sync, same point as OutSystems `SyncAllOrbitStaticEntities`; user, 2026-10-25). A new flag read in that file, or a pair whose reader is gone, still fails.
 - Metric: readers of flags outside pages, hooks and containers: 4 = 2 by design + 2 owned.
+
+## F59-a - Split the 4 largest component files (400 lines or less)
+
+- Architecture: 4 files split inside their own folders, no logic change, 15 modules of 367 lines or less (the files stay flat in the folder). `FilterSheet.tsx` 695 to 325 (+ `useFilterSheet.ts` 120, `filterSheetActions.ts` 272, `filterSheetState.ts` 38, `types.ts` 31). `connect2Feed.ts` 652 to 173 (+ `connect2FeedState.ts` 115, `connect2FeedIframe.ts` 169, `connect2FeedMessages.ts` 110, `connect2FeedItems.ts` 146). `OSListItem.tsx` 574 to 129 (+ `ListItemSwipeable.tsx` 367, `Swipeable.tsx` 87). `provider.ts` 412 to 222 (+ `providerConfig.ts` 201).
+- connect2Feed: the 12 module `let` variables are now fields of one exported record `sdk` (`connect2FeedState.ts`), because an ES module cannot assign another module's variable; 202 references became `sdk.<name>`. HomeFeed grows 0.11 kB gzip (dev); the 5 exported FilterSheet types moved to `types.ts`.
+- Baselines: the depcruise rule-9 row for `AllCountriesCacheControl` moved from `FilterSheet.tsx` to `types.ts` (142 rows stay 142); knip 1130 to 1124 (6 stale rows removed). Gate: ci: pass (3975/3975 tests); parity visual `--all` both references: 64/64; bundle HomeFeed +0.25 kB gzip (W21: 0.3 kB).

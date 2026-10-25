@@ -18,7 +18,7 @@ Events `Initialized(DropdownSearchId)` → `onInitialized`, `OnChanged(DropdownI
 
 Ported: OnInitialize (InternalConfigs with the block defaults), OnReady (DropdownCreate + Initialize), OnParametersChanged
 (one changeProperty per changed input, compiled order), OnDestroy, OnSelectHandler / InitializedHandler. Provider glue
-`provider.ts` from `migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js` (AbstractVirtualSelect, the Search
+`provider.ts` (the provider class) and `providerConfig.ts` (types, option grouping, `getProviderConfig`) from `migration/runtime-sources/OutSystemsUI_2_23.OutSystemsUI.js` (AbstractVirtualSelect, the Search
 mode, their configs; line refs inside). The vscomp / osui-dropdown CSS is the original OSUI stylesheet.
 
 ## Captured variants

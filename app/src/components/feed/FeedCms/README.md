@@ -42,8 +42,13 @@ The iframe size comes from the original CSS
 
 ## SDK (ported)
 
-`connect2Feed.ts` ports the Connect2Feed SDK (`migration/runtime-sources/UBTConnect_EmbedFeed.EmbedFeed.js`): defaults
-and mergeConfig (only its own keys: `channelId` and `tokenType` from InitializeFeed are dropped, :5-49).
+`connect2Feed.ts` and its modules port the Connect2Feed SDK (`migration/runtime-sources/UBTConnect_EmbedFeed.EmbedFeed.js`).
+`connect2Feed.ts` has configure, loadFeeds, destroy, embed and reset. `connect2FeedState.ts` has the shared state, the
+defaults and mergeConfig. The exported record `sdk` there holds the module variables of the SDK as fields, because an ES
+module cannot assign a variable of another module. `connect2FeedIframe.ts` has the iframe code, `connect2FeedMessages.ts`
+the message handler and `connect2FeedItems.ts` the item iframes (openFeedItem).
+
+Defaults and mergeConfig (only its own keys: `channelId` and `tokenType` from InitializeFeed are dropped, :5-49).
 
 - configure listens to `message` once. It preloads a hidden iframe `<BaseURL>/embed/feeds?theme&limit[&hideActions][&b2c…]
 [&feedId]&preload=true` in the container (:319-417).

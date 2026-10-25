@@ -1,12 +1,7 @@
 /** @origin UBTConnect.App_CommonBlocks_Filter.FilterSheet */
 // @os-block UBTConnect.App_CommonBlocks_Filter.FilterSheet
-import { useEffect, useLayoutEffect, useReducer, useRef, useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
-import type { CacheControl_AllCountriesRec as AllCountries } from '@/legacy/os/cache/AllCountriesCacheControl';
-import type {
-  CacheControl_AllLocalities as AllLocalities,
-  Directory_UserCurrent,
-} from '@/lib/ubtConnectUtils/structures';
 import { Button } from '@/components/ui/Button';
 import { ColumnsTwo } from '@/components/ui/ColumnsTwo';
 import { CustomContainer } from '@/components/ui/CustomContainer';
@@ -29,36 +24,28 @@ import {
   UBT_Shape,
   UBT_Size,
 } from '@/lib/ubtConnectLibrary/staticEntities';
-import type { ContainerOptions, SelectionOption_Item } from '@/lib/ubtConnectLibrary/structures';
-import { bottomSheetClose } from '@/components/ui/lib/actions';
+import type { ContainerOptions } from '@/lib/ubtConnectLibrary/structures';
 import { FilterOptionChoice } from '@/components/filter/FilterOptionChoice';
 import { FilterOptionList } from '@/components/filter/FilterOptionList';
-import { app_CommonFilter_CheckCountry, app_CommonFilter_DefineOptionNames } from '@/lib/ubtConnect/actions';
-import { Choice, Connect_Subscription_Plan } from '@/lib/ubtConnect/staticEntities';
+import {
+  isFetched,
+  same,
+  SORTBY_TITLE,
+  SUBSTATE_COUNTRIES,
+  SUBSTATE_LOCALITIES,
+  SUBSTATE_MAIN,
+} from './filterSheetState';
 import type {
   Filter_Common,
   Filter_Common_Control_Choice,
   Filter_Common_Control_List,
   Filter_Common_Options,
+  FilterSheetBackNavigationEvent,
+  FilterSheetCountry,
+  FilterSheetLocality,
+  FilterSheetSubscription,
 } from './types';
-
-/** The anonymous record OptionControl / LastSearched_OptionControl / Empty_OptionControl. */
-export interface OptionControl {
-  OptionList_Control: Filter_Common_Control_List[];
-  OptionChoice_Control: Filter_Common_Control_Choice[];
-  OptionFlatList_Control: Filter_Common_Control_List[];
-}
-
-/** The country rows of the CacheControl_AllCountries Result. */
-export type FilterSheetCountry = AllCountries['CountryList']['List'][number];
-/** The locality rows of the CacheControl_AllLocalities Result. */
-export type FilterSheetLocality = AllLocalities['LocalityList']['List'][number];
-/** The subscription of the user information (CacheControl_UserInfo_Wrapper Result): the only part the block reads. */
-export type FilterSheetSubscription = Directory_UserCurrent['Directory_UserCurrent_Subscription'];
-/** The back-navigation event of the BackNavigationHandler block: the sheet prevents the navigation when it is open. */
-export interface FilterSheetBackNavigationEvent {
-  preventDefault(): void;
-}
+import { useFilterSheet } from './useFilterSheet';
 
 export interface FilterSheetProps {
   /** OutSystems instance id of the block. */
@@ -100,318 +87,6 @@ export interface FilterSheetProps {
   ) => void;
 }
 
-const SUBSTATE_MAIN = '';
-const SUBSTATE_LOCALITIES = 'Localities';
-const SUBSTATE_COUNTRIES = 'Countries';
-const SORTBY_TITLE = 'Sort by';
-const sameId = (a = '', b = '') => a.trim().toUpperCase() === b.trim().toUpperCase();
-const clone = <T,>(value: T): T => structuredClone(value);
-const same = (a: unknown, b: unknown) => JSON.stringify(a) === JSON.stringify(b);
-const emptyControl = (): OptionControl => ({
-  OptionList_Control: [],
-  OptionChoice_Control: [],
-  OptionFlatList_Control: [],
-});
-const isFetched = (x: { isFetched: boolean }) => x.isFetched; // read through a call: the original condition is kept as is
-const byOrder = <T extends { Order?: number }>(list: T[]) => [...list].sort((a, b) => (a.Order ?? 0) - (b.Order ?? 0));
-
-/** Block variables (FilterSheet.mvc.js model :13-77). Records are values in OutSystems: assignments clone. */
-interface Vars {
-  bottomSheetId: string;
-  subStateSelected: string;
-  optionListSelected: Filter_Common_Control_List;
-  countries: { list: AllCountries['CountryList']['List']; isFetched: boolean };
-  localities: { list: AllLocalities['LocalityList']['List']; isFetched: boolean };
-  user: { subscription?: FilterSheetSubscription; isFetched: boolean };
-  optionControl: OptionControl;
-  lastSearched: OptionControl;
-  empty: OptionControl;
-  isSingleFilter: boolean;
-  isOpenLocal: boolean;
-  searchInputId: string;
-  forceUpdateOptionList: boolean;
-}
-
-/** The flow of p:UBTConnect.App_CommonBlocks_Filter.FilterSheet.mvc.js (controller :1201-2900), action by action. */
-function createActions(v: Vars, opt: () => Filter_Common_Options, start: () => Filter_Common) {
-  const subscription = () => v.user.subscription;
-  const subscribed = () => subscription()?.SubscribedCountries.List ?? [];
-  const isFree = () => subscription()?.SubscriptionType === Connect_Subscription_Plan.Free;
-  const lists = () => v.optionControl.OptionList_Control;
-  const indexOf = (title: string) => lists().findIndex((p) => (p.Title ?? '') === title);
-  const putList = (list: Filter_Common_Control_List) => {
-    const position = indexOf(list.Title ?? '');
-    if (position >= 0) lists()[position] = list;
-    else lists().push(list);
-  };
-  const a = {
-    defineLast: () => {
-      v.lastSearched = clone(v.optionControl);
-    },
-    setSingleFilter: () => {
-      const oc = v.optionControl;
-      v.isSingleFilter = oc.OptionChoice_Control.length + oc.OptionList_Control.length === 1;
-      const first = oc.OptionList_Control[0];
-      if (v.isSingleFilter && first !== undefined) {
-        v.subStateSelected = first.Title ?? '';
-        v.optionListSelected = clone(first);
-      }
-    },
-    defineEmpty: () => {
-      v.empty = clone(v.optionControl);
-      for (const list of v.empty.OptionList_Control) {
-        list.SelectedIds = [Choice.None];
-        list.SelectedNames = [];
-      }
-      for (const choice of v.empty.OptionChoice_Control) choice.SelectedChoiceId = Choice.None;
-      const sort = v.empty.OptionChoice_Control.find((p) => (p.Title ?? '') === SORTBY_TITLE);
-      if (sort) sort.SelectedChoiceId = Choice.Yes;
-      a.setSingleFilter();
-    },
-    finishList: () => {
-      a.filterLocalitiesByCountry();
-      a.defineLast();
-      a.defineEmpty();
-    },
-    defineCountries: () => {
-      if (!(v.countries.isFetched && v.user.isFetched && !isFree())) return;
-      const o = opt().HasCountries ?? {};
-      const ids = start().CountryIds ?? [];
-      let local: Filter_Common_Control_List = {
-        Title: SUBSTATE_COUNTRIES,
-        In_Options: v.countries.list.map((c) => ({
-          Id: c.CountryCode,
-          DisplayText: c.CountryName,
-          CountryCode: c.CountryCode,
-        })),
-        Order: o.Order ?? 0,
-        AddAllOptions: o.AddAllOptions ?? true,
-        SheetTitle: 'Country',
-        SelectedIds: ids.length === 0 ? [Choice.None] : [...ids],
-      };
-      local = app_CommonFilter_DefineOptionNames(local);
-      if (subscription()?.SubscriptionType !== Connect_Subscription_Plan.Global)
-        for (const option of local.In_Options ?? [])
-          option.isEnabled = app_CommonFilter_CheckCountry(option.Id ?? '', subscribed());
-      local.In_Options = [...(local.In_Options ?? [])].sort((x, y) =>
-        (x.DisplayText ?? '').localeCompare(y.DisplayText ?? ''),
-      );
-      putList(local);
-      a.finishList();
-    },
-    defineLocalities: () => {
-      if (!(v.localities.isFetched && v.user.isFetched && !isFree())) return;
-      const ids = start().LocalitiesIds ?? [];
-      const firstCountryId = start().CountryIds?.[0] ?? ''; // the original appends In_StartFilter.CountryIds.Current
-      const local = app_CommonFilter_DefineOptionNames({
-        Title: SUBSTATE_LOCALITIES,
-        In_Options: v.localities.list.map((l) => ({
-          Id: l.LocalityId,
-          DisplayText: l.Name,
-          CountryCode: l.CountryCode,
-        })),
-        Order: opt().HasSorting?.Order ?? 0, // the original takes HasSorting.Order here
-        AddAllOptions: opt().HasLocalities?.AddAllOptions ?? true,
-        SheetTitle: 'Locality',
-        SelectedIds: ids.length === 0 ? [Choice.None] : ids.map(() => firstCountryId),
-      });
-      putList(local);
-      a.finishList();
-    },
-    filterLocalitiesByCountry: () => {
-      const o = opt();
-      if (!(o.HasCountries?.Enable && o.HasLocalities?.Enable)) return;
-      if (!(v.countries.isFetched && v.localities.isFetched)) return;
-      const li = indexOf(SUBSTATE_LOCALITIES);
-      const ci = indexOf(SUBSTATE_COUNTRIES);
-      const localities = lists()[li];
-      const countries = lists()[ci];
-      if (!localities || !countries) return;
-      const toOption = (l: AllLocalities['LocalityList']['List'][number]): SelectionOption_Item => ({
-        Id: l.LocalityId,
-        DisplayText: l.Name,
-        CountryCode: l.CountryCode,
-        isEnabled: app_CommonFilter_CheckCountry(l.CountryCode, subscribed()),
-      });
-      const countryIds = countries.SelectedIds ?? [];
-      const options =
-        (countryIds[0] ?? '') === Choice.None
-          ? v.localities.list.map(toOption)
-          : countryIds.flatMap((id) => v.localities.list.filter((l) => sameId(l.CountryCode, id)).map(toOption));
-      options.sort((x, y) =>
-        `${x.CountryCode ?? ''}${x.DisplayText ?? ''}`.localeCompare(`${y.CountryCode ?? ''}${y.DisplayText ?? ''}`),
-      );
-      localities.In_Options = options;
-      if ((localities.SelectedIds?.[0] ?? '') === Choice.None) return;
-      localities.SelectedIds = (localities.SelectedIds ?? []).filter((id) => options.some((p) => p.Id === id));
-      lists()[li] = app_CommonFilter_DefineOptionNames(localities);
-    },
-    defineSortBy: () => {
-      const choices = v.optionControl.OptionChoice_Control;
-      const position = choices.findIndex((p) => (p.Title ?? '') === SORTBY_TITLE);
-      const sorting = opt().HasSorting ?? {};
-      if (sorting.Enable) {
-        if (position < 0) {
-          const sortByNewest = start().Sort_ByNewest ?? '';
-          choices.push({
-            Title: SORTBY_TITLE,
-            SelectedChoiceId: sortByNewest === '' ? Choice.Yes : sortByNewest,
-            YesLabel: sorting.YesLabel ?? '',
-            NoLabel: sorting.NoLabel ?? '',
-            NoneLabel: '',
-            Order: sorting.Order ?? 0,
-          });
-        }
-      } else if (position >= 0) choices.splice(position, 1);
-    },
-    defineOptionControl: () => {
-      const o = opt();
-      v.optionControl = {
-        OptionList_Control: clone(o.Extra_OptionLists ?? []),
-        OptionChoice_Control: clone(o.Extra_OptionChoices ?? []),
-        OptionFlatList_Control: clone(o.Extra_OptionFlatLists ?? []),
-      };
-      if (o.HasCountries?.Enable) a.defineCountries();
-      if (o.HasLocalities?.Enable) a.defineLocalities();
-      if (o.HasSorting?.Enable) a.defineSortBy();
-      const oc = v.optionControl;
-      oc.OptionChoice_Control = byOrder(oc.OptionChoice_Control);
-      oc.OptionList_Control = byOrder(oc.OptionList_Control);
-      oc.OptionFlatList_Control = byOrder(oc.OptionFlatList_Control);
-      a.defineLast();
-      a.defineEmpty();
-    },
-    setSubState: (subState: string) => {
-      if (subState === SUBSTATE_MAIN && v.isSingleFilter) a.setSingleFilter();
-      else v.subStateSelected = subState;
-    },
-    clearSearchString: () => {
-      if (v.searchInputId === '') return;
-      const input: (HTMLElement & { clearStringAction?: (focus?: boolean) => void }) | null = document.getElementById(
-        v.searchInputId,
-      );
-      input?.clearStringAction?.(false); // Input_ClearString(SearchInputId, False)
-    },
-    closeSheet: () => {
-      bottomSheetClose(v.bottomSheetId);
-      a.setSubState(SUBSTATE_MAIN);
-      a.clearSearchString();
-    },
-    onClose: () => {
-      v.optionControl = clone(v.lastSearched);
-      if (v.isSingleFilter) v.forceUpdateOptionList = !v.forceUpdateOptionList;
-      bottomSheetClose(v.bottomSheetId);
-      a.setSubState(SUBSTATE_MAIN);
-    },
-    onChangeListOption: (selectedIds: string[], title: string) => {
-      const position = indexOf(title);
-      const list = lists()[position];
-      if (list) lists()[position] = app_CommonFilter_DefineOptionNames({ ...list, SelectedIds: [...selectedIds] });
-      if (title !== SUBSTATE_COUNTRIES) return;
-      if ((selectedIds[0] ?? '') === Choice.None) {
-        const localities = lists()[indexOf(SUBSTATE_LOCALITIES)];
-        if (localities) {
-          localities.SelectedNames = [];
-          localities.SelectedIds = [...selectedIds];
-        }
-      }
-      a.filterLocalitiesByCountry();
-    },
-    selectOptionList: (title: string) => {
-      const position = indexOf(title);
-      const found = lists()[position];
-      if (!found) return;
-      a.setSubState(title);
-      v.optionListSelected = clone(found);
-    },
-    changeChoice: (title: string, choiceId: string) => {
-      const found = v.optionControl.OptionChoice_Control.find((p) => (p.Title ?? '') === title);
-      if (found) found.SelectedChoiceId = choiceId;
-    },
-    changeFlat: (row: number, selectedItems: SelectionOption_Item[], clickedItemId: string) => {
-      const flat = v.optionControl.OptionFlatList_Control[row];
-      if (!flat) return;
-      flat.SelectedIds = selectedItems.map((o) => o.Id ?? '');
-      flat.SelectedNames = selectedItems.map((o) => o.DisplayText ?? '');
-      const option = flat.In_Options?.find((p) => p.Id === clickedItemId);
-      if (option) option.isSelected = !(option.isSelected ?? false);
-    },
-    setOpen: (isOpen: boolean) => {
-      v.isOpenLocal = isOpen;
-    },
-    setBottomSheetId: (sheetId: string) => {
-      v.bottomSheetId = sheetId;
-    },
-    setSearchInputId: (inputId: string) => {
-      v.searchInputId = inputId;
-    },
-    back: () => {
-      if (v.isSingleFilter) a.closeSheet();
-      else a.setSubState(SUBSTATE_MAIN);
-    },
-    clearFilters: () => {
-      v.optionControl = clone(v.empty);
-      v.optionListSelected = { ...v.optionListSelected, SelectedIds: [], SelectedNames: [] };
-    },
-    apply: () => {
-      a.defineLast();
-      a.closeSheet();
-      return !same(v.optionControl, v.empty);
-    },
-    setCountries: (list: Vars['countries']['list']) => {
-      v.countries = { list, isFetched: true };
-      a.defineCountries();
-    },
-    setLocalities: (list: Vars['localities']['list']) => {
-      v.localities = { list, isFetched: true };
-      a.defineLocalities();
-    },
-    setUser: (subscription: FilterSheetSubscription) => {
-      v.user = { subscription, isFetched: true };
-      a.defineCountries();
-      a.defineLocalities();
-    },
-    backNavigation: (event: FilterSheetBackNavigationEvent) => {
-      if (!v.isOpenLocal) return;
-      bottomSheetClose(v.bottomSheetId);
-      event.preventDefault(); // PreventNavigation
-    },
-  };
-  return a;
-}
-
-/** The block's variables and actions: one instance per block (the OutSystems model), changed by the actions. */
-class FilterSheetModel {
-  props: { inOptions: Filter_Common_Options; inStartFilter: Filter_Common };
-  vars: Vars = {
-    bottomSheetId: '',
-    subStateSelected: SUBSTATE_MAIN,
-    optionListSelected: {},
-    countries: { list: [], isFetched: false },
-    localities: { list: [], isFetched: false },
-    user: { isFetched: false },
-    optionControl: emptyControl(),
-    lastSearched: emptyControl(),
-    empty: emptyControl(),
-    isSingleFilter: false,
-    isOpenLocal: false,
-    searchInputId: '',
-    forceUpdateOptionList: false,
-  };
-  actions: ReturnType<typeof createActions>;
-  constructor(inOptions: Filter_Common_Options, inStartFilter: Filter_Common) {
-    this.props = { inOptions, inStartFilter };
-    this.actions = createActions(
-      this.vars,
-      () => this.props.inOptions,
-      () => this.props.inStartFilter,
-    );
-  }
-  setProps(inOptions: Filter_Common_Options, inStartFilter: Filter_Common): void {
-    this.props = { inOptions, inStartFilter };
-  }
-}
-
 /* Stable empty defaults: a new {} / [] per render would count as a new input. */
 const NO_OPTIONS: Filter_Common_Options = {};
 const NO_START_FILTER: Filter_Common = {};
@@ -436,59 +111,14 @@ export function FilterSheet({
   onSheetInitialized,
   onApplyFilters,
 }: FilterSheetProps) {
-  const [, rerender] = useReducer((n: number) => n + 1, 0);
-  const [model] = useState(() => new FilterSheetModel(inOptions, inStartFilter));
-  model.setProps(inOptions, inStartFilter);
-  const { actions } = model;
-  const run = (action: () => void) => {
-    action();
-    rerender();
-  };
-  const onLoadedRef = useRef(onLoaded);
-  useLayoutEffect(() => {
-    onLoadedRef.current = onLoaded;
+  const { model, actions, run, rerender } = useFilterSheet({
+    inOptions,
+    inStartFilter,
+    countries,
+    localities,
+    userSubscription,
+    onLoaded,
   });
-  // OnInitialize and OnParametersChanged: Action_Define_OptionControl.
-  const [initialized] = useState(() => {
-    actions.defineOptionControl();
-    return { inOptions, inStartFilter };
-  });
-  useEffect(() => {
-    if (initialized.inOptions === inOptions && initialized.inStartFilter === inStartFilter) return;
-    run(actions.defineOptionControl);
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs on new parameters only
-  }, [inOptions, inStartFilter]);
-  // The Result handlers of the three cache blocks, in the order of the blocks: a result that comes runs its action.
-  useEffect(() => {
-    if (countries === undefined) return;
-    run(() => {
-      actions.setCountries(countries);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs when a result comes
-  }, [countries]);
-  useEffect(() => {
-    if (localities === undefined) return;
-    run(() => {
-      actions.setLocalities(localities);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs when a result comes
-  }, [localities]);
-  useEffect(() => {
-    if (userSubscription === undefined) return;
-    run(() => {
-      actions.setUser(userSubscription);
-    });
-    // Loaded(ShowSubscriptionOnClick): False with other filters, else True for a Free subscription.
-    const o = model.props.inOptions;
-    const hasOtherFilters =
-      (o.Extra_OptionLists ?? []).length > 0 ||
-      (o.Extra_OptionChoices ?? []).length > 0 ||
-      (o.HasSorting?.Enable ?? false);
-    onLoadedRef.current?.(
-      hasOtherFilters ? false : userSubscription.SubscriptionType === Connect_Subscription_Plan.Free,
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs when a result comes
-  }, [userSubscription]);
 
   const v = model.vars;
   const oc = v.optionControl;
