@@ -78,6 +78,8 @@ Domain folders in `src/api/` (`household/`, `member/`, `country/`, `locality/`, 
 
 `locality/` holds 11 calls of 7 caller files. `update/` holds 9 actions of 5 caller files, with one `UpdateItem` type and two mappers; the bottom-bar unread count in `lib/ubtConnect/actions.ts` comes from its repository. Read `src/api/README.md`.
 
+The ShareSheet calls (`ActionCS_ShareObject`, `ActionCS_CreateShareProfileLink`, `ShareSheet/DataActionGetRecentlyShared`) are in `src/api/share/shareSheet.ts`, with `useRecentlySharedQuery`. `ActionGetUserInformation` is in `src/api/member/userInformation.ts`. Each has its own file, so the entry chunk and the HomeFeed first load do not load the whole repository. The barrels re-export them. The cache of the user information stays in `platform/session/userInfo.ts`.
+
 ## Mock data
 
 | Data                                                                            | Source                                                                                  |

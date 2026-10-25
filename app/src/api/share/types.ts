@@ -80,3 +80,20 @@ export interface ShareObjectResult {
   isAllowed: boolean;
   shareId: LongId;
 }
+
+/* ---- ShareSheet (UBTConnect_Utils, CW_Share) ---- */
+
+/** The screen variables of the ShareSheet block that its calls send (original names). */
+export interface ShareSheetVariables {
+  In_ShareObjectTypeId: string;
+  In_ShareableObjectId: string;
+  In_UpdateType: string;
+  In_UpdateDate: string;
+  SearchTerm: string;
+}
+
+/** The outputs of CS_CreateShareProfileLink: the share id and the URL. */
+export interface ShareProfileLink {
+  shareId: string;
+  url: string;
+}

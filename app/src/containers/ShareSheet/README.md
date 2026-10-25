@@ -39,10 +39,10 @@ The block raises one event: `Event_ClosedShareSheet` → `onEventClosedShareShee
   OnBack runs Action_ResetAndCloseSheetState.
 - Processing: ShareSheet_IsSharing adds the class `connect-share-sheet__content--processing`.
 
-The block uses these calls (`api.ts`, mocks in `mocks.ts`):
+The block uses these calls (`src/api/share/shareSheet.ts` and `src/api/member/`, mocks in `mocks.ts`):
 
-- DataActionGetRecentlyShared runs each time the sheet opens.
-- DataActionGetAvailableMembers runs on each submitted search. It lives in `src/api/member/`; `api.ts` re-exports `useAvailableMembersQuery` as `useGetAvailableMembers`. A reopened sheet shows the skeleton while the call runs (`gcTime: 0`).
+- DataActionGetRecentlyShared runs each time the sheet opens (`useRecentlySharedQuery`).
+- DataActionGetAvailableMembers runs on each submitted search. It lives in `src/api/member/` (`useAvailableMembersQuery`). A reopened sheet shows the skeleton while the call runs (`gcTime: 0`).
 - ActionCS_ShareObject runs in two cases:
   - The user clicks Send. The call uses the HouseholderIds of the selected members.
   - The user clicks a recently shared member.
@@ -80,7 +80,7 @@ Send, recent-member share and the link action.
   - The React app runs as a browser PWA (`src/platform/device/deviceContext.ts`, `isNativeDevice: false`). So the block does not
     render this section.
   - In the original app, a click on an option (Handler_OnClickExternalOption) calls CS_CreateShareProfileLink
-    (ported in `api.ts`). Then it runs the ExternalShare client action (native share / clipboard).
+    (ported in `src/api/share/shareSheet.ts`). Then it runs the ExternalShare client action (native share / clipboard).
   - The React app does not port the ExternalShare client action.
 - A click on a disabled recently shared member opens App_Subscription_ShowUpgradePopUp. The React app does not port it, so
   the click has no effect.

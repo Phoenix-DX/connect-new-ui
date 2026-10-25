@@ -37,7 +37,9 @@ import { SearchResultItem } from '@/components/search/SearchResultItem';
 import { ShareSheetSection } from '@/components/share/ShareSheetSection';
 import { ShareSheetSectionTitle } from '@/components/share/ShareSheetSectionTitle';
 import { EntityLazyImage } from '@/components/ui/EntityLazyImage';
-import { cs_ShareObject, useGetAvailableMembers, useGetRecentlyShared } from './api';
+import { useAvailableMembersQuery } from '@/api/member';
+import { csShareObject, useRecentlySharedQuery } from '@/api/share';
+import { getUserInformation } from '@/platform/session/userInfo';
 import { delaySetIsOpen, scrollToTop, shareSheet_IsSharing } from './jsNodes';
 
 export interface ShareSheetContainerProps {
@@ -189,8 +191,8 @@ export function ShareSheetContainer({
     In_UpdateType: inUpdateType,
     In_UpdateDate: inUpdateDate,
   };
-  const recent = useGetRecentlyShared({ ...variables, SearchTerm: '' }, recentFetchId);
-  const available = useGetAvailableMembers({ ...variables, SearchTerm: searchTerm }, searchFetchId);
+  const recent = useRecentlySharedQuery({ ...variables, SearchTerm: '' }, recentFetchId);
+  const available = useAvailableMembersQuery({ ...variables, SearchTerm: searchTerm }, searchFetchId);
   const recentFetched = recent.isSuccess;
   const availableFetched = available.isSuccess;
   // OnAfterFetch_* (:2070-2132, :2302-2373) and the handlers that assign SearchResultItemList: RecentlyShared starts
@@ -203,7 +205,9 @@ export function ShareSheetContainer({
   // Action_SubmitShare (:3084-3183): CS_ShareObject, then reset and close, then the confirmation; any error → message.
   const submitShare = async (targetMemberIds: string[]) => {
     try {
-      await cs_ShareObject(variables, targetMemberIds);
+      // Cache_UserInfo_Get (the user-info cache), then CS_ShareObject with the sharer's "FirstName LastName".
+      const user = (await getUserInformation()).Directory_UserCurrent;
+      await csShareObject(variables, `${user.FirstName} ${user.LastName}`, targetMemberIds);
       resetAndCloseSheetState();
       showFeedbackMessage(`${inShareObjectTypeId} has been shared.`, PLATFORM_MESSAGE_TYPE.info);
     } catch {

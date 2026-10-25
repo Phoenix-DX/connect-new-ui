@@ -3,7 +3,7 @@ import { shareKeys } from './keys';
 import { fetchAvailableUsers, fetchShareObjectTypeLabel } from './repository';
 import type { AvailableUsersCallInputs, ShareObjectTypeCallInputs } from './types';
 
-/* The two queries keep the options of the block queries that they replace: the previous answer stays while a new key
+/* The queries keep the options of the block queries that they replace: the previous answer stays while a new key
    is fetched (OutSystems keeps the old data during a refresh), no retry (OutSystems does not retry a failed data
    action) and the library default cache times. */
 

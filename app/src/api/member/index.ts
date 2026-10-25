@@ -14,4 +14,5 @@ export {
   fetchMember,
   requestPhotoUpdate,
 } from './repository';
+export { fetchUserInformation } from './userInformation';
 export type * from './types';

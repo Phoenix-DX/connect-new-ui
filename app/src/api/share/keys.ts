@@ -1,4 +1,4 @@
-import type { AvailableUsersCallInputs, ShareObjectTypeCallInputs } from './types';
+import type { AvailableUsersCallInputs, ShareObjectTypeCallInputs, ShareSheetVariables } from './types';
 
 /** Query keys of the share queries. The inputs are part of the key: the server answer depends on all of them. */
 export const shareKeys = {
@@ -10,4 +10,7 @@ export const shareKeys = {
       key, so it fetches again, also with the same inputs. */
   availableUsers: (inputs: AvailableUsersCallInputs, requestId: number) =>
     [...shareKeys.all, 'availableUsers', inputs, requestId] as const,
+  /** The recently shared members of the ShareSheet block. `fetchId` counts the Refresh Query requests (0: none). */
+  recentlyShared: (variables: ShareSheetVariables, fetchId: number) =>
+    [...shareKeys.all, 'recentlyShared', { ...variables, fetchId }] as const,
 };

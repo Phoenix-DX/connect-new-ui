@@ -1,6 +1,5 @@
 import { getCacheableObject } from '@/api/client/cache';
-import { callAction } from '@/api/client/callAction';
-import { memberCache } from '@/api/member';
+import { fetchUserInformation, memberCache } from '@/api/member';
 import type { UserInformation } from './mockUser';
 import { getClientVar, isSignedIn, setClientVar } from './session';
 
@@ -40,7 +39,7 @@ export async function getUserInformation_Wrapper(): Promise<UserInformation> {
   if (!isSignedIn()) throw new Error('User is not logged in'); // Cache_UserInfo_Get raises ObjectNotFound
   const info = await getCacheableObject(
     memberCache.userInfo(getClientVar('UBTConnect_Utils.UniqueCacheKey')),
-    async () => (await callAction('UBTConnect_Utils', 'ActionGetUserInformation', {})).UserInformation,
+    fetchUserInformation,
   );
   setClientVar('UBTConnect.App_Policies_HasPolicyToAccept', info.HasPoliciesToAccept);
   return info;

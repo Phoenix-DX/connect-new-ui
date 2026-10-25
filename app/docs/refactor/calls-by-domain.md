@@ -242,3 +242,7 @@ P6-G5-B-AssembleDetail: `pages/AssembleDetail/api.ts` is deleted (its row in the
 P6-G6-B-QRCodeGenerate: `pages/QRCodeGenerate/api.ts` is deleted (its row in the app table and its row in the Connect2_LegacyShared table above). The hook `useGenerateQrCode` calls `fetchEventQRCode` (DataActionGet_EventQRCode) of `@/api/event` and `fetchLegacySignedImageURL` (`ActionGetSignedImagesInBulk`) of `@/api/image`.
 
 P6-G6-B-ViewDocuments: `pages/ViewDocuments/api.ts` is deleted (its row in the app table above). The hook `useViewDocuments` calls `fetchEventDocuments` (DataActionGetEventDocuments) of `@/api/event` directly.
+
+F57 (user, 2026-10-25): the rows `ShareSheet/api.ts` (UBTConnect_Utils tables) and `shell/userInfo.ts` are gone. `ActionCS_ShareObject`, `ActionCS_CreateShareProfileLink` and `ShareSheet/DataActionGetRecentlyShared` are now in `src/api/share/shareSheet.ts`. `ActionGetUserInformation` is in `src/api/member/userInformation.ts`. `ShareSheet/DataActionGetAvailableMembers` is in `src/api/member/`.
+
+The counts above are the P0-4 baseline and do not change. Files that call `callAction` outside `api/`: 4 (F35, F37).

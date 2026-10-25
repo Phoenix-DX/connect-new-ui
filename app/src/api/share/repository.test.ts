@@ -60,6 +60,7 @@ describe('share repository', () => {
 
 import { writeItem } from '@/platform/storage/storage';
 import { fetchAvailableUsers, fetchShareObjectTypeLabel, shareObject } from './repository';
+import { csCreateShareProfileLink, csShareObject, fetchRecentlyShared } from './shareSheet';
 
 /* The MSW mocks of the test setup: pages/LegacyShareObject/mocks.ts. The type label of a household is the recorded one,
    any other type answers its own identifier; the users are one fictional user, filtered by the search words; a share
@@ -138,5 +139,36 @@ describe('share repository (LegacyShareObject)', () => {
       targetCBUserId: '990101',
     });
     expect(result).toEqual({ isAllowed: false, isSuccess: false, message: '', shareId: '0' });
+  });
+});
+
+describe('share repository (ShareSheet)', () => {
+  const variables = {
+    In_ShareObjectTypeId: 'Household',
+    In_ShareableObjectId: '77',
+    In_UpdateType: '',
+    In_UpdateDate: '1900-01-01',
+  };
+
+  it('fetchRecentlyShared sends the block variables to DataActionGetRecentlyShared', async () => {
+    const bodies = recordBodies('UBTConnect_Utils/ShareSheet/DataActionGetRecentlyShared');
+    const list = await fetchRecentlyShared({ ...variables, SearchTerm: '' });
+    expect(Array.isArray(list)).toBe(true);
+    expect(bodies).toEqual([{ ...variables, SearchTerm: '' }]);
+  });
+
+  it('csShareObject sends the sharer name and the target ids to ActionCS_ShareObject', async () => {
+    const bodies = recordBodies('UBTConnect_Utils/ActionCS_ShareObject');
+    await csShareObject(variables, 'Ada Lovelace', ['5']);
+    expect(bodies).toHaveLength(1);
+    expect(bodies[0]).toMatchObject({
+      In_ShareObjectTypeId: 'Household',
+      In_SharedObjectId: '77',
+      In_SharingProfileName: 'Ada Lovelace',
+    });
+  });
+
+  it('csCreateShareProfileLink answers the share id and the URL', async () => {
+    expect(await csCreateShareProfileLink(variables)).toEqual({ shareId: '1', url: '' });
   });
 });

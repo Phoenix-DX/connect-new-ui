@@ -516,7 +516,6 @@
   "src/containers/HouseholdDetails/mockData.ts | type | MockHousehold",
   "src/containers/NoteListActions/NoteListActionsContainer.tsx | type | NoteListActionsContainerProps",
   "src/containers/NoteListActions/types.ts | type | Notes",
-  "src/containers/ShareSheet/api.ts | type | ShareSheetVariables",
   "src/containers/SupperMeetingDetails/SupperMeetingDetailsContainer.tsx | type | SupperMeetingDetailsContainerProps",
   "src/containers/SupperMeetingDetails/hooks/useSupperMeetingDetails.ts | type | SupperMeetingDetailsFlows",
   "src/containers/index.ts | type | HouseholdDetailsContainerProps",

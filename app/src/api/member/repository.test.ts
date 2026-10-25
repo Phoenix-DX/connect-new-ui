@@ -9,6 +9,7 @@ import {
   fetchMember,
   requestPhotoUpdate,
 } from './repository';
+import { fetchUserInformation } from './userInformation';
 import type { AvailableMembersCallInputs, MemberAccountForm } from './types';
 
 /* The MSW mocks of the test setup: ShareSheet/mocks.ts (six fictional members, filtered by the search term),
@@ -120,6 +121,14 @@ describe('member repository', () => {
     expect(window.__osCalls).toEqual([
       expect.objectContaining({ module: 'UBTConnect', action: 'ActionRequestPhotoUpdate', inputNames: [] }),
     ]);
+  });
+
+  it('fetchUserInformation calls ActionGetUserInformation with no input and answers the UserInformation', async () => {
+    const info = await fetchUserInformation();
+    expect(window.__osCalls).toEqual([
+      expect.objectContaining({ module: 'UBTConnect_Utils', action: 'ActionGetUserInformation', inputNames: [] }),
+    ]);
+    expect(info).toHaveProperty('Directory_UserCurrent');
   });
 
   it('a failed call raises the exception of callAction', async () => {

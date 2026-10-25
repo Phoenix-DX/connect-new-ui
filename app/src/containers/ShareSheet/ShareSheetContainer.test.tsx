@@ -8,7 +8,7 @@ import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { freshPage, recordBodies } from '@/test/testSupport';
 import { expectToMatchCapture } from '@/test/dom';
-import { cs_CreateShareProfileLink } from './api';
+import { csCreateShareProfileLink } from '@/api/share';
 import { delaySetIsOpen, scrollToTop, shareSheet_IsSharing } from './jsNodes';
 import { ShareSheetContainer } from './ShareSheetContainer';
 import * as stories from './ShareSheetContainer.stories';
@@ -128,7 +128,7 @@ describe('ShareSheet', () => {
 
   it('CS_CreateShareProfileLink returns the share id and URL', async () => {
     await expect(
-      cs_CreateShareProfileLink({
+      csCreateShareProfileLink({
         In_ShareObjectTypeId: 'Household',
         In_ShareableObjectId: '77',
         In_UpdateType: '',
