@@ -26,7 +26,7 @@ Evidence of the P9-4 run: `npm run ci` exit 0 (640 test files, 3,975 tests); par
 | Statement coverage | 49.22 percent | not below | 89.51 percent (19,594 / 21,888) | Yes | Branches 81.59, functions 89.97, lines 90.81. Tests: 1,457 -> 3,975. |
 | First-load HomeFeed (kB gzip) | 236.40 | 248.22 or less | 244.87 (+3.6 percent) | Yes | Margin 3.35 kB. F17 stays on watch. |
 | First-load Login (kB gzip) | 184.61 | 193.84 or less | 184.92 (+0.2 percent) | Yes | P6-F15 cut Login. |
-| Total JS and CSS (kB gzip) | 974.55 (JS 974.16 + CSS 0.39) | not above | 1,014.23 (JS 1,011.69 in 212 files + CSS 2.54 in 1 file) | No (+4.1 percent) | The code split into more chunks (212 against 192 files; each chunk has its own module overhead), TanStack Query and the `api/` layer were added, and the one CSS file in `assets/` grew from 0.39 to 2.54 kB (design tokens and layers, P8-1; this is a likely cause, not measured per chunk). First loads stay in the limit. Not reduced by any step; no decision recorded. See question in section 3.1, item N-D. |
+| Total JS and CSS (kB gzip) | 974.55 (JS 974.16 + CSS 0.39) | not above | 1,014.23 (JS 1,011.69 in 212 files + CSS 2.54 in 1 file) | No (+4.1 percent; accepted by the user 2026-10-25) | The code split into more chunks (212 against 192 files; each chunk has its own module overhead), TanStack Query and the `api/` layer were added, and the one CSS file in `assets/` grew from 0.39 to 2.54 kB (design tokens and layers, P8-1; this is a likely cause, not measured per chunk). First loads stay in the limit. Not reduced by any step; no decision recorded. See question in section 3.1, item N-D. |
 | Legacy CSS (kB) | 1,605.8 | smaller; report | 1,604.8 (-1.0 kB, -0.06 percent) | Yes, small | P8-2 pruned 3 stylesheets with conservative rules (W40). The relaxed rule (about -272 kB) waits for F27 and F45. |
 
 Other results: `npm audit --omit=dev` finds 0 vulnerabilities. The full audit finds 2 in dev tools (1 low, 1 moderate; `serialize-javascript` and a fast-uri advisory set). They are new since the baseline. No package changed in P8 or P9; the user decides if the dev-tool advisories need a package update (ADR-2 exception).
@@ -53,20 +53,20 @@ Other results: `npm audit --omit=dev` finds 0 vulnerabilities. The full audit fi
 
 | Id | Item | Waits for |
 | --- | --- | --- |
-| N-A (F57) | 2 files call `callAction` outside `api/` with no follow-up: `containers/ShareSheet/api.ts` and `platform/session/userInfo.ts`. | A change step (move the call into `api/`), user or advisor to schedule. |
-| N-B (F58) | 22 files call `getClientVar` or `setClientVar` outside `platform/` (target 0). | A decision: move them to typed settings or accept the adapter as final. |
-| N-C (F59) | 19 code files over 400 lines. The largest component is `FilterSheet.tsx` (695). | A decision: split them or accept the limit for ports of OutSystems logic. |
-| N-D (F60) | Total JS and CSS is +4.1 percent over the baseline. | A decision: accept the growth (more chunks, TanStack Query, tokens) or run a size step (`manualChunks`, a check of the 212-file split). |
-| N-E (F61) | The P6 manual review list has 12 routes. The parity tool finds 14 routes without states: also `AcceptPendingPolicies` and `EmailContact`. | Add both to the manual review list (F27). |
+| N-A (F57) | 2 files call `callAction` outside `api/` with no follow-up: `containers/ShareSheet/api.ts` and `platform/session/userInfo.ts`. | Done: F57, user 2026-10-25. The calls are in `api/share/shareSheet.ts` and `api/member/userInformation.ts`; the metric is 4. |
+| N-B (F58) | 22 files call `getClientVar` or `setClientVar` outside `platform/` (target 0). | Decided (user, 2026-10-25): typed accessors in `platform/`; step F58 runs. |
+| N-C (F59) | 19 code files over 400 lines. The largest component is `FilterSheet.tsx` (695). | Decided (user, 2026-10-25): split components, containers and pages over 400 lines (F59-a, F59-b, F59-c); accept generated files, api types and mappers, and lib actions (F35). |
+| N-D (F60) | Total JS and CSS is +4.1 percent over the baseline. | Accepted by the user, 2026-10-25 (first loads in limits). |
+| N-E (F61) | The P6 manual review list has 12 routes. The parity tool finds 14 routes without states: also `AcceptPendingPolicies` and `EmailContact`. | Done: both are on the manual review list (F61, user, 2026-10-25). |
 
 ### 3.2 User decisions
 
 | Id | Decision |
 | --- | --- |
 | F39/F40 follow-up | The advisors decided W34 to W37 (section 4). The user may reverse them. |
-| F52 | Move the `mobileOrbitHostSurvey` read out of `orbitStaticEntities` (changes when the flag is read). |
-| F53 | Delete the alias flag `getHasOrbitEventBooklet`. |
-| F55 | Apply the CLAUDE.md proposal of P9-3 (`handoffs/P9-3/claude-md-proposal.md`). |
+| F52 | Decided: by design (user, 2026-10-25). The metric is 4 = 2 by design + 2 owned. |
+| F53 | Decided: keep it in the allow list (user, 2026-10-25). |
+| F55 | Applied (user, 2026-10-25). |
 | F18 | `SearchView` passes new `inOptions` and `inStartFilter` records to FilterSheet on each render. |
 | F27 | Give the 14 routes without states parity states. The tool must print "N of 64 routes checked". |
 

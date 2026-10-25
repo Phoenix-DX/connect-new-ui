@@ -759,7 +759,7 @@
 ## Phase 6 done
 
 - All 64 routes are pages in `src/pages/`. Group reports: [P6-G1](reports/P6-G1.md), [P6-G2](reports/P6-G2.md), [P6-G3](reports/P6-G3.md), [P6-G4](reports/P6-G4.md), [P6-G5](reports/P6-G5.md), [P6-G6](reports/P6-G6.md). Step report: [P6-end](reports/P6-end.md).
-- Manual review list (routes without parity states, so the DOM evidence is a developer probe): FeedItemDetail, ContactByEmailLDMCoordinator, ContactByEmailOrbitHost, EmailTarget, EventBooklet, TransportDetail, LDM_Email_V2, OrbitAdminEventDetail, GuestArrangements, AssembleDetail, QRCodeGenerate, ViewDocuments.
+- Manual review list (routes without parity states, so the DOM evidence is a developer probe): FeedItemDetail, ContactByEmailLDMCoordinator, ContactByEmailOrbitHost, EmailTarget, EventBooklet, TransportDetail, LDM_Email_V2, OrbitAdminEventDetail, GuestArrangements, AssembleDetail, QRCodeGenerate, ViewDocuments. Added by F61 (user, 2026-10-25): AcceptPendingPolicies, EmailContact.
 - Follow-up F27 is open: "64/64 clean" counts the routes with 0 states as clean. The report must print "N of 64 routes checked".
 
 ## P7-0 - refactor(P7-0): move the P7 shared rows to components/ui
@@ -901,3 +901,14 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - Architecture: no folder change, no app code change. The final report is `app/docs/refactor/reports/final.md` (metrics against plan section 7, phases, open work, advisor decisions W34-W43).
 - New tool `migration/tools/refactor/measure-final.mjs` (replaces `measure.mjs`, which needs the deleted `shared/` and `screens/`). Open items N-A to N-E are follow-ups F57 to F61.
 - Gate: ci: pass (3975/3975 tests); parity strict `--all` both references: 64/64; e2e:pwa 9/9.
+
+## F57 - The last direct calls outside api/
+
+- Architecture: the 4 calls of `containers/ShareSheet/api.ts` and `platform/session/userInfo.ts` are in `api/`. The 3 share calls and `useRecentlySharedQuery` are in `api/share/shareSheet.ts`; `ActionGetUserInformation` is in `api/member/userInformation.ts`. The barrels `api/share/index.ts` and `api/member/index.ts` re-export them. `containers/ShareSheet/api.ts` is deleted; the cache stays in `platform/session/userInfo.ts`.
+- Bundle fix of loop 1: each call has its own small file. So the entry chunk does not hoist the member repository. The HomeFeed first load does not gain the share repository (HomeFeed 245.05 kB gzip, +0.18; Login +0.00).
+- Metric: files that call `callAction` outside `api/` 6 to 4; all 4 are owned by F35 and F37.
+
+## F52 - orbitStaticEntities flag read is by design
+
+- Architecture: no folder change. `app/build/check-flags.mjs` lists the pair `platform/storage/localEntities/orbitStaticEntities.ts` + `mobileOrbitHostSurvey` as by design (app-start sync, same point as OutSystems `SyncAllOrbitStaticEntities`; user, 2026-10-25). A new flag read in that file, or a pair whose reader is gone, still fails.
+- Metric: readers of flags outside pages, hooks and containers: 4 = 2 by design + 2 owned.

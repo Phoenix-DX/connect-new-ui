@@ -1,8 +1,9 @@
 # connect-new: UBTConnect (OutSystems 11) → React
 
 Migrate the OutSystems app **UBTConnect TST** (`https://ubtm-tst.ubtconnectglobal.com/UBTConnect/`) to a React app
-(`app/`) with mock data, screen by screen, matching the original 1:1. Everything follows the project skill
-**outsystems-screen-spec** (`.claude/skills/outsystems-screen-spec/`). Use it for any migration work.
+(`app/`) with mock data, screen by screen, matching the original 1:1. All 64 routes are migrated. The project skill
+**outsystems-screen-spec** (`.claude/skills/outsystems-screen-spec/`) is a reference for how the routes were captured,
+specified and checked. Use it to re-capture or re-check a route. Architecture work follows the Refactor section below.
 
 ## Paths
 
@@ -10,7 +11,9 @@ Migrate the OutSystems app **UBTConnect TST** (`https://ubtm-tst.ubtconnectgloba
   always run from the project root (scripts default to `migration/`, `app/`, `.auth/`, `capture/` relative to it).
 - `capture/survey-UBTConnect.json`: static survey (compiled code only).
 - `migration/`: board, survey, catalog, stack, patterns, flags, per-route captures/specs/questions/parity.
-- `app/`: the React app (created by the scaffold in the foundation phase).
+- `app/`: the React app. Folders of `app/src/`: `app`, `pages`, `containers`, `components`, `api`, `platform`, `lib`,
+  `legacy/os`, `mocks`, `styles`, `vendor`, `pwa`, `sw`, `test`. Read `app/README.md` and
+  `app/docs/architecture/overview.md` first.
 - `.auth/`: credentials and session. **SECRET.**
 
 ## Hard rules

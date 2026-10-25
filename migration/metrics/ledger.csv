@@ -915,3 +915,18 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-25,refactor,verify,27389,refactor-test,,P9-4 sonnet
 2026-10-25,refactor,other,0,refactor-docs,,P9-4 sonnet
 2026-10-25,refactor,other,28517,refactor-docs,,P9-4 sonnet
+2026-10-25,refactor,build,19298,refactor-developer,,"F52 dev (sonnet): orbitStaticEntities flag read by design in check-flags, pass"
+2026-10-25,refactor,build,0,refactor-developer,,"F57 dev (sonnet): 4 calls into api/share and api/member, pass (tokens pending)"
+2026-10-25,refactor,build,40277,refactor-developer,,F57 dev (sonnet) tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,"F52 pass, F57 fail W21 (HomeFeed +0.66 kB) (tokens pending)"
+2026-10-25,refactor,verify,34077,refactor-tester,,F52 + F57 test (sonnet) tokens from notification
+2026-10-25,refactor,verify,0,fact-sonnet,,F57 bundle growth analysis (tokens pending)
+2026-10-25,refactor,verify,58847,fact-sonnet,,"F57 bundle growth analysis, tokens from notification"
+2026-10-25,refactor,build,0,refactor-developer,,"F57 dev loop 1 (sonnet): split userInformation and shareSheet modules; HomeFeed +0.18, Login +0.00 (tokens pending)"
+2026-10-25,refactor,build,37779,refactor-developer,,F57 dev loop 1 (sonnet) tokens from notification
+2026-10-25,refactor,build,0,refactor-developer,,"F59-a dev (opus): 4 component files split into 15 modules, largest 367 (tokens pending)"
+2026-10-25,refactor,build,211561,refactor-developer,,F59-a dev (opus) tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,"F57 re-test loop 1 (sonnet): pass, HomeFeed +0.18 (tokens pending)"
+2026-10-25,refactor,verify,25402,refactor-tester,,F57 re-test loop 1 (sonnet) tokens from notification
+2026-10-25,refactor,other,0,refactor-documenter,,F52 + F57 + 2026-10-25 decisions docs (sonnet) (tokens pending)
+2026-10-25,refactor,other,53974,refactor-documenter,,docs pass tokens from notification
