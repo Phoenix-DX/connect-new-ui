@@ -1,4 +1,4 @@
-import { getClientVar, setClientVar } from '@/platform/session/session';
+import { clientVar } from '@/platform/session/session';
 import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 import type {
   CarouselHouseholdItem,
@@ -91,10 +91,7 @@ export async function directory_Updates_CarouselSwipeAction(
   const data: unknown = JSON.parse(in_Parameters);
   const updateItemId = textToLongInteger(isRecord(data) ? text(data.UpdateItemId) || '0' : '0');
   await markAsRead(updateItemId);
-  setClientVar(
-    'UBTConnect.Directory_Updates_UnreadCount',
-    getClientVar('UBTConnect.Directory_Updates_UnreadCount') - 1,
-  );
+  clientVar.updatesUnreadCount.set(clientVar.updatesUnreadCount.get() - 1);
   return updateItemId;
 }
 

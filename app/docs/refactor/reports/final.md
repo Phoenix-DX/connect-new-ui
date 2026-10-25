@@ -59,6 +59,8 @@ Other results: `npm audit --omit=dev` finds 0 vulnerabilities. The full audit fi
 | N-D (F60) | Total JS and CSS is +4.1 percent over the baseline. | Accepted by the user, 2026-10-25 (first loads in limits). |
 | N-E (F61) | The P6 manual review list has 12 routes. The parity tool finds 14 routes without states: also `AcceptPendingPolicies` and `EmailContact`. | Done: both are on the manual review list (F61, user, 2026-10-25). |
 
+N-B update (F58, 2026-10-25): step F58 brought the metric to 7 (4 cache blocks F37, 3 `lib/*/actions.ts` F35).
+
 ### 3.2 User decisions
 
 | Id | Decision |

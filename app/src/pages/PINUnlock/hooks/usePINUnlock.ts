@@ -1,7 +1,7 @@
 import { replaceOnUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';
 import { getResumeLoginLink } from '@/platform/session/resume';
-import { getClientVar } from '@/platform/session/session';
+import { clientVar } from '@/platform/session/session';
 import { useScreenController_NavigateToPage } from '@/lib/jsUtils';
 
 export interface PINUnlockState {
@@ -26,7 +26,7 @@ export function usePINUnlock(): PINUnlockState {
       screenController_NavigateToPage(resumeLink, true);
       return;
     }
-    const lastUrl = getClientVar('UBTConnect.LastURL');
+    const lastUrl = clientVar.lastUrl.get();
     if (lastUrl !== '') screenController_NavigateToPage(lastUrl, true);
     else navigate(PATHS.home, undefined, { replace: true });
   };

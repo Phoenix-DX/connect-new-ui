@@ -3,7 +3,7 @@ import { allowUpcomingNavigation, useOsNavigate } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';
 import { pinCheck } from '@/platform/session/pin';
 import { getColdStartLinkURL, setResumeLoginLink } from '@/platform/session/resume';
-import { getClientVar, isSignedIn, setClientVar, useClientVar } from '@/platform/session/session';
+import { clientVar, isSignedIn, useClientVar } from '@/platform/session/session';
 import { set_InitialClientVariables } from '@/lib/ubtConnect/actions';
 import { useScreenController_NavigateToPage } from '@/lib/jsUtils';
 import { useApplicationLoadEvents } from './useApplicationLoadEvents';
@@ -36,7 +36,7 @@ export function useSplash(): SplashState {
   const [triggerAnimation, setTriggerAnimation] = useState(false);
   const navigationObject = useRef<Event | null>(null);
   const percentage = useRef(0);
-  const headerFinalHeightPercentage = useClientVar('UBTConnect.App_PIN_Header_FinalHeightPercentage');
+  const headerFinalHeightPercentage = useClientVar(clientVar.pinHeaderFinalHeightPercentage);
 
   // Handler_OnNavigation: PreventNavigation (stopPropagation and preventDefault), NavigationObject = NavigationEvent.
   const onNavigation = (navigationEvent: Event) => {
@@ -53,8 +53,8 @@ export function useSplash(): SplashState {
   // OnLoadComplete: TriggerAnimation = True; LastURL = In_RedirectURL unless a navigation was caught and LastURL is set.
   const onLoadComplete = (redirectUrl: string) => {
     setTriggerAnimation(true);
-    if (navigationObject.current !== null && getClientVar('UBTConnect.LastURL') !== '') return;
-    setClientVar('UBTConnect.LastURL', redirectUrl);
+    if (navigationObject.current !== null && clientVar.lastUrl.get() !== '') return;
+    clientVar.lastUrl.set(redirectUrl);
   };
 
   useApplicationLoadEvents({ minimumDisplayTimeMs: MINIMUM_DISPLAY_TIME_MS, onUpgradeProgress, onLoadComplete });
@@ -79,10 +79,7 @@ export function useSplash(): SplashState {
         return;
       }
     }
-    screenController_NavigateToPage(
-      coldStartLinkUrl !== '' ? coldStartLinkUrl : getClientVar('UBTConnect.LastURL'),
-      true,
-    );
+    screenController_NavigateToPage(coldStartLinkUrl !== '' ? coldStartLinkUrl : clientVar.lastUrl.get(), true);
   };
 
   return { triggerAnimation, headerFinalHeightPercentage, onNavigation, onLoadingDotsAnimationComplete };

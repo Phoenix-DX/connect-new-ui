@@ -1,7 +1,7 @@
 import type { MessageDetail, MessageDetailCallInputs, MessageInstanceResult, MessageParameter } from '@/api/message';
 import type { MessageDetailInputs } from '@/pages/MessageDetail/inputs';
 import { MessageInfoType, MessageSenderTarget, MessageType, ParameterName } from '@/pages/MessageDetail/staticEntities';
-import { getClientVar, setClientVar } from '@/platform/session/session';
+import { clientVar } from '@/platform/session/session';
 
 /** The state of ScreenBlock_MessageDetail and its reducer, the pure parts of its flows and view expressions, and the
     client actions of Connect2_LegacyShared that the block calls.
@@ -125,6 +125,6 @@ export function addFirstSentence(userFirstName: string, messageContent: string):
 /** Connect2_LegacyShared DecrementReadWhatsNewsCounter: UnreadWhatsNewsNumber - 1 (not below 0), on the shell client
     variable added by CR-MessageDetail-1. */
 export function decrementReadWhatsNewsCounter(): void {
-  const unread = getClientVar('Connect2_LegacyShared.UnreadWhatsNewsNumber');
-  setClientVar('Connect2_LegacyShared.UnreadWhatsNewsNumber', unread > 0 ? unread - 1 : 0);
+  const unread = clientVar.unreadWhatsNewsNumber.get();
+  clientVar.unreadWhatsNewsNumber.set(unread > 0 ? unread - 1 : 0);
 }

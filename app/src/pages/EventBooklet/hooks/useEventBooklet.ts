@@ -16,7 +16,7 @@ import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { log } from '@/platform/log/log';
 import { useFlowState, type BackNavigationEvent, type IsAlive } from '@/platform/navigation';
-import { getClientVar } from '@/platform/session/session';
+import { clientVar } from '@/platform/session/session';
 import { getLocalHelperRoles } from '@/platform/storage/localEntities';
 import { checkDirectoryAccess, setBookletMaxRows } from '@/lib/orbit/actions';
 import { DirectoryAPIFilter } from '@/lib/orbit/staticEntities';
@@ -205,8 +205,8 @@ export function useEventBooklet(
     write({
       type: 'paginationReset',
       isClearAll,
-      guestsMaxRows: getClientVar('Connect2_OrbitMobile_MUI.BookletGuestsMaxRows'),
-      helpersMaxRows: getClientVar('Connect2_OrbitMobile_MUI.BookletHelpersMaxRows'),
+      guestsMaxRows: clientVar.bookletGuestsMaxRows.get(),
+      helpersMaxRows: clientVar.bookletHelpersMaxRows.get(),
     });
   };
 

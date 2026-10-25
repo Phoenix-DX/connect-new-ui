@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import type { UI_ListMenuOption, UI_MenuSection } from '@/components/menu/MenuList';
 import { useOsNavigate, useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { getClientVar, setClientVar } from '@/platform/session/session';
+import { clientVar } from '@/platform/session/session';
 import { BIOMETRIC_LOGIN_NAME, CHANGE_PIN_NAME, initialMenuOptionList } from './pinBiometricsMenuState';
 
 /** The flows of the PIN & Biometrics menu: OnInitialize (the rows, which the view cache keeps) and
@@ -29,10 +29,7 @@ export function usePINBiometricsMenu(): PINBiometricsMenuFlows {
   const [initial] = useState(() =>
     restored
       ? []
-      : initialMenuOptionList(
-          appManager_GetPIN_FingerprintReaderAvailable(),
-          getClientVar('UBTConnect.App_PIN_BiometricEnabled'),
-        ),
+      : initialMenuOptionList(appManager_GetPIN_FingerprintReaderAvailable(), clientVar.biometricEnabled.get()),
   );
   const [menuOptionList] = useViewState<UI_ListMenuOption[]>('MenuOptionList', initial);
   const menuSection = useMemo<UI_MenuSection>(
@@ -46,7 +43,7 @@ export function usePINBiometricsMenu(): PINBiometricsMenuFlows {
     if (option.Label === CHANGE_PIN_NAME) {
       navigate(`/${APP_ID}/PINChange`);
     } else if (option.Label === BIOMETRIC_LOGIN_NAME) {
-      setClientVar('UBTConnect.App_PIN_BiometricEnabled', !getClientVar('UBTConnect.App_PIN_BiometricEnabled'));
+      clientVar.biometricEnabled.set(!clientVar.biometricEnabled.get());
     }
   };
 

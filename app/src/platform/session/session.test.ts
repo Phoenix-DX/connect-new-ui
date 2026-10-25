@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, test } from 'vitest';
 import {
   appReady,
   clearClientVarsAfterLogout,
+  clientVar,
   currentUserId,
   getClientVar,
   getShellState,
@@ -16,6 +17,7 @@ import {
   useShellState,
   writePin,
 } from './session';
+import { CLIENT_VAR_DEFAULTS } from './clientVars';
 import { getSessionStatus } from './machine';
 import { getSetting, setSettings } from '@/platform/settings';
 import { freshPage, reloadPage } from '@/test/testSupport';
@@ -99,6 +101,53 @@ test('components re-render on changes', () => {
   });
   expect(state.result.current.signedIn).toBe(true);
   expect(lastUrl.result.current).toBe('/UBTConnect/Notes');
+});
+
+describe('the typed accessors clientVar.<key> (F58)', () => {
+  const accessors = Object.values(clientVar);
+
+  test('each accessor starts at the compiled default of its client variable', () => {
+    for (const accessor of accessors) expect(accessor.get()).toBe(CLIENT_VAR_DEFAULTS[accessor.name]);
+    expect(clientVar.lastUrl.get()).toBe('');
+    expect(clientVar.uniqueCacheKey.get()).toBe('Unique');
+    expect(clientVar.biometricEnabled.get()).toBe(true);
+    expect(clientVar.searchRecentClickedResultsLimit.get()).toBe(10);
+    expect(clientVar.pinHeaderFinalHeightPercentage.get()).toBe(90);
+    expect(clientVar.updatesUnreadCount.get()).toBe(0);
+  });
+
+  test('an accessor and the OutSystems name read and write the same value', () => {
+    clientVar.lastUrl.set('/UBTConnect/Menu');
+    expect(getClientVar('UBTConnect.LastURL')).toBe('/UBTConnect/Menu');
+    setClientVar('Connect2_OrbitMobile_MUI.BookletGuestsMaxRows', 25);
+    expect(clientVar.bookletGuestsMaxRows.get()).toBe(25);
+  });
+
+  test('set keeps the value in the same localStorage key, which survives a reload', () => {
+    clientVar.photobookSpeed.set(3000);
+    clientVar.biometricEnabled.set(false);
+    expect(localStorage.getItem('ubtc-mock:cv:UBTConnect.PhotobookCarousel_SelectedSpeed')).toBe('3000');
+    reloadPage({ newTab: true });
+    expect(clientVar.photobookSpeed.get()).toBe(3000);
+    expect(clientVar.biometricEnabled.get()).toBe(false);
+  });
+
+  test('a logout resets every accessor to its default (none is *_IsPersistent)', () => {
+    clientVar.isNavigateToHomeOnBack.set(true);
+    clientVar.unreadWhatsNewsNumber.set(4);
+    clientVar.deviceUuid.set('device-1');
+    clearClientVarsAfterLogout();
+    for (const accessor of accessors) expect(accessor.get()).toBe(CLIENT_VAR_DEFAULTS[accessor.name]);
+  });
+
+  test('useClientVar takes an accessor; the component renders again on set', () => {
+    const hasPolicy = renderHook(() => useClientVar(clientVar.hasPolicyToAccept));
+    expect(hasPolicy.result.current).toBe(false);
+    act(() => {
+      clientVar.hasPolicyToAccept.set(true);
+    });
+    expect(hasPolicy.result.current).toBe(true);
+  });
 });
 
 describe('the selectors read the session machine (plan v2 §3.2)', () => {

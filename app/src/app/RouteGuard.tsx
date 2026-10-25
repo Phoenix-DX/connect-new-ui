@@ -4,7 +4,7 @@ import { PATHS } from '@/platform/navigation/paths';
 import { DEFAULT_TRANSITION, transitionState } from '@/platform/navigation/screenTransition';
 import { getSessionStatus, type SessionStatus } from '@/platform/session/machine';
 import { setAppCallbackCurrentLocation } from '@/platform/session/resume';
-import { setClientVar, useShellState } from '@/platform/session/session';
+import { clientVar, useShellState } from '@/platform/session/session';
 import { routeMetaOf, type RouteMeta } from './routes';
 
 /* The route guard (plan v2 §3.2): after the app start, the session status and the meta of the route (routes.ts) give
@@ -50,7 +50,7 @@ export function guardRedirect(
 export function followGuardRedirect(redirect: GuardRedirect, pathname: string): string {
   setAppCallbackCurrentLocation(pathname);
   if (redirect === 'login') return PATHS.loginFromInvalidPermissions;
-  setClientVar('UBTConnect.LastURL', `${pathname}${window.location.search}`);
+  clientVar.lastUrl.set(`${pathname}${window.location.search}`);
   return PATHS.pinUnlock;
 }
 

@@ -14,7 +14,7 @@ import {
   type BackNavigationEvent,
 } from '@/platform/navigation';
 import { PATHS } from '@/platform/navigation/paths';
-import { getClientVar, setClientVar, useClientVar } from '@/platform/session/session';
+import { clientVar, useClientVar } from '@/platform/session/session';
 import { ImageLoadErrorHandler } from '@/components/ui/ImageLoadErrorHandler';
 import { BackNavigationHandler } from '@/platform/navigation/BackNavigationHandler';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
@@ -45,12 +45,12 @@ export function CommonUiLayout({ id, inIgnorePolicy = false, inIgnoreLockScreen 
   useCommonUiPresence();
   const navigate = useOsNavigate();
   const restored = useWasRestoredFromCache();
-  const [initial] = useState(() => !restored && getClientVar('UBTConnect.IsNavigateToHomeOnBack'));
+  const [initial] = useState(() => !restored && clientVar.isNavigateToHomeOnBack.get());
   const [isNavigateToHomeOnBack] = useViewState('CommonUI_InsideLayout.IsNavigateToHomeOnBack', initial);
   useEffect(() => {
-    if (!restored) setClientVar('UBTConnect.IsNavigateToHomeOnBack', false);
+    if (!restored) clientVar.isNavigateToHomeOnBack.set(false);
   }, [restored]);
-  const hasPolicyToAccept = useClientVar('UBTConnect.App_Policies_HasPolicyToAccept');
+  const hasPolicyToAccept = useClientVar(clientVar.hasPolicyToAccept);
   const prefix = id?.replace('$', '');
   const childId = (n: number) => (prefix === undefined ? undefined : `${prefix}-$b${String(n)}`);
 

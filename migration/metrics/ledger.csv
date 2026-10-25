@@ -944,3 +944,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-25,refactor,other,39403,advisor-opus,,"F59-b W21 advisor (Opus): (a) accept once, high/medium"
 2026-10-25,refactor,other,38541,advisor-fable,,"F59-b W21 advisor (Fable): (c) accept + trim step, high"
 2026-10-25,refactor,other,0,refactor-documenter,,F59-b docs (sonnet) (tokens pending)
+2026-10-25,refactor,other,34896,refactor-documenter,,F59-b docs tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,"F58 test (sonnet): pass, e2e 9/9, HomeFeed 245.80 (+0.13) (tokens pending)"
+2026-10-25,refactor,verify,28441,refactor-tester,,F58 test (sonnet) tokens from notification
+2026-10-25,refactor,other,0,refactor-documenter,,F58 docs (sonnet) (tokens pending)

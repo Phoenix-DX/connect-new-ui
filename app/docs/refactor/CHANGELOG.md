@@ -925,3 +925,9 @@ Report: [reports/P7.md](reports/P7.md). `components/ui/` is filled and `src/shar
 - W44: the dependency-cruiser baseline grows 142 to 144. The `legacy/os` imports of one file now sit in 3 files; same debt, owner F49 (back to 142 there). A baseline may grow only for a split of an existing row. Knip 1 row removed.
 - W45: HomeFeed first load 245.67 kB gzip, +0.37 (W21: +0.3), accepted once. A trim step opens on any of these triggers. The margin is below 1.5 kB. The growth since P9-4 is above +1.5 kB. A second step passes W21.
 - Gate: ci: pass; parity visual `--all` both references: 64/64.
+
+## F58 - Client variables through typed platform accessors
+
+- Architecture: `platform/session/session.ts` exports `clientVar`, an object with 15 typed accessors (`get()`, `set(value)`; types from `CLIENT_VAR_DEFAULTS`). `useClientVar(accessor)` takes an accessor or a name. 15 files in pages, components and `app/` use them (no import changes, no behavior change).
+- Metric: `getClientVar` / `setClientVar` outside `platform/`: 22 to 7 (4 cache blocks F37, 3 `lib/*/actions.ts` F35). Three files still call `useClientVar` by name (F62).
+- Gate: ci: pass; parity visual `--all` both references: 64/64; HomeFeed 245.80 kB gzip (+0.13), Login 185.06 (+0.13).

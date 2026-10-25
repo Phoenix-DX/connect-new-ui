@@ -12,7 +12,7 @@ import {
 import { UserException, exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { getPreloadObject, setPreloadObject, useFlowState, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { getClientVar } from '@/platform/session/session';
+import { clientVar } from '@/platform/session/session';
 import {
   directory_Updates_GetCarouselPreloadedHouseholds,
   directory_Updates_RefreshBottomBarCount,
@@ -238,10 +238,7 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
       throw e;
     }
     try {
-      const dateRanges = directory_Updates_AugmentDateRanges(
-        ids,
-        getClientVar('UBTConnect.Directory_Updates_MonthsToShow'),
-      );
+      const dateRanges = directory_Updates_AugmentDateRanges(ids, clientVar.updatesMonthsToShow.get());
       set({ dateRanges });
       const d = setDefaultFilters(m().filter_Updates, m().filter_DefaultState, dateRanges);
       set({ filter_Updates: d.filter, filter_DefaultState: d.defaultState });

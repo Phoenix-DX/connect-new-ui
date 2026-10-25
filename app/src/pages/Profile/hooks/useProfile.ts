@@ -14,7 +14,7 @@ import {
 } from '@/legacy/os/exceptions';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { confirmAction } from '@/platform/feedback/dialogs';
-import { getClientVar } from '@/platform/session/session';
+import { clientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
 import type { Directory_UserCurrent } from '@/platform/session/UserInfoCache/types';
@@ -152,7 +152,7 @@ export function useProfile(): ProfileFlows {
       // ChangedVisibilityPreferences: AccountFormOriginal = AccountForm was just assigned, so the condition holds.
       const info = await getUserInformation();
       const current = info.Directory_UserCurrent;
-      putCacheableObject(memberCache.userInfo(getClientVar('UBTConnect_Utils.UniqueCacheKey')), {
+      putCacheableObject(memberCache.userInfo(clientVar.uniqueCacheKey.get()), {
         ...info,
         Directory_UserCurrent: {
           ...current,

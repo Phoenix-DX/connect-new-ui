@@ -8,7 +8,7 @@ import { carouselGoTo, carouselToggleDrag, setSplideConfigs } from '@/components
 import { carousel_SetCurrentPosition } from '@/lib/ubtConnect/actions';
 import type { SplideConfigs } from '@/components/ui/lib/structures';
 import { BooleanTypes, CarouselNavigation, Photobook_Speed } from '@/lib/ubtConnect/staticEntities';
-import { getClientVar, setClientVar } from '@/platform/session/session';
+import { clientVar } from '@/platform/session/session';
 import { Photobook_Gallery } from './Photobook_Gallery';
 import { Photobook_Item } from './Photobook_Item';
 import { Photobook_Options_Left } from './Photobook_Options_Left';
@@ -19,7 +19,6 @@ const MAIN_CONTAINER_CLASS = 'photobook-carousel';
 const CAROUSEL_WIDGET_ID = 'b4-Carousel_Photobook';
 /** TimerDuration default (Photobook_Carousel.mvc.js model :37-39): options hide after 5 s without interaction. */
 const TIMER_DURATION = 5000;
-const SPEED_CLIENT_VAR = 'UBTConnect.PhotobookCarousel_SelectedSpeed';
 
 interface AutoplaySettings {
   speed: number;
@@ -77,12 +76,12 @@ export function Photobook_Carousel({
   /* OnInitialize (:1295-1394), once. The default speed is derived during render; the client variable itself is
      written in an effect below, because writing it here notifies the session subscribers (AppStart) mid-render. */
   const [initial] = useState(() => {
-    const stored = getClientVar(SPEED_CLIENT_VAR);
+    const stored = clientVar.photobookSpeed.get(); // PhotobookCarousel_SelectedSpeed
     const speed = stored === 0 ? Photobook_Speed.EightSeconds : stored;
     return { speed, storedSpeed: stored, startingPosition: inSelectedHousehold.position };
   });
   useEffect(() => {
-    if (initial.storedSpeed === 0) setClientVar(SPEED_CLIENT_VAR, Photobook_Speed.EightSeconds);
+    if (initial.storedSpeed === 0) clientVar.photobookSpeed.set(Photobook_Speed.EightSeconds);
   }, [initial.storedSpeed]);
   const [autoplay, setAutoplay] = useState<AutoplaySettings>({
     speed: initial.speed,
@@ -167,8 +166,8 @@ export function Photobook_Carousel({
   const handlerChangeSpeed = (selectedSpeed: number) => {
     startInactivityTimer();
     if (configsRef.current.interval === selectedSpeed) return;
-    setClientVar(SPEED_CLIENT_VAR, selectedSpeed);
-    const speed = getClientVar(SPEED_CLIENT_VAR);
+    clientVar.photobookSpeed.set(selectedSpeed);
+    const speed = clientVar.photobookSpeed.get();
     setAutoplay((a) => ({ ...a, speed }));
     configsRef.current = { ...configsRef.current, interval: speed };
     setCarouselConfigs();

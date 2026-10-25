@@ -31,6 +31,8 @@ import { itemKeys, readItem, removeItem, writeItem } from '@/platform/storage/st
    useClientVar (useSyncExternalStore).
    The server settings (PIN_Use, ...) are in the typed store platform/settings: getClientVar, setClientVar and
    useClientVar reach them through the adapter legacy/os/clientVarNames.ts.
+   Pages, components and app code do not use the OutSystems names: they read and write a client variable through its
+   typed accessor `clientVar.<key>` (F58), which calls getClientVar and setClientVar.
    Selectors (plan v2 §3.2; the names are kept, the values are the ones before P4-2):
      appReady()                     the status left `starting` (the app start finished)
      isSignedIn(), currentUserId()  the user of the status; while the status is `starting` or `signingIn`, the stored
@@ -163,6 +165,59 @@ export function setClientVar<N extends ClientVarName>(name: N, value: ClientVarV
   emit();
 }
 
+/** The typed accessor of one stored client variable. get and set are getClientVar and setClientVar with its OutSystems
+    name: same storage, defaults and persistence (clientVars.ts), and the read stays synchronous. */
+interface ClientVar<N extends StoredClientVarName> {
+  /** The OutSystems name `<Module>.<Variable>`. */
+  readonly name: N;
+  get(): ClientVarValue<N>;
+  set(value: ClientVarValue<N>): void;
+}
+
+const accessorOf = <N extends StoredClientVarName>(name: N): ClientVar<N> => ({
+  name,
+  get: () => getClientVar(name),
+  set: (value) => {
+    setClientVar(name, value);
+  },
+});
+
+/** The client variables that pages, components and app code read and write (F58): `clientVar.lastUrl.get()`,
+    `clientVar.lastUrl.set(url)`, and `useClientVar(clientVar.lastUrl)` in a component. Add a key here when another
+    reader moves off the OutSystems name. */
+export const clientVar = {
+  /** UBTConnect.LastURL: the screen that Splash and PINUnlock open next. */
+  lastUrl: accessorOf('UBTConnect.LastURL'),
+  /** UBTConnect.IsNavigateToHomeOnBack: the next screen sends a back navigation to HomeFeed (CommonUI_InsideLayout). */
+  isNavigateToHomeOnBack: accessorOf('UBTConnect.IsNavigateToHomeOnBack'),
+  /** UBTConnect.App_Policies_HasPolicyToAccept: the user has policies to accept (Policy_Checker). */
+  hasPolicyToAccept: accessorOf('UBTConnect.App_Policies_HasPolicyToAccept'),
+  /** UBTConnect.Search_RecenctClickedResultsLimit: the recently clicked search results kept per type. */
+  searchRecentClickedResultsLimit: accessorOf('UBTConnect.Search_RecenctClickedResultsLimit'),
+  /** UBTConnect.Directory_Updates_UnreadCount: the unread updates of the bottom bar badge. */
+  updatesUnreadCount: accessorOf('UBTConnect.Directory_Updates_UnreadCount'),
+  /** UBTConnect.Directory_Updates_MonthsToShow: the months of the Updates date ranges (set by the app start). */
+  updatesMonthsToShow: accessorOf('UBTConnect.Directory_Updates_MonthsToShow'),
+  /** UBTConnect.PhotobookCarousel_SelectedSpeed: the autoplay interval of the photobook carousel, 0 = not chosen. */
+  photobookSpeed: accessorOf('UBTConnect.PhotobookCarousel_SelectedSpeed'),
+  /** UBTConnect.App_PIN_BiometricEnabled: the biometric login is on (the PIN & Biometrics menu toggles it). */
+  biometricEnabled: accessorOf('UBTConnect.App_PIN_BiometricEnabled'),
+  /** UBTConnect.App_PIN_Header_FinalHeightPercentage: the final height of the Splash loading dots' header. */
+  pinHeaderFinalHeightPercentage: accessorOf('UBTConnect.App_PIN_Header_FinalHeightPercentage'),
+  /** UBTConnect_Utils.UniqueCacheKey: the memory cache key of the user information (Get_MemoryCacheKey_UniqueKey). */
+  uniqueCacheKey: accessorOf('UBTConnect_Utils.UniqueCacheKey'),
+  /** UBT_AppManager.DeviceInfo_UUID: the device id ("" until the device context sets it). */
+  deviceUuid: accessorOf('UBT_AppManager.DeviceInfo_UUID'),
+  /** Connect2_LegacyShared.UnreadNotificationsNumber: the unread notifications of the notification icon. */
+  unreadNotificationsNumber: accessorOf('Connect2_LegacyShared.UnreadNotificationsNumber'),
+  /** Connect2_LegacyShared.UnreadWhatsNewsNumber: the unread What's New messages (CR-MessageDetail-1). */
+  unreadWhatsNewsNumber: accessorOf('Connect2_LegacyShared.UnreadWhatsNewsNumber'),
+  /** Connect2_OrbitMobile_MUI.BookletGuestsMaxRows: the page size of the booklet guest list. */
+  bookletGuestsMaxRows: accessorOf('Connect2_OrbitMobile_MUI.BookletGuestsMaxRows'),
+  /** Connect2_OrbitMobile_MUI.BookletHelpersMaxRows: the page size of the booklet helper list. */
+  bookletHelpersMaxRows: accessorOf('Connect2_OrbitMobile_MUI.BookletHelpersMaxRows'),
+} as const;
+
 export const isSignedIn = (): boolean => snapshot.signedIn;
 export const currentUserId = (): string | null => snapshot.userId;
 /** A PIN of this app for the session's user is on this device. */
@@ -232,6 +287,9 @@ export function useShellState(): ShellState {
   return useSyncExternalStore(subscribe, getShellState);
 }
 
-export function useClientVar<N extends ClientVarName>(name: N): ClientVarValue<N> {
+/** One client variable, by its accessor (`useClientVar(clientVar.hasPolicyToAccept)`) or, in platform code, by its
+    OutSystems name. The component renders again when a client variable changes. */
+export function useClientVar<N extends ClientVarName>(variable: N | { readonly name: N }): ClientVarValue<N> {
+  const name = typeof variable === 'string' ? variable : variable.name;
   return useSyncExternalStore(subscribe, () => getClientVar(name));
 }

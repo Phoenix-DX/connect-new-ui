@@ -13,7 +13,7 @@ import { synchronizeNumberUnreadMessages } from '@/platform/bootstrap/startup';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, useWasRestoredFromCache, type BackNavigationEvent } from '@/platform/navigation';
-import { getClientVar } from '@/platform/session/session';
+import { clientVar } from '@/platform/session/session';
 import { decrementReadMessagesCounter } from '@/platform/session/unreadCounters';
 import { currDateTime } from '@/lib/osDateTime';
 import type { MessageListViewEvents, MessageListViewState } from '@/pages/MessageList/components/MessageListView';
@@ -88,7 +88,7 @@ export function useMessageList(
     viewName: VIEW_NAME,
     reducer: messageListReducer,
     // OnInitialize: DeviceHardwareId = the device UUID (AppManager_GetDeviceContext; "" on the web).
-    initial: initialMessageListState(signedIn, getClientVar('UBT_AppManager.DeviceInfo_UUID')),
+    initial: initialMessageListState(signedIn, clientVar.deviceUuid.get()),
     parameters: { triggerPullToRefresh },
     events,
     // The flows are defined below; the hook calls the ones of the newest render.

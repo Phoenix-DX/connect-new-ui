@@ -19,7 +19,7 @@ import {
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { setPreloadObject, useFlowState, useOsNavigate } from '@/platform/navigation';
-import { getClientVar } from '@/platform/session/session';
+import { clientVar } from '@/platform/session/session';
 import {
   type ConnectSearch_RecentClickedResults,
   type ConnectSearch_RecentSearchTerm,
@@ -318,7 +318,7 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     }
     const target = parameters.current.inSearchTargetId;
     // CreateOrUpdateConnectSearch_RecentClickedResults, then the ones beyond the limit are deleted
-    await saveRecentClickedResult(target, searchResult, getClientVar('UBTConnect.Search_RecenctClickedResultsLimit'));
+    await saveRecentClickedResult(target, searchResult, clientVar.searchRecentClickedResultsLimit.get());
     if (parameters.current.inIsEventNavigation) {
       eventsRef.current.onEventSearchResultClick?.(searchResult); // Trigger Event: Event_SearchResultClick
       return;

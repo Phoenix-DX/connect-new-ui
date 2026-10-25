@@ -45,7 +45,7 @@ in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the us
 
 | Module              | API                                                                                                                                                                       | Original                                                              |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `session.ts`        | `useShellState()`, `getShellState()`, `useClientVar(name)`, `getClientVar` / `setClientVar`                                                                               | client variables (spec 9b), session                                   |
+| `session.ts`        | `useShellState()`, `getShellState()`, `clientVar` (typed accessors), `useClientVar(accessor)`, `getClientVar` / `setClientVar`                                            | client variables (spec 9b), session                                   |
 | `auth.ts`           | `signIn()` → destination path (through `authProvider()`); `useSignIn()` (navigates, replace); `signOut()`; `signedOutRemotely()`                                          | Login callback (U4), `Connect_Logout`                                 |
 | `pin.ts`            | `pinCheck()`, `registerPin(pin)`, `verifyPin(pin)`, `isLocked()`, `lock()`                                                                                                | `PIN_Check`, `Pincode_Register/_Unlock`                               |
 | `resume.ts`         | `setResumeLoginLink`, `getResumeLoginLink` (clears), `setAppCallback(url)`, `getColdStartLinkURL()` (`''` on the web, U14)                                                | resume link (U14), `AppManager_SetAppCallback`, `GetColdStartLinkURL` |
@@ -94,10 +94,18 @@ hook, `usePINUnlock`. The PINChange page has its own hook, `usePINChange` (the u
     `isSignedIn()` and `currentUserId()` read the user of the status, and the stored session while the status is
     `starting` or `signingIn`.
 - Client variable names are `<Module>.<Variable>`, with the compiled defaults of `migration/shell/client-variables.md`.
+- New code reads and writes client variables through the typed accessors of `clientVar` in `src/platform/session/session.ts`:
+  `clientVar.lastUrl.get()`, `clientVar.lastUrl.set(url)`, `useClientVar(clientVar.hasPolicyToAccept)`. The value types
+  come from `CLIENT_VAR_DEFAULTS`, so a wrong type does not compile. To use a variable that has no accessor yet, add one
+  to `clientVar` with a JSDoc line. Pages, components and `app/` do not call `getClientVar` or `setClientVar` by name.
+- Three files outside `platform/` still call `useClientVar` by name: `components/layout/BottomBar/BottomBar.tsx`,
+  `containers/EntityDetailsActions/useEntityDetailsActions.ts` and `pages/MyEntertaining/hooks/useMyEntertaining.ts`.
+  Stories still set client variables by name with `setClientVar`. The cache blocks (`legacy/os/cache/*`, F37) and
+  `lib/*/actions.ts` (F35) keep the name-based calls.
 - The 11 server settings (`PIN_Use`, `PIN_IsInactivityEnabled`, and so on) are in the typed store `src/platform/settings`
   (`getSetting`, `setSettings`, `useSetting`). `synchAppContext` writes the store. The adapter
   `src/legacy/os/clientVarNames.ts` maps the OutSystems names to the settings, so `getClientVar`, `setClientVar` and
-  `useClientVar` still work for them until their page moves.
+  `useClientVar` still work for them by name.
 
 ## Storage (decision U5)
 

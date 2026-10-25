@@ -3,7 +3,7 @@ import { putCacheableObject } from '@/api/client/cache';
 import { memberCache } from '@/api/member';
 import { allowUpcomingNavigation, replaceOnUpcomingNavigation, useNavigateBack } from '@/platform/navigation';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
-import { getClientVar, setClientVar } from '@/platform/session/session';
+import { clientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { jSUtils_SetStyleProperty } from '@/lib/jsUtils';
 import { getSVGMetric } from '@/pages/AcceptPendingPolicies/actions';
@@ -57,11 +57,11 @@ export function useAcceptPendingPolicies(): AcceptPendingPoliciesState {
   // AllowUpcomingNavigation; PreviousScreen.
   const acceptedAll = async () => {
     const info = await getUserInformation();
-    putCacheableObject(memberCache.userInfo(getClientVar('UBTConnect_Utils.UniqueCacheKey')), {
+    putCacheableObject(memberCache.userInfo(clientVar.uniqueCacheKey.get()), {
       ...info,
       HasPoliciesToAccept: false,
     });
-    setClientVar('UBTConnect.App_Policies_HasPolicyToAccept', false);
+    clientVar.hasPolicyToAccept.set(false);
     replaceOnUpcomingNavigation();
     allowUpcomingNavigation();
     navigateBack();
