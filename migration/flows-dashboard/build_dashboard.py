@@ -6,6 +6,12 @@ Run from the project root:
   python3 migration/flows-dashboard/build_dashboard.py            # writes migration/flows-dashboard/site/
   python3 migration/flows-dashboard/build_dashboard.py --sheets   # also writes contact sheets of the screenshots
                                                                   # (for the privacy review) to site-review/
+  python3 migration/flows-dashboard/build_dashboard.py --with-libraries
+                                                                  # also writes site/libraries.html: the same page plus
+                                                                  # the shared-library view (content/libraries/, see
+                                                                  # SOURCE.md there). site/index.html stays as without
+                                                                  # the flag: the template parts between the [lib]
+                                                                  # markers are removed from it.
 
 Sources (read at build time, nothing copied by hand):
 - migration/survey/dev-inventory.json: screens, blocks and UI flows of the module on DEV (OutSystems MCP snapshot);
@@ -48,6 +54,11 @@ EXTERNAL_LABEL = "External map link"
 APP_START_LABEL = "App start"  # survey reachedFrom "(app shell)": the app opens the screen itself
 STATE_LABELS = {"default": "Default", "loading": "Loading", "offline": "Offline", "search": "Search", "filter": "Filter",
                 "popup-sort": "Sort dialog", "popup-filters": "Filter dialog"}
+LIB_DIR = os.path.join(HERE, "content", "libraries")  # copies of the my-research dependency analysis (SOURCE.md)
+LIB_MODULES = ["UBTConnect_Utils", "Connect2_LegacyShared"]
+LIB_MARKERS = [re.compile(r"[ \t]*/\*\[lib\]\*/.*?/\*\[/lib\]\*/\n?", re.S),
+               re.compile(r"[ \t]*<!--\[lib\]-->.*?<!--\[/lib\]-->\n?", re.S)]
+LIB_TITLE = ("UBTConnect UI Flows and Journeys", "UBTConnect Flows and Libraries")
 
 
 def read_json(path):
@@ -139,7 +150,62 @@ def screenshots(screen, ext):
     return sorted(shots, key=lambda s: (order.get(s["state"], 3), s["state"]))
 
 
-def build():
+def libraries():
+    """The shared-library data (content/libraries/): what UBTConnect_Utils and Connect2_LegacyShared do on each screen
+    and in each UI flow. DEV Model API data; see content/libraries/SOURCE.md."""
+    sm = read_json(os.path.join(LIB_DIR, "screen_map.json"))
+    fd = read_json(os.path.join(LIB_DIR, "flow_detail.json"))
+    sx = read_json(os.path.join(LIB_DIR, "summary.json"))
+    seq = read_json(os.path.join(LIB_DIR, "sequences.json"))
+    job_of = {(e["module"], e["kind"], e["name"]): e["job"] for e in sm["elements"]}
+
+    screens = {}
+    for area in sm["areas"]:
+        for s in area["screens"]:
+            cells = {job: [{"name": i["name"], "kind": i["kind"], "module": i["module"], "via": i["via"],
+                            "inherited": i["shell"], "usage": i["usage"], "evidence": i["evidence"]} for i in items]
+                     for job, items in s["cells"].items()}
+            screens[s["name"]] = {"cells": cells, "description": s.get("description", ""), "theme": s.get("theme", ""),
+                                  "own": {m: len(s["specific"].get(m, [])) for m in LIB_MODULES},
+                                  "all": {m: len(s["elements"].get(m, [])) for m in LIB_MODULES}}
+
+    flows = {}
+    for f, v in fd.items():
+        els = {}
+        for r in v["rows"]:
+            k = (r["module"], r["kind"], r["name"])
+            e = els.setdefault(k, {"module": r["module"], "kind": r["kind"], "name": r["name"], "job": job_of.get(k),
+                                   "direct": False, "via": "", "consumers": set(), "evidence": r["evidence"]})
+            if r["path"] == "direct":
+                e["direct"], e["evidence"] = True, r["evidence"]
+            elif not e["via"] or len(r["path"]) < len(e["via"]):
+                e["via"] = r["path"][len("via "):]  # the shortest chain of own blocks and actions to the element
+            e["consumers"].add(r["consumer"])
+        lst = sorted(els.values(), key=lambda e: (e["module"], not e["direct"], e["kind"], e["name"]))
+        for e in lst:
+            e["consumers"] = sorted(e["consumers"])
+        flows[f] = {"theme": v["theme"], "elements": lst,
+                    "direct": {m: sum(1 for e in lst if e["module"] == m and e["direct"]) for m in LIB_MODULES},
+                    "via": {m: sum(1 for e in lst if e["module"] == m and not e["direct"]) for m in LIB_MODULES}}
+
+    unused = {}
+    for m, kind, name in sx["unobserved_contract_elements"]:
+        unused.setdefault(m, {}).setdefault(kind, []).append(name)
+    base = {t["Name"]: t["BaseTheme"] for t in sx["themes"]}
+    chain, t = [], "UBTConnect_LegacyChain"
+    while t and t not in chain:
+        chain.append(t)
+        t = base.get(t, "")
+    return {
+        "source": {"env": "DEV", "takenAt": "2026-10-26", "how": "Model API dumps of the UBTConnect module through the Service Studio MCP"},
+        "jobs": sm["jobs"], "modules": LIB_MODULES, "screens": screens, "shell": sm["shell"], "elements": sm["elements"],
+        "flows": flows, "totals": sm["totals"], "contract": sx["producer_totals"], "unused": unused,
+        "cycle": sx["producer_to_producer"], "themeChain": chain,
+        "themeFlows": sorted(f for f, th in sx["theme_by_flow"].items() if th), "sequences": seq,
+    }
+
+
+def build(with_libraries=False):
     dev = read_json(os.path.join(MIG, "survey", "dev-inventory.json"))
     tst = {v["screen"]: v for v in read_json(os.path.join(MIG, "survey", "screens.json"))["screens"].values()}
     content = read_json(os.path.join(HERE, "content", "content.en.json"))
@@ -298,11 +364,21 @@ def build():
         "sharedNav": {label: sorted(targets) for label, (_, targets) in shared_nav.items()},
         "journeys": journeys,
     }
-    page = open(os.path.join(HERE, "src", "page.html"), encoding="utf-8").read()
-    payload = json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
-    page = page.replace("/*__DATA__*/null", payload)
+    template = open(os.path.join(HERE, "src", "page.html"), encoding="utf-8").read()
+
+    def render(page, d):
+        return page.replace("/*__DATA__*/null", json.dumps(d, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/"))
+
+    # index.html never carries the library parts: the [lib] blocks of the template are removed first
+    page = template
+    for marker in LIB_MARKERS:
+        page = marker.sub("", page)
     with open(os.path.join(SITE, "index.html"), "w", encoding="utf-8") as fh:
-        fh.write(page)
+        fh.write(render(page, data))
+    if with_libraries:
+        data["libs"] = libraries()
+        with open(os.path.join(SITE, "libraries.html"), "w", encoding="utf-8") as fh:
+            fh.write(render(template.replace(*LIB_TITLE), data))
     return data
 
 
@@ -334,12 +410,18 @@ def contact_sheets(data, per_sheet=12, cols=6, width=260):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--sheets", action="store_true")
+    ap.add_argument("--with-libraries", action="store_true")
     a = ap.parse_args()
-    data = build()
+    data = build(a.with_libraries)
     c = data["counts"]
     size = sum(os.path.getsize(os.path.join(dp, f)) for dp, _, fs in os.walk(SITE) for f in fs)
     print(f"site: {c['flows']} flows, {c['devScreens']} screens, {c['screenshots']} screenshots, "
           f"{size / 1024 / 1024:.1f} MB → {os.path.relpath(SITE, ROOT)}")
+    if a.with_libraries:
+        t = data["libs"]["totals"]
+        print(f"libraries: {t['screens']} screens, {len(data['libs']['jobs'])} jobs, "
+              f"{t['elements_used']['UBTConnect_Utils']} + {t['elements_used']['Connect2_LegacyShared']} elements → "
+              f"{os.path.relpath(os.path.join(SITE, 'libraries.html'), ROOT)}")
     if a.sheets:
         print(f"contact sheets: {contact_sheets(data)} → {os.path.relpath(REVIEW, ROOT)}")
 
