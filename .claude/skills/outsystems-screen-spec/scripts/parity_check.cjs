@@ -21,6 +21,10 @@
  *        [--diff-ref <path>]     the diff png path named in pixel differences (exemptions match on it); default the --out one
  *        [--fixed-time <iso>]    fix the page clock (Date.now, new Date) at this time, timers keep running (self reference: clocks)
  *        [--freeze-animations]   before the snapshot: finish finite animations and transitions, pause endless ones at their start
+ *        [--preload-fonts]       start loading every @font-face font as soon as a stylesheet is in (both pages), so no
+ *                                font arrives after the first paint of the content (see preloadFonts)
+ *        [--hold-third-party]    with --fixed-time: connections to third-party hosts (map tiles) wait until the page's own
+ *                                requests are idle and its queued timers and two frames have run (see thirdPartyHold)
  *        [--self-ref <dir>]      compare against such a record (the self-parity reference) instead of --expect
  *   node parity_check.cjs --self-test             checks buildDom against a fixture (nested <a>, svg/xlink, entities, ...)
  *
@@ -49,6 +53,7 @@
  */
 const fs = require('fs');
 const path = require('path');
+const { normalizeOrigins } = require('./origin_normalize.cjs');
 let pw;
 try { pw = require('playwright'); } catch { console.error('playwright not found: npm i -D playwright'); process.exit(2); }
 
@@ -412,6 +417,93 @@ function diffTrees(a, b, X, opts) {
   return { diffs: out, exemptionsUsed: used, masks, skipped };
 }
 
+/* --preload-fonts, an init script of both pages: a browser loads a web font only when some text needs it, so an icon
+ * font can arrive after the content that uses it has painted. The layout then moves, and a composited layer (for
+ * example `.btn { transform: translateZ(0) }` of the legacy CSS) keeps the sub-pixel offset of its first position:
+ * the text in it renders 0.33 px apart from a run where the font came first (EventDetail/default, P4-F6). Loading every
+ * declared font at once makes the font come first in every run. The final render does not change: the snapshot waits
+ * for document.fonts.ready anyway, and a loaded font that no text uses paints nothing. */
+function preloadFonts() {
+  const loadAll = () => { for (const f of document.fonts) if (f.status === 'unloaded') f.load().catch(() => {}); };
+  document.addEventListener('load', e => { if (e.target && e.target.tagName === 'LINK') loadAll(); }, true);
+  document.addEventListener('DOMContentLoaded', loadAll);
+}
+
+/* --hold-third-party (self runs, which fix the page clock): the app context goes through a local proxy that holds every
+ * connection to a third-party host (all hosts but the app's and loopback) until the page's own requests are idle
+ * (Playwright's networkidle rule: none for 500 ms, at most 15 s) and the page has run its queued timers and two
+ * animation frames. A host counts as third-party once the browser connects to it through the proxy; MSW answers mocked
+ * hosts in the service worker, so they stay own requests.
+ * Cause (CountryDetails/default, P5-F9): Leaflet fades a loaded tile in with Date steps. Under a fixed clock no tile ever
+ * becomes active, so Leaflet keeps every loaded tile of an earlier zoom level as a stand-in (GridLayer._pruneTiles,
+ * _retainChildren). The map opens at zoom 5 and fits the bounds (zoom 4) in a setTimeout(…, 0) and the next frame; a
+ * zoom-5 map tile (server.arcgisonline.com) that loaded in this gap stayed in the tree as a second tile level. With the
+ * hold, every zoom-5 tile is still loading at the zoom change and Leaflet cancels it. The page's requests for held
+ * resources stay in flight, so networkidle waits for them: the tiles of the final view load before the settle time, as
+ * before, and the final render does not change.
+ * Why a proxy and not page.route: any Playwright route turns on request interception, and then Playwright reports the
+ * requests that the MSW service worker answers only when their response arrives. networkidle then misses the mocked
+ * calls in flight (in a test, HouseholdDetails/default took its snapshot about 3.3 s after the start, with 7 skeleton
+ * sections still on the page; without the route there were none from 4.0 s). `upstream` maps a host and port to the
+ * address to connect to (--self-test). */
+async function thirdPartyHold(appHost, upstream = (host, port) => [host, port]) {
+  const http = require('http'), net = require('net');
+  const sockets = new Set(), proxied = new Set(), inflight = new Set();
+  let page = null, changed = Date.now(), closed = false;   // closed: no new upstream connection after close()
+  const track = s => { sockets.add(s); s.on('close', () => sockets.delete(s)); s.on('error', () => {}); return s; };
+  const hostOf = url => { try { return new URL(url).hostname.replace(/^\[|\]$/g, ''); } catch { return ''; } };
+  const thirdParty = host => { proxied.add(host); for (const r of inflight) if (hostOf(r.url()) === host) inflight.delete(r); };
+  const wait = async until => {
+    const end = Date.now() + 15000;
+    while (page && !page.isClosed() && Date.now() < end && !until()) await new Promise(r => setTimeout(r, 25));
+  };
+  const gate = async () => {
+    await wait(() => !inflight.size && Date.now() - changed >= 500);
+    if (page && !page.isClosed()) await page.evaluate(() => new Promise(r => setTimeout(() => requestAnimationFrame(() => requestAnimationFrame(r)), 0))).catch(() => {});
+  };
+  const server = http.createServer(async (req, res) => {   // plain http (absolute-form request line)
+    track(req.socket);
+    let u;
+    try { u = new URL(req.url); } catch { res.writeHead(400).end(); return; }
+    thirdParty(u.hostname);
+    await gate();
+    if (closed || req.destroyed) { res.destroy(); return; }
+    const [host, port] = upstream(u.hostname, Number(u.port) || 80);
+    const up = http.request({ host, port, method: req.method, path: u.pathname + u.search, headers: req.headers }, r => { res.writeHead(r.statusCode, r.headers); r.pipe(res); });
+    up.on('socket', track);
+    up.on('error', () => { if (!res.headersSent) res.writeHead(502); res.end(); });
+    req.pipe(up);
+  });
+  server.on('connect', async (req, client, head) => {   // https: a tunnel
+    track(client);
+    const i = req.url.lastIndexOf(':'), host0 = req.url.slice(0, i).replace(/^\[|\]$/g, '');
+    thirdParty(host0);
+    await gate();
+    if (closed || client.destroyed) { client.destroy(); return; }
+    const [host, port] = upstream(host0, Number(req.url.slice(i + 1)) || 443);
+    const up = track(net.connect(port, host, () => {
+      client.write('HTTP/1.1 200 Connection Established\r\n\r\n');
+      if (head.length) up.write(head);
+      up.pipe(client);
+      client.pipe(up);
+    }));
+    up.on('error', () => client.destroy());
+  });
+  server.on('connection', track);
+  await new Promise(r => server.listen(0, '127.0.0.1', r));
+  return {
+    proxy: { server: `http://127.0.0.1:${server.address().port}`, bypass: [appHost, 'localhost', '127.0.0.1', '[::1]'].join(',') },
+    attach(p) {   // the app page, before it loads
+      page = p;
+      p.on('request', r => { if (!proxied.has(hostOf(r.url()))) { inflight.add(r); changed = Date.now(); } });
+      const done = r => { if (inflight.delete(r)) changed = Date.now(); };
+      p.on('requestfinished', done);
+      p.on('requestfailed', done);
+    },
+    close() { closed = true; for (const s of sockets) s.destroy(); server.close(); },
+  };
+}
+
 /* runs in a blank page: pixel diff of two PNGs (base64) with masked rectangles, pixelmatch-style YIQ distance */
 async function pixelDiff({ a, b, masksA, masksB, threshold }) {
   const img = async src => { const i = new Image(); i.src = 'data:image/png;base64,' + src; await i.decode(); return i; };
@@ -568,8 +660,72 @@ async function selfTest() {
     if (r.built !== expected) fails.push(`buildDom tree:\n  got  ${r.built}\n  want ${expected}`);
     if (r.parsed === r.built) fails.push('the HTML parser keeps the fixture as is: it no longer tests a rebuilt structure');
     if (r.stats.endTagMismatch || r.stats.unclosed || r.stats.elements !== 24) fails.push(`buildDom stats ${JSON.stringify(r.stats)}`);
+    // preloadFonts (--preload-fonts): a declared font that no text uses starts to load; without the script it stays unloaded
+    const fontStatus = async withPreload => {
+      const c = await browser.newContext();
+      if (withPreload) await c.addInitScript(preloadFonts);
+      const pg = await c.newPage();
+      await pg.route('http://parity.test/**', rt => {
+        const url = rt.request().url();
+        if (url.endsWith('/f.css')) return rt.fulfill({ contentType: 'text/css', body: '@font-face { font-family: Unused; src: url(/f.woff2); }' });
+        if (url.endsWith('/f.woff2')) return rt.fulfill({ status: 404, body: '' });
+        return rt.fulfill({ contentType: 'text/html', body: '<!doctype html><html><head><link rel="stylesheet" href="/f.css"></head><body>text</body></html>' });
+      });
+      await pg.goto('http://parity.test/', { waitUntil: 'load' });
+      await pg.waitForTimeout(200);
+      const s = await pg.evaluate(() => [...document.fonts].filter(f => f.family.replace(/"/g, '') === 'Unused').map(f => f.status).join(','));
+      await c.close();
+      return s;
+    };
+    const [preloaded, plain] = [await fontStatus(true), await fontStatus(false)];
+    if (!['loading', 'loaded', 'error'].includes(preloaded)) fails.push(`preloadFonts: an unused font is "${preloaded}" with the init script (want loading, loaded or error)`);
+    if (plain !== 'unloaded') fails.push(`preloadFonts: an unused font is "${plain}" without the init script (want unloaded)`);
+    // thirdPartyHold (--hold-third-party): one task requests a third-party "tile" (a local server answers 150 ms after the
+    // proxy passes the request on) and queues setTimeout(0) + a frame (the "zoom"). Case "own": the task also starts an
+    // own request, answered after 400 ms. Case "busy": a timer queued before keeps the main thread for 800 ms, longer
+    // than the idle wait. With the hold, the tile loads after the own request and after the zoom, and networkidle waits
+    // for the held tile. Without the hold (a route answers the tile after 150 ms), the tile comes before the own request.
+    const png = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64');
+    let served = false;
+    const answerTile = res => { served = true; res.writeHead(200, { 'content-type': 'image/png' }); res.end(png); };
+    const tileServer = require('http').createServer((req, res) => setTimeout(() => answerTile(res), 150));
+    await new Promise(r => tileServer.listen(0, '127.0.0.1', r));
+    const tileOrder = async (withHold, kase) => {
+      served = false;
+      const hold = withHold ? await thirdPartyHold('parity.test', (h, p) => (h === 'tiles.parity.test' ? ['127.0.0.1', tileServer.address().port] : [h, p])) : null;
+      const c = await browser.newContext(hold ? { proxy: hold.proxy } : {});
+      const pg = await c.newPage();
+      if (hold) hold.attach(pg);
+      await pg.clock.setFixedTime(new Date('2026-03-12T10:30:00Z'));
+      if (!hold) await c.route('http://tiles.parity.test/**', async rt => { await new Promise(r => setTimeout(r, 150)); served = true; return rt.fulfill({ contentType: 'image/png', body: png }); });
+      await c.route('http://parity.test/**', async rt => {
+        if (rt.request().url().endsWith('/api')) { await new Promise(r => setTimeout(r, 400)); return rt.fulfill({ contentType: 'application/json', body: '{}' }); }
+        return rt.fulfill({ contentType: 'text/html', body: '<!doctype html><html><body><script>window.__order = [];' +
+          (kase === 'own' ? "fetch('/api').then(() => __order.push('own'));" : '') +
+          (kase === 'busy' ? 'setTimeout(() => { const t0 = performance.now(); while (performance.now() - t0 < 800); }, 0);' : '') +
+          "const img = new Image(); img.onload = () => __order.push('tile'); img.src = 'http://tiles.parity.test/5/1/2.png';" +
+          "setTimeout(() => requestAnimationFrame(() => __order.push('zoom')), 0);</script></body></html>" });
+      });
+      const t0 = Date.now();
+      await pg.goto('http://parity.test/', { waitUntil: 'domcontentloaded' });
+      const servedBefore = served;
+      await pg.waitForLoadState('networkidle', { timeout: 20000 }).catch(() => {});
+      const servedAtIdle = served;
+      if (Date.now() - t0 > 5000) fails.push(`thirdPartyHold: networkidle after ${Date.now() - t0} ms in case ${kase} (want under 5 s: the hold must not wait for its 15 s limit)`);
+      await pg.waitForFunction(n => window.__order.length === n, kase === 'own' ? 3 : 2, { timeout: 20000 }).catch(() => {});
+      const order = await pg.evaluate(() => window.__order.join(','));
+      await c.close();
+      if (hold) hold.close();
+      return kase === 'own' && withHold ? `${order} ${servedBefore}/${servedAtIdle}` : order;
+    };
+    try {
+      const [held, busy, unheld] = [await tileOrder(true, 'own'), await tileOrder(true, 'busy'), await tileOrder(false, 'own')];
+      if (!/^(own,zoom|zoom,own),tile false\/true$/.test(held)) fails.push(`thirdPartyHold: order, then served at load/at networkidle: ${held} (want the tile after the own request and the zoom, served before networkidle)`);
+      if (busy !== 'zoom,tile') fails.push(`thirdPartyHold: order ${busy} with a busy main thread (want zoom,tile)`);
+      if (unheld.indexOf('tile') > unheld.indexOf('own')) fails.push(`thirdPartyHold: without the hold the order is ${unheld}: the test no longer shows a held tile`);
+    } finally { tileServer.close(); }
   } finally { await browser.close(); }
-  console.log(fails.length ? `self-test FAILED\n${fails.join('\n')}` : 'self-test ok: buildDom keeps nested <a>, <div> in <p>, rows without <tbody>, nested <form>, svg/xlink, entities, void elements');
+  console.log(fails.length ? `self-test FAILED\n${fails.join('\n')}` : 'self-test ok: buildDom keeps nested <a>, <div> in <p>, rows without <tbody>, nested <form>, svg/xlink, entities, void elements; preloadFonts loads an unused font; thirdPartyHold passes a third-party request on after the own requests and the queued frame');
   process.exitCode = fails.length ? 1 : 0;
 }
 
@@ -596,10 +752,13 @@ async function main() {
   if (!['builder', 'parser'].includes(replayMode)) { console.error('--replay builder|parser'); process.exit(2); }
   const browser = await pw.chromium.launch();
   const ctxOpts = { viewport: { width: w, height: h }, deviceScaleFactor: 1, reducedMotion: 'reduce' };
-  const ctx = await browser.newContext(ctxOpts);
+  const hold = o['hold-third-party'] ? await thirdPartyHold(new URL(o.app).hostname) : null;
+  const ctx = await browser.newContext(hold ? { ...ctxOpts, proxy: hold.proxy } : ctxOpts);
   const expCtx = await browser.newContext({ ...ctxOpts, serviceWorkers: 'block' });
+  if (o['preload-fonts']) for (const c of [ctx, expCtx]) await c.addInitScript(preloadFonts);
   try {
     const app = await ctx.newPage();
+    if (hold) hold.attach(app);
     const u = new URL(o.route, o.app);
     u.searchParams.set('mock', mock);
     // deterministic: mocks answer at once, timing is the capture's; --latency <ms> (capture-plan `latencies` per state) when
@@ -657,8 +816,11 @@ async function main() {
     expected = JSON.parse(await exp.evaluate(serialize, { root, props: STYLE_PROPS, pseudoProps: PSEUDO_PROPS, attrsWanted: X.attrs }));
     }
     if (selfRef) expected = selfRef.actual;
+    // self runs: local origins (any port) are normalized on both sides, see origin_normalize.cjs
+    const selfOrigin = selfRef ? { exp: normalizeOrigins(expected), act: normalizeOrigins(actual), refCalls: normalizeOrigins(selfRef.appCalls || []), calls: normalizeOrigins(appCalls) } : null;
+    if (selfOrigin) expected = selfOrigin.exp;
 
-    const res = diffTrees(expected.tree, actual.tree, X, opts);
+    const res = diffTrees(expected.tree, selfOrigin ? selfOrigin.act.tree : actual.tree, X, opts);
     const push = d => { for (const r of X.rules) if (ruleHits(r, d)) { res.exemptionsUsed[r.id] = (res.exemptionsUsed[r.id] || 0) + 1; return; } res.diffs.push(d); };
     for (const [k, e, g] of [['html', expected.htmlClass, actual.htmlClass], ['body', expected.bodyClass, actual.bodyClass]]) {
       const f = l => l.filter(c => !X.ignoreClasses.some(r => r.test(c)));
@@ -701,7 +863,7 @@ async function main() {
     if (selfRef) {   // call parity against the recorded calls: same distinct calls per phase, order and repeats free
       const key = c => `${c.phase || 'load'}|${c.module || ''}/${c.action}`;
       const uniq = l => [...new Set(l)].sort();   // presence per phase: how often a call repeats depends on timing (timers, retries)
-      const [ea, ga] = [uniq((selfRef.appCalls || []).map(key)), uniq(appCalls.map(key))];
+      const [ea, ga] = [uniq(selfOrigin.refCalls.map(key)), uniq(selfOrigin.calls.map(key))];
       if (ea.join('\n') !== ga.join('\n')) {
         const miss = ea.filter(k => !ga.includes(k)), extra = ga.filter(k => !ea.includes(k));
         push({ kind: 'call', path: 'calls', detail: `self reference ${ea.length} call(s), build ${ga.length}${miss.length ? '; missing ' + [...new Set(miss)].join(', ') : ''}${extra.length ? '; extra ' + [...new Set(extra)].join(', ') : ''}` });
@@ -721,6 +883,9 @@ async function main() {
     for (const d of res.diffs.slice(0, Number(o.max || 25))) console.log(`  [${d.kind}] ${d.path}: ${d.detail}`);
     if (res.diffs.length > Number(o.max || 25)) console.log(`  … ${res.diffs.length - Number(o.max || 25)} more in ${o.out || '(use --out)'}`);
     process.exitCode = res.diffs.length ? 1 : 0;
-  } finally { await browser.close(); }
+  } finally {
+    if (hold) hold.close();
+    await browser.close();
+  }
 }
 main().catch(e => { console.error(e.message); process.exit(2); });

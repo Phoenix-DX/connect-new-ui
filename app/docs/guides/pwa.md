@@ -21,15 +21,15 @@ time, and `vite.config.ts` uses it at build time, so they always agree.
 Production is mock-free (`build/mockFree.ts`, checked by `build/mockFreeBuild.test.ts`):
 
 - Every import of mock code (MSW, `src/mocks/**`, the `mocks.ts` of screens, blocks and the shell) sits behind
-  `MOCKS_BUILT` (`src/lib/config.ts`), e.g. `if (MOCKS_BUILT) await import('./mocks/browser')`. It is a build-time
+  `MOCKS_BUILT` (`src/platform/config/config.ts`), e.g. `if (MOCKS_BUILT) await import('./mocks/browser')`. It is a build-time
   constant, so Rollup drops those imports and their chunks (`mocks-*`, `fixtures-*`). `config.useMocks` has the same
   value but sits in a frozen object that Rollup cannot fold. Do not gate an import on it.
 - The production build copies `public/` without `mockServiceWorker.js`, `mock-embeds/` and `mock-images/`
   (`MOCK_PUBLIC_FILES`). Dev, the mock build and the demo build keep them.
-- The build fails when a chunk still renders a mock module, and names it. Two small mock modules are still allowed
-  (`KNOWN_MOCK_LEFTOVERS`, no fixture, no MSW): `src/mocks/scenario.ts` (`?mock=unsupported-browser` in
-  `src/shared/UBTConnect/lib/actions.ts`) and `src/mocks/fictional/directory.ts` (the mock user of the mock sign-in,
-  `src/shell/auth.ts`, until the identity provider exists). Remove an entry when the app gates its importer.
+- The build fails when a chunk still renders a mock module, and names it. `KNOWN_MOCK_LEFTOVERS` (`build/mockFree.ts`)
+  is empty since P4-3: `src/platform/auth/authProvider.ts` reaches `mockAuth` only behind `MOCKS_BUILT`, and the
+  production-only plugin `mock-modules-without-side-effects` marks mock modules as free of side effects, so Rollup drops
+  them. Add an entry only for a small mock module with no fixture and no MSW. Remove it when the app gates its importer.
 
 - Only one service worker per scope. At start, `clearStaleServiceWorkers()` (`src/pwa/register.ts`) removes the other
   mode's worker.
@@ -64,7 +64,7 @@ after the first render, only in a built app.
 - **Forced update when the API contract changes (ready, not wired).** Builds carry `__API_CONTRACT_VERSION__`, a hash of
   `src/api/openapi.yaml`. `reloadForContractChange(serverVersion)` checks for a new worker, sends it `SKIP_WAITING`
   and reloads; with no new worker it just reloads (navigations are network-first). Wire it with the BFF: read the
-  backend's contract version (for example a response header) in `src/lib/api.ts` and call the hook when it differs.
+  backend's contract version (for example a response header) in `src/api/client/callAction.ts` and call the hook when it differs.
 - **Kill switch / rollback:** deploy a `sw.js` that unregisters itself (phase 5, P15).
 
 ## Caching (table 3a)
@@ -252,7 +252,7 @@ What the first reports point at (findings, nothing changed):
 
 Decisions: P1 online-first, P10 / ADR-10 IndexedDB kept (`migration/pwa/pwa-discussion-plan.md` section 7).
 
-**Network detection (1:1, `src/shell/feedback/networkDetection.ts`).** Port of NetworkDetection's JavaScript node
+**Network detection (1:1, `src/platform/feedback/networkDetection.ts`).** Port of NetworkDetection's JavaScript node
 (`migration/shell/sources/NetworkDetection.controller.js`, shell-facts U11), started once by `useNetworkStatusEvents`
 (`networkStatus.ts`, mounted in AppFrame):
 
@@ -285,7 +285,7 @@ the app does not keep such a cache).
   filled it on this device (first visit, eviction, logout). The table stays "not read" until the sync, so
   MilestoneHeader and HostSurvey wait instead of raising "not found" (`orbitStaticEntities.ts` readMirror). Search history and recent searches are
   local only and start empty, as in the original.
-- Logout (`shell/auth.ts` signOut, after Cache_InvalidateEverything, original order kept) clears the whole memory cache
+- Logout (`platform/session/auth.ts` signOut, after Cache_InvalidateEverything, original order kept) clears the whole memory cache
   and every local entity store, metadata included (`localEntities/clearLocalEntities.ts`). The Orbit reference lists
   stay in the page's mirror for a new sign-in; the next app start re-syncs the stores.
 

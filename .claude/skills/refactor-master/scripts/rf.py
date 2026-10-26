@@ -24,7 +24,9 @@ log.md (one line per event), handoffs/<step>/ (brief.md, dev.md, test.md, docs.m
 from __future__ import annotations
 
 import argparse
+import csv
 import datetime as dt
+import difflib
 import json
 import re
 import subprocess
@@ -578,26 +580,147 @@ IMPORT_SHAPE = re.compile(r"^\s*((import|export)(\s+type)?\s*(\{|\*)?|\}\s*from)
 CODE_EXT = (".ts", ".tsx", ".js", ".jsx", ".mjs", ".cjs")
 
 
-def changed_lines(c: Ctx, path: str, old: str | None) -> list[str]:
+ORIGIN_TAG = re.compile(r"^\s*(/\*\* @origin [A-Za-z0-9_.]+ \*/|\* @origin [A-Za-z0-9_.]+)\s*$")
+
+
+def changed_lines(c: Ctx, path: str, old: str | None, signed: bool = False) -> list[str]:
     args = ["diff", "HEAD", "-M", "-U0", "--"] + ([old, path] if old else [path])
     out = []
     for ln in git(c, *args).splitlines():
         if ln.startswith(("+++", "---")):
             continue
         if ln.startswith(("+", "-")):
-            out.append(ln[1:])
+            out.append(ln if signed else ln[1:])
     return out
+
+
+# Protected text: string literals and comments. A rename never applies inside them.
+STRING_LITERAL = re.compile(
+    r"""('(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|`(?:[^`\\]|\\.)*`|//[^\n]*|/\*.*?\*/)""", re.S
+)
+IDENT = re.compile(r"[A-Za-z_$][\w$]*")
+
+
+def load_rename_map(c: Ctx) -> tuple[dict[str, str], dict[str, str]]:
+    """Identifier renames and directory pairs declared by app/docs/refactor/move-map.csv.
+
+    Old identifier = source block name, new = target file base name; derived `<Old>Props` -> `<New>Props`.
+    Only rows of src/shared/ blocks whose target .tsx file exists count (a block not yet moved is not renamed). Directory pairs: old dir -> new dir.
+    """
+    path = c.base / "app/docs/refactor/move-map.csv"
+    names: dict[str, str] = {}
+    dirs: dict[str, str] = {}
+    if not path.exists():
+        return names, dirs
+    with path.open(newline="") as fh:
+        for row in csv.DictReader(fh):
+            src, tgt = row.get("source", ""), row.get("target", "")
+            if not src.startswith("src/shared/") or not tgt.endswith(".tsx"):
+                continue
+            if not (c.base / "app" / tgt).exists():
+                continue  # not moved yet: its identifiers are still the old ones
+            old, new = src.rsplit("/", 1)[-1], tgt.rsplit("/", 1)[-1].split(".")[0]
+            dirs["app/" + src] = "app/" + tgt.rsplit("/", 1)[0]
+            if old != new:
+                names[old] = new
+                names[old + "Props"] = new + "Props"
+    return names, dirs
+
+
+def apply_rename(line: str, names: dict[str, str]) -> str:
+    """Rename whole identifier tokens outside string literals."""
+    if not names:
+        return line
+    parts = STRING_LITERAL.split(line)
+    for i in range(0, len(parts), 2):
+        parts[i] = IDENT.sub(lambda m: names.get(m.group(0), m.group(0)), parts[i])
+    return "".join(parts)
+
+
+IMPORT_STATEMENT = re.compile(r"^\s*(import|export)\b(?:[^;'\"]*?\bfrom\s*|\s*)['\"][^'\"]*['\"];?[ \t]*$", re.M | re.S)
+
+
+def strip_imports(text: str) -> list[str]:
+    """Lines of a file without import / re-export statements and @origin tags (those are checked on their own)."""
+    text = IMPORT_STATEMENT.sub("", text)
+    return [ln for ln in text.splitlines() if not ORIGIN_TAG.match(ln)]
+
+
+def reflow_key(lines: list[str], names: dict[str, str]) -> str:
+    """Token text of changed lines without layout: no whitespace, parentheses or trailing commas (outside strings).
+
+    Prettier re-wraps a line when a rename changes its length; this key lets a re-wrapped hunk match.
+    """
+    parts = STRING_LITERAL.split(apply_rename("\n".join(lines), names))
+    for i in range(0, len(parts), 2):
+        parts[i] = re.sub(r"[\s()]", "", re.sub(r",(\s*[)\]}])", r"\1", parts[i]))
+    return "\x00".join(parts).rstrip(",")
+
+
+def classify(path: str, signed: list[str], old: str | None, names: dict[str, str], old_text: str | None = None, new_text: str | None = None) -> tuple[list[str], int]:
+    """Return (bad lines, origin tag count) of the signed changed lines of one file."""
+    bad, origins = [], 0
+    removed = [sl[1:].strip() for sl in signed if sl[0] == "-"]
+    added = [sl[1:].strip() for sl in signed if sl[0] == "+"]
+    added_set, mapped_removed = set(added), {apply_rename(r, names) for r in removed}
+    for sl in signed:
+        ln = sl[1:]
+        if sl[0] == "+" and old and ORIGIN_TAG.match(ln):
+            origins += 1
+            continue
+        if ln.strip() == "" or PATH_IN_LINE.search(ln) or IMPORT_SHAPE.match(ln):
+            continue
+        if names:
+            if sl[0] == "-" and apply_rename(ln.strip(), names) in added_set:
+                continue
+            if sl[0] == "+" and ln.strip() in mapped_removed:
+                continue
+        bad.append(f"{path}: {sl[0]}{ln.strip()[:120]}")
+    if bad and names:
+        # Fallback: the failed lines are only a re-wrapped form of each other (Prettier layout after a rename).
+        if old_text is not None and new_text is not None:
+            if reflow_key(strip_imports(old_text), names) == reflow_key(strip_imports(new_text), {}):
+                bad = []
+    return bad, origins
 
 
 def cmd_diffcheck(c: Ctx, a) -> int:
     if not a.move:
         raise RfError("only --move is supported")
-    bad, other, renames = [], [], 0
-    for line in git(c, "diff", "HEAD", "-M", "--name-status").splitlines():
-        parts = line.split("\t")
+    names, dirs = load_rename_map(c)
+    bad, other, renames, origins = [], [], 0, 0
+    entries = [ln.split("\t") for ln in git(c, "diff", "HEAD", "-M", "--name-status").splitlines()]
+    # Pair deleted + added files (for example shared/<Block>/index.ts) through the move map.
+    added_files = {p[-1] for p in entries if p[0] == "A"}
+    pairs: dict[str, str] = {}
+    for parts in entries:
+        if parts[0] != "D":
+            continue
+        d, name = parts[1].rsplit("/", 1)
+        new_dir = dirs.get(d)
+        if new_dir:
+            cand = f"{new_dir}/{name}"
+            if cand in added_files:
+                pairs[parts[1]] = cand
+    paired_new = set(pairs.values())
+    for parts in entries:
         code, paths = parts[0], parts[1:]
         path = paths[-1]
         if path.startswith("migration/refactor/"):
+            continue
+        if code == "D" and path in pairs:
+            new_path = pairs[path]
+            renames += 1
+            old_text = git(c, "show", f"HEAD:{path}").splitlines()
+            new_text = (c.base / new_path).read_text().splitlines()
+            signed = [
+                ln for ln in difflib.unified_diff(old_text, new_text, lineterm="", n=0) if ln[:1] in "+-" and ln[:3] not in ("+++", "---")
+            ]
+            b, o = classify(new_path, signed, path, names, "\n".join(old_text), "\n".join(new_text))
+            bad += b
+            origins += o
+            continue
+        if code == "A" and path in paired_new:
             continue
         if code.startswith("R"):
             renames += 1
@@ -605,23 +728,25 @@ def cmd_diffcheck(c: Ctx, a) -> int:
         elif code == "M":
             old = None
         else:
-            (bad if path.endswith(CODE_EXT) else other).append(f"{code} {path}")
+            (bad if path.endswith(CODE_EXT) and path.startswith("app/") else other).append(f"{code} {path}")
             continue
         if not path.endswith(CODE_EXT):
             if code == "M":
                 other.append(f"M {path}")
             continue
-        for ln in changed_lines(c, path, old):
-            if ln.strip() == "" or PATH_IN_LINE.search(ln) or IMPORT_SHAPE.match(ln):
-                continue
-            bad.append(f"{path}: {ln.strip()[:120]}")
+        old_text = git(c, "show", f"HEAD:{old or path}") if names else None
+        new_text = (c.base / path).read_text() if names else None
+        b, o = classify(path, changed_lines(c, path, old, signed=True), old, names, old_text, new_text)
+        bad += b
+        origins += o
     for p in dirty_paths(c):
         if p.startswith("migration/refactor/"):
             continue
         st = git(c, "status", "--porcelain", "--", p).strip()
         if st.startswith("??"):
-            (bad if p.endswith(CODE_EXT) else other).append(f"untracked {p}")
+            (bad if p.endswith(CODE_EXT) and p.startswith("app/") else other).append(f"untracked {p}")
     print(f"renames: {renames}")
+    print(f"origin tags: {origins}")
     for o in other:
         print(f"other file (review it): {o}")
     for b in bad:

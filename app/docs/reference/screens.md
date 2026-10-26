@@ -60,7 +60,7 @@ Every screen in scope, at its original OutSystems route.
 | GuestArrangements | `/UBTConnect/GuestArrangements` | `src/screens/GuestArrangements/` |  | lite | built | mobileOrbitAccess |
 | HelpersDetail | `/UBTConnect/HelpersDetail` | `src/screens/HelpersDetail/` |  | lite | built | mobileOrbitAccess |
 | HostSurvey | `/UBTConnect/HostSurvey` | `src/screens/HostSurvey/` |  | full | built |  |
-| LDM_Email_V2 | `/UBTConnect/LDM_Email_V2` | `src/screens/LDM_Email_V2/` |  | lite | built | C2EnableC1DirectoryView, C2NewBookmarks, mobileDirectoryBookmarkNote |
+| LDM_Email_V2 | `/UBTConnect/LDM_Email_V2` | `src/pages/LDM_Email_V2/` |  | lite | built | C2EnableC1DirectoryView, C2NewBookmarks, mobileDirectoryBookmarkNote |
 | LDM_EventDetail_V2 | `/UBTConnect/LDM_EventDetail_V2` | `src/screens/LDM_EventDetail_V2/` |  | full | built | C2EnableC1DirectoryView, C2EnableCarousel, C2NewBookmarks, mobileDirectoryBookmarkNote |
 | LDM_MyEvents_V2 | `/UBTConnect/LDM_MyEvents_V2` | `src/screens/LDM_MyEvents_V2/` |  | full | built | C2EnableC1DirectoryView, C2EnableCarousel, C2NewBookmarks, mobileDirectoryBookmarkNote |
 | MilestoneDetail | `/UBTConnect/MilestoneDetail` | `src/screens/MilestoneDetail/` |  | full | built | mobileOrbitAccess |

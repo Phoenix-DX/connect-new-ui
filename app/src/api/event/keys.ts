@@ -1,0 +1,52 @@
+import type {
+  AccommodationHostCallInputs,
+  AdminEventInformationCallInputs,
+  AdminEventsCallInputs,
+  AssembleEventCallInputs,
+  AssembleMeetingListQuery,
+  EventBookletCallInputs,
+  EventDetailCallInputs,
+  EventDocumentsCallInputs,
+  EventQRCodeCallInputs,
+  GmpMilestoneHostCallInputs,
+  GuestArrangementsCallInputs,
+  HelperDetailsCallInputs,
+  HostSurveyCallInputs,
+  LdmEventCallInputs,
+  MyTimelineCallInputs,
+  OrbitLandingCallInputs,
+  TransportDetailCallInputs,
+} from './types';
+
+/** Query keys of the event queries: one key per data action. The inputs are part of the key: the server answer can
+    depend on each block variable that the call sends. */
+export const eventKeys = {
+  all: ['event'] as const,
+  assembleEvent: (inputs: AssembleEventCallInputs) => [...eventKeys.all, 'assembleEvent', inputs] as const,
+  assembleEventTypes: () => [...eventKeys.all, 'assembleEventTypes'] as const,
+  assembleMeetings: (query: AssembleMeetingListQuery) => [...eventKeys.all, 'assembleMeetings', query] as const,
+  eventsByMemberId: (inputs: OrbitLandingCallInputs) => [...eventKeys.all, 'eventsByMemberId', inputs] as const,
+  eventDetails: (inputs: EventDetailCallInputs) => [...eventKeys.all, 'eventDetails', inputs] as const,
+  hostSurveyStatus: (inputs: EventDetailCallInputs) => [...eventKeys.all, 'hostSurveyStatus', inputs] as const,
+  hasDocuments: (inputs: EventDetailCallInputs) => [...eventKeys.all, 'hasDocuments', inputs] as const,
+  hasQRCode: (inputs: EventDetailCallInputs) => [...eventKeys.all, 'hasQRCode', inputs] as const,
+  eventBookletFilters: (inputs: EventBookletCallInputs) => [...eventKeys.all, 'eventBookletFilters', inputs] as const,
+  eventBookletGuests: (inputs: EventBookletCallInputs) => [...eventKeys.all, 'eventBookletGuests', inputs] as const,
+  eventBookletHelpers: (inputs: EventBookletCallInputs) => [...eventKeys.all, 'eventBookletHelpers', inputs] as const,
+  guestArrangements: (inputs: GuestArrangementsCallInputs) => [...eventKeys.all, 'guestArrangements', inputs] as const,
+  helperDetails: (inputs: HelperDetailsCallInputs) => [...eventKeys.all, 'helperDetails', inputs] as const,
+  accommodationHost: (inputs: AccommodationHostCallInputs) => [...eventKeys.all, 'accommodationHost', inputs] as const,
+  accommodationHostDocument: (inputs: AccommodationHostCallInputs) =>
+    [...eventKeys.all, 'accommodationHostDocument', inputs] as const,
+  gmpMilestoneHost: (inputs: GmpMilestoneHostCallInputs) => [...eventKeys.all, 'gmpMilestoneHost', inputs] as const,
+  hostSurvey: (inputs: HostSurveyCallInputs) => [...eventKeys.all, 'hostSurvey', inputs] as const,
+  transportDetail: (inputs: TransportDetailCallInputs) => [...eventKeys.all, 'transportDetail', inputs] as const,
+  eventDocuments: (inputs: EventDocumentsCallInputs) => [...eventKeys.all, 'eventDocuments', inputs] as const,
+  eventQRCode: (inputs: EventQRCodeCallInputs) => [...eventKeys.all, 'eventQRCode', inputs] as const,
+  adminEvents: (inputs: AdminEventsCallInputs) => [...eventKeys.all, 'adminEvents', inputs] as const,
+  adminEventInformation: (inputs: AdminEventInformationCallInputs) =>
+    [...eventKeys.all, 'adminEventInformation', inputs] as const,
+  eventByEventId: (inputs: LdmEventCallInputs) => [...eventKeys.all, 'eventByEventId', inputs] as const,
+  coordinatorDetails: (inputs: LdmEventCallInputs) => [...eventKeys.all, 'coordinatorDetails', inputs] as const,
+  eventsForMyTimeline: (inputs: MyTimelineCallInputs) => [...eventKeys.all, 'eventsForMyTimeline', inputs] as const,
+};

@@ -1,0 +1,30 @@
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { ResultItemBadge } from '@/components/ui/ResultItemBadge';
+import { PendingBlock } from '@/test/PendingBlock';
+import { AssembleSummarySkeleton } from './AssembleSummarySkeleton';
+
+const meta = {
+  title: 'Shared/Connect2_Assemble_MUI/AssembleSummaryDetailHeader_Skeleton',
+  component: AssembleSummarySkeleton,
+} satisfies Meta<typeof AssembleSummarySkeleton>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+
+/** AssembleEvents/loading: a loading event card (caller markup as in the NC_Result_Item__Card capture taken from this
+    instance): two subtitle skeleton rows, a title row, an empty bottom subtitle, the 73px badge and the location
+    block (own block of AssembleEvents, not built: pending). */
+export const V1: Story = {
+  args: {
+    id: 'b2-b4-b7-l1-75_0-$b1',
+    placeholderSubtitleTop: (
+      <>
+        <div className="font-size-h6 margin-bottom-s ThemeGrid_Width8" data-container="" />
+        <div className="font-size-xs ThemeGrid_Width5" data-container="" />
+      </>
+    ),
+    placeholderTitle: <div className="ThemeGrid_Width7" data-container="" />,
+    placeholderSubtitleBottom: <span data-expression="" />,
+    placeholderRight: <ResultItemBadge id="b2-b4-b7-l1-75_0-$b5" size="73px" />,
+    placeholderLocation: <PendingBlock name="NewConnect_Utilities.NC_Result_Item__Card__Location" />,
+  },
+};

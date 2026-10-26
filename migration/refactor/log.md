@@ -53,3 +53,829 @@ One line per event. Written by rf.py.
 - 2026-10-22T14:20:53 P0-5 stage docs
 - 2026-10-22T14:20:53 P0-5 stage commit
 - 2026-10-22T14:20:54 P0-5 done eeb37e2: ci: pass; stack check OK; move-map reproduced; gate: Opus review (delegated)
+- 2026-10-22T15:17:57 P1-1 started
+- 2026-10-22T15:17:57 P1-1 stage dev
+- 2026-10-22T15:20:57 P1-1 stage test
+- 2026-10-22T15:28:17 Q8 (P1-1) asked: Self parity reference migration/refactor-reference/ (git-ignored, recorded in P0-2) is missing; strict parity --ref both fails with 'no self reference' on 50 routes (OutSystems side 64/64 clean). Re-record with refactor_parity.py --record-self --all (P1-1 has no runtime change), or accept the OutSystems-only result?
+- 2026-10-22T15:30:10 Q8 answered by the user: "auto-accepted (user instruction 2026-10-22 15:29, until end of P1): Opus recommends B: stash the three P1-1 app files, run refactor_parity.py --record-self --all at 3b25ddd, pop, run the tester again. Reason: every later step diffs against this reference, so record it at the documented commit."
+- 2026-10-22T15:39:25 P1-1 stage docs
+- 2026-10-22T15:39:56 P1-1 stage commit
+- 2026-10-22T15:40:03 P1-1 done ab01f0a: ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle = baseline
+- 2026-10-22T15:40:09 P1-2 started
+- 2026-10-22T15:40:09 P1-2 stage dev
+- 2026-10-22T15:44:02 Q9 (P1-2) asked: shell/mocks.ts, shell/mocks.test.ts and shell/testSupport.ts are not in the P1-2 step table; the developer put them in platform/testing/. Is that the right place?
+- 2026-10-22T15:45:23 Q9 answered by the user: "auto-accepted (user instruction 2026-10-22 15:29, until end of P1): Opus (medium) and Fable (high) both recommend (b): mocks.ts and mocks.test.ts to platform/bootstrap/ (rename only, the glob still matches); testSupport.ts to src/test/testSupport.ts next to the setup it imports. No platform/testing area. Note in move-map.csv: mocks.ts also mocks shell-block calls, so bootstrap/ is approximate; P5 follow-up with src/mocks/handlers/."
+- 2026-10-22T15:47:17 P1-2 stage test
+- 2026-10-22T15:49:01 P1-2 test failed, fix loop 1
+- 2026-10-22T15:50:16 P1-2 stage test
+- 2026-10-22T15:58:00 P1-2 stage docs
+- 2026-10-22T15:59:04 P1-2 stage commit
+- 2026-10-22T15:59:13 P1-2 done fdd21d0: ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle = baseline; diffcheck --move: ok (110 renames)
+- 2026-10-22T15:59:19 P1-3 started
+- 2026-10-22T15:59:19 P1-3 stage dev
+- 2026-10-22T16:04:02 P1-3 stage test
+- 2026-10-22T16:11:46 P1-3 stage docs
+- 2026-10-22T16:13:07 P1-3 stage commit
+- 2026-10-22T16:13:25 P1-3 done 21d09af: ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle = baseline; diffcheck --move: ok (46 renames)
+- 2026-10-22T16:13:26 P1-4 started
+- 2026-10-22T16:13:26 P1-4 stage dev
+- 2026-10-22T16:20:19 P1-4 stage test
+- 2026-10-22T16:27:52 P1-4 stage docs
+- 2026-10-22T16:30:04 P1-4 stage commit
+- 2026-10-22T16:30:05 P1-4 done faf8682: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self, 1 flake clean on rerun); bundle = baseline
+- 2026-10-22T19:41:52 P2-1 started
+- 2026-10-22T19:41:53 P2-1 stage dev
+- 2026-10-22T19:43:38 P2-1 stage test
+- 2026-10-22T19:53:32 Q10 (P2-1) asked: ci fails on the pre-existing time-of-day dependent test AssembleEvents.test.tsx (expected 1210-series-5, got 1210-series-1); P2-1 did not touch it. Fix now in its own commit, inside P2-1, or accept?
+- 2026-10-22T19:53:33 Q10 answered by the user: "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (high) recommends (a): fix the test in its own test-only commit before the P2-1 commit; freeze the clock with vi.setSystemTime (copying the app rule still depends on the time of day). Keeps P2-1 a pure move and ci meaningful for every later gate."
+- 2026-10-22T20:03:37 P2-1 stage docs
+- 2026-10-22T20:04:41 P2-1 stage commit
+- 2026-10-22T20:04:42 P2-1 done ad2d23e: ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within baseline
+- 2026-10-22T20:04:47 P2-2 started
+- 2026-10-22T20:04:47 P2-2 stage dev
+- 2026-10-22T20:16:47 P2-2 stage test
+- 2026-10-22T20:23:14 P2-2 stage docs
+- 2026-10-22T20:23:48 P2-2 stage commit
+- 2026-10-22T20:23:48 P2-2 done aedc20e: ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within baseline
+- 2026-10-22T20:23:49 P2-3 started
+- 2026-10-22T20:23:49 P2-3 stage dev
+- 2026-10-22T20:57:58 P2-3 stage test
+- 2026-10-22T21:04:37 P2-3 stage docs
+- 2026-10-22T21:06:04 P2-3 stage commit
+- 2026-10-22T21:06:04 P2-3 done 612208e: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); bundle within +5%
+- 2026-10-22T21:06:05 P2-4 started
+- 2026-10-22T21:06:05 P2-4 stage dev
+- 2026-10-22T21:07:50 P2-4 stage test
+- 2026-10-22T21:14:06 P2-4 test failed, fix loop 1
+- 2026-10-22T21:14:39 P2-4 stage test
+- 2026-10-22T21:15:05 P2-4 stage docs
+- 2026-10-22T21:16:07 P2-4 waits for the user: Test HouseholdDetails, HouseholdCarousel and Profile on localhost, read the pilot report, then confirm.
+- 2026-10-22T21:21:54 P2-4 after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (B, medium) and Fable (B, high) review: confirm with changes. 3 routes OK (links 200 on 5174, build.png match, parity 64/64 both refs). Changes (Markdown, applied by the documenter before the commit): page-template.md hook shape = repository fetch* functions, query hooks unused for now; container rule (hook/state/mocks in containers/<Name>/, containers never import pages; pilot is a temporary exception); standard state shape written down; screens/*/api.ts split (calls to api/<domain>/repository.ts, route inputs to pages/<Route>/inputs.ts). Code moves deferred as follow-ups F1-F5 in migration/refactor/followups.md (more conservative option where the two differed)."
+- 2026-10-22T21:23:01 P2-4 stage commit
+- 2026-10-22T21:23:02 P2-4 done 7605ebe: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); gate confirmed with changes (Opus + Fable)
+- 2026-10-22T21:23:11 P3-1 started
+- 2026-10-22T21:23:11 P3-1 stage dev
+- 2026-10-22T21:41:04 P3-1 stage test
+- 2026-10-22T21:47:25 P3-1 stage docs
+- 2026-10-22T21:48:57 P3-1 stage commit
+- 2026-10-22T21:48:58 P3-1 done 183070b: ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within +5%
+- 2026-10-22T21:48:58 P3-2 started
+- 2026-10-22T21:48:59 P3-2 stage dev
+- 2026-10-22T22:01:30 P3-2 stage test
+- 2026-10-22T22:02:31 Q11 (P3-2) asked: The UBTConnect cycle came only from 8 UBTConnectLibrary stories (20 upward imports); the developer replaced the real blocks with StandInBlock, so those stories show 'Not captured' markers. Keep (a), exclude stories from the rules (b), or move the stories up (c)?
+- 2026-10-22T22:02:31 Q11 answered by the user: "auto-accepted (user instruction 2026-10-22 19:41, overnight): SPLIT: Opus (c, medium), Fable (b, high). Master took the more conservative and reversible option (b): revert the 8 stories to the real blocks as at HEAD, drop StandInBlock, and exclude *.stories.tsx (and test files) from the cycle and layer rules in .dependency-cruiser.cjs; production code keeps the strict rules (the 2 new direction rules stay for non-story files)."
+- 2026-10-22T22:02:31 P3-2 test failed, fix loop 1
+- 2026-10-22T22:07:45 P3-2 stage test
+- 2026-10-22T22:16:30 P3-2 stage docs
+- 2026-10-22T23:10:10 P3-2 stage commit
+- 2026-10-22T23:10:11 P3-2 done fe827c9: ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); 0 cycles in the 3 folders
+- 2026-10-22T23:10:11 P3-3 started
+- 2026-10-22T23:10:12 P3-3 stage dev
+- 2026-10-22T23:17:00 P3-3 stage test
+- 2026-10-22T23:24:37 P3-3 stage docs
+- 2026-10-23T05:30:39 P3-3 stage commit
+- 2026-10-23T05:30:39 P3-3 done 247f265: ci: pass; depcruise 0 errors 0 cycles; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within +5%
+- 2026-10-23T05:30:40 P3-4 started
+- 2026-10-23T05:30:47 P3-4 stage dev
+- 2026-10-23T05:36:28 P3-4 stage test
+- 2026-10-23T05:44:03 P3-4 stage docs
+- 2026-10-23T05:48:25 P3-4 stage commit
+- 2026-10-23T05:48:25 P3-4 done 599ed88: ci: pass; lint:arch 0 errors 211 warnings; parity strict --all: 64/0 (OutSystems), 64/0 (self) on rerun (first run self 63/1: EventDetail/default pixel 1 flake, F6); bundle within +5%
+- 2026-10-23T05:48:36 P4-1 started
+- 2026-10-23T05:48:56 P4-1 stage dev
+- 2026-10-23T06:00:02 P4-1 stage test
+- 2026-10-23T06:08:02 P4-1 stage docs
+- 2026-10-23T06:08:51 P4-1 stage commit
+- 2026-10-23T06:08:51 P4-1 done a9d0226: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self); bundle within +5% (+0.2%)
+- 2026-10-23T06:08:52 P4-2 started
+- 2026-10-23T06:08:52 P4-2 stage dev
+- 2026-10-23T06:33:55 P4-2 stage test
+- 2026-10-23T06:47:17 P4-2 stage docs
+- 2026-10-23T06:48:10 P4-2 stage commit
+- 2026-10-23T06:48:11 P4-2 done 61189b3: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self) (EventDetail/default 1-pixel flake in 2 of 5 reruns, F6); e2e:pwa 8/8; bundle within +5% (+0.6%)
+- 2026-10-23T06:48:12 P4-3 started
+- 2026-10-23T06:48:12 P4-3 stage dev
+- 2026-10-23T07:10:54 P4-3 stage test
+- 2026-10-23T07:19:49 P4-3 test failed, fix loop 1
+- 2026-10-23T07:20:28 P4-3 stage test
+- 2026-10-23T07:21:00 P4-3 stage docs
+- 2026-10-23T07:22:16 P4-3 stage commit
+- 2026-10-23T07:22:17 P4-3 done d015386: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 8/8; mock-free production build; demo build signs in; bundle within +5% (+0.8%)
+- 2026-10-23T07:22:18 P4-4 started
+- 2026-10-23T07:22:18 P4-4 stage dev
+- 2026-10-23T07:39:40 P4-4 stage test
+- 2026-10-23T07:48:10 P4-4 stage docs
+- 2026-10-23T07:49:28 P4-4 stage commit
+- 2026-10-23T07:49:29 P4-4 done a0c4553: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 63/1 (self: EventDetail/default 1-pixel flake, F6; reruns 1 pass, 1 fail); e2e:pwa 9/9; bundle within +5% (+0.9%)
+- 2026-10-23T07:49:30 P4-5 started
+- 2026-10-23T07:49:31 P4-5 stage dev
+- 2026-10-23T08:15:37 P4-5 stage test
+- 2026-10-23T08:22:08 P4-5 stage docs
+- 2026-10-23T08:24:13 P4-5 stage commit
+- 2026-10-23T08:24:20 P4-5 done c6db947: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self) (capture-plan has no flag variants; unit tests cover on and off); ?ff= works on dev; bundle within +5% (+1.0%)
+- 2026-10-23T09:29:25 P5-1 started
+- 2026-10-23T09:29:25 P5-1 stage dev
+- 2026-10-23T09:38:49 Q12 (P5-1) asked: The plan says the 401 and SecurityException path calls session.signedOutRemotely(). The clone today has no SecurityException branch (toast only); OutSystems App_Common forces logout for a signed-in user and sends an anonymous user to Login?In_IsFromInvalidPermissions=True; no mock answers 401 or SecurityException. A: callAction calls signedOutRemotely on 401/SecurityException (new behavior); B: port the App_Common branch into raiseToFlowHandler (matches OutSystems, behavior change, no mock reaches it); C: add signedOutRemotely as the single entry point, used only by the existing forced-logout branch; 401/SecurityException triggers wait for the BFF (no behavior change).
+- 2026-10-23T09:39:15 Q12 answered by the user: "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (high) chose C: add signedOutRemotely() in platform/session/auth.ts as the single entry point for 'the server ended the session', used now only by the existing forced-logout branch (exceptionMessages.ts), same order of steps; the 401/SecurityException triggers wait for the BFF. A unit test must show that the signedOutRemotely event ends in the same state and storage as signOut() today. B (port the App_Common SecurityException branch) is recorded as a known parity gap for the user, outside the refactor."
+- 2026-10-23T09:42:00 P5-1 stage test
+- 2026-10-23T09:50:40 P5-1 stage docs
+- 2026-10-23T09:51:51 P5-1 stage commit
+- 2026-10-23T09:51:59 P5-1 done 1be0c50: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self); bundle within +5% (+1.4%)
+- 2026-10-23T09:52:10 P5-2-member started
+- 2026-10-23T09:52:10 P5-2-member stage dev
+- 2026-10-23T10:08:47 P5-2-member stage test
+- 2026-10-23T10:14:24 P5-2-member stage docs
+- 2026-10-23T10:15:22 P5-2-member stage commit
+- 2026-10-23T10:15:23 P5-2-member done b9866d7: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed: 13/0 (OutSystems), 13/0 (self); exemptions []; bundle within +5% (+1.4%)
+- 2026-10-23T10:15:29 P5-2-country started
+- 2026-10-23T10:15:30 P5-2-country stage dev
+- 2026-10-23T10:16:06 P5-2-country stage test
+- 2026-10-23T10:25:44 P5-2-country stage docs
+- 2026-10-23T10:26:48 P5-2-country stage commit
+- 2026-10-23T10:26:50 P5-2-country done d91327c: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed: 33/0 (OutSystems), 33/0 (self) (first run self 32/1: CountryDetails/default under load, F9; 3/3 and a full rerun clean); exemptions []; bundle within +5% (+1.4%)
+- 2026-10-23T12:00:07 P5-2-locality started
+- 2026-10-23T12:00:07 P5-2-locality stage dev
+- 2026-10-23T12:00:16 P5-2-locality stage test
+- 2026-10-23T12:09:27 P5-2-locality stage docs
+- 2026-10-23T12:10:52 P5-2-locality stage commit
+- 2026-10-23T12:10:53 P5-2-locality done b314574: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+1.5%)
+- 2026-10-23T12:10:53 P5-2-update started
+- 2026-10-23T12:10:53 P5-2-update stage dev
+- 2026-10-23T12:11:01 P5-2-update stage test
+- 2026-10-23T13:09:43 P5-2-update stage docs
+- 2026-10-23T13:11:19 P5-2-update stage commit
+- 2026-10-23T13:11:19 P5-2-update done 64fee33: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self) on the rerun (first run at load average ~110: loading-state load flakes); exemptions []; bundle within +5% (+2.0%)
+- 2026-10-23T13:29:30 P5-2-app started
+- 2026-10-23T13:29:30 P5-2-app stage dev
+- 2026-10-23T13:30:21 P5-2-app stage test
+- 2026-10-23T13:43:36 P5-2-app stage docs
+- 2026-10-23T13:44:37 P5-2-app stage commit
+- 2026-10-23T13:44:46 P5-2-app done 36df9c9: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+1.9%)
+- 2026-10-23T13:44:58 P5-3-event started
+- 2026-10-23T13:44:59 P5-3-event stage dev
+- 2026-10-23T13:49:04 P5-3-event stage test
+- 2026-10-23T13:58:58 P5-3-event stage docs
+- 2026-10-23T13:59:42 P5-3-event stage commit
+- 2026-10-23T13:59:52 P5-3-event done be1598b: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+1.9%)
+- 2026-10-23T14:07:46 P5-3-bookmark started
+- 2026-10-23T14:07:46 P5-3-bookmark stage dev
+- 2026-10-23T14:13:25 P5-3-bookmark stage test
+- 2026-10-23T14:24:47 P5-3-bookmark stage docs
+- 2026-10-23T14:25:45 P5-3-bookmark stage commit
+- 2026-10-23T14:25:53 P5-3-bookmark done 64ab666: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+3.0%)
+- 2026-10-23T14:26:03 P5-3-note started
+- 2026-10-23T14:26:03 P5-3-note stage dev
+- 2026-10-23T14:26:16 P5-3-note stage test
+- 2026-10-23T14:37:33 P5-3-note stage docs
+- 2026-10-23T14:38:10 P5-3-note stage commit
+- 2026-10-23T14:38:33 P5-3-note done cbb79b2: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+3.0%)
+- 2026-10-23T14:38:58 P5-3-message started
+- 2026-10-23T14:38:58 P5-3-message stage dev
+- 2026-10-23T14:44:04 P5-3-message stage test
+- 2026-10-23T14:55:37 P5-3-message stage docs
+- 2026-10-23T14:56:13 P5-3-message stage commit
+- 2026-10-23T14:56:23 P5-3-message done cf0d7a5: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+4.0%)
+- 2026-10-23T14:58:05 P5-3-notification started
+- 2026-10-23T14:58:05 P5-3-notification stage dev
+- 2026-10-23T14:58:28 P5-3-notification stage test
+- 2026-10-23T15:05:25 P5-3-notification stage docs
+- 2026-10-23T15:06:04 P5-3-notification stage commit
+- 2026-10-23T15:06:12 P5-3-notification done f674c24: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+4.1%)
+- 2026-10-23T15:10:42 P5-4 started
+- 2026-10-23T15:10:42 P5-4 stage dev
+- 2026-10-23T15:10:42 Q13 (P5-4) asked: Q1 behavior: how do the 27 memoryCache uses move to TanStack Query? A: cache entries become queries (fetchQuery, TTL stored with the data and read by a staleTime function, gcTime Infinity, networkMode always, falsy answers removed, a batcher in api/client for the bulk calls, logout removes idle cache queries); two hard-to-reach edge cases change (second call after a 10 s pending miss; a reader between logout and the end of a pending miss joins it). B: exact port, api/client/cache.ts keeps the queue, timeout and bulk logic and uses the QueryClient only as storage. Developer recommends A.
+- 2026-10-23T15:10:42 Q14 (P5-4) asked: Q2 scope: the step needs about 46 code files (rule about 40). a: one step, one commit; b: split into P5-4a (single-object caches, CacheControl blocks, map objects, MyBookmarks, logout; about 30 files) and P5-4b (bulk image, photo and subdivision caches, then delete memoryCache.ts; about 16 files). Developer recommends a.
+- 2026-10-23T15:10:42 Q15 (P5-4) asked: Q3 placement: three caches have no domain (user info, timezone, signed images and photos) but plan 2.7 puts options in api/<domain>/keys.ts. a: user info in api/member, timezone in api/locality, MyBookmarks in api/bookmark, member contacts in api/message, new api/image/keys.ts, calls stay until P6; b: one shared api/client/cacheKeys.ts; c: as a and also move the four calls into those domains. Developer recommends a.
+- 2026-10-23T15:12:02 Q13 answered by the user: "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): A. Opus (medium) and Fable (high) both chose A: the cache entries become TanStack queries (fetchQuery, the stored TTL read by a staleTime function, gcTime Infinity, networkMode always, falsy answers removed, a batcher in api/client keeps the bulk calls the same). It meets the plan target; B keeps a second cache engine. Condition (Opus caveat): a reader after a logout must never join a pending miss of the previous session (keep the original outcome, for example with a session epoch in the cache keys, and add a test). The remaining change (no second call when a reader comes more than 10 s after a pending miss) is accepted; replace its unit test and record it in dev.md and the CHANGELOG."
+- 2026-10-23T15:12:02 Q14 answered by the user: "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): a, one step and one commit. Opus (medium) and Fable (medium-high) agree: about 46 files, mostly mechanical import and key changes plus small new files; a split would leave two cache systems live for one commit and double the gate. Opus caveat: if the bulk caches turn out not to be a simple key mapping, tell the master before the change grows."
+- 2026-10-23T15:12:02 Q15 answered by the user: "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): a. Opus (high) and Fable (high): options in the domain that owns the data (user info in api/member, timezone in api/locality, MyBookmarks in api/bookmark, member contacts in api/message, new api/image/keys.ts); the calls stay where they are until Phase 6."
+- 2026-10-23T15:41:44 P5-4 stage test
+- 2026-10-23T15:51:20 P5-4 stage docs
+- 2026-10-23T15:53:46 P5-4 stage commit
+- 2026-10-23T15:53:46 P5-4 waits for the user: Confirm the exemption list of Phase 5 (migration/refactor-exemptions.json).
+- 2026-10-23T15:53:46 P5-4 after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): confirm the Phase 5 exemption list (0 entries). Opus (high) and Fable (high) agree: the list covers only parity-visible call differences; no call moved into a query with a caller; P5-4 full strict parity 64/64 clean on both references with the call check clean; the parity-invisible behavior changes are in the decision log and the CHANGELOG (W6)."
+- 2026-10-23T15:53:56 P5-4 done a966278: ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+4.2%); after-gate confirmed (W6)
+- 2026-10-23T16:35:44 P6-G1-A started
+- 2026-10-23T16:35:50 P6-G1-A stage dev
+- 2026-10-23T16:38:42 P6-G1-A stage test
+- 2026-10-23T16:51:47 P6-G1-A stage docs
+- 2026-10-23T16:52:26 P6-G1-A stage commit
+- 2026-10-23T16:52:27 P6-G1-A done 4146e93: ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); diffcheck --move ok (10 origin tags); bundle within +5% (+4.3%)
+- 2026-10-23T16:52:37 P6-G1-B-Login started
+- 2026-10-23T16:52:37 P6-G1-B-Login stage dev
+- 2026-10-23T17:04:44 P6-G1-B-Login stage test
+- 2026-10-23T19:10:07 P6-G1-B-Login stage docs
+- 2026-10-23T19:11:08 P6-G1-B-Login stage commit
+- 2026-10-23T19:11:17 P6-G1-B-Login done 7517102: ci: pass (2052 tests); parity visual --changed: 1/0 (OutSystems), 1/0 (self); lint:arch no new warning; bundle within +5%
+- 2026-10-23T19:11:30 P6-G1-B-Splash started
+- 2026-10-23T19:11:31 P6-G1-B-Splash stage dev
+- 2026-10-23T19:12:08 P6-G1-B-Splash stage test
+- 2026-10-23T19:18:08 P6-G1-B-Splash stage docs
+- 2026-10-23T19:19:15 P6-G1-B-Splash stage commit
+- 2026-10-23T19:19:17 P6-G1-B-Splash done c1da652: ci: pass; parity visual --changed: 25/0 (OutSystems), 25/0 (self); lint:arch no new warning; bundle within +5%
+- 2026-10-23T19:19:22 P6-G1-B-AcceptPendingPolicies started
+- 2026-10-23T19:19:23 P6-G1-B-AcceptPendingPolicies stage dev
+- 2026-10-23T19:19:42 P6-G1-B-AcceptPendingPolicies stage test
+- 2026-10-23T19:28:23 P6-G1-B-AcceptPendingPolicies stage docs
+- 2026-10-23T19:30:04 P6-G1-B-AcceptPendingPolicies stage commit
+- 2026-10-23T19:30:05 P6-G1-B-AcceptPendingPolicies done 9b8b211: ci: pass (2092 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); lint:arch no new warning; bundle within +5%
+- 2026-10-23T19:30:11 P6-G1-B-Menu started
+- 2026-10-23T19:30:11 P6-G1-B-Menu stage dev
+- 2026-10-23T19:30:48 P6-G1-B-Menu stage test
+- 2026-10-23T19:38:06 P6-G1-B-Menu stage docs
+- 2026-10-23T19:39:40 P6-G1-B-Menu stage commit
+- 2026-10-23T19:39:41 P6-G1-B-Menu done 37c2d62: ci: pass (2111 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); lint:arch no new warning; bundle within +5%
+- 2026-10-23T19:39:49 P6-G1-B-Shared started
+- 2026-10-23T19:39:49 P6-G1-B-Shared stage dev
+- 2026-10-23T19:45:55 P6-G1-B-Shared stage test
+- 2026-10-23T20:03:55 P6-G1-B-Shared test failed, fix loop 1
+- 2026-10-23T20:14:07 P6-G1-B-Shared stage test
+- 2026-10-23T20:17:24 P6-G1-B-Shared stage docs
+- 2026-10-23T20:19:20 P6-G1-B-Shared stage commit
+- 2026-10-23T20:19:56 P6-G1-B-Shared done 43946ee: ci: pass (2111 tests); diffcheck --move ok (200 renames, 30 origin tags, move-map renames W12); parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (88 moved-debt rows, W13); bundle within +5%
+- 2026-10-23T20:20:43 P6-G1-B-PINRegister started
+- 2026-10-23T20:20:43 P6-G1-B-PINRegister stage dev
+- 2026-10-23T20:42:44 P6-G1-B-PINRegister stage test
+- 2026-10-23T20:50:10 P6-G1-B-PINRegister stage docs
+- 2026-10-23T20:51:40 P6-G1-B-PINRegister stage commit
+- 2026-10-23T20:51:51 P6-G1-B-PINRegister done 2c99612: ci: pass (2125 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (20 rows removed, 68 left); bundle within +5%
+- 2026-10-23T21:02:45 P6-G1-B-PINUnlock started
+- 2026-10-23T21:02:45 P6-G1-B-PINUnlock stage dev
+- 2026-10-23T21:04:07 P6-G1-B-PINUnlock stage test
+- 2026-10-23T21:12:24 P6-G1-B-PINUnlock stage docs
+- 2026-10-23T21:13:48 P6-G1-B-PINUnlock stage commit
+- 2026-10-23T21:13:49 P6-G1-B-PINUnlock done 751b33b: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (29 rows removed, 39 left, 3 re-owned W14); bundle within +5% (Login 192.92 of 193.8 kB)
+- 2026-10-23T21:28:48 P6-G1-B-PINChange started
+- 2026-10-23T21:28:48 P6-G1-B-PINChange stage dev
+- 2026-10-23T21:29:40 P6-G1-B-PINChange stage test
+- 2026-10-23T21:39:11 P6-G1-B-PINChange stage docs
+- 2026-10-23T21:40:30 P6-G1-B-PINChange stage commit
+- 2026-10-23T21:40:31 P6-G1-B-PINChange done 7dbb71b: ci: pass (2148 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (2 PinCode rows removed, 37 left, no G1 owner); bundle within +5% (Login 193.02 of 193.8 kB)
+- 2026-10-23T21:40:31 P6-G1-B-PINBiometricsMenu started
+- 2026-10-23T21:40:32 P6-G1-B-PINBiometricsMenu stage dev
+- 2026-10-23T21:41:06 P6-G1-B-PINBiometricsMenu stage test
+- 2026-10-23T21:50:19 P6-G1-B-PINBiometricsMenu stage docs
+- 2026-10-23T21:51:14 P6-G1-B-PINBiometricsMenu stage commit
+- 2026-10-23T21:51:15 P6-G1-B-PINBiometricsMenu done b1e8f48: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (37 rows); bundle within +5%
+- 2026-10-23T21:51:15 P6-G1-B-TermsAndPoliciesMenu started
+- 2026-10-23T21:51:15 P6-G1-B-TermsAndPoliciesMenu stage dev
+- 2026-10-23T21:51:50 P6-G1-B-TermsAndPoliciesMenu stage test
+- 2026-10-23T21:55:22 P6-G1-B-TermsAndPoliciesMenu stage docs
+- 2026-10-23T21:56:59 P6-G1-B-TermsAndPoliciesMenu stage commit
+- 2026-10-23T21:57:00 P6-G1-B-TermsAndPoliciesMenu done c46440f: ci: pass (2165 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline check 0 new (37 rows); no shared code changed
+- 2026-10-23T21:57:00 P6-G1-B-Profile started
+- 2026-10-23T21:57:00 P6-G1-B-Profile stage dev
+- 2026-10-23T21:57:35 P6-G1-B-Profile stage test
+- 2026-10-23T22:03:02 P6-G1-B-Profile stage docs
+- 2026-10-23T22:04:40 P6-G1-B-Profile stage commit
+- 2026-10-23T22:04:42 P6-G1-B-Profile done 86f7682: ci: pass (2194 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline check 0 new (37 rows); bundle within +5% (Login 192.96 of 193.84 kB)
+- 2026-10-23T22:04:42 P6-G1-C started
+- 2026-10-23T22:04:42 P6-G1-C stage dev
+- 2026-10-23T22:07:05 P6-G1-C stage test
+- 2026-10-23T22:17:39 P6-G1-C stage docs
+- 2026-10-23T22:20:05 P6-G1-C waits for the user: Review the routes of group G1 on localhost (links in the step report): Login, Splash, PINRegister, PINUnlock, PINChange, PINBiometricsMenu, AcceptPendingPolicies, Menu, TermsAndPoliciesMenu, Profile. Then confirm the group.
+- 2026-10-23T22:20:05 P6-G1-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W16 group G1 confirmed — Opus confirm (high), Fable confirm (high). Conditions: watch the Login bundle margin (0.88 kB); a later step that would pass the limit stops and asks, the limit is not raised; the commit notes that the C tester took knip/jscpd from the dev report."
+- 2026-10-23T22:20:05 P6-G1-C stage commit
+- 2026-10-23T22:20:14 P6-G1-C done 12f9d24: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 37 rows, no P6-G1 owner; bundle HomeFeed 244.80/248.22, Login 192.96/193.84 kB gzip; knip/jscpd from the dev report (C changed no tracked code); group confirm W16 (Opus + Fable, delegated)
+- 2026-10-23T22:20:43 P6-G2-A started
+- 2026-10-23T22:20:43 P6-G2-A stage dev
+- 2026-10-23T22:20:57 P6-G2-A stage test
+- 2026-10-23T22:24:41 P6-G2-A stage docs
+- 2026-10-23T22:26:09 P6-G2-A stage commit
+- 2026-10-23T22:27:06 P6-G2-A done 1633175: ci: pass; diffcheck --move ok (55 renames, 9 origin tags); parity strict --changed: 9/0 (OutSystems), 9/0 (self); arch baseline 0 new; bundle within +5% (Login 193.10 of 193.84 kB)
+- 2026-10-23T22:27:18 P6-G2-B-Shared started
+- 2026-10-23T22:27:18 P6-G2-B-Shared stage dev
+- 2026-10-23T22:28:38 P6-G2-B-Shared stage test
+- 2026-10-23T22:40:17 P6-G2-B-Shared stage docs
+- 2026-10-23T22:42:06 P6-G2-B-Shared stage commit
+- 2026-10-23T22:42:11 P6-G2-B-Shared done 81df778: ci: pass; diffcheck --move ok except the declared W17 lines (handlers glob); handlers 155, same set; parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline 48 rows (11 added under W15, check --move-step ok); bundle within +5% (Login 193.03 of 193.84 kB)
+- 2026-10-23T22:43:01 P6-G2-B-ContactUsMenu started
+- 2026-10-23T22:43:01 P6-G2-B-ContactUsMenu stage dev
+- 2026-10-23T22:54:00 P6-G2-B-ContactUsMenu stage test
+- 2026-10-23T22:57:39 P6-G2-B-ContactUsMenu stage docs
+- 2026-10-23T22:58:39 P6-G2-B-ContactUsMenu stage commit
+- 2026-10-23T22:58:40 P6-G2-B-ContactUsMenu done 52510c7: ci: pass; parity visual --changed: 1/0 (OutSystems), 1/0 (self); arch baseline 0 new; bundle within +5% (Login 193.07 of 193.84 kB)
+- 2026-10-23T23:09:28 P6-G2-B-ContactUsDetails started
+- 2026-10-23T23:09:29 P6-G2-B-ContactUsDetails stage dev
+- 2026-10-23T23:10:57 P6-G2-B-ContactUsDetails stage test
+- 2026-10-23T23:17:39 P6-G2-B-ContactUsDetails stage docs
+- 2026-10-23T23:19:12 P6-G2-B-ContactUsDetails stage commit
+- 2026-10-23T23:19:15 P6-G2-B-ContactUsDetails done 33f0c5b: ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.05 of 193.84 kB)
+- 2026-10-23T23:19:15 P6-G2-B-ContactByEmailMember started
+- 2026-10-23T23:19:16 P6-G2-B-ContactByEmailMember stage dev
+- 2026-10-23T23:20:01 P6-G2-B-ContactByEmailMember stage test
+- 2026-10-23T23:25:24 P6-G2-B-ContactByEmailMember stage docs
+- 2026-10-23T23:27:06 P6-G2-B-ContactByEmailMember stage commit
+- 2026-10-23T23:27:08 P6-G2-B-ContactByEmailMember done 3b30db5: ci: pass; parity visual --changed: 6 routes 0 differences (OutSystems, self), ContactByEmail routes with states 3/0; arch baseline 0 new (1 row removed, 47 left); bundle within +5% (Login 193.03 of 193.84 kB)
+- 2026-10-23T23:27:08 P6-G2-B-ContactByEmailOneSchoolGlobal started
+- 2026-10-23T23:27:08 P6-G2-B-ContactByEmailOneSchoolGlobal stage dev
+- 2026-10-23T23:27:45 P6-G2-B-ContactByEmailOneSchoolGlobal stage test
+- 2026-10-23T23:34:22 P6-G2-B-ContactByEmailOneSchoolGlobal stage docs
+- 2026-10-23T23:35:26 P6-G2-B-ContactByEmailOneSchoolGlobal stage commit
+- 2026-10-23T23:35:27 P6-G2-B-ContactByEmailOneSchoolGlobal done 5bc69ce: ci: pass (2nd run; 1st run PopupMenu flake F11); parity visual --changed: 5/0 (OutSystems), 5/0 (self); arch baseline 0 new; bundle within +5% (Login 193.07 of 193.84 kB)
+- 2026-10-23T23:35:27 P6-G2-B-ContactByEmailLDMCoordinator started
+- 2026-10-23T23:35:27 P6-G2-B-ContactByEmailLDMCoordinator stage dev
+- 2026-10-23T23:36:02 P6-G2-B-ContactByEmailLDMCoordinator stage test
+- 2026-10-23T23:43:34 P6-G2-B-ContactByEmailLDMCoordinator stage docs
+- 2026-10-23T23:45:00 P6-G2-B-ContactByEmailLDMCoordinator stage commit
+- 2026-10-23T23:45:01 P6-G2-B-ContactByEmailLDMCoordinator done dec00e0: ci: pass (2263 tests); no parity states for this route (unit tests + diff); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.08 of 193.84 kB)
+- 2026-10-23T23:45:02 P6-G2-B-ContactByEmailOrbitHelpdesk started
+- 2026-10-23T23:45:02 P6-G2-B-ContactByEmailOrbitHelpdesk stage dev
+- 2026-10-23T23:45:40 P6-G2-B-ContactByEmailOrbitHelpdesk stage test
+- 2026-10-23T23:49:22 P6-G2-B-ContactByEmailOrbitHelpdesk stage docs
+- 2026-10-23T23:51:13 P6-G2-B-ContactByEmailOrbitHelpdesk stage commit
+- 2026-10-23T23:51:14 P6-G2-B-ContactByEmailOrbitHelpdesk done ea95154: ci: pass (2268 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.07 of 193.84 kB)
+- 2026-10-23T23:51:14 P6-G2-B-ContactByEmailOrbitHost started
+- 2026-10-23T23:51:14 P6-G2-B-ContactByEmailOrbitHost stage dev
+- 2026-10-23T23:51:54 P6-G2-B-ContactByEmailOrbitHost stage test
+- 2026-10-23T23:58:12 P6-G2-B-ContactByEmailOrbitHost stage docs
+- 2026-10-23T23:59:47 P6-G2-B-ContactByEmailOrbitHost stage commit
+- 2026-10-23T23:59:48 P6-G2-B-ContactByEmailOrbitHost done 3c80cfc: ci: pass (rerun; PopupMenu flake F11); no parity states for this route (unit tests + diff); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.09 of 193.84 kB)
+- 2026-10-23T23:59:48 P6-G2-B-EmailContact started
+- 2026-10-23T23:59:48 P6-G2-B-EmailContact stage dev
+- 2026-10-24T00:00:26 P6-G2-B-EmailContact stage test
+- 2026-10-24T00:04:14 P6-G2-B-EmailContact stage docs
+- 2026-10-24T00:05:45 P6-G2-B-EmailContact stage commit
+- 2026-10-24T00:05:46 P6-G2-B-EmailContact done 6e603912: ci: pass (2291 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.10 of 193.84 kB)
+- 2026-10-24T00:05:47 P6-G2-B-EmailTarget started
+- 2026-10-24T00:05:47 P6-G2-B-EmailTarget stage dev
+- 2026-10-24T00:06:49 P6-G2-B-EmailTarget stage test
+- 2026-10-24T00:10:30 P6-G2-B-EmailTarget stage docs
+- 2026-10-24T00:11:50 P6-G2-B-EmailTarget stage commit
+- 2026-10-24T00:11:51 P6-G2-B-EmailTarget done e67279e8: ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self) (EmailTarget has no capture; unit tests); arch baseline 0 new; bundle within +5% (Login 193.08 of 193.84 kB)
+- 2026-10-24T00:11:52 P6-G2-C started
+- 2026-10-24T00:11:52 P6-G2-C stage dev
+- 2026-10-24T00:13:59 P6-G2-C stage test
+- 2026-10-24T00:22:52 P6-G2-C stage docs
+- 2026-10-24T00:24:16 P6-G2-C waits for the user: Review the routes of group G2 on localhost (links in the step report): ContactUsMenu, ContactUsDetails, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactByEmailLDMCoordinator, ContactByEmailOrbitHelpdesk, ContactByEmailOrbitHost, EmailContact, EmailTarget. Then confirm the group.
+- 2026-10-24T00:24:16 P6-G2-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W19 group G2 confirmed — Opus confirm (high), Fable confirm (high). Conditions: run P6-F15 (W18) next; keep follow-up F15 (committed remount test for EmailTarget) open; LDMCoordinator, OrbitHost and EmailTarget rest on unit tests and diff review (no parity states)."
+- 2026-10-24T00:24:16 P6-G2-C stage commit
+- 2026-10-24T00:24:17 P6-G2-C done 7c722883: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 47 rows, no P6-G2 owner; knip/jscpd re-run match; bundle HomeFeed 244.93/248.22, Login 193.08/193.84 kB gzip; group confirm W19 (Opus + Fable, delegated)
+- 2026-10-24T00:24:24 P6-F15 started
+- 2026-10-24T00:24:24 P6-F15 stage dev
+- 2026-10-24T00:24:59 P6-F15 stage test
+- 2026-10-24T00:33:01 P6-F15 stage docs
+- 2026-10-24T00:34:20 P6-F15 stage commit
+- 2026-10-24T00:34:21 P6-F15 done 584af145: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self), call check clean; bundle Login 193.08 -> 186.87 kB gzip (limit 193.84), HomeFeed 245.51 (limit 248.22); arch baseline 0 new
+- 2026-10-24T00:34:21 P6-G3-A started
+- 2026-10-24T00:34:21 P6-G3-A stage dev
+- 2026-10-24T00:35:05 P6-G3-A stage test
+- 2026-10-24T00:39:37 P6-G3-A stage docs
+- 2026-10-24T00:41:43 P6-G3-A stage commit
+- 2026-10-24T00:41:46 P6-G3-A done 445a09d3: ci: pass; diffcheck --move ok (81 renames, 8 origin tags); parity strict: 8/0 (OutSystems), 8/0 (self); arch baseline 0 new; bundle HomeFeed 245.58/248.22, Login 186.94/193.84 kB gzip
+- 2026-10-24T00:41:46 P6-G3-B-Shared started
+- 2026-10-24T00:41:46 P6-G3-B-Shared stage dev
+- 2026-10-24T00:42:52 P6-G3-B-Shared stage test
+- 2026-10-24T00:52:09 P6-G3-B-Shared stage docs
+- 2026-10-24T00:53:28 P6-G3-B-Shared stage commit
+- 2026-10-24T00:53:36 P6-G3-B-Shared done 4806c6fe: ci: pass; diffcheck --move ok; handlers 155, same set; parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline 78 rows (31 added under W15, check --move-step ok); bundle HomeFeed 245.57/248.22, Login 186.94/193.84 kB gzip
+- 2026-10-24T00:53:45 P6-G3-B-HomeFeed started
+- 2026-10-24T00:53:45 P6-G3-B-HomeFeed stage dev
+- 2026-10-24T01:38:31 Q16 (P6-G3-B-HomeFeed) asked: W21: HomeFeed first load +0.42 kB gzip (245.57 -> 245.99, limit 248.22): accept, split useCommunityPopulationQuery (-0.1 kB), or keep blocks fetching. W22: the page part (FeedBlock_Services, FeedBlock_Updates, Dialog_GoExternalApp, api.ts/types.ts) is not done (42 files): follow-up step after Services, or a fix loop now (~54 files).
+- 2026-10-24T01:39:21 Q16 answered by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed evening): W21 (a) accept +0.42 kB with the F17 tripwire (margin < 1.0 kB or a step > 0.3 kB → stop and trim the entry; limit not raised); W22 (a) commit the shared-block part, add step P6-G3-B-HomeFeed-Page after P6-G3-B-Services, before P6-G3-C. Opus high, Fable high (agree) for both."
+- 2026-10-24T01:39:29 P6-G3-B-HomeFeed stage test
+- 2026-10-24T01:47:38 P6-G3-B-HomeFeed stage docs
+- 2026-10-24T01:50:00 P6-G3-B-HomeFeed stage commit
+- 2026-10-24T01:50:02 P6-G3-B-HomeFeed done e05cd21e: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 61 rows (17 removed); bundle HomeFeed 245.99/248.22 (+0.42 accepted, W21), Login 186.99/193.84 kB gzip; page part deferred (W22)
+- 2026-10-24T01:50:30 P6-G3-B-Services started
+- 2026-10-24T01:50:30 P6-G3-B-Services stage dev
+- 2026-10-24T01:51:09 P6-G3-B-Services stage test
+- 2026-10-24T02:00:20 P6-G3-B-Services stage docs
+- 2026-10-24T02:02:08 P6-G3-B-Services stage commit
+- 2026-10-24T02:02:10 P6-G3-B-Services done c8ffc7ea: ci: pass (2381 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; bundle HomeFeed 245.91/248.22, Login 186.95/193.84 kB gzip
+- 2026-10-24T02:02:10 P6-G3-B-Search started
+- 2026-10-24T02:02:10 P6-G3-B-Search stage dev
+- 2026-10-24T02:02:58 P6-G3-B-Search stage test
+- 2026-10-24T02:07:49 P6-G3-B-Search stage docs
+- 2026-10-24T02:09:45 P6-G3-B-Search stage commit
+- 2026-10-24T02:09:48 P6-G3-B-Search done cf6fd207: ci: pass (2416 tests); parity visual on the 6 filter-sheet routes: 6/0 (OutSystems), 6/0 (self) (full run at G3-C); arch baseline 52 rows (9 removed); bundle HomeFeed 246.06/248.22, Login 187.05/193.84 kB gzip; W23 holds
+- 2026-10-24T02:09:48 P6-G3-B-MessageList started
+- 2026-10-24T02:09:48 P6-G3-B-MessageList stage dev
+- 2026-10-24T02:10:58 P6-G3-B-MessageList stage test
+- 2026-10-24T02:16:21 P6-G3-B-MessageList stage docs
+- 2026-10-24T02:18:12 P6-G3-B-MessageList stage commit
+- 2026-10-24T02:18:15 P6-G3-B-MessageList done 4739384c: ci: pass (2450 tests); parity visual --changed: 5/0 (OutSystems), 5/0 (self); arch baseline 0 new; bundle HomeFeed 246.03/248.22, Login 187.03/193.84 kB gzip; W23 holds
+- 2026-10-24T02:20:25 P6-G3-B-MessageDetail started
+- 2026-10-24T02:20:26 P6-G3-B-MessageDetail stage dev
+- 2026-10-24T02:21:04 P6-G3-B-MessageDetail stage test
+- 2026-10-24T02:26:14 P6-G3-B-MessageDetail stage docs
+- 2026-10-24T02:28:06 P6-G3-B-MessageDetail stage commit
+- 2026-10-24T02:28:07 P6-G3-B-MessageDetail done e7bd6f58: ci: pass (2504 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle HomeFeed 246.02/248.22, Login 187.01/193.84 kB gzip; W23 applied (side effects run after unmount)
+- 2026-10-24T02:28:08 P6-G3-B-FeedItemDetail started
+- 2026-10-24T02:28:08 P6-G3-B-FeedItemDetail stage dev
+- 2026-10-24T02:28:43 P6-G3-B-FeedItemDetail stage test
+- 2026-10-24T02:32:56 P6-G3-B-FeedItemDetail stage docs
+- 2026-10-24T02:34:02 P6-G3-B-FeedItemDetail stage commit
+- 2026-10-24T02:34:03 P6-G3-B-FeedItemDetail done f1fedc70: ci: pass; no parity capture for this route (hook and page tests); parity of the neighbours clean; arch baseline 0 new; bundle HomeFeed 246.04/248.22, Login 187.02/193.84 kB gzip
+- 2026-10-24T02:34:14 P6-G3-B-Updates_SingleList started
+- 2026-10-24T02:34:14 P6-G3-B-Updates_SingleList stage dev
+- 2026-10-24T02:34:56 P6-G3-B-Updates_SingleList stage test
+- 2026-10-24T02:43:20 P6-G3-B-Updates_SingleList stage docs
+- 2026-10-24T02:45:02 P6-G3-B-Updates_SingleList stage commit
+- 2026-10-24T02:45:03 P6-G3-B-Updates_SingleList done 830c8e5a: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); arch baseline 49 rows (3 removed); bundle HomeFeed 246.00/248.22, Login 187.00/193.84 kB gzip; W23 holds
+- 2026-10-24T02:45:03 P6-G3-B-Notifications started
+- 2026-10-24T02:45:03 P6-G3-B-Notifications stage dev
+- 2026-10-24T02:45:40 P6-G3-B-Notifications stage test
+- 2026-10-24T02:55:20 P6-G3-B-Notifications stage docs
+- 2026-10-24T02:56:46 P6-G3-B-Notifications stage commit
+- 2026-10-24T02:56:48 P6-G3-B-Notifications done 2d7b9d4f: ci: pass (rerun; PopupMenu flake F11); parity visual: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; bundle HomeFeed 246.02/248.22, Login 187.01/193.84 kB gzip; W23 holds
+- 2026-10-24T02:56:48 P6-F16 started
+- 2026-10-24T02:56:48 P6-F16 stage dev
+- 2026-10-24T02:57:23 P6-F16 stage test
+- 2026-10-24T03:04:31 P6-F16 stage docs
+- 2026-10-24T03:05:43 P6-F16 stage commit
+- 2026-10-24T03:05:44 P6-F16 done d5d59692: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self), call check clean; e2e:pwa 9/9; mock-free production build ok; bundle HomeFeed 246.02 -> 243.05, Login 187.01 -> 184.02 kB gzip
+- 2026-10-24T03:05:44 P6-G3-B-HomeFeed-Page started
+- 2026-10-24T03:05:44 P6-G3-B-HomeFeed-Page stage dev
+- 2026-10-24T03:06:21 P6-G3-B-HomeFeed-Page stage test
+- 2026-10-24T03:15:00 P6-G3-B-HomeFeed-Page stage docs
+- 2026-10-24T03:17:02 P6-G3-B-HomeFeed-Page stage commit
+- 2026-10-24T03:17:03 P6-G3-B-HomeFeed-Page done 2bcc3346: ci: pass (2598 tests); parity visual --all: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; bundle HomeFeed 244.02/248.22 (+1.11 once, W24), Login 184.02/193.84 kB gzip
+- 2026-10-24T03:17:04 P6-G3-C started
+- 2026-10-24T03:17:04 P6-G3-C stage dev
+- 2026-10-24T03:19:38 P6-G3-C stage test
+- 2026-10-24T03:28:52 P6-G3-C stage docs
+- 2026-10-24T03:30:22 P6-G3-C waits for the user: Review the routes of group G3 on localhost (links in the step report): HomeFeed, FeedItemDetail, Updates_SingleList, Services, Search, Notifications, MessageList, MessageDetail. Then confirm the group.
+- 2026-10-24T03:30:22 P6-G3-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W25 group G3 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: open FeedItemDetail by hand once in the P6-end review (no parity states); add @origin to platform/session/unreadCounters.ts at the next touch; F18 and F19 stay open."
+- 2026-10-24T03:30:22 P6-G3-C stage commit
+- 2026-10-24T03:30:23 P6-G3-C done 168255a4: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 49 rows, no P6-G3 owner; knip/jscpd re-run match; bundle HomeFeed 244.00/248.22, Login 184.00/193.84 kB gzip; group confirm W25 (Opus + Fable, delegated)
+- 2026-10-24T03:30:44 P6-G4-A started
+- 2026-10-24T03:30:44 P6-G4-A stage dev
+- 2026-10-24T03:31:41 P6-G4-A stage test
+- 2026-10-24T03:38:32 P6-G4-A stage docs
+- 2026-10-24T03:39:43 P6-G4-A stage commit
+- 2026-10-24T03:39:47 P6-G4-A done 8d304bde: ci: pass (rerun; flakes F11, F20); diffcheck --move ok (94 renames, 13 origin tags); parity strict: 13/0 (OutSystems), 13/0 (self); arch baseline 0 new; bundle HomeFeed 244.13/248.22, Login 184.17/193.84 kB gzip
+- 2026-10-24T03:39:47 P6-G4-B-Shared started
+- 2026-10-24T03:39:47 P6-G4-B-Shared stage dev
+- 2026-10-24T03:41:49 P6-G4-B-Shared stage test
+- 2026-10-24T03:51:43 P6-G4-B-Shared stage docs
+- 2026-10-24T03:53:24 P6-G4-B-Shared stage commit
+- 2026-10-24T03:53:36 P6-G4-B-Shared done 6be34914: ci: pass; diffcheck --move ok except declared lines; handlers 155, same set; parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline 87 rows (38 added under W15, check --move-step ok, selfcheck ok); bundle HomeFeed 244.19/248.22, Login 184.16/193.84 kB gzip
+- 2026-10-24T03:53:45 P6-G4-B-BrowseCountries started
+- 2026-10-24T03:53:45 P6-G4-B-BrowseCountries stage dev
+- 2026-10-24T04:10:16 P6-G4-B-BrowseCountries stage test
+- 2026-10-24T04:19:32 P6-G4-B-BrowseCountries stage docs
+- 2026-10-24T04:30:16 P6-G4-B-BrowseCountries stage commit
+- 2026-10-24T04:30:17 P6-G4-B-BrowseCountries done 73016cf9: ci: pass (2618 tests); parity visual: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; bundle HomeFeed 244.17/248.22, Login 184.20/193.84 kB gzip; W23 holds
+- 2026-10-24T04:30:17 P6-G4-B-BrowseDirectory started
+- 2026-10-24T04:30:18 P6-G4-B-BrowseDirectory stage dev
+- 2026-10-24T04:30:57 P6-G4-B-BrowseDirectory stage test
+- 2026-10-24T04:35:03 P6-G4-B-BrowseDirectory stage docs
+- 2026-10-24T04:36:25 P6-G4-B-BrowseDirectory stage commit
+- 2026-10-24T04:36:26 P6-G4-B-BrowseDirectory done cf7e275d: ci: pass (2645 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle HomeFeed 244.15/248.22, Login 184.17/193.84 kB gzip; W23 holds
+- 2026-10-24T04:36:27 P6-G4-B-CountryList started
+- 2026-10-24T04:36:27 P6-G4-B-CountryList stage dev
+- 2026-10-24T04:37:07 P6-G4-B-CountryList stage test
+- 2026-10-24T04:40:34 P6-G4-B-CountryList stage docs
+- 2026-10-24T04:42:14 P6-G4-B-CountryList stage commit
+- 2026-10-24T04:42:16 P6-G4-B-CountryList done 66ee7c6c: ci: pass (2671 tests); parity visual --changed: 3/0 (OutSystems), 3/0 (self); arch baseline 85 rows (2 removed); bundle HomeFeed 244.17/248.22, Login 184.18/193.84 kB gzip; W23 holds
+- 2026-10-24T04:42:16 P6-G4-B-HouseholdCarousel started
+- 2026-10-24T04:42:16 P6-G4-B-HouseholdCarousel stage dev
+- 2026-10-24T04:42:58 P6-G4-B-HouseholdCarousel stage test
+- 2026-10-24T05:01:53 P6-G4-B-HouseholdCarousel stage docs
+- 2026-10-24T05:03:14 P6-G4-B-HouseholdCarousel stage commit
+- 2026-10-24T05:03:16 P6-G4-B-HouseholdCarousel done b2d3c2de: ci: pass (re-run after F20, 2681 tests); parity visual --changed: 4/0 (OutSystems), 4/0 (self); arch baseline 75 rows (10 removed); bundle HomeFeed 244.19/248.22, Login 184.19/193.84 kB gzip; W23 holds
+- 2026-10-24T05:03:16 P6-G4-B-Photobook started
+- 2026-10-24T05:03:16 P6-G4-B-Photobook stage dev
+- 2026-10-24T05:04:03 P6-G4-B-Photobook stage test
+- 2026-10-24T05:08:06 P6-G4-B-Photobook stage docs
+- 2026-10-24T05:09:05 P6-G4-B-Photobook stage commit
+- 2026-10-24T05:09:08 P6-G4-B-Photobook done 892cf6c3: ci: pass; parity visual --changed: 5/0 (OutSystems), 5/0 (self); arch baseline 0 new; bundle HomeFeed 244.19/248.22, Login 184.19/193.84 kB gzip; W23 holds
+- 2026-10-24T05:09:08 P6-G4-B-CountryDetails started
+- 2026-10-24T05:09:09 P6-G4-B-CountryDetails stage dev
+- 2026-10-24T05:10:09 P6-G4-B-CountryDetails stage test
+- 2026-10-24T05:13:59 P6-G4-B-CountryDetails stage docs
+- 2026-10-24T05:15:12 P6-G4-B-CountryDetails stage commit
+- 2026-10-24T05:15:18 P6-G4-B-CountryDetails done f51f2bb4: ci: pass; parity visual --changed: 6/0 (OutSystems), 6/0 (self); arch baseline 0 new; HomeFeed 244.18 kB, Login 184.21 kB
+- 2026-10-24T05:15:27 P6-G4-B-Household_Relations started
+- 2026-10-24T05:15:27 P6-G4-B-Household_Relations stage dev
+- 2026-10-24T05:18:44 P6-G4-B-Household_Relations stage test
+- 2026-10-24T05:23:04 P6-G4-B-Household_Relations stage docs
+- 2026-10-24T05:23:58 P6-G4-B-Household_Relations stage commit
+- 2026-10-24T05:24:00 P6-G4-B-Household_Relations done f6eb6d54: ci: pass; parity visual --changed: 7/0 (OutSystems), 7/0 (self); arch baseline 0 new; HomeFeed 244.13 kB, Login 184.18 kB
+- 2026-10-24T05:24:10 P6-G4-B-Locality_Details started
+- 2026-10-24T05:24:10 P6-G4-B-Locality_Details stage dev
+- 2026-10-24T05:24:54 P6-G4-B-Locality_Details stage test
+- 2026-10-24T05:28:56 P6-G4-B-Locality_Details stage docs
+- 2026-10-24T05:29:48 P6-G4-B-Locality_Details stage commit
+- 2026-10-24T05:29:50 P6-G4-B-Locality_Details done 5a228484: ci: pass; parity visual --changed: 6/0 (OutSystems), 6/0 (self); arch baseline 0 new; HomeFeed 244.21 kB, Login 184.22 kB
+- 2026-10-24T05:29:50 P6-G4-B-OneSchoolGlobalDetails started
+- 2026-10-24T05:29:50 P6-G4-B-OneSchoolGlobalDetails stage dev
+- 2026-10-24T05:30:39 P6-G4-B-OneSchoolGlobalDetails stage test
+- 2026-10-24T05:39:14 P6-G4-B-OneSchoolGlobalDetails stage docs
+- 2026-10-24T05:40:26 P6-G4-B-OneSchoolGlobalDetails stage commit
+- 2026-10-24T05:40:28 P6-G4-B-OneSchoolGlobalDetails done 9faeb9e6: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.18 kB, Login 184.19 kB
+- 2026-10-24T05:40:44 P6-G4-B-SupperMeeting_Carousel started
+- 2026-10-24T05:40:44 P6-G4-B-SupperMeeting_Carousel stage dev
+- 2026-10-24T05:41:26 P6-G4-B-SupperMeeting_Carousel stage test
+- 2026-10-24T05:49:54 P6-G4-B-SupperMeeting_Carousel stage docs
+- 2026-10-24T05:51:29 P6-G4-B-SupperMeeting_Carousel stage commit
+- 2026-10-24T05:51:31 P6-G4-B-SupperMeeting_Carousel done 810fba69: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 74 rows, 0 new (1 owned row removed); HomeFeed 244.13 kB, Login 184.16 kB
+- 2026-10-24T05:51:31 P6-G4-B-CommunityBusinessDetails_CoomingSoon started
+- 2026-10-24T05:51:31 P6-G4-B-CommunityBusinessDetails_CoomingSoon stage dev
+- 2026-10-24T05:52:24 P6-G4-B-CommunityBusinessDetails_CoomingSoon stage test
+- 2026-10-24T05:56:25 P6-G4-B-CommunityBusinessDetails_CoomingSoon stage docs
+- 2026-10-24T05:57:20 P6-G4-B-CommunityBusinessDetails_CoomingSoon stage commit
+- 2026-10-24T05:57:21 P6-G4-B-CommunityBusinessDetails_CoomingSoon done 703a5ea9: ci: pass; parity visual --changed: 3/0 (OutSystems), 3/0 (self); arch baseline 0 new; HomeFeed 244.19 kB, Login 184.20 kB
+- 2026-10-24T05:57:22 P6-G4-B-Assemble_BrowseByCountry started
+- 2026-10-24T05:57:22 P6-G4-B-Assemble_BrowseByCountry stage dev
+- 2026-10-24T05:58:17 P6-G4-B-Assemble_BrowseByCountry stage test
+- 2026-10-24T06:04:30 P6-G4-B-Assemble_BrowseByCountry stage docs
+- 2026-10-24T06:05:07 P6-G4-B-Assemble_BrowseByCountry stage commit
+- 2026-10-24T06:05:08 P6-G4-B-Assemble_BrowseByCountry done ec323d7c: ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; HomeFeed 244.12 kB, Login 184.15 kB
+- 2026-10-24T06:05:09 P6-G4-B-SupperMeeting_Details started
+- 2026-10-24T06:05:09 P6-G4-B-SupperMeeting_Details stage dev
+- 2026-10-24T06:05:56 P6-G4-B-SupperMeeting_Details stage test
+- 2026-10-24T06:14:35 P6-G4-B-SupperMeeting_Details stage docs
+- 2026-10-24T06:16:00 P6-G4-B-SupperMeeting_Details stage commit
+- 2026-10-24T06:16:02 P6-G4-B-SupperMeeting_Details done b6241988: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 67 rows, 0 new (7 owned rows removed); HomeFeed 244.14 kB, Login 184.19 kB
+- 2026-10-24T06:16:02 P6-G4-C started
+- 2026-10-24T06:16:02 P6-G4-C stage dev
+- 2026-10-24T06:18:46 P6-G4-C stage test
+- 2026-10-24T06:32:43 P6-G4-C stage docs
+- 2026-10-24T06:33:33 P6-G4-C waits for the user: Review the routes of group G4 on localhost (links in the step report): BrowseCountries, BrowseDirectory, CountryList, CountryDetails, HouseholdCarousel, Household_Relations, Locality_Details, OneSchoolGlobalDetails, Photobook, SupperMeeting_Carousel, SupperMeeting_Details, CommunityBusinessDetails_CoomingSoon, Assemble_BrowseByCountry. Then confirm the group.
+- 2026-10-24T06:35:00 P6-G4-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W29 group G4 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: F22 inherited from the old port, raise it with W27's follow-up in the G5 report; keep the F17 watch; P6-F17 gate re-runs parity on the beforePaint pages."
+- 2026-10-24T06:35:00 P6-G4-C stage commit
+- 2026-10-24T06:35:13 P6-G4-C done 66f01e66: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 67 rows, no P6-G4 owner; knip/jscpd match; bundle HomeFeed 244.14/248.22, Login 184.19/193.84 kB gzip; group confirm W29 (Opus + Fable, delegated)
+- 2026-10-24T06:35:23 P6-F17 started
+- 2026-10-24T06:35:24 P6-F17 stage dev
+- 2026-10-24T06:38:47 P6-F17 stage test
+- 2026-10-24T06:49:27 P6-F17 stage docs
+- 2026-10-24T06:51:15 P6-F17 stage commit
+- 2026-10-24T06:51:16 P6-F17 done f29b7bd0: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.13 kB, Login 184.19 kB
+- 2026-10-24T06:51:24 P6-G5-A started
+- 2026-10-24T06:51:24 P6-G5-A stage dev
+- 2026-10-24T06:52:40 P6-G5-A stage test
+- 2026-10-24T07:03:25 P6-G5-A test failed, fix loop 1
+- 2026-10-24T07:04:48 P6-G5-A stage test
+- 2026-10-24T07:08:38 P6-G5-A stage docs
+- 2026-10-24T07:09:30 P6-G5-A stage commit
+- 2026-10-24T07:09:35 P6-G5-A done 16a20ef2: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); diffcheck --move ok (146 renames); arch baseline 0 new; HomeFeed 244.38 kB, Login 184.43 kB
+- 2026-10-24T07:09:35 P6-G5-B-Shared started
+- 2026-10-24T07:09:35 P6-G5-B-Shared stage dev
+- 2026-10-24T07:11:01 P6-G5-B-Shared stage test
+- 2026-10-24T07:20:59 P6-G5-B-Shared stage docs
+- 2026-10-24T07:30 master note: the tester prompts of P6-G5-A and P6-G5-B-Shared named `parity visual --changed` instead of the brief's `strict` level. P6-G5-A was committed (16a20ef2) with visual --changed 64/64; the P6-G5-B-Shared re-test ran the brief's `parity strict --all --ref both` on the tree that holds P6-G5-A: 64/64 clean on both references, so it covers the strict gate of P6-G5-A too. Tester prompts now say "run the brief's gate commands".
+- 2026-10-24T07:21:57 P6-G5-B-Shared stage commit
+- 2026-10-24T07:22:05 P6-G5-B-Shared done 72c3c193: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self) (also covers the strict gate of P6-G5-A); diffcheck --move ok but one forced glob path line; arch baseline 75 rows (+8 owned rows, W13); HomeFeed 244.41 kB, Login 184.42 kB
+- 2026-10-24T07:22:05 P6-G5-B-OrbitLanding started
+- 2026-10-24T07:22:06 P6-G5-B-OrbitLanding stage dev
+- 2026-10-24T07:22:59 P6-G5-B-OrbitLanding stage test
+- 2026-10-24T07:28:45 P6-G5-B-OrbitLanding stage docs
+- 2026-10-24T07:29:47 P6-G5-B-OrbitLanding stage commit
+- 2026-10-24T07:29:48 P6-G5-B-OrbitLanding done 4a16e86b: ci: pass; parity visual --changed: 26/0 (OutSystems), 26/0 (self); arch baseline 0 new; HomeFeed 244.39 kB, Login 184.41 kB
+- 2026-10-24T07:29:49 P6-G5-B-OrbitAdminLanding started
+- 2026-10-24T07:29:49 P6-G5-B-OrbitAdminLanding stage dev
+- 2026-10-24T07:30:33 P6-G5-B-OrbitAdminLanding stage test
+- 2026-10-24T07:40:55 P6-G5-B-OrbitAdminLanding stage docs
+- 2026-10-24T07:41:51 P6-G5-B-OrbitAdminLanding stage commit
+- 2026-10-24T07:41:52 P6-G5-B-OrbitAdminLanding done b1982231: ci: pass (rerun once, Services flake F23); parity visual --changed: 10/0 (OutSystems), 10/0 (self); arch baseline 0 new; HomeFeed 244.41 kB, Login 184.42 kB
+- 2026-10-24T07:41:52 P6-G5-B-OrbitAdminEventDetail started
+- 2026-10-24T07:41:52 P6-G5-B-OrbitAdminEventDetail stage dev
+- 2026-10-24T07:42:33 P6-G5-B-OrbitAdminEventDetail stage test
+- 2026-10-24T07:52:13 P6-G5-B-OrbitAdminEventDetail stage docs
+- 2026-10-24T07:53:34 P6-G5-B-OrbitAdminEventDetail stage commit
+- 2026-10-24T07:53:35 P6-G5-B-OrbitAdminEventDetail done 7db2fa7d: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.41 kB, Login 184.41 kB
+- 2026-10-24T07:53:35 P6-G5-B-EventDetail started
+- 2026-10-24T07:53:35 P6-G5-B-EventDetail stage dev
+- 2026-10-24T07:54:18 P6-G5-B-EventDetail stage test
+- 2026-10-24T08:04:05 P6-G5-B-EventDetail stage docs
+- 2026-10-24T08:05:01 P6-G5-B-EventDetail stage commit
+- 2026-10-24T08:05:04 P6-G5-B-EventDetail done fff324fa: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.48 kB, Login 184.46 kB; W28 beforePaint
+- 2026-10-24T08:05:04 P6-G5-B-EventBooklet started
+- 2026-10-24T08:05:05 P6-G5-B-EventBooklet stage dev
+- 2026-10-24T08:06:14 P6-G5-B-EventBooklet stage test
+- 2026-10-24T08:10:32 P6-G5-B-EventBooklet stage docs
+- 2026-10-24T08:11:45 P6-G5-B-EventBooklet stage commit
+- 2026-10-24T08:11:47 P6-G5-B-EventBooklet done 27fd2cec: ci: pass; parity visual --changed: 6/0 (OutSystems), 6/0 (self) (EventBooklet has no parity states; old-vs-new 16 scenarios equal); arch baseline 0 new; HomeFeed 244.44 kB, Login 184.44 kB; W28 beforePaint
+- 2026-10-24T08:12:00 P6-G5-B-MilestoneDetail started
+- 2026-10-24T08:12:00 Q17 (P6-G5-B-MilestoneDetail) asked: Back navigation to MilestoneDetail: (a) keep the old-port reload on restore (the 2 old crash paths are gone), OutSystems-like restore as a follow-up next to F22; (b) keep the state now as OutSystems does.
+- 2026-10-24T08:12:08 Q17 answered by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W27 = (a) — Opus (a, high), Fable (a, high). Keep the old-port reload on restore; record the 2 former crash paths as 'old: crash, new: reload'; the OutSystems-like restore is a follow-up next to F22."
+- 2026-10-24T08:12:17 P6-G5-B-MilestoneDetail stage dev
+- 2026-10-24T08:13:08 P6-G5-B-MilestoneDetail stage test
+- 2026-10-24T08:21:40 P6-G5-B-MilestoneDetail stage docs
+- 2026-10-24T08:22:54 P6-G5-B-MilestoneDetail stage commit
+- 2026-10-24T08:22:56 P6-G5-B-MilestoneDetail done b2a0f725: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.44 kB, Login 184.47 kB; W28 beforePaint; W27 old: crash, new: reload (2 paths)
+- 2026-10-24T08:22:56 P6-G5-B-GuestArrangements started
+- 2026-10-24T08:22:56 P6-G5-B-GuestArrangements stage dev
+- 2026-10-24T08:23:35 P6-G5-B-GuestArrangements stage test
+- 2026-10-24T08:31:15 P6-G5-B-GuestArrangements stage docs
+- 2026-10-24T08:32:48 P6-G5-B-GuestArrangements stage commit
+- 2026-10-24T08:32:50 P6-G5-B-GuestArrangements done c343990f: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.46 kB, Login 184.48 kB; W28 beforePaint
+- 2026-10-24T08:32:50 P6-G5-B-HelpersDetail started
+- 2026-10-24T08:32:50 P6-G5-B-HelpersDetail stage dev
+- 2026-10-24T08:33:28 P6-G5-B-HelpersDetail stage test
+- 2026-10-24T08:40:59 P6-G5-B-HelpersDetail stage docs
+- 2026-10-24T08:42:04 P6-G5-B-HelpersDetail stage commit
+- 2026-10-24T08:42:06 P6-G5-B-HelpersDetail done 072d97d7: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.37 kB, Login 184.42 kB; W28 beforePaint
+- 2026-10-24T08:42:06 P6-G5-B-HostSurvey started
+- 2026-10-24T08:42:06 P6-G5-B-HostSurvey stage dev
+- 2026-10-24T08:42:44 P6-G5-B-HostSurvey stage test
+- 2026-10-24T08:50:22 P6-G5-B-HostSurvey stage docs
+- 2026-10-24T08:51:15 P6-G5-B-HostSurvey stage commit
+- 2026-10-24T08:51:17 P6-G5-B-HostSurvey done d2ce8060: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.41 kB, Login 184.43 kB; W28 beforePaint
+- 2026-10-24T08:51:17 P6-G5-B-TransportDetail started
+- 2026-10-24T08:51:17 P6-G5-B-TransportDetail stage dev
+- 2026-10-24T08:51:55 P6-G5-B-TransportDetail stage test
+- 2026-10-24T08:55:39 P6-G5-B-TransportDetail stage docs
+- 2026-10-24T08:56:24 P6-G5-B-TransportDetail stage commit
+- 2026-10-24T08:56:26 P6-G5-B-TransportDetail done 978b04cd: ci: pass; parity visual --changed: 0 new differences on both references (TransportDetail has no parity states; old-vs-new 16 scenarios equal); arch baseline 0 new; HomeFeed 244.41 kB, Login 184.43 kB; W28 beforePaint
+- 2026-10-24T08:56:26 P6-G5-B-MyEntertaining started
+- 2026-10-24T08:56:26 P6-G5-B-MyEntertaining stage dev
+- 2026-10-24T08:57:04 P6-G5-B-MyEntertaining stage test
+- 2026-10-24T09:00:48 P6-G5-B-MyEntertaining stage docs
+- 2026-10-24T09:01:47 P6-G5-B-MyEntertaining stage commit
+- 2026-10-24T09:01:48 P6-G5-B-MyEntertaining done f7a74f4b: ci: pass; parity visual --changed: 0 differences on both references; arch baseline 0 new; HomeFeed 244.44 kB, Login 184.45 kB
+- 2026-10-24T09:01:48 P6-G5-B-LDM_MyEvents_V2 started
+- 2026-10-24T09:01:48 P6-G5-B-LDM_MyEvents_V2 stage dev
+- 2026-10-24T09:02:27 P6-G5-B-LDM_MyEvents_V2 stage test
+- 2026-10-24T09:05:57 P6-G5-B-LDM_MyEvents_V2 stage docs
+- 2026-10-24T09:07:19 P6-G5-B-LDM_MyEvents_V2 stage commit
+- 2026-10-24T09:07:21 P6-G5-B-LDM_MyEvents_V2 done ff306efd: ci: pass; parity visual --changed: 0 differences on both references; arch baseline 0 new; HomeFeed 244.38 kB, Login 184.42 kB
+- 2026-10-24T09:07:21 P6-G5-B-LDM_EventDetail_V2 started
+- 2026-10-24T09:07:21 P6-G5-B-LDM_EventDetail_V2 stage dev
+- 2026-10-24T09:08:02 P6-G5-B-LDM_EventDetail_V2 stage test
+- 2026-10-24T09:13:29 P6-G5-B-LDM_EventDetail_V2 stage docs
+- 2026-10-24T09:15:02 P6-G5-B-LDM_EventDetail_V2 stage commit
+- 2026-10-24T09:15:04 P6-G5-B-LDM_EventDetail_V2 done a460b0c7: ci: pass; parity visual --changed: 11/0 (OutSystems), 11/0 (self); arch baseline 0 new; HomeFeed 244.42 kB, Login 184.43 kB
+- 2026-10-24T09:15:04 P6-G5-B-LDM_Email_V2 started
+- 2026-10-24T09:15:04 P6-G5-B-LDM_Email_V2 stage dev
+- 2026-10-24T09:15:44 P6-G5-B-LDM_Email_V2 stage test
+- 2026-10-24T09:21:02 P6-G5-B-LDM_Email_V2 stage docs
+- 2026-10-24T09:22:16 P6-G5-B-LDM_Email_V2 stage commit
+- 2026-10-24T09:22:17 P6-G5-B-LDM_Email_V2 done 727a2197: ci: pass; parity visual --changed: 11/0 (OutSystems), 11/0 (self) (LDM_Email_V2 has no parity reference; old-vs-new 21 scenarios equal); arch baseline 0 new; HomeFeed 244.37 kB, Login 184.42 kB
+- 2026-10-24T09:22:17 P6-G5-B-AssembleEvents started
+- 2026-10-24T09:22:17 P6-G5-B-AssembleEvents stage dev
+- 2026-10-24T09:22:57 P6-G5-B-AssembleEvents stage test
+- 2026-10-24T09:26:48 P6-G5-B-AssembleEvents stage docs
+- 2026-10-24T09:27:45 P6-G5-B-AssembleEvents stage commit
+- 2026-10-24T09:27:47 P6-G5-B-AssembleEvents done d1bbd3aa: ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; HomeFeed 244.45 kB, Login 184.46 kB; F21 done (2 copies kept)
+- 2026-10-24T09:27:47 P6-G5-B-AssembleDetail started
+- 2026-10-24T09:27:47 P6-G5-B-AssembleDetail stage dev
+- 2026-10-24T09:54:51 P6-G5-B-AssembleDetail stage test
+- 2026-10-24T10:04:33 P6-G5-B-AssembleDetail stage docs
+- 2026-10-24T10:06:32 P6-G5-B-AssembleDetail stage commit
+- 2026-10-24T10:06:34 P6-G5-B-AssembleDetail done a11439f6: ci: pass; parity visual --changed (all 64): 64/0 (self), 63/1 then 64/0 on rerun (OutSystems; HostSurvey render flake, F23); arch baseline 69 rows (6 owned rows removed); HomeFeed 244.39 kB, Login 184.42 kB
+- 2026-10-24T10:06:35 P6-G5-C started
+- 2026-10-24T10:06:35 P6-G5-C stage dev
+- 2026-10-24T10:08:42 P6-G5-C stage test
+- 2026-10-24T10:18:33 P6-G5-C stage docs
+- 2026-10-24T10:19:43 P6-G5-C waits for the user: Review the routes of group G5 on localhost (links in the step report): OrbitLanding, OrbitAdminLanding, OrbitAdminEventDetail, EventDetail, EventBooklet, MilestoneDetail, GuestArrangements, HelpersDetail, HostSurvey, TransportDetail, MyEntertaining, LDM_MyEvents_V2, LDM_EventDetail_V2, LDM_Email_V2, AssembleEvents, AssembleDetail. Then confirm the group.
+- 2026-10-24T10:21:59 P6-G5-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W31 group G5 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: raise F22/F24/F26 and F25 to the user; F23 flakes before P7 gates; F27 parity coverage wording (53 of 64 routes have states); F17 watch."
+- 2026-10-24T10:21:59 P6-G5-C stage commit
+- 2026-10-24T10:22:00 P6-G5-C done e466ea57: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self) (53 routes with states; 6 G5 routes without, F27); e2e:pwa 9/9; arch baseline 69 rows, no P6-G5 owner; knip/jscpd match; bundle HomeFeed 244.39/248.22, Login 184.42/193.84 kB gzip; group confirm W31 (Opus + Fable, delegated); G5-A parity-level slip covered by the G5-B-Shared strict --all re-run
+- 2026-10-24T10:22:07 P6-G6-A started
+- 2026-10-24T10:22:08 P6-G6-A stage dev
+- 2026-10-24T10:22:53 P6-G6-A stage test
+- 2026-10-24T10:29:28 P6-G6-A stage docs
+- 2026-10-24T10:30:08 P6-G6-A stage commit
+- 2026-10-24T10:30:11 P6-G6-A done e2e0b99f: ci: pass (rerun once, F11 flake); parity strict --changed: 7/0 (OutSystems), 7/0 (self); diffcheck --move ok (62 renames); arch baseline 0 new; HomeFeed 244.47 kB, Login 184.50 kB
+- 2026-10-24T10:30:11 P6-G6-B-Shared started
+- 2026-10-24T10:30:11 P6-G6-B-Shared stage dev
+- 2026-10-24T10:30:51 P6-G6-B-Shared stage test
+- 2026-10-24T10:38:43 P6-G6-B-Shared stage docs
+- 2026-10-24T10:39:14 P6-G6-B-Shared stage commit
+- 2026-10-24T10:39:15 P6-G6-B-Shared done 2ee386be: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); diffcheck --move ok (13 renames); arch baseline 69 rows, 0 new; HomeFeed 244.48 kB, Login 184.50 kB
+- 2026-10-24T10:39:16 P6-G6-B-MyBookmarks started
+- 2026-10-24T10:39:16 P6-G6-B-MyBookmarks stage dev
+- 2026-10-24T10:39:55 P6-G6-B-MyBookmarks stage test
+- 2026-10-24T10:43:59 P6-G6-B-MyBookmarks stage docs
+- 2026-10-24T10:44:58 P6-G6-B-MyBookmarks stage commit
+- 2026-10-24T10:44:59 P6-G6-B-MyBookmarks done 57b6c6ad: ci: pass; parity visual --changed: 3/0 (OutSystems), 3/0 (self); arch baseline 0 new; HomeFeed 244.44 kB, Login 184.49 kB
+- 2026-10-24T10:44:59 P6-G6-B-BookmarksByGroup started
+- 2026-10-24T10:44:59 P6-G6-B-BookmarksByGroup stage dev
+- 2026-10-24T10:45:40 P6-G6-B-BookmarksByGroup stage test
+- 2026-10-24T10:52:57 P6-G6-B-BookmarksByGroup stage docs
+- 2026-10-24T10:54:18 P6-G6-B-BookmarksByGroup stage commit
+- 2026-10-24T10:54:19 P6-G6-B-BookmarksByGroup done 4bb175d1: ci: pass; parity visual --changed: 47/0 (OutSystems), 47/0 (self); arch baseline 0 new; HomeFeed 244.47 kB, Login 184.48 kB
+- 2026-10-24T10:54:19 P6-G6-B-Notes started
+- 2026-10-24T10:54:19 P6-G6-B-Notes stage dev
+- 2026-10-24T10:54:58 P6-G6-B-Notes stage test
+- 2026-10-24T11:02:19 P6-G6-B-Notes stage docs
+- 2026-10-24T11:04:25 P6-G6-B-Notes stage commit
+- 2026-10-24T11:04:26 P6-G6-B-Notes done ff889fdc: ci: pass; parity visual --changed: 47/0 (OutSystems), 47/0 (self); arch baseline 0 new; HomeFeed 244.46 kB, Login 184.49 kB
+- 2026-10-24T11:04:26 P6-G6-B-ConnectShare started
+- 2026-10-24T11:04:26 P6-G6-B-ConnectShare stage dev
+- 2026-10-24T11:05:05 P6-G6-B-ConnectShare stage test
+- 2026-10-24T11:10:04 P6-G6-B-ConnectShare stage docs
+- 2026-10-24T11:11:07 P6-G6-B-ConnectShare stage commit
+- 2026-10-24T11:11:09 P6-G6-B-ConnectShare done 93c9e547: ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; HomeFeed 244.49 kB, Login 184.49 kB; W23 equal to the old port (re-judged)
+- 2026-10-24T11:11:09 P6-G6-B-LegacyShareObject started
+- 2026-10-24T11:11:10 P6-G6-B-LegacyShareObject stage dev
+- 2026-10-24T11:11:49 P6-G6-B-LegacyShareObject stage test
+- 2026-10-24T11:20:38 P6-G6-B-LegacyShareObject stage docs
+- 2026-10-24T11:22:22 P6-G6-B-LegacyShareObject stage commit
+- 2026-10-24T11:22:23 P6-G6-B-LegacyShareObject done 9c8f4869: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.52 kB, Login 184.51 kB
+- 2026-10-24T11:22:24 P6-G6-B-QRCodeGenerate started
+- 2026-10-24T11:22:24 P6-G6-B-QRCodeGenerate stage dev
+- 2026-10-24T11:23:05 P6-G6-B-QRCodeGenerate stage test
+- 2026-10-24T11:31:27 P6-G6-B-QRCodeGenerate stage docs
+- 2026-10-24T11:32:26 P6-G6-B-QRCodeGenerate stage commit
+- 2026-10-24T11:32:27 P6-G6-B-QRCodeGenerate done 1565f0db: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self) (QRCodeGenerate has no parity states; old-vs-new 14 scenarios equal); arch baseline 0 new; HomeFeed 244.47 kB, Login 184.50 kB; W28 beforePaint
+- 2026-10-24T11:32:27 P6-G6-B-ViewDocuments started
+- 2026-10-24T11:32:28 P6-G6-B-ViewDocuments stage dev
+- 2026-10-24T11:33:10 P6-G6-B-ViewDocuments stage test
+- 2026-10-24T11:43:29 P6-G6-B-ViewDocuments stage docs
+- 2026-10-24T11:44:41 P6-G6-B-ViewDocuments stage commit
+- 2026-10-24T11:44:42 P6-G6-B-ViewDocuments done b9e74761: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self) (ViewDocuments has no parity states; old-vs-new 7 scenarios / 44 observations equal); arch baseline 0 new; HomeFeed 244.48 kB, Login 184.50 kB; W28 beforePaint
+- 2026-10-24T11:44:42 P6-G6-C started
+- 2026-10-24T11:44:42 P6-G6-C stage dev
+- 2026-10-24T11:45:47 P6-G6-C stage test
+- 2026-10-24T11:54:29 P6-G6-C stage docs
+- 2026-10-24T11:55:41 P6-G6-C waits for the user: Review the routes of group G6 on localhost (links in the step report): MyBookmarks, BookmarksByGroup, Notes, ConnectShare, LegacyShareObject, QRCodeGenerate, ViewDocuments. Then confirm the group.
+- 2026-10-24T11:56:52 P6-G6-C after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W33 group G6 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: QRCodeGenerate and ViewDocuments on the P6-end manual review list; F22/F24/F26, F25, F28 as one user batch; F23 flakes before the P7 gates; F27; F17 watch."
+- 2026-10-24T11:56:52 P6-G6-C stage commit
+- 2026-10-24T11:56:53 P6-G6-C done 15c6a1e4: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self) (50 of 64 routes have states, F27); e2e:pwa 9/9; arch baseline 69 rows, no P6-G6 owner; knip/jscpd match; bundle HomeFeed 244.48/248.22, Login 184.50/193.84 kB gzip; group confirm W33 (Opus + Fable, delegated)
+- 2026-10-24T11:57:07 P6-end started
+- 2026-10-24T11:57:07 P6-end stage dev
+- 2026-10-24T11:57:43 P6-end stage test
+- 2026-10-24T12:07:34 P6-end test failed, fix loop 1
+- 2026-10-24T12:08:36 P6-end stage test
+- 2026-10-24T12:14:59 P6-end stage docs
+- 2026-10-24T12:16:29 P6-end stage commit
+- 2026-10-24T12:16:30 P6-end done ad857bd3: ci: pass (loop 1 formatting fix; rerun once, Services flake F23); parity strict --all: 64/0 (OutSystems), 64/0 (self); step guard: no file or import of src/screens/; arch baseline 69 rows, 0 new; HomeFeed 244.46 kB, Login 184.48 kB
+- 2026-10-24T12:18:59 P7-0 started
+- 2026-10-24T12:18:59 P7-0 stage dev
+- 2026-10-24T12:23:16 P7-0 stage test
+- 2026-10-24T12:32:55 P7-0 stage docs
+- 2026-10-24T12:34:09 P7-0 stage commit
+- 2026-10-24T12:34:31 P7-0 done d0fdbef2: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); diffcheck --move: 9 declared lines (glob path, 6 one-line barrels); arch baseline 72 rows (+3 owner P7), 0 new; HomeFeed 244.43 kB, Login 184.46 kB
+- 2026-10-24T12:34:31 P7-1 started
+- 2026-10-24T12:34:31 Q18 (P7-1) asked: 4 OSUI patterns have no importer (Columns4, RangeSlider, SwipeEvents, Tooltip); the move map says 'P7-1 deletes it unless the user keeps the OSUI set'. Delete now, or keep them moved?
+- 2026-10-24T12:34:52 Q18 answered by the user: "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W30 = (a) — Opus (a, high), Fable (a, high). Keep the 4 patterns moved in components/ui/; the user decides delete-or-keep at the P9 knip cleanup; P7-5 lists them."
+- 2026-10-24T12:34:52 P7-1 stage dev
+- 2026-10-24T12:35:51 P7-1 stage test
+- 2026-10-24T12:44:28 P7-1 stage docs
+- 2026-10-24T12:45:55 P7-1 stage commit
+- 2026-10-24T12:46:05 P7-1 done ba5c2154: ci: pass; parity visual: 64/0 (OutSystems), 64/0 (self); diffcheck --move: 1 declared line (vendor glob); arch baseline 73 rows (+1 owner P7), 0 new; HomeFeed 244.39 kB, Login 184.46 kB; W30 (Q18) 4 unused OSUI patterns kept
+- 2026-10-24T12:46:05 P7-2 started
+- 2026-10-24T12:46:05 P7-2 stage dev
+- 2026-10-24T12:52:48 P7-2 stage test
+- 2026-10-24T13:00:56 P7-2 stage docs
+- 2026-10-24T13:02:35 P7-2 stage commit
+- 2026-10-24T13:02:38 P7-2 done 77416f3c: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); old-vs-new 38 call sites + 3 container scenarios, 0 differences; arch baseline 71 rows, 0 new; HomeFeed 244.67 kB (+0.28), Login 184.71 kB (+0.25), W21 tripwire 0.3 held after a trim; one commit for the 4 merges (they share 6 files)
+- 2026-10-24T13:02:38 P7-3 started
+- 2026-10-24T13:02:38 P7-3 stage dev
+- 2026-10-24T13:03:28 P7-3 stage test
+- 2026-10-24T13:11:00 P7-3 stage docs
+- 2026-10-24T13:12:16 P7-3 stage commit
+- 2026-10-24T13:12:19 P7-3 done 1f7f495b: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); old-vs-new harness 0 differences; arch baseline 71 rows, 0 new; HomeFeed 244.66 kB, Login 184.71 kB; one commit for 2 merges (2 shared user files)
+- 2026-10-24T13:12:19 P7-4 started
+- 2026-10-24T13:12:19 P7-4 stage dev
+- 2026-10-24T13:12:20 P7-4 stage test
+- 2026-10-24T13:20:26 P7-4 stage docs
+- 2026-10-24T13:21:44 P7-4 stage commit
+- 2026-10-24T13:21:45 P7-4 done ba9c4750: ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); no code change (no group is both 'same' in duplicates.md and still reported by jscpd); arch baseline 71 rows; HomeFeed 244.66 kB, Login 184.71 kB
+- 2026-10-24T13:21:45 P7-6 started
+- 2026-10-24T13:21:45 P7-6 stage dev
+- 2026-10-24T13:24 master: P7-6 part 3 deletes MultiResolutionImageLoader with its test and story, as decision W32 (T12) allows: no importer outside its folder (import graph + grep in handoffs/P7-6/dev.md); the move-map shape was already delete (P0-5); coverage is checked at the step gate.
+- 2026-10-24T13:34:11 P7-6 stage test
+- 2026-10-24T13:47:02 P7-6 stage docs
+- 2026-10-24T13:53:08 P7-6 stage commit
+- 2026-10-24T13:53:10 P7-6 done 88214923: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); W32 conditions met (diffcheck declared lines only, rule-6 = 55 ceiling, MSW order kept, coverage 89.39 % >= 49.22 %, arch baseline 0 new, no shared/ left); commits cca9b514, 14f5a615, 1d9baa51, 468e880b and this one
+- 2026-10-24T13:53:16 P7-5 started
+- 2026-10-24T13:53:16 P7-5 stage dev
+- 2026-10-24T13:55:21 P7-5 stage test
+- 2026-10-24T14:05:48 P7-5 stage docs
+- 2026-10-24T14:06:42 P7-5 stage commit
+- 2026-10-24T14:06:43 P7-5 done fedda59c: ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 72 rows, 0 new; HomeFeed 244.69/248.22 kB, Login 184.71/193.84 kB gzip
+- 2026-10-24T19:44:07 P8-1 started
+- 2026-10-24T19:44:21 P8-1 stage dev
+- 2026-10-24T22:38:20 P8-1 stage test
+- 2026-10-24T22:46:14 P8-1 stage docs
+- 2026-10-24T22:47:53 P8-1 stage commit
+- 2026-10-24T22:47:53 P8-1 done e0063dfa: ci: pass; parity visual --all 64/64 (OutSystems), 64/64 (self); e2e:pwa 9/9
+- 2026-10-24T22:57:19 P8-2 started
+- 2026-10-24T22:59:47 P8-2 stage dev
+- 2026-10-24T23:18:17 P8-2 stage test
+- 2026-10-24T23:26:56 P8-2 test failed, fix loop 1
+- 2026-10-24T23:28:07 P8-2 stage test
+- 2026-10-24T23:34:48 P8-2 stage docs
+- 2026-10-24T23:36:16 P8-2 stage commit
+- 2026-10-24T23:36:17 P8-2 done e2006670: ci: pass; parity visual --all 64/64 (OutSystems), 64/64 (self); e2e:pwa 9/9
+- 2026-10-24T23:36:28 P9-1 started
+- 2026-10-24T23:36:40 P9-1 stage dev
+- 2026-10-24T23:36:40 P9-1 stage test
+- 2026-10-24T23:49:12 P9-1 stage docs
+- 2026-10-24T23:50:00 P9-1 stage commit
+- 2026-10-24T23:50:01 P9-1 done df225389: ci: pass; parity strict --changed 64/64 (OutSystems), 64/64 (self); baselines 0 new
+- 2026-10-24T23:50:09 P9-2 started
+- 2026-10-24T23:50:09 P9-2 stage dev
+- 2026-10-24T23:50:09 P9-2 stage test
+- 2026-10-24T23:54:28 P9-2 stage docs
+- 2026-10-24T23:58:09 P9-2 stage commit
+- 2026-10-24T23:58:10 P9-2 done 27a3732e: ci: pass; flags check 0 unknown, 0 expired, 4 probes fail as expected
+- 2026-10-24T23:58:27 P9-3 started
+- 2026-10-24T23:58:28 P9-3 stage dev
+- 2026-10-25T00:03:32 P9-3 stage test
+- 2026-10-25T00:07:47 P9-3 test failed, fix loop 1
+- 2026-10-25T00:29:40 P9-3 stage test
+- 2026-10-25T00:33:09 P9-3 stage docs
+- 2026-10-25T00:33:46 P9-3 stage commit
+- 2026-10-25T00:33:47 P9-3 done 95f0bad3: ci: pass; ste_lint 25 (HEAD 25); mermaid 4/4
+- 2026-10-25T00:33:52 P9-4 started
+- 2026-10-25T00:33:52 P9-4 stage dev
+- 2026-10-25T00:47:26 P9-4 stage test
+- 2026-10-25T00:57:20 P9-4 stage docs
+- 2026-10-25T00:58:27 P9-4 stage commit
+- 2026-10-25T00:58:28 P9-4 done 09cc69f2: ci: pass; parity strict --all 64/64 (OutSystems), 64/64 (self); e2e:pwa 9/9

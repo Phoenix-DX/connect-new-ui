@@ -37,7 +37,7 @@ const swDir = path.join(srcDir, 'sw');
 const require = createRequire(path.join(appDir, 'package.json'));
 const { Project, SyntaxKind } = require('ts-morph');
 
-const RESOLVE_EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.json', '.css'];
+const RESOLVE_EXTENSIONS = ['.ts', '.d.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.json', '.css'];
 const MOCK_CALLEES = new Set(['vi.mock', 'vi.doMock', 'vi.importActual', 'vi.importMock', 'vi.unmock', 'require']);
 
 type Options = {

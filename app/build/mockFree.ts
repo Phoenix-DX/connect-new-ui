@@ -11,25 +11,44 @@ import type { Plugin } from 'vite';
 /** Entries of public/ that only the mocks use: MSW's worker, the mock Feed CMS page, the mock photos. */
 export const MOCK_PUBLIC_FILES: readonly string[] = ['mockServiceWorker.js', 'mock-embeds', 'mock-images'];
 
-/** Mock modules that production still bundles because a non-mock module imports them statically; each is small and
-    holds no fixture and no MSW code. Remove an entry once its importer gates it behind MOCKS_BUILT.
-    - src/mocks/fictional/directory.ts: the mock user of src/shell/mockUser.ts, whom the mock sign-in
-      (src/shell/auth.ts) signs in while no identity provider exists (decisions D3(a), U4). */
-export const KNOWN_MOCK_LEFTOVERS: readonly string[] = ['src/mocks/fictional/directory.ts'];
+/** Mock modules that production still bundles because a non-mock module imports them statically; each must be small
+    and hold no fixture and no MSW code. Remove an entry once its importer gates it behind MOCKS_BUILT. None is left:
+    P4-3 gated the last importer of the directory cast (src/mocks/fictional/directory.ts), the mock sign-in, behind the
+    mock identity provider (src/platform/auth/mockAuth.ts). */
+export const KNOWN_MOCK_LEFTOVERS: readonly string[] = [];
 
 const FORBIDDEN: readonly RegExp[] = [
   /\/node_modules\/(msw|@mswjs)\//, // MSW and its interceptors
   /\/src\/mocks\//, // handlers, fixtures (recorded JSON), the mock store and contract, the fictional casts
   /\/(mocks|mockData|fixtures)\.tsx?$/, // the mock answers of each screen and block (src/screens/*/mocks.ts, …)
+  /\/src\/platform\/(auth\/mockAuth|session\/mockUser)\.ts$/, // the mock identity provider and its mock user
 ];
+
+/** A module id (absolute, `/`-separated after normalizing) of mock code. */
+const isMockModule = (id: string): boolean => FORBIDDEN.some((re) => re.test(id));
+const normalizedId = (id: string): string => id.split(sep).join('/').replace(/\?.*$/, '');
 
 /** The bundled module ids (absolute, `/`-separated) that a production build must not ship. */
 export function forbiddenMockModules(ids: Iterable<string>, root: string): string[] {
   const rootPath = root.split(sep).join('/').replace(/\/$/, '');
   return [...ids]
-    .map((id) => id.split(sep).join('/').replace(/\?.*$/, ''))
-    .filter((id) => FORBIDDEN.some((re) => re.test(id)))
+    .map(normalizedId)
+    .filter(isMockModule)
     .filter((id) => !KNOWN_MOCK_LEFTOVERS.some((file) => id === `${rootPath}/${file}`));
+}
+
+/** Mock modules run no code in a production build: Rollup keeps a mock module's code only for the exports that kept
+    code uses (and the guard below then fails the build). Without it, a static import that reaches a mock module keeps
+    its top-level statements, although nothing uses them: the mock user (src/platform/session/mockUser.ts, imported
+    behind MOCKS_BUILT) reaches the directory cast, whose top level adds a member to a household. */
+function mockModulesWithoutSideEffects(): Plugin {
+  return {
+    name: 'mock-modules-without-side-effects',
+    apply: 'build',
+    config: () => ({
+      build: { rollupOptions: { treeshake: { moduleSideEffects: (id: string) => !isMockModule(normalizedId(id)) } } },
+    }),
+  };
 }
 
 /** Copies public/ without MOCK_PUBLIC_FILES (instead of Vite's copy), before the service worker's precache scan. */
@@ -85,5 +104,5 @@ function mockFreeBundleGuard(): Plugin {
 
 /** The plugins of a mock-free (production) build. */
 export function mockFreeBuild(): Plugin[] {
-  return [publicDirWithoutMocks(), mockFreeBundleGuard()];
+  return [publicDirWithoutMocks(), mockModulesWithoutSideEffects(), mockFreeBundleGuard()];
 }

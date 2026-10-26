@@ -72,6 +72,1670 @@
    "gate": "ci: pass; stack check OK; move-map reproduced; gate: Opus review (delegated)",
    "loops": 0,
    "finished": "2026-10-22T14:20:54"
+  },
+  "P1-1": {
+   "status": "done",
+   "started": "2026-10-22T15:17:57",
+   "tokens": {
+    "dev": 27384,
+    "test": 41431,
+    "docs": 18427
+   },
+   "commit": "ab01f0a",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle = baseline",
+   "loops": 0,
+   "finished": "2026-10-22T15:40:03"
+  },
+  "P1-2": {
+   "status": "done",
+   "started": "2026-10-22T15:40:09",
+   "tokens": {
+    "dev": 83250,
+    "test": 48102,
+    "docs": 32927
+   },
+   "commit": "fdd21d0",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle = baseline; diffcheck --move: ok (110 renames)",
+   "loops": 1,
+   "finished": "2026-10-22T15:59:13"
+  },
+  "P1-3": {
+   "status": "done",
+   "started": "2026-10-22T15:59:19",
+   "tokens": {
+    "dev": 43346,
+    "test": 29226,
+    "docs": 37695
+   },
+   "commit": "21d09af",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle = baseline; diffcheck --move: ok (46 renames)",
+   "loops": 0,
+   "finished": "2026-10-22T16:13:25"
+  },
+  "P1-4": {
+   "status": "done",
+   "started": "2026-10-22T16:13:26",
+   "tokens": {
+    "dev": 27090,
+    "test": 22891,
+    "docs": 67177
+   },
+   "commit": "faf8682",
+   "gate": "ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self, 1 flake clean on rerun); bundle = baseline",
+   "loops": 0,
+   "finished": "2026-10-22T16:30:05"
+  },
+  "P2-1": {
+   "status": "done",
+   "started": "2026-10-22T19:41:52",
+   "tokens": {
+    "dev": 26169,
+    "test": 48499,
+    "docs": 32352
+   },
+   "commit": "ad2d23e",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within baseline",
+   "loops": 0,
+   "finished": "2026-10-22T20:04:42"
+  },
+  "P2-2": {
+   "status": "done",
+   "started": "2026-10-22T20:04:47",
+   "tokens": {
+    "dev": 150172,
+    "test": 26094,
+    "docs": 24135
+   },
+   "commit": "aedc20e",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within baseline",
+   "loops": 0,
+   "finished": "2026-10-22T20:23:48"
+  },
+  "P2-3": {
+   "status": "done",
+   "started": "2026-10-22T20:23:49",
+   "tokens": {
+    "dev": 356457,
+    "test": 41076,
+    "docs": 45341
+   },
+   "commit": "612208e",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-22T21:06:04"
+  },
+  "P2-4": {
+   "status": "done",
+   "started": "2026-10-22T21:06:05",
+   "tokens": {
+    "dev": 46543,
+    "test": 34158,
+    "docs": 64005
+   },
+   "commit": "7605ebe",
+   "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); gate confirmed with changes (Opus + Fable)",
+   "loops": 1,
+   "finished": "2026-10-22T21:23:02"
+  },
+  "P3-1": {
+   "status": "done",
+   "started": "2026-10-22T21:23:11",
+   "tokens": {
+    "dev": 231423,
+    "test": 33385,
+    "docs": 46707
+   },
+   "commit": "183070b",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-22T21:48:58"
+  },
+  "P3-2": {
+   "status": "done",
+   "started": "2026-10-22T21:48:58",
+   "tokens": {
+    "dev": 214443,
+    "test": 23609,
+    "docs": 32824
+   },
+   "commit": "fe827c9",
+   "gate": "ci: pass; parity strict --changed: 64/0 (OutSystems), 64/0 (self); 0 cycles in the 3 folders",
+   "loops": 1,
+   "finished": "2026-10-22T23:10:11"
+  },
+  "P3-3": {
+   "status": "done",
+   "started": "2026-10-22T23:10:11",
+   "tokens": {
+    "dev": 88019,
+    "test": 23159,
+    "docs": 26979
+   },
+   "commit": "247f265",
+   "gate": "ci: pass; depcruise 0 errors 0 cycles; parity strict --changed: 64/0 (OutSystems), 64/0 (self); bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T05:30:39"
+  },
+  "P3-4": {
+   "status": "done",
+   "started": "2026-10-23T05:30:40",
+   "tokens": {
+    "dev": 38251,
+    "test": 24593,
+    "docs": 27727
+   },
+   "commit": "599ed88",
+   "gate": "ci: pass; lint:arch 0 errors 211 warnings; parity strict --all: 64/0 (OutSystems), 64/0 (self) on rerun (first run self 63/1: EventDetail/default pixel 1 flake, F6); bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T05:48:25"
+  },
+  "P4-1": {
+   "status": "done",
+   "started": "2026-10-23T05:48:36",
+   "tokens": {
+    "dev": 146379,
+    "test": 33099,
+    "docs": 34447
+   },
+   "commit": "a9d0226",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self); bundle within +5% (+0.2%)",
+   "loops": 0,
+   "finished": "2026-10-23T06:08:51"
+  },
+  "P4-2": {
+   "status": "done",
+   "started": "2026-10-23T06:08:52",
+   "tokens": {
+    "dev": 256823,
+    "test": 33470,
+    "docs": 39277
+   },
+   "commit": "61189b3",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self) (EventDetail/default 1-pixel flake in 2 of 5 reruns, F6); e2e:pwa 8/8; bundle within +5% (+0.6%)",
+   "loops": 0,
+   "finished": "2026-10-23T06:48:11"
+  },
+  "P4-3": {
+   "status": "done",
+   "started": "2026-10-23T06:48:12",
+   "tokens": {
+    "dev": 264552,
+    "test": 42004,
+    "docs": 38118
+   },
+   "commit": "d015386",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 8/8; mock-free production build; demo build signs in; bundle within +5% (+0.8%)",
+   "loops": 1,
+   "finished": "2026-10-23T07:22:17"
+  },
+  "P4-4": {
+   "status": "done",
+   "started": "2026-10-23T07:22:18",
+   "tokens": {
+    "dev": 217970,
+    "test": 43382,
+    "docs": 35212
+   },
+   "commit": "a0c4553",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 63/1 (self: EventDetail/default 1-pixel flake, F6; reruns 1 pass, 1 fail); e2e:pwa 9/9; bundle within +5% (+0.9%)",
+   "loops": 0,
+   "finished": "2026-10-23T07:49:29"
+  },
+  "P4-5": {
+   "status": "done",
+   "started": "2026-10-23T07:49:30",
+   "tokens": {
+    "dev": 304837,
+    "test": 50362,
+    "docs": 51054
+   },
+   "commit": "c6db947",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self) (capture-plan has no flag variants; unit tests cover on and off); ?ff= works on dev; bundle within +5% (+1.0%)",
+   "loops": 0,
+   "finished": "2026-10-23T08:24:20"
+  },
+  "P5-1": {
+   "status": "done",
+   "started": "2026-10-23T09:29:25",
+   "tokens": {
+    "dev": 153320,
+    "test": 34424,
+    "docs": 41975
+   },
+   "commit": "1be0c50",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self); bundle within +5% (+1.4%)",
+   "loops": 0,
+   "finished": "2026-10-23T09:51:59"
+  },
+  "P5-2-member": {
+   "status": "done",
+   "started": "2026-10-23T09:52:10",
+   "tokens": {
+    "dev": 198618,
+    "test": 30757,
+    "docs": 31925
+   },
+   "commit": "b9866d7",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed: 13/0 (OutSystems), 13/0 (self); exemptions []; bundle within +5% (+1.4%)",
+   "loops": 0,
+   "finished": "2026-10-23T10:15:23"
+  },
+  "P5-2-country": {
+   "status": "done",
+   "started": "2026-10-23T10:15:29",
+   "tokens": {
+    "dev": 260182,
+    "test": 60208,
+    "docs": 39719
+   },
+   "commit": "d91327c",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed: 33/0 (OutSystems), 33/0 (self) (first run self 32/1: CountryDetails/default under load, F9; 3/3 and a full rerun clean); exemptions []; bundle within +5% (+1.4%)",
+   "loops": 0,
+   "finished": "2026-10-23T10:26:50"
+  },
+  "P5-2-locality": {
+   "status": "done",
+   "started": "2026-10-23T12:00:07",
+   "tokens": {
+    "dev": 334575,
+    "test": 69967,
+    "docs": 47784
+   },
+   "commit": "b314574",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+1.5%)",
+   "loops": 0,
+   "finished": "2026-10-23T12:10:53"
+  },
+  "P5-2-update": {
+   "status": "done",
+   "started": "2026-10-23T12:10:53",
+   "tokens": {
+    "dev": 210561,
+    "test": 45441,
+    "docs": 35237
+   },
+   "commit": "64fee33",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self) on the rerun (first run at load average ~110: loading-state load flakes); exemptions []; bundle within +5% (+2.0%)",
+   "loops": 0,
+   "finished": "2026-10-23T13:11:19"
+  },
+  "P5-2-app": {
+   "status": "done",
+   "started": "2026-10-23T13:29:30",
+   "tokens": {
+    "dev": 215437,
+    "test": 26663,
+    "docs": 28543
+   },
+   "commit": "36df9c9",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+1.9%)",
+   "loops": 0,
+   "finished": "2026-10-23T13:44:46"
+  },
+  "P5-3-event": {
+   "status": "done",
+   "started": "2026-10-23T13:44:58",
+   "tokens": {
+    "dev": 497629,
+    "test": 24145,
+    "docs": 27516
+   },
+   "commit": "be1598b",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+1.9%)",
+   "loops": 0,
+   "finished": "2026-10-23T13:59:52"
+  },
+  "P5-3-bookmark": {
+   "status": "done",
+   "started": "2026-10-23T14:07:46",
+   "tokens": {
+    "dev": 328354,
+    "test": 28751,
+    "docs": 29069
+   },
+   "commit": "64ab666",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+3.0%)",
+   "loops": 0,
+   "finished": "2026-10-23T14:25:53"
+  },
+  "P5-3-note": {
+   "status": "done",
+   "started": "2026-10-23T14:26:03",
+   "tokens": {
+    "dev": 187973,
+    "test": 27603,
+    "docs": 27259
+   },
+   "commit": "cbb79b2",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+3.0%)",
+   "loops": 0,
+   "finished": "2026-10-23T14:38:33"
+  },
+  "P5-3-message": {
+   "status": "done",
+   "started": "2026-10-23T14:38:58",
+   "tokens": {
+    "dev": 380962,
+    "test": 30005,
+    "docs": 26673
+   },
+   "commit": "cf0d7a5",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+4.0%)",
+   "loops": 0,
+   "finished": "2026-10-23T14:56:23"
+  },
+  "P5-3-notification": {
+   "status": "done",
+   "started": "2026-10-23T14:58:05",
+   "tokens": {
+    "dev": 171252,
+    "test": 25896,
+    "docs": 22571
+   },
+   "commit": "f674c24",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+4.1%)",
+   "loops": 0,
+   "finished": "2026-10-23T15:06:12"
+  },
+  "P5-4": {
+   "status": "done",
+   "started": "2026-10-23T15:10:42",
+   "tokens": {
+    "dev": 452052,
+    "test": 36715,
+    "docs": 50795
+   },
+   "commit": "a966278",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --all: 64/0 (OutSystems), 64/0 (self); exemptions []; bundle within +5% (+4.2%); after-gate confirmed (W6)",
+   "loops": 0,
+   "finished": "2026-10-23T15:53:56"
+  },
+  "P6-G1-A": {
+   "status": "done",
+   "started": "2026-10-23T16:35:44",
+   "tokens": {
+    "dev": 39442,
+    "test": 40741,
+    "docs": 25006
+   },
+   "commit": "4146e93",
+   "gate": "ci: pass; lint:arch 0 errors, no new warning; parity strict --changed (64 routes): 64/0 (OutSystems), 64/0 (self); diffcheck --move ok (10 origin tags); bundle within +5% (+4.3%)",
+   "loops": 0,
+   "finished": "2026-10-23T16:52:27"
+  },
+  "P6-G1-B-Login": {
+   "status": "done",
+   "started": "2026-10-23T16:52:37",
+   "tokens": {
+    "dev": 141525,
+    "test": 25019,
+    "docs": 24866
+   },
+   "commit": "7517102",
+   "gate": "ci: pass (2052 tests); parity visual --changed: 1/0 (OutSystems), 1/0 (self); lint:arch no new warning; bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T19:11:17"
+  },
+  "P6-G1-B-Splash": {
+   "status": "done",
+   "started": "2026-10-23T19:11:30",
+   "tokens": {
+    "dev": 189857,
+    "test": 29397,
+    "docs": 25422
+   },
+   "commit": "c1da652",
+   "gate": "ci: pass; parity visual --changed: 25/0 (OutSystems), 25/0 (self); lint:arch no new warning; bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T19:19:17"
+  },
+  "P6-G1-B-AcceptPendingPolicies": {
+   "status": "done",
+   "started": "2026-10-23T19:19:22",
+   "tokens": {
+    "dev": 277303,
+    "test": 25273,
+    "docs": 42447
+   },
+   "commit": "9b8b211",
+   "gate": "ci: pass (2092 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); lint:arch no new warning; bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T19:30:05"
+  },
+  "P6-G1-B-Menu": {
+   "status": "done",
+   "started": "2026-10-23T19:30:11",
+   "tokens": {
+    "dev": 191363,
+    "test": 37253,
+    "docs": 33398
+   },
+   "commit": "37c2d62",
+   "gate": "ci: pass (2111 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); lint:arch no new warning; bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T19:39:41"
+  },
+  "P6-G1-B-Shared": {
+   "status": "done",
+   "started": "2026-10-23T19:39:49",
+   "tokens": {
+    "dev": 122647,
+    "test": 56785,
+    "docs": 51590
+   },
+   "commit": "43946ee",
+   "gate": "ci: pass (2111 tests); diffcheck --move ok (200 renames, 30 origin tags, move-map renames W12); parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (88 moved-debt rows, W13); bundle within +5%",
+   "loops": 1,
+   "finished": "2026-10-23T20:19:56"
+  },
+  "P6-G1-B-PINRegister": {
+   "status": "done",
+   "started": "2026-10-23T20:20:43",
+   "tokens": {
+    "dev": 209650,
+    "test": 29886,
+    "docs": 32234
+   },
+   "commit": "2c99612",
+   "gate": "ci: pass (2125 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (20 rows removed, 68 left); bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T20:51:51"
+  },
+  "P6-G1-B-PINUnlock": {
+   "status": "done",
+   "started": "2026-10-23T21:02:45",
+   "tokens": {
+    "dev": 356110,
+    "test": 28624,
+    "docs": 28841
+   },
+   "commit": "751b33b",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (29 rows removed, 39 left, 3 re-owned W14); bundle within +5% (Login 192.92 of 193.8 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T21:13:49"
+  },
+  "P6-G1-B-PINChange": {
+   "status": "done",
+   "started": "2026-10-23T21:28:48",
+   "tokens": {
+    "dev": 244999,
+    "test": 24121,
+    "docs": 28010
+   },
+   "commit": "7dbb71b",
+   "gate": "ci: pass (2148 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (2 PinCode rows removed, 37 left, no G1 owner); bundle within +5% (Login 193.02 of 193.8 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T21:40:31"
+  },
+  "P6-G1-B-PINBiometricsMenu": {
+   "status": "done",
+   "started": "2026-10-23T21:40:31",
+   "tokens": {
+    "dev": 110329,
+    "test": 27534,
+    "docs": 20415
+   },
+   "commit": "b1e8f48",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline check 0 new (37 rows); bundle within +5%",
+   "loops": 0,
+   "finished": "2026-10-23T21:51:15"
+  },
+  "P6-G1-B-TermsAndPoliciesMenu": {
+   "status": "done",
+   "started": "2026-10-23T21:51:15",
+   "tokens": {
+    "dev": 116035,
+    "test": 28267,
+    "docs": 22739
+   },
+   "commit": "c46440f",
+   "gate": "ci: pass (2165 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline check 0 new (37 rows); no shared code changed",
+   "loops": 0,
+   "finished": "2026-10-23T21:57:00"
+  },
+  "P6-G1-B-Profile": {
+   "status": "done",
+   "started": "2026-10-23T21:57:00",
+   "tokens": {
+    "dev": 236195,
+    "test": 38694,
+    "docs": 20976
+   },
+   "commit": "86f7682",
+   "gate": "ci: pass (2194 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline check 0 new (37 rows); bundle within +5% (Login 192.96 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T22:04:42"
+  },
+  "P6-G1-C": {
+   "status": "done",
+   "started": "2026-10-23T22:04:42",
+   "tokens": {
+    "dev": 27767,
+    "test": 22611,
+    "docs": 34401
+   },
+   "commit": "12f9d24",
+   "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 37 rows, no P6-G1 owner; bundle HomeFeed 244.80/248.22, Login 192.96/193.84 kB gzip; knip/jscpd from the dev report (C changed no tracked code); group confirm W16 (Opus + Fable, delegated)",
+   "loops": 0,
+   "finished": "2026-10-23T22:20:14"
+  },
+  "P6-G2-A": {
+   "status": "done",
+   "started": "2026-10-23T22:20:43",
+   "tokens": {
+    "dev": 23713,
+    "test": 20014,
+    "docs": 26026
+   },
+   "commit": "1633175",
+   "gate": "ci: pass; diffcheck --move ok (55 renames, 9 origin tags); parity strict --changed: 9/0 (OutSystems), 9/0 (self); arch baseline 0 new; bundle within +5% (Login 193.10 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T22:27:06"
+  },
+  "P6-G2-B-Shared": {
+   "status": "done",
+   "started": "2026-10-23T22:27:18",
+   "tokens": {
+    "dev": 57826,
+    "test": 37325,
+    "docs": 35858
+   },
+   "commit": "81df778",
+   "gate": "ci: pass; diffcheck --move ok except the declared W17 lines (handlers glob); handlers 155, same set; parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline 48 rows (11 added under W15, check --move-step ok); bundle within +5% (Login 193.03 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T22:42:11"
+  },
+  "P6-G2-B-ContactUsMenu": {
+   "status": "done",
+   "started": "2026-10-23T22:43:01",
+   "tokens": {
+    "dev": 122809,
+    "test": 26477,
+    "docs": 21082
+   },
+   "commit": "52510c7",
+   "gate": "ci: pass; parity visual --changed: 1/0 (OutSystems), 1/0 (self); arch baseline 0 new; bundle within +5% (Login 193.07 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T22:58:40"
+  },
+  "P6-G2-B-ContactUsDetails": {
+   "status": "done",
+   "started": "2026-10-23T23:09:28",
+   "tokens": {
+    "dev": 235557,
+    "test": 26588,
+    "docs": 30110
+   },
+   "commit": "33f0c5b",
+   "gate": "ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.05 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T23:19:15"
+  },
+  "P6-G2-B-ContactByEmailMember": {
+   "status": "done",
+   "started": "2026-10-23T23:19:15",
+   "tokens": {
+    "dev": 209513,
+    "test": 41879,
+    "docs": 38416
+   },
+   "commit": "3b30db5",
+   "gate": "ci: pass; parity visual --changed: 6 routes 0 differences (OutSystems, self), ContactByEmail routes with states 3/0; arch baseline 0 new (1 row removed, 47 left); bundle within +5% (Login 193.03 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T23:27:08"
+  },
+  "P6-G2-B-ContactByEmailOneSchoolGlobal": {
+   "status": "done",
+   "started": "2026-10-23T23:27:08",
+   "tokens": {
+    "dev": 80075,
+    "test": 34131,
+    "docs": 23946
+   },
+   "commit": "5bc69ce",
+   "gate": "ci: pass (2nd run; 1st run PopupMenu flake F11); parity visual --changed: 5/0 (OutSystems), 5/0 (self); arch baseline 0 new; bundle within +5% (Login 193.07 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T23:35:27"
+  },
+  "P6-G2-B-ContactByEmailLDMCoordinator": {
+   "status": "done",
+   "started": "2026-10-23T23:35:27",
+   "tokens": {
+    "dev": 87846,
+    "test": 30104,
+    "docs": 29690
+   },
+   "commit": "dec00e0",
+   "gate": "ci: pass (2263 tests); no parity states for this route (unit tests + diff); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.08 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T23:45:01"
+  },
+  "P6-G2-B-ContactByEmailOrbitHelpdesk": {
+   "status": "done",
+   "started": "2026-10-23T23:45:02",
+   "tokens": {
+    "dev": 86900,
+    "test": 29952,
+    "docs": 25220
+   },
+   "commit": "ea95154",
+   "gate": "ci: pass (2268 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.07 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T23:51:14"
+  },
+  "P6-G2-B-ContactByEmailOrbitHost": {
+   "status": "done",
+   "started": "2026-10-23T23:51:14",
+   "tokens": {
+    "dev": 89630,
+    "test": 30070,
+    "docs": 24789
+   },
+   "commit": "3c80cfc",
+   "gate": "ci: pass (rerun; PopupMenu flake F11); no parity states for this route (unit tests + diff); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.09 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-23T23:59:48"
+  },
+  "P6-G2-B-EmailContact": {
+   "status": "done",
+   "started": "2026-10-23T23:59:48",
+   "tokens": {
+    "dev": 214669,
+    "test": 26571,
+    "docs": 24077
+   },
+   "commit": "6e603912",
+   "gate": "ci: pass (2291 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle within +5% (Login 193.10 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-24T00:05:46"
+  },
+  "P6-G2-B-EmailTarget": {
+   "status": "done",
+   "started": "2026-10-24T00:05:47",
+   "tokens": {
+    "dev": 177705,
+    "test": 35068,
+    "docs": 27787
+   },
+   "commit": "e67279e8",
+   "gate": "ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self) (EmailTarget has no capture; unit tests); arch baseline 0 new; bundle within +5% (Login 193.08 of 193.84 kB)",
+   "loops": 0,
+   "finished": "2026-10-24T00:11:51"
+  },
+  "P6-G2-C": {
+   "status": "done",
+   "started": "2026-10-24T00:11:52",
+   "tokens": {
+    "dev": 22967,
+    "test": 22452,
+    "docs": 29458
+   },
+   "commit": "7c722883",
+   "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 47 rows, no P6-G2 owner; knip/jscpd re-run match; bundle HomeFeed 244.93/248.22, Login 193.08/193.84 kB gzip; group confirm W19 (Opus + Fable, delegated)",
+   "loops": 0,
+   "finished": "2026-10-24T00:24:17"
+  },
+  "P6-F15": {
+   "status": "done",
+   "started": "2026-10-24T00:24:24",
+   "tokens": {
+    "dev": 34092,
+    "test": 27207,
+    "docs": 21750
+   },
+   "commit": "584af145",
+   "gate": "ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self), call check clean; bundle Login 193.08 -> 186.87 kB gzip (limit 193.84), HomeFeed 245.51 (limit 248.22); arch baseline 0 new",
+   "loops": 0,
+   "finished": "2026-10-24T00:34:21"
+  },
+  "P6-G3-A": {
+   "status": "done",
+   "started": "2026-10-24T00:34:21",
+   "tokens": {
+    "dev": 23628,
+    "test": 23723,
+    "docs": 27193
+   },
+   "commit": "445a09d3",
+   "gate": "ci: pass; diffcheck --move ok (81 renames, 8 origin tags); parity strict: 8/0 (OutSystems), 8/0 (self); arch baseline 0 new; bundle HomeFeed 245.58/248.22, Login 186.94/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T00:41:46"
+  },
+  "P6-G3-B-Shared": {
+   "status": "done",
+   "started": "2026-10-24T00:41:46",
+   "tokens": {
+    "dev": 56920,
+    "test": 27369,
+    "docs": 28534
+   },
+   "commit": "4806c6fe",
+   "gate": "ci: pass; diffcheck --move ok; handlers 155, same set; parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline 78 rows (31 added under W15, check --move-step ok); bundle HomeFeed 245.57/248.22, Login 186.94/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T00:53:36"
+  },
+  "P6-G3-B-HomeFeed": {
+   "status": "done",
+   "started": "2026-10-24T00:53:45",
+   "tokens": {
+    "dev": 410670,
+    "test": 29268,
+    "docs": 45977
+   },
+   "commit": "e05cd21e",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 61 rows (17 removed); bundle HomeFeed 245.99/248.22 (+0.42 accepted, W21), Login 186.99/193.84 kB gzip; page part deferred (W22)",
+   "loops": 0,
+   "finished": "2026-10-24T01:50:02"
+  },
+  "P6-G3-B-Services": {
+   "status": "done",
+   "started": "2026-10-24T01:50:30",
+   "tokens": {
+    "dev": 279075,
+    "test": 31880,
+    "docs": 41855
+   },
+   "commit": "c8ffc7ea",
+   "gate": "ci: pass (2381 tests); parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; bundle HomeFeed 245.91/248.22, Login 186.95/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T02:02:10"
+  },
+  "P6-G3-B-Search": {
+   "status": "done",
+   "started": "2026-10-24T02:02:10",
+   "tokens": {
+    "dev": 393384,
+    "test": 45114,
+    "docs": 35774
+   },
+   "commit": "cf6fd207",
+   "gate": "ci: pass (2416 tests); parity visual on the 6 filter-sheet routes: 6/0 (OutSystems), 6/0 (self) (full run at G3-C); arch baseline 52 rows (9 removed); bundle HomeFeed 246.06/248.22, Login 187.05/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T02:09:48"
+  },
+  "P6-G3-B-MessageList": {
+   "status": "done",
+   "started": "2026-10-24T02:09:48",
+   "tokens": {
+    "dev": 312595,
+    "test": 36150,
+    "docs": 28303
+   },
+   "commit": "4739384c",
+   "gate": "ci: pass (2450 tests); parity visual --changed: 5/0 (OutSystems), 5/0 (self); arch baseline 0 new; bundle HomeFeed 246.03/248.22, Login 187.03/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T02:18:15"
+  },
+  "P6-G3-B-MessageDetail": {
+   "status": "done",
+   "started": "2026-10-24T02:20:25",
+   "tokens": {
+    "dev": 249800,
+    "test": 28839,
+    "docs": 36636
+   },
+   "commit": "e7bd6f58",
+   "gate": "ci: pass (2504 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle HomeFeed 246.02/248.22, Login 187.01/193.84 kB gzip; W23 applied (side effects run after unmount)",
+   "loops": 0,
+   "finished": "2026-10-24T02:28:07"
+  },
+  "P6-G3-B-FeedItemDetail": {
+   "status": "done",
+   "started": "2026-10-24T02:28:08",
+   "tokens": {
+    "dev": 124589,
+    "test": 28566,
+    "docs": 22499
+   },
+   "commit": "f1fedc70",
+   "gate": "ci: pass; no parity capture for this route (hook and page tests); parity of the neighbours clean; arch baseline 0 new; bundle HomeFeed 246.04/248.22, Login 187.02/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T02:34:03"
+  },
+  "P6-G3-B-Updates_SingleList": {
+   "status": "done",
+   "started": "2026-10-24T02:34:14",
+   "tokens": {
+    "dev": 313215,
+    "test": 39501,
+    "docs": 31414
+   },
+   "commit": "830c8e5a",
+   "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); arch baseline 49 rows (3 removed); bundle HomeFeed 246.00/248.22, Login 187.00/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T02:45:03"
+  },
+  "P6-G3-B-Notifications": {
+   "status": "done",
+   "started": "2026-10-24T02:45:03",
+   "tokens": {
+    "dev": 243732,
+    "test": 32943,
+    "docs": 29225
+   },
+   "commit": "2d7b9d4f",
+   "gate": "ci: pass (rerun; PopupMenu flake F11); parity visual: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; bundle HomeFeed 246.02/248.22, Login 187.01/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T02:56:48"
+  },
+  "P6-F16": {
+   "status": "done",
+   "started": "2026-10-24T02:56:48",
+   "tokens": {
+    "dev": 210378,
+    "test": 30562,
+    "docs": 25096
+   },
+   "commit": "d5d59692",
+   "gate": "ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self), call check clean; e2e:pwa 9/9; mock-free production build ok; bundle HomeFeed 246.02 -> 243.05, Login 187.01 -> 184.02 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T03:05:44"
+  },
+  "P6-G3-B-HomeFeed-Page": {
+   "status": "done",
+   "started": "2026-10-24T03:05:44",
+   "tokens": {
+    "dev": 336188,
+    "test": 30449,
+    "docs": 41589
+   },
+   "commit": "2bcc3346",
+   "gate": "ci: pass (2598 tests); parity visual --all: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; bundle HomeFeed 244.02/248.22 (+1.11 once, W24), Login 184.02/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T03:17:03"
+  },
+  "P6-G3-C": {
+   "status": "done",
+   "started": "2026-10-24T03:17:04",
+   "tokens": {
+    "dev": 31840,
+    "test": 28203,
+    "docs": 26695
+   },
+   "commit": "168255a4",
+   "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 49 rows, no P6-G3 owner; knip/jscpd re-run match; bundle HomeFeed 244.00/248.22, Login 184.00/193.84 kB gzip; group confirm W25 (Opus + Fable, delegated)",
+   "loops": 0,
+   "finished": "2026-10-24T03:30:23"
+  },
+  "P6-G4-A": {
+   "status": "done",
+   "started": "2026-10-24T03:30:44",
+   "tokens": {
+    "dev": 28756,
+    "test": 20392,
+    "docs": 26380
+   },
+   "commit": "8d304bde",
+   "gate": "ci: pass (rerun; flakes F11, F20); diffcheck --move ok (94 renames, 13 origin tags); parity strict: 13/0 (OutSystems), 13/0 (self); arch baseline 0 new; bundle HomeFeed 244.13/248.22, Login 184.17/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T03:39:47"
+  },
+  "P6-G4-B-Shared": {
+   "status": "done",
+   "started": "2026-10-24T03:39:47",
+   "tokens": {
+    "dev": 66931,
+    "test": 37635,
+    "docs": 36630
+   },
+   "commit": "6be34914",
+   "gate": "ci: pass; diffcheck --move ok except declared lines; handlers 155, same set; parity strict --all: 64/0 (OutSystems), 64/0 (self); arch baseline 87 rows (38 added under W15, check --move-step ok, selfcheck ok); bundle HomeFeed 244.19/248.22, Login 184.16/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T03:53:36"
+  },
+  "P6-G4-B-BrowseCountries": {
+   "status": "done",
+   "started": "2026-10-24T03:53:45",
+   "tokens": {
+    "dev": 185505,
+    "test": 23283,
+    "docs": 25630
+   },
+   "commit": "73016cf9",
+   "gate": "ci: pass (2618 tests); parity visual: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; bundle HomeFeed 244.17/248.22, Login 184.20/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T04:30:17"
+  },
+  "P6-G4-B-BrowseDirectory": {
+   "status": "done",
+   "started": "2026-10-24T04:30:17",
+   "tokens": {
+    "dev": 207150,
+    "test": 25863,
+    "docs": 28594
+   },
+   "commit": "cf7e275d",
+   "gate": "ci: pass (2645 tests); parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; bundle HomeFeed 244.15/248.22, Login 184.17/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T04:36:26"
+  },
+  "P6-G4-B-CountryList": {
+   "status": "done",
+   "started": "2026-10-24T04:36:27",
+   "tokens": {
+    "dev": 269521,
+    "test": 29066,
+    "docs": 31232
+   },
+   "commit": "66ee7c6c",
+   "gate": "ci: pass (2671 tests); parity visual --changed: 3/0 (OutSystems), 3/0 (self); arch baseline 85 rows (2 removed); bundle HomeFeed 244.17/248.22, Login 184.18/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T04:42:16"
+  },
+  "P6-G4-B-HouseholdCarousel": {
+   "status": "done",
+   "started": "2026-10-24T04:42:16",
+   "tokens": {
+    "dev": 276627,
+    "test": 45328,
+    "docs": 34937
+   },
+   "commit": "b2d3c2de",
+   "gate": "ci: pass (re-run after F20, 2681 tests); parity visual --changed: 4/0 (OutSystems), 4/0 (self); arch baseline 75 rows (10 removed); bundle HomeFeed 244.19/248.22, Login 184.19/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T05:03:16"
+  },
+  "P6-G4-B-Photobook": {
+   "status": "done",
+   "started": "2026-10-24T05:03:16",
+   "tokens": {
+    "dev": 291411,
+    "test": 35625,
+    "docs": 34130
+   },
+   "commit": "892cf6c3",
+   "gate": "ci: pass; parity visual --changed: 5/0 (OutSystems), 5/0 (self); arch baseline 0 new; bundle HomeFeed 244.19/248.22, Login 184.19/193.84 kB gzip; W23 holds",
+   "loops": 0,
+   "finished": "2026-10-24T05:09:08"
+  },
+  "P6-G4-B-CountryDetails": {
+   "status": "done",
+   "started": "2026-10-24T05:09:08",
+   "tokens": {
+    "dev": 201390,
+    "test": 26099,
+    "docs": 34910
+   },
+   "commit": "f51f2bb4",
+   "gate": "ci: pass; parity visual --changed: 6/0 (OutSystems), 6/0 (self); arch baseline 0 new; HomeFeed 244.18 kB, Login 184.21 kB",
+   "loops": 0,
+   "finished": "2026-10-24T05:15:18"
+  },
+  "P6-G4-B-Household_Relations": {
+   "status": "done",
+   "started": "2026-10-24T05:15:27",
+   "tokens": {
+    "dev": 367455,
+    "test": 33637,
+    "docs": 34345
+   },
+   "commit": "f6eb6d54",
+   "gate": "ci: pass; parity visual --changed: 7/0 (OutSystems), 7/0 (self); arch baseline 0 new; HomeFeed 244.13 kB, Login 184.18 kB",
+   "loops": 0,
+   "finished": "2026-10-24T05:24:00"
+  },
+  "P6-G4-B-Locality_Details": {
+   "status": "done",
+   "started": "2026-10-24T05:24:10",
+   "tokens": {
+    "dev": 376412,
+    "test": 32829,
+    "docs": 34300
+   },
+   "commit": "5a228484",
+   "gate": "ci: pass; parity visual --changed: 6/0 (OutSystems), 6/0 (self); arch baseline 0 new; HomeFeed 244.21 kB, Login 184.22 kB",
+   "loops": 0,
+   "finished": "2026-10-24T05:29:50"
+  },
+  "P6-G4-B-OneSchoolGlobalDetails": {
+   "status": "done",
+   "started": "2026-10-24T05:29:50",
+   "tokens": {
+    "dev": 316669,
+    "test": 30795,
+    "docs": 33036
+   },
+   "commit": "9faeb9e6",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.18 kB, Login 184.19 kB",
+   "loops": 0,
+   "finished": "2026-10-24T05:40:28"
+  },
+  "P6-G4-B-SupperMeeting_Carousel": {
+   "status": "done",
+   "started": "2026-10-24T05:40:44",
+   "tokens": {
+    "dev": 166203,
+    "test": 25987,
+    "docs": 39809
+   },
+   "commit": "810fba69",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 74 rows, 0 new (1 owned row removed); HomeFeed 244.13 kB, Login 184.16 kB",
+   "loops": 0,
+   "finished": "2026-10-24T05:51:31"
+  },
+  "P6-G4-B-CommunityBusinessDetails_CoomingSoon": {
+   "status": "done",
+   "started": "2026-10-24T05:51:31",
+   "tokens": {
+    "dev": 95269,
+    "test": 25441,
+    "docs": 26087
+   },
+   "commit": "703a5ea9",
+   "gate": "ci: pass; parity visual --changed: 3/0 (OutSystems), 3/0 (self); arch baseline 0 new; HomeFeed 244.19 kB, Login 184.20 kB",
+   "loops": 0,
+   "finished": "2026-10-24T05:57:21"
+  },
+  "P6-G4-B-Assemble_BrowseByCountry": {
+   "status": "done",
+   "started": "2026-10-24T05:57:22",
+   "tokens": {
+    "dev": 228664,
+    "test": 30043,
+    "docs": 34000
+   },
+   "commit": "ec323d7c",
+   "gate": "ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; HomeFeed 244.12 kB, Login 184.15 kB",
+   "loops": 0,
+   "finished": "2026-10-24T06:05:08"
+  },
+  "P6-G4-B-SupperMeeting_Details": {
+   "status": "done",
+   "started": "2026-10-24T06:05:09",
+   "tokens": {
+    "dev": 518953,
+    "test": 30884,
+    "docs": 50827
+   },
+   "commit": "b6241988",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 67 rows, 0 new (7 owned rows removed); HomeFeed 244.14 kB, Login 184.19 kB",
+   "loops": 0,
+   "finished": "2026-10-24T06:16:02"
+  },
+  "P6-G4-C": {
+   "status": "done",
+   "started": "2026-10-24T06:16:02",
+   "tokens": {
+    "dev": 27899,
+    "test": 19897,
+    "docs": 29704
+   },
+   "commit": "66f01e66",
+   "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 67 rows, no P6-G4 owner; knip/jscpd match; bundle HomeFeed 244.14/248.22, Login 184.19/193.84 kB gzip; group confirm W29 (Opus + Fable, delegated)",
+   "loops": 0,
+   "finished": "2026-10-24T06:35:13"
+  },
+  "P6-F17": {
+   "status": "done",
+   "started": "2026-10-24T06:35:23",
+   "tokens": {
+    "dev": 74965,
+    "test": 22379,
+    "docs": 30691
+   },
+   "commit": "f29b7bd0",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.13 kB, Login 184.19 kB",
+   "loops": 0,
+   "finished": "2026-10-24T06:51:16"
+  },
+  "P6-G5-A": {
+   "status": "done",
+   "started": "2026-10-24T06:51:24",
+   "tokens": {
+    "dev": 44276,
+    "test": 38333,
+    "docs": 36293
+   },
+   "commit": "16a20ef2",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); diffcheck --move ok (146 renames); arch baseline 0 new; HomeFeed 244.38 kB, Login 184.43 kB",
+   "loops": 1,
+   "finished": "2026-10-24T07:09:35"
+  },
+  "P6-G5-B-Shared": {
+   "status": "done",
+   "started": "2026-10-24T07:09:35",
+   "tokens": {
+    "dev": 66045,
+    "test": 23265,
+    "docs": 32088
+   },
+   "commit": "72c3c193",
+   "gate": "ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self) (also covers the strict gate of P6-G5-A); diffcheck --move ok but one forced glob path line; arch baseline 75 rows (+8 owned rows, W13); HomeFeed 244.41 kB, Login 184.42 kB",
+   "loops": 0,
+   "finished": "2026-10-24T07:22:05"
+  },
+  "P6-G5-B-OrbitLanding": {
+   "status": "done",
+   "started": "2026-10-24T07:22:05",
+   "tokens": {
+    "dev": 356158,
+    "test": 30575,
+    "docs": 36351
+   },
+   "commit": "4a16e86b",
+   "gate": "ci: pass; parity visual --changed: 26/0 (OutSystems), 26/0 (self); arch baseline 0 new; HomeFeed 244.39 kB, Login 184.41 kB",
+   "loops": 0,
+   "finished": "2026-10-24T07:29:48"
+  },
+  "P6-G5-B-OrbitAdminLanding": {
+   "status": "done",
+   "started": "2026-10-24T07:29:49",
+   "tokens": {
+    "dev": 264747,
+    "test": 30109,
+    "docs": 31764
+   },
+   "commit": "b1982231",
+   "gate": "ci: pass (rerun once, Services flake F23); parity visual --changed: 10/0 (OutSystems), 10/0 (self); arch baseline 0 new; HomeFeed 244.41 kB, Login 184.42 kB",
+   "loops": 0,
+   "finished": "2026-10-24T07:41:52"
+  },
+  "P6-G5-B-OrbitAdminEventDetail": {
+   "status": "done",
+   "started": "2026-10-24T07:41:52",
+   "tokens": {
+    "dev": 308215,
+    "test": 46056,
+    "docs": 42737
+   },
+   "commit": "7db2fa7d",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.41 kB, Login 184.41 kB",
+   "loops": 0,
+   "finished": "2026-10-24T07:53:35"
+  },
+  "P6-G5-B-EventDetail": {
+   "status": "done",
+   "started": "2026-10-24T07:53:35",
+   "tokens": {
+    "dev": 394209,
+    "test": 31863,
+    "docs": 33953
+   },
+   "commit": "fff324fa",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.48 kB, Login 184.46 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T08:05:04"
+  },
+  "P6-G5-B-EventBooklet": {
+   "status": "done",
+   "started": "2026-10-24T08:05:04",
+   "tokens": {
+    "dev": 488700,
+    "test": 33926,
+    "docs": 38092
+   },
+   "commit": "27fd2cec",
+   "gate": "ci: pass; parity visual --changed: 6/0 (OutSystems), 6/0 (self) (EventBooklet has no parity states; old-vs-new 16 scenarios equal); arch baseline 0 new; HomeFeed 244.44 kB, Login 184.44 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T08:11:47"
+  },
+  "P6-G5-B-MilestoneDetail": {
+   "status": "done",
+   "started": "2026-10-24T08:12:00",
+   "tokens": {
+    "dev": 468964,
+    "test": 31623,
+    "docs": 39258
+   },
+   "commit": "b2a0f725",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.44 kB, Login 184.47 kB; W28 beforePaint; W27 old: crash, new: reload (2 paths)",
+   "loops": 0,
+   "finished": "2026-10-24T08:22:56"
+  },
+  "P6-G5-B-GuestArrangements": {
+   "status": "done",
+   "started": "2026-10-24T08:22:56",
+   "tokens": {
+    "dev": 317637,
+    "test": 33283,
+    "docs": 40207
+   },
+   "commit": "c343990f",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.46 kB, Login 184.48 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T08:32:50"
+  },
+  "P6-G5-B-HelpersDetail": {
+   "status": "done",
+   "started": "2026-10-24T08:32:50",
+   "tokens": {
+    "dev": 350113,
+    "test": 27365,
+    "docs": 33312
+   },
+   "commit": "072d97d7",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.37 kB, Login 184.42 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T08:42:06"
+  },
+  "P6-G5-B-HostSurvey": {
+   "status": "done",
+   "started": "2026-10-24T08:42:06",
+   "tokens": {
+    "dev": 372180,
+    "test": 28183,
+    "docs": 36365
+   },
+   "commit": "d2ce8060",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.41 kB, Login 184.43 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T08:51:17"
+  },
+  "P6-G5-B-TransportDetail": {
+   "status": "done",
+   "started": "2026-10-24T08:51:17",
+   "tokens": {
+    "dev": 305850,
+    "test": 26809,
+    "docs": 27234
+   },
+   "commit": "978b04cd",
+   "gate": "ci: pass; parity visual --changed: 0 new differences on both references (TransportDetail has no parity states; old-vs-new 16 scenarios equal); arch baseline 0 new; HomeFeed 244.41 kB, Login 184.43 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T08:56:26"
+  },
+  "P6-G5-B-MyEntertaining": {
+   "status": "done",
+   "started": "2026-10-24T08:56:26",
+   "tokens": {
+    "dev": 292476,
+    "test": 34105,
+    "docs": 31309
+   },
+   "commit": "f7a74f4b",
+   "gate": "ci: pass; parity visual --changed: 0 differences on both references; arch baseline 0 new; HomeFeed 244.44 kB, Login 184.45 kB",
+   "loops": 0,
+   "finished": "2026-10-24T09:01:48"
+  },
+  "P6-G5-B-LDM_MyEvents_V2": {
+   "status": "done",
+   "started": "2026-10-24T09:01:48",
+   "tokens": {
+    "dev": 283643,
+    "test": 29513,
+    "docs": 43911
+   },
+   "commit": "ff306efd",
+   "gate": "ci: pass; parity visual --changed: 0 differences on both references; arch baseline 0 new; HomeFeed 244.38 kB, Login 184.42 kB",
+   "loops": 0,
+   "finished": "2026-10-24T09:07:21"
+  },
+  "P6-G5-B-LDM_EventDetail_V2": {
+   "status": "done",
+   "started": "2026-10-24T09:07:21",
+   "tokens": {
+    "dev": 367452,
+    "test": 36516,
+    "docs": 37693
+   },
+   "commit": "a460b0c7",
+   "gate": "ci: pass; parity visual --changed: 11/0 (OutSystems), 11/0 (self); arch baseline 0 new; HomeFeed 244.42 kB, Login 184.43 kB",
+   "loops": 0,
+   "finished": "2026-10-24T09:15:04"
+  },
+  "P6-G5-B-LDM_Email_V2": {
+   "status": "done",
+   "started": "2026-10-24T09:15:04",
+   "tokens": {
+    "dev": 277027,
+    "test": 31174,
+    "docs": 36810
+   },
+   "commit": "727a2197",
+   "gate": "ci: pass; parity visual --changed: 11/0 (OutSystems), 11/0 (self) (LDM_Email_V2 has no parity reference; old-vs-new 21 scenarios equal); arch baseline 0 new; HomeFeed 244.37 kB, Login 184.42 kB",
+   "loops": 0,
+   "finished": "2026-10-24T09:22:17"
+  },
+  "P6-G5-B-AssembleEvents": {
+   "status": "done",
+   "started": "2026-10-24T09:22:17",
+   "tokens": {
+    "dev": 423247,
+    "test": 33227,
+    "docs": 37461
+   },
+   "commit": "d1bbd3aa",
+   "gate": "ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; HomeFeed 244.45 kB, Login 184.46 kB; F21 done (2 copies kept)",
+   "loops": 0,
+   "finished": "2026-10-24T09:27:47"
+  },
+  "P6-G5-B-AssembleDetail": {
+   "status": "done",
+   "started": "2026-10-24T09:27:47",
+   "tokens": {
+    "dev": 791744,
+    "test": 47470,
+    "docs": 54973
+   },
+   "commit": "a11439f6",
+   "gate": "ci: pass; parity visual --changed (all 64): 64/0 (self), 63/1 then 64/0 on rerun (OutSystems; HostSurvey render flake, F23); arch baseline 69 rows (6 owned rows removed); HomeFeed 244.39 kB, Login 184.42 kB",
+   "loops": 0,
+   "finished": "2026-10-24T10:06:34"
+  },
+  "P6-G5-C": {
+   "status": "done",
+   "started": "2026-10-24T10:06:35",
+   "tokens": {
+    "dev": 26017,
+    "test": 25634,
+    "docs": 30562
+   },
+   "commit": "e466ea57",
+   "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self) (53 routes with states; 6 G5 routes without, F27); e2e:pwa 9/9; arch baseline 69 rows, no P6-G5 owner; knip/jscpd match; bundle HomeFeed 244.39/248.22, Login 184.42/193.84 kB gzip; group confirm W31 (Opus + Fable, delegated); G5-A parity-level slip covered by the G5-B-Shared strict --all re-run",
+   "loops": 0,
+   "finished": "2026-10-24T10:22:00"
+  },
+  "P6-G6-A": {
+   "status": "done",
+   "started": "2026-10-24T10:22:07",
+   "tokens": {
+    "dev": 25617,
+    "test": 20970,
+    "docs": 23925
+   },
+   "commit": "e2e0b99f",
+   "gate": "ci: pass (rerun once, F11 flake); parity strict --changed: 7/0 (OutSystems), 7/0 (self); diffcheck --move ok (62 renames); arch baseline 0 new; HomeFeed 244.47 kB, Login 184.50 kB",
+   "loops": 0,
+   "finished": "2026-10-24T10:30:11"
+  },
+  "P6-G6-B-Shared": {
+   "status": "done",
+   "started": "2026-10-24T10:30:11",
+   "tokens": {
+    "dev": 25616,
+    "test": 21685,
+    "docs": 20413
+   },
+   "commit": "2ee386be",
+   "gate": "ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); diffcheck --move ok (13 renames); arch baseline 69 rows, 0 new; HomeFeed 244.48 kB, Login 184.50 kB",
+   "loops": 0,
+   "finished": "2026-10-24T10:39:15"
+  },
+  "P6-G6-B-MyBookmarks": {
+   "status": "done",
+   "started": "2026-10-24T10:39:16",
+   "tokens": {
+    "dev": 330676,
+    "test": 29550,
+    "docs": 36902
+   },
+   "commit": "57b6c6ad",
+   "gate": "ci: pass; parity visual --changed: 3/0 (OutSystems), 3/0 (self); arch baseline 0 new; HomeFeed 244.44 kB, Login 184.49 kB",
+   "loops": 0,
+   "finished": "2026-10-24T10:44:59"
+  },
+  "P6-G6-B-BookmarksByGroup": {
+   "status": "done",
+   "started": "2026-10-24T10:44:59",
+   "tokens": {
+    "dev": 334060,
+    "test": 33751,
+    "docs": 38388
+   },
+   "commit": "4bb175d1",
+   "gate": "ci: pass; parity visual --changed: 47/0 (OutSystems), 47/0 (self); arch baseline 0 new; HomeFeed 244.47 kB, Login 184.48 kB",
+   "loops": 0,
+   "finished": "2026-10-24T10:54:19"
+  },
+  "P6-G6-B-Notes": {
+   "status": "done",
+   "started": "2026-10-24T10:54:19",
+   "tokens": {
+    "dev": 387149,
+    "test": 32361,
+    "docs": 41238
+   },
+   "commit": "ff889fdc",
+   "gate": "ci: pass; parity visual --changed: 47/0 (OutSystems), 47/0 (self); arch baseline 0 new; HomeFeed 244.46 kB, Login 184.49 kB",
+   "loops": 0,
+   "finished": "2026-10-24T11:04:26"
+  },
+  "P6-G6-B-ConnectShare": {
+   "status": "done",
+   "started": "2026-10-24T11:04:26",
+   "tokens": {
+    "dev": 255681,
+    "test": 32985,
+    "docs": 33095
+   },
+   "commit": "93c9e547",
+   "gate": "ci: pass; parity visual --changed: 2/0 (OutSystems), 2/0 (self); arch baseline 0 new; HomeFeed 244.49 kB, Login 184.49 kB; W23 equal to the old port (re-judged)",
+   "loops": 0,
+   "finished": "2026-10-24T11:11:09"
+  },
+  "P6-G6-B-LegacyShareObject": {
+   "status": "done",
+   "started": "2026-10-24T11:11:09",
+   "tokens": {
+    "dev": 446939,
+    "test": 36014,
+    "docs": 35845
+   },
+   "commit": "9c8f4869",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); arch baseline 0 new; HomeFeed 244.52 kB, Login 184.51 kB",
+   "loops": 0,
+   "finished": "2026-10-24T11:22:23"
+  },
+  "P6-G6-B-QRCodeGenerate": {
+   "status": "done",
+   "started": "2026-10-24T11:22:24",
+   "tokens": {
+    "dev": 281335,
+    "test": 35644,
+    "docs": 35937
+   },
+   "commit": "1565f0db",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self) (QRCodeGenerate has no parity states; old-vs-new 14 scenarios equal); arch baseline 0 new; HomeFeed 244.47 kB, Login 184.50 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T11:32:27"
+  },
+  "P6-G6-B-ViewDocuments": {
+   "status": "done",
+   "started": "2026-10-24T11:32:27",
+   "tokens": {
+    "dev": 240845,
+    "test": 37549,
+    "docs": 29795
+   },
+   "commit": "b9e74761",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self) (ViewDocuments has no parity states; old-vs-new 7 scenarios / 44 observations equal); arch baseline 0 new; HomeFeed 244.48 kB, Login 184.50 kB; W28 beforePaint",
+   "loops": 0,
+   "finished": "2026-10-24T11:44:42"
+  },
+  "P6-G6-C": {
+   "status": "done",
+   "started": "2026-10-24T11:44:42",
+   "tokens": {
+    "dev": 20398,
+    "test": 23968,
+    "docs": 32572
+   },
+   "commit": "15c6a1e4",
+   "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self) (50 of 64 routes have states, F27); e2e:pwa 9/9; arch baseline 69 rows, no P6-G6 owner; knip/jscpd match; bundle HomeFeed 244.48/248.22, Login 184.50/193.84 kB gzip; group confirm W33 (Opus + Fable, delegated)",
+   "loops": 0,
+   "finished": "2026-10-24T11:56:53"
+  },
+  "P6-end": {
+   "status": "done",
+   "started": "2026-10-24T11:57:07",
+   "tokens": {
+    "dev": 45792,
+    "test": 51475,
+    "docs": 40733
+   },
+   "commit": "ad857bd3",
+   "gate": "ci: pass (loop 1 formatting fix; rerun once, Services flake F23); parity strict --all: 64/0 (OutSystems), 64/0 (self); step guard: no file or import of src/screens/; arch baseline 69 rows, 0 new; HomeFeed 244.46 kB, Login 184.48 kB",
+   "loops": 1,
+   "finished": "2026-10-24T12:16:30"
+  },
+  "P7-0": {
+   "status": "done",
+   "started": "2026-10-24T12:18:59",
+   "tokens": {
+    "dev": 85786,
+    "test": 23958,
+    "docs": 34800
+   },
+   "commit": "d0fdbef2",
+   "gate": "ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); diffcheck --move: 9 declared lines (glob path, 6 one-line barrels); arch baseline 72 rows (+3 owner P7), 0 new; HomeFeed 244.43 kB, Login 184.46 kB",
+   "loops": 0,
+   "finished": "2026-10-24T12:34:31"
+  },
+  "P7-1": {
+   "status": "done",
+   "started": "2026-10-24T12:34:31",
+   "tokens": {
+    "dev": 65430,
+    "test": 23214,
+    "docs": 50948
+   },
+   "commit": "ba5c2154",
+   "gate": "ci: pass; parity visual: 64/0 (OutSystems), 64/0 (self); diffcheck --move: 1 declared line (vendor glob); arch baseline 73 rows (+1 owner P7), 0 new; HomeFeed 244.39 kB, Login 184.46 kB; W30 (Q18) 4 unused OSUI patterns kept",
+   "loops": 0,
+   "finished": "2026-10-24T12:46:05"
+  },
+  "P7-2": {
+   "status": "done",
+   "started": "2026-10-24T12:46:05",
+   "tokens": {
+    "dev": 660281,
+    "test": 32883,
+    "docs": 56726
+   },
+   "commit": "77416f3c",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); old-vs-new 38 call sites + 3 container scenarios, 0 differences; arch baseline 71 rows, 0 new; HomeFeed 244.67 kB (+0.28), Login 184.71 kB (+0.25), W21 tripwire 0.3 held after a trim; one commit for the 4 merges (they share 6 files)",
+   "loops": 0,
+   "finished": "2026-10-24T13:02:38"
+  },
+  "P7-3": {
+   "status": "done",
+   "started": "2026-10-24T13:02:38",
+   "tokens": {
+    "dev": 287119,
+    "test": 33005,
+    "docs": 35374
+   },
+   "commit": "1f7f495b",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); old-vs-new harness 0 differences; arch baseline 71 rows, 0 new; HomeFeed 244.66 kB, Login 184.71 kB; one commit for 2 merges (2 shared user files)",
+   "loops": 0,
+   "finished": "2026-10-24T13:12:19"
+  },
+  "P7-4": {
+   "status": "done",
+   "started": "2026-10-24T13:12:19",
+   "tokens": {
+    "dev": 156151,
+    "test": 26425,
+    "docs": 0
+   },
+   "commit": "ba9c4750",
+   "gate": "ci: pass; parity visual --changed: 64/0 (OutSystems), 64/0 (self); no code change (no group is both 'same' in duplicates.md and still reported by jscpd); arch baseline 71 rows; HomeFeed 244.66 kB, Login 184.71 kB",
+   "loops": 0,
+   "finished": "2026-10-24T13:21:45"
+  },
+  "P7-6": {
+   "status": "done",
+   "started": "2026-10-24T13:21:45",
+   "tokens": {
+    "dev": 595037,
+    "test": 47710,
+    "docs": 112378
+   },
+   "commit": "88214923",
+   "gate": "ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); W32 conditions met (diffcheck declared lines only, rule-6 = 55 ceiling, MSW order kept, coverage 89.39 % >= 49.22 %, arch baseline 0 new, no shared/ left); commits cca9b514, 14f5a615, 1d9baa51, 468e880b and this one",
+   "loops": 0,
+   "finished": "2026-10-24T13:53:10"
+  },
+  "P7-5": {
+   "status": "done",
+   "started": "2026-10-24T13:53:16",
+   "tokens": {
+    "dev": 66191,
+    "test": 35982,
+    "docs": 26059
+   },
+   "commit": "fedda59c",
+   "gate": "ci: pass; parity visual --all: 64/0 (OutSystems), 64/0 (self); e2e:pwa 9/9; arch baseline 72 rows, 0 new; HomeFeed 244.69/248.22 kB, Login 184.71/193.84 kB gzip",
+   "loops": 0,
+   "finished": "2026-10-24T14:06:43"
+  },
+  "P8-1": {
+   "status": "done",
+   "started": "2026-10-24T19:44:07",
+   "tokens": {
+    "dev": 248427,
+    "test": 29210,
+    "docs": 38846
+   },
+   "commit": "e0063dfa",
+   "gate": "ci: pass; parity visual --all 64/64 (OutSystems), 64/64 (self); e2e:pwa 9/9",
+   "loops": 0,
+   "finished": "2026-10-24T22:47:53"
+  },
+  "P8-2": {
+   "status": "done",
+   "started": "2026-10-24T22:57:19",
+   "tokens": {
+    "dev": 122358,
+    "test": 42365,
+    "docs": 38798
+   },
+   "commit": "e2006670",
+   "gate": "ci: pass; parity visual --all 64/64 (OutSystems), 64/64 (self); e2e:pwa 9/9",
+   "loops": 1,
+   "finished": "2026-10-24T23:36:17"
+  },
+  "P9-1": {
+   "status": "done",
+   "started": "2026-10-24T23:36:28",
+   "tokens": {
+    "dev": 91279,
+    "test": 30158,
+    "docs": 32568
+   },
+   "commit": "df225389",
+   "gate": "ci: pass; parity strict --changed 64/64 (OutSystems), 64/64 (self); baselines 0 new",
+   "loops": 0,
+   "finished": "2026-10-24T23:50:01"
+  },
+  "P9-2": {
+   "status": "done",
+   "started": "2026-10-24T23:50:09",
+   "tokens": {
+    "dev": 70655,
+    "test": 28998,
+    "docs": 35964
+   },
+   "commit": "27a3732e",
+   "gate": "ci: pass; flags check 0 unknown, 0 expired, 4 probes fail as expected",
+   "loops": 0,
+   "finished": "2026-10-24T23:58:10"
+  },
+  "P9-3": {
+   "status": "done",
+   "started": "2026-10-24T23:58:27",
+   "tokens": {
+    "dev": 127998,
+    "test": 63754,
+    "docs": 26735
+   },
+   "commit": "95f0bad3",
+   "gate": "ci: pass; ste_lint 25 (HEAD 25); mermaid 4/4",
+   "loops": 1,
+   "finished": "2026-10-25T00:33:47"
+  },
+  "P9-4": {
+   "status": "done",
+   "started": "2026-10-25T00:33:52",
+   "tokens": {
+    "dev": 92215,
+    "test": 27389,
+    "docs": 28517
+   },
+   "commit": "09cc69f2",
+   "gate": "ci: pass; parity strict --all 64/64 (OutSystems), 64/64 (self); e2e:pwa 9/9",
+   "loops": 0,
+   "finished": "2026-10-25T00:58:28"
   }
  },
  "gates": {
@@ -86,6 +1750,54 @@
    "by": "user",
    "text": "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done: 'kéo dài tới khi xong P0-5'): an Opus reviewer checked move-map.csv, duplicates.md and ADR-15 and confirmed with changes (16 rows, 5 other changes, Q7); the changes are applied (dev.md loops 1 and 2).",
    "at": "2026-10-22T14:16:26"
+  },
+  "P2-4:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (B, medium) and Fable (B, high) review: confirm with changes. 3 routes OK (links 200 on 5174, build.png match, parity 64/64 both refs). Changes (Markdown, applied by the documenter before the commit): page-template.md hook shape = repository fetch* functions, query hooks unused for now; container rule (hook/state/mocks in containers/<Name>/, containers never import pages; pilot is a temporary exception); standard state shape written down; screens/*/api.ts split (calls to api/<domain>/repository.ts, route inputs to pages/<Route>/inputs.ts). Code moves deferred as follow-ups F1-F5 in migration/refactor/followups.md (more conservative option where the two differed).",
+   "at": "2026-10-22T21:21:54"
+  },
+  "P5-4:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): confirm the Phase 5 exemption list (0 entries). Opus (high) and Fable (high) agree: the list covers only parity-visible call differences; no call moved into a query with a caller; P5-4 full strict parity 64/64 clean on both references with the call check clean; the parity-invisible behavior changes are in the decision log and the CHANGELOG (W6).",
+   "at": "2026-10-23T15:53:46"
+  },
+  "P6-G1-C:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W16 group G1 confirmed — Opus confirm (high), Fable confirm (high). Conditions: watch the Login bundle margin (0.88 kB); a later step that would pass the limit stops and asks, the limit is not raised; the commit notes that the C tester took knip/jscpd from the dev report.",
+   "at": "2026-10-23T22:20:05"
+  },
+  "P6-G2-C:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W19 group G2 confirmed — Opus confirm (high), Fable confirm (high). Conditions: run P6-F15 (W18) next; keep follow-up F15 (committed remount test for EmailTarget) open; LDMCoordinator, OrbitHost and EmailTarget rest on unit tests and diff review (no parity states).",
+   "at": "2026-10-24T00:24:16"
+  },
+  "P6-G3-C:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W25 group G3 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: open FeedItemDetail by hand once in the P6-end review (no parity states); add @origin to platform/session/unreadCounters.ts at the next touch; F18 and F19 stay open.",
+   "at": "2026-10-24T03:30:22"
+  },
+  "P6-G4-C:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W29 group G4 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: F22 inherited from the old port, raise it with W27's follow-up in the G5 report; keep the F17 watch; P6-F17 gate re-runs parity on the beforePaint pages.",
+   "at": "2026-10-24T06:35:00"
+  },
+  "P6-G5-C:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W31 group G5 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: raise F22/F24/F26 and F25 to the user; F23 flakes before P7 gates; F27 parity coverage wording (53 of 64 routes have states); F17 watch.",
+   "at": "2026-10-24T10:21:59"
+  },
+  "P6-G6-C:after": {
+   "status": "confirmed",
+   "by": "user",
+   "text": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W33 group G6 confirmed — Opus confirm (high), Fable confirm (high). Non-blocking: QRCodeGenerate and ViewDocuments on the P6-end manual review list; F22/F24/F26, F25, F28 as one user batch; F23 flakes before the P7 gates; F27; F17 watch.",
+   "at": "2026-10-24T11:56:52"
   }
  },
  "questions": [
@@ -158,6 +1870,116 @@
    "answer": "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done): Opus recommended (b): move OSBlock and the other presentational OS* widgets to components/ui/os/ (permanent UI primitives under R3, allowed by rule 5), not to legacy/os/widgets. A widget that imports from legacy/os (check OSPopup, OSValidation) stays in legacy/os behind a platform adapter. Plan v2 P1-3 needs a text change.",
    "by": "user",
    "answeredAt": "2026-10-22T13:50:58"
+  },
+  {
+   "id": "Q8",
+   "step": "P1-1",
+   "text": "Self parity reference migration/refactor-reference/ (git-ignored, recorded in P0-2) is missing; strict parity --ref both fails with 'no self reference' on 50 routes (OutSystems side 64/64 clean). Re-record with refactor_parity.py --record-self --all (P1-1 has no runtime change), or accept the OutSystems-only result?",
+   "status": "answered",
+   "at": "2026-10-22T15:28:17",
+   "answer": "auto-accepted (user instruction 2026-10-22 15:29, until end of P1): Opus recommends B: stash the three P1-1 app files, run refactor_parity.py --record-self --all at 3b25ddd, pop, run the tester again. Reason: every later step diffs against this reference, so record it at the documented commit.",
+   "by": "user",
+   "answeredAt": "2026-10-22T15:30:10"
+  },
+  {
+   "id": "Q9",
+   "step": "P1-2",
+   "text": "shell/mocks.ts, shell/mocks.test.ts and shell/testSupport.ts are not in the P1-2 step table; the developer put them in platform/testing/. Is that the right place?",
+   "status": "answered",
+   "at": "2026-10-22T15:44:02",
+   "answer": "auto-accepted (user instruction 2026-10-22 15:29, until end of P1): Opus (medium) and Fable (high) both recommend (b): mocks.ts and mocks.test.ts to platform/bootstrap/ (rename only, the glob still matches); testSupport.ts to src/test/testSupport.ts next to the setup it imports. No platform/testing area. Note in move-map.csv: mocks.ts also mocks shell-block calls, so bootstrap/ is approximate; P5 follow-up with src/mocks/handlers/.",
+   "by": "user",
+   "answeredAt": "2026-10-22T15:45:23"
+  },
+  {
+   "id": "Q10",
+   "step": "P2-1",
+   "text": "ci fails on the pre-existing time-of-day dependent test AssembleEvents.test.tsx (expected 1210-series-5, got 1210-series-1); P2-1 did not touch it. Fix now in its own commit, inside P2-1, or accept?",
+   "status": "answered",
+   "at": "2026-10-22T19:53:32",
+   "answer": "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (high) recommends (a): fix the test in its own test-only commit before the P2-1 commit; freeze the clock with vi.setSystemTime (copying the app rule still depends on the time of day). Keeps P2-1 a pure move and ci meaningful for every later gate.",
+   "by": "user",
+   "answeredAt": "2026-10-22T19:53:33"
+  },
+  {
+   "id": "Q11",
+   "step": "P3-2",
+   "text": "The UBTConnect cycle came only from 8 UBTConnectLibrary stories (20 upward imports); the developer replaced the real blocks with StandInBlock, so those stories show 'Not captured' markers. Keep (a), exclude stories from the rules (b), or move the stories up (c)?",
+   "status": "answered",
+   "at": "2026-10-22T22:02:31",
+   "answer": "auto-accepted (user instruction 2026-10-22 19:41, overnight): SPLIT: Opus (c, medium), Fable (b, high). Master took the more conservative and reversible option (b): revert the 8 stories to the real blocks as at HEAD, drop StandInBlock, and exclude *.stories.tsx (and test files) from the cycle and layer rules in .dependency-cruiser.cjs; production code keeps the strict rules (the 2 new direction rules stay for non-story files).",
+   "by": "user",
+   "answeredAt": "2026-10-22T22:02:31"
+  },
+  {
+   "id": "Q12",
+   "step": "P5-1",
+   "text": "The plan says the 401 and SecurityException path calls session.signedOutRemotely(). The clone today has no SecurityException branch (toast only); OutSystems App_Common forces logout for a signed-in user and sends an anonymous user to Login?In_IsFromInvalidPermissions=True; no mock answers 401 or SecurityException. A: callAction calls signedOutRemotely on 401/SecurityException (new behavior); B: port the App_Common branch into raiseToFlowHandler (matches OutSystems, behavior change, no mock reaches it); C: add signedOutRemotely as the single entry point, used only by the existing forced-logout branch; 401/SecurityException triggers wait for the BFF (no behavior change).",
+   "status": "answered",
+   "at": "2026-10-23T09:38:49",
+   "answer": "auto-accepted (user instruction 2026-10-22 19:41, overnight): Opus (high) chose C: add signedOutRemotely() in platform/session/auth.ts as the single entry point for 'the server ended the session', used now only by the existing forced-logout branch (exceptionMessages.ts), same order of steps; the 401/SecurityException triggers wait for the BFF. A unit test must show that the signedOutRemotely event ends in the same state and storage as signOut() today. B (port the App_Common SecurityException branch) is recorded as a known parity gap for the user, outside the refactor.",
+   "by": "user",
+   "answeredAt": "2026-10-23T09:39:15"
+  },
+  {
+   "id": "Q13",
+   "step": "P5-4",
+   "text": "Q1 behavior: how do the 27 memoryCache uses move to TanStack Query? A: cache entries become queries (fetchQuery, TTL stored with the data and read by a staleTime function, gcTime Infinity, networkMode always, falsy answers removed, a batcher in api/client for the bulk calls, logout removes idle cache queries); two hard-to-reach edge cases change (second call after a 10 s pending miss; a reader between logout and the end of a pending miss joins it). B: exact port, api/client/cache.ts keeps the queue, timeout and bulk logic and uses the QueryClient only as storage. Developer recommends A.",
+   "status": "answered",
+   "at": "2026-10-23T15:10:42",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): A. Opus (medium) and Fable (high) both chose A: the cache entries become TanStack queries (fetchQuery, the stored TTL read by a staleTime function, gcTime Infinity, networkMode always, falsy answers removed, a batcher in api/client keeps the bulk calls the same). It meets the plan target; B keeps a second cache engine. Condition (Opus caveat): a reader after a logout must never join a pending miss of the previous session (keep the original outcome, for example with a session epoch in the cache keys, and add a test). The remaining change (no second call when a reader comes more than 10 s after a pending miss) is accepted; replace its unit test and record it in dev.md and the CHANGELOG.",
+   "by": "user",
+   "answeredAt": "2026-10-23T15:12:02"
+  },
+  {
+   "id": "Q14",
+   "step": "P5-4",
+   "text": "Q2 scope: the step needs about 46 code files (rule about 40). a: one step, one commit; b: split into P5-4a (single-object caches, CacheControl blocks, map objects, MyBookmarks, logout; about 30 files) and P5-4b (bulk image, photo and subdivision caches, then delete memoryCache.ts; about 16 files). Developer recommends a.",
+   "status": "answered",
+   "at": "2026-10-23T15:10:42",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): a, one step and one commit. Opus (medium) and Fable (medium-high) agree: about 46 files, mostly mechanical import and key changes plus small new files; a split would leave two cache systems live for one commit and double the gate. Opus caveat: if the bulk caches turn out not to be a simple key mapping, tell the master before the change grows.",
+   "by": "user",
+   "answeredAt": "2026-10-23T15:12:02"
+  },
+  {
+   "id": "Q15",
+   "step": "P5-4",
+   "text": "Q3 placement: three caches have no domain (user info, timezone, signed images and photos) but plan 2.7 puts options in api/<domain>/keys.ts. a: user info in api/member, timezone in api/locality, MyBookmarks in api/bookmark, member contacts in api/message, new api/image/keys.ts, calls stay until P6; b: one shared api/client/cacheKeys.ts; c: as a and also move the four calls into those domains. Developer recommends a.",
+   "status": "answered",
+   "at": "2026-10-23T15:10:42",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43: Fable + Opus decide for the user): a. Opus (high) and Fable (high): options in the domain that owns the data (user info in api/member, timezone in api/locality, MyBookmarks in api/bookmark, member contacts in api/message, new api/image/keys.ts); the calls stay where they are until Phase 6.",
+   "by": "user",
+   "answeredAt": "2026-10-23T15:12:02"
+  },
+  {
+   "id": "Q16",
+   "step": "P6-G3-B-HomeFeed",
+   "text": "W21: HomeFeed first load +0.42 kB gzip (245.57 -> 245.99, limit 248.22): accept, split useCommunityPopulationQuery (-0.1 kB), or keep blocks fetching. W22: the page part (FeedBlock_Services, FeedBlock_Updates, Dialog_GoExternalApp, api.ts/types.ts) is not done (42 files): follow-up step after Services, or a fix loop now (~54 files).",
+   "status": "answered",
+   "at": "2026-10-24T01:38:31",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed evening): W21 (a) accept +0.42 kB with the F17 tripwire (margin < 1.0 kB or a step > 0.3 kB → stop and trim the entry; limit not raised); W22 (a) commit the shared-block part, add step P6-G3-B-HomeFeed-Page after P6-G3-B-Services, before P6-G3-C. Opus high, Fable high (agree) for both.",
+   "by": "user",
+   "answeredAt": "2026-10-24T01:39:21"
+  },
+  {
+   "id": "Q17",
+   "step": "P6-G5-B-MilestoneDetail",
+   "text": "Back navigation to MilestoneDetail: (a) keep the old-port reload on restore (the 2 old crash paths are gone), OutSystems-like restore as a follow-up next to F22; (b) keep the state now as OutSystems does.",
+   "status": "answered",
+   "at": "2026-10-24T08:12:00",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W27 = (a) — Opus (a, high), Fable (a, high). Keep the old-port reload on restore; record the 2 former crash paths as 'old: crash, new: reload'; the OutSystems-like restore is a follow-up next to F22.",
+   "by": "user",
+   "answeredAt": "2026-10-24T08:12:08"
+  },
+  {
+   "id": "Q18",
+   "step": "P7-1",
+   "text": "4 OSUI patterns have no importer (Columns4, RangeSlider, SwipeEvents, Tooltip); the move map says 'P7-1 deletes it unless the user keeps the OSUI set'. Delete now, or keep them moved?",
+   "status": "answered",
+   "at": "2026-10-24T12:34:31",
+   "answer": "auto-accepted (user instruction 2026-10-23 13:43, re-confirmed 2026-10-23 evening: 'khi cần quyết định gì thì lấy recommend của fable và opus, không cần hỏi tôi'): W30 = (a) — Opus (a, high), Fable (a, high). Keep the 4 patterns moved in components/ui/; the user decides delete-or-keep at the P9 knip cleanup; P7-5 lists them.",
+   "by": "user",
+   "answeredAt": "2026-10-24T12:34:52"
   }
  ]
 }

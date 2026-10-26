@@ -282,3 +282,676 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-22,refactor,verify,19767,refactor-test,,P0-5 sonnet
 2026-10-22,refactor,other,40176,refactor-docs,,P0-5 sonnet
 2026-10-22,refactor,other,21505,refactor-docs,,"plan v2 text sync with Q2 Q4 Q5 Q7, sonnet"
+2026-10-22,refactor,build,0,refactor-dev,,P1-1 sonnet
+2026-10-22,refactor,build,27384,refactor-dev,,P1-1 sonnet
+2026-10-22,refactor,verify,22242,refactor-test,,P1-1 sonnet
+2026-10-22,refactor,review,35046,refactor-advisor,,"P1-1 Q8 judgment (self reference), opus, 9 s"
+2026-10-22,refactor,verify,19189,refactor-test,,P1-1 sonnet
+2026-10-22,refactor,other,18427,refactor-docs,,P1-1 sonnet
+2026-10-22,refactor,build,43169,refactor-dev,,P1-2 sonnet
+2026-10-22,refactor,review,51957,refactor-advisor,,"P1-2 Q9 fact lookup (shell test files), sonnet, 30 s"
+2026-10-22,refactor,review,36184,refactor-advisor,,"P1-2 Q9 judgment, opus, 9 s (confidence medium)"
+2026-10-22,refactor,review,35984,refactor-advisor,,"P1-2 Q9 second opinion, fable, 8 s (confidence high)"
+2026-10-22,refactor,build,21743,refactor-dev,,P1-2 sonnet
+2026-10-22,refactor,verify,21028,refactor-test,,P1-2 loop 1 sonnet
+2026-10-22,refactor,fix,18338,refactor-dev,,P1-2 loop 1 sonnet
+2026-10-22,refactor,verify,27074,refactor-test,,P1-2 loop 1 sonnet
+2026-10-22,refactor,other,32927,refactor-docs,,P1-2 loop 1 sonnet
+2026-10-22,refactor,build,43346,refactor-dev,,P1-3 sonnet
+2026-10-22,refactor,verify,29226,refactor-test,,P1-3 sonnet
+2026-10-22,refactor,other,37695,refactor-docs,,P1-3 sonnet
+2026-10-22,refactor,build,27090,refactor-dev,,P1-4 sonnet
+2026-10-22,refactor,verify,22891,refactor-test,,P1-4 sonnet
+2026-10-22,refactor,other,26521,refactor-docs,,P1-4 sonnet
+2026-10-22,refactor,other,40656,refactor-docs,,P1-4 sonnet
+2026-10-22,refactor,build,40378,refactor-dev,,"P1-fix sonnet (MSW handler order)"
+2026-10-22,refactor,build,54730,refactor-dev,,"P1-fix loop 1 sonnet (origin normalization)"
+2026-10-22,refactor,verify,22651,refactor-test,,"P1-fix sonnet"
+2026-10-22,refactor,other,21518,refactor-docs,,"P1-fix sonnet"
+2026-10-22,refactor,build,26169,refactor-dev,,P2-1 sonnet
+2026-10-22,refactor,verify,25161,refactor-test,,P2-1 sonnet
+2026-10-22,refactor,review,34952,refactor-advisor,,"P2-1 Q10 judgment (time-of-day test), opus, 8 s (confidence high)"
+2026-10-22,refactor,build,26823,refactor-dev,,"P2-1 extra Q10 sonnet (AssembleEvents clock)"
+2026-10-22,refactor,verify,23338,refactor-test,,P2-1 sonnet
+2026-10-22,refactor,other,32352,refactor-docs,,P2-1 sonnet
+2026-10-22,refactor,build,150172,refactor-dev,,P2-2 opus
+2026-10-22,refactor,verify,26094,refactor-test,,P2-2 sonnet
+2026-10-22,refactor,other,24135,refactor-docs,,P2-2 sonnet
+2026-10-22,refactor,build,356457,refactor-dev,,P2-3 opus
+2026-10-22,refactor,verify,41076,refactor-test,,P2-3 sonnet
+2026-10-22,refactor,other,45341,refactor-docs,,P2-3 sonnet
+2026-10-22,refactor,build,44155,refactor-dev,,P2-4 sonnet
+2026-10-22,refactor,verify,20480,refactor-test,,P2-4 loop 1 sonnet
+2026-10-22,refactor,fix,2388,refactor-dev,,P2-4 loop 1 sonnet
+2026-10-22,refactor,verify,13678,refactor-test,,P2-4 loop 1 sonnet
+2026-10-22,refactor,other,42631,refactor-docs,,P2-4 loop 1 sonnet
+2026-10-22,refactor,review,90705,refactor-advisor,,"P2-4 gate review, opus, 2 min (B, confidence medium)"
+2026-10-22,refactor,review,101902,refactor-advisor,,"P2-4 gate review, fable, 3 min (B, confidence high)"
+2026-10-22,refactor,other,21374,refactor-docs,,P2-4 loop 1 sonnet
+2026-10-22,refactor,build,231423,refactor-dev,,P3-1 opus
+2026-10-22,refactor,verify,33385,refactor-test,,P3-1 sonnet
+2026-10-22,refactor,other,46707,refactor-docs,,P3-1 sonnet
+2026-10-22,refactor,build,169359,refactor-dev,,P3-2 opus
+2026-10-22,refactor,review,35747,refactor-advisor,,"P3-2 Q11 judgment (stories), opus, 14 s (c, medium)"
+2026-10-22,refactor,review,35400,refactor-advisor,,"P3-2 Q11 second opinion, fable, 10 s (b, high) - split"
+2026-10-22,refactor,fix,45084,refactor-dev,,P3-2 loop 1 opus
+2026-10-22,refactor,verify,23609,refactor-test,,P3-2 loop 1 sonnet
+2026-10-22,refactor,other,32824,refactor-docs,,P3-2 loop 1 sonnet
+2026-10-22,refactor,build,88019,refactor-dev,,P3-3 opus
+2026-10-22,refactor,verify,23159,refactor-test,,P3-3 sonnet
+2026-10-23,refactor,other,26979,refactor-docs,,P3-3 sonnet
+2026-10-23,refactor,build,38251,refactor-dev,,P3-4 sonnet
+2026-10-23,refactor,verify,24593,refactor-test,,P3-4 sonnet
+2026-10-23,refactor,other,27727,refactor-docs,,P3-4 sonnet
+2026-10-23,refactor,build,146379,refactor-dev,,P4-1 opus
+2026-10-23,refactor,review,57436,refactor-advisor,,"P4-1 Q12 storage layout, opus, 50 s (a, high)"
+2026-10-23,refactor,verify,33099,refactor-test,,P4-1 sonnet
+2026-10-23,refactor,other,34447,refactor-docs,,P4-1 sonnet
+2026-10-23,refactor,build,256823,refactor-dev,,P4-2 opus
+2026-10-23,refactor,verify,33470,refactor-test,,P4-2 sonnet
+2026-10-23,refactor,other,39277,refactor-docs,,P4-2 sonnet
+2026-10-23,refactor,build,264552,refactor-dev,,P4-3 opus
+2026-10-23,refactor,verify,39267,refactor-test,,P4-3 loop 1 sonnet
+2026-10-23,refactor,verify,2737,refactor-test,,P4-3 loop 1 sonnet
+2026-10-23,refactor,other,38118,refactor-docs,,P4-3 loop 1 sonnet
+2026-10-23,refactor,build,217970,refactor-dev,,P4-4 opus
+2026-10-23,refactor,verify,43382,refactor-test,,P4-4 sonnet
+2026-10-23,refactor,other,32495,refactor-docs,,P4-4 sonnet
+2026-10-23,refactor,other,2717,refactor-docs,,P4-4 sonnet
+2026-10-23,refactor,build,304837,refactor-dev,,P4-5 opus
+2026-10-23,refactor,verify,50362,refactor-test,,P4-5 sonnet
+2026-10-23,refactor,other,51054,refactor-docs,,P4-5 sonnet
+2026-10-23,refactor,other,33909,refactor-documenter,,P4-F7 sonnet
+2026-10-23,refactor,build,99758,refactor-developer,,P4-F4 opus
+2026-10-23,refactor,fix,38903,refactor-developer,,P4-F4 loop 1 opus
+2026-10-23,refactor,verify,27105,refactor-tester,,P4-F4 sonnet
+2026-10-23,refactor,other,31951,refactor-documenter,,P4-F4 sonnet
+2026-10-23,refactor,build,192457,refactor-developer,,P4-F6 opus (question)
+2026-10-23,refactor,review,0,refactor-advisor,,"P4-F6 Q13 flake fix, opus (b, high) - tokens in next row"
+2026-10-23,refactor,review,42538,refactor-advisor,,"P4-F6 Q13 flake fix, opus, 12 s (b, high)"
+2026-10-23,refactor,build,26807,refactor-developer,,P4-F5 sonnet
+2026-10-23,refactor,fix,13006,refactor-developer,,P4-F5 loop 1 sonnet
+2026-10-23,refactor,fix,56182,refactor-developer,,P4-F6 loop 1 opus
+2026-10-23,refactor,verify,33900,refactor-tester,,P4-F6 + P4-F5 sonnet
+2026-10-23,refactor,other,31208,refactor-documenter,,P4-F6 + P4-F5 sonnet
+2026-10-23,refactor,build,33192,refactor-developer,,P5-F8 sonnet
+2026-10-23,refactor,verify,20182,refactor-tester,,P5-F8 sonnet
+2026-10-23,refactor,build,132028,refactor-dev,,P5-1 opus
+2026-10-23,refactor,review,39535,refactor-advisor,,"P5-1 Q15 (rf Q12) 401 path, opus, 11 s (C, high)"
+2026-10-23,refactor,build,21292,refactor-dev,,P5-1 opus
+2026-10-23,refactor,verify,34424,refactor-test,,P5-1 sonnet
+2026-10-23,refactor,other,41975,refactor-docs,,P5-1 sonnet
+2026-10-23,refactor,build,198618,refactor-dev,,P5-2-member opus
+2026-10-23,refactor,verify,30757,refactor-test,,P5-2-member sonnet
+2026-10-23,refactor,other,31925,refactor-docs,,P5-2-member sonnet
+2026-10-23,refactor,build,260182,refactor-dev,,P5-2-country opus
+2026-10-23,refactor,verify,60208,refactor-test,,P5-2-country sonnet
+2026-10-23,refactor,other,39719,refactor-docs,,P5-2-country sonnet
+2026-10-23,refactor,build,422904,refactor-developer,,P5-F9 opus
+2026-10-23,refactor,verify,30000,refactor-tester,,P5-F9 sonnet (estimate until the notification)
+2026-10-23,refactor,verify,1667,refactor-tester,,P5-F9 sonnet (rest of 31667)
+2026-10-23,refactor,build,334575,refactor-dev,,P5-2-locality opus
+2026-10-23,refactor,verify,69967,refactor-test,,P5-2-locality sonnet
+2026-10-23,refactor,build,210561,refactor-dev,,P5-2-update opus
+2026-10-23,refactor,other,47784,refactor-docs,,P5-2-locality sonnet
+2026-10-23,refactor,verify,45441,refactor-test,,P5-2-update sonnet
+2026-10-23,refactor,other,35237,refactor-docs,,P5-2-update sonnet
+2026-10-23,refactor,review,44254,refactor-advisor,,"G1 SecurityException gap, fable, 42 s (port after P5, high)"
+2026-10-23,refactor,review,0,refactor-advisor,,"G2 MyBookmarks cache, fable (fix now, high) - tokens in next row"
+2026-10-23,refactor,review,51400,refactor-advisor,,"G2 MyBookmarks cache, fable, 70 s (fix now, high)"
+2026-10-23,refactor,build,215437,refactor-dev,,P5-2-app opus
+2026-10-23,BookmarksByGroup,fix,201583,g2-dev,,"G2 MyBookmarks cache fix on main, opus (pass)"
+2026-10-23,BookmarksByGroup,fix,125011,g2-dev,,"G2 duplicate developer, opus, backed off (another G2 developer was already running)"
+2026-10-23,refactor,verify,26663,refactor-test,,P5-2-app sonnet
+2026-10-23,refactor,review,35878,refactor-advisor,,"W1 G2 cache fields, opus (a, medium)"
+2026-10-23,refactor,review,35441,refactor-advisor,,"W1 G2 cache fields, fable (a, high)"
+2026-10-23,refactor,other,28543,refactor-docs,,P5-2-app sonnet
+2026-10-23,refactor,build,448485,refactor-dev,,P5-3-event opus
+2026-10-23,BookmarksByGroup,fix,32935,g2-test,,"G2 tester sonnet: ci pass, diff pass, parity blocked (no Playwright in the worktree)"
+2026-10-23,BookmarksByGroup,fix,15243,g2-test,,"G2 parity rerun sonnet: 3 states, 0 differences"
+2026-10-23,BookmarksByGroup,review,36345,refactor-advisor,,"W2 G2 review, opus (confirm, high)"
+2026-10-23,BookmarksByGroup,review,36146,refactor-advisor,,"W2 G2 review, fable (confirm, high)"
+2026-10-23,refactor,build,49144,refactor-dev,,P5-3-event opus
+2026-10-23,refactor,verify,24145,refactor-test,,P5-3-event sonnet
+2026-10-23,refactor,other,27516,refactor-docs,,P5-3-event sonnet
+2026-10-23,refactor,build,65507,refactor-dev,,G2-merge opus: 3 import conflicts resolved
+2026-10-23,refactor,verify,24854,refactor-test,,"G2-merge sonnet: ci pass, parity BookmarksByGroup 6/6 clean"
+2026-10-23,refactor,build,245157,refactor-dev,,P5-3-bookmark opus
+2026-10-23,refactor,build,83197,refactor-dev,,P5-3-bookmark opus
+2026-10-23,refactor,verify,28751,refactor-test,,P5-3-bookmark sonnet
+2026-10-23,refactor,other,29069,refactor-docs,,P5-3-bookmark sonnet
+2026-10-23,refactor,build,187973,refactor-dev,,P5-3-note opus
+2026-10-23,refactor,verify,27603,refactor-test,,P5-3-note sonnet
+2026-10-23,refactor,other,27259,refactor-docs,,P5-3-note sonnet
+2026-10-23,refactor,build,331828,refactor-dev,,P5-3-message opus
+2026-10-23,refactor,build,49134,refactor-dev,,P5-3-message opus
+2026-10-23,refactor,verify,30005,refactor-test,,P5-3-message sonnet
+2026-10-23,refactor,other,26673,refactor-docs,,P5-3-message sonnet
+2026-10-23,refactor,build,171252,refactor-dev,,P5-3-notification opus
+2026-10-23,refactor,verify,25896,refactor-test,,P5-3-notification sonnet
+2026-10-23,refactor,other,22571,refactor-docs,,P5-3-notification sonnet
+2026-10-23,refactor,build,137202,refactor-dev,,P5-4 opus
+2026-10-23,refactor,review,35940,refactor-advisor,,"W3 P5-4, opus"
+2026-10-23,refactor,review,35656,refactor-advisor,,"W3 P5-4, fable"
+2026-10-23,refactor,review,34831,refactor-advisor,,"W4 P5-4, opus"
+2026-10-23,refactor,review,34828,refactor-advisor,,"W4 P5-4, fable"
+2026-10-23,refactor,review,34733,refactor-advisor,,"W5 P5-4, opus"
+2026-10-23,refactor,review,34590,refactor-advisor,,"W5 P5-4, fable"
+2026-10-23,refactor,build,314850,refactor-dev,,P5-4 opus
+2026-10-23,refactor,verify,36715,refactor-test,,P5-4 sonnet
+2026-10-23,refactor,review,36245,refactor-advisor,,"W6 P5-4 gate, opus (confirm, high)"
+2026-10-23,refactor,review,36114,refactor-advisor,,"W6 P5-4 gate, fable (confirm, high)"
+2026-10-23,refactor,other,50795,refactor-docs,,P5-4 sonnet
+2026-10-23,refactor,review,35040,refactor-advisor,,"W7, opus"
+2026-10-23,refactor,review,35349,refactor-advisor,,"W7, fable"
+2026-10-23,refactor,review,35330,refactor-advisor,,"W8, opus"
+2026-10-23,refactor,review,35249,refactor-advisor,,"W8, fable"
+2026-10-23,refactor,fix,207433,refactor-dev,,"G1 SecurityException branch, opus (pass)"
+2026-10-23,refactor,verify,36667,refactor-test,,"G1 tester sonnet: ci pass, parity 64/0 both, manual security scenario ok"
+2026-10-23,refactor,other,32300,refactor-docs,,G1 documenter sonnet
+2026-10-23,refactor,build,39442,refactor-dev,,P6-G1-A sonnet
+2026-10-23,refactor,verify,25033,refactor-test,,P6-G1-A sonnet
+2026-10-23,refactor,fix,0,refactor-dev,,P6-F12 sonnet - tokens in next row
+2026-10-23,refactor,fix,21411,refactor-dev,,P6-F12 sonnet (pass)
+2026-10-23,refactor,verify,15708,refactor-test,,P6-G1-A sonnet
+2026-10-23,refactor,other,0,refactor-docs,,P6-G1-A sonnet
+2026-10-23,refactor,other,25006,refactor-docs,,P6-G1-A sonnet
+2026-10-23,refactor,build,141525,refactor-dev,,P6-G1-B-Login opus
+2026-10-23,refactor,review,35383,refactor-advisor,,"W9, opus"
+2026-10-23,refactor,review,35367,refactor-advisor,,"W9, fable"
+2026-10-23,refactor,review,36738,refactor-advisor,,"W10, opus"
+2026-10-23,refactor,review,36978,refactor-advisor,,"W10, fable"
+2026-10-23,refactor,verify,25019,refactor-test,,P6-G1-B-Login sonnet
+2026-10-23,refactor,other,24866,refactor-docs,,P6-G1-B-Login sonnet
+2026-10-23,refactor,build,189857,refactor-dev,,P6-G1-B-Splash opus
+2026-10-23,refactor,verify,29397,refactor-test,,P6-G1-B-Splash sonnet
+2026-10-23,refactor,review,36074,refactor-advisor,,"W11, opus"
+2026-10-23,refactor,review,36592,refactor-advisor,,"W11, fable"
+2026-10-23,refactor,other,25422,refactor-docs,,P6-G1-B-Splash sonnet
+2026-10-23,refactor,build,277303,refactor-dev,,P6-G1-B-AcceptPendingPolicies opus
+2026-10-23,refactor,verify,25273,refactor-test,,P6-G1-B-AcceptPendingPolicies sonnet
+2026-10-23,refactor,other,42447,refactor-docs,,P6-G1-B-AcceptPendingPolicies sonnet
+2026-10-23,refactor,build,191363,refactor-dev,,P6-G1-B-Menu opus
+2026-10-23,refactor,verify,37253,refactor-test,,P6-G1-B-Menu sonnet
+2026-10-23,refactor,other,33398,refactor-docs,,P6-G1-B-Menu sonnet
+2026-10-23,refactor,build,57852,refactor-dev,,P6-G1-B-Shared sonnet
+2026-10-23,refactor,verify,34578,refactor-test,,P6-G1-B-Shared sonnet
+2026-10-23,refactor,review,37307,refactor-advisor,,"W12, opus"
+2026-10-23,refactor,review,36443,refactor-advisor,,"W12, fable"
+2026-10-23,refactor,review,37621,refactor-advisor,,"W13, opus"
+2026-10-23,refactor,review,37634,refactor-advisor,,"W13, fable"
+2026-10-23,refactor,fix,64795,refactor-dev,,P6-G1-B-Shared loop 1 sonnet
+2026-10-23,refactor,verify,22207,refactor-test,,P6-G1-B-Shared loop 1 sonnet
+2026-10-23,refactor,other,51590,refactor-docs,,P6-G1-B-Shared loop 1 sonnet
+2026-10-23,refactor,build,209650,refactor-dev,,P6-G1-B-PINRegister opus
+2026-10-23,refactor,verify,29886,refactor-test,,P6-G1-B-PINRegister sonnet
+2026-10-23,refactor,other,32234,refactor-docs,,P6-G1-B-PINRegister sonnet
+2026-10-23,refactor,build,356110,refactor-dev,,P6-G1-B-PINUnlock opus
+2026-10-23,refactor,review,35391,refactor-advisor,,"W14, opus"
+2026-10-23,refactor,review,35467,refactor-advisor,,"W14, fable"
+2026-10-23,refactor,verify,28624,refactor-test,,P6-G1-B-PINUnlock sonnet
+2026-10-23,refactor,other,28841,refactor-docs,,P6-G1-B-PINUnlock sonnet
+2026-10-23,refactor,build,244999,refactor-dev,,P6-G1-B-PINChange opus
+2026-10-23,refactor,verify,24121,refactor-test,,P6-G1-B-PINChange sonnet
+2026-10-23,refactor,other,28010,refactor-docs,,P6-G1-B-PINChange sonnet
+2026-10-23,refactor,build,110329,refactor-dev,,P6-G1-B-PINBiometricsMenu opus
+2026-10-23,refactor,verify,27534,refactor-test,,P6-G1-B-PINBiometricsMenu sonnet
+2026-10-23,refactor,other,20415,refactor-docs,,P6-G1-B-PINBiometricsMenu sonnet
+2026-10-23,refactor,build,116035,refactor-dev,,P6-G1-B-TermsAndPoliciesMenu opus
+2026-10-23,refactor,verify,28267,refactor-test,,P6-G1-B-TermsAndPoliciesMenu sonnet
+2026-10-23,refactor,other,22739,refactor-docs,,P6-G1-B-TermsAndPoliciesMenu sonnet
+2026-10-23,refactor,build,236195,refactor-dev,,P6-G1-B-Profile opus
+2026-10-23,refactor,verify,38694,refactor-test,,P6-G1-B-Profile sonnet
+2026-10-23,refactor,other,20976,refactor-docs,,P6-G1-B-Profile sonnet
+2026-10-23,refactor,build,27767,refactor-dev,,P6-G1-C sonnet
+2026-10-23,refactor,review,35707,refactor-advisor,,"W15, opus"
+2026-10-23,refactor,review,36116,refactor-advisor,,"W15, fable"
+2026-10-23,refactor,verify,22611,refactor-test,,P6-G1-C sonnet
+2026-10-23,refactor,other,34401,refactor-docs,,P6-G1-C sonnet
+2026-10-23,refactor,review,40682,refactor-advisor,,"W16, opus"
+2026-10-23,refactor,review,40551,refactor-advisor,,"W16, fable"
+2026-10-23,refactor,build,23713,refactor-dev,,P6-G2-A sonnet
+2026-10-23,refactor,review,44795,refactor-advisor,,"W17, opus"
+2026-10-23,refactor,review,39299,refactor-advisor,,"W17, fable"
+2026-10-23,refactor,verify,20014,refactor-test,,P6-G2-A sonnet
+2026-10-23,refactor,other,26026,refactor-docs,,P6-G2-A sonnet
+2026-10-23,refactor,build,57826,refactor-dev,,P6-G2-B-Shared sonnet
+2026-10-23,refactor,review,52636,refactor-advisor,,"bundle analysis (W18 facts), sonnet"
+2026-10-23,refactor,verify,37325,refactor-test,,P6-G2-B-Shared sonnet
+2026-10-23,refactor,other,35858,refactor-docs,,P6-G2-B-Shared sonnet
+2026-10-23,refactor,review,48410,refactor-advisor,,"W18, opus"
+2026-10-23,refactor,review,46678,refactor-advisor,,"W18, fable"
+2026-10-23,refactor,build,122809,refactor-dev,,P6-G2-B-ContactUsMenu opus
+2026-10-23,refactor,verify,26477,refactor-test,,P6-G2-B-ContactUsMenu sonnet
+2026-10-23,refactor,other,21082,refactor-docs,,P6-G2-B-ContactUsMenu sonnet
+2026-10-23,refactor,build,235557,refactor-dev,,P6-G2-B-ContactUsDetails opus
+2026-10-23,refactor,verify,26588,refactor-test,,P6-G2-B-ContactUsDetails sonnet
+2026-10-23,refactor,other,30110,refactor-docs,,P6-G2-B-ContactUsDetails sonnet
+2026-10-23,refactor,build,209513,refactor-dev,,P6-G2-B-ContactByEmailMember opus
+2026-10-23,refactor,verify,41879,refactor-test,,P6-G2-B-ContactByEmailMember sonnet
+2026-10-23,refactor,other,38416,refactor-docs,,P6-G2-B-ContactByEmailMember sonnet
+2026-10-23,refactor,build,80075,refactor-dev,,P6-G2-B-ContactByEmailOneSchoolGlobal opus
+2026-10-23,refactor,verify,34131,refactor-test,,P6-G2-B-ContactByEmailOneSchoolGlobal sonnet
+2026-10-23,refactor,other,23946,refactor-docs,,P6-G2-B-ContactByEmailOneSchoolGlobal sonnet
+2026-10-23,refactor,build,87846,refactor-dev,,P6-G2-B-ContactByEmailLDMCoordinator opus
+2026-10-23,refactor,verify,30104,refactor-test,,P6-G2-B-ContactByEmailLDMCoordinator sonnet
+2026-10-23,refactor,other,29690,refactor-docs,,P6-G2-B-ContactByEmailLDMCoordinator sonnet
+2026-10-23,refactor,build,86900,refactor-dev,,P6-G2-B-ContactByEmailOrbitHelpdesk opus
+2026-10-23,refactor,verify,0,refactor-test,,P6-G2-B-ContactByEmailOrbitHelpdesk sonnet
+2026-10-23,refactor,verify,29952,refactor-test,,P6-G2-B-ContactByEmailOrbitHelpdesk sonnet
+2026-10-23,refactor,other,25220,refactor-docs,,P6-G2-B-ContactByEmailOrbitHelpdesk sonnet
+2026-10-23,refactor,build,89630,refactor-dev,,P6-G2-B-ContactByEmailOrbitHost opus
+2026-10-23,refactor,verify,30070,refactor-test,,P6-G2-B-ContactByEmailOrbitHost sonnet
+2026-10-23,refactor,other,24789,refactor-docs,,P6-G2-B-ContactByEmailOrbitHost sonnet
+2026-10-23,refactor,build,214669,refactor-dev,,P6-G2-B-EmailContact opus
+2026-10-24,refactor,verify,26571,refactor-test,,P6-G2-B-EmailContact sonnet
+2026-10-24,refactor,other,24077,refactor-docs,,P6-G2-B-EmailContact sonnet
+2026-10-24,refactor,build,177705,refactor-dev,,P6-G2-B-EmailTarget opus
+2026-10-24,refactor,verify,35068,refactor-test,,P6-G2-B-EmailTarget sonnet
+2026-10-24,refactor,other,27787,refactor-docs,,P6-G2-B-EmailTarget sonnet
+2026-10-24,refactor,build,22967,refactor-dev,,P6-G2-C sonnet
+2026-10-24,refactor,verify,22452,refactor-test,,P6-G2-C sonnet
+2026-10-24,refactor,other,29458,refactor-docs,,P6-G2-C sonnet
+2026-10-24,refactor,review,40628,refactor-advisor,,"W19, opus"
+2026-10-24,refactor,review,40368,refactor-advisor,,"W19, fable"
+2026-10-24,refactor,build,34092,refactor-dev,,P6-F15 sonnet
+2026-10-24,refactor,verify,27207,refactor-test,,P6-F15 sonnet
+2026-10-24,refactor,other,21750,refactor-docs,,P6-F15 sonnet
+2026-10-24,refactor,build,23628,refactor-dev,,P6-G3-A sonnet
+2026-10-24,refactor,verify,23723,refactor-test,,P6-G3-A sonnet
+2026-10-24,refactor,other,27193,refactor-docs,,P6-G3-A sonnet
+2026-10-24,refactor,build,56920,refactor-dev,,P6-G3-B-Shared sonnet
+2026-10-24,refactor,verify,27369,refactor-test,,P6-G3-B-Shared sonnet
+2026-10-24,refactor,other,28534,refactor-docs,,P6-G3-B-Shared sonnet
+2026-10-24,refactor,review,46733,refactor-advisor,,"W20, opus"
+2026-10-24,refactor,review,42462,refactor-advisor,,"W20, fable"
+2026-10-24,refactor,build,410670,refactor-dev,,P6-G3-B-HomeFeed opus
+2026-10-24,refactor,review,36678,refactor-advisor,,"W21, opus"
+2026-10-24,refactor,review,36185,refactor-advisor,,"W21, fable"
+2026-10-24,refactor,review,36323,refactor-advisor,,"W22, opus"
+2026-10-24,refactor,review,36292,refactor-advisor,,"W22, fable"
+2026-10-24,refactor,verify,29268,refactor-test,,P6-G3-B-HomeFeed sonnet
+2026-10-24,refactor,other,45977,refactor-docs,,P6-G3-B-HomeFeed sonnet
+2026-10-24,refactor,build,279075,refactor-dev,,P6-G3-B-Services opus
+2026-10-24,refactor,review,41726,refactor-advisor,,"W23, opus"
+2026-10-24,refactor,review,42319,refactor-advisor,,"W23, fable"
+2026-10-24,refactor,verify,31880,refactor-test,,P6-G3-B-Services sonnet
+2026-10-24,refactor,other,41855,refactor-docs,,P6-G3-B-Services sonnet
+2026-10-24,refactor,build,393384,refactor-dev,,P6-G3-B-Search opus
+2026-10-24,refactor,verify,45114,refactor-test,,P6-G3-B-Search sonnet
+2026-10-24,refactor,other,35774,refactor-docs,,P6-G3-B-Search sonnet
+2026-10-24,refactor,build,312595,refactor-dev,,P6-G3-B-MessageList opus
+2026-10-24,refactor,verify,36150,refactor-test,,P6-G3-B-MessageList sonnet
+2026-10-24,refactor,other,28303,refactor-docs,,P6-G3-B-MessageList sonnet
+2026-10-24,refactor,build,249800,refactor-dev,,P6-G3-B-MessageDetail opus
+2026-10-24,refactor,verify,28839,refactor-test,,P6-G3-B-MessageDetail sonnet
+2026-10-24,refactor,other,36636,refactor-docs,,P6-G3-B-MessageDetail sonnet
+2026-10-24,refactor,build,124589,refactor-dev,,P6-G3-B-FeedItemDetail opus
+2026-10-24,refactor,verify,28566,refactor-test,,P6-G3-B-FeedItemDetail sonnet
+2026-10-24,refactor,other,22499,refactor-docs,,P6-G3-B-FeedItemDetail sonnet
+2026-10-24,refactor,review,37716,refactor-advisor,,"W24, opus"
+2026-10-24,refactor,review,36682,refactor-advisor,,"W24, fable"
+2026-10-24,refactor,build,313215,refactor-dev,,P6-G3-B-Updates_SingleList opus
+2026-10-24,refactor,verify,39501,refactor-test,,P6-G3-B-Updates_SingleList sonnet
+2026-10-24,refactor,other,31414,refactor-docs,,P6-G3-B-Updates_SingleList sonnet
+2026-10-24,refactor,build,243732,refactor-dev,,P6-G3-B-Notifications opus
+2026-10-24,refactor,verify,32943,refactor-test,,P6-G3-B-Notifications sonnet
+2026-10-24,refactor,other,29225,refactor-docs,,P6-G3-B-Notifications sonnet
+2026-10-24,refactor,build,210378,refactor-dev,,P6-F16 opus
+2026-10-24,refactor,verify,30562,refactor-test,,P6-F16 sonnet
+2026-10-24,refactor,other,25096,refactor-docs,,P6-F16 sonnet
+2026-10-24,refactor,build,336188,refactor-dev,,P6-G3-B-HomeFeed-Page opus
+2026-10-24,refactor,verify,30449,refactor-test,,P6-G3-B-HomeFeed-Page sonnet
+2026-10-24,refactor,other,41589,refactor-docs,,P6-G3-B-HomeFeed-Page sonnet
+2026-10-24,refactor,build,31840,refactor-dev,,P6-G3-C sonnet
+2026-10-24,refactor,verify,28203,refactor-test,,P6-G3-C sonnet
+2026-10-24,refactor,other,26695,refactor-docs,,P6-G3-C sonnet
+2026-10-24,refactor,review,41062,refactor-advisor,,"W25, opus"
+2026-10-24,refactor,review,40427,refactor-advisor,,"W25, fable"
+2026-10-24,refactor,build,28756,refactor-dev,,P6-G4-A sonnet
+2026-10-24,refactor,verify,20392,refactor-test,,P6-G4-A sonnet
+2026-10-24,refactor,other,26380,refactor-docs,,P6-G4-A sonnet
+2026-10-24,refactor,build,66931,refactor-dev,,P6-G4-B-Shared sonnet
+2026-10-24,refactor,verify,37635,refactor-test,,P6-G4-B-Shared sonnet
+2026-10-24,refactor,other,36630,refactor-docs,,P6-G4-B-Shared sonnet
+2026-10-24,refactor,build,185505,refactor-dev,,P6-G4-B-BrowseCountries opus
+2026-10-24,refactor,verify,23283,refactor-test,,P6-G4-B-BrowseCountries sonnet
+2026-10-24,refactor,other,25630,refactor-docs,,P6-G4-B-BrowseCountries sonnet
+2026-10-24,refactor,build,207150,refactor-dev,,P6-G4-B-BrowseDirectory opus
+2026-10-24,refactor,verify,25863,refactor-test,,P6-G4-B-BrowseDirectory sonnet
+2026-10-24,refactor,other,28594,refactor-docs,,P6-G4-B-BrowseDirectory sonnet
+2026-10-24,refactor,build,269521,refactor-dev,,P6-G4-B-CountryList opus
+2026-10-24,refactor,verify,29066,refactor-test,,P6-G4-B-CountryList sonnet
+2026-10-24,refactor,other,31232,refactor-docs,,P6-G4-B-CountryList sonnet
+2026-10-24,refactor,build,276627,refactor-dev,,P6-G4-B-HouseholdCarousel opus
+2026-10-24,refactor,verify,30877,refactor-test,,P6-G4-B-HouseholdCarousel sonnet
+2026-10-24,refactor,review,40925,refactor-advisor,,"W26, opus"
+2026-10-24,refactor,review,40711,refactor-advisor,,"W26, fable"
+2026-10-24,refactor,P6-F20,19990,refactor-developer,,"F20 flake fix, sonnet"
+2026-10-24,refactor,verify,14451,refactor-test,,P6-G4-B-HouseholdCarousel sonnet
+2026-10-24,refactor,other,34937,refactor-docs,,P6-G4-B-HouseholdCarousel sonnet
+2026-10-24,refactor,build,291411,refactor-dev,,P6-G4-B-Photobook opus
+2026-10-24,refactor,verify,35625,refactor-test,,P6-G4-B-Photobook sonnet
+2026-10-24,refactor,other,34130,refactor-docs,,P6-G4-B-Photobook sonnet
+2026-10-24,refactor,build,201390,refactor-dev,,P6-G4-B-CountryDetails opus
+2026-10-24,refactor,verify,26099,refactor-test,,P6-G4-B-CountryDetails sonnet
+2026-10-24,refactor,other,34910,refactor-docs,,P6-G4-B-CountryDetails sonnet
+2026-10-24,refactor,build,367455,refactor-dev,,P6-G4-B-Household_Relations opus
+2026-10-24,refactor,verify,33637,refactor-test,,P6-G4-B-Household_Relations sonnet
+2026-10-24,refactor,other,34345,refactor-docs,,P6-G4-B-Household_Relations sonnet
+2026-10-24,refactor,build,376412,refactor-dev,,P6-G4-B-Locality_Details opus
+2026-10-24,refactor,verify,32829,refactor-test,,P6-G4-B-Locality_Details sonnet
+2026-10-24,refactor,build,316669,refactor-dev,,P6-G4-B-OneSchoolGlobalDetails opus
+2026-10-24,refactor,other,34300,refactor-docs,,P6-G4-B-Locality_Details sonnet
+2026-10-24,refactor,verify,30795,refactor-test,,P6-G4-B-OneSchoolGlobalDetails sonnet
+2026-10-24,refactor,other,33036,refactor-docs,,P6-G4-B-OneSchoolGlobalDetails sonnet
+2026-10-24,refactor,build,166203,refactor-dev,,P6-G4-B-SupperMeeting_Carousel opus
+2026-10-24,refactor,verify,25987,refactor-test,,P6-G4-B-SupperMeeting_Carousel sonnet
+2026-10-24,refactor,build,95269,refactor-dev,,P6-G4-B-CommunityBusinessDetails_CoomingSoon opus
+2026-10-24,refactor,other,39809,refactor-docs,,P6-G4-B-SupperMeeting_Carousel sonnet
+2026-10-24,refactor,verify,25441,refactor-test,,P6-G4-B-CommunityBusinessDetails_CoomingSoon sonnet
+2026-10-24,refactor,other,26087,refactor-docs,,P6-G4-B-CommunityBusinessDetails_CoomingSoon sonnet
+2026-10-24,refactor,build,228664,refactor-dev,,P6-G4-B-Assemble_BrowseByCountry opus
+2026-10-24,refactor,verify,30043,refactor-test,,P6-G4-B-Assemble_BrowseByCountry sonnet
+2026-10-24,refactor,build,518953,refactor-dev,,P6-G4-B-SupperMeeting_Details opus
+2026-10-24,refactor,other,34000,refactor-docs,,P6-G4-B-Assemble_BrowseByCountry sonnet
+2026-10-24,refactor,verify,30884,refactor-test,,P6-G4-B-SupperMeeting_Details sonnet
+2026-10-24,refactor,other,50827,refactor-docs,,P6-G4-B-SupperMeeting_Details sonnet
+2026-10-24,refactor,build,27899,refactor-dev,,P6-G4-C sonnet
+2026-10-24,refactor,review,36462,refactor-advisor,,"W28, opus"
+2026-10-24,refactor,review,36932,refactor-advisor,,"W28, fable"
+2026-10-24,refactor,review,35081,refactor-advisor,,"W27, opus"
+2026-10-24,refactor,review,34989,refactor-advisor,,"W27, fable"
+2026-10-24,refactor,verify,19897,refactor-test,,P6-G4-C sonnet
+2026-10-24,refactor,other,29704,refactor-docs,,P6-G4-C sonnet
+2026-10-24,refactor,review,41973,refactor-advisor,,"W29, opus"
+2026-10-24,refactor,review,42172,refactor-advisor,,"W29, fable"
+2026-10-24,refactor,build,74965,refactor-dev,,P6-F17 opus
+2026-10-24,refactor,verify,22379,refactor-test,,P6-F17 sonnet
+2026-10-24,refactor,other,30691,refactor-docs,,P6-F17 sonnet
+2026-10-24,refactor,build,30168,refactor-dev,,P6-G5-A sonnet
+2026-10-24,refactor,verify,22289,refactor-test,,P6-G5-A sonnet
+2026-10-24,refactor,fix,14108,refactor-dev,,P6-G5-A loop 1 sonnet
+2026-10-24,refactor,verify,16044,refactor-test,,P6-G5-A loop 1 sonnet
+2026-10-24,refactor,build,66045,refactor-dev,,P6-G5-B-Shared sonnet
+2026-10-24,refactor,other,36293,refactor-docs,,P6-G5-A sonnet
+2026-10-24,refactor,verify,21622,refactor-test,,P6-G5-B-Shared sonnet
+2026-10-24,refactor,verify,1643,refactor-test,,P6-G5-B-Shared sonnet
+2026-10-24,refactor,build,356158,refactor-dev,,P6-G5-B-OrbitLanding opus
+2026-10-24,refactor,other,32088,refactor-docs,,P6-G5-B-Shared sonnet
+2026-10-24,refactor,verify,30575,refactor-test,,P6-G5-B-OrbitLanding sonnet
+2026-10-24,refactor,build,264747,refactor-dev,,P6-G5-B-OrbitAdminLanding opus
+2026-10-24,refactor,other,36351,refactor-docs,,P6-G5-B-OrbitLanding sonnet
+2026-10-24,refactor,verify,30109,refactor-test,,P6-G5-B-OrbitAdminLanding sonnet
+2026-10-24,refactor,build,308215,refactor-dev,,P6-G5-B-OrbitAdminEventDetail opus
+2026-10-24,refactor,other,31764,refactor-docs,,P6-G5-B-OrbitAdminLanding sonnet
+2026-10-24,refactor,verify,46056,refactor-test,,P6-G5-B-OrbitAdminEventDetail sonnet
+2026-10-24,refactor,build,394209,refactor-dev,,P6-G5-B-EventDetail opus
+2026-10-24,refactor,other,42737,refactor-docs,,P6-G5-B-OrbitAdminEventDetail sonnet
+2026-10-24,refactor,verify,31863,refactor-test,,P6-G5-B-EventDetail sonnet
+2026-10-24,refactor,build,488700,refactor-dev,,P6-G5-B-EventBooklet opus
+2026-10-24,refactor,other,33953,refactor-docs,,P6-G5-B-EventDetail sonnet
+2026-10-24,refactor,verify,33926,refactor-test,,P6-G5-B-EventBooklet sonnet
+2026-10-24,refactor,other,38092,refactor-docs,,P6-G5-B-EventBooklet sonnet
+2026-10-24,refactor,build,468964,refactor-dev,,P6-G5-B-MilestoneDetail opus
+2026-10-24,refactor,verify,31623,refactor-test,,P6-G5-B-MilestoneDetail sonnet
+2026-10-24,refactor,build,317637,refactor-dev,,P6-G5-B-GuestArrangements opus
+2026-10-24,refactor,other,39258,refactor-docs,,P6-G5-B-MilestoneDetail sonnet
+2026-10-24,refactor,verify,33283,refactor-test,,P6-G5-B-GuestArrangements sonnet
+2026-10-24,refactor,build,350113,refactor-dev,,P6-G5-B-HelpersDetail opus
+2026-10-24,refactor,other,40207,refactor-docs,,P6-G5-B-GuestArrangements sonnet
+2026-10-24,refactor,review,35587,refactor-advisor,,"W30, opus"
+2026-10-24,refactor,review,35349,refactor-advisor,,"W30, fable"
+2026-10-24,refactor,verify,27365,refactor-test,,P6-G5-B-HelpersDetail sonnet
+2026-10-24,refactor,build,372180,refactor-dev,,P6-G5-B-HostSurvey opus
+2026-10-24,refactor,other,33312,refactor-docs,,P6-G5-B-HelpersDetail sonnet
+2026-10-24,refactor,verify,28183,refactor-test,,P6-G5-B-HostSurvey sonnet
+2026-10-24,refactor,build,305850,refactor-dev,,P6-G5-B-TransportDetail opus
+2026-10-24,refactor,other,36365,refactor-docs,,P6-G5-B-HostSurvey sonnet
+2026-10-24,refactor,verify,26809,refactor-test,,P6-G5-B-TransportDetail sonnet
+2026-10-24,refactor,build,292476,refactor-dev,,P6-G5-B-MyEntertaining opus
+2026-10-24,refactor,other,27234,refactor-docs,,P6-G5-B-TransportDetail sonnet
+2026-10-24,refactor,verify,34105,refactor-test,,P6-G5-B-MyEntertaining sonnet
+2026-10-24,refactor,build,283643,refactor-dev,,P6-G5-B-LDM_MyEvents_V2 opus
+2026-10-24,refactor,other,31309,refactor-docs,,P6-G5-B-MyEntertaining sonnet
+2026-10-24,refactor,verify,29513,refactor-test,,P6-G5-B-LDM_MyEvents_V2 sonnet
+2026-10-24,refactor,build,367452,refactor-dev,,P6-G5-B-LDM_EventDetail_V2 opus
+2026-10-24,refactor,other,43911,refactor-docs,,P6-G5-B-LDM_MyEvents_V2 sonnet
+2026-10-24,refactor,verify,36516,refactor-test,,P6-G5-B-LDM_EventDetail_V2 sonnet
+2026-10-24,refactor,build,277027,refactor-dev,,P6-G5-B-LDM_Email_V2 opus
+2026-10-24,refactor,other,37693,refactor-docs,,P6-G5-B-LDM_EventDetail_V2 sonnet
+2026-10-24,refactor,verify,31174,refactor-test,,P6-G5-B-LDM_Email_V2 sonnet
+2026-10-24,refactor,other,35451,refactor-docs,,P6-G5-B-LDM_Email_V2 sonnet
+2026-10-24,refactor,build,423247,refactor-dev,,P6-G5-B-AssembleEvents opus
+2026-10-24,refactor,other,1359,refactor-docs,,P6-G5-B-LDM_Email_V2 sonnet
+2026-10-24,refactor,verify,33227,refactor-test,,P6-G5-B-AssembleEvents sonnet
+2026-10-24,refactor,build,542158,refactor-dev,,P6-G5-B-AssembleDetail opus
+2026-10-24,refactor,other,37461,refactor-docs,,P6-G5-B-AssembleEvents sonnet
+2026-10-24,refactor,build,249586,refactor-dev,,P6-G5-B-AssembleDetail opus
+2026-10-24,refactor,verify,47470,refactor-test,,P6-G5-B-AssembleDetail sonnet
+2026-10-24,refactor,other,54973,refactor-docs,,P6-G5-B-AssembleDetail sonnet
+2026-10-24,refactor,build,26017,refactor-dev,,P6-G5-C sonnet
+2026-10-24,refactor,verify,25634,refactor-test,,P6-G5-C sonnet
+2026-10-24,refactor,other,30562,refactor-docs,,P6-G5-C sonnet
+2026-10-24,refactor,review,68231,refactor-advisor,,"W31, opus"
+2026-10-24,refactor,review,56716,refactor-advisor,,"W31, fable"
+2026-10-24,refactor,build,25617,refactor-dev,,P6-G6-A sonnet
+2026-10-24,refactor,verify,20970,refactor-test,,P6-G6-A sonnet
+2026-10-24,refactor,build,25616,refactor-dev,,P6-G6-B-Shared sonnet
+2026-10-24,refactor,other,23925,refactor-docs,,P6-G6-A sonnet
+2026-10-24,refactor,verify,21685,refactor-test,,P6-G6-B-Shared sonnet
+2026-10-24,refactor,build,330676,refactor-dev,,P6-G6-B-MyBookmarks opus
+2026-10-24,refactor,other,20413,refactor-docs,,P6-G6-B-Shared sonnet
+2026-10-24,refactor,verify,29550,refactor-test,,P6-G6-B-MyBookmarks sonnet
+2026-10-24,refactor,build,334060,refactor-dev,,P6-G6-B-BookmarksByGroup opus
+2026-10-24,refactor,other,36902,refactor-docs,,P6-G6-B-MyBookmarks sonnet
+2026-10-24,refactor,verify,33751,refactor-test,,P6-G6-B-BookmarksByGroup sonnet
+2026-10-24,refactor,build,387149,refactor-dev,,P6-G6-B-Notes opus
+2026-10-24,refactor,other,38388,refactor-docs,,P6-G6-B-BookmarksByGroup sonnet
+2026-10-24,refactor,verify,32361,refactor-test,,P6-G6-B-Notes sonnet
+2026-10-24,refactor,other,37014,refactor-docs,,P6-G6-B-Notes sonnet
+2026-10-24,refactor,build,255681,refactor-dev,,P6-G6-B-ConnectShare opus
+2026-10-24,refactor,other,4224,refactor-docs,,P6-G6-B-Notes sonnet
+2026-10-24,refactor,verify,28042,refactor-test,,P6-G6-B-ConnectShare sonnet
+2026-10-24,refactor,verify,4943,refactor-test,,P6-G6-B-ConnectShare sonnet
+2026-10-24,refactor,build,446939,refactor-dev,,P6-G6-B-LegacyShareObject opus
+2026-10-24,refactor,other,33095,refactor-docs,,P6-G6-B-ConnectShare sonnet
+2026-10-24,refactor,review,161849,refactor-advisor,,"W32, opus"
+2026-10-24,refactor,review,108532,refactor-advisor,,"W32, fable"
+2026-10-24,refactor,verify,36014,refactor-test,,P6-G6-B-LegacyShareObject sonnet
+2026-10-24,refactor,other,34309,refactor-docs,,P6-G6-B-LegacyShareObject sonnet
+2026-10-24,refactor,build,281335,refactor-dev,,P6-G6-B-QRCodeGenerate opus
+2026-10-24,refactor,other,1536,refactor-docs,,P6-G6-B-LegacyShareObject sonnet
+2026-10-24,refactor,verify,35644,refactor-test,,P6-G6-B-QRCodeGenerate sonnet
+2026-10-24,refactor,build,240845,refactor-dev,,P6-G6-B-ViewDocuments opus
+2026-10-24,refactor,other,35937,refactor-docs,,P6-G6-B-QRCodeGenerate sonnet
+2026-10-24,refactor,verify,37549,refactor-test,,P6-G6-B-ViewDocuments sonnet
+2026-10-24,refactor,other,29795,refactor-docs,,P6-G6-B-ViewDocuments sonnet
+2026-10-24,refactor,build,20398,refactor-dev,,P6-G6-C sonnet
+2026-10-24,refactor,verify,23968,refactor-test,,P6-G6-C sonnet
+2026-10-24,refactor,other,32572,refactor-docs,,P6-G6-C sonnet
+2026-10-24,refactor,review,76586,refactor-advisor,,"W33, opus"
+2026-10-24,refactor,review,48528,refactor-advisor,,"W33, fable"
+2026-10-24,refactor,build,32682,refactor-dev,,P6-end sonnet
+2026-10-24,refactor,verify,0,refactor-test,,P6-end sonnet
+2026-10-24,refactor,verify,32459,refactor-test,,P6-end loop 1 sonnet
+2026-10-24,refactor,fix,13110,refactor-dev,,P6-end loop 1 sonnet
+2026-10-24,refactor,verify,18297,refactor-test,,P6-end loop 1 sonnet
+2026-10-24,refactor,verify,719,refactor-test,,P6-end loop 1 sonnet
+2026-10-24,refactor,other,40733,refactor-docs,,P6-end sonnet
+2026-10-24,refactor,fix,47282,refactor-developer,,"F23 test flakes (Updates_SingleList, EventBooklet, Services), sonnet"
+2026-10-24,refactor,build,85786,refactor-dev,,P7-0 sonnet
+2026-10-24,refactor,verify,23958,refactor-test,,P7-0 sonnet
+2026-10-24,refactor,other,34800,refactor-docs,,P7-0 sonnet
+2026-10-24,refactor,build,65430,refactor-dev,,P7-1 sonnet
+2026-10-24,refactor,verify,23214,refactor-test,,P7-1 sonnet
+2026-10-24,refactor,build,621231,refactor-dev,,P7-2 opus
+2026-10-24,refactor,other,50948,refactor-docs,,P7-1 sonnet
+2026-10-24,refactor,build,39050,refactor-dev,,P7-2 opus
+2026-10-24,refactor,verify,32883,refactor-test,,P7-2 sonnet
+2026-10-24,refactor,build,287119,refactor-dev,,P7-3 opus
+2026-10-24,refactor,other,56726,refactor-docs,,P7-2 sonnet
+2026-10-24,refactor,verify,33005,refactor-test,,P7-3 sonnet
+2026-10-24,refactor,other,0,refactor-docs,,P7-3 sonnet
+2026-10-24,refactor,build,156151,refactor-dev,,P7-4 opus
+2026-10-24,refactor,other,35374,refactor-docs,,P7-3 sonnet
+2026-10-24,refactor,verify,26425,refactor-test,,P7-4 sonnet
+2026-10-24,refactor,other,0,refactor-docs,,P7-4 sonnet
+2026-10-24,refactor,build,573944,refactor-dev,,P7-6 opus
+2026-10-24,refactor,build,21093,refactor-dev,,P7-6 opus
+2026-10-24,refactor,verify,47710,refactor-test,,P7-6 sonnet
+2026-10-24,refactor,other,112378,refactor-docs,,P7-6 sonnet
+2026-10-24,refactor,build,66191,refactor-dev,,P7-5 sonnet
+2026-10-24,refactor,verify,35982,refactor-test,,P7-5 sonnet
+2026-10-24,refactor,other,26059,refactor-docs,,P7-5 sonnet
+2026-10-24,refactor,other,47570,advisor,,F22-F26 cache question opus
+2026-10-24,refactor,other,45775,advisor,,F22-F26 cache question fable
+2026-10-24,refactor,build,26156,refactor-dev,,F29 sonnet (pass 1)
+2026-10-24,refactor,build,30234,refactor-dev,,"F29 sonnet (pass 2, packages)"
+2026-10-24,refactor,other,45441,advisor,,F25 back guard fable
+2026-10-24,refactor,other,59996,advisor,,F25 back guard opus
+2026-10-24,refactor,verify,22922,refactor-test,,F29 sonnet
+2026-10-24,refactor,build,36465,refactor-dev,,"F29 sonnet (pass 3, lib exports)"
+2026-10-24,refactor,other,25857,refactor-docs,,F29 sonnet
+2026-10-24,refactor,verify,21303,refactor-test,,F29 sonnet (re-test)
+2026-10-24,refactor,build,24550,refactor-dev,,F33 sonnet
+2026-10-24,refactor,other,32636,refactor-docs,,F29-stack sonnet
+2026-10-24,refactor,verify,24142,refactor-test,,F33 sonnet (fail: format)
+2026-10-24,refactor,build,26305,refactor-dev,,F33 sonnet (loop 1)
+2026-10-24,refactor,other,22327,refactor-docs,,F33 sonnet
+2026-10-24,refactor,verify,13159,refactor-test,,F33 sonnet (re-test)
+2026-10-24,refactor,build,232451,refactor-dev,,F25 opus
+2026-10-24,refactor,build,341490,refactor-dev,,F22-26 opus
+2026-10-24,refactor,verify,26405,refactor-test,,F25 sonnet
+2026-10-24,refactor,other,23539,refactor-docs,,F25 sonnet
+2026-10-24,refactor,verify,38259,refactor-test,,F22-26 sonnet
+2026-10-24,refactor,other,36074,refactor-docs,,F22-26 sonnet
+2026-10-24,refactor,build,47339,refactor-dev,,"F22-26 opus (loop 1, increment over 341490)"
+2026-10-24,refactor,verify,28337,refactor-test,,F22-26 sonnet (re-test)
+2026-10-24,refactor,other,35513,advisor-opus,,"F40 advisor (Opus): (a) keep port, high"
+2026-10-24,refactor,other,35359,advisor-fable,,"F40 advisor (Fable): (a) keep port, high"
+2026-10-24,refactor,other,72597,fact-sonnet,,F39 fact lookup (hall OnParametersChanged)
+2026-10-24,refactor,other,35769,advisor-opus,,"F39 advisor (Opus): (b) add handler, medium"
+2026-10-24,refactor,other,36024,advisor-fable,,"F39 advisor (Fable): (b) add handler, high"
+2026-10-24,refactor,other,106279,fact-sonnet,,F40 read-only check of restored re-run paths (23 hooks)
+2026-10-24,refactor,other,35197,advisor-opus,,"F40 LDM audit advisor (Opus): (a) skip audit on restored re-run, high"
+2026-10-24,refactor,other,35101,advisor-fable,,"F40 LDM audit advisor (Fable): (a) skip audit on restored re-run, high"
+2026-10-24,refactor,other,35399,advisor-opus,,"F40 Orbit hooks advisor (Opus): (b) align 3 hooks, high"
+2026-10-24,refactor,other,35412,advisor-fable,,"F40 Orbit hooks advisor (Fable): (b) align, high"
+2026-10-24,refactor,other,40177,advisor-opus,,"P9-1 scope advisor (Opus): (c) hybrid, medium"
+2026-10-24,refactor,other,40277,advisor-fable,,"P9-1 scope advisor (Fable): (c) hybrid, high"
+2026-10-24,refactor,build,28389,refactor-developer,,"F39 dev (sonnet): hall OnParametersChanged, pass"
+2026-10-24,refactor,build,0,refactor-developer,,"F40 dev (opus): 4 hooks one restored rule, pass (tokens pending notification)"
+2026-10-24,refactor,build,169937,refactor-developer,,F40 dev (opus) tokens from notification
+2026-10-24,refactor,verify,0,refactor-tester,,"F39 test (sonnet): pass; ci timeouts under load, reruns pass; parity 64/64 both (tokens pending)"
+2026-10-24,refactor,verify,42147,refactor-tester,,F39 test (sonnet) tokens from notification
+2026-10-24,refactor,other,21717,refactor-documenter,,F39 docs (sonnet): CHANGELOG + followups; commit 8537c849
+2026-10-24,refactor,verify,26629,refactor-tester,,"F40 test (sonnet): ci 3971 tests pass, parity 64/64 both, pass"
+2026-10-24,refactor,other,29368,refactor-documenter,,"F40 docs (sonnet): CHANGELOG, page-template, followups F41/F42 rows; commit 9695c8ee"
+2026-10-24,refactor,build,0,refactor-dev,,P8-1 opus
+2026-10-24,refactor,build,248427,refactor-dev,,P8-1 opus
+2026-10-24,refactor,build,20663,refactor-developer,,"F43 dev (sonnet): os-wire/os-assets to lib/ by codemod, pass"
+2026-10-24,refactor,verify,0,refactor-test,,P8-1 sonnet
+2026-10-24,refactor,verify,29210,refactor-test,,P8-1 sonnet
+2026-10-24,refactor,other,38846,refactor-docs,,P8-1 sonnet
+2026-10-24,refactor,verify,0,refactor-tester,,F43 test (sonnet): fail format:check (.prettierignore old path); parity 64/64 both; tests 3975 pass
+2026-10-24,refactor,verify,22175,refactor-tester,,F43 test (sonnet) tokens from notification
+2026-10-24,refactor,build,16743,refactor-developer,,"F43 dev loop 1 (sonnet): .prettierignore path, README path"
+2026-10-24,refactor,verify,0,refactor-tester,,F43 re-test loop 1 (sonnet): ci pass 3975 tests (tokens pending)
+2026-10-24,refactor,verify,15573,refactor-tester,,F43 re-test loop 1 (sonnet) tokens from notification
+2026-10-24,refactor,other,27392,refactor-documenter,,"F43 docs (sonnet): CHANGELOG, api-and-mocks, shared-code, overview"
+2026-10-24,refactor,build,0,refactor-developer,,"P8-2 dev (sonnet): pass, 6 stylesheets pruned (-4 kB), question on relaxing rule 1 (tokens pending)"
+2026-10-24,refactor,build,97584,refactor-dev,,P8-2 sonnet
+2026-10-24,refactor,other,39028,advisor-opus,,"P8-2 scope advisor (Opus): (a) keep conservative, high"
+2026-10-24,refactor,build,0,refactor-developer,,"P9-1 dev prefetch (sonnet): pass, rules to error + baselines; question knip exports (tokens pending)"
+2026-10-24,refactor,other,39567,advisor-fable,,"P8-2 scope advisor (Fable): (a) keep conservative, high"
+2026-10-24,refactor,build,63626,refactor-developer,,P9-1 dev prefetch (sonnet) tokens from notification
+2026-10-24,refactor,other,38447,advisor-opus,,"P9-1 knip advisor (Opus): (b) baseline exports/types, medium"
+2026-10-24,refactor,other,38201,advisor-fable,,"P9-1 knip advisor (Fable): (b) baseline exports/types, medium-high"
+2026-10-24,refactor,build,27653,refactor-developer,,P9-1 dev resume W41 (sonnet): knip exports/types baseline 1130 rows
+2026-10-24,refactor,verify,0,refactor-test,,P8-2 sonnet
+2026-10-24,refactor,verify,24851,refactor-test,,P8-2 loop 1 sonnet
+2026-10-24,refactor,fix,24774,refactor-dev,,P8-2 loop 1 sonnet
+2026-10-24,refactor,verify,0,refactor-test,,P8-2 loop 1 sonnet
+2026-10-24,refactor,verify,17514,refactor-test,,P8-2 loop 1 sonnet
+2026-10-24,refactor,other,0,refactor-docs,,P8-2 loop 1 sonnet
+2026-10-24,refactor,other,38798,refactor-docs,,P8-2 sonnet
+2026-10-24,refactor,build,91279,refactor-dev,,P9-1 sonnet
+2026-10-24,refactor,build,-91279,refactor-dev,,correction: P9-1 dev tokens were also recorded as 2 ledger rows (63626 + 27653) before rf.py tokens
+2026-10-24,refactor,build,44311,refactor-developer,,P9-2 dev prefetch (sonnet): question (3 unread keys; metric 4)
+2026-10-24,refactor,other,38687,advisor-opus,,"P9-2 metric advisor (Opus): (a), high"
+2026-10-24,refactor,other,0,advisor-fable,,"P9-2 metric advisor (Fable): (a), high (tokens pending)"
+2026-10-24,refactor,other,39388,advisor-fable,,P9-2 metric advisor (Fable) tokens from notification
+2026-10-24,refactor,other,0,fact-sonnet,,P9-2 unread flag keys fact lookup (tokens pending)
+2026-10-24,refactor,other,71067,fact-sonnet,,"P9-2 unread flag keys fact lookup, tokens from notification"
+2026-10-24,refactor,other,38500,advisor-opus,,"P9-2 unread keys advisor (Opus): (a), high"
+2026-10-24,refactor,other,0,advisor-fable,,"P9-2 unread keys advisor (Fable): (a), high (tokens pending)"
+2026-10-24,refactor,other,38630,advisor-fable,,P9-2 unread keys advisor (Fable) tokens from notification
+2026-10-24,refactor,build,0,refactor-developer,,P9-2 dev resume W42/W43 (sonnet): pass (tokens pending)
+2026-10-24,refactor,verify,30158,refactor-test,,P9-1 sonnet
+2026-10-24,refactor,build,26344,refactor-developer,,P9-2 dev resume (sonnet) tokens from notification
+2026-10-24,refactor,other,0,refactor-docs,,P9-1 sonnet
+2026-10-24,refactor,other,32568,refactor-docs,,P9-1 sonnet
+2026-10-24,refactor,build,70655,refactor-dev,,P9-2 sonnet
+2026-10-24,refactor,build,-70655,refactor-dev,,correction: P9-2 dev tokens were also recorded as 2 ledger rows (44311 + 26344) before rf.py tokens
+2026-10-24,refactor,verify,0,refactor-test,,P9-2 sonnet
+2026-10-24,refactor,verify,28998,refactor-test,,P9-2 sonnet
+2026-10-24,refactor,other,35964,refactor-docs,,P9-2 sonnet
+2026-10-25,refactor,build,0,refactor-dev,,P9-3 sonnet
+2026-10-25,refactor,build,100688,refactor-dev,,P9-3 sonnet
+2026-10-25,refactor,verify,0,refactor-test,,P9-3 sonnet
+2026-10-25,refactor,verify,40633,refactor-test,,P9-3 loop 1 sonnet
+2026-10-25,refactor,fix,27310,refactor-dev,,P9-3 loop 1 sonnet
+2026-10-25,refactor,build,0,refactor-developer,,F54 dev (sonnet): AssembleEvents test compares the full timestamp; no other date-dependent test (tokens pending)
+2026-10-25,refactor,build,36440,refactor-developer,,F54 dev (sonnet) tokens from notification
+2026-10-25,refactor,verify,0,refactor-test,,P9-3 loop 1 sonnet
+2026-10-25,refactor,verify,23121,refactor-test,,P9-3 loop 1 sonnet
+2026-10-25,refactor,verify,0,refactor-tester,,"F54 test (sonnet): ci pass, shared run with P9-3 re-test (tokens counted under P9-3)"
+2026-10-25,refactor,other,0,refactor-docs,,P9-3 loop 1 sonnet
+2026-10-25,refactor,other,26735,refactor-docs,,P9-3 sonnet
+2026-10-25,refactor,build,0,refactor-dev,,P9-4 sonnet
+2026-10-25,refactor,build,92215,refactor-dev,,P9-4 sonnet
+2026-10-25,refactor,verify,0,refactor-test,,P9-4 sonnet
+2026-10-25,refactor,verify,27389,refactor-test,,P9-4 sonnet
+2026-10-25,refactor,other,0,refactor-docs,,P9-4 sonnet
+2026-10-25,refactor,other,28517,refactor-docs,,P9-4 sonnet
+2026-10-25,refactor,build,19298,refactor-developer,,"F52 dev (sonnet): orbitStaticEntities flag read by design in check-flags, pass"
+2026-10-25,refactor,build,0,refactor-developer,,"F57 dev (sonnet): 4 calls into api/share and api/member, pass (tokens pending)"
+2026-10-25,refactor,build,40277,refactor-developer,,F57 dev (sonnet) tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,"F52 pass, F57 fail W21 (HomeFeed +0.66 kB) (tokens pending)"
+2026-10-25,refactor,verify,34077,refactor-tester,,F52 + F57 test (sonnet) tokens from notification
+2026-10-25,refactor,verify,0,fact-sonnet,,F57 bundle growth analysis (tokens pending)
+2026-10-25,refactor,verify,58847,fact-sonnet,,"F57 bundle growth analysis, tokens from notification"
+2026-10-25,refactor,build,0,refactor-developer,,"F57 dev loop 1 (sonnet): split userInformation and shareSheet modules; HomeFeed +0.18, Login +0.00 (tokens pending)"
+2026-10-25,refactor,build,37779,refactor-developer,,F57 dev loop 1 (sonnet) tokens from notification
+2026-10-25,refactor,build,0,refactor-developer,,"F59-a dev (opus): 4 component files split into 15 modules, largest 367 (tokens pending)"
+2026-10-25,refactor,build,211561,refactor-developer,,F59-a dev (opus) tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,"F57 re-test loop 1 (sonnet): pass, HomeFeed +0.18 (tokens pending)"
+2026-10-25,refactor,verify,25402,refactor-tester,,F57 re-test loop 1 (sonnet) tokens from notification
+2026-10-25,refactor,other,0,refactor-documenter,,F52 + F57 + 2026-10-25 decisions docs (sonnet) (tokens pending)
+2026-10-25,refactor,other,53974,refactor-documenter,,docs pass tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,"F59-a test (sonnet): pass, HomeFeed 245.30 (+0.25) (tokens pending)"
+2026-10-25,refactor,verify,35322,refactor-tester,,F59-a test (sonnet) tokens from notification
+2026-10-25,refactor,build,0,refactor-developer,,F59-b dev (sonnet): 2 containers split into 10 modules; question: depcruise baseline 142->144 (tokens pending)
+2026-10-25,refactor,build,92675,refactor-developer,,F59-b dev (sonnet) tokens from notification
+2026-10-25,refactor,other,40036,advisor-opus,,"F59-b baseline advisor (Opus): (c) keep 142, high"
+2026-10-25,refactor,other,39281,advisor-fable,,"F59-b baseline advisor (Fable): (a) accept 144, high"
+2026-10-25,refactor,other,37697,refactor-documenter,,F59-a docs (sonnet)
+2026-10-25,refactor,build,0,refactor-developer,,F58 dev (opus): 15 files to typed clientVar accessors; metric 22 -> 7 (tokens pending)
+2026-10-25,refactor,build,148724,refactor-developer,,F58 dev (opus) tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,F59-b test (sonnet): pass; HomeFeed +0.37 over W21 0.3 (tokens pending)
+2026-10-25,refactor,verify,28524,refactor-tester,,F59-b test (sonnet) tokens from notification
+2026-10-25,refactor,other,39403,advisor-opus,,"F59-b W21 advisor (Opus): (a) accept once, high/medium"
+2026-10-25,refactor,other,38541,advisor-fable,,"F59-b W21 advisor (Fable): (c) accept + trim step, high"
+2026-10-25,refactor,other,0,refactor-documenter,,F59-b docs (sonnet) (tokens pending)
+2026-10-25,refactor,other,34896,refactor-documenter,,F59-b docs tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,"F58 test (sonnet): pass, e2e 9/9, HomeFeed 245.80 (+0.13) (tokens pending)"
+2026-10-25,refactor,verify,28441,refactor-tester,,F58 test (sonnet) tokens from notification
+2026-10-25,refactor,other,0,refactor-documenter,,F58 docs (sonnet) (tokens pending)
+2026-10-25,refactor,other,33637,refactor-documenter,,F58 docs tokens from notification
+2026-10-25,refactor,build,0,refactor-developer,,F59-c dev (sonnet): 4 page files split; baselines not grown (tokens pending)
+2026-10-25,refactor,build,98003,refactor-developer,,F59-c dev (sonnet) tokens from notification
+2026-10-25,refactor,verify,0,refactor-tester,,"F59-c test (sonnet): pass, HomeFeed 245.90 (+0.10) (tokens pending)"
+2026-10-25,refactor,verify,35522,refactor-tester,,F59-c test (sonnet) tokens from notification
+2026-10-25,refactor,other,0,refactor-documenter,,F59-c docs and final.md after-report section (sonnet) (tokens pending)
+2026-10-25,refactor,other,25492,refactor-documenter,,F59-c docs tokens from notification

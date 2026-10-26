@@ -1,16 +1,27 @@
 # Shared code
 
-- `src/shared/<Block>/`: one component per OutSystems block that two or more screens use. Props have the names of the
-  block inputs. Events have the names of the block events. Placeholders become children. The component file carries
-  `@os-block <Module.Flow.Block>`.
-- `src/shared/osui/<Pattern>/`: OutSystems UI patterns (BottomSheet, Carousel, Gallery…). Use the same provider library
+- `src/components/<domain>/<Name>/`, `src/containers/<Name>/`: one component per OutSystems block that two or more
+  screens use. Props have the names of the block inputs. Events have the names of the block events. Placeholders become
+  children. The component file carries `@os-block <Module.Flow.Block>` and `@origin`.
+- `src/shared/` no longer exists. P7-0 moved most blocks to `src/components/ui/<Name>/`. P7-6 moved the rest by data
+  owner ([move-map.csv](../refactor/move-map.csv)).
+- `src/lib/<module>/`: the helpers of one OutSystems module: `structures.ts`, `staticEntities.ts` and the client
+  actions in `actions.ts`. `src/lib/` also holds generic helpers (`cssText.ts`, `osDateTime.ts`, `jsUtils.ts`,
+  `navigationEvent.ts`, `sanitizeHtml.ts`).
+  - The `actions.ts` files still import `api/`, `platform/` and `legacy/os/`. Rule 6 (`lib/` imports only `lib/`) has
+    55 warnings because of this.
+  - The count is a ceiling: later steps may only lower it (follow-up F35 in `migration/refactor/followups.md`).
+- `src/mocks/modules/<Module>/`: the MSW handlers of the module actions (`mocks.ts`, `mockDefaults.ts`).
+- `src/test/`: story and test helpers (`PendingBlock.tsx`, `capturedVariants.tsx`, `loadedImages.tsx`, `mockApiSession.ts`).
+- `src/components/ui/<Pattern>/`: OutSystems UI patterns (BottomSheet, Carousel, Gallery…). P7-1 moved them from the former `osui` folder. Shared actions are in `src/components/ui/lib/`. The 4 `DEPRECATED_*` patterns are in `src/components/ui/legacy/` with business names. Use the same provider library
   and version as the original, where the original has one ([stack](../reference/stack.md)).
-- `src/shell/`: app-wide logic (error handling, sign-in and PIN mock, navigation, preload, feedback messages).
-- `src/lib/`: framework-free helpers and providers (api, config, log, flags, os-wire, device).
+- `src/platform/`: app-wide logic (error handling, sign-in and PIN mock, navigation, preload, feedback messages).
+- `src/api/client/`: the typed `callAction` client. `src/lib/os-wire.ts` and `src/lib/os-assets.ts`: OutSystems wire and asset helpers. `src/legacy/os/`: OutSystems exceptions and other compatibility code.
+  `src/platform/{config,log,flags,device}/`: providers and adapters.
 
 Every shared block has a DOM capture test per captured state and a Storybook story per state.
 
-**Freeze.** Once the foundation is done, screens never edit `src/shell`, `src/shared`, `src/lib` or the original CSS.
+**Freeze.** Once the foundation is done, screens never edit `src/platform`, `src/lib`, `src/api`, `src/legacy` or the original CSS.
 When a screen needs a change:
 
 - The screen writes `migration/change-requests/CR-<Screen>-<n>.md`.
@@ -23,16 +34,16 @@ The reference batch sets these conventions (CustomContainer, Columns_Two, Custom
 IconInline_Internal, HighlightSearch, SkeletonSection, Button; OSUI Columns2, InlineSVG). Later batches copy them.
 
 - **Folders.**
-  - Put a block in `src/shared/<Module>/<Block>/` (module = OutSystems module, e.g. `UBTConnectLibrary`).
-  - Put OutSystems UI patterns in `src/shared/osui/<Pattern>/`.
-  - Put module code in `src/shared/<Module>/lib/`:
+  - Put a block in `src/components/<domain>/<Name>/` (or `src/components/ui/<Name>/` for a pattern that no domain owns).
+  - Put OutSystems UI patterns in `src/components/ui/<Pattern>/`.
+  - Put module code in `src/lib/<module>/` (for example `src/lib/ubtConnectLibrary/`):
     - `structures.ts`: structures. Name fields exactly as in OutSystems. All fields are optional (= OutSystems default).
     - `staticEntities.ts`: identifier values, each with its evidence.
     - `actions.ts`: client actions ported 1:1. Use the lowerCamelCase of the action name. The function returns the
       single output.
     - `actions.test.ts`: branches that no capture reaches.
-  - Put generic helpers in `src/shared/lib/`.
-  - Put story/test helpers in `src/shared/test/`.
+  - Put generic helpers in `src/lib/`.
+  - Put story/test helpers in `src/test/`.
 - **Block files.**
   - `<Block>.tsx` (named export `<Block>`)
   - `index.ts` (`export *` + `export type * from './types'`)
@@ -90,10 +101,10 @@ The original app has two scripts with no npm build that matches them. The app co
 original serves (same version). A typed module wraps each copy. Each folder has a `SOURCE.md` (URL, date, size, sha256,
 licence). Never edit the copies.
 
-| Script                                                 | Folder                                                  | Used by                                                               | Decision |
-| ------------------------------------------------------ | ------------------------------------------------------- | --------------------------------------------------------------------- | -------- |
-| PanZoom (anvaka panzoom, customised by the original)   | `src/vendor/panzoom/` (`index.ts` is the typed wrapper) | the Photobook screen (`src/screens/Photobook/components/PanZoom.tsx`) | ADR-7    |
-| Virtual Select 1.3.0, as bundled by OutSystems UI 2.23 | `src/shared/osui/DropdownSearch/vendor/`                | the DropdownSearch OSUI pattern                                       | ADR-5    |
+| Script                                                 | Folder                                                  | Used by                                                             | Decision |
+| ------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------------------- | -------- |
+| PanZoom (anvaka panzoom, customised by the original)   | `src/vendor/panzoom/` (`index.ts` is the typed wrapper) | the Photobook screen (`src/pages/Photobook/components/PanZoom.tsx`) | ADR-7    |
+| Virtual Select 1.3.0, as bundled by OutSystems UI 2.23 | `src/components/ui/DropdownSearch/vendor/`              | the DropdownSearch OSUI pattern                                     | ADR-5    |
 
 Why vendored: the original customises PanZoom (options that upstream does not have), and npm stops at Virtual Select
 1.1.0. Behaviour must match the original, so the app keeps the same file.

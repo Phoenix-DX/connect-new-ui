@@ -65,8 +65,11 @@ shares no file:
   (`git worktree add -b rf/prefetch-<id>`).
 
 When the prefetched step becomes active, apply its diff to the main tree. When its test passed in the worktree, run a short tester
-pass on the main tree before the commit: `npm run ci` and the parity of the step. Use these calls. An agent runs in the background: wait for its completion
-notification before the next command, and do not start another agent in the meantime. When the agent type is not
+pass on the main tree before the commit: `npm run ci` and the parity of the step. Use these calls. An agent runs in the background: wait for its report
+(the hand-back message or the completion notification, whichever comes first) before the next command, and do not
+start another agent in the meantime. When the report arrives, act on it at once. Never end the turn only to wait for
+the completion notification: on 2026-10-22 it came only with the next user message, and the overnight run stopped for
+6 hours. When the agent type is not
 available in this session, use `subagent_type: "general-purpose"`, and start the prompt with this line:
 
 ```
@@ -88,7 +91,7 @@ Tester:
 ```
 Agent(subagent_type="refactor-tester", model="sonnet", description="<id> test",
   prompt="Step <id>. Brief: migration/refactor/handoffs/<id>/brief.md. Developer report: dev.md in the same
-          folder. The dev server runs on http://localhost:5173. Write test.md. Return only the Result and Questions
+          folder. The dev server runs on <url> (section 4). Write test.md. Return only the Result and Questions
           sections.")
 ```
 
@@ -106,7 +109,8 @@ Do not paste the plan or file contents into a prompt: the brief carries them.
 
 1. Read the status line of its report. Do not read the full report unless the status is not `pass`.
 2. Record the tokens of the agent: `rf.py tokens <id> --agent dev|test|docs --n <N> --model <m>`. The number is
-   `subagent_tokens` in the usage of the completion notification. When no number is given, use `--n 0`.
+   `subagent_tokens` in the usage of the completion notification. When the report came first, continue the step and
+   record the tokens when the notification comes (`rf.py tokens` adds). When no number is given, use `--n 0`.
 3. Act on the status:
 
 | Agent      | Status     | Do                                                                                                          |
@@ -131,7 +135,12 @@ Do not paste the plan or file contents into a prompt: the brief carries them.
 
 Before the test stage of a step with a parity level other than `none`:
 
-1. `curl -s -o /dev/null -w "%{http_code}" http://localhost:5173/UBTConnect/HomeFeed`.
+1. `curl -s -o /dev/null -w "%{http_code}" http://localhost:5173/UBTConnect/HomeFeed`, and check which folder the
+   server serves: `lsof -p $(lsof -nP -iTCP:5173 -sTCP:LISTEN -t | head -1) -a -d cwd`. The folder must be
+   `<project root>/app`. A 200 alone does not prove it: on 2026-10-22 port 5173 served another clone, and the parity of
+   P1 tested the wrong code. When another folder holds the port, do not stop that server: start this repo's server
+   on a free port (`npm --prefix app run dev -- --port 5174 --strictPort`), and give that URL to the tester. The tester
+   then passes `--app <url>` to `refactor_parity.py`.
 2. When it does not print `200`, start
    `export PATH=$HOME/.nvm/versions/node/v24.21.0/bin:$PATH && npm --prefix app run dev` in the background (Bash
    `run_in_background`) and
@@ -157,7 +166,10 @@ When the user says that an advisor decides for them (for example "nhờ opus sug
 1. Ask one narrow question per agent call. Never bundle questions.
 2. A Sonnet agent looks up the facts: versions, release dates, advisories, file contents. No installs, no smoke
    projects.
-3. An Opus agent gets those facts in the prompt and gives the judgment only: one recommendation and a one-line reason.
+3. An Opus agent gets those facts in the prompt and gives the judgment only: one recommendation, a one-line reason,
+   and its confidence (high, medium or low). When the confidence is not high, a Fable agent (`model: "fable"`) gets
+   the same question and facts, without the answer of Opus. When both agree, use the recommendation. When they do not
+   agree, use the more conservative and reversible option, and mark the log row "split" (user, 2026-10-22).
 4. Record the recommendation with the marker of the user's instruction. Add a row to the auto-decision log of
    the run (`migration/refactor/auto-decisions-<date>.md`).
 
@@ -165,7 +177,7 @@ When the user says that an advisor decides for them (for example "nhờ opus sug
 
 The user gave a standing approval for commits on `refactor/architecture` after the gate passes (user, 2026-10-22).
 
-1. Wait for the completion notification of the documenter and record its tokens first. Then run `git status --short`.
+1. Wait for the report of the documenter (section 3.1). Then run `git status --short`.
    Every change must be in `dev.md` or `docs.md`, in `migration/refactor/`, or `migration/metrics/ledger.csv`. When a
    file is not, stop and ask.
 2. `git add -A`, then commit:

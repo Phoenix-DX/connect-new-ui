@@ -39,17 +39,17 @@ How the columns are made:
 
 ### The 9 rows reviewed first (decided at the gate review)
 
-| #   | Row (source)                                                  | Why                                                                                                                                                                                                    |
-| --- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1   | `UBTConnect/HouseholdDetails_Block`                           | The only container by criterion 1. P2. Its children `HouseholdMemberList`, `HouseholdTimelinePhoto(s)` and `MemberListItem` are also P2.                                                               |
-| 2   | `UBTConnectLibrary/Layout_DetailPage`                         | `DetailLayout` in P2, because P2-3 renders the page in `DetailLayout`. 23 routes import it: the codemod changes 23 files in P2.                                                                        |
-| 3   | `UBTConnect_Utils/ShareSheet`                                 | `container+component` by criterion 2 (4 data actions, 666 lines). Plan §2.2 also names `containers/ShareSheet`.                                                                                        |
-| 4   | `UBTConnect/Directory_EntityDetailsActions`                   | `container+component` by criterion 2 (2 data actions, 3 event props, 790 lines).                                                                                                                       |
-| 5   | `UBTConnect_Utils/NoteListActions`                            | `container+component`: 2 data actions, 4 event props, 230 lines. Criterion 2 is met; kept.                                                                                                             |
-| 6   | `UBTConnect/BottomBarMenu`, `UBTConnect/FilterSheet`          | Plan §2.2 names `containers/BottomBar` and `containers/FilterSheet`, but they have no data action: `hook+component` and `component`.                                                                   |
-| 7   | `UBTConnect_EmbedFeed/Embedded_FeedCMS`                       | `hook+component`, 894 lines, 15 event props, 1 data hook; `connect2Feed.embed` is a side effect. Kept `hook+component`; count again in G3, after P5.                                                   |
-| 8   | `UBTConnect/EntitiesCarousel_Element`, `..._HouseholdDetails` | They render the HouseholdDetails container. A component must not import `containers/` (rule 4): the page passes a render prop.                                                                         |
-| 9   | `UBTConnect/Directory_Updates`                                | Not a block: the folder holds only `mocks.ts` (MSW handler of `UpdateItem_MarkAsRead`). Shape `mock`, phase P5, target `src/mocks/handlers/update.ts` (rule 7 forbids its imports in `api/<domain>/`). |
+| #   | Row (source)                                                                             | Why                                                                                                                                                                                                    |
+| --- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | `UBTConnect/HouseholdDetails_Block`                                                      | The only container by criterion 1. P2. Its children `HouseholdMemberList`, `HouseholdTimelinePhoto(s)` and `MemberListItem` are also P2.                                                               |
+| 2   | `UBTConnectLibrary/Layout_DetailPage`                                                    | `DetailLayout` in P2, because P2-3 renders the page in `DetailLayout`. 23 routes import it: the codemod changes 23 files in P2.                                                                        |
+| 3   | `UBTConnect_Utils/ShareSheet`                                                            | `container+component` by criterion 2 (4 data actions, 666 lines). Plan §2.2 also names `containers/ShareSheet`.                                                                                        |
+| 4   | `UBTConnect/Directory_EntityDetailsActions`                                              | `container+component` by criterion 2 (2 data actions, 3 event props, 790 lines).                                                                                                                       |
+| 5   | `UBTConnect_Utils/NoteListActions`                                                       | `container+component`: 2 data actions, 4 event props, 230 lines. Criterion 2 is met; kept.                                                                                                             |
+| 6   | `UBTConnect/BottomBarMenu` (now `components/layout/BottomBar`), `UBTConnect/FilterSheet` | Plan §2.2 names `containers/BottomBar` and `containers/FilterSheet`, but they have no data action: `hook+component` and `component`.                                                                   |
+| 7   | `UBTConnect_EmbedFeed/Embedded_FeedCMS`                                                  | `hook+component`, 894 lines, 15 event props, 1 data hook; `connect2Feed.embed` is a side effect. Kept `hook+component`; count again in G3, after P5.                                                   |
+| 8   | `UBTConnect/EntitiesCarousel_Element`, `..._HouseholdDetails`                            | They render the HouseholdDetails container. A component must not import `containers/` (rule 4): the page passes a render prop.                                                                         |
+| 9   | `UBTConnect/Directory_Updates`                                                           | Not a block: the folder holds only `mocks.ts` (MSW handler of `UpdateItem_MarkAsRead`). Shape `mock`, phase P5, target `src/mocks/handlers/update.ts` (rule 7 forbids its imports in `api/<domain>/`). |
 
 ## Candidate groups of `refactor-plan.md` §2.1 item 4
 
@@ -84,7 +84,7 @@ Evidence:
   They share the `Input_Subject` markup and `label.mandatory OSFillParent`. The header, the button classes
   (`btn btn-primary full-width` against `btn btn-primary OSFillParent`), the layout and the send action
   (`Connect2_OrbitMobile_MUI/ActionSendContactEmail` against `Connect2_LegacyShared/ActionUserContactUser`) are different.
-  jscpd: `ContactByEmailLDMCoordinator/components/actions.ts` and `EmailTarget/components/actions.ts` share 16 lines
+  jscpd: `ContactByEmailLDMCoordinator/actions.ts` and `EmailTarget/components/actions.ts` share 16 lines
   (the application-event helpers).
 - `LDM_Email_V2` (`ScreenBlock_Event_Email_V2`, 532 lines, G5) is a third form of the second family. The plan does not
   list it.
@@ -102,6 +102,8 @@ Plan:
   (16 lines) to `api/contact`. Do not merge the forms: the DOM differs.
 
 ### Group 2: dialogs (6 blocks)
+
+Status: **done in P7-2** (see "Result of P7-2" below the plan).
 
 Verdict: **partly**. Two base dialogs render the same DOM. The 6 blocks are wrappers or presets of them.
 
@@ -140,6 +142,18 @@ Plan (P7-2):
   `platform/navigation` and uses the DOM of `Dialog` through `app/`.
 - `Dialog_AccessRestrictedAction_Legacy` merges into the platform dialog; its `OSBlock` element stays in the DOM.
 
+Result of P7-2 (evidence: `src/components/ui/Dialog/Dialog.README.md`, `src/app/dialogs.ts`):
+
+- `Dialog`, `ConfirmDialog`, `ChoiceDialog` and `NavigationDialog` are in `components/ui/Dialog`. `Dialog_Navigation` is
+  `NavigationDialog` with `variant="connect"`. `ChoiceDialog` and `NavigationDialog` take the prop names `header`, `body`,
+  `confirmLabel` and `dismissLabel`.
+- No host moved to `app/`. `app/dialogs.ts` (`connectDialogs()`) connects both ways: the triggers go into
+  `components/ui/Dialog` and the `Dialog` markup goes into the platform dialogs.
+- `NavigationDialog` keeps its own `dx-before-navigation` listener (W21): there is no `useNavigationConfirmation` in
+  `platform/navigation`.
+- `Dialog_AccessRestrictedAction_Legacy` is its own module, `platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx`,
+  so that only the legacy screens load it (W21).
+
 ### Group 3: empty states (4 blocks)
 
 Verdict: **different**. No two of them render the same DOM.
@@ -158,6 +172,10 @@ Found while building the map: `ConnectBlankSlate` (3 routes), Orbit `NoResults` 
 
 Plan (P7-3): `EmptyState` = `EmptyList` renamed, the base in `components/ui`. `DirectoryEmptyState` stays a preset in
 `components/directory`. The others keep their DOM as their own components. No merge.
+
+Status: done in P7-3. `EmptyList` is `components/ui/EmptyState` (props `title`, `text`) and `SkeletonSection` is
+`components/ui/Skeleton` (props `isLoading`, `extendedClass`, `isActiveWhileLoading`): 2 renames, no merge. The
+empty-state and skeleton blocks of this group render other DOM and stay separate.
 
 Skeletons are the same case:
 `SkeletonSection` (ui), `Skeleton_Loading` (orbit), `NC_Card_Item_Text__Skeleton`, `AssembleSummaryDetailHeader_Skeleton`
@@ -180,6 +198,11 @@ Evidence:
 Plan: keep all. `Card_*` → `components/orbit` (G5) as `OrbitCard`, `OrbitEventCard`, `MilestoneCard`,
 `MemberInformationCard`. `ImageCard_*`, `NC_*` → `components/ui` (P7). P7-4 merges nothing here.
 
+Result of P7-4: kept as domain components. jscpd still reports one clone, inside
+`components/orbit/MilestoneCard/MilestoneCard.tsx` (15 lines). The two parts are two branches of one OutSystems If
+(meal and accommodation milestones). The DOM differs: the margin of the location row, the time row and the button
+condition.
+
 ### Group 5: carousels
 
 Verdict: **different** (layers, not copies).
@@ -191,6 +214,9 @@ Evidence: `osui/Carousel` (OSUI pattern, `osui-carousel__*`, Splide provider) is
 
 Plan: `osui/Carousel` → `components/ui/Carousel` (P7). The `EntitiesCarousel*` family → `components/directory` (G4).
 The element gets the details as a render prop from the page (rule 4: a component does not import a container).
+
+Result of P7-4: kept as domain components. jscpd reports 0 clones. `components/ui/Carousel` is the engine and the
+`components/directory` family uses it: layers, not copies.
 
 ### Group 6: `DEPRECATED_*` patterns in `shared/osui`
 
@@ -210,16 +236,62 @@ Decided (Q5, option a, auto-accepted under the delegation of the user, 2026-10-2
 with business names in `components/ui/legacy/`: `LegacyAccordion`, `SectionExpandable`, `LegacyButtonLoading` and
 `GridGallery`. The phase is P7 and the shape is `ui`. They are not deleted. `move-map.csv` shows this.
 
+Result of P7-4: kept (Q5). jscpd reports 0 clones.
+
 ## Other pairs found (jscpd and same names)
 
-| Pair                                                                                               | Verdict   | Evidence                                                                   | Plan                                                                                                          |
-| -------------------------------------------------------------------------------------------------- | --------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `UBTConnectLibrary/PopupMenu`, `Connect2_LegacyShared/PopupMenu`                                   | partly    | Both `dx-popup-menu-anchor`, `-content`; the Connect2 one adds `-backdrop` | Keep (`PopupMenu`, `LegacyPopupMenu`). P7-4 may merge with a `backdrop` prop if the rest of the DOM is equal. |
-| `UBTConnectLibrary/InputCounter`, `Connect2_LegacyShared/InputCounter`                             | different | Connect2: `text-align-right`, `text-neutral-6 font-size-0-75em`            | Keep (`InputCounter`, `LegacyInputCounter`).                                                                  |
-| `UBTConnectLibrary/Button`, `UBTConnect_Utils/Button`                                              | layers    | The Utils one wraps the library button with an icon and a spinner          | Keep (`Button`, `ActionButton`).                                                                              |
-| `osui/BottomSheet`, `UBTConnectLibrary/BottomSheet`                                                | layers    | The library one wraps the OSUI one                                         | Keep (`BottomSheet`, `ConnectBottomSheet`).                                                                   |
-| `Layout_MainPages`, `Layout_MainPages_FixedTitle`                                                  | partly    | jscpd: 2 clones of 18 lines                                                | Keep in G3/G4; P7-4 merge candidate (`fixedTitle`) if the DOM of each variant stays.                          |
-| `Member_ListItem`, `NonMember_ListItem`                                                            | partly    | jscpd: 27 lines                                                            | Keep (`MemberListItem`, `NonMemberListItem`); a shared helper when P2 or G4 rewrites them.                    |
-| `DropdownSearch`, `DropdownTags`                                                                   | partly    | jscpd: 14 and 26 lines                                                     | OSUI patterns: keep; an internal helper in P7-1.                                                              |
-| `Connect2_LegacyShared/Layout`, `Layout_Orbit`                                                     | partly    | Same structure, theme class `connect-theme` against `orbit-theme`          | Keep (`LegacyLayout`, `OrbitLayout`).                                                                         |
-| `BrowseDirectory`, `CountryDetails` (`index.tsx`); `BrowseCountries`, `BrowseDirectory` (`api.ts`) | partly    | jscpd: 14 and 16 lines                                                     | G4: the calls go to `api/country`.                                                                            |
+| Pair                                                                            | Verdict   | Evidence                                                                   | Plan                                                                                       |
+| ------------------------------------------------------------------------------- | --------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `UBTConnectLibrary/PopupMenu`, `Connect2_LegacyShared/PopupMenu`                | partly    | Both `dx-popup-menu-anchor`, `-content`; the Connect2 one adds `-backdrop` | Kept (P7-4): the rest of the DOM is not equal, see the result of P7-4 below.               |
+| `UBTConnectLibrary/InputCounter`, `Connect2_LegacyShared/InputCounter`          | different | Connect2: `text-align-right`, `text-neutral-6 font-size-0-75em`            | Keep (`InputCounter`, `LegacyInputCounter`).                                               |
+| `UBTConnectLibrary/Button`, `UBTConnect_Utils/Button`                           | layers    | The Utils one wraps the library button with an icon and a spinner          | Keep (`Button`, `ActionButton`).                                                           |
+| `osui/BottomSheet`, `UBTConnectLibrary/BottomSheet`                             | layers    | The library one wraps the OSUI one                                         | Keep (`BottomSheet`, `ConnectBottomSheet`).                                                |
+| `Layout_MainPages`, `Layout_MainPages_FixedTitle`                               | partly    | jscpd: 2 clones of 18 lines                                                | Kept (P7-4): the DOM differs in 7 places, see the result of P7-4 below.                    |
+| `Member_ListItem`, `NonMember_ListItem`                                         | partly    | jscpd: 27 lines                                                            | Keep (`MemberListItem`, `NonMemberListItem`); a shared helper when P2 or G4 rewrites them. |
+| `DropdownSearch`, `DropdownTags`                                                | partly    | jscpd: 14 and 26 lines                                                     | OSUI patterns: keep; an internal helper in P7-1.                                           |
+| `Connect2_LegacyShared/Layout`, `Layout_Orbit`                                  | partly    | Same structure, theme class `connect-theme` against `orbit-theme`          | Keep (`LegacyLayout`, `OrbitLayout`).                                                      |
+| `BrowseDirectory`, `CountryDetails` (`index.tsx`); `BrowseDirectory` (`api.ts`) | partly    | jscpd: 14 and 16 lines                                                     | G4: the calls go to `api/country`.                                                         |
+
+### The subscribed countries of the Assemble filters (F21, P6-G5-B-AssembleEvents)
+
+Verdict: **same** function, 2 copies kept.
+
+Evidence:
+
+- `pages/Assemble_BrowseByCountry/hooks/useAssembleFilter.ts` and `pages/AssembleEvents/hooks/useAssembleFilterSheet.ts`
+  have the same private function `fetchSubscribedCountries` (6 lines).
+- The function reads Cache_UserInfo_Get (`platform/session/userInfo`). Then it calls
+  `getCacheableRegionSubscribedCountries` (`shared/Connect2_LegacyShared`) with the SubscriptionRegionId of the user.
+- In OutSystems, each block has its own FetchCountries action: ScreenBlock_Assemble_Filter and its bottom-sheet twin
+  Assemble_FilterSheet. For the same reason, `assembleFilterState.ts` and `assembleFilterSheetState.ts` have the same
+  variables.
+
+Plan: keep the 2 copies.
+
+- Rule 3 forbids a page-to-page import.
+- The function imports `platform/` and `shared/`, so rule 7 keeps it out of `api/country`.
+- `components/` and `containers/` (rule 2) do not hold data functions.
+- Look again when `getCacheableRegionSubscribedCountries` moves from `shared/` to `api/country`: rule 7 allows all
+  its imports there. Then each copy is one line.
+
+## Result of P7-4 (cards and carousels, by evidence)
+
+P7-4 merged nothing. A group merges when this file gives it the verdict "same" and `jscpd` still reports it.
+
+Two groups have the verdict "same". The base dialogs of group 2 were merged in P7-2. The Assemble
+`fetchSubscribedCountries` has 6 lines, below the `minLines` of 10 of `jscpd`, so `jscpd` does not report it.
+
+`jscpd` now reports 36 clones and 665 lines (0.52 %). P0-3 reported 63 clones and 1289 lines.
+Evidence: `migration/refactor/handoffs/P7-4/dev.md`.
+
+| Group or pair                             | Result                                                                                                                                                                                                                                                                                          |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 4 Cards                                   | Kept as domain components (reason above).                                                                                                                                                                                                                                                       |
+| 5 Carousels                               | Kept as domain components (layers).                                                                                                                                                                                                                                                             |
+| `PopupMenu`, `LegacyPopupMenu`            | Kept. Besides `dx-popup-menu-backdrop`, the legacy one has the block name `Widgets.PopupMenu` (the other: `ConnectPatterns.PopupMenu`) and the ids `<scope>-Root`, `<scope>-Anchor`, `<scope>-PopupMenu` (the other: none). `jscpd` finds 2 clones (59 and 30 lines). See follow-up F32.        |
+| `Layout_MainPages`, `_FixedTitle`         | Kept. The verdict is "partly". The DOM differs in 7 places: block name, wrapper class `layout-sticky-title`, one `header-top` row against `header-top-title` and `header-top-search`, `addHeaderGap`, the gradient class while scrolled, `setMainScroll` against `setMainFixedScroll`, columns. |
+| `Member_ListItem`, `NonMember_ListItem`   | Kept. One clone (29 lines). The row plans a shared helper, not a merge. The move-map row of `shared/UBTConnectLibrary/Member_ListItem` (phase P2) still has no status and its file is still in `shared/`; P7-6 handles it (F34).                                                                |
+| `DropdownSearch`, `DropdownTags`          | Kept. Two OSUI patterns; 2 clones (15 and 27 lines).                                                                                                                                                                                                                                            |
+| `NetworkWarning` (`ui` and `MyBookmarks`) | Merged in F33 (user, 2026-10-24): one `components/ui/NetworkWarning`, with the inner Animate id `<scope>-$b1` as in the OutSystems capture. The `MyBookmarks` copy is deleted.                                                                                                                  |
+| Other pairs of the table above            | Kept (verdict "different" or "layers"; 0 clones, except `BrowseDirectory`, `CountryDetails` with the `toMarker` clone of 15 lines: inputs differ, rule 3).                                                                                                                                      |
+| Orbit client actions copied per page      | Kept. No verdict yet; see follow-up F31.                                                                                                                                                                                                                                                        |

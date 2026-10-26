@@ -26,7 +26,7 @@ Never open, read or print anything in `.auth/` or `migration/.raw/`.
 | `app/docs/refactor/move-map.csv`               | When the step moved or merged blocks: set the `status` column of those rows.                                                                    |
 | `app/docs/architecture/overview.md`            | When folders, layers or the data flow changed. Update the mermaid diagrams.                                                                     |
 | `app/docs/guides/*.md`, `app/src/**/README.md` | When paths or conventions that the guide names changed.                                                                                         |
-| ADR-15 in `migration/architecture.md`          | When a rule of the target architecture changed.                                                                                                 |
+| ADR-15 in `migration/stack.json`               | When a rule of the target architecture changed. Edit the ADR-15 entry (`context`, `decision`, `consequences`), then run `python3 .claude/skills/outsystems-screen-spec/scripts/stack.py render`. Never edit `migration/architecture.md` by hand. |
 | `app/docs/guides/page-template.md`             | From P2-4, when the page pattern changed.                                                                                                       |
 
 The brief says "full run: --all" at the last step of a phase. At that step, also read the architecture documents

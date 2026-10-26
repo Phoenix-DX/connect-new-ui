@@ -8,14 +8,13 @@ public
 src/api/schema.d.ts
 src/app/routes.generated.ts
 src/app/routes.css.generated.ts
-src/lib/*.generated.json
-src/lib/device-classes.json
+src/platform/flags/flags.generated.json
+src/platform/device/device-classes.json
 src/lib/os-assets.manifest.json
 src/mocks/fixtures
 src/vendor
-src/shared/osui/*/vendor/*.js
+src/components/ui/*/vendor/*.js
 docs/reference
 docs/refactor/reports
-src/shared/**/__captures__
 lighthouse-reports
 docs/refactor/graph.json

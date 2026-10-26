@@ -1,13 +1,13 @@
 # App shell: session, app start, sign-in, PIN, lock, navigation, back, view cache
 
-`src/shell` holds the app-wide logic of `migration/app-shell.spec.md`. Part A covers the mock session, the app-start
+`src/platform` holds the app-wide logic of `migration/app-shell.spec.md`. Part A covers the mock session, the app-start
 calls, mock sign-in and sign-out, the device PIN and the inactivity lock. Part B (below) covers navigation, back
 handling, preload and the view cache. Part C covers feedback messages, shared dialogs and the lock overlay.
 The shell depends on no screen. Screens call the APIs below.
 
 ## What runs on every page load
 
-`<AppStart />` (mounted in `AppFrame`) runs `startApp()` once, in the order and with the conditions of TST
+`<AppStart />` (mounted in `AppFrame`) runs `startApp()` (`platform/bootstrap/appStartSteps.ts`) once, in the order and with the conditions of TST
 (spec section 10; `knowledge/shell-observed.md` U1/U3):
 
 - Signed out: SynchAppContext, Sync_Info_GetMain.
@@ -18,17 +18,26 @@ The shell depends on no screen. Screens call the APIs below.
     `.LocalBookmarksC2`). The mock user has no local bookmarks.
   - SyncNotes (UC:1145): the local notes copy becomes the `LocalEntities_App.LocalNotes` of Sync_Info_GetMain.
     A sign-in fetches its own Sync_Info_GetMain first (UC:1121).
+- The app start is a list of 8 named steps, `APP_START_STEPS`: `synchAppContext`, `fetchFlags`, `initializeWebComponents`,
+  `bottomBarSlider`, `waitForFirstScreen`, `syncInfoMain`, `setLoggedContext` and `cacheableMapData`. Each step checks its
+  own condition. `fetchFlags` makes no call in the mock phase: the flags keep the registry defaults. `postLogin.ts` holds the post-login calls
+  (`Connect_SetLoggedContext`), which the app start and the sign-in share.
 - The mock answers one local note per note of the notes mock collection (`notesCollection`).
 
 The mock user answers GetUserInformation and the CacheControl_UserInfo cache call. The mock user is a fictional person
 in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the user is on:
 
-- Signed out on a protected screen: `OutSystems_LastURL` = the path, then `/UBTConnect/Login?In_IsFromInvalidPermissions=True`
+- The redirects below come from `src/app/RouteGuard.tsx` (one guard, mounted in `AppFrame`). It reads the session status
+  (`getSessionStatus()`) and the `meta` of the route in `src/app/routes.ts`. `routes.ts` adds `meta.access`
+  (`anonymous` or `member`) and `meta.lock` (`enforce` or `ignore`) to each generated route. A path that shows no screen
+  has `NO_ROUTE_META` (anonymous, enforce). `LockHost` gets `ignoresLockScreen` from `AppLockHost` (a prop), because
+  `platform/` does not import `app/`.
+- Signed out (status `signedOut`) on a protected screen (`meta.access` is `member`): `OutSystems_LastURL` = the path, then `/UBTConnect/Login?In_IsFromInvalidPermissions=True`
   (U1). The check runs again on every later navigation.
-  - A protected screen is every screen but Splash, Login, InvalidPermissions, PINBiometricsMenu, ContactUsMenu,
+  - An anonymous screen is Splash, Login, InvalidPermissions, PINBiometricsMenu, ContactUsMenu,
     ContactUsDetails, Locality_Details, MessageList, MessageDetail.
-- Signed in, a local PIN, and this tab not unlocked yet: `/UBTConnect/PINUnlock` (U3), once per load. This does not
-  happen on Login, PINUnlock, PINRegister (their CommonUI ignores the lock screen).
+- Signed in, a local PIN, and this tab not unlocked yet (status `locked` at the first check): `/UBTConnect/PINUnlock` (U3),
+  once per load. This does not happen on a route with `meta.lock` `ignore`: Login, PINUnlock, PINRegister, Splash.
 
 `<LockHost />` runs the inactivity timer (spec 9, U6) and renders the lock container (part C) unless CommonUI hides it.
 
@@ -36,15 +45,32 @@ in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the us
 
 | Module              | API                                                                                                                                                                       | Original                                                              |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| `session.ts`        | `useShellState()`, `getShellState()`, `useClientVar(name)`, `getClientVar` / `setClientVar`                                                                               | client variables (spec 9b), session                                   |
-| `auth.ts`           | `signIn()` → destination path; `useSignIn()` (navigates, replace); `signOut()`                                                                                            | Login callback (U4), `Connect_Logout`                                 |
+| `session.ts`        | `useShellState()`, `getShellState()`, `clientVar` (typed accessors), `useClientVar(accessor)`, `getClientVar` / `setClientVar`                                            | client variables (spec 9b), session                                   |
+| `auth.ts`           | `signIn()` → destination path (through `authProvider()`); `useSignIn()` (navigates, replace); `signOut()`; `signedOutRemotely()`                                          | Login callback (U4), `Connect_Logout`                                 |
 | `pin.ts`            | `pinCheck()`, `registerPin(pin)`, `verifyPin(pin)`, `isLocked()`, `lock()`                                                                                                | `PIN_Check`, `Pincode_Register/_Unlock`                               |
 | `resume.ts`         | `setResumeLoginLink`, `getResumeLoginLink` (clears), `setAppCallback(url)`, `getColdStartLinkURL()` (`''` on the web, U14)                                                | resume link (U14), `AppManager_SetAppCallback`, `GetColdStartLinkURL` |
 | `userInfo.ts`       | `getUserInformation()` (cached 7200 s)                                                                                                                                    | `GetUserInformation_Wrapper`                                          |
 | `cachedUserInfo.ts` | `appManager_GetCachedUserInfo()`, `appManager_SetCachedUserInfo(rec)` (client variable `UBT_AppManager.AppManager_UserExtended`; the mock sign-in fills CountryCode only) | `AppManager_GetCachedUserInfo` / `_SetCachedUserInfo`                 |
-| `memoryCache.ts`    | `getCacheableObject`, `putCacheableObject`, `CACHE_TYPE`, `invalidateEverything`                                                                                          | MemoryClientCache, `CacheControl_*` blocks                            |
+| `memoryCache.ts`    | Deleted in P5-4. See `api/client/cache.ts`: `getCacheableObject`, `putCacheableObject`, `clearMemoryCache`; the entries are in `api/<domain>/keys.ts`                     | MemoryClientCache, `CacheControl_*` blocks                            |
 | `mockUser.ts`       | `mockUserInformation()`, `mockDirectoryUser()`, `MOCK_USER_ID`                                                                                                            | fictional user (U7)                                                   |
-| `paths.ts`          | `PATHS`, `isProtectedPath`, `ignoresLockScreen`                                                                                                                           | `checkRegistered`, CommonUI inputs                                    |
+| `paths.ts`          | `PATHS`, `screenOf(pathname)`                                                                                                                                             | screen URLs                                                           |
+
+The PIN registration flow is in two hooks of `src/platform/session/`: `usePinCodeRegister` (first and second entry, rules,
+`registerPin`) and `usePinRegisterContent` (name read, success routes, error messages). PINRegister and PINChange call
+`usePinRegisterContent` and pass the result as props to the blocks `PinRegisterContent` and `PinCodeRegister`.
+`PinCode` (in `src/components/auth/`) is props-only: the PreventBackNavigation block comes in `renderPreventBackNavigation`
+and the event before SetPin in `onBeforeSetPin`, which the hooks `usePinCodeRegister` and `usePinCodeUnlock` supply.
+
+Two more hooks of `src/platform/session/` serve props-only blocks of `src/components/`. `useNotificationIcon` (client
+variables, flag C2NewNotifications, navigation) serves `NotificationIcon`. `useEmbeddedFeed(feedItemId)` (feed flags,
+B2C tenant, feed configuration, download, share to Connect) serves `EmbeddedFeed`. The pages spread the result of the hook
+into the block.
+
+The PIN unlock flow is in two hooks of `src/platform/session/`: `usePinUnlockContent` (unlock result, policies, Forgot PIN,
+error messages) and `usePinCodeUnlock` (lock state, `setPin`). `PinUnlockContentContainer` in
+`src/platform/feedback/dialogs/` runs both hooks and renders the props-only blocks `PinUnlockContent`, `PinUnlockMobile`
+and `PinCodeUnlock`. The lock dialog (`BlockPinUnlock`) and PINChange render the container. The PINUnlock page has its own
+hook, `usePINUnlock`. The PINChange page has its own hook, `usePINChange` (the unlock state and the back link).
 
 - Without a local PIN, `signIn()` goes to PINRegister. Otherwise it goes to the resume link, the sign-in callback that
   the gate keeps, or HomeFeed.
@@ -52,18 +78,46 @@ in Bahia Blanca, Argentina (a recorded locality). Then, from the URL that the us
   messages.
 - Mock user toggles: `policies` = pending policies (`HasPoliciesToAccept`), `expired` = `SubscriptionActive` false,
   `householder` = `isHouseholder` true.
+- The session status is in `src/platform/session/machine.ts` (plan v2 §3.2). The status lives in memory, so each page
+  load starts at `starting`. The statuses are `starting`, `signedOut`, `signingIn`, `needPinRegister`, `locked`,
+  `unlocked` and `policiesPending`. The pure `transition(state, event)` changes the status, `sendSessionEvent` applies
+  an event, and `getSessionStatus` reads it. Each row has a test in `machine.test.ts`.
+  - Events and senders: `appStartDone` (`session.ts markAppReady`, called by `runAppStart` in `appStartSteps.ts`), `signIn` and
+    `postLoginDone` (`auth.ts signIn`), `pinRegistered` (`pin.ts registerPin`), `inactivityTimeout` (`pin.ts lock`,
+    which LockHost calls at the timeout), `pinVerified` (`pin.ts verifyPin`), `signOut` (`auth.ts signOut`).
+  - Differences from §3.2: `signOut` also applies from `signingIn` (a 401 during the post-login calls). The event
+    `userChanged` exists only for the mock: when the stored session user changes (`setSignedInUser`, another tab), the
+    status follows. No event leads to `policiesPending` yet; the pending policies stay in
+    `UBTConnect.App_Policies_HasPolicyToAccept`.
+  - The selectors keep their names and values. `isLocked()` and `hasUnlocked()` still read `PIN_IsLocked` and
+    `PIN_HasUnlocked`, because the status `locked` also covers the app-start lock, where no lock overlay shows today.
+    `isSignedIn()` and `currentUserId()` read the user of the status, and the stored session while the status is
+    `starting` or `signingIn`.
 - Client variable names are `<Module>.<Variable>`, with the compiled defaults of `migration/shell/client-variables.md`.
+- New code reads and writes client variables through the typed accessors of `clientVar` in `src/platform/session/session.ts`:
+  `clientVar.lastUrl.get()`, `clientVar.lastUrl.set(url)`, `useClientVar(clientVar.hasPolicyToAccept)`. The value types
+  come from `CLIENT_VAR_DEFAULTS`, so a wrong type does not compile. To use a variable that has no accessor yet, add one
+  to `clientVar` with a JSDoc line. Pages, components and `app/` do not call `getClientVar` or `setClientVar` by name.
+- Three files outside `platform/` still call `useClientVar` by name: `components/layout/BottomBar/BottomBar.tsx`,
+  `containers/EntityDetailsActions/useEntityDetailsActions.ts` and `pages/MyEntertaining/hooks/useMyEntertaining.ts`.
+  Stories still set client variables by name with `setClientVar`. The cache blocks (`legacy/os/cache/*`, F37) and
+  `lib/*/actions.ts` (F35) keep the name-based calls.
+- The 11 server settings (`PIN_Use`, `PIN_IsInactivityEnabled`, and so on) are in the typed store `src/platform/settings`
+  (`getSetting`, `setSettings`, `useSetting`). `synchAppContext` writes the store. The adapter
+  `src/legacy/os/clientVarNames.ts` maps the OutSystems names to the settings, so `getClientVar`, `setClientVar` and
+  `useClientVar` still work for them by name.
 
 ## Storage (decision U5)
 
 Mock values only. Keys start with `ubtc-mock:`.
 
-- localStorage: session (`session`), hashed PIN with salt (`pin`), client variables (`cv:<name>`).
+- localStorage: session (`session`), hashed PIN with salt (`pin`), client variables (`cv:<name>`),
+  the 11 server settings as one object (`settings`).
 - sessionStorage: `PIN_HasUnlocked` (a new tab starts locked, a reload keeps the unlock) and remembered test switches
   (`param:<name>`).
-- A logout resets every client variable except `*_IsPersistent`.
+- A logout resets every client variable except `*_IsPersistent`, and the settings.
 
-Client entities (local storage entities, `src/shell/localEntities`) use IndexedDB, as TST runs in a browser without
+Client entities (local storage entities, `src/platform/storage/localEntities`) use IndexedDB, as TST runs in a browser without
 WebSQL (its runtime record holds the IndexedDB database `<environment key>-Users`). However, the served env params say
 IndexedDBOffline = false, i.e. WebSQL. This is an open question (evidence in the header of `localEntities/database.ts`).
 Client entities store DateTimes as DateTimeRevamp = false does: UTC `yyyy-MM-dd HH:mm:ss`, the null date
@@ -78,8 +132,8 @@ Client entities store DateTimes as DateTimeRevamp = false does: UTC `yyyy-MM-dd 
 
 Local entities in practice:
 
-- Public API: `src/shell/localEntities/index.ts`. Blocks and screens call the module actions that it exports
-  (`createOrUpdate_LocalNote`, `saveRecentSearchTerm`, `create_LocalBookmark`, …). Nothing outside `src/shell` touches
+- Public API: `src/platform/storage/localEntities/index.ts`. Blocks and screens call the module actions that it exports
+  (`createOrUpdate_LocalNote`, `saveRecentSearchTerm`, `create_LocalBookmark`, …). Nothing outside `src/platform` touches
   browser storage.
 - One adapter per entity group: notes (`localNotes.ts`), recent search terms and clicked results (`recentSearch.ts`),
   local search history (`localSearchHistory.ts`), bookmarks (`localBookmarks.ts`), Orbit static entities
@@ -87,7 +141,7 @@ Local entities in practice:
 - **Orbit static entities (F12, CR-HelpersDetail-1).** They live in IndexedDB like the others, so rows of earlier app
   starts survive a page load whose Sync_Info_GetMain fails or never answers.
   - Blocks read them synchronously at first render, so the adapter keeps an in-memory mirror.
-  - `loadOrbitStaticEntities()` fills the mirror at app start (`runAppStart`).
+  - `loadOrbitStaticEntities()` fills the mirror at app start (`runAppStart` in `appStartSteps.ts`).
   - Each sync writes the mirror at once and reads the table back after its transaction.
   - `useOrbitStaticEntitiesVersion()` re-renders readers after every change.
   - `getLocalOrbitMilestoneTypeById` raises `DataBaseException` for a missing id, as Entity.get does.
@@ -103,7 +157,7 @@ Local entities in practice:
     the old or the new rows, never none.
   - Keep it that way (decision: [ADR-8](../reference/stack.md)).
 
-UBTConnect ToggleBookmarkItem_C2 (`src/shared/UBTConnect/lib/actions.ts`) uses the C2 bookmark actions. Its two server
+UBTConnect ToggleBookmarkItem_C2 (`src/lib/ubtConnect/actions.ts`) uses the C2 bookmark actions. Its two server
 calls (ServiceAPIAddBookmark2, ServiceAPIDeleteBookmarkByBookmarkId2) are not in the API contract yet
 (`bookmarkServerActions` null, CR-W4A-1).
 
@@ -124,7 +178,7 @@ The tab remembers all of them.
 
 ## Mock data
 
-`src/shell/mocks.ts`:
+`src/platform/bootstrap/mocks.ts`:
 
 - SynchAppContext is fictional, with the TST settings of U2 (PIN on, 1200 s, overlay, no enforce on ready, device check
   on ready).
@@ -135,13 +189,13 @@ The tab remembers all of them.
 
 ## Tests
 
-`src/shell/*.test.ts(x)` cover: call order signed in and out, redirects, sign-in branches, sign-out, PIN, lock timer,
+`src/platform/**/*.test.ts(x)` cover: call order signed in and out, redirects, sign-in branches, sign-out, PIN, lock timer,
 mocks. `testSupport.ts` gives `freshPage()`, `reloadPage({ newTab })`, `calledActions()`, `recordBodies(path)`.
 
 ## Test session
 
 - `?mocksession=unlocked` starts the page signed in as the mock user, with the tab unlocked, as the TST captures were
-  taken. The local PIN is `0223` (`TEST_PIN` in `src/shell/testSession.ts`; user, 2026-10-16).
+  taken. The local PIN is `0223` (`TEST_PIN` in `src/platform/session/testSession.ts`; user, 2026-10-16).
 - `?mocksession=out` starts signed out.
 - Parity runs use these parameters (`cloneQuery` in `migration/capture-plan.json`), also for Login and the PIN screens.
   The user decided on 2026-10-14 that review links and parity runs use them until the Login and PIN screens exist. These
@@ -155,30 +209,30 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
 - On the dev server, `?review=1` shows them for the tab and `?review=0` hides them again.
 - Tests and Storybook turn them on.
 - Built apps (demo PWA, production) never show them and render the content without the frame
-  (`src/shell/reviewMarkers.ts`).
+  (`src/legacy/os/reviewMarkers.ts`).
 
 ## Part B: navigation, back handling, preload, view cache
 
-`src/shell/navigation` (import from `src/shell/navigation`).
+`src/platform/navigation` (import from `src/platform/navigation`).
 
 - `<NavigationHost />` (AppFrame) owns the only blocker of the router.
 - `<ScreenTransitionGroup />` (AppFrame) renders the screen containers and their transitions.
 - `<ScreenFrame>` (router.tsx) wraps every screen.
 - Do not call `useBlocker` in a screen.
 
-| API                                                                                                   | Original (spec 9 "Back navigation", "View cache & preload")                                                |
-| ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `useOsNavigate()(path, params?, { replace?, transition? })`, `screenUrl(path, p)`                     | screen navigation with input names (P-PARAMS); True/False, ids as strings; `transition` below              |
-| `replaceOnUpcomingNavigation()`, `resetReplaceOnUpcomingNavigation()`                                 | NavigationHandler actions of the same name (Login callback, Policy_Checker)                                |
-| `allowUpcomingNavigation()`                                                                           | NavigationHandler `AllowUpcomingNavigation`: the next navigation skips the back handlers                   |
-| `useScreenController_NavigateToPage()(url, replace)` (`src/shared/UBTJavaScriptUtils/lib/actions.ts`) | UBTJavaScriptUtils `ScreenController_NavigateToPage`: same-origin href or app path through `useOsNavigate` |
-| `useNavigateBack()(transition?)`                                                                      | history back: runs the back queue like the device back button; `navigateBack(transition)`                  |
-| `TransitionAnimation` (`None`, `Default`, `Fade`, `SlideFromLeft`, `SlideFromRight`, …)               | `OS.Transitions.TransitionAnimation`: pass what the compiled navigation passes                             |
-| `setPreloadObject(obj)`, `usePreloadObject()` / `getPreloadObject()`                                  | `SetPreloadObject` / `GetPreloadObject` (`unknown`: narrow it)                                             |
-| `useBackHandler(priority, handler, enabled?)`, `BACK_PRIORITY`                                        | `BackNavigationHandler` block in the `BeforeBackNavigation` queue                                          |
-| `usePreventBackNavigation(enabled, onPrevented?)`                                                     | `PreventBackNavigation` block (lock-screen priority)                                                       |
-| `<DialogExitConfirmation id="$b11" />`, `useExitConfirmation(force)`                                  | `Dialog_ExitConfirmation` of HomeFeed and Login (Force=True)                                               |
-| `useWasRestoredFromCache()`, `useViewState(name, initial)`                                            | `wasCurrentViewRestoredFromCache`, screen variables kept by the cache                                      |
+| API                                                                                     | Original (spec 9 "Back navigation", "View cache & preload")                                                |
+| --------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `useOsNavigate()(path, params?, { replace?, transition? })`, `screenUrl(path, p)`       | screen navigation with input names (P-PARAMS); True/False, ids as strings; `transition` below              |
+| `replaceOnUpcomingNavigation()`, `resetReplaceOnUpcomingNavigation()`                   | NavigationHandler actions of the same name (Login callback, Policy_Checker)                                |
+| `allowUpcomingNavigation()`                                                             | NavigationHandler `AllowUpcomingNavigation`: the next navigation skips the back handlers                   |
+| `useScreenController_NavigateToPage()(url, replace)` (`src/lib/jsUtils.ts`)             | UBTJavaScriptUtils `ScreenController_NavigateToPage`: same-origin href or app path through `useOsNavigate` |
+| `useNavigateBack()(transition?)`                                                        | history back: runs the back queue like the device back button; `navigateBack(transition)`                  |
+| `TransitionAnimation` (`None`, `Default`, `Fade`, `SlideFromLeft`, `SlideFromRight`, …) | `OS.Transitions.TransitionAnimation`: pass what the compiled navigation passes                             |
+| `setPreloadObject(obj)`, `usePreloadObject()` / `getPreloadObject()`                    | `SetPreloadObject` / `GetPreloadObject` (`unknown`: narrow it)                                             |
+| `useBackHandler(priority, handler, enabled?)`, `BACK_PRIORITY`                          | `BackNavigationHandler` block in the `BeforeBackNavigation` queue                                          |
+| `usePreventBackNavigation(enabled, onPrevented?)`                                       | `PreventBackNavigation` block (lock-screen priority)                                                       |
+| `<DialogExitConfirmation id="$b11" />`, `useExitConfirmation(force)`                    | `Dialog_ExitConfirmation` of HomeFeed and Login (Force=True)                                               |
+| `useWasRestoredFromCache()`, `useViewState(name, initial)`                              | `wasCurrentViewRestoredFromCache`, screen variables kept by the cache                                      |
 
 - **Screen transitions (F18, CR-F18-1).** `ScreenTransitionGroup` ports the TransitionGroup of the runtime Root
   (`migration/runtime-sources/OutSystemsReactView.js` Root render; `screenTransition.ts` cites each rule):
@@ -214,6 +268,30 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
     of the runtime). The entering container is never empty.
   - `StylesheetHost` adds the stylesheets of the new screen at once and removes the old ones after the transition
     (CSSHelper).
+  - Style layers (P8-1): `styles/layers.css` sets the order `@layer legacy, app;` and is the first CSS import of
+    `main.tsx` and of the Storybook preview.
+  - `StylesheetHost` loads each original file through a link element (attribute `data-legacy-css`) to a `data:`
+    stylesheet that only does `@import url(<file>) layer(legacy)`. The files in `public/UBTConnect/css/` stay unchanged.
+  - It is a link and not a `<style>` element for two reasons. `parity_check.cjs` builds the reference page from
+    `link[rel=stylesheet]`. The font preload reacts to `load` events of links. The link `load` event fires after the
+    import, so the first-render wait still works.
+  - The barcode plugin CSS (`platform/device/barcodePluginCss.ts`) is also in `@layer legacy`.
+  - New CSS goes in `@layer app` (plan v2 §2.8): `styles/tokens.css` (generated by
+    `migration/tools/refactor/p8-1-tokens.py`; 238 variables that every route CSS set puts on `:root` with the same
+    value) and `styles/review.css`. `styles/tokens.test.ts` fails when a token differs from the legacy `:root` value
+    on any route. A future Content-Security-Policy must allow `style-src data:` (follow-up F44).
+  - Remove unused legacy CSS (P8-2; run again in P9-3). The tools are in `migration/tools/refactor/`:
+    `css-coverage-preload.cjs` records the CSS rule usage of Chromium, `css-coverage-node.sh` starts `node` with it, and
+    `css-prune.py` deletes the unused rules.
+  - Step 1: run the parity with `CSS_COVERAGE_DIR=<raw>` and `--node migration/tools/refactor/css-coverage-node.sh`
+    (the full command is in the docstring of `css-prune.py`). Each run writes one JSON file of used rule ranges.
+  - Step 2: `python3 migration/tools/refactor/css-prune.py --raw <raw> --out <handoff>/ plan [files...]` writes only the
+    summary (sizes and rule counts). The `apply` mode changes the files in `public/UBTConnect/css/` and writes the
+    deleted selectors to `<handoff>/deleted-selectors/`.
+  - Guards: the tool keeps at-rules other than `@media`, state selectors, custom properties, vendor pseudo-classes and
+    third-party widget CSS. It skips each stylesheet that a screen without parity states loads (follow-up F27).
+    `plan --relax` is an estimate only (`apply` refuses it).
+  - After `apply`, run the parity `visual` `--all`. Restore each stylesheet with a difference from git.
   - Tests: `screenTransition.test.ts`, `ScreenTransitionGroup.test.tsx`. Mid-transition headless check: sample the
     classes at ~50 / ~150 ms after a bottom-bar click.
 - **Back queue.** Priorities: lock screen 100000, modal 10000, drawer 1000, exit dialog −1, CommonUI −10000.
@@ -243,9 +321,14 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
   - Screens only need stable query keys, `useViewState` for variables that the original keeps, and
     `useWasRestoredFromCache()` where the original tests it.
 
-- **Navigation guard (`dx-before-navigation`).** `src/shell/navigation/navigationGate.ts` (`shouldBlockNavigation`) runs
-  as the blocker of the router before every navigation. Unless `allowUpcomingNavigation()` was called, it does two
-  things:
+- **Navigation guard (`dx-before-navigation`).** `src/platform/navigation/navigationGate.ts` (`shouldBlockNavigation`) runs
+  as the blocker of the router before every navigation.
+  - It blocks a back navigation (POP) while the app navigates away from a screen (NavigationHandler `NH:903-914`).
+    This is the case when the container that the last navigation leaves is still in the document, or when the frame
+    shows no screen.
+    A POP that starts inside the gate (a back handler's `NavigateBack`) is also blocked. A blocked POP runs no handler and
+    does not use the `allowUpcomingNavigation()` flag. Unable to Host on HostSurvey goes back one screen because of this.
+  - Unless `allowUpcomingNavigation()` was called, it then does two things:
   1. For a back navigation, it runs the back queue.
   2. It dispatches the cancelable window event `dx-before-navigation` (`detail.location`, `detail.replace`,
      `detail.resume()`).
@@ -254,34 +337,41 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
     `dx-navigation`.
   - `resumeNavigation(event)` continues a prevented navigation later (`detail.resume()`: a back navigation goes back,
     a forward one navigates to the saved location).
-  - Both actions live in `src/shared/NavigationHandler/lib/actions.ts`, together with `wasNavigationPrevented`.
-  - How a screen asks the user: it renders `Dialog_Navigation` (`src/shared/UBTConnect/Dialog_Navigation`), which wraps
-    `NavigationConfirmationDialog` (`src/shared/NavigationHandler/NavigationConfirmationDialog`).
+  - Both actions live in `src/lib/navigationEvent.ts`, together with `wasNavigationPrevented`.
+  - How a screen asks the user: it renders `NavigationDialog` (`src/components/ui/Dialog/NavigationDialog.tsx`). The default variant is
+    `NavigationConfirmationDialog`; `variant="connect"` is `Dialog_Navigation`. NavigationDialog listens to `dx-before-navigation` itself and
+    gets the back-navigation queue (`usePreventBackNavigation`) from `src/app/dialogs.ts`.
     - The block raises the event to the caller (`onEventOnBackNavigation`).
     - The caller calls `preventNavigation`. The dialog opens and keeps the event.
     - Yes closes the dialog and calls `resumeNavigation`. No closes the dialog, forgets the event and dispatches
       `dx-navigation-cancelled-by-user`.
     - A back navigation while the dialog is open is prevented and runs No.
     - ContactUsDetails and Profile use it to confirm discarding changes.
-  - Tests: `src/shell/navigation/navigationGate.test.tsx`.
+  - Tests: `src/platform/navigation/navigationGate.test.tsx`.
 
-Tests: `src/shell/navigation/*.test.tsx` (`testRouter.tsx` renders routes inside the same frame on a memory router).
+Tests: `src/platform/navigation/*.test.tsx` (`testRouter.tsx` renders routes inside the same frame on a memory router).
 
 ## Part C: feedback messages, shared dialogs, lock overlay
 
-`src/shell/feedback` and `src/shell/dialogs`. `<CommonUiHost />` (AppFrame) mounts the message container and the
+`src/platform/feedback` and `src/platform/feedback/dialogs`. `<CommonUiHost />` (AppFrame) mounts the message container and the
 online/offline listener. Per screen (remounted on each navigation), it also mounts Access Restricted and the CommonUI
 back handler. It is a stand-in until the layouts render CommonUI in `Placeholder_CommonUI_Inside_Layout`.
 
-| API                                                                                                                    | Original                                                      |
-| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `feedbackMessageAutoClose({ title?, message, messageType?, encodedHtml?, extendedClass?, delayMs?, useDebounce? })`    | `UBTJavaScriptUtils.FeedbackMessage_AutoClose` (U9)           |
-| `showFeedbackMessage(message, type, encodedHtml?, extraClasses?, closeOnClick?)`                                       | platform `FeedbackMessageShow` (type 0-3: info…error)         |
-| `showExceptionMessage(message, forceLogout)`, `showCommunicationExceptionMessage()`                                    | UBTConnect actions of the same name (U10)                     |
-| `useFeedback()`                                                                                                        | the four functions above, for components                      |
-| `confirmAction(dialogId)` → `Promise<boolean>`, `<ActionConfirmationDialog>`                                           | NavigationHandler `ConfirmAction`, `ActionConfirmationDialog` |
-| `showUpgradePopUp()`, `navigateToUpgrade()`, `<DialogAccessRestrictedAction>`                                          | `App_Subscription_ShowUpgradePopUp` / `_NavigateToUpgrade`    |
-| `useCommonUiBackHandler()`, `<BlockPinUnlock inIsCommonBlock inForceVisible onUnlock placeholderCommonUIInsideLayout>` | CommonUI back handling, `App_PIN.Block_PINUnlock`             |
+The markup of the dialogs is in `src/components/ui/Dialog` (`Dialog`, `ConfirmDialog`, `ChoiceDialog`, `NavigationDialog`), which may
+not import `platform/`. `src/app/dialogs.ts` (`connectDialogs()`, called by `main.tsx`) joins the two sides: `ConfirmDialog` gets
+`useActionConfirmation` (`confirmAction`, back navigation) and the platform dialogs (`DialogAccessRestrictedAction`,
+`DialogExitConfirmation`) get the `Dialog` markup. See `src/components/ui/Dialog/Dialog.README.md`.
+
+| API                                                                                                                    | Original                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `feedbackMessageAutoClose({ title?, message, messageType?, encodedHtml?, extendedClass?, delayMs?, useDebounce? })`    | `UBTJavaScriptUtils.FeedbackMessage_AutoClose` (U9)                                 |
+| `showFeedbackMessage(message, type, encodedHtml?, extraClasses?, closeOnClick?)`                                       | platform `FeedbackMessageShow` (type 0-3: info…error)                               |
+| `showExceptionMessage(message, forceLogout)`, `showCommunicationExceptionMessage()`                                    | UBTConnect actions of the same name (U10)                                           |
+| `useFeedback()`                                                                                                        | the four functions above, for components                                            |
+| `confirmAction(dialogId)` → `Promise<boolean>`, `<ConfirmDialog>` (`components/ui/Dialog`)                             | NavigationHandler `ConfirmAction`, `ActionConfirmationDialog`                       |
+| `showUpgradePopUp()`, `navigateToUpgrade()`, `<DialogAccessRestrictedAction>`                                          | `App_Subscription_ShowUpgradePopUp` / `_NavigateToUpgrade`                          |
+| `useCommonUiBackHandler()`, `<BlockPinUnlock inIsCommonBlock inForceVisible onUnlock placeholderCommonUIInsideLayout>` | CommonUI back handling, `App_PIN.Block_PINUnlock`                                   |
+| `<PinUnlockContentContainer …>` (dialogs barrel)                                                                       | runs `usePinUnlockContent` and `usePinCodeUnlock` for the lock dialog and PINChange |
 
 - **Messages.**
   - One message at a time shows in `#feedbackMessageContainer`. The first message creates the container before
@@ -294,18 +384,23 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
 - **Exceptions.**
   - `showExceptionMessage` maps the server texts of the compiled action (timeouts and failed requests → communication
     message).
-  - `forceLogout` → `signOut()`, then a full page load of `\UBTConnect\Login`.
+  - `forceLogout` → `signedOutRemotely()` (same end state as `signOut()`), then a full page load of `\UBTConnect\Login`.
   - The app start does not toast yet: App_Common toasts a `ScreenController_RaiseError` only if a plain `Error` is not
     "system" (open).
-  - Server calls raise the OutSystems exceptions of `src/lib/os-exceptions.ts` (see `api-and-mocks.md`).
-  - A ported Handle Error tests them with `src/shell/exceptions.ts`: `isUserException(e[, '<Module>.<Name>'])`,
+  - Server calls raise the OutSystems exceptions of `src/legacy/os/os-exceptions.ts` (see `api-and-mocks.md`).
+  - A ported Handle Error tests them with `src/legacy/os/exceptions.ts`: `isUserException(e[, '<Module>.<Name>'])`,
     `isCommunicationException(e)`, `isInstanceOf(e, SecurityException)`, AllExceptions = `!isSystemException(e)`.
-  - An unhandled exception goes to `raiseToFlowHandler(e)` (communication message, else
-    `showExceptionMessage(message, false)`).
+  - An unhandled exception goes to `raiseToFlowHandler(e)`, in the order of App_Common:
+    - communication message for a `CommunicationException`;
+    - `SecurityException` (and its subtypes `InvalidLoginException`, `NotRegisteredException`): signed in →
+      `showExceptionMessage(message, true)`, that is, the forced-logout path above; anonymous → `osNavigateTo` to
+      `/UBTConnect/Login?In_IsFromInvalidPermissions=True` after `setAppCallbackCurrentLocation()`;
+    - every other error: `showExceptionMessage(message, false)`.
+  - Try it by hand with `?mock=security` on ContactUsDetails (signed in and signed out).
 - **Network (U11).**
   - `online`/`offline` events and `navigator.onLine` at start set `App_NetworkStatus_IsOnline_IsPersistent`. The variable
     only picks the communication text.
-  - NetworkDetection is ported 1:1 (PWA-2, `src/shell/feedback/networkDetection.ts`). It pings the TST file
+  - NetworkDetection is ported 1:1 (PWA-2, `src/platform/feedback/networkDetection.ts`). It pings the TST file
     `status/network-ping.txt` (served at its TST path in every build, never cached). It runs the online / offline
     callbacks on a transition. See `pwa.md`.
 - **Dialogs.**
@@ -322,7 +417,7 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
 
 ### Inactivity timer and screens without CommonUI (CR-Services-1)
 
-`src/shell/inactivity.ts` ports the session-inactivity timer of the AppManager. `LockHost.tsx` plays the part of
+`src/platform/session/inactivity.ts` ports the session-inactivity timer of the AppManager. `LockHost.tsx` plays the part of
 `InactivityTimer` (inside `Pincode_Unlock` ← `Block_PINUnlock` ← CommonUI_InsideLayout / PINUnlock).
 
 | API                                                                                                | Original                                                                                                                                                                                                                                 |
@@ -335,7 +430,7 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
 - **Who starts it.** Only `LockHost` (mounted by the shell while the screen has CommonUI) starts it. It registers a
   handler that calls `lock()`, then calls `pinSessionInactivityStart()`. Screens never call these functions.
 - **Screens without CommonUI.** A screen whose layout has an empty `Placeholder_CommonUI_Inside_Layout` calls
-  `useNoCommonUi()` from `src/shell/dialogs` (Services: Services.mvc.js:1207; Splash: App_Common.LayoutBlank).
+  `useNoCommonUi()` from `src/platform/feedback/dialogs` (Services: Services.mvc.js:1207; Splash: App_Common.LayoutBlank, called by `SplashPage` since P6-G1-B).
   - The shell then mounts no Access Restricted dialog and no lock layer (`useIsCommonUiAbsent`).
   - `LockHost` skips its start in that commit (`isCommonUiAbsentNow`).
   - As in the original, the timer started on the previous screen keeps running.
@@ -345,6 +440,17 @@ back handler. It is a stand-in until the layouts render CommonUI in `Placeholder
 - **Known gap.** On a direct load of such a screen, the app-level host can start the timer once while the lazy screen
   chunk loads. No lock results. At timeout, only the app callback is set.
 
-Tests: `src/shell/inactivity.test.ts`, `src/shell/LockHost.test.tsx`.
+Tests: `src/platform/session/inactivity.test.ts`, `src/platform/navigation/LockHost.test.tsx`.
 
-Tests: `src/shell/feedback/*.test.tsx`, `src/shell/dialogs/*.test.tsx`.
+Tests: `src/platform/feedback/*.test.tsx`, `src/platform/feedback/dialogs/*.test.tsx`.
+
+## Identity provider (`platform/auth`)
+
+- `AuthProvider` (`auth/provider.ts`) is the interface of the identity provider. `authProvider()` (`auth/authProvider.ts`)
+  returns `mockAuth` when `MOCKS_BUILT` is true, and `null` otherwise. `mockAuth` keeps the stored session and the cached
+  user record of the mock user. `auth.ts signIn()` calls `provider.signIn` before the `signIn` event, so a provider
+  failure leaves the status at `signedOut`. `signOut()` calls `provider.signOut()` before the session ends.
+- A production build has no identity provider (`bffAuth` is not part of the refactor). `signIn()` then rejects with
+  "Sign-in is not available: no identity provider is configured.", and Login shows it. Dev, mock and demo builds sign in
+  as before.
+- `mockUser.ts` stays in `platform/session` (more than 40 importers); a later move step moves it.

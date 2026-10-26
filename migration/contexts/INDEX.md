@@ -5,10 +5,9 @@ section "Context notes".
 
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
-- 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)).
-- Libraries view (shared libraries UBTConnect_Utils and Connect2_LegacyShared) as a second page and a new artifact DLHY4vLn…, accepted 2026-10-26 ([context-053](context-053-libraries-dashboard.md)).
-- Branch `refactor/architecture`: Phase 0 of the refactor done by the agent team (2026-10-22, [context-036](context-036-refactor-phase-0.md)); next P1-1 with `/refactor-master continue`. Auto decisions Q1–Q7 wait for the user's review.
-- Auto mode OFF (user 2026-10-17). Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
+- 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)); Libraries view as a new artifact DLHY4vLn…, accepted 2026-10-26 ([context-053](context-053-libraries-dashboard.md)).
+- Branch `refactor/architecture`: all 133 plan steps done; the user's decisions of 2026-10-25 done (F52, F55, F57, F58, F59-a/b/c; [context-052](context-052-refactor-user-decisions-2026-10-25.md)); final report `app/docs/refactor/reports/final.md`. Open: owned debt rows in `migration/refactor/followups.md`. Dev server of this repo on port 5174.
+- Auto mode ON since 2026-10-25 ~01:30 (window 6, open-ended): Opus + Fable decide questions, summary to the user. Unattended runs: start `caffeinate -i -s -m` first. Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
 - Demo: `npm --prefix app run build:demo` → `app/dist-demo/`; dev http://localhost:5173/UBTConnect/HomeFeed (`?review=1`). Tools: `migration/tools/` (README).
 
 ## Contexts
@@ -51,4 +50,20 @@ section "Context notes".
 | [034](context-034-refactor-plan-review.md) | 2026-10-22 | Refactor plan review (6/10), flag and session design, plan v2 with agent steps; R1–R8 open | current |
 | [035](context-035-refactor-agent-team.md) | 2026-10-22 | Refactor agent team: /refactor-master + developer/tester/documenter, rf.py state, self-test passed; not begun | current |
 | [036](context-036-refactor-phase-0.md) | 2026-10-22 | Refactor Phase 0 (P0-1 to P0-5) by the agent team; baseline, parity tool, move map, ADR-15; auto decisions Q1–Q7 | current |
+| [037](context-037-refactor-phase-1.md) | 2026-10-22 | Refactor Phase 1 (P1-1 to P1-4): moves, `@/` imports; P1 parity had used another clone on 5173, re-run found 2 regressions, fixed (P1-fix); Q8–Q9 | current |
+| [038](context-038-refactor-phase-2.md) | 2026-10-22 | Refactor Phase 2 (P2-1 to P2-4) overnight: HouseholdDetails pilot page, page template, gate G-P2-4 by Opus + Fable; follow-ups F1–F5 | current |
+| [039](context-039-refactor-phase-3.md) | 2026-10-23 | Refactor Phase 3 (P3-1 to P3-4): 0 import cycles, folder-direction rules, phase report; 6 h stall fixed (act on the agent report); F6 parity flake | current |
+| [040](context-040-refactor-phase-4.md) | 2026-10-23 | Refactor Phase 4 (P4-1 to P4-5): settings store, session machine, AuthProvider, route guard, flag registry; Q12, M2–M6; F7 (ADR-15 generated file) | current |
+| [041](context-041-refactor-phase-5-paused.md) | 2026-10-23 | Refactor Phase 5 in progress (P5-1, P5-2 member/country/locality/update; P5-F8, P5-F9), paused for the user; resume steps, prefetch patches, F10, G1, G2 | superseded by context-042 |
+| [042](context-042-refactor-phase-5.md) | 2026-10-23 | Refactor Phase 5 done (P5-2-app to P5-4): api domains, memory cache on TanStack Query; G2 fixed on main and merged; W1–W6 by Opus + Fable | current |
+| [043](context-043-refactor-g1-fix-p6-g1-paused.md) | 2026-10-23 | Gap G1 fixed; P6-F12 tool fix; P6-G1-A done; B-Login at test, 3 prefetch patches; paused for the user | superseded by context-044 |
+| [044](context-044-refactor-p6-g1-done.md) | 2026-10-23 | P6 group G1 done (13 steps, B-Shared per group, arch baseline); W9–W16; scope widened to P6+P7 auto; prefetch method | superseded by context-045 |
+| [045](context-045-refactor-p6-g2-g3.md) | 2026-10-24 | P6 groups G2 and G3 done; bundle fixes P6-F15/F16; W17–W25; G4–G6 A/B-Shared patches prefetched | superseded by context-046 |
+| [046](context-046-refactor-p6-g4.md) | 2026-10-24 | P6 group G4 done (13 pages); W26–W29; fix step P6-F17 (beforePaint) before G5; chain worktree method | superseded by context-047 |
+| [047](context-047-refactor-p6-g5.md) | 2026-10-24 | P6-F17 and group G5 done (16 pages); W27–W31; 6 routes without parity states; G6/P6-end/P7-0..2 prefetched | superseded by context-048 |
+| [048](context-048-refactor-phase6-done.md) | 2026-10-24 | Phase 6 done (G6, P6-end, F23 fix); W30, W32, W33; P7 prefetched (P7-6 in 5 parts) | superseded by context-049 |
+| [049](context-049-refactor-phase7-done.md) | 2026-10-24 | Phase 7 done (P7-0…P7-6, P7-5 report); in-scope run finished; user decisions and owned debt listed | superseded by context-051 |
+| [050](context-050-refactor-user-decisions-batch.md) | 2026-10-24 | User-decision batch: F25 back guard, F22-26 restored views, F33 NetworkWarning, F29 + stack cleanup | superseded by context-051 |
+| [051](context-051-refactor-p8-p9-done.md) | 2026-10-25 | P8 and P9 done (all 133 steps), F39, F40, F43, F54; advisor decisions W34-W43; final report | superseded by context-052 |
+| [052](context-052-refactor-user-decisions-2026-10-25.md) | 2026-10-25 | User decisions of 2026-10-25 done: F52, F55 (CLAUDE.md), F57, F58, F59-a/b/c; W44, W45 | current |
 | [053](context-053-libraries-dashboard.md) | 2026-10-26 | Knowledge comparison with my-research; Libraries view, new artifact DLHY4vLn… (accepted); rule 7 change | current |

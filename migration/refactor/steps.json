@@ -619,7 +619,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route Login only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G1 for the route Login only. Do not change the other routes of the group. Step B item 3 is the step P6-G1-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G1-A"
    ]
@@ -636,9 +636,60 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route Splash only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G1 for the route Splash only. Do not change the other routes of the group. Step B item 3 is the step P6-G1-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G1-B-Login"
+   ]
+  },
+  {
+   "id": "P6-G1-B-AcceptPendingPolicies",
+   "phase": "P6",
+   "title": "AcceptPendingPolicies as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route AcceptPendingPolicies only. Do not change the other routes of the group. Step B item 3 is the step P6-G1-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G1-B-Splash"
+   ]
+  },
+  {
+   "id": "P6-G1-B-Menu",
+   "phase": "P6",
+   "title": "Menu as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route Menu only. Do not change the other routes of the group. Step B item 3 is the step P6-G1-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G1-B-AcceptPendingPolicies"
+   ]
+  },
+  {
+   "id": "P6-G1-B-Shared",
+   "phase": "P6",
+   "title": "Move the shared blocks of group G1",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B item 3 of group G1 for all its routes at once (W10, W11). Move every src/shared/ row of app/docs/refactor/move-map.csv with the phase P6-G1 to its target, rewrite all importers (also in screens/ of other groups: import paths only), add @origin tags. Move and rename only: no other change in the blocks, no re-export left in src/shared/, rows of other phases stay. When a target path already exists, stop with a question. Gate: diffcheck --move, parity strict --all, lint:arch with no new warning, bundle.",
+   "deps": [
+    "P6-G1-B-Menu"
    ]
   },
   {
@@ -653,9 +704,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route PINRegister only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G1 for the route PINRegister only. Do not change the other routes of the group. Step B item 3 is the step P6-G1-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G1-B-Splash"
+    "P6-G1-B-Shared"
    ]
   },
   {
@@ -670,7 +721,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route PINUnlock only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G1 for the route PINUnlock only. Do not change the other routes of the group. Step B item 3 is the step P6-G1-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G1-B-PINRegister"
    ]
@@ -687,7 +738,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route PINChange only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G1 for the route PINChange only. Do not change the other routes of the group. Step B item 3 is the step P6-G1-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G1-B-PINUnlock"
    ]
@@ -704,43 +755,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route PINBiometricsMenu only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G1 for the route PINBiometricsMenu only. Do not change the other routes of the group. Step B item 3 is the step P6-G1-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G1-B-PINChange"
-   ]
-  },
-  {
-   "id": "P6-G1-B-AcceptPendingPolicies",
-   "phase": "P6",
-   "title": "AcceptPendingPolicies as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.15,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route AcceptPendingPolicies only. Do not change the other routes of the group.",
-   "deps": [
-    "P6-G1-B-PINBiometricsMenu"
-   ]
-  },
-  {
-   "id": "P6-G1-B-Menu",
-   "phase": "P6",
-   "title": "Menu as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.15,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route Menu only. Do not change the other routes of the group.",
-   "deps": [
-    "P6-G1-B-AcceptPendingPolicies"
    ]
   },
   {
@@ -755,9 +772,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route TermsAndPoliciesMenu only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G1 for the route TermsAndPoliciesMenu only. Do not change the other routes of the group. Step B item 3 is the step P6-G1-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G1-B-Menu"
+    "P6-G1-B-PINBiometricsMenu"
    ]
   },
   {
@@ -772,7 +789,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G1 for the route Profile only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G1 for the route Profile only. Do not change the other routes of the group. Step B item 3 is the step P6-G1-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G1-B-TermsAndPoliciesMenu"
    ]
@@ -815,6 +832,23 @@
    ]
   },
   {
+   "id": "P6-G2-B-Shared",
+   "phase": "P6",
+   "title": "Move the shared blocks of group G2",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B item 3 of group G2 for all its routes at once (W10, W11). Move every src/shared/ row of app/docs/refactor/move-map.csv with the phase P6-G2 to its target, rewrite all importers (also in screens/ of other groups: import paths only), add @origin tags. Move and rename only: no other change in the blocks, no re-export left in src/shared/, rows of other phases stay. When a target path already exists, stop with a question. Gate: diffcheck --move, parity strict --all, lint:arch with no new warning, bundle.",
+   "deps": [
+    "P6-G2-A"
+   ]
+  },
+  {
    "id": "P6-G2-B-ContactUsMenu",
    "phase": "P6",
    "title": "ContactUsMenu as page",
@@ -826,9 +860,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G2 for the route ContactUsMenu only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactUsMenu only. Do not change the other routes of the group. Step B item 3 is the step P6-G2-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G2-A"
+    "P6-G2-B-Shared"
    ]
   },
   {
@@ -843,7 +877,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G2 for the route ContactUsDetails only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactUsDetails only. Do not change the other routes of the group. Step B item 3 is the step P6-G2-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G2-B-ContactUsMenu"
    ]
@@ -860,7 +894,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailMember only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailMember only. Do not change the other routes of the group. Step B item 3 is the step P6-G2-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G2-B-ContactUsDetails"
    ]
@@ -877,7 +911,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailOneSchoolGlobal only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailOneSchoolGlobal only. Do not change the other routes of the group. Step B item 3 is the step P6-G2-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G2-B-ContactByEmailMember"
    ]
@@ -894,7 +928,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailLDMCoordinator only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailLDMCoordinator only. Do not change the other routes of the group. Step B item 3 is the step P6-G2-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G2-B-ContactByEmailOneSchoolGlobal"
    ]
@@ -911,7 +945,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailOrbitHelpdesk only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailOrbitHelpdesk only. Do not change the other routes of the group. Step B item 3 is the step P6-G2-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G2-B-ContactByEmailLDMCoordinator"
    ]
@@ -928,7 +962,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailOrbitHost only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailOrbitHost only. Do not change the other routes of the group. Step B item 3 is the step P6-G2-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G2-B-ContactByEmailOrbitHelpdesk"
    ]
@@ -945,7 +979,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G2 for the route EmailContact only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G2 for the route EmailContact only. Do not change the other routes of the group. Step B item 3 is the step P6-G2-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G2-B-ContactByEmailOrbitHost"
    ]
@@ -962,7 +996,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G2 for the route EmailTarget only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G2 for the route EmailTarget only. Do not change the other routes of the group. Step B item 3 is the step P6-G2-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G2-B-EmailContact"
    ]
@@ -988,6 +1022,23 @@
    ]
   },
   {
+   "id": "P6-F15",
+   "phase": "P6",
+   "title": "Login first load under its limit",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is the bundle fix of decision W18 (migration/refactor/auto-decisions-2026-10-22.md). Take api/message and api/bookmark (and api/update) out of the entry chunk: the app-start call in platform/bootstrap/startup.ts imports narrowly (deep import or a small module, static, same call order); get_IsUnsupportedSystem moves out of shared/**/lib/actions.ts so the lock dialog does not pull the bookmark and update domains. Target: Login first load at least 2.5 kB smaller (about 190.6 kB gzip or less); if not reached, also shrink the route table manifest. No behavior change: parity strict --all with the call check.",
+   "deps": [
+    "P6-G2-C"
+   ]
+  },
+  {
    "id": "P6-G3-A",
    "phase": "P6",
    "title": "Move group G3 to pages/",
@@ -1001,7 +1052,24 @@
    "anchor": "### Phase 6",
    "extra": "This step is step A (move) of group G3 only. Routes: HomeFeed, FeedItemDetail, Updates_SingleList, Services, Search, Notifications, MessageList, MessageDetail.",
    "deps": [
-    "P6-G2-C"
+    "P6-F15"
+   ]
+  },
+  {
+   "id": "P6-G3-B-Shared",
+   "phase": "P6",
+   "title": "Move the shared blocks of group G3",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B item 3 of group G3 for all its routes at once (W10, W11). Move every src/shared/ row of app/docs/refactor/move-map.csv with the phase P6-G3 to its target, rewrite all importers (also in screens/ of other groups: import paths only), add @origin tags. Move and rename only: no other change in the blocks, no re-export left in src/shared/, rows of other phases stay. When a target path already exists, stop with a question. Gate: diffcheck --move, parity strict --all, lint:arch with no new warning, bundle.",
+   "deps": [
+    "P6-G3-A"
    ]
   },
   {
@@ -1016,43 +1084,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G3 for the route HomeFeed only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G3 for the route HomeFeed only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G3-A"
-   ]
-  },
-  {
-   "id": "P6-G3-B-FeedItemDetail",
-   "phase": "P6",
-   "title": "FeedItemDetail as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.44,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G3 for the route FeedItemDetail only. Do not change the other routes of the group.",
-   "deps": [
-    "P6-G3-B-HomeFeed"
-   ]
-  },
-  {
-   "id": "P6-G3-B-Updates_SingleList",
-   "phase": "P6",
-   "title": "Updates_SingleList as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.44,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G3 for the route Updates_SingleList only. Do not change the other routes of the group.",
-   "deps": [
-    "P6-G3-B-FeedItemDetail"
+    "P6-G3-B-Shared"
    ]
   },
   {
@@ -1067,9 +1101,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G3 for the route Services only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G3 for the route Services only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G3-B-Updates_SingleList"
+    "P6-G3-B-HomeFeed"
    ]
   },
   {
@@ -1084,26 +1118,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G3 for the route Search only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G3 for the route Search only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G3-B-Services"
-   ]
-  },
-  {
-   "id": "P6-G3-B-Notifications",
-   "phase": "P6",
-   "title": "Notifications as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.44,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G3 for the route Notifications only. Do not change the other routes of the group.",
-   "deps": [
-    "P6-G3-B-Search"
    ]
   },
   {
@@ -1118,9 +1135,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G3 for the route MessageList only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G3 for the route MessageList only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G3-B-Notifications"
+    "P6-G3-B-Search"
    ]
   },
   {
@@ -1135,9 +1152,94 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G3 for the route MessageDetail only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G3 for the route MessageDetail only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G3-B-MessageList"
+   ]
+  },
+  {
+   "id": "P6-G3-B-FeedItemDetail",
+   "phase": "P6",
+   "title": "FeedItemDetail as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route FeedItemDetail only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G3-B-MessageDetail"
+   ]
+  },
+  {
+   "id": "P6-G3-B-Updates_SingleList",
+   "phase": "P6",
+   "title": "Updates_SingleList as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route Updates_SingleList only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G3-B-FeedItemDetail"
+   ]
+  },
+  {
+   "id": "P6-G3-B-Notifications",
+   "phase": "P6",
+   "title": "Notifications as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route Notifications only. Do not change the other routes of the group. Step B item 3 is the step P6-G3-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G3-B-Updates_SingleList"
+   ]
+  },
+  {
+   "id": "P6-F16",
+   "phase": "P6",
+   "title": "HomeFeed first load trim",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is the entry trim of decisions W21 and W24: make the HomeFeed first load at least about 2 kB gzip smaller without a behavior change (for example a slimmer route table or lazy-route manifest, or narrow imports on the app-start path as P6-F15 did). Target: after P6-G3-B-HomeFeed-Page (+1.11 kB) lands, the HomeFeed margin to its limit is at least 2.0 kB. Gate: parity strict --all with the call check, bundle report.",
+   "deps": [
+    "P6-G3-B-Notifications"
+   ]
+  },
+  {
+   "id": "P6-G3-B-HomeFeed-Page",
+   "phase": "P6",
+   "title": "HomeFeed page part",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step finishes P6-G3-B-HomeFeed (W22): FeedBlock_Services, FeedBlock_Updates and Dialog_GoExternalApp of pages/HomeFeed become hooks and props-only components; GetServices moves to api/service (created by P6-G3-B-Services); pages/HomeFeed/api.ts and types.ts go to domain hooks or inputs.ts and are deleted. Old-vs-new check for HomeFeed; HomeFeed first load must not grow (F17 tripwire, W21).",
+   "deps": [
+    "P6-F16"
    ]
   },
   {
@@ -1157,7 +1259,7 @@
    "anchor": "### Phase 6",
    "extra": "This step is step C (prune) of group G3 and the gate of the group. Routes: HomeFeed, FeedItemDetail, Updates_SingleList, Services, Search, Notifications, MessageList, MessageDetail.",
    "deps": [
-    "P6-G3-B-MessageDetail"
+    "P6-G3-B-HomeFeed-Page"
    ]
   },
   {
@@ -1178,6 +1280,23 @@
    ]
   },
   {
+   "id": "P6-G4-B-Shared",
+   "phase": "P6",
+   "title": "Move the shared blocks of group G4",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B item 3 of group G4 for all its routes at once (W10, W11). Move every src/shared/ row of app/docs/refactor/move-map.csv with the phase P6-G4 to its target, rewrite all importers (also in screens/ of other groups: import paths only), add @origin tags. Move and rename only: no other change in the blocks, no re-export left in src/shared/, rows of other phases stay. When a target path already exists, stop with a question. Gate: diffcheck --move, parity strict --all, lint:arch with no new warning, bundle.",
+   "deps": [
+    "P6-G4-A"
+   ]
+  },
+  {
    "id": "P6-G4-B-BrowseCountries",
    "phase": "P6",
    "title": "BrowseCountries as page",
@@ -1189,9 +1308,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route BrowseCountries only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G4 for the route BrowseCountries only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G4-A"
+    "P6-G4-B-Shared"
    ]
   },
   {
@@ -1206,7 +1325,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route BrowseDirectory only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G4 for the route BrowseDirectory only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G4-B-BrowseCountries"
    ]
@@ -1223,26 +1342,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route CountryList only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G4 for the route CountryList only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G4-B-BrowseDirectory"
-   ]
-  },
-  {
-   "id": "P6-G4-B-CountryDetails",
-   "phase": "P6",
-   "title": "CountryDetails as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.27,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route CountryDetails only. Do not change the other routes of the group.",
-   "deps": [
-    "P6-G4-B-CountryList"
    ]
   },
   {
@@ -1257,9 +1359,43 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route HouseholdCarousel only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G4 for the route HouseholdCarousel only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G4-B-CountryDetails"
+    "P6-G4-B-CountryList"
+   ]
+  },
+  {
+   "id": "P6-G4-B-Photobook",
+   "phase": "P6",
+   "title": "Photobook as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route Photobook only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G4-B-HouseholdCarousel"
+   ]
+  },
+  {
+   "id": "P6-G4-B-CountryDetails",
+   "phase": "P6",
+   "title": "CountryDetails as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route CountryDetails only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G4-B-Photobook"
    ]
   },
   {
@@ -1274,9 +1410,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route Household_Relations only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G4 for the route Household_Relations only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G4-B-HouseholdCarousel"
+    "P6-G4-B-CountryDetails"
    ]
   },
   {
@@ -1291,7 +1427,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route Locality_Details only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G4 for the route Locality_Details only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G4-B-Household_Relations"
    ]
@@ -1308,26 +1444,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route OneSchoolGlobalDetails only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G4 for the route OneSchoolGlobalDetails only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G4-B-Locality_Details"
-   ]
-  },
-  {
-   "id": "P6-G4-B-Photobook",
-   "phase": "P6",
-   "title": "Photobook as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.27,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route Photobook only. Do not change the other routes of the group.",
-   "deps": [
-    "P6-G4-B-OneSchoolGlobalDetails"
    ]
   },
   {
@@ -1342,26 +1461,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route SupperMeeting_Carousel only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G4 for the route SupperMeeting_Carousel only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G4-B-Photobook"
-   ]
-  },
-  {
-   "id": "P6-G4-B-SupperMeeting_Details",
-   "phase": "P6",
-   "title": "SupperMeeting_Details as page",
-   "kind": "change",
-   "level": "visual",
-   "devModel": "opus",
-   "gate": null,
-   "estDays": 0.27,
-   "stretch": false,
-   "fullParity": false,
-   "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route SupperMeeting_Details only. Do not change the other routes of the group.",
-   "deps": [
-    "P6-G4-B-SupperMeeting_Carousel"
+    "P6-G4-B-OneSchoolGlobalDetails"
    ]
   },
   {
@@ -1376,9 +1478,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route CommunityBusinessDetails_CoomingSoon only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G4 for the route CommunityBusinessDetails_CoomingSoon only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G4-B-SupperMeeting_Details"
+    "P6-G4-B-SupperMeeting_Carousel"
    ]
   },
   {
@@ -1393,9 +1495,26 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G4 for the route Assemble_BrowseByCountry only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G4 for the route Assemble_BrowseByCountry only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G4-B-CommunityBusinessDetails_CoomingSoon"
+   ]
+  },
+  {
+   "id": "P6-G4-B-SupperMeeting_Details",
+   "phase": "P6",
+   "title": "SupperMeeting_Details as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route SupperMeeting_Details only. Do not change the other routes of the group. Step B item 3 is the step P6-G4-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
+   "deps": [
+    "P6-G4-B-Assemble_BrowseByCountry"
    ]
   },
   {
@@ -1415,7 +1534,24 @@
    "anchor": "### Phase 6",
    "extra": "This step is step C (prune) of group G4 and the gate of the group. Routes: BrowseCountries, BrowseDirectory, CountryList, CountryDetails, HouseholdCarousel, Household_Relations, Locality_Details, OneSchoolGlobalDetails, Photobook, SupperMeeting_Carousel, SupperMeeting_Details, CommunityBusinessDetails_CoomingSoon, Assemble_BrowseByCountry.",
    "deps": [
-    "P6-G4-B-Assemble_BrowseByCountry"
+    "P6-G4-B-SupperMeeting_Details"
+   ]
+  },
+  {
+   "id": "P6-F17",
+   "phase": "P6",
+   "title": "OnReady before paint option in useFlowState",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is the platform fix of decision W28 (migration/refactor/auto-decisions-2026-10-22.md). Add an opt-in `beforePaint` option to `useFlowState` (platform/navigation/flowState.ts): when it is set, OnReady runs once in a layout effect, before the first paint, as the old G5 and G6 blocks ran it. StrictMode runs it once; `isAlive` is true until the unmount and guards the state writes only (W23); a rejection goes to the flow handler, also after the unmount. The option is off by default, so no page changes. Unit tests for both modes: the state of the first paint, one run in StrictMode, unmount while OnReady is pending, the restored flag. Document the option in docs/guides/page-template.md: a page sets it when the old block ran OnReady in a useLayoutEffect. Reference: the page-local hook useReadyBeforePaint of the MilestoneDetail prefetch.",
+   "deps": [
+    "P6-G4-C"
    ]
   },
   {
@@ -1432,7 +1568,24 @@
    "anchor": "### Phase 6",
    "extra": "This step is step A (move) of group G5 only. Routes: OrbitLanding, OrbitAdminLanding, OrbitAdminEventDetail, EventDetail, EventBooklet, MilestoneDetail, GuestArrangements, HelpersDetail, HostSurvey, TransportDetail, MyEntertaining, LDM_MyEvents_V2, LDM_EventDetail_V2, LDM_Email_V2, AssembleEvents, AssembleDetail.",
    "deps": [
-    "P6-G4-C"
+    "P6-F17"
+   ]
+  },
+  {
+   "id": "P6-G5-B-Shared",
+   "phase": "P6",
+   "title": "Move the shared blocks of group G5",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B item 3 of group G5 for all its routes at once (W10, W11). Move every src/shared/ row of app/docs/refactor/move-map.csv with the phase P6-G5 to its target, rewrite all importers (also in screens/ of other groups: import paths only), add @origin tags. Move and rename only: no other change in the blocks, no re-export left in src/shared/, rows of other phases stay. When a target path already exists, stop with a question. Gate: diffcheck --move, parity strict --all, lint:arch with no new warning, bundle.",
+   "deps": [
+    "P6-G5-A"
    ]
   },
   {
@@ -1447,9 +1600,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route OrbitLanding only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route OrbitLanding only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G5-A"
+    "P6-G5-B-Shared"
    ]
   },
   {
@@ -1464,7 +1617,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route OrbitAdminLanding only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route OrbitAdminLanding only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-OrbitLanding"
    ]
@@ -1481,7 +1634,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route OrbitAdminEventDetail only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route OrbitAdminEventDetail only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-OrbitAdminLanding"
    ]
@@ -1498,7 +1651,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route EventDetail only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route EventDetail only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-OrbitAdminEventDetail"
    ]
@@ -1515,7 +1668,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route EventBooklet only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route EventBooklet only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-EventDetail"
    ]
@@ -1532,7 +1685,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route MilestoneDetail only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route MilestoneDetail only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-EventBooklet"
    ]
@@ -1549,7 +1702,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route GuestArrangements only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route GuestArrangements only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-MilestoneDetail"
    ]
@@ -1566,7 +1719,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route HelpersDetail only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route HelpersDetail only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-GuestArrangements"
    ]
@@ -1583,7 +1736,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route HostSurvey only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route HostSurvey only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-HelpersDetail"
    ]
@@ -1600,7 +1753,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route TransportDetail only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route TransportDetail only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-HostSurvey"
    ]
@@ -1617,7 +1770,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route MyEntertaining only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route MyEntertaining only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-TransportDetail"
    ]
@@ -1634,7 +1787,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route LDM_MyEvents_V2 only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route LDM_MyEvents_V2 only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-MyEntertaining"
    ]
@@ -1651,7 +1804,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route LDM_EventDetail_V2 only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route LDM_EventDetail_V2 only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-LDM_MyEvents_V2"
    ]
@@ -1668,7 +1821,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route LDM_Email_V2 only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route LDM_Email_V2 only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-LDM_EventDetail_V2"
    ]
@@ -1685,7 +1838,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route AssembleEvents only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route AssembleEvents only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-LDM_Email_V2"
    ]
@@ -1702,7 +1855,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G5 for the route AssembleDetail only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G5 for the route AssembleDetail only. Do not change the other routes of the group. Step B item 3 is the step P6-G5-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G5-B-AssembleEvents"
    ]
@@ -1745,6 +1898,23 @@
    ]
   },
   {
+   "id": "P6-G6-B-Shared",
+   "phase": "P6",
+   "title": "Move the shared blocks of group G6",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B item 3 of group G6 for all its routes at once (W10, W11). Move every src/shared/ row of app/docs/refactor/move-map.csv with the phase P6-G6 to its target, rewrite all importers (also in screens/ of other groups: import paths only), add @origin tags. Move and rename only: no other change in the blocks, no re-export left in src/shared/, rows of other phases stay. When a target path already exists, stop with a question. Gate: diffcheck --move, parity strict --all, lint:arch with no new warning, bundle.",
+   "deps": [
+    "P6-G6-A"
+   ]
+  },
+  {
    "id": "P6-G6-B-MyBookmarks",
    "phase": "P6",
    "title": "MyBookmarks as page",
@@ -1756,9 +1926,9 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G6 for the route MyBookmarks only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G6 for the route MyBookmarks only. Do not change the other routes of the group. Step B item 3 is the step P6-G6-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
-    "P6-G6-A"
+    "P6-G6-B-Shared"
    ]
   },
   {
@@ -1773,7 +1943,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G6 for the route BookmarksByGroup only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G6 for the route BookmarksByGroup only. Do not change the other routes of the group. Step B item 3 is the step P6-G6-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G6-B-MyBookmarks"
    ]
@@ -1790,7 +1960,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G6 for the route Notes only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G6 for the route Notes only. Do not change the other routes of the group. Step B item 3 is the step P6-G6-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G6-B-BookmarksByGroup"
    ]
@@ -1807,7 +1977,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G6 for the route ConnectShare only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G6 for the route ConnectShare only. Do not change the other routes of the group. Step B item 3 is the step P6-G6-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G6-B-Notes"
    ]
@@ -1824,7 +1994,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G6 for the route LegacyShareObject only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G6 for the route LegacyShareObject only. Do not change the other routes of the group. Step B item 3 is the step P6-G6-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G6-B-ConnectShare"
    ]
@@ -1841,7 +2011,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G6 for the route QRCodeGenerate only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G6 for the route QRCodeGenerate only. Do not change the other routes of the group. Step B item 3 is the step P6-G6-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G6-B-LegacyShareObject"
    ]
@@ -1858,7 +2028,7 @@
    "stretch": false,
    "fullParity": false,
    "anchor": "### Phase 6",
-   "extra": "This step is step B (restructure) of group G6 for the route ViewDocuments only. Do not change the other routes of the group.",
+   "extra": "This step is step B (restructure) of group G6 for the route ViewDocuments only. Do not change the other routes of the group. Step B item 3 is the step P6-G6-B-Shared: import the shared blocks of 2 or more pages from their move-map targets and do not move them.",
    "deps": [
     "P6-G6-B-QRCodeGenerate"
    ]
@@ -1886,7 +2056,7 @@
   {
    "id": "P6-end",
    "phase": "P6",
-   "title": "Delete screens/ and shared/",
+   "title": "Delete screens/",
    "kind": "change",
    "level": "visual",
    "devModel": "sonnet",
@@ -1895,9 +2065,26 @@
    "stretch": false,
    "fullParity": true,
    "anchor": "### Phase 6",
-   "extra": "This step is the end of Phase 6: the paragraph that starts with 'After G6'.",
+   "extra": "This step is the end of Phase 6: the paragraph that starts with 'After G6', changed by W20: delete src/screens/ and the fallback in app/screens.ts only; src/shared/ stays until P7-6. Guard: no file left in src/screens/ and no import of screens/; ci and parity strict --all.",
    "deps": [
     "P6-G6-C"
+   ]
+  },
+  {
+   "id": "P7-0",
+   "phase": "P7",
+   "title": "Move the P7 shared rows",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 7",
+   "extra": "This step is a pure move before P7-1 (W20): move every src/shared/ row of app/docs/refactor/move-map.csv with the phase P7, except shared/osui/* (P7-1 moves those), to its target, as the P6 B-Shared steps did (move-map renames W12, @origin tags, importers follow, W15 baseline rows). Gate: diffcheck --move, parity strict --all.",
+   "deps": [
+    "P6-end"
    ]
   },
   {
@@ -1914,7 +2101,7 @@
    "anchor": "**P7-1 ",
    "extra": null,
    "deps": [
-    "P6-end"
+    "P7-0"
    ]
   },
   {
@@ -1969,6 +2156,23 @@
    ]
   },
   {
+   "id": "P7-6",
+   "phase": "P7",
+   "title": "Place shared/*/lib and delete shared/",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 7",
+   "extra": "This step empties and deletes src/shared/ (W20), before the report P7-5. Commit 1 (docs only): add a move-map.csv row for each file left in src/shared/ (the <package>/lib/ helpers, shared/lib, shared/test, the mock files, the README), with a target by data ownership: api/<domain>, platform/<area>, lib/ (rule 6: lib/ imports only lib/), pages/<R> when one page uses it, src/test/ for test setup; the master gets the rows approved by Opus + Fable before any move. Commit 2: pure move to those targets (diffcheck --move, parity strict --all, W15 baseline rows); delete src/shared/ only when it has no file, and remove its alias and lint rules in the same commit.",
+   "deps": [
+    "P7-4"
+   ]
+  },
+  {
    "id": "P7-5",
    "phase": "P7",
    "title": "Report",
@@ -1982,7 +2186,7 @@
    "anchor": "**P7-5 ",
    "extra": null,
    "deps": [
-    "P7-4"
+    "P7-6"
    ]
   },
   {

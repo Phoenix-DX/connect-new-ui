@@ -1,0 +1,170 @@
+# Refactor parity report
+
+- Level: `strict`
+- References: outsystems, self
+- App: http://localhost:5174
+- Commit: `62a78da` (+ uncommitted changes)
+- Date: 2026-10-22T19:28:33, run time 4.2 min (4 jobs)
+- Scope: all; 64 route(s)
+
+| Route | State | outsystems | self |
+|---|---|---|---|
+| AssembleEvents | default | OK | OK |
+| AssembleEvents | loading | OK | OK |
+| AssembleEvents | offline | OK | OK |
+| Assemble_BrowseByCountry | default | OK | OK |
+| Assemble_BrowseByCountry | loading | OK | OK |
+| Assemble_BrowseByCountry | offline | OK | OK |
+| BookmarksByGroup | default | OK | OK |
+| BookmarksByGroup | loading | OK | OK |
+| BookmarksByGroup | offline | OK | OK |
+| BrowseCountries | default | OK | OK |
+| BrowseCountries | loading | OK | OK |
+| BrowseCountries | offline | OK | OK |
+| BrowseDirectory | default | OK | OK |
+| BrowseDirectory | loading | OK | OK |
+| BrowseDirectory | offline | OK | OK |
+| CommunityBusinessDetails_CoomingSoon | default | OK | OK |
+| CommunityBusinessDetails_CoomingSoon | loading | OK | OK |
+| CommunityBusinessDetails_CoomingSoon | offline | OK | OK |
+| ConnectShare | default | OK | OK |
+| ConnectShare | loading | OK | OK |
+| ConnectShare | offline | OK | OK |
+| ContactByEmailMember | default | OK | OK |
+| ContactByEmailMember | loading | OK | OK |
+| ContactByEmailMember | offline | OK | OK |
+| ContactByEmailOneSchoolGlobal | default | OK | OK |
+| ContactByEmailOneSchoolGlobal | loading | OK | OK |
+| ContactByEmailOneSchoolGlobal | offline | OK | OK |
+| ContactByEmailOrbitHelpdesk | default | OK | OK |
+| ContactUsDetails | default | OK | OK |
+| ContactUsDetails | loading | OK | OK |
+| ContactUsDetails | offline | OK | OK |
+| ContactUsMenu | default | OK | OK |
+| ContactUsMenu | loading | OK | OK |
+| ContactUsMenu | offline | OK | OK |
+| CountryDetails | default | OK | OK |
+| CountryDetails | loading | OK | OK |
+| CountryDetails | offline | OK | OK |
+| CountryList | default | OK | OK |
+| CountryList | loading | OK | OK |
+| CountryList | offline | OK | OK |
+| EventDetail | default | OK | OK |
+| EventDetail | loading | OK | OK |
+| EventDetail | offline | OK | OK |
+| HelpersDetail | default | OK | OK |
+| HelpersDetail | loading | OK | OK |
+| HelpersDetail | offline | OK | OK |
+| HomeFeed | default | OK | OK |
+| HomeFeed | loading | OK | OK |
+| HomeFeed | offline | OK | OK |
+| HostSurvey | default | OK | OK |
+| HouseholdCarousel | default | OK | OK |
+| HouseholdCarousel | loading | OK | OK |
+| HouseholdCarousel | offline | OK | OK |
+| HouseholdDetails | default | OK | OK |
+| HouseholdDetails | loading | OK | OK |
+| HouseholdDetails | offline | OK | OK |
+| Household_Relations | default | OK | OK |
+| Household_Relations | loading | OK | OK |
+| Household_Relations | offline | OK | OK |
+| LDM_EventDetail_V2 | default | OK | OK |
+| LDM_EventDetail_V2 | loading | OK | OK |
+| LDM_EventDetail_V2 | offline | OK | OK |
+| LDM_MyEvents_V2 | default | OK | OK |
+| LDM_MyEvents_V2 | loading | OK | OK |
+| LDM_MyEvents_V2 | offline | OK | OK |
+| LegacyShareObject | default | OK | OK |
+| LegacyShareObject | loading | OK | OK |
+| LegacyShareObject | offline | OK | OK |
+| Locality_Details | default | OK | OK |
+| Locality_Details | loading | OK | OK |
+| Locality_Details | offline | OK | OK |
+| Locality_Details | tag-interchange | OK | OK |
+| Locality_Details | tag-oneschoolglobal | OK | OK |
+| Locality_Details | tag-suppermeetings | OK | OK |
+| Login | default | OK | OK |
+| Login | loading | OK | OK |
+| Login | offline | OK | OK |
+| Menu | default | OK | OK |
+| Menu | loading | OK | OK |
+| Menu | offline | OK | OK |
+| MessageDetail | default | OK | OK |
+| MessageDetail | loading | OK | OK |
+| MessageDetail | offline | OK | OK |
+| MessageList | default | OK | OK |
+| MessageList | filter | OK | OK |
+| MessageList | loading | OK | OK |
+| MessageList | offline | OK | OK |
+| MessageList | search | OK | OK |
+| MilestoneDetail | default | OK | OK |
+| MyBookmarks | default | OK | OK |
+| MyBookmarks | loading | OK | OK |
+| MyBookmarks | offline | OK | OK |
+| MyEntertaining | default | OK | OK |
+| MyEntertaining | loading | OK | OK |
+| MyEntertaining | offline | OK | OK |
+| Notes | default | OK | OK |
+| Notes | loading | OK | OK |
+| Notes | offline | OK | OK |
+| Notifications | default | OK | OK |
+| Notifications | loading | OK | OK |
+| Notifications | offline | OK | OK |
+| OneSchoolGlobalDetails | default | OK | OK |
+| OneSchoolGlobalDetails | loading | OK | OK |
+| OneSchoolGlobalDetails | offline | OK | OK |
+| OrbitAdminLanding | default | OK | OK |
+| OrbitAdminLanding | loading | OK | OK |
+| OrbitAdminLanding | offline | OK | OK |
+| OrbitLanding | default | OK | OK |
+| OrbitLanding | loading | OK | OK |
+| OrbitLanding | offline | OK | OK |
+| OrbitLanding | popup-filters | OK | OK |
+| OrbitLanding | popup-sort | OK | OK |
+| PINBiometricsMenu | default | OK | OK |
+| PINBiometricsMenu | loading | OK | OK |
+| PINBiometricsMenu | offline | OK | OK |
+| PINChange | default | OK | OK |
+| PINChange | loading | OK | OK |
+| PINChange | offline | OK | OK |
+| PINRegister | default | OK | OK |
+| PINRegister | loading | OK | OK |
+| PINRegister | offline | OK | OK |
+| PINUnlock | default | OK | OK |
+| PINUnlock | loading | OK | OK |
+| PINUnlock | offline | OK | OK |
+| Photobook | default | OK | OK |
+| Photobook | loading | OK | OK |
+| Photobook | offline | OK | OK |
+| Profile | default | OK | OK |
+| Profile | loading | OK | OK |
+| Profile | offline | OK | OK |
+| Search | default | OK | OK |
+| Search | loading | OK | OK |
+| Search | offline | OK | OK |
+| Services | default | OK | OK |
+| Services | loading | OK | OK |
+| Services | offline | OK | OK |
+| Splash | default | OK | OK |
+| SupperMeeting_Carousel | default | OK | OK |
+| SupperMeeting_Carousel | loading | OK | OK |
+| SupperMeeting_Carousel | offline | OK | OK |
+| SupperMeeting_Details | default | OK | OK |
+| SupperMeeting_Details | loading | OK | OK |
+| SupperMeeting_Details | offline | OK | OK |
+| TermsAndPoliciesMenu | default | OK | OK |
+| TermsAndPoliciesMenu | loading | OK | OK |
+| TermsAndPoliciesMenu | offline | OK | OK |
+| Updates_SingleList | default | OK | OK |
+| Updates_SingleList | loading | OK | OK |
+| Updates_SingleList | offline | OK | OK |
+
+## Totals
+
+| Reference | Routes | Clean | With differences or errors |
+|---|---|---|---|
+| outsystems | 64 | 64 | 0 |
+| self | 64 | 64 | 0 |
+
+
+Result: PASS

@@ -2,6 +2,29 @@ import js from '@eslint/js';
 import tseslint from 'typescript-eslint';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
+import { readFileSync } from 'node:fs';
+
+const relativeParentPattern = {
+  regex: '^\\.\\./',
+  message: 'Rule 11: import across folders with the @/ alias, not with ../.',
+};
+
+const rule4Pattern = {
+  regex: '^@/(api|platform|pages|containers|app)(/|$)',
+  message: 'Rule 4: components/** does not import api/, platform/, pages/, containers/ or app/.',
+};
+
+/* Files that have a row in the frozen baseline (docs/refactor/arch-baseline.csv, P9-1, W38). Rule 4 is an error
+   everywhere else. In these files it stays a warning, because the rows are known debt with an owner:
+   `python3 migration/tools/refactor/arch_baseline.py check --strict` (run by `npm run ci`) fails on a warning whose row
+   is not in the baseline and on a baseline row that no longer occurs. The CSV has no quoted commas (paths and import
+   specifiers). */
+const rule4BaselineFiles = readFileSync(new URL('./docs/refactor/arch-baseline.csv', import.meta.url), 'utf8')
+  .split('\n')
+  .slice(1)
+  .filter((line) => line.length > 0)
+  .map((line) => line.split(',')[0])
+  .filter((file, i, all) => all.indexOf(file) === i);
 
 /* One lint configuration for the whole app (stack item "lint"). Type-checked strict rules: they catch wire-format
    mistakes (any, unchecked indexes, floating promises) before they reach a review. */
@@ -15,7 +38,7 @@ export default tseslint.config(
       'public',
       'src/api/schema.d.ts',
       'src/vendor/**/*.js',
-      'src/shared/osui/*/vendor/**/*.js',
+      'src/components/ui/*/vendor/**/*.js',
     ],
   },
   js.configs.recommended,
@@ -31,6 +54,26 @@ export default tseslint.config(
       '@typescript-eslint/restrict-template-expressions': ['error', { allowNumber: true }],
     },
   },
+  // Plan v2 §2.4 rule 11 is an error (P1-4); rule 4 is an error (P9-1) except in the files of the frozen baseline.
+  // A later block that sets the same rule replaces this one, so the components block repeats the relative pattern.
+  {
+    files: ['src/**/*.{ts,tsx}'],
+    rules: { 'no-restricted-imports': ['error', { patterns: [relativeParentPattern] }] },
+  },
+  // The alias codemod skips src/sw (built by vite-plugin-pwa, build/pwa.ts), so it keeps relative imports.
+  { files: ['src/sw/**/*.ts'], rules: { 'no-restricted-imports': 'off' } },
+  {
+    files: ['src/components/**/*.{ts,tsx}'],
+    rules: { 'no-restricted-imports': ['error', { patterns: [relativeParentPattern, rule4Pattern] }] },
+  },
+  ...(rule4BaselineFiles.length > 0
+    ? [
+        {
+          files: rule4BaselineFiles,
+          rules: { 'no-restricted-imports': ['warn', { patterns: [relativeParentPattern, rule4Pattern] }] },
+        },
+      ]
+    : []),
   { files: ['eslint.config.js'], extends: [tseslint.configs.disableTypeChecked] },
   // dependency-cruiser config (CommonJS, read by the CLI)
   {

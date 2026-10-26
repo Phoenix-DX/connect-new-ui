@@ -1,0 +1,8 @@
+/* Cascade layers of the app (plan v2 §2.8, R3). This statement fixes the order; the first CSS of the bundle imports it.
+   - legacy: the original OutSystems CSS. StylesheetHost (legacy/os) imports the files of public/UBTConnect/css into it,
+     and the barcode plugin's runtime stylesheet goes into it too (platform/device/barcodePluginCss.ts). Inside the
+     layer the original cascade stays as it was: specificity, then document order.
+   - app: the CSS of the clone: tokens.css, review.css and the CSS of new components.
+   A rule of a later layer wins over a rule of an earlier layer, whatever their specificity (for !important
+   declarations the order is the reverse). CSS outside any layer would win over both: write none. */
+@layer legacy, app;

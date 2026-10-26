@@ -29,12 +29,18 @@ if (!entry || !chunks.has(entry)) {
   process.exit(1);
 }
 
-/** The chunk that the entry loads for src/screens/<screen>/index.tsx (import.meta.glob map). */
+/** The chunk that the entry loads for src/pages/<screen>/<screen>Page.tsx or src/screens/<screen>/index.tsx (import.meta.glob map). */
 function routeChunk(screen) {
-  const re = new RegExp(`"\\.\\./screens/${screen}/index\\.tsx"\\s*:\\s*\\(\\)\\s*=>[^"]*?import\\("\\./([^"]+\\.js)"`);
-  for (const chunk of chunks.values()) {
-    const m = chunk.text.match(re);
-    if (m) return m[1];
+  const tail = String.raw`"\s*:\s*\(\)\s*=>[^"]*?import\("\./([^"]+\.js)"`;
+  const res = [
+    new RegExp(String.raw`"\.\./pages/${screen}/${screen}Page\.tsx` + tail),
+    new RegExp(String.raw`"\.\./screens/${screen}/index\.tsx` + tail),
+  ];
+  for (const re of res) {
+    for (const chunk of chunks.values()) {
+      const m = chunk.text.match(re);
+      if (m) return m[1];
+    }
   }
   return null;
 }

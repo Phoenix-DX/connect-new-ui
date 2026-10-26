@@ -5,8 +5,9 @@ Run from the project root, with the dev server up (npm --prefix app run dev):
     python3 migration/tools/refactor_parity.py --level strict|visual
         [--all | --routes R1 R2 ... | --changed [--since <commit>]]
         [--ref outsystems|self|both]      default both
-        [--record-self]                   record the self-parity reference from the running app, then stop
-        [--report app/docs/refactor/reports/<name>.md]   default migration/refactor-parity/last/report.md
+        [--record-self [--source-commit <rev>]]   record the self-parity reference from the running app, then stop
+        [--report app/docs/refactor/reports/<name>.md]   default <out>/report.md
+        [--out migration/refactor-parity/<name>]   output folder, default migration/refactor-parity/last
         [--app http://localhost:5173] [--jobs 4]
 
 Levels (skill checks of parity_check.cjs):
@@ -19,10 +20,21 @@ References:
     self        migration/refactor-reference/<Route>/<state>/ (tree.json, screenshot.png, calls), recorded by
                 --record-self; exemptions migration/refactor-exemptions.json (a list, see migration/tools/README.md)
 
-Outputs: reports and screenshots in migration/refactor-parity/last/<ref>/<Route>/ (replaced at each run, not committed);
+Outputs: reports and screenshots in <out>/<ref>/<Route>/ (<out> is replaced at each run, not committed; --out lets runs
+with other --app URLs go at the same time, each with its own folder, which must be under migration/refactor-parity/);
 the Markdown report has one line per route and state and a total per reference. Exit code 1 when a route has a
 difference or a state could not run, 0 otherwise. A run that differs is repeated once; when the second try is clean it
 counts as clean and the report names it (timing flake). Self runs fix the page clock and finish or pause animations.
+Every run (record and both references) passes --preload-fonts: all web fonts start to load at once, so no font arrives
+after the first paint of the content (a late icon font moved the "View Guests" button text of EventDetail, P4-F6).
+Self runs and the record also pass --hold-third-party: under the fixed clock, Leaflet keeps any tile of an earlier zoom
+level that loaded before a zoom change, so third-party requests (map tiles) wait for the page's startup (CountryDetails,
+P5-F9).
+
+Reference manifest (migration/refactor-reference/manifest.json): a record of every finished route writes the full-record
+data (source commit, date, app, counts, size). A record of some routes keeps that data and adds or replaces one entry per
+route in `rerecorded` (route, states, errors, source commit, date, app). The source commit is the commit of the code that
+the app at --app serves: --source-commit <rev> when the app runs from another worktree, else HEAD of this tree.
 """
 import argparse
 import concurrent.futures
@@ -51,6 +63,15 @@ GLOBAL_PATHS = ("app/src/app/", "app/src/platform/", "app/src/api/client", "app/
 
 sys.path.insert(0, SK)
 import route as skill  # noqa: E402  (the skill's route.py: state loading, URL and plan helpers; main() is guarded)
+
+
+def resolve_out(path):
+    """--out must be a folder under migration/refactor-parity/ (it is deleted at the start of a run); exits otherwise."""
+    root = os.path.realpath("migration/refactor-parity")
+    full = os.path.realpath(path)
+    if not full.startswith(root + os.sep):
+        sys.exit(f"--out {path}: must be a folder under migration/refactor-parity/")
+    return os.path.relpath(full)
 
 
 def git(*a):
@@ -93,11 +114,9 @@ def closure(graph, entry):
 
 
 def route_entry(graph, route):
-    """src/screens/<R>/index.tsx now, src/pages/<R>/<R>Page.tsx after the moves of plan v2."""
-    for e in (f"src/screens/{route}/index.tsx", f"src/pages/{route}/{route}Page.tsx"):
-        if e in graph:
-            return e
-    return None
+    """src/pages/<R>/<R>Page.tsx, or None when the graph does not hold it."""
+    entry = f"src/pages/{route}/{route}Page.tsx"
+    return entry if entry in graph else None
 
 
 def changed_routes(since, all_routes, files=None, explain=None):
@@ -140,7 +159,7 @@ def build_cmd(c, args, route, state, meta, ref, plan):
     an = os.path.join(c.rdir(route), "analysis")
     raw = os.path.join(an, "dom", f"{state}.raw.html")
     cmd = [args.node, os.path.join(SK, "parity_check.cjs"), "--app", args.app, "--route", skill.route_url(c, route, meta),
-           "--expect", raw, "--state", state]
+           "--expect", raw, "--state", state, "--preload-fonts"]
     if os.path.exists(os.path.join(an, "states.json")):
         cmd += ["--states", os.path.join(an, "states.json")]
     if plan["scenario"]:
@@ -151,7 +170,7 @@ def build_cmd(c, args, route, state, meta, ref, plan):
         cmd += ["--settle", str(plan["settle"])]
     refdir = os.path.join(REFERENCE, route, state)
     if args.record_self:
-        return cmd + ["--record-self", refdir, "--freeze-animations", "--fixed-time", FIXED_TIME]
+        return cmd + ["--record-self", refdir, "--freeze-animations", "--fixed-time", FIXED_TIME, "--hold-third-party"]
     out = os.path.join(RUNS, ref, route, f"{state}.json")
     cmd += ["--out", out]
     if args.level == "visual":
@@ -164,7 +183,7 @@ def build_cmd(c, args, route, state, meta, ref, plan):
         if os.path.exists("migration/parity-exemptions.json"):
             cmd += ["--exemptions", "migration/parity-exemptions.json"]
     else:
-        cmd += ["--self-ref", refdir, "--freeze-animations", "--fixed-time", FIXED_TIME]
+        cmd += ["--self-ref", refdir, "--freeze-animations", "--fixed-time", FIXED_TIME, "--hold-third-party"]
         rules = self_rules(route)
         if rules:
             ex = os.path.join(RUNS, ref, route, f"{state}.exemptions.json")
@@ -172,6 +191,40 @@ def build_cmd(c, args, route, state, meta, ref, plan):
             json.dump({"rules": rules}, open(ex, "w"), indent=1)
             cmd += ["--exemptions", ex]
     return cmd
+
+
+def source_commit(rev):
+    """Full hash of `rev` (--source-commit, default HEAD); exits when it is not a commit of this repository."""
+    sha = git("rev-parse", "--verify", "--quiet", f"{rev}^{{commit}}").strip()
+    if not sha:
+        sys.exit(f"--source-commit {rev}: not a commit of this repository")
+    return sha
+
+
+def write_manifest(routes, every, results, app, commit, at):
+    """migration/refactor-reference/manifest.json after a record (see the module doc). A record of every finished route
+    writes the full-record data; a record of some routes keeps the file's data and adds or replaces one `rerecorded`
+    entry per route. `results`: {(route, state, ref): (rc, out, secs)}. Returns the manifest."""
+    path = os.path.join(REFERENCE, "manifest.json")
+    size = sum(os.path.getsize(os.path.join(d, f)) for d, _, fs in os.walk(REFERENCE) for f in fs)
+    states = {r: [k for k in results if k[0] == r] for r in routes}
+    bad = {r: [k for k in states[r] if results[k][0] != 0] for r in routes}
+    if set(routes) >= set(every):
+        manifest = {"commit": commit, "at": at, "app": app, "routes": len(routes),
+                    "states": sum(len(v) for v in states.values()), "errors": sum(len(v) for v in bad.values()),
+                    "bytes": size, "rerecorded": []}
+    else:
+        try:
+            manifest = json.load(open(path, encoding="utf-8"))
+        except (OSError, ValueError):
+            manifest = {}
+        kept = [e for e in manifest.get("rerecorded", []) if e.get("route") not in routes]
+        new = [{"route": r, "states": len(states[r]), "errors": len(bad[r]), "commit": commit, "at": at, "app": app}
+               for r in routes]
+        manifest["rerecorded"] = sorted(kept + new, key=lambda e: e["route"])
+        manifest["bytes"] = size
+    json.dump(manifest, open(path, "w", encoding="utf-8"), indent=1)
+    return manifest
 
 
 FLAKY = []   # runs that differed once and passed on the second try
@@ -198,6 +251,7 @@ def summarize(out):
 
 
 def main():
+    global RUNS
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--level", choices=["strict", "visual"], default="strict")
     g = ap.add_mutually_exclusive_group()
@@ -209,13 +263,22 @@ def main():
     ap.add_argument("--since", default="HEAD~1", help="with --changed: the commit to diff from (default HEAD~1)")
     ap.add_argument("--ref", choices=["outsystems", "self", "both"], default="both")
     ap.add_argument("--record-self", action="store_true")
-    ap.add_argument("--report", default=os.path.join(RUNS, "report.md"))
+    ap.add_argument("--source-commit", help="with --record-self: the commit of the code that the app at --app serves "
+                    "(when it runs from another worktree); default HEAD of this tree")
+    ap.add_argument("--report", help="Markdown report file; default <out>/report.md")
+    ap.add_argument("--out", default=RUNS, help="output folder under migration/refactor-parity/ (default %(default)s); "
+                    "only this folder is deleted at the start of a run")
     ap.add_argument("--app", default="http://localhost:5173")
     ap.add_argument("--jobs", type=int, default=4)
     ap.add_argument("--node", default=os.path.join(NODE_BIN, "node"))
     args = ap.parse_args()
     if not (args.all or args.routes or args.changed):
         ap.error("choose --all, --routes or --changed")
+    if args.source_commit and not args.record_self:
+        ap.error("--source-commit goes with --record-self")
+    commit = source_commit(args.source_commit or "HEAD") if args.record_self else None
+    RUNS = resolve_out(args.out)
+    args.report = args.report or os.path.join(RUNS, "report.md")
 
     started = time.time()
     c = skill.Ctx(SimpleNamespace(migration_dir="migration", app_dir="app"))
@@ -286,11 +349,9 @@ def main():
     elapsed = time.time() - started
     if args.record_self:
         bad = [k for k, v in results.items() if v[0] != 0]
-        size = sum(os.path.getsize(os.path.join(d, f)) for d, _, fs in os.walk(REFERENCE) for f in fs)
-        manifest = {"commit": git("rev-parse", "HEAD").strip(), "at": datetime.datetime.now().isoformat(timespec="seconds"),
-                    "app": args.app, "routes": len(routes), "states": len(jobs), "errors": len(bad), "bytes": size}
-        json.dump(manifest, open(os.path.join(REFERENCE, "manifest.json"), "w"), indent=1)
-        print(f"recorded {len(jobs) - len(bad)}/{len(jobs)} state(s), {size / 1e6:.1f} MB, {elapsed:.0f}s; errors: {bad}")
+        manifest = write_manifest(routes, every, results, args.app, commit, datetime.datetime.now().isoformat(timespec="seconds"))
+        print(f"recorded {len(jobs) - len(bad)}/{len(jobs)} state(s) from commit {commit[:7]}, reference "
+              f"{manifest['bytes'] / 1e6:.1f} MB, {elapsed:.0f}s; errors: {bad}")
         sys.exit(1 if bad else 0)
 
     # report

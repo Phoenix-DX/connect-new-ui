@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router';
 import type { RouteInfo } from './routes.generated';
-import { NotCaptured } from '../components/NotCaptured';
+import { NotCaptured } from '@/platform/feedback/NotCaptured';
 
 export function NotMigrated({ route }: { route: RouteInfo | null }) {
   const loc = useLocation();

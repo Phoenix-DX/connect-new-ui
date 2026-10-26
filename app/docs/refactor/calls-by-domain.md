@@ -12,8 +12,8 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 | member       |     4 |                  4 |
 | country      |     6 |                  7 |
 | locality     |     7 |                 11 |
-| update       |     5 |                  9 |
-| event        |    16 |                 28 |
+| update       |     4 |                  8 |
+| event        |    17 |                 29 |
 | bookmark     |     4 |                 10 |
 | note         |     4 |                  6 |
 | message      |    14 |                 19 |
@@ -26,33 +26,29 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 | ------------------------------------------------------ | --------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `screens/Household_Relations/api.ts`                   | UBTConnect            | `HouseholdRelations_Block/DataActionGet_MemberDetails`, `HouseholdRelations_Block/DataActionGet_ParentHouseholdDetails` |
 | `screens/LDM_EventDetail_V2/api.ts`                    | <MODULE>              | `ActionGetHouseholdCoordinates`                                                                                         |
-| `screens/LegacyShareObject/api.ts`                     | Connect2_LegacyShared | `ServiceAPIGetHouseholdDetails`                                                                                         |
+| `api/household/repository.ts`                          | Connect2_LegacyShared | `ServiceAPIGetHouseholdDetails`                                                                                         |
 | `screens/Locality_Details/api.ts`                      | UBTConnect            | `Household_Card/DataActionGetMembers`, `Locality_Households_HouseholdList/DataActionGetLocalityHouseholds`              |
-| `screens/OrbitLanding/api.ts`                          | <MODULE>              | `ScreenBlock_OrbitLanding/DataActionGet_HouseholdMembers`                                                               |
-| `screens/Photobook/api.ts`                             | UBTConnect            | `<ACTION_HOUSEHOLDS>`                                                                                                   |
 | `shared/UBTConnect/HouseholdDetails_Block/api.ts`      | UBTConnect            | `HouseholdDetails_Block/DataActionGetHousehold`, `HouseholdDetails_Block/DataActionGetHousehold_Coordinates`            |
 | `shared/UBTConnect/SupperMeeting_HouseholdList/api.ts` | UBTConnect            | `SupperMeeting_HouseholdList/DataActionGetSubdivisionHouseholds`                                                        |
 | `shell/startup.ts`                                     | UBTConnect            | `ServiceAPIFetchData_CacheableHouseholds`                                                                               |
 
 ## member
 
-| File                                        | Module           | Actions                                                   |
-| ------------------------------------------- | ---------------- | --------------------------------------------------------- |
-| `screens/OrbitAdminEventDetail/api.ts`      | <MODULE>         | `ActionGetMemberByMemberId`                               |
-| `screens/OrbitLanding/api.ts`               | <MODULE>         | `ScreenBlock_OrbitLanding/DataActionGet_EventsByMemberId` |
-| `screens/Profile/api.ts`                    | UBTConnect       | `ServiceAPIMember_EditDetails_Service`                    |
-| `shared/UBTConnect_Utils/ShareSheet/api.ts` | UBTConnect_Utils | `ShareSheet/DataActionGetAvailableMembers`                |
+| File                                        | Module           | Actions                                    |
+| ------------------------------------------- | ---------------- | ------------------------------------------ |
+| `pages/Menu/hooks/useMenu.ts`               | UBTConnect       | `ActionRequestPhotoUpdate`                 |
+| `screens/Profile/api.ts`                    | UBTConnect       | `ServiceAPIMember_EditDetails_Service`     |
+| `shared/UBTConnect_Utils/ShareSheet/api.ts` | UBTConnect_Utils | `ShareSheet/DataActionGetAvailableMembers` |
 
 ## country
 
 | File                                                                              | Module                | Actions                                                                            |
 | --------------------------------------------------------------------------------- | --------------------- | ---------------------------------------------------------------------------------- |
-| `screens/BrowseCountries/api.ts`                                                  | UBTConnect            | `BrowseCountries/DataActionGetCountriesStatistics`                                 |
-| `screens/CountryDetails/api.ts`                                                   | UBTConnect            | `CountryDetails/DataActionGetLocalityStatistics`                                   |
-| `screens/CountryList/api.ts`                                                      | UBTConnect            | `CountryList/DataActionGetCountriesStatistics`                                     |
 | `screens/Profile/api.ts`                                                          | UBTConnect            | `Profile/DataActionGetCountryInfo`                                                 |
 | `shared/Connect2_LegacyShared/lib/actions.ts`                                     | Connect2_LegacyShared | `ActionGetCountriesBySubscription`, `ActionGetUserLocalitiesForCountryCodeWithGPS` |
 | `shared/UBTConnect_Utils/CacheControl_AllCountries/CacheControl_AllCountries.tsx` | UBTConnect_Utils      | `CacheControl_AllCountries/DataActionGetCacheInfo`                                 |
+
+P5-2-country: the 7 actions of this table (6 files, 7 distinct actions, counts unchanged) are now in `src/api/country/repository.ts`. The `api.ts` files above re-export it; `Connect2_LegacyShared/lib/actions.ts` and `CacheControl_AllCountries` call its functions.
 
 ## locality
 
@@ -66,15 +62,32 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 | `shared/UBTConnect/SupperMeeting_DetailsBlock/api.ts`                               | UBTConnect            | `SupperMeeting_DetailsBlock/DataActionGetSubdivision`                                                                                                                                                                                 |
 | `shared/UBTConnect_Utils/CacheControl_AllLocalities/CacheControl_AllLocalities.tsx` | UBTConnect_Utils      | `CacheControl_AllLocalities/DataActionGetCacheInfo`                                                                                                                                                                                   |
 
+P5-2-locality: the 11 actions of this table (7 files, 11 distinct actions, counts unchanged) are now in `src/api/locality/repository.ts`. The `api.ts` files above re-export it; `Connect2_LegacyShared/lib/actions.ts` and `CacheControl_AllLocalities` call its functions. The household calls of `screens/Locality_Details/api.ts` stay in the household table.
+
 ## update
 
 | File                                | Module     | Actions                                                                                                                                                                                                                               |
 | ----------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `screens/HomeFeed/api.ts`           | UBTConnect | `FeedBlock_Updates/DataActionFetchUpdates`, `ServiceAPIAction_UI_UpdateItem_MarkAsRead`, `ServiceAPIAction_UI_UpdateItem_MarkAsUnread`                                                                                                |
-| `screens/HouseholdCarousel/api.ts`  | UBTConnect | `ActionUpdateItem_MarkAsRead`                                                                                                                                                                                                         |
-| `screens/Menu/api.ts`               | UBTConnect | `ActionRequestPhotoUpdate`                                                                                                                                                                                                            |
 | `screens/Updates_SingleList/api.ts` | UBTConnect | `ServiceAPIAction_UI_UpdateItem_MarkAllAsRead`, `ServiceAPIAction_UI_UpdateItem_MarkAsRead`, `ServiceAPIAction_UI_UpdateItem_MarkAsUnread`, `Updates_SingleList/DataActionFetchUpdates`, `Updates_SingleList/DataActionGetDateRanges` |
 | `shared/UBTConnect/lib/actions.ts`  | UBTConnect | `ServiceAPIGet_UI_UpdateItems_UnreadCount_All`                                                                                                                                                                                        |
+
+P5-2-update: the 9 actions of this table (5 files, 9 distinct actions, counts unchanged) are now in `src/api/update/repository.ts`. The `api.ts` files above re-export it; `shared/UBTConnect/lib/actions.ts` calls `fetchUnreadUpdateItemsCount`.
+
+P6-G3-B-Updates_SingleList: `pages/Updates_SingleList/api.ts` is deleted. The page hook calls `fetchUpdateDateRangeIds`, `fetchUpdatesList`, `markUpdateItemAsRead`, `markUpdateItemAsUnread` and `markAllUpdateItemsAsRead` of `@/api/update` directly. The 5 actions of the row above are unchanged.
+
+P6-G3-B-HomeFeed-Page: `pages/HomeFeed/api.ts` is deleted (its rows in the update and service tables). The hooks `useFeedUpdates` and `useFeedServices` import the update calls from `@/api/update`. `FeedBlock_Services/DataActionGetServices` is `fetchFeedServices` and `useFeedServicesQuery` in `src/api/service`, with the key `serviceKeys.feed()`.
+
+P6-G4-B-BrowseCountries: `pages/BrowseCountries/api.ts` is deleted (its row in the country table). The hook `useBrowseCountries` calls `fetchBrowseCountriesStatistics` of `@/api/country` directly.
+
+P6-G4-B-BrowseDirectory: `pages/BrowseDirectory/api.ts` is deleted (its row in the locality table). The hook `useBrowseDirectory` calls `fetchLocalityCardList` of `@/api/locality` directly. `GetLocalityStatistics` is unchanged.
+
+P6-G4-B-CountryList: `pages/CountryList/api.ts` is deleted (its row in the country table). The hook `useCountryList` calls `fetchCountryListStatistics` of `@/api/country` directly.
+
+P6-G4-B-CountryDetails: `pages/CountryDetails/api.ts` is deleted (its row in the country table). The hook `useCountryDetails` calls `useCountryLocalityStatisticsQuery` of `@/api/country` directly.
+
+P6-G4-B-HouseholdCarousel: `pages/HouseholdCarousel/api.ts` is deleted (its row in the update table). The hook `useHouseholdCarousel` calls `markCarouselUpdateItemAsRead` of `@/api/update` directly.
+
+P6-G1-B-Menu: `ActionRequestPhotoUpdate` moved to `src/api/member/repository.ts` (decision W9). The domain comes from the data that the call owns: the photo of the signed-in member. The tables now list it under member. `screens/Menu/api.ts` is deleted. `pages/Menu/hooks/useMenu.ts` calls `requestPhotoUpdate`.
 
 ## event
 
@@ -90,9 +103,6 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 | `screens/LDM_EventDetail_V2/api.ts`              | <MODULE>                 | `ScreenBlock_EventDetail_V2/DataActionGetCoordinatorDetails`, `ScreenBlock_EventDetail_V2/DataActionGetEventByEventId`                                                                                                  |
 | `screens/LDM_MyEvents_V2/api.ts`                 | <MODULE>                 | `ScreenBlock_MyEvents_V2/DataActionGetEventsForMyTimeline`                                                                                                                                                              |
 | `screens/MilestoneDetail/api.ts`                 | <MODULE>                 | `ScreenBlock_AccommodationHost/DataActionGetAccommodationHost`, `ScreenBlock_AccommodationHost/DataActionGet_Document`, `ScreenBlock_MilestoneWrapper/DataActionGetGmpMilestoneHost`                                    |
-| `screens/OrbitAdminEventDetail/api.ts`           | <MODULE>                 | `ActionGetScanEventQRCode`, `ScreenBlock_AdminEventDetail/DataActionGet_EventInformation`                                                                                                                               |
-| `screens/OrbitAdminLanding/api.ts`               | Connect2_OrbitMobile_MUI | `ScreenBlock_AdminLanding/DataActionGet_AdminEventsList`                                                                                                                                                                |
-| `screens/OrbitAdminLanding/api.ts`               | UBTConnect               | `ActionGetMilestoneScanFF`                                                                                                                                                                                              |
 | `screens/QRCodeGenerate/api.ts`                  | <MODULE>                 | `ScreenBlock_GenerateQRCode/DataActionGet_EventQRCode`                                                                                                                                                                  |
 | `screens/TransportDetail/api.ts`                 | <MODULE>                 | `ScreenBlock_TransportDetail/DataActionGet_TransportDetail`                                                                                                                                                             |
 | `screens/ViewDocuments/api.ts`                   | <MODULE>                 | `ScreenBlock_ViewDocuments/DataActionGetEventDocuments`                                                                                                                                                                 |
@@ -100,19 +110,19 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 
 ## bookmark
 
-| File                                          | Module                   | Actions                                                                                                                                                                                |
-| --------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `screens/BookmarksByGroup/api.ts`             | Connect2_MyBookmarks_MUI | `ActionDeleteBookmarkByBookmarkId`, `ActionGetBookmarkById`, `ActionNew_GetBookmarkById`, `ActionNew_UpdateBookmarkNote`, `ScreenBlock_BookmarkGroup/DataActionGetAllBookmarksByGroup` |
-| `screens/MyBookmarks/api.ts`                  | Connect2_MyBookmarks_MUI | `ActionGetBookmarkById`, `ActionNew_GetBookmarkById`, `ScreenBlock_MyBookmarks/DataActionGetGroupSummaries`                                                                            |
-| `shared/Connect2_Assemble_MUI/lib/actions.ts` | Connect2_Assemble_MUI    | `ActionAddBookmark`, `ActionDeleteBookmarkByBookmarkId`                                                                                                                                |
-| `shared/UBTConnect/lib/actions.ts`            | UBTConnect               | `ServiceAPIAddBookmark2`, `ServiceAPIDeleteBookmarkByBookmarkId2`                                                                                                                      |
+| File                                               | Module                   | Actions                                                                                                                                                                                |
+| -------------------------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pages/BookmarksByGroup/hooks/useBookmarkGroup.ts` | Connect2_MyBookmarks_MUI | `ActionDeleteBookmarkByBookmarkId`, `ActionGetBookmarkById`, `ActionNew_GetBookmarkById`, `ActionNew_UpdateBookmarkNote`, `ScreenBlock_BookmarkGroup/DataActionGetAllBookmarksByGroup` |
+| `pages/MyBookmarks/hooks/useMyBookmarks.ts`        | Connect2_MyBookmarks_MUI | `ActionGetBookmarkById`, `ActionNew_GetBookmarkById`, `ScreenBlock_MyBookmarks/DataActionGetGroupSummaries`                                                                            |
+| `shared/Connect2_Assemble_MUI/lib/actions.ts`      | Connect2_Assemble_MUI    | `ActionAddBookmark`, `ActionDeleteBookmarkByBookmarkId`                                                                                                                                |
+| `shared/UBTConnect/lib/actions.ts`                 | UBTConnect               | `ServiceAPIAddBookmark2`, `ServiceAPIDeleteBookmarkByBookmarkId2`                                                                                                                      |
 
 ## note
 
 | File                                                      | Module               | Actions                                                |
 | --------------------------------------------------------- | -------------------- | ------------------------------------------------------ |
-| `screens/Notes/api.ts`                                    | UBTConnect           | `Notes/DataActionGetNotes`                             |
-| `screens/Notes/api.ts`                                    | UBTConnect_Notes_MCS | `ActionGet_NotePills_ByNoteCategoryIds`                |
+| `pages/Notes/hooks/useNotes.ts`                           | UBTConnect           | `Notes/DataActionGetNotes`                             |
+| `pages/Notes/hooks/useNotes.ts`                           | UBTConnect_Notes_MCS | `ActionGet_NotePills_ByNoteCategoryIds`                |
 | `shared/UBTConnect/Directory_EntityDetailsActions/api.ts` | UBTConnect           | `Directory_EntityDetailsActions/DataActionFetchNotes`  |
 | `shared/UBTConnect_Utils/NoteListActions/api.ts`          | UBTConnect_Utils     | `ServiceAPIDeleteNoteByNoteId`, `ServiceAPIUpdateNote` |
 | `shared/UBTConnect_Utils/NotesSheet/api.ts`               | UBTConnect_Utils     | `ServiceAPIAddNote`                                    |
@@ -126,50 +136,113 @@ Total: **70 files**, 155 call sites. (The plan counts 71; the baseline word sear
 | `screens/ContactByEmailOneSchoolGlobal/api.ts`            | UBTConnect               | `ServiceAPISendContactMemberEmail`                                                                                                                                  |
 | `screens/ContactByEmailOrbitHelpdesk/api.ts`              | UBTConnect               | `ActionSendContactEmail`                                                                                                                                            |
 | `screens/ContactByEmailOrbitHost/api.ts`                  | UBTConnect               | `ActionSendContactEmail`                                                                                                                                            |
-| `screens/ContactUsDetails/api.ts`                         | UBTConnect               | `ContactUsDetails/DataActionDataAction_GetCountriesNames`, `ContactUsDetails/DataActionDataAction_GetLocalityTimezone`, `ServiceAPISendContactUsMessage`            |
 | `screens/EmailContact/api.ts`                             | Connect2_OrbitMobile_MUI | `ActionSendContactEmail`                                                                                                                                            |
 | `screens/EmailTarget/api.ts`                              | Connect2_LegacyShared    | `ActionUserContactUser`                                                                                                                                             |
-| `screens/LDM_Email_V2/api.ts`                             | <MODULE>                 | `ActionEventContact`, `ScreenBlock_Event_Email_V2/DataActionGetCoordinatorDetails`                                                                                  |
-| `screens/MessageDetail/api.ts`                            | Connect2_LegacyShared    | `ScreenBlock_MessageDetail/DataActionGetMessageInstance`, `ScreenBlock_MessageDetail/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`                  |
-| `screens/MessageList/api.ts`                              | Connect2_LegacyShared    | `ActionMarkMessageAsClear`, `ActionMarkMessageAsRead`, `ScreenBlock_MessageList/DataActionGetMessageInstanceById2`, `ScreenBlock_MessageList/DataActionGetMessages` |
+| `api/message/repository.ts`                               | Connect2_LegacyShared    | `ScreenBlock_MessageDetail/DataActionGetMessageInstance`, `ScreenBlock_MessageDetail/ScreenDataSetGetMessageTemplateParametersByMessageTemplateId`                  |
+| `pages/MessageList/hooks/useMessageList.ts`               | Connect2_LegacyShared    | `ActionMarkMessageAsClear`, `ActionMarkMessageAsRead`, `ScreenBlock_MessageList/DataActionGetMessageInstanceById2`, `ScreenBlock_MessageList/DataActionGetMessages` |
 | `shared/Connect2_LegacyShared/lib/actions.ts`             | Connect2_LegacyShared    | `ActionGetMemberContactByCacheKey`                                                                                                                                  |
 | `shared/UBTConnect/Directory_EntityDetailsActions/api.ts` | UBTConnect               | `Directory_EntityDetailsActions/DataActionFetchContactDetails`                                                                                                      |
 | `shell/startup.ts`                                        | Connect2_LegacyShared    | `ActionGetNumberUnreadMessages`                                                                                                                                     |
 
 ## notification
 
-| File                           | Module                | Actions                                                                               |
-| ------------------------------ | --------------------- | ------------------------------------------------------------------------------------- |
-| `screens/MessageDetail/api.ts` | Connect2_LegacyShared | `ActionWrapper_NotificationOpened`                                                    |
-| `screens/MessageList/api.ts`   | Connect2_LegacyShared | `ActionWrapper_MarkAllAsReadNotifications`                                            |
-| `screens/Notifications/api.ts` | UBTConnect            | `Notifications/DataActionFetchNotifications`, `Notifications/DataActionGetDateRanges` |
+| File                                        | Module                            | Actions                                                                                                                   |
+| ------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `api/notification/repository.ts`            | Connect2_LegacyShared, UBTConnect | `ActionWrapper_NotificationOpened`, `Notifications/DataActionFetchNotifications`, `Notifications/DataActionGetDateRanges` |
+| `pages/MessageList/hooks/useMessageList.ts` | Connect2_LegacyShared             | `ActionWrapper_MarkAllAsReadNotifications`                                                                                |
 
 ## app
 
-| File                                                                      | Module                         | Actions                                                                                                                                                                      |
-| ------------------------------------------------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `screens/AcceptPendingPolicies/api.ts`                                    | UBTConnect                     | `ActionAcceptPolicies`, `Policy_Custom_AcceptPendingPolicies/DataActionGetPendingPolicies`                                                                                   |
-| `screens/ConnectShare/api.ts`                                             | UBTConnect                     | `ActionGet_ShareDetails`                                                                                                                                                     |
-| `screens/GuestArrangements/api.ts`                                        | Connect2_LegacyShared          | `ActionGetSignedImagesInBulk`                                                                                                                                                |
-| `screens/HelpersDetail/api.ts`                                            | Connect2_LegacyShared          | `ActionGetSignedImagesInBulk`                                                                                                                                                |
-| `screens/HomeFeed/api.ts`                                                 | UBTConnect                     | `FeedBlock_Services/DataActionGetServices`                                                                                                                                   |
-| `screens/LegacyShareObject/api.ts`                                        | Connect2_LegacyShared          | `ActionShareObject`, `ProfileList/DataActionGetAvailableUsers`, `ScreenBlock_ShareObject/ScreenDataSetGetShareObjectTypeById`, `ServiceAPIGet_UI_CommunityBusinessShareCard` |
-| `screens/MilestoneDetail/api.ts`                                          | Connect2_LegacyShared          | `ActionGetSignedImagesInBulk`                                                                                                                                                |
-| `screens/MyEntertaining/api.ts`                                           | UBTConnect_EmbedMyEntertaining | `ActionAppManager_Get_UserIdToken`, `Embedded_MyEntertaining/DataActionGetEntertainingConfig`                                                                                |
-| `screens/OneSchoolGlobalDetails/api.ts`                                   | UBTConnect                     | `<ACTION>`                                                                                                                                                                   |
-| `screens/OrbitAdminEventDetail/api.ts`                                    | Connect2_LegacyShared          | `ActionGetSignedImagesInBulk`                                                                                                                                                |
-| `screens/Photobook/api.ts`                                                | UBTConnect                     | `<ACTION_CAPTION>`                                                                                                                                                           |
-| `screens/QRCodeGenerate/api.ts`                                           | Connect2_LegacyShared          | `ActionGetSignedImagesInBulk`                                                                                                                                                |
-| `screens/Search/api.ts`                                                   | UBTConnect                     | `ScreenBlock_Search/DataActionFetchSearchResults`, `ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions`                                                               |
-| `screens/Services/api.ts`                                                 | UBTConnect                     | `ServiceAPIService_ConnectServices_ChangeOrder_Bulk`, `Services/DataActionGetServices`                                                                                       |
-| `shared/Connect2_LegacyShared/lib/actions.ts`                             | Connect2_LegacyShared          | `ActionGetSignedPhotosInBulk`, `ActionGetTimezoneInformation`, `ActionGetUserInformation`                                                                                    |
-| `shared/Connect2_OrbitMobile_MUI/lib/actions.ts`                          | Connect2_OrbitMobile_MUI       | `ActionGetDirectoryAccess`                                                                                                                                                   |
-| `shared/UBTConnect/FeedBlock_CommunityPopulation/api.ts`                  | UBTConnect                     | `FeedBlock_CommunityPopulation/DataActionFetchCount`                                                                                                                         |
-| `shared/UBTConnect_EmbedFeed/Embedded_FeedCMS/api.ts`                     | UBTConnect_EmbedFeed           | `Embedded_FeedCMS/DataActionGetFeedConfig`                                                                                                                                   |
-| `shared/UBTConnect_Utils/CacheControl_Policies/CacheControl_Policies.tsx` | UBTConnect_Utils               | `CacheControl_Policies/DataActionGetCacheInfo`                                                                                                                               |
-| `shared/UBTConnect_Utils/CacheControl_UserInfo/CacheControl_UserInfo.tsx` | UBTConnect_Utils               | `CacheControl_UserInfo/DataActionGetCacheInfo`                                                                                                                               |
-| `shared/UBTConnect_Utils/ShareSheet/api.ts`                               | UBTConnect_Utils               | `ActionCS_CreateShareProfileLink`, `ActionCS_ShareObject`, `ShareSheet/DataActionGetRecentlyShared`                                                                          |
-| `shared/UBTConnect_Utils/lib/actions.ts`                                  | UBTConnect_Utils               | `ActionGetSignedImagesInBulk`, `ActionGet_RuntimeVersion`                                                                                                                    |
-| `shell/startup.ts`                                                        | UBTConnect                     | `ActionSync_Info_GetMain`, `ServiceAPIFetchData_CacheableMapEntities`                                                                                                        |
-| `shell/startup.ts`                                                        | UBT_AppManager                 | `ActionAppManager_AfterInitialize`, `ActionAppManager_SynchAppContext`                                                                                                       |
-| `shell/userInfo.ts`                                                       | UBTConnect_Utils               | `ActionGetUserInformation`                                                                                                                                                   |
+| File                                                                      | Module                         | Actions                                                                                                                            |
+| ------------------------------------------------------------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `screens/AcceptPendingPolicies/api.ts`                                    | UBTConnect                     | `ActionAcceptPolicies`, `Policy_Custom_AcceptPendingPolicies/DataActionGetPendingPolicies`                                         |
+| `api/share/repository.ts`                                                 | UBTConnect                     | `ActionGet_ShareDetails`                                                                                                           |
+| `screens/GuestArrangements/api.ts`                                        | Connect2_LegacyShared          | `ActionGetSignedImagesInBulk`                                                                                                      |
+| `screens/HelpersDetail/api.ts`                                            | Connect2_LegacyShared          | `ActionGetSignedImagesInBulk`                                                                                                      |
+| `api/share/repository.ts`                                                 | Connect2_LegacyShared          | `ActionShareObject`, `ProfileList/DataActionGetAvailableUsers`, `ScreenBlock_ShareObject/ScreenDataSetGetShareObjectTypeById`      |
+| `api/locality/repository.ts`                                              | Connect2_LegacyShared          | `ServiceAPIGet_UI_CommunityBusinessShareCard`                                                                                      |
+| `screens/MilestoneDetail/api.ts`                                          | Connect2_LegacyShared          | `ActionGetSignedImagesInBulk`                                                                                                      |
+| `api/entertaining/repository.ts`                                          | UBTConnect_EmbedMyEntertaining | `ActionAppManager_Get_UserIdToken`, `Embedded_MyEntertaining/DataActionGetEntertainingConfig`                                      |
+| `screens/OneSchoolGlobalDetails/api.ts`                                   | UBTConnect                     | `OneSchoolGlobalDetails/DataActionGetOneSchoolGlobalDetails`                                                                       |
+| `screens/QRCodeGenerate/api.ts`                                           | Connect2_LegacyShared          | `ActionGetSignedImagesInBulk`                                                                                                      |
+| `api/search/repository.ts`                                                | UBTConnect                     | `ScreenBlock_Search/DataActionFetchSearchResults`, `ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions`                     |
+| `api/service/repository.ts`                                               | UBTConnect                     | `ServiceAPIService_ConnectServices_ChangeOrder_Bulk`, `FeedBlock_Services/DataActionGetServices`, `Services/DataActionGetServices` |
+| `shared/Connect2_LegacyShared/lib/actions.ts`                             | Connect2_LegacyShared          | `ActionGetSignedPhotosInBulk`, `ActionGetTimezoneInformation`, `ActionGetUserInformation`                                          |
+| `shared/Connect2_OrbitMobile_MUI/lib/actions.ts`                          | Connect2_OrbitMobile_MUI       | `ActionGetDirectoryAccess`                                                                                                         |
+| `shared/UBTConnect/FeedBlock_CommunityPopulation/api.ts`                  | UBTConnect                     | `FeedBlock_CommunityPopulation/DataActionFetchCount`                                                                               |
+| `shared/UBTConnect_EmbedFeed/Embedded_FeedCMS/api.ts`                     | UBTConnect_EmbedFeed           | `Embedded_FeedCMS/DataActionGetFeedConfig`                                                                                         |
+| `shared/UBTConnect_Utils/CacheControl_Policies/CacheControl_Policies.tsx` | UBTConnect_Utils               | `CacheControl_Policies/DataActionGetCacheInfo`                                                                                     |
+| `shared/UBTConnect_Utils/CacheControl_UserInfo/CacheControl_UserInfo.tsx` | UBTConnect_Utils               | `CacheControl_UserInfo/DataActionGetCacheInfo`                                                                                     |
+| `shared/UBTConnect_Utils/ShareSheet/api.ts`                               | UBTConnect_Utils               | `ActionCS_CreateShareProfileLink`, `ActionCS_ShareObject`, `ShareSheet/DataActionGetRecentlyShared`                                |
+| `shared/UBTConnect_Utils/lib/actions.ts`                                  | UBTConnect_Utils               | `ActionGetSignedImagesInBulk`, `ActionGet_RuntimeVersion`                                                                          |
+| `shell/startup.ts`                                                        | UBTConnect                     | `ActionSync_Info_GetMain`, `ServiceAPIFetchData_CacheableMapEntities`                                                              |
+| `shell/startup.ts`                                                        | UBT_AppManager                 | `ActionAppManager_AfterInitialize`, `ActionAppManager_SynchAppContext`                                                             |
+| `shell/userInfo.ts`                                                       | UBTConnect_Utils               | `ActionGetUserInformation`                                                                                                         |
+
+P6-G1-B-AcceptPendingPolicies (decision W8, domain by data ownership): the 2 actions of `screens/AcceptPendingPolicies/api.ts` (`ActionAcceptPolicies`, `Policy_Custom_AcceptPendingPolicies/DataActionGetPendingPolicies`) are now in `src/api/policy/repository.ts`. They read and write the policy acceptance records, so they are in the new domain `policy`, not in `app`. The route's `api.ts` is deleted. The counts above are the P0-4 baseline and do not change. `CacheControl_Policies/DataActionGetCacheInfo` stays in `api/app`.
+
+P6-G1-B-Profile: `screens/Profile/api.ts` is deleted (rows `ServiceAPIMember_EditDetails_Service` and `Profile/DataActionGetCountryInfo` above). `pages/Profile/hooks/useProfile.ts` imports `useCountryInfoQuery` from `@/api/country` and `editMemberDetails` from `@/api/member`.
+
+P6-G2-B-ContactUsDetails: `screens/ContactUsDetails/api.ts` is deleted (its row in the message table above). `pages/ContactUsDetails/hooks/useContactUsDetails.ts` imports `fetchCountryNames`, `fetchLocalityTimezone` and `sendContactUsMessage` from `@/api/message`.
+
+P6-G2-B-ContactByEmailMember: `screens/ContactByEmailMember/api.ts` is deleted (its row in the message table above). The caller of `ServiceAPISendContactMemberEmail` is now `pages/ContactByEmailMember/hooks/useContactByEmailMemberSubmit.ts`, which imports it from `@/api/message`.
+
+P6-G2-B-ContactByEmailOneSchoolGlobal: `screens/ContactByEmailOneSchoolGlobal/api.ts` is deleted (its row in the message table above). The caller of `ServiceAPISendContactMemberEmail` is now `pages/ContactByEmailOneSchoolGlobal/hooks/useContactByEmailOneSchoolGlobalSubmit.ts`, which imports it from `@/api/message`.
+
+P6-G2-B-ContactByEmailLDMCoordinator: `screens/ContactByEmailLDMCoordinator/api.ts` is deleted (its row in the message table above). The caller of `ServiceAPISendContactLDMCoordinatorEmail` is now `pages/ContactByEmailLDMCoordinator/hooks/useContactByEmailLDMCoordinatorSubmit.ts`, which imports it from `@/api/message`.
+
+P6-G2-B-ContactByEmailOrbitHelpdesk: `screens/ContactByEmailOrbitHelpdesk/api.ts` is deleted (its row in the message table above). The caller of `ActionSendContactEmail` is now `pages/ContactByEmailOrbitHelpdesk/hooks/useContactByEmailOrbitHelpdeskSubmit.ts`, which imports it from `@/api/message`.
+
+P6-G2-B-ContactByEmailOrbitHost: `screens/ContactByEmailOrbitHost/api.ts` is deleted (its row in the message table above). The caller of `ActionSendContactEmail` is now `pages/ContactByEmailOrbitHost/hooks/useContactByEmailOrbitHostSubmit.ts`, which imports it from `@/api/message`.
+
+P6-G2-B-EmailContact: `screens/EmailContact/api.ts` is deleted (its row in the message table above). The caller of `ActionSendContactEmail` is now `pages/EmailContact/hooks/useOrbitContactForm.ts`, which imports it from `@/api/message`.
+
+P6-G4-B-Household_Relations: `pages/Household_Relations/api.ts` is deleted (its row in the household table; `inputs.ts` holds the route inputs). The flow hook `useHouseholdRelations` calls `fetchMemberRelations` and `fetchSiblingRelations` of `@/api/household`.
+
+P6-G4-B-Photobook: `pages/Photobook/api.ts` is deleted (its rows in the household and caption tables). The flow hooks `usePhotobook` and `useHouseholdCaption` call `fetchLocalityHouseholdIds` and `fetchHouseholdCaption` of `@/api/household`.
+
+P6-G4-B-Locality_Details: `pages/Locality_Details/api.ts` is deleted (its rows in the household and locality tables). The flow hooks call `fetchLocalityHouseholds` and `fetchHouseholdCardMembers` of `@/api/household`, and `fetchLocalityDetails`, `fetchSubdivisionCards`, `fetchInterchanges` and `fetchOneSchoolCards` of `@/api/locality`.
+
+P6-G4-B-OneSchoolGlobalDetails: `pages/OneSchoolGlobalDetails/api.ts` is deleted (its row in the app table above). The page hook `useOneSchoolGlobalDetails` calls `useOneSchoolGlobalDetailsQuery` of `@/api/locality`, which calls `fetchOneSchoolGlobalDetails`.
+
+P6-G4-B-SupperMeeting_Details: the `api.ts` files of `SupperMeeting_HouseholdList` and `SupperMeeting_DetailsBlock` are deleted (their rows in the household and locality tables). The hook `useSupperMeetingDetails` of `containers/SupperMeetingDetails` calls `fetchSubdivisionHouseholds` and `fetchSubdivisionDetails` of `@/api/locality`. `DataActionGetSubdivisionHouseholds` is now in the locality domain, not the household domain.
+
+P6-G5-B-OrbitLanding: `pages/OrbitLanding/api.ts` is deleted (its rows in the household and event tables). The hook `useOrbitLanding` calls `fetchOrbitHouseholdMembers` of `@/api/household` (DataActionGet_HouseholdMembers) and `fetchEventsByMemberId` of `@/api/event` directly.
+
+P6-G5-B-OrbitAdminLanding: `pages/OrbitAdminLanding/api.ts` is deleted (its 2 rows in the app table above). The hooks `useAdminLanding` and `useNavigateToEventDetail` call `fetchAdminEvents` (Get_AdminEventsList) and `fetchMilestoneScanFF` (ActionGetMilestoneScanFF) of `@/api/event` directly.
+
+P6-G5-B-OrbitAdminEventDetail: `pages/OrbitAdminEventDetail/api.ts` is deleted (its 3 rows in the member, event and app tables above). The hook `useAdminEventDetail` calls `fetchMember` of `@/api/member`, `fetchAdminEventInformation` and `fetchScanEventQRCode` of `@/api/event`, and `fetchLegacySignedImageURL` (GetCacheableSignedImageURL, `ActionGetSignedImagesInBulk` of Connect2_LegacyShared) of `@/api/image`.
+
+P6-G5-B-EventDetail: `pages/EventDetail/api.ts` is deleted (its row in the app table above). The hook `useEventDetail` calls `fetchEventDetails`, `fetchHostSurveyStatus`, `fetchHasDocuments` and `fetchHasQRCode` of `@/api/event` directly.
+
+P6-G5-B-EventBooklet: `pages/EventBooklet/api.ts` is deleted (its row in the app table above). The hook `useEventBooklet` calls `fetchEventBookletFilters`, `fetchEventBookletGuests` and `fetchEventBookletHelpers` of `@/api/event` directly.
+
+P6-G5-B-MilestoneDetail: `pages/MilestoneDetail/api.ts` is deleted (its rows in the app and Connect2_LegacyShared tables above). The hook `useMilestoneWrapper` calls `fetchGmpMilestoneHost` (DataActionGetGmpMilestoneHost) of `@/api/event`. The hook `useAccommodationHost` calls `fetchAccommodationHost` (DataActionGetAccommodationHost) and `fetchAccommodationHostDocument` (DataActionGet_Document) of `@/api/event`, and `fetchLegacySignedImageURL` (`ActionGetSignedImagesInBulk`) of `@/api/image`.
+
+P6-G5-B-GuestArrangements: `pages/GuestArrangements/api.ts` is deleted (its row in the event table and its row in the Connect2_LegacyShared table above). The hook `useGuestArrangements` calls `fetchGuestArrangements` (DataActionGetGuestArrangements) of `@/api/event`; the page calls `fetchLegacySignedImageURL` (`ActionGetSignedImagesInBulk`) of `@/api/image`.
+
+P6-G5-B-HelpersDetail: `pages/HelpersDetail/api.ts` is deleted (its row in the app table and its row in the Connect2_LegacyShared table above). The hook `useHelperDetails` calls `fetchHelperDetails` (DataActionGetHelperDetails) of `@/api/event` and `fetchLegacySignedImageURL` (`ActionGetSignedImagesInBulk`) of `@/api/image`.
+
+P6-G5-B-HostSurvey: `pages/HostSurvey/api.ts` is deleted (its row in the app table above). The hook `useHostSurvey` calls `fetchHostSurvey` (DataActionGetHostSurvey) of `@/api/event` directly.
+
+P6-G5-B-TransportDetail: `pages/TransportDetail/api.ts` is deleted (its row in the app table above). The hook `useTransportDetail` calls `fetchTransportDetail` (DataActionGet_TransportDetail) of `@/api/event` directly.
+
+P6-G5-B-MyEntertaining: `pages/MyEntertaining/api.ts` is deleted; its row in the app table above now names `api/entertaining/repository.ts`. The hook `useEntertainingCalendar` calls `useEntertainingConfigQuery` (DataActionGetEntertainingConfig) of `@/api/entertaining`; the 10-minute timer calls `fetchUserIdToken` (ActionAppManager_Get_UserIdToken) of the same domain.
+
+P6-G5-B-LDM_MyEvents_V2: `pages/LDM_MyEvents_V2/api.ts` is deleted (its rows in the event and locality tables above). The hook `useLdmMyEvents` calls `fetchEventsForMyTimeline` (DataActionGetEventsForMyTimeline) of `@/api/event`. The hook `useMyTimelineFilterButton` calls `fetchEventFilterLocalities` (DataActionGetEventLocalitiesForFilter) of `@/api/locality`.
+
+P6-G5-B-LDM_EventDetail_V2: `pages/LDM_EventDetail_V2/api.ts` is deleted (its rows in the app tables above). The hook `useLdmEventDetail` calls the two event data actions of `@/api/event`. It calls `fetchHouseholdCoordinatesById` (`ActionGetHouseholdCoordinates`) of `@/api/household` on a click only.
+
+P6-G5-B-LDM_Email_V2: `pages/LDM_Email_V2/api.ts` is deleted (its row in the message table above). The hook `useLdmEventEmail` calls `fetchEventEmailCoordinator` and `sendEventContactEmail` of `@/api/message` directly.
+
+P6-G5-B-AssembleEvents: `pages/AssembleEvents/api.ts` is deleted (its rows in the locality and event tables). The hooks call `fetchSubdivisionName` of `@/api/locality`, and `fetchAssembleEventTypes` and `fetchAssembleMeetings` of `@/api/event`.
+
+P6-G5-B-AssembleDetail: `pages/AssembleDetail/api.ts` is deleted (its row in the event table above). The hook `useAssembleEventDetail` calls `fetchAssembleEvent` (DataActionGetAssembleEvent) of `@/api/event` directly. The client action GetCacheableMemberContactList (Connect2_LegacyShared) is a private function of `useAssembleEventContactList`, because `api/` cannot import `shared/` (rule 7). No file of `api/` changed.
+
+P6-G6-B-QRCodeGenerate: `pages/QRCodeGenerate/api.ts` is deleted (its row in the app table and its row in the Connect2_LegacyShared table above). The hook `useGenerateQrCode` calls `fetchEventQRCode` (DataActionGet_EventQRCode) of `@/api/event` and `fetchLegacySignedImageURL` (`ActionGetSignedImagesInBulk`) of `@/api/image`.
+
+P6-G6-B-ViewDocuments: `pages/ViewDocuments/api.ts` is deleted (its row in the app table above). The hook `useViewDocuments` calls `fetchEventDocuments` (DataActionGetEventDocuments) of `@/api/event` directly.
+
+F57 (user, 2026-10-25): the rows `ShareSheet/api.ts` (UBTConnect_Utils tables) and `shell/userInfo.ts` are gone. `ActionCS_ShareObject`, `ActionCS_CreateShareProfileLink` and `ShareSheet/DataActionGetRecentlyShared` are now in `src/api/share/shareSheet.ts`. `ActionGetUserInformation` is in `src/api/member/userInformation.ts`. `ShareSheet/DataActionGetAvailableMembers` is in `src/api/member/`.
+
+The counts above are the P0-4 baseline and do not change. Files that call `callAction` outside `api/`: 4 (F35, F37).

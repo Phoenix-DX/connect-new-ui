@@ -1,7 +1,7 @@
 # Platform widgets (`src/components`)
 
 OutSystems platform widgets (Form, Input validation, Popup, List, RadioGroup) are not OutSystems blocks. They do not
-live in `src/shared`. Each widget is a port of the OutSystems client runtime and has no `@os-block` tag. Each folder has
+live in `src/lib/<module>/`. Each widget is a port of the OutSystems client runtime and has no `@os-block` tag. Each folder has
 an `index.ts`; import from the folder. Header comments name the runtime file and the offsets that the port follows.
 
 | Component                   | Use it for                                              |
@@ -11,7 +11,6 @@ an `index.ts`; import from the folder. Header comments name the runtime file and
 | `OSList/`                   | List and ListItem widgets, including swipe actions      |
 | `OSRadioGroup/`             | RadioGroup and RadioButton widgets                      |
 | `OSBlock.tsx`               | the wrapper OutSystems renders around every block       |
-| `NotCaptured.tsx`           | marker for anything the capture does not contain        |
 | `FlagPanel.tsx`             | the feature-flag panel shown with `?ffpanel=1`          |
 
 ## OSValidation
@@ -47,9 +46,9 @@ How a screen validates:
 4. Call `validation.validate()` (or `validate('<FormId>')`) in the button action, before the screen logic.
 5. Continue only when the call returns true.
 
-These files use the service: `src/screens/Profile/index.tsx`, `src/screens/Login/index.tsx` (validate with no visible
-widget), `src/screens/ContactUsDetails/index.tsx` (`components/TextArea_Message.tsx`) and the shared Input block
-(`src/shared/UBTConnectLibrary/Input/Input.tsx`).
+These files use the service: `src/pages/Profile/ProfilePage.tsx`, `src/pages/Login/LoginPage.tsx` (validate with no visible
+widget), `src/pages/ContactUsDetails/ContactUsDetailsPage.tsx` (`components/MessageTextArea.tsx`) and the shared Input block
+(`src/components/ui/Input/Input.tsx`).
 Tests: `OSValidation.test.tsx`.
 
 ## OSPopup
@@ -64,8 +63,8 @@ the widget is in the screen, open or not. `OSPopupWidget` calls it when the call
   block that owns the Popup widget in the same way. A closed dialog later in the tree therefore removes the class that an
   open dialog added, as on TST.
 
-These files use it: `src/shared/UBTConnectLibrary/Popup/Popup.tsx`, `NavigationConfirmationDialog`, `ContactPopup`,
-`Directory_EntityDetailsActions` and the shell dialogs (`src/shell/dialogs`, `DialogExitConfirmation`).
+These files use it: `src/components/ui/Popup/Popup.tsx`, `src/components/ui/Dialog/Dialog.tsx`, `ContactPopup`,
+`EntityDetailsActionsContainer` (`src/containers/EntityDetailsActions`) and the shell dialogs (`src/platform/feedback/dialogs`, `DialogExitConfirmation`).
 Tests: `usePopupWidget.test.tsx`.
 
 ## OSList
@@ -75,7 +74,7 @@ It takes the loading and error classes from `sourceDataFetchStatus`. It has an o
 scroll, default threshold 2000 px).
 
 `OSListItem` is a plain item. It is a swipeable item when the caller gives `leftActions` or `rightActions`.
-`OSListItemAction` is a swipe button. The full prop table is in `src/components/OSList/README.md`. Stories and tests are
+`OSListItemAction` is a swipe button. The full prop table is in `src/components/ui/os/OSList/README.md`. Stories and tests are
 in the folder.
 
 ## OSRadioGroup
@@ -83,7 +82,7 @@ in the folder.
 `RadioGroup` (`value`, `onValueChange`, `validationMessage`) and `RadioButton` render
 `div[data-radio-group][role=radiogroup]`. `RadioGroup` has an optional `onChange` that runs after paint.
 `aria-activedescendant` is set to the selected button. The validation message span is present when a message is set.
-`src/screens/Photobook/components/Photobook_Options_Right.tsx` uses these components.
+`src/pages/Photobook/components/Photobook_Options_Right.tsx` uses these components.
 
 ## OSBlock
 
@@ -91,6 +90,8 @@ in the folder.
 uses it. Keep the name: CSS and parity checks depend on it.
 
 ## NotCaptured
+
+It lives in `src/platform/feedback/NotCaptured.tsx` (P3-1), not in `src/components`.
 
 `<NotCaptured name="...">` renders `div.rv-missing[data-not-captured]` with "Not captured: <name>" and optional children.
 It stands for any state or block the original capture never showed. Never replace it with an invented design. Search for

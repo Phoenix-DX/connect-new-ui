@@ -1,20 +1,26 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { RouterProvider } from 'react-router/dom';
+import { queryClient } from './api/client/queryClient';
 import { router } from './app/router';
-import './styles/review.css'; // original OutSystems CSS: per screen, by shell/StylesheetHost (public/UBTConnect/css)
-import { applyDeviceClasses } from './lib/device';
-import { initFlags } from './lib/flags';
-import { config, MOCKS_BUILT } from './lib/config';
-import { ErrorBoundary } from './shell/ErrorBoundary';
+// layer order first (legacy, app); the original OutSystems CSS comes per screen, by legacy/os/StylesheetHost
+import './styles/layers.css';
+import './styles/tokens.css';
+import './styles/review.css';
+import { applyDeviceClasses } from './platform/device/device';
+import { initFlagOverrides } from './platform/flags';
+import { config, FLAG_OVERRIDES_BUILT, MOCKS_BUILT } from './platform/config/config';
+import { ErrorBoundary } from './app/ErrorBoundary';
+import { connectDialogs } from './app/dialogs';
 import { bootPlan } from './pwa/bootPlan';
 import { clearStaleServiceWorkers, registerAppServiceWorker } from './pwa/register';
 
 // OutSystems UI sets device classes (phone/tablet/desktop, portrait/landscape) from JavaScript; so does the clone.
 applyDeviceClasses();
 window.addEventListener('resize', applyDeviceClasses);
-initFlags();
+if (FLAG_OVERRIDES_BUILT) initFlagOverrides(); // ?ff= (dev and demo builds; plan v2 §3.1)
+connectDialogs(); // components/ui/Dialog markup with the platform triggers (app/dialogs.ts)
 
 // OutSystems keeps --viewport-height on <body> in sync with the window.
 const syncViewport = () => {
@@ -22,8 +28,6 @@ const syncViewport = () => {
 };
 syncViewport();
 window.addEventListener('resize', syncViewport);
-
-const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } } });
 
 // which mocks and which service worker this build starts (src/pwa/bootPlan.ts, app/docs/guides/pwa.md)
 const plan = bootPlan(config);

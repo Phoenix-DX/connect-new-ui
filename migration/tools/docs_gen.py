@@ -8,7 +8,7 @@ Writes (each page starts with a "generated" banner; edit the sources, not the pa
   screens.md        build screens: route, folder, wave, status, flags       <- migration/board.md, migration/flags.json
   flags.md          decided feature flags: key, default, branches, routes   <- migration/flags.json
   shared-blocks.md  shared OutSystems blocks and OutSystems UI patterns with the screens that use them and whether
-                    a React component carries their @os-block tag            <- migration/catalog/blocks.json
+                    a React component carries their @os-block or @origin tag <- migration/catalog/blocks.json, app/src
   api.md            API operations of the contract: kind, screens, mock source <- app/src/api/openapi.yaml (if present)
 Names only, never data. Standard library only.
 """
@@ -79,13 +79,31 @@ def flags_page(flags):
             + table(["Key", "Default", "Branches", "OutSystems source", "Screens"], rows))
 
 
-def blocks_page(blocks):
+TAG_RE = re.compile(r"@os-block\s+([\w.]+)|@origin\s+(\w+(?:\.\w+)+)")
+
+
+def tagged_blocks(src_dir):
+    """OutSystems names that a React file carries: `@os-block` (migration) or the JSDoc tag `@origin` (refactor, R4).
+    Tests and stories do not count."""
+    names = set()
+    for root, _, files in os.walk(src_dir):
+        for f in files:
+            if not f.endswith((".ts", ".tsx")) or re.search(r"\.(test|stories)\.tsx?$", f):
+                continue
+            text = open(os.path.join(root, f), encoding="utf-8", errors="replace").read()
+            names.update(m.group(1) or m.group(2) for m in TAG_RE.finditer(text))
+    return names
+
+
+def blocks_page(blocks, tagged):
     rows = []
     for name, b in sorted(blocks.items()):
         if b.get("kind") not in ("shared", "osui"):
             continue
-        rows.append((f"`{name}`", b["kind"], len(b.get("liveUsers", [])), "yes" if b.get("builtAt") else "no"))
-    return (BANNER + "# Shared blocks\n\nOne React component per OutSystems block, tagged `@os-block <Module.Flow.Block>`. "
+        built = b.get("builtAt") or name in tagged
+        rows.append((f"`{name}`", b["kind"], len(b.get("liveUsers", [])), "yes" if built else "no"))
+    return (BANNER + "# Shared blocks\n\nOne React component per OutSystems block, tagged `@os-block <Module.Flow.Block>` "
+            "or, after the refactor, `@origin <Module.Flow.Block>`. "
             "OutSystems UI patterns live in `src/shared/osui/`.\n\n" + table(["Block", "Kind", "Screens", "Built"], rows))
 
 
@@ -107,6 +125,7 @@ def main():
     ap.add_argument("--out", default="app/docs/reference")
     ap.add_argument("--migration-dir", default="migration")
     ap.add_argument("--openapi", default="app/src/api/openapi.yaml")
+    ap.add_argument("--src", default="app/src")
     a = ap.parse_args()
     m = a.migration_dir
     st = json.load(open(os.path.join(m, "stack.json"), encoding="utf-8"))
@@ -115,7 +134,7 @@ def main():
     board = board_rows(os.path.join(m, "board.md"))
     os.makedirs(a.out, exist_ok=True)
     pages = {"stack.md": stack_page(st), "screens.md": screens_page(board, flags), "flags.md": flags_page(flags),
-             "shared-blocks.md": blocks_page(blocks), "api.md": api_page(a.openapi)}
+             "shared-blocks.md": blocks_page(blocks, tagged_blocks(a.src)), "api.md": api_page(a.openapi)}
     for name, text in pages.items():
         with open(os.path.join(a.out, name), "w", encoding="utf-8") as f:
             f.write(text)

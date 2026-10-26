@@ -763,8 +763,8 @@ Do this after Phase 6: the real usage of each component is known then.
 
 **P7-1 `components/ui` from `osui`** (1 day)
 
-- Do: move `shared/osui/*` (without `DEPRECATED_*`) to `components/ui/`. Write one story per component. Delete
-  `DEPRECATED_*`: P6 moved their last users.
+- Do: move `shared/osui/*` to `components/ui/`. Write one story per component. The 4 `DEPRECATED_*` patterns
+  go to `components/ui/legacy/` with business names, not deleted (Q5: the original screens use them).
 
 **P7-2 Dialogs** (1 day)
 

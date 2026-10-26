@@ -1,56 +1,58 @@
-/* Review-only styles (not part of the original app). */
-.rv-missing {
-  margin: var(--space-m, 16px);
-  padding: 12px 14px;
-  border: 2px dashed #d63c74;
-  border-radius: 8px;
-  background: #fff0f5;
-  color: #7a1f43;
-  font:
-    13px/1.5 -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.rv-missing b {
-  font-weight: 700;
-}
-.rv-code {
-  font:
-    12px/1.4 ui-monospace,
-    Menlo,
-    monospace;
-  word-break: break-all;
-  background: #fff;
-  padding: 6px 8px;
-  border-radius: 4px;
-}
-.rv-flags {
-  position: fixed;
-  right: 8px;
-  bottom: 8px;
-  z-index: 99999;
-  background: #fff;
-  border: 2px dashed #d63c74;
-  border-radius: 8px;
-  padding: 8px 10px;
-  font:
-    12px/1.4 -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  max-width: 260px;
-}
-.rv-flags label {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
+/* Review-only styles (not part of the original app). In the app layer (layers.css). */
+@layer app {
+  .rv-missing {
+    margin: var(--space-m, 16px);
+    padding: 12px 14px;
+    border: 2px dashed #d63c74;
+    border-radius: 8px;
+    background: #fff0f5;
+    color: #7a1f43;
+    font:
+      13px/1.5 -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .rv-missing b {
+    font-weight: 700;
+  }
+  .rv-code {
+    font:
+      12px/1.4 ui-monospace,
+      Menlo,
+      monospace;
+    word-break: break-all;
+    background: #fff;
+    padding: 6px 8px;
+    border-radius: 4px;
+  }
+  .rv-flags {
+    position: fixed;
+    right: 8px;
+    bottom: 8px;
+    z-index: 99999;
+    background: #fff;
+    border: 2px dashed #d63c74;
+    border-radius: 8px;
+    padding: 8px 10px;
+    font:
+      12px/1.4 -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      Roboto,
+      sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 260px;
+  }
+  .rv-flags label {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
 }

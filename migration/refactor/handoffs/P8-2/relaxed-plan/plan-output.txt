@@ -1,0 +1,52 @@
+Connect2_LegacyShared.AssembleTheme.css: 28627 -> 22754 bytes, deleted 52, kept:at-rule font-face 2, kept:at-rule keyframes 1, kept:class-in-app-source 38, kept:media-not-covered 3, kept:state-selector 24, kept:used 29
+Connect2_LegacyShared.Calendars.DayCalendar.css: 243 -> 3 bytes, deleted 3, 
+Connect2_LegacyShared.Calendars.EventCalendarWeekMonth.css: 1655 -> 218 bytes, deleted 10, kept:class-in-app-source 3
+Connect2_LegacyShared.ConnectMobile.css: 16896 -> 16718 bytes, deleted 1, kept:at-rule keyframes 1, kept:class-in-app-source 61, kept:media-not-covered 4, kept:state-selector 17, kept:used 15, kept:vendor-pseudo 3
+Connect2_LegacyShared.ConnectMobileCommonTheme.css: 138186 -> 137230 bytes, deleted 8, kept:at-rule -webkit-keyframes 2, kept:at-rule keyframes 5, kept:class-in-app-source 627, kept:custom-property 4, kept:media-not-covered 3, kept:state-selector 110, kept:used 68, kept:vendor-pseudo 16
+Connect2_LegacyShared.OrbitTheme.css: 90057 -> 76695 bytes, deleted 128, kept:at-rule font-face 1, kept:at-rule keyframes 2, kept:class-in-app-source 195, kept:state-selector 50, kept:used 177, kept:vendor-pseudo 5
+Connect2_LegacyShared.UBTConnect.css: 47400 -> 35515 bytes, deleted 83, kept:class-in-app-source 61, kept:custom-property 5, kept:state-selector 28, kept:used 73, kept:vendor-pseudo 1
+Connect2_LegacyShared.UBTConnect_LegacyChain.css: 691 -> 691 bytes, deleted 0, kept:class-in-app-source 2, kept:state-selector 1, kept:used 1, kept:vendor-pseudo 1
+Connect2_LegacyShared.UBTMobileTheme_UpdatedOSUI.css: 156256 -> 143368 bytes, deleted 195, kept:at-rule font-face 23, kept:at-rule keyframes 6, kept:class-in-app-source 546, kept:custom-property 5, kept:import/statement 1, kept:media-not-covered 5, kept:root 2, kept:state-selector 107, kept:used 173, kept:vendor-pseudo 2
+Connect2_LegacyShared.Widgets.AdaptiveCardViewer.css: 888 -> 132 bytes, deleted 5, kept:class-in-app-source 1
+Connect2_LegacyShared.Widgets.OverlappingImages.css: 720 -> 720 bytes, deleted 0, 
+Connect2_OrbitMobile_MUI.LDM_Blocks.MonthYearSelector.css: 351 -> 136 bytes, deleted 3, kept:class-in-app-source 1
+Connect2_OrbitMobile_MUI.LDM_ScreenBlocks.ScreenBlock_Event_Email.css: skipped (no captured state loads it)
+Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2.css: skipped (no captured state loads it)
+Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AccommodationItem.css: 3 -> 3 bytes, deleted 0, 
+Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_AdminNotes.css: 3 -> 3 bytes, deleted 0, 
+Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.DoubleAction.css: skipped (no captured state loads it)
+FullCalendarReactive.FullCalendarReactive.EnhancedFullCalendar.css: skipped (third-party widget CSS)
+Leaflet.Leaflet.LeafletMap.css: skipped (third-party widget CSS)
+Leaflet.Leaflet.LeafletMap_Updated.css: skipped (third-party widget CSS)
+OutSystemsReactWidgets.css: 43962 -> 18327 bytes, deleted 613, kept:at-rule -webkit-keyframes 3, kept:at-rule font-face 1, kept:at-rule keyframes 3, kept:class-in-app-source 25, kept:root 1, kept:state-selector 56, kept:used 59, kept:vendor-pseudo 4
+OutSystemsUI_2_23.OutSystemsUI.css: 758828 -> 620365 bytes, deleted 1018, kept:at-rule -webkit-keyframes 26, kept:at-rule keyframes 26, kept:at-supports 2, kept:class-in-app-source 474, kept:custom-property 24, kept:import/statement 1, kept:media-not-covered 6, kept:state-selector 1049, kept:used 437, kept:vendor-pseudo 37
+OutSystemsUI_2_23.OutSystemsUI.extra.css: 5874 -> 3968 bytes, deleted 32, kept:class-in-app-source 10, kept:state-selector 24, kept:used 8
+SortableJS.Sortable.SortableList.css: skipped (third-party widget CSS)
+UBTConnect.App_Menu_ContactUs.ContactUs_Rate.css: 7779 -> 5617 bytes, deleted 13, kept:custom-property 11, kept:state-selector 1
+UBTConnect.App_Notifications.MessageListItem.css: skipped (no captured state loads it)
+UBTConnect.App_Notifications.Notifications.css: 60 -> 60 bytes, deleted 0, kept:class-in-app-source 1
+UBTConnect.App_Policies.AcceptPendingPolicies.css: skipped (no captured state loads it)
+UBTConnect.App_Services.Services.css: 57 -> 57 bytes, deleted 0, kept:class-in-app-source 1
+UBTConnect.Calendar.MyCalendar.css: skipped (no captured state loads it)
+UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventDetails.css: skipped (no captured state loads it)
+UBTConnect.Deprecated_Calendar_PersonalEvent.PersonalEventForm.css: skipped (no captured state loads it)
+UBTConnect.Deprecated_Calendar_PersonalEvent.Recurrence.css: skipped (no captured state loads it)
+UBTConnect.Deprecated_Calendar_PersonalEvent.Reminder.css: skipped (no captured state loads it)
+UBTConnect.Directory_Caroussel.EntitiesCarousel.css: 689 -> 689 bytes, deleted 0, kept:used 7
+UBTConnect.Directory_Locality.BrowseDirectory.css: 46 -> 46 bytes, deleted 0, kept:used 1
+UBTConnect.Directory_Locality.CountryDetails.css: 48 -> 48 bytes, deleted 0, kept:used 1
+UBTConnect.Directory_Locality.Directory_LegendBottomSheet.css: 106 -> 106 bytes, deleted 0, kept:used 1
+UBTConnect.Directory_Locality.Directory_LegendBottomSheet2.css: skipped (no captured state loads it)
+UBTConnect.Directory_Locality.StatisticsList.css: 104 -> 104 bytes, deleted 0, kept:used 1
+UBTConnect.Directory_Updates.Updates_SingleList.css: 200 -> 200 bytes, deleted 0, kept:used 2
+UBTConnect.Map.Map.css: skipped (no captured state loads it)
+UBTConnectLibrary.ConnectPatterns.KebabButton_BookmarkNotes.css: 49 -> 49 bytes, deleted 0, kept:class-in-app-source 1
+UBTConnectLibrary.ConnectPatterns.Note_Item.css: 44 -> 44 bytes, deleted 0, kept:class-in-app-source 1
+UBTConnectLibrary.ConnectPatterns.Unavailable_Image.css: skipped (no captured state loads it)
+UBTConnectLibrary.UBTConnectBase.css: 118537 -> 69572 bytes, deleted 521, kept:at-rule font-face 6, kept:class-in-app-source 45, kept:custom-property 110, kept:media-not-covered 30, kept:state-selector 42, kept:used 155, kept:vendor-pseudo 4
+UBTConnectLibrary.UBTConnectLibrary.css: 68137 -> 62200 bytes, deleted 39, kept:at-rule keyframes 6, kept:class-in-app-source 49, kept:custom-property 23, kept:state-selector 37, kept:used 253, kept:vendor-pseudo 1
+UBTConnect_EmbedFeed.Blocks.Embedded_FeedCMS.css: 461 -> 410 bytes, deleted 1, kept:used 4
+UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.css: 435 -> 435 bytes, deleted 0, kept:used 4
+UBT_AppManager.PIN.PinCode.css: 2280 -> 2280 bytes, deleted 0, kept:used 10
+UBT_AppManager_Mobile.Fingerprint.FingerprintScanner.css: 377 -> 377 bytes, deleted 0, kept:state-selector 2
+_Basic.css: 10892 -> 9954 bytes, deleted 8, kept:at-rule -webkit-keyframes 2, kept:at-rule font-face 1, kept:at-rule keyframes 2, kept:class-in-app-source 2, kept:state-selector 14, kept:used 18

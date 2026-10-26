@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { PING_URL } from '../shell/feedback/networkDetection';
+import { PING_URL } from '@/platform/feedback/networkDetection';
 import {
   NETWORK_PING_PATH,
   isNetworkPing,
