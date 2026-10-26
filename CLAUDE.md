@@ -31,7 +31,9 @@ specified and checked. Use it to re-capture or re-check a route. Architecture wo
    Only exception: the calls in `migration/capture-plan.json` → `defaults.allowActions`, each confirmed by me (app start
    sync calls that run on every app open, reads whose names miss the guard rule, `Wrapper_NotificationOpened`;
    user, 2026-10-14). Emails, shares, policy accept and writes made by user actions stay blocked.
-7. Do not `git push`. Commit only when I ask. Write commit messages in English.
+7. **Never `git push`** (or any other write to a remote: push, force-push, tag push, PR creation) unless I allow it
+   explicitly in the current conversation. Local commits are allowed without asking, when the work is done and checked.
+   Write commit messages in English.
 
 ## How to work with me
 
