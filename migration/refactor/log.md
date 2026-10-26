@@ -1,0 +1,55 @@
+# Refactor log
+
+One line per event. Written by rf.py.
+
+- 2026-10-22T11:44:17 begun by the user: "Giờ tôi sẽ đi ăn tới 3h30 chiều việt nam. Bạn hãy chạy Refactory plan, nếu định hỏi gì thì hãy nhờ opus suggest và auto chọn recommand nhé, ko cần chờ tôi."
+- 2026-10-22T11:44:27 P0-1 started
+- 2026-10-22T11:44:27 P0-1 stage dev
+- 2026-10-22T11:44:42 Q1 (P0-1) asked: Statement coverage needs a Vitest coverage provider (@vitest/coverage-v8), which is not installed. Add it now, or record coverage as not measured until P0-3?
+- 2026-10-22T11:44:42 Q2 (P0-3) asked: Before-gate: approve the added dev dependencies eslint-plugin-import-x and tsx (D3 addition), versions by the stable rule (ADR-2)?
+- 2026-10-22T12:29:02 Q1 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended (a): add @vitest/coverage-v8 at the exact vitest version in P0-1; measure with --coverage.include='src/**/*.{ts,tsx}' --coverage.exclude='**/*.stories.tsx' --coverage.reporter=text-summary --coverage.reporter=json-summary; record the flags in baseline.md"
+- 2026-10-22T12:36:17 Q2 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended: approve neither eslint-plugin-import-x nor tsx. Rule 11 with ESLint core no-restricted-imports (regex ^\.\./); codemod runs on plain Node 24 and loads ts-morph with createRequire(app/package.json). Versions: dependency-cruiser 17.4.3, eslint-plugin-boundaries 5.4.0 (handlebars override 4.7.10 if kept), jscpd 4.3.0, knip 5.88.1, ts-morph 27.0.2. braces advisory (no fix, dev-only CLIs) to accept in ADR-15. The boundaries resolver question stays open (Q3)."
+- 2026-10-22T12:36:17 P0-3 before-gate confirmed by the user: "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended: add no extra dependency (no eslint-plugin-import-x, no tsx); see Q2 for the versions."
+- 2026-10-22T12:37:17 Q3 (P0-1) asked: Apply the security patches (vitest 4.1.12 + coverage-v8 4.1.12, vite 7.3.7, storybook + @storybook/react-vite 10.6.x) in P0-1 before the baseline is measured?
+- 2026-10-22T12:37:56 Q3 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended (a): before the baseline install vitest@4.1.12, @vitest/coverage-v8@4.1.12, vite@7.3.7, storybook@10.6.3, @storybook/react-vite@10.6.3 and every other @storybook/* at 10.6.3 (ADR-2 security exception); npm audit must show no open advisory of these; smoke-test storybook build once; if the parity sweep shows differences after the vite patch, investigate before accepting them as the baseline."
+- 2026-10-22T12:45:08 P0-1 stage test
+- 2026-10-22T12:56:49 Q4 (P0-3) asked: Boundary rules 3-9 with @/ imports: (1) add eslint-import-resolver-typescript 4.4.5 to keep eslint-plugin-boundaries, (2) a local resolver file, or (3) rules 3-9 in dependency-cruiser only and drop eslint-plugin-boundaries?
+- 2026-10-22T12:57:21 P0-1 stage docs
+- 2026-10-22T12:58:04 Q4 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, until 15:30): Opus recommended (3): rules 3-9 and 10 in dependency-cruiser only (resolves @/ natively); drop eslint-plugin-boundaries (changes D3: no handlebars override, no braces path via micromatch); add ESLint core no-restricted-imports overrides per folder for the simple bans so the editor shows them. The user reviews the D3 change."
+- 2026-10-22T12:59:11 P0-1 stage commit
+- 2026-10-22T12:59:11 P0-1 done 6b4efba: ci: pass (Node 24); parity strict: 64/0 (OutSystems); audit 0
+- 2026-10-22T12:59:47 P0-2 started
+- 2026-10-22T12:59:48 P0-2 stage dev
+- 2026-10-22T13:33:32 Q5 (P0-5) asked: DEPRECATED_* patterns (4) render a different DOM from the new OSUI patterns and 7 routes use them (4 Orbit, EmailContact, EmailTarget, MyBookmarks): (a) keep them as legacy UI components in components/ui/legacy/ with business names, or (b) delete in P7 and accept the DOM change with parity exemptions?
+- 2026-10-22T13:33:32 Q6 (P0-5) asked: G2: the 5 ContactByEmail* pages fetch no data and differ only in config and the submit action: (a) shared ContactEmailForm + 2 card components + a config and a submit hook per page, no container (R2 criterion), or (b) one ContactEmailContainer with a config per route?
+- 2026-10-22T13:34:23 Q5 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done): Opus recommended (a): keep the 4 DEPRECATED_* patterns as legacy UI components with business names in components/ui/legacy/ (1:1 UI, R3, parity 64/0). Plan v2 §2.6 'delete DEPRECATED_*' does not apply to them; a switch to the new patterns is a later UX decision of the user, after cutover."
+- 2026-10-22T13:34:23 Q6 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done): Opus recommended (a): shared ContactEmailForm, two card components, and per page a config object plus one submit hook; no container (R2: no second data source, one submit hook). EmailContact, EmailTarget and LDM_Email_V2 stay separate."
+- 2026-10-22T13:50:22 Q7 (P0-5) asked: OSBlock (imported by 388 non-test files) moves to legacy/os/widgets/ in P1-3, but rules 4, 5 and 9 forbid components/** from importing legacy/os: (a) a rule exception so components/** may import legacy/os/widgets (OSBlock) until a later phase removes it, or (b) move OSBlock to components/ui/legacy/ instead?
+- 2026-10-22T13:50:36 P0-2 stage test
+- 2026-10-22T13:50:58 Q7 answered by the user: "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done): Opus recommended (b): move OSBlock and the other presentational OS* widgets to components/ui/os/ (permanent UI primitives under R3, allowed by rule 5), not to legacy/os/widgets. A widget that imports from legacy/os (check OSPopup, OSValidation) stays in legacy/os behind a platform adapter. Plan v2 P1-3 needs a text change."
+- 2026-10-22T13:58:56 P0-2 test failed, fix loop 1
+- 2026-10-22T14:00:39 P0-2 stage test
+- 2026-10-22T14:02:14 P0-2 stage docs
+- 2026-10-22T14:03:51 P0-2 stage commit
+- 2026-10-22T14:03:51 P0-2 done 4bee9f6: ci: pass; parity strict --all: 64/0 (OutSystems), 64/0 (self); visual self 64/0
+- 2026-10-22T14:04:04 P0-3 started
+- 2026-10-22T14:04:04 P0-3 stage dev
+- 2026-10-22T14:05:19 P0-3 stage test
+- 2026-10-22T14:10:21 P0-3 test failed, fix loop 1
+- 2026-10-22T14:11:35 P0-3 stage test
+- 2026-10-22T14:13:42 P0-3 stage docs
+- 2026-10-22T14:13:42 P0-3 stage commit
+- 2026-10-22T14:13:43 P0-3 done 9e439d0: ci: pass; parity strict --changed (self): 64/0; arch: 1 known cycle
+- 2026-10-22T14:13:52 P0-4 started
+- 2026-10-22T14:13:52 P0-4 stage dev
+- 2026-10-22T14:13:52 P0-4 stage test
+- 2026-10-22T14:16:08 P0-4 stage docs
+- 2026-10-22T14:16:08 P0-4 stage commit
+- 2026-10-22T14:16:08 P0-4 done 9c0bd22: ci: pass; measure outputs reproduced; bundle = baseline
+- 2026-10-22T14:16:26 P0-5 started
+- 2026-10-22T14:16:26 P0-5 stage dev
+- 2026-10-22T14:16:26 P0-5 stage test
+- 2026-10-22T14:16:26 P0-5 after-gate confirmed by the user: "auto-accepted (user instruction 2026-10-22 11:44, extended until P0-5 is done: 'kéo dài tới khi xong P0-5'): an Opus reviewer checked move-map.csv, duplicates.md and ADR-15 and confirmed with changes (16 rows, 5 other changes, Q7); the changes are applied (dev.md loops 1 and 2)."
+- 2026-10-22T14:20:53 P0-5 stage docs
+- 2026-10-22T14:20:53 P0-5 stage commit
+- 2026-10-22T14:20:54 P0-5 done eeb37e2: ci: pass; stack check OK; move-map reproduced; gate: Opus review (delegated)

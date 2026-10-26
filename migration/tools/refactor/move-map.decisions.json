@@ -1,0 +1,890 @@
+{
+  "_about": "Decisions of P0-5 for move-map.mjs (developer draft, to be reviewed by the user). Keys: <Module>/<Block> as in inventory.csv. Fields: see the header of defaults() in move-map.mjs.",
+  "blocks": {
+    "Connect2_Assemble_MUI/Assemble_FilterLocalityByCountry": {
+      "domain": "assemble",
+      "name": "AssembleLocalityFilter"
+    },
+    "Connect2_Assemble_MUI/Assemble_FilterSubdivisionByLocality": {
+      "domain": "assemble",
+      "name": "AssembleSubdivisionFilter"
+    },
+    "Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingDetails": {
+      "domain": "assemble",
+      "name": "VirtualMeetingDetails"
+    },
+    "Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingDetails_Entry": {
+      "domain": "assemble",
+      "name": "VirtualMeetingDetailsEntry"
+    },
+    "Connect2_Assemble_MUI/AssembleCommon_VirtualMeetingURL": {
+      "domain": "assemble",
+      "name": "VirtualMeetingUrl"
+    },
+    "Connect2_Assemble_MUI/AssembleSummary_Card_Row": {
+      "domain": "assemble",
+      "name": "AssembleSummaryCardRow"
+    },
+    "Connect2_Assemble_MUI/AssembleSummaryCard": { "domain": "assemble" },
+    "Connect2_Assemble_MUI/AssembleSummaryCard__Header": {
+      "domain": "assemble",
+      "name": "AssembleSummaryCardHeader"
+    },
+    "Connect2_Assemble_MUI/AssembleSummaryDetailHeader_Skeleton": {
+      "domain": "assemble",
+      "name": "AssembleSummarySkeleton"
+    },
+
+    "Connect2_LegacyShared/BaseLayout_UpdatedOSUI": {
+      "kind": "layout",
+      "name": "BaseLayout",
+      "notes": "inner part of LegacyLayout and OrbitLayout"
+    },
+    "Connect2_LegacyShared/ConnectBlankSlate": {
+      "kind": "ui",
+      "notes": "empty state; duplicates.md group 3"
+    },
+    "Connect2_LegacyShared/FreeSubscriptionActionDialog": {
+      "name": "UpgradeSubscriptionDialog",
+      "shape": "hook+component",
+      "notes": "reads the user information on confirm; preset of ConfirmDialog (duplicates.md group 2)"
+    },
+    "Connect2_LegacyShared/HandleImageLoadError": {
+      "kind": "ui",
+      "name": "ImageLoadErrorHandler",
+      "notes": "behavior block (image onerror); it imports lib/os-assets (osImage) and OSBlock, which P1-3 moves; in P7 the fallback image comes in as a prop"
+    },
+    "Connect2_LegacyShared/InputCounter": {
+      "kind": "ui",
+      "name": "LegacyInputCounter",
+      "notes": "same name as UBTConnectLibrary/InputCounter, other DOM (duplicates.md extra pairs)"
+    },
+    "Connect2_LegacyShared/ItemOptionsMenu": {
+      "domain": "bookmark",
+      "notes": "reads a flag: the page passes the flag value as a prop"
+    },
+    "Connect2_LegacyShared/LabelWithCopyIcon": { "kind": "ui" },
+    "Connect2_LegacyShared/Layout": {
+      "kind": "layout",
+      "name": "LegacyLayout",
+      "notes": "Connect2 theme layout (backwards-compatibility connect-theme); partly same as OrbitLayout (duplicates.md extra pairs)"
+    },
+    "Connect2_LegacyShared/Layout_Orbit": {
+      "kind": "layout",
+      "name": "OrbitLayout",
+      "notes": "Orbit theme layout (orbit-theme backwards-compatibility)"
+    },
+    "Connect2_LegacyShared/LocalityListDetail": { "domain": "assemble" },
+    "Connect2_LegacyShared/MenuIcon__UpdatedOSUI": {
+      "kind": "layout",
+      "shape": "component",
+      "name": "MenuIcon",
+      "notes": "header part of LegacyLayout and OrbitLayout; `useNavigateBack` becomes an `onBack` prop passed by the page through the layout"
+    },
+    "Connect2_LegacyShared/MenuIcon_Back": {
+      "kind": "layout",
+      "shape": "component",
+      "name": "MenuIconBack"
+    },
+    "Connect2_LegacyShared/MessageList_NoResults": {
+      "kind": "ui",
+      "name": "MessageListNoResults",
+      "notes": "empty state; duplicates.md group 3"
+    },
+    "Connect2_LegacyShared/NC_Card_Item_Text__Skeleton": {
+      "kind": "ui",
+      "name": "CardTextSkeleton"
+    },
+    "Connect2_LegacyShared/NC_Card_Item_Visual": {
+      "kind": "ui",
+      "name": "CardItemVisual"
+    },
+    "Connect2_LegacyShared/NC_Result_Item__Card": {
+      "kind": "ui",
+      "name": "ResultItemCard"
+    },
+    "Connect2_LegacyShared/NC_Result_Item__Image": {
+      "kind": "ui",
+      "name": "ResultItemMedia",
+      "notes": "renamed: ResultItemImage is the name of Result_Item_Image"
+    },
+    "Connect2_LegacyShared/NC_Result_Item_Badge": {
+      "kind": "ui",
+      "name": "ResultItemBadge"
+    },
+    "Connect2_LegacyShared/NetworkWarning": {
+      "kind": "ui",
+      "notes": "props only, plus OSBlock and osui/Animate"
+    },
+    "Connect2_LegacyShared/NewConnectContent": { "kind": "ui" },
+    "Connect2_LegacyShared/Person_Contact_Options": {
+      "domain": "contact",
+      "name": "PersonContactOptions"
+    },
+    "Connect2_LegacyShared/PopupMenu": {
+      "kind": "ui",
+      "name": "LegacyPopupMenu",
+      "notes": "partly same as UBTConnectLibrary/PopupMenu (dx-popup-menu-*; this one adds a backdrop); duplicates.md extra pairs"
+    },
+    "Connect2_LegacyShared/RadioButtonListItem": { "kind": "ui" },
+    "Connect2_LegacyShared/Result_Item_Image": {
+      "kind": "ui",
+      "name": "ResultItemImage"
+    },
+    "Connect2_LegacyShared/Spinner": { "kind": "ui" },
+    "Connect2_MyBookmarks_MUI/NoBookmarks": { "domain": "bookmark" },
+
+    "Connect2_OrbitMobile_MUI/Accordion_Orbit": {
+      "domain": "orbit",
+      "name": "OrbitAccordion",
+      "notes": "wraps DEPRECATED_Accordion (see its row)"
+    },
+    "Connect2_OrbitMobile_MUI/Card_Event": {
+      "domain": "orbit",
+      "name": "OrbitEventCard",
+      "notes": "uses OrbitCard; duplicates.md group 4"
+    },
+    "Connect2_OrbitMobile_MUI/Card_MemberInformation": {
+      "domain": "orbit",
+      "name": "MemberInformationCard",
+      "notes": "duplicates.md group 4: different markup (member-info-*)"
+    },
+    "Connect2_OrbitMobile_MUI/Card_Milestone": {
+      "domain": "orbit",
+      "name": "MilestoneCard",
+      "notes": "uses OrbitCard; duplicates.md group 4"
+    },
+    "Connect2_OrbitMobile_MUI/Card_Template": {
+      "domain": "orbit",
+      "name": "OrbitCard",
+      "notes": "base of OrbitEventCard and MilestoneCard"
+    },
+    "Connect2_OrbitMobile_MUI/ContactHelpdesk_Footer": {
+      "domain": "orbit",
+      "name": "ContactHelpdeskFooter"
+    },
+    "Connect2_OrbitMobile_MUI/DaySelector": { "domain": "orbit" },
+    "Connect2_OrbitMobile_MUI/ErrorScreen": {
+      "domain": "orbit",
+      "name": "OrbitErrorScreen"
+    },
+    "Connect2_OrbitMobile_MUI/EventDetail_SubSection": {
+      "domain": "orbit",
+      "name": "EventDetailSubSection"
+    },
+    "Connect2_OrbitMobile_MUI/HostSurvey_PillItem": {
+      "domain": "orbit",
+      "name": "HostSurveyPill"
+    },
+    "Connect2_OrbitMobile_MUI/ListOfDaySelectors": {
+      "domain": "orbit",
+      "name": "DaySelectorList"
+    },
+    "Connect2_OrbitMobile_MUI/MilestoneHeader": { "domain": "orbit" },
+    "Connect2_OrbitMobile_MUI/NoInformation_Orbit": {
+      "domain": "orbit",
+      "name": "OrbitNoInformation",
+      "notes": "empty state of the Orbit screens"
+    },
+    "Connect2_OrbitMobile_MUI/NoResults": {
+      "name": "OrbitNoResults",
+      "notes": "empty state; duplicates.md group 3"
+    },
+    "Connect2_OrbitMobile_MUI/Orbit_FooterWithActions": {
+      "name": "FooterWithActions"
+    },
+    "Connect2_OrbitMobile_MUI/Skeleton_Loading": {
+      "domain": "orbit",
+      "name": "OrbitSkeleton"
+    },
+
+    "Leaflet/LeafletMap": { "domain": "directory", "name": "DirectoryMap" },
+
+    "NavigationHandler/BackNavigationHandler": {
+      "shape": "hook+component",
+      "target": "src/platform/navigation/BackNavigationHandler/BackNavigationHandler.tsx",
+      "notes": "behavior block: hook usePreventBack… in platform/navigation, keeps its placeholder element; P1-2 already moves shell/navigation, and a platform file may render OSBlock from legacy/os (rule 9)"
+    },
+    "NavigationHandler/LayoutRuntime_Top": {
+      "kind": "layout",
+      "shape": "component",
+      "name": "LayoutRuntimeTop",
+      "notes": "placeholder of the layout runtime (14 lines)"
+    },
+    "NavigationHandler/NavigationConfirmationDialog": {
+      "shape": "hook+component",
+      "target": "src/components/ui/Dialog/NavigationDialog.tsx",
+      "phase": "P7",
+      "notes": "P7-2: DOM to components/ui/Dialog (same DOM as ActionConfirmationDialog), trigger to platform/navigation/useNavigationConfirmation.ts; duplicates.md group 2"
+    },
+    "NavigationHandler/NavigationHandler": {
+      "shape": "hook+component",
+      "target": "src/platform/navigation/NavigationHandler/NavigationHandler.tsx",
+      "notes": "behavior block"
+    },
+    "NavigationHandler/PreventBackNavigation": {
+      "shape": "hook+component",
+      "target": "src/platform/navigation/PreventBackNavigation/PreventBackNavigation.tsx",
+      "notes": "behavior block"
+    },
+    "NavigationHandler/ScrollAnchor": {
+      "shape": "hook+component",
+      "target": "src/platform/navigation/ScrollAnchor/ScrollAnchor.tsx",
+      "notes": "behavior block (scroll restore)"
+    },
+
+    "ReactiveHtmlSanitizer/SanitizedHtml": { "kind": "ui" },
+
+    "UBTConnect/App_IconBadge": {
+      "kind": "layout",
+      "shape": "component",
+      "name": "BottomBarIconBadge",
+      "notes": "part of BottomBar"
+    },
+    "UBTConnect/App_NotificationIcon": {
+      "domain": "notification",
+      "name": "NotificationIcon",
+      "notes": "reads a client variable: the hook goes to the page or platform/session"
+    },
+    "UBTConnect/App_NotificationRefresh": {
+      "domain": "notification",
+      "name": "NotificationRefresh",
+      "shape": "component",
+      "notes": "behavior block: no call; it fires onUpdated when datetime changes"
+    },
+    "UBTConnect/Block_PINRegister_ContentWrapper": {
+      "domain": "auth",
+      "name": "PinRegisterContent"
+    },
+    "UBTConnect/Block_PINUnlock_ContentWrapper": {
+      "domain": "auth",
+      "name": "PinUnlockContent",
+      "shape": "hook+component",
+      "notes": "also used by shell/dialogs/BlockPinUnlock (lock dialog)"
+    },
+    "UBTConnect/BottomBarContent": { "kind": "layout", "shape": "component" },
+    "UBTConnect/BottomBarMenu": {
+      "kind": "layout",
+      "shape": "hook+component",
+      "name": "BottomBar",
+      "notes": "plan v2 §2.2 names containers/BottomBar, but criterion 2 is not met (167 lines, no data action): hook+component; `useBottomBar` goes in platform/navigation (as the CommonUI_InsideLayout row); pages pass its result through the layout `bottom` area"
+    },
+    "UBTConnect/CacheControl_UserInfo_Wrapper": {
+      "shape": "hook+component",
+      "target": "src/platform/session/UserInfoCache/UserInfoCache.tsx",
+      "phase": "P5",
+      "notes": "behavior block; P5-4 rewrites it where it is (query options), P6 only moves the file"
+    },
+    "UBTConnect/CarouselTag": { "domain": "directory" },
+    "UBTConnect/CommonUI_InsideLayout": {
+      "kind": "layout",
+      "name": "CommonUiLayout",
+      "notes": "uses view state and client variables: hook in platform/navigation, the layout gets props"
+    },
+    "UBTConnect/ContactByEmailForm": {
+      "domain": "contact",
+      "name": "ContactEmailForm",
+      "notes": "the shared form of the 5 ContactByEmail* pages; no container (user decision Q6, 2026-10-22; duplicates.md group 1)"
+    },
+    "UBTConnect/Dialog_CustomChoice": {
+      "kind": "ui",
+      "shape": "ui",
+      "target": "src/components/ui/Dialog/ChoiceDialog.tsx",
+      "name": "ChoiceDialog",
+      "notes": "P7-2 ChoiceDialog; the open trigger (confirmAction scope) stays in platform/feedback; duplicates.md group 2"
+    },
+    "UBTConnect/Dialog_Navigation": {
+      "kind": "ui",
+      "target": "src/components/ui/Dialog/NavigationDialog.tsx",
+      "merge": true,
+      "notes": "merge into NavigationDialog as the variant with the connect-dialog-popup--navigation wrapper and the ChoiceDialog header and body (keep the DOM); duplicates.md group 2"
+    },
+    "UBTConnect/Directory_EmptyState": {
+      "domain": "directory",
+      "name": "DirectoryEmptyState",
+      "notes": "preset of EmptyList; duplicates.md group 3"
+    },
+    "UBTConnect/Directory_EntityDetailsActions": {
+      "shape": "container+component",
+      "target": "src/containers/EntityDetailsActions/EntityDetailsActionsContainer.tsx",
+      "notes": "criterion 2: 2 data actions, 3 event handlers, 790 lines; the view goes to components/directory/EntityDetailsActions; also used by HouseholdDetails (P2)"
+    },
+    "UBTConnect/Directory_LegendBottomSheet": {
+      "domain": "directory",
+      "name": "DirectoryLegendSheet"
+    },
+    "UBTConnect/Directory_Updates": {
+      "shape": "mock",
+      "phase": "P5",
+      "target": "src/mocks/handlers/update.ts",
+      "origin": "UBTConnect.Directory_Updates (mock handler of UpdateItem_MarkAsRead)",
+      "notes": "not a block; only mocks.ts (MSW handler of the server action UpdateItem_MarkAsRead); it imports mocks/contract and screens/HomeFeed/mocks, which rule 7 forbids in api/<domain>/, so it goes to src/mocks/handlers in P5"
+    },
+    "UBTConnect/EntitiesCarouse_lSupperMeetingDetails": {
+      "domain": "directory",
+      "name": "CarouselSupperMeetingDetails"
+    },
+    "UBTConnect/EntitiesCarousel": {
+      "domain": "directory",
+      "notes": "uses components/ui/Carousel; duplicates.md group 5"
+    },
+    "UBTConnect/EntitiesCarousel_Element": {
+      "domain": "directory",
+      "name": "EntitiesCarouselElement",
+      "notes": "renders the HouseholdDetails container (P2) and SupperMeetingDetails (data); a component must not import containers/: the page passes a render prop"
+    },
+    "UBTConnect/EntitiesCarousel_HeaderGenerator": {
+      "domain": "directory",
+      "name": "EntitiesCarouselHeader"
+    },
+    "UBTConnect/EntitiesCarousel_HouseholdDetails": {
+      "domain": "directory",
+      "name": "CarouselHouseholdDetails",
+      "notes": "wraps the HouseholdDetails container; today it imports HouseholdDetails_Block directly; it will take the details node as `children` (or a render prop) from the page and keep CarouselTag inside"
+    },
+    "UBTConnect/Feed_Embeded": { "domain": "feed", "name": "EmbeddedFeed" },
+    "UBTConnect/FeedBlock_CommunityPopulation": {
+      "domain": "feed",
+      "name": "CommunityPopulation"
+    },
+    "UBTConnect/FilterSheet": {
+      "domain": "filter",
+      "notes": "plan v2 §2.2 names containers/FilterSheet, but no data action: component with props"
+    },
+    "UBTConnect/FilterSheet_Icon": {
+      "domain": "filter",
+      "name": "FilterSheetIcon"
+    },
+    "UBTConnect/FilterSheet_OptionChoice_Item": {
+      "domain": "filter",
+      "name": "FilterOptionChoice"
+    },
+    "UBTConnect/FilterSheet_OptionList_Item": {
+      "domain": "filter",
+      "name": "FilterOptionList"
+    },
+    "UBTConnect/HandleOnResumeOpenLink": {
+      "shape": "hook+component",
+      "target": "src/platform/navigation/OpenLinkOnResume/OpenLinkOnResume.tsx",
+      "notes": "behavior block"
+    },
+    "UBTConnect/Household_GalleryCard": {
+      "domain": "household",
+      "name": "HouseholdGalleryCard"
+    },
+    "UBTConnect/Household_GalleryCard_List": {
+      "domain": "household",
+      "name": "HouseholdGalleryCardList"
+    },
+    "UBTConnect/HouseholdDetails_Block": {
+      "shape": "container+component",
+      "target": "src/containers/HouseholdDetails/HouseholdDetailsContainer.tsx",
+      "phase": "P2",
+      "notes": "criterion 1 (server data and the household data of the Profile card); the view is components/household/HouseholdDetailsView (P2-3); HouseholdDetailsView gets NoteListActions, ShareSheet and Directory_EntityDetailsActions as slots from HouseholdDetailsContainer (they become containers in G1/G3/G4; importing them would break rule 4)"
+    },
+    "UBTConnect/HouseholdDetails_Members_Block": {
+      "domain": "household",
+      "name": "HouseholdMemberList",
+      "phase": "P2"
+    },
+    "UBTConnect/HouseholdDetails_TimelinePhoto": {
+      "domain": "household",
+      "name": "HouseholdTimelinePhoto",
+      "phase": "P2"
+    },
+    "UBTConnect/HouseholdDetails_TimelinePhoto_List": {
+      "domain": "household",
+      "name": "HouseholdTimelinePhotos",
+      "phase": "P2"
+    },
+    "UBTConnect/Menu_List": { "domain": "menu", "name": "MenuList" },
+    "UBTConnect/OfflineDataSyncEvents": {
+      "shape": "hook+component",
+      "target": "src/platform/device/OfflineDataSync/OfflineDataSync.tsx",
+      "notes": "behavior block (OSUI offline sync events)"
+    },
+    "UBTConnect/Policy_Checker": {
+      "shape": "hook+component",
+      "target": "src/platform/session/PolicyChecker/PolicyChecker.tsx",
+      "notes": "behavior block (reads client variables)"
+    },
+    "UBTConnect/SectionSeparator": { "kind": "ui" },
+    "UBTConnect/Statistics_Icons": {
+      "domain": "directory",
+      "name": "StatisticsIcons"
+    },
+    "UBTConnect/Statistics_TypedItem": {
+      "domain": "directory",
+      "name": "StatisticsTypedItem"
+    },
+    "UBTConnect/StatisticsList": { "domain": "directory" },
+    "UBTConnect/SubLayout_Browse_Section": {
+      "kind": "layout",
+      "name": "BrowseSection"
+    },
+    "UBTConnect/SubLayout_DirectoryDetailScreen": {
+      "kind": "layout",
+      "name": "DirectoryDetailLayout"
+    },
+    "UBTConnect/SubLayout_DirectoryDetailScreen_Section": {
+      "kind": "layout",
+      "name": "DirectoryDetailSection"
+    },
+    "UBTConnect/SupperMeeting_DetailsBlock": {
+      "domain": "directory",
+      "name": "SupperMeetingDetails",
+      "notes": "data per carousel element: `useQueries` in the page hook; if a wrapper per element is still needed, it is a container (§2.1) and goes to containers/ with the reason"
+    },
+    "UBTConnect/SupperMeeting_HouseholdList": {
+      "domain": "directory",
+      "name": "SupperMeetingHouseholdList"
+    },
+    "UBTConnect/SupperMeeting_ImageCard_Content": {
+      "domain": "directory",
+      "name": "SupperMeetingCardContent"
+    },
+    "UBTConnect/SupperMeeting_ImageCard_Content_IconText": {
+      "domain": "directory",
+      "name": "SupperMeetingCardIconText"
+    },
+    "UBTConnect/SupperMeeting_ImageCard_Content_Statistics": {
+      "domain": "directory",
+      "name": "SupperMeetingCardStatistics"
+    },
+    "UBTConnect/UnsupportedVersion": {
+      "domain": "version",
+      "name": "UnsupportedVersion"
+    },
+    "UBTConnect/UnsupportedVersion_Browser": {
+      "domain": "version",
+      "name": "UnsupportedVersionBrowser"
+    },
+    "UBTConnect/UnsupportedVersion_Native": {
+      "domain": "version",
+      "name": "UnsupportedVersionNative"
+    },
+    "UBTConnect/UnsupportedVersion_WebView": {
+      "domain": "version",
+      "name": "UnsupportedVersionWebView"
+    },
+    "UBTConnect/UnsupportedVersion_Wrapper": {
+      "domain": "version",
+      "name": "UnsupportedVersionWrapper",
+      "notes": "Login and the lock dialog"
+    },
+    "UBTConnect/Version": { "domain": "version", "name": "AppVersion" },
+    "UBTConnect/WelcomeToConnect": {
+      "domain": "auth",
+      "notes": "Login and the lock dialog"
+    },
+
+    "UBTConnect_EmbedFeed/Embedded_FeedCMS": {
+      "domain": "feed",
+      "name": "FeedCms",
+      "shape": "hook+component",
+      "notes": "894 lines, 15 event props, 1 data hook; `connect2Feed.embed` is a side effect, not a data action: hook+component; count again in G3, after P5"
+    },
+
+    "UBTConnect_Utils/AddressPopup": { "domain": "contact" },
+    "UBTConnect_Utils/AddressPopup_Wrapper": {
+      "domain": "contact",
+      "name": "AddressPopupWrapper"
+    },
+    "UBTConnect_Utils/Button": {
+      "kind": "ui",
+      "name": "ActionButton",
+      "notes": "wraps the ui Button with icon and loading spinner; same OutSystems name as UBTConnectLibrary/Button"
+    },
+    "UBTConnect_Utils/CacheControl": {
+      "shape": "hook+component",
+      "phase": "P5",
+      "target": "src/api/client/cacheControl.ts",
+      "notes": "memory cache wrapper; step P5-4 rewrites it because it reads memoryCache, which P5-4 deletes; the hook goes to the target and its OSBlock placeholder stays where pages render it while parity is strict"
+    },
+    "UBTConnect_Utils/CacheControl_AllCountries": {
+      "shape": "hook+component",
+      "target": "src/api/country/hooks.ts",
+      "merge": true,
+      "phase": "P5",
+      "notes": "becomes useAllCountriesQuery (P5-2, P5-4); P5-4 rewrites it where it is, P6 only moves the file"
+    },
+    "UBTConnect_Utils/CacheControl_AllLocalities": {
+      "shape": "hook+component",
+      "target": "src/api/locality/hooks.ts",
+      "merge": true,
+      "phase": "P5",
+      "notes": "becomes useAllLocalitiesQuery (P5-2, P5-4); P5-4 rewrites it where it is, P6 only moves the file"
+    },
+    "UBTConnect_Utils/CacheControl_Policies": {
+      "shape": "hook+component",
+      "target": "src/api/app/hooks.ts",
+      "merge": true,
+      "phase": "P5",
+      "notes": "becomes usePoliciesQuery (P5-2, P5-4); P5-4 rewrites it where it is, P6 only moves the file"
+    },
+    "UBTConnect_Utils/CacheControl_UserInfo": {
+      "shape": "hook+component",
+      "target": "src/api/member/hooks.ts",
+      "merge": true,
+      "phase": "P5",
+      "notes": "becomes useUserInfoQuery (P5-2, P5-4); P5-4 rewrites it where it is, P6 only moves the file"
+    },
+    "UBTConnect_Utils/ContactByMessage_Wrapper": {
+      "domain": "contact",
+      "name": "ContactByMessage"
+    },
+    "UBTConnect_Utils/ContactPopup": { "domain": "contact" },
+    "UBTConnect_Utils/ContactPopup_ByMessage": {
+      "domain": "contact",
+      "name": "ContactPopupByMessage"
+    },
+    "UBTConnect_Utils/ContactPopup_ByPhone": {
+      "domain": "contact",
+      "name": "ContactPopupByPhone"
+    },
+    "UBTConnect_Utils/Dialog_AccessRestrictedAction_Legacy": {
+      "shape": "delete",
+      "target": "src/platform/feedback/DialogAccessRestrictedAction.tsx",
+      "phase": "P7",
+      "merge": true,
+      "notes": "merge into the platform dialog (shell/dialogs/DialogAccessRestrictedAction): the wrapper adds only its OSBlock element, which must stay in the DOM; duplicates.md group 2"
+    },
+    "UBTConnect_Utils/NoteListActions": {
+      "shape": "container+component",
+      "target": "src/containers/NoteListActions/NoteListActionsContainer.tsx",
+      "notes": "criterion 2: 2 data actions, 4 event props, 230 lines"
+    },
+    "UBTConnect_Utils/NotesSheet": { "domain": "note" },
+    "UBTConnect_Utils/SearchResult_Item": {
+      "domain": "search",
+      "name": "SearchResultItem"
+    },
+    "UBTConnect_Utils/ShareableObject_Generic": {
+      "domain": "share",
+      "name": "ShareableObject"
+    },
+    "UBTConnect_Utils/SharePopup": { "domain": "share" },
+    "UBTConnect_Utils/ShareSheet": {
+      "shape": "container+component",
+      "target": "src/containers/ShareSheet/ShareSheetContainer.tsx",
+      "notes": "criterion 2: 4 data actions, 666 lines; the view goes to components/share/ShareSheet"
+    },
+    "UBTConnect_Utils/ShareSheet_Section": {
+      "domain": "share",
+      "name": "ShareSheetSection"
+    },
+    "UBTConnect_Utils/ShareSheet_SectionTitle": {
+      "domain": "share",
+      "name": "ShareSheetSectionTitle"
+    },
+    "UBTConnect_Utils/UBT_LazyImage": {
+      "kind": "ui",
+      "name": "EntityLazyImage",
+      "notes": "lazy image by entity type and id; uses LazyImage"
+    },
+
+    "UBT_AppManager/InactivityTimer": {
+      "shape": "hook+component",
+      "target": "src/platform/session/InactivityTimer/InactivityTimer.tsx",
+      "notes": "behavior block; lock dialog only (see shell/inactivity.ts)"
+    },
+    "UBT_AppManager/PinCode": { "domain": "auth" },
+    "UBT_AppManager/Pincode_Register": {
+      "domain": "auth",
+      "name": "PinCodeRegister"
+    },
+    "UBT_AppManager/Pincode_Unlock": {
+      "domain": "auth",
+      "name": "PinCodeUnlock",
+      "notes": "lock dialog and PINChange"
+    },
+    "UBT_AppManager_Mobile/FingerprintScanner": {
+      "domain": "auth",
+      "shape": "hook+component",
+      "notes": "device plugin call moves to platform/device"
+    },
+    "UBT_AppManager_Mobile/PinUnlock_MobileWrapper": {
+      "domain": "auth",
+      "name": "PinUnlockMobile"
+    },
+
+    "UBTConnectLibrary/ActionsMenu": { "kind": "ui" },
+    "UBTConnectLibrary/AddNote": { "domain": "note" },
+    "UBTConnectLibrary/AvatarDouble": { "kind": "ui" },
+    "UBTConnectLibrary/AvatarImage": { "kind": "ui" },
+    "UBTConnectLibrary/Badge": { "kind": "ui" },
+    "UBTConnectLibrary/BottomSheet": {
+      "kind": "ui",
+      "name": "ConnectBottomSheet",
+      "notes": "wraps the OSUI BottomSheet (components/ui/BottomSheet)"
+    },
+    "UBTConnectLibrary/Button": { "kind": "ui" },
+    "UBTConnectLibrary/CircleButton": { "kind": "ui" },
+    "UBTConnectLibrary/CircleButton_IconPrimary": {
+      "kind": "ui",
+      "name": "CircleButtonIconPrimary"
+    },
+    "UBTConnectLibrary/CircleButton_WithLabel": {
+      "kind": "ui",
+      "name": "CircleButtonWithLabel"
+    },
+    "UBTConnectLibrary/Columns_Three": {
+      "kind": "ui",
+      "name": "ColumnsThree",
+      "notes": "Connect wrapper of OSUI Columns3"
+    },
+    "UBTConnectLibrary/Columns_Two": {
+      "kind": "ui",
+      "name": "ColumnsTwo",
+      "notes": "Connect wrapper of OSUI Columns2"
+    },
+    "UBTConnectLibrary/ComingSoon": { "kind": "ui" },
+    "UBTConnectLibrary/ContextMenu": { "kind": "ui" },
+    "UBTConnectLibrary/ContextMenu_Item": {
+      "kind": "ui",
+      "name": "ContextMenuItem"
+    },
+    "UBTConnectLibrary/CustomContainer": { "kind": "ui" },
+    "UBTConnectLibrary/CustomText": { "kind": "ui" },
+    "UBTConnectLibrary/DynamicTextArea": { "kind": "ui" },
+    "UBTConnectLibrary/EmptyList": {
+      "kind": "ui",
+      "notes": "P7-3 EmptyState base; duplicates.md group 3"
+    },
+    "UBTConnectLibrary/FixedFooter": { "kind": "ui" },
+    "UBTConnectLibrary/HighlightSearch": { "kind": "ui" },
+    "UBTConnectLibrary/HorizontalTagList": { "kind": "ui" },
+    "UBTConnectLibrary/Icon": { "kind": "ui" },
+    "UBTConnectLibrary/IconBadge": { "kind": "ui" },
+    "UBTConnectLibrary/IconInline_Internal": {
+      "kind": "ui",
+      "name": "IconInline"
+    },
+    "UBTConnectLibrary/IconSVG": { "kind": "ui", "name": "IconSvg" },
+    "UBTConnectLibrary/IconText": { "kind": "ui" },
+    "UBTConnectLibrary/ImageCard__Content": {
+      "kind": "ui",
+      "name": "ImageCardContent"
+    },
+    "UBTConnectLibrary/ImageCard__Content__Tag": {
+      "kind": "ui",
+      "name": "ImageCardTag"
+    },
+    "UBTConnectLibrary/ImageCard_LazyLoading": {
+      "kind": "ui",
+      "name": "ImageCard"
+    },
+    "UBTConnectLibrary/Input": { "kind": "ui" },
+    "UBTConnectLibrary/InputCounter": { "kind": "ui" },
+    "UBTConnectLibrary/KebabButton_BookmarkNotes": {
+      "domain": "note",
+      "name": "BookmarkNotesKebab"
+    },
+    "UBTConnectLibrary/KebabButtonMenu": { "kind": "ui" },
+    "UBTConnectLibrary/Layout_DetailPage": {
+      "kind": "layout",
+      "name": "DetailLayout",
+      "phase": "P2",
+      "notes": "P2-3 renders HouseholdDetails in DetailLayout; DetailLayout takes `onBack` as a prop (today it calls useNavigateBack: rule 4); the old path stays a thin adapter (calls useNavigateBack, renders DetailLayout) for the other 22 routes until their group moves"
+    },
+    "UBTConnectLibrary/Layout_HomePage": {
+      "kind": "layout",
+      "name": "HomeLayout"
+    },
+    "UBTConnectLibrary/Layout_LoginFlow": {
+      "kind": "layout",
+      "name": "LoginLayout"
+    },
+    "UBTConnectLibrary/Layout_MainPages": {
+      "kind": "layout",
+      "name": "MainLayout",
+      "notes": "partly same as MainLayoutFixedTitle (jscpd: 2 clones, 36 lines); merge candidate P7-4"
+    },
+    "UBTConnectLibrary/Layout_MainPages_FixedTitle": {
+      "kind": "layout",
+      "name": "MainLayoutFixedTitle"
+    },
+    "UBTConnectLibrary/LazyImage": { "kind": "ui" },
+    "UBTConnectLibrary/Member_ListItem": {
+      "domain": "household",
+      "name": "MemberListItem",
+      "notes": "partly same as NonMemberListItem (jscpd: 27 lines)"
+    },
+    "UBTConnectLibrary/NonMember_ListItem": {
+      "domain": "household",
+      "name": "NonMemberListItem"
+    },
+    "UBTConnectLibrary/Note_Item": { "domain": "note", "name": "NoteItem" },
+    "UBTConnectLibrary/Note_Item_List": {
+      "domain": "note",
+      "name": "NoteList"
+    },
+    "UBTConnectLibrary/Popup": { "kind": "ui" },
+    "UBTConnectLibrary/PopupMenu": { "kind": "ui" },
+    "UBTConnectLibrary/SeeMoreSection": { "kind": "ui" },
+    "UBTConnectLibrary/SelectionOption_List": {
+      "kind": "ui",
+      "name": "SelectionOptionList"
+    },
+    "UBTConnectLibrary/SkeletonSection": {
+      "kind": "ui",
+      "notes": "P7-3 Skeleton base"
+    },
+    "UBTConnectLibrary/StaticInput": { "kind": "ui" },
+    "UBTConnectLibrary/Statistics_ListItem": {
+      "domain": "directory",
+      "name": "StatisticsListItem"
+    },
+    "UBTConnectLibrary/SubLayout_HomePageSearch": {
+      "kind": "layout",
+      "name": "HomeSearchSection"
+    },
+    "UBTConnectLibrary/SubLayout_Section": {
+      "kind": "layout",
+      "name": "SectionLayout"
+    },
+    "UBTConnectLibrary/SVG_Background_Custom": {
+      "kind": "ui",
+      "name": "SvgBackground"
+    },
+    "UBTConnectLibrary/SVG_Background_LoginWrapper": {
+      "kind": "ui",
+      "name": "SvgBackgroundLogin"
+    },
+    "UBTConnectLibrary/TagContent": { "kind": "ui" },
+    "UBTConnectLibrary/TagToggle": { "kind": "ui" },
+    "UBTConnectLibrary/TextArea_WithCounter": {
+      "kind": "ui",
+      "name": "TextAreaWithCounter"
+    },
+    "UBTConnectLibrary/TextEllipsis": { "kind": "ui" },
+    "UBTConnectLibrary/Update_ListItem": {
+      "domain": "feed",
+      "name": "UpdateListItem"
+    },
+
+    "osui/Columns4": {
+      "notes": "no importer; P7-1 deletes it unless the user keeps the OSUI set (knip)"
+    },
+    "osui/RangeSlider": {
+      "notes": "no importer; P7-1 deletes it unless the user keeps the OSUI set (knip)"
+    },
+    "osui/SwipeEvents": {
+      "notes": "no importer; P7-1 deletes it unless the user keeps the OSUI set (knip)"
+    },
+    "osui/Tooltip": {
+      "notes": "no importer; P7-1 deletes it unless the user keeps the OSUI set (knip)"
+    },
+    "osui/NetworkStatusChanged": {
+      "notes": "behavior pattern; check that it imports only ui and lib"
+    },
+    "osui/OfflineDataSyncCore": {
+      "notes": "behavior pattern; check that it imports only ui and lib"
+    },
+    "osui/DEPRECATED_Accordion": {
+      "kind": "ui",
+      "shape": "ui",
+      "name": "LegacyAccordion",
+      "target": "src/components/ui/legacy/LegacyAccordion/LegacyAccordion.tsx",
+      "notes": "legacy UI component, kept for the DOM of the original (R3); user decision Q5, 2026-10-22; duplicates.md group 6"
+    },
+    "osui/DEPRECATED_AccordionItem": {
+      "kind": "ui",
+      "shape": "ui",
+      "name": "SectionExpandable",
+      "target": "src/components/ui/legacy/SectionExpandable/SectionExpandable.tsx",
+      "notes": "legacy UI component, kept for the DOM of the original (R3); user decision Q5, 2026-10-22; duplicates.md group 6"
+    },
+    "osui/DEPRECATED_ButtonLoading": {
+      "kind": "ui",
+      "shape": "ui",
+      "name": "LegacyButtonLoading",
+      "target": "src/components/ui/legacy/LegacyButtonLoading/LegacyButtonLoading.tsx",
+      "notes": "legacy UI component, kept for the DOM of the original (R3); user decision Q5, 2026-10-22; duplicates.md group 6"
+    },
+    "osui/DEPRECATED_GalleryV2": {
+      "kind": "ui",
+      "shape": "ui",
+      "name": "GridGallery",
+      "target": "src/components/ui/legacy/GridGallery/GridGallery.tsx",
+      "notes": "legacy UI component, kept for the DOM of the original (R3); user decision Q5, 2026-10-22; duplicates.md group 6"
+    },
+
+    "Assemble_BrowseByCountry/ScreenBlock_Assemble_Filter": {
+      "name": "AssembleFilterView"
+    },
+    "AssembleDetail/ScreenBlock_AssembleDetail": {
+      "name": "AssembleDetailView"
+    },
+    "AssembleEvents/ScreenBlock_AssembleEvents": {
+      "name": "AssembleEventsView"
+    },
+    "BookmarksByGroup/ScreenBlock_BookmarkGroup": {
+      "name": "BookmarkGroupView"
+    },
+    "ConnectShare/ScreenBlock_ShareDetail": { "name": "ShareDetailView" },
+    "EmailContact/ScreenBlock_ContactForm": {
+      "name": "OrbitContactFormView",
+      "notes": "hook: pages/EmailContact/hooks/useOrbitContactForm.ts; partly same as HouseholdEmailView (duplicates.md group 1)"
+    },
+    "EmailTarget/ScreenBlock_Household_Email": {
+      "name": "HouseholdEmailView",
+      "notes": "hook: pages/EmailTarget/hooks/useHouseholdEmail.ts; partly same as OrbitContactFormView (duplicates.md group 1)"
+    },
+    "EventBooklet/ScreenBlock_EventBooklet": {
+      "name": "EventBookletView",
+      "notes": "hook: pages/EventBooklet/hooks/useEventBooklet.ts; 1,077 lines: split into components (plan G5, one day)"
+    },
+    "EventDetail/ScreenBlock_EventDetail": { "name": "EventDetailView" },
+    "GuestArrangements/ScreenBlock_GuestArrangements": {
+      "name": "GuestArrangementsView"
+    },
+    "HelpersDetail/ScreenBlock_HelperDetails": { "name": "HelperDetailsView" },
+    "HostSurvey/ScreenBlock_HostSurvey": {
+      "name": "HostSurveyView",
+      "origin": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.ScreenBlock_HostSurvey"
+    },
+    "LDM_Email_V2/ScreenBlock_Event_Email_V2": { "name": "LdmEventEmailView" },
+    "LDM_EventDetail_V2/ScreenBlock_EventDetail_V2": {
+      "name": "LdmEventDetailView"
+    },
+    "LDM_MyEvents_V2/ScreenBlock_MyEvents_V2": { "name": "LdmMyEventsView" },
+    "LegacyShareObject/ScreenBlock_ShareObject": { "name": "ShareObjectView" },
+    "MessageDetail/ScreenBlock_MessageDetail": { "name": "MessageDetailView" },
+    "MessageList/ScreenBlock_MessageList": { "name": "MessageListView" },
+    "MilestoneDetail/ScreenBlock_AccommodationHost": {
+      "name": "AccommodationHostView"
+    },
+    "MilestoneDetail/ScreenBlock_MilestoneWrapper": {
+      "name": "MilestoneWrapperView"
+    },
+    "MyBookmarks/ScreenBlock_MyBookmarks": { "name": "MyBookmarksView" },
+    "OrbitAdminEventDetail/ScreenBlock_AdminEventDetail": {
+      "name": "AdminEventDetailView"
+    },
+    "OrbitAdminLanding/ScreenBlock_AdminLanding": {
+      "name": "AdminLandingView"
+    },
+    "OrbitLanding/ScreenBlock_OrbitLanding": { "name": "OrbitLandingView" },
+    "QRCodeGenerate/ScreenBlock_GenerateQRCode": {
+      "name": "GenerateQrCodeView"
+    },
+    "Search/ScreenBlock_Search": { "name": "SearchView" },
+    "TransportDetail/ScreenBlock_TransportDetail": {
+      "name": "TransportDetailView"
+    },
+    "ViewDocuments/ScreenBlock_ViewDocuments": { "name": "ViewDocumentsView" }
+  },
+  "screens": {
+    "HouseholdDetails": { "notes": "P2-1 (walking skeleton)" },
+    "ContactByEmailMember": {
+      "notes": "G2: shared ContactEmailForm and two card components; a config object and one submit hook per page, no container (user decision Q6, 2026-10-22; duplicates.md group 1)"
+    },
+    "ContactByEmailOneSchoolGlobal": {
+      "notes": "G2: see ContactByEmailMember"
+    },
+    "ContactByEmailLDMCoordinator": { "notes": "G2: see ContactByEmailMember" },
+    "ContactByEmailOrbitHelpdesk": { "notes": "G2: see ContactByEmailMember" },
+    "ContactByEmailOrbitHost": { "notes": "G2: see ContactByEmailMember" }
+  }
+}

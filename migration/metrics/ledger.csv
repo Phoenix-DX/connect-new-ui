@@ -243,3 +243,42 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-21,_docs,other,99051,sonnet-dashboard-content-writer,,"UI Flows dashboard: content.en.json (13 areas, 44 flows, scope reasons, D1-D11)"
 2026-10-21,_docs,other,95502,sonnet-dashboard-content-reviewer,,"UI Flows dashboard: content review; 8 category fixes, 5 flow purposes, D6/D8 wording"
 2026-10-21,_docs,other,132761,sonnet-journeys-screen-descriptions,,"Journeys: screens.en.json, 64 in-scope screens (sees, does, back)"
+2026-10-22,refactor,review,220000,main,,"P0-D0 plan review, flag/auth design, plan v2 (2026-10-22)"
+2026-10-22,refactor,build,40743,refactor-dev,,"agent team self-test T0-1 (A6 b), sonnet"
+2026-10-22,refactor,verify,14325,refactor-test,,"agent team self-test T0-1 (A6 b), sonnet"
+2026-10-22,refactor,other,13236,refactor-docs,,"agent team self-test T0-1 (A6 b), sonnet"
+2026-10-22,refactor,foundation,180000,main,,"agent team plan + build (B1-B7), estimate"
+2026-10-22,refactor,review,112851,refactor-advisor,,"P0-1 Q1, P0-3 Q2 (deps, versions, security), opus"
+2026-10-22,refactor,review,40188,refactor-advisor,,"P0-1 Q3 facts (security patches), sonnet, 37 s"
+2026-10-22,refactor,review,35298,refactor-advisor,,"P0-1 Q3 judgment (security patches), opus, 17 s"
+2026-10-22,refactor,build,37128,refactor-dev,,P0-1 sonnet
+2026-10-22,refactor,verify,23630,refactor-test,,P0-1 sonnet
+2026-10-22,refactor,review,36031,refactor-advisor,,"P0-3 Q4 judgment (resolver), opus, 15 s"
+2026-10-22,refactor,other,28095,refactor-docs,,P0-1 sonnet
+2026-10-22,refactor,build,57313,refactor-dev,,P0-3 sonnet
+2026-10-22,refactor,build,51478,refactor-dev,,P0-4 sonnet
+2026-10-22,refactor,build,103101,refactor-dev,,P0-5 opus
+2026-10-22,refactor,verify,18937,refactor-test,,P0-3 sonnet
+2026-10-22,refactor,other,22956,refactor-docs,,P0-3 sonnet
+2026-10-22,refactor,build,219980,refactor-dev,,P0-5 opus
+2026-10-22,refactor,review,34157,refactor-advisor,,"P0-5 Q6 judgment, opus, 8 s"
+2026-10-22,refactor,review,34222,refactor-advisor,,"P0-5 Q5 judgment, opus, 12 s"
+2026-10-22,refactor,verify,22950,refactor-test,,P0-4 sonnet
+2026-10-22,refactor,build,53839,refactor-dev,,P0-5 sonnet
+2026-10-22,refactor,verify,25419,refactor-test,,P0-5 sonnet
+2026-10-22,refactor,build,96702,refactor-dev,,P0-2 sonnet
+2026-10-22,refactor,review,92284,refactor-advisor,,"P0-5 gate review (delegated), opus, 4.5 min"
+2026-10-22,refactor,review,34662,refactor-advisor,,"P0-5 Q7 judgment (OSBlock), opus, 11 s"
+2026-10-22,refactor,build,36995,refactor-dev,,P0-5 sonnet
+2026-10-22,refactor,verify,31040,refactor-test,,P0-2 loop 1 sonnet
+2026-10-22,refactor,fix,14725,refactor-dev,,P0-2 loop 1 sonnet
+2026-10-22,refactor,verify,15378,refactor-test,,P0-2 loop 1 sonnet
+2026-10-22,refactor,other,23743,refactor-docs,,P0-2 sonnet
+2026-10-22,refactor,verify,27963,refactor-test,,P0-3 loop 1 sonnet
+2026-10-22,refactor,fix,22588,refactor-dev,,P0-3 loop 1 sonnet
+2026-10-22,refactor,verify,22001,refactor-test,,P0-3 sonnet
+2026-10-22,refactor,other,22554,refactor-docs,,P0-4 sonnet
+2026-10-22,refactor,verify,17293,refactor-test,,P0-4 sonnet
+2026-10-22,refactor,verify,19767,refactor-test,,P0-5 sonnet
+2026-10-22,refactor,other,40176,refactor-docs,,P0-5 sonnet
+2026-10-22,refactor,other,21505,refactor-docs,,"plan v2 text sync with Q2 Q4 Q5 Q7, sonnet"

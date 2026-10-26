@@ -16,6 +16,7 @@
     "verbatimModuleSyntax": true,
     "types": ["vite/client", "node"],
     "paths": {
+      "@/*": ["./src/*"],
       "@splidejs/splide": ["./node_modules/@splidejs/splide/dist/types/index.d.ts"]
     }
   },

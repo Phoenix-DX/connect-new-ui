@@ -109,6 +109,9 @@ sequenceDiagram
 ## Where decisions live
 
 - Stack, pinned versions and ADRs: [reference/stack.md](../reference/stack.md) (source `migration/stack.json`).
+- Target architecture of the refactor: ADR-15 in `migration/stack.json` (accepted at the gate of P0-5), the full text in
+  [refactor-plan-v2.md](refactor-plan-v2.md), and the plan for each block in [move-map.csv](../refactor/move-map.csv).
+  The folders on this page stay as they are until Phase 1 moves code.
 - Implementation patterns with reference code: `migration/patterns/P-*.md`.
 - Feature flag decisions: [reference/flags.md](../reference/flags.md).
 - Per screen: `migration/screens/<Screen>/route-spec.md`.

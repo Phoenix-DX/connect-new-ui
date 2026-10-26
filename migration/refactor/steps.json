@@ -1,0 +1,2091 @@
+{
+ "_note": "Written by gen_steps.py from refactor-plan-v2.md. Change STEPS in the script, not this file.",
+ "plan": "app/docs/architecture/refactor-plan-v2.md",
+ "steps": [
+  {
+   "id": "P0-1",
+   "phase": "P0",
+   "title": "Baseline run",
+   "kind": "report",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "**P0-1 ",
+   "extra": null,
+   "deps": []
+  },
+  {
+   "id": "P0-2",
+   "phase": "P0",
+   "title": "Parity tool for the refactor",
+   "kind": "tool",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 1.5,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P0-2 ",
+   "extra": null,
+   "deps": [
+    "P0-1"
+   ]
+  },
+  {
+   "id": "P0-3",
+   "phase": "P0",
+   "title": "Dev tools, graph and codemod",
+   "kind": "tool",
+   "level": "none",
+   "devModel": "sonnet",
+   "gate": {
+    "when": "before",
+    "text": "Approve the added dev dependencies eslint-plugin-import-x and tsx (D3 addition). The developer picks the versions by the stable rule (ADR-2)."
+   },
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P0-3 ",
+   "extra": null,
+   "deps": [
+    "P0-2"
+   ]
+  },
+  {
+   "id": "P0-4",
+   "phase": "P0",
+   "title": "Measure the code",
+   "kind": "tool",
+   "level": "none",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P0-4 ",
+   "extra": null,
+   "deps": [
+    "P0-3"
+   ]
+  },
+  {
+   "id": "P0-5",
+   "phase": "P0",
+   "title": "Move map and ADR",
+   "kind": "report",
+   "level": "none",
+   "devModel": "opus",
+   "gate": {
+    "when": "after",
+    "text": "Review app/docs/refactor/move-map.csv, app/docs/refactor/duplicates.md and ADR-15 in migration/architecture.md, then confirm."
+   },
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P0-5 ",
+   "extra": null,
+   "deps": [
+    "P0-4"
+   ]
+  },
+  {
+   "id": "P1-1",
+   "phase": "P1",
+   "title": "Lint rules in warn mode",
+   "kind": "tool",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P1-1 ",
+   "extra": null,
+   "deps": [
+    "P0-5"
+   ]
+  },
+  {
+   "id": "P1-2",
+   "phase": "P1",
+   "title": "Move shell/ to platform/",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P1-2 ",
+   "extra": null,
+   "deps": [
+    "P1-1"
+   ]
+  },
+  {
+   "id": "P1-3",
+   "phase": "P1",
+   "title": "Move lib/ and components/",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P1-3 ",
+   "extra": null,
+   "deps": [
+    "P1-2"
+   ]
+  },
+  {
+   "id": "P1-4",
+   "phase": "P1",
+   "title": "Alias imports",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "**P1-4 ",
+   "extra": null,
+   "deps": [
+    "P1-3"
+   ]
+  },
+  {
+   "id": "P2-1",
+   "phase": "P2",
+   "title": "Move the route to pages/",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P2-1 ",
+   "extra": null,
+   "deps": [
+    "P1-4"
+   ]
+  },
+  {
+   "id": "P2-2",
+   "phase": "P2",
+   "title": "Domain api/household",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P2-2 ",
+   "extra": null,
+   "deps": [
+    "P2-1"
+   ]
+  },
+  {
+   "id": "P2-3",
+   "phase": "P2",
+   "title": "Restructure the block into hooks and components",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 2,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P2-3 ",
+   "extra": null,
+   "deps": [
+    "P2-2"
+   ]
+  },
+  {
+   "id": "P2-4",
+   "phase": "P2",
+   "title": "Page template and user review",
+   "kind": "report",
+   "level": "visual",
+   "devModel": "sonnet",
+   "gate": {
+    "when": "after",
+    "text": "Test HouseholdDetails, HouseholdCarousel and Profile on localhost, read the pilot report, then confirm."
+   },
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "**P2-4 ",
+   "extra": null,
+   "deps": [
+    "P2-3"
+   ]
+  },
+  {
+   "id": "P3-1",
+   "phase": "P3",
+   "title": "shared/UBTConnect no longer imports screens/ and app/",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P3-1 ",
+   "extra": null,
+   "deps": [
+    "P2-4"
+   ]
+  },
+  {
+   "id": "P3-2",
+   "phase": "P3",
+   "title": "Remove the UBTConnect cycles",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1.5,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P3-2 ",
+   "extra": null,
+   "deps": [
+    "P3-1"
+   ]
+  },
+  {
+   "id": "P3-3",
+   "phase": "P3",
+   "title": "The two other cycles and osui",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P3-3 ",
+   "extra": null,
+   "deps": [
+    "P3-2"
+   ]
+  },
+  {
+   "id": "P3-4",
+   "phase": "P3",
+   "title": "Measure and report",
+   "kind": "report",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "**P3-4 ",
+   "extra": null,
+   "deps": [
+    "P3-3"
+   ]
+  },
+  {
+   "id": "P4-1",
+   "phase": "P4",
+   "title": "Settings store",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P4-1 ",
+   "extra": null,
+   "deps": [
+    "P3-4"
+   ]
+  },
+  {
+   "id": "P4-2",
+   "phase": "P4",
+   "title": "Session state machine",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 2,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P4-2 ",
+   "extra": null,
+   "deps": [
+    "P4-1"
+   ]
+  },
+  {
+   "id": "P4-3",
+   "phase": "P4",
+   "title": "AuthProvider and bootstrap steps",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P4-3 ",
+   "extra": null,
+   "deps": [
+    "P4-2"
+   ]
+  },
+  {
+   "id": "P4-4",
+   "phase": "P4",
+   "title": "Route meta and guard",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P4-4 ",
+   "extra": null,
+   "deps": [
+    "P4-3"
+   ]
+  },
+  {
+   "id": "P4-5",
+   "phase": "P4",
+   "title": "Flags registry",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "**P4-5 ",
+   "extra": null,
+   "deps": [
+    "P4-4"
+   ]
+  },
+  {
+   "id": "P5-1",
+   "phase": "P5",
+   "title": "api/client",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P5-1 ",
+   "extra": null,
+   "deps": [
+    "P4-5"
+   ]
+  },
+  {
+   "id": "P5-2-member",
+   "phase": "P5",
+   "title": "Domain api/member",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.4,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P5-2 ",
+   "extra": "This step covers the domain api/member only. The other domains of the same plan step are separate steps.",
+   "deps": [
+    "P5-1"
+   ]
+  },
+  {
+   "id": "P5-2-country",
+   "phase": "P5",
+   "title": "Domain api/country",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.4,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P5-2 ",
+   "extra": "This step covers the domain api/country only. The other domains of the same plan step are separate steps.",
+   "deps": [
+    "P5-2-member"
+   ]
+  },
+  {
+   "id": "P5-2-locality",
+   "phase": "P5",
+   "title": "Domain api/locality",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.4,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P5-2 ",
+   "extra": "This step covers the domain api/locality only. The other domains of the same plan step are separate steps.",
+   "deps": [
+    "P5-2-country"
+   ]
+  },
+  {
+   "id": "P5-2-update",
+   "phase": "P5",
+   "title": "Domain api/update",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.4,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P5-2 ",
+   "extra": "This step covers the domain api/update only. The other domains of the same plan step are separate steps.",
+   "deps": [
+    "P5-2-locality"
+   ]
+  },
+  {
+   "id": "P5-2-app",
+   "phase": "P5",
+   "title": "Domain api/app",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.4,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P5-2 ",
+   "extra": "This step covers the domain api/app only. The other domains of the same plan step are separate steps.",
+   "deps": [
+    "P5-2-update"
+   ]
+  },
+  {
+   "id": "P5-3-event",
+   "phase": "P5",
+   "title": "Domain api/event",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.4,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P5-3 ",
+   "extra": "This step covers the domain api/event only. The other domains of the same plan step are separate steps.",
+   "deps": [
+    "P5-2-app"
+   ]
+  },
+  {
+   "id": "P5-3-bookmark",
+   "phase": "P5",
+   "title": "Domain api/bookmark",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.4,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P5-3 ",
+   "extra": "This step covers the domain api/bookmark only. The other domains of the same plan step are separate steps.",
+   "deps": [
+    "P5-3-event"
+   ]
+  },
+  {
+   "id": "P5-3-note",
+   "phase": "P5",
+   "title": "Domain api/note",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.4,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P5-3 ",
+   "extra": "This step covers the domain api/note only. The other domains of the same plan step are separate steps.",
+   "deps": [
+    "P5-3-bookmark"
+   ]
+  },
+  {
+   "id": "P5-3-message",
+   "phase": "P5",
+   "title": "Domain api/message",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.4,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P5-3 ",
+   "extra": "This step covers the domain api/message only. The other domains of the same plan step are separate steps.",
+   "deps": [
+    "P5-3-note"
+   ]
+  },
+  {
+   "id": "P5-3-notification",
+   "phase": "P5",
+   "title": "Domain api/notification",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.4,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P5-3 ",
+   "extra": "This step covers the domain api/notification only. The other domains of the same plan step are separate steps.",
+   "deps": [
+    "P5-3-message"
+   ]
+  },
+  {
+   "id": "P5-4",
+   "phase": "P5",
+   "title": "Memory cache to query options",
+   "kind": "change",
+   "level": "strict",
+   "devModel": "opus",
+   "gate": {
+    "when": "after",
+    "text": "Confirm the exemption list of Phase 5 (migration/refactor-exemptions.json)."
+   },
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "**P5-4 ",
+   "extra": null,
+   "deps": [
+    "P5-3-notification"
+   ]
+  },
+  {
+   "id": "P6-G1-A",
+   "phase": "P6",
+   "title": "Move group G1 to pages/",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step A (move) of group G1 only. Routes: Login, Splash, PINRegister, PINUnlock, PINChange, PINBiometricsMenu, AcceptPendingPolicies, Menu, TermsAndPoliciesMenu, Profile.",
+   "deps": [
+    "P5-4"
+   ]
+  },
+  {
+   "id": "P6-G1-B-Login",
+   "phase": "P6",
+   "title": "Login as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route Login only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-A"
+   ]
+  },
+  {
+   "id": "P6-G1-B-Splash",
+   "phase": "P6",
+   "title": "Splash as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route Splash only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-B-Login"
+   ]
+  },
+  {
+   "id": "P6-G1-B-PINRegister",
+   "phase": "P6",
+   "title": "PINRegister as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route PINRegister only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-B-Splash"
+   ]
+  },
+  {
+   "id": "P6-G1-B-PINUnlock",
+   "phase": "P6",
+   "title": "PINUnlock as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route PINUnlock only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-B-PINRegister"
+   ]
+  },
+  {
+   "id": "P6-G1-B-PINChange",
+   "phase": "P6",
+   "title": "PINChange as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route PINChange only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-B-PINUnlock"
+   ]
+  },
+  {
+   "id": "P6-G1-B-PINBiometricsMenu",
+   "phase": "P6",
+   "title": "PINBiometricsMenu as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route PINBiometricsMenu only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-B-PINChange"
+   ]
+  },
+  {
+   "id": "P6-G1-B-AcceptPendingPolicies",
+   "phase": "P6",
+   "title": "AcceptPendingPolicies as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route AcceptPendingPolicies only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-B-PINBiometricsMenu"
+   ]
+  },
+  {
+   "id": "P6-G1-B-Menu",
+   "phase": "P6",
+   "title": "Menu as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route Menu only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-B-AcceptPendingPolicies"
+   ]
+  },
+  {
+   "id": "P6-G1-B-TermsAndPoliciesMenu",
+   "phase": "P6",
+   "title": "TermsAndPoliciesMenu as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route TermsAndPoliciesMenu only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-B-Menu"
+   ]
+  },
+  {
+   "id": "P6-G1-B-Profile",
+   "phase": "P6",
+   "title": "Profile as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.15,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G1 for the route Profile only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G1-B-TermsAndPoliciesMenu"
+   ]
+  },
+  {
+   "id": "P6-G1-C",
+   "phase": "P6",
+   "title": "Prune group G1 and group gate",
+   "kind": "report",
+   "level": "visual",
+   "devModel": "sonnet",
+   "gate": {
+    "when": "after",
+    "text": "Review the routes of group G1 on localhost (links in the step report): Login, Splash, PINRegister, PINUnlock, PINChange, PINBiometricsMenu, AcceptPendingPolicies, Menu, TermsAndPoliciesMenu, Profile. Then confirm the group."
+   },
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step C (prune) of group G1 and the gate of the group. Routes: Login, Splash, PINRegister, PINUnlock, PINChange, PINBiometricsMenu, AcceptPendingPolicies, Menu, TermsAndPoliciesMenu, Profile.",
+   "deps": [
+    "P6-G1-B-Profile"
+   ]
+  },
+  {
+   "id": "P6-G2-A",
+   "phase": "P6",
+   "title": "Move group G2 to pages/",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step A (move) of group G2 only. Routes: ContactUsMenu, ContactUsDetails, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactByEmailLDMCoordinator, ContactByEmailOrbitHelpdesk, ContactByEmailOrbitHost, EmailContact, EmailTarget.",
+   "deps": [
+    "P6-G1-C"
+   ]
+  },
+  {
+   "id": "P6-G2-B-ContactUsMenu",
+   "phase": "P6",
+   "title": "ContactUsMenu as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.28,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactUsMenu only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G2-A"
+   ]
+  },
+  {
+   "id": "P6-G2-B-ContactUsDetails",
+   "phase": "P6",
+   "title": "ContactUsDetails as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.28,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactUsDetails only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G2-B-ContactUsMenu"
+   ]
+  },
+  {
+   "id": "P6-G2-B-ContactByEmailMember",
+   "phase": "P6",
+   "title": "ContactByEmailMember as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.28,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailMember only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G2-B-ContactUsDetails"
+   ]
+  },
+  {
+   "id": "P6-G2-B-ContactByEmailOneSchoolGlobal",
+   "phase": "P6",
+   "title": "ContactByEmailOneSchoolGlobal as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.28,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailOneSchoolGlobal only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G2-B-ContactByEmailMember"
+   ]
+  },
+  {
+   "id": "P6-G2-B-ContactByEmailLDMCoordinator",
+   "phase": "P6",
+   "title": "ContactByEmailLDMCoordinator as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.28,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailLDMCoordinator only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G2-B-ContactByEmailOneSchoolGlobal"
+   ]
+  },
+  {
+   "id": "P6-G2-B-ContactByEmailOrbitHelpdesk",
+   "phase": "P6",
+   "title": "ContactByEmailOrbitHelpdesk as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.28,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailOrbitHelpdesk only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G2-B-ContactByEmailLDMCoordinator"
+   ]
+  },
+  {
+   "id": "P6-G2-B-ContactByEmailOrbitHost",
+   "phase": "P6",
+   "title": "ContactByEmailOrbitHost as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.28,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G2 for the route ContactByEmailOrbitHost only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G2-B-ContactByEmailOrbitHelpdesk"
+   ]
+  },
+  {
+   "id": "P6-G2-B-EmailContact",
+   "phase": "P6",
+   "title": "EmailContact as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.28,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G2 for the route EmailContact only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G2-B-ContactByEmailOrbitHost"
+   ]
+  },
+  {
+   "id": "P6-G2-B-EmailTarget",
+   "phase": "P6",
+   "title": "EmailTarget as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.28,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G2 for the route EmailTarget only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G2-B-EmailContact"
+   ]
+  },
+  {
+   "id": "P6-G2-C",
+   "phase": "P6",
+   "title": "Prune group G2 and group gate",
+   "kind": "report",
+   "level": "visual",
+   "devModel": "sonnet",
+   "gate": {
+    "when": "after",
+    "text": "Review the routes of group G2 on localhost (links in the step report): ContactUsMenu, ContactUsDetails, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactByEmailLDMCoordinator, ContactByEmailOrbitHelpdesk, ContactByEmailOrbitHost, EmailContact, EmailTarget. Then confirm the group."
+   },
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step C (prune) of group G2 and the gate of the group. Routes: ContactUsMenu, ContactUsDetails, ContactByEmailMember, ContactByEmailOneSchoolGlobal, ContactByEmailLDMCoordinator, ContactByEmailOrbitHelpdesk, ContactByEmailOrbitHost, EmailContact, EmailTarget.",
+   "deps": [
+    "P6-G2-B-EmailTarget"
+   ]
+  },
+  {
+   "id": "P6-G3-A",
+   "phase": "P6",
+   "title": "Move group G3 to pages/",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step A (move) of group G3 only. Routes: HomeFeed, FeedItemDetail, Updates_SingleList, Services, Search, Notifications, MessageList, MessageDetail.",
+   "deps": [
+    "P6-G2-C"
+   ]
+  },
+  {
+   "id": "P6-G3-B-HomeFeed",
+   "phase": "P6",
+   "title": "HomeFeed as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route HomeFeed only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G3-A"
+   ]
+  },
+  {
+   "id": "P6-G3-B-FeedItemDetail",
+   "phase": "P6",
+   "title": "FeedItemDetail as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route FeedItemDetail only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G3-B-HomeFeed"
+   ]
+  },
+  {
+   "id": "P6-G3-B-Updates_SingleList",
+   "phase": "P6",
+   "title": "Updates_SingleList as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route Updates_SingleList only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G3-B-FeedItemDetail"
+   ]
+  },
+  {
+   "id": "P6-G3-B-Services",
+   "phase": "P6",
+   "title": "Services as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route Services only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G3-B-Updates_SingleList"
+   ]
+  },
+  {
+   "id": "P6-G3-B-Search",
+   "phase": "P6",
+   "title": "Search as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route Search only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G3-B-Services"
+   ]
+  },
+  {
+   "id": "P6-G3-B-Notifications",
+   "phase": "P6",
+   "title": "Notifications as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route Notifications only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G3-B-Search"
+   ]
+  },
+  {
+   "id": "P6-G3-B-MessageList",
+   "phase": "P6",
+   "title": "MessageList as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route MessageList only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G3-B-Notifications"
+   ]
+  },
+  {
+   "id": "P6-G3-B-MessageDetail",
+   "phase": "P6",
+   "title": "MessageDetail as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.44,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G3 for the route MessageDetail only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G3-B-MessageList"
+   ]
+  },
+  {
+   "id": "P6-G3-C",
+   "phase": "P6",
+   "title": "Prune group G3 and group gate",
+   "kind": "report",
+   "level": "visual",
+   "devModel": "sonnet",
+   "gate": {
+    "when": "after",
+    "text": "Review the routes of group G3 on localhost (links in the step report): HomeFeed, FeedItemDetail, Updates_SingleList, Services, Search, Notifications, MessageList, MessageDetail. Then confirm the group."
+   },
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step C (prune) of group G3 and the gate of the group. Routes: HomeFeed, FeedItemDetail, Updates_SingleList, Services, Search, Notifications, MessageList, MessageDetail.",
+   "deps": [
+    "P6-G3-B-MessageDetail"
+   ]
+  },
+  {
+   "id": "P6-G4-A",
+   "phase": "P6",
+   "title": "Move group G4 to pages/",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step A (move) of group G4 only. Routes: BrowseCountries, BrowseDirectory, CountryList, CountryDetails, HouseholdCarousel, Household_Relations, Locality_Details, OneSchoolGlobalDetails, Photobook, SupperMeeting_Carousel, SupperMeeting_Details, CommunityBusinessDetails_CoomingSoon, Assemble_BrowseByCountry.",
+   "deps": [
+    "P6-G3-C"
+   ]
+  },
+  {
+   "id": "P6-G4-B-BrowseCountries",
+   "phase": "P6",
+   "title": "BrowseCountries as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route BrowseCountries only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-A"
+   ]
+  },
+  {
+   "id": "P6-G4-B-BrowseDirectory",
+   "phase": "P6",
+   "title": "BrowseDirectory as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route BrowseDirectory only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-BrowseCountries"
+   ]
+  },
+  {
+   "id": "P6-G4-B-CountryList",
+   "phase": "P6",
+   "title": "CountryList as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route CountryList only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-BrowseDirectory"
+   ]
+  },
+  {
+   "id": "P6-G4-B-CountryDetails",
+   "phase": "P6",
+   "title": "CountryDetails as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route CountryDetails only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-CountryList"
+   ]
+  },
+  {
+   "id": "P6-G4-B-HouseholdCarousel",
+   "phase": "P6",
+   "title": "HouseholdCarousel as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route HouseholdCarousel only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-CountryDetails"
+   ]
+  },
+  {
+   "id": "P6-G4-B-Household_Relations",
+   "phase": "P6",
+   "title": "Household_Relations as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route Household_Relations only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-HouseholdCarousel"
+   ]
+  },
+  {
+   "id": "P6-G4-B-Locality_Details",
+   "phase": "P6",
+   "title": "Locality_Details as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route Locality_Details only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-Household_Relations"
+   ]
+  },
+  {
+   "id": "P6-G4-B-OneSchoolGlobalDetails",
+   "phase": "P6",
+   "title": "OneSchoolGlobalDetails as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route OneSchoolGlobalDetails only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-Locality_Details"
+   ]
+  },
+  {
+   "id": "P6-G4-B-Photobook",
+   "phase": "P6",
+   "title": "Photobook as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route Photobook only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-OneSchoolGlobalDetails"
+   ]
+  },
+  {
+   "id": "P6-G4-B-SupperMeeting_Carousel",
+   "phase": "P6",
+   "title": "SupperMeeting_Carousel as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route SupperMeeting_Carousel only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-Photobook"
+   ]
+  },
+  {
+   "id": "P6-G4-B-SupperMeeting_Details",
+   "phase": "P6",
+   "title": "SupperMeeting_Details as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route SupperMeeting_Details only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-SupperMeeting_Carousel"
+   ]
+  },
+  {
+   "id": "P6-G4-B-CommunityBusinessDetails_CoomingSoon",
+   "phase": "P6",
+   "title": "CommunityBusinessDetails_CoomingSoon as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route CommunityBusinessDetails_CoomingSoon only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-SupperMeeting_Details"
+   ]
+  },
+  {
+   "id": "P6-G4-B-Assemble_BrowseByCountry",
+   "phase": "P6",
+   "title": "Assemble_BrowseByCountry as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.27,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G4 for the route Assemble_BrowseByCountry only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G4-B-CommunityBusinessDetails_CoomingSoon"
+   ]
+  },
+  {
+   "id": "P6-G4-C",
+   "phase": "P6",
+   "title": "Prune group G4 and group gate",
+   "kind": "report",
+   "level": "visual",
+   "devModel": "sonnet",
+   "gate": {
+    "when": "after",
+    "text": "Review the routes of group G4 on localhost (links in the step report): BrowseCountries, BrowseDirectory, CountryList, CountryDetails, HouseholdCarousel, Household_Relations, Locality_Details, OneSchoolGlobalDetails, Photobook, SupperMeeting_Carousel, SupperMeeting_Details, CommunityBusinessDetails_CoomingSoon, Assemble_BrowseByCountry. Then confirm the group."
+   },
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step C (prune) of group G4 and the gate of the group. Routes: BrowseCountries, BrowseDirectory, CountryList, CountryDetails, HouseholdCarousel, Household_Relations, Locality_Details, OneSchoolGlobalDetails, Photobook, SupperMeeting_Carousel, SupperMeeting_Details, CommunityBusinessDetails_CoomingSoon, Assemble_BrowseByCountry.",
+   "deps": [
+    "P6-G4-B-Assemble_BrowseByCountry"
+   ]
+  },
+  {
+   "id": "P6-G5-A",
+   "phase": "P6",
+   "title": "Move group G5 to pages/",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step A (move) of group G5 only. Routes: OrbitLanding, OrbitAdminLanding, OrbitAdminEventDetail, EventDetail, EventBooklet, MilestoneDetail, GuestArrangements, HelpersDetail, HostSurvey, TransportDetail, MyEntertaining, LDM_MyEvents_V2, LDM_EventDetail_V2, LDM_Email_V2, AssembleEvents, AssembleDetail.",
+   "deps": [
+    "P6-G4-C"
+   ]
+  },
+  {
+   "id": "P6-G5-B-OrbitLanding",
+   "phase": "P6",
+   "title": "OrbitLanding as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route OrbitLanding only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-A"
+   ]
+  },
+  {
+   "id": "P6-G5-B-OrbitAdminLanding",
+   "phase": "P6",
+   "title": "OrbitAdminLanding as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route OrbitAdminLanding only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-OrbitLanding"
+   ]
+  },
+  {
+   "id": "P6-G5-B-OrbitAdminEventDetail",
+   "phase": "P6",
+   "title": "OrbitAdminEventDetail as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route OrbitAdminEventDetail only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-OrbitAdminLanding"
+   ]
+  },
+  {
+   "id": "P6-G5-B-EventDetail",
+   "phase": "P6",
+   "title": "EventDetail as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route EventDetail only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-OrbitAdminEventDetail"
+   ]
+  },
+  {
+   "id": "P6-G5-B-EventBooklet",
+   "phase": "P6",
+   "title": "EventBooklet as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route EventBooklet only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-EventDetail"
+   ]
+  },
+  {
+   "id": "P6-G5-B-MilestoneDetail",
+   "phase": "P6",
+   "title": "MilestoneDetail as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route MilestoneDetail only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-EventBooklet"
+   ]
+  },
+  {
+   "id": "P6-G5-B-GuestArrangements",
+   "phase": "P6",
+   "title": "GuestArrangements as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route GuestArrangements only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-MilestoneDetail"
+   ]
+  },
+  {
+   "id": "P6-G5-B-HelpersDetail",
+   "phase": "P6",
+   "title": "HelpersDetail as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route HelpersDetail only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-GuestArrangements"
+   ]
+  },
+  {
+   "id": "P6-G5-B-HostSurvey",
+   "phase": "P6",
+   "title": "HostSurvey as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route HostSurvey only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-HelpersDetail"
+   ]
+  },
+  {
+   "id": "P6-G5-B-TransportDetail",
+   "phase": "P6",
+   "title": "TransportDetail as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route TransportDetail only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-HostSurvey"
+   ]
+  },
+  {
+   "id": "P6-G5-B-MyEntertaining",
+   "phase": "P6",
+   "title": "MyEntertaining as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route MyEntertaining only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-TransportDetail"
+   ]
+  },
+  {
+   "id": "P6-G5-B-LDM_MyEvents_V2",
+   "phase": "P6",
+   "title": "LDM_MyEvents_V2 as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route LDM_MyEvents_V2 only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-MyEntertaining"
+   ]
+  },
+  {
+   "id": "P6-G5-B-LDM_EventDetail_V2",
+   "phase": "P6",
+   "title": "LDM_EventDetail_V2 as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route LDM_EventDetail_V2 only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-LDM_MyEvents_V2"
+   ]
+  },
+  {
+   "id": "P6-G5-B-LDM_Email_V2",
+   "phase": "P6",
+   "title": "LDM_Email_V2 as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route LDM_Email_V2 only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-LDM_EventDetail_V2"
+   ]
+  },
+  {
+   "id": "P6-G5-B-AssembleEvents",
+   "phase": "P6",
+   "title": "AssembleEvents as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route AssembleEvents only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-LDM_Email_V2"
+   ]
+  },
+  {
+   "id": "P6-G5-B-AssembleDetail",
+   "phase": "P6",
+   "title": "AssembleDetail as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.22,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G5 for the route AssembleDetail only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G5-B-AssembleEvents"
+   ]
+  },
+  {
+   "id": "P6-G5-C",
+   "phase": "P6",
+   "title": "Prune group G5 and group gate",
+   "kind": "report",
+   "level": "visual",
+   "devModel": "sonnet",
+   "gate": {
+    "when": "after",
+    "text": "Review the routes of group G5 on localhost (links in the step report): OrbitLanding, OrbitAdminLanding, OrbitAdminEventDetail, EventDetail, EventBooklet, MilestoneDetail, GuestArrangements, HelpersDetail, HostSurvey, TransportDetail, MyEntertaining, LDM_MyEvents_V2, LDM_EventDetail_V2, LDM_Email_V2, AssembleEvents, AssembleDetail. Then confirm the group."
+   },
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step C (prune) of group G5 and the gate of the group. Routes: OrbitLanding, OrbitAdminLanding, OrbitAdminEventDetail, EventDetail, EventBooklet, MilestoneDetail, GuestArrangements, HelpersDetail, HostSurvey, TransportDetail, MyEntertaining, LDM_MyEvents_V2, LDM_EventDetail_V2, LDM_Email_V2, AssembleEvents, AssembleDetail.",
+   "deps": [
+    "P6-G5-B-AssembleDetail"
+   ]
+  },
+  {
+   "id": "P6-G6-A",
+   "phase": "P6",
+   "title": "Move group G6 to pages/",
+   "kind": "move",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step A (move) of group G6 only. Routes: MyBookmarks, BookmarksByGroup, Notes, ConnectShare, LegacyShareObject, QRCodeGenerate, ViewDocuments.",
+   "deps": [
+    "P6-G5-C"
+   ]
+  },
+  {
+   "id": "P6-G6-B-MyBookmarks",
+   "phase": "P6",
+   "title": "MyBookmarks as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.07,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G6 for the route MyBookmarks only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G6-A"
+   ]
+  },
+  {
+   "id": "P6-G6-B-BookmarksByGroup",
+   "phase": "P6",
+   "title": "BookmarksByGroup as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.07,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G6 for the route BookmarksByGroup only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G6-B-MyBookmarks"
+   ]
+  },
+  {
+   "id": "P6-G6-B-Notes",
+   "phase": "P6",
+   "title": "Notes as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.07,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G6 for the route Notes only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G6-B-BookmarksByGroup"
+   ]
+  },
+  {
+   "id": "P6-G6-B-ConnectShare",
+   "phase": "P6",
+   "title": "ConnectShare as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.07,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G6 for the route ConnectShare only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G6-B-Notes"
+   ]
+  },
+  {
+   "id": "P6-G6-B-LegacyShareObject",
+   "phase": "P6",
+   "title": "LegacyShareObject as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.07,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G6 for the route LegacyShareObject only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G6-B-ConnectShare"
+   ]
+  },
+  {
+   "id": "P6-G6-B-QRCodeGenerate",
+   "phase": "P6",
+   "title": "QRCodeGenerate as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.07,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G6 for the route QRCodeGenerate only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G6-B-LegacyShareObject"
+   ]
+  },
+  {
+   "id": "P6-G6-B-ViewDocuments",
+   "phase": "P6",
+   "title": "ViewDocuments as page",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 0.07,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "### Phase 6",
+   "extra": "This step is step B (restructure) of group G6 for the route ViewDocuments only. Do not change the other routes of the group.",
+   "deps": [
+    "P6-G6-B-QRCodeGenerate"
+   ]
+  },
+  {
+   "id": "P6-G6-C",
+   "phase": "P6",
+   "title": "Prune group G6 and group gate",
+   "kind": "report",
+   "level": "visual",
+   "devModel": "sonnet",
+   "gate": {
+    "when": "after",
+    "text": "Review the routes of group G6 on localhost (links in the step report): MyBookmarks, BookmarksByGroup, Notes, ConnectShare, LegacyShareObject, QRCodeGenerate, ViewDocuments. Then confirm the group."
+   },
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is step C (prune) of group G6 and the gate of the group. Routes: MyBookmarks, BookmarksByGroup, Notes, ConnectShare, LegacyShareObject, QRCodeGenerate, ViewDocuments.",
+   "deps": [
+    "P6-G6-B-ViewDocuments"
+   ]
+  },
+  {
+   "id": "P6-end",
+   "phase": "P6",
+   "title": "Delete screens/ and shared/",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.25,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "### Phase 6",
+   "extra": "This step is the end of Phase 6: the paragraph that starts with 'After G6'.",
+   "deps": [
+    "P6-G6-C"
+   ]
+  },
+  {
+   "id": "P7-1",
+   "phase": "P7",
+   "title": "components/ui from osui",
+   "kind": "move",
+   "level": "visual",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P7-1 ",
+   "extra": null,
+   "deps": [
+    "P6-end"
+   ]
+  },
+  {
+   "id": "P7-2",
+   "phase": "P7",
+   "title": "Dialogs",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P7-2 ",
+   "extra": null,
+   "deps": [
+    "P7-1"
+   ]
+  },
+  {
+   "id": "P7-3",
+   "phase": "P7",
+   "title": "Empty states and skeletons",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P7-3 ",
+   "extra": null,
+   "deps": [
+    "P7-2"
+   ]
+  },
+  {
+   "id": "P7-4",
+   "phase": "P7",
+   "title": "Cards and carousels, by evidence",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1.5,
+   "stretch": false,
+   "fullParity": false,
+   "anchor": "**P7-4 ",
+   "extra": null,
+   "deps": [
+    "P7-3"
+   ]
+  },
+  {
+   "id": "P7-5",
+   "phase": "P7",
+   "title": "Report",
+   "kind": "report",
+   "level": "visual",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": false,
+   "fullParity": true,
+   "anchor": "**P7-5 ",
+   "extra": null,
+   "deps": [
+    "P7-4"
+   ]
+  },
+  {
+   "id": "P8-1",
+   "phase": "P8",
+   "title": "Tokens and layers",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "opus",
+   "gate": null,
+   "estDays": 1,
+   "stretch": true,
+   "fullParity": false,
+   "anchor": "**P8-1 ",
+   "extra": null,
+   "deps": [
+    "P7-5"
+   ]
+  },
+  {
+   "id": "P8-2",
+   "phase": "P8",
+   "title": "Delete unused CSS",
+   "kind": "change",
+   "level": "visual",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 2,
+   "stretch": true,
+   "fullParity": true,
+   "anchor": "**P8-2 ",
+   "extra": null,
+   "deps": [
+    "P8-1"
+   ]
+  },
+  {
+   "id": "P9-1",
+   "phase": "P9",
+   "title": "Rules to error",
+   "kind": "tool",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": true,
+   "fullParity": false,
+   "anchor": "**P9-1 ",
+   "extra": null,
+   "deps": [
+    "P8-2"
+   ]
+  },
+  {
+   "id": "P9-2",
+   "phase": "P9",
+   "title": "Flag check",
+   "kind": "tool",
+   "level": "none",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 0.5,
+   "stretch": true,
+   "fullParity": false,
+   "anchor": "**P9-2 ",
+   "extra": null,
+   "deps": [
+    "P9-1"
+   ]
+  },
+  {
+   "id": "P9-3",
+   "phase": "P9",
+   "title": "Docs",
+   "kind": "report",
+   "level": "none",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 1,
+   "stretch": true,
+   "fullParity": false,
+   "anchor": "**P9-3 ",
+   "extra": null,
+   "deps": [
+    "P9-2"
+   ]
+  },
+  {
+   "id": "P9-4",
+   "phase": "P9",
+   "title": "Report",
+   "kind": "report",
+   "level": "strict",
+   "devModel": "sonnet",
+   "gate": null,
+   "estDays": 1,
+   "stretch": true,
+   "fullParity": true,
+   "anchor": "**P9-4 ",
+   "extra": null,
+   "deps": [
+    "P9-3"
+   ]
+  }
+ ]
+}

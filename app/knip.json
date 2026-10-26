@@ -1,0 +1,7 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": ["src/main.tsx", "src/sw/sw.ts", "build/**/*.{ts,mjs}", "src/**/*.stories.tsx", "src/test/setup.ts"],
+  "project": ["src/**/*.{ts,tsx}", "build/**/*.{ts,mjs}"],
+  "ignoreDependencies": ["jscpd", "ts-morph"],
+  "ignore": ["src/api/schema.d.ts", "src/mocks/**"]
+}

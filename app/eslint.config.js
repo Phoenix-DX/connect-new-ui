@@ -32,6 +32,13 @@ export default tseslint.config(
     },
   },
   { files: ['eslint.config.js'], extends: [tseslint.configs.disableTypeChecked] },
+  // dependency-cruiser config (CommonJS, read by the CLI)
+  {
+    files: ['.dependency-cruiser.cjs'],
+    extends: [tseslint.configs.disableTypeChecked],
+    languageOptions: { globals: globals.node, sourceType: 'commonjs' },
+    rules: { '@typescript-eslint/no-require-imports': 'off' },
+  },
   // Node scripts of the demo build (copied into dist-demo/ or run after the build)
   {
     files: ['build/**/*.mjs'],

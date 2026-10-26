@@ -1,0 +1,271 @@
+Clone found (tsx):
+ - src/shared/osui/DropdownSearch/DropdownSearch.tsx [117:104 - 131:122] (14 lines, 206 tokens)
+   src/shared/osui/DropdownTags/DropdownTags.tsx [67:3 - 84:22]
+
+Clone found (tsx):
+ - src/shared/osui/DropdownSearch/DropdownSearch.tsx [134:6 - 160:46] (26 lines, 300 tokens)
+   src/shared/osui/DropdownTags/DropdownTags.tsx [88:5 - 114:44]
+
+Clone found (typescript):
+ - src/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS/connect2Feed.ts [471:5 - 489:25] (18 lines, 128 tokens)
+   src/shared/UBTConnect_EmbedFeed/Embedded_FeedCMS/connect2Feed.ts [252:5 - 270:26]
+
+Clone found (typescript):
+ - src/shared/UBTConnectLibrary/lib/actions.ts [776:85 - 803:80] (27 lines, 271 tokens)
+   src/shared/UBTConnectLibrary/lib/actions.ts [721:49 - 748:114]
+
+Clone found (javascript):
+ - src/shared/UBTConnectLibrary/Member_ListItem/Member_ListItem.tsx [47:59 - 74:24] (27 lines, 188 tokens)
+   src/shared/UBTConnectLibrary/NonMember_ListItem/NonMember_ListItem.tsx [55:62 - 83:26]
+
+Clone found (tsx):
+ - src/shared/UBTConnectLibrary/Layout_MainPages/Layout_MainPages.tsx [96:134 - 114:39] (18 lines, 181 tokens)
+   src/shared/UBTConnectLibrary/Layout_MainPages_FixedTitle/Layout_MainPages_FixedTitle.tsx [91:154 - 109:45]
+
+Clone found (tsx):
+ - src/shared/UBTConnectLibrary/Layout_MainPages/Layout_MainPages.tsx [152:15 - 170:2] (18 lines, 193 tokens)
+   src/shared/UBTConnectLibrary/Layout_MainPages_FixedTitle/Layout_MainPages_FixedTitle.tsx [143:52 - 160:2]
+
+Clone found (tsx):
+ - src/shared/Connect2_OrbitMobile_MUI/Card_Milestone/Card_Milestone.tsx [189:108 - 203:21] (14 lines, 112 tokens)
+   src/shared/Connect2_OrbitMobile_MUI/Card_Milestone/Card_Milestone.tsx [157:81 - 172:11]
+
+Clone found (tsx):
+ - src/shared/Connect2_LegacyShared/PopupMenu/PopupMenu.tsx [45:3 - 103:23] (58 lines, 639 tokens)
+   src/shared/UBTConnectLibrary/PopupMenu/PopupMenu.tsx [44:3 - 102:22]
+
+Clone found (tsx):
+ - src/shared/Connect2_LegacyShared/PopupMenu/PopupMenu.tsx [104:102 - 133:34] (29 lines, 365 tokens)
+   src/shared/UBTConnectLibrary/PopupMenu/PopupMenu.tsx [103:101 - 132:34]
+
+Clone found (typescript):
+ - src/screens/QRCodeGenerate/components/actions.ts [7:1 - 23:2] (16 lines, 217 tokens)
+   src/screens/ViewDocuments/components/actions.ts [7:1 - 23:2]
+
+Clone found (tsx):
+ - src/screens/QRCodeGenerate/components/ScreenBlock_GenerateQRCode.tsx [106:82 - 124:105] (18 lines, 258 tokens)
+   src/screens/ViewDocuments/components/ScreenBlock_ViewDocuments.tsx [80:80 - 98:108]
+
+Clone found (tsx):
+ - src/screens/OrbitLanding/components/ScreenBlock_OrbitLanding.tsx [127:3 - 144:57] (17 lines, 221 tokens)
+   src/screens/ViewDocuments/components/ScreenBlock_ViewDocuments.tsx [82:3 - 98:108]
+
+Clone found (tsx):
+ - src/screens/OrbitAdminLanding/components/ScreenBlock_AdminLanding.tsx [78:115 - 95:120] (17 lines, 226 tokens)
+   src/screens/OrbitLanding/components/ScreenBlock_OrbitLanding.tsx [126:33 - 98:108]
+
+Clone found (tsx):
+ - src/screens/OrbitAdminEventDetail/components/ScreenBlock_AdminEventDetail.tsx [104:37 - 121:115] (17 lines, 226 tokens)
+   src/screens/OrbitLanding/components/ScreenBlock_OrbitLanding.tsx [126:33 - 98:108]
+
+Clone found (typescript):
+ - src/screens/Notifications/components/actions.ts [36:73 - 52:95] (16 lines, 221 tokens)
+   src/screens/Updates_SingleList/components/actions.ts [74:67 - 91:96]
+
+Clone found (tsx):
+ - src/screens/Notifications/components/Layout_MainPages_Upgrade.tsx [43:40 - 58:9] (15 lines, 148 tokens)
+   src/shared/UBTConnectLibrary/Layout_MainPages_FixedTitle/Layout_MainPages_FixedTitle.tsx [71:55 - 86:8]
+
+Clone found (tsx):
+ - src/screens/Notes/components/Horizontal_Filter_TagList.tsx [52:3 - 68:83] (16 lines, 305 tokens)
+   src/shared/UBTConnectLibrary/HorizontalTagList/HorizontalTagList.tsx [49:3 - 65:74]
+
+Clone found (tsx):
+ - src/screens/MyBookmarks/components/NetworkWarning.tsx [20:35 - 42:2] (22 lines, 233 tokens)
+   src/shared/Connect2_LegacyShared/NetworkWarning/NetworkWarning.tsx [20:15 - 42:2]
+
+Clone found (typescript):
+ - src/screens/MilestoneDetail/components/actions.ts [32:1 - 46:96] (14 lines, 170 tokens)
+   src/screens/TransportDetail/components/actions.ts [16:1 - 31:60]
+
+Clone found (tsx):
+ - src/screens/HostSurvey/components/ScreenBlock_HostSurvey.tsx [123:39 - 140:104] (17 lines, 224 tokens)
+   src/screens/ViewDocuments/components/ScreenBlock_ViewDocuments.tsx [81:116 - 98:108]
+
+Clone found (typescript):
+ - src/screens/HelpersDetail/components/actions.ts [9:1 - 26:119] (17 lines, 221 tokens)
+   src/screens/MilestoneDetail/components/actions.ts [28:1 - 31:60]
+
+Clone found (typescript):
+ - src/screens/HelpersDetail/components/actions.ts [26:1 - 42:2] (16 lines, 217 tokens)
+   src/screens/ViewDocuments/components/actions.ts [7:1 - 23:2]
+
+Clone found (tsx):
+ - src/screens/HelpersDetail/components/ScreenBlock_HelperDetails.tsx [2:76 - 17:30] (15 lines, 155 tokens)
+   src/screens/MilestoneDetail/components/ScreenBlock_AccommodationHost.tsx [3:62 - 19:21]
+
+Clone found (tsx):
+ - src/screens/HelpersDetail/components/ScreenBlock_HelperDetails.tsx [93:108 - 119:107] (26 lines, 277 tokens)
+   src/screens/TransportDetail/components/ScreenBlock_TransportDetail.tsx [101:96 - 170:112]
+
+Clone found (tsx):
+ - src/screens/HelpersDetail/components/ScreenBlock_HelperDetails.tsx [183:3 - 234:44] (51 lines, 546 tokens)
+   src/screens/MilestoneDetail/components/ScreenBlock_AccommodationHost.tsx [293:3 - 344:44]
+
+Clone found (typescript):
+ - src/screens/GuestArrangements/components/actions.ts [9:1 - 29:99] (20 lines, 219 tokens)
+   src/screens/MilestoneDetail/components/actions.ts [9:1 - 28:118]
+
+Clone found (typescript):
+ - src/screens/GuestArrangements/components/actions.ts [25:94 - 43:48] (18 lines, 175 tokens)
+   src/screens/TransportDetail/components/actions.ts [13:49 - 31:60]
+
+Clone found (tsx):
+ - src/screens/GuestArrangements/components/ScreenBlock_GuestArrangements.tsx [122:19 - 143:111] (21 lines, 244 tokens)
+   src/screens/MilestoneDetail/components/ScreenBlock_AccommodationHost.tsx [140:14 - 98:108]
+
+Clone found (tsx):
+ - src/screens/EventDetail/components/ScreenBlock_EventDetail.tsx [166:67 - 182:107] (16 lines, 213 tokens)
+   src/screens/ViewDocuments/components/ScreenBlock_ViewDocuments.tsx [82:44 - 98:108]
+
+Clone found (typescript):
+ - src/screens/ContactByEmailLDMCoordinator/components/actions.ts [9:103 - 25:76] (16 lines, 133 tokens)
+   src/screens/EmailTarget/components/actions.ts [18:109 - 34:76]
+
+Clone found (typescript):
+ - src/screens/BrowseDirectory/components/actions.ts [4:1 - 21:13] (17 lines, 168 tokens)
+   src/screens/CountryDetails/components/actions.ts [4:1 - 21:18]
+
+Clone found (tsx):
+ - src/screens/AssembleEvents/components/Assemble_FilterSheet.tsx [73:3 - 84:63] (11 lines, 137 tokens)
+   src/screens/Assemble_BrowseByCountry/components/ScreenBlock_Assemble_Filter.tsx [96:3 - 109:63]
+
+Clone found (typescript):
+ - src/shell/localEntities/localSearchHistory.ts [42:48 - 56:43] (14 lines, 130 tokens)
+   src/shell/localEntities/orbitStaticEntities.ts [331:45 - 345:44]
+
+Clone found (typescript):
+ - src/shell/localEntities/localSearchHistory.ts [65:46 - 80:62] (15 lines, 190 tokens)
+   src/shell/localEntities/recentSearch.ts [120:40 - 135:103]
+
+Clone found (typescript):
+ - src/shell/localEntities/localNotes.ts [39:40 - 53:35] (14 lines, 130 tokens)
+   src/shell/localEntities/orbitStaticEntities.ts [331:45 - 345:44]
+
+Clone found (typescript):
+ - src/shell/localEntities/localBookmarks.ts [105:80 - 119:39] (14 lines, 130 tokens)
+   src/shell/localEntities/orbitStaticEntities.ts [331:45 - 345:44]
+
+Clone found (typescript):
+ - src/shell/localEntities/localBookmarks.ts [244:1 - 255:125] (11 lines, 134 tokens)
+   src/shell/localEntities/recentSearch.ts [128:1 - 135:103]
+
+Clone found (tsx):
+ - src/shell/dialogs/ActionConfirmationDialog.tsx [69:3 - 81:64] (12 lines, 164 tokens)
+   src/shared/NavigationHandler/NavigationConfirmationDialog/NavigationConfirmationDialog.tsx [77:3 - 89:68]
+
+Clone found (tsx):
+ - src/shell/dialogs/ActionConfirmationDialog.tsx [93:37 - 105:26] (12 lines, 100 tokens)
+   src/shell/navigation/DialogExitConfirmation.tsx [38:80 - 50:26]
+
+Clone found (typescript):
+ - src/screens/QRCodeGenerate/api.ts [52:55 - 63:97] (11 lines, 100 tokens)
+   src/shared/UBTConnect_Utils/lib/actions.ts [138:50 - 149:117]
+
+Clone found (tsx):
+ - src/screens/Profile/index.tsx [159:11 - 181:79] (22 lines, 140 tokens)
+   src/screens/Services/index.tsx [103:22 - 125:62]
+
+Clone found (typescript):
+ - src/screens/OrbitAdminEventDetail/api.ts [129:1 - 158:2] (29 lines, 362 tokens)
+   src/screens/QRCodeGenerate/api.ts [47:1 - 76:2]
+
+Clone found (typescript):
+ - src/screens/Notifications/api.ts [19:35 - 31:78] (12 lines, 122 tokens)
+   src/screens/Updates_SingleList/api.ts [47:23 - 56:7]
+
+Clone found (typescript):
+ - src/screens/Notifications/api.ts [44:6 - 54:19] (10 lines, 103 tokens)
+   src/screens/Updates_SingleList/api.ts [81:59 - 91:24]
+
+Clone found (typescript):
+ - src/screens/MilestoneDetail/api.ts [108:1 - 137:2] (29 lines, 362 tokens)
+   src/screens/QRCodeGenerate/api.ts [47:1 - 76:2]
+
+Clone found (typescript):
+ - src/screens/HelpersDetail/mocks.ts [50:37 - 67:4] (17 lines, 144 tokens)
+   src/screens/MilestoneDetail/mocks.ts [60:28 - 77:6]
+
+Clone found (typescript):
+ - src/screens/HelpersDetail/api.ts [17:1 - 44:84] (27 lines, 230 tokens)
+   src/screens/MilestoneDetail/api.ts [17:1 - 44:107]
+
+Clone found (typescript):
+ - src/screens/HelpersDetail/api.ts [65:1 - 105:2] (40 lines, 435 tokens)
+   src/screens/QRCodeGenerate/api.ts [36:1 - 76:2]
+
+Clone found (typescript):
+ - src/screens/GuestArrangements/api.ts [92:1 - 132:2] (40 lines, 435 tokens)
+   src/screens/QRCodeGenerate/api.ts [36:1 - 76:2]
+
+Clone found (tsx):
+ - src/screens/FeedItemDetail/index.tsx [26:3 - 39:9] (13 lines, 117 tokens)
+   src/screens/HomeFeed/index.tsx [77:3 - 89:8]
+
+Clone found (tsx):
+ - src/screens/CountryList/index.tsx [126:38 - 138:121] (12 lines, 112 tokens)
+   src/screens/Updates_SingleList/index.tsx [184:53 - 195:50]
+
+Clone found (typescript):
+ - src/screens/ContactByEmailOrbitHelpdesk/mocks.ts [13:1 - 24:3] (11 lines, 130 tokens)
+   src/screens/ContactByEmailOrbitHost/mocks.ts [15:1 - 26:3]
+
+Clone found (typescript):
+ - src/screens/ContactByEmailOrbitHelpdesk/api.ts [14:5 - 28:92] (14 lines, 106 tokens)
+   src/screens/EmailContact/api.ts [17:5 - 31:117]
+
+Clone found (javascript):
+ - src/screens/ContactByEmailMember/index.tsx [119:20 - 148:30] (29 lines, 248 tokens)
+   src/screens/ContactByEmailOrbitHost/index.tsx [86:20 - 115:35]
+
+Clone found (tsx):
+ - src/screens/ContactByEmailMember/index.tsx [1:1 - 20:38] (19 lines, 200 tokens)
+   src/screens/ContactByEmailOrbitHost/index.tsx [1:1 - 20:29]
+
+Clone found (tsx):
+ - src/screens/ContactByEmailMember/index.tsx [91:88 - 111:18] (20 lines, 135 tokens)
+   src/screens/ContactByEmailOrbitHost/index.tsx [61:64 - 79:70]
+
+Clone found (tsx):
+ - src/screens/ContactByEmailMember/index.tsx [118:46 - 171:2] (53 lines, 386 tokens)
+   src/screens/ContactByEmailOrbitHost/index.tsx [85:46 - 138:2]
+
+Clone found (tsx):
+ - src/screens/ContactByEmailLDMCoordinator/index.tsx [2:47 - 12:52] (10 lines, 132 tokens)
+   src/screens/ContactByEmailOrbitHelpdesk/index.tsx [3:46 - 13:38]
+
+Clone found (tsx):
+ - src/screens/ContactByEmailLDMCoordinator/index.tsx [63:111 - 112:43] (49 lines, 349 tokens)
+   src/screens/ContactByEmailOrbitHelpdesk/index.tsx [61:59 - 111:47]
+
+Clone found (tsx):
+ - src/screens/ContactByEmailLDMCoordinator/index.tsx [99:117 - 121:45] (22 lines, 176 tokens)
+   src/screens/ContactByEmailOneSchoolGlobal/index.tsx [114:17 - 136:45]
+
+Clone found (tsx):
+ - src/screens/BrowseDirectory/index.tsx [106:40 - 120:104] (14 lines, 123 tokens)
+   src/screens/CountryDetails/index.tsx [103:33 - 118:66]
+
+Clone found (typescript):
+ - src/screens/BrowseCountries/api.ts [6:29 - 22:13] (16 lines, 116 tokens)
+   src/screens/BrowseDirectory/api.ts [9:35 - 28:36]
+
+┌────────────┬────────────────┬─────────────┬──────────────┬──────────────┬──────────────────┬───────────────────┐
+│ Format     │ Files analyzed │ Total lines │ Total tokens │ Clones found │ Duplicated lines │ Duplicated tokens │
+├────────────┼────────────────┼─────────────┼──────────────┼──────────────┼──────────────────┼───────────────────┤
+│ typescript │ 391            │ 32741       │ 294776       │ 28           │ 519 (1.59%)      │ 5499 (1.87%)      │
+├────────────┼────────────────┼─────────────┼──────────────┼──────────────┼──────────────────┼───────────────────┤
+│ javascript │ 459            │ 20535       │ 172990       │ 2            │ 56 (0.27%)       │ 436 (0.25%)       │
+├────────────┼────────────────┼─────────────┼──────────────┼──────────────┼──────────────────┼───────────────────┤
+│ tsx        │ 487            │ 58138       │ 493660       │ 33           │ 714 (1.23%)      │ 7543 (1.53%)      │
+├────────────┼────────────────┼─────────────┼──────────────┼──────────────┼──────────────────┼───────────────────┤
+│ css        │ 12             │ 250         │ 2364         │ 0            │ 0 (0%)           │ 0 (0%)            │
+├────────────┼────────────────┼─────────────┼──────────────┼──────────────┼──────────────────┼───────────────────┤
+│ Total:     │ 1349           │ 111664      │ 963790       │ 63           │ 1289 (1.15%)     │ 13478 (1.4%)      │
+└────────────┴────────────────┴─────────────┴──────────────┴──────────────┴──────────────────┴───────────────────┘
+Found 63 clones.
+time: 2.503s
+
+💡 Auto-refactor with AI: npx skills add kucherenko/jscpd
+🎩 New: Gangsta Agents — discipline your AI coding → gangsta.page
+💖 Support jscpd project → https://opencollective.com/jscpd
