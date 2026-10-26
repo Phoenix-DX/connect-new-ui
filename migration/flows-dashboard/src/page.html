@@ -291,6 +291,90 @@ table.steps td:nth-child(3) { min-width: 220px; max-width: 360px }
   .tablewrap td[data-th]:not(:first-child)::before { content: attr(data-th); display: block; font-size: .7rem;
     letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 2px }
 }
+/*[lib]*/
+/* Shared libraries view (libraries.html only; the builder removes every [lib] block from index.html).
+   Two more hues: indigo for UBTConnect_Utils, plum for Connect2_LegacyShared; both away from the teal (in scope)
+   and the orange (DEV only) of the page. */
+:root { --u: #4a5fd0; --u-soft: #e8ebfa; --l: #b5457c; --l-soft: #f8e5ee }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --u: #8f9df0; --u-soft: #262c4d; --l: #e38ab7; --l-soft: #45263a } }
+:root[data-theme="dark"] { --u: #8f9df0; --u-soft: #262c4d; --l: #e38ab7; --l-soft: #45263a }
+.ldot { display: inline-block; width: 11px; height: 11px; border-radius: 50%; vertical-align: -1px; flex: none }
+.ldot.u { background: var(--u) } .ldot.l { background: var(--l) }
+.ldot.ring { background: transparent; border: 2px solid var(--u); width: 11px; height: 11px }
+.ldot.ring.l { border-color: var(--l) }
+.lkey { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: .84rem; color: var(--ink-2); align-items: center }
+.lkey span { display: inline-flex; gap: 6px; align-items: center }
+.ljobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px }
+.ljobs h3 { display: flex; gap: 8px; align-items: center }
+.ljobs ul { list-style: none; margin: 0; padding: 0 }
+.ljobs li { padding: 8px 0; border-top: 1px solid var(--line); display: grid; gap: 2px }
+.ljobs li:first-child { border-top: 0; padding-top: 0 }
+.ljobs li b { display: flex; gap: 8px; align-items: center }
+.ljobs .orig { color: var(--muted); font-size: .76rem; font-family: var(--font-mono); overflow-wrap: anywhere }
+.ljobs .what { color: var(--ink-2); font-size: .86rem }
+.lbar { position: relative; height: 16px; background: var(--surface-2); border-radius: 4px; min-width: 110px }
+.lbar i { display: block; height: 100%; border-radius: 4px }
+.lbar.u i { background: var(--u) } .lbar.l i { background: var(--l) }
+.lbar b { position: absolute; right: 6px; top: 0; font-size: .74rem; line-height: 16px; font-weight: 600;
+  font-variant-numeric: tabular-nums; color: var(--ink) }
+.lctrl { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center }
+.lctrl label { display: inline-flex; gap: 6px; align-items: center; font-size: .86rem; cursor: pointer }
+.lctrl input[type="search"] { padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; font: inherit;
+  background: var(--surface); color: var(--ink); min-width: 200px }
+.lseg { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden }
+.lseg button { background: var(--surface); color: var(--ink-2); border: 0; padding: 5px 12px; font: inherit; font-size: .84rem;
+  cursor: pointer }
+.lseg button[aria-pressed="true"] { background: var(--ink); color: var(--surface) }
+.lmx-wrap { overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); max-height: 78vh; background: var(--surface) }
+table.lmx { min-width: 900px; font-size: .86rem }
+.lmx thead th { position: sticky; top: 0; background: var(--surface); z-index: 2; padding: 0; border-bottom: 1px solid var(--line) }
+.lmx thead th.first { text-align: left; padding: 10px 12px; left: 0; z-index: 3; vertical-align: bottom }
+.lmx th.jc { width: 58px; height: 128px; vertical-align: bottom }
+.lmx th.jc span { display: block; writing-mode: vertical-rl; transform: rotate(180deg); font-size: .76rem; font-weight: 600;
+  letter-spacing: 0; text-transform: none; padding: 8px 0; margin: 0 auto; white-space: nowrap }
+.lmx th.jc.u span { color: var(--u) } .lmx th.jc.l span { color: var(--l) }
+.lmx tbody th { text-align: left; font-weight: 500; padding: 6px 12px; border-bottom: 1px solid var(--line); position: sticky;
+  left: 0; background: var(--surface); z-index: 1; white-space: nowrap; font-size: .86rem; text-transform: none;
+  letter-spacing: 0; color: var(--ink) }
+.lmx tr.larea th { background: var(--surface-2); font-weight: 600; padding: 7px 12px }
+.lmx tr.larea th small { color: var(--muted); font-weight: 500; font-family: var(--font-mono); font-size: .72rem; margin-left: 8px }
+.lmx td.c { text-align: center; border-bottom: 1px solid var(--line); border-left: 1px solid var(--line); padding: 0;
+  height: 34px; vertical-align: middle }
+.lmx td.c .cnt { font-size: .68rem; color: var(--muted); margin-left: 2px; vertical-align: 1px }
+.lmx tr.lrow { cursor: pointer }
+.lmx tr.lrow:hover th, .lmx tr.lrow:hover td { background: var(--surface-2) }
+.lmx tr.lrow:focus-visible th { outline: 2px solid var(--focus); outline-offset: -2px }
+.lmx .sn { font-family: var(--font-mono); font-size: .8rem }
+.lmx .fl { display: block; font-size: .72rem; color: var(--muted) }
+.lmx .fl .chip { font-size: .66rem; padding: 0 7px; margin-left: 6px; vertical-align: 1px }
+.lhide { display: none !important }
+.ltrees { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px }
+details.ljob { border-top: 1px solid var(--line); padding: 8px 0 }
+details.ljob summary { font-weight: 600; color: var(--ink); display: flex; gap: 8px; align-items: center; flex-wrap: wrap }
+details.ljob summary .muted { font-weight: 400; font-size: .82rem }
+.lels { list-style: none; margin: 6px 0 0; padding: 0 }
+.lels li { display: grid; grid-template-columns: minmax(0, 1fr) 76px 100px 28px; gap: 8px; align-items: center; padding: 3px 0;
+  font-size: .82rem }
+.lels .en { font-family: var(--font-mono); font-size: .78rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap }
+.lels .ek { color: var(--muted); font-size: .74rem }
+.lels .eb { height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden }
+.lels .eb i { display: block; height: 100% }
+.lels .eb.u i { background: var(--u) } .lels .eb.l i { background: var(--l) }
+.lels .ec { text-align: right; font-variant-numeric: tabular-nums }
+.pill.inh { border: 1px dashed var(--line); background: transparent; color: var(--muted) }
+.lseq { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 14px }
+.lseq figure { margin: 0; border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px; min-width: 0;
+  display: grid; gap: 8px; align-content: start }
+.lseq pre.mermaid { overflow-x: auto; margin: 0; background: transparent; font-size: 12px; line-height: 1.3 }
+.lseq figcaption { font-size: .84rem; color: var(--ink-2) }
+.lev { margin: 0; padding-left: 18px; font-size: .8rem; color: var(--ink-2); display: grid; gap: 4px }
+.lev code { font-family: var(--font-mono); font-size: .74rem; overflow-wrap: anywhere; color: var(--muted) }
+.lmeta { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: .8rem; color: var(--ink-2) }
+.lmeta span { display: inline-flex; gap: 5px; align-items: center }
+.lchain { display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; font-family: var(--font-mono); font-size: .78rem }
+.lchain .arrow { color: var(--muted) }
+@media (max-width: 560px) { .lels li { grid-template-columns: minmax(0, 1fr) 60px 28px } .lels .eb { display: none } }
+/*[/lib]*/
 </style>
 
 <header class="bar-top">
@@ -300,6 +384,7 @@ table.steps td:nth-child(3) { min-width: 220px; max-width: 360px }
       <a href="#overview" data-view="overview">Overview</a>
       <a href="#journeys" data-view="journeys">Journeys</a>
       <a href="#map" data-view="map">App map</a>
+      <!--[lib]--><a href="#libraries" data-view="libraries">Libraries</a><!--[/lib]-->
       <a href="#health" data-view="health">Health</a>
       <a href="#method" data-view="method">Method</a>
     </nav>
@@ -309,6 +394,7 @@ table.steps td:nth-child(3) { min-width: 220px; max-width: 360px }
 <div class="drawer-back" id="drawer-back" hidden></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden></aside>
 
+<!--[lib]--><script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js"></script><!--[/lib]-->
 <script>
 const DATA = /*__DATA__*/null;
 const main = document.getElementById('main');
@@ -889,6 +975,249 @@ main.addEventListener('keydown', (e) => {
   const g = e.target.closest('g[data-screen]');
   if (g && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openScreen(g.dataset.screen); }
 });
+/*[lib]*/
+/* Shared libraries (DATA.libs): what UBTConnect_Utils and Connect2_LegacyShared do on each screen and in each UI flow.
+   Only libraries.html has this block. It adds the Libraries view and extends the views above by wrapping their
+   functions, so the code above is the same in both pages. Data: content/libraries/ (DEV Model API, see SOURCE.md). */
+const LIB = DATA && DATA.libs;
+if (LIB) {
+  const SHORT = { UBTConnect_Utils: 'Utils', Connect2_LegacyShared: 'LegacyShared' };
+  const CLS = { UBTConnect_Utils: 'u', Connect2_LegacyShared: 'l' };
+  const [MU, ML] = LIB.modules;
+  const jobOf = Object.fromEntries(LIB.jobs.map((j) => [j.id, j]));
+  const ldot = (m, ring) => `<span class="ldot ${CLS[m]}${ring ? ' ring' : ''}" aria-hidden="true"></span>`;
+  const lscreen = (n) => LIB.screens[n] || { cells: {}, own: {}, all: {}, description: '', theme: '' };
+  const screenAreas = () => DATA.areas.map((a) => ({ area: a, screens: a.flows.flatMap((f) => DATA.flows[f].screens) })).filter((x) => x.screens.length);
+  const libFilter = { q: '', lib: 'all', hideInherited: false, inScopeOnly: false };
+
+  function screenJobs(n) {
+    const s = lscreen(n);
+    return LIB.jobs.filter((j) => s.cells[j.id] && s.cells[j.id].length)
+      .map((j) => { const items = s.cells[j.id]; return { job: j, items, own: items.some((i) => !i.inherited) }; });
+  }
+
+  function lbar(cls, n, total) {
+    return `<div class="lbar ${cls}" role="img" aria-label="${n} of ${total}"><i style="width:${total ? (n / total) * 100 : 0}%"></i><b>${n}/${total}</b></div>`;
+  }
+
+  function jobPanel(m) {
+    const jobs = LIB.jobs.filter((j) => j.module === m);
+    return `<section class="panel"><h3>${ldot(m)}${esc(m)} <span class="muted">· ${plural(jobs.length, 'job')}</span></h3>
+      <ul>${jobs.map((j) => `<li><b>${esc(j.label)}<span class="muted" style="font-weight:400;font-size:.8rem">${LIB.totals.per_job_specific[j.id]} screens own, ${LIB.totals.per_job[j.id]} in total</span></b><span class="orig">${esc(j.origin)}</span><span class="what">${esc(j.what)}</span></li>`).join('')}</ul></section>`;
+  }
+
+  function areaTable() {
+    const rows = screenAreas().map(({ area, screens }) => {
+      const own = (m) => screens.filter((n) => lscreen(n).own[m] > 0).length;
+      return `<tr><td>${esc(area.name)}<div class="why">${area.flows.filter((f) => DATA.flows[f].screens.length).map(esc).join(', ')}</div></td><td class="num">${screens.length}</td><td>${lbar('u', own(MU), screens.length)}</td><td>${lbar('l', own(ML), screens.length)}</td></tr>`;
+    }).join('');
+    return `<section class="panel" aria-labelledby="larea-h"><header><h2 id="larea-h">Where the libraries work</h2><span class="muted" style="font-size:.84rem">Screens with their own usage, per area of the app. Most other screens inherit the layout usage below.</span></header>
+      <div class="tablewrap"><table><thead><tr><th>App area</th><th>Screens</th><th>${ldot(MU)} Own Utils usage</th><th>${ldot(ML)} Own LegacyShared usage</th></tr></thead><tbody>${rows}</tbody></table></div></section>`;
+  }
+
+  function matrix() {
+    const head = LIB.jobs.map((j) => `<th class="jc ${CLS[j.module]}" data-lib="${CLS[j.module]}" title="${esc(j.label)} (${esc(j.origin)}): ${esc(j.what)}"><span>${esc(j.label)}</span></th>`).join('');
+    const body = screenAreas().map(({ area, screens }) => `<tr class="larea"><th colspan="${LIB.jobs.length + 1}">${esc(area.name)}<small>${area.flows.filter((f) => DATA.flows[f].screens.length).map(esc).join(' · ')}</small></th></tr>` +
+      screens.map((n) => {
+        const s = DATA.screens[n], ls = lscreen(n);
+        const cells = LIB.jobs.map((j) => {
+          const items = ls.cells[j.id] || [];
+          if (!items.length) return `<td class="c" data-lib="${CLS[j.module]}"></td>`;
+          const own = items.some((i) => !i.inherited);
+          return `<td class="c has ${own ? 'own' : 'inh'}" data-lib="${CLS[j.module]}" title="${esc(j.label)}: ${items.map((i) => i.name).join(', ')}">${ldot(j.module, !own)}${items.length > 1 ? `<span class="cnt">${items.length}</span>` : ''}</td>`;
+        }).join('');
+        return `<tr class="lrow" data-screen="${esc(n)}" data-name="${esc(n.toLowerCase())}" data-flow="${esc(s.flow.toLowerCase())}" data-scope="${s.scope}" tabindex="0" aria-label="${esc(n)}, open details"><th scope="row"><span class="sn">${esc(n)}</span><span class="fl">${esc(s.flow)}${s.scope !== 'in' ? chip(s.scope) : ''}</span></th>${cells}</tr>`;
+      }).join('')).join('');
+    return `<section class="panel" aria-labelledby="lmx-h"><header><h2 id="lmx-h">Screen map</h2><span class="muted" style="font-size:.84rem">Select a screen for its elements, evidence and TST screenshots</span></header>
+      <div class="lkey"><span>${ldot(MU)}${ldot(ML)} the screen uses the job itself, directly or through its own blocks and actions</span><span>${ldot(MU, true)}${ldot(ML, true)} the screen only inherits the job from the common layout or the bottom bar</span><span>a small number: several elements</span></div>
+      <div class="lctrl">
+        <input id="lib-q" type="search" placeholder="Find a screen or UI flow" aria-label="Find a screen or UI flow" autocomplete="off" value="${esc(libFilter.q)}">
+        <span class="lseg" role="group" aria-label="Library">${[['all', 'Both'], ['u', 'Utils'], ['l', 'LegacyShared']].map(([k, t]) => `<button data-lib-seg="${k}" aria-pressed="${libFilter.lib === k}">${t}</button>`).join('')}</span>
+        <label><input type="checkbox" id="lib-hide"${libFilter.hideInherited ? ' checked' : ''}> hide inherited marks</label>
+        <label><input type="checkbox" id="lib-in"${libFilter.inScopeOnly ? ' checked' : ''}> in-scope screens only</label>
+      </div>
+      <div class="lmx-wrap"><table class="lmx"><thead><tr><th class="first">Screen</th>${head}</tr></thead><tbody>${body}</tbody></table></div></section>`;
+  }
+
+  function applyLibFilter() {
+    const t = main.querySelector('table.lmx');
+    if (!t) return;
+    const q = libFilter.q.trim().toLowerCase();
+    t.querySelectorAll('[data-lib]').forEach((el) => el.classList.toggle('lhide', libFilter.lib !== 'all' && el.dataset.lib !== libFilter.lib));
+    t.querySelectorAll('td.inh').forEach((el) => { if (libFilter.hideInherited) { el.classList.add('inh-off'); el.querySelector('.ldot').hidden = true; } else { el.classList.remove('inh-off'); el.querySelector('.ldot').hidden = false; } });
+    t.querySelectorAll('tr.lrow').forEach((tr) => {
+      const show = (!q || tr.dataset.name.includes(q) || tr.dataset.flow.includes(q)) && (!libFilter.inScopeOnly || tr.dataset.scope === 'in');
+      tr.classList.toggle('lhide', !show);
+    });
+    t.querySelectorAll('tr.larea').forEach((tr) => {
+      let next = tr.nextElementSibling, any = false;
+      while (next && !next.classList.contains('larea')) { if (!next.classList.contains('lhide')) any = true; next = next.nextElementSibling; }
+      tr.classList.toggle('lhide', !any);
+    });
+    main.querySelectorAll('[data-lib-seg]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.libSeg === libFilter.lib)));
+  }
+
+  function elementTrees() {
+    return `<div class="ltrees">${LIB.modules.map((m) => {
+      const jobs = LIB.jobs.filter((j) => j.module === m).map((j) => {
+        const els = LIB.elements.filter((e) => e.module === m && e.job === j.id).sort((a, b) => b.screens.length - a.screens.length || a.name.localeCompare(b.name));
+        const mx = Math.max(1, ...els.map((e) => e.screens.length));
+        return `<details class="ljob"><summary>${ldot(m)}${esc(j.label)}<span class="muted">${plural(els.length, 'element')} · ${LIB.totals.per_job[j.id]} screens</span></summary>
+          <ul class="lels">${els.map((e) => `<li><span class="en" title="${esc(e.name)}">${esc(e.name)}</span><span class="ek">${esc(e.kind)}</span><span class="eb ${CLS[m]}"><i style="width:${(e.screens.length / mx) * 100}%"></i></span><span class="ec">${e.screens.length}</span></li>`).join('')}</ul></details>`;
+      }).join('');
+      return `<section class="panel"><h3>${ldot(m)}${esc(m)}</h3><p class="muted" style="font-size:.84rem">Each element with the number of screens that use it, own or inherited.</p>${jobs}</section>`;
+    }).join('')}</div>`;
+  }
+
+  function shellTable() {
+    return `<section class="panel" aria-labelledby="lsh-h"><header><h2 id="lsh-h">Inherited through the layout</h2><span class="muted" style="font-size:.84rem">Elements that reach a screen through the common layout, the PIN block or the bottom bar</span></header>
+      <div class="tablewrap"><table><thead><tr><th>Element</th><th>Library</th><th>Job</th><th>Screens</th><th>Through</th></tr></thead><tbody>
+      ${LIB.shell.map((e) => `<tr><td class="mono">${esc(e.name)}<div class="why">${esc(e.kind)}</div></td><td>${ldot(e.module)} ${esc(SHORT[e.module])}</td><td>${esc(jobOf[e.job] ? jobOf[e.job].label : e.job)}</td><td class="num">${e.screens}</td><td>${e.via.map((v) => `<span class="pill">${esc(v.replace(/^block /, ''))}</span>`).join(' ')}</td></tr>`).join('')}
+      </tbody></table></div></section>`;
+  }
+
+  function unusedCount(m) { return Object.values(LIB.unused[m] || {}).reduce((n, l) => n + l.length, 0); }
+  function unusedText(m) { return Object.entries(LIB.unused[m] || {}).map(([k, l]) => `${l.length} ${k === 'ClientAction' ? 'client action' : k.toLowerCase()}${l.length === 1 ? '' : 's'}`).join(', '); }
+
+  function contractPanel() {
+    const row = (m) => { const c = LIB.contract[m]; return `<tr><td>${ldot(m)} ${esc(m)}</td><td class="num">${c.contract_elements}</td><td class="num">${c.distinct_elements}</td><td class="num">${unusedCount(m)}<div class="why">${esc(unusedText(m))}</div></td><td class="num">${c.edges}</td></tr>`; };
+    const cy = LIB.cycle;
+    const list = (o) => Object.entries(o).map(([k, v]) => `${k}: ${v.map(esc).join(', ')}`).join('; ');
+    return `<section class="panel" aria-labelledby="lct-h"><header><h2 id="lct-h">Contract and use</h2><span class="muted" style="font-size:.84rem">What UBTConnect references against what its code uses</span></header>
+      <div class="tablewrap"><table><thead><tr><th>Library</th><th>Referenced elements</th><th>Used</th><th>Not used</th><th>Usages in code</th></tr></thead><tbody>${row(MU)}${row(ML)}</tbody></table></div>
+      <div class="prose">
+        <p><b>The two libraries reference each other.</b> LegacyShared takes ${Object.values(cy['LegacyShared→Utils']).reduce((n, l) => n + l.length, 0)} elements from Utils (${list(cy['LegacyShared→Utils'])}). Utils takes ${Object.values(cy['Utils→LegacyShared']).reduce((n, l) => n + l.length, 0)} from LegacyShared (${list(cy['Utils→LegacyShared'])}).</p>
+        <p><b>Theme chain.</b> ${plural(LIB.themeFlows.length, 'UI flow')} (${LIB.themeFlows.map((f) => `<a href="#flow-${esc(f)}" class="mono">${esc(f)}</a>`).join(', ')}) use the theme ${esc(LIB.themeChain[0])} of LegacyShared. It inherits through ${LIB.themeChain.length - 1} more themes:</p>
+        <div class="lchain">${LIB.themeChain.map((t, i) => `${i ? '<span class="arrow">→</span>' : ''}<span class="pill">${esc(t)}</span>`).join('')}</div>
+        <p>The other flows have no theme of their own in the model; the module default is not in the dumps.</p>
+      </div></section>`;
+  }
+
+  function viewLibraries() {
+    const T = LIB.totals, cu = LIB.contract[MU], cl = LIB.contract[ML];
+    main.innerHTML = `
+    <section class="intro"><span class="eyebrow">Shared libraries</span><h1>What the two shared libraries do on each screen</h1>
+      <p>UBTConnect does not work alone. Two library modules give it feature gates, images, the device cache, pop-ups, the bottom bar, bookmarks and the legacy screens: <b>UBTConnect_Utils</b> and <b>Connect2_LegacyShared</b>. This view shows which screens use which job of the libraries, with the evidence in the model.</p>
+      <p class="fresh">Source: ${esc(LIB.source.how)}, snapshot ${esc(LIB.source.takenAt)} on ${esc(LIB.source.env)}. The scope chips and the screenshots come from TST. See <a href="#method">Method</a> for the difference.</p></section>
+    <section class="kpis" aria-label="Key figures">
+      <div class="kpi"><b>${T.screens}</b><span>Screens in the model</span><small>${T.none} use neither library</small></div>
+      <div class="kpi"><b>${T.utils}</b><span>Use UBTConnect_Utils</span><small>${T.utils_specific} with their own usage</small></div>
+      <div class="kpi"><b>${T.legacy}</b><span>Use Connect2_LegacyShared</span><small>${T.legacy_specific} with their own usage</small></div>
+      <div class="kpi"><b>${cu.distinct_elements}<span class="muted" style="font-size:1rem"> · ${cl.distinct_elements}</span></b><span>Elements used</span><small>of ${cu.contract_elements} · ${cl.contract_elements} referenced</small></div>
+    </section>
+    <section style="display:grid;gap:12px"><header><h2>The twelve jobs</h2><p class="muted" style="font-size:.86rem">Each element of a library does one job. The job name is the team name; the names in small type are the folders and UI flows of the library where the elements live.</p></header>
+      <div class="ljobs">${jobPanel(MU)}${jobPanel(ML)}</div></section>
+    ${areaTable()}
+    ${matrix()}
+    <section style="display:grid;gap:12px"><header><h2>Elements by job</h2></header>${elementTrees()}</section>
+    ${shellTable()}
+    ${contractPanel()}`;
+    document.getElementById('lib-q').addEventListener('input', (e) => { libFilter.q = e.target.value; applyLibFilter(); });
+    document.getElementById('lib-hide').addEventListener('change', (e) => { libFilter.hideInherited = e.target.checked; applyLibFilter(); });
+    document.getElementById('lib-in').addEventListener('change', (e) => { libFilter.inScopeOnly = e.target.checked; applyLibFilter(); });
+    main.querySelectorAll('[data-lib-seg]').forEach((b) => b.addEventListener('click', () => { libFilter.lib = b.dataset.libSeg; applyLibFilter(); }));
+    applyLibFilter();
+  }
+
+  function libDrawer(n) {
+    const jobs = screenJobs(n), s = lscreen(n);
+    const ev = (i) => i.evidence.map((e) => `<code>${esc(e)}</code>`).join(', ');
+    return `<section style="display:grid;gap:8px" aria-label="Shared libraries"><h3>Shared libraries on this screen</h3>
+      ${s.description ? `<p class="muted" style="font-size:.84rem">In the model: ${esc(s.description)}</p>` : ''}
+      ${jobs.length ? `<p class="muted" style="font-size:.82rem">Filled: the screen or its own blocks and actions use the element. Dashed: inherited from the common layout or the bottom bar. DEV model, ${esc(LIB.source.takenAt)}.</p>
+      <dl class="kv">${jobs.map(({ job, items, own }) => `<dt style="display:flex;gap:6px;align-items:center">${ldot(job.module, !own)}${esc(job.label)}</dt><dd><div class="pills">${items.map((i) => `<span class="pill${i.inherited ? ' inh' : ''}" title="${esc(i.kind)} · ${i.inherited ? 'inherited · ' : ''}${esc(i.via || 'own')}">${esc(i.name)}</span>`).join('')}</div></dd>`).join('')}</dl>
+      ${s.theme ? `<p class="muted" style="font-size:.82rem">Theme: ${esc(s.theme)} (the LegacyShared theme chain).</p>` : ''}
+      <details><summary>Evidence (${jobs.reduce((k, j) => k + j.items.length, 0)} elements)</summary><ul class="lev">${jobs.flatMap(({ job, items }) => items.map((i) => `<li><span class="mono">${esc(i.name)}</span> · ${esc(job.label)} · ${esc(i.usage.join(', '))} · ${esc(i.via || 'own')}<br>${ev(i)}</li>`)).join('')}</ul></details>`
+      : '<p class="muted" style="font-size:.86rem">This screen uses neither library in the model.</p>'}
+    </section>`;
+  }
+
+  function renderMermaid() {
+    if (!window.mermaid) return;
+    const root = document.documentElement.dataset.theme;
+    const dark = root === 'dark' || (!root && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    try {
+      window.mermaid.initialize({ startOnLoad: false, theme: dark ? 'dark' : 'neutral', securityLevel: 'strict', sequence: { useMaxWidth: true } });
+      const nodes = main.querySelectorAll('pre.mermaid:not([data-processed])');
+      if (nodes.length) window.mermaid.run({ nodes }).catch(() => {});
+    } catch (e) { /* the diagrams stay as text */ }
+  }
+
+  function libFlowPanel(name) {
+    const f = LIB.flows[name];
+    if (!f) return '';
+    const seqs = LIB.sequences.filter((q) => q.flows.includes(name));
+    const how = (e) => e.direct ? '<span class="chip in" style="font-family:var(--font-body)">Own</span>' : `<span class="muted">via ${esc(e.via.replace(/block |client_action /g, ''))}</span>`;
+    const rows = f.elements.map((e) => `<tr><td class="mono">${esc(e.name)}<div class="why">${esc(e.kind)}</div></td><td>${ldot(e.module)} ${esc(SHORT[e.module])}</td><td>${esc(e.job && jobOf[e.job] ? jobOf[e.job].label : 'Other')}</td><td>${how(e)}</td><td>${e.consumers.map((c) => `<span class="pill">${esc(c.replace(/^(screen|block|client_action) /, ''))}</span>`).join(' ')}</td></tr>`).join('');
+    return `<section class="panel" aria-labelledby="lfl-h"><header><h2 id="lfl-h">Shared libraries in this flow</h2><span class="muted" style="font-size:.84rem">DEV model. Own: the screens and blocks of this flow use the element. Via: reached through own blocks and actions.</span></header>
+      <div class="lmeta"><span>${ldot(MU)}Utils: ${f.direct[MU]} own, ${f.via[MU]} via</span><span>${ldot(ML)}LegacyShared: ${f.direct[ML]} own, ${f.via[ML]} via</span>${f.theme ? `<span class="tag">Theme ${esc(f.theme)}</span>` : ''}</div>
+      ${f.elements.length ? `<details><summary>Elements (${f.elements.length})</summary><div class="tablewrap"><table><thead><tr><th>Element</th><th>Library</th><th>Job</th><th>How</th><th>Used by</th></tr></thead><tbody>${rows}</tbody></table></div></details>` : '<p class="empty">This flow uses neither library.</p>'}
+      ${seqs.length ? `<h3>How it works</h3><div class="lseq">${seqs.map((q) => `<figure><h3 style="font-size:.95rem">${esc(q.title)}</h3><pre class="mermaid">${esc(q.kind)}\n${esc(q.body)}</pre><figcaption>${esc(q.caption)}</figcaption></figure>`).join('')}</div>` : ''}
+    </section>`;
+  }
+
+  function libHealth() {
+    return `<section class="panel"><h3><b>${unusedCount(MU) + unusedCount(ML)}</b> Library references not used</h3><p class="muted" style="font-size:.86rem">UBTConnect references these elements of the two libraries, but no screen, block or action of the module uses them (DEV model). Other modules may still use them.</p>
+      <ul><li>${ldot(MU)} UBTConnect_Utils: ${unusedCount(MU)} of ${LIB.contract[MU].contract_elements} (${esc(unusedText(MU))})</li><li>${ldot(ML)} Connect2_LegacyShared: ${unusedCount(ML)} of ${LIB.contract[ML].contract_elements} (${esc(unusedText(ML))})</li><li><a href="#libraries">Contract and use</a> in Libraries</li></ul></section>
+    <section class="panel"><h3><b>${LIB.themeFlows.length}</b> Flows on the legacy theme chain</h3><p class="muted" style="font-size:.86rem">These flows render through ${LIB.themeChain.length} themes that Connect2_LegacyShared owns. The look of their screens depends on that module.</p>
+      <ul>${LIB.themeFlows.map((f) => `<li><a href="#flow-${esc(f)}" class="mono">${esc(f)}</a>: ${esc(flowMeta(DATA.flows[f]))}</li>`).join('')}</ul></section>`;
+  }
+
+  function libMethod() {
+    return `<section class="panel" aria-labelledby="lsrc-h"><header><h2 id="lsrc-h">Source of the library view</h2><span class="muted" style="font-size:.84rem">DEV model, ${esc(LIB.source.takenAt)}</span></header>
+      <div class="prose">
+        <p>The Libraries view comes from a different source than the rest of the page: the ${esc(LIB.source.how)}. The dumps hold all ${LIB.totals.screens} screens, 180 blocks, 200 client actions and 6 server actions of the module as design-time code. A parser finds each reference to UBTConnect_Utils and Connect2_LegacyShared, with the file and line as evidence.</p>
+        <p><b>DEV and TST differ.</b> The model on DEV has ${DATA.counts.devOnly} screens that are not on TST. The scope decisions and the screenshots come from TST, so a screen can be out of scope on this page and still carry library marks from the model.</p>
+        <p><b>References are not the run-time footprint.</b> The view counts what the UBTConnect module itself references. On the Legacy_* screens, blocks of other modules (Orbit, Assemble, LDM) render more Connect2_LegacyShared parts at run time, such as the layout <span class="mono">BaseLayout_UpdatedOSUI</span>. Those parts do not appear here because UBTConnect does not reference them directly.</p>
+        <p>An element is <b>own</b> on a screen when the screen, or a block or action of its own flow, uses it. It is <b>inherited</b> when it arrives only through the common layout, the PIN block or the bottom bar. A <b>job</b> groups the elements of a library by what they do for the app; the folder and flow names of the library are shown with each job.</p>
+      </div></section>`;
+  }
+
+  const base = { openScreen, viewFlow, viewHealth, viewMethod, viewOverview, route };
+  openScreen = function (name) {
+    base.openScreen(name);
+    if (!drawer.hidden && LIB.screens[name]) drawer.insertAdjacentHTML('beforeend', libDrawer(name));
+  };
+  viewFlow = function (name) {
+    base.viewFlow(name);
+    if (DATA.flows[name]) { main.insertAdjacentHTML('beforeend', libFlowPanel(name)); renderMermaid(); }
+  };
+  viewHealth = function () {
+    base.viewHealth();
+    const grid = main.querySelector('.health');
+    if (grid) grid.insertAdjacentHTML('beforeend', libHealth());
+  };
+  viewMethod = function () { base.viewMethod(); main.insertAdjacentHTML('beforeend', libMethod()); };
+  viewOverview = function () {
+    base.viewOverview();
+    const decorate = () => main.querySelectorAll('.card[href^="#flow-"]').forEach((card) => {
+      const f = LIB.flows[decodeURIComponent(card.getAttribute('href').slice(6))];
+      if (!f || card.querySelector('.lmeta')) return;
+      const n = (m) => f.direct[m] + f.via[m];
+      card.insertAdjacentHTML('beforeend', `<span class="lmeta"><span>${ldot(MU)}${n(MU)}</span><span>${ldot(ML)}${n(ML)}</span><span class="muted">library elements</span></span>`);
+    });
+    const input = document.getElementById('flow-search');
+    if (input) input.addEventListener('input', decorate);
+    decorate();
+    const att = main.querySelector('ul.attention');
+    if (att) att.insertAdjacentHTML('beforeend', `<li><span class="ico info" aria-hidden="true">i</span><a href="#libraries">${LIB.totals.utils} screens use UBTConnect_Utils and ${LIB.totals.legacy} use Connect2_LegacyShared. The Libraries view shows what the two libraries do on each screen.</a></li>`);
+    const intro = main.querySelector('.intro p:nth-of-type(2)');
+    if (intro) intro.insertAdjacentHTML('beforeend', ' <a href="#libraries">Libraries</a> shows what the two shared library modules do on each screen.');
+  };
+  route = function () {
+    if (decodeURIComponent(location.hash.slice(1)) === 'libraries') {
+      viewLibraries(); labelCells(); closeScreen(); window.scrollTo(0, 0);
+      document.querySelectorAll('nav.views a').forEach((a) => { if (a.dataset.view === 'libraries') a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+      return;
+    }
+    base.route();
+  };
+  main.addEventListener('keydown', (e) => {
+    const tr = e.target.closest('tr.lrow[data-screen]');
+    if (tr && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openScreen(tr.dataset.screen); }
+  });
+}
+/*[/lib]*/
 window.addEventListener('hashchange', route);
 route();
 </script>

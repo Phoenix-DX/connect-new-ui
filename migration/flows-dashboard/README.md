@@ -15,6 +15,8 @@ the scope decisions. It has no content about the React app
 | `site/index.html` | The built page. This is the artifact page. |
 | `site/img/*.webp` | TST screenshots, 390 px wide. These are supporting files of the artifact. |
 | `site/img/j/*.webp` | Journey screenshots from the last TST run. These are supporting files of the artifact. |
+| `content/libraries/*.json` | Copies of the dependency analysis of `my-research` (DEV Model API): what UBTConnect_Utils and Connect2_LegacyShared do on each screen. See `content/libraries/SOURCE.md`. |
+| `site/libraries.html` | The built page with the Libraries view (`--with-libraries`). A second artifact. It uses the same `site/img/`. |
 
 The journeys come from `migration/journeys/` (`journeys.json` and the last run in `runs/`). The builder stops when a
 step is not a link in the TST code.
@@ -31,7 +33,13 @@ Run from the project root (needs Python 3 and Pillow):
 ```bash
 python3 migration/flows-dashboard/build_dashboard.py            # writes site/
 python3 migration/flows-dashboard/build_dashboard.py --sheets   # also writes site-review/ for a privacy check
+python3 migration/flows-dashboard/build_dashboard.py --with-libraries   # also writes site/libraries.html
 ```
+
+The template `src/page.html` holds the Libraries parts between `/*[lib]*/ … /*[/lib]*/` and `<!--[lib]--> … <!--[/lib]-->`
+markers. The builder removes them from `site/index.html`, with or without the flag, so the UI Flows page stays the same
+(checked 2026-10-26: the build before and after the change differs only in `builtAt` and `commit`). Only
+`site/libraries.html` keeps them. The Libraries page loads Mermaid from cdnjs (version 10.9.1) for the four sequence diagrams.
 
 Build again only after a change to the data, the content or the template. Each build writes a new time stamp into
 `site/index.html`.
@@ -75,5 +83,10 @@ did not change.
 - https://claude.ai/artifact/JJCYpEtp6Q2V3xSbRkXA69 ("UBTConnect UI Flows and Journeys", first publish 2026-10-21,
   with journeys and flow maps). Same content as version 2 above. Update 2026-10-22: the 38 journeys with the TST
   run screenshots (the user accepted the local build, 2026-10-22).
+
+- https://claude.ai/artifact/DLHY4vLnKkpCoUCkwS2EQj ("UBTConnect Flows and Libraries", first publish 2026-10-26 from
+  `site/libraries.html` with the 229 images, parameter `root` = `site/`). The UI Flows page plus the Libraries view
+  (user decision 2026-10-26: a new artifact, not an update of the one above; the user accepted it the same day).
+  Private until the owner shares it.
 
 When the page changes, publish it to the artifacts that the owner wants to keep current.

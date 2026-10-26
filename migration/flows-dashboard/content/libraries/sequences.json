@@ -1,0 +1,57 @@
+[
+ {
+  "id": "S1",
+  "title": "Bookmark toggle",
+  "kind": "sequenceDiagram",
+  "body": "  participant S as Screen\n  participant T as ToggleBookmarkItem<br/>(UBTConnect)\n  participant B as MyBookmarks_BL\n  participant G as LegacyShared\n  S->>T: tap bookmark\n  alt not bookmarked\n    T->>B: AddBookmark\n    T->>G: Create_LocalBookmark\n    T->>G: AddBookmarkToCache\n    T->>G: SendBookmarkedFeedbackMessage\n  else bookmarked\n    T->>G: Get_LocalBookmarkByObjectId\n    T->>B: DeleteBookmarkByBookmarkId\n    T->>G: RemoveBookmarkFromCache\n    T->>G: Delete_LocalBookmarkByBookmarkId\n    T->>G: SendBookmarkedFeedbackMessage\n  end",
+  "caption": "The server call goes to Connect2_MyBookmarks_BL. The device copy and the feedback message go to Connect2_LegacyShared (job: Local bookmarks). Screens: 11. Source: client_actions/ToggleBookmarkItem.cs.",
+  "flows": [
+   "Bookmarks",
+   "Directory_Locality",
+   "Directory_Household",
+   "Directory_SupperMeetings",
+   "Directory_OneSchoolGlobal",
+   "Map",
+   "Notes",
+   "App_Profile",
+   "App_Common"
+  ]
+ },
+ {
+  "id": "S2",
+  "title": "Access gate → upgrade pop-up",
+  "kind": "sequenceDiagram",
+  "body": "  participant S as BrowseDirectory\n  participant H as HasAccessToRegion<br/>(UBTConnect)\n  participant U as Utils\n  S->>H: tap a region\n  H->>U: Cache_UserInfo_Get\n  U-->>H: cached user\n  H-->>S: HasAccess\n  alt no access\n    S->>U: App_Subscription_ShowUpgradePopUp\n  else access\n    S->>S: open Locality_Details\n  end",
+  "caption": "Utils does two jobs here: Device cache (the user) and Subscription gate (the pop-up). The same gate guards 22 screens with their own call. Sources: screens/BrowseDirectory.cs, client_actions/HasAccessToRegion.cs.",
+  "flows": [
+   "Directory_Locality"
+  ]
+ },
+ {
+  "id": "S3",
+  "title": "Legacy wrapper screen",
+  "kind": "sequenceDiagram",
+  "body": "  participant S as LegacyShareObject\n  participant U as Utils\n  participant G as LegacyShared<br/>ScreenBlock_ShareObject\n  S->>U: Cache_UserInfo_Get (via GetUserInformation_Wrapper)\n  U-->>S: User_AgeVisibility\n  S->>G: render block (ObjectId, type, visibility)\n  G-->>S: event SubscriptionDenied\n  S->>U: App_Subscription_ShowUpgradePopUp",
+  "caption": "A Legacy_* screen owns no business logic. It hosts one LegacyShared block (job: Legacy screen blocks) and answers its event with a Utils action. Same shape: ConnectShare, MessageList, MessageDetail, LDM_Email. Source: screens/LegacyShareObject.cs.",
+  "flows": [
+   "Legacy_Share",
+   "Legacy_MyNotificationsFlow",
+   "Legacy_LDMEventsFlow"
+  ]
+ },
+ {
+  "id": "S4",
+  "title": "Notification badge",
+  "kind": "sequenceDiagram",
+  "body": "  participant N as App_NotificationIcon<br/>(block on the layout)\n  participant G as LegacyShared\n  participant U as Utils\n  N->>G: GetUnreadNotificationNumber\n  G-->>N: unread count\n  N->>U: GetHasNewNotifications\n  alt flag on\n    N->>N: open Notifications (new)\n  else flag off\n    N->>N: open MessageList (legacy)\n  end",
+  "caption": "The count comes from LegacyShared (job: Notification inbox). The Utils flag (job: Feature gate) picks the new or the legacy inbox. FCM_NotificationCallback refreshes the count after a push. Sources: blocks/App_NotificationIcon.cs, client_actions/FCM_NotificationCallback.cs.",
+  "flows": [
+   "App_Notifications",
+   "Bookmarks",
+   "Directory_Locality",
+   "Home",
+   "Notes",
+   "Directory_Updates"
+  ]
+ }
+]

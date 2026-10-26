@@ -1,0 +1,1014 @@
+{
+ "counts": {
+  "screens": {
+   "own": 86,
+   "referenced": 0
+  },
+  "blocks": {
+   "own": 180,
+   "referenced": 391
+  },
+  "client_actions": {
+   "own": 200,
+   "referenced": 247
+  },
+  "server_actions": {
+   "own": 6,
+   "referenced": 31
+  },
+  "service_actions": {
+   "own": 0,
+   "referenced": 64
+  }
+ },
+ "producer_totals": {
+  "UBTConnect_Utils": {
+   "edges": 235,
+   "distinct_elements": 74,
+   "consumers": 115,
+   "by_kind": {
+    "ClientAction": 102,
+    "Entity": 23,
+    "Block": 87,
+    "Structure": 23
+   },
+   "by_usage": {
+    "call": 82,
+    "expression": 20,
+    "block-instance": 87,
+    "datatype": 18,
+    "expression-call": 20,
+    "datatype-list": 3,
+    "datatype-anonymous": 5
+   },
+   "contract_elements": 92,
+   "contract_by_kind": {
+    "Block": 32,
+    "ClientAction": 38,
+    "Structure": 19,
+    "Entity": 3
+   }
+  },
+  "Connect2_LegacyShared": {
+   "edges": 43,
+   "distinct_elements": 24,
+   "consumers": 29,
+   "by_kind": {
+    "Entity": 11,
+    "Block": 6,
+    "ClientAction": 24,
+    "Image": 2
+   },
+   "by_usage": {
+    "expression": 6,
+    "block-instance": 6,
+    "call": 23,
+    "datatype": 3,
+    "expression-call": 1,
+    "image": 1,
+    "datatype-list": 3
+   },
+   "contract_elements": 117,
+   "contract_by_kind": {
+    "Block": 71,
+    "Entity": 7,
+    "Image": 19,
+    "ClientAction": 13,
+    "Theme": 7
+   }
+  }
+ },
+ "unobserved_contract_elements": [
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "AdaptiveCardViewer"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "BaseLayoutBlank_UpdatedOSUI"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "BaseLayout_UpdatedOSUI"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "BookmarkNoteAddEdit"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "CircledCheckbox"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "ConnectBlankSlate"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "ContextMenu"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "DayCalendar"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "EmptyShareDetailCard"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "EmptyShareDetailCard_ExtendedFlow"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "EventCalendarWeekMonth"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "FreeSubscriptionActionDialog"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "HighlightSearch"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "HorizontalScrollTiles"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "HorizontalTags"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "InBlock_ActionMenu"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "InputCounter"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "ItemOptionsMenu"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "LabelWithCopyIcon"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "Layout"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "Layout_Orbit"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "Layout_OrbitBlank"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "ListBlankSlate"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "LocalityListDetail"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MenuIcon_Back"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MenuIcon__UpdatedOSUI"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MessageFilterGroup"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MessageFilterItem"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MessageListBlock"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MessageListItem"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MessageList_Filter"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MessageList_NoNotifications_Banner"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MessageList_NoResults"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MessageSearchHistory"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MonthCalendar"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "MultiResolutionImageLoader"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NC_Card_Item_Text__Skeleton"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NC_Card_Item_Visual"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NC_Card_Item_Visual__Skeleton"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NC_ErrorScreen"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NC_Result_Item_Badge"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NC_Result_Item__Card"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NC_Result_Item__Card__Location"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NC_Result_Item__Image"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NC_Result_Item__Image__Skeleton"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NC_Result_Item__Tag"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NavigationLanding"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NetworkWarning"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NewConnectContent"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "NotificationDetailBlock"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "OverlappingImages"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "Person_Contact_Options"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "PhotoAsync"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "PopupMenu"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "ProfileList"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "RadioButtonListItem"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "Result_Item_Badge"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "Result_Item_Image"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "ShareObjectDetail"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "ShareObjectDetail_ExtendedShare"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "ShowMoreShowLessContainer"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "Spinner"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "StickyHeader"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "TwoButtonsAligned"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Block",
+   "Warning_PrivateMessage"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "ClientAction",
+   "AuditShareEvent"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Entity",
+   "HouseholdNavigationType"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Entity",
+   "ResultListType"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Entity",
+   "ShareUserListType"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "Large_BackgroundLogin"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "PlaceholderImage_Household"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "User2"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "actionsheet"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "adaptiveCard"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "boat_detail_image2"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "bookmark_unavailable_icon"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "calendar_Banner"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "calendar_Day"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "calendar_Month"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "car_detail_image2"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "flight_detail_image2"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "galery"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "importantfeedbackmessage"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "loading"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "share_unavailable_icon"
+  ],
+  [
+   "Connect2_LegacyShared",
+   "Image",
+   "train_detail_image2"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Block",
+   "AddressPopup"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Block",
+   "ContactPopup"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Block",
+   "ContactPopup_ByMessage"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Block",
+   "SearchSheet_BottomSheet"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Block",
+   "SearchSheet_ResultList"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Block",
+   "SearchSheet_SelectSearchResults"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Block",
+   "ShareSheet_Section"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Block",
+   "ShareSheet_SectionTitle"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Block",
+   "StickySearchInput"
+  ],
+  [
+   "UBTConnect_Utils",
+   "ClientAction",
+   "Cache_UserInfo_Invalidate"
+  ],
+  [
+   "UBTConnect_Utils",
+   "ClientAction",
+   "GetComingSoonMessage"
+  ],
+  [
+   "UBTConnect_Utils",
+   "ClientAction",
+   "GetHasDeceasedProfileAccess"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Structure",
+   "Menu_Item"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Structure",
+   "PolicyInformation2"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Structure",
+   "SearchCategory_Item"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Structure",
+   "UI_ContactByMessage_WrapperData"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Structure",
+   "UI_CountryDetails2"
+  ],
+  [
+   "UBTConnect_Utils",
+   "Structure",
+   "UI_LocalityDetails"
+  ]
+ ],
+ "producer_to_producer": {
+  "LegacyShared\u2192Utils": {
+   "ClientActions": [
+    "Cache_SignedImageURL_Get",
+    "Cache_UserInfo_Get",
+    "GetConnectEntity_ByShareType",
+    "GetEntityType_Icon",
+    "GetHasAssemble",
+    "GetHasDeceasedProfileAccess",
+    "GetHasExtendedShare",
+    "GetHasOrbitAccess",
+    "GetHasOrbitHostSurvey",
+    "GetHasWalletAccess",
+    "GetImageType_FromEntity"
+   ],
+   "UIFlows": [
+    "CW_Image.UBT_LazyImage",
+    "CW_Share.ShareableObject_Generic"
+   ],
+   "ServerActions": [
+    "Connect_User_GetSuscriptionDetail_Cached"
+   ],
+   "Structures": [
+    "CacheControl_UserInformation"
+   ]
+  },
+  "Utils\u2192LegacyShared": {
+   "ClientActions": [
+    "AuditShareEvent"
+   ],
+   "Structures": [
+    "BulkSignedImageResult"
+   ]
+  }
+ },
+ "theme_by_flow": {
+  "App_Cache": "",
+  "App_Common": "",
+  "App_CommonBlocks_Filter": "",
+  "App_Common_Blocks": "",
+  "App_Common_Blocks_PopupDialogs": "",
+  "App_Menu": "",
+  "App_Menu_ContactUs": "",
+  "App_Notifications": "",
+  "App_PIN": "",
+  "App_Policies": "",
+  "App_Profile": "",
+  "App_Services": "",
+  "Bookmarks": "",
+  "Calendar": "",
+  "Calendar_Events": "",
+  "ContactFlow": "",
+  "Deprecated_Calendar_PersonalEvent": "",
+  "Directory_Caroussel": "",
+  "Directory_CommonBlocks": "",
+  "Directory_Household": "",
+  "Directory_Household_Blocks": "",
+  "Directory_Interchange": "",
+  "Directory_Locality": "",
+  "Directory_OneSchoolGlobal": "",
+  "Directory_OneSchoolGlobal_Blocks": "",
+  "Directory_Photobook": "",
+  "Directory_Search": "",
+  "Directory_SupperMeetings": "",
+  "Directory_Updates": "",
+  "Home": "",
+  "Legacy_AssembleFlow": "UBTConnect_LegacyChain",
+  "Legacy_LDMEventsFlow": "UBTConnect_LegacyChain",
+  "Legacy_LDMEventsFlow_V2": "UBTConnect_LegacyChain",
+  "Legacy_MyBookmarks": "UBTConnect_LegacyChain",
+  "Legacy_MyNotificationsFlow": "UBTConnect_LegacyChain",
+  "Legacy_OrbitAdminFlow": "UBTConnect_LegacyChain",
+  "Legacy_OrbitEventsFlow": "UBTConnect_LegacyChain",
+  "Legacy_OrbitQRCodeFlow": "UBTConnect_LegacyChain",
+  "Legacy_Share": "UBTConnect_LegacyChain",
+  "Map": "",
+  "Notes": "",
+  "SubLayout": "",
+  "zDEV_Directory_CommunityBusinessBlocks": "",
+  "zTemp_Flow": ""
+ },
+ "top_elements": {
+  "UBTConnect_Utils": [
+   [
+    "Block",
+    "UBT_LazyImage",
+    26,
+    26
+   ],
+   [
+    "Entity",
+    "Connect_BottomBar_Items",
+    17,
+    15
+   ],
+   [
+    "ClientAction",
+    "App_Subscription_ShowUpgradePopUp",
+    17,
+    17
+   ],
+   [
+    "ClientAction",
+    "GetHasCarouselEnabled",
+    14,
+    14
+   ],
+   [
+    "Block",
+    "Button",
+    11,
+    11
+   ],
+   [
+    "ClientAction",
+    "GetHasOrbitAccess",
+    8,
+    8
+   ],
+   [
+    "Block",
+    "ShareSheet",
+    6,
+    6
+   ],
+   [
+    "Block",
+    "AddressPopup_Wrapper",
+    6,
+    6
+   ],
+   [
+    "Entity",
+    "Connect_CacheType",
+    5,
+    4
+   ],
+   [
+    "ClientAction",
+    "ShareEntity_ByURL",
+    5,
+    5
+   ],
+   [
+    "ClientAction",
+    "GetHasExtendedShare",
+    5,
+    5
+   ],
+   [
+    "Block",
+    "CacheControl",
+    5,
+    5
+   ],
+   [
+    "ClientAction",
+    "Cache_UserInfo_Get",
+    4,
+    4
+   ],
+   [
+    "Block",
+    "ShareableObject_Generic",
+    4,
+    4
+   ],
+   [
+    "ClientAction",
+    "GetHasNewLDM",
+    4,
+    4
+   ],
+   [
+    "ClientAction",
+    "OpenInApp_OpenExternalLink",
+    4,
+    4
+   ],
+   [
+    "Structure",
+    "CacheControl_AllLocalities",
+    4,
+    4
+   ],
+   [
+    "ClientAction",
+    "ShowComingSoonMessage",
+    4,
+    4
+   ],
+   [
+    "Block",
+    "NotesSheet",
+    4,
+    4
+   ],
+   [
+    "ClientAction",
+    "GetEntityType_Icon",
+    4,
+    4
+   ],
+   [
+    "Block",
+    "ContactPopup_ByPhone",
+    3,
+    3
+   ],
+   [
+    "ClientAction",
+    "Connect_LaunchDarkly_PermissionCheck",
+    3,
+    3
+   ],
+   [
+    "ClientAction",
+    "GetHasNewBookmarks",
+    3,
+    3
+   ],
+   [
+    "Structure",
+    "CacheControl_AllCountries",
+    3,
+    3
+   ],
+   [
+    "Block",
+    "SearchResult_Item",
+    3,
+    3
+   ]
+  ],
+  "Connect2_LegacyShared": [
+   [
+    "ClientAction",
+    "FeedbackMessageAfterTransition",
+    8,
+    8
+   ],
+   [
+    "Entity",
+    "LocalBookmark",
+    5,
+    5
+   ],
+   [
+    "Entity",
+    "ApplicationEvents_Directory",
+    3,
+    3
+   ],
+   [
+    "ClientAction",
+    "zOnApplicationEvent_Wrapper",
+    3,
+    3
+   ],
+   [
+    "ClientAction",
+    "Get_LocalBookmarkByObjectId",
+    3,
+    3
+   ],
+   [
+    "Entity",
+    "ApplicationEvents_LDM",
+    2,
+    2
+   ],
+   [
+    "ClientAction",
+    "SynchronizeNumberUnreadMessages",
+    2,
+    2
+   ],
+   [
+    "Block",
+    "ScreenBlock_ShareDetail",
+    1,
+    1
+   ],
+   [
+    "Entity",
+    "CommunityBusinessType2",
+    1,
+    1
+   ],
+   [
+    "Block",
+    "ScreenBlock_Household_Email",
+    1,
+    1
+   ],
+   [
+    "Block",
+    "ScreenBlock_ShareObject",
+    1,
+    1
+   ],
+   [
+    "Block",
+    "ScreenBlock_MessageDetail",
+    1,
+    1
+   ],
+   [
+    "Block",
+    "ScreenBlock_MessageList",
+    1,
+    1
+   ],
+   [
+    "ClientAction",
+    "GetUnreadNotificationNumber",
+    1,
+    1
+   ],
+   [
+    "Block",
+    "HandleImageLoadError",
+    1,
+    1
+   ],
+   [
+    "ClientAction",
+    "GetTargetLocalTimeByCalculatedOffset",
+    1,
+    1
+   ],
+   [
+    "Image",
+    "User_rectangle",
+    1,
+    1
+   ],
+   [
+    "Image",
+    "ubtlogo2",
+    1,
+    1
+   ],
+   [
+    "ClientAction",
+    "SynchBookmarks",
+    1,
+    1
+   ],
+   [
+    "ClientAction",
+    "Create_LocalBookmark",
+    1,
+    1
+   ],
+   [
+    "ClientAction",
+    "AddBookmarkToCache",
+    1,
+    1
+   ],
+   [
+    "ClientAction",
+    "RemoveBookmarkFromCache",
+    1,
+    1
+   ],
+   [
+    "ClientAction",
+    "SendBookmarkedFeedbackMessage",
+    1,
+    1
+   ],
+   [
+    "ClientAction",
+    "Delete_LocalBookmarkByBookmarkId",
+    1,
+    1
+   ]
+  ]
+ },
+ "themes": [
+  {
+   "Name": "AssembleTheme",
+   "BaseTheme": "OrbitTheme"
+  },
+  {
+   "Name": "ConnectMobile",
+   "BaseTheme": "AssembleTheme"
+  },
+  {
+   "Name": "ConnectMobileCommonTheme",
+   "BaseTheme": "UBTMobileTheme_UpdatedOSUI"
+  },
+  {
+   "Name": "OrbitTheme",
+   "BaseTheme": "ConnectMobileCommonTheme"
+  },
+  {
+   "Name": "UBTConnect",
+   "BaseTheme": "UBTConnectLibrary"
+  },
+  {
+   "Name": "UBTConnect_LegacyChain",
+   "BaseTheme": "ConnectMobile"
+  },
+  {
+   "Name": "UBTMobileTheme_UpdatedOSUI",
+   "BaseTheme": "UBTConnect"
+  }
+ ]
+}
