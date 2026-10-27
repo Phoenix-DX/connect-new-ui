@@ -67,10 +67,12 @@ Rules:
 - A dead branch in the model (`[DISABLED]`, `[DEAD BRANCH]`, "unreachable nodes") is one row with verdict `n/a` and
   the note "dead in the model"; React must not implement it.
 - The logic of a referenced module (a block of `UBTConnectLibrary`, `UBT_AppManager`, `Connect2_*_MUI`, …) is not in
-  the pack. `references.md` gives its signature; `kb.md` names the KB pages of that module.
-  - When a KB page exists, check the React app against it.
-  - When none exists, the row is `unclear`. Its question: "behaviour of <Block> in module <Module>: not in the dump,
-    no KB page".
+  the pack. `references.md` gives its signature and, when TST has it, its compiled file; `kb.md` names the KB pages
+  of that module.
+  - When `references.md` names a TST file, check the React app against that code (`tst_source.py show <file>`).
+  - Else, when a KB page exists, check the React app against it and cite the rule id.
+  - Else the row is `unclear`. Its question: "behaviour of <Block> in module <Module>: not in the dump, no TST
+    file, no KB page". Do not write "not checked here" for a block your flow depends on.
 - Mock data is not a finding. Meaningful mock data is a project rule; only a wrong shape, a missing field or a missing
   handler is a finding.
 - Write the report in English, in the style of `migration/english-docs/style-rules.md`: short sentences, active voice,
@@ -93,9 +95,9 @@ Read what the pack names, not the whole app. A screen of average size takes abou
 boundary. A shared action that 29 flows use gets one row ("shared, checked in the report of App_Common"). Check its
 branches only when your flow depends on them.
 
-The pilot (App_PIN) took 146 tool calls and 303k tokens; half of that was avoidable. Keep to these rules:
+The pilot (App_PIN) took 109 tool calls and 303k tokens. Keep to these rules:
 - Start every shell command with `cd /Users/khaitruong/Projects/connect-new && `. Use absolute paths. The shell
-  working directory resets between commands. A command without the prefix runs twice.
+  working directory resets between commands.
 - Read the brief, the template and the schema once. Read the pack files in one command (`cat` of all pack files).
 - Read the React files of one screen in one command: `cat -n` of the page, its hooks and its containers.
 - Write `report.md` and `checklist.json` with the Write tool, each in one call, directly into

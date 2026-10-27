@@ -148,6 +148,24 @@ def render_flow(nodes, indent="  "):
             by[n["Name"]] = n
         by[f"{n.get('X')},{n.get('Y')}"] = n
     labels = {}
+    preds = collections.Counter()
+    for n in nodes:
+        if not isinstance(n, dict):
+            continue
+        refs = [n.get(k) for k in ("Target", "TrueTarget", "FalseTarget", "OtherwiseTarget", "CycleTarget")]
+        refs += [c.get("Target") for c in n.get("Conditions", []) or [] if isinstance(c, dict)]
+        for r in refs:
+            if r in by:
+                preds[id(by[r])] += 1
+    merge_no = {}
+
+    def mark(n):
+        """'[M<n>] ' for a node that more than one path reaches (a merge point), so that 'continues at' is clear."""
+        if preds.get(id(n), 0) > 1 and n.get("Object") != "IEndNode":
+            if id(n) not in merge_no:
+                merge_no[id(n)] = len(merge_no) + 1
+            return f"[M{merge_no[id(n)]}] "
+        return ""
 
     def label(n):
         if id(n) not in labels:
@@ -164,11 +182,11 @@ def render_flow(nodes, indent="  "):
         p = indent * d
         while n is not None:
             if id(n) in emitted:
-                out.append(f"{p}→ continues at <{label(n)}>")
+                out.append(f"{p}→ continues at {mark(n).strip() or '<' + label(n) + '>'}")
                 return
             emitted.add(id(n))
             ob = n.get("Object")
-            dis = "[DISABLED] " if n.get("IsDisabled") == "True" else ""
+            dis = mark(n) + ("[DISABLED] " if n.get("IsDisabled") == "True" else "")
             lab = f" ({n['Label']})" if n.get("Label") else ""
             if ob == "IStartNode":
                 n = target(n.get("Target"))
@@ -344,6 +362,10 @@ def render_widgets(m, widgets, d, out, used_blocks):
             for k in ("InputType", "Mandatory", "MaxLength", "TextLines", "Prompt", "List", "Values", "EmptyValue", "DropdownMode"):
                 if w.get(k) not in (None, "", "False"):
                     bits.append(f"{k}={s(w[k], 100)}")
+            if w.get("Enabled") not in (None, "", "True"):
+                bits.append(f"Enabled={s(w['Enabled'], 100)}")
+            if w.get("Style"):
+                bits.append(f"style={s(w['Style'], 80)}")
             if w.get("OnChange"):
                 bits.append(f"onchange {event_text(w['OnChange'])}")
             out.append(f"{p}{ob[1:].lower()}{name} {' '.join(bits)}{pt}")

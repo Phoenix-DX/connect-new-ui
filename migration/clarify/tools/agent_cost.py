@@ -2,7 +2,8 @@
 
 Usage:
   python3 migration/clarify/tools/agent_cost.py <label>=<transcript.output> [...]
-Per agent: tool calls, duplicated commands (same command text, or the same command with and without a `cd` prefix),
+Per agent: tool calls (unique tool-use ids: the harness logs a call a second time when it injects a `cd` prefix;
+that is not a second run), repeated commands (same text run again under another id),
 tool-result characters by category (brief, pack, react, kb, tst, decisions, scratch/assembly, other), the largest
 results, and the number of calls that build the deliverables in pieces.
 The transcript is never printed; only counts and the first 100 characters of a command.
@@ -42,6 +43,8 @@ def analyse(path):
             if not isinstance(c, dict):
                 continue
             if c.get("type") == "tool_use":
+                if any(c.get("id") == x[0] for x in calls):
+                    continue  # the same call logged again (cd prefix injected by the harness)
                 inp = c.get("input", {}) or {}
                 arg = inp.get("file_path") or inp.get("command") or inp.get("pattern") or inp.get("query") or ""
                 calls.append((c.get("id"), c.get("name"), str(arg)))
