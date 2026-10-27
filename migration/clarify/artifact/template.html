@@ -205,10 +205,11 @@
         <button type="button" class="chip" data-sev="major" aria-pressed="true"><i class="sev major"></i>Lớn</button>
         <button type="button" class="chip" data-sev="minor" aria-pressed="false"><i class="sev minor"></i>Nhỏ</button>
         <button type="button" class="chip" data-sev="info" aria-pressed="false"><i class="sev info"></i>Thông tin</button>
+        <button type="button" class="chip" id="fixedToggle" aria-pressed="true">Hiện đã sửa và rút lại</button>
         <input type="search" id="findSearch" placeholder="Lọc theo flow hoặc chữ" aria-label="Lọc findings">
         <span class="count" id="findCount"></span>
       </div>
-      <div class="tablebox"><table id="findTable"><thead><tr><th>Mức</th><th>Flow</th><th>Id</th><th>Phần tử</th><th>Finding</th></tr></thead><tbody></tbody></table></div>
+      <div class="tablebox"><table id="findTable"><thead><tr><th>Mức</th><th>Flow</th><th>Id</th><th>Phần tử</th><th>Finding</th><th>Trạng thái</th></tr></thead><tbody></tbody></table></div>
     </section>
 
     <section class="block" id="s-open">
@@ -238,6 +239,9 @@
   var total = D.matrix.filter(function (r) { return /total/.test(r.Flow || ''); })[0] || {};
   var findings = D.findings || [];
   var cnt = function (sev) { return findings.filter(function (f) { return (f.Severity || '').toLowerCase() === sev; }).length; };
+  var statusKind = function (f) { var st = f.Status || ''; return st.indexOf('đã sửa') === 0 ? 'fixed' : st.indexOf('rút lại') === 0 ? 'withdrawn' : st.indexOf('giữ') === 0 ? 'kept' : st.indexOf('còn mở') === 0 ? 'open' : ''; };
+  var cntKind = function (sev, kind) { return findings.filter(function (f) { return (f.Severity || '').toLowerCase() === sev && statusKind(f) === kind; }).length; };
+  var fixedDate = (findings.filter(function (f) { return statusKind(f) === 'fixed'; }).map(function (f) { return (f.Status.match(/\d{4}-\d{2}-\d{2}/) || [''])[0]; }).sort().pop()) || '';
   var modulesTotal = D.contract_modules.reduce(function (a, m) { return a + (parseInt(m.Endpoints, 10) || 0); }, 0);
   document.getElementById('meta').textContent = 'Nguồn sự thật: mã biên dịch TST · checklist: model DEV qua MCP · KB: ubt_sharing_kb · dữ liệu ngày ' + D.generated + ', nhánh clarify-screens';
   document.getElementById('sourceNote').textContent = 'Từ ' + D.sources.join(', ');
@@ -246,12 +250,13 @@
     [num(total.Rows || 5412), 'dòng checklist đối chiếu', ''],
     [cnt('blocker'), 'finding chặn (blocker)', 'crit'],
     [cnt('major'), 'finding lớn (major)', 'warn'],
+    [cnt('minor'), cntKind('minor', 'fixed') ? 'finding nhỏ (minor) · ' + cntKind('minor', 'fixed') + ' đã sửa trong code ngày ' + fixedDate : 'finding nhỏ (minor)', 'accent'],
     [D.build_items.length, 'việc FE "build now" đã chốt', 'accent'],
     [modulesTotal, 'endpoint trong hợp đồng backend', ''],
     [D.unclear.length, 'dòng còn unclear', 'good']
   ];
   document.getElementById('tiles').innerHTML = tiles.map(function (t) { return '<div class="tile ' + t[2] + '"><b>' + esc(t[0]) + '</b><span>' + esc(t[1]) + '</span></div>'; }).join('');
-  document.getElementById('summaryLead').innerHTML = md('Ứng dụng React chạy được 64 màn hình với dữ liệu mock trong trình duyệt. Để chạy như bản OutSystems trong production, phần thiếu lớn nhất nằm ngoài FE: identity provider + phiên BFF, ' + modulesTotal + ' endpoint backend, endpoint flag theo người dùng, ký URL ảnh và static hosting. Bên trong FE còn ' + cnt('blocker') + ' chặn và ' + cnt('major') + ' lỗi lớn, trong đó ' + D.build_items.length + ' việc đã được chốt "build now".');
+  document.getElementById('summaryLead').innerHTML = md('Ứng dụng React chạy được 64 màn hình với dữ liệu mock trong trình duyệt. Để chạy như bản OutSystems trong production, phần thiếu lớn nhất nằm ngoài FE: identity provider + phiên BFF, ' + modulesTotal + ' endpoint backend, endpoint flag theo người dùng, ký URL ảnh và static hosting. Bên trong FE còn ' + cnt('blocker') + ' chặn và ' + cnt('major') + ' lỗi lớn, trong đó ' + D.build_items.length + ' việc đã được chốt "build now".' + (cntKind('minor', 'fixed') ? ' Ngày ' + fixedDate + ' code React đã được sửa cho ' + cntKind('minor', 'fixed') + ' trong ' + cnt('minor') + ' finding nhỏ; ' + cntKind('minor', 'withdrawn') + ' finding rút lại sau khi đọc lại mã TST, ' + cntKind('minor', 'kept') + ' giữ theo quyết định đã ghi, ' + cntKind('minor', 'open') + ' còn mở.' : ''));
 
   // ---- status table
   var statusChip = function (s) {
@@ -334,16 +339,19 @@
   renderFe();
 
   // ---- findings
-  var sevActive = { blocker: true, major: true, minor: false, info: false };
+  var sevActive = { blocker: true, major: true, minor: false, info: false }; var showFixed = true;
+  var isSettled = function (f) { var k = statusKind(f); return k === 'fixed' || k === 'withdrawn'; };
+  var statusChip = function (f) { var k = statusKind(f); if (!k) return ''; var cls = k === 'fixed' ? 'good' : k === 'open' ? 'warn' : 'muted'; return '<span class="chip ' + cls + '" title="' + esc(f.StatusEn || '') + '">' + esc(f.Status) + '</span>'; };
   var sevLabel = { blocker: 'Chặn', major: 'Lớn', minor: 'Nhỏ', info: 'Thông tin' };
   var renderFind = function () {
     var q = (document.getElementById('findSearch').value || '').toLowerCase();
-    var rows = findings.filter(function (f) { var s = (f.Severity || '').toLowerCase(); var hay = [f.Flow, f.Id, f.Element, f.Finding].join(' ').toLowerCase(); return sevActive[s] && (!q || hay.indexOf(q) >= 0); });
-    tb('findTable').innerHTML = rows.map(function (f) { var s = (f.Severity || '').toLowerCase(); return '<tr><td><i class="sev ' + s + '"></i>' + esc(sevLabel[s] || s) + '</td><td class="mono">' + esc(f.Flow) + '</td><td class="mono">' + esc(f.Id) + '</td><td>' + md(f.Element) + '</td><td>' + md(f.Finding) + '</td></tr>'; }).join('');
+    var rows = findings.filter(function (f) { var s = (f.Severity || '').toLowerCase(); var hay = [f.Flow, f.Id, f.Element, f.Finding].join(' ').toLowerCase(); return sevActive[s] && (showFixed || !isSettled(f)) && (!q || hay.indexOf(q) >= 0); });
+    tb('findTable').innerHTML = rows.map(function (f) { var s = (f.Severity || '').toLowerCase(); return '<tr><td><i class="sev ' + s + '"></i>' + esc(sevLabel[s] || s) + '</td><td class="mono">' + esc(f.Flow) + '</td><td class="mono">' + esc(f.Id) + '</td><td>' + md(f.Element) + '</td><td>' + md(f.Finding) + '</td><td>' + statusChip(f) + '</td></tr>'; }).join('');
     document.getElementById('findCount').textContent = rows.length + ' / ' + findings.length;
   };
   Array.prototype.forEach.call(document.querySelectorAll('[data-sev]'), function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-sev'); sevActive[k] = !sevActive[k]; b.setAttribute('aria-pressed', String(sevActive[k])); renderFind(); }); });
   document.getElementById('findSearch').addEventListener('input', renderFind);
+  document.getElementById('fixedToggle').addEventListener('click', function () { showFixed = !showFixed; this.setAttribute('aria-pressed', String(showFixed)); renderFind(); });
   renderFind();
 
   // ---- open

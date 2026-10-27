@@ -21,8 +21,9 @@ Open items for the user:
   platform logger).
 - The artifact "Infra & FE readiness" (Vietnamese, one page with two tabs) is published at
   https://claude.ai/artifact/GRwjpVEAPtSCPaDPXiCCLM (accepted by the user 2026-10-27).
-  - Rebuild after a data change: `tools/artifact_data.py`, then translate `data.vi.json`, then
-    `tools/artifact_build.py`, then publish the same file path.
+  - Rebuild after a data change: `tools/artifact_data.py`, then `tools/artifact_vi_sync.py` (matrix, unclear rows,
+    finding status and the changed decisions; a new finding text still needs a translation), then
+    `tools/artifact_build.py`, then publish the same file path. Updated with the fix status on 2026-10-27.
   - English companion "UBTConnect React Gaps": https://claude.ai/artifact/EFqfYQzRgJYjq6yQe2N4Yq (`template-gaps.html` +
     `data.en.json` → `react-gaps.en.html`); published 2026-10-27 without an accept step (user's instruction).
 - After that, the user decides the next work: the 30 build items of `infra-gaps.md` §10.4 and the infra set-up

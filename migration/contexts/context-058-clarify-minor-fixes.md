@@ -46,7 +46,7 @@
 
 ## Open issues
 - Notes F2 (major); Photobook move log; the List restore patch of NavigationHandler (NH:1050-1126) is not ported.
-- The Vietnamese artifact "Infra & FE readiness" still shows the findings without the fix status.
+- (closed) The Vietnamese artifact "Infra & FE readiness" shows the fix status since 2026-10-27 (`tools/artifact_vi_sync.py`).
 
 ## Next
 - The user's answers on F4 (W34) and App_Policies F2; then the build items of `infra-gaps.md` §10.4 on order.

@@ -13,12 +13,12 @@
    "Flow": "[App_Common](flows/App_Common/report.md)",
    "Status": "draft",
    "Rows": "182",
-   "match": "129",
-   "partial": "4",
-   "missing": "3",
-   "differs": "21",
+   "match": "132",
+   "partial": "5",
+   "missing": "1",
+   "differs": "20",
    "mock-only": "4",
-   "n/a": "21",
+   "n/a": "20",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/2/3",
    "Questions": "4"
@@ -28,8 +28,8 @@
    "Flow": "[App_PIN](flows/App_PIN/report.md)",
    "Status": "draft",
    "Rows": "131",
-   "match": "117",
-   "partial": "4",
+   "match": "118",
+   "partial": "3",
    "missing": "0",
    "differs": "3",
    "mock-only": "1",
@@ -43,9 +43,9 @@
    "Flow": "[App_Policies](flows/App_Policies/report.md)",
    "Status": "draft",
    "Rows": "90",
-   "match": "74",
-   "partial": "6",
-   "missing": "1",
+   "match": "77",
+   "partial": "4",
+   "missing": "0",
    "differs": "2",
    "mock-only": "2",
    "n/a": "5",
@@ -58,8 +58,8 @@
    "Flow": "[Home](flows/Home/report.md)",
    "Status": "draft",
    "Rows": "148",
-   "match": "123",
-   "partial": "5",
+   "match": "127",
+   "partial": "1",
    "missing": "0",
    "differs": "1",
    "mock-only": "5",
@@ -73,8 +73,8 @@
    "Flow": "[App_Menu](flows/App_Menu/report.md)",
    "Status": "draft",
    "Rows": "122",
-   "match": "111",
-   "partial": "1",
+   "match": "112",
+   "partial": "0",
    "missing": "0",
    "differs": "3",
    "mock-only": "4",
@@ -118,8 +118,8 @@
    "Flow": "[App_Profile](flows/App_Profile/report.md)",
    "Status": "draft",
    "Rows": "110",
-   "match": "70",
-   "partial": "11",
+   "match": "74",
+   "partial": "7",
    "missing": "21",
    "differs": "0",
    "mock-only": "2",
@@ -133,9 +133,9 @@
    "Flow": "[App_Services](flows/App_Services/report.md)",
    "Status": "draft",
    "Rows": "81",
-   "match": "69",
-   "partial": "6",
-   "missing": "2",
+   "match": "73",
+   "partial": "3",
+   "missing": "1",
    "differs": "0",
    "mock-only": "2",
    "n/a": "2",
@@ -148,8 +148,8 @@
    "Flow": "[Directory_Locality](flows/Directory_Locality/report.md)",
    "Status": "draft",
    "Rows": "280",
-   "match": "238",
-   "partial": "4",
+   "match": "241",
+   "partial": "1",
    "missing": "0",
    "differs": "1",
    "mock-only": "15",
@@ -178,8 +178,8 @@
    "Flow": "[Directory_Search](flows/Directory_Search/report.md)",
    "Status": "draft",
    "Rows": "146",
-   "match": "129",
-   "partial": "5",
+   "match": "131",
+   "partial": "3",
    "missing": "5",
    "differs": "2",
    "mock-only": "2",
@@ -193,8 +193,8 @@
    "Flow": "[Directory_Photobook](flows/Directory_Photobook/report.md)",
    "Status": "draft",
    "Rows": "203",
-   "match": "186",
-   "partial": "5",
+   "match": "189",
+   "partial": "2",
    "missing": "0",
    "differs": "3",
    "mock-only": "6",
@@ -223,9 +223,9 @@
    "Flow": "[Directory_OneSchoolGlobal](flows/Directory_OneSchoolGlobal/report.md)",
    "Status": "draft",
    "Rows": "56",
-   "match": "47",
+   "match": "48",
    "partial": "0",
-   "missing": "1",
+   "missing": "0",
    "differs": "0",
    "mock-only": "2",
    "n/a": "6",
@@ -238,13 +238,13 @@
    "Flow": "[Directory_Updates](flows/Directory_Updates/report.md)",
    "Status": "draft",
    "Rows": "149",
-   "match": "125",
+   "match": "127",
    "partial": "3",
    "missing": "5",
    "differs": "0",
    "mock-only": "5",
    "n/a": "9",
-   "unclear": "2",
+   "unclear": "0",
    "Findings (B/M/m/i)": "0/1/2/0",
    "Questions": "2"
   },
@@ -253,9 +253,9 @@
    "Flow": "[Bookmarks](flows/Bookmarks/report.md)",
    "Status": "draft",
    "Rows": "123",
-   "match": "100",
-   "partial": "3",
-   "missing": "2",
+   "match": "103",
+   "partial": "2",
+   "missing": "0",
    "differs": "1",
    "mock-only": "5",
    "n/a": "12",
@@ -268,8 +268,8 @@
    "Flow": "[Notes](flows/Notes/report.md)",
    "Status": "draft",
    "Rows": "121",
-   "match": "104",
-   "partial": "3",
+   "match": "106",
+   "partial": "1",
    "missing": "0",
    "differs": "0",
    "mock-only": "2",
@@ -283,9 +283,9 @@
    "Flow": "[Calendar](flows/Calendar/report.md)",
    "Status": "draft",
    "Rows": "72",
-   "match": "37",
-   "partial": "1",
-   "missing": "3",
+   "match": "39",
+   "partial": "0",
+   "missing": "2",
    "differs": "1",
    "mock-only": "2",
    "n/a": "28",
@@ -298,8 +298,8 @@
    "Flow": "[ContactFlow](flows/ContactFlow/report.md)",
    "Status": "draft",
    "Rows": "142",
-   "match": "121",
-   "partial": "3",
+   "match": "122",
+   "partial": "2",
    "missing": "0",
    "differs": "8",
    "mock-only": "5",
@@ -313,8 +313,8 @@
    "Flow": "[Legacy_Share](flows/Legacy_Share/report.md)",
    "Status": "draft",
    "Rows": "95",
-   "match": "64",
-   "partial": "8",
+   "match": "71",
+   "partial": "1",
    "missing": "0",
    "differs": "2",
    "mock-only": "5",
@@ -328,9 +328,9 @@
    "Flow": "[Legacy_MyNotificationsFlow](flows/Legacy_MyNotificationsFlow/report.md)",
    "Status": "draft",
    "Rows": "152",
-   "match": "106",
-   "partial": "6",
-   "missing": "21",
+   "match": "109",
+   "partial": "4",
+   "missing": "20",
    "differs": "0",
    "mock-only": "8",
    "n/a": "11",
@@ -343,10 +343,10 @@
    "Flow": "[Legacy_OrbitEventsFlow](flows/Legacy_OrbitEventsFlow/report.md)",
    "Status": "draft",
    "Rows": "518",
-   "match": "398",
-   "partial": "18",
+   "match": "402",
+   "partial": "12",
    "missing": "69",
-   "differs": "6",
+   "differs": "8",
    "mock-only": "18",
    "n/a": "9",
    "unclear": "0",
@@ -358,8 +358,8 @@
    "Flow": "[Legacy_OrbitAdminFlow](flows/Legacy_OrbitAdminFlow/report.md)",
    "Status": "draft",
    "Rows": "109",
-   "match": "91",
-   "partial": "5",
+   "match": "93",
+   "partial": "3",
    "missing": "0",
    "differs": "5",
    "mock-only": "4",
@@ -373,9 +373,9 @@
    "Flow": "[Legacy_OrbitQRCodeFlow](flows/Legacy_OrbitQRCodeFlow/report.md)",
    "Status": "draft",
    "Rows": "68",
-   "match": "60",
-   "partial": "1",
-   "missing": "1",
+   "match": "62",
+   "partial": "0",
+   "missing": "0",
    "differs": "0",
    "mock-only": "2",
    "n/a": "4",
@@ -388,9 +388,9 @@
    "Flow": "[Legacy_LDMEventsFlow](flows/Legacy_LDMEventsFlow/report.md)",
    "Status": "draft",
    "Rows": "94",
-   "match": "67",
-   "partial": "1",
-   "missing": "2",
+   "match": "70",
+   "partial": "0",
+   "missing": "0",
    "differs": "5",
    "mock-only": "2",
    "n/a": "17",
@@ -403,9 +403,9 @@
    "Flow": "[Legacy_LDMEventsFlow_V2](flows/Legacy_LDMEventsFlow_V2/report.md)",
    "Status": "draft",
    "Rows": "219",
-   "match": "167",
-   "partial": "5",
-   "missing": "2",
+   "match": "171",
+   "partial": "3",
+   "missing": "0",
    "differs": "11",
    "mock-only": "4",
    "n/a": "30",
@@ -418,8 +418,8 @@
    "Flow": "[Legacy_AssembleFlow](flows/Legacy_AssembleFlow/report.md)",
    "Status": "draft",
    "Rows": "159",
-   "match": "143",
-   "partial": "2",
+   "match": "145",
+   "partial": "0",
    "missing": "0",
    "differs": "0",
    "mock-only": "8",
@@ -568,8 +568,8 @@
    "Flow": "[Directory_CommonBlocks](flows/Directory_CommonBlocks/report.md)",
    "Status": "draft",
    "Rows": "151",
-   "match": "106",
-   "partial": "3",
+   "match": "109",
+   "partial": "0",
    "missing": "0",
    "differs": "0",
    "mock-only": "13",
@@ -613,8 +613,8 @@
    "Flow": "[Directory_Household_Blocks](flows/Directory_Household_Blocks/report.md)",
    "Status": "draft",
    "Rows": "84",
-   "match": "78",
-   "partial": "1",
+   "match": "79",
+   "partial": "0",
    "missing": "0",
    "differs": "0",
    "mock-only": "2",
@@ -658,8 +658,8 @@
    "Flow": "[_shared](flows/_shared/report.md)",
    "Status": "draft",
    "Rows": "194",
-   "match": "82",
-   "partial": "1",
+   "match": "83",
+   "partial": "0",
    "missing": "2",
    "differs": "5",
    "mock-only": "7",
@@ -673,8 +673,8 @@
    "Flow": "[_libraries](flows/_libraries/report.md)",
    "Status": "draft",
    "Rows": "245",
-   "match": "224",
-   "partial": "5",
+   "match": "228",
+   "partial": "1",
    "missing": "1",
    "differs": "9",
    "mock-only": "4",
@@ -688,13 +688,13 @@
    "Flow": "**total (45/45 flows)**",
    "Status": "",
    "Rows": "5412",
-   "match": "4295",
-   "partial": "137",
-   "missing": "166",
-   "differs": "96",
+   "match": "4370",
+   "partial": "78",
+   "missing": "152",
+   "differs": "97",
    "mock-only": "157",
-   "n/a": "556",
-   "unclear": "5",
+   "n/a": "555",
+   "unclear": "3",
    "Findings (B/M/m/i)": "3/27/56/29",
    "Questions": ""
   }
@@ -2225,805 +2225,1035 @@
    "Flow": "App_Menu_ContactUs",
    "Id": "F1",
    "Element": "ContactUsDetails / If not isLogged (Input_FullName, Input_Email, Input_PhoneNumb",
-   "Finding": "TST hiển thị thêm năm trường cho người dùng chưa đăng nhập: nhãn, input với Mandatory và MaxLength 50, danh sách Country từ DataAction_GetCountriesNames, và các action OnChange của chúng. React hiển thị một `NotCaptu"
+   "Finding": "TST hiển thị thêm năm trường cho người dùng chưa đăng nhập: nhãn, input với Mandatory và MaxLength 50, danh sách Country từ DataAction_GetCountriesNames, và các action OnChange của chúng. React hiển thị một `NotCaptu",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "blocker",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F1",
    "Element": "HostSurvey: wizard khảo sát",
-   "Finding": "Các bước dữ liệu (điều hướng, chỗ ở, bữa ăn, helper, phương tiện), header của bước, footer với Next / Submit, năm popup xác nhận, 15 block item, bốn input ghi chú 250 ký tự,"
+   "Finding": "Các bước dữ liệu (điều hướng, chỗ ở, bữa ăn, helper, phương tiện), header của bước, footer với Next / Submit, năm popup xác nhận, 15 block item, bốn input ghi chú 250 ký tự,",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "blocker",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F2",
    "Element": "MilestoneDetail: 5 loại milestone",
-   "Finding": "`ScreenBlock_MealGuest`, `_MealHost`, `_MealHelper`, `_AccommodationGuest`, `_AccommodationHelper` render `<NotCaptured>`; wrapper action `OnHandle_NavigateToContactByEmail` (ContactByEmailOrbitHo"
+   "Finding": "`ScreenBlock_MealGuest`, `_MealHost`, `_MealHelper`, `_AccommodationGuest`, `_AccommodationHelper` render `<NotCaptured>`; wrapper action `OnHandle_NavigateToContactByEmail` (ContactByEmailOrbitHo",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Common",
    "Id": "F1",
    "Element": "OnException của flow App_Common / BubbleCommunicationException",
-   "Finding": "TST kiểm tra `UBTConnect.BubbleCommunicationException` trước và hiển thị toast lỗi kết nối (flow controller :31-39). `raiseToFlowHandler` không có nhánh này, nên lỗi đi tới `showExceptionMessag"
+   "Finding": "TST kiểm tra `UBTConnect.BubbleCommunicationException` trước và hiển thị toast lỗi kết nối (flow controller :31-39). `raiseToFlowHandler` không có nhánh này, nên lỗi đi tới `showExceptionMessag",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "App_CommonBlocks_Filter",
    "Id": "F1",
    "Element": "FilterSheet_OptionList_Item, Action_DefineOptions (dòng 131)",
-   "Finding": "TST bỏ dấu khỏi DisplayText và khỏi chuỗi tìm kiếm trước khi so sánh (`fol.js:721-739`, `UBTJavaScriptUtils.controller.js:3078-3084`). React giữ nguyên dấu. Tìm \"Sao\" không"
+   "Finding": "TST bỏ dấu khỏi DisplayText và khỏi chuỗi tìm kiếm trước khi so sánh (`fol.js:721-739`, `UBTJavaScriptUtils.controller.js:3078-3084`). React giữ nguyên dấu. Tìm \"Sao\" không",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Menu_ContactUs",
    "Id": "F2",
    "Element": "ContactUsDetails / ContactUs_Rate, ContactUs_RateRateSelected",
-   "Finding": "Block đánh giá chưa được build, và không có handler nào đặt `Rate_SelectedRate`. Với chủ đề feedback, người dùng đã đăng nhập không thể đánh giá (BR-UBTCON-975, BR-UBTCON-972). Send cần có tin nhắn, vì"
+   "Finding": "Block đánh giá chưa được build, và không có handler nào đặt `Rate_SelectedRate`. Với chủ đề feedback, người dùng đã đăng nhập không thể đánh giá (BR-UBTCON-975, BR-UBTCON-972). Send cần có tin nhắn, vì",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Menu_ContactUs",
    "Id": "F3",
    "Element": "ContactUsDetails / DataAction_GetLocalityTimezone, CacheControl_UserInfo_Wrapper",
-   "Finding": "TST giữ bản ghi người dùng trong `LocalCacheControl_UserInformation` và gửi nó cùng data action. Server đọc `In_LocalityId` từ đó. React không giữ bản ghi này. Lệnh gọi của nó không có `LocalCach"
+   "Finding": "TST giữ bản ghi người dùng trong `LocalCacheControl_UserInformation` và gửi nó cùng data action. Server đọc `In_LocalityId` từ đó. React không giữ bản ghi này. Lệnh gọi của nó không có `LocalCach",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Notifications",
    "Id": "F1",
    "Element": "Notifications / If_HasNoNotifications, Notifications_NoItemsFound",
-   "Finding": "Khi một lần fetch hoàn tất không trả về thông báo nào, TST hiển thị `Notifications_NoItemsFound`: một icon lịch, \"No Notifications Found\" và \"We were unable to find any Notifications to display.\" (BR-UBTCON-"
+   "Finding": "Khi một lần fetch hoàn tất không trả về thông báo nào, TST hiển thị `Notifications_NoItemsFound`: một icon lịch, \"No Notifications Found\" và \"We were unable to find any Notifications to display.\" (BR-UBTCON-",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Notifications",
    "Id": "F2",
    "Element": "Notifications_Header / If_HasBadge",
-   "Finding": "TST chỉ hiển thị Badge khi `BadgeNumber > 0` (BR-UBTCON-981). React luôn render nó, nên một section không có thông báo chưa đọc vẫn hiển thị badge đỏ \"0\". Mock cho mỗi section một item chưa đọc, nên"
+   "Finding": "TST chỉ hiển thị Badge khi `BadgeNumber > 0` (BR-UBTCON-981). React luôn render nó, nên một section không có thông báo chưa đọc vẫn hiển thị badge đỏ \"0\". Mock cho mỗi section một item chưa đọc, nên",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Policies",
    "Id": "F1",
    "Element": "AcceptPendingPolicies / Policy_Custom_AcceptPendingPolicies input PolicyApplicat",
-   "Finding": "TST gửi `TextToIdentifier` của các bản ghi Connect_Applications: chuỗi GUID của Connect, Directory và Orbit (`static-entities-tst.json:2809`). React gửi các tên `Connect_Applications.Connect`"
+   "Finding": "TST gửi `TextToIdentifier` của các bản ghi Connect_Applications: chuỗi GUID của Connect, Directory và Orbit (`static-entities-tst.json:2809`). React gửi các tên `Connect_Applications.Connect`",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Profile",
    "Id": "F1",
    "Element": "Profile / phần địa chỉ (`#isHouseholder_Address`, `#isHouseholder_Cache`, các",
-   "Finding": "Với chủ hộ, React chỉ hiển thị tiêu đề \"Address Information\" trong một marker NotCaptured. Chưa được build: các dòng địa chỉ, DropdownSearch Locality và Subdivision, CacheControl_AllLocalities, Cach"
+   "Finding": "Với chủ hộ, React chỉ hiển thị tiêu đề \"Address Information\" trong một marker NotCaptured. Chưa được build: các dòng địa chỉ, DropdownSearch Locality và Subdivision, CacheControl_AllLocalities, Cach",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Services",
    "Id": "F1",
    "Element": "Services / OnClick_SaveChanges, các exception handler",
-   "Finding": "TST đặt `isLoading` về False trong các handler CommunicationException và AllExceptions, rồi raise bubble exception. React raise cùng các exception nhưng giữ `isLoading` là True. Skeleton che"
+   "Finding": "TST đặt `isLoading` về False trong các handler CommunicationException và AllExceptions, rồi raise bubble exception. React raise cùng các exception nhưng giữ `isLoading` là True. Skeleton che",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Services",
    "Id": "F2",
    "Element": "Services / GetServices thất bại",
-   "Finding": "Runtime (`OutSystems.js:3853`) flush model và gọi `handleError` của màn hình khi một lần fetch dữ liệu thất bại. App_Services chuyển lỗi tới App_Common OnException, nơi hiển thị toast lỗi kết nối"
+   "Finding": "Runtime (`OutSystems.js:3853`) flush model và gọi `handleError` của màn hình khi một lần fetch dữ liệu thất bại. App_Services chuyển lỗi tới App_Common OnException, nơi hiển thị toast lỗi kết nối",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Calendar",
    "Id": "F1",
    "Element": "Embedded_MyEntertaining / `DataActionGetEntertainingConfig` thất bại",
-   "Finding": "Runtime (`OutSystems.js:3853`) gọi `handleError` sau một lần fetch dữ liệu thất bại. Flow Calendar chuyển lỗi tới App_Common OnException, nơi hiển thị toast. React giữ skeleton và hiển thị"
+   "Finding": "Runtime (`OutSystems.js:3853`) gọi `handleError` sau một lần fetch dữ liệu thất bại. Flow Calendar chuyển lỗi tới App_Common OnException, nơi hiển thị toast. React giữ skeleton và hiển thị",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Directory_Search",
    "Id": "F1",
    "Element": "ScreenBlock_Search / If StartedDifferentSearch",
-   "Finding": "React hiển thị caption \"Showing results for '<term>':\" bất cứ khi nào HasSearched là True. TST chỉ hiển thị SectionSeparator và cả hai đoạn text khi SearchKey_Current <> SearchKey_LastSearched (`ScreenBlock_"
+   "Finding": "React hiển thị caption \"Showing results for '<term>':\" bất cứ khi nào HasSearched là True. TST chỉ hiển thị SectionSeparator và cả hai đoạn text khi SearchKey_Current <> SearchKey_LastSearched (`ScreenBlock_",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Directory_Search",
    "Id": "F2",
    "Element": "ScreenBlock_Search / Event_HorizontalTagListChanged",
-   "Finding": "TST làm mới Get_RecentClickedResults (tối đa 5) với category mới trước Action_RefreshSearch (`ScreenBlock_Search.mvc.js`:3929-3937). React chỉ làm mới các danh sách gần đây bên trong refreshSearch, khi"
+   "Finding": "TST làm mới Get_RecentClickedResults (tối đa 5) với category mới trước Action_RefreshSearch (`ScreenBlock_Search.mvc.js`:3929-3937). React chỉ làm mới các danh sách gần đây bên trong refreshSearch, khi",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Directory_Search",
    "Id": "F3",
    "Element": "ScreenBlock_Search / Action_RefreshSearch",
-   "Finding": "TST thêm ba dòng loading (\"Loading Name\", \"Name\", \"Loading Location\"; Type Household, Member cho People) vào mỗi danh sách kết quả trong phạm vi trước khi fetch (`ScreenBlock_Search.mvc.js`:2475-2530)."
+   "Finding": "TST thêm ba dòng loading (\"Loading Name\", \"Name\", \"Loading Location\"; Type Household, Member cho People) vào mỗi danh sách kết quả trong phạm vi trước khi fetch (`ScreenBlock_Search.mvc.js`:2475-2530).",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Directory_SupperMeetings",
    "Id": "F1",
    "Element": "SupperMeeting_DetailsBlock / GetSubdivision; SupperMeeting_HouseholdList / GetSu",
-   "Finding": "TST chạy OnReady qua `safeExecuteClientAction` (`SupperMeeting_DetailsBlock.mvc.js:720-722`, `SupperMeeting_HouseholdList.mvc.js:324`). Runtime gọi `handleError` khi action thất bại (`OutS"
+   "Finding": "TST chạy OnReady qua `safeExecuteClientAction` (`SupperMeeting_DetailsBlock.mvc.js:720-722`, `SupperMeeting_HouseholdList.mvc.js:324`). Runtime gọi `handleError` khi action thất bại (`OutS",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Directory_Updates",
    "Id": "F1",
    "Element": "Updates_SingleList / If_HasNoUpdates, Updates_NoItemsFound",
-   "Finding": "Khi một lần fetch hoàn tất không trả về update nào, TST hiển thị `Updates_NoItemsFound` (BR-UBTCON-872): một nút tròn có viền với icon CalendarBusyFill, \"No Updates Found\" và \"We were unable to find any"
+   "Finding": "Khi một lần fetch hoàn tất không trả về update nào, TST hiển thị `Updates_NoItemsFound` (BR-UBTCON-872): một nút tròn có viền với icon CalendarBusyFill, \"No Updates Found\" và \"We were unable to find any",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F1",
    "Element": "LDM_EventDetail_V2 / OnHandle_GoToHousehold",
-   "Finding": "TST gọi IsFreeSubscriptionPlan, IsRegionalSubscriptionPlan và CarouselFilteredEventResults (`controller.js:879-985`): carousel nhận các khách có HouseholdDisplay, và không có RecordDisabled"
+   "Finding": "TST gọi IsFreeSubscriptionPlan, IsRegionalSubscriptionPlan và CarouselFilteredEventResults (`controller.js:879-985`): carousel nhận các khách có HouseholdDisplay, và không có RecordDisabled",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F2",
    "Element": "LDM_MyEvents_V2 / bộ lọc timeline",
-   "Finding": "Popup lọc là một placeholder `NotCaptured` (quyết định `auto-decisions-2026-10-16.md:51`); OnHandle_MyTimelineFilter, OnHandle_ResetFilters, OnHandle_Filter, OnHandle_Close chưa được build. Người dùng"
+   "Finding": "Popup lọc là một placeholder `NotCaptured` (quyết định `auto-decisions-2026-10-16.md:51`); OnHandle_MyTimelineFilter, OnHandle_ResetFilters, OnHandle_Filter, OnHandle_Close chưa được build. Người dùng",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F1",
    "Element": "MessageDetail / Placeholder MessageDetails, FeedItemId, Handler_NavigateTo_Share",
-   "Finding": "Một tin nhắn Sharing hiển thị marker NotCaptured thay vì thẻ của item được chia sẻ. TST render Share_UI.ShareObjectDetail_ExtendedShare (GetHasExtendedShare là True trên TST) với ShareId từ temp đầu tiên"
+   "Finding": "Một tin nhắn Sharing hiển thị marker NotCaptured thay vì thẻ của item được chia sẻ. TST render Share_UI.ShareObjectDetail_ExtendedShare (GetHasExtendedShare là True trên TST) với ShareId từ temp đầu tiên",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F2",
    "Element": "MessageDetail / Placeholder ActionButton, OnClick_ViewOrbitEvent, OnClick_ViewAs",
-   "Finding": "Tin nhắn Orbit hoặc Assemble không có nút \"View Event\", \"Go to Host Survey\" hay \"View Meeting\"; tin nhắn Assemble hiển thị các placeholder chưa được điền. Board (chủ dự án, 2026-10-16) đã đưa Orbit, Assemble và"
+   "Finding": "Tin nhắn Orbit hoặc Assemble không có nút \"View Event\", \"Go to Host Survey\" hay \"View Meeting\"; tin nhắn Assemble hiển thị các placeholder chưa được điền. Board (chủ dự án, 2026-10-16) đã đưa Orbit, Assemble và",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F3",
    "Element": "MessageDetail / AdaptiveCardViewer, HostConfig, AdaptiveCardViewerOnExecuteActio",
-   "Finding": "Tin nhắn adaptive card hiển thị một marker. TST render card với host config của Events và xử lý send_email, view_event và mọi submit khác (store, thank, refresh)."
+   "Finding": "Tin nhắn adaptive card hiển thị một marker. TST render card với host config của Events và xử lý send_email, view_event và mọi submit khác (store, thank, refresh).",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F6",
    "Element": "MessageDetail / OnAfterFetch, tin nhắn riêng của người dùng khác",
-   "Finding": "TST hiển thị toast \"You don't have access to that message\" rồi hiển thị tin nhắn (nhánh kết thúc bằng một loop break, không phải điều hướng). React hiển thị toast và rời sang MessageList. Dữ liệu mock"
+   "Finding": "TST hiển thị toast \"You don't have access to that message\" rồi hiển thị tin nhắn (nhánh kết thúc bằng một loop break, không phải điều hướng). React hiển thị toast và rời sang MessageList. Dữ liệu mock",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_OrbitAdminFlow",
    "Id": "F1",
    "Element": "OrbitAdminLanding / OnHandle_NavigateToEventDetail",
-   "Finding": "React làm theo model DEV: nó gọi GetMilestoneScanFF và, khi IsScanPerMilestone là True, mở OrbitAdminMilestones. TST chỉ mở OrbitAdminEventDetail (LW:244-252). TST không có GetMilestoneSca"
+   "Finding": "React làm theo model DEV: nó gọi GetMilestoneScanFF và, khi IsScanPerMilestone là True, mở OrbitAdminMilestones. TST chỉ mở OrbitAdminEventDetail (LW:244-252). TST không có GetMilestoneSca",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F3",
    "Element": "OrbitLanding: \"View Passport details\"",
-   "Finding": "React hiển thị control và điều hướng tới `/UBTConnect/PassportScan` với LoginMemberId và TargetId sau cổng kiểm tra quyền truy cập. TST không có control, event hay màn hình như vậy (`tst_source.py grep \"assport\"`: không"
+   "Finding": "React hiển thị control và điều hướng tới `/UBTConnect/PassportScan` với LoginMemberId và TargetId sau cổng kiểm tra quyền truy cập. TST không có control, event hay màn hình như vậy (`tst_source.py grep \"assport\"`: không",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "Notes",
    "Id": "F2",
    "Element": "Notes_FilterSheet / Handler_FilterSheetApplyFilters → DataActionGetNotes",
-   "Finding": "Sau khi Apply, TST gửi Notes_Filter.Years (các năm đã chọn) và SortByNewest trong dữ liệu màn hình (capture 2026-10-27, review/captures.md §3). React không bao giờ gửi Years, nên một năm được chọn không có tác dụng"
+   "Finding": "Sau khi Apply, TST gửi Notes_Filter.Years (các năm đã chọn) và SortByNewest trong dữ liệu màn hình (capture 2026-10-27, review/captures.md §3). React không bao giờ gửi Years, nên một năm được chọn không có tác dụng",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "_libraries",
    "Id": "F1",
    "Element": "SearchResult_Item OnClick_UpgradeSubscription; ShareSheet Handler_OnClickRecentM",
-   "Finding": "TST chạy App_Subscription_NavigateToUpgrade (Cache_UserInfo_Get, Cache_UserInfo_Invalidate, OpenInApp_OpenExternalLink sau ConfirmAction; `UBTConnect_Utils.controller.js:1`) trên cảnh báo và App_S"
+   "Finding": "TST chạy App_Subscription_NavigateToUpgrade (Cache_UserInfo_Get, Cache_UserInfo_Invalidate, OpenInApp_OpenExternalLink sau ConfirmAction; `UBTConnect_Utils.controller.js:1`) trên cảnh báo và App_S",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "major",
    "Flow": "_shared",
    "Id": "F3",
    "Element": "OnApplicationReady / khi có exception All Exceptions → ScreenController_RaiseError",
-   "Finding": "TST hiển thị toast exception khi app start thất bại mà không phải lỗi hệ thống (`UBTConnect.controller.js:15398-15417`, `UBTJavaScriptUtils.controller.js:3900`); React chỉ ghi log (`appStartSteps.ts:192-196`). Dòng 19"
+   "Finding": "TST hiển thị toast exception khi app start thất bại mà không phải lỗi hệ thống (`UBTConnect.controller.js:15398-15417`, `UBTJavaScriptUtils.controller.js:3900`); React chỉ ghi log (`appStartSteps.ts:192-196`). Dòng 19",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "minor",
    "Flow": "App_Common",
    "Id": "F2",
    "Element": "Login / \"Forgot Password?\" (Login, isResetPassword True)",
-   "Finding": "TST đặt IsResettingPassword (spinner, nút Login bị vô hiệu) và bắt đầu policy đặt lại mật khẩu của nhà cung cấp danh tính. Một lần reset hoàn tất kết thúc bằng toast thành công (IdP_OnResetPassword). React"
+   "Finding": "TST đặt IsResettingPassword (spinner, nút Login bị vô hiệu) và bắt đầu policy đặt lại mật khẩu của nhà cung cấp danh tính. Một lần reset hoàn tất kết thúc bằng toast thành công (IdP_OnResetPassword). React",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/H-user-followups.md`): built as TST after the user reversed Q1 (2026-10-27)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Common",
    "Id": "F3",
    "Element": "Login / OnReady, nhận biết thiết bị",
-   "Finding": "React so sánh CallbackType với `'AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice'`. Giá trị trên TST là \"DeviceAwareness_InvalidDevice\" (`migration/knowledge/static-entities-tst.json:2643"
+   "Finding": "React so sánh CallbackType với `'AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice'`. Giá trị trên TST là \"DeviceAwareness_InvalidDevice\" (`migration/knowledge/static-entities-tst.json:2643",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/A-shell.md`): the CallbackType constant; the dialog waits by decision Q3 (a)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Menu",
    "Id": "F1",
    "Element": "Menu / view cache (dòng 006)",
-   "Finding": "Runtime khôi phục các biến màn hình của một view từ view cache (U19, P-BACK). Menu trên TST không có kiểm tra `IsViewRestoredFromCache`: OnInitialize dựng lại MenuOptionList, và `LocalCacheControl_Use"
+   "Finding": "Runtime khôi phục các biến màn hình của một view từ view cache (U19, P-BACK). Menu trên TST không có kiểm tra `IsViewRestoredFromCache`: OnInitialize dựng lại MenuOptionList, và `LocalCacheControl_Use",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/B-restore.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_PIN",
    "Id": "F1",
    "Element": "Block_PINRegister_ContentWrapper / ScreenEvent_OnInitialize",
-   "Finding": "TST đặt `UserName` từ `AppManager_GetCachedUserInfo` (một bản ghi AppManager cục bộ, đồng bộ). React đọc `getUserInformation()`: bản ghi `Directory_UserCurrent` của cache user-info. Bản ghi đó"
+   "Finding": "TST đặt `UserName` từ `AppManager_GetCachedUserInfo` (một bản ghi AppManager cục bộ, đồng bộ). React đọc `getUserInformation()`: bản ghi `Directory_UserCurrent` của cache user-info. Bản ghi đó",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/D-forms.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Policies",
    "Id": "F2",
    "Element": "Policy_Custom_AcceptPendingPolicies / GetPendingPolicies",
-   "Finding": "Query giữ các mặc định của TanStack `refetchOnReconnect: true` và `networkMode: 'online'`. Một sự kiện offline rồi online sẽ fetch lại danh sách: mọi dấu tick đều mất, nhưng `isAllSelected` vẫn là True, nên C"
+   "Finding": "Query giữ các mặc định của TanStack `refetchOnReconnect: true` và `networkMode: 'online'`. Một sự kiện offline rồi online sẽ fetch lại danh sách: mọi dấu tick đều mất, nhưng `isAllSelected` vẫn là True, nên C",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Policies",
    "Id": "F3",
    "Element": "AcceptPendingPolicies / AcceptPendingPoliciesAcceptedAll",
-   "Finding": "TST chạy screen action qua `safeExecuteClientAction`: một exception đi tới handleError của màn hình, rồi tới App_Policies và App_Common, nơi hiển thị thông báo. React không có catch: `continueOnClic"
+   "Finding": "TST chạy screen action qua `safeExecuteClientAction`: một exception đi tới handleError của màn hình, rồi tới App_Policies và App_Common, nơi hiển thị thông báo. React không có catch: `continueOnClic",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Policies",
    "Id": "F4",
    "Element": "Policy_Custom_AcceptPendingPolicies / GetDeviceInfo",
-   "Finding": "TST giữ một device id cho mỗi trình duyệt trong `localStorage[\"UUID\"]` và gửi nó dưới dạng `DeviceDetails.UniqueId`. React tạo một id mới mỗi lần tải trang. Các bản ghi chấp nhận trên server nhận một device id khác"
+   "Finding": "TST giữ một device id cho mỗi trình duyệt trong `localStorage[\"UUID\"]` và gửi nó dưới dạng `DeviceDetails.UniqueId`. React tạo một id mới mỗi lần tải trang. Các bản ghi chấp nhận trên server nhận một device id khác",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Profile",
    "Id": "F2",
    "Element": "Profile / Input_Email, HomeNumber2, Input_MobileNumber, Input_WorkNumber",
-   "Finding": "FormInput không đặt `maxLength` và `autoComplete`. TST giới hạn Input_Email ở 50 ký tự và ba input điện thoại ở 15. Các input điện thoại có `autocomplete=\"off\"` trong TST. Người dùng có thể gõ dài hơn"
+   "Finding": "FormInput không đặt `maxLength` và `autoComplete`. TST giới hạn Input_Email ở 50 ký tự và ba input điện thoại ở 15. Các input điện thoại có `autocomplete=\"off\"` trong TST. Người dùng có thể gõ dài hơn",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/D-forms.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Services",
    "Id": "F3",
    "Element": "Services / Action_ChangeOrderLocal",
-   "Finding": "TST đặt `HasChanges` thành True trước rồi thay đổi các danh sách tại chỗ. Khi một action danh sách thất bại, các bước trước đó vẫn giữ nguyên. Ví dụ: kéo bằng cảm ứng lên đầu danh sách yêu thích (NewOrder -1, bug B3) sẽ xóa một"
+   "Finding": "TST đặt `HasChanges` thành True trước rồi thay đổi các danh sách tại chỗ. Khi một action danh sách thất bại, các bước trước đó vẫn giữ nguyên. Ví dụ: kéo bằng cảm ứng lên đầu danh sách yêu thích (NewOrder -1, bug B3) sẽ xóa một",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/F-lists.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Services",
    "Id": "F4",
    "Element": "Services / các action danh sách của Action_ChangeOrderLocal",
-   "Finding": "`List.checkIndex` của runtime raise \"Index out of bounds. Index n for bounds [0, m].\" (hoặc \"… for empty list.\"). Flow handler hiển thị đoạn text này trong toast. React throw \"Index out of range\"."
+   "Finding": "`List.checkIndex` của runtime raise \"Index out of bounds. Index n for bounds [0, m].\" (hoặc \"… for empty list.\"). Flow handler hiển thị đoạn text này trong toast. React throw \"Index out of range\".",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/F-lists.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Services",
    "Id": "F5",
    "Element": "Services / tiêu đề màn hình",
-   "Finding": "Runtime đặt `document.title` thành tiêu đề màn hình (\"Services\") khi màn hình mount (`OutSystemsReactView.js:2009`). Không có mã nào của app React đặt `document.title`, nên tab hiển thị \"UBTConnect\""
+   "Finding": "Runtime đặt `document.title` thành tiêu đề màn hình (\"Services\") khi màn hình mount (`OutSystemsReactView.js:2009`). Không có mã nào của app React đặt `document.title`, nên tab hiển thị \"UBTConnect\"",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Bookmarks",
    "Id": "F1",
    "Element": "BookmarksByGroup, dòng Supper Meeting (dòng 114)",
-   "Finding": "Tiêu đề và tag của một dòng Supper Meeting không nhận màu IsMainHall (tiêu đề primary / neutral-10; nền tag primary / neutral-2 và màu neutral-2 / neutral-6). Một marker NotCaptured được render"
+   "Finding": "Tiêu đề và tag của một dòng Supper Meeting không nhận màu IsMainHall (tiêu đề primary / neutral-10; nền tag primary / neutral-2 và màu neutral-2 / neutral-6). Một marker NotCaptured được render",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Bookmarks",
    "Id": "F2",
    "Element": "MyBookmarks, BookmarksByGroup (dòng 009, 061)",
-   "Finding": "Tiêu đề trang vẫn chưa được đặt; TST đặt \"MyBookmarks\" và \"BookmarksByGroup\" (`OutSystemsReactView.js:7` ghi `document.title = this.title` khi mount)."
+   "Finding": "Tiêu đề trang vẫn chưa được đặt; TST đặt \"MyBookmarks\" và \"BookmarksByGroup\" (`OutSystemsReactView.js:7` ghi `document.title = this.title` khi mount).",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Calendar",
    "Id": "F2",
    "Element": "Embedded_MyEntertaining / `Action_RefreshToken` thất bại",
-   "Finding": "TST chạy action qua `safeExecuteClientAction` (`OutSystems.js:17`), nên lỗi đi tới App_Common, nơi hiển thị toast. React chỉ ghi một cảnh báo. Một comment trong code có nêu điều này, nhưng không có quyết định nào được ghi nhận"
+   "Finding": "TST chạy action qua `safeExecuteClientAction` (`OutSystems.js:17`), nên lỗi đi tới App_Common, nơi hiển thị toast. React chỉ ghi một cảnh báo. Một comment trong code có nêu điều này, nhưng không có quyết định nào được ghi nhận",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Calendar",
    "Id": "F3",
    "Element": "MyEntertaining / tiêu đề trang",
-   "Finding": "Runtime đặt `document.title` thành \"MyEntertaining\" (`OutSystemsReactView.js:7`). React không đặt tiêu đề. Gap này áp dụng cho toàn app."
+   "Finding": "Runtime đặt `document.title` thành \"MyEntertaining\" (`OutSystemsReactView.js:7`). React không đặt tiêu đề. Gap này áp dụng cho toàn app.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "ContactFlow",
    "Id": "F2",
    "Element": "ContactByEmailLDMCoordinator / ảnh header",
-   "Finding": "Khi In_AvatarURL rỗng, TST render `<img src=\"\">` (Image type External, OutSystemsReactWidgets.js:2). React truyền `undefined` và không render thuộc tính `src`."
+   "Finding": "Khi In_AvatarURL rỗng, TST render `<img src=\"\">` (Image type External, OutSystemsReactWidgets.js:2). React truyền `undefined` và không render thuộc tính `src`.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/D-forms.md`): ContactHeaderCard changed by the orchestrator"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_CommonBlocks",
    "Id": "F1",
    "Element": "Directory_EntityDetailsActions, OnReady CheckRestored (dòng 076)",
-   "Finding": "TST bỏ qua phần thiết lập khi view đến từ cache hoặc history. React luôn chạy nó, nên Back hiển thị skeleton và fetch lại."
+   "Finding": "TST bỏ qua phần thiết lập khi view đến từ cache hoặc history. React luôn chạy nó, nên Back hiển thị skeleton và fetch lại.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_CommonBlocks",
    "Id": "F2",
    "Element": "Directory_EntityDetailsActions, OnParametersChanged (dòng 091)",
-   "Finding": "TST fetch thông tin liên hệ mỗi khi input thay đổi. React chỉ fetch khi EntityId hoặc isFetchContacts thay đổi."
+   "Finding": "TST fetch thông tin liên hệ mỗi khi input thay đổi. React chỉ fetch khi EntityId hoặc isFetchContacts thay đổi.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_CommonBlocks",
    "Id": "F3",
    "Element": "Directory_EntityDetailsActions, Action_AsyncRefresh_ContactDetails (dòng 102)",
-   "Finding": "Khi NotRegistered và khi có system exception, React vô hiệu hóa mọi action trước khi raise. TST raise mà không có HandleFetchError."
+   "Finding": "Khi NotRegistered và khi có system exception, React vô hiệu hóa mọi action trước khi raise. TST raise mà không có HandleFetchError.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Household_Blocks",
    "Id": "F1",
    "Element": "Household_Card / OnReady",
-   "Finding": "TST kết thúc OnReady khi `wasCurrentViewRestoredFromCache()` là true (`Household_Card.mvc.js:478-490`, `:622-624`). React giữ các thành viên trong `useState`, nằm ngoài view cache. Sau khi Back, mỗi thẻ hiển thị"
+   "Finding": "TST kết thúc OnReady khi `wasCurrentViewRestoredFromCache()` là true (`Household_Card.mvc.js:478-490`, `:622-624`). React giữ các thành viên trong `useState`, nằm ngoài view cache. Sau khi Back, mỗi thẻ hiển thị",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Locality",
    "Id": "F1",
    "Element": "Locality_Details / Placeholder_Icons (dòng 150)",
-   "Finding": "Icon Explore được render khi header chưa cuộn. TST (`Locality_Details.mvc.js:657-666`) và DEV render nó khi header đã cuộn. C2EnableMaps tắt trên TST, nên icon bị ẩn ở cả hai"
+   "Finding": "Icon Explore được render khi header chưa cuộn. TST (`Locality_Details.mvc.js:657-666`) và DEV render nó khi header đã cuộn. C2EnableMaps tắt trên TST, nên icon bị ẩn ở cả hai",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Locality",
    "Id": "F2",
    "Element": "Locality_Households_HouseholdList / OnAfterFetch_GetLocalityHouseholds_Bookmarks",
-   "Finding": "Khi GetHasNewBookmarks bật, React giữ giá trị IsBookmarked đã fetch. TST đọc GetLocal_Bookmark_C2(HouseholdId, BookmarkCategory.Household) từ kho của thiết bị cho mỗi dòng. React chạy nhánh legacy"
+   "Finding": "Khi GetHasNewBookmarks bật, React giữ giá trị IsBookmarked đã fetch. TST đọc GetLocal_Bookmark_C2(HouseholdId, BookmarkCategory.Household) từ kho của thiết bị cho mỗi dòng. React chạy nhánh legacy",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Locality",
    "Id": "F3",
    "Element": "BrowseDirectory / StatisticsListOnParametersChhanged (dòng 048)",
-   "Finding": "React gọi Map_InvalidateSize và Map_FitBoundsAuto. TST (`BrowseDirectory.mvc.js:1040`) chỉ gọi Map_InvalidateSize; FitBoundsAuto thuộc về Action_InvalidateMapSize."
+   "Finding": "React gọi Map_InvalidateSize và Map_FitBoundsAuto. TST (`BrowseDirectory.mvc.js:1040`) chỉ gọi Map_InvalidateSize; FitBoundsAuto thuộc về Action_InvalidateMapSize.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_OneSchoolGlobal",
    "Id": "F1",
    "Element": "OneSchoolGlobalDetails / tiêu đề trang",
-   "Finding": "Runtime TST đặt `document.title` thành tiêu đề view \"OneSchoolGlobalDetails\" khi mount và khi update (`OutSystemsReactView.js:7`, TST:150-153). Không có file React nào đặt `document.title`, nên tab hiển thị"
+   "Finding": "Runtime TST đặt `document.title` thành tiêu đề view \"OneSchoolGlobalDetails\" khi mount và khi update (`OutSystemsReactView.js:7`, TST:150-153). Không có file React nào đặt `document.title`, nên tab hiển thị",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Photobook",
    "Id": "F1",
    "Element": "Photobook / GetLocalityHouseholdIds (dòng 006)",
-   "Finding": "Một view được khôi phục từ cache không gọi DataActionGetLocalityHouseholdIds. P-BACK nói rằng bản gốc làm mới dữ liệu ở chế độ nền. Trên TST, OnAfterFetch sau đó đặt SelectedHouse"
+   "Finding": "Một view được khôi phục từ cache không gọi DataActionGetLocalityHouseholdIds. P-BACK nói rằng bản gốc làm mới dữ liệu ở chế độ nền. Trên TST, OnAfterFetch sau đó đặt SelectedHouse",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Photobook",
    "Id": "F2",
    "Element": "Photobook_Carousel / Carousel_OnSlideMoved (dòng 079, 198)",
-   "Finding": "Kiểm tra replay chỉ xét IsReplaying. TST còn xét CurrentPosition = 0. Khi một event move đến ở vị trí khác trong lúc tua lại (một cú vuốt trong lần move 500 ms), React kết thúc replay và"
+   "Finding": "Kiểm tra replay chỉ xét IsReplaying. TST còn xét CurrentPosition = 0. Khi một event move đến ở vị trí khác trong lúc tua lại (một cú vuốt trong lần move 500 ms), React kết thúc replay và",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Search",
    "Id": "F4",
    "Element": "ScreenBlock_Search / In_SearchTargetId",
-   "Finding": "Mặc định trên TST là Type_SearchTarget.Global (`ScreenBlock_Search.mvc.js`:121-122), và màn hình Search không truyền input nào (`Search.mvc.js`:126-127). React dùng ''. React lưu SearchTargetId '' trên"
+   "Finding": "Mặc định trên TST là Type_SearchTarget.Global (`ScreenBlock_Search.mvc.js`:121-122), và màn hình Search không truyền input nào (`Search.mvc.js`:126-127). React dùng ''. React lưu SearchTargetId '' trên",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Search",
    "Id": "F5",
    "Element": "ScreenBlock_Search / UBT_LazyImage của gallery gần đây",
-   "Finding": "TST đặt ImageSize.Width = Square cho một entry Member, ngược lại là null (`ScreenBlock_Search.mvc.js`:800-803). React chỉ đặt Height."
+   "Finding": "TST đặt ImageSize.Width = Square cho một entry Member, ngược lại là null (`ScreenBlock_Search.mvc.js`:800-803). React chỉ đặt Height.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Updates",
    "Id": "F2",
    "Element": "Updates_SingleList / ScreenEvent_OnReady (được khôi phục), Handler_OnClickUpdateItem",
-   "Finding": "Khi Back, TST chạy `ReactiveInstance_ForceUpdate` trên danh sách và cuộn anchor đã lưu về offset đã lưu của nó (`CaptureScrollPosition`, `RememberFocusedScrollAnchor`, `GetFocusedScrollAnchorOnBac"
+   "Finding": "Khi Back, TST chạy `ReactiveInstance_ForceUpdate` trên danh sách và cuộn anchor đã lưu về offset đã lưu của nó (`CaptureScrollPosition`, `RememberFocusedScrollAnchor`, `GetFocusedScrollAnchorOnBac",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/H-user-followups.md`): the scroll-anchor save and restore ported after the capture and the user's decision (port fully)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Updates",
    "Id": "F3",
    "Element": "Updates_SingleList / mock của DataActionFetchUpdates",
-   "Finding": "Mock handler trả về cả 88 dòng cho mọi `Filter_Updates`. Trong demo, các chip, ô tìm kiếm, lựa chọn trạng thái và sắp xếp, và bộ lọc quốc gia không thay đổi danh sách, và F1 không thể hiện ra."
+   "Finding": "Mock handler trả về cả 88 dòng cho mọi `Filter_Updates`. Trong demo, các chip, ô tìm kiếm, lựa chọn trạng thái và sắp xếp, và bộ lọc quốc gia không thay đổi danh sách, và F1 không thể hiện ra.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/F-lists.md`): the mock applies Filter_Updates; row 007 stays mock-only"
   },
   {
    "Severity": "minor",
    "Flow": "Home",
    "Id": "F1",
    "Element": "FeedBlock_Updates / If not HasAccess (#DoesntHaveAccess)",
-   "Finding": "TST: CustomContainer > container (text-align center) > container display-inline-block > IconText \"Subscription upgrade required\" (BlueDark, ExtraSmall, SemiBold) với Icon Lock (BlueDark, NonStandard_"
+   "Finding": "TST: CustomContainer > container (text-align center) > container display-inline-block > IconText \"Subscription upgrade required\" (BlueDark, ExtraSmall, SemiBold) với Icon Lock (BlueDark, NonStandard_",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Home",
    "Id": "F2",
    "Element": "FeedBlock_Services / GetServices; FeedBlock_Updates / FetchUpdates",
-   "Finding": "Cả hai query dùng mặc định của thư viện (gcTime 5 phút, refetchOnReconnect true). TST fetch khi block bắt đầu: một HomeFeed mới hiển thị trang skeleton (năm service rỗng, ba dòng loading) cho đến khi"
+   "Finding": "Cả hai query dùng mặc định của thư viện (gcTime 5 phút, refetchOnReconnect true). TST fetch khi block bắt đầu: một HomeFeed mới hiển thị trang skeleton (năm service rỗng, ba dòng loading) cho đến khi",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Home",
    "Id": "F4",
    "Element": "Dialog_GoExternalApp (UBTConnect_Utils) / trạng thái mở",
-   "Finding": "TST đặt icon trong một container có \"text-align: center\" (:281) và nhãn xác nhận trong một CustomContainer với display flex, row và các item căn giữa (:447-450). React bỏ cả hai, và component của nó"
+   "Finding": "TST đặt icon trong một container có \"text-align: center\" (:281) và nhãn xác nhận trong một CustomContainer với display flex, row và các item căn giữa (:447-450). React bỏ cả hai, và component của nó",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_AssembleFlow",
    "Id": "F1",
    "Element": "ScreenBlock_Assemble_Filter và Assemble_FilterSheet, DIV_StickyBottom",
-   "Finding": "TST tạo hiệu ứng khi hiện và ẩn thanh Cancel / Apply cố định (`animate: true`); React mount và unmount thanh này mà không có hiệu ứng (dòng 151, 152)"
+   "Finding": "TST tạo hiệu ứng khi hiện và ẩn thanh Cancel / Apply cố định (`animate: true`); React mount và unmount thanh này mà không có hiệu ứng (dòng 151, 152)",
+   "Status": "rút lại sau khi đọc lại TST 2026-10-27",
+   "StatusEn": "no fix: finding withdrawn 2026-10-27 (`fixes/G1-content.md`): the runtime Container.render never reads `animate` (`OutSystemsReactWidgets.js`, Container), so TST shows and hides the bar without a transition; React does the same"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_LDMEventsFlow",
    "Id": "F1",
    "Element": "EmailTarget, tiêu đề trang (dòng 002)",
-   "Finding": "TST đặt tiêu đề trang \"EmailTarget\" (`OutSystemsReactView.js:7`). React giữ \"UBTConnect\" từ `app/index.html:6`."
+   "Finding": "TST đặt tiêu đề trang \"EmailTarget\" (`OutSystemsReactView.js:7`). React giữ \"UBTConnect\" từ `app/index.html:6`.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_LDMEventsFlow",
    "Id": "F2",
    "Element": "ScreenBlock_Household_Email, OnReady (dòng 035, 094)",
-   "Finding": "Trên một view được khôi phục từ cache, TST đặt Subject và Message thành \"\" và IsChange thành False. React mount lại trang, nên Subject lại hiển thị InitialEmailSubject. Khác biệt chỉ thấy được khi Initial"
+   "Finding": "Trên một view được khôi phục từ cache, TST đặt Subject và Message thành \"\" và IsChange thành False. React mount lại trang, nên Subject lại hiển thị InitialEmailSubject. Khác biệt chỉ thấy được khi Initial",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/B-restore.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F3",
    "Element": "LDM_MyEvents_V2 / OnHandle_SwipeUp",
-   "Finding": "Vuốt lên trên timeline rỗng (MT :737-760) sẽ tải một khoảng thời gian cũ hơn (ME :2335-2368). Chưa port; không có quyết định nào ghi nhận việc bỏ phần này."
+   "Finding": "Vuốt lên trên timeline rỗng (MT :737-760) sẽ tải một khoảng thời gian cũ hơn (ME :2335-2368). Chưa port; không có quyết định nào ghi nhận việc bỏ phần này.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F4",
    "Element": "EventCard_Guests / OnHandle_ClickedEmail",
-   "Finding": "Khi offline, TST hiển thị \"Please check your network connection and try again\" (EG :867); React return mà không có thông báo."
+   "Finding": "Khi offline, TST hiển thị \"Please check your network connection and try again\" (EG :867); React return mà không có thông báo.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F5",
    "Element": "LDM_EventDetail_V2 / OnHandle_ContactHost_Call",
-   "Finding": "TST đặt `ContactPopupData.EntityTypeId = Connect_Entity2.household` (ED :2360); `hostContactPopupData` bỏ trường này còn `ContactPopup.tsx:124` lại đọc nó."
+   "Finding": "TST đặt `ContactPopupData.EntityTypeId = Connect_Entity2.household` (ED :2360); `hostContactPopupData` bỏ trường này còn `ContactPopup.tsx:124` lại đọc nó.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F4",
    "Element": "MessageList / Close_Filter_Icon",
-   "Finding": "Icon gọi OnClick_CloseSearchAndFilter; TST gọi ToggleShowFilters. Kết quả state giống nhau, nhưng React còn chạy FocusCursor và focus vào input tìm kiếm khi đang có từ khóa tìm kiếm."
+   "Finding": "Icon gọi OnClick_CloseSearchAndFilter; TST gọi ToggleShowFilters. Kết quả state giống nhau, nhưng React còn chạy FocusCursor và focus vào input tìm kiếm khi đang có từ khóa tìm kiếm.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F5",
    "Element": "MessageDetail / phần tóm tắt của NotificationDetailBlock, icon khẩn cấp",
-   "Finding": "Phần tóm tắt render bên trong một marker mà không có inline style của nó; icon khẩn cấp không render gì. View đã biên dịch chứa cả hai phần tử."
+   "Finding": "Phần tóm tắt render bên trong một marker mà không có inline style của nó; icon khẩn cấp không render gì. View đã biên dịch chứa cả hai phần tử.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitAdminFlow",
    "Id": "F2",
    "Element": "ScreenBlock_AdminEventDetail / handler OnHandle_ScanCode",
-   "Finding": "TST tìm \"Failed to deserialize JSON\" với ignoreCase True (EB:1150). React dùng `includes` có phân biệt hoa thường. Một thông báo có kiểu chữ hoa thường khác sẽ đi tới UnknownError thay vì \"Unable to read QR c"
+   "Finding": "TST tìm \"Failed to deserialize JSON\" với ignoreCase True (EB:1150). React dùng `includes` có phân biệt hoa thường. Một thông báo có kiểu chữ hoa thường khác sẽ đi tới UnknownError thay vì \"Unable to read QR c",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitAdminFlow",
    "Id": "F3",
    "Element": "ScreenBlock_AdminEventDetail / GetScanEventQRCode",
-   "Finding": "TST đặt AdminMemberId = IntegerToLongInteger(TextToInteger(MemberId)) (EB:1018). React dùng TextToLongInteger. Giá trị là như nhau với id nằm trong phạm vi Integer."
+   "Finding": "TST đặt AdminMemberId = IntegerToLongInteger(TextToInteger(MemberId)) (EB:1018). React dùng TextToLongInteger. Giá trị là như nhau với id nằm trong phạm vi Integer.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F4",
    "Element": "OrbitLanding và AccommodationHost: OnReady trên view được khôi phục",
-   "Finding": "TST kết thúc OnReady trên mọi view được khôi phục (`ScreenBlock_OrbitLanding :1669` show). React chỉ kết thúc khi dữ liệu đã được fetch, nếu không thì fetch lại (comment \"F40\"; không có quyết định được ghi nhận)."
+   "Finding": "TST kết thúc OnReady trên mọi view được khôi phục (`ScreenBlock_OrbitLanding :1669` show). React chỉ kết thúc khi dữ liệu đã được fetch, nếu không thì fetch lại (comment \"F40\"; không có quyết định được ghi nhận).",
+   "Status": "giữ theo quyết định",
+   "StatusEn": "no fix: decision W34 (a) of 2026-10-22 kept by the user on 2026-10-27 (`decisions.md` Legacy_OrbitEventsFlow F4): the port re-fetches on a restored view without data; rows differs by W34"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F5",
    "Element": "MilestoneDetail: lỗi GetGmpMilestoneHost",
-   "Finding": "Handler của TST: IsFetchingData = False, raise UnknownError (`:1156-1202`). React không có catch: rejection đi tới flow handler và skeleton vẫn còn đó."
+   "Finding": "Handler của TST: IsFetchingData = False, raise UnknownError (`:1156-1202`). React không có catch: rejection đi tới flow handler và skeleton vẫn còn đó.",
+   "Status": "rút lại sau khi đọc lại TST 2026-10-27",
+   "StatusEn": "no fix: finding withdrawn 2026-10-27 (`fixes/B-restore.md`): TST runs OnAfterFetch only after a successful fetch (`ScreenBlock_MilestoneWrapper :1135-1143`), so a failed call keeps the skeleton and goes to the flow handler; React does the same (`flowState.ts:112`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F6",
    "Element": "EmailContact: GetTextAreaLineHeight",
-   "Finding": "TST chia cho clientWidth của container subject (`CF:1577-1584`); React chia cho clientWidth của body. Số dòng của subject chỉ đọc có thể khác nhau."
+   "Finding": "TST chia cho clientWidth của container subject (`CF:1577-1584`); React chia cho clientWidth của body. Số dòng của subject chỉ đọc có thể khác nhau.",
+   "Status": "rút lại sau khi đọc lại TST 2026-10-27",
+   "StatusEn": "no fix: finding withdrawn 2026-10-27 (`fixes/G2-orbit-ldm.md`): the TST node reads `document.querySelector(\"body\").clientWidth - 20` (`ScreenBlock_ContactForm :1579-1581`); React `EmailContact/actions.ts:19-20` does the same"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F8",
    "Element": "EventBooklet: EventBooklet_MembersItem, tên và host",
-   "Finding": "TST: hai container có event OnClick (Click_Member, Click_Host). Widget Container của platform khi đó đặt inline style `cursor: pointer` (`OutSystemsReactWidgets.js:1`, render của Container)."
+   "Finding": "TST: hai container có event OnClick (Click_Member, Click_Host). Widget Container của platform khi đó đặt inline style `cursor: pointer` (`OutSystemsReactWidgets.js:1`, render của Container).",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitQRCodeFlow",
    "Id": "F1",
    "Element": "QRCodeGenerate / tiêu đề màn hình",
-   "Finding": "Runtime đặt `document.title` thành \"QRCodeGenerate\" khi màn hình mount (`OutSystemsReactView.js:7`, `S:166-168`). Không có mã nào của app React đặt `document.title`."
+   "Finding": "Runtime đặt `document.title` thành \"QRCodeGenerate\" khi màn hình mount (`OutSystemsReactView.js:7`, `S:166-168`). Không có mã nào của app React đặt `document.title`.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitQRCodeFlow",
    "Id": "F2",
    "Element": "ScreenBlock_GenerateQRCode / ảnh thành viên",
-   "Finding": "Khi UserSignedURL rỗng, TST render `<img class=\"orbit-member-photo\" src=\"\">` (`OutSystemsReactWidgets.js:2`, không có ảnh mặc định tại `B:337-339`). React render ảnh mà không có `src`. Trong demo"
+   "Finding": "Khi UserSignedURL rỗng, TST render `<img class=\"orbit-member-photo\" src=\"\">` (`OutSystemsReactWidgets.js:2`, không có ảnh mặc định tại `B:337-339`). React render ảnh mà không có `src`. Trong demo",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/D-forms.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_Share",
    "Id": "F1",
    "Element": "ConnectShare / Action_Redirect",
-   "Finding": "TST mở HouseholdDetails, OneSchoolGlobalDetails, FeedItemDetail và SupperMeeting_Details với `TransitionAnimation.None` (ConnectShare.mvc.js:461-485). React gọi `navigate(path, params)` mà không có"
+   "Finding": "TST mở HouseholdDetails, OneSchoolGlobalDetails, FeedItemDetail và SupperMeeting_Details với `TransitionAnimation.None` (ConnectShare.mvc.js:461-485). React gọi `navigate(path, params)` mà không có",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_Share",
    "Id": "F2",
    "Element": "LegacyShareObject / OnInitialize",
-   "Finding": "TST kết thúc OnInitialize bất đồng bộ trước khi runtime tạo view (OutSystems.js:17). Vì vậy ScreenBlock_ShareObject bắt đầu với `DisplayAge` của người dùng. React chạy OnInitialize trong một effect của page sau khi"
+   "Finding": "TST kết thúc OnInitialize bất đồng bộ trước khi runtime tạo view (OutSystems.js:17). Vì vậy ScreenBlock_ShareObject bắt đầu với `DisplayAge` của người dùng. React chạy OnInitialize trong một effect của page sau khi",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Notes",
    "Id": "F1",
    "Element": "NoteCard_List `NoteCardList_OnScrollEnding`; Notes `Notes_CardListOnLoadMore`",
-   "Finding": "List của OSWidgets chỉ bắn `onScrollEnding` khi cuộn xuống, trong phạm vi `getInfiniteScrollThreshold` tính từ cuối, và không bắn khi handler đang chạy (`OutSystemsReactWidgets.js:1`, `tryFireScrollEnding"
+   "Finding": "List của OSWidgets chỉ bắn `onScrollEnding` khi cuộn xuống, trong phạm vi `getInfiniteScrollThreshold` tính từ cuối, và không bắn khi handler đang chạy (`OutSystemsReactWidgets.js:1`, `tryFireScrollEnding",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/F-lists.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "_libraries",
    "Id": "F2",
    "Element": "ShareSheet Handler_SearchResultItemOnSelect",
-   "Finding": "Ở mức 50 người nhận, TST hiển thị \"You can select up to 50 recipients only.\" với FeedbackMessage_AutoClose; React hiển thị một thông báo lỗi thường và thông báo đó vẫn mở."
+   "Finding": "Ở mức 50 người nhận, TST hiển thị \"You can select up to 50 recipients only.\" với FeedbackMessage_AutoClose; React hiển thị một thông báo lỗi thường và thông báo đó vẫn mở.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "_libraries",
    "Id": "F3",
    "Element": "ShareSheet Action_SubmitShare",
-   "Finding": "TST raise lại NotRegistered tới flow handler (`ShareSheet.mvc.js:3127-3136`); React hiển thị \"Share failed. Please try again.\" cho mọi lỗi."
+   "Finding": "TST raise lại NotRegistered tới flow handler (`ShareSheet.mvc.js:3127-3136`); React hiển thị \"Share failed. Please try again.\" cho mọi lỗi.",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "_libraries",
    "Id": "F4",
    "Element": "HorizontalTagList TagToggleToggle",
-   "Finding": "React đọc `IsSelected ?? true`: một tag không có `IsSelected` được tính là đã chọn trong guard bắt buộc chọn và trong việc xóa lựa chọn ở chế độ chọn một. Trên TST, Boolean mặc định là False."
+   "Finding": "React đọc `IsSelected ?? true`: một tag không có `IsSelected` được tính là đã chọn trong guard bắt buộc chọn và trong việc xóa lựa chọn ở chế độ chọn một. Trên TST, Boolean mặc định là False.",
+   "Status": "rút lại sau khi đọc lại TST 2026-10-27",
+   "StatusEn": "no fix: finding withdrawn 2026-10-27 (`fixes/D-forms.md`): the TST TagRec default for IsSelected is True (`UBTConnectLibrary.model.js:1269-1271`); React `?? true` matches"
   },
   {
    "Severity": "minor",
    "Flow": "_shared",
    "Id": "F1",
    "Element": "GetShareType_FromEntity, IsMyHousehold",
-   "Finding": "TST kiểm tra IsMyHousehold sau tất cả các trường hợp entity (UC:11100-11215): một Household luôn được chia sẻ dưới dạng Household, và MyHousehold chỉ là kết quả khi không có trường hợp entity nào khớp. React kiểm tra nó bên trong trường hợp Household"
+   "Finding": "TST kiểm tra IsMyHousehold sau tất cả các trường hợp entity (UC:11100-11215): một Household luôn được chia sẻ dưới dạng Household, và MyHousehold chỉ là kết quả khi không có trường hợp entity nào khớp. React kiểm tra nó bên trong trường hợp Household",
+   "Status": "đã sửa 2026-10-27",
+   "StatusEn": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "info",
    "Flow": "App_Common",
    "Id": "F4",
    "Element": "Login / OnInitialize, In_IsFromResetPIN",
-   "Finding": "TST chạy Login(False), tức đăng nhập qua nhà cung cấp danh tính, rồi AppManager_Logout (BR-UBTCON-302). React chạy `signOut` trước, rồi đăng nhập mock. `signOut` là Connect_Logout: nó còn chạy Cache_Invalidat"
+   "Finding": "TST chạy Login(False), tức đăng nhập qua nhà cung cấp danh tính, rồi AppManager_Logout (BR-UBTCON-302). React chạy `signOut` trước, rồi đăng nhập mock. `signOut` là Connect_Logout: nó còn chạy Cache_Invalidat",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Common",
    "Id": "F5",
    "Element": "OnException của flow App_Common / AllExceptions",
-   "Finding": "TST chỉ gọi ShowExceptionMessage cho exception không phải system exception, và throw lại system exception cho handler của runtime (flow controller :91-107). React gửi mọi lỗi còn lại tới `showExceptionMessag"
+   "Finding": "TST chỉ gọi ShowExceptionMessage cho exception không phải system exception, và throw lại system exception cho handler của runtime (flow controller :91-107). React gửi mọi lỗi còn lại tới `showExceptionMessag",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Common",
    "Id": "F6",
    "Element": "Get_IsUnsupportedVersion (dùng chung)",
-   "Finding": "React trả về hằng số: Browser chỉ True trong scenario mock của U16. Shell lưu các phiên bản tối thiểu của SynchAppContext (`app.minNativeVersion`, `app.minWebViewChrome`, `app.minWebViewSafa"
+   "Finding": "React trả về hằng số: Browser chỉ True trong scenario mock của U16. Shell lưu các phiên bản tối thiểu của SynchAppContext (`app.minNativeVersion`, `app.minWebViewChrome`, `app.minWebViewSafa",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Common_Blocks",
    "Id": "F1",
    "Element": "App_NotificationIcon / `LocalNotifications`",
-   "Finding": "TST bắt đầu ở -1 (skeleton) và đặt số chưa đọc trong OnReady. React bắt đầu ngay với số chưa đọc."
+   "Finding": "TST bắt đầu ở -1 (skeleton) và đặt số chưa đọc trong OnReady. React bắt đầu ngay với số chưa đọc.",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Menu",
    "Id": "F2",
    "Element": "PINBiometricsMenu / route meta (dòng 054)",
-   "Finding": "Doc comment của `RouteMeta.lock` nói rằng màn hình không có CommonUI sẽ nhận `ignore`. PINBiometricsMenu không có CommonUI và nhận `enforce`. Code là đúng: kiểm tra PIN lúc app start của TST áp dụng"
+   "Finding": "Doc comment của `RouteMeta.lock` nói rằng màn hình không có CommonUI sẽ nhận `ignore`. PINBiometricsMenu không có CommonUI và nhận `enforce`. Code là đúng: kiểm tra PIN lúc app start của TST áp dụng",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_PIN",
    "Id": "F2",
    "Element": "PINRegister / OnClick_BackToLogin",
-   "Finding": "TST gọi `AppManager_Logout`. React gọi `signOut` (`Connect_Logout`): nó còn chạy `Cache_InvalidateEverything` và việc xóa memory cache và local entity theo ADR-10. Người dùng không thấy khác biệt"
+   "Finding": "TST gọi `AppManager_Logout`. React gọi `signOut` (`Connect_Logout`): nó còn chạy `Cache_InvalidateEverything` và việc xóa memory cache và local entity theo ADR-10. Người dùng không thấy khác biệt",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_PIN",
    "Id": "F3",
    "Element": "PINUnlock / Block_PINUnlockUnlock",
-   "Finding": "React thêm một nhánh HomeFeed khi `LastURL` rỗng. TST điều hướng tới URL rỗng (BR-UBTCON-953). Code trích dẫn \"Q1 answered by the user: B\"; CR-PINUnlock-1 gọi cùng nhánh đó là \"Q1 option A, pe"
+   "Finding": "React thêm một nhánh HomeFeed khi `LastURL` rỗng. TST điều hướng tới URL rỗng (BR-UBTCON-953). Code trích dẫn \"Q1 answered by the user: B\"; CR-PINUnlock-1 gọi cùng nhánh đó là \"Q1 option A, pe",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_PIN",
    "Id": "F4",
    "Element": "Block_PINUnlock_ContentWrapper / Pincode_Unlock OnUnlockSuccess",
-   "Finding": "TST raise `PinUnlockSuccess`, rồi đặt `PIN_HasUnlocked` thành True và `PIN_IsLocked` thành False. React đặt hai flag trong `verifyPin`, rồi raise event. Báo cáo này không tìm thấy ảnh hưởng nào nhìn thấy được."
+   "Finding": "TST raise `PinUnlockSuccess`, rồi đặt `PIN_HasUnlocked` thành True và `PIN_IsLocked` thành False. React đặt hai flag trong `verifyPin`, rồi raise event. Báo cáo này không tìm thấy ảnh hưởng nào nhìn thấy được.",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_PIN",
    "Id": "F5",
    "Element": "Block_PINRegister_ContentWrapper / Pincode_Register",
-   "Finding": "`AppManager_SetPIN_IsRegistering` (True khi initialize, False khi destroy) chưa được port. Nơi đọc duy nhất là HandleOnResumeOpenLink, vốn chỉ chạy trong app native (U14)."
+   "Finding": "`AppManager_SetPIN_IsRegistering` (True khi initialize, False khi destroy) chưa được port. Nơi đọc duy nhất là HandleOnResumeOpenLink, vốn chỉ chạy trong app native (U14).",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Policies",
    "Id": "F5",
    "Element": "AcceptPendingPolicies / AcceptPendingPoliciesAcceptedAll",
-   "Finding": "TST đọc bản ghi bằng `Cache_UserInfo_Get`. React gọi `getUserInformation()` (GetUserInformation_Wrapper): nó còn đặt `App_Policies_HasPolicyToAccept` từ bản ghi trong cache (True tại thời điểm đó"
+   "Finding": "TST đọc bản ghi bằng `Cache_UserInfo_Get`. React gọi `getUserInformation()` (GetUserInformation_Wrapper): nó còn đặt `App_Policies_HasPolicyToAccept` từ bản ghi trong cache (True tại thời điểm đó",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Policies",
    "Id": "F6",
    "Element": "Policy_Custom_AcceptPendingPolicies / List",
-   "Finding": "Danh sách là một `div` viết tay, không phải `OSList` dùng chung (P-LIST). Nó không có class ` list-loading` hay ` list-error` khi GetPendingPolicies đang chạy hoặc thất bại. Không có quy tắc CSS nào dùng các class này."
+   "Finding": "Danh sách là một `div` viết tay, không phải `OSList` dùng chung (P-LIST). Nó không có class ` list-loading` hay ` list-error` khi GetPendingPolicies đang chạy hoặc thất bại. Không có quy tắc CSS nào dùng các class này.",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Profile",
    "Id": "F3",
    "Element": "Profile / Action_FormatAddress",
-   "Finding": "TST truyền đoạn text literal `\\r\\n` (4 ký tự) cho Replace: text literal của OutSystems không có escape sequence (Profile.mvc.js:3773). Các ký tự CR LF của AddressFormat vẫn còn trong FormattedAddress."
+   "Finding": "TST truyền đoạn text literal `\\r\\n` (4 ký tự) cho Replace: text literal của OutSystems không có escape sequence (Profile.mvc.js:3773). Các ký tự CR LF của AddressFormat vẫn còn trong FormattedAddress.",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Profile",
    "Id": "F4",
    "Element": "Profile / OnClick_Save",
-   "Finding": "Hai nhánh biên có khác biệt. (1) React đặt AccountForm và AccountFormOriginal thành form ở trạng thái lúc người dùng bấm Save. TST gán AccountForm hiện thời sau lệnh gọi, nên các chỉnh sửa được gõ trong lúc"
+   "Finding": "Hai nhánh biên có khác biệt. (1) React đặt AccountForm và AccountFormOriginal thành form ở trạng thái lúc người dùng bấm Save. TST gán AccountForm hiện thời sau lệnh gọi, nên các chỉnh sửa được gõ trong lúc",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Profile",
    "Id": "F5",
    "Element": "Profile / OnClick_Save, ChangedVisibilityPreferences",
-   "Finding": "React đọc entry của cache bằng `getUserInformation` (GetUserInformation_Wrapper). Wrapper đó chờ bước app-start và ghi `Client.App_Policies_HasPolicyToAccept`. TST gọi Cache_UserIn"
+   "Finding": "React đọc entry của cache bằng `getUserInformation` (GetUserInformation_Wrapper). Wrapper đó chờ bước app-start và ghi `Client.App_Policies_HasPolicyToAccept`. TST gọi Cache_UserIn",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Profile",
    "Id": "F6",
    "Element": "Profile / comment trong code",
-   "Finding": "`useProfile.ts:34-37` nói rằng màn hình không có OnReady; TST có OnReady → ScreenEvent_OnReady (Profile.mvc.js:3943-3970, 4091-4101). Các comment tại `ProfilePage.tsx:86`, `useProfile.ts:106-107, 13"
+   "Finding": "`useProfile.ts:34-37` nói rằng màn hình không có OnReady; TST có OnReady → ScreenEvent_OnReady (Profile.mvc.js:3943-3970, 4091-4101). Các comment tại `ProfilePage.tsx:86`, `useProfile.ts:106-107, 13",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Services",
    "Id": "F6",
    "Element": "Services / Handler_SortableListOnDragEnd, các exception handler",
-   "Finding": "TST đặt `isLoading` về False trước khi raise trong các handler CommunicationException và AllExceptions. React thì không. Không có đường đi UI nào chạm tới nó: nội dung không tương tác được khi `isLoading` là True."
+   "Finding": "TST đặt `isLoading` về False trước khi raise trong các handler CommunicationException và AllExceptions. React thì không. Không có đường đi UI nào chạm tới nó: nội dung không tương tác được khi `isLoading` là True.",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Services",
    "Id": "F7",
    "Element": "SortableList / OnParametersChanged",
-   "Finding": "TST chạy lại OnReady (SetupList) khi một input thay đổi. React chỉ chạy `setupList` khi mount. Các comment của `SortableList.tsx` và `SortableList_Draggable.tsx` nói \"OutSystems runs it once\"."
+   "Finding": "TST chạy lại OnReady (SetupList) khi một input thay đổi. React chỉ chạy `setupList` khi mount. Các comment của `SortableList.tsx` và `SortableList_Draggable.tsx` nói \"OutSystems runs it once\".",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "Bookmarks",
    "Id": "F3",
    "Element": "BookmarksByGroup, OnClick_BookmarkedItem (dòng 077)",
-   "Finding": "RememberFocusedScrollAnchor(CurrentListWidgetId, CurrentRowNumber, ObjectId) không được gọi. View cache lưu offset cuộn khi rời đi và khôi phục khi quay lại, nên dòng được bấm vẫn nằm trong vùng nhìn thấy"
+   "Finding": "RememberFocusedScrollAnchor(CurrentListWidgetId, CurrentRowNumber, ObjectId) không được gọi. View cache lưu offset cuộn khi rời đi và khôi phục khi quay lại, nên dòng được bấm vẫn nằm trong vùng nhìn thấy",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "Bookmarks",
    "Id": "F4",
    "Element": "BookmarksByGroup, PreloadListSource_Bookmarks (dòng 081)",
-   "Finding": "Việc preload cache chạy trong callback khôi phục (thời điểm OnInitialize), không phải tại event `dx-preload-list-source` của danh sách. Cùng điều kiện, cùng dữ liệu, không ảnh hưởng tới người dùng."
+   "Finding": "Việc preload cache chạy trong callback khôi phục (thời điểm OnInitialize), không phải tại event `dx-preload-list-source` của danh sách. Cùng điều kiện, cùng dữ liệu, không ảnh hưởng tới người dùng.",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "Calendar",
    "Id": "F4",
    "Element": "Embedded_MyEntertaining / log console",
-   "Finding": "TST ghi năm đoạn text `console.log` từ các callback của SDK và thông điệp `events:loaded`. React không ghi gì."
+   "Finding": "TST ghi năm đoạn text `console.log` từ các callback của SDK và thông điệp `events:loaded`. React không ghi gì.",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "ContactFlow",
    "Id": "F1",
    "Element": "ContactByEmailMember / OnApplicationEvent_EmailHost; ContactByEmailOrbitHelpdesk",
-   "Finding": "TST gửi AuditPayload_EmailHost (MilestoneId, EventId, EventTitle, HostName, Subject, Message) và AuditPayload_ContactHelpdesk (EventId, EventTitle, Subject, Message) dưới dạng JSON tới App Insights. React"
+   "Finding": "TST gửi AuditPayload_EmailHost (MilestoneId, EventId, EventTitle, HostName, Subject, Message) và AuditPayload_ContactHelpdesk (EventId, EventTitle, Subject, Message) dưới dạng JSON tới App Insights. React",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "Directory_Locality",
    "Id": "F4",
    "Element": "Statistics_TypedItem / In_ImageEntityTypeId (dòng 244)",
-   "Finding": "Mặc định của React là \"\". DEV và TST (`Statistics_TypedItem.mvc.js:31-32`) mặc định là Connect_Entity.Locality. Không nơi gọi nào của flow này dựa vào giá trị mặc định."
+   "Finding": "Mặc định của React là \"\". DEV và TST (`Statistics_TypedItem.mvc.js:31-32`) mặc định là Connect_Entity.Locality. Không nơi gọi nào của flow này dựa vào giá trị mặc định.",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "Directory_Photobook",
    "Id": "F3",
    "Element": "Photobook_Options_Player / OnParametersChanged (dòng 176, 202)",
-   "Finding": "React chỉ chạy kiểm tra khi In_IsFinalItem thay đổi. TST chạy nó mỗi khi có input thay đổi, kể cả In_IsShow. Trạng thái \"IsPlay True trên item cuối mà In_IsFinalItem không thay đổi\" xảy ra sau Repl"
+   "Finding": "React chỉ chạy kiểm tra khi In_IsFinalItem thay đổi. TST chạy nó mỗi khi có input thay đổi, kể cả In_IsShow. Trạng thái \"IsPlay True trên item cuối mà In_IsFinalItem không thay đổi\" xảy ra sau Repl",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "Home",
    "Id": "F3",
    "Element": "FeedBlock_Services / OnAfterFetch_GetServices, ForceAddService True",
-   "Finding": "Ô \"Add Service\" nhận iconId '' thay vì UBT_Icons2.AddCircle (\"connect-icon-add_circle\", `pack/references.md`). HomeFeed truyền ForceAddService False, nên không người dùng nào thấy ô này."
+   "Finding": "Ô \"Add Service\" nhận iconId '' thay vì UBT_Icons2.AddCircle (\"connect-icon-add_circle\", `pack/references.md`). HomeFeed truyền ForceAddService False, nên không người dùng nào thấy ô này.",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F6",
    "Element": "LDM_MyEvents_V2 / payload audit",
-   "Finding": "LogClickedEventAudit gửi EventHostId, EventName và EventDate từ danh sách Upcoming hoặc PastEvents (ME :2416-2455); OnHandle_HouseholdClicked gửi HouseholdId và HouseholdName (ME :1986). React gửi"
+   "Finding": "LogClickedEventAudit gửi EventHostId, EventName và EventDate từ danh sách Upcoming hoặc PastEvents (ME :2416-2455); OnHandle_HouseholdClicked gửi HouseholdId và HouseholdName (ME :1986). React gửi",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F7",
    "Element": "LDM_EventDetail_V2 / IsFetching, GetCoordinatorDetails",
-   "Finding": "IsFetching bắt đầu là True (TST là False cho đến OnReady, ED :52-54, :2011). Một lần GetCoordinatorDetails thất bại đặt DataFetchStatus 2 trên TST (`OutSystems.js:18`); React nuốt lỗi đó. View không đọc khác biệt nào trong hai"
+   "Finding": "IsFetching bắt đầu là True (TST là False cho đến OnReady, ED :52-54, :2011). Một lần GetCoordinatorDetails thất bại đặt DataFetchStatus 2 trên TST (`OutSystems.js:18`); React nuốt lỗi đó. View không đọc khác biệt nào trong hai",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F7",
    "Element": "ViewDocuments: Action_OpenDoc",
-   "Finding": "React còn đánh dấu một tài liệu là đã xem khi DocumentName không có phần mở rộng bằng DocName; TST chỉ so sánh tên có phần mở rộng (`:806`). Cả hai nơi gọi đều truyền phần mở rộng: không có ảnh hưởng nhìn thấy được."
+   "Finding": "React còn đánh dấu một tài liệu là đã xem khi DocumentName không có phần mở rộng bằng DocName; TST chỉ so sánh tên có phần mở rộng (`:806`). Cả hai nơi gọi đều truyền phần mở rộng: không có ảnh hưởng nhìn thấy được.",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "Legacy_Share",
    "Id": "F3",
    "Element": "ConnectShare / Dialog_AccessRestrictedAction_Legacy",
-   "Finding": "Page trả về null khi `IsRedirect` là True, nên hộp thoại đã đóng không có trong DOM. TST render hộp thoại bên ngoài If (ConnectShare.mvc.js:196-208). Không có ảnh hưởng nhìn thấy được: pop-up chỉ mở"
+   "Finding": "Page trả về null khi `IsRedirect` là True, nên hộp thoại đã đóng không có trong DOM. TST render hộp thoại bên ngoài If (ConnectShare.mvc.js:196-208). Không có ảnh hưởng nhìn thấy được: pop-up chỉ mở",
+   "Status": "",
+   "StatusEn": ""
   },
   {
    "Severity": "info",
    "Flow": "_shared",
    "Id": "F2",
    "Element": "OnApplicationReady, AddCustomHeadersJS",
-   "Finding": "TST thêm `link rel=\"preconnect\"` và `link rel=\"dns-prefetch\"` vào `document.head` cho base URL của MyEntertaining và Feed từ Sync_Info_Main (UC:15512-15528). React bỏ hai URL này (`api/app/types"
+   "Finding": "TST thêm `link rel=\"preconnect\"` và `link rel=\"dns-prefetch\"` vào `document.head` cho base URL của MyEntertaining và Feed từ Sync_Info_Main (UC:15512-15528). React bỏ hai URL này (`api/app/types",
+   "Status": "",
+   "StatusEn": ""
   }
  ],
  "unclear": [
@@ -3044,18 +3274,6 @@
    "Row": "Directory_Photobook-105",
    "Element": "Strings \"Carousel Toggle Drag Error - Code:\", \"",
    "Question": "Message:\", \""
-  },
-  {
-   "Flow": "Directory_Updates",
-   "Row": "Directory_Updates-073",
-   "Element": "Handler_OnClickUpdateItem: CaptureScrollPosition (JS)",
-   "Question": "Q1 được trả lời (b), rồi (a) (quyết định của chủ dự án 2026-10-27, Directory_Updates Q1 (b)). Capture sẽ chốt nó (phiên TST chỉ đọc và app React, cùng các bước):"
-  },
-  {
-   "Flow": "Directory_Updates",
-   "Row": "Directory_Updates-074",
-   "Element": "Handler_OnClickUpdateItem: RememberFocusedScrollAnchor",
-   "Question": "Cùng capture với dòng 073 (quyết định của chủ dự án 2026-10-27, Directory_Updates Q1 (b)). RememberFocusedScrollAnchor (NavigationHandler) không có file TST trong survey;"
   }
  ],
  "decisions": [
@@ -3063,7 +3281,7 @@
    "flow": "App_Common",
    "id": "Q1",
    "question": "\"Forgot Password?\" làm gì trong giai đoạn mock (F2)?",
-   "answer": "(a) Giữ nguyên là không có action, và ghi nhận dưới D3 — (a): trang reset thật không được migrate, và (b) cần một đoạn text toast mà không capture nào cho thấy.",
+   "answer": "Đảo lại 2026-10-27: build Forgot Password đầy đủ như TST (spinner IsResettingPassword, AppManager_Login(True, ConfirmationDialog_ResetPassword), chính sách reset-password của identity provider của bản build, callback IdP_OnResetPassword với toast thành công). Câu trả lời (a) trước đó ngày 2026-10-27 bị thay thế.",
    "by": "user",
    "date": "2026-10-27"
   },
@@ -3302,8 +3520,8 @@
   {
    "flow": "Directory_Updates",
    "id": "Q1",
-   "question": "Khi Back về Updates_SingleList, bạn có chấp nhận offset cuộn của view cache trong shell thay cho cơ chế anchor của TST không (dòng 073, 074, 095; F2)?",
-   "answer": "(b) So sánh cả hai trên TST trước (mở một update, quay lại, so sánh vị trí; chỉ đọc) — (b), rồi (a) khi các vị trí bằng nhau.",
+   "question": "Khi Back về Updates_SingleList, anh có chấp nhận scroll offset của view cache shell thay cho anchor của TST (F2)?",
+   "answer": "User 2026-10-27: port đầy đủ việc lưu và khôi phục scroll anchor (CaptureScrollPosition, RememberFocusedScrollAnchor, GetFocusedScrollAnchorOnBack, ScrollFix) như TST. Trước đó: capture ngày 2026-10-27 với write MarkAsRead được cho phép một lần.",
    "by": "user",
    "date": "2026-10-27"
   },
@@ -3529,6 +3747,22 @@
    "question": "Giá trị trên TST của LaunchDarkly flag `Mobile-Directory-list-virtualization` là gì?",
    "answer": "Đã chốt bằng capture chỉ đọc ngày 2026-10-27: flag Mobile-Directory-list-virtualization là một item trong PermissionList của ActionAppManager_SynchAppContext và được đánh giá là true trên TST (không có request LaunchDarkly nào); hằng số của React bằng giá trị đó. Việc đọc trực tiếp sẽ có cùng với endpoint flag (infra-gaps §6). Giá trị đã được thêm vào flag-values-tst.json.",
    "by": "code",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_OrbitEventsFlow",
+   "id": "F4",
+   "question": "OrbitLanding và AccommodationHost: OnReady trên view restore không có dữ liệu (F4)?",
+   "answer": "(a) Giữ quyết định W34 (a) ngày 2026-10-22: trên view restore chưa có dữ liệu, OrbitLanding và AccommodationHost gọi lại (chỉ đọc); TST giữ skeleton (lỗi race). Rows A030 và J008 là differs theo W34.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Policies",
+   "id": "F2",
+   "question": "Query pending-policies: networkMode nào (F2)?",
+   "answer": "(a) Giữ networkMode 'always' cho query pending-policies: gọi lúc offline thất bại ngay và hiện thông báo mất kết nối như TST; refetchOnReconnect false. Các query feed và member giữ 'online'.",
+   "by": "user",
    "date": "2026-10-27"
   }
  ]
