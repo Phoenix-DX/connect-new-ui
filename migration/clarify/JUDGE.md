@@ -69,6 +69,8 @@ the KB, `migration/clarify/.dump/`, the MCP (the orchestrator's review pass call
 ## Way of work
 
 - Start every shell command with `cd /Users/khaitruong/Projects/connect-new && `. Use absolute paths.
+- Do not dump a whole TST file into your scratch folder and read it back. Use `tst_source.py grep "<regex>" <file>`
+  to find the lines, then `tst_source.py show <file> | sed -n 'A,Bp'` for the range you need.
 - Read `draft.json` and `notes.md` in one command. Read the KB pages in one command. Read a pack section only when
   a row needs its context.
 - After you write a file, check it with `wc -l`, the lint and the row count only. Do not print the file back.

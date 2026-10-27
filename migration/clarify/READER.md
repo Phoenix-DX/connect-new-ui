@@ -67,6 +67,8 @@ Areas: identity, data, ui, actions, validations, logic, strings. One row per ite
 ## Way of work
 
 - Start every shell command with `cd /Users/khaitruong/Projects/connect-new && `. Use absolute paths.
+- Do not dump a whole TST file into your scratch folder and read it back. Use `tst_source.py grep "<regex>" <file>`
+  to find the lines, then `tst_source.py show <file> | sed -n 'A,Bp'` for the range you need.
 - Use your own scratch folder: `/private/tmp/claude-501/-Users-khaitruong-Projects-connect-new/<session>/scratchpad/<Flow>/`
   (other agents run in parallel; never write outside your folder).
 - Write `draft.json` and `notes.md` into `migration/clarify/flows/<Flow>/` with one command each (`cat > file
