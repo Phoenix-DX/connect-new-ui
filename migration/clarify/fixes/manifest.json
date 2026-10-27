@@ -123,7 +123,7 @@
   "group": "",
   "date": "2026-10-27",
   "status": "no-fix",
-  "reason": "decision W34 (a) of 2026-10-22 (`migration/refactor/auto-decisions-2026-10-22.md`, page-template.md) keeps the re-fetch on a restored view without data; rows become differs by W34"
+  "reason": "decision W34 (a) of 2026-10-22 kept by the user on 2026-10-27 (`decisions.md` Legacy_OrbitEventsFlow F4): the port re-fetches on a restored view without data; rows differs by W34"
  },
  {
   "flow": "App_Profile",

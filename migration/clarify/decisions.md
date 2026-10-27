@@ -27,6 +27,7 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 |---|---|---|---|
 | Q1 | Fact for the review pass: is the `Key` of `Get_MemoryCacheKey_UniqueKey` (UBTConnect_Utils) equal to `Client.UniqueCacheKey`? | (a) Read the action with the MCP (`getClientAction`, UBTConnect_Utils) in the review pass — (a): one MCP call settles it. | user, 2026-10-27 |
 | Q2 | Keep the device id of `AcceptPolicies` in memory, or store it in `localStorage["UUID"]` as TST does (F4)? | (a) Store it in `localStorage["UUID"]` as TST does, and record the decision — (a): the server gets the same device id as from the original app. | user, 2026-10-27 |
+| F2 |  | (a) Keep networkMode 'always' on the pending-policies query: a call made offline fails at once and the communication message shows, as on TST; refetchOnReconnect false. The feed and member queries keep 'online'. | user, 2026-10-27 |
 | C4 |  | Follow TST: store the policy-acceptance device id in localStorage["UUID"] (one id per browser). Finding F4 stands; build it. Row 063. | user, 2026-10-27 |
 
 ## Home (G1)
@@ -148,6 +149,7 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 | Q2 | OrbitLanding "View Passport details" (F3): follow TST and remove it, or keep the DEV-only control? | (a) Follow TST: remove the DEV-only passport control, the event NavigateTo_PassportScan and its handler from OrbitLanding. Note for later comparison: the control and the screen PassportScan exist on DEV (dev-ahead.md). | user, 2026-10-27 |
 | Q3 | MilestoneDetail (F2): build the five other milestone blocks from TST, or keep the placeholders? | (a) Build the five other milestone blocks (MealGuest, MealHost, MealHelper, AccommodationGuest, AccommodationHelper) from their TST files; recorded as build now. | user, 2026-10-27 |
 | Q4 | Review pass items, no user decision: A121 (EventBooklet variable defaults), B069 and B103 (the Type argument of CheckDirectoryAccess), J016-J018 (the internals of the OrbitLanding popups, the booklet blocks and the trans | Settled by the Orbit block pass of 2026-10-27 (review/orbit-blocks.md): J016 match, J017 partial (F8 minor), J018 match; A121 differs by decision C2; B069/B103 match (DirectoryAPIFilter.Member). No user decision needed. | code, 2026-10-27 |
+| F4 |  | (a) Keep decision W34 (a) of 2026-10-22: on a restored view without data, OrbitLanding and AccommodationHost call again (reads only); TST keeps the skeleton (a race defect). Rows A030 and J008 are differs by W34. | user, 2026-10-27 |
 
 ## Legacy_OrbitAdminFlow (G4)
 

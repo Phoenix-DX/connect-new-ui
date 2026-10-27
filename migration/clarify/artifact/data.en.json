@@ -2810,7 +2810,7 @@
    "Id": "F4",
    "Element": "OrbitLanding and AccommodationHost: OnReady on a restored view",
    "Finding": "TST ends OnReady on every restored view (`ScreenBlock_OrbitLanding :1669` show). React ends only when the data was fetched and fetches again otherwise (comment \"F40\"; no recorded decision).",
-   "Status": "no fix: decision W34 (a) of 2026-10-22 (`migration/refactor/auto-decisions-2026-10-22.md`, page-template.md) keeps the re-fetch on a restored view without data; rows become differs by W34"
+   "Status": "no fix: decision W34 (a) of 2026-10-22 kept by the user on 2026-10-27 (`decisions.md` Legacy_OrbitEventsFlow F4): the port re-fetches on a restored view without data; rows differs by W34"
   },
   {
    "Severity": "minor",
@@ -3632,6 +3632,22 @@
    "question": "What is the TST value of LaunchDarkly flag `Mobile-Directory-list-virtualization`?",
    "answer": "Settled by the read-only capture of 2026-10-27: the flag Mobile-Directory-list-virtualization is a PermissionList item of ActionAppManager_SynchAppContext and evaluates true on TST (no LaunchDarkly request); React's constant equals it. Reading it live comes with the flag endpoint (infra-gaps §6). Value added to flag-values-tst.json.",
    "by": "code",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_OrbitEventsFlow",
+   "id": "F4",
+   "question": "",
+   "answer": "(a) Keep decision W34 (a) of 2026-10-22: on a restored view without data, OrbitLanding and AccommodationHost call again (reads only); TST keeps the skeleton (a race defect). Rows A030 and J008 are differs by W34.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Policies",
+   "id": "F2",
+   "question": "",
+   "answer": "(a) Keep networkMode 'always' on the pending-policies query: a call made offline fails at once and the communication message shows, as on TST; refetchOnReconnect false. The feed and member queries keep 'online'.",
+   "by": "user",
    "date": "2026-10-27"
   }
  ]

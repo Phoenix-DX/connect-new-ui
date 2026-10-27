@@ -14,8 +14,7 @@ Status on 2026-10-27, end of the fourth session: the clarify work is complete an
 Earlier status (third session): the clarify work was complete before the fix wave.
 
 Open items for the user:
-- Legacy_OrbitEventsFlow F4: keep decision W34 (a) (the rows are `differs` by W34) or reverse it (about 20 hooks).
-- App_Policies F2: `networkMode: 'always'` on the pending-policies query (group C), or `'online'` as feed and member.
+- Legacy_OrbitEventsFlow F4 and App_Policies F2: answered (a) on 2026-10-27 (keep W34; keep networkMode 'always').
 - Notes F2 (major, new from the capture): decide build or record.
 - Directory_Updates F2: closed 2026-10-27 (capture, then the scroll-anchor port by the user's decision).
 - Directory_Photobook rows 074/076/105: one recorded decision on the Splide move log (not ported, or ported via the

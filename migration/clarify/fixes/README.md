@@ -50,7 +50,6 @@ only; row 007 stays mock-only).
 
 ## Questions for the user
 
-- Legacy_OrbitEventsFlow F4: keep decision W34 (a) (recommended; the rows are `differs` by W34), or reverse it. A
-  reversal changes about 20 hooks and the page template guide.
-- App_Policies F2: group C set `networkMode: 'always'` (the report's fix): a call made offline fails at once with the
+- Legacy_OrbitEventsFlow F4: the user kept W34 (a) on 2026-10-27 (the rows are `differs` by W34).
+- App_Policies F2: the user kept `networkMode: 'always'` on 2026-10-27. A call made offline fails at once with the
   communication message, as on TST. The feed and member queries keep `'online'`.

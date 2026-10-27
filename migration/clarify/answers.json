@@ -702,5 +702,27 @@
   "by": "code",
   "date": "2026-10-27",
   "note": ""
+ },
+ "Legacy_OrbitEventsFlow:F4": {
+  "id": "F4",
+  "question": "",
+  "options": "",
+  "recommendation": "",
+  "flow": "Legacy_OrbitEventsFlow",
+  "answer": "(a) Keep decision W34 (a) of 2026-10-22: on a restored view without data, OrbitLanding and AccommodationHost call again (reads only); TST keeps the skeleton (a race defect). Rows A030 and J008 are differs by W34.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": ""
+ },
+ "App_Policies:F2": {
+  "id": "F2",
+  "question": "",
+  "options": "",
+  "recommendation": "",
+  "flow": "App_Policies",
+  "answer": "(a) Keep networkMode 'always' on the pending-policies query: a call made offline fails at once and the communication message shows, as on TST; refetchOnReconnect false. The feed and member queries keep 'online'.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": ""
  }
 }

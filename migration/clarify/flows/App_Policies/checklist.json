@@ -519,7 +519,7 @@
    "verdict": "match",
    "severity": "minor",
    "finding": "F2",
-   "note": "Fixed 2026-10-27 (fixes/C-errors.md). After the reset, Continue can stay enabled with no row ticked, and AcceptPolicies then gets an empty list.",
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md). User 2026-10-27 (F2 a): keep networkMode always. Fixed 2026-10-27 (fixes/C-errors.md). After the reset, Continue can stay enabled with no row ticked, and AcceptPolicies then gets an empty list.",
    "verified": "live",
    "fixed": "2026-10-27"
   },

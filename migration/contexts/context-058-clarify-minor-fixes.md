@@ -26,8 +26,7 @@
   (`CAPTURE-LOADING-FETCH-TIMEOUT-LEGACYSHAREOBJECT-ONINITIALIZE`), same family as the other loading-timeout entries.
 - User 2026-10-27: Forgot Password fully as TST (reversal of App_Common Q1 a). The MarkAsRead write allowed for
   the Directory_Updates capture only (the guard is read-only again). The scroll anchor ported fully.
-- Open for the user: Legacy_OrbitEventsFlow F4 (keep W34 a, recommended, or reverse it in about 20 hooks);
-  App_Policies F2 `networkMode: 'always'` (group C) or `'online'`.
+- User 2026-10-27: Legacy_OrbitEventsFlow F4 (a) keep W34; App_Policies F2 (a) keep `networkMode: 'always'`.
 
 ## Facts learned (evidence)
 - The runtime creates a screen's view after a handled OnInitialize error; only an unhandled error result leaves the

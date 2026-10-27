@@ -398,7 +398,7 @@
    "evidence": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js:1668",
    "tst": "present",
    "verdict": "differs",
-   "note": "Differs by decision W34 (a), 2026-10-22 (auto-decisions-2026-10-22.md; page-template.md): the port re-fetches on a restored view without data, reads only. React adds a condition (isEventsDataFetched) that TST does not have: TST ends on restore, React ends only when the events were fetched. | F4: React re-runs OnReady on a restored view when the events were not fetched (useOrbitLanding.ts:105, comment \"F40\"); TST ends on every restore (ScreenBlock_OrbitLanding :1669 show). No recorded decision names F40.",
+   "note": "User 2026-10-27 (F4 a): keep W34. Differs by decision W34 (a), 2026-10-22 (auto-decisions-2026-10-22.md; page-template.md): the port re-fetches on a restored view without data, reads only. React adds a condition (isEventsDataFetched) that TST does not have: TST ends on restore, React ends only when the events were fetched. | F4: React re-runs OnReady on a restored view when the events were not fetched (useOrbitLanding.ts:105, comment \"F40\"); TST ends on every restore (ScreenBlock_OrbitLanding :1669 show). No recorded decision names F40.",
    "verified": "code",
    "severity": "minor",
    "finding": "F4"
@@ -5729,7 +5729,7 @@
    "verified": "code",
    "severity": "minor",
    "finding": "F4",
-   "note": "Differs by decision W34 (a), 2026-10-22 (auto-decisions-2026-10-22.md; page-template.md): the port re-fetches on a restored view without data, reads only. F4: as OrbitLanding A030: React fetches again on a restored view without data; TST ends."
+   "note": "User 2026-10-27 (F4 a): keep W34. Differs by decision W34 (a), 2026-10-22 (auto-decisions-2026-10-22.md; page-template.md): the port re-fetches on a restored view without data, reads only. F4: as OrbitLanding A030: React fetches again on a restored view without data; TST ends."
   },
   {
    "id": "Legacy_OrbitEventsFlow-J009",
