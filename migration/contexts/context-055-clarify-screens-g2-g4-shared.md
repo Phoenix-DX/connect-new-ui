@@ -6,6 +6,8 @@
   - Verdicts: match 4186, partial 134, missing 164, differs 91, mock-only 157, n/a 494, unclear 29.
   - Findings: 3 blockers, 25 major, 55 minor, 29 info.
 - Blockers: ContactUsDetails signed-out form; HostSurvey wizard; MilestoneDetail builds AccommodationHost only.
+
+Method and records:
 - Method from G2 on: Sonnet reader (`draft.json` + `notes.md`) → Opus judge; Fable for the wrapper flows and the
   shared actions and libraries. Briefs: `READER.md`, `JUDGE.md`. Review notes: `review/G1…G4-review.md`.
 - The user answered the 43 questions of G1–G3 by accepting the recommendations (`decisions.md`, `answers.json`).
