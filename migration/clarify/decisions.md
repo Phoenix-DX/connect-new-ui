@@ -27,6 +27,7 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 |---|---|---|---|
 | Q1 | Fact for the review pass: is the `Key` of `Get_MemoryCacheKey_UniqueKey` (UBTConnect_Utils) equal to `Client.UniqueCacheKey`? | (a): one MCP call settles it. | user, 2026-10-27 |
 | Q2 | Keep the device id of `AcceptPolicies` in memory, or store it in `localStorage["UUID"]` as TST does (F4)? | (a): the server gets the same device id as from the original app. | user, 2026-10-27 |
+| C4 |  | Follow TST: store the policy-acceptance device id in localStorage["UUID"] (one id per browser). Finding F4 stands; build it. Row 063. | user, 2026-10-27 |
 
 ## Home (G1)
 
@@ -48,6 +49,7 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 | Id | Question | Answer | By, date |
 |---|---|---|---|
 | Q1 | Build the signed-out fields of ContactUsDetails (F1)? | (a): TST shows the fields, and the flow is blocked without them. | user, 2026-10-27 |
+| C1 |  | Keep the React behaviour: the validators trim the input before the check (TST does not trim). Rows 122, 123 are differs by this decision. | user, 2026-10-27 |
 | Q2 | Build the rating block ContactUs_Rate (F2)? | (a): the block is small, and three rules depend on it. | user, 2026-10-27 |
 | Q3 | Behaviour of IsEmailValid and IsPhoneNumberValid in module UBTConnectLibrary: not in the dump, no KB page, and no TST source in the survey | (a): the file is a static script, and the comparison is short. | user, 2026-10-27 |
 | Q4 | Fix the screen variables of DataAction_GetLocalityTimezone now (F3), or record the gap for the backend contract? | (a): the change is small, and the request then has the TST shape. | user, 2026-10-27 |
@@ -136,3 +138,15 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 | Q2 | Build the shared-item card of a Sharing message (F1) now or after the Legacy_Share report? | (a) | user, 2026-10-27 |
 | Q3 | Add an adaptive-cards renderer to the stack (F3)? | (a), after the stack confirmation | user, 2026-10-27 |
 | Q4 | For a private message of another user (F6): follow TST (toast, then show the message) or keep the React behaviour (toast, then back to the list)? | (a) | user, 2026-10-27 |
+
+## Legacy_OrbitEventsFlow (G4)
+
+| Id | Question | Answer | By, date |
+|---|---|---|---|
+| C2 |  | Keep the React behaviour: IsGuestView starts false until the guests fetch (TST starts true). Row A121 is differs by this decision. | user, 2026-10-27 |
+
+## _shared (X)
+
+| Id | Question | Answer | By, date |
+|---|---|---|---|
+| C3 |  | Finding accepted (major, F3): an app-start failure that is not a system exception must show the exception toast, as TST does. Build it. Row 193. | user, 2026-10-27 |

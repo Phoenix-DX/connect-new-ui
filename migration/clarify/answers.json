@@ -514,5 +514,49 @@
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
+ },
+ "App_Menu_ContactUs:C1": {
+  "id": "C1",
+  "question": "",
+  "options": "",
+  "recommendation": "",
+  "flow": "App_Menu_ContactUs",
+  "answer": "Keep the React behaviour: the validators trim the input before the check (TST does not trim). Rows 122, 123 are differs by this decision.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": "candidate finding a of review/followup.md"
+ },
+ "Legacy_OrbitEventsFlow:C2": {
+  "id": "C2",
+  "question": "",
+  "options": "",
+  "recommendation": "",
+  "flow": "Legacy_OrbitEventsFlow",
+  "answer": "Keep the React behaviour: IsGuestView starts false until the guests fetch (TST starts true). Row A121 is differs by this decision.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": "candidate finding b of review/followup.md"
+ },
+ "_shared:C3": {
+  "id": "C3",
+  "question": "",
+  "options": "",
+  "recommendation": "",
+  "flow": "_shared",
+  "answer": "Finding accepted (major, F3): an app-start failure that is not a system exception must show the exception toast, as TST does. Build it. Row 193.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": "candidate finding c of review/followup.md"
+ },
+ "App_Policies:C4": {
+  "id": "C4",
+  "question": "",
+  "options": "",
+  "recommendation": "",
+  "flow": "App_Policies",
+  "answer": "Follow TST: store the policy-acceptance device id in localStorage[\"UUID\"] (one id per browser). Finding F4 stands; build it. Row 063.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": "candidate finding d of review/followup.md; same as App_Policies Q2"
  }
 }
