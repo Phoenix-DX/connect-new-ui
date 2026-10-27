@@ -623,7 +623,9 @@ def write_flow(m, outdir, fl, roots, acts, srv, bl, shared_actions, users, use_c
     used_blocks = set()
     head = [f"# Pack of UI flow {fl} (DEV model, MCP dump of {os.path.basename(outdir)} 2026-10-27)", "",
             "Source: Service Studio (DEV) through the MCP, module UBTConnect. Reference only: TST is the source of truth.",
-            "Marks: [DISABLED] node, [DEAD BRANCH] If widget with a constant condition, 'unreachable nodes' list.", ""]
+            "Marks: [DISABLED] node, [DEAD BRANCH] If widget with a constant condition, [M<n>] merge node, 'unreachable nodes' list.",
+            "The dump omits some constant widget properties (MaxLength, Enabled=False, inline styles were missing on TST checks):",
+            "check the input constraints against the TST compiled code (`tst_source.py show <Screen>`).", ""]
     # screens.md
     out = head + [f"Screens: {', '.join(x['Name'] for x in scrs)}", ""]
     for scr in scrs:
@@ -767,7 +769,8 @@ def write_data(m, d, head, fl, srv, all_objs, txt):
         out.append("## Structures of UBTConnect that the flow names")
         out.append("")
         for n in sts:
-            attrs = "; ".join(f"{a['Name']}: {a.get('DataType')}" for a in m.structures[n].get("Attributes", []) or [])
+            attrs = "; ".join(f"{a['Name']}: {a.get('DataType')}" + (f" = {s(a['DefaultValue'], 60)}" if a.get("DefaultValue") not in (None, "") else "")
+                              for a in m.structures[n].get("Attributes", []) or [])
             out.append(f"- **{n}**: {attrs}")
         out.append("")
     open(os.path.join(d, "data.md"), "w").write("\n".join(out))
@@ -816,10 +819,13 @@ def write_references(m, d, head, used_blocks, acts, srv, txt):
         for mod, sig in m.ref_client[a]:
             out.append(f"| {a} | {mod} | {sig.get('Folder', '-')} | {params_text(sig.get('InputParameters')) or '-'} | {params_text(sig.get('OutputParameters')) or '-'} |")
     out.append("")
+    local_actions = {sa.get("Name") for _, (fl, o) in list(m.screens.items()) + list(m.blocks.items())
+                     for sa in (o.get("ScreenActions", []) or []) + (o.get("DataActions", []) or [])}
     unknown = sorted(a for a in called if a not in m.client_actions and a not in m.ref_client and a not in m.server_actions
-                     and a not in m.ref_server and a not in m.ref_service and a not in m.entity_actions and ("action:" + a) not in m.ref_entities)
+                     and a not in m.ref_server and a not in m.ref_service and a not in m.entity_actions and ("action:" + a) not in m.ref_entities
+                     and a not in local_actions)
     if unknown:
-        out.append("## Action names not resolved (system actions or missing reference)")
+        out.append("## Action names not resolved (system actions, screen actions of other flows, or missing reference)")
         out.append("")
         out.append(", ".join(unknown))
         out.append("")

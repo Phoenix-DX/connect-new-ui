@@ -145,9 +145,15 @@ def main():
             out.append("## Mock handlers and fixtures of the server actions")
             out.append("")
             hits = grep_names(os.path.join(src, "mocks"), srv, max_hits=4)
+            page_mocks = [os.path.join(src, "pages", scr, "mocks.ts") for scr in meta.get("screens", []) if os.path.isfile(os.path.join(src, "pages", scr, "mocks.ts"))]
+            out.append("Mock handlers live in `app/src/mocks/` (shared) and in `app/src/pages/<Screen>/mocks.ts` (per screen: "
+                       + (", ".join("`" + os.path.relpath(p) + "`" for p in page_mocks) or "none for this flow") + ").")
+            out.append("")
             for n in srv:
                 h, c = hits[n]
-                out.append(f"- {n}: " + (", ".join(f"`{x.split(':')[0].replace(src + '/', '')}:{x.split(':')[1]}`" for x in h) if h else "**no mock handler found**"))
+                inpage = [p for p in page_mocks if n in open(p, encoding="utf-8", errors="ignore").read()]
+                where = [f"`{x.split(':')[0].replace(src + '/', '')}:{x.split(':')[1]}`" for x in h] + [f"`{os.path.relpath(p)}`" for p in inpage]
+                out.append(f"- {n}: " + (", ".join(where) if where else "**no mock handler found**"))
             out.append("")
         open(os.path.join(pd, "app.md"), "w").write("\n".join(out))
         print(f"{fl:40s} screens={len(meta.get('screens', []))} reachedFiles={len(all_reached)}")

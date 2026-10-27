@@ -957,3 +957,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-25,refactor,other,25492,refactor-documenter,,F59-c docs tokens from notification
 2026-10-27,App_PIN,verify,303334,clarify-pilot,,"clarify-screens flow report (pilot, Opus, 131 rows)"
 2026-10-27,App_Profile,verify,366849,clarify-G1,,"clarify-screens flow report (Opus, 110 rows)"
+2026-10-27,App_Menu_ContactUs,verify,396480,clarify-G1,,"clarify-screens flow report (Opus, 147 rows)"
+2026-10-27,App_Services,verify,329741,clarify-G1,,"clarify-screens flow report (Opus, 81 rows)"
+2026-10-27,App_Menu,verify,385899,clarify-G1,,"clarify-screens flow report (Opus, 122 rows)"
+2026-10-27,Home,verify,425439,clarify-G1,,"clarify-screens flow report (Opus, 148 rows)"
+2026-10-27,App_Notifications,verify,463524,clarify-G1,,"clarify-screens flow report (Opus, 120 rows)"
