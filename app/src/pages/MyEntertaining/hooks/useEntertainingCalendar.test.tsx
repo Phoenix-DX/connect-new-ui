@@ -3,9 +3,14 @@ import { renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { EntertainingConfigInputs } from '@/api/entertaining';
-import { log } from '@/platform/log/log';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import { useEntertainingCalendar } from './useEntertainingCalendar';
+
+vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
+  raiseToFlowHandler: vi.fn(),
+}));
 
 /* The calls of Embedded_MyEntertaining with the MSW mocks of the test setup (pages/MyEntertaining/mocks.ts: the app's
    own origin as BaseURL, no token, an empty ID token). */
@@ -19,6 +24,7 @@ function wrapper({ children }: { children: ReactNode }) {
 describe('useEntertainingCalendar', () => {
   beforeEach(() => {
     freshPage();
+    vi.mocked(raiseToFlowHandler).mockClear();
   });
 
   it('fetches GetEntertainingConfig once with the four block inputs and gives the configuration', async () => {
@@ -73,14 +79,12 @@ describe('useEntertainingCalendar', () => {
     });
   });
 
-  it('refreshToken: a failure is logged as a warning and the SDK keeps its token', async () => {
-    const warn = vi.spyOn(log, 'warn').mockImplementation(() => undefined);
+  it('refreshToken: a failure goes to the flow handler (Calendar Q2) and the SDK keeps its token', async () => {
     const { result } = renderHook(() => useEntertainingCalendar(INPUTS), { wrapper });
     sessionStorage.setItem('mock:mock', 'error');
     const apply = vi.fn();
     await result.current.refreshToken(apply);
     expect(apply).not.toHaveBeenCalled();
-    expect(warn).toHaveBeenCalledTimes(1);
-    expect(warn.mock.calls[0]?.[0]).toBe('AppManager_Get_UserIdToken failed');
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
   });
 });

@@ -65,14 +65,31 @@ describe('GenerateQrCodeView', () => {
     expect(footer()).not.toBeNull();
   });
 
-  it('leaves out an empty role, the seat row, an empty tag, the photo source and the QR image', () => {
+  it('leaves out an empty role, the seat row, an empty tag and the QR image; an empty photo URL gives src=""', () => {
     renderView({ userSignedURL: '', pass: { ...PASS, GuestRole: '', Seats: [], Tag: '' }, qrCodeImageURL: '' });
     const card = memberCard();
-    expect(card?.querySelector('.orbit-member-photo')?.hasAttribute('src')).toBe(false);
+    expect(card?.querySelector('.orbit-member-photo')?.getAttribute('src')).toBe('');
     expect(card?.textContent).not.toContain('Row:');
     expect(card?.textContent).not.toContain('GMP Tag');
     expect(card?.textContent).not.toContain('Check into Event');
     expect(card?.querySelectorAll('.white-space-nowrap')).toHaveLength(0);
+  });
+
+  it('the photo follows a URL that becomes empty and back: src="" for the empty URL', () => {
+    const view = renderView();
+    const photo = () => memberCard()?.querySelector('.orbit-member-photo');
+    view.rerender(
+      <MemoryRouter>
+        <GenerateQrCodeView {...PROPS} userSignedURL="" />
+      </MemoryRouter>,
+    );
+    expect(photo()?.getAttribute('src')).toBe('');
+    view.rerender(
+      <MemoryRouter>
+        <GenerateQrCodeView {...PROPS} />
+      </MemoryRouter>,
+    );
+    expect(photo()?.getAttribute('src')).toBe('/mock-images/placeholder-square.svg');
   });
 
   it('shows the MemberQRCode skeleton and no footer while fetching', () => {

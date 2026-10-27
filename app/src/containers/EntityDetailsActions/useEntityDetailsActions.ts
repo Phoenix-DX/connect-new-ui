@@ -2,6 +2,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { osImage } from '@/lib/os-assets';
 import { NotRegisteredException, UserException, isInstanceOf } from '@/legacy/os/os-exceptions';
+import { useViewState, useWasRestoredFromCache } from '@/platform/navigation';
 import { useOsNavigate } from '@/platform/navigation/osNavigate';
 import {
   exceptionMessage,
@@ -31,6 +32,7 @@ import type { EntityDetailsActionsContainerProps } from './types';
 /** The state, the effects and the handlers of the block (OnReady, OnParametersChanged, Handle_*); the view is
     EntityDetailsActionsContainer.tsx. */
 export function useEntityDetailsActions({
+  id,
   isEnabled = true,
   entityType = '',
   entityId = '0',
@@ -43,33 +45,47 @@ export function useEntityDetailsActions({
 }: EntityDetailsActionsContainerProps) {
   const navigate = useOsNavigate();
   const [onReady] = useState(() => onReadyInit(entityType, useViewDetails));
-  const [options, setOptions] = useState<ActionsMenuOptions>(onReady.options);
+  /* The block variables live in the view cache (decision U19, pattern P-BACK): a back navigation restores them, as the
+     runtime restores the cached view. One scope per instance on the screen. */
+  const scope = `Directory_CommonBlocks.Directory_EntityDetailsActions#${id ?? ''}#${entityType}#${entityId}`;
+  const [options, setOptions] = useViewState<ActionsMenuOptions>(
+    `${scope}-Local_In_ActionsMenuOptions`,
+    onReady.options,
+  );
   const showIconLabels = onReady.labels;
   const noteCategoryId = onReady.noteCategoryId;
   const shareType = onReady.shareType;
-  const [isLoaded, setIsLoaded] = useState(false); // model default False (mvc.js:98-100)
+  const [isLoaded, setIsLoaded] = useViewState(`${scope}-isLoaded`, false); // model default False (mvc.js:98-100)
+  /* OnReady CheckRestored (mvc.js:1678-1689, JS :2430-2432): FromCache = wasCurrentViewRestoredFromCache() (FromHistory
+     is commented out, always False); a restored view ends OnReady, so it keeps its cached variables and makes no call.
+     A restored view whose saved block has no data yet runs the set-up (F40). */
+  const wasRestored = useWasRestoredFromCache();
+  const [isRestoredFromCache] = useState(() => wasRestored && isLoaded);
   // EnableOptions: a record whose unset fields keep the ActionsMenuEnableOptions defaults (UBTConnectLibrary.model.js
   // ActionsMenuEnableOptionsRec, copy in migration/screens/SupperMeeting_Details/analysis/sources/raw/ :4135-4156), as
   // HouseholdDetails_Block's literal sets only EnableNotes / EnableShare (HouseholdDetails_Block.mvc.js:1509-1514).
-  const [localEnableOptions, setLocalEnableOptions] = useState<ActionsMenuEnableOptions>(() => ({
+  const [localEnableOptions, setLocalEnableOptions] = useViewState<ActionsMenuEnableOptions>(`${scope}-EnableOptions`, {
     ...ACTIONS_MENU_ENABLE_OPTIONS_DEFAULT,
     ...enableOptions,
-  }));
-  const [fetched, setFetched] = useState<ContactDetails | null>(null);
-  const [fetchStatus, setFetchStatus] = useState<'none' | 'done' | 'error'>('none');
-  const fetchStatusRef = useRef<'none' | 'done' | 'error'>('none');
-  const [notes, setNotes] = useState<Notes>({});
+  });
+  const [fetched, setFetched] = useViewState<ContactDetails | null>(`${scope}-FetchContactDetails`, null);
+  const [fetchStatus, setFetchStatus] = useViewState<'none' | 'done' | 'error'>(
+    `${scope}-FetchContactDetails.Status`,
+    'none',
+  );
+  const fetchStatusRef = useRef<'none' | 'done' | 'error'>(fetchStatus);
+  const [notes, setNotes] = useViewState<Notes>(`${scope}-FetchNotes`, {});
   const [showCallPopUp, setShowCallPopUp] = useState(false);
   const [showEmailPopUp, setShowEmailPopUp] = useState(false);
   const [showSharePopup, setShowSharePopup] = useState(false);
   const [showNotesSheet, setShowNotesSheet] = useState(false);
   // Local_isBookmarked (legacy bookmarks), Local_isBookmarked_C2, Local_BookmarkType, Local_BookmarkTypeId_C2,
   // Local_BookmarkGroup (model, mvc.js:80-94)
-  const [isBookmarked, setIsBookmarked] = useState(false);
-  const [isBookmarked_C2, setIsBookmarked_C2] = useState(false);
-  const [bookmarkType, setBookmarkType] = useState('');
-  const [bookmarkTypeId_C2, setBookmarkTypeId_C2] = useState('');
-  const [bookmarkGroup, setBookmarkGroup] = useState('');
+  const [isBookmarked, setIsBookmarked] = useViewState(`${scope}-Local_isBookmarked`, false);
+  const [isBookmarked_C2, setIsBookmarked_C2] = useViewState(`${scope}-Local_isBookmarked_C2`, false);
+  const [bookmarkType, setBookmarkType] = useViewState(`${scope}-Local_BookmarkType`, '');
+  const [bookmarkTypeId_C2, setBookmarkTypeId_C2] = useViewState(`${scope}-Local_BookmarkTypeId_C2`, '');
+  const [bookmarkGroup, setBookmarkGroup] = useViewState(`${scope}-Local_BookmarkGroup`, '');
   /* Action_ApplyPopUpOverrides (after the contact fetch, or directly when nothing is fetched): OneSchool Global keeps
      the override image for the share sheet and shows the OneSchoolGlobal image; a non-empty override Name replaces the
      popup name and EntityName. */
@@ -138,8 +154,10 @@ export function useEntityDetailsActions({
       OnChange_Bookmark, Action_RefreshFetchNotes (FetchNotes when EntityId is set, :2163-2200); off (TST) →
       GetBookmarkType_FromEntity, Get_LocalBookmarkByObjectId (Connect2_LegacyShared), Local_isBookmarked, OnChange_Bookmark.
       Then isLoaded = not isFetchContacts or FetchContactDetails.IsDataFetched or HasFetchError (:1932-1933). Runs once,
-      as OnReady (OnParametersChanged only updates the contact details). */
+      as OnReady (OnParametersChanged only updates the contact details); a view restored from the cache ends before the
+      set-up (CheckRestored). */
   useEffect(() => {
+    if (isRestoredFromCache) return;
     if (onReady.error !== undefined) {
       raiseToFlowHandler(onReady.error);
       return;
@@ -176,12 +194,30 @@ export function useEntityDetailsActions({
     bookmarksStep().then(() => {
       setIsLoaded(!onReady.isFetchContacts || fetchStatusRef.current !== 'none');
     }, raiseToFlowHandler);
-  }, [onReady]);
+    // The setters of useViewState are stable; OnReady runs once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [onReady, isRestoredFromCache]);
 
-  /** Action_UpdateContactDetails (OnReady and OnParametersChanged): nothing without EntityId; with the call / email /
-      share options (isFetchContacts, set once by OnReady) Action_AsyncRefresh_ContactDetails: FetchContactDetails, then
-      OnAfterFetch_FetchContactDetails (HasCall = any phone, HasEmail = mobile or email, isLoaded). */
+  /* The input parameters, by value: OnParametersChanged runs after a render in which one of them changed (mvc.js:1157-
+     1171). */
+  const parametersKey = JSON.stringify([
+    isEnabled,
+    entityType,
+    entityId,
+    contactPopUpOverrideOptions,
+    enableOptions,
+    useViewDetails,
+    entityExtraDataJSON,
+  ]);
+  /** The parameters of a view restored from the cache: its OnReady makes no call (CheckRestored). */
+  const restoredParametersKey = useRef(isRestoredFromCache ? parametersKey : null);
+  /** Action_UpdateContactDetails (OnReady, mvc.js:1854, and OnParametersChanged on every input change, :1157-1171):
+      nothing without EntityId; with the call / email / share options (isFetchContacts, set once by OnReady)
+      Action_AsyncRefresh_ContactDetails: FetchContactDetails, then OnAfterFetch_FetchContactDetails (HasCall = any
+      phone, HasEmail = mobile or email, isLoaded). */
   useEffect(() => {
+    if (restoredParametersKey.current === parametersKey) return;
+    restoredParametersKey.current = null;
     if (entityId === '0' || !onReady.isFetchContacts) return;
     let alive = true;
     fetchContactDetails(variablesRef.current()).then(
@@ -201,23 +237,32 @@ export function useEntityDetailsActions({
         if (!alive) return;
         fetchStatusRef.current = 'error';
         setFetchStatus('error');
-        // HandleFetchError (CommunicationException / AllExceptions): every action disabled, then the error is raised.
-        setLocalEnableOptions((current) => ({
-          ...current,
-          EnableBookmark: false,
-          EnableNotes: false,
-          EnableGift: false,
-          EnableShare: false,
-          EnableCall: false,
-          EnableEmail: false,
-        }));
+        /* The handlers of Action_AsyncRefresh_ContactDetails (mvc.js:1196-1262): NotRegistered raises the typed
+           exception; CommunicationException and AllExceptions (not a system exception) run HandleFetchError (every
+           action disabled), then raise the error; a system exception is thrown again as it is. */
+        const handlesFetchError =
+          !isInstanceOf(error, NotRegisteredException) &&
+          (isCommunicationException(error) || !isSystemException(error));
+        if (handlesFetchError) {
+          setLocalEnableOptions((current) => ({
+            ...current,
+            EnableBookmark: false,
+            EnableNotes: false,
+            EnableGift: false,
+            EnableShare: false,
+            EnableCall: false,
+            EnableEmail: false,
+          }));
+        }
         raiseToFlowHandler(error);
       },
     );
     return () => {
       alive = false;
     };
-  }, [entityId, onReady.isFetchContacts]);
+    // OnParametersChanged compares the inputs by value (parametersKey); the setters of useViewState are stable.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [parametersKey, onReady.isFetchContacts]);
 
   const isFetchingDone = isDataFetched || hasFetchError;
   const popupData = (showPopup: boolean): ContactPopupData => ({

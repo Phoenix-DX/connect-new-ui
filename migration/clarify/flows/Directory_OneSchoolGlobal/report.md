@@ -224,9 +224,9 @@ blocks are not checked here.
 
 ## 5. Findings
 
-| Id | Severity | Screen / element | Finding | React location | Suggested fix |
-|---|---|---|---|---|---|
-| F1 | minor | OneSchoolGlobalDetails / document title | The TST runtime sets `document.title` to the view title "OneSchoolGlobalDetails" on mount and on update (`OutSystemsReactView.js:7`, TST:150-153). No React file sets `document.title`, so the tab shows "UBTConnect". The route table holds the titles but nothing applies them. The gap is app-wide. | `app/index.html:6`; `app/src/app/routes.generated.ts:48` | Set `document.title` from the route `title` in the app shell on each route change. Q2. |
+| Id | Severity | Screen / element | Finding | React location | Suggested fix | Status |
+|---|---|---|---|---|---|---|
+| F1 | minor | OneSchoolGlobalDetails / document title | The TST runtime sets `document.title` to the view title "OneSchoolGlobalDetails" on mount and on update (`OutSystemsReactView.js:7`, TST:150-153). No React file sets `document.title`, so the tab shows "UBTConnect". The route table holds the titles but nothing applies them. The gap is app-wide. | `app/index.html:6`; `app/src/app/routes.generated.ts:48` | Set `document.title` from the route `title` in the app shell on each route change. Q2. | fixed 2026-10-27 (`fixes/A-shell.md`) |
 
 ## 6. DEV vs TST differences
 

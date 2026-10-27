@@ -134,10 +134,10 @@ The screen is a wrapper. It passes its six inputs to `ScreenBlock_GenerateQRCode
 
 ## 5. Findings
 
-| Id | Severity | Screen / element | Finding | React location | Suggested fix |
-|---|---|---|---|---|---|
-| F1 | minor | QRCodeGenerate / screen title | The runtime sets `document.title` to "QRCodeGenerate" when the screen mounts (`OutSystemsReactView.js:7`, `S:166-168`). No code of the React app sets `document.title`. | `app/index.html:6`; `app/src/app/routes.generated.ts:68` | Answer Q1 (one answer for all flows, see App_Services Q4). |
-| F2 | minor | ScreenBlock_GenerateQRCode / member photo | With an empty UserSignedURL, TST renders `<img class="orbit-member-photo" src="">` (`OutSystemsReactWidgets.js:2`, no default image at `B:337-339`). React renders the image without `src`. In the demo the URL is always empty. | `app/src/pages/QRCodeGenerate/components/GenerateQrCodeView.tsx:65` | Look at a member without a signed photo on TST and give the React image the same result. |
+| Id | Severity | Screen / element | Finding | React location | Suggested fix | Status |
+|---|---|---|---|---|---|---|
+| F1 | minor | QRCodeGenerate / screen title | The runtime sets `document.title` to "QRCodeGenerate" when the screen mounts (`OutSystemsReactView.js:7`, `S:166-168`). No code of the React app sets `document.title`. | `app/index.html:6`; `app/src/app/routes.generated.ts:68` | Answer Q1 (one answer for all flows, see App_Services Q4). | fixed 2026-10-27 (`fixes/A-shell.md`) |
+| F2 | minor | ScreenBlock_GenerateQRCode / member photo | With an empty UserSignedURL, TST renders `<img class="orbit-member-photo" src="">` (`OutSystemsReactWidgets.js:2`, no default image at `B:337-339`). React renders the image without `src`. In the demo the URL is always empty. | `app/src/pages/QRCodeGenerate/components/GenerateQrCodeView.tsx:65` | Look at a member without a signed photo on TST and give the React image the same result. | fixed 2026-10-27 (`fixes/D-forms.md`) |
 
 ## 6. DEV vs TST differences
 

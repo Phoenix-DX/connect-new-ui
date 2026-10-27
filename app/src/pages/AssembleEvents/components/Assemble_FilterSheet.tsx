@@ -10,7 +10,9 @@ import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs'
     header row (Link_Back while the localities show, ScreenTitle), the country search "Search Country" with
     LocalityListDetail or "No results found" once the countries are fetched (else the Spinner), or
     Assemble_FilterLocalityByCountry; the FreeSubscriptionAlert dialog; Cancel and Apply while a country is chosen.
-    Its show and hide animation (DIV_StickyBottom) is not reproduced. The flows are in useAssembleFilterSheet.
+    DIV_StickyBottom has `animate: true` (mvc.js:455), but the TST runtime Container (OutSystemsReactWidgets.js,
+    OutSystems/ReactWidgets/Container render) does not read `animate`: it renders the div while Visible, else nothing,
+    with no transition. The flows are in useAssembleFilterSheet.
     @origin Connect2_Assemble_MUI.Assemble.Assemble_FilterSheet */
 
 export interface Assemble_FilterSheetProps {

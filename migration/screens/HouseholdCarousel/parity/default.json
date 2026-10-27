@@ -5,14 +5,17 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "d627752b2b6969d8692a",
+ "fingerprint": "ee8e30ee8f7e9ee5614a",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:51:12.968Z",
+ "at": "2026-10-27T14:58:37.411Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
@@ -60,7 +63,7 @@
    "load"
   ],
   "expected": 27,
-  "actual": 42,
+  "actual": 46,
   "viaAppStartSkipped": [
    "ActionAppManager_AfterInitialize",
    "ActionAppManager_SynchAppContext",

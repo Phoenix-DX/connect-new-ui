@@ -5,14 +5,17 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "a5a29e04370849fbbcdd",
+ "fingerprint": "b4d334b15baa256883dc",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:51:58.933Z",
+ "at": "2026-10-27T14:59:24.216Z",
  "counts": {},
  "exemptionsUsed": {
   "DATA-GUEST-PHOTO-LDM-MYEVENTS-V2": 16,
@@ -38,7 +41,7 @@
   "maxCell": 0.3438,
   "maxCellRatio": 0.03,
   "diffPixels": 1921,
-  "comparedPixels": 282127,
+  "comparedPixels": 281947,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [

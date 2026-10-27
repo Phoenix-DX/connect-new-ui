@@ -114,6 +114,8 @@ describe('useSearch', () => {
         IsLoading: true,
         SelectedCategory: 'All',
         isBirthdaySearchEnabled: true,
+        // The default of the block input (ScreenBlock_Search.mvc.js:121-122): Type_SearchTarget.Global.
+        In_SearchTargetId: 'Global',
       }),
     ]);
     // Get_RecentSearchTerms leaves out the last searched term: it shows after the next search.

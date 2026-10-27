@@ -25,7 +25,8 @@ of the keypad (`renderPreventBackNavigation`). The hook is in `platform/session/
 `enabled` (default `true`) is `false` on PINChange until the unlock.
 
 Events: none (the hook handles them). Placeholders: none. The block fills `Pincode_Register` (PIN length 4). Errors go through
-`feedbackMessageAutoClose` (error). User name: the shell's `getUserInformation` (FirstName LastName).
+`feedbackMessageAutoClose` (error). User name: FirstName LastName of `appManager_GetCachedUserInfo`
+(`src/platform/session/cachedUserInfo.ts`).
 
 Success navigates:
 
@@ -46,6 +47,7 @@ Success navigates:
 - `ScreenController_NavigateToPage(URL, True)` (resume link, LastURL; :636-649) is the shared
   `useScreenController_NavigateToPage()` of `UBTJavaScriptUtils/lib/actions.ts` (CR-Splash-2). It is a replace
   navigation. A same-origin href becomes its in-app path (Splash stores `window.location.href` in LastURL).
-- `AppManager_GetCachedUserInfo` (AppManager user record) has no shell counterpart. The name is FirstName LastName of
-  `getUserInformation().Directory_UserCurrent`. This call is async. On a cache miss it can call GetUserInformation,
-  which the PINRegister trace shows on load. UseOverlay False (ConnectLogo.svg) is from the compiled code only.
+- OnInitialize reads the name with `appManager_GetCachedUserInfo` (the counterpart of `AppManager_GetCachedUserInfo`,
+  `Block_PINRegister_ContentWrapper.mvc.js:571-579`). The read is synchronous and local (the client variable
+  `AppManager_UserExtended`), so the name is set before the first render and there is no server call. An empty record
+  gives the name `" "` (FirstName + " " + LastName). UseOverlay False (ConnectLogo.svg) is from the compiled code only.

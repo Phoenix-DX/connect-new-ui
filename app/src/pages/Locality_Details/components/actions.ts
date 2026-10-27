@@ -1,5 +1,5 @@
 import type { OneSchoolCard, SubdivisionCard } from '@/api/locality';
-import { get_LocalBookmarkByObjectId } from '@/platform/storage/localEntities';
+import { getLocalBookmarkByObjectId, get_LocalBookmarkByObjectId } from '@/platform/storage/localEntities';
 import { currDateTime, formatDateTime } from '@/lib/osDateTime';
 import { getConnectWeekdayLabel_ByDate, getLookupConcepts } from '@/lib/ubtConnectLibrary/actions';
 import type { LookupItem, Tag } from '@/lib/ubtConnectLibrary/structures';
@@ -49,6 +49,14 @@ export function getLocalityCurrentTimeLabel(in_UTCOffsetSeconds: number, in_Loca
     (legacy Connect2_LegacyShared.LocalBookmark through the shell adapter). */
 export async function getLocal_Bookmark(objectType: string, objectId: string): Promise<boolean> {
   const bookmark = await get_LocalBookmarkByObjectId(objectType, objectId);
+  return bookmark.Id !== '' && bookmark.Id !== '0';
+}
+
+/** GetLocal_Bookmark_C2(ObjectType, ObjectId) (UC:9270-9310): IsBookmarked = GetLocalBookmarkByObjectId_C2(ObjectId)
+    .LocalBookmark.Id <> NullIdentifier (the C2 UBTConnect_Bookmarks_MCS.LocalBookmark). ObjectType is an input that
+    the flow does not read. */
+export async function getLocal_Bookmark_C2(_objectType: string, objectId: string): Promise<boolean> {
+  const bookmark = await getLocalBookmarkByObjectId(objectId);
   return bookmark.Id !== '' && bookmark.Id !== '0';
 }
 

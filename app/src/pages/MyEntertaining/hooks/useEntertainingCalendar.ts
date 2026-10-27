@@ -4,7 +4,7 @@ import {
   type EntertainingConfig,
   type EntertainingConfigInputs,
 } from '@/api/entertaining';
-import { log } from '@/platform/log/log';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 
 /** The calls of Embedded_MyEntertaining, for its view. */
 export interface EntertainingCalendarData {
@@ -14,14 +14,16 @@ export interface EntertainingCalendarData {
   refreshToken: (applyIdToken: (idToken: string) => void) => Promise<void>;
 }
 
-/** Action_RefreshToken: AppManager_Get_UserIdToken, then RefreshEmbedTokenJS. A failure is logged as a warning, and the
-    SDK keeps its token. A call that started runs to its end after the block closed: the view then has no configured
-    SDK, so the token goes nowhere. */
+/** Action_RefreshToken: AppManager_Get_UserIdToken, then RefreshEmbedTokenJS. The action runs through
+    safeExecuteClientAction (Embedded_MyEntertaining.mvc.js:1106-1110, OutSystems.js:17): an error goes to handleError,
+    then the Calendar flow and App_Common show the message (`raiseToFlowHandler`, Calendar Q2 (a), user 2026-10-27), and
+    the SDK keeps its token. A call that started runs to its end after the block closed: the view then has no
+    configured SDK, so the token goes nowhere. */
 async function refreshToken(applyIdToken: (idToken: string) => void): Promise<void> {
   try {
     applyIdToken(await fetchUserIdToken());
   } catch (e: unknown) {
-    log.warn('AppManager_Get_UserIdToken failed', e);
+    raiseToFlowHandler(e);
   }
 }
 

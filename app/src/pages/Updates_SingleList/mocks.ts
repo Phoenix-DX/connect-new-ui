@@ -1,14 +1,19 @@
 import type { RequestHandler } from 'msw';
-import type { ActionOutputs, PathOf } from '@/api/client/callAction';
+import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
 import { recordedHandler } from '@/mocks/fixtures';
 import { collection, statefulHandler } from '@/mocks/store';
 import { wireList } from '@/lib/os-wire';
+import { Choice } from '@/lib/ubtConnect/staticEntities';
 
 /** Connect_Updates_CS.UI_UpdateItem as the server sends it (Long Integers as text, Date "yyyy-MM-dd"). */
 type UpdateItemWire = ActionOutputs<
   PathOf<'UBTConnect', 'Updates_SingleList/DataActionFetchUpdates'>
 >['UI_UpdateItemList']['List'][number];
+/** Connect_Updates_CS.Filter_Updates as the screen sends it (Date "yyyy-MM-dd", the null date 1900-01-01). */
+type FilterUpdatesWire = NonNullable<
+  ActionInputs<PathOf<'UBTConnect', 'Updates_SingleList/DataActionFetchUpdates'>>['Filter_Updates']
+>;
 
 /* DataActionGetDateRanges: the recorded fixture (UBTConnect/DataActionGetDateRanges/02-0400bafb.json, re-recorded
    read-only with the static-entity ids kept: Today, Last 7 Days, Last 30 Days, Older). The answer does not depend on
@@ -20,7 +25,9 @@ type UpdateItemWire = ActionOutputs<
    "Fictional text must be meaningful", user 2026-10-16): Birth = child, "City, Country" + ParentsNames "Father &
    Mother Surname" (the item shows "<place> - <parents>"), Marriage = "Groom & Bride Surname", Taken = the person; real
    place names. The last row's place is the place name the capture shows unmasked (place names are kept as real values:
-   mock-fixtures.md, Q3 a, user 2026-10-14). HasAccess / HasShare True as HomeFeed's mock.
+   mock-fixtures.md, Q3 a, user 2026-10-14). HasAccess / HasShare True as HomeFeed's mock. The answer applies
+   Filter_Updates as GetUpdateItems of Connect_Updates_CS does (getUpdateItems below), and UnreadCount counts the
+   unread rows of the filtered list (BR-C2SVC-331).
    ServiceAPIAction_UI_UpdateItem_MarkAllAsRead: a write, never recorded: marks every update of this collection read
    (P-MUTATION). MarkAsRead / MarkAsUnread are answered by HomeFeed's handlers (shared contract paths), which change the
    HomeFeed collection only: CR-Updates_SingleList-1. */
@@ -146,12 +153,69 @@ const seed = (): UpdateItemWire[] =>
     HasShare: true,
   }));
 
+const NULL_DATE = '1900-01-01';
+const isNullDate = (date: string) => date === '' || date === NULL_DATE;
+/** The default Filter_Updates record, for a call without the input: no filter. */
+const NO_FILTER: FilterUpdatesWire = {
+  Filter_Date: { Date_From: NULL_DATE, Date_To: NULL_DATE },
+  Filter_SearchText: '',
+  Filter_UpdateTypeId: '',
+  CountryIds: wireList([]),
+  LocalitiesIds: wireList([]),
+  Filter_ReadOnly: '',
+  Sort_ByNewest: '',
+};
+
+/** PrepareSearchWords (BR-C2SVC-332): "&" becomes a space, Trim, split on spaces; the words fill Text1, Text2 and
+    Text3 in order, and each later word overwrites Text4. */
+function prepareSearchWords(searchText: string): string[] {
+  const words = ['', '', '', ''];
+  for (const token of searchText.replaceAll('&', ' ').trim().split(' ')) {
+    if (words[0] === '') words[0] = token;
+    else if (words[1] === '') words[1] = token;
+    else if (words[2] === '') words[2] = token;
+    else words[3] = token;
+  }
+  return words;
+}
+
+/** The filters of GetUpdateItems (Connect_Updates_CS UpdatesItems_GetList) that the fixture rows can take:
+    - Date from and to, inclusive; a null date is no bound (BR-C2SVC-323).
+    - Every non-empty search word is in the title (BR-C2SVC-325). The mock compares with Name, the title of the row
+      (the entity field DisplayTitle is not in UI_UpdateItem), without case (LIKE of the database).
+    - The update type, when not null (BR-C2SVC-326).
+    - Filter_ReadOnly: null or None all, No unread, Yes read, another value no row (BR-C2SVC-327).
+    The subscription, region, hidden, country and locality filters (BR-C2SVC-320, 321, 322, 328) need fields that the
+    fixture rows do not have. */
+function matchesFilter(row: UpdateItemWire, f: FilterUpdatesWire, words: string[]): boolean {
+  if (!isNullDate(f.Filter_Date.Date_From) && row.Date < f.Filter_Date.Date_From) return false;
+  if (!isNullDate(f.Filter_Date.Date_To) && row.Date > f.Filter_Date.Date_To) return false;
+  const title = row.Name.toLowerCase();
+  if (words.some((w) => w !== '' && !title.includes(w.toLowerCase()))) return false;
+  if (f.Filter_UpdateTypeId !== '' && row.UpdateItemTypeId !== f.Filter_UpdateTypeId) return false;
+  if (f.Filter_ReadOnly === '' || f.Filter_ReadOnly === Choice.None) return true;
+  if (f.Filter_ReadOnly === Choice.No) return !row.IsRead;
+  if (f.Filter_ReadOnly === Choice.Yes) return row.IsRead;
+  return false;
+}
+
+/** GetUpdateItems: the rows of the filter, by Date descending, or ascending when Sort_ByNewest = Choice.No
+    (BR-C2SVC-329). The direction of the second sort, UpdateItem.Id, is not captured: rows of one date keep the order
+    of the fixture. */
+export function getUpdateItems(rows: UpdateItemWire[], f: FilterUpdatesWire): UpdateItemWire[] {
+  const words = prepareSearchWords(f.Filter_SearchText);
+  const ascending = f.Sort_ByNewest === Choice.No;
+  return rows
+    .filter((row) => matchesFilter(row, f, words))
+    .sort((a, b) => (ascending ? a.Date.localeCompare(b.Date) : b.Date.localeCompare(a.Date)));
+}
+
 export const updateItems = collection('Updates_SingleList.updateItems', () => seed(), 'UpdateItemId');
 
 export const handlers: RequestHandler[] = [
   recordedHandler('UBTConnect', 'Updates_SingleList/DataActionGetDateRanges', { matchInputs: false }),
-  contractHandler('UBTConnect', 'Updates_SingleList/DataActionFetchUpdates', () => {
-    const list = updateItems.all() as unknown as UpdateItemWire[];
+  contractHandler('UBTConnect', 'Updates_SingleList/DataActionFetchUpdates', ({ Filter_Updates }) => {
+    const list = getUpdateItems(updateItems.all() as unknown as UpdateItemWire[], Filter_Updates ?? NO_FILTER);
     return { UI_UpdateItemList: wireList(list), UnreadCount: list.filter((u) => !u.IsRead).length };
   }),
   statefulHandler('UBTConnect', 'ServiceAPIAction_UI_UpdateItem_MarkAllAsRead', () => {

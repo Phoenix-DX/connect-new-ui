@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { PhotobookHousehold } from '@/api/household';
-import { initialPhotobookState, photobookReducer, type PhotobookState } from './photobookState';
+import { initialPhotobookState, photobookReducer, slideMovedStep, type PhotobookState } from './photobookState';
 
 /* The state of the Photobook screen. Fictional households. */
 const households: PhotobookHousehold[] = [
@@ -46,5 +46,20 @@ describe('photobookState', () => {
     };
     const state = photobookReducer(earlier, { type: 'localityHouseholdIdsFetched', households, householdId: '7002' });
     expect(state).toEqual({ selectedHousehold: { id: '7002', position: 1 }, isLoading: false, households });
+  });
+});
+
+describe('Carousel_OnSlideMoved (Photobook_Carousel.mvc.js:1225-1250)', () => {
+  it('Is Replaying? needs IsReplaying and CurrentPosition = 0 (:1227)', () => {
+    expect(slideMovedStep(true, 0, 23, false)).toBe('startAutoplay');
+    // A move to another position while it replays: not the replay branch, so the last-position check runs.
+    expect(slideMovedStep(true, 5, 23, true)).toBe('none');
+    expect(slideMovedStep(true, 22, 23, true)).toBe('stopAutoplay');
+  });
+
+  it('Is last position? and Is Autoplay?: StopAutoplay; else nothing', () => {
+    expect(slideMovedStep(false, 22, 23, true)).toBe('stopAutoplay');
+    expect(slideMovedStep(false, 22, 23, false)).toBe('none');
+    expect(slideMovedStep(false, 0, 23, true)).toBe('none');
   });
 });

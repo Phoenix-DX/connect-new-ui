@@ -132,7 +132,7 @@ describe('MessageDetailView', () => {
   });
 
   it('marks an urgent message', () => {
-    const { container } = renderView({ message: message({ messageTemplatePriorityId: 2 }) });
-    expect(notCaptured(container)).toContain('Urgent icon (b1-b4-Message_List_Item_Icon)');
+    renderView({ message: message({ messageTemplatePriorityId: 2 }) });
+    expect(document.getElementById('b1-b4-Message_List_Item_Icon')?.className).toContain('fa-exclamation');
   });
 });

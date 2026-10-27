@@ -82,10 +82,11 @@ export const notePillTags = (pills: NotePill[]): NotePillTag[] => [
     the first selected pill ("" when none is selected). */
 export const selectedCategoryId = (tags: Tag[]): string => tags.find((t) => t.IsSelected ?? true)?.Identifier ?? '';
 
-/** Notes_CardListOnLoadMore: a next page only when GetNotes is not loading, and its last page had cards but fewer than
-    MaxRecords. */
+/** Notes_CardListOnLoadMore: a next page only when the last page of GetNotes had cards but fewer than MaxRecords
+    (Notes.mvc.js:1123). No loading clause: the List of NoteCard_List raises no new OnScrollEnding while the last one
+    runs (OutSystemsReactWidgets.js:165, isScrollEndingEventHandlerRunning). */
 export const canLoadMore = (state: NotesState): boolean =>
-  !state.notesLoading && state.getNotesList.length > 0 && state.getNotesList.length < Number(state.maxRecords);
+  state.getNotesList.length > 0 && state.getNotesList.length < Number(state.maxRecords);
 
 /** The screen that a note card opens, with its input. */
 interface NoteCardTarget {

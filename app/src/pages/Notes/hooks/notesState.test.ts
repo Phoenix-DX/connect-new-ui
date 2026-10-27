@@ -93,9 +93,9 @@ describe('notesState', () => {
     expect(selectedCategoryId([{ Text: 'All', Identifier: '', IsSelected: false }])).toBe('');
   });
 
-  it('Notes_CardListOnLoadMore: only when not loading and the last page had cards but fewer than MaxRecords', () => {
+  it('Notes_CardListOnLoadMore: only when the last page had cards but fewer than MaxRecords; no loading clause', () => {
     expect(canLoadMore(withList({ getNotesList: [card('1')], maxRecords: '3' }))).toBe(true);
-    expect(canLoadMore(withList({ getNotesList: [card('1')], maxRecords: '3', notesLoading: true }))).toBe(false);
+    expect(canLoadMore(withList({ getNotesList: [card('1')], maxRecords: '3', notesLoading: true }))).toBe(true);
     expect(canLoadMore(withList({ getNotesList: [], maxRecords: '3' }))).toBe(false);
     expect(canLoadMore(withList({ getNotesList: [card('1'), card('2')], maxRecords: '2' }))).toBe(false);
   });

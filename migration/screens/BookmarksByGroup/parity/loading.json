@@ -1,18 +1,21 @@
 {
  "state": "loading",
- "route": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts",
+ "route": "/UBTConnect/BookmarksByGroup?BookmarkGroup=Contacts&mocksession=unlocked",
  "mock": "loading",
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "3a3327e655ee36433f87",
+ "fingerprint": "bf7c15cbc27db545c5ec",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-23T06:45:29.918Z",
+ "at": "2026-10-27T14:55:59.168Z",
  "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 3,

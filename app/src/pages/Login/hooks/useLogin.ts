@@ -7,9 +7,9 @@ import { setAppCallback } from '@/platform/session/resume';
 import { get_IsUnsupportedSystem } from '@/lib/ubtConnect/unsupportedVersion';
 import type { LoginInputs } from '@/pages/Login/inputs';
 
-/** AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice: only compared with CallbackType, never written, so its
-    identifier value is not known (opaque constant; shared static-entity convention). */
-const DeviceAwareness_InvalidDevice = 'AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice';
+/** AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice, compared with CallbackType by OnReady: the TST value
+    (migration/knowledge/static-entities-tst.json `UBTConnect.appManager_JSUtils_CustomEvents.deviceAwareness_InvalidDevice`). */
+const DeviceAwareness_InvalidDevice = 'DeviceAwareness_InvalidDevice';
 
 /** What the Login page renders and the handlers of its two buttons. */
 export interface LoginFlows {

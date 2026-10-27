@@ -688,9 +688,9 @@
    "react": "app/src/components/ui/HorizontalTagList/HorizontalTagList.tsx:54 :: if (isSelected && inIsMandatorySelection && !(list.filter((t) => t.IsSelected ?? true).length > 1)) return;",
    "evidence": "app/src/components/ui/HorizontalTagList/HorizontalTagList.tsx:54",
    "tst": "present",
-   "verdict": "partial",
-   "note": "React default for IsSelected when undefined is true (?? true) TST: HorizontalTagList.mvc.js:349-368. judge: TST counts rows with IsSelected = True (a Boolean attribute, default False). React counts an undefined IsSelected as selected (?? true). A tag without IsSelected keeps the mandatory selection in React and not on TST.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Finding withdrawn 2026-10-27 (fixes/D-forms.md): the TST TagRec default for IsSelected is True (UBTConnectLibrary.model.js:1269-1271), so React `?? true` matches. React default for IsSelected when undefined is true (?? true) TST: HorizontalTagList.mvc.js:349-368. judge: TST counts rows with IsSelected = True (a Boolean attribute, default False). React counts an undefined IsSelected as selected (?? true). A tag without IsSelected keeps the mandatory selection in React and not on TST.",
+   "verified": "code",
    "severity": "minor",
    "finding": "F4"
   },
@@ -703,9 +703,9 @@
    "react": "app/src/components/ui/HorizontalTagList/HorizontalTagList.tsx:55-62 :: next = list.map(... IsSelected: !isSelected); selectedTagId.current = next[listIndex]?.Identifier ?? ''; inIsSingleSelection && (next[listIndex]?.IsSelected ?? true) ? next.map(... Identifier !== selectedTagId -> IsSelected:false); onChanged?.(result)",
    "evidence": "app/src/components/ui/HorizontalTagList/HorizontalTagList.tsx:55-62",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST loop tests Current (iteration context) IsSelected; React tests next[listIndex].IsSelected TST: HorizontalTagList.mvc.js:369-400. judge: the loop (HorizontalTagList.mvc.js:382-386) clears every row whose Identifier <> SelectedTagId: same as React. The If before it reads next[listIndex].IsSelected ?? true: an undefined IsSelected counts as selected (F4).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Finding withdrawn 2026-10-27 (fixes/D-forms.md): the TST TagRec default for IsSelected is True (UBTConnectLibrary.model.js:1269-1271), so React `?? true` matches. TST loop tests Current (iteration context) IsSelected; React tests next[listIndex].IsSelected TST: HorizontalTagList.mvc.js:369-400. judge: the loop (HorizontalTagList.mvc.js:382-386) clears every row whose Identifier <> SelectedTagId: same as React. The If before it reads next[listIndex].IsSelected ?? true: an undefined IsSelected counts as selected (F4).",
+   "verified": "code",
    "severity": "minor",
    "finding": "F4"
   },
@@ -1461,11 +1461,12 @@
    "react": "app/src/containers/ShareSheet/useShareSheet.ts:142-149 :: if (select && selectedMembers.length >= MAX_RECIPIENTS) { showFeedbackMessage('You can select up to 50 recipients only.', PLATFORM_MESSAGE_TYPE.error); return; }",
    "evidence": "app/src/containers/ShareSheet/useShareSheet.ts:142-149",
    "tst": "present",
-   "verdict": "partial",
-   "note": "React README: FeedbackMessage_AutoClose shown as plain error message TST: ShareSheet.mvc.js:2906-3000. judge: the text \"You can select up to 50 recipients only.\" matches (ShareSheet.mvc.js:2926). TST uses FeedbackMessage_AutoClose; React shows a plain error message that does not close by itself.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md). React README: FeedbackMessage_AutoClose shown as plain error message TST: ShareSheet.mvc.js:2906-3000. judge: the text \"You can select up to 50 recipients only.\" matches (ShareSheet.mvc.js:2926). TST uses FeedbackMessage_AutoClose; React shows a plain error message that does not close by itself.",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "_libraries-113",
@@ -1502,11 +1503,12 @@
    "react": "app/src/containers/ShareSheet/useShareSheet.ts:123-133 :: const user = (await getUserInformation()).Directory_UserCurrent; await csShareObject(variables, `${user.FirstName} ${user.LastName}`, targetMemberIds); resetAndCloseSheetState(); showFeedbackMessage(`${inShareObjectTypeId} has been shared.`, ...) ; catch -> 'Share failed. Please try again.'",
    "evidence": "app/src/containers/ShareSheet/useShareSheet.ts:123-133",
    "tst": "present",
-   "verdict": "partial",
-   "note": "Success/failure message texts are not in the printed TST extract; NotRegistered re-raise not ported (README:87); mock: app/src/containers/ShareSheet/mocks.ts (ActionCS_ShareObject handler not checked) TST: ShareSheet.mvc.js:3078-3175. judge: messages match: \"<Type> has been shared.\" (ShareSheet.mvc.js:3122), \"Share failed. Please try again.\" (:3148). The NotRegistered handler (:3127-3136) re-raises to the flow handler; React shows the failure message instead. Server side: row _libraries-242.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md). Success/failure message texts are not in the printed TST extract; NotRegistered re-raise not ported (README:87); mock: app/src/containers/ShareSheet/mocks.ts (ActionCS_ShareObject handler not checked) TST: ShareSheet.mvc.js:3078-3175. judge: messages match: \"<Type> has been shared.\" (ShareSheet.mvc.js:3122), \"Share failed. Please try again.\" (:3148). The NotRegistered handler (:3127-3136) re-raises to the flow handler; React shows the failure message instead. Server side: row _libraries-242.",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "_libraries-116",

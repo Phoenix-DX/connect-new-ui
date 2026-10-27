@@ -1,3 +1,5 @@
+import { deviceUniqueId } from '@/platform/device/deviceUniqueId';
+
 /* The JavaScript nodes of the page: GetSVGMetric (a client action of UBTConnect, used by the screen) and GetDeviceInfo
    (a node of ContinueOnClick in Policy_Custom_AcceptPendingPolicies). They read the page and the browser only. */
 
@@ -47,9 +49,6 @@ export interface DeviceInfo {
   Platform: string;
 }
 
-/** UniqueId of this page: the original keeps it in localStorage['UUID']; kept in memory only (AGENTS rule 16, Q4). */
-let pageUniqueId: string | undefined;
-
 /** GetDeviceInfo JS node of ContinueOnClick (Policy_Custom_AcceptPendingPolicies, controller ContinueOnClick,
     GetDeviceInfoJS), web branch only (rule 14: the Cordova `window.device` branch is native). */
 export function getDeviceInfo(): DeviceInfo {
@@ -61,6 +60,7 @@ export function getDeviceInfo(): DeviceInfo {
     Platform: '',
   };
   info.Platform = window.matchMedia('(display-mode: standalone)').matches ? 'PWA' : 'Web';
-  if (typeof window.crypto.randomUUID === 'function') info.UniqueId = pageUniqueId ??= window.crypto.randomUUID();
+  // UniqueId: localStorage["UUID"], or a new crypto.randomUUID() stored there (one id per browser, App_Policies Q2).
+  info.UniqueId = deviceUniqueId();
   return info;
 }

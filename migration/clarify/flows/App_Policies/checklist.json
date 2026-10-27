@@ -320,10 +320,12 @@
    "os": "safeExecuteClientAction sends an exception (for example a CommunicationException on a cache miss) to the screen handleError → App_Policies → App_Common, which shows the message",
    "react": "no catch: continueOnClick awaits onAcceptedAll outside its try, and the 5-second timer calls it with void; the rejection stays unhandled and no message shows",
    "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:58-68; app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:84-87, 129; app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:45-47; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:798-799; migration/runtime-sources/OutSystems.js (safeExecuteClientAction: tryCatchFinally → handleError); app/src/api/client/cache.ts:105-112 (a failed miss rejects the readers)",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "minor",
    "finding": "F3",
-   "verified": "pack"
+   "verified": "live",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md)."
   },
   {
    "id": "App_Policies-029",
@@ -514,11 +516,12 @@
    "os": "no fetch on reconnect; while offline the call runs and fails (CommunicationException → message)",
    "react": "the query keeps the TanStack defaults refetchOnReconnect true and networkMode 'online'. An offline-then-online event fetches again and clears every tick, but isAllSelected keeps its value. While TanStack counts the browser offline, a fetch waits and no message shows",
    "evidence": "app/src/api/policy/hooks.ts:13-19; app/src/api/client/queryClient.ts:17; app/src/api/member/hooks.ts:51; app/src/api/feed/hooks.ts:21; app/src/api/client/cache.ts:14",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "minor",
    "finding": "F2",
-   "note": "After the reset, Continue can stay enabled with no row ticked, and AcceptPolicies then gets an empty list.",
-   "verified": "pack"
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md). After the reset, Continue can stay enabled with no row ticked, and AcceptPolicies then gets an empty list.",
+   "verified": "live",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Policies-046",
@@ -719,12 +722,13 @@
    "os": "UniqueId = localStorage[\"UUID\"], or a new crypto.randomUUID() that it stores there: one id per browser",
    "react": "a randomUUID in a module variable: a new id on each page load",
    "evidence": "app/src/pages/AcceptPendingPolicies/actions.ts:50-66; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1385-1387; BR-UBTCON-943; migration/clarify/answers.json App_Policies:Q2",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "minor",
    "finding": "F4",
    "question": "Q2: Keep the device id in memory, or store it in localStorage[\"UUID\"] as TST does? The code cites \"AGENTS rule 16, Q4\"; no ADR, CR, U decision or board row names it.",
    "verified": "live",
-   "note": "user decision 2026-10-27, App_Policies Q2 (a): store the device id in localStorage[\"UUID\"] as TST does (Policy_Custom_AcceptPendingPolicies.mvc.js:1385-1387). React keeps a new randomUUID per page load (actions.ts:50-66): the store is missing. Finding F4 stands. | user decision 2026-10-27 C4: store the id in localStorage[\"UUID\"] as TST (F4, build)"
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md). user decision 2026-10-27, App_Policies Q2 (a): store the device id in localStorage[\"UUID\"] as TST does (Policy_Custom_AcceptPendingPolicies.mvc.js:1385-1387). React keeps a new randomUUID per page load (actions.ts:50-66): the store is missing. Finding F4 stands. | user decision 2026-10-27 C4: store the id in localStorage[\"UUID\"] as TST (F4, build)",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Policies-064",

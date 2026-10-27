@@ -1,11 +1,24 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { usePreloadObject } from '@/platform/navigation/preload';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { calledActions, freshPage, recordBodies, setFlags } from '@/test/testSupport';
 import Locality_Details from './Locality_DetailsPage';
+
+/** SetMainScroll of Layout_MainPages, so a test can raise OnHeaderScrolled. */
+const scroll = vi.hoisted(() => ({ callback: undefined as ((isHeaderScrolled: boolean) => void) | undefined }));
+vi.mock('@/lib/ubtConnectLibrary/actions', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/lib/ubtConnectLibrary/actions')>();
+  return {
+    ...actual,
+    setMainScroll: (cb: (isHeaderScrolled: boolean) => void) => {
+      scroll.callback = cb;
+      return actual.setMainScroll(cb);
+    },
+  };
+});
 
 /* The page with the flows of the screen and of its tag blocks, and the MSW mocks of the route (the fictional
    households of locality 252, its supper meetings, interchange and schools), in the app frame on a memory router. */
@@ -129,12 +142,36 @@ describe('Locality_Details page', () => {
     });
   });
 
+  it('Placeholder_Icons of the sub-header: the explore icon only when the header is scrolled and maps are on', async () => {
+    // Locality_Details.mvc.js:657-666: If HeaderIsScrolled, then If GetHasMapsEnabled, the Explore icon.
+    setFlags({ C2EnableMaps: true });
+    await open();
+    expect(document.getElementById('$b13')).toBeNull();
+    act(() => {
+      scroll.callback?.(true);
+    });
+    expect(document.getElementById('$b13')).not.toBeNull();
+    act(() => {
+      scroll.callback?.(false);
+    });
+    expect(document.getElementById('$b13')).toBeNull();
+  });
+
   it('a back navigation restores the screen and the selected tag without a call of the screen or its tags', async () => {
     setFlags({ C2EnableCarousel: true });
     const view = await open();
     clickTag('OneSchool Global');
     await waitFor(() => {
       expect(cards('Directory_Locality.Locality_OneSchoolGlobal')).toHaveLength(2);
+    });
+    // The actions menus of the cards have their contact details before the screen is left.
+    await waitFor(() => {
+      expect(
+        calledActions().filter((a) => a === 'Directory_EntityDetailsActions/DataActionFetchContactDetails'),
+      ).toHaveLength(2);
+    });
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 50));
     });
     const school = cards('Directory_Locality.Locality_OneSchoolGlobal')[0];
     if (school) fireEvent.click(school);
@@ -147,8 +184,36 @@ describe('Locality_Details page', () => {
       expect(cards('Directory_Locality.Locality_OneSchoolGlobal')).toHaveLength(2);
     });
     expect(document.getElementById('$b7')?.textContent).toBe('Bahia Blanca, Argentina');
-    // Only the actions menus of the restored cards fetch their contact details again (EntityDetailsActions).
-    expect(calledActions().filter((a) => !a.startsWith('Directory_EntityDetailsActions/'))).toEqual([]);
+    // The actions menus of the restored cards end OnReady too (CheckRestored, Directory_EntityDetailsActions.mvc.js:
+    // 1678-1689): no contact fetch again.
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    });
+    expect(calledActions()).toEqual([]);
+  });
+
+  it('a back navigation keeps the member avatars of the household cards without a call', async () => {
+    // Household_Card OnReady ends on a view restored from the cache (Household_Card.mvc.js:478-490).
+    setFlags({ C2EnableCarousel: true });
+    const view = await open();
+    const first = cards('Directory_Household_Blocks.Household_Card')[0];
+    if (first) fireEvent.click(first);
+    await waitFor(() => {
+      expect(view.at()).toBe('/UBTConnect/HouseholdCarousel?In_StartingHouseholdId=42438');
+    });
+    window.__osCalls = [];
+    await act(() => view.router.navigate(-1));
+    await waitFor(() => {
+      expect(blocks('Directory_Household_Blocks.Household_Card')).toHaveLength(23);
+    });
+    const avatars = () => document.querySelectorAll('[data-block="Directory_Household_Blocks.Household_Card"] img');
+    const restoredAvatars = avatars().length;
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 50));
+    });
+    // GetMembers is not called again (the signed URLs of the avatars are UBT_LazyImage's own call).
+    expect(calledActions().filter((a) => a.startsWith('Household_Card/'))).toEqual([]);
+    expect(avatars().length).toBe(restoredAvatars);
   });
 
   it('without a LocalityId, opens the locality of the user with the My Household tag', async () => {

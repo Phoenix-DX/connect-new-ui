@@ -3,7 +3,8 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { createMemoryRouter, RouterProvider } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { PATHS } from '@/platform/navigation/paths';
-import { MOCK_USER_ID } from '@/platform/session/mockUser';
+import { appManager_SetCachedUserInfo } from '@/platform/session/cachedUserInfo';
+import { MOCK_USER_ID, mockCachedUserInfo } from '@/platform/session/mockUser';
 import { getShellState, isSignedIn, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
 import PINRegister from './PINRegisterPage';
@@ -44,6 +45,7 @@ describe('PINRegister page', () => {
     freshPage();
     setClientVar('UBT_AppManager.PIN_SessionInactivity_Seconds', 1200);
     setSignedInUser(MOCK_USER_ID);
+    appManager_SetCachedUserInfo(mockCachedUserInfo()); // the AppManager record that the mock sign-in writes
   });
   afterEach(() => {
     setSignedInUser(null);

@@ -43,6 +43,22 @@ describe('HorizontalTagList', () => {
     ]);
   });
 
+  it('an omitted IsSelected counts as selected (TagRec default True) in the mandatory selection guard', () => {
+    const onChanged = vi.fn();
+    const list = [
+      { Text: 'A', Identifier: 'a', IsSelected: true },
+      { Text: 'B', Identifier: 'b' },
+    ];
+    const { container } = render(
+      <HorizontalTagList inTagToggleList={list} inIsMandatorySelection onChanged={onChanged} />,
+    );
+    click(container, 0);
+    expect(onChanged).toHaveBeenLastCalledWith([
+      expect.objectContaining({ Identifier: 'a', IsSelected: false }),
+      expect.not.objectContaining({ IsSelected: false }),
+    ]);
+  });
+
   it('mandatory selection keeps the last selected tag; a disabled tag does nothing', () => {
     const onChanged = vi.fn();
     const list = [

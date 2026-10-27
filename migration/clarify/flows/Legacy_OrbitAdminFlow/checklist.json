@@ -916,11 +916,12 @@
    "react": "app/src/pages/OrbitAdminEventDetail/hooks/useAdminEventDetail.ts:132-139 fetchScanEventQRCode(info.EventId, info.MemberId, member, {MemberId: textToLongInteger(admin.MemberId), ...}); mock mocks.ts:97",
    "evidence": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js:1018; useAdminEventDetail.ts:134",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST: AdminMemberId = IntegerToLongInteger(TextToInteger(MemberId)); React: textToLongInteger(MemberId). Same value for an id in the Integer range. The server side of GetScanEventQRCode is row 108",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/G2-orbit-ldm.md). TST: AdminMemberId = IntegerToLongInteger(TextToInteger(MemberId)); React: textToLongInteger(MemberId). Same value for an id in the Integer range. The server side of GetScanEventQRCode is row 108",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitAdminFlow-071",
@@ -983,11 +984,12 @@
    "react": "app/src/pages/OrbitAdminEventDetail/hooks/useAdminEventDetail.ts:169-172",
    "evidence": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail.mvc.js:1150 Index(ExceptionMessage, \"Failed to deserialize JSON\", 0, false, true); useAdminEventDetail.ts:169; BR-C2LEG-960",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST searches with ignoreCase True; React message.includes() is case-sensitive",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/G2-orbit-ldm.md). TST searches with ignoreCase True; React message.includes() is case-sensitive",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitAdminFlow-076",

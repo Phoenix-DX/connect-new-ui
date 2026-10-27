@@ -56,3 +56,22 @@ export function onApplicationEvent_Orbit(
 ): void {
   log.info('ApplicationEvent', { EventId: ApplicationEvents_Orbit[event], Payload: JSON.stringify(auditPayload) });
 }
+
+/** The OutSystems Integer range of TextToInteger (MIN_INTEGER_VALUE, MAX_INTEGER_VALUE of the runtime). */
+const MIN_INTEGER_VALUE = -2147483648;
+const MAX_INTEGER_VALUE = 2147483647;
+
+/** IntegerToLongInteger(TextToInteger(Text)), as OnHandle_ScanCode sets ScannerAdminInfo.AdminMemberId
+    (ScreenBlock_AdminEventDetail.mvc.js:1018). TextToInteger of the runtime gives 0 when the text is not an integer
+    (format "^[-]?[0-9]+$") or when its value is outside the Integer range; IntegerToLongInteger keeps the value. */
+export function textToIntegerToLongInteger(text: string): string {
+  if (!/^-?[0-9]+$/.test(text)) return '0';
+  const value = Number.parseInt(text, 10);
+  return value >= MIN_INTEGER_VALUE && value <= MAX_INTEGER_VALUE ? String(value) : '0';
+}
+
+/** Index(Text, Search, 0, SearchFromEnd False, IgnoreCase True) <> -1: the check of the "Failed to deserialize JSON"
+    message in the AllExceptions handler of OnHandle_ScanCode (ScreenBlock_AdminEventDetail.mvc.js:1150). */
+export function containsIgnoreCase(text: string, search: string): boolean {
+  return text.toLowerCase().includes(search.toLowerCase());
+}

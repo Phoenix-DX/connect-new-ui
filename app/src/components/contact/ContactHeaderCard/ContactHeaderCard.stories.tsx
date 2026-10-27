@@ -18,9 +18,9 @@ export const OneSchoolGlobal: Story = {
   },
 };
 
-/** ContactByEmailLDMCoordinator: the coordinator avatar (no URL: no src), the name and "LDM Event Coordinator". */
+/** ContactByEmailLDMCoordinator: the coordinator avatar (no URL: `src=""`), the name and "LDM Event Coordinator". */
 export const LDMCoordinator: Story = {
-  args: { title: 'Helena Marsh', subtitle: 'LDM Event Coordinator' },
+  args: { imageSrc: '', title: 'Helena Marsh', subtitle: 'LDM Event Coordinator' },
 };
 
 /** ContactByEmailOrbitHelpdesk: the Orbit logo and "Orbit Helpdesk", no second line. */

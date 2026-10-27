@@ -187,9 +187,8 @@ export function createBookmarkRows({
           </div>
         ) : item.objectType === MyBookmarks_ObjectType.Subdivision ? (
           <div className="bookmark-list-item" data-container="" style={gap(index, items.length)}>
-            {/* The title and tag colours of the compiled view (main hall: primary, else neutral) are computed inline
-                styles that the clone may only render once captured (rule 21): left out until then. */}
-            <NotCaptured name="Supper Meeting row: main-hall title and tag colours (Locations not captured)" />
+            {/* The title and tag colours (IsMainHall: primary, else neutral) come from the compiled expressions
+                (ScreenBlock_BookmarkGroup Subdivision_Title.style, Subdivision_Tag.Style; Bookmarks Q2 (a)). */}
             <ResultItemImage
               id={`${p}-Subdivisions_List_Item`}
               inHasAction
@@ -203,7 +202,12 @@ export function createBookmarkRows({
                 onClickBookmarkedItem(item.id, index);
               }}
               titlePlaceholder={
-                <span className="font-size-0-9em bold" data-expression="" id={`${p}-Subdivision_Title`}>
+                <span
+                  className="font-size-0-9em bold"
+                  data-expression=""
+                  id={`${p}-Subdivision_Title`}
+                  style={{ color: d.isMainHall ? 'var(--color-primary)' : 'var(--color-neutral-10)' }}
+                >
                   {item.title}
                 </span>
               }
@@ -212,6 +216,10 @@ export function createBookmarkRows({
                   className="font-size-0-75em text-align-left padding-x-xs padding-y-xs border-radius-soft"
                   data-expression=""
                   id={`${p}-Subdivision_Tag`}
+                  style={{
+                    backgroundColor: d.isMainHall ? 'var(--color-primary)' : 'var(--color-neutral-2)',
+                    color: d.isMainHall ? 'var(--color-neutral-2)' : 'var(--color-neutral-6)',
+                  }}
                 >
                   {d.householdCount + (d.householdCount === '1' ? ' Household' : ' Households')}
                 </span>

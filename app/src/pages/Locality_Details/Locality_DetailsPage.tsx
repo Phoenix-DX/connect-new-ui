@@ -53,7 +53,7 @@ function Locality_DetailsScreen() {
   const [params] = useSearchParams();
   const mapsEnabled = useFlagOn('C2EnableMaps'); // GetHasMapsEnabled
   const hasCarouselEnabled = useFlagOn('C2EnableCarousel'); // GetHasCarouselEnabled
-  const hasNewBookmarks = useFlagOn('C2NewBookmarks'); // the GetLocal_Bookmark_C2 branch (decided off)
+  const hasNewBookmarks = useFlagOn('C2NewBookmarks'); // GetHasNewBookmarks: the GetLocal_Bookmark_C2 branch (decided off)
   const householdDetailsFlags = useHouseholdDetailsFlags();
   const flags = {
     hasLocalityContacts: useFlagOn('mobileDirectoryLocalityContacts'), // GetSample_FilterTags (Q2)
@@ -148,7 +148,7 @@ function Locality_DetailsScreen() {
                   </div>
                 </>
               }
-              placeholderIcons={!v.headerIsScrolled && mapsEnabled ? exploreIcon(b(13)) : null}
+              placeholderIcons={v.headerIsScrolled && mapsEnabled ? exploreIcon(b(13)) : null}
             />
           </div>
           <CustomContainer

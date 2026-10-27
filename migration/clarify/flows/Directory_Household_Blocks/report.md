@@ -208,9 +208,9 @@ The own blocks are in §2. Blocks of other flows:
 
 ## 5. Findings
 
-| Id | Severity | Screen / element | Finding | React location | Suggested fix |
-|---|---|---|---|---|---|
-| F1 | minor | Household_Card / OnReady | TST ends OnReady when `wasCurrentViewRestoredFromCache()` is true (`Household_Card.mvc.js:478-490`, `:622-624`). React keeps the members in `useState`, outside the view cache. After Back, each card shows two skeleton avatars and calls `DataActionGetMembers` again. Decision U19 (`app-shell.spec.md:351,386`) asks for a restore without a spinner. F40 (`stack.md:228`) allows a new call only when the saved state has no data. | `app/src/pages/Locality_Details/hooks/useHouseholdCardMembers.ts:33-45` | Keep the fetched members in the view cache (a query, or `useViewState`). On a restored view with data, skip the skeleton and the call. Follow the recipe of `app/docs/guides/page-template.md:96-101`. |
+| Id | Severity | Screen / element | Finding | React location | Suggested fix | Status |
+|---|---|---|---|---|---|---|
+| F1 | minor | Household_Card / OnReady | TST ends OnReady when `wasCurrentViewRestoredFromCache()` is true (`Household_Card.mvc.js:478-490`, `:622-624`). React keeps the members in `useState`, outside the view cache. After Back, each card shows two skeleton avatars and calls `DataActionGetMembers` again. Decision U19 (`app-shell.spec.md:351,386`) asks for a restore without a spinner. F40 (`stack.md:228`) allows a new call only when the saved state has no data. | `app/src/pages/Locality_Details/hooks/useHouseholdCardMembers.ts:33-45` | Keep the fetched members in the view cache (a query, or `useViewState`). On a restored view with data, skip the skeleton and the call. Follow the recipe of `app/docs/guides/page-template.md:96-101`. | fixed 2026-10-27 (`fixes/E-directory.md`) |
 
 ## 6. DEV vs TST differences
 

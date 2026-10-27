@@ -1,8 +1,11 @@
 import type { UpdateItem } from '@/api/update';
-import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CustomContainer } from '@/components/ui/CustomContainer';
+import { Icon } from '@/components/ui/Icon';
+import { IconText } from '@/components/ui/IconText';
 import { UBT_Color, UBT_Shape, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
+import { UBT_FontSize, UBT_FontWeight, UBT_Icons2, UBT_IconsSize } from '@/lib/ubtConnect/staticEntities';
+import { UBT_Color_BlueDark } from '@/pages/HomeFeed/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { UpdateListItem } from '@/components/feed/UpdateListItem';
 
@@ -106,20 +109,36 @@ export function FeedBlock_Updates({
                     onMarkAsUnread(item);
                   }}
                 />
+                {/* #DoesntHaveAccess (compiled view FeedBlock_Updates.mvc.js:388-537; not captured, Home Q2 (a)). */}
                 {!item.hasAccess && (
-                  <NotCaptured name="FeedBlock_Updates subscription upgrade (HasAccess False, compiled view :420-520)">
-                    <CustomContainer
-                      options={{
-                        Background: { BackgroundColor: UBT_Color.Neutral2 },
-                        PaddingSize: { HorizontalSizeId: UBT_Size.Small },
-                        MarginSize: { VerticalSizeId: UBT_Size.Small },
-                        BorderOptions: { Radius: { GeneralSizeId: UBT_Shape.Large } },
-                      }}
-                      onClicked={onClickUpgrade}
-                    >
-                      Subscription upgrade required
-                    </CustomContainer>
-                  </NotCaptured>
+                  <CustomContainer
+                    options={{
+                      Background: { BackgroundColor: UBT_Color.Neutral2 },
+                      PaddingSize: { HorizontalSizeId: UBT_Size.Small },
+                      MarginSize: { VerticalSizeId: UBT_Size.Small },
+                      BorderOptions: { Radius: { GeneralSizeId: UBT_Shape.Large } },
+                    }}
+                    onClicked={onClickUpgrade}
+                  >
+                    <div data-container="" style={{ textAlign: 'center' }}>
+                      <div className="display-inline-block" data-container="" style={{ textAlign: 'center' }}>
+                        <IconText
+                          textOptions={{
+                            Color: UBT_Color_BlueDark,
+                            FontSize: UBT_FontSize.ExtraSmall,
+                            FontWeight: UBT_FontWeight.SemiBold,
+                          }}
+                          text="Subscription upgrade required"
+                        >
+                          <Icon
+                            inColorId={UBT_Color_BlueDark}
+                            inSizeId={UBT_IconsSize.NonStandard_16}
+                            inIconId={UBT_Icons2.Lock}
+                          />
+                        </IconText>
+                      </div>
+                    </div>
+                  </CustomContainer>
                 )}
                 <div data-container="" />
               </CustomContainer>

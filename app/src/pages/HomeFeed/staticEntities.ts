@@ -4,6 +4,11 @@
 /** UBT_Shadow: "shadow-" + Id. Captured `shadow-s` (FeedBlock_Services DIV_Services, dom/default.html:131). */
 export const UBT_Shadow_Small = 's';
 
+/** UBT_Color BlueDark: "text-" + Id. TST value (static-entities-tst.json `UBTConnect.uBT_Color.blueDark`); the original
+    CSS has `.text-blue-dark` (OutSystemsUI_2_23.OutSystemsUI.css). FeedBlock_Updates subscription banner (HasAccess
+    False, not captured; Home Q2 (a)). */
+export const UBT_Color_BlueDark = 'blue-dark';
+
 /** UBT_Icons2 font icons (Id = icon class): captured `connect-icon-settings` (services settings button, dom:156),
     `connect-icon-arrow_right_alt` (Section_FeedWrapper "View all", dom:511), `connect-icon-trove` (Trove service, dom
     services list). AddCircle (ForceAddService, not used by HomeFeed: False) is not captured. */

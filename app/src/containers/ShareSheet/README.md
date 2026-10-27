@@ -47,7 +47,8 @@ The block uses these calls (`src/api/share/shareSheet.ts` and `src/api/member/`,
   - The user clicks Send. The call uses the HouseholderIds of the selected members.
   - The user clicks a recently shared member.
   - After the call, the block resets the state and closes the sheet. Then it shows "<Type> has been shared."
-  - When the call fails, the block shows "Share failed. Please try again."
+  - When the call fails with NotRegistered or a system exception, the error goes to the flow handler. Any other
+    failure shows "Share failed. Please try again."
 - ActionCS_CreateShareProfileLink (`cs_CreateShareProfileLink`).
 
 Mocks:
@@ -60,7 +61,7 @@ Mocks:
 Selection and loading:
 
 - The user can select at most 50 members. When the user tries to select more, the block shows "You can select up to 50
-  recipients only."
+  recipients only." with FeedbackMessage_AutoClose: the message closes by itself.
 - The list of the selected members shows above the results.
 - While a list loads, the block shows a skeleton of five "Loading Name" rows.
 
@@ -84,8 +85,7 @@ Send, recent-member share and the link action.
   - The React app does not port the ExternalShare client action.
 - A click on a disabled recently shared member opens App_Subscription_ShowUpgradePopUp. The React app does not port it, so
   the click has no effect.
-- FeedbackMessage_AutoClose (50-recipient limit) shows as a plain error message. The React app does not port the auto-close.
-- IsSubmitting and the NotRegistered re-raise of Action_SubmitShare have no visible effect here.
+- IsSubmitting of Action_SubmitShare has no visible effect here.
 - The captures do not contain the List widget attributes (`animateItems`, `disable-virtualization`). The block renders
   only `data-list`.
 - These static values come from the original CSS: `connect-icon-lock`, `connect-icon-checkbox_fill`,

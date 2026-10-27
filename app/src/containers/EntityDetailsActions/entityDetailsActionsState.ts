@@ -70,7 +70,8 @@ interface OnReadyInit {
 }
 
 /** OnReady (controller) up to the contact fetch: NoteCategoryId, the menu of the entity type, isFetchContacts (call,
-    email or share) and the share type. CheckRestored (view restored from cache) is not ported: it always runs. */
+    email or share) and the share type. CheckRestored (a view restored from the cache ends OnReady) is in
+    useEntityDetailsActions. */
 export function onReadyInit(entityType: string, useViewDetails: boolean): OnReadyInit {
   const result: OnReadyInit = { options: {}, labels: true, noteCategoryId: '', shareType: '', isFetchContacts: false };
   try {

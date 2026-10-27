@@ -1,6 +1,8 @@
 /** @origin UBTConnect_Utils.CW_Share.ShareSheet */
 import { useEffect, useId, useRef, useState } from 'react';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
+import { feedbackMessageAutoClose } from '@/platform/feedback/feedbackMessageAutoClose';
+import { isNotRegisteredException, isSystemException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import type { SearchResult } from '@/lib/ubtConnectUtils/structures';
 import { useAvailableMembersQuery } from '@/api/member';
@@ -119,7 +121,9 @@ export function useShareSheet({
   const searchResultItemList = isSearching ? (available.data ?? SKELETON) : recentFetched ? recentlyShared : SKELETON;
   const isSelected = (item: SearchResult) => selectedMembers.some((m) => m.Id === item.Id);
 
-  // Action_SubmitShare (:3084-3183): CS_ShareObject, then reset and close, then the confirmation; any error → message.
+  // Action_SubmitShare (:3084-3183): CS_ShareObject, then reset and close, then the confirmation. Handlers, in order:
+  // NotRegistered → raised again to the flow handler (:3127-3136); AllExceptions (not a system exception) → the
+  // message (:3138-3148); a system exception goes up to the flow handler too (:3152, safeExecuteClientAction).
   const submitShare = async (targetMemberIds: string[]) => {
     try {
       // Cache_UserInfo_Get (the user-info cache), then CS_ShareObject with the sharer's "FirstName LastName".
@@ -127,7 +131,11 @@ export function useShareSheet({
       await csShareObject(variables, `${user.FirstName} ${user.LastName}`, targetMemberIds);
       resetAndCloseSheetState();
       showFeedbackMessage(`${inShareObjectTypeId} has been shared.`, PLATFORM_MESSAGE_TYPE.info);
-    } catch {
+    } catch (ex) {
+      if (isNotRegisteredException(ex) || isSystemException(ex)) {
+        raiseToFlowHandler(ex);
+        return;
+      }
       showFeedbackMessage('Share failed. Please try again.', PLATFORM_MESSAGE_TYPE.error);
     }
   };
@@ -138,10 +146,19 @@ export function useShareSheet({
     setLocals((current) => ({ ...current, sharingRecentMemberId: item.Id ?? '' }));
     void submitShare([item.HouseholderId ?? '']);
   };
-  // Handler_SearchResultItemOnSelect (:2911-3008): at most 50 recipients; select adds, unselect removes.
+  // Handler_SearchResultItemOnSelect (:2911-3008): at most 50 recipients; select adds, unselect removes. The limit
+  // message is FeedbackMessage_AutoClose("", text, Error, True, "", 0, False) (:2926; the type id resolves to Error).
   const onSelect = (item: SearchResult, select: boolean) => {
     if (select && selectedMembers.length >= MAX_RECIPIENTS) {
-      showFeedbackMessage('You can select up to 50 recipients only.', PLATFORM_MESSAGE_TYPE.error);
+      feedbackMessageAutoClose({
+        title: '',
+        message: 'You can select up to 50 recipients only.',
+        messageType: 'error',
+        encodedHtml: true,
+        extendedClass: '',
+        delayMs: 0,
+        useDebounce: false,
+      });
       return;
     }
     if (select && !isSelected(item)) setSelectedMembers([...selectedMembers, item]);

@@ -16,6 +16,7 @@ import {
   getBookmarkCategoryId_ByEntityTypeId,
   getBookmarkType_FromEntity,
   getNameAndSurname_ByFullName,
+  getShareType_FromEntity,
   set_InitialClientVariables,
   toggleBookmarkItem_C2,
   get_LookupSection,
@@ -142,6 +143,26 @@ describe('bookmarks (CR-W4A-1)', () => {
       'Bookmark could not be added. Please try again later.',
       feedback.PLATFORM_MESSAGE_TYPE.error,
     );
+  });
+});
+
+describe('GetShareType_FromEntity (UC:11102-11223, BR-UBTCON-244)', () => {
+  it('maps each entity type; a Household stays Household whatever In_IsMyHousehold is', () => {
+    expect(getShareType_FromEntity('Locality')).toBe('Locality');
+    expect(getShareType_FromEntity('Interchange')).toBe('Locality');
+    expect(getShareType_FromEntity('Household', false)).toBe('Household');
+    expect(getShareType_FromEntity('Household', true)).toBe('Household');
+    expect(getShareType_FromEntity('Supper Meetings')).toBe('Supper Meeting');
+    expect(getShareType_FromEntity('OneSchool Global')).toBe('OneSchool Global');
+    expect(getShareType_FromEntity('Feed Item', true)).toBe('Feed');
+  });
+
+  it('In_IsMyHousehold gives My Household only after no entity case matched; Member always raises', () => {
+    expect(getShareType_FromEntity('Country', true)).toBe('My Household');
+    expect(getShareType_FromEntity('', true)).toBe('My Household');
+    expect(() => getShareType_FromEntity('Country', false)).toThrow('Share not available');
+    expect(() => getShareType_FromEntity('Member', false)).toThrow('Share not available');
+    expect(() => getShareType_FromEntity('Member', true)).toThrow('Share not available');
   });
 });
 

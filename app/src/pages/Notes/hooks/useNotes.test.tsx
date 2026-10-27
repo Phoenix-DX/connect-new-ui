@@ -287,31 +287,53 @@ describe('useNotes: the events of the blocks', () => {
     expect(result.current.state.hasFiltersApplied).toBe(true);
   });
 
-  it('Notes_CardListOnLoadMore appends the next page, and does nothing while GetNotes loads', async () => {
+  it('Notes_CardListOnLoadMore appends the next page; its Promise settles after the page fetch', async () => {
     vi.mocked(fetchNoteCards).mockResolvedValueOnce(page([FENWICK], '2'));
     const nextPage = pending<NoteCardPage>();
     vi.mocked(fetchNoteCards).mockReturnValueOnce(nextPage.promise);
     const { result } = renderFlows();
     await settle();
+    let ended = false;
     act(() => {
-      result.current.onLoadMore();
-    });
-    act(() => {
-      result.current.onLoadMore();
+      void result.current.onLoadMore().then(() => {
+        ended = true;
+      });
     });
     expect(fetchNoteCards).toHaveBeenCalledTimes(2);
     expect(sentWith(1).pageNumber).toBe(2);
+    await settle();
+    // The List of NoteCard_List waits for this Promise before it raises a new OnScrollEnding
+    expect(ended).toBe(false);
     nextPage.resolve(page([ASHDOWN], '2'));
     await settle();
+    expect(ended).toBe(true);
     expect(result.current.state).toMatchObject({ notesList: [FENWICK, ASHDOWN], maxRecords: '2', notesLoading: false });
     expect(fetchNotePills).toHaveBeenCalledTimes(2);
+  });
+
+  it('Notes_CardListOnLoadMore has no loading clause: an OnLoadMore during a page fetch asks for the next page', async () => {
+    vi.mocked(fetchNoteCards).mockResolvedValueOnce(page([FENWICK], '3'));
+    const nextPage = pending<NoteCardPage>();
+    vi.mocked(fetchNoteCards).mockReturnValueOnce(nextPage.promise);
+    vi.mocked(fetchNoteCards).mockReturnValueOnce(pending<NoteCardPage>().promise);
+    const { result } = renderFlows();
+    await settle();
+    act(() => {
+      void result.current.onLoadMore();
+    });
+    expect(result.current.state.notesLoading).toBe(true);
+    act(() => {
+      void result.current.onLoadMore();
+    });
+    expect(fetchNoteCards).toHaveBeenCalledTimes(3);
+    expect(sentWith(2).pageNumber).toBe(3);
   });
 
   it('Notes_CardListOnLoadMore does nothing when the last page has MaxRecords cards', async () => {
     const { result } = renderFlows();
     await settle();
     act(() => {
-      result.current.onLoadMore();
+      void result.current.onLoadMore();
     });
     expect(fetchNoteCards).toHaveBeenCalledTimes(1);
   });

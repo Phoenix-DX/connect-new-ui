@@ -11,6 +11,7 @@ import {
   SUGGESTIONS_CONTAINER,
   action_ChangeOrderLocal,
   referenceServicesOf,
+  type ChangeOrderVariables,
   type ServicesLists,
 } from './servicesState';
 
@@ -53,13 +54,23 @@ export function useServices(): ServicesFlows {
   // OnAfterFetch_GetServices
   const referenceServices = useMemo(() => referenceServicesOf(getServices.data), [getServices.data]);
 
-  /** Handler_SortableListOnDragEnd: OldIndex = NewIndex changes nothing. A failure goes to the exception handlers of
-      the action. */
+  /** Handler_SortableListOnDragEnd: OldIndex = NewIndex changes nothing. Action_ChangeOrderLocal changes copies of
+      the variables in place; they are stored also when a List action fails, so the steps before the failure stay
+      (TST changes the screen variables in place). A failure then goes to the exception handlers of the action. */
   const onDragEnd = (fromId: string, toId: string, oldIndex: number, newIndex: number, itemId: string) => {
     if (oldIndex === newIndex) return;
+    const variables: ChangeOrderVariables = {
+      currentServices: [...lists.currentServices],
+      availableServices: [...lists.availableServices],
+      hasChanges,
+    };
+    const store = () => {
+      setChanged({ currentServices: variables.currentServices, availableServices: variables.availableServices });
+      setHasChanges(variables.hasChanges);
+    };
     try {
-      const next = action_ChangeOrderLocal(
-        lists,
+      action_ChangeOrderLocal(
+        variables,
         referenceServices,
         newIndex,
         oldIndex,
@@ -68,13 +79,12 @@ export function useServices(): ServicesFlows {
         itemId,
         Number(currentUserId() ?? 0),
       );
-      if (next) {
-        setChanged(next);
-        setHasChanges(true);
-      }
     } catch (error) {
+      store();
       raiseBubbledToFlowHandler(error);
+      return;
     }
+    store();
   };
 
   /** OnClick_SaveChanges: only with changes. It saves the favourites, then shows "Your changes were saved.". After a

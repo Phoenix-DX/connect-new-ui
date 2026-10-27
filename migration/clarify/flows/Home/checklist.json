@@ -827,10 +827,12 @@
    "os": "fetch at block start; each new HomeFeed shows the skeleton page until the answer",
    "react": "useFeedServicesQuery on mount with the library cache defaults: a new visit in the next 5 minutes shows the previous services at once and fetches again; a reconnect fetches again",
    "evidence": "app/src/api/service/hooks.ts:21-33; app/src/api/client/queryClient.ts:15-18; TST FeedBlock_Services.mvc.js:709",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "minor",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "live",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md)."
   },
   {
    "id": "Home-075",
@@ -1181,10 +1183,12 @@
    "os": "OnReady raises OnPopUpReady(PopUp.Id); \"Move to <app>\", icon, question, \"Continue to <app>\" and \"Cancel\"; confirm: PackageName \"\" → \"Not available\" message (type TextToInteger(\"Entities.UBT_MessageType.Error\") = 0), else OpenInApp_OpenApp",
    "react": "the same events, texts and confirm flow; the open dialog leaves out the inline \"text-align: center\" container of the body and the CustomContainer (display flex, row, centred) of the confirm label",
    "evidence": "app/src/pages/HomeFeed/components/Dialog_GoExternalApp.tsx:31-35, 46-49, 58-127; app/src/pages/HomeFeed/hooks/goToExternalApp.ts:11-25; TST Dialog_GoExternalApp.mvc.js:211, 281, 426, 447-450, 494, 550, 593-631; BR-C2UTL-162, BR-C2UTL-163",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "minor",
    "finding": "F4",
-   "verified": "pack"
+   "verified": "live",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/G1-content.md)."
   },
   {
    "id": "Home-106",
@@ -1239,10 +1243,12 @@
    "os": "Get_UI_UpdateItemsForHomePage at block start; each new HomeFeed shows the skeleton until the answer",
    "react": "useFeedUpdatesQuery on mount with the library cache defaults: a new visit in the next 5 minutes shows the previous items at once and fetches again; a reconnect fetches again",
    "evidence": "app/src/api/update/hooks.ts:10-16; app/src/api/update/repository.ts:19-26; app/src/api/client/queryClient.ts:15-18",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "minor",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "live",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md)."
   },
   {
    "id": "Home-111",
@@ -1321,10 +1327,12 @@
    "os": "CustomContainer (Neutral2, H Small, V Small, radius Large), Clicked → OnClick_SubscriptionUpgrade > container (text-align center) > container display-inline-block > IconText \"Subscription upgrade required\" (BlueDark, ExtraSmall, SemiBold) > Icon Lock (BlueDark, NonStandard_16)",
    "react": "the CustomContainer with the same options and click, then the plain text; no inner containers, no IconText, no lock icon (inside NotCaptured)",
    "evidence": "app/src/pages/HomeFeed/components/FeedBlock_Updates.tsx:109-123; TST FeedBlock_Updates.mvc.js:388-520",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "minor",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "live",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/G1-content.md)."
   },
   {
    "id": "Home-118",

@@ -27,6 +27,7 @@ async function renderServices() {
 }
 
 beforeEach(() => {
+  vi.mocked(raiseBubbledToFlowHandler).mockClear();
   freshPage();
   setSignedInUser(MOCK_USER_ID);
 });
@@ -79,7 +80,27 @@ describe('useServices', () => {
     expect(result.current.lists).toBe(before);
   });
 
-  it('a failed drag goes to the exception handlers of the action, and the lists stay', async () => {
+  it('B3: a touch drag to the top of the favourites removes a row, then fails; the removal stays', async () => {
+    const { result } = await renderServices();
+    // SortableJS: OldIndex 3 and NewIndex 0 (zero-based): ListRemove2 at 2 runs, ListInsert2 at -1 fails
+    act(() => {
+      result.current.onDragEnd(FAVOURITE_LIST, FAVOURITE_LIST, 3, 0, 'Trove');
+    });
+    expect(raiseBubbledToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(vi.mocked(raiseBubbledToFlowHandler).mock.calls[0]?.[0]).toEqual(
+      new Error('Index out of bounds. Index -1 for bounds [0, 4].'),
+    );
+    // The Orders are not numbered again: the Foreach after the List actions does not run
+    expect(result.current.lists.currentServices.map((c) => [c.service.id, c.serviceUser.order])).toEqual([
+      ['Orbit', 1],
+      ['LDM', 2],
+      ['Trove', 4],
+      ['MyCalendar', 5],
+      ['MyNotes', 6],
+    ]);
+  });
+
+  it('a failed drag goes to the exception handlers of the action; HasChanges is True, so Save saves', async () => {
     const { result } = await renderServices();
     const before = result.current.lists;
     // SortableJS: a drag of the first favourite to the suggestions gives OldIndex 0, so OldOrder - 1 = -1
@@ -87,8 +108,18 @@ describe('useServices', () => {
       result.current.onDragEnd(FAVOURITE_LIST, SUGGESTION_LIST, 0, 1, 'Trove');
     });
     expect(raiseBubbledToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(vi.mocked(raiseBubbledToFlowHandler).mock.calls[0]?.[0]).toEqual(new Error('Index out of range'));
+    expect(vi.mocked(raiseBubbledToFlowHandler).mock.calls[0]?.[0]).toEqual(
+      new Error('Index out of bounds. Index -1 for bounds [0, 5].'),
+    );
     expect(isUserException(vi.mocked(raiseBubbledToFlowHandler).mock.calls[0]?.[0])).toBe(false);
-    expect(result.current.lists).toBe(before);
+    expect(result.current.lists).toEqual(before);
+    // HasChanges = True ran before the failed ListRemove: OnClick_SaveChanges saves (IsLoading True)
+    act(() => {
+      result.current.onSaveChanges();
+    });
+    expect(result.current.isLoading).toBe(true);
+    await waitFor(() => {
+      expect(result.current.isLoading).toBe(false);
+    });
   });
 });

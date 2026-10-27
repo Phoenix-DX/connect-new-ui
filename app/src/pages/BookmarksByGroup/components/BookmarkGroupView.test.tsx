@@ -137,6 +137,19 @@ describe('BookmarkGroupView', () => {
     expect(byId('b1-l2_1-Locality_Tag')?.textContent).toBe('Argentina');
   });
 
+  it('Locations: the supper meeting title and tag colours follow IsMainHall (ScreenBlock_BookmarkGroup show:996-1020)', () => {
+    const mainHall = bookmark('9', 'Subdivision', '7002', BOOKMARKED_PLACES.mainHall, details({ isMainHall: true }));
+    const supperMeeting = LOCATIONS[0] as Bookmark;
+    renderView({ bookmarkGroup: 'Locations', bookmarkedItems: [supperMeeting, mainHall] });
+    const style = (id: string) => (byId(id) as HTMLElement).style;
+    expect(style('b1-l2_0-Subdivision_Title').color).toBe('var(--color-neutral-10)');
+    expect(style('b1-l2_0-Subdivision_Tag').backgroundColor).toBe('var(--color-neutral-2)');
+    expect(style('b1-l2_0-Subdivision_Tag').color).toBe('var(--color-neutral-6)');
+    expect(style('b1-l2_1-Subdivision_Title').color).toBe('var(--color-primary)');
+    expect(style('b1-l2_1-Subdivision_Tag').backgroundColor).toBe('var(--color-primary)');
+    expect(style('b1-l2_1-Subdivision_Tag').color).toBe('var(--color-neutral-2)');
+  });
+
   it('Entities: "Information not available" without a title, and the areas served with the country', () => {
     renderView({ bookmarkGroup: 'Entities', bookmarkedItems: ENTITIES });
     expect(byId('b1-l3_0-Entity_Title')?.textContent).toBe('Information not available');

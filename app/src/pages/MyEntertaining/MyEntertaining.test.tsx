@@ -3,12 +3,18 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { StrictMode } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { log } from '@/platform/log/log';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { setClientVar } from '@/platform/session/session';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import { loadedEmbed, requireEmbed } from './components/connect2Entertaining';
 import MyEntertaining from './MyEntertainingPage';
+
+/* The flow handler keeps its behaviour; the tests count its calls. */
+vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => {
+  const original = await importOriginal<typeof import('@/platform/feedback/flowErrors')>();
+  return { ...original, raiseToFlowHandler: vi.fn(original.raiseToFlowHandler) };
+});
 
 /* The screen with the MSW mocks of the test setup (mocks.ts: the app's own origin as BaseURL, no token) and the local
    stand-in of the calendar SDK (components/connect2Entertaining.ts: one iframe, ready and complete on its load). */
@@ -153,10 +159,10 @@ describe('MyEntertaining', () => {
     expect(errors).not.toHaveBeenCalled();
   });
 
-  it('closed while the token refresh is pending: the call ends once, its failure is logged once, the SDK gets nothing', async () => {
+  it('closed while the token refresh is pending: the call ends once, its failure goes once to the flow handler (Calendar Q2), the SDK gets nothing', async () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
     const refreshToken = vi.spyOn(await requireEmbed(window.location.origin), 'refreshToken');
-    const warn = vi.spyOn(log, 'warn').mockImplementation(() => undefined);
+    vi.mocked(raiseToFlowHandler).mockClear();
     const { container, unmount } = renderScreen('');
     await loadCalendar(container);
     sessionStorage.setItem('mock:latency', '30');
@@ -167,13 +173,13 @@ describe('MyEntertaining', () => {
     expect(calledActions()).toEqual([CONFIG, TOKEN]);
     unmount();
     await waitFor(() => {
-      expect(warn).toHaveBeenCalledTimes(1);
+      expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
     });
     act(() => {
       vi.advanceTimersByTime(TEN_MINUTES);
     });
     expect(calledActions()).toEqual([CONFIG, TOKEN]);
-    expect(warn.mock.calls[0]?.[0]).toBe('AppManager_Get_UserIdToken failed');
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
     expect(refreshToken).not.toHaveBeenCalled();
   });
 

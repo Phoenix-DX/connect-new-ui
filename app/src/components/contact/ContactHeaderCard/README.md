@@ -8,7 +8,7 @@ The header card of the ContactByEmail form (`Placeholder_ContactCard` of `Contac
 | Screen          | `imageSrc`                                               | `title`            | `subtitle`                |
 | --------------- | -------------------------------------------------------- | ------------------ | ------------------------- |
 | OneSchoolGlobal | `osImage('img/UBTConnectLibrary.OneSchoolGlobal.svg')`   | In_ContactName     | `' '`                     |
-| LDMCoordinator  | In_AvatarURL, `undefined` when "" (no src attribute)     | In_ContactName     | `'LDM Event Coordinator'` |
+| LDMCoordinator  | In_AvatarURL, `src=""` when "" (as the OS Image widget)  | In_ContactName     | `'LDM Event Coordinator'` |
 | OrbitHelpdesk   | `osImage('img/Connect2_OrbitMobile_MUI.Orbit_Logo.svg')` | `'Orbit Helpdesk'` | none (no `$b5` line)      |
 
 The blocks keep the instance ids of the screens (`$b3` to `$b5`).

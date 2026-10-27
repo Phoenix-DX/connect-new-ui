@@ -159,12 +159,12 @@ UserEventForm_DateTimeWrapper (pack of that flow, `blocks.md:222`).
 
 ## 5. Findings
 
-| Id | Severity | Screen / element | Finding | React location | Suggested fix |
-|---|---|---|---|---|---|
-| F1 | major | Embedded_MyEntertaining / failed `DataActionGetEntertainingConfig` | The runtime (`OutSystems.js:3853`) calls `handleError` after a failed data fetch. The Calendar flow passes the error to App_Common OnException, which shows the toast. React keeps the skeleton and shows no toast. App_Services F2 is the same gap. | `app/src/api/entertaining/hooks.ts:12-20`; `app/src/pages/MyEntertaining/hooks/useEntertainingCalendar.ts:32-35` | Q1. Pass the query error to `raiseToFlowHandler`, as part of the shared fix of App_Services Q3. |
-| F2 | minor | Embedded_MyEntertaining / failed `Action_RefreshToken` | TST runs the action through `safeExecuteClientAction` (`OutSystems.js:17`), so an error goes to App_Common, which shows the toast. React logs a warning only. A code comment names this, but no recorded decision does. | `app/src/pages/MyEntertaining/hooks/useEntertainingCalendar.ts:20-26` | Q2. Send the error to `raiseToFlowHandler` in `refreshToken`. |
-| F3 | minor | MyEntertaining / document title | The runtime sets `document.title` to "MyEntertaining" (`OutSystemsReactView.js:7`). React sets no title. The gap is app-wide. | `app/src/app/routes.generated.ts:24` (title not used) | The shared fix of App_Services Q4. |
-| F4 | info | Embedded_MyEntertaining / console logs | TST writes five `console.log` texts from the SDK callbacks and the `events:loaded` message. React writes none. | `app/src/pages/MyEntertaining/components/Embedded_MyEntertaining.tsx:122-152` | Optional: `log.info` calls with the same texts. |
+| Id | Severity | Screen / element | Finding | React location | Suggested fix | Status |
+|---|---|---|---|---|---|---|
+| F1 | major | Embedded_MyEntertaining / failed `DataActionGetEntertainingConfig` | The runtime (`OutSystems.js:3853`) calls `handleError` after a failed data fetch. The Calendar flow passes the error to App_Common OnException, which shows the toast. React keeps the skeleton and shows no toast. App_Services F2 is the same gap. | `app/src/api/entertaining/hooks.ts:12-20`; `app/src/pages/MyEntertaining/hooks/useEntertainingCalendar.ts:32-35` | Q1. Pass the query error to `raiseToFlowHandler`, as part of the shared fix of App_Services Q3. | |
+| F2 | minor | Embedded_MyEntertaining / failed `Action_RefreshToken` | TST runs the action through `safeExecuteClientAction` (`OutSystems.js:17`), so an error goes to App_Common, which shows the toast. React logs a warning only. A code comment names this, but no recorded decision does. | `app/src/pages/MyEntertaining/hooks/useEntertainingCalendar.ts:20-26` | Q2. Send the error to `raiseToFlowHandler` in `refreshToken`. | fixed 2026-10-27 (`fixes/C-errors.md`) |
+| F3 | minor | MyEntertaining / document title | The runtime sets `document.title` to "MyEntertaining" (`OutSystemsReactView.js:7`). React sets no title. The gap is app-wide. | `app/src/app/routes.generated.ts:24` (title not used) | The shared fix of App_Services Q4. | fixed 2026-10-27 (`fixes/A-shell.md`) |
+| F4 | info | Embedded_MyEntertaining / console logs | TST writes five `console.log` texts from the SDK callbacks and the `events:loaded` message. React writes none. | `app/src/pages/MyEntertaining/components/Embedded_MyEntertaining.tsx:122-152` | Optional: `log.info` calls with the same texts. | |
 
 ## 6. DEV vs TST differences
 

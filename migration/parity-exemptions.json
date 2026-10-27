@@ -147,6 +147,14 @@
    "states": "^default$",
    "reason": "Pixel companion of MYENT-D8B-IFRAME (decision D8 b): the iframe shows the local stand-in calendar, now filled with meaningful fictional content (user, 2026-10-16), while the capture shows the real embed; mask the embed area in the pixel comparison. Auto-accepted (user instruction 2026-10-16 night).",
    "evidence": "MyEntertaining default parity pixel 9.62% after the stand-in content (mock follow-up agent, 2026-10-16)"
+  },
+  {
+   "id": "CAPTURE-LOADING-FETCH-TIMEOUT-LEGACYSHAREOBJECT-ONINITIALIZE",
+   "idRegex": "^transitionContainer$",
+   "states": "^loading$",
+   "routeRegex": "^/UBTConnect/LegacyShareObject(\\?|$)",
+   "reason": "OnInitialize of LegacyShareObject awaits GetUserInformation_Wrapper (LegacyShareObject.mvc.js:271-287); the runtime creates the view only when OnInitialize has ended (OutSystems.js ControllerFactory, also after a handled error). The loading capture held the TST requests until the OutSystems request timeout, so the view was created with the blocks in their fetch-error state; the mock loading scenario never answers (the clone has no request timeout yet, see SLIDER-LOADING-TIMEOUT), so the clone renders no screen. The default and offline states pass. Same artifact as CAPTURE-LOADING-FETCH-TIMEOUT; added 2026-10-27 after the minor findings wave (Legacy_Share F2, the port of the OnInitialize order), auto-accepted in the user's auto mode",
+   "evidence": "migration/screens/LegacyShareObject/capture/call-sites.md (ActionGetUserInformation observed); migration/screens/LegacyShareObject/parity/loading.json (structure 4: screen-container blocks missing in build); parity/default.json and offline.json pass"
   }
  ],
  "rules": [

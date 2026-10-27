@@ -1,19 +1,21 @@
 import { useEffect } from 'react';
 import type { ExternalAppPopUpInfo } from '@/api/service';
-import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { CircleButton } from '@/components/ui/CircleButton';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import {
+  UBT_AlignItems,
   UBT_AvatarSize,
   UBT_Color,
+  UBT_Display,
   UBT_FontSize,
   UBT_FontWeight,
+  UBT_JustifyContent,
   UBT_Size,
 } from '@/lib/ubtConnectLibrary/staticEntities';
-import { UBT_Icons2 as UBT_Icons_Connect } from '@/lib/ubtConnect/staticEntities';
+import { UBT_FlexDirection, UBT_Icons2 as UBT_Icons_Connect } from '@/lib/ubtConnect/staticEntities';
 import { UBT_IconSize } from '@/lib/ubtConnectUtils/staticEntities';
 import { ConfirmDialog } from '@/components/ui/Dialog';
 
@@ -30,8 +32,8 @@ export interface Dialog_GoExternalAppProps {
 
 /** The dialog that asks before HomeFeed opens an external app: "Move to <app>", the icon of the app, the question,
     and the buttons "Continue to <app>" and "Cancel". The closed markup is captured (dom/default.html). The open state is
-    not captured: its content follows the compiled view inside NotCaptured; the container with the inline
-    `text-align: center` and the FlexDirection Row of the confirm row (identifier not captured) are left out.
+    not captured: its tree follows the compiled view (Dialog_GoExternalApp.mvc.js:246-560; Home Q2 (a)), with the
+    inline `text-align: center` container of the icon and the flex row CustomContainer of the confirm label.
     @origin UBTConnect_Utils.CW_App_Common_Blocks_PopupDialogs.Dialog_GoExternalApp */
 export function Dialog_GoExternalApp({
   id,
@@ -68,24 +70,26 @@ export function Dialog_GoExternalApp({
             </div>
           }
           body={
-            <NotCaptured name="Dialog_GoExternalApp open state (compiled view DGE:250-420)">
+            <>
               <CustomContainer options={{ PaddingSize: { GeneralSizeId: UBT_Size.Base } }}>
-                {info.iconId !== '' &&
-                  (isSvg ? (
-                    <Icon inIconId={info.iconId} inSizeId={UBT_IconSize.NonStandard_64} />
-                  ) : (
-                    <CircleButton
-                      backgroundColorId={UBT_Color.Primary}
-                      sizeId={UBT_AvatarSize.Base_52}
-                      icon={
-                        <Icon
-                          inIconId={info.iconId}
-                          inSizeId={UBT_IconSize.NonStandard_32}
-                          inColorId={UBT_Color.Neutral0}
-                        />
-                      }
-                    />
-                  ))}
+                <div data-container="" style={{ textAlign: 'center' }}>
+                  {info.iconId !== '' &&
+                    (isSvg ? (
+                      <Icon inIconId={info.iconId} inSizeId={UBT_IconSize.NonStandard_64} />
+                    ) : (
+                      <CircleButton
+                        backgroundColorId={UBT_Color.Primary}
+                        sizeId={UBT_AvatarSize.Base_52}
+                        icon={
+                          <Icon
+                            inIconId={info.iconId}
+                            inSizeId={UBT_IconSize.NonStandard_32}
+                            inColorId={UBT_Color.Neutral0}
+                          />
+                        }
+                      />
+                    ))}
+                </div>
               </CustomContainer>
               <CustomContainer
                 options={{
@@ -99,10 +103,19 @@ export function Dialog_GoExternalApp({
                   </span>
                 </div>
               </CustomContainer>
-            </NotCaptured>
+            </>
           }
           confirmLabel={
-            <NotCaptured name="Dialog_GoExternalApp confirm label (compiled view DGE:430-540)">
+            <CustomContainer
+              options={{
+                DisplayOptions: {
+                  Display: UBT_Display.Flex,
+                  AlignItems: UBT_AlignItems.Center,
+                  JustifyContent: UBT_JustifyContent.Center,
+                  FlexDirection: UBT_FlexDirection.Row,
+                },
+              }}
+            >
               <div data-container="">
                 <CustomText
                   noWrap
@@ -121,7 +134,7 @@ export function Dialog_GoExternalApp({
                   inColorId={UBT_Color.Neutral0}
                 />
               </div>
-            </NotCaptured>
+            </CustomContainer>
           }
           dismissLabel="Cancel"
           onConfirmed={onGoToExternalApp}

@@ -20,9 +20,9 @@ describe('ContactHeaderCard', () => {
     expect(ids(container)).toEqual(['$b3', '$b4', '$b5']);
   });
 
-  it('LDMCoordinator: no image source gives an img without src; the subtitle line', () => {
+  it('LDMCoordinator: an empty image source keeps src="" (OutSystems Image widget); the subtitle line', () => {
     const { container } = render(<LDMCoordinator />);
-    expect(container.querySelector('img.contact-by-email__header__img')?.hasAttribute('src')).toBe(false);
+    expect(container.querySelector('img.contact-by-email__header__img')?.getAttribute('src')).toBe('');
     expect(screen.getByText('LDM Event Coordinator')).toBeInTheDocument();
   });
 

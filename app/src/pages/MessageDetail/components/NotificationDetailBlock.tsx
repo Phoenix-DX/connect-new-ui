@@ -129,8 +129,12 @@ export function NotificationDetailBlock({
               </span>
             </div>
             {summary !== '' && (
-              // SummaryContainer: not in any captured state; its inline style is not captured either.
-              <NotCaptured name={`Summary (${prefix}-SummaryContainer)`}>{summary}</NotCaptured>
+              // SummaryContainer: not in any captured state; built from the compiled view (mvc.js:405-432).
+              <div data-container="" id={`${prefix}-SummaryContainer`}>
+                <span className="OSFillParent" data-expression="" style={{ color: '#605f5f', fontSize: 14 }}>
+                  {summary}
+                </span>
+              </div>
             )}
           </div>
           <div
@@ -139,8 +143,26 @@ export function NotificationDetailBlock({
             style={{ textAlign: 'center', marginLeft: 5, marginTop: 10, padding: 0 }}
           >
             {isUrgent && (
-              // Urgent icon: not in any captured state; its inline style is not captured either.
-              <NotCaptured name={`Urgent icon (${prefix}-Message_List_Item_Icon)`} />
+              // Urgent icon: not in any captured state; built from the compiled view (mvc.js:450-480), the same icon
+              // as MessageListItem (Message_List_Item_Icon).
+              <div data-container="" style={{ marginBottom: 5, textAlign: 'center' }}>
+                <i
+                  className="icon alert-text fa-33 fa fa-exclamation fa-1x"
+                  data-icon=""
+                  id={`${prefix}-Message_List_Item_Icon`}
+                  style={{
+                    backgroundColor: 'rgb(255, 255, 255)',
+                    borderRadius: 50,
+                    borderStyle: 'solid',
+                    borderWidth: 2,
+                    color: 'rgb(252, 0, 0)',
+                    fontSize: 12,
+                    height: 20,
+                    padding: '3px 0px 0px',
+                    width: 20,
+                  }}
+                />
+              </div>
             )}
           </div>
         </div>

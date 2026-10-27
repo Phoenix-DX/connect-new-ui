@@ -6,7 +6,7 @@ import { startApp } from '@/platform/bootstrap/appStartSteps';
 import { getSessionStatus } from '@/platform/session/machine';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setAppCallback } from '@/platform/session/resume';
-import { getClientVar } from '@/platform/session/session';
+import { getClientVar, setClientVar } from '@/platform/session/session';
 import { calledActions, freshPage } from '@/test/testSupport';
 import Login from './LoginPage';
 
@@ -99,6 +99,20 @@ describe('Login page', () => {
     expect(calls).toContain('ActionAppManager_SynchAppContext');
     expect(calls.indexOf('ActionAppManager_SynchAppContext')).toBeLessThan(calls.indexOf('ActionGetUserInformation'));
     expect(getSessionStatus()).toEqual({ status: 'needPinRegister', userId: MOCK_USER_ID });
+  });
+
+  it('OnReady: CallbackType = DeviceAwareness_InvalidDevice (TST value) skips DelayedMessage_Show; else it runs', async () => {
+    const pending = JSON.stringify({ MessageTitle: 'Signed out', Message: 'Please sign in again', Type: 'info' });
+    setClientVar('UBT_AppManager.AppManager_DelayedMessage', pending);
+    const first = renderLogin('?CallbackType=DeviceAwareness_InvalidDevice');
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    expect(getClientVar('UBT_AppManager.AppManager_DelayedMessage')).toBe(pending);
+    first.unmount();
+
+    renderLogin();
+    await waitFor(() => {
+      expect(getClientVar('UBT_AppManager.AppManager_DelayedMessage')).toBe('');
+    });
   });
 
   it('unsupported system (U16 `?mock=unsupported-browser`): the unsupported message instead of the buttons', async () => {

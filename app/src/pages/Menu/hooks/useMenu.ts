@@ -4,12 +4,18 @@ import { Connect_Menu_Items } from '@/pages/Menu/staticEntities';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { confirmAction } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { TransitionAnimation, useOsNavigate } from '@/platform/navigation';
+import { TransitionAnimation, useOsNavigate, useViewState } from '@/platform/navigation';
 import { signOut } from '@/platform/session/auth';
 import type { Directory_UserCurrent } from '@/platform/session/UserInfoCache/types';
 import type { UI_ListMenuOption, UI_MenuSection } from '@/components/menu/MenuList/types';
 import { openInApp_OpenExternalLink } from '@/lib/ubtConnectUtils/actions';
-import { initialMenuState, menuReducer, type MenuState } from './menuState';
+import {
+  initialMenuState,
+  menuReducer,
+  NO_USER_INFORMATION,
+  type MenuState,
+  type MenuUserInformation,
+} from './menuState';
 
 /** The flows of the Menu screen: the result of CacheControl_UserInfo_Wrapper, OnClick_EditYourAccount, Action_Logout
     and OnClick_MenuOption. The screen has no OnReady and no data action of its own: RequestPhotoUpdate runs when the
@@ -31,14 +37,21 @@ interface MenuFlows {
 
 export function useMenu(): MenuFlows {
   const navigate = useOsNavigate();
-  // ScreenEvent_OnInitialize.
-  const [state, dispatch] = useReducer(menuReducer, undefined, initialMenuState);
+  /* LocalCacheControl_UserInformation in the view cache (U19, decision App_Menu Q2 (a)): a Back to Menu shows the
+     header at once. The reducer state holds the same values; onUserInformation writes both. */
+  const [cachedUserInformation, setCachedUserInformation] = useViewState<MenuUserInformation>(
+    'LocalCacheControl_UserInformation',
+    NO_USER_INFORMATION,
+  );
+  // ScreenEvent_OnInitialize: MenuOptionList again; the user record as the view cache gives it.
+  const [state, dispatch] = useReducer(menuReducer, cachedUserInformation, initialMenuState);
   const { user, isFetched } = state;
 
   const menuSection = useMemo(() => ({ MenuOptions: state.menuOptionList }), [state.menuOptionList]);
 
   const onUserInformation = (userInformation: Directory_UserCurrent) => {
     dispatch({ type: 'userInformationFetched', user: userInformation });
+    setCachedUserInformation({ user: userInformation, isFetched: true });
   };
 
   // Profile, once the user information has come.

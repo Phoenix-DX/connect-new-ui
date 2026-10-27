@@ -106,9 +106,9 @@ describe('ContactByEmailLDMCoordinator (ContactByEmailLDMCoordinator.mvc.js)', (
     expect(spy.form?.inUseDynamicTextAreaSubject).toBeUndefined();
   });
 
-  it('no In_AvatarURL: the header image has no src attribute', () => {
+  it('no In_AvatarURL: the header image keeps src="" as the OutSystems Image widget (External, empty URL)', () => {
     const { container } = renderScreen('?In_ContactName=Alder%20Whitcombe');
-    expect(container.querySelector('.contact-by-email__header__img')).not.toHaveAttribute('src');
+    expect(container.querySelector('.contact-by-email__header__img')?.getAttribute('src')).toBe('');
   });
 
   it('Send: SendContactLDMCoordinatorEmail, then the message after 500 ms and the previous screen', async () => {

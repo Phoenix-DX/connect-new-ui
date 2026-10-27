@@ -38,7 +38,13 @@ export function EventBooklet_MembersItem({
   return (
     <OSBlock name="Orbit_Blocks.EventBooklet_MembersItem" id={id}>
       <div className="orbit-booklet-list-members-item" data-container="">
-        <div className="orbit-booklet-list-members-title" data-container="" onClick={onClickMember}>
+        {/* A Container with an OnClick gets the inline style cursor: pointer from the platform (K028). */}
+        <div
+          className="orbit-booklet-list-members-title"
+          data-container=""
+          style={{ cursor: 'pointer' }}
+          onClick={onClickMember}
+        >
           <span data-expression="">{memberName(m)}</span>
         </div>
         <div className="orbit-booklet-list-members-days" data-container="">
@@ -58,7 +64,12 @@ export function EventBooklet_MembersItem({
             '-'
           )}
         </div>
-        <div className="orbit-booklet-list-members-host" data-container="" onClick={onClickHost}>
+        <div
+          className="orbit-booklet-list-members-host"
+          data-container=""
+          style={{ cursor: 'pointer' }}
+          onClick={onClickHost}
+        >
           <span data-expression="">{m.Host !== '' ? m.Host : '-'}</span>
         </div>
       </div>

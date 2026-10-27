@@ -1,6 +1,7 @@
 /** @origin UBTConnect.Notes.NoteCard_List */
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSList } from '@/components/ui/os/OSList';
 import { CustomContainer } from '@/components/ui/CustomContainer';
 import { CustomText } from '@/components/ui/CustomText';
 import { EmptyState } from '@/components/ui/EmptyState';
@@ -18,12 +19,14 @@ export interface NoteCard_ListProps {
   inSearchString?: string;
   /** Event OnClick_NoteCardItem(ObjectId, NoteCategoryTypeId). */
   onOnClickNoteCardItem?: (objectId: string, noteCategoryTypeId: string) => void;
-  onOnLoadMore?: () => void;
+  /** Event OnLoadMore. The List raises no new OnScrollEnding until the Promise it returns settles. */
+  onOnLoadMore?: () => Promise<void> | void;
 }
 
 /** Notes list (Notes.NoteCard_List.mvc.js view :160-330): a SkeletonSection with EmptyList ("No Notes found") when
     In_Notes is empty, else the List of NoteCard_Item ("list list-group list--gap-s"). Handler_UpdateNoteCardsList
-    removes the card whose Id, ItemId and NoteCategoryId match. The List's OnScrollEnding raises OnLoadMore. */
+    removes the card whose Id, ItemId and NoteCategoryId match. The List's OnScrollEnding (NoteCardList_OnScrollEnding,
+    NoteCard_List.mvc.js:343-351, 545-563) raises OnLoadMore and waits for it. */
 export function NoteCard_List({
   id,
   inNotes,
@@ -39,22 +42,6 @@ export function NoteCard_List({
     setInput(inNotes);
     setNotes(inNotes);
   }
-  const listRef = useRef<HTMLDivElement>(null);
-  const loadMore = useRef(onOnLoadMore);
-  useEffect(() => {
-    loadMore.current = onOnLoadMore;
-  }, [onOnLoadMore]);
-  // OSWidgets.List onScrollEnding: the end of the list reaches the viewport while scrolling
-  useEffect(() => {
-    const onScroll = () => {
-      const list = listRef.current;
-      if (list && list.getBoundingClientRect().bottom <= window.innerHeight) loadMore.current?.();
-    };
-    document.addEventListener('scroll', onScroll, true);
-    return () => {
-      document.removeEventListener('scroll', onScroll, true);
-    };
-  }, []);
   const handler_UpdateNoteCardsList = (cardId: string, itemId: string, noteCategoryId: string) => {
     setNotes((prev) => {
       const index = prev.findIndex(
@@ -101,23 +88,24 @@ export function NoteCard_List({
               }
             />
           ) : (
-            <div
-              ref={listRef}
-              className="list list-group list--gap-s OSFillParent"
-              data-list=""
-              style={{ position: 'relative' }}
+            <OSList
+              source={notes}
+              keyOf={(note, i) => `${note.id}|${note.itemId}|${String(i)}`}
+              className="list list-group list--gap-s"
+              animateItems
+              positionRelative
+              onScrollEnding={() => onOnLoadMore?.()}
             >
-              {notes.map((note, i) => (
+              {(note, i) => (
                 <NoteCard_Item
-                  key={`${note.id}|${note.itemId}|${String(i)}`}
                   id={`${p}-l1-61_${String(i)}-$b7`}
                   noteCardItem={note}
                   inSearchString={inSearchString}
                   onOnClickCardItem={() => onOnClickNoteCardItem?.(note.itemId, note.noteCategoryId)}
                   onUpdateNoteCardsList={handler_UpdateNoteCardsList}
                 />
-              ))}
-            </div>
+              )}
+            </OSList>
           )}
         </Skeleton>
       </CustomContainer>

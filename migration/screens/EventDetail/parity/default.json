@@ -5,14 +5,17 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "72f79590a853e66ba93e",
+ "fingerprint": "91d2811e661cb6809e28",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,21 +27,21 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:50:36.752Z",
+ "at": "2026-10-27T14:58:01.030Z",
  "counts": {},
  "exemptionsUsed": {
   "VIA-BACK-MENUICON-EVENTDETAIL": 15,
-  "MOCK-RELATIVE-DATES-EVENTDETAIL-DAYSELECTOR": 6,
+  "MOCK-RELATIVE-DATES-EVENTDETAIL-DAYSELECTOR": 12,
   "ignoreSubtrees": 1,
   "CAPTURE-VIA-MASK-SHIFT-EVENTDETAIL-PIXELS": 1,
   "CALL-IMAGE-ERROR-APPEVENTS-EVENTDETAIL": 1
  },
  "pixel": {
-  "ratio": 0.06621,
+  "ratio": 0.06602,
   "maxCell": 0.5038,
   "maxCellRatio": 0.03,
-  "diffPixels": 18141,
-  "comparedPixels": 273987,
+  "diffPixels": 18107,
+  "comparedPixels": 274277,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [

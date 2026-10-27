@@ -90,11 +90,11 @@ All own blocks are in §2. ActionsMenu, ContactByMessage_Wrapper, ContactPopup_B
 
 ## 5. Findings
 
-| Id | Severity | Screen / element | Finding | React location | Suggested fix |
-|---|---|---|---|---|---|
-| F1 | minor | Directory_EntityDetailsActions, OnReady CheckRestored (row 076) | TST skips the set-up when the view comes from cache or history. React always runs it, so Back shows the skeleton and fetches again. | `app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:72-73` | Port CheckRestored with the view cache helper of `app-shell.spec.md` U19 (P-BACK). |
-| F2 | minor | Directory_EntityDetailsActions, OnParametersChanged (row 091) | TST fetches the contact details on every input change. React fetches only when EntityId or isFetchContacts changes. | `app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:184-220` | Add the other inputs to the effect, or record a decision. |
-| F3 | minor | Directory_EntityDetailsActions, Action_AsyncRefresh_ContactDetails (row 102) | On NotRegistered and on a system exception, React disables all actions before it raises. TST raises without HandleFetchError. | `app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:200-215` | Split the handler by exception kind, as TST. |
+| Id | Severity | Screen / element | Finding | React location | Suggested fix | Status |
+|---|---|---|---|---|---|---|
+| F1 | minor | Directory_EntityDetailsActions, OnReady CheckRestored (row 076) | TST skips the set-up when the view comes from cache or history. React always runs it, so Back shows the skeleton and fetches again. | `app/src/containers/EntityDetailsActions/entityDetailsActionsState.ts:72-73` | Port CheckRestored with the view cache helper of `app-shell.spec.md` U19 (P-BACK). | fixed 2026-10-27 (`fixes/E-directory.md`) |
+| F2 | minor | Directory_EntityDetailsActions, OnParametersChanged (row 091) | TST fetches the contact details on every input change. React fetches only when EntityId or isFetchContacts changes. | `app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:184-220` | Add the other inputs to the effect, or record a decision. | fixed 2026-10-27 (`fixes/E-directory.md`) |
+| F3 | minor | Directory_EntityDetailsActions, Action_AsyncRefresh_ContactDetails (row 102) | On NotRegistered and on a system exception, React disables all actions before it raises. TST raises without HandleFetchError. | `app/src/containers/EntityDetailsActions/useEntityDetailsActions.ts:200-215` | Split the handler by exception kind, as TST. | fixed 2026-10-27 (`fixes/E-directory.md`) |
 
 ## 6. DEV vs TST differences
 

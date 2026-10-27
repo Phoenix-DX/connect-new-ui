@@ -35,9 +35,12 @@ describe('GetDeviceInfo (web branch)', () => {
     expect(getDeviceInfo().Platform).toBe('PWA');
   });
 
-  it('keeps one UniqueId for the page', () => {
+  it('UniqueId: one id per browser in localStorage["UUID"] (App_Policies Q2)', () => {
     stubDisplayMode(false);
+    localStorage.removeItem('UUID');
     const first = getDeviceInfo().UniqueId;
+    expect(first).not.toBe('');
+    expect(localStorage.getItem('UUID')).toBe(first);
     expect(getDeviceInfo().UniqueId).toBe(first);
   });
 });

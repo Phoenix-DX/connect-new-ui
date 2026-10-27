@@ -5,14 +5,17 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "70044a2c882ff559ecb3",
+ "fingerprint": "e2c294c2b87e15cae801",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:58:07.719Z",
+ "at": "2026-10-27T14:59:15.710Z",
  "counts": {},
  "exemptionsUsed": {
   "ignoreSubtrees": 2,

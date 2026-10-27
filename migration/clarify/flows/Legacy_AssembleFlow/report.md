@@ -385,9 +385,9 @@ React: `app/src/pages/AssembleDetail/components/AssembleEventDetail_Contact.tsx`
 
 ## 5. Findings
 
-| Id | Severity | Screen / element | Finding | React location | Suggested fix |
-|---|---|---|---|---|---|
-| F1 | minor | ScreenBlock_Assemble_Filter and Assemble_FilterSheet, DIV_StickyBottom | TST animates the show and hide of the sticky Cancel / Apply bar (`animate: true`); React mounts and unmounts the bar without the animation (rows 151, 152) | app/src/pages/Assemble_BrowseByCountry/components/AssembleFilterView.tsx:152-154; app/src/pages/AssembleEvents/components/Assemble_FilterSheet.tsx:152-157 | Reproduce the OutSystems container animation (the `animate` property of the Container widget) or record the omission as accepted |
+| Id | Severity | Screen / element | Finding | React location | Suggested fix | Status |
+|---|---|---|---|---|---|---|
+| F1 | minor | ScreenBlock_Assemble_Filter and Assemble_FilterSheet, DIV_StickyBottom | TST animates the show and hide of the sticky Cancel / Apply bar (`animate: true`); React mounts and unmounts the bar without the animation (rows 151, 152) | app/src/pages/Assemble_BrowseByCountry/components/AssembleFilterView.tsx:152-154; app/src/pages/AssembleEvents/components/Assemble_FilterSheet.tsx:152-157 | Reproduce the OutSystems container animation (the `animate` property of the Container widget) or record the omission as accepted | no fix: finding withdrawn 2026-10-27 (`fixes/G1-content.md`): the runtime Container.render never reads `animate` (`OutSystemsReactWidgets.js`, Container), so TST shows and hides the bar without a transition; React does the same |
 
 Severity levels:
 - **blocker**: the user cannot complete the flow

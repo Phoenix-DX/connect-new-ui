@@ -1705,11 +1705,12 @@
    "os": "Image Type External, URL In_AvatarURL; with \"\" the widget renders src=\"\"",
    "react": "ContactHeaderCard imageSrc={In_AvatarURL || undefined}: no src attribute",
    "evidence": "migration/runtime-sources/OutSystemsReactWidgets.js:2 (prepareImageAttributes: src \"\" by default, type 1 src = props.url); TST UBTConnect.ContactFlow.ContactByEmailLDMCoordinator.mvc.js:330-337; app/src/pages/ContactByEmailLDMCoordinator/ContactByEmailLDMCoordinatorPage.tsx:33-37",
-   "verdict": "partial",
-   "note": "A DOM attribute only, for a coordinator without an avatar URL.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/D-forms.md). A DOM attribute only, for a coordinator without an avatar URL.",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "ContactFlow-132",

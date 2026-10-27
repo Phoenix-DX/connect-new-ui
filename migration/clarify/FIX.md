@@ -17,11 +17,12 @@ commit (the orchestrator commits).
 ## How to change the code
 
 - 1:1 with TST: the same condition, the same order, the same text, the same class. Nothing invented. When the TST
-  behaviour needs a decision that the report does not record, do not guess: write the question in your fix note and
+  behaviour needs a decision that the report does not record, do not guess. Write the question in your fix note and
   leave that finding open.
 - Follow the project's rules: `app/docs/guides/quality.md`, the page template (`app/docs/guides/page-template.md`),
-  the folder rules of `app/docs/architecture/overview.md` (import direction), the no-CommonUI-lock rule, typed
-  exceptions in `src/legacy/os`, `callAction` for every server call, MSW mocks in `src/mocks` or `pages/<S>/mocks.ts`.
+  the folder rules of `app/docs/architecture/overview.md` (import direction). Keep the no-CommonUI-lock rule and the
+  typed exceptions in `src/legacy/os`. Use `callAction` for every server call and MSW mocks in `src/mocks` or
+  `pages/<S>/mocks.ts`.
 - Keep a change small and local. A shared change (router, `platform/`, `components/ui`) must keep every other screen
   as it is: run the tests of the folder you touched.
 - Tests: adjust or add Vitest tests next to the code for each behaviour you change (the TST line is the expected
@@ -34,9 +35,10 @@ commit (the orchestrator commits).
 ## What you deliver
 
 1. The code and test changes in `app/`.
-2. `migration/clarify/fixes/<group>.md` (English): one section per finding: id, TST evidence (file:line), files
-   changed (path:line), what changed in one or two sentences, the tests you ran, the proposed verdict of the rows
-   (`match`, or still open with the reason). Lint: `python3 migration/tools/ste_lint.py <file>`, 0 errors.
+2. `migration/clarify/fixes/<group>.md` (English), one section per finding. Each section has: id, TST evidence
+   (file:line), files changed (path:line), what changed in one or two sentences, the tests you ran. It ends with the
+   proposed verdict of the rows (`match`, or still open with the reason). Lint: `python3 migration/tools/ste_lint.py <file>`,
+   0 errors.
 3. Final message (English, short): findings fixed, findings left open with the reason, files changed, test results.
 
 ## Way of work

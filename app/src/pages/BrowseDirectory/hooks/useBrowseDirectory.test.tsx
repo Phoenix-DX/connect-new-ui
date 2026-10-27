@@ -184,7 +184,7 @@ describe('useBrowseDirectory', () => {
     });
   });
 
-  it('Action_InvalidateMapSize runs after OnInitialized and on the list OnParametersChangedEv, never before the map', () => {
+  it('Action_InvalidateMapSize after OnInitialized; the list OnParametersChangedEv only Map_InvalidateSize; never before the map', () => {
     vi.useFakeTimers();
     try {
       const { result } = renderFlows();
@@ -195,9 +195,10 @@ describe('useBrowseDirectory', () => {
       vi.runAllTimers();
       expect(map_InvalidateSize).toHaveBeenCalledWith('LeafletMap-LeafletMap');
       expect(map_FitBoundsAuto).toHaveBeenCalledWith('LeafletMap-LeafletMap');
+      // StatisticsListOnParametersChhanged (BrowseDirectory.mvc.js:1025-1040): Map_InvalidateSize only.
       result.current.onStatisticsListParametersChanged();
       expect(map_InvalidateSize).toHaveBeenCalledTimes(2);
-      expect(map_FitBoundsAuto).toHaveBeenCalledTimes(2);
+      expect(map_FitBoundsAuto).toHaveBeenCalledTimes(1);
     } finally {
       vi.useRealTimers();
     }

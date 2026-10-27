@@ -610,11 +610,12 @@
    "react": "canLoadMore: !state.notesLoading && state.getNotesList.length > 0 && state.getNotesList.length < Number(state.maxRecords)",
    "evidence": "app/src/pages/Notes/hooks/notesState.ts:87-88",
    "tst": "present (cond without notesLoading, Notes.js:1115)",
-   "verdict": "partial",
-   "note": "React guards with !notesLoading; TST has no loading clause (Notes.js:1123). The OSWidgets List blocks a second fire only while the handler runs (OutSystemsReactWidgets.js:1, isScrollEndingEventHandlerRunning). Same result in normal use, differs in a race (pill tap or Apply during a page fetch). The page-length clause matches.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/F-lists.md). React guards with !notesLoading; TST has no loading clause (Notes.js:1123). The OSWidgets List blocks a second fire only while the handler runs (OutSystemsReactWidgets.js:1, isScrollEndingEventHandlerRunning). Same result in normal use, differs in a race (pill tap or Apply during a page fetch). The page-length clause matches.",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Notes-048",
@@ -1132,11 +1133,12 @@
    "react": "document scroll listener (capture): if list bottom <= window.innerHeight -> loadMore.current()",
    "evidence": "app/src/pages/Notes/components/NoteCard_List.tsx:48-57",
    "tst": "-",
-   "verdict": "partial",
-   "note": "React fires when the list bottom reaches window.innerHeight, on any scroll event. The OSWidgets List fires on a downward scroll only, inside getInfiniteScrollThreshold of the end, and not while the handler runs (OutSystemsReactWidgets.js:1, tryFireScrollEndingEvent). React starts the next page later and also on an upward scroll.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/F-lists.md). React fires when the list bottom reaches window.innerHeight, on any scroll event. The OSWidgets List fires on a downward scroll only, inside getInfiniteScrollThreshold of the end, and not while the handler runs (OutSystemsReactWidgets.js:1, tryFireScrollEndingEvent). React starts the next page later and also on an upward scroll.",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Notes-088",

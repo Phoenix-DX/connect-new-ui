@@ -113,13 +113,14 @@
    "element": "document title",
    "os": "View.title \"MyBookmarks\"; the runtime sets document.title = this.title when the screen mounts",
    "react": "no document.title write in app/src (grep document.title: none); routes.generated.ts:23 carries title \"MyBookmarks\" but nothing applies it",
-   "verdict": "missing",
+   "verdict": "match",
    "evidence": "TST UBTConnect.Legacy_MyBookmarks.MyBookmarks.mvc.js show:106-108; migration/runtime-sources/OutSystemsReactView.js:7 (document.title=this.title in componentDidMount); app/src/app/routes.generated.ts:23",
-   "verified": "pack",
-   "note": "Cross-cutting: every route. The app shell (NavigationHost) owns the fix.",
+   "verified": "live",
+   "note": "Fixed 2026-10-27 (fixes/A-shell.md). Cross-cutting: every route. The app shell (NavigationHost) owns the fix.",
    "finding": "F2",
    "severity": "minor",
-   "id": "Bookmarks-009"
+   "id": "Bookmarks-009",
+   "fixed": "2026-10-27"
   },
   {
    "screen": "MyBookmarks",
@@ -785,13 +786,14 @@
    "element": "document title",
    "os": "View.title \"BookmarksByGroup\"; the runtime sets document.title = this.title when the screen mounts",
    "react": "no document.title write in app/src; routes.generated.ts:35 carries the title but nothing applies it",
-   "verdict": "missing",
+   "verdict": "match",
    "evidence": "TST UBTConnect.Legacy_MyBookmarks.BookmarksByGroup.mvc.js show:117-119; migration/runtime-sources/OutSystemsReactView.js:7; app/src/app/routes.generated.ts:35",
-   "verified": "pack",
-   "note": "Same finding as MyBookmarks: the app shell owns the fix.",
+   "verified": "live",
+   "note": "Fixed 2026-10-27 (fixes/A-shell.md). Same finding as MyBookmarks: the app shell owns the fix.",
    "finding": "F2",
    "severity": "minor",
-   "id": "Bookmarks-061"
+   "id": "Bookmarks-061",
+   "fixed": "2026-10-27"
   },
   {
    "screen": "BookmarksByGroup",
@@ -1464,13 +1466,14 @@
    "element": "list Locations, Supper Meeting row: Subdivisions_List_Item title and tag colours (IsMainHall)",
    "os": "Subdivision_Title style \"color: var(--color-primary)\" when IsMainHall else neutral-10; Subdivision_Tag style background primary / neutral-2 and color neutral-2 / neutral-6 by IsMainHall",
    "react": "a NotCaptured marker; the title and tag are rendered without the IsMainHall styles",
-   "verdict": "partial",
+   "verdict": "match",
    "evidence": "TST Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_BookmarkGroup.mvc.js show:930 (If subdivision), 936-959 (Subdivisions_List_Item args: In_HasAction, In_ShowTag true, In_SignedURL, In_ShowDescription false, subdivision, In_HasBorder false, 66px), 996-999 (title style), 1016-1020 (tag style), 1025 (\"N Household\" / \"N Households\"); app/src/pages/BookmarksByGroup/components/bookmarkGroupRows.tsx:188-222",
-   "verified": "pack",
-   "note": "BR-C2LEG-192 (\"a highlighted main hall\"). The rest of the row (args, title, tag text, click) matches.",
+   "verified": "live",
+   "note": "Fixed 2026-10-27 (fixes/G1-content.md). BR-C2LEG-192 (\"a highlighted main hall\"). The rest of the row (args, title, tag text, click) matches.",
    "finding": "F1",
    "severity": "minor",
-   "id": "Bookmarks-114"
+   "id": "Bookmarks-114",
+   "fixed": "2026-10-27"
   },
   {
    "screen": "BookmarksByGroup (ScreenBlock_BookmarkGroup)",

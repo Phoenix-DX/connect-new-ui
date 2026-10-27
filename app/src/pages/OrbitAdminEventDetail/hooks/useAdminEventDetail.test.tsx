@@ -433,6 +433,22 @@ describe('useAdminEventDetail', () => {
     expect(result.current.state.isProcessingData).toBe(false);
   });
 
+  it('a "failed to deserialize json" message in another case also shows the OrbitErrorMessage popup (EB:1150)', async () => {
+    vi.mocked(fetchMember).mockRejectedValueOnce(new UserException('failed to DESERIALIZE json to MemberRecord'));
+    const { result } = await fetched();
+    scanned(qrCode('7315', '9101'));
+    act(() => {
+      result.current.onScanQrCodeClicked();
+    });
+    await settle();
+    expect(result.current.state.scanError).toEqual({
+      IsShowErrorMessage: true,
+      Message: 'Unable to read QR code, please try again.',
+    });
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(result.current.state.isProcessingData).toBe(false);
+  });
+
   it('W23: after the unmount, OnReady makes its call once and writes no state', async () => {
     const answer = pending(vi.mocked(fetchAdminEventInformation));
     let renders = 0;

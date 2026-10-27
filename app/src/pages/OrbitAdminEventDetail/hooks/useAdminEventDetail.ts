@@ -11,8 +11,12 @@ import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo'
 import type { AdminEventDetailInputs } from '@/pages/OrbitAdminEventDetail/inputs';
 import { CameraDirection, ScanOrientation } from '@/pages/OrbitAdminEventDetail/staticEntities';
 import { DirectoryAPIFilter, ImageSigningSize } from '@/lib/orbit/staticEntities';
-import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
-import { deserializeQRCodeInformation, onApplicationEvent_Orbit } from './adminEventDetailActions';
+import {
+  containsIgnoreCase,
+  deserializeQRCodeInformation,
+  onApplicationEvent_Orbit,
+  textToIntegerToLongInteger,
+} from './adminEventDetailActions';
 import {
   adminEventDetailReducer,
   adminEventInformationInputs,
@@ -131,7 +135,8 @@ export function useAdminEventDetail(inputs: AdminEventDetailInputs): AdminEventD
       }
       const admin = appManager_GetCachedUserInfo();
       const result = await fetchScanEventQRCode(info.EventId, info.MemberId, member, {
-        MemberId: textToLongInteger(admin.MemberId),
+        // AdminMemberId = IntegerToLongInteger(TextToInteger(MemberId)) (EB:1018).
+        MemberId: textToIntegerToLongInteger(admin.MemberId),
         FirstName: admin.FirstName,
         LastName: admin.LastName,
         Locality: admin.Locality,
@@ -166,7 +171,8 @@ export function useAdminEventDetail(inputs: AdminEventDetailInputs): AdminEventD
       if (isSystemException(e)) throw e;
       write({ isProcessingData: false });
       const message = exceptionMessage(e);
-      if (message.includes('Failed to deserialize JSON')) {
+      // Index(ExceptionMessage, "Failed to deserialize JSON", ignoreCase True) <> -1 (EB:1150).
+      if (containsIgnoreCase(message, 'Failed to deserialize JSON')) {
         write({ scanError: { IsShowErrorMessage: true, Message: UNREADABLE_QR_CODE } });
         return;
       }

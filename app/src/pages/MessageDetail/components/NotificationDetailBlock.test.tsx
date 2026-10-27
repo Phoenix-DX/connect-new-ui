@@ -72,8 +72,31 @@ describe('NotificationDetailBlock', () => {
     expect(document.querySelector('[data-not-captured="Q1: Widgets.AdaptiveCardViewer (b1-b4-$b2)"]')).not.toBeNull();
   });
 
-  it('shows the summary when the message has one', () => {
+  it('shows the summary when the message has one, in SummaryContainer with its inline style (mvc.js:405-432)', () => {
     renderBlock({ summary: 'Bring your own music sheets' });
-    expect(screen.getByText('Bring your own music sheets')).toBeInTheDocument();
+    const text = screen.getByText('Bring your own music sheets');
+    expect(text.tagName).toBe('SPAN');
+    expect(text.className).toBe('OSFillParent');
+    expect(text.style.color).toBe('rgb(96, 95, 95)');
+    expect(text.style.fontSize).toBe('14px');
+    expect(text.parentElement?.id).toBe('b1-b4-SummaryContainer');
+  });
+
+  it('no summary: no SummaryContainer', () => {
+    renderBlock();
+    expect(document.getElementById('b1-b4-SummaryContainer')).toBeNull();
+  });
+
+  it('IsUrgent: the exclamation icon in its centred container (mvc.js:450-480); not urgent: nothing', () => {
+    renderBlock();
+    expect(document.getElementById('b1-b4-Message_List_Item_Icon')).toBeNull();
+    renderBlock({ isUrgent: true });
+    const urgent = document.getElementById('b1-b4-Message_List_Item_Icon') as HTMLElement;
+    expect(urgent.className).toBe('icon alert-text fa-33 fa fa-exclamation fa-1x');
+    expect(urgent.style.color).toBe('rgb(252, 0, 0)');
+    expect(urgent.style.width).toBe('20px');
+    const wrapper = urgent.parentElement as HTMLElement;
+    expect(wrapper.style.marginBottom).toBe('5px');
+    expect(wrapper.style.textAlign).toBe('center');
   });
 });

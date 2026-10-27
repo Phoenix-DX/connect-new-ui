@@ -203,6 +203,41 @@ describe('useLdmMyEvents handlers', () => {
     expect(fetchEventsForMyTimeline).toHaveBeenCalledTimes(1);
   });
 
+  it('OnHandle_SwipeUp: the window moves 24 months back and the timeline is fetched, without IsFetchingMyTimeline', async () => {
+    const { result } = renderFlows();
+    await settle();
+    const firstFrom = result.current.state.pastEventFilters.FromDate;
+    const answer = pending<MyTimelineData>();
+    vi.mocked(fetchEventsForMyTimeline).mockReturnValue(answer.promise);
+    let swipe: Promise<void> = Promise.resolve();
+    act(() => {
+      swipe = result.current.onSwipeUp();
+    });
+    expect(result.current.state.pastEventFilters.ToDate).toBe(firstFrom);
+    expect(vi.mocked(fetchEventsForMyTimeline).mock.lastCall?.[0].PastEventFilters.ToDate).toBe(firstFrom);
+    expect(result.current.state.isFetchingMyTimeline).toBe(false);
+    answer.resolve({
+      pastEvents: [{ CurrentMonthDate: 'March 2024', EventsCalendar: [event('88063')] }],
+      upcomingEvents: [],
+    });
+    await act(() => swipe);
+    expect(result.current.state.pastEventsData.map((g) => g.CurrentMonthDate)).toEqual([
+      'September 2026',
+      'March 2024',
+    ]);
+    expect(auditNames()).toEqual(['RequestAPI_CalendarEvents']);
+  });
+
+  it('OnHandle_SwipeUp: a failed fetch sets HasFetchError and goes to the flow handler as it is', async () => {
+    const { result } = renderFlows();
+    await settle();
+    const failure = new UserException('Request failed with status 500');
+    vi.mocked(fetchEventsForMyTimeline).mockRejectedValue(failure);
+    await act(() => result.current.onSwipeUp());
+    expect(result.current.state).toMatchObject({ hasFetchError: true, isFetchingMyTimeline: false });
+    expect(vi.mocked(raiseToFlowHandler).mock.lastCall?.[0]).toBe(failure);
+  });
+
   it('TryAgain fetches the timeline again', async () => {
     const { result } = renderFlows();
     await settle();

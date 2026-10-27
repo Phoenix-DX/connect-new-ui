@@ -20,6 +20,7 @@ import {
   UBT_Size,
   UBT_VerticalAlign,
 } from '@/lib/ubtConnectLibrary/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import { Space_ExtraSmall, UBT_Icons2_Search } from './staticEntities';
 
 export interface RecentSearchProps {
@@ -110,7 +111,11 @@ export function RecentSearch({
                     <EntityLazyImage
                       entityId={r.EntityId}
                       entityType={r.EntityType}
-                      imageSize={{ Height: UBT_ImageSize.ExtraSmall_32 }}
+                      // ScreenBlock_Search.mvc.js:800-803: Width Square for a Member, else NullTextIdentifier.
+                      imageSize={{
+                        Height: UBT_ImageSize.ExtraSmall_32,
+                        Width: r.EntityType === Connect_Entity.Member ? UBT_ImageSize.Square : '',
+                      }}
                       inBorderRadius={UBT_Shape.Soft}
                     />
                     <CustomText

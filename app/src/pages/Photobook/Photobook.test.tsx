@@ -153,7 +153,8 @@ describe('Photobook page', () => {
     });
   });
 
-  it('a restored view shows its saved households at once and does not call again', async () => {
+  it('a restored view shows its saved households at once and refreshes them in the background (P-BACK)', async () => {
+    const bodies = recordBodies(`UBTConnect/${GET_HOUSEHOLDS}`);
     const { router } = await open(`?In_HouseholdId=${THIRD}&In_LocalityId=252`);
     await waitFor(() => {
       expect(counter()).toBe('3/23');
@@ -165,8 +166,18 @@ describe('Photobook page', () => {
     expect(counter()).toBe('3/23');
     expect(slides()).toBe(23);
     expect(loading()).toBeNull();
+    // GetLocalityHouseholdIds is fetched at start on the restored view too, with its saved variables (no loading
+    // state); OnAfterFetch selects In_HouseholdId again.
+    await waitFor(() => {
+      expect(fetchCalls()).toBe(2);
+    });
     await wait(50);
-    expect(fetchCalls()).toBe(1);
+    expect(bodies[1]).toEqual(
+      expect.objectContaining({ IsLoading: false, In_HouseholdId: THIRD, In_LocalityId: '252' }),
+    );
+    expect(loading()).toBeNull();
+    expect(counter()).toBe('3/23');
+    expect(slides()).toBe(23);
   });
 
   it('a view left before the answer calls again on its return, with its saved variables', async () => {

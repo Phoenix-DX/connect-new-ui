@@ -3,6 +3,7 @@ import type { HouseholdCoordinates } from '@/api/household';
 import { flipHouseholdName } from '@/lib/legacyShared/actions';
 import { getLocalityName } from '@/lib/orbit/actions';
 import { cleanAddressForMaps } from '@/lib/ubtConnectUtils/actions';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import type {
   ContactByPhonePopupData,
   ContactPopupData,
@@ -101,10 +102,12 @@ export const isCoordinatorAvailable = (state: LdmEventDetailState): boolean => s
 export const hasSpecialNeeds = (needs: LdmEventDetail['SpecialNeeds']): boolean =>
   needs.Mobility.length > 0 || needs.Diet.length > 0 || needs.Other.length > 0;
 
-/** The contact popup data of the host (OnHandle_ContactHost_Message and OnHandle_ContactHost_Call). */
+/** The contact popup data of the host (OnHandle_ContactHost_Message and OnHandle_ContactHost_Call). Both set
+    EntityTypeId = Connect_Entity2.Household (ScreenBlock_EventDetail_V2 :1828, :2354). */
 export function hostContactPopupData(host: LdmEventHost | undefined): ContactPopupData {
   return {
     ImageURL: host?.SignedURL ?? '',
+    EntityTypeId: Connect_Entity.Household,
     Name: flipHouseholdName(host?.HouseholderName ?? ''),
     Locality: getLocalityName(host?.EventLocalityName ?? ''),
     TimezoneName: host?.Timezone.TimezoneLabel ?? '',
@@ -135,7 +138,7 @@ export function hostPhoneCallData(host: LdmEventHost | undefined): ContactByPhon
 }
 
 /** OnHandle_ContactOrganiser: the coordinator in the message popup (combined email and phone, the LDM logo as the
-    image, "Contact" as the action). */
+    image, "Contact" as the action, EntityTypeId = Connect_Entity2.Household as TST sets it, :2485). */
 export function organiserMessageData(
   coordinator: CoordinatorDetails | undefined,
   logoURL: string,
@@ -146,6 +149,7 @@ export function organiserMessageData(
     IsComboEmailAndPhone: true,
     ContactPopupData: {
       ImageURL: logoURL,
+      EntityTypeId: Connect_Entity.Household,
       IsAvatarImage: false,
       ActionName: 'Contact',
       Name: coordinator?.CoordinatorName ?? '',

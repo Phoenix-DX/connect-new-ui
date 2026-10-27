@@ -1,6 +1,6 @@
 import type { CurrentService, Service, UserServices } from '@/api/service';
 
-/* The lists of the Services screen and its client action Action_ChangeOrderLocal. Pure: no React, no call. */
+/* The lists of the Services screen and its client action Action_ChangeOrderLocal. No React, no call. */
 
 /** Group of the two SortableList blocks: a row can go from one list to the other. */
 export const SORTABLE_GROUP = 'services';
@@ -23,10 +23,13 @@ export const EMPTY_SERVICES_LISTS: ServicesLists = { currentServices: [], availa
 export const referenceServicesOf = (data: UserServices | undefined): Service[] =>
   data ? [...data.availableServices, ...data.currentServices.map((c) => c.service)] : [];
 
-/** OutSystems List insert, remove and getItem check the index, and raise an error for a wrong one (checkIndex of the
-    runtime). */
+/** List.checkIndex of the OutSystems runtime (OutSystems.js:1522): ListInsert (allowEnd), ListRemove and the index of
+    a list raise an Error for an index that is not a whole number from 0 to the last index (to the length for an
+    insert). The flow handler shows its text in the toast. */
 function checkIndex(length: number, index: number, allowEnd = false): void {
-  if (index < 0 || index > length || (index === length && !allowEnd)) throw new Error('Index out of range');
+  if (Number.isInteger(index) && index >= 0 && index < length + (allowEnd ? 1 : 0)) return;
+  const bounds = length === 0 ? 'empty list.' : `bounds [0, ${String(length - 1)}].`;
+  throw new Error(`Index out of bounds. Index ${String(index)} for ${bounds}`);
 }
 
 /** The default Connect_Services record: the Current of a ListFilter that finds no row. */
@@ -40,17 +43,25 @@ const DEFAULT_SERVICE: Service = {
   startAsDefault: false,
 };
 
-/** Action_ChangeOrderLocal: the lists after a move, or null when NewOrder = OldOrder (nothing changes, HasChanges
-    stays). It throws for a wrong index, as the List actions of OutSystems do.
+/** The screen variables that Action_ChangeOrderLocal changes: HasChanges, and the lists CurrentServices and
+    AvailableServices of GetServices. */
+export interface ChangeOrderVariables extends ServicesLists {
+  hasChanges: boolean;
+}
+
+/** Action_ChangeOrderLocal. It changes the variables in place, in the order of TST (Services.mvc.js:1403-1520):
+    with NewOrder = OldOrder nothing changes; else HasChanges = True first, then the List actions:
     - From and to the favourites: the row moves in the favourites.
     - From the favourites to the suggestions: the row goes to the top of the suggestions.
     - From the suggestions to the favourites: a new choice of the service (not saved yet) goes in the favourites.
     - Neither list is the favourites: nothing moves.
-    Then the Order of each favourite is its position from 1. Ported as is, with the adjustment NewOrder - 1 and
+    Then the Order of each favourite is its position from 1. A List action throws for a wrong index (checkIndex): the
+    steps before it stay, and the Orders are not numbered again. Ported as is, with the adjustment NewOrder - 1 and
     OldOrder - 1 for every caller, also for the zero-based indexes of a drag: a touch drag removes one row and
-    duplicates the dragged one (known original bug B3, kept 1:1). */
+    duplicates the dragged one, and a touch drag to the top removes one row and then fails (known original bug B3,
+    kept 1:1). The caller gives copies of its lists and stores them also after a failure. */
 export function action_ChangeOrderLocal(
-  lists: ServicesLists,
+  variables: ChangeOrderVariables,
   referenceServices: Service[],
   newOrderIn: number,
   oldOrderIn: number,
@@ -58,10 +69,11 @@ export function action_ChangeOrderLocal(
   isToFavoriteList: boolean,
   itemId: string,
   userId: number,
-): ServicesLists | null {
-  if (newOrderIn === oldOrderIn) return null;
-  const current = [...lists.currentServices];
-  const available = [...lists.availableServices];
+): void {
+  if (newOrderIn === oldOrderIn) return;
+  variables.hasChanges = true;
+  const current = variables.currentServices;
+  const available = variables.availableServices;
   const isReorderingFavorites = isFromFavoriteList && isToFavoriteList;
   const isRemovingFavorites = isFromFavoriteList && !isToFavoriteList;
   const isAddingFavorites = isToFavoriteList && !isFromFavoriteList;
@@ -100,8 +112,7 @@ export function action_ChangeOrderLocal(
     current.splice(newOrder, 0, localService); // ListInsert2
   }
   // Foreach CurrentServices: Connect_Service_User.Order = CurrentRowNumber + 1
-  return {
-    currentServices: current.map((c, i) => ({ ...c, serviceUser: { ...c.serviceUser, order: i + 1 } })),
-    availableServices: available,
-  };
+  current.forEach((c, i) => {
+    current[i] = { ...c, serviceUser: { ...c.serviceUser, order: i + 1 } };
+  });
 }

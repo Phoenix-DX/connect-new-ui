@@ -42,6 +42,8 @@ export interface MessageListViewEvents {
   onSearch: () => void;
   /** Filter_Icon: OnClick_Filter. */
   onFilter: () => void;
+  /** Close_Filter_Icon: ToggleShowFilters (ScreenBlock_MessageList.mvc.js:566-588). */
+  onToggleShowFilters: () => void;
   /** Warning_PrivateMessage NavigateTo_Login. */
   onNavigateToLogin: () => void;
   /** Warning_PrivateMessage Dismiss. */
@@ -102,6 +104,7 @@ export function MessageListView({
   onSearchClear,
   onSearch,
   onFilter,
+  onToggleShowFilters,
   onNavigateToLogin,
   onDismissWarning,
   onSwipeEventsClear,
@@ -199,7 +202,7 @@ export function MessageListView({
             data-icon=""
             id={`${prefix}-Close_Filter_Icon`}
             style={{ marginLeft: 0, marginRight: 0 }}
-            onClick={onCloseSearchAndFilter}
+            onClick={onToggleShowFilters}
           />
         ) : (
           <i

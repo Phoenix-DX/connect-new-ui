@@ -342,11 +342,11 @@ Blocks of other flows (signature in `pack/blocks.md`):
 
 ## 5. Findings
 
-| Id | Severity | Screen / element | Finding | React location | Suggested fix |
-|---|---|---|---|---|---|
-| F1 | minor | Photobook / GetLocalityHouseholdIds (row 006) | A view that is restored from the cache does not call DataActionGetLocalityHouseholdIds. P-BACK says that the original refreshes the data in the background. On TST, OnAfterFetch then sets SelectedHousehold.Position and IsLoading again. | `app/src/pages/Photobook/hooks/usePhotobook.ts:44` | On a restored view, call `fetchAtStart()` without the loading state, as P-BACK says. |
-| F2 | minor | Photobook_Carousel / Carousel_OnSlideMoved (rows 079, 198) | The replay check tests only IsReplaying. TST also tests CurrentPosition = 0. When a move event comes at another position during the rewind (a swipe during the 500 ms move), React ends the replay and starts autoplay there. TST keeps IsReplaying and runs the last-position branch. | `app/src/pages/Photobook/components/Photobook_Carousel.tsx:146-148` | Use `isReplayingRef.current && itemIndex === 0`. |
-| F3 | info | Photobook_Options_Player / OnParametersChanged (rows 176, 202) | React runs the check only when In_IsFinalItem changes. TST runs it on every input change, also In_IsShow. The state "IsPlay True on the final item without a change of In_IsFinalItem" occurs after Replay on a one-household photobook. The replay icon shows in both cases, so the user sees no difference. | `app/src/pages/Photobook/components/Photobook_Options_Player.tsx:36-39` | Run the check on a change of any input. |
+| Id | Severity | Screen / element | Finding | React location | Suggested fix | Status |
+|---|---|---|---|---|---|---|
+| F1 | minor | Photobook / GetLocalityHouseholdIds (row 006) | A view that is restored from the cache does not call DataActionGetLocalityHouseholdIds. P-BACK says that the original refreshes the data in the background. On TST, OnAfterFetch then sets SelectedHousehold.Position and IsLoading again. | `app/src/pages/Photobook/hooks/usePhotobook.ts:44` | On a restored view, call `fetchAtStart()` without the loading state, as P-BACK says. | fixed 2026-10-27 (`fixes/E-directory.md`) |
+| F2 | minor | Photobook_Carousel / Carousel_OnSlideMoved (rows 079, 198) | The replay check tests only IsReplaying. TST also tests CurrentPosition = 0. When a move event comes at another position during the rewind (a swipe during the 500 ms move), React ends the replay and starts autoplay there. TST keeps IsReplaying and runs the last-position branch. | `app/src/pages/Photobook/components/Photobook_Carousel.tsx:146-148` | Use `isReplayingRef.current && itemIndex === 0`. | fixed 2026-10-27 (`fixes/E-directory.md`) |
+| F3 | info | Photobook_Options_Player / OnParametersChanged (rows 176, 202) | React runs the check only when In_IsFinalItem changes. TST runs it on every input change, also In_IsShow. The state "IsPlay True on the final item without a change of In_IsFinalItem" occurs after Replay on a one-household photobook. The replay icon shows in both cases, so the user sees no difference. | `app/src/pages/Photobook/components/Photobook_Options_Player.tsx:36-39` | Run the check on a change of any input. | |
 
 ## 6. DEV vs TST differences
 

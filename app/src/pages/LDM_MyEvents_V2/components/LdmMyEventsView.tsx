@@ -41,6 +41,7 @@ export function LdmMyEventsView({
   onPhoneCall,
   onMessage,
   onTryAgain,
+  onSwipeUp,
   onContactByPhoneClose,
   onContactByMessageClose,
   onContactByMessageEmail,
@@ -101,6 +102,7 @@ export function LdmMyEventsView({
               onClickMessage={onMessage}
               onScrollEnding={onScrollEnding}
               onTryAgain={onTryAgain}
+              onEventsSwipeUp={onSwipeUp}
             />
             <DialogAccessRestrictedActionLegacy id={`${scope}-FreeSubscriptionAlert`} scope={`${scope}-b12`} />
             <ContactPopupByPhone

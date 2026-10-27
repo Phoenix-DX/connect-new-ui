@@ -149,7 +149,9 @@ export function AssembleFilterView({
     </>
   );
 
-  /* DIV_StickyBottom: its show/hide animation is not reproduced. */
+  /* DIV_StickyBottom (`animate: true`, mvc.js:505-510): the TST runtime Container (OutSystemsReactWidgets.js,
+     OutSystems/ReactWidgets/Container render) does not read `animate`; it renders the div while Visible, else nothing,
+     with no transition. */
   const bottomBar = isBottomBarVisible ? (
     <div className="text-align-center assemble-filter-actions" data-container="" id={`${scope}-DIV_StickyBottom`}>
       <div className="OSInline" data-container="" id={`${scope}-DIV_Cancel`}>

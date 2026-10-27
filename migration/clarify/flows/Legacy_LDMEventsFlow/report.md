@@ -194,10 +194,10 @@ The flow has no own block. EmailTarget uses the referenced block ScreenBlock_Hou
 
 ## 5. Findings
 
-| Id | Severity | Screen / element | Finding | React location | Suggested fix |
-|---|---|---|---|---|---|
-| F1 | minor | EmailTarget, document title (row 002) | TST sets the document title "EmailTarget" (`OutSystemsReactView.js:7`). React keeps "UBTConnect" from `app/index.html:6`. | app shell (no `document.title` write in `app/src`) | Write `document.title` from the route title in the app shell, for every route (same fix as Bookmarks F2). |
-| F2 | minor | ScreenBlock_Household_Email, OnReady (rows 035, 094) | On a view restored from the cache, TST sets Subject and Message to "" and IsChange to False. React remounts the page, so Subject shows InitialEmailSubject again. The difference shows only when InitialEmailSubject is not empty. | `pages/EmailTarget/hooks/useHouseholdEmail.ts:68-73` | Start Subject at '' when `useWasRestoredFromCache()` (`platform/navigation/hooks.ts:40`) is true, or record a decision for the difference. |
+| Id | Severity | Screen / element | Finding | React location | Suggested fix | Status |
+|---|---|---|---|---|---|---|
+| F1 | minor | EmailTarget, document title (row 002) | TST sets the document title "EmailTarget" (`OutSystemsReactView.js:7`). React keeps "UBTConnect" from `app/index.html:6`. | app shell (no `document.title` write in `app/src`) | Write `document.title` from the route title in the app shell, for every route (same fix as Bookmarks F2). | fixed 2026-10-27 (`fixes/A-shell.md`) |
+| F2 | minor | ScreenBlock_Household_Email, OnReady (rows 035, 094) | On a view restored from the cache, TST sets Subject and Message to "" and IsChange to False. React remounts the page, so Subject shows InitialEmailSubject again. The difference shows only when InitialEmailSubject is not empty. | `pages/EmailTarget/hooks/useHouseholdEmail.ts:68-73` | Start Subject at '' when `useWasRestoredFromCache()` (`platform/navigation/hooks.ts:40`) is true, or record a decision for the difference. | fixed 2026-10-27 (`fixes/B-restore.md`) |
 
 ## 6. DEV vs TST differences
 

@@ -8,20 +8,22 @@ import { APP, ROUTES, HOME } from './routes';
 import { lazyScreen } from './screens';
 
 // A screen is picked up automatically when src/pages/<Screen>/<Screen>Page.tsx exists (default export).
-// ScreenFrame (preload lifetime, view-cache scroll restore) sits inside the Suspense boundary: it runs once the screen
-// rendered. Only the page's first screen can suspend: later ones are loaded before their transition (screens.ts).
+// ScreenFrame (preload lifetime, view-cache scroll restore, document title) sits inside the Suspense boundary: it runs
+// once the screen rendered. Only the page's first screen can suspend: later ones are loaded before their transition
+// (screens.ts). The route title is the TST View.title of the screen (the screen name), which the runtime writes to
+// document.title (OutSystemsReactView.js:2008); a path that shows no screen ('*') keeps the document title.
 const children: RouteObject[] = ROUTES.map((r) => {
   const Screen = lazyScreen(r.screen);
   return {
     path: r.path,
     element: Screen ? (
       <Suspense fallback={null}>
-        <ScreenFrame>
+        <ScreenFrame title={r.title}>
           <Screen />
         </ScreenFrame>
       </Suspense>
     ) : (
-      <ScreenFrame>
+      <ScreenFrame title={r.title}>
         <NotMigrated route={r} />
       </ScreenFrame>
     ),

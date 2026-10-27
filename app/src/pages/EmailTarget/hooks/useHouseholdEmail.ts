@@ -3,7 +3,7 @@ import { sendUserContactEmail } from '@/api/message';
 import { useScreenValidationService, type ValidationService } from '@/components/ui/os/OSValidation';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useNavigateBack } from '@/platform/navigation';
+import { useNavigateBack, useWasRestoredFromCache } from '@/platform/navigation';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { preventNavigation, type NavigationEvent } from '@/lib/navigationEvent';
 import {
@@ -65,9 +65,11 @@ export function useHouseholdEmail(
   const ids = householdEmailIds(id);
   const validation = useScreenValidationService();
   const navigateBack = useNavigateBack();
-  /* OnInitialize: IsSending False, Subject = InitialEmailSubject, Message = "", HeaderText. The restored-view reset
-     of OnReady is not needed: the block is not kept in the view cache. */
-  const [subject, setSubject] = useState(inputs.initialEmailSubject);
+  /* OnInitialize: IsSending False, Subject = InitialEmailSubject, Message = "", HeaderText. OnReady on a view restored
+     from the cache: ShowCancelPopup False (not ported: the view reads it nowhere), Subject "", Message "", IsChange
+     False (TST ScreenBlock_Household_Email.mvc.js:976-1000). The state starts with that result. */
+  const restored = useWasRestoredFromCache();
+  const [subject, setSubject] = useState(restored ? '' : inputs.initialEmailSubject);
   const [message, setMessage] = useState('');
   const [isSending, setIsSending] = useState(false);
   const latest = useRef({ subject, message, isChange: false });

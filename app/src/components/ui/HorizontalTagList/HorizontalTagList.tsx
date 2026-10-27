@@ -46,7 +46,8 @@ export function HorizontalTagList({
   const currentListIndex = useRef(0);
   const selectedTagId = useRef('');
 
-  /** TagToggleToggle (:322-430). In_TagToggleList.Current in the event handler is the clicked row. */
+  /** TagToggleToggle (:322-430). In_TagToggleList.Current in the event handler is the clicked row. An omitted
+      IsSelected (or Enabled) is True: the TagRec defaults (UBTConnectLibrary.model.js, TagRec :1269-1274). */
   const toggle = (isSelected: boolean, listIndex: number, isTagEnabled: boolean) => {
     if (inIsSingleSelection && listIndex === currentListIndex.current) return;
     currentListIndex.current = listIndex;

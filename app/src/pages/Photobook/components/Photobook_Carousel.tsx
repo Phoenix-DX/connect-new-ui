@@ -9,6 +9,7 @@ import { carousel_SetCurrentPosition } from '@/lib/ubtConnect/actions';
 import type { SplideConfigs } from '@/components/ui/lib/structures';
 import { BooleanTypes, CarouselNavigation, Photobook_Speed } from '@/lib/ubtConnect/staticEntities';
 import { clientVar } from '@/platform/session/session';
+import { slideMovedStep } from '@/pages/Photobook/hooks/photobookState';
 import { Photobook_Gallery } from './Photobook_Gallery';
 import { Photobook_Item } from './Photobook_Item';
 import { Photobook_Options_Left } from './Photobook_Options_Left';
@@ -143,10 +144,11 @@ export function Photobook_Carousel({
     setCurrentPosition(itemIndex);
     setCurrentHousehold(householdAt(itemIndex));
     carousel_SetCurrentPosition(CAROUSEL_WIDGET_ID, itemIndex); // :1241
-    if (isReplayingRef.current) {
+    const step = slideMovedStep(isReplayingRef.current, itemIndex, inHouseholds.length, autoplay.isEnabled);
+    if (step === 'startAutoplay') {
       isReplayingRef.current = false;
       toggleAutoplay(true);
-    } else if (itemIndex + 1 === inHouseholds.length && autoplay.isEnabled) {
+    } else if (step === 'stopAutoplay') {
       toggleAutoplay(false);
     }
   };

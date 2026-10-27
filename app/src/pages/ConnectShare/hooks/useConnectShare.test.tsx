@@ -6,7 +6,7 @@ import { fetchShareDetails, type ShareDetails } from '@/api/share';
 import { ServerException } from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { replaceOnUpcomingNavigation } from '@/platform/navigation';
+import { replaceOnUpcomingNavigation, TransitionAnimation } from '@/platform/navigation';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { connectShareReducer } from './connectShareState';
 import { useConnectShare, type ConnectShareView } from './useConnectShare';
@@ -108,10 +108,26 @@ describe('useConnectShare', () => {
     });
     expect(replaceOnUpcomingNavigation).toHaveBeenCalledTimes(1);
     expect(spy.navigate).toHaveBeenCalledTimes(1);
-    expect(spy.navigate).toHaveBeenCalledWith('/UBTConnect/HouseholdDetails', { HouseholdId: '42438' });
+    expect(spy.navigate).toHaveBeenCalledWith(
+      '/UBTConnect/HouseholdDetails',
+      { HouseholdId: '42438' },
+      { transition: TransitionAnimation.None },
+    );
     expect(vi.mocked(replaceOnUpcomingNavigation).mock.invocationCallOrder[0]).toBeLessThan(
       spy.navigate.mock.invocationCallOrder[0] ?? 0,
     );
+  });
+
+  it.each([
+    ['OneSchool Global', '/UBTConnect/OneSchoolGlobalDetails'],
+    ['Feed', '/UBTConnect/FeedItemDetail'],
+    ['Supper Meeting', '/UBTConnect/SupperMeeting_Details'],
+  ])('Action_Redirect opens a %s share with TransitionAnimation.None (ConnectShare.mvc.js:461-485)', async (type, path) => {
+    vi.mocked(fetchShareDetails).mockResolvedValue(share({ shareObjectTypeId: type }));
+    renderFlows('abc');
+    await settle();
+    expect(spy.navigate).toHaveBeenCalledTimes(1);
+    expect(spy.navigate).toHaveBeenCalledWith(path, expect.anything(), { transition: TransitionAnimation.None });
   });
 
   it('a type that Action_Redirect does not route sets IsRedirect False, so the share detail shows', async () => {

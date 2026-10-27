@@ -324,6 +324,7 @@ export function useMessageList(
     onSearchClear: () => void onClickSearchClear(),
     onSearch: onClickSearch,
     onFilter: onClickFilter,
+    onToggleShowFilters: toggleShowFilters,
     onNavigateToLogin: () => {
       dispatch({ type: 'loginRequested', dateTime: currDateTime() });
     },

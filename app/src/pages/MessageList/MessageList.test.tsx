@@ -103,6 +103,18 @@ describe('MessageList page', () => {
     expect(bodies.at(-1)).toMatchObject({ OrderByIsAscending: true, SelectedFilter_OrderASC: true, ShowFilters: true });
   });
 
+  it('Close_Filter_Icon runs ToggleShowFilters: the unsaved filters are reverted and the filters close', async () => {
+    const { container } = await open();
+    fireEvent.click(byId('b1-Filter_Icon'));
+    fireEvent.click(byId('b1-b13-OldToNew_Checkbox'));
+    expect((byId('b1-b13-OldToNew_Checkbox') as HTMLInputElement).checked).toBe(true);
+    fireEvent.click(byId('b1-Close_Filter_Icon'));
+    expect(rows(container)).toHaveLength(19);
+    fireEvent.click(byId('b1-Filter_Icon'));
+    expect((byId('b1-b13-NewToOld_Checkbox') as HTMLInputElement).checked).toBe(true);
+    expect((byId('b1-b13-OldToNew_Checkbox') as HTMLInputElement).checked).toBe(false);
+  });
+
   it('a back navigation with the filters open closes them and stays on the page', async () => {
     const { router, at, container } = await open();
     fireEvent.click(byId('b1-Filter_Icon'));

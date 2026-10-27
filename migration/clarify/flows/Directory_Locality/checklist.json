@@ -575,11 +575,12 @@
    "os": "Local_MapId <> \"\" -> Map_InvalidateSize; else end",
    "react": "app/src/pages/BrowseDirectory/hooks/useBrowseDirectory.ts:152-158 `onStatisticsListParametersChanged: () => { try { invalidateMapSize(); }`",
    "evidence": "app/src/pages/BrowseDirectory/hooks/useBrowseDirectory.ts:95-99,152-158; TST UBTConnect.Directory_Locality.BrowseDirectory.mvc.js:971,1040",
-   "verdict": "partial",
-   "note": "TST _statisticsListOnParametersChhanged (BrowseDirectory.mvc.js:1025-1040) calls map_InvalidateSize only; map_FitBoundsAuto is only in _action_InvalidateMapSize (:971). React calls invalidateMapSize(), which does both. | reader: TST: present (StatisticsListOnParametersChhanged x2). React calls invalidateMapSize (Map_InvalidateSize AND Map_FitBoundsAuto), the pack action calls Map_InvalidateSize only; judge decides",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/E-directory.md). TST _statisticsListOnParametersChhanged (BrowseDirectory.mvc.js:1025-1040) calls map_InvalidateSize only; map_FitBoundsAuto is only in _action_InvalidateMapSize (:971). React calls invalidateMapSize(), which does both. | reader: TST: present (StatisticsListOnParametersChhanged x2). React calls invalidateMapSize (Map_InvalidateSize AND Map_FitBoundsAuto), the pack action calls Map_InvalidateSize only; judge decides",
+   "verified": "live",
    "finding": "F3",
-   "severity": "minor"
+   "severity": "minor",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Locality-049",
@@ -1801,11 +1802,12 @@
    "os": "Icon Explore Neutral0, Click -> OnClick_Maps",
    "react": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:151 `placeholderIcons={!v.headerIsScrolled && mapsEnabled ? exploreIcon(b(13)) : null}`",
    "evidence": "app/src/pages/Locality_Details/Locality_DetailsPage.tsx:151; TST UBTConnect.Directory_Locality.Locality_Details.mvc.js:657-666",
-   "verdict": "partial",
-   "note": "TST Locality_Details.mvc.js:657-666: $if(headerIsScrolledVar …) renders the Explore icon when the header IS scrolled (same as DEV). React renders it when the header is NOT scrolled. C2EnableMaps is off on TST, so the icon is hidden in both today. | reader: TST: present. React shows the icon when NOT scrolled; DEV condition is \"if HeaderIsScrolled\" (the pack puts the icon in the HeaderIsScrolled branch)",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/E-directory.md). TST Locality_Details.mvc.js:657-666: $if(headerIsScrolledVar …) renders the Explore icon when the header IS scrolled (same as DEV). React renders it when the header is NOT scrolled. C2EnableMaps is off on TST, so the icon is hidden in both today. | reader: TST: present. React shows the icon when NOT scrolled; DEV condition is \"if HeaderIsScrolled\" (the pack puts the icon in the HeaderIsScrolled branch)",
+   "verified": "live",
    "finding": "F1",
-   "severity": "minor"
+   "severity": "minor",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Locality-151",
@@ -2439,11 +2441,12 @@
    "os": "for each row GetLocal_Bookmark_C2(HouseholdId, BookmarkCategory.Household) -> IsBookmarked",
    "react": "app/src/pages/Locality_Details/hooks/useLocalityHouseholdList.ts:77 `if (flags.hasNewBookmarks) return;` ; app/src/pages/Locality_Details/Locality_DetailsPage.tsx:56 `const hasNewBookmarks = useFlagOn('C2NewBookmarks'); // the GetLocal_Bookmark_C2 branch (decided off)`",
    "evidence": "app/src/pages/Locality_Details/hooks/useLocalityHouseholdList.ts:77; pack/blocks.md OnAfterFetch_GetLocalityHouseholds_Bookmarks",
-   "verdict": "partial",
-   "note": "With GetHasNewBookmarks on, TST reads GetLocal_Bookmark_C2(HouseholdId, BookmarkCategory.Household) for each row. React returns and keeps the fetched IsBookmarked. The flag is on on TST (flag-values-tst.json, seen 2026-10-21) and off in React by decision (row 271). | reader: TST: present (GetHasNewBookmarks x3, GetLocal_Bookmark_C2 x5). React does not run GetLocal_Bookmark_C2 (grep: Locality_DetailsPage.tsx:56 only a comment); app.md lists GetLocal_Bookmark_C2 at useLocalityHouseholdList.ts:18",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/E-directory.md). With GetHasNewBookmarks on, TST reads GetLocal_Bookmark_C2(HouseholdId, BookmarkCategory.Household) for each row. React returns and keeps the fetched IsBookmarked. The flag is on on TST (flag-values-tst.json, seen 2026-10-21) and off in React by decision (row 271). | reader: TST: present (GetHasNewBookmarks x3, GetLocal_Bookmark_C2 x5). React does not run GetLocal_Bookmark_C2 (grep: Locality_DetailsPage.tsx:56 only a comment); app.md lists GetLocal_Bookmark_C2 at useLocalityHouseholdList.ts:18",
+   "verified": "live",
    "finding": "F2",
-   "severity": "minor"
+   "severity": "minor",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Locality-204",

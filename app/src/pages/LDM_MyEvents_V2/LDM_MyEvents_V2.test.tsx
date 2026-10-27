@@ -1,6 +1,7 @@
 import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 import { delay, http, HttpResponse } from 'msw';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { usePreloadObject } from '@/platform/navigation/preload';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
@@ -145,6 +146,23 @@ describe('LDM_MyEvents_V2 page', () => {
       In_ContactLocality: 'Bahia Blanca',
       In_EmailTo: 'jorge.perez@example.com',
     });
+  });
+
+  it('offline, the email of a guest shows the network message and opens no popup (EG :867)', async () => {
+    await open();
+    click(guestToggles()[1]);
+    resetFeedbackMessages();
+    const onLine = vi.spyOn(navigator, 'onLine', 'get').mockReturnValue(false);
+    try {
+      click(document.querySelector('[data-block="Reusable.Person_Contact_Options"] .fa-envelope'));
+      expect(getFeedbackMessage()).toMatchObject({
+        message: 'Please check your network connection and try again',
+        type: 0,
+      });
+      expect([...document.querySelectorAll('span, div, a, button')].some((e) => e.textContent === 'Email')).toBe(false);
+    } finally {
+      onLine.mockRestore();
+    }
   });
 
   it('the My calendar flag opens MyEntertaining with the LDM event source', async () => {

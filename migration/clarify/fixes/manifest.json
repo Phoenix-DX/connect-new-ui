@@ -1,0 +1,455 @@
+[
+ {
+  "flow": "App_Services",
+  "finding": "F5",
+  "group": "A-shell",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Bookmarks",
+  "finding": "F2",
+  "group": "A-shell",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Calendar",
+  "finding": "F3",
+  "group": "A-shell",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_OneSchoolGlobal",
+  "finding": "F1",
+  "group": "A-shell",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_LDMEventsFlow",
+  "finding": "F1",
+  "group": "A-shell",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_OrbitQRCodeFlow",
+  "finding": "F1",
+  "group": "A-shell",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "App_Common",
+  "finding": "F3",
+  "group": "A-shell",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live",
+  "rows": [],
+  "suffix": "the CallbackType constant; the dialog waits by decision Q3 (a)"
+ },
+ {
+  "flow": "_shared",
+  "finding": "F1",
+  "group": "A-shell",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_Share",
+  "finding": "F1",
+  "group": "A-shell",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "App_Common",
+  "finding": "F2",
+  "group": "",
+  "date": "2026-10-27",
+  "status": "no-fix",
+  "reason": "decision App_Common Q2 (a): keep Forgot Password without an action"
+ },
+ {
+  "flow": "Directory_Updates",
+  "finding": "F2",
+  "group": "",
+  "date": "2026-10-27",
+  "status": "open",
+  "reason": "waits for a capture with the MarkAsRead write, or a decision (rows 073/074)"
+ },
+ {
+  "flow": "App_Menu",
+  "finding": "F1",
+  "group": "B-restore",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_LDMEventsFlow",
+  "finding": "F2",
+  "group": "B-restore",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_OrbitEventsFlow",
+  "finding": "F5",
+  "group": "",
+  "date": "2026-10-27",
+  "status": "no-fix",
+  "reason": "finding withdrawn 2026-10-27 (`fixes/B-restore.md`): TST runs OnAfterFetch only after a successful fetch (`ScreenBlock_MilestoneWrapper :1135-1143`), so a failed call keeps the skeleton and goes to the flow handler; React does the same (`flowState.ts:112`)"
+ },
+ {
+  "flow": "Legacy_OrbitEventsFlow",
+  "finding": "F4",
+  "group": "",
+  "date": "2026-10-27",
+  "status": "no-fix",
+  "reason": "decision W34 (a) of 2026-10-22 (`migration/refactor/auto-decisions-2026-10-22.md`, page-template.md) keeps the re-fetch on a restored view without data; rows become differs by W34"
+ },
+ {
+  "flow": "App_Profile",
+  "finding": "F2",
+  "group": "D-forms",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "App_PIN",
+  "finding": "F1",
+  "group": "D-forms",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_OrbitQRCodeFlow",
+  "finding": "F2",
+  "group": "D-forms",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "ContactFlow",
+  "finding": "F2",
+  "group": "D-forms",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live",
+  "suffix": "ContactHeaderCard changed by the orchestrator"
+ },
+ {
+  "flow": "_libraries",
+  "finding": "F4",
+  "group": "",
+  "date": "2026-10-27",
+  "status": "no-fix",
+  "reason": "finding withdrawn 2026-10-27 (`fixes/D-forms.md`): the TST TagRec default for IsSelected is True (`UBTConnectLibrary.model.js:1269-1271`); React `?? true` matches"
+ },
+ {
+  "flow": "Legacy_OrbitAdminFlow",
+  "finding": "F2",
+  "group": "G2-orbit-ldm",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_OrbitAdminFlow",
+  "finding": "F3",
+  "group": "G2-orbit-ldm",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_OrbitEventsFlow",
+  "finding": "F8",
+  "group": "G2-orbit-ldm",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_LDMEventsFlow_V2",
+  "finding": "F3",
+  "group": "G2-orbit-ldm",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_LDMEventsFlow_V2",
+  "finding": "F4",
+  "group": "G2-orbit-ldm",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_LDMEventsFlow_V2",
+  "finding": "F5",
+  "group": "G2-orbit-ldm",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_OrbitEventsFlow",
+  "finding": "F6",
+  "group": "",
+  "date": "2026-10-27",
+  "status": "no-fix",
+  "reason": "finding withdrawn 2026-10-27 (`fixes/G2-orbit-ldm.md`): the TST node reads `document.querySelector(\"body\").clientWidth - 20` (`ScreenBlock_ContactForm :1579-1581`); React `EmailContact/actions.ts:19-20` does the same"
+ },
+ {
+  "flow": "Calendar",
+  "finding": "F2",
+  "group": "C-errors",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "App_Policies",
+  "finding": "F2",
+  "group": "C-errors",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "App_Policies",
+  "finding": "F3",
+  "group": "C-errors",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "App_Policies",
+  "finding": "F4",
+  "group": "C-errors",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Home",
+  "finding": "F2",
+  "group": "C-errors",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "_libraries",
+  "finding": "F2",
+  "group": "C-errors",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "_libraries",
+  "finding": "F3",
+  "group": "C-errors",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_Locality",
+  "finding": "F1",
+  "group": "E-directory",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_Locality",
+  "finding": "F2",
+  "group": "E-directory",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_Locality",
+  "finding": "F3",
+  "group": "E-directory",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_Search",
+  "finding": "F4",
+  "group": "E-directory",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_Search",
+  "finding": "F5",
+  "group": "E-directory",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_CommonBlocks",
+  "finding": "F1",
+  "group": "E-directory",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_CommonBlocks",
+  "finding": "F2",
+  "group": "E-directory",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_CommonBlocks",
+  "finding": "F3",
+  "group": "E-directory",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_Photobook",
+  "finding": "F1",
+  "group": "E-directory",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_Photobook",
+  "finding": "F2",
+  "group": "E-directory",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_Household_Blocks",
+  "finding": "F1",
+  "group": "E-directory",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Bookmarks",
+  "finding": "F1",
+  "group": "G1-content",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Home",
+  "finding": "F1",
+  "group": "G1-content",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Home",
+  "finding": "F4",
+  "group": "G1-content",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_MyNotificationsFlow",
+  "finding": "F4",
+  "group": "G1-content",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_MyNotificationsFlow",
+  "finding": "F5",
+  "group": "G1-content",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_Share",
+  "finding": "F2",
+  "group": "G1-content",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Legacy_AssembleFlow",
+  "finding": "F1",
+  "group": "",
+  "date": "2026-10-27",
+  "status": "no-fix",
+  "reason": "finding withdrawn 2026-10-27 (`fixes/G1-content.md`): the runtime Container.render never reads `animate` (`OutSystemsReactWidgets.js`, Container), so TST shows and hides the bar without a transition; React does the same"
+ },
+ {
+  "flow": "App_Services",
+  "finding": "F3",
+  "group": "F-lists",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "App_Services",
+  "finding": "F4",
+  "group": "F-lists",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Notes",
+  "finding": "F1",
+  "group": "F-lists",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live"
+ },
+ {
+  "flow": "Directory_Updates",
+  "finding": "F3",
+  "group": "F-lists",
+  "date": "2026-10-27",
+  "status": "fixed",
+  "verified": "live",
+  "rows": [],
+  "suffix": "the mock applies Filter_Updates; row 007 stays mock-only"
+ }
+]

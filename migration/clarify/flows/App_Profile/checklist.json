@@ -372,11 +372,12 @@
    "os": "Email, Enabled True, Mandatory False, MaxLength 50, OnChange → OnChange_Fields",
    "react": "FormInput type email, enabled, onChange → onPersonalChange; no maxLength",
    "evidence": "app/src/pages/Profile/components/PersonalInformationSection.tsx:60-68; app/src/pages/Profile/components/FormInput.tsx:36-47; TST Profile.mvc.js:1055-1087",
-   "verdict": "partial",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "live",
    "finding": "F2",
    "severity": "minor",
-   "note": "React does not limit the length to 50 characters."
+   "note": "Fixed 2026-10-27 (fixes/D-forms.md). React does not limit the length to 50 characters.",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Profile-033",
@@ -485,10 +486,12 @@
    "os": "Phone, Enabled = isHouseholder, MaxLength 15, autocomplete off, OnChange → OnChange_Fields",
    "react": "FormInput type tel, enabled = isHouseholder, onChange → onContactChange; no maxLength, no autoComplete",
    "evidence": "app/src/pages/Profile/components/ContactInformationSection.tsx:55-63; app/src/pages/Profile/components/FormInput.tsx:36-47; TST Profile.mvc.js:1838-1873",
-   "verdict": "partial",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "live",
    "finding": "F2",
-   "severity": "minor"
+   "severity": "minor",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/D-forms.md)."
   },
   {
    "id": "App_Profile-042",
@@ -509,10 +512,12 @@
    "os": "Phone, Enabled True, MaxLength 15, autocomplete off, OnChange → OnChange_Fields",
    "react": "FormInput type tel, enabled, onChange → onContactChange; no maxLength, no autoComplete",
    "evidence": "app/src/pages/Profile/components/ContactInformationSection.tsx:82-90; TST Profile.mvc.js:2015-2050",
-   "verdict": "partial",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "live",
    "finding": "F2",
-   "severity": "minor"
+   "severity": "minor",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/D-forms.md)."
   },
   {
    "id": "App_Profile-044",
@@ -544,10 +549,12 @@
    "os": "Phone, Enabled True, MaxLength 15, autocomplete off, OnChange → OnChange_Fields",
    "react": "FormInput type tel, enabled, onChange → onContactChange; no maxLength, no autoComplete",
    "evidence": "app/src/pages/Profile/components/ContactInformationSection.tsx:117-125; TST Profile.mvc.js:2236-2271",
-   "verdict": "partial",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "live",
    "finding": "F2",
-   "severity": "minor"
+   "severity": "minor",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/D-forms.md)."
   },
   {
    "id": "App_Profile-047",

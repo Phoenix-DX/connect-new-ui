@@ -5,14 +5,17 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "2ee43bf05cbace4951d5",
+ "fingerprint": "7d9a80a43330d95391cc",
  "options": {
   "text": true,
   "style": true,
   "pixel": true,
   "calls": true,
+  "visibleOnly": false,
   "full": true,
-  "replay": "builder"
+  "replay": "builder",
+  "skipKinds": [],
+  "selfRef": false
  },
  "replay": {
   "mode": "builder",
@@ -24,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-21T04:56:57.903Z",
+ "at": "2026-10-27T15:04:21.371Z",
  "counts": {},
  "exemptionsUsed": {
   "SPLASH-LOADINGDOTS-ANIMATION-PHASE": 19,

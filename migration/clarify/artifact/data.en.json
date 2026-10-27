@@ -14,8 +14,8 @@
    "Status": "draft",
    "Rows": "182",
    "match": "129",
-   "partial": "4",
-   "missing": "3",
+   "partial": "6",
+   "missing": "1",
    "differs": "21",
    "mock-only": "4",
    "n/a": "21",
@@ -28,8 +28,8 @@
    "Flow": "[App_PIN](flows/App_PIN/report.md)",
    "Status": "draft",
    "Rows": "131",
-   "match": "117",
-   "partial": "4",
+   "match": "118",
+   "partial": "3",
    "missing": "0",
    "differs": "3",
    "mock-only": "1",
@@ -43,9 +43,9 @@
    "Flow": "[App_Policies](flows/App_Policies/report.md)",
    "Status": "draft",
    "Rows": "90",
-   "match": "74",
-   "partial": "6",
-   "missing": "1",
+   "match": "77",
+   "partial": "4",
+   "missing": "0",
    "differs": "2",
    "mock-only": "2",
    "n/a": "5",
@@ -58,8 +58,8 @@
    "Flow": "[Home](flows/Home/report.md)",
    "Status": "draft",
    "Rows": "148",
-   "match": "123",
-   "partial": "5",
+   "match": "127",
+   "partial": "1",
    "missing": "0",
    "differs": "1",
    "mock-only": "5",
@@ -73,8 +73,8 @@
    "Flow": "[App_Menu](flows/App_Menu/report.md)",
    "Status": "draft",
    "Rows": "122",
-   "match": "111",
-   "partial": "1",
+   "match": "112",
+   "partial": "0",
    "missing": "0",
    "differs": "3",
    "mock-only": "4",
@@ -118,8 +118,8 @@
    "Flow": "[App_Profile](flows/App_Profile/report.md)",
    "Status": "draft",
    "Rows": "110",
-   "match": "70",
-   "partial": "11",
+   "match": "74",
+   "partial": "7",
    "missing": "21",
    "differs": "0",
    "mock-only": "2",
@@ -133,9 +133,9 @@
    "Flow": "[App_Services](flows/App_Services/report.md)",
    "Status": "draft",
    "Rows": "81",
-   "match": "69",
-   "partial": "6",
-   "missing": "2",
+   "match": "73",
+   "partial": "3",
+   "missing": "1",
    "differs": "0",
    "mock-only": "2",
    "n/a": "2",
@@ -148,8 +148,8 @@
    "Flow": "[Directory_Locality](flows/Directory_Locality/report.md)",
    "Status": "draft",
    "Rows": "280",
-   "match": "238",
-   "partial": "4",
+   "match": "241",
+   "partial": "1",
    "missing": "0",
    "differs": "1",
    "mock-only": "15",
@@ -178,8 +178,8 @@
    "Flow": "[Directory_Search](flows/Directory_Search/report.md)",
    "Status": "draft",
    "Rows": "146",
-   "match": "129",
-   "partial": "5",
+   "match": "131",
+   "partial": "3",
    "missing": "5",
    "differs": "2",
    "mock-only": "2",
@@ -193,8 +193,8 @@
    "Flow": "[Directory_Photobook](flows/Directory_Photobook/report.md)",
    "Status": "draft",
    "Rows": "203",
-   "match": "186",
-   "partial": "5",
+   "match": "189",
+   "partial": "2",
    "missing": "0",
    "differs": "3",
    "mock-only": "6",
@@ -223,9 +223,9 @@
    "Flow": "[Directory_OneSchoolGlobal](flows/Directory_OneSchoolGlobal/report.md)",
    "Status": "draft",
    "Rows": "56",
-   "match": "47",
+   "match": "48",
    "partial": "0",
-   "missing": "1",
+   "missing": "0",
    "differs": "0",
    "mock-only": "2",
    "n/a": "6",
@@ -253,9 +253,9 @@
    "Flow": "[Bookmarks](flows/Bookmarks/report.md)",
    "Status": "draft",
    "Rows": "123",
-   "match": "100",
-   "partial": "3",
-   "missing": "2",
+   "match": "103",
+   "partial": "2",
+   "missing": "0",
    "differs": "1",
    "mock-only": "5",
    "n/a": "12",
@@ -268,8 +268,8 @@
    "Flow": "[Notes](flows/Notes/report.md)",
    "Status": "draft",
    "Rows": "121",
-   "match": "104",
-   "partial": "3",
+   "match": "106",
+   "partial": "1",
    "missing": "0",
    "differs": "0",
    "mock-only": "2",
@@ -283,9 +283,9 @@
    "Flow": "[Calendar](flows/Calendar/report.md)",
    "Status": "draft",
    "Rows": "72",
-   "match": "37",
-   "partial": "1",
-   "missing": "3",
+   "match": "39",
+   "partial": "0",
+   "missing": "2",
    "differs": "1",
    "mock-only": "2",
    "n/a": "28",
@@ -298,8 +298,8 @@
    "Flow": "[ContactFlow](flows/ContactFlow/report.md)",
    "Status": "draft",
    "Rows": "142",
-   "match": "121",
-   "partial": "3",
+   "match": "122",
+   "partial": "2",
    "missing": "0",
    "differs": "8",
    "mock-only": "5",
@@ -313,8 +313,8 @@
    "Flow": "[Legacy_Share](flows/Legacy_Share/report.md)",
    "Status": "draft",
    "Rows": "95",
-   "match": "64",
-   "partial": "8",
+   "match": "71",
+   "partial": "1",
    "missing": "0",
    "differs": "2",
    "mock-only": "5",
@@ -328,9 +328,9 @@
    "Flow": "[Legacy_MyNotificationsFlow](flows/Legacy_MyNotificationsFlow/report.md)",
    "Status": "draft",
    "Rows": "152",
-   "match": "106",
-   "partial": "6",
-   "missing": "21",
+   "match": "109",
+   "partial": "4",
+   "missing": "20",
    "differs": "0",
    "mock-only": "8",
    "n/a": "11",
@@ -343,10 +343,10 @@
    "Flow": "[Legacy_OrbitEventsFlow](flows/Legacy_OrbitEventsFlow/report.md)",
    "Status": "draft",
    "Rows": "518",
-   "match": "398",
-   "partial": "18",
+   "match": "402",
+   "partial": "12",
    "missing": "69",
-   "differs": "6",
+   "differs": "8",
    "mock-only": "18",
    "n/a": "9",
    "unclear": "0",
@@ -358,8 +358,8 @@
    "Flow": "[Legacy_OrbitAdminFlow](flows/Legacy_OrbitAdminFlow/report.md)",
    "Status": "draft",
    "Rows": "109",
-   "match": "91",
-   "partial": "5",
+   "match": "93",
+   "partial": "3",
    "missing": "0",
    "differs": "5",
    "mock-only": "4",
@@ -373,9 +373,9 @@
    "Flow": "[Legacy_OrbitQRCodeFlow](flows/Legacy_OrbitQRCodeFlow/report.md)",
    "Status": "draft",
    "Rows": "68",
-   "match": "60",
-   "partial": "1",
-   "missing": "1",
+   "match": "62",
+   "partial": "0",
+   "missing": "0",
    "differs": "0",
    "mock-only": "2",
    "n/a": "4",
@@ -388,9 +388,9 @@
    "Flow": "[Legacy_LDMEventsFlow](flows/Legacy_LDMEventsFlow/report.md)",
    "Status": "draft",
    "Rows": "94",
-   "match": "67",
-   "partial": "1",
-   "missing": "2",
+   "match": "70",
+   "partial": "0",
+   "missing": "0",
    "differs": "5",
    "mock-only": "2",
    "n/a": "17",
@@ -403,9 +403,9 @@
    "Flow": "[Legacy_LDMEventsFlow_V2](flows/Legacy_LDMEventsFlow_V2/report.md)",
    "Status": "draft",
    "Rows": "219",
-   "match": "167",
-   "partial": "5",
-   "missing": "2",
+   "match": "171",
+   "partial": "3",
+   "missing": "0",
    "differs": "11",
    "mock-only": "4",
    "n/a": "30",
@@ -418,8 +418,8 @@
    "Flow": "[Legacy_AssembleFlow](flows/Legacy_AssembleFlow/report.md)",
    "Status": "draft",
    "Rows": "159",
-   "match": "143",
-   "partial": "2",
+   "match": "145",
+   "partial": "0",
    "missing": "0",
    "differs": "0",
    "mock-only": "8",
@@ -568,8 +568,8 @@
    "Flow": "[Directory_CommonBlocks](flows/Directory_CommonBlocks/report.md)",
    "Status": "draft",
    "Rows": "151",
-   "match": "106",
-   "partial": "3",
+   "match": "109",
+   "partial": "0",
    "missing": "0",
    "differs": "0",
    "mock-only": "13",
@@ -613,8 +613,8 @@
    "Flow": "[Directory_Household_Blocks](flows/Directory_Household_Blocks/report.md)",
    "Status": "draft",
    "Rows": "84",
-   "match": "78",
-   "partial": "1",
+   "match": "79",
+   "partial": "0",
    "missing": "0",
    "differs": "0",
    "mock-only": "2",
@@ -658,8 +658,8 @@
    "Flow": "[_shared](flows/_shared/report.md)",
    "Status": "draft",
    "Rows": "194",
-   "match": "82",
-   "partial": "1",
+   "match": "83",
+   "partial": "0",
    "missing": "2",
    "differs": "5",
    "mock-only": "7",
@@ -673,8 +673,8 @@
    "Flow": "[_libraries](flows/_libraries/report.md)",
    "Status": "draft",
    "Rows": "245",
-   "match": "224",
-   "partial": "5",
+   "match": "228",
+   "partial": "1",
    "missing": "1",
    "differs": "9",
    "mock-only": "4",
@@ -688,10 +688,10 @@
    "Flow": "**total (45/45 flows)**",
    "Status": "",
    "Rows": "5412",
-   "match": "4295",
-   "partial": "137",
-   "missing": "166",
-   "differs": "96",
+   "match": "4365",
+   "partial": "79",
+   "missing": "152",
+   "differs": "98",
    "mock-only": "157",
    "n/a": "556",
    "unclear": "5",
@@ -2225,805 +2225,920 @@
    "Flow": "App_Menu_ContactUs",
    "Id": "F1",
    "Element": "ContactUsDetails / If not isLogged (Input_FullName, Input_Email, Input_PhoneNumber, Dropdown_Country, Input_Locality)",
-   "Finding": "TST shows five more fields to a signed-out user: labels, inputs with Mandatory and MaxLength 50, the Country list from DataAction_GetCountriesNames, and their OnChange actions. React shows a `NotCaptured` placeholder. IsFormFilled needs all six trimmed fields, so Send stays disabled. A signed-out user opens the screen from \"Need help? Contact Us\" on Login (TST `Login.mvc.js:525`, React `LoginFooter.tsx:12`; BR-UBTCON-965) and cannot send a message. The three field messages of OnClick_SubmitForm have no widget to show on."
+   "Finding": "TST shows five more fields to a signed-out user: labels, inputs with Mandatory and MaxLength 50, the Country list from DataAction_GetCountriesNames, and their OnChange actions. React shows a `NotCaptured` placeholder. IsFormFilled needs all six trimmed fields, so Send stays disabled. A signed-out user opens the screen from \"Need help? Contact Us\" on Login (TST `Login.mvc.js:525`, React `LoginFooter.tsx:12`; BR-UBTCON-965) and cannot send a message. The three field messages of OnClick_SubmitForm have no widget to show on.",
+   "Status": ""
   },
   {
    "Severity": "blocker",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F1",
    "Element": "HostSurvey: the survey wizard",
-   "Finding": "The data steps (navigation, accommodation, meal, helper, vehicle), the step header, the footer with Next / Submit, the five confirmation popups, the 15 item blocks, the four 250-character note inputs, the vehicle switch, 25 block actions, 9 variables, 6 local aggregates, 13 strings and the PostHostSurvey call are not built. React shows the summary of a confirmed survey, the Unable to Host and no-setup states only. A host cannot answer, save as a draft or submit the survey. Origin: the mock-phase choice \"wizard/popups NotCaptured\" (`auto-decisions-2026-10-16.md:73`, auto-accepted, HostSurvey Q2), not a decision on the behaviour."
+   "Finding": "The data steps (navigation, accommodation, meal, helper, vehicle), the step header, the footer with Next / Submit, the five confirmation popups, the 15 item blocks, the four 250-character note inputs, the vehicle switch, 25 block actions, 9 variables, 6 local aggregates, 13 strings and the PostHostSurvey call are not built. React shows the summary of a confirmed survey, the Unable to Host and no-setup states only. A host cannot answer, save as a draft or submit the survey. Origin: the mock-phase choice \"wizard/popups NotCaptured\" (`auto-decisions-2026-10-16.md:73`, auto-accepted, HostSurvey Q2), not a decision on the behaviour.",
+   "Status": ""
   },
   {
    "Severity": "blocker",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F2",
    "Element": "MilestoneDetail: 5 milestone types",
-   "Finding": "`ScreenBlock_MealGuest`, `_MealHost`, `_MealHelper`, `_AccommodationGuest`, `_AccommodationHelper` render `<NotCaptured>`; the wrapper action `OnHandle_NavigateToContactByEmail` (ContactByEmailOrbitHost, surname by GetNameAndSurname_ByFullName) is absent. A guest or helper of a meal or accommodation milestone cannot see the milestone. Origin: `auto-decisions-2026-10-16.md:60` (MilestoneDetail Q5, auto-accepted \"other milestone types NotCaptured\")."
+   "Finding": "`ScreenBlock_MealGuest`, `_MealHost`, `_MealHelper`, `_AccommodationGuest`, `_AccommodationHelper` render `<NotCaptured>`; the wrapper action `OnHandle_NavigateToContactByEmail` (ContactByEmailOrbitHost, surname by GetNameAndSurname_ByFullName) is absent. A guest or helper of a meal or accommodation milestone cannot see the milestone. Origin: `auto-decisions-2026-10-16.md:60` (MilestoneDetail Q5, auto-accepted \"other milestone types NotCaptured\").",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Common",
    "Id": "F1",
    "Element": "App_Common flow OnException / BubbleCommunicationException",
-   "Finding": "TST tests `UBTConnect.BubbleCommunicationException` first and shows the communication toast (flow controller :31-39). `raiseToFlowHandler` has no such branch, so the error goes to `showExceptionMessage(message, false)`. For a non-ok answer the message is \"Request failed with status N\", and no rule of ShowExceptionMessage matches it. React shows the raw text as an error toast; TST shows \"Service Interruption\" (or \"No internet connection…\" offline). The screens that bubble errors: CountryList, Profile, Search, Services and EntityDetailsActions. Rows: 166."
+   "Finding": "TST tests `UBTConnect.BubbleCommunicationException` first and shows the communication toast (flow controller :31-39). `raiseToFlowHandler` has no such branch, so the error goes to `showExceptionMessage(message, false)`. For a non-ok answer the message is \"Request failed with status N\", and no rule of ShowExceptionMessage matches it. React shows the raw text as an error toast; TST shows \"Service Interruption\" (or \"No internet connection…\" offline). The screens that bubble errors: CountryList, Profile, Search, Services and EntityDetailsActions. Rows: 166.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "App_CommonBlocks_Filter",
    "Id": "F1",
    "Element": "FilterSheet_OptionList_Item, Action_DefineOptions (row 131)",
-   "Finding": "TST removes accents from DisplayText and from the search text before the compare (`fol.js:721-739`, `UBTJavaScriptUtils.controller.js:3078-3084`). React keeps the accents. A search for \"Sao\" does not find \"São Paulo\" in React. BR-UBTCON-331."
+   "Finding": "TST removes accents from DisplayText and from the search text before the compare (`fol.js:721-739`, `UBTJavaScriptUtils.controller.js:3078-3084`). React keeps the accents. A search for \"Sao\" does not find \"São Paulo\" in React. BR-UBTCON-331.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Menu_ContactUs",
    "Id": "F2",
    "Element": "ContactUsDetails / ContactUs_Rate, ContactUs_RateRateSelected",
-   "Finding": "The rating block is not built, and no handler sets `Rate_SelectedRate`. On the feedback subject a signed-in user cannot give a rating (BR-UBTCON-975, BR-UBTCON-972). Send needs a message, because the rate stays 0 (BR-UBTCON-968). SendContactUsMessage always gets `Rate` 0 (BR-UBTCON-970)."
+   "Finding": "The rating block is not built, and no handler sets `Rate_SelectedRate`. On the feedback subject a signed-in user cannot give a rating (BR-UBTCON-975, BR-UBTCON-972). Send needs a message, because the rate stays 0 (BR-UBTCON-968). SendContactUsMessage always gets `Rate` 0 (BR-UBTCON-970).",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Menu_ContactUs",
    "Id": "F3",
    "Element": "ContactUsDetails / DataAction_GetLocalityTimezone, CacheControl_UserInfo_WrapperResult",
-   "Finding": "TST keeps the user record in `LocalCacheControl_UserInformation` and sends it with the data action. The server reads `In_LocalityId` from it. React does not keep the record. Its call has no `LocalCacheControl_UserInformation`, `ContactUsForm`, `Description` or `MessagePrompt`. The recorded TST call had them, and the fixture converter dropped them. A real server does not get the locality id from this call."
+   "Finding": "TST keeps the user record in `LocalCacheControl_UserInformation` and sends it with the data action. The server reads `In_LocalityId` from it. React does not keep the record. Its call has no `LocalCacheControl_UserInformation`, `ContactUsForm`, `Description` or `MessagePrompt`. The recorded TST call had them, and the fixture converter dropped them. A real server does not get the locality id from this call.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Notifications",
    "Id": "F1",
    "Element": "Notifications / If_HasNoNotifications, Notifications_NoItemsFound",
-   "Finding": "When a completed fetch returns no notification, TST shows `Notifications_NoItemsFound`: a calendar icon, \"No Notifications Found\" and \"We were unable to find any Notifications to display.\" (BR-UBTCON-983). React renders a `NotCaptured` marker without children, which renders nothing in a built app. The content area stays empty."
+   "Finding": "When a completed fetch returns no notification, TST shows `Notifications_NoItemsFound`: a calendar icon, \"No Notifications Found\" and \"We were unable to find any Notifications to display.\" (BR-UBTCON-983). React renders a `NotCaptured` marker without children, which renders nothing in a built app. The content area stays empty.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Notifications",
    "Id": "F2",
    "Element": "Notifications_Header / If_HasBadge",
-   "Finding": "TST shows the Badge only when `BadgeNumber > 0` (BR-UBTCON-981). React always renders it, so a section with no unread notification shows a red \"0\" badge. The mock gives every section an unread item, so the parity check does not see it."
+   "Finding": "TST shows the Badge only when `BadgeNumber > 0` (BR-UBTCON-981). React always renders it, so a section with no unread notification shows a red \"0\" badge. The mock gives every section an unread item, so the parity check does not see it.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Policies",
    "Id": "F1",
    "Element": "AcceptPendingPolicies / Policy_Custom_AcceptPendingPolicies input PolicyApplications",
-   "Finding": "TST sends `TextToIdentifier` of the Connect_Applications records: the GUID texts of Connect, Directory and Orbit (`static-entities-tst.json:2809`). React sends the names `Connect_Applications.Connect`, `.Directory` and `.Orbit`. The comment of `staticEntities.ts` says that the values are not in the compiled code; the TST values are in the knowledge file since 2026-10-15. The mock ignores the input. When the server finds no pending policy for these ids, the screen shows \"You have accepted all required policies.\" and clears the flag after 5 seconds (BR-UBTCON-944), with no acceptance."
+   "Finding": "TST sends `TextToIdentifier` of the Connect_Applications records: the GUID texts of Connect, Directory and Orbit (`static-entities-tst.json:2809`). React sends the names `Connect_Applications.Connect`, `.Directory` and `.Orbit`. The comment of `staticEntities.ts` says that the values are not in the compiled code; the TST values are in the knowledge file since 2026-10-15. The mock ignores the input. When the server finds no pending policy for these ids, the screen shows \"You have accepted all required policies.\" and clears the flag after 5 seconds (BR-UBTCON-944), with no acceptance.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Profile",
    "Id": "F1",
    "Element": "Profile / address section (`#isHouseholder_Address`, `#isHouseholder_Cache`, the householder checks of OnClick_Save)",
-   "Finding": "For a householder, React shows the title \"Address Information\" in a NotCaptured marker only. Not built: the address lines, the Locality and Subdivision DropdownSearch, CacheControl_AllLocalities, CacheControl_AllSubdivisions and their Result actions, Action_RefreshSubdivionList, the two OnChanged actions, DropdownSearch_ForceResizeOnOpen and the householder checks of OnClick_Save (BR-UBTCON-988, 989, 994). A householder cannot edit the address, and a save skips the locality, subdivision and required-line checks. The only record of this choice is an auto-accepted answer (`migration/knowledge/auto-decisions-2026-10-15.md:64`). The board row of Profile does not name it."
+   "Finding": "For a householder, React shows the title \"Address Information\" in a NotCaptured marker only. Not built: the address lines, the Locality and Subdivision DropdownSearch, CacheControl_AllLocalities, CacheControl_AllSubdivisions and their Result actions, Action_RefreshSubdivionList, the two OnChanged actions, DropdownSearch_ForceResizeOnOpen and the householder checks of OnClick_Save (BR-UBTCON-988, 989, 994). A householder cannot edit the address, and a save skips the locality, subdivision and required-line checks. The only record of this choice is an auto-accepted answer (`migration/knowledge/auto-decisions-2026-10-15.md:64`). The board row of Profile does not name it.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Services",
    "Id": "F1",
    "Element": "Services / OnClick_SaveChanges, exception handlers",
-   "Finding": "TST sets `isLoading` to False in the CommunicationException and AllExceptions handlers, then raises the bubble exception. React raises the same exceptions but keeps `isLoading` True. The skeleton covers the lists, and \"Save changes\" stays disabled with the spinner until the user leaves the screen. The code comment and the test say \"as in the original\". No ADR, CR, board row or entry of `known-original-bugs.md` records it."
+   "Finding": "TST sets `isLoading` to False in the CommunicationException and AllExceptions handlers, then raises the bubble exception. React raises the same exceptions but keeps `isLoading` True. The skeleton covers the lists, and \"Save changes\" stays disabled with the spinner until the user leaves the screen. The code comment and the test say \"as in the original\". No ADR, CR, board row or entry of `known-original-bugs.md` records it.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "App_Services",
    "Id": "F2",
    "Element": "Services / GetServices failure",
-   "Finding": "The runtime (`OutSystems.js:3853`) flushes the model and calls the screen `handleError` when a data fetch fails. App_Services passes the error to App_Common OnException, which shows the communication toast or the exception toast. React only sets the `list-error` class. The error of the query reaches no flow handler. CountryDetails has the same gap (`useCountryDetails.ts:110-115`)."
+   "Finding": "The runtime (`OutSystems.js:3853`) flushes the model and calls the screen `handleError` when a data fetch fails. App_Services passes the error to App_Common OnException, which shows the communication toast or the exception toast. React only sets the `list-error` class. The error of the query reaches no flow handler. CountryDetails has the same gap (`useCountryDetails.ts:110-115`).",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Calendar",
    "Id": "F1",
    "Element": "Embedded_MyEntertaining / failed `DataActionGetEntertainingConfig`",
-   "Finding": "The runtime (`OutSystems.js:3853`) calls `handleError` after a failed data fetch. The Calendar flow passes the error to App_Common OnException, which shows the toast. React keeps the skeleton and shows no toast. App_Services F2 is the same gap."
+   "Finding": "The runtime (`OutSystems.js:3853`) calls `handleError` after a failed data fetch. The Calendar flow passes the error to App_Common OnException, which shows the toast. React keeps the skeleton and shows no toast. App_Services F2 is the same gap.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Directory_Search",
    "Id": "F1",
    "Element": "ScreenBlock_Search / If StartedDifferentSearch",
-   "Finding": "React shows the caption \"Showing results for '<term>':\" whenever HasSearched is True. TST shows the SectionSeparator and both texts only when SearchKey_Current <> SearchKey_LastSearched (`ScreenBlock_Search.mvc.js`:1207-1327)."
+   "Finding": "React shows the caption \"Showing results for '<term>':\" whenever HasSearched is True. TST shows the SectionSeparator and both texts only when SearchKey_Current <> SearchKey_LastSearched (`ScreenBlock_Search.mvc.js`:1207-1327).",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Directory_Search",
    "Id": "F2",
    "Element": "ScreenBlock_Search / Event_HorizontalTagListChanged",
-   "Finding": "TST refreshes Get_RecentClickedResults (max 5) with the new category before Action_RefreshSearch (`ScreenBlock_Search.mvc.js`:3929-3937). React refreshes the recent lists only inside refreshSearch, which ends at once for a blank term. Before the first search, the recent gallery keeps the old category (BR-UBTCON-884)."
+   "Finding": "TST refreshes Get_RecentClickedResults (max 5) with the new category before Action_RefreshSearch (`ScreenBlock_Search.mvc.js`:3929-3937). React refreshes the recent lists only inside refreshSearch, which ends at once for a blank term. Before the first search, the recent gallery keeps the old category (BR-UBTCON-884).",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Directory_Search",
    "Id": "F3",
    "Element": "ScreenBlock_Search / Action_RefreshSearch",
-   "Finding": "TST appends three loading rows (\"Loading Name\", \"Name\", \"Loading Location\"; Type Household, Member for People) to each result list in scope before the fetch (`ScreenBlock_Search.mvc.js`:2475-2530). The SkeletonSection then shows three placeholder rows per section. React clears the lists, so the sections have no rows while loading (BR-UBTCON-880)."
+   "Finding": "TST appends three loading rows (\"Loading Name\", \"Name\", \"Loading Location\"; Type Household, Member for People) to each result list in scope before the fetch (`ScreenBlock_Search.mvc.js`:2475-2530). The SkeletonSection then shows three placeholder rows per section. React clears the lists, so the sections have no rows while loading (BR-UBTCON-880).",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Directory_SupperMeetings",
    "Id": "F1",
    "Element": "SupperMeeting_DetailsBlock / GetSubdivision; SupperMeeting_HouseholdList / GetSubdivisionHouseholds",
-   "Finding": "TST runs OnReady through `safeExecuteClientAction` (`SupperMeeting_DetailsBlock.mvc.js:720-722`, `SupperMeeting_HouseholdList.mvc.js:324`). The runtime calls `handleError` when the action fails (`OutSystems.js:17`), and the block passes the error to the flow handler (`SupperMeeting_DetailsBlock.mvc.js:758-760`). The fetched flows delegate to App_Common, which shows the message (`migration/knowledge/shell-facts.md` U10). React catches both errors: the skeleton stays, or the list gets the Error status. No code passes the error to the flow handler, so no message shows. Rows: 042, 079. App_Services F2 has the same gap."
+   "Finding": "TST runs OnReady through `safeExecuteClientAction` (`SupperMeeting_DetailsBlock.mvc.js:720-722`, `SupperMeeting_HouseholdList.mvc.js:324`). The runtime calls `handleError` when the action fails (`OutSystems.js:17`), and the block passes the error to the flow handler (`SupperMeeting_DetailsBlock.mvc.js:758-760`). The fetched flows delegate to App_Common, which shows the message (`migration/knowledge/shell-facts.md` U10). React catches both errors: the skeleton stays, or the list gets the Error status. No code passes the error to the flow handler, so no message shows. Rows: 042, 079. App_Services F2 has the same gap.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Directory_Updates",
    "Id": "F1",
    "Element": "Updates_SingleList / If_HasNoUpdates, Updates_NoItemsFound",
-   "Finding": "When a completed fetch returns no update, TST shows `Updates_NoItemsFound` (BR-UBTCON-872): a bordered circle button with the CalendarBusyFill icon, \"No Updates Found\" and \"We were unable to find any Updates to display.\" React renders a `NotCaptured` marker, which shows nothing in the built app (App_Notifications F1 has the same cause). TST: `Updates_SingleList.mvc.js:737-738`, `Updates_NoItemsFound.mvc.js:287, 306`."
+   "Finding": "When a completed fetch returns no update, TST shows `Updates_NoItemsFound` (BR-UBTCON-872): a bordered circle button with the CalendarBusyFill icon, \"No Updates Found\" and \"We were unable to find any Updates to display.\" React renders a `NotCaptured` marker, which shows nothing in the built app (App_Notifications F1 has the same cause). TST: `Updates_SingleList.mvc.js:737-738`, `Updates_NoItemsFound.mvc.js:287, 306`.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F1",
    "Element": "LDM_EventDetail_V2 / OnHandle_GoToHousehold",
-   "Finding": "TST calls IsFreeSubscriptionPlan, IsRegionalSubscriptionPlan and CarouselFilteredEventResults (`controller.js:879-985`): the carousel gets the guests with HouseholdDisplay, and without RecordDisabled under a free or regional plan; the action also sets the client variable HouseholdCarouselPreloading (:979-985). React passes every guest."
+   "Finding": "TST calls IsFreeSubscriptionPlan, IsRegionalSubscriptionPlan and CarouselFilteredEventResults (`controller.js:879-985`): the carousel gets the guests with HouseholdDisplay, and without RecordDisabled under a free or regional plan; the action also sets the client variable HouseholdCarouselPreloading (:979-985). React passes every guest.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F2",
    "Element": "LDM_MyEvents_V2 / timeline filter",
-   "Finding": "The filter popup is a `NotCaptured` placeholder (decision `auto-decisions-2026-10-16.md:51`); OnHandle_MyTimelineFilter, OnHandle_ResetFilters, OnHandle_Filter, OnHandle_Close are not built. The user cannot filter the timeline."
+   "Finding": "The filter popup is a `NotCaptured` placeholder (decision `auto-decisions-2026-10-16.md:51`); OnHandle_MyTimelineFilter, OnHandle_ResetFilters, OnHandle_Filter, OnHandle_Close are not built. The user cannot filter the timeline.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F1",
    "Element": "MessageDetail / Placeholder MessageDetails, FeedItemId, Handler_NavigateTo_ShareObjectDetail, Handler_SetFeedItemId, Han",
-   "Finding": "A Sharing message shows a NotCaptured marker instead of the shared-item card. TST renders Share_UI.ShareObjectDetail_ExtendedShare (GetHasExtendedShare is True on TST) with ShareId from the first template parameter, and the card's three events open the shared object, embed the feed item or show the upgrade pop-up. No recorded decision covers this: the board row (migration/board.md:16) says build with Feed CMS as mock, `audit-a1-empty-handlers.md:71` only records the gap."
+   "Finding": "A Sharing message shows a NotCaptured marker instead of the shared-item card. TST renders Share_UI.ShareObjectDetail_ExtendedShare (GetHasExtendedShare is True on TST) with ShareId from the first template parameter, and the card's three events open the shared object, embed the feed item or show the upgrade pop-up. No recorded decision covers this: the board row (migration/board.md:16) says build with Feed CMS as mock, `audit-a1-empty-handlers.md:71` only records the gap.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F2",
    "Element": "MessageDetail / Placeholder ActionButton, OnClick_ViewOrbitEvent, OnClick_ViewAssembleEvent, Get_Orbit*Parameters, Build",
-   "Finding": "An Orbit or Assemble message has no \"View Event\", \"Go to Host Survey\" or \"View Meeting\" button; an Assemble message shows unfilled placeholders. The board (user, 2026-10-16) put the Orbit, Assemble and LDM targets in scope; `migration/knowledge/orbit-assemble-ldm.md:17` says the MessageDetail handlers \"work once built\", but they are not wired."
+   "Finding": "An Orbit or Assemble message has no \"View Event\", \"Go to Host Survey\" or \"View Meeting\" button; an Assemble message shows unfilled placeholders. The board (user, 2026-10-16) put the Orbit, Assemble and LDM targets in scope; `migration/knowledge/orbit-assemble-ldm.md:17` says the MessageDetail handlers \"work once built\", but they are not wired.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F3",
    "Element": "MessageDetail / AdaptiveCardViewer, HostConfig, AdaptiveCardViewerOnExecuteAction, StoreAdaptiveCardResponses, two LDM h",
-   "Finding": "An adaptive-card message shows a marker. TST renders the card with the Events host config and handles send_email, view_event and any other submit (store, thank, refresh)."
+   "Finding": "An adaptive-card message shows a marker. TST renders the card with the Events host config and handles send_email, view_event and any other submit (store, thank, refresh).",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F6",
    "Element": "MessageDetail / OnAfterFetch, private message of another user",
-   "Finding": "TST shows the toast \"You don't have access to that message\" and then the message (the branch ends with a loop break, not a navigation). React shows the toast and leaves to MessageList. The mock data takes this branch for every row opened while signed in."
+   "Finding": "TST shows the toast \"You don't have access to that message\" and then the message (the branch ends with a loop break, not a navigation). React shows the toast and leaves to MessageList. The mock data takes this branch for every row opened while signed in.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_OrbitAdminFlow",
    "Id": "F1",
    "Element": "OrbitAdminLanding / OnHandle_NavigateToEventDetail",
-   "Finding": "React follows the DEV model: it calls GetMilestoneScanFF and, when IsScanPerMilestone is True, opens OrbitAdminMilestones. TST only opens OrbitAdminEventDetail (LW:244-252). TST has no GetMilestoneScanFF stub, and the app has no OrbitAdminMilestones route (board V8 skip). KB `legacy-orbit.md:63` and BR-UBTCON-608 also show an unconditional navigation. The decision of 2026-10-16 (`migration/knowledge/auto-decisions-2026-10-16.md:84`) sets only the mock value False. It does not name a difference from TST."
+   "Finding": "React follows the DEV model: it calls GetMilestoneScanFF and, when IsScanPerMilestone is True, opens OrbitAdminMilestones. TST only opens OrbitAdminEventDetail (LW:244-252). TST has no GetMilestoneScanFF stub, and the app has no OrbitAdminMilestones route (board V8 skip). KB `legacy-orbit.md:63` and BR-UBTCON-608 also show an unconditional navigation. The decision of 2026-10-16 (`migration/knowledge/auto-decisions-2026-10-16.md:84`) sets only the mock value False. It does not name a difference from TST.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F3",
    "Element": "OrbitLanding: \"View Passport details\"",
-   "Finding": "React shows the control and navigates to `/UBTConnect/PassportScan` with LoginMemberId and TargetId after the access gate. TST has no such control, event or screen (`tst_source.py grep \"assport\"`: no match; `list Passport`: none). The React app registers no such route, so the tap leads to an unknown route. The element comes from the DEV dump of 2026-10-27 (DEV ≠ TST, §6.1). `shell-facts.md:155` records the navigation as a fact, not as a decision."
+   "Finding": "React shows the control and navigates to `/UBTConnect/PassportScan` with LoginMemberId and TargetId after the access gate. TST has no such control, event or screen (`tst_source.py grep \"assport\"`: no match; `list Passport`: none). The React app registers no such route, so the tap leads to an unknown route. The element comes from the DEV dump of 2026-10-27 (DEV ≠ TST, §6.1). `shell-facts.md:155` records the navigation as a fact, not as a decision.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "Notes",
    "Id": "F2",
    "Element": "Notes_FilterSheet / Handler_FilterSheetApplyFilters → DataActionGetNotes",
-   "Finding": "After Apply, TST sends Notes_Filter.Years (the selected years) and SortByNewest in the screen data (capture 2026-10-27, review/captures.md §3). React never sends Years, so a selected year has no effect on the list. Row 110."
+   "Finding": "After Apply, TST sends Notes_Filter.Years (the selected years) and SortByNewest in the screen data (capture 2026-10-27, review/captures.md §3). React never sends Years, so a selected year has no effect on the list. Row 110.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "_libraries",
    "Id": "F1",
    "Element": "SearchResult_Item OnClick_UpgradeSubscription; ShareSheet Handler_OnClickRecentMember",
-   "Finding": "TST runs App_Subscription_NavigateToUpgrade (Cache_UserInfo_Get, Cache_UserInfo_Invalidate, OpenInApp_OpenExternalLink after ConfirmAction; `UBTConnect_Utils.controller.js:1`) on the warning and App_Subscription_ShowUpgradePopUp (`:46`) on a locked recent member. React does nothing on both taps. Both are web actions, not native only. No decision recorded."
+   "Finding": "TST runs App_Subscription_NavigateToUpgrade (Cache_UserInfo_Get, Cache_UserInfo_Invalidate, OpenInApp_OpenExternalLink after ConfirmAction; `UBTConnect_Utils.controller.js:1`) on the warning and App_Subscription_ShowUpgradePopUp (`:46`) on a locked recent member. React does nothing on both taps. Both are web actions, not native only. No decision recorded.",
+   "Status": ""
   },
   {
    "Severity": "major",
    "Flow": "_shared",
    "Id": "F3",
    "Element": "OnApplicationReady / on exception All Exceptions → ScreenController_RaiseError",
-   "Finding": "TST shows the exception toast for a non-system app-start failure (`UBTConnect.controller.js:15398-15417`, `UBTJavaScriptUtils.controller.js:3900`); React only logs (`appStartSteps.ts:192-196`). Row 193. User decision 2026-10-27 C3: build it."
+   "Finding": "TST shows the exception toast for a non-system app-start failure (`UBTConnect.controller.js:15398-15417`, `UBTJavaScriptUtils.controller.js:3900`); React only logs (`appStartSteps.ts:192-196`). Row 193. User decision 2026-10-27 C3: build it.",
+   "Status": ""
   },
   {
    "Severity": "minor",
    "Flow": "App_Common",
    "Id": "F2",
    "Element": "Login / \"Forgot Password?\" (Login, isResetPassword True)",
-   "Finding": "TST sets IsResettingPassword (spinner, Login button disabled) and starts the reset-password policy of the identity provider. A completed reset ends with a success toast (IdP_OnResetPassword). React runs the built-in validation only: the click changes nothing on the screen. U4 covers \"Login with UBT One\" only, and no other record names this behaviour. Rows: 025, 031, 040."
+   "Finding": "TST sets IsResettingPassword (spinner, Login button disabled) and starts the reset-password policy of the identity provider. A completed reset ends with a success toast (IdP_OnResetPassword). React runs the built-in validation only: the click changes nothing on the screen. U4 covers \"Login with UBT One\" only, and no other record names this behaviour. Rows: 025, 031, 040.",
+   "Status": "no fix: decision App_Common Q2 (a): keep Forgot Password without an action"
   },
   {
    "Severity": "minor",
    "Flow": "App_Common",
    "Id": "F3",
    "Element": "Login / OnReady, device awareness",
-   "Finding": "React compares CallbackType with `'AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice'`. The TST value is \"DeviceAwareness_InvalidDevice\" (`migration/knowledge/static-entities-tst.json:2643`), so `Login?CallbackType=DeviceAwareness_InvalidDevice` still runs DelayedMessage_Show. AppManager_HandleDeviceAwarenessPopUp is not built, so nothing opens ConfirmationDialog_ResetPassword. Rows: 033, 043."
+   "Finding": "React compares CallbackType with `'AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice'`. The TST value is \"DeviceAwareness_InvalidDevice\" (`migration/knowledge/static-entities-tst.json:2643`), so `Login?CallbackType=DeviceAwareness_InvalidDevice` still runs DelayedMessage_Show. AppManager_HandleDeviceAwarenessPopUp is not built, so nothing opens ConfirmationDialog_ResetPassword. Rows: 033, 043.",
+   "Status": "fixed 2026-10-27 (`fixes/A-shell.md`): the CallbackType constant; the dialog waits by decision Q3 (a)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Menu",
    "Id": "F1",
    "Element": "Menu / view cache (row 006)",
-   "Finding": "The runtime restores the screen variables of a view from the view cache (U19, P-BACK). TST Menu has no `IsViewRestoredFromCache` check: OnInitialize rebuilds MenuOptionList, and `LocalCacheControl_UserInformation` keeps its restored value. React keeps no Menu variable in the view cache. A Back to Menu starts with `isFetched` false, so the header shows the skeleton until CacheControl_UserInfo answers. TermsAndPoliciesMenu and PINBiometricsMenu use `useViewState`. No decision names the difference."
+   "Finding": "The runtime restores the screen variables of a view from the view cache (U19, P-BACK). TST Menu has no `IsViewRestoredFromCache` check: OnInitialize rebuilds MenuOptionList, and `LocalCacheControl_UserInformation` keeps its restored value. React keeps no Menu variable in the view cache. A Back to Menu starts with `isFetched` false, so the header shows the skeleton until CacheControl_UserInfo answers. TermsAndPoliciesMenu and PINBiometricsMenu use `useViewState`. No decision names the difference.",
+   "Status": "fixed 2026-10-27 (`fixes/B-restore.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_PIN",
    "Id": "F1",
    "Element": "Block_PINRegister_ContentWrapper / ScreenEvent_OnInitialize",
-   "Finding": "TST sets `UserName` from `AppManager_GetCachedUserInfo` (a synchronous, local AppManager record). React reads `getUserInformation()`: the `Directory_UserCurrent` record of the user-info cache. That read is asynchronous, and on a cache miss it calls the server action GetUserInformation. The name can come from another source in production, and the first render shows \"Welcome \" without the name. The README says the action has no counterpart, but `appManager_GetCachedUserInfo` now exists."
+   "Finding": "TST sets `UserName` from `AppManager_GetCachedUserInfo` (a synchronous, local AppManager record). React reads `getUserInformation()`: the `Directory_UserCurrent` record of the user-info cache. That read is asynchronous, and on a cache miss it calls the server action GetUserInformation. The name can come from another source in production, and the first render shows \"Welcome \" without the name. The README says the action has no counterpart, but `appManager_GetCachedUserInfo` now exists.",
+   "Status": "fixed 2026-10-27 (`fixes/D-forms.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Policies",
    "Id": "F2",
    "Element": "Policy_Custom_AcceptPendingPolicies / GetPendingPolicies",
-   "Finding": "The query keeps the TanStack defaults `refetchOnReconnect: true` and `networkMode: 'online'`. An offline-then-online event fetches the list again: every tick goes, but `isAllSelected` stays True, so Continue stays enabled and sends an empty list. While TanStack counts the browser offline, a fetch waits and the communication message does not show. OutSystems does not fetch on reconnect, and an offline call fails with the message."
+   "Finding": "The query keeps the TanStack defaults `refetchOnReconnect: true` and `networkMode: 'online'`. An offline-then-online event fetches the list again: every tick goes, but `isAllSelected` stays True, so Continue stays enabled and sends an empty list. While TanStack counts the browser offline, a fetch waits and the communication message does not show. OutSystems does not fetch on reconnect, and an offline call fails with the message.",
+   "Status": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Policies",
    "Id": "F3",
    "Element": "AcceptPendingPolicies / AcceptPendingPoliciesAcceptedAll",
-   "Finding": "TST runs the screen action through `safeExecuteClientAction`: an exception goes to the screen handleError, then App_Policies and App_Common, which show the message. React has no catch: `continueOnClick` awaits `onAcceptedAll` outside its `try`, and the 5-second timer calls it with `void`. A failed user-info read (cache miss and network error) leaves an unhandled rejection and no message."
+   "Finding": "TST runs the screen action through `safeExecuteClientAction`: an exception goes to the screen handleError, then App_Policies and App_Common, which show the message. React has no catch: `continueOnClick` awaits `onAcceptedAll` outside its `try`, and the 5-second timer calls it with `void`. A failed user-info read (cache miss and network error) leaves an unhandled rejection and no message.",
+   "Status": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Policies",
    "Id": "F4",
    "Element": "Policy_Custom_AcceptPendingPolicies / GetDeviceInfo",
-   "Finding": "TST keeps one device id per browser in `localStorage[\"UUID\"]` and sends it as `DeviceDetails.UniqueId`. React makes a new id on each page load. The server records of the acceptances get a different device id each time. The code cites \"AGENTS rule 16, Q4\", which is not a recorded decision of the kinds that this check accepts."
+   "Finding": "TST keeps one device id per browser in `localStorage[\"UUID\"]` and sends it as `DeviceDetails.UniqueId`. React makes a new id on each page load. The server records of the acceptances get a different device id each time. The code cites \"AGENTS rule 16, Q4\", which is not a recorded decision of the kinds that this check accepts.",
+   "Status": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Profile",
    "Id": "F2",
    "Element": "Profile / Input_Email, HomeNumber2, Input_MobileNumber, Input_WorkNumber",
-   "Finding": "FormInput sets no `maxLength` and no `autoComplete`. TST limits Input_Email to 50 characters and the three phone inputs to 15. The phone inputs have `autocomplete=\"off\"` in TST. A user can type longer values in React, and the save sends them."
+   "Finding": "FormInput sets no `maxLength` and no `autoComplete`. TST limits Input_Email to 50 characters and the three phone inputs to 15. The phone inputs have `autocomplete=\"off\"` in TST. A user can type longer values in React, and the save sends them.",
+   "Status": "fixed 2026-10-27 (`fixes/D-forms.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Services",
    "Id": "F3",
    "Element": "Services / Action_ChangeOrderLocal",
-   "Finding": "TST sets `HasChanges` to True first and changes the lists in place. When a list action fails, the earlier steps stay. Example: a touch drag to the top of the favourites (NewOrder -1, bug B3) removes a row, then ListInsert2 fails. React works on copies and throws before it stores them, so the lists and `HasChanges` do not change. The rule \"1:1, bugs included\" (`known-original-bugs.md`, user 2026-10-14) applies."
+   "Finding": "TST sets `HasChanges` to True first and changes the lists in place. When a list action fails, the earlier steps stay. Example: a touch drag to the top of the favourites (NewOrder -1, bug B3) removes a row, then ListInsert2 fails. React works on copies and throws before it stores them, so the lists and `HasChanges` do not change. The rule \"1:1, bugs included\" (`known-original-bugs.md`, user 2026-10-14) applies.",
+   "Status": "fixed 2026-10-27 (`fixes/F-lists.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Services",
    "Id": "F4",
    "Element": "Services / list actions of Action_ChangeOrderLocal",
-   "Finding": "The runtime `List.checkIndex` raises \"Index out of bounds. Index n for bounds [0, m].\" (or \"… for empty list.\"). The flow handler shows this text in the toast. React throws \"Index out of range\"."
+   "Finding": "The runtime `List.checkIndex` raises \"Index out of bounds. Index n for bounds [0, m].\" (or \"… for empty list.\"). The flow handler shows this text in the toast. React throws \"Index out of range\".",
+   "Status": "fixed 2026-10-27 (`fixes/F-lists.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "App_Services",
    "Id": "F5",
    "Element": "Services / screen title",
-   "Finding": "The runtime sets `document.title` to the screen title (\"Services\") when the screen mounts (`OutSystemsReactView.js:2009`). No code of the React app sets `document.title`, so the tab shows \"UBTConnect\" on every screen."
+   "Finding": "The runtime sets `document.title` to the screen title (\"Services\") when the screen mounts (`OutSystemsReactView.js:2009`). No code of the React app sets `document.title`, so the tab shows \"UBTConnect\" on every screen.",
+   "Status": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Bookmarks",
    "Id": "F1",
    "Element": "BookmarksByGroup, Supper Meeting row (row 114)",
-   "Finding": "The title and tag of a Supper Meeting row do not get the IsMainHall colours (title primary / neutral-10; tag background primary / neutral-2 and colour neutral-2 / neutral-6). A NotCaptured marker is rendered. BR-C2LEG-192 names the highlighted main hall."
+   "Finding": "The title and tag of a Supper Meeting row do not get the IsMainHall colours (title primary / neutral-10; tag background primary / neutral-2 and colour neutral-2 / neutral-6). A NotCaptured marker is rendered. BR-C2LEG-192 names the highlighted main hall.",
+   "Status": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Bookmarks",
    "Id": "F2",
    "Element": "MyBookmarks, BookmarksByGroup (rows 009, 061)",
-   "Finding": "The document title stays unset; TST sets \"MyBookmarks\" and \"BookmarksByGroup\" (`OutSystemsReactView.js:7` writes `document.title = this.title` on mount)."
+   "Finding": "The document title stays unset; TST sets \"MyBookmarks\" and \"BookmarksByGroup\" (`OutSystemsReactView.js:7` writes `document.title = this.title` on mount).",
+   "Status": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Calendar",
    "Id": "F2",
    "Element": "Embedded_MyEntertaining / failed `Action_RefreshToken`",
-   "Finding": "TST runs the action through `safeExecuteClientAction` (`OutSystems.js:17`), so an error goes to App_Common, which shows the toast. React logs a warning only. A code comment names this, but no recorded decision does."
+   "Finding": "TST runs the action through `safeExecuteClientAction` (`OutSystems.js:17`), so an error goes to App_Common, which shows the toast. React logs a warning only. A code comment names this, but no recorded decision does.",
+   "Status": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Calendar",
    "Id": "F3",
    "Element": "MyEntertaining / document title",
-   "Finding": "The runtime sets `document.title` to \"MyEntertaining\" (`OutSystemsReactView.js:7`). React sets no title. The gap is app-wide."
+   "Finding": "The runtime sets `document.title` to \"MyEntertaining\" (`OutSystemsReactView.js:7`). React sets no title. The gap is app-wide.",
+   "Status": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "ContactFlow",
    "Id": "F2",
    "Element": "ContactByEmailLDMCoordinator / header image",
-   "Finding": "With an empty In_AvatarURL, TST renders `<img src=\"\">` (Image type External, OutSystemsReactWidgets.js:2). React passes `undefined` and renders no `src` attribute."
+   "Finding": "With an empty In_AvatarURL, TST renders `<img src=\"\">` (Image type External, OutSystemsReactWidgets.js:2). React passes `undefined` and renders no `src` attribute.",
+   "Status": "fixed 2026-10-27 (`fixes/D-forms.md`): ContactHeaderCard changed by the orchestrator"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_CommonBlocks",
    "Id": "F1",
    "Element": "Directory_EntityDetailsActions, OnReady CheckRestored (row 076)",
-   "Finding": "TST skips the set-up when the view comes from cache or history. React always runs it, so Back shows the skeleton and fetches again."
+   "Finding": "TST skips the set-up when the view comes from cache or history. React always runs it, so Back shows the skeleton and fetches again.",
+   "Status": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_CommonBlocks",
    "Id": "F2",
    "Element": "Directory_EntityDetailsActions, OnParametersChanged (row 091)",
-   "Finding": "TST fetches the contact details on every input change. React fetches only when EntityId or isFetchContacts changes."
+   "Finding": "TST fetches the contact details on every input change. React fetches only when EntityId or isFetchContacts changes.",
+   "Status": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_CommonBlocks",
    "Id": "F3",
    "Element": "Directory_EntityDetailsActions, Action_AsyncRefresh_ContactDetails (row 102)",
-   "Finding": "On NotRegistered and on a system exception, React disables all actions before it raises. TST raises without HandleFetchError."
+   "Finding": "On NotRegistered and on a system exception, React disables all actions before it raises. TST raises without HandleFetchError.",
+   "Status": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Household_Blocks",
    "Id": "F1",
    "Element": "Household_Card / OnReady",
-   "Finding": "TST ends OnReady when `wasCurrentViewRestoredFromCache()` is true (`Household_Card.mvc.js:478-490`, `:622-624`). React keeps the members in `useState`, outside the view cache. After Back, each card shows two skeleton avatars and calls `DataActionGetMembers` again. Decision U19 (`app-shell.spec.md:351,386`) asks for a restore without a spinner. F40 (`stack.md:228`) allows a new call only when the saved state has no data."
+   "Finding": "TST ends OnReady when `wasCurrentViewRestoredFromCache()` is true (`Household_Card.mvc.js:478-490`, `:622-624`). React keeps the members in `useState`, outside the view cache. After Back, each card shows two skeleton avatars and calls `DataActionGetMembers` again. Decision U19 (`app-shell.spec.md:351,386`) asks for a restore without a spinner. F40 (`stack.md:228`) allows a new call only when the saved state has no data.",
+   "Status": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Locality",
    "Id": "F1",
    "Element": "Locality_Details / Placeholder_Icons (row 150)",
-   "Finding": "The Explore icon renders when the header is not scrolled. TST (`Locality_Details.mvc.js:657-666`) and DEV render it when the header is scrolled. C2EnableMaps is off on TST, so the icon is hidden in both today."
+   "Finding": "The Explore icon renders when the header is not scrolled. TST (`Locality_Details.mvc.js:657-666`) and DEV render it when the header is scrolled. C2EnableMaps is off on TST, so the icon is hidden in both today.",
+   "Status": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Locality",
    "Id": "F2",
    "Element": "Locality_Households_HouseholdList / OnAfterFetch_GetLocalityHouseholds_Bookmarks (row 203)",
-   "Finding": "With GetHasNewBookmarks on, React keeps the fetched IsBookmarked. TST reads GetLocal_Bookmark_C2(HouseholdId, BookmarkCategory.Household) from the device store for each row. React runs the legacy branch today by decision (row 271)."
+   "Finding": "With GetHasNewBookmarks on, React keeps the fetched IsBookmarked. TST reads GetLocal_Bookmark_C2(HouseholdId, BookmarkCategory.Household) from the device store for each row. React runs the legacy branch today by decision (row 271).",
+   "Status": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Locality",
    "Id": "F3",
    "Element": "BrowseDirectory / StatisticsListOnParametersChhanged (row 048)",
-   "Finding": "React calls Map_InvalidateSize and Map_FitBoundsAuto. TST (`BrowseDirectory.mvc.js:1040`) calls Map_InvalidateSize only; FitBoundsAuto belongs to Action_InvalidateMapSize."
+   "Finding": "React calls Map_InvalidateSize and Map_FitBoundsAuto. TST (`BrowseDirectory.mvc.js:1040`) calls Map_InvalidateSize only; FitBoundsAuto belongs to Action_InvalidateMapSize.",
+   "Status": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_OneSchoolGlobal",
    "Id": "F1",
    "Element": "OneSchoolGlobalDetails / document title",
-   "Finding": "The TST runtime sets `document.title` to the view title \"OneSchoolGlobalDetails\" on mount and on update (`OutSystemsReactView.js:7`, TST:150-153). No React file sets `document.title`, so the tab shows \"UBTConnect\". The route table holds the titles but nothing applies them. The gap is app-wide."
+   "Finding": "The TST runtime sets `document.title` to the view title \"OneSchoolGlobalDetails\" on mount and on update (`OutSystemsReactView.js:7`, TST:150-153). No React file sets `document.title`, so the tab shows \"UBTConnect\". The route table holds the titles but nothing applies them. The gap is app-wide.",
+   "Status": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Photobook",
    "Id": "F1",
    "Element": "Photobook / GetLocalityHouseholdIds (row 006)",
-   "Finding": "A view that is restored from the cache does not call DataActionGetLocalityHouseholdIds. P-BACK says that the original refreshes the data in the background. On TST, OnAfterFetch then sets SelectedHousehold.Position and IsLoading again."
+   "Finding": "A view that is restored from the cache does not call DataActionGetLocalityHouseholdIds. P-BACK says that the original refreshes the data in the background. On TST, OnAfterFetch then sets SelectedHousehold.Position and IsLoading again.",
+   "Status": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Photobook",
    "Id": "F2",
    "Element": "Photobook_Carousel / Carousel_OnSlideMoved (rows 079, 198)",
-   "Finding": "The replay check tests only IsReplaying. TST also tests CurrentPosition = 0. When a move event comes at another position during the rewind (a swipe during the 500 ms move), React ends the replay and starts autoplay there. TST keeps IsReplaying and runs the last-position branch."
+   "Finding": "The replay check tests only IsReplaying. TST also tests CurrentPosition = 0. When a move event comes at another position during the rewind (a swipe during the 500 ms move), React ends the replay and starts autoplay there. TST keeps IsReplaying and runs the last-position branch.",
+   "Status": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Search",
    "Id": "F4",
    "Element": "ScreenBlock_Search / In_SearchTargetId",
-   "Finding": "The TST default is Type_SearchTarget.Global (`ScreenBlock_Search.mvc.js`:121-122), and the Search screen passes no inputs (`Search.mvc.js`:126-127). React uses ''. React stores SearchTargetId '' on the recent records and sends In_SearchTargetId '' to the data action. No visible effect on the Search screen."
+   "Finding": "The TST default is Type_SearchTarget.Global (`ScreenBlock_Search.mvc.js`:121-122), and the Search screen passes no inputs (`Search.mvc.js`:126-127). React uses ''. React stores SearchTargetId '' on the recent records and sends In_SearchTargetId '' to the data action. No visible effect on the Search screen.",
+   "Status": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Search",
    "Id": "F5",
    "Element": "ScreenBlock_Search / recent gallery UBT_LazyImage",
-   "Finding": "TST sets ImageSize.Width = Square for a Member entry, else null (`ScreenBlock_Search.mvc.js`:800-803). React gives Height only."
+   "Finding": "TST sets ImageSize.Width = Square for a Member entry, else null (`ScreenBlock_Search.mvc.js`:800-803). React gives Height only.",
+   "Status": "fixed 2026-10-27 (`fixes/E-directory.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Updates",
    "Id": "F2",
    "Element": "Updates_SingleList / ScreenEvent_OnReady (restored), Handler_OnClickUpdateItem",
-   "Finding": "On Back, TST runs `ReactiveInstance_ForceUpdate` on the list and scrolls the saved anchor back to its saved offset (`CaptureScrollPosition`, `RememberFocusedScrollAnchor`, `GetFocusedScrollAnchorOnBack`, `ScrollFix`). React runs only `SetupScrollListener` and uses the scroll offsets of the shell view cache (U19). The result differs only when the list height changes between leave and return. No recorded decision names the replacement."
+   "Finding": "On Back, TST runs `ReactiveInstance_ForceUpdate` on the list and scrolls the saved anchor back to its saved offset (`CaptureScrollPosition`, `RememberFocusedScrollAnchor`, `GetFocusedScrollAnchorOnBack`, `ScrollFix`). React runs only `SetupScrollListener` and uses the scroll offsets of the shell view cache (U19). The result differs only when the list height changes between leave and return. No recorded decision names the replacement.",
+   "Status": "open: waits for a capture with the MarkAsRead write, or a decision (rows 073/074)"
   },
   {
    "Severity": "minor",
    "Flow": "Directory_Updates",
    "Id": "F3",
    "Element": "Updates_SingleList / mock of DataActionFetchUpdates",
-   "Finding": "The mock handler returns all 88 rows for every `Filter_Updates`. In the demo, the chips, the search, the status and sort choices and the country filters do not change the list, and F1 cannot show."
+   "Finding": "The mock handler returns all 88 rows for every `Filter_Updates`. In the demo, the chips, the search, the status and sort choices and the country filters do not change the list, and F1 cannot show.",
+   "Status": "fixed 2026-10-27 (`fixes/F-lists.md`): the mock applies Filter_Updates; row 007 stays mock-only"
   },
   {
    "Severity": "minor",
    "Flow": "Home",
    "Id": "F1",
    "Element": "FeedBlock_Updates / If not HasAccess (#DoesntHaveAccess)",
-   "Finding": "TST: CustomContainer > container (text-align center) > container display-inline-block > IconText \"Subscription upgrade required\" (BlueDark, ExtraSmall, SemiBold) with Icon Lock (BlueDark, NonStandard_16). React renders the CustomContainer with plain text inside NotCaptured: no lock icon and no text style. A user without access to an update sees another banner."
+   "Finding": "TST: CustomContainer > container (text-align center) > container display-inline-block > IconText \"Subscription upgrade required\" (BlueDark, ExtraSmall, SemiBold) with Icon Lock (BlueDark, NonStandard_16). React renders the CustomContainer with plain text inside NotCaptured: no lock icon and no text style. A user without access to an update sees another banner.",
+   "Status": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Home",
    "Id": "F2",
    "Element": "FeedBlock_Services / GetServices; FeedBlock_Updates / FetchUpdates",
-   "Finding": "Both queries use the library defaults (gcTime 5 minutes, refetchOnReconnect true). TST fetches at block start: a new HomeFeed shows the skeleton page (five empty services, three loading rows) until the answer, and a reconnect does not fetch. React shows the old lists at once on a new visit, and fetches again after a reconnect. The comment of useFeedServicesQuery describes this; no decision record names it."
+   "Finding": "Both queries use the library defaults (gcTime 5 minutes, refetchOnReconnect true). TST fetches at block start: a new HomeFeed shows the skeleton page (five empty services, three loading rows) until the answer, and a reconnect does not fetch. React shows the old lists at once on a new visit, and fetches again after a reconnect. The comment of useFeedServicesQuery describes this; no decision record names it.",
+   "Status": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Home",
    "Id": "F4",
    "Element": "Dialog_GoExternalApp (UBTConnect_Utils) / open state",
-   "Finding": "TST puts the icon in a container with \"text-align: center\" (:281) and the confirm label in a CustomContainer with display flex, row and centred items (:447-450). React leaves both out, and its component doc says so. The icon and the label do not get the TST alignment."
+   "Finding": "TST puts the icon in a container with \"text-align: center\" (:281) and the confirm label in a CustomContainer with display flex, row and centred items (:447-450). React leaves both out, and its component doc says so. The icon and the label do not get the TST alignment.",
+   "Status": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_AssembleFlow",
    "Id": "F1",
    "Element": "ScreenBlock_Assemble_Filter and Assemble_FilterSheet, DIV_StickyBottom",
-   "Finding": "TST animates the show and hide of the sticky Cancel / Apply bar (`animate: true`); React mounts and unmounts the bar without the animation (rows 151, 152)"
+   "Finding": "TST animates the show and hide of the sticky Cancel / Apply bar (`animate: true`); React mounts and unmounts the bar without the animation (rows 151, 152)",
+   "Status": "no fix: finding withdrawn 2026-10-27 (`fixes/G1-content.md`): the runtime Container.render never reads `animate` (`OutSystemsReactWidgets.js`, Container), so TST shows and hides the bar without a transition; React does the same"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_LDMEventsFlow",
    "Id": "F1",
    "Element": "EmailTarget, document title (row 002)",
-   "Finding": "TST sets the document title \"EmailTarget\" (`OutSystemsReactView.js:7`). React keeps \"UBTConnect\" from `app/index.html:6`."
+   "Finding": "TST sets the document title \"EmailTarget\" (`OutSystemsReactView.js:7`). React keeps \"UBTConnect\" from `app/index.html:6`.",
+   "Status": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_LDMEventsFlow",
    "Id": "F2",
    "Element": "ScreenBlock_Household_Email, OnReady (rows 035, 094)",
-   "Finding": "On a view restored from the cache, TST sets Subject and Message to \"\" and IsChange to False. React remounts the page, so Subject shows InitialEmailSubject again. The difference shows only when InitialEmailSubject is not empty."
+   "Finding": "On a view restored from the cache, TST sets Subject and Message to \"\" and IsChange to False. React remounts the page, so Subject shows InitialEmailSubject again. The difference shows only when InitialEmailSubject is not empty.",
+   "Status": "fixed 2026-10-27 (`fixes/B-restore.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F3",
    "Element": "LDM_MyEvents_V2 / OnHandle_SwipeUp",
-   "Finding": "A swipe up on the empty timeline (MT :737-760) loads an older window (ME :2335-2368). Not ported; no decision records the drop."
+   "Finding": "A swipe up on the empty timeline (MT :737-760) loads an older window (ME :2335-2368). Not ported; no decision records the drop.",
+   "Status": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F4",
    "Element": "EventCard_Guests / OnHandle_ClickedEmail",
-   "Finding": "Offline, TST shows \"Please check your network connection and try again\" (EG :867); React returns without a message."
+   "Finding": "Offline, TST shows \"Please check your network connection and try again\" (EG :867); React returns without a message.",
+   "Status": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F5",
    "Element": "LDM_EventDetail_V2 / OnHandle_ContactHost_Call",
-   "Finding": "TST sets `ContactPopupData.EntityTypeId = Connect_Entity2.household` (ED :2360); `hostContactPopupData` omits it and `ContactPopup.tsx:124` reads it."
+   "Finding": "TST sets `ContactPopupData.EntityTypeId = Connect_Entity2.household` (ED :2360); `hostContactPopupData` omits it and `ContactPopup.tsx:124` reads it.",
+   "Status": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F4",
    "Element": "MessageList / Close_Filter_Icon",
-   "Finding": "The icon calls OnClick_CloseSearchAndFilter; TST calls ToggleShowFilters. The state result is the same, but React also runs FocusCursor and focuses the search input when a search term is active."
+   "Finding": "The icon calls OnClick_CloseSearchAndFilter; TST calls ToggleShowFilters. The state result is the same, but React also runs FocusCursor and focuses the search input when a search term is active.",
+   "Status": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_MyNotificationsFlow",
    "Id": "F5",
    "Element": "MessageDetail / NotificationDetailBlock summary, urgent icon",
-   "Finding": "The summary renders inside a marker without its inline style; the urgent icon renders nothing. The compiled view holds both elements."
+   "Finding": "The summary renders inside a marker without its inline style; the urgent icon renders nothing. The compiled view holds both elements.",
+   "Status": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitAdminFlow",
    "Id": "F2",
    "Element": "ScreenBlock_AdminEventDetail / OnHandle_ScanCode handler",
-   "Finding": "TST finds \"Failed to deserialize JSON\" with ignoreCase True (EB:1150). React uses a case-sensitive `includes`. A message with other letter case goes to UnknownError instead of the \"Unable to read QR code\" popup."
+   "Finding": "TST finds \"Failed to deserialize JSON\" with ignoreCase True (EB:1150). React uses a case-sensitive `includes`. A message with other letter case goes to UnknownError instead of the \"Unable to read QR code\" popup.",
+   "Status": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitAdminFlow",
    "Id": "F3",
    "Element": "ScreenBlock_AdminEventDetail / GetScanEventQRCode",
-   "Finding": "TST sets AdminMemberId = IntegerToLongInteger(TextToInteger(MemberId)) (EB:1018). React uses TextToLongInteger. The value is the same for an id in the Integer range."
+   "Finding": "TST sets AdminMemberId = IntegerToLongInteger(TextToInteger(MemberId)) (EB:1018). React uses TextToLongInteger. The value is the same for an id in the Integer range.",
+   "Status": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F4",
    "Element": "OrbitLanding and AccommodationHost: OnReady on a restored view",
-   "Finding": "TST ends OnReady on every restored view (`ScreenBlock_OrbitLanding :1669` show). React ends only when the data was fetched and fetches again otherwise (comment \"F40\"; no recorded decision)."
+   "Finding": "TST ends OnReady on every restored view (`ScreenBlock_OrbitLanding :1669` show). React ends only when the data was fetched and fetches again otherwise (comment \"F40\"; no recorded decision).",
+   "Status": "no fix: decision W34 (a) of 2026-10-22 (`migration/refactor/auto-decisions-2026-10-22.md`, page-template.md) keeps the re-fetch on a restored view without data; rows become differs by W34"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F5",
    "Element": "MilestoneDetail: GetGmpMilestoneHost error",
-   "Finding": "TST handler: IsFetchingData = False, raise UnknownError (`:1156-1202`). React has no catch: the rejection goes to the flow handler and the skeleton stays."
+   "Finding": "TST handler: IsFetchingData = False, raise UnknownError (`:1156-1202`). React has no catch: the rejection goes to the flow handler and the skeleton stays.",
+   "Status": "no fix: finding withdrawn 2026-10-27 (`fixes/B-restore.md`): TST runs OnAfterFetch only after a successful fetch (`ScreenBlock_MilestoneWrapper :1135-1143`), so a failed call keeps the skeleton and goes to the flow handler; React does the same (`flowState.ts:112`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F6",
    "Element": "EmailContact: GetTextAreaLineHeight",
-   "Finding": "TST divides by the clientWidth of the subject container (`CF:1577-1584`); React divides by the body clientWidth. The row count of the read-only subject can differ."
+   "Finding": "TST divides by the clientWidth of the subject container (`CF:1577-1584`); React divides by the body clientWidth. The row count of the read-only subject can differ.",
+   "Status": "no fix: finding withdrawn 2026-10-27 (`fixes/G2-orbit-ldm.md`): the TST node reads `document.querySelector(\"body\").clientWidth - 20` (`ScreenBlock_ContactForm :1579-1581`); React `EmailContact/actions.ts:19-20` does the same"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F8",
    "Element": "EventBooklet: EventBooklet_MembersItem, the name and the host",
-   "Finding": "TST: the two containers have an OnClick event (Click_Member, Click_Host). The platform Container widget then sets the inline style `cursor: pointer` (`OutSystemsReactWidgets.js:1`, Container render). React puts the click handlers on plain divs without that style. The theme CSS sets no cursor for the two classes (`Connect2_LegacyShared.OrbitTheme.css:3235, 3254`). In a desktop browser, the pointer does not change on the name and the host of a booklet row."
+   "Finding": "TST: the two containers have an OnClick event (Click_Member, Click_Host). The platform Container widget then sets the inline style `cursor: pointer` (`OutSystemsReactWidgets.js:1`, Container render). React puts the click handlers on plain divs without that style. The theme CSS sets no cursor for the two classes (`Connect2_LegacyShared.OrbitTheme.css:3235, 3254`). In a desktop browser, the pointer does not change on the name and the host of a booklet row.",
+   "Status": "fixed 2026-10-27 (`fixes/G2-orbit-ldm.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitQRCodeFlow",
    "Id": "F1",
    "Element": "QRCodeGenerate / screen title",
-   "Finding": "The runtime sets `document.title` to \"QRCodeGenerate\" when the screen mounts (`OutSystemsReactView.js:7`, `S:166-168`). No code of the React app sets `document.title`."
+   "Finding": "The runtime sets `document.title` to \"QRCodeGenerate\" when the screen mounts (`OutSystemsReactView.js:7`, `S:166-168`). No code of the React app sets `document.title`.",
+   "Status": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_OrbitQRCodeFlow",
    "Id": "F2",
    "Element": "ScreenBlock_GenerateQRCode / member photo",
-   "Finding": "With an empty UserSignedURL, TST renders `<img class=\"orbit-member-photo\" src=\"\">` (`OutSystemsReactWidgets.js:2`, no default image at `B:337-339`). React renders the image without `src`. In the demo the URL is always empty."
+   "Finding": "With an empty UserSignedURL, TST renders `<img class=\"orbit-member-photo\" src=\"\">` (`OutSystemsReactWidgets.js:2`, no default image at `B:337-339`). React renders the image without `src`. In the demo the URL is always empty.",
+   "Status": "fixed 2026-10-27 (`fixes/D-forms.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_Share",
    "Id": "F1",
    "Element": "ConnectShare / Action_Redirect",
-   "Finding": "TST opens HouseholdDetails, OneSchoolGlobalDetails, FeedItemDetail and SupperMeeting_Details with `TransitionAnimation.None` (ConnectShare.mvc.js:461-485). React calls `navigate(path, params)` without a transition, so the target slides in from the right. CR-F18-1 ports the compiled transitions 1:1, but its call-site list names ConnectShare.mvc.js:293 only."
+   "Finding": "TST opens HouseholdDetails, OneSchoolGlobalDetails, FeedItemDetail and SupperMeeting_Details with `TransitionAnimation.None` (ConnectShare.mvc.js:461-485). React calls `navigate(path, params)` without a transition, so the target slides in from the right. CR-F18-1 ports the compiled transitions 1:1, but its call-site list names ConnectShare.mvc.js:293 only.",
+   "Status": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Legacy_Share",
    "Id": "F2",
    "Element": "LegacyShareObject / OnInitialize",
-   "Finding": "TST ends the async OnInitialize before the runtime creates the view (OutSystems.js:17). So ScreenBlock_ShareObject starts with the user's `DisplayAge`. React runs OnInitialize in a page effect after the block's OnReady. When `DisplayAge` is True, `GetHouseholdDetails` gets False, and the late change fetches `GetShareObjectTypeById` a second time. The page comment \"as in the old port\" is not a decision."
+   "Finding": "TST ends the async OnInitialize before the runtime creates the view (OutSystems.js:17). So ScreenBlock_ShareObject starts with the user's `DisplayAge`. React runs OnInitialize in a page effect after the block's OnReady. When `DisplayAge` is True, `GetHouseholdDetails` gets False, and the late change fetches `GetShareObjectTypeById` a second time. The page comment \"as in the old port\" is not a decision.",
+   "Status": "fixed 2026-10-27 (`fixes/G1-content.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "Notes",
    "Id": "F1",
    "Element": "NoteCard_List `NoteCardList_OnScrollEnding`; Notes `Notes_CardListOnLoadMore`",
-   "Finding": "The OSWidgets List fires `onScrollEnding` on a downward scroll only, inside `getInfiniteScrollThreshold` of the end, and not while the handler runs (`OutSystemsReactWidgets.js:1`, `tryFireScrollEndingEvent`). React fires when the list bottom reaches `window.innerHeight`, on any scroll, and blocks with `!notesLoading`. The next page starts later in React, also on an upward scroll. A pill tap or Apply during a page fetch behaves differently."
+   "Finding": "The OSWidgets List fires `onScrollEnding` on a downward scroll only, inside `getInfiniteScrollThreshold` of the end, and not while the handler runs (`OutSystemsReactWidgets.js:1`, `tryFireScrollEndingEvent`). React fires when the list bottom reaches `window.innerHeight`, on any scroll, and blocks with `!notesLoading`. The next page starts later in React, also on an upward scroll. A pill tap or Apply during a page fetch behaves differently.",
+   "Status": "fixed 2026-10-27 (`fixes/F-lists.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "_libraries",
    "Id": "F2",
    "Element": "ShareSheet Handler_SearchResultItemOnSelect",
-   "Finding": "At 50 recipients TST shows \"You can select up to 50 recipients only.\" with FeedbackMessage_AutoClose; React shows a plain error message that stays open."
+   "Finding": "At 50 recipients TST shows \"You can select up to 50 recipients only.\" with FeedbackMessage_AutoClose; React shows a plain error message that stays open.",
+   "Status": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "_libraries",
    "Id": "F3",
    "Element": "ShareSheet Action_SubmitShare",
-   "Finding": "TST re-raises NotRegistered to the flow handler (`ShareSheet.mvc.js:3127-3136`); React shows \"Share failed. Please try again.\" for every error."
+   "Finding": "TST re-raises NotRegistered to the flow handler (`ShareSheet.mvc.js:3127-3136`); React shows \"Share failed. Please try again.\" for every error.",
+   "Status": "fixed 2026-10-27 (`fixes/C-errors.md`)"
   },
   {
    "Severity": "minor",
    "Flow": "_libraries",
    "Id": "F4",
    "Element": "HorizontalTagList TagToggleToggle",
-   "Finding": "React reads `IsSelected ?? true`: a tag without `IsSelected` counts as selected in the mandatory-selection guard and the single-selection clear. On TST the Boolean defaults to False."
+   "Finding": "React reads `IsSelected ?? true`: a tag without `IsSelected` counts as selected in the mandatory-selection guard and the single-selection clear. On TST the Boolean defaults to False.",
+   "Status": "no fix: finding withdrawn 2026-10-27 (`fixes/D-forms.md`): the TST TagRec default for IsSelected is True (`UBTConnectLibrary.model.js:1269-1271`); React `?? true` matches"
   },
   {
    "Severity": "minor",
    "Flow": "_shared",
    "Id": "F1",
    "Element": "GetShareType_FromEntity, IsMyHousehold",
-   "Finding": "TST tests IsMyHousehold after all entity cases (UC:11100-11215): a Household is always shared as Household, and MyHousehold is the result only when no entity case matched. React tests it inside the Household case. Latent today: the only caller passes `false` (`entityDetailsActionsState.ts:83`). BR-UBTCON-244 states the TST order."
+   "Finding": "TST tests IsMyHousehold after all entity cases (UC:11100-11215): a Household is always shared as Household, and MyHousehold is the result only when no entity case matched. React tests it inside the Household case. Latent today: the only caller passes `false` (`entityDetailsActionsState.ts:83`). BR-UBTCON-244 states the TST order.",
+   "Status": "fixed 2026-10-27 (`fixes/A-shell.md`)"
   },
   {
    "Severity": "info",
    "Flow": "App_Common",
    "Id": "F4",
    "Element": "Login / OnInitialize, In_IsFromResetPIN",
-   "Finding": "TST runs Login(False), the identity provider login, then AppManager_Logout (BR-UBTCON-302). React runs `signOut` first, then the mock sign-in. `signOut` is Connect_Logout: it also runs Cache_InvalidateEverything and the ADR-10 clear. In both apps the user reaches PINRegister after the sign-in. Rows: 024, 039."
+   "Finding": "TST runs Login(False), the identity provider login, then AppManager_Logout (BR-UBTCON-302). React runs `signOut` first, then the mock sign-in. `signOut` is Connect_Logout: it also runs Cache_InvalidateEverything and the ADR-10 clear. In both apps the user reaches PINRegister after the sign-in. Rows: 024, 039.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Common",
    "Id": "F5",
    "Element": "App_Common flow OnException / AllExceptions",
-   "Finding": "TST calls ShowExceptionMessage only for a non-system exception, and re-throws a system exception to the runtime handler (flow controller :91-107). React sends every other error to `showExceptionMessage`. The runtime handler is not in local code, so its visible effect is not known. Rows: 170."
+   "Finding": "TST calls ShowExceptionMessage only for a non-system exception, and re-throws a system exception to the runtime handler (flow controller :91-107). React sends every other error to `showExceptionMessage`. The runtime handler is not in local code, so its visible effect is not known. Rows: 170.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Common",
    "Id": "F6",
    "Element": "Get_IsUnsupportedVersion (shared)",
-   "Finding": "React returns constants: Browser is True only in the mock scenario of U16. The shell stores the minimum versions of SynchAppContext (`app.minNativeVersion`, `app.minWebViewChrome`, `app.minWebViewSafari`), but no code reads them. TST has no minimum versions (U2), so the result is the same today. Rows: 172."
+   "Finding": "React returns constants: Browser is True only in the mock scenario of U16. The shell stores the minimum versions of SynchAppContext (`app.minNativeVersion`, `app.minWebViewChrome`, `app.minWebViewSafari`), but no code reads them. TST has no minimum versions (U2), so the result is the same today. Rows: 172.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Common_Blocks",
    "Id": "F1",
    "Element": "App_NotificationIcon / `LocalNotifications`",
-   "Finding": "TST starts at -1 (skeleton) and sets the unread number in OnReady. React starts at the unread number."
+   "Finding": "TST starts at -1 (skeleton) and sets the unread number in OnReady. React starts at the unread number.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Menu",
    "Id": "F2",
    "Element": "PINBiometricsMenu / route meta (row 054)",
-   "Finding": "The doc comment of `RouteMeta.lock` says that a screen without CommonUI gets `ignore`. PINBiometricsMenu has no CommonUI and gets `enforce`. The code is correct: the app-start PIN check of TST applies to every screen, and `useNoCommonUi` removes the lock host. Only the comment is wrong."
+   "Finding": "The doc comment of `RouteMeta.lock` says that a screen without CommonUI gets `ignore`. PINBiometricsMenu has no CommonUI and gets `enforce`. The code is correct: the app-start PIN check of TST applies to every screen, and `useNoCommonUi` removes the lock host. Only the comment is wrong.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_PIN",
    "Id": "F2",
    "Element": "PINRegister / OnClick_BackToLogin",
-   "Finding": "TST calls `AppManager_Logout`. React calls `signOut` (`Connect_Logout`): it also runs `Cache_InvalidateEverything` and the ADR-10 clear of the memory cache and the local entities. The user sees no difference."
+   "Finding": "TST calls `AppManager_Logout`. React calls `signOut` (`Connect_Logout`): it also runs `Cache_InvalidateEverything` and the ADR-10 clear of the memory cache and the local entities. The user sees no difference.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_PIN",
    "Id": "F3",
    "Element": "PINUnlock / Block_PINUnlockUnlock",
-   "Finding": "React adds a HomeFeed branch when `LastURL` is empty. TST navigates to the empty URL (BR-UBTCON-953). The code cites \"Q1 answered by the user: B\"; CR-PINUnlock-1 calls the same branch \"Q1 option A, pending\". The board row of PINUnlock does not name the decision."
+   "Finding": "React adds a HomeFeed branch when `LastURL` is empty. TST navigates to the empty URL (BR-UBTCON-953). The code cites \"Q1 answered by the user: B\"; CR-PINUnlock-1 calls the same branch \"Q1 option A, pending\". The board row of PINUnlock does not name the decision.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_PIN",
    "Id": "F4",
    "Element": "Block_PINUnlock_ContentWrapper / Pincode_Unlock OnUnlockSuccess",
-   "Finding": "TST raises `PinUnlockSuccess`, then sets `PIN_HasUnlocked` True and `PIN_IsLocked` False. React sets the two flags in `verifyPin`, then raises the event. This report found no visible effect."
+   "Finding": "TST raises `PinUnlockSuccess`, then sets `PIN_HasUnlocked` True and `PIN_IsLocked` False. React sets the two flags in `verifyPin`, then raises the event. This report found no visible effect.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_PIN",
    "Id": "F5",
    "Element": "Block_PINRegister_ContentWrapper / Pincode_Register",
-   "Finding": "`AppManager_SetPIN_IsRegistering` (True on initialize, False on destroy) is not ported. The only reader is HandleOnResumeOpenLink, which runs in the native app only (U14)."
+   "Finding": "`AppManager_SetPIN_IsRegistering` (True on initialize, False on destroy) is not ported. The only reader is HandleOnResumeOpenLink, which runs in the native app only (U14).",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Policies",
    "Id": "F5",
    "Element": "AcceptPendingPolicies / AcceptPendingPoliciesAcceptedAll",
-   "Finding": "TST reads the record with `Cache_UserInfo_Get`. React calls `getUserInformation()` (GetUserInformation_Wrapper): it also sets `App_Policies_HasPolicyToAccept` from the cached record (True at that moment) and waits for the app-start step. The next statement sets the flag False, and CommonUiLayout ignores the policy on this screen, so the user sees no difference."
+   "Finding": "TST reads the record with `Cache_UserInfo_Get`. React calls `getUserInformation()` (GetUserInformation_Wrapper): it also sets `App_Policies_HasPolicyToAccept` from the cached record (True at that moment) and waits for the app-start step. The next statement sets the flag False, and CommonUiLayout ignores the policy on this screen, so the user sees no difference.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Policies",
    "Id": "F6",
    "Element": "Policy_Custom_AcceptPendingPolicies / List",
-   "Finding": "The list is a hand-written `div`, not the shared `OSList` (P-LIST). It has no ` list-loading` or ` list-error` class while GetPendingPolicies runs or fails. No CSS rule uses these classes."
+   "Finding": "The list is a hand-written `div`, not the shared `OSList` (P-LIST). It has no ` list-loading` or ` list-error` class while GetPendingPolicies runs or fails. No CSS rule uses these classes.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Profile",
    "Id": "F3",
    "Element": "Profile / Action_FormatAddress",
-   "Finding": "TST passes the literal text `\\r\\n` (4 characters) to Replace: OutSystems text literals have no escape sequences (Profile.mvc.js:3773). The CR LF characters of AddressFormat stay in FormattedAddress. React replaces the CR LF characters with a space. With the normal white-space rule, the preview shows the same text."
+   "Finding": "TST passes the literal text `\\r\\n` (4 characters) to Replace: OutSystems text literals have no escape sequences (Profile.mvc.js:3773). The CR LF characters of AddressFormat stay in FormattedAddress. React replaces the CR LF characters with a space. With the normal white-space rule, the preview shows the same text.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Profile",
    "Id": "F4",
    "Element": "Profile / OnClick_Save",
-   "Finding": "Two edge branches differ. (1) React sets AccountForm and AccountFormOriginal to the form as it was when the user clicked Save. TST assigns the live AccountForm after the call, so edits typed during the call stay in the inputs. (2) For a system exception other than NotRegistered, React sets isLoading_Submit False; TST leaves it True."
+   "Finding": "Two edge branches differ. (1) React sets AccountForm and AccountFormOriginal to the form as it was when the user clicked Save. TST assigns the live AccountForm after the call, so edits typed during the call stay in the inputs. (2) For a system exception other than NotRegistered, React sets isLoading_Submit False; TST leaves it True.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Profile",
    "Id": "F5",
    "Element": "Profile / OnClick_Save, ChangedVisibilityPreferences",
-   "Finding": "React reads the cache entry with `getUserInformation` (GetUserInformation_Wrapper). That wrapper waits for the app-start step and writes `Client.App_Policies_HasPolicyToAccept`. TST calls Cache_UserInfo_Get: it reads the same entry (DirectoryUser, UniqueCacheKey, 7200 s, GetUserInformation on a miss) and writes no client variable (BR-C2UTL-141)."
+   "Finding": "React reads the cache entry with `getUserInformation` (GetUserInformation_Wrapper). That wrapper waits for the app-start step and writes `Client.App_Policies_HasPolicyToAccept`. TST calls Cache_UserInfo_Get: it reads the same entry (DirectoryUser, UniqueCacheKey, 7200 s, GetUserInformation on a miss) and writes no client variable (BR-C2UTL-141).",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Profile",
    "Id": "F6",
    "Element": "Profile / code comments",
-   "Finding": "`useProfile.ts:34-37` says that the screen has no OnReady; TST has OnReady → ScreenEvent_OnReady (Profile.mvc.js:3943-3970, 4091-4101). The comments at `ProfilePage.tsx:86`, `useProfile.ts:106-107, 139-141` and `mocks.ts:11-24` give route questions (Q1, Q2, Q4, \"pending\") as the reason for the code."
+   "Finding": "`useProfile.ts:34-37` says that the screen has no OnReady; TST has OnReady → ScreenEvent_OnReady (Profile.mvc.js:3943-3970, 4091-4101). The comments at `ProfilePage.tsx:86`, `useProfile.ts:106-107, 139-141` and `mocks.ts:11-24` give route questions (Q1, Q2, Q4, \"pending\") as the reason for the code.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Services",
    "Id": "F6",
    "Element": "Services / Handler_SortableListOnDragEnd, exception handlers",
-   "Finding": "TST sets `isLoading` to False before it raises in the CommunicationException and AllExceptions handlers. React does not. No UI path reaches it: the content is inert while `isLoading` is True."
+   "Finding": "TST sets `isLoading` to False before it raises in the CommunicationException and AllExceptions handlers. React does not. No UI path reaches it: the content is inert while `isLoading` is True.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "App_Services",
    "Id": "F7",
    "Element": "SortableList / OnParametersChanged",
-   "Finding": "TST runs OnReady (SetupList) again when an input changes. React runs `setupList` on mount only. The comments of `SortableList.tsx` and `SortableList_Draggable.tsx` say \"OutSystems runs it once\". The inputs never change on Services, and the row keys mount a new Draggable for a new id."
+   "Finding": "TST runs OnReady (SetupList) again when an input changes. React runs `setupList` on mount only. The comments of `SortableList.tsx` and `SortableList_Draggable.tsx` say \"OutSystems runs it once\". The inputs never change on Services, and the row keys mount a new Draggable for a new id.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "Bookmarks",
    "Id": "F3",
    "Element": "BookmarksByGroup, OnClick_BookmarkedItem (row 077)",
-   "Finding": "RememberFocusedScrollAnchor(CurrentListWidgetId, CurrentRowNumber, ObjectId) is not called. The view cache saves the scroll offsets on leave and restores them on return, so the clicked row stays in view. No recorded decision names the substitution."
+   "Finding": "RememberFocusedScrollAnchor(CurrentListWidgetId, CurrentRowNumber, ObjectId) is not called. The view cache saves the scroll offsets on leave and restores them on return, so the clicked row stays in view. No recorded decision names the substitution.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "Bookmarks",
    "Id": "F4",
    "Element": "BookmarksByGroup, PreloadListSource_Bookmarks (row 081)",
-   "Finding": "The cache preload runs in the restore callback (OnInitialize time), not at the list's `dx-preload-list-source` event. Same conditions, same data, no user impact."
+   "Finding": "The cache preload runs in the restore callback (OnInitialize time), not at the list's `dx-preload-list-source` event. Same conditions, same data, no user impact.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "Calendar",
    "Id": "F4",
    "Element": "Embedded_MyEntertaining / console logs",
-   "Finding": "TST writes five `console.log` texts from the SDK callbacks and the `events:loaded` message. React writes none."
+   "Finding": "TST writes five `console.log` texts from the SDK callbacks and the `events:loaded` message. React writes none.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "ContactFlow",
    "Id": "F1",
    "Element": "ContactByEmailMember / OnApplicationEvent_EmailHost; ContactByEmailOrbitHelpdesk / OnApplicationEvent_ContactHelpdesk",
-   "Finding": "TST sends AuditPayload_EmailHost (MilestoneId, EventId, EventTitle, HostName, Subject, Message) and AuditPayload_ContactHelpdesk (EventId, EventTitle, Subject, Message) as JSON to App Insights. React passes MilestoneId and EventId, and EventId only. Telemetry is off by U17, so users see no change now. The production cut-over of U17 needs the full payload. The comment \"Q2 open\" in the Member actions.ts is out of date."
+   "Finding": "TST sends AuditPayload_EmailHost (MilestoneId, EventId, EventTitle, HostName, Subject, Message) and AuditPayload_ContactHelpdesk (EventId, EventTitle, Subject, Message) as JSON to App Insights. React passes MilestoneId and EventId, and EventId only. Telemetry is off by U17, so users see no change now. The production cut-over of U17 needs the full payload. The comment \"Q2 open\" in the Member actions.ts is out of date.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "Directory_Locality",
    "Id": "F4",
    "Element": "Statistics_TypedItem / In_ImageEntityTypeId (row 244)",
-   "Finding": "The React default is \"\". DEV and TST (`Statistics_TypedItem.mvc.js:31-32`) default to Connect_Entity.Locality. No caller of this flow relies on the default."
+   "Finding": "The React default is \"\". DEV and TST (`Statistics_TypedItem.mvc.js:31-32`) default to Connect_Entity.Locality. No caller of this flow relies on the default.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "Directory_Photobook",
    "Id": "F3",
    "Element": "Photobook_Options_Player / OnParametersChanged (rows 176, 202)",
-   "Finding": "React runs the check only when In_IsFinalItem changes. TST runs it on every input change, also In_IsShow. The state \"IsPlay True on the final item without a change of In_IsFinalItem\" occurs after Replay on a one-household photobook. The replay icon shows in both cases, so the user sees no difference."
+   "Finding": "React runs the check only when In_IsFinalItem changes. TST runs it on every input change, also In_IsShow. The state \"IsPlay True on the final item without a change of In_IsFinalItem\" occurs after Replay on a one-household photobook. The replay icon shows in both cases, so the user sees no difference.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "Home",
    "Id": "F3",
    "Element": "FeedBlock_Services / OnAfterFetch_GetServices, ForceAddService True",
-   "Finding": "The \"Add Service\" tile gets iconId '' instead of UBT_Icons2.AddCircle (\"connect-icon-add_circle\", `pack/references.md`). HomeFeed passes ForceAddService False, so no user sees the tile."
+   "Finding": "The \"Add Service\" tile gets iconId '' instead of UBT_Icons2.AddCircle (\"connect-icon-add_circle\", `pack/references.md`). HomeFeed passes ForceAddService False, so no user sees the tile.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F6",
    "Element": "LDM_MyEvents_V2 / audit payloads",
-   "Finding": "LogClickedEventAudit sends EventHostId, EventName and EventDate from the Upcoming or PastEvents list (ME :2416-2455); OnHandle_HouseholdClicked sends HouseholdId and HouseholdName (ME :1986). React sends EventHostId / HouseholdId only. No effect in the mock phase (U17)."
+   "Finding": "LogClickedEventAudit sends EventHostId, EventName and EventDate from the Upcoming or PastEvents list (ME :2416-2455); OnHandle_HouseholdClicked sends HouseholdId and HouseholdName (ME :1986). React sends EventHostId / HouseholdId only. No effect in the mock phase (U17).",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "Legacy_LDMEventsFlow_V2",
    "Id": "F7",
    "Element": "LDM_EventDetail_V2 / IsFetching, GetCoordinatorDetails",
-   "Finding": "IsFetching starts True (TST False until OnReady, ED :52-54, :2011). A failed GetCoordinatorDetails sets DataFetchStatus 2 on TST (`OutSystems.js:18`); React swallows it. The view reads neither difference."
+   "Finding": "IsFetching starts True (TST False until OnReady, ED :52-54, :2011). A failed GetCoordinatorDetails sets DataFetchStatus 2 on TST (`OutSystems.js:18`); React swallows it. The view reads neither difference.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "Legacy_OrbitEventsFlow",
    "Id": "F7",
    "Element": "ViewDocuments: Action_OpenDoc",
-   "Finding": "React also marks a document viewed when the bare DocumentName equals DocName; TST compares the name with the extension only (`:806`). Both callers pass the extension: no visible effect."
+   "Finding": "React also marks a document viewed when the bare DocumentName equals DocName; TST compares the name with the extension only (`:806`). Both callers pass the extension: no visible effect.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "Legacy_Share",
    "Id": "F3",
    "Element": "ConnectShare / Dialog_AccessRestrictedAction_Legacy",
-   "Finding": "The page returns null while `IsRedirect` is True, so the closed dialog is not in the DOM. TST renders the dialog outside the If (ConnectShare.mvc.js:196-208). No visible effect: the pop-up opens only when `IsRedirect` is False."
+   "Finding": "The page returns null while `IsRedirect` is True, so the closed dialog is not in the DOM. TST renders the dialog outside the If (ConnectShare.mvc.js:196-208). No visible effect: the pop-up opens only when `IsRedirect` is False.",
+   "Status": ""
   },
   {
    "Severity": "info",
    "Flow": "_shared",
    "Id": "F2",
    "Element": "OnApplicationReady, AddCustomHeadersJS",
-   "Finding": "TST adds `link rel=\"preconnect\"` and `link rel=\"dns-prefetch\"` to `document.head` for the MyEntertaining and Feed base URLs of Sync_Info_Main (UC:15512-15528). React drops the two URLs (`api/app/types.ts:81`) and adds no link. No visible behaviour; the embedded pages connect later."
+   "Finding": "TST adds `link rel=\"preconnect\"` and `link rel=\"dns-prefetch\"` to `document.head` for the MyEntertaining and Feed base URLs of Sync_Info_Main (UC:15512-15528). React drops the two URLs (`api/app/types.ts:81`) and adds no link. No visible behaviour; the embedded pages connect later.",
+   "Status": ""
   }
  ],
  "unclear": [

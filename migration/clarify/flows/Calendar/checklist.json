@@ -794,11 +794,12 @@
    "react": "refreshToken catches the error and logs a warning; the SDK keeps its token; no toast",
    "evidence": "TST OutSystems.js:17 (safeExecuteClientAction: handleError on catch); TST UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js:1107-1110; app/src/pages/MyEntertaining/hooks/useEntertainingCalendar.ts:17-26",
    "tst": "present",
-   "verdict": "partial",
-   "note": "The call and the token hand-over match (row 067). Only the error path differs. The code comment is not a decision.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/C-errors.md). The call and the token hand-over match (row 067). Only the error path differs. The code comment is not a decision.",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Calendar-062",
@@ -941,11 +942,12 @@
    "react": "no code sets document.title; routes.generated.ts holds the title \"MyEntertaining\" unused",
    "evidence": "TST UBTConnect.Calendar.MyEntertaining.mvc.js:117-118; TST OutSystemsReactView.js:7 (document.title = this.title); app/src/app/routes.generated.ts:24; grep document.title in app/src: no hit",
    "tst": "present",
-   "verdict": "missing",
-   "note": "App-wide gap, same as App_Services Q4.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/A-shell.md). App-wide gap, same as App_Services Q4.",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   }
  ]
 }

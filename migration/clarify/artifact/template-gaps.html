@@ -64,6 +64,7 @@
   .chip.good { background: var(--good-soft); color: var(--good) } .chip.warn { background: var(--warn-soft); color: var(--warn) }
   .chip.crit { background: var(--crit-soft); color: var(--crit) } .chip.muted { background: var(--muted-soft); color: var(--fg-2) }
   .chip.accent { background: var(--accent-soft); color: var(--accent-ink) }
+  li.fixed { color: var(--fg-2) } li.fixed .chip.good { font-size: 11px }
   button.chip { cursor: pointer; font: 500 12px var(--body); padding: 4px 10px; background: var(--surface); border-color: var(--line); color: var(--fg-2) }
   button.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-ink) }
   button:focus-visible, input:focus-visible, details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
@@ -127,6 +128,7 @@
       <button type="button" class="chip" data-sev="major" aria-pressed="true"><i class="sev major"></i>Major</button>
       <button type="button" class="chip" data-sev="minor" aria-pressed="true"><i class="sev minor"></i>Minor</button>
       <button type="button" class="chip" data-sev="info" aria-pressed="false"><i class="sev info"></i>Info</button>
+      <button type="button" class="chip" id="fixedToggle" aria-pressed="true">Show fixed and withdrawn</button>
       <input type="search" id="findSearch" placeholder="Filter by flow, screen or text" aria-label="Filter findings">
       <span class="count" id="findCount"></span>
     </div>
@@ -190,16 +192,21 @@
   var total = D.matrix.filter(function (r) { return /total/.test(r.Flow || ''); })[0] || {};
   var findings = D.findings || [];
   var cnt = function (sev) { return findings.filter(function (f) { return (f.Severity || '').toLowerCase() === sev; }).length; };
+  var isFixed = function (f) { return /^fixed/i.test(f.Status || ''); };
+  var statusKind = function (f) { var st = f.Status || ''; return /^fixed/i.test(st) ? 'fixed' : /withdrawn/i.test(st) ? 'withdrawn' : /^no fix/i.test(st) ? 'kept' : /^open/i.test(st) ? 'open' : ''; };
+  var cntKind = function (sev, kind) { return findings.filter(function (f) { return (f.Severity || '').toLowerCase() === sev && statusKind(f) === kind; }).length; };
+  var cntFixed = function (sev) { return findings.filter(function (f) { return (f.Severity || '').toLowerCase() === sev && isFixed(f); }).length; };
+  var fixedDate = (findings.filter(isFixed).map(function (f) { return (f.Status.match(/\d{4}-\d{2}-\d{2}/) || [''])[0]; }).sort().pop()) || '';
   var modulesTotal = D.contract_modules.reduce(function (a, m) { return a + (parseInt(m.Endpoints, 10) || 0); }, 0);
 
   document.getElementById('meta').textContent = 'Source of truth: the TST compiled code · checklist: the DEV model through the MCP · 45 reports, data of ' + D.generated + ' (branch clarify-screens)';
-  var tiles = [['64', 'screens built in React', 'good'], [Number(total.Rows || 0).toLocaleString('en'), 'checklist rows compared', ''], [cnt('blocker'), 'blockers', 'crit'], [cnt('major'), 'major findings', 'warn'], [cnt('minor'), 'minor findings', 'accent'], [D.build_items.length, 'items decided "build now"', 'accent'], [modulesTotal, 'backend endpoints to implement', '']];
+  var tiles = [['64', 'screens built in React', 'good'], [Number(total.Rows || 0).toLocaleString('en'), 'checklist rows compared', ''], [cnt('blocker'), 'blockers', 'crit'], [cnt('major'), 'major findings', 'warn'], [cnt('minor'), cntFixed('minor') ? 'minor findings · ' + cntFixed('minor') + ' fixed in code on ' + fixedDate : 'minor findings', 'accent'], [D.build_items.length, 'items decided "build now"', 'accent'], [modulesTotal, 'backend endpoints to implement', '']];
   document.getElementById('tiles').innerHTML = tiles.map(function (t) { return '<div class="tile ' + t[2] + '"><b>' + esc(t[0]) + '</b><span>' + esc(t[1]) + '</span></div>'; }).join('');
   var sum = V.map(function (v) { return parseInt(total[v], 10) || 0; }); var all = sum.reduce(function (a, b) { return a + b; }, 0) || 1;
   document.getElementById('vbar').innerHTML = V.map(function (v, i) { return '<span style="width:' + (100 * sum[i] / all) + '%;background:' + VC[v] + '" title="' + v + ' ' + sum[i] + '"></span>'; }).join('');
   document.getElementById('legend').innerHTML = V.map(function (v, i) { return '<span><i style="background:' + VC[v] + '"></i>' + v + ' ' + sum[i].toLocaleString('en') + '</span>'; }).join('');
   var pct = Math.round(100 * sum[0] / all);
-  document.getElementById('lead').innerHTML = md(pct + '% of the compared rows behave as on TST. The rest is where this page looks: ' + sum[2] + ' rows missing, ' + sum[1] + ' partial, ' + sum[4] + ' mock-only (the UI calls a server that does not exist yet), ' + sum[3] + ' different by a recorded decision. Three blockers stop a user flow: the signed-out Contact Us form, the Orbit HostSurvey wizard and five MilestoneDetail types.');
+  document.getElementById('lead').innerHTML = md(pct + '% of the compared rows behave as on TST. The rest is where this page looks: ' + sum[2] + ' rows missing, ' + sum[1] + ' partial, ' + sum[4] + ' mock-only (the UI calls a server that does not exist yet), ' + sum[3] + ' different by a recorded decision. Three blockers stop a user flow: the signed-out Contact Us form, the Orbit HostSurvey wizard and five MilestoneDetail types.' + (cntFixed('minor') ? ' On ' + fixedDate + ' the React code was changed for ' + cntFixed('minor') + ' of the ' + cnt('minor') + ' minor findings. ' + cntKind('minor', 'withdrawn') + ' findings were withdrawn after a second read of the TST code, ' + cntKind('minor', 'kept') + ' stay as they are by a recorded decision and ' + cntKind('minor', 'open') + ' waits for a capture.' : ''));
 
   // decisions index: flow -> list of {id, question, answer}
   var decByFlow = {}; (D.decisions || []).forEach(function (d) { (decByFlow[d.flow] = decByFlow[d.flow] || []).push(d); });
@@ -211,7 +218,7 @@
     var kind = /build|port|wire|fix|set document|store|show the exception|reset|follow tst|remove/.test(low) ? 'build' : /keep|accept|record/.test(low) ? 'keep' : 'other';
     return { id: hit.id, text: a.split(' — ')[0], kind: kind };
   };
-  var sevActive = { blocker: true, major: true, minor: true, info: false };
+  var sevActive = { blocker: true, major: true, minor: true, info: false }; var showFixed = true; var isSettled = function (f) { var k = statusKind(f); return k === 'fixed' || k === 'withdrawn'; };
   var renderGroups = function () {
     var q = (document.getElementById('findSearch').value || '').toLowerCase();
     var html = ''; var shown = 0;
@@ -219,7 +226,7 @@
       var flows = rows.filter(function (r) { return r.Group === g; }).map(flowOf);
       var cards = '';
       flows.forEach(function (fl) {
-        var fs = findings.filter(function (f) { var s = (f.Severity || '').toLowerCase(); return f.Flow === fl && sevActive[s] && (!q || (fl + ' ' + f.Element + ' ' + f.Finding).toLowerCase().indexOf(q) >= 0); });
+        var fs = findings.filter(function (f) { var s = (f.Severity || '').toLowerCase(); return f.Flow === fl && sevActive[s] && (showFixed || !isSettled(f)) && (!q || (fl + ' ' + f.Element + ' ' + f.Finding).toLowerCase().indexOf(q) >= 0); });
         if (!fs.length) return;
         shown += fs.length;
         var r = byFlow[fl] || {}; var tot = V.reduce(function (a, v) { return a + (parseInt(r[v], 10) || 0); }, 0) || 1;
@@ -228,7 +235,7 @@
         cards += '<div class="mini">' + V.map(function (v) { return '<span style="width:' + (100 * (parseInt(r[v], 10) || 0) / tot) + '%;background:' + VC[v] + '"></span>'; }).join('') + '</div><ul>';
         fs.forEach(function (f) {
           var s = (f.Severity || '').toLowerCase(); var d = decisionFor(fl, f.Id);
-          cards += '<li><i class="sev ' + s + '"></i><b>' + esc(f.Id) + '</b> ' + md(f.Element) + ' — ' + md(f.Finding);
+          cards += '<li' + (isSettled(f) ? ' class="fixed"' : '') + '><i class="sev ' + s + '"></i><b>' + esc(f.Id) + '</b> ' + (statusKind(f) === 'fixed' ? '<span class="chip good">' + esc(f.Status.split(' (')[0]) + '</span> ' : statusKind(f) === 'withdrawn' ? '<span class="chip muted" title="' + esc(f.Status) + '">withdrawn · TST re-read</span> ' : statusKind(f) === 'kept' ? '<span class="chip muted" title="' + esc(f.Status) + '">kept by decision</span> ' : statusKind(f) === 'open' ? '<span class="chip warn" title="' + esc(f.Status) + '">open</span> ' : '') + md(f.Element) + ' — ' + md(f.Finding);
           if (d) cards += '<span class="dec"><span class="chip ' + (d.kind === 'build' ? 'warn' : d.kind === 'keep' ? 'muted' : 'accent') + '">' + esc(d.id) + (d.kind === 'build' ? ' · build' : d.kind === 'keep' ? ' · recorded' : '') + '</span> ' + md(d.text) + '</span>';
           cards += '</li>';
         });
@@ -241,6 +248,7 @@
   };
   Array.prototype.forEach.call(document.querySelectorAll('[data-sev]'), function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-sev'); sevActive[k] = !sevActive[k]; b.setAttribute('aria-pressed', String(sevActive[k])); renderGroups(); }); });
   document.getElementById('findSearch').addEventListener('input', renderGroups);
+  document.getElementById('fixedToggle').addEventListener('click', function () { showFixed = !showFixed; this.setAttribute('aria-pressed', String(showFixed)); renderGroups(); });
   renderGroups();
 
   // FE work

@@ -119,7 +119,8 @@ export function useConnectShare(inputs: ConnectShareInputs): ConnectShareView {
     replaceOnUpcomingNavigation();
     const target = shareRedirectTarget(redirect.shareObjectTypeId, redirect.attributesId);
     if (target === null) dispatch({ type: 'redirectCancelled' });
-    else navigate(target.path, target.params);
+    // the four destinations open with TransitionAnimation.None (ConnectShare.mvc.js:461-485)
+    else navigate(target.path, target.params, { transition: TransitionAnimation.None });
   }, [isInitialized, latest, navigate, dispatch]);
 
   return { isInitialized, state };

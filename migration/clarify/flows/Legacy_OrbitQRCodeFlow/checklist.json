@@ -25,12 +25,13 @@
    "react": "not found (searched: title in QRCodeGeneratePage.tsx; routes.generated.ts:68 title \"QRCodeGenerate\")",
    "evidence": "TST UBTConnect.Legacy_OrbitQRCodeFlow.QRCodeGenerate.mvc.js:166-168 screen title \"QRCodeGenerate\"; migration/runtime-sources/OutSystemsReactView.js:7 componentDidMount sets `document.title=this.title`; no code in app/src sets document.title; app/index.html:6 `<title>UBTConnect</title>`",
    "tst": "-",
-   "verdict": "missing",
-   "note": "The block title (block :229-230) returns \"\" and does not set the tab title. Same app-wide gap as flow App_Services F5 / Q4.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/A-shell.md). The block title (block :229-230) returns \"\" and does not set the tab title. Same app-wide gap as flow App_Services F5 / Q4.",
+   "verified": "live",
    "severity": "minor",
    "finding": "F1",
-   "question": "Q1: set document.title from the route title (routes.generated.ts:68 \"QRCodeGenerate\")?"
+   "question": "Q1: set document.title from the route title (routes.generated.ts:68 \"QRCodeGenerate\")?",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitQRCodeFlow-003",
@@ -639,11 +640,12 @@
    "react": "app/src/pages/QRCodeGenerate/components/GenerateQrCodeView.tsx:65 `<img className=\"orbit-member-photo\" data-image=\"\" src={userSignedURL === '' ? undefined : userSignedURL} />`",
    "evidence": "TST Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_QRCode.ScreenBlock_GenerateQRCode.mvc.js:329 container \"orbit-member-photo-cont\", :337-339 Image External url = userSignedURLVar, no default image; migration/runtime-sources/OutSystemsReactWidgets.js:2 prepareImageAttributes: src \"\" then src = url for type External; app/src/pages/QRCodeGenerate/components/GenerateQrCodeView.tsx:64-65 `src={userSignedURL === '' ? undefined : userSignedURL}`",
    "tst": "present",
-   "verdict": "partial",
-   "note": "With an empty UserSignedURL TST renders src=\"\" and React renders no src. In the demo the URL is always empty (row 036).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/D-forms.md). With an empty UserSignedURL TST renders src=\"\" and React renders no src. In the demo the URL is always empty (row 036).",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitQRCodeFlow-050",

@@ -78,4 +78,18 @@ describe('FeedBlock_Updates', () => {
     fireEvent.click(getByText('Subscription upgrade required'));
     expect(onClickUpgrade).toHaveBeenCalledOnce();
   });
+
+  it('the upgrade banner has the tree of #DoesntHaveAccess: centred containers, IconText and a lock icon (mvc.js:466-530)', () => {
+    const { getByText, container } = renderBlock({ items: [item('9104', 'Ada Lowell', true, false)] });
+    expect(container.querySelector('[data-not-captured]')).toBeNull();
+    const text = getByText('Subscription upgrade required').closest('.text-blue-dark') as HTMLElement;
+    expect(text.className).toContain('font-size-xs');
+    expect(text.className).toContain('font-semi-bold');
+    const inline = text.closest('.display-inline-block') as HTMLElement;
+    expect(inline.style.textAlign).toBe('center');
+    expect((inline.parentElement as HTMLElement).style.textAlign).toBe('center');
+    const icon = inline.querySelector('.connect-icon-lock');
+    expect(icon?.className).toContain('text-blue-dark');
+    expect(icon?.className).toContain('icon-non-standard-16');
+  });
 });

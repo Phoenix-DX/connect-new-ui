@@ -38,8 +38,9 @@ export interface NotesFlows {
   onClickPill: (updatedTagList: Tag[]) => void;
   /** Handler_ApplyFilters: the ApplyFilters event of Notes_FilterSheet. */
   onApplyFilters: (filter: NotesFilter, hasFiltersApplied: boolean) => void;
-  /** Notes_CardListOnLoadMore: the OnLoadMore event of NoteCard_List. */
-  onLoadMore: () => void;
+  /** Notes_CardListOnLoadMore: the OnLoadMore event of NoteCard_List. The Promise settles when the action ends (after
+      the page fetch), as the event handler of TST: the List waits for it. */
+  onLoadMore: () => Promise<void>;
   /** Handler_OnClickNoteCardItem(ObjectId, ObjectType): the OnClick_NoteCardItem event of NoteCard_List. */
   onClickNoteCardItem: (objectId: string, objectType: string) => void;
   /** The SheetInilialized event of Notes_FilterSheet: Filter_BottomSheetId. */
@@ -193,10 +194,10 @@ export function useNotes(): NotesFlows {
       set({ notesFilter: { ...m().notesFilter, sortByNewest: filter.sortByNewest }, hasFiltersApplied });
       run(refreshGetNotes);
     },
-    onLoadMore: () => {
+    onLoadMore: async () => {
       if (!canLoadMore(m())) return;
       set({ pageNumber: m().pageNumber + 1 });
-      run(refreshGetNotes);
+      await refreshGetNotes().catch(raiseToFlowHandler);
     },
     onClickNoteCardItem: (objectId, objectType) => {
       const target = noteCardTarget(objectId, objectType);

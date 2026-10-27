@@ -157,11 +157,12 @@
    "os": "block input; default Global; filters the recent lists and is sent to the server",
    "react": "default inSearchTargetId '' (useSearch.ts:59); the Search page passes SEARCH_SCREEN_INPUTS",
    "evidence": "TST ScreenBlock_Search.mvc.js:121-122 (default type_SearchTarget.global); TST Search.mvc.js:126-127 (the screen passes no inputs); app/src/pages/Search/hooks/useSearch.ts:59; app/src/api/search/mapper.ts:85",
-   "verdict": "partial",
-   "note": "React stores SearchTargetId '' on the recent records and sends In_SearchTargetId ''. TST stores and sends Global. No visible effect on the Search screen",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/E-directory.md). React stores SearchTargetId '' on the recent records and sends In_SearchTargetId ''. TST stores and sends Global. No visible effect on the Search screen",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F4"
+   "finding": "F4",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Search-014",
@@ -759,11 +760,12 @@
    "os": "avatar of a recent result",
    "react": "EntityLazyImage with ImageSize Height ExtraSmall_32 only (RecentSearch.tsx:110-115); EntityLazyImage.tsx:98 sends Width ''",
    "evidence": "TST ScreenBlock_Search.mvc.js:800-803 (Width = Square when EntityType = Member, else null), :810 (In_BorderRadius Soft), no In_ForceLoadingState",
-   "verdict": "partial",
-   "note": "In_ForceLoadingState is DEV only (section 6.1); Width differs",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/E-directory.md). In_ForceLoadingState is DEV only (section 6.1); Width differs",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F5"
+   "finding": "F5",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Search-064",

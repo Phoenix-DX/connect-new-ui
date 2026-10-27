@@ -174,16 +174,19 @@ export function get_NoteCategoryId_ByEntityTypeId(entityTypeId: string): string 
   }
 }
 
-/** GetShareType_FromEntity(EntityType, In_IsMyHousehold) (UBTConnect.controller.js:11087-, same copy): Locality and
-    Interchange → Locality, Household → Household (My Household when In_IsMyHousehold), Supper Meetings → Supper
-    Meeting, OneSchool Global, Feed Item → Feed; Member and any other type raise InvalidAction "Share not available". */
+/** GetShareType_FromEntity(EntityType, In_IsMyHousehold) (TST UBTConnect.controller.js:11102-11223, BR-UBTCON-244), in
+    the TST order: Member raises InvalidAction "Share not available" (:11115-11118); Locality and Interchange →
+    Locality, Household → Household, Supper Meetings → Supper Meeting, OneSchool Global, Feed Item → Feed; after all
+    entity cases, In_IsMyHousehold → My Household (:11162); any other type raises InvalidAction (:11171). */
 export function getShareType_FromEntity(entityType: string, isMyHousehold = false): string {
   switch (entityType) {
+    case Connect_Entity.Member:
+      throw new UserException('Share not available', 'UBTConnect.InvalidAction');
     case Connect_Entity.Locality:
     case Connect_Entity.Interchange:
       return Type_ShareObject.Locality;
     case Connect_Entity.Household:
-      return isMyHousehold ? Type_ShareObject.MyHousehold : Type_ShareObject.Household;
+      return Type_ShareObject.Household;
     case Connect_Entity.SupperMeetings_aka_Subdivisions:
       return Type_ShareObject.SupperMeeting;
     case Connect_Entity.OneSchoolGlobal:
@@ -191,6 +194,7 @@ export function getShareType_FromEntity(entityType: string, isMyHousehold = fals
     case Connect_Entity.FeedItem:
       return Type_ShareObject.Feed;
     default:
+      if (isMyHousehold) return Type_ShareObject.MyHousehold;
       throw new UserException('Share not available', 'UBTConnect.InvalidAction');
   }
 }

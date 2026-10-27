@@ -1,13 +1,21 @@
 # How to continue the clarify-screens work in a new session
 
-Status on 2026-10-27, end of the third session: the clarify work is complete.
+Status on 2026-10-27, end of the fourth session: the clarify work is complete and the minor findings are fixed.
+- Minor findings wave (2026-10-27): 49 of 56 fixed in `app/`, 4 withdrawn, 2 kept by decision, 1 open
+  (`fixes/README.md`, `fixes/manifest.json`, one note per group). Report §5 has a "Status" column; the checklist rows
+  of a fixed finding are `match` with `fixed: 2026-10-27`. Tool: `tools/apply_fixes.py <manifest>`.
+- Gates after the wave: typecheck, lint (0 errors), arch, 4060 tests, parity sweep (`fixes/README.md`).
 - All 45 units are judged (`INDEX.md`: 5412 rows, unclear 5).
 - The follow-up pass, the Orbit block pass and 4 read-only TST captures are done (`review/followup.md`,
   `review/orbit-blocks.md`, `review/captures.md`).
 - P2 is written (`architecture-current.md`, `infra-gaps.md`, `dev-ahead.md`).
 - The user answered every question (`decisions.md`, 59 rows).
 
+Earlier status (third session): the clarify work was complete before the fix wave.
+
 Open items for the user:
+- Legacy_OrbitEventsFlow F4: keep decision W34 (a) (the rows are `differs` by W34) or reverse it (about 20 hooks).
+- App_Policies F2: `networkMode: 'always'` on the pending-policies query (group C), or `'online'` as feed and member.
 - Notes F2 (major, new from the capture): decide build or record.
 - Directory_Updates rows 073/074: allow a capture with the `MarkAsRead` write, or decide.
 - Directory_Photobook rows 074/076/105: one recorded decision on the Splide move log (not ported, or ported via the
@@ -35,8 +43,8 @@ Open items for the user:
 1. Record the user's decisions on the open items above with `python3 migration/clarify/tools/answers.py set <Flow>
    <Qn|Cn> "<answer>" --date YYYY-MM-DD`, then `python3 migration/clarify/tools/collect.py` and
    `python3 migration/clarify/tools/aggregate.py`.
-2. Keep the artifact in step with the documents: after a change, rebuild and republish to the same URL (see above);
-   never publish a change the user did not see.
+2. Keep the artifacts in step with the documents. After a change, rebuild and republish to the same URL (see above).
+   The user allows a publish without an accept step (2026-10-27).
 3. When the user orders a build: one route or block at a time, from the TST compiled code (`tools/tst_source.py`).
    Each build goes through the parity gate of the migration. The commit message names the report row ids.
 

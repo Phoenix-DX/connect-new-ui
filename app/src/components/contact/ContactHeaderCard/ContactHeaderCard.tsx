@@ -3,8 +3,9 @@ import { CustomContainer } from '@/components/ui/CustomContainer';
 import { UBT_Color, UBT_FontSize, UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 
 export interface ContactHeaderCardProps {
-  /** Source of the header image; undefined → the image has no src attribute. The page resolves an OutSystems
-      asset with `osImage`. */
+  /** Source of the header image. "" → `src=""` as the OutSystems Image widget renders an empty External URL
+      (ContactByEmailLDMCoordinator without In_AvatarURL); undefined → no src attribute. The page resolves an
+      OutSystems asset with `osImage`. */
   imageSrc?: string;
   /** The first line (Neutral10 / Base / Bold). */
   title: string;
@@ -18,6 +19,11 @@ export interface ContactHeaderCardProps {
     `contact-by-email__header` (Neutral2 background, padding y XS, margin bottom Base) > the image
     `contact-by-email__header__img`, the title line and, when given, the subtitle line (both padding top XS). The
     blocks keep the instance ids of the screens ($b3 to $b5). */
+/** React 19 drops an empty `src`; the OutSystems Image widget keeps it (`<img src="">`). Set it after the commit. */
+const keepEmptySrc = (url: string | undefined) => (img: HTMLImageElement | null) => {
+  if (img && url === '') img.setAttribute('src', '');
+};
+
 export function ContactHeaderCard({ imageSrc, title, subtitle }: ContactHeaderCardProps) {
   return (
     <div className="text-align-center" data-container="">
@@ -31,7 +37,12 @@ export function ContactHeaderCard({ imageSrc, title, subtitle }: ContactHeaderCa
         }}
       >
         <div data-container="">
-          <img className="contact-by-email__header__img" data-image="" src={imageSrc} />
+          <img
+            ref={keepEmptySrc(imageSrc)}
+            className="contact-by-email__header__img"
+            data-image=""
+            src={imageSrc === '' ? undefined : imageSrc}
+          />
         </div>
         <CustomContainer
           id="$b4"

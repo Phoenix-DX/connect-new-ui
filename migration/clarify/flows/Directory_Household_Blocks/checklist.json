@@ -721,11 +721,12 @@
    "react": "not found. searched: wasCurrentViewRestoredFromCache, IsRestoredFromCache, viewCache, isViewRestored in app/src/pages/Locality_Details/hooks/useHouseholdCardMembers.ts and components/Household_Card.tsx",
    "evidence": "app/src/pages/Locality_Details/hooks/useHouseholdCardMembers.ts:33-45; TST UBTConnect.Directory_Household_Blocks.Household_Card.mvc.js:478-490,622-624; migration/app-shell.spec.md:351,386; app/docs/reference/stack.md:228",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST Household_Card.mvc.js:478-490 and :622-624: OnReady ends when wasCurrentViewRestoredFromCache() is true, so Back keeps the cached avatars and makes no call. React keeps the card state in useState, outside the view cache (platform/navigation/viewCache.ts:3-8 restores query data and useViewState values only). After Back, the card shows two skeleton avatars and calls again. Decision U19 (app-shell.spec.md:351,386): Back restores without a spinner. F40 (stack.md:228, page-template.md:98-101) allows a new call only when the saved state has no data.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/E-directory.md). TST Household_Card.mvc.js:478-490 and :622-624: OnReady ends when wasCurrentViewRestoredFromCache() is true, so Back keeps the cached avatars and makes no call. React keeps the card state in useState, outside the view cache (platform/navigation/viewCache.ts:3-8 restores query data and useViewState values only). After Back, the card shows two skeleton avatars and calls again. Decision U19 (app-shell.spec.md:351,386): Back restores without a spinner. F40 (stack.md:228, page-template.md:98-101) allows a new call only when the saved state has no data.",
+   "verified": "live",
    "finding": "F1",
-   "severity": "minor"
+   "severity": "minor",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Household_Blocks-059",

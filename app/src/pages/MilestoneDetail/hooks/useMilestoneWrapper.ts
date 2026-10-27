@@ -26,7 +26,11 @@ export interface MilestoneWrapperFlows {
     notification with every optional input set (In_HostId, In_OrbitMilestoneTypeId, In_MilestoneName) nothing either;
     otherwise IsFetchingData, UserMemberId = TextToInteger(AppManager_GetCachedUserInfo.MemberId) and
     GetGmpMilestoneHost, whose OnAfterFetch sets IsFetchingData False. Decision W23: an answer after
-    the unmount writes no state. */
+    the unmount writes no state.
+    A failed GetGmpMilestoneHost: TST runs OnAfterFetch only in the `.then` of callDataAction (block:1135-1143), and
+    the runtime rejects without that step (OutSystems.js callServerDataSource). So IsFetchingData stays True and the error goes from
+    OnReady to the flow handler (useFlowState). The UnknownError handler of OnAfterFetch (block:1156-1202) guards
+    only its own assignment; it does not run for a failed fetch. */
 export function useMilestoneWrapper(inputs: MilestoneDetailInputs): MilestoneWrapperFlows {
   const { state, dispatch, latest, parameters } = useFlowState({
     viewName: 'Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper',

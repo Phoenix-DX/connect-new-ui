@@ -100,8 +100,8 @@ def main():
     # findings by severity
     out.append("## 2. Findings by severity (blocker and major first)")
     out.append("")
-    out.append("| Flow | Id | Severity | Screen / element | Finding | React location |")
-    out.append("|---|---|---|---|---|---|")
+    out.append("| Flow | Id | Severity | Screen / element | Finding | React location | Status |")
+    out.append("|---|---|---|---|---|---|---|")
     allf = []
     for fl, d in data.items():
         if not d:
@@ -111,7 +111,7 @@ def main():
                 allf.append((SEV.index(r[1].lower()) if r[1].lower() in SEV else 9, fl, r))
     for _, fl, r in sorted(allf, key=lambda x: (x[0], x[1])):
         if r[1].lower() in ("blocker", "major", "minor"):
-            out.append(f"| {fl} | {r[0]} | {r[1]} | {r[2]} | {r[3]} | {r[4] if len(r) > 4 else ''} |")
+            out.append(f"| {fl} | {r[0]} | {r[1]} | {r[2]} | {r[3]} | {r[4] if len(r) > 4 else ''} | {r[6] if len(r) > 6 else ''} |")
     info = [(fl, r) for _, fl, r in allf if r[1].lower() == "info"]
     out.append("")
     out.append(f"Info findings: {len(info)} (in the reports, §5).")

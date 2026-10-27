@@ -300,11 +300,12 @@
    "react": "app/src/pages/ConnectShare/hooks/connectShareState.ts:68-71 `return { path: '/UBTConnect/HouseholdDetails', params: { HouseholdId: textToLongInteger(attributesId) } };`",
    "evidence": "app/src/pages/ConnectShare/hooks/useConnectShare.ts:122; app/src/pages/ConnectShare/hooks/connectShareState.ts:66-87; app/src/platform/navigation/osNavigate.ts:22-23,92-96; TST ConnectShare.mvc.js:461-485",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST ConnectShare.mvc.js:461-464 uses TransitionAnimation.None. React line 122 `navigate(target.path, target.params)` passes no `transition` option; osNavigate.ts:22-23 says the default is SlideFromRight. Same for the three rows below. Judge: check goTo for a transition rule. Judge: TST ConnectShare.mvc.js:461-485 uses createTransition(TransitionAnimation.None) on the four navigations. React navigate(target.path, target.params) (useConnectShare.ts:122) passes no transition, so goTo (osNavigate.ts:92-96) uses DEFAULT_TRANSITION, the app's SlideFromRight (osNavigate.ts:22-23). CR-F18-1 ports the compiled transitions 1:1; its call-site list names ConnectShare.mvc.js:293 only. TST converts the id with IntegerToLongInteger(TextToInteger(id)), React with textToLongInteger(id)",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/A-shell.md). TST ConnectShare.mvc.js:461-464 uses TransitionAnimation.None. React line 122 `navigate(target.path, target.params)` passes no `transition` option; osNavigate.ts:22-23 says the default is SlideFromRight. Same for the three rows below. Judge: check goTo for a transition rule. Judge: TST ConnectShare.mvc.js:461-485 uses createTransition(TransitionAnimation.None) on the four navigations. React navigate(target.path, target.params) (useConnectShare.ts:122) passes no transition, so goTo (osNavigate.ts:92-96) uses DEFAULT_TRANSITION, the app's SlideFromRight (osNavigate.ts:22-23). CR-F18-1 ports the compiled transitions 1:1; its call-site list names ConnectShare.mvc.js:293 only. TST converts the id with IntegerToLongInteger(TextToInteger(id)), React with textToLongInteger(id)",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_Share-024",
@@ -315,11 +316,12 @@
    "react": "app/src/pages/ConnectShare/hooks/connectShareState.ts:72-76 params { In_OneSchoolGlobalId: textToLongInteger(attributesId) }",
    "evidence": "app/src/pages/ConnectShare/hooks/useConnectShare.ts:122; app/src/pages/ConnectShare/hooks/connectShareState.ts:66-87; app/src/platform/navigation/osNavigate.ts:22-23,92-96; TST ConnectShare.mvc.js:461-485",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST ConnectShare.mvc.js:469-471; transition note as above. Judge: TST ConnectShare.mvc.js:461-485 uses createTransition(TransitionAnimation.None) on the four navigations. React navigate(target.path, target.params) (useConnectShare.ts:122) passes no transition, so goTo (osNavigate.ts:92-96) uses DEFAULT_TRANSITION, the app's SlideFromRight (osNavigate.ts:22-23). CR-F18-1 ports the compiled transitions 1:1; its call-site list names ConnectShare.mvc.js:293 only. TST converts the id with IntegerToLongInteger(TextToInteger(id)), React with textToLongInteger(id)",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/A-shell.md). TST ConnectShare.mvc.js:469-471; transition note as above. Judge: TST ConnectShare.mvc.js:461-485 uses createTransition(TransitionAnimation.None) on the four navigations. React navigate(target.path, target.params) (useConnectShare.ts:122) passes no transition, so goTo (osNavigate.ts:92-96) uses DEFAULT_TRANSITION, the app's SlideFromRight (osNavigate.ts:22-23). CR-F18-1 ports the compiled transitions 1:1; its call-site list names ConnectShare.mvc.js:293 only. TST converts the id with IntegerToLongInteger(TextToInteger(id)), React with textToLongInteger(id)",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_Share-025",
@@ -330,11 +332,12 @@
    "react": "app/src/pages/ConnectShare/hooks/connectShareState.ts:77-78 params { FeedItemId: attributesId }",
    "evidence": "app/src/pages/ConnectShare/hooks/useConnectShare.ts:122; app/src/pages/ConnectShare/hooks/connectShareState.ts:66-87; app/src/platform/navigation/osNavigate.ts:22-23,92-96; TST ConnectShare.mvc.js:461-485",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST ConnectShare.mvc.js:476-478; transition note as above. Judge: TST ConnectShare.mvc.js:461-485 uses createTransition(TransitionAnimation.None) on the four navigations. React navigate(target.path, target.params) (useConnectShare.ts:122) passes no transition, so goTo (osNavigate.ts:92-96) uses DEFAULT_TRANSITION, the app's SlideFromRight (osNavigate.ts:22-23). CR-F18-1 ports the compiled transitions 1:1; its call-site list names ConnectShare.mvc.js:293 only",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/A-shell.md). TST ConnectShare.mvc.js:476-478; transition note as above. Judge: TST ConnectShare.mvc.js:461-485 uses createTransition(TransitionAnimation.None) on the four navigations. React navigate(target.path, target.params) (useConnectShare.ts:122) passes no transition, so goTo (osNavigate.ts:92-96) uses DEFAULT_TRANSITION, the app's SlideFromRight (osNavigate.ts:22-23). CR-F18-1 ports the compiled transitions 1:1; its call-site list names ConnectShare.mvc.js:293 only",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_Share-026",
@@ -345,11 +348,12 @@
    "react": "app/src/pages/ConnectShare/hooks/connectShareState.ts:79-83 params { In_SubdivsionId: textToLongInteger(attributesId) }",
    "evidence": "app/src/pages/ConnectShare/hooks/useConnectShare.ts:122; app/src/pages/ConnectShare/hooks/connectShareState.ts:66-87; app/src/platform/navigation/osNavigate.ts:22-23,92-96; TST ConnectShare.mvc.js:461-485",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST ConnectShare.mvc.js:483-485; transition note as above. Judge: TST ConnectShare.mvc.js:461-485 uses createTransition(TransitionAnimation.None) on the four navigations. React navigate(target.path, target.params) (useConnectShare.ts:122) passes no transition, so goTo (osNavigate.ts:92-96) uses DEFAULT_TRANSITION, the app's SlideFromRight (osNavigate.ts:22-23). CR-F18-1 ports the compiled transitions 1:1; its call-site list names ConnectShare.mvc.js:293 only. TST converts the id with IntegerToLongInteger(TextToInteger(id)), React with textToLongInteger(id)",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/A-shell.md). TST ConnectShare.mvc.js:483-485; transition note as above. Judge: TST ConnectShare.mvc.js:461-485 uses createTransition(TransitionAnimation.None) on the four navigations. React navigate(target.path, target.params) (useConnectShare.ts:122) passes no transition, so goTo (osNavigate.ts:92-96) uses DEFAULT_TRANSITION, the app's SlideFromRight (osNavigate.ts:22-23). CR-F18-1 ports the compiled transitions 1:1; its call-site list names ConnectShare.mvc.js:293 only. TST converts the id with IntegerToLongInteger(TextToInteger(id)), React with textToLongInteger(id)",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_Share-027",
@@ -672,11 +676,12 @@
    "react": "app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx:48-54 `getUserInformation().then((info) => { setUserAgeVisibility(info.Directory_UserCurrent.Directory_UserCurrent_Visibility.DisplayAge); })`",
    "evidence": "app/src/pages/LegacyShareObject/LegacyShareObjectPage.tsx:39,47-54; app/src/pages/LegacyShareObject/hooks/useShareObject.ts:60-67; TST LegacyShareObject.mvc.js _onInitialize$Action (executeAsyncFlow), onInitializeEventHandler line 353; migration/runtime-sources/OutSystems.js:17",
    "tst": "present",
-   "verdict": "partial",
-   "note": "Order: TST OnInitialize (LegacyShareObject.mvc.js:271-287) is a screen OnInitialize, awaited before the view; React runs it in an effect after the render, 'after the OnReady of the block' (page line 47). So ScreenBlock_ShareObject OnReady (useShareObject.ts:90 reads parametersRef.current) can start with User_AgeVisibility false. Judge: confirm with the captured call order (parity-exemptions.json:1596 names calls GetHouseholdDetails ts 4593 before AfterInitialize ts 5166). Judge: TST: the runtime creates the view only after the async OnInitialize ends, so ScreenBlock_ShareObject starts with the user's DisplayAge. React runs OnInitialize in a page effect after the child block's OnReady effect, which reads User_AgeVisibility False. The comment 'as in the old port' is not a decision",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/G1-content.md). Order: TST OnInitialize (LegacyShareObject.mvc.js:271-287) is a screen OnInitialize, awaited before the view; React runs it in an effect after the render, 'after the OnReady of the block' (page line 47). So ScreenBlock_ShareObject OnReady (useShareObject.ts:90 reads parametersRef.current) can start with User_AgeVisibility false. Judge: confirm with the captured call order (parity-exemptions.json:1596 names calls GetHouseholdDetails ts 4593 before AfterInitialize ts 5166). Judge: TST: the runtime creates the view only after the async OnInitialize ends, so ScreenBlock_ShareObject starts with the user's DisplayAge. React runs OnInitialize in a page effect after the child block's OnReady effect, which reads User_AgeVisibility False. The comment 'as in the old port' is not a decision",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_Share-052",
@@ -752,11 +757,12 @@
    "react": "app/src/pages/LegacyShareObject/hooks/useShareObject.ts:54-59 useShareObjectTypeLabelQuery({ShareObjectTypeId, ObjectId, In_CustomTitle, User_AgeVisibility}); api/share/repository.ts:31-35",
    "evidence": "app/src/pages/LegacyShareObject/hooks/useShareObject.ts:54-59",
    "tst": "present",
-   "verdict": "partial",
-   "note": "mock: app/src/pages/LegacyShareObject/mocks.ts:53-70 (recorded for Household; other types echo the type id as Label). Production needs the aggregate of Connect2_LegacyShared (Type_ShareObject static entity). Judge: when DisplayAge is True, the late change of User_AgeVisibility changes the query key (useShareObject.ts:25-30) and React fetches GetShareObjectTypeById a second time; TST fetches it once (OnParametersChanged, ScreenBlock_ShareObject.mvc.js:932-944, does not fire: the input is set before the block exists). Server side: row 081",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/G1-content.md). mock: app/src/pages/LegacyShareObject/mocks.ts:53-70 (recorded for Household; other types echo the type id as Label). Production needs the aggregate of Connect2_LegacyShared (Type_ShareObject static entity). Judge: when DisplayAge is True, the late change of User_AgeVisibility changes the query key (useShareObject.ts:25-30) and React fetches GetShareObjectTypeById a second time; TST fetches it once (OnParametersChanged, ScreenBlock_ShareObject.mvc.js:932-944, does not fire: the input is set before the block exists). Server side: row 081",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_Share-058",
@@ -780,11 +786,12 @@
    "react": "app/src/pages/LegacyShareObject/hooks/useShareObject.ts:91-97 fetchHouseholdShareCard({ HouseholdId: textToLongInteger(objectId), User_AgeVisibility, CheckVisibility: false })",
    "evidence": "app/src/pages/LegacyShareObject/hooks/useShareObject.ts:91-97",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST ScreenBlock_ShareObject.mvc.js:1044; mock ServiceAPIGetHouseholdDetails at app/src/pages/LegacyShareObject/mocks.ts:76. Judge: React sends User_AgeVisibility False to GetHouseholdDetails when the user's DisplayAge is True (row 051). Server side: row 093",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/G1-content.md). TST ScreenBlock_ShareObject.mvc.js:1044; mock ServiceAPIGetHouseholdDetails at app/src/pages/LegacyShareObject/mocks.ts:76. Judge: React sends User_AgeVisibility False to GetHouseholdDetails when the user's DisplayAge is True (row 051). Server side: row 093",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_Share-060",

@@ -19,9 +19,10 @@ export interface PhotobookFlows {
 }
 
 /** The state and the flows of the screen. The state comes from useFlowState and the view cache keeps it.
-    - The data action runs at start on a new visit. A view that the view cache restores with its list shows that list
-      and does not call again, as in the old port (its query, never stale, came back from the view cache). A view
-      restored without a list (left before the answer) calls again, with its saved variables.
+    - The data action (Fetch At start) runs on every visit. A view that the view cache restores keeps its saved state
+      (OnInitialize: IsViewRestoredFromCache sets nothing, Photobook.mvc.js:500-515) and shows its saved list at once;
+      the call refreshes it in the background, without the loading state (pattern P-BACK), and its OnAfterFetch sets
+      the list, SelectedHousehold.Position and IsLoading again.
     - Decision W23: the call that started runs to its end after an unmount, but its state write stops (`isAlive`).
     - A failure goes to the flow handler only while the screen is there, as in the old port (the query of the old
       port had no observer after the unmount). */
@@ -37,11 +38,10 @@ export function usePhotobook(inputs: PhotobookInputs): PhotobookFlows {
     initial: initialPhotobookState(inputs),
     parameters: inputs,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive, restored) => {
+    onReady: (isAlive) => {
       newestReadyRun.current = isAlive;
       if (readyStarted.current) return Promise.resolve();
       readyStarted.current = true;
-      if (restored && latest.current.households !== null) return Promise.resolve();
       return fetchAtStart();
     },
   });

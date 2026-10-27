@@ -1420,11 +1420,12 @@
    "react": "app/src/pages/LDM_EventDetail_V2/hooks/useLdmEventDetail.ts:245-247 `dispatch({ contactByPhoneData: hostPhoneCallData(host) })` (builder ldmEventDetailState.ts:124)",
    "evidence": "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js:2316-2397, :2341-2347",
    "tst": "present",
-   "verdict": "partial",
-   "note": "Phone, MobilePhone, HomePhone, WorkPhone, Name, Locality, Timezone, ShowPopup, CountryName match ED :2341-2385. TST also sets ContactPopupData.EntityTypeId = Connect_Entity2.household (:2360); hostContactPopupData omits it and ContactPopup reads it (app/src/components/contact/ContactPopup/ContactPopup.tsx:124)",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/G2-orbit-ldm.md). Phone, MobilePhone, HomePhone, WorkPhone, Name, Locality, Timezone, ShowPopup, CountryName match ED :2341-2385. TST also sets ContactPopupData.EntityTypeId = Connect_Entity2.household (:2360); hostContactPopupData omits it and ContactPopup reads it (app/src/components/contact/ContactPopup/ContactPopup.tsx:124)",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F5"
+   "finding": "F5",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-110",
@@ -2165,11 +2166,12 @@
    "react": "not found (searched: SwipeUp, onHandle_SwipeUp in pages/LDM_MyEvents_V2); MyTimeline_V2.tsx:35 comment 'SwipeUp: not ported, the swipe gesture of the web is out of scope'",
    "evidence": "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2.mvc.js:2335-2368, :780",
    "tst": "present",
-   "verdict": "missing",
-   "note": "reachable on TST: MyTimeline_V2 raises EventsSwipeUp from its SwipeEvents on the empty timeline (MT :737-760); no decision records the drop",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/G2-orbit-ldm.md). reachable on TST: MyTimeline_V2 raises EventsSwipeUp from its SwipeEvents on the empty timeline (MT :737-760); no decision records the drop",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-167",
@@ -2679,10 +2681,12 @@
    "os": "on the ErrorScreen (no events): swipe up raises EventsSwipeUp (MT :737-760) → ScreenBlock OnHandle_SwipeUp (row 166)",
    "react": "not ported (MyTimeline_V2.tsx:35 comment)",
    "evidence": "MT :737-760; MyTimeline_V2.tsx:35",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/G2-orbit-ldm.md)."
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-206",
@@ -2760,10 +2764,12 @@
    "os": "GetNetworkStatus; offline: ShowFeedbackMessage \"Please check your network connection and try again\" Info (EG :867); online: FlipHouseholdName, Trigger OnClick_Message",
    "react": "emailClicked returns without a message when offline EventCard_Guests.tsx:89",
    "evidence": "EG :825-870; EventCard_Guests.tsx:88-100",
-   "verdict": "partial",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F4"
+   "finding": "F4",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/G2-orbit-ldm.md)."
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-213",

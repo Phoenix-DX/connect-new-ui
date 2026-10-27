@@ -59,7 +59,7 @@ def main():
             kb[fl] = [r for r in s6 if r and re.match(r"K\d+$", r[0])]
             for r in table_rows(section(rep, 5)):
                 if len(r) >= 4 and r[1].lower() in ("blocker", "major", "minor", "info"):
-                    findings.append((r[1].lower(), fl, r[0], r[2][:120], r[3]))
+                    findings.append((r[1].lower(), fl, r[0], r[2][:120], r[3], r[6] if len(r) > 6 else ""))
     out = ["# Aggregate of the 45 checklists (input of the P2 synthesis)", "",
            f"Rows: {sum(counts.values())}; " + ", ".join(f"{k} {v}" for k, v in sorted(counts.items())), ""]
     out.append("## 1. Server and service actions behind mock-only rows (production needs a backend for each)")
@@ -88,11 +88,11 @@ def main():
     out.append("")
     out.append("## 5. Findings by severity")
     out.append("")
-    out.append("| Severity | Flow | Id | Element | Finding |")
-    out.append("|---|---|---|---|---|")
+    out.append("| Severity | Flow | Id | Element | Finding | Status |")
+    out.append("|---|---|---|---|---|---|")
     order = {"blocker": 0, "major": 1, "minor": 2, "info": 3}
-    for sev, fl, fid, el, txt in sorted(findings, key=lambda x: (order[x[0]], x[1])):
-        out.append(f"| {sev} | {fl} | {fid} | {el} | {txt} |")
+    for sev, fl, fid, el, txt, st in sorted(findings, key=lambda x: (order[x[0]], x[1])):
+        out.append(f"| {sev} | {fl} | {fid} | {el} | {txt} | {st} |")
     out.append("")
     out.append("## 6. Rows still unclear")
     out.append("")

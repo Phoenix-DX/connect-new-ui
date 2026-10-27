@@ -203,11 +203,12 @@
    "os": "case IsMyHousehold -> Type_ShareObject.MyHousehold (tested after the entity cases)",
    "react": "app/src/lib/ubtConnect/actions.ts:185-186 `return isMyHousehold ? Type_ShareObject.MyHousehold : Type_ShareObject.Household;` (inside the Household case)",
    "evidence": "app/src/lib/ubtConnect/actions.ts:185-186",
-   "verdict": "partial",
-   "note": "Differs in structure: TST (UBTConnect.controller.js:11100-11215) tests entityType Household first and returns Household whatever IsMyHousehold is; IsMyHousehold = true alone (other entity type) returns MyHousehold. React returns MyHousehold for Household + isMyHousehold and throws for other types even when isMyHousehold is true. TST UC:11100-11215: Household returns Household whatever IsMyHousehold is; IsMyHousehold alone (no entity case) returns MyHousehold. Latent: the only React caller passes false (containers/EntityDetailsActions/entityDetailsActionsState.ts:83).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Fixed 2026-10-27 (fixes/A-shell.md). Differs in structure: TST (UBTConnect.controller.js:11100-11215) tests entityType Household first and returns Household whatever IsMyHousehold is; IsMyHousehold = true alone (other entity type) returns MyHousehold. React returns MyHousehold for Household + isMyHousehold and throws for other types even when isMyHousehold is true. TST UC:11100-11215: Household returns Household whatever IsMyHousehold is; IsMyHousehold alone (no entity case) returns MyHousehold. Latent: the only React caller passes false (containers/EntityDetailsActions/entityDetailsActionsState.ts:83).",
+   "verified": "live",
    "severity": "minor",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "_shared-018",

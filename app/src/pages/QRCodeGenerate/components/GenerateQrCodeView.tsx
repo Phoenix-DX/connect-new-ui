@@ -14,6 +14,13 @@ const MENU_ACTION_AUTO = 'Auto';
 
 const NO_QR_CODE = "Unfortunately the QR Code couldn't be generated. Please try again later.";
 
+/** An Image of type External renders src = URL, also an empty URL: `src=""` (OutSystemsReactWidgets.js
+    prepareImageAttributes; ScreenBlock_GenerateQRCode.mvc.js:337-339 has no default image). React 19 drops an empty
+    src from the DOM, so the ref writes it after the commit. */
+const keepEmptySrc = (url: string) => (img: HTMLImageElement | null) => {
+  if (img && url === '') img.setAttribute('src', '');
+};
+
 export interface GenerateQrCodeViewProps {
   /** OutSystems instance id of the block (`$b1`). */
   id: string;
@@ -62,7 +69,12 @@ export function GenerateQrCodeView({
   const memberPass = (
     <div className="orbit-qrcode-member-cont" data-container="">
       <div className="orbit-member-photo-cont" data-container="">
-        <img className="orbit-member-photo" data-image="" src={userSignedURL === '' ? undefined : userSignedURL} />
+        <img
+          ref={keepEmptySrc(userSignedURL)}
+          className="orbit-member-photo"
+          data-image=""
+          src={userSignedURL === '' ? undefined : userSignedURL}
+        />
       </div>
       <div className="bold font-size-1-1em full-width margin-top-base text-align-center" data-container="">
         <span data-expression="">{userName}</span>

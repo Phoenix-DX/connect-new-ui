@@ -57,6 +57,8 @@ export interface LdmMyEventsFlows {
   onMessage: (data: UI_ContactByMessage_WrapperData) => void;
   /** The TryAgain event of the timeline (the network warning): GetMyTimelineData. */
   onTryAgain: () => void;
+  /** OnHandle_SwipeUp: the EventsSwipeUp event of the timeline (a swipe up on the empty timeline). */
+  onSwipeUp: () => Promise<void>;
   /** OnHandle_ContactByPhonePopupEvent_Cancel and _Call: the phone popup closes. */
   onContactByPhoneClose: () => void;
   /** OnHandle_ContactByMessage_Cancel: the message popup closes (also for Call and the message channels). */
@@ -75,6 +77,8 @@ export interface LdmMyEventsFlows {
       IsFetchingMyTimeline False and raises UnknownError with its message.
     - OnScrollEnding_MyTimeline: when no fetch runs, the list is not filtered and the window is not too old, the window
       moves 24 months back and GetMyTimelineData runs.
+    - OnHandle_SwipeUp (ScreenBlock_MyEvents_V2 :2335-2368): IncrementMyTimelineDates (the window moves 24 months back), then the refresh
+      of GetEventsForMyTimeline and its OnAfterFetch, without IsFetchingMyTimeline and without an error handler.
     - The event, household and contact handlers: audit events, the upgrade popup for a disabled record, the contact
       popups and the block events.
     OnReady runs once per instance. Decision W23: after the unmount, a started flow skips its state writes, and its
@@ -111,18 +115,24 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
     if (alive.current()) dispatch(action);
   };
 
+  /** Refresh Query GetEventsForMyTimeline: a failed fetch sets HasFetchError; OnAfterFetch replaces or appends the
+      lists. */
+  async function refreshGetEventsForMyTimeline(): Promise<void> {
+    let data: MyTimelineData;
+    try {
+      data = await fetchEventsForMyTimeline(myTimelineCallInputs(latest.current));
+    } catch (e) {
+      write({ type: 'fetchFailed' });
+      throw e;
+    }
+    write({ type: 'fetched', data });
+  }
+
   async function getMyTimelineData(): Promise<void> {
     write({ type: 'fetchStarted' });
     const start = getCurrentTimeInMill();
     try {
-      let data: MyTimelineData;
-      try {
-        data = await fetchEventsForMyTimeline(myTimelineCallInputs(latest.current));
-      } catch (e) {
-        write({ type: 'fetchFailed' });
-        throw e;
-      }
-      write({ type: 'fetched', data });
+      await refreshGetEventsForMyTimeline();
       write({ type: 'fetchEnded' });
       addAuditEvent_LDM('RequestAPI_CalendarEvents', { RequestTime: String(getCurrentTimeInMill() - start) });
     } catch (e) {
@@ -149,6 +159,13 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
     await getMyTimelineData();
   }
 
+  /** OnHandle_SwipeUp (ScreenBlock_MyEvents_V2 :2335-2368): IncrementMyTimelineDates, then Refresh Query
+      GetEventsForMyTimeline. The action has no exception handler: an error goes to the flow handler. */
+  async function onHandleSwipeUp(): Promise<void> {
+    write({ type: 'olderWindowSet' });
+    await refreshGetEventsForMyTimeline();
+  }
+
   async function onHandleHouseholdClicked(click: HouseholdClick): Promise<void> {
     if (!click.isHouseholdDisplayed) return;
     if (click.recordDisabled) {
@@ -162,6 +179,7 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
   return {
     state,
     onScrollEnding: () => onScrollEndingMyTimeline().catch(raiseToFlowHandler),
+    onSwipeUp: () => onHandleSwipeUp().catch(raiseToFlowHandler),
     onEventClicked: (eventHostId, eventId) => {
       addAuditEvent_LDM('MyTimelineEventClicked', { EventHostId: eventHostId });
       eventsRef.current.onNavigateToEventDetail(eventHostId, eventId);

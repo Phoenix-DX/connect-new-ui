@@ -42,7 +42,7 @@ export interface BrowseDirectoryFlows {
   onMarkerClicked: NonNullable<DirectoryMapProps['onOnMarkerClicked']>;
   /** Handler_StatisticsList_Clicked: the Event_Clicked of StatisticsList, and the link of a map popup. */
   onStatisticsListClicked: (localityId: string) => void;
-  /** StatisticsListOnParametersChhanged: the OnParametersChangedEv event of StatisticsList. */
+  /** StatisticsListOnParametersChhanged: the OnParametersChangedEv event of StatisticsList (Map_InvalidateSize). */
   onStatisticsListParametersChanged: () => void;
 }
 
@@ -149,9 +149,11 @@ export function useBrowseDirectory(inputs: BrowseDirectoryInputs): BrowseDirecto
     onStatisticsListClicked: (localityId) => {
       statisticsListClicked(localityId).catch(raiseToFlowHandler);
     },
+    // StatisticsListOnParametersChhanged (BrowseDirectory.mvc.js:1025-1040): Map_InvalidateSize only, once the map
+    // exists (no Map_FitBoundsAuto, unlike Action_InvalidateMapSize).
     onStatisticsListParametersChanged: () => {
       try {
-        invalidateMapSize();
+        if (localMapId.current !== '') map_InvalidateSize(localMapId.current);
       } catch (error) {
         raiseToFlowHandler(error);
       }

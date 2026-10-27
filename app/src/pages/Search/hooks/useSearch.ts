@@ -32,6 +32,7 @@ import {
   saveRecentSearchTerm,
 } from '@/platform/storage/localEntities';
 import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
+import { Type_SearchTarget } from '@/pages/Search/components/staticEntities';
 import type { Tag } from '@/components/ui/HorizontalTagList';
 import {
   INITIAL_SEARCH_STATE,
@@ -52,11 +53,12 @@ export interface SearchInputs {
   inSearchTargetId: string;
 }
 
-/** The inputs of the block on the Search screen. */
+/** The inputs of the block on the Search screen: the defaults of ScreenBlock_Search (ScreenBlock_Search.mvc.js:110-122;
+    In_SearchTargetId = Entities.Type_SearchTarget.Global). */
 export const SEARCH_SCREEN_INPUTS: SearchInputs = {
   inIsInScreenSearch: false,
   inIsEventNavigation: false,
-  inSearchTargetId: '',
+  inSearchTargetId: Type_SearchTarget.Global,
 };
 
 /** The events of ScreenBlock_Search. */
