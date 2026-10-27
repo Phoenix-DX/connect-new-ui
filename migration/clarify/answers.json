@@ -6,7 +6,7 @@
   "options": "(a) Keep no action, and record it under D3(a) (\"real B2C not migrated\"). (b) Copy the TST screen states: the spinner, the disabled Login button, then a mock IdP_OnResetPassword with a success toast. (c) Show an info toast: the reset is not available in the demo.",
   "recommendation": "(a): the real reset page is not migrated, and (b) needs a toast text that no capture shows.",
   "flow": "App_Common",
-  "answer": "(a): the real reset page is not migrated, and (b) needs a toast text that no capture shows.",
+  "answer": "(a) Keep no action, and record it under D3 — (a): the real reset page is not migrated, and (b) needs a toast text that no capture shows.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -18,7 +18,7 @@
   "options": "(a) Accept, and record it as a decision together with App_PIN Q1 (Connect_Logout on this path). (b) Keep the order, but call the AppManager_Logout steps only.",
   "recommendation": "(a): the end state is the same as on TST, and ADR-10 asks for the clear on logout.",
   "flow": "App_Common",
-  "answer": "(a): the end state is the same as on TST, and ADR-10 asks for the clear on logout.",
+  "answer": "(a) Accept, and record it as a decision together with App_PIN Q1 (Connect_Logout on this path) — (a): the end state is the same as on TST, and ADR-10 asks for the clear on logout.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -30,7 +30,7 @@
   "options": "(a) Fix the constant now, and build the dialog flow with the production identity provider. (b) Build AppManager_HandleDeviceAwarenessPopUp now as a mock scenario.",
   "recommendation": "(a): only the server login decides if a device is valid (KB UBT_AppManager `logic/device-awareness.md`).",
   "flow": "App_Common",
-  "answer": "(a): only the server login decides if a device is valid (KB UBT_AppManager `logic/device-awareness.md`).",
+  "answer": "(a) Fix the constant now, and build the dialog flow with the production identity provider — (a): only the server login decides if a device is valid (KB UBT_AppManager `logic/device-awareness.md`).",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -42,7 +42,7 @@
   "options": "(a) Keep the end of the app start. (b) Use the first render of the shell, without a wait for the app-start calls.",
   "recommendation": "(a): the routing after the animation needs the session state that the app start sets.",
   "flow": "App_Common",
-  "answer": "(a): the routing after the animation needs the session state that the app start sets.",
+  "answer": "(a) Keep the end of the app start — (a): the routing after the animation needs the session state that the app start sets.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -54,7 +54,7 @@
   "options": "(a) Accept, and record that the ADR-10 sign-out also covers this path. (b) Add a sign-out without `Cache_InvalidateEverything` for this path.",
   "recommendation": "(a): the user sees no difference, and ADR-10 already asks for the clear.",
   "flow": "App_PIN",
-  "answer": "(a): the user sees no difference, and ADR-10 already asks for the clear.",
+  "answer": "(a) Accept, and record that the ADR-10 sign-out also covers this path — (a): the user sees no difference, and ADR-10 already asks for the clear.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -66,7 +66,7 @@
   "options": "(a) Record it as not needed on the web now; port it with the native link plugins (U14). (b) Port the client variable now.",
   "recommendation": "(a): no reader runs on the web.",
   "flow": "App_PIN",
-  "answer": "(a): no reader runs on the web.",
+  "answer": "(a) Record it as not needed on the web now; port it with the native link plugins (U14) — (a): no reader runs on the web.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -78,7 +78,7 @@
   "options": "(a) Confirm the HomeFeed branch and record it on the PINUnlock row of the board. (b) Follow TST and navigate to the empty URL.",
   "recommendation": "(a): an empty URL gives no defined screen in a single-page app.",
   "flow": "App_PIN",
-  "answer": "(a): an empty URL gives no defined screen in a single-page app.",
+  "answer": "(a) Confirm the HomeFeed branch and record it on the PINUnlock row of the board — (a): an empty URL gives no defined screen in a single-page app.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -90,7 +90,7 @@
   "options": "(a) Read the action with the MCP (`getClientAction`, UBTConnect_Utils) in the review pass. (b) Read the TST copy of `UBTConnect_Utils.controller.js` (read-only static GET).",
   "recommendation": "(a): one MCP call settles it.",
   "flow": "App_Policies",
-  "answer": "(a): one MCP call settles it.",
+  "answer": "(a) Read the action with the MCP (`getClientAction`, UBTConnect_Utils) in the review pass — (a): one MCP call settles it.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -102,7 +102,7 @@
   "options": "(a) Store it in `localStorage[\"UUID\"]` as TST does, and record the decision. (b) Keep it in memory and record the decision on the board row.",
   "recommendation": "(a): the server gets the same device id as from the original app.",
   "flow": "App_Policies",
-  "answer": "(a): the server gets the same device id as from the original app.",
+  "answer": "(a) Store it in `localStorage[\"UUID\"]` as TST does, and record the decision — (a): the server gets the same device id as from the original app.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -114,7 +114,7 @@
   "options": "(a) Set gcTime 0 and refetchOnReconnect false on both queries; the view cache still restores a back navigation. (b) Keep the cache and record a decision.",
   "recommendation": "(a): it matches TST, and useCommunityPopulationQuery on the same screen already does it.",
   "flow": "Home",
-  "answer": "(a): it matches TST, and useCommunityPopulationQuery on the same screen already does it.",
+  "answer": "(a) Set gcTime 0 and refetchOnReconnect false on both queries; the view cache still restores a back navigation — (a): it matches TST, and useCommunityPopulationQuery on the same screen already does it.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -126,7 +126,7 @@
   "options": "(a) Build both from the compiled view now. (b) Capture the two states on TST first (read-only), then build. (c) Keep them as they are.",
   "recommendation": "(a): the tree and the options are in the TST code; a capture adds only the pixels.",
   "flow": "Home",
-  "answer": "(a): the tree and the options are in the TST code; a capture adds only the pixels.",
+  "answer": "(a) Build both from the compiled view now — (a): the tree and the options are in the TST code; a capture adds only the pixels.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -138,7 +138,7 @@
   "options": "(a) Check it on TST: open an update, go back, and watch the calls (read-only). (b) Accept the React refetch and record it under U19.",
   "recommendation": "(a): one read-only check settles it.",
   "flow": "Home",
-  "answer": "(a): one read-only check settles it.",
+  "answer": "(a) Check it on TST: open an update, go back, and watch the calls (read-only) — (a): one read-only check settles it.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -150,7 +150,7 @@
   "options": "(a) The review pass reads the flow handler on DEV with the MCP. (b) Fetch `UBTConnect.App_Menu.controller.js` from TST read-only, as U10 proposes.",
   "recommendation": "(b), then (a) when TST does not serve the file: TST is the source of truth.",
   "flow": "App_Menu",
-  "answer": "(b), then (a) when TST does not serve the file: TST is the source of truth.",
+  "answer": "(b) Fetch `UBTConnect.App_Menu.controller.js` from TST read-only, as U10 proposes — (b), then (a) when TST does not serve the file: TST is the source of truth.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -162,7 +162,7 @@
   "options": "(a) Keep `user` and `isFetched` with `useViewState`. (b) Keep the code and record the reason on the board or in a CR.",
   "recommendation": "(a): the runtime restores the screen variables, and the two other screens of the flow already do it.",
   "flow": "App_Menu",
-  "answer": "(a): the runtime restores the screen variables, and the two other screens of the flow already do it.",
+  "answer": "(a) Keep `user` and `isFetched` with `useViewState` — (a): the runtime restores the screen variables, and the two other screens of the flow already do it.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -174,7 +174,7 @@
   "options": "(a) Build the five fields, the Country list and the two OnChange actions as in TST. (b) Record a decision (board or ADR) that signed-out Contact Us is out of scope, and keep the placeholder.",
   "recommendation": "(a): TST shows the fields, and the flow is blocked without them.",
   "flow": "App_Menu_ContactUs",
-  "answer": "(a): TST shows the fields, and the flow is blocked without them.",
+  "answer": "(a) Build the five fields, the Country list and the two OnChange actions as in TST — (a): TST shows the fields, and the flow is blocked without them.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -186,7 +186,7 @@
   "options": "(a) Port ContactUs_Rate with a React equivalent of the OutSystems UI RangeSlider. (b) Record a decision that the rating is out of scope.",
   "recommendation": "(a): the block is small, and three rules depend on it.",
   "flow": "App_Menu_ContactUs",
-  "answer": "(a): the block is small, and three rules depend on it.",
+  "answer": "(a) Port ContactUs_Rate with a React equivalent of the OutSystems UI RangeSlider — (a): the block is small, and three rules depend on it.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -198,7 +198,7 @@
   "options": "(a) Fetch `UBTConnectLibrary.controller.js` from TST (static, read-only GET), add it to `migration/runtime-sources/`, and compare. (b) Accept the React expressions as they are.",
   "recommendation": "(a): the file is a static script, and the comparison is short.",
   "flow": "App_Menu_ContactUs",
-  "answer": "(a): the file is a static script, and the comparison is short.",
+  "answer": "(a) Fetch `UBTConnectLibrary.controller.js` from TST (static, read-only GET), add it to `migration/runtime-sources/`, and compare — (a): the file is a static script, and the comparison is short.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -210,7 +210,7 @@
   "options": "(a) Keep `LocalCacheControl_UserInformation` in the state and send the same variables as TST now. (b) Record the gap in the backend spec and keep the current call.",
   "recommendation": "(a): the change is small, and the request then has the TST shape.",
   "flow": "App_Menu_ContactUs",
-  "answer": "(a): the change is small, and the request then has the TST shape.",
+  "answer": "(a) Keep `LocalCacheControl_UserInformation` in the state and send the same variables as TST now — (a): the change is small, and the request then has the TST shape.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -222,7 +222,7 @@
   "options": "(a) Add a row `skip` with the reason \"DEV only, not on TST; revisit when TST deploys it\". (b) Build it now from the DEV model.",
   "recommendation": "(a): TST is the source of truth, and the screen has no entry point on TST.",
   "flow": "App_Notifications",
-  "answer": "(a): TST is the source of truth, and the screen has no entry point on TST.",
+  "answer": "(a) Add a row `skip` with the reason \"DEV only, not on TST; revisit when TST deploys it\" — (a): TST is the source of truth, and the screen has no entry point on TST.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -234,7 +234,7 @@
   "options": "(a) Port the branch. (b) Confirm with a read-only check of the callers of `EntitiesCarousel` on TST that no back navigation to Notifications carries a preload, and record it.",
   "recommendation": "(b): on TST, Notifications opens no carousel, and no item has a click handler.",
   "flow": "App_Notifications",
-  "answer": "(b): on TST, Notifications opens no carousel, and no item has a click handler.",
+  "answer": "(b) Confirm with a read-only check of the callers of `EntitiesCarousel` on TST that no back navigation to Notifications carries a preload, and record it — (b): on TST, Notifications opens no carousel, and no item has a click handler.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -246,7 +246,7 @@
   "options": "(a) Keep React on TST, and open a change request that lists the §6.1 rows for a rebuild when TST deploys them. (b) Build the DEV behaviour now behind a flag.",
   "recommendation": "(a): TST is the source of truth, and the DEV server calls (ToggleRead, Delete_Notifications, MarkAllAsReadNotifications) have no TST evidence yet.",
   "flow": "App_Notifications",
-  "answer": "(a): TST is the source of truth, and the DEV server calls (ToggleRead, Delete_Notifications, MarkAllAsReadNotifications) have no TST evidence yet.",
+  "answer": "(a) Keep React on TST, and open a change request that lists the §6.1 rows for a rebuild when TST deploys them — (a): TST is the source of truth, and the DEV server calls (ToggleRead, Delete_Notifications, MarkAllAsReadNotifications) have no TST evidence yet.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -258,7 +258,7 @@
   "options": "(a) Build it now: the address lines, the two DropdownSearch widgets, CacheControl_AllLocalities and CacheControl_AllSubdivisions with mocks, the handlers and the save checks (Profile.mvc.js:1269-1716, 2596-2640, 2883-3290, 3543-3592). (b) Keep it out, and record the gap on the board row of Profile or in a CR.",
   "recommendation": "(a): the goal is a 1:1 replacement, and the householder is the member who edits the address.",
   "flow": "App_Profile",
-  "answer": "(a): the goal is a 1:1 replacement, and the householder is the member who edits the address.",
+  "answer": "(a) Build it now: the address lines, the two DropdownSearch widgets, CacheControl_AllLocalities and CacheControl_AllSubdivisions with mocks, the handlers and the save checks (Profile.mvc.js:1269-1716, 2596-2640, 2883-3290, 3543-3592) — (a): the goal is a 1:1 replacement, and the householder is the member who edits the address.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -270,7 +270,7 @@
   "options": "(a) Fetch the static file from TST (read-only GET, the standing approval for missing static files) into `migration/runtime-sources/`, then check the port in the review pass. (b) Accept the port as it is.",
   "recommendation": "(a): the drag is the main interaction of the screen.",
   "flow": "App_Services",
-  "answer": "(a): the drag is the main interaction of the screen.",
+  "answer": "(a) Fetch the static file from TST (read-only GET, the standing approval for missing static files) into `migration/runtime-sources/`, then check the port in the review pass — (a): the drag is the main interaction of the screen.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -282,7 +282,7 @@
   "options": "(a) Follow TST: reset `isLoading` for CommunicationException and AllExceptions; NotRegistered keeps it. (b) Keep React, and record the evidence in `known-original-bugs.md`.",
   "recommendation": "(a): the compiled code is clear, and the user can try the save again.",
   "flow": "App_Services",
-  "answer": "(a): the compiled code is clear, and the user can try the save again.",
+  "answer": "(a) Follow TST: reset `isLoading` for CommunicationException and AllExceptions; NotRegistered keeps it — (a): the compiled code is clear, and the user can try the save again.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -294,7 +294,7 @@
   "options": "(a) Shared fix: the screen data actions pass a failed fetch to `raiseToFlowHandler`. (b) Fix Services only. (c) Record a decision: no toast.",
   "recommendation": "(a), checked in the report of App_Common.",
   "flow": "App_Services",
-  "answer": "(a), checked in the report of App_Common.",
+  "answer": "(a) Shared fix: the screen data actions pass a failed fetch to `raiseToFlowHandler` — (a), checked in the report of App_Common.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -306,7 +306,7 @@
   "options": "(a) The router sets `document.title` from the route title (app-wide). (b) Record a decision to keep \"UBTConnect\".",
   "recommendation": "(a): a small shared change, 1:1 with TST.",
   "flow": "App_Services",
-  "answer": "(a): a small shared change, 1:1 with TST.",
+  "answer": "(a) The router sets `document.title` from the route title (app-wide) — (a): a small shared change, 1:1 with TST.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -330,7 +330,7 @@
   "options": "(a) Shared fix with App_Services Q3: the container passes a failed refresh to `raiseToFlowHandler`. (b) Fix this container only. (c) Record a decision: no message.",
   "recommendation": "(a), with the same answer as App_Services Q3.",
   "flow": "Directory_SupperMeetings",
-  "answer": "(a), with the same answer as App_Services Q3.",
+  "answer": "(a) Shared fix with App_Services Q3: the container passes a failed refresh to `raiseToFlowHandler` — (a), with the same answer as App_Services Q3.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -342,7 +342,7 @@
   "options": "(a) Keep the refetch, and record the TST behaviour in `app/docs/known-original-bugs.md`. (b) Follow TST: no fetch on an id change. (c) Check on TST first: open a second link while the screen is open.",
   "recommendation": "(c), then (a): a page that shows the data of the old id is an error for the user.",
   "flow": "Directory_OneSchoolGlobal",
-  "answer": "(c), then (a): a page that shows the data of the old id is an error for the user.",
+  "answer": "(c) Check on TST first: open a second link while the screen is open — (c), then (a): a page that shows the data of the old id is an error for the user.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -354,7 +354,7 @@
   "options": "(a) Set `document.title` from the route title in the app shell, for all routes. (b) Keep \"UBTConnect\", and record the decision in `migration/app-shell.spec.md`.",
   "recommendation": "(a): it follows TST in one place for all routes.",
   "flow": "Directory_OneSchoolGlobal",
-  "answer": "(a): it follows TST in one place for all routes.",
+  "answer": "(a) Set `document.title` from the route title in the app shell, for all routes — (a): it follows TST in one place for all routes.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -366,7 +366,7 @@
   "options": "(a) Accept the view cache and record it under U19 in `app-shell.spec.md`. (b) Compare both on TST first (open an update, go back, compare the position; read-only). (c) Build the anchor mechanism in React.",
   "recommendation": "(b), then (a) when the positions are equal.",
   "flow": "Directory_Updates",
-  "answer": "(b), then (a) when the positions are equal.",
+  "answer": "(b) Compare both on TST first (open an update, go back, compare the position; read-only) — (b), then (a) when the positions are equal.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -378,7 +378,7 @@
   "options": "(a) One shared pass for UBTConnectLibrary, NavigationHandler and UBTConnect_Utils blocks. (b) A check in each flow report. (c) Rely on the parity gate.",
   "recommendation": "(a): one pass covers every flow at the lowest cost.",
   "flow": "Directory_Updates",
-  "answer": "(a): one pass covers every flow at the lowest cost.",
+  "answer": "(a) One shared pass for UBTConnectLibrary, NavigationHandler and UBTConnect_Utils blocks — (a): one pass covers every flow at the lowest cost.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -390,7 +390,7 @@
   "options": "(a) PROD unknown or false: keep MyBookmarks (no change); (b) PROD true: lift the board skip of Bookmarks and plan its build (3 blocks, pills, filter sheet, services).",
   "recommendation": "(a) until the PROD value is confirmed; the report stays valid for the MyBookmarks branch.",
   "flow": "Bookmarks",
-  "answer": "(a) until the PROD value is confirmed; the report stays valid for the MyBookmarks branch.",
+  "answer": "(a) PROD unknown or false: keep MyBookmarks (no change) — (a) until the PROD value is confirmed; the report stays valid for the MyBookmarks branch.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -402,7 +402,7 @@
   "options": "(a) build from the compiled expressions (show:996-1020) now; (b) wait for a capture of a supper-meeting bookmark.",
   "recommendation": "(a): the expressions are complete and the tokens exist in the theme.",
   "flow": "Bookmarks",
-  "answer": "(a): the expressions are complete and the tokens exist in the theme.",
+  "answer": "(a) build from the compiled expressions (show:996-1020) now — (a): the expressions are complete and the tokens exist in the theme.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -426,7 +426,7 @@
   "options": "(a) The shared fix of App_Services Q3 also covers block data actions such as this one. (b) Fix this query only. (c) Record a decision: no toast.",
   "recommendation": "(a): one fix for all fetches, 1:1 with TST.",
   "flow": "Calendar",
-  "answer": "(a): one fix for all fetches, 1:1 with TST.",
+  "answer": "(a) The shared fix of App_Services Q3 also covers block data actions such as this one — (a): one fix for all fetches, 1:1 with TST.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -438,7 +438,7 @@
   "options": "(a) Follow TST: `raiseToFlowHandler` in `refreshToken`. (b) Keep the warning and record the decision in a CR or in `known-original-bugs.md`.",
   "recommendation": "(a): the compiled code is clear, and the change is small.",
   "flow": "Calendar",
-  "answer": "(a): the compiled code is clear, and the change is small.",
+  "answer": "(a) Follow TST: `raiseToFlowHandler` in `refreshToken` — (a): the compiled code is clear, and the change is small.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -450,7 +450,7 @@
   "options": "(a) pass the full TST payload at the call sites now; the log stays without personal text; (b) keep a reduced payload and record it as a decision; (c) decide together with the U17 provider",
   "recommendation": "(a): TST is the source of truth, and the sink stays a later step.",
   "flow": "ContactFlow",
-  "answer": "(a): TST is the source of truth, and the sink stays a later step.",
+  "answer": "(a) pass the full TST payload at the call sites now; the log stays without personal text — (a): TST is the source of truth, and the sink stays a later step.",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -462,7 +462,7 @@
   "options": "(a) keep the TST behaviour and record it as a known original bug; (b) fix it: message and previous screen as in the other branches",
   "recommendation": "(a) for the mock phase; production decides on (b).",
   "flow": "ContactFlow",
-  "answer": "(a) for the mock phase; production decides on (b).",
+  "answer": "(a) keep the TST behaviour and record it as a known original bug — (a) for the mock phase; production decides on (b).",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -474,7 +474,7 @@
   "options": "(a) build now from SBMD and the controller, with mocks for the two Get_Orbit* actions; (b) wait for the Orbit and Assemble flow reports",
   "recommendation": "(a): the code is in the TST files named in this report",
   "flow": "Legacy_MyNotificationsFlow",
-  "answer": "(a): the code is in the TST files named in this report",
+  "answer": "(a) build now from SBMD and the controller, with mocks for the two Get_Orbit* actions — (a): the code is in the TST files named in this report",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -486,7 +486,7 @@
   "options": "(a) after the Legacy_Share report, in one change for both flows; (b) now, here",
   "recommendation": "(a)",
   "flow": "Legacy_MyNotificationsFlow",
-  "answer": "(a)",
+  "answer": "(a) after the Legacy_Share report, in one change for both flows — (a)",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -498,7 +498,7 @@
   "options": "(a) add the library and build the viewer and the submit flow; (b) keep the marker and record it as out of scope",
   "recommendation": "(a), after the stack confirmation",
   "flow": "Legacy_MyNotificationsFlow",
-  "answer": "(a), after the stack confirmation",
+  "answer": "(a) add the library and build the viewer and the submit flow — (a), after the stack confirmation",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"
@@ -510,7 +510,7 @@
   "options": "(a) follow TST and note the oddity in `app/docs/known-original-bugs.md`; (b) keep React and record the decision there",
   "recommendation": "(a)",
   "flow": "Legacy_MyNotificationsFlow",
-  "answer": "(a)",
+  "answer": "(a) follow TST and note the oddity in `app/docs/known-original-bugs.md` — (a)",
   "by": "user",
   "date": "2026-10-27",
   "note": "the user accepted the recommendation of every question by id"

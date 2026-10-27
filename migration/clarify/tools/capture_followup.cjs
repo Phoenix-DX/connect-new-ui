@@ -219,9 +219,12 @@ async function captureOSG(page) {
   if (!loc) throw new Error('no Locality_Details route in the capture plan');
   r.entry = { screen: 'Locality_Details', params: paramNames(abs(loc)), source: 'capture-plan route (values not copied)' };
   await open(page, loc);
+  await sleep(5000);
+  if (!/\/Locality_Details/i.test(pathOf(page.url()))) { r.entry.lateRedirect = pathOf(page.url()); await open(page, loc); await sleep(3000); }
+  const tap = async l => { try { await l.click({ timeout: 8000 }); } catch { await l.dispatchEvent('click'); } };   // covered or moving element
   const showTab = async () => {
     if (await page.locator(OSG_CARD).first().isVisible().catch(() => false)) return;
-    await page.locator(OSG_TAG).nth(3).click({ timeout: 15000 });
+    await tap(page.locator(OSG_TAG).nth(3));
     await page.locator(OSG_CARD).first().waitFor({ state: 'visible', timeout: 25000 });
     await sleep(1200);
   };
@@ -229,7 +232,7 @@ async function captureOSG(page) {
   const n = await page.locator(OSG_CARD).count();
   r.cardsInList = n;
   const openCard = async i => {
-    await page.locator(OSG_CARD).nth(i).click({ timeout: 15000 });
+    await tap(page.locator(OSG_CARD).nth(i));
     await page.waitForURL(u => /\/OneSchoolGlobalDetails/i.test(u.pathname), { timeout: 30000 });
     await waitReady(page, 2500);
     return new URL(page.url()).searchParams.get('In_OneSchoolGlobalId');
@@ -549,12 +552,12 @@ async function captureOrbit(page) {
              listWidgetProps: [...document.querySelectorAll('.list')].slice(0, 6).map(el => {
                const fk = Object.keys(el).find(k => /^__react(InternalInstance|Fiber)\$/.test(k));
                let f = fk ? el[fk] : null;
-               for (let i = 0; f && i < 15; i++, f = f.return) {
+               for (let i = 0; f && i < 30; i++, f = f.return) {
                  const pr = f.memoizedProps || (f.stateNode && f.stateNode.props);
-                 if (pr && pr.extendedProperties !== undefined && pr.source !== undefined) {
+                 if (pr && f.type && typeof f.type.shouldVirtualizeList === 'function') {
                    const ep = pr.extendedProperties || {};
                    return { extendedPropertyNames: Object.keys(ep), disableVirtualization: ep['disable-virtualization'] === undefined ? 'not set' : String(ep['disable-virtualization']),
-                            virtualized: !ep || String(ep['disable-virtualization']).toLowerCase() !== 'true', levelsUp: i };
+                            virtualized: f.type.shouldVirtualizeList(pr), levelsUp: i };
                  }
                }
                return { found: false, reactKey: !!fk };

@@ -24,6 +24,20 @@ def load():
     return json.load(open(STORE)) if os.path.isfile(STORE) else {}
 
 
+def option_text(options, recommendation):
+    """The option the recommendation names, from the options column: '(a) …' → the text of (a)."""
+    m = re.match(r"\s*\(?([a-cA-C])\)?", recommendation or "")
+    if not m or not options:
+        return ""
+    letter = m.group(1).lower()
+    parts = re.split(r"\(([a-cA-C])\)\s*", options)
+    # parts: [prefix, 'a', text_a, 'b', text_b, ...]
+    for i in range(1, len(parts) - 1, 2):
+        if parts[i].lower() == letter:
+            return parts[i + 1].strip().rstrip(";,. ")
+    return ""
+
+
 def questions_of(flow):
     rp = os.path.join(FLOWS, flow, "report.md")
     if not os.path.isfile(rp):
@@ -63,7 +77,9 @@ def main():
                     key = f"{fl}:{q['id']}"
                     if key in store and store[key].get("answer") and store[key].get("by") == "user" and store[key].get("note") != args.note:
                         continue  # an explicit answer stays
-                    store[key] = {**q, "flow": fl, "answer": q["recommendation"], "by": args.by, "date": args.date, "note": args.note}
+                    opt = option_text(q["options"], q["recommendation"])
+                    ans = f"({q['recommendation'][:3].strip('(): ')}) {opt} — {q['recommendation']}" if opt else q["recommendation"]
+                    store[key] = {**q, "flow": fl, "answer": ans, "by": args.by, "date": args.date, "note": args.note}
                     n += 1
         print("recorded", n)
     elif args.cmd == "set":

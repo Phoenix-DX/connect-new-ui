@@ -315,27 +315,76 @@ React (Legacy_OrbitEventsFlow-A121). A failed app start shows the exception toas
 
 Recorded in `decisions.md` (answers.json). "Build now" means: the item is in scope; the build starts when the user orders it.
 
+Build or change in React:
+
 | Flow | Id | Decision |
 |---|---|---|
+| App_Common | Q3 | (a) Fix the constant now, and build the dialog flow with the production identity provider |
+| App_Menu | Q2 | (a) Keep `user` and `isFetched` with `useViewState` |
+| App_Menu_ContactUs | Q1 | (a) Build the five fields, the Country list and the two OnChange actions as in TST |
+| App_Menu_ContactUs | Q2 | (a) Port ContactUs_Rate with a React equivalent of the OutSystems UI RangeSlider |
+| App_PIN | Q2 | (a) Record it as not needed on the web now; port it with the native link plugins (U14) |
 | App_Policies | C4 | Follow TST: store the policy-acceptance device id in localStorage["UUID"] (one id per browser). Finding F4 stands; build it. Row 063. |
-| Legacy_LDMEventsFlow_V2 | Q1 | (a) Build the timeline filter popup MyTimeline_Filters and its four handlers (OnHandle_MyTimelineFilter, ResetFilters, Filter, Close) from the TST compiled code; recorded |
-| Legacy_OrbitEventsFlow | Q1 | (a) Build the HostSurvey wizard from the TST compiled code (model, controller and view of the ScreenBlock_HostSurvey files; mock for PostHostSurvey); recorded as build no |
+| App_Profile | Q1 | (a) Build it now: the address lines, the two DropdownSearch widgets, CacheControl_AllLocalities and CacheControl_AllSubdivisions with mocks, the handlers and the save checks (Profile.mvc.js:1269-1716, |
+| App_Services | Q1 | (a) Fetch the static file from TST (read-only GET, the standing approval for missing static files) into `migration/runtime-sources/`, then check the port in the review pass |
+| App_Services | Q2 | (a) Follow TST: reset `isLoading` for CommunicationException and AllExceptions; NotRegistered keeps it |
+| App_Services | Q3 | (a) Shared fix: the screen data actions pass a failed fetch to `raiseToFlowHandler` |
+| Bookmarks | Q2 | (a) build from the compiled expressions (show:996-1020) now |
+| Calendar | Q1 | (a) The shared fix of App_Services Q3 also covers block data actions such as this one |
+| Calendar | Q2 | (a) Follow TST: `raiseToFlowHandler` in `refreshToken` |
+| ContactFlow | Q1 | (a) pass the full TST payload at the call sites now; the log stays without personal text |
+| Directory_OneSchoolGlobal | Q2 | (a) Set `document.title` from the route title in the app shell, for all routes |
+| Directory_SupperMeetings | Q1 | (a) Shared fix with App_Services Q3: the container passes a failed refresh to `raiseToFlowHandler` |
+| Home | Q1 | (a) Set gcTime 0 and refetchOnReconnect false on both queries; the view cache still restores a back navigation |
+| Home | Q2 | (a) Build both from the compiled view now |
+| Legacy_LDMEventsFlow_V2 | Q1 | (a) Build the timeline filter popup MyTimeline_Filters and its four handlers (OnHandle_MyTimelineFilter, ResetFilters, Filter, Close) from the TST compiled code; recorded as build now. |
+| Legacy_MyNotificationsFlow | Q1 | (a) build now from SBMD and the controller, with mocks for the two Get_Orbit* actions |
+| Legacy_MyNotificationsFlow | Q3 | (a) add the library and build the viewer and the submit flow |
+| Legacy_MyNotificationsFlow | Q4 | (a) follow TST and note the oddity in `app/docs/known-original-bugs.md` |
+| Legacy_OrbitAdminFlow | Q1 | (a) Follow TST: remove the GetMilestoneScanFF call, the milestone branch, the mock handler and the scanpermilestone scenario from OrbitAdminLanding. Note for later comparison: the branch and the scree |
+| Legacy_OrbitEventsFlow | Q1 | (a) Build the HostSurvey wizard from the TST compiled code (model, controller and view of the ScreenBlock_HostSurvey files; mock for PostHostSurvey); recorded as build now, the build starts when the u |
+| Legacy_OrbitEventsFlow | Q2 | (a) Follow TST: remove the DEV-only passport control, the event NavigateTo_PassportScan and its handler from OrbitLanding. Note for later comparison: the control and the screen PassportScan exist on D |
 | Legacy_OrbitEventsFlow | Q3 | (a) Build the five other milestone blocks (MealGuest, MealHost, MealHelper, AccommodationGuest, AccommodationHelper) from their TST files; recorded as build now. |
-| _libraries | Q1 | (a) The favicon decision of 2026-10-17 covers LayoutReady, LayoutDestroy and SetLang (not ported); SkipToContent is ported (focus moves to the main content). The 9 layout |
-| _libraries | Q3 | (a) Wire the two call sites (SearchResultItem.tsx:117 to navigateToUpgrade, useShareSheet.ts:137 to showUpgradePopUp) to the existing subscription dialogs; recorded as bu |
+| _libraries | Q1 | (a) The favicon decision of 2026-10-17 covers LayoutReady, LayoutDestroy and SetLang (not ported); SkipToContent is ported (focus moves to the main content). The 9 layout rows stay differs; one row (S |
+| _libraries | Q3 | (a) Wire the two call sites (SearchResultItem.tsx:117 to navigateToUpgrade, useShareSheet.ts:137 to showUpgradePopUp) to the existing subscription dialogs; recorded as build now (F1). |
 | _shared | C3 | Finding accepted (major, F3): an app-start failure that is not a system exception must show the exception toast, as TST does. Build it. Row 193. |
+| _shared | Q1 | (a) Show the exception toast on a non-system app-start failure, as TST does; the same as decision C3 (finding F3, build). |
 
-Items that React keeps as it is, or removes to follow TST (no build):
+Recorded as a decision, no build (React keeps its behaviour, or the item is out of the mock phase):
 
 | Flow | Id | Decision |
 |---|---|---|
+| App_Common | Q1 | (a) Keep no action, and record it under D3 |
+| App_Common | Q2 | (a) Accept, and record it as a decision together with App_PIN Q1 (Connect_Logout on this path) |
 | App_Menu_ContactUs | C1 | Keep the React behaviour: the validators trim the input before the check (TST does not trim). Rows 122, 123 are differs by this decision. |
-| Legacy_OrbitAdminFlow | Q1 | (a) Follow TST: remove the GetMilestoneScanFF call, the milestone branch, the mock handler and the scanpermilestone scenario from OrbitAdminLanding. Note for later compar |
+| App_Notifications | Q2 | (b) Confirm with a read-only check of the callers of `EntitiesCarousel` on TST that no back navigation to Notifications carries a preload, and record it |
+| App_Notifications | Q3 | (a) Keep React on TST, and open a change request that lists the §6.1 rows for a rebuild when TST deploys them |
+| App_PIN | Q1 | (a) Accept, and record that the ADR-10 sign-out also covers this path |
+| App_PIN | Q3 | (a) Confirm the HomeFeed branch and record it on the PINUnlock row of the board |
+| App_Policies | Q2 | (a) Store it in `localStorage["UUID"]` as TST does, and record the decision |
+| ContactFlow | Q2 | (a) keep the TST behaviour and record it as a known original bug |
+| Directory_Photobook | Q1 | Rows 074, 076 and 105 need a recorded decision. CR-Photobook-1 (:34-36) covers only the toggle-drag failure logs. The NO-CONSOLE rule (`migration/stack.json` rules.forbidden, `migration/architecture.m |
 | Legacy_OrbitEventsFlow | C2 | Keep the React behaviour: IsGuestView starts false until the guests fetch (TST starts true). Row A121 is differs by this decision. |
-| Legacy_OrbitEventsFlow | Q2 | (a) Follow TST: remove the DEV-only passport control, the event NavigateTo_PassportScan and its handler from OrbitLanding. Note for later comparison: the control and the  |
+| Legacy_OrbitQRCodeFlow | Q1 | (a) Set document.title from the route title in the app shell, for all routes; the same answer as App_Services Q4 (accepted 2026-10-27). |
 
-Other answers (facts settled, checks ordered, out of scope): 45 rows in `decisions.md`.
+Checks and facts (a read-only capture or a TST read settles them):
 
+| Flow | Id | Decision |
+|---|---|---|
+| App_Common | Q4 | (a) Keep the end of the app start |
+| App_Menu | Q1 | (b) Fetch `UBTConnect.App_Menu.controller.js` from TST read-only, as U10 proposes |
+| App_Menu_ContactUs | Q3 | (a) Fetch `UBTConnectLibrary.controller.js` from TST (static, read-only GET), add it to `migration/runtime-sources/`, and compare |
+| App_Menu_ContactUs | Q4 | (a) Keep `LocalCacheControl_UserInformation` in the state and send the same variables as TST now |
+| App_Notifications | Q1 | (a) Add a row `skip` with the reason "DEV only, not on TST; revisit when TST deploys it" |
+| App_Policies | Q1 | (a) Read the action with the MCP (`getClientAction`, UBTConnect_Utils) in the review pass |
+| App_Services | Q4 | (a) The router sets `document.title` from the route title (app-wide) |
+| Bookmarks | Q1 | (a) PROD unknown or false: keep MyBookmarks (no change) |
+| Directory_OneSchoolGlobal | Q1 | (c) Check on TST first: open a second link while the screen is open |
+| Directory_Updates | Q1 | (b) Compare both on TST first (open an update, go back, compare the position; read-only) |
+| Directory_Updates | Q2 | (a) One shared pass for UBTConnectLibrary, NavigationHandler and UBTConnect_Utils blocks |
+| Home | Q3 | (a) Check it on TST: open an update, go back, and watch the calls (read-only) |
+| Legacy_MyNotificationsFlow | Q2 | (a) after the Legacy_Share report, in one change for both flows |
+| Notes | Q1 | A. The capture is a read; it settles the fact before a code change. |
 
 ## 11. Order of set-up
 
