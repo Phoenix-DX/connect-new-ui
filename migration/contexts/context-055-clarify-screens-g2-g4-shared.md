@@ -9,6 +9,8 @@
 - Method from G2 on: Sonnet reader (`draft.json` + `notes.md`) → Opus judge; Fable for the wrapper flows and the
   shared actions and libraries. Briefs: `READER.md`, `JUDGE.md`. Review notes: `review/G1…G4-review.md`.
 - The user answered the 43 questions of G1–G3 by accepting the recommendations (`decisions.md`, `answers.json`).
+
+Also done:
 - TST scripts fetched read-only 2026-10-27: 41 flow and library controllers, `UBT_Email.model.js`,
   `UBTConnectLibrary.model.js`, `OutSystemsUI_2_23.model.js` (logged in `knowledge/runtime-sources.md`).
 - `RESUME.md` in `migration/clarify/` says how the next session continues.
