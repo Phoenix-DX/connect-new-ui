@@ -8,7 +8,7 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 
 | Id | Question | Answer | By, date |
 |---|---|---|---|
-| Q1 | What does "Forgot Password?" do in the mock phase (F2)? | (a) Keep no action, and record it under D3 — (a): the real reset page is not migrated, and (b) needs a toast text that no capture shows. | user, 2026-10-27 |
+| Q1 | What does "Forgot Password?" do in the mock phase (F2)? | Reversed 2026-10-27: build Forgot Password fully as TST (IsResettingPassword spinner, AppManager_Login(True, ConfirmationDialog_ResetPassword), the IdP reset-password policy through the identity provider of the build, the IdP_OnResetPassword callback with the success toast). Earlier answer (a) of 2026-10-27 is superseded. | user, 2026-10-27 |
 | Q2 | Do you accept the In_IsFromResetPIN order of Login in React (F4)? | (a) Accept, and record it as a decision together with App_PIN Q1 (Connect_Logout on this path) — (a): the end state is the same as on TST, and ADR-10 asks for the clear on logout. | user, 2026-10-27 |
 | Q3 | When does Login get the device-awareness dialog (F3)? | (a) Fix the constant now, and build the dialog flow with the production identity provider — (a): only the server login decides if a device is valid (KB UBT_AppManager `logic/device-awareness.md`). | user, 2026-10-27 |
 | Q4 | Which event ends the Splash load in React (row 054)? | (a) Keep the end of the app start — (a): the routing after the animation needs the session state that the app start sets. | user, 2026-10-27 |
@@ -100,7 +100,7 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 
 | Id | Question | Answer | By, date |
 |---|---|---|---|
-| Q1 | On Back to Updates_SingleList, do you accept the scroll offsets of the shell view cache in place of the anchor mechanism of TST (rows 073, 074, 095; F2)? | (b) Compare both on TST first (open an update, go back, compare the position; read-only) — (b), then (a) when the positions are equal. | user, 2026-10-27 |
+| Q1 | On Back to Updates_SingleList, do you accept the scroll offsets of the shell view cache in place of the anchor mechanism of TST (rows 073, 074, 095; F2)? | User 2026-10-27: capture rows 073/074 on TST with the ServiceAPIAction_UI_UpdateItem_MarkAsRead write allowed for this capture only (CLAUDE.md rule 6 exception, confirmed by the user). | user, 2026-10-27 |
 | Q2 | Do you want one shared check of the referenced library blocks against their TST files (row 148)? | (a) One shared pass for UBTConnectLibrary, NavigationHandler and UBTConnect_Utils blocks — (a): one pass covers every flow at the lowest cost. | user, 2026-10-27 |
 
 ## Bookmarks (G3)

@@ -1,7 +1,7 @@
 # How to continue the clarify-screens work in a new session
 
 Status on 2026-10-27, end of the fourth session: the clarify work is complete and the minor findings are fixed.
-- Minor findings wave (2026-10-27): 49 of 56 fixed in `app/`, 4 withdrawn, 2 kept by decision, 1 open
+- Minor findings wave (2026-10-27): 50 of 56 fixed in `app/`, 4 withdrawn, 1 kept by decision, 1 open
   (`fixes/README.md`, `fixes/manifest.json`, one note per group). Report §5 has a "Status" column; the checklist rows
   of a fixed finding are `match` with `fixed: 2026-10-27`. Tool: `tools/apply_fixes.py <manifest>`.
 - Gates after the wave: typecheck, lint (0 errors), arch, 4060 tests, parity sweep (`fixes/README.md`).
@@ -17,7 +17,8 @@ Open items for the user:
 - Legacy_OrbitEventsFlow F4: keep decision W34 (a) (the rows are `differs` by W34) or reverse it (about 20 hooks).
 - App_Policies F2: `networkMode: 'always'` on the pending-policies query (group C), or `'online'` as feed and member.
 - Notes F2 (major, new from the capture): decide build or record.
-- Directory_Updates rows 073/074: allow a capture with the `MarkAsRead` write, or decide.
+- Directory_Updates rows 073/074 (F2): the capture of 2026-10-27 shows that TST writes the scroll anchor keys on the
+  tap. Decide: port the anchor save and restore (NavigationHandler source needed) or keep the shell view cache (U19).
 - Directory_Photobook rows 074/076/105: one recorded decision on the Splide move log (not ported, or ported via the
   platform logger).
 - The artifact "Infra & FE readiness" (Vietnamese, one page with two tabs) is published at

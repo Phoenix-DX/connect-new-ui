@@ -76,10 +76,12 @@
  {
   "flow": "App_Common",
   "finding": "F2",
-  "group": "",
+  "group": "H-user-followups",
   "date": "2026-10-27",
-  "status": "no-fix",
-  "reason": "decision App_Common Q2 (a): keep Forgot Password without an action"
+  "status": "fixed",
+  "verified": "code",
+  "rows": [],
+  "suffix": "built as TST after the user reversed Q1 (2026-10-27)"
  },
  {
   "flow": "Directory_Updates",
@@ -87,7 +89,7 @@
   "group": "",
   "date": "2026-10-27",
   "status": "open",
-  "reason": "waits for a capture with the MarkAsRead write, or a decision (rows 073/074)"
+  "reason": "capture done 2026-10-27 (MarkAsRead allowed by the user): TST writes scrollAnchorId/scrollAnchorDelta on the tap (rows 073/074 now `missing`); the restore on Back was not observed (Back landed on HomeFeed). Decision needed: port the anchor save and restore (NavigationHandler code is not in the survey)"
  },
  {
   "flow": "App_Menu",

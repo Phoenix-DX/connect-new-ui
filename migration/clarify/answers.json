@@ -6,10 +6,10 @@
   "options": "(a) Keep no action, and record it under D3(a) (\"real B2C not migrated\"). (b) Copy the TST screen states: the spinner, the disabled Login button, then a mock IdP_OnResetPassword with a success toast. (c) Show an info toast: the reset is not available in the demo.",
   "recommendation": "(a): the real reset page is not migrated, and (b) needs a toast text that no capture shows.",
   "flow": "App_Common",
-  "answer": "(a) Keep no action, and record it under D3 — (a): the real reset page is not migrated, and (b) needs a toast text that no capture shows.",
+  "answer": "Reversed 2026-10-27: build Forgot Password fully as TST (IsResettingPassword spinner, AppManager_Login(True, ConfirmationDialog_ResetPassword), the IdP reset-password policy through the identity provider of the build, the IdP_OnResetPassword callback with the success toast). Earlier answer (a) of 2026-10-27 is superseded.",
   "by": "user",
   "date": "2026-10-27",
-  "note": "the user accepted the recommendation of every question by id"
+  "note": ""
  },
  "App_Common:Q2": {
   "id": "Q2",
@@ -366,10 +366,10 @@
   "options": "(a) Accept the view cache and record it under U19 in `app-shell.spec.md`. (b) Compare both on TST first (open an update, go back, compare the position; read-only). (c) Build the anchor mechanism in React.",
   "recommendation": "(b), then (a) when the positions are equal.",
   "flow": "Directory_Updates",
-  "answer": "(b) Compare both on TST first (open an update, go back, compare the position; read-only) — (b), then (a) when the positions are equal.",
+  "answer": "User 2026-10-27: capture rows 073/074 on TST with the ServiceAPIAction_UI_UpdateItem_MarkAsRead write allowed for this capture only (CLAUDE.md rule 6 exception, confirmed by the user).",
   "by": "user",
   "date": "2026-10-27",
-  "note": "the user accepted the recommendation of every question by id"
+  "note": ""
  },
  "Directory_Updates:Q2": {
   "id": "Q2",

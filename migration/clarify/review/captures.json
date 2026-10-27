@@ -1,8 +1,8 @@
 {
- "ranAt": "2026-10-27T13:51:09.692Z",
+ "ranAt": "2026-10-27T15:19:29.394Z",
  "site": "UBTConnect TST",
  "account": "the test account of site_auth (not named)",
- "allowedActions": 12,
+ "allowedActions": 13,
  "captures": [
   {
    "row": "Directory_OneSchoolGlobal-056",
@@ -146,9 +146,9 @@
      "beforeTap": {
       "host": "div.active-screen.screen-container",
       "scrollTop": 1800,
-      "scrollHeight": 12948,
+      "scrollHeight": 13011,
       "clientHeight": 844,
-      "renderedItems": 87,
+      "renderedItems": 86,
       "itemsHaveScrollAnchorAttr": true
      },
      "tappedItem": {
@@ -157,23 +157,39 @@
       "hasScrollAnchorAttr": false
      },
      "tap": {
-      "navigated": false,
-      "openedScreen": null,
-      "params": [],
+      "navigated": true,
+      "openedScreen": "/UBTConnect/HouseholdCarousel",
+      "params": [
+       "In_StartingHouseholdId"
+      ],
       "calls": [
        {
         "name": "ServiceAPIAction_UI_UpdateItem_MarkAsRead",
-        "atMs": 46,
-        "ms": 11,
-        "failed": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+        "atMs": 27,
+        "ms": 388
+       },
+       {
+        "name": "ServiceAPIGet_UI_UpdateItems_UnreadCount_All",
+        "atMs": 415,
+        "ms": 304
        }
       ],
-      "blocked": [
-       "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
-      ],
-      "ms": 12074
+      "blocked": [],
+      "ms": 4043
      },
      "storageAfterTap": [
+      {
+       "area": "localStorage",
+       "key": "scrollAnchorId",
+       "valueLength": 5,
+       "valueShape": "number"
+      },
+      {
+       "area": "localStorage",
+       "key": "scrollAnchorDelta",
+       "valueLength": 3,
+       "value": 500
+      },
       {
        "area": "history.state",
        "topLevelKeys": [
@@ -183,67 +199,94 @@
        "scrollKeys": []
       }
      ],
-     "result": "the tap did not open a screen; the guard blocked ServiceAPIAction_UI_UpdateItem_MarkAsRead",
-     "scrollAfterBlockedTap": {
-      "host": "div.active-screen.screen-container",
-      "scrollTop": 1800,
-      "scrollHeight": 12948,
-      "clientHeight": 844,
-      "renderedItems": 87,
-      "itemsHaveScrollAnchorAttr": true
-     }
+     "afterBack": [
+      {
+       "msAfterBack": 302,
+       "scrollTop": 0,
+       "sameHostElement": false,
+       "tappedAnchorTopInViewport": null
+      },
+      {
+       "msAfterBack": 1002,
+       "scrollTop": 0,
+       "sameHostElement": false,
+       "tappedAnchorTopInViewport": null
+      },
+      {
+       "msAfterBack": 2502,
+       "scrollTop": 0,
+       "sameHostElement": false,
+       "tappedAnchorTopInViewport": null
+      },
+      {
+       "msAfterBack": 4004,
+       "scrollTop": 0,
+       "sameHostElement": false,
+       "tappedAnchorTopInViewport": null
+      }
+     ],
+     "backCalls": [
+      {
+       "name": "DataActionGetServices",
+       "atMs": 1822,
+       "ms": 647
+      },
+      {
+       "name": "DataActionFetchCount",
+       "atMs": 1822,
+       "ms": 307
+      },
+      {
+       "name": "DataActionFetchUpdates",
+       "atMs": 1822,
+       "ms": 289
+      },
+      {
+       "name": "DataActionGetFeedConfig",
+       "atMs": 1822,
+       "ms": 263
+      },
+      {
+       "name": "DataActionGetCommunityStatistics",
+       "atMs": 1822,
+       "ms": 290
+      }
+     ],
+     "storageAfterBack": [
+      {
+       "area": "localStorage",
+       "key": "scrollAnchorId",
+       "valueLength": 5,
+       "valueShape": "number"
+      },
+      {
+       "area": "localStorage",
+       "key": "scrollAnchorDelta",
+       "valueLength": 3,
+       "value": 500
+      },
+      {
+       "area": "history.state",
+       "topLevelKeys": [
+        "key",
+        "state"
+       ],
+       "scrollKeys": []
+      }
+     ],
+     "result": "offset 1800 before the tap, 0 after Back (4004 ms)"
     },
     {
      "round": 2,
      "beforeTap": {
-      "host": "div.active-screen.screen-container",
-      "scrollTop": 3600,
-      "scrollHeight": 12972,
+      "host": "div.active-screen.screen-container.slide-from-right-enter-done",
+      "scrollTop": 901,
+      "scrollHeight": 1745,
       "clientHeight": 844,
-      "renderedItems": 87,
-      "itemsHaveScrollAnchorAttr": true
+      "renderedItems": 3,
+      "itemsHaveScrollAnchorAttr": false
      },
-     "tappedItem": {
-      "renderedIndex": 40,
-      "topInViewport": 591,
-      "hasScrollAnchorAttr": false
-     },
-     "tap": {
-      "navigated": false,
-      "openedScreen": null,
-      "params": [],
-      "calls": [
-       {
-        "name": "ServiceAPIAction_UI_UpdateItem_MarkAsRead",
-        "atMs": 23,
-        "ms": 28,
-        "failed": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
-       }
-      ],
-      "blocked": [
-       "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
-      ],
-      "ms": 12026
-     },
-     "storageAfterTap": [
-      {
-       "area": "history.state",
-       "topLevelKeys": [
-        "key",
-        "state"
-       ],
-       "scrollKeys": []
-      }
-     ],
-     "result": "the tap did not open a screen; the guard blocked ServiceAPIAction_UI_UpdateItem_MarkAsRead",
-     "scrollAfterBlockedTap": {
-      "host": "div.active-screen.screen-container",
-      "scrollTop": 3600,
-      "scrollHeight": 12972,
-      "clientHeight": 844,
-      "renderedItems": 87,
-      "itemsHaveScrollAnchorAttr": true
-     }
+     "result": "no fully visible update item to tap"
     }
    ],
    "storageAtStart": [
@@ -256,80 +299,10 @@
      "scrollKeys": []
     }
    ],
-   "fallback": {
-    "method": "not the item tap: app navigation to HomeFeed, then history.back()",
-    "before": {
-     "host": "div.active-screen.screen-container",
-     "scrollTop": 3600,
-     "scrollHeight": 12972,
-     "clientHeight": 844,
-     "renderedItems": 87,
-     "itemsHaveScrollAnchorAttr": true
-    },
-    "navigation": "OutSystems client runtime: require(\"OutSystems/ClientRuntime/Main\").Internal.Navigation.navigateTo(url)",
-    "left": true,
-    "fullPageLoad": false,
-    "callsOnHomeFeed": [
-     "DataActionGetServices",
-     "DataActionFetchCount",
-     "DataActionFetchUpdates",
-     "DataActionGetFeedConfig",
-     "DataActionGetCommunityStatistics"
-    ],
-    "after": [
-     {
-      "msAfterBack": 1001,
-      "host": "div.active-screen.screen-container.-enter-done",
-      "scrollTop": 0,
-      "scrollHeight": 1745,
-      "clientHeight": 844,
-      "renderedItems": 3,
-      "itemsHaveScrollAnchorAttr": false
-     },
-     {
-      "msAfterBack": 2501,
-      "host": "div.active-screen.screen-container.-enter-done",
-      "scrollTop": 0,
-      "scrollHeight": 1745,
-      "clientHeight": 844,
-      "renderedItems": 3,
-      "itemsHaveScrollAnchorAttr": false
-     },
-     {
-      "msAfterBack": 5002,
-      "host": "div.active-screen.screen-container.-enter-done",
-      "scrollTop": 0,
-      "scrollHeight": 1745,
-      "clientHeight": 844,
-      "renderedItems": 3,
-      "itemsHaveScrollAnchorAttr": false
-     },
-     {
-      "msAfterBack": 8001,
-      "host": "div.active-screen.screen-container.-enter-done",
-      "scrollTop": 0,
-      "scrollHeight": 1745,
-      "clientHeight": 844,
-      "renderedItems": 3,
-      "itemsHaveScrollAnchorAttr": false
-     }
-    ],
-    "callsAfterBack": [],
-    "storage": [
-     {
-      "area": "history.state",
-      "topLevelKeys": [
-       "key",
-       "state"
-      ],
-      "scrollKeys": []
-     }
-    ]
-   },
-   "result": "round 1: the tap did not open a screen; the guard blocked ServiceAPIAction_UI_UpdateItem_MarkAsRead; round 2: the tap did not open a screen; the guard blocked ServiceAPIAction_UI_UpdateItem_MarkAsRead",
+   "result": "round 1: offset 1800 before the tap, 0 after Back (4004 ms); round 2: no fully visible update item to tap",
    "key": "updates",
-   "ranAt": "2026-10-27T13:53:38.714Z",
-   "seconds": 55
+   "ranAt": "2026-10-27T15:21:27.098Z",
+   "seconds": 29
   },
   {
    "row": "Notes-110",

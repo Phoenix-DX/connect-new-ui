@@ -13,12 +13,12 @@
    "Flow": "[App_Common](flows/App_Common/report.md)",
    "Status": "draft",
    "Rows": "182",
-   "match": "129",
-   "partial": "6",
+   "match": "132",
+   "partial": "5",
    "missing": "1",
-   "differs": "21",
+   "differs": "20",
    "mock-only": "4",
-   "n/a": "21",
+   "n/a": "20",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/2/3",
    "Questions": "4"
@@ -240,11 +240,11 @@
    "Rows": "149",
    "match": "125",
    "partial": "3",
-   "missing": "5",
+   "missing": "7",
    "differs": "0",
    "mock-only": "5",
    "n/a": "9",
-   "unclear": "2",
+   "unclear": "0",
    "Findings (B/M/m/i)": "0/1/2/0",
    "Questions": "2"
   },
@@ -688,13 +688,13 @@
    "Flow": "**total (45/45 flows)**",
    "Status": "",
    "Rows": "5412",
-   "match": "4365",
-   "partial": "79",
-   "missing": "152",
-   "differs": "98",
+   "match": "4368",
+   "partial": "78",
+   "missing": "154",
+   "differs": "97",
    "mock-only": "157",
-   "n/a": "556",
-   "unclear": "5",
+   "n/a": "555",
+   "unclear": "3",
    "Findings (B/M/m/i)": "3/27/56/29",
    "Questions": ""
   }
@@ -2466,7 +2466,7 @@
    "Id": "F2",
    "Element": "Login / \"Forgot Password?\" (Login, isResetPassword True)",
    "Finding": "TST sets IsResettingPassword (spinner, Login button disabled) and starts the reset-password policy of the identity provider. A completed reset ends with a success toast (IdP_OnResetPassword). React runs the built-in validation only: the click changes nothing on the screen. U4 covers \"Login with UBT One\" only, and no other record names this behaviour. Rows: 025, 031, 040.",
-   "Status": "no fix: decision App_Common Q2 (a): keep Forgot Password without an action"
+   "Status": "fixed 2026-10-27 (`fixes/H-user-followups.md`): built as TST after the user reversed Q1 (2026-10-27)"
   },
   {
    "Severity": "minor",
@@ -2690,7 +2690,7 @@
    "Id": "F2",
    "Element": "Updates_SingleList / ScreenEvent_OnReady (restored), Handler_OnClickUpdateItem",
    "Finding": "On Back, TST runs `ReactiveInstance_ForceUpdate` on the list and scrolls the saved anchor back to its saved offset (`CaptureScrollPosition`, `RememberFocusedScrollAnchor`, `GetFocusedScrollAnchorOnBack`, `ScrollFix`). React runs only `SetupScrollListener` and uses the scroll offsets of the shell view cache (U19). The result differs only when the list height changes between leave and return. No recorded decision names the replacement.",
-   "Status": "open: waits for a capture with the MarkAsRead write, or a decision (rows 073/074)"
+   "Status": "open: capture done 2026-10-27 (MarkAsRead allowed by the user): TST writes scrollAnchorId/scrollAnchorDelta on the tap (rows 073/074 now `missing`); the restore on Back was not observed (Back landed on HomeFeed). Decision needed: port the anchor save and restore (NavigationHandler code is not in the survey)"
   },
   {
    "Severity": "minor",
@@ -3159,18 +3159,6 @@
    "Row": "Directory_Photobook-105",
    "Element": "Strings \"Carousel Toggle Drag Error - Code:\", \"",
    "Question": "Message:\", \""
-  },
-  {
-   "Flow": "Directory_Updates",
-   "Row": "Directory_Updates-073",
-   "Element": "Handler_OnClickUpdateItem: CaptureScrollPosition (JS)",
-   "Question": "Q1 answered (b), then (a) (user decision 2026-10-27, Directory_Updates Q1 (b)). Capture that settles it (read-only TST session and the React app, same steps): o"
-  },
-  {
-   "Flow": "Directory_Updates",
-   "Row": "Directory_Updates-074",
-   "Element": "Handler_OnClickUpdateItem: RememberFocusedScrollAnchor",
-   "Question": "Same capture as row 073 (user decision 2026-10-27, Directory_Updates Q1 (b)). RememberFocusedScrollAnchor (NavigationHandler) has no TST file in the survey; the"
   }
  ],
  "decisions": [
@@ -3178,7 +3166,7 @@
    "flow": "App_Common",
    "id": "Q1",
    "question": "What does \"Forgot Password?\" do in the mock phase (F2)?",
-   "answer": "(a) Keep no action, and record it under D3 — (a): the real reset page is not migrated, and (b) needs a toast text that no capture shows.",
+   "answer": "Reversed 2026-10-27: build Forgot Password fully as TST (IsResettingPassword spinner, AppManager_Login(True, ConfirmationDialog_ResetPassword), the IdP reset-password policy through the identity provider of the build, the IdP_OnResetPassword callback with the success toast). Earlier answer (a) of 2026-10-27 is superseded.",
    "by": "user",
    "date": "2026-10-27"
   },
@@ -3418,7 +3406,7 @@
    "flow": "Directory_Updates",
    "id": "Q1",
    "question": "On Back to Updates_SingleList, do you accept the scroll offsets of the shell view cache in place of the anchor mechanism of TST (rows 073, 074, 095; F2)?",
-   "answer": "(b) Compare both on TST first (open an update, go back, compare the position; read-only) — (b), then (a) when the positions are equal.",
+   "answer": "User 2026-10-27: capture rows 073/074 on TST with the ServiceAPIAction_UI_UpdateItem_MarkAsRead write allowed for this capture only (CLAUDE.md rule 6 exception, confirmed by the user).",
    "by": "user",
    "date": "2026-10-27"
   },

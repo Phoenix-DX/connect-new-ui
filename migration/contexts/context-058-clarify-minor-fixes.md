@@ -10,12 +10,22 @@
 - Artifact "UBTConnect React Gaps" republished (version 2). New: badges fixed / withdrawn / kept by decision / open,
   a "Show fixed and withdrawn" toggle, the tile "56 minor · 49 fixed".
 
+- Follow-ups (same day, `fixes/H-user-followups.md`):
+  - The user reversed App_Common Q1: "Forgot Password?" built as TST (AuthProvider `resetPassword`, the
+    IdP_OnResetPassword callback with the success toast; Login parity clean).
+  - The user allowed the MarkAsRead write for one capture of Directory_Updates rows 073/074: TST writes
+    `scrollAnchorId` and `scrollAnchorDelta` on the tap; the restore on Back was not observed.
+  - Result: 50 fixed, 4 withdrawn, 1 kept, 1 open. Artifact EN version 3.
+
 ## Decisions (who, date)
 - User 2026-10-27: fix the 56 minors, re-check, update the artifact; publish without an accept step.
 - Orchestrator (auto mode) 2026-10-27: one loading-state parity exemption for LegacyShareObject
   (`CAPTURE-LOADING-FETCH-TIMEOUT-LEGACYSHAREOBJECT-ONINITIALIZE`), same family as the other loading-timeout entries.
+- User 2026-10-27: Forgot Password fully as TST (reversal of App_Common Q1 a); the MarkAsRead write allowed for
+  the Directory_Updates capture only (the guard is read-only again).
 - Open for the user: Legacy_OrbitEventsFlow F4 (keep W34 a, recommended, or reverse it in about 20 hooks);
-  App_Policies F2 `networkMode: 'always'` (group C) or `'online'`.
+  App_Policies F2 `networkMode: 'always'` (group C) or `'online'`; Directory_Updates F2: port the anchor save and
+  restore (NavigationHandler source needed) or keep the shell view cache.
 
 ## Facts learned (evidence)
 - The runtime creates a screen's view after a handled OnInitialize error; only an unhandled error result leaves the
@@ -34,7 +44,7 @@
 - `migration/parity-exemptions.json` (+1), `migration/screens/*/parity/` (sweep reports), `migration/metrics/ledger.csv`.
 
 ## Open issues
-- Directory_Updates F2 (capture with the MarkAsRead write or a decision); Notes F2 (major); Photobook move log.
+- Directory_Updates F2 (decision on the anchor restore); Notes F2 (major); Photobook move log.
 - The Vietnamese artifact "Infra & FE readiness" still shows the findings without the fix status.
 
 ## Next

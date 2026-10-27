@@ -287,12 +287,13 @@
    "os": "IsResettingPassword = True, then AppManager_Login(True, ConfirmationDialog_ResetPassword.Id): the reset-password policy of the identity provider (BR-UAM-427)",
    "react": "validation.validate('') only: no spinner, no disabled Login button, no call, no message",
    "evidence": "app/src/pages/Login/hooks/useLogin.ts:97-99; TST UBTConnect.App_Common.Login.mvc.js:719-730; BR-UBTCON-303; migration/clarify/answers.json App_Common:Q1",
-   "verdict": "differs",
+   "verdict": "match",
    "severity": "minor",
    "finding": "F2",
-   "note": "user decision 2026-10-27, App_Common Q1 (a): the real reset-password page of the identity provider is not migrated (D3(a)); React keeps no action on \"Forgot Password?\".",
+   "note": "Fixed 2026-10-27 (fixes/H-user-followups.md): Login(True) sets IsResettingPassword and runs the reset-password policy of the identity provider (platform/auth resetPassword; the mock provider ends at once). user decision 2026-10-27, App_Common Q1 (a): the real reset-password page of the identity provider is not migrated (D3(a)); React keeps no action on \"Forgot Password?\".",
    "question": "Q1: What does \"Forgot Password?\" do in the mock phase? TST sets the spinner, disables the Login button and opens the reset-password policy of the identity provider; React does nothing visible.",
-   "verified": "live"
+   "verified": "code",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Common-026",
@@ -360,12 +361,13 @@
    "os": "a success toast; the user stays on Login",
    "react": "no reset-password path",
    "evidence": "TST UBTConnect.App_Common.Login.mvc.js:865-868; BR-UBTCON-305; migration/clarify/answers.json App_Common:Q1",
-   "verdict": "n/a",
+   "verdict": "match",
    "severity": "minor",
    "finding": "F2",
-   "note": "user decision 2026-10-27, App_Common Q1 (a): the reset-password path is out of scope in the mock phase, so the IdP_OnResetPassword callback cannot run (TST Login.mvc.js:865-868).",
+   "note": "Fixed 2026-10-27 (fixes/H-user-followups.md): the IdP_OnResetPassword callback shows FeedbackMessage_AutoClose(MessageTitle, Message, Success, True, \"\", 0, False) with the TST message (AM:2391-2393); the user stays on Login. user decision 2026-10-27, App_Common Q1 (a): the reset-password path is out of scope in the mock phase, so the IdP_OnResetPassword callback cannot run (TST Login.mvc.js:865-868).",
    "question": "Q1: What does \"Forgot Password?\" do in the mock phase? TST sets the spinner, disables the Login button and opens the reset-password policy of the identity provider; React does nothing visible.",
-   "verified": "live"
+   "verified": "code",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Common-032",
@@ -474,11 +476,13 @@
    "os": "Login and Forgot Password exclude each other, each with its spinner",
    "react": "Login: yes; Forgot Password: no spinner and no disabled Login button",
    "evidence": "app/src/pages/Login/components/LoginCard.tsx:41-63; app/src/pages/Login/hooks/useLogin.ts:93-99",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "minor",
    "finding": "F2",
    "question": "Q1: What does \"Forgot Password?\" do in the mock phase? TST sets the spinner, disables the Login button and opens the reset-password policy of the identity provider; React does nothing visible.",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Fixed 2026-10-27 (fixes/H-user-followups.md): both buttons exclude each other with their spinner (useLogin.ts forgotPassword). "
   },
   {
    "id": "App_Common-041",

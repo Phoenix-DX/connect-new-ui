@@ -3,6 +3,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { startApp } from '@/platform/bootstrap/appStartSteps';
+import { getFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { getSessionStatus } from '@/platform/session/machine';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setAppCallback } from '@/platform/session/resume';
@@ -69,12 +70,23 @@ describe('Login page', () => {
     expect(calledActions()).toContain('ActionGetUserInformation');
   });
 
-  it('"Forgot Password?" does nothing in the mock phase', async () => {
+  it('"Forgot Password?" runs the reset-password policy, then the success toast; the user stays signed out on Login', async () => {
+    // Login(IsResetPassword = True), Login.mvc.js:719-730; the IdP_OnResetPassword callback, :865-868 (user decision
+    // 2026-10-27, App_Common Q1).
     renderLogin();
     fireEvent.click(screen.getByRole('button', { name: 'Forgot Password?' }));
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    expect(screen.getByRole('button', { name: 'Login with UBT One' })).toBeDisabled(); // IsResettingPassword
+    await waitFor(() => {
+      expect(getFeedbackMessage()).toMatchObject({
+        message: 'Your password has been successfully changed. Please log in using your new password.',
+        type: 1, // Success
+      });
+    });
     expect(screen.queryByText('PINRegister screen')).toBeNull();
     expect(getSessionStatus()).toEqual({ status: 'signedOut' });
+    expect(screen.getByRole('button', { name: 'Login with UBT One' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'Forgot Password?' })).toBeEnabled();
+    expect(calledActions()).not.toContain('ActionGetUserInformation'); // no sign-in
   });
 
   it('OnInitialize clears the sign-in callback location, unless the signed-out gate opened Login', async () => {
