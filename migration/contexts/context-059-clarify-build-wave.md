@@ -25,8 +25,8 @@
   filtered list is overwritten (B8).
 - The runtime `List` restore patch of NavigationHandler (NH:1050-1126) and the FocusScrollAnchorOnBack entering anchor
   act only on AssembleDetail's list (not ported).
-- The survey of 2026-10-13 is stale for ScreenBlock_OrbitLanding: the live TST script (fetched 2026-10-28) has the
-  passport control that the TST capture DOM shows; finding F3 withdrawn, the React control restored (PD13).
+- The survey of 2026-10-13 is stale for ScreenBlock_OrbitLanding. The live TST script (fetched 2026-10-28) has the
+  passport control that the TST capture DOM shows. Finding F3 withdrawn, the React control restored (PD13).
 
 ## Files changed
 - `app/`: about 250 files.
