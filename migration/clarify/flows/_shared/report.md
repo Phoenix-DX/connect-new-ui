@@ -240,6 +240,7 @@ All rows are `n/a`: U12 (no push), U17 (no telemetry, Firebase RTDB), app-shell.
 |---|---|---|---|---|---|
 | F1 | minor | GetShareType_FromEntity, IsMyHousehold | TST tests IsMyHousehold after all entity cases (UC:11100-11215): a Household is always shared as Household, and MyHousehold is the result only when no entity case matched. React tests it inside the Household case. Latent today: the only caller passes `false` (`entityDetailsActionsState.ts:83`). BR-UBTCON-244 states the TST order. | `app/src/lib/ubtConnect/actions.ts:185-186` | Return `Household` in the Household case; after the switch cases, return `MyHousehold` when `isMyHousehold` is true, else throw |
 | F2 | info | OnApplicationReady, AddCustomHeadersJS | TST adds `link rel="preconnect"` and `link rel="dns-prefetch"` to `document.head` for the MyEntertaining and Feed base URLs of Sync_Info_Main (UC:15512-15528). React drops the two URLs (`api/app/types.ts:81`) and adds no link. No visible behaviour; the embedded pages connect later. | `app/src/platform/bootstrap/startup.ts:75-86` | Keep the two URLs in the Sync_Info_Main mapper and add the four link elements after `syncInfoMain` |
+| F3 | major | OnApplicationReady / on exception All Exceptions → ScreenController_RaiseError | TST shows the exception toast for a non-system app-start failure (`UBTConnect.controller.js:15398-15417`, `UBTJavaScriptUtils.controller.js:3900`); React only logs (`appStartSteps.ts:192-196`). Row 193. User decision 2026-10-27 C3: build it. | `app/src/platform/bootstrap/appStartSteps.ts:192-196` | Raise the error to the App_Common handler (toast) as TST does. |
 
 ## 6. DEV vs TST differences
 
@@ -295,3 +296,7 @@ Rows settled or sharpened after the user answers of 2026-10-27 and the TST files
 | Row | Old verdict | New verdict | Evidence |
 |---|---|---|---|
 | _shared-193 | `unclear` | `missing` | migration/runtime-sources/UBTConnect.controller.js:15398-15417; migration/runtime-sources/OutSystems.js:2; migration/shell/sources/UBTJavaScriptUtils.controller.js:3842, 3900; migration/app-shell.spec.md:367; app/src/platform/bootstrap/appStartSteps.ts:192-196 |
+
+## 11. User decisions of 2026-10-27 on the candidate findings
+
+- Row 193: stays `missing`; finding F3 (major) added by user decision 2026-10-27 C3.

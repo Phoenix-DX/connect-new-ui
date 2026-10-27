@@ -537,3 +537,7 @@ Rows settled or sharpened after the user answers of 2026-10-27 and the TST files
 | Legacy_OrbitEventsFlow-J016 | `unclear` | `unclear` | Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Filters.mvc.js and Popup_OrbitLanding_Sort.mvc.js (migration/runtime-sources/) with app/src/pages/OrbitLanding/components/Popup_OrbitLanding_Filters.tsx and Popup_OrbitLanding_Sort.tsx, row by row (UI tree, actions, strings). The follow-up pass did not do it (budget). |
 | Legacy_OrbitEventsFlow-J017 | `unclear` | `unclear` | Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_ListHeader.mvc.js, EventBooklet_MembersItem.mvc.js and PopUp_OrbitBookletFilters.mvc.js (migration/runtime-sources/) with the three React files under app/src/pages/EventBooklet/components/. The follow-up pass did not do it (budget). |
 | Legacy_OrbitEventsFlow-J018 | `unclear` | `unclear` | Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail.mvc.js and TransportDetail_TravelInfo.mvc.js (migration/runtime-sources/) with app/src/pages/TransportDetail/components/TransportDetail.tsx and TransportDetail_TravelInfo.tsx. The follow-up pass did not do it (budget). |
+
+## 11. User decisions of 2026-10-27 on the candidate findings
+
+- Row A121: `partial` → `differs` (user decision 2026-10-27 C2: keep the React default of IsGuestView).

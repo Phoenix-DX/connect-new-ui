@@ -387,3 +387,7 @@ Rows settled or sharpened after the user answers of 2026-10-27 and the TST files
 |---|---|---|---|
 | App_Menu_ContactUs-122 | `unclear` | `partial` | migration/runtime-sources/UBTConnectLibrary.controller.js:7565-7569; TST UBTConnect.App_Menu_ContactUs.ContactUsDetails.mvc.js:1918; app/src/pages/ContactUsDetails/hooks/contactUsDetailsState.ts:130-133 |
 | App_Menu_ContactUs-123 | `unclear` | `partial` | migration/runtime-sources/UBTConnectLibrary.controller.js:7647-7666; TST UBTConnect.App_Menu_ContactUs.ContactUsDetails.mvc.js:1939; app/src/pages/ContactUsDetails/hooks/contactUsDetailsState.ts:135-138 |
+
+## 11. User decisions of 2026-10-27 on the candidate findings
+
+- Rows 122 and 123: `partial` → `differs` (user decision 2026-10-27 C1: keep the React trim).

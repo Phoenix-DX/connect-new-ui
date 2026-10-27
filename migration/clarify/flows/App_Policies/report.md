@@ -315,3 +315,7 @@ Rows settled or sharpened after the user answers of 2026-10-27 and the TST files
 |---|---|---|---|
 | App_Policies-025 | `unclear` | `match` | migration/runtime-sources/UBTConnect_Utils.controller.js:2383-2384; app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:60; app/src/platform/session/session.ts:207-208 |
 | App_Policies-063 | `unclear` | `missing` | app/src/pages/AcceptPendingPolicies/actions.ts:50-66; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1385-1387; BR-UBTCON-943; migration/clarify/answers.json App_Policies:Q2 |
+
+## 11. User decisions of 2026-10-27 on the candidate findings
+
+- Row 063: stays `missing`; user decision 2026-10-27 C4: store the device id in localStorage["UUID"] as TST (F4, build).

@@ -13,7 +13,7 @@ Verdicts: match · partial · missing · differs · mock-only · n/a · unclear 
 | G1 | [App_Policies](flows/App_Policies/report.md) | draft | 90 | 74 | 6 | 1 | 2 | 2 | 5 | 0 | 0/1/3/2 | 2 |
 | G1 | [Home](flows/Home/report.md) | draft | 148 | 123 | 5 | 0 | 1 | 5 | 14 | 0 | 0/0/3/1 | 3 |
 | G1 | [App_Menu](flows/App_Menu/report.md) | draft | 122 | 111 | 1 | 0 | 3 | 4 | 3 | 0 | 0/0/1/1 | 2 |
-| G1 | [App_Menu_ContactUs](flows/App_Menu_ContactUs/report.md) | draft | 147 | 104 | 13 | 21 | 0 | 3 | 6 | 0 | 1/2/0/0 | 4 |
+| G1 | [App_Menu_ContactUs](flows/App_Menu_ContactUs/report.md) | draft | 147 | 104 | 11 | 21 | 2 | 3 | 6 | 0 | 1/2/0/0 | 4 |
 | G1 | [App_Notifications](flows/App_Notifications/report.md) | draft | 120 | 102 | 2 | 4 | 0 | 2 | 10 | 0 | 0/2/0/0 | 3 |
 | G1 | [App_Profile](flows/App_Profile/report.md) | draft | 110 | 70 | 11 | 21 | 0 | 2 | 6 | 0 | 0/1/1/4 | 1 |
 | G1 | [App_Services](flows/App_Services/report.md) | draft | 81 | 69 | 6 | 2 | 0 | 2 | 2 | 0 | 0/2/3/2 | 4 |
@@ -30,7 +30,7 @@ Verdicts: match · partial · missing · differs · mock-only · n/a · unclear 
 | G3 | [ContactFlow](flows/ContactFlow/report.md) | draft | 142 | 121 | 3 | 0 | 8 | 5 | 5 | 0 | 0/0/1/1 | 2 |
 | G3 | [Legacy_Share](flows/Legacy_Share/report.md) | draft | 95 | 64 | 8 | 0 | 2 | 5 | 16 | 0 | 0/0/2/1 | 0 |
 | G3 | [Legacy_MyNotificationsFlow](flows/Legacy_MyNotificationsFlow/report.md) | draft | 152 | 106 | 6 | 21 | 0 | 8 | 11 | 0 | 0/4/2/0 | 4 |
-| G4 | [Legacy_OrbitEventsFlow](flows/Legacy_OrbitEventsFlow/report.md) | draft | 438 | 317 | 17 | 69 | 5 | 18 | 9 | 3 | 2/1/3/1 | 4 |
+| G4 | [Legacy_OrbitEventsFlow](flows/Legacy_OrbitEventsFlow/report.md) | draft | 438 | 317 | 16 | 69 | 6 | 18 | 9 | 3 | 2/1/3/1 | 4 |
 | G4 | [Legacy_OrbitAdminFlow](flows/Legacy_OrbitAdminFlow/report.md) | draft | 109 | 90 | 5 | 0 | 5 | 4 | 4 | 1 | 0/1/2/0 | 2 |
 | G4 | [Legacy_OrbitQRCodeFlow](flows/Legacy_OrbitQRCodeFlow/report.md) | draft | 68 | 60 | 1 | 1 | 0 | 2 | 4 | 0 | 0/0/2/0 | 1 |
 | G4 | [Legacy_LDMEventsFlow](flows/Legacy_LDMEventsFlow/report.md) | draft | 94 | 67 | 1 | 2 | 5 | 2 | 17 | 0 | 0/0/2/0 | 0 |
@@ -51,9 +51,9 @@ Verdicts: match · partial · missing · differs · mock-only · n/a · unclear 
 | X | [Directory_Household_Blocks](flows/Directory_Household_Blocks/report.md) | draft | 84 | 78 | 1 | 0 | 0 | 2 | 3 | 0 | 0/0/1/0 | 0 |
 | X | [Directory_OneSchoolGlobal_Blocks](flows/Directory_OneSchoolGlobal_Blocks/report.md) | draft | 29 | 11 | 0 | 0 | 0 | 0 | 18 | 0 | 0/0/0/0 | 0 |
 | X | [Calendar_Events](flows/Calendar_Events/report.md) | draft | 8 | 0 | 0 | 0 | 0 | 0 | 8 | 0 | 0/0/0/0 | 0 |
-| X | [_shared](flows/_shared/report.md) | draft | 194 | 82 | 1 | 2 | 5 | 7 | 97 | 0 | 0/0/1/1 | 1 |
+| X | [_shared](flows/_shared/report.md) | draft | 194 | 82 | 1 | 2 | 5 | 7 | 97 | 0 | 0/1/1/1 | 1 |
 | X | [_libraries](flows/_libraries/report.md) | draft | 245 | 224 | 5 | 1 | 9 | 4 | 2 | 0 | 0/1/3/0 | 2 |
-| | **total (45/45 flows)** | | 5332 | 4212 | 137 | 166 | 93 | 157 | 556 | 11 | 3/25/55/29 | |
+| | **total (45/45 flows)** | | 5332 | 4212 | 134 | 166 | 96 | 157 | 556 | 11 | 3/26/55/29 | |
 
 ## 2. Findings by severity (blocker and major first)
 
@@ -87,6 +87,7 @@ Verdicts: match · partial · missing · differs · mock-only · n/a · unclear 
 | Legacy_OrbitAdminFlow | F1 | major | OrbitAdminLanding / OnHandle_NavigateToEventDetail | React follows the DEV model: it calls GetMilestoneScanFF and, when IsScanPerMilestone is True, opens OrbitAdminMilestones. TST only opens OrbitAdminEventDetail (LW:244-252). TST has no GetMilestoneScanFF stub, and the app has no OrbitAdminMilestones route (board V8 skip). KB `legacy-orbit.md:63` and BR-UBTCON-608 also show an unconditional navigation. The decision of 2026-10-16 (`migration/knowledge/auto-decisions-2026-10-16.md:84`) sets only the mock value False. It does not name a difference from TST. | `pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts:15-19`; `api/event/repository.ts:253`; `pages/OrbitAdminLanding/mocks.ts:50-52`; `mocks/fictional/orbitAdmin.ts:113-116` |
 | Legacy_OrbitEventsFlow | F3 | major | OrbitLanding: "View Passport details" | React shows the control and navigates to `/UBTConnect/PassportScan` with LoginMemberId and TargetId after the access gate. TST has no such control, event or screen (`tst_source.py grep "assport"`: no match; `list Passport`: none). The React app registers no such route, so the tap leads to an unknown route. The element comes from the DEV dump of 2026-10-27 (DEV ≠ TST, §6.1). `shell-facts.md:155` records the navigation as a fact, not as a decision. | `OrbitLandingView.tsx:163-169`, `useOrbitLanding.ts:184-188`, `OrbitLandingPage.tsx:47-54` |
 | _libraries | F1 | major | SearchResult_Item OnClick_UpgradeSubscription; ShareSheet Handler_OnClickRecentMember | TST runs App_Subscription_NavigateToUpgrade (Cache_UserInfo_Get, Cache_UserInfo_Invalidate, OpenInApp_OpenExternalLink after ConfirmAction; `UBTConnect_Utils.controller.js:1`) on the warning and App_Subscription_ShowUpgradePopUp (`:46`) on a locked recent member. React does nothing on both taps. Both are web actions, not native only. No decision recorded. | `components/search/SearchResultItem/SearchResultItem.tsx:117`; `containers/ShareSheet/useShareSheet.ts:136-140` |
+| _shared | F3 | major | OnApplicationReady / on exception All Exceptions → ScreenController_RaiseError | TST shows the exception toast for a non-system app-start failure (`UBTConnect.controller.js:15398-15417`, `UBTJavaScriptUtils.controller.js:3900`); React only logs (`appStartSteps.ts:192-196`). Row 193. User decision 2026-10-27 C3: build it. | `app/src/platform/bootstrap/appStartSteps.ts:192-196` |
 | App_Common | F2 | minor | Login / "Forgot Password?" (Login, isResetPassword True) | TST sets IsResettingPassword (spinner, Login button disabled) and starts the reset-password policy of the identity provider. A completed reset ends with a success toast (IdP_OnResetPassword). React runs the built-in validation only: the click changes nothing on the screen. U4 covers "Login with UBT One" only, and no other record names this behaviour. Rows: 025, 031, 040. | `app/src/pages/Login/hooks/useLogin.ts:24-26, 97-99` |
 | App_Common | F3 | minor | Login / OnReady, device awareness | React compares CallbackType with `'AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice'`. The TST value is "DeviceAwareness_InvalidDevice" (`migration/knowledge/static-entities-tst.json:2643`), so `Login?CallbackType=DeviceAwareness_InvalidDevice` still runs DelayedMessage_Show. AppManager_HandleDeviceAwarenessPopUp is not built, so nothing opens ConfirmationDialog_ResetPassword. Rows: 033, 043. | `app/src/pages/Login/hooks/useLogin.ts:10-12, 82-87` |
 | App_Menu | F1 | minor | Menu / view cache (row 006) | The runtime restores the screen variables of a view from the view cache (U19, P-BACK). TST Menu has no `IsViewRestoredFromCache` check: OnInitialize rebuilds MenuOptionList, and `LocalCacheControl_UserInformation` keeps its restored value. React keeps no Menu variable in the view cache. A Back to Menu starts with `isFetched` false, so the header shows the skeleton until CacheControl_UserInfo answers. TermsAndPoliciesMenu and PINBiometricsMenu use `useViewState`. No decision names the difference. | `app/src/pages/Menu/hooks/menuState.ts:17`; `app/src/pages/Menu/hooks/useMenu.ts:35` |
