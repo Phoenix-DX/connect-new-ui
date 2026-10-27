@@ -31,11 +31,13 @@ Do not read: `migration/screens/**` (the route specs of the migration; this work
 
 ## How you check
 
-For every screen of the flow, and for every block of the flow that a built screen uses, check the areas of the
-template: identity, data, UI tree, screen actions, validations, business logic, strings. One row per item that carries
-behaviour: a block instance with its arguments, an If condition, a list and its source, an input and its validations, a
-screen action (and each branch, message or navigation inside it that can differ), a data action with its fetch moment,
-a client action called, a client variable read or written, a rule `BR-UBTCON-*` that the KB ties to the element.
+Check every screen of the flow. Check every block of the flow that a built screen uses. Check the areas of the
+template: identity, data, UI tree, screen actions, validations, business logic, strings. Write one row per item that
+carries behaviour. Items are:
+- a block instance with its arguments; an If condition; a list and its source; an input and its validations
+- a screen action, and each branch, message or navigation inside it that can differ
+- a data action with its fetch moment; a client action called; a client variable read or written
+- a rule `BR-UBTCON-*` that the KB ties to the element
 
 Give each row one verdict:
 
@@ -58,9 +60,10 @@ Rules:
 - A dead branch in the model (`[DISABLED]`, `[DEAD BRANCH]`, "unreachable nodes") is one row with verdict `n/a` and
   the note "dead in the model"; React must not implement it.
 - The logic of a referenced module (a block of `UBTConnectLibrary`, `UBT_AppManager`, `Connect2_*_MUI`, …) is not in
-  the pack. `references.md` gives its signature; `kb.md` names the KB pages of that module. Check what the React app
-  does against the KB page when one exists; otherwise the row is `unclear` with the question "behaviour of <Block> in
-  module <Module>: not in the dump, no KB page".
+  the pack. `references.md` gives its signature; `kb.md` names the KB pages of that module.
+  - When a KB page exists, check the React app against it.
+  - When none exists, the row is `unclear`. Its question: "behaviour of <Block> in module <Module>: not in the dump,
+    no KB page".
 - Mock data is not a finding. Meaningful mock data is a project rule; only a wrong shape, a missing field or a missing
   handler is a finding.
 - Write the report in English, in the style of `migration/english-docs/style-rules.md`: short sentences, active voice,
@@ -76,5 +79,5 @@ Rules:
 ## Budget
 
 Read what the pack names, not the whole app. A screen of average size takes about 60 to 120 rows. Stop at the pack's
-boundary: a shared action that 29 flows use gets one row ("shared, checked in the report of App_Common") unless your
-flow depends on a branch of it.
+boundary. A shared action that 29 flows use gets one row ("shared, checked in the report of App_Common"). Check its
+branches only when your flow depends on them.

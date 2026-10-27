@@ -57,8 +57,9 @@
 
 ### 2.n <Screen not built>
 
-One paragraph: the board decision (`skip` and its reason, who and when), what the DEV screen does (3 to 6 lines), and
-what a build needs (blocks, actions, server actions). Verdict `n/a` for every item, cited as one row in `checklist.json`.
+One paragraph with three parts. The board decision: `skip`, its reason, who and when. What the DEV screen does, in 3
+to 6 lines. What a build needs: blocks, actions, server actions. Verdict `n/a` for every item, as one row in
+`checklist.json`.
 
 ## 3. Blocks of the flow
 
@@ -67,9 +68,9 @@ Blocks of other flows: one line each with the pack that holds them and the verdi
 
 ## 4. Shared blocks and actions
 
-The shared client actions and block-only-flow blocks the flow uses (from `pack/actions.md`, `pack/blocks.md`), each with
-the React location and a verdict, when the agent checked them. Otherwise: "checked in the report of flow X" or "not
-checked here (shared)".
+The shared client actions and the blocks of block-only flows that the flow uses (from `pack/actions.md` and
+`pack/blocks.md`). Each gets the React location and a verdict when the agent checked it. Otherwise write "checked in
+the report of flow X" or "not checked here (shared)".
 
 ## 5. Findings
 
@@ -77,8 +78,11 @@ checked here (shared)".
 |---|---|---|---|---|---|
 | F1 | blocker / major / minor / info | … | … | … | … |
 
-Severity: **blocker** = the user cannot complete the flow; **major** = a visible behaviour, a rule or data differs;
-**minor** = a text, a style class or an edge case; **info** = no user impact (dead code, naming).
+Severity levels:
+- **blocker**: the user cannot complete the flow
+- **major**: a visible behaviour, a rule or data differs
+- **minor**: a text, a style class or an edge case
+- **info**: no user impact (dead code, names)
 
 ## 6. DEV vs TST differences
 
