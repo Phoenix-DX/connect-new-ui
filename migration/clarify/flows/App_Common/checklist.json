@@ -10,7 +10,7 @@
       "element": "roles Anonymous, Registered, UBTOne_User",
       "os": "anyone opens the screen; the screen has no checkRegistered",
       "react": "ROUTE_META Login = { access: 'anonymous', lock: 'ignore' }",
-      "evidence": "app/src/app/routes.ts:44; migration/knowledge/shell-facts.md:15",
+      "evidence": "app/src/app/routes.ts:44; migration/knowledge/shell-facts.md:14",
       "verdict": "match",
       "note": "lock 'ignore' agrees with CommonUI_InsideLayout In_IgnoreLockScreen True.",
       "verified": "pack"

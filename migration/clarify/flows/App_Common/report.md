@@ -18,7 +18,7 @@
 - **F4** (info): from a PIN reset, Login runs Connect_Logout and then the mock sign-in. TST starts the login, then calls AppManager_Logout (Q2).
 - **F5** and **F6** (info): system exceptions in the flow handler, and version checks that ignore the stored minimum versions.
 - Status: in React a user opens Login and signs in at once as the mock user. Then the app opens PINRegister, the resume link, the sign-in callback or HomeFeed.
-- Splash, the lock overlay, the policy checker, the back handling and the bottom bar behave as on TST. A password reset is not possible.
+- Splash, the lock overlay, the policy checker, the back handlers and the bottom bar behave as on TST. A password reset is not possible.
 
 ## 2. Screens
 
@@ -32,7 +32,7 @@ apply are D3(a) and U4 (mock sign-in), U1 (the signed-out gate) and U15 (the Lea
 
 | Id | Item | OutSystems (DEV) | React | Verdict | Evidence / note |
 |---|---|---|---|---|---|
-| 001 | roles Anonymous, Registered, UBTOne_User | anyone opens the screen; the screen has no checkRegistered | ROUTE_META Login = { access: 'anonymous', lock: 'ignore' } | `match` | app/src/app/routes.ts:44; migration/knowledge/shell-facts.md:15<br>lock 'ignore' agrees with CommonUI_InsideLayout In_IgnoreLockScreen True. |
+| 001 | roles Anonymous, Registered, UBTOne_User | anyone opens the screen; the screen has no checkRegistered | ROUTE_META Login = { access: 'anonymous', lock: 'ignore' } | `match` | app/src/app/routes.ts:44; migration/knowledge/shell-facts.md:14<br>lock 'ignore' agrees with CommonUI_InsideLayout In_IgnoreLockScreen True. |
 | 002 | input parameters (4) | In_IsFromInvalidPermissions, In_IsFromResetPIN (Boolean), CallbackType (AppManager_JSUtils_CustomEvents Identifier), CallbackGUID (Text) | readLoginInputs reads the 4 names from the query string; defaults False and "" | `match` | app/src/pages/Login/inputs.ts:5-27; app/src/app/routes.generated.ts:9 |
 | 003 | local variables IsExecutingLogin, IsResettingPassword, IsUnsupportedSystem | the two spinner flags and the unsupported-system switch | useState for each; IsUnsupportedSystem from get_IsUnsupportedSystem at the first render | `match` | app/src/pages/Login/hooks/useLogin.ts:34-36 |
 | 004 | lifecycle OnInitialize, OnReady | OnInitialize → OnInitialize; OnReady → OnReady | one mount effect for each, run once per screen instance | `match` | app/src/pages/Login/hooks/useLogin.ts:66-87 |
@@ -175,12 +175,11 @@ The screen has no visible string of its own.
 
 ### 2.3 InvalidPermissions (not built)
 
-Board decision: `skip` (V1, D3, skip:dead: "no link, URL or handler targets it (TST; DEV ref)", user 2026-10-14,
-`migration/board.md:66`). The DEV screen uses the side-menu Layout with MenuIcon and the title "Invalid Permissions". A
-BlankSlate shows a warning icon, the text "You don't have permissions to view the required screen." and a Login button.
-The button opens Login with all inputs at their defaults. BottomBarMenu sits at the bottom with its defaults. The screen
-has no input, no local variable and no server call. A build needs the App_Common Layout and MenuIcon blocks (not built),
-the OSUI BlankSlate and the built BottomBarMenu.
+Board decision: `skip` (V1, D3, skip:dead, user 2026-10-14, `migration/board.md:66`): no link, URL or handler
+targets the screen on TST. The DEV screen shows the side-menu Layout with MenuIcon, the title "Invalid Permissions",
+a warning BlankSlate and a Login button. The button opens Login with all inputs at their defaults, and BottomBarMenu
+keeps its defaults. The screen has no input, no local variable and no server call. A build needs the App_Common
+Layout and MenuIcon blocks (not built), the OSUI BlankSlate and the built BottomBarMenu.
 
 **Identity**
 
@@ -341,9 +340,9 @@ React: `app/src/components/version/`. Decision U16 builds the Browser card as a 
 
 ## 4. Shared blocks and actions
 
-The flow-level rows (screen `-` in `checklist.json`): the own client actions of the flow, the server and service
-actions, the App_Common flow exception handler, and the shared and referenced actions that this flow depends on. The
-pack has no element for the flow exception handler. Rows 166 to 170 come from the TST flow controller, which the other
+The flow-level rows have the screen `-` in `checklist.json`. They cover the own client actions, the server and
+service actions, the flow exception handler, and the shared and referenced actions of the flow. The pack has no
+element for the flow exception handler. Rows 166 to 170 come from the TST flow controller, which the other
 UI flows call (`migration/knowledge/shell-facts.md` U10).
 
 | Id | Block | Area | Item | OutSystems (DEV) | React | Verdict | Evidence / note |
@@ -406,8 +405,8 @@ Not checked here:
 
 ### 6.1 DEV model vs TST compiled code
 
-The DEV pack and the TST compiled code agree on the other checked items of Login, Splash, CommonUI_InsideLayout,
-LayoutBlank, Version, the unsupported-version blocks and the own client actions.
+On the other checked items, the DEV pack and the TST compiled code agree. The check covered Login, Splash,
+CommonUI_InsideLayout, LayoutBlank, Version, the unsupported-version blocks and the own client actions.
 
 | Element | DEV (model) | TST (compiled code) | What the React app follows | Source |
 |---|---|---|---|---|
