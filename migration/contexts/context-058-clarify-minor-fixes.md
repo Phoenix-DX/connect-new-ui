@@ -15,17 +15,19 @@
     IdP_OnResetPassword callback with the success toast; Login parity clean).
   - The user allowed the MarkAsRead write for one capture of Directory_Updates rows 073/074: TST writes
     `scrollAnchorId` and `scrollAnchorDelta` on the tap; the restore on Back was not observed.
-  - Result: 50 fixed, 4 withdrawn, 1 kept, 1 open. Artifact EN version 3.
+  - The user then ordered the full port of the scroll anchor (Directory_Updates F2): CaptureScrollPosition,
+    RememberFocusedScrollAnchor, GetFocusedScrollAnchorOnBack, ScrollFix; `useViewState` now saves a value set in the
+    same tick as the navigation (ScreenModel_Flush). Parity Updates_SingleList clean.
+  - Result: 51 fixed, 4 withdrawn, 1 kept, 0 open. Artifact EN version 4.
 
 ## Decisions (who, date)
 - User 2026-10-27: fix the 56 minors, re-check, update the artifact; publish without an accept step.
 - Orchestrator (auto mode) 2026-10-27: one loading-state parity exemption for LegacyShareObject
   (`CAPTURE-LOADING-FETCH-TIMEOUT-LEGACYSHAREOBJECT-ONINITIALIZE`), same family as the other loading-timeout entries.
-- User 2026-10-27: Forgot Password fully as TST (reversal of App_Common Q1 a); the MarkAsRead write allowed for
-  the Directory_Updates capture only (the guard is read-only again).
+- User 2026-10-27: Forgot Password fully as TST (reversal of App_Common Q1 a). The MarkAsRead write allowed for
+  the Directory_Updates capture only (the guard is read-only again). The scroll anchor ported fully.
 - Open for the user: Legacy_OrbitEventsFlow F4 (keep W34 a, recommended, or reverse it in about 20 hooks);
-  App_Policies F2 `networkMode: 'always'` (group C) or `'online'`; Directory_Updates F2: port the anchor save and
-  restore (NavigationHandler source needed) or keep the shell view cache.
+  App_Policies F2 `networkMode: 'always'` (group C) or `'online'`.
 
 ## Facts learned (evidence)
 - The runtime creates a screen's view after a handled OnInitialize error; only an unhandled error result leaves the
@@ -44,7 +46,7 @@
 - `migration/parity-exemptions.json` (+1), `migration/screens/*/parity/` (sweep reports), `migration/metrics/ledger.csv`.
 
 ## Open issues
-- Directory_Updates F2 (decision on the anchor restore); Notes F2 (major); Photobook move log.
+- Notes F2 (major); Photobook move log; the List restore patch of NavigationHandler (NH:1050-1126) is not ported.
 - The Vietnamese artifact "Infra & FE readiness" still shows the findings without the fix status.
 
 ## Next

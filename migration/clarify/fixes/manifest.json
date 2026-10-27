@@ -86,10 +86,12 @@
  {
   "flow": "Directory_Updates",
   "finding": "F2",
-  "group": "",
+  "group": "H-user-followups",
   "date": "2026-10-27",
-  "status": "open",
-  "reason": "capture done 2026-10-27 (MarkAsRead allowed by the user): TST writes scrollAnchorId/scrollAnchorDelta on the tap (rows 073/074 now `missing`); the restore on Back was not observed (Back landed on HomeFeed). Decision needed: port the anchor save and restore (NavigationHandler code is not in the survey)"
+  "status": "fixed",
+  "verified": "live",
+  "rows": [],
+  "suffix": "the scroll-anchor save and restore ported after the capture and the user's decision (port fully)"
  },
  {
   "flow": "App_Menu",

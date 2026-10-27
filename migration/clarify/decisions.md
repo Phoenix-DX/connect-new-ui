@@ -100,7 +100,7 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 
 | Id | Question | Answer | By, date |
 |---|---|---|---|
-| Q1 | On Back to Updates_SingleList, do you accept the scroll offsets of the shell view cache in place of the anchor mechanism of TST (rows 073, 074, 095; F2)? | User 2026-10-27: capture rows 073/074 on TST with the ServiceAPIAction_UI_UpdateItem_MarkAsRead write allowed for this capture only (CLAUDE.md rule 6 exception, confirmed by the user). | user, 2026-10-27 |
+| Q1 | On Back to Updates_SingleList, do you accept the scroll offsets of the shell view cache in place of the anchor mechanism of TST (rows 073, 074, 095; F2)? | User 2026-10-27: port the scroll-anchor save and restore fully (CaptureScrollPosition, RememberFocusedScrollAnchor, GetFocusedScrollAnchorOnBack, ScrollFix) as TST; NavigationHandler source from DEV through the MCP as reference (TST compiled code is the target where it exists). Earlier: the capture of 2026-10-27 with the MarkAsRead write allowed once. | user, 2026-10-27 |
 | Q2 | Do you want one shared check of the referenced library blocks against their TST files (row 148)? | (a) One shared pass for UBTConnectLibrary, NavigationHandler and UBTConnect_Utils blocks — (a): one pass covers every flow at the lowest cost. | user, 2026-10-27 |
 
 ## Bookmarks (G3)

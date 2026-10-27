@@ -238,9 +238,9 @@
    "Flow": "[Directory_Updates](flows/Directory_Updates/report.md)",
    "Status": "draft",
    "Rows": "149",
-   "match": "125",
+   "match": "127",
    "partial": "3",
-   "missing": "7",
+   "missing": "5",
    "differs": "0",
    "mock-only": "5",
    "n/a": "9",
@@ -688,9 +688,9 @@
    "Flow": "**total (45/45 flows)**",
    "Status": "",
    "Rows": "5412",
-   "match": "4368",
+   "match": "4370",
    "partial": "78",
-   "missing": "154",
+   "missing": "152",
    "differs": "97",
    "mock-only": "157",
    "n/a": "555",
@@ -2690,7 +2690,7 @@
    "Id": "F2",
    "Element": "Updates_SingleList / ScreenEvent_OnReady (restored), Handler_OnClickUpdateItem",
    "Finding": "On Back, TST runs `ReactiveInstance_ForceUpdate` on the list and scrolls the saved anchor back to its saved offset (`CaptureScrollPosition`, `RememberFocusedScrollAnchor`, `GetFocusedScrollAnchorOnBack`, `ScrollFix`). React runs only `SetupScrollListener` and uses the scroll offsets of the shell view cache (U19). The result differs only when the list height changes between leave and return. No recorded decision names the replacement.",
-   "Status": "open: capture done 2026-10-27 (MarkAsRead allowed by the user): TST writes scrollAnchorId/scrollAnchorDelta on the tap (rows 073/074 now `missing`); the restore on Back was not observed (Back landed on HomeFeed). Decision needed: port the anchor save and restore (NavigationHandler code is not in the survey)"
+   "Status": "fixed 2026-10-27 (`fixes/H-user-followups.md`): the scroll-anchor save and restore ported after the capture and the user's decision (port fully)"
   },
   {
    "Severity": "minor",
@@ -3406,7 +3406,7 @@
    "flow": "Directory_Updates",
    "id": "Q1",
    "question": "On Back to Updates_SingleList, do you accept the scroll offsets of the shell view cache in place of the anchor mechanism of TST (rows 073, 074, 095; F2)?",
-   "answer": "User 2026-10-27: capture rows 073/074 on TST with the ServiceAPIAction_UI_UpdateItem_MarkAsRead write allowed for this capture only (CLAUDE.md rule 6 exception, confirmed by the user).",
+   "answer": "User 2026-10-27: port the scroll-anchor save and restore fully (CaptureScrollPosition, RememberFocusedScrollAnchor, GetFocusedScrollAnchorOnBack, ScrollFix) as TST; NavigationHandler source from DEV through the MCP as reference (TST compiled code is the target where it exists). Earlier: the capture of 2026-10-27 with the MarkAsRead write allowed once.",
    "by": "user",
    "date": "2026-10-27"
   },

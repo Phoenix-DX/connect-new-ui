@@ -320,6 +320,14 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
   - Pushing drops the forward entries. Replacing drops the replaced one. HomeFeed and Login clear everything.
   - Screens only need stable query keys, `useViewState` for variables that the original keeps, and
     `useWasRestoredFromCache()` where the original tests it.
+  - The `useViewState` setter updates the saved value at once: a value set in the same tick as the navigation is
+    saved, as after ScreenModel_Flush in the original (Updates_SingleList Handler_OnClickUpdateItem).
+- **Scroll anchors (NavigationHandler).** `src/platform/navigation/scrollAnchors.ts`: `navigationStorage`
+  (`window.dx.Navigation.Storage`), `rememberFocusedScrollAnchor` (the tapped row of a list, `NH:1613-1626`) and
+  `getFocusedScrollAnchorOnBack` (the "dx-entering-scroll-anchor" a FocusScrollAnchorOnBack block stores,
+  `NH:485-495`). The original's List restore patch with both anchors (`NH:1050-1126`) is not ported; the view cache
+  restores the scroll offsets. Updates_SingleList adds its own CaptureScrollPosition and ScrollFix nodes (localStorage
+  `scrollAnchorId`, `scrollAnchorDelta`).
 
 - **Navigation guard (`dx-before-navigation`).** `src/platform/navigation/navigationGate.ts` (`shouldBlockNavigation`) runs
   as the blocker of the router before every navigation.

@@ -56,6 +56,15 @@ function List() {
       >
         open detail
       </button>
+      <button
+        type="button"
+        onClick={() => {
+          setTab('flushed');
+          go('/UBTConnect/Detail');
+        }}
+      >
+        set and open detail
+      </button>
     </div>
   );
 }
@@ -109,6 +118,17 @@ test('back restores the screen with its data (no loading state), scroll and view
   await waitFor(() => {
     expect(fetchItems).toHaveBeenCalledTimes(2);
   });
+});
+
+test('a view-state value set in the same tick as the navigation is saved (ScreenModel_Flush before a navigation)', async () => {
+  const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } });
+  const { router } = renderRoutes(routes, '/UBTConnect/List', queryClient);
+  expect(await screen.findByText('Item A')).toBeInTheDocument();
+  await userEvent.click(screen.getByText('set and open detail')); // setTab, then the navigation, before a render
+
+  await act(() => router.navigate(-1));
+
+  expect(screen.getByText('tab: flushed')).toBeInTheDocument();
 });
 
 test('a new visit (push) starts fresh', async () => {

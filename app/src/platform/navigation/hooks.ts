@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react';
 import { useLocation } from 'react-router';
 import { addBackHandler, BACK_PRIORITY, type BackHandler, type BackNavigationEvent } from './backQueue';
 import { registerViewState, restoredView } from './viewCache';
@@ -53,9 +53,15 @@ export function useViewState<T>(name: string, initial: T): [T, Dispatch<SetState
     return state?.has(name) ? (state.get(name) as T) : initial;
   });
   const latest = useRef(value);
+  // The setter updates `latest` at once (ScreenModel_Flush before a navigation: the view cache saves the newest value
+  // when the screen is left in the same tick, before React renders it), and the render keeps it in step.
+  const set = useCallback((action: SetStateAction<T>) => {
+    latest.current = typeof action === 'function' ? (action as (prev: T) => T)(latest.current) : action;
+    setValue(latest.current);
+  }, []);
   useLayoutEffect(() => {
     latest.current = value;
   });
   useEffect(() => registerViewState(name, () => latest.current), [name]);
-  return [value, setValue];
+  return [value, set];
 }

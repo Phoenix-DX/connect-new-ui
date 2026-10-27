@@ -9,10 +9,10 @@ report (§5 column "Status") and the checklist rows.
 
 | Result | Count | Findings |
 |---|---|---|
-| Fixed in the React code | 50 | see the group notes; App_Common F2 after the user reversed Q1 (`H-user-followups.md`) |
+| Fixed in the React code | 51 | see the group notes; App_Common F2 and Directory_Updates F2 after the user's decisions of the same day (`H-user-followups.md`) |
 | Withdrawn after a second read of the TST code | 4 | Legacy_AssembleFlow F1, Legacy_OrbitEventsFlow F5, Legacy_OrbitEventsFlow F6, _libraries F4 |
 | Kept by a recorded decision | 1 | Legacy_OrbitEventsFlow F4 (W34 a, 2026-10-22) |
-| Open | 1 | Directory_Updates F2: capture done 2026-10-27 (`H-user-followups.md`); the port of the anchor restore needs a decision |
+| Open | 0 | Directory_Updates F2 closed: capture, then the port of the scroll anchor (`H-user-followups.md`) |
 
 Partial fixes inside the 49: App_Common F3 (the constant; the dialog waits by Q3 a), Directory_Updates F3 (mock
 only; row 007 stays mock-only).
@@ -28,7 +28,7 @@ only; row 007 stays mock-only).
 | E | `E-directory.md` | Directory_Locality F1–F3, Directory_Search F4, F5, Directory_CommonBlocks F1–F3, Directory_Photobook F1, F2, Directory_Household_Blocks F1 |
 | F | `F-lists.md` | App_Services F3, F4, Notes F1, Directory_Updates F3 |
 | G1 | `G1-content.md` | Bookmarks F1, Home F1, F4, Legacy_MyNotificationsFlow F4, F5, Legacy_Share F2; Legacy_AssembleFlow F1 withdrawn |
-| H | `H-user-followups.md` | App_Common F2 (Forgot Password as TST), Directory_Updates F2 capture (orchestrator, 2026-10-27) |
+| H | `H-user-followups.md` | App_Common F2 (Forgot Password as TST), Directory_Updates F2 (capture, then the scroll-anchor port) (orchestrator, 2026-10-27) |
 | G2 | `G2-orbit-ldm.md` | Legacy_OrbitAdminFlow F2, F3, Legacy_OrbitEventsFlow F8, Legacy_LDMEventsFlow_V2 F3–F5; Legacy_OrbitEventsFlow F6 withdrawn |
 
 ## Checks after the wave

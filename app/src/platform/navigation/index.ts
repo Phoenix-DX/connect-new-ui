@@ -17,6 +17,14 @@ export {
   type OsParams,
 } from './osNavigate';
 export { getPreloadObject, setPreloadObject, usePreloadObject } from './preload';
+export {
+  getFocusedScrollAnchorOnBack,
+  leavingScrollAnchors,
+  navigationStorage,
+  rememberFocusedScrollAnchor,
+  type EnteringScrollAnchor,
+  type LeavingScrollAnchor,
+} from './scrollAnchors';
 export { allowUpcomingNavigation } from './navigationGate';
 export { exitApp, useExitConfirmation } from './exitConfirmation';
 export { DialogExitConfirmation } from './DialogExitConfirmation';

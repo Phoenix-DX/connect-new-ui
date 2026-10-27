@@ -366,7 +366,7 @@
   "options": "(a) Accept the view cache and record it under U19 in `app-shell.spec.md`. (b) Compare both on TST first (open an update, go back, compare the position; read-only). (c) Build the anchor mechanism in React.",
   "recommendation": "(b), then (a) when the positions are equal.",
   "flow": "Directory_Updates",
-  "answer": "User 2026-10-27: capture rows 073/074 on TST with the ServiceAPIAction_UI_UpdateItem_MarkAsRead write allowed for this capture only (CLAUDE.md rule 6 exception, confirmed by the user).",
+  "answer": "User 2026-10-27: port the scroll-anchor save and restore fully (CaptureScrollPosition, RememberFocusedScrollAnchor, GetFocusedScrollAnchorOnBack, ScrollFix) as TST; NavigationHandler source from DEV through the MCP as reference (TST compiled code is the target where it exists). Earlier: the capture of 2026-10-27 with the MarkAsRead write allowed once.",
   "by": "user",
   "date": "2026-10-27",
   "note": ""

@@ -9,7 +9,14 @@ import {
   type UpdateItem,
 } from '@/api/update';
 import { UserException, exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
-import { getPreloadObject, setPreloadObject, useFlowState, useOsNavigate } from '@/platform/navigation';
+import {
+  getFocusedScrollAnchorOnBack,
+  getPreloadObject,
+  rememberFocusedScrollAnchor,
+  setPreloadObject,
+  useFlowState,
+  useOsNavigate,
+} from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { clientVar } from '@/platform/session/session';
 import {
@@ -36,6 +43,7 @@ import {
   type UpdatesSingleListPatch,
   type UpdatesSingleListState,
 } from './updatesSingleListState';
+import { captureScrollPosition, scrollFix } from './scrollAnchorNodes';
 import type { UpdatesSingleListFlags, UpdatesSingleListFlows } from './updatesSingleListFlows';
 
 /** SetStickyHeaderHeight (JS node): `--sticky-top-offset` = header + `.updates-list__header` heights + 9 on the
@@ -174,13 +182,24 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
     }
   };
 
-  /* ScreenEvent_OnReady: SetStickyHeaderHeight; restored → SetupScrollListener (the scroll position comes back
-     through the view cache of the shell: Q1); otherwise isLoading, 10 skeleton rows, GetDateRanges →
-     OnAfterFetch_GetDateRanges: AugmentDateRanges, SetDefaultFilters, RefreshUpdates. */
+  /* ScreenEvent_OnReady (US:2325-2372): SetStickyHeaderHeight; restored → ReactiveInstance_ForceUpdate of List_Updates
+     (the restored state renders the list again), SetupScrollListener, GetFocusedScrollAnchorOnBack, then
+     FocusedScrollAnchorId = If(its ScrollAnchorId <> "", the UpdateItemId of the list's current row, FocusedScrollAnchorId),
+     ScrollFix(FocusedScrollAnchorId) when it is not "", and FocusedScrollAnchorId = "". The entering anchor exists only
+     after a screen with FocusScrollAnchorOnBack; HouseholdCarousel has none, so the current-row branch never runs on
+     this route (the view cache keeps the id of the tapped update). Otherwise isLoading, 10 skeleton rows,
+     GetDateRanges → OnAfterFetch_GetDateRanges: AugmentDateRanges, SetDefaultFilters, RefreshUpdates. */
   async function onReady(restored: boolean) {
     setStickyHeaderHeight();
     if (restored) {
       setupScrollListener();
+      const entering = getFocusedScrollAnchorOnBack();
+      const focused =
+        entering.scrollAnchorId !== ''
+          ? (m().items[entering.listIndex]?.updateItemId ?? '')
+          : m().focusedScrollAnchorId;
+      if (focused !== '') scrollFix(focused);
+      set({ focusedScrollAnchorId: '' });
       return;
     }
     set({ isLoading: true, items: getSkeletonList_UI_Updates(10) });
@@ -292,12 +311,15 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
       set({ isLoading: false });
     }
   };
-  /** Handler_OnClickUpdateItem(In_CurrentItemIndex): mark read, remember the anchor (Q1), then HouseholdCarousel with
-      the preloaded households of the accessible updates. */
+  /** Handler_OnClickUpdateItem(In_CurrentItemIndex) (US:1800-1840): Handler_MarkAsRead, CaptureScrollPosition
+      (localStorage), RememberFocusedScrollAnchor(List_Updates, index, id), FocusedScrollAnchorId = the UpdateItemId,
+      IsRead = True, then HouseholdCarousel with the preloaded households of the accessible updates. */
   const onClickUpdateItem = async (index: number) => {
     const item = m().items[index];
     if (!item) return;
     await handlerMarkAsRead(item.updateItemId, index);
+    captureScrollPosition(item.updateItemId);
+    rememberFocusedScrollAnchor('List_Updates', index, item.updateItemId);
     set({ focusedScrollAnchorId: item.updateItemId });
     setIsRead(index, true);
     if (flags.carousel) {

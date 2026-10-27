@@ -1,11 +1,14 @@
 import { fireEvent, screen, waitFor, within } from '@testing-library/react';
-import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { setPreloadObject, useOsNavigate } from '@/platform/navigation';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { leavingScrollAnchors, setPreloadObject, useOsNavigate } from '@/platform/navigation';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import Updates_SingleList from './Updates_SingleListPage';
+import { captureScrollPosition, scrollFix } from './hooks/scrollAnchorNodes';
+
+vi.mock('./hooks/scrollAnchorNodes', () => ({ captureScrollPosition: vi.fn(), scrollFix: vi.fn() }));
 
 /* The page with its flows (useUpdatesSingleList) in the app frame on a memory router, with the MSW mocks of the test
    setup (pages/Updates_SingleList/mocks.ts: 88 fictional updates, 84 unread, none of today). The mock collection
@@ -50,6 +53,9 @@ beforeEach(() => {
   freshPage();
   resetNavigation();
   setSignedInUser(MOCK_USER_ID);
+  leavingScrollAnchors.clear();
+  vi.mocked(captureScrollPosition).mockClear();
+  vi.mocked(scrollFix).mockClear();
 });
 afterEach(() => {
   setSignedInUser(null);
@@ -134,6 +140,38 @@ describe('Updates_SingleList page, read state', () => {
     expect([2, 4, 6, 7].map(isUnread)).toEqual([false, false, false, true]);
     expect(unreadRows()).toHaveLength(81);
     expect(calledActions().filter((c) => c.endsWith('DataActionFetchUpdates'))).toHaveLength(fetches);
+  });
+
+  it('a tap runs CaptureScrollPosition and RememberFocusedScrollAnchor; back runs ScrollFix with the tapped id once', async () => {
+    // The test frame has no `.active-screen.screen-container`, so the two JS nodes are spied here; their own tests
+    // cover the DOM work (scrollAnchorNodes.test.ts).
+    const { at } = renderPage();
+    await listLoaded();
+    // US:1824-1831: the UpdateItemId of the tapped row (its ScrollAnchor) and the row index.
+    const tappedRow = rows().findIndex((r) => r.textContent.includes('Oscar & Emma Hughes'));
+    const anchors = [...document.querySelectorAll('#List_Updates [data-dx-scroll-anchor-id]')];
+    const tappedId = anchors[tappedRow]?.getAttribute('data-dx-scroll-anchor-id') ?? '';
+    expect(tappedId).not.toBe('');
+    fireEvent.click(screen.getByText('Oscar & Emma Hughes'));
+    await waitFor(() => {
+      expect(at()).toBe('/UBTConnect/HouseholdCarousel?In_StartingHouseholdId=880098');
+    });
+    expect(vi.mocked(captureScrollPosition).mock.calls).toEqual([[tappedId]]);
+    expect(leavingScrollAnchors.get('List_Updates')).toEqual({ index: tappedRow, offsetTop: 0 }); // NH:1620-1623
+    expect(scrollFix).not.toHaveBeenCalled();
+
+    const backButton = await screen.findByText('back from the carousel');
+    await waitFor(() => {
+      expect(document.getElementById('List_Updates')).toBeNull();
+    });
+    fireEvent.click(backButton);
+    await listLoaded();
+    // US:2359-2372: no entering anchor (HouseholdCarousel has no FocusScrollAnchorOnBack), so the view-cached
+    // FocusedScrollAnchorId of the tap goes to ScrollFix, then it is "".
+    await waitFor(() => {
+      expect(scrollFix).toHaveBeenCalledWith(tappedId);
+    });
+    expect(scrollFix).toHaveBeenCalledTimes(1);
   });
 
   it('Mark All as Read: the service action, then FetchUpdates again; no unread update and no Mark All', async () => {
