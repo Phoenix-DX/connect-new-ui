@@ -7,10 +7,14 @@ Model: Sonnet. You change no code. You make no commit.
 
 ## What you deliver
 
-1. `migration/clarify/flows/<Flow>/evidence.md`: one section per screen and per own block, one table per area, one
-   row per item (format below).
-2. `migration/clarify/flows/<Flow>/draft.json`: the same rows as JSON, format of
-   `migration/clarify/templates/checklist.schema.json`, with `verdict` set to `""` (empty) on every row.
+1. `migration/clarify/flows/<Flow>/draft.json`: the rows as JSON, format of
+   `migration/clarify/templates/checklist.schema.json`, with `verdict` set to `""` (empty) on every row. This is the
+   only row file: do not write the same rows again as Markdown.
+2. `migration/clarify/flows/<Flow>/notes.md` (short, at most 80 lines): facts that are not rows:
+   - the TST presence check: pack elements absent on TST, TST elements absent in the pack, with file and line
+   - the pack gaps you saw: cut arguments, unread stretches
+   - the mock files per screen
+   - the board line of a screen that is not built
 3. Your final message (English, short), four lines:
    - row counts per screen
    - the number of items not found in React
@@ -33,22 +37,18 @@ the KB, `migration/clarify/.dump/`, the MCP. Do not read the KB (the judge does)
 ## Row format
 
 Areas: identity, data, ui, actions, validations, logic, strings. One row per item that carries behaviour (see
-`AGENT.md`, "How you check", for the item list). Each row:
+`AGENT.md`, "How you check", for the item list). JSON fields of a row: `id` = `<Flow>-<nnn>`, `screen`, `area`,
+`element`, `os`, `react`, `evidence`, `tst`, `verdict`, `note`, `verified`.
 
-| Id | Area | Element | OutSystems (pack) | React (file:line + quote) | TST | Note |
-|---|---|---|---|---|---|---|
-
-- `OutSystems`: one line from the pack: the argument, the condition, the node sequence of an action, the message.
-- `React`: `app/src/…:line-line` and a quote of at most 4 lines. When you find nothing, write `not found` and the
+- `os`: one line from the pack: the argument, the condition, the node sequence of an action, the message.
+- `react`: `app/src/…:line-line` and a quote of at most 4 lines. When you find nothing, write `not found` and the
   grep terms you tried (`searched: term1, term2`). Never write what React "probably" does.
-- `TST`: `present` when the element is in the TST compiled file, `absent` when it is not, `-` when not checked. For an
+- `evidence`: the `file:line` of the quote, the TST file, or `-`.
+- `tst`: `present` when the element is in the TST compiled file, `absent` when it is not, `-` when not checked. For an
   input: the constraints from TST (`MaxLength=50, Enabled=not isSubmiting`).
-- `Note`: a fact that the judge needs. Examples: a flag the branch depends on; a `[DISABLED]` or `[DEAD BRANCH]`
+- `note`: a fact that the judge needs. Examples: a flag the branch depends on; a `[DISABLED]` or `[DEAD BRANCH]`
   mark; a difference between the pack and TST; a mock file.
-
-JSON rows: `id` = `<Flow>-<nnn>`, `screen`, `area`, `element`, `os`, `react`, `evidence`, `verdict`, `note`, `verified`.
-`react` holds the location and the quote, or `not found`. `evidence` holds the `file:line`, the TST file, or `-`.
-`verdict` is `""`. `verified` is `"pack"`.
+- `verdict` is `""`. `verified` is `"pack"`.
 
 ## Rules
 
@@ -69,7 +69,8 @@ JSON rows: `id` = `<Flow>-<nnn>`, `screen`, `area`, `element`, `os`, `react`, `e
 - Start every shell command with `cd /Users/khaitruong/Projects/connect-new && `. Use absolute paths.
 - Use your own scratch folder: `/private/tmp/claude-501/-Users-khaitruong-Projects-connect-new/<session>/scratchpad/<Flow>/`
   (other agents run in parallel; never write outside your folder).
-- Write `evidence.md` and `draft.json` into `migration/clarify/flows/<Flow>/` with one `cat > file <<'EOF'` command
-  each (the Write tool refuses `.md` files of a subagent). A generator script in your scratch folder that writes both
-  files in one run is also fine.
+- Write `draft.json` and `notes.md` into `migration/clarify/flows/<Flow>/` with one command each (`cat > file
+  <<'EOF'`, or a generator script in your scratch folder). The Write tool refuses `.md` files of a subagent.
+- After the write, check the file with `python3 -c "import json;print(len(json.load(open('…'))['rows']))"` and
+  `wc -l` only. Do not print the file back.
 - Target: at most 60 tool calls.
