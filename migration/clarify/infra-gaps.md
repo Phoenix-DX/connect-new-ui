@@ -386,6 +386,16 @@ Checks and facts (a read-only capture or a TST read settles them):
 | Legacy_MyNotificationsFlow | Q2 | (a) after the Legacy_Share report, in one change for both flows |
 | Notes | Q1 | A. The capture is a read; it settles the fact before a code change. |
 
+
+### 10.5 Open after the captures of 2026-10-27
+
+- New finding Notes F2 (major): TST sends the selected years and the sort in `DataActionGetNotes` after Apply; React never
+  sends Years, so the year filter has no effect (`review/captures.md` §3). No user decision yet.
+- Directory_Updates rows 073 and 074 (scroll anchor on Back) stay `unclear`: the read-only capture stops at the tap on an
+  update (`MarkAsRead` is a write). A capture with that write allowed by the user, or a decision, settles them.
+- The last 5 `unclear` rows: Directory_Photobook 074, 076, 105 (a recorded decision on the Splide move log is needed)
+  and Directory_Updates 073, 074.
+
 ## 11. Order of set-up
 
 The dependencies run from the session to the screens. Each step names the rows that show the dependency.
