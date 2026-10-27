@@ -24,7 +24,7 @@ one checklist. You change no code. You make no commit.
 | `migration/board.md` | The decision and reason of a screen that is not built (`grep -n "^| <Screen> " migration/board.md`) |
 | `python3 migration/clarify/tools/tst_source.py show <Screen>` | The TST compiled code, when the DEV model and the React app differ, or a DEV fact needs a check |
 | `app/docs/architecture/overview.md`, `app/src/platform/README.md`, `app/src/api/README.md` | How the React app is built (read once, when needed) |
-| `migration/app-shell.spec.md` (decisions U1…), `migration/change-requests/CR-*.md`, `app/docs/architecture/` (ADRs), `app/docs/known-original-bugs.md`, `migration/knowledge/*.md` | The recorded decisions and facts that a `differs` row must cite |
+| `migration/app-shell.spec.md` (decisions U1…), `migration/change-requests/CR-*.md`, `app/docs/reference/stack.md` (ADRs), `app/docs/known-original-bugs.md`, `migration/knowledge/*.md` | The recorded decisions and facts that a `differs` row must cite |
 
 Closed to you:
 - `migration/screens/**` (the route specs, questions and notes of the migration). This work is independent of them,
