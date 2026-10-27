@@ -1,0 +1,3535 @@
+{
+ "generated": "2026-10-27",
+ "sources": [
+  "INDEX.md",
+  "infra-gaps.md",
+  "architecture-current.md",
+  "review/aggregate.md",
+  "decisions.md"
+ ],
+ "matrix": [
+  {
+   "Group": "G1",
+   "Flow": "[App_Common](flows/App_Common/report.md)",
+   "Status": "draft",
+   "Rows": "182",
+   "match": "129",
+   "partial": "4",
+   "missing": "3",
+   "differs": "21",
+   "mock-only": "4",
+   "n/a": "21",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/1/2/3",
+   "Questions": "4"
+  },
+  {
+   "Group": "G1",
+   "Flow": "[App_PIN](flows/App_PIN/report.md)",
+   "Status": "draft",
+   "Rows": "131",
+   "match": "117",
+   "partial": "4",
+   "missing": "0",
+   "differs": "3",
+   "mock-only": "1",
+   "n/a": "6",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/1/4",
+   "Questions": "3"
+  },
+  {
+   "Group": "G1",
+   "Flow": "[App_Policies](flows/App_Policies/report.md)",
+   "Status": "draft",
+   "Rows": "90",
+   "match": "74",
+   "partial": "6",
+   "missing": "1",
+   "differs": "2",
+   "mock-only": "2",
+   "n/a": "5",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/1/3/2",
+   "Questions": "2"
+  },
+  {
+   "Group": "G1",
+   "Flow": "[Home](flows/Home/report.md)",
+   "Status": "draft",
+   "Rows": "148",
+   "match": "123",
+   "partial": "5",
+   "missing": "0",
+   "differs": "1",
+   "mock-only": "5",
+   "n/a": "14",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/3/1",
+   "Questions": "3"
+  },
+  {
+   "Group": "G1",
+   "Flow": "[App_Menu](flows/App_Menu/report.md)",
+   "Status": "draft",
+   "Rows": "122",
+   "match": "111",
+   "partial": "1",
+   "missing": "0",
+   "differs": "3",
+   "mock-only": "4",
+   "n/a": "3",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/1/1",
+   "Questions": "2"
+  },
+  {
+   "Group": "G1",
+   "Flow": "[App_Menu_ContactUs](flows/App_Menu_ContactUs/report.md)",
+   "Status": "draft",
+   "Rows": "147",
+   "match": "104",
+   "partial": "11",
+   "missing": "21",
+   "differs": "2",
+   "mock-only": "3",
+   "n/a": "6",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "1/2/0/0",
+   "Questions": "4"
+  },
+  {
+   "Group": "G1",
+   "Flow": "[App_Notifications](flows/App_Notifications/report.md)",
+   "Status": "draft",
+   "Rows": "120",
+   "match": "102",
+   "partial": "2",
+   "missing": "4",
+   "differs": "0",
+   "mock-only": "2",
+   "n/a": "10",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/2/0/0",
+   "Questions": "3"
+  },
+  {
+   "Group": "G1",
+   "Flow": "[App_Profile](flows/App_Profile/report.md)",
+   "Status": "draft",
+   "Rows": "110",
+   "match": "70",
+   "partial": "11",
+   "missing": "21",
+   "differs": "0",
+   "mock-only": "2",
+   "n/a": "6",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/1/1/4",
+   "Questions": "1"
+  },
+  {
+   "Group": "G1",
+   "Flow": "[App_Services](flows/App_Services/report.md)",
+   "Status": "draft",
+   "Rows": "81",
+   "match": "69",
+   "partial": "6",
+   "missing": "2",
+   "differs": "0",
+   "mock-only": "2",
+   "n/a": "2",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/2/3/2",
+   "Questions": "4"
+  },
+  {
+   "Group": "G2",
+   "Flow": "[Directory_Locality](flows/Directory_Locality/report.md)",
+   "Status": "draft",
+   "Rows": "280",
+   "match": "238",
+   "partial": "4",
+   "missing": "0",
+   "differs": "1",
+   "mock-only": "15",
+   "n/a": "22",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/3/1",
+   "Questions": "0"
+  },
+  {
+   "Group": "G2",
+   "Flow": "[Directory_Household](flows/Directory_Household/report.md)",
+   "Status": "draft",
+   "Rows": "241",
+   "match": "230",
+   "partial": "0",
+   "missing": "0",
+   "differs": "1",
+   "mock-only": "5",
+   "n/a": "5",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "1"
+  },
+  {
+   "Group": "G2",
+   "Flow": "[Directory_Search](flows/Directory_Search/report.md)",
+   "Status": "draft",
+   "Rows": "146",
+   "match": "129",
+   "partial": "5",
+   "missing": "5",
+   "differs": "2",
+   "mock-only": "2",
+   "n/a": "3",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/3/2/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "G2",
+   "Flow": "[Directory_Photobook](flows/Directory_Photobook/report.md)",
+   "Status": "draft",
+   "Rows": "203",
+   "match": "186",
+   "partial": "5",
+   "missing": "0",
+   "differs": "3",
+   "mock-only": "6",
+   "n/a": "0",
+   "unclear": "3",
+   "Findings (B/M/m/i)": "0/0/2/1",
+   "Questions": "1"
+  },
+  {
+   "Group": "G2",
+   "Flow": "[Directory_SupperMeetings](flows/Directory_SupperMeetings/report.md)",
+   "Status": "draft",
+   "Rows": "111",
+   "match": "92",
+   "partial": "2",
+   "missing": "0",
+   "differs": "4",
+   "mock-only": "5",
+   "n/a": "8",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/1/0/0",
+   "Questions": "1"
+  },
+  {
+   "Group": "G2",
+   "Flow": "[Directory_OneSchoolGlobal](flows/Directory_OneSchoolGlobal/report.md)",
+   "Status": "draft",
+   "Rows": "56",
+   "match": "47",
+   "partial": "0",
+   "missing": "1",
+   "differs": "0",
+   "mock-only": "2",
+   "n/a": "6",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/1/0",
+   "Questions": "2"
+  },
+  {
+   "Group": "G2",
+   "Flow": "[Directory_Updates](flows/Directory_Updates/report.md)",
+   "Status": "draft",
+   "Rows": "149",
+   "match": "125",
+   "partial": "3",
+   "missing": "5",
+   "differs": "0",
+   "mock-only": "5",
+   "n/a": "9",
+   "unclear": "2",
+   "Findings (B/M/m/i)": "0/1/2/0",
+   "Questions": "2"
+  },
+  {
+   "Group": "G3",
+   "Flow": "[Bookmarks](flows/Bookmarks/report.md)",
+   "Status": "draft",
+   "Rows": "123",
+   "match": "100",
+   "partial": "3",
+   "missing": "2",
+   "differs": "1",
+   "mock-only": "5",
+   "n/a": "12",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/2/2",
+   "Questions": "2"
+  },
+  {
+   "Group": "G3",
+   "Flow": "[Notes](flows/Notes/report.md)",
+   "Status": "draft",
+   "Rows": "121",
+   "match": "104",
+   "partial": "3",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "2",
+   "n/a": "12",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/1/1/0",
+   "Questions": "1"
+  },
+  {
+   "Group": "G3",
+   "Flow": "[Calendar](flows/Calendar/report.md)",
+   "Status": "draft",
+   "Rows": "72",
+   "match": "37",
+   "partial": "1",
+   "missing": "3",
+   "differs": "1",
+   "mock-only": "2",
+   "n/a": "28",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/1/2/1",
+   "Questions": "2"
+  },
+  {
+   "Group": "G3",
+   "Flow": "[ContactFlow](flows/ContactFlow/report.md)",
+   "Status": "draft",
+   "Rows": "142",
+   "match": "121",
+   "partial": "3",
+   "missing": "0",
+   "differs": "8",
+   "mock-only": "5",
+   "n/a": "5",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/1/1",
+   "Questions": "2"
+  },
+  {
+   "Group": "G3",
+   "Flow": "[Legacy_Share](flows/Legacy_Share/report.md)",
+   "Status": "draft",
+   "Rows": "95",
+   "match": "64",
+   "partial": "8",
+   "missing": "0",
+   "differs": "2",
+   "mock-only": "5",
+   "n/a": "16",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/2/1",
+   "Questions": "0"
+  },
+  {
+   "Group": "G3",
+   "Flow": "[Legacy_MyNotificationsFlow](flows/Legacy_MyNotificationsFlow/report.md)",
+   "Status": "draft",
+   "Rows": "152",
+   "match": "106",
+   "partial": "6",
+   "missing": "21",
+   "differs": "0",
+   "mock-only": "8",
+   "n/a": "11",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/4/2/0",
+   "Questions": "4"
+  },
+  {
+   "Group": "G4",
+   "Flow": "[Legacy_OrbitEventsFlow](flows/Legacy_OrbitEventsFlow/report.md)",
+   "Status": "draft",
+   "Rows": "518",
+   "match": "398",
+   "partial": "18",
+   "missing": "69",
+   "differs": "6",
+   "mock-only": "18",
+   "n/a": "9",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "2/1/4/1",
+   "Questions": "4"
+  },
+  {
+   "Group": "G4",
+   "Flow": "[Legacy_OrbitAdminFlow](flows/Legacy_OrbitAdminFlow/report.md)",
+   "Status": "draft",
+   "Rows": "109",
+   "match": "91",
+   "partial": "5",
+   "missing": "0",
+   "differs": "5",
+   "mock-only": "4",
+   "n/a": "4",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/1/2/0",
+   "Questions": "2"
+  },
+  {
+   "Group": "G4",
+   "Flow": "[Legacy_OrbitQRCodeFlow](flows/Legacy_OrbitQRCodeFlow/report.md)",
+   "Status": "draft",
+   "Rows": "68",
+   "match": "60",
+   "partial": "1",
+   "missing": "1",
+   "differs": "0",
+   "mock-only": "2",
+   "n/a": "4",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/2/0",
+   "Questions": "1"
+  },
+  {
+   "Group": "G4",
+   "Flow": "[Legacy_LDMEventsFlow](flows/Legacy_LDMEventsFlow/report.md)",
+   "Status": "draft",
+   "Rows": "94",
+   "match": "67",
+   "partial": "1",
+   "missing": "2",
+   "differs": "5",
+   "mock-only": "2",
+   "n/a": "17",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/2/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "G4",
+   "Flow": "[Legacy_LDMEventsFlow_V2](flows/Legacy_LDMEventsFlow_V2/report.md)",
+   "Status": "draft",
+   "Rows": "219",
+   "match": "167",
+   "partial": "5",
+   "missing": "2",
+   "differs": "11",
+   "mock-only": "4",
+   "n/a": "30",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/2/3/2",
+   "Questions": "1"
+  },
+  {
+   "Group": "G4",
+   "Flow": "[Legacy_AssembleFlow](flows/Legacy_AssembleFlow/report.md)",
+   "Status": "draft",
+   "Rows": "159",
+   "match": "143",
+   "partial": "2",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "8",
+   "n/a": "6",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/1/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "G5",
+   "Flow": "[Map](flows/Map/report.md)",
+   "Status": "draft",
+   "Rows": "21",
+   "match": "0",
+   "partial": "0",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "21",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "G5",
+   "Flow": "[Deprecated_Calendar_PersonalEvent](flows/Deprecated_Calendar_PersonalEvent/report.md)",
+   "Status": "draft",
+   "Rows": "9",
+   "match": "0",
+   "partial": "0",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "9",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "G5",
+   "Flow": "[zTemp_Flow](flows/zTemp_Flow/report.md)",
+   "Status": "draft",
+   "Rows": "3",
+   "match": "0",
+   "partial": "0",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "3",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "G5",
+   "Flow": "[zDEV_Directory_CommunityBusinessBlocks](flows/zDEV_Directory_CommunityBusinessBlocks/report.md)",
+   "Status": "draft",
+   "Rows": "44",
+   "match": "18",
+   "partial": "0",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "26",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "X",
+   "Flow": "[App_Cache](flows/App_Cache/report.md)",
+   "Status": "draft",
+   "Rows": "10",
+   "match": "9",
+   "partial": "0",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "1",
+   "n/a": "0",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "X",
+   "Flow": "[App_Common_Blocks](flows/App_Common_Blocks/report.md)",
+   "Status": "draft",
+   "Rows": "42",
+   "match": "31",
+   "partial": "1",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "10",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/1",
+   "Questions": "0"
+  },
+  {
+   "Group": "X",
+   "Flow": "[App_Common_Blocks_PopupDialogs](flows/App_Common_Blocks_PopupDialogs/report.md)",
+   "Status": "draft",
+   "Rows": "24",
+   "match": "20",
+   "partial": "0",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "4",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "X",
+   "Flow": "[SubLayout](flows/SubLayout/report.md)",
+   "Status": "draft",
+   "Rows": "12",
+   "match": "10",
+   "partial": "0",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "2",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "X",
+   "Flow": "[App_CommonBlocks_Filter](flows/App_CommonBlocks_Filter/report.md)",
+   "Status": "draft",
+   "Rows": "213",
+   "match": "210",
+   "partial": "1",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "2",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/1/0/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "X",
+   "Flow": "[Directory_CommonBlocks](flows/Directory_CommonBlocks/report.md)",
+   "Status": "draft",
+   "Rows": "151",
+   "match": "106",
+   "partial": "3",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "13",
+   "n/a": "29",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/3/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "X",
+   "Flow": "[Directory_Caroussel](flows/Directory_Caroussel/report.md)",
+   "Status": "draft",
+   "Rows": "94",
+   "match": "70",
+   "partial": "0",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "24",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "1"
+  },
+  {
+   "Group": "X",
+   "Flow": "[Directory_Interchange](flows/Directory_Interchange/report.md)",
+   "Status": "draft",
+   "Rows": "40",
+   "match": "22",
+   "partial": "0",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "18",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "X",
+   "Flow": "[Directory_Household_Blocks](flows/Directory_Household_Blocks/report.md)",
+   "Status": "draft",
+   "Rows": "84",
+   "match": "78",
+   "partial": "1",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "2",
+   "n/a": "3",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/1/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "X",
+   "Flow": "[Directory_OneSchoolGlobal_Blocks](flows/Directory_OneSchoolGlobal_Blocks/report.md)",
+   "Status": "draft",
+   "Rows": "29",
+   "match": "11",
+   "partial": "0",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "18",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "X",
+   "Flow": "[Calendar_Events](flows/Calendar_Events/report.md)",
+   "Status": "draft",
+   "Rows": "8",
+   "match": "0",
+   "partial": "0",
+   "missing": "0",
+   "differs": "0",
+   "mock-only": "0",
+   "n/a": "8",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/0/0/0",
+   "Questions": "0"
+  },
+  {
+   "Group": "X",
+   "Flow": "[_shared](flows/_shared/report.md)",
+   "Status": "draft",
+   "Rows": "194",
+   "match": "82",
+   "partial": "1",
+   "missing": "2",
+   "differs": "5",
+   "mock-only": "7",
+   "n/a": "97",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/1/1/1",
+   "Questions": "1"
+  },
+  {
+   "Group": "X",
+   "Flow": "[_libraries](flows/_libraries/report.md)",
+   "Status": "draft",
+   "Rows": "245",
+   "match": "224",
+   "partial": "5",
+   "missing": "1",
+   "differs": "9",
+   "mock-only": "4",
+   "n/a": "2",
+   "unclear": "0",
+   "Findings (B/M/m/i)": "0/1/3/0",
+   "Questions": "2"
+  },
+  {
+   "Group": "",
+   "Flow": "**total (45/45 flows)**",
+   "Status": "",
+   "Rows": "5412",
+   "match": "4295",
+   "partial": "137",
+   "missing": "166",
+   "differs": "96",
+   "mock-only": "157",
+   "n/a": "556",
+   "unclear": "5",
+   "Findings (B/M/m/i)": "3/27/56/29",
+   "Questions": ""
+  }
+ ],
+ "gaps": [
+  {
+   "Capability": "Backend cho các server action và service action",
+   "TST today (element, evidence)": "157 dòng mock-only: data action của màn hình, wrapper `ServiceAPI*` và wrapper `Action*` của UBTConnect, Connect2_*_MUI, Connect2_LegacyShared, UBTConnect_Utils (aggregate §1)",
+   "React today (`file:line`)": "MSW trả lời theo contract: `app/src/mocks/handlers.ts`, 76 file `mocks.ts` (55 file trong `pages/`), `app/src/mocks/modules/<Module>/`",
+   "Production needs": "Một backend hiện thực `app/src/api/openapi.yaml` (165 endpoint, §3), cùng tên action và kiểu dữ liệu wire; các chỉnh sửa input của §3.2",
+   "Flows that depend on it": "mọi flow đã build (28)",
+   "Decisions": "dòng stack \"Target backend\" (`stack.md:30`), D3(a), R5(a)",
+   "Findings": "App_Policies F1, App_Menu_ContactUs F3"
+  },
+  {
+   "Capability": "Danh tính: đăng nhập B2C và callback",
+   "TST today (element, evidence)": "`AppManager_Login` mở nhà cung cấp danh tính; `/UBT_AppManager/Callback` chạy `ActionAppManager_Login` và điều hướng theo loại callback (App_Common-027, 030; `knowledge/auth.md:9-11`; BR-UBTCON-304, 305)",
+   "React today (`file:line`)": "`mockAuth.ts:12-32` đăng nhập ngay lập tức; `authProvider.ts:8-10` không có provider cho production; `auth.ts:40-47` điều hướng theo U4",
+   "Production needs": "Một nhà cung cấp danh tính cùng một BFF giữ các token (`stack.md:26-27`); một callback trả về loại callback và thông báo lỗi; chính sách đặt lại mật khẩu (App_Common-031)",
+   "Flows that depend on it": "mọi flow cần đăng nhập",
+   "Decisions": "U4, U5, D3(a), App_Common Q1(a), Q2(a), Q3(a)",
+   "Findings": "App_Common F2, F3, F4"
+  },
+  {
+   "Capability": "Nhận biết thiết bị và context của app",
+   "TST today (element, evidence)": "`AppManager_SynchAppContext` (thiết lập PIN, phiên bản tối thiểu, tên B2C) và `AppManager_AfterInitialize` với TOTP (`app-shell.spec.md:299-300`); đăng nhập phía server quyết định thiết bị có hợp lệ hay không (App_Common Q3)",
+   "React today (`file:line`)": "cấu hình hư cấu trong `platform/bootstrap/mocks.ts`; `AppManager_HandleDeviceAwarenessPopUp` chưa được build (App_Common F3)",
+   "Production needs": "Hai endpoint của UBT_AppManager (cả hai đều là ghi trong contract) không có secret trong câu trả lời (`app-shell.spec.md` §9a)",
+   "Flows that depend on it": "App_Common, App_PIN",
+   "Decisions": "U2, U16, App_Common Q3(a)",
+   "Findings": "App_Common F3, F6"
+  },
+  {
+   "Capability": "PIN",
+   "TST today (element, evidence)": "`PIN_Set` giữ PIN trong localStorage (App_PIN-074); khóa là một cổng chặn phía client (`app-shell.spec.md:283-286`); `AppManager_Logout` chạy `PIN_Delete` (App_Menu-049)",
+   "React today (`file:line`)": "`platform/session/pin.ts:5-13, 25-32` (đã hash, có salt); `inactivity.ts` (overlay sau 1200 s, U2)",
+   "Production needs": "Không có gì phía server được xác minh. Còn mở: U20 (server có từ chối các lệnh gọi khi đang khóa không?). `CacheControl_Policies/DataActionGetCacheInfo` đứng sau nội dung mở khóa (App_PIN-097)",
+   "Flows that depend on it": "App_PIN, App_Menu, overlay khóa",
+   "Decisions": "U2, U5, U6, App_PIN Q1(a), Q2(a), Q3(a)",
+   "Findings": "-"
+  },
+  {
+   "Capability": "Sinh trắc học",
+   "TST today (element, evidence)": "`AppManager_GetPIN_FingerprintReaderAvailable` quyết định dòng Biometric Login và nút vân tay (App_Menu-060, App_PIN-108)",
+   "React today (`file:line`)": "hằng số false: `usePINBiometricsMenu.ts:12-16`, `PinUnlockMobile.tsx:49-51`",
+   "Production needs": "WebAuthn, quyết định theo từng tính năng sau này (ADR-1); chưa xác minh phần tử server nào",
+   "Flows that depend on it": "App_PIN, App_Menu",
+   "Decisions": "U13 (ẩn lúc này)",
+   "Findings": "-"
+  },
+  {
+   "Capability": "Thông báo đẩy và `Wrapper_NotificationOpened`",
+   "TST today (element, evidence)": "Callback FCM, thông báo cục bộ, `SetLNCallbackJS` (_shared-097, 098, 158-175, 180, 190); token `Firebase_CloudMessage_Token` nằm trong localStorage trên TST (`app-shell.spec.md:280`); `Wrapper_NotificationOpened(MessageInstanceId)` là một thao tác ghi phía server của MessageDetail (Legacy_MyNotificationsFlow-099)",
+   "React today (`file:line`)": "không có; `startup.ts:88` chỉ làm mới số tin chưa đọc lúc app start (_shared-166 đến 169); contract có `Connect2_LegacyShared/ActionWrapper_NotificationOpened` (ghi)",
+   "Production needs": "Web Push với một push service và một endpoint đăng ký device token (không có trong contract: **chưa được xác minh**); endpoint `Wrapper_NotificationOpened`; điều hướng deep link của `FCM_DeeplinkCallback` (PINRegister, PINUnlock, screen) dưới dạng URL",
+   "Flows that depend on it": "Legacy_MyNotificationsFlow, App_Common_Blocks (badge của chuông)",
+   "Decisions": "U12 (lúc này không có), ADR-1",
+   "Findings": "-"
+  },
+  {
+   "Capability": "Deep link và app link",
+   "TST today (element, evidence)": "`GetColdStartLinkURL`, `HandleOnResumeOpenLink`, `AndroidAppLinks`, `EventfulDeeplinks` viết lại `ConnectSharing/Details…` thành `UBTConnect/ConnectShare` (_shared-027, 189; Legacy_Share-082 đến 088; `knowledge/navigation.md:22-27`)",
+   "React today (`file:line`)": "`resume.ts:12-17` trả về \"\"; `OpenLinkOnResume.tsx:18-19` là placeholder",
+   "Production needs": "URL thường. Host phải trả lời các liên kết `ConnectSharing/Details…` cũ sau cut-over (redirect hoặc route): **chưa được xác minh** ai phục vụ chúng",
+   "Flows that depend on it": "Legacy_Share, App_PIN (liên kết khi resume), Home",
+   "Decisions": "U14 (URL thường), CR-Splash-2",
+   "Findings": "-"
+  },
+  {
+   "Capability": "Chia sẻ",
+   "TST today (element, evidence)": "`Get_ShareDetails` (Connect2_Sharing_CS, Legacy_Share-043), thao tác ghi `ShareObject` (Legacy_Share-094), `GetAvailableMembers`, `GetRecentlyShared`, `CS_ShareObject`, `CS_CreateShareProfileLink` (UBTConnect_Utils, _libraries-242); các tùy chọn bên ngoài cần `AppManager_GetIsNative` (_libraries-116, 117)",
+   "React today (`file:line`)": "mock theo từng ShareId; `containers/ShareSheet/README.md:78-84`: không có phần external, `ExternalShare` chưa được port; `deviceContext.ts:38` `isNativeDevice: false`",
+   "Production needs": "Sáu endpoint chia sẻ; Web Share API cho các tùy chọn bên ngoài sau này (ADR-1)",
+   "Flows that depend on it": "Legacy_Share, Home, Directory_CommonBlocks, Bookmarks",
+   "Decisions": "U14, U18, flag C2ExtendedShare (true trên TST)",
+   "Findings": "Legacy_MyNotificationsFlow F1"
+  },
+  {
+   "Capability": "Máy quét mã vạch",
+   "TST today (element, evidence)": "Web scanner `OSBarcodePlugin.js` của `BarcodePlugin` khi không có Cordova (Legacy_OrbitAdminFlow-103)",
+   "React today (`file:line`)": "scanner được vendor, đặt sau `platform/device/barcodePlugin.ts:1-45`, `webBarcodeScanner.ts`; mặc định là scanner hư cấu, `?scanner=web`",
+   "Production needs": "HTTPS và quyền camera; các endpoint `GetScanEventQRCode` (Legacy_OrbitAdminFlow-108) và `Get_EventQRCode` (Legacy_OrbitQRCodeFlow-034)",
+   "Flows that depend on it": "Legacy_OrbitAdminFlow, Legacy_OrbitQRCodeFlow",
+   "Decisions": "ADR-11",
+   "Findings": "Legacy_OrbitAdminFlow F2 (nhỏ)"
+  },
+  {
+   "Capability": "Camera: PassportScan",
+   "TST today (element, evidence)": "Chỉ có trên DEV; TST không có control, event hay màn hình (Legacy_OrbitEventsFlow F3)",
+   "React today (`file:line`)": "React hiển thị control và điều hướng tới một route không tồn tại (`OrbitLandingView.tsx:163-169`)",
+   "Production needs": "Không cần gì. Gỡ control khi Q2 được trả lời",
+   "Flows that depend on it": "Legacy_OrbitEventsFlow",
+   "Decisions": "Legacy_OrbitEventsFlow Q2 (còn mở)",
+   "Findings": "Legacy_OrbitEventsFlow F3"
+  },
+  {
+   "Capability": "Tài liệu và file",
+   "TST today (element, evidence)": "`TryOpenFileInApp` rơi về `window.open(url, \"_blank\")` trên web; File plugin chỉ dành cho Cordova (`knowledge/pwa-file-plugins.md` §2, §6); `GetEventDocuments`, `Get_Document` (Legacy_OrbitEventsFlow-A155, J007)",
+   "React today (`file:line`)": "cùng cơ chế dự phòng mở tab mới (`actions.ts:318-345` theo `pwa-file-plugins.md` §5); `handleDownload.ts:63-130` không có tác dụng",
+   "Production needs": "Hai endpoint tài liệu và các URL tài liệu mà một tab trình duyệt mở được (có chữ ký hoặc gắn với phiên: **chưa được xác minh**)",
+   "Flows that depend on it": "Legacy_OrbitEventsFlow, Home (PDF của Feed)",
+   "Decisions": "U18, PWA P8",
+   "Findings": "-"
+  },
+  {
+   "Capability": "Gửi e-mail",
+   "TST today (element, evidence)": "`SendContactUsMessage`, `SendContactMemberEmail`, `SendContactLDMCoordinatorEmail` (Connect_Communication_CS), `SendContactEmail` (Connect2_OrbitMobile_BL), `UserContactUser` (Connect2_LegacyShared), `EventContact` (Connect2_OrbitMobile_MUI); server chọn người nhận (ContactFlow-109, BR-C2SVC-066)",
+   "React today (`file:line`)": "các mock handler lưu mail vào một collection (ContactFlow-047 đến 126, App_Menu_ContactUs-041, Legacy_LDMEventsFlow-064, Legacy_LDMEventsFlow_V2-197)",
+   "Production needs": "Sáu endpoint e-mail và dịch vụ mail đứng sau chúng, với các structure `UI_ContactByEmailForm`, `OrbitEmailInformation`, `UBT_Email.UserContactRequest`",
+   "Flows that depend on it": "ContactFlow, App_Menu_ContactUs, Legacy_LDMEventsFlow, Legacy_LDMEventsFlow_V2",
+   "Decisions": "ContactFlow Q2(a)",
+   "Findings": "App_Menu_ContactUs F1, F2"
+  },
+  {
+   "Capability": "Lưu trữ cục bộ và đồng bộ offline",
+   "TST today (element, evidence)": "Client entity trong IndexedDB (ghi chú, bookmark, lịch sử tìm kiếm, tìm kiếm gần đây, static entity của Orbit); `Sync_Info_GetMain` trả về `LocalEntities_App` và `OrbitStaticEntities` (App_Common-163, `pack/data.md:17-36`); `OfflineDataSync` rỗng (BR-UBTCON-520, _shared-040)",
+   "React today (`file:line`)": "`platform/storage/localEntities/*` (ADR-10), `pwa/persistStorage.ts`; `OfflineDataSync.tsx:17-28` là no-op; mock sync-info trong `platform/bootstrap/mocks.ts`",
+   "Production needs": "Endpoint `Sync_Info_GetMain` với `Sync_LocalEntities_GetApp`, `SyncAllOrbitEntities`, `UpdateFeed_MonthsToShow` đứng sau; không có sync engine",
+   "Flows that depend on it": "App_Common, Bookmarks, Notes, Directory_Search, Legacy_OrbitEventsFlow",
+   "Decisions": "ADR-8, ADR-10, PWA P10",
+   "Findings": "-"
+  },
+  {
+   "Capability": "Site property",
+   "TST today (element, evidence)": "`Site.Embedd_B2CTenant` qua `Sync_Info_GetMain.B2CTenant` (App_Common-163); `Site.IsKi` rẽ nhánh bên trong data action của năm pack (`Directory_Household/pack/data.md:51` và bốn pack khác)",
+   "React today (`file:line`)": "`clientVars.ts:27` `Embedd_B2CTenant` lấy từ sync mock; `IsKi` không bao giờ tới client",
+   "Production needs": "Các giá trị ở lại trên server: `Sync_Info_GetMain` trả về tenant; các nhánh `IsKi` chạy bên trong data action",
+   "Flows that depend on it": "Home, Calendar, Legacy_MyNotificationsFlow, Directory_*",
+   "Decisions": "-",
+   "Findings": "-"
+  },
+  {
+   "Capability": "Feature flag",
+   "TST today (element, evidence)": "Các helper `GetHas…` = danh sách quyền theo từng người dùng, lấy từ feature toggle, LaunchDarkly và token claim, do UBT_AppManager dựng lúc đăng nhập (`knowledge/feature-flag-helpers.md`, KB `azure_migration.md:114-119`); 29 tên flag trong các dòng (aggregate §4)",
+   "React today (`file:line`)": "`platform/flags/server.ts:13-17` trả về giá trị mặc định của registry (giá trị TST của `flag-values-tst.json`); thứ tự ưu tiên trong `resolve.ts` là default < server < override",
+   "Production needs": "Một endpoint flag qua BFF (R5 a), đánh giá theo từng người dùng; LaunchDarkly vẫn là nơi lưu flag (KB đích `azure_migration.md:123-131`); chưa biết giá trị PROD",
+   "Flows that depend on it": "mọi flow có nhánh theo flag (§6)",
+   "Decisions": "R5(a), Bookmarks Q1(a), D1, D2, D11",
+   "Findings": "Legacy_OrbitAdminFlow Q2 (còn mở)"
+  },
+  {
+   "Capability": "Audit và application event",
+   "TST today (element, evidence)": "`zOnApplicationEvent_Wrapper` (Connect2_LegacyShared, `controller.js:7570`), `AddAuditEventDetailEvent`, `AzureInsights_CreateCustomEvent`, `AuditBookmarkSubscriptionEvent` (25 dòng, aggregate §3 U17)",
+   "React today (`file:line`)": "`log.info('ApplicationEvent', …)` qua `platform/log/log.ts:1-30` (sink console, `addLogSink`)",
+   "Production needs": "Một sink App Insights (hoặc tương đương) và phía server của wrapper application-event; payload đầy đủ của §7",
+   "Flows that depend on it": "ContactFlow, Legacy_LDMEventsFlow, Legacy_LDMEventsFlow_V2, Legacy_OrbitAdminFlow, Bookmarks, Legacy_Share",
+   "Decisions": "U17 (lúc này không có), ContactFlow Q1(a)",
+   "Findings": "ContactFlow F1, Legacy_LDMEventsFlow_V2 F6"
+  },
+  {
+   "Capability": "Timer (client)",
+   "TST today (element, evidence)": "inactivity 1200 s (U2); badge chưa đọc mỗi 5 phút (App_Common-113, BR-UBTCON-171); làm mới token embed mỗi 10 phút (Calendar-067); ping mạng mỗi 30 s (U11); `Wait(5)` của policies (App_Policies-047)",
+   "React today (`file:line`)": "cả năm đều đã port: `inactivity.ts`, `lib/ubtConnect/actions.ts:65-71`, `Embedded_MyEntertaining.tsx:22, 52-56`, `networkStatus.ts`, `usePendingPoliciesForm.ts:77-80`",
+   "Production needs": "Không cần gì ở client. Timer phía server (OutSystems Timers) nằm ngoài bằng chứng front-end: **chưa được xác minh**; KB ánh xạ chúng sang timer của Functions (`azure_migration.md:144`)",
+   "Flows that depend on it": "-",
+   "Decisions": "U2, U11",
+   "Findings": "-"
+  },
+  {
+   "Capability": "Tài nguyên tĩnh và hosting",
+   "TST today (element, evidence)": "app nằm dưới `/UBTConnect/`; icon `/UBTConnect/img/UBTConnect.AppLogo.*.png` (manifest); worker `/UBTConnect/pwaServiceWorker.js` (`knowledge/pwa-tst-service-worker.md`); `status/network-ping.txt` (U11); CSS và script gốc theo từng màn hình",
+   "React today (`file:line`)": "`pwa/manifest.json` (giá trị TST), `sw/sw.ts` (Workbox, không bao giờ cache API, `/bff/*`, `/UBT_AppManager/*`, ping), `bootPlan.ts` (scope `/UBTConnect/`); các script được vendor (ADR-5, 7, 11)",
+   "Production needs": "Một host tĩnh phục vụ `/UBTConnect/`, worker tại URL của TST từ cut-over trở đi (ADR-14), `network-ping.txt` không cache, các đường dẫn icon; nhu cầu về CDN **chưa được xác minh**",
+   "Flows that depend on it": "tất cả",
+   "Decisions": "ADR-9, ADR-14, PWA P1-P16",
+   "Findings": "_shared F2 (liên kết preconnect, thông tin)"
+  },
+  {
+   "Capability": "Ảnh và URL có chữ ký",
+   "TST today (element, evidence)": "`GetCacheableSignedImageURL` → `GetSignedImagesInBulk` (Connect2_LegacyShared; _libraries-245, Legacy_OrbitQRCodeFlow-036); ảnh dự phòng của `HandleImageLoadError` (`app-shell.spec.md:240`)",
+   "React today (`file:line`)": "`api/image/repository.ts:12-20` gọi `ActionGetSignedImagesInBulk`; ảnh placeholder từ `public/mock-images/` (`EntityLazyImage/mocks.ts:6-9`)",
+   "Production needs": "Endpoint ký hàng loạt và kho ảnh đứng sau nó; ảnh dự phòng `User_rectangle.png` trên host",
+   "Flows that depend on it": "13 flow dùng `UBT_LazyImage` (_libraries §2.4)",
+   "Decisions": "Q-W2C-1",
+   "Findings": "Legacy_OrbitQRCodeFlow F2 (nhỏ)"
+  },
+  {
+   "Capability": "Giám sát và cảnh báo",
+   "TST today (element, evidence)": "Cookie App Insights `ai_user`, `ai_session` và New Relic `nr2Users` trên TST (`app-shell.spec.md:241, 277`); trạng thái online được gửi tới App Insights (`shell-facts.md:102`)",
+   "React today (`file:line`)": "không có",
+   "Production needs": "Giám sát web với báo cáo crash và lỗi (ADR-1 có nêu tên); nhà cung cấp là một quyết định sau này",
+   "Flows that depend on it": "tất cả",
+   "Decisions": "U17",
+   "Findings": "-"
+  },
+  {
+   "Capability": "Bản đồ",
+   "TST today (element, evidence)": "Leaflet với tile OSM trong BrowseDirectory và CountryDetails; màn hình Map chưa được build và `C2EnableMaps` là false trên TST (`flows/Map/report.md` §1); `FetchData_CacheableHouseholds`, `FetchData_CacheableMapEntities` lúc app start (_shared-077, 078)",
+   "React today (`file:line`)": "`lib/leaflet/json.ts:24` `OSM_TILE_URL`; cả hai cache bản đồ được mock rỗng (`platform/bootstrap/mocks.ts:199, 206`)",
+   "Production needs": "Hai endpoint của Connect_Map_CS; một nguồn tile có chính sách sử dụng cho production: **chưa được xác minh**",
+   "Flows that depend on it": "Directory_Locality, _shared",
+   "Decisions": "Map trên board là `skip`, D2",
+   "Findings": "-"
+  },
+  {
+   "Capability": "Embed: Feed CMS và MyEntertaining",
+   "TST today (element, evidence)": "`Embedded_FeedCMS` với `DataActionGetFeedConfig(FeedItemId, B2CTenant)` (Home-049, 050); `Embedded_MyEntertaining` với `DataActionGetEntertainingConfig`, `AppManager_Get_UserIdToken` và `embed-entertaining.js` từ `BaseURL` (Calendar-058, 059, 029); `preconnect` cho cả hai base URL (_shared F2)",
+   "React today (`file:line`)": "các trang mock cùng kích thước (`FeedCms.tsx`, `connect2Entertaining.ts`); mock cấu hình với giá trị rỗng (`MyEntertaining/mocks.ts:9-15`)",
+   "Production needs": "Hai endpoint cấu hình, broker ID token của UBT_AppManager_CS, hai app bên ngoài và script SDK của chúng; origin của chúng nằm trong danh sách \"không bao giờ cache\" của worker",
+   "Flows that depend on it": "Home, Calendar",
+   "Decisions": "D8(b)",
+   "Findings": "Calendar F1, F2"
+  },
+  {
+   "Capability": "Kiểm tra gói đăng ký",
+   "TST today (element, evidence)": "`App_Subscription_NavigateToUpgrade` (`SubscriptionManageLink` bên ngoài), `App_Subscription_ShowUpgradePopUp`, `IsFreeSubscriptionPlan`, `AuditBookmarkSubscriptionEvent` (_libraries F1, Legacy_LDMEventsFlow_V2 F1, Bookmarks-100, Home F1)",
+   "React today (`file:line`)": "`DialogAccessRestrictedAction.tsx`, `subscription.ts` đã có; hai lần chạm của _libraries F1 không làm gì cả",
+   "Production needs": "Các trường gói đăng ký của `GetUserInformation` và liên kết quản lý lấy từ bản ghi người dùng; chưa xác minh endpoint bổ sung nào",
+   "Flows that depend on it": "_libraries, Home, Bookmarks, Legacy_LDMEventsFlow_V2",
+   "Decisions": "_libraries Q3 (còn mở), Home Q2(a)",
+   "Findings": "_libraries F1, Home F1"
+  },
+  {
+   "Capability": "Adaptive card",
+   "TST today (element, evidence)": "`AdaptiveCardViewer` với host config của Events; `StoreAdaptiveCardResponses` khi submit (Legacy_MyNotificationsFlow F3, BR-C2LEG-463, 482)",
+   "React today (`file:line`)": "marker (`NotificationDetailBlock.tsx:84-89`); contract có `ActionStoreAdaptiveCardResponses` (ghi)",
+   "Production needs": "Endpoint và một bộ render card trong stack",
+   "Flows that depend on it": "Legacy_MyNotificationsFlow",
+   "Decisions": "Legacy_MyNotificationsFlow Q3(a), sau khi stack được xác nhận",
+   "Findings": "Legacy_MyNotificationsFlow F3"
+  },
+  {
+   "Capability": "Phiên bản không được hỗ trợ",
+   "TST today (element, evidence)": "`Try_GetIsSupportedVersion` từ các phiên bản tối thiểu của `SynchAppContext`; ngưỡng rỗng trên TST (App_Common-172, BR-UBTCON-231, 233)",
+   "React today (`file:line`)": "hằng số False; Browser chỉ True khi có `?mock=unsupported-browser` (`lib/ubtConnect`)",
+   "Production needs": "Các phiên bản tối thiểu trong câu trả lời app-context",
+   "Flows that depend on it": "App_Common, Directory_Search",
+   "Decisions": "U16",
+   "Findings": "App_Common F6 (thông tin)"
+  },
+  {
+   "Capability": "App bên ngoài và trình duyệt trong app",
+   "TST today (element, evidence)": "`OpenInApp_OpenExternalLink` qua InAppBrowser (App_Menu-050); app launcher của Assemble (Legacy_AssembleFlow-138); liên kết store (_shared-042 đến 059)",
+   "React today (`file:line`)": "tab mới (`lib/ubtConnectUtils`); các URL `externalApps` trong `config.ts:14` rỗng",
+   "Production needs": "Các URL của Orbit, Assemble và LDM trong cấu hình build",
+   "Flows that depend on it": "App_Menu, Legacy_AssembleFlow, Home",
+   "Decisions": "U18, CR-HomeFeed-1",
+   "Findings": "-"
+  },
+  {
+   "Capability": "Hướng màn hình và bàn phím",
+   "TST today (element, evidence)": "khóa hướng ngang trên Photobook, body class `MobileKeyboardVisible` (_shared-142 đến 155, 183 đến 188)",
+   "React today (`file:line`)": "không có; chưa có mã `visualViewport` (_shared-185)",
+   "Production needs": "Không cần gì ngoài front end",
+   "Flows that depend on it": "Directory_Photobook",
+   "Decisions": "U18",
+   "Findings": "-"
+  }
+ ],
+ "contract_modules": [
+  {
+   "Module (contract)": "UBTConnect",
+   "Endpoints": "57",
+   "Reads": "42",
+   "Writes": "15",
+   "Writes (names)": "`AcceptPolicies`, `RequestPhotoUpdate`, `SendContactEmail`, `Sync_Info_GetMain`, `UpdateItem_MarkAsRead`, `Action_UI_UpdateItem_MarkAllAsRead`, `_MarkAsRead`, `_MarkAsUnread`, `AddBookmark2`, `DeleteBookmarkByBookmarkId2`, `Member_EditDetails_Service`, `SendContactLDMCoordinatorEmail`, `SendContactMemberEmail`, `SendContactUsMessage`, `Service_ConnectServices_ChangeOrder_Bulk`",
+   "Mock today": "41 hư cấu, 16 ghi lại; `pages/*/mocks.ts`, `mocks/modules/UBTConnect/`"
+  },
+  {
+   "Module (contract)": "Connect2_OrbitMobile_MUI",
+   "Endpoints": "45",
+   "Reads": "40",
+   "Writes": "5",
+   "Writes (names)": "`EventContact`, `GetBookletGuestsMaxRows`, `GetBookletHelpersMaxRows`, `PostHostSurvey`, `SendContactEmail`",
+   "Mock today": "45 hư cấu; `pages/Orbit*/mocks.ts`, `mocks/modules/Connect2_OrbitMobile_MUI/`"
+  },
+  {
+   "Module (contract)": "Connect2_LegacyShared",
+   "Endpoints": "30",
+   "Reads": "23",
+   "Writes": "7",
+   "Writes (names)": "`MarkMessageAsClear`, `MarkMessageAsRead`, `ShareObject`, `StoreAdaptiveCardResponses`, `UserContactUser`, `Wrapper_MarkAllAsReadNotifications`, `Wrapper_NotificationOpened`",
+   "Mock today": "28 hư cấu, 2 ghi lại; `pages/MessageList/mocks.ts`, `mocks/modules/Connect2_LegacyShared/`"
+  },
+  {
+   "Module (contract)": "UBTConnect_Utils",
+   "Endpoints": "15",
+   "Reads": "10",
+   "Writes": "5",
+   "Writes (names)": "`CS_CreateShareProfileLink`, `CS_ShareObject`, `AddNote`, `DeleteNoteByNoteId`, `UpdateNote`",
+   "Mock today": "10 hư cấu, 5 ghi lại; `mocks/modules/UBTConnect_Utils/`"
+  },
+  {
+   "Module (contract)": "Connect2_Assemble_MUI",
+   "Endpoints": "6",
+   "Reads": "4",
+   "Writes": "2",
+   "Writes (names)": "`AddBookmark`, `DeleteBookmarkByBookmarkId`",
+   "Mock today": "hư cấu; `mocks/modules/Connect2_Assemble_MUI/`"
+  },
+  {
+   "Module (contract)": "Connect2_MyBookmarks_MUI",
+   "Endpoints": "6",
+   "Reads": "2",
+   "Writes": "4",
+   "Writes (names)": "`DeleteBookmarkByBookmarkId`, `GetBookmarkById`, `New_GetBookmarkById`, `New_UpdateBookmarkNote`",
+   "Mock today": "hư cấu; `mocks/modules/Connect2_MyBookmarks_MUI/`"
+  },
+  {
+   "Module (contract)": "UBTConnect_EmbedMyEntertaining",
+   "Endpoints": "2",
+   "Reads": "1",
+   "Writes": "1",
+   "Writes (names)": "`AppManager_Get_UserIdToken`",
+   "Mock today": "hư cấu; `pages/MyEntertaining/mocks.ts:9-15`"
+  },
+  {
+   "Module (contract)": "UBT_AppManager",
+   "Endpoints": "2",
+   "Reads": "0",
+   "Writes": "2",
+   "Writes (names)": "`AppManager_AfterInitialize`, `AppManager_SynchAppContext`",
+   "Mock today": "1 ghi lại, 1 hư cấu; `platform/bootstrap/mocks.ts`"
+  },
+  {
+   "Module (contract)": "UBTConnect_EmbedFeed",
+   "Endpoints": "1",
+   "Reads": "1",
+   "Writes": "0",
+   "Writes (names)": "-",
+   "Mock today": "hư cấu"
+  },
+  {
+   "Module (contract)": "UBTConnect_Notes_MCS",
+   "Endpoints": "1",
+   "Reads": "1",
+   "Writes": "0",
+   "Writes (names)": "-",
+   "Mock today": "ghi lại"
+  }
+ ],
+ "contract_flagged_inputs": [
+  {
+   "Endpoint": "`UBTConnect/Policy_Custom_AcceptPendingPolicies/DataActionGetPendingPolicies`",
+   "Gap": "React gửi các tên `Connect_Applications.Connect`, `.Directory`, `.Orbit`; TST gửi chuỗi GUID của các bản ghi (`static-entities-tst.json:2809`)",
+   "Evidence": "App_Policies F1 (lớn), dòng 016, 046",
+   "Decision": "chưa ghi nhận quyết định nào"
+  },
+  {
+   "Endpoint": "`UBTConnect/Policy_Custom_AcceptPendingPolicies/ActionAcceptPolicies`",
+   "Gap": "`DeviceDetails.UniqueId` là một id mới mỗi lần tải trang; TST giữ một id cho mỗi trình duyệt trong `localStorage[\"UUID\"]`",
+   "Evidence": "App_Policies F4, dòng 063",
+   "Decision": "App_Policies Q2(a): lưu giống như TST"
+  },
+  {
+   "Endpoint": "`UBTConnect/ContactUsDetails/DataActionDataAction_GetLocalityTimezone`",
+   "Gap": "lệnh gọi thiếu `LocalCacheControl_UserInformation` (server đọc `In_LocalityId` từ đó), `ContactUsForm`, `Description`, `MessagePrompt`",
+   "Evidence": "App_Menu_ContactUs F3 (lớn), dòng 038, 081",
+   "Decision": "Q4(a): sửa ngay"
+  },
+  {
+   "Endpoint": "`UBTConnect/ServiceAPISendContactUsMessage`",
+   "Gap": "`Rate` luôn là 0 (block đánh giá chưa được build); các trường khi chưa đăng nhập (tên, e-mail, điện thoại, quốc gia, khu vực) không được gửi",
+   "Evidence": "App_Menu_ContactUs F1 (chặn), F2 (lớn)",
+   "Decision": "Q1(a), Q2(a): build"
+  },
+  {
+   "Endpoint": "`Connect2_LegacyShared/ActionUserContactUser`",
+   "Gap": "`UserContactRequest` với 10 trường; `SenderPhone` giữ giá trị mặc định \"\" (`UBT_Email.model.js:207-211`)",
+   "Evidence": "Legacy_LDMEventsFlow dòng 063 (match, đã chốt trong review G4)",
+   "Decision": "-"
+  },
+  {
+   "Endpoint": "`Connect2_OrbitMobile_MUI/ActionEventContact`",
+   "Gap": "structure `UBT_Email.UserContactRequest`; lệnh gửi vẫn là mock",
+   "Evidence": "Legacy_LDMEventsFlow_V2-197",
+   "Decision": "quyết định tự động"
+  },
+  {
+   "Endpoint": "`Connect2_OrbitMobile_MUI/.../DataActionGetCoordinatorDetails`, `GetEventByEventId`, `GetHouseholdCoordinates`",
+   "Gap": "các mock bỏ qua `EventHostId`; server thật phải lọc theo nó",
+   "Evidence": "Legacy_LDMEventsFlow_V2-093",
+   "Decision": "-"
+  },
+  {
+   "Endpoint": "`UBTConnect/Updates_SingleList/DataActionFetchUpdates`",
+   "Gap": "mock bỏ qua `Filter_Updates`; server thật phải áp dụng bộ lọc, tìm kiếm, trạng thái, sắp xếp và quốc gia",
+   "Evidence": "Directory_Updates-007, F3 (nhỏ)",
+   "Decision": "-"
+  },
+  {
+   "Endpoint": "`UBTConnect/ServiceAPIAction_UI_UpdateItem_MarkAsRead`, `_MarkAsUnread`",
+   "Gap": "mock đánh dấu collection HomeFeed, không phải danh sách của Updates_SingleList",
+   "Evidence": "Directory_Updates-009, 010 (CR-Updates_SingleList-1)",
+   "Decision": "-"
+  },
+  {
+   "Endpoint": "`Connect2_LegacyShared/ActionGetSignedImagesInBulk`",
+   "Gap": "không có mock trong demo; lệnh gọi thất bại trả về \"\"",
+   "Evidence": "Legacy_OrbitQRCodeFlow-036, dòng 099",
+   "Decision": "-"
+  },
+  {
+   "Endpoint": "`UBTConnect/ActionRequestPhotoUpdate`",
+   "Gap": "`Out_IsSuccess` không bao giờ được gán trên server (BR-UBTCON-183); màn hình không đọc nó",
+   "Evidence": "App_Menu-011",
+   "Decision": "giữ như TST"
+  },
+  {
+   "Endpoint": "`Connect2_LegacyShared/ActionGetAvailableUsers`",
+   "Gap": "Q2 hoãn sang giai đoạn production (chủ dự án, 2026-10-17)",
+   "Evidence": "Legacy_Share-092",
+   "Decision": "còn mở"
+  }
+ ],
+ "section10_tables": [
+  {
+   "header": [
+    "Flow",
+    "Id",
+    "Severity",
+    "Finding (short)",
+    "Decision"
+   ],
+   "rows": [
+    [
+     "App_Menu_ContactUs",
+     "F1",
+     "blocker",
+     "các trường khi chưa đăng nhập của ContactUsDetails chưa được build",
+     "Q1(a): build now"
+    ],
+    [
+     "Legacy_OrbitEventsFlow",
+     "F1",
+     "blocker",
+     "wizard HostSurvey chưa được build",
+     "Q1: còn mở"
+    ],
+    [
+     "Legacy_OrbitEventsFlow",
+     "F2",
+     "blocker",
+     "năm loại milestone render một marker",
+     "Q3: còn mở"
+    ],
+    [
+     "App_Common",
+     "F1",
+     "major",
+     "thiếu nhánh `BubbleCommunicationException` trong flow handler",
+     "chưa ghi nhận quyết định nào"
+    ],
+    [
+     "App_CommonBlocks_Filter",
+     "F1",
+     "major",
+     "dấu không được bỏ khi tìm kiếm trong option list",
+     "chưa ghi nhận quyết định nào"
+    ],
+    [
+     "App_Menu_ContactUs",
+     "F2",
+     "major",
+     "block đánh giá chưa được build",
+     "Q2(a): build now"
+    ],
+    [
+     "App_Menu_ContactUs",
+     "F3",
+     "major",
+     "`DataAction_GetLocalityTimezone` thiếu bốn biến",
+     "Q4(a): sửa ngay"
+    ],
+    [
+     "App_Notifications",
+     "F1",
+     "major",
+     "trạng thái rỗng chưa được build",
+     "chưa ghi nhận quyết định nào"
+    ],
+    [
+     "App_Notifications",
+     "F2",
+     "major",
+     "badge vẫn hiển thị khi bằng 0",
+     "chưa ghi nhận quyết định nào"
+    ],
+    [
+     "App_Policies",
+     "F1",
+     "major",
+     "`PolicyApplications` được gửi dưới dạng tên, không phải id bản ghi",
+     "chưa ghi nhận quyết định nào"
+    ],
+    [
+     "App_Profile",
+     "F1",
+     "major",
+     "phần địa chỉ của chủ hộ chưa được build",
+     "Q1(a): build now"
+    ],
+    [
+     "App_Services",
+     "F1",
+     "major",
+     "`isLoading` vẫn là True sau khi lưu thất bại",
+     "Q2(a): sửa ngay"
+    ],
+    [
+     "App_Services",
+     "F2",
+     "major",
+     "`GetServices` thất bại không tới flow handler nào",
+     "Q3(a): sửa ngay (sửa chung với Calendar F1, Directory_SupperMeetings F1, CountryDetails)"
+    ],
+    [
+     "Calendar",
+     "F1",
+     "major",
+     "fetch cấu hình thất bại không hiển thị toast",
+     "Q1(a): sửa ngay"
+    ],
+    [
+     "Directory_Search",
+     "F1",
+     "major",
+     "điều kiện của caption \"Showing results for\"",
+     "chưa ghi nhận quyết định nào"
+    ],
+    [
+     "Directory_Search",
+     "F2",
+     "major",
+     "làm mới danh sách gần đây khi đổi chip",
+     "chưa ghi nhận quyết định nào"
+    ],
+    [
+     "Directory_Search",
+     "F3",
+     "major",
+     "ba dòng loading trước khi fetch",
+     "chưa ghi nhận quyết định nào"
+    ],
+    [
+     "Directory_SupperMeetings",
+     "F1",
+     "major",
+     "refresh thất bại không tới flow handler nào",
+     "Q1(a): sửa ngay"
+    ],
+    [
+     "Directory_Updates",
+     "F1",
+     "major",
+     "trạng thái rỗng chưa được build",
+     "chưa ghi nhận quyết định nào"
+    ],
+    [
+     "Legacy_LDMEventsFlow_V2",
+     "F1",
+     "major",
+     "chạm vào khách mở carousel với tất cả khách",
+     "chưa ghi nhận quyết định nào"
+    ],
+    [
+     "Legacy_LDMEventsFlow_V2",
+     "F2",
+     "major",
+     "popup lọc timeline chưa được build",
+     "Q1: còn mở"
+    ],
+    [
+     "Legacy_MyNotificationsFlow",
+     "F1",
+     "major",
+     "thẻ item được chia sẻ của tin nhắn Sharing chưa được build",
+     "Q2(a): build now"
+    ],
+    [
+     "Legacy_MyNotificationsFlow",
+     "F2",
+     "major",
+     "nút action của Orbit và Assemble chưa được build",
+     "Q1(a): build now"
+    ],
+    [
+     "Legacy_MyNotificationsFlow",
+     "F3",
+     "major",
+     "trình xem adaptive card chưa được build",
+     "Q3(a): build sau khi stack được xác nhận"
+    ],
+    [
+     "Legacy_MyNotificationsFlow",
+     "F6",
+     "major",
+     "tin nhắn riêng của người dùng khác: rời đi thay vì hiển thị",
+     "Q4(a): làm theo TST"
+    ],
+    [
+     "Legacy_OrbitAdminFlow",
+     "F1",
+     "major",
+     "nhánh milestone chỉ có trên DEV",
+     "Q1: còn mở"
+    ],
+    [
+     "Legacy_OrbitEventsFlow",
+     "F3",
+     "major",
+     "control \"View Passport details\" chỉ có trên DEV",
+     "Q2: còn mở"
+    ],
+    [
+     "_libraries",
+     "F1",
+     "major",
+     "các action nâng cấp gói đăng ký chưa được port",
+     "Q3: còn mở"
+    ]
+   ]
+  },
+  {
+   "header": [
+    "Flow",
+    "Id",
+    "Decision"
+   ],
+   "rows": [
+    [
+     "App_Common",
+     "Q3",
+     "(a) Sửa hằng số ngay, và build flow hộp thoại với nhà cung cấp danh tính của production"
+    ],
+    [
+     "App_Menu",
+     "Q2",
+     "(a) Giữ `user` và `isFetched` với `useViewState`"
+    ],
+    [
+     "App_Menu_ContactUs",
+     "Q1",
+     "(a) Build năm trường, danh sách Country và hai action OnChange như trong TST"
+    ],
+    [
+     "App_Menu_ContactUs",
+     "Q2",
+     "(a) Port ContactUs_Rate bằng một bản React tương đương với RangeSlider của OutSystems UI"
+    ],
+    [
+     "App_PIN",
+     "Q2",
+     "(a) Ghi nhận là chưa cần trên web lúc này; port nó cùng các plugin liên kết native (U14)"
+    ],
+    [
+     "App_Policies",
+     "C4",
+     "Làm theo TST: lưu device id của việc chấp nhận policy trong localStorage[\"UUID\"] (một id cho mỗi trình duyệt). Finding F4 giữ nguyên; build nó. Dòng 063."
+    ],
+    [
+     "App_Profile",
+     "Q1",
+     "(a) Build ngay bây giờ: các dòng địa chỉ, hai widget DropdownSearch, CacheControl_AllLocalities và CacheControl_AllSubdivisions với mock, các handler và các kiểm tra khi lưu (Profile.mvc.js:1269-1716,"
+    ],
+    [
+     "App_Services",
+     "Q1",
+     "(a) Lấy file tĩnh từ TST (GET chỉ đọc, theo phê duyệt thường trực cho file tĩnh bị thiếu) vào `migration/runtime-sources/`, rồi kiểm tra bản port trong lượt review"
+    ],
+    [
+     "App_Services",
+     "Q2",
+     "(a) Làm theo TST: reset `isLoading` cho CommunicationException và AllExceptions; NotRegistered giữ nguyên nó"
+    ],
+    [
+     "App_Services",
+     "Q3",
+     "(a) Sửa chung: các data action của màn hình chuyển lần fetch thất bại tới `raiseToFlowHandler`"
+    ],
+    [
+     "Bookmarks",
+     "Q2",
+     "(a) build ngay từ các biểu thức đã biên dịch (show:996-1020)"
+    ],
+    [
+     "Calendar",
+     "Q1",
+     "(a) Bản sửa chung của App_Services Q3 cũng bao phủ các data action của block như cái này"
+    ],
+    [
+     "Calendar",
+     "Q2",
+     "(a) Làm theo TST: `raiseToFlowHandler` trong `refreshToken`"
+    ],
+    [
+     "ContactFlow",
+     "Q1",
+     "(a) truyền đầy đủ payload của TST tại các nơi gọi ngay bây giờ; log vẫn không chứa văn bản cá nhân"
+    ],
+    [
+     "Directory_OneSchoolGlobal",
+     "Q2",
+     "(a) Đặt `document.title` theo tiêu đề route trong app shell, cho mọi route"
+    ],
+    [
+     "Directory_SupperMeetings",
+     "Q1",
+     "(a) Sửa chung với App_Services Q3: container chuyển lần refresh thất bại tới `raiseToFlowHandler`"
+    ],
+    [
+     "Home",
+     "Q1",
+     "(a) Đặt gcTime 0 và refetchOnReconnect false trên cả hai query; view cache vẫn khôi phục khi điều hướng back"
+    ],
+    [
+     "Home",
+     "Q2",
+     "(a) Build cả hai từ view đã biên dịch ngay bây giờ"
+    ],
+    [
+     "Legacy_LDMEventsFlow_V2",
+     "Q1",
+     "(a) Build popup lọc timeline MyTimeline_Filters và bốn handler của nó (OnHandle_MyTimelineFilter, ResetFilters, Filter, Close) từ mã biên dịch của TST; ghi nhận là build now."
+    ],
+    [
+     "Legacy_MyNotificationsFlow",
+     "Q1",
+     "(a) build ngay từ SBMD và controller, với mock cho hai action Get_Orbit*"
+    ],
+    [
+     "Legacy_MyNotificationsFlow",
+     "Q3",
+     "(a) thêm thư viện và build trình xem cùng flow submit"
+    ],
+    [
+     "Legacy_MyNotificationsFlow",
+     "Q4",
+     "(a) làm theo TST và ghi chú điểm bất thường trong `app/docs/known-original-bugs.md`"
+    ],
+    [
+     "Legacy_OrbitAdminFlow",
+     "Q1",
+     "(a) Làm theo TST: gỡ lệnh gọi GetMilestoneScanFF, nhánh milestone, mock handler và scenario scanpermilestone khỏi OrbitAdminLanding. Ghi chú để so sánh sau: nhánh và màn hình"
+    ],
+    [
+     "Legacy_OrbitEventsFlow",
+     "Q1",
+     "(a) Build wizard HostSurvey từ mã biên dịch của TST (model, controller và view của các file ScreenBlock_HostSurvey; mock cho PostHostSurvey); ghi nhận là build now, việc build bắt đầu khi"
+    ],
+    [
+     "Legacy_OrbitEventsFlow",
+     "Q2",
+     "(a) Làm theo TST: gỡ control passport chỉ có trên DEV, event NavigateTo_PassportScan và handler của nó khỏi OrbitLanding. Ghi chú để so sánh sau: control và màn hình PassportScan có trên DEV"
+    ],
+    [
+     "Legacy_OrbitEventsFlow",
+     "Q3",
+     "(a) Build năm block milestone còn lại (MealGuest, MealHost, MealHelper, AccommodationGuest, AccommodationHelper) từ các file TST của chúng; ghi nhận là build now."
+    ],
+    [
+     "_libraries",
+     "Q1",
+     "(a) Quyết định favicon ngày 2026-10-17 bao gồm LayoutReady, LayoutDestroy và SetLang (không port); SkipToContent đã được port (focus chuyển tới nội dung chính). 9 dòng layout vẫn là differs; một dòng (S"
+    ],
+    [
+     "_libraries",
+     "Q3",
+     "(a) Nối hai nơi gọi (SearchResultItem.tsx:117 tới navigateToUpgrade, useShareSheet.ts:137 tới showUpgradePopUp) với các hộp thoại gói đăng ký hiện có; ghi nhận là build now (F1)."
+    ],
+    [
+     "_shared",
+     "C3",
+     "Finding được chấp nhận (lớn, F3): một lỗi app-start không phải system exception phải hiển thị toast exception, như TST. Build nó. Dòng 193."
+    ],
+    [
+     "_shared",
+     "Q1",
+     "(a) Hiển thị toast exception khi app start thất bại mà không phải lỗi hệ thống, như TST; giống quyết định C3 (finding F3, build)."
+    ]
+   ]
+  },
+  {
+   "header": [
+    "Flow",
+    "Id",
+    "Decision"
+   ],
+   "rows": [
+    [
+     "App_Common",
+     "Q1",
+     "(a) Giữ nguyên là không có action, và ghi nhận dưới D3"
+    ],
+    [
+     "App_Common",
+     "Q2",
+     "(a) Chấp nhận, và ghi nhận thành một quyết định cùng với App_PIN Q1 (Connect_Logout trên đường đi này)"
+    ],
+    [
+     "App_Menu_ContactUs",
+     "C1",
+     "Giữ hành vi của React: các validator trim input trước khi kiểm tra (TST không trim). Dòng 122, 123 là differs theo quyết định này."
+    ],
+    [
+     "App_Notifications",
+     "Q2",
+     "(b) Xác nhận bằng một lần kiểm tra chỉ đọc các nơi gọi `EntitiesCarousel` trên TST rằng không có điều hướng back nào về Notifications mang theo preload, và ghi nhận lại"
+    ],
+    [
+     "App_Notifications",
+     "Q3",
+     "(a) Giữ React theo TST, và mở một change request liệt kê các dòng §6.1 để build lại khi TST deploy chúng"
+    ],
+    [
+     "App_PIN",
+     "Q1",
+     "(a) Chấp nhận, và ghi nhận rằng việc đăng xuất của ADR-10 cũng bao phủ đường đi này"
+    ],
+    [
+     "App_PIN",
+     "Q3",
+     "(a) Xác nhận nhánh HomeFeed và ghi nhận trên dòng PINUnlock của board"
+    ],
+    [
+     "App_Policies",
+     "Q2",
+     "(a) Lưu trong `localStorage[\"UUID\"]` như TST, và ghi nhận quyết định"
+    ],
+    [
+     "ContactFlow",
+     "Q2",
+     "(a) giữ hành vi của TST và ghi nhận là một bug gốc đã biết"
+    ],
+    [
+     "Directory_Photobook",
+     "Q1",
+     "Dòng 074, 076 và 105 cần một quyết định được ghi nhận. CR-Photobook-1 (:34-36) chỉ bao phủ các log lỗi toggle-drag. Quy tắc NO-CONSOLE (`migration/stack.json` rules.forbidden, `migration/architecture.m"
+    ],
+    [
+     "Legacy_OrbitEventsFlow",
+     "C2",
+     "Giữ hành vi của React: IsGuestView bắt đầu là false cho đến khi fetch danh sách khách (TST bắt đầu là true). Dòng A121 là differs theo quyết định này."
+    ],
+    [
+     "Legacy_OrbitQRCodeFlow",
+     "Q1",
+     "(a) Đặt document.title theo tiêu đề route trong app shell, cho mọi route; cùng câu trả lời với App_Services Q4 (được chấp nhận 2026-10-27)."
+    ]
+   ]
+  },
+  {
+   "header": [
+    "Flow",
+    "Id",
+    "Decision"
+   ],
+   "rows": [
+    [
+     "App_Common",
+     "Q4",
+     "(a) Giữ phần cuối của app start"
+    ],
+    [
+     "App_Menu",
+     "Q1",
+     "(b) Lấy `UBTConnect.App_Menu.controller.js` từ TST ở chế độ chỉ đọc, như U10 đề xuất"
+    ],
+    [
+     "App_Menu_ContactUs",
+     "Q3",
+     "(a) Lấy `UBTConnectLibrary.controller.js` từ TST (tĩnh, GET chỉ đọc), thêm vào `migration/runtime-sources/`, và so sánh"
+    ],
+    [
+     "App_Menu_ContactUs",
+     "Q4",
+     "(a) Giữ `LocalCacheControl_UserInformation` trong state và gửi cùng các biến như TST ngay bây giờ"
+    ],
+    [
+     "App_Notifications",
+     "Q1",
+     "(a) Thêm một dòng `skip` với lý do \"chỉ có trên DEV, không có trên TST; xem lại khi TST deploy nó\""
+    ],
+    [
+     "App_Policies",
+     "Q1",
+     "(a) Đọc action bằng MCP (`getClientAction`, UBTConnect_Utils) trong lượt review"
+    ],
+    [
+     "App_Services",
+     "Q4",
+     "(a) Router đặt `document.title` theo tiêu đề route (toàn app)"
+    ],
+    [
+     "Bookmarks",
+     "Q1",
+     "(a) PROD chưa biết hoặc false: giữ MyBookmarks (không thay đổi)"
+    ],
+    [
+     "Directory_OneSchoolGlobal",
+     "Q1",
+     "(c) Kiểm tra trên TST trước: mở một liên kết thứ hai khi màn hình đang mở"
+    ],
+    [
+     "Directory_Updates",
+     "Q1",
+     "(b) So sánh cả hai trên TST trước (mở một update, quay lại, so sánh vị trí; chỉ đọc)"
+    ],
+    [
+     "Directory_Updates",
+     "Q2",
+     "(a) Một lượt chung cho các block UBTConnectLibrary, NavigationHandler và UBTConnect_Utils"
+    ],
+    [
+     "Home",
+     "Q3",
+     "(a) Kiểm tra trên TST: mở một update, quay lại, và quan sát các lệnh gọi (chỉ đọc)"
+    ],
+    [
+     "Legacy_MyNotificationsFlow",
+     "Q2",
+     "(a) sau báo cáo Legacy_Share, trong một thay đổi chung cho cả hai flow"
+    ],
+    [
+     "Notes",
+     "Q1",
+     "A. Capture là thao tác đọc; nó chốt dữ kiện trước khi thay đổi code."
+    ]
+   ]
+  }
+ ],
+ "build_items": [
+  {
+   "Flow": "App_Common",
+   "Id": "Q3",
+   "Decision": "(a) Sửa hằng số ngay, và build flow hộp thoại với nhà cung cấp danh tính của production"
+  },
+  {
+   "Flow": "App_Menu",
+   "Id": "Q2",
+   "Decision": "(a) Giữ `user` và `isFetched` với `useViewState`"
+  },
+  {
+   "Flow": "App_Menu_ContactUs",
+   "Id": "Q1",
+   "Decision": "(a) Build năm trường, danh sách Country và hai action OnChange như trong TST"
+  },
+  {
+   "Flow": "App_Menu_ContactUs",
+   "Id": "Q2",
+   "Decision": "(a) Port ContactUs_Rate bằng một bản React tương đương với RangeSlider của OutSystems UI"
+  },
+  {
+   "Flow": "App_PIN",
+   "Id": "Q2",
+   "Decision": "(a) Ghi nhận là chưa cần trên web lúc này; port nó cùng các plugin liên kết native (U14)"
+  },
+  {
+   "Flow": "App_Policies",
+   "Id": "C4",
+   "Decision": "Làm theo TST: lưu device id của việc chấp nhận policy trong localStorage[\"UUID\"] (một id cho mỗi trình duyệt). Finding F4 giữ nguyên; build nó. Dòng 063."
+  },
+  {
+   "Flow": "App_Profile",
+   "Id": "Q1",
+   "Decision": "(a) Build ngay bây giờ: các dòng địa chỉ, hai widget DropdownSearch, CacheControl_AllLocalities và CacheControl_AllSubdivisions với mock, các handler và các kiểm tra khi lưu (Profile.mvc.js:1269-1716,"
+  },
+  {
+   "Flow": "App_Services",
+   "Id": "Q1",
+   "Decision": "(a) Lấy file tĩnh từ TST (GET chỉ đọc, theo phê duyệt thường trực cho file tĩnh bị thiếu) vào `migration/runtime-sources/`, rồi kiểm tra bản port trong lượt review"
+  },
+  {
+   "Flow": "App_Services",
+   "Id": "Q2",
+   "Decision": "(a) Làm theo TST: reset `isLoading` cho CommunicationException và AllExceptions; NotRegistered giữ nguyên nó"
+  },
+  {
+   "Flow": "App_Services",
+   "Id": "Q3",
+   "Decision": "(a) Sửa chung: các data action của màn hình chuyển lần fetch thất bại tới `raiseToFlowHandler`"
+  },
+  {
+   "Flow": "Bookmarks",
+   "Id": "Q2",
+   "Decision": "(a) build ngay từ các biểu thức đã biên dịch (show:996-1020)"
+  },
+  {
+   "Flow": "Calendar",
+   "Id": "Q1",
+   "Decision": "(a) Bản sửa chung của App_Services Q3 cũng bao phủ các data action của block như cái này"
+  },
+  {
+   "Flow": "Calendar",
+   "Id": "Q2",
+   "Decision": "(a) Làm theo TST: `raiseToFlowHandler` trong `refreshToken`"
+  },
+  {
+   "Flow": "ContactFlow",
+   "Id": "Q1",
+   "Decision": "(a) truyền đầy đủ payload của TST tại các nơi gọi ngay bây giờ; log vẫn không chứa văn bản cá nhân"
+  },
+  {
+   "Flow": "Directory_OneSchoolGlobal",
+   "Id": "Q2",
+   "Decision": "(a) Đặt `document.title` theo tiêu đề route trong app shell, cho mọi route"
+  },
+  {
+   "Flow": "Directory_SupperMeetings",
+   "Id": "Q1",
+   "Decision": "(a) Sửa chung với App_Services Q3: container chuyển lần refresh thất bại tới `raiseToFlowHandler`"
+  },
+  {
+   "Flow": "Home",
+   "Id": "Q1",
+   "Decision": "(a) Đặt gcTime 0 và refetchOnReconnect false trên cả hai query; view cache vẫn khôi phục khi điều hướng back"
+  },
+  {
+   "Flow": "Home",
+   "Id": "Q2",
+   "Decision": "(a) Build cả hai từ view đã biên dịch ngay bây giờ"
+  },
+  {
+   "Flow": "Legacy_LDMEventsFlow_V2",
+   "Id": "Q1",
+   "Decision": "(a) Build popup lọc timeline MyTimeline_Filters và bốn handler của nó (OnHandle_MyTimelineFilter, ResetFilters, Filter, Close) từ mã biên dịch của TST; ghi nhận là build now."
+  },
+  {
+   "Flow": "Legacy_MyNotificationsFlow",
+   "Id": "Q1",
+   "Decision": "(a) build ngay từ SBMD và controller, với mock cho hai action Get_Orbit*"
+  },
+  {
+   "Flow": "Legacy_MyNotificationsFlow",
+   "Id": "Q3",
+   "Decision": "(a) thêm thư viện và build trình xem cùng flow submit"
+  },
+  {
+   "Flow": "Legacy_MyNotificationsFlow",
+   "Id": "Q4",
+   "Decision": "(a) làm theo TST và ghi chú điểm bất thường trong `app/docs/known-original-bugs.md`"
+  },
+  {
+   "Flow": "Legacy_OrbitAdminFlow",
+   "Id": "Q1",
+   "Decision": "(a) Làm theo TST: gỡ lệnh gọi GetMilestoneScanFF, nhánh milestone, mock handler và scenario scanpermilestone khỏi OrbitAdminLanding. Ghi chú để so sánh sau: nhánh và màn hình"
+  },
+  {
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "Q1",
+   "Decision": "(a) Build wizard HostSurvey từ mã biên dịch của TST (model, controller và view của các file ScreenBlock_HostSurvey; mock cho PostHostSurvey); ghi nhận là build now, việc build bắt đầu khi"
+  },
+  {
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "Q2",
+   "Decision": "(a) Làm theo TST: gỡ control passport chỉ có trên DEV, event NavigateTo_PassportScan và handler của nó khỏi OrbitLanding. Ghi chú để so sánh sau: control và màn hình PassportScan có trên DEV"
+  },
+  {
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "Q3",
+   "Decision": "(a) Build năm block milestone còn lại (MealGuest, MealHost, MealHelper, AccommodationGuest, AccommodationHelper) từ các file TST của chúng; ghi nhận là build now."
+  },
+  {
+   "Flow": "_libraries",
+   "Id": "Q1",
+   "Decision": "(a) Quyết định favicon ngày 2026-10-17 bao gồm LayoutReady, LayoutDestroy và SetLang (không port); SkipToContent đã được port (focus chuyển tới nội dung chính). 9 dòng layout vẫn là differs; một dòng (S"
+  },
+  {
+   "Flow": "_libraries",
+   "Id": "Q3",
+   "Decision": "(a) Nối hai nơi gọi (SearchResultItem.tsx:117 tới navigateToUpgrade, useShareSheet.ts:137 tới showUpgradePopUp) với các hộp thoại gói đăng ký hiện có; ghi nhận là build now (F1)."
+  },
+  {
+   "Flow": "_shared",
+   "Id": "C3",
+   "Decision": "Finding được chấp nhận (lớn, F3): một lỗi app-start không phải system exception phải hiển thị toast exception, như TST. Build nó. Dòng 193."
+  },
+  {
+   "Flow": "_shared",
+   "Id": "Q1",
+   "Decision": "(a) Hiển thị toast exception khi app start thất bại mà không phải lỗi hệ thống, như TST; giống quyết định C3 (finding F3, build)."
+  }
+ ],
+ "keep_items": [
+  {
+   "Flow": "App_Common",
+   "Id": "Q1",
+   "Decision": "(a) Giữ nguyên là không có action, và ghi nhận dưới D3"
+  },
+  {
+   "Flow": "App_Common",
+   "Id": "Q2",
+   "Decision": "(a) Chấp nhận, và ghi nhận thành một quyết định cùng với App_PIN Q1 (Connect_Logout trên đường đi này)"
+  },
+  {
+   "Flow": "App_Menu_ContactUs",
+   "Id": "C1",
+   "Decision": "Giữ hành vi của React: các validator trim input trước khi kiểm tra (TST không trim). Dòng 122, 123 là differs theo quyết định này."
+  },
+  {
+   "Flow": "App_Notifications",
+   "Id": "Q2",
+   "Decision": "(b) Xác nhận bằng một lần kiểm tra chỉ đọc các nơi gọi `EntitiesCarousel` trên TST rằng không có điều hướng back nào về Notifications mang theo preload, và ghi nhận lại"
+  },
+  {
+   "Flow": "App_Notifications",
+   "Id": "Q3",
+   "Decision": "(a) Giữ React theo TST, và mở một change request liệt kê các dòng §6.1 để build lại khi TST deploy chúng"
+  },
+  {
+   "Flow": "App_PIN",
+   "Id": "Q1",
+   "Decision": "(a) Chấp nhận, và ghi nhận rằng việc đăng xuất của ADR-10 cũng bao phủ đường đi này"
+  },
+  {
+   "Flow": "App_PIN",
+   "Id": "Q3",
+   "Decision": "(a) Xác nhận nhánh HomeFeed và ghi nhận trên dòng PINUnlock của board"
+  },
+  {
+   "Flow": "App_Policies",
+   "Id": "Q2",
+   "Decision": "(a) Lưu trong `localStorage[\"UUID\"]` như TST, và ghi nhận quyết định"
+  },
+  {
+   "Flow": "ContactFlow",
+   "Id": "Q2",
+   "Decision": "(a) giữ hành vi của TST và ghi nhận là một bug gốc đã biết"
+  },
+  {
+   "Flow": "Directory_Photobook",
+   "Id": "Q1",
+   "Decision": "Dòng 074, 076 và 105 cần một quyết định được ghi nhận. CR-Photobook-1 (:34-36) chỉ bao phủ các log lỗi toggle-drag. Quy tắc NO-CONSOLE (`migration/stack.json` rules.forbidden, `migration/architecture.m"
+  },
+  {
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "C2",
+   "Decision": "Giữ hành vi của React: IsGuestView bắt đầu là false cho đến khi fetch danh sách khách (TST bắt đầu là true). Dòng A121 là differs theo quyết định này."
+  },
+  {
+   "Flow": "Legacy_OrbitQRCodeFlow",
+   "Id": "Q1",
+   "Decision": "(a) Đặt document.title theo tiêu đề route trong app shell, cho mọi route; cùng câu trả lời với App_Services Q4 (được chấp nhận 2026-10-27)."
+  }
+ ],
+ "check_items": [
+  {
+   "Flow": "App_Common",
+   "Id": "Q4",
+   "Decision": "(a) Giữ phần cuối của app start"
+  },
+  {
+   "Flow": "App_Menu",
+   "Id": "Q1",
+   "Decision": "(b) Lấy `UBTConnect.App_Menu.controller.js` từ TST ở chế độ chỉ đọc, như U10 đề xuất"
+  },
+  {
+   "Flow": "App_Menu_ContactUs",
+   "Id": "Q3",
+   "Decision": "(a) Lấy `UBTConnectLibrary.controller.js` từ TST (tĩnh, GET chỉ đọc), thêm vào `migration/runtime-sources/`, và so sánh"
+  },
+  {
+   "Flow": "App_Menu_ContactUs",
+   "Id": "Q4",
+   "Decision": "(a) Giữ `LocalCacheControl_UserInformation` trong state và gửi cùng các biến như TST ngay bây giờ"
+  },
+  {
+   "Flow": "App_Notifications",
+   "Id": "Q1",
+   "Decision": "(a) Thêm một dòng `skip` với lý do \"chỉ có trên DEV, không có trên TST; xem lại khi TST deploy nó\""
+  },
+  {
+   "Flow": "App_Policies",
+   "Id": "Q1",
+   "Decision": "(a) Đọc action bằng MCP (`getClientAction`, UBTConnect_Utils) trong lượt review"
+  },
+  {
+   "Flow": "App_Services",
+   "Id": "Q4",
+   "Decision": "(a) Router đặt `document.title` theo tiêu đề route (toàn app)"
+  },
+  {
+   "Flow": "Bookmarks",
+   "Id": "Q1",
+   "Decision": "(a) PROD chưa biết hoặc false: giữ MyBookmarks (không thay đổi)"
+  },
+  {
+   "Flow": "Directory_OneSchoolGlobal",
+   "Id": "Q1",
+   "Decision": "(c) Kiểm tra trên TST trước: mở một liên kết thứ hai khi màn hình đang mở"
+  },
+  {
+   "Flow": "Directory_Updates",
+   "Id": "Q1",
+   "Decision": "(b) So sánh cả hai trên TST trước (mở một update, quay lại, so sánh vị trí; chỉ đọc)"
+  },
+  {
+   "Flow": "Directory_Updates",
+   "Id": "Q2",
+   "Decision": "(a) Một lượt chung cho các block UBTConnectLibrary, NavigationHandler và UBTConnect_Utils"
+  },
+  {
+   "Flow": "Home",
+   "Id": "Q3",
+   "Decision": "(a) Kiểm tra trên TST: mở một update, quay lại, và quan sát các lệnh gọi (chỉ đọc)"
+  },
+  {
+   "Flow": "Legacy_MyNotificationsFlow",
+   "Id": "Q2",
+   "Decision": "(a) sau báo cáo Legacy_Share, trong một thay đổi chung cho cả hai flow"
+  },
+  {
+   "Flow": "Notes",
+   "Id": "Q1",
+   "Decision": "A. Capture là thao tác đọc; nó chốt dữ kiện trước khi thay đổi code."
+  }
+ ],
+ "open_items": [
+  "Finding mới Notes F2 (lớn): TST gửi các năm đã chọn và thứ tự sắp xếp trong `DataActionGetNotes` sau khi Apply; React thì không bao giờ",
+  "Directory_Updates dòng 073 và 074 (điểm neo cuộn khi Back) vẫn `unclear`: capture chỉ đọc dừng lại ở lần chạm vào một",
+  "5 dòng `unclear` cuối cùng: Directory_Photobook 074, 076, 105 (cần một quyết định được ghi nhận về move log của Splide)"
+ ],
+ "setup_order": [
+  "**Danh tính và phiên BFF.** Không có gì cần đăng nhập chạy được nếu thiếu nó. Mọi màn hình được bảo vệ đều gọi `checkRegistered` (`shell-facts.md` U1), và các lệnh gọi app-start 2 đến 7 cần một phiên (`app-shell.spec.md` §10). Bước này mang lại các bước 1 đến 3 và 10 của §4 cùng `AuthProvider` cho production. Bằng chứng: App_Common-027 đến 032, 153.",
+  "**Endpoint app-start và context.** `AppManager_SynchAppContext`, `AppManager_AfterInitialize`, `Sync_Info_GetMain`, `GetUserInformation` (bản ghi người dùng, quyền, gói đăng ký), `GetNumberUnreadMessages`, hai cache bản đồ, `CacheControl_UserInfo` và `CacheControl_Policies`. Thiếu chúng thì Splash không bao giờ điều hướng (App_Common Q4(a)) và HomeFeed không mount. Bằng chứng: `app-shell.spec.md:297-316`, App_Common-163, App_PIN-097, App_Menu-009, 084.",
+  "**Endpoint flag** qua BFF (R5 a), với các giá trị PROD. Thanh dưới cùng, chuông và màn hình Bookmarks chọn đích đến theo flag (D1, D2, D11; `feature-flag-helpers.md`). Cho đến lúc đó: các hằng số TST.",
+  "**Contract đọc.** 93 data action, 3 aggregate và các wrapper đọc, từng module theo thứ tự của §3.1. Endpoint ảnh có chữ ký đi trước: 13 flow hiển thị ảnh. Phía React thực hiện hai chỉnh sửa input của §3.2 (App_Policies F1, App_Menu_ContactUs F3).",
+  "**Các thao tác ghi.** 41 endpoint, với dịch vụ mail đứng sau sáu action e-mail và sink application-event (§7). Bằng chứng: ContactFlow-047 đến 126, Bookmarks-071, 073, Legacy_Share-094, Legacy_MyNotificationsFlow-013 đến 015, 099.",
+  "**Hosting tĩnh.** Đường dẫn `/UBTConnect/`, worker tại `/UBTConnect/pwaServiceWorker.js` từ cut-over trở đi (ADR-14), `status/network-ping.txt`, các icon và ảnh dự phòng. Ngoài ra còn các origin của embed và broker ID token cho Feed CMS và MyEntertaining (Home-050, Calendar-058, 059).",
+  "**Sau này, theo từng tính năng.** Web Push và đăng ký token (U12), WebAuthn (U13), Web Share (U14, U18). Sau đó là bộ render adaptive card (Legacy_MyNotificationsFlow Q3), backend của Map khi `C2EnableMaps` được bật, và nhà cung cấp monitoring (U17)."
+ ],
+ "summary_text": "| Lĩnh vực | Trạng thái | Quy mô |\n|---|---|---|\n| Backend cho các service action và server action | chỉ mock (MSW) | 165 endpoint trong contract, 41 trong số đó là ghi; 157 dòng mock-only |\n| Danh tính và phiên | đăng nhập mock, không token, không callback | U4, U5, D3(a); App_Common dòng 027-032 |\n| PIN và sinh trắc học | PIN cục bộ (đã hash), sinh trắc học bị ẩn | U5, U13 |\n| Push, deep link, chia sẻ, hướng màn hình, bàn phím, app launcher | chưa build (chỉ native) | 58 dòng chỉ native; U12, U14, U18 |\n| Máy quét mã vạch | web scanner của TST được vendor (ADR-11) | sẵn sàng cho production; cần quyền camera |\n| Telemetry và audit | chỉ có sink console | 25 dòng (U17); sự kiện App Insights và server action application-event |\n| Flag và site property | hằng số theo giá trị TST | 29 tên flag trong các dòng; chưa biết giá trị PROD |\n| Static hosting, service worker, ảnh | đã có kế hoạch (ADR-9, ADR-14), URL có chữ ký đang mock | đường dẫn `/UBTConnect/`, URL của worker, `network-ping.txt`, ký URL ảnh |\n| Việc front-end trước cut-over | 3 finding chặn, 25 finding lớn | §10 |",
+ "diagrams": [
+  "flowchart LR\n  user([Member in a phone browser or an installed PWA])\n  spa[UBTConnect React SPA<br/>app/src, Vite build]\n  user --> spa\n  subgraph today [In the browser today]\n    msw[(Mock API: MSW handlers<br/>POST /api/Module/Action)]\n    idp[(Mock identity: platform/auth/mockAuth.ts)]\n    idb[(IndexedDB: client entities<br/>platform/storage/localEntities)]\n    sw[(Service worker: src/sw/sw.ts<br/>demo and production builds only)]\n  end\n  spa --> msw\n  spa --> idp\n  spa --> idb\n  spa -.-> sw\n  subgraph os [What the OutSystems app talks to, and React does not yet]\n    b2c[(Identity provider B2C<br/>AppManager_Login, /UBT_AppManager/Callback)]\n    be[(Backend modules: UBT_AppManager, Connect_* CS,<br/>Connect2_*, UBTConnect_Utils, Notes_MCS)]\n    ld[(LaunchDarkly and OutSystems feature flags)]\n    push[(FCM push, local notifications)]\n    plug[(Cordova plugins: app links, deep links,<br/>file viewer, orientation, keyboard)]\n    cms[(Feed CMS and Entertaining calendar SDK)]\n  end\n  spa -. not connected .-> b2c\n  spa -. not connected .-> be\n  spa -. not connected .-> ld\n  spa -. not connected .-> push\n  spa -. not connected .-> plug\n  spa -. stand-in page .-> cms\n",
+  "flowchart TB\n  subgraph page [index.html: one page, #reactContainer]\n    main[main.tsx: device classes, flag overrides,<br/>mocks, QueryClientProvider, RouterProvider, SW registration]\n    appframe[app/AppFrame.tsx: StylesheetHost, AppStart, RouteGuard,<br/>NavigationHost, ScreenTransitionGroup, AppLockHost, CommonUiHost]\n    pages[pages/&lt;Screen&gt;/&lt;Screen&gt;Page.tsx: 64 lazy screens]\n    platform[platform/: bootstrap, session, auth, navigation,<br/>feedback, flags, settings, storage, device, config, log]\n    api[api/client: callAction, memory cache, QueryClient<br/>api/&lt;domain&gt;: types, mapper, repository, keys, hooks]\n    legacy[legacy/os: exceptions, client variable names,<br/>flag names, StylesheetHost, CacheControl blocks]\n    mocks[mocks/: MSW handlers, recorded fixtures,<br/>fictional data, in-memory store, scenarios]\n    css[public/UBTConnect/css: 52 original stylesheets,<br/>loaded per screen into the cascade layer legacy]\n  end\n  worker[(mockServiceWorker.js: dev and mock build)]\n  appsw[(sw.js: demo and production builds)]\n  main --> appframe --> pages\n  pages --> platform\n  pages --> api\n  platform --> api\n  platform --> legacy\n  api --> legacy\n  api -- fetch --> worker\n  api -- fetch --> mocks\n  appframe --> css\n  main -.-> appsw\n",
+  "sequenceDiagram\n  participant P as pages/Services/hooks/useServices.ts\n  participant H as api/service hooks (useQuery)\n  participant R as api/service repository\n  participant C as api/client/callAction.ts\n  participant M as MSW handler (pages/Services/mocks.ts)\n  participant F as mocks/fixtures or fictional data\n  P->>H: useUserServicesQuery()\n  H->>R: fetchUserServices()\n  R->>C: callAction('UBTConnect', 'Services/DataActionGetServices', inputs)\n  C->>M: POST /api/UBTConnect/Services/DataActionGetServices\n  M->>F: fixtureData('UBTConnect', 'Services/DataActionGetServices')\n  F-->>M: recorded answer, seeds a collection\n  M-->>C: { data: outputs } or { error, exception }\n  C-->>R: outputs, or an OutSystems exception\n  R-->>H: mapped record\n  H-->>P: isSuccess, data, isError\n"
+ ],
+ "app_start": [
+  {
+   "Row": "176-177",
+   "Step (TST order, `UC:15262-15425`)": "bốn biến client = False",
+   "TST": "IsNavigateToHomeOnBack, Bookmarks/Notifications/Notes_IsSynched",
+   "React": "`appStartSteps.ts:180-183`",
+   "Status": "match"
+  },
+  {
+   "Row": "178-180",
+   "Step (TST order, `UC:15262-15425`)": "GetCallbacksJS, FRD_UserCallback_Set, FCM_*Callback_Set",
+   "TST": "năm callback (Firebase, mạng, push)",
+   "React": "chỉ cặp cho mạng (`platform/feedback/networkStatus.ts:25-39`)",
+   "Status": "differs (U12, U17)"
+  },
+  {
+   "Row": "181",
+   "Step (TST order, `UC:15262-15425`)": "NetworkDetetion_DefineCallbacks",
+   "TST": "khởi động bộ phát hiện với hai callback",
+   "React": "`startNetworkDetection` từ `CommonUiHost` (`networkStatus.ts:28-38`)",
+   "Status": "match"
+  },
+  {
+   "Row": "182",
+   "Step (TST order, `UC:15262-15425`)": "AppManager_Mobile_OnAppReady",
+   "TST": "SynchAppContext, InitializeWebComponents, AfterInitialize khi CheckDeviceOnReady và đã đăng nhập",
+   "React": "các bước `synchAppContext`, `initializeWebComponents` (`appStartSteps.ts:60-71, 134-142`; `startup.ts:32-58`)",
+   "Status": "match"
+  },
+  {
+   "Row": "(chỉ React)",
+   "Step (TST order, `UC:15262-15425`)": "fetchFlags",
+   "TST": "mỗi flag là một lần kiểm tra phía server tại nơi nó được đọc",
+   "React": "bước `fetchFlags` = giá trị mặc định của registry (`flags/server.ts:12-28`)",
+   "Status": "differs (dòng 194)"
+  },
+  {
+   "Row": "183",
+   "Step (TST order, `UC:15262-15425`)": "CheckKeyboardPlugin",
+   "TST": "plugin bàn phím native",
+   "React": "không có",
+   "Status": "n/a (U18)"
+  },
+  {
+   "Row": "184",
+   "Step (TST order, `UC:15262-15425`)": "OnApplicationReady_BottomBarSlider",
+   "TST": "UBTConnectLibrary",
+   "React": "bước `bottomBarSlider` (`appStartSteps.ts:144-149`)",
+   "Status": "match"
+  },
+  {
+   "Row": "185",
+   "Step (TST order, `UC:15262-15425`)": "OnApplicationReady_MobileKeyboardVisible",
+   "TST": "chỉ khi có `window.cordova`",
+   "React": "không có",
+   "Status": "n/a (U18)"
+  },
+  {
+   "Row": "(chỉ React)",
+   "Step (TST order, `UC:15262-15425`)": "waitForFirstScreen",
+   "TST": "không có trong OnApplicationReady",
+   "React": "đã đăng nhập: chờ `dx-navigation-transition-end` của màn hình đầu tiên (`appStartSteps.ts:102-128, 150`)",
+   "Status": "differs (dòng 194, CR-Search-3)"
+  },
+  {
+   "Row": "186",
+   "Step (TST order, `UC:15262-15425`)": "Sync_Info_Main(false)",
+   "TST": "ngay sau MobileKeyboardVisible",
+   "React": "bước `syncInfoMain` sau màn hình đầu tiên (`appStartSteps.ts:151-156`; `startup.ts:75-86`)",
+   "Status": "differs"
+  },
+  {
+   "Row": "187",
+   "Step (TST order, `UC:15262-15425`)": "AddCustomHeadersJS(MyEntertainingURL, FeedURL)",
+   "TST": "liên kết `preconnect` và `dns-prefetch`",
+   "React": "không có; hai URL không được đọc (`api/app/types.ts:81`)",
+   "Status": "missing (F2 thông tin)"
+  },
+  {
+   "Row": "188-190",
+   "Step (TST order, `UC:15262-15425`)": "ListenForLandscapeScreens, InitAndroidAppLinksPlugin, InitializeEventfulDeeplinks, SetLNCallbackJS",
+   "TST": "plugin native",
+   "React": "chỉ có placeholder (`navigation/OpenLinkOnResume/OpenLinkOnResume.tsx:10-19`; `session/resume.ts:15-17`)",
+   "Status": "n/a (U12, U14, U18)"
+  },
+  {
+   "Row": "191-192",
+   "Step (TST order, `UC:15262-15425`)": "Is User Logged? → Connect_SetLoggedContext, sau đó là hai cache bản đồ",
+   "TST": "chỉ khi đã đăng nhập; các lệnh gọi bản đồ không được await",
+   "React": "các bước `setLoggedContext`, `cacheableMapData` (`appStartSteps.ts:157-171, 78-100`; `postLogin.ts:25-48`)",
+   "Status": "match"
+  },
+  {
+   "Row": "193",
+   "Step (TST order, `UC:15262-15425`)": "AllExceptions → ScreenController_RaiseError",
+   "TST": "handler của App_Common (toast)",
+   "React": "chỉ `log.error` (`appStartSteps.ts:192-196`)",
+   "Status": "unclear (Q1 của `_shared`)"
+  },
+  {
+   "Row": "(chỉ React)",
+   "Step (TST order, `UC:15262-15425`)": "loadOrbitStaticEntities, markAppReady",
+   "TST": "`initializeDatabase` của runtime; không có máy trạng thái phiên",
+   "React": "`appStartSteps.ts:175-179, 199`",
+   "Status": "differs (dòng 194)"
+  }
+ ],
+ "status": [
+  {
+   "Capability": "danh tính (đăng nhập B2C, callback, phiên)",
+   "Status today": "mock: người dùng mock đăng nhập ngay; không có token; bản build production không có provider",
+   "Proof (report rows)": "`App_Common-027` mock-only; `App_Common-030`, `-032` differs; `App_Common-025` differs (đặt lại mật khẩu)",
+   "React location": "`platform/auth/mockAuth.ts:12-32`; `authProvider.ts:8-10`"
+  },
+  {
+   "Capability": "dữ liệu (server action, service action và data action)",
+   "Status today": "mock: 153 dòng phía server cần backend (`aggregate.md` §1); contract có 165 endpoint; các MSW handler trả lời",
+   "Proof (report rows)": "`aggregate.md` §1, ví dụ `Home-050`, `App_Policies-046`, `Legacy_MyNotificationsFlow-149` đến `-152`",
+   "React location": "`api/openapi.yaml`; `mocks/handlers.ts`"
+  },
+  {
+   "Capability": "setting và site property",
+   "Status today": "mock cho câu trả lời của SynchAppContext; 11 setting được lưu bền trong localStorage",
+   "Proof (report rows)": "`_shared-182` match; `App_Common-142` mock-only (Get_RuntimeVersion)",
+   "React location": "`bootstrap/startup.ts:32-58`; `settings/store.ts`"
+  },
+  {
+   "Capability": "feature flag",
+   "Status today": "giá trị mặc định của registry; không có LaunchDarkly và không có lệnh gọi quyền",
+   "Proof (report rows)": "`aggregate.md` §4; `Legacy_OrbitAdminFlow` F1 (GetMilestoneScanFF khác với TST)",
+   "React location": "`flags/server.ts:12-17`; `legacy/os/flagNames.ts`"
+  },
+  {
+   "Capability": "file và ảnh",
+   "Status today": "URL ảnh có chữ ký là mock; tài liệu của event Orbit là mock; tải xuống sẽ mở tab mới, trình xem file native chưa được port",
+   "Proof (report rows)": "`Legacy_OrbitQRCodeFlow-036`, `_libraries-245` mock-only; `Legacy_OrbitEventsFlow-A155`, `-J007` mock-only; `-A161`, `-J013` n/a",
+   "React location": "`api/image/`; `device/handleDownload.ts:1-5`; `lib/ubtConnectUtils/actions.ts:285-288`"
+  },
+  {
+   "Capability": "thông báo đẩy",
+   "Status today": "thiếu: không có FCM token, không có callback, không có thông báo cục bộ",
+   "Proof (report rows)": "`_shared-097`, `-098`, `-180`, `-190` n/a (U12); `_shared-166` đến `-169`",
+   "React location": "`device/deviceContext.ts:25-39` (`FCMToken: ''`)"
+  },
+  {
+   "Capability": "deep link và app link",
+   "Status today": "chỉ có URL thường; liên kết cold-start rỗng; các block plugin không render gì",
+   "Proof (report rows)": "`_shared-027`, `App_Common-160`, `Legacy_Share-085` đến `-087` n/a (U14)",
+   "React location": "`session/resume.ts:12-17`; `OpenLinkOnResume.tsx`"
+  },
+  {
+   "Capability": "chia sẻ",
+   "Status today": "ShareSheet được build dựa trên các service mock; chia sẻ native (chia sẻ cho người khác) không được cung cấp",
+   "Proof (report rows)": "`_libraries-242`, `Legacy_Share-094` mock-only; `Legacy_Share-082` đến `-084`, `Bookmarks-112`, `Directory_CommonBlocks-123` n/a",
+   "React location": "`containers/ShareSheet/`; `_libraries` F1 (chạm vào nâng cấp không làm gì)"
+  },
+  {
+   "Capability": "camera và máy quét",
+   "Status today": "web scanner của TST được vendor và port 1:1; dev và demo cài một scanner hư cấu; câu trả lời QR là mock",
+   "Proof (report rows)": "`Legacy_OrbitAdminFlow-103` differs (ADR-11); `-108` mock-only",
+   "React location": "`device/barcodePlugin.ts:1-7, 39-46`; `device/webBarcodeScanner.ts`"
+  },
+  {
+   "Capability": "telemetry (Firebase, sự kiện audit, Application Insights)",
+   "Status today": "thiếu: không có sink nào ngoài console; các lệnh gọi audit chưa được port",
+   "Proof (report rows)": "`_shared-099`, `-179` n/a; `ContactFlow-045`, `-046`, `Bookmarks-076` (U17)",
+   "React location": "`platform/log/log.ts:3-5, 23-30`; `settings` `insights.enabled` không được đọc"
+  },
+  {
+   "Capability": "e-mail",
+   "Status today": "mock: mọi lần gửi đều đi tới một handler hoặc một collection",
+   "Proof (report rows)": "`ContactFlow-047`, `-073`, `-091`, `-109`, `-126`; `App_Menu_ContactUs-041`; `Legacy_OrbitEventsFlow-B049`; `Legacy_LDMEventsFlow-064`; `Legacy_LDMEventsFlow_V2-197` mock-only",
+   "React location": "`api/message/`; `pages/EmailContact/mocks.ts`"
+  },
+  {
+   "Capability": "bản đồ",
+   "Status today": "có Leaflet thật trong trình duyệt với URL tile của TST; cache bản đồ lúc app start là mock và rỗng; màn hình Map bị bỏ qua (C2EnableMaps tắt trên TST)",
+   "Proof (report rows)": "`Directory_Locality-028` đến `-032`, `-057` đến `-061` match; `_shared-077`, `-078` mock-only; flow `Map` 21 n/a",
+   "React location": "`lib/leaflet/`; `pages/BrowseDirectory/`"
+  },
+  {
+   "Capability": "embed (Feed CMS, lịch Entertaining)",
+   "Status today": "trang thế thân và cấu hình mock; SDK thật và tenant B2C chưa được kết nối",
+   "Proof (report rows)": "`Home-049`, `Calendar-029` differs (D8(b)); `Home-050`, `Calendar-058` mock-only",
+   "React location": "`components/feed/FeedCms/`; `api/feed/`; `api/entertaining/`"
+  },
+  {
+   "Capability": "offline (sync engine, entity cục bộ, service worker)",
+   "Status today": "entity cục bộ là thật trong IndexedDB; sync engine của OSUI là no-op; service worker chỉ chạy trong bản build demo và production; phát hiện mạng là thật (ping)",
+   "Proof (report rows)": "`_shared-040` match, `-041` n/a (U11); `App_Common-123` đến `-126`; `App_Policies` F2 (refetch khi kết nối lại)",
+   "React location": "`storage/localEntities/`; `sw/sw.ts`; `feedback/networkDetection.ts`"
+  },
+  {
+   "Capability": "PIN và sinh trắc học",
+   "Status today": "PIN thật trên thiết bị (đã hash), plugin là mock; không có vân tay",
+   "Proof (report rows)": "`App_PIN-074` (U5); `App_PIN-108`, `App_Menu-060` n/a (U13)",
+   "React location": "`session/pin.ts`"
+  },
+  {
+   "Capability": "kiểm tra phiên bản và thiết bị",
+   "Status today": "hằng số; các phiên bản tối thiểu đã lưu không được so sánh; hộp thoại device-awareness không bao giờ mở",
+   "Proof (report rows)": "`App_Common-172` differs (U16, U2); `App_Common-033`, `-043` missing",
+   "React location": "`lib/ubtConnect/unsupportedVersion.ts:17-27`; `useLogin.ts:10-12`"
+  },
+  {
+   "Capability": "hướng màn hình và bàn phím",
+   "Status today": "thiếu trên web (chỉ Cordova)",
+   "Proof (report rows)": "`_shared-142`, `-143`, `-146`, `-155`, `-183`, `-185` n/a (U18)",
+   "React location": "—"
+  }
+ ],
+ "folders": [
+  {
+   "Folder": "`app/`",
+   "Files": "16",
+   "Content": "router, bảng route được sinh tự động, route meta và redirect theo flag, RouteGuard, AppFrame, ErrorBoundary, phần nối dialog",
+   "Evidence": "`app/src/app/router.tsx`, `routes.ts`, `RouteGuard.tsx`, `dialogs.ts`"
+  },
+  {
+   "Folder": "`pages/`",
+   "Files": "845",
+   "Content": "64 thư mục màn hình: `<Screen>Page.tsx`, `hooks/` (61 thư mục), `components/`, `mocks.ts` (55 file), `inputs.ts`, `staticEntities.ts`",
+   "Evidence": "`app/src/app/screens.ts:14`; `ls app/src/pages`"
+  },
+  {
+   "Folder": "`containers/`",
+   "Files": "74",
+   "Content": "8 container được 2 page trở lên dùng chung: AssembleSummaryCard, DetailLayout, EntityDetailsActions, FilterSheet, HouseholdDetails, NoteListActions, ShareSheet, SupperMeetingDetails",
+   "Evidence": "`ls app/src/containers`"
+  },
+  {
+   "Folder": "`components/`",
+   "Files": "1581",
+   "Content": "component chỉ nhận props, chia theo domain (assemble 55, auth 55, bookmark 12, contact 68, directory 142, feed 38, filter 32, household 61, layout 142, menu 10, note 33, notification 14, orbit 102, search 6, share 23, version 32) và `ui/` (756 file, 93 entry)",
+   "Evidence": "`find` theo từng thư mục"
+  },
+  {
+   "Folder": "`api/`",
+   "Files": "168",
+   "Content": "`client/` (callAction, cache, queryClient, apiError), 19 thư mục domain, `openapi.yaml` (165 path), `schema.d.ts` được sinh tự động",
+   "Evidence": "`ls app/src/api`; `grep '/api/' openapi.yaml`"
+  },
+  {
+   "Folder": "`platform/`",
+   "Files": "228",
+   "Content": "auth 6, bootstrap 10, config 1, device 17, feedback 41, flags 13, log 2, navigation 63, session 55, settings 4, storage 15",
+   "Evidence": "`find` theo từng thư mục con"
+  },
+  {
+   "Folder": "`legacy/os/`",
+   "Files": "46",
+   "Content": "class exception của OutSystems, flow handler, tên biến client và tên flag, StylesheetHost, theme của body, marker review, 5 block CacheControl",
+   "Evidence": "`ls app/src/legacy/os`"
+  },
+  {
+   "Folder": "`lib/`",
+   "Files": "46",
+   "Content": "helper thuần (`os-wire`, `os-assets`, `osDateTime`, `sanitizeHtml`, `jsUtils`) và một thư mục cho mỗi module OutSystems: assemble, geography, leaflet, legacyShared, orbit, ubtConnect, ubtConnectLibrary, ubtConnectUtils",
+   "Evidence": "`ls app/src/lib`"
+  },
+  {
+   "Folder": "`mocks/`",
+   "Files": "57",
+   "Content": "`browser.ts`, `handlers.ts`, `inProcess.ts`, `contract.ts`, `fixtures.ts`, `store.ts`, `scenario.ts`, 27 file fixture được ghi lại, 6 file dữ liệu hư cấu, 6 thư mục mock theo module",
+   "Evidence": "`ls app/src/mocks`"
+  },
+  {
+   "Folder": "`pwa/`",
+   "Files": "10",
+   "Content": "boot plan, đăng ký SW, quy tắc route của SW, helper network-first, lưu trữ bền vững, manifest",
+   "Evidence": "`ls app/src/pwa`"
+  },
+  {
+   "Folder": "`sw/`",
+   "Files": "2",
+   "Content": "service worker của app và tsconfig của nó",
+   "Evidence": "`ls app/src/sw`"
+  },
+  {
+   "Folder": "`styles/`",
+   "Files": "4",
+   "Content": "cascade layer, token, CSS review",
+   "Evidence": "`app/src/main.tsx:8-10`"
+  },
+  {
+   "Folder": "`vendor/`",
+   "Files": "10",
+   "Content": "Script của TST được chép nguyên trạng: `barcodeplugin/` (ADR-11), `panzoom/` (ADR-7), mỗi thư mục có `SOURCE.md`",
+   "Evidence": "`app/src/vendor/README.md`"
+  },
+  {
+   "Folder": "`test/`",
+   "Files": "9",
+   "Content": "Thiết lập Vitest với MSW node server",
+   "Evidence": "`app/src/test/setup.ts:8-9`"
+  }
+ ],
+ "findings": [
+  {
+   "Severity": "blocker",
+   "Flow": "App_Menu_ContactUs",
+   "Id": "F1",
+   "Element": "ContactUsDetails / If not isLogged (Input_FullName, Input_Email, Input_PhoneNumb",
+   "Finding": "TST hiển thị thêm năm trường cho người dùng chưa đăng nhập: nhãn, input với Mandatory và MaxLength 50, danh sách Country từ DataAction_GetCountriesNames, và các action OnChange của chúng. React hiển thị một `NotCaptu"
+  },
+  {
+   "Severity": "blocker",
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "F1",
+   "Element": "HostSurvey: wizard khảo sát",
+   "Finding": "Các bước dữ liệu (điều hướng, chỗ ở, bữa ăn, helper, phương tiện), header của bước, footer với Next / Submit, năm popup xác nhận, 15 block item, bốn input ghi chú 250 ký tự,"
+  },
+  {
+   "Severity": "blocker",
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "F2",
+   "Element": "MilestoneDetail: 5 loại milestone",
+   "Finding": "`ScreenBlock_MealGuest`, `_MealHost`, `_MealHelper`, `_AccommodationGuest`, `_AccommodationHelper` render `<NotCaptured>`; wrapper action `OnHandle_NavigateToContactByEmail` (ContactByEmailOrbitHo"
+  },
+  {
+   "Severity": "major",
+   "Flow": "App_Common",
+   "Id": "F1",
+   "Element": "OnException của flow App_Common / BubbleCommunicationException",
+   "Finding": "TST kiểm tra `UBTConnect.BubbleCommunicationException` trước và hiển thị toast lỗi kết nối (flow controller :31-39). `raiseToFlowHandler` không có nhánh này, nên lỗi đi tới `showExceptionMessag"
+  },
+  {
+   "Severity": "major",
+   "Flow": "App_CommonBlocks_Filter",
+   "Id": "F1",
+   "Element": "FilterSheet_OptionList_Item, Action_DefineOptions (dòng 131)",
+   "Finding": "TST bỏ dấu khỏi DisplayText và khỏi chuỗi tìm kiếm trước khi so sánh (`fol.js:721-739`, `UBTJavaScriptUtils.controller.js:3078-3084`). React giữ nguyên dấu. Tìm \"Sao\" không"
+  },
+  {
+   "Severity": "major",
+   "Flow": "App_Menu_ContactUs",
+   "Id": "F2",
+   "Element": "ContactUsDetails / ContactUs_Rate, ContactUs_RateRateSelected",
+   "Finding": "Block đánh giá chưa được build, và không có handler nào đặt `Rate_SelectedRate`. Với chủ đề feedback, người dùng đã đăng nhập không thể đánh giá (BR-UBTCON-975, BR-UBTCON-972). Send cần có tin nhắn, vì"
+  },
+  {
+   "Severity": "major",
+   "Flow": "App_Menu_ContactUs",
+   "Id": "F3",
+   "Element": "ContactUsDetails / DataAction_GetLocalityTimezone, CacheControl_UserInfo_Wrapper",
+   "Finding": "TST giữ bản ghi người dùng trong `LocalCacheControl_UserInformation` và gửi nó cùng data action. Server đọc `In_LocalityId` từ đó. React không giữ bản ghi này. Lệnh gọi của nó không có `LocalCach"
+  },
+  {
+   "Severity": "major",
+   "Flow": "App_Notifications",
+   "Id": "F1",
+   "Element": "Notifications / If_HasNoNotifications, Notifications_NoItemsFound",
+   "Finding": "Khi một lần fetch hoàn tất không trả về thông báo nào, TST hiển thị `Notifications_NoItemsFound`: một icon lịch, \"No Notifications Found\" và \"We were unable to find any Notifications to display.\" (BR-UBTCON-"
+  },
+  {
+   "Severity": "major",
+   "Flow": "App_Notifications",
+   "Id": "F2",
+   "Element": "Notifications_Header / If_HasBadge",
+   "Finding": "TST chỉ hiển thị Badge khi `BadgeNumber > 0` (BR-UBTCON-981). React luôn render nó, nên một section không có thông báo chưa đọc vẫn hiển thị badge đỏ \"0\". Mock cho mỗi section một item chưa đọc, nên"
+  },
+  {
+   "Severity": "major",
+   "Flow": "App_Policies",
+   "Id": "F1",
+   "Element": "AcceptPendingPolicies / Policy_Custom_AcceptPendingPolicies input PolicyApplicat",
+   "Finding": "TST gửi `TextToIdentifier` của các bản ghi Connect_Applications: chuỗi GUID của Connect, Directory và Orbit (`static-entities-tst.json:2809`). React gửi các tên `Connect_Applications.Connect`"
+  },
+  {
+   "Severity": "major",
+   "Flow": "App_Profile",
+   "Id": "F1",
+   "Element": "Profile / phần địa chỉ (`#isHouseholder_Address`, `#isHouseholder_Cache`, các",
+   "Finding": "Với chủ hộ, React chỉ hiển thị tiêu đề \"Address Information\" trong một marker NotCaptured. Chưa được build: các dòng địa chỉ, DropdownSearch Locality và Subdivision, CacheControl_AllLocalities, Cach"
+  },
+  {
+   "Severity": "major",
+   "Flow": "App_Services",
+   "Id": "F1",
+   "Element": "Services / OnClick_SaveChanges, các exception handler",
+   "Finding": "TST đặt `isLoading` về False trong các handler CommunicationException và AllExceptions, rồi raise bubble exception. React raise cùng các exception nhưng giữ `isLoading` là True. Skeleton che"
+  },
+  {
+   "Severity": "major",
+   "Flow": "App_Services",
+   "Id": "F2",
+   "Element": "Services / GetServices thất bại",
+   "Finding": "Runtime (`OutSystems.js:3853`) flush model và gọi `handleError` của màn hình khi một lần fetch dữ liệu thất bại. App_Services chuyển lỗi tới App_Common OnException, nơi hiển thị toast lỗi kết nối"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Calendar",
+   "Id": "F1",
+   "Element": "Embedded_MyEntertaining / `DataActionGetEntertainingConfig` thất bại",
+   "Finding": "Runtime (`OutSystems.js:3853`) gọi `handleError` sau một lần fetch dữ liệu thất bại. Flow Calendar chuyển lỗi tới App_Common OnException, nơi hiển thị toast. React giữ skeleton và hiển thị"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Directory_Search",
+   "Id": "F1",
+   "Element": "ScreenBlock_Search / If StartedDifferentSearch",
+   "Finding": "React hiển thị caption \"Showing results for '<term>':\" bất cứ khi nào HasSearched là True. TST chỉ hiển thị SectionSeparator và cả hai đoạn text khi SearchKey_Current <> SearchKey_LastSearched (`ScreenBlock_"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Directory_Search",
+   "Id": "F2",
+   "Element": "ScreenBlock_Search / Event_HorizontalTagListChanged",
+   "Finding": "TST làm mới Get_RecentClickedResults (tối đa 5) với category mới trước Action_RefreshSearch (`ScreenBlock_Search.mvc.js`:3929-3937). React chỉ làm mới các danh sách gần đây bên trong refreshSearch, khi"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Directory_Search",
+   "Id": "F3",
+   "Element": "ScreenBlock_Search / Action_RefreshSearch",
+   "Finding": "TST thêm ba dòng loading (\"Loading Name\", \"Name\", \"Loading Location\"; Type Household, Member cho People) vào mỗi danh sách kết quả trong phạm vi trước khi fetch (`ScreenBlock_Search.mvc.js`:2475-2530)."
+  },
+  {
+   "Severity": "major",
+   "Flow": "Directory_SupperMeetings",
+   "Id": "F1",
+   "Element": "SupperMeeting_DetailsBlock / GetSubdivision; SupperMeeting_HouseholdList / GetSu",
+   "Finding": "TST chạy OnReady qua `safeExecuteClientAction` (`SupperMeeting_DetailsBlock.mvc.js:720-722`, `SupperMeeting_HouseholdList.mvc.js:324`). Runtime gọi `handleError` khi action thất bại (`OutS"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Directory_Updates",
+   "Id": "F1",
+   "Element": "Updates_SingleList / If_HasNoUpdates, Updates_NoItemsFound",
+   "Finding": "Khi một lần fetch hoàn tất không trả về update nào, TST hiển thị `Updates_NoItemsFound` (BR-UBTCON-872): một nút tròn có viền với icon CalendarBusyFill, \"No Updates Found\" và \"We were unable to find any"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Legacy_LDMEventsFlow_V2",
+   "Id": "F1",
+   "Element": "LDM_EventDetail_V2 / OnHandle_GoToHousehold",
+   "Finding": "TST gọi IsFreeSubscriptionPlan, IsRegionalSubscriptionPlan và CarouselFilteredEventResults (`controller.js:879-985`): carousel nhận các khách có HouseholdDisplay, và không có RecordDisabled"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Legacy_LDMEventsFlow_V2",
+   "Id": "F2",
+   "Element": "LDM_MyEvents_V2 / bộ lọc timeline",
+   "Finding": "Popup lọc là một placeholder `NotCaptured` (quyết định `auto-decisions-2026-10-16.md:51`); OnHandle_MyTimelineFilter, OnHandle_ResetFilters, OnHandle_Filter, OnHandle_Close chưa được build. Người dùng"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Legacy_MyNotificationsFlow",
+   "Id": "F1",
+   "Element": "MessageDetail / Placeholder MessageDetails, FeedItemId, Handler_NavigateTo_Share",
+   "Finding": "Một tin nhắn Sharing hiển thị marker NotCaptured thay vì thẻ của item được chia sẻ. TST render Share_UI.ShareObjectDetail_ExtendedShare (GetHasExtendedShare là True trên TST) với ShareId từ temp đầu tiên"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Legacy_MyNotificationsFlow",
+   "Id": "F2",
+   "Element": "MessageDetail / Placeholder ActionButton, OnClick_ViewOrbitEvent, OnClick_ViewAs",
+   "Finding": "Tin nhắn Orbit hoặc Assemble không có nút \"View Event\", \"Go to Host Survey\" hay \"View Meeting\"; tin nhắn Assemble hiển thị các placeholder chưa được điền. Board (chủ dự án, 2026-10-16) đã đưa Orbit, Assemble và"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Legacy_MyNotificationsFlow",
+   "Id": "F3",
+   "Element": "MessageDetail / AdaptiveCardViewer, HostConfig, AdaptiveCardViewerOnExecuteActio",
+   "Finding": "Tin nhắn adaptive card hiển thị một marker. TST render card với host config của Events và xử lý send_email, view_event và mọi submit khác (store, thank, refresh)."
+  },
+  {
+   "Severity": "major",
+   "Flow": "Legacy_MyNotificationsFlow",
+   "Id": "F6",
+   "Element": "MessageDetail / OnAfterFetch, tin nhắn riêng của người dùng khác",
+   "Finding": "TST hiển thị toast \"You don't have access to that message\" rồi hiển thị tin nhắn (nhánh kết thúc bằng một loop break, không phải điều hướng). React hiển thị toast và rời sang MessageList. Dữ liệu mock"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Legacy_OrbitAdminFlow",
+   "Id": "F1",
+   "Element": "OrbitAdminLanding / OnHandle_NavigateToEventDetail",
+   "Finding": "React làm theo model DEV: nó gọi GetMilestoneScanFF và, khi IsScanPerMilestone là True, mở OrbitAdminMilestones. TST chỉ mở OrbitAdminEventDetail (LW:244-252). TST không có GetMilestoneSca"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "F3",
+   "Element": "OrbitLanding: \"View Passport details\"",
+   "Finding": "React hiển thị control và điều hướng tới `/UBTConnect/PassportScan` với LoginMemberId và TargetId sau cổng kiểm tra quyền truy cập. TST không có control, event hay màn hình như vậy (`tst_source.py grep \"assport\"`: không"
+  },
+  {
+   "Severity": "major",
+   "Flow": "Notes",
+   "Id": "F2",
+   "Element": "Notes_FilterSheet / Handler_FilterSheetApplyFilters → DataActionGetNotes",
+   "Finding": "Sau khi Apply, TST gửi Notes_Filter.Years (các năm đã chọn) và SortByNewest trong dữ liệu màn hình (capture 2026-10-27, review/captures.md §3). React không bao giờ gửi Years, nên một năm được chọn không có tác dụng"
+  },
+  {
+   "Severity": "major",
+   "Flow": "_libraries",
+   "Id": "F1",
+   "Element": "SearchResult_Item OnClick_UpgradeSubscription; ShareSheet Handler_OnClickRecentM",
+   "Finding": "TST chạy App_Subscription_NavigateToUpgrade (Cache_UserInfo_Get, Cache_UserInfo_Invalidate, OpenInApp_OpenExternalLink sau ConfirmAction; `UBTConnect_Utils.controller.js:1`) trên cảnh báo và App_S"
+  },
+  {
+   "Severity": "major",
+   "Flow": "_shared",
+   "Id": "F3",
+   "Element": "OnApplicationReady / khi có exception All Exceptions → ScreenController_RaiseError",
+   "Finding": "TST hiển thị toast exception khi app start thất bại mà không phải lỗi hệ thống (`UBTConnect.controller.js:15398-15417`, `UBTJavaScriptUtils.controller.js:3900`); React chỉ ghi log (`appStartSteps.ts:192-196`). Dòng 19"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "App_Common",
+   "Id": "F2",
+   "Element": "Login / \"Forgot Password?\" (Login, isResetPassword True)",
+   "Finding": "TST đặt IsResettingPassword (spinner, nút Login bị vô hiệu) và bắt đầu policy đặt lại mật khẩu của nhà cung cấp danh tính. Một lần reset hoàn tất kết thúc bằng toast thành công (IdP_OnResetPassword). React"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "App_Common",
+   "Id": "F3",
+   "Element": "Login / OnReady, nhận biết thiết bị",
+   "Finding": "React so sánh CallbackType với `'AppManager_JSUtils_CustomEvents.DeviceAwareness_InvalidDevice'`. Giá trị trên TST là \"DeviceAwareness_InvalidDevice\" (`migration/knowledge/static-entities-tst.json:2643"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "App_Menu",
+   "Id": "F1",
+   "Element": "Menu / view cache (dòng 006)",
+   "Finding": "Runtime khôi phục các biến màn hình của một view từ view cache (U19, P-BACK). Menu trên TST không có kiểm tra `IsViewRestoredFromCache`: OnInitialize dựng lại MenuOptionList, và `LocalCacheControl_Use"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "App_PIN",
+   "Id": "F1",
+   "Element": "Block_PINRegister_ContentWrapper / ScreenEvent_OnInitialize",
+   "Finding": "TST đặt `UserName` từ `AppManager_GetCachedUserInfo` (một bản ghi AppManager cục bộ, đồng bộ). React đọc `getUserInformation()`: bản ghi `Directory_UserCurrent` của cache user-info. Bản ghi đó"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "App_Policies",
+   "Id": "F2",
+   "Element": "Policy_Custom_AcceptPendingPolicies / GetPendingPolicies",
+   "Finding": "Query giữ các mặc định của TanStack `refetchOnReconnect: true` và `networkMode: 'online'`. Một sự kiện offline rồi online sẽ fetch lại danh sách: mọi dấu tick đều mất, nhưng `isAllSelected` vẫn là True, nên C"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "App_Policies",
+   "Id": "F3",
+   "Element": "AcceptPendingPolicies / AcceptPendingPoliciesAcceptedAll",
+   "Finding": "TST chạy screen action qua `safeExecuteClientAction`: một exception đi tới handleError của màn hình, rồi tới App_Policies và App_Common, nơi hiển thị thông báo. React không có catch: `continueOnClic"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "App_Policies",
+   "Id": "F4",
+   "Element": "Policy_Custom_AcceptPendingPolicies / GetDeviceInfo",
+   "Finding": "TST giữ một device id cho mỗi trình duyệt trong `localStorage[\"UUID\"]` và gửi nó dưới dạng `DeviceDetails.UniqueId`. React tạo một id mới mỗi lần tải trang. Các bản ghi chấp nhận trên server nhận một device id khác"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "App_Profile",
+   "Id": "F2",
+   "Element": "Profile / Input_Email, HomeNumber2, Input_MobileNumber, Input_WorkNumber",
+   "Finding": "FormInput không đặt `maxLength` và `autoComplete`. TST giới hạn Input_Email ở 50 ký tự và ba input điện thoại ở 15. Các input điện thoại có `autocomplete=\"off\"` trong TST. Người dùng có thể gõ dài hơn"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "App_Services",
+   "Id": "F3",
+   "Element": "Services / Action_ChangeOrderLocal",
+   "Finding": "TST đặt `HasChanges` thành True trước rồi thay đổi các danh sách tại chỗ. Khi một action danh sách thất bại, các bước trước đó vẫn giữ nguyên. Ví dụ: kéo bằng cảm ứng lên đầu danh sách yêu thích (NewOrder -1, bug B3) sẽ xóa một"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "App_Services",
+   "Id": "F4",
+   "Element": "Services / các action danh sách của Action_ChangeOrderLocal",
+   "Finding": "`List.checkIndex` của runtime raise \"Index out of bounds. Index n for bounds [0, m].\" (hoặc \"… for empty list.\"). Flow handler hiển thị đoạn text này trong toast. React throw \"Index out of range\"."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "App_Services",
+   "Id": "F5",
+   "Element": "Services / tiêu đề màn hình",
+   "Finding": "Runtime đặt `document.title` thành tiêu đề màn hình (\"Services\") khi màn hình mount (`OutSystemsReactView.js:2009`). Không có mã nào của app React đặt `document.title`, nên tab hiển thị \"UBTConnect\""
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Bookmarks",
+   "Id": "F1",
+   "Element": "BookmarksByGroup, dòng Supper Meeting (dòng 114)",
+   "Finding": "Tiêu đề và tag của một dòng Supper Meeting không nhận màu IsMainHall (tiêu đề primary / neutral-10; nền tag primary / neutral-2 và màu neutral-2 / neutral-6). Một marker NotCaptured được render"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Bookmarks",
+   "Id": "F2",
+   "Element": "MyBookmarks, BookmarksByGroup (dòng 009, 061)",
+   "Finding": "Tiêu đề trang vẫn chưa được đặt; TST đặt \"MyBookmarks\" và \"BookmarksByGroup\" (`OutSystemsReactView.js:7` ghi `document.title = this.title` khi mount)."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Calendar",
+   "Id": "F2",
+   "Element": "Embedded_MyEntertaining / `Action_RefreshToken` thất bại",
+   "Finding": "TST chạy action qua `safeExecuteClientAction` (`OutSystems.js:17`), nên lỗi đi tới App_Common, nơi hiển thị toast. React chỉ ghi một cảnh báo. Một comment trong code có nêu điều này, nhưng không có quyết định nào được ghi nhận"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Calendar",
+   "Id": "F3",
+   "Element": "MyEntertaining / tiêu đề trang",
+   "Finding": "Runtime đặt `document.title` thành \"MyEntertaining\" (`OutSystemsReactView.js:7`). React không đặt tiêu đề. Gap này áp dụng cho toàn app."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "ContactFlow",
+   "Id": "F2",
+   "Element": "ContactByEmailLDMCoordinator / ảnh header",
+   "Finding": "Khi In_AvatarURL rỗng, TST render `<img src=\"\">` (Image type External, OutSystemsReactWidgets.js:2). React truyền `undefined` và không render thuộc tính `src`."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_CommonBlocks",
+   "Id": "F1",
+   "Element": "Directory_EntityDetailsActions, OnReady CheckRestored (dòng 076)",
+   "Finding": "TST bỏ qua phần thiết lập khi view đến từ cache hoặc history. React luôn chạy nó, nên Back hiển thị skeleton và fetch lại."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_CommonBlocks",
+   "Id": "F2",
+   "Element": "Directory_EntityDetailsActions, OnParametersChanged (dòng 091)",
+   "Finding": "TST fetch thông tin liên hệ mỗi khi input thay đổi. React chỉ fetch khi EntityId hoặc isFetchContacts thay đổi."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_CommonBlocks",
+   "Id": "F3",
+   "Element": "Directory_EntityDetailsActions, Action_AsyncRefresh_ContactDetails (dòng 102)",
+   "Finding": "Khi NotRegistered và khi có system exception, React vô hiệu hóa mọi action trước khi raise. TST raise mà không có HandleFetchError."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_Household_Blocks",
+   "Id": "F1",
+   "Element": "Household_Card / OnReady",
+   "Finding": "TST kết thúc OnReady khi `wasCurrentViewRestoredFromCache()` là true (`Household_Card.mvc.js:478-490`, `:622-624`). React giữ các thành viên trong `useState`, nằm ngoài view cache. Sau khi Back, mỗi thẻ hiển thị"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_Locality",
+   "Id": "F1",
+   "Element": "Locality_Details / Placeholder_Icons (dòng 150)",
+   "Finding": "Icon Explore được render khi header chưa cuộn. TST (`Locality_Details.mvc.js:657-666`) và DEV render nó khi header đã cuộn. C2EnableMaps tắt trên TST, nên icon bị ẩn ở cả hai"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_Locality",
+   "Id": "F2",
+   "Element": "Locality_Households_HouseholdList / OnAfterFetch_GetLocalityHouseholds_Bookmarks",
+   "Finding": "Khi GetHasNewBookmarks bật, React giữ giá trị IsBookmarked đã fetch. TST đọc GetLocal_Bookmark_C2(HouseholdId, BookmarkCategory.Household) từ kho của thiết bị cho mỗi dòng. React chạy nhánh legacy"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_Locality",
+   "Id": "F3",
+   "Element": "BrowseDirectory / StatisticsListOnParametersChhanged (dòng 048)",
+   "Finding": "React gọi Map_InvalidateSize và Map_FitBoundsAuto. TST (`BrowseDirectory.mvc.js:1040`) chỉ gọi Map_InvalidateSize; FitBoundsAuto thuộc về Action_InvalidateMapSize."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_OneSchoolGlobal",
+   "Id": "F1",
+   "Element": "OneSchoolGlobalDetails / tiêu đề trang",
+   "Finding": "Runtime TST đặt `document.title` thành tiêu đề view \"OneSchoolGlobalDetails\" khi mount và khi update (`OutSystemsReactView.js:7`, TST:150-153). Không có file React nào đặt `document.title`, nên tab hiển thị"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_Photobook",
+   "Id": "F1",
+   "Element": "Photobook / GetLocalityHouseholdIds (dòng 006)",
+   "Finding": "Một view được khôi phục từ cache không gọi DataActionGetLocalityHouseholdIds. P-BACK nói rằng bản gốc làm mới dữ liệu ở chế độ nền. Trên TST, OnAfterFetch sau đó đặt SelectedHouse"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_Photobook",
+   "Id": "F2",
+   "Element": "Photobook_Carousel / Carousel_OnSlideMoved (dòng 079, 198)",
+   "Finding": "Kiểm tra replay chỉ xét IsReplaying. TST còn xét CurrentPosition = 0. Khi một event move đến ở vị trí khác trong lúc tua lại (một cú vuốt trong lần move 500 ms), React kết thúc replay và"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_Search",
+   "Id": "F4",
+   "Element": "ScreenBlock_Search / In_SearchTargetId",
+   "Finding": "Mặc định trên TST là Type_SearchTarget.Global (`ScreenBlock_Search.mvc.js`:121-122), và màn hình Search không truyền input nào (`Search.mvc.js`:126-127). React dùng ''. React lưu SearchTargetId '' trên"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_Search",
+   "Id": "F5",
+   "Element": "ScreenBlock_Search / UBT_LazyImage của gallery gần đây",
+   "Finding": "TST đặt ImageSize.Width = Square cho một entry Member, ngược lại là null (`ScreenBlock_Search.mvc.js`:800-803). React chỉ đặt Height."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_Updates",
+   "Id": "F2",
+   "Element": "Updates_SingleList / ScreenEvent_OnReady (được khôi phục), Handler_OnClickUpdateItem",
+   "Finding": "Khi Back, TST chạy `ReactiveInstance_ForceUpdate` trên danh sách và cuộn anchor đã lưu về offset đã lưu của nó (`CaptureScrollPosition`, `RememberFocusedScrollAnchor`, `GetFocusedScrollAnchorOnBac"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Directory_Updates",
+   "Id": "F3",
+   "Element": "Updates_SingleList / mock của DataActionFetchUpdates",
+   "Finding": "Mock handler trả về cả 88 dòng cho mọi `Filter_Updates`. Trong demo, các chip, ô tìm kiếm, lựa chọn trạng thái và sắp xếp, và bộ lọc quốc gia không thay đổi danh sách, và F1 không thể hiện ra."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Home",
+   "Id": "F1",
+   "Element": "FeedBlock_Updates / If not HasAccess (#DoesntHaveAccess)",
+   "Finding": "TST: CustomContainer > container (text-align center) > container display-inline-block > IconText \"Subscription upgrade required\" (BlueDark, ExtraSmall, SemiBold) với Icon Lock (BlueDark, NonStandard_"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Home",
+   "Id": "F2",
+   "Element": "FeedBlock_Services / GetServices; FeedBlock_Updates / FetchUpdates",
+   "Finding": "Cả hai query dùng mặc định của thư viện (gcTime 5 phút, refetchOnReconnect true). TST fetch khi block bắt đầu: một HomeFeed mới hiển thị trang skeleton (năm service rỗng, ba dòng loading) cho đến khi"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Home",
+   "Id": "F4",
+   "Element": "Dialog_GoExternalApp (UBTConnect_Utils) / trạng thái mở",
+   "Finding": "TST đặt icon trong một container có \"text-align: center\" (:281) và nhãn xác nhận trong một CustomContainer với display flex, row và các item căn giữa (:447-450). React bỏ cả hai, và component của nó"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_AssembleFlow",
+   "Id": "F1",
+   "Element": "ScreenBlock_Assemble_Filter và Assemble_FilterSheet, DIV_StickyBottom",
+   "Finding": "TST tạo hiệu ứng khi hiện và ẩn thanh Cancel / Apply cố định (`animate: true`); React mount và unmount thanh này mà không có hiệu ứng (dòng 151, 152)"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_LDMEventsFlow",
+   "Id": "F1",
+   "Element": "EmailTarget, tiêu đề trang (dòng 002)",
+   "Finding": "TST đặt tiêu đề trang \"EmailTarget\" (`OutSystemsReactView.js:7`). React giữ \"UBTConnect\" từ `app/index.html:6`."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_LDMEventsFlow",
+   "Id": "F2",
+   "Element": "ScreenBlock_Household_Email, OnReady (dòng 035, 094)",
+   "Finding": "Trên một view được khôi phục từ cache, TST đặt Subject và Message thành \"\" và IsChange thành False. React mount lại trang, nên Subject lại hiển thị InitialEmailSubject. Khác biệt chỉ thấy được khi Initial"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_LDMEventsFlow_V2",
+   "Id": "F3",
+   "Element": "LDM_MyEvents_V2 / OnHandle_SwipeUp",
+   "Finding": "Vuốt lên trên timeline rỗng (MT :737-760) sẽ tải một khoảng thời gian cũ hơn (ME :2335-2368). Chưa port; không có quyết định nào ghi nhận việc bỏ phần này."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_LDMEventsFlow_V2",
+   "Id": "F4",
+   "Element": "EventCard_Guests / OnHandle_ClickedEmail",
+   "Finding": "Khi offline, TST hiển thị \"Please check your network connection and try again\" (EG :867); React return mà không có thông báo."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_LDMEventsFlow_V2",
+   "Id": "F5",
+   "Element": "LDM_EventDetail_V2 / OnHandle_ContactHost_Call",
+   "Finding": "TST đặt `ContactPopupData.EntityTypeId = Connect_Entity2.household` (ED :2360); `hostContactPopupData` bỏ trường này còn `ContactPopup.tsx:124` lại đọc nó."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_MyNotificationsFlow",
+   "Id": "F4",
+   "Element": "MessageList / Close_Filter_Icon",
+   "Finding": "Icon gọi OnClick_CloseSearchAndFilter; TST gọi ToggleShowFilters. Kết quả state giống nhau, nhưng React còn chạy FocusCursor và focus vào input tìm kiếm khi đang có từ khóa tìm kiếm."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_MyNotificationsFlow",
+   "Id": "F5",
+   "Element": "MessageDetail / phần tóm tắt của NotificationDetailBlock, icon khẩn cấp",
+   "Finding": "Phần tóm tắt render bên trong một marker mà không có inline style của nó; icon khẩn cấp không render gì. View đã biên dịch chứa cả hai phần tử."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_OrbitAdminFlow",
+   "Id": "F2",
+   "Element": "ScreenBlock_AdminEventDetail / handler OnHandle_ScanCode",
+   "Finding": "TST tìm \"Failed to deserialize JSON\" với ignoreCase True (EB:1150). React dùng `includes` có phân biệt hoa thường. Một thông báo có kiểu chữ hoa thường khác sẽ đi tới UnknownError thay vì \"Unable to read QR c"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_OrbitAdminFlow",
+   "Id": "F3",
+   "Element": "ScreenBlock_AdminEventDetail / GetScanEventQRCode",
+   "Finding": "TST đặt AdminMemberId = IntegerToLongInteger(TextToInteger(MemberId)) (EB:1018). React dùng TextToLongInteger. Giá trị là như nhau với id nằm trong phạm vi Integer."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "F4",
+   "Element": "OrbitLanding và AccommodationHost: OnReady trên view được khôi phục",
+   "Finding": "TST kết thúc OnReady trên mọi view được khôi phục (`ScreenBlock_OrbitLanding :1669` show). React chỉ kết thúc khi dữ liệu đã được fetch, nếu không thì fetch lại (comment \"F40\"; không có quyết định được ghi nhận)."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "F5",
+   "Element": "MilestoneDetail: lỗi GetGmpMilestoneHost",
+   "Finding": "Handler của TST: IsFetchingData = False, raise UnknownError (`:1156-1202`). React không có catch: rejection đi tới flow handler và skeleton vẫn còn đó."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "F6",
+   "Element": "EmailContact: GetTextAreaLineHeight",
+   "Finding": "TST chia cho clientWidth của container subject (`CF:1577-1584`); React chia cho clientWidth của body. Số dòng của subject chỉ đọc có thể khác nhau."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "F8",
+   "Element": "EventBooklet: EventBooklet_MembersItem, tên và host",
+   "Finding": "TST: hai container có event OnClick (Click_Member, Click_Host). Widget Container của platform khi đó đặt inline style `cursor: pointer` (`OutSystemsReactWidgets.js:1`, render của Container)."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_OrbitQRCodeFlow",
+   "Id": "F1",
+   "Element": "QRCodeGenerate / tiêu đề màn hình",
+   "Finding": "Runtime đặt `document.title` thành \"QRCodeGenerate\" khi màn hình mount (`OutSystemsReactView.js:7`, `S:166-168`). Không có mã nào của app React đặt `document.title`."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_OrbitQRCodeFlow",
+   "Id": "F2",
+   "Element": "ScreenBlock_GenerateQRCode / ảnh thành viên",
+   "Finding": "Khi UserSignedURL rỗng, TST render `<img class=\"orbit-member-photo\" src=\"\">` (`OutSystemsReactWidgets.js:2`, không có ảnh mặc định tại `B:337-339`). React render ảnh mà không có `src`. Trong demo"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_Share",
+   "Id": "F1",
+   "Element": "ConnectShare / Action_Redirect",
+   "Finding": "TST mở HouseholdDetails, OneSchoolGlobalDetails, FeedItemDetail và SupperMeeting_Details với `TransitionAnimation.None` (ConnectShare.mvc.js:461-485). React gọi `navigate(path, params)` mà không có"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Legacy_Share",
+   "Id": "F2",
+   "Element": "LegacyShareObject / OnInitialize",
+   "Finding": "TST kết thúc OnInitialize bất đồng bộ trước khi runtime tạo view (OutSystems.js:17). Vì vậy ScreenBlock_ShareObject bắt đầu với `DisplayAge` của người dùng. React chạy OnInitialize trong một effect của page sau khi"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "Notes",
+   "Id": "F1",
+   "Element": "NoteCard_List `NoteCardList_OnScrollEnding`; Notes `Notes_CardListOnLoadMore`",
+   "Finding": "List của OSWidgets chỉ bắn `onScrollEnding` khi cuộn xuống, trong phạm vi `getInfiniteScrollThreshold` tính từ cuối, và không bắn khi handler đang chạy (`OutSystemsReactWidgets.js:1`, `tryFireScrollEnding"
+  },
+  {
+   "Severity": "minor",
+   "Flow": "_libraries",
+   "Id": "F2",
+   "Element": "ShareSheet Handler_SearchResultItemOnSelect",
+   "Finding": "Ở mức 50 người nhận, TST hiển thị \"You can select up to 50 recipients only.\" với FeedbackMessage_AutoClose; React hiển thị một thông báo lỗi thường và thông báo đó vẫn mở."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "_libraries",
+   "Id": "F3",
+   "Element": "ShareSheet Action_SubmitShare",
+   "Finding": "TST raise lại NotRegistered tới flow handler (`ShareSheet.mvc.js:3127-3136`); React hiển thị \"Share failed. Please try again.\" cho mọi lỗi."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "_libraries",
+   "Id": "F4",
+   "Element": "HorizontalTagList TagToggleToggle",
+   "Finding": "React đọc `IsSelected ?? true`: một tag không có `IsSelected` được tính là đã chọn trong guard bắt buộc chọn và trong việc xóa lựa chọn ở chế độ chọn một. Trên TST, Boolean mặc định là False."
+  },
+  {
+   "Severity": "minor",
+   "Flow": "_shared",
+   "Id": "F1",
+   "Element": "GetShareType_FromEntity, IsMyHousehold",
+   "Finding": "TST kiểm tra IsMyHousehold sau tất cả các trường hợp entity (UC:11100-11215): một Household luôn được chia sẻ dưới dạng Household, và MyHousehold chỉ là kết quả khi không có trường hợp entity nào khớp. React kiểm tra nó bên trong trường hợp Household"
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Common",
+   "Id": "F4",
+   "Element": "Login / OnInitialize, In_IsFromResetPIN",
+   "Finding": "TST chạy Login(False), tức đăng nhập qua nhà cung cấp danh tính, rồi AppManager_Logout (BR-UBTCON-302). React chạy `signOut` trước, rồi đăng nhập mock. `signOut` là Connect_Logout: nó còn chạy Cache_Invalidat"
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Common",
+   "Id": "F5",
+   "Element": "OnException của flow App_Common / AllExceptions",
+   "Finding": "TST chỉ gọi ShowExceptionMessage cho exception không phải system exception, và throw lại system exception cho handler của runtime (flow controller :91-107). React gửi mọi lỗi còn lại tới `showExceptionMessag"
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Common",
+   "Id": "F6",
+   "Element": "Get_IsUnsupportedVersion (dùng chung)",
+   "Finding": "React trả về hằng số: Browser chỉ True trong scenario mock của U16. Shell lưu các phiên bản tối thiểu của SynchAppContext (`app.minNativeVersion`, `app.minWebViewChrome`, `app.minWebViewSafa"
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Common_Blocks",
+   "Id": "F1",
+   "Element": "App_NotificationIcon / `LocalNotifications`",
+   "Finding": "TST bắt đầu ở -1 (skeleton) và đặt số chưa đọc trong OnReady. React bắt đầu ngay với số chưa đọc."
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Menu",
+   "Id": "F2",
+   "Element": "PINBiometricsMenu / route meta (dòng 054)",
+   "Finding": "Doc comment của `RouteMeta.lock` nói rằng màn hình không có CommonUI sẽ nhận `ignore`. PINBiometricsMenu không có CommonUI và nhận `enforce`. Code là đúng: kiểm tra PIN lúc app start của TST áp dụng"
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_PIN",
+   "Id": "F2",
+   "Element": "PINRegister / OnClick_BackToLogin",
+   "Finding": "TST gọi `AppManager_Logout`. React gọi `signOut` (`Connect_Logout`): nó còn chạy `Cache_InvalidateEverything` và việc xóa memory cache và local entity theo ADR-10. Người dùng không thấy khác biệt"
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_PIN",
+   "Id": "F3",
+   "Element": "PINUnlock / Block_PINUnlockUnlock",
+   "Finding": "React thêm một nhánh HomeFeed khi `LastURL` rỗng. TST điều hướng tới URL rỗng (BR-UBTCON-953). Code trích dẫn \"Q1 answered by the user: B\"; CR-PINUnlock-1 gọi cùng nhánh đó là \"Q1 option A, pe"
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_PIN",
+   "Id": "F4",
+   "Element": "Block_PINUnlock_ContentWrapper / Pincode_Unlock OnUnlockSuccess",
+   "Finding": "TST raise `PinUnlockSuccess`, rồi đặt `PIN_HasUnlocked` thành True và `PIN_IsLocked` thành False. React đặt hai flag trong `verifyPin`, rồi raise event. Báo cáo này không tìm thấy ảnh hưởng nào nhìn thấy được."
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_PIN",
+   "Id": "F5",
+   "Element": "Block_PINRegister_ContentWrapper / Pincode_Register",
+   "Finding": "`AppManager_SetPIN_IsRegistering` (True khi initialize, False khi destroy) chưa được port. Nơi đọc duy nhất là HandleOnResumeOpenLink, vốn chỉ chạy trong app native (U14)."
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Policies",
+   "Id": "F5",
+   "Element": "AcceptPendingPolicies / AcceptPendingPoliciesAcceptedAll",
+   "Finding": "TST đọc bản ghi bằng `Cache_UserInfo_Get`. React gọi `getUserInformation()` (GetUserInformation_Wrapper): nó còn đặt `App_Policies_HasPolicyToAccept` từ bản ghi trong cache (True tại thời điểm đó"
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Policies",
+   "Id": "F6",
+   "Element": "Policy_Custom_AcceptPendingPolicies / List",
+   "Finding": "Danh sách là một `div` viết tay, không phải `OSList` dùng chung (P-LIST). Nó không có class ` list-loading` hay ` list-error` khi GetPendingPolicies đang chạy hoặc thất bại. Không có quy tắc CSS nào dùng các class này."
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Profile",
+   "Id": "F3",
+   "Element": "Profile / Action_FormatAddress",
+   "Finding": "TST truyền đoạn text literal `\\r\\n` (4 ký tự) cho Replace: text literal của OutSystems không có escape sequence (Profile.mvc.js:3773). Các ký tự CR LF của AddressFormat vẫn còn trong FormattedAddress."
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Profile",
+   "Id": "F4",
+   "Element": "Profile / OnClick_Save",
+   "Finding": "Hai nhánh biên có khác biệt. (1) React đặt AccountForm và AccountFormOriginal thành form ở trạng thái lúc người dùng bấm Save. TST gán AccountForm hiện thời sau lệnh gọi, nên các chỉnh sửa được gõ trong lúc"
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Profile",
+   "Id": "F5",
+   "Element": "Profile / OnClick_Save, ChangedVisibilityPreferences",
+   "Finding": "React đọc entry của cache bằng `getUserInformation` (GetUserInformation_Wrapper). Wrapper đó chờ bước app-start và ghi `Client.App_Policies_HasPolicyToAccept`. TST gọi Cache_UserIn"
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Profile",
+   "Id": "F6",
+   "Element": "Profile / comment trong code",
+   "Finding": "`useProfile.ts:34-37` nói rằng màn hình không có OnReady; TST có OnReady → ScreenEvent_OnReady (Profile.mvc.js:3943-3970, 4091-4101). Các comment tại `ProfilePage.tsx:86`, `useProfile.ts:106-107, 13"
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Services",
+   "Id": "F6",
+   "Element": "Services / Handler_SortableListOnDragEnd, các exception handler",
+   "Finding": "TST đặt `isLoading` về False trước khi raise trong các handler CommunicationException và AllExceptions. React thì không. Không có đường đi UI nào chạm tới nó: nội dung không tương tác được khi `isLoading` là True."
+  },
+  {
+   "Severity": "info",
+   "Flow": "App_Services",
+   "Id": "F7",
+   "Element": "SortableList / OnParametersChanged",
+   "Finding": "TST chạy lại OnReady (SetupList) khi một input thay đổi. React chỉ chạy `setupList` khi mount. Các comment của `SortableList.tsx` và `SortableList_Draggable.tsx` nói \"OutSystems runs it once\"."
+  },
+  {
+   "Severity": "info",
+   "Flow": "Bookmarks",
+   "Id": "F3",
+   "Element": "BookmarksByGroup, OnClick_BookmarkedItem (dòng 077)",
+   "Finding": "RememberFocusedScrollAnchor(CurrentListWidgetId, CurrentRowNumber, ObjectId) không được gọi. View cache lưu offset cuộn khi rời đi và khôi phục khi quay lại, nên dòng được bấm vẫn nằm trong vùng nhìn thấy"
+  },
+  {
+   "Severity": "info",
+   "Flow": "Bookmarks",
+   "Id": "F4",
+   "Element": "BookmarksByGroup, PreloadListSource_Bookmarks (dòng 081)",
+   "Finding": "Việc preload cache chạy trong callback khôi phục (thời điểm OnInitialize), không phải tại event `dx-preload-list-source` của danh sách. Cùng điều kiện, cùng dữ liệu, không ảnh hưởng tới người dùng."
+  },
+  {
+   "Severity": "info",
+   "Flow": "Calendar",
+   "Id": "F4",
+   "Element": "Embedded_MyEntertaining / log console",
+   "Finding": "TST ghi năm đoạn text `console.log` từ các callback của SDK và thông điệp `events:loaded`. React không ghi gì."
+  },
+  {
+   "Severity": "info",
+   "Flow": "ContactFlow",
+   "Id": "F1",
+   "Element": "ContactByEmailMember / OnApplicationEvent_EmailHost; ContactByEmailOrbitHelpdesk",
+   "Finding": "TST gửi AuditPayload_EmailHost (MilestoneId, EventId, EventTitle, HostName, Subject, Message) và AuditPayload_ContactHelpdesk (EventId, EventTitle, Subject, Message) dưới dạng JSON tới App Insights. React"
+  },
+  {
+   "Severity": "info",
+   "Flow": "Directory_Locality",
+   "Id": "F4",
+   "Element": "Statistics_TypedItem / In_ImageEntityTypeId (dòng 244)",
+   "Finding": "Mặc định của React là \"\". DEV và TST (`Statistics_TypedItem.mvc.js:31-32`) mặc định là Connect_Entity.Locality. Không nơi gọi nào của flow này dựa vào giá trị mặc định."
+  },
+  {
+   "Severity": "info",
+   "Flow": "Directory_Photobook",
+   "Id": "F3",
+   "Element": "Photobook_Options_Player / OnParametersChanged (dòng 176, 202)",
+   "Finding": "React chỉ chạy kiểm tra khi In_IsFinalItem thay đổi. TST chạy nó mỗi khi có input thay đổi, kể cả In_IsShow. Trạng thái \"IsPlay True trên item cuối mà In_IsFinalItem không thay đổi\" xảy ra sau Repl"
+  },
+  {
+   "Severity": "info",
+   "Flow": "Home",
+   "Id": "F3",
+   "Element": "FeedBlock_Services / OnAfterFetch_GetServices, ForceAddService True",
+   "Finding": "Ô \"Add Service\" nhận iconId '' thay vì UBT_Icons2.AddCircle (\"connect-icon-add_circle\", `pack/references.md`). HomeFeed truyền ForceAddService False, nên không người dùng nào thấy ô này."
+  },
+  {
+   "Severity": "info",
+   "Flow": "Legacy_LDMEventsFlow_V2",
+   "Id": "F6",
+   "Element": "LDM_MyEvents_V2 / payload audit",
+   "Finding": "LogClickedEventAudit gửi EventHostId, EventName và EventDate từ danh sách Upcoming hoặc PastEvents (ME :2416-2455); OnHandle_HouseholdClicked gửi HouseholdId và HouseholdName (ME :1986). React gửi"
+  },
+  {
+   "Severity": "info",
+   "Flow": "Legacy_LDMEventsFlow_V2",
+   "Id": "F7",
+   "Element": "LDM_EventDetail_V2 / IsFetching, GetCoordinatorDetails",
+   "Finding": "IsFetching bắt đầu là True (TST là False cho đến OnReady, ED :52-54, :2011). Một lần GetCoordinatorDetails thất bại đặt DataFetchStatus 2 trên TST (`OutSystems.js:18`); React nuốt lỗi đó. View không đọc khác biệt nào trong hai"
+  },
+  {
+   "Severity": "info",
+   "Flow": "Legacy_OrbitEventsFlow",
+   "Id": "F7",
+   "Element": "ViewDocuments: Action_OpenDoc",
+   "Finding": "React còn đánh dấu một tài liệu là đã xem khi DocumentName không có phần mở rộng bằng DocName; TST chỉ so sánh tên có phần mở rộng (`:806`). Cả hai nơi gọi đều truyền phần mở rộng: không có ảnh hưởng nhìn thấy được."
+  },
+  {
+   "Severity": "info",
+   "Flow": "Legacy_Share",
+   "Id": "F3",
+   "Element": "ConnectShare / Dialog_AccessRestrictedAction_Legacy",
+   "Finding": "Page trả về null khi `IsRedirect` là True, nên hộp thoại đã đóng không có trong DOM. TST render hộp thoại bên ngoài If (ConnectShare.mvc.js:196-208). Không có ảnh hưởng nhìn thấy được: pop-up chỉ mở"
+  },
+  {
+   "Severity": "info",
+   "Flow": "_shared",
+   "Id": "F2",
+   "Element": "OnApplicationReady, AddCustomHeadersJS",
+   "Finding": "TST thêm `link rel=\"preconnect\"` và `link rel=\"dns-prefetch\"` vào `document.head` cho base URL của MyEntertaining và Feed từ Sync_Info_Main (UC:15512-15528). React bỏ hai URL này (`api/app/types"
+  }
+ ],
+ "unclear": [
+  {
+   "Flow": "Directory_Photobook",
+   "Row": "Directory_Photobook-074",
+   "Element": "OnInitialize_Carousel: javascript GetSplideCallbacks; SetSplideEvent(\"moved\", Sp",
+   "Question": "Không phải capture: một quyết định được ghi nhận sẽ chốt nó. Câu trả lời của chủ dự án ngày 2026-10-27 (Directory_Photobook Q1) xác nhận rằng dòng 074, 076 và 105 cần một bản ghi; CR-Phot"
+  },
+  {
+   "Flow": "Directory_Photobook",
+   "Row": "Directory_Photobook-076",
+   "Element": "SplideEvent_Moved: JSUtils_Console_Log(\"New/Current: \" + newIndex + \"",
+   "Question": "Previous"
+  },
+  {
+   "Flow": "Directory_Photobook",
+   "Row": "Directory_Photobook-105",
+   "Element": "Strings \"Carousel Toggle Drag Error - Code:\", \"",
+   "Question": "Message:\", \""
+  },
+  {
+   "Flow": "Directory_Updates",
+   "Row": "Directory_Updates-073",
+   "Element": "Handler_OnClickUpdateItem: CaptureScrollPosition (JS)",
+   "Question": "Q1 được trả lời (b), rồi (a) (quyết định của chủ dự án 2026-10-27, Directory_Updates Q1 (b)). Capture sẽ chốt nó (phiên TST chỉ đọc và app React, cùng các bước):"
+  },
+  {
+   "Flow": "Directory_Updates",
+   "Row": "Directory_Updates-074",
+   "Element": "Handler_OnClickUpdateItem: RememberFocusedScrollAnchor",
+   "Question": "Cùng capture với dòng 073 (quyết định của chủ dự án 2026-10-27, Directory_Updates Q1 (b)). RememberFocusedScrollAnchor (NavigationHandler) không có file TST trong survey;"
+  }
+ ],
+ "decisions": [
+  {
+   "flow": "App_Common",
+   "id": "Q1",
+   "question": "\"Forgot Password?\" làm gì trong giai đoạn mock (F2)?",
+   "answer": "(a) Giữ nguyên là không có action, và ghi nhận dưới D3 — (a): trang reset thật không được migrate, và (b) cần một đoạn text toast mà không capture nào cho thấy.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Common",
+   "id": "Q2",
+   "question": "Bạn có chấp nhận thứ tự In_IsFromResetPIN của Login trong React không (F4)?",
+   "answer": "(a) Chấp nhận, và ghi nhận thành một quyết định cùng với App_PIN Q1 (Connect_Logout trên đường đi này) — (a): trạng thái cuối giống như trên TST, và ADR-10 yêu cầu xóa khi logout.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Common",
+   "id": "Q3",
+   "question": "Khi nào Login có hộp thoại device-awareness (F3)?",
+   "answer": "(a) Sửa hằng số ngay, và build flow hộp thoại với nhà cung cấp danh tính của production — (a): chỉ có đăng nhập phía server mới quyết định thiết bị có hợp lệ hay không (KB UBT_AppManager `logic/device-awareness.md`).",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Common",
+   "id": "Q4",
+   "question": "Event nào kết thúc việc tải Splash trong React (dòng 054)?",
+   "answer": "(a) Giữ phần cuối của app start — (a): việc điều hướng sau animation cần trạng thái phiên mà app start thiết lập.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_PIN",
+   "id": "Q1",
+   "question": "Trên PINRegister, \"Back to login\" chạy toàn bộ `Connect_Logout` trong React, còn TST chỉ chạy `AppManager_Logout` (F2). Bạn có chấp nhận việc xóa cache thêm trên đường đi này không?",
+   "answer": "(a) Chấp nhận, và ghi nhận rằng việc đăng xuất của ADR-10 cũng bao phủ đường đi này — (a): người dùng không thấy khác biệt, và ADR-10 vốn đã yêu cầu xóa.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_PIN",
+   "id": "Q2",
+   "question": "Port `AppManager_SetPIN_IsRegistering` của `Pincode_Register` (F5)?",
+   "answer": "(a) Ghi nhận là chưa cần trên web lúc này; port nó cùng các plugin liên kết native (U14) — (a): không có nơi đọc nào chạy trên web.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_PIN",
+   "id": "Q3",
+   "question": "PINUnlock đi tới HomeFeed khi `LastURL` rỗng, nhưng TST không có nhánh này (F3). Đây có phải là hành vi đã được quyết định không?",
+   "answer": "(a) Xác nhận nhánh HomeFeed và ghi nhận trên dòng PINUnlock của board — (a): URL rỗng không cho ra màn hình xác định nào trong một single-page app.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Policies",
+   "id": "Q1",
+   "question": "Dữ kiện cho lượt review: `Key` của `Get_MemoryCacheKey_UniqueKey` (UBTConnect_Utils) có bằng `Client.UniqueCacheKey` không?",
+   "answer": "(a) Đọc action bằng MCP (`getClientAction`, UBTConnect_Utils) trong lượt review — (a): một lệnh gọi MCP là chốt được.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Policies",
+   "id": "Q2",
+   "question": "Giữ device id của `AcceptPolicies` trong bộ nhớ, hay lưu trong `localStorage[\"UUID\"]` như TST (F4)?",
+   "answer": "(a) Lưu trong `localStorage[\"UUID\"]` như TST, và ghi nhận quyết định — (a): server nhận cùng device id như từ app gốc.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Home",
+   "id": "Q1",
+   "question": "FeedBlock_Services và FeedBlock_Updates giữ mặc định cache của thư viện (F2). Bạn có muốn mỗi HomeFeed mới fetch kèm skeleton, như TST không?",
+   "answer": "(a) Đặt gcTime 0 và refetchOnReconnect false trên cả hai query; view cache vẫn khôi phục khi điều hướng back — (a): khớp với TST, và useCommunityPopulationQuery trên cùng màn hình đã làm như vậy.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Home",
+   "id": "Q2",
+   "question": "Build hai trạng thái mà capture không có (banner gói đăng ký, F1, và Dialog_GoExternalApp ở trạng thái mở, F4) từ view đã biên dịch của TST?",
+   "answer": "(a) Build cả hai từ view đã biên dịch ngay bây giờ — (a): cây phần tử và các tùy chọn có trong mã TST; capture chỉ bổ sung pixel.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Home",
+   "id": "Q3",
+   "question": "TST có chạy lại FetchUpdates và GetServices khi HomeFeed quay lại từ view cache không (dòng 111)?",
+   "answer": "(a) Kiểm tra trên TST: mở một update, quay lại, và quan sát các lệnh gọi (chỉ đọc) — (a): một lần kiểm tra chỉ đọc là chốt được.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Menu",
+   "id": "Q1",
+   "question": "OnException của UI flow App_Menu làm gì (dòng 040)? React gửi mọi lỗi chưa được xử lý của các action Menu tới flow handler của App_Common.",
+   "answer": "(b) Lấy `UBTConnect.App_Menu.controller.js` từ TST ở chế độ chỉ đọc, như U10 đề xuất — (b), rồi (a) khi TST không phục vụ file đó: TST là nguồn sự thật.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Menu",
+   "id": "Q2",
+   "question": "Giữ các biến của Menu trong view cache (F1)?",
+   "answer": "(a) Giữ `user` và `isFetched` với `useViewState` — (a): runtime khôi phục các biến màn hình, và hai màn hình khác của flow đã làm như vậy.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Menu_ContactUs",
+   "id": "Q1",
+   "question": "Build các trường khi chưa đăng nhập của ContactUsDetails (F1)?",
+   "answer": "(a) Build năm trường, danh sách Country và hai action OnChange như trong TST — (a): TST hiển thị các trường này, và flow bị chặn nếu thiếu chúng.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Menu_ContactUs",
+   "id": "Q2",
+   "question": "Build block đánh giá ContactUs_Rate (F2)?",
+   "answer": "(a) Port ContactUs_Rate bằng một bản React tương đương với RangeSlider của OutSystems UI — (a): block nhỏ, và ba quy tắc phụ thuộc vào nó.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Menu_ContactUs",
+   "id": "Q3",
+   "question": "Hành vi của IsEmailValid và IsPhoneNumberValid trong module UBTConnectLibrary: không có trong dump, không có trang KB, và không có nguồn TST trong survey. React dùng hai biểu thức chính quy không rõ nguồn. Chúng ta xác nhận chúng bằng cách nào?",
+   "answer": "(a) Lấy `UBTConnectLibrary.controller.js` từ TST (tĩnh, GET chỉ đọc), thêm vào `migration/runtime-sources/`, và so sánh — (a): file là script tĩnh, và việc so sánh ngắn.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Menu_ContactUs",
+   "id": "Q4",
+   "question": "Sửa các biến màn hình của DataAction_GetLocalityTimezone ngay (F3), hay ghi nhận gap cho contract backend?",
+   "answer": "(a) Giữ `LocalCacheControl_UserInformation` trong state và gửi cùng các biến như TST ngay bây giờ — (a): thay đổi nhỏ, và request khi đó có cùng dạng như TST.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Notifications",
+   "id": "Q1",
+   "question": "NotificationDetails không có dòng trên board. Thêm một dòng?",
+   "answer": "(a) Thêm một dòng `skip` với lý do \"chỉ có trên DEV, không có trên TST; xem lại khi TST deploy nó\" — (a): TST là nguồn sự thật, và màn hình không có điểm vào trên TST.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Notifications",
+   "id": "Q2",
+   "question": "Nhánh preload của ScreenEvent_OnInitialize (BR-UBTCON-982) có thể chạy trên TST không? React không port nó.",
+   "answer": "(b) Xác nhận bằng một lần kiểm tra chỉ đọc các nơi gọi `EntitiesCarousel` trên TST rằng không có điều hướng back nào về Notifications mang theo preload, và ghi nhận lại — (b): trên TST, Notifications không mở carousel nào, và không item nào có click handler.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Notifications",
+   "id": "Q3",
+   "question": "Model DEV của App_Notifications mới hơn TST (§6.1). Chúng ta theo dõi việc này thế nào?",
+   "answer": "(a) Giữ React theo TST, và mở một change request liệt kê các dòng §6.1 để build lại khi TST deploy chúng — (a): TST là nguồn sự thật, và các lệnh gọi server của DEV (ToggleRead, Delete_Notifications, MarkAllAsReadNotifications) chưa có bằng chứng trên TST.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Profile",
+   "id": "Q1",
+   "question": "Build phần địa chỉ của chủ hộ (F1), hay để nó ngoài app?",
+   "answer": "(a) Build ngay bây giờ: các dòng địa chỉ, hai widget DropdownSearch, CacheControl_AllLocalities và CacheControl_AllSubdivisions với mock, các handler và các kiểm tra khi lưu (Profile.mvc.js:1269-1716, 2596-2640, 2883-3290, 3543-3592) — (a): mục tiêu là thay thế 1:1, và chủ hộ là thành viên chỉnh sửa địa chỉ.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Services",
+   "id": "Q1",
+   "question": "Hành vi của SortableList trong module SortableJS: không có trong dump, không có trang KB. Thêm nguồn TST của SetupList (`SortableJS.controller.js`) và kiểm tra `setupList.ts` theo nó?",
+   "answer": "(a) Lấy file tĩnh từ TST (GET chỉ đọc, theo phê duyệt thường trực cho file tĩnh bị thiếu) vào `migration/runtime-sources/`, rồi kiểm tra bản port trong lượt review — (a): kéo thả là tương tác chính của màn hình.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Services",
+   "id": "Q2",
+   "question": "Sau khi lưu thất bại, reset `isLoading` như TST, hay giữ skeleton và nút bị vô hiệu (F1)?",
+   "answer": "(a) Làm theo TST: reset `isLoading` cho CommunicationException và AllExceptions; NotRegistered giữ nguyên nó — (a): mã biên dịch rõ ràng, và người dùng có thể thử lưu lại.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Services",
+   "id": "Q3",
+   "question": "Chuyển lần fetch `GetServices` thất bại tới flow handler, như runtime làm (F2)?",
+   "answer": "(a) Sửa chung: các data action của màn hình chuyển lần fetch thất bại tới `raiseToFlowHandler` — (a), đã kiểm tra trong báo cáo của App_Common.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Services",
+   "id": "Q4",
+   "question": "Đặt `document.title` theo tiêu đề màn hình (\"Services\") (F5)?",
+   "answer": "(a) Router đặt `document.title` theo tiêu đề route (toàn app) — (a): một thay đổi chung nhỏ, 1:1 với TST.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Directory_Photobook",
+   "id": "Q1",
+   "question": "Photobook_Carousel đăng ký SplideEvent_Moved trên event \"moved\" của Splide (TST Photobook_Carousel :1041). Handler chỉ ghi \"New/Current: … \\",
+   "answer": "Dòng 074, 076 và 105 cần một quyết định được ghi nhận. CR-Photobook-1 (:34-36) chỉ bao phủ các log lỗi toggle-drag. Quy tắc NO-CONSOLE (`migration/stack.json` rules.forbidden, `migration/architecture.md:117`) là quy tắc lint cho code, không phải quyết định về output debug của bản gốc.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Directory_SupperMeetings",
+   "id": "Q1",
+   "question": "Chuyển lần refresh GetSubdivision hoặc GetSubdivisionHouseholds thất bại tới flow handler, như TST làm (F1)?",
+   "answer": "(a) Sửa chung với App_Services Q3: container chuyển lần refresh thất bại tới `raiseToFlowHandler` — (a), cùng câu trả lời với App_Services Q3.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Directory_OneSchoolGlobal",
+   "id": "Q1",
+   "question": "OneSchoolGlobalDetails đang mở, và một lần điều hướng mở nó với `In_OneSchoolGlobalId` khác. Giữ việc refetch của React, hay làm theo TST (dòng 056)?",
+   "answer": "(c) Kiểm tra trên TST trước: mở một liên kết thứ hai khi màn hình đang mở — (c), rồi (a): một trang hiển thị dữ liệu của id cũ là lỗi đối với người dùng.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Directory_OneSchoolGlobal",
+   "id": "Q2",
+   "question": "Đặt tiêu đề trang theo từng route, như runtime TST làm (F1)?",
+   "answer": "(a) Đặt `document.title` theo tiêu đề route trong app shell, cho mọi route — (a): nó làm theo TST ở một chỗ duy nhất cho mọi route.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Directory_Updates",
+   "id": "Q1",
+   "question": "Khi Back về Updates_SingleList, bạn có chấp nhận offset cuộn của view cache trong shell thay cho cơ chế anchor của TST không (dòng 073, 074, 095; F2)?",
+   "answer": "(b) So sánh cả hai trên TST trước (mở một update, quay lại, so sánh vị trí; chỉ đọc) — (b), rồi (a) khi các vị trí bằng nhau.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Directory_Updates",
+   "id": "Q2",
+   "question": "Bạn có muốn một lần kiểm tra chung các block thư viện được tham chiếu so với file TST của chúng không (dòng 148)?",
+   "answer": "(a) Một lượt chung cho các block UBTConnectLibrary, NavigationHandler và UBTConnect_Utils — (a): một lượt bao phủ mọi flow với chi phí thấp nhất.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Bookmarks",
+   "id": "Q1",
+   "question": "Giá trị PROD của `C2NewBookmarks` hiện đã biết chưa? Quyết định Bookmarks Q1 a (2026-10-22) giữ MyBookmarks \"cho đến khi biết giá trị PROD\"; TST đã mở màn hình DEV Bookmarks từ 2026-10-21.",
+   "answer": "(a) PROD chưa biết hoặc false: giữ MyBookmarks (không thay đổi) — (a) cho đến khi giá trị PROD được xác nhận; báo cáo vẫn đúng cho nhánh MyBookmarks.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Bookmarks",
+   "id": "Q2",
+   "question": "Các dòng Supper Meeting của BookmarksByGroup (F1): build màu IsMainHall từ các biểu thức đã biên dịch ngay, hay giữ marker NotCaptured cho đến khi nhóm Locations được capture trên TST?",
+   "answer": "(a) build ngay từ các biểu thức đã biên dịch (show:996-1020) — (a): các biểu thức đầy đủ và các token có sẵn trong theme.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Notes",
+   "id": "Q1",
+   "question": "TST có gửi các năm đã chọn (và thứ tự sắp xếp) trong `DataActionGetNotes` sau khi Apply trong filter sheet của Notes không? Bằng chứng: màn hình truyền bản ghi `Notes_Filter` của nó (`Notes.js:582`); model của block lưu input nguyên trạng (`Notes_FilterSheet.js:72-73`); `setInputs` của runtime không clone (`OutSystemsReactView.js:6-7`, `setInputs`); sheet gán `Filter_Notes = In_FilterNotes` và ghi `Years` và `SortByNewest` lên đó (`Notes_FilterSheet.js:386-404`).",
+   "answer": "A. Capture là thao tác đọc; nó chốt dữ kiện trước khi thay đổi code.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Calendar",
+   "id": "Q1",
+   "question": "Chuyển `DataActionGetEntertainingConfig` thất bại tới flow handler, như runtime làm (F1)?",
+   "answer": "(a) Bản sửa chung của App_Services Q3 cũng bao phủ các data action của block như cái này — (a): một bản sửa cho mọi lần fetch, 1:1 với TST.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Calendar",
+   "id": "Q2",
+   "question": "Chuyển lần refresh token thất bại tới flow handler, như TST làm (F2)?",
+   "answer": "(a) Làm theo TST: `raiseToFlowHandler` trong `refreshToken` — (a): mã biên dịch rõ ràng, và thay đổi nhỏ.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "ContactFlow",
+   "id": "Q1",
+   "question": "Khi telemetry được nối (U17), hai app event của Orbit có gửi đầy đủ payload của TST, kèm subject và nội dung tin nhắn không (F1)?",
+   "answer": "(a) truyền đầy đủ payload của TST tại các nơi gọi ngay bây giờ; log vẫn không chứa văn bản cá nhân — (a): TST là nguồn sự thật, và sink vẫn là một bước sau này.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "ContactFlow",
+   "id": "Q2",
+   "question": "ContactByEmailMember với In_AuditEventId = EmailHost: sau khi gửi, TST không hiển thị thông báo, ở lại màn hình và giữ nút ở trạng thái loading. React làm giống vậy (dòng 068). Bạn có muốn ghi nhận điều này trong `app/docs/known-original-bugs.md` không?",
+   "answer": "(a) giữ hành vi của TST và ghi nhận là một bug gốc đã biết — (a) cho giai đoạn mock; production sẽ quyết định về (b).",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_MyNotificationsFlow",
+   "id": "Q1",
+   "question": "Build nút action của Orbit và Assemble, hai click action và bốn navigation handler của MessageDetail ngay bây giờ (F2)?",
+   "answer": "(a) build ngay từ SBMD và controller, với mock cho hai action Get_Orbit* — (a): code có trong các file TST được nêu trong báo cáo này",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_MyNotificationsFlow",
+   "id": "Q2",
+   "question": "Build thẻ item được chia sẻ của tin nhắn Sharing (F1) ngay bây giờ hay sau báo cáo Legacy_Share?",
+   "answer": "(a) sau báo cáo Legacy_Share, trong một thay đổi chung cho cả hai flow — (a)",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_MyNotificationsFlow",
+   "id": "Q3",
+   "question": "Thêm bộ render adaptive card vào stack (F3)?",
+   "answer": "(a) thêm thư viện và build trình xem cùng flow submit — (a), sau khi stack được xác nhận",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_MyNotificationsFlow",
+   "id": "Q4",
+   "question": "Với tin nhắn riêng của người dùng khác (F6): làm theo TST (toast, rồi hiển thị tin nhắn) hay giữ hành vi của React (toast, rồi quay về danh sách)?",
+   "answer": "(a) làm theo TST và ghi chú điểm bất thường trong `app/docs/known-original-bugs.md` — (a)",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Menu_ContactUs",
+   "id": "C1",
+   "question": "",
+   "answer": "Giữ hành vi của React: các validator trim input trước khi kiểm tra (TST không trim). Dòng 122, 123 là differs theo quyết định này.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_OrbitEventsFlow",
+   "id": "C2",
+   "question": "",
+   "answer": "Giữ hành vi của React: IsGuestView bắt đầu là false cho đến khi fetch danh sách khách (TST bắt đầu là true). Dòng A121 là differs theo quyết định này.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "_shared",
+   "id": "C3",
+   "question": "",
+   "answer": "Finding được chấp nhận (lớn, F3): một lỗi app-start không phải system exception phải hiển thị toast exception, như TST. Build nó. Dòng 193.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "App_Policies",
+   "id": "C4",
+   "question": "",
+   "answer": "Làm theo TST: lưu device id của việc chấp nhận policy trong localStorage[\"UUID\"] (một id cho mỗi trình duyệt). Finding F4 giữ nguyên; build nó. Dòng 063.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_OrbitEventsFlow",
+   "id": "Q1",
+   "question": "Wizard HostSurvey (F1): build ngay bây giờ từ mã biên dịch của TST, hay giữ placeholder?",
+   "answer": "(a) Build wizard HostSurvey từ mã biên dịch của TST (model, controller và view của các file ScreenBlock_HostSurvey; mock cho PostHostSurvey); ghi nhận là build now, việc build bắt đầu khi chủ dự án ra lệnh.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_OrbitEventsFlow",
+   "id": "Q2",
+   "question": "OrbitLanding \"View Passport details\" (F3): làm theo TST và gỡ nó, hay giữ control chỉ có trên DEV?",
+   "answer": "(a) Làm theo TST: gỡ control passport chỉ có trên DEV, event NavigateTo_PassportScan và handler của nó khỏi OrbitLanding. Ghi chú để so sánh sau: control và màn hình PassportScan có trên DEV (dev-ahead.md).",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_OrbitEventsFlow",
+   "id": "Q3",
+   "question": "MilestoneDetail (F2): build năm block milestone còn lại từ TST, hay giữ các placeholder?",
+   "answer": "(a) Build năm block milestone còn lại (MealGuest, MealHost, MealHelper, AccommodationGuest, AccommodationHelper) từ các file TST của chúng; ghi nhận là build now.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_OrbitAdminFlow",
+   "id": "Q1",
+   "question": "F1: gỡ nhánh milestone chỉ có trên DEV khỏi OrbitAdminLanding?",
+   "answer": "(a) Làm theo TST: gỡ lệnh gọi GetMilestoneScanFF, nhánh milestone, mock handler và scenario scanpermilestone khỏi OrbitAdminLanding. Ghi chú để so sánh sau: nhánh và các màn hình OrbitAdminMilestones / OrbitAdminMilestoneDetail có trên DEV (dev-ahead.md).",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_OrbitQRCodeFlow",
+   "id": "Q1",
+   "question": "Đặt `document.title` theo tiêu đề màn hình (F1)?",
+   "answer": "(a) Đặt document.title theo tiêu đề route trong app shell, cho mọi route; cùng câu trả lời với App_Services Q4 (được chấp nhận 2026-10-27).",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "_shared",
+   "id": "Q1",
+   "question": "Khi app start thất bại, TST chuyển thông báo tới `ScreenController_RaiseError` (UC:15397-15417); handler của App_Common khi đó hiển thị toast exception cho exception không phải system exception (câu trả lời U10, app-shell.spec.md:367). Runtime đã capture không cho thấy `Error` do RaiseError tạo ra có được tính là system hay không. React chỉ ghi log (`appStartSteps.ts:192-196`). React có hiển thị toast exception khi app start thất bại không?",
+   "answer": "(a) Hiển thị toast exception khi app start thất bại mà không phải lỗi hệ thống, như TST; giống quyết định C3 (finding F3, build).",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Directory_Caroussel",
+   "id": "Q1",
+   "question": "Get_IsInsideRenderBuffer trả về gì trên TST?",
+   "answer": "Đã chốt bằng lượt kiểm tra tiếp theo từ TST: Get_IsInsideRenderBuffer nằm trong UBTConnect.controller.js:4444-4462 và khớp với React (dòng 067 match). Không cần quyết định của chủ dự án.",
+   "by": "code",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_LDMEventsFlow_V2",
+   "id": "Q1",
+   "question": "Build popup lọc timeline `LDM_Blocks.MyTimeline_Filters` và 4 handler của nó ngay bây giờ? Quyết định `auto-decisions-2026-10-16.md:51` giữ nó là `NotCaptured` vì popup chưa được capture. File TST có tồn tại (`Connect2_OrbitMobile_MUI.LDM_Blocks.MyTimeline_Filters.mvc.js`, 20 action) và data action locality đã được fetch.",
+   "answer": "(a) Build popup lọc timeline MyTimeline_Filters và bốn handler của nó (OnHandle_MyTimelineFilter, ResetFilters, Filter, Close) từ mã biên dịch của TST; ghi nhận là build now.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "_libraries",
+   "id": "Q1",
+   "question": "Dòng favicon của `migration/knowledge/auto-decisions-2026-10-16.md:115` (bạn đã xác nhận ngày 2026-10-17, phương án A) nói \"các helper layout OSUI khác vẫn không được port\". Quyết định đó có bao gồm LayoutReady, LayoutDestroy và SkipToContent trong ba layout không (dòng 029, 033, 034, 135, 136, 138, 223-225)? Tác động trên TST: LayoutReady đặt các class thiết bị cho body và chạy FixInputs cùng phần khởi động OSUI một lần mỗi lần app start (`OutSystemsUI_2_23.controller.js:15248`); SkipToContent chuyển focus tới nội dung chính khi dùng skip link; LayoutDestroy chỉ hủy các listener. SetLang(\"\") là no-op trên TST (`OutSystemsUI.js:3199`).",
+   "answer": "(a) Quyết định favicon ngày 2026-10-17 bao gồm LayoutReady, LayoutDestroy và SetLang (không port); SkipToContent đã được port (focus chuyển tới nội dung chính). 9 dòng layout vẫn là differs; một dòng (SkipToContent) trở thành một mục build.",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "_libraries",
+   "id": "Q3",
+   "question": "F1: port App_Subscription_NavigateToUpgrade và App_Subscription_ShowUpgradePopUp (`UBTConnect_Utils.controller.js:1, 46`), hay để việc nâng cấp gói đăng ký nằm ngoài giai đoạn mock?",
+   "answer": "(a) Nối hai nơi gọi (SearchResultItem.tsx:117 tới navigateToUpgrade, useShareSheet.ts:137 tới showUpgradePopUp) với các hộp thoại gói đăng ký hiện có; ghi nhận là build now (F1).",
+   "by": "user",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_OrbitEventsFlow",
+   "id": "Q4",
+   "question": "Các mục cho lượt review, không cần quyết định của chủ dự án: A121 (giá trị mặc định của biến EventBooklet), B069 và B103 (đối số Type của CheckDirectoryAccess), J016-J018 (phần bên trong của các popup OrbitLanding, các block booklet và các block transport).",
+   "answer": "Đã chốt bằng lượt kiểm tra block Orbit ngày 2026-10-27 (review/orbit-blocks.md): J016 match, J017 partial (F8 nhỏ), J018 match; A121 differs theo quyết định C2; B069/B103 match (DirectoryAPIFilter.Member). Không cần quyết định của chủ dự án.",
+   "by": "code",
+   "date": "2026-10-27"
+  },
+  {
+   "flow": "Legacy_OrbitAdminFlow",
+   "id": "Q2",
+   "question": "Giá trị trên TST của LaunchDarkly flag `Mobile-Directory-list-virtualization` là gì?",
+   "answer": "Đã chốt bằng capture chỉ đọc ngày 2026-10-27: flag Mobile-Directory-list-virtualization là một item trong PermissionList của ActionAppManager_SynchAppContext và được đánh giá là true trên TST (không có request LaunchDarkly nào); hằng số của React bằng giá trị đó. Việc đọc trực tiếp sẽ có cùng với endpoint flag (infra-gaps §6). Giá trị đã được thêm vào flag-values-tst.json.",
+   "by": "code",
+   "date": "2026-10-27"
+  }
+ ]
+}

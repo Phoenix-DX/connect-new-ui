@@ -1022,3 +1022,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,P2-architecture,other,378205,clarify-P2,,"architecture-current.md (Fable, 645 lines, 50 calls incl. the restart after the limit)"
 2026-10-27,Legacy_OrbitEventsFlow,verify,211334,clarify-orbit-blocks,,"Orbit block pass (Opus, 80 rows, 59 calls)"
 2026-10-27,captures,verify,171463,clarify-captures,,"4 read-only TST captures + Home-111 (Opus, 43 calls); script tools/capture_followup.cjs"
+2026-10-27,artifact,other,216890,clarify-artifact,,"translation of the artifact data to Vietnamese (Opus, 719 strings, 26 calls)"
