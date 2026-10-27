@@ -1002,3 +1002,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,Legacy_OrbitEventsFlow,analyze,289405,clarify-G4-reader,,"clarify-screens reader part A (Sonnet, 185 rows, 51 calls)"
 2026-10-27,Legacy_OrbitEventsFlow,analyze,284777,clarify-G4-reader,,"clarify-screens reader part B (Sonnet, 235 rows, 50 calls)"
 2026-10-27,_shared-a,verify,180356,clarify-shared-judge,,"judge (Opus) App_Cache, App_Common_Blocks, App_Common_Blocks_PopupDialogs, SubLayout: 88 rows, 45 calls"
+2026-10-27,Legacy_OrbitQRCodeFlow,analyze,121065,clarify-G4-reader,,"clarify-screens reader (Sonnet, 67 rows, 22 calls)"
+2026-10-27,Legacy_LDMEventsFlow,analyze,130556,clarify-G4-reader,,"clarify-screens reader (Sonnet, 88 rows, 23 calls)"
+2026-10-27,_shared,verify,250195,clarify-shared-judge,,"judge (Fable) shared and unreached actions: 194 rows, 33 calls"
+2026-10-27,Legacy_OrbitAdminFlow,verify,243803,clarify-G4-judge,,"clarify-screens judge (Opus, 109 rows, 48 calls)"
