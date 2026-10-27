@@ -1016,4 +1016,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,_libraries,verify,10362,clarify-shared-judge,,"judge (Fable) second pass: rows 035/161/236 settled with the fetched model files, 5 calls"
 2026-10-27,zDEV_Directory_CommunityBusinessBlocks,analyze,94502,clarify-G5-reader,,"clarify-screens reader (Sonnet, 43 rows, 17 calls)"
 2026-10-27,G5-gaps,verify,98987,clarify-G5-writer,,"gap reports Map, Deprecated_Calendar_PersonalEvent, zTemp_Flow (Sonnet, 33 rows, 17 calls)"
-2026-10-27,zDEV_Directory_CommunityBusinessBlocks,verify,0,clarify-G5-judge,,"clarify-screens judge (Opus, 44 rows, 33 calls); tokens pending"
+2026-10-27,zDEV_Directory_CommunityBusinessBlocks,verify,123337,clarify-G5-judge,,"clarify-screens judge (Opus, 44 rows, 33 calls)"
