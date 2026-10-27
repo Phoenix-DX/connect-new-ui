@@ -990,3 +990,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,Legacy_Share,verify,181769,clarify-G3-judge,,"clarify-screens judge (Opus, 95 rows, 33 calls)"
 2026-10-27,Legacy_MyNotificationsFlow,verify,254308,clarify-G3-judge,,"clarify-screens judge (Fable, 152 rows, 50 calls)"
 2026-10-27,Bookmarks,verify,369185,clarify-G3-judge,,"clarify-screens judge (Fable, 123 rows, 53 calls)"
+2026-10-27,_shared-a,analyze,124387,clarify-shared-reader,,"reader (Sonnet) App_Cache, App_Common_Blocks, App_Common_Blocks_PopupDialogs, SubLayout: 82 rows, 18 calls"
+2026-10-27,_shared-c,analyze,174081,clarify-shared-reader,,"reader (Sonnet) Directory_Household_Blocks, Directory_OneSchoolGlobal_Blocks, Calendar_Events: 119 rows, 36 calls"

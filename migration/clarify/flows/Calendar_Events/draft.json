@@ -1,0 +1,111 @@
+{
+ "flow": "Calendar_Events",
+ "date": "2026-10-27",
+ "status": "draft",
+ "rows": [
+  {
+   "id": "Calendar_Events-001",
+   "screen": "CacheControl_CalendarEvents",
+   "area": "identity",
+   "element": "block not used by a built screen",
+   "os": "block with 3 inputs, Result event, data action GetCacheInfo; used by CacheControl_Calendar_Coordinator, EventList_CacheWrapper (flow Calendar); chain ends at CalendarView > CalendarView_MonthWrapper > MyCalendar (board:75 skip:dead) and Picker_Date > Recurrence (board:85 skip:dead), UserEventForm_DateTimeWrapper (owner screen not read; PersonalEventForm board:83 skip:dead)",
+   "react": "not found. searched: CacheControl_CalendarEvents, CacheControl_Calendar, GetEventsByCacheKeys, MyCalendarEvents under app/src",
+   "evidence": "migration/board.md:75,83,85",
+   "tst": "present",
+   "verdict": "",
+   "note": "TST file UBTConnect.Calendar_Events.CacheControl_CalendarEvents.mvc.js exists (CacheTypeId MyCalendarEvents, TTL default 7200, GetTimezoneName, MapStartDateTime). No built screen reaches it.",
+   "verified": "pack"
+  },
+  {
+   "id": "Calendar_Events-002",
+   "screen": "Calendar_EventCard",
+   "area": "identity",
+   "element": "block not used by a built screen",
+   "os": "ImageCard of one event; Get_CalendarEventSourceConfiguration on OnInitialize; used by EventList (flow Calendar), which is used by CalendarDays and EventList_CacheWrapper (chain as above)",
+   "react": "not found. searched: Calendar_EventCard, FormatEventDescriptionTime, Get_CalendarEventSourceConfiguration under app/src",
+   "evidence": "migration/board.md:75,85",
+   "tst": "present",
+   "verdict": "",
+   "note": "TST file UBTConnect.Calendar_Events.Calendar_EventCard.mvc.js exists (Handler_OnClickEvent, Get_CalendarEventSourceConfiguration). Handler_OnClickEvent is empty in the model.",
+   "verified": "pack"
+  },
+  {
+   "id": "Calendar_Events-003",
+   "screen": "Calendar_NoEvents",
+   "area": "identity",
+   "element": "block not used by a built screen",
+   "os": "text 'Nothing in your calendar.' in CustomContainer; used by EventList (flow Calendar)",
+   "react": "not found. searched: 'Nothing in your calendar', Calendar_NoEvents under app/src",
+   "evidence": "migration/board.md:75,85",
+   "tst": "present",
+   "verdict": "",
+   "note": "TST file Calendar_NoEvents.mvc.js:172-173 has the text, style text-neutral-8 font-semi-bold font-size-s.",
+   "verified": "pack"
+  },
+  {
+   "id": "Calendar_Events-004",
+   "screen": "EventListItem",
+   "area": "identity",
+   "element": "block not used by a built screen",
+   "os": "empty block: no widgets, no actions; used by nothing in the module",
+   "react": "not found. searched: EventListItem under app/src",
+   "evidence": "-",
+   "tst": "present",
+   "verdict": "",
+   "note": "TST file exists; empty model (no widgets).",
+   "verified": "pack"
+  },
+  {
+   "id": "Calendar_Events-005",
+   "screen": "EventListNew",
+   "area": "identity",
+   "element": "block not used by a built screen",
+   "os": "empty block: no widgets, no actions; used by nothing in the module",
+   "react": "not found. searched: EventListNew under app/src",
+   "evidence": "-",
+   "tst": "present",
+   "verdict": "",
+   "note": "TST file exists; empty model (no widgets).",
+   "verified": "pack"
+  },
+  {
+   "id": "Calendar_Events-006",
+   "screen": "-",
+   "area": "data",
+   "element": "server action GetEventsByCacheKeys (Connect2_MyCalendar_BL)",
+   "os": "KeyList, MyCalendarEventSourceIds, TimeZone in; CacheableCalendarEvents out",
+   "react": "not found. searched: GetEventsByCacheKeys, CacheableCalendarEvents (app.md: 0 hits, no mock handler)",
+   "evidence": "pack/app.md",
+   "tst": "-",
+   "verdict": "",
+   "note": "only called by the unused block CacheControl_CalendarEvents.",
+   "verified": "pack"
+  },
+  {
+   "id": "Calendar_Events-007",
+   "screen": "-",
+   "area": "logic",
+   "element": "client actions Get_CalendarEventSourceConfiguration, Get_FilteredCacheKeyByDateAndEventSources",
+   "os": "labels: Assemble, Lord's Day Meal, Orbit, Personal events, All events; cache key = sorted ids joined by & + '/' + key",
+   "react": "not found. searched: Get_CalendarEventSourceConfiguration, Get_FilteredCacheKeyByDateAndEventSources (app.md: 0 hits)",
+   "evidence": "pack/app.md",
+   "tst": "-",
+   "verdict": "",
+   "note": "only called by unused blocks. React has Orbit event cards of its own (components/orbit/OrbitEventCard), a different flow.",
+   "verified": "pack"
+  },
+  {
+   "id": "Calendar_Events-008",
+   "screen": "-",
+   "area": "strings",
+   "element": "strings: 'Nothing in your calendar.', 'All events', 'Lord’s Day Meal', 'Personal events'",
+   "os": "4 literals in the flow",
+   "react": "'Nothing in your calendar.' not found; 'All events' not found; 'Personal events' not found; \"Lord's Day Meal\" exists elsewhere (app/src/lib/orbit/actions.ts:22, other flow)",
+   "evidence": "grep -rn app/src",
+   "tst": "-",
+   "verdict": "",
+   "note": "pack string is typographic apostrophe (U+2019); React lib/orbit text uses a straight apostrophe. Strings belong to unused blocks.",
+   "verified": "pack"
+  }
+ ]
+}

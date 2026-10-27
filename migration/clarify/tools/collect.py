@@ -117,6 +117,10 @@ def main():
     out.append(f"Info findings: {len(info)} (in the reports, §5).")
     out.append("")
     # questions
+    answers = {}
+    ap_ = os.path.join(os.path.dirname(a.out), "answers.json")
+    if os.path.isfile(ap_):
+        answers = json.load(open(ap_))
     out.append("## 3. Questions for the user, by group")
     out.append("")
     for g, fls in GROUPS.items():
@@ -133,7 +137,9 @@ def main():
         out.append("| Flow | Id | Question | Recommendation | Answer |")
         out.append("|---|---|---|---|---|")
         for fl, r in rows:
-            out.append(f"| {fl} | {r[0]} | {r[1]} | {r[4] if len(r) > 4 else ''} | |")
+            ans = answers.get(f"{fl}:{r[0]}", {})
+            at = f"{ans.get('answer', '')[:200]} ({ans.get('by', '')}, {ans.get('date', '')})" if ans.get("answer") else ""
+            out.append(f"| {fl} | {r[0]} | {r[1]} | {r[4] if len(r) > 4 else ''} | {at} |")
         out.append("")
     # DEV≠TST and KB notes
     out.append("## 4. DEV vs TST differences and KB disagreements")
