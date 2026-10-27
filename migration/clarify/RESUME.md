@@ -1,10 +1,12 @@
 # How to continue the clarify-screens work in a new session
 
-Status on 2026-10-27, end of the second session: all 45 units are judged (`INDEX.md`: 5332 rows, unclear 11), the
-follow-up pass is done (`review/followup.md`), and P2 is written: `architecture-current.md` (the front end today) and
-`infra-gaps.md` (what production needs, 27 capabilities, the backend contract, the set-up order). The user answered the
-G1–G3 questions (`decisions.md`). Open: the 12 questions of G4 and the shared units; the 4 candidate findings of
-`review/followup.md`; 4 read-only captures on TST and one Orbit block comparison pass (followup.md §3); P3 hand-over.
+Status on 2026-10-27, end of the second session:
+- All 45 units are judged (`INDEX.md`: 5332 rows, unclear 11). The follow-up pass is done (`review/followup.md`).
+- P2 is written: `architecture-current.md` (the front end today) and `infra-gaps.md` (what production needs: 27
+  capabilities, the backend contract, the set-up order).
+- The user answered the G1–G3 questions (`decisions.md`).
+- Open: the 12 questions of G4 and the shared units; the 4 candidate findings of `review/followup.md`; 4 read-only
+  captures on TST and one Orbit block comparison pass (followup.md §3); P3 hand-over.
 
 ## Start
 
@@ -21,10 +23,10 @@ G1–G3 questions (`decisions.md`). Open: the 12 questions of G4 and the shared 
    `python3 migration/clarify/tools/collect.py --questions G4` and `--questions X`. Record the answers with
    `python3 migration/clarify/tools/answers.py accept-recommendations --groups G4,X --date YYYY-MM-DD`, or one by one
    with `set <Flow> <Qn> "<answer>"`. Then run `python3 migration/clarify/tools/collect.py`.
-2. The user accepts or rejects the 4 candidate findings of `review/followup.md` (validators trim, EventBooklet
-   IsGuestView default, app-start failure toast, Policies device id store); give them F ids in the reports.
+2. The user accepts or rejects the 4 candidate findings of `review/followup.md`: validators trim, EventBooklet
+   IsGuestView default, app-start failure toast, Policies device id store. Give the accepted ones F ids in the reports.
 3. The 4 read-only captures on TST and the Orbit block comparison pass (`review/followup.md` §3), when the user allows
-   a capture session; they settle the last 11 `unclear` rows.
+   a capture session. They settle the last 11 `unclear` rows.
 4. Fold the answers of 1 and 2 into `infra-gaps.md` §10 (the "build now" list) and `decisions.md`.
 5. P3 hand-over: context note, ledger report (`python3 $SK/ledger.py report`), commit on `clarify-screens`. No push.
    Then the work that follows the clarify reports is the user's call (fixes of the blockers and majors, the BFF).

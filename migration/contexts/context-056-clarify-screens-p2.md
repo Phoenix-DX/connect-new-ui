@@ -8,13 +8,14 @@
 - Follow-up pass (Fable): 18 of 29 unclear rows settled from TST, 9 re-checks confirmed, 4 candidate findings
   (`review/followup.md`). 11 rows need a read-only TST capture or an Orbit block pass.
 - P2 written (Fable): `architecture-current.md` (645 lines, 12 sections, 3 Mermaid diagrams) and `infra-gaps.md`
-  (341 lines: 27 capabilities, the backend contract of 165 endpoints over 24 producer modules, the identity chain,
-  the native substitutes, flags, telemetry, offline, hosting, the FE work before cut-over, the set-up order).
+  (341 lines). The gaps file holds 27 capabilities, the backend contract (165 endpoints, 24 producer modules), the
+  identity chain, the native substitutes, flags, telemetry, offline, hosting, the FE work before cut-over, the set-up
+  order.
 - `review/aggregate.md` (`tools/aggregate.py`) feeds P2: 157 mock-only rows, 58 native-only rows, 23 decision groups.
 
 ## Decisions (who, date)
-- User 2026-10-27: continue per RESUME.md; the Fable fallback rule for usage limits was added, then removed when the
-  usage came back (on a limit: tell the user and wait). The 12 questions of G4 and the shared units are not answered
+- User 2026-10-27: continue per RESUME.md. The Fable fallback rule for usage limits was added, then removed when the
+  usage came back: on a limit, tell the user and wait. The 12 questions of G4 and the shared units are not answered
   yet.
 
 ## Facts learned (evidence)
