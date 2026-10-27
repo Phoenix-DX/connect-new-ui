@@ -971,3 +971,7 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,Directory_Search,analyze,191824,clarify-G2-reader,,"clarify-screens reader (Sonnet, 140 rows, 38 calls)"
 2026-10-27,Directory_Household,analyze,261473,clarify-G2-reader,,"clarify-screens reader (Sonnet, 241 rows, 46 calls)"
 2026-10-27,Directory_Locality,analyze,295489,clarify-G2-reader,,"clarify-screens reader (Sonnet, 265 rows, 44 calls)"
+2026-10-27,Directory_OneSchoolGlobal,verify,187743,clarify-G2-judge,,"clarify-screens judge (Opus, 56 rows, 42 calls)"
+2026-10-27,Directory_SupperMeetings,verify,195889,clarify-G2-judge,,"clarify-screens judge (Opus, 111 rows, 49 calls)"
+2026-10-27,Directory_Search,verify,238246,clarify-G2-judge,,"clarify-screens judge (Opus, 146 rows, 49 calls)"
+2026-10-27,Directory_Updates,verify,231967,clarify-G2-judge,,"clarify-screens judge (Opus, 149 rows, 43 calls)"

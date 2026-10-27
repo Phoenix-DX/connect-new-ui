@@ -48,6 +48,9 @@ the KB, `migration/clarify/.dump/`, the MCP (the orchestrator's review pass call
 - Runtime defaults of the OutSystems client are TST behaviour. Examples: a failed data fetch calls `handleError`; the
   document title; the built-in validation messages. Compare React with them. Cite `OutSystems.js` or
   `OutSystemsReactView.js` (in `migration/runtime-sources/`) by line.
+- `n/a` covers three cases, each with its note: a board or flag decision ("skip", "flag off on TST"); an element
+  that is dead in the model ("dead in the model"); an element that another flow owns ("owned by flow X, see its
+  report"), such as a shared block's internals or an action of a block-only flow.
 - A KB rule that disagrees with both DEV and TST is a `K<n>` line of §6.2, not a finding.
 - Severity: blocker (the user cannot complete the flow), major (a visible behaviour, rule or data differs), minor
   (text, class, edge case), info (no user impact).
