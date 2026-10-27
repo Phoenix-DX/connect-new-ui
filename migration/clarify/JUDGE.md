@@ -51,9 +51,11 @@ the KB, `migration/clarify/.dump/`, the MCP (the orchestrator's review pass call
 
 ### The n/a verdict
 
-`n/a` covers three cases, each with its note. A board or flag decision: "skip", "flag off on TST". An element that
-  is dead in the model: "dead in the model". An element that another flow owns: "owned by flow X, see its report",
-  for example a shared block's internals or an action of a block-only flow.
+`n/a` covers three cases, each with its note:
+- a board or flag decision: "skip", "flag off on TST"
+- an element that is dead in the model: "dead in the model"
+- an element that another flow owns: "owned by flow X, see its report" (a shared block's internals, an action of a
+  block-only flow)
 
 ### Other rules
 
