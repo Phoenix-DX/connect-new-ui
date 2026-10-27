@@ -33,7 +33,8 @@ def main():
         pd = os.path.join(a.flows, fl, "pack")
         meta = json.load(open(os.path.join(pd, "meta.json")))
         out = [f"# KB index of UI flow {fl}", "",
-               f"KB root: `{kb}` (os-kb extraction of Connect, DEV, 2026-10-05). Rules quote the model and say `confirmed` or `inferred`.",
+               f"KB root: `{kb}` (os-kb extraction of Connect, DEV, 2026-10-05). Paths are relative to the project root (the KB is a sibling folder of the project). Rules quote the model and say `confirmed` or `inferred`.",
+               "Referenced modules have their own rule prefixes (UBT_AppManager: `BR-UAM-*`, UBTConnect_Utils: `BR-C2UTL-*`, …): grep the block name under the KB root to find them.",
                "Read the UI pages fully; open a rule file only for the rules the report cites.", ""]
         # UI pages that name the flow
         out.append("## UI pages of UBTConnect that name the flow or its screens")

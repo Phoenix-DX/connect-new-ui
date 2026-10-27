@@ -751,18 +751,36 @@ def write_data(m, d, head, fl, srv, all_objs, txt):
     open(os.path.join(d, "data.md"), "w").write("\n".join(out))
 
 
+TST_FILES = None
+
+
+def tst_files():
+    """Names of the TST compiled files (survey), for the 'TST file' column; the content is not loaded here."""
+    global TST_FILES
+    if TST_FILES is None:
+        try:
+            TST_FILES = sorted(json.load(open("capture/survey-UBTConnect.json"))["sources"].keys())
+        except (OSError, KeyError, ValueError):
+            TST_FILES = []
+    return TST_FILES
+
+
 def write_references(m, d, head, used_blocks, acts, srv, txt):
     out = head[:]
     out.append("## Referenced blocks (other modules) used by the flow")
     out.append("")
-    out.append("| Block | Module | Flow | Inputs | Events |")
-    out.append("|---|---|---|---|---|")
+    out.append("Logic of these blocks is not in the dump. 'TST file' is the compiled code on TST "
+               "(`python3 migration/clarify/tools/tst_source.py show <file>`), when the survey has it.")
+    out.append("")
+    out.append("| Block | Module | Flow | Inputs | Events | TST file |")
+    out.append("|---|---|---|---|---|---|")
     for b in sorted(x for x in used_blocks if x):
         if b in m.blocks:
             continue
         for mod, fl, sig in m.ref_blocks.get(b, []) or [("?", "?", None)]:
             evs = "; ".join(f"{e['Name']}({params_text(e.get('InputParameters'))})" for e in (sig or {}).get("Events", []) or [])
-            out.append(f"| {b} | {mod} | {fl} | {params_text((sig or {}).get('InputParameters')) or '-'} | {evs or '-'} |")
+            tf = [f for f in tst_files() if f.endswith(f".{b}.mvc.js") and (mod == "?" or f.startswith(mod.split("+")[0] + "."))]
+            out.append(f"| {b} | {mod} | {fl} | {params_text((sig or {}).get('InputParameters')) or '-'} | {evs or '-'} | {', '.join('`' + x + '`' for x in tf) or '-'} |")
     out.append("")
     # referenced client actions called by the flow's own objects and actions
     called = set(re.findall(r'"Object": "IExecuteClientActionNode"[^}]*?"Action": "(\w+)"', txt))

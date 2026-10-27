@@ -24,6 +24,7 @@ one checklist. You change no code. You make no commit.
 | `migration/board.md` | The decision and reason of a screen that is not built (`grep -n "^| <Screen> " migration/board.md`) |
 | `python3 migration/clarify/tools/tst_source.py show <Screen>` | The TST compiled code, when the DEV model and the React app differ, or a DEV fact needs a check |
 | `app/docs/architecture/overview.md`, `app/src/platform/README.md`, `app/src/api/README.md` | How the React app is built (read once, when needed) |
+| `migration/app-shell.spec.md` (decisions U1…), `migration/change-requests/CR-*.md`, `app/docs/architecture/` (ADRs), `app/docs/known-original-bugs.md`, `migration/knowledge/*.md` | The recorded decisions and facts that a `differs` row must cite |
 
 Do not read: `migration/screens/**` (the route specs of the migration; this work is independent of them),
 `migration/contexts/**`, `.auth/**`, `migration/.raw/**`, any `.extract/` folder of the KB. Do not open the MCP dump
@@ -75,6 +76,10 @@ Rules:
 - Questions get an id `Q<n>`, with the evidence, the options and your recommendation. Do not answer a question
   yourself.
 - Count the rows at the end (§8) and keep the counts equal to `checklist.json`.
+- Run `python3 migration/tools/ste_lint.py migration/clarify/flows/<Flow>/report.md` and fix the errors (0 errors;
+  warnings are for the reviewer).
+- A KB page that disagrees with both DEV and TST is not a finding of the React app. List it in §6.2 "KB pages vs TST"
+  with the id `K<n>`, the KB text, the TST evidence and the file.
 
 ## Budget
 

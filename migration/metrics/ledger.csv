@@ -955,3 +955,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-25,refactor,verify,35522,refactor-tester,,F59-c test (sonnet) tokens from notification
 2026-10-25,refactor,other,0,refactor-documenter,,F59-c docs and final.md after-report section (sonnet) (tokens pending)
 2026-10-25,refactor,other,25492,refactor-documenter,,F59-c docs tokens from notification
+2026-10-27,App_PIN,verify,303334,clarify-pilot,,"clarify-screens flow report (pilot, Opus, 131 rows)"
