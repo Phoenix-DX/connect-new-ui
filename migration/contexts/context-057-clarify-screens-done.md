@@ -37,7 +37,7 @@ Read-only TST captures (`tools/capture_followup.cjs`, `review/captures.md`):
 
 ## Open issues
 - Notes F2 decision; Directory_Updates 073/074 (capture with the write, or a decision); Photobook move-log record.
-- The artifact (next step).
+- The artifact "Infra & FE readiness" (VI) is published: https://claude.ai/artifact/GRwjpVEAPtSCPaDPXiCCLM (user accept 2026-10-27).
 
 ## Next
 - `migration/clarify/RESUME.md`: the artifact, then builds on the user's order.

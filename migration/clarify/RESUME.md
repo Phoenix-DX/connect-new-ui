@@ -12,10 +12,12 @@ Open items for the user:
 - Directory_Updates rows 073/074: allow a capture with the `MarkAsRead` write, or decide.
 - Directory_Photobook rows 074/076/105: one recorded decision on the Splide move log (not ported, or ported via the
   platform logger).
-- The artifact "Infra & FE readiness" (Vietnamese first, one page with two tabs): build locally, the user accepts,
-  then publish ([[feedback-publish-needs-accept]]).
-- After that, the user decides the work that follows the reports: the 30 build items of `infra-gaps.md` §10.4 and
-  the infra set-up order of §11.
+- The artifact "Infra & FE readiness" (Vietnamese, one page with two tabs) is published at
+  https://claude.ai/artifact/GRwjpVEAPtSCPaDPXiCCLM (accepted by the user 2026-10-27). Rebuild after a data change:
+  `tools/artifact_data.py` → translate `data.vi.json` → `tools/artifact_build.py` → publish the same file path.
+  An English version is a later option (`--data data.en.json`, a second artifact).
+- After that, the user decides the next work: the 30 build items of `infra-gaps.md` §10.4 and the infra set-up
+  order of §11.
 
 ## Start
 
@@ -31,8 +33,8 @@ Open items for the user:
 1. Record the user's decisions on the open items above with `python3 migration/clarify/tools/answers.py set <Flow>
    <Qn|Cn> "<answer>" --date YYYY-MM-DD`, then `python3 migration/clarify/tools/collect.py` and
    `python3 migration/clarify/tools/aggregate.py`.
-2. Build the artifact locally from `infra-gaps.md`, `architecture-current.md`, `decisions.md`, `review/aggregate.md`;
-   show it; publish only after the user's accept.
+2. Keep the artifact in step with the documents: after a change, rebuild and republish to the same URL (see above);
+   never publish a change the user did not see.
 3. When the user orders a build: one route or block at a time, from the TST compiled code (`tools/tst_source.py`).
    Each build goes through the parity gate of the migration. The commit message names the report row ids.
 
