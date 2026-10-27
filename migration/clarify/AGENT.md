@@ -97,7 +97,7 @@ The pilot (App_PIN) took 146 tool calls and 303k tokens; half of that was avoida
 - Start every shell command with `cd /Users/khaitruong/Projects/connect-new && `. Use absolute paths. The shell
   working directory resets between commands. A command without the prefix runs twice.
 - Read the brief, the template and the schema once. Read the pack files in one command (`cat` of all pack files).
-- Read the React files of one screen in one command (`cat -n` of the page, its hooks and the containers it uses).
+- Read the React files of one screen in one command: `cat -n` of the page, its hooks and its containers.
 - Write `report.md` and `checklist.json` with the Write tool, each in one call, directly into
   `migration/clarify/flows/<Flow>/`. Do not build them from pieces in a scratchpad.
 - Target: at most 70 tool calls and about 150k to 200k tokens for a flow of the size of App_PIN.
