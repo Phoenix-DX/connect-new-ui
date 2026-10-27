@@ -13,9 +13,10 @@ Open items for the user:
 - Directory_Photobook rows 074/076/105: one recorded decision on the Splide move log (not ported, or ported via the
   platform logger).
 - The artifact "Infra & FE readiness" (Vietnamese, one page with two tabs) is published at
-  https://claude.ai/artifact/GRwjpVEAPtSCPaDPXiCCLM (accepted by the user 2026-10-27). Rebuild after a data change:
-  `tools/artifact_data.py` → translate `data.vi.json` → `tools/artifact_build.py` → publish the same file path.
-  An English version is a later option (`--data data.en.json`, a second artifact).
+  https://claude.ai/artifact/GRwjpVEAPtSCPaDPXiCCLM (accepted by the user 2026-10-27).
+  - Rebuild after a data change: `tools/artifact_data.py`, then translate `data.vi.json`, then
+    `tools/artifact_build.py`, then publish the same file path.
+  - An English version is a later option (`--data data.en.json`, a second artifact).
 - After that, the user decides the next work: the 30 build items of `infra-gaps.md` §10.4 and the infra set-up
   order of §11.
 
