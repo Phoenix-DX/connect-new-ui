@@ -283,10 +283,11 @@
       "element": "AcceptedAll: Get_MemoryCacheKey_UniqueKey (UBTConnect_Utils)",
       "os": "the Key output of the action; its logic is not in the dump",
       "react": "the client variable UBTConnect_Utils.UniqueCacheKey",
-      "evidence": "app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:60; app/src/platform/session/session.ts:207-208; KB connect2-utilities UBTConnect_Utils/module.md:103 (\"not fetched\")",
-      "verdict": "unclear",
+      "evidence": "migration/runtime-sources/UBTConnect_Utils.controller.js:2383-2384; app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:60; app/src/platform/session/session.ts:207-208",
+      "verdict": "match",
       "question": "Q1: Behaviour of Get_MemoryCacheKey_UniqueKey in module UBTConnect_Utils: not in the dump, no KB page. Is Key equal to Client.UniqueCacheKey, the key that Cache_UserInfo_Get reads (BR-C2UTL-141)?",
-      "verified": "pack"
+      "verified": "live",
+      "note": "App_Policies Q1 (a), settled from the TST file: Get_MemoryCacheKey_UniqueKey returns Key = UniqueCacheKey (getUniqueCacheKey(), UBTConnect_Utils.controller.js:2383-2384). React uses UBTConnect_Utils.UniqueCacheKey for the write and the read (BR-C2UTL-141)."
     },
     {
       "id": "App_Policies-026",
@@ -717,12 +718,13 @@
       "element": "GetDeviceInfo, web branch: UniqueId",
       "os": "UniqueId = localStorage[\"UUID\"], or a new crypto.randomUUID() that it stores there: one id per browser",
       "react": "a randomUUID in a module variable: a new id on each page load",
-      "evidence": "app/src/pages/AcceptPendingPolicies/actions.ts:50-66; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1385-1387; BR-UBTCON-943",
-      "verdict": "unclear",
+      "evidence": "app/src/pages/AcceptPendingPolicies/actions.ts:50-66; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1385-1387; BR-UBTCON-943; migration/clarify/answers.json App_Policies:Q2",
+      "verdict": "missing",
       "severity": "minor",
       "finding": "F4",
       "question": "Q2: Keep the device id in memory, or store it in localStorage[\"UUID\"] as TST does? The code cites \"AGENTS rule 16, Q4\"; no ADR, CR, U decision or board row names it.",
-      "verified": "pack"
+      "verified": "live",
+      "note": "user decision 2026-10-27, App_Policies Q2 (a): store the device id in localStorage[\"UUID\"] as TST does (Policy_Custom_AcceptPendingPolicies.mvc.js:1385-1387). React keeps a new randomUUID per page load (actions.ts:50-66): the store is missing. Finding F4 stands."
     },
     {
       "id": "App_Policies-064",

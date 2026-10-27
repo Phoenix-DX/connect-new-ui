@@ -753,11 +753,11 @@
       "element": "BR-UBTCON-996 (drag of a mandatory row)",
       "os": "isMandatory does not guard the drag; the SortableList of the suggestions passes DenyLists [SuggestionList.Id, FavouriteList.Id]; SetupList (SortableJS) applies DenyLists, and its source is not available",
       "react": "every row has the drag handle; setupList denies a drop into SuggestionList from FavouriteList (data-deny-from), so no favourite leaves by drag",
-      "evidence": "app/src/pages/Services/components/FavouriteServiceList.tsx:57; app/src/pages/Services/components/SuggestedServiceList.tsx:35-37; app/src/pages/Services/components/setupList.ts:59-67, 158-167; TST UBTConnect.App_Services.Services.mvc.js:664-669; BR-UBTCON-996",
-      "verdict": "unclear",
-      "note": "BR-UBTCON-996 says that a mandatory row can leave by drag (K1).",
+      "evidence": "migration/shell/sources/SortableJS.controller.js:87, 149-167, 375-389; TST UBTConnect.App_Services.Services.mvc.js:209-212, 662-671; app/src/pages/Services/components/FavouriteServiceList.tsx:40; app/src/pages/Services/components/SuggestedServiceList.tsx:37, 52; app/src/pages/Services/components/setupList.ts:59-67",
+      "verdict": "match",
+      "note": "App_Services Q1 (a): SetupList writes data-deny-from = DenyLists on every list of its own placeholder (SortableJS.controller.js:149-157) and denies a move whose evt.from.id is in the deny list of evt.to (:159-167, :375-389). TST: the favourites instance has no DenyLists (Services.mvc.js:209-212; default empty list, SortableJS.controller.js:87); the suggestions instance has [SuggestionList, FavouriteList] (:662-671). So no row leaves the favourites by drag, mandatory or not, and the suggestions keep their order. React does the same (FavouriteServiceList.tsx:40 no denyLists; SuggestedServiceList.tsx:37, 52; setupList.ts:59-67). K1 stands: BR-UBTCON-996 disagrees with TST.",
       "question": "Q1",
-      "verified": "pack"
+      "verified": "live"
     },
     {
       "id": "App_Services-067",
@@ -903,10 +903,11 @@
       "element": "SetupList internals (SortableJS.controller.js)",
       "os": "behaviour of SortableList in module SortableJS: not in the dump, no KB page; tst_source.py has no SortableJS.controller.js",
       "react": "web port in setupList.ts: one Sortable per list, handle .drag-handle, deny lists, drop marker, a pending move with PreventDomMove, OnDragEnd at the end",
-      "evidence": "app/src/pages/Services/components/setupList.ts:32-217; pack/references.md (SortableList); pack/kb.md (SortableList: no KB page)",
-      "verdict": "unclear",
+      "evidence": "migration/shell/sources/SortableJS.controller.js:103-181, 202-340, 342-470; app/src/pages/Services/components/setupList.ts:32-217",
+      "verdict": "match",
       "question": "Q1",
-      "verified": "pack"
+      "verified": "live",
+      "note": "App_Services Q1 (a): setupList.ts:32-217 follows the TST JS node SetupList (SortableJS.controller.js:103-181, 202-340, 342-470): the same Sortable options (group, animation 150, handle .drag-handle, ghostClass drag-ghost, filter .sortable-insert-marker), the same deny list, drop marker, PreventDomMove pending move, ghost-back check, and the same Handler arguments (fromId, toId, oldIndex, newIndex, itemId) in onEnd. The empty onAdd and onUpdate of TST have no behaviour and no React counterpart."
     },
     {
       "id": "App_Services-080",

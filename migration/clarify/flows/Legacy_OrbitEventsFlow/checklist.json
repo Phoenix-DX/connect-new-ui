@@ -1582,12 +1582,13 @@
       "element": "Block variables",
       "os": "IsFetchingData, EventInfo, AvailableFilters, CurrentFilters, SelectedFilters, Guests, Guests_InvitedList, Guests_HostingList, Helpers, IsSearchMode, FiltersPopUp, LocalHelperRoles, IsGuestView, HasFiltersApplied, LastFetchedGuests/Helpers, PaginationSettings, LastFilters_Guest/Helpers, LastFetched_Guests_InvitedLocality/HostLocality",
       "react": "app/src/pages/EventBooklet/hooks/eventBookletState.ts:40-46,61 (INITIAL_EVENT_BOOKLET_STATE); eventBookletTypes.ts (103 lines)",
-      "evidence": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet.mvc.js:model VariablesRecord",
+      "evidence": "migration/runtime-sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet.mvc.js:82-143, 2958, 2987; app/src/pages/EventBooklet/hooks/eventBookletState.ts:62-91; app/src/pages/EventBooklet/hooks/eventBookletDataFlows.ts:88-90",
       "tst": "present",
-      "verdict": "unclear",
-      "note": "Defaults of the TST variables not extracted (types only). | The reader compared the variable set, not the defaults.",
-      "verified": "pack",
-      "question": "Review pass (no user decision): compare the defaults of the 20 block variables of ScreenBlock_EventBooklet (TST model attributesToDeclare) with eventBookletState.ts:40-61."
+      "verdict": "partial",
+      "note": "Defaults compared with the TST model (ScreenBlock_EventBooklet.mvc.js:82-143). 19 of 20 agree: booleans false, records and lists empty. IsGuestView differs: TST default true (:118-119) and OnInitialize sets it true at once (SetCurrentView, :2958, :2987); React default false (eventBookletState.ts:75) and the first write is after the guests fetch (eventBookletDataFlows.ts:88-90). Until that fetch ends, React is in the helper view state. Candidate finding (no id yet).",
+      "verified": "live",
+      "question": "Review pass (no user decision): compare the defaults of the 20 block variables of ScreenBlock_EventBooklet (TST model attributesToDeclare) with eventBookletState.ts:40-61.",
+      "severity": "minor"
     },
     {
       "id": "Legacy_OrbitEventsFlow-A122",
@@ -3322,11 +3323,11 @@
       "element": "OnHandle_ClickedMember: CheckDirectoryAccess",
       "os": "CheckDirectoryAccess(HouseholdId, Type) (GA:1635-1640)",
       "react": "app/src/pages/GuestArrangements/hooks/useGuestArrangements.ts:82  const hasAccess = await checkDirectoryAccess(householdId, DirectoryAPIFilter.Member);",
-      "evidence": "app/src/pages/GuestArrangements/hooks/useGuestArrangements.ts:82",
+      "evidence": "migration/runtime-sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_GuestArrangements.mvc.js:491, 1637; Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js:257, 336; app/src/pages/GuestArrangements/hooks/useGuestArrangements.ts:82",
       "tst": "present",
-      "verdict": "unclear",
-      "note": "TST passes Type from the card event; React fixes DirectoryAPIFilter.Member. Card event arguments not read from the Card_MemberInformation block (not in pack). | Card_MemberInformation raises ClickedMember with In_HouseholderId (Card_MemberInformation.mvc.js :257, :336 show); the Type argument comes from the event declaration, not read.",
-      "verified": "pack",
+      "verdict": "match",
+      "note": "Settled from TST: the Card_MemberInformation event raises ClickedMember with In_HouseholderId only (Card_MemberInformation.mvc.js:257, 336); the handler of ScreenBlock_GuestArrangements passes DirectoryAPIFilter.Member as Type (:491), as React does.",
+      "verified": "live",
       "question": "Review pass (no user decision): read the Type argument that ScreenBlock_GuestArrangements (:1635-1640) and ScreenBlock_HelperDetails (:1249) pass to CheckDirectoryAccess; React passes DirectoryAPIFilter.Member."
     },
     {
@@ -3765,11 +3766,11 @@
       "element": "OnHandle_ClickedMember",
       "os": "CheckDirectoryAccess(HouseholdId, Type); true: NavigateTo_HouseholdDetail then OnApplicationEvent_ViewHousehold; false: App_Subscription_ShowUpgradePopUp (HD:1223-1305; cond 1249)",
       "react": "app/src/pages/HelpersDetail/hooks/useHelperDetails.ts:127  const hasAccess = await checkDirectoryAccess(householdId, DirectoryAPIFilter.Member);",
-      "evidence": "app/src/pages/HelpersDetail/hooks/useHelperDetails.ts:122-137",
+      "evidence": "migration/runtime-sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_HelperDetails.mvc.js:472, 1245; Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js:257, 336; app/src/pages/HelpersDetail/hooks/useHelperDetails.ts:122-137",
       "tst": "present",
-      "verdict": "unclear",
-      "note": "Type fixed to Member in React. | Card_MemberInformation raises ClickedMember with In_HouseholderId (Card_MemberInformation.mvc.js :257, :336 show); the Type argument comes from the event declaration, not read.",
-      "verified": "pack",
+      "verdict": "match",
+      "note": "Settled from TST: the handler of ScreenBlock_HelperDetails passes DirectoryAPIFilter.Member as Type (:472), as React does; the card event carries the householder id only (Card_MemberInformation.mvc.js:257, 336).",
+      "verified": "live",
       "question": "Review pass (no user decision): read the Type argument that ScreenBlock_GuestArrangements (:1635-1640) and ScreenBlock_HelperDetails (:1249) pass to CheckDirectoryAccess; React passes DirectoryAPIFilter.Member."
     },
     {
@@ -5824,9 +5825,9 @@
       "react": "app/src/pages/OrbitLanding/components/Popup_OrbitLanding_Filters.tsx (149 lines), Popup_OrbitLanding_Sort.tsx (67 lines)",
       "evidence": "tst_source.py list Popup_OrbitLanding",
       "verdict": "unclear",
-      "verified": "pack",
+      "verified": "live",
       "note": "Own blocks of the module; not compared by the readers or the judge (budget). Parity captured both popups (OrbitLanding Q2, migration/parity-exemptions.json:1198-1206).",
-      "question": "Review pass (no user decision): compare the two popup blocks with their React ports."
+      "question": "Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Filters.mvc.js and Popup_OrbitLanding_Sort.mvc.js (migration/runtime-sources/) with app/src/pages/OrbitLanding/components/Popup_OrbitLanding_Filters.tsx and Popup_OrbitLanding_Sort.tsx, row by row (UI tree, actions, strings). The follow-up pass did not do it (budget)."
     },
     {
       "id": "Legacy_OrbitEventsFlow-J017",
@@ -5837,9 +5838,9 @@
       "react": "app/src/pages/EventBooklet/components/EventBooklet_ListHeader.tsx (33 lines), EventBooklet_MembersItem.tsx (67), PopUp_OrbitBookletFilters.tsx (357)",
       "evidence": "row A148; audit-a1-empty-handlers.md:81-82 (DropdownTags no-op until CR-EventBooklet-2, applied in F17)",
       "verdict": "unclear",
-      "verified": "pack",
+      "verified": "live",
       "note": "Own blocks; not compared (budget). No capture of EventBooklet exists (CR-EventBooklet-1).",
-      "question": "Review pass (no user decision): compare the three booklet blocks with their React ports."
+      "question": "Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_ListHeader.mvc.js, EventBooklet_MembersItem.mvc.js and PopUp_OrbitBookletFilters.mvc.js (migration/runtime-sources/) with the three React files under app/src/pages/EventBooklet/components/. The follow-up pass did not do it (budget)."
     },
     {
       "id": "Legacy_OrbitEventsFlow-J018",
@@ -5850,9 +5851,9 @@
       "react": "app/src/pages/TransportDetail/components/TransportDetail.tsx, TransportDetail_TravelInfo.tsx",
       "evidence": "tst_source.py list Orbit_Blocks.TransportDetail; row B136",
       "verdict": "unclear",
-      "verified": "pack",
+      "verified": "live",
       "note": "Own blocks; not compared (budget). No capture of TransportDetail (TransportDetail Q2 confirmed by the user 2026-10-17: OrbitTheme.css class names).",
-      "question": "Review pass (no user decision): compare the two transport blocks with their React ports."
+      "question": "Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail.mvc.js and TransportDetail_TravelInfo.mvc.js (migration/runtime-sources/) with app/src/pages/TransportDetail/components/TransportDetail.tsx and TransportDetail_TravelInfo.tsx. The follow-up pass did not do it (budget)."
     }
   ]
 }

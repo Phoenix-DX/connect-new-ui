@@ -10,7 +10,7 @@
 
 ## 1. Summary
 
-- Counts by verdict: match 82 · partial 1 · missing 1 · differs 5 · mock-only 7 · n/a 97 · unclear 1 (same as `checklist.json`).
+- Counts by verdict: match 82 · partial 1 · missing 2 · differs 5 · mock-only 7 · n/a 97 · unclear 0 (same as `checklist.json`).
 - F1 (minor): `GetShareType_FromEntity` tests `IsMyHousehold` inside the Household case; TST tests it after all entity cases. Latent: the only React caller passes `false`.
 - F2 (info): the app start does not add the `preconnect` and `dns-prefetch` links for the MyEntertaining and Feed base URLs (`AddCustomHeadersJS`).
 - Q1: the app-start failure shows no toast in React; TST passes the message to `ScreenController_RaiseError`.
@@ -272,18 +272,26 @@ None. The rules the report cites agree with TST. BR-UBTCON-244 (share type) and 
 | ui | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | actions | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | validations | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| logic | 160 | 66 | 1 | 1 | 5 | 0 | 86 | 1 |
+| logic | 160 | 66 | 1 | 2 | 5 | 0 | 86 | 0 |
 | strings | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **total** | 194 | 82 | 1 | 1 | 5 | 7 | 97 | 1 |
+| **total** | 194 | 82 | 1 | 2 | 5 | 7 | 97 | 0 |
 
 Counts by group:
 
 | Group | Items | match | partial | missing | differs | mock-only | n/a | unclear |
 |---|---|---|---|---|---|---|---|---|
 | shared actions (2.1) | 59 | 46 | 1 | 0 | 2 | 0 | 10 | 0 |
-| app-start chain (2.2) | 19 | 7 | 0 | 1 | 3 | 0 | 7 | 1 |
+| app-start chain (2.2) | 19 | 7 | 0 | 2 | 3 | 0 | 7 | 0 |
 | network (2.3) | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
 | push, deep links, telemetry (2.4) | 21 | 0 | 0 | 0 | 0 | 0 | 21 | 0 |
 | other unreached (2.5) | 62 | 14 | 0 | 0 | 0 | 0 | 48 | 0 |
 | client variables (3) | 13 | 11 | 0 | 0 | 0 | 0 | 2 | 0 |
 | server and service actions (4) | 18 | 2 | 0 | 0 | 0 | 7 | 9 | 0 |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| _shared-193 | `unclear` | `missing` | migration/runtime-sources/UBTConnect.controller.js:15398-15417; migration/runtime-sources/OutSystems.js:2; migration/shell/sources/UBTJavaScriptUtils.controller.js:3842, 3900; migration/app-shell.spec.md:367; app/src/platform/bootstrap/appStartSteps.ts:192-196 |

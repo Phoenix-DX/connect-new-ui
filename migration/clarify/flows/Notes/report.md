@@ -183,3 +183,11 @@ Blocks of other flows: `Layout_MainPages_FixedTitle`, `Icon`, `Input`, `CustomCo
 | logic | 51 | 49 | 1 | 0 | 0 | 0 | 0 | 1 |
 | strings | 9 | 7 | 0 | 0 | 0 | 0 | 2 | 0 |
 | **total** | 121 | 104 | 2 | 0 | 0 | 2 | 12 | 1 |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| Notes-110 | `unclear` | `unclear` | Q1 answered A (user decision 2026-10-27, Notes Q1 (A)): a capture settles the fact. Capture (read-only TST session): open Notes, open the filter sheet, select one year, tap Apply; record the request body of DataActionGetNotes (Years and SortByNewest). Years present = the record is shared by reference and React must send the years (row becomes partial, finding); Years absent = match. |

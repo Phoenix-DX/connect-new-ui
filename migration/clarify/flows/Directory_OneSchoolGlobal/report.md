@@ -272,3 +272,11 @@ The KB pages come from DEV (2026-10-05). In these two places a KB text disagrees
 | logic | 10 | 8 | 0 | 0 | 0 | 0 | 1 | 1 |
 | strings | 2 | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 | **total** | **56** | **46** | **0** | **1** | **0** | **2** | **6** | **1** |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| Directory_OneSchoolGlobal-056 | `unclear` | `unclear` | Q1 answered (c), then (a) (user decision 2026-10-27, Directory_OneSchoolGlobal Q1 (c)). Capture that settles it (read-only TST session): with OneSchoolGlobalDetails open for one id, open an in-app link to a second id (a Search result or a Locality link) and record whether the screen re-mounts (OnInitialize and the GetOneSchoolGlobal fetch run again) or stays mounted with the old data. After the capture, (a) applies: React keeps the refetch and known-original-bugs.md records the TST behaviour. |

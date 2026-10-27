@@ -868,11 +868,11 @@
       "element": "client action Get_IsInsideRenderBuffer (shared)",
       "os": "signature only",
       "react": "app/src/lib/ubtConnect/actions.ts:525-533 Math.abs(current - active) <= renderBuffer",
-      "evidence": "app/src/lib/ubtConnect/actions.ts:525-533",
+      "evidence": "migration/runtime-sources/UBTConnect.controller.js:4444-4466; app/src/lib/ubtConnect/actions.ts:525-533; TST EntitiesCarousel_Element.mvc.js:425-435",
       "tst": "present (called in EntitiesCarousel_Element.js:435)",
-      "verdict": "unclear",
-      "note": "The TST call passes RenderBuffer, CurrentElement, ActiveElement (EntitiesCarousel_Element.mvc.js:435). React order is the same.",
-      "verified": "pack",
+      "verdict": "match",
+      "note": "Settled from the TST file: Get_IsInsideRenderBuffer is in UBTConnect.controller.js:4444-4466 (the earlier row said it was absent). IsInsideRenderBuffer = Abs(In_Index_CurrentElement - In_Index_ActiveElement) <= In_RenderBuffer (:4461-4462). React actions.ts:527-533 does the same, with the same argument order.",
+      "verified": "live",
       "question": "Q1: behaviour of Get_IsInsideRenderBuffer in module UBTConnect: not in the pack, and migration/runtime-sources/UBTConnect.controller.js has no definition. Is it Abs(Current - Active) <= RenderBuffer, as React does?"
     },
     {

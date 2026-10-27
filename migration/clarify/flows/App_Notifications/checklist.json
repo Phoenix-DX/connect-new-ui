@@ -795,10 +795,11 @@
       "element": "BR-UBTCON-982",
       "os": "a restored view with a preload: each swiped item found at its list position becomes read, and UnreadNotificationsCount and the section badge drop by 1",
       "react": "not ported; the code comment says that no caller sets the preload",
-      "evidence": "TST Notifications.mvc.js:1470-1515; app/src/pages/Notifications/hooks/notificationsState.ts:93-97; BR-UBTCON-982",
-      "verdict": "unclear",
+      "evidence": "TST Notifications.mvc.js:1470-1515; app/src/pages/Notifications/hooks/notificationsState.ts:93-97; BR-UBTCON-982; migration/clarify/answers.json App_Notifications:Q2",
+      "verdict": "n/a",
       "question": "Q2: can the preload branch of ScreenEvent_OnInitialize run on TST? React does not port it.",
-      "verified": "pack"
+      "verified": "live",
+      "note": "user decision 2026-10-27, App_Notifications Q2 (b): on TST, Notifications opens no carousel and no item has a click handler, so no restored view carries a preload; the branch is dead on TST. React does not port it."
     },
     {
       "id": "App_Notifications-070",

@@ -11,7 +11,7 @@
 
 ## 1. Summary
 
-- Counts by verdict: match 110 · partial 1 · missing 0 · differs 3 · mock-only 4 · n/a 3 · unclear 1 (same as `checklist.json`).
+- Counts by verdict: match 111 · partial 1 · missing 0 · differs 3 · mock-only 4 · n/a 3 · unclear 0 (same as `checklist.json`).
 - **F1** (minor): Menu keeps no screen variable in the view cache. After a Back to Menu, the user header shows the
   skeleton until CacheControl_UserInfo answers. TST restores `isFetched` with the view and shows the header at once.
 - **F2** (info): the doc comment of `RouteMeta.lock` says that a screen without CommonUI gets `ignore`.
@@ -402,8 +402,16 @@ follows TST in each place.
 | identity | 22 | 21 | 1 | 0 | 0 | 0 | 0 | 0 |
 | data | 10 | 6 | 0 | 0 | 1 | 3 | 0 | 0 |
 | ui | 36 | 36 | 0 | 0 | 0 | 0 | 0 | 0 |
-| actions | 29 | 25 | 0 | 0 | 0 | 0 | 3 | 1 |
+| actions | 29 | 26 | 0 | 0 | 0 | 0 | 3 | 0 |
 | validations | 4 | 4 | 0 | 0 | 0 | 0 | 0 | 0 |
 | logic | 17 | 14 | 0 | 0 | 2 | 1 | 0 | 0 |
 | strings | 4 | 4 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **total** | **122** | **110** | **1** | **0** | **3** | **4** | **3** | **1** |
+| **total** | **122** | **111** | **1** | **0** | **3** | **4** | **3** | **0** |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| App_Menu-040 | `unclear` | `match` | migration/shell/sources/UBTConnect.App_Menu.controller.js:12-16; app/src/pages/Menu/hooks/useMenu.ts:89-92; app/src/legacy/os/exceptions.ts:55-69; U10 (migration/app-shell.spec.md:367) |

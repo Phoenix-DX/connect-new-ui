@@ -1251,10 +1251,11 @@
       "element": "FetchUpdates and GetServices on a view restored from the cache (back navigation)",
       "os": "the runtime ScreenStateCache restores the view; whether the AtStart data actions run again is runtime code, not in the app sources (U19)",
       "react": "enterView hydrates the saved query data, then both queries fetch again (staleTime 0) and the read overrides apply on top",
-      "evidence": "app/src/platform/navigation/viewCache.ts:3-8, 73-80; app/src/api/update/hooks.ts:10-16; app/src/api/service/hooks.ts:27-33; migration/app-shell.spec.md:351 (U19)",
-      "verdict": "unclear",
+      "evidence": "migration/runtime-sources/OutSystemsReactView.js:7, 9; migration/runtime-sources/OutSystems.js:16-17; TST UBTConnect.Home.FeedBlock_Updates.mvc.js:1301; app/src/platform/navigation/viewCache.ts:73-80; app/src/api/update/hooks.ts:10-16; app/src/api/service/hooks.ts:27-33",
+      "verdict": "match",
       "question": "Does TST run FetchUpdates and GetServices again when HomeFeed comes back from the view cache (Q3)?",
-      "verified": "pack"
+      "verified": "live",
+      "note": "Home Q3 (a): settled from the runtime code. A view restored from the cache gets its state back and then runs fireInitialize (OutSystemsReactView.js:7: fromImmutableData, viewWasRestoredFromCache = true, controller.fireInitialize(); :9 for the screen: viewWasRestoredFromCache passed to initialize). fireInitialize runs OnInitialize and then fetchData (OutSystems.js:17), and innerFetchDataWithDependencies resets the dependencies and fetches every ready source with no check of the restore (:17). The only reader of the flag is the public API wasCurrentViewRestoredFromCache (OutSystems.js:16); HomeFeed.mvc.js and FeedBlock_Updates.mvc.js do not read it. So TST runs FetchUpdates and GetServices again on a restored HomeFeed, as React does after enterView. A read-only capture (open an update, Back, watch the two calls) can confirm it."
     },
     {
       "id": "Home-112",

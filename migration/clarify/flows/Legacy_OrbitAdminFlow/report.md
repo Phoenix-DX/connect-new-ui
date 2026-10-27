@@ -299,3 +299,11 @@ None. The KB pages of UBTConnect (`legacy-orbit.md`, BR-UBTCON-608) and of Conne
 | logic | 17 | 11 | 1 | 0 | 5 | 0 | 0 | 0 |
 | strings | 2 | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 | **total** | 109 | 90 | 5 | 0 | 5 | 4 | 4 | 1 |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| Legacy_OrbitAdminFlow-031 | `unclear` | `unclear` | Q2 (no user answer yet). The value is not in the code: isListVirtualizationDisabled asks LaunchDarkly for Mobile-Directory-list-virtualization at run time (UBTConnect_Utils.controller.js:4246-4250), flags.md:73 is open, and flag-values-tst.json has no entry. Capture that settles it (read-only TST session): record the LaunchDarkly evaluation response (the flag request of the LD client, or the HasAccess call of launchDarkly_FF) on OrbitAdminLanding, and add the value to migration/knowledge/flag-values-tst.json. Then: value false on TST and React always disabled = partial (React must read the flag or follow the TST value); value true = match. |

@@ -387,3 +387,13 @@ The data actions run on the server; the client calls `DataActionGetLocalityHouse
 | logic | 8 | 6 | 2 | 0 | 0 | 0 | 0 | 0 |
 | strings | 7 | 5 | 0 | 0 | 1 | 0 | 0 | 1 |
 | **total** | 203 | 186 | 5 | 0 | 3 | 6 | 0 | 3 |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| Directory_Photobook-074 | `unclear` | `unclear` | Not a capture: a recorded decision settles it. The user answer of 2026-10-27 (Directory_Photobook Q1) confirms that rows 074, 076 and 105 need a record; CR-Photobook-1:34-36 covers only the toggle-drag failure logs, and NO-CONSOLE is a lint rule. Add one line to CR-Photobook-1 (or a new CR): SplideEvent_Moved and its console line are not ported (rows become differs), or port the handler through the platform logger (rows become missing). |
+| Directory_Photobook-076 | `unclear` | `unclear` | Not a capture: a recorded decision settles it, as for row 074 (user answer 2026-10-27, Directory_Photobook Q1). The log text is "New/Current: <new> | Previous: <prev> | Destination: <dest>" (TST Photobook_Carousel.mvc.js:1422). |
+| Directory_Photobook-105 | `unclear` | `unclear` | Not a capture: a recorded decision settles it, as for row 074 (user answer 2026-10-27, Directory_Photobook Q1). The strings "Carousel Toggle Drag Error - Code:" and "| Message:" follow CR-Photobook-1 (rows 089, 091); "| Previous:" and "| Destination:" wait for the decision on the move log. |

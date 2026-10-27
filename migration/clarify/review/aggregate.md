@@ -1,6 +1,6 @@
 # Aggregate of the 45 checklists (input of the P2 synthesis)
 
-Rows: 5332; differs 91, match 4204, missing 164, mock-only 157, n/a 553, partial 134, unclear 29
+Rows: 5332; differs 93, match 4212, missing 166, mock-only 157, n/a 556, partial 137, unclear 11
 
 ## 1. Server and service actions behind mock-only rows (production needs a backend for each)
 
@@ -229,7 +229,7 @@ Rows: 5332; differs 91, match 4204, missing 164, mock-only 157, n/a 553, partial
 
 ## 3. Rows that differ by a recorded decision, grouped by decision id
 
-- **no id in the row** (28 rows): App_Common App_Common-115 events OnSyncComplete, OnSyncError, OnSyncStart and the three ActionHandler_OnSy; App_Common App_Common-120 OnReady: LayoutReady, SetLang, AddFavicon("favicon.png"); OnDestroy: LayoutDestr; App_Common App_Common-123 OfflineDataSyncCore (OutSystemsUI) with OnSync, OnSyncStart, OnSyncComplete, OnC; App_Common App_Common-124 OnConfigure: OfflineDataSyncConfiguration → ConfigureOfflineDataSync; App_Common App_Common-125 OnSync: OfflineDataSync (empty), then EndOfflineDataSync: success, retryable err; App_Common App_Common-126 ActionHandler_OnSyncStart / Complete / Error Trigger; App_Common App_Common-158 TriggerOfflineDataSync (own action); App_Common App_Common-177 OfflineDataSync and OfflineDataSyncConfiguration (shared) …
+- **no id in the row** (29 rows): App_Common App_Common-054 ApplicationLoadEvents: the moment of load complete; App_Common App_Common-115 events OnSyncComplete, OnSyncError, OnSyncStart and the three ActionHandler_OnSy; App_Common App_Common-120 OnReady: LayoutReady, SetLang, AddFavicon("favicon.png"); OnDestroy: LayoutDestr; App_Common App_Common-123 OfflineDataSyncCore (OutSystemsUI) with OnSync, OnSyncStart, OnSyncComplete, OnC; App_Common App_Common-124 OnConfigure: OfflineDataSyncConfiguration → ConfigureOfflineDataSync; App_Common App_Common-125 OnSync: OfflineDataSync (empty), then EndOfflineDataSync: success, retryable err; App_Common App_Common-126 ActionHandler_OnSyncStart / Complete / Error Trigger; App_Common App_Common-158 TriggerOfflineDataSync (own action) …
 - **U17** (25 rows): Bookmarks Bookmarks-076 client action AuditBookmarkSubscriptionEvent (Connect2_LegacyShared); ContactFlow ContactFlow-045 Handler_SubmitForm: AddAuditEventDetailEvent; ContactFlow ContactFlow-046 Handler_SubmitForm: JSONSerialize + zOnApplicationEvent_Wrapper; ContactFlow ContactFlow-070 LDM true: AddAuditEventDetailEvent + JSONSerialize -> EventJSON; ContactFlow ContactFlow-072 [M1] zOnApplicationEvent_Wrapper; ContactFlow ContactFlow-089 Handler_SubmitForm: zOnApplicationEvent_Wrapper; ContactFlow ContactFlow-136 BR-UBTCON-045; ContactFlow ContactFlow-137 BR-UBTCON-046 …
 - **F40** (6 rows): Directory_SupperMeetings Directory_SupperMeetings-062 OnReady If restored (FromCache or FromHistory) -> end; Directory_SupperMeetings Directory_SupperMeetings-076 OnReady restored true -> end; Legacy_OrbitAdminFlow Legacy_OrbitAdminFlow-018 OnReady: WasCurrentViewRestoredFromCache JS node; Legacy_OrbitAdminFlow Legacy_OrbitAdminFlow-019 OnReady: If FromCache true branch; Legacy_OrbitAdminFlow Legacy_OrbitAdminFlow-056 OnReady: WasCurrentViewRestoredFromCache If; Legacy_LDMEventsFlow_V2 Legacy_LDMEventsFlow_V2-101 OnReady: restored from cache true
 - **U4** (4 rows): App_Common App_Common-030 AppManager_Callback routing: IdP_OnLogin → HomeFeed; PIN_NeedRegistration → PINR; App_Common App_Common-032 AppManager_Callback failure → FeedbackMessage_AutoClose(Message, MessageType, Me; App_Common App_Common-041 BR-UBTCON-304; App_Common App_Common-042 BR-UBTCON-305
@@ -241,6 +241,7 @@ Rows: 5332; differs 91, match 4204, missing 164, mock-only 157, n/a 553, partial
 - **D8(b** (2 rows): Home Home-049 Embedded_FeedCMS (UBTConnect_EmbedFeed.Blocks); Calendar Calendar-029 embed SDK stand-in
 - **CR-Photobook-1** (2 rows): Directory_Photobook Directory_Photobook-089 Handler_MinZoomReached: If CarouselToggleDrag.Success false -> JSUtils_Console_L; Directory_Photobook Directory_Photobook-091 Handler_ZoomIn: Success false -> JSUtils_Console_Log
 - **D3(a, U4** (1 rows): App_Common App_Common-018 AppManager_Events (UBT_AppManager), OnCallback → AppManager_Callback
+- **D3(a** (1 rows): App_Common App_Common-025 Login(isResetPassword True), from "Forgot Password?"
 - **CR-Splash-2, U14** (1 rows): App_Common App_Common-160 GetColdStartLinkURL (own action) and GetURLFromEventDataURL
 - **CR-PINUnlock-1** (1 rows): App_PIN App_PIN-043 Block_PINUnlockUnlock: empty LastURL
 - **U5** (1 rows): App_PIN App_PIN-074 PIN storage on the device
@@ -378,35 +379,17 @@ C2EnableCarousel (21), getHasExtendedShare (15), mobileOrbitAccess (12), getHasC
 
 | Flow | Row | Element | Question |
 |---|---|---|---|
-| App_Common | App_Common-025 | Login(isResetPassword True), from "Forgot Password?" | Q1: What does "Forgot Password?" do in the mock phase? TST sets the spinner, disables the Login button and opens the reset-password policy of the identity provi |
-| App_Common | App_Common-031 | AppManager_Callback IdP_OnResetPassword → FeedbackMessage_AutoClose(Message, Suc | Q1: What does "Forgot Password?" do in the mock phase? TST sets the spinner, disables the Login button and opens the reset-password policy of the identity provi |
-| App_Common | App_Common-054 | ApplicationLoadEvents: the moment of load complete | Q4: Which event ends the Splash load in React? The OSUI ApplicationLoadEvents waits for the runtime onLoadComplete, which is not in local code; React waits for  |
-| App_Policies | App_Policies-025 | AcceptedAll: Get_MemoryCacheKey_UniqueKey (UBTConnect_Utils) | Q1: Behaviour of Get_MemoryCacheKey_UniqueKey in module UBTConnect_Utils: not in the dump, no KB page. Is Key equal to Client.UniqueCacheKey, the key that Cache |
-| App_Policies | App_Policies-063 | GetDeviceInfo, web branch: UniqueId | Q2: Keep the device id in memory, or store it in localStorage["UUID"] as TST does? The code cites "AGENTS rule 16, Q4"; no ADR, CR, U decision or board row name |
-| Home | Home-111 | FetchUpdates and GetServices on a view restored from the cache (back navigation) | Does TST run FetchUpdates and GetServices again when HomeFeed comes back from the view cache (Q3)? |
-| App_Menu | App_Menu-040 | exception of OnClick_MenuOption and Action_Logout | Q1: what does the OnException of the UI flow App_Menu do? Does it delegate to App_Common, as the fetched flows do? |
-| App_Menu_ContactUs | App_Menu_ContactUs-122 | IsEmailValid (UBTConnectLibrary) | Q3 |
-| App_Menu_ContactUs | App_Menu_ContactUs-123 | IsPhoneNumberValid (UBTConnectLibrary) | Q3 |
-| App_Notifications | App_Notifications-069 | BR-UBTCON-982 | Q2: can the preload branch of ScreenEvent_OnInitialize run on TST? React does not port it. |
-| App_Services | App_Services-066 | BR-UBTCON-996 (drag of a mandatory row) | Q1 |
-| App_Services | App_Services-079 | SetupList internals (SortableJS.controller.js) | Q1 |
-| Directory_Photobook | Directory_Photobook-074 | OnInitialize_Carousel: javascript GetSplideCallbacks; SetSplideEvent("moved", Sp | Q1: Photobook_Carousel registers SplideEvent_Moved on the Splide 'moved' event; the handler only writes a debug line to the console (JSUtils_Console_Log). React |
-| Directory_Photobook | Directory_Photobook-076 | SplideEvent_Moved: JSUtils_Console_Log("New/Current: " + newIndex + " | Previous | Q1: Photobook_Carousel registers SplideEvent_Moved on the Splide 'moved' event; the handler only writes a debug line to the console (JSUtils_Console_Log). React |
-| Directory_Photobook | Directory_Photobook-105 | Strings "Carousel Toggle Drag Error - Code:", "| Message:", "| Previous:", "| De | Q1: Photobook_Carousel registers SplideEvent_Moved on the Splide 'moved' event; the handler only writes a debug line to the console (JSUtils_Console_Log). React |
-| Directory_OneSchoolGlobal | Directory_OneSchoolGlobal-056 | same-screen navigation with a new In_OneSchoolGlobalId | Q1: when this screen is open and a navigation opens it with another id, keep the React refetch or follow TST (no refetch)? |
-| Directory_Updates | Directory_Updates-073 | Handler_OnClickUpdateItem: CaptureScrollPosition (JS) | Q1 |
-| Directory_Updates | Directory_Updates-074 | Handler_OnClickUpdateItem: RememberFocusedScrollAnchor | Q1 |
-| Directory_Updates | Directory_Updates-148 | referenced block logic (UBTConnectLibrary / OutSystemsUI / NavigationHandler / U | Q2 |
-| Notes | Notes-110 | Handler_FilterSheetApplyFilters: Filter_Notes = In_FilterNotes (record reference | Q1: does TST send the selected years in DataActionGetNotes after Apply in the Notes filter sheet (record input shared by reference)? |
-| Legacy_OrbitEventsFlow | Legacy_OrbitEventsFlow-A121 | Block variables | Review pass (no user decision): compare the defaults of the 20 block variables of ScreenBlock_EventBooklet (TST model attributesToDeclare) with eventBookletStat |
-| Legacy_OrbitEventsFlow | Legacy_OrbitEventsFlow-B069 | OnHandle_ClickedMember: CheckDirectoryAccess | Review pass (no user decision): read the Type argument that ScreenBlock_GuestArrangements (:1635-1640) and ScreenBlock_HelperDetails (:1249) pass to CheckDirect |
-| Legacy_OrbitEventsFlow | Legacy_OrbitEventsFlow-B103 | OnHandle_ClickedMember | Review pass (no user decision): read the Type argument that ScreenBlock_GuestArrangements (:1635-1640) and ScreenBlock_HelperDetails (:1249) pass to CheckDirect |
-| Legacy_OrbitEventsFlow | Legacy_OrbitEventsFlow-J016 | Popup_OrbitLanding_Filters / Popup_OrbitLanding_Sort internals | Review pass (no user decision): compare the two popup blocks with their React ports. |
-| Legacy_OrbitEventsFlow | Legacy_OrbitEventsFlow-J017 | EventBooklet_ListHeader / EventBooklet_MembersItem / PopUp_OrbitBookletFilters i | Review pass (no user decision): compare the three booklet blocks with their React ports. |
-| Legacy_OrbitEventsFlow | Legacy_OrbitEventsFlow-J018 | Orbit_Blocks.TransportDetail / TransportDetail_TravelInfo internals | Review pass (no user decision): compare the two transport blocks with their React ports. |
-| Legacy_OrbitAdminFlow | Legacy_OrbitAdminFlow-031 | List of EventsSummary | Q2: what is the TST value of LaunchDarkly flag Mobile-Directory-list-virtualization, and must React read it? |
-| Directory_Caroussel | Directory_Caroussel-067 | client action Get_IsInsideRenderBuffer (shared) | Q1: behaviour of Get_IsInsideRenderBuffer in module UBTConnect: not in the pack, and migration/runtime-sources/UBTConnect.controller.js has no definition. Is it |
-| _shared | _shared-193 | on exception All Exceptions: ScreenController_RaiseError(message) | Q1: does an app-start failure show the exception toast on TST (ScreenController_RaiseError, UC:15397-15417, then the App_Common handler: U10 answer app-shell.sp |
+| Directory_Photobook | Directory_Photobook-074 | OnInitialize_Carousel: javascript GetSplideCallbacks; SetSplideEvent("moved", Sp | Not a capture: a recorded decision settles it. The user answer of 2026-10-27 (Directory_Photobook Q1) confirms that rows 074, 076 and 105 need a record; CR-Phot |
+| Directory_Photobook | Directory_Photobook-076 | SplideEvent_Moved: JSUtils_Console_Log("New/Current: " + newIndex + " | Previous | Not a capture: a recorded decision settles it, as for row 074 (user answer 2026-10-27, Directory_Photobook Q1). The log text is "New/Current: <new> | Previous:  |
+| Directory_Photobook | Directory_Photobook-105 | Strings "Carousel Toggle Drag Error - Code:", "| Message:", "| Previous:", "| De | Not a capture: a recorded decision settles it, as for row 074 (user answer 2026-10-27, Directory_Photobook Q1). The strings "Carousel Toggle Drag Error - Code:" |
+| Directory_OneSchoolGlobal | Directory_OneSchoolGlobal-056 | same-screen navigation with a new In_OneSchoolGlobalId | Q1 answered (c), then (a) (user decision 2026-10-27, Directory_OneSchoolGlobal Q1 (c)). Capture that settles it (read-only TST session): with OneSchoolGlobalDet |
+| Directory_Updates | Directory_Updates-073 | Handler_OnClickUpdateItem: CaptureScrollPosition (JS) | Q1 answered (b), then (a) (user decision 2026-10-27, Directory_Updates Q1 (b)). Capture that settles it (read-only TST session and the React app, same steps): o |
+| Directory_Updates | Directory_Updates-074 | Handler_OnClickUpdateItem: RememberFocusedScrollAnchor | Same capture as row 073 (user decision 2026-10-27, Directory_Updates Q1 (b)). RememberFocusedScrollAnchor (NavigationHandler) has no TST file in the survey; the |
+| Notes | Notes-110 | Handler_FilterSheetApplyFilters: Filter_Notes = In_FilterNotes (record reference | Q1 answered A (user decision 2026-10-27, Notes Q1 (A)): a capture settles the fact. Capture (read-only TST session): open Notes, open the filter sheet, select o |
+| Legacy_OrbitEventsFlow | Legacy_OrbitEventsFlow-J016 | Popup_OrbitLanding_Filters / Popup_OrbitLanding_Sort internals | Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Filters.mvc.js and Popup_OrbitLanding_Sort.m |
+| Legacy_OrbitEventsFlow | Legacy_OrbitEventsFlow-J017 | EventBooklet_ListHeader / EventBooklet_MembersItem / PopUp_OrbitBookletFilters i | Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_ListHeader.mvc.js, EventBooklet_MembersItem.mvc.js |
+| Legacy_OrbitEventsFlow | Legacy_OrbitEventsFlow-J018 | Orbit_Blocks.TransportDetail / TransportDetail_TravelInfo internals | Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail.mvc.js and TransportDetail_TravelInfo.mvc.js (m |
+| Legacy_OrbitAdminFlow | Legacy_OrbitAdminFlow-031 | List of EventsSummary | Q2 (no user answer yet). The value is not in the code: isListVirtualizationDisabled asks LaunchDarkly for Mobile-Directory-list-virtualization at run time (UBTC |
 
 ## 7. DEV vs TST lines per flow (report §6.1)
 

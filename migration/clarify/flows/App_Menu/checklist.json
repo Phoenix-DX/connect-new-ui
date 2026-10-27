@@ -451,11 +451,11 @@
       "element": "exception of OnClick_MenuOption and Action_Logout",
       "os": "no handler in the screen actions: an exception (for example of RequestPhotoUpdate) goes to the OnException of the UI flow App_Menu",
       "react": "menuOption(...).catch(raiseToFlowHandler): the App_Common flow handler (exception toast, logout on a security exception)",
-      "evidence": "app/src/pages/Menu/hooks/useMenu.ts:89-92; app/src/legacy/os/exceptions.ts:55-69; U10 (migration/app-shell.spec.md:342, 367)",
-      "verdict": "unclear",
-      "note": "The handler of App_Menu is not in the pack, and UBTConnect.App_Menu.controller.js is not in the TST sources.",
+      "evidence": "migration/shell/sources/UBTConnect.App_Menu.controller.js:12-16; app/src/pages/Menu/hooks/useMenu.ts:89-92; app/src/legacy/os/exceptions.ts:55-69; U10 (migration/app-shell.spec.md:367)",
+      "verdict": "match",
+      "note": "App_Menu Q1 (b): the TST flow controller is in migration/shell/sources/. Its handleError delegates to UBTConnect.App_Common.controller.handleError (UBTConnect.App_Menu.controller.js:12-16), as React does (raiseToFlowHandler).",
       "question": "Q1: what does the OnException of the UI flow App_Menu do? Does it delegate to App_Common, as the fetched flows do?",
-      "verified": "pack"
+      "verified": "live"
     },
     {
       "id": "App_Menu-041",

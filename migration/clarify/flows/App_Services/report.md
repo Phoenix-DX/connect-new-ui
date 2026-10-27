@@ -13,7 +13,7 @@ TST line numbers are the lines of `python3 migration/clarify/tools/tst_source.py
 
 ## 1. Summary
 
-- Counts by verdict: match 67 · partial 6 · missing 2 · differs 0 · mock-only 2 · n/a 2 · unclear 2 (same as `checklist.json`).
+- Counts by verdict: match 69 · partial 6 · missing 2 · differs 0 · mock-only 2 · n/a 2 · unclear 0 (same as `checklist.json`).
 - **F1** (major): after a failed save, React keeps `isLoading` True. The skeleton and the disabled loading button stay. TST
   resets `isLoading` in the CommunicationException and AllExceptions handlers.
 - **F2** (major): a failed `GetServices` fetch shows no toast in React. The runtime passes the error to the flow handler,
@@ -239,6 +239,15 @@ The KB files come from DEV (2026-10-05). In these two places a KB file disagrees
 | ui | 22 | 22 | 0 | 0 | 0 | 0 | 0 | 0 |
 | actions | 30 | 22 | 6 | 0 | 0 | 0 | 2 | 0 |
 | validations | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
-| logic | 10 | 8 | 0 | 0 | 0 | 0 | 0 | 2 |
+| logic | 10 | 10 | 0 | 0 | 0 | 0 | 0 | 0 |
 | strings | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **total** | **81** | **67** | **6** | **2** | **0** | **2** | **2** | **2** |
+| **total** | **81** | **69** | **6** | **2** | **0** | **2** | **2** | **0** |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| App_Services-066 | `unclear` | `match` | migration/shell/sources/SortableJS.controller.js:87, 149-167, 375-389; TST UBTConnect.App_Services.Services.mvc.js:209-212, 662-671; app/src/pages/Services/components/FavouriteServiceList.tsx:40; app/src/pages/Services/components/SuggestedServiceList.tsx:37, 52; app/src/pages/Services/components/setupList.ts:59-67 |
+| App_Services-079 | `unclear` | `match` | migration/shell/sources/SortableJS.controller.js:103-181, 202-340, 342-470; app/src/pages/Services/components/setupList.ts:32-217 |

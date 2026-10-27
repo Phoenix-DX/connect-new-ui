@@ -881,8 +881,8 @@
       "evidence": "TST Updates_SingleList.mvc.js:1824-1826, 3369-3384; app/src/platform/navigation/viewCache.ts:5-8; grep CaptureScrollPosition, scrollAnchorId in app/src: 0 hits",
       "verdict": "unclear",
       "note": "React comment says the anchor is remembered by the view cache of the shell ({H}:177-179 'Q1'); a code comment is not evidence | judge: TST stores the anchor id and its offset in localStorage before the navigation. React has no such step; the shell view cache stores scroll offsets instead (viewCache.ts:5-8). No recorded decision names this replacement.",
-      "verified": "pack",
-      "question": "Q1"
+      "verified": "live",
+      "question": "Q1 answered (b), then (a) (user decision 2026-10-27, Directory_Updates Q1 (b)). Capture that settles it (read-only TST session and the React app, same steps): open Updates_SingleList, scroll until an update is half visible, tap it, go Back; record the scroll offset of the list after Back, and on TST the localStorage keys scrollAnchorId and scrollAnchorDelta (Updates_SingleList.mvc.js:3369-3384). When the positions are equal, (a) applies: record the view cache under U19 and rows 073, 074 and 095 become differs; when they differ, F2 stands."
     },
     {
       "id": "Directory_Updates-074",
@@ -894,8 +894,8 @@
       "evidence": "TST Updates_SingleList.mvc.js:1829-1831; grep RememberFocusedScrollAnchor in app/src: 0 hits",
       "verdict": "unclear",
       "note": "module NavigationHandler; no KB page named in kb.md for it | judge: NavigationHandler RememberFocusedScrollAnchor(List_Updates, index, id) has no React call. KB updates.md marks NavigationHandler actions not-captured.",
-      "verified": "pack",
-      "question": "Q1"
+      "verified": "live",
+      "question": "Same capture as row 073 (user decision 2026-10-27, Directory_Updates Q1 (b)). RememberFocusedScrollAnchor (NavigationHandler) has no TST file in the survey; the capture compares the result, not the code."
     },
     {
       "id": "Directory_Updates-075",
@@ -1795,10 +1795,10 @@
       "element": "referenced block logic (UBTConnectLibrary / OutSystemsUI / NavigationHandler / UBTConnect_Utils)",
       "os": "Layout_MainPages_FixedTitle, CustomContainer, Icon, Input, HorizontalTagList, SkeletonSection, Update_ListItem, ScrollAnchor, ShareSheet, Badge, CircleButton, Columns_Two, CustomText, IconText: TST files named in references.md",
       "react": "React equivalents imported by the page and blocks (components/ui/*, components/feed/UpdateListItem/UpdateListItem.tsx:243 lines, containers/ShareSheet); not read here",
-      "evidence": "pack/references.md:37-47; migration/clarify/flows/Home/report.md (row 116)",
-      "verdict": "unclear",
-      "note": "reference-block logic belongs to other flows' checks (shared); the judge decides whether to open the TST file of Update_ListItem and Input (events Event_OnChange / Event_Submit debounce) | judge: Update_ListItem: the Home report row 116 checks its inputs and events. The internals of Input, HorizontalTagList, Layout_MainPages_FixedTitle, SkeletonSection, ScrollAnchor and ShareSheet are not checked against their TST files.",
-      "verified": "pack",
+      "evidence": "migration/clarify/flows/_libraries/report.md:54, 81-96, 382, 518, 527-529; migration/clarify/answers.json Directory_Updates:Q2",
+      "verdict": "n/a",
+      "note": "owned by flow _libraries, see its report (user decision 2026-10-27, Directory_Updates Q2 (a)). The shared pass checks Input (report §\"Input\", :81-96), Layout_MainPages_FixedTitle (:54), HorizontalTagList (F4, :529), SkeletonSection, ScrollAnchor (:382, :518) and ShareSheet (F2, F3, :527-528) against their TST files. Update_ListItem stays with the Home report (row 116).",
+      "verified": "live",
       "question": "Q2"
     },
     {

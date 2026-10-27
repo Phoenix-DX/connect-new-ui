@@ -1434,8 +1434,8 @@
       "evidence": "Notes_FilterSheet.js:72-73,386; Notes.js:582; app/src/pages/Notes/components/Notes_FilterSheet.tsx:60-67; app/src/pages/Notes/hooks/useNotes.ts:191-195",
       "verdict": "unclear",
       "note": "If the record is shared, TST sends the chosen years (and sort) to GetNotes on Apply; React never sends years.",
-      "verified": "pack",
-      "question": "Q1: does TST send the selected years in DataActionGetNotes after Apply in the Notes filter sheet (record input shared by reference)?"
+      "verified": "live",
+      "question": "Q1 answered A (user decision 2026-10-27, Notes Q1 (A)): a capture settles the fact. Capture (read-only TST session): open Notes, open the filter sheet, select one year, tap Apply; record the request body of DataActionGetNotes (Years and SortByNewest). Years present = the record is shared by reference and React must send the years (row becomes partial, finding); Years absent = match."
     },
     {
       "id": "Notes-111",

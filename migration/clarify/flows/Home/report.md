@@ -11,7 +11,7 @@
 
 ## 1. Summary
 
-- Counts by verdict: match 122 · partial 5 · missing 0 · differs 1 · mock-only 5 · n/a 14 · unclear 1 (same as `checklist.json`).
+- Counts by verdict: match 123 · partial 5 · missing 0 · differs 1 · mock-only 5 · n/a 14 · unclear 0 (same as `checklist.json`).
 - **F1** (minor): the subscription banner of an update without access shows plain text. TST shows an IconText with a lock
   icon in two centred containers.
 - **F2** (minor): the queries of GetServices and FetchUpdates keep the library cache defaults. A new visit to HomeFeed
@@ -503,10 +503,18 @@ Three KB texts agree with TST and not with the DEV pack: BR-UBTCON-056 (El Gusto
 | Area | Items | match | partial | missing | differs | mock-only | n/a | unclear |
 |---|---|---|---|---|---|---|---|---|
 | identity | 17 | 17 | 0 | 0 | 0 | 0 | 0 | 0 |
-| data | 11 | 3 | 2 | 0 | 0 | 5 | 0 | 1 |
+| data | 11 | 4 | 2 | 0 | 0 | 5 | 0 | 0 |
 | ui | 41 | 37 | 1 | 0 | 1 | 0 | 2 | 0 |
 | actions | 51 | 38 | 1 | 0 | 0 | 0 | 12 | 0 |
 | validations | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | logic | 20 | 19 | 1 | 0 | 0 | 0 | 0 | 0 |
 | strings | 8 | 8 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **total** | **148** | **122** | **5** | **0** | **1** | **5** | **14** | **1** |
+| **total** | **148** | **123** | **5** | **0** | **1** | **5** | **14** | **0** |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| Home-111 | `unclear` | `match` | migration/runtime-sources/OutSystemsReactView.js:7, 9; migration/runtime-sources/OutSystems.js:16-17; TST UBTConnect.Home.FeedBlock_Updates.mvc.js:1301; app/src/platform/navigation/viewCache.ts:73-80; app/src/api/update/hooks.ts:10-16; app/src/api/service/hooks.ts:27-33 |

@@ -18,7 +18,7 @@ TST line numbers: a number from `tst_source.py grep` is one lower than the same 
 
 ## 1. Summary
 
-- Counts by verdict: match 315 · partial 16 · missing 69 · differs 5 · mock-only 18 · n/a 9 · unclear 6 (438 rows,
+- Counts by verdict: match 317 · partial 17 · missing 69 · differs 5 · mock-only 18 · n/a 9 · unclear 3 (438 rows,
   same as `checklist.json`).
 - F1 (blocker): the HostSurvey wizard is a `NotCaptured` placeholder. The data steps, the footer, the five popups,
   the item blocks, the four note inputs and the PostHostSurvey call are not built. A host cannot answer or submit
@@ -515,12 +515,25 @@ surname split (A175, not built).
 | Area | Items | match | partial | missing | differs | mock-only | n/a | unclear |
 |---|---|---|---|---|---|---|---|---|
 | identity | 7 | 6 | 0 | 0 | 0 | 0 | 1 | 0 |
-| data | 108 | 70 | 0 | 16 | 0 | 18 | 3 | 1 |
+| data | 108 | 70 | 1 | 16 | 0 | 18 | 3 | 0 |
 | ui | 74 | 60 | 3 | 7 | 0 | 0 | 1 | 3 |
-| actions | 166 | 122 | 9 | 26 | 4 | 0 | 3 | 2 |
+| actions | 166 | 124 | 9 | 26 | 4 | 0 | 3 | 0 |
 | validations | 11 | 4 | 0 | 7 | 0 | 0 | 0 | 0 |
 | logic | 47 | 42 | 4 | 0 | 1 | 0 | 0 | 0 |
 | strings | 25 | 11 | 0 | 13 | 0 | 0 | 1 | 0 |
-| **total** | 438 | 315 | 16 | 69 | 5 | 18 | 9 | 6 |
+| **total** | 438 | 317 | 17 | 69 | 5 | 18 | 9 | 3 |
 
 Rows per finding: F1 68 · F2 7 · F3 5 · F4 2 · F5 1 · F6 1 · F7 1.
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| Legacy_OrbitEventsFlow-A121 | `unclear` | `partial` | migration/runtime-sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_EventBooklet.ScreenBlock_EventBooklet.mvc.js:82-143, 2958, 2987; app/src/pages/EventBooklet/hooks/eventBookletState.ts:62-91; app/src/pages/EventBooklet/hooks/eventBookletDataFlows.ts:88-90 |
+| Legacy_OrbitEventsFlow-B069 | `unclear` | `match` | migration/runtime-sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_GuestArrangements.mvc.js:491, 1637; Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js:257, 336; app/src/pages/GuestArrangements/hooks/useGuestArrangements.ts:82 |
+| Legacy_OrbitEventsFlow-B103 | `unclear` | `match` | migration/runtime-sources/Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_HelperDetails.mvc.js:472, 1245; Connect2_OrbitMobile_MUI.Orbit_Blocks.Card_MemberInformation.mvc.js:257, 336; app/src/pages/HelpersDetail/hooks/useHelperDetails.ts:122-137 |
+| Legacy_OrbitEventsFlow-J016 | `unclear` | `unclear` | Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.Popup_OrbitLanding_Filters.mvc.js and Popup_OrbitLanding_Sort.mvc.js (migration/runtime-sources/) with app/src/pages/OrbitLanding/components/Popup_OrbitLanding_Filters.tsx and Popup_OrbitLanding_Sort.tsx, row by row (UI tree, actions, strings). The follow-up pass did not do it (budget). |
+| Legacy_OrbitEventsFlow-J017 | `unclear` | `unclear` | Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.EventBooklet_ListHeader.mvc.js, EventBooklet_MembersItem.mvc.js and PopUp_OrbitBookletFilters.mvc.js (migration/runtime-sources/) with the three React files under app/src/pages/EventBooklet/components/. The follow-up pass did not do it (budget). |
+| Legacy_OrbitEventsFlow-J018 | `unclear` | `unclear` | Not a capture: a reader and judge pass settles it. Compare Connect2_OrbitMobile_MUI.Orbit_Blocks.TransportDetail.mvc.js and TransportDetail_TravelInfo.mvc.js (migration/runtime-sources/) with app/src/pages/TransportDetail/components/TransportDetail.tsx and TransportDetail_TravelInfo.tsx. The follow-up pass did not do it (budget). |

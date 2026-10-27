@@ -11,7 +11,7 @@
 
 ## 1. Summary
 
-- Counts by verdict: match 129 · partial 4 · missing 3 · differs 19 · mock-only 4 · n/a 20 · unclear 3 (same as `checklist.json`, 182 rows).
+- Counts by verdict: match 129 · partial 4 · missing 3 · differs 21 · mock-only 4 · n/a 21 · unclear 0 (same as `checklist.json`, 182 rows).
 - **F1** (major): the React flow handler has no BubbleCommunicationException branch. A non-ok answer shows "Request failed with status N" as an error. TST shows "Service Interruption".
 - **F2** (minor): "Forgot Password?" on Login does nothing in React. No decision record names this behaviour (Q1).
 - **F3** (minor): the device-awareness branch of Login OnReady compares CallbackType with a wrong constant, and the security warning dialog never opens (Q3).
@@ -439,10 +439,19 @@ with the DEV pack. React follows TST in each place.
 |---|---|---|---|---|---|---|---|---|
 | identity | 19 | 17 | 0 | 0 | 1 | 0 | 1 | 0 |
 | data | 6 | 2 | 0 | 0 | 0 | 3 | 1 | 0 |
-| ui | 58 | 43 | 0 | 0 | 4 | 0 | 10 | 1 |
-| actions | 43 | 26 | 1 | 1 | 6 | 1 | 6 | 2 |
+| ui | 58 | 43 | 0 | 0 | 5 | 0 | 10 | 0 |
+| actions | 43 | 26 | 1 | 1 | 7 | 1 | 7 | 0 |
 | validations | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
 | logic | 48 | 35 | 3 | 2 | 7 | 0 | 1 | 0 |
 | strings | 7 | 5 | 0 | 0 | 1 | 0 | 1 | 0 |
-| **total** | **182** | **129** | **4** | **3** | **19** | **4** | **20** | **3** |
+| **total** | **182** | **129** | **4** | **3** | **21** | **4** | **21** | **0** |
 
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| App_Common-025 | `unclear` | `differs` | app/src/pages/Login/hooks/useLogin.ts:97-99; TST UBTConnect.App_Common.Login.mvc.js:719-730; BR-UBTCON-303; migration/clarify/answers.json App_Common:Q1 |
+| App_Common-031 | `unclear` | `n/a` | TST UBTConnect.App_Common.Login.mvc.js:865-868; BR-UBTCON-305; migration/clarify/answers.json App_Common:Q1 |
+| App_Common-054 | `unclear` | `differs` | app/src/pages/Splash/hooks/useApplicationLoadEvents.ts:13-16, 45-54; TST OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js:578-583; migration/clarify/answers.json App_Common:Q4 |

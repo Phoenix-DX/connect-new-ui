@@ -10,7 +10,7 @@
 
 ## 1. Summary
 
-- Counts by verdict: match 69 · partial 0 · missing 0 · differs 0 · mock-only 0 · n/a 24 · unclear 1 (same as `checklist.json`).
+- Counts by verdict: match 70 · partial 0 · missing 0 · differs 0 · mock-only 0 · n/a 24 · unclear 0 (same as `checklist.json`).
 - No finding. React follows TST for each block of the flow.
 - Q1: the body of the shared action Get_IsInsideRenderBuffer is not in the TST files read.
 - Three DEV elements are not on TST: the OneSchoolGlobal carousel, RemoveCarouselOnResizeHandler and two extra CarouselTag instances.
@@ -116,6 +116,14 @@ None.
 | ui | 14 | 12 | 0 | 0 | 0 | 0 | 2 | 0 |
 | actions | 5 | 5 | 0 | 0 | 0 | 0 | 0 | 0 |
 | validations | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| logic | 30 | 25 | 0 | 0 | 0 | 0 | 4 | 1 |
+| logic | 30 | 26 | 0 | 0 | 0 | 0 | 4 | 0 |
 | strings | 6 | 2 | 0 | 0 | 0 | 0 | 4 | 0 |
-| **total** | **94** | **69** | **0** | **0** | **0** | **0** | **24** | **1** |
+| **total** | **94** | **70** | **0** | **0** | **0** | **0** | **24** | **0** |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| Directory_Caroussel-067 | `unclear` | `match` | migration/runtime-sources/UBTConnect.controller.js:4444-4466; app/src/lib/ubtConnect/actions.ts:525-533; TST EntitiesCarousel_Element.mvc.js:425-435 |

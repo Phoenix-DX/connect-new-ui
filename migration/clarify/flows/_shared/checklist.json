@@ -2318,11 +2318,12 @@
       "element": "on exception All Exceptions: ScreenController_RaiseError(message)",
       "os": "shows the error message; system exceptions are re-thrown",
       "react": "app/src/platform/bootstrap/appStartSteps.ts:192-196 `catch (e) { log.error('OnApplicationReady failed', e); }`",
-      "evidence": "app/src/platform/bootstrap/appStartSteps.ts:192-196",
-      "verdict": "unclear",
-      "note": "React comment :193-195: no toast yet (U10 open). TST: UBTConnect.controller.js:15397-15417 `if(!(OS.Exceptions.isSystem(ex)))`.",
-      "verified": "pack",
-      "question": "Q1: does an app-start failure show the exception toast on TST (ScreenController_RaiseError, UC:15397-15417, then the App_Common handler: U10 answer app-shell.spec.md:367), and should React show it? React logs only (appStartSteps.ts:192-196)."
+      "evidence": "migration/runtime-sources/UBTConnect.controller.js:15398-15417; migration/runtime-sources/OutSystems.js:2; migration/shell/sources/UBTJavaScriptUtils.controller.js:3842, 3900; migration/app-shell.spec.md:367; app/src/platform/bootstrap/appStartSteps.ts:192-196",
+      "verdict": "missing",
+      "note": "Settled from the runtime and the TST code. OnApplicationReady catches every exception; when it is not a system exception it calls ScreenController_RaiseError(message) (UBTConnect.controller.js:15398-15415); a system exception is re-thrown (:15417). isSystem = instance of SystemException (OutSystems.js:2), so an Error thrown by a step is not system. ScreenController_RaiseError calls screenController.handleError(new Error(message)) (UBTJavaScriptUtils.controller.js:3900): the App_Common handler shows the exception toast (U10, app-shell.spec.md:367). React logs only (appStartSteps.ts:192-196): the toast is missing. Candidate finding (no id yet).",
+      "verified": "live",
+      "question": "Q1: does an app-start failure show the exception toast on TST (ScreenController_RaiseError, UC:15397-15417, then the App_Common handler: U10 answer app-shell.spec.md:367), and should React show it? React logs only (appStartSteps.ts:192-196).",
+      "severity": "minor"
     },
     {
       "id": "_shared-194",

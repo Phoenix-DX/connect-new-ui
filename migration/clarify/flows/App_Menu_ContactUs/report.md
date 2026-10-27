@@ -11,7 +11,7 @@
 
 ## 1. Summary
 
-- Counts by verdict: match 104 · partial 11 · missing 21 · differs 0 · mock-only 3 · n/a 6 · unclear 2 (same as `checklist.json`).
+- Counts by verdict: match 104 · partial 13 · missing 21 · differs 0 · mock-only 3 · n/a 6 · unclear 0 (same as `checklist.json`).
 - **F1** (blocker): ContactUsDetails does not build the form of a signed-out user. Full Name, Email, Phone Number,
   the Country list and Locality are absent, so Send stays disabled for a signed-out user.
 - **F2** (major): the rating block ContactUs_Rate is not built. On the feedback subject the user cannot give a
@@ -375,6 +375,15 @@ Not a difference: the pack does not print the MaxLength of the four inputs. TST 
 | ui | 45 | 32 | 0 | 9 | 0 | 0 | 4 | 0 |
 | actions | 39 | 33 | 1 | 4 | 0 | 0 | 1 | 0 |
 | validations | 14 | 6 | 3 | 5 | 0 | 0 | 0 | 0 |
-| logic | 25 | 16 | 6 | 1 | 0 | 0 | 0 | 2 |
+| logic | 25 | 16 | 8 | 1 | 0 | 0 | 0 | 0 |
 | strings | 4 | 2 | 0 | 1 | 0 | 0 | 1 | 0 |
-| **total** | **147** | **104** | **11** | **21** | **0** | **3** | **6** | **2** |
+| **total** | **147** | **104** | **13** | **21** | **0** | **3** | **6** | **0** |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| App_Menu_ContactUs-122 | `unclear` | `partial` | migration/runtime-sources/UBTConnectLibrary.controller.js:7565-7569; TST UBTConnect.App_Menu_ContactUs.ContactUsDetails.mvc.js:1918; app/src/pages/ContactUsDetails/hooks/contactUsDetailsState.ts:130-133 |
+| App_Menu_ContactUs-123 | `unclear` | `partial` | migration/runtime-sources/UBTConnectLibrary.controller.js:7647-7666; TST UBTConnect.App_Menu_ContactUs.ContactUsDetails.mvc.js:1939; app/src/pages/ContactUsDetails/hooks/contactUsDetailsState.ts:135-138 |

@@ -286,13 +286,13 @@
       "element": "Login(isResetPassword True), from \"Forgot Password?\"",
       "os": "IsResettingPassword = True, then AppManager_Login(True, ConfirmationDialog_ResetPassword.Id): the reset-password policy of the identity provider (BR-UAM-427)",
       "react": "validation.validate('') only: no spinner, no disabled Login button, no call, no message",
-      "evidence": "app/src/pages/Login/hooks/useLogin.ts:97-99; TST UBTConnect.App_Common.Login.mvc.js:719-730; BR-UBTCON-303",
-      "verdict": "unclear",
+      "evidence": "app/src/pages/Login/hooks/useLogin.ts:97-99; TST UBTConnect.App_Common.Login.mvc.js:719-730; BR-UBTCON-303; migration/clarify/answers.json App_Common:Q1",
+      "verdict": "differs",
       "severity": "minor",
       "finding": "F2",
-      "note": "No decision record names this. The code comment cites a past question (not evidence).",
+      "note": "user decision 2026-10-27, App_Common Q1 (a): the real reset-password page of the identity provider is not migrated (D3(a)); React keeps no action on \"Forgot Password?\".",
       "question": "Q1: What does \"Forgot Password?\" do in the mock phase? TST sets the spinner, disables the Login button and opens the reset-password policy of the identity provider; React does nothing visible.",
-      "verified": "pack"
+      "verified": "live"
     },
     {
       "id": "App_Common-026",
@@ -359,13 +359,13 @@
       "element": "AppManager_Callback IdP_OnResetPassword → FeedbackMessage_AutoClose(Message, Success, MessageTitle)",
       "os": "a success toast; the user stays on Login",
       "react": "no reset-password path",
-      "evidence": "TST UBTConnect.App_Common.Login.mvc.js:865-868; BR-UBTCON-305",
-      "verdict": "unclear",
+      "evidence": "TST UBTConnect.App_Common.Login.mvc.js:865-868; BR-UBTCON-305; migration/clarify/answers.json App_Common:Q1",
+      "verdict": "n/a",
       "severity": "minor",
       "finding": "F2",
-      "note": "It depends on the answer to Q1.",
+      "note": "user decision 2026-10-27, App_Common Q1 (a): the reset-password path is out of scope in the mock phase, so the IdP_OnResetPassword callback cannot run (TST Login.mvc.js:865-868).",
       "question": "Q1: What does \"Forgot Password?\" do in the mock phase? TST sets the spinner, disables the Login button and opens the reset-password policy of the identity provider; React does nothing visible.",
-      "verified": "pack"
+      "verified": "live"
     },
     {
       "id": "App_Common-032",
@@ -637,11 +637,11 @@
       "element": "ApplicationLoadEvents: the moment of load complete",
       "os": "the runtime ApplicationLifecycle onLoadComplete (runtime code, not in local sources)",
       "react": "the end of the app start of the shell (appReady)",
-      "evidence": "app/src/pages/Splash/hooks/useApplicationLoadEvents.ts:13-16, 45-54; TST OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js:578-583",
-      "verdict": "unclear",
-      "note": "The code comment calls this point open.",
+      "evidence": "app/src/pages/Splash/hooks/useApplicationLoadEvents.ts:13-16, 45-54; TST OutSystemsUI_2_23.Private.ApplicationLoadEvents.mvc.js:578-583; migration/clarify/answers.json App_Common:Q4",
+      "verdict": "differs",
+      "note": "user decision 2026-10-27, App_Common Q4 (a): React ends the Splash load at the end of the app start of the shell (appReady), because the routing after the animation needs the session state.",
       "question": "Q4: Which event ends the Splash load in React? The OSUI ApplicationLoadEvents waits for the runtime onLoadComplete, which is not in local code; React waits for the end of the app start of the shell.",
-      "verified": "pack"
+      "verified": "live"
     },
     {
       "id": "App_Common-055",

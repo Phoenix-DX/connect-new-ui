@@ -11,7 +11,7 @@
 
 ## 1. Summary
 
-- Counts by verdict: match 102 · partial 2 · missing 4 · differs 0 · mock-only 2 · n/a 9 · unclear 1 (same as `checklist.json`, 120 rows).
+- Counts by verdict: match 102 · partial 2 · missing 4 · differs 0 · mock-only 2 · n/a 10 · unclear 0 (same as `checklist.json`, 120 rows).
 - **F1** (major): the empty state `Notifications_NoItemsFound` is not built. A user without notifications sees an empty
   content area instead of "No Notifications Found".
 - **F2** (major): `Notifications_Header` always shows its badge. TST shows the badge only when the section has unread
@@ -470,6 +470,14 @@ React follows TST in each place.
 | ui | 36 | 31 | 1 | 2 | 0 | 0 | 2 | 0 |
 | actions | 38 | 33 | 0 | 0 | 0 | 0 | 5 | 0 |
 | validations | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
-| logic | 19 | 16 | 1 | 1 | 0 | 0 | 0 | 1 |
+| logic | 19 | 16 | 1 | 1 | 0 | 0 | 1 | 0 |
 | strings | 9 | 7 | 0 | 1 | 0 | 0 | 1 | 0 |
-| **total** | **120** | **102** | **2** | **4** | **0** | **2** | **9** | **1** |
+| **total** | **120** | **102** | **2** | **4** | **0** | **2** | **10** | **0** |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| App_Notifications-069 | `unclear` | `n/a` | TST Notifications.mvc.js:1470-1515; app/src/pages/Notifications/hooks/notificationsState.ts:93-97; BR-UBTCON-982; migration/clarify/answers.json App_Notifications:Q2 |

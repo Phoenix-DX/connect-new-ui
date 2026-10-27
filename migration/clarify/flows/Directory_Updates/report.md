@@ -10,7 +10,7 @@
 
 ## 1. Summary
 
-- Counts by verdict: match 125 · partial 3 · missing 5 · differs 0 · mock-only 5 · n/a 8 · unclear 3 (same as `checklist.json`).
+- Counts by verdict: match 125 · partial 3 · missing 5 · differs 0 · mock-only 5 · n/a 9 · unclear 2 (same as `checklist.json`).
 - F1 (major): React does not build the empty state `Updates_NoItemsFound`. A completed fetch with no update shows a `NotCaptured` marker. TST shows a calendar icon, "No Updates Found" and "We were unable to find any Updates to display."
 - F2 (minor): on Back to a restored view, React restores the scroll offsets through the shell view cache. TST uses its own anchor mechanism (`CaptureScrollPosition`, `RememberFocusedScrollAnchor`, `GetFocusedScrollAnchorOnBack`, `ScrollFix`) and `ReactiveInstance_ForceUpdate`. No recorded decision names this replacement (Q1).
 - F3 (minor): the mock of `DataActionFetchUpdates` ignores `Filter_Updates`. The chips, the search and the filter sheet do not change the list, and the empty state cannot appear in the demo.
@@ -283,6 +283,16 @@ None found.
 | ui | 34 | 32 | 1 | 1 | 0 | 0 | 0 | 0 |
 | actions | 55 | 49 | 1 | 0 | 0 | 0 | 3 | 2 |
 | validations | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
-| logic | 23 | 19 | 1 | 0 | 0 | 0 | 2 | 1 |
+| logic | 23 | 19 | 1 | 0 | 0 | 0 | 3 | 0 |
 | strings | 8 | 4 | 0 | 3 | 0 | 0 | 1 | 0 |
-| **total** | 149 | 125 | 3 | 5 | 0 | 5 | 8 | 3 |
+| **total** | 149 | 125 | 3 | 5 | 0 | 5 | 9 | 2 |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| Directory_Updates-073 | `unclear` | `unclear` | Q1 answered (b), then (a) (user decision 2026-10-27, Directory_Updates Q1 (b)). Capture that settles it (read-only TST session and the React app, same steps): open Updates_SingleList, scroll until an update is half visible, tap it, go Back; record the scroll offset of the list after Back, and on TST the localStorage keys scrollAnchorId and scrollAnchorDelta (Updates_SingleList.mvc.js:3369-3384). When the positions are equal, (a) applies: record the view cache under U19 and rows 073, 074 and 095 become differs; when they differ, F2 stands. |
+| Directory_Updates-074 | `unclear` | `unclear` | Same capture as row 073 (user decision 2026-10-27, Directory_Updates Q1 (b)). RememberFocusedScrollAnchor (NavigationHandler) has no TST file in the survey; the capture compares the result, not the code. |
+| Directory_Updates-148 | `unclear` | `n/a` | migration/clarify/flows/_libraries/report.md:54, 81-96, 382, 518, 527-529; migration/clarify/answers.json Directory_Updates:Q2 |

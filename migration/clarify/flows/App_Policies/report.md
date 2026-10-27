@@ -11,7 +11,7 @@
 
 ## 1. Summary
 
-- Counts by verdict: match 73 · partial 6 · missing 0 · differs 2 · mock-only 2 · n/a 5 · unclear 2 (same as `checklist.json`).
+- Counts by verdict: match 74 · partial 6 · missing 1 · differs 2 · mock-only 2 · n/a 5 · unclear 0 (same as `checklist.json`).
 - **F1** (major): the screen sends the names of the Connect_Applications records as `PolicyApplications`. TST sends
   the record identifiers (GUID texts). The production server gets other application ids than TST sends.
 - **F2** (minor): the pending-policies query fetches again after an offline-then-online event and clears every tick.
@@ -301,8 +301,17 @@ prints a line break after "Connect and Directory".
 | identity | 11 | 11 | 0 | 0 | 0 | 0 | 0 | 0 |
 | data | 9 | 7 | 1 | 0 | 0 | 1 | 0 | 0 |
 | ui | 24 | 22 | 2 | 0 | 0 | 0 | 0 | 0 |
-| actions | 27 | 16 | 2 | 0 | 2 | 1 | 4 | 2 |
+| actions | 27 | 17 | 2 | 1 | 2 | 1 | 4 | 0 |
 | validations | 2 | 2 | 0 | 0 | 0 | 0 | 0 | 0 |
 | logic | 14 | 12 | 1 | 0 | 0 | 0 | 1 | 0 |
 | strings | 3 | 3 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **total** | **90** | **73** | **6** | **0** | **2** | **2** | **5** | **2** |
+| **total** | **90** | **74** | **6** | **1** | **2** | **2** | **5** | **0** |
+
+## 9. Follow-up pass (2026-10-27)
+
+Rows settled or sharpened after the user answers of 2026-10-27 and the TST files that `tst_source.py` reads. A row that stays `unclear` has a new question that names what settles it. Every row below has `verified: "live"`.
+
+| Row | Old verdict | New verdict | Evidence |
+|---|---|---|---|
+| App_Policies-025 | `unclear` | `match` | migration/runtime-sources/UBTConnect_Utils.controller.js:2383-2384; app/src/pages/AcceptPendingPolicies/hooks/useAcceptPendingPolicies.ts:60; app/src/platform/session/session.ts:207-208 |
+| App_Policies-063 | `unclear` | `missing` | app/src/pages/AcceptPendingPolicies/actions.ts:50-66; TST UBTConnect.App_Policies.Policy_Custom_AcceptPendingPolicies.mvc.js:1385-1387; BR-UBTCON-943; migration/clarify/answers.json App_Policies:Q2 |
