@@ -4,22 +4,23 @@ Usage (from the project root):
   python3 migration/clarify/tools/tst_source.py list [Pattern]          # file names that contain Pattern
   python3 migration/clarify/tools/tst_source.py show <FileName|Name|Pattern> # exact file, else `.<Name>.mvc.js`, else first substring match
   python3 migration/clarify/tools/tst_source.py grep <Regex> [Pattern]  # lines that match, in files that contain Pattern
-Sources: capture/survey-UBTConnect.json (640 compiled screen and block files, `.mvc.js`) and migration/runtime-sources/
-(module and flow controllers, plugins, libraries). Module client actions live in `<Module>.controller.js` files.
+Sources: capture/survey-UBTConnect.json (640 compiled screen and block files, `.mvc.js`), migration/runtime-sources/ and
+migration/shell/sources/ (module and flow controllers, client variables, plugins, libraries). Module client actions live in `<Module>.controller.js` files.
 TST is the source of truth: use it when the DEV model (packs) and the React app differ, or when a DEV fact needs a check.
 """
 import json, re, sys
 
 SURVEY = "capture/survey-UBTConnect.json"
-RUNTIME = "migration/runtime-sources"
+RUNTIME = ["migration/runtime-sources", "migration/shell/sources"]
 
 
 def load():
     import os
     src = dict(json.load(open(SURVEY))["sources"])
-    for f in sorted(os.listdir(RUNTIME)) if os.path.isdir(RUNTIME) else []:
-        if f.endswith(".js") and f not in src:
-            src[f] = open(os.path.join(RUNTIME, f), encoding="utf-8", errors="ignore").read()
+    for d in RUNTIME:
+        for f in sorted(os.listdir(d)) if os.path.isdir(d) else []:
+            if f.endswith(".js") and f not in src:
+                src[f] = open(os.path.join(d, f), encoding="utf-8", errors="ignore").read()
     return src
 
 
