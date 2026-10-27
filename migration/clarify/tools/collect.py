@@ -13,7 +13,9 @@ GROUPS = {
     "G3": ["Bookmarks", "Notes", "Calendar", "ContactFlow", "Legacy_Share", "Legacy_MyNotificationsFlow"],
     "G4": ["Legacy_OrbitEventsFlow", "Legacy_OrbitAdminFlow", "Legacy_OrbitQRCodeFlow", "Legacy_LDMEventsFlow", "Legacy_LDMEventsFlow_V2", "Legacy_AssembleFlow"],
     "G5": ["Map", "Deprecated_Calendar_PersonalEvent", "zTemp_Flow", "zDEV_Directory_CommunityBusinessBlocks"],
-    "X": ["_shared"],
+    "X": ["App_Cache", "App_Common_Blocks", "App_Common_Blocks_PopupDialogs", "SubLayout", "App_CommonBlocks_Filter", "Directory_CommonBlocks",
+          "Directory_Caroussel", "Directory_Interchange", "Directory_Household_Blocks", "Directory_OneSchoolGlobal_Blocks", "Calendar_Events",
+          "_shared", "_libraries"],
 }
 VERDICTS = ["match", "partial", "missing", "differs", "mock-only", "n/a", "unclear"]
 SEV = ["blocker", "major", "minor", "info"]
