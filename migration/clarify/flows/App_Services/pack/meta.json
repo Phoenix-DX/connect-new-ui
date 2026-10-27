@@ -1,0 +1,31 @@
+{
+ "flow": "App_Services",
+ "screens": [
+  "Services"
+ ],
+ "ownBlocks": [],
+ "usedBlocks": [
+  "SectionSeparator"
+ ],
+ "referencedBlocks": [
+  "Button",
+  "ButtonLoading",
+  "Columns_Three",
+  "Columns_Two",
+  "CustomContainer",
+  "CustomText",
+  "FixedFooter",
+  "Icon",
+  "IconText",
+  "Layout_DetailPage",
+  "SkeletonSection",
+  "SortableList",
+  "SortableList_Draggable"
+ ],
+ "clientActions": [],
+ "serverActions": [
+  "Service_ConnectServices_ChangeOrder_Bulk",
+  "Service_ConnectServices_GetByUser"
+ ],
+ "externalSites": []
+}

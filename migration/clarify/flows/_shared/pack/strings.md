@@ -1,0 +1,69 @@
+# Shared pack: block-only flows and shared client actions (DEV model, MCP dump 2026-10-27)
+
+Source: Service Studio (DEV) through the MCP, module UBTConnect. Reference only: TST is the source of truth.
+
+## String literals (user-visible candidates; JavaScript and Style values excluded)
+
+- "Sort by"  ← SortBy_Title.DefaultValue
+- "Sort & Filter"  ← FilterSheet.Value
+- "No results found for ‘"  ← SearchEmpty.Value
+- "We couldn’t find an item that matches your search. Please check your spelling or try different keywords."  ← SearchEmpty.Value
+- "Mark all as read"  ← MoreActionSheet.Value
+- "Delete all notifications"  ← MoreActionSheet.Value
+- "Nothing in your calendar."  ← Calendar_NoEvents.Value
+- "No change today"  ← Directory_CommunityNumbers.Value
+- "found nearby"  ← Location.DefaultValue
+- "There doesn't seem to be any"  ← Directory_EmptyState.Value
+- "this locality."  ← Directory_EmptyState.Value
+- "Bookmarks not available"  ← GetBookmarkCategoryId_ByEntityTypeId.ExceptionMessage, OnReady.ExceptionMessage
+- "Invalid option"  ← OnReady.ExceptionMessage
+- "Household members"  ← Members.Value
+- "in this locality"  ← Directory_Interchange_StatisticsList.Value
+- "Sports Day Extravaganza: Igniting the Team Spirit"  ← Get_OneSchoolGlobal_EventList.Value
+- "School gathering"  ← Get_OneSchoolGlobal_EventList.Value
+- "LocalityId = Filter_LocalityId"  ← ScreenEvent_OnParametersChanged.Value
+- "Educating Students From:"  ← OneSchoolGlobal_DetailCard_Content.Value
+- "Select calendar year"  ← Block_CalendarYears_Label.Value
+- "Total students"  ← Block_CalendarYearFilter.Value
+- "Total per year"  ← OneSchoolGlobal_Numbers.Value
+- "d MMM"  ← FormatEventDescriptionTime.Value
+- "All day"  ← FormatEventDescriptionTime.Value
+- "dd MMM"  ← FormatEventDescriptionTime.Value
+- "h:mm tt"  ← FormatEventDescriptionTime.Value
+- "Notes not available"  ← Get_NoteCategoryId_ByEntityTypeId.ExceptionMessage
+- "d MMM, yyyy"  ← FormatEndDate.DefaultValue, Get_UserEventFormFormattedDate.Value
+- "Does not repeat"  ← GetRecurrenceDescription.Value
+- "other day"  ← GetRecurrenceDescription.Value
+- "weeks on"  ← GetRecurrenceDescription.Value
+- "on day"  ← GetRecurrenceDescription.Value
+- "of every"  ← GetRecurrenceDescription.Value
+- "other month"  ← GetRecurrenceDescription.Value
+- "every other"  ← GetRecurrenceDescription.Value
+- "months on the"  ← GetRecurrenceDescription.Value
+- "of the month"  ← GetRecurrenceDescription.Value
+- "every year on"  ← GetRecurrenceDescription.Value
+- "Lord's Day"  ← GetDayLabel.Value, GetRecurrentWeekdaysLabelByRecurrence.Value
+- "Supper Meetings"  ← GetIconLabel_Interchange_Statistics.Value
+- "Don’t remind me"  ← Get_LookupReminderType.Value
+- "5 minutes before"  ← Get_LookupReminderType.Value
+- "15 minutes before"  ← Get_LookupReminderType.Value
+- "30 minutes before"  ← Get_LookupReminderType.Value
+- "1 hour before"  ← Get_LookupReminderType.Value
+- "2 hours before"  ← Get_LookupReminderType.Value
+- "12 hours before"  ← Get_LookupReminderType.Value
+- "1 day before"  ← Get_LookupReminderType.Value
+- "1 week before"  ← Get_LookupReminderType.Value
+- "At the time of the event"  ← Get_LookupReminderType.Value
+- "Day of event at 9:00 AM"  ← Get_LookupReminderType.Value
+- "Day before event at 9:00 AM"  ← Get_LookupReminderType.Value
+- "Day before event at 5:00 PM"  ← Get_LookupReminderType.Value
+- "1 week before event at 5:00 PM"  ← Get_LookupReminderType.Value
+- "Subdivision Name Example"  ← GetSkeleton_UI_SubdivisionCardContent.Value
+- "Subdivision Formatted Address Example"  ← GetSkeleton_UI_SubdivisionCardContent.Value
+- "Example & Example"  ← GetSkeleton_UI_HouseholdCardContent.Value
+- "Example, Example, Example, Example"  ← GetSkeleton_UI_HouseholdCardContent.Value
+- "testing address testing addres NSW 2000"  ← GetSkeleton_UI_HouseholdCardContent.Value
+- "Example Example Example"  ← GetSkeleton_UI_HouseholdCardContent.Value
+- "Share not available"  ← GetShareType_FromEntity.ExceptionMessage
+- "Filter by year"  ← Get_Years_Extra_Option_FlatList.Value
+- "Bookmark could not be removed. Please try again later."  ← ToggleBookmarkItem.Message

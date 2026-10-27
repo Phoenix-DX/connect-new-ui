@@ -1,0 +1,74 @@
+{
+ "flow": "Directory_Photobook",
+ "screens": [
+  "Photobook"
+ ],
+ "ownBlocks": [
+  "Photobook_Carousel",
+  "Photobook_Gallery",
+  "Photobook_Gallery_Item",
+  "Photobook_Item",
+  "Photobook_Options_Bottom",
+  "Photobook_Options_Left",
+  "Photobook_Options_Player",
+  "Photobook_Options_Right"
+ ],
+ "usedBlocks": [
+  "Block_PINUnlock",
+  "Block_PINUnlock_ContentWrapper",
+  "CommonUI_InsideLayout",
+  "HandleOnResumeOpenLink",
+  "OfflineDataSyncEvents",
+  "Photobook_Carousel",
+  "Photobook_Gallery",
+  "Photobook_Gallery_Item",
+  "Photobook_Item",
+  "Photobook_Options_Bottom",
+  "Photobook_Options_Left",
+  "Photobook_Options_Player",
+  "Photobook_Options_Right",
+  "Policy_Checker",
+  "UnsupportedVersion",
+  "UnsupportedVersion_Browser",
+  "UnsupportedVersion_Native",
+  "UnsupportedVersion_WebView",
+  "UnsupportedVersion_Wrapper",
+  "WelcomeToConnect"
+ ],
+ "referencedBlocks": [
+  "BottomSheet",
+  "Carousel",
+  "CustomContainer",
+  "CustomText",
+  "Icon",
+  "IconText",
+  "LayoutRuntime_Top",
+  "PanZoom",
+  "SanitizedHtml",
+  "SkeletonSection",
+  "TouchEvents",
+  "UBT_LazyImage"
+ ],
+ "clientActions": [
+  "Carousel_SetCurrentPosition",
+  "ExitApplicationForWebViewUpdate",
+  "GetSkeleton_UI_PhotobookCaption",
+  "GetURLFromEventDataURL",
+  "Get_IsUnsupportedSystem",
+  "Get_IsUnsupportedVersion",
+  "OfflineDataSync",
+  "OfflineDataSyncConfiguration",
+  "OpenGooglePlay_Chrome",
+  "OpenGooglePlay_UBTConnect",
+  "OpenGooglePlay_WebView",
+  "SetResumeLoginLink",
+  "Try_GetIsSupportedVersion",
+  "Upgrade_UBTConnect",
+  "Upgrade_WebView"
+ ],
+ "serverActions": [
+  "GetImageCaptions_Photobook",
+  "GetPhotobookHouseholds"
+ ],
+ "externalSites": []
+}

@@ -1,0 +1,26 @@
+# Pack of UI flow Legacy_OrbitQRCodeFlow (DEV model, MCP dump of flows 2026-10-27)
+
+Source: Service Studio (DEV) through the MCP, module UBTConnect. Reference only: TST is the source of truth.
+Marks: [DISABLED] node, [DEAD BRANCH] If widget with a constant condition, [M<n>] merge node, 'unreachable nodes' list.
+The dump omits some constant widget properties (MaxLength, Enabled=False, inline styles were missing on TST checks):
+check the input constraints against the TST compiled code (`tst_source.py show <Screen>`).
+
+Own blocks of the flow: -
+Blocks of other UBTConnect flows that the flow uses (transitive): 12
+
+## Blocks of other flows (signature only; full text in the pack of their flow)
+
+| Block | Flow | Pack | Inputs | Events |
+|---|---|---|---|---|
+| Block_PINUnlock | App_PIN | `../../App_PIN/pack/blocks.md` | In_ForceVisible: Boolean; In_IsCommonBlock: Boolean | Unlock |
+| Block_PINUnlock_ContentWrapper | App_PIN | `../../App_PIN/pack/blocks.md` | UseOverlay: Boolean = True; In_ForceVisible: Boolean; UnlockText: Text = "Enter your PIN code"; ShowNeedHelp: Boolean; isFromMenu: Boolean; ShowForgotPIN: Boolean; ShowPolicy: Boolean (mandatory) | NavigateTo_PINRegister; Unlock |
+| CommonUI_InsideLayout | App_Common | `../../App_Common/pack/blocks.md` | In_ShowLockScreen: Boolean; In_IgnorePolicy: Boolean; In_IgnoreLockScreen: Boolean | Event_OnScreenLocked; Event_OnScreenUnlocked |
+| HandleOnResumeOpenLink | Legacy_Share | `../../Legacy_Share/pack/blocks.md` | - | - |
+| OfflineDataSyncEvents | App_Common | `../../App_Common/pack/blocks.md` | - | OnSyncComplete; OnSyncError; OnSyncStart |
+| Policy_Checker | App_Policies | `../../App_Policies/pack/blocks.md` | - | - |
+| UnsupportedVersion | App_Common | `../../App_Common/pack/blocks.md` | In_ExtendedClass: Text; In_HideButton: Boolean | Event_NavigateToPlaystore |
+| UnsupportedVersion_Browser | App_Common | `../../App_Common/pack/blocks.md` | - | - |
+| UnsupportedVersion_Native | App_Common | `../../App_Common/pack/blocks.md` | - | - |
+| UnsupportedVersion_WebView | App_Common | `../../App_Common/pack/blocks.md` | - | - |
+| UnsupportedVersion_Wrapper | App_Common | `../../App_Common/pack/blocks.md` | - | - |
+| WelcomeToConnect | App_Common | `../../App_Common/pack/blocks.md` | - | - |

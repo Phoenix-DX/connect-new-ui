@@ -1,0 +1,17 @@
+{
+ "flow": "zTemp_Flow",
+ "screens": [
+  "ShareObject",
+  "TestOpenShare"
+ ],
+ "ownBlocks": [],
+ "usedBlocks": [],
+ "referencedBlocks": [
+  "BlankSlate",
+  "Layout_MainPages",
+  "StaticInput"
+ ],
+ "clientActions": [],
+ "serverActions": [],
+ "externalSites": []
+}

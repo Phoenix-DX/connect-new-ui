@@ -1,0 +1,555 @@
+# React code index of UI flow Legacy_OrbitEventsFlow
+
+Root: `app/src`. Made by app_index.py from pack/meta.json. Line counts are of the file.
+
+## Screen EmailContact
+- route: `/UBTConnect/EmailContact` inputs=["In_IsContactHelpdesk: Boolean", "In_EventId: LongInteger", "In_MilestoneId: Text", "In_TargetMemberId: LongInteger", "In_Subject: Text", "In_MilestoneTitle: Text", "In_EventName: Text", "In_HostName: Text", "In_HostEmail: Text", "In_FormattedDateTime: Text"]; meta: `MEMBER_ROUTE (member, enforce)`
+- page files:
+  - `app/src/pages/EmailContact/EmailContactPage.tsx` (52 lines)
+  - `app/src/pages/EmailContact/actions.ts` (43 lines)
+  - `app/src/pages/EmailContact/components/OrbitContactFormView.tsx` (285 lines)
+  - `app/src/pages/EmailContact/hooks/orbitContactFormState.ts` (138 lines)
+  - `app/src/pages/EmailContact/hooks/useEmailContact.ts` (37 lines)
+  - `app/src/pages/EmailContact/hooks/useOrbitContactForm.ts` (162 lines)
+  - `app/src/pages/EmailContact/inputs.ts` (41 lines)
+  - `app/src/pages/EmailContact/mocks.ts` (25 lines)
+- tests: `app/src/pages/EmailContact/EmailContact.test.tsx`, `app/src/pages/EmailContact/components/OrbitContactFormView.test.tsx`, `app/src/pages/EmailContact/hooks/orbitContactFormState.test.ts`
+- imported code by folder: files at import depth 1-2 are listed; deeper files are counted only:
+  - **api/bookmark**: 2 files at depth 3-4
+  - **api/client**: `api/client/callAction.ts` (167, d2); +1 deeper
+  - **api/country**: 1 files at depth 3-4
+  - **api/image**: 1 files at depth 3-4
+  - **api/locality**: 1 files at depth 3-4
+  - **api/member**: 1 files at depth 3-4
+  - **api/message**: `api/message/index.ts` (45, d2); +6 deeper
+  - **api/update**: 1 files at depth 3-4
+  - **components/layout**: `components/layout/BottomBar/index.ts` (1, d1), `components/layout/CommonUiLayout/index.ts` (1, d1), `components/layout/MenuIcon/index.ts` (1, d1), `components/layout/OrbitLayout/index.ts` (1, d1), `components/layout/BottomBar/BottomBar.tsx` (167, d2), `components/layout/CommonUiLayout/CommonUiLayout.tsx` (86, d2), `components/layout/MenuIcon/MenuIcon.tsx` (44, d2), `components/layout/OrbitLayout/OrbitLayout.tsx` (91, d2); +8 deeper
+  - **components/ui**: `components/ui/Dialog/index.ts` (10, d1), `components/ui/LegacyInputCounter/index.ts` (1, d1), `components/ui/legacy/LegacyButtonLoading/index.ts` (1, d1), `components/ui/os/OSValidation/index.ts` (28, d1), `components/ui/Dialog/ChoiceDialog.tsx` (73, d2), `components/ui/Dialog/NavigationDialog.tsx` (178, d2), `components/ui/Dialog/dialogTriggers.ts` (44, d2), `components/ui/LegacyInputCounter/LegacyInputCounter.tsx` (47, d2), `components/ui/legacy/LegacyButtonLoading/LegacyButtonLoading.tsx` (71, d2), `components/ui/os/OSValidation/OSValidation.tsx` (193, d2), `components/ui/os/OSValidation/validationService.ts` (309, d2); +18 deeper
+  - **legacy/os**: `legacy/os/exceptions.ts` (84, d2), `legacy/os/os-exceptions.ts` (205, d2); +1 deeper
+  - **lib/geography**: 1 files at depth 3-4
+  - **lib/jsUtils.ts**: 1 files at depth 3-4
+  - **lib/leaflet**: 2 files at depth 3-4
+  - **lib/legacyShared**: 3 files at depth 3-4
+  - **lib/navigationEvent.ts**: `lib/navigationEvent.ts` (30, d1)
+  - **lib/os-wire.ts**: 1 files at depth 3-4
+  - **lib/osDateTime.ts**: 1 files at depth 3-4
+  - **lib/ubtConnect**: 3 files at depth 3-4
+  - **lib/ubtConnectLibrary**: 3 files at depth 3-4
+  - **lib/ubtConnectUtils**: 3 files at depth 3-4
+  - **mocks/contract.ts**: `mocks/contract.ts` (41, d1)
+  - **mocks/fictional**: `mocks/fictional/orbit.ts` (1446, d1), `mocks/fictional/directory.ts` (442, d2)
+  - **mocks/scenario.ts**: `mocks/scenario.ts` (17, d2)
+  - **mocks/scenarioParams.ts**: 1 files at depth 3-4
+  - **mocks/store.ts**: `mocks/store.ts` (74, d1)
+  - **platform/config**: 1 files at depth 3-4
+  - **platform/device**: 2 files at depth 3-4
+  - **platform/feedback**: `platform/feedback/flowErrors.ts` (17, d1), `platform/feedback/index.ts` (27, d2); +21 deeper
+  - **platform/flags**: `platform/flags/index.ts` (9, d1), `platform/flags/FlagPanel.tsx` (37, d2), `platform/flags/server.ts` (28, d2), `platform/flags/types.ts` (7, d2), `platform/flags/useFlag.ts` (9, d2); +4 deeper
+  - **platform/log**: 1 files at depth 3-4
+  - **platform/navigation**: `platform/navigation/index.ts` (26, d1), `platform/navigation/DialogExitConfirmation.tsx` (63, d2), `platform/navigation/NavigationHost.tsx` (62, d2), `platform/navigation/ScreenFrame.tsx` (31, d2), `platform/navigation/ScreenTransitionGroup.tsx` (302, d2), `platform/navigation/flowState.ts` (140, d2); +20 deeper
+  - **platform/session**: `platform/session/cachedUserInfo.ts` (60, d1), `platform/session/mockUser.ts` (118, d2); +9 deeper
+  - **platform/storage**: 2 files at depth 3-4
+
+## Screen EventBooklet
+- route: `/UBTConnect/EventBooklet` inputs=["In_EventId: LongInteger", "In_EventName: Text"]; meta: `MEMBER_ROUTE (member, enforce)`
+- page files:
+  - `app/src/pages/EventBooklet/EventBookletPage.tsx` (43 lines)
+  - `app/src/pages/EventBooklet/components/BookletPopup.tsx` (41 lines)
+  - `app/src/pages/EventBooklet/components/DoubleAction.tsx` (31 lines)
+  - `app/src/pages/EventBooklet/components/EventBookletGuestView.tsx` (142 lines)
+  - `app/src/pages/EventBooklet/components/EventBookletHelperView.tsx` (116 lines)
+  - `app/src/pages/EventBooklet/components/EventBookletListParts.tsx` (143 lines)
+  - `app/src/pages/EventBooklet/components/EventBookletView.tsx` (220 lines)
+  - `app/src/pages/EventBooklet/components/EventBooklet_ListHeader.tsx` (33 lines)
+  - `app/src/pages/EventBooklet/components/EventBooklet_MembersItem.tsx` (67 lines)
+  - `app/src/pages/EventBooklet/components/FooterWithActions/FooterWithActions.tsx` (83 lines)
+  - `app/src/pages/EventBooklet/components/FooterWithActions/README.md` (32 lines)
+  - `app/src/pages/EventBooklet/components/FooterWithActions/index.ts` (1 lines)
+  - `app/src/pages/EventBooklet/components/OrbitNoResults/OrbitNoResults.tsx` (29 lines)
+  - `app/src/pages/EventBooklet/components/OrbitNoResults/README.md` (21 lines)
+  - `app/src/pages/EventBooklet/components/OrbitNoResults/index.ts` (1 lines)
+  - `app/src/pages/EventBooklet/components/PopUp_OrbitBookletFilters.tsx` (357 lines)
+  - `app/src/pages/EventBooklet/hooks/eventBookletDataFlows.ts` (165 lines)
+  - `app/src/pages/EventBooklet/hooks/eventBookletLists.ts` (67 lines)
+  - `app/src/pages/EventBooklet/hooks/eventBookletState.ts` (336 lines)
+  - `app/src/pages/EventBooklet/hooks/eventBookletTypes.ts` (103 lines)
+  - `app/src/pages/EventBooklet/hooks/useEventBooklet.ts` (370 lines)
+  - `app/src/pages/EventBooklet/inputs.ts` (14 lines)
+  - `app/src/pages/EventBooklet/mocks.ts` (114 lines)
+  - `app/src/pages/EventBooklet/types.ts` (49 lines)
+- tests: `app/src/pages/EventBooklet/EventBooklet.test.tsx`, `app/src/pages/EventBooklet/components/EventBookletView.test.tsx`, `app/src/pages/EventBooklet/components/FooterWithActions/FooterWithActions.test.tsx`, `app/src/pages/EventBooklet/components/OrbitNoResults/OrbitNoResults.test.tsx`, `app/src/pages/EventBooklet/hooks/eventBookletState.test.ts`, `app/src/pages/EventBooklet/hooks/useEventBooklet.test.tsx`
+- imported code by folder: files at import depth 1-2 are listed; deeper files are counted only:
+  - **api/bookmark**: 1 files at depth 3-4
+  - **api/client**: 2 files at depth 3-4
+  - **api/country**: 1 files at depth 3-4
+  - **api/event**: `api/event/index.ts` (65, d2); +5 deeper
+  - **api/image**: 1 files at depth 3-4
+  - **api/locality**: 1 files at depth 3-4
+  - **api/member**: 1 files at depth 3-4
+  - **api/message**: 1 files at depth 3-4
+  - **app**: 1 files at depth 3-4
+  - **components/auth**: 2 files at depth 3-4
+  - **components/layout**: `components/layout/CommonUiLayout/index.ts` (1, d1), `components/layout/MenuIcon/index.ts` (1, d1), `components/layout/OrbitLayout/index.ts` (1, d1), `components/layout/CommonUiLayout/CommonUiLayout.tsx` (86, d2), `components/layout/MenuIcon/MenuIcon.tsx` (44, d2), `components/layout/OrbitLayout/OrbitLayout.tsx` (91, d2); +4 deeper
+  - **components/orbit**: `components/orbit/DaySelectorList/index.ts` (2, d1), `components/orbit/DaySelectorList/DaySelectorList.tsx` (75, d2), `components/orbit/DaySelectorList/types.ts` (2, d2); +6 deeper
+  - **components/ui**: `components/ui/DropdownTags/index.ts` (2, d1), `components/ui/InputWithIcon/index.ts` (1, d1), `components/ui/lib/structures.ts` (90, d1), `components/ui/DropdownTags/DropdownTags.tsx` (116, d2), `components/ui/DropdownTags/types.ts` (1, d2), `components/ui/InputWithIcon/InputWithIcon.tsx` (29, d2), `components/ui/os/OSPopup/index.ts` (1, d2); +18 deeper
+  - **components/version**: 2 files at depth 3-4
+  - **legacy/os**: `legacy/os/os-exceptions.ts` (205, d2); +6 deeper
+  - **lib/cssText.ts**: `lib/cssText.ts` (19, d1)
+  - **lib/jsUtils.ts**: 1 files at depth 3-4
+  - **lib/legacyShared**: 3 files at depth 3-4
+  - **lib/orbit**: `lib/orbit/actions.ts` (330, d1), `lib/orbit/staticEntities.ts` (95, d1), `lib/orbit/structures.ts` (38, d1)
+  - **lib/os-wire.ts**: 1 files at depth 3-4
+  - **lib/osDateTime.ts**: `lib/osDateTime.ts` (67, d2)
+  - **lib/ubtConnect**: 1 files at depth 3-4
+  - **lib/ubtConnectLibrary**: 1 files at depth 3-4
+  - **lib/ubtConnectUtils**: 3 files at depth 3-4
+  - **mocks/contract.ts**: `mocks/contract.ts` (41, d1)
+  - **mocks/fictional**: `mocks/fictional/orbit.ts` (1446, d1), `mocks/fictional/directory.ts` (442, d2)
+  - **mocks/scenario.ts**: `mocks/scenario.ts` (17, d2)
+  - **mocks/scenarioParams.ts**: 1 files at depth 3-4
+  - **platform/config**: 1 files at depth 3-4
+  - **platform/device**: 3 files at depth 3-4
+  - **platform/feedback**: `platform/feedback/dialogs/index.ts` (23, d1), `platform/feedback/dialogs/BlockPinUnlock.tsx` (103, d2), `platform/feedback/dialogs/CommonUiHost.tsx` (30, d2), `platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx` (31, d2), `platform/feedback/dialogs/PinUnlockContentContainer.tsx` (75, d2), `platform/feedback/dialogs/commonUiBack.ts` (48, d2), `platform/feedback/dialogs/commonUiPresence.ts` (62, d2), `platform/feedback/dialogs/subscription.ts` (27, d2), `platform/feedback/dialogs/useActionConfirmation.ts` (62, d2); +8 deeper
+  - **platform/flags**: 1 files at depth 3-4
+  - **platform/log**: 1 files at depth 3-4
+  - **platform/navigation**: `platform/navigation/BackNavigationHandler/index.ts` (2, d1), `platform/navigation/index.ts` (26, d1), `platform/navigation/BackNavigationHandler/BackNavigationHandler.tsx` (28, d2), `platform/navigation/BackNavigationHandler/types.ts` (1, d2), `platform/navigation/DialogExitConfirmation.tsx` (63, d2), `platform/navigation/NavigationHost.tsx` (62, d2), `platform/navigation/ScreenFrame.tsx` (31, d2), `platform/navigation/ScreenTransitionGroup.tsx` (302, d2), `platform/navigation/flowState.ts` (140, d2), `platform/navigation/screenTransition.ts` (179, d2); +16 deeper
+  - **platform/session**: `platform/session/mockUser.ts` (118, d2), `platform/session/session.ts` (295, d2); +12 deeper
+  - **platform/settings**: 3 files at depth 3-4
+  - **platform/storage**: `platform/storage/localEntities/index.ts` (130, d2); +9 deeper
+
+## Screen EventDetail
+- route: `/UBTConnect/EventDetail` inputs=["In_MemberId: LongInteger", "In_EventId: LongInteger", "In_EventName: Text", "In_FromNotification: Boolean"]; meta: `MEMBER_ROUTE (member, enforce)`
+- page files:
+  - `app/src/pages/EventDetail/EventDetailPage.tsx` (165 lines)
+  - `app/src/pages/EventDetail/components/EventDateSelection.tsx` (136 lines)
+  - `app/src/pages/EventDetail/components/EventDetailView.tsx` (318 lines)
+  - `app/src/pages/EventDetail/components/HostAllocation_List.tsx` (137 lines)
+  - `app/src/pages/EventDetail/hooks/eventDetailActions.ts` (78 lines)
+  - `app/src/pages/EventDetail/hooks/eventDetailState.ts` (264 lines)
+  - `app/src/pages/EventDetail/hooks/useEventDetail.ts` (259 lines)
+  - `app/src/pages/EventDetail/inputs.ts` (28 lines)
+  - `app/src/pages/EventDetail/mocks.ts` (173 lines)
+  - `app/src/pages/EventDetail/staticEntities.ts` (21 lines)
+- tests: `app/src/pages/EventDetail/EventDetail.test.tsx`, `app/src/pages/EventDetail/components/EventDetailView.test.tsx`, `app/src/pages/EventDetail/hooks/eventDetailActions.test.ts`, `app/src/pages/EventDetail/hooks/eventDetailState.test.ts`, `app/src/pages/EventDetail/hooks/useEventDetail.test.tsx`
+- imported code by folder: files at import depth 1-2 are listed; deeper files are counted only:
+  - **api/bookmark**: 1 files at depth 3-4
+  - **api/client**: `api/client/callAction.ts` (167, d2); +1 deeper
+  - **api/country**: 1 files at depth 3-4
+  - **api/event**: 1 files at depth 3-4
+  - **api/image**: 1 files at depth 3-4
+  - **api/locality**: 1 files at depth 3-4
+  - **api/member**: `api/member/index.ts` (18, d2); +6 deeper
+  - **api/message**: 1 files at depth 3-4
+  - **components/layout**: `components/layout/CommonUiLayout/index.ts` (1, d1), `components/layout/MenuIcon/index.ts` (1, d1), `components/layout/OrbitLayout/index.ts` (1, d1), `components/layout/CommonUiLayout/CommonUiLayout.tsx` (86, d2), `components/layout/MenuIcon/MenuIcon.tsx` (44, d2), `components/layout/OrbitLayout/OrbitLayout.tsx` (91, d2); +4 deeper
+  - **components/orbit**: `components/orbit/ContactHelpdeskFooter/index.ts` (1, d1), `components/orbit/HostSurveyPill/index.ts` (1, d1), `components/orbit/MilestoneCard/index.ts` (2, d1), `components/orbit/OrbitAccordion/index.ts` (1, d1), `components/orbit/OrbitNoInformation/index.ts` (1, d1), `components/orbit/OrbitSkeleton/index.ts` (1, d1), `components/orbit/ContactHelpdeskFooter/ContactHelpdeskFooter.tsx` (22, d2), `components/orbit/DaySelectorList/index.ts` (2, d2), `components/orbit/HostSurveyPill/HostSurveyPill.tsx` (49, d2), `components/orbit/MilestoneCard/MilestoneCard.tsx` (283, d2), `components/orbit/MilestoneCard/types.ts` (1, d2), `components/orbit/OrbitAccordion/OrbitAccordion.tsx` (44, d2), `components/orbit/OrbitNoInformation/OrbitNoInformation.tsx` (29, d2), `components/orbit/OrbitSkeleton/OrbitSkeleton.tsx` (157, d2); +5 deeper
+  - **components/ui**: `components/ui/legacy/SectionExpandable/index.ts` (1, d1), `components/ui/os/OSList/index.ts` (2, d1), `components/ui/legacy/SectionExpandable/SectionExpandable.tsx` (212, d2), `components/ui/os/OSList/OSList.tsx` (232, d2), `components/ui/os/OSList/OSListItem.tsx` (129, d2); +9 deeper
+  - **legacy/os**: `legacy/os/os-exceptions.ts` (205, d2); +3 deeper
+  - **lib/cssText.ts**: 1 files at depth 3-4
+  - **lib/legacyShared**: 3 files at depth 3-4
+  - **lib/orbit**: 3 files at depth 3-4
+  - **lib/os-wire.ts**: 1 files at depth 3-4
+  - **lib/osDateTime.ts**: 1 files at depth 3-4
+  - **lib/ubtConnectUtils**: 2 files at depth 3-4
+  - **mocks/contract.ts**: `mocks/contract.ts` (41, d1)
+  - **mocks/fictional**: `mocks/fictional/orbit.ts` (1446, d1), `mocks/fictional/directory.ts` (442, d2)
+  - **mocks/scenario.ts**: `mocks/scenario.ts` (17, d2)
+  - **mocks/scenarioParams.ts**: 1 files at depth 3-4
+  - **platform/auth**: 1 files at depth 3-4
+  - **platform/bootstrap**: 2 files at depth 3-4
+  - **platform/config**: 1 files at depth 3-4
+  - **platform/device**: 2 files at depth 3-4
+  - **platform/feedback**: `platform/feedback/index.ts` (27, d1), `platform/feedback/FeedbackMessageHost.tsx` (57, d2), `platform/feedback/delayedMessage.ts` (34, d2), `platform/feedback/exceptionMessages.ts` (126, d2), `platform/feedback/networkStatus.ts` (41, d2); +18 deeper
+  - **platform/flags**: `platform/flags/flags.ts` (19, d1), `platform/flags/overrides.ts` (70, d2), `platform/flags/types.ts` (7, d2), `platform/flags/useFlag.ts` (9, d2); +3 deeper
+  - **platform/log**: 1 files at depth 3-4
+  - **platform/navigation**: `platform/navigation/index.ts` (26, d1), `platform/navigation/DialogExitConfirmation.tsx` (63, d2), `platform/navigation/NavigationHost.tsx` (62, d2), `platform/navigation/ScreenFrame.tsx` (31, d2), `platform/navigation/ScreenTransitionGroup.tsx` (302, d2), `platform/navigation/flowState.ts` (140, d2), `platform/navigation/screenTransition.ts` (179, d2); +19 deeper
+  - **platform/session**: `platform/session/userInfo.ts` (46, d1), `platform/session/mockUser.ts` (118, d2); +9 deeper
+  - **platform/storage**: `platform/storage/localEntities/index.ts` (130, d2); +9 deeper
+
+## Screen GuestArrangements
+- route: `/UBTConnect/GuestArrangements` inputs=["In_MilestoneId: Text", "In_EventId: LongInteger", "In_MemberId: LongInteger", "In_HostId: LongInteger", "In_OrbitMilestoneTypeId: Text", "In_MilestoneTitle: Text", "In_EventName: Text"]; meta: `MEMBER_ROUTE (member, enforce)`
+- page files:
+  - `app/src/pages/GuestArrangements/GuestArrangementsPage.tsx` (89 lines)
+  - `app/src/pages/GuestArrangements/components/GuestArrangementsView.tsx` (362 lines)
+  - `app/src/pages/GuestArrangements/hooks/guestArrangementsActions.ts` (57 lines)
+  - `app/src/pages/GuestArrangements/hooks/guestArrangementsState.ts` (97 lines)
+  - `app/src/pages/GuestArrangements/hooks/useGuestArrangements.ts` (116 lines)
+  - `app/src/pages/GuestArrangements/inputs.ts` (50 lines)
+  - `app/src/pages/GuestArrangements/mocks.ts` (113 lines)
+- tests: `app/src/pages/GuestArrangements/GuestArrangements.test.tsx`, `app/src/pages/GuestArrangements/components/GuestArrangementsView.test.tsx`, `app/src/pages/GuestArrangements/hooks/guestArrangementsActions.test.ts`, `app/src/pages/GuestArrangements/hooks/guestArrangementsState.test.ts`, `app/src/pages/GuestArrangements/hooks/useGuestArrangements.test.tsx`
+- imported code by folder: files at import depth 1-2 are listed; deeper files are counted only:
+  - **api/bookmark**: 1 files at depth 3-4
+  - **api/client**: `api/client/callAction.ts` (167, d2); +2 deeper
+  - **api/country**: 1 files at depth 3-4
+  - **api/event**: `api/event/index.ts` (65, d2); +5 deeper
+  - **api/image**: 3 files at depth 3-4
+  - **api/locality**: 1 files at depth 3-4
+  - **api/member**: 6 files at depth 3-4
+  - **api/message**: 1 files at depth 3-4
+  - **api/schema.d.ts**: 1 files at depth 3-4
+  - **components/auth**: 2 files at depth 3-4
+  - **components/layout**: `components/layout/CommonUiLayout/index.ts` (1, d1), `components/layout/MenuIcon/index.ts` (1, d1), `components/layout/OrbitLayout/index.ts` (1, d1), `components/layout/CommonUiLayout/CommonUiLayout.tsx` (86, d2), `components/layout/MenuIcon/MenuIcon.tsx` (44, d2), `components/layout/OrbitLayout/OrbitLayout.tsx` (91, d2); +4 deeper
+  - **components/orbit**: `components/orbit/ContactHelpdeskFooter/index.ts` (1, d1), `components/orbit/MemberInformationCard/index.ts` (2, d1), `components/orbit/MilestoneHeader/index.ts` (2, d1), `components/orbit/OrbitAccordion/index.ts` (1, d1), `components/orbit/OrbitNoInformation/index.ts` (1, d1), `components/orbit/OrbitSkeleton/index.ts` (1, d1), `components/orbit/ContactHelpdeskFooter/ContactHelpdeskFooter.tsx` (22, d2), `components/orbit/MemberInformationCard/MemberInformationCard.tsx` (168, d2), `components/orbit/MemberInformationCard/types.ts` (1, d2), `components/orbit/MilestoneHeader/MilestoneHeader.tsx` (76, d2), `components/orbit/MilestoneHeader/types.ts` (1, d2), `components/orbit/OrbitAccordion/OrbitAccordion.tsx` (44, d2), `components/orbit/OrbitNoInformation/OrbitNoInformation.tsx` (29, d2), `components/orbit/OrbitSkeleton/OrbitSkeleton.tsx` (157, d2)
+  - **components/ui**: `components/ui/legacy/SectionExpandable/index.ts` (1, d1), `components/ui/os/OSList/index.ts` (2, d1), `components/ui/legacy/SectionExpandable/SectionExpandable.tsx` (212, d2), `components/ui/os/OSList/OSList.tsx` (232, d2), `components/ui/os/OSList/OSListItem.tsx` (129, d2); +16 deeper
+  - **components/version**: 2 files at depth 3-4
+  - **legacy/os**: `legacy/os/os-exceptions.ts` (205, d2); +6 deeper
+  - **lib/cssText.ts**: 1 files at depth 3-4
+  - **lib/jsUtils.ts**: 1 files at depth 3-4
+  - **lib/legacyShared**: 3 files at depth 3-4
+  - **lib/orbit**: `lib/orbit/actions.ts` (330, d2), `lib/orbit/staticEntities.ts` (95, d2); +1 deeper
+  - **lib/os-assets.manifest.json**: 1 files at depth 3-4
+  - **lib/os-assets.ts**: 1 files at depth 3-4
+  - **lib/os-wire.ts**: 1 files at depth 3-4
+  - **lib/osDateTime.ts**: 1 files at depth 3-4
+  - **lib/ubtConnect**: 1 files at depth 3-4
+  - **lib/ubtConnectLibrary**: 1 files at depth 3-4
+  - **lib/ubtConnectUtils**: `lib/ubtConnectUtils/actions.ts` (383, d2); +2 deeper
+  - **mocks/contract.ts**: `mocks/contract.ts` (41, d1)
+  - **mocks/fictional**: `mocks/fictional/orbit.ts` (1446, d1), `mocks/fictional/directory.ts` (442, d2)
+  - **mocks/scenario.ts**: `mocks/scenario.ts` (17, d2)
+  - **mocks/scenarioParams.ts**: 1 files at depth 3-4
+  - **platform/config**: 1 files at depth 3-4
+  - **platform/device**: 2 files at depth 3-4
+  - **platform/feedback**: `platform/feedback/dialogs/index.ts` (23, d1), `platform/feedback/dialogs/subscription.ts` (27, d1), `platform/feedback/dialogs/BlockPinUnlock.tsx` (103, d2), `platform/feedback/dialogs/CommonUiHost.tsx` (30, d2), `platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx` (31, d2), `platform/feedback/dialogs/PinUnlockContentContainer.tsx` (75, d2), `platform/feedback/dialogs/commonUiBack.ts` (48, d2), `platform/feedback/dialogs/commonUiPresence.ts` (62, d2), `platform/feedback/dialogs/confirmAction.ts` (21, d2), `platform/feedback/dialogs/useActionConfirmation.ts` (62, d2); +12 deeper
+  - **platform/flags**: 8 files at depth 3-4
+  - **platform/log**: 1 files at depth 3-4
+  - **platform/navigation**: `platform/navigation/index.ts` (26, d1), `platform/navigation/DialogExitConfirmation.tsx` (63, d2), `platform/navigation/NavigationHost.tsx` (62, d2), `platform/navigation/ScreenFrame.tsx` (31, d2), `platform/navigation/ScreenTransitionGroup.tsx` (302, d2), `platform/navigation/flowState.ts` (140, d2), `platform/navigation/screenTransition.ts` (179, d2); +19 deeper
+  - **platform/session**: `platform/session/mockUser.ts` (118, d2), `platform/session/userInfo.ts` (46, d2); +12 deeper
+  - **platform/settings**: 1 files at depth 3-4
+  - **platform/storage**: 4 files at depth 3-4
+
+## Screen HelpersDetail
+- route: `/UBTConnect/HelpersDetail` inputs=["In_EventId: LongInteger", "In_OrbitMilestoneTypeId: Text", "In_MilestoneName: Text", "In_EventName: Text", "In_HostId: LongInteger"]; meta: `MEMBER_ROUTE (member, enforce)`
+- page files:
+  - `app/src/pages/HelpersDetail/HelpersDetailPage.tsx` (85 lines)
+  - `app/src/pages/HelpersDetail/components/HelperDetailsView.tsx` (148 lines)
+  - `app/src/pages/HelpersDetail/hooks/helperDetailsActions.ts` (54 lines)
+  - `app/src/pages/HelpersDetail/hooks/helperDetailsState.ts` (115 lines)
+  - `app/src/pages/HelpersDetail/hooks/useHelperDetails.ts` (237 lines)
+  - `app/src/pages/HelpersDetail/inputs.ts` (26 lines)
+  - `app/src/pages/HelpersDetail/mocks.ts` (107 lines)
+- tests: `app/src/pages/HelpersDetail/HelpersDetail.test.tsx`, `app/src/pages/HelpersDetail/components/HelperDetailsView.test.tsx`, `app/src/pages/HelpersDetail/hooks/helperDetailsActions.test.ts`, `app/src/pages/HelpersDetail/hooks/helperDetailsState.test.ts`, `app/src/pages/HelpersDetail/hooks/useHelperDetails.test.tsx`
+- imported code by folder: files at import depth 1-2 are listed; deeper files are counted only:
+  - **api/bookmark**: `api/bookmark/keys.ts` (22, d2); +1 deeper
+  - **api/client**: `api/client/callAction.ts` (167, d2); +2 deeper
+  - **api/country**: 5 files at depth 3-4
+  - **api/event**: `api/event/index.ts` (65, d2); +5 deeper
+  - **api/image**: 3 files at depth 3-4
+  - **api/locality**: 1 files at depth 3-4
+  - **api/member**: `api/member/index.ts` (18, d2); +6 deeper
+  - **api/message**: 5 files at depth 3-4
+  - **api/schema.d.ts**: 1 files at depth 3-4
+  - **components/auth**: 2 files at depth 3-4
+  - **components/contact**: `components/contact/ContactPopupByPhone/index.ts` (2, d1), `components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx` (75, d2), `components/contact/ContactPopupByPhone/types.ts` (1, d2); +3 deeper
+  - **components/layout**: `components/layout/CommonUiLayout/index.ts` (1, d1), `components/layout/MenuIcon/index.ts` (1, d1), `components/layout/OrbitLayout/index.ts` (1, d1), `components/layout/CommonUiLayout/CommonUiLayout.tsx` (86, d2), `components/layout/MenuIcon/MenuIcon.tsx` (44, d2), `components/layout/OrbitLayout/OrbitLayout.tsx` (91, d2); +4 deeper
+  - **components/orbit**: `components/orbit/ContactHelpdeskFooter/index.ts` (1, d1), `components/orbit/MemberInformationCard/index.ts` (2, d1), `components/orbit/MilestoneHeader/index.ts` (2, d1), `components/orbit/OrbitAccordion/index.ts` (1, d1), `components/orbit/OrbitNoInformation/index.ts` (1, d1), `components/orbit/OrbitSkeleton/index.ts` (1, d1), `components/orbit/ContactHelpdeskFooter/ContactHelpdeskFooter.tsx` (22, d2), `components/orbit/MemberInformationCard/MemberInformationCard.tsx` (168, d2), `components/orbit/MemberInformationCard/types.ts` (1, d2), `components/orbit/MilestoneHeader/MilestoneHeader.tsx` (76, d2), `components/orbit/MilestoneHeader/types.ts` (1, d2), `components/orbit/OrbitAccordion/OrbitAccordion.tsx` (44, d2), `components/orbit/OrbitNoInformation/OrbitNoInformation.tsx` (29, d2), `components/orbit/OrbitSkeleton/OrbitSkeleton.tsx` (157, d2)
+  - **components/ui**: `components/ui/legacy/SectionExpandable/index.ts` (1, d1), `components/ui/os/OSList/index.ts` (2, d1), `components/ui/legacy/SectionExpandable/SectionExpandable.tsx` (212, d2), `components/ui/os/OSList/OSList.tsx` (232, d2), `components/ui/os/OSList/OSListItem.tsx` (129, d2); +16 deeper
+  - **components/version**: 2 files at depth 3-4
+  - **legacy/os**: `legacy/os/exceptions.ts` (84, d2), `legacy/os/os-exceptions.ts` (205, d2); +5 deeper
+  - **lib/cssText.ts**: 1 files at depth 3-4
+  - **lib/jsUtils.ts**: 1 files at depth 3-4
+  - **lib/legacyShared**: `lib/legacyShared/actions.ts` (471, d1), `lib/legacyShared/staticEntities.ts` (38, d2), `lib/legacyShared/structures.ts` (56, d2)
+  - **lib/orbit**: `lib/orbit/actions.ts` (330, d2), `lib/orbit/staticEntities.ts` (95, d2); +1 deeper
+  - **lib/os-assets.manifest.json**: 1 files at depth 3-4
+  - **lib/os-assets.ts**: 1 files at depth 3-4
+  - **lib/os-wire.ts**: 1 files at depth 3-4
+  - **lib/osDateTime.ts**: 1 files at depth 3-4
+  - **lib/ubtConnect**: 1 files at depth 3-4
+  - **lib/ubtConnectLibrary**: 1 files at depth 3-4
+  - **lib/ubtConnectUtils**: `lib/ubtConnectUtils/actions.ts` (383, d2), `lib/ubtConnectUtils/staticEntities.ts` (190, d2); +1 deeper
+  - **mocks/contract.ts**: `mocks/contract.ts` (41, d1)
+  - **mocks/fictional**: `mocks/fictional/orbit.ts` (1446, d1), `mocks/fictional/directory.ts` (442, d2)
+  - **mocks/scenario.ts**: `mocks/scenario.ts` (17, d1)
+  - **mocks/scenarioParams.ts**: `mocks/scenarioParams.ts` (17, d2)
+  - **platform/config**: 1 files at depth 3-4
+  - **platform/device**: 2 files at depth 3-4
+  - **platform/feedback**: `platform/feedback/dialogs/index.ts` (23, d1), `platform/feedback/flowErrors.ts` (17, d1), `platform/feedback/dialogs/BlockPinUnlock.tsx` (103, d2), `platform/feedback/dialogs/CommonUiHost.tsx` (30, d2), `platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx` (31, d2), `platform/feedback/dialogs/PinUnlockContentContainer.tsx` (75, d2), `platform/feedback/dialogs/commonUiBack.ts` (48, d2), `platform/feedback/dialogs/commonUiPresence.ts` (62, d2), `platform/feedback/dialogs/subscription.ts` (27, d2), `platform/feedback/dialogs/useActionConfirmation.ts` (62, d2); +12 deeper
+  - **platform/flags**: 8 files at depth 3-4
+  - **platform/log**: 1 files at depth 3-4
+  - **platform/navigation**: 14 files at depth 3-4
+  - **platform/session**: `platform/session/mockUser.ts` (118, d2); +14 deeper
+  - **platform/settings**: 1 files at depth 3-4
+  - **platform/storage**: 4 files at depth 3-4
+
+## Screen HostSurvey
+- route: `/UBTConnect/HostSurvey` inputs=["In_EventId: LongInteger", "In_MemberId: LongInteger", "In_EventName: Text", "In_EventStartDate: DateTime", "In_EventEndDate: DateTime"]; meta: `MEMBER_ROUTE (member, enforce)`
+- page files:
+  - `app/src/pages/HostSurvey/HostSurveyPage.tsx` (35 lines)
+  - `app/src/pages/HostSurvey/components/HostSurveyView.tsx` (278 lines)
+  - `app/src/pages/HostSurvey/components/HostSurvey_AccommodationPills.tsx` (55 lines)
+  - `app/src/pages/HostSurvey/components/HostSurvey_Item.tsx` (54 lines)
+  - `app/src/pages/HostSurvey/components/HostSurvey_MealPills.tsx` (41 lines)
+  - `app/src/pages/HostSurvey/components/HostSurvey_TopMessage.tsx` (22 lines)
+  - `app/src/pages/HostSurvey/components/Orbit_ConfirmationPopUp_New.tsx` (15 lines)
+  - `app/src/pages/HostSurvey/components/actions.ts` (26 lines)
+  - `app/src/pages/HostSurvey/hooks/hostSurveyState.ts` (152 lines)
+  - `app/src/pages/HostSurvey/hooks/useHostSurvey.ts` (133 lines)
+  - `app/src/pages/HostSurvey/inputs.ts` (34 lines)
+  - `app/src/pages/HostSurvey/mocks.ts` (129 lines)
+- tests: `app/src/pages/HostSurvey/HostSurvey.test.tsx`, `app/src/pages/HostSurvey/components/HostSurveyView.test.tsx`, `app/src/pages/HostSurvey/components/actions.test.ts`, `app/src/pages/HostSurvey/hooks/hostSurveyState.test.ts`, `app/src/pages/HostSurvey/hooks/useHostSurvey.test.tsx`, `app/src/pages/HostSurvey/inputs.test.ts`
+- imported code by folder: files at import depth 1-2 are listed; deeper files are counted only:
+  - **api/bookmark**: 1 files at depth 3-4
+  - **api/client**: `api/client/callAction.ts` (167, d2); +1 deeper
+  - **api/country**: 1 files at depth 3-4
+  - **api/event**: `api/event/index.ts` (65, d2); +5 deeper
+  - **api/image**: 1 files at depth 3-4
+  - **api/locality**: 1 files at depth 3-4
+  - **api/member**: 1 files at depth 3-4
+  - **api/message**: 1 files at depth 3-4
+  - **app**: 1 files at depth 3-4
+  - **components/layout**: `components/layout/CommonUiLayout/index.ts` (1, d1), `components/layout/MenuIcon/index.ts` (1, d1), `components/layout/OrbitLayout/index.ts` (1, d1), `components/layout/CommonUiLayout/CommonUiLayout.tsx` (86, d2), `components/layout/MenuIcon/MenuIcon.tsx` (44, d2), `components/layout/OrbitLayout/OrbitLayout.tsx` (91, d2); +4 deeper
+  - **components/orbit**: `components/orbit/HostSurveyPill/index.ts` (1, d1), `components/orbit/OrbitNoInformation/index.ts` (1, d1), `components/orbit/OrbitSkeleton/index.ts` (1, d1), `components/orbit/HostSurveyPill/HostSurveyPill.tsx` (49, d2), `components/orbit/OrbitNoInformation/OrbitNoInformation.tsx` (29, d2), `components/orbit/OrbitSkeleton/OrbitSkeleton.tsx` (157, d2)
+  - **components/ui**: `components/ui/Accordion/index.ts` (2, d1), `components/ui/AccordionItem/index.ts` (1, d1), `components/ui/os/OSList/index.ts` (2, d1), `components/ui/Accordion/Accordion.tsx` (58, d2), `components/ui/AccordionItem/AccordionItem.tsx` (254, d2), `components/ui/os/OSList/OSList.tsx` (232, d2), `components/ui/os/OSList/OSListItem.tsx` (129, d2); +7 deeper
+  - **legacy/os**: `legacy/os/os-exceptions.ts` (205, d2), `legacy/os/reviewMarkers.ts` (19, d2); +3 deeper
+  - **lib/cssText.ts**: 1 files at depth 3-4
+  - **lib/legacyShared**: 3 files at depth 3-4
+  - **lib/orbit**: `lib/orbit/actions.ts` (330, d1), `lib/orbit/staticEntities.ts` (95, d1), `lib/orbit/structures.ts` (38, d2)
+  - **lib/os-wire.ts**: 1 files at depth 3-4
+  - **lib/osDateTime.ts**: 1 files at depth 3-4
+  - **lib/ubtConnectUtils**: 2 files at depth 3-4
+  - **mocks/contract.ts**: `mocks/contract.ts` (41, d1)
+  - **mocks/fictional**: `mocks/fictional/orbit.ts` (1446, d1), `mocks/fictional/directory.ts` (442, d2)
+  - **mocks/scenario.ts**: `mocks/scenario.ts` (17, d2)
+  - **mocks/scenarioParams.ts**: 1 files at depth 3-4
+  - **mocks/store.ts**: `mocks/store.ts` (74, d1)
+  - **platform/config**: 1 files at depth 3-4
+  - **platform/device**: 2 files at depth 3-4
+  - **platform/feedback**: `platform/feedback/NotCaptured.tsx` (15, d1); +14 deeper
+  - **platform/log**: 1 files at depth 3-4
+  - **platform/navigation**: `platform/navigation/BackNavigationHandler/index.ts` (2, d1), `platform/navigation/index.ts` (26, d1), `platform/navigation/BackNavigationHandler/BackNavigationHandler.tsx` (28, d2), `platform/navigation/BackNavigationHandler/types.ts` (1, d2), `platform/navigation/DialogExitConfirmation.tsx` (63, d2), `platform/navigation/NavigationHost.tsx` (62, d2), `platform/navigation/ScreenFrame.tsx` (31, d2), `platform/navigation/ScreenTransitionGroup.tsx` (302, d2), `platform/navigation/flowState.ts` (140, d2), `platform/navigation/screenTransition.ts` (179, d2); +16 deeper
+  - **platform/session**: `platform/session/mockUser.ts` (118, d2), `platform/session/session.ts` (295, d2); +7 deeper
+  - **platform/settings**: 3 files at depth 3-4
+  - **platform/storage**: `platform/storage/localEntities/index.ts` (130, d2); +9 deeper
+
+## Screen MilestoneDetail
+- route: `/UBTConnect/MilestoneDetail` inputs=["In_FromNotification: Boolean", "In_MilestoneId: Text", "In_EventId: LongInteger", "In_HostId: LongInteger", "In_OrbitMilestoneTypeId: Text", "In_MilestoneName: Text", "In_EventName: Text"]; meta: `MEMBER_ROUTE (member, enforce)`
+- page files:
+  - `app/src/pages/MilestoneDetail/MilestoneDetailPage.tsx` (109 lines)
+  - `app/src/pages/MilestoneDetail/components/AccommodationHostView.tsx` (370 lines)
+  - `app/src/pages/MilestoneDetail/components/MilestoneWrapperView.tsx` (97 lines)
+  - `app/src/pages/MilestoneDetail/hooks/accommodationHostState.ts` (186 lines)
+  - `app/src/pages/MilestoneDetail/hooks/milestoneWrapperState.ts` (115 lines)
+  - `app/src/pages/MilestoneDetail/hooks/useAccommodationHost.ts` (358 lines)
+  - `app/src/pages/MilestoneDetail/hooks/useMilestoneWrapper.ts` (62 lines)
+  - `app/src/pages/MilestoneDetail/inputs.ts` (32 lines)
+  - `app/src/pages/MilestoneDetail/mocks.ts` (188 lines)
+- tests: `app/src/pages/MilestoneDetail/MilestoneDetail.test.tsx`, `app/src/pages/MilestoneDetail/components/AccommodationHostView.test.tsx`, `app/src/pages/MilestoneDetail/components/MilestoneWrapperView.test.tsx`, `app/src/pages/MilestoneDetail/hooks/accommodationHostState.test.ts`, `app/src/pages/MilestoneDetail/hooks/milestoneWrapperState.test.ts`, `app/src/pages/MilestoneDetail/hooks/useAccommodationHost.test.tsx`, `app/src/pages/MilestoneDetail/hooks/useMilestoneWrapper.test.tsx`
+- imported code by folder: files at import depth 1-2 are listed; deeper files are counted only:
+  - **api/bookmark**: `api/bookmark/keys.ts` (22, d2); +1 deeper
+  - **api/client**: 2 files at depth 3-4
+  - **api/country**: 5 files at depth 3-4
+  - **api/event**: 1 files at depth 3-4
+  - **api/image**: `api/image/index.ts` (2, d2); +2 deeper
+  - **api/locality**: 5 files at depth 3-4
+  - **api/member**: `api/member/index.ts` (18, d2); +6 deeper
+  - **api/message**: 5 files at depth 3-4
+  - **api/schema.d.ts**: 1 files at depth 3-4
+  - **components/auth**: 2 files at depth 3-4
+  - **components/contact**: `components/contact/ContactPopupByPhone/index.ts` (2, d1), `components/contact/ContactPopupByPhone/ContactPopupByPhone.tsx` (75, d2); +4 deeper
+  - **components/layout**: `components/layout/CommonUiLayout/index.ts` (1, d1), `components/layout/MenuIcon/index.ts` (1, d1), `components/layout/OrbitLayout/index.ts` (1, d1), `components/layout/CommonUiLayout/CommonUiLayout.tsx` (86, d2), `components/layout/MenuIcon/MenuIcon.tsx` (44, d2), `components/layout/OrbitLayout/OrbitLayout.tsx` (91, d2); +4 deeper
+  - **components/orbit**: `components/orbit/ContactHelpdeskFooter/index.ts` (1, d1), `components/orbit/MemberInformationCard/index.ts` (2, d1), `components/orbit/MilestoneHeader/index.ts` (2, d1), `components/orbit/OrbitAccordion/index.ts` (1, d1), `components/orbit/OrbitNoInformation/index.ts` (1, d1), `components/orbit/OrbitSkeleton/index.ts` (1, d1), `components/orbit/ContactHelpdeskFooter/ContactHelpdeskFooter.tsx` (22, d2), `components/orbit/MemberInformationCard/MemberInformationCard.tsx` (168, d2), `components/orbit/MemberInformationCard/types.ts` (1, d2), `components/orbit/MilestoneHeader/MilestoneHeader.tsx` (76, d2), `components/orbit/MilestoneHeader/types.ts` (1, d2), `components/orbit/OrbitAccordion/OrbitAccordion.tsx` (44, d2), `components/orbit/OrbitNoInformation/OrbitNoInformation.tsx` (29, d2), `components/orbit/OrbitSkeleton/OrbitSkeleton.tsx` (157, d2)
+  - **components/ui**: `components/ui/EntityLazyImage/mocks.ts` (60, d1), `components/ui/legacy/SectionExpandable/index.ts` (1, d1), `components/ui/legacy/SectionExpandable/SectionExpandable.tsx` (212, d2), `components/ui/lib/actions.ts` (307, d2); +16 deeper
+  - **components/version**: 2 files at depth 3-4
+  - **legacy/os**: 6 files at depth 3-4
+  - **lib/cssText.ts**: `lib/cssText.ts` (19, d1)
+  - **lib/jsUtils.ts**: `lib/jsUtils.ts` (81, d2)
+  - **lib/legacyShared**: `lib/legacyShared/actions.ts` (471, d1), `lib/legacyShared/staticEntities.ts` (38, d2), `lib/legacyShared/structures.ts` (56, d2)
+  - **lib/orbit**: `lib/orbit/staticEntities.ts` (95, d1); +2 deeper
+  - **lib/os-assets.manifest.json**: 1 files at depth 3-4
+  - **lib/os-assets.ts**: 1 files at depth 3-4
+  - **lib/os-wire.ts**: `lib/os-wire.ts` (12, d2)
+  - **lib/osDateTime.ts**: 1 files at depth 3-4
+  - **lib/ubtConnect**: 1 files at depth 3-4
+  - **lib/ubtConnectLibrary**: 1 files at depth 3-4
+  - **lib/ubtConnectUtils**: `lib/ubtConnectUtils/actions.ts` (383, d1), `lib/ubtConnectUtils/staticEntities.ts` (190, d2); +1 deeper
+  - **mocks/contract.ts**: `mocks/contract.ts` (41, d2)
+  - **mocks/fictional**: `mocks/fictional/orbit.ts` (1446, d1), `mocks/fictional/directory.ts` (442, d2)
+  - **mocks/scenario.ts**: 1 files at depth 3-4
+  - **mocks/scenarioParams.ts**: 1 files at depth 3-4
+  - **platform/config**: 1 files at depth 3-4
+  - **platform/device**: `platform/device/handleDownload.ts` (130, d1); +2 deeper
+  - **platform/feedback**: `platform/feedback/dialogs/index.ts` (23, d1), `platform/feedback/dialogs/subscription.ts` (27, d1), `platform/feedback/dialogs/BlockPinUnlock.tsx` (103, d2), `platform/feedback/dialogs/CommonUiHost.tsx` (30, d2), `platform/feedback/dialogs/DialogAccessRestrictedActionLegacy.tsx` (31, d2), `platform/feedback/dialogs/PinUnlockContentContainer.tsx` (75, d2), `platform/feedback/dialogs/commonUiBack.ts` (48, d2), `platform/feedback/dialogs/commonUiPresence.ts` (62, d2), `platform/feedback/dialogs/confirmAction.ts` (21, d2), `platform/feedback/dialogs/useActionConfirmation.ts` (62, d2), `platform/feedback/index.ts` (27, d2), `platform/feedback/pageRedirect.ts` (5, d2); +11 deeper
+  - **platform/flags**: `platform/flags/flags.ts` (19, d1), `platform/flags/index.ts` (9, d2); +8 deeper
+  - **platform/log**: 1 files at depth 3-4
+  - **platform/navigation**: `platform/navigation/index.ts` (26, d1), `platform/navigation/DialogExitConfirmation.tsx` (63, d2), `platform/navigation/NavigationHost.tsx` (62, d2), `platform/navigation/ScreenFrame.tsx` (31, d2), `platform/navigation/ScreenTransitionGroup.tsx` (302, d2), `platform/navigation/flowState.ts` (140, d2), `platform/navigation/screenTransition.ts` (179, d2); +19 deeper
+  - **platform/session**: `platform/session/cachedUserInfo.ts` (60, d1), `platform/session/mockUser.ts` (118, d2), `platform/session/userInfo.ts` (46, d2); +11 deeper
+  - **platform/storage**: 2 files at depth 3-4
+
+## Screen OrbitLanding
+- route: `/UBTConnect/OrbitLanding` inputs=[]; meta: `MEMBER_ROUTE (member, enforce)`
+- page files:
+  - `app/src/pages/OrbitLanding/OrbitLandingPage.tsx` (105 lines)
+  - `app/src/pages/OrbitLanding/actions.ts` (63 lines)
+  - `app/src/pages/OrbitLanding/components/Household_Members_Selection.tsx` (86 lines)
+  - `app/src/pages/OrbitLanding/components/OrbitLandingPopup.tsx` (53 lines)
+  - `app/src/pages/OrbitLanding/components/OrbitLandingView.tsx` (253 lines)
+  - `app/src/pages/OrbitLanding/components/Popup_OrbitLanding_Filters.tsx` (149 lines)
+  - `app/src/pages/OrbitLanding/components/Popup_OrbitLanding_Sort.tsx` (67 lines)
+  - `app/src/pages/OrbitLanding/hooks/orbitLandingState.ts` (197 lines)
+  - `app/src/pages/OrbitLanding/hooks/useOrbitLanding.ts` (230 lines)
+  - `app/src/pages/OrbitLanding/mocks.ts` (110 lines)
+  - `app/src/pages/OrbitLanding/staticEntities.ts` (21 lines)
+- tests: `app/src/pages/OrbitLanding/OrbitLanding.test.tsx`, `app/src/pages/OrbitLanding/components/OrbitLandingView.test.tsx`, `app/src/pages/OrbitLanding/hooks/orbitLandingState.test.ts`, `app/src/pages/OrbitLanding/hooks/useOrbitLanding.test.tsx`
+- imported code by folder: files at import depth 1-2 are listed; deeper files are counted only:
+  - **api/bookmark**: 2 files at depth 3-4
+  - **api/client**: `api/client/callAction.ts` (167, d2); +1 deeper
+  - **api/country**: 1 files at depth 3-4
+  - **api/event**: `api/event/index.ts` (65, d2); +5 deeper
+  - **api/household**: `api/household/index.ts` (17, d2); +5 deeper
+  - **api/image**: 1 files at depth 3-4
+  - **api/locality**: 1 files at depth 3-4
+  - **api/member**: 1 files at depth 3-4
+  - **api/message**: 1 files at depth 3-4
+  - **api/update**: 1 files at depth 3-4
+  - **app**: 1 files at depth 3-4
+  - **components/layout**: `components/layout/BottomBar/index.ts` (1, d1), `components/layout/CommonUiLayout/index.ts` (1, d1), `components/layout/MenuIcon/index.ts` (1, d1), `components/layout/OrbitLayout/index.ts` (1, d1), `components/layout/BottomBar/BottomBar.tsx` (167, d2), `components/layout/CommonUiLayout/CommonUiLayout.tsx` (86, d2), `components/layout/MenuIcon/MenuIcon.tsx` (44, d2), `components/layout/OrbitLayout/OrbitLayout.tsx` (91, d2); +8 deeper
+  - **components/orbit**: `components/orbit/MilestoneCard/index.ts` (2, d1), `components/orbit/OrbitEventCard/index.ts` (2, d1), `components/orbit/OrbitNoInformation/index.ts` (1, d1), `components/orbit/OrbitSkeleton/index.ts` (1, d1), `components/orbit/MilestoneCard/MilestoneCard.tsx` (283, d2), `components/orbit/MilestoneCard/types.ts` (1, d2), `components/orbit/OrbitEventCard/OrbitEventCard.tsx` (63, d2), `components/orbit/OrbitEventCard/types.ts` (1, d2), `components/orbit/OrbitNoInformation/OrbitNoInformation.tsx` (29, d2), `components/orbit/OrbitSkeleton/OrbitSkeleton.tsx` (157, d2); +2 deeper
+  - **components/ui**: `components/ui/os/OSList/index.ts` (2, d1), `components/ui/os/OSRadioGroup/index.ts` (1, d1), `components/ui/os/OSList/OSList.tsx` (232, d2), `components/ui/os/OSList/OSListItem.tsx` (129, d2), `components/ui/os/OSPopup/index.ts` (1, d2), `components/ui/os/OSRadioGroup/OSRadioGroup.tsx` (163, d2); +15 deeper
+  - **legacy/os**: `legacy/os/os-exceptions.ts` (205, d2); +3 deeper
+  - **lib/cssText.ts**: `lib/cssText.ts` (19, d1)
+  - **lib/geography**: 1 files at depth 3-4
+  - **lib/jsUtils.ts**: 1 files at depth 3-4
+  - **lib/leaflet**: 2 files at depth 3-4
+  - **lib/legacyShared**: 3 files at depth 3-4
+  - **lib/orbit**: `lib/orbit/staticEntities.ts` (95, d1); +2 deeper
+  - **lib/os-wire.ts**: `lib/os-wire.ts` (12, d2)
+  - **lib/osDateTime.ts**: 1 files at depth 3-4
+  - **lib/ubtConnect**: 3 files at depth 3-4
+  - **lib/ubtConnectLibrary**: 2 files at depth 3-4
+  - **lib/ubtConnectUtils**: 3 files at depth 3-4
+  - **mocks/contract.ts**: `mocks/contract.ts` (41, d1)
+  - **mocks/fictional**: `mocks/fictional/orbit.ts` (1446, d1), `mocks/fictional/directory.ts` (442, d2)
+  - **mocks/scenario.ts**: `mocks/scenario.ts` (17, d2)
+  - **mocks/scenarioParams.ts**: 1 files at depth 3-4
+  - **platform/config**: 1 files at depth 3-4
+  - **platform/device**: 2 files at depth 3-4
+  - **platform/feedback**: `platform/feedback/index.ts` (27, d2); +22 deeper
+  - **platform/flags**: `platform/flags/flags.ts` (19, d1), `platform/flags/overrides.ts` (70, d2), `platform/flags/types.ts` (7, d2), `platform/flags/useFlag.ts` (9, d2); +3 deeper
+  - **platform/log**: 1 files at depth 3-4
+  - **platform/navigation**: `platform/navigation/index.ts` (26, d1), `platform/navigation/DialogExitConfirmation.tsx` (63, d2), `platform/navigation/NavigationHost.tsx` (62, d2), `platform/navigation/ScreenFrame.tsx` (31, d2), `platform/navigation/ScreenTransitionGroup.tsx` (302, d2), `platform/navigation/flowState.ts` (140, d2), `platform/navigation/screenTransition.ts` (179, d2); +19 deeper
+  - **platform/session**: `platform/session/cachedUserInfo.ts` (60, d1), `platform/session/mockUser.ts` (118, d1), `platform/session/session.ts` (295, d2), `platform/session/types.ts` (20, d2); +8 deeper
+  - **platform/settings**: 3 files at depth 3-4
+  - **platform/storage**: `platform/storage/storage.ts` (62, d2); +2 deeper
+
+## Screen PassportScan
+- **not built**: no folder `app/src/pages/PassportScan` (check the board for the decision)
+
+## Screen TransportDetail
+- route: `/UBTConnect/TransportDetail` inputs=["In_MilestoneId: Text", "In_OrbitMilestoneTypeId: Text", "In_MilestoneName: Text", "In_HeaderClass: Text", "In_TargetMemberId: LongInteger"]; meta: `MEMBER_ROUTE (member, enforce)`
+- page files:
+  - `app/src/pages/TransportDetail/TransportDetailPage.tsx` (44 lines)
+  - `app/src/pages/TransportDetail/actions.ts` (90 lines)
+  - `app/src/pages/TransportDetail/components/TransportDetail.tsx` (207 lines)
+  - `app/src/pages/TransportDetail/components/TransportDetailView.tsx` (66 lines)
+  - `app/src/pages/TransportDetail/components/TransportDetail_TravelInfo.tsx` (151 lines)
+  - `app/src/pages/TransportDetail/hooks/transportDetailState.ts` (152 lines)
+  - `app/src/pages/TransportDetail/hooks/useContactHelpdeskNavigation.ts` (39 lines)
+  - `app/src/pages/TransportDetail/hooks/useTransportDetail.ts` (84 lines)
+  - `app/src/pages/TransportDetail/inputs.ts` (28 lines)
+  - `app/src/pages/TransportDetail/mocks.ts` (95 lines)
+- tests: `app/src/pages/TransportDetail/TransportDetail.test.tsx`, `app/src/pages/TransportDetail/actions.test.ts`, `app/src/pages/TransportDetail/components/TransportDetail.test.tsx`, `app/src/pages/TransportDetail/components/TransportDetailView.test.tsx`, `app/src/pages/TransportDetail/hooks/transportDetailState.test.ts`, `app/src/pages/TransportDetail/hooks/useContactHelpdeskNavigation.test.tsx`, `app/src/pages/TransportDetail/hooks/useTransportDetail.test.tsx`
+- imported code by folder: files at import depth 1-2 are listed; deeper files are counted only:
+  - **api/bookmark**: 1 files at depth 3-4
+  - **api/client**: `api/client/callAction.ts` (167, d2); +1 deeper
+  - **api/country**: 1 files at depth 3-4
+  - **api/event**: 1 files at depth 3-4
+  - **api/image**: 1 files at depth 3-4
+  - **api/locality**: 1 files at depth 3-4
+  - **api/member**: 1 files at depth 3-4
+  - **api/message**: 1 files at depth 3-4
+  - **components/layout**: `components/layout/CommonUiLayout/index.ts` (1, d1), `components/layout/MenuIcon/index.ts` (1, d1), `components/layout/OrbitLayout/index.ts` (1, d1), `components/layout/CommonUiLayout/CommonUiLayout.tsx` (86, d2), `components/layout/MenuIcon/MenuIcon.tsx` (44, d2), `components/layout/OrbitLayout/OrbitLayout.tsx` (91, d2); +4 deeper
+  - **components/orbit**: `components/orbit/ContactHelpdeskFooter/index.ts` (1, d1), `components/orbit/OrbitSkeleton/index.ts` (1, d1), `components/orbit/ContactHelpdeskFooter/ContactHelpdeskFooter.tsx` (22, d2), `components/orbit/OrbitSkeleton/OrbitSkeleton.tsx` (157, d2)
+  - **components/ui**: `components/ui/os/OSList/index.ts` (2, d2); +6 deeper
+  - **legacy/os**: `legacy/os/os-exceptions.ts` (205, d2); +3 deeper
+  - **lib/legacyShared**: 3 files at depth 3-4
+  - **lib/orbit**: `lib/orbit/staticEntities.ts` (95, d2); +2 deeper
+  - **lib/os-wire.ts**: 1 files at depth 3-4
+  - **lib/osDateTime.ts**: 1 files at depth 3-4
+  - **lib/ubtConnectUtils**: 2 files at depth 3-4
+  - **mocks/contract.ts**: `mocks/contract.ts` (41, d1)
+  - **mocks/fictional**: `mocks/fictional/orbit.ts` (1446, d1), `mocks/fictional/directory.ts` (442, d2)
+  - **mocks/scenario.ts**: `mocks/scenario.ts` (17, d2)
+  - **mocks/scenarioParams.ts**: 1 files at depth 3-4
+  - **platform/auth**: 1 files at depth 3-4
+  - **platform/bootstrap**: 2 files at depth 3-4
+  - **platform/config**: 1 files at depth 3-4
+  - **platform/device**: 2 files at depth 3-4
+  - **platform/feedback**: `platform/feedback/index.ts` (27, d1), `platform/feedback/FeedbackMessageHost.tsx` (57, d2), `platform/feedback/delayedMessage.ts` (34, d2), `platform/feedback/exceptionMessages.ts` (126, d2), `platform/feedback/networkStatus.ts` (41, d2); +18 deeper
+  - **platform/flags**: `platform/flags/flags.ts` (19, d1), `platform/flags/overrides.ts` (70, d2), `platform/flags/types.ts` (7, d2), `platform/flags/useFlag.ts` (9, d2); +3 deeper
+  - **platform/log**: 1 files at depth 3-4
+  - **platform/navigation**: `platform/navigation/index.ts` (26, d1), `platform/navigation/DialogExitConfirmation.tsx` (63, d2), `platform/navigation/NavigationHost.tsx` (62, d2), `platform/navigation/ScreenFrame.tsx` (31, d2), `platform/navigation/ScreenTransitionGroup.tsx` (302, d2), `platform/navigation/flowState.ts` (140, d2), `platform/navigation/screenTransition.ts` (179, d2); +19 deeper
+  - **platform/session**: `platform/session/mockUser.ts` (118, d2); +9 deeper
+  - **platform/storage**: 3 files at depth 3-4
+
+## Screen ViewDocuments
+- route: `/UBTConnect/ViewDocuments` inputs=["In_MemberId: LongInteger", "In_EventId: LongInteger", "In_EventName: Text", "In_EventStartDate: DateTime", "In_EventEndDate: DateTime", "In_EventLocation: Text"]; meta: `MEMBER_ROUTE (member, enforce)`
+- page files:
+  - `app/src/pages/ViewDocuments/ViewDocumentsPage.tsx` (36 lines)
+  - `app/src/pages/ViewDocuments/components/LoadingSpinner.tsx` (75 lines)
+  - `app/src/pages/ViewDocuments/components/ViewDocumentsView.tsx` (136 lines)
+  - `app/src/pages/ViewDocuments/hooks/useViewDocuments.ts` (168 lines)
+  - `app/src/pages/ViewDocuments/hooks/viewDocumentsState.ts` (84 lines)
+  - `app/src/pages/ViewDocuments/inputs.ts` (30 lines)
+  - `app/src/pages/ViewDocuments/mocks.ts` (40 lines)
+- tests: `app/src/pages/ViewDocuments/ViewDocuments.test.tsx`, `app/src/pages/ViewDocuments/components/ViewDocumentsView.test.tsx`, `app/src/pages/ViewDocuments/hooks/useViewDocuments.test.tsx`, `app/src/pages/ViewDocuments/hooks/viewDocumentsState.test.ts`
+- imported code by folder: files at import depth 1-2 are listed; deeper files are counted only:
+  - **api/bookmark**: 1 files at depth 3-4
+  - **api/client**: `api/client/callAction.ts` (167, d2); +1 deeper
+  - **api/country**: 1 files at depth 3-4
+  - **api/event**: 1 files at depth 3-4
+  - **api/image**: `api/image/index.ts` (2, d2); +2 deeper
+  - **api/locality**: 5 files at depth 3-4
+  - **api/member**: 1 files at depth 3-4
+  - **api/message**: 1 files at depth 3-4
+  - **api/schema.d.ts**: 1 files at depth 3-4
+  - **app**: 1 files at depth 3-4
+  - **components/layout**: `components/layout/CommonUiLayout/index.ts` (1, d1), `components/layout/MenuIcon/index.ts` (1, d1), `components/layout/OrbitLayout/index.ts` (1, d1), `components/layout/CommonUiLayout/CommonUiLayout.tsx` (86, d2), `components/layout/MenuIcon/MenuIcon.tsx` (44, d2), `components/layout/OrbitLayout/OrbitLayout.tsx` (91, d2); +4 deeper
+  - **components/orbit**: `components/orbit/ContactHelpdeskFooter/index.ts` (1, d1), `components/orbit/OrbitNoInformation/index.ts` (1, d1), `components/orbit/OrbitSkeleton/index.ts` (1, d1), `components/orbit/ContactHelpdeskFooter/ContactHelpdeskFooter.tsx` (22, d2), `components/orbit/OrbitNoInformation/OrbitNoInformation.tsx` (29, d2), `components/orbit/OrbitSkeleton/OrbitSkeleton.tsx` (157, d2)
+  - **components/ui**: `components/ui/os/OSList/index.ts` (2, d1), `components/ui/lib/actions.ts` (307, d2), `components/ui/os/OSBlock.tsx` (10, d2), `components/ui/os/OSList/OSList.tsx` (232, d2), `components/ui/os/OSList/OSListItem.tsx` (129, d2), `components/ui/os/OSPopup/index.ts` (1, d2); +6 deeper
+  - **legacy/os**: `legacy/os/exceptions.ts` (84, d2), `legacy/os/os-exceptions.ts` (205, d2); +2 deeper
+  - **lib/jsUtils.ts**: `lib/jsUtils.ts` (81, d2)
+  - **lib/legacyShared**: 3 files at depth 3-4
+  - **lib/orbit**: `lib/orbit/actions.ts` (330, d1), `lib/orbit/staticEntities.ts` (95, d2); +1 deeper
+  - **lib/os-wire.ts**: 1 files at depth 3-4
+  - **lib/osDateTime.ts**: `lib/osDateTime.ts` (67, d2)
+  - **lib/ubtConnectUtils**: `lib/ubtConnectUtils/actions.ts` (383, d1), `lib/ubtConnectUtils/staticEntities.ts` (190, d2), `lib/ubtConnectUtils/structures.ts` (86, d2)
+  - **mocks/contract.ts**: `mocks/contract.ts` (41, d1)
+  - **mocks/fictional**: `mocks/fictional/orbit.ts` (1446, d1), `mocks/fictional/directory.ts` (442, d2)
+  - **mocks/scenario.ts**: `mocks/scenario.ts` (17, d2)
+  - **mocks/scenarioParams.ts**: 1 files at depth 3-4
+  - **platform/config**: 1 files at depth 3-4
+  - **platform/device**: `platform/device/handleDownload.ts` (130, d1); +2 deeper
+  - **platform/feedback**: `platform/feedback/flowErrors.ts` (17, d1), `platform/feedback/index.ts` (27, d2), `platform/feedback/pageRedirect.ts` (5, d2); +20 deeper
+  - **platform/flags**: `platform/flags/index.ts` (9, d2); +9 deeper
+  - **platform/log**: 1 files at depth 3-4
+  - **platform/navigation**: 23 files at depth 3-4
+  - **platform/session**: `platform/session/mockUser.ts` (118, d2), `platform/session/session.ts` (295, d2); +9 deeper
+  - **platform/settings**: 3 files at depth 3-4
+  - **platform/storage**: `platform/storage/localEntities/orbitStaticEntities.ts` (715, d2); +3 deeper
+
+## Where the app names the OutSystems actions of the flow (word match, tests excluded)
+
+| Action | Hits | Where (first 6) |
+|---|---|---|
+| Directory_Updates_RefreshBottomBarCount | 4 | `platform/session/testSession.ts:79`<br>`components/layout/BottomBar/BottomBar.tsx:66`<br>`components/layout/BottomBar/BottomBar.tsx:75`<br>`lib/ubtConnect/actions.ts:62` |
+| ExitApplicationForWebViewUpdate | 0 | - |
+| GetNameAndSurname_ByFullName | 5 | `lib/jsUtils.ts:59`<br>`lib/ubtConnect/actions.ts:198`<br>`pages/LDM_MyEvents_V2/LDM_MyEvents_V2Page.tsx:19`<br>`pages/LDM_EventDetail_V2/LDM_EventDetail_V2Page.tsx:24`<br>`pages/AssembleDetail/AssembleDetailPage.tsx:39` |
+| GetURLFromEventDataURL | 1 | `platform/session/resume.ts:13` |
+| Get_IsUnsupportedSystem | 3 | `platform/feedback/dialogs/BlockPinUnlock.tsx:17`<br>`lib/ubtConnect/unsupportedVersion.ts:29`<br>`pages/Login/hooks/useLogin.ts:16` |
+| Get_IsUnsupportedVersion | 4 | `components/version/UnsupportedVersionWrapper/UnsupportedVersionWrapper.tsx:24`<br>`lib/ubtConnect/unsupportedVersion.ts:7`<br>`lib/ubtConnect/unsupportedVersion.ts:17`<br>`lib/ubtConnect/unsupportedVersion.ts:30` |
+| Get_UI_UpdateItems_UnreadCount_All | 6 | `platform/session/testSession.ts:78`<br>`lib/ubtConnect/actions.ts:63`<br>`api/update/repository.ts:70`<br>`api/update/mapper.ts:24`<br>`api/schema.d.ts:2277`<br>`api/openapi.yaml:4751` |
+| OfflineDataSync | 11 | `platform/device/OfflineDataSync/OfflineDataSync.tsx:18`<br>`platform/device/OfflineDataSync/OfflineDataSync.tsx:22`<br>`platform/device/OfflineDataSync/index.ts:1`<br>`components/ui/OfflineDataSyncCore/OfflineDataSyncCore.tsx:22`<br>`components/ui/OfflineDataSyncCore/OfflineDataSyncCore.tsx:25`<br>`components/layout/CommonUiLayout/CommonUiLayout.tsx:22` |
+| OfflineDataSyncConfiguration | 1 | `platform/device/OfflineDataSync/OfflineDataSync.tsx:18` |
+| OpenGooglePlay_Chrome | 0 | - |
+| OpenGooglePlay_UBTConnect | 0 | - |
+| OpenGooglePlay_WebView | 0 | - |
+| ScrollTop | 6 | `lib/ubtConnect/actions.ts:73`<br>`pages/Locality_Details/hooks/useLocalityDetails.ts:149`<br>`pages/Notes/hooks/useNotes.ts:29`<br>`pages/Assemble_BrowseByCountry/hooks/useAssembleFilter.ts:73`<br>`pages/Notifications/hooks/useNotifications.ts:143`<br>`pages/Updates_SingleList/hooks/useUpdatesSingleList.ts:207` |
+| SetResumeLoginLink | 2 | `platform/navigation/OpenLinkOnResume/OpenLinkOnResume.tsx:12`<br>`platform/session/resume.ts:7` |
+| Try_GetIsSupportedVersion | 0 | - |
+| Upgrade_UBTConnect | 0 | - |
+| Upgrade_WebView | 0 | - |
+
+## Mock handlers and fixtures of the server actions
+
+Mock handlers live in `app/src/mocks/` (shared) and in `app/src/pages/<Screen>/mocks.ts` (per screen: `app/src/pages/EmailContact/mocks.ts`, `app/src/pages/EventBooklet/mocks.ts`, `app/src/pages/EventDetail/mocks.ts`, `app/src/pages/GuestArrangements/mocks.ts`, `app/src/pages/HelpersDetail/mocks.ts`, `app/src/pages/HostSurvey/mocks.ts`, `app/src/pages/MilestoneDetail/mocks.ts`, `app/src/pages/OrbitLanding/mocks.ts`, `app/src/pages/TransportDetail/mocks.ts`, `app/src/pages/ViewDocuments/mocks.ts`).
+
+- Get_UI_UpdateItems_UnreadCount_All: **no mock handler found**

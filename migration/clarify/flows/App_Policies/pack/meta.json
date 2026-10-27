@@ -1,0 +1,59 @@
+{
+ "flow": "App_Policies",
+ "screens": [
+  "AcceptPendingPolicies"
+ ],
+ "ownBlocks": [
+  "Policy_Checker",
+  "Policy_Custom_AcceptPendingPolicies"
+ ],
+ "usedBlocks": [
+  "Block_PINUnlock",
+  "Block_PINUnlock_ContentWrapper",
+  "CommonUI_InsideLayout",
+  "HandleOnResumeOpenLink",
+  "OfflineDataSyncEvents",
+  "Policy_Checker",
+  "Policy_Custom_AcceptPendingPolicies",
+  "UnsupportedVersion",
+  "UnsupportedVersion_Browser",
+  "UnsupportedVersion_Native",
+  "UnsupportedVersion_WebView",
+  "UnsupportedVersion_Wrapper",
+  "WelcomeToConnect"
+ ],
+ "referencedBlocks": [
+  "BackNavigationHandler",
+  "Button",
+  "Columns_Two",
+  "CustomContainer",
+  "CustomText",
+  "FixedFooter",
+  "Icon",
+  "Layout_LoginFlow",
+  "Separator"
+ ],
+ "clientActions": [
+  "ExitApplicationForWebViewUpdate",
+  "GetSVGMetric",
+  "GetURLFromEventDataURL",
+  "Get_IsUnsupportedSystem",
+  "Get_IsUnsupportedVersion",
+  "OfflineDataSync",
+  "OfflineDataSyncConfiguration",
+  "OpenGooglePlay_Chrome",
+  "OpenGooglePlay_UBTConnect",
+  "OpenGooglePlay_WebView",
+  "SetResumeLoginLink",
+  "ShowCommunicationExceptionMessage",
+  "Try_GetIsSupportedVersion",
+  "Upgrade_UBTConnect",
+  "Upgrade_WebView"
+ ],
+ "serverActions": [
+  "AcceptPolicies",
+  "GetPoliciesToAccept",
+  "ListAppend"
+ ],
+ "externalSites": []
+}
