@@ -1,0 +1,80 @@
+# Brief for a flow agent (clarify-screens)
+
+You verify one UI flow of the OutSystems module `UBTConnect` against the React app in `app/`. You write one report and
+one checklist. You change no code. You make no commit.
+
+## What you deliver
+
+1. `migration/clarify/flows/<Flow>/report.md` in the format of `migration/clarify/templates/report.md`.
+2. `migration/clarify/flows/<Flow>/checklist.json` in the format of `migration/clarify/templates/checklist.schema.json`:
+   one row per checked item, the same rows that the tables of the report show.
+3. Your final message: counts by verdict, the findings F1…, the questions for the user, and the DEV≠TST notes. Not the
+   report text.
+
+## What you read
+
+| Read | Why |
+|---|---|
+| `migration/clarify/flows/<Flow>/pack/screens.md`, `blocks.md`, `actions.md`, `data.md`, `references.md`, `strings.md` | The checklist: the DEV model of the flow, from the MCP dump |
+| `migration/clarify/flows/<Flow>/pack/app.md` | Where the React code of each screen is, and where the app names the actions |
+| `migration/clarify/flows/<Flow>/pack/kb.md` | The KB pages and rules of the flow; read the UI pages it lists in full |
+| The React files that `app.md` names, and the files they import when the behaviour lives there | The thing under test |
+| `migration/clarify/flows/_shared/pack/blocks.md` and `actions.md` | A shared block or action, when a screen of your flow depends on its behaviour (read only that section) |
+| `migration/clarify/flows/<OtherFlow>/pack/blocks.md` | A block of another flow that your screens use (read only that section) |
+| `migration/board.md` | The decision and reason of a screen that is not built (`grep -n "^| <Screen> " migration/board.md`) |
+| `python3 migration/clarify/tools/tst_source.py show <Screen>` | The TST compiled code, when the DEV model and the React app differ, or a DEV fact needs a check |
+| `app/docs/architecture/overview.md`, `app/src/platform/README.md`, `app/src/api/README.md` | How the React app is built (read once, when needed) |
+
+Do not read: `migration/screens/**` (the route specs of the migration; this work is independent of them),
+`migration/contexts/**`, `.auth/**`, `migration/.raw/**`, any `.extract/` folder of the KB. Do not open the MCP dump
+(`migration/clarify/.dump/`); the pack is its readable form. Do not call the MCP yourself; the review pass does that.
+
+## How you check
+
+For every screen of the flow, and for every block of the flow that a built screen uses, check the areas of the
+template: identity, data, UI tree, screen actions, validations, business logic, strings. One row per item that carries
+behaviour: a block instance with its arguments, an If condition, a list and its source, an input and its validations, a
+screen action (and each branch, message or navigation inside it that can differ), a data action with its fetch moment,
+a client action called, a client variable read or written, a rule `BR-UBTCON-*` that the KB ties to the element.
+
+Give each row one verdict:
+
+| Verdict | Use it when |
+|---|---|
+| `match` | React does the same thing. Cite `file:line`. |
+| `partial` | Present, but a branch, a message, a parameter or an order differs. Name the difference. |
+| `missing` | Not in React. |
+| `differs` | React does something else on purpose: an ADR (`app/docs/architecture/`), a change request, a known original bug (`app/docs/known-original-bugs.md`) or a user decision on the board names it. Cite it. |
+| `mock-only` | The UI call is there, but the server side is a mock (`app/src/mocks/`). Name the server or service action that production needs. Use it for the server side only; the React call itself gets its own row. |
+| `n/a` | Not applicable by decision: the screen is `skip` on the board, or the flag is off on TST (`migration/knowledge/flag-values-tst.json`). Cite the decision. |
+| `unclear` | No evidence either way. Write the question for the user in the row. |
+
+Rules:
+
+- Never guess. A row without evidence is `unclear`, with a question. Do not infer a behaviour from a name.
+- TST is the source of truth. When the DEV model (pack) and the React app differ, check the TST compiled code with
+  `tst_source.py` before you write `missing` or `differs`. If TST agrees with React, the row is `match` and §6 of the
+  report gets the DEV≠TST line.
+- A dead branch in the model (`[DISABLED]`, `[DEAD BRANCH]`, "unreachable nodes") is one row with verdict `n/a` and
+  the note "dead in the model"; React must not implement it.
+- The logic of a referenced module (a block of `UBTConnectLibrary`, `UBT_AppManager`, `Connect2_*_MUI`, …) is not in
+  the pack. `references.md` gives its signature; `kb.md` names the KB pages of that module. Check what the React app
+  does against the KB page when one exists; otherwise the row is `unclear` with the question "behaviour of <Block> in
+  module <Module>: not in the dump, no KB page".
+- Mock data is not a finding. Meaningful mock data is a project rule; only a wrong shape, a missing field or a missing
+  handler is a finding.
+- Write the report in English, in the style of `migration/english-docs/style-rules.md`: short sentences, active voice,
+  no hedge words, identifiers unchanged. Vietnamese is for the chat only.
+- Never write a password, a PIN value, an account e-mail or any real member data into the report. The demo PIN of the
+  mock is not a secret, but do not repeat it either.
+- Findings get an id `F<n>` and a severity. A finding is one row of §5 and one or more rows of the checklist that
+  carry `finding: "F<n>"`.
+- Questions get an id `Q<n>`, with the evidence, the options and your recommendation. Do not answer a question
+  yourself.
+- Count the rows at the end (§8) and keep the counts equal to `checklist.json`.
+
+## Budget
+
+Read what the pack names, not the whole app. A screen of average size takes about 60 to 120 rows. Stop at the pack's
+boundary: a shared action that 29 flows use gets one row ("shared, checked in the report of App_Common") unless your
+flow depends on a branch of it.

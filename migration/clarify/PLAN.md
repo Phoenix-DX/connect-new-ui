@@ -69,7 +69,7 @@ TST only (`MyBookmarks`, `BookmarksByGroup`; DEV has the `Bookmarks` branch inst
 | G5 not built | zDEV_Directory_CommunityBusinessBlocks | 1/2 | CommunityBusinessDetails |
 
 G5 flows get a short gap report (what exists on DEV, why it is not built, what a build needs). The 12 block-only flows
-get one cross-cut report (`flows/_shared-blocks/report.md`); each screen report lists the blocks it uses.
+get one cross-cut report (`flows/_shared/report.md`); each screen report lists the blocks it uses.
 
 ## 4. What one flow report checks
 
@@ -163,7 +163,7 @@ migration/clarify/
   PLAN.md  AGENT.md  INDEX.md  architecture-current.md  infra-gaps.md
   templates/  tools/  .dump/ (gitignored)
   flows/<Flow>/pack/   flows/<Flow>/report.md   flows/<Flow>/checklist.json
-  flows/_shared-blocks/report.md
+  flows/_shared/report.md
 ```
 
 ## 7. Estimates
