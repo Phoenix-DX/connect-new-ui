@@ -1,14 +1,141 @@
 {
- "ranAt": "2026-10-27T13:38:33.728Z",
+ "ranAt": "2026-10-27T13:51:09.692Z",
  "site": "UBTConnect TST",
  "account": "the test account of site_auth (not named)",
  "allowedActions": 12,
  "captures": [
   {
-   "error": "locator.click: Timeout 15000ms exceeded.",
-   "at": "/UBTConnect/HomeFeed",
+   "row": "Directory_OneSchoolGlobal-056",
+   "screen": "OneSchoolGlobalDetails",
+   "dataAction": "DataActionGetOneSchoolGlobalDetails",
+   "entry": {
+    "screen": "Locality_Details",
+    "source": "path of journeys J11/J13: HomeFeed, bottom bar Directory, MY COUNTRY, first locality",
+    "note": "the capture-plan route of Locality_Details redirected to HomeFeed after about 5 s in two runs",
+    "params": [
+     "LocalityId",
+     "PreloadedLocalityLabel"
+    ]
+   },
+   "cardsInList": 3,
+   "firstOpen": {
+    "from": "Locality_Details OneSchool Global card (in-app tap)",
+    "params": [
+     "In_OneSchoolGlobalId"
+    ],
+    "calls": [
+     {
+      "name": "DataActionGetOneSchoolGlobalDetails",
+      "atMs": 80,
+      "ms": 334
+     }
+    ],
+    "allCallNames": [
+     "DataActionFetchContactDetails",
+     "DataActionGetOneSchoolGlobalDetails",
+     "DataActionFetchNotes"
+    ]
+   },
+   "secondIdSource": "second card of the same locality list",
+   "secondNavigation": {
+    "method": "OutSystems client runtime: require(\"OutSystems/ClientRuntime/Main\").Internal.Navigation.navigateTo(url) (no link to another OneSchool Global page exists on the screen)",
+    "path": "/UBTConnect/OneSchoolGlobalDetails",
+    "urlIdChanged": true,
+    "fullPageLoad": false,
+    "dataActionRanAgain": true,
+    "dataActionCount": 1,
+    "dataActionTimings": [
+     {
+      "name": "DataActionGetOneSchoolGlobalDetails",
+      "atMs": 55,
+      "ms": 380
+     }
+    ],
+    "requestBodyShape": {
+     "versionInfo": {
+      "moduleVersion": "text",
+      "apiVersion": "text"
+     },
+     "viewName": "text",
+     "screenData": {
+      "variables": {
+       "LookupSections": {
+        "Actions": {
+         "Singular": "text",
+         "Plural": "text",
+         "Icon": "text",
+         "Icon_Color": "text"
+        },
+        "Households": {
+         "Singular": "text",
+         "Plural": "text",
+         "Icon": "text",
+         "Icon_Color": "text"
+        },
+        "OneSchoolStatistitics": {
+         "Singular": "text",
+         "Plural": "text",
+         "Icon": "text",
+         "Icon_Color": "text"
+        }
+       },
+       "Selected_OneschoolGlobal_SubsectionId": "text",
+       "Type_OneschoolGlobal_SubsectionId": {
+        "UpcomingEvents": "text",
+        "AboutOurCampus": "text"
+       },
+       "LocalIsBookmarked": "boolean",
+       "In_OneSchoolGlobalId": "text",
+       "_in_OneSchoolGlobalIdInDataFetchStatus": "number",
+       "IsRestoredFromCache": "boolean",
+       "_isRestoredFromCacheInDataFetchStatus": "number"
+      }
+     }
+    },
+    "requestBodyCarriesNewId": true,
+    "requestBodyCarriesOldId": false,
+    "allCalls": [
+     {
+      "name": "DataActionFetchContactDetails",
+      "atMs": 55,
+      "ms": 361
+     },
+     {
+      "name": "DataActionGetOneSchoolGlobalDetails",
+      "atMs": 55,
+      "ms": 380
+     },
+     {
+      "name": "DataActionFetchContactDetails",
+      "atMs": 56,
+      "ms": 364
+     },
+     {
+      "name": "DataActionFetchNotes",
+      "atMs": 58,
+      "ms": 404
+     },
+     {
+      "name": "DataActionFetchContactDetails",
+      "atMs": 435,
+      "ms": 341
+     }
+    ],
+    "dom": {
+     "titleMentionsOneSchool": true,
+     "titleChanged": false,
+     "screenContainersBefore": 1,
+     "screenContainersAfter": 1,
+     "maxScreenContainersDuringTransition": 2,
+     "oldScreenElementKept": false,
+     "currentScreenIsOldElement": false,
+     "screenTextChanged": true
+    }
+   },
+   "result": "DataActionGetOneSchoolGlobalDetails ran again; a new screen element was mounted (re-initialised); text changed; URL id changed",
    "key": "osg",
-   "seconds": 35
+   "ranAt": "2026-10-27T13:52:48.612Z",
+   "seconds": 50
   },
   {
    "row": "Directory_Updates-073/074",
@@ -36,15 +163,15 @@
       "calls": [
        {
         "name": "ServiceAPIAction_UI_UpdateItem_MarkAsRead",
-        "atMs": 41,
-        "ms": 10,
+        "atMs": 46,
+        "ms": 11,
         "failed": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
        }
       ],
       "blocked": [
        "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
       ],
-      "ms": 12068
+      "ms": 12074
      },
      "storageAfterTap": [
       {
@@ -88,15 +215,15 @@
       "calls": [
        {
         "name": "ServiceAPIAction_UI_UpdateItem_MarkAsRead",
-        "atMs": 25,
-        "ms": 27,
+        "atMs": 23,
+        "ms": 28,
         "failed": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
        }
       ],
       "blocked": [
        "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
       ],
-      "ms": 12028
+      "ms": 12026
      },
      "storageAfterTap": [
       {
@@ -160,7 +287,7 @@
       "itemsHaveScrollAnchorAttr": false
      },
      {
-      "msAfterBack": 2502,
+      "msAfterBack": 2501,
       "host": "div.active-screen.screen-container.-enter-done",
       "scrollTop": 0,
       "scrollHeight": 1745,
@@ -169,7 +296,7 @@
       "itemsHaveScrollAnchorAttr": false
      },
      {
-      "msAfterBack": 5001,
+      "msAfterBack": 5002,
       "host": "div.active-screen.screen-container.-enter-done",
       "scrollTop": 0,
       "scrollHeight": 1745,
@@ -201,7 +328,8 @@
    },
    "result": "round 1: the tap did not open a screen; the guard blocked ServiceAPIAction_UI_UpdateItem_MarkAsRead; round 2: the tap did not open a screen; the guard blocked ServiceAPIAction_UI_UpdateItem_MarkAsRead",
    "key": "updates",
-   "seconds": 56
+   "ranAt": "2026-10-27T13:53:38.714Z",
+   "seconds": 55
   },
   {
    "row": "Notes-110",
@@ -262,8 +390,8 @@
     "calls": [
      {
       "name": "DataActionGetNotes",
-      "atMs": 46,
-      "ms": 402
+      "atMs": 48,
+      "ms": 400
      }
     ],
     "bodyTopLevel": [
@@ -367,7 +495,8 @@
    },
    "result": "Years $.screenData.variables.Notes_Filter.Years (OutSystems list of 1), $.screenData.variables.Years (OutSystems list of 3); SortByNewest $.screenData.variables.Notes_Filter.SortByNewest (Yes)",
    "key": "notes",
-   "seconds": 20
+   "ranAt": "2026-10-27T13:54:33.738Z",
+   "seconds": 19
   },
   {
    "row": "Legacy_OrbitAdminFlow-031",
@@ -378,43 +507,43 @@
    "callsOnOpen": [
     {
      "name": "ActionAppManager_SynchAppContext",
-     "atMs": 3345,
-     "ms": 265
+     "atMs": 2838,
+     "ms": 458
     },
     {
      "name": "DataActionGet_AdminEventsList",
-     "atMs": 4204,
-     "ms": 1052
+     "atMs": 3894,
+     "ms": 1061
     },
     {
      "name": "ActionAppManager_AfterInitialize",
-     "atMs": 7142,
-     "ms": 257
+     "atMs": 5485,
+     "ms": 255
     },
     {
      "name": "ActionSync_Info_GetMain",
-     "atMs": 7399,
-     "ms": 497
+     "atMs": 5740,
+     "ms": 494
     },
     {
      "name": "ActionGetUserInformation",
-     "atMs": 7921,
-     "ms": 350
+     "atMs": 6259,
+     "ms": 335
     },
     {
      "name": "ActionGetNumberUnreadMessages",
-     "atMs": 8281,
-     "ms": 269
+     "atMs": 6607,
+     "ms": 309
     },
     {
      "name": "ServiceAPIFetchData_CacheableMapEntities",
-     "atMs": 8549,
-     "ms": 1402
+     "atMs": 6915,
+     "ms": 1155
     },
     {
      "name": "ServiceAPIFetchData_CacheableHouseholds",
-     "atMs": 8550,
-     "ms": 1929
+     "atMs": 6915,
+     "ms": 1963
     }
    ],
    "launchDarklyRequests": [],
@@ -452,15 +581,18 @@
     "adminLandingBlock": true,
     "listWidgetProps": [
      {
-      "found": false,
-      "reactKey": true
+      "extendedPropertyNames": [],
+      "disableVirtualization": "not set",
+      "virtualized": true,
+      "levelsUp": 2
      }
     ]
    },
    "ldLocalStorage": [],
-   "result": "/UBTConnect/OrbitAdminLanding; IsListVirtualizationDisabled (Connect_LaunchDarkly_PermissionCheck.HasAccess) = true; LD client responses with the flag: none seen; SynchAppContext PermissionList holds the flag key: true; List widget disable-virtualization: [null]",
+   "result": "/UBTConnect/OrbitAdminLanding; IsListVirtualizationDisabled (Connect_LaunchDarkly_PermissionCheck.HasAccess) = true; LD client responses with the flag: none seen; SynchAppContext PermissionList holds the flag key: true; List widget disable-virtualization: [\"not set\"]",
    "key": "orbit",
-   "seconds": 17
+   "ranAt": "2026-10-27T13:54:52.989Z",
+   "seconds": 15
   },
   {
    "row": "Home-111",
@@ -485,7 +617,7 @@
     "openCalls": [
      {
       "name": "ServiceAPIAction_UI_UpdateItem_MarkAsRead",
-      "atMs": 24,
+      "atMs": 13,
       "ms": 18,
       "failed": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
      }
@@ -503,28 +635,28 @@
     "backCalls": [
      {
       "name": "DataActionGetServices",
-      "atMs": 85,
-      "ms": 718
+      "atMs": 118,
+      "ms": 363
      },
      {
       "name": "DataActionFetchCount",
-      "atMs": 85,
-      "ms": 336
+      "atMs": 118,
+      "ms": 299
      },
      {
       "name": "DataActionFetchUpdates",
-      "atMs": 86,
-      "ms": 261
+      "atMs": 119,
+      "ms": 296
      },
      {
       "name": "DataActionGetFeedConfig",
-      "atMs": 86,
-      "ms": 282
+      "atMs": 119,
+      "ms": 260
      },
      {
       "name": "DataActionGetCommunityStatistics",
-      "atMs": 86,
-      "ms": 262
+      "atMs": 119,
+      "ms": 258
      }
     ],
     "fetchUpdatesAgain": true,
@@ -535,7 +667,8 @@
    ],
    "result": "update tap blocked, View all used; after Back: FetchUpdates ran again, GetServices ran again",
    "key": "home",
-   "seconds": 61
+   "ranAt": "2026-10-27T13:55:08.411Z",
+   "seconds": 51
   }
  ],
  "blockedAll": [

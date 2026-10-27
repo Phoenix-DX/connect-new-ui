@@ -690,5 +690,17 @@
   "by": "code",
   "date": "2026-10-27",
   "note": ""
+ },
+ "Legacy_OrbitAdminFlow:Q2": {
+  "id": "Q2",
+  "question": "What is the TST value of LaunchDarkly flag `Mobile-Directory-list-virtualization`?",
+  "why": "The admin event list sets `disable-virtualization` from it (LB:262-275, `UBTConnect_Utils.controller.js:4246-4250`). React always sets it. `migration/flags.md:73` has the flag as open.",
+  "options": "A: record the TST value; React reads the flag. B: keep the fixed value, as on the captured lists of other screens.",
+  "recommendation": "A: the flag drives every list that calls IsListVirtualizationDisabled.",
+  "flow": "Legacy_OrbitAdminFlow",
+  "answer": "Settled by the read-only capture of 2026-10-27: the flag Mobile-Directory-list-virtualization is a PermissionList item of ActionAppManager_SynchAppContext and evaluates true on TST (no LaunchDarkly request); React's constant equals it. Reading it live comes with the flag endpoint (infra-gaps §6). Value added to flag-values-tst.json.",
+  "by": "code",
+  "date": "2026-10-27",
+  "note": ""
  }
 }

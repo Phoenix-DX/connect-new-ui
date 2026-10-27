@@ -298,7 +298,7 @@ None. The KB pages of UBTConnect (`legacy-orbit.md`, BR-UBTCON-608) and of Conne
 | validations | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 | logic | 17 | 11 | 1 | 0 | 5 | 0 | 0 | 0 |
 | strings | 2 | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
-| **total** | 109 | 90 | 5 | 0 | 5 | 4 | 4 | 1 |
+| **total** | **109** | **91** | **5** | **0** | **5** | **4** | **4** | **0** |
 
 ## 9. Follow-up pass (2026-10-27)
 
@@ -307,3 +307,13 @@ Rows settled or sharpened after the user answers of 2026-10-27 and the TST files
 | Row | Old verdict | New verdict | Evidence |
 |---|---|---|---|
 | Legacy_OrbitAdminFlow-031 | `unclear` | `unclear` | Q2 (no user answer yet). The value is not in the code: isListVirtualizationDisabled asks LaunchDarkly for Mobile-Directory-list-virtualization at run time (UBTConnect_Utils.controller.js:4246-4250), flags.md:73 is open, and flag-values-tst.json has no entry. Capture that settles it (read-only TST session): record the LaunchDarkly evaluation response (the flag request of the LD client, or the HasAccess call of launchDarkly_FF) on OrbitAdminLanding, and add the value to migration/knowledge/flag-values-tst.json. Then: value false on TST and React always disabled = partial (React must read the flag or follow the TST value); value true = match. |
+
+## 12. Captures on TST (2026-10-27)
+
+Read-only captures (`review/captures.md`, script `tools/capture_followup.cjs`). Row changes:
+
+| Row | Before | After | Evidence |
+|---|---|---|---|
+| Legacy_OrbitAdminFlow-031 | unclear | match | capture 2026-10-27 (review/captures.md §4): the flag Mobile-Directory-list-virtualization is a PermissionList item of ActionAppManager_SynchAppContext and evaluates true on TST (no LaunchDarkly request); React's constant equals it; reading it live comes with the flag endpoint (infra-gaps §6) |
+
+Counts after the captures (checklist.json, 109 rows): match 91, partial 5, missing 0, differs 5, mock-only 4, n/a 4, unclear 0.

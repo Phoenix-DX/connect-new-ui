@@ -131,6 +131,7 @@ Blocks of other flows: `Layout_MainPages_FixedTitle`, `Icon`, `Input`, `CustomCo
 | Id | Severity | Screen / element | Finding | React location | Suggested fix |
 |---|---|---|---|---|---|
 | F1 | minor | NoteCard_List `NoteCardList_OnScrollEnding`; Notes `Notes_CardListOnLoadMore` | The OSWidgets List fires `onScrollEnding` on a downward scroll only, inside `getInfiniteScrollThreshold` of the end, and not while the handler runs (`OutSystemsReactWidgets.js:1`, `tryFireScrollEndingEvent`). React fires when the list bottom reaches `window.innerHeight`, on any scroll, and blocks with `!notesLoading`. The next page starts later in React, also on an upward scroll. A pill tap or Apply during a page fetch behaves differently. | `app/src/pages/Notes/components/NoteCard_List.tsx:48-57`; `app/src/pages/Notes/hooks/notesState.ts:87-88` | Emulate `tryFireScrollEndingEvent`: the threshold, the downward-scroll check and a handler-running flag. Then remove `!notesLoading` from `canLoadMore`. |
+| F2 | major | Notes_FilterSheet / Handler_FilterSheetApplyFilters → DataActionGetNotes | After Apply, TST sends Notes_Filter.Years (the selected years) and SortByNewest in the screen data (capture 2026-10-27, review/captures.md §3). React never sends Years, so a selected year has no effect on the list. Row 110. | `app/src/pages/Notes/hooks/notesState.ts` (the filter record sent) | Send the selected years and the sort in the DataActionGetNotes call, as TST does. |
 
 ## 6. DEV vs TST differences
 
@@ -182,7 +183,7 @@ Blocks of other flows: `Layout_MainPages_FixedTitle`, `Icon`, `Input`, `CustomCo
 | validations | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
 | logic | 51 | 49 | 1 | 0 | 0 | 0 | 0 | 1 |
 | strings | 9 | 7 | 0 | 0 | 0 | 0 | 2 | 0 |
-| **total** | 121 | 104 | 2 | 0 | 0 | 2 | 12 | 1 |
+| **total** | **121** | **104** | **3** | **0** | **0** | **2** | **12** | **0** |
 
 ## 9. Follow-up pass (2026-10-27)
 
@@ -191,3 +192,13 @@ Rows settled or sharpened after the user answers of 2026-10-27 and the TST files
 | Row | Old verdict | New verdict | Evidence |
 |---|---|---|---|
 | Notes-110 | `unclear` | `unclear` | Q1 answered A (user decision 2026-10-27, Notes Q1 (A)): a capture settles the fact. Capture (read-only TST session): open Notes, open the filter sheet, select one year, tap Apply; record the request body of DataActionGetNotes (Years and SortByNewest). Years present = the record is shared by reference and React must send the years (row becomes partial, finding); Years absent = match. |
+
+## 12. Captures on TST (2026-10-27)
+
+Read-only captures (`review/captures.md`, script `tools/capture_followup.cjs`). Row changes:
+
+| Row | Before | After | Evidence |
+|---|---|---|---|
+| Notes-110 | unclear | partial | capture 2026-10-27 (review/captures.md §3): after Apply, DataActionGetNotes sends Notes_Filter.Years (1 item) and SortByNewest "Yes"; React never sends Years, so the year filter has no effect (finding F2, major) |
+
+Counts after the captures (checklist.json, 121 rows): match 104, partial 3, missing 0, differs 0, mock-only 2, n/a 12, unclear 0.

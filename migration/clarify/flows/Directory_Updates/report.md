@@ -296,3 +296,7 @@ Rows settled or sharpened after the user answers of 2026-10-27 and the TST files
 | Directory_Updates-073 | `unclear` | `unclear` | Q1 answered (b), then (a) (user decision 2026-10-27, Directory_Updates Q1 (b)). Capture that settles it (read-only TST session and the React app, same steps): open Updates_SingleList, scroll until an update is half visible, tap it, go Back; record the scroll offset of the list after Back, and on TST the localStorage keys scrollAnchorId and scrollAnchorDelta (Updates_SingleList.mvc.js:3369-3384). When the positions are equal, (a) applies: record the view cache under U19 and rows 073, 074 and 095 become differs; when they differ, F2 stands. |
 | Directory_Updates-074 | `unclear` | `unclear` | Same capture as row 073 (user decision 2026-10-27, Directory_Updates Q1 (b)). RememberFocusedScrollAnchor (NavigationHandler) has no TST file in the survey; the capture compares the result, not the code. |
 | Directory_Updates-148 | `unclear` | `n/a` | migration/clarify/flows/_libraries/report.md:54, 81-96, 382, 518, 527-529; migration/clarify/answers.json Directory_Updates:Q2 |
+
+## 12. Captures on TST (2026-10-27)
+
+Rows 073 and 074 stay `unclear`: the read-only capture stops at the tap on an update (`ServiceAPIAction_UI_UpdateItem_MarkAsRead` is a write; guard stop). Before the tap, `scrollAnchorId` and `scrollAnchorDelta` were absent from storage. A capture with that write allowed by the user, or a decision, settles the rows (`review/captures.md` §2).

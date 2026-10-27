@@ -154,6 +154,7 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 | Id | Question | Answer | By, date |
 |---|---|---|---|
 | Q1 | F1: remove the DEV-only milestone branch from OrbitAdminLanding? | (a) Follow TST: remove the GetMilestoneScanFF call, the milestone branch, the mock handler and the scanpermilestone scenario from OrbitAdminLanding. Note for later comparison: the branch and the screens OrbitAdminMilestones / OrbitAdminMilestoneDetail exist on DEV (dev-ahead.md). | user, 2026-10-27 |
+| Q2 | What is the TST value of LaunchDarkly flag `Mobile-Directory-list-virtualization`? | Settled by the read-only capture of 2026-10-27: the flag Mobile-Directory-list-virtualization is a PermissionList item of ActionAppManager_SynchAppContext and evaluates true on TST (no LaunchDarkly request); React's constant equals it. Reading it live comes with the flag endpoint (infra-gaps §6). Value added to flag-values-tst.json. | code, 2026-10-27 |
 
 ## Legacy_OrbitQRCodeFlow (G4)
 

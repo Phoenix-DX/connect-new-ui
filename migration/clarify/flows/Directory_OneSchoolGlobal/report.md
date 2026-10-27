@@ -271,7 +271,7 @@ The KB pages come from DEV (2026-10-05). In these two places a KB text disagrees
 | validations | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
 | logic | 10 | 8 | 0 | 0 | 0 | 0 | 1 | 1 |
 | strings | 2 | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
-| **total** | **56** | **46** | **0** | **1** | **0** | **2** | **6** | **1** |
+| **total** | **56** | **47** | **0** | **1** | **0** | **2** | **6** | **0** |
 
 ## 9. Follow-up pass (2026-10-27)
 
@@ -280,3 +280,13 @@ Rows settled or sharpened after the user answers of 2026-10-27 and the TST files
 | Row | Old verdict | New verdict | Evidence |
 |---|---|---|---|
 | Directory_OneSchoolGlobal-056 | `unclear` | `unclear` | Q1 answered (c), then (a) (user decision 2026-10-27, Directory_OneSchoolGlobal Q1 (c)). Capture that settles it (read-only TST session): with OneSchoolGlobalDetails open for one id, open an in-app link to a second id (a Search result or a Locality link) and record whether the screen re-mounts (OnInitialize and the GetOneSchoolGlobal fetch run again) or stays mounted with the old data. After the capture, (a) applies: React keeps the refetch and known-original-bugs.md records the TST behaviour. |
+
+## 12. Captures on TST (2026-10-27)
+
+Read-only captures (`review/captures.md`, script `tools/capture_followup.cjs`). Row changes:
+
+| Row | Before | After | Evidence |
+|---|---|---|---|
+| Directory_OneSchoolGlobal-056 | unclear | match | capture 2026-10-27 (review/captures.md §1): a navigation to the open screen with another id re-mounts the screen and runs DataActionGetOneSchoolGlobalDetails again (+55 ms); React refetches too (user Q1: (c) then (a)) |
+
+Counts after the captures (checklist.json, 56 rows): match 47, partial 0, missing 1, differs 0, mock-only 2, n/a 6, unclear 0.

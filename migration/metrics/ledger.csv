@@ -1020,3 +1020,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,followup,verify,192847,clarify-followup,,"follow-up pass (Fable): 18 of 29 unclear rows settled, 9 re-checks, 48 calls"
 2026-10-27,P2-infra-gaps,other,276736,clarify-P2,,"infra-gaps.md (Fable, 341 lines, 8 calls after the limit reset)"
 2026-10-27,P2-architecture,other,378205,clarify-P2,,"architecture-current.md (Fable, 645 lines, 50 calls incl. the restart after the limit)"
+2026-10-27,Legacy_OrbitEventsFlow,verify,211334,clarify-orbit-blocks,,"Orbit block pass (Opus, 80 rows, 59 calls)"
+2026-10-27,captures,verify,171463,clarify-captures,,"4 read-only TST captures + Home-111 (Opus, 43 calls); script tools/capture_followup.cjs"

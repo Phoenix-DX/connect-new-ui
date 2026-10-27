@@ -518,3 +518,13 @@ Rows settled or sharpened after the user answers of 2026-10-27 and the TST files
 | Row | Old verdict | New verdict | Evidence |
 |---|---|---|---|
 | Home-111 | `unclear` | `match` | migration/runtime-sources/OutSystemsReactView.js:7, 9; migration/runtime-sources/OutSystems.js:16-17; TST UBTConnect.Home.FeedBlock_Updates.mvc.js:1301; app/src/platform/navigation/viewCache.ts:73-80; app/src/api/update/hooks.ts:10-16; app/src/api/service/hooks.ts:27-33 |
+
+## 12. Captures on TST (2026-10-27)
+
+Read-only captures (`review/captures.md`, script `tools/capture_followup.cjs`). Row changes:
+
+| Row | Before | After | Evidence |
+|---|---|---|---|
+| Home-111 | match | match | capture 2026-10-27 (review/captures.md §5): after Back to HomeFeed, DataActionFetchUpdates and DataActionGetServices run again (+118 ms), as React does |
+
+Counts after the captures (checklist.json, 148 rows): match 123, partial 5, missing 0, differs 1, mock-only 5, n/a 14, unclear 0.

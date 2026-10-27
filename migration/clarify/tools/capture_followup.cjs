@@ -4,6 +4,7 @@
  * (migration/clarify/review/followup.md §3), plus one free check on HomeFeed. Allowed by the user on 2026-10-27.
  *
  *   node migration/clarify/tools/capture_followup.cjs [--only osg,updates,notes,orbit,home] [--headed]
+ *   node migration/clarify/tools/capture_followup.cjs --report      (write captures.md again from captures.json)
  *
  * It uses the skill's own modules (.claude/skills/outsystems-screen-spec/scripts/):
  *   site_auth.cjs       sign-in and PIN with the site profile; only that module reads the secrets
@@ -215,13 +216,19 @@ async function appNavigate(page, url) {
 /* ---------- capture 1: OneSchoolGlobalDetails, navigation to the open screen with another id ---------- */
 async function captureOSG(page) {
   const r = { row: 'Directory_OneSchoolGlobal-056', screen: 'OneSchoolGlobalDetails', dataAction: 'DataActionGetOneSchoolGlobalDetails' };
-  const loc = planRoute('Locality_Details');
-  if (!loc) throw new Error('no Locality_Details route in the capture plan');
-  r.entry = { screen: 'Locality_Details', params: paramNames(abs(loc)), source: 'capture-plan route (values not copied)' };
-  await open(page, loc);
-  await sleep(5000);
-  if (!/\/Locality_Details/i.test(pathOf(page.url()))) { r.entry.lateRedirect = pathOf(page.url()); await open(page, loc); await sleep(3000); }
-  const tap = async l => { try { await l.click({ timeout: 8000 }); } catch { await l.dispatchEvent('click'); } };   // covered or moving element
+  const tap = async l => { try { await l.click({ timeout: 8000 }); } catch { await l.dispatchEvent('click', {}, { timeout: 8000 }); } };   // covered or moving element
+  // the plan route of Locality_Details sends this account to HomeFeed after some seconds (runs of 2026-10-27), so the
+  // entry is the path of journeys J11 and J13: Directory in the bottom bar, MY COUNTRY, the first locality
+  r.entry = { screen: 'Locality_Details', source: 'path of journeys J11/J13: HomeFeed, bottom bar Directory, MY COUNTRY, first locality',
+              note: 'the capture-plan route of Locality_Details redirected to HomeFeed after about 5 s in two runs' };
+  await open(page, '/UBTConnect/HomeFeed', 3000);
+  for (const [sel, next] of [['.bottom-bar .list > a >> nth=1', 'CountryList'], ['text=MY COUNTRY', 'CountryDetails'],
+                             ["[data-block='Directory_Locality.Statistics_TypedItem']", 'Locality_Details']]) {
+    await tap(page.locator(sel).first());
+    await page.waitForURL(u => new RegExp('/' + next + '$', 'i').test(u.pathname), { timeout: 30000 });
+    await waitReady(page, 2500);
+  }
+  r.entry.params = paramNames(page.url());
   const showTab = async () => {
     if (await page.locator(OSG_CARD).first().isVisible().catch(() => false)) return;
     await tap(page.locator(OSG_TAG).nth(3));
@@ -624,6 +631,63 @@ async function captureHome(page) {
 }
 
 /* ---------- report ---------- */
+function finding(c) {
+  if (c.error) return `stopped: ${c.error}`;
+  const call = (list, re) => (list || []).filter(x => re.test(x.name)).map(x => `${x.name} at +${x.atMs} ms (${x.ms} ms)`).join(', ') || 'none';
+  if (c.key === 'osg') {
+    const s = c.secondNavigation; if (!s) return c.result;
+    return `With OneSchoolGlobalDetails open (opened from a card of the locality list), the app navigated to the same screen with`
+      + ` another id, through ${s.method.replace(/ \(no link.*\)$/, '')}, because no link to another OneSchool Global page exists on the screen. The URL id changed${s.fullPageLoad ? ' with a full page load' : ' with no page load'}.`
+      + ` During the transition ${s.dom.maxScreenContainersDuringTransition} \`.screen-container\` elements existed; after it the old screen element`
+      + ` was ${s.dom.oldScreenElementKept ? 'still in the DOM' : 'removed'} and the current one is ${s.dom.currentScreenIsOldElement ? 'the old element' : 'a new element'}`
+      + ` (${s.dom.currentScreenIsOldElement ? 'no re-initialisation' : 'the screen re-initialised'}). \`DataActionGetOneSchoolGlobalDetails\` ran again:`
+      + ` ${call(s.allCalls, /GetOneSchoolGlobalDetails/)}; its request body carries the new id: ${s.requestBodyCarriesNewId}; the old id: ${s.requestBodyCarriesOldId}.`
+      + ` Other calls: ${[...new Set(s.allCalls.filter(x => !/GetOneSchoolGlobalDetails/.test(x.name)).map(x => x.name))].join(', ') || 'none'}.`
+      + ` The document title ${s.dom.titleChanged ? 'changed' : 'did not change'}; the screen text ${s.dom.screenTextChanged ? 'changed' : 'did not change'}.`;
+  }
+  if (c.key === 'updates') {
+    const rs = c.rounds.map(x => `round ${x.round}: offset ${x.beforeTap ? x.beforeTap.scrollTop : '?'} px of ${x.beforeTap ? x.beforeTap.scrollHeight : '?'} px`
+      + ` (host \`${x.beforeTap ? x.beforeTap.host : '?'}\`), tap → ${x.tap ? (x.tap.navigated ? `opened ${x.tap.openedScreen}` : `blocked ${x.tap.blocked.join(', ')} at +${(x.tap.calls[0] || {}).atMs} ms, no screen opened`) : '?'}`).join('; ');
+    const keys = a => (a || []).filter(x => x.area !== 'history.state').map(x => x.key);
+    const hs = a => (a || []).filter(x => x.area === 'history.state').flatMap(x => x.scrollKeys || []).map(x => x.path);
+    const fb = c.fallback;
+    return `${rs}. The tap on an update calls \`ServiceAPIAction_UI_UpdateItem_MarkAsRead\` first; the guard aborts it and the app opens no screen`
+      + ` (same stop as journey J5), so tap → detail → Back could not run read-only. Storage keys with scroll/anchor before and after the tap:`
+      + ` localStorage/sessionStorage ${JSON.stringify([...new Set([...keys(c.storageAtStart), ...c.rounds.flatMap(x => keys(x.storageAfterTap))])])},`
+      + ` history.state ${JSON.stringify([...new Set([...hs(c.storageAtStart), ...c.rounds.flatMap(x => hs(x.storageAfterTap))])])}: \`scrollAnchorId\` and`
+      + ` \`scrollAnchorDelta\` are absent.`
+      + (fb && fb.after ? ` Fallback, not the item tap (app navigation to HomeFeed, then Back): offset ${fb.before.scrollTop} px before, after Back`
+        + ` ${fb.after.map(x => `${x.scrollTop} px at ${x.msAfterBack} ms (${x.renderedItems} items, height ${x.scrollHeight})`).join(', ')};`
+        + ` calls after Back on Updates_SingleList: ${(fb.callsAfterBack || []).map(x => x.name).join(', ') || 'none'}.` : '');
+  }
+  if (c.key === 'notes') {
+    if (!c.afterApply) return c.result;
+    const k = (list, name) => (list || []).filter(x => x.path.split('.').pop() === name).map(x => `\`${x.path.replace('$.', '')}\` ${x.type}${'value' in x ? ` "${x.value}"` : ''}`).join(', ') || 'absent';
+    return `Visible year options in the sheet: ${c.yearOptions}. On open, DataActionGetNotes sends Years ${k(c.onOpen.keys, 'Years')} and SortByNewest`
+      + ` ${k(c.onOpen.keys, 'SortByNewest')}. After one year and Apply filters: ${call(c.afterApply.calls, /GetNotes/)}; the body sends Years`
+      + ` ${k(c.afterApply.keys, 'Years')} and SortByNewest ${k(c.afterApply.keys, 'SortByNewest')}. So the selected year goes in`
+      + ` \`Notes_Filter.Years\` of the screen variables (the year options are the separate \`Years\` variable).`;
+  }
+  if (c.key === 'orbit') {
+    const lw = (c.dom.listWidgetProps || []).map(x => `disable-virtualization ${x.disableVirtualization}, virtualized ${x.virtualized}`).join('; ');
+    return `OrbitAdminLanding opened by its direct route; journey J26 records that no test account is an Orbit admin. The flag value comes from the app's own permission list, not from a`
+      + ` LaunchDarkly client: \`ActionAppManager_SynchAppContext\` (app start) returns \`PermissionList\` with an item equal to the key \`${c.flag}\``
+      + ` (${(c.screenserviceResponsesMentioningVirtualization || []).some(h => h.hits.some(x => x.equalsFlagKey))}); no request to a LaunchDarkly host`
+      + ` (${(c.launchDarklyRequestsSinceAppStart || []).length}) and no LaunchDarkly localStorage cache (${(c.ldLocalStorage || []).length}).`
+      + ` \`UBTConnect_Utils.IsListVirtualizationDisabled\` (Connect_LaunchDarkly_PermissionCheck(launchDarkly_FF.mobileDirectoryListVirtualization =`
+      + ` "${c.clientEvaluation.staticRecord}").HasAccess) returns ${JSON.stringify(c.clientEvaluation.IsListVirtualizationDisabled)} with no service call`
+      + ` (${(c.callsDuringClientEvaluation || []).length}). TST value of the flag for the test account: ${JSON.stringify(c.clientEvaluation.IsListVirtualizationDisabled)}.`
+      + ` DOM: ${c.dom.listsOnScreen} List widget(s) on the screen; ${lw || 'no List widget props found'}; elements with a disable-virtualization`
+      + ` attribute: ${c.dom.withDisableVirtualizationAttr}, class: ${c.dom.withDisableVirtualizationClass}.`;
+  }
+  if (c.key === 'home') {
+    const u = c.fallback && c.fallback.navigated ? c.fallback : c.updateTap;
+    return `${c.updateTap.navigated ? 'An update opened' : `The tap on an update on HomeFeed calls \`${(c.updateTap.blocked || []).join(', ')}\` first; the guard blocked it and no screen opened, so the`
+      + ` check used Updates 'View all' instead (another screen, then Back)`}. After Back to HomeFeed: ${call(u.backCalls, /./)}.`
+      + ` FetchUpdates ran again: ${u.fetchUpdatesAgain}; GetServices ran again: ${u.getServicesAgain}.`;
+  }
+  return c.result;
+}
 function writeMd(all) {
   const L = [];
   const j = x => '`' + JSON.stringify(x) + '`';
@@ -636,8 +700,13 @@ function writeMd(all) {
   L.push('| Capture | Row | Result |', '|---|---|---|');
   for (const c of all.captures) L.push(`| ${c.key} | ${c.row || ''} | ${(c.error ? 'error: ' + c.error : c.result || '').replace(/\|/g, '/')} |`);
   L.push('');
+  L.push('## Findings', '');
   for (const c of all.captures) {
-    L.push(`## ${c.key}: ${c.row || ''}`, '');
+    try { const f = finding(c); if (f) L.push(`- **${c.row}**: ${f}`); } catch (e) { L.push(`- **${c.row}**: (no summary: ${clean(e)})`); }
+  }
+  L.push('', 'The sections below hold the recorded facts of each capture.', '');
+  for (const c of all.captures) {
+    L.push(`## ${c.key}: ${c.row || ''}`, '', `Ran at ${c.ranAt || all.ranAt} (${c.seconds} s).`, '');
     if (c.error) { L.push(`Stopped: ${c.error}`, ''); continue; }
     L.push(`Result: ${c.result}`, '');
     if (c.key === 'osg') {
@@ -690,6 +759,7 @@ function writeMd(all) {
 }
 
 async function main() {
+  if (opt('report')) { writeMd(JSON.parse(fs.readFileSync(OUT_JSON, 'utf8'))); log(`→ ${OUT_MD} (from ${OUT_JSON})`); return; }   // the report again, no capture
   PLAN_DATA = JSON.parse(fs.readFileSync(PLAN, 'utf8'));
   ALLOW = new Set((PLAN_DATA.defaults || {}).allowActions || []);
   PROFILE = auth.resolveProfile({});
@@ -714,7 +784,7 @@ async function main() {
       const t = now();
       let res;
       try { res = await fn(page); } catch (e) { res = { error: clean(e), at: pathOf(page.url()) }; }
-      res.key = key; res.seconds = Math.round((now() - t) / 1000);
+      res.key = key; res.ranAt = new Date(t).toISOString(); res.seconds = Math.round((now() - t) / 1000);
       all.captures.push(res);
       log(`${key}: ${res.error ? 'error: ' + res.error : res.result}`);
     }
