@@ -558,5 +558,41 @@
   "by": "user",
   "date": "2026-10-27",
   "note": "candidate finding d of review/followup.md; same as App_Policies Q2"
+ },
+ "Legacy_OrbitEventsFlow:Q1": {
+  "id": "Q1",
+  "question": "HostSurvey wizard (F1): build it now from the TST compiled code, or keep the placeholder?",
+  "why": "A host cannot complete the survey in React. The survey is the only write flow of Orbit. A read-only capture of the wizard is not possible (the test account's survey is confirmed; `orbit-assemble-ldm.md:45` \"HostSurvey (default only)\"). The TST block (409990 B) and the 15 item blocks hold the full logic.",
+  "options": "(a) build the wizard from TST now; (b) keep the placeholder and record F1 as an open gap on the board; (c) build it in the production phase with a backend",
+  "recommendation": "(a): the code is available, and the mock handler of PostHostSurvey exists.",
+  "flow": "Legacy_OrbitEventsFlow",
+  "answer": "(a) Build the HostSurvey wizard from the TST compiled code (model, controller and view of the ScreenBlock_HostSurvey files; mock for PostHostSurvey); recorded as build now, the build starts when the user orders it.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": ""
+ },
+ "Legacy_OrbitEventsFlow:Q2": {
+  "id": "Q2",
+  "question": "OrbitLanding \"View Passport details\" (F3): follow TST and remove it, or keep the DEV-only control?",
+  "why": "TST users do not see the control. In React it leads to an unregistered route.",
+  "options": "(a) remove the control, the event and the handler until TST deploys PassportScan (board V8); (b) keep it hidden behind a flag that is off; (c) keep it as is",
+  "recommendation": "(a): TST is the source of truth, and the board already defers PassportScan.",
+  "flow": "Legacy_OrbitEventsFlow",
+  "answer": "(a) Follow TST: remove the DEV-only passport control, the event NavigateTo_PassportScan and its handler from OrbitLanding; note it as a DEV feature not deployed on TST.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": ""
+ },
+ "Legacy_OrbitEventsFlow:Q3": {
+  "id": "Q3",
+  "question": "MilestoneDetail (F2): build the five other milestone blocks from TST, or keep the placeholders?",
+  "why": "A guest or helper of a meal or accommodation milestone sees a placeholder.",
+  "options": "(a) build all five from their TST files; (b) build the guest blocks first (MealGuest, AccommodationGuest), the helper and host blocks later; (c) keep the placeholders",
+  "recommendation": "(a); (b) if the budget is short.",
+  "flow": "Legacy_OrbitEventsFlow",
+  "answer": "(a) Build the five other milestone blocks (MealGuest, MealHost, MealHelper, AccommodationGuest, AccommodationHelper) from their TST files; recorded as build now.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": ""
  }
 }

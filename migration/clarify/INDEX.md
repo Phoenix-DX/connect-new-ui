@@ -30,7 +30,7 @@ Verdicts: match · partial · missing · differs · mock-only · n/a · unclear 
 | G3 | [ContactFlow](flows/ContactFlow/report.md) | draft | 142 | 121 | 3 | 0 | 8 | 5 | 5 | 0 | 0/0/1/1 | 2 |
 | G3 | [Legacy_Share](flows/Legacy_Share/report.md) | draft | 95 | 64 | 8 | 0 | 2 | 5 | 16 | 0 | 0/0/2/1 | 0 |
 | G3 | [Legacy_MyNotificationsFlow](flows/Legacy_MyNotificationsFlow/report.md) | draft | 152 | 106 | 6 | 21 | 0 | 8 | 11 | 0 | 0/4/2/0 | 4 |
-| G4 | [Legacy_OrbitEventsFlow](flows/Legacy_OrbitEventsFlow/report.md) | draft | 438 | 317 | 16 | 69 | 6 | 18 | 9 | 3 | 2/1/3/1 | 4 |
+| G4 | [Legacy_OrbitEventsFlow](flows/Legacy_OrbitEventsFlow/report.md) | draft | 518 | 398 | 18 | 69 | 6 | 18 | 9 | 0 | 2/1/4/1 | 4 |
 | G4 | [Legacy_OrbitAdminFlow](flows/Legacy_OrbitAdminFlow/report.md) | draft | 109 | 90 | 5 | 0 | 5 | 4 | 4 | 1 | 0/1/2/0 | 2 |
 | G4 | [Legacy_OrbitQRCodeFlow](flows/Legacy_OrbitQRCodeFlow/report.md) | draft | 68 | 60 | 1 | 1 | 0 | 2 | 4 | 0 | 0/0/2/0 | 1 |
 | G4 | [Legacy_LDMEventsFlow](flows/Legacy_LDMEventsFlow/report.md) | draft | 94 | 67 | 1 | 2 | 5 | 2 | 17 | 0 | 0/0/2/0 | 0 |
@@ -53,7 +53,7 @@ Verdicts: match · partial · missing · differs · mock-only · n/a · unclear 
 | X | [Calendar_Events](flows/Calendar_Events/report.md) | draft | 8 | 0 | 0 | 0 | 0 | 0 | 8 | 0 | 0/0/0/0 | 0 |
 | X | [_shared](flows/_shared/report.md) | draft | 194 | 82 | 1 | 2 | 5 | 7 | 97 | 0 | 0/1/1/1 | 1 |
 | X | [_libraries](flows/_libraries/report.md) | draft | 245 | 224 | 5 | 1 | 9 | 4 | 2 | 0 | 0/1/3/0 | 2 |
-| | **total (45/45 flows)** | | 5332 | 4212 | 134 | 166 | 96 | 157 | 556 | 11 | 3/26/55/29 | |
+| | **total (45/45 flows)** | | 5412 | 4293 | 136 | 166 | 96 | 157 | 556 | 8 | 3/26/56/29 | |
 
 ## 2. Findings by severity (blocker and major first)
 
@@ -134,6 +134,7 @@ Verdicts: match · partial · missing · differs · mock-only · n/a · unclear 
 | Legacy_OrbitEventsFlow | F4 | minor | OrbitLanding and AccommodationHost: OnReady on a restored view | TST ends OnReady on every restored view (`ScreenBlock_OrbitLanding :1669` show). React ends only when the data was fetched and fetches again otherwise (comment "F40"; no recorded decision). | `useOrbitLanding.ts:105`, `useAccommodationHost.ts:147` |
 | Legacy_OrbitEventsFlow | F5 | minor | MilestoneDetail: GetGmpMilestoneHost error | TST handler: IsFetchingData = False, raise UnknownError (`:1156-1202`). React has no catch: the rejection goes to the flow handler and the skeleton stays. | `useMilestoneWrapper.ts:42-59` |
 | Legacy_OrbitEventsFlow | F6 | minor | EmailContact: GetTextAreaLineHeight | TST divides by the clientWidth of the subject container (`CF:1577-1584`); React divides by the body clientWidth. The row count of the read-only subject can differ. | `EmailContact/actions.ts:19-20`, `useOrbitContactForm.ts:77` |
+| Legacy_OrbitEventsFlow | F8 | minor | EventBooklet: EventBooklet_MembersItem, the name and the host | TST: the two containers have an OnClick event (Click_Member, Click_Host). The platform Container widget then sets the inline style `cursor: pointer` (`OutSystemsReactWidgets.js:1`, Container render). React puts the click handlers on plain divs without that style. The theme CSS sets no cursor for the two classes (`Connect2_LegacyShared.OrbitTheme.css:3235, 3254`). In a desktop browser, the pointer does not change on the name and the host of a booklet row. | `EventBooklet_MembersItem.tsx:41,61` |
 | Legacy_OrbitQRCodeFlow | F1 | minor | QRCodeGenerate / screen title | The runtime sets `document.title` to "QRCodeGenerate" when the screen mounts (`OutSystemsReactView.js:7`, `S:166-168`). No code of the React app sets `document.title`. | `app/index.html:6`; `app/src/app/routes.generated.ts:68` |
 | Legacy_OrbitQRCodeFlow | F2 | minor | ScreenBlock_GenerateQRCode / member photo | With an empty UserSignedURL, TST renders `<img class="orbit-member-photo" src="">` (`OutSystemsReactWidgets.js:2`, no default image at `B:337-339`). React renders the image without `src`. In the demo the URL is always empty. | `app/src/pages/QRCodeGenerate/components/GenerateQrCodeView.tsx:65` |
 | Legacy_Share | F1 | minor | ConnectShare / Action_Redirect | TST opens HouseholdDetails, OneSchoolGlobalDetails, FeedItemDetail and SupperMeeting_Details with `TransitionAnimation.None` (ConnectShare.mvc.js:461-485). React calls `navigate(path, params)` without a transition, so the target slides in from the right. CR-F18-1 ports the compiled transitions 1:1, but its call-site list names ConnectShare.mvc.js:293 only. | app/src/pages/ConnectShare/hooks/useConnectShare.ts:122 |
@@ -211,9 +212,9 @@ Info findings: 29 (in the reports, §5).
 
 | Flow | Id | Question | Recommendation | Answer |
 |---|---|---|---|---|
-| Legacy_OrbitEventsFlow | Q1 | HostSurvey wizard (F1): build it now from the TST compiled code, or keep the placeholder? | (a): the code is available, and the mock handler of PostHostSurvey exists. |  |
-| Legacy_OrbitEventsFlow | Q2 | OrbitLanding "View Passport details" (F3): follow TST and remove it, or keep the DEV-only control? | (a): TST is the source of truth, and the board already defers PassportScan. |  |
-| Legacy_OrbitEventsFlow | Q3 | MilestoneDetail (F2): build the five other milestone blocks from TST, or keep the placeholders? | (a); (b) if the budget is short. |  |
+| Legacy_OrbitEventsFlow | Q1 | HostSurvey wizard (F1): build it now from the TST compiled code, or keep the placeholder? | (a): the code is available, and the mock handler of PostHostSurvey exists. | (a) Build the HostSurvey wizard from the TST compiled code (model, controller and view of the ScreenBlock_HostSurvey files; mock for PostHostSurvey); recorded as build now, the build starts when the u (user, 2026-10-27) |
+| Legacy_OrbitEventsFlow | Q2 | OrbitLanding "View Passport details" (F3): follow TST and remove it, or keep the DEV-only control? | (a): TST is the source of truth, and the board already defers PassportScan. | (a) Follow TST: remove the DEV-only passport control, the event NavigateTo_PassportScan and its handler from OrbitLanding; note it as a DEV feature not deployed on TST. (user, 2026-10-27) |
+| Legacy_OrbitEventsFlow | Q3 | MilestoneDetail (F2): build the five other milestone blocks from TST, or keep the placeholders? | (a); (b) if the budget is short. | (a) Build the five other milestone blocks (MealGuest, MealHost, MealHelper, AccommodationGuest, AccommodationHelper) from their TST files; recorded as build now. (user, 2026-10-27) |
 | Legacy_OrbitEventsFlow | Q4 | Review pass items, no user decision: A121 (EventBooklet variable defaults), B069 and B103 (the Type argument of CheckDirectoryAccess), J016-J018 (the internals of the OrbitLanding popups, the booklet blocks and the transport blocks). | Read them in the review pass; no user answer needed. |  |
 | Legacy_OrbitAdminFlow | Q1 | F1: remove the DEV-only milestone branch from OrbitAdminLanding? | A: TST is the source of truth, and board V8 already waits for a TST deploy. |  |
 | Legacy_OrbitAdminFlow | Q2 | What is the TST value of LaunchDarkly flag `Mobile-Directory-list-virtualization`? | A: the flag drives every list that calls IsListVirtualizationDisabled. |  |

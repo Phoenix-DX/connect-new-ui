@@ -143,7 +143,10 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 
 | Id | Question | Answer | By, date |
 |---|---|---|---|
+| Q1 | HostSurvey wizard (F1): build it now from the TST compiled code, or keep the placeholder? | (a) Build the HostSurvey wizard from the TST compiled code (model, controller and view of the ScreenBlock_HostSurvey files; mock for PostHostSurvey); recorded as build now, the build starts when the user orders it. | user, 2026-10-27 |
 | C2 |  | Keep the React behaviour: IsGuestView starts false until the guests fetch (TST starts true). Row A121 is differs by this decision. | user, 2026-10-27 |
+| Q2 | OrbitLanding "View Passport details" (F3): follow TST and remove it, or keep the DEV-only control? | (a) Follow TST: remove the DEV-only passport control, the event NavigateTo_PassportScan and its handler from OrbitLanding; note it as a DEV feature not deployed on TST. | user, 2026-10-27 |
+| Q3 | MilestoneDetail (F2): build the five other milestone blocks from TST, or keep the placeholders? | (a) Build the five other milestone blocks (MealGuest, MealHost, MealHelper, AccommodationGuest, AccommodationHelper) from their TST files; recorded as build now. | user, 2026-10-27 |
 
 ## _shared (X)
 
