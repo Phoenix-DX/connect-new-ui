@@ -1,9 +1,11 @@
 # How to continue the clarify-screens work in a new session
 
-Status on 2026-10-27, end of the third session: the clarify work is complete. All 45 units are judged (`INDEX.md`:
-5412 rows, unclear 5), the follow-up pass, the Orbit block pass and 4 read-only TST captures are done
-(`review/followup.md`, `review/orbit-blocks.md`, `review/captures.md`), P2 is written (`architecture-current.md`,
-`infra-gaps.md`, `dev-ahead.md`), and the user answered every question (`decisions.md`, 59 rows).
+Status on 2026-10-27, end of the third session: the clarify work is complete.
+- All 45 units are judged (`INDEX.md`: 5412 rows, unclear 5).
+- The follow-up pass, the Orbit block pass and 4 read-only TST captures are done (`review/followup.md`,
+  `review/orbit-blocks.md`, `review/captures.md`).
+- P2 is written (`architecture-current.md`, `infra-gaps.md`, `dev-ahead.md`).
+- The user answered every question (`decisions.md`, 59 rows).
 
 Open items for the user:
 - Notes F2 (major, new from the capture): decide build or record.
@@ -12,8 +14,8 @@ Open items for the user:
   platform logger).
 - The artifact "Infra & FE readiness" (Vietnamese first, one page with two tabs): build locally, the user accepts,
   then publish ([[feedback-publish-needs-accept]]).
-- After that, the work that follows the reports is the user's call: the 30 build items of `infra-gaps.md` §10.4, the
-  infra set-up order of §11.
+- After that, the user decides the work that follows the reports: the 30 build items of `infra-gaps.md` §10.4 and
+  the infra set-up order of §11.
 
 ## Start
 
@@ -31,8 +33,8 @@ Open items for the user:
    `python3 migration/clarify/tools/aggregate.py`.
 2. Build the artifact locally from `infra-gaps.md`, `architecture-current.md`, `decisions.md`, `review/aggregate.md`;
    show it; publish only after the user's accept.
-3. When the user orders a build: one route or block at a time, from the TST compiled code (`tools/tst_source.py`),
-   through the parity gate of the migration, with the report row ids in the commit message.
+3. When the user orders a build: one route or block at a time, from the TST compiled code (`tools/tst_source.py`).
+   Each build goes through the parity gate of the migration. The commit message names the report row ids.
 
 ## Way of work that the user decided
 
