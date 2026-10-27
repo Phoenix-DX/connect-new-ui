@@ -1,4 +1,4 @@
-# context-054 · Clarify screens: plan, P0 tooling, wave G1 (2026-10-27)
+# context-054 · Clarify screens: plan, P0 tooling, waves G1 and G2 (2026-10-27)
 
 ## Result
 - New work on branch `clarify-screens`: verify the React app against the OutSystems model (DEV, MCP) by UI flow,
@@ -9,6 +9,8 @@
   differs 28, mock-only 25, n/a 71, unclear 12. Findings: 1 blocker (ContactUsDetails signed-out form), 9 major.
   26 questions for the user (`INDEX.md` §3). Orchestrator review: `review/G1-review.md`.
 - 41 TST scripts fetched read-only (standing rule), logged in `knowledge/runtime-sources.md`.
+- G2 done (7 directory flows, reader Sonnet + judge Opus, Fable for Directory_Locality): 1186 rows, 0 blocker,
+  5 major, 7 questions; `review/G2-review.md` (TST checks, cost table). Board: 5 DEV-only screens got `skip` rows (V8).
 
 ## Decisions (who, date)
 - User 2026-10-27: plan approved (D1–D6 as recommended); report format approved; questions answered per wave;
@@ -27,7 +29,7 @@
   `migration/metrics/ledger.csv`, `.gitignore`.
 
 ## Open issues
-- 26 G1 questions wait for the user. G2–G5 and `_shared` not started. Live MCP review pass not run (TST checks done).
+- 26 G1 questions and 7 G2 questions wait for the user. G3–G5 and `_shared` not started. Live MCP review pass not run (TST checks done).
 
 ## Next
-- User answers the G1 questions and decides the G2 way of work; then G2 (7 directory flows) with reader + judge.
+- User answers the G1 and G2 questions and decides the G3 way of work (single evidence file); then G3 (6 content flows).
