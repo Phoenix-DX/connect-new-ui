@@ -9,7 +9,7 @@
 ## Decisions (user, 2026-10-28)
 - PD1 to PD8: (a), one at a time, after the context and the options were explained.
 - PD9 to PD13: "the rest per Fable", so (a) for each, as the Fable advisor recommended.
-- A new question from the PD8 port (endless recursion, mock delimiters) went to a Fable advisor: (a), port 1:1, record
+- PD14, new from the PD8 port (endless recursion, mock delimiters): Fable advised (a); the user saw (a), (b), (c) and kept (a): port 1:1, record
   the defect, fictional mock delimiters.
 
 ## Facts learned (evidence)

@@ -1,7 +1,7 @@
 # Decisions for the user (build wave of 2026-10-27)
 
 The build agents did not settle these from the source of truth. Each one has the options, the evidence, the
-recommendation of two advisors (Opus, Fable) and the state of the build. The user answered all 13 on 2026-10-28 (see "Answers").
+recommendation of two advisors (Opus, Fable) and the state of the build. The user answered all 13 on 2026-10-28, and PD14, a new question from the PD8 port (see "Answers").
 
 | Id | Group | Question | Options | Opus | Fable | Build state |
 |---|---|---|---|---|---|---|
@@ -36,3 +36,4 @@ recommendation of two advisors (Opus, Fable) and the state of the build. The use
 | PD11 | a | Per the Fable advice (user, 2026-10-28): keep TimezoneOffset 0 and record the defect. |
 | PD12 | a | Per the Fable advice (user, 2026-10-28): keep the Accommodation link as compiled and record it as a known bug. |
 | PD13 | a | Per the Fable advice (user, 2026-10-28): keep the OrbitLanding "View Passport details" control as TST. |
+| PD14 | a | New from the PD8 port: SetTextPlaceholdersValue recurses for ever when the first placeholder gives no value. Fable advice (a): keep it 1:1 (known bug B19, tests), fictional non-empty delimiters in the mock. Options shown to the user: (b) keep the empty mock delimiters, (c) a stop guard. The user kept (a) on 2026-10-28 after the options were explained. |
