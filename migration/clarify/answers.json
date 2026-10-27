@@ -578,7 +578,7 @@
   "options": "(a) remove the control, the event and the handler until TST deploys PassportScan (board V8); (b) keep it hidden behind a flag that is off; (c) keep it as is",
   "recommendation": "(a): TST is the source of truth, and the board already defers PassportScan.",
   "flow": "Legacy_OrbitEventsFlow",
-  "answer": "(a) Follow TST: remove the DEV-only passport control, the event NavigateTo_PassportScan and its handler from OrbitLanding; note it as a DEV feature not deployed on TST.",
+  "answer": "(a) Follow TST: remove the DEV-only passport control, the event NavigateTo_PassportScan and its handler from OrbitLanding. Note for later comparison: the control and the screen PassportScan exist on DEV (dev-ahead.md).",
   "by": "user",
   "date": "2026-10-27",
   "note": ""
@@ -591,6 +591,18 @@
   "recommendation": "(a); (b) if the budget is short.",
   "flow": "Legacy_OrbitEventsFlow",
   "answer": "(a) Build the five other milestone blocks (MealGuest, MealHost, MealHelper, AccommodationGuest, AccommodationHelper) from their TST files; recorded as build now.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": ""
+ },
+ "Legacy_OrbitAdminFlow:Q1": {
+  "id": "Q1",
+  "question": "F1: remove the DEV-only milestone branch from OrbitAdminLanding?",
+  "why": "React calls a server action and can open a route that TST does not have (LW:244-252, board V8).",
+  "options": "A: remove the call, the branch, the mock handler and the scenario `scanpermilestone`; add them back when TST deploys the milestone screens. B: keep them for DEV, with the mock value False.",
+  "recommendation": "A: TST is the source of truth, and board V8 already waits for a TST deploy.",
+  "flow": "Legacy_OrbitAdminFlow",
+  "answer": "(a) Follow TST: remove the GetMilestoneScanFF call, the milestone branch, the mock handler and the scanpermilestone scenario from OrbitAdminLanding. Note for later comparison: the branch and the screens OrbitAdminMilestones / OrbitAdminMilestoneDetail exist on DEV (dev-ahead.md).",
   "by": "user",
   "date": "2026-10-27",
   "note": ""

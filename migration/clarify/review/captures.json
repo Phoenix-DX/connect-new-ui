@@ -1,0 +1,602 @@
+{
+ "ranAt": "2026-10-27T13:31:45.981Z",
+ "site": "UBTConnect TST",
+ "account": "the test account of site_auth (not named)",
+ "allowedActions": 12,
+ "captures": [
+  {
+   "error": "locator.click: Timeout 15000ms exceeded.",
+   "at": "/UBTConnect/HomeFeed",
+   "key": "osg",
+   "seconds": 35
+  },
+  {
+   "row": "Directory_Updates-073/074",
+   "screen": "Updates_SingleList",
+   "rounds": [
+    {
+     "round": 1,
+     "beforeTap": {
+      "host": "div.active-screen.screen-container",
+      "scrollTop": 1800,
+      "scrollHeight": 12948,
+      "clientHeight": 844,
+      "renderedItems": 87,
+      "itemsHaveScrollAnchorAttr": true
+     },
+     "tappedItem": {
+      "renderedIndex": 20,
+      "topInViewport": 402,
+      "hasScrollAnchorAttr": false
+     },
+     "tap": {
+      "navigated": false,
+      "openedScreen": null,
+      "params": [],
+      "calls": [
+       {
+        "name": "ServiceAPIAction_UI_UpdateItem_MarkAsRead",
+        "atMs": 45,
+        "ms": 10,
+        "failed": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+       }
+      ],
+      "blocked": [
+       "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
+      ],
+      "ms": 12073
+     },
+     "storageAfterTap": [
+      {
+       "area": "localStorage",
+       "key": "$OS_UBTConnect$ApplicationInfo",
+       "valueLength": 285997,
+       "valueShape": "{\"aaaaaaaa\":{\"aaaaaaaaaaaa\":\"aaaaa+aaa9a",
+       "innerKeys": [
+        {
+         "path": "$.manifest.urlVersions./UBTConnect/index.html",
+         "type": "string"
+        },
+        {
+         "path": "$.manifest.urlVersions./UBTConnect/scripts/NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack.mvc.js",
+         "type": "string"
+        },
+        {
+         "path": "$.manifest.urlVersions./UBTConnect/scripts/NavigationHandler.ScrollAnchors.ScrollAnchor.mvc.js",
+         "type": "string"
+        },
+        {
+         "path": "$.manifest.urlVersions./UBTConnect/scripts/UBTConnect.index.js",
+         "type": "string"
+        }
+       ]
+      }
+     ],
+     "result": "the tap did not open a screen; the guard blocked ServiceAPIAction_UI_UpdateItem_MarkAsRead",
+     "scrollAfterBlockedTap": {
+      "host": "div.active-screen.screen-container",
+      "scrollTop": 1800,
+      "scrollHeight": 12948,
+      "clientHeight": 844,
+      "renderedItems": 87,
+      "itemsHaveScrollAnchorAttr": true
+     }
+    },
+    {
+     "round": 2,
+     "beforeTap": {
+      "host": "div.active-screen.screen-container",
+      "scrollTop": 3600,
+      "scrollHeight": 12972,
+      "clientHeight": 844,
+      "renderedItems": 87,
+      "itemsHaveScrollAnchorAttr": true
+     },
+     "tappedItem": {
+      "renderedIndex": 40,
+      "topInViewport": 591,
+      "hasScrollAnchorAttr": false
+     },
+     "tap": {
+      "navigated": false,
+      "openedScreen": null,
+      "params": [],
+      "calls": [
+       {
+        "name": "ServiceAPIAction_UI_UpdateItem_MarkAsRead",
+        "atMs": 24,
+        "ms": 15,
+        "failed": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+       }
+      ],
+      "blocked": [
+       "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
+      ],
+      "ms": 12027
+     },
+     "storageAfterTap": [
+      {
+       "area": "localStorage",
+       "key": "$OS_UBTConnect$ApplicationInfo",
+       "valueLength": 285997,
+       "valueShape": "{\"aaaaaaaa\":{\"aaaaaaaaaaaa\":\"aaaaa+aaa9a",
+       "innerKeys": [
+        {
+         "path": "$.manifest.urlVersions./UBTConnect/index.html",
+         "type": "string"
+        },
+        {
+         "path": "$.manifest.urlVersions./UBTConnect/scripts/NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack.mvc.js",
+         "type": "string"
+        },
+        {
+         "path": "$.manifest.urlVersions./UBTConnect/scripts/NavigationHandler.ScrollAnchors.ScrollAnchor.mvc.js",
+         "type": "string"
+        },
+        {
+         "path": "$.manifest.urlVersions./UBTConnect/scripts/UBTConnect.index.js",
+         "type": "string"
+        }
+       ]
+      }
+     ],
+     "result": "the tap did not open a screen; the guard blocked ServiceAPIAction_UI_UpdateItem_MarkAsRead",
+     "scrollAfterBlockedTap": {
+      "host": "div.active-screen.screen-container",
+      "scrollTop": 3600,
+      "scrollHeight": 12972,
+      "clientHeight": 844,
+      "renderedItems": 87,
+      "itemsHaveScrollAnchorAttr": true
+     }
+    }
+   ],
+   "storageAtStart": [
+    {
+     "area": "localStorage",
+     "key": "$OS_UBTConnect$ApplicationInfo",
+     "valueLength": 285997,
+     "valueShape": "{\"aaaaaaaa\":{\"aaaaaaaaaaaa\":\"aaaaa+aaa9a",
+     "innerKeys": [
+      {
+       "path": "$.manifest.urlVersions./UBTConnect/index.html",
+       "type": "string"
+      },
+      {
+       "path": "$.manifest.urlVersions./UBTConnect/scripts/NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack.mvc.js",
+       "type": "string"
+      },
+      {
+       "path": "$.manifest.urlVersions./UBTConnect/scripts/NavigationHandler.ScrollAnchors.ScrollAnchor.mvc.js",
+       "type": "string"
+      },
+      {
+       "path": "$.manifest.urlVersions./UBTConnect/scripts/UBTConnect.index.js",
+       "type": "string"
+      }
+     ]
+    }
+   ],
+   "fallback": {
+    "method": "not the item tap: app navigation to HomeFeed, then history.back()",
+    "before": {
+     "host": "div.active-screen.screen-container",
+     "scrollTop": 3600,
+     "scrollHeight": 12972,
+     "clientHeight": 844,
+     "renderedItems": 87,
+     "itemsHaveScrollAnchorAttr": true
+    },
+    "navigation": "OutSystems client runtime: require(\"OutSystems/ClientRuntime/Main\").Internal.Navigation.navigateTo(url)",
+    "left": true,
+    "fullPageLoad": false,
+    "after": {
+     "host": "div.active-screen.screen-container.-enter-done",
+     "scrollTop": 0,
+     "scrollHeight": 1745,
+     "clientHeight": 844,
+     "renderedItems": 3,
+     "itemsHaveScrollAnchorAttr": false
+    },
+    "calls": [
+     "DataActionGetServices",
+     "DataActionFetchCount",
+     "DataActionFetchUpdates",
+     "DataActionGetFeedConfig",
+     "DataActionGetCommunityStatistics"
+    ],
+    "storage": [
+     {
+      "area": "localStorage",
+      "key": "$OS_UBTConnect$ApplicationInfo",
+      "valueLength": 285997,
+      "valueShape": "{\"aaaaaaaa\":{\"aaaaaaaaaaaa\":\"aaaaa+aaa9a",
+      "innerKeys": [
+       {
+        "path": "$.manifest.urlVersions./UBTConnect/index.html",
+        "type": "string"
+       },
+       {
+        "path": "$.manifest.urlVersions./UBTConnect/scripts/NavigationHandler.ScrollAnchors.FocusScrollAnchorOnBack.mvc.js",
+        "type": "string"
+       },
+       {
+        "path": "$.manifest.urlVersions./UBTConnect/scripts/NavigationHandler.ScrollAnchors.ScrollAnchor.mvc.js",
+        "type": "string"
+       },
+       {
+        "path": "$.manifest.urlVersions./UBTConnect/scripts/UBTConnect.index.js",
+        "type": "string"
+       }
+      ]
+     }
+    ]
+   },
+   "result": "round 1: the tap did not open a screen; the guard blocked ServiceAPIAction_UI_UpdateItem_MarkAsRead; round 2: the tap did not open a screen; the guard blocked ServiceAPIAction_UI_UpdateItem_MarkAsRead",
+   "key": "updates",
+   "seconds": 56
+  },
+  {
+   "row": "Notes-110",
+   "screen": "Notes",
+   "dataAction": "DataActionGetNotes",
+   "onOpen": {
+    "getNotesCalls": 1,
+    "keys": [
+     {
+      "path": "$.screenData.variables.Notes_Filter.SortByNewest",
+      "type": "string"
+     },
+     {
+      "path": "$.screenData.variables.Notes_Filter.Years",
+      "type": "object"
+     },
+     {
+      "path": "$.screenData.variables.Years",
+      "type": "object"
+     }
+    ],
+    "calls": [
+     "ActionAppManager_SynchAppContext",
+     "ActionGet_NotePills_ByNoteCategoryIds",
+     "DataActionGetNotes",
+     "ActionAppManager_AfterInitialize",
+     "ActionSync_Info_GetMain",
+     "ActionGetUserInformation",
+     "ActionGetNumberUnreadMessages",
+     "ServiceAPIFetchData_CacheableMapEntities",
+     "ServiceAPIFetchData_CacheableHouseholds"
+    ]
+   },
+   "sheetVisible": false,
+   "yearOptions": 3,
+   "sheetGroups": [
+    "ConnectPatterns.BottomSheet",
+    "Interaction.BottomSheet",
+    "BasePatterns.Columns_Three",
+    "Adaptive.Columns3",
+    "ConnectPatterns.Icon",
+    "BasePatterns.CustomText",
+    "ConnectPatterns.IconInline_Internal",
+    "ConnectPatterns.SkeletonSection",
+    "App_CommonBlocks_Filter.FilterSheet_OptionChoice_Item",
+    "BasePatterns.CustomContainer",
+    "ConnectPatterns.SelectionOption_List",
+    "BasePatterns.Columns_Two",
+    "Adaptive.Columns2",
+    "ConnectPatterns.Button",
+    "NavigationHandler.BackNavigationHandler"
+   ],
+   "applyEnabledAfterYear": true,
+   "afterApply": {
+    "getNotesCalls": 1,
+    "calls": [
+     {
+      "name": "DataActionGetNotes",
+      "atMs": 30,
+      "ms": 576
+     }
+    ],
+    "bodyTopLevel": [
+     "versionInfo",
+     "viewName",
+     "screenData"
+    ],
+    "keys": [
+     {
+      "path": "$.screenData.variables.Notes_Filter.SortByNewest",
+      "type": "string"
+     },
+     {
+      "path": "$.screenData.variables.Notes_Filter.Years",
+      "type": "object"
+     },
+     {
+      "path": "$.screenData.variables.Years",
+      "type": "object"
+     }
+    ],
+    "variablesShape": {
+     "HeaderIsScrolled": "boolean",
+     "Note_Pills": {
+      "List": {
+       "list": 10,
+       "item": {
+        "Text": "text",
+        "Identifier": "text",
+        "IconId": "text",
+        "IsSelected": "boolean",
+        "Enabled": "boolean"
+       }
+      }
+     },
+     "Notes_Filter": {
+      "NoteCategoryId": "text",
+      "SortByNewest": "text",
+      "Years": {
+       "List": {
+        "list": 1,
+        "item": "text"
+       }
+      },
+      "SearchTerm": "text"
+     },
+     "HasFiltersApplied": "boolean true",
+     "Filter_BottomSheetId": "text",
+     "BottomSheetId_Filter_IsLoaded": "boolean",
+     "BottomSheetId_Filter_ShowSubscriptionOnClick": "boolean",
+     "Years": {
+      "List": {
+       "list": 3,
+       "item": "text"
+      }
+     },
+     "PageSize": "number",
+     "PageNumber": "number",
+     "MaxRecords": "text",
+     "Notes_List": {
+      "List": {
+       "list": 0
+      },
+      "EmptyListItem": {
+       "Id": "text",
+       "ItemId": "text",
+       "ItemId2": "text",
+       "HasDetailAccess": "boolean false",
+       "NoteCategoryId": "text",
+       "NoteCardContent": {
+        "SourceHeader": {
+         "ImageURL": "text",
+         "IconId": "text",
+         "Initials": "text",
+         "Label": "text"
+        },
+        "Title": "text",
+        "Subtitle": "text",
+        "Notes": {
+         "Total": "number",
+         "Note_Item_List": {
+          "List": {
+           "list": 0
+          },
+          "EmptyListItem": "object"
+         }
+        },
+        "PublishedAt": "text",
+        "ChannelLogo": "text",
+        "ChannelName": "text"
+       }
+      }
+     },
+     "ResetPillsValue": "boolean",
+     "PillsLoaded": "boolean",
+     "Notes_Loading": "boolean"
+    }
+   },
+   "result": "Years $.screenData.variables.Notes_Filter.Years (object), $.screenData.variables.Years (object); SortByNewest $.screenData.variables.Notes_Filter.SortByNewest (string)",
+   "key": "notes",
+   "seconds": 20
+  },
+  {
+   "row": "Legacy_OrbitAdminFlow-031",
+   "screen": "OrbitAdminLanding",
+   "flag": "Mobile-Directory-list-virtualization",
+   "access": "direct route /UBTConnect/OrbitAdminLanding: J26 records that no test account is an Orbit admin (no Orbit Admin item in Services)",
+   "openedPath": "/UBTConnect/OrbitAdminLanding",
+   "callsOnOpen": [
+    {
+     "name": "ActionAppManager_SynchAppContext",
+     "atMs": 2817,
+     "ms": 273
+    },
+    {
+     "name": "DataActionGet_AdminEventsList",
+     "atMs": 3814,
+     "ms": 1353
+    },
+    {
+     "name": "ActionAppManager_AfterInitialize",
+     "atMs": 5668,
+     "ms": 291
+    },
+    {
+     "name": "ActionSync_Info_GetMain",
+     "atMs": 5960,
+     "ms": 538
+    },
+    {
+     "name": "ActionGetUserInformation",
+     "atMs": 6524,
+     "ms": 334
+    },
+    {
+     "name": "ActionGetNumberUnreadMessages",
+     "atMs": 6870,
+     "ms": 261
+    },
+    {
+     "name": "ServiceAPIFetchData_CacheableMapEntities",
+     "atMs": 7130,
+     "ms": 1492
+    },
+    {
+     "name": "ServiceAPIFetchData_CacheableHouseholds",
+     "atMs": 7131,
+     "ms": 1857
+    }
+   ],
+   "launchDarklyRequests": [],
+   "launchDarklyRequestsSinceAppStart": [],
+   "screenserviceResponsesMentioningVirtualization": [
+    {
+     "name": "ActionAppManager_SynchAppContext",
+     "hits": [
+      {
+       "path": "$.data.PermissionList.List.List.28",
+       "type": "string mentions virtualization"
+      }
+     ]
+    }
+   ],
+   "clientEvaluation": {
+    "IsListVirtualizationDisabled": true,
+    "staticRecordAttributes": {
+     "0": "M",
+     "1": "o",
+     "2": "b",
+     "3": "i",
+     "4": "l",
+     "5": "e",
+     "6": "-",
+     "7": "D",
+     "8": "i",
+     "9": "r",
+     "10": "e",
+     "11": "c",
+     "12": "t",
+     "13": "o",
+     "14": "r",
+     "15": "y",
+     "16": "-",
+     "17": "l",
+     "18": "i",
+     "19": "s",
+     "20": "t",
+     "21": "-",
+     "22": "v",
+     "23": "i",
+     "24": "r",
+     "25": "t",
+     "26": "u",
+     "27": "a",
+     "28": "l",
+     "29": "i",
+     "30": "z",
+     "31": "a",
+     "32": "t",
+     "33": "i",
+     "34": "o",
+     "35": "n"
+    },
+    "staticRecordMentionsKey": true
+   },
+   "callsDuringClientEvaluation": [],
+   "dom": {
+    "listsOnScreen": 1,
+    "withDisableVirtualizationAttr": 0,
+    "disableVirtualizationValues": [],
+    "withDisableVirtualizationClass": 0,
+    "lists": [
+     {
+      "classes": "list list-group OSFillParent",
+      "disableVirtualization": null,
+      "children": 5
+     }
+    ],
+    "adminLandingBlock": true
+   },
+   "ldLocalStorage": [],
+   "result": "/UBTConnect/OrbitAdminLanding; IsListVirtualizationDisabled (Connect_LaunchDarkly_PermissionCheck.HasAccess) = true; LD client responses with the flag: none seen; [disable-virtualization] elements: 0 (-)",
+   "key": "orbit",
+   "seconds": 16
+  },
+  {
+   "row": "Home-111",
+   "screen": "HomeFeed",
+   "callsOnOpen": [
+    "ActionAppManager_SynchAppContext",
+    "DataActionGetServices",
+    "DataActionFetchCount",
+    "DataActionFetchUpdates",
+    "DataActionGetFeedConfig",
+    "DataActionGetCommunityStatistics",
+    "ActionAppManager_AfterInitialize",
+    "ActionSync_Info_GetMain",
+    "ActionGetUserInformation",
+    "ActionGetNumberUnreadMessages",
+    "ServiceAPIFetchData_CacheableMapEntities",
+    "ServiceAPIFetchData_CacheableHouseholds"
+   ],
+   "updateTap": {
+    "via": "an update item on HomeFeed",
+    "navigated": false,
+    "openCalls": [
+     {
+      "name": "ServiceAPIAction_UI_UpdateItem_MarkAsRead",
+      "atMs": 24,
+      "ms": 18,
+      "failed": "net::ERR_BLOCKED_BY_CLIENT.Inspector"
+     }
+    ],
+    "blocked": [
+     "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
+    ]
+   },
+   "fallback": {
+    "via": "Updates 'View all' (J5 step 1), not an update item",
+    "navigated": true,
+    "openCalls": [],
+    "blocked": [],
+    "openedScreen": "/UBTConnect/Updates_SingleList",
+    "backCalls": [
+     {
+      "name": "DataActionGetServices",
+      "atMs": 85,
+      "ms": 718
+     },
+     {
+      "name": "DataActionFetchCount",
+      "atMs": 85,
+      "ms": 336
+     },
+     {
+      "name": "DataActionFetchUpdates",
+      "atMs": 86,
+      "ms": 261
+     },
+     {
+      "name": "DataActionGetFeedConfig",
+      "atMs": 86,
+      "ms": 282
+     },
+     {
+      "name": "DataActionGetCommunityStatistics",
+      "atMs": 86,
+      "ms": 262
+     }
+    ],
+    "fetchUpdatesAgain": true,
+    "getServicesAgain": true
+   },
+   "servicesCallNamesOnOpen": [
+    "DataActionGetServices"
+   ],
+   "result": "update tap blocked, View all used; after Back: FetchUpdates ran again, GetServices ran again",
+   "key": "home",
+   "seconds": 61
+  }
+ ],
+ "blockedAll": [
+  "ServiceAPIAction_UI_UpdateItem_MarkAsRead"
+ ]
+}
