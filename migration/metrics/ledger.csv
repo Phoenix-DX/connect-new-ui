@@ -1017,3 +1017,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,zDEV_Directory_CommunityBusinessBlocks,analyze,94502,clarify-G5-reader,,"clarify-screens reader (Sonnet, 43 rows, 17 calls)"
 2026-10-27,G5-gaps,verify,98987,clarify-G5-writer,,"gap reports Map, Deprecated_Calendar_PersonalEvent, zTemp_Flow (Sonnet, 33 rows, 17 calls)"
 2026-10-27,zDEV_Directory_CommunityBusinessBlocks,verify,123337,clarify-G5-judge,,"clarify-screens judge (Opus, 44 rows, 33 calls)"
+2026-10-27,followup,verify,192847,clarify-followup,,"follow-up pass (Fable): 18 of 29 unclear rows settled, 9 re-checks, 48 calls"
+2026-10-27,P2-infra-gaps,other,276736,clarify-P2,,"infra-gaps.md (Fable, 341 lines, 8 calls after the limit reset)"
