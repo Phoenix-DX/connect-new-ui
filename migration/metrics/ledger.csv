@@ -984,3 +984,8 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,Legacy_Share,analyze,180584,clarify-G3-reader,,"clarify-screens reader (Sonnet, 90 rows, 36 calls)"
 2026-10-27,Bookmarks,analyze,219247,clarify-G3-reader,,"clarify-screens reader (Sonnet, 119 rows, 42 calls; TST-only screens)"
 2026-10-27,Legacy_MyNotificationsFlow,analyze,241726,clarify-G3-reader,,"clarify-screens reader (Sonnet, 133 rows, 46 calls)"
+2026-10-27,Calendar,verify,180179,clarify-G3-judge,,"clarify-screens judge (Opus, 72 rows, 37 calls)"
+2026-10-27,Notes,verify,162529,clarify-G3-judge,,"clarify-screens judge (Opus, 121 rows, 49 calls)"
+2026-10-27,ContactFlow,verify,190252,clarify-G3-judge,,"clarify-screens judge (Opus, 142 rows, 42 calls)"
+2026-10-27,Legacy_Share,verify,181769,clarify-G3-judge,,"clarify-screens judge (Opus, 95 rows, 33 calls)"
+2026-10-27,Legacy_MyNotificationsFlow,verify,254308,clarify-G3-judge,,"clarify-screens judge (Fable, 152 rows, 50 calls)"

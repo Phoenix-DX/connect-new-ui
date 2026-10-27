@@ -1,0 +1,19 @@
+{
+ "flow": "SubLayout",
+ "screens": [],
+ "ownBlocks": [
+  "SubLayout_Browse_Section",
+  "SubLayout_DirectoryCalendar",
+  "SubLayout_DirectoryDetailScreen",
+  "SubLayout_DirectoryDetailScreen_Section"
+ ],
+ "usedBlocks": [],
+ "referencedBlocks": [
+  "CustomContainer",
+  "CustomText",
+  "SubLayout_Section"
+ ],
+ "clientActions": [],
+ "serverActions": [],
+ "externalSites": []
+}

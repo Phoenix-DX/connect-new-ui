@@ -1,0 +1,63 @@
+{
+ "flow": "Directory_OneSchoolGlobal_Blocks",
+ "screens": [],
+ "ownBlocks": [
+  "DW_OneSchoolGlobal_EventList",
+  "DW_OneSchoolGlobal_Numbers",
+  "OneSchoolGlobal_DetailCard_Content",
+  "OneSchoolGlobal_Event_Card",
+  "OneSchoolGlobal_Event_ListCard",
+  "OneSchoolGlobal_Event_ListCard_List",
+  "OneSchoolGlobal_List",
+  "OneSchoolGlobal_Numbers",
+  "UI_OneSchoolGlobalEventDetail_IconTextWrapper"
+ ],
+ "usedBlocks": [
+  "Directory_EntityDetailsActions",
+  "External_Link",
+  "OneSchoolGlobal_Event_ListCard",
+  "OneSchoolGlobal_Event_ListCard_List",
+  "OneSchoolGlobal_Numbers",
+  "UI_OneSchoolGlobalEventDetail_IconTextWrapper"
+ ],
+ "referencedBlocks": [
+  "AddressPopup_Wrapper",
+  "Columns_Three",
+  "Columns_Two",
+  "CustomContainer",
+  "CustomText",
+  "HorizontalTagList",
+  "Icon",
+  "IconText",
+  "ImageCard",
+  "ImageCard_LazyLoading",
+  "ImageCard__Content",
+  "PopupMenu",
+  "SkeletonSection",
+  "StopPropagationHelper",
+  "UBT_LazyImage"
+ ],
+ "clientActions": [
+  "GetBookmarkCategoryId_ByEntityTypeId",
+  "GetNameAndSurname_ByFullName",
+  "GetSekeletonList_UI_OneSchoolGlobal_EventCard",
+  "GetShareType_FromEntity",
+  "GetSkeleton_UI_OneSchoolGlobal_EventCard",
+  "GetSkeleton_UI_OneSchoolGlobal_StudentNumbers",
+  "ToggleBookmarkItem_C2"
+ ],
+ "serverActions": [
+  "AddBookmark2",
+  "DeleteBookmarkByBookmarkId2",
+  "GetHouseholdDetails",
+  "GetNotesByItemId",
+  "GetSubdivisionLocation_BySubdivisionId",
+  "Get_Core_LocalityTimezone",
+  "Get_OneSchoolGlobalDetails",
+  "ListAppend",
+  "ListAppendAll",
+  "Member_ContactDetails_Service",
+  "Wait"
+ ],
+ "externalSites": []
+}

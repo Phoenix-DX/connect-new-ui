@@ -569,6 +569,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dump", default="migration/clarify/.dump/espace.json")
     ap.add_argument("--out", default="migration/clarify/flows")
+    ap.add_argument("--block-flows", action="store_true", help="also write a pack per block-only flow (App_Cache, SubLayout, …)")
     ap.add_argument("flows", nargs="*")
     args = ap.parse_args()
     m = Model(json.load(open(args.dump)))
@@ -602,13 +603,21 @@ def main():
             use_count[a] += 1
     shared_actions = {a for a, c in use_count.items() if c >= SHARED_MIN_FLOWS}
 
-    targets = args.flows or screen_flows + ["_shared"]
+    targets = args.flows or screen_flows + ["_shared"] + (m.block_only_flows if args.block_flows else [])
     for fl in targets:
         if fl == "_shared":
             write_shared(m, args.out, shared_actions, users, use_count)
             continue
-        if fl not in m.flows or fl in m.block_only_flows:
-            print("skip (not a screen flow):", fl)
+        if fl not in m.flows:
+            print("skip (unknown flow):", fl)
+            continue
+        if fl in m.block_only_flows:
+            f = m.flows[fl]
+            own_blocks = [n for n in f["Nodes"] if isinstance(n, dict) and n.get("Object") == "IMobileBlock"]
+            bl = block_closure(m, own_blocks)
+            roots = own_blocks + [m.blocks[b][1] for b in bl if b not in {x["Name"] for x in own_blocks}]
+            acts, srv = closure_actions(m, roots)
+            write_flow(m, args.out, fl, roots, acts, srv, bl, shared_actions, users, use_count)
             continue
         write_flow(m, args.out, fl, flow_roots[fl], flow_actions[fl], flow_server[fl], flow_blocks[fl], shared_actions, users, use_count)
 
@@ -627,7 +636,7 @@ def write_flow(m, outdir, fl, roots, acts, srv, bl, shared_actions, users, use_c
             "The dump omits some constant widget properties (MaxLength, Enabled=False, inline styles were missing on TST checks):",
             "check the input constraints against the TST compiled code (`tst_source.py show <Screen>`).", ""]
     # screens.md
-    out = head + [f"Screens: {', '.join(x['Name'] for x in scrs)}", ""]
+    out = head + [f"Screens: {', '.join(x['Name'] for x in scrs) or 'none (block-only flow; its blocks are in blocks.md)'}", ""]
     for scr in scrs:
         render_screen(m, fl, scr, out, used_blocks)
     for es_ in ext_sites:

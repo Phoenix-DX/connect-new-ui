@@ -1,0 +1,16 @@
+{
+ "flow": "App_Cache",
+ "screens": [],
+ "ownBlocks": [
+  "CacheControl_UserInfo_Wrapper"
+ ],
+ "usedBlocks": [],
+ "referencedBlocks": [
+  "CacheControl_UserInfo"
+ ],
+ "clientActions": [
+  "GetUserInformation_Wrapper_Assign"
+ ],
+ "serverActions": [],
+ "externalSites": []
+}

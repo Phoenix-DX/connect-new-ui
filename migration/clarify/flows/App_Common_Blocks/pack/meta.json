@@ -1,0 +1,34 @@
+{
+ "flow": "App_Common_Blocks",
+ "screens": [],
+ "ownBlocks": [
+  "App_IconBadge",
+  "App_NotificationIcon",
+  "App_NotificationRefresh",
+  "External_Link",
+  "ItemCardActions",
+  "ListLoading",
+  "Section",
+  "SectionSeparator"
+ ],
+ "usedBlocks": [
+  "App_IconBadge",
+  "App_NotificationRefresh"
+ ],
+ "referencedBlocks": [
+  "CustomContainer",
+  "Icon",
+  "IconBadge",
+  "IconText",
+  "ItemCard_ActionBar",
+  "SkeletonSection"
+ ],
+ "clientActions": [
+  "ToggleBookmarkItem_C2"
+ ],
+ "serverActions": [
+  "AddBookmark2",
+  "DeleteBookmarkByBookmarkId2"
+ ],
+ "externalSites": []
+}

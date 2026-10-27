@@ -1,0 +1,53 @@
+{
+ "flow": "Directory_Household_Blocks",
+ "screens": [],
+ "ownBlocks": [
+  "HouseholdDetails_Members_Block",
+  "HouseholdDetails_TimelinePhoto",
+  "HouseholdDetails_TimelinePhoto_List",
+  "Household_Card",
+  "Household_GalleryCard",
+  "Household_GalleryCard_List"
+ ],
+ "usedBlocks": [
+  "Directory_EmptyState",
+  "Directory_EntityDetailsActions",
+  "HouseholdDetails_TimelinePhoto",
+  "Household_GalleryCard",
+  "SubLayout_DirectoryDetailScreen_Section"
+ ],
+ "referencedBlocks": [
+  "CustomContainer",
+  "Gallery",
+  "HouseholdMember_ListItem",
+  "Icon",
+  "IconText",
+  "ImageCard_LazyLoading",
+  "ImageCard__Content",
+  "NonMember_ListItem",
+  "SkeletonSection",
+  "UBT_LazyImage",
+  "UBT_LazyImage_List"
+ ],
+ "clientActions": [
+  "GetBookmarkCategoryId_ByEntityTypeId",
+  "GetNameAndSurname_ByFullName",
+  "GetShareType_FromEntity",
+  "GetSkeletonList_UI_HouseholdMembers",
+  "GetSkeleton_UI_HouseholdMember",
+  "HasAccessToRegion",
+  "ToggleBookmarkItem_C2"
+ ],
+ "serverActions": [
+  "AddBookmark2",
+  "DeleteBookmarkByBookmarkId2",
+  "GetHouseholdDetails",
+  "GetNotesByItemId",
+  "GetSubdivisionLocation_BySubdivisionId",
+  "Get_Core_LocalityTimezone",
+  "Get_OneSchoolGlobalDetails",
+  "Household_GetMembers_Service",
+  "Member_ContactDetails_Service"
+ ],
+ "externalSites": []
+}
