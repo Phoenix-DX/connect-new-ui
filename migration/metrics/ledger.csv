@@ -1006,3 +1006,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,Legacy_LDMEventsFlow,analyze,130556,clarify-G4-reader,,"clarify-screens reader (Sonnet, 88 rows, 23 calls)"
 2026-10-27,_shared,verify,250195,clarify-shared-judge,,"judge (Fable) shared and unreached actions: 194 rows, 33 calls"
 2026-10-27,Legacy_OrbitAdminFlow,verify,243803,clarify-G4-judge,,"clarify-screens judge (Opus, 109 rows, 48 calls)"
+2026-10-27,Legacy_LDMEventsFlow_V2,verify,281055,clarify-G4-judge,,"clarify-screens judge (Fable, 219 rows, 54 calls)"
+2026-10-27,Legacy_AssembleFlow,verify,259399,clarify-G4-judge,,"clarify-screens judge (Fable, 159 rows, 43 calls)"
