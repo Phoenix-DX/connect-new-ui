@@ -69,6 +69,7 @@ JSON rows: `id` = `<Flow>-<nnn>`, `screen`, `area`, `element`, `os`, `react`, `e
 - Start every shell command with `cd /Users/khaitruong/Projects/connect-new && `. Use absolute paths.
 - Use your own scratch folder: `/private/tmp/claude-501/-Users-khaitruong-Projects-connect-new/<session>/scratchpad/<Flow>/`
   (other agents run in parallel; never write outside your folder).
-- Write `evidence.md` and `draft.json` with the Write tool, each in one call, into `migration/clarify/flows/<Flow>/`.
-  If the Write tool is refused, write the file with one `cat > file <<'EOF'` command.
+- Write `evidence.md` and `draft.json` into `migration/clarify/flows/<Flow>/` with one `cat > file <<'EOF'` command
+  each (the Write tool refuses `.md` files of a subagent). A generator script in your scratch folder that writes both
+  files in one run is also fine.
 - Target: at most 60 tool calls.

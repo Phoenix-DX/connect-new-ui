@@ -59,7 +59,7 @@ the KB, `migration/clarify/.dump/`, the MCP (the orchestrator's review pass call
 
 - Start every shell command with `cd /Users/khaitruong/Projects/connect-new && `. Use absolute paths.
 - Read the evidence and the pack in one command each. Read the KB pages in one command.
-- Write `report.md` and `checklist.json` with the Write tool, each in one call, into `migration/clarify/flows/<Flow>/`.
-  If the Write tool is refused, write the file with one `cat > file <<'EOF'` command. Build `checklist.json` from
-  `draft.json` with one Python script when that is simpler; the counts of §8 must equal the file.
+- Write `report.md` into `migration/clarify/flows/<Flow>/` with one `cat > file <<'EOF'` command (the Write tool
+  refuses `.md` files of a subagent). Build `checklist.json` from `draft.json` with one Python script; the counts of
+  §8 must equal the file.
 - Target: at most 50 tool calls.
