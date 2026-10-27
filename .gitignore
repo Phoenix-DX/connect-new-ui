@@ -35,3 +35,6 @@ migration/refactor/prefetch/
 
 # dependency graph of the refactor (npm --prefix app run graph); generated, about 150k lines
 app/docs/refactor/graph.json
+
+# clarify-screens: DEV model dump from the MCP (reference only, large)
+migration/clarify/.dump/
