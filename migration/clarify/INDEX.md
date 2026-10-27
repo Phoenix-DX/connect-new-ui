@@ -36,10 +36,10 @@ Verdicts: match · partial · missing · differs · mock-only · n/a · unclear 
 | G4 | [Legacy_LDMEventsFlow](flows/Legacy_LDMEventsFlow/report.md) | draft | 94 | 67 | 1 | 2 | 5 | 2 | 17 | 0 | 0/0/2/0 | 0 |
 | G4 | [Legacy_LDMEventsFlow_V2](flows/Legacy_LDMEventsFlow_V2/report.md) | draft | 219 | 167 | 5 | 2 | 11 | 4 | 30 | 0 | 0/2/3/2 | 1 |
 | G4 | [Legacy_AssembleFlow](flows/Legacy_AssembleFlow/report.md) | draft | 159 | 143 | 2 | 0 | 0 | 8 | 6 | 0 | 0/0/1/0 | 0 |
-| G5 | Map | pending | |  |  |  |  |  |  |  | | |
-| G5 | Deprecated_Calendar_PersonalEvent | pending | |  |  |  |  |  |  |  | | |
-| G5 | zTemp_Flow | pending | |  |  |  |  |  |  |  | | |
-| G5 | zDEV_Directory_CommunityBusinessBlocks | pending | |  |  |  |  |  |  |  | | |
+| G5 | [Map](flows/Map/report.md) | draft | 21 | 0 | 0 | 0 | 0 | 0 | 21 | 0 | 0/0/0/0 | 0 |
+| G5 | [Deprecated_Calendar_PersonalEvent](flows/Deprecated_Calendar_PersonalEvent/report.md) | draft | 9 | 0 | 0 | 0 | 0 | 0 | 9 | 0 | 0/0/0/0 | 0 |
+| G5 | [zTemp_Flow](flows/zTemp_Flow/report.md) | draft | 3 | 0 | 0 | 0 | 0 | 0 | 3 | 0 | 0/0/0/0 | 0 |
+| G5 | [zDEV_Directory_CommunityBusinessBlocks](flows/zDEV_Directory_CommunityBusinessBlocks/report.md) | draft | 44 | 18 | 0 | 0 | 0 | 0 | 26 | 0 | 0/0/0/0 | 0 |
 | X | [App_Cache](flows/App_Cache/report.md) | draft | 10 | 9 | 0 | 0 | 0 | 1 | 0 | 0 | 0/0/0/0 | 0 |
 | X | [App_Common_Blocks](flows/App_Common_Blocks/report.md) | draft | 42 | 31 | 1 | 0 | 0 | 0 | 10 | 0 | 0/0/0/1 | 0 |
 | X | [App_Common_Blocks_PopupDialogs](flows/App_Common_Blocks_PopupDialogs/report.md) | draft | 24 | 20 | 0 | 0 | 0 | 0 | 4 | 0 | 0/0/0/0 | 0 |
@@ -53,7 +53,7 @@ Verdicts: match · partial · missing · differs · mock-only · n/a · unclear 
 | X | [Calendar_Events](flows/Calendar_Events/report.md) | draft | 8 | 0 | 0 | 0 | 0 | 0 | 8 | 0 | 0/0/0/0 | 0 |
 | X | [_shared](flows/_shared/report.md) | draft | 194 | 82 | 1 | 1 | 5 | 7 | 97 | 1 | 0/0/1/1 | 1 |
 | X | [_libraries](flows/_libraries/report.md) | draft | 245 | 224 | 5 | 1 | 9 | 4 | 2 | 0 | 0/1/3/0 | 2 |
-| | **total (41/45 flows)** | | 5255 | 4186 | 134 | 164 | 91 | 157 | 494 | 29 | 3/25/55/29 | |
+| | **total (45/45 flows)** | | 5332 | 4204 | 134 | 164 | 91 | 157 | 553 | 29 | 3/25/55/29 | |
 
 ## 2. Findings by severity (blocker and major first)
 
@@ -255,6 +255,10 @@ Info findings: 29 (in the reports, §5).
 - **Legacy_OrbitQRCodeFlow**: DEV≠TST rows 3; KB disagreements 1 (K1) — report §6
 - **Legacy_LDMEventsFlow_V2**: DEV≠TST rows 1; KB disagreements 0 () — report §6
 - **Legacy_AssembleFlow**: DEV≠TST rows 8; KB disagreements 1 (K1) — report §6
+- **Map**: DEV≠TST rows 2; KB disagreements 0 () — report §6
+- **Deprecated_Calendar_PersonalEvent**: DEV≠TST rows 6; KB disagreements 0 () — report §6
+- **zTemp_Flow**: DEV≠TST rows 3; KB disagreements 0 () — report §6
+- **zDEV_Directory_CommunityBusinessBlocks**: DEV≠TST rows 2; KB disagreements 1 (K1) — report §6
 - **App_Common_Blocks**: DEV≠TST rows 3; KB disagreements 0 () — report §6
 - **App_Common_Blocks_PopupDialogs**: DEV≠TST rows 1; KB disagreements 0 () — report §6
 - **SubLayout**: DEV≠TST rows 1; KB disagreements 0 () — report §6

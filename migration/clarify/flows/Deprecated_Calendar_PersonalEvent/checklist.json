@@ -1,0 +1,115 @@
+{
+ "flow": "Deprecated_Calendar_PersonalEvent",
+ "date": "2026-10-27",
+ "status": "draft",
+ "rows": [
+  {
+   "id": "Deprecated_Calendar_PersonalEvent-001",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "PersonalEventDetails",
+   "area": "identity",
+   "element": "screen PersonalEventDetails",
+   "os": "not built; shows one personal event",
+   "evidence": "migration/board.md:82 | PersonalEventDetails | skip | V7 skip:dead (user, 2026-10-14)",
+   "note": "Skipped: only from dead screens; C2EnablePersonalEvents false on TST"
+  },
+  {
+   "id": "Deprecated_Calendar_PersonalEvent-002",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "PersonalEventForm",
+   "area": "identity",
+   "element": "screen PersonalEventForm",
+   "os": "not built; creates a personal event",
+   "evidence": "migration/board.md:83 | PersonalEventForm | skip | V7 skip:dead (user, 2026-10-14)",
+   "note": "Skipped: only from dead screens; C2EnablePersonalEvents false on TST"
+  },
+  {
+   "id": "Deprecated_Calendar_PersonalEvent-003",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "Recurrence",
+   "area": "identity",
+   "element": "screen Recurrence",
+   "os": "not built; edits the repeat rule",
+   "evidence": "migration/board.md:85 | Recurrence | skip | V7 skip:dead (user, 2026-10-14)",
+   "note": "Skipped: only from dead screens; C2EnablePersonalEvents false on TST"
+  },
+  {
+   "id": "Deprecated_Calendar_PersonalEvent-004",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "Reminder",
+   "area": "identity",
+   "element": "screen Reminder",
+   "os": "not built; picks the reminder option",
+   "evidence": "migration/board.md:86 | Reminder | skip | V7 skip:dead (user, 2026-10-14)",
+   "note": "Skipped: only from dead screens; C2EnablePersonalEvents false on TST"
+  },
+  {
+   "id": "Deprecated_Calendar_PersonalEvent-005",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "ViewEventList",
+   "area": "identity",
+   "element": "screen ViewEventList",
+   "os": "not built; test list of created event ids",
+   "evidence": "migration/board.md:91 | ViewEventList | skip | V7 skip:dead (user, 2026-10-14)",
+   "note": "Skipped: only from dead screens; C2EnablePersonalEvents false on TST"
+  },
+  {
+   "id": "Deprecated_Calendar_PersonalEvent-006",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "PersonalEventDetails",
+   "area": "data",
+   "element": "PersonalEvent_Get",
+   "os": "service Deprecated_Connect2_PersonalEvents",
+   "evidence": "migration/clarify/flows/Deprecated_Calendar_PersonalEvent/pack/data.md (server and service actions table)",
+   "note": "needed for a build"
+  },
+  {
+   "id": "Deprecated_Calendar_PersonalEvent-007",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "PersonalEventForm",
+   "area": "data",
+   "element": "PersonalEvent_Create",
+   "os": "service Deprecated_Connect2_PersonalEvents",
+   "evidence": "migration/clarify/flows/Deprecated_Calendar_PersonalEvent/pack/data.md (server and service actions table)",
+   "note": "needed for a build"
+  },
+  {
+   "id": "Deprecated_Calendar_PersonalEvent-008",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "-",
+   "area": "data",
+   "element": "Connect_Search",
+   "os": "service Connect_Search_CS",
+   "evidence": "migration/clarify/flows/Deprecated_Calendar_PersonalEvent/pack/data.md (server and service actions table)",
+   "note": "needed for a build; caller not checked (attendee search block of the flow)"
+  },
+  {
+   "id": "Deprecated_Calendar_PersonalEvent-009",
+   "verdict": "n/a",
+   "verified": "pack",
+   "react": "-",
+   "screen": "-",
+   "area": "data",
+   "element": "GetEventsByCacheKeys",
+   "os": "server Connect2_MyCalendar_BL",
+   "evidence": "migration/clarify/flows/Deprecated_Calendar_PersonalEvent/pack/data.md (server and service actions table)",
+   "note": "needed for a build; caller not stated in the pack"
+  }
+ ]
+}
