@@ -1,0 +1,370 @@
+<title>Infra & FE readiness</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,600&display=swap">
+<style>
+  /* Layout: one page, summary strip first, two tabs (current FE / production needs) with in-tab section nav;
+     tables scroll in their own box; cards only for the stat tiles and the set-up steps. */
+  :root {
+    --bg: #f6f7f9; --surface: #ffffff; --surface-2: #eef1f5; --fg: #17202b; --fg-2: #4c5968; --line: #d7dde6;
+    --accent: #0f6e73; --accent-ink: #0b4f53; --accent-soft: #d9efef;
+    --good: #2f7d4a; --good-soft: #dff1e5; --warn: #9a6400; --warn-soft: #fbefd2; --crit: #b4322a; --crit-soft: #f9dedb;
+    --muted: #6b7684; --muted-soft: #e7eaef;
+    --display: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --body: "IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    --radius: 6px; --gutter-l: max(16px, env(safe-area-inset-left, 0px)); --gutter-r: max(16px, env(safe-area-inset-right, 0px));
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #0f1419; --surface: #171d25; --surface-2: #1f2730; --fg: #e6ebf0; --fg-2: #aab4c0; --line: #2d3741;
+    --accent: #4fb8bd; --accent-ink: #8bd3d6; --accent-soft: #15393b;
+    --good: #6fcf8a; --good-soft: #163e25; --warn: #e5b357; --warn-soft: #3d2f0d; --crit: #ef7b72; --crit-soft: #4a1b18;
+    --muted: #8d98a6; --muted-soft: #262f39; color-scheme: dark } }
+  :root[data-theme="dark"] {
+    --bg: #0f1419; --surface: #171d25; --surface-2: #1f2730; --fg: #e6ebf0; --fg-2: #aab4c0; --line: #2d3741;
+    --accent: #4fb8bd; --accent-ink: #8bd3d6; --accent-soft: #15393b;
+    --good: #6fcf8a; --good-soft: #163e25; --warn: #e5b357; --warn-soft: #3d2f0d; --crit: #ef7b72; --crit-soft: #4a1b18;
+    --muted: #8d98a6; --muted-soft: #262f39; color-scheme: dark }
+  * { box-sizing: border-box }
+  body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5; margin: 0 }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface) }
+  a { color: var(--accent-ink) }
+  code, .mono { font-family: var(--mono); font-size: 0.92em }
+  code { background: var(--surface-2); padding: 0 .3em; border-radius: 3px; overflow-wrap: anywhere }
+  h1, h2, h3 { text-wrap: balance; margin: 0 }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(26px, 3.4vw, 36px); line-height: 1.15 }
+  h2 { font-family: var(--display); font-weight: 600; font-size: clamp(21px, 2.4vw, 26px); margin-block: 8px 4px }
+  h3 { font-size: 16px; font-weight: 600; margin-block: 18px 6px }
+  p { margin: 0 0 10px; max-width: 72ch }
+  .eyebrow { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-2); font-weight: 500 }
+  .wrap { padding-inline: var(--gutter-l) var(--gutter-r); padding-block: 18px 40px; max-width: 1240px; margin: 0 auto }
+  header.top { border-bottom: 1px solid var(--line); background: var(--surface) }
+  header.top .wrap { padding-block: 18px 14px; display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: end; justify-content: space-between }
+  .meta { color: var(--fg-2); font-size: 13px }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-block: 14px 6px }
+  .tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; min-width: 0 }
+  .tile b { display: block; font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; line-height: 1.1 }
+  .tile span { color: var(--fg-2); font-size: 13px }
+  .tile.crit b { color: var(--crit) } .tile.warn b { color: var(--warn) } .tile.good b { color: var(--good) } .tile.accent b { color: var(--accent-ink) }
+  nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line) }
+  nav.tabs .wrap { padding-block: 0; display: flex; gap: 4px; overflow-x: auto }
+  nav.tabs button { background: none; border: 0; border-bottom: 3px solid transparent; padding: 12px 14px; font: 500 15px var(--body); color: var(--fg-2); cursor: pointer; white-space: nowrap }
+  nav.tabs button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--accent) }
+  nav.tabs button:focus-visible, .chip:focus-visible, .sub a:focus-visible, button:focus-visible, input:focus-visible, details summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+  .sub { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; margin-block: 12px 4px }
+  .sub a { color: var(--fg-2); text-decoration: none; border-bottom: 1px dotted var(--line) }
+  section.block { margin-block: 22px }
+  .lead { color: var(--fg-2); max-width: 80ch }
+  .tablebox { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface) }
+  table { border-collapse: collapse; width: 100%; font-size: 13.5px; min-width: 640px }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line) }
+  th { background: var(--surface-2); font-weight: 600; position: sticky; top: 0; z-index: 1 }
+  tbody tr:last-child td { border-bottom: 0 }
+  td.k { font-weight: 600; min-width: 160px }
+  td p { margin: 0; max-width: none }
+  .chip { display: inline-block; font-size: 12px; font-weight: 500; padding: 1px 8px; border-radius: 999px; border: 1px solid transparent; white-space: nowrap }
+  .chip.good { background: var(--good-soft); color: var(--good) } .chip.warn { background: var(--warn-soft); color: var(--warn) }
+  .chip.crit { background: var(--crit-soft); color: var(--crit) } .chip.muted { background: var(--muted-soft); color: var(--fg-2) }
+  .chip.accent { background: var(--accent-soft); color: var(--accent-ink) }
+  .sev { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: middle }
+  .sev.blocker { background: var(--crit) } .sev.major { background: var(--warn) } .sev.minor { background: var(--accent) } .sev.info { background: var(--muted) }
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-block: 10px }
+  .filters input { font: 14px var(--body); padding: 7px 10px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--fg); min-width: 0; flex: 1 1 220px }
+  .filters button.chip { cursor: pointer; font: 500 12px var(--body); padding: 4px 10px; background: var(--surface); border-color: var(--line); color: var(--fg-2) }
+  .filters button.chip[aria-pressed="true"] { background: var(--accent-soft); border-color: var(--accent); color: var(--accent-ink) }
+  .count { color: var(--fg-2); font-size: 13px; font-variant-numeric: tabular-nums }
+  .steps { display: grid; gap: 10px; counter-reset: step; padding: 0; margin: 0; list-style: none }
+  .steps li { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--radius); padding: 12px 14px 12px 52px; position: relative; min-width: 0 }
+  .steps li::before { counter-increment: step; content: counter(step); position: absolute; left: 14px; top: 10px; font: 600 20px var(--display); color: var(--accent-ink); font-variant-numeric: tabular-nums }
+  .steps li.later { border-left-color: var(--muted) } .steps li.later::before { color: var(--muted) }
+  details { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: 0 12px; margin-block: 10px }
+  details summary { cursor: pointer; padding: 10px 0; font-weight: 600 }
+  details[open] summary { border-bottom: 1px solid var(--line); margin-bottom: 10px }
+  pre.mermaid { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; overflow-x: auto; margin: 0 0 12px; font: 12.5px var(--mono); color: var(--fg) }
+  .two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px }
+  .two > * { min-width: 0 }
+  .note { font-size: 13px; color: var(--fg-2) }
+  footer { color: var(--fg-2); font-size: 13px; border-top: 1px solid var(--line); margin-top: 30px; padding-top: 12px }
+  @media (max-width: 600px) { .tile b { font-size: 22px } th, td { padding: 7px 8px } }
+  @media (prefers-reduced-motion: no-preference) { nav.tabs button { transition: color .15s, border-color .15s } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">UBTConnect · OutSystems → React · đối chiếu theo UI flow</div>
+      <h1>Infra &amp; FE readiness</h1>
+      <p class="meta" id="meta"></p>
+    </div>
+    <div class="meta" id="sourceNote"></div>
+  </div>
+</header>
+
+<div class="wrap" style="padding-block: 6px 0">
+  <div class="tiles" id="tiles"></div>
+  <p class="lead" id="summaryLead"></p>
+</div>
+
+<nav class="tabs" aria-label="Góc nhìn">
+  <div class="wrap">
+    <button type="button" role="tab" id="tab-hien-trang" aria-selected="true" aria-controls="panel-hien-trang">Hiện trạng FE</button>
+    <button type="button" role="tab" id="tab-production" aria-selected="false" aria-controls="panel-production">Cần gì cho production</button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section id="panel-hien-trang" role="tabpanel" aria-labelledby="tab-hien-trang">
+    <div class="sub">
+      <a href="#s-status">Thật / mock / thiếu</a><a href="#s-c4">Sơ đồ C4</a><a href="#s-appstart">App start: TST vs React</a><a href="#s-folders">Cấu trúc mã</a><a href="#s-matrix">Ma trận 45 báo cáo</a>
+    </div>
+
+    <section class="block" id="s-status">
+      <h2>Mỗi capability hôm nay: thật, mock hay thiếu</h2>
+      <p class="lead">Bảng cuối của <code>architecture-current.md</code>. Cột "bằng chứng" là mã dòng checklist trong 45 báo cáo.</p>
+      <div class="tablebox"><table id="statusTable"><thead><tr><th>Capability</th><th>Trạng thái hôm nay</th><th>Bằng chứng (dòng báo cáo)</th><th>Vị trí trong React</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="block" id="s-c4">
+      <h2>Sơ đồ C4: chạy gì hôm nay</h2>
+      <p class="lead">Ba sơ đồ từ <code>architecture-current.md</code> §2: ngữ cảnh, container và đường đi request. Nét đứt là phần chưa nối.</p>
+      <div id="diagrams"></div>
+    </section>
+
+    <section class="block" id="s-appstart">
+      <h2>App start: chuỗi OnApplicationReady của TST so với React</h2>
+      <p class="lead">Thứ tự 19 bước của TST (<code>UBTConnect.controller.js:15262-15425</code>) và bước tương ứng trong <code>appStartSteps.ts</code>.</p>
+      <div class="tablebox"><table id="appStartTable"><thead><tr><th>Dòng</th><th>Bước (thứ tự TST)</th><th>TST</th><th>React</th><th>Trạng thái</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="block" id="s-folders">
+      <details><summary>Cấu trúc <code>app/src/</code> và hướng import (14 thư mục)</summary>
+        <div class="tablebox"><table id="foldersTable"><thead><tr><th>Thư mục</th><th>Số file</th><th>Nội dung</th><th>Bằng chứng</th></tr></thead><tbody></tbody></table></div>
+      </details>
+    </section>
+
+    <section class="block" id="s-matrix">
+      <details><summary>Ma trận verdict của 45 báo cáo (5.412 dòng)</summary>
+        <p class="note">Verdict: <code>match</code> giống TST · <code>partial</code> có nhưng lệch · <code>missing</code> thiếu · <code>differs</code> khác có quyết định · <code>mock-only</code> UI có, server là mock · <code>n/a</code> ngoài phạm vi · <code>unclear</code> chưa đủ bằng chứng.</p>
+        <div class="tablebox"><table id="matrixTable"><thead><tr><th>Nhóm</th><th>Flow</th><th>Dòng</th><th>match</th><th>partial</th><th>missing</th><th>differs</th><th>mock-only</th><th>n/a</th><th>unclear</th><th>Findings B/M/m/i</th></tr></thead><tbody></tbody></table></div>
+      </details>
+    </section>
+  </section>
+
+  <section id="panel-production" role="tabpanel" aria-labelledby="tab-production" hidden>
+    <div class="sub">
+      <a href="#s-order">Thứ tự set-up</a><a href="#s-gaps">Bảng gap (27)</a><a href="#s-contract">Hợp đồng backend</a><a href="#s-fe">Việc FE theo quyết định</a><a href="#s-findings">Findings</a><a href="#s-open">Còn mở</a>
+    </div>
+
+    <section class="block" id="s-order">
+      <h2>Thứ tự set-up infra</h2>
+      <p class="lead">Phụ thuộc đi từ phiên đăng nhập tới màn hình; mỗi bước nêu dòng báo cáo chứng minh phụ thuộc. Bước 7 là "sau, theo tính năng".</p>
+      <ol class="steps" id="steps"></ol>
+    </section>
+
+    <section class="block" id="s-gaps">
+      <h2>Bảng gap: 27 capability</h2>
+      <p class="lead">OutSystems đang dùng gì → React có gì → production cần gì. Lọc theo chữ (tên capability, flow, module, mã finding).</p>
+      <div class="filters">
+        <input type="search" id="gapSearch" placeholder="Lọc: identity, push, Orbit, F1, U17…" aria-label="Lọc bảng gap">
+        <button type="button" class="chip" id="gapOnlyFindings" aria-pressed="false">Chỉ dòng có finding</button>
+        <span class="count" id="gapCount"></span>
+      </div>
+      <div class="tablebox"><table id="gapTable"><thead><tr><th>Capability</th><th>OutSystems (TST) hôm nay</th><th>React hôm nay</th><th>Production cần</th><th>Flow phụ thuộc</th><th>Quyết định</th><th>Findings</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="block" id="s-contract">
+      <h2>Hợp đồng backend</h2>
+      <p class="lead" id="contractLead"></p>
+      <div class="two">
+        <div>
+          <h3>Theo module (contract <code>app/src/api/openapi.yaml</code>)</h3>
+          <div class="tablebox"><table id="modulesTable"><thead><tr><th>Module</th><th>Endpoint</th><th>Đọc</th><th>Ghi</th><th>Các action ghi</th><th>Mock hôm nay</th></tr></thead><tbody></tbody></table></div>
+        </div>
+        <div>
+          <h3>Input bị sai hoặc thiếu so với TST</h3>
+          <div class="tablebox"><table id="inputsTable"><thead></thead><tbody></tbody></table></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="s-fe">
+      <h2>Việc FE trước cut-over, theo quyết định của chủ dự án (27/10/2026)</h2>
+      <p class="lead">"Build now" nghĩa là trong phạm vi; chỉ bắt đầu code khi có lệnh. Nguồn: <code>decisions.md</code>.</p>
+      <div class="filters">
+        <button type="button" class="chip" data-fe="build" aria-pressed="true">Build / sửa</button>
+        <button type="button" class="chip" data-fe="keep" aria-pressed="false">Ghi nhận, không build</button>
+        <button type="button" class="chip" data-fe="check" aria-pressed="false">Kiểm tra dữ kiện</button>
+        <span class="count" id="feCount"></span>
+      </div>
+      <div class="tablebox"><table id="feTable"><thead><tr><th>Flow</th><th>Id</th><th>Quyết định</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="block" id="s-findings">
+      <h2>Findings</h2>
+      <div class="filters">
+        <button type="button" class="chip" data-sev="blocker" aria-pressed="true"><i class="sev blocker"></i>Chặn</button>
+        <button type="button" class="chip" data-sev="major" aria-pressed="true"><i class="sev major"></i>Lớn</button>
+        <button type="button" class="chip" data-sev="minor" aria-pressed="false"><i class="sev minor"></i>Nhỏ</button>
+        <button type="button" class="chip" data-sev="info" aria-pressed="false"><i class="sev info"></i>Thông tin</button>
+        <input type="search" id="findSearch" placeholder="Lọc theo flow hoặc chữ" aria-label="Lọc findings">
+        <span class="count" id="findCount"></span>
+      </div>
+      <div class="tablebox"><table id="findTable"><thead><tr><th>Mức</th><th>Flow</th><th>Id</th><th>Phần tử</th><th>Finding</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="block" id="s-open">
+      <h2>Còn mở</h2>
+      <ul id="openList"></ul>
+      <details><summary>5 dòng <code>unclear</code> cuối cùng</summary>
+        <div class="tablebox"><table id="unclearTable"><thead><tr><th>Flow</th><th>Dòng</th><th>Phần tử</th><th>Câu hỏi</th></tr></thead><tbody></tbody></table></div>
+      </details>
+    </section>
+  </section>
+
+  <footer>
+    <p id="footerText"></p>
+  </footer>
+</main>
+
+<script type="application/json" id="data">/*__DATA__*/</script>
+<script>
+(function () {
+  var D = JSON.parse(document.getElementById('data').textContent);
+  var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]; }); };
+  // inline markdown: `code` and **bold**
+  var md = function (s) { return esc(s).replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>'); };
+  var num = function (n) { return Number(n).toLocaleString('vi-VN'); };
+
+  // ---- summary
+  var total = D.matrix.filter(function (r) { return /total/.test(r.Flow || ''); })[0] || {};
+  var findings = D.findings || [];
+  var cnt = function (sev) { return findings.filter(function (f) { return (f.Severity || '').toLowerCase() === sev; }).length; };
+  var modulesTotal = D.contract_modules.reduce(function (a, m) { return a + (parseInt(m.Endpoints, 10) || 0); }, 0);
+  document.getElementById('meta').textContent = 'Nguồn sự thật: mã biên dịch TST · checklist: model DEV qua MCP · KB: ubt_sharing_kb · dữ liệu ngày ' + D.generated + ', nhánh clarify-screens';
+  document.getElementById('sourceNote').textContent = 'Từ ' + D.sources.join(', ');
+  var tiles = [
+    ['45', 'báo cáo theo UI flow', 'accent'],
+    [num(total.Rows || 5412), 'dòng checklist đối chiếu', ''],
+    [cnt('blocker'), 'finding chặn (blocker)', 'crit'],
+    [cnt('major'), 'finding lớn (major)', 'warn'],
+    [D.build_items.length, 'việc FE "build now" đã chốt', 'accent'],
+    [modulesTotal, 'endpoint trong hợp đồng backend', ''],
+    [D.unclear.length, 'dòng còn unclear', 'good']
+  ];
+  document.getElementById('tiles').innerHTML = tiles.map(function (t) { return '<div class="tile ' + t[2] + '"><b>' + esc(t[0]) + '</b><span>' + esc(t[1]) + '</span></div>'; }).join('');
+  document.getElementById('summaryLead').innerHTML = md('Ứng dụng React chạy được 64 màn hình với dữ liệu mock trong trình duyệt. Để chạy như bản OutSystems trong production, phần thiếu lớn nhất nằm ngoài FE: identity provider + phiên BFF, ' + modulesTotal + ' endpoint backend, endpoint flag theo người dùng, ký URL ảnh và static hosting. Bên trong FE còn ' + cnt('blocker') + ' chặn và ' + cnt('major') + ' lỗi lớn, trong đó ' + D.build_items.length + ' việc đã được chốt "build now".');
+
+  // ---- status table
+  var statusChip = function (s) {
+    var t = s.toLowerCase();
+    var cls = /^(thật|real|có|match)/.test(t) ? 'good' : /^(thiếu|missing|không)/.test(t) ? 'crit' : /^(mock|giả|hằng|constant|stand-in|thế thân)/.test(t) ? 'warn' : 'muted';
+    var head = s.split(/[:：]/)[0];
+    if (head.length > 28) { var w = head.split(/[;,.]/)[0]; return '<span class="chip ' + cls + '">' + esc(w.length > 28 ? w.slice(0, 28) + '…' : w) + '</span><div class="note">' + md(s) + '</div>'; }
+    return '<span class="chip ' + cls + '">' + esc(head) + '</span>' + (s.length > head.length ? '<div class="note">' + md(s.slice(head.length + 1).trim()) + '</div>' : '');
+  };
+  var tb = function (id) { return document.querySelector('#' + id + ' tbody'); };
+  tb('statusTable').innerHTML = D.status.map(function (r) {
+    var k = Object.keys(r);
+    return '<tr><td class="k">' + md(r[k[0]]) + '</td><td>' + statusChip(r[k[1]]) + '</td><td class="mono">' + md(r[k[2]]) + '</td><td class="mono">' + md(r[k[3]]) + '</td></tr>';
+  }).join('');
+
+  // ---- diagrams
+  document.getElementById('diagrams').innerHTML = D.diagrams.map(function (d) { return '<pre class="mermaid">' + esc(d) + '</pre>'; }).join('');
+  if (location.protocol === 'file:' && !window.mermaid) {
+    var s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.9.1/mermaid.min.js';
+    s.onload = function () { try { window.mermaid.initialize({ startOnLoad: false, theme: matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'neutral' }); window.mermaid.run(); } catch (e) {} };
+    document.head.appendChild(s);
+  }
+
+  // ---- app start
+  tb('appStartTable').innerHTML = D.app_start.map(function (r) {
+    var k = Object.keys(r);
+    var st = r[k[4]] || '';
+    var cls = /match|giống|khớp/i.test(st) ? 'good' : /differs|khác|n\/a/i.test(st) ? 'muted' : /missing|thiếu/i.test(st) ? 'crit' : 'warn';
+    return '<tr><td class="mono">' + esc(r[k[0]]) + '</td><td>' + md(r[k[1]]) + '</td><td>' + md(r[k[2]]) + '</td><td>' + md(r[k[3]]) + '</td><td><span class="chip ' + cls + '">' + md(st) + '</span></td></tr>';
+  }).join('');
+
+  // ---- folders
+  tb('foldersTable').innerHTML = D.folders.map(function (r) { var k = Object.keys(r); return '<tr><td class="mono">' + md(r[k[0]]) + '</td><td class="mono">' + esc(r[k[1]]) + '</td><td>' + md(r[k[2]]) + '</td><td class="mono">' + md(r[k[3]]) + '</td></tr>'; }).join('');
+
+  // ---- matrix
+  tb('matrixTable').innerHTML = D.matrix.map(function (r) {
+    var flow = (r.Flow || '').replace(/\[([^\]]+)\]\([^)]*\)/, '$1');
+    return '<tr><td>' + esc(r.Group) + '</td><td class="mono">' + md(flow) + '</td><td class="mono">' + esc(r.Rows) + '</td><td>' + esc(r.match) + '</td><td>' + esc(r.partial) + '</td><td>' + esc(r.missing) + '</td><td>' + esc(r.differs) + '</td><td>' + esc(r['mock-only']) + '</td><td>' + esc(r['n/a']) + '</td><td>' + esc(r.unclear) + '</td><td class="mono">' + esc(r['Findings (B/M/m/i)']) + '</td></tr>';
+  }).join('');
+
+  // ---- steps
+  document.getElementById('steps').innerHTML = D.setup_order.map(function (s, i) { return '<li' + (i === D.setup_order.length - 1 ? ' class="later"' : '') + '>' + md(s) + '</li>'; }).join('');
+
+  // ---- gaps
+  var gapRows = D.gaps.map(function (r) { var k = Object.keys(r); return k.map(function (x) { return r[x]; }); });
+  var gapOnly = false;
+  var renderGaps = function () {
+    var q = (document.getElementById('gapSearch').value || '').toLowerCase();
+    var rows = gapRows.filter(function (c) { var hay = c.join(' ').toLowerCase(); return (!q || hay.indexOf(q) >= 0) && (!gapOnly || /F\d/.test(c[6] || '')); });
+    tb('gapTable').innerHTML = rows.map(function (c) {
+      var f = (c[6] || '').trim();
+      var fcls = /blocker|chặn/i.test(f) ? 'crit' : /F\d/.test(f) ? 'warn' : 'muted';
+      return '<tr><td class="k">' + md(c[0]) + '</td><td>' + md(c[1]) + '</td><td>' + md(c[2]) + '</td><td>' + md(c[3]) + '</td><td class="mono">' + md(c[4]) + '</td><td class="mono">' + md(c[5]) + '</td><td><span class="chip ' + fcls + '">' + md(f || '-') + '</span></td></tr>';
+    }).join('');
+    document.getElementById('gapCount').textContent = rows.length + ' / ' + gapRows.length + ' dòng';
+  };
+  document.getElementById('gapSearch').addEventListener('input', renderGaps);
+  document.getElementById('gapOnlyFindings').addEventListener('click', function () { gapOnly = !gapOnly; this.setAttribute('aria-pressed', String(gapOnly)); renderGaps(); });
+  renderGaps();
+
+  // ---- contract
+  document.getElementById('contractLead').innerHTML = md(modulesTotal + ' endpoint (`POST /api/<Module>/<Action>`) trong ' + D.contract_modules.length + ' module của contract; mock hiện tại trả lời tất cả. Mỗi dòng "mock-only" trong báo cáo là một endpoint production phải có thật.');
+  tb('modulesTable').innerHTML = D.contract_modules.map(function (r) { var k = Object.keys(r); return '<tr><td class="mono">' + md(r[k[0]]) + '</td><td>' + esc(r[k[1]]) + '</td><td>' + esc(r[k[2]]) + '</td><td>' + esc(r[k[3]]) + '</td><td class="mono">' + md(r[k[4]]) + '</td><td>' + md(r[k[5]]) + '</td></tr>'; }).join('');
+  if (D.contract_flagged_inputs.length) {
+    var ik = Object.keys(D.contract_flagged_inputs[0]);
+    document.querySelector('#inputsTable thead').innerHTML = '<tr>' + ik.map(function (h) { return '<th>' + esc(h) + '</th>'; }).join('') + '</tr>';
+    tb('inputsTable').innerHTML = D.contract_flagged_inputs.map(function (r) { return '<tr>' + ik.map(function (h) { return '<td>' + md(r[h]) + '</td>'; }).join('') + '</tr>'; }).join('');
+  }
+
+  // ---- FE work
+  var feSets = { build: D.build_items, keep: D.keep_items, check: D.check_items };
+  var feActive = { build: true, keep: false, check: false };
+  var renderFe = function () {
+    var rows = [];
+    Object.keys(feSets).forEach(function (k) { if (feActive[k]) feSets[k].forEach(function (r) { rows.push([k, r]); }); });
+    tb('feTable').innerHTML = rows.map(function (x) { var r = x[1]; var k = Object.keys(r); var cls = x[0] === 'build' ? 'warn' : x[0] === 'keep' ? 'muted' : 'accent'; return '<tr><td class="mono">' + esc(r[k[0]]) + '</td><td><span class="chip ' + cls + '">' + esc(r[k[1]]) + '</span></td><td>' + md(r[k[2]]) + '</td></tr>'; }).join('');
+    document.getElementById('feCount').textContent = rows.length + ' mục';
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-fe]'), function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-fe'); feActive[k] = !feActive[k]; b.setAttribute('aria-pressed', String(feActive[k])); renderFe(); }); });
+  renderFe();
+
+  // ---- findings
+  var sevActive = { blocker: true, major: true, minor: false, info: false };
+  var sevLabel = { blocker: 'Chặn', major: 'Lớn', minor: 'Nhỏ', info: 'Thông tin' };
+  var renderFind = function () {
+    var q = (document.getElementById('findSearch').value || '').toLowerCase();
+    var rows = findings.filter(function (f) { var s = (f.Severity || '').toLowerCase(); var hay = [f.Flow, f.Id, f.Element, f.Finding].join(' ').toLowerCase(); return sevActive[s] && (!q || hay.indexOf(q) >= 0); });
+    tb('findTable').innerHTML = rows.map(function (f) { var s = (f.Severity || '').toLowerCase(); return '<tr><td><i class="sev ' + s + '"></i>' + esc(sevLabel[s] || s) + '</td><td class="mono">' + esc(f.Flow) + '</td><td class="mono">' + esc(f.Id) + '</td><td>' + md(f.Element) + '</td><td>' + md(f.Finding) + '</td></tr>'; }).join('');
+    document.getElementById('findCount').textContent = rows.length + ' / ' + findings.length;
+  };
+  Array.prototype.forEach.call(document.querySelectorAll('[data-sev]'), function (b) { b.addEventListener('click', function () { var k = b.getAttribute('data-sev'); sevActive[k] = !sevActive[k]; b.setAttribute('aria-pressed', String(sevActive[k])); renderFind(); }); });
+  document.getElementById('findSearch').addEventListener('input', renderFind);
+  renderFind();
+
+  // ---- open
+  document.getElementById('openList').innerHTML = D.open_items.map(function (s) { return '<li>' + md(s) + '</li>'; }).join('');
+  tb('unclearTable').innerHTML = D.unclear.map(function (r) { var k = Object.keys(r); return '<tr><td class="mono">' + esc(r[k[0]]) + '</td><td class="mono">' + esc(r[k[1]]) + '</td><td>' + md(r[k[2]]) + '</td><td>' + md(r[k[3]]) + '</td></tr>'; }).join('');
+  document.getElementById('footerText').innerHTML = md('Tài liệu gốc: `migration/clarify/architecture-current.md`, `infra-gaps.md`, `INDEX.md`, `decisions.md`, `dev-ahead.md` (nhánh `clarify-screens`). Bản tiếng Việt dựng ngày ' + D.generated + '; mỗi ô có thể truy ngược về dòng checklist hoặc `file:line` trong mã.');
+
+  // ---- tabs
+  var tabs = ['hien-trang', 'production'];
+  var show = function (id) {
+    tabs.forEach(function (t) {
+      document.getElementById('panel-' + t).hidden = t !== id;
+      document.getElementById('tab-' + t).setAttribute('aria-selected', String(t === id));
+    });
+    try { localStorage.setItem('ifr-tab', id); } catch (e) {}
+  };
+  tabs.forEach(function (t) { document.getElementById('tab-' + t).addEventListener('click', function () { show(t); }); });
+  var initial = tabs.indexOf(location.hash.replace('#', '')) >= 0 ? location.hash.replace('#', '') : null;
+  if (!initial) { try { initial = localStorage.getItem('ifr-tab'); } catch (e) {} }
+  show(tabs.indexOf(initial) >= 0 ? initial : 'hien-trang');
+  // section links inside the other tab
+  Array.prototype.forEach.call(document.querySelectorAll('.sub a'), function (a) { a.addEventListener('click', function () { var target = document.querySelector(a.getAttribute('href')); if (target) { var panel = target.closest('[role="tabpanel"]'); if (panel) show(panel.id.replace('panel-', '')); } }); });
+})();
+</script>
