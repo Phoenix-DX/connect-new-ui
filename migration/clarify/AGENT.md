@@ -87,8 +87,17 @@ Rules:
 - A KB page that disagrees with both DEV and TST is not a finding of the React app. List it in §6.2 "KB pages vs TST"
   with the id `K<n>`, the KB text, the TST evidence and the file.
 
-## Budget
+## Budget and way of work
 
 Read what the pack names, not the whole app. A screen of average size takes about 60 to 120 rows. Stop at the pack's
 boundary. A shared action that 29 flows use gets one row ("shared, checked in the report of App_Common"). Check its
 branches only when your flow depends on them.
+
+The pilot (App_PIN) took 146 tool calls and 303k tokens; half of that was avoidable. Keep to these rules:
+- Start every shell command with `cd /Users/khaitruong/Projects/connect-new && `. Use absolute paths. The shell
+  working directory resets between commands. A command without the prefix runs twice.
+- Read the brief, the template and the schema once. Read the pack files in one command (`cat` of all pack files).
+- Read the React files of one screen in one command (`cat -n` of the page, its hooks and the containers it uses).
+- Write `report.md` and `checklist.json` with the Write tool, each in one call, directly into
+  `migration/clarify/flows/<Flow>/`. Do not build them from pieces in a scratchpad.
+- Target: at most 70 tool calls and about 150k to 200k tokens for a flow of the size of App_PIN.
