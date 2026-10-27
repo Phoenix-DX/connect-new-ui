@@ -28,9 +28,13 @@ Facts go to the report with evidence (MCP element name, `file:line`, rule id). N
 
 ## 3. Inventory (MCP `getScreenNames`, 2026-10-27)
 
-32 UI flows hold the 84 screens of DEV. 64 screens are built in `app/src/pages/`. 22 DEV screens are not built;
-all 22 have `decision=skip` on the board with a reason (dead, variant, or V1 replaced by V2). 2 built screens exist on
-TST only (`MyBookmarks`, `BookmarksByGroup`; DEV has the `Bookmarks` branch instead). 12 more flows hold only blocks
+32 UI flows hold the 84 screens of DEV. 64 screens are built in `app/src/pages/`. 22 DEV screens are not built:
+- 17 have `decision=skip` on the board with a reason (dead, variant, or V1 replaced by V2).
+- 5 have no board row: they exist on DEV only, not on TST (`NotificationDetails`, `OneSchoolGlobalCarousel`,
+  `OrbitAdminMilestoneDetail`, `OrbitAdminMilestones`, `PassportScan`; checked 2026-10-27 with
+  `grep "^| <Screen> " migration/board.md`, 0 rows).
+
+2 built screens exist on TST only (`MyBookmarks`, `BookmarksByGroup`; DEV has the `Bookmarks` branch instead). 12 more flows hold only blocks
 (`App_Cache`, `App_CommonBlocks_Filter`, `App_Common_Blocks`, `SubLayout`, `Directory_Caroussel`, …).
 
 | Group | UI flow | Screens built / on DEV | Not built (board: skip) |
@@ -41,7 +45,7 @@ TST only (`MyBookmarks`, `BookmarksByGroup`; DEV has the `Bookmarks` branch inst
 | G1 core | Home | 2/2 | |
 | G1 core | App_Menu | 3/3 | |
 | G1 core | App_Menu_ContactUs | 2/2 | |
-| G1 core | App_Notifications | 1/2 | NotificationDetails |
+| G1 core | App_Notifications | 1/2 | NotificationDetails (DEV only, no board row) |
 | G1 core | App_Profile | 1/1 | |
 | G1 core | App_Services | 1/1 | |
 | G2 directory | Directory_Locality | 5/5 | |
@@ -49,7 +53,7 @@ TST only (`MyBookmarks`, `BookmarksByGroup`; DEV has the `Bookmarks` branch inst
 | G2 directory | Directory_Search | 1/1 | |
 | G2 directory | Directory_Photobook | 1/1 | |
 | G2 directory | Directory_SupperMeetings | 2/2 | |
-| G2 directory | Directory_OneSchoolGlobal | 1/3 | OneSchoolGlobalCarousel, OneSchoolGlobalEventDetail |
+| G2 directory | Directory_OneSchoolGlobal | 1/3 | OneSchoolGlobalCarousel (DEV only, no board row), OneSchoolGlobalEventDetail |
 | G2 directory | Directory_Updates | 1/1 | |
 | G3 content | Bookmarks (+ TST MyBookmarks, BookmarksByGroup) | 0/1 (+2 TST) | Bookmarks (DEV branch) |
 | G3 content | Notes | 1/1 | |
@@ -57,8 +61,8 @@ TST only (`MyBookmarks`, `BookmarksByGroup`; DEV has the `Bookmarks` branch inst
 | G3 content | ContactFlow | 5/6 | ContactByEmailContacts |
 | G3 content | Legacy_Share | 2/2 | |
 | G3 content | Legacy_MyNotificationsFlow | 2/2 | |
-| G4 legacy events | Legacy_OrbitEventsFlow | 10/11 | PassportScan |
-| G4 legacy events | Legacy_OrbitAdminFlow | 2/4 | OrbitAdminMilestoneDetail, OrbitAdminMilestones |
+| G4 legacy events | Legacy_OrbitEventsFlow | 10/11 | PassportScan (DEV only, no board row) |
+| G4 legacy events | Legacy_OrbitAdminFlow | 2/4 | OrbitAdminMilestoneDetail, OrbitAdminMilestones (DEV only, no board row) |
 | G4 legacy events | Legacy_OrbitQRCodeFlow | 1/1 | |
 | G4 legacy events | Legacy_LDMEventsFlow | 1/4 | LDM_Email, LDM_EventDetail, LDM_MyEvents (V1; EmailTarget is built) |
 | G4 legacy events | Legacy_LDMEventsFlow_V2 | 3/3 | |
