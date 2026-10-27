@@ -642,5 +642,53 @@
   "by": "code",
   "date": "2026-10-27",
   "note": ""
+ },
+ "Legacy_LDMEventsFlow_V2:Q1": {
+  "id": "Q1",
+  "question": "Build the timeline filter popup `LDM_Blocks.MyTimeline_Filters` and its 4 handlers now? Decision `auto-decisions-2026-10-16.md:51` kept it `NotCaptured` because the popup was not captured. The TST file exists (`Connect2_OrbitMobile_MUI.LDM_Blocks.MyTimeline_Filters.mvc.js`, 20 actions) and the locality data action is already fetched.",
+  "why": "The filter and reset of the timeline are the only user-reachable behaviours of the flow that React lacks (F2).",
+  "options": "(a) build from the compiled code, as Q2 of the same decision did for the guest list; (b) keep the placeholder until a capture is possible",
+  "recommendation": "(a)",
+  "flow": "Legacy_LDMEventsFlow_V2",
+  "answer": "(a) Build the timeline filter popup MyTimeline_Filters and its four handlers (OnHandle_MyTimelineFilter, ResetFilters, Filter, Close) from the TST compiled code; recorded as build now.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": ""
+ },
+ "_libraries:Q1": {
+  "id": "Q1",
+  "question": "The favicon row of `migration/knowledge/auto-decisions-2026-10-16.md:115` (confirmed by you on 2026-10-17, option A) says \"the other OSUI layout helpers stay unported\". Does that decision cover LayoutReady, LayoutDestroy and SkipToContent in the three layouts (rows 029, 033, 034, 135, 136, 138, 223-225)? TST effects: LayoutReady sets the body device classes and runs FixInputs and the OSUI start-up once per app start (`OutSystemsUI_2_23.controller.js:15248`); SkipToContent moves the focus to the main content when the skip link is used; LayoutDestroy only disposes listeners. SetLang(\"\") is a no-op on TST (`OutSystemsUI.js:3199`).",
+  "why": "Nine rows are `differs` on this decision. Without it they are `missing`, and the skip link is an accessibility gap when `EnableAccessibilityFeatures` is on.",
+  "options": "(a) confirm: the decision covers the three helpers, rows stay `differs`; (b) port SkipToContent only (one focus call in the three layouts); (c) port LayoutReady and SkipToContent",
+  "recommendation": "(b): SkipToContent is small and has a user effect for keyboard users; the device classes come from `platform/device/device.ts`.",
+  "flow": "_libraries",
+  "answer": "(a) The favicon decision of 2026-10-17 covers LayoutReady, LayoutDestroy and SetLang (not ported); SkipToContent is ported (focus moves to the main content). The 9 layout rows stay differs; one row (SkipToContent) becomes a build item.",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": ""
+ },
+ "_libraries:Q3": {
+  "id": "Q3",
+  "question": "F1: port App_Subscription_NavigateToUpgrade and App_Subscription_ShowUpgradePopUp (`UBTConnect_Utils.controller.js:1, 46`), or keep the subscription upgrade out of the mock phase?",
+  "why": "The warning row and the locked recent member are dead taps in React. Home Q2 (2026-10-27) builds the subscription banner from the TST view, so the upgrade path is in scope there.",
+  "options": "(a) port both actions now (confirm dialog + external link; the upgrade popup); (b) record a decision to keep them out until the production phase",
+  "recommendation": "(a): the actions are short and both blocks already render the trigger.",
+  "flow": "_libraries",
+  "answer": "(a) Wire the two call sites (SearchResultItem.tsx:117 to navigateToUpgrade, useShareSheet.ts:137 to showUpgradePopUp) to the existing subscription dialogs; recorded as build now (F1).",
+  "by": "user",
+  "date": "2026-10-27",
+  "note": ""
+ },
+ "Legacy_OrbitEventsFlow:Q4": {
+  "id": "Q4",
+  "question": "Review pass items, no user decision: A121 (EventBooklet variable defaults), B069 and B103 (the Type argument of CheckDirectoryAccess), J016-J018 (the internals of the OrbitLanding popups, the booklet blocks and the transport blocks).",
+  "why": "The rows are `unclear` until the orchestrator's review pass reads them.",
+  "options": "-",
+  "recommendation": "Read them in the review pass; no user answer needed.",
+  "flow": "Legacy_OrbitEventsFlow",
+  "answer": "Settled by the Orbit block pass of 2026-10-27 (review/orbit-blocks.md): J016 match, J017 partial (F8 minor), J018 match; A121 differs by decision C2; B069/B103 match (DirectoryAPIFilter.Member). No user decision needed.",
+  "by": "code",
+  "date": "2026-10-27",
+  "note": ""
  }
 }

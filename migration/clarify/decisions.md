@@ -147,6 +147,7 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 | C2 |  | Keep the React behaviour: IsGuestView starts false until the guests fetch (TST starts true). Row A121 is differs by this decision. | user, 2026-10-27 |
 | Q2 | OrbitLanding "View Passport details" (F3): follow TST and remove it, or keep the DEV-only control? | (a) Follow TST: remove the DEV-only passport control, the event NavigateTo_PassportScan and its handler from OrbitLanding. Note for later comparison: the control and the screen PassportScan exist on DEV (dev-ahead.md). | user, 2026-10-27 |
 | Q3 | MilestoneDetail (F2): build the five other milestone blocks from TST, or keep the placeholders? | (a) Build the five other milestone blocks (MealGuest, MealHost, MealHelper, AccommodationGuest, AccommodationHelper) from their TST files; recorded as build now. | user, 2026-10-27 |
+| Q4 | Review pass items, no user decision: A121 (EventBooklet variable defaults), B069 and B103 (the Type argument of CheckDirectoryAccess), J016-J018 (the internals of the OrbitLanding popups, the booklet blocks and the trans | Settled by the Orbit block pass of 2026-10-27 (review/orbit-blocks.md): J016 match, J017 partial (F8 minor), J018 match; A121 differs by decision C2; B069/B103 match (DirectoryAPIFilter.Member). No user decision needed. | code, 2026-10-27 |
 
 ## Legacy_OrbitAdminFlow (G4)
 
@@ -160,6 +161,12 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 |---|---|---|---|
 | Q1 | Set `document.title` from the screen title (F1)? | (a) Set document.title from the route title in the app shell, for all routes; the same answer as App_Services Q4 (accepted 2026-10-27). | user, 2026-10-27 |
 
+## Legacy_LDMEventsFlow_V2 (G4)
+
+| Id | Question | Answer | By, date |
+|---|---|---|---|
+| Q1 | Build the timeline filter popup `LDM_Blocks.MyTimeline_Filters` and its 4 handlers now? Decision `auto-decisions-2026-10-16.md:51` kept it `NotCaptured` because the popup was not captured | (a) Build the timeline filter popup MyTimeline_Filters and its four handlers (OnHandle_MyTimelineFilter, ResetFilters, Filter, Close) from the TST compiled code; recorded as build now. | user, 2026-10-27 |
+
 ## Directory_Caroussel (X)
 
 | Id | Question | Answer | By, date |
@@ -172,3 +179,10 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 |---|---|---|---|
 | Q1 | When the app start fails, TST passes the message to `ScreenController_RaiseError` (UC:15397-15417); the App_Common handler then shows the exception toast for a non-system exception (U10 answer, app-shell.spec.md:367) | (a) Show the exception toast on a non-system app-start failure, as TST does; the same as decision C3 (finding F3, build). | user, 2026-10-27 |
 | C3 |  | Finding accepted (major, F3): an app-start failure that is not a system exception must show the exception toast, as TST does. Build it. Row 193. | user, 2026-10-27 |
+
+## _libraries (X)
+
+| Id | Question | Answer | By, date |
+|---|---|---|---|
+| Q1 | The favicon row of `migration/knowledge/auto-decisions-2026-10-16.md:115` (confirmed by you on 2026-10-17, option A) says "the other OSUI layout helpers stay unported" | (a) The favicon decision of 2026-10-17 covers LayoutReady, LayoutDestroy and SetLang (not ported); SkipToContent is ported (focus moves to the main content). The 9 layout rows stay differs; one row (SkipToContent) becomes a build item. | user, 2026-10-27 |
+| Q3 | F1: port App_Subscription_NavigateToUpgrade and App_Subscription_ShowUpgradePopUp (`UBTConnect_Utils.controller.js:1, 46`), or keep the subscription upgrade out of the mock phase? | (a) Wire the two call sites (SearchResultItem.tsx:117 to navigateToUpgrade, useShareSheet.ts:137 to showUpgradePopUp) to the existing subscription dialogs; recorded as build now (F1). | user, 2026-10-27 |

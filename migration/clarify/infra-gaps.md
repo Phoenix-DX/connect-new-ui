@@ -310,6 +310,33 @@ the text before the check, TST does not (App_Menu_ContactUs-122, 123); `IsGuestV
 React (Legacy_OrbitEventsFlow-A121). A failed app start shows the exception toast on TST, React logs only
 (_shared-193). The device id store (App_Policies-063, F4).
 
+
+### 10.4 Decisions of the user (2026-10-27) that set the build list
+
+Recorded in `decisions.md` (answers.json). "Build now" means: the item is in scope; the build starts when the user orders it.
+
+| Flow | Id | Decision |
+|---|---|---|
+| App_Policies | C4 | Follow TST: store the policy-acceptance device id in localStorage["UUID"] (one id per browser). Finding F4 stands; build it. Row 063. |
+| Legacy_LDMEventsFlow_V2 | Q1 | (a) Build the timeline filter popup MyTimeline_Filters and its four handlers (OnHandle_MyTimelineFilter, ResetFilters, Filter, Close) from the TST compiled code; recorded |
+| Legacy_OrbitEventsFlow | Q1 | (a) Build the HostSurvey wizard from the TST compiled code (model, controller and view of the ScreenBlock_HostSurvey files; mock for PostHostSurvey); recorded as build no |
+| Legacy_OrbitEventsFlow | Q3 | (a) Build the five other milestone blocks (MealGuest, MealHost, MealHelper, AccommodationGuest, AccommodationHelper) from their TST files; recorded as build now. |
+| _libraries | Q1 | (a) The favicon decision of 2026-10-17 covers LayoutReady, LayoutDestroy and SetLang (not ported); SkipToContent is ported (focus moves to the main content). The 9 layout |
+| _libraries | Q3 | (a) Wire the two call sites (SearchResultItem.tsx:117 to navigateToUpgrade, useShareSheet.ts:137 to showUpgradePopUp) to the existing subscription dialogs; recorded as bu |
+| _shared | C3 | Finding accepted (major, F3): an app-start failure that is not a system exception must show the exception toast, as TST does. Build it. Row 193. |
+
+Items that React keeps as it is, or removes to follow TST (no build):
+
+| Flow | Id | Decision |
+|---|---|---|
+| App_Menu_ContactUs | C1 | Keep the React behaviour: the validators trim the input before the check (TST does not trim). Rows 122, 123 are differs by this decision. |
+| Legacy_OrbitAdminFlow | Q1 | (a) Follow TST: remove the GetMilestoneScanFF call, the milestone branch, the mock handler and the scanpermilestone scenario from OrbitAdminLanding. Note for later compar |
+| Legacy_OrbitEventsFlow | C2 | Keep the React behaviour: IsGuestView starts false until the guests fetch (TST starts true). Row A121 is differs by this decision. |
+| Legacy_OrbitEventsFlow | Q2 | (a) Follow TST: remove the DEV-only passport control, the event NavigateTo_PassportScan and its handler from OrbitLanding. Note for later comparison: the control and the  |
+
+Other answers (facts settled, checks ordered, out of scope): 45 rows in `decisions.md`.
+
+
 ## 11. Order of set-up
 
 The dependencies run from the session to the screens. Each step names the rows that show the dependency.
