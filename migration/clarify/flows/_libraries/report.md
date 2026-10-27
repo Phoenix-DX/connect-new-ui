@@ -10,13 +10,13 @@
 
 ## 1. Summary
 
-- Counts by verdict: match 221 · partial 5 · missing 1 · differs 9 · mock-only 4 · n/a 2 · unclear 3 (same as `checklist.json`, 245 rows: 241 of the draft plus 4 server-side rows).
+- Counts by verdict: match 224 · partial 5 · missing 1 · differs 9 · mock-only 4 · n/a 2 · unclear 0 (same as `checklist.json`, 245 rows: 241 of the draft plus 4 server-side rows).
 - F1 (major): the subscription upgrade actions are not in React. A click on "Subscription upgrade needed" (SearchResult_Item) and on a locked recently shared member (ShareSheet) does nothing; TST opens an external link or a dialog.
 - F2 (minor): the 50-recipient limit of ShareSheet shows a plain error message; TST closes it by itself (FeedbackMessage_AutoClose).
 - F3 (minor): ShareSheet Action_SubmitShare does not re-raise NotRegistered; React shows "Share failed" instead.
 - F4 (minor): HorizontalTagList counts a tag without `IsSelected` as selected; TST counts it as not selected.
 - The three layouts do not run LayoutReady, LayoutDestroy and SkipToContent, and the favicon link is static. A recorded decision covers this (user, 2026-10-17); Q1 asks the user to confirm its scope. SetLang("") is a no-op on TST.
-- Status: every shared block renders and behaves as TST for the PWA. The gaps are the two upgrade actions, two edge cases of ShareSheet, and the record defaults of three blocks that need the model files (Q2).
+- Status: every shared block renders and behaves as TST for the PWA. The gaps are the two upgrade actions and two edge cases of ShareSheet. The record defaults of Button, Input and Carousel match the model files fetched on 2026-10-27.
 
 ## 2. Blocks
 
@@ -82,11 +82,11 @@ One sub-section per block group. The column "OutSystems (TST)" gives the compile
 
 | Element | OutSystems (TST) | React | Verdict | Evidence / note |
 |---|---|---|---|---|
-| In_Options (SearchInputRec), SearchString, In_ExtendedClasses | record defaults from the module model | `withDefaults`: IsEnabled true, MaxLength 50, SearchPrompt "Search", ValidationMessage "Required", Debounce -1, BorderRadius SoftRounded | unclear | 161; the model file `UBTConnectLibrary.model.js` is not in the local sources; Q2 |
+| In_Options (SearchInputRec), SearchString, In_ExtendedClasses | IsEnabled true, IsMandatory false, ValidationMessage "Required", MaxLength 50, InitalString "", SearchPrompt "Search", IsForceInvalid false, Debounce_DelayMS -1, BorderRadius softRounded, EnableAutocompleteHTML false, FocusOnReady false, IsSyncValueWithInput false | `withDefaults` with the same 12 values | match | 161; judge: `runtime-sources/UBTConnectLibrary.model.js:1473-1526` (fetched 2026-10-27); `Input.tsx:44-59` |
 | root container | `ubt-search-input` | same | match | 162 |
 | left icon If SearchString = "" | Icon search / inherit / medium_20 | same | match | 163 |
 | right icon If SearchString <> "" | Icon cancelFill → OnClick_ClearString(True) | same | match | 164 |
-| Input_Search constraints | enabled, mandatory, widget maxLength 50 + extended maxLength = In_Options.MaxLength, type search, prompt | aria-required, disabled, maxLength = MaxLength, placeholder, type search | match | 165; the extended attribute replaces the literal at run time; the default is Q2 |
+| Input_Search constraints | enabled, mandatory, widget maxLength 50 + extended maxLength = In_Options.MaxLength, type search, prompt | aria-required, disabled, maxLength = MaxLength, placeholder, type search | match | 165; the extended attribute replaces the literal at run time; the default MaxLength is 50 (`UBTConnectLibrary.model.js:1473-1526`), as React |
 | autocomplete | If(EnableAutocompleteHTML, "on", "off") | same | match | 166 |
 | input class | `form-control ` + ExtendedClasses + border-radius class, OSFillParent | same | match | 167 |
 | OnChange | under "Is Mandatory?": Valid, ValidationMessage; debounce or Event_OnChange | same | match | 168; judge: TST:455-462 |
@@ -354,7 +354,7 @@ One sub-section per block group. The column "OutSystems (TST)" gives the compile
 
 | Element | OutSystems (TST) | React | Verdict | Evidence / note |
 |---|---|---|---|---|
-| inputs | Navigation both, Height "auto", ItemsPerSlide, OptionalConfigs, ExtendedClass | same; record defaults 1/1/1, autoPlay true, loop true | unclear | 236; the OutSystemsUI model is not in the local sources; Q2 |
+| inputs | Navigation both, Height "auto", ItemsPerSlide (1 / 1 / 1), OptionalConfigs (AutoPlay true, Loop true, Padding "", ItemsGap "", StartingPosition 0), ExtendedClass | same defaults | match | 236; judge: `runtime-sources/OutSystemsUI_2_23.model.js:3053-3074, 3651-3663` (fetched 2026-10-27); `Carousel.tsx:51-58` |
 | structure | `osui-carousel` > track > content; previews under $if(false) | same; `--has-pagination` class | match | 237 |
 | OnInitialize / OnReady | CarouselCreate, CarouselInitialize; Initialized | `CarouselProvider.build()` | match | 238; ADR-3 (`stack.md:141`) |
 | OnSlideMoved | event (CarouselId, Index) | same | match | 239 |
@@ -438,7 +438,7 @@ One sub-section per block group. The column "OutSystems (TST)" gives the compile
 
 | Element | OutSystems (TST) | React | Verdict | Evidence / note |
 |---|---|---|---|---|
-| ConnectPatterns inputs | `ubt-button`; In_ButtonOptions, In_ExtendedClass, In_IsDisabled | same; defaults Medium / Primary / Grow for the record | unclear | 035; the ButtonOptionsRec defaults need the model file; Q2 |
+| ConnectPatterns inputs | `ubt-button`; In_ButtonOptions (medium / primary / grow), In_ExtendedClass, In_IsDisabled | same; defaults Medium / Primary / Grow | match | 035; judge: `runtime-sources/UBTConnectLibrary.model.js:1831-1847` (fetched 2026-10-27); `Button.tsx:32-36` |
 | ConnectPatterns button | `btn ` + FormatClasses(ExtendedClass, FormatClasses(Main, GetClasses_Button)); content class; click | same | match | 036; judge: TST:185-188 |
 | CW_Common inputs | nine inputs | same | match | 046 |
 | CW_Common structure | Button wrapper, spinner container, IconText with Icon | same | match | 047 |
@@ -549,7 +549,6 @@ ScreenBlock_Event_Email_V2, ScreenBlock_MyEvents_V2
 | Id | Question | Why it matters | Options | Recommendation |
 |---|---|---|---|---|
 | Q1 | The favicon row of `migration/knowledge/auto-decisions-2026-10-16.md:115` (confirmed by you on 2026-10-17, option A) says "the other OSUI layout helpers stay unported". Does that decision cover LayoutReady, LayoutDestroy and SkipToContent in the three layouts (rows 029, 033, 034, 135, 136, 138, 223-225)? TST effects: LayoutReady sets the body device classes and runs FixInputs and the OSUI start-up once per app start (`OutSystemsUI_2_23.controller.js:15248`); SkipToContent moves the focus to the main content when the skip link is used; LayoutDestroy only disposes listeners. SetLang("") is a no-op on TST (`OutSystemsUI.js:3199`). | Nine rows are `differs` on this decision. Without it they are `missing`, and the skip link is an accessibility gap when `EnableAccessibilityFeatures` is on. | (a) confirm: the decision covers the three helpers, rows stay `differs`; (b) port SkipToContent only (one focus call in the three layouts); (c) port LayoutReady and SkipToContent | (b): SkipToContent is small and has a user effect for keyboard users; the device classes come from `platform/device/device.ts`. |
-| Q2 | The record defaults of ButtonOptionsRec (row 035), SearchInputRec (row 161) and the OSUI Carousel records (row 236) are in `UBTConnectLibrary.model.js` and `OutSystemsUI_2_23.model.js`, which are not in `migration/runtime-sources`. React cites `UBTConnectLibrary.model.js:1477-1516` for the Input defaults. Fetch the two model files? | Three rows stay `unclear` without them. A wrong default changes the button size and type, the input max length, and whether a carousel auto-plays. | (a) fetch both files under the standing approval for TST static files (`feedback-fetch-static-scripts`), log them in `runtime-sources.md`, re-check the three rows; (b) keep the React defaults and record them as a decision | (a): the files are static scripts and the check is short (as App_Menu_ContactUs Q3). |
 | Q3 | F1: port App_Subscription_NavigateToUpgrade and App_Subscription_ShowUpgradePopUp (`UBTConnect_Utils.controller.js:1, 46`), or keep the subscription upgrade out of the mock phase? | The warning row and the locked recent member are dead taps in React. Home Q2 (2026-10-27) builds the subscription banner from the TST view, so the upgrade path is in scope there. | (a) port both actions now (confirm dialog + external link; the upgrade popup); (b) record a decision to keep them out until the production phase | (a): the actions are short and both blocks already render the trigger. |
 
 ## 8. Counts
@@ -557,10 +556,10 @@ ScreenBlock_Event_Email_V2, ScreenBlock_MyEvents_V2
 | Area | Items | match | partial | missing | differs | mock-only | n/a | unclear |
 |---|---|---|---|---|---|---|---|---|
 | identity | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| data | 45 | 38 | 0 | 0 | 0 | 4 | 0 | 3 |
+| data | 45 | 41 | 0 | 0 | 0 | 4 | 0 | 0 |
 | ui | 93 | 92 | 0 | 0 | 1 | 0 | 0 | 0 |
 | actions | 54 | 44 | 5 | 1 | 2 | 0 | 2 | 0 |
 | validations | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
 | logic | 52 | 46 | 0 | 0 | 6 | 0 | 0 | 0 |
 | strings | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
-| **total** | 245 | 221 | 5 | 1 | 9 | 4 | 2 | 3 |
+| **total** | 245 | 224 | 5 | 1 | 9 | 4 | 2 | 0 |

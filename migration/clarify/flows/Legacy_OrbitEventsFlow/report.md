@@ -30,10 +30,10 @@ TST line numbers: a number from `tst_source.py grep` is one lower than the same 
   TST has neither the control nor the screen. The React route is not registered.
 - F4 to F7: three minor branch differences (OnReady on a restored view, a missing error handler, a text-area width
   source) and one info item.
-- Status: a member can open Orbit, filter and sort the events, open an event, its booklet, its documents, its
-  helpers, a transport milestone, an accommodation-host milestone and its guest arrangements, and e-mail the helpdesk
-  or a host. The data is mock data. A host cannot complete the host survey, and a guest or helper of a meal or
-  accommodation milestone sees a placeholder.
+- Status: a member can open Orbit, filter and sort the events, and open an event. From the event, the member can
+  open the booklet, the documents, the helpers, a transport milestone and an accommodation-host milestone with its
+  guest arrangements. The member can e-mail the helpdesk or a host. The data is mock data. A host cannot complete the
+  host survey. A guest or helper of a meal or accommodation milestone sees a placeholder.
 
 ## 2. Screens
 
@@ -43,8 +43,9 @@ OrbitLanding and EmailContact, `BottomBarMenu`. The wrapper holds the navigation
 "You don't have access to Orbit. Please contact the Orbit Helpdesk if you have any questions." after the transition
 (type 3) and goes to HomeFeed. React keeps the gate on every gated action (`useFlagOn('mobileOrbitAccess')`,
 `feedbackMessageAfterTransition(NO_ORBIT_ACCESS, 3)`): rows A007-A012, A066-A079, A152-A153, A170-A173, B015-B018,
-B061-B063, B094-B096, B125-B127, all `match`. The block logic is on TST only; the rows below come from the compiled
-block files.
+B061-B063, B094-B096, B125-B127, all `match`.
+
+The block logic is on TST only. The rows below come from the compiled block files.
 
 ### 2.1 OrbitLanding
 
@@ -354,10 +355,14 @@ ContactPopup_ByPhone (B112-B116, match).
 **Business logic**: see the actions above (the wizard is the logic).
 
 **Strings**: 9 strings of the summary and the empty states match (B234). 13 strings of the wizard are missing
-(B221-B233, F1): "Accommodation Notes", "Any additional details", "Continue Host Survey", "Discard Survey", "Enter
-preferred meals", "Helper Notes", "Let your guest know the type of vehicles", "Meal Notes", "Please make sure you tick
-which meal is your preference.", "Do you, or your guests & helpers, have vehicles", "Thank you, your survey has been
-saved as a draft.", "Thank you, your survey has been submitted.", "Ensure you complete all required fields.".
+(B221-B233, F1):
+
+- "Accommodation Notes", "Any additional details", "Helper Notes", "Meal Notes"
+- "Continue Host Survey", "Discard Survey"
+- "Enter preferred meals", "Please make sure you tick which meal is your preference."
+- "Let your guest know the type of vehicles", "Do you, or your guests & helpers, have vehicles"
+- "Thank you, your survey has been saved as a draft.", "Thank you, your survey has been submitted."
+- "Ensure you complete all required fields." 
 
 ### 2.9 TransportDetail
 
@@ -420,11 +425,12 @@ TST the container width (B027, partial, F6).
 
 ### 2.11 PassportScan (not built)
 
-The board decision: `skip`, V8 "skip:dev-only": the screen exists on DEV only, has no compiled file on TST and no
-survey route; revisit when TST deploys it (user, 2026-10-27; `migration/board.md`). The DEV screen wraps
-`OrbitPassportScanC2.PassportScan` (inputs TargetId, LoginMemberId; event Close) and is reached from OrbitLanding
-through `NavigateTo_PassportScan`. A build needs the `OrbitPassportScanC2` module (not in the survey) and a TST
-deployment. Verdict `n/a` (B235). The OrbitLanding side of this screen is F3.
+The board decision: `skip`, V8 "skip:dev-only" (user, 2026-10-27; `migration/board.md`). The screen exists on DEV
+only. It has no compiled file on TST and no survey route. The board revisits it when TST deploys it.
+
+The DEV screen wraps `OrbitPassportScanC2.PassportScan` (inputs TargetId, LoginMemberId; event Close). OrbitLanding
+reaches it through `NavigateTo_PassportScan`. A build needs the `OrbitPassportScanC2` module (not in the survey) and
+a TST deployment. Verdict `n/a` (B235). The OrbitLanding side of this screen is F3.
 
 ## 3. Blocks of the flow
 
@@ -466,8 +472,11 @@ trigger read: `:257`, `:336` show), `MilestoneHeader`, `Accordion_Orbit`, `NoInf
 | F6 | minor | EmailContact: GetTextAreaLineHeight | TST divides by the clientWidth of the subject container (`CF:1577-1584`); React divides by the body clientWidth. The row count of the read-only subject can differ. | `EmailContact/actions.ts:19-20`, `useOrbitContactForm.ts:77` | Measure the container element. |
 | F7 | info | ViewDocuments: Action_OpenDoc | React also marks a document viewed when the bare DocumentName equals DocName; TST compares the name with the extension only (`:806`). Both callers pass the extension: no visible effect. | `viewDocumentsState.ts:62` | Drop the extra comparison. |
 
-Severity levels: blocker (the user cannot complete the flow), major (a visible behaviour, rule or data differs),
-minor (a text, a class or an edge case), info (no user impact).
+Severity levels:
+- blocker: the user cannot complete the flow
+- major: a visible behaviour, a rule or data differs
+- minor: a text, a class or an edge case
+- info: no user impact
 
 ## 6. DEV vs TST differences
 
@@ -487,9 +496,10 @@ minor (a text, a class or an edge case), info (no user impact).
 |---|---|---|---|
 | K1 | "All Orbit screens declare only the system role `Registered`." | The DEV pack lists Registered and UBTOne_User on every screen. The compiled code checks `OS.RolesInfo.checkRegistered()` only (`OrbitLanding.mvc.js:492`, `EventDetail.mvc.js:1004`); a declared role list is not visible in it. The KB disagrees with DEV; TST is neutral. No finding: the React route meta is `member`. | `../ubt_sharing_kb/connect/outsystems/apps/ubtconnect/modules/UBTConnect/ui/legacy-orbit.md` |
 
-The 12 rules of `legacy-orbit.md` (BR-UBTCON-600 to 609, 259) agree with TST and with React: the access gates
-(A007-A012, A066-A079, A152, A170-A173, B015, B061, B094, B125), the ungated links (A013, A080, A174, B060, B093),
-the My calendar source (A013), the TransportDetail helpdesk arguments (B126) and the surname split (A175, not built).
+The 12 rules of `legacy-orbit.md` (BR-UBTCON-600 to 609, 259) agree with TST and with React. They cover the
+access gates (A007-A012, A066-A079, A152, A170-A173, B015, B061, B094, B125) and the ungated links (A013, A080, A174,
+B060, B093). They also cover the My calendar source (A013), the TransportDetail helpdesk arguments (B126) and the
+surname split (A175, not built).
 
 ## 7. Questions for the user
 

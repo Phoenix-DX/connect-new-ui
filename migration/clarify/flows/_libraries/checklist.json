@@ -454,10 +454,9 @@
    "react": "app/src/components/ui/Button/Button.tsx:21-30 :: MAIN_CONTAINER_CLASS = 'ubt-button'; inButtonOptions = {}, inExtendedClass = '', inIsDisabled = false",
    "evidence": "app/src/components/ui/Button/Button.tsx:21-30",
    "tst": "present",
-   "verdict": "unclear",
-   "note": "React defaults of ButtonOptions fields: UBT_ButtonSize.Medium, UBT_ButtonType.Primary, UBT_FlexBehavior.Grow (lines 32-36); ButtonOptionsRec defaults in model not read TST: ConnectPatterns.Button.mvc.js:13-30. judge: the style expression (ConnectPatterns.Button.mvc.js:185-188) matches React Button.tsx:31-37 and :42.",
-   "verified": "pack",
-   "question": "ButtonOptionsRec default values (UBT_ButtonSizeId, UBT_ButtonTypeId, UBT_FlexBehavior): React defaults Medium / Primary / Grow cite UBTConnectLibrary.model.js, which is not in migration/runtime-sources or migration/shell/sources. Fetch the model file? See Q2."
+   "verdict": "match",
+   "note": "React defaults of ButtonOptions fields: UBT_ButtonSize.Medium, UBT_ButtonType.Primary, UBT_FlexBehavior.Grow (lines 32-36); ButtonOptionsRec defaults in model not read TST: ConnectPatterns.Button.mvc.js:13-30. judge: ButtonOptionsRec defaults UBT_ButtonSizeId medium, UBT_ButtonTypeId primary, UBT_FlexBehavior grow (migration/runtime-sources/UBTConnectLibrary.model.js:1831-1847, fetched 2026-10-27) = React Button.tsx:32-36 (Medium / Primary / Grow). The style expression (ConnectPatterns.Button.mvc.js:185-188) matches Button.tsx:31-37, 42.",
+   "verified": "pack"
   },
   {
    "id": "_libraries-036",
@@ -2103,10 +2102,9 @@
    "react": "U:app/src/components/ui/Input/Input.tsx:62-65,44-59 :: withDefaults: IsEnabled ?? true, MaxLength ?? 50, EnableAutocompleteHTML ?? false, IsMandatory ?? false, SearchPrompt ?? 'Search', BorderRadius ?? Shape.SoftRounded, ValidationMessage ?? 'Required', Debounce_DelayMS ?? -1; inExtendedClasses = ''",
    "evidence": "U:app/src/components/ui/Input/Input.tsx:62-65,44-59",
    "tst": "present",
-   "verdict": "unclear",
-   "note": "React cites SearchInputRec defaults from UBTConnectLibrary.model.js:1477-1516 (not read here) TST: UBTConnectLibrary.ConnectPatterns.Input.mvc.js:13-24.",
-   "verified": "pack",
-   "question": "SearchInputRec default values (MaxLength 50, SearchPrompt \"Search\", ValidationMessage \"Required\", Debounce_DelayMS -1, BorderRadius SoftRounded, IsEnabled true): React cites UBTConnectLibrary.model.js:1477-1516, which is not in the local sources. Fetch the model file? See Q2."
+   "verdict": "match",
+   "note": "React cites SearchInputRec defaults from UBTConnectLibrary.model.js:1477-1516 (not read here) TST: UBTConnectLibrary.ConnectPatterns.Input.mvc.js:13-24. judge: SearchInputRec defaults (UBTConnectLibrary.model.js:1473-1526, fetched 2026-10-27): IsEnabled true, IsMandatory false, ValidationMessage \"Required\", MaxLength 50, InitalString \"\", SearchPrompt \"Search\", IsForceInvalid false, Debounce_DelayMS -1, BorderRadius shape.softRounded, EnableAutocompleteHTML false, FocusOnReady false, IsSyncValueWithInput false = the 12 React withDefaults values (Input.tsx:44-59; Shape.SoftRounded = the TST shape value, staticEntities.ts:286-288).",
+   "verified": "pack"
   },
   {
    "id": "_libraries-162",
@@ -2157,7 +2155,7 @@
    "evidence": "app/src/components/ui/Input/Input.tsx:192-206",
    "tst": "present",
    "verdict": "match",
-   "note": "TST: enabled=IsEnabled, mandatory=IsMandatory, maxLength: 50 (widget literal), extendedProperties.maxLength=In_Options.MaxLength; React uses only MaxLength TST: Input.mvc.js:276-341. judge: the extended attribute maxLength = In_Options.MaxLength replaces the widget literal 50 at run time; the effective default depends on SearchInputRec (row 161, Q2).",
+   "note": "TST: enabled=IsEnabled, mandatory=IsMandatory, maxLength: 50 (widget literal), extendedProperties.maxLength=In_Options.MaxLength; React uses only MaxLength TST: Input.mvc.js:276-341. judge: the extended attribute maxLength = In_Options.MaxLength replaces the widget literal 50 at run time; the default MaxLength is 50 (UBTConnectLibrary.model.js:1473-1526), as React.",
    "verified": "pack"
   },
   {
@@ -3081,10 +3079,9 @@
    "react": "app/src/components/ui/Carousel/Carousel.tsx:33-59 :: navigation = CarouselNavigation.Both, height = 'auto', itemsPerSlide = {}, optionalConfigs = {}; desktop: itemsPerSlide.Desktop ?? 1, tablet ?? 1, phone ?? 1, autoPlay: optionalConfigs.AutoPlay ?? true, loop ?? true, padding ?? '', itemsGap ?? '', startingPosition ?? 0",
    "evidence": "app/src/components/ui/Carousel/Carousel.tsx:33-59",
    "tst": "present",
-   "verdict": "unclear",
-   "note": "React defaults for the record fields (1, 1, 1, true, true) are not compared with the CarouselItemsRec / CarouselOptionalConfigsRec attribute defaults in the OutSystemsUI model (not read) TST: Carousel.mvc.js:13-44.",
-   "verified": "pack",
-   "question": "CarouselItemsRec and CarouselOptionalConfigsRec default values (ItemsPerSlide 1/1/1, AutoPlay, Loop): React defaults autoPlay ?? true and loop ?? true were not compared with the OutSystemsUI_2_23 model (not in the local sources). Fetch the model file? See Q2."
+   "verdict": "match",
+   "note": "React defaults for the record fields (1, 1, 1, true, true) are not compared with the CarouselItemsRec / CarouselOptionalConfigsRec attribute defaults in the OutSystemsUI model (not read) TST: Carousel.mvc.js:13-44. judge: CarouselItemsRec Desktop 1, Tablet 1, Phone 1 (OutSystemsUI_2_23.model.js:3053-3074) and CarouselOptionalConfigsRec AutoPlay true, Loop true, Padding \"\", ItemsGap \"\", StartingPosition 0 (:3651-3663; Carousel_InternalConfigRec :1144-1168 says the same) = React Carousel.tsx:51-58 defaults.",
+   "verified": "pack"
   },
   {
    "id": "_libraries-237",

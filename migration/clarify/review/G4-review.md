@@ -25,8 +25,11 @@
 | Legacy_LDMEventsFlow_V2 | 231k / 45 | 281k / 54 (Fable) | 219 |
 | Legacy_OrbitQRCodeFlow | 121k / 22 | 171k / 36 | 68 |
 | Legacy_LDMEventsFlow | 131k / 23 | 173k / 36 | 94 |
-| Legacy_OrbitEventsFlow | 289k + 285k / 51 + 50 (two readers) | see the G5 note when the judge hands back | 420+ |
+| Legacy_OrbitEventsFlow | 289k + 285k / 51 + 50 (two readers) | 307k / 42 (Fable) | 438 |
+| _libraries, second pass | - | 10k / 5 (Fable) | 3 rows settled |
 
-Waste seen: the two Orbit readers still built their rows through scratch scripts that echo the content (assembly 87k
-and 159k chars); the judges of units b and the libraries read 115k–179k chars of evidence and reports ("other"),
-which is the size of their input, not waste.
+Waste seen:
+- The two Orbit readers still built their rows through scratch scripts that echo the content (assembly 87k and 159k
+  chars).
+- The judges of unit b and of the libraries read 115k–179k chars of evidence and reports ("other"). That is the size
+  of their input, not waste.
