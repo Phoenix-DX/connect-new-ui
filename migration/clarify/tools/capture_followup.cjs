@@ -92,7 +92,7 @@ function attachNet(ctx) {
             for (const k of Object.keys(o)) {
               const v = o[k];
               if (/virtualiz/i.test(k)) hits.push({ path: p + '.' + k, type: typeof v, value: typeof v === 'boolean' ? v : undefined });
-              else if (typeof v === 'string' && /virtualiz/i.test(v)) hits.push({ path: p + '.' + k, type: 'string mentions virtualization' });
+              else if (typeof v === 'string' && /virtualiz/i.test(v)) hits.push({ path: p.replace(/\.\d+$/, '') + '.' + (/^\d+$/.test(k) ? '[i]' : k), type: 'text', equalsFlagKey: v === LD_FLAG });
               walk(v, p + '.' + k);
             }
           };
@@ -124,8 +124,12 @@ function findKeys(o, re, p = '$', out = []) {
   if (!o || typeof o !== 'object') return out;
   for (const k of Object.keys(o)) {
     const v = o[k], here = Array.isArray(o) ? `${p}[${k}]` : `${p}.${k}`;
-    if (re.test(k)) out.push({ path: here, type: Array.isArray(v) ? `list of ${v.length}` : typeof v, ...(typeof v === 'boolean' ? { value: v } : {}),
-                                ...(Array.isArray(v) && v.length ? { itemType: Array.isArray(v[0]) ? 'list' : typeof v[0] } : {}) });
+    const osList = v && typeof v === 'object' && Array.isArray(v.List) ? v.List : null;   // OutSystems list: { List: [...] }
+    const arr = Array.isArray(v) ? v : osList;
+    if (re.test(k)) out.push({ path: here, type: arr ? `${osList ? 'OutSystems list' : 'list'} of ${arr.length}` : typeof v,
+                                ...(typeof v === 'boolean' ? { value: v } : {}),
+                                ...(typeof v === 'string' && /sort/i.test(k) && v.length <= 12 ? { value: v } : {}),
+                                ...(arr && arr.length ? { itemType: typeof arr[0] } : {}) });
     if (!Array.isArray(o) || Number(k) < 1) findKeys(v, re, here, out);
   }
   return out;
@@ -177,6 +181,13 @@ async function open(page, route, settle = 3000) {
     await waitReady(page, settle);
   }
   if (pending(page)) throw new Error('a policy waits for acceptance (AcceptPendingPolicies); accepting writes data');
+  const target = new URL(url).pathname.toLowerCase();
+  for (let i = 0; i < 2 && pathOf(page.url()).toLowerCase() !== target; i++) {   // a late start redirect (HomeFeed): open again
+    log(`    the app showed ${pathOf(page.url())}; opening ${new URL(url).pathname} again`);
+    await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 60000 });
+    await waitReady(page, settle + 1500);
+  }
+  if (pathOf(page.url()).toLowerCase() !== target) throw new Error(`the app shows ${pathOf(page.url())} instead of ${new URL(url).pathname}`);
   return pathOf(page.url());
 }
 const planRoute = screen => { const s = (PLAN_DATA.screens || []).find(x => x.screen === screen); return s ? s.route : null; };
@@ -309,6 +320,7 @@ const STORAGE_PROBE = () => {
       const k = st.key(i), v = st.getItem(k) || '';
       const keyHit = /scroll|anchor/i.test(k), valHit = /scrollAnchor/i.test(v);
       if (!keyHit && !valHit) continue;
+      if (/^\$OS_.*\$ApplicationInfo$/.test(k)) continue;   // the runtime manifest: only script file names mention ScrollAnchor
       const rec = { area, key: k.replace(/\d{5,}/g, '<n>'), valueLength: v.length };
       if (/delta/i.test(k) && /^-?\d+(\.\d+)?$/.test(v)) rec.value = Number(v);   // a pixel offset, not member data
       else rec.valueShape = kind(v);
@@ -324,6 +336,14 @@ const STORAGE_PROBE = () => {
       out.push(rec);
     }
   }
+  try {
+    const hs = history.state, inner = [];
+    const walk = (o, p, d) => { if (!o || typeof o !== 'object' || d > 5) return; for (const x of Object.keys(o)) {
+      const y = o[x]; if (/scroll|anchor|delta/i.test(x)) inner.push({ path: p + '.' + x, type: typeof y, ...(typeof y === 'number' && /delta|index|top/i.test(x) ? { value: y } : {}) });
+      walk(y, p + '.' + x, d + 1); } };
+    walk(hs, 'history.state', 0);
+    out.push({ area: 'history.state', topLevelKeys: hs && typeof hs === 'object' ? Object.keys(hs) : typeof hs, scrollKeys: inner });
+  } catch { /* no history state */ }
   return out;
 };
 async function scrollInfo(page) {
@@ -415,11 +435,16 @@ async function captureUpdates(page) {
       fb.left = await page.waitForURL(u => /\/HomeFeed/i.test(u.pathname), { timeout: 15000 }).then(() => true).catch(() => false);
       await waitReady(page, 2000);
       fb.fullPageLoad = !(await page.evaluate(() => window.__capNoReload === 1));
+      fb.callsOnHomeFeed = namesSince(tb);
+      const tback = now();
       await page.evaluate(() => history.back());
       await page.waitForURL(u => /\/Updates_SingleList/i.test(u.pathname), { timeout: 15000 });
-      await sleep(2500);
-      fb.after = await scrollInfo(page);
-      fb.calls = namesSince(tb);
+      fb.after = [];
+      for (const at of [1000, 2500, 5000, 8000]) {
+        await sleep(Math.max(0, at - (now() - tback)));
+        fb.after.push({ msAfterBack: now() - tback, ...(await scrollInfo(page)) });
+      }
+      fb.callsAfterBack = callsSince(tback);
       fb.storage = await page.evaluate(STORAGE_PROBE);
     } catch (e) { fb.error = clean(e); }
     r.fallback = fb;
@@ -442,7 +467,7 @@ async function captureNotes(page) {
   await lbl.click({ timeout: 10000 });
   const sheet = page.locator(FILTER_SHEET).first();
   await sleep(1500);
-  r.sheetVisible = await sheet.isVisible().catch(() => false);
+  r.sheetRootVisible = await sheet.isVisible().catch(() => false);
   const years = sheet.getByText(/^\s*(19|20)\d{2}\s*$/);
   const nYears = await years.count();
   let visibleYears = 0;
@@ -502,6 +527,7 @@ async function captureOrbit(page) {
       const [model] = await req(['UBTConnect_Utils.model']);
       const m = model.default || model;
       const rec = m.staticEntities.launchDarkly_FF.mobileDirectoryListVirtualization;
+      if (typeof rec === 'string') { out.staticRecord = rec; out.staticRecordIsFlagKey = rec === key; return out; }
       const attrs = {};
       for (const k of Object.keys(rec || {})) { const v = rec[k]; if (['string', 'number', 'boolean'].includes(typeof v)) attrs[k] = v; }
       if (rec && rec.attributes) for (const k of Object.keys(rec.attributes)) attrs[k] = rec.attributes[k];
@@ -518,7 +544,21 @@ async function captureOrbit(page) {
              disableVirtualizationValues: [...new Set([...document.querySelectorAll('[disable-virtualization]')].map(e => e.getAttribute('disable-virtualization')))],
              withDisableVirtualizationClass: document.querySelectorAll('[class*="disable-virtualization"]').length,
              lists: lists.slice(0, 6).map(e => ({ classes: [...e.classList].slice(0, 5).join(' '), disableVirtualization: e.getAttribute('disable-virtualization'), children: e.children.length })),
-             adminLandingBlock: !!document.querySelector("[data-block*='AdminLanding']") };
+             adminLandingBlock: !!document.querySelector("[data-block*='AdminLanding']"),
+             // the List widget reads the extended property in code (shouldVirtualizeList): read its React props
+             listWidgetProps: [...document.querySelectorAll('.list')].slice(0, 6).map(el => {
+               const fk = Object.keys(el).find(k => /^__react(InternalInstance|Fiber)\$/.test(k));
+               let f = fk ? el[fk] : null;
+               for (let i = 0; f && i < 15; i++, f = f.return) {
+                 const pr = f.memoizedProps || (f.stateNode && f.stateNode.props);
+                 if (pr && pr.extendedProperties !== undefined && pr.source !== undefined) {
+                   const ep = pr.extendedProperties || {};
+                   return { extendedPropertyNames: Object.keys(ep), disableVirtualization: ep['disable-virtualization'] === undefined ? 'not set' : String(ep['disable-virtualization']),
+                            virtualized: !ep || String(ep['disable-virtualization']).toLowerCase() !== 'true', levelsUp: i };
+                 }
+               }
+               return { found: false, reactKey: !!fk };
+             }) };
   });
   // localStorage cache of the LaunchDarkly client, if any (key names redacted)
   r.ldLocalStorage = await page.evaluate(key => {
@@ -536,7 +576,8 @@ async function captureOrbit(page) {
   const ldVals = r.launchDarklyRequestsSinceAppStart.filter(x => x.flag && x.flag.present === true).map(x => x.flag.value);
   r.result = `${r.openedPath}; IsListVirtualizationDisabled (Connect_LaunchDarkly_PermissionCheck.HasAccess) = ${JSON.stringify(r.clientEvaluation.IsListVirtualizationDisabled)}`
     + `; LD client responses with the flag: ${ldVals.length ? JSON.stringify([...new Set(ldVals)]) : 'none seen'}`
-    + `; [disable-virtualization] elements: ${r.dom.withDisableVirtualizationAttr} (${r.dom.disableVirtualizationValues.join(', ') || '-'})`;
+    + `; SynchAppContext PermissionList holds the flag key: ${NET.flagHits.some(h => h.hits.some(x => x.equalsFlagKey))}`
+    + `; List widget disable-virtualization: ${JSON.stringify(r.dom.listWidgetProps.map(x => x.disableVirtualization))}`;
   return r;
 }
 
@@ -620,7 +661,7 @@ function writeMd(all) {
       if (c.fallback) L.push(`- Fallback (${c.fallback.method}): ${j(c.fallback)}`);
     } else if (c.key === 'notes') {
       L.push(`- On open: ${j(c.onOpen)}`);
-      L.push(`- Filter sheet visible: ${c.sheetVisible}; year options: ${c.yearOptions}; blocks in the sheet: ${j(c.sheetGroups)}`);
+      L.push(`- Filter sheet root visible: ${c.sheetRootVisible}; visible year options: ${c.yearOptions}; blocks in the sheet: ${j(c.sheetGroups)}`);
       if (c.afterApply) {
         L.push(`- Apply enabled after a year: ${c.applyEnabledAfterYear}`);
         L.push(`- After Apply: ${c.afterApply.getNotesCalls} DataActionGetNotes call(s); calls ${j(c.afterApply.calls)}`);

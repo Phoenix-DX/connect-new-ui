@@ -154,8 +154,21 @@ by id, the answer is the recommendation text of the report. Facts settled by the
 |---|---|---|---|
 | Q1 | F1: remove the DEV-only milestone branch from OrbitAdminLanding? | (a) Follow TST: remove the GetMilestoneScanFF call, the milestone branch, the mock handler and the scanpermilestone scenario from OrbitAdminLanding. Note for later comparison: the branch and the screens OrbitAdminMilestones / OrbitAdminMilestoneDetail exist on DEV (dev-ahead.md). | user, 2026-10-27 |
 
+## Legacy_OrbitQRCodeFlow (G4)
+
+| Id | Question | Answer | By, date |
+|---|---|---|---|
+| Q1 | Set `document.title` from the screen title (F1)? | (a) Set document.title from the route title in the app shell, for all routes; the same answer as App_Services Q4 (accepted 2026-10-27). | user, 2026-10-27 |
+
+## Directory_Caroussel (X)
+
+| Id | Question | Answer | By, date |
+|---|---|---|---|
+| Q1 | What does Get_IsInsideRenderBuffer return on TST? | Settled by the follow-up pass from TST: Get_IsInsideRenderBuffer is in UBTConnect.controller.js:4444-4462 and matches React (row 067 match). No user decision needed. | code, 2026-10-27 |
+
 ## _shared (X)
 
 | Id | Question | Answer | By, date |
 |---|---|---|---|
+| Q1 | When the app start fails, TST passes the message to `ScreenController_RaiseError` (UC:15397-15417); the App_Common handler then shows the exception toast for a non-system exception (U10 answer, app-shell.spec.md:367) | (a) Show the exception toast on a non-system app-start failure, as TST does; the same as decision C3 (finding F3, build). | user, 2026-10-27 |
 | C3 |  | Finding accepted (major, F3): an app-start failure that is not a system exception must show the exception toast, as TST does. Build it. Row 193. | user, 2026-10-27 |
