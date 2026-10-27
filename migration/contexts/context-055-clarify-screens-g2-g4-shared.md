@@ -2,8 +2,9 @@
 
 ## Result
 - All screen flows with built screens are judged: G1 (9), G2 (7), G3 (6), G4 (6), plus the shared units (11
-  block-only flows, `_shared` actions, `_libraries`). 41 reports, 5255 rows. Verdicts: match 4186, partial 134,
-  missing 164, differs 91, mock-only 157, n/a 494, unclear 29. Findings: 3 blockers, 25 major, 55 minor, 29 info.
+  block-only flows, `_shared` actions, `_libraries`): 41 reports, 5255 rows.
+  - Verdicts: match 4186, partial 134, missing 164, differs 91, mock-only 157, n/a 494, unclear 29.
+  - Findings: 3 blockers, 25 major, 55 minor, 29 info.
 - Blockers: ContactUsDetails signed-out form; HostSurvey wizard; MilestoneDetail builds AccommodationHost only.
 - Method from G2 on: Sonnet reader (`draft.json` + `notes.md`) → Opus judge; Fable for the wrapper flows and the
   shared actions and libraries. Briefs: `READER.md`, `JUDGE.md`. Review notes: `review/G1…G4-review.md`.
@@ -13,9 +14,11 @@
 - `RESUME.md` in `migration/clarify/` says how the next session continues.
 
 ## Decisions (who, date)
-- User 2026-10-27: G2+ two-stage model (Sonnet read, Opus judge, Fable hard parts). No Sonnet trial for whole flows.
-  Waste report after each wave. 5 DEV-only screens get `skip` rows (V8). `_shared` after G3, G4 in parallel.
-  Answers "theo id" = the recommendation of each id. Stop after G4 + shared and save the history.
+- User 2026-10-27:
+  - G2+ two-stage model (Sonnet read, Opus judge, Fable hard parts); no Sonnet trial for whole flows.
+  - Waste report after each wave; 5 DEV-only screens get `skip` rows (V8).
+  - `_shared` after G3, G4 in parallel; answers "theo id" = the recommendation of each id.
+  - Stop after G4 + shared and save the history.
 
 ## Facts learned (evidence)
 - Per-row cost: G1 3.2k Opus; G2 1.47k Opus + 1.21k Sonnet; G3 1.9k Opus/Fable + 1.5k Sonnet. Fable judges cost
