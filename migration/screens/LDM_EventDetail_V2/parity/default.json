@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "b854879ee5247e77cd7c",
+ "fingerprint": "7586ecd1b32f4be65004",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T17:21:13.284Z",
+ "at": "2026-10-27T23:13:51.105Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-MASKED-TEXT-LDM-EVENTDETAIL-V2-BANNER": 1,

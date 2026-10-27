@@ -56,15 +56,15 @@ describe('Notifications client actions', () => {
       ...EMPTY_FILTER,
       dateFrom: '2026-04-16',
       dateTo: '2026-10-16',
-      readOnly: 'Choice.None',
-      sortByNewest: 'Choice.Yes',
+      readOnly: 'None',
+      sortByNewest: 'Yes',
     });
     const set = {
       ...EMPTY_FILTER,
       dateFrom: '2026-01-01',
       dateTo: '2026-02-01',
-      readOnly: 'Choice.No',
-      sortByNewest: 'Choice.No',
+      readOnly: 'No',
+      sortByNewest: 'No',
     };
     expect(setDefaultFilters(set, RANGES)).toEqual(set);
   });

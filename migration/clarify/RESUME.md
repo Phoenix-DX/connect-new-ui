@@ -14,14 +14,16 @@ Status on 2026-10-27, end of the fourth session: the clarify work is complete an
 Earlier status (third session): the clarify work was complete before the fix wave.
 
 - Build wave (2026-10-27/28, `builds/README.md`): 3 blockers, 27 majors and 30 "build now" items built by 10 Opus
-  agents; gates green; 12 decisions wait in `builds/pending-decisions.md` (Opus and Fable recommend (a) for all).
-  Next after the answers: PD2 (Choice constants), PD7 (`adaptivecards@2.5.0`), PD8 (PlaceholderLib port), PD10–PD12
-  (bug-list rows), then the follow-ups of `builds/README.md`.
+  agents; gates green.
+- Decisions of the build wave (2026-10-28): the user answered all 13 (`builds/pending-decisions.md`, "Answers"; PD9 to
+  PD13 per the Fable advice). Done the same day: PD2 (Choice constants), PD7 (`adaptivecards@2.5.0`), PD8
+  (PlaceholderLib port, known bug B19), PD9 (rows recorded), PD10 to PD12 (known bugs B15 to B18), PD13 (Q2).
+  Next: the follow-ups of `builds/README.md` and a re-fetch of the live TST scripts against the survey of 2026-10-13.
 
 Open items for the user:
-- The 12 pending decisions of the build wave (`builds/pending-decisions.md`).
+- The 13 decisions of the build wave: answered 2026-10-28.
 - Legacy_OrbitEventsFlow F4 and App_Policies F2: answered (a) on 2026-10-27 (keep W34; keep networkMode 'always').
-- Notes F2 (major, new from the capture): decide build or record.
+- Notes F2: built in the build wave; the Choice values follow TST since PD2 (2026-10-28).
 - Directory_Updates F2: closed 2026-10-27 (capture, then the scroll-anchor port by the user's decision).
 - Directory_Photobook rows 074/076/105: one recorded decision on the Splide move log (not ported, or ported via the
   platform logger).

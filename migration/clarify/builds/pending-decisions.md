@@ -1,7 +1,7 @@
 # Decisions for the user (build wave of 2026-10-27)
 
 The build agents did not settle these from the source of truth. Each one has the options, the evidence, the
-recommendation of two advisors (Opus, Fable) and the state of the build. The user decides. Nothing here is decided.
+recommendation of two advisors (Opus, Fable) and the state of the build. The user answered all 13 on 2026-10-28 (see "Answers").
 
 | Id | Group | Question | Options | Opus | Fable | Build state |
 |---|---|---|---|---|---|---|
@@ -18,3 +18,21 @@ recommendation of two advisors (Opus, Fable) and the state of the build. The use
 | PD11 | B3 | Host message popup TimezoneOffset: TST sets it to `CacheResult.Milliseconds` (a TST defect); built as 0, the cache-hit value. | (a) keep 0 and record the defect in `app/docs/known-original-bugs.md`; (b) port the defect value | a (advisor-opus.md) | a (advisor-fable.md) | built with (a), not yet in the bug list |
 | PD12 | B3 | The "Accommodation:" link on a helper card in MealHost and MealHelper reads the first guest's member, not the helper (`MealHost.mvc.js:861`, `MealHelper.mvc.js:881`); built as compiled. | (a) keep as compiled and record it as a known bug; (b) correct it in React | a (advisor-opus.md) | a (advisor-fable.md) | built with (a), not yet in the bug list |
 | PD13 | B10 | OrbitLanding "View Passport details": the question Q2 said TST has no such control (survey copy of 2026-10-13). The live TST block script (fetched 2026-10-28) has OnHandle_ViewPassportDetails and the TST capture DOM has the control, so TST deployed it after the survey. The orchestrator kept the React control (parity on the TST capture). | (a) keep the control as TST (confirm; the PassportScan screen itself is not built in React); (b) remove it anyway | a (evidence) | a (evidence) | restored; parity OrbitLanding clean |
+
+## Answers (user, 2026-10-28)
+
+| Id | Answer | Note |
+|---|---|---|
+| PD1 | a | Keep the filter in the mock. |
+| PD2 | a | Change the shared Choice constants to the TST identifiers (Yes, No, None) and update the callers. |
+| PD3 | a | Keep the mock list with "All Localities" first and selected; check on TST when the test account has LDM events. |
+| PD4 | a | Keep the mock rule (from the start date up to, not including, the end date; selected localities, all when none); check on TST later. |
+| PD5 | a | Keep as TST: choices are lost when the popup closes without Filter. |
+| PD6 | a | Keep the page-local cache blocks in `pages/Profile/components/AddressCacheControls.tsx` until F37 replaces all cache blocks with api hooks. |
+| PD7 | a | Install `adaptivecards@2.5.0` as an exact pin (the TST bundle) and wire `runtime.ts`. |
+| PD8 | a | Port PlaceholderLib SetTextPlaceholdersValue (with GetPlaceholderValue and Regex_Search) from the fetched TST file. |
+| PD9 | a | Per the Fable advice (user, 2026-10-28): keep the NotCaptured marker; the flag-off branch is out of scope by the flag decision of 2026-10-14. |
+| PD10 | a | Per the Fable advice (user, 2026-10-28): keep the three HostSurvey defects 1:1 and list them in `app/docs/known-original-bugs.md`. |
+| PD11 | a | Per the Fable advice (user, 2026-10-28): keep TimezoneOffset 0 and record the defect. |
+| PD12 | a | Per the Fable advice (user, 2026-10-28): keep the Accommodation link as compiled and record it as a known bug. |
+| PD13 | a | Per the Fable advice (user, 2026-10-28): keep the OrbitLanding "View Passport details" control as TST. |

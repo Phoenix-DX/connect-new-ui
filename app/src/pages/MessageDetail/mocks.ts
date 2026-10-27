@@ -86,7 +86,8 @@ const seed = (): Record<string, unknown>[] => [
     Id: '5965303',
     Title: 'Bible Reading meeting changed',
     SenderTarget: { Id: 21, Name: 'Assemble' },
-    Content: '<p>The Bible Reading meeting of Riverside Locality now starts at 7:30 pm.</p>',
+    Content:
+      '<p>Dear ##@@FirstName@@%%%%##, the Bible Reading meeting of Riverside Locality now starts at 7:30 pm.</p>',
     DateTimeCreated: '2026-10-22T07:30:00',
     IsRead: true,
     IsClear: false,
@@ -313,8 +314,10 @@ export const handlers: RequestHandler[] = [
       Message: wireMessage(d),
       IsRetracted: false,
       IsCleared: d?.IsClear ?? false,
+      // Fictional delimiters (the captured answer has empty ones for a message of an unknown sender; only Assemble
+      // messages use them). Empty delimiters make SetTextPlaceholdersValue recurse for ever (known-original-bugs B19).
       PlaceholderDelimiters: {
-        Delimiters: { Delimiter_Function: '', Delimiter_Parameter: '', Delimiter_Placeholder: '' },
+        Delimiters: { Delimiter_Function: '@@', Delimiter_Parameter: '%%', Delimiter_Placeholder: '##' },
       },
     };
   }),

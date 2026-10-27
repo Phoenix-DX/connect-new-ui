@@ -43,7 +43,7 @@ describe('Updates_SingleList mock: GetUpdateItems', () => {
     const read = getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: Choice.Yes });
     expect(read).toHaveLength(4);
     expect(read.every((r) => r.IsRead)).toBe(true);
-    expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: 'Choice.Other' })).toEqual([]);
+    expect(getUpdateItems(rows(), { ...NO_FILTER, Filter_ReadOnly: 'Other' })).toEqual([]);
   });
 
   it('the search words: "&" is a space, no case, every word in the title (BR-C2SVC-325, 332)', () => {

@@ -98,7 +98,7 @@ describe('Notes page', () => {
       expect(bodies).toHaveLength(2);
     });
     // capture 2026-10-27 (Notes-110): Years is a list of 1, SortByNewest the default sort (TST sends "Yes"; the
-    // shared Choice constant of the port is 'Choice.Yes', see migration/clarify/builds/B10-misc.md).
+    // shared Choice constant of the port is 'Yes', see migration/clarify/builds/B10-misc.md).
     expect(bodies[1]).toMatchObject({
       Notes_Filter: { Years: { List: ['2025'] }, SortByNewest: Choice.Yes },
       PageNumber: 1,

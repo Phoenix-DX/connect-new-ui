@@ -150,7 +150,8 @@
   "note": "builds/B10-misc.md",
   "date": "2026-10-27",
   "status": "built",
-  "verified": "code"
+  "verified": "code",
+  "suffix": "Choice constants switched to the TST identifiers 2026-10-28 (PD2)"
  },
  {
   "flow": "_libraries",
@@ -234,7 +235,7 @@
   "status": "built",
   "verified": "code",
   "rows": [],
-  "suffix": "ShareObjectDetail_ExtendedShare (the TST branch, C2ExtendedShare on); the flag-off ShareObjectDetail branch stays open (PD9)"
+  "suffix": "ShareObjectDetail_ExtendedShare (the TST branch, C2ExtendedShare on); the flag-off ShareObjectDetail branch is out of scope (PD9, user 2026-10-28)"
  },
  {
   "flow": "Legacy_MyNotificationsFlow",
@@ -245,7 +246,7 @@
   "status": "built",
   "verified": "code",
   "rows": [],
-  "suffix": "PlaceholderLib SetTextPlaceholdersValue open (PD8)"
+  "suffix": "PlaceholderLib SetTextPlaceholdersValue ported 2026-10-28 (PD8; known-original-bugs B19)"
  },
  {
   "flow": "Legacy_MyNotificationsFlow",
@@ -256,7 +257,7 @@
   "status": "built",
   "verified": "code",
   "rows": [],
-  "suffix": "the renderer library waits for the decision PD7"
+  "suffix": "renderer adaptivecards 2.5.0 installed 2026-10-28 (PD7)"
  },
  {
   "flow": "Legacy_MyNotificationsFlow",

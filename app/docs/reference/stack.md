@@ -50,12 +50,14 @@ Confirmed by the user (Phase 4). Changing anything here is an ADR.
 | Leaflet | npm package leaflet 1.9.4 + leaflet.markercluster 1.5.3 |
 | ReactiveHtmlSanitizer | npm package dompurify 3 configured with the module's allow lists |
 | SortableJS | npm package sortablejs 1.15.7 |
+| AdaptiveCards (Connect2_LegacyShared) | npm package adaptivecards 2.5.0, the version of the TST bundle (decision PD7, user, 2026-10-28) |
 
 ## Pinned dependencies
 | Package | Version |
 |---|---|
 | @splidejs/splide | 4.1.3 |
 | @tanstack/react-query | 5.101.4 |
+| adaptivecards | 2.5.0 |
 | dompurify | 3.4.17 |
 | gsap | 3.13.0 |
 | leaflet | 1.9.4 |

@@ -328,12 +328,12 @@
    "Flow": "[Legacy_MyNotificationsFlow](flows/Legacy_MyNotificationsFlow/report.md)",
    "Status": "draft",
    "Rows": "152",
-   "match": "110",
-   "partial": "3",
-   "missing": "20",
+   "match": "128",
+   "partial": "1",
+   "missing": "0",
    "differs": "0",
-   "mock-only": "8",
-   "n/a": "11",
+   "mock-only": "11",
+   "n/a": "12",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/4/2/0",
    "Questions": "4"
@@ -688,12 +688,12 @@
    "Flow": "**total (45/45 flows)**",
    "Status": "",
    "Rows": "5412",
-   "match": "4552",
-   "partial": "31",
-   "missing": "22",
+   "match": "4570",
+   "partial": "29",
+   "missing": "2",
    "differs": "92",
-   "mock-only": "157",
-   "n/a": "555",
+   "mock-only": "160",
+   "n/a": "556",
    "unclear": "3",
    "Findings (B/M/m/i)": "3/27/56/29",
    "Questions": ""
@@ -2416,7 +2416,7 @@
    "Element": "MessageDetail / Placeholder MessageDetails, FeedItemId, Handler_NavigateTo_Share",
    "Finding": "Một tin nhắn Sharing hiển thị marker NotCaptured thay vì thẻ của item được chia sẻ. TST render Share_UI.ShareObjectDetail_ExtendedShare (GetHasExtendedShare là True trên TST) với ShareId từ temp đầu tiên",
    "Status": "đã build 2026-10-27",
-   "StatusEn": "built 2026-10-27 (`builds/B9-messagedetail.md`): ShareObjectDetail_ExtendedShare (the TST branch, C2ExtendedShare on); the flag-off ShareObjectDetail branch stays open (PD9)"
+   "StatusEn": "built 2026-10-27 (`builds/B9-messagedetail.md`): ShareObjectDetail_ExtendedShare (the TST branch, C2ExtendedShare on); the flag-off ShareObjectDetail branch is out of scope (PD9, user 2026-10-28)"
   },
   {
    "Severity": "major",
@@ -2425,7 +2425,7 @@
    "Element": "MessageDetail / Placeholder ActionButton, OnClick_ViewOrbitEvent, OnClick_ViewAs",
    "Finding": "Tin nhắn Orbit hoặc Assemble không có nút \"View Event\", \"Go to Host Survey\" hay \"View Meeting\"; tin nhắn Assemble hiển thị các placeholder chưa được điền. Board (chủ dự án, 2026-10-16) đã đưa Orbit, Assemble và",
    "Status": "đã build 2026-10-27",
-   "StatusEn": "built 2026-10-27 (`builds/B9-messagedetail.md`): PlaceholderLib SetTextPlaceholdersValue open (PD8)"
+   "StatusEn": "built 2026-10-27 (`builds/B9-messagedetail.md`): PlaceholderLib SetTextPlaceholdersValue ported 2026-10-28 (PD8; known-original-bugs B19)"
   },
   {
    "Severity": "major",
@@ -2434,7 +2434,7 @@
    "Element": "MessageDetail / AdaptiveCardViewer, HostConfig, AdaptiveCardViewerOnExecuteActio",
    "Finding": "Tin nhắn adaptive card hiển thị một marker. TST render card với host config của Events và xử lý send_email, view_event và mọi submit khác (store, thank, refresh).",
    "Status": "đã build 2026-10-27",
-   "StatusEn": "built 2026-10-27 (`builds/B9-messagedetail.md`): the renderer library waits for the decision PD7"
+   "StatusEn": "built 2026-10-27 (`builds/B9-messagedetail.md`): renderer adaptivecards 2.5.0 installed 2026-10-28 (PD7)"
   },
   {
    "Severity": "major",
@@ -2470,7 +2470,7 @@
    "Element": "Notes_FilterSheet / Handler_FilterSheetApplyFilters → DataActionGetNotes",
    "Finding": "Sau khi Apply, TST gửi Notes_Filter.Years (các năm đã chọn) và SortByNewest trong dữ liệu màn hình (capture 2026-10-27, review/captures.md §3). React không bao giờ gửi Years, nên một năm được chọn không có tác dụng",
    "Status": "đã build 2026-10-27",
-   "StatusEn": "built 2026-10-27 (`builds/B10-misc.md`)"
+   "StatusEn": "built 2026-10-27 (`builds/B10-misc.md`): Choice constants switched to the TST identifiers 2026-10-28 (PD2)"
   },
   {
    "Severity": "major",

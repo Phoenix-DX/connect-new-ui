@@ -28,10 +28,10 @@ without a build: App_PIN Q2. Checks: App_Services Q1 (the SortableJS source is i
 | Item | Result |
 |---|---|
 | Blockers | 3 of 3 built (B1 ContactUs form, B2 HostSurvey wizard, B3 five MilestoneDetail blocks) |
-| Major findings | 26 of 27 built, 1 withdrawn (Legacy_OrbitEventsFlow F3: TST has the control, PD13); three with open parts (B9: the renderer library PD7, PlaceholderLib PD8, the flag-off branch PD9) |
+| Major findings | 26 of 27 built, 1 withdrawn (Legacy_OrbitEventsFlow F3: TST has the control, PD13). The three open parts of B9 are closed on 2026-10-28: the renderer library (PD7), PlaceholderLib (PD8) and the flag-off branch, out of scope (PD9) |
 | "Build now" items | 30 of 30 closed: 20 in this wave, 9 in the minor wave, 1 recorded (App_PIN Q2) |
 | Matrix | match 4552 (was 4370), partial 31 (78), missing 22 (152), differs 92 (97) |
-| Decisions for the user | 12 (`pending-decisions.md`), each with an Opus and a Fable recommendation; the advisors agree on (a) for all 12 |
+| Decisions for the user | 13 (`pending-decisions.md`), each with an Opus and a Fable recommendation. The user answered all 13 on 2026-10-28: (a) for each (PD9 to PD13 per the Fable advice) |
 | Cost | 10 build agents ≈ 2.9 M tokens, 2 advisors 0.16 M, knip clean-up 0.06 M (ledger `clarify-build-*`) |
 
 Orchestrator work after the hand-backs:
@@ -40,6 +40,19 @@ Orchestrator work after the hand-backs:
 - the dead GetMilestoneScanFF code removed; the api/event barrel exports milestoneBlocks;
 - 74 new unused exports cleared and 30 stale baseline rows deleted; two stale flag allow rows deleted;
 - the api/policy tests on the TST GUIDs; one flaky preload assertion made to wait.
+
+## Work after the user's answers (2026-10-28)
+
+| Decision | Work |
+|---|---|
+| PD2 | `Choice` in `app/src/lib/ubtConnect/staticEntities.ts` holds the TST identifiers Yes, No and None (static-entities-tst.json `UBTConnect.choice`); hand-written values in six test and story files changed |
+| PD7 | `adaptivecards` 2.5.0 installed with an exact pin; its `dist/adaptivecards.js` has the md5 of the TST bundle. `runtime.ts` sets the SDK. Only the MessageDetail chunk grows (raw +185 kB, gzip +39 kB); HomeFeed and Login do not change |
+| PD8 | `app/src/pages/MessageDetail/placeholderLib.ts`: SetTextPlaceholdersValue, GetPlaceholderValue, Regex_Search and the two value actions, 1:1. `PlaceholderLib.model.js` fetched read-only. The endless recursion is known bug B19 (Fable advice). The mock gives fictional delimiters `##`, `@@`, `%%` and a FirstName placeholder in the seeded Assemble message |
+| PD9 | Checklist rows 084 (n/a), 098, 130 and 133 (match for the TST branch) record the flag-off branch as out of scope |
+| PD10 to PD12 | `app/docs/known-original-bugs.md` B15 to B18 |
+| PD13 | `decisions.md` Q2 records the user's answer |
+
+Gates: `npm run ci` green (4338 tests, 0 new unused exports, build OK); the 64-route parity sweep is clean (64 of 64, 0 diffs).
 
 ## Gates after the wave
 

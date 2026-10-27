@@ -4,6 +4,7 @@ import { log } from '@/platform/log/log';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { Type_ShareObject } from '@/lib/ubtConnect/staticEntities';
 import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
+import { setTextPlaceholdersValue } from './placeholderLib';
 import { ApplicationEvents_Directory, ApplicationEvents_LDM, ParameterName } from './staticEntities';
 
 /* The client actions and JavaScript nodes that ScreenBlock_MessageDetail, its Share_UI blocks and the MessageDetail
@@ -77,22 +78,6 @@ export const VIEW_EVENT_DATA_END = ',"style":"positive"}],"spacing":"medium"}';
 
 /* ---- BuildAssembleNotificationContent (C2LS:671-900) ---- */
 
-/** The inputs of PlaceholderLib SetTextPlaceholdersValue. */
-interface SetTextPlaceholdersValueInputs {
-  text: string;
-  delimiterPlaceholder: string;
-  delimiterFunction: string;
-  delimiterParameter: string;
-  userFirstName: string;
-}
-
-/** PlaceholderLib SetTextPlaceholdersValue(Text, Delimiter_Placeholder, Delimiter_Function, Delimiter_Parameter,
-    UserFirstName). OPEN: PlaceholderLib is not in the local TST sources (migration/clarify/builds/B9-messagedetail.md,
-    "Decisions needed"), so the text stays as fetched. */
-function setTextPlaceholdersValue(inputs: SetTextPlaceholdersValueInputs): string {
-  return inputs.text;
-}
-
 /** BuildAssembleNotificationContent(ListOfMessageParameters, OriginalContent, the three delimiters): the first branch
     has the constant condition True, so it always runs Cache_UserInfo_Get and SetTextPlaceholdersValue with the user's
     first name. The else branch (the cancellation text built from the parameters) is never reached. */
@@ -107,7 +92,7 @@ export async function buildAssembleNotificationContent(
     delimiterPlaceholder: delimiters.placeholder,
     delimiterFunction: delimiters.function,
     delimiterParameter: delimiters.parameter,
-    userFirstName: userInformation.Directory_UserCurrent.FirstName,
+    fromClientApp_Name: userInformation.Directory_UserCurrent.FirstName,
   });
 }
 

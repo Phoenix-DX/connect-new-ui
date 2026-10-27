@@ -114,8 +114,8 @@ describe('useNotifications', () => {
       dateTo: '2026-10-16',
       searchText: '',
       updateTypeId: '',
-      readOnly: 'Choice.None',
-      sortByNewest: 'Choice.Yes',
+      readOnly: 'None',
+      sortByNewest: 'Yes',
     });
     expect(result.current.state).toMatchObject({
       isLoading: false,

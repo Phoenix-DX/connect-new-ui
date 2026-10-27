@@ -13,8 +13,9 @@ Event: `OnExecuteAction(CardPayload, ActionId, FormPayload)` → `onExecuteActio
 - OnReady and OnParametersChanged run RenderAdaptiveCardAction (`actions.ts`): IsJsonValid, JSONSerialize_HostConfig,
   then RenderAdaptiveCardJS. An OpenUrlAction opens its url in a new tab; any other action raises OnExecuteAction.
 - `hostConfig.ts`: the HostConfig structure and GetHostConfigByConfigId (Connect2_LegacyShared.controller.js:4787-4876).
-- `runtime.ts`: the renderer library (the TST global `AdaptiveCards`). It is a stack decision: until the library is
-  installed, the runtime is null and the container stays empty. The tests use a stub runtime.
+- `runtime.ts`: the renderer library (the TST global `AdaptiveCards`). It is the npm package `adaptivecards` 2.5.0,
+  pinned to the exact version. The TST bundle is byte-identical to its `dist/adaptivecards.js` (decision PD7, user,
+  2026-10-28). The tests use a stub runtime.
 
 ## Not captured
 

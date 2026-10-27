@@ -220,8 +220,8 @@ describe('notification mapper: inputs', () => {
           dateTo: '',
           searchText: 'supper',
           updateTypeId: '',
-          readOnly: 'Choice.Yes',
-          sortByNewest: 'Choice.No',
+          readOnly: 'Yes',
+          sortByNewest: 'No',
         },
         dateRanges: [
           { range: 'Today', from: '2026-10-14', to: '2026-10-14' },
@@ -238,8 +238,8 @@ describe('notification mapper: inputs', () => {
       Filter_UpdateTypeId: '',
       CountryIds: { List: [] },
       LocalitiesIds: { List: [] },
-      Filter_ReadOnly: 'Choice.Yes',
-      Sort_ByNewest: 'Choice.No',
+      Filter_ReadOnly: 'Yes',
+      Sort_ByNewest: 'No',
     });
     expect(wire.DateRanges).toEqual({
       List: [

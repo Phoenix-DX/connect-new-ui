@@ -273,7 +273,7 @@ describe('useNotes: the events of the blocks', () => {
     await settle();
     act(() => {
       result.current.onApplyFilters(
-        { noteCategoryId: 'Ignored', searchTerm: 'ignored', sortByNewest: 'Choice.No', years: ['2025'] },
+        { noteCategoryId: 'Ignored', searchTerm: 'ignored', sortByNewest: 'No', years: ['2025'] },
         true,
       );
     });
@@ -281,7 +281,7 @@ describe('useNotes: the events of the blocks', () => {
     expect(sentWith(1).notesFilter).toEqual({
       noteCategoryId: '',
       searchTerm: '',
-      sortByNewest: 'Choice.No',
+      sortByNewest: 'No',
       years: ['2025'],
     });
     expect(result.current.state.notesFilter.years).toEqual(['2025']);

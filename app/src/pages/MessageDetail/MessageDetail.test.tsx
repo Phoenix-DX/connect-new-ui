@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { collection } from '@/mocks/store';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
+import { MOCK_USER } from '@/mocks/fictional/directory';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { getClientVar, setClientVar, setSignedInUser } from '@/platform/session/session';
 import { calledActions, freshPage, setFlags } from '@/test/testSupport';
@@ -187,6 +188,9 @@ describe('MessageDetail page', () => {
       expect(b?.textContent).toBe('View Meeting');
       return b as HTMLElement;
     });
+    // BuildAssembleNotificationContent fills the FirstName placeholder (PlaceholderLib, decision PD8).
+    expect(document.body.textContent).toContain(`Dear ${MOCK_USER.firstName}, the Bible Reading meeting`);
+    expect(document.body.textContent).not.toContain('##');
     await act(async () => {
       button.click();
       await Promise.resolve();

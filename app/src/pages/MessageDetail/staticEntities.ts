@@ -29,3 +29,7 @@ export const ApplicationEvents_LDM = {
 
 /** Connect2_LegacyShared ApplicationEvents_Directory: ShareView. */
 export const ApplicationEvents_Directory = { ShareView: 'd672f610-0b2a-42a0-85e5-cd20fbbece55' } as const;
+
+/** PlaceholderLib PlaceholderFunction: FirstName "FirstName", LocalDateTime "LocalDate"
+    (static-entities-tst.json `PlaceholderLib.placeholderFunction`). */
+export const PlaceholderFunction = { FirstName: 'FirstName', LocalDateTime: 'LocalDate' } as const;

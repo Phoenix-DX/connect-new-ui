@@ -1044,3 +1044,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-28,clarify-build-advisors,review,93543,advisor-opus,opus,"build wave 2026-10-28: 12 pending decisions, 36 calls"
 2026-10-28,clarify-build-advisors,review,67635,advisor-fable,fable,"build wave 2026-10-28: 12 pending decisions, 10 calls"
 2026-10-28,clarify-build-knip,fix,61466,knip-sonnet,sonnet,"build wave 2026-10-28: 74 new unused exports cleared, 30 stale rows, 20 calls"
+2026-10-28,clarify-build-pd8-advisor,review,67624,fable,fable,PD8: PlaceholderLib endless recursion and the mock delimiters; advice (a)

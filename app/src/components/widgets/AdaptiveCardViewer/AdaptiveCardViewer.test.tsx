@@ -3,7 +3,12 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { AdaptiveCardViewer } from './AdaptiveCardViewer';
 import { isJsonValid } from './actions';
 import { AdaptiveCardsConfig, getHostConfigByConfigId, serializeHostConfig } from './hostConfig';
-import { setAdaptiveCardsRuntime, type AdaptiveCardAction, type AdaptiveCardInstance } from './runtime';
+import {
+  getAdaptiveCardsRuntime,
+  setAdaptiveCardsRuntime,
+  type AdaptiveCardAction,
+  type AdaptiveCardInstance,
+} from './runtime';
 
 /* A stub of the AdaptiveCards namespace: it records the host config and the payload, renders a div with one button per
    action, and lets a test run an action. */
@@ -38,13 +43,33 @@ const CARD = JSON.stringify({
   body: [{ type: 'TextBlock', text: 'Harvest Supper' }],
 });
 
+/** The installed SDK (adaptivecards 2.5.0, decision PD7): restored after each test. */
+const sdkRuntime = getAdaptiveCardsRuntime();
+
 afterEach(() => {
-  setAdaptiveCardsRuntime(null);
+  setAdaptiveCardsRuntime(sdkRuntime);
   created.length = 0;
 });
 
 describe('AdaptiveCardViewer', () => {
-  it('renders an empty AdaptiveCardContainer while no renderer is installed', () => {
+  it('renders the card with the installed SDK (adaptivecards 2.5.0, the TST bundle)', () => {
+    expect(sdkRuntime).not.toBeNull();
+    const { container } = render(
+      <AdaptiveCardViewer
+        id="b1-b4-$b2"
+        prefix="b1-b4-b2"
+        inAdaptiveCardJson={CARD}
+        inHostConfig={getHostConfigByConfigId(AdaptiveCardsConfig.Events)}
+      />,
+    );
+    const host = container.querySelector('#b1-b4-b2-AdaptiveCardContainer');
+    expect(host?.querySelector('.ac-adaptiveCard')).not.toBeNull();
+    // The SDK writes the text with innerText, which jsdom does not implement: check the element only.
+    expect(host?.querySelector('.ac-textBlock')).not.toBeNull();
+  });
+
+  it('renders an empty AdaptiveCardContainer when no renderer is set', () => {
+    setAdaptiveCardsRuntime(null);
     const { container } = render(
       <AdaptiveCardViewer
         id="b1-b4-$b2"

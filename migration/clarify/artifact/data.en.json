@@ -328,12 +328,12 @@
    "Flow": "[Legacy_MyNotificationsFlow](flows/Legacy_MyNotificationsFlow/report.md)",
    "Status": "draft",
    "Rows": "152",
-   "match": "110",
-   "partial": "3",
-   "missing": "20",
+   "match": "128",
+   "partial": "1",
+   "missing": "0",
    "differs": "0",
-   "mock-only": "8",
-   "n/a": "11",
+   "mock-only": "11",
+   "n/a": "12",
    "unclear": "0",
    "Findings (B/M/m/i)": "0/4/2/0",
    "Questions": "4"
@@ -688,12 +688,12 @@
    "Flow": "**total (45/45 flows)**",
    "Status": "",
    "Rows": "5412",
-   "match": "4552",
-   "partial": "31",
-   "missing": "22",
+   "match": "4570",
+   "partial": "29",
+   "missing": "2",
    "differs": "92",
-   "mock-only": "157",
-   "n/a": "555",
+   "mock-only": "160",
+   "n/a": "556",
    "unclear": "3",
    "Findings (B/M/m/i)": "3/27/56/29",
    "Questions": ""
@@ -2394,7 +2394,7 @@
    "Id": "F1",
    "Element": "MessageDetail / Placeholder MessageDetails, FeedItemId, Handler_NavigateTo_ShareObjectDetail, Handler_SetFeedItemId, Han",
    "Finding": "A Sharing message shows a NotCaptured marker instead of the shared-item card. TST renders Share_UI.ShareObjectDetail_ExtendedShare (GetHasExtendedShare is True on TST) with ShareId from the first template parameter, and the card's three events open the shared object, embed the feed item or show the upgrade pop-up. No recorded decision covers this: the board row (migration/board.md:16) says build with Feed CMS as mock, `audit-a1-empty-handlers.md:71` only records the gap.",
-   "Status": "built 2026-10-27 (`builds/B9-messagedetail.md`): ShareObjectDetail_ExtendedShare (the TST branch, C2ExtendedShare on); the flag-off ShareObjectDetail branch stays open (PD9)"
+   "Status": "built 2026-10-27 (`builds/B9-messagedetail.md`): ShareObjectDetail_ExtendedShare (the TST branch, C2ExtendedShare on); the flag-off ShareObjectDetail branch is out of scope (PD9, user 2026-10-28)"
   },
   {
    "Severity": "major",
@@ -2402,7 +2402,7 @@
    "Id": "F2",
    "Element": "MessageDetail / Placeholder ActionButton, OnClick_ViewOrbitEvent, OnClick_ViewAssembleEvent, Get_Orbit*Parameters, Build",
    "Finding": "An Orbit or Assemble message has no \"View Event\", \"Go to Host Survey\" or \"View Meeting\" button; an Assemble message shows unfilled placeholders. The board (user, 2026-10-16) put the Orbit, Assemble and LDM targets in scope; `migration/knowledge/orbit-assemble-ldm.md:17` says the MessageDetail handlers \"work once built\", but they are not wired.",
-   "Status": "built 2026-10-27 (`builds/B9-messagedetail.md`): PlaceholderLib SetTextPlaceholdersValue open (PD8)"
+   "Status": "built 2026-10-27 (`builds/B9-messagedetail.md`): PlaceholderLib SetTextPlaceholdersValue ported 2026-10-28 (PD8; known-original-bugs B19)"
   },
   {
    "Severity": "major",
@@ -2410,7 +2410,7 @@
    "Id": "F3",
    "Element": "MessageDetail / AdaptiveCardViewer, HostConfig, AdaptiveCardViewerOnExecuteAction, StoreAdaptiveCardResponses, two LDM h",
    "Finding": "An adaptive-card message shows a marker. TST renders the card with the Events host config and handles send_email, view_event and any other submit (store, thank, refresh).",
-   "Status": "built 2026-10-27 (`builds/B9-messagedetail.md`): the renderer library waits for the decision PD7"
+   "Status": "built 2026-10-27 (`builds/B9-messagedetail.md`): renderer adaptivecards 2.5.0 installed 2026-10-28 (PD7)"
   },
   {
    "Severity": "major",
@@ -2442,7 +2442,7 @@
    "Id": "F2",
    "Element": "Notes_FilterSheet / Handler_FilterSheetApplyFilters → DataActionGetNotes",
    "Finding": "After Apply, TST sends Notes_Filter.Years (the selected years) and SortByNewest in the screen data (capture 2026-10-27, review/captures.md §3). React never sends Years, so a selected year has no effect on the list. Row 110.",
-   "Status": "built 2026-10-27 (`builds/B10-misc.md`)"
+   "Status": "built 2026-10-27 (`builds/B10-misc.md`): Choice constants switched to the TST identifiers 2026-10-28 (PD2)"
   },
   {
    "Severity": "major",

@@ -1094,11 +1094,12 @@
    "react": "not found (searched: FeedItemId, SetFeedItemId, Feed_Embeded in pages/MessageDetail)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Page comment says the share handlers are not wired (MessageDetailPage.tsx:23-24). | Judge: TST: Placeholder_FeedItem holds Feed_Embeded(FeedItemId) inside the sharing branch (TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:526-547); FeedItemId comes from the Share_UI event SetFeedItemId. Not in React.",
-   "verified": "pack",
+   "verdict": "n/a",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). Only the flag-off ShareObjectDetail branch uses them; that branch is out of scope (decision PD9, user 2026-10-28; flag C2ExtendedShare default-only, user 2026-10-14). Page comment says the share handlers are not wired (MessageDetailPage.tsx:23-24). | Judge: TST: Placeholder_FeedItem holds Feed_Embeded(FeedItemId) inside the sharing branch (TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:526-547); FeedItemId comes from the Share_UI event SetFeedItemId. Not in React.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-085",
@@ -1187,11 +1188,12 @@
    "react": "not found (searched: handler name, route in pages/MessageDetail); page comment: not wired (Q1, Q2)",
    "evidence": "app/src/pages/MessageDetail/MessageDetailPage.tsx:23-24",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST MessageDetail.mvc.js:650. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by OnClick_ViewOrbitEvent / OnClick_ViewAssembleEvent (TST action button, rows 123, 124, 131). Board 2026-10-16: Orbit/Assemble targets in scope (migration/board.md:16). KB BR-UBTCON-610.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST MessageDetail.mvc.js:650. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by OnClick_ViewOrbitEvent / OnClick_ViewAssembleEvent (TST action button, rows 123, 124, 131). Board 2026-10-16: Orbit/Assemble targets in scope (migration/board.md:16). KB BR-UBTCON-610.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-092",
@@ -1202,11 +1204,12 @@
    "react": "not found (searched: handler name, route in pages/MessageDetail); page comment: not wired (Q1, Q2)",
    "evidence": "app/src/pages/MessageDetail/MessageDetailPage.tsx:23-24",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST MessageDetail.mvc.js:781. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by OnClick_ViewOrbitEvent / OnClick_ViewAssembleEvent (TST action button, rows 123, 124, 131). Board 2026-10-16: Orbit/Assemble targets in scope (migration/board.md:16). KB BR-UBTCON-610.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST MessageDetail.mvc.js:781. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by OnClick_ViewOrbitEvent / OnClick_ViewAssembleEvent (TST action button, rows 123, 124, 131). Board 2026-10-16: Orbit/Assemble targets in scope (migration/board.md:16). KB BR-UBTCON-610.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-093",
@@ -1217,11 +1220,12 @@
    "react": "not found (searched: handler name, route in pages/MessageDetail); page comment: not wired (Q1, Q2)",
    "evidence": "app/src/pages/MessageDetail/MessageDetailPage.tsx:23-24",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST MessageDetail.mvc.js:841. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by OnClick_ViewOrbitEvent / OnClick_ViewAssembleEvent (TST action button, rows 123, 124, 131). Board 2026-10-16: Orbit/Assemble targets in scope (migration/board.md:16). KB BR-UBTCON-610.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST MessageDetail.mvc.js:841. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by OnClick_ViewOrbitEvent / OnClick_ViewAssembleEvent (TST action button, rows 123, 124, 131). Board 2026-10-16: Orbit/Assemble targets in scope (migration/board.md:16). KB BR-UBTCON-610.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-094",
@@ -1232,11 +1236,12 @@
    "react": "not found (searched: handler name, route in pages/MessageDetail); page comment: not wired (Q1, Q2)",
    "evidence": "app/src/pages/MessageDetail/MessageDetailPage.tsx:23-24",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST MessageDetail.mvc.js:593. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by OnClick_ViewOrbitEvent / OnClick_ViewAssembleEvent (TST action button, rows 123, 124, 131). Board 2026-10-16: Orbit/Assemble targets in scope (migration/board.md:16). KB BR-UBTCON-610.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST MessageDetail.mvc.js:593. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by OnClick_ViewOrbitEvent / OnClick_ViewAssembleEvent (TST action button, rows 123, 124, 131). Board 2026-10-16: Orbit/Assemble targets in scope (migration/board.md:16). KB BR-UBTCON-610.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-095",
@@ -1247,11 +1252,12 @@
    "react": "not found (searched: handler name, route in pages/MessageDetail); page comment: not wired (Q1, Q2)",
    "evidence": "app/src/pages/MessageDetail/MessageDetailPage.tsx:23-24",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST MessageDetail.mvc.js:1007/1014. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by AdaptiveCardViewerOnExecuteAction (view_event / send_email, row 125). KB BR-UBTCON-615, BR-UBTCON-616.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST MessageDetail.mvc.js:1007/1014. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by AdaptiveCardViewerOnExecuteAction (view_event / send_email, row 125). KB BR-UBTCON-615, BR-UBTCON-616.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-096",
@@ -1262,11 +1268,12 @@
    "react": "not found (searched: handler name, route in pages/MessageDetail); page comment: not wired (Q1, Q2)",
    "evidence": "app/src/pages/MessageDetail/MessageDetailPage.tsx:23-24",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST MessageDetail.mvc.js:505/514. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by AdaptiveCardViewerOnExecuteAction (view_event / send_email, row 125). KB BR-UBTCON-615, BR-UBTCON-616.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST MessageDetail.mvc.js:505/514. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by AdaptiveCardViewerOnExecuteAction (view_event / send_email, row 125). KB BR-UBTCON-615, BR-UBTCON-616.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-097",
@@ -1277,11 +1284,12 @@
    "react": "not found (searched: handler name, route in pages/MessageDetail); page comment: not wired (Q1, Q2)",
    "evidence": "app/src/pages/MessageDetail/MessageDetailPage.tsx:23-24",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST MessageDetail.mvc.js:917-938. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by Share_UI.ShareObjectDetail(_ExtendedShare) NavigateTo_ObjectDetail (row 130). KB BR-UBTCON-627.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST MessageDetail.mvc.js:917-938. Raised by ScreenBlock_MessageDetail events (Orbit/Assemble buttons, adaptive card, Share_UI) that React shows as NotCaptured markers. | Judge: Reachable on the web: raised by Share_UI.ShareObjectDetail(_ExtendedShare) NavigateTo_ObjectDetail (row 130). KB BR-UBTCON-627.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-098",
@@ -1292,11 +1300,12 @@
    "react": "not found (searched: SetFeedItemId, SubscriptionDenied, ShowUpgradePopUp in pages/MessageDetail)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Raised by Share_UI.ShareObjectDetail events (React: NotCaptured, MessageDetailView.tsx:46-48). | Judge: Reachable on the web: raised by Share_UI.ShareObjectDetail(_ExtendedShare) (row 130).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). SubscriptionDenied matches; SetFeedItemId is raised only by the flag-off branch, out of scope (PD9). Raised by Share_UI.ShareObjectDetail events (React: NotCaptured, MessageDetailView.tsx:46-48). | Judge: Reachable on the web: raised by Share_UI.ShareObjectDetail(_ExtendedShare) (row 130).",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-099",
@@ -1320,11 +1329,12 @@
    "react": "repository: not found (searched: Get_OrbitNotificationParameters in app/src outside api/schema.d.ts, openapi.yaml)",
    "evidence": "api/schema.d.ts, api/openapi.yaml only",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:754 | Judge: Called by OnClick_ViewOrbitEvent (row 123). Production needs the Connect2_LegacyShared server action.",
-   "verified": "pack",
+   "verdict": "mock-only",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). The server source is not available; the mock reads the seeded parameters. TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:754 | Judge: Called by OnClick_ViewOrbitEvent (row 123). Production needs the Connect2_LegacyShared server action.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-101",
@@ -1335,11 +1345,12 @@
    "react": "repository: not found (searched: Get_OrbitHostSurveyNotificationParameters outside schema)",
    "evidence": "api/schema.d.ts, api/openapi.yaml only",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:705 | Judge: Called by OnClick_ViewOrbitEvent (row 123). Production needs the Connect2_LegacyShared server action.",
-   "verified": "pack",
+   "verdict": "mock-only",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). The server source is not available; the mock reads the seeded parameters. TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:705 | Judge: Called by OnClick_ViewOrbitEvent (row 123). Production needs the Connect2_LegacyShared server action.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-102",
@@ -1350,11 +1361,12 @@
    "react": "repository: not found (searched: StoreAdaptiveCardResponses outside schema)",
    "evidence": "api/schema.d.ts, api/openapi.yaml only",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:794 | Judge: Called by AdaptiveCardViewerOnExecuteAction (row 125). Production needs the Connect2_LegacyShared server action (KB BR-C2LEG-463).",
-   "verified": "pack",
+   "verdict": "mock-only",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). The mock answers nothing, as the contract. TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:794 | Judge: Called by AdaptiveCardViewerOnExecuteAction (row 125). Production needs the Connect2_LegacyShared server action (KB BR-C2LEG-463).",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-103",
@@ -1602,11 +1614,12 @@
    "react": "not found (searched: BuildAssembleNotificationContent in pages/MessageDetail); useMessageDetail.ts:146-147 comment: not ported (Q1)",
    "evidence": "app/src/pages/MessageDetail/hooks/useMessageDetail.ts:146-147",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:914 | Judge: Assemble messages show the raw content with unfilled placeholders (KB BR-C2LEG-481).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). PlaceholderLib SetTextPlaceholdersValue ported 1:1 (decision PD8, user 2026-10-28; app/src/pages/MessageDetail/placeholderLib.ts); its endless recursion is known-original-bugs B19. TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:914 | Judge: Assemble messages show the raw content with unfilled placeholders (KB BR-C2LEG-481).",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-122",
@@ -1630,11 +1643,12 @@
    "react": "not found (searched: onClick_ViewOrbitEvent, ViewOrbitEvent in code; only a NotCaptured marker, MessageDetailView.tsx:54)",
    "evidence": "app/src/pages/MessageDetail/components/MessageDetailView.tsx:49-57",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:1211-1380. 3 branches of messages: the two Orbit access Errors are not in MessageDetail files (grep \"You don't have access to Orbit\" matches ViewDocuments, EmailContact only). | Judge: Reachable on the web from the action button (row 131). KB BR-C2LEG-483, BR-C2LEG-484. The three access messages (\"You don't have access to Orbit\", host-survey access, \"You don't have access to Assemble.\") are not in React.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:1211-1380. 3 branches of messages: the two Orbit access Errors are not in MessageDetail files (grep \"You don't have access to Orbit\" matches ViewDocuments, EmailContact only). | Judge: Reachable on the web from the action button (row 131). KB BR-C2LEG-483, BR-C2LEG-484. The three access messages (\"You don't have access to Orbit\", host-survey access, \"You don't have access to Assemble.\") are not in React.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-124",
@@ -1645,11 +1659,12 @@
    "react": "not found (searched: ViewAssembleEvent, getHasAssemble in pages/MessageDetail; only NotCaptured marker)",
    "evidence": "app/src/pages/MessageDetail/components/MessageDetailView.tsx:49-57",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:1416-1507. grep \"You don't have access to Assemble\" in app/src: no match. | Judge: Reachable on the web from the action button (row 131). KB BR-C2LEG-483, BR-C2LEG-484. The three access messages (\"You don't have access to Orbit\", host-survey access, \"You don't have access to Assemble.\") are not in React.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:1416-1507. grep \"You don't have access to Assemble\" in app/src: no match. | Judge: Reachable on the web from the action button (row 131). KB BR-C2LEG-483, BR-C2LEG-484. The three access messages (\"You don't have access to Orbit\", host-survey access, \"You don't have access to Assemble.\") are not in React.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-125",
@@ -1660,11 +1675,12 @@
    "react": "not found (searched: AdaptiveCardViewer, adaptiveCardEventExecuted, send_email, view_event, Thanks for filling out, Event is not accessible); NotificationDetailBlock shows NotCaptured for the AdaptiveCardViewer",
    "evidence": "app/src/pages/MessageDetail/components/NotificationDetailBlock.tsx:84-87",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:1570-2230. 4 messages with no React match. | Judge: TST TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:1570-2230; KB BR-C2LEG-482. Includes the GetMessageInstance refresh after the submit and the messages \"Event is not accessible\", \"Thanks for filling out our form!\".",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:1570-2230. 4 messages with no React match. | Judge: TST TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:1570-2230; KB BR-C2LEG-482. Includes the GetMessageInstance refresh after the submit and the messages \"Event is not accessible\", \"Thanks for filling out our form!\".",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-126",
@@ -1701,11 +1717,12 @@
    "react": "isLoading || message === null ? <Spinner showLoader/> : <MessageContent .../>",
    "evidence": "app/src/pages/MessageDetail/components/MessageDetailView.tsx:75-79",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js view lines ~207-290. HostConfig argument (GetHostConfigByConfigId): not found in React (searched: HostConfig, getHostConfigByConfigId in pages/MessageDetail). | Judge: Spinner and the else branch match; the HostConfig argument (GetHostConfigByConfigId(AdaptiveCardsConfig.events)) is not in React because the AdaptiveCardViewer is not built (F3).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js view lines ~207-290. HostConfig argument (GetHostConfigByConfigId): not found in React (searched: HostConfig, getHostConfigByConfigId in pages/MessageDetail). | Judge: Spinner and the else branch match; the HostConfig argument (GetHostConfigByConfigId(AdaptiveCardsConfig.events)) is not in React because the AdaptiveCardViewer is not built (F3).",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-129",
@@ -1729,11 +1746,12 @@
    "react": "messageDetails={<NotCaptured name=\"Q1: Share_UI.ShareObjectDetail / ShareObjectDetail_ExtendedShare (b1-$b5, b1-$b6)\" />}",
    "evidence": "app/src/pages/MessageDetail/components/MessageDetailView.tsx:46-48",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js view ~lines 392-526. Blocks not in pack and not built (NotCaptured). | Judge: TST (TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:385-400): sharing branch, GetHasExtendedShare (True on TST, flag-values-tst.json) -> Share_UI.ShareObjectDetail_ExtendedShare(ShareId = first template parameter value, HasAccessToDeceasedHousehold = GetHasDeceasedProfileAccess). KB BR-C2LEG-485. The Share_UI blocks are owned by Legacy_Share; their use here is missing.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). The TST branch (C2ExtendedShare on) is built; the flag-off branch keeps a NotCaptured marker, out of scope (PD9). TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js view ~lines 392-526. Blocks not in pack and not built (NotCaptured). | Judge: TST (TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:385-400): sharing branch, GetHasExtendedShare (True on TST, flag-values-tst.json) -> Share_UI.ShareObjectDetail_ExtendedShare(ShareId = first template parameter value, HasAccessToDeceasedHousehold = GetHasDeceasedProfileAccess). KB BR-C2LEG-485. The Share_UI blocks are owned by Legacy_Share; their use here is missing.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-131",
@@ -1744,11 +1762,12 @@
    "react": "actionButton={<NotCaptured name={...}/>}",
    "evidence": "app/src/pages/MessageDetail/components/MessageDetailView.tsx:49-57",
    "tst": "present",
-   "verdict": "missing",
-   "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js view ~lines 540-640 | Judge: TST (TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:566-640): ViewAssembleEvent visible = GetHasAssemble and parameters fetched and ShowAssembleAction, text \"View Meeting\"; ViewOrbitEvent visible = parameters fetched and not empty, text \"View Event\" or \"Go to Host Survey\" (orbitHostSurvey). Flags on TST: getHasAssemble, getHasOrbitAccess, getHasOrbitHostSurvey = True.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js view ~lines 540-640 | Judge: TST (TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:566-640): ViewAssembleEvent visible = GetHasAssemble and parameters fetched and ShowAssembleAction, text \"View Meeting\"; ViewOrbitEvent visible = parameters fetched and not empty, text \"View Event\" or \"Go to Host Survey\" (orbitHostSurvey). Flags on TST: getHasAssemble, getHasOrbitAccess, getHasOrbitHostSurvey = True.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-132",
@@ -1772,11 +1791,12 @@
    "react": "2 events wired in React: onNavigateToMessageList, onNavigateToLogin (MessageDetailEvents)",
    "evidence": "app/src/pages/MessageDetail/hooks/useMessageDetail.ts:39-44",
    "tst": "present",
-   "verdict": "partial",
-   "note": "9 of 11 events not wired; the page comment (MessageDetailPage.tsx:23-24) names them as parts not captured. | Judge: 9 of 11 events are not wired: F1 (SetFeedItemId, SubscriptionDenied, NavigateTo_ObjectDetail), F2 (NavigateTo_OrbitEvent, OrbitMilestone, OrbitHostSurvey, AssembleEvent), F3 (AddAuditAndNavigateTo_EventDetail, EventEmail).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). 10 of 11 events are wired; SetFeedItemId belongs to the flag-off branch, out of scope (PD9). 9 of 11 events not wired; the page comment (MessageDetailPage.tsx:23-24) names them as parts not captured. | Judge: 9 of 11 events are not wired: F1 (SetFeedItemId, SubscriptionDenied, NavigateTo_ObjectDetail), F2 (NavigateTo_OrbitEvent, OrbitMilestone, OrbitHostSurvey, AssembleEvent), F3 (AddAuditAndNavigateTo_EventDetail, EventEmail).",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-134",
@@ -1907,11 +1927,12 @@
    "os": "Widgets.AdaptiveCardViewer(In_AdaptiveCardJson=AdaptiveCardContent, In_HostConfig=HostConfig); event OnExecuteAction -> AdaptiveCardViewerOnExecuteAction",
    "react": "NotCaptured marker \"Widgets.AdaptiveCardViewer\"",
    "evidence": "app/src/pages/MessageDetail/components/NotificationDetailBlock.tsx:84-89; TST Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js:506-553",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "severity": "major",
    "finding": "F3",
-   "note": "KB BR-C2LEG-489."
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9). The renderer is adaptivecards 2.5.0, byte-identical to the TST bundle (decision PD7, user 2026-10-28). KB BR-C2LEG-489.",
+   "fixed": "2026-10-28"
   },
   {
    "id": "Legacy_MyNotificationsFlow-145",
@@ -1956,10 +1977,12 @@
    "os": "Trigger event AdaptiveCardEventExecuted(CardPayload, ActionId, FormPayload); CommunicationException handler logs the error",
    "react": "- (the viewer is not built)",
    "evidence": "TST Connect2_LegacyShared.Widgets.NotificationDetailBlock.mvc.js:671-726; app/src/pages/MessageDetail/components/NotificationDetailBlock.tsx:84-89",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-28",
+   "note": "Built 2026-10-28 (builds/B9-messagedetail.md, decisions PD7, PD8, PD9)."
   },
   {
    "id": "Legacy_MyNotificationsFlow-149",
