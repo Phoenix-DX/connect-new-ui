@@ -26,9 +26,12 @@ one checklist. You change no code. You make no commit.
 | `app/docs/architecture/overview.md`, `app/src/platform/README.md`, `app/src/api/README.md` | How the React app is built (read once, when needed) |
 | `migration/app-shell.spec.md` (decisions U1…), `migration/change-requests/CR-*.md`, `app/docs/architecture/` (ADRs), `app/docs/known-original-bugs.md`, `migration/knowledge/*.md` | The recorded decisions and facts that a `differs` row must cite |
 
-Do not read: `migration/screens/**` (the route specs of the migration; this work is independent of them),
-`migration/contexts/**`, `.auth/**`, `migration/.raw/**`, any `.extract/` folder of the KB. Do not open the MCP dump
-(`migration/clarify/.dump/`); the pack is its readable form. Do not call the MCP yourself; the review pass does that.
+Closed to you:
+- `migration/screens/**` (the route specs, questions and notes of the migration). This work is independent of them,
+  so that it finds what they missed.
+- `migration/contexts/**`, `.auth/**`, `migration/.raw/**`, any `.extract/` folder of the KB.
+- The MCP dump `migration/clarify/.dump/`: the pack is its readable form.
+- The MCP itself: the review pass calls it, not you.
 
 ## How you check
 
@@ -55,6 +58,9 @@ Give each row one verdict:
 Rules:
 
 - Never guess. A row without evidence is `unclear`, with a question. Do not infer a behaviour from a name.
+- A code comment that cites a past answer ("Q1 answered by the user", "decision B") is not evidence. A `differs`
+  row cites a source outside `migration/screens/`. Valid sources: an ADR, a change request, `app-shell.spec.md`, the
+  board, `known-original-bugs.md`. Without one, the row is `unclear`, and the user decides again.
 - TST is the source of truth. When the DEV model (pack) and the React app differ, check the TST compiled code with
   `tst_source.py` before you write `missing` or `differs`. If TST agrees with React, the row is `match` and §6 of the
   report gets the DEV≠TST line.
