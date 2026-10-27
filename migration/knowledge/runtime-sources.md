@@ -91,3 +91,4 @@ contract of the finished Search and ShareSheet mocks. The foundation owner decid
 | `UBTConnect_Utils.controller.js` | 375 kB | Utils client actions: Menu_GetList, Get_MemoryCacheKey_UniqueKey, OpenPolicy, CacheControl_* (App_Menu, App_Policies Q1) |
 | `UBTConnectLibrary.controller.js` | 577 kB | Library client actions: IsEmailValid, IsPhoneNumberValid, FormatConnectDate_*, BottomSheet_*, FormatClasses (App_Menu_ContactUs Q3) |
 | `UBT_Email.model.js`, `UBT_Email.referencesHealth.js` | 66 kB, 1 kB | UBT_Email record types (UserContactRequestRec: SenderPhone default ""), fetched 2026-10-27 for the Legacy_LDMEventsFlow report |
+| `UBTConnectLibrary.model.js`, `OutSystemsUI_2_23.model.js` | 417 kB, 568 kB | Record types and defaults of the library and OSUI blocks (ButtonOptionsRec, SearchInputRec, Carousel records), fetched 2026-10-27 for the _libraries report |

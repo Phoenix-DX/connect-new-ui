@@ -1009,3 +1009,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,Legacy_LDMEventsFlow_V2,verify,281055,clarify-G4-judge,,"clarify-screens judge (Fable, 219 rows, 54 calls)"
 2026-10-27,Legacy_AssembleFlow,verify,259399,clarify-G4-judge,,"clarify-screens judge (Fable, 159 rows, 43 calls)"
 2026-10-27,Legacy_LDMEventsFlow,verify,173249,clarify-G4-judge,,"clarify-screens judge (Opus, 94 rows, 37 calls)"
+2026-10-27,Legacy_OrbitQRCodeFlow,verify,171015,clarify-G4-judge,,"clarify-screens judge (Opus, 68 rows, 36 calls)"
+2026-10-27,_libraries,verify,297853,clarify-shared-judge,,"judge (Fable) referenced library blocks: 245 rows, 52 calls"
+2026-10-27,_shared-b,verify,291392,clarify-shared-judge,,"judge (Opus) App_CommonBlocks_Filter, Directory_CommonBlocks, Directory_Caroussel, Directory_Interchange: 498 rows, 71 calls"
