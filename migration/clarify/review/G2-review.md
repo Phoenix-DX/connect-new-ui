@@ -23,5 +23,6 @@
 | Directory_Locality | 295k / 44 | 373k / 34 (Fable) | 280 |
 | **G2 total** | **1.44 M Sonnet** | **1.74 M Opus/Fable** | 1186 |
 
-G1 (one Opus agent per flow): 3.62 M Opus for 1131 rows. G2 per row: 1.47k Opus tokens + 1.21k Sonnet tokens;
-G1 per row: 3.2k Opus tokens. Opus tokens per row halved; the Sonnet share is the reading.
+Comparison with G1 (one Opus agent per flow, 3.62 M Opus tokens for 1131 rows):
+- G1 per row: 3.2k Opus tokens
+- G2 per row: 1.47k Opus tokens + 1.21k Sonnet tokens (the reading)
