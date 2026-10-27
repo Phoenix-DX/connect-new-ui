@@ -1,4 +1,4 @@
-/* The two JavaScript nodes of Updates_SingleList that save and restore the scroll position of the tapped update
+/* The JavaScript nodes of the page: the two nodes that save and restore the scroll position of the tapped update
    (US = UBTConnect.Directory_Updates.Updates_SingleList.mvc.js). They keep two localStorage keys, as the original. */
 
 const CONTAINER = '.active-screen.screen-container';

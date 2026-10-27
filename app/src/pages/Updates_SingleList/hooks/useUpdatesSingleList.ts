@@ -43,7 +43,7 @@ import {
   type UpdatesSingleListPatch,
   type UpdatesSingleListState,
 } from './updatesSingleListState';
-import { captureScrollPosition, scrollFix } from './scrollAnchorNodes';
+import { captureScrollPosition, scrollFix } from '@/pages/Updates_SingleList/actions';
 import type { UpdatesSingleListFlags, UpdatesSingleListFlows } from './updatesSingleListFlows';
 
 /** SetStickyHeaderHeight (JS node): `--sticky-top-offset` = header + `.updates-list__header` heights + 9 on the

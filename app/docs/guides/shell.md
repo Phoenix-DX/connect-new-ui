@@ -326,8 +326,8 @@ Review markers: the `<NotCaptured>` frames (pink, "Not captured: …") are off b
   (`window.dx.Navigation.Storage`), `rememberFocusedScrollAnchor` (the tapped row of a list, `NH:1613-1626`) and
   `getFocusedScrollAnchorOnBack` (the "dx-entering-scroll-anchor" a FocusScrollAnchorOnBack block stores,
   `NH:485-495`). The original's List restore patch with both anchors (`NH:1050-1126`) is not ported; the view cache
-  restores the scroll offsets. Updates_SingleList adds its own CaptureScrollPosition and ScrollFix nodes (localStorage
-  `scrollAnchorId`, `scrollAnchorDelta`).
+  restores the scroll offsets. Updates_SingleList keeps its own CaptureScrollPosition and ScrollFix nodes in `pages/Updates_SingleList/actions.ts`
+  (localStorage `scrollAnchorId`, `scrollAnchorDelta`).
 
 - **Navigation guard (`dx-before-navigation`).** `src/platform/navigation/navigationGate.ts` (`shouldBlockNavigation`) runs
   as the blocker of the router before every navigation.

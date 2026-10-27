@@ -61,7 +61,8 @@ Two items after the minor findings wave. Brief: `../FIX.md`. No commit by the ag
 - Files changed:
   - `app/src/platform/navigation/scrollAnchors.ts` (new): `navigationStorage`, `leavingScrollAnchors`,
     `rememberFocusedScrollAnchor`, `getFocusedScrollAnchorOnBack`; exported from `platform/navigation/index.ts`.
-  - `app/src/pages/Updates_SingleList/hooks/scrollAnchorNodes.ts` (new): `captureScrollPosition`, `scrollFix` 1:1.
+  - `app/src/pages/Updates_SingleList/actions.ts` (new, the page's JavaScript nodes as in the other pages):
+    `captureScrollPosition`, `scrollFix` 1:1.
   - `app/src/pages/Updates_SingleList/hooks/useUpdatesSingleList.ts`: the tap order and the restored OnReady branch.
   - `app/src/platform/navigation/hooks.ts`: the `useViewState` setter updates the saved value at once (the view cache
     saved a stale FocusedScrollAnchorId when the navigation followed in the same tick; TST flushes the model first).
@@ -70,7 +71,7 @@ Two items after the minor findings wave. Brief: `../FIX.md`. No commit by the ag
   - `app/docs/guides/shell.md`: view cache and scroll anchors.
 - Not ported: the List widget restore patch with both anchors (NH:1050-1126). It acts only when a detail screen with
   FocusScrollAnchorOnBack is left (AssembleDetail → its list), not on this route.
-- Tests: `scrollAnchorNodes.test.ts` (5), `scrollAnchors.test.ts` (3), `Updates_SingleList.test.tsx` (tap → nodes,
+- Tests: `actions.test.ts` (5), `scrollAnchors.test.ts` (3), `Updates_SingleList.test.tsx` (tap → nodes,
   back → ScrollFix once), `viewCache.test.tsx` (same-tick save). Parity Updates_SingleList: clean (3 states).
   AssembleDetail has no parity captures (not a parity route).
 - Proposed verdict: rows 073 and 074 `match`.

@@ -6,9 +6,9 @@ import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import Updates_SingleList from './Updates_SingleListPage';
-import { captureScrollPosition, scrollFix } from './hooks/scrollAnchorNodes';
+import { captureScrollPosition, scrollFix } from './actions';
 
-vi.mock('./hooks/scrollAnchorNodes', () => ({ captureScrollPosition: vi.fn(), scrollFix: vi.fn() }));
+vi.mock('./actions', () => ({ captureScrollPosition: vi.fn(), scrollFix: vi.fn() }));
 
 /* The page with its flows (useUpdatesSingleList) in the app frame on a memory router, with the MSW mocks of the test
    setup (pages/Updates_SingleList/mocks.ts: 88 fictional updates, 84 unread, none of today). The mock collection
@@ -144,7 +144,7 @@ describe('Updates_SingleList page, read state', () => {
 
   it('a tap runs CaptureScrollPosition and RememberFocusedScrollAnchor; back runs ScrollFix with the tapped id once', async () => {
     // The test frame has no `.active-screen.screen-container`, so the two JS nodes are spied here; their own tests
-    // cover the DOM work (scrollAnchorNodes.test.ts).
+    // cover the DOM work (actions.test.ts).
     const { at } = renderPage();
     await listLoaded();
     // US:1824-1831: the UpdateItemId of the tapped row (its ScrollAnchor) and the row index.

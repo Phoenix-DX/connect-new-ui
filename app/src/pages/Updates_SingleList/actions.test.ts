@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { captureScrollPosition, scrollFix } from './scrollAnchorNodes';
+import { captureScrollPosition, scrollFix } from './actions';
 
 const rect = (top: number) => ({
   top,
@@ -44,7 +44,11 @@ describe('Updates_SingleList scroll anchor nodes (US:3369-3384, 3440-3460)', () 
     localStorage.setItem('scrollAnchorDelta', '200');
     const container = document.querySelector('.active-screen.screen-container') as HTMLElement;
     scrollFix('');
-    await new Promise((resolve) => window.requestAnimationFrame(() => { resolve(null); }));
+    await new Promise((resolve) =>
+      window.requestAnimationFrame(() => {
+        resolve(null);
+      }),
+    );
     expect(container.scrollTop).toBe(1800 + 500 - 200);
     expect(localStorage.getItem('scrollAnchorId')).toBeNull();
     expect(localStorage.getItem('scrollAnchorDelta')).toBeNull();
@@ -53,10 +57,18 @@ describe('Updates_SingleList scroll anchor nodes (US:3369-3384, 3440-3460)', () 
   it('ScrollFix with an input anchor id uses it; without any id it does nothing', async () => {
     const container = document.querySelector('.active-screen.screen-container') as HTMLElement;
     scrollFix('');
-    await new Promise((resolve) => window.requestAnimationFrame(() => { resolve(null); }));
+    await new Promise((resolve) =>
+      window.requestAnimationFrame(() => {
+        resolve(null);
+      }),
+    );
     expect(container.scrollTop).toBe(1800);
     scrollFix('980096');
-    await new Promise((resolve) => window.requestAnimationFrame(() => { resolve(null); }));
+    await new Promise((resolve) =>
+      window.requestAnimationFrame(() => {
+        resolve(null);
+      }),
+    );
     expect(container.scrollTop).toBe(1800 + 500);
   });
 
