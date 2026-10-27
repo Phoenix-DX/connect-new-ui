@@ -5,7 +5,7 @@ section "Context notes".
 
 ## Now
 - Goal (user 2026-10-14): replace the OutSystems app in production; UI/UX 1:1. **Current focus (user 2026-10-17): local demo for colleagues, no production work.**
-- **Clarify screens (branch `clarify-screens`, 2026-10-27)**: verify React vs the OutSystems model by UI flow; G1 and G2 done (16 flows, 2317 rows, 1 blocker, 14 major, 33 questions), [context-054](context-054-clarify-screens-g1.md). Next: user answers, then G3 (content flows).
+- **Clarify screens (branch `clarify-screens`, 2026-10-27)**: verify React vs the OutSystems model by UI flow; G1–G3 done (22 flows, 3022 rows, 1 blocker, 19 major, 44 questions), [context-054](context-054-clarify-screens-g1.md). Next: user answers; `_shared`, then G4.
 - 64/64 routes finished, sweep clean; PWA phases 1–3 done; English docs done (2026-10-21); UI Flows dashboard + 38 journeys (2026-10-22, [context-033](context-033-ui-flows-dashboard.md)); Libraries view as a new artifact DLHY4vLn…, accepted 2026-10-26 ([context-053](context-053-libraries-dashboard.md)).
 - Branch `refactor/architecture`: all 133 plan steps done; the user's decisions of 2026-10-25 done (F52, F55, F57, F58, F59-a/b/c; [context-052](context-052-refactor-user-decisions-2026-10-25.md)); final report `app/docs/refactor/reports/final.md`. Open: owned debt rows in `migration/refactor/followups.md`. Dev server of this repo on port 5174.
 - Auto mode ON since 2026-10-25 ~01:30 (window 6, open-ended): Opus + Fable decide questions, summary to the user. Unattended runs: start `caffeinate -i -s -m` first. Deferred to production: nav timeout, PWA-2/3/B choices, BFF host, ADR-14 code; mobile performance later.
@@ -68,4 +68,4 @@ section "Context notes".
 | [051](context-051-refactor-p8-p9-done.md) | 2026-10-25 | P8 and P9 done (all 133 steps), F39, F40, F43, F54; advisor decisions W34-W43; final report | superseded by context-052 |
 | [052](context-052-refactor-user-decisions-2026-10-25.md) | 2026-10-25 | User decisions of 2026-10-25 done: F52, F55 (CLAUDE.md), F57, F58, F59-a/b/c; W44, W45 | current |
 | [053](context-053-libraries-dashboard.md) | 2026-10-26 | Knowledge comparison with my-research; Libraries view, new artifact DLHY4vLn… (accepted); rule 7 change | current |
-| [054](context-054-clarify-screens-g1.md) | 2026-10-27 | Clarify screens: plan, P0 tooling (packs from the MCP dump), waves G1 (9 flows) and G2 (7 flows), cost analysis, model split | current |
+| [054](context-054-clarify-screens-g1.md) | 2026-10-27 | Clarify screens: plan, P0 tooling (packs from the MCP dump), waves G1–G3 (22 flows), cost analysis, model split | current |

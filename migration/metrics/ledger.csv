@@ -989,3 +989,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,ContactFlow,verify,190252,clarify-G3-judge,,"clarify-screens judge (Opus, 142 rows, 42 calls)"
 2026-10-27,Legacy_Share,verify,181769,clarify-G3-judge,,"clarify-screens judge (Opus, 95 rows, 33 calls)"
 2026-10-27,Legacy_MyNotificationsFlow,verify,254308,clarify-G3-judge,,"clarify-screens judge (Fable, 152 rows, 50 calls)"
+2026-10-27,Bookmarks,verify,369185,clarify-G3-judge,,"clarify-screens judge (Fable, 123 rows, 53 calls)"
