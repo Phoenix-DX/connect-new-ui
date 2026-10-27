@@ -883,11 +883,12 @@
    "react": "onApplicationEvent_EmailHost({MilestoneId, EventId}) -> log.info only; return (no message, no navigation)",
    "evidence": "app/src/pages/ContactByEmailMember/hooks/useContactByEmailMemberSubmit.ts:52-55; app/src/pages/ContactByEmailMember/actions.ts:11-15; TST UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:688-698 (AuditPayload_EmailHostRec: MilestoneId, EventId, EventTitle, HostName, Subject, Message); Connect2_OrbitMobile_MUI.controller.js:5696-5739; Connect2_LegacyShared.controller.js:7567-7601 (zOnApplicationEvent_Wrapper: GetAppEventName, then UBT_AppManager AzureInsights_CreateCustomEvent); migration/app-shell.spec.md:349, :384 (U17)",
    "tst": "present: onApplicationEvent_EmailHost$Action with 6-field payload",
-   "verdict": "partial",
-   "note": "The log-only call is U17. React passes 2 of 6 payload fields; production needs all 6 in the App Insights custom event (F1, Q1). No message and no navigation follow, as on TST (Q2). The comment \"Q2 open\" in actions.ts:11-12 is out of date: auto-decisions-2026-10-15.md:22 records the controller fact.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B10-misc.md). The log-only call is U17. React passes 2 of 6 payload fields; production needs all 6 in the App Insights custom event (F1, Q1). No message and no navigation follow, as on TST (Q2). The comment \"Q2 open\" in actions.ts:11-12 is out of date: auto-decisions-2026-10-15.md:22 records the controller fact.",
+   "verified": "code",
    "severity": "info",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "ContactFlow-069",
@@ -1366,11 +1367,12 @@
    "react": "onApplicationEvent_ContactHelpdesk(In_EventId) -> log.info({EventId: ApplicationEvents_Orbit_ContactHelpdesk, OrbitEventId})",
    "evidence": "app/src/pages/ContactByEmailOrbitHelpdesk/hooks/useContactByEmailOrbitHelpdeskSubmit.ts:54; app/src/pages/ContactByEmailOrbitHelpdesk/actions.ts:7-17; TST UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:565-571 (AuditPayload_ContactHelpdeskRec: EventId, EventTitle = In_EventName, Subject, Message); Connect2_OrbitMobile_MUI.controller.js:5642-5685; Connect2_LegacyShared.controller.js:7567-7601 (zOnApplicationEvent_Wrapper: GetAppEventName, then UBT_AppManager AzureInsights_CreateCustomEvent); migration/app-shell.spec.md:349, :384 (U17)",
    "tst": "present: AuditPayload_ContactHelpdesk 4 fields",
-   "verdict": "partial",
-   "note": "The log-only call is U17. React passes 1 of 4 payload fields; production needs EventTitle, Subject and Message too (F1, Q1). BR-UBTCON-049.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B10-misc.md). The log-only call is U17. React passes 1 of 4 payload fields; production needs EventTitle, Subject and Message too (F1, Q1). BR-UBTCON-049.",
+   "verified": "code",
    "severity": "info",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "ContactFlow-106",

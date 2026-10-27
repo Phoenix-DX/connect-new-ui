@@ -29,15 +29,40 @@ export function scheduleFeedbackMessageAfterTransition(message: string): void {
   }, 500);
 }
 
-/** OnApplicationEvent_ContactHelpdesk(AuditPayload_ContactHelpdesk: EventId, EventTitle, Subject, Message). Telemetry
-    is not wired in the mock phase (decision U17): the event goes to the log with the event id only (no subject or
-    message). */
-export function onApplicationEvent_ContactHelpdesk(eventId: string): void {
-  log.info('ApplicationEvent', { Event: 'ContactHelpdesk', EventId: eventId });
+/** Connect2_OrbitMobile_MUI AuditPayload_ContactHelpdesk, in the order of its attributes
+    (Connect2_OrbitMobile_MUI.model.js:7107-7116). EventId is a Long Integer, kept as text. */
+interface AuditPayload_ContactHelpdesk {
+  EventId: string;
+  EventTitle: string;
+  Subject: string;
+  Message: string;
 }
 
-/** OnApplicationEvent_EmailHost(AuditPayload_EmailHost: MilestoneId, EventId, EventTitle, Subject, HostName,
-    Message): as above, ids only. */
-export function onApplicationEvent_EmailHost(milestoneId: string, eventId: string): void {
-  log.info('ApplicationEvent', { Event: 'EmailHost', MilestoneId: milestoneId, EventId: eventId });
+/** Connect2_OrbitMobile_MUI AuditPayload_EmailHost, in the order of its attributes
+    (Connect2_OrbitMobile_MUI.model.js:1761-1776). */
+interface AuditPayload_EmailHost {
+  MilestoneId: string;
+  EventId: string;
+  EventTitle: string;
+  HostName: string;
+  Subject: string;
+  Message: string;
+}
+
+/** OnApplicationEvent_ContactHelpdesk(AuditPayload) (Connect2_OrbitMobile_MUI.controller.js:5645-5688): JSONSerialize
+    of the payload, then zOnApplicationEvent_Wrapper(applicationEvents_Orbit.contactHelpdesk, JSON). The form gives the
+    full payload (ContactFlow Q1). Telemetry is not wired in the mock phase (decision U17): the event goes to the log
+    with the event id only, without the subject, the message or the title. */
+export function onApplicationEvent_ContactHelpdesk(auditPayload: AuditPayload_ContactHelpdesk): void {
+  log.info('ApplicationEvent', { Event: 'ContactHelpdesk', EventId: auditPayload.EventId });
+}
+
+/** OnApplicationEvent_EmailHost(AuditPayload) (Connect2_OrbitMobile_MUI.controller.js:5699-5742): as above, with
+    applicationEvents_Orbit.emailHost. The log keeps the ids only (no host name, subject or message). */
+export function onApplicationEvent_EmailHost(auditPayload: AuditPayload_EmailHost): void {
+  log.info('ApplicationEvent', {
+    Event: 'EmailHost',
+    MilestoneId: auditPayload.MilestoneId,
+    EventId: auditPayload.EventId,
+  });
 }

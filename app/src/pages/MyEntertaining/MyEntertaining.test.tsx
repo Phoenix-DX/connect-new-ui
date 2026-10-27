@@ -3,6 +3,7 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { StrictMode } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { getFeedbackMessage, resetFeedbackMessages, subscribeFeedback } from '@/platform/feedback/feedbackStore';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { setClientVar } from '@/platform/session/session';
@@ -102,17 +103,27 @@ describe('MyEntertaining', () => {
     });
   });
 
-  it('a failed GetEntertainingConfig: the skeleton stays and the calendar does not start', async () => {
-    sessionStorage.setItem('mock:mock', 'error');
-    const { container } = renderScreen('?MyCalendarEventSourceId=event-orbit');
-    await waitFor(() => {
-      expect(calledActions()).toEqual([CONFIG]);
-    });
-    await new Promise((resolve) => setTimeout(resolve, 30));
-    expect(skeletonItems(container)).toBe(5);
-    expect(container.querySelector('iframe')).toBeNull();
-    expect(container.querySelector('#b2-b2-connect2entertaining')).toHaveClass('display-none');
-  });
+  it.each([false, true])(
+    'a failed GetEntertainingConfig (StrictMode %s): the skeleton stays, the calendar does not start, one message (F1)',
+    async (strict) => {
+      sessionStorage.setItem('mock:mock', 'error');
+      resetFeedbackMessages();
+      const shown: string[] = [];
+      const stop = subscribeFeedback(() => shown.push(getFeedbackMessage()?.message ?? ''));
+      const { container } = renderScreen('?MyCalendarEventSourceId=event-orbit', { strict });
+      await waitFor(() => {
+        expect(calledActions()).toEqual([CONFIG]);
+      });
+      await new Promise((resolve) => setTimeout(resolve, 30));
+      stop();
+      expect(skeletonItems(container)).toBe(5);
+      expect(container.querySelector('iframe')).toBeNull();
+      expect(container.querySelector('#b2-b2-connect2entertaining')).toHaveClass('display-none');
+      // handleError of the block → Calendar flow → App_Common: ShowCommunicationExceptionMessage (Q1 (a))
+      expect(shown).toHaveLength(1);
+      expect(shown[0]).toContain("<div class='feedback-message--title'>Service Interruption</div>");
+    },
+  );
 
   it('StrictMode: one GetEntertainingConfig call and one calendar', async () => {
     const { container } = renderScreen('', { strict: true });

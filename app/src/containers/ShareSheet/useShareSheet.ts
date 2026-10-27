@@ -7,6 +7,7 @@ import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import type { SearchResult } from '@/lib/ubtConnectUtils/structures';
 import { useAvailableMembersQuery } from '@/api/member';
 import { csShareObject, useRecentlySharedQuery } from '@/api/share';
+import { navigateToUpgrade, showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { delaySetIsOpen, scrollToTop, shareSheet_IsSharing } from './jsNodes';
 import { MAX_RECIPIENTS, RESET, SKELETON, type Locals } from './shareSheetState';
@@ -139,12 +140,22 @@ export function useShareSheet({
       showFeedbackMessage('Share failed. Please try again.', PLATFORM_MESSAGE_TYPE.error);
     }
   };
-  // Handler_OnClickRecentMember (:2575-2629): a disabled record asks App_Subscription_ShowUpgradePopUp (not ported);
-  // otherwise the member is shared with at once (its HouseholderId).
+  // Handler_OnClickRecentMember (:2575-2629): a disabled record runs App_Subscription_ShowUpgradePopUp (:2588-2592; an
+  // error goes to the flow handler); otherwise the member is shared with at once (its HouseholderId).
   const onClickRecentMember = (item: SearchResult) => {
-    if (!recentFetched || item.RecordDisabled === true) return;
+    if (!recentFetched) return;
+    if (item.RecordDisabled === true) {
+      showUpgradePopUp().catch(raiseToFlowHandler);
+      return;
+    }
     setLocals((current) => ({ ...current, sharingRecentMemberId: item.Id ?? '' }));
     void submitShare([item.HouseholderId ?? '']);
+  };
+  // OnClick_UpgradeSubscription of each SearchResult_Item (SearchResult_Item.mvc.js:702-735):
+  // App_Subscription_NavigateToUpgrade; the block runs it in safeExecuteClientAction, so an error goes to the flow
+  // handler. The block cannot import platform/, so the sheet gives it.
+  const onClickUpgradeSubscription = () => {
+    navigateToUpgrade().catch(raiseToFlowHandler);
   };
   // Handler_SearchResultItemOnSelect (:2911-3008): at most 50 recipients; select adds, unselect removes. The limit
   // message is FeedbackMessage_AutoClose("", text, Error, True, "", 0, False) (:2926; the type id resolves to Error).
@@ -196,6 +207,7 @@ export function useShareSheet({
     searchResultItemList,
     isSelected,
     onClickRecentMember,
+    onClickUpgradeSubscription,
     onSelect,
     onClickSelected,
     onClickSend,

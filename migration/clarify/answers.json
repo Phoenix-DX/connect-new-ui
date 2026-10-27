@@ -578,9 +578,9 @@
   "options": "(a) remove the control, the event and the handler until TST deploys PassportScan (board V8); (b) keep it hidden behind a flag that is off; (c) keep it as is",
   "recommendation": "(a): TST is the source of truth, and the board already defers PassportScan.",
   "flow": "Legacy_OrbitEventsFlow",
-  "answer": "(a) Follow TST: remove the DEV-only passport control, the event NavigateTo_PassportScan and its handler from OrbitLanding. Note for later comparison: the control and the screen PassportScan exist on DEV (dev-ahead.md).",
-  "by": "user",
-  "date": "2026-10-27",
+  "answer": "User 2026-10-27 chose (a): remove the DEV-only passport control. Evidence 2026-10-28 (orchestrator): the live TST block script has OnHandle_ViewPassportDetails and the TST capture DOM has orbit-landing-passport-cont; the survey copy of 2026-10-13 was stale, so the premise of the question was wrong. The control is kept in React (parity); the user confirms in builds/pending-decisions.md PD13.",
+  "by": "code",
+  "date": "2026-10-28",
   "note": ""
  },
  "Legacy_OrbitEventsFlow:Q3": {

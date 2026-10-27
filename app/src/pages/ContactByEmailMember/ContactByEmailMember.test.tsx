@@ -5,8 +5,13 @@ import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { addLogSink, type LogEntry } from '@/platform/log/log';
 import type { ContactEmailFormProps } from '@/components/contact/ContactEmailForm';
+import { onApplicationEvent_EmailHost } from './actions';
 import ContactByEmailMember from './ContactByEmailMemberPage';
-import { ApplicationEvents_Directory_EmailHousehold, OrbitApplicationEvent_EmailHost } from './staticEntities';
+import {
+  ApplicationEvents_Directory_EmailHousehold,
+  ApplicationEvents_Orbit_EmailHost,
+  OrbitApplicationEvent_EmailHost,
+} from './staticEntities';
 
 /* The submit flow was not captured (write blocked, Q1): tested from the compiled Handler_SubmitForm.
    The shared form is replaced by a wrapper that keeps its props to raise Event_SubmitForm; the server action, the back
@@ -31,6 +36,10 @@ vi.mock('@/components/contact/ContactEmailForm', async () => {
       );
     },
   };
+});
+vi.mock('./actions', async (original) => {
+  const actual = await original<typeof import('./actions')>();
+  return { ...actual, onApplicationEvent_EmailHost: vi.fn(actual.onApplicationEvent_EmailHost) };
 });
 vi.mock('@/api/message', async (original) => ({
   ...(await original<typeof import('@/api/message')>()),
@@ -124,9 +133,28 @@ describe('ContactByEmailMember (ContactByEmailMember.mvc.js)', () => {
   });
 
   it('EmailHost audit event: the flow ends after the event, no message, no navigation (:684-704)', async () => {
-    renderScreen(`${CAPTURE}&In_AuditEventId=${OrbitApplicationEvent_EmailHost}`);
+    renderScreen(
+      `${CAPTURE}&In_AuditEventId=${OrbitApplicationEvent_EmailHost}&In_OrbitEventId=7301&In_OrbitMilestoneId=7301-1` +
+        '&In_OrbitEventTitle=Weekend%20Bible%20Conferences',
+    );
+    const entries: LogEntry[] = [];
+    const remove = addLogSink((entry) => entries.push(entry));
     await submit('Hello', 'A message');
+    remove();
     expect(spy.send).toHaveBeenCalledTimes(1);
+    // The full AuditPayload_EmailHost (:689-697, ContactFlow Q1); the log keeps no subject or message (U17).
+    expect(onApplicationEvent_EmailHost).toHaveBeenCalledWith({
+      MilestoneId: '7301-1',
+      EventId: '7301',
+      EventTitle: 'Weekend Bible Conferences',
+      HostName: 'Test',
+      Subject: 'Hello',
+      Message: 'A message',
+    });
+    expect(entries.map((e) => [e.message, e.data])).toEqual([
+      ['ApplicationEvent', { EventId: ApplicationEvents_Orbit_EmailHost, HasAttachment: true }],
+    ]);
+    expect(JSON.stringify(entries)).not.toContain('A message');
     act(() => {
       vi.advanceTimersByTime(500);
     });

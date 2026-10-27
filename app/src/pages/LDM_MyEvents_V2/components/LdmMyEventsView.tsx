@@ -42,6 +42,8 @@ export function LdmMyEventsView({
   onMessage,
   onTryAgain,
   onSwipeUp,
+  onMyTimelineFilter,
+  onResetFilters,
   onContactByPhoneClose,
   onContactByMessageClose,
   onContactByMessageEmail,
@@ -77,6 +79,8 @@ export function LdmMyEventsView({
                 inHasLoaded={!state.isFetchingMyTimeline}
                 inIsShowing
                 inDefaultDateRangeInMonths={DEFAULT_DATE_RANGE_IN_MONTHS}
+                onFilter={onMyTimelineFilter}
+                onResetFilters={onResetFilters}
               />
             </div>
             <i

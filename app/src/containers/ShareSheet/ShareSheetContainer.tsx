@@ -47,6 +47,7 @@ export function ShareSheetContainer({
     searchResultItemList,
     isSelected,
     onClickRecentMember,
+    onClickUpgradeSubscription,
     onSelect,
     onClickSelected,
     onClickSend,
@@ -125,6 +126,7 @@ export function ShareSheetContainer({
                     onSubmit={onSubmit}
                     onClickSelected={onClickSelected}
                     onSelect={onSelect}
+                    onClickUpgradeSubscription={onClickUpgradeSubscription}
                   />
                 )}
               </div>

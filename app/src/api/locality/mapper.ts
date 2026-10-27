@@ -2,6 +2,7 @@ import type { ActionInputs, ActionOutputs, PathOf } from '@/api/client/callActio
 import { osList, osNumber, wireList } from '@/lib/os-wire';
 import type {
   AllLocalities,
+  AllSubdivisions,
   CommunityBusinessShareCard,
   EventFilterLocality,
   Interchange,
@@ -72,6 +73,10 @@ export type SubdivisionHouseholdsWire = ActionOutputs<
 /** The outputs of DataActionGetCacheInfo of CacheControl_AllLocalities. */
 export type AllLocalitiesWire = ActionOutputs<
   PathOf<'UBTConnect_Utils', 'CacheControl_AllLocalities/DataActionGetCacheInfo'>
+>;
+/** The outputs of DataActionGetCacheInfo of CacheControl_AllSubdivisions. */
+export type AllSubdivisionsWire = ActionOutputs<
+  PathOf<'UBTConnect_Utils', 'CacheControl_AllSubdivisions/DataActionGetCacheInfo'>
 >;
 /** The outputs of the server action GetLocalityInformation (Connect2_LegacyShared). */
 export type LocalityInformationWire = ActionOutputs<PathOf<'Connect2_LegacyShared', 'ActionGetLocalityInformation'>>;
@@ -281,13 +286,28 @@ export const toSubdivisionHouseholdCards = (wire: SubdivisionHouseholdsWire): Su
 
 /* ---- CacheControl_AllLocalities ---- */
 
-/** The list of all localities (CacheControl_Response), with the fields that FilterSheet reads. */
+/** The list of all localities (CacheControl_Response), with the fields that FilterSheet and Profile read. */
 export const toAllLocalities = (wire: AllLocalitiesWire): AllLocalities => ({
   LocalityList: {
     List: osList(wire.CacheControl_Response.LocalityList).map((l) => ({
       LocalityId: l.LocalityId,
       Name: l.Name,
+      CountryName: l.CountryName,
       CountryCode: l.CountryCode,
+    })),
+  },
+});
+
+/* ---- CacheControl_AllSubdivisions ---- */
+
+/** The list of all subdivisions (CacheControl_Response), every attribute of Directory_LocalitySubdivision. */
+export const toAllSubdivisions = (wire: AllSubdivisionsWire): AllSubdivisions => ({
+  SubdivionsList: {
+    List: osList(wire.CacheControl_Response.SubdivionsList).map((s) => ({
+      SubdivisionId: s.SubdivisionId,
+      SubdivisionName: s.SubdivisionName,
+      LocalityId: s.LocalityId,
+      LocalityName: s.LocalityName,
     })),
   },
 });

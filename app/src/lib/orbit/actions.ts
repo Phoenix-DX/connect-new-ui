@@ -312,6 +312,7 @@ export type ApplicationEvent_LDM =
   | 'MyTimelineEventClicked'
   | 'MyTimelineHouseholdClicked'
   | 'MyTimelineApplyFilter'
+  | 'MyTimelineClearFilter'
   | 'ContactEventOrganiser';
 
 /** AddAuditRequestAPIEvent / AddAuditClickedEvent / AddAuditEventDetailEvent / AddAuditEventFilterEvent (C:119-514):

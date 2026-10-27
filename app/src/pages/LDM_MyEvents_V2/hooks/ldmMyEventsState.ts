@@ -49,6 +49,10 @@ export type LdmMyEventsAction =
   | { type: 'fetchEnded' }
   /** IncrementMyTimelineDates: the past-event window moves back by DefaultDateRangeInMonths. */
   | { type: 'olderWindowSet' }
+  /** OnHandle_MyTimelineFilter with new filters: both lists cleared, IsFiltering True, PastEventFilters = the filters. */
+  | { type: 'filterApplied'; filters: EventCalendarFiltersAsText }
+  /** OnHandle_ResetFilters: both lists cleared, IsFiltering False, PastEventFilters = the reset filters. */
+  | { type: 'filtersReset'; filters: EventCalendarFiltersAsText }
   | { type: 'phonePopupOpened'; data: ContactByPhonePopupData }
   | { type: 'phonePopupClosed' }
   | { type: 'messagePopupOpened'; data: UI_ContactByMessage_WrapperData }
@@ -149,6 +153,22 @@ export function ldmMyEventsReducer(state: LdmMyEventsState, action: LdmMyEventsA
       return { ...state, isFetchingMyTimeline: false };
     case 'olderWindowSet':
       return { ...state, pastEventFilters: olderPastEventFilters(state.pastEventFilters) };
+    case 'filterApplied':
+      return {
+        ...state,
+        pastEventsData: [],
+        upcomingEventsData: [],
+        isFiltering: true,
+        pastEventFilters: action.filters,
+      };
+    case 'filtersReset':
+      return {
+        ...state,
+        pastEventsData: [],
+        upcomingEventsData: [],
+        isFiltering: false,
+        pastEventFilters: action.filters,
+      };
     case 'phonePopupOpened':
       return { ...state, contactByPhoneData: action.data };
     case 'phonePopupClosed':
@@ -194,3 +214,39 @@ export const hasPhoneNumber = (data: ContactByPhonePopupData): boolean =>
   (data.MobilePhone ?? '') !== '' ||
   (data.HomePhone ?? '') !== '' ||
   (data.WorkPhone ?? '') !== '';
+
+/** EventCalendarFilters (Connect2_OrbitMobile_IS): the current filters that ValidateSameFilters compares with; its
+    Localities are LongInteger ids. */
+interface EventCalendarFilters {
+  FromDate: string;
+  ToDate: string;
+  Localities: string[];
+}
+
+/** ValidateSameFilters(In_SelectedFilters, In_CurrentFilters) → Out_SameFilters (Connect2_OrbitMobile_MUI.controller.js
+    :8362-8457): the same dates and as many localities, and each selected locality id (TextToLongInteger of IdAsText)
+    is found once in the current ids. */
+export function validateSameFilters(selected: EventCalendarFiltersAsText, current: EventCalendarFilters): boolean {
+  if (!(
+    selected.FromDate === current.FromDate &&
+    selected.ToDate === current.ToDate &&
+    selected.Localities.length === current.Localities.length
+  ))
+    return false;
+  const remaining = [...current.Localities];
+  for (const locality of selected.Localities) {
+    const id = /^-?\d+$/.test(locality.IdAsText.trim()) ? String(Number(locality.IdAsText.trim())) : '0';
+    const position = remaining.indexOf(id);
+    if (position === -1) return false;
+    remaining.splice(position, 1);
+  }
+  return true;
+}
+
+/** OnHandle_MyTimelineFilter: the current filters of ValidateSameFilters are PastEventFilters converted to
+    EventCalendarFilters, which copies only FromDate and ToDate (ScreenBlock_MyEvents_V2.mvc.js :2670-2760). */
+export const currentFiltersOf = (state: LdmMyEventsState): EventCalendarFilters => ({
+  FromDate: state.pastEventFilters.FromDate,
+  ToDate: state.pastEventFilters.ToDate,
+  Localities: [],
+});

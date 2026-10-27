@@ -38,11 +38,12 @@
    "react": "app/src/pages/OrbitLanding/OrbitLandingPage.tsx:48-54: onNavigateToPassportScan: (targetId, loginMemberId) => { ... navigate('/UBTConnect/PassportScan', { LoginMemberId, TargetId }) }",
    "evidence": "pack screens.md OrbitLanding; TST grep passport",
    "tst": "absent",
-   "verdict": "partial",
-   "note": "DEV != TST. TST wrapper has only navigateTo_EventDetail, navigateTo_TransportDetail and navigateTo_MyCalendarOrbit in its block events (lines 131, 145, 159); grep -i passport finds nothing in the TST wrapper and in the TST block ScreenBlock_OrbitLanding. React has the event, the 'View Passport details' control and the navigation. | F3: DEV-only element (DEV dump 2026-10-27); TST has no NavigateTo_PassportScan, no control and no PassportScan file (tst_source.py grep \"assport\": no match in the wrapper and the block; list Passport: none). React follows DEV and navigates to /UBTConnect/PassportScan, a route the app does not register (board: skip V8).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Finding withdrawn 2026-10-28: the live TST block (runtime-sources, fetched 2026-10-28) has OnHandle_ViewPassportDetails and the TST capture DOM shows the control; the survey copy of 2026-10-13 was stale. The React control stays. Built 2026-10-27 (builds/B10-misc.md). DEV != TST. TST wrapper has only navigateTo_EventDetail, navigateTo_TransportDetail and navigateTo_MyCalendarOrbit in its block events (lines 131, 145, 159); grep -i passport finds nothing in the TST wrapper and in the TST block ScreenBlock_OrbitLanding. React has the event, the 'View Passport details' control and the navigation. | F3: DEV-only element (DEV dump 2026-10-27); TST has no NavigateTo_PassportScan, no control and no PassportScan file (tst_source.py grep \"assport\": no match in the wrapper and the block; list Passport: none). React follows DEV and navigates to /UBTConnect/PassportScan, a route the app does not register (board: skip V8).",
+   "verified": "live",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-A004",
@@ -53,11 +54,12 @@
    "react": "app/src/pages/OrbitLanding/OrbitLandingPage.tsx:49: if (!hasOrbitAccess) { noAccess(false); return; } (flag mobileOrbitAccess)",
    "evidence": "pack screens.md OrbitLanding",
    "tst": "absent",
-   "verdict": "partial",
-   "note": "Action absent in TST wrapper (see previous row). | F3: DEV-only element (DEV dump 2026-10-27); TST has no NavigateTo_PassportScan, no control and no PassportScan file (tst_source.py grep \"assport\": no match in the wrapper and the block; list Passport: none). React follows DEV and navigates to /UBTConnect/PassportScan, a route the app does not register (board: skip V8).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Finding withdrawn 2026-10-28: the live TST block (runtime-sources, fetched 2026-10-28) has OnHandle_ViewPassportDetails and the TST capture DOM shows the control; the survey copy of 2026-10-13 was stale. The React control stays. Built 2026-10-27 (builds/B10-misc.md). Action absent in TST wrapper (see previous row). | F3: DEV-only element (DEV dump 2026-10-27); TST has no NavigateTo_PassportScan, no control and no PassportScan file (tst_source.py grep \"assport\": no match in the wrapper and the block; list Passport: none). React follows DEV and navigates to /UBTConnect/PassportScan, a route the app does not register (board: skip V8).",
+   "verified": "live",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-A005",
@@ -68,11 +70,12 @@
    "react": "app/src/pages/OrbitLanding/OrbitLandingPage.tsx:53: navigate('/UBTConnect/PassportScan', { LoginMemberId: loginMemberId, TargetId: targetId })",
    "evidence": "pack screens.md OrbitLanding",
    "tst": "absent",
-   "verdict": "partial",
-   "note": "F3: DEV-only element (DEV dump 2026-10-27); TST has no NavigateTo_PassportScan, no control and no PassportScan file (tst_source.py grep \"assport\": no match in the wrapper and the block; list Passport: none). React follows DEV and navigates to /UBTConnect/PassportScan, a route the app does not register (board: skip V8).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Finding withdrawn 2026-10-28: the live TST block (runtime-sources, fetched 2026-10-28) has OnHandle_ViewPassportDetails and the TST capture DOM shows the control; the survey copy of 2026-10-13 was stale. The React control stays. Built 2026-10-27 (builds/B10-misc.md). F3: DEV-only element (DEV dump 2026-10-27); TST has no NavigateTo_PassportScan, no control and no PassportScan file (tst_source.py grep \"assport\": no match in the wrapper and the block; list Passport: none). React follows DEV and navigates to /UBTConnect/PassportScan, a route the app does not register (board: skip V8).",
+   "verified": "live",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-A006",
@@ -83,11 +86,12 @@
    "react": "app/src/pages/OrbitLanding/OrbitLandingPage.tsx:50-51: noAccess(false) -> navigate('/UBTConnect/HomeFeed', {})",
    "evidence": "pack screens.md OrbitLanding",
    "tst": "absent",
-   "verdict": "partial",
-   "note": "F3: DEV-only element (DEV dump 2026-10-27); TST has no NavigateTo_PassportScan, no control and no PassportScan file (tst_source.py grep \"assport\": no match in the wrapper and the block; list Passport: none). React follows DEV and navigates to /UBTConnect/PassportScan, a route the app does not register (board: skip V8).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Finding withdrawn 2026-10-28: the live TST block (runtime-sources, fetched 2026-10-28) has OnHandle_ViewPassportDetails and the TST capture DOM shows the control; the survey copy of 2026-10-13 was stale. The React control stays. Built 2026-10-27 (builds/B10-misc.md). F3: DEV-only element (DEV dump 2026-10-27); TST has no NavigateTo_PassportScan, no control and no PassportScan file (tst_source.py grep \"assport\": no match in the wrapper and the block; list Passport: none). React follows DEV and navigates to /UBTConnect/PassportScan, a route the app does not register (board: skip V8).",
+   "verified": "live",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-A007",
@@ -711,11 +715,12 @@
    "react": "app/src/pages/OrbitLanding/components/OrbitLandingView.tsx:164-169 className=\"orbit-landing-passport-cont\" ... orbit-icon-passport; hook useOrbitLanding.ts:184-188 (canViewPassportDetails: not fetching and currentMemberId set)",
    "evidence": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding.mvc.js:grep passport",
    "tst": "absent",
-   "verdict": "partial",
-   "note": "DEV != TST for the control: present in React and the DEV pack, absent in the TST compiled block. | F3: DEV-only element (DEV dump 2026-10-27); TST has no NavigateTo_PassportScan, no control and no PassportScan file (tst_source.py grep \"assport\": no match in the wrapper and the block; list Passport: none). React follows DEV and navigates to /UBTConnect/PassportScan, a route the app does not register (board: skip V8).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Finding withdrawn 2026-10-28: the live TST block (runtime-sources, fetched 2026-10-28) has OnHandle_ViewPassportDetails and the TST capture DOM shows the control; the survey copy of 2026-10-13 was stale. The React control stays. Built 2026-10-27 (builds/B10-misc.md). DEV != TST for the control: present in React and the DEV pack, absent in the TST compiled block. | F3: DEV-only element (DEV dump 2026-10-27); TST has no NavigateTo_PassportScan, no control and no PassportScan file (tst_source.py grep \"assport\": no match in the wrapper and the block; list Passport: none). React follows DEV and navigates to /UBTConnect/PassportScan, a route the app does not register (board: skip V8).",
+   "verified": "live",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-A055",
@@ -2290,11 +2295,12 @@
    "react": "not found. searched: ContactByEmailOrbitHost, onNavigateToContactHostByEmail, GetNameAndSurname in app/src/pages/MilestoneDetail (MilestoneDetailPage.tsx:54 comment: raised only by the meal blocks, which are not built (Q5))",
    "evidence": "UBTConnect.Legacy_OrbitEventsFlow.MilestoneDetail.mvc.js:407-452",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Action absent in React because the meal blocks that raise it are not built. Not access-checked in TST (no GetHasOrbitAccess call in :407-452). | F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted). The wrapper action and the ContactByEmailOrbitHost navigation are absent in React (MilestoneDetailPage.tsx:54).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B3-milestones.md). Action absent in React because the meal blocks that raise it are not built. Not access-checked in TST (no GetHasOrbitAccess call in :407-452). | F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted). The wrapper action and the ContactByEmailOrbitHost navigation are absent in React (MilestoneDetailPage.tsx:54).",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-A176",
@@ -2385,11 +2391,12 @@
    "react": "app/src/pages/MilestoneDetail/components/MilestoneWrapperView.tsx:75-86 (accommodationHost renders the block; other types render <NotCaptured>)",
    "evidence": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js:255-257,384-385,498,609-611,738-739,866",
    "tst": "present",
-   "verdict": "partial",
-   "note": "DEV pack lists no sub-block (pack gap). TST sub-blocks exist: Orbit_ScreenBlocks.ScreenBlock_MealGuest (152671 B), _MealHost (118592), _MealHelper (166413), _AccommodationGuest (147404), _AccommodationHost (163333), _AccommodationHelper (164417). Not read here. React builds only AccommodationHost; MilestoneWrapperView.tsx:40 says the other blocks render NotCaptured (Q5). | F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B3-milestones.md). DEV pack lists no sub-block (pack gap). TST sub-blocks exist: Orbit_ScreenBlocks.ScreenBlock_MealGuest (152671 B), _MealHost (118592), _MealHelper (166413), _AccommodationGuest (147404), _AccommodationHost (163333), _AccommodationHelper (164417). Not read here. React builds only AccommodationHost; MilestoneWrapperView.tsx:40 says the other blocks render NotCaptured (Q5). | F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted).",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-A183",
@@ -4380,11 +4387,12 @@
    "react": "not found (searched: StepProperties, stepProperties, TrySave, trySave in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B151",
@@ -4395,11 +4403,12 @@
    "react": "not found (searched: RoomNames, roomNames in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B152",
@@ -4410,11 +4419,12 @@
    "react": "app/src/pages/HostSurvey/hooks/hostSurveyState.ts:96  IsAddingHelper: false,",
    "evidence": "app/src/pages/HostSurvey/hooks/hostSurveyState.ts:96",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Hit is a constant sent in hostSurveyCallInputs (hostSurveyState.ts:94-110), not a state variable or a flow. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Hit is a constant sent in hostSurveyCallInputs (hostSurveyState.ts:94-110), not a state variable or a flow. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B153",
@@ -4425,11 +4435,12 @@
    "react": "not found (searched: PopUpInfo, popUpInfo, IsShowPopup in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B154",
@@ -4440,11 +4451,12 @@
    "react": "app/src/pages/HostSurvey/hooks/hostSurveyState.ts:97  PositionToDelete: 0,",
    "evidence": "app/src/pages/HostSurvey/hooks/hostSurveyState.ts:97",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Hit is a constant sent in hostSurveyCallInputs (hostSurveyState.ts:94-110), not a state variable or a flow. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Hit is a constant sent in hostSurveyCallInputs (hostSurveyState.ts:94-110), not a state variable or a flow. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B155",
@@ -4455,11 +4467,12 @@
    "react": "app/src/pages/HostSurvey/hooks/hostSurveyState.ts:98  SurveyDiscarded: false,",
    "evidence": "app/src/pages/HostSurvey/hooks/hostSurveyState.ts:98",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Hit is a constant sent in hostSurveyCallInputs (hostSurveyState.ts:94-110), not a state variable or a flow. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Hit is a constant sent in hostSurveyCallInputs (hostSurveyState.ts:94-110), not a state variable or a flow. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B156",
@@ -4470,11 +4483,12 @@
    "react": "app/src/pages/HostSurvey/hooks/hostSurveyState.ts:99  SurveySubmitted: false,",
    "evidence": "app/src/pages/HostSurvey/hooks/hostSurveyState.ts:99",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Hit is a constant sent in hostSurveyCallInputs (hostSurveyState.ts:94-110), not a state variable or a flow. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Hit is a constant sent in hostSurveyCallInputs (hostSurveyState.ts:94-110), not a state variable or a flow. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B157",
@@ -4511,11 +4525,12 @@
    "react": "not found (searched: FilteredHelperRoles, filteredHelperRoles in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B160",
@@ -4526,11 +4541,12 @@
    "react": "app/src/pages/HostSurvey/hooks/hostSurveyState.ts:102  IsPostingSurvey: false,",
    "evidence": "app/src/pages/HostSurvey/hooks/hostSurveyState.ts:102",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Hit is a constant sent in hostSurveyCallInputs (hostSurveyState.ts:94-110), not a state variable or a flow. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Hit is a constant sent in hostSurveyCallInputs (hostSurveyState.ts:94-110), not a state variable or a flow. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B161",
@@ -4554,11 +4570,12 @@
    "react": "not found (searched: GetLocalBedSizes, getLocalBedSizes, getLocalBedSizes in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B163",
@@ -4582,11 +4599,12 @@
    "react": "not found (searched: GetLocalHelperStatus, getLocalHelperStatus, getLocalHelperStatus in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B165",
@@ -4597,11 +4615,12 @@
    "react": "not found (searched: GetLocalVehicleOwners, getLocalVehicleOwners, getLocalVehicleOwners in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B166",
@@ -4612,11 +4631,12 @@
    "react": "not found (searched: GetLocalMealTypes, getLocalMealTypes, getLocalMealTypes in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B167",
@@ -4640,11 +4660,12 @@
    "react": "not found (searched: GetLocalHelperRoles, getLocalHelperRoles, getLocalHelperRoles in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B169",
@@ -4655,11 +4676,12 @@
    "react": "not found (searched: GetLocalVehicleTypes, getLocalVehicleTypes, getLocalVehicleTypes in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Search in pages/HostSurvey only; the React page reads local entities through platform/storage/localEntities. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B170",
@@ -4696,11 +4718,12 @@
    "react": "not found in hooks or components (searched: postHostSurvey, PostHostSurvey in app/src/pages/HostSurvey/hooks, components); only the mock handler exists: app/src/pages/HostSurvey/mocks.ts:125-128",
    "evidence": "app/src/pages/HostSurvey/mocks.ts:125-128",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Mock handler exists (mocks.ts:125-128); no UI call in React. Production needs ActionPostHostSurvey. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Mock handler exists (mocks.ts:125-128); no UI call in React. Production needs ActionPostHostSurvey. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B173",
@@ -4711,11 +4734,12 @@
    "react": "not found (searched: BlankStepProperties, StepProperties, TrySave in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "partial",
-   "note": "Restored check and IsFetchingData=True exist at useHostSurvey.ts:95-96; the step properties reset not found. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Restored check and IsFetchingData=True exist at useHostSurvey.ts:95-96; the step properties reset not found. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B174",
@@ -4765,11 +4789,12 @@
    "react": "app/src/pages/HostSurvey/hooks/useHostSurvey.ts:90  dispatch({ type: 'surveyStepsRead', steps: getLocalHostSurveySteps(hostSurveyStepFilter(latest.current)) });",
    "evidence": "app/src/pages/HostSurvey/hooks/useHostSurvey.ts:90",
    "tst": "present",
-   "verdict": "partial",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B178",
@@ -4780,11 +4805,12 @@
    "react": "app/src/pages/HostSurvey/components/HostSurveyView.tsx:214  ) : s.hasDataSteps || s.isConfirmedSurvey ? (",
    "evidence": "app/src/pages/HostSurvey/components/HostSurveyView.tsx:214",
    "tst": "present",
-   "verdict": "partial",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B179",
@@ -4795,11 +4821,12 @@
    "react": "not found (searched: getLocalBedSizes, getLocalMealTypes, getLocalHelperStatus, getLocalHelperRoles, getLocalVehicleOwners, getLocalVehicleTypes in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "partial",
-   "note": "React reads only floors and gender preferences (useHostSurvey.ts:122-123). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). React reads only floors and gender preferences (useHostSurvey.ts:122-123). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B180",
@@ -4810,11 +4837,12 @@
    "react": "not found (searched: filteredHelperRoles, EditableRoles in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B181",
@@ -4825,11 +4853,12 @@
    "react": "app/src/pages/HostSurvey/hooks/useHostSurvey.ts:125  dispatch({ type: 'stepSelected', hostSurveyStepId });",
    "evidence": "app/src/pages/HostSurvey/hooks/useHostSurvey.ts:125",
    "tst": "present",
-   "verdict": "missing",
-   "note": "React dispatches stepSelected from the summary Edit link (useHostSurvey.ts:124-126); the confirmed guard is in the view (HostSurveyView comment) - not quoted. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). React dispatches stepSelected from the summary Edit link (useHostSurvey.ts:124-126); the confirmed guard is in the view (HostSurveyView comment) - not quoted. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B182",
@@ -4840,11 +4869,12 @@
    "react": "not found (searched: Survey_Next, surveyNext, nextStep in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B183",
@@ -4855,11 +4885,12 @@
    "react": "not found (searched: SetStepData, setStepData in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B184",
@@ -4870,11 +4901,12 @@
    "react": "not found (searched: ValidateStepEdit, validateStepEdit in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B185",
@@ -4885,11 +4917,12 @@
    "react": "not found (searched: handlePrimary, onPrimaryButton, OnHandle_PrimaryButton in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B186",
@@ -4900,11 +4933,12 @@
    "react": "not found (searched: OnHandle_SecondaryButton, onSecondaryButton in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B187",
@@ -4915,11 +4949,12 @@
    "react": "not found (searched: OnHandle_PopUp_Primary, onPopUpPrimary in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B188",
@@ -4930,11 +4965,12 @@
    "react": "not found (searched: OnHandle_PopUp_Secondary, onPopUpSecondary in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B189",
@@ -4945,11 +4981,12 @@
    "react": "not found (searched: OnHandle_PopUp_Close, popUpClose in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B190",
@@ -4960,11 +4997,12 @@
    "react": "not found (searched: OnHandle_EditItem, onEditItem in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B191",
@@ -4975,11 +5013,12 @@
    "react": "not found (searched: OnHandle_DeleteItem, onDeleteItem in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B192",
@@ -4990,11 +5029,12 @@
    "react": "not found (searched: deleteItem, DeleteItem in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B193",
@@ -5005,11 +5045,12 @@
    "react": "not found (searched: OnHandle_DeleteSearchHelper in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B194",
@@ -5020,11 +5061,12 @@
    "react": "not found (searched: ResetMealData, resetMealData in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B195",
@@ -5035,11 +5077,12 @@
    "react": "not found (searched: SaveMultipleMeals, saveMultipleMeals in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B196",
@@ -5050,11 +5093,12 @@
    "react": "not found (searched: SaveMultipleMeals_Failed, saveMultipleMealsFailed in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B197",
@@ -5065,11 +5109,12 @@
    "react": "not found (searched: Ensure you complete all required fields, focusOnFirstInvalidInput, FocusOnFirstInvalidInput in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B198",
@@ -5080,11 +5125,12 @@
    "react": "not found (searched: OnHandle_SaveItem, onSaveItem in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B199",
@@ -5095,11 +5141,12 @@
    "react": "not found (searched: OnHandle_AddHelpers, addHelpers in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B200",
@@ -5110,11 +5157,12 @@
    "react": "not found (searched: CancelEdit, cancelEdit in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B201",
@@ -5125,11 +5173,12 @@
    "react": "not found (searched: postHostSurvey, PostHostSurvey, isPostingSurvey in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B202",
@@ -5140,11 +5189,12 @@
    "react": "not found (searched: AddNewRoom, addNewRoom in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B203",
@@ -5155,11 +5205,12 @@
    "react": "not found (searched: AddNewVehicle, addNewVehicle in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B204",
@@ -5170,11 +5221,12 @@
    "react": "not found (searched: OnClick_AddItem, onClickAddItem in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Not implemented in React: HostSurveyView renders NotCaptured placeholders for the data steps (HostSurveyView.tsx:218, 228, 241); hook comment: \"not captured (HostSurvey Q2)\" (useHostSurvey.ts:54). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B205",
@@ -5198,11 +5250,12 @@
    "react": "app/src/pages/HostSurvey/components/HostSurveyView.tsx:269  <Orbit_ConfirmationPopUp_New id={`${prefix}-PopUp_ReturnBack`} inShowPopUp={false} />",
    "evidence": "app/src/pages/HostSurvey/hooks/useHostSurvey.ts:127-131",
    "tst": "present",
-   "verdict": "partial",
-   "note": "React hook comment: \"the popups of the data steps (ReturnNavigation, ReturnBack) are not captured (Q2)\" (useHostSurvey.ts:127-128). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). React hook comment: \"the popups of the data steps (ReturnNavigation, ReturnBack) are not captured (Q2)\" (useHostSurvey.ts:127-128). | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B207",
@@ -5213,11 +5266,12 @@
    "react": "not found (searched: Input_HostSurveyNote, maxLength={250}, Any additional details in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "MaxLength=250, Enabled=not IsConfirmedSurvey, Mandatory=not set",
-   "verdict": "missing",
-   "note": "Data-step form input; its inner block (Orbit_Blocks_HostSurvey_*) is not in the pack. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Data-step form input; its inner block (Orbit_Blocks_HostSurvey_*) is not in the pack. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B208",
@@ -5228,11 +5282,12 @@
    "react": "not found (searched: Input_AccommodationNote, maxLength={250} in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "MaxLength=250, Enabled=not IsConfirmedSurvey, Mandatory=not set",
-   "verdict": "missing",
-   "note": "Data-step form input; its inner block (Orbit_Blocks_HostSurvey_*) is not in the pack. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Data-step form input; its inner block (Orbit_Blocks_HostSurvey_*) is not in the pack. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B209",
@@ -5243,11 +5298,12 @@
    "react": "not found (searched: TextArea_MealNote, maxLength={250} in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "MaxLength=250, Enabled=not IsConfirmedSurvey, Mandatory=not set",
-   "verdict": "missing",
-   "note": "Data-step form input; its inner block (Orbit_Blocks_HostSurvey_*) is not in the pack. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Data-step form input; its inner block (Orbit_Blocks_HostSurvey_*) is not in the pack. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B210",
@@ -5258,11 +5314,12 @@
    "react": "not found (searched: Input_HelperNote, maxLength={250} in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "MaxLength=250, Enabled=not IsConfirmedSurvey, Mandatory=not set",
-   "verdict": "missing",
-   "note": "Data-step form input; its inner block (Orbit_Blocks_HostSurvey_*) is not in the pack. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Data-step form input; its inner block (Orbit_Blocks_HostSurvey_*) is not in the pack. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B211",
@@ -5273,11 +5330,12 @@
    "react": "app/src/pages/HostSurvey/hooks/hostSurveyState.ts:42  Vehicles: { HasVehicles: false, VehicleItemInfo: [] },",
    "evidence": "-",
    "tst": "Enabled=true",
-   "verdict": "missing",
-   "note": "HasVehicles only in the mock data. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). HasVehicles only in the mock data. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B212",
@@ -5288,11 +5346,12 @@
    "react": "not checked: no TST file read for the item blocks",
    "evidence": "-",
    "tst": "-",
-   "verdict": "missing",
-   "note": "Pack gap: the item blocks are not in references.md for this flow; judge may open `tst_source.py list Orbit_Blocks`. One row per field is not possible from the pack. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). Pack gap: the item blocks are not in references.md for this flow; judge may open `tst_source.py list Orbit_Blocks`. One row per field is not possible from the pack. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B213",
@@ -5303,11 +5362,12 @@
    "react": "not found (searched: Ensure you complete all required fields in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B214",
@@ -5383,11 +5443,12 @@
    "react": "app/src/pages/HostSurvey/components/HostSurveyView.tsx:21  import { Orbit_ConfirmationPopUp_New } from './Orbit_ConfirmationPopUp_New';",
    "evidence": "app/src/pages/HostSurvey/components/HostSurveyView.tsx:241",
    "tst": "present",
-   "verdict": "missing",
-   "note": "React shows NotCaptured for the footer (View.tsx:241); the popups are closed instances (View comment :52). Button texts \"Back\", \"Cancel\", \"Discard Survey\", \"Continue Host Survey\" are not in React. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). React shows NotCaptured for the footer (View.tsx:241); the popups are closed instances (View comment :52). Button texts \"Back\", \"Cancel\", \"Discard Survey\", \"Continue Host Survey\" are not in React. | F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B220",
@@ -5411,11 +5472,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B222",
@@ -5426,11 +5488,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B223",
@@ -5441,11 +5504,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B224",
@@ -5456,11 +5520,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B225",
@@ -5471,11 +5536,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B226",
@@ -5486,11 +5552,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B227",
@@ -5501,11 +5568,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B228",
@@ -5516,11 +5584,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B229",
@@ -5531,11 +5600,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B230",
@@ -5546,11 +5616,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B231",
@@ -5561,11 +5632,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B232",
@@ -5576,11 +5648,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B233",
@@ -5591,11 +5664,12 @@
    "react": "not found (searched: exact text in app/src/pages/HostSurvey)",
    "evidence": "-",
    "tst": "present",
-   "verdict": "missing",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic.",
+   "verified": "code",
    "severity": "blocker",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-B234",
@@ -5631,11 +5705,12 @@
    "os": "type MealGuest -> Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealGuest (152671 B on TST) with the 6 inputs and 4 events",
    "react": "MilestoneWrapperView.tsx:80-82: <NotCaptured name=\"ScreenBlock_MilestoneWrapper: milestone type ... (Q5)\" />",
    "evidence": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js:258 show; tst_source.py list ScreenBlock_MealGuest",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "severity": "blocker",
    "finding": "F2",
-   "note": "F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted)."
+   "note": "Built 2026-10-27 (builds/B3-milestones.md). F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted).",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-J002",
@@ -5645,11 +5720,12 @@
    "os": "type MealHost -> Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealHost (118592 B on TST) with the 6 inputs and 4 events",
    "react": "MilestoneWrapperView.tsx:80-82: <NotCaptured name=\"ScreenBlock_MilestoneWrapper: milestone type ... (Q5)\" />",
    "evidence": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js:386 show; tst_source.py list ScreenBlock_MealHost",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "severity": "blocker",
    "finding": "F2",
-   "note": "F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted)."
+   "note": "Built 2026-10-27 (builds/B3-milestones.md). F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted).",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-J003",
@@ -5659,11 +5735,12 @@
    "os": "type MealHelper -> Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MealHelper (166413 B on TST) with the 6 inputs and 4 events",
    "react": "MilestoneWrapperView.tsx:80-82: <NotCaptured name=\"ScreenBlock_MilestoneWrapper: milestone type ... (Q5)\" />",
    "evidence": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js:500 show; tst_source.py list ScreenBlock_MealHelper",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "severity": "blocker",
    "finding": "F2",
-   "note": "F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted)."
+   "note": "Built 2026-10-27 (builds/B3-milestones.md). F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted).",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-J004",
@@ -5673,11 +5750,12 @@
    "os": "type AccommodationGuest -> Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationGuest (147404 B on TST) with the 6 inputs and 4 events",
    "react": "MilestoneWrapperView.tsx:80-82: <NotCaptured name=\"ScreenBlock_MilestoneWrapper: milestone type ... (Q5)\" />",
    "evidence": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js:611 show; tst_source.py list ScreenBlock_AccommodationGuest",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "severity": "blocker",
    "finding": "F2",
-   "note": "F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted)."
+   "note": "Built 2026-10-27 (builds/B3-milestones.md). F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted).",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-J005",
@@ -5687,11 +5765,12 @@
    "os": "type AccommodationHelper -> Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_AccommodationHelper (164417 B on TST) with the 6 inputs and 4 events",
    "react": "MilestoneWrapperView.tsx:80-82: <NotCaptured name=\"ScreenBlock_MilestoneWrapper: milestone type ... (Q5)\" />",
    "evidence": "Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_MilestoneWrapper.mvc.js:868 show; tst_source.py list ScreenBlock_AccommodationHelper",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "severity": "blocker",
    "finding": "F2",
-   "note": "F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted)."
+   "note": "Built 2026-10-27 (builds/B3-milestones.md). F2: React builds ScreenBlock_AccommodationHost only; the other 5 sub-blocks render <NotCaptured> (MilestoneWrapperView.tsx:80-82). Origin: auto-decisions-2026-10-16.md:60 (MilestoneDetail Q5, auto-accepted).",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-J006",
@@ -5798,11 +5877,12 @@
    "os": "Orbit_Blocks.HostSurvey_AccommodationItem (138268 B), _MealItem (58333), _HelperItem (48641), _VehicleItem (66112), _AddHelper (112939), _StepHeader, _NavigationItem, _TopMessage, _AdminNotes, _Item, _PillItem, _AccommodationPills, _MealPills, _HelperPills, _VehiclePills (tst_source.py list HostSurvey)",
    "react": "not built: the data steps and the step header render <NotCaptured> (HostSurveyView.tsx:218, 228); HelperPills and VehiclePills of the summary too (:199-200)",
    "evidence": "tst_source.py list HostSurvey; app/src/pages/HostSurvey/components/HostSurveyView.tsx:199-200,218,228",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "severity": "blocker",
    "finding": "F1",
-   "note": "F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic. The item blocks exist on TST (not in the pack); their inputs and validations are read when the wizard is built."
+   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic. The item blocks exist on TST (not in the pack); their inputs and validations are read when the wizard is built.",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitEventsFlow-J015",

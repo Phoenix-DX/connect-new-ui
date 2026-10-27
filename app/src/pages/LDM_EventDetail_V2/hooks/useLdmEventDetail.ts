@@ -3,11 +3,16 @@ import { fetchCoordinatorDetails, fetchEventByEventId, type DetailGuestItem } fr
 import { fetchHouseholdCoordinatesById } from '@/api/household';
 import { osImage } from '@/lib/os-assets';
 import { UserException, exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
+import {
+  carouselFilteredEventResults,
+  isFreeSubscriptionPlan,
+  isRegionalSubscriptionPlan,
+} from '@/pages/LDM_EventDetail_V2/components/actions';
 import type { LdmEventDetailInputs } from '@/pages/LDM_EventDetail_V2/inputs';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { setPreloadObject, useFlowState, type IsAlive } from '@/platform/navigation';
 import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/lib/orbit/actions';
 import { getOperatingSystem } from '@/lib/ubtConnectUtils/actions';
 import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
@@ -62,8 +67,8 @@ export interface LdmEventDetailFlows {
   onContactHostCall: () => void;
   /** Address of EventDetail_HostCard: OnHandle_HostCardAddress. */
   onHostAddress: () => void;
-  /** Clicked of EventDetail_ListItem: OnHandle_GoToHousehold. */
-  onGuestClicked: (guest: DetailGuestItem, isHouseholdDisplayed: boolean) => void;
+  /** Clicked of EventDetail_ListItem: OnHandle_GoToHousehold (the row number of the guest in the list). */
+  onGuestClicked: (guest: DetailGuestItem, isHouseholdDisplayed: boolean, currentRowNumber: number) => void;
   /** OnClick_Message of EventDetail_ListItem: OnHandle_ContactByMessage (not the coordinator). */
   onGuestMessage: (data: UI_ContactByMessage_WrapperData) => void;
   /** OnClick_PhoneCall of EventDetail_ListItem: OnHandle_ContactByPhone. */
@@ -170,16 +175,33 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
     else eventsRef.current.onNavigateToHouseholdDetail(host.HouseholderID);
   };
 
-  /** OnHandle_GoToHousehold: a displayed household: disabled record → App_Subscription_ShowUpgradePopUp; else
-      AddAuditEventDetailEvent (HostClickedGuestHousehold / GuestClickedOtherGuestHousehold) and
-      NavigateTo_HouseholdCarousel with every guest's HouseholderID (CarouselFilteredEventResults only lowers the row
-      number, which the screen does not use). */
-  const goToHousehold = async (householdId: string, recordDisabled: boolean, isHouseholdDisplayed: boolean) => {
+  /** OnHandle_GoToHousehold (ScreenBlock_EventDetail_V2.mvc.js :1505-1595): a displayed household: disabled record →
+      App_Subscription_ShowUpgradePopUp. Else IsFreeSubscriptionPlan, IsRegionalSubscriptionPlan and
+      CarouselFilteredEventResults(the guests, free or regional, the row number): the carousel list of the guests with
+      HouseholdDisplay (and without RecordDisabled under a free or regional plan) goes to SetPreloadObject, and the row
+      number goes down by the guests it leaves out before the row. Then AddAuditEventDetailEvent
+      (HostClickedGuestHousehold / GuestClickedOtherGuestHousehold) and NavigateTo_HouseholdCarousel with every guest's
+      HouseholderID. The event's other arguments (the list length, the row number, IsLimitedLDMHost) are not read by the
+      screen (LDM_EventDetail_V2.mvc.js :212-219), so they are not passed. */
+  const goToHousehold = async (
+    householdId: string,
+    recordDisabled: boolean,
+    isHouseholdDisplayed: boolean,
+    currentRowNumber: number,
+  ) => {
     if (!isHouseholdDisplayed) return;
     if (recordDisabled) {
       await showUpgradePopUp();
       return;
     }
+    const isFree = await isFreeSubscriptionPlan();
+    const isRegional = await isRegionalSubscriptionPlan();
+    const filtered = carouselFilteredEventResults(
+      latest.current.event?.Guests ?? [],
+      isFree || isRegional,
+      currentRowNumber,
+    );
+    if (filtered.preloading) setPreloadObject(filtered.preloading);
     const hosting = latest.current.event?.Host.Hosting ?? false;
     addAuditEvent_LDM(hosting ? 'HostClickedGuestHousehold' : 'GuestClickedOtherGuestHousehold', {
       HouseholdId: householdId,
@@ -248,8 +270,10 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
     onHostAddress: () => {
       hostCardAddress().catch(raiseToFlowHandler);
     },
-    onGuestClicked: (guest, isHouseholdDisplayed) => {
-      goToHousehold(guest.HouseholderID, guest.RecordDisabled, isHouseholdDisplayed).catch(raiseToFlowHandler);
+    onGuestClicked: (guest, isHouseholdDisplayed, currentRowNumber) => {
+      goToHousehold(guest.HouseholderID, guest.RecordDisabled, isHouseholdDisplayed, currentRowNumber).catch(
+        raiseToFlowHandler,
+      );
     },
     onGuestMessage: (data) => {
       contactByMessage(data, false);

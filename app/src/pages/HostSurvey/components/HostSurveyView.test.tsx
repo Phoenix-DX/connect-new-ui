@@ -13,7 +13,7 @@ import { freshPage } from '@/test/testSupport';
 import { HostSurveyView, type HostSurveyViewProps } from './HostSurveyView';
 
 /* The view of ScreenBlock_HostSurvey with fixed props: the skeleton, the statuses, the summary of a confirmed survey
-   and of a survey to answer, and the data steps (not captured). Fictional household in Tandil. */
+   and of a survey to answer, and the data steps (built from the TST code). Fictional household in Tandil. */
 
 const PATH = '/UBTConnect/HostSurvey';
 const INPUTS: HostSurveyInputs = {
@@ -118,7 +118,28 @@ function renderView(patch: Partial<HostSurveyViewProps> = {}) {
     state: CONFIRMED_STATE,
     houseFloors: FLOORS,
     genderPreferences: GENDERS,
+    bedSizes: [],
+    mealTypes: [],
+    helperStatus: [],
+    helperRoles: [],
+    vehicleOwners: [],
+    vehicleTypes: [],
     onEditStep,
+    onPrimaryButton: vi.fn(),
+    onSecondaryButton: vi.fn(),
+    onPopUpPrimary: vi.fn(),
+    onPopUpSecondary: vi.fn(),
+    onPopUpClose: vi.fn(),
+    onEditItem: vi.fn(),
+    onDeleteItem: vi.fn(),
+    onDeleteSearchHelper: vi.fn(),
+    onSaveItem: vi.fn(),
+    onSaveFailed: vi.fn(),
+    onMealDataReset: vi.fn(),
+    onAddHelpers: vi.fn(),
+    onAddItem: vi.fn(),
+    onNoteChange: vi.fn(),
+    onHasVehiclesChange: vi.fn(),
     backNavigationHandler: <div id="b2-$b43" />,
     ...patch,
   };
@@ -206,7 +227,7 @@ describe('HostSurveyView', () => {
     expect(container.textContent).toContain('There is no setup for this household yet.');
   });
 
-  it('a summary to submit: "Ready to Submit", the review message and the Edit links', () => {
+  it('a summary to submit: "Ready to Submit", the review message, the Edit links and the footer', () => {
     const { container } = renderView({
       state: {
         ...CONFIRMED_STATE,
@@ -220,11 +241,15 @@ describe('HostSurveyView', () => {
     expect(editLinks()).toHaveLength(2);
     fireEvent.click(editLinks()[1]?.parentElement as Element);
     expect(onEditStep).toHaveBeenCalledWith(HostSurveyStep.meal);
-    expect(notCaptured()).toEqual(['HostSurvey footer Orbit_FooterWithActions (HS view :3320-3465, Q2)']);
+    // HS view :3320-3465: Back / Submit on the summary.
+    expect(text('.orbit-footer-with-buttons-btn-left')).toBe('Back');
+    expect(text('.orbit-footer-with-buttons-btn-right')).toBe('Submit');
+    expect(notCaptured()).toEqual([]);
   });
 
-  it('a data step is not captured: its step header and its content are markers', () => {
-    const accommodation = step(HostSurveyStep.accommodation, true);
+  it('a data step: the step header "Step 1 of 4" with the Pending pill, the footer Cancel / Save while in edit', () => {
+    const accommodation = { ...step(HostSurveyStep.accommodation, true), HeaderLabel: 'Accommodation' };
+    const edit = { IsEdit: true, TrySave: false, HasData: true };
     renderView({
       state: {
         ...CONFIRMED_STATE,
@@ -232,13 +257,84 @@ describe('HostSurveyView', () => {
         hasDataSteps: true,
         currentStatus: INITIAL_HOST_SURVEY_STATE.currentStatus,
         currentStep: { step: accommodation, rowNumber: 1 },
+        steps: [
+          step(HostSurveyStep.navigation, false),
+          accommodation,
+          step(2, true),
+          step(6, true),
+          step(1, true),
+          SUMMARY,
+        ],
+        stepProperties: { ...INITIAL_HOST_SURVEY_STATE.stepProperties, Accommodation: edit },
       },
     });
-    expect(notCaptured()).toEqual([
-      'HostSurvey_StepHeader (HS view :516-540, Q2)',
-      'HostSurvey data step 5 (HS view :574-1936, Q2)',
-      'HostSurvey footer Orbit_FooterWithActions (HS view :3320-3465, Q2)',
-    ]);
+    expect(text('[data-block="Orbit_Blocks.HostSurvey_StepHeader"] .bold')).toBe('Step 1 of 4');
+    expect(text('[data-block="Orbit_Blocks.HostSurvey_StepHeader"]')).toContain('Accommodation');
+    expect(text('[data-block="Orbit_Blocks.HostSurvey_PillItem"]')).toBe('Pending');
+    expect(text('.orbit-footer-with-buttons-btn-left')).toBe('Cancel');
+    expect(text('.orbit-footer-with-buttons-btn-right')).toBe('Save');
+    // The accommodation note: MaxLength 250, the hint of InputWithMaxChar.
+    const note = document.getElementById('b2-Input_AccommodationNote') as HTMLInputElement;
+    expect(note.maxLength).toBe(250);
+    expect(note.placeholder).toBe('Notes for Event Team');
+    expect(document.body.textContent).toContain('Max Characters: 250');
+    expect(notCaptured()).toEqual([]);
+  });
+
+  it('the footer raises the button events; an open popup shows its title, message and buttons', () => {
+    const onPrimaryButton = vi.fn();
+    const onSecondaryButton = vi.fn();
+    const onPopUpPrimary = vi.fn();
+    const onPopUpSecondary = vi.fn();
+    renderView({
+      onPrimaryButton,
+      onSecondaryButton,
+      onPopUpPrimary,
+      onPopUpSecondary,
+      state: {
+        ...CONFIRMED_STATE,
+        isConfirmedSurvey: false,
+        hasDataSteps: true,
+        currentStatus: INITIAL_HOST_SURVEY_STATE.currentStatus,
+        popUpInfo: {
+          ...INITIAL_HOST_SURVEY_STATE.popUpInfo,
+          Title: 'Return to the previous page?',
+          Message: 'Are you sure you want to return to the previous page?',
+          IsShowPopup_ReturnBack: true,
+        },
+      },
+    });
+    fireEvent.click(document.querySelector('.orbit-footer-with-buttons-btn-right') as Element);
+    fireEvent.click(document.querySelector('.orbit-footer-with-buttons-btn-left') as Element);
+    expect(onPrimaryButton).toHaveBeenCalledTimes(1);
+    expect(onSecondaryButton).toHaveBeenCalledTimes(1);
+    expect(text('.orbit-popup-new-title')).toBe('Return to the previous page?');
+    expect(text('.orbit-popup-new-action-btn-cancel')).toBe('Discard Survey');
+    expect(text('.orbit-popup-new-action-btn-proceed')).toBe('Yes');
+    fireEvent.click(document.querySelector('.orbit-popup-new-action-btn-proceed') as Element);
+    fireEvent.click(document.querySelector('.orbit-popup-new-action-btn-cancel') as Element);
+    expect(onPopUpPrimary).toHaveBeenCalledTimes(1);
+    expect(onPopUpSecondary).toHaveBeenCalledTimes(1);
+  });
+
+  it('the vehicle step: the HasVehicles switch; no vehicle list while it is off', () => {
+    const onHasVehiclesChange = vi.fn();
+    renderView({
+      onHasVehiclesChange,
+      state: {
+        ...CONFIRMED_STATE,
+        isConfirmedSurvey: false,
+        hasDataSteps: true,
+        currentStatus: INITIAL_HOST_SURVEY_STATE.currentStatus,
+        currentStep: { step: step(HostSurveyStep.vehicle, true), rowNumber: 4 },
+      },
+    });
+    expect(document.body.textContent).toContain(
+      'Do you, or your guests & helpers, have vehicles to help transport guests within the locality?',
+    );
+    expect(document.querySelector('.orbit-host-survey-vehicle .orbit-host-survey-list')).toBeNull();
+    fireEvent.click(document.getElementById('b2-Switch_HasVehicles') as Element);
+    expect(onHasVehiclesChange).toHaveBeenCalledWith(true);
   });
 
   it('a summary without rooms and meals, with a host note and the helper and vehicle sections', () => {
@@ -260,11 +356,10 @@ describe('HostSurveyView', () => {
     });
     expect(container.textContent).toContain('No room data added.');
     expect(container.textContent).toContain('No meal data added.');
+    expect(container.textContent).toContain('No helper data added.');
+    expect(container.textContent).toContain('No vehicle data added.');
     expect(container.textContent).toContain('Notes for Event Team');
     expect(container.textContent).toContain('Gate code 4410');
-    expect(notCaptured()).toEqual([
-      'HostSurvey summary: Helpers section (HS view :2407-2652, Q2)',
-      'HostSurvey summary: Vehicles section (HS view :2653-2854, Q2)',
-    ]);
+    expect(notCaptured()).toEqual([]);
   });
 });

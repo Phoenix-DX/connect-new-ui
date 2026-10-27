@@ -1,6 +1,15 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { getHostConfigByConfigId, setAdaptiveCardsRuntime } from '@/components/widgets/AdaptiveCardViewer';
+import type { AdaptiveCardInstance } from '@/components/widgets/AdaptiveCardViewer/runtime';
+import { CommunicationException } from '@/legacy/os/exceptions';
+import { showFeedbackMessage } from '@/platform/feedback';
 import { NotificationDetailBlock, type NotificationDetailBlockProps } from './NotificationDetailBlock';
+
+vi.mock('@/platform/feedback', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback')>()),
+  showFeedbackMessage: vi.fn(),
+}));
 
 /* The card of one message from props. Fictional texts. */
 function renderBlock(props: Partial<NotificationDetailBlockProps> = {}) {
@@ -14,6 +23,8 @@ function renderBlock(props: Partial<NotificationDetailBlockProps> = {}) {
       isUrgent={false}
       isAdaptiveCard={false}
       messageContent='<p>Practice starts at <a href="https://example.org/choir">7 pm</a>.</p>'
+      adaptiveCardContent=""
+      hostConfig={getHostConfigByConfigId(1)}
       dateTimeCreated="2026-10-14T10:20:00"
       showDetailsPlaceholder={false}
       forceNoIconBorder={false}
@@ -62,14 +73,44 @@ describe('NotificationDetailBlock', () => {
     expect(open).toHaveBeenCalledWith('https://example.org/choir', '_blank');
   });
 
-  it('shows the MessageDetails placeholder, the adaptive card marker and the action button placeholder', () => {
+  it('shows the MessageDetails placeholder, the adaptive card viewer and the action button placeholder', () => {
     renderBlock({ showDetailsPlaceholder: true, hasActionButton: true });
     expect(document.getElementById('b1-b4-MessageDetails')?.textContent).toBe('shared object');
     expect(document.getElementById('b1-b4-Placeholder_ActionButton')?.textContent).toBe('action button');
     expect(document.querySelector('.notification-detail-content')).toBeNull();
 
     renderBlock({ isAdaptiveCard: true });
-    expect(document.querySelector('[data-not-captured="Q1: Widgets.AdaptiveCardViewer (b1-b4-$b2)"]')).not.toBeNull();
+    expect(document.getElementById('b1-b4-$b2')?.dataset.block).toBe('Widgets.AdaptiveCardViewer');
+    expect(document.getElementById('b1-b4-b2-AdaptiveCardContainer')).not.toBeNull();
+  });
+
+  it('raises AdaptiveCardEventExecuted for a card action; a CommunicationException shows the connection message', async () => {
+    const cards: AdaptiveCardInstance[] = [];
+    class StubCard implements AdaptiveCardInstance {
+      onExecuteAction?: AdaptiveCardInstance['onExecuteAction'];
+      parse() {}
+      render() {
+        cards.push(this);
+        return document.createElement('div');
+      }
+    }
+    setAdaptiveCardsRuntime({
+      AdaptiveCard: StubCard,
+      HostConfig: class {
+        constructor(public config: unknown) {}
+      },
+      OpenUrlAction: class {
+        url = '';
+      },
+    });
+    const onAdaptiveCardEventExecuted = vi.fn().mockRejectedValueOnce(new CommunicationException('offline'));
+    renderBlock({ isAdaptiveCard: true, adaptiveCardContent: '{"type":"AdaptiveCard"}', onAdaptiveCardEventExecuted });
+    cards[0]?.onExecuteAction?.({ id: 'rsvp', data: { answer: 'yes' } });
+    await vi.waitFor(() => {
+      expect(showFeedbackMessage).toHaveBeenCalledWith('Please check your internet connection!', 0);
+    });
+    expect(onAdaptiveCardEventExecuted).toHaveBeenCalledWith('{"type":"AdaptiveCard"}', 'rsvp', '{"answer":"yes"}');
+    setAdaptiveCardsRuntime(null);
   });
 
   it('shows the summary when the message has one, in SummaryContainer with its inline style (mvc.js:405-432)', () => {

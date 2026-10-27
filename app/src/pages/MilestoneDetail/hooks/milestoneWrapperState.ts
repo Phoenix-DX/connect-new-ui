@@ -1,4 +1,5 @@
 import type { GmpMilestoneHost } from '@/api/event';
+import type { MilestoneBlockKind } from '@/api/event';
 import type { MilestoneDetailInputs } from '@/pages/MilestoneDetail/inputs';
 import { OrbitMilestoneType } from '@/lib/orbit/staticEntities';
 import type { AccommodationHostInputs } from './accommodationHostState';
@@ -70,19 +71,21 @@ export type MilestoneWrapperBody =
   | { kind: 'failed' }
   /** ScreenBlock_AccommodationHost with its inputs. */
   | { kind: 'accommodationHost'; inputs: AccommodationHostInputs }
-  /** A meal block or another accommodation block: not captured (Q5). */
-  | { kind: 'notCaptured'; milestoneTypeId: string }
+  /** ScreenBlock_MealGuest, _MealHost, _MealHelper, _AccommodationGuest or _AccommodationHelper with its inputs (the
+      same six inputs as ScreenBlock_AccommodationHost). */
+  | { kind: 'milestoneBlock'; block: MilestoneBlockKind; inputs: AccommodationHostInputs }
   /** Any other milestone type: nothing. */
   | { kind: 'none' };
 
-/** The milestone types whose blocks were not captured (Q5). */
-const NOT_CAPTURED_TYPES: readonly string[] = [
-  OrbitMilestoneType.MealGuest,
-  OrbitMilestoneType.MealHost,
-  OrbitMilestoneType.MealHelper,
-  OrbitMilestoneType.AccommodationGuest,
-  OrbitMilestoneType.AccommodationHelper,
-];
+/** The block of each of the five other milestone types (the meal group, then the accommodation group of the
+    compiled view, block:256-258 and :610-611; decision Q3 of Legacy_OrbitEventsFlow). */
+const MILESTONE_BLOCK_OF_TYPE: Readonly<Record<string, MilestoneBlockKind>> = {
+  [OrbitMilestoneType.MealGuest]: 'mealGuest',
+  [OrbitMilestoneType.MealHost]: 'mealHost',
+  [OrbitMilestoneType.MealHelper]: 'mealHelper',
+  [OrbitMilestoneType.AccommodationGuest]: 'accommodationGuest',
+  [OrbitMilestoneType.AccommodationHelper]: 'accommodationHelper',
+};
 
 /** The view of the block: from a notification, the skeleton while IsFetchingData and the Failed layout
     without Success; else the block of the milestone type (Response.MilestoneType from a notification, else
@@ -96,20 +99,19 @@ export function milestoneWrapperBody(
   if (inputs.In_FromNotification && state.isFetchingData) return { kind: 'skeleton' };
   if (inputs.In_FromNotification && !r.Status.Success) return { kind: 'failed' };
   const typeId = inputs.In_FromNotification ? r.MilestoneType : inputs.In_OrbitMilestoneTypeId;
-  if (typeId === OrbitMilestoneType.AccommodationHost) {
-    const fromAnswer = inputs.In_FromNotification && r.Status.Success;
-    return {
-      kind: 'accommodationHost',
-      inputs: {
-        In_OrbitMilestoneTypeId: fromAnswer ? r.MilestoneType : inputs.In_OrbitMilestoneTypeId,
-        In_MilestoneId: inputs.In_MilestoneId,
-        In_PreloadEventName: inputs.In_EventName,
-        In_PreloadMilestoneName: fromAnswer ? r.MilestoneTitle : inputs.In_MilestoneName,
-        In_HostId: fromAnswer ? r.HostId : inputs.In_HostId,
-        In_EventId: inputs.In_EventId,
-      },
-    };
-  }
-  if (NOT_CAPTURED_TYPES.includes(typeId)) return { kind: 'notCaptured', milestoneTypeId: typeId };
+  const fromAnswer = inputs.In_FromNotification && r.Status.Success;
+  /* The inputs of every child block: MilestoneType, HostId and MilestoneTitle of the answer from a notification with
+     Success, else the screen inputs. */
+  const childInputs: AccommodationHostInputs = {
+    In_OrbitMilestoneTypeId: fromAnswer ? r.MilestoneType : inputs.In_OrbitMilestoneTypeId,
+    In_MilestoneId: inputs.In_MilestoneId,
+    In_PreloadEventName: inputs.In_EventName,
+    In_PreloadMilestoneName: fromAnswer ? r.MilestoneTitle : inputs.In_MilestoneName,
+    In_HostId: fromAnswer ? r.HostId : inputs.In_HostId,
+    In_EventId: inputs.In_EventId,
+  };
+  if (typeId === OrbitMilestoneType.AccommodationHost) return { kind: 'accommodationHost', inputs: childInputs };
+  const block = MILESTONE_BLOCK_OF_TYPE[typeId];
+  if (block !== undefined) return { kind: 'milestoneBlock', block, inputs: childInputs };
   return { kind: 'none' };
 }

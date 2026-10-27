@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "e52861ec1203c240d02d",
+ "fingerprint": "1e9d943592670e0ff9e5",
  "options": {
   "text": true,
   "style": true,
@@ -27,11 +27,9 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T15:04:28.605Z",
+ "at": "2026-10-27T17:26:31.044Z",
  "counts": {},
  "exemptionsUsed": {
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 1,
-  "CAPTURE-SKELETON-SHIMMER-PHASE": 138,
   "ignoreSubtrees": 1
  },
  "pixel": {
@@ -39,7 +37,7 @@
   "maxCell": 0,
   "maxCellRatio": 0.03,
   "diffPixels": 0,
-  "comparedPixels": 328874,
+  "comparedPixels": 0,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -50,7 +48,7 @@
    390,
    844
   ],
-  "masks": 4,
+  "masks": 3,
   "hotspots": [],
   "diffPng": "migration/screens/SupperMeeting_Carousel/parity/loading.diff.png"
  },

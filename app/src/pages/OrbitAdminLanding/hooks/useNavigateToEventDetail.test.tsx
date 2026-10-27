@@ -1,23 +1,17 @@
 import { act, renderHook } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { fetchMilestoneScanFF } from '@/api/event';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { useOsNavigate } from '@/platform/navigation';
 import type { EventDetailTarget } from './adminLandingState';
 import { orbitAdminEventDetailParams, useNavigateToEventDetail, wireDateTimeParam } from './useNavigateToEventDetail';
 
-vi.mock('@/api/event', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/api/event')>()),
-  fetchMilestoneScanFF: vi.fn(),
-}));
 const navigate = vi.fn();
 vi.mock('@/platform/navigation', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/navigation')>()),
   useOsNavigate: vi.fn(() => navigate),
 }));
 
-/* OnHandle_NavigateToEventDetail of the screen, with GetMilestoneScanFF and the navigation replaced by spies. The
-   event is fictional. */
+/* OnHandle_NavigateToEventDetail of the screen, with the navigation replaced by a spy. The event is fictional. */
 const TARGET: EventDetailTarget = {
   eventId: '7301',
   eventName: 'Weekend Bible Conferences',
@@ -28,23 +22,16 @@ const TARGET: EventDetailTarget = {
 };
 
 const strictWrapper = ({ children }: { children: ReactNode }) => <StrictMode>{children}</StrictMode>;
-const settle = () =>
-  act(async () => {
-    await new Promise((resolve) => setTimeout(resolve, 0));
-  });
-
-beforeEach(() => {
-  vi.mocked(fetchMilestoneScanFF).mockResolvedValue(false);
-});
 afterEach(() => {
   vi.clearAllMocks();
 });
 
 describe('useNavigateToEventDetail', () => {
-  it('IsScanPerMilestone False: OrbitAdminEventDetail with the inputs in the order of the original', async () => {
+  it('opens OrbitAdminEventDetail with the inputs in the order of the original, without a server call (TST)', () => {
     const { result } = renderHook(() => useNavigateToEventDetail());
-    await act(() => result.current(TARGET));
-    expect(fetchMilestoneScanFF).toHaveBeenCalledTimes(1);
+    act(() => {
+      result.current(TARGET);
+    });
     expect(navigate).toHaveBeenCalledTimes(1);
     expect(navigate).toHaveBeenCalledWith('/UBTConnect/OrbitAdminEventDetail', {
       In_EventId: '7301',
@@ -65,36 +52,10 @@ describe('useNavigateToEventDetail', () => {
     ]);
   });
 
-  it('IsScanPerMilestone True: OrbitAdminMilestones with the EventId', async () => {
-    vi.mocked(fetchMilestoneScanFF).mockResolvedValueOnce(true);
-    const { result } = renderHook(() => useNavigateToEventDetail());
-    await act(() => result.current(TARGET));
-    expect(navigate).toHaveBeenCalledTimes(1);
-    expect(navigate).toHaveBeenCalledWith('/UBTConnect/OrbitAdminMilestones', { EventId: '7301' });
-  });
-
-  it('a failed GetMilestoneScanFF rejects and does not navigate', async () => {
-    const error = new Error('offline');
-    vi.mocked(fetchMilestoneScanFF).mockRejectedValueOnce(error);
-    const { result } = renderHook(() => useNavigateToEventDetail());
-    await expect(result.current(TARGET)).rejects.toBe(error);
-    expect(navigate).not.toHaveBeenCalled();
-  });
-
-  it('W23: after the unmount, the started handler still navigates, once', async () => {
-    let answer: (value: boolean) => void = () => undefined;
-    vi.mocked(fetchMilestoneScanFF).mockReturnValueOnce(
-      new Promise((resolve) => {
-        answer = resolve;
-      }),
-    );
+  it('W23: after the unmount, the handler still navigates, once', () => {
     const { result, unmount } = renderHook(() => useNavigateToEventDetail(), { wrapper: strictWrapper });
-    const running = result.current(TARGET);
     unmount();
-    answer(false);
-    await act(() => running);
-    await settle();
-    expect(fetchMilestoneScanFF).toHaveBeenCalledTimes(1);
+    result.current(TARGET);
     expect(navigate).toHaveBeenCalledTimes(1);
     expect(navigate.mock.calls[0]?.[0]).toBe('/UBTConnect/OrbitAdminEventDetail');
     expect(useOsNavigate).toHaveBeenCalled();

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import type { AccommodationData, HelperItem, RoomItem } from '@/api/event';
+import type { AccommodationData, RoomItem } from '@/api/event';
 import { ContactPopupByPhone } from '@/components/contact/ContactPopupByPhone';
 import type { ContactByPhonePopupData } from '@/components/contact/ContactPopupByPhone/types';
 import { MenuIcon } from '@/components/layout/MenuIcon';
@@ -13,16 +13,15 @@ import { OrbitSkeleton } from '@/components/orbit/OrbitSkeleton';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { OSList } from '@/components/ui/os/OSList';
 import {
-  getFormattedStringFromHelperType,
   getSkeletonLoadingIdFromMilestoneTypeId,
   type AccommodationHostInputs,
 } from '@/pages/MilestoneDetail/hooks/accommodationHostState';
 import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { getFormattedDateTimeById } from '@/lib/orbit/actions';
-import type { MemberInformation } from '@/lib/orbit/structures';
 import { styleFromCssText } from '@/lib/cssText';
 import { SectionExpandable } from '@/components/ui/legacy/SectionExpandable';
 import { DialogAccessRestrictedActionLegacy } from '@/platform/feedback/dialogs';
+import { HelpersAccordion, RoomInfoRow } from './milestoneBlockParts';
 
 /** Connect2_OrbitMobile_MUI.menuAction.auto: the MenuAction the block passes to MenuIcon__UpdatedOSUI. */
 const MENU_ACTION_AUTO = 'Auto';
@@ -111,103 +110,36 @@ export function AccommodationHostView(props: AccommodationHostViewProps) {
   /** The Helper/s accordion (with rooms, and in its own instance without rooms): per role its formatted name and
       member cards with the midday / evening meals. */
   const helpersAccordion = (accordion: string, item: string, card: string) => (
-    <OrbitAccordion
-      id={`${prefix}-$b${accordion}`}
-      inExtendedClass={noSpecialNeeds ? ' orbit-accordion-no-margin' : ''}
-    >
-      <SectionExpandable
-        id={`${prefix}-$b${item}`}
-        usePadding={false}
-        extendedClass="orbit-accordion-item"
-        title={<span data-expression="">Helper/s</span>}
-        content={
-          <OSList
-            className="list list-group orbit-household-list"
-            animateItems
-            disableVirtualization
-            source={a.Helpers}
-            keyOf={(h: HelperItem, i) => `${h.Role}-${String(i)}`}
-          >
-            {(h, i) => (
-              <div className="orbit-household-list-item" data-container="">
-                <div
-                  className="padding-x-m padding-bottom-base padding-top-xs font-size-1-1em text-neutral-6"
-                  data-container=""
-                >
-                  <span data-expression="">{getFormattedStringFromHelperType(h.Role)}</span>
-                </div>
-                <OSList
-                  className="list list-group orbit-member-list"
-                  animateItems
-                  disableVirtualization
-                  source={h.MemberInformation}
-                  keyOf={(mi: MemberInformation, k) => `${mi.MemberId ?? ''}-${String(k)}`}
-                >
-                  {(mi, k) => (
-                    <div className="orbit-member-list-item" data-container="">
-                      <MemberInformationCard
-                        id={`${prefix}-l${item}-15_${String(i)}-l${item}-19_${String(k)}-$b${card}`}
-                        inDisplayDot={false}
-                        inHouseholderId={mi.HouseholderId ?? ''}
-                        inMemberInformation={mi}
-                        isShowPersonalInfo
-                        getSignedImageURL={getSignedImageURL}
-                        onClickedPhone={onClickedMemberPhone}
-                        onClickedMember={onClickedMember}
-                        placeholderInfo={
-                          <>
-                            {(mi.MiddayMeal ?? '') !== '' && (
-                              <div className="full-width font-size-s text-neutral-6" data-container="">
-                                <span data-expression="">{`Midday Meal: ${mi.MiddayMeal ?? ''}`}</span>
-                              </div>
-                            )}
-                            {(mi.EveningMeal ?? '') !== '' && (
-                              <div className="full-width font-size-s text-neutral-6" data-container="">
-                                <span data-expression="">{`Evening Meal: ${mi.EveningMeal ?? ''}`}</span>
-                              </div>
-                            )}
-                          </>
-                        }
-                      />
-                    </div>
-                  )}
-                </OSList>
-              </div>
-            )}
-          </OSList>
-        }
-      />
-    </OrbitAccordion>
+    <HelpersAccordion
+      props={props}
+      helpers={a.Helpers}
+      aliases={{ accordion, item, card }}
+      accordionExtendedClass={noSpecialNeeds ? ' orbit-accordion-no-margin' : ''}
+      cardId={(i, k) => `${prefix}-l${item}-15_${String(i)}-l${item}-19_${String(k)}-$b${card}`}
+      card={() => ({ isShowPersonalInfo: true })}
+      info={(mi) => (
+        <>
+          {(mi.MiddayMeal ?? '') !== '' && (
+            <div className="full-width font-size-s text-neutral-6" data-container="">
+              <span data-expression="">{`Midday Meal: ${mi.MiddayMeal ?? ''}`}</span>
+            </div>
+          )}
+          {(mi.EveningMeal ?? '') !== '' && (
+            <div className="full-width font-size-s text-neutral-6" data-container="">
+              <span data-expression="">{`Evening Meal: ${mi.EveningMeal ?? ''}`}</span>
+            </div>
+          )}
+        </>
+      )}
+    />
   );
 
   /** One room: the room info row when a floor, type or beds is set, "Guest/s" and per household its
       member cards (Orbit admin tag, guest arrangements link). */
   const roomContent = (room: RoomItem, r: number) => {
-    const info = room.RoomInformation;
     return (
       <>
-        {(info.Floor !== '' || info.Type !== '' || (info.Beds !== '0' && info.Beds !== '')) && (
-          <div className="room-info-cont" data-container="">
-            <div className="flex-center-vertical justify-content-flex-start flex-direction-row" data-container="">
-              <i className="icon orbit-icon-home font-size-1-1em fa fa-flag fa-1x" data-icon="" />
-              <span className="margin-left-s" data-expression="">
-                {info.Floor}
-              </span>
-            </div>
-            <div className="flex-center-vertical justify-content-center flex-direction-row" data-container="">
-              <i className="icon orbit-icon-host-guest fa fa-flag fa-1x" data-icon="" />
-              <span className="margin-left-s" data-expression="">
-                {info.Type}
-              </span>
-            </div>
-            <div className="flex-center-vertical justify-content-flex-end flex-direction-row" data-container="">
-              <i className="icon orbit-icon-accommodation font-size-1-1em fa fa-flag fa-1x" data-icon="" />
-              <span className="margin-left-s" data-expression="">
-                {info.Beds === '' ? '0' : info.Beds}
-              </span>
-            </div>
-          </div>
-        )}
+        <RoomInfoRow info={room.RoomInformation} />
         <div className="padding-x-m padding-top-base font-size-1-1em text-neutral-6" data-container="">
           <span data-expression="">Guest/s</span>
         </div>

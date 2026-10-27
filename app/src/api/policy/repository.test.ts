@@ -7,8 +7,9 @@ import type { PendingPoliciesInputs } from './types';
 /* The MSW mocks of the test setup: AcceptPendingPolicies/mocks.ts answers two fictional Connect policies (7001 and
    7002) from an in-memory collection; ActionAcceptPolicies removes the accepted ids from it. The collection lives as
    long as this test file, so the tests run in order: read, then accept. */
+// The Connect_Applications identifiers are the TST GUID texts (pages/AcceptPendingPolicies/staticEntities.ts).
 const inputs: PendingPoliciesInputs = {
-  policyApplications: ['Connect_Applications.Connect', 'Connect_Applications.Directory'],
+  policyApplications: ['65d96f75-9f71-42aa-8447-fd622aa09e7e', 'd8997dfa-7ae3-4eb1-bb48-0a14e151034a'],
   country: 'NZ',
   contentBlockId: 'b1-Main',
 };
@@ -35,7 +36,7 @@ describe('policy repository', () => {
     ]);
     expect(bodies).toEqual([
       {
-        PolicyApplications: { List: ['Connect_Applications.Connect', 'Connect_Applications.Directory'] },
+        PolicyApplications: { List: ['65d96f75-9f71-42aa-8447-fd622aa09e7e', 'd8997dfa-7ae3-4eb1-bb48-0a14e151034a'] },
         Country: 'NZ',
         ContentBlockId: 'b1-Main',
         IsAllSelected: false,

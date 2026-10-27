@@ -47,3 +47,16 @@ export async function shareObject(inputs: ShareObjectCallInputs): Promise<ShareO
     await callAction('Connect2_LegacyShared', 'ActionShareObject', toShareObjectInputs(inputs)),
   );
 }
+
+/* ---- MessageDetail: Share_UI.ShareObjectDetail_ExtendedShare (Connect2_LegacyShared) ---- */
+
+import { toSharedObjectDetail } from './mapper';
+import type { SharedObjectDetail, SharedObjectDetailCallInputs } from './types';
+
+/** DataActionGetShare of ShareObjectDetail_ExtendedShare: the share of the block's ShareId. The block fetches it at
+    start and on each change of its inputs (OnParametersChanged). */
+export async function fetchSharedObjectDetail(inputs: SharedObjectDetailCallInputs): Promise<SharedObjectDetail> {
+  return toSharedObjectDetail(
+    await callAction('Connect2_LegacyShared', 'ShareObjectDetail_ExtendedShare/DataActionGetShare', { ...inputs }),
+  );
+}

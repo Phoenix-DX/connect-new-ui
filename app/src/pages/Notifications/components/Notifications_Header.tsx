@@ -17,7 +17,8 @@ export interface Notifications_HeaderProps {
 
 /** UBTConnect.App_Notifications.Notifications_Header (p:…Notifications_Header.mvc.js view :170-340): section header
     (background neutral-0, padding x base / y xs, top border l neutral-4, "updates-list__header") with IconText
-    (icon on the right, xs spacing, neutral-7 xs semi-bold Title) whose icon is the red-dark xs Badge (BadgeNumber). */
+    (icon on the right, xs spacing, neutral-7 xs semi-bold Title) whose icon is the red-dark xs Badge (BadgeNumber).
+    If_HasBadge (:290): the Badge shows only when BadgeNumber > 0 (BR-UBTCON-981). */
 export function Notifications_Header({
   id,
   title = '',
@@ -49,7 +50,9 @@ export function Notifications_Header({
                   FontWeight: UBT_FontWeight.SemiBold,
                 }}
               >
-                <Badge number={String(badgeNumber)} color={UBT_Color_RedDark} size={UBT_Size.ExtraSmall} />
+                {badgeNumber > 0 && (
+                  <Badge number={String(badgeNumber)} color={UBT_Color_RedDark} size={UBT_Size.ExtraSmall} />
+                )}
               </IconText>
             </Skeleton>
           }

@@ -8,13 +8,13 @@
 export const navigationStorage = new Map<string, unknown>();
 
 /** The anchor a detail screen stores for the back navigation ("dx-entering-scroll-anchor"). */
-export interface EnteringScrollAnchor {
+interface EnteringScrollAnchor {
   id: string;
   index: number;
 }
 
 /** What RememberFocusedScrollAnchor keeps on the list component (`dxLeavingScrollAnchor`, NH:1620-1623). */
-export interface LeavingScrollAnchor {
+interface LeavingScrollAnchor {
   index: number;
   offsetTop: number;
 }

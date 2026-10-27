@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "198f8c5ac8b99a6f7a73",
+ "fingerprint": "c57d0bc81c2e86a8eae4",
  "options": {
   "text": true,
   "style": true,
@@ -27,18 +27,17 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T14:55:48.834Z",
+ "at": "2026-10-27T17:17:54.624Z",
  "counts": {},
  "exemptionsUsed": {
-  "ignoreSubtrees": 1,
-  "SPINNER-ROTATION-PHASE": 1
+  "ignoreSubtrees": 1
  },
  "pixel": {
   "ratio": 0,
   "maxCell": 0,
   "maxCellRatio": 0.03,
   "diffPixels": 0,
-  "comparedPixels": 329160,
+  "comparedPixels": 0,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -49,7 +48,7 @@
    390,
    844
   ],
-  "masks": 1,
+  "masks": 2,
   "hotspots": [],
   "diffPng": "migration/screens/Assemble_BrowseByCountry/parity/loading.diff.png"
  },

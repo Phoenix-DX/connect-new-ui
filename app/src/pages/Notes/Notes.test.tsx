@@ -1,5 +1,6 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+import { Choice } from '@/lib/ubtConnect/staticEntities';
 import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
@@ -78,6 +79,31 @@ describe('Notes page', () => {
     await waitFor(() => {
       expect(bodies[1]).toMatchObject({ Notes_Filter: { NoteCategoryId: 'Supper Meeting' }, PageNumber: 1 });
     });
+    expect(await screen.findByText('No Notes found')).toBeInTheDocument();
+  });
+
+  it('Apply filters with a year sends Notes_Filter.Years and SortByNewest; the mock keeps the notes of that year', async () => {
+    const bodies = recordBodies('UBTConnect/Notes/DataActionGetNotes');
+    renderRoutes(routes, PATH);
+    await screen.findByText('Fenwick Household');
+    await waitFor(() => {
+      expect(bodies).toHaveLength(1);
+    });
+    expect(bodies[0]).toMatchObject({ Notes_Filter: { Years: { List: [] }, SortByNewest: '' } });
+    fireEvent.click(screen.getByText('Filter'));
+    fireEvent.click(await screen.findByText('2025'));
+    const apply = screen.getAllByText('Apply filters');
+    fireEvent.click(apply[apply.length - 1] as Element);
+    await waitFor(() => {
+      expect(bodies).toHaveLength(2);
+    });
+    // capture 2026-10-27 (Notes-110): Years is a list of 1, SortByNewest the default sort (TST sends "Yes"; the
+    // shared Choice constant of the port is 'Choice.Yes', see migration/clarify/builds/B10-misc.md).
+    expect(bodies[1]).toMatchObject({
+      Notes_Filter: { Years: { List: ['2025'] }, SortByNewest: Choice.Yes },
+      PageNumber: 1,
+    });
+    // The fictional notes of Fenwick Household are all of 2026.
     expect(await screen.findByText('No Notes found')).toBeInTheDocument();
   });
 

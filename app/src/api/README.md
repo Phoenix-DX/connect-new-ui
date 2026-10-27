@@ -110,7 +110,7 @@ The queries of `feed/` and the count query of `member/` set `staleTime: 0`, `gcT
 
 `household/` also holds the OrbitLanding call DataActionGet_HouseholdMembers (`fetchOrbitHouseholdMembers`, called by `useOrbitLanding`). The old `api.ts` and `types.ts` of OrbitLanding are deleted. The types are `OrbitHouseholdMembersCallInputs` and `OrbitHouseholdMember`. The flow calls the repository function.
 
-`event/` also holds the two OrbitAdminLanding calls: Get_AdminEventsList (`fetchAdminEvents`, called by `useAdminLanding`) and ActionGetMilestoneScanFF (`fetchMilestoneScanFF`, called by `useNavigateToEventDetail`). The old `api.ts` and `types.ts` of OrbitAdminLanding are deleted. The hooks call the repository functions.
+`event/` also holds the OrbitAdminLanding call Get_AdminEventsList (`fetchAdminEvents`, called by `useAdminLanding`); ActionGetMilestoneScanFF was removed on 2026-10-27 (TST has no such call, decision Legacy_OrbitAdminFlow Q1). `event/milestoneBlocks.ts` holds the data actions of the five MilestoneDetail blocks (2026-10-27). The old `api.ts` and `types.ts` of OrbitAdminLanding are deleted. The hooks call the repository functions.
 
 `image/` has `keys.ts` (the memory-cache entries `imageCache`) and, since P6-G5-B-OrbitAdminEventDetail, `repository.ts` and the barrel `index.ts`. It holds one call: GetCacheableSignedImageURL of Connect2_LegacyShared (`ActionGetSignedImagesInBulk`, `fetchLegacySignedImageURL`). The domain is chosen by the data that it owns (decision W8): the signed image URLs. The hooks `useAdminEventDetail` (OrbitAdminEventDetail) and `useAccommodationHost` (MilestoneDetail), `useHelperDetails` (HelpersDetail), `useGenerateQrCode` (QRCodeGenerate) and the page `GuestArrangementsPage` (GuestArrangements) call it.
 

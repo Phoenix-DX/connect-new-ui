@@ -30,8 +30,8 @@ const TEXT_XS_NEUTRAL9 = { Color: UBT_Color.Neutral9, FontSize: UBT_FontSize.Ext
 
 /** The view of the search block: the detail layout with the search input and the filter icon in the header, the
     category tags, then the recent search or the birthday options before a search (or once the term changed) and the
-    three result sections after it; the bottom bar unless In_IsInScreenSearch; the filter sheet of the countries. The
-    state and the flows come from useSearch.
+    three result sections after it, with the caption of the last searched term once the term changed; the bottom bar
+    unless In_IsInScreenSearch; the filter sheet of the countries. The state and the flows come from useSearch.
     @origin UBTConnect.Directory_Search.ScreenBlock_Search */
 export function SearchView({
   id,
@@ -151,23 +151,30 @@ export function SearchView({
             )}
             {hasSearched && (
               <>
-                {changedSinceSearch && <SectionSeparator />}
-                <CustomContainer options={{ PaddingSize: { HorizontalSizeId: UBT_Size.Base } }}>
-                  <CustomText
-                    inPaddingOptions={{ VerticalSizeId: UBT_Size.Base }}
-                    fitContent
-                    inText="Showing results for "
-                    inTextOptions={TEXT_XS_NEUTRAL9}
-                  />
-                  <CustomText
-                    fitContent
-                    inText={`'${searchKeyLastSearched}':`}
-                    inPaddingOptions={{ VerticalSizeId: UBT_Size.Base }}
-                    inTextOptions={{ ...TEXT_XS_NEUTRAL9, FontWeight: UBT_FontWeight.SemiBold }}
-                  />
-                </CustomContainer>
+                {/* If StartedDifferentSearch (ScreenBlock_Search.mvc.js:1207-1327): the separator and the caption of
+                    the last searched term only once the input text differs from it. */}
+                {changedSinceSearch && (
+                  <>
+                    <SectionSeparator />
+                    <CustomContainer options={{ PaddingSize: { HorizontalSizeId: UBT_Size.Base } }}>
+                      <CustomText
+                        inPaddingOptions={{ VerticalSizeId: UBT_Size.Base }}
+                        fitContent
+                        inText="Showing results for "
+                        inTextOptions={TEXT_XS_NEUTRAL9}
+                      />
+                      <CustomText
+                        fitContent
+                        inText={`'${searchKeyLastSearched}':`}
+                        inPaddingOptions={{ VerticalSizeId: UBT_Size.Base }}
+                        inTextOptions={{ ...TEXT_XS_NEUTRAL9, FontWeight: UBT_FontWeight.SemiBold }}
+                      />
+                    </CustomContainer>
+                  </>
+                )}
                 <Skeleton isLoading={isLoading}>
-                  {/* Places, Households and Members, then the no-match texts. */}
+                  {/* Places, Households and Members, then the no-match texts. While IsLoading, the lists in scope
+                      hold the three loading rows of Action_RefreshSearch: the skeleton shows them as placeholders. */}
                   {(hasPlaces || (isLoading && showsCategory(selectedCategory, Connect_SearchCategories.Places))) && (
                     <SearchResult_Section
                       id="b1-PlacesSection"

@@ -122,13 +122,16 @@ describe('useConnectShare', () => {
     ['OneSchool Global', '/UBTConnect/OneSchoolGlobalDetails'],
     ['Feed', '/UBTConnect/FeedItemDetail'],
     ['Supper Meeting', '/UBTConnect/SupperMeeting_Details'],
-  ])('Action_Redirect opens a %s share with TransitionAnimation.None (ConnectShare.mvc.js:461-485)', async (type, path) => {
-    vi.mocked(fetchShareDetails).mockResolvedValue(share({ shareObjectTypeId: type }));
-    renderFlows('abc');
-    await settle();
-    expect(spy.navigate).toHaveBeenCalledTimes(1);
-    expect(spy.navigate).toHaveBeenCalledWith(path, expect.anything(), { transition: TransitionAnimation.None });
-  });
+  ])(
+    'Action_Redirect opens a %s share with TransitionAnimation.None (ConnectShare.mvc.js:461-485)',
+    async (type, path) => {
+      vi.mocked(fetchShareDetails).mockResolvedValue(share({ shareObjectTypeId: type }));
+      renderFlows('abc');
+      await settle();
+      expect(spy.navigate).toHaveBeenCalledTimes(1);
+      expect(spy.navigate).toHaveBeenCalledWith(path, expect.anything(), { transition: TransitionAnimation.None });
+    },
+  );
 
   it('a type that Action_Redirect does not route sets IsRedirect False, so the share detail shows', async () => {
     vi.mocked(fetchShareDetails).mockResolvedValue(share({ shareObjectTypeId: 'Locality', objectId: '1001' }));

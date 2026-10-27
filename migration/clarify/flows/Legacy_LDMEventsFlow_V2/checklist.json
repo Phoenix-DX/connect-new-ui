@@ -1540,11 +1540,12 @@
    "react": "app/src/pages/LDM_EventDetail_V2/hooks/useLdmEventDetail.ts:183-190 audit + NavigateTo_HouseholdCarousel with every guest HouseholderID; comment :173-176 'CarouselFilteredEventResults only lowers the row number, which the screen does not use'",
    "evidence": "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_EventDetail_V2.mvc.js:1541-1595",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST navigates with CarouselFilteredEventResults.Out_HouseholdIdList (ED :1541-1595): guests with HouseholdDisplay, and without RecordDisabled under a free or regional plan (Connect2_OrbitMobile_MUI.controller.js:879-985); it also sets the client variable HouseholdCarouselPreloading (:979-985). React passes every guest (useLdmEventDetail.ts:187-190) and calls no subscription action",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B8-ldm.md). TST navigates with CarouselFilteredEventResults.Out_HouseholdIdList (ED :1541-1595): guests with HouseholdDisplay, and without RecordDisabled under a free or regional plan (Connect2_OrbitMobile_MUI.controller.js:879-985); it also sets the client variable HouseholdCarouselPreloading (:979-985). React passes every guest (useLdmEventDetail.ts:187-190) and calls no subscription action",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-119",
@@ -2182,11 +2183,12 @@
    "react": "not found (searched: MyTimelineFilter, ValidateSameFilters, isFiltering assignment in pages/LDM_MyEvents_V2); MyEvents_MyTimelineFilterButton.tsx:23-24 comment 'Filter, Close and ResetFilters events are not reachable'",
    "evidence": "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2.mvc.js:2671-2760, :479",
    "tst": "present",
-   "verdict": "differs",
-   "note": "migration/knowledge/auto-decisions-2026-10-16.md:51 (LDM_MyEvents_V2 Q1: filter popup content NotCaptured). The handler has no caller without the popup; see Q1",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B8-ldm.md). migration/knowledge/auto-decisions-2026-10-16.md:51 (LDM_MyEvents_V2 Q1: filter popup content NotCaptured). The handler has no caller without the popup; see Q1",
+   "verified": "code",
    "finding": "F2",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-168",
@@ -2197,11 +2199,12 @@
    "react": "not found (searched: ResetFilters in pages/LDM_MyEvents_V2)",
    "evidence": "Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2.mvc.js:1887-1947, :464",
    "tst": "present",
-   "verdict": "differs",
-   "note": "migration/knowledge/auto-decisions-2026-10-16.md:51 (LDM_MyEvents_V2 Q1: filter popup content NotCaptured). The handler has no caller without the popup; see Q1",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B8-ldm.md). migration/knowledge/auto-decisions-2026-10-16.md:51 (LDM_MyEvents_V2 Q1: filter popup content NotCaptured). The handler has no caller without the popup; see Q1",
+   "verified": "code",
    "finding": "F2",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-169",
@@ -2638,11 +2641,12 @@
    "os": "ToggleEventFilters; ListFilter_GetSelected; Trigger Filter; SelectedFilters = In_SelectedFilters (FB :502-565)",
    "react": "-",
    "evidence": "FB :502-565; MyEvents_MyTimelineFilterButton.tsx:23 (events not reachable)",
-   "verdict": "differs",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "severity": "major",
    "finding": "F2",
-   "note": "migration/knowledge/auto-decisions-2026-10-16.md:51 (LDM_MyEvents_V2 Q1: filter popup content NotCaptured). The handler has no caller without the popup; see Q1"
+   "note": "Built 2026-10-27 (builds/B8-ldm.md). migration/knowledge/auto-decisions-2026-10-16.md:51 (LDM_MyEvents_V2 Q1: filter popup content NotCaptured). The handler has no caller without the popup; see Q1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-203",
@@ -2652,11 +2656,12 @@
    "os": "Close: ToggleEventFilters, if In_IsToReset Trigger ResetFilters (FB :667-717); ResetFilters: SelectedFilters = In_ResetFilters (FB :464-501)",
    "react": "-",
    "evidence": "FB :464-501, :667-717",
-   "verdict": "differs",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "severity": "major",
    "finding": "F2",
-   "note": "migration/knowledge/auto-decisions-2026-10-16.md:51 (LDM_MyEvents_V2 Q1: filter popup content NotCaptured). The handler has no caller without the popup; see Q1"
+   "note": "Built 2026-10-27 (builds/B8-ldm.md). migration/knowledge/auto-decisions-2026-10-16.md:51 (LDM_MyEvents_V2 Q1: filter popup content NotCaptured). The handler has no caller without the popup; see Q1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-204",
@@ -2666,12 +2671,13 @@
    "os": "filter popup: localities list, FromDate / ToDate inputs, Filter, Clear, Close (20 actions, Connect2_OrbitMobile_MUI.LDM_Blocks.MyTimeline_Filters.mvc.js:864-1700)",
    "react": "NotCaptured placeholder MyEvents_MyTimelineFilterButton.tsx:65",
    "evidence": "MyEvents_MyTimelineFilterButton.tsx:65; auto-decisions-2026-10-16.md:51",
-   "verdict": "differs",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "severity": "major",
    "finding": "F2",
-   "note": "migration/knowledge/auto-decisions-2026-10-16.md:51 (LDM_MyEvents_V2 Q1: filter popup content NotCaptured). The handler has no caller without the popup; see Q1. The TST file exists now (tst_source.py list LDM_)",
-   "question": "Q1"
+   "note": "Built 2026-10-27 (builds/B8-ldm.md). migration/knowledge/auto-decisions-2026-10-16.md:51 (LDM_MyEvents_V2 Q1: filter popup content NotCaptured). The handler has no caller without the popup; see Q1. The TST file exists now (tst_source.py list LDM_)",
+   "question": "Q1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_LDMEventsFlow_V2-205",

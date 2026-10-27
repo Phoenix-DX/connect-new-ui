@@ -38,6 +38,8 @@ def vi_status(st):
     date = m.group(0) if m else ''
     if st.startswith('fixed'):
         return 'đã sửa ' + date
+    if st.startswith('built'):
+        return 'đã build ' + date
     if 'withdrawn' in st:
         return 'rút lại sau khi đọc lại TST ' + date
     if st.startswith('no fix'):

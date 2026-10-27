@@ -1031,3 +1031,16 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-27,clarify-fix-F,fix,216753,fix-F,opus,"group F lists/services (4 fixed), 97 calls"
 2026-10-27,clarify-fix-G1,fix,238716,fix-G1,opus,"group G1 content/legacy (6 fixed, 1 withdrawn), 158 calls"
 2026-10-27,clarify-fix-G2,fix,199568,fix-G2,opus,"group G2 orbit/ldm (6 fixed, 1 withdrawn), 98 calls"
+2026-10-27,clarify-build-B7,build,139960,build-B7,opus,"build wave 2026-10-27: Search F1-F3 (3 built), 63 calls"
+2026-10-27,clarify-build-B5,build,157151,build-B5,opus,"build wave 2026-10-27: lists (5 built), 81 calls"
+2026-10-27,clarify-build-B4,build,203717,build-B4,opus,build wave 2026-10-27: error paths (6 findings built), 141 calls
+2026-10-27,clarify-build-B10,build,259612,build-B10,opus,build wave 2026-10-27: misc (5 built), 127 calls
+2026-10-27,clarify-build-B8,build,291334,build-B8,opus,"build wave 2026-10-27: LDM V2 (2 built), 111 calls"
+2026-10-27,clarify-build-B6,build,291457,build-B6,opus,build wave 2026-10-27: Profile address (1 built), 133 calls
+2026-10-27,clarify-build-B1,build,318253,build-B1,opus,build wave 2026-10-27: ContactUs (3 built), 123 calls
+2026-10-27,clarify-build-B9,build,418447,build-B9,opus,"build wave 2026-10-27: MessageDetail (4 built, 3 parts open), 182 calls"
+2026-10-27,clarify-build-B2,build,457906,build-B2,opus,"build wave 2026-10-27: HostSurvey wizard (1 blocker built, 3 forks), 142 calls"
+2026-10-27,clarify-build-B3,build,477099,build-B3,opus,"build wave 2026-10-27: MilestoneDetail 5 blocks (1 blocker built), 161 calls"
+2026-10-28,clarify-build-advisors,review,93543,advisor-opus,opus,"build wave 2026-10-28: 12 pending decisions, 36 calls"
+2026-10-28,clarify-build-advisors,review,67635,advisor-fable,fable,"build wave 2026-10-28: 12 pending decisions, 10 calls"
+2026-10-28,clarify-build-knip,fix,61466,knip-sonnet,sonnet,"build wave 2026-10-28: 74 new unused exports cleared, 30 stale rows, 20 calls"

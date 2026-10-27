@@ -30,8 +30,9 @@ import {
   fetchHasQRCode,
   fetchHelperDetails,
   fetchHostSurvey,
+  fetchSurveyHelpers,
+  postHostSurvey,
   fetchHostSurveyStatus,
-  fetchMilestoneScanFF,
   fetchScanEventQRCode,
   fetchTransportDetail,
 } from './repository';
@@ -48,7 +49,9 @@ import type {
   GmpMilestoneHostCallInputs,
   GuestArrangementsCallInputs,
   HelperDetailsCallInputs,
+  HostSurvey,
   HostSurveyCallInputs,
+  SurveyHelpersCallInputs,
   LdmEventCallInputs,
   MyTimelineCallInputs,
   OrbitLandingCallInputs,
@@ -169,6 +172,50 @@ const hostSurveyInputs: HostSurveyCallInputs = {
   In_EventName: EVENT_NAME,
   In_EventStartDate: '',
   In_EventEndDate: '2026-11-08T20:00:00.000Z',
+};
+
+/** The HostSurvey variable that PostHostSurvey sends (a fictional draft, every list empty, the null dates as ""). */
+const HOST_SURVEY_TO_POST: HostSurvey = {
+  SurveyInfo: {
+    Id: '61907',
+    EventId: '7302',
+    EventName: 'Autumn Gathering in Tandil',
+    EventStartDateTime: '',
+    EventEndDateTime: '',
+    MemberId: '48211',
+    LocalityName: 'Tandil',
+    CountryName: 'Argentina',
+    HostProfileSurveyStatus: 'sent',
+    AccommodationSurvey: true,
+    AccommodationSurveyUpdate: true,
+    AccommodationSurveyNote: '',
+    MealSurvey: false,
+    MealSurveyUpdate: false,
+    MealSurveyNote: '',
+    HelperSurvey: false,
+    HelperSurveyNote: '',
+    VehicleSurvey: false,
+    VehicleSurveyNote: '',
+    HostSurveyNote: 'We can collect guests at the bus terminal.',
+  },
+  Rooms: { AccommodationNote: '', HostSurvey_RoomItem: [] },
+  Meals: { MealNote: '', MealItemInfo: [] },
+  Helpers: { HelperNote: '', HelperItemInfo: [] },
+  Vehicles: { HasVehicles: false, VehicleItemInfo: [] },
+};
+
+const surveyHelpersInputs: SurveyHelpersCallInputs = {
+  SearchTerm: 'Ramos',
+  IsFetchingData: true,
+  IsNotValidInput: false,
+  LastSearchedTerm: '',
+  IsTyping: false,
+  MaxHelpers: 10,
+  PageNumber: 1,
+  IsNewSearch: true,
+  In_TrySave: false,
+  In_EventId: EVENT_ID,
+  In_AlreadyAddedHelpers: ['880412'],
 };
 
 const transportInputs: TransportDetailCallInputs = {
@@ -458,6 +505,21 @@ const cases: CallCase[] = [
     inputNames: keys(hostSurveyInputs),
   },
   {
+    name: 'fetchSurveyHelpers',
+    run: () => fetchSurveyHelpers(surveyHelpersInputs),
+    module: ORBIT,
+    owner: 'HostSurvey_AddHelper',
+    action: 'DataActionGetSurveyHelpers',
+    inputNames: keys(surveyHelpersInputs),
+  },
+  {
+    name: 'postHostSurvey',
+    run: () => postHostSurvey(HOST_SURVEY_TO_POST),
+    module: ORBIT,
+    action: 'ActionPostHostSurvey',
+    inputNames: ['GetHostSurvey'],
+  },
+  {
     name: 'fetchTransportDetail',
     run: () => fetchTransportDetail(transportInputs),
     module: ORBIT,
@@ -488,13 +550,6 @@ const cases: CallCase[] = [
     owner: 'ScreenBlock_AdminLanding',
     action: 'DataActionGet_AdminEventsList',
     inputNames: keys(adminEventsInputs),
-  },
-  {
-    name: 'fetchMilestoneScanFF',
-    run: fetchMilestoneScanFF,
-    module: 'UBTConnect',
-    action: 'ActionGetMilestoneScanFF',
-    inputNames: [],
   },
   {
     name: 'fetchAdminEventInformation',
@@ -538,8 +593,8 @@ const cases: CallCase[] = [
 ];
 
 describe('event repository: one call per function', () => {
-  it('covers the 29 calls of the domain', () => {
-    expect(new Set(cases.map((c) => c.action)).size).toBe(29);
+  it('covers the 30 calls of the domain', () => {
+    expect(new Set(cases.map((c) => c.action)).size).toBe(30);
   });
 
   it.each(cases)('$name calls $action once, with its owner and input names', async (c) => {
@@ -561,11 +616,31 @@ describe('event repository: one call per function', () => {
 });
 
 describe('event repository: the inputs that the calls send', () => {
+  it('postHostSurvey sends the HostSurvey variable as GetHostSurvey: the lists wrapped, the null dates back', async () => {
+    await postHostSurvey(HOST_SURVEY_TO_POST);
+    const body = (await sentBodies()).get(`/api/${ORBIT}/ActionPostHostSurvey`) as {
+      GetHostSurvey: {
+        SurveyInfo: { EventStartDateTime: string };
+        Rooms: { HostSurvey_RoomItem: { List: unknown[] } };
+      };
+    };
+    expect(body.GetHostSurvey.SurveyInfo.EventStartDateTime).toBe('1900-01-01T00:00:00');
+    expect(body.GetHostSurvey.Rooms.HostSurvey_RoomItem.List).toEqual([]);
+  });
+
   it('fetchHostSurvey sends a null input date ("") as the null DateTime and the other variables as they are', async () => {
     await fetchHostSurvey(hostSurveyInputs);
     expect((await sentBodies()).get(`/api/${ORBIT}/ScreenBlock_HostSurvey/DataActionGetHostSurvey`)).toEqual({
       ...hostSurveyInputs,
       In_EventStartDate: '1900-01-01T00:00:00',
+    });
+  });
+
+  it('fetchSurveyHelpers sends In_AlreadyAddedHelpers as an OutSystems list and the other variables as they are', async () => {
+    await fetchSurveyHelpers(surveyHelpersInputs);
+    expect((await sentBodies()).get(`/api/${ORBIT}/HostSurvey_AddHelper/DataActionGetSurveyHelpers`)).toEqual({
+      ...surveyHelpersInputs,
+      In_AlreadyAddedHelpers: { List: ['880412'] },
     });
   });
 
@@ -716,9 +791,11 @@ describe('event repository: the answers', () => {
     expect(halls.every((h) => typeof h.HouseholdCount === 'number')).toBe(true);
   });
 
-  it('fetchEventsForMyTimeline answers the past meals by month with their guests unwrapped', async () => {
+  it('fetchEventsForMyTimeline answers the past meals of the selected locality by month, guests unwrapped', async () => {
     const { pastEvents, upcomingEvents } = await fetchEventsForMyTimeline(myTimelineInputs);
-    expect(pastEvents).toHaveLength(5);
+    // The mock keeps the meals of the selected locality (Bahia Blanca: 3 of the 5 meals).
+    expect(pastEvents).toHaveLength(3);
+    expect(pastEvents.every((g) => g.EventsCalendar.every((e) => e.EventLocalityId === '252'))).toBe(true);
     expect(pastEvents.every((g) => g.EventsCalendar.every((e) => Array.isArray(e.Guests)))).toBe(true);
     expect(upcomingEvents).toEqual([]);
   });

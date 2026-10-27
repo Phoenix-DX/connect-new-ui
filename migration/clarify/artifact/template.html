@@ -239,7 +239,7 @@
   var total = D.matrix.filter(function (r) { return /total/.test(r.Flow || ''); })[0] || {};
   var findings = D.findings || [];
   var cnt = function (sev) { return findings.filter(function (f) { return (f.Severity || '').toLowerCase() === sev; }).length; };
-  var statusKind = function (f) { var st = f.Status || ''; return st.indexOf('đã sửa') === 0 ? 'fixed' : st.indexOf('rút lại') === 0 ? 'withdrawn' : st.indexOf('giữ') === 0 ? 'kept' : st.indexOf('còn mở') === 0 ? 'open' : ''; };
+  var statusKind = function (f) { var st = f.Status || ''; return (st.indexOf('đã sửa') === 0 || st.indexOf('đã build') === 0) ? 'fixed' : st.indexOf('rút lại') === 0 ? 'withdrawn' : st.indexOf('giữ') === 0 ? 'kept' : st.indexOf('còn mở') === 0 ? 'open' : ''; };
   var cntKind = function (sev, kind) { return findings.filter(function (f) { return (f.Severity || '').toLowerCase() === sev && statusKind(f) === kind; }).length; };
   var fixedDate = (findings.filter(function (f) { return statusKind(f) === 'fixed'; }).map(function (f) { return (f.Status.match(/\d{4}-\d{2}-\d{2}/) || [''])[0]; }).sort().pop()) || '';
   var modulesTotal = D.contract_modules.reduce(function (a, m) { return a + (parseInt(m.Endpoints, 10) || 0); }, 0);
@@ -248,15 +248,15 @@
   var tiles = [
     ['45', 'báo cáo theo UI flow', 'accent'],
     [num(total.Rows || 5412), 'dòng checklist đối chiếu', ''],
-    [cnt('blocker'), 'finding chặn (blocker)', 'crit'],
-    [cnt('major'), 'finding lớn (major)', 'warn'],
+    [cnt('blocker'), cntKind('blocker', 'fixed') ? 'finding chặn (blocker) · ' + cntKind('blocker', 'fixed') + ' đã build' : 'finding chặn (blocker)', cntKind('blocker', 'fixed') === cnt('blocker') ? 'good' : 'crit'],
+    [cnt('major'), cntKind('major', 'fixed') ? 'finding lớn (major) · ' + cntKind('major', 'fixed') + ' đã build' : 'finding lớn (major)', cntKind('major', 'fixed') + cntKind('major', 'withdrawn') === cnt('major') ? 'good' : 'warn'],
     [cnt('minor'), cntKind('minor', 'fixed') ? 'finding nhỏ (minor) · ' + cntKind('minor', 'fixed') + ' đã sửa trong code ngày ' + fixedDate : 'finding nhỏ (minor)', 'accent'],
     [D.build_items.length, 'việc FE "build now" đã chốt', 'accent'],
     [modulesTotal, 'endpoint trong hợp đồng backend', ''],
     [D.unclear.length, 'dòng còn unclear', 'good']
   ];
   document.getElementById('tiles').innerHTML = tiles.map(function (t) { return '<div class="tile ' + t[2] + '"><b>' + esc(t[0]) + '</b><span>' + esc(t[1]) + '</span></div>'; }).join('');
-  document.getElementById('summaryLead').innerHTML = md('Ứng dụng React chạy được 64 màn hình với dữ liệu mock trong trình duyệt. Để chạy như bản OutSystems trong production, phần thiếu lớn nhất nằm ngoài FE: identity provider + phiên BFF, ' + modulesTotal + ' endpoint backend, endpoint flag theo người dùng, ký URL ảnh và static hosting. Bên trong FE còn ' + cnt('blocker') + ' chặn và ' + cnt('major') + ' lỗi lớn, trong đó ' + D.build_items.length + ' việc đã được chốt "build now".' + (cntKind('minor', 'fixed') ? ' Ngày ' + fixedDate + ' code React đã được sửa cho ' + cntKind('minor', 'fixed') + ' trong ' + cnt('minor') + ' finding nhỏ; ' + cntKind('minor', 'withdrawn') + ' finding rút lại sau khi đọc lại mã TST, ' + cntKind('minor', 'kept') + ' giữ theo quyết định đã ghi, ' + cntKind('minor', 'open') + ' còn mở.' : ''));
+  document.getElementById('summaryLead').innerHTML = md('Ứng dụng React chạy được 64 màn hình với dữ liệu mock trong trình duyệt. Để chạy như bản OutSystems trong production, phần thiếu lớn nhất nằm ngoài FE: identity provider + phiên BFF, ' + modulesTotal + ' endpoint backend, endpoint flag theo người dùng, ký URL ảnh và static hosting. Bên trong FE có ' + cnt('blocker') + ' chặn và ' + cnt('major') + ' lỗi lớn' + (cntKind('blocker', 'fixed') === cnt('blocker') && cntKind('major', 'fixed') + cntKind('major', 'withdrawn') === cnt('major') ? ', tất cả đã được build từ mã biên dịch TST trong đợt build 27–28/10/2026 (migration/clarify/builds; 1 major rút lại vì TST có control đó); 13 điểm chờ anh quyết (pending-decisions.md)' : ', trong đó ' + D.build_items.length + ' việc đã được chốt "build now"') + '.' + (cntKind('minor', 'fixed') ? ' Ngày ' + fixedDate + ' code React đã được sửa cho ' + cntKind('minor', 'fixed') + ' trong ' + cnt('minor') + ' finding nhỏ; ' + cntKind('minor', 'withdrawn') + ' finding rút lại sau khi đọc lại mã TST, ' + cntKind('minor', 'kept') + ' giữ theo quyết định đã ghi, ' + cntKind('minor', 'open') + ' còn mở.' : ''));
 
   // ---- status table
   var statusChip = function (s) {

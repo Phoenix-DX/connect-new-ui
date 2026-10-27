@@ -23,12 +23,65 @@ Build items already done in the minor wave (`../fixes/`): App_Common Q3 (constan
 Bookmarks Q2, Calendar Q2, Directory_OneSchoolGlobal Q2 (document.title), Home Q1, Home Q2, _libraries Q1. Recorded
 without a build: App_PIN Q2. Checks: App_Services Q1 (the SortableJS source is in `migration/runtime-sources/`).
 
+## Result (2026-10-28)
+
+| Item | Result |
+|---|---|
+| Blockers | 3 of 3 built (B1 ContactUs form, B2 HostSurvey wizard, B3 five MilestoneDetail blocks) |
+| Major findings | 26 of 27 built, 1 withdrawn (Legacy_OrbitEventsFlow F3: TST has the control, PD13); three with open parts (B9: the renderer library PD7, PlaceholderLib PD8, the flag-off branch PD9) |
+| "Build now" items | 30 of 30 closed: 20 in this wave, 9 in the minor wave, 1 recorded (App_PIN Q2) |
+| Matrix | match 4552 (was 4370), partial 31 (78), missing 22 (152), differs 92 (97) |
+| Decisions for the user | 12 (`pending-decisions.md`), each with an Opus and a Fable recommendation; the advisors agree on (a) for all 12 |
+| Cost | 10 build agents ≈ 2.9 M tokens, 2 advisors 0.16 M, knip clean-up 0.06 M (ledger `clarify-build-*`) |
+
+Orchestrator work after the hand-backs:
+- clone merges: FooterWithActions, OrbitNoResults and FreeSubscriptionActionDialog to shared folders; one
+  NoItemsFound view for two blocks;
+- the dead GetMilestoneScanFF code removed; the api/event barrel exports milestoneBlocks;
+- 74 new unused exports cleared and 30 stale baseline rows deleted; two stale flag allow rows deleted;
+- the api/policy tests on the TST GUIDs; one flaky preload assertion made to wait.
+
 ## Gates after the wave
 
 1. Each agent: Vitest of its area, ESLint, Prettier, typecheck, arch.
 2. Orchestrator: a second read of every "withdrawn" or "open" claim against the TST lines.
 3. `npm run ci` (gen:api, typecheck, lint, arch, arch baselines, dup, unused), the full Vitest suite, `npm run build`.
 4. Parity sweep of the 64 routes on port 5174 (`migration/tools/parity_sweep.py`); new blocks keep the captured states.
+   Result 2026-10-28: 64 of 64 clean after one restore (OrbitLanding, see PD13).
 5. STE lint of every note; the checklist rows and report §5 status through `../tools/apply_fixes.py`.
 6. Decisions needed: an Opus advisor and a Fable advisor review each one and recommend; the user decides.
 7. One local commit per wave (no push).
+
+## Follow-ups named by the agents (no decision needed, not built in this wave)
+
+- B4: `pages/CountryDetails/hooks/useCountryDetails.ts:115` (GetLocalityStatistics) has the same gap as App_Services
+  F2 (add `useFetchErrorToFlowHandler`). Other query callers (Search, Profile, CountryList, LegacyShareObject,
+  ShareSheet, HomeFeed) need a check against their TST block. `raiseToFlowHandler` lacks the `ignoreError` guard
+  (ACF:24-26) and shows a message for a system exception where TST rethrows (`builds/B4-errors.md`).
+- B10 (done by the orchestrator): the dead `fetchMilestoneScanFF` code is removed (`api/event`, its test, the README).
+- B6: no TST capture shows the address section (the captured account is a spouse): a capture with a householder
+  account settles the review. `localityCache.allLocalitiesType` is "Connect_CacheType.AllLocalities" where the
+  static entity says "AllLocalities" (FilterSheet uses it too): check in the review pass.
+- B1: two ports of the runtime's custom dropdown exist (`pages/ContactUsDetails/components/CountryDropdown.tsx`
+  and HostSurvey's `OSDropdownCustom.tsx`): merge them into `components/ui/os` after the wave, from B1's. OSValidation
+  has no hook to register a widget that is not an input (`UnbuiltValidationWidget` used): add `useValidationWidget`.
+  The eight-country mock list of GetCountriesNames is fictional (never recorded); keep it for the mock phase.
+  `RangeSlider` is a new folder under `components/ui/` (noUiSlider 15.8.1 markup; the runtime file
+  `OutSystemsUI_2_23.NoUISlider.js` fetched read-only, logged in `migration/knowledge/runtime-sources.md`).
+- B9 (done by the orchestrator): one `containers/FreeSubscriptionActionDialog` for both pages; known bug B14 keeps its
+  number. B9 (open): DataActionGetShare sends only ShareId and HasAccessToDeceasedHousehold.
+- B2 (done by the orchestrator): the FooterWithActions and NoResults clones merged into `components/orbit`; `npm run
+  dup` is under its limit again.
+- B2 (open): `OSDropdownCustom` (HostSurvey) and `CountryDropdown` (ContactUs) merge into `components/ui/os` (list
+  position, keyboard); VehicleItem's local DropdownCustom follows. The OutSystems UI 2.23 Tooltip (duplicate room
+  name) and MultiResolutionImageLoader (Card_MemberInformation_Survey) are minimal ports to complete. The instance ids
+  inside the data-step lists are `l<list>_<row>` without the runtime counter (no capture shows them).
+- B3 (done by the orchestrator): `api/event/index.ts` exports `milestoneBlocks.ts`; the page imports `@/api/event`.
+- B3 (open): shared `SanitizedHtml`: HouseholdCaptions starts with `<nobr>`. The port matches tag names against
+  upper-case names with KEEP_CONTENT false. So AllowedTags "nobr,sup" drops the caption (renders empty): check on
+  TST. Shared `generateScreenURL` adds a second `?` to the maps URL `…/dir/?api=1` (AssembleSummaryCard too).
+  OrbitAdminTag stays NotCaptured as in AccommodationHost.
+- Orchestrator (2026-10-28): the survey of 2026-10-13 is stale for at least one block. ScreenBlock_OrbitLanding on
+  live TST has the passport control; the survey copy has not. Next step: re-fetch the live scripts of the TST manifest
+  and compare them with the survey (read-only, standing approval) before the next judge pass. Every finding that rests
+  on a survey file alone is at risk.

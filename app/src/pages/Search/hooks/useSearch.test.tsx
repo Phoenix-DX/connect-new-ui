@@ -8,6 +8,7 @@ import { raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { setPreloadObject } from '@/platform/navigation';
+import { saveRecentClickedResult } from '@/platform/storage/localEntities';
 import { resetNavigation } from '@/platform/navigation/testRouter';
 import { freshPage, recordBodies } from '@/test/testSupport';
 import { initialTagList } from './searchState';
@@ -166,6 +167,35 @@ describe('useSearch', () => {
       expect.objectContaining({ SelectedCountryIds: { List: ['AR'] }, HasFiltersApplied: true }),
     );
     expect(search.result.current.state.hasFiltersApplied).toBe(true);
+  });
+
+  // Event_HorizontalTagListChanged (ScreenBlock_Search.mvc.js:3929-3937).
+  it('a tag change refreshes the recent clicked results with the new category, also before the first search', async () => {
+    const clicked = (id: string, type: string, name: string) => ({
+      id,
+      type,
+      householderId: '7300',
+      name,
+      additionalInformation: type,
+      location: 'Bahia Blanca',
+      latitude: '0',
+      longitude: '0',
+    });
+    await saveRecentClickedResult('Global', clicked('7302', 'Member', 'Lucía Rojas'), 5);
+    await saveRecentClickedResult('Global', clicked('7300', 'Household', 'Rojas Household'), 5);
+    const search = renderSearch();
+    await waitFor(() => {
+      expect(search.result.current.recentClicked).toHaveLength(2);
+    });
+    act(() => {
+      search.result.current.onTagListChanged(initialTagList('People'));
+    });
+    await waitFor(() => {
+      expect(search.result.current.recentClicked.map((r) => r.Name)).toEqual(['Lucía Rojas']);
+    });
+    // The term is blank: Action_RefreshSearch ends at once, with no fetch.
+    expect(search.result.current.state.hasSearched).toBe(false);
+    expect(window.__osCalls?.map((c) => c.action)).not.toContain('DataActionFetchSearchResults');
   });
 
   it('ClearString clears both keys and the results', async () => {

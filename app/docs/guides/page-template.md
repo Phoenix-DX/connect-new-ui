@@ -111,7 +111,9 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
     of `pages/AssembleDetail`) waits for this decision.
 - Flags are read by the page (`useFlag`) and passed in as a `flags` argument. A component never reads a flag (rule 4).
   Only pages, hooks and containers read flags: `npm run flags` fails on a new reader elsewhere.
-- A failed data action goes to the flow handler (`platform/feedback/flowErrors.ts`).
+- A failed data action goes to the flow handler (`platform/feedback/flowErrors.ts`). For a data action that is a query,
+  call `useFetchErrorToFlowHandler(query)` in the hook: it raises once per failed fetch. The query status still sets
+  the `list-error` classes and the skeleton.
 
 ## Container criterion
 

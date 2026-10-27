@@ -4,6 +4,7 @@ import { contractHandler } from '@/mocks/contract';
 import { recordedHandler } from '@/mocks/fixtures';
 import { currDateTime } from '@/lib/osDateTime';
 import { wireList } from '@/lib/os-wire';
+import { scenario } from '@/mocks/scenario';
 
 /** The wire shape of a notification (Connect2_Notification_CS.MessageListItem), as the contract types it. */
 type MessageListItemWire = ActionOutputs<
@@ -45,6 +46,11 @@ const ROWS: [number, string, string, string, boolean][] = [
   [97, '10:30:52', 'Heatwave risk for all', ENTITY_LOGO, true],
 ];
 
+/* Scenario `olderread` (?mock=olderread): every notification older than 30 days is read, so the "Older" section has
+   no unread item and its Notifications_Header shows no Badge (If_HasBadge, BR-UBTCON-981). The default keeps the
+   captured read state. */
+const OLDER_THAN_DAYS = 30;
+
 function created(daysAgo: number, time: string): string {
   const [h = 0, m = 0, s = 0] = time.split(':').map(Number);
   const d = new Date();
@@ -53,13 +59,13 @@ function created(daysAgo: number, time: string): string {
   return currDateTime(d);
 }
 
-const notifications = (): MessageListItemWire[] =>
+const notifications = (olderRead: boolean): MessageListItemWire[] =>
   ROWS.map(([daysAgo, time, title, icon, read], i) => ({
     CreatedByUserId: 0,
     DateTimeCreated: created(daysAgo, time),
     Id: String(910019 - i),
     IsClear: false,
-    IsRead: read,
+    IsRead: read || (olderRead && daysAgo > OLDER_THAN_DAYS),
     MessageInfoTypeId: 0,
     MessageSenderTargetName: '',
     MessageTemplatePriorityId: 0,
@@ -72,7 +78,7 @@ const notifications = (): MessageListItemWire[] =>
 export const handlers: RequestHandler[] = [
   recordedHandler('UBTConnect', 'Notifications/DataActionGetDateRanges', { matchInputs: false }),
   contractHandler('UBTConnect', 'Notifications/DataActionFetchNotifications', () => {
-    const list = notifications();
+    const list = notifications(scenario() === 'olderread');
     return {
       UI_NotificationItemList: wireList(list),
       HasUnreadMessages: list.some((n) => !n.IsRead),

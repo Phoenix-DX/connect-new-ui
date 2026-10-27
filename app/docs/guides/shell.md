@@ -393,17 +393,23 @@ not import `platform/`. `src/app/dialogs.ts` (`connectDialogs()`, called by `mai
   - `showExceptionMessage` maps the server texts of the compiled action (timeouts and failed requests → communication
     message).
   - `forceLogout` → `signedOutRemotely()` (same end state as `signOut()`), then a full page load of `\UBTConnect\Login`.
-  - The app start does not toast yet: App_Common toasts a `ScreenController_RaiseError` only if a plain `Error` is not
-    "system" (open).
+  - A failed app start is logged. A non-system exception then goes, as `new Error(message)`, to `raiseToFlowHandler`,
+    which shows `showExceptionMessage(message, false)` (ScreenController_RaiseError, UC:15398-15417; decision C3, user
+    2026-10-27). A system exception is only logged.
   - Server calls raise the OutSystems exceptions of `src/legacy/os/os-exceptions.ts` (see `api-and-mocks.md`).
   - A ported Handle Error tests them with `src/legacy/os/exceptions.ts`: `isUserException(e[, '<Module>.<Name>'])`,
     `isCommunicationException(e)`, `isInstanceOf(e, SecurityException)`, AllExceptions = `!isSystemException(e)`.
   - An unhandled exception goes to `raiseToFlowHandler(e)`, in the order of App_Common:
+    - communication message for the user exception `UBTConnect.BubbleCommunicationException` (ACF:31-44), which
+      `raiseBubbledToFlowHandler` makes from a `CommunicationException`;
     - communication message for a `CommunicationException`;
     - `SecurityException` (and its subtypes `InvalidLoginException`, `NotRegisteredException`): signed in →
       `showExceptionMessage(message, true)`, that is, the forced-logout path above; anonymous → `osNavigateTo` to
       `/UBTConnect/Login?In_IsFromInvalidPermissions=True` after `setAppCallbackCurrentLocation()`;
     - every other error: `showExceptionMessage(message, false)`.
+  - A failed fetch of a screen or block data action that is a query goes to the flow handler once per failure:
+    `useFetchErrorToFlowHandler(query)` of `src/platform/feedback/flowErrors.ts` (runtime: model flush, then
+    handleError). It ignores an `IgnorableSystemException`, as the flow handler does.
   - Try it by hand with `?mock=security` on ContactUsDetails (signed in and signed out).
 - **Network (U11).**
   - `online`/`offline` events and `navigator.onLine` at start set `App_NetworkStatus_IsOnline_IsPersistent`. The variable

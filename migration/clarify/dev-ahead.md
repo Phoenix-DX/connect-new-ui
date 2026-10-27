@@ -327,3 +327,5 @@ row for the detail. React follows TST in each case unless the row says otherwise
 | all blocks of this unit | no DEV model in the dump (`pack/blocks.md` holds names only) | the compiled files named in `pack/blocks.md` | TST |
 
 Rows: 150. The DEV-only screens have `skip` rows V8 on `migration/board.md`. Decisions that remove a DEV-only element: `decisions.md` (OrbitEvents Q2, OrbitAdmin Q1).
+
+> Note 2026-10-28: the OrbitLanding passport control is on TST too (live block script and capture DOM); only the PassportScan screen stays DEV-only until checked.

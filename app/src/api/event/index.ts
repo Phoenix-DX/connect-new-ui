@@ -58,8 +58,10 @@ export {
   fetchHelperDetails,
   fetchHostSurvey,
   fetchHostSurveyStatus,
-  fetchMilestoneScanFF,
+  fetchSurveyHelpers,
+  postHostSurvey,
   fetchScanEventQRCode,
   fetchTransportDetail,
 } from './repository';
 export type * from './types';
+export * from './milestoneBlocks';

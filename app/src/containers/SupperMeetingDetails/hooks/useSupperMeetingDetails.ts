@@ -5,6 +5,7 @@ import {
   type SubdivisionDetails,
   type SubdivisionHouseholdCard,
 } from '@/api/locality';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlag } from '@/platform/flags';
 import { setPreloadObject, useFlowState, useOsNavigate, type IsAlive } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
@@ -46,7 +47,10 @@ export interface SupperMeetingDetailsFlows {
     - OnReady: the refresh of DataActionGetSubdivisionHouseholds (the child block SupperMeeting_HouseholdList), then
       the refresh of DataActionGetSubdivision, both started at once, in the call order of the port before the
       refactor. A failed GetSubdivision keeps the skeleton; a failed GetSubdivisionHouseholds sets the Error status and
-      keeps the skeleton rows. Neither failure goes to the flow handler.
+      keeps the skeleton rows. Each block runs OnReady through safeExecuteClientAction, so each failure then goes once
+      to the block's handleError and the flow handler (SupperMeeting_DetailsBlock.mvc.js:720-722, 758-760;
+      SupperMeeting_HouseholdList.mvc.js:324; F1, Q1 (a), user 2026-10-27). The message is an app-level side
+      effect: it shows also after an unmount (W23).
     - A view that the view cache restored (a back navigation) keeps its saved state and makes no call: each block skips
       its skeleton and its refresh when it is restored from the cache (Get_IsViewRestoredFromCache in OnReady). A
       block whose data was not fetched in the saved state (no saved state, or the user left before the answer) refreshes
@@ -87,8 +91,9 @@ export function useSupperMeetingDetails(
     let list: SubdivisionHouseholdCard[];
     try {
       list = await fetchSubdivisionHouseholds(subdivisionId);
-    } catch {
+    } catch (error) {
       write({ type: 'householdsFetchFailed' });
+      raiseToFlowHandler(error);
       return;
     }
     write({ type: 'householdsFetched', list });
@@ -99,8 +104,9 @@ export function useSupperMeetingDetails(
     let subdivision: SubdivisionDetails;
     try {
       subdivision = await fetchSubdivisionDetails(subdivisionId);
-    } catch {
-      return; // IsDataFetched stays False: the skeleton stays.
+    } catch (error) {
+      raiseToFlowHandler(error); // IsDataFetched stays False: the skeleton stays.
+      return;
     }
     write({ type: 'subdivisionFetched', subdivision });
   };

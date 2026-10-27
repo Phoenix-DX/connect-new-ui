@@ -96,6 +96,17 @@ describe('Updates_SingleList page', () => {
     expect(bodies).toHaveLength(2);
   });
 
+  it('a search that finds no update shows Updates_NoItemsFound (BR-UBTCON-872)', async () => {
+    renderPage();
+    await listLoaded();
+    const input = screen.getByPlaceholderText('Search updates');
+    fireEvent.change(input, { target: { value: 'Zanzibar Quokka' } });
+    fireEvent.keyUp(input, { key: 'Enter' });
+    expect(await screen.findByText('No Updates Found')).toBeInTheDocument();
+    expect(screen.getByText('We were unable to find any Updates to display.')).toBeInTheDocument();
+    expect(document.getElementById('List_Updates')).toBeNull();
+  });
+
   it('a type tag reloads the list with that type', async () => {
     const bodies = recordBodies(FETCH);
     renderPage();

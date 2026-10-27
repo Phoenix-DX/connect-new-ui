@@ -158,9 +158,11 @@ describe('useSupperMeetingDetails', () => {
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
   });
 
-  it('a failed GetSubdivision keeps the skeleton; a failed GetSubdivisionHouseholds sets the Error status', async () => {
-    vi.mocked(fetchSubdivisionDetails).mockRejectedValueOnce(new Error('down'));
-    vi.mocked(fetchSubdivisionHouseholds).mockRejectedValueOnce(new Error('down'));
+  it('a failed GetSubdivision keeps the skeleton; a failed GetSubdivisionHouseholds sets the Error status; each failure goes once to the flow handler (F1)', async () => {
+    const subdivisionError = new Error('GetSubdivision down');
+    const householdsError = new Error('GetSubdivisionHouseholds down');
+    vi.mocked(fetchSubdivisionDetails).mockRejectedValueOnce(subdivisionError);
+    vi.mocked(fetchSubdivisionHouseholds).mockRejectedValueOnce(householdsError);
     const { result } = renderHook(() => useSupperMeetingDetails('1210', CAROUSEL_ON), { wrapper });
     await settle();
     expect(result.current.state.isDataFetched).toBe(false);
@@ -170,7 +172,9 @@ describe('useSupperMeetingDetails', () => {
       isError: true,
       list: INITIAL_SUPPER_MEETING_DETAILS_STATE.households.list,
     });
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(2);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(householdsError);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(subdivisionError);
   });
 
   it('reads In_SubdivsionId once: a new input neither refetches nor changes the id', async () => {
@@ -219,7 +223,7 @@ describe('useSupperMeetingDetails', () => {
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
   });
 
-  it('W23: failures after the unmount write no state and do not reach the flow handler', async () => {
+  it('W23: failures after the unmount write no state; each still goes once to the flow handler (an app-level effect)', async () => {
     const { households, subdivision } = pendingAnswers();
     const { unmount } = renderHook(() => useSupperMeetingDetails('1210', CAROUSEL_ON), { wrapper: strictWrapper });
     await settle();
@@ -229,7 +233,7 @@ describe('useSupperMeetingDetails', () => {
     households.reject(new Error('down'));
     await settle();
     expect(supperMeetingDetailsReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(2);
   });
 
   it('a back navigation to the restored view keeps the saved state and makes no call (no skeleton)', async () => {

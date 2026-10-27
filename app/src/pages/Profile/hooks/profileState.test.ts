@@ -9,6 +9,11 @@ import {
   isRequireRequestCreation,
   profileReducer,
   sameRecord,
+  sortLocalities,
+  action_RefreshSubdivionList,
+  withAddress,
+  withAddressItemValue,
+  withAddressItemsChecked,
   withContact,
   withPersonal,
   type AccountForm,
@@ -191,5 +196,112 @@ describe('profileReducer', () => {
       preview,
     );
     expect(profileReducer(sheet, { type: 'accountFormAssigned', accountForm: preview }).accountForm).toBe(preview);
+  });
+});
+
+/* The address section of the householder (App_Profile F1). */
+describe('address of the householder', () => {
+  const sub = (SubdivisionId: string, LocalityId: string) => ({
+    SubdivisionId,
+    SubdivisionName: `Hall ${SubdivisionId}`,
+    LocalityId,
+    LocalityName: '',
+  });
+  const subdivisions = {
+    subdivionsList: [sub('2820', '585'), sub('9202', '585'), sub('9241', '924')],
+    isFetched: true,
+  };
+  const located = withAddress(EMPTY_ACCOUNT_FORM, { LocalityId: '585', SubdivionId: '2820' });
+
+  it('sortLocalities sorts by CountryName + " " + Name with localeCompare (CacheControl_AllLocalitiesResult ListSort)', () => {
+    const l = (Name: string, CountryName: string) => ({ LocalityId: Name, Name, CountryName, CountryCode: '' });
+    const sorted = sortLocalities([
+      l('Rosario', 'Argentina'),
+      l('Boston', 'United States'),
+      l('Bahia Blanca', 'Argentina'),
+    ]);
+    expect(sorted.map((x) => x.Name)).toEqual(['Bahia Blanca', 'Rosario', 'Boston']);
+  });
+
+  it('action_RefreshSubdivionList: no locality → empty list and SubdivionId ""; fetched → ListFilter; else no change', () => {
+    const none = action_RefreshSubdivionList(withAddress(located, { LocalityId: '' }), subdivisions);
+    expect(none?.subdivisionFilteredList).toEqual([]);
+    expect(none?.accountForm.AccountForm_AddressInformation.SubdivionId).toBe('');
+    const filtered = action_RefreshSubdivionList(located, subdivisions);
+    expect(filtered?.subdivisionFilteredList.map((s) => s.SubdivisionId)).toEqual(['2820', '9202']);
+    expect(filtered?.accountForm).toBe(located);
+    expect(action_RefreshSubdivionList(located, { subdivionsList: [], isFetched: false })).toBeNull();
+  });
+
+  it('the user information without a locality clears SubdivionId after AccountFormOriginal was assigned', () => {
+    const user = mockDirectoryUser({ policies: false, expired: false, householder: true });
+    const noLocality = {
+      ...user,
+      Directory_UserCurrent_Geography: { ...user.Directory_UserCurrent_Geography, Locality_Id: '' },
+    };
+    const state = profileReducer(initialProfileState(), {
+      type: 'userInformationFetched',
+      user: noLocality,
+      current: EMPTY_ACCOUNT_FORM,
+    });
+    expect(state.accountForm.AccountForm_AddressInformation.SubdivionId).toBe('');
+    expect(state.accountFormOriginal.AccountForm_AddressInformation.SubdivionId).toBe(
+      user.Directory_UserCurrent_Geography.Subdivision_Id,
+    );
+    expect(state.hasChanges).toBe(false);
+  });
+
+  it('allSubdivisionsFetched keeps the list, sets isFetched and filters by the locality of the form', () => {
+    const start = { ...initialProfileState(), accountForm: located };
+    const state = profileReducer(start, {
+      type: 'allSubdivisionsFetched',
+      subdivionsList: subdivisions.subdivionsList,
+    });
+    expect(state.localCacheControlAllSubdivisions).toEqual(subdivisions);
+    expect(state.subdivisionFilteredList.map((s) => s.SubdivisionId)).toEqual(['2820', '9202']);
+  });
+
+  it('localityChanged: LocalityId, SubdivionId "", the filtered list, then HasChanges; back to the original clears it', () => {
+    const start = {
+      ...initialProfileState(),
+      accountForm: located,
+      accountFormOriginal: located,
+      localCacheControlAllSubdivisions: subdivisions,
+    };
+    const changed = profileReducer(start, { type: 'localityChanged', localityId: '924' });
+    expect(changed.accountForm.AccountForm_AddressInformation).toMatchObject({ LocalityId: '924', SubdivionId: '' });
+    expect(changed.subdivisionFilteredList.map((s) => s.SubdivisionId)).toEqual(['9241']);
+    expect(changed.hasChanges).toBe(true);
+    const back = profileReducer(profileReducer(changed, { type: 'localityChanged', localityId: '585' }), {
+      type: 'subdivisionChanged',
+      subdivisionId: '2820',
+    });
+    expect(back.hasChanges).toBe(false);
+  });
+
+  it('withAddressItemValue sets one row; withAddressItemsChecked sets IsValid = not (Required and Value = "")', () => {
+    const item = (NumberRef: number, Value: string, Required: boolean) => ({
+      NumberRef,
+      Label: '',
+      Value,
+      Required,
+      Visible: true,
+      IsValid: true,
+    });
+    const form = withAddress(EMPTY_ACCOUNT_FORM, {
+      Custom_Address_ItemList: wireList([item(1, '120 Las Margaritas', true), item(2, '', false), item(3, '', true)]),
+    });
+    const edited = withAddressItemValue(form, 1, 'Floor 2');
+    expect(edited.AccountForm_AddressInformation.Custom_Address_ItemList.List.map((i) => i.Value)).toEqual([
+      '120 Las Margaritas',
+      'Floor 2',
+      '',
+    ]);
+    const checked = withAddressItemsChecked(form);
+    expect(checked.AccountForm_AddressInformation.Custom_Address_ItemList.List.map((i) => i.IsValid)).toEqual([
+      true,
+      true,
+      false,
+    ]);
   });
 });

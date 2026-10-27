@@ -71,11 +71,12 @@
    "os": "Action_RefreshSearch loading rows",
    "react": "not found in pages/Search (searched: Loading Name, Loading Location); 'Loading Name' only in app/src/containers/ShareSheet/shareSheetState.ts:28",
    "evidence": "TST ScreenBlock_Search.mvc.js:2475-2497 (three ListAppend rows \"Loading Name\", \"Name\", \"Loading Location\"); 0 hits in app/src/pages/Search and app/src/api/search",
-   "verdict": "missing",
-   "note": "the hit in containers/ShareSheet/shareSheetState.ts:28 belongs to another flow",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B7-search.md). the hit in containers/ShareSheet/shareSheetState.ts:28 belongs to another flow",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Search-007",
@@ -859,11 +860,12 @@
    "os": "caption of the shown results; DEV and TST put separator and both texts inside the If",
    "react": "separator only when changedSinceSearch (SearchView.tsx:154); the caption 'Showing results for ' and the quoted term render whenever hasSearched (SearchView.tsx:155-168)",
    "evidence": "TST ScreenBlock_Search.mvc.js:1207-1327: $if(searchKey_CurrentVar !== searchKey_LastSearchedVar) holds the SectionSeparator and the CustomContainer with both texts",
-   "verdict": "partial",
-   "note": "DEV and TST agree; React shows the caption without the condition",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B7-search.md). DEV and TST agree; React shows the caption without the condition",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Search-072",
@@ -1077,11 +1079,12 @@
    "os": "build three loading rows",
    "react": "not found in pages/Search (searched: Loading Name, Loading Location, LoadingList in app/src/pages/Search, api/search)",
    "evidence": "TST ScreenBlock_Search.mvc.js:2475-2530 (ListAppend x3, ListAppendAll per category, Type Member for People); React clears the lists only (searchState.ts:176-179)",
-   "verdict": "missing",
-   "note": "TST: present (nameAttr/locationAttr lines 2475-2497); React fills no loading rows; the Skeleton component covers loading (SearchView.tsx:169). 'Loading Name' exists in app/src/containers/ShareSheet/shareSheetState.ts:28 for another flow",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B7-search.md). TST: present (nameAttr/locationAttr lines 2475-2497); React fills no loading rows; the Skeleton component covers loading (SearchView.tsx:169). 'Loading Name' exists in app/src/containers/ShareSheet/shareSheetState.ts:28 for another flow",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Search-090",
@@ -1091,11 +1094,12 @@
    "os": "loading rows for Places",
    "react": "not found (searched: ListAppendAll, LoadingPlaces in app/src/pages/Search)",
    "evidence": "TST ScreenBlock_Search.mvc.js:2475-2530 (ListAppend x3, ListAppendAll per category, Type Member for People); React clears the lists only (searchState.ts:176-179)",
-   "verdict": "missing",
-   "note": "TST: present (ScreenBlock_Search.js:2503 LoadingPlaces); see previous row",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B7-search.md). TST: present (ScreenBlock_Search.js:2503 LoadingPlaces); see previous row",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Search-091",
@@ -1105,11 +1109,12 @@
    "os": "loading rows for Households",
    "react": "not found (searched: LoadingHouseholds)",
    "evidence": "TST ScreenBlock_Search.mvc.js:2475-2530 (ListAppend x3, ListAppendAll per category, Type Member for People); React clears the lists only (searchState.ts:176-179)",
-   "verdict": "missing",
-   "note": "TST: present (ScreenBlock_Search.js:2510)",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B7-search.md). TST: present (ScreenBlock_Search.js:2510)",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Search-092",
@@ -1119,11 +1124,12 @@
    "os": "loading rows for People",
    "react": "not found (searched: LoadingPeople, Entities.Connect_Entity.Member loop)",
    "evidence": "TST ScreenBlock_Search.mvc.js:2475-2530 (ListAppend x3, ListAppendAll per category, Type Member for People); React clears the lists only (searchState.ts:176-179)",
-   "verdict": "missing",
-   "note": "TST: present (ScreenBlock_Search.js:2517)",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B7-search.md). TST: present (ScreenBlock_Search.js:2517)",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Search-093",
@@ -1229,11 +1235,12 @@
    "os": "tag change",
    "react": "onTagListChanged dispatches tagListChanged, then refreshSearch (useSearch.ts:308-311); refreshSearch returns for a blank term before clearResults (useSearch.ts:227)",
    "evidence": "TST ScreenBlock_Search.mvc.js:3929-3937 (SelectedCategory, TagList, then get_RecentClickedResults$AggrRefresh(5) before Action_RefreshSearch); BR-UBTCON-884",
-   "verdict": "partial",
-   "note": "With a blank term (before the first search) React keeps the recent gallery of the old category",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B7-search.md). With a blank term (before the first search) React keeps the recent gallery of the old category",
+   "verified": "code",
    "severity": "major",
-   "finding": "F2"
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Search-102",
@@ -1531,11 +1538,12 @@
    "os": "non-blank term saved to recents, loading placeholders per category, directory searched with term, first selected country, category",
    "react": "app/src/pages/Search/hooks/useSearch.ts:226-241 (see Action_RefreshSearch rows)",
    "evidence": "BR-UBTCON-880; TST ScreenBlock_Search.mvc.js:2462-2530",
-   "verdict": "partial",
-   "note": "term save, search call and arguments match; the loading placeholders per category are missing",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B7-search.md). term save, search call and arguments match; the loading placeholders per category are missing",
+   "verified": "code",
    "severity": "major",
-   "finding": "F3"
+   "finding": "F3",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Search-127",

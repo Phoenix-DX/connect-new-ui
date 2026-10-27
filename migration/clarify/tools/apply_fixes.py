@@ -2,8 +2,8 @@
 
 Usage (from the project root):
   python3 migration/clarify/tools/apply_fixes.py migration/clarify/fixes/manifest.json
-Manifest: a list of {"flow", "finding", "group", "date", "status": "fixed"|"no-fix"|"open", "verified": "code"|"live",
-"reason": "<text for no-fix or open>", "rows": [optional row ids; default every row of the finding; [] = no row], "suffix": "<optional text after the fixed status>"}.
+Manifest: a list of {"flow", "finding", "group", "date", "status": "fixed"|"built"|"no-fix"|"open", "verified": "code"|"live",
+"reason": "<text for no-fix or open>", "rows": [optional row ids; default every row of the finding; [] = no row], "suffix": "<optional text after the fixed status>", "note": "<optional note path, default fixes/<group>.md>"}.
 A `fixed` entry sets verdict `match`, `verified`, `fixed: <date>` and a note prefix on the rows, and the §5 status cell
 "fixed <date> (`fixes/<group>.md`)". A `no-fix` entry writes "no fix: <reason>" in the status cell and leaves the rows.
 An `open` entry writes "open: <reason>" and leaves the rows. Running it twice is safe (the prefix is written once).
@@ -54,10 +54,12 @@ def main():
         fl, fid = e["flow"], e["finding"]
         rp = os.path.join(C, "flows", fl, "report.md")
         cp = os.path.join(C, "flows", fl, "checklist.json")
-        if e["status"] == "fixed":
-            set_status(rp, fid, f"fixed {e['date']} (`fixes/{e['group']}.md`)" + (f": {e['suffix']}" if e.get("suffix") else ""))
+        if e["status"] in ("fixed", "built"):
+            note = e.get("note") or f"fixes/{e['group']}.md"
+            word = e["status"]
+            set_status(rp, fid, f"{word} {e['date']} (`{note}`)" + (f": {e['suffix']}" if e.get("suffix") else ""))
             d = json.load(open(cp))
-            prefix = f"Fixed {e['date']} (fixes/{e['group']}.md)."
+            prefix = f"{word.capitalize()} {e['date']} ({note})."
             for r in d["rows"]:
                 if r.get("finding") != fid or ("rows" in e and r["id"] not in e["rows"]):
                     continue

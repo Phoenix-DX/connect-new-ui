@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "4868ae87cd9e2767015c",
+ "fingerprint": "7ab96e5c3bae984ffc10",
  "options": {
   "text": true,
   "style": true,
@@ -27,21 +27,17 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T14:57:53.182Z",
+ "at": "2026-10-27T17:19:53.726Z",
  "counts": {},
  "exemptionsUsed": {
-  "ignoreSubtrees": 4,
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
-  "CAPTURE-SKELETON-SHIMMER-PHASE": 18,
-  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 2,
-  "CAPTURE-LOADING-FETCH-TIMEOUT-COUNTRYLIST-SHEET": 4
+  "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0.00001,
-  "maxCell": 0.0006,
+  "ratio": 0,
+  "maxCell": 0,
   "maxCellRatio": 0.03,
-  "diffPixels": 1,
-  "comparedPixels": 153532,
+  "diffPixels": 0,
+  "comparedPixels": 0,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -53,9 +49,7 @@
    844
   ],
   "masks": 7,
-  "hotspots": [
-   "360,0 (1px)"
-  ],
+  "hotspots": [],
   "diffPng": "migration/screens/CountryList/parity/loading.diff.png"
  },
  "calls": null,

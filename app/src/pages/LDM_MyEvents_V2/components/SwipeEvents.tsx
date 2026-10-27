@@ -5,7 +5,7 @@ import { TouchEvents } from '@/components/ui/TouchEvents';
 /* OutSystems UI SwipeEvents (OutSystemsUI_2_23.Utilities.SwipeEvents.mvc.js). A local copy for MyTimeline_V2, the only
    user of the block in the app. */
 
-export interface SwipeEventsProps {
+interface SwipeEventsProps {
   /** OutSystems instance id of the block. */
   id: string;
   /** WidgetId: DOM id of the element whose swipes are tracked (TouchEvents reads it once, OnReady). */

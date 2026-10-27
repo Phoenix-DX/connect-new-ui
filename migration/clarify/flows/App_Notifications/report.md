@@ -411,10 +411,10 @@ has its own row (§3.4).
 
 ## 5. Findings
 
-| Id | Severity | Screen / element | Finding | React location | Suggested fix |
-|---|---|---|---|---|---|
-| F1 | major | Notifications / If_HasNoNotifications, Notifications_NoItemsFound | When a completed fetch returns no notification, TST shows `Notifications_NoItemsFound`: a calendar icon, "No Notifications Found" and "We were unable to find any Notifications to display." (BR-UBTCON-983). React renders a `NotCaptured` marker without children, which renders nothing in a built app. The content area stays empty. | `app/src/pages/Notifications/NotificationsPage.tsx:155-156`; `app/src/platform/feedback/NotCaptured.tsx:7-8` | Build `Notifications_NoItemsFound` from `UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc.js:151-320` and pass it as the child of the marker (decision U21, `migration/app-shell.spec.md:353`: build from compiled code and mark NotCaptured). |
-| F2 | major | Notifications_Header / If_HasBadge | TST shows the Badge only when `BadgeNumber > 0` (BR-UBTCON-981). React always renders it, so a section with no unread notification shows a red "0" badge. The mock gives every section an unread item, so the parity check does not see it. | `app/src/pages/Notifications/components/Notifications_Header.tsx:52` | Render the Badge only when `badgeNumber > 0`; add a mock case with a read section. |
+| Id | Severity | Screen / element | Finding | React location | Suggested fix | Status |
+|---|---|---|---|---|---|---|
+| F1 | major | Notifications / If_HasNoNotifications, Notifications_NoItemsFound | When a completed fetch returns no notification, TST shows `Notifications_NoItemsFound`: a calendar icon, "No Notifications Found" and "We were unable to find any Notifications to display." (BR-UBTCON-983). React renders a `NotCaptured` marker without children, which renders nothing in a built app. The content area stays empty. | `app/src/pages/Notifications/NotificationsPage.tsx:155-156`; `app/src/platform/feedback/NotCaptured.tsx:7-8` | Build `Notifications_NoItemsFound` from `UBTConnect.App_Notifications.Notifications_NoItemsFound.mvc.js:151-320` and pass it as the child of the marker (decision U21, `migration/app-shell.spec.md:353`: build from compiled code and mark NotCaptured). | built 2026-10-27 (`builds/B5-lists.md`) |
+| F2 | major | Notifications_Header / If_HasBadge | TST shows the Badge only when `BadgeNumber > 0` (BR-UBTCON-981). React always renders it, so a section with no unread notification shows a red "0" badge. The mock gives every section an unread item, so the parity check does not see it. | `app/src/pages/Notifications/components/Notifications_Header.tsx:52` | Render the Badge only when `badgeNumber > 0`; add a mock case with a read section. | built 2026-10-27 (`builds/B5-lists.md`) |
 
 ## 6. DEV vs TST differences
 

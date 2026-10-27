@@ -1434,10 +1434,11 @@
    "os": "TST assigns the input record to the local by reference and then writes Years and SortByNewest on it (Notes_FilterSheet.js:386-404); the screen passes its own Notes_Filter record (Notes.js:582); the runtime setInputs does not clone (OutSystemsReactView.js:6-7, setInputs passes e.inputs as is)",
    "react": "onApplyFilters({ ...inFilterNotes, years, sortByNewest }) copies the filter; the screen keeps Notes_Filter.Years unchanged",
    "evidence": "Notes_FilterSheet.js:72-73,386; Notes.js:582; app/src/pages/Notes/components/Notes_FilterSheet.tsx:60-67; app/src/pages/Notes/hooks/useNotes.ts:191-195",
-   "verdict": "partial",
-   "note": "If the record is shared, TST sends the chosen years (and sort) to GetNotes on Apply; React never sends years. | capture 2026-10-27 (review/captures.md §3): after Apply, DataActionGetNotes sends Notes_Filter.Years (1 item) and SortByNewest \"Yes\"; React never sends Years, so the year filter has no effect (finding F2, major)",
-   "verified": "live",
-   "finding": "F2"
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B10-misc.md). If the record is shared, TST sends the chosen years (and sort) to GetNotes on Apply; React never sends years. | capture 2026-10-27 (review/captures.md §3): after Apply, DataActionGetNotes sends Notes_Filter.Years (1 item) and SortByNewest \"Yes\"; React never sends Years, so the year filter has no effect (finding F2, major)",
+   "verified": "code",
+   "finding": "F2",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Notes-111",

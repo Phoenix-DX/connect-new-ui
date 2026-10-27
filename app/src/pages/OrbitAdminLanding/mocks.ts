@@ -1,7 +1,7 @@
 import type { RequestHandler } from 'msw';
 import type { ActionOutputs, PathOf } from '@/api/client/callAction';
 import { contractHandler } from '@/mocks/contract';
-import { ORBIT_ADMIN_SCAN_PER_MILESTONE, orbitAdminEvents, type OrbitAdminEvent } from '@/mocks/fictional/orbitAdmin';
+import { orbitAdminEvents, type OrbitAdminEvent } from '@/mocks/fictional/orbitAdmin';
 import { scenario } from '@/mocks/scenario';
 import { wireList } from '@/lib/os-wire';
 
@@ -13,16 +13,15 @@ type Get_AdminEventsListWire = ActionOutputs<
 /** GetAdminOrbitEvents_ScreenRec: OrbitSummaryItem (AdminOrbitSummaryItemRec) + OrbitEventType. */
 type AdminOrbitEventsWire = Get_AdminEventsListWire['Response']['List'][number];
 
-/* Mocks of OrbitAdminLanding (P-MOCKS), on the fictional Orbit admin world (src/mocks/fictional/orbitAdmin.ts). Neither
-   action was recorded with data: TST's full-permission account has no admin event (Response.List empty,
-   analysis/calls.md § DataActionGet_AdminEventsList) and GetMilestoneScanFF runs only on a card click.
+/* Mocks of OrbitAdminLanding (P-MOCKS), on the fictional Orbit admin world (src/mocks/fictional/orbitAdmin.ts). The
+   action was not recorded with data: TST's full-permission account has no admin event (Response.List empty,
+   analysis/calls.md § DataActionGet_AdminEventsList).
    - Get_AdminEventsList: the three events the signed-in admin scans QR codes at, in the captured row shape
      (GetAdminOrbitEvents_ScreenRec).
-   - GetMilestoneScanFF: IsScanPerMilestone False (Q2), so a card opens OrbitAdminEventDetail.
+   A card click makes no server call on TST (the DEV-only GetMilestoneScanFF is removed, Legacy_OrbitAdminFlow Q1).
    contractHandler: the answers are checked against the API contract at compile time.
    Scenarios: real (three admin events); noadminevents (TST's captured account: no admin event, NoInformation_Orbit;
-   Q1); scanpermilestone (IsScanPerMilestone True: a card opens OrbitAdminMilestones, Q2); empty; loading (never
-   answers: skeleton); error (HTTP 500: the offline capture's Service Interruption). */
+   Q1); empty; loading (never answers: skeleton); error (HTTP 500: the offline capture's Service Interruption). */
 
 /** An admin event as a row of GetAdminOrbitEvents_Screen (AdminOrbitSummaryItemRec + OrbitEventTypeRec). */
 const adminEventRow = (e: OrbitAdminEvent): AdminOrbitEventsWire => ({
@@ -47,7 +46,4 @@ export const handlers: RequestHandler[] = [
   contractHandler('Connect2_OrbitMobile_MUI', 'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList', () =>
     adminEventsListAnswer(),
   ),
-  contractHandler('UBTConnect', 'ActionGetMilestoneScanFF', () => ({
-    IsScanPerMilestone: scenario() === 'scanpermilestone' ? true : ORBIT_ADMIN_SCAN_PER_MILESTONE,
-  })),
 ];

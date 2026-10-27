@@ -37,6 +37,8 @@ interface ShareSheetSearchStepProps {
   onSubmit: (submitted: string) => void;
   onClickSelected: (item: SearchResult) => void;
   onSelect: (item: SearchResult, select: boolean) => void;
+  /** OnClick_UpgradeSubscription of a SearchResult_Item (App_Subscription_NavigateToUpgrade). */
+  onClickUpgradeSubscription: () => void;
 }
 
 /** The search step of the sheet: the search box, the selected members and the result list. */
@@ -53,6 +55,7 @@ export function ShareSheetSearchStep({
   onSubmit,
   onClickSelected,
   onSelect,
+  onClickUpgradeSubscription,
 }: ShareSheetSearchStepProps) {
   return (
     <CustomContainer
@@ -155,6 +158,7 @@ export function ShareSheetSearchStep({
                   inImageHeightId={UBT_ImageSize.Square}
                   inTitleFontSize={UBT_FontSize.Small}
                   inImageWidthId={UBT_ImageSize.Base_52}
+                  onClickUpgradeSubscription={onClickUpgradeSubscription}
                 >
                   {item.RecordDisabled === true ? (
                     <Icon inColorId={UBT_Color.Neutral7} inIconId={UBT_Icons.Lock} />

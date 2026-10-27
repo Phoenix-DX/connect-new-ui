@@ -13,9 +13,9 @@
    "Flow": "[App_Common](flows/App_Common/report.md)",
    "Status": "draft",
    "Rows": "182",
-   "match": "132",
+   "match": "133",
    "partial": "5",
-   "missing": "1",
+   "missing": "0",
    "differs": "20",
    "mock-only": "4",
    "n/a": "20",
@@ -43,8 +43,8 @@
    "Flow": "[App_Policies](flows/App_Policies/report.md)",
    "Status": "draft",
    "Rows": "90",
-   "match": "77",
-   "partial": "4",
+   "match": "79",
+   "partial": "2",
    "missing": "0",
    "differs": "2",
    "mock-only": "2",
@@ -88,9 +88,9 @@
    "Flow": "[App_Menu_ContactUs](flows/App_Menu_ContactUs/report.md)",
    "Status": "draft",
    "Rows": "147",
-   "match": "104",
-   "partial": "11",
-   "missing": "21",
+   "match": "136",
+   "partial": "0",
+   "missing": "0",
    "differs": "2",
    "mock-only": "3",
    "n/a": "6",
@@ -103,9 +103,9 @@
    "Flow": "[App_Notifications](flows/App_Notifications/report.md)",
    "Status": "draft",
    "Rows": "120",
-   "match": "102",
-   "partial": "2",
-   "missing": "4",
+   "match": "108",
+   "partial": "0",
+   "missing": "0",
    "differs": "0",
    "mock-only": "2",
    "n/a": "10",
@@ -118,9 +118,9 @@
    "Flow": "[App_Profile](flows/App_Profile/report.md)",
    "Status": "draft",
    "Rows": "110",
-   "match": "74",
-   "partial": "7",
-   "missing": "21",
+   "match": "98",
+   "partial": "4",
+   "missing": "0",
    "differs": "0",
    "mock-only": "2",
    "n/a": "6",
@@ -133,9 +133,9 @@
    "Flow": "[App_Services](flows/App_Services/report.md)",
    "Status": "draft",
    "Rows": "81",
-   "match": "73",
-   "partial": "3",
-   "missing": "1",
+   "match": "75",
+   "partial": "2",
+   "missing": "0",
    "differs": "0",
    "mock-only": "2",
    "n/a": "2",
@@ -178,9 +178,9 @@
    "Flow": "[Directory_Search](flows/Directory_Search/report.md)",
    "Status": "draft",
    "Rows": "146",
-   "match": "131",
-   "partial": "3",
-   "missing": "5",
+   "match": "139",
+   "partial": "0",
+   "missing": "0",
    "differs": "2",
    "mock-only": "2",
    "n/a": "3",
@@ -208,8 +208,8 @@
    "Flow": "[Directory_SupperMeetings](flows/Directory_SupperMeetings/report.md)",
    "Status": "draft",
    "Rows": "111",
-   "match": "92",
-   "partial": "2",
+   "match": "94",
+   "partial": "0",
    "missing": "0",
    "differs": "4",
    "mock-only": "5",
@@ -238,9 +238,9 @@
    "Flow": "[Directory_Updates](flows/Directory_Updates/report.md)",
    "Status": "draft",
    "Rows": "149",
-   "match": "127",
-   "partial": "3",
-   "missing": "5",
+   "match": "134",
+   "partial": "1",
+   "missing": "0",
    "differs": "0",
    "mock-only": "5",
    "n/a": "9",
@@ -268,8 +268,8 @@
    "Flow": "[Notes](flows/Notes/report.md)",
    "Status": "draft",
    "Rows": "121",
-   "match": "106",
-   "partial": "1",
+   "match": "107",
+   "partial": "0",
    "missing": "0",
    "differs": "0",
    "mock-only": "2",
@@ -283,9 +283,9 @@
    "Flow": "[Calendar](flows/Calendar/report.md)",
    "Status": "draft",
    "Rows": "72",
-   "match": "39",
+   "match": "40",
    "partial": "0",
-   "missing": "2",
+   "missing": "1",
    "differs": "1",
    "mock-only": "2",
    "n/a": "28",
@@ -298,8 +298,8 @@
    "Flow": "[ContactFlow](flows/ContactFlow/report.md)",
    "Status": "draft",
    "Rows": "142",
-   "match": "122",
-   "partial": "2",
+   "match": "124",
+   "partial": "0",
    "missing": "0",
    "differs": "8",
    "mock-only": "5",
@@ -328,8 +328,8 @@
    "Flow": "[Legacy_MyNotificationsFlow](flows/Legacy_MyNotificationsFlow/report.md)",
    "Status": "draft",
    "Rows": "152",
-   "match": "109",
-   "partial": "4",
+   "match": "110",
+   "partial": "3",
    "missing": "20",
    "differs": "0",
    "mock-only": "8",
@@ -343,9 +343,9 @@
    "Flow": "[Legacy_OrbitEventsFlow](flows/Legacy_OrbitEventsFlow/report.md)",
    "Status": "draft",
    "Rows": "518",
-   "match": "402",
-   "partial": "12",
-   "missing": "69",
+   "match": "482",
+   "partial": "1",
+   "missing": "0",
    "differs": "8",
    "mock-only": "18",
    "n/a": "9",
@@ -358,8 +358,8 @@
    "Flow": "[Legacy_OrbitAdminFlow](flows/Legacy_OrbitAdminFlow/report.md)",
    "Status": "draft",
    "Rows": "109",
-   "match": "93",
-   "partial": "3",
+   "match": "96",
+   "partial": "0",
    "missing": "0",
    "differs": "5",
    "mock-only": "4",
@@ -403,10 +403,10 @@
    "Flow": "[Legacy_LDMEventsFlow_V2](flows/Legacy_LDMEventsFlow_V2/report.md)",
    "Status": "draft",
    "Rows": "219",
-   "match": "171",
-   "partial": "3",
+   "match": "177",
+   "partial": "2",
    "missing": "0",
-   "differs": "11",
+   "differs": "6",
    "mock-only": "4",
    "n/a": "30",
    "unclear": "0",
@@ -553,8 +553,8 @@
    "Flow": "[App_CommonBlocks_Filter](flows/App_CommonBlocks_Filter/report.md)",
    "Status": "draft",
    "Rows": "213",
-   "match": "210",
-   "partial": "1",
+   "match": "211",
+   "partial": "0",
    "missing": "0",
    "differs": "0",
    "mock-only": "0",
@@ -658,9 +658,9 @@
    "Flow": "[_shared](flows/_shared/report.md)",
    "Status": "draft",
    "Rows": "194",
-   "match": "83",
+   "match": "84",
    "partial": "0",
-   "missing": "2",
+   "missing": "1",
    "differs": "5",
    "mock-only": "7",
    "n/a": "97",
@@ -673,9 +673,9 @@
    "Flow": "[_libraries](flows/_libraries/report.md)",
    "Status": "draft",
    "Rows": "245",
-   "match": "228",
-   "partial": "1",
-   "missing": "1",
+   "match": "230",
+   "partial": "0",
+   "missing": "0",
    "differs": "9",
    "mock-only": "4",
    "n/a": "2",
@@ -688,10 +688,10 @@
    "Flow": "**total (45/45 flows)**",
    "Status": "",
    "Rows": "5412",
-   "match": "4370",
-   "partial": "78",
-   "missing": "152",
-   "differs": "97",
+   "match": "4552",
+   "partial": "31",
+   "missing": "22",
+   "differs": "92",
    "mock-only": "157",
    "n/a": "555",
    "unclear": "3",
@@ -2226,8 +2226,8 @@
    "Id": "F1",
    "Element": "ContactUsDetails / If not isLogged (Input_FullName, Input_Email, Input_PhoneNumb",
    "Finding": "TST hiển thị thêm năm trường cho người dùng chưa đăng nhập: nhãn, input với Mandatory và MaxLength 50, danh sách Country từ DataAction_GetCountriesNames, và các action OnChange của chúng. React hiển thị một `NotCaptu",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B1-contactus.md`)"
   },
   {
    "Severity": "blocker",
@@ -2235,8 +2235,8 @@
    "Id": "F1",
    "Element": "HostSurvey: wizard khảo sát",
    "Finding": "Các bước dữ liệu (điều hướng, chỗ ở, bữa ăn, helper, phương tiện), header của bước, footer với Next / Submit, năm popup xác nhận, 15 block item, bốn input ghi chú 250 ký tự,",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B2-hostsurvey.md`)"
   },
   {
    "Severity": "blocker",
@@ -2244,8 +2244,8 @@
    "Id": "F2",
    "Element": "MilestoneDetail: 5 loại milestone",
    "Finding": "`ScreenBlock_MealGuest`, `_MealHost`, `_MealHelper`, `_AccommodationGuest`, `_AccommodationHelper` render `<NotCaptured>`; wrapper action `OnHandle_NavigateToContactByEmail` (ContactByEmailOrbitHo",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B3-milestones.md`)"
   },
   {
    "Severity": "major",
@@ -2253,8 +2253,8 @@
    "Id": "F1",
    "Element": "OnException của flow App_Common / BubbleCommunicationException",
    "Finding": "TST kiểm tra `UBTConnect.BubbleCommunicationException` trước và hiển thị toast lỗi kết nối (flow controller :31-39). `raiseToFlowHandler` không có nhánh này, nên lỗi đi tới `showExceptionMessag",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B4-errors.md`)"
   },
   {
    "Severity": "major",
@@ -2262,8 +2262,8 @@
    "Id": "F1",
    "Element": "FilterSheet_OptionList_Item, Action_DefineOptions (dòng 131)",
    "Finding": "TST bỏ dấu khỏi DisplayText và khỏi chuỗi tìm kiếm trước khi so sánh (`fol.js:721-739`, `UBTJavaScriptUtils.controller.js:3078-3084`). React giữ nguyên dấu. Tìm \"Sao\" không",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B5-lists.md`)"
   },
   {
    "Severity": "major",
@@ -2271,8 +2271,8 @@
    "Id": "F2",
    "Element": "ContactUsDetails / ContactUs_Rate, ContactUs_RateRateSelected",
    "Finding": "Block đánh giá chưa được build, và không có handler nào đặt `Rate_SelectedRate`. Với chủ đề feedback, người dùng đã đăng nhập không thể đánh giá (BR-UBTCON-975, BR-UBTCON-972). Send cần có tin nhắn, vì",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B1-contactus.md`)"
   },
   {
    "Severity": "major",
@@ -2280,8 +2280,8 @@
    "Id": "F3",
    "Element": "ContactUsDetails / DataAction_GetLocalityTimezone, CacheControl_UserInfo_Wrapper",
    "Finding": "TST giữ bản ghi người dùng trong `LocalCacheControl_UserInformation` và gửi nó cùng data action. Server đọc `In_LocalityId` từ đó. React không giữ bản ghi này. Lệnh gọi của nó không có `LocalCach",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B1-contactus.md`)"
   },
   {
    "Severity": "major",
@@ -2289,8 +2289,8 @@
    "Id": "F1",
    "Element": "Notifications / If_HasNoNotifications, Notifications_NoItemsFound",
    "Finding": "Khi một lần fetch hoàn tất không trả về thông báo nào, TST hiển thị `Notifications_NoItemsFound`: một icon lịch, \"No Notifications Found\" và \"We were unable to find any Notifications to display.\" (BR-UBTCON-",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B5-lists.md`)"
   },
   {
    "Severity": "major",
@@ -2298,8 +2298,8 @@
    "Id": "F2",
    "Element": "Notifications_Header / If_HasBadge",
    "Finding": "TST chỉ hiển thị Badge khi `BadgeNumber > 0` (BR-UBTCON-981). React luôn render nó, nên một section không có thông báo chưa đọc vẫn hiển thị badge đỏ \"0\". Mock cho mỗi section một item chưa đọc, nên",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B5-lists.md`)"
   },
   {
    "Severity": "major",
@@ -2307,8 +2307,8 @@
    "Id": "F1",
    "Element": "AcceptPendingPolicies / Policy_Custom_AcceptPendingPolicies input PolicyApplicat",
    "Finding": "TST gửi `TextToIdentifier` của các bản ghi Connect_Applications: chuỗi GUID của Connect, Directory và Orbit (`static-entities-tst.json:2809`). React gửi các tên `Connect_Applications.Connect`",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B5-lists.md`)"
   },
   {
    "Severity": "major",
@@ -2316,8 +2316,8 @@
    "Id": "F1",
    "Element": "Profile / phần địa chỉ (`#isHouseholder_Address`, `#isHouseholder_Cache`, các",
    "Finding": "Với chủ hộ, React chỉ hiển thị tiêu đề \"Address Information\" trong một marker NotCaptured. Chưa được build: các dòng địa chỉ, DropdownSearch Locality và Subdivision, CacheControl_AllLocalities, Cach",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B6-profile.md`)"
   },
   {
    "Severity": "major",
@@ -2325,8 +2325,8 @@
    "Id": "F1",
    "Element": "Services / OnClick_SaveChanges, các exception handler",
    "Finding": "TST đặt `isLoading` về False trong các handler CommunicationException và AllExceptions, rồi raise bubble exception. React raise cùng các exception nhưng giữ `isLoading` là True. Skeleton che",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B4-errors.md`)"
   },
   {
    "Severity": "major",
@@ -2334,8 +2334,8 @@
    "Id": "F2",
    "Element": "Services / GetServices thất bại",
    "Finding": "Runtime (`OutSystems.js:3853`) flush model và gọi `handleError` của màn hình khi một lần fetch dữ liệu thất bại. App_Services chuyển lỗi tới App_Common OnException, nơi hiển thị toast lỗi kết nối",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B4-errors.md`)"
   },
   {
    "Severity": "major",
@@ -2343,8 +2343,8 @@
    "Id": "F1",
    "Element": "Embedded_MyEntertaining / `DataActionGetEntertainingConfig` thất bại",
    "Finding": "Runtime (`OutSystems.js:3853`) gọi `handleError` sau một lần fetch dữ liệu thất bại. Flow Calendar chuyển lỗi tới App_Common OnException, nơi hiển thị toast. React giữ skeleton và hiển thị",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B4-errors.md`)"
   },
   {
    "Severity": "major",
@@ -2352,8 +2352,8 @@
    "Id": "F1",
    "Element": "ScreenBlock_Search / If StartedDifferentSearch",
    "Finding": "React hiển thị caption \"Showing results for '<term>':\" bất cứ khi nào HasSearched là True. TST chỉ hiển thị SectionSeparator và cả hai đoạn text khi SearchKey_Current <> SearchKey_LastSearched (`ScreenBlock_",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B7-search.md`)"
   },
   {
    "Severity": "major",
@@ -2361,8 +2361,8 @@
    "Id": "F2",
    "Element": "ScreenBlock_Search / Event_HorizontalTagListChanged",
    "Finding": "TST làm mới Get_RecentClickedResults (tối đa 5) với category mới trước Action_RefreshSearch (`ScreenBlock_Search.mvc.js`:3929-3937). React chỉ làm mới các danh sách gần đây bên trong refreshSearch, khi",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B7-search.md`)"
   },
   {
    "Severity": "major",
@@ -2370,8 +2370,8 @@
    "Id": "F3",
    "Element": "ScreenBlock_Search / Action_RefreshSearch",
    "Finding": "TST thêm ba dòng loading (\"Loading Name\", \"Name\", \"Loading Location\"; Type Household, Member cho People) vào mỗi danh sách kết quả trong phạm vi trước khi fetch (`ScreenBlock_Search.mvc.js`:2475-2530).",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B7-search.md`)"
   },
   {
    "Severity": "major",
@@ -2379,8 +2379,8 @@
    "Id": "F1",
    "Element": "SupperMeeting_DetailsBlock / GetSubdivision; SupperMeeting_HouseholdList / GetSu",
    "Finding": "TST chạy OnReady qua `safeExecuteClientAction` (`SupperMeeting_DetailsBlock.mvc.js:720-722`, `SupperMeeting_HouseholdList.mvc.js:324`). Runtime gọi `handleError` khi action thất bại (`OutS",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B4-errors.md`)"
   },
   {
    "Severity": "major",
@@ -2388,8 +2388,8 @@
    "Id": "F1",
    "Element": "Updates_SingleList / If_HasNoUpdates, Updates_NoItemsFound",
    "Finding": "Khi một lần fetch hoàn tất không trả về update nào, TST hiển thị `Updates_NoItemsFound` (BR-UBTCON-872): một nút tròn có viền với icon CalendarBusyFill, \"No Updates Found\" và \"We were unable to find any",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B5-lists.md`)"
   },
   {
    "Severity": "major",
@@ -2397,8 +2397,8 @@
    "Id": "F1",
    "Element": "LDM_EventDetail_V2 / OnHandle_GoToHousehold",
    "Finding": "TST gọi IsFreeSubscriptionPlan, IsRegionalSubscriptionPlan và CarouselFilteredEventResults (`controller.js:879-985`): carousel nhận các khách có HouseholdDisplay, và không có RecordDisabled",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B8-ldm.md`): the three actions ported; the screen handler keeps every guest (the block event passes only the id list, `LDM_EventDetail_V2.mvc.js:212-219`), so the finding was partly wrong"
   },
   {
    "Severity": "major",
@@ -2406,8 +2406,8 @@
    "Id": "F2",
    "Element": "LDM_MyEvents_V2 / bộ lọc timeline",
    "Finding": "Popup lọc là một placeholder `NotCaptured` (quyết định `auto-decisions-2026-10-16.md:51`); OnHandle_MyTimelineFilter, OnHandle_ResetFilters, OnHandle_Filter, OnHandle_Close chưa được build. Người dùng",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B8-ldm.md`)"
   },
   {
    "Severity": "major",
@@ -2415,8 +2415,8 @@
    "Id": "F1",
    "Element": "MessageDetail / Placeholder MessageDetails, FeedItemId, Handler_NavigateTo_Share",
    "Finding": "Một tin nhắn Sharing hiển thị marker NotCaptured thay vì thẻ của item được chia sẻ. TST render Share_UI.ShareObjectDetail_ExtendedShare (GetHasExtendedShare là True trên TST) với ShareId từ temp đầu tiên",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B9-messagedetail.md`): ShareObjectDetail_ExtendedShare (the TST branch, C2ExtendedShare on); the flag-off ShareObjectDetail branch stays open (PD9)"
   },
   {
    "Severity": "major",
@@ -2424,8 +2424,8 @@
    "Id": "F2",
    "Element": "MessageDetail / Placeholder ActionButton, OnClick_ViewOrbitEvent, OnClick_ViewAs",
    "Finding": "Tin nhắn Orbit hoặc Assemble không có nút \"View Event\", \"Go to Host Survey\" hay \"View Meeting\"; tin nhắn Assemble hiển thị các placeholder chưa được điền. Board (chủ dự án, 2026-10-16) đã đưa Orbit, Assemble và",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B9-messagedetail.md`): PlaceholderLib SetTextPlaceholdersValue open (PD8)"
   },
   {
    "Severity": "major",
@@ -2433,8 +2433,8 @@
    "Id": "F3",
    "Element": "MessageDetail / AdaptiveCardViewer, HostConfig, AdaptiveCardViewerOnExecuteActio",
    "Finding": "Tin nhắn adaptive card hiển thị một marker. TST render card với host config của Events và xử lý send_email, view_event và mọi submit khác (store, thank, refresh).",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B9-messagedetail.md`): the renderer library waits for the decision PD7"
   },
   {
    "Severity": "major",
@@ -2442,8 +2442,8 @@
    "Id": "F6",
    "Element": "MessageDetail / OnAfterFetch, tin nhắn riêng của người dùng khác",
    "Finding": "TST hiển thị toast \"You don't have access to that message\" rồi hiển thị tin nhắn (nhánh kết thúc bằng một loop break, không phải điều hướng). React hiển thị toast và rời sang MessageList. Dữ liệu mock",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B9-messagedetail.md`)"
   },
   {
    "Severity": "major",
@@ -2451,8 +2451,8 @@
    "Id": "F1",
    "Element": "OrbitAdminLanding / OnHandle_NavigateToEventDetail",
    "Finding": "React làm theo model DEV: nó gọi GetMilestoneScanFF và, khi IsScanPerMilestone là True, mở OrbitAdminMilestones. TST chỉ mở OrbitAdminEventDetail (LW:244-252). TST không có GetMilestoneSca",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B10-misc.md`)"
   },
   {
    "Severity": "major",
@@ -2460,8 +2460,8 @@
    "Id": "F3",
    "Element": "OrbitLanding: \"View Passport details\"",
    "Finding": "React hiển thị control và điều hướng tới `/UBTConnect/PassportScan` với LoginMemberId và TargetId sau cổng kiểm tra quyền truy cập. TST không có control, event hay màn hình như vậy (`tst_source.py grep \"assport\"`: không",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "rút lại sau khi đọc lại TST 2026-10-28",
+   "StatusEn": "no fix: finding withdrawn 2026-10-28: the live TST block script has OnHandle_ViewPassportDetails and the TST capture DOM has `orbit-landing-passport-cont`; the survey copy of 2026-10-13 was stale. The React control is restored (B10's removal reverted); the user confirms in PD13"
   },
   {
    "Severity": "major",
@@ -2469,8 +2469,8 @@
    "Id": "F2",
    "Element": "Notes_FilterSheet / Handler_FilterSheetApplyFilters → DataActionGetNotes",
    "Finding": "Sau khi Apply, TST gửi Notes_Filter.Years (các năm đã chọn) và SortByNewest trong dữ liệu màn hình (capture 2026-10-27, review/captures.md §3). React không bao giờ gửi Years, nên một năm được chọn không có tác dụng",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B10-misc.md`)"
   },
   {
    "Severity": "major",
@@ -2478,8 +2478,8 @@
    "Id": "F1",
    "Element": "SearchResult_Item OnClick_UpgradeSubscription; ShareSheet Handler_OnClickRecentM",
    "Finding": "TST chạy App_Subscription_NavigateToUpgrade (Cache_UserInfo_Get, Cache_UserInfo_Invalidate, OpenInApp_OpenExternalLink sau ConfirmAction; `UBTConnect_Utils.controller.js:1`) trên cảnh báo và App_S",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B10-misc.md`)"
   },
   {
    "Severity": "major",
@@ -2487,8 +2487,8 @@
    "Id": "F3",
    "Element": "OnApplicationReady / khi có exception All Exceptions → ScreenController_RaiseError",
    "Finding": "TST hiển thị toast exception khi app start thất bại mà không phải lỗi hệ thống (`UBTConnect.controller.js:15398-15417`, `UBTJavaScriptUtils.controller.js:3900`); React chỉ ghi log (`appStartSteps.ts:192-196`). Dòng 19",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B4-errors.md`)"
   },
   {
    "Severity": "minor",
@@ -3180,8 +3180,8 @@
    "Id": "F1",
    "Element": "ContactByEmailMember / OnApplicationEvent_EmailHost; ContactByEmailOrbitHelpdesk",
    "Finding": "TST gửi AuditPayload_EmailHost (MilestoneId, EventId, EventTitle, HostName, Subject, Message) và AuditPayload_ContactHelpdesk (EventId, EventTitle, Subject, Message) dưới dạng JSON tới App Insights. React",
-   "Status": "",
-   "StatusEn": ""
+   "Status": "đã build 2026-10-27",
+   "StatusEn": "built 2026-10-27 (`builds/B10-misc.md`)"
   },
   {
    "Severity": "info",
@@ -3666,8 +3666,8 @@
    "id": "Q2",
    "question": "OrbitLanding \"View Passport details\" (F3): làm theo TST và gỡ nó, hay giữ control chỉ có trên DEV?",
    "answer": "(a) Làm theo TST: gỡ control passport chỉ có trên DEV, event NavigateTo_PassportScan và handler của nó khỏi OrbitLanding. Ghi chú để so sánh sau: control và màn hình PassportScan có trên DEV (dev-ahead.md).",
-   "by": "user",
-   "date": "2026-10-27"
+   "by": "code",
+   "date": "2026-10-28"
   },
   {
    "flow": "Legacy_OrbitEventsFlow",

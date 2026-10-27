@@ -6,6 +6,7 @@ import {
 } from '@/mocks/modules/Connect2_LegacyShared/mockDefaults';
 import {
   toAllLocalities,
+  toAllSubdivisions,
   toBulkSubdivisionsInputs,
   toEventFilterLocalities,
   toInterchanges,
@@ -26,6 +27,7 @@ import {
   toSubdivisionName,
   toSubdivisionNameInputs,
   type AllLocalitiesWire,
+  type AllSubdivisionsWire,
   type BulkSubdivisionsWire,
   type InterchangesWire,
   type LocalityCardListWire,
@@ -410,7 +412,7 @@ describe('locality mapper: SupperMeeting_DetailsBlock and CacheControl_AllLocali
     expect(toSubdivisionHouseholdCards({ Household_GalleryCard_List: { List: [] } })).toEqual([]);
   });
 
-  it('toAllLocalities keeps the list wrapped with LocalityId, Name and CountryCode only', () => {
+  it('toAllLocalities keeps the list wrapped with LocalityId, Name, CountryName and CountryCode only', () => {
     const wire: AllLocalitiesWire = {
       CacheControl_Response: {
         LocalityList: {
@@ -428,8 +430,21 @@ describe('locality mapper: SupperMeeting_DetailsBlock and CacheControl_AllLocali
       },
     };
     expect(toAllLocalities(wire)).toEqual({
-      LocalityList: { List: [{ LocalityId: '252', Name: 'Bahia Blanca', CountryCode: 'ar' }] },
+      LocalityList: {
+        List: [{ LocalityId: '252', Name: 'Bahia Blanca', CountryName: 'Argentina', CountryCode: 'ar' }],
+      },
     });
+  });
+
+  it('toAllSubdivisions keeps the list wrapped with every attribute of Directory_LocalitySubdivision', () => {
+    const item = {
+      SubdivisionId: '9202',
+      SubdivisionName: 'Patagonia',
+      LocalityId: '585',
+      LocalityName: 'Bahia Blanca',
+    };
+    const wire: AllSubdivisionsWire = { CacheControl_Response: { SubdivionsList: { List: [item] } } };
+    expect(toAllSubdivisions(wire)).toEqual({ SubdivionsList: { List: [item] } });
   });
 });
 

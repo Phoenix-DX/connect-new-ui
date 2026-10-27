@@ -13,7 +13,13 @@ Status on 2026-10-27, end of the fourth session: the clarify work is complete an
 
 Earlier status (third session): the clarify work was complete before the fix wave.
 
+- Build wave (2026-10-27/28, `builds/README.md`): 3 blockers, 27 majors and 30 "build now" items built by 10 Opus
+  agents; gates green; 12 decisions wait in `builds/pending-decisions.md` (Opus and Fable recommend (a) for all).
+  Next after the answers: PD2 (Choice constants), PD7 (`adaptivecards@2.5.0`), PD8 (PlaceholderLib port), PD10–PD12
+  (bug-list rows), then the follow-ups of `builds/README.md`.
+
 Open items for the user:
+- The 12 pending decisions of the build wave (`builds/pending-decisions.md`).
 - Legacy_OrbitEventsFlow F4 and App_Policies F2: answered (a) on 2026-10-27 (keep W34; keep networkMode 'always').
 - Notes F2 (major, new from the capture): decide build or record.
 - Directory_Updates F2: closed 2026-10-27 (capture, then the scroll-anchor port by the user's decision).

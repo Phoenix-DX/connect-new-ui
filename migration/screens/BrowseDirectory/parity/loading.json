@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "fa6309573b01bcfa41d6",
+ "fingerprint": "82d184451fe01ee8b134",
  "options": {
   "text": true,
   "style": true,
@@ -27,19 +27,17 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T14:56:20.582Z",
+ "at": "2026-10-27T17:18:26.341Z",
  "counts": {},
  "exemptionsUsed": {
-  "ignoreSubtrees": 3,
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
-  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
+  "ignoreSubtrees": 1
  },
  "pixel": {
   "ratio": 0,
   "maxCell": 0,
   "maxCellRatio": 0.03,
   "diffPixels": 0,
-  "comparedPixels": 179400,
+  "comparedPixels": 0,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -50,7 +48,7 @@
    390,
    844
   ],
-  "masks": 5,
+  "masks": 4,
   "hotspots": [],
   "diffPng": "migration/screens/BrowseDirectory/parity/loading.diff.png"
  },

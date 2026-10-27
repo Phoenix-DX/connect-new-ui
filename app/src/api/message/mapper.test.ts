@@ -10,7 +10,9 @@ import {
   toMemberContacts,
   toMessageClearResult,
   toMessageExists,
+  toListOfMessageParameters,
   toMessageInstanceResult,
+  toOrbitHostSurveyNotificationParameters,
   toMessageItem,
   toMessageListInputs,
   toMessageParameters,
@@ -395,6 +397,7 @@ describe('message detail mappers', () => {
       },
       isRetracted: false,
       isCleared: true,
+      placeholderDelimiters: { placeholder: '', function: '', parameter: '' },
     });
   });
 
@@ -428,9 +431,35 @@ describe('message detail mappers', () => {
       },
     });
     expect(toMessageParameters({ Count: 2, List: { List: [row('1', 1, '7301'), row('2', 4, 'Arrival')] } })).toEqual([
-      { parameterNameId: 1, parameterValue: '7301' },
-      { parameterNameId: 4, parameterValue: 'Arrival' },
+      { id: '1', messageTemplateId: '31', parameterNameId: 1, parameterValue: '7301', tenantId: 1 },
+      { id: '2', messageTemplateId: '31', parameterNameId: 4, parameterValue: 'Arrival', tenantId: 1 },
     ]);
+  });
+
+  it('toListOfMessageParameters sends the parameters back as Comms_CS MessageParameter records', () => {
+    expect(
+      toListOfMessageParameters([
+        { id: '1', messageTemplateId: '31', parameterNameId: 2, parameterValue: '7301', tenantId: 1 },
+      ]),
+    ).toEqual({
+      List: [{ Id: '1', MessageTemplateId: '31', ParameterNameId: 2, ParameterValue: '7301', Tenant_Id: 1 }],
+    });
+  });
+
+  it('toOrbitHostSurveyNotificationParameters gives null for the null dates', () => {
+    expect(
+      toOrbitHostSurveyNotificationParameters({
+        OrbitEventId: '7301',
+        OrbitEventName: 'Harvest Supper',
+        OrbitStartDate: '2026-11-02T18:00:00',
+        OrbitEndDate: '1900-01-01T00:00:00',
+      }),
+    ).toEqual({
+      orbitEventId: '7301',
+      orbitEventName: 'Harvest Supper',
+      orbitStartDate: '2026-11-02T18:00:00',
+      orbitEndDate: null,
+    });
   });
 });
 

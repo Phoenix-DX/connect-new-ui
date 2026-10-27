@@ -16,11 +16,18 @@ import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback'
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { addAuditEvent_LDM } from '@/lib/orbit/actions';
+import { isFreeSubscriptionPlan, isRegionalSubscriptionPlan } from '@/pages/LDM_EventDetail_V2/components/actions';
+import { clearPreloadObject, getPreloadObject } from '@/platform/navigation/preload';
 import { INITIAL_LDM_EVENT_DETAIL_STATE, ldmEventDetailReducer, type LdmEventDetailState } from './ldmEventDetailState';
 import { useLdmEventDetail, type LdmEventDetailEvents } from './useLdmEventDetail';
 
 /* The flows of ScreenBlock_EventDetail_V2, with the calls, the reducer, the audit events, the dialogs, the feedback
    and the flow handler replaced by spies. The meals are the fictional LDM meals of src/mocks/fictional/ldm.ts. */
+vi.mock('@/pages/LDM_EventDetail_V2/components/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/pages/LDM_EventDetail_V2/components/actions')>()),
+  isFreeSubscriptionPlan: vi.fn(() => Promise.resolve(false)),
+  isRegionalSubscriptionPlan: vi.fn(() => Promise.resolve(false)),
+}));
 vi.mock('./ldmEventDetailState', async (importOriginal) => {
   const actual = await importOriginal<typeof import('./ldmEventDetailState')>();
   return { ...actual, ldmEventDetailReducer: vi.fn(actual.ldmEventDetailReducer) };
@@ -471,7 +478,7 @@ describe('useLdmEventDetail: the events of the view', () => {
     const [, second] = guests;
     if (!second) throw new Error('no guest');
     await act(async () => {
-      result.current.onGuestClicked(second, true);
+      result.current.onGuestClicked(second, true, 1);
       await Promise.resolve();
     });
     expect(addAuditEvent_LDM).toHaveBeenLastCalledWith('GuestClickedOtherGuestHousehold', {
@@ -483,12 +490,47 @@ describe('useLdmEventDetail: the events of the view', () => {
     );
   });
 
+  it('F1: CarouselFilteredEventResults preloads the displayed guests; a free or regional plan leaves out the disabled ones', async () => {
+    const { result } = await loaded();
+    const guests = eventAnswer('70342').eventResponse.Guests;
+    const [first, second, third] = guests;
+    if (!first || !second || !third) throw new Error('no guest');
+    const ids = (preload: unknown) =>
+      (preload as { PreloadedCarouselItems: { Id: string }[] }).PreloadedCarouselItems.map((p) => p.Id);
+    clearPreloadObject();
+    await act(async () => {
+      result.current.onGuestClicked(second, true, 1);
+      await Promise.resolve();
+    });
+    expect(isFreeSubscriptionPlan).toHaveBeenCalledTimes(1);
+    expect(isRegionalSubscriptionPlan).toHaveBeenCalledTimes(1);
+    expect(getPreloadObject()).toEqual(expect.objectContaining({ IsPreloaded: true }));
+    expect(ids(getPreloadObject())).toEqual(guests.map((g) => g.HouseholderID));
+    vi.mocked(isRegionalSubscriptionPlan).mockResolvedValueOnce(true);
+    clearPreloadObject();
+    const reloaded = await loaded('70342', (d) => {
+      d.Guests = d.Guests.map((g, i) =>
+        i === 0 ? { ...g, RecordDisabled: true } : i === 2 ? { ...g, HouseholdDisplay: false } : g,
+      );
+    });
+    await act(async () => {
+      reloaded.result.current.onGuestClicked(second, true, 1);
+      await Promise.resolve();
+    });
+    expect(ids(getPreloadObject())).toEqual(guests.filter((_, i) => i !== 0 && i !== 2).map((g) => g.HouseholderID));
+    expect(events.onNavigateToHouseholdCarousel).toHaveBeenLastCalledWith(
+      second.HouseholderID,
+      guests.map((g) => g.HouseholderID),
+    );
+    clearPreloadObject();
+  });
+
   it('the host clicks a guest household: the HostClickedGuestHousehold audit event', async () => {
     const { result } = await loaded('70388');
     const [first] = eventAnswer('70388').eventResponse.Guests;
     if (!first) throw new Error('no guest');
     await act(async () => {
-      result.current.onGuestClicked(first, true);
+      result.current.onGuestClicked(first, true, 0);
       await Promise.resolve();
     });
     expect(addAuditEvent_LDM).toHaveBeenLastCalledWith('HostClickedGuestHousehold', {
@@ -501,12 +543,12 @@ describe('useLdmEventDetail: the events of the view', () => {
     const [first] = eventAnswer('70342').eventResponse.Guests;
     if (!first) throw new Error('no guest');
     await act(async () => {
-      result.current.onGuestClicked({ ...first, RecordDisabled: true }, true);
+      result.current.onGuestClicked({ ...first, RecordDisabled: true }, true, 0);
       await Promise.resolve();
     });
     expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
     await act(async () => {
-      result.current.onGuestClicked(first, false);
+      result.current.onGuestClicked(first, false, 0);
       await Promise.resolve();
     });
     expect(events.onNavigateToHouseholdCarousel).not.toHaveBeenCalled();

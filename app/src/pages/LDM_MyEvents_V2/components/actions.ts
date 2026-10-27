@@ -37,3 +37,20 @@ export function formatEventDate(eventDate: string): string {
   const date = new Date(Number(y), Number(m) - 1, Number(d));
   return `${WEEKDAYS[date.getDay()] ?? ''}, ${String(date.getDate())} ${MONTHS[date.getMonth()] ?? ''} ${String(date.getFullYear())}`;
 }
+
+/** GetDynamicTopPosition JavaScript node of MyTimeline_Filters OnReady (LDM_Blocks.MyTimeline_Filters.mvc.js :1845-1862):
+    the first element of In_ElementToBaseOffOf: Out_TopPosition = the sum of offsetTop - scrollTop + clientTop of the
+    element and its offset parents, plus its offsetHeight; Out_Height = the clientHeight of the first `.popup-backdrop`
+    minus Out_TopPosition. On TST a missing element throws; the block always renders it, so here it gives 0. */
+export function getDynamicTopPosition(elementToBaseOffOf: string): { topPosition: number; height: number } {
+  let element = document.querySelector<HTMLElement>(elementToBaseOffOf);
+  if (!element) return { topPosition: 0, height: 0 };
+  const height = element.offsetHeight;
+  let yPosition = 0;
+  while (element) {
+    yPosition += element.offsetTop - element.scrollTop + element.clientTop;
+    element = element.offsetParent as HTMLElement | null;
+  }
+  const topPosition = yPosition + height;
+  return { topPosition, height: (document.querySelector('.popup-backdrop')?.clientHeight ?? 0) - topPosition };
+}

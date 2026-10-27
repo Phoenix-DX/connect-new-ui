@@ -79,9 +79,10 @@ export function SearchResult_Section({
           }
         />
         <div className="list list-group OSFillParent" data-list="">
-          {items.map((item) => (
+          {items.map((item, index) => (
             <SearchResultItem
-              key={`${item.type}-${item.id}`}
+              // The loading rows of Action_RefreshSearch share Type and an empty Id: the row number keeps keys unique.
+              key={`${String(index)}-${item.type}-${item.id}`}
               inSearchResult={{
                 Id: item.id,
                 HouseholderId: item.householderId,

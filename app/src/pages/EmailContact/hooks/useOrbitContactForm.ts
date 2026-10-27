@@ -127,8 +127,25 @@ export function useOrbitContactForm(
     dispatch({ type: 'sent' });
     scheduleFeedbackMessageAfterTransition(EMAIL_SENT);
     onSubmitted();
-    if (helpdesk) onApplicationEvent_ContactHelpdesk(inputs.In_EventId);
-    else onApplicationEvent_EmailHost(inputs.In_MilestoneId, inputs.In_EventId);
+    /* The audit payloads (ScreenBlock_ContactForm.mvc.js:1309-1333) are built after Empty Vars (:1286-1295): Message,
+       In_Subject and UserSubject are "" by then, so TST sends an empty Subject and Message here. */
+    if (helpdesk) {
+      onApplicationEvent_ContactHelpdesk({
+        EventId: inputs.In_EventId,
+        EventTitle: inputs.In_EventName,
+        Subject: '',
+        Message: '',
+      });
+    } else {
+      onApplicationEvent_EmailHost({
+        MilestoneId: inputs.In_MilestoneId,
+        EventId: inputs.In_EventId,
+        EventTitle: inputs.In_EventName,
+        HostName: inputs.In_HostName,
+        Subject: '',
+        Message: '',
+      });
+    }
   };
 
   return {

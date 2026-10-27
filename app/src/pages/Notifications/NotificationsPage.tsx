@@ -1,4 +1,3 @@
-import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { BottomBar } from '@/components/layout/BottomBar';
 import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { Badge } from '@/components/ui/Badge';
@@ -18,6 +17,7 @@ import { Layout_MainPages_Upgrade } from './components/Layout_MainPages_Upgrade'
 import { Notifications_MoreActionSheet } from './components/MoreActionSheet';
 import { NotificationsListBreakpoints } from './components/NotificationsListBreakpoints';
 import { Notifications_Action } from './components/Notifications_Action';
+import { Notifications_NoItemsFound } from './components/Notifications_NoItemsFound';
 import { Notifications_SortSheet } from './components/SortSheet';
 import { UBT_Color_RedDark, UBT_Icons2_Notifications } from './components/staticEntities';
 import { useNotifications } from './hooks/useNotifications';
@@ -153,7 +153,7 @@ export default function Notifications() {
         }
         content={
           !v.isLoading && v.isDataFetched && v.items.length === 0 ? (
-            <NotCaptured name="App_Notifications.Notifications_NoItemsFound (not rendered in any captured state)" />
+            <Notifications_NoItemsFound id="$b13" />
           ) : (
             <NotificationsListBreakpoints
               id="$b14"

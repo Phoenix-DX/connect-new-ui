@@ -5,10 +5,16 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   fetchMessageInstance,
   fetchMessageTemplateParameters,
+  getOrbitHostSurveyNotificationParameters,
+  getOrbitNotificationParameters,
+  storeAdaptiveCardResponses,
   type MessageDetail,
   type MessageInstanceResult,
+  type MessageParameter,
 } from '@/api/message';
 import { markNotificationOpened } from '@/api/notification';
+import { CommunicationException } from '@/legacy/os/exceptions';
+import { getHasAssemble, getHasOrbitAccess, getHasOrbitHostSurvey } from '@/pages/MessageDetail/actions';
 import type { MessageDetailInputs } from '@/pages/MessageDetail/inputs';
 import { MessageInfoType, MessageSenderTarget, MessageType, ParameterName } from '@/pages/MessageDetail/staticEntities';
 import { feedbackMessageAutoClose, showFeedbackMessage } from '@/platform/feedback';
@@ -30,6 +36,16 @@ vi.mock('@/api/message', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/message')>()),
   fetchMessageInstance: vi.fn(),
   fetchMessageTemplateParameters: vi.fn(() => Promise.resolve([])),
+  getOrbitNotificationParameters: vi.fn(),
+  getOrbitHostSurveyNotificationParameters: vi.fn(),
+  storeAdaptiveCardResponses: vi.fn(() => Promise.resolve()),
+}));
+/** The UBTConnect_Utils flag helpers (True on TST), as spies. */
+vi.mock('@/pages/MessageDetail/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/pages/MessageDetail/actions')>()),
+  getHasOrbitAccess: vi.fn(() => true),
+  getHasOrbitHostSurvey: vi.fn(() => true),
+  getHasAssemble: vi.fn(() => true),
 }));
 vi.mock('@/api/notification', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/notification')>()),
@@ -94,12 +110,22 @@ function answer(messagePatch: Partial<MessageDetail> = {}, patch: Partial<Messag
   vi.mocked(fetchMessageInstance).mockResolvedValue({
     message: message(messagePatch),
     isRetracted: false,
+    placeholderDelimiters: { placeholder: '', function: '', parameter: '' },
     isCleared: false,
     ...patch,
   });
 }
 
-const events = { onNavigateToMessageList: vi.fn(), onNavigateToLogin: vi.fn() };
+const events = {
+  onNavigateToMessageList: vi.fn(),
+  onNavigateToLogin: vi.fn(),
+  onNavigateToOrbitEvent: vi.fn(),
+  onNavigateToOrbitMilestone: vi.fn(),
+  onNavigateToOrbitHostSurvey: vi.fn(),
+  onNavigateToAssembleEvent: vi.fn(),
+  onAddAuditAndNavigateToEventEmail: vi.fn(),
+  onAddAuditAndNavigateToEventDetail: vi.fn(),
+};
 const wrapper = ({ children }: { children: ReactNode }) => <MemoryRouter>{children}</MemoryRouter>;
 /** The hook as the dev server renders it: StrictMode runs the mount effects twice. Returns the newest result. */
 function renderStrict(screenInputs: MessageDetailInputs = inputs) {
@@ -202,12 +228,6 @@ describe('useMessageDetail', () => {
     ['retracted', {}, { isRetracted: true }, 'Sorry, this message is not available anymore.'],
     ['cleared', {}, { isCleared: true }, 'Sorry, this message is not available anymore.'],
     ['not found', { messageInstanceId: null }, {}, "You don't have access to that message"],
-    [
-      "another user's private",
-      { messageTemplateTypeId: MessageType.Private, messageInstanceUserId: 12 },
-      {},
-      "You don't have access to that message",
-    ],
   ])('leaves a %s message to the message list with its message', async (_name, messagePatch, patch, text) => {
     answer(messagePatch, patch);
     const { result } = renderFlows();
@@ -218,6 +238,28 @@ describe('useMessageDetail', () => {
     expect(events.onNavigateToLogin).not.toHaveBeenCalled();
     expect(markNotificationOpened).not.toHaveBeenCalled();
     expect(result.current.isLoading).toBe(true);
+  });
+
+  it("shows another user's private message after the no-access message, without a navigation (SBMD:976-1011)", async () => {
+    answer({ messageTemplateTypeId: MessageType.Private, messageInstanceUserId: 12, isRead: false });
+    const { result } = renderFlows();
+    await settle();
+    expect(lastAutoClose()?.message).toBe("You don't have access to that message");
+    expect(replaceOnUpcomingNavigation).not.toHaveBeenCalled();
+    expect(events.onNavigateToMessageList).not.toHaveBeenCalled();
+    expect(markNotificationOpened).toHaveBeenCalledWith('81014');
+    expect(result.current.isLoading).toBe(false);
+  });
+
+  it("leaves another user's cleared private message after both messages", async () => {
+    answer({ messageTemplateTypeId: MessageType.Private, messageInstanceUserId: 12 }, { isCleared: true });
+    renderFlows();
+    await settle();
+    expect(vi.mocked(feedbackMessageAutoClose).mock.calls.map(([m]) => m.message)).toEqual([
+      "You don't have access to that message",
+      'Sorry, this message is not available anymore.',
+    ]);
+    expect(events.onNavigateToMessageList).toHaveBeenCalledTimes(1);
   });
 
   it('opens the own private message of the signed-in user', async () => {
@@ -261,20 +303,37 @@ describe('useMessageDetail', () => {
 
   it('refreshes the template parameters of an Assemble or a Sharing message, without a greeting', async () => {
     vi.mocked(fetchMessageTemplateParameters).mockResolvedValue([
-      { parameterNameId: ParameterName.AssembleEventParentId, parameterValue: '41' },
-      { parameterNameId: ParameterName.AssembleEventInstanceId, parameterValue: '42' },
+      {
+        id: '41',
+        messageTemplateId: '31',
+        parameterNameId: ParameterName.AssembleEventParentId,
+        parameterValue: '41',
+        tenantId: 1,
+      },
+      {
+        id: '42',
+        messageTemplateId: '31',
+        parameterNameId: ParameterName.AssembleEventInstanceId,
+        parameterValue: '42',
+        tenantId: 1,
+      },
     ]);
     answer({ senderTargetId: MessageSenderTarget.Assemble, sentAs: MessageSenderTarget.Assemble });
     const assemble = renderFlows();
     await settle();
     expect(fetchMessageTemplateParameters).toHaveBeenCalledTimes(1);
-    expect(getUserInformation).not.toHaveBeenCalled();
+    // BuildAssembleNotificationContent: Cache_UserInfo_Get, then SetTextPlaceholdersValue (not ported: the content
+    // stays as fetched).
+    expect(getUserInformation).toHaveBeenCalledTimes(1);
     expect(assemble.result.current.message?.messageContent).toBe('<p>Choir practice moves to Thursday</p>');
+    expect(assemble.result.current.showAssembleAction).toBe(true);
+    vi.mocked(getUserInformation).mockClear();
 
     answer({ messageInfoTypeId: MessageInfoType.Sharing });
     renderFlows();
     await settle();
     expect(fetchMessageTemplateParameters).toHaveBeenCalledTimes(2);
+    expect(getUserInformation).not.toHaveBeenCalled();
   });
 
   it('refreshes GetMessageInstance again on a restored view, but not the template parameters', async () => {
@@ -298,7 +357,13 @@ describe('useMessageDetail after an unmount and in StrictMode (decision W23)', (
       }),
     );
     return (patch: Partial<MessageInstanceResult>, messagePatch: Partial<MessageDetail> = {}) => {
-      resolve({ message: message(messagePatch), isRetracted: false, isCleared: false, ...patch });
+      resolve({
+        message: message(messagePatch),
+        isRetracted: false,
+        isCleared: false,
+        placeholderDelimiters: { placeholder: '', function: '', parameter: '' },
+        ...patch,
+      });
     };
   }
 
@@ -346,5 +411,165 @@ describe('useMessageDetail after an unmount and in StrictMode (decision W23)', (
     renderStrict({ ...inputs, MessageInstanceId: '0' });
     await settle();
     expect(showFeedbackMessage).toHaveBeenCalledTimes(1);
+  });
+});
+
+const param = (parameterNameId: number, parameterValue: string): MessageParameter => ({
+  id: parameterValue,
+  messageTemplateId: '31',
+  parameterNameId,
+  parameterValue,
+  tenantId: 1,
+});
+
+/** A loaded message of the sender target with its template parameters. */
+async function loaded(
+  senderTargetId: number,
+  parameters: MessageParameter[],
+  messagePatch: Partial<MessageDetail> = {},
+) {
+  vi.mocked(fetchMessageTemplateParameters).mockResolvedValue(parameters);
+  answer({ senderTargetId, sentAs: senderTargetId, ...messagePatch });
+  const flows = renderFlows();
+  await settle();
+  return flows.result;
+}
+
+describe('OnClick_ViewOrbitEvent and OnClick_ViewAssembleEvent (SBMD:1210-1506)', () => {
+  const orbitParameters = [param(2, '7301'), param(3, 'Harvest Supper')];
+
+  it('opens the milestone, else the event of an Orbit message', async () => {
+    const result = await loaded(MessageSenderTarget.Orbit, orbitParameters);
+    vi.mocked(getOrbitNotificationParameters).mockResolvedValueOnce({
+      orbitMilestoneId: 'M-77',
+      orbitEventId: '7301',
+      orbitEventName: 'Harvest Supper',
+    });
+    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.Orbit));
+    expect(getOrbitNotificationParameters).toHaveBeenCalledWith(orbitParameters);
+    expect(events.onNavigateToOrbitMilestone).toHaveBeenCalledWith('M-77', '7301', 'Harvest Supper');
+
+    vi.mocked(getOrbitNotificationParameters).mockResolvedValueOnce({
+      orbitMilestoneId: '',
+      orbitEventId: '7301',
+      orbitEventName: 'Harvest Supper',
+    });
+    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.Orbit));
+    expect(events.onNavigateToOrbitEvent).toHaveBeenCalledWith(MOCK_USER_ID, '7301', 'Harvest Supper');
+  });
+
+  it('opens the host survey when its four values are known', async () => {
+    const result = await loaded(MessageSenderTarget.OrbitHostSurvey, orbitParameters);
+    vi.mocked(getOrbitHostSurveyNotificationParameters).mockResolvedValueOnce({
+      orbitEventId: '7301',
+      orbitEventName: 'Harvest Supper',
+      orbitStartDate: '2026-11-02T18:00:00',
+      orbitEndDate: null,
+    });
+    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.OrbitHostSurvey));
+    expect(events.onNavigateToOrbitHostSurvey).not.toHaveBeenCalled();
+    vi.mocked(getOrbitHostSurveyNotificationParameters).mockResolvedValueOnce({
+      orbitEventId: '7301',
+      orbitEventName: 'Harvest Supper',
+      orbitStartDate: '2026-11-02T18:00:00',
+      orbitEndDate: '2026-11-02T21:00:00',
+    });
+    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.OrbitHostSurvey));
+    expect(events.onNavigateToOrbitHostSurvey).toHaveBeenCalledWith(
+      MOCK_USER_ID,
+      '7301',
+      'Harvest Supper',
+      '2026-11-02T18:00:00',
+      '2026-11-02T21:00:00',
+    );
+  });
+
+  it('shows the access errors and does nothing without parameters', async () => {
+    const result = await loaded(MessageSenderTarget.OrbitHostSurvey, orbitParameters);
+    vi.mocked(getHasOrbitHostSurvey).mockReturnValueOnce(false);
+    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.OrbitHostSurvey));
+    expect(showFeedbackMessage).toHaveBeenLastCalledWith(
+      "You don't have access to Orbit Host Survey. Please contact the Orbit Helpdesk if you have any questions.",
+      3,
+    );
+    vi.mocked(getHasOrbitAccess).mockReturnValueOnce(false);
+    await act(() => result.current.onClickViewOrbitEvent(MessageSenderTarget.Orbit));
+    expect(showFeedbackMessage).toHaveBeenLastCalledWith(
+      "You don't have access to Orbit. Please contact the Orbit Helpdesk if you have any questions.",
+      3,
+    );
+
+    const empty = await loaded(MessageSenderTarget.Orbit, []);
+    vi.mocked(showFeedbackMessage).mockClear();
+    await act(() => empty.current.onClickViewOrbitEvent(MessageSenderTarget.Orbit));
+    expect(showFeedbackMessage).not.toHaveBeenCalled();
+    expect(getOrbitNotificationParameters).not.toHaveBeenCalled();
+  });
+
+  it('opens the Assemble event of its parameters, or shows the access error', async () => {
+    const result = await loaded(MessageSenderTarget.Assemble, [
+      param(ParameterName.AssembleEventParentId, '41'),
+      param(ParameterName.AssembleEventInstanceId, '42'),
+      param(ParameterName.AssembleEventType, 'Bible Reading'),
+    ]);
+    act(() => {
+      result.current.onClickViewAssembleEvent();
+    });
+    expect(events.onNavigateToAssembleEvent).toHaveBeenCalledWith('41', '42', 'Bible Reading');
+    vi.mocked(getHasAssemble).mockReturnValueOnce(false);
+    act(() => {
+      result.current.onClickViewAssembleEvent();
+    });
+    expect(showFeedbackMessage).toHaveBeenLastCalledWith("You don't have access to Assemble.", 3);
+  });
+});
+
+describe('AdaptiveCardViewerOnExecuteAction (SBMD:1569-1737)', () => {
+  const card =
+    '{"actions":[{"type":"Action.Submit","title":"View Event","data":{"submitType":"view_event","eventId":5520,"id":880},"style":"positive"}],"spacing":"medium"}';
+
+  it('send_email opens the event e-mail; without an event id, with the ids of the "View Event" action', async () => {
+    const result = await loaded(MessageSenderTarget.Directory, [], { isAdaptiveCard: true, adaptiveCardContent: card });
+    await act(() =>
+      result.current.adaptiveCardViewerOnExecuteAction(
+        card,
+        'email',
+        '{"submitType":"send_email","eventId":5521,"id":881}',
+      ),
+    );
+    expect(events.onAddAuditAndNavigateToEventEmail).toHaveBeenLastCalledWith('5521', '881');
+    await act(() => result.current.adaptiveCardViewerOnExecuteAction(card, 'email', '{"submitType":"send_email"}'));
+    expect(events.onAddAuditAndNavigateToEventEmail).toHaveBeenLastCalledWith('5520', '880');
+  });
+
+  it('view_event opens the event detail, or shows "Event is not accessible" without ids', async () => {
+    const result = await loaded(MessageSenderTarget.Directory, [], { isAdaptiveCard: true, adaptiveCardContent: card });
+    await act(() =>
+      result.current.adaptiveCardViewerOnExecuteAction(card, 'view', '{"submitType":"view_event","id":880}'),
+    );
+    expect(events.onAddAuditAndNavigateToEventDetail).toHaveBeenCalledWith('880', '0');
+    await act(() => result.current.adaptiveCardViewerOnExecuteAction(card, 'view', '{"submitType":"view_event"}'));
+    expect(showFeedbackMessage).toHaveBeenLastCalledWith('Event is not accessible', 0);
+  });
+
+  it('any other submit stores the answer, refreshes the message and thanks the user', async () => {
+    const result = await loaded(MessageSenderTarget.Directory, [], { isAdaptiveCard: true, adaptiveCardContent: card });
+    await act(() => result.current.adaptiveCardViewerOnExecuteAction(card, 'rsvp', '{"answer":"yes"}'));
+    expect(storeAdaptiveCardResponses).toHaveBeenCalledWith({
+      deviceHardwareId: '',
+      adaptiveCardPayloadJSON: card,
+      actionTaken: 'rsvp',
+      formDataJSON: '{"answer":"yes"}',
+      messageInstanceId: '81014',
+    });
+    expect(fetchMessageInstance).toHaveBeenCalledTimes(2);
+    expect(showFeedbackMessage).toHaveBeenLastCalledWith('Thanks for filling out our form!', 0);
+  });
+
+  it('shows the connection message on a CommunicationException', async () => {
+    const result = await loaded(MessageSenderTarget.Directory, [], { isAdaptiveCard: true, adaptiveCardContent: card });
+    vi.mocked(storeAdaptiveCardResponses).mockRejectedValueOnce(new CommunicationException('offline'));
+    await act(() => result.current.adaptiveCardViewerOnExecuteAction(card, 'rsvp', '{"answer":"yes"}'));
+    expect(showFeedbackMessage).toHaveBeenLastCalledWith('Please check your internet connection!', 0);
   });
 });

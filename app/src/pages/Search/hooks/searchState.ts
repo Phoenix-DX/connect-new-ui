@@ -1,5 +1,6 @@
 import type { SearchResult, SearchResults } from '@/api/search';
 import { Connect_SearchCategories } from '@/pages/Search/components/staticEntities';
+import { Connect_Entity } from '@/lib/ubtConnectUtils/staticEntities';
 import type { ConnectSearch_RecentClickedResults } from '@/platform/storage/localEntities';
 import type { Tag } from '@/components/ui/HorizontalTagList';
 
@@ -52,7 +53,8 @@ export type SearchAction =
   | { type: 'filtersApplied'; selectedCountryIds: string[]; hasFiltersApplied: boolean }
   /** Action_ClearResults: the three lists empty, HasSearched False. */
   | { type: 'resultsCleared' }
-  /** Action_RefreshSearch before the fetch: HasSearched True, SearchKey_LastSearched = the term, IsLoading True. */
+  /** Action_RefreshSearch before the fetch: HasSearched True, SearchKey_LastSearched = the term, IsLoading True, then
+      the three loading rows at the end of each list in scope of SelectedCategory (`withLoadingRows`). */
   | { type: 'searchStarted'; searchKey: string }
   /** OnAfterFetch_FetchSearchResults, with the SelectedCategory of the search. */
   | { type: 'resultsFetched'; results: SearchResults; selectedCategory: string }
@@ -142,6 +144,44 @@ export function validateSearchPhoneNumber(search: string): { isValid: boolean; e
     : { isValid: false, errorMessage: 'Please enter a valid phone number' };
 }
 
+/** Action_RefreshSearch ListAppend, ListAppend2 and ListAppend3 (ScreenBlock_Search.mvc.js:2475-2497): a loading row
+    of LoadingList. Name "Loading Name", AdditionalInformation "Name", Location "Loading Location", Type Household;
+    the other attributes keep their defaults. */
+export const loadingRow = (type: string = Connect_Entity.Household): SearchResult => ({
+  id: '',
+  householderId: '',
+  name: 'Loading Name',
+  additionalInformation: 'Name',
+  location: 'Loading Location',
+  type,
+  latitude: '',
+  longitude: '',
+  recordDisabled: false,
+});
+
+/** Action_RefreshSearch before the fetch (ScreenBlock_Search.mvc.js:2499-2533): LoadingList (three loading rows) goes
+    to the end of each FetchSearchResults list whose category is in scope. The SkeletonSection shows these rows as
+    placeholders until the fetch replaces the lists.
+    - Places, then Households: when SelectedCategory is All or the list's own category.
+    - People: when SelectedCategory is All or People; the Foreach first sets Type = Member on each LoadingList row.
+    ListAppendAll copies the record data (OutSystems.js GenericRecordList.appendAll, `addFromOther`), so the rows of
+    Places and Households keep Type Household. A null SelectedCategory adds no rows. */
+export function withLoadingRows(results: SearchResults, selectedCategory: string): SearchResults {
+  const inScope = (own: string) => selectedCategory === Connect_SearchCategories.All || selectedCategory === own;
+  const loadingList = (type: string) => [loadingRow(type), loadingRow(type), loadingRow(type)];
+  return {
+    households: inScope(Connect_SearchCategories.Households)
+      ? [...results.households, ...loadingList(Connect_Entity.Household)]
+      : results.households,
+    people: inScope(Connect_SearchCategories.People)
+      ? [...results.people, ...loadingList(Connect_Entity.Member)]
+      : results.people,
+    places: inScope(Connect_SearchCategories.Places)
+      ? [...results.places, ...loadingList(Connect_Entity.Household)]
+      : results.places,
+  };
+}
+
 /** A recent clicked result as a SearchResult (the item click of the recent gallery): EntityId → Id, EntityType → Type;
     RecordDisabled keeps its default False. */
 export const recentAsResult = (r: ConnectSearch_RecentClickedResults): SearchResult => ({
@@ -176,7 +216,13 @@ export function searchReducer(state: SearchState, action: SearchAction): SearchS
     case 'resultsCleared':
       return { ...state, results: NO_RESULTS, hasSearched: false };
     case 'searchStarted':
-      return { ...state, hasSearched: true, searchKeyLastSearched: action.searchKey, isLoading: true };
+      return {
+        ...state,
+        hasSearched: true,
+        searchKeyLastSearched: action.searchKey,
+        isLoading: true,
+        results: withLoadingRows(state.results, state.selectedCategory),
+      };
     case 'resultsFetched': {
       const { results, selectedCategory } = action;
       return {

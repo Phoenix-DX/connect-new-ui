@@ -3,6 +3,7 @@ import { renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { EntertainingConfigInputs } from '@/api/entertaining';
+import { getFeedbackMessage, resetFeedbackMessages, subscribeFeedback } from '@/platform/feedback/feedbackStore';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import { useEntertainingCalendar } from './useEntertainingCalendar';
@@ -59,12 +60,21 @@ describe('useEntertainingCalendar', () => {
     expect(calledActions()).toEqual(['Embedded_MyEntertaining/DataActionGetEntertainingConfig']);
   });
 
-  it('a failed GetEntertainingConfig is not retried and gives no configuration', async () => {
+  it('a failed GetEntertainingConfig is not retried, gives no configuration and goes once to the flow handler (F1)', async () => {
     sessionStorage.setItem('mock:mock', 'error');
-    const { result } = renderHook(() => useEntertainingCalendar(INPUTS), { wrapper });
+    resetFeedbackMessages();
+    const shown: string[] = [];
+    const stop = subscribeFeedback(() => shown.push(getFeedbackMessage()?.message ?? ''));
+    const { result, rerender } = renderHook(() => useEntertainingCalendar(INPUTS), { wrapper });
     await new Promise((resolve) => setTimeout(resolve, 50));
+    rerender();
+    stop();
     expect(result.current.config).toBeUndefined();
     expect(calledActions()).toEqual(['Embedded_MyEntertaining/DataActionGetEntertainingConfig']);
+    // The runtime calls handleError (OutSystems.js:17); App_Common shows ShowCommunicationExceptionMessage (Q1 (a)).
+    expect(shown).toHaveLength(1);
+    expect(shown[0]).toContain("<div class='feedback-message--title'>Service Interruption</div>");
+    expect(raiseToFlowHandler).not.toHaveBeenCalled(); // the refreshToken path only
   });
 
   it('refreshToken: AppManager_Get_UserIdToken with EspaceName "", then the token goes to the SDK', async () => {

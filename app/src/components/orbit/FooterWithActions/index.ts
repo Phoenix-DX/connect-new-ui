@@ -1,0 +1,1 @@
+export { FooterWithActions } from './FooterWithActions';

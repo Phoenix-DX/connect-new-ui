@@ -2,6 +2,12 @@ import { useMemo, useState } from 'react';
 import { changeServicesOrder, useUserServicesQuery, type CurrentService, type Service } from '@/api/service';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { raiseBubbledToFlowHandler } from '@/platform/feedback/bubbleErrors';
+import {
+  isCommunicationException,
+  isNotRegisteredException,
+  isSystemException,
+  useFetchErrorToFlowHandler,
+} from '@/platform/feedback/flowErrors';
 import { currentUserId } from '@/platform/session/session';
 import { UBT_MessageType_Success } from '@/pages/Services/staticEntities';
 import {
@@ -53,6 +59,18 @@ export function useServices(): ServicesFlows {
   const lists = changed ?? getServices.data ?? EMPTY_SERVICES_LISTS;
   // OnAfterFetch_GetServices
   const referenceServices = useMemo(() => referenceServicesOf(getServices.data), [getServices.data]);
+  // A failed GetServices goes to the screen's handleError, then the App_Services flow and App_Common (F2, Q3 (a)).
+  useFetchErrorToFlowHandler(getServices);
+
+  /** The exception handlers of OnClick_SaveChanges and Handler_SortableListOnDragEnd (Services.mvc.js:1320-1362,
+      1706-1743): CommunicationException and AllExceptions set isLoading False, then raise the bubble exception;
+      NotRegistered and a system exception keep isLoading (F1, Q2 (a); F6). */
+  const raiseActionError = (error: unknown) => {
+    if (!isNotRegisteredException(error) && (isCommunicationException(error) || !isSystemException(error))) {
+      setIsLoading(false);
+    }
+    raiseBubbledToFlowHandler(error);
+  };
 
   /** Handler_SortableListOnDragEnd: OldIndex = NewIndex changes nothing. Action_ChangeOrderLocal changes copies of
       the variables in place; they are stored also when a List action fails, so the steps before the failure stay
@@ -81,14 +99,15 @@ export function useServices(): ServicesFlows {
       );
     } catch (error) {
       store();
-      raiseBubbledToFlowHandler(error);
+      raiseActionError(error);
       return;
     }
     store();
   };
 
   /** OnClick_SaveChanges: only with changes. It saves the favourites, then shows "Your changes were saved.". After a
-      failure, IsLoading stays True, as in the original. */
+      communication error or another error that is not a system exception, IsLoading is False again; after
+      NotRegistered, it stays True (Services.mvc.js:1320-1362). */
   const saveChanges = async () => {
     if (!hasChanges) return;
     setIsLoading(true);
@@ -106,7 +125,7 @@ export function useServices(): ServicesFlows {
       });
       setHasChanges(false);
     } catch (error) {
-      raiseBubbledToFlowHandler(error);
+      raiseActionError(error);
     }
   };
 

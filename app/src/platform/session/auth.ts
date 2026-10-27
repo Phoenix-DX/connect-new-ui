@@ -49,7 +49,7 @@ export async function signIn(): Promise<string> {
 
 /** AppManager_Callback of a completed reset-password policy (AppManager_HandleCallback, AM:2389-2394): the Login
     screen shows its Message as a success toast (Login.mvc.js:865-868). */
-export interface ResetPasswordCallback {
+interface ResetPasswordCallback {
   callbackType: 'IdP_OnResetPassword';
   messageTitle: string;
   message: string;

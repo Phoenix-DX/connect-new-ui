@@ -401,9 +401,9 @@ Shared client actions that the own screens and blocks call:
 
 ## 5. Findings
 
-| Id | Severity | Screen / element | Finding | React location | Suggested fix |
-|---|---|---|---|---|---|
-| F1 | major | SupperMeeting_DetailsBlock / GetSubdivision; SupperMeeting_HouseholdList / GetSubdivisionHouseholds | TST runs OnReady through `safeExecuteClientAction` (`SupperMeeting_DetailsBlock.mvc.js:720-722`, `SupperMeeting_HouseholdList.mvc.js:324`). The runtime calls `handleError` when the action fails (`OutSystems.js:17`), and the block passes the error to the flow handler (`SupperMeeting_DetailsBlock.mvc.js:758-760`). The fetched flows delegate to App_Common, which shows the message (`migration/knowledge/shell-facts.md` U10). React catches both errors: the skeleton stays, or the list gets the Error status. No code passes the error to the flow handler, so no message shows. Rows: 042, 079. App_Services F2 has the same gap. | `app/src/containers/SupperMeetingDetails/hooks/useSupperMeetingDetails.ts:88-93, :100-104` | Q1. With option (a): pass a failed refresh to `raiseToFlowHandler` once per failure, and keep the skeleton and the Error status. |
+| Id | Severity | Screen / element | Finding | React location | Suggested fix | Status |
+|---|---|---|---|---|---|---|
+| F1 | major | SupperMeeting_DetailsBlock / GetSubdivision; SupperMeeting_HouseholdList / GetSubdivisionHouseholds | TST runs OnReady through `safeExecuteClientAction` (`SupperMeeting_DetailsBlock.mvc.js:720-722`, `SupperMeeting_HouseholdList.mvc.js:324`). The runtime calls `handleError` when the action fails (`OutSystems.js:17`), and the block passes the error to the flow handler (`SupperMeeting_DetailsBlock.mvc.js:758-760`). The fetched flows delegate to App_Common, which shows the message (`migration/knowledge/shell-facts.md` U10). React catches both errors: the skeleton stays, or the list gets the Error status. No code passes the error to the flow handler, so no message shows. Rows: 042, 079. App_Services F2 has the same gap. | `app/src/containers/SupperMeetingDetails/hooks/useSupperMeetingDetails.ts:88-93, :100-104` | Q1. With option (a): pass a failed refresh to `raiseToFlowHandler` once per failure, and keep the skeleton and the Error status. | built 2026-10-27 (`builds/B4-errors.md`) |
 
 ## 6. DEV vs TST differences
 

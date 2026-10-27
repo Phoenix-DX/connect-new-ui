@@ -1,22 +1,17 @@
-import { fetchMilestoneScanFF } from '@/api/event';
 import { APP_ID } from '@/platform/navigation/paths';
 import { useOsNavigate, type OsParams } from '@/platform/navigation';
 import type { EventDetailTarget } from './adminLandingState';
 
 /** OnHandle_NavigateToEventDetail of the screen OrbitAdminLanding: the handler of the block event
-    NavigateTo_EventDetail. GetMilestoneScanFF (a server action without inputs), then OrbitAdminMilestones(EventId)
-    when IsScanPerMilestone, else OrbitAdminEventDetail with the event's id, start date, location, name, end date and
-    friendly type (the parameter names and order of the original).
+    NavigateTo_EventDetail. It only opens OrbitAdminEventDetail with the event's id, start date, location, name, end
+    date and friendly type (the parameter names and order of the original; TST
+    UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:244-252). TST has no server call here: the
+    GetMilestoneScanFF call and the OrbitAdminMilestones branch are DEV only (Legacy_OrbitAdminFlow Q1).
     Decision W23: the flow has no state; after an unmount it still navigates.
     @origin UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding */
-export function useNavigateToEventDetail(): (target: EventDetailTarget) => Promise<void> {
+export function useNavigateToEventDetail(): (target: EventDetailTarget) => void {
   const navigate = useOsNavigate();
-  return async (target) => {
-    const isScanPerMilestone = await fetchMilestoneScanFF();
-    if (isScanPerMilestone) {
-      navigate(`/${APP_ID}/OrbitAdminMilestones`, { EventId: target.eventId });
-      return;
-    }
+  return (target) => {
     navigate(`/${APP_ID}/OrbitAdminEventDetail`, orbitAdminEventDetailParams(target));
   };
 }

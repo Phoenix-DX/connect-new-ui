@@ -8,3 +8,6 @@ export { csCreateShareProfileLink, csShareObject, useRecentlySharedQuery } from 
 export { shareKeys } from './keys';
 export type { AvailableUsersWire, AvailableUserWire, ShareObjectTypeByIdWire } from './mapper';
 export { fetchAvailableUsers, fetchShareObjectTypeLabel, shareObject } from './repository';
+
+/* MessageDetail: DataActionGetShare of Share_UI.ShareObjectDetail_ExtendedShare. */
+export { fetchSharedObjectDetail } from './repository';

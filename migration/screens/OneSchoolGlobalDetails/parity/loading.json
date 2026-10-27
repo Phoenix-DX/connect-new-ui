@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "c1118301677183623635",
+ "fingerprint": "ce58c10e4626b1f5a0c1",
  "options": {
   "text": true,
   "style": true,
@@ -27,21 +27,18 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T15:02:15.393Z",
+ "at": "2026-10-27T17:24:17.101Z",
  "counts": {},
  "exemptionsUsed": {
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
-  "CAPTURE-SKELETON-SHIMMER-PHASE": 15,
-  "ignoreSubtrees": 3,
-  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1,
+  "ignoreSubtrees": 1,
   "CAPTURE-POPUP-SCROLL-CLASS-FLUSH-ORDER-ONESCHOOLGLOBALDETAILS": 1
  },
  "pixel": {
-  "ratio": 0.0002,
-  "maxCell": 0.0219,
+  "ratio": 0,
+  "maxCell": 0,
   "maxCellRatio": 0.03,
-  "diffPixels": 60,
-  "comparedPixels": 299174,
+  "diffPixels": 0,
+  "comparedPixels": 0,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -52,11 +49,8 @@
    390,
    844
   ],
-  "masks": 4,
-  "hotspots": [
-   "200,800 (35px)",
-   "200,760 (25px)"
-  ],
+  "masks": 3,
+  "hotspots": [],
   "diffPng": "migration/screens/OneSchoolGlobalDetails/parity/loading.diff.png"
  },
  "calls": null,

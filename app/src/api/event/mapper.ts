@@ -33,6 +33,8 @@ import type {
   HostSurvey,
   HostSurveyCallInputs,
   HostSurveyResult,
+  HostSurveyHelperMember,
+  SurveyHelpersCallInputs,
   MemberInformation,
   MilestoneTransportItem,
   Milestone_Screen,
@@ -70,6 +72,8 @@ type HasQRCodeWire = Orbit<'ScreenBlock_EventDetail/DataActionGet_HasQRCode'>;
 export type GuestArrangementsWire = Orbit<'ScreenBlock_GuestArrangements/DataActionGetGuestArrangements'>;
 /** DataActionGetHelperDetails of ScreenBlock_HelperDetails. */
 export type HelperDetailsWire = Orbit<'ScreenBlock_HelperDetails/DataActionGetHelperDetails'>;
+/** DataActionGetSurveyHelpers of HostSurvey_AddHelper. */
+type SurveyHelpersWire = Orbit<'HostSurvey_AddHelper/DataActionGetSurveyHelpers'>;
 /** DataActionGetHostSurvey of ScreenBlock_HostSurvey. */
 export type HostSurveyWire = Orbit<'ScreenBlock_HostSurvey/DataActionGetHostSurvey'>;
 /** DataActionGetEventByEventId of ScreenBlock_EventDetail_V2. */
@@ -88,7 +92,6 @@ export type ScanEventQRCodeWire = Orbit<'ActionGetScanEventQRCode'>;
 type ScanEventQRCodeInputsWire = ActionInputs<PathOf<'Connect2_OrbitMobile_MUI', 'ActionGetScanEventQRCode'>>;
 /** DataActionGet_AdminEventsList of ScreenBlock_AdminLanding. */
 export type AdminEventsWire = Orbit<'ScreenBlock_AdminLanding/DataActionGet_AdminEventsList'>;
-type MilestoneScanFFWire = ActionOutputs<PathOf<'UBTConnect', 'ActionGetMilestoneScanFF'>>;
 /** DataActionGet_EventsByMemberId of ScreenBlock_OrbitLanding. */
 export type EventsByMemberIdWire = Orbit<'ScreenBlock_OrbitLanding/DataActionGet_EventsByMemberId'>;
 /** DataActionGet_EventQRCode of ScreenBlock_GenerateQRCode. */
@@ -117,6 +120,8 @@ type TransportLocationWire = TransportDetailWire['Response']['TransportDetail'][
 
 /** The OutSystems null DateTime as it travels. */
 const NULL_DATE_TIME = '1900-01-01T00:00:00';
+/** The OutSystems null Date. */
+const NULL_DATE = '1900-01-01';
 
 /** A Date or DateTime as text, "" for the OutSystems null date (the formatters of the UI treat "" as null). */
 const nullDateAsEmpty = (value: string): string => (value.startsWith('1900-01-01') ? '' : value);
@@ -504,6 +509,40 @@ const toHostSurvey = (r: HostSurveyResponseWire): HostSurvey => ({
   Vehicles: { HasVehicles: r.Vehicles.HasVehicles, VehicleItemInfo: osList(r.Vehicles.VehicleItemInfo) },
 });
 
+/** The HostSurvey variable as PostHostSurvey sends it (input GetHostSurvey): the lists wrapped again, the null dates
+    ("") back to the OutSystems null DateTime (SurveyInfo) and null Date (a meal day). */
+export const toPostHostSurveyInputs = (s: HostSurvey): { GetHostSurvey: HostSurveyResponseWire } => ({
+  GetHostSurvey: {
+    SurveyInfo: {
+      ...s.SurveyInfo,
+      EventStartDateTime: s.SurveyInfo.EventStartDateTime || NULL_DATE_TIME,
+      EventEndDateTime: s.SurveyInfo.EventEndDateTime || NULL_DATE_TIME,
+    },
+    Rooms: {
+      AccommodationNote: s.Rooms.AccommodationNote,
+      HostSurvey_RoomItem: wireList(
+        s.Rooms.HostSurvey_RoomItem.map((room) => ({ ...room, Beds: wireList(room.Beds) })),
+      ),
+    },
+    Meals: {
+      MealNote: s.Meals.MealNote,
+      MealItemInfo: wireList(s.Meals.MealItemInfo.map((meal) => ({ ...meal, EventDate: meal.EventDate || NULL_DATE }))),
+    },
+    Helpers: { HelperNote: s.Helpers.HelperNote, HelperItemInfo: wireList(s.Helpers.HelperItemInfo) },
+    Vehicles: { HasVehicles: s.Vehicles.HasVehicles, VehicleItemInfo: wireList(s.Vehicles.VehicleItemInfo) },
+  },
+});
+
+/** The inputs of DataActionGetSurveyHelpers: In_AlreadyAddedHelpers as an OutSystems list. */
+export const toSurveyHelpersInputs = (inputs: SurveyHelpersCallInputs) => ({
+  ...inputs,
+  In_AlreadyAddedHelpers: wireList([...inputs.In_AlreadyAddedHelpers]),
+});
+
+/** The members of GetSurveyHelpersResponse, with the list unwrapped. */
+export const toSurveyHelperMembers = (wire: SurveyHelpersWire): HostSurveyHelperMember[] =>
+  osList(wire.Response.HelperMembers);
+
 /** The host survey (Response, with the lists unwrapped) and HasError. */
 export const toHostSurveyResult = (wire: HostSurveyWire): HostSurveyResult => ({
   Response: toHostSurvey(wire.Response),
@@ -659,9 +698,6 @@ const toAdminEventItem = (w: AdminOrbitEventWire): AdminEventItem => ({
 /** The events of the admin (Response). */
 export const toAdminEventItems = (wire: AdminEventsWire): AdminEventItem[] =>
   osList(wire.Response).map(toAdminEventItem);
-
-/** IsScanPerMilestone. */
-export const toMilestoneScanFF = (wire: MilestoneScanFFWire): boolean => wire.IsScanPerMilestone;
 
 /** BookletGuestsMaxRows. */
 export const toBookletGuestsMaxRows = (wire: BookletGuestsMaxRowsWire): number => wire.BookletGuestsMaxRows;

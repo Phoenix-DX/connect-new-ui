@@ -252,8 +252,10 @@ describe('message repository: Contact Us', () => {
     ]);
   });
 
-  it('fetchCountryNames answers the countries (the mock: none)', async () => {
-    await expect(fetchCountryNames(contactUsInputs)).resolves.toEqual([]);
+  it('fetchCountryNames answers the countries (the mock: eight countries, by name)', async () => {
+    const countries = await fetchCountryNames(contactUsInputs);
+    expect(countries).toHaveLength(8);
+    expect(countries[0]).toEqual({ code: 'AR', name: 'Argentina' });
     expect(window.__osCalls).toEqual([
       expect.objectContaining({ owner: 'ContactUsDetails', action: 'DataActionDataAction_GetCountriesNames' }),
     ]);

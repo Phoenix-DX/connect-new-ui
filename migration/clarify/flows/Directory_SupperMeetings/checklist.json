@@ -503,11 +503,12 @@
    "os": "no handler in the model of the data action",
    "react": "app/src/containers/SupperMeetingDetails/hooks/useSupperMeetingDetails.ts:100-104 `} catch { return; // IsDataFetched stays False: the skeleton stays.`",
    "evidence": "TST SupperMeeting_DetailsBlock.mvc.js:720-722 (safeExecuteClientAction), :758-760 (handleError); migration/runtime-sources/OutSystems.js:17 (safeExecuteClientAction calls handleError); app/src/containers/SupperMeetingDetails/hooks/useSupperMeetingDetails.ts:100-104",
-   "verdict": "partial",
-   "note": "Same: IsDataFetched stays False and the skeleton stays. TST runs OnReady through safeExecuteClientAction, so a failed refresh goes to handleError (the flow handler; migration/knowledge/shell-facts.md U10: the fetched flows delegate to App_Common). React catches the error and calls no flow handler.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B4-errors.md). Same: IsDataFetched stays False and the skeleton stays. TST runs OnReady through safeExecuteClientAction, so a failed refresh goes to handleError (the flow handler; migration/knowledge/shell-facts.md U10: the fetched flows delegate to App_Common). React catches the error and calls no flow handler.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_SupperMeetings-043",
@@ -949,11 +950,12 @@
    "os": "no branch in the model",
    "react": "app/src/containers/SupperMeetingDetails/hooks/useSupperMeetingDetails.ts:88-92 `catch { write({ type: 'householdsFetchFailed' }); return; }` and state `{ ...state.households, isError: true }` (supperMeetingDetailsState.ts:53-54)",
    "evidence": "TST SupperMeeting_HouseholdList.mvc.js:324 (safeExecuteClientAction of OnReady), :293 (refresh); migration/runtime-sources/OutSystems.js:17; app/src/containers/SupperMeetingDetails/hooks/useSupperMeetingDetails.ts:88-93; app/src/containers/SupperMeetingDetails/hooks/supperMeetingDetailsState.ts:53-54",
-   "verdict": "partial",
-   "note": "Same: the status becomes Error (list-error through calculateDataFetchStatus). TST runs OnReady through safeExecuteClientAction, so a failed refresh goes to handleError (the flow handler; migration/knowledge/shell-facts.md U10: the fetched flows delegate to App_Common). React catches the error and calls no flow handler.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B4-errors.md). Same: the status becomes Error (list-error through calculateDataFetchStatus). TST runs OnReady through safeExecuteClientAction, so a failed refresh goes to handleError (the flow handler; migration/knowledge/shell-facts.md U10: the fetched flows delegate to App_Common). React catches the error and calls no flow handler.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_SupperMeetings-080",

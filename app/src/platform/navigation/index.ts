@@ -22,8 +22,6 @@ export {
   leavingScrollAnchors,
   navigationStorage,
   rememberFocusedScrollAnchor,
-  type EnteringScrollAnchor,
-  type LeavingScrollAnchor,
 } from './scrollAnchors';
 export { allowUpcomingNavigation } from './navigationGate';
 export { exitApp, useExitConfirmation } from './exitConfirmation';

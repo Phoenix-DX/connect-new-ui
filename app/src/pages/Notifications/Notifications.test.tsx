@@ -77,9 +77,25 @@ describe('Notifications page', () => {
     });
   });
 
-  it('an empty list shows the not-captured placeholder of Notifications_NoItemsFound', async () => {
-    sessionStorage.setItem('mock:mock', 'empty');
+  it('a section with no unread notification has no Badge in its header (If_HasBadge, BR-UBTCON-981)', async () => {
+    sessionStorage.setItem('mock:mock', 'olderread');
     renderRoutes(routes, PATH);
-    expect(await screen.findByText(/Notifications_NoItemsFound/)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(sectionTitles()).toEqual(['9Last 30 Days', 'Older']);
+    });
+    const headers = document.querySelectorAll('[data-block="App_Notifications.Notifications_Header"]');
+    expect(headers[0]?.querySelector('[data-block="OutSystemsUIOverrides.Badge"]')).not.toBeNull();
+    expect(headers[1]?.querySelector('[data-block="OutSystemsUIOverrides.Badge"]')).toBeNull();
+  });
+
+  it('an empty fetched list shows Notifications_NoItemsFound (BR-UBTCON-983, Notifications.mvc.js:748)', async () => {
+    sessionStorage.setItem('mock:mock', 'empty');
+    const { container } = renderRoutes(routes, PATH);
+    expect(await screen.findByText('No Notifications Found')).toBeInTheDocument();
+    expect(screen.getByText('We were unable to find any Notifications to display.')).toBeInTheDocument();
+    const block = container.querySelector('[data-block="App_Notifications.Notifications_NoItemsFound"]');
+    expect(block?.id).toBe('$b13');
+    expect(block?.querySelector('.connect-icon-calendar_busy_fill')).not.toBeNull();
+    expect(block?.querySelector('.ubt-avatar-image-s')).not.toBeNull();
   });
 });

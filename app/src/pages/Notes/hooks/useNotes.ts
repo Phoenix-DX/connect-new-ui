@@ -189,9 +189,15 @@ export function useNotes(): NotesFlows {
       });
       run(refreshGetNotes);
     },
-    // Only SortByNewest is taken from the filter of the sheet.
+    /* Handler_ApplyFilters sets Notes_Filter.SortByNewest and HasFiltersApplied. On TST the sheet gets Notes_Filter
+       as In_FilterNotes by reference (Notes.mvc.js:581) and its Handler_FilterSheetApplyFilters writes Years and
+       SortByNewest into that same record (Notes_FilterSheet.mvc.js:384-401). So Notes_Filter.Years becomes the
+       selected years, and Refresh_GetNotes sends them (capture 2026-10-27, Notes-110). The other fields stay. */
     onApplyFilters: (filter, hasFiltersApplied) => {
-      set({ notesFilter: { ...m().notesFilter, sortByNewest: filter.sortByNewest }, hasFiltersApplied });
+      set({
+        notesFilter: { ...m().notesFilter, years: filter.years, sortByNewest: filter.sortByNewest },
+        hasFiltersApplied,
+      });
       run(refreshGetNotes);
     },
     onLoadMore: async () => {

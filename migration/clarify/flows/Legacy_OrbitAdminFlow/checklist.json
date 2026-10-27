@@ -90,11 +90,12 @@
    "react": "app/src/pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts:15 const isScanPerMilestone = await fetchMilestoneScanFF();",
    "evidence": "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:228-250 (no server call); grep GetMilestoneScanFF|MilestoneScan|OrbitAdminMilestone in UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js and UBTConnect.controller.js: no hit",
    "tst": "absent",
-   "verdict": "partial",
-   "note": "DEV only (pack). TST has no server call (grep GetMilestoneScanFF in the TST files and runtime-sources: no hit). KB legacy-orbit.md:63 and BR-UBTCON-608 also say the navigation is unconditional",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B10-misc.md). DEV only (pack). TST has no server call (grep GetMilestoneScanFF in the TST files and runtime-sources: no hit). KB legacy-orbit.md:63 and BR-UBTCON-608 also say the navigation is unconditional",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitAdminFlow-008",
@@ -105,11 +106,12 @@
    "react": "app/src/pages/OrbitAdminLanding/hooks/useNavigateToEventDetail.ts:16-18 if (isScanPerMilestone) { navigate(`/${APP_ID}/OrbitAdminMilestones`, { EventId: target.eventId }); return; }",
    "evidence": "UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:228-250 (no If, no OrbitAdminMilestones destination)",
    "tst": "absent",
-   "verdict": "partial",
-   "note": "DEV only. The target route does not exist in the app (routes.generated.ts has no OrbitAdminMilestones); board V8 skip (migration/board.md:95)",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B10-misc.md). DEV only. The target route does not exist in the app (routes.generated.ts has no OrbitAdminMilestones); board V8 skip (migration/board.md:95)",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitAdminFlow-009",
@@ -472,11 +474,12 @@
    "react": "api/event/repository.ts:253 fetchMilestoneScanFF; mock app/src/pages/OrbitAdminLanding/mocks.ts:50-52 contractHandler('UBTConnect','ActionGetMilestoneScanFF'), mocks/fictional/orbitAdmin.ts:113",
    "evidence": "grep GetMilestoneScanFF in the TST files and migration/runtime-sources: no hit; app/src/api/event/repository.ts:253; app/src/pages/OrbitAdminLanding/mocks.ts:50-52",
    "tst": "absent",
-   "verdict": "partial",
-   "note": "DEV only. React calls it and mocks it",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B10-misc.md). DEV only. React calls it and mocks it",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_OrbitAdminFlow-037",

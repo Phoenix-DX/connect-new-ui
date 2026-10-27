@@ -206,3 +206,76 @@ describe('LDM_MyEvents_V2 page', () => {
     expect(screen.queryByText('Mobile')).toBeNull();
   });
 });
+
+describe('LDM_MyEvents_V2 timeline filter (decision Q1)', () => {
+  const popup = () => document.querySelector('[data-block="LDM_Blocks.MyTimeline_Filters"]');
+  async function openFilters() {
+    await waitFor(() => {
+      expect(calledActions().filter((a) => a === GET_LOCALITIES)).toHaveLength(1);
+    });
+    click(document.querySelector('.fa-filter'));
+    await waitFor(() => {
+      expect(popup()).not.toBeNull();
+    });
+  }
+
+  it('shows the dates, "All Localities" and every locality of the filter', async () => {
+    await open();
+    await openFilters();
+    expect(screen.getByText('Date Range')).toBeInTheDocument();
+    expect(document.querySelectorAll('.past-event-date-input')).toHaveLength(2);
+    expect(document.querySelector('.past-event-filter-locality-input-text')?.textContent).toBe('All Localities');
+    click(document.querySelector('.past-event-filter-locality-input'));
+    const rows = [...document.querySelectorAll('.past-event-filter-list-item')].map((r) => r.textContent);
+    expect(rows[0]).toBe('All Localities');
+    expect(rows).toContain('Rosario');
+    expect(document.querySelectorAll('.past-event-filter-list-item .fa-check-square')).toHaveLength(1);
+  });
+
+  it('Filter with one locality: the popup closes and the timeline shows the meals of that locality', async () => {
+    const timeline = recordBodies(`Connect2_OrbitMobile_MUI/${GET_TIMELINE}`);
+    await open();
+    await openFilters();
+    click(document.querySelector('.past-event-filter-locality-input'));
+    click([...document.querySelectorAll('.past-event-filter-list-item')].find((r) => r.textContent === 'Rosario'));
+    click(screen.getByText('Select'));
+    expect(document.querySelector('.past-event-filter-locality-input-text')?.textContent).toBe('Rosario');
+    click(screen.getByText('Filter'));
+    await waitFor(() => {
+      expect(cards()).toHaveLength(1);
+    });
+    expect(popup()).toBeNull();
+    expect(document.querySelector('.my-events-popup-aura')).not.toBeNull();
+    expect(timeline.at(-1)).toEqual(
+      expect.objectContaining({
+        IsFiltering: true,
+        PastEventFilters: expect.objectContaining({
+          Localities: { List: [expect.objectContaining({ Name: 'Rosario', IsSelected: true })] },
+        }) as unknown,
+      }),
+    );
+  });
+
+  it('Clear, then the times icon: ResetFilters fetches every meal again', async () => {
+    await open();
+    await openFilters();
+    click(document.querySelector('.past-event-filter-locality-input'));
+    click([...document.querySelectorAll('.past-event-filter-list-item')].find((r) => r.textContent === 'Rosario'));
+    click(screen.getByText('Select'));
+    click(screen.getByText('Filter'));
+    await waitFor(() => {
+      expect(cards()).toHaveLength(1);
+    });
+    await openFilters();
+    expect(document.querySelector('.past-event-filter-locality-input-text')?.textContent).toBe('Rosario');
+    click(screen.getByText('Clear'));
+    expect(document.querySelector('.past-event-filter-locality-input-text')?.textContent).toBe('All Localities');
+    click(document.querySelector('.past-event-filter-exit .fa-times'));
+    await waitFor(() => {
+      expect(cards()).toHaveLength(5);
+    });
+    expect(popup()).toBeNull();
+    expect(document.querySelector('.my-events-popup-aura')).toBeNull();
+    expect(timelineCalls()).toHaveLength(3);
+  });
+});

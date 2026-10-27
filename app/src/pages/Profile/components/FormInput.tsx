@@ -20,18 +20,33 @@ export interface FormInputProps {
   maxLength?: number;
   /** Extended property autocomplete (the phone inputs: "off"); undefined → no attribute. */
   autoComplete?: string;
+  /** Mandatory (default False): an empty value fails the platform validation, and aria-required is "true". */
+  mandatory?: boolean;
+  /** Style Classes (default "form-control"); the widget appends " OSFillParent". */
+  style?: string;
   onChange?: (value: string) => void;
 }
 
 /** OutSystems Input widget (Text / Email / Phone) as captured: `span.input-<type>` > input, with the platform
-    validation of the screen (Mandatory False on every input of the form): the " not-valid" class, aria-describedby
-    and the validation message after the input once a validation fails.
+    validation of the screen (Mandatory False on every input of the form except the address lines, whose Mandatory is
+    the item's Required): the " not-valid" class, aria-describedby and the validation message after the input once a
+    validation fails.
     @origin UBTConnect.App_Profile.Profile */
-export function FormInput({ id, type, value, enabled, maxLength, autoComplete, onChange }: FormInputProps) {
+export function FormInput({
+  id,
+  type,
+  value,
+  enabled,
+  maxLength,
+  autoComplete,
+  mandatory = false,
+  style = 'form-control',
+  onChange,
+}: FormInputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const validation = useInputWithVariableValidation({
     id,
-    mandatory: false,
+    mandatory,
     dataType: INPUT_DATA_TYPE[type],
     elementRef: inputRef,
   });
@@ -40,9 +55,9 @@ export function FormInput({ id, type, value, enabled, maxLength, autoComplete, o
       <input
         ref={inputRef}
         aria-describedby={validation.ariaDescribedBy}
-        aria-required="false"
+        aria-required={mandatory ? 'true' : 'false'}
         autoComplete={autoComplete}
-        className={validation.className('form-control OSFillParent')}
+        className={validation.className(`${style} OSFillParent`)}
         data-input=""
         disabled={!enabled}
         id={id}

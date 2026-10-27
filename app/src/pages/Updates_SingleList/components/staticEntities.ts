@@ -1,6 +1,10 @@
 /** TST values (migration/knowledge/static-entities-tst.json) the shared constants do not list, written as the classes
     the shared blocks write: Connect2_LegacyShared.uBT_Icons2 search, uBT_Color redDark, uBT_FlexDirection row. */
-export const UBT_Icons2_Updates = { Search: 'connect-icon-search' } as const;
+export const UBT_Icons2_Updates = {
+  Search: 'connect-icon-search',
+  /** Updates_NoItemsFound (UBTConnect.uBT_Icons2 calendarBusyFill, static-entities-tst.json). */
+  CalendarBusyFill: 'connect-icon-calendar_busy_fill',
+} as const;
 export const UBT_Color_RedDark = 'red-dark';
 export const UBT_FlexDirection_Row = 'flex-direction-row';
 

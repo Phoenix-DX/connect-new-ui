@@ -124,9 +124,9 @@ All own blocks are in §2. §2 checks the arguments of the referenced blocks. Th
 
 ## 5. Findings
 
-| Id | Severity | Screen / element | Finding | React location | Suggested fix |
-|---|---|---|---|---|---|
-| F1 | major | FilterSheet_OptionList_Item, Action_DefineOptions (row 131) | TST removes accents from DisplayText and from the search text before the compare (`fol.js:721-739`, `UBTJavaScriptUtils.controller.js:3078-3084`). React keeps the accents. A search for "Sao" does not find "São Paulo" in React. BR-UBTCON-331. | `app/src/components/filter/FilterOptionList/FilterOptionList.tsx:43` | Use `jSUtils_String_RemoveAccents` of `app/src/lib/jsUtils.ts:79` for both texts. |
+| Id | Severity | Screen / element | Finding | React location | Suggested fix | Status |
+|---|---|---|---|---|---|---|
+| F1 | major | FilterSheet_OptionList_Item, Action_DefineOptions (row 131) | TST removes accents from DisplayText and from the search text before the compare (`fol.js:721-739`, `UBTJavaScriptUtils.controller.js:3078-3084`). React keeps the accents. A search for "Sao" does not find "São Paulo" in React. BR-UBTCON-331. | `app/src/components/filter/FilterOptionList/FilterOptionList.tsx:43` | Use `jSUtils_String_RemoveAccents` of `app/src/lib/jsUtils.ts:79` for both texts. | built 2026-10-27 (`builds/B5-lists.md`) |
 
 ## 6. DEV vs TST differences
 

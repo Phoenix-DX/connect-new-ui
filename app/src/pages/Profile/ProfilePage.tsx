@@ -2,31 +2,32 @@ import { CommonUiLayout } from '@/components/layout/CommonUiLayout';
 import { HomeLayout } from '@/components/layout/HomeLayout';
 import { ValidationServiceProvider } from '@/components/ui/os/OSValidation';
 import { HouseholdDetailsContainer, useHouseholdDetailsFlags } from '@/containers';
-import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { useNavigateBack } from '@/platform/navigation';
 import { preventNavigation } from '@/lib/navigationEvent';
 import { UserInfoCache } from '@/platform/session/UserInfoCache';
 import { ChoiceDialog } from '@/components/ui/Dialog';
 import { NavigationDialog } from '@/components/ui/Dialog';
 import { SectionSeparator } from '@/components/ui/SectionSeparator';
-import { CustomText } from '@/components/ui/CustomText';
 import { Icon } from '@/components/ui/Icon';
 import { IconText } from '@/components/ui/IconText';
 import { UBT_Color, UBT_FontSize, UBT_FontWeight } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
+import { CacheControl_AllLocalities, CacheControl_AllSubdivisions } from './components/AddressCacheControls';
+import { AddressInformationSection } from './components/AddressInformationSection';
 import { ProfileDetailsForm } from './components/ProfileDetailsForm';
 import { ProfileFooter } from './components/ProfileFooter';
 import { ProfileHeader } from './components/ProfileHeader';
 import { ProfileHouseholdPreview } from './components/ProfileHouseholdPreview';
-import { SECTION_TITLE, textOptions } from './components/formOptions';
+import { textOptions } from './components/formOptions';
 import { useProfile } from './hooks/useProfile';
 import { ICON_ARROW_LEFT_ALT } from './staticEntities';
 
 /** @origin UBTConnect.App_Profile.Profile
     The Profile route ("Edit Account"): the home layout with the back title, and as content the header, the details
     form in a skeleton section and the fixed footer with Close and Save. Outside the layout: CacheControl_UserInfo_Wrapper,
-    whose result fills the form, Dialog_Navigation (it asks to discard the changes), the household preview sheet and
-    the Dialog_CustomChoice of the age switch. The flows are in useProfile. */
+    whose result fills the form, CacheControl_AllLocalities and CacheControl_AllSubdivisions (householder only),
+    Dialog_Navigation (it asks to discard the changes), the household preview sheet and the Dialog_CustomChoice of the
+    age switch. The flows are in useProfile. */
 export default function Profile() {
   const navigateBack = useNavigateBack();
   const householdDetailsFlags = useHouseholdDetailsFlags();
@@ -44,6 +45,12 @@ export default function Profile() {
     onPersonalChange,
     onContactChange,
     onShowAgeChange,
+    onAddressItemChange,
+    onLocalityChange,
+    onSubdivisionChange,
+    onAllLocalities,
+    onAllSubdivisions,
+    onCacheControlError,
     onSave,
   } = useProfile();
   const { user, accountForm } = state;
@@ -83,9 +90,18 @@ export default function Profile() {
                 isHouseholder={state.isHouseholder}
                 showContactSwitches={showContactSwitches}
                 addressSection={
-                  <NotCaptured name="Profile address section (householder only, Profile.mvc.js:1269-1716; Q1)">
-                    <CustomText inText="Address Information" inTextOptions={SECTION_TITLE} />
-                  </NotCaptured>
+                  <AddressInformationSection
+                    address={accountForm.AccountForm_AddressInformation}
+                    isLoading={
+                      !state.localCacheControlAllSubdivisions.isFetched ||
+                      !state.localCacheControlAllLocalities.isFetched
+                    }
+                    localityList={state.localCacheControlAllLocalities.localityList}
+                    subdivisionFilteredList={state.subdivisionFilteredList}
+                    onAddressItemChange={onAddressItemChange}
+                    onLocalityChange={onLocalityChange}
+                    onSubdivisionChange={onSubdivisionChange}
+                  />
                 }
                 onCopyAccountNumber={onCopyAccountNumber}
                 onPersonalChange={onPersonalChange}
@@ -107,6 +123,12 @@ export default function Profile() {
         placeholderCommonUIInsideLayout={<CommonUiLayout id="$b55" />}
       />
       <UserInfoCache id="$b56" onResult={onUserInformation} />
+      {state.isHouseholder && (
+        <>
+          <CacheControl_AllLocalities id="$b57" onResult={onAllLocalities} onError={onCacheControlError} />
+          <CacheControl_AllSubdivisions id="$b58" onResult={onAllSubdivisions} onError={onCacheControlError} />
+        </>
+      )}
       {state.hasChanges && (
         <NavigationDialog
           variant="connect"

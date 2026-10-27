@@ -205,10 +205,13 @@ export interface SubdivisionHouseholdCard {
 
 /* ---- CacheControl_AllLocalities: DataActionGetCacheInfo ---- */
 
-/** A locality of the list of all localities (UBTConnect_Utils UI_LocalityDetails): the fields that FilterSheet reads. */
+/** A locality of the list of all localities (UBTConnect_Utils UI_LocalityDetails): the fields that FilterSheet and
+    Profile read. */
 export interface LocalityListItem {
   LocalityId: string;
   Name: string;
+  /** Profile: the option label (Name + ", " + CountryName) and the option group of the locality dropdown. */
+  CountryName: string;
   CountryCode: string;
 }
 
@@ -226,6 +229,26 @@ export type AllLocalitiesCallInputs = {
   CacheTypeId: string;
   TimeToLiveSeconds: number;
 };
+
+/* ---- CacheControl_AllSubdivisions: DataActionGetCacheInfo ---- */
+
+/** A subdivision of the list of all subdivisions (APIDomain_Directory_IS Directory_LocalitySubdivision). Profile
+    filters it by LocalityId and shows SubdivisionName. */
+export interface SubdivisionListItem {
+  SubdivisionId: string;
+  SubdivisionName: string;
+  LocalityId: string;
+  LocalityName: string;
+}
+
+/** The list of all subdivisions (UBTConnect_Utils CacheControl_AllSubdivions). The list stays wrapped
+    (`SubdivionsList.List`), as for CacheControl_AllLocalities: the block keeps the record in the memory cache. */
+export interface AllSubdivisions {
+  SubdivionsList: { List: SubdivisionListItem[] };
+}
+
+/** The inputs of DataActionGetCacheInfo of CacheControl_AllSubdivisions. */
+export type AllSubdivisionsCallInputs = AllLocalitiesCallInputs;
 
 /* ---- Connect2_LegacyShared server actions (the Assemble blocks, through the memory cache) ---- */
 

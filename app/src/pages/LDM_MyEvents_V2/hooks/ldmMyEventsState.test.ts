@@ -4,6 +4,7 @@ import {
   addDays,
   addMonths,
   canFetchOlderEvents,
+  currentFiltersOf,
   diffDays,
   hasPhoneNumber,
   initialLdmMyEventsState,
@@ -12,6 +13,7 @@ import {
   olderPastEventFilters,
   restoreLdmMyEventsState,
   toOsDate,
+  validateSameFilters,
   type LdmMyEventsState,
 } from './ldmMyEventsState';
 
@@ -150,5 +152,48 @@ describe('ldmMyEventsState', () => {
     expect(hasPhoneNumber({ Phone: '', MobilePhone: '', HomePhone: '', WorkPhone: '' })).toBe(false);
     expect(hasPhoneNumber({ HomePhone: '+54 291 555 0130' })).toBe(true);
     expect(hasPhoneNumber({ WorkPhone: '+54 291 555 0131' })).toBe(true);
+  });
+});
+
+describe('ValidateSameFilters', () => {
+  const ROSARIO = { IdAsText: '601', Name: 'Rosario', IsSelected: true };
+  it('the same dates and the same locality ids', () => {
+    const current = { FromDate: '2024-10-27', ToDate: '2026-11-03', Localities: ['601'] };
+    expect(validateSameFilters({ FromDate: '2024-10-27', ToDate: '2026-11-03', Localities: [ROSARIO] }, current)).toBe(
+      true,
+    );
+    expect(validateSameFilters({ FromDate: '2024-10-28', ToDate: '2026-11-03', Localities: [ROSARIO] }, current)).toBe(
+      false,
+    );
+    expect(
+      validateSameFilters(
+        { FromDate: '2024-10-27', ToDate: '2026-11-03', Localities: [{ ...ROSARIO, IdAsText: '252' }] },
+        current,
+      ),
+    ).toBe(false);
+  });
+
+  it('OnHandle_MyTimelineFilter compares with the dates of PastEventFilters and no locality', () => {
+    const state = initialLdmMyEventsState(new Date(2026, 9, 27));
+    const { FromDate, ToDate } = state.pastEventFilters;
+    expect(validateSameFilters({ FromDate, ToDate, Localities: [] }, currentFiltersOf(state))).toBe(true);
+    expect(validateSameFilters({ FromDate, ToDate, Localities: [ROSARIO] }, currentFiltersOf(state))).toBe(false);
+  });
+
+  it('a filter clears both lists; IsFiltering True on filter, False on reset', () => {
+    const filters = { FromDate: '2025-01-01', ToDate: '2026-11-03', Localities: [ROSARIO] };
+    const filtered = ldmMyEventsReducer(initialLdmMyEventsState(new Date(2026, 9, 27)), {
+      type: 'filterApplied',
+      filters,
+    });
+    expect(filtered).toEqual(
+      expect.objectContaining({
+        isFiltering: true,
+        pastEventsData: [],
+        upcomingEventsData: [],
+        pastEventFilters: filters,
+      }),
+    );
+    expect(ldmMyEventsReducer(filtered, { type: 'filtersReset', filters }).isFiltering).toBe(false);
   });
 });

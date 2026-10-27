@@ -20,8 +20,14 @@ export const toShareDetails = (w: ShareDetailsWire): ShareDetails => {
 
 /* ---- LegacyShareObject: ScreenBlock_ShareObject and ProfileList (Connect2_LegacyShared Share_UI) ---- */
 
-import { osList } from '@/lib/os-wire';
-import type { AvailableUser, AvailableUsers, ShareObjectCallInputs, ShareObjectResult } from './types';
+import { osDate, osList } from '@/lib/os-wire';
+import type {
+  AvailableUser,
+  AvailableUsers,
+  SharedObjectDetail,
+  ShareObjectCallInputs,
+  ShareObjectResult,
+} from './types';
 
 /** The outputs of ScreenDataSetGetShareObjectTypeById (the aggregate of ScreenBlock_ShareObject), as the contract
     describes them. */
@@ -75,3 +81,41 @@ export const toShareObjectResult = (wire: ShareObjectWire): ShareObjectResult =>
   isAllowed: wire.IsAllowed,
   shareId: wire.ShareId,
 });
+
+/* ---- MessageDetail: Share_UI.ShareObjectDetail_ExtendedShare ---- */
+
+/** The outputs of DataActionGetShare of ShareObjectDetail_ExtendedShare. */
+type SharedObjectDetailWire = ActionOutputs<
+  PathOf<'Connect2_LegacyShared', 'ShareObjectDetail_ExtendedShare/DataActionGetShare'>
+>;
+
+/** DataActionGetShare: the share, its item and its type, with null for the null dates. */
+export const toSharedObjectDetail = (w: SharedObjectDetailWire): SharedObjectDetail => {
+  const item = w.GetShareByIdResponse.Details.ShareItem;
+  return {
+    objectId: w.GetShareByIdResponse.ObjectId,
+    senderId: w.GetShareByIdResponse.Details.Sender.Id,
+    shareItem: {
+      id: item.Id,
+      canAccess: item.CanAccess,
+      isDeceased: item.Extension.IsDeceased,
+      householderId: item.HouseholderId,
+      type: item.Type,
+      title: item.Title,
+      subtitle: item.Subtitle,
+      label: item.Label,
+      dateTime: osDate(item.DateTime),
+      genderId: item.GenderId,
+      parentsName: item.ParentsName,
+      birthType: item.BirthType,
+      localityName: item.LocalityName,
+      countryName: item.CountryName,
+      photoSignedPath: item.Photo.SignedPath,
+      isVisible: item.IsVisible,
+    },
+    shareObjectTypeId: w.ShareObjectType.Id,
+    shareObjectTypeLabel: w.ShareObjectType.Label,
+    isShareAvailable: w.IsShareAvailable,
+    updateDate: osDate(w.UpdateDate),
+  };
+};

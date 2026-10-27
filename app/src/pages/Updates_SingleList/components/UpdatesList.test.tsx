@@ -75,10 +75,18 @@ describe('UpdatesList', () => {
     expect(failed.container.querySelector('[id="l1-129_0-$b14"]')).not.toBeNull();
   });
 
-  it('an empty fetched list shows Updates_NoItemsFound (not captured) instead of the list', () => {
+  it('an empty fetched list shows Updates_NoItemsFound instead of the list (BR-UBTCON-872)', () => {
     const { container } = renderList({ items: [] });
     expect(container.querySelector('#List_Updates')).toBeNull();
-    expect(container.textContent).toContain('Directory_Updates.Updates_NoItemsFound');
+    const block = container.querySelector('[data-block="Directory_Updates.Updates_NoItemsFound"]');
+    expect(block?.id).toBe('$b13');
+    expect(block?.querySelector('.ubt-icon-button .connect-icon-calendar_busy_fill')).not.toBeNull();
+    expect(screen.getByText('No Updates Found')).toBeInTheDocument();
+    expect(screen.getByText('We were unable to find any Updates to display.')).toBeInTheDocument();
+  });
+
+  it('a list that is still loading or not fetched shows no empty state', () => {
+    expect(renderList({ items: [], isLoading: true }).container.textContent).not.toContain('No Updates Found');
   });
 
   it('a click on an update raises OnClick with its index', () => {

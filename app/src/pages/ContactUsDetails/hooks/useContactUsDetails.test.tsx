@@ -110,7 +110,16 @@ describe('useContactUsDetails', () => {
     expect(result.current.state.isLoadingMainData).toBe(false);
     expect(result.current.state.contactUsForm.Country).toBe('Argentina');
     expect(fetchLocalityTimezone).toHaveBeenCalledWith(
-      expect.objectContaining({ isLogged: true, CountryPhone: '+54 11 555 0100', CallPopupData: emptyCallPopupData() }),
+      expect.objectContaining({
+        isLogged: true,
+        CountryPhone: '+54 11 555 0100',
+        CallPopupData: emptyCallPopupData(),
+        // F3: the user record goes with the call; the server reads In_LocalityId from it.
+        LocalCacheControl_UserInformation: { Directory_UserCurrent: user, isFetched: true },
+        ContactUsForm: result.current.state.contactUsForm,
+        Description: result.current.state.description,
+        MessagePrompt: result.current.state.messagePrompt,
+      }),
     );
     await settle();
     expect(result.current.state.timezone).toEqual({ timezoneName: 'ART', timezoneOffset: -180 });
@@ -265,6 +274,78 @@ describe('useContactUsDetails', () => {
     await settle();
     expect(sendContactUsMessage).not.toHaveBeenCalled();
     expect(result.current.state.isSubmiting).toBe(false);
+  });
+
+  it('Send signed out: valid fields send the form; OnChange_Email clears the message of Input_Email', async () => {
+    setSignedInUser(null);
+    const { result } = renderFlows();
+    const { validation } = result.current;
+    validation.register({ id: 'Form_ContactUs', isValidationAggregator: true });
+    for (const id of ['Input_FullName', 'Input_Email', 'Input_PhoneNumber']) {
+      validation.register({ id, validationParentId: 'Form_ContactUs' });
+    }
+    act(() => {
+      result.current.onFieldChange('FullName', 'Lucia Ferreyra');
+      result.current.onFieldChange('Email', 'not an e-mail');
+      result.current.onFieldChange('PhoneNumber', '+54 291 555 0142');
+      result.current.onCountryVariableChange('AR');
+      result.current.onCountryChange();
+      result.current.onFieldChange('Locality', 'Bahia Blanca');
+      result.current.onMessageChange('I cannot sign in.');
+    });
+    expect(result.current.state.isFormFilled).toBe(true);
+    act(() => {
+      result.current.onSend();
+    });
+    await settle();
+    expect(sendContactUsMessage).not.toHaveBeenCalled();
+    expect(validation.getWidgetRecord('Input_Email')).toEqual({
+      validAttr: false,
+      validationMessageAttr: 'Invalid email!',
+    });
+    act(() => {
+      result.current.onFieldChange('Email', 'lucia.ferreyra@example.com');
+    });
+    expect(validation.getWidgetRecord('Input_Email')).toEqual({ validAttr: true, validationMessageAttr: '' });
+    act(() => {
+      result.current.onSend();
+    });
+    await settle();
+    expect(sendContactUsMessage).toHaveBeenCalledWith(
+      {
+        FullName: 'Lucia Ferreyra',
+        Email: 'lucia.ferreyra@example.com',
+        PhoneNumber: '+54 291 555 0142',
+        Country: 'AR',
+        Locality: 'Bahia Blanca',
+        Message: 'I cannot sign in.',
+      },
+      inputs.In_ContactSubjectId,
+      0,
+      false,
+    );
+  });
+
+  it('the rate of the feedback subject enables Send and goes with the message (BR-UBTCON-968, 970)', async () => {
+    const { result } = renderFlows(feedbackInputs);
+    act(() => {
+      result.current.onUserInformation(user);
+    });
+    await settle();
+    act(() => {
+      result.current.onRateSelected(9);
+    });
+    expect(result.current.state).toMatchObject({ selectedRate: 9, isFormFilled: true, isAnyFilled: false });
+    act(() => {
+      result.current.onSend();
+    });
+    await settle();
+    expect(sendContactUsMessage).toHaveBeenCalledWith(
+      expect.objectContaining({ Message: '' }),
+      feedbackInputs.In_ContactSubjectId,
+      9,
+      false,
+    );
   });
 
   it('the leave confirmation prevents the back navigation', () => {

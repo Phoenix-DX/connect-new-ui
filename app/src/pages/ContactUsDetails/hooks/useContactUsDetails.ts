@@ -23,6 +23,7 @@ import {
   jSUtils_String_CheckNumbers,
   localityTimezoneCallInputs,
   type ContactUsDetailsAction,
+  type ContactUsInputField,
   type ContactUsDetailsState,
 } from './contactUsDetailsState';
 
@@ -42,6 +43,15 @@ interface ContactUsDetailsFlows {
   onUserInformation: (userInformation: Directory_UserCurrent) => void;
   /** The OnChange of TextArea_Message, with the new message. */
   onMessageChange: (message: string) => void;
+  /** A signed-out input changed: the variable, then OnChange_FormInput (Full Name, Locality), OnChange_Email or
+      OnChange_PhoneNumber. */
+  onFieldChange: (field: ContactUsInputField, value: string) => void;
+  /** The variable setter of Dropdown_Country. */
+  onCountryVariableChange: (code: string) => void;
+  /** The OnChange of Dropdown_Country: OnChange_FormInput. */
+  onCountryChange: () => void;
+  /** ContactUs_RateRateSelected(Rate). */
+  onRateSelected: (rate: number) => void;
   /** OnClick_UserWantToBeContacted. */
   onWantToBeContactedToggle: () => void;
   /** OnClick_SupportTeam. */
@@ -101,6 +111,40 @@ export function useContactUsDetails(inputs: ContactUsDetailsInputs): ContactUsDe
   const onMessageChange = (message: string) => {
     try {
       dispatch({ type: 'messageChanged', message, contactSubjectId: inputs.In_ContactSubjectId });
+    } catch (error) {
+      raiseToFlowHandler(error);
+    }
+  };
+
+  /* OnChange_Email / OnChange_PhoneNumber: the widget Valid True and ValidationMessage "", then OnChange_FormInput.
+     Input_FullName and Input_Locality run OnChange_FormInput only. */
+  const onFieldChange = (field: ContactUsInputField, value: string) => {
+    try {
+      dispatch({ type: 'formFieldSet', field, value });
+      if (field === 'Email') validation.setWidgetValidity('Input_Email', true, '');
+      if (field === 'PhoneNumber') validation.setWidgetValidity('Input_PhoneNumber', true, '');
+      dispatch({ type: 'formInputChanged', contactSubjectId: inputs.In_ContactSubjectId });
+    } catch (error) {
+      raiseToFlowHandler(error);
+    }
+  };
+
+  const onCountryVariableChange = (code: string) => {
+    dispatch({ type: 'formFieldSet', field: 'Country', value: code });
+  };
+
+  const onCountryChange = () => {
+    try {
+      dispatch({ type: 'formInputChanged', contactSubjectId: inputs.In_ContactSubjectId });
+    } catch (error) {
+      raiseToFlowHandler(error);
+    }
+  };
+
+  // ContactUs_RateRateSelected(Rate): Rate_SelectedRate = Rate, then OnChange_FormInput.
+  const onRateSelected = (rate: number) => {
+    try {
+      dispatch({ type: 'rateSelected', rate, contactSubjectId: inputs.In_ContactSubjectId });
     } catch (error) {
       raiseToFlowHandler(error);
     }
@@ -199,6 +243,10 @@ export function useContactUsDetails(inputs: ContactUsDetailsInputs): ContactUsDe
     isFeedbackSubject: inputs.In_ContactSubjectId === Type_ContactSubject.GeneralSuggestionsFeedbackRating,
     onUserInformation,
     onMessageChange,
+    onFieldChange,
+    onCountryVariableChange,
+    onCountryChange,
+    onRateSelected,
     onWantToBeContactedToggle,
     onSupportTeam,
     onCallPopupClose,

@@ -2,22 +2,34 @@ import type { ReactNode } from 'react';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 
 /** @origin Connect2_OrbitMobile_MUI.Orbit_Blocks.HostSurvey_Item
-    An item of a summary section: the title row (bold title, Placeholder_Status when In_HasPlaceholder), the Edit /
-    Delete actions (Containers Visible = In_HasEdit / In_HasDelete; not rendered when hidden), then
-    Placeholder_Content. The summary passes In_HasEdit and In_HasDelete False, so their events (Edit/Delete, only used
-    by the data steps) are not wired here. */
+    An item of a survey list (HostSurvey_Item.mvc.js view): the title row (bold In_Title, Placeholder_Status when
+    In_HasPlaceholder), the actions (Edit: Container Visible = In_HasEdit, icon orbit-icon-edit, event Click_Edit;
+    Delete: Container Visible = In_HasDelete, " margin-left-m" after an Edit, icon orbit-icon-delete, event
+    Click_Delete; animated containers, not rendered when hidden), then Placeholder_Content. */
 export function HostSurvey_Item({
   id,
   inTitle,
+  inHasEdit = false,
+  inHasDelete = false,
   inHasPlaceholder,
   placeholderStatus,
   placeholderContent,
+  onClickEdit,
+  onClickDelete,
 }: {
   id: string;
   inTitle: string;
+  /** In_HasEdit (default False). */
+  inHasEdit?: boolean;
+  /** In_HasDelete (default False). */
+  inHasDelete?: boolean;
   inHasPlaceholder: boolean;
   placeholderStatus?: ReactNode;
   placeholderContent?: ReactNode;
+  /** Event Click_Edit. */
+  onClickEdit?: () => void;
+  /** Event Click_Delete. */
+  onClickDelete?: () => void;
 }) {
   const scope = id.replace(/\$(b\d+)$/, '$1');
   return (
@@ -43,7 +55,30 @@ export function HostSurvey_Item({
           <div
             className="display-flex flex-direction-row align-items-center justify-content-flex-end color-orbit-primary-7 font-size-s bold"
             data-container=""
-          />
+          >
+            {inHasEdit && (
+              <div
+                className="display-flex flex-direction-row align-items-center justify-content-flex-end"
+                data-container=""
+                onClick={onClickEdit}
+              >
+                <i className="icon orbit-icon-edit" data-icon="" />
+                <span className="margin-left-s">Edit</span>
+              </div>
+            )}
+            {inHasDelete && (
+              <div
+                className={`display-flex align-items-center justify-content-flex-end${inHasEdit ? ' margin-left-m' : ''}`}
+                data-container=""
+                onClick={onClickDelete}
+              >
+                <i className="icon orbit-icon-delete" data-icon="" />
+                <span className="margin-left-s" data-expression="">
+                  Delete
+                </span>
+              </div>
+            )}
+          </div>
         </div>
         <div className="orbit-host-survey-item-content" id={`${scope}-Placeholder_Content`}>
           {placeholderContent}

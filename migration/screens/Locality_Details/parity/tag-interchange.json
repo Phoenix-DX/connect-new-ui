@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 2,
- "fingerprint": "f880668e4e4fe828265e",
+ "fingerprint": "908872e3be364daf3ae3",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T15:00:06.070Z",
+ "at": "2026-10-27T17:22:06.834Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
@@ -66,7 +66,7 @@
    "tag-interchange"
   ],
   "expected": 41,
-  "actual": 65
+  "actual": 66
  },
  "diffs": []
 }

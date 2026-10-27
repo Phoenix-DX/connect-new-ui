@@ -7,6 +7,7 @@ import {
   decrementReadWhatsNewsCounter,
   initialMessageDetailState,
   isOrbitKind,
+  isPrivateMessageOfAnotherUser,
   messageAccess,
   messageDetailReducer,
   messageTitle,
@@ -42,6 +43,7 @@ const message = (patch: Partial<MessageDetail> = {}): MessageDetail => ({
 const result = (patch: Partial<MessageInstanceResult> = {}, messagePatch: Partial<MessageDetail> = {}) => ({
   message: message(messagePatch),
   isRetracted: false,
+  placeholderDelimiters: { placeholder: '', function: '', parameter: '' },
   isCleared: false,
   ...patch,
 });
@@ -78,8 +80,20 @@ describe('messageDetailReducer', () => {
 
   it('sets ShowAssembleAction from the parameters only for an Assemble message', () => {
     const both = [
-      { parameterNameId: ParameterName.AssembleEventParentId, parameterValue: '41' },
-      { parameterNameId: ParameterName.AssembleEventInstanceId, parameterValue: '42' },
+      {
+        id: '41',
+        messageTemplateId: '31',
+        parameterNameId: ParameterName.AssembleEventParentId,
+        parameterValue: '41',
+        tenantId: 1,
+      },
+      {
+        id: '42',
+        messageTemplateId: '31',
+        parameterNameId: ParameterName.AssembleEventInstanceId,
+        parameterValue: '42',
+        tenantId: 1,
+      },
     ];
     const assemble = messageDetailReducer(initialMessageDetailState(inputs), {
       type: 'templateParametersFetched',
@@ -110,26 +124,44 @@ describe('messageDetailReducer', () => {
 describe('showAssembleAction', () => {
   it('needs both Assemble event ids', () => {
     expect(showAssembleAction([])).toBe(false);
-    expect(showAssembleAction([{ parameterNameId: ParameterName.AssembleEventParentId, parameterValue: '41' }])).toBe(
-      false,
-    );
+    expect(
+      showAssembleAction([
+        {
+          id: '41',
+          messageTemplateId: '31',
+          parameterNameId: ParameterName.AssembleEventParentId,
+          parameterValue: '41',
+          tenantId: 1,
+        },
+      ]),
+    ).toBe(false);
   });
 });
 
 describe('messageAccess', () => {
   it('decides in the order of GetMessageInstanceByIdOnAfterFetch', () => {
-    expect(messageAccess(result({ isRetracted: true, isCleared: true }), true, '7')).toBe('retracted');
-    expect(messageAccess(result({}, { messageInstanceId: null }), true, '7')).toBe('noAccess');
-    expect(messageAccess(result({}, { messageInstanceId: null }), false, null)).toBe('login');
-    expect(messageAccess(result({ isCleared: true }), true, '7')).toBe('cleared');
-    expect(messageAccess(result(), false, null)).toBe('open');
+    expect(messageAccess(result({ isRetracted: true, isCleared: true }), true)).toBe('retracted');
+    expect(messageAccess(result({}, { messageInstanceId: null }), true)).toBe('noAccess');
+    expect(messageAccess(result({}, { messageInstanceId: null }), false)).toBe('login');
+    expect(messageAccess(result({ isCleared: true }), true)).toBe('cleared');
+    expect(messageAccess(result(), false)).toBe('open');
   });
 
-  it('opens a private message only for its signed-in user', () => {
+  it('opens a private message when signed in, and sends a signed-out user to the login', () => {
     const own = { messageTemplateTypeId: MessageType.Private, messageInstanceUserId: 7 };
-    expect(messageAccess(result({}, own), true, '7')).toBe('open');
-    expect(messageAccess(result({}, own), true, '8')).toBe('noAccess');
-    expect(messageAccess(result({}, own), false, null)).toBe('login');
+    expect(messageAccess(result({}, own), true)).toBe('open');
+    // Another user's private message goes on to the IsCleared check (SBMD:976-1011, decision Q4 (a)).
+    expect(messageAccess(result({}, own), true)).toBe('open');
+    expect(messageAccess(result({ isCleared: true }, own), true)).toBe('cleared');
+    expect(messageAccess(result({}, own), false)).toBe('login');
+  });
+
+  it('tells a private message of another signed-in user', () => {
+    const own = { messageTemplateTypeId: MessageType.Private, messageInstanceUserId: 7 };
+    expect(isPrivateMessageOfAnotherUser(result({}, own), true, '8')).toBe(true);
+    expect(isPrivateMessageOfAnotherUser(result({}, own), true, '7')).toBe(false);
+    expect(isPrivateMessageOfAnotherUser(result({}, own), false, null)).toBe(false);
+    expect(isPrivateMessageOfAnotherUser(result({}, { messageInstanceUserId: 7 }), true, '8')).toBe(false);
   });
 });
 

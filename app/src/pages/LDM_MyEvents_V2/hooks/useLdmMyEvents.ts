@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { fetchEventsForMyTimeline, type MyTimelineData } from '@/api/event';
+import { fetchEventsForMyTimeline, type EventCalendarFiltersAsText, type MyTimelineData } from '@/api/event';
 import { NotRegisteredException, UserException, exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
 import type { HouseholdClick } from '@/pages/LDM_MyEvents_V2/components/EventCard_V2';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
@@ -10,14 +10,29 @@ import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/lib/orbit/actions';
 import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
 import {
   canFetchOlderEvents,
+  currentFiltersOf,
   hasPhoneNumber,
   initialLdmMyEventsState,
   ldmMyEventsReducer,
   myTimelineCallInputs,
   restoreLdmMyEventsState,
+  validateSameFilters,
   type LdmMyEventsAction,
   type LdmMyEventsState,
 } from './ldmMyEventsState';
+
+/** AddAuditEventFilterEvent(EventTypeId, Filters) (Connect2_OrbitMobile_MUI.controller.js :366-431): the JSON of
+    {AppliedFilters: Filters} to zOnApplicationEvent_Wrapper. The log gets the dates and the locality ids (U17). */
+function addAuditEventFilterEvent(
+  event: 'MyTimelineApplyFilter' | 'MyTimelineClearFilter',
+  filters: EventCalendarFiltersAsText,
+): void {
+  addAuditEvent_LDM(event, {
+    FromDate: filters.FromDate,
+    ToDate: filters.ToDate,
+    Localities: filters.Localities.map((p) => p.IdAsText).join(','),
+  });
+}
 
 /** The user exception that the block raises for a failed fetch that is not a system exception. */
 const UNKNOWN_ERROR = 'Connect2_OrbitMobile_MUI.UnknownError';
@@ -59,6 +74,10 @@ export interface LdmMyEventsFlows {
   onTryAgain: () => void;
   /** OnHandle_SwipeUp: the EventsSwipeUp event of the timeline (a swipe up on the empty timeline). */
   onSwipeUp: () => Promise<void>;
+  /** OnHandle_MyTimelineFilter(In_SelectedFilters): the Filter event of the filter button. */
+  onMyTimelineFilter: (selectedFilters: EventCalendarFiltersAsText) => Promise<void>;
+  /** OnHandle_ResetFilters(In_ResetFilters): the ResetFilters event of the filter button. */
+  onResetFilters: (resetFilters: EventCalendarFiltersAsText) => Promise<void>;
   /** OnHandle_ContactByPhonePopupEvent_Cancel and _Call: the phone popup closes. */
   onContactByPhoneClose: () => void;
   /** OnHandle_ContactByMessage_Cancel: the message popup closes (also for Call and the message channels). */
@@ -79,6 +98,11 @@ export interface LdmMyEventsFlows {
       moves 24 months back and GetMyTimelineData runs.
     - OnHandle_SwipeUp (ScreenBlock_MyEvents_V2 :2335-2368): IncrementMyTimelineDates (the window moves 24 months back), then the refresh
       of GetEventsForMyTimeline and its OnAfterFetch, without IsFetchingMyTimeline and without an error handler.
+    - OnHandle_MyTimelineFilter (ScreenBlock_MyEvents_V2 :2670-2760): the same filters (ValidateSameFilters with the
+      dates of PastEventFilters and no locality) only log MyTimelineApplyFilter. Other filters clear both lists, set
+      IsFiltering True and PastEventFilters, run GetMyTimelineData, then log MyTimelineApplyFilter.
+    - OnHandle_ResetFilters (:1886-1947): both lists cleared, IsFiltering False, PastEventFilters = the reset filters,
+      GetMyTimelineData, then MyTimelineClearFilter with empty filters.
     - The event, household and contact handlers: audit events, the upgrade popup for a disabled record, the contact
       popups and the block events.
     OnReady runs once per instance. Decision W23: after the unmount, a started flow skips its state writes, and its
@@ -166,6 +190,22 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
     await refreshGetEventsForMyTimeline();
   }
 
+  async function onHandleMyTimelineFilter(selectedFilters: EventCalendarFiltersAsText): Promise<void> {
+    if (validateSameFilters(selectedFilters, currentFiltersOf(latest.current))) {
+      addAuditEventFilterEvent('MyTimelineApplyFilter', selectedFilters);
+      return;
+    }
+    write({ type: 'filterApplied', filters: selectedFilters });
+    await getMyTimelineData();
+    addAuditEventFilterEvent('MyTimelineApplyFilter', selectedFilters);
+  }
+
+  async function onHandleResetFilters(resetFilters: EventCalendarFiltersAsText): Promise<void> {
+    write({ type: 'filtersReset', filters: resetFilters });
+    await getMyTimelineData();
+    addAuditEventFilterEvent('MyTimelineClearFilter', { FromDate: '1900-01-01', ToDate: '1900-01-01', Localities: [] });
+  }
+
   async function onHandleHouseholdClicked(click: HouseholdClick): Promise<void> {
     if (!click.isHouseholdDisplayed) return;
     if (click.recordDisabled) {
@@ -180,6 +220,8 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
     state,
     onScrollEnding: () => onScrollEndingMyTimeline().catch(raiseToFlowHandler),
     onSwipeUp: () => onHandleSwipeUp().catch(raiseToFlowHandler),
+    onMyTimelineFilter: (selectedFilters) => onHandleMyTimelineFilter(selectedFilters).catch(raiseToFlowHandler),
+    onResetFilters: (resetFilters) => onHandleResetFilters(resetFilters).catch(raiseToFlowHandler),
     onEventClicked: (eventHostId, eventId) => {
       addAuditEvent_LDM('MyTimelineEventClicked', { EventHostId: eventHostId });
       eventsRef.current.onNavigateToEventDetail(eventHostId, eventId);

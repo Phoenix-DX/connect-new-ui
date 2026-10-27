@@ -47,11 +47,12 @@
    "os": "called after ScreenController_Get",
    "react": "-",
    "evidence": "TST Profile.mvc.js:3968-3969",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
    "severity": "major",
-   "note": "The only DropdownSearch widgets of the screen are in the address section (F1)."
+   "note": "Built 2026-10-27 (builds/B6-profile.md). The only DropdownSearch widgets of the screen are in the address section (F1).",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Profile-005",
@@ -61,11 +62,12 @@
    "os": "AccountForm, AccountFormOriginal, AccountForm_ViewPreview, isHouseholder, HasChanges, isSpouse, isLoading_Submit, LocalCacheControl_UserInformation, LocalCacheControl_AllLocalities, LocalCacheControl_AllSubdivions, SubdivisionFilteredList, MainContainerId, ScreenController, PreviewHousehold_BottomSheetId, CurrentCountryCode, FormattedAddress, isRequireRequestCreation",
    "react": "ProfileState keeps the user, the three forms, isHouseholder, isSpouse, hasChanges, isLoadingSubmit, mainContainerId, previewBottomSheetId, currentCountryCode; FormattedAddress and isRequireRequestCreation are derived",
    "evidence": "app/src/pages/Profile/hooks/profileState.ts:18-41, 87-101; app/src/pages/Profile/hooks/useProfile.ts:99, 150; pack/screens.md Profile",
-   "verdict": "partial",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
    "severity": "major",
-   "note": "LocalCacheControl_AllLocalities, LocalCacheControl_AllSubdivions and SubdivisionFilteredList have no counterpart (F1)."
+   "note": "Built 2026-10-27 (builds/B6-profile.md). LocalCacheControl_AllLocalities, LocalCacheControl_AllSubdivions and SubdivisionFilteredList have no counterpart (F1).",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Profile-006",
@@ -98,11 +100,12 @@
    "os": "called after the assignments: no locality → SubdivisionFilteredList empty and SubdivionId = \"\"; else the filtered subdivisions once cached",
    "react": "-",
    "evidence": "app/src/pages/Profile/hooks/useProfile.ts:106-110; TST Profile.mvc.js:3471-3472",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
    "severity": "major",
-   "note": "When LocalityId is \"\", TST clears SubdivionId after AccountFormOriginal was assigned. React keeps the subdivision id."
+   "note": "Built 2026-10-27 (builds/B6-profile.md). When LocalityId is \"\", TST clears SubdivionId after AccountFormOriginal was assigned. React keeps the subdivision id.",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Profile-009",
@@ -146,10 +149,12 @@
    "os": "for a householder the block raises Result → CacheControl_AllLocalitiesResult",
    "react": "-",
    "evidence": "TST Profile.mvc.js:2596-2612; app/src/pages/Profile/hooks/useProfile.ts:106-107",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-013",
@@ -159,10 +164,12 @@
    "os": "for a householder the block raises Result → CacheControl_AllSubdivisionsResult",
    "react": "-",
    "evidence": "TST Profile.mvc.js:2628-2640",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-014",
@@ -409,11 +416,12 @@
    "os": "SectionSeparator, then SkeletonSection > CustomContainer #AddressInfo > \"Address Information\", the address list, Locality and Subdivision",
    "react": "isHouseholder && SectionSeparator and a NotCaptured marker with the title \"Address Information\" only",
    "evidence": "app/src/pages/Profile/components/ProfileDetailsForm.tsx:54-59; app/src/pages/Profile/ProfilePage.tsx:85-89; TST Profile.mvc.js:1269-1377",
-   "verdict": "partial",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
    "severity": "major",
-   "note": "The If and the separator are there; the section content is not."
+   "note": "Built 2026-10-27 (builds/B6-profile.md). The If and the separator are there; the section content is not.",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Profile-036",
@@ -423,10 +431,12 @@
    "os": "In_IsLoading = not LocalCacheControl_AllSubdivions.isFetched or not LocalCacheControl_AllLocalities.isFetched",
    "react": "-",
    "evidence": "TST Profile.mvc.js:1288-1300",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-037",
@@ -436,10 +446,12 @@
    "os": "AddressLabel (Label; padding top Base after the first row); AddressInput: Text, Mandatory = Required, MaxLength 50, style \"form-control \" + not-valid when IsValid is False, OnChange → OnChange_Fields",
    "react": "-",
    "evidence": "TST Profile.mvc.js:1378-1480",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-038",
@@ -449,10 +461,12 @@
    "os": "label \"Locality\"; options from LocalCacheControl_AllLocalities (Value LocalityId, Label Name + \", \" + CountryName, GroupName CountryName); Prompt \"-\"; StartingSelection LocalityId; OnChanged → OnChange_LocalityDropdown",
    "react": "-",
    "evidence": "TST Profile.mvc.js:1486-1586",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-039",
@@ -462,10 +476,12 @@
    "os": "label \"Subdivision\"; IsDisabled when LocalityId = \"\"; options from SubdivisionFilteredList (SubdivisionId, SubdivisionName); Prompt \"-\"; StartingSelection SubdivionId; OnChanged → OnChange_SubdivionDropdown",
    "react": "-",
    "evidence": "TST Profile.mvc.js:1591-1698",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-040",
@@ -789,10 +805,12 @@
    "os": "LocalityId = selection, SubdivionId = \"\", Action_RefreshSubdivionList, OnChange_Fields",
    "react": "-",
    "evidence": "TST Profile.mvc.js:3233-3263",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-068",
@@ -814,10 +832,12 @@
    "os": "SubdivionId = selection, then OnChange_Fields",
    "react": "-",
    "evidence": "TST Profile.mvc.js:2883-2904",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-070",
@@ -827,10 +847,12 @@
    "os": "no locality → empty list, SubdivionId = \"\"; locality and subdivisions cached → ListFilter on LocalityId; else nothing",
    "react": "-",
    "evidence": "TST Profile.mvc.js:2932-2965",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-071",
@@ -840,10 +862,12 @@
    "os": "ListSort by CountryName + \" \" + Name; LocalCacheControl_AllLocalities = response; isFetched True",
    "react": "-",
    "evidence": "TST Profile.mvc.js:3026-3050",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-072",
@@ -853,10 +877,12 @@
    "os": "LocalCacheControl_AllSubdivions = response; isFetched True; Action_RefreshSubdivionList",
    "react": "-",
    "evidence": "TST Profile.mvc.js:3160-3183",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-073",
@@ -1042,10 +1068,12 @@
    "os": "an empty required line fails the built-in validation (\"This field is required.\"), so DetailsForm.Valid is False",
    "react": "-",
    "evidence": "TST Profile.mvc.js:1443-1479, 3539-3542",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-089",
@@ -1055,11 +1083,12 @@
    "os": "clears LocalityDropdown and the container Subdivion (not SubdivisionDropdown)",
    "react": "-",
    "evidence": "TST Profile.mvc.js:3543-3550",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
    "severity": "major",
-   "note": "TST passes the container id Subdivion, so an earlier error of SubdivisionDropdown stays."
+   "note": "Built 2026-10-27 (builds/B6-profile.md). TST passes the container id Subdivion, so an earlier error of SubdivisionDropdown stays.",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Profile-090",
@@ -1069,10 +1098,12 @@
    "os": "LocalityId = NullTextIdentifier() → DropdownNotValid(LocalityDropdown, \"This field is required.\"), isValid = False",
    "react": "-",
    "evidence": "TST Profile.mvc.js:3552-3559",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-091",
@@ -1082,10 +1113,12 @@
    "os": "SubdivionId = NullTextIdentifier() → DropdownNotValid(SubdivisionDropdown, \"This field is required.\"), isValid = False",
    "react": "-",
    "evidence": "TST Profile.mvc.js:3562-3569",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-092",
@@ -1095,10 +1128,12 @@
    "os": "each line: IsValid = not (Required and Value = \"\"); the not-valid class follows IsValid",
    "react": "-",
    "evidence": "TST Profile.mvc.js:3571-3592",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-093",
@@ -1108,11 +1143,12 @@
    "os": "householder: address block, locality and subdivision caches, HomeNumber enabled; householder or spouse: Switch2, Switch3 and the two notes; identification and username read-only",
    "react": "HomeNumber enabled = isHouseholder; switches and notes = isHouseholder || isSpouse; read-only inputs; no address block",
    "evidence": "app/src/pages/Profile/components/ContactInformationSection.tsx:58, 70, 91, 105, 126; app/src/pages/Profile/hooks/useProfile.ts:198; BR-UBTCON-988",
-   "verdict": "partial",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
    "severity": "major",
-   "note": "The address part of the rule is not built."
+   "note": "Built 2026-10-27 (builds/B6-profile.md). The address part of the rule is not built.",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Profile-094",
@@ -1122,10 +1158,12 @@
    "os": "householder: locality, subdivision and required address lines checked on save; other members: the form only",
    "react": "every member: the form only",
    "evidence": "app/src/pages/Profile/hooks/useProfile.ts:137-147; BR-UBTCON-989",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-095",
@@ -1179,10 +1217,12 @@
    "os": "a locality choice clears the subdivision and narrows the subdivision list; the country refresh is dead",
    "react": "no locality choice",
    "evidence": "BR-UBTCON-994; TST Profile.mvc.js:3233-3263",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-100",
@@ -1227,10 +1267,12 @@
    "os": "\"Locality\", \"Subdivision\", Prompt \"-\", the label expression Name + \", \" + CountryName, \"This field is required.\" (DropdownNotValid)",
    "react": "-",
    "evidence": "TST Profile.mvc.js:1514, 1544, 1555-1560, 1602, 1662, 3555, 3565",
-   "verdict": "missing",
-   "verified": "pack",
+   "verdict": "match",
+   "verified": "code",
    "finding": "F1",
-   "severity": "major"
+   "severity": "major",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B6-profile.md)."
   },
   {
    "id": "App_Profile-104",

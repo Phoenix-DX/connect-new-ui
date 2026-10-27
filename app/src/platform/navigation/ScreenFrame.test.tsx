@@ -41,7 +41,9 @@ test('a path that shows no screen keeps the document title', async () => {
 });
 
 test('a ScreenFrame without a title does not change the document title', () => {
-  const router = createMemoryRouter([{ path: '/x', element: <ScreenFrame>x</ScreenFrame> }], { initialEntries: ['/x'] });
+  const router = createMemoryRouter([{ path: '/x', element: <ScreenFrame>x</ScreenFrame> }], {
+    initialEntries: ['/x'],
+  });
   render(<RouterProvider router={router} />);
   expect(document.title).toBe('UBTConnect');
 });

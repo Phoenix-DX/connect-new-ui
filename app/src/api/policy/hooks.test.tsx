@@ -7,8 +7,9 @@ import { usePendingPoliciesQuery } from './hooks';
 import { policyKeys } from './keys';
 import type { PendingPoliciesInputs } from './types';
 
+// The Connect_Applications identifiers are the TST GUID texts (pages/AcceptPendingPolicies/staticEntities.ts).
 const inputs: PendingPoliciesInputs = {
-  policyApplications: ['Connect_Applications.Connect'],
+  policyApplications: ['65d96f75-9f71-42aa-8447-fd622aa09e7e'],
   country: 'NZ',
   contentBlockId: '',
 };

@@ -1446,11 +1446,12 @@
    "react": "app/src/containers/ShareSheet/useShareSheet.ts:136-140 :: if (!recentFetched || item.RecordDisabled === true) return; setLocals(... sharingRecentMemberId: item.Id ?? ''); void submitShare([item.HouseholderId ?? '']);",
    "evidence": "app/src/containers/ShareSheet/useShareSheet.ts:136-140",
    "tst": "present",
-   "verdict": "partial",
-   "note": "App_Subscription_ShowUpgradePopUp not ported (README:85-86): click does nothing; recorded in React README TST: ShareSheet.mvc.js:2573-2625. judge: App_Subscription_ShowUpgradePopUp (UBTConnect_Utils.controller.js:46) is not ported: a tap on a disabled recent member shows the upgrade popup on TST and does nothing in React. No decision found (decisions.md, board, app-shell.spec.md).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B10-misc.md). App_Subscription_ShowUpgradePopUp not ported (README:85-86): click does nothing; recorded in React README TST: ShareSheet.mvc.js:2573-2625. judge: App_Subscription_ShowUpgradePopUp (UBTConnect_Utils.controller.js:46) is not ported: a tap on a disabled recent member shows the upgrade popup on TST and does nothing in React. No decision found (decisions.md, board, app-shell.spec.md).",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "_libraries-112",
@@ -2520,11 +2521,12 @@
    "react": "not found; searched: NavigateToUpgrade, onClickUpgrade in SearchResultItem.tsx (comment at line 117 says not ported)",
    "evidence": "SearchResult_Item.mvc.js:703-730",
    "tst": "present",
-   "verdict": "missing",
-   "note": "searched: NavigateToUpgrade, onClickUpgrade in SearchResultItem.tsx (comment at line 117 says not ported). judge: App_Subscription_NavigateToUpgrade (UBTConnect_Utils.controller.js:1: Cache_UserInfo_Get, Cache_UserInfo_Invalidate, OpenInApp_OpenExternalLink, ConfirmAction) is a web action, not native only. React renders the warning text without a click handler. No decision found.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B10-misc.md). searched: NavigateToUpgrade, onClickUpgrade in SearchResultItem.tsx (comment at line 117 says not ported). judge: App_Subscription_NavigateToUpgrade (UBTConnect_Utils.controller.js:1: Cache_UserInfo_Get, Cache_UserInfo_Invalidate, OpenInApp_OpenExternalLink, ConfirmAction) is a web action, not native only. React renders the warning text without a click handler. No decision found.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "_libraries-194",

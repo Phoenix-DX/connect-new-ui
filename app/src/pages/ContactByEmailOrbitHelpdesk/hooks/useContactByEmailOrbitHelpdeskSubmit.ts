@@ -51,7 +51,14 @@ export function useContactByEmailOrbitHelpdeskSubmit(
           FormattedDateTime: inputs.In_FormattedDateTime,
         },
       });
-      onApplicationEvent_ContactHelpdesk(inputs.In_EventId);
+      // AuditPayload_ContactHelpdesk (TST UBTConnect.ContactFlow.ContactByEmailOrbitHelpdesk.mvc.js:564-570): Subject and
+      // Message are those of ContactByEmailForm, set from the event (:538-541).
+      onApplicationEvent_ContactHelpdesk({
+        EventId: inputs.In_EventId,
+        EventTitle: inputs.In_EventName,
+        Subject: eventSubject,
+        Message: eventMessage,
+      });
       scheduleFeedbackMessageAfterTransition('Your message has been sent.');
       navigateBack();
     } catch (error) {

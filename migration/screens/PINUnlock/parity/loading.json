@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "361d7b211d34726f0a83",
+ "fingerprint": "2fb88662ff07612dd8f0",
  "options": {
   "text": true,
   "style": true,
@@ -27,11 +27,10 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T15:03:27.875Z",
+ "at": "2026-10-27T17:25:29.793Z",
  "counts": {},
  "exemptionsUsed": {
-  "ignoreSubtrees": 2,
-  "CAPTURE-LINK-HREF-CURSOR-PINCODE": 2
+  "ignoreSubtrees": 1
  },
  "pixel": {
   "ratio": 0,
@@ -49,7 +48,7 @@
    390,
    844
   ],
-  "masks": 12,
+  "masks": 1,
   "hotspots": [],
   "diffPng": "migration/screens/PINUnlock/parity/loading.diff.png"
  },

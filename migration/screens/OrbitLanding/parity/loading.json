@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "f5f7f9abbcb15d3b661b",
+ "fingerprint": "10b7918b160ac9b34c69",
  "options": {
   "text": true,
   "style": true,
@@ -27,19 +27,17 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T15:02:36.165Z",
+ "at": "2026-10-27T17:29:30.481Z",
  "counts": {},
  "exemptionsUsed": {
-  "ignoreSubtrees": 2,
-  "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 45,
-  "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
+  "ignoreSubtrees": 1
  },
  "pixel": {
   "ratio": 0,
   "maxCell": 0,
   "maxCellRatio": 0.03,
   "diffPixels": 0,
-  "comparedPixels": 63570,
+  "comparedPixels": 0,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -50,7 +48,7 @@
    390,
    844
   ],
-  "masks": 3,
+  "masks": 1,
   "hotspots": [],
   "diffPng": "migration/screens/OrbitLanding/parity/loading.diff.png"
  },

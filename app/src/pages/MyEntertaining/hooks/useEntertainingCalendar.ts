@@ -4,7 +4,7 @@ import {
   type EntertainingConfig,
   type EntertainingConfigInputs,
 } from '@/api/entertaining';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { raiseToFlowHandler, useFetchErrorToFlowHandler } from '@/platform/feedback/flowErrors';
 
 /** The calls of Embedded_MyEntertaining, for its view. */
 export interface EntertainingCalendarData {
@@ -30,8 +30,11 @@ async function refreshToken(applyIdToken: (idToken: string) => void): Promise<vo
 /** @origin UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining
     The calls of the calendar embed block. GetEntertainingConfig is fetched once when the block mounts, with the four
     block inputs (`useEntertainingConfigQuery` of `api/entertaining`); the view runs InitializeCalendar with the answer.
+    A failed fetch keeps the skeleton and goes once to the block's handleError, then the Calendar flow and App_Common
+    (Calendar F1, Q1 (a), user 2026-10-27).
     The view calls `refreshToken` every 10 minutes while the calendar is open. */
 export function useEntertainingCalendar(inputs: EntertainingConfigInputs): EntertainingCalendarData {
-  const { data: config } = useEntertainingConfigQuery(inputs);
-  return { config, refreshToken };
+  const getConfig = useEntertainingConfigQuery(inputs);
+  useFetchErrorToFlowHandler(getConfig);
+  return { config: getConfig.data, refreshToken };
 }

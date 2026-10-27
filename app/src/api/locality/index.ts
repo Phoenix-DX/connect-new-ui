@@ -9,6 +9,7 @@ export {
 export { localityCache, localityKeys } from './keys';
 export {
   fetchAllLocalities,
+  fetchAllSubdivisions,
   fetchBulkSubdivisions,
   fetchEventFilterLocalities,
   fetchInterchanges,

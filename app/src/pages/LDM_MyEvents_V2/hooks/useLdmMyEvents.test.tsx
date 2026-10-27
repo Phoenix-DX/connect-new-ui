@@ -321,3 +321,79 @@ describe('useLdmMyEvents handlers', () => {
     );
   });
 });
+
+describe('useLdmMyEvents timeline filter (decision Q1)', () => {
+  const ROSARIO = { IdAsText: '601', Name: 'Rosario', IsSelected: true };
+
+  it('OnHandle_MyTimelineFilter: new filters clear the lists, set IsFiltering and PastEventFilters, fetch and log', async () => {
+    const { result } = renderFlows();
+    await settle();
+    const filtered: MyTimelineData = {
+      pastEvents: [{ CurrentMonthDate: 'January 2026', EventsCalendar: [event('88063')] }],
+      upcomingEvents: [],
+    };
+    vi.mocked(fetchEventsForMyTimeline).mockResolvedValue(filtered);
+    const filters = { FromDate: '2025-01-01', ToDate: '2026-11-03', Localities: [ROSARIO] };
+    await act(() => result.current.onMyTimelineFilter(filters));
+    expect(vi.mocked(fetchEventsForMyTimeline).mock.lastCall?.[0]).toEqual(
+      expect.objectContaining({ IsFiltering: true, PastEventFilters: filters }),
+    );
+    expect(result.current.state.isFiltering).toBe(true);
+    expect(result.current.state.pastEventsData.map((g) => g.CurrentMonthDate)).toEqual(['January 2026']);
+    expect(auditNames().slice(-2)).toEqual(['RequestAPI_CalendarEvents', 'MyTimelineApplyFilter']);
+    expect(vi.mocked(addAuditEvent_LDM).mock.lastCall?.[1]).toEqual({
+      FromDate: '2025-01-01',
+      ToDate: '2026-11-03',
+      Localities: '601',
+    });
+  });
+
+  it('OnHandle_MyTimelineFilter: the same dates without a locality only log MyTimelineApplyFilter', async () => {
+    const { result } = renderFlows();
+    await settle();
+    const { FromDate, ToDate } = result.current.state.pastEventFilters;
+    await act(() => result.current.onMyTimelineFilter({ FromDate, ToDate, Localities: [] }));
+    expect(fetchEventsForMyTimeline).toHaveBeenCalledTimes(1);
+    expect(result.current.state.isFiltering).toBe(false);
+    expect(auditNames().at(-1)).toBe('MyTimelineApplyFilter');
+  });
+
+  it('OnHandle_ResetFilters: IsFiltering False, PastEventFilters reset, fetch, then MyTimelineClearFilter', async () => {
+    const { result } = renderFlows();
+    await settle();
+    await act(() =>
+      result.current.onMyTimelineFilter({ FromDate: '2025-01-01', ToDate: '2026-11-03', Localities: [ROSARIO] }),
+    );
+    const reset = {
+      FromDate: '2024-10-27',
+      ToDate: '2026-11-03',
+      Localities: [
+        { IdAsText: 'AllLocalities', Name: 'All Localities', IsSelected: true },
+        { ...ROSARIO, IsSelected: false },
+      ],
+    };
+    await act(() => result.current.onResetFilters(reset));
+    expect(vi.mocked(fetchEventsForMyTimeline).mock.lastCall?.[0]).toEqual(
+      expect.objectContaining({ IsFiltering: false, PastEventFilters: reset }),
+    );
+    expect(result.current.state.isFiltering).toBe(false);
+    expect(result.current.state.pastEventsData.map((g) => g.CurrentMonthDate)).toEqual(['September 2026']);
+    expect(auditNames().at(-1)).toBe('MyTimelineClearFilter');
+    expect(vi.mocked(addAuditEvent_LDM).mock.lastCall?.[1]).toEqual({
+      FromDate: '1900-01-01',
+      ToDate: '1900-01-01',
+      Localities: '',
+    });
+  });
+
+  it('a failed filter fetch goes to the flow handler', async () => {
+    const { result } = renderFlows();
+    await settle();
+    vi.mocked(fetchEventsForMyTimeline).mockRejectedValue(new SystemException('Request failed with status 500'));
+    await act(() =>
+      result.current.onMyTimelineFilter({ FromDate: '2025-01-01', ToDate: '2026-11-03', Localities: [ROSARIO] }),
+    );
+    expect(raiseToFlowHandler).toHaveBeenCalled();
+    expect(auditNames()).not.toContain('MyTimelineApplyFilter');
+  });
+});

@@ -779,11 +779,12 @@
    "react": "config stays undefined and the skeleton stays; the query error goes only to logQueryError (no meta.errorLog here), no toast",
    "evidence": "TST OutSystems.js:3853 (executeDataFetchAction: model.flush(), handleError(e)); TST UBTConnect.Calendar.controller.js:12-16; migration/knowledge/shell-facts.md U10; app/src/api/entertaining/hooks.ts:12-20; app/src/api/client/queryClient.ts:15-18",
    "tst": "present",
-   "verdict": "missing",
-   "note": "Same gap as App_Services F2 (Q3).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B4-errors.md). Same gap as App_Services F2 (Q3).",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Calendar-061",

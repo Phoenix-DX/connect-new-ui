@@ -160,12 +160,13 @@
    "os": "the runtime flushes the model (list-error), then calls the screen handleError: App_Services, then App_Common OnException, which shows the communication or exception toast",
    "react": "the List widgets get list-error; no code passes the error to the flow handler, so no toast shows",
    "evidence": "TST OutSystems.js:3853 (executeDataFetchAction: model.flush(), handleError(e)); TST UBTConnect.App_Services.controller.js:17; migration/knowledge/shell-facts.md U10; app/src/pages/Services/hooks/useServices.ts:46-52; app/src/api/client/queryClient.ts:15-18",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "note": "CountryDetails has the same gap (app/src/pages/CountryDetails/hooks/useCountryDetails.ts:110-115).",
+   "note": "Built 2026-10-27 (builds/B4-errors.md). CountryDetails has the same gap (app/src/pages/CountryDetails/hooks/useCountryDetails.ts:110-115).",
    "question": "Q3",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Services-015",
@@ -701,12 +702,13 @@
    "os": "NotRegistered: raise (isLoading stays True); CommunicationException: isLoading = False, raise BubbleCommunicationException; AllExceptions: isLoading = False, raise BubbleGenericException",
    "react": "raiseBubbledToFlowHandler(error); isLoading stays True in every branch, so the skeleton and the disabled loading button stay",
    "evidence": "app/src/pages/Services/hooks/useServices.ts:80-81, 98-100; app/src/pages/Services/Services.test.tsx:110-128; TST UBTConnect.App_Services.Services.mvc.js:1321-1361",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "major",
    "finding": "F1",
-   "note": "The code and the test say \"as in the original\"; TST resets isLoading in two branches.",
+   "note": "Built 2026-10-27 (builds/B4-errors.md). The code and the test say \"as in the original\"; TST resets isLoading in two branches.",
    "question": "Q2",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Services-062",

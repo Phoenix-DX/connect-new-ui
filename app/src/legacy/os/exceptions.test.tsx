@@ -10,7 +10,7 @@ import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter'
 import { signIn, signOut, signedOutRemotely } from '@/platform/session/auth';
 import { getSessionStatus, subscribeSessionStatus } from '@/platform/session/machine';
 import { registerPin } from '@/platform/session/pin';
-import { getClientVar, getShellState, readPin } from '@/platform/session/session';
+import { getClientVar, getShellState, readPin, setClientVar } from '@/platform/session/session';
 import { calledActions, freshPage } from '@/test/testSupport';
 import {
   CommunicationException,
@@ -211,5 +211,41 @@ describe('other exceptions keep their branches', () => {
     expect(getShellState()).toMatchObject({ signedIn: true });
     expect(signedOutRemotely).not.toHaveBeenCalled();
     expect(pageRedirect).not.toHaveBeenCalled();
+  });
+});
+
+describe('UBTConnect.BubbleCommunicationException, the first branch (ACF:31-44, App_Common F1)', () => {
+  const bubbled = (message: string) => new UserException(message, 'UBTConnect.BubbleCommunicationException');
+
+  test('online: ShowCommunicationExceptionMessage ("Service Interruption"), not the raw message of the request', async () => {
+    await signedInDevice();
+    act(() => {
+      raiseToFlowHandler(bubbled('Request failed with status 503'));
+    });
+    const toast = getFeedbackMessage()?.message ?? '';
+    expect(toast).toContain("<div class='feedback-message--title'>Service Interruption</div>");
+    expect(toast).not.toContain('Request failed with status 503');
+    expect(getShellState()).toMatchObject({ signedIn: true });
+    expect(signedOutRemotely).not.toHaveBeenCalled();
+    expect(pageRedirect).not.toHaveBeenCalled();
+  });
+
+  test('offline: the "No internet connection" message of ShowCommunicationExceptionMessage (UC:16085-16101)', () => {
+    setClientVar('UBTConnect.App_NetworkStatus_IsOnline_IsPersistent', false);
+    act(() => {
+      raiseToFlowHandler(bubbled('Request failed with status 503'));
+    });
+    expect(getFeedbackMessage()?.message).toBe(
+      'No internet connection. Please check your network settings and try again.',
+    );
+  });
+
+  test('UBTConnect.BubbleGenericException keeps the AllExceptions branch: ShowExceptionMessage(message, False)', async () => {
+    act(() => {
+      raiseToFlowHandler(new UserException('The order could not be saved', 'UBTConnect.BubbleGenericException'));
+    });
+    await vi.waitFor(() => {
+      expect(getFeedbackMessage()?.message).toBe('The order could not be saved.');
+    });
   });
 });

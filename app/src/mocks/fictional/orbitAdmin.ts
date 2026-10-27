@@ -110,11 +110,6 @@ export function orbitAdminEvents(today: Date = new Date()): OrbitAdminEvent[] {
   ];
 }
 
-/** GetMilestoneScanFF.IsScanPerMilestone (UBTConnect server action of OrbitAdminLanding): False, so a card opens
-    OrbitAdminEventDetail (the event is scanned as a whole). True would open OrbitAdminMilestones, a screen that is not
-    in the TST moduleinfo (migration/runtime-sources/moduleinfo.json) nor in the app (OrbitAdminLanding Q2). */
-export const ORBIT_ADMIN_SCAN_PER_MILESTONE = false;
-
 /* ---- Attendees the admin scans (OrbitAdminEventDetail) ----
    Each attendee carries a member QR code (QRCodeInformationRec serialized: "eventid", "id", "milestoneid",
    Connect2_OrbitMobile_MUI.model.js:7896-7902). Scanning it at the event's door gives the member

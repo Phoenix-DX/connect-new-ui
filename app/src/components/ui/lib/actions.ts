@@ -290,6 +290,14 @@ export function dropdownClearValidation(widgetId: string): boolean {
   });
 }
 
+/** DropdownNotValid(WidgetId, ValidationMessage) (CT:8857-8962, ValidationDropdownJS CT:8963-8967 →
+    DropdownAPI.SetValidation(WidgetId, false, ValidationMessage)): adds the not-valid state and its error message. */
+export function dropdownNotValid(widgetId: string, validationMessage: string): boolean {
+  return dropdownApiResponse(widgetId, (pattern) => {
+    pattern.validation(false, validationMessage);
+  });
+}
+
 /** DropdownTogglePopup(WidgetId, EnablePopup) (CT:10387-10494, TogglePopupJS CT:10495-10500 → DropdownAPI.TogglePopup
     OSUI:13821-13831): the dropbox as a popup (True) or below the field (False); redraws when it changes. */
 export function dropdownTogglePopup(widgetId: string, enablePopup: boolean): boolean {

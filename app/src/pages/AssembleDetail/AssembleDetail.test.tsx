@@ -136,7 +136,10 @@ describe('AssembleDetail', () => {
     await waitFor(() => {
       expect(at()).toBe(`/UBTConnect/HouseholdCarousel?In_StartingHouseholdId=${String(householdId)}`);
     });
-    expect(getPreloadObject()).toBeNull();
+    // ScreenFrame deletes the preload after the first effects of the carousel screen (a tick later under load).
+    await waitFor(() => {
+      expect(getPreloadObject()).toBeNull();
+    });
   });
 
   it('back from a household restores the title and the meeting without a new GetAssembleEvent', async () => {

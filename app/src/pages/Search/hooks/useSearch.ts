@@ -38,7 +38,6 @@ import {
   INITIAL_SEARCH_STATE,
   recentAsResult,
   searchReducer,
-  selectedCategoryOf,
   validateSearchPhoneNumber,
   type SearchState,
 } from './searchState';
@@ -131,8 +130,10 @@ export interface SearchFlows {
       Get_SearchBirthdayOptions.
     - Get_RecentClickedResults and Get_RecentSearchTerms: client-entity aggregates fetched at start and refreshed with
       the variables of that moment (shell adapter, CR-Search-1).
-    - Action_RefreshSearch: saves the term, clears the results, then FetchSearchResults. A newer search makes the answer
-      of an older one ignored.
+    - Action_RefreshSearch: saves the term, clears the results, adds the loading rows of the sections in scope, then
+      FetchSearchResults. A newer search makes the answer of an older one ignored.
+    - Event_HorizontalTagListChanged: SelectedCategory and TagList, Get_RecentClickedResults with the new category,
+      then Action_RefreshSearch.
     - Event_SectionOnItemClick: saves the clicked result, then raises Event_SearchResultClick or navigates
       (Locality_Details, the HouseholdCarousel or HouseholdDetails).
     @origin UBTConnect.Directory_Search.ScreenBlock_Search */
@@ -306,10 +307,16 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     dispatch({ type: 'searchKeysCleared' });
     clearResults('', '', latest.current.selectedCategory);
   };
-  // Event_HorizontalTagListChanged: SelectedCategory and TagList, then Action_RefreshSearch.
-  const onTagListChanged = (tagList: Tag[]) => {
+  // Event_HorizontalTagListChanged (ScreenBlock_Search.mvc.js:3929-3937): SelectedCategory and TagList, Refresh
+  // Get_RecentClickedResults (max 5) with the new category, then Action_RefreshSearch. The refresh also runs when the
+  // term is blank, before the first search.
+  const onTagListChanged = async (tagList: Tag[]) => {
     dispatch({ type: 'tagListChanged', tagList });
-    void refreshSearch(variables({ selectedCategory: selectedCategoryOf(tagList) }), tagList);
+    const { searchKeyCurrent, selectedCategory } = latest.current;
+    setRecentClicked(
+      await get_RecentClickedResults(parameters.current.inSearchTargetId, searchKeyCurrent, selectedCategory),
+    );
+    await refreshSearch(variables({ selectedCategory }), tagList);
   };
 
   // Event_SectionOnItemClick.
@@ -363,7 +370,9 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     onChange,
     onSubmit,
     onClearString,
-    onTagListChanged,
+    onTagListChanged: (tagList) => {
+      void onTagListChanged(tagList);
+    },
     onRecentSearchTerm,
     onRecentSearchTermRemove,
     onRecentSearchRemoveAll,

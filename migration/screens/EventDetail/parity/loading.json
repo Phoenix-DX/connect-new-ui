@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "b42197b7baf93ed18bbd",
+ "fingerprint": "5ad5a8ce47c840a971b7",
  "options": {
   "text": true,
   "style": true,
@@ -27,20 +27,17 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T14:58:03.800Z",
+ "at": "2026-10-27T17:20:04.390Z",
  "counts": {},
  "exemptionsUsed": {
-  "VIA-BACK-MENUICON-EVENTDETAIL": 14,
-  "CAPTURE-MASKED-TITLE-EVENTDETAIL-HEADER": 1,
-  "ignoreSubtrees": 2,
-  "CAPTURE-VIA-MASK-SHIFT-EVENTDETAIL-PIXELS": 1
+  "ignoreSubtrees": 1
  },
  "pixel": {
-  "ratio": 0.01844,
-  "maxCell": 0.11,
+  "ratio": 0,
+  "maxCell": 0,
   "maxCellRatio": 0.03,
-  "diffPixels": 217,
-  "comparedPixels": 11766,
+  "diffPixels": 0,
+  "comparedPixels": 0,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [
@@ -51,12 +48,8 @@
    390,
    844
   ],
-  "masks": 3,
-  "hotspots": [
-   "0,0 (176px)",
-   "40,0 (33px)",
-   "0,40 (8px)"
-  ],
+  "masks": 1,
+  "hotspots": [],
   "diffPng": "migration/screens/EventDetail/parity/loading.diff.png"
  },
  "calls": null,

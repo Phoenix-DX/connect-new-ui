@@ -50,7 +50,15 @@ export function useContactByEmailMemberSubmit(inputs: ContactByEmailMemberInputs
       const user = appManager_GetCachedUserInfo();
       const emailEvent = { EmailTo: sent.emailTo, NameOfSender: `${user.LastName}, ${user.FirstName}` };
       if (inputs.In_AuditEventId === OrbitApplicationEvent_EmailHost) {
-        onApplicationEvent_EmailHost({ MilestoneId: inputs.In_OrbitMilestoneId, EventId: inputs.In_OrbitEventId });
+        // AuditPayload_EmailHost (TST UBTConnect.ContactFlow.ContactByEmailMember.mvc.js:689-697).
+        onApplicationEvent_EmailHost({
+          MilestoneId: inputs.In_OrbitMilestoneId,
+          EventId: inputs.In_OrbitEventId,
+          EventTitle: inputs.In_OrbitEventTitle,
+          HostName: inputs.In_ContactName,
+          Subject: eventSubject,
+          Message: eventMessage,
+        });
         return;
       }
       let eventJSON = '';

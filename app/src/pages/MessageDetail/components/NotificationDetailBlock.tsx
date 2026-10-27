@@ -1,5 +1,7 @@
 import { useEffect, type ReactNode } from 'react';
-import { NotCaptured } from '@/platform/feedback/NotCaptured';
+import { AdaptiveCardViewer, type HostConfig } from '@/components/widgets/AdaptiveCardViewer';
+import { isCommunicationException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/lib/os-assets';
 import { Card } from '@/components/ui/Card';
@@ -20,6 +22,10 @@ export interface NotificationDetailBlockProps {
   isUrgent: boolean;
   isAdaptiveCard: boolean;
   messageContent: string;
+  /** AdaptiveCardContent: the card payload. */
+  adaptiveCardContent: string;
+  /** HostConfig of the AdaptiveCardViewer. */
+  hostConfig: HostConfig;
   dateTimeCreated: string | null;
   showDetailsPlaceholder: boolean;
   forceNoIconBorder: boolean;
@@ -28,6 +34,8 @@ export interface NotificationDetailBlockProps {
   messageDetails?: ReactNode;
   /** Placeholder Placeholder_ActionButton (Orbit / Assemble buttons). */
   actionButton?: ReactNode;
+  /** Event AdaptiveCardEventExecuted(CardPayload, ActionId, FormPayload). */
+  onAdaptiveCardEventExecuted?: (cardPayload: string, actionId: string, formPayload: string) => unknown;
 }
 
 /** Message_List_Item_Info: "ddd dd/MM/yyyy" + " " + ToLower("h:mm tt"), "" for the null date. */
@@ -47,12 +55,15 @@ export function NotificationDetailBlock({
   isUrgent,
   isAdaptiveCard,
   messageContent,
+  adaptiveCardContent,
+  hostConfig,
   dateTimeCreated,
   showDetailsPlaceholder,
   forceNoIconBorder,
   hasActionButton,
   messageDetails,
   actionButton,
+  onAdaptiveCardEventExecuted,
 }: NotificationDetailBlockProps) {
   const cardId = `${prefix}-NotificationDetail`;
 
@@ -73,6 +84,19 @@ export function NotificationDetailBlock({
     };
   }, [cardId]);
 
+  /** AdaptiveCardViewerOnExecuteAction (mvc.js:671-726): the event AdaptiveCardEventExecuted; Handle Error
+      CommunicationException: "Please check your internet connection!" (Info). */
+  const adaptiveCardViewerOnExecuteAction = (cardPayload: string, actionId: string, formPayload: string) =>
+    Promise.resolve()
+      .then(() => onAdaptiveCardEventExecuted?.(cardPayload, actionId, formPayload))
+      .catch((error: unknown) => {
+        if (!isCommunicationException(error)) {
+          raiseToFlowHandler(error);
+          return;
+        }
+        showFeedbackMessage('Please check your internet connection!', PLATFORM_MESSAGE_TYPE.info);
+      });
+
   // Style expression of the icon container, trailing space trimmed as the DOM shows it.
   const iconClass = (
     'notification-detail-icon-badge ' + (forceNoIconBorder ? 'no-border' : profileIconURL === '' ? 'no-border' : '')
@@ -84,7 +108,13 @@ export function NotificationDetailBlock({
   } else if (isAdaptiveCard) {
     body = (
       <div data-container="">
-        <NotCaptured name={`Q1: Widgets.AdaptiveCardViewer (${prefix}-$b2)`} />
+        <AdaptiveCardViewer
+          id={`${prefix}-$b2`}
+          prefix={`${prefix}-b2`}
+          inAdaptiveCardJson={adaptiveCardContent}
+          inHostConfig={hostConfig}
+          onExecuteAction={adaptiveCardViewerOnExecuteAction}
+        />
       </div>
     );
   } else {

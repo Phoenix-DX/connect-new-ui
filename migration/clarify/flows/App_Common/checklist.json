@@ -1914,11 +1914,12 @@
    "os": "the first branch of the flow handler",
    "react": "no such branch: the error falls to ShowExceptionMessage(message, False)",
    "evidence": "app/src/legacy/os/exceptions.ts:69-84; app/src/platform/feedback/bubbleErrors.ts:25-27; TST migration/shell/sources/UBTConnect.App_Common.controller.js:31-39; migration/knowledge/shell-facts.md U10",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "major",
    "finding": "F1",
-   "note": "A non-ok answer gives \"Request failed with status N\". No rule of ShowExceptionMessage matches it, so React shows the raw text as an error.",
-   "verified": "pack"
+   "note": "Built 2026-10-27 (builds/B4-errors.md). A non-ok answer gives \"Request failed with status N\". No rule of ShowExceptionMessage matches it, so React shows the raw text as an error.",
+   "verified": "code",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Common-167",

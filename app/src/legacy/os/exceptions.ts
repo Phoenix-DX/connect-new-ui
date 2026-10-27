@@ -54,6 +54,9 @@ export const exceptionMessage = (error: unknown): string => (error instanceof Er
 /**
  * An error a flow did not handle, going up to the screen's handleError and the App_Common flow handler: App_Common
  * OnException (migration/shell/sources/UBTConnect.App_Common.controller.js, "ACF", :12-125). Its branches, in order:
+ *   UBTConnect.BubbleCommunicationException
+ *                           ShowCommunicationExceptionMessage (ACF:31-44): the user exception that a screen action
+ *                           raises for a CommunicationException (bubbleErrors.ts). App_Common F1.
  *   CommunicationException  ShowCommunicationExceptionMessage (ACF:46-59).
  *   SecurityException       InvalidLoginException and NotRegisteredException too (subclasses, OutSystems.js:2).
  *                           Has User Id? (GetUserId() <> NullIdentifier, ACF:66-68):
@@ -67,7 +70,7 @@ export const exceptionMessage = (error: unknown): string => (error instanceof Er
  *                           2026-10-14; Q-W3B-2, user 2026-10-15).
  */
 export function raiseToFlowHandler(error: unknown): void {
-  if (isCommunicationException(error)) {
+  if (isUserException(error, 'UBTConnect.BubbleCommunicationException') || isCommunicationException(error)) {
     showCommunicationExceptionMessage();
     return;
   }

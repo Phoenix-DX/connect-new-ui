@@ -65,6 +65,13 @@ Selection and loading:
 - The list of the selected members shows above the results.
 - While a list loads, the block shows a skeleton of five "Loading Name" rows.
 
+Subscription:
+
+- A click on a disabled recently shared member runs App_Subscription_ShowUpgradePopUp (`showUpgradePopUp` of
+  `platform/feedback/dialogs`). It opens the Access Restricted dialog that the current screen stored, else nothing.
+- "Subscription upgrade needed" of a SearchResult_Item runs App_Subscription_NavigateToUpgrade (`navigateToUpgrade`).
+  The sheet gives it to the block as `onClickUpgradeSubscription`.
+
 ## Captured variants (1; 1 tested)
 
 | Capture | Source                   | What it shows      |
@@ -72,7 +79,7 @@ Selection and loading:
 | v1      | BookmarksByGroup/default | closed: empty root |
 
 The story `Open` (no capture) shows the first step. Tests with `it` cover these cases: loading, lists, search, selection,
-Send, recent-member share and the link action.
+Send, recent-member share, the two subscription clicks and the link action.
 
 ## Not captured / not settled
 
@@ -83,8 +90,6 @@ Send, recent-member share and the link action.
   - In the original app, a click on an option (Handler_OnClickExternalOption) calls CS_CreateShareProfileLink
     (ported in `src/api/share/shareSheet.ts`). Then it runs the ExternalShare client action (native share / clipboard).
   - The React app does not port the ExternalShare client action.
-- A click on a disabled recently shared member opens App_Subscription_ShowUpgradePopUp. The React app does not port it, so
-  the click has no effect.
 - IsSubmitting of Action_SubmitShare has no visible effect here.
 - The captures do not contain the List widget attributes (`animateItems`, `disable-virtualization`). The block renders
   only `data-list`.

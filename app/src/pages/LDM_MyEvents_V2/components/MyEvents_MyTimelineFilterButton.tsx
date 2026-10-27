@@ -1,11 +1,14 @@
 import { createPortal } from 'react-dom';
-import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { usePopupWidget } from '@/components/ui/os/OSPopup';
 import { PreventBackNavigation } from '@/platform/navigation/PreventBackNavigation';
-import { useMyTimelineFilterButton } from '@/pages/LDM_MyEvents_V2/hooks/useMyTimelineFilterButton';
+import {
+  useMyTimelineFilterButton,
+  type MyTimelineFilterButtonEvents,
+} from '@/pages/LDM_MyEvents_V2/hooks/useMyTimelineFilterButton';
+import { MyTimeline_Filters } from './MyTimeline_Filters';
 
-export interface MyEvents_MyTimelineFilterButtonProps {
+export interface MyEvents_MyTimelineFilterButtonProps extends MyTimelineFilterButtonEvents {
   id?: string;
   /** Instance scope of the block's widgets ("b1-b4"). */
   scope: string;
@@ -19,8 +22,9 @@ export interface MyEvents_MyTimelineFilterButtonProps {
 
 /** The timeline filter button. When In_IsShowing: the filter icon, clickable when In_HasLoaded, else greyed
     (`text-neutral-6`). Then BlockPlaceholder > SearchFiltersRoot with, while IsShowFilters, PreventBackNavigation and
-    the Event_Filters_PopUp (popup-dialog my-events-popup-filters). Its content MyTimeline_Filters is not captured (Q1,
-    NotCaptured): its Filter, Close and ResetFilters events are not reachable. The flows are in
+    the Event_Filters_PopUp (popup-dialog my-events-popup-filters) with MyTimeline_Filters (In_SelectedFilters =
+    SelectedFilters; its Close, Filter and ResetFilters events go to OnHandle_Close, OnHandle_Filter and
+    OnHandle_ResetFilters). Built from the compiled view (decision Q1, 2026-10-27). The flows are in
     useMyTimelineFilterButton.
     @origin Connect2_OrbitMobile_MUI.LDM_Blocks_V2.MyEvents_MyTimelineFilterButton */
 export function MyEvents_MyTimelineFilterButton({
@@ -29,12 +33,14 @@ export function MyEvents_MyTimelineFilterButton({
   inHasLoaded,
   inIsShowing,
   inDefaultDateRangeInMonths = 24,
+  onFilter,
+  onResetFilters,
 }: MyEvents_MyTimelineFilterButtonProps) {
-  const { isShowFilters, toggleEventFilters } = useMyTimelineFilterButton(
-    inHasLoaded,
-    inIsShowing,
-    inDefaultDateRangeInMonths,
-  );
+  const flows = useMyTimelineFilterButton(inHasLoaded, inIsShowing, inDefaultDateRangeInMonths, {
+    onFilter,
+    onResetFilters,
+  });
+  const { isShowFilters, toggleEventFilters } = flows;
   usePopupWidget(isShowFilters);
 
   return (
@@ -62,7 +68,15 @@ export function MyEvents_MyTimelineFilterButton({
                       role="dialog"
                     >
                       <div className="popup-content">
-                        <NotCaptured name="LDM_Blocks.MyTimeline_Filters (Q1)" />
+                        <MyTimeline_Filters
+                          id={`${scope}-$b2`}
+                          scope={`${scope}-b2`}
+                          inSelectedFilters={flows.selectedFilters}
+                          inDefaultDateRangeInMonths={inDefaultDateRangeInMonths}
+                          onClose={flows.onClose}
+                          onFilter={flows.onFilter}
+                          onResetFilters={flows.onResetFilters}
+                        />
                       </div>
                     </div>
                   </div>

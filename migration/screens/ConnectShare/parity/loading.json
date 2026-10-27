@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "f63e984470a9dc0f09b7",
+ "fingerprint": "94485252dd05fa7ce64f",
  "options": {
   "text": true,
   "style": true,
@@ -27,10 +27,10 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T14:56:41.000Z",
+ "at": "2026-10-27T17:18:46.854Z",
  "counts": {},
  "exemptionsUsed": {
-  "LOADING-FRAME-CONNECTSHARE": 1,
+  "ignoreSubtrees": 1,
   "CAPTURE-LOADING-BODYCLASS": 1
  },
  "pixel": {
@@ -38,7 +38,7 @@
   "maxCell": 0,
   "maxCellRatio": 0.03,
   "diffPixels": 0,
-  "comparedPixels": 329160,
+  "comparedPixels": 0,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [

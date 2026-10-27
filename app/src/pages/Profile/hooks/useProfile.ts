@@ -1,6 +1,7 @@
-import { useMemo, useReducer } from 'react';
+import { useEffect, useMemo, useReducer } from 'react';
 import { putCacheableObject } from '@/api/client/cache';
 import { useCountryInfoQuery } from '@/api/country';
+import type { AllLocalities, AllSubdivisions } from '@/api/locality';
 import { editMemberDetails, memberCache } from '@/api/member';
 import { useScreenValidationService, type ValidationService } from '@/components/ui/os/OSValidation';
 import {
@@ -16,7 +17,9 @@ import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { confirmAction } from '@/platform/feedback/dialogs';
 import { clientVar } from '@/platform/session/session';
 import { getUserInformation } from '@/platform/session/userInfo';
-import { bottomSheetOpen } from '@/components/ui/lib/actions';
+import { bottomSheetOpen, dropdownClearValidation, dropdownNotValid } from '@/components/ui/lib/actions';
+import type { DropdownOption } from '@/components/ui/lib/structures';
+import { dropdownSearch_ForceResizeOnOpen } from '@/pages/Profile/actions';
 import type { Directory_UserCurrent } from '@/platform/session/UserInfoCache/types';
 import type { HouseholdPreviewStructure } from '@/lib/ubtConnect/structures';
 import { jSUtils_CopyToClipboard } from '@/lib/jsUtils';
@@ -25,15 +28,18 @@ import {
   initialProfileState,
   isRequireRequestCreation,
   profileReducer,
+  withAddressItemValue,
+  withAddressItemsChecked,
   withContact,
   withPersonal,
   type AccountForm,
   type ProfileState,
 } from './profileState';
 
-/** The flows of the Profile screen: the result of CacheControl_UserInfo_Wrapper, OnChange_Fields, the age switch,
-    OnClick_ViewPreview, the copy of the account number and OnClick_Save. The screen has no OnReady; GetCountryInfo
-    runs once the user information has come.
+/** The flows of the Profile screen: OnReady, the result of CacheControl_UserInfo_Wrapper, the results of
+    CacheControl_AllLocalities and CacheControl_AllSubdivisions, OnChange_Fields, the two dropdowns of the address,
+    the age switch, OnClick_ViewPreview, the copy of the account number and OnClick_Save. GetCountryInfo runs once the
+    user information has come.
     @origin UBTConnect.App_Profile.Profile */
 
 type PersonalPatch = Partial<AccountForm['AccountForm_PersonalInformation']>;
@@ -66,6 +72,18 @@ interface ProfileFlows {
   onContactChange: (patch: ContactPatch) => void;
   /** OnChange_ShowAgeSwitch. */
   onShowAgeChange: (checked: boolean) => void;
+  /** AddressInput of a row changed: OnChange_Fields. */
+  onAddressItemChange: (index: number, value: string) => void;
+  /** OnChange_LocalityDropdown. */
+  onLocalityChange: (selectedOptionList: DropdownOption[]) => void;
+  /** OnChange_SubdivionDropdown. */
+  onSubdivisionChange: (selectedOptionList: DropdownOption[]) => void;
+  /** CacheControl_AllLocalitiesResult. */
+  onAllLocalities: (cacheControlResponse: AllLocalities) => void;
+  /** CacheControl_AllSubdivisionsResult. */
+  onAllSubdivisions: (cacheControlResponse: AllSubdivisions) => void;
+  /** A failed GetCacheInfo of the two cache blocks: the flow handler (App_Services Q3). */
+  onCacheControlError: (error: unknown) => void;
   /** OnClick_Save. */
   onSave: () => void;
 }
@@ -103,8 +121,14 @@ export function useProfile(): ProfileFlows {
     dispatch({ type: 'fieldsChanged', accountForm: next, original });
   };
 
-  /* CacheControl_UserInfo_WrapperResult. Action_RefreshSubdivionList only acts on the householder address section
-     (Q1: not built); the change of isFetched then refreshes GetCountryInfo. */
+  /* ScreenEvent_OnReady (Profile.mvc.js:3943-3970): ScreenController_Get (the screen's validation service, ready
+     from the first render), then DropdownSearch_ForceResizeOnOpen. */
+  useEffect(() => {
+    dropdownSearch_ForceResizeOnOpen();
+  }, []);
+
+  /* CacheControl_UserInfo_WrapperResult, with Action_RefreshSubdivionList at its end (in the reducer); the change of
+     isFetched then refreshes GetCountryInfo. */
   const onUserInformation = (userInformation: Directory_UserCurrent) => {
     dispatch({ type: 'userInformationFetched', user: userInformation, current: accountForm });
   };
@@ -137,16 +161,32 @@ export function useProfile(): ProfileFlows {
   const save = async () => {
     dispatch({ type: 'submitStarted' });
     /* ScreenController_ValidateWidgets (UBTJavaScriptUtils: validationServiceInstance.validate(), every widget of the
-       screen), then isValid = DetailsForm.Valid (CR-Profile-2). For the householder, DropdownClearValidation /
-       DropdownNotValid and the required address items belong to the address section, which is not built (Q1). */
+       screen), then isValid = DetailsForm.Valid (CR-Profile-2). */
     validation.validate();
-    const isValid = validation.isValid('DetailsForm');
+    let isValid = validation.isValid('DetailsForm');
+    let form = accountForm;
+    if (isHouseholder) {
+      /* The householder checks (Profile.mvc.js:3543-3592). The second DropdownClearValidation gets the id of the
+         container Subdivion, not of SubdivisionDropdown, so it finds no dropdown and clears nothing (as compiled). */
+      dropdownClearValidation('LocalityDropdown');
+      dropdownClearValidation('Subdivion');
+      const address = form.AccountForm_AddressInformation;
+      if (address.LocalityId === '') {
+        dropdownNotValid('LocalityDropdown', 'This field is required.');
+        isValid = false;
+      }
+      if (address.SubdivionId === '') {
+        dropdownNotValid('SubdivisionDropdown', 'This field is required.');
+        isValid = false;
+      }
+      form = withAddressItemsChecked(form);
+      dispatch({ type: 'accountFormAssigned', accountForm: form });
+    }
     if (!isValid) {
       dispatch({ type: 'submitInvalid' });
       return;
     }
     try {
-      const form = accountForm;
       await editMemberDetails(form, isRequireRequestCreation(form, accountFormOriginal));
       dispatch({ type: 'submitSaved', accountForm: form });
       // ChangedVisibilityPreferences: AccountFormOriginal = AccountForm was just assigned, so the condition holds.
@@ -215,6 +255,23 @@ export function useProfile(): ProfileFlows {
     onShowAgeChange: (checked) => {
       void showAgeChanged(checked);
     },
+    onAddressItemChange: (index, value) => {
+      changeFields(withAddressItemValue(accountForm, index, value));
+    },
+    // SelectedOptionList.Current.Value: the first option, or "" for an empty list.
+    onLocalityChange: (selectedOptionList) => {
+      dispatch({ type: 'localityChanged', localityId: selectedOptionList[0]?.Value ?? '' });
+    },
+    onSubdivisionChange: (selectedOptionList) => {
+      dispatch({ type: 'subdivisionChanged', subdivisionId: selectedOptionList[0]?.Value ?? '' });
+    },
+    onAllLocalities: (response) => {
+      dispatch({ type: 'allLocalitiesFetched', localityList: response.LocalityList.List });
+    },
+    onAllSubdivisions: (response) => {
+      dispatch({ type: 'allSubdivisionsFetched', subdivionsList: response.SubdivionsList.List });
+    },
+    onCacheControlError: raiseToFlowHandler,
     onSave: () => {
       void save();
     },

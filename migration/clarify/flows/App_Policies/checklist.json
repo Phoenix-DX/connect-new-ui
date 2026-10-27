@@ -178,11 +178,12 @@
    "os": "ContentBlockId = MainContainer, Country = UserCountry, PolicyApplications = TextToIdentifier of Connect_Applications Connect, Directory, Orbit (TST values: GUID texts)",
    "react": "contentBlockId and country as TST; policyApplications = the names 'Connect_Applications.Connect', '.Directory', '.Orbit'",
    "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:12-13, 22-25; app/src/pages/AcceptPendingPolicies/staticEntities.ts:14-20; TST UBTConnect.App_Policies.AcceptPendingPolicies.mvc.js:374-386; migration/knowledge/static-entities-tst.json:2809 (UBTConnect.connect_Applications)",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "major",
    "finding": "F1",
-   "note": "The mock ignores the value, so the demo shows no difference.",
-   "verified": "pack"
+   "note": "Built 2026-10-27 (builds/B5-lists.md). The mock ignores the value, so the demo shows no difference.",
+   "verified": "code",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Policies-017",
@@ -851,10 +852,12 @@
    "os": "fetch for the user country and the Connect, Directory and Orbit applications; empty → wait 5 s → AcceptedAll",
    "react": "the country and the 5-second wait as TST; the application ids are names (F1)",
    "evidence": "app/src/pages/AcceptPendingPolicies/AcceptPendingPoliciesPage.tsx:12-13; app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:77-95; BR-UBTCON-944",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "major",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B5-lists.md)."
   },
   {
    "id": "App_Policies-075",

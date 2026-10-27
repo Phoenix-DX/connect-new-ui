@@ -268,7 +268,7 @@ describe('useNotes: the events of the blocks', () => {
     expect(result.current.state.notesFilter.searchTerm).toBe('');
   });
 
-  it('Handler_ApplyFilters takes only SortByNewest of the sheet, and HasFiltersApplied', async () => {
+  it('Handler_ApplyFilters takes the Years and SortByNewest of the sheet (shared record, TST), and HasFiltersApplied', async () => {
     const { result } = renderFlows();
     await settle();
     act(() => {
@@ -282,8 +282,9 @@ describe('useNotes: the events of the blocks', () => {
       noteCategoryId: '',
       searchTerm: '',
       sortByNewest: 'Choice.No',
-      years: [],
+      years: ['2025'],
     });
+    expect(result.current.state.notesFilter.years).toEqual(['2025']);
     expect(result.current.state.hasFiltersApplied).toBe(true);
   });
 

@@ -205,8 +205,11 @@ describe('call inputs', () => {
     const state = run(initialContactUsDetailsState(inputs, true, false), { type: 'userInformationFetched', user });
     const body = localityTimezoneCallInputs(state, inputs);
     expect(Object.keys(body)).toEqual([
+      'ContactUsForm',
       'IsFormFilled',
       'IsAnyFilled',
+      'Description',
+      'MessagePrompt',
       'isLogged',
       'CountryPhone',
       'isSubmiting',
@@ -214,6 +217,7 @@ describe('call inputs', () => {
       'Rate_ShowRate',
       'Rate_UserWantToBeContacted',
       'CallPopupData',
+      'LocalCacheControl_UserInformation',
       'isLoadingMainData',
       'IgnorePolices',
       'In_ContactSubjectId',
@@ -233,5 +237,53 @@ describe('call inputs', () => {
       IgnorePolices: false,
     });
     expect(body.CallPopupData).toEqual(emptyCallPopupData());
+    // F3 (decision Q4 (a)): the user record (the server reads In_LocalityId from it), the form and the texts.
+    expect(body.LocalCacheControl_UserInformation).toEqual({ Directory_UserCurrent: user, isFetched: true });
+    expect(
+      body.LocalCacheControl_UserInformation?.Directory_UserCurrent.Directory_UserCurrent_Geography.Locality_Id,
+    ).toBe(user.Directory_UserCurrent_Geography.Locality_Id);
+    expect(body.ContactUsForm).toEqual(state.contactUsForm);
+    expect(body.ContactUsForm?.FullName).toBe(user.FullName);
+    expect(body.Description).toBe(state.description);
+    expect(body.MessagePrompt).toBe(state.messagePrompt);
+  });
+});
+
+describe('signed-out fields and the rate (F1, F2)', () => {
+  it('CacheControl_UserInfo_WrapperResult keeps the user record with isFetched True', () => {
+    const initial = initialContactUsDetailsState(inputs, true, false);
+    expect(initial.localCacheControl_UserInformation).toEqual({ user: null, isFetched: false });
+    const state = run(initial, { type: 'userInformationFetched', user });
+    expect(state.localCacheControl_UserInformation).toEqual({ user, isFetched: true });
+  });
+
+  it('signed out: Send needs the six trimmed fields; any filled field asks before leaving', () => {
+    const signedOut = initialContactUsDetailsState(inputs, false, true);
+    const id = inputs.In_ContactSubjectId;
+    const fill = (state: ContactUsDetailsState, field: keyof ContactUsDetailsState['contactUsForm'], value: string) =>
+      run(state, { type: 'formFieldSet', field, value }, { type: 'formInputChanged', contactSubjectId: id });
+    let state = fill(signedOut, 'FullName', 'Lucia Ferreyra');
+    expect(state).toMatchObject({ isFormFilled: false, isAnyFilled: true });
+    state = fill(state, 'Email', 'lucia.ferreyra@example.com');
+    state = fill(state, 'PhoneNumber', '+54 291 555 0142');
+    state = fill(state, 'Country', 'AR');
+    state = fill(state, 'Locality', '   ');
+    state = run(state, { type: 'messageChanged', message: 'I cannot sign in.', contactSubjectId: id });
+    expect(state.isFormFilled).toBe(false);
+    state = fill(state, 'Locality', 'Bahia Blanca');
+    expect(state.contactUsForm.Country).toBe('AR');
+    expect(state).toMatchObject({ isFormFilled: true, isAnyFilled: true });
+  });
+
+  it('ContactUs_RateRateSelected: a rate enables Send on the feedback subject without a message (BR-UBTCON-968)', () => {
+    const initial = initialContactUsDetailsState(feedback, true, false);
+    const state = run(initial, { type: 'rateSelected', rate: 7, contactSubjectId: feedback.In_ContactSubjectId });
+    expect(state).toMatchObject({ selectedRate: 7, isFormFilled: true, isAnyFilled: false });
+  });
+
+  it('a rate does not enable Send on another subject', () => {
+    const initial = initialContactUsDetailsState(inputs, true, false);
+    const state = run(initial, { type: 'rateSelected', rate: 7, contactSubjectId: inputs.In_ContactSubjectId });
+    expect(state).toMatchObject({ selectedRate: 7, isFormFilled: false });
   });
 });

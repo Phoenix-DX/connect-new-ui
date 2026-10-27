@@ -445,11 +445,12 @@
    "os": "not isLoading and FetchUpdates.IsDataFetched and UI_UpdateItemList.Empty -> Updates_NoItemsFound, else List",
    "react": "app/src/pages/Updates_SingleList/components/UpdatesList.tsx:53-54 'if (!isLoading && isDataFetched && items.length === 0) return <NotCaptured name=\"Directory_Updates.Updates_NoItemsFound (not rendered in any captured state)\" />;'",
    "evidence": "app/src/pages/Updates_SingleList/components/UpdatesList.tsx:53-54; TST Updates_SingleList.mvc.js:737-738; BR-UBTCON-872",
-   "verdict": "partial",
-   "note": "condition matches; the branch renders a NotCaptured placeholder, not the block (see block Updates_NoItemsFound) | judge: The condition and the list branch match. The True branch renders a NotCaptured marker instead of Updates_NoItemsFound.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B5-lists.md). condition matches; the branch renders a NotCaptured placeholder, not the block (see block Updates_NoItemsFound) | judge: The condition and the list branch match. The True branch renders a NotCaptured marker instead of Updates_NoItemsFound.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Updates-038",
@@ -1354,11 +1355,12 @@
    "os": "BR-UBTCON-860..873 (list above in rows), BR-UBTCON-875..878 for blocks",
    "react": "see rows with the BR ids in Note",
    "evidence": "KB ui/updates.md; BR-UBTCON-860..873, 875..878",
-   "verdict": "partial",
-   "note": "kb.md ui/updates.md has 26 rules; the judge reads the KB | judge: All rules of the screen and blocks have their rows and match, except BR-UBTCON-872 (empty state, F1).",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B5-lists.md). kb.md ui/updates.md has 26 rules; the judge reads the KB | judge: All rules of the screen and blocks have their rows and match, except BR-UBTCON-872 (empty state, F1).",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Updates-113",
@@ -1404,11 +1406,12 @@
    "os": "text in Updates_NoItemsFound",
    "react": "not found (searched: No Updates Found in app/src)",
    "evidence": "TST Updates_NoItemsFound.mvc.js:287; grep in app/src: 0 hits",
-   "verdict": "missing",
-   "note": "block not rendered in React",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B5-lists.md). block not rendered in React",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Updates-117",
@@ -1418,11 +1421,12 @@
    "os": "text in Updates_NoItemsFound",
    "react": "not found (searched: 'We were unable to find any Updates to display.' in app/src)",
    "evidence": "TST Updates_NoItemsFound.mvc.js:306; grep in app/src: 0 hits",
-   "verdict": "missing",
-   "note": "block not rendered in React",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B5-lists.md). block not rendered in React",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Updates-118",
@@ -1756,11 +1760,12 @@
    "os": "used by Updates_SingleList (If_HasNoUpdates)",
    "react": "not found (searched: Updates_NoItemsFound, No Updates Found, unable to find any Updates in app/src, tests excluded); only a placeholder component: app/src/pages/Updates_SingleList/components/UpdatesList.tsx:53-54 NotCaptured name='Directory_Updates.Updates_NoItemsFound (not rendered in any captured state)'; test UpdatesList.test.tsx:78-81 expects the NotCaptured text",
    "evidence": "app/src/pages/Updates_SingleList/components/UpdatesList.tsx:53-54; TST Updates_NoItemsFound.mvc.js; TST Updates_SingleList.mvc.js:737-738",
-   "verdict": "missing",
-   "note": "not built: React shows a NotCaptured box for the empty fetched list | judge: React renders NotCaptured in place of the block (UpdatesList.tsx:53-54); the test UpdatesList.test.tsx:78-81 expects the marker.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B5-lists.md). not built: React shows a NotCaptured box for the empty fetched list | judge: React renders NotCaptured in place of the block (UpdatesList.tsx:53-54); the test UpdatesList.test.tsx:78-81 expects the marker.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Updates-146",
@@ -1770,11 +1775,12 @@
    "os": "CustomContainer full-width full-height (flex, Neutral0, padding Base) > CustomContainer (padding Small, border Neutral3) > CircleButton (Primary, Small_40) > Icon CalendarBusyFill Neutral0 Base_24; CustomText 'No Updates Found' (margin-top-base, Neutral10, Base, SemiBold); CustomText 'We were unable to find any Updates to display.' (Neutral10, Small, Regular)",
    "react": "not found (searched: CalendarBusyFill, CircleButton in app/src/pages/Updates_SingleList)",
    "evidence": "TST Updates_NoItemsFound.mvc.js (CustomContainer, CircleButton, Icon, two CustomText); grep CalendarBusyFill in app/src/pages/Updates_SingleList: 0 hits",
-   "verdict": "missing",
-   "note": "",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B5-lists.md).",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Updates-147",
@@ -1784,11 +1790,12 @@
    "os": "'No Updates Found'; 'We were unable to find any Updates to display.'",
    "react": "not found (see strings rows of the screen)",
    "evidence": "TST Updates_NoItemsFound.mvc.js:287, 306",
-   "verdict": "missing",
-   "note": "",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B5-lists.md).",
+   "verified": "code",
    "severity": "major",
-   "finding": "F1"
+   "finding": "F1",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Directory_Updates-148",

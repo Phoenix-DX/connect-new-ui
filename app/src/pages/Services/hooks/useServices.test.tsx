@@ -2,8 +2,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { isUserException } from '@/legacy/os/exceptions';
+import { http, HttpResponse } from 'msw';
+import { CommunicationException, isUserException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { raiseBubbledToFlowHandler } from '@/platform/feedback/bubbleErrors';
+import { server } from '@/test/setup';
 import { MOCK_USER_ID } from '@/platform/session/mockUser';
 import { setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
@@ -13,6 +15,12 @@ import { useServices } from './useServices';
 /* The flows of the screen with the MSW mocks (the recorded services). Only the paths that the page test cannot reach
    are here: a drag (SortableJS does not run in jsdom) and its failure. */
 vi.mock('@/platform/feedback/bubbleErrors', () => ({ raiseBubbledToFlowHandler: vi.fn() }));
+vi.mock('@/legacy/os/exceptions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/legacy/os/exceptions')>()),
+  raiseToFlowHandler: vi.fn(),
+}));
+
+const SAVE = 'UBTConnect/ServiceAPIService_ConnectServices_ChangeOrder_Bulk';
 
 function wrapper({ children }: { children: ReactNode }) {
   return <QueryClientProvider client={new QueryClient()}>{children}</QueryClientProvider>;
@@ -28,6 +36,7 @@ async function renderServices() {
 
 beforeEach(() => {
   vi.mocked(raiseBubbledToFlowHandler).mockClear();
+  vi.mocked(raiseToFlowHandler).mockClear();
   freshPage();
   setSignedInUser(MOCK_USER_ID);
 });
@@ -121,5 +130,49 @@ describe('useServices', () => {
     await waitFor(() => {
       expect(result.current.isLoading).toBe(false);
     });
+  });
+
+  // OnClick_SaveChanges exception handlers (Services.mvc.js:1320-1362; F1, Q2 (a), user 2026-10-27)
+  it.each([
+    ['CommunicationException', { error: 'mock error' }, false],
+    [
+      'AllExceptions (a ServerException)',
+      { error: 'The order could not be saved', exception: 'ServerException' },
+      false,
+    ],
+    ['NotRegistered', { error: 'Not registered', exception: 'NotRegisteredException' }, true],
+  ])('a failed save, %s: isLoading is %s afterwards, then the bubble handler', async (_name, answer, keepsLoading) => {
+    server.use(http.post(`/api/${SAVE}`, () => HttpResponse.json(answer, { status: 500 })));
+    const { result } = await renderServices();
+    act(() => {
+      result.current.onDragEnd(SUGGESTION_LIST, FAVOURITE_LIST, 0, 2, 'ElGusto');
+    });
+    act(() => {
+      result.current.onSaveChanges();
+    });
+    expect(result.current.isLoading).toBe(true);
+    await waitFor(() => {
+      expect(raiseBubbledToFlowHandler).toHaveBeenCalledTimes(1);
+    });
+    expect(result.current.isLoading).toBe(keepsLoading);
+    expect(result.current.isSkeletonLoading).toBe(keepsLoading);
+  });
+
+  it('a failed GetServices goes to the flow handler once (F2, Q3 (a)); the lists get the error status', async () => {
+    server.use(
+      http.post('/api/UBTConnect/Services/DataActionGetServices', () => HttpResponse.json({}, { status: 500 })),
+    );
+    const { result, rerender } = renderHook(() => useServices(), { wrapper });
+    await waitFor(() => {
+      expect(result.current.hasFetchError).toBe(true);
+    });
+    rerender();
+    await waitFor(() => {
+      expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    });
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(new CommunicationException('Request failed with status 500'));
+    expect(result.current).toEqual(
+      expect.objectContaining({ isSkeletonLoading: false, isFetching: false, hasFetchError: true }),
+    );
   });
 });

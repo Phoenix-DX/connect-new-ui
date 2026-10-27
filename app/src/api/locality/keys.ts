@@ -19,6 +19,9 @@ export const localityKeys = {
 /** Connect_CacheType.AllLocalities (UBTConnect_Utils static entity; the name stands in for the identifier, which was
     not captured). */
 const ALL_LOCALITIES = 'Connect_CacheType.AllLocalities';
+/** Connect_CacheType.AllSubdivisions: identifier "AllSubdivisions" (migration/knowledge/static-entities-tst.json
+    `UBTConnect_Utils.connect_CacheType`). */
+const ALL_SUBDIVISIONS = 'AllSubdivisions';
 
 /** The memory-cache entries of the locality domain (api/client/cache.ts): the TTL is the staleTime. The other types
     are DirectoryCacheType records (static-entities-tst.json `Connect2_LegacyShared.directoryCacheType`). */
@@ -27,6 +30,10 @@ export const localityCache = {
   allLocalitiesType: ALL_LOCALITIES,
   /** CacheControl_AllLocalities: type AllLocalities, its CacheKey and its TimeToLiveSeconds (default 7200). */
   allLocalities: (cacheKey: string, ttlSeconds: number) => cacheEntry(ALL_LOCALITIES, cacheKey, ttlSeconds),
+  /** The cache type of all the subdivisions, also the CacheTypeId input of GetCacheInfo. */
+  allSubdivisionsType: ALL_SUBDIVISIONS,
+  /** CacheControl_AllSubdivisions: type AllSubdivisions, its CacheKey and its TimeToLiveSeconds (default 7200). */
+  allSubdivisions: (cacheKey: string, ttlSeconds: number) => cacheEntry(ALL_SUBDIVISIONS, cacheKey, ttlSeconds),
   /** GetCacheableLocality (Connect2_LegacyShared.controller.js:3278-3342): type Localities, key
       LongIntegerToText(LocalityId), TTL 1200 s (:3343-3360). */
   locality: (localityId: string) => cacheEntry('Localities', localityId, 1200),

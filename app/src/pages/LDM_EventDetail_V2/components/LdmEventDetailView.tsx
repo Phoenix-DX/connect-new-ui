@@ -202,7 +202,7 @@ function EventContent({
                       flows.onGuestMessage(data);
                     }}
                     onClicked={(displayed) => {
-                      flows.onGuestClicked(g, displayed);
+                      flows.onGuestClicked(g, displayed, row);
                     }}
                     onClickPhoneCall={flows.onGuestPhoneCall}
                   />

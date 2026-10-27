@@ -1,6 +1,7 @@
 import { callAction } from '@/api/client/callAction';
 import {
   toAllLocalities,
+  toAllSubdivisions,
   toBulkSubdivisionsInputs,
   toCommunityBusinessShareCard,
   toEventFilterLocalities,
@@ -25,6 +26,8 @@ import {
 import type {
   AllLocalities,
   AllLocalitiesCallInputs,
+  AllSubdivisions,
+  AllSubdivisionsCallInputs,
   CommunityBusinessShareCard,
   EventFilterLocality,
   EventLocalitiesCallInputs,
@@ -152,6 +155,14 @@ export async function fetchSubdivisionHouseholds(subdivisionId: string): Promise
 export async function fetchAllLocalities(inputs: AllLocalitiesCallInputs): Promise<AllLocalities> {
   return toAllLocalities(
     await callAction('UBTConnect_Utils', 'CacheControl_AllLocalities/DataActionGetCacheInfo', inputs),
+  );
+}
+
+/** DataActionGetCacheInfo of CacheControl_AllSubdivisions (UBTConnect_Utils): the list of all subdivisions. The block
+    calls it on a miss of the memory cache. */
+export async function fetchAllSubdivisions(inputs: AllSubdivisionsCallInputs): Promise<AllSubdivisions> {
+  return toAllSubdivisions(
+    await callAction('UBTConnect_Utils', 'CacheControl_AllSubdivisions/DataActionGetCacheInfo', inputs),
   );
 }
 

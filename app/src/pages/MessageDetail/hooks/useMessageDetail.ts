@@ -2,16 +2,32 @@ import { useRef } from 'react';
 import {
   fetchMessageInstance,
   fetchMessageTemplateParameters,
+  getOrbitHostSurveyNotificationParameters,
+  getOrbitNotificationParameters,
+  storeAdaptiveCardResponses,
   type MessageDetail,
   type MessageDetailCallInputs,
   type MessageInstanceResult,
+  type MessageParameter,
 } from '@/api/message';
+import { isCommunicationException } from '@/platform/feedback/flowErrors';
 import { markNotificationOpened } from '@/api/notification';
 import type { MessageDetailInputs } from '@/pages/MessageDetail/inputs';
-import { MessageInfoType } from '@/pages/MessageDetail/staticEntities';
+import {
+  assembleEventParameters,
+  buildAssembleNotificationContent,
+  deserializeAdaptiveCardActionSubmitData,
+  getHasAssemble,
+  getHasOrbitAccess,
+  getHasOrbitHostSurvey,
+  substringJS,
+  VIEW_EVENT_DATA_END,
+  VIEW_EVENT_DATA_START,
+} from '@/pages/MessageDetail/actions';
+import { MessageInfoType, MessageSenderTarget } from '@/pages/MessageDetail/staticEntities';
 import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { replaceOnUpcomingNavigation, useFlowState, type IsAlive } from '@/platform/navigation';
-import { currentUserId, isSignedIn } from '@/platform/session/session';
+import { clientVar, currentUserId, isSignedIn } from '@/platform/session/session';
 import { decrementReadMessagesCounter } from '@/platform/session/unreadCounters';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { cache_SignedImageURL_Get } from '@/lib/ubtConnectUtils/actions';
@@ -21,12 +37,20 @@ import {
   decrementReadWhatsNewsCounter,
   initialMessageDetailState,
   isOrbitKind,
+  isPrivateMessageOfAnotherUser,
+  MESSAGE_CHECK_CONNECTION,
+  MESSAGE_EVENT_NOT_ACCESSIBLE,
+  MESSAGE_FORM_THANKS,
   MESSAGE_INVALID_ID,
   MESSAGE_NO_ACCESS,
+  MESSAGE_NO_ASSEMBLE_ACCESS,
+  MESSAGE_NO_HOST_SURVEY_ACCESS,
+  MESSAGE_NO_ORBIT_ACCESS,
   MESSAGE_NOT_AVAILABLE,
   messageAccess,
   messageDetailReducer,
   needsTemplateParameters,
+  textToLongInteger,
   type MessageDetailAction,
 } from './messageDetailState';
 
@@ -35,20 +59,50 @@ import {
     greeting) and MessageRetractedFlow. The page calls this hook and passes the result to MessageDetailView.
     @origin Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail */
 
-/** The events of the block, which the screen handles. */
+/** The events of the block, which the screen handles (the block's Share_UI events go from the page to the screen
+    handlers directly). */
 export interface MessageDetailEvents {
   /** Event NavigateTo_MessageList(NoPermission). */
   onNavigateToMessageList: () => void;
   /** Event NavigateTo_Login. */
   onNavigateToLogin: () => void;
+  /** Event NavigateTo_OrbitEvent(Event_MemberId, Event_EventId, Event_EventName). */
+  onNavigateToOrbitEvent?: (memberId: string, eventId: string, eventName: string) => void;
+  /** Event NavigateTo_OrbitMilestone(Event_MilestoneId, Event_EventId, Event_EventName). */
+  onNavigateToOrbitMilestone?: (milestoneId: string, eventId: string, eventName: string) => void;
+  /** Event NavigateTo_OrbitHostSurvey(Event_MemberId, Event_EventId, Event_EventName, Event_StartDate, Event_EndDate). */
+  onNavigateToOrbitHostSurvey?: (
+    memberId: string,
+    eventId: string,
+    eventName: string,
+    startDate: string,
+    endDate: string,
+  ) => void;
+  /** Event NavigateTo_AssembleEvent(EventParentId, EventInstanceId, EventTypeTitle). */
+  onNavigateToAssembleEvent?: (eventParentId: string, eventInstanceId: string, eventTypeTitle: string) => void;
+  /** Event AddAuditAndNavigateTo_EventEmail(Event_EventId, EventHostId). */
+  onAddAuditAndNavigateToEventEmail?: (eventId: string, eventHostId: string) => unknown;
+  /** Event AddAuditAndNavigateTo_EventDetail(EventHostId, EventId). */
+  onAddAuditAndNavigateToEventDetail?: (eventHostId: string, eventId: string) => unknown;
 }
 
-/** What the view reads. */
+/** What the view reads, and the block client actions that its widgets call. */
 export interface MessageDetailFlows {
   /** [IsLoading]: true until the message is ready. */
   isLoading: boolean;
   /** GetMessageInstance.Message as the flows prepared it; null until the first answer. */
   message: MessageDetail | null;
+  /** GetMessageTemplateParametersByMessageTemplateId.List; null until it is fetched (IsDataFetched False). */
+  parameters: MessageParameter[] | null;
+  /** [ShowAssembleAction]. */
+  showAssembleAction: boolean;
+  /** OnClick_ViewOrbitEvent(MessageSenderTargetId). */
+  onClickViewOrbitEvent: (messageSenderTargetId: number) => Promise<void>;
+  /** OnClick_ViewAssembleEvent(MessageSenderTargetId): the input is not read. */
+  onClickViewAssembleEvent: () => void;
+  /** AdaptiveCardViewerOnExecuteAction(CardPayload, ActionId, FormPayload), the handler of the NotificationDetailBlock
+      event AdaptiveCardEventExecuted. */
+  adaptiveCardViewerOnExecuteAction: (cardPayload: string, actionId: string, formPayload: string) => Promise<void>;
 }
 
 /** The error message of the block, closed automatically (FeedbackMessageAutoClose, no delay, no debounce). */
@@ -73,6 +127,8 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
      effects run once. */
   const readyStarted = useRef(false);
   const newestReadyRun = useRef<IsAlive>(() => true);
+  /** WasCurrentViewRestoredFromCache of this view, for the refresh after a card submit. */
+  const restoredView = useRef(false);
   const {
     state,
     dispatch,
@@ -89,6 +145,7 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
       newestReadyRun.current = isAlive;
       if (readyStarted.current) return Promise.resolve();
       readyStarted.current = true;
+      restoredView.current = restored;
       return onReady(restored);
     },
   });
@@ -111,10 +168,11 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
   /** The "Is Notification Read?" part of GetMessageInstanceByIdOnAfterFetch. `variables` are the block variables
       that the calls send. It returns null when the action ends early. */
   const prepareMessage = async (
-    fetched: MessageDetail,
+    result: MessageInstanceResult,
     variables: MessageDetailCallInputs,
     restored: boolean,
   ): Promise<MessageDetail | null> => {
+    const fetched = result.message;
     let message = fetched;
     if (!message.isRead) {
       if (message.messageInfoTypeId === MessageInfoType.WhatsNew) decrementReadWhatsNewsCounter();
@@ -132,8 +190,9 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
     }
     if (needsTemplateParameters(message)) {
       // A restored view keeps the parameters of its cached state.
+      let parameters = latest.current.parameters ?? [];
       if (!restored) {
-        const parameters = await fetchMessageTemplateParameters(variables);
+        parameters = await fetchMessageTemplateParameters(variables);
         write({ type: 'templateParametersFetched', parameters, senderTargetId: message.senderTargetId });
       }
       if (isOrbitKind(message.senderTargetId)) {
@@ -142,9 +201,15 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
           ...message,
           messageContent: addFirstSentence(userInformation.Directory_UserCurrent.FirstName, message.messageContent),
         };
+      } else if (message.senderTargetId === MessageSenderTarget.Assemble) {
+        // BuildAssembleNotificationContent(the parameters, MessageContent, the three PlaceholderDelimiters).
+        const content = await buildAssembleNotificationContent(
+          parameters,
+          message.messageContent,
+          result.placeholderDelimiters,
+        );
+        message = { ...message, messageContent: content };
       }
-      // Assemble: BuildAssembleNotificationContent (PlaceholderLib) is not ported (Q1): the content stays as fetched
-      // and the NotCaptured marker of the action-button placeholder names it.
     }
     return message;
   };
@@ -155,7 +220,15 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
     // after an unmount, when the state write is skipped.
     const variables = { ...latest.current.variables, MessageInstanceId: result.message.messageInstanceId ?? '0' };
     write({ type: 'messageInstanceFetched', message: result.message });
-    switch (messageAccess(result, isSignedIn(), currentUserId())) {
+    const access = messageAccess(result, isSignedIn());
+    if (
+      (access === 'cleared' || access === 'open') &&
+      isPrivateMessageOfAnotherUser(result, isSignedIn(), currentUserId())
+    ) {
+      // "Is Private?": FeedbackMessage_AutoClose2, then a loop break: the flow goes on (decision Q4 (a)).
+      autoCloseError(MESSAGE_NO_ACCESS);
+    }
+    switch (access) {
       case 'retracted':
       case 'cleared':
         leaveToMessageList(MESSAGE_NOT_AVAILABLE);
@@ -169,7 +242,7 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
       case 'open':
         break;
     }
-    const prepared = await prepareMessage(result.message, variables, restored);
+    const prepared = await prepareMessage(result, variables, restored);
     if (prepared === null) return;
     write({ type: 'messagePrepared', message: prepared });
   };
@@ -185,5 +258,124 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
     await onAfterFetchMessageInstance(result, restored);
   };
 
-  return { isLoading: state.variables.IsLoading, message: state.message };
+  /** OnClick_ViewOrbitEvent (SBMD:1210-1378): with parameters, GetHasOrbitAccess; an Orbit message asks
+      Get_OrbitNotificationParameters and opens the milestone (milestone, event and name known) or the event (event and
+      name known, with the member id of Cache_UserInfo_Get); an OrbitHostSurvey message needs GetHasOrbitHostSurvey and
+      asks Get_OrbitHostSurveyNotificationParameters, then opens the host survey when the four values are known. */
+  const onClickViewOrbitEvent = async (messageSenderTargetId: number) => {
+    const parameters = latest.current.parameters ?? [];
+    if (parameters.length === 0) return;
+    if (!getHasOrbitAccess()) {
+      showFeedbackMessage(MESSAGE_NO_ORBIT_ACCESS, PLATFORM_MESSAGE_TYPE.error);
+      return;
+    }
+    if (messageSenderTargetId === MessageSenderTarget.Orbit) {
+      const p = await getOrbitNotificationParameters(parameters);
+      if (p.orbitMilestoneId !== '' && p.orbitEventId !== '' && p.orbitEventName !== '') {
+        eventsRef.current.onNavigateToOrbitMilestone?.(
+          p.orbitMilestoneId,
+          textToLongInteger(p.orbitEventId),
+          p.orbitEventName,
+        );
+      } else if (p.orbitEventId !== '' && p.orbitEventName !== '') {
+        const userInformation = await getUserInformation();
+        eventsRef.current.onNavigateToOrbitEvent?.(
+          userInformation.Directory_UserCurrent.MemberID,
+          textToLongInteger(p.orbitEventId),
+          p.orbitEventName,
+        );
+      }
+    } else if (messageSenderTargetId === MessageSenderTarget.OrbitHostSurvey) {
+      if (!getHasOrbitHostSurvey()) {
+        showFeedbackMessage(MESSAGE_NO_HOST_SURVEY_ACCESS, PLATFORM_MESSAGE_TYPE.error);
+        return;
+      }
+      const p = await getOrbitHostSurveyNotificationParameters(parameters);
+      if (p.orbitEventId !== '' && p.orbitEventName !== '' && p.orbitStartDate !== null && p.orbitEndDate !== null) {
+        const userInformation = await getUserInformation();
+        eventsRef.current.onNavigateToOrbitHostSurvey?.(
+          userInformation.Directory_UserCurrent.MemberID,
+          textToLongInteger(p.orbitEventId),
+          p.orbitEventName,
+          p.orbitStartDate,
+          p.orbitEndDate,
+        );
+      }
+    }
+  };
+
+  /** OnClick_ViewAssembleEvent (SBMD:1415-1506): with parameters, GetHasAssemble ("You don't have access to
+      Assemble." without it); NavigateTo_AssembleEvent when the parent and the instance ids are in the parameters. */
+  const onClickViewAssembleEvent = () => {
+    const parameters = latest.current.parameters ?? [];
+    if (parameters.length === 0) return;
+    if (!getHasAssemble()) {
+      showFeedbackMessage(MESSAGE_NO_ASSEMBLE_ACCESS, PLATFORM_MESSAGE_TYPE.error);
+      return;
+    }
+    const assemble = assembleEventParameters(parameters);
+    if (assemble === null) return;
+    eventsRef.current.onNavigateToAssembleEvent?.(
+      assemble.eventParentId,
+      assemble.eventInstanceId,
+      assemble.eventTypeTitle,
+    );
+  };
+
+  /** AdaptiveCardViewerOnExecuteAction (SBMD:1569-1737): FormPayload as AdaptiveCardActionSubmitData;
+      - send_email: AddAuditAndNavigateTo_EventEmail(EventId, EventHostId); without an EventId, the ids come from the
+        data of the card's "View Event" action (SubstringJS);
+      - view_event: "Event is not accessible" (Info) when both ids are NullIdentifier, else
+        AddAuditAndNavigateTo_EventDetail(EventHostId, EventId);
+      - any other submit: StoreAdaptiveCardResponses, the refresh of GetMessageInstance (its OnAfterFetch runs again)
+        and "Thanks for filling out our form!" (Info).
+      Handle Error CommunicationException: "Please check your internet connection!" (Info). */
+  const adaptiveCardViewerOnExecuteAction = async (cardPayload: string, actionId: string, formPayload: string) => {
+    try {
+      // AppManager_GetDeviceContext: the device UUID.
+      const deviceHardwareId = clientVar.deviceUuid.get();
+      const data = deserializeAdaptiveCardActionSubmitData(formPayload);
+      if (data.submitType === 'send_email') {
+        if (data.eventId === '0') {
+          const content = latest.current.message?.adaptiveCardContent ?? '';
+          const other = deserializeAdaptiveCardActionSubmitData(
+            substringJS(VIEW_EVENT_DATA_START, VIEW_EVENT_DATA_END, content),
+          );
+          await eventsRef.current.onAddAuditAndNavigateToEventEmail?.(other.eventId, other.eventHostId);
+        } else {
+          await eventsRef.current.onAddAuditAndNavigateToEventEmail?.(data.eventId, data.eventHostId);
+        }
+      } else if (data.submitType === 'view_event') {
+        if (data.eventId === '0' && data.eventHostId === '0') {
+          showFeedbackMessage(MESSAGE_EVENT_NOT_ACCESSIBLE, PLATFORM_MESSAGE_TYPE.info);
+        } else {
+          await eventsRef.current.onAddAuditAndNavigateToEventDetail?.(data.eventHostId, data.eventId);
+        }
+      } else {
+        await storeAdaptiveCardResponses({
+          deviceHardwareId,
+          adaptiveCardPayloadJSON: cardPayload,
+          actionTaken: actionId,
+          formDataJSON: formPayload,
+          messageInstanceId: latest.current.variables.MessageInstanceId,
+        });
+        const result = await fetchMessageInstance(latest.current.variables);
+        await onAfterFetchMessageInstance(result, restoredView.current);
+        showFeedbackMessage(MESSAGE_FORM_THANKS, PLATFORM_MESSAGE_TYPE.info);
+      }
+    } catch (error) {
+      if (!isCommunicationException(error)) throw error;
+      showFeedbackMessage(MESSAGE_CHECK_CONNECTION, PLATFORM_MESSAGE_TYPE.info);
+    }
+  };
+
+  return {
+    isLoading: state.variables.IsLoading,
+    message: state.message,
+    parameters: state.parameters,
+    showAssembleAction: state.variables.ShowAssembleAction,
+    onClickViewOrbitEvent,
+    onClickViewAssembleEvent,
+    adaptiveCardViewerOnExecuteAction,
+  };
 }

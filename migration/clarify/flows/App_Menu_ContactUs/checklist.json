@@ -422,11 +422,12 @@
    "os": "In_LocalityId = LocalCacheControl_UserInformation...Locality_Id, read on the server from the screen data; TST also sends ContactUsForm, Description, MessagePrompt",
    "react": "localityTimezoneCallInputs: no LocalCacheControl_UserInformation, ContactUsForm, Description or MessagePrompt",
    "evidence": "app/src/pages/ContactUsDetails/hooks/contactUsDetailsState.ts:262-282; app/src/mocks/fixtures/REVIEW.md:111-114; pack/screens.md DataAction_GetLocalityTimezone",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "major",
    "finding": "F3",
-   "note": "The recorded TST call had the four variables; the fixture converter dropped them (rule dropInputs).",
-   "verified": "pack"
+   "note": "Built 2026-10-27 (builds/B1-contactus.md). The recorded TST call had the four variables; the fixture converter dropped them (rule dropInputs).",
+   "verified": "code",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Menu_ContactUs-039",
@@ -581,10 +582,12 @@
    "os": "isEnabled = not isSubmiting, SelectedRate = Rate_SelectedRate; RateSelected → ContactUs_RateRateSelected",
    "react": "NotCaptured placeholder",
    "evidence": "app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:63-65; TST ContactUsDetails.mvc.js:538-560",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-053",
@@ -638,10 +641,12 @@
    "os": "var ContactUsForm.FullName, prompt \"Enter Full Name\", OnChange → OnChange_FormInput",
    "react": "NotCaptured; UnbuiltValidationWidget Input_FullName",
    "evidence": "app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:79-91; TST ContactUsDetails.mvc.js:712-772",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-058",
@@ -663,10 +668,12 @@
    "os": "var ContactUsForm.Email, prompt \"Enter Your Email Address\", OnChange → OnChange_Email",
    "react": "NotCaptured; UnbuiltValidationWidget Input_Email",
    "evidence": "app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:81, 86; TST ContactUsDetails.mvc.js:786-841",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-060",
@@ -676,10 +683,12 @@
    "os": "var ContactUsForm.PhoneNumber, prompt \"Enter Phone Number\", OnChange → OnChange_PhoneNumber",
    "react": "NotCaptured; UnbuiltValidationWidget Input_PhoneNumber",
    "evidence": "app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:81, 87; TST ContactUsDetails.mvc.js:842-897",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-061",
@@ -689,10 +698,12 @@
    "os": "List = DataAction_GetCountriesNames.Countries, Values = Code, option text = Name, EmptyValue \"Select Your Country\", Custom mode, OnChange → OnChange_FormInput",
    "react": "NotCaptured; UnbuiltValidationWidget Dropdown_Country; the countries are fetched and not shown",
    "evidence": "app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:81, 88; app/src/pages/ContactUsDetails/hooks/contactUsDetailsState.ts:298-299; TST ContactUsDetails.mvc.js:898-978",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-062",
@@ -702,10 +713,12 @@
    "os": "var ContactUsForm.Locality, prompt \"Enter Your Locality\", OnChange → OnChange_FormInput",
    "react": "NotCaptured; UnbuiltValidationWidget Input_Locality",
    "evidence": "app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:81, 89; TST ContactUsDetails.mvc.js:979-1030",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-063",
@@ -914,11 +927,12 @@
    "os": "LocalCacheControl_UserInformation.Directory_UserCurrent = UserInformation; .isFetched = True; isLoadingMainData = False",
    "react": "isLoadingMainData false; the user record is not kept",
    "evidence": "app/src/pages/ContactUsDetails/hooks/contactUsDetailsState.ts:300-305; TST ContactUsDetails.mvc.js:2121-2146",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "major",
    "finding": "F3",
-   "note": "LocalCacheControl_UserInformation feeds only the screen data of DataAction_GetLocalityTimezone.",
-   "verified": "pack"
+   "note": "Built 2026-10-27 (builds/B1-contactus.md). LocalCacheControl_UserInformation feeds only the screen data of DataAction_GetLocalityTimezone.",
+   "verified": "code",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Menu_ContactUs-082",
@@ -950,10 +964,12 @@
    "os": "Rate_SelectedRate = Rate; OnChange_FormInput",
    "react": "no handler: selectedRate stays 0",
    "evidence": "app/src/pages/ContactUsDetails/hooks/contactUsDetailsState.ts:43-44; TST ContactUsDetails.mvc.js:2082-2100",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-085",
@@ -986,10 +1002,12 @@
    "os": "Input_Email.Valid = True, ValidationMessage \"\"; OnChange_FormInput",
    "react": "no handler (Input_Email is not built)",
    "evidence": "TST ContactUsDetails.mvc.js:2192-2220",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-088",
@@ -999,10 +1017,12 @@
    "os": "Input_PhoneNumber.Valid = True, ValidationMessage \"\"; OnChange_FormInput",
    "react": "no handler (Input_PhoneNumber is not built)",
    "evidence": "TST ContactUsDetails.mvc.js:2327-2355",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-089",
@@ -1213,10 +1233,12 @@
    "os": "Mandatory True, MaxLength 50, InputType Text, Enabled = not isSubmiting",
    "react": "not built",
    "evidence": "TST ContactUsDetails.mvc.js:734-770; BR-UBTCON-999",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-108",
@@ -1226,10 +1248,12 @@
    "os": "Mandatory True, MaxLength 50, InputType Email (variable type Email), Enabled = not isSubmiting",
    "react": "not built",
    "evidence": "TST ContactUsDetails.mvc.js:797-830; BR-UBTCON-999",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-109",
@@ -1239,10 +1263,12 @@
    "os": "Mandatory True, MaxLength 50, InputType Phone (variable type PhoneNumber), Enabled = not isSubmiting",
    "react": "not built",
    "evidence": "TST ContactUsDetails.mvc.js:853-890; BR-UBTCON-999",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-110",
@@ -1252,10 +1278,12 @@
    "os": "Mandatory True, EmptyValue \"Select Your Country\", Enabled = not isSubmiting",
    "react": "not built",
    "evidence": "TST ContactUsDetails.mvc.js:909-937; BR-UBTCON-999",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-111",
@@ -1265,10 +1293,12 @@
    "os": "Mandatory True, MaxLength 50, InputType Text, Enabled = not isSubmiting",
    "react": "not built",
    "evidence": "TST ContactUsDetails.mvc.js:990-1018; BR-UBTCON-999",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-112",
@@ -1311,10 +1341,12 @@
    "os": "Input_FullName invalid with \"This field cannot contain numeric values!\"; the message shows under the input",
    "react": "setWidgetValidity on an UnbuiltValidationWidget: the Form is invalid, no message shows",
    "evidence": "app/src/pages/ContactUsDetails/hooks/useContactUsDetails.ts:133-137; app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:85; TST ContactUsDetails.mvc.js:1898-1915",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-116",
@@ -1324,10 +1356,12 @@
    "os": "Input_Email invalid with \"Invalid email!\"",
    "react": "setWidgetValidity on an UnbuiltValidationWidget: no message shows",
    "evidence": "app/src/pages/ContactUsDetails/hooks/useContactUsDetails.ts:138-142; app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:86; TST ContactUsDetails.mvc.js:1918-1936",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-117",
@@ -1337,10 +1371,12 @@
    "os": "Input_PhoneNumber invalid with \"Invalid Phone\"",
    "react": "setWidgetValidity on an UnbuiltValidationWidget: no message shows",
    "evidence": "app/src/pages/ContactUsDetails/hooks/useContactUsDetails.ts:143-147; app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:87; TST ContactUsDetails.mvc.js:1939-1958",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-118",
@@ -1423,10 +1459,12 @@
    "os": "signed out: six fields; signed in: message (and rate), details from the directory",
    "react": "signed-in part as TST; the signed-out fields are not built",
    "evidence": "app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:79-91",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-125",
@@ -1436,11 +1474,12 @@
    "os": "Send enabled: signed out, six fields filled; signed in, a message or a rate on the feedback subject",
    "react": "the rule is coded; the rate path and the signed-out path cannot become true",
    "evidence": "app/src/pages/ContactUsDetails/hooks/contactUsDetailsState.ts:147-165",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "note": "The rate path also needs F2.",
-   "verified": "pack"
+   "note": "Built 2026-10-27 (builds/B1-contactus.md). The rate path also needs F2.",
+   "verified": "code",
+   "fixed": "2026-10-27"
   },
   {
    "id": "App_Menu_ContactUs-126",
@@ -1450,10 +1489,12 @@
    "os": "trim and check name, email, phone; an invalid field stops the send",
    "react": "the checks run; the signed-out fields and their messages are missing",
    "evidence": "app/src/pages/ContactUsDetails/hooks/useContactUsDetails.ts:129-152",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-127",
@@ -1463,10 +1504,12 @@
    "os": "subject, form, rate and the contacted flag go to SendContactUsMessage",
    "react": "the same inputs; Rate is always 0",
    "evidence": "app/src/pages/ContactUsDetails/hooks/useContactUsDetails.ts:153-158",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-128",
@@ -1487,10 +1530,12 @@
    "os": "signed in on the feedback subject: rating, contacted check box, feedback heading",
    "react": "check box and heading as TST; the rating is missing",
    "evidence": "app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:63-71, 105-117",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-130",
@@ -1522,10 +1567,12 @@
    "os": "six mandatory fields, locked while sending, MaxLength 50 (message 500)",
    "react": "the message as TST; the five other fields are missing",
    "evidence": "app/src/pages/ContactUsDetails/components/MessageTextArea.tsx:35-37",
-   "verdict": "partial",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-133",
@@ -1579,10 +1626,12 @@
    "os": "\"Full Name\", \"Email\", \"Phone Number\", \"Country\", \"Locality\", \"Enter Full Name\", \"Enter Your Email Address\", \"Enter Phone Number\", \"Select Your Country\", \"Enter Your Locality\"",
    "react": "not in React",
    "evidence": "TST ContactUsDetails.mvc.js:712-1030",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-138",
@@ -1604,10 +1653,12 @@
    "os": "the rating block of the feedback subject",
    "react": "not built (NotCaptured in ContactUsMessageForm)",
    "evidence": "app/src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx:63-65; TST ContactUs_Rate.mvc.js",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-140",
@@ -1617,10 +1668,12 @@
    "os": "\"How would you rate your current experience with Connect?\" (margin bottom Small, Small, SemiBold)",
    "react": "not in React",
    "evidence": "TST ContactUs_Rate.mvc.js:210",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-141",
@@ -1642,10 +1695,12 @@
    "os": "MinValue 1, MaxValue 10, StartingValue 0, ShowTickMarks True, TickMarksInterval 1; class \"ubt-rating-slider--no-rate \" while CurrentRate = 0",
    "react": "not in React",
    "evidence": "TST ContactUs_Rate.mvc.js:223-240",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-143",
@@ -1655,10 +1710,12 @@
    "os": "CustomText Neutral10, ExtraSmall, Regular",
    "react": "not in React",
    "evidence": "TST ContactUs_Rate.mvc.js:331, 366",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-144",
@@ -1668,10 +1725,12 @@
    "os": "CurrentRate = Trunc(Value); RateSelected(Trunc(Value)); no isEnabled check",
    "react": "not in React",
    "evidence": "TST ContactUs_Rate.mvc.js:445-448",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-145",
@@ -1693,10 +1752,12 @@
    "os": "1-to-10 slider labelled Poor to Excellent; the emoji variant is off",
    "react": "not in React",
    "evidence": "TST ContactUs_Rate.mvc.js:210-370",
-   "verdict": "missing",
+   "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "verified": "pack"
+   "verified": "code",
+   "fixed": "2026-10-27",
+   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
   },
   {
    "id": "App_Menu_ContactUs-147",

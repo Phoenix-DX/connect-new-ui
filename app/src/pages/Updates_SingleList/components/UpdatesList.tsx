@@ -1,12 +1,12 @@
 import type { UpdateBreakpoint, UpdateItem } from '@/api/update';
 import { UpdateListItem } from '@/components/feed/UpdateListItem';
 import { OSList } from '@/components/ui/os/OSList';
-import { NotCaptured } from '@/platform/feedback/NotCaptured';
 import { ScrollAnchor } from '@/platform/navigation/ScrollAnchor';
 import { UBT_Size } from '@/lib/ubtConnectLibrary/staticEntities';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { dateToText, listKeyOf, type FetchStatus } from '@/pages/Updates_SingleList/hooks/updatesSingleListState';
 import { SectionHeader } from './SectionHeader';
+import { Updates_NoItemsFound } from './Updates_NoItemsFound';
 
 export interface UpdatesListProps {
   /** FetchUpdates.UI_UpdateItemList (the skeleton rows while loading). */
@@ -31,7 +31,7 @@ export interface UpdatesListProps {
   onItemMarkAsUnread: (updateItemId: string, position: number) => void;
 }
 
-/** The Content placeholder of the screen: Updates_NoItemsFound when the fetched list is empty (not captured), or the
+/** The Content placeholder of the screen: Updates_NoItemsFound when the fetched list is empty (BR-UBTCON-872), or the
     List `List_Updates` (`list-loading` until FetchUpdates succeeds, `list-error` after it fails). Each row is a
     SkeletonSection with the `updates-list__list-item` container (data-plus-date = DateToText of the date): the
     SectionHeader of the row (not on the first row), the Update_ListItem and the ScrollAnchor of the update.
@@ -50,8 +50,7 @@ export function UpdatesList({
   onItemMarkAsRead,
   onItemMarkAsUnread,
 }: UpdatesListProps) {
-  if (!isLoading && isDataFetched && items.length === 0)
-    return <NotCaptured name="Directory_Updates.Updates_NoItemsFound (not rendered in any captured state)" />;
+  if (!isLoading && isDataFetched && items.length === 0) return <Updates_NoItemsFound id="$b13" />;
   const listKey = listKeyOf({ fetchStatus, dateRangesFailed });
   const listClass = `list list-group background-neutral-0 updates-list${
     fetchStatus === 'notFetched' ? ' list-loading' : fetchStatus === 'error' ? ' list-error' : ''

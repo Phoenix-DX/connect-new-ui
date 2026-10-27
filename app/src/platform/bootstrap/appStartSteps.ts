@@ -6,6 +6,7 @@ import {
   type ClientConfig,
 } from '@/api/app';
 import { putCacheableObject } from '@/api/client/cache';
+import { exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
 import { loadFlags } from '@/platform/flags';
 import { log } from '@/platform/log/log';
 import { onApplicationReady_BottomBarSlider } from '@/lib/ubtConnectLibrary/actions';
@@ -190,10 +191,12 @@ export async function runAppStart(): Promise<void> {
       if (pending instanceof Promise) await pending;
     }
   } catch (e) {
-    // The original passes the message to ScreenController_RaiseError (UC:15382-15399), i.e. `new Error(message)` to the
-    // App_Common handler (JSU:3840-3900). That shows showExceptionMessage(message, false) only if a plain Error is not a
-    // "system" exception (OS.Exceptions.isSystem, runtime code not captured: shell-facts U10 open), so no toast here yet.
     log.error('OnApplicationReady failed', e);
+    // Handle Error: AllExceptions (UC:15398-15417): a non-system exception goes, as its message, to
+    // ScreenController_RaiseError, which calls handleError(new Error(message)) (JSU:3900). The App_Common handler then
+    // shows ShowExceptionMessage(message, False) (shell-facts U10; _shared F3, C3, user 2026-10-27). A system exception
+    // (OS.Exceptions.isSystem) is not handled there (`throw ex`): it is only logged.
+    if (!isSystemException(e)) raiseToFlowHandler(new Error(exceptionMessage(e)));
   } finally {
     releaseUserInfoForAppStart();
     markAppReady(); // session machine: starting → the status of the stored session (appStartDone)

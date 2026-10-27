@@ -97,3 +97,49 @@ export interface ShareProfileLink {
   shareId: string;
   url: string;
 }
+
+/* ---- MessageDetail: Share_UI.ShareObjectDetail_ExtendedShare (Connect2_LegacyShared) ---- */
+
+/** GetShare.GetShareByIdResponse.Details.ShareItem: the fields that ShareObjectDetail_ExtendedShare reads. */
+export interface SharedObjectItem {
+  id: string;
+  canAccess: boolean;
+  /** Extension.IsDeceased. */
+  isDeceased: boolean;
+  householderId: string;
+  type: string;
+  title: string;
+  subtitle: string;
+  label: string;
+  dateTime: string | null;
+  genderId: string;
+  parentsName: string;
+  birthType: string;
+  localityName: string;
+  countryName: string;
+  /** Photo.SignedPath. */
+  photoSignedPath: string;
+  isVisible: boolean;
+}
+
+/** The outputs of DataActionGetShare of ShareObjectDetail_ExtendedShare that the block reads. */
+export interface SharedObjectDetail {
+  /** GetShareByIdResponse.ObjectId. */
+  objectId: string;
+  /** GetShareByIdResponse.Details.Sender.Id. */
+  senderId: string;
+  shareItem: SharedObjectItem;
+  /** ShareObjectType.Id: the Text identifier of Type_ShareObject. */
+  shareObjectTypeId: string;
+  /** ShareObjectType.Label. */
+  shareObjectTypeLabel: string;
+  isShareAvailable: boolean;
+  /** UpdateDate (Date); null for the null date. */
+  updateDate: string | null;
+}
+
+/** The block inputs that DataActionGetShare sends (screenData.variables). */
+export interface SharedObjectDetailCallInputs {
+  ShareId: string;
+  HasAccessToDeceasedHousehold: boolean;
+}

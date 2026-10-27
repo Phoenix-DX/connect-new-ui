@@ -1495,11 +1495,12 @@
    "react": "if (MessageType.Private) { if (!signedIn) return 'login'; if (messageInstanceUserId !== Number(userId)) return 'noAccess'; }",
    "evidence": "app/src/pages/MessageDetail/hooks/messageDetailState.ts:98-101",
    "tst": "present",
-   "verdict": "partial",
-   "note": "TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:914 (the reader did not trace the exact node after the AutoClose2 in the \"break\" path: after break the flow continues to the cleared check in TST; React returns noAccess and leaves). | Judge: TST (TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:976-1011): the private branch is a do-while(false) loop; for another user it runs FeedbackMessage_AutoClose \"You don't have access to that message\" and breakAsync() only, no ReplaceOnUpcomingNavigation and no NavigateTo_MessageList; the flow continues after the loop with the IsCleared check, the read/opened step and the content, and the message is shown. React returns \"noAccess\" and leaves to MessageList (useMessageDetail.ts:163-168). The anonymous branch (NavigateTo_Login, return) matches. KB BR-C2LEG-477 names only the toast. migration/knowledge/mock-fixtures.md:66-67 describes the React behaviour, not TST.",
-   "verified": "pack",
+   "verdict": "match",
+   "note": "Built 2026-10-27 (builds/B9-messagedetail.md). TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:914 (the reader did not trace the exact node after the AutoClose2 in the \"break\" path: after break the flow continues to the cleared check in TST; React returns noAccess and leaves). | Judge: TST (TST Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageDetail.mvc.js:976-1011): the private branch is a do-while(false) loop; for another user it runs FeedbackMessage_AutoClose \"You don't have access to that message\" and breakAsync() only, no ReplaceOnUpcomingNavigation and no NavigateTo_MessageList; the flow continues after the loop with the IsCleared check, the read/opened step and the content, and the message is shown. React returns \"noAccess\" and leaves to MessageList (useMessageDetail.ts:163-168). The anonymous branch (NavigateTo_Login, return) matches. KB BR-C2LEG-477 names only the toast. migration/knowledge/mock-fixtures.md:66-67 describes the React behaviour, not TST.",
+   "verified": "code",
    "severity": "major",
-   "finding": "F6"
+   "finding": "F6",
+   "fixed": "2026-10-27"
   },
   {
    "id": "Legacy_MyNotificationsFlow-114",
