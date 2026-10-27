@@ -23,6 +23,7 @@ Opus; Fable for a flow the orchestrator marks as hard. You change no code. You m
 | `migration/clarify/AGENT.md`, sections "How you check" and "Rules" | The verdict rules; they apply to you |
 | `migration/clarify/flows/<Flow>/evidence.md` and `draft.json` | The evidence rows |
 | `migration/clarify/flows/<Flow>/pack/screens.md`, `blocks.md`, `kb.md` | The model, to read a branch in context; the KB pages and rules to cite |
+| `migration/clarify/flows/<Flow>/pack/decisions.md` | The recorded decisions that name the flow's screens (board, app-shell.spec, CRs, ADRs, known bugs, knowledge): read it before you grep those sources |
 | The KB UI pages that `kb.md` lists, in full; a rule file when you cite it | Rules `BR-UBTCON-*` |
 | `migration/app-shell.spec.md`, `migration/change-requests/CR-*.md`, `app/docs/reference/stack.md` (ADRs), `app/docs/known-original-bugs.md`, `migration/board.md`, `migration/knowledge/*.md` | The recorded decisions a `differs` row must cite |
 | A React file or a TST file, only where a row's evidence is not enough to decide | At most 20 such reads |
