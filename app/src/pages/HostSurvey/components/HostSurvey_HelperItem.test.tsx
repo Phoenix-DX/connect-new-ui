@@ -130,3 +130,14 @@ describe('HostSurvey_HelperItem OnChange_HelperRoles (OSDropdownCustom)', () => 
     expect(dropdown().querySelector('.dropdown-display-content')?.textContent).toBe('Usher');
   });
 });
+
+describe('HostSurvey_HelperItem OnFocus_Inputs (HI :942)', () => {
+  it('the focus of Dropdown_HelperRoles scrolls it smoothly to the centre', () => {
+    const scroll = vi.spyOn(Element.prototype, 'scrollIntoView');
+    render(<HostSurvey_HelperItem {...props({ inHostSurvey_Helper: { ...SAVED, IsEdit: true } })} />);
+    const dropdown = document.getElementById('b2-l3_0-b15-Dropdown_HelperRoles') as HTMLElement;
+    fireEvent.focus(dropdown.querySelector('.dropdown-display') as Element);
+    expect(scroll).toHaveBeenCalledWith({ behavior: 'smooth', block: 'center' });
+    expect(scroll.mock.contexts).toContain(dropdown);
+  });
+});

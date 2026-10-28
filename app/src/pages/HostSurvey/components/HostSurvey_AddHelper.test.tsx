@@ -140,3 +140,14 @@ describe('HostSurvey_AddHelper OnChange_HelperRoles (OSDropdownCustom)', () => {
     expect(dropdown().querySelector('.dropdown-display-content')?.textContent).toBe('Helper');
   });
 });
+
+describe('HostSurvey_AddHelper OnFocus_Inputs (AH :2059)', () => {
+  it('the focus of Dropdown_HelperRoles scrolls it smoothly to the centre', () => {
+    const scroll = vi.spyOn(Element.prototype, 'scrollIntoView');
+    render(<HostSurvey_AddHelper {...props()} />);
+    const dropdown = document.getElementById('b2-b16-Dropdown_HelperRoles') as HTMLElement;
+    fireEvent.focus(dropdown.querySelector('.dropdown-display') as Element);
+    expect(scroll).toHaveBeenCalledWith({ behavior: 'smooth', block: 'center' });
+    expect(scroll.mock.contexts).toContain(dropdown);
+  });
+});

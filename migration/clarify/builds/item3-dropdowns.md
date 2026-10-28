@@ -116,4 +116,12 @@ None for the user. Notes:
   `Element.scrollIntoView`. The widget now focuses the dropdown as the runtime does, so the HostSurvey OnFocus_Inputs
   runs `scrollInputIntoView`. Fix: a no-op polyfill in `app/src/test/setup.ts`. Then `npm run ci` passed (682 files,
   4401 tests, build).
+- User decision (c), 2026-10-28: keep the polyfill and test the TST behaviour.
+  - Four tests spy on `Element.prototype.scrollIntoView` (AddHelper, HelperItem, VehicleItem, AccommodationItem). The
+    focus of a dropdown scrolls it smoothly to the centre (OnFocus_Inputs, ScrollIntoView JS).
+  - `HostSurvey_AccommodationItem.tsx` had a jsdom workaround in production code: `?.scrollIntoView?.(...)` with an
+    eslint-disable. It is now a direct call, as in TST and the other blocks.
+  - `npm run ci` passed (4405 tests); parity HostSurvey OK.
+- Seen, not changed: three copies of the scrollIntoView helper (`hostSurveyMealItem.ts`, `hostSurveyHelpers.ts`,
+  `HostSurvey_AccommodationItem.tsx`).
 

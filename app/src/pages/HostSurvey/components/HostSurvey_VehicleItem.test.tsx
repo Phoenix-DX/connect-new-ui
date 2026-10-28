@@ -214,3 +214,16 @@ describe('HostSurvey_VehiclePills (view :170-327)', () => {
     expect(container.querySelector('#b2-l8-0_0-b34-\\$b2')).not.toBeNull();
   });
 });
+
+describe('HostSurvey_VehicleItem OnFocus_Inputs (VI :1303-1307)', () => {
+  it('the focus of each dropdown scrolls it smoothly to the centre', () => {
+    const scroll = vi.spyOn(Element.prototype, 'scrollIntoView');
+    setup(editing);
+    for (const name of ['Dropdown_OwnerType', 'Dropdown_VehicleType']) {
+      scroll.mockClear();
+      fireEvent.focus(byName(name).querySelector('.dropdown-display') as Element);
+      expect(scroll).toHaveBeenCalledWith({ behavior: 'smooth', block: 'center' });
+      expect(scroll.mock.contexts).toContain(byName(name));
+    }
+  });
+});

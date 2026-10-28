@@ -148,3 +148,17 @@ describe('HostSurvey_AccommodationItem', () => {
     expect(screen.queryByText('Delete')).toBeNull();
   });
 });
+
+describe('HostSurvey_AccommodationItem OnFocus_Inputs (ScrollIntoView JS, AccItem :2593)', () => {
+  it('the focus of the floor and the number-of-beds dropdowns scrolls each smoothly to the centre', () => {
+    const scroll = vi.spyOn(Element.prototype, 'scrollIntoView');
+    render(<HostSurvey_AccommodationItem {...props()} />);
+    for (const text of ['Select floor', 'Select number of beds']) {
+      scroll.mockClear();
+      const dropdown = screen.getByText(text).closest('.dropdown-container') as HTMLElement;
+      fireEvent.focus(dropdown.querySelector('.dropdown-display') as Element);
+      expect(scroll).toHaveBeenCalledWith({ behavior: 'smooth', block: 'center' });
+      expect(scroll.mock.contexts).toContain(dropdown);
+    }
+  });
+});

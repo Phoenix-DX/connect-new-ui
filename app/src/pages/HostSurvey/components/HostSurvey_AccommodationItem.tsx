@@ -57,8 +57,7 @@ type Records = Readonly<Record<string, WidgetValidationRecord>>;
 
 /** OnFocus_Inputs → ScrollIntoView JS: the element scrolls smoothly to the centre. */
 const scrollIntoView = (inputId: string) => {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- jsdom (tests) has no scrollIntoView
-  document.getElementById(inputId)?.scrollIntoView?.({ behavior: 'smooth', block: 'center' });
+  document.getElementById(inputId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 };
 
 /** OutSystemsUI Columns4 (Adaptive), built as Columns3 of components/ui (the OSUI columns pattern). */
