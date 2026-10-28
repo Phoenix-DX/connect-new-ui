@@ -110,3 +110,14 @@ Group B (2026-10-28): DEV = TST on every call.
 |---|---|
 | IDataAction (R1), each with the OnAfterFetch that the TST code calls in its `.then` where one exists | GetCountriesStatistics, GetLocalityStatistics, GetCommunityStatistics, GetHousehold, GetHousehold_Coordinates, Get_MemberDetails, Get_ParentHouseholdDetails, Get_LocalityDetails, GetLocalityHouseholds, GetInterchangesByLocalityId, Get_OneSchoolGlobal_List, Get_Subdivision_List, GetOneSchoolGlobalDetails, GetLocalityHouseholdIds (Fetch AtStart), GetHouseholdCaption, GetSubdivision, GetSubdivisionHouseholds |
 | Module client action (runs after leaving) | HasAccessToRegion (folder User; calls `UBTConnect_Utils.Cache_UserInfo_Get`, then only assignments) |
+
+Group A (2026-10-28): DEV = TST on every call that the MCP holds.
+
+| Kind on the MCP | Names |
+|---|---|
+| IDataAction (R1) | Connect2_LegacyShared: GetMessageInstance, GetShare, GetAvailableUsers (Fetch AtStart), GetMessageInstanceById2, GetMessages. UBTConnect: FetchUpdates, GetNotes, FetchNotifications, GetDateRanges, FetchSearchResults, Get_FilteredRecentClickedResults |
+| IScreenAggregate (R1) | Connect2_LegacyShared: GetMessageTemplateParametersByMessageTemplateId, GetShareObjectTypeById (Fetch AtStart). UBTConnect: Get_SearchBirthdayOptions |
+| Not on the MCP | `Connect2_MyBookmarks_MUI` (GetGroupSummaries, GetAllBookmarksByGroup): the module is not open in Service Studio, and TST removed it (N6). The TST evidence is the earlier static fetch |
+
+The server actions of group A (for example Wrapper_NotificationOpened, MarkMessageAsRead, the MarkAsRead and
+MarkAllAsRead actions) are `callServerAction` calls in the TST code (R2).
