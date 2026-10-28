@@ -1061,3 +1061,5 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-28,clarify-item8,other,52375,ste-sonnet,sonnet,"item 8 STE fixes of item8-solution.md, 29 calls"
 2026-10-28,clarify-item8,build,214506,build-S0a-opus,opus,"item 8 S0a platform flow scope, tests first, 103 calls (over budget)"
 2026-10-28,clarify-item8,build,156695,build-S0b-opus,opus,"item 8 S0b static _error.html, tests first, 59 calls"
+2026-10-28,clarify-item8,build,222522,build-S1a-opus,opus,"item 8 S1a group B 7 hooks, 85 calls (over budget)"
+2026-10-28,clarify-item8,build,178393,build-S1b-opus,opus,"item 8 S1b group B 8 hooks, 57 calls"

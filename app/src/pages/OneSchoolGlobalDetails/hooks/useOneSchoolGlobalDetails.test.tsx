@@ -191,8 +191,11 @@ describe('useOneSchoolGlobalDetails: the button group and the actions menu', () 
   });
 });
 
-describe('useOneSchoolGlobalDetails after an unmount and in StrictMode (decision W23)', () => {
-  it('lets the call run to its end once and writes no state when the screen unmounts while it runs', async () => {
+/* Flow scope (item 8): DataActionGetOneSchoolGlobalDetails is a data action (R1, OneSchoolGlobalDetails_Block.js:1126).
+   The query of api/locality drops the answer and the failure of an unmounted screen: the state write is an effect of
+   the mounted hook, and the query-cache subscription skips a query without observers (flowErrors.ts). */
+describe('useOneSchoolGlobalDetails after an unmount and in StrictMode (flow scope, item 8)', () => {
+  it('unmount while the call is pending, the call answers: one call, no state write, no raise', async () => {
     const call = pending();
     const { unmount } = renderFlows();
     unmount();
@@ -204,7 +207,7 @@ describe('useOneSchoolGlobalDetails after an unmount and in StrictMode (decision
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
   });
 
-  it('does not raise a failure after an unmount and writes no state, as the port before this step', async () => {
+  it('unmount while the call is pending, the call fails: no state write, no raise', async () => {
     const call = pending();
     const { unmount } = renderFlows();
     unmount();

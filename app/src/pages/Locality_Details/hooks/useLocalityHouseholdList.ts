@@ -4,13 +4,7 @@ import { getLocal_Bookmark, getLocal_Bookmark_C2 } from '@/pages/Locality_Detail
 import { MyBookmarks_ObjectType_Contact } from '@/pages/Locality_Details/components/staticEntities';
 import { setPreloadObject, useFlowState, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import {
-  INITIAL_LOCALITY_HOUSEHOLD_LIST,
-  localityHouseholdListReducer,
-  withBookmark,
-  type LocalityHouseholdListAction,
-} from './localityBlocksState';
-import { useReadyOnce } from './readyOnce';
+import { INITIAL_LOCALITY_HOUSEHOLD_LIST, localityHouseholdListReducer, withBookmark } from './localityBlocksState';
 
 /** The feature flags that the flows of the household list read. The page reads them and gives them here. */
 export interface LocalityHouseholdListFlags {
@@ -45,6 +39,8 @@ export interface LocalityHouseholdListFlows {
       GetLocal_Bookmark(Contact, HouseholdId) (Locality_Households_HouseholdList.mvc.js:454-515).
     - Household_CardEvent_OnClickHousehold: GetHasCarouselEnabled → every row's HouseholdId as the preload object
       (CarouselPreloadedHouseholds) and HouseholdCarousel at the clicked row; else Event_NavigateToHouseholdDetails.
+    Flow scope (item 8): GetLocalityHouseholds is a data action (R1, Locality_Households_HouseholdList.js:346) and its
+    OnAfterFetch is in the same chain: after an unmount the answer, the bookmark reads and the failure are dropped.
     @origin UBTConnect.Directory_Locality.Locality_Households_HouseholdList */
 export function useLocalityHouseholdList(
   localityId: string,
@@ -52,30 +48,26 @@ export function useLocalityHouseholdList(
   flags: LocalityHouseholdListFlags,
 ): LocalityHouseholdListFlows {
   const navigate = useOsNavigate();
-  const ready = useReadyOnce();
   const {
     state,
     dispatch,
     latest,
     events: eventsRef,
+    flow,
   } = useFlowState({
     viewName: 'Locality_Households_HouseholdList',
     reducer: localityHouseholdListReducer,
     initial: INITIAL_LOCALITY_HOUSEHOLD_LIST,
     parameters: { localityId },
     events,
-    onReady: (isAlive, restored) => ready.once(isAlive, () => onReady(restored)),
+    onReady: (_isAlive, restored) => onReady(restored),
   });
-
-  /** A state write of OnReady, skipped after the unmount (W23). */
-  const write = (action: LocalityHouseholdListAction) => {
-    if (ready.isAlive()) dispatch(action);
-  };
 
   async function onReady(restored: boolean) {
     if (restored && latest.current.isDataFetched) return;
-    const list = await fetchLocalityHouseholds(localityId);
-    write({ type: 'householdsFetched', list });
+    const list = await flow.fetch(fetchLocalityHouseholds(localityId)); // R1
+    dispatch({ type: 'householdsFetched', list });
+    // OnAfterFetch_GetLocalityHouseholds_Bookmarks.
     const marked: LocalityHousehold[] = [];
     for (const household of list) {
       const isBookmarked = flags.hasNewBookmarks
@@ -83,7 +75,7 @@ export function useLocalityHouseholdList(
         : await getLocal_Bookmark(MyBookmarks_ObjectType_Contact, household.householdId);
       marked.push(withBookmark(household, isBookmarked));
     }
-    write({ type: 'householdsFetched', list: marked });
+    dispatch({ type: 'householdsFetched', list: marked });
   }
 
   const onClickHousehold = (householdId: string) => {

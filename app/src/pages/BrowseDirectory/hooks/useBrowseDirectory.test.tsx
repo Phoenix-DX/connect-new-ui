@@ -1,11 +1,13 @@
 import { act, render, renderHook } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchLocalityCardList, type LocalityCard, type LocalityCardList } from '@/api/locality';
 import type { MarkerWithWindow } from '@/components/directory/DirectoryMap';
+import { IgnorableSystemException, OutOfContextException } from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import {
   map_FitBoundsAuto,
   map_InvalidateSize,
@@ -46,10 +48,18 @@ vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   raiseToFlowHandler: vi.fn(),
 }));
 const navigate = vi.hoisted(() => vi.fn());
-vi.mock('@/platform/navigation', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/platform/navigation')>()),
-  useOsNavigate: () => navigate,
-}));
+/** On: the hook gets the platform navigation with its R4 check (the tests of a screen that the user left). */
+const platformNavigation = vi.hoisted(() => ({ on: false }));
+vi.mock('@/platform/navigation', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/navigation')>();
+  return {
+    ...actual,
+    useOsNavigate: () => {
+      const platform = actual.useOsNavigate();
+      return platformNavigation.on ? platform : navigate;
+    },
+  };
+});
 
 /* The flows of the BrowseDirectory screen, with the calls, the map, the popup and the navigation replaced by spies.
    Fictional localities. */
@@ -94,6 +104,12 @@ function deferred<T>() {
   });
   return { promise, resolve };
 }
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3, R4). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -212,7 +228,7 @@ describe('useBrowseDirectory', () => {
     const { result } = renderFlows();
     result.current.onMapInitialized('LeafletMap-LeafletMap');
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
     result.current.onStatisticsListParametersChanged();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(2);
   });
@@ -241,8 +257,13 @@ describe('useBrowseDirectory', () => {
   });
 });
 
-describe('useBrowseDirectory after an unmount and in StrictMode (decision W23)', () => {
-  it('a GetLocalityStatistics that answers after the unmount writes no state', async () => {
+describe('useBrowseDirectory after an unmount and in StrictMode (flow scope, item 8)', () => {
+  afterEach(() => {
+    platformNavigation.on = false;
+    resetNavigation();
+  });
+
+  it('R1: unmount while GetLocalityStatistics is pending: the answer writes no state and raises nothing', async () => {
     const pending = deferred<LocalityCardList>();
     vi.mocked(fetchLocalityCardList).mockReturnValue(pending.promise);
     const { unmount } = renderFlows();
@@ -252,30 +273,61 @@ describe('useBrowseDirectory after an unmount and in StrictMode (decision W23)',
     await settle();
     expect(fetchLocalityCardList).toHaveBeenCalledTimes(1);
     expect(browseDirectoryReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('a row click whose HasAccessToRegion answers after the unmount still goes to Locality_Details once', async () => {
+  it('R1: unmount while GetLocalityStatistics is pending: its failure reaches no handler', async () => {
+    let fail: (error: Error) => void = () => undefined;
+    vi.mocked(fetchLocalityCardList).mockReturnValue(
+      new Promise((_resolve, reject) => {
+        fail = reject;
+      }),
+    );
+    const { unmount } = renderFlows();
+    unmount();
+    vi.mocked(browseDirectoryReducer).mockClear();
+    fail(new Error('GetLocalityStatistics down'));
+    await settle();
+    expect(raisedErrors()).toEqual([]);
+    expect(browseDirectoryReducer).not.toHaveBeenCalled();
+  });
+
+  it('R3: unmount in the tick of OnInitialized: Action_InvalidateMapSize does not run', async () => {
     const { result, unmount } = renderFlows();
+    result.current.onMapInitialized('LeafletMap-LeafletMap');
+    unmount();
+    await settle();
+    expect(map_InvalidateSize).not.toHaveBeenCalled();
+    expect(map_FitBoundsAuto).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R4: a row click whose HasAccessToRegion answers after the user left: no navigation, the flow stops', async () => {
+    platformNavigation.on = true;
+    const screen: { current: BrowseDirectoryFlows | null } = { current: null };
+    function Screen() {
+      screen.current = useBrowseDirectory(inputs);
+      return null;
+    }
+    const { router, at } = renderRoutes(
+      { '/UBTConnect/BrowseDirectory': <Screen />, '/UBTConnect/BrowseCountries': <p>BrowseCountries</p> },
+      '/UBTConnect/BrowseDirectory?CountryCode=AR',
+    );
     await settle();
     const access = deferred<boolean>();
     vi.mocked(hasAccessToRegion).mockReturnValue(access.promise);
     act(() => {
-      result.current.onStatisticsListClicked('4107');
+      screen.current?.onStatisticsListClicked('4107');
     });
-    unmount();
-    vi.mocked(browseDirectoryReducer).mockClear();
+    await act(() => router.navigate('/UBTConnect/BrowseCountries'));
     access.resolve(true);
     await settle();
-    expect(navigate).toHaveBeenCalledTimes(1);
-    expect(navigate).toHaveBeenCalledWith('/UBTConnect/Locality_Details', {
-      LocalityId: '4107',
-      PreloadedLocalityLabel: 'Puerto Madryn, Argentina',
-    });
-    expect(browseDirectoryReducer).not.toHaveBeenCalled();
+    expect(at()).toBe('/UBTConnect/BrowseCountries');
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(OutOfContextException), expect.anything());
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('a row click without access whose answer comes after the unmount still shows the upgrade popup once', async () => {
+  it('R2: a row click without access whose answer comes after the unmount still shows the upgrade popup once', async () => {
     const { result, unmount } = renderFlows();
     await settle();
     const access = deferred<boolean>();

@@ -8,7 +8,7 @@ import {
 } from '@/api/household';
 import type { DataFetchStatus } from '@/components/ui/os/OSList';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { isViewHasChangedException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { isViewHasChangedException } from '@/platform/feedback/flowErrors';
 import { useFlowState, useOsNavigate, useWasRestoredFromCache, type IsAlive } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
@@ -79,25 +79,20 @@ export interface HouseholdRelationsFlows {
 }
 
 /** The state and the flows of the relations of a member. The state comes from useFlowState and the view cache keeps it.
-    Decision W23: `isAlive` guards the state writes. In these flows no app-level side effect follows an await: each next
-    step is a client action of the block (Action_Refresh_Get_MemberDetails, OnAfterFetch_Get_MemberDetails,
-    Actions_DefineLoading), which the runtime refuses on a disposed block (ensureControllerAlive raises
-    ControllerDisposedException). So after an unmount, as in OutSystems and the old port, no server call starts and the
-    event does not run; a failed call still goes to the flow handler. StrictMode runs OnReady twice: the first run stops
-    at its liveness check, so the calls and the event run once without a once-guard. */
+    Flow scope (item 8): Get_MemberDetails and Get_ParentHouseholdDetails are data actions (R1, `flow.fetch`): after
+    the unmount their answer and their failure are dropped, so OnAfterFetch_Get_MemberDetails (the event
+    RelationsDetails_Fetched, the sibling refresh, Actions_DefineLoading) does not run (HouseholdRelations_Block.js:
+    1695-1740). After GetUserInformation_Wrapper (a module action), Action_Refresh_Get_MemberDetails is an own action
+    of the block (R3, ensureControllerAlive): the `isAlive` check of OnReady stops there. HasAccessToRegion and the
+    upgrade popup are module actions: they run after leaving. The navigation from a left screen does not happen (R4,
+    useOsNavigate). useFlowState runs OnReady once, also in StrictMode. */
 export function useHouseholdRelations(
   { householdId, memberId }: HouseholdRelationsInputs,
   events: HouseholdRelationsEvents,
 ): HouseholdRelationsFlows {
   const restoredFromCache = useWasRestoredFromCache();
   const navigate = useOsNavigate();
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: `Directory_Household.HouseholdRelations_Block#${householdId}#${memberId}`,
     reducer: householdRelationsReducer,
     initial: initialHouseholdRelationsState(restoredFromCache),
@@ -116,61 +111,60 @@ export function useHouseholdRelations(
     ShowNotesSheet: latest.current.ShowNotesSheet,
   });
 
-  /** The refresh of a data action (callServerDataSource): Fetching when the call starts, the answer or Error (not for
-      a ViewHasChangedException) when it ends, while the screen is there. A failure goes on to the caller. */
+  /** The refresh of a data action (callServerDataSource, R1): Fetching when the call starts, the answer or Error (not
+      for a ViewHasChangedException) when it ends. A failure goes on to the caller. After the unmount `flow.fetch`
+      drops the answer and the failure (ControllerDisposedException), and `dispatch` does nothing. */
   const refresh = async <T>(
-    isAlive: IsAlive,
     call: () => Promise<T>,
     actions: { fetching: HouseholdRelationsAction; failed: HouseholdRelationsAction },
   ): Promise<T> => {
     dispatch(actions.fetching);
     try {
-      return await call();
+      return await flow.fetch(call());
     } catch (error) {
-      if (isAlive() && !isViewHasChangedException(error)) dispatch(actions.failed);
+      if (!isViewHasChangedException(error)) dispatch(actions.failed);
       throw error;
     }
   };
 
   /** The refresh of Get_ParentHouseholdDetails. */
-  const refreshSiblings = async (isAlive: IsAlive) => {
-    const details: SiblingRelations = await refresh(isAlive, () => fetchSiblingRelations(callInputs()), {
+  const refreshSiblings = async () => {
+    const details: SiblingRelations = await refresh(() => fetchSiblingRelations(callInputs()), {
       fetching: { type: 'siblingsFetching' },
       failed: { type: 'siblingsFailed' },
     });
-    if (isAlive()) dispatch({ type: 'siblingsFetched', details });
+    dispatch({ type: 'siblingsFetched', details });
   };
 
   /** The refresh of Get_MemberDetails, then OnAfterFetch_Get_MemberDetails: RelationsDetails_Fetched(FamilyName), the
       refresh of Get_ParentHouseholdDetails, Actions_DefineLoading(False). */
-  const refreshMemberDetails = async (isAlive: IsAlive) => {
-    const details: MemberRelations = await refresh(isAlive, () => fetchMemberRelations(callInputs()), {
+  const refreshMemberDetails = async () => {
+    const details: MemberRelations = await refresh(() => fetchMemberRelations(callInputs()), {
       fetching: { type: 'memberDetailsFetching' },
       failed: { type: 'memberDetailsFailed' },
     });
-    if (!isAlive()) return;
     dispatch({ type: 'memberDetailsFetched', details });
-    eventsRef.current.onRelationsDetailsFetched?.(details.FamilyName);
-    await refreshSiblings(isAlive);
-    if (isAlive()) dispatch({ type: 'loadingDefined', isRefresh: false });
+    flow.events.onRelationsDetailsFetched?.(details.FamilyName);
+    await refreshSiblings();
+    dispatch({ type: 'loadingDefined', isRefresh: false });
   };
 
   /** ScreenEvent_OnReady: GetUserInformation_Wrapper (after the app start's own step), then, unless the view is
       restored from the cache with the same age visibility, UserAge_Visibility and Action_Refresh_Get_MemberDetails
       (Actions_DefineLoading(True), then the refresh of Get_MemberDetails). */
   const onReady = async (isAlive: IsAlive, restored: boolean) => {
-    const userInformation = await getUserInformation();
-    if (!isAlive()) return;
+    const userInformation = await getUserInformation(); // a module action: not wrapped
+    if (!isAlive()) return; // R3: Action_Refresh_Get_MemberDetails is an own action of the block
     // The wrapper returns the cached record: its Directory_UserCurrent is the action's UserInformation output.
     const displayAge = userInformation.Directory_UserCurrent.Directory_UserCurrent_Visibility.DisplayAge;
     if (restored && displayAge === latest.current.UserAge_Visibility) return;
     dispatch({ type: 'userAgeVisibilitySet', displayAge });
     dispatch({ type: 'loadingDefined', isRefresh: true });
-    await refreshMemberDetails(isAlive);
+    await refreshMemberDetails();
   };
 
-  /** OnClick_Member: HasAccessToRegion, then HouseholdDetails(HouseholdId) or the upgrade popup. Every caller passes
-      IsDeceased False. */
+  /** OnClick_Member: HasAccessToRegion (a module action), then HouseholdDetails(HouseholdId) (R4 in useOsNavigate) or
+      the upgrade popup (a module action: it runs after leaving). Every caller passes IsDeceased False. */
   const onClickMember = (member: HouseholdMember) => {
     const householdId = memberHouseholdToOpen(member, false);
     if (householdId === null) return;
@@ -181,7 +175,7 @@ export function useHouseholdRelations(
         await showUpgradePopUp();
       }
     };
-    open().catch(raiseToFlowHandler);
+    flow.run(open);
   };
 
   const memberDetails = state.Get_MemberDetails;

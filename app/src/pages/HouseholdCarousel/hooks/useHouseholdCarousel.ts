@@ -42,8 +42,9 @@ export interface HouseholdCarouselView {
     - Handler_EventMoved: when the item of the new slide has the swipe action UpdatesCarousel_SetIsRead,
       Directory_Updates_CarouselSwipeAction (UpdateItem_MarkAsRead, unread count - 1), then the swipe action of the
       item is cleared and the update is added to SwippedItems once.
-    - After the screen unmounts, a swipe action that already started still marks the update as read and lowers the
-      unread count, but it writes no screen variable (decision W23).
+    - Flow scope (item 8): Directory_Updates_CarouselSwipeAction is a module action (R2): after the screen unmounts, a
+      swipe action that already started still marks the update as read and lowers the unread count, as on TST
+      (HouseholdCarousel.js:533). The screen variables that follow are not written.
     @origin UBTConnect.Directory_Household.HouseholdCarousel */
 export function useHouseholdCarousel({ In_StartingHouseholdId }: HouseholdCarouselInputs): HouseholdCarouselView {
   const preloadObject = usePreloadObject();

@@ -4,9 +4,13 @@ import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchCountryListStatistics, type CountrySummary } from '@/api/country';
 import { CommunicationException, NotRegisteredException, UserException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException, OutOfContextException } from '@/legacy/os/os-exceptions';
+import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
+import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
 import { countryListReducer } from './countryListState';
-import { useCountryList } from './useCountryList';
+import { useCountryList, type CountryListFlows } from './useCountryList';
 
 /** The reducer as a spy, so a test sees every state write. */
 vi.mock('./countryListState', async (importOriginal) => {
@@ -22,9 +26,18 @@ vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
   raiseToFlowHandler: vi.fn(),
 }));
+vi.mock('@/lib/ubtConnect/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/lib/ubtConnect/actions')>()),
+  hasAccessToRegion: vi.fn(() => Promise.resolve(true)),
+}));
+vi.mock('@/platform/feedback/dialogs', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback/dialogs')>()),
+  showUpgradePopUp: vi.fn(() => Promise.resolve()),
+}));
 
-/* The flows of the CountryList screen, with GetCountriesStatistics and the flow handler replaced by spies. The
-   countries are fictional rows with aggregate counts. */
+/* The flows of the CountryList screen, with GetCountriesStatistics, HasAccessToRegion, the upgrade popup and the flow
+   handler replaced by spies; the navigation is the platform one. The countries are fictional rows with aggregate
+   counts. */
 const COUNTRIES: CountrySummary[] = [
   { countryCode: 'NZ', title: 'New Zealand', avatarURL: '', texts: { Members: '1,204' } },
   { countryCode: 'ZZ', title: 'Nowhere Land', avatarURL: '', texts: { Members: '12' } },
@@ -52,13 +65,31 @@ function pendingCountries() {
   );
   return { resolve, reject };
 }
-const raised = () => vi.mocked(raiseToFlowHandler).mock.calls.map(([error]) => error);
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R4). */
+const raised = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+/** A HasAccessToRegion answer that the test gives later. */
+function pendingAccess() {
+  let resolve: (hasAccess: boolean) => void = () => undefined;
+  vi.mocked(hasAccessToRegion).mockReturnValueOnce(
+    new Promise((res) => {
+      resolve = res;
+    }),
+  );
+  return (hasAccess: boolean) => {
+    resolve(hasAccess);
+  };
+}
 
 beforeEach(() => {
   vi.mocked(fetchCountryListStatistics).mockResolvedValue(COUNTRIES);
 });
 afterEach(() => {
   vi.clearAllMocks();
+  resetNavigation();
 });
 
 describe('useCountryList', () => {
@@ -124,7 +155,26 @@ describe('useCountryList', () => {
     expect(result.current.state.bottomSheetId).toBe('sheet-7');
   });
 
-  it('W23: after the unmount, the started flow makes its call once and writes no state', async () => {
+  it('Handler_StatisticsList_Clicked: CountryDetails with access, else the upgrade popup', async () => {
+    const { result } = renderHook(() => useCountryList(), { wrapper });
+    await settle();
+    act(() => {
+      result.current.onCountryClicked('NZ');
+    });
+    await settle();
+    expect(hasAccessToRegion).toHaveBeenCalledWith('0', 'NZ');
+    vi.mocked(hasAccessToRegion).mockResolvedValueOnce(false);
+    act(() => {
+      result.current.onCountryClicked('ZZ');
+    });
+    await settle();
+    expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(raised()).toEqual([]);
+  });
+});
+
+describe('useCountryList after an unmount and in StrictMode (flow scope, item 8)', () => {
+  it('R1: unmount while GetCountriesStatistics is pending: one call, no state write, nothing raised', async () => {
     const answer = pendingCountries();
     let renders = 0;
     const { unmount } = renderHook(
@@ -143,10 +193,10 @@ describe('useCountryList', () => {
     expect(fetchCountryListStatistics).toHaveBeenCalledTimes(1);
     expect(countryListReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raised()).toEqual([]);
   });
 
-  it('W23: an exception after the unmount still goes to the flow handler, once, without a state write', async () => {
+  it('R1: unmount while GetCountriesStatistics is pending: its failure is not bubbled and writes no state', async () => {
     const answer = pendingCountries();
     const { unmount } = renderHook(() => useCountryList(), { wrapper: strictWrapper });
     await settle();
@@ -154,8 +204,45 @@ describe('useCountryList', () => {
     vi.mocked(countryListReducer).mockClear();
     answer.reject(new CommunicationException('offline'));
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raised()[0]).toMatchObject({ specificType: 'UBTConnect.BubbleCommunicationException' });
+    // The catch of Action_RefreshData is inside the dropped chain on TST (CountryList.js:1450-1490).
+    expect(raised()).toEqual([]);
     expect(countryListReducer).not.toHaveBeenCalled();
+  });
+
+  it('R2: HasAccessToRegion (a module action) answers after the unmount: the upgrade popup still shows', async () => {
+    const { result, unmount } = renderHook(() => useCountryList(), { wrapper });
+    await settle();
+    const answer = pendingAccess();
+    act(() => {
+      result.current.onCountryClicked('ZZ');
+    });
+    unmount();
+    answer(false);
+    await settle();
+    expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(raised()).toEqual([]);
+  });
+
+  it('R4: HasAccessToRegion answers after the user left the screen: no navigation, the flow stops', async () => {
+    const screen: { current: CountryListFlows | null } = { current: null };
+    function Screen() {
+      screen.current = useCountryList();
+      return null;
+    }
+    const { router, at } = renderRoutes(
+      { '/UBTConnect/CountryList': <Screen />, '/UBTConnect/Search': <p>Search</p> },
+      '/UBTConnect/CountryList',
+    );
+    await settle();
+    const answer = pendingAccess();
+    act(() => {
+      screen.current?.onCountryClicked('NZ');
+    });
+    await act(() => router.navigate('/UBTConnect/Search'));
+    answer(true);
+    await settle();
+    expect(at()).toBe('/UBTConnect/Search');
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(OutOfContextException), expect.anything());
+    expect(raised()).toEqual([]);
   });
 });

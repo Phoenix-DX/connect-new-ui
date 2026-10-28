@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { fetchHouseholdCaption, type PhotobookHousehold } from '@/api/household';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useWasRestoredFromCache } from '@/platform/navigation';
+import { useFlowScope, useWasRestoredFromCache } from '@/platform/navigation';
 import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 
 /** The variables and the flows of the block Photobook_Options_Left: the info sheet and the household caption that it
@@ -43,27 +42,19 @@ export interface HouseholdCaptionFlows {
     - Handler_ClickedInfo: ToggleInfoSheet(True) (BottomSheetOpen), then, when the current household is not the last
       fetched one, the refresh of DataActionGetHouseholdCaption (isLoading True until OnAfterFetch sets the caption,
       isLoading False and LastFetched). A failure goes to the flow handler.
-    - Decision W23: a call that started runs to its end after an unmount, and its failure still goes to the flow
-      handler; only its state writes stop. */
+    - Flow scope (item 8): DataActionGetHouseholdCaption is a data action (R1, Photobook_Options_Left.js:494). A call
+      that started runs to its end after an unmount, but its answer (OnAfterFetch, :624) and its failure are dropped. */
 export function useHouseholdCaption({
   inCurrentHousehold,
   inIsShow,
   inMainContainerClass,
 }: HouseholdCaptionInputs): HouseholdCaptionFlows {
+  const flow = useFlowScope();
   const restored = useWasRestoredFromCache();
   const [infoSheetId, setInfoSheetId] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [lastFetched, setLastFetched] = useState<PhotobookHousehold>(EMPTY_HOUSEHOLD);
   const [caption, setCaption] = useState(restored ? '' : SKELETON_CAPTION);
-
-  /** The block is still there: false after the unmount. */
-  const mounted = useRef(false);
-  useEffect(() => {
-    mounted.current = true;
-    return () => {
-      mounted.current = false;
-    };
-  }, []);
 
   /** ToggleInfoSheet. */
   const toggleInfoSheet = (isOpen: boolean) => {
@@ -71,35 +62,33 @@ export function useHouseholdCaption({
     else bottomSheetClose(infoSheetId);
   };
 
-  const onClickedInfo = () => {
+  /** Handler_ClickedInfo. */
+  const clickedInfo = async () => {
     toggleInfoSheet(true);
     if (sameHousehold(lastFetched, inCurrentHousehold)) return;
     setIsLoading(true);
-    fetchHouseholdCaption({
-      inCurrentHousehold,
-      inIsShow,
-      inMainContainerClass,
-      infoSheetId,
-      lastFetched,
-      isLoading: true,
-    }).then(
-      (out) => {
-        if (!mounted.current) return;
-        setCaption(out.householdCaption);
-        setIsLoading(false);
-        setLastFetched(out.lastFetchedHousehold);
-      },
-      (error: unknown) => {
-        raiseToFlowHandler(error);
-      },
-    );
+    const out = await flow.fetch(
+      fetchHouseholdCaption({
+        inCurrentHousehold,
+        inIsShow,
+        inMainContainerClass,
+        infoSheetId,
+        lastFetched,
+        isLoading: true,
+      }),
+    ); // R1
+    setCaption(out.householdCaption);
+    setIsLoading(false);
+    setLastFetched(out.lastFetchedHousehold);
   };
 
   return {
     caption,
     isLoading,
     onSheetInitialized: setInfoSheetId,
-    onClickedInfo,
+    onClickedInfo: () => {
+      flow.run(clickedInfo);
+    },
     onCloseSheet: () => {
       toggleInfoSheet(false);
     },

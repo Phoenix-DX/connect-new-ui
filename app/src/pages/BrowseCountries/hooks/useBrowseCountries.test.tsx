@@ -1,10 +1,12 @@
 import { act, render, renderHook } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchBrowseCountriesStatistics, type CountryCard } from '@/api/country';
+import { IgnorableSystemException, OutOfContextException } from '@/legacy/os/os-exceptions';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
 import {
   browseCountriesReducer,
@@ -36,10 +38,18 @@ vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   raiseToFlowHandler: vi.fn(),
 }));
 const navigate = vi.hoisted(() => vi.fn());
-vi.mock('@/platform/navigation', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/platform/navigation')>()),
-  useOsNavigate: () => navigate,
-}));
+/** On: the hook gets the platform navigation with its R4 check (the tests of a screen that the user left). */
+const platformNavigation = vi.hoisted(() => ({ on: false }));
+vi.mock('@/platform/navigation', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/navigation')>();
+  return {
+    ...actual,
+    useOsNavigate: () => {
+      const platform = actual.useOsNavigate();
+      return platformNavigation.on ? platform : navigate;
+    },
+  };
+});
 /** A back navigation that the view cache restores (wasCurrentViewRestoredFromCache), with the saved variables. */
 const viewCache = vi.hoisted((): { restored: boolean; saved: unknown } => ({ restored: false, saved: undefined }));
 vi.mock('@/platform/navigation/hooks', async (importOriginal) => {
@@ -101,6 +111,12 @@ function pending() {
   );
   return call;
 }
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R4). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -161,8 +177,13 @@ describe('useBrowseCountries: OnReady', () => {
   });
 });
 
-describe('useBrowseCountries after an unmount and in StrictMode (decision W23)', () => {
-  it('calls GetCountriesStatistics once and writes no state when the screen unmounts while it runs', async () => {
+describe('useBrowseCountries after an unmount and in StrictMode (flow scope, item 8)', () => {
+  afterEach(() => {
+    platformNavigation.on = false;
+    resetNavigation();
+  });
+
+  it('R1: unmount while GetCountriesStatistics is pending: the answer writes no state and raises nothing', async () => {
     const call = pending();
     const { unmount } = renderFlows();
     unmount();
@@ -171,19 +192,58 @@ describe('useBrowseCountries after an unmount and in StrictMode (decision W23)',
     await settle();
     expect(fetchBrowseCountriesStatistics).toHaveBeenCalledTimes(1);
     expect(browseCountriesReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('still raises a failure to the flow handler once after an unmount, without a state write', async () => {
+  it('R1: unmount while GetCountriesStatistics is pending: its failure reaches no handler and writes no state', async () => {
     const call = pending();
     const { unmount } = renderFlows();
     unmount();
     vi.mocked(browseCountriesReducer).mockClear();
-    const error = new Error('Service Interruption');
-    call.reject(error);
+    call.reject(new Error('Service Interruption'));
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+    expect(raisedErrors()).toEqual([]);
     expect(browseCountriesReducer).not.toHaveBeenCalled();
+  });
+
+  it('HasAccessToRegion (a module action) answers after the unmount: the upgrade pop-up still shows (R2)', async () => {
+    const { result, unmount } = renderFlows();
+    await settle();
+    let answer: (hasAccess: boolean) => void = () => undefined;
+    vi.mocked(hasAccessToRegion).mockReturnValueOnce(new Promise((resolve) => (answer = resolve)));
+    act(() => {
+      result.current.onStatisticsListClicked('JM');
+    });
+    unmount();
+    answer(false);
+    await settle();
+    expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R4: HasAccessToRegion answers after the user left the screen: no navigation, the flow stops', async () => {
+    platformNavigation.on = true;
+    const screen: { current: BrowseCountriesFlows | null } = { current: null };
+    function Screen() {
+      screen.current = useBrowseCountries();
+      return null;
+    }
+    const { router, at } = renderRoutes(
+      { '/UBTConnect/BrowseCountries': <Screen />, '/UBTConnect/Updates': <p>Updates</p> },
+      '/UBTConnect/BrowseCountries',
+    );
+    await settle();
+    let answer: (hasAccess: boolean) => void = () => undefined;
+    vi.mocked(hasAccessToRegion).mockReturnValueOnce(new Promise((resolve) => (answer = resolve)));
+    act(() => {
+      screen.current?.onStatisticsListClicked('NL');
+    });
+    await act(() => router.navigate('/UBTConnect/Updates'));
+    answer(true);
+    await settle();
+    expect(at()).toBe('/UBTConnect/Updates');
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(OutOfContextException), expect.anything());
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('runs OnReady once in StrictMode and still shows the countries', async () => {
@@ -243,7 +303,7 @@ describe('useBrowseCountries: Handler_StatisticsList_Clicked', () => {
       result.current.onStatisticsListClicked('JM');
     });
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(navigate).not.toHaveBeenCalled();
   });
 });

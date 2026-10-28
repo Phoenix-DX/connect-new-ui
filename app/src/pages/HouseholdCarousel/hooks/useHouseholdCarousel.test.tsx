@@ -122,8 +122,8 @@ describe('useHouseholdCarousel', () => {
   });
 });
 
-describe('useHouseholdCarousel after an unmount (decision W23)', () => {
-  it('a started swipe action still marks the update read and lowers the count once, and writes no variable', async () => {
+describe('useHouseholdCarousel after an unmount (flow scope, item 8)', () => {
+  it('R2: a started swipe action (a module action) still marks the update read and lowers the count once, and writes no variable', async () => {
     let answer: () => void = () => undefined;
     vi.mocked(markCarouselUpdateItemAsRead).mockImplementationOnce(
       () =>

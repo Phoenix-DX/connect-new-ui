@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchHouseholdCaption, type HouseholdCaption, type PhotobookHousehold } from '@/api/household';
+import { ControllerDisposedException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import { SKELETON_CAPTION, useHouseholdCaption, type HouseholdCaptionInputs } from './useHouseholdCaption';
@@ -148,13 +149,22 @@ describe('useHouseholdCaption', () => {
     const error = new Error('Request failed with status 500');
     call.reject(error);
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.isLoading).toBe(true);
   });
 });
 
-describe('useHouseholdCaption after an unmount (decision W23)', () => {
-  it('still sends a failure to the flow handler once', async () => {
+/** The errors that reached the flow handler, without the ignorable stop of a disposed block. */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof ControllerDisposedException));
+
+/* Flow scope (item 8): DataActionGetHouseholdCaption is a data action (R1, Photobook_Options_Left.js:494). When the
+   block is disposed at the answer, the answer and the failure are dropped, and its OnAfterFetch (:624) does not run. */
+describe('useHouseholdCaption after an unmount (flow scope, item 8)', () => {
+  it('unmount while DataActionGetHouseholdCaption is pending, the call fails: no raise', async () => {
     const call = pendingCall();
     const { result, unmount } = renderFlows();
     act(() => {
@@ -164,10 +174,10 @@ describe('useHouseholdCaption after an unmount (decision W23)', () => {
     call.reject(new Error('Request failed with status 500'));
     await settle();
     expect(fetchHouseholdCaption).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('writes no state when the answer comes after the unmount', async () => {
+  it('unmount while DataActionGetHouseholdCaption is pending, the call answers: no state write, no raise', async () => {
     const call = pendingCall();
     const { result, unmount } = renderFlows();
     act(() => {
@@ -178,6 +188,6 @@ describe('useHouseholdCaption after an unmount (decision W23)', () => {
     call.resolve(captionOf(marlowe));
     await settle();
     expect(result.current).toBe(before);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 });

@@ -3,6 +3,7 @@ import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchLocalityHouseholdIds, type PhotobookHousehold } from '@/api/household';
+import { ControllerDisposedException } from '@/legacy/os/os-exceptions';
 import type { PhotobookInputs } from '@/pages/Photobook/inputs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { resetViewCache } from '@/platform/navigation/viewCache';
@@ -102,8 +103,17 @@ describe('usePhotobook', () => {
   });
 });
 
-describe('usePhotobook after an unmount and in StrictMode (decision W23)', () => {
-  it('makes the call once and writes no state when the answer comes after the unmount', async () => {
+/** The errors that reached the flow handler, without the ignorable stop of a disposed screen. */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof ControllerDisposedException));
+
+/* Flow scope (item 8): GetLocalityHouseholdIds is a data action (R1, Photobook.js:379). When the screen is disposed at
+   the answer, the answer and the failure are dropped, and its OnAfterFetch (:542) does not run. */
+describe('usePhotobook after an unmount and in StrictMode (flow scope, item 8)', () => {
+  it('unmount while GetLocalityHouseholdIds is pending, the call answers: one call, no state write, no raise', async () => {
     const call = pendingCall();
     const { unmount } = renderFlows();
     unmount();
@@ -112,17 +122,17 @@ describe('usePhotobook after an unmount and in StrictMode (decision W23)', () =>
     await settle();
     expect(fetchLocalityHouseholdIds).toHaveBeenCalledTimes(1);
     expect(photobookReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('does not send a failure after the unmount to the flow handler, as the old port', async () => {
+  it('unmount while GetLocalityHouseholdIds is pending, the call fails: no state write, no raise', async () => {
     const call = pendingCall();
     const { unmount } = renderFlows();
     unmount();
     vi.mocked(photobookReducer).mockClear();
     call.reject(new Error('Request failed with status 500'));
     await settle();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
     expect(photobookReducer).not.toHaveBeenCalled();
   });
 

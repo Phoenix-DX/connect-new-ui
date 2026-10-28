@@ -3,6 +3,7 @@ import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchLocalityDetails, type LocalityDetails } from '@/api/locality';
+import { ControllerDisposedException } from '@/legacy/os/os-exceptions';
 import type { LocalityDetailsInputs } from '@/pages/Locality_Details/inputs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { mockUserInformation } from '@/platform/session/mockUser';
@@ -134,8 +135,15 @@ describe('useLocalityDetails OnReady', () => {
   });
 });
 
-describe('useLocalityDetails after an unmount and in StrictMode (decision W23)', () => {
-  it('still calls Get_LocalityDetails once with the initialized variables, without a state write', async () => {
+/** The errors that reached the flow handler, without the ignorable stop of a disposed screen (R1, R3). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof ControllerDisposedException));
+
+describe('useLocalityDetails after an unmount and in StrictMode (flow scope, item 8)', () => {
+  it('no LocalityId: Action_SetLocalityLabel stops the flow after GetUserInformation_Wrapper (R3)', async () => {
     const user = pending<ReturnType<typeof mockUserInformation>>();
     vi.mocked(getUserInformation).mockReturnValue(user.promise);
     const { unmount } = renderFlows({ LocalityId: '0', PreloadedLocalityLabel: '' });
@@ -143,18 +151,33 @@ describe('useLocalityDetails after an unmount and in StrictMode (decision W23)',
     vi.mocked(localityDetailsReducer).mockClear();
     user.resolve(mockUserInformation());
     await settle();
+    expect(fetchLocalityDetails).not.toHaveBeenCalled();
+    expect(localityDetailsReducer).not.toHaveBeenCalled();
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(ControllerDisposedException), expect.anything());
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('with a LocalityId: the request of Get_LocalityDetails still starts with the initialized variables (R1)', async () => {
+    const user = pending<ReturnType<typeof mockUserInformation>>();
+    vi.mocked(getUserInformation).mockReturnValue(user.promise);
+    const { unmount } = renderFlows();
+    unmount();
+    vi.mocked(localityDetailsReducer).mockClear();
+    user.resolve(mockUserInformation());
+    await settle();
     expect(fetchLocalityDetails).toHaveBeenCalledTimes(1);
     expect(fetchLocalityDetails).toHaveBeenCalledWith(
       expect.objectContaining({
-        LocalityId: '585',
+        LocalityId: '252',
         IsScreenInitialized: true,
         LocalityLabel: 'Bahia Blanca, Argentina',
       }),
     );
     expect(localityDetailsReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('drops the answer of Get_LocalityDetails after the unmount', async () => {
+  it('unmount while Get_LocalityDetails is pending, the call answers: no state write, no raise (R1)', async () => {
     const details = pending<LocalityDetails>();
     vi.mocked(fetchLocalityDetails).mockReturnValue(details.promise);
     const { unmount } = renderFlows();
@@ -164,7 +187,24 @@ describe('useLocalityDetails after an unmount and in StrictMode (decision W23)',
     details.resolve(DETAILS);
     await settle();
     expect(localityDetailsReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('unmount while Get_LocalityDetails is pending, the call fails: no state write, no raise (R1)', async () => {
+    let fail: (error: unknown) => void = () => undefined;
+    vi.mocked(fetchLocalityDetails).mockReturnValue(
+      new Promise((_resolve, reject) => {
+        fail = reject;
+      }),
+    );
+    const { unmount } = renderFlows();
+    await settle();
+    unmount();
+    vi.mocked(localityDetailsReducer).mockClear();
+    fail(new Error('Request failed with status 500'));
+    await settle();
+    expect(localityDetailsReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('runs OnReady once in StrictMode and still writes the state', async () => {

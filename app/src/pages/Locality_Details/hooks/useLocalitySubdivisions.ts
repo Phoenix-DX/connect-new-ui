@@ -7,9 +7,7 @@ import {
   localitySubdivisionsReducer,
   subdivisionListCallInputs,
   type ListRow,
-  type LocalitySubdivisionsAction,
 } from './localityBlocksState';
-import { useReadyOnce } from './readyOnce';
 
 /** The feature flag that the flows of the supper meetings read. The page reads it and gives it here. */
 export interface LocalitySubdivisionsFlags {
@@ -38,35 +36,31 @@ export interface LocalitySubdivisionsFlows {
     - OnClick_NavigateToSubdivision: GetHasCarouselEnabled → the SubdivisionId of every card that
       Get_Subdivision_List returned as the preload object (PreloadedSupperMeetings) and SupperMeeting_Carousel at the
       clicked one; else SupperMeeting_Details.
+    Flow scope (item 8): Get_Subdivision_List is a data action (R1, Locality_Subdivisions.js:437): after an unmount its
+    answer and its failure are dropped.
     @origin UBTConnect.Directory_Locality.Locality_Subdivisions */
 export function useLocalitySubdivisions(
   localityId: string,
   flags: LocalitySubdivisionsFlags,
 ): LocalitySubdivisionsFlows {
   const navigate = useOsNavigate();
-  const ready = useReadyOnce();
-  const { state, dispatch, latest } = useFlowState({
+  const { state, dispatch, latest, flow } = useFlowState({
     viewName: 'Locality_Subdivisions',
     reducer: localitySubdivisionsReducer,
     initial: INITIAL_LOCALITY_SUBDIVISIONS,
     parameters: { localityId },
-    onReady: (isAlive, restored) => ready.once(isAlive, () => onReady(restored)),
+    onReady: (_isAlive, restored) => onReady(restored),
   });
-
-  /** A state write of OnReady, skipped after the unmount (W23). */
-  const write = (action: LocalitySubdivisionsAction) => {
-    if (ready.isAlive()) dispatch(action);
-  };
 
   /** Refresh Get_Subdivision_List, then OnAfterFetch_Get_Subdivision_List. */
   const refresh = async () => {
-    const cards = await fetchSubdivisionCards(subdivisionListCallInputs(latest.current, localityId));
-    write({ type: 'subdivisionsFetched', cards });
+    const cards = await flow.fetch(fetchSubdivisionCards(subdivisionListCallInputs(latest.current, localityId))); // R1
+    dispatch({ type: 'subdivisionsFetched', cards });
   };
 
   async function onReady(restored: boolean) {
     if (restored && latest.current.isDataFetched) return;
-    write({ type: 'skeletonShown' });
+    dispatch({ type: 'skeletonShown' });
     await refresh();
   }
 
@@ -91,7 +85,11 @@ export function useLocalitySubdivisions(
   return {
     list: state.subdivision_Card_List,
     isLoading: state.subdivision_Card_List_IsLoading,
-    onScrollEnding: () => onScrollEnding().catch(raiseToFlowHandler),
+    // As flow.run, but the list waits for the promise: the error goes to the flow handler with the flow scope.
+    onScrollEnding: () =>
+      onScrollEnding().catch((e: unknown) => {
+        raiseToFlowHandler(e, flow);
+      }),
     onClickSubdivision,
   };
 }

@@ -2,6 +2,7 @@
 export { BACK_PRIORITY, type BackHandler, type BackNavigationEvent } from './backQueue';
 export { useBackHandler, usePreventBackNavigation, useViewState, useWasRestoredFromCache } from './hooks';
 export { useFlowState, type FlowState, type FlowStateOptions, type IsAlive } from './flowState';
+export { useFlowScope } from './flowScope';
 export {
   dateTimeParam,
   generateScreenURL,

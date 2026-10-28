@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-28T10:41:03.767Z",
+ "at": "2026-10-28T13:23:34.971Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-LINK-HREF-CURSOR-HOMEFEED": 46,
@@ -41,7 +41,7 @@
   "maxCell": 0.0056,
   "maxCellRatio": 0.03,
   "diffPixels": 17,
-  "comparedPixels": 117347,
+  "comparedPixels": 117335,
   "maxRatio": 0.002,
   "threshold": 0.1,
   "expectedSize": [

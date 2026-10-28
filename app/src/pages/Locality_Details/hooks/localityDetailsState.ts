@@ -108,7 +108,7 @@ export const localityDetailsCallInputs = (state: LocalityDetailsState): Locality
   PreloadedLocalityLabel: state.preloadedLocalityLabel,
 });
 
-export type LocalityDetailsAction =
+type LocalityDetailsAction =
   /** Action_InitializeScreen (see initializeScreen). */
   | { type: 'screenInitialized'; loggedUser: LoggedUser; userLocalityLabel: string; hasLocalityContacts: boolean }
   /** Get_LocalityDetails answered; OnAfterFetch_Get_LocalityDetails: SetLocalityLabel. */

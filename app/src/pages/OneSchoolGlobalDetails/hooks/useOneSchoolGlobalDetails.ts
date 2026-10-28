@@ -30,9 +30,10 @@ export interface OneSchoolGlobalDetailsFlows {
       DataActionGetOneSchoolGlobalDetails (refresh only), which sends the screen variables of the moment it starts.
       The answer is kept for the view cache. A failure keeps the skeleton card and goes to the screen's handleError,
       the Directory_OneSchoolGlobal flow handler.
-    The data action is a query of api/locality, as before the domain: a call that started runs to its end after an
-    unmount, but it writes no state and does not reach the flow handler then (decision W23: the behavior of the port
-    before this step). StrictMode makes one call.
+    Flow scope (item 8): the data action (R1, OneSchoolGlobalDetails_Block.js:1126) is a query of api/locality. A call
+    that started runs to its end after an unmount, but its answer and its failure are dropped: the state write is an
+    effect of the mounted hook, and the query-cache subscription skips a query without observers. No `flow.fetch` is
+    needed (design §2.6). StrictMode makes one call.
     @origin UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails */
 export function useOneSchoolGlobalDetails(inputs: OneSchoolGlobalDetailsInputs): OneSchoolGlobalDetailsFlows {
   const restored = useWasRestoredFromCache();

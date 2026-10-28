@@ -8,6 +8,7 @@ import {
   type SubdivisionDetails,
   type SubdivisionHouseholdCard,
 } from '@/api/locality';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { getPreloadObject } from '@/platform/navigation';
 import { resetNavigation } from '@/platform/navigation/testRouter';
@@ -119,6 +120,12 @@ async function waitForData(result: { current: ReturnType<typeof useSupperMeeting
     expect(result.current.state.households).toEqual({ isDataFetched: true, isError: false, list: HOUSEHOLDS });
   });
 }
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 /** Runs the pending effects and the promises that they start (no timer). */
 const flushEffects = () =>
   act(async () => {
@@ -173,8 +180,8 @@ describe('useSupperMeetingDetails', () => {
       list: INITIAL_SUPPER_MEETING_DETAILS_STATE.households.list,
     });
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(2);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(householdsError);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(subdivisionError);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(householdsError, expect.anything());
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(subdivisionError, expect.anything());
   });
 
   it('reads In_SubdivsionId once: a new input neither refetches nor changes the id', async () => {
@@ -199,7 +206,7 @@ describe('useSupperMeetingDetails', () => {
     expect(result.current.state.households.list).toEqual(HOUSEHOLDS);
   });
 
-  it('W23: after the unmount, the started flow makes its calls once and writes no state', async () => {
+  it('R1: unmount while both data actions are pending: one call each, no state write, nothing raised', async () => {
     const { households, subdivision } = pendingAnswers();
     let renders = 0;
     const { unmount } = renderHook(
@@ -220,10 +227,10 @@ describe('useSupperMeetingDetails', () => {
     expect(fetchSubdivisionHouseholds).toHaveBeenCalledTimes(1);
     expect(supperMeetingDetailsReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('failures after the unmount write no state and raise nothing: TST shows no message for a block the user left (E9)', async () => {
+  it('R1: failures after the unmount write no state and raise nothing: TST shows no message for a block the user left (E9)', async () => {
     const { households, subdivision } = pendingAnswers();
     const { unmount } = renderHook(() => useSupperMeetingDetails('1210', CAROUSEL_ON), { wrapper: strictWrapper });
     await settle();
@@ -234,7 +241,7 @@ describe('useSupperMeetingDetails', () => {
     await settle();
     expect(supperMeetingDetailsReducer).not.toHaveBeenCalled();
     // probe_fetch_errors.cjs --late (migration/clarify/review/probe-fetch-errors-late.json): Back before the failure
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('a back navigation to the restored view keeps the saved state and makes no call (no skeleton)', async () => {
