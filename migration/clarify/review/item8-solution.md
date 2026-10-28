@@ -384,3 +384,8 @@ proves no regression). A pixel check of `_error.html` against one TST capture (s
   throws.
 - Gates (user, 2026-10-28): `npm run unused` before the full `npm run ci`; groups C and D build in parallel with one gate;
   parity per change scope; one full 64-route sweep at the end of item 8.
+- Groups C and D questions (user, 2026-10-28): S3b Q1 (a), S5 changes `flow.run` to catch a synchronous throw too.
+  S3a Q1 (a), AttendeeSubdivision's household click and share use `flow.run` in S5. S4a Q1 is closed by the TST code:
+  ResetPaginationSettings calls `ensureControllerAlive` (ScreenBlock_EventBooklet dump), so `flow.own` is right.
+- S5 adds a promise-returning `flow.run` variant (S1b Q1): five hooks need one (Locality OneSchoolGlobal and
+  Subdivisions `onScrollEnding`, MessageList `runAwaited`, LDM_MyEvents handlers, Notes `onLoadMore`).
