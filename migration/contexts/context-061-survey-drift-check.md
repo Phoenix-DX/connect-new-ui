@@ -4,7 +4,7 @@
 - The live TST code was fetched again (read-only static GET, no session) and compared with the survey of 2026-10-13
   and with `migration/runtime-sources/`. Report: `migration/clarify/review/survey-drift-2026-10-28.md`.
 - 641 live `.mvc.js` files. 286 have the same text, 255 have only new debugger ids, and 79 have logic changes.
-  TST added 21 files and removed 20. 19 of 155 runtime sources changed.
+  TST added 21 files and removed 20. 19 of 155 runtime sources and 1 of 16 shell sources changed.
 
 ## Decisions
 - The user ordered the check (2026-10-28, "làm từng cái 1", item 1). What to do with the drift is open.
@@ -32,4 +32,5 @@
 - The scope of the new and the removed TST screens is also the user's decision.
 
 ## Next
-- Ask the user, then the next item of the list (error handling of the data calls).
+- Open question to the user: (a), (b) or (c) for the drift (report section "Decision for the user"; (c) recommended).
+- Then item 2 of the user's list in `migration/clarify/RESUME.md` (error handling of the data calls); ask after each.

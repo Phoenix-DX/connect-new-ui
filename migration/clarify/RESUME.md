@@ -20,7 +20,16 @@ Earlier status (third session): the clarify work was complete before the fix wav
   (PlaceholderLib port, known bug B19), PD9 (rows recorded), PD10 to PD12 (known bugs B15 to B18), PD13 (Q2).
   Next: the follow-ups of `builds/README.md`.
 - Survey drift check (2026-10-28, `review/survey-drift-2026-10-28.md`): TST was published again on 2026-10-27; 79
-  files changed logic, 2 React routes copy removed screens. The user decides what to do with the drift.
+  files changed logic, 2 React routes copy removed screens. OPEN: the user chooses (a), (b) or (c) for the drift
+  (report section "Decision for the user"; (c) recommended).
+- The user's work list of 2026-10-28: one item at a time, and ask the user after each item.
+  1. Survey drift check: done; the decision is open.
+  2. Error handling of the data calls (B4 follow-up).
+  3. Merge the two custom dropdowns and add `useValidationWidget`.
+  4. SanitizedHtml `<nobr>` and the double `?` of `generateScreenURL`.
+  5. HostSurvey Tooltip and MultiResolutionImageLoader.
+  6. The inputs of DataActionGetShare.
+  7. The user's decisions: Photobook move log, `infra-gaps.md` §10.4 and §11.
 
 Open items for the user:
 - The 13 decisions of the build wave: answered 2026-10-28.

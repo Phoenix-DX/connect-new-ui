@@ -26,6 +26,7 @@ compared it with the survey and with `migration/runtime-sources/`.
 | Files added on TST | 21 |
 | Files removed from TST | 20 |
 | Runtime-sources files changed (of 155) | 19 |
+| Shell sources changed (of 16) | 1 (`UBTConnect.App_Common.controller.js`) |
 | Manifest entries added and removed | 83 and 32 |
 
 ## Routes of the React app
@@ -115,3 +116,29 @@ reports cite the screen names. Read those reports again first.
 - Live moduleinfo: `migration/runtime-sources/moduleinfo-2026-10-28.json`.
 - Data of this check: `migration/clarify/review/survey-drift/` (survey-diff, logic-changes, runtime-sources-actions,
   runtime-sources-result, impact).
+
+## Decision for the user (open, asked 2026-10-28)
+
+How to use the live code. The user asked why (c) and not (a); the answer is in the session of 2026-10-28.
+
+- (a) Update everything now: the live code becomes the source of truth, the affected flows are judged again and the
+  affected routes are captured again. It is the most correct. It also costs the most: an estimate of 5 to 8 M tokens
+  for the judges, then the captures and the builds. The next TST publish can make it stale again.
+- (b) Keep the code of 2026-10-13 as a fixed baseline and keep this report as a list for later. It is the cheapest;
+  the React app moves away from TST.
+- (c) Switch the source of truth now and mark the affected checklist rows "stale". Judge, capture and build each route
+  again only when the user orders it. Recommended (orchestrator).
+
+"Switch the source of truth" means four mechanical steps, with no change to the React code:
+1. Keep the old survey as `capture/survey-UBTConnect-2026-10-13.json`; the live copy becomes
+   `capture/survey-UBTConnect.json`.
+2. Replace the 19 changed runtime sources and the changed shell source with the live copies. Git keeps the old ones.
+3. Put the live moduleinfo in place and run `migration/tools/static_entities.py` again.
+4. Mark "stale" the checklist rows that cite a changed file.
+
+Not changed by the switch: the React code, the TST DOM captures (the parity baselines) and the clarify verdicts.
+`migration/survey/` (routes.md, screens.json) is not generated again without the user's agreement, because some files
+have manual columns. The live survey is 25 MB: committing it makes the repository larger.
+
+Separate scope questions for later: the 5 new TST screens and the 2 React routes whose TST screens are removed.
+
