@@ -170,9 +170,9 @@ depends on the Bookmarks screen (§7).
 | Blocks in React | New: `Bookmarks_Card_List` (29,751), `Bookmarks_Card_Item` (35,347), `Bookmarks_FilterSheet` (33,805). Existing: `Layout_MainPages_FixedTitle`, `App_NotificationIcon`, `FilterSheet`, `NotesSheet`, `NoteListActions`. Local to the Notes page: `Horizontal_Filter_TagList`, `FilterSheet_Icon_Label`, `ItemCard_WithNotes`, `ItemCardActions`. | `@origin` search in `app/src` |
 | Size | 94,500 characters (1,951 lines), plus 98,903 in the three new blocks | survey |
 
-What a build means: an entry change in the React bottom bar and in `FLAG_REDIRECTS`, against the user decision of
-2026-10-22. One new screen that has the structure of Notes (pills, filter sheet, cards with notes). Four blocks of the
-blocks that Bookmarks uses are local to `app/src/pages/Notes/` today.
+What a build means: an entry change in the React bottom bar and in `FLAG_REDIRECTS`. The user decision of 2026-10-22
+keeps MyBookmarks today (table above). One new screen that has the structure of Notes (pills, filter sheet, cards with
+notes). Four blocks that Bookmarks uses are local to `app/src/pages/Notes/` today.
 
 ## 8. MyBookmarks and BookmarksByGroup on TST now
 
