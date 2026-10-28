@@ -124,3 +124,4 @@ error, and the changed tests do not navigate.
   shows a helper card, so the new loader DOM of the card (Q4) is not in a captured state.
 - Seen, not changed: `components/orbit/MemberInformationCard` (Card_MemberInformation) has no loader. TST has none
   there either: the live survey has only two users of the loader (L2).
+- User decisions (2026-10-28): Q1 (a) and Q2 (a), keep TST. Q3 is closed by the folder count; Q4 by the clean sweep.

@@ -366,3 +366,5 @@ the test list above and the stories.
 - O1 (a): a pure function computes the balloon position (Floating UI stays out).
 - O2 and O3 (a): `useId()` for `name` and `data-uniqueid`; the inner ids by the PhotoLazyLoaded pattern.
 - O4 to O8: as recommended.
+- After the build (Q1, Q2 of `../builds/item5-tooltip-loader.md`): (a) for both. The blur rule and the placement class
+  after a close stay as on TST (`_onBlur`, `unsetFloatingPosition`).
