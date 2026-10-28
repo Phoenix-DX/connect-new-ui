@@ -121,3 +121,9 @@ Group A (2026-10-28): DEV = TST on every call that the MCP holds.
 
 The server actions of group A (for example Wrapper_NotificationOpened, MarkMessageAsRead, the MarkAsRead and
 MarkAllAsRead actions) are `callServerAction` calls in the TST code (R2).
+
+Group C (2026-10-28, after the user opened Connect2_Assemble_MUI in Service Studio): DEV = TST on every call.
+
+| Kind on the MCP | Names |
+|---|---|
+| IDataAction (R1) | Connect2_Assemble_MUI: GetAssembleEvent, GetAssembleEventTypes, GetAssembleMeetingSummaryList, GetSubdivisionName. Connect2_OrbitMobile_MUI: Get_EventInformation, Get_AdminEventsList, Get_EventQRCode, Get_EventsByMemberId, Get_HouseholdMembers. UBTConnect: GetAssembleNotes (Fetch AtStart) |
