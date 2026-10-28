@@ -80,7 +80,7 @@ Rules are pure functions in `src/pwa/swRoutes.ts` (unit-tested); a request no ru
 | Original images `/UBTConnect/img/*`, `/UBT_CW/img/*`, `/os-assets/*`  | cache-first, 30 days, 300 entries; HTML answers (SPA fallback) never cached |
 | `POST /api/...`, `/bff/*`, `/UBT_AppManager/*`                        | never (network only, the SW does not answer)                                |
 | `/UBTConnect/status/network-ping.txt`                                 | network-only, `cache: "no-store"`, never precached (phase 2)                |
-| Error page `/UBTConnect/_error.html` (a file, not a screen route)     | not a navigation route (`isAppNavigation`); network; demo: precache         |
+| Error page `/UBTConnect/_error.html` (a file, not a screen route)     | not a navigation route (`isAppNavigation`); precache (production and demo)  |
 | Signed URLs (`sig`, `se`, `token`, `X-Amz-Signature`…), other origins | never                                                                       |
 | Demo only                                                             | precache of every file (mock data chunk, images, mock Feed CMS)             |
 

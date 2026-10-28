@@ -393,3 +393,7 @@ proves no regression). A pixel check of `_error.html` against one TST capture (s
   no scope: ContactUsDetails (DataAction_GetLocalityTimezone, DataAction_GetCountriesNames) and LDM
   MyTimelineFilterButton (GetEventLocalitiesForFilter, then an audit). Both are IDataAction on the MCP. S5b moves both
   to the flow scope and deletes their allow-list rows.
+- Q4 reopened by the user (2026-10-28, "precache _error.html cho production"): TST precaches the page
+  (`migration/runtime-sources/UBTConnect.pwaServiceWorker.js`, `urlVersions` first row, and `urlMappings`
+  `/UBTConnect/_error.html`). `app/build/pwa.ts` PRODUCTION_PRECACHE now lists `UBTConnect/_error.html`; a production
+  build has it in `sw.js`; `npm run e2e:pwa` 9 of 9.

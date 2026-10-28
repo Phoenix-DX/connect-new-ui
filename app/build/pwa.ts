@@ -64,6 +64,9 @@ const PRODUCTION_PRECACHE = [
   'UBTConnect/css/**/*.css',
   'UBTConnect/*.{woff,woff2,ttf,otf}',
   'UBTConnect/fonts/*.{woff,woff2,ttf,otf}',
+  // The runtime error page: TST precaches it (pwaServiceWorker.js urlVersions, first row) and maps
+  // /UBTConnect/_error.html to it, so the page opens offline (item 8 S0b Q4, user 2026-10-28).
+  'UBTConnect/_error.html',
 ];
 /** The demo precaches every file (mock data chunk, images, mock embeds) so the installed demo opens offline. */
 const DEMO_PRECACHE = ['**/*'];
