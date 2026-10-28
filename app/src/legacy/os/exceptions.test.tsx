@@ -298,3 +298,43 @@ describe('a system exception that is not ignorable (ACF:119 `throw ex`, runtime 
     error.mockRestore();
   });
 });
+
+/* R6 (item8-w23-errorpage.md §1): navigateToErrorPage returns when the context is out of context (ErrorHandling
+   W322831, `isValidContext`). The flow scope of the screen or block gives the context (item 8 §3.3). */
+describe('9. the error page opens only from an active flow scope (R6)', () => {
+  const inactive = { active: () => false };
+  const active = { active: () => true };
+
+  test('a system exception of a left screen: the log only, no error page', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    act(() => {
+      raiseToFlowHandler(new SystemException('The system is unavailable'), inactive);
+    });
+    expect(getErrorPage()).toBeNull();
+    expect(getFeedbackMessage()).toBeNull();
+    expect(error).toHaveBeenCalledWith(expect.stringContaining('out of context'), expect.anything());
+  });
+
+  test('an active scope or no scope: the error page', () => {
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    act(() => {
+      raiseToFlowHandler(new SystemException('The system is unavailable'), active);
+    });
+    expect(getErrorPage()).toEqual({ message: 'The system is unavailable' });
+
+    resetErrorPage();
+    act(() => {
+      raiseToFlowHandler(new SystemException('The database is unavailable'));
+    });
+    expect(getErrorPage()).toEqual({ message: 'The database is unavailable' });
+  });
+
+  test('the other branches do not check the scope: a user exception of a left screen still shows its toast (R5)', async () => {
+    act(() => {
+      raiseToFlowHandler(new UserException('The note could not be saved'), inactive);
+    });
+    await vi.waitFor(() => {
+      expect(getFeedbackMessage()?.message).toBe('The note could not be saved.');
+    });
+  });
+});

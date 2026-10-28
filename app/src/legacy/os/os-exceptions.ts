@@ -11,6 +11,8 @@ import type { components } from '@/api/schema';
        SystemException
          IgnorableSystemException
            ViewHasChangedException
+           ControllerDisposedException
+           OutOfContextException
 
    CommunicationException, ServerException, UserException and DataBaseException extend Exception, not SystemException,
    so Handle Error: AllExceptions catches them. Every class takes (message, specificType = ''): the runtime takes the
@@ -89,6 +91,20 @@ export class IgnorableSystemException extends SystemException {
 export class ViewHasChangedException extends IgnorableSystemException {
   override get exception() {
     return 'ViewHasChangedException' as const;
+  }
+}
+/** A client action of a screen or block that is disposed (TST class W49870, thrown by ensureControllerAlive W534313).
+    The flow scope throws it too when a data action answers after the unmount (R1; item 8 §2.2, flow.fetch). */
+export class ControllerDisposedException extends IgnorableSystemException {
+  override get exception() {
+    return 'ControllerDisposedException' as const;
+  }
+}
+/** A navigation from a flow of a screen that is no longer the active one (Navigation module: navigateTo →
+    validateContext W221750; isOutOfContext W518580). R4 of item 8: no navigation, the flow stops. */
+export class OutOfContextException extends IgnorableSystemException {
+  override get exception() {
+    return 'OutOfContextException' as const;
   }
 }
 export class AbortActivityChangeException extends Exception {

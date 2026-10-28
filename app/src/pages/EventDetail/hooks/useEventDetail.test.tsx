@@ -271,7 +271,7 @@ describe('useEventDetail OnReady', () => {
     const { result } = renderFlows();
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
     expect(result.current.state.isFetchingData).toBe(true);
     expect(getUserInformation).not.toHaveBeenCalled();
   });

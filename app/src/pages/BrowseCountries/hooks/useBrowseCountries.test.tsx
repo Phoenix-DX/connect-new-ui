@@ -133,7 +133,7 @@ describe('useBrowseCountries: OnReady', () => {
     const { result } = renderFlows();
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.state.isDataFetched).toBe(false);
     expect(result.current.state.countriesStatistics).toEqual(getSkeletonList_UI_CountryStatistics(10));
   });
@@ -182,7 +182,7 @@ describe('useBrowseCountries after an unmount and in StrictMode (decision W23)',
     call.reject(error);
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(browseCountriesReducer).not.toHaveBeenCalled();
   });
 

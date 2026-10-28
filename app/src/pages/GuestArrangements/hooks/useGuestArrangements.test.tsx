@@ -158,7 +158,7 @@ describe('useGuestArrangements', () => {
     const { result } = renderFlows();
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.state).toMatchObject({ isFetchingData: true, isDataFetched: false });
   });
 
@@ -253,7 +253,7 @@ describe('useGuestArrangements after an unmount and in StrictMode (decision W23)
     call.reject(error);
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(guestArrangementsReducer).not.toHaveBeenCalled();
   });
 

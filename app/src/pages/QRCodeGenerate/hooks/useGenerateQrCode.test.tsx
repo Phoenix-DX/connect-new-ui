@@ -196,7 +196,7 @@ describe('useGenerateQrCode: OnReady and RefreshData', () => {
     const { result } = renderFlows();
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.state).toEqual(AT_CALL);
   });
 
@@ -205,7 +205,7 @@ describe('useGenerateQrCode: OnReady and RefreshData', () => {
     vi.mocked(fetchLegacySignedImageURL).mockRejectedValue(error);
     const { result } = renderFlows();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(fetchEventQRCode).not.toHaveBeenCalled();
     expect(result.current.state.isFetchingData).toBe(true);
   });
@@ -281,7 +281,7 @@ describe('useGenerateQrCode after an unmount and in StrictMode (decision W23)', 
     await settle();
     expect(fetchEventQRCode).toHaveBeenCalledTimes(1);
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
   });
 
   it('runs RefreshData once in StrictMode and shows the pass', async () => {

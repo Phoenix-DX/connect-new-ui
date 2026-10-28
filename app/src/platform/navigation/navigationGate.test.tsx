@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { act, render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
-import { createMemoryRouter, RouterProvider, type Location } from 'react-router';
+import { createMemoryRouter, RouterProvider, useNavigate, type Location } from 'react-router';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { preventNavigation } from '@/lib/navigationEvent';
 import { NavigationDialog } from '@/components/ui/Dialog';
@@ -128,10 +128,16 @@ test('AllowUpcomingNavigation: the next navigation runs without the event', asyn
     Unable to Host (OnHandle_BackNavigation → NavigateTo_Back, no PreventNavigation). */
 function BacksItself({ onBack, later = false }: { onBack: () => void; later?: boolean }) {
   const back = useNavigateBack();
+  const navigate = useNavigate();
   useBackHandler(0, () => {
     onBack();
-    // later: a browser delivers the history back after the navigation that ran the handler (popstate)
-    if (later) setTimeout(back, 0);
+    // later: a browser delivers the history back after the navigation that ran the handler (popstate). The context
+    // check of back() runs at the call, while the screen is still the current one (R4, item 8 §2.4); only the history
+    // back arrives later, so the late step is the router's own back.
+    if (later)
+      setTimeout(() => {
+        void navigate(-1);
+      }, 0);
     else back();
   });
   return <p>backs itself</p>;

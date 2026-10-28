@@ -176,7 +176,7 @@ describe('useHelperDetails: OnReady', () => {
     const { result } = renderFlows();
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current).toMatchObject({ isFetchingData: true, isDataFetched: false });
   });
 });

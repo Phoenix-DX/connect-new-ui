@@ -21,6 +21,9 @@ function browserIdx(): number | undefined {
 
 export const currentEntry = (): HistoryEntry | null => current;
 
+/** The entry `key` is the one the router shows. True when no entry is recorded (no NavigationHost, a hook test). */
+export const isCurrentEntry = (key: string): boolean => current === null || current.key === key;
+
 /** Index of a known entry; an unknown one is read from the browser history (the POP has already moved it). */
 export function entryIdx(key: string): number | undefined {
   return idxByKey.get(key) ?? (current?.key === key ? current.idx : browserIdx());

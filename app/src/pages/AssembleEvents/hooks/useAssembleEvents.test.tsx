@@ -80,7 +80,7 @@ describe('useAssembleEvents', () => {
     vi.mocked(fetchSubdivisionName).mockRejectedValueOnce(error);
     const { result } = renderFlows(OTHER);
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.subdivisionName).toBe('');
   });
 
@@ -98,7 +98,7 @@ describe('useAssembleEvents', () => {
     reject(error);
     await settle();
     expect(fetchSubdivisionName).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.subdivisionName).toBe('');
   });
 });

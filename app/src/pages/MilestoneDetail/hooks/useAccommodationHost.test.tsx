@@ -261,7 +261,7 @@ describe('useAccommodationHost: OnReady', () => {
     vi.mocked(fetchAccommodationHost).mockRejectedValue(error);
     const { result } = renderFlows();
     await flush();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(fetchAccommodationHostDocument).not.toHaveBeenCalled();
     expect(result.current.isFetchingData).toBe(true);
   });

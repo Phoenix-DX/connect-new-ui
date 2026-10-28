@@ -130,7 +130,7 @@ describe('useLocalityDetails OnReady', () => {
     const { result } = renderFlows();
     await settle();
     expect(result.current.state.get_LocalityDetails).toMatchObject({ isDataFetched: false, hasFetchError: true });
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
   });
 });
 

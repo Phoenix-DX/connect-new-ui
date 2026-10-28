@@ -139,7 +139,7 @@ describe('useAssembleEventDetail', () => {
     vi.mocked(fetchAssembleEvent).mockRejectedValueOnce(error);
     const { result } = renderFlows();
     await settle();
-    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error]]);
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([raised]) => raised)).toEqual([error]);
     expect(result.current.getAssembleEvent).toBeNull();
   });
 

@@ -51,29 +51,38 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
   - Options: `viewName` (the view cache key), `reducer`, `initial`, `parameters` (plain data; their JSON is the
     parameters key) and the optional `events`, `onReady(isAlive, restored)` and `onParametersChanged(isAlive)`.
   - Returns: `state` (rendered), `dispatch` (updates `latest` at once, saves the state, renders),
-    `latest` (newest state), `parameters` and `events` (newest inputs and event handlers). The flows read `latest`,
-    `parameters` and `events`, never the rendered values.
+    `latest` (newest state), `parameters` and `events` (newest inputs and event handlers), and `flow` (the flow
+    scope, `platform/navigation/flowScope.ts`). The flows read `latest`, `parameters` and `events`, never the rendered
+    values. A hook without reducer state gets the scope from `useFlowScope(events?)`.
   - Optional `restore(saved) => state`: OnInitialize of a restored view. The initialiser applies it to the saved
     state, so the first render of a back navigation shows the restored state. Use it when OnInitialize changes
     variables on a restored view (`hooks/useUpdatesSingleList.ts`). Do not use a `dispatch` in `onReady` for this:
     it renders the old state first. Without `restore`, the saved state is used as it is.
   - Order, as in OutSystems: OnInitialize is `initial` (a restored view starts from its saved state instead), then the
-    first render. Then `onReady` runs once (`restored` is true after a back navigation). `onParametersChanged` runs
-    only when the parameters key changes, never after the first render. `isAlive` turns false at the next run and on
-    unmount. A rejection of either flow goes to the flow handler.
+    first render. Then `onReady` runs once, also in StrictMode (`restored` is true after a back navigation).
+    `onParametersChanged` runs only when the parameters key changes, never after the first render. The `isAlive` of
+    `onReady` turns false on unmount. The `isAlive` of `onParametersChanged` also turns false at the next run. A
+    rejection of either flow goes to the flow handler with the flow scope. A hook needs no once-guard of its own.
   - Optional `beforePaint: true` (decision W28): set it when the old port of the screen or block ran OnReady in a
-    `useLayoutEffect`. The default runs it after the paint. With the option, `onReady` runs once, before the first
-    paint, also in StrictMode. A state write at its start shows in the first frame. `isAlive` is true until the
-    unmount. `restored` and the flow handler do not change, and a rejection goes to the flow handler after the unmount.
-  - Rule for `isAlive` (decision W23): `isAlive` guards state writes only.
-    - App-level side effects of a flow that already started run to the end after unmount: toast, navigation,
-      counters, notification-opened and other server calls. Do not put them behind `isAlive`.
-    - Exception (E9, user 2026-10-28): the flow-handler message of a failed data fetch is not shown after the unmount
-      (TST shows none for a screen or block that the user left). Applied to the query subscription and to
-      `containers/SupperMeetingDetails`; the other W23 flows wait for a separate decision.
-    - Use a once-guard so that StrictMode does not run them twice.
-    - Write one unit test per screen. It unmounts the screen while the flow is pending. The side effects must run
-      once and no state may change.
+    `useLayoutEffect`. The default runs it after the paint. With the option, `onReady` runs before the first paint. A
+    state write at its start shows in the first frame.
+  - Rule for a flow after the user left (item 8, flow scope; it replaces decision W23). TST rules R1–R6:
+    `migration/clarify/review/item8-w23-errorpage.md` §1. `dispatch` is a no-op after the unmount.
+
+    | The awaited call is                                                                                              | Wrap                                                                                      | Rule                    |
+    | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------- |
+    | a data action or a screen aggregate (`callAction` path `Owner/Action`; a `refetch()` or `fetchQuery` of a query) | `await flow.fetch(call)`                                                                  | R1                      |
+    | a server action (`callAction` path `Action`), a module client action, a plugin, a dialog                         | nothing                                                                                   | R2                      |
+    | an own action of this screen or block that a flow calls after an await                                           | define it with `flow.own(…)`                                                              | R3                      |
+    | a block event after an await                                                                                     | `flow.events.onX(…)`, not `events.current.onX(…)`                                         | R3                      |
+    | a navigation                                                                                                     | `navigate(…)` or `back()` as today: they throw `OutOfContextException` from a left screen | R4                      |
+    | a toast                                                                                                          | `showFeedbackMessage(…)` as today                                                         | R5                      |
+    | a widget handler that starts a flow                                                                              | `flow.run(() => handler(…))`                                                              | R6                      |
+    | a state write                                                                                                    | `dispatch(…)` as today                                                                    | no-op after the unmount |
+    - The hooks that still have W23 guards and once-guards keep them until their group step (item 8 §7.1, S1–S5).
+    - Write one unit test per screen: unmount the screen while the R1 call is pending. No side effect runs and no
+      state changes.
+
   - Example, from `containers/HouseholdDetails/hooks/useHouseholdDetails.ts`:
 
     ```ts

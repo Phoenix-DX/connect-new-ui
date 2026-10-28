@@ -212,7 +212,7 @@ describe('useHouseholdRelations', () => {
     const { result } = renderFlows();
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.isMemberDetailsLoading).toBe(false);
     expect(result.current.formerSpousesFetchStatus).toBe(DataFetchStatus.Error);
     expect(result.current.isLoading).toBe(true);
@@ -328,7 +328,7 @@ describe('useHouseholdRelations after an unmount and in StrictMode (decision W23
     answer.reject(error);
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(householdRelationsReducer).not.toHaveBeenCalled();
   });
 
@@ -348,8 +348,8 @@ describe('useHouseholdRelations after an unmount and in StrictMode (decision W23
   it('in StrictMode: one Get_MemberDetails, one Get_ParentHouseholdDetails and one event', async () => {
     const result = renderStrict();
     await settle();
-    // StrictMode ran OnReady twice; the first run stops at its liveness check after GetUserInformation_Wrapper.
-    expect(getUserInformation).toHaveBeenCalledTimes(2);
+    // useFlowState runs OnReady once in StrictMode (item 8, flow scope).
+    expect(getUserInformation).toHaveBeenCalledTimes(1);
     expect(fetchMemberRelations).toHaveBeenCalledTimes(1);
     expect(fetchSiblingRelations).toHaveBeenCalledTimes(1);
     expect(events.onRelationsDetailsFetched).toHaveBeenCalledTimes(1);

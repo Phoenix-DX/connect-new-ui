@@ -206,7 +206,7 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
     await settle();
     expect(result.current.state).toMatchObject({ isFetching: true, hasEventFetchError: true });
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(addAuditEvent_LDM).not.toHaveBeenCalled();
   });
 
@@ -328,7 +328,7 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
     const { result } = renderFlows();
     await settle();
     expect(result.current.state).toMatchObject({ isFetching: true, hasEventFetchError: true });
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(addAuditEvent_LDM).not.toHaveBeenCalled();
   });
 });
@@ -362,7 +362,7 @@ describe('useLdmEventDetail: decision W23 (unmount while the flow runs)', () => 
     event.reject(error);
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(reducerCalls()).toBe(writes);
   });
 

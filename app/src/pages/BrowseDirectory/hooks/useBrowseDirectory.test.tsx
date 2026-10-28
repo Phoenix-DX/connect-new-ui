@@ -127,7 +127,7 @@ describe('useBrowseDirectory', () => {
     vi.mocked(fetchLocalityCardList).mockRejectedValue(failure);
     const { result } = renderFlows();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
     expect(result.current.state.isDataFetched).toBe(false);
     expect(result.current.state.localities).toHaveLength(10);
   });

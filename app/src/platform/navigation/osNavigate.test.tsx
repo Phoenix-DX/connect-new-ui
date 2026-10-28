@@ -1,6 +1,10 @@
-import { act, screen, waitFor } from '@testing-library/react';
+import { useLayoutEffect } from 'react';
+import { act, renderHook, screen, waitFor } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
+import { MemoryRouter, useLocation } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
+import { OutOfContextException } from '@/legacy/os/os-exceptions';
+import { useFlowState } from './flowState';
 import {
   dateTimeParam,
   generateScreenURL,
@@ -8,6 +12,7 @@ import {
   replaceOnUpcomingNavigation,
   resetReplaceOnUpcomingNavigation,
   screenUrl,
+  useNavigateBack,
   useOsNavigate,
   type NavigationTarget,
   type OsParams,
@@ -191,4 +196,96 @@ describe('dateTimeParam (ServerDataConverter.asString(DateTime), AssembleEvents 
       `/UBTConnect/AssembleDetail?Start=${start.replaceAll(':', '%3A')}&EventId=e1&SeriesId=s1`,
     );
   });
+});
+
+/* R4 (item8-w23-errorpage.md §1): a navigation from a flow of a screen that is no longer active throws
+   OutOfContextException (navigateTo → validateContext, Navigation module W221750; isOutOfContext W518580). */
+describe('the context check of a navigation (R4, item 8 §2.4)', () => {
+  const from: { go?: ReturnType<typeof useOsNavigate>; back?: ReturnType<typeof useNavigateBack> } = {};
+  function ScreenA() {
+    const go = useOsNavigate();
+    const back = useNavigateBack();
+    useLayoutEffect(() => {
+      from.go = go;
+      from.back = back;
+    });
+    return <p>screen A</p>;
+  }
+  const screens = {
+    '/UBTConnect/A': <ScreenA />,
+    '/UBTConnect/B': <p>screen B</p>,
+    '/UBTConnect/C': <p>screen C</p>,
+  };
+
+  test('5. from the current entry the route changes; from a left entry: OutOfContextException, no route change', async () => {
+    const { at } = renderRoutes(screens, '/UBTConnect/A');
+    const { go, back } = from;
+
+    act(() => {
+      go?.('/UBTConnect/B');
+    });
+    expect(await screen.findByText('screen B')).toBeInTheDocument();
+
+    expect(() => {
+      go?.('/UBTConnect/C');
+    }).toThrow(OutOfContextException);
+    expect(() => {
+      back?.();
+    }).toThrow(OutOfContextException);
+    await act(async () => {
+      await new Promise((resolve) => setTimeout(resolve, 0));
+    });
+    expect(at()).toBe('/UBTConnect/B');
+    expect(screen.getByText('screen B')).toBeInTheDocument();
+  });
+
+  test('5. without a NavigationHost (no entry), the navigation goes through', async () => {
+    const { result } = renderHook(() => ({ go: useOsNavigate(), location: useLocation() }), {
+      wrapper: ({ children }) => <MemoryRouter initialEntries={['/UBTConnect/A']}>{children}</MemoryRouter>,
+    });
+    const { go } = result.current;
+
+    act(() => {
+      go('/UBTConnect/B');
+    });
+    await waitFor(() => {
+      expect(result.current.location.pathname).toBe('/UBTConnect/B');
+    });
+    act(() => {
+      go('/UBTConnect/C'); // the first function, after the location changed
+    });
+    await waitFor(() => {
+      expect(result.current.location.pathname).toBe('/UBTConnect/C');
+    });
+  });
+
+  /* Risk 1 of the design: NavigationHost records the entry in a layout effect, and a beforePaint OnReady runs in a
+     layout effect too. */
+  test.each([{ beforePaint: true }, { beforePaint: false }])(
+    '6. an OnReady (beforePaint $beforePaint) that navigates at once on the first screen goes through',
+    async ({ beforePaint }) => {
+      function Redirecting() {
+        const go = useOsNavigate();
+        useFlowState({
+          viewName: 'Redirecting',
+          reducer: (state: null) => state,
+          initial: null,
+          parameters: {},
+          beforePaint,
+          onReady: () => {
+            go('/UBTConnect/B', {}, { replace: true });
+            return Promise.resolve();
+          },
+        });
+        return <p>redirecting</p>;
+      }
+      const { at } = renderRoutes(
+        { '/UBTConnect/R': <Redirecting />, '/UBTConnect/B': <p>screen B</p> },
+        '/UBTConnect/R',
+      );
+
+      expect(await screen.findByText('screen B')).toBeInTheDocument();
+      expect(at()).toBe('/UBTConnect/B');
+    },
+  );
 });

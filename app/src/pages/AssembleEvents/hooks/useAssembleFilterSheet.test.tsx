@@ -131,7 +131,7 @@ describe('useAssembleFilterSheet', () => {
     vi.mocked(getCacheableRegionSubscribedCountries).mockRejectedValueOnce(error);
     const { result } = renderFlows();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.isCountriesDataFetched).toBe(false);
   });
 

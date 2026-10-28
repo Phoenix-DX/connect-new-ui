@@ -148,7 +148,7 @@ describe('useViewDocuments', () => {
     vi.mocked(fetchEventDocuments).mockRejectedValueOnce(error);
     const { result } = await loaded();
     expect(result.current.state).toMatchObject({ isFetchingData: true, isDataFetched: false });
-    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error]]);
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([raised]) => raised)).toEqual([error]);
   });
 
   it('StrictMode: OnReady runs once and the documents come', async () => {
@@ -309,7 +309,7 @@ describe('useViewDocuments', () => {
     const error = new CommunicationException('offline');
     answer.reject(error);
     await settle();
-    expect(vi.mocked(raiseToFlowHandler).mock.calls).toEqual([[error]]);
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([raised]) => raised)).toEqual([error]);
     expect(viewDocumentsReducer).not.toHaveBeenCalled();
   });
 });

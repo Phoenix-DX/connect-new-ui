@@ -145,7 +145,7 @@ describe('useTransportDetail', () => {
     const { result } = renderFlows();
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current).toMatchObject({ title: 'Pick-up to the hall', isFetchingData: true, isDataFetched: false });
   });
 
@@ -224,7 +224,7 @@ describe('useTransportDetail after an unmount and in StrictMode (decision W23)',
     answer.reject(error);
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(transportDetailReducer).not.toHaveBeenCalled();
   });
 

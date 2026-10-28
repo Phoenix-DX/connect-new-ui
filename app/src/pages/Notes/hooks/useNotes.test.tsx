@@ -197,7 +197,7 @@ describe('useNotes: OnInitialize and OnReady', () => {
     vi.mocked(get_Note_DynamicFilter_YearOptions).mockRejectedValueOnce(failure);
     const { result } = renderFlows();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
     expect(fetchNotePills).not.toHaveBeenCalled();
     expect(fetchNoteCards).not.toHaveBeenCalled();
     expect(result.current.state.isInitialized).toBe(false);

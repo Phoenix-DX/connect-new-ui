@@ -1059,3 +1059,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-28,clarify-item8,analyze,190409,w23-D-sonnet,sonnet,"item 8 W23 inventory group D (13 hooks), 58 calls"
 2026-10-28,clarify-item8,spec,192510,design-fable,fable,"item 8 flow scope + error page design (item8-solution.md), 17 calls"
 2026-10-28,clarify-item8,other,52375,ste-sonnet,sonnet,"item 8 STE fixes of item8-solution.md, 29 calls"
+2026-10-28,clarify-item8,build,214506,build-S0a-opus,opus,"item 8 S0a platform flow scope, tests first, 103 calls (over budget)"

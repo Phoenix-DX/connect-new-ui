@@ -96,7 +96,7 @@ describe('usePhotobook', () => {
     call.reject(error);
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.isLoading).toBe(true);
     expect(result.current.households).toBeNull();
   });

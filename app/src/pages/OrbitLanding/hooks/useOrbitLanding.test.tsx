@@ -202,7 +202,7 @@ describe('useOrbitLanding', () => {
     const error = new CommunicationException('offline');
     vi.mocked(fetchEventsByMemberId).mockRejectedValueOnce(error);
     const { result } = await loaded();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.state.isFetchingData).toBe(true);
   });
 
@@ -408,7 +408,7 @@ describe('useOrbitLanding and decision W23', () => {
     answer.reject(error);
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(orbitLandingReducer).not.toHaveBeenCalled();
   });
 

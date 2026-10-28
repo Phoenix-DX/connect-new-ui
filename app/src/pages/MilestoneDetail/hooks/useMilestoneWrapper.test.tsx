@@ -166,7 +166,7 @@ describe('useMilestoneWrapper', () => {
     const error = new Error('Request failed with status 500');
     call.reject(error);
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.body).toEqual({ kind: 'skeleton' });
   });
 });
@@ -192,7 +192,7 @@ describe('useMilestoneWrapper after an unmount and in StrictMode (decision W23)'
     const error = new Error('Request failed with status 500');
     call.reject(error);
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(milestoneWrapperReducer).not.toHaveBeenCalled();
   });
 

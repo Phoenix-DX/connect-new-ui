@@ -183,7 +183,7 @@ describe('useLdmEventEmail', () => {
     vi.mocked(fetchEventEmailCoordinator).mockRejectedValueOnce(error);
     renderBlock();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(document.querySelector('[id="b1-$b5"]')).not.toBeNull();
     fireEvent.click(screen.getByRole('button', { name: /try again/i }));
     await settle();
@@ -311,7 +311,7 @@ describe('useLdmEventEmail', () => {
     await settle();
     expect(ldmEventEmailReducer).not.toHaveBeenCalled();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
   });
 
   it('W23: a send that ends after the unmount still runs its events, message and navigation once', async () => {
