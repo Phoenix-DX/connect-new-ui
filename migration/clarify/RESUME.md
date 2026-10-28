@@ -37,7 +37,10 @@ Earlier status (third session): the clarify work was complete before the fix wav
      TST when the test account has a host survey.
   4. SanitizedHtml `<nobr>` and the double `?` of `generateScreenURL`: done 2026-10-28 (`review/item4-findings.md`).
      Both are TST behaviours that React ports 1:1; the user keeps them (known original bugs B20, B21).
-  5. HostSurvey Tooltip and MultiResolutionImageLoader.
+  5. HostSurvey Tooltip and MultiResolutionImageLoader: done 2026-10-28 (`review/item5-tooltip-loader.md` §4; design
+     `review/item5-solution.md`, approved by the user; note `builds/item5-tooltip-loader.md`). Shared
+     `components/ui/Tooltip` and `components/ui/MultiResolutionImageLoader`; ci green (4437 tests), parity 64 of 64
+     clean. Not checked on TST (no Orbit event on the test account).
   6. The inputs of DataActionGetShare.
   7. The user's decisions: Photobook move log, `infra-gaps.md` §10.4 and §11.
 

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { MultiResolutionImageLoader } from '@/components/ui/MultiResolutionImageLoader';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { DirectoryAPIFilter } from '@/lib/orbit/staticEntities';
 import { osImage } from '@/lib/os-assets';
@@ -29,17 +30,16 @@ const photoImgClass = (type: string): string =>
       ? 'host-information-image'
       : '';
 
-/** A photo that loads its signed URL, props only, with Connect2_LegacyShared Widgets.MultiResolutionImageLoader
-    inside: the root "multi-resolution-image-loader" is "-loading" with the Loading placeholder (the static
-    User_rectangle image) until an image of ImagesToLoad with a src loads; then the root is "-loaded" and the loaded
-    image gets "multi-resolution-image-loader-loaded" (InitializeJS of the loader).
+/** A photo that loads its signed URL, props only, with the shared Connect2_LegacyShared
+    Widgets.MultiResolutionImageLoader inside (L2): Loading = the static User_rectangle image, ImagesToLoad = the
+    LoadedPhotoURL image (PhotoLazyLoaded.mvc.js:206-237, no error placeholder, so HandleImageLoadError gives it the
+    default User_rectangle image).
     OnReady: with LoadedPhotoURL "", GetCacheableSignedImageURL(Id, Type, Size) → LoadedPhotoURL.
     @origin Connect2_OrbitMobile_MUI.Orbit_Generic_Blocks.PhotoLazyLoaded */
 export function PhotoLazyLoaded({ id, inId, inType, inSize, getSignedImageURL, onImageClicked }: PhotoLazyLoadedProps) {
   const prefix = id.replace('$', '');
   const imgClass = photoImgClass(inType);
   const [loadedPhotoURL, setLoadedPhotoURL] = useState('');
-  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     let alive = true;
@@ -53,28 +53,18 @@ export function PhotoLazyLoaded({ id, inId, inType, inSize, getSignedImageURL, o
 
   return (
     <OSBlock name="Orbit_Generic_Blocks.PhotoLazyLoaded" id={id}>
-      <OSBlock name="Widgets.MultiResolutionImageLoader" id={`${prefix}-$b1`}>
-        <div
-          className={`multi-resolution-image-loader multi-resolution-image-loader-${loaded ? 'loaded' : 'loading'}`}
-          data-container=""
-          id={`${prefix}-b1-Root`}
-        >
-          <div id={`${prefix}-b1-Loading`}>
-            <img className={imgClass} src={osImage(LOADING_IMAGE)} alt="" />
-          </div>
-          <div id={`${prefix}-b1-ImagesToLoad`}>
-            <img
-              className={`${imgClass}${loaded ? ' multi-resolution-image-loader-loaded' : ''}`}
-              src={loadedPhotoURL !== '' ? loadedPhotoURL : undefined}
-              alt=""
-              onLoad={(e) => {
-                if (e.currentTarget.getAttribute('src')) setLoaded(true);
-              }}
-              onClick={onImageClicked}
-            />
-          </div>
-        </div>
-      </OSBlock>
+      <MultiResolutionImageLoader
+        id={`${prefix}-$b1`}
+        loading={<img className={imgClass} src={osImage(LOADING_IMAGE)} alt="" />}
+        imagesToLoad={
+          <img
+            className={imgClass}
+            src={loadedPhotoURL !== '' ? loadedPhotoURL : undefined}
+            alt=""
+            onClick={onImageClicked}
+          />
+        }
+      />
     </OSBlock>
   );
 }

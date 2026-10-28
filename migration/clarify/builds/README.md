@@ -86,8 +86,9 @@ Gates: `npm run ci` green (4338 tests, 0 new unused exports, build OK); the 64-r
   number. B9 (open): DataActionGetShare sends only ShareId and HasAccessToDeceasedHousehold.
 - B2 (done by the orchestrator): the FooterWithActions and NoResults clones merged into `components/orbit`; `npm run
   dup` is under its limit again.
-- B2: the dropdown merge is done (item 3, 2026-10-28). Open: the OutSystems UI 2.23 Tooltip (duplicate room
-  name) and MultiResolutionImageLoader (Card_MemberInformation_Survey) are minimal ports to complete. The instance ids
+- B2: the dropdown merge is done (item 3, 2026-10-28). The Tooltip and the MultiResolutionImageLoader are done (item
+  5, 2026-10-28; `item5-tooltip-loader.md`, design `../review/item5-solution.md`). Both are shared components in
+  `components/ui/`; PhotoLazyLoaded and Card_MemberInformation_Survey use the one loader. Open: the instance ids
   inside the data-step lists are `l<list>_<row>` without the runtime counter (no capture shows them).
 - B3 (done by the orchestrator): `api/event/index.ts` exports `milestoneBlocks.ts`; the page imports `@/api/event`.
 - B3 (closed 2026-10-28, item 4): two TST behaviours that React ports 1:1. They are the `<nobr>` of the shared

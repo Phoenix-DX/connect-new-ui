@@ -14,6 +14,7 @@ import {
   withNotValidClass,
   type WidgetValidationRecord,
 } from '@/components/ui/os/OSValidation';
+import { Tooltip, type TooltipHandle } from '@/components/ui/Tooltip';
 import type { StepProperties } from '@/pages/HostSurvey/hooks/hostSurveyState';
 import type { LocalBedSize, LocalGenderPreference, LocalHouseFloor } from '@/platform/storage/localEntities';
 import { createValidationMessage } from './actions';
@@ -123,7 +124,8 @@ export function HostSurvey_AccommodationItem(props: HostSurvey_AccommodationItem
   const [bedMessages, setBedMessages] = useState<readonly string[]>([]);
   /** InvalidateField JS: the room name input gets " not-valid" without a message (same room name). */
   const [roomNameForced, setRoomNameForced] = useState(false);
-  const [tooltipOpen, setTooltipOpen] = useState(false);
+  /** Tooltip_UniqueName (T1): TooltipOpen and TooltipClose go through its handle. */
+  const tooltipRef = useRef<TooltipHandle>(null);
   const timeoutObject = useRef<number | undefined>(undefined);
   const latest = useRef({ edit, props });
   useLayoutEffect(() => {
@@ -144,7 +146,7 @@ export function HostSurvey_AccommodationItem(props: HostSurvey_AccommodationItem
     if (inputId === ids.roomName) {
       setRecord(ids.roomName, r.Name !== '', r.Name === '' ? createValidationMessage('Room name', false) : '');
       setRoomNameForced(false);
-      setTooltipOpen(false);
+      tooltipRef.current?.close();
     } else if (inputId === ids.arrangements) {
       const valid = r.GenderPreference !== '';
       setRecord(ids.arrangements, valid, valid ? '' : createValidationMessage('Sleeping Arrangements', true));
@@ -163,10 +165,11 @@ export function HostSurvey_AccommodationItem(props: HostSurvey_AccommodationItem
     return bad.indexOf(true);
   };
 
-  /** DelayTootlip(IsOpen): the tooltip opens (or closes) 500 ms later. */
+  /** DelayTootlip(IsOpen) (T2): 500 ms later, TooltipOpen or TooltipClose of Tooltip_UniqueName. */
   const delayTooltip = (isOpen: boolean) => {
     timeoutObject.current = window.setTimeout(() => {
-      setTooltipOpen(isOpen);
+      if (isOpen) tooltipRef.current?.open();
+      else tooltipRef.current?.close();
     }, 500);
   };
   // OnDestroy: clearTimeout(TimeoutObject).
@@ -355,19 +358,14 @@ export function HostSurvey_AccommodationItem(props: HostSurvey_AccommodationItem
           <label className="mandatory" data-label="" htmlFor={ids.roomName}>
             Room Name
           </label>
-          <OSBlock name="Content.Tooltip" id={ids.tooltip}>
-            <div
-              className="osui-tooltip"
-              onClick={() => {
-                setTooltipOpen((o) => !o);
-              }}
-            >
-              <div className="osui-tooltip__content">
-                <i className="icon orbit-icon-circle-warning" data-icon="" />
-              </div>
-              {tooltipOpen && <div className="osui-tooltip__balloon-wrapper">Room name must be unique.</div>}
-            </div>
-          </OSBlock>
+          <Tooltip
+            id={ids.tooltip}
+            ref={tooltipRef}
+            trigger="OnClick"
+            position="top"
+            content={<i className="icon orbit-icon-circle-warning" data-icon="" />}
+            tooltip="Room name must be unique."
+          />
         </div>
         <span className="input-text">
           <input

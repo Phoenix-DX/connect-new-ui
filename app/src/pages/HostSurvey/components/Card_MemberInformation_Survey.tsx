@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchLegacySignedImageURL } from '@/api/image';
+import { MultiResolutionImageLoader } from '@/components/ui/MultiResolutionImageLoader';
 import { OSBlock } from '@/components/ui/os/OSBlock';
 import { osImage } from '@/lib/os-assets';
 import { cardMemberInformationOnReady, MEMBER_PHOTO_PLACEHOLDER } from '@/lib/orbit/actions';
@@ -25,8 +26,8 @@ export const surveyMemberLocation = (m: MemberInformation): string => {
     MultiResolutionImageLoader (loading: the static User image; images to load: LoadedPhotoURL with the User image as
     error placeholder), then `member-info-text-cont` with the name and `member-info-location
     orbit-host-survey-member-location`). The photo and the text raise ClickedMember(In_MemberInformation.HouseholderId).
-    OnReady (CMS controller): LoadedPhotoURL as Card_MemberInformation (`cardMemberInformationOnReady`). The
-    MultiResolutionImageLoader of Connect2_LegacyShared has no port: both slots render, as in MemberInformationCard. */
+    OnReady (CMS controller): LoadedPhotoURL as Card_MemberInformation (`cardMemberInformationOnReady`). The loader
+    instance (CMS view :195-231, L3) shows the User image until the photo loads, then the photo only. */
 export function Card_MemberInformation_Survey({
   id,
   inMemberInformation,
@@ -67,15 +68,18 @@ export function Card_MemberInformation_Survey({
           style={{ cursor: 'pointer' }}
           onClick={clickMember}
         >
-          <div id={`${scope}-$b1`}>
-            <img className="member-info-img" data-image="" src={osImage(MEMBER_PHOTO_PLACEHOLDER)} />
-            <img
-              className="member-info-img"
-              data-error-placeholder-src={osImage(MEMBER_PHOTO_PLACEHOLDER)}
-              data-image=""
-              src={loadedPhotoURL === '' ? undefined : loadedPhotoURL}
-            />
-          </div>
+          <MultiResolutionImageLoader
+            id={`${scope}-$b1`}
+            loading={<img className="member-info-img" data-image="" src={osImage(MEMBER_PHOTO_PLACEHOLDER)} />}
+            imagesToLoad={
+              <img
+                className="member-info-img"
+                data-error-placeholder-src={osImage(MEMBER_PHOTO_PLACEHOLDER)}
+                data-image=""
+                src={loadedPhotoURL === '' ? undefined : loadedPhotoURL}
+              />
+            }
+          />
         </div>
         <div className="member-info-text-cont" data-container="" style={{ cursor: 'pointer' }} onClick={clickMember}>
           <div className="member-info-name" data-container="">

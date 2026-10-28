@@ -109,6 +109,10 @@ licence). Never edit the copies.
 Why vendored: the original customises PanZoom (options that upstream does not have), and npm stops at Virtual Select
 1.1.0. Behaviour must match the original, so the app keeps the same file.
 
+Not vendored: Floating UI, as bundled by OutSystems UI 2.23. The Tooltip pattern uses only its offset, arrow and flip
+middlewares. `src/components/ui/Tooltip/balloonPosition.ts` re-implements them as a pure function. The user chose
+this on 2026-10-28 (decision O1 a, `migration/clarify/review/item5-solution.md`).
+
 How to upgrade: upgrade only together with the original app.
 
 1. Fetch the new file as a plain static GET.

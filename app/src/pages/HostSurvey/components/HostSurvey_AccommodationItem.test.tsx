@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import type { HostSurveyRoom } from '@/api/event';
 import { HostSurvey_AccommodationItem, type HostSurvey_AccommodationItemProps } from './HostSurvey_AccommodationItem';
@@ -101,6 +101,42 @@ describe('HostSurvey_AccommodationItem', () => {
       <HostSurvey_AccommodationItem {...q} inStepProperties={{ IsEdit: true, TrySave: true, HasData: false }} />,
     );
     expect(q.onSaveFailed).toHaveBeenCalledWith(true);
+  });
+
+  it('a same room name opens the Tooltip 500 ms later (DelayTootlip, T2); typing in the room name closes it', () => {
+    vi.useFakeTimers();
+    try {
+      const filled = {
+        ...newRoom,
+        Name: 'sunrise suite',
+        GenderPreference: 'MALE',
+        Floor: 'ground',
+        NumberOfBeds: '1',
+        Beds: ['SINGLE'],
+      };
+      const p = props({ inHostSurvey_Room: filled });
+      const { container, rerender } = render(<HostSurvey_AccommodationItem {...p} />);
+      const tooltip = container.querySelector('#b2-l1_1-b9-Tooltip_UniqueName .osui-tooltip') as HTMLElement;
+      expect(tooltip.querySelector('.osui-tooltip__balloon-wrapper__balloon')?.textContent).toBe(
+        'Room name must be unique.',
+      );
+      rerender(
+        <HostSurvey_AccommodationItem {...p} inStepProperties={{ IsEdit: true, TrySave: true, HasData: false }} />,
+      );
+      expect(p.onSaveFailed).toHaveBeenCalledWith(true);
+      act(() => {
+        vi.advanceTimersByTime(499);
+      });
+      expect(tooltip).not.toHaveClass('osui-tooltip--is-open');
+      act(() => {
+        vi.advanceTimersByTime(1);
+      });
+      expect(tooltip).toHaveClass('osui-tooltip--is-open');
+      fireEvent.change(screen.getByPlaceholderText('Provide a room name'), { target: { value: 'Garden Room' } });
+      expect(tooltip).not.toHaveClass('osui-tooltip--is-open');
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it('choosing the number of beds adds one Bed Type dropdown per bed', () => {

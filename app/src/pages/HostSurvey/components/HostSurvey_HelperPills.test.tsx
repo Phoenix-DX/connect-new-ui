@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import { Card_MemberInformation_Survey, surveyMemberLocation, surveyMemberName } from './Card_MemberInformation_Survey';
 import { HostSurvey_HelperPills, helperLocationText } from './HostSurvey_HelperPills';
@@ -68,6 +68,37 @@ describe('Card_MemberInformation_Survey', () => {
     screen.getByText('Nora Pérez').click();
     expect(clicked).toBe('91002');
     expect(screen.getByText('Bahia Blanca (Argentina)')).toBeInTheDocument();
+  });
+  it('wraps the photo in a MultiResolutionImageLoader: the User image while -loading, then the photo (L1, L3)', async () => {
+    const photoURL = 'https://publicimageconnect.s3.ap-southeast-2.amazonaws.com/memberMock.png';
+    const { container } = render(
+      <Card_MemberInformation_Survey
+        id="b1-$b3"
+        inMemberInformation={{ MemberId: '91002', HouseholderId: '91002', SignedPhotoURL: photoURL }}
+      />,
+    );
+    const loader = container.querySelector('[data-block="Widgets.MultiResolutionImageLoader"]') as HTMLElement;
+    expect(loader.id).toBe('b1-b3-$b1');
+    expect(loader.parentElement).toHaveClass('member-info-img-cont');
+    const root = container.querySelector('#b1-b3-b1-Root') as HTMLElement;
+    expect(root.className).toBe('multi-resolution-image-loader multi-resolution-image-loader-loading');
+    const userImage = container.querySelector('#b1-b3-b1-Loading img') as HTMLImageElement;
+    expect(userImage.className).toBe('member-info-img');
+    expect(userImage.getAttribute('src')).toContain('Connect2_LegacyShared.User.png');
+    const photo = container.querySelector('#b1-b3-b1-ImagesToLoad img') as HTMLImageElement;
+    expect(photo.getAttribute('data-error-placeholder-src')).toBe(userImage.getAttribute('src'));
+    await waitFor(() => {
+      expect(photo).toHaveAttribute('src', photoURL);
+    });
+    const complete = Object.getOwnPropertyDescriptor(HTMLImageElement.prototype, 'complete');
+    Object.defineProperty(HTMLImageElement.prototype, 'complete', { configurable: true, get: () => true });
+    try {
+      fireEvent.load(photo);
+    } finally {
+      if (complete) Object.defineProperty(HTMLImageElement.prototype, 'complete', complete);
+    }
+    expect(root.className).toBe('multi-resolution-image-loader multi-resolution-image-loader-loaded');
+    expect(photo.className).toBe('member-info-img multi-resolution-image-loader-loaded');
   });
   it('builds the name and location as the original expressions', () => {
     expect(surveyMemberName({ FirstName: '', LastName: 'Pérez' })).toBe('Pérez');
