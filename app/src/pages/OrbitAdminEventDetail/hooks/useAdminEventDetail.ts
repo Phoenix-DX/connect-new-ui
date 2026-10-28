@@ -67,7 +67,7 @@ export function useAdminEventDetail(inputs: AdminEventDetailInputs): AdminEventD
     initial: INITIAL_ADMIN_EVENT_DETAIL_STATE,
     parameters: inputs,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** RefreshData: IsFetchingData True, Get_EventInformation, OnAfterFetch_Get_EventInformation. The call sends the

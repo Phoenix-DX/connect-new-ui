@@ -60,7 +60,7 @@ export function useLocalityHouseholdList(
     initial: INITIAL_LOCALITY_HOUSEHOLD_LIST,
     parameters: { localityId },
     events,
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   async function onReady(restored: boolean) {

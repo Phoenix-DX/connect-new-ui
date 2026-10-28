@@ -287,4 +287,78 @@ describe('flow.alive, flow.active and flow.run', () => {
       expect.objectContaining({ active: expect.any(Function) as unknown }),
     );
   });
+
+  /* User, 2026-10-28 (S3b Q1 (a)): a synchronous throw of the flow goes to the flow handler as a rejection does. */
+  test('run sends a synchronous throw of the flow to the flow handler with the scope', () => {
+    render(<Probe />, { wrapper: MemoryRouter });
+    const scope = probe.current;
+    const error = new Error('thrown before the first await');
+
+    expect(() => {
+      scope?.run(() => {
+        throw error;
+      });
+    }).not.toThrow();
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, scope);
+  });
+
+  test('run of an own action after the unmount: its ControllerDisposedException goes to the handler, no error page', () => {
+    const { unmount } = render(<Probe />, { wrapper: MemoryRouter });
+    const scope = probe.current;
+    const refresh = vi.fn(() => Promise.resolve());
+    const ownRefresh = scope?.own(refresh) ?? refresh;
+    unmount();
+
+    expect(() => {
+      scope?.run(ownRefresh);
+    }).not.toThrow();
+    expect(refresh).not.toHaveBeenCalled();
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(ControllerDisposedException), scope);
+    expect(showErrorPage).not.toHaveBeenCalled();
+  });
+});
+
+/* S5 (item8-solution.md §9, S1b Q1): a widget that awaits the flow (a list waits for OnScrollEnding, a swipe item
+   keeps its class until the flow ends) gets the promise of the flow; the error goes to the flow handler as in run. */
+describe('flow.runAwaited: a flow whose promise the widget awaits', () => {
+  test('resolves with the value of the flow, and only when the flow settles', async () => {
+    render(<Probe />, { wrapper: MemoryRouter });
+    const call = pendingCall<number>();
+    let settled = false;
+    const result = probe.current
+      ?.runAwaited(() => call.promise)
+      .then((value) => {
+        settled = true;
+        return value;
+      });
+    await flush();
+    expect(settled).toBe(false);
+
+    call.resolve(7);
+
+    await expect(result).resolves.toBe(7);
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  test('a rejection goes to the flow handler with the scope; the promise resolves to undefined', async () => {
+    render(<Probe />, { wrapper: MemoryRouter });
+    const scope = probe.current;
+    const error = new SystemException('GetMessages failed');
+
+    await expect(scope?.runAwaited(() => Promise.reject(error))).resolves.toBeUndefined();
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, scope);
+  });
+
+  test('a synchronous throw goes to the flow handler with the scope; the promise resolves to undefined', async () => {
+    const { unmount } = render(<Probe />, { wrapper: MemoryRouter });
+    const scope = probe.current;
+    const ownRefresh = scope?.own(() => Promise.resolve('fetched'));
+    unmount();
+
+    const result = scope?.runAwaited(() => ownRefresh?.() ?? Promise.resolve(undefined));
+
+    await expect(result).resolves.toBeUndefined();
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(ControllerDisposedException), scope);
+    expect(showErrorPage).not.toHaveBeenCalled();
+  });
 });

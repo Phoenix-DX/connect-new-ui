@@ -32,7 +32,7 @@ export function useAssembleDetail(blockId: string, assembleEventTypeTile: string
     reducer: assembleDetailReducer,
     initial: INITIAL_ASSEMBLE_DETAIL_STATE,
     parameters: { assembleEventTypeTile },
-    onReady: (_isAlive, restored) => {
+    onReady: (_flow, restored) => {
       if (!restored) dispatch(initializeFromPreload(getPreloadObject(), parameters.current.assembleEventTypeTile));
       return Promise.resolve();
     },

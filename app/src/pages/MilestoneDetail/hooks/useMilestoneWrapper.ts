@@ -38,7 +38,7 @@ export function useMilestoneWrapper(inputs: MilestoneDetailInputs): MilestoneWra
     initial: INITIAL_MILESTONE_WRAPPER_STATE,
     parameters: inputs,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
     // The old port ran OnReady in a layout effect: from a notification, the first frame is the skeleton.
     beforePaint: true,
   });

@@ -72,7 +72,7 @@ export function useAssembleSummaryList(
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** Refresh GetAssembleMeetingSummaryList for a page, with the newest filter, range and time zone, and its

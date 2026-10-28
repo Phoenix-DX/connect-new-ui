@@ -1,5 +1,4 @@
 import { fetchSubdivisionCards, type SubdivisionCard } from '@/api/locality';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { setPreloadObject, useFlowState, useOsNavigate } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import {
@@ -49,7 +48,7 @@ export function useLocalitySubdivisions(
     reducer: localitySubdivisionsReducer,
     initial: INITIAL_LOCALITY_SUBDIVISIONS,
     parameters: { localityId },
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** Refresh Get_Subdivision_List, then OnAfterFetch_Get_Subdivision_List. */
@@ -85,11 +84,8 @@ export function useLocalitySubdivisions(
   return {
     list: state.subdivision_Card_List,
     isLoading: state.subdivision_Card_List_IsLoading,
-    // As flow.run, but the list waits for the promise: the error goes to the flow handler with the flow scope.
-    onScrollEnding: () =>
-      onScrollEnding().catch((e: unknown) => {
-        raiseToFlowHandler(e, flow);
-      }),
+    // The list waits for the promise; the error goes to the flow handler with the flow scope.
+    onScrollEnding: () => flow.runAwaited(onScrollEnding),
     onClickSubdivision,
   };
 }

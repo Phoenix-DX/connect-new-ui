@@ -8,7 +8,6 @@ import {
   useFlowState,
   useNavigateBack,
   useOsNavigate,
-  type IsAlive,
 } from '@/platform/navigation';
 import { onInitializeSharingScreen } from './connectShareActions';
 import {
@@ -54,7 +53,7 @@ export function useConnectShare(inputs: ConnectShareInputs): ConnectShareView {
      only replaces the liveness check, so the first flow writes the state while the screen is there and calls
      Get_ShareDetails once. */
   const initializeStarted = useRef(false);
-  const newestRun = useRef<IsAlive>(() => true);
+  const newestRun = useRef<() => boolean>(() => true);
   const alertTimer = useRef<number | undefined>(undefined);
   const { state, dispatch, latest, parameters } = useFlowState({
     viewName: 'Legacy_Share.ConnectShare',
@@ -62,8 +61,8 @@ export function useConnectShare(inputs: ConnectShareInputs): ConnectShareView {
     initial: INITIAL_CONNECT_SHARE_STATE,
     parameters: inputs,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => {
-      newestRun.current = isAlive;
+    onReady: (flow, restored) => {
+      newestRun.current = flow.alive;
       if (initializeStarted.current) return Promise.resolve();
       initializeStarted.current = true;
       return onInitialize(restored)

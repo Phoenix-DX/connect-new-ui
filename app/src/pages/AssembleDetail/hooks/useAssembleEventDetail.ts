@@ -45,7 +45,7 @@ export function useAssembleEventDetail(
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   async function onReady(restored: boolean) {

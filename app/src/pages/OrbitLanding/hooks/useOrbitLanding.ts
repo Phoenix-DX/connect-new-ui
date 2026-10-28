@@ -84,7 +84,7 @@ export function useOrbitLanding(events: OrbitLandingEvents): OrbitLandingFlows {
     parameters: null,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (_isAlive, restored) => {
+    onReady: (_flow, restored) => {
       /* A view restored with the Get_EventsByMemberId answer does nothing. A view left before that answer comes back
          with its saved variables and runs OnReady again. */
       // restored without data: call again (F40; OutSystems keeps the skeleton)

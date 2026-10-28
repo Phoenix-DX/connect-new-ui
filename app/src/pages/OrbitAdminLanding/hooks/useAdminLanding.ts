@@ -48,7 +48,7 @@ export function useAdminLanding(events: AdminLandingEvents): AdminLandingFlows {
     parameters: null,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** Refresh_GetEventsByMemberId: Get_AdminEventsList, then OnAfterFetch_Get_AdminEventsList. */

@@ -28,8 +28,13 @@ export interface FlowScope<E = undefined> {
       handler that the parent did not give does nothing. */
   events: E;
   /** A flow that a widget event starts: runs it and sends an unhandled error to the flow handler with this scope
-      (R6 context). */
+      (R6 context). A synchronous throw goes there too, for example the ControllerDisposedException of an own action
+      (`flow.own`) that a widget calls after the unmount (user, 2026-10-28, S3b Q1 (a)). */
   run: (flow: () => Promise<void>) => void;
+  /** As `run`, for a widget that awaits the flow (a list waits for its OnScrollEnding, a swipe item keeps its class
+      until the flow ends). It returns the promise of the flow: the value of the flow, or `undefined` after it sent
+      the error (a rejection or a synchronous throw) to the flow handler with this scope. It never rejects. */
+  runAwaited: <T>(flow: () => Promise<T>) => Promise<T | undefined>;
 }
 
 type Handler = (...args: unknown[]) => unknown;
@@ -83,11 +88,23 @@ function createFlowInstance<E>(active: () => boolean, initialEvents: E | undefin
       },
     events: eventsProxy,
     run: (flow) => {
-      flow().catch((error: unknown) => {
-        raiseToFlowHandler(error, scope);
-      });
+      void runAwaited(flow);
     },
+    runAwaited,
   };
+  /* The flow starts at once, in the call of the widget event, as before; only its error goes to the handler. */
+  function runAwaited<T>(flow: () => Promise<T>): Promise<T | undefined> {
+    const raise = (error: unknown): undefined => {
+      raiseToFlowHandler(error, scope);
+      return undefined;
+    };
+    try {
+      return flow().catch(raise);
+    } catch (error) {
+      raise(error);
+      return Promise.resolve(undefined);
+    }
+  }
   return {
     scope,
     setDisposed: (next) => {

@@ -49,7 +49,7 @@ export function useAssembleEvents(inputs: AssembleEventsBlockInputs): AssembleEv
     initial: INITIAL_STATE,
     parameters: inputs,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** OnReady. useFlowState sends a rejection to the flow handler. */

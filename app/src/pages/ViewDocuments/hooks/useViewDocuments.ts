@@ -83,7 +83,7 @@ export function useViewDocuments(
     initial: INITIAL_VIEW_DOCUMENTS_STATE,
     parameters: inputs,
     beforePaint: true,
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** OnReady. useFlowState sends a rejection to the flow handler. */

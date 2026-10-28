@@ -53,7 +53,7 @@ export function useGenerateQrCode(inputs: QRCodeGenerateInputs): GenerateQrCodeF
     parameters: inputs,
     beforePaint: true,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
   const qrCodeImageURL = useBinaryImageURL(state.qrCodeData.QRCodeAsBinary);
 

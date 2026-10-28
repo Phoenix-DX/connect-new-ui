@@ -302,16 +302,6 @@ export function useMessageList(
     }
   };
 
-  /** A flow that a widget event starts and whose Promise the widget awaits (OSListItem keeps the class "active" until
-      it settles; OSList starts no new OnScrollEnding before): an unhandled error goes to the flow handler with the
-      flow scope, as `flow.run` does. */
-  const runAwaited =
-    <A extends unknown[]>(handler: (...args: A) => Promise<void>) =>
-    (...args: A): Promise<void> =>
-      handler(...args).catch((error: unknown) => {
-        raiseToFlowHandler(error, flow);
-      });
-
   return {
     variables: state.variables,
     messagesList: state.messagesList,
@@ -340,13 +330,15 @@ export function useMessageList(
     onDismissWarning: () => {
       dispatch({ type: 'warningDismissed' });
     },
-    onSwipeEventsClear: runAwaited(swipeEventsClear),
+    // `flow.runAwaited`: the widget awaits the flow (OSListItem keeps the class "active" until it settles; OSList
+    // starts no new OnScrollEnding before). An unhandled error goes to the flow handler with the flow scope.
+    onSwipeEventsClear: (messageInstanceId) => flow.runAwaited(() => swipeEventsClear(messageInstanceId)),
     onMarkAllRead: () => {
       flow.run(onClickMarkAllAsRead);
     },
-    onGoToMessageDetail: runAwaited(onClickGoToMessageDetail),
-    onSwipeEventsRead: runAwaited(swipeEventsRead),
-    onScrollEnding: runAwaited(onScrollEnding),
+    onGoToMessageDetail: (messageInstanceId) => flow.runAwaited(() => onClickGoToMessageDetail(messageInstanceId)),
+    onSwipeEventsRead: (messageInstanceId) => flow.runAwaited(() => swipeEventsRead(messageInstanceId)),
+    onScrollEnding: () => flow.runAwaited(onScrollEnding),
     onMessageSort: (isAscending) => {
       dispatch({ type: 'sortChanged', isAscending });
     },

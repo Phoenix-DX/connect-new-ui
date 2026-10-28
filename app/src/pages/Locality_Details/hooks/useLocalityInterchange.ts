@@ -34,7 +34,7 @@ export function useLocalityInterchange(interchangeLocalityId: string): LocalityI
     reducer: localityInterchangeReducer,
     initial: INITIAL_LOCALITY_INTERCHANGE,
     parameters: { interchangeLocalityId },
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   async function onReady(restored: boolean) {

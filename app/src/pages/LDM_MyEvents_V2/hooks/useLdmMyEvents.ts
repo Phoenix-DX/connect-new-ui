@@ -4,7 +4,6 @@ import { NotRegisteredException, UserException, exceptionMessage, isSystemExcept
 import type { HouseholdClick } from '@/pages/LDM_MyEvents_V2/components/EventCard_V2';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState } from '@/platform/navigation';
 import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/lib/orbit/actions';
 import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
@@ -119,13 +118,8 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
     parameters: NO_PARAMETERS,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
-
-  /** The flows that the timeline waits for: an error goes to the flow handler with the scope (as `flow.run`). */
-  const raise = (e: unknown) => {
-    raiseToFlowHandler(e, flow);
-  };
 
   /** Refresh Query GetEventsForMyTimeline: a failed fetch sets HasFetchError; OnAfterFetch replaces or appends the
       lists. */
@@ -207,10 +201,11 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
 
   return {
     state,
-    onScrollEnding: () => onScrollEndingMyTimeline().catch(raise),
-    onSwipeUp: () => onHandleSwipeUp().catch(raise),
-    onMyTimelineFilter: (selectedFilters) => onHandleMyTimelineFilter(selectedFilters).catch(raise),
-    onResetFilters: (resetFilters) => onHandleResetFilters(resetFilters).catch(raise),
+    // The flows that the timeline waits for: an error goes to the flow handler with the scope.
+    onScrollEnding: () => flow.runAwaited(onScrollEndingMyTimeline),
+    onSwipeUp: () => flow.runAwaited(onHandleSwipeUp),
+    onMyTimelineFilter: (selectedFilters) => flow.runAwaited(() => onHandleMyTimelineFilter(selectedFilters)),
+    onResetFilters: (resetFilters) => flow.runAwaited(() => onHandleResetFilters(resetFilters)),
     onEventClicked: (eventHostId, eventId) => {
       addAuditEvent_LDM('MyTimelineEventClicked', { EventHostId: eventHostId });
       flow.events.onNavigateToEventDetail(eventHostId, eventId);

@@ -25,10 +25,11 @@
     "graph": "depcruise src --config .dependency-cruiser.cjs --output-type json --output-to docs/refactor/graph.json",
     "arch": "depcruise src --config .dependency-cruiser.cjs --output-type err --ignore-known",
     "lint:arch": "npm run arch && eslint .",
-    "ci": "npm run gen:api && npm run typecheck && npm run lint && npm run arch && npm run arch:baselines && npm run dup && npm run unused && npm run flags && npm run format:check && npm run test && vite build",
+    "ci": "npm run gen:api && npm run typecheck && npm run lint && npm run arch && npm run arch:baselines && npm run dup && npm run unused && npm run flags && npm run flow-fetch && npm run format:check && npm run test && vite build",
     "arch:baselines": "node build/check-arch-baselines.mjs && python3 ../migration/tools/refactor/arch_baseline.py check --strict",
     "dup": "jscpd",
     "flags": "node build/check-flags.mjs",
+    "flow-fetch": "node build/check-flow-fetch.mjs",
     "unused": "knip --include files,dependencies,unlisted,unresolved,binaries,duplicates && node build/check-unused-exports.mjs"
   },
   "dependencies": {

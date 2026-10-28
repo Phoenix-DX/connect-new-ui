@@ -123,7 +123,7 @@ export function useEventBooklet(
     events,
     // OnReady runs once, before the first paint, as in the old port (W28).
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
     beforePaint: true,
   });
 

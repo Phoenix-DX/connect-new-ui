@@ -121,7 +121,7 @@ export function useAccommodationHost(
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
     // The old port ran OnReady in a layout effect: the first frame is the skeleton.
     beforePaint: true,
   });

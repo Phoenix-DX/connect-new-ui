@@ -111,7 +111,7 @@ export function useEventDetail(
     events,
     beforePaint: true,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** OnReady. A view restored from the cache does nothing (pattern P-BACK). Otherwise IsFetchingData True (before the

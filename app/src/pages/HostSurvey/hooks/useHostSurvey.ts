@@ -159,7 +159,7 @@ export function useHostSurvey(inputs: HostSurveyInputs, events: HostSurveyEvents
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
     beforePaint: true,
   });
 

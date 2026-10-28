@@ -1,6 +1,5 @@
 import { useEffect, useRef } from 'react';
 import { fetchNoteCards, fetchNotePills, type NotePillTag, type NotesFilter } from '@/api/note';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, useOsNavigate } from '@/platform/navigation';
 import { currentUserId } from '@/platform/session/session';
 import {
@@ -175,9 +174,7 @@ export function useNotes(): NotesFlows {
     onLoadMore: async () => {
       if (!canLoadMore(latest.current)) return;
       dispatch({ pageNumber: latest.current.pageNumber + 1 });
-      await refreshGetNotes().catch((error: unknown) => {
-        raiseToFlowHandler(error, flow);
-      });
+      await flow.runAwaited(refreshGetNotes);
     },
     onClickNoteCardItem: (objectId, objectType) => {
       const target = noteCardTarget(objectId, objectType);

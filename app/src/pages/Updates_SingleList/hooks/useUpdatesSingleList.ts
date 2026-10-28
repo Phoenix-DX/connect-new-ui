@@ -88,7 +88,7 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
     restore: (saved) => restoreUpdatesSingleListState(saved, getPreloadObject()),
     parameters: null,
     // useFlowState runs OnReady once per screen instance, also when StrictMode runs the effects twice.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
   /* The flows read the newest variables (state is the rendered copy). */
   const m = (): UpdatesSingleListState => latest.current;

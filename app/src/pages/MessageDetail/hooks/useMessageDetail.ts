@@ -145,7 +145,7 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
     parameters: inputs,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (_isAlive, restored) => {
+    onReady: (_flow, restored) => {
       restoredView.current = restored;
       return onReady(restored);
     },

@@ -9,7 +9,7 @@ import {
 import type { DataFetchStatus } from '@/components/ui/os/OSList';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { isViewHasChangedException } from '@/platform/feedback/flowErrors';
-import { useFlowState, useOsNavigate, useWasRestoredFromCache, type IsAlive } from '@/platform/navigation';
+import { useFlowState, useOsNavigate, useWasRestoredFromCache } from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { hasAccessToRegion } from '@/lib/ubtConnect/actions';
@@ -83,7 +83,7 @@ export interface HouseholdRelationsFlows {
     the unmount their answer and their failure are dropped, so OnAfterFetch_Get_MemberDetails (the event
     RelationsDetails_Fetched, the sibling refresh, Actions_DefineLoading) does not run (HouseholdRelations_Block.js:
     1695-1740). After GetUserInformation_Wrapper (a module action), Action_Refresh_Get_MemberDetails is an own action
-    of the block (R3, ensureControllerAlive): the `isAlive` check of OnReady stops there. HasAccessToRegion and the
+    of the block (R3, ensureControllerAlive): the `flow.alive()` check of OnReady stops there. HasAccessToRegion and the
     upgrade popup are module actions: they run after leaving. The navigation from a left screen does not happen (R4,
     useOsNavigate). useFlowState runs OnReady once, also in StrictMode. */
 export function useHouseholdRelations(
@@ -99,7 +99,7 @@ export function useHouseholdRelations(
     parameters: { householdId, memberId },
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => onReady(isAlive, restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** The block variables that the data actions send, as they are now. */
@@ -152,9 +152,9 @@ export function useHouseholdRelations(
   /** ScreenEvent_OnReady: GetUserInformation_Wrapper (after the app start's own step), then, unless the view is
       restored from the cache with the same age visibility, UserAge_Visibility and Action_Refresh_Get_MemberDetails
       (Actions_DefineLoading(True), then the refresh of Get_MemberDetails). */
-  const onReady = async (isAlive: IsAlive, restored: boolean) => {
+  const onReady = async (restored: boolean) => {
     const userInformation = await getUserInformation(); // a module action: not wrapped
-    if (!isAlive()) return; // R3: Action_Refresh_Get_MemberDetails is an own action of the block
+    if (!flow.alive()) return; // R3: Action_Refresh_Get_MemberDetails is an own action of the block
     // The wrapper returns the cached record: its Directory_UserCurrent is the action's UserInformation output.
     const displayAge = userInformation.Directory_UserCurrent.Directory_UserCurrent_Visibility.DisplayAge;
     if (restored && displayAge === latest.current.UserAge_Visibility) return;

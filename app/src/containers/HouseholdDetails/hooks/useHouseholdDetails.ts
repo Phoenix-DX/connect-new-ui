@@ -78,7 +78,8 @@ export function useHouseholdDetails(
     parameters: inputs,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => onInitialize(isAlive, restored),
+    // OnReady gets the `flow` that this call returns: `scope.alive()` is false after the unmount.
+    onReady: (scope, restored) => onInitialize(scope.alive, restored),
     onParametersChanged: (isAlive) => onParametersChanged(isAlive),
   });
   const navigate = useOsNavigate();

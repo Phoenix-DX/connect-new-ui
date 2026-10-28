@@ -301,7 +301,7 @@ describe('useFlowState dispatch after the unmount', () => {
 });
 
 describe('useFlowState OnReady', () => {
-  type ReadyFlow = (isAlive: IsAlive, restored: boolean) => Promise<void>;
+  type ReadyFlow = (flow: FlowScope, restored: boolean) => Promise<void>;
 
   function ReadyScreen({ id, onReady }: { id: string; onReady: ReadyFlow }) {
     useFlowState({ viewName: 'Counter', reducer: counterReducer, initial: INITIAL, parameters: { id }, onReady });
@@ -310,8 +310,8 @@ describe('useFlowState OnReady', () => {
 
   test('runs once, after the first render', () => {
     const seen: string[] = [];
-    const onReady = (isAlive: IsAlive, restored: boolean) => {
-      seen.push(`ready: ${document.body.textContent}, alive ${String(isAlive())}, restored ${String(restored)}`);
+    const onReady = (flow: FlowScope, restored: boolean) => {
+      seen.push(`ready: ${document.body.textContent}, alive ${String(flow.alive())}, restored ${String(restored)}`);
       return Promise.resolve();
     };
     const { rerender } = render(<ReadyScreen id="A" onReady={onReady} />, { wrapper: inRouter });
@@ -322,21 +322,22 @@ describe('useFlowState OnReady', () => {
     expect(seen).toHaveLength(1);
   });
 
-  test('isAlive turns false on unmount', () => {
-    let isAlive: IsAlive = () => true;
+  /* S5 (item 8 §6, point 4 (a)): OnReady gets the flow scope of the instance in place of `isAlive`. */
+  test('OnReady gets the flow scope of the instance; flow.alive() turns false on unmount', () => {
+    const ready: { current: FlowScope | null } = { current: null };
     const { unmount } = render(
       <ReadyScreen
         id="A"
-        onReady={(alive) => {
-          isAlive = alive;
+        onReady={(flow) => {
+          ready.current = flow;
           return Promise.resolve();
         }}
       />,
       { wrapper: inRouter },
     );
-    expect(isAlive()).toBe(true);
+    expect(ready.current?.alive()).toBe(true);
     unmount();
-    expect(isAlive()).toBe(false);
+    expect(ready.current?.alive()).toBe(false);
   });
 
   test('restored is true after a back-navigation remount, false on a new visit', async () => {
@@ -348,7 +349,7 @@ describe('useFlowState OnReady', () => {
         reducer: counterReducer,
         initial: INITIAL,
         parameters: {},
-        onReady: (_isAlive, restored) => {
+        onReady: (_flow, restored) => {
           restoredValues.push(restored);
           return Promise.resolve();
         },
@@ -432,7 +433,7 @@ describe.each([
   { beforePaint: false, mode: 'after the paint (default)' },
   { beforePaint: true, mode: 'before the paint' },
 ])('useFlowState OnReady $mode', ({ beforePaint }) => {
-  type ReadyFlow = (isAlive: IsAlive, restored: boolean, dispatch: (action: CounterAction) => void) => Promise<void>;
+  type ReadyFlow = (flow: FlowScope, restored: boolean, dispatch: (action: CounterAction) => void) => Promise<void>;
 
   function ModeScreen({
     onReady,
@@ -451,7 +452,7 @@ describe.each([
       initial: INITIAL,
       parameters: {},
       beforePaint,
-      onReady: (isAlive, restored) => onReady(isAlive, restored, flow.dispatch),
+      onReady: (scope, restored) => onReady(scope, restored, flow.dispatch),
     });
     if (scope) scope.current = flow.flow;
     const { state } = flow;
@@ -472,7 +473,7 @@ describe.each([
   }
 
   /** OnReady writes the state at its start, then waits for an answer that never comes. */
-  const loadingFlow: ReadyFlow = (_isAlive, _restored, dispatch) => {
+  const loadingFlow: ReadyFlow = (_flow, _restored, dispatch) => {
     dispatch({ type: 'add', by: 1 });
     return new Promise<void>(() => undefined);
   };
@@ -524,28 +525,28 @@ describe.each([
   });
 
   /* Item 8 §2.3: the once-guard is in useFlowState, in both modes. */
-  test('7. StrictMode runs OnReady once; isAlive and flow.alive() stay true through the remount, false after the unmount', () => {
-    const checks: IsAlive[] = [];
+  test('7. StrictMode runs OnReady once; flow.alive() stays true through the remount, false after the unmount', () => {
+    const ready: FlowScope[] = [];
     const scope: { current: FlowScope | null } = { current: null };
     const { unmount } = render(
       <StrictMode>
         <MemoryRouter>
           <ModeScreen
             scope={scope}
-            onReady={(isAlive) => {
-              checks.push(isAlive);
+            onReady={(flow) => {
+              ready.push(flow);
               return Promise.resolve();
             }}
           />
         </MemoryRouter>
       </StrictMode>,
     );
-    expect(checks.map((check) => check())).toEqual([true]);
-    expect(scope.current?.alive()).toBe(true);
+    expect(ready.map((flow) => flow.alive())).toEqual([true]);
+    // The scope that OnReady gets is the `flow` that useFlowState returns.
+    expect(ready[0]).toBe(scope.current);
 
     unmount();
-    expect(checks.map((check) => check())).toEqual([false]);
-    expect(scope.current?.alive()).toBe(false);
+    expect(ready.map((flow) => flow.alive())).toEqual([false]);
   });
 
   /* Item 8 (design A, user 2026-10-28) in place of decision W23: an await that is not wrapped (a server action, R2)
@@ -562,7 +563,7 @@ describe.each([
     const { unmount } = render(
       <ModeScreen
         reducer={reducer}
-        onReady={async (_isAlive, _restored, dispatch) => {
+        onReady={async (_flow, _restored, dispatch) => {
           dispatch({ type: 'add', by: 1 });
           await answered;
           sideEffect();
@@ -599,7 +600,7 @@ describe.each([
         initial: INITIAL,
         parameters: {},
         beforePaint,
-        onReady: (_isAlive, restored) => {
+        onReady: (_flow, restored) => {
           restoredValues.push(restored);
           return Promise.resolve();
         },

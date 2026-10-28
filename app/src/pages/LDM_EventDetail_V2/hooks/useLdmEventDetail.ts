@@ -106,7 +106,7 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
     parameters: inputs,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** Fetch at start and OnReady. `restored` is the flag of useFlowState: the restored re-run makes the same calls and

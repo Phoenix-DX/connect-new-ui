@@ -6,8 +6,9 @@ import { useViewState, useWasRestoredFromCache } from './hooks';
 /* The standard state of a flow hook (docs/guides/page-template.md): the state of a screen or block, its OnReady and
    OnParametersChanged flows, in one hook, so that the pages do not copy the refs and effects. */
 
-/** Tells a running flow whether it is still current. It turns false when the screen or block unmounts, and for
-    OnParametersChanged also when the same trigger runs again: the flow then stops before it assigns anything. */
+/** Tells a running OnParametersChanged flow whether it is still current. It turns false when the screen or block
+    unmounts, and also when the same trigger runs again: the older run then stops before it assigns anything (item 8
+    §6, point 5 (a), user 2026-10-28). OnReady gets the flow scope instead (`flow.alive`). */
 export type IsAlive = () => boolean;
 
 /** The options of {@link useFlowState}. The OutSystems order is kept: OnInitialize (`initial`), the first render,
@@ -28,10 +29,10 @@ export interface FlowStateOptions<S, A, P, E = undefined> {
   parameters: P;
   /** The event handlers that the parent gives (the block events). The flows call the newest ones through `events`. */
   events?: E;
-  /** OnReady. It runs once per instance, after the first render, also in StrictMode (dev). `isAlive` is the scope's
-      `alive`: true until the unmount. `restored` is true when the view cache restored the view (a back navigation),
-      false on a new visit. */
-  onReady?: (isAlive: IsAlive, restored: boolean) => Promise<void>;
+  /** OnReady. It runs once per instance, after the first render, also in StrictMode (dev). `flow` is the flow scope
+      of the instance, the same object as the `flow` that the hook returns (`flow.alive()` is true until the unmount).
+      `restored` is true when the view cache restored the view (a back navigation), false on a new visit. */
+  onReady?: (flow: FlowScope<E>, restored: boolean) => Promise<void>;
   /** Runs `onReady` before the first paint (decision W28). Set it when the old port of the screen or block ran OnReady
       in a `useLayoutEffect`. The hook reads it at the mount only; `onParametersChanged` does not change.
       - Off (the default): `onReady` runs in a passive effect, after the paint.
@@ -56,7 +57,8 @@ export interface FlowState<S, A, P, E = undefined> {
   parameters: { readonly current: P };
   /** The newest event handlers, which the flows call. */
   events: { readonly current: E };
-  /** The flow scope of the instance (flowScope.ts): `flow.fetch`, `flow.own`, `flow.events`, `flow.run`. */
+  /** The flow scope of the instance (flowScope.ts): `flow.fetch`, `flow.own`, `flow.events`, `flow.run`,
+      `flow.runAwaited`. OnReady gets the same object. */
   flow: FlowScope<E>;
 }
 
@@ -114,14 +116,14 @@ export function useFlowState<S, A, P, E = undefined>({
   useLayoutEffect(() => {
     if (!beforePaintRef.current || readyStarted.current) return;
     readyStarted.current = true;
-    flowsRef.current.onReady?.(flow.alive, restoredRef.current).catch((e: unknown) => {
+    flowsRef.current.onReady?.(flow, restoredRef.current).catch((e: unknown) => {
       raiseToFlowHandler(e, flow);
     });
   }, [flow]);
   useEffect(() => {
     if (beforePaintRef.current || readyStarted.current) return;
     readyStarted.current = true;
-    flowsRef.current.onReady?.(flow.alive, restoredRef.current).catch((e: unknown) => {
+    flowsRef.current.onReady?.(flow, restoredRef.current).catch((e: unknown) => {
       raiseToFlowHandler(e, flow);
     });
   }, [flow]);

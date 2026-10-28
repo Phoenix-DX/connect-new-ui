@@ -128,7 +128,7 @@ export function useBookmarkGroup(
     parameters: { bookmarkGroup },
     events,
     // The flows are defined below; the hook calls the ones of the newest render (once per block: useFlowState).
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** PutCachedMyBookmarks(BookmarkGroup, BookmarkedItems): the Connect2_LegacyShared cache of BookmarkItem records. */

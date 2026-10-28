@@ -54,7 +54,8 @@ export function useShareObjectDetail(
     parameters: inputs,
     events,
     // GetShare is fetched at start, after OnInitialize; the hook calls the flows of the newest render.
-    onReady: (isAlive) => refreshGetShare(isAlive),
+    // OnReady gets the `flow` that this call returns: `scope.alive()` is false after the unmount.
+    onReady: (scope) => refreshGetShare(scope.alive),
     onParametersChanged: (isAlive) => refreshGetShare(isAlive),
   });
 

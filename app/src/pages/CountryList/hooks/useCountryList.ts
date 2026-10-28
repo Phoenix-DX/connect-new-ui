@@ -70,7 +70,7 @@ export function useCountryList(): CountryListFlows {
     reducer: countryListReducer,
     initial: INITIAL_COUNTRY_LIST_STATE,
     parameters: null,
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** Action_RefreshData. */

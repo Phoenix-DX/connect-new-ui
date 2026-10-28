@@ -102,7 +102,7 @@ export function useAssembleFilter(blockId: string, events: AssembleFilterEvents)
     parameters: null,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** FetchCountries: an own client action of the block (R3). */

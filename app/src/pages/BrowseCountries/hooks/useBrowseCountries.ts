@@ -38,7 +38,7 @@ export function useBrowseCountries(): BrowseCountriesFlows {
     initial: INITIAL_BROWSE_COUNTRIES_STATE,
     parameters: null,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** Action_RefreshData. */

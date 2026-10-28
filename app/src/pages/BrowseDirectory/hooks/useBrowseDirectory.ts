@@ -60,7 +60,7 @@ export function useBrowseDirectory(inputs: BrowseDirectoryInputs): BrowseDirecto
     initial: INITIAL_BROWSE_DIRECTORY_STATE,
     parameters: inputs,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** Action_RefreshData: the skeleton list (10 rows), then the data action and its OnAfterFetch. */

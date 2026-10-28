@@ -1071,3 +1071,4 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-28,clarify-item8,build,207940,build-S3c-opus,opus,"item 8 S3c Orbit admin/landing/QR 5 hooks, 53 calls"
 2026-10-28,clarify-item8,build,200170,build-S4a-opus,opus,"item 8 S4a Orbit events 5 hooks + N3, 63 calls"
 2026-10-28,clarify-item8,build,244022,build-S4b-opus,opus,"item 8 S4b LDM/milestones/docs 8 hooks, 63 calls"
+2026-10-28,clarify-item8,build,177268,build-S5a-opus,opus,"item 8 S5a platform: run sync throw, runAwaited, onReady(flow), flow-fetch check, 46 calls"

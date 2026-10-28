@@ -1,5 +1,4 @@
 import { fetchOneSchoolCards, type LocalityTimezone, type OneSchoolCard } from '@/api/locality';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState } from '@/platform/navigation';
 import {
   INITIAL_LOCALITY_ONESCHOOL_GLOBAL,
@@ -41,7 +40,7 @@ export function useLocalityOneSchoolGlobal(inputs: LocalityOneSchoolGlobalParame
     reducer: localityOneSchoolGlobalReducer,
     initial: INITIAL_LOCALITY_ONESCHOOL_GLOBAL,
     parameters: inputs,
-    onReady: (_isAlive, restored) => onReady(restored),
+    onReady: (_flow, restored) => onReady(restored),
   });
 
   /** Refresh Get_OneSchoolGlobal_List, then OnAfterFetch_Get_OneSchoolGlobal_List. */
@@ -67,10 +66,7 @@ export function useLocalityOneSchoolGlobal(inputs: LocalityOneSchoolGlobalParame
   return {
     schools: state.out_OneSchoolGlobal_List2,
     isLoading: state.get_OneSchoolGlobal_List_IsLoading,
-    // As flow.run, but the list waits for the promise: the error goes to the flow handler with the flow scope.
-    onScrollEnding: () =>
-      onScrollEnding().catch((e: unknown) => {
-        raiseToFlowHandler(e, flow);
-      }),
+    // The list waits for the promise; the error goes to the flow handler with the flow scope.
+    onScrollEnding: () => flow.runAwaited(onScrollEnding),
   };
 }
