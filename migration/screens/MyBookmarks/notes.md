@@ -10,3 +10,4 @@
 - 2026-10-21T11:04:39 spec-done (5 answer(s) covered)
 - 2026-10-21T11:14:39 spec-done (5 answer(s) covered)
 - 2026-10-21T11:32:03 spec-done (5 answer(s) covered)
+- 2026-10-28 set decision=skip, reason=removed on TST 2026-10-27 (HTTP 404); replaced by Bookmarks; React route to be removed (user, 2026-10-28)

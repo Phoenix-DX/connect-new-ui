@@ -2,7 +2,7 @@
 
 Lean status table. Long notes live in `screens/<Screen>/notes.md`. Change rows with `scripts/board.py set`, not by hand, so parallel agents do not overwrite each other. Agents start only on `Decision = build`.
 
-Complexity left on build rows not yet built: 0
+Complexity left on build rows not yet built: 117
 
 | Screen | Route | Wave | Cx | Tier | Decision | Reason | Status | Owner |
 |---|---|---|---|---|---|---|---|---|
@@ -43,14 +43,14 @@ Complexity left on build rows not yet built: 0
 | PINChange | `/UBTConnect/PINChange` | 5 | 33 | lite | build | V4c · D3 menu part, consistent with V1 (mock PIN); biometrics on web decided in Phase 4 (user, 2026-10-14) | built | route-pinchange |
 | Profile | `/UBTConnect/Profile` | 5 | 151 | full | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-profile |
 | TermsAndPoliciesMenu | `/UBTConnect/TermsAndPoliciesMenu` | 5 | 55 | lite | build | V4c · menu / contact, reachable on TST; writes mocked (user, 2026-10-14) | built | route-termsandpoliciesmenu |
-| BookmarksByGroup | `/UBTConnect/BookmarksByGroup` | 6 | 115 | full | build | V3d · D2(a): TST branch (C2NewBookmarks=false, LD BookmarkNote=false); tab always opens MyBookmarks (user, 2026-10-14) | built | route-bookmarksbygroup |
-| MyBookmarks | `/UBTConnect/MyBookmarks` | 6 | 85 | full | build | V3d · D2(a): TST branch (C2NewBookmarks=false, LD BookmarkNote=false); tab always opens MyBookmarks (user, 2026-10-14) | built | route-mybookmarks |
+| BookmarksByGroup | `/UBTConnect/BookmarksByGroup` | 6 | 115 | full | skip | removed on TST 2026-10-27 (HTTP 404); replaced by Bookmarks; React route to be removed (user, 2026-10-28) | - | route-bookmarksbygroup |
+| MyBookmarks | `/UBTConnect/MyBookmarks` | 6 | 85 | full | skip | removed on TST 2026-10-27 (HTTP 404); replaced by Bookmarks; React route to be removed (user, 2026-10-28) | - | route-mybookmarks |
 | ConnectShare | `/UBTConnect/ConnectShare` | 7 | 62 | lite | build | V6 · D10(a): entry for external share links (ConnectSharing/Details → UBTConnect/ConnectShare, TST controller); routes to built screens (user, 2026-10-14) | built | route-connectshare |
 | LegacyShareObject | `/UBTConnect/LegacyShareObject` | 7 | 71 | full | build | V3e · share button target of 12 in-scope screens; ShareObject (write) mocked (user, 2026-10-14) | built | route-legacyshareobject |
 | AssembleDetail | `/UBTConnect/AssembleDetail` |  | 139 | full | build | Assemble is not a separate app either (UBTConnect screens with Connect2_Assemble_MUI blocks); build (user, 2026-10-16) | built | route-assembledetail |
 | AssembleEvents | `/UBTConnect/AssembleEvents` |  | 121 | full | build | Assemble is not a separate app either (UBTConnect screens with Connect2_Assemble_MUI blocks); build (user, 2026-10-16) | built | route-assemble |
 | Assemble_BrowseByCountry | `/UBTConnect/Assemble_BrowseByCountry` |  | 64 | lite | build | Assemble is not a separate app either (UBTConnect screens with Connect2_Assemble_MUI blocks); build (user, 2026-10-16) | built | route-assemble |
-| Bookmarks | `/UBTConnect/Bookmarks` |  | 117 |  | skip | V3d · D2 · skip:variant · branch 1, revisit if C2NewBookmarks=true (needs bottom bar routing: foundation CR) (user, 2026-10-14) | - |  |
+| Bookmarks | `/UBTConnect/Bookmarks` |  | 117 |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | - |  |
 | CommunityBusinessDetails | `/UBTConnect/CommunityBusinessDetails` |  | 64 |  | skip | V7 · skip:dead · zDEV flow; live links open CoomingSoon; revisit if TST links the real screen (user, 2026-10-14) | - |  |
 | ContactByEmailContacts | `/UBTConnect/ContactByEmailContacts` |  | 29 |  | skip | V7 · skip:dead · only link in Locality_LocalityContacts, not embedded on TST; revisit if the block appears (user, 2026-10-14) | - |  |
 | ContactByEmailLDMCoordinator | `/UBTConnect/ContactByEmailLDMCoordinator` |  | 25 | lite | build | LDM family (UI in the Orbit module Connect2_OrbitMobile_MUI); build with Orbit (user, 2026-10-16) | built | route-ldm-forms |
@@ -75,10 +75,15 @@ Complexity left on build rows not yet built: 0
 | MyCalendar | `/UBTConnect/MyCalendar` |  | 85 |  | skip | V7 · skip:dead · replaced by MyEntertaining; revisit if a link to MyCalendar appears (user, 2026-10-14) | - |  |
 | New_BookmarksByGroup | `/UBTConnect/New_BookmarksByGroup` |  | 94 |  | skip | V3d · D2 · skip:variant · branch 2, revisit if LD mobileDirectoryBookmarkNote=true and C2NewBookmarks=false (user, 2026-10-14) | - |  |
 | New_MyBookmarks | `/UBTConnect/New_MyBookmarks` |  | 85 |  | skip | V3d · D2 · skip:variant · branch 2, revisit if LD mobileDirectoryBookmarkNote=true and C2NewBookmarks=false (user, 2026-10-14) | - |  |
+| NotificationDetails | `/UBTConnect/NotificationDetails` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | - |  |
+| OneSchoolGlobalCarousel | `/UBTConnect/OneSchoolGlobalCarousel` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | - |  |
 | OneSchoolGlobalEventDetail | `/UBTConnect/OneSchoolGlobalEventDetail` |  | 35 |  | skip | V7 · skip:dead · no way in, input unused; revisit if a link appears (user, 2026-10-14) | - |  |
 | OrbitAdminEventDetail | `/UBTConnect/OrbitAdminEventDetail` |  | 76 | lite | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbit-admin |
 | OrbitAdminLanding | `/UBTConnect/OrbitAdminLanding` |  | 75 | lite | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbit-admin |
+| OrbitAdminMilestoneDetail | `/UBTConnect/OrbitAdminMilestoneDetail` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | - |  |
+| OrbitAdminMilestones | `/UBTConnect/OrbitAdminMilestones` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | - |  |
 | OrbitLanding | `/UBTConnect/OrbitLanding` |  | 83 | full | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbitlanding |
+| PassportScan | `/UBTConnect/PassportScan` |  |  |  | build | TST deployed it 2026-10-27; build (user, 2026-10-28; migration/clarify/review/item10-new-screens.md) | - |  |
 | PersonalEventDetails | `/UBTConnect/PersonalEventDetails` |  | 59 |  | skip | V7 · skip:dead · Deprecated_Calendar_PersonalEvent, only from dead screens; C2EnablePersonalEvents=false on TST (user, 2026-10-14) | - |  |
 | PersonalEventForm | `/UBTConnect/PersonalEventForm` |  | 108 |  | skip | V7 · skip:dead · Deprecated_Calendar_PersonalEvent, only from dead screens; C2EnablePersonalEvents=false on TST (user, 2026-10-14) | - |  |
 | QRCodeGenerate | `/UBTConnect/QRCodeGenerate` |  | 61 | lite | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbit-lite-2 |
@@ -89,8 +94,3 @@ Complexity left on build rows not yet built: 0
 | TransportDetail | `/UBTConnect/TransportDetail` |  | 62 | lite | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbit-lite-2 |
 | ViewDocuments | `/UBTConnect/ViewDocuments` |  | 62 | lite | build | Orbit is not an embedded/separate app: its screens are UBTConnect screens (same SPA) using Connect2_OrbitMobile_MUI blocks; build (user, 2026-10-16) | built | route-orbit-lite-2 |
 | ViewEventList | `/UBTConnect/ViewEventList` |  | 6 |  | skip | V7 · skip:dead · Deprecated_Calendar_PersonalEvent, only from dead screens; C2EnablePersonalEvents=false on TST (user, 2026-10-14) | - |  |
-| NotificationDetails | `/UBTConnect/NotificationDetails` |  |  |  | skip | V8 · skip:dev-only · exists on DEV only (flow App_Notifications); no compiled file on TST, no survey route; revisit when TST deploys it (user, 2026-10-27) | - |  |
-| OneSchoolGlobalCarousel | `/UBTConnect/OneSchoolGlobalCarousel` |  |  |  | skip | V8 · skip:dev-only · exists on DEV only (flow Directory_OneSchoolGlobal); no compiled file on TST, no survey route; revisit when TST deploys it (user, 2026-10-27) | - |  |
-| OrbitAdminMilestoneDetail | `/UBTConnect/OrbitAdminMilestoneDetail` |  |  |  | skip | V8 · skip:dev-only · exists on DEV only (flow Legacy_OrbitAdminFlow); no compiled file on TST, no survey route; revisit when TST deploys it (user, 2026-10-27) | - |  |
-| OrbitAdminMilestones | `/UBTConnect/OrbitAdminMilestones` |  |  |  | skip | V8 · skip:dev-only · exists on DEV only (flow Legacy_OrbitAdminFlow); no compiled file on TST, no survey route; revisit when TST deploys it (user, 2026-10-27) | - |  |
-| PassportScan | `/UBTConnect/PassportScan` |  |  |  | skip | V8 · skip:dev-only · exists on DEV only (flow Legacy_OrbitEventsFlow); no compiled file on TST, no survey route; revisit when TST deploys it (user, 2026-10-27) | - |  |
