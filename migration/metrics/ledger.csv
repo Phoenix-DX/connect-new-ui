@@ -1045,3 +1045,9 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-28,clarify-build-advisors,review,67635,advisor-fable,fable,"build wave 2026-10-28: 12 pending decisions, 10 calls"
 2026-10-28,clarify-build-knip,fix,61466,knip-sonnet,sonnet,"build wave 2026-10-28: 74 new unused exports cleared, 30 stale rows, 20 calls"
 2026-10-28,clarify-build-pd8-advisor,review,67624,fable,fable,PD8: PlaceholderLib endless recursion and the mock delimiters; advice (a)
+2026-10-28,clarify-item2,spec,164346,design-fable,fable,"item 2 data-call errors: Fable design (item2-solution.md), 25 calls"
+2026-10-28,clarify-item2,spec,174993,design-fable-e9,fable,"item 2: Fable follow-up (E9 late failures, section 8), 5 calls"
+2026-10-28,clarify-item3,spec,189004,design-fable,fable,"item 3 shared Custom Dropdown: Fable design (item3-solution.md), 40 calls"
+2026-10-28,clarify-item3,build,231601,build-opus,opus,"item 3 build OSDropdownCustom + useValidationWidget, 125 calls"
+2026-10-28,clarify-item5,spec,216902,design-fable,fable,"item 5 Tooltip + MultiResolutionImageLoader: Fable design (item5-solution.md), 70 calls"
+2026-10-28,clarify-item5,build,299373,build-opus,opus,"item 5 build Tooltip + loader, tests first, 127 calls"
