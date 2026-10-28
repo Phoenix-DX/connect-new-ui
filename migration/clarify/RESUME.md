@@ -125,3 +125,15 @@ Open items for the user:
 | `tools/mark_stale.py [--mark …] [--dry-run]` | mark the checklist rows that rest on TST code changed by a later publish (`stale`, strong or weak); `review/survey-drift/impact.txt` |
 | `tools/answers.py` | record the user's answers; `decisions.md` |
 | `tools/agent_cost.py label=<transcript> …` | token-waste statistics of subagent transcripts |
+
+## Work list of 2026-10-28 (evening)
+
+- Item 9 (render and route errors): findings `review/item9-render-route-errors.md` (D1-D8). User decision: (a) run
+  the read-only TST probes U4 and U5, then a Fable design for D1-D6, then the user approves before a build.
+- Item 10 (new TST screens): facts `review/item10-new-screens.md`, live probe `review/probe-new-screens.json`. User
+  decisions (2026-10-28): build Bookmarks and remove the React routes MyBookmarks and BookmarksByGroup (404 on TST);
+  build PassportScan, NotificationDetails, OneSchoolGlobalCarousel, OrbitAdminMilestones and OrbitAdminMilestoneDetail
+  (N1, with the OrbitAdminLanding `GetMilestoneScanFF` branch). Each screen goes through the outsystems-screen-spec
+  pipeline (board decision=build, `route.py start`, capture read-only, spec, build, parity, user review).
+- Done the same evening: the production precache of `_error.html` (as TST).
+
