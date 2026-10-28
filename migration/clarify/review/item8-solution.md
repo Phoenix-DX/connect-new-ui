@@ -373,3 +373,7 @@ proves no regression). A pixel check of `_error.html` against one TST capture (s
 - S0b questions (user, 2026-10-28): Q3 (c), a separate item after item 8. It checks the TST global error handler
   (`setErrorHandler`) first, then designs the render and route errors (`ErrorBoundary`, `RouteError`). Q4 (a): the
   production precache of `_error.html` waits for the production phase.
+- Group B questions (user, 2026-10-28): S1a Q1 and Q2 (a), the cleanup step S5 moves HouseholdCarousel to
+  `useFlowScope` and `flow.run`, and replaces the OnReady `isAlive` checks after a module action with `flow.own`.
+  S1b Q1 (a): `onScrollEnding`-style events keep `.catch((e) => raiseToFlowHandler(e, flow))`; S5 decides on a
+  promise-returning `flow.run` from the count of such sites in groups A, C and D.
