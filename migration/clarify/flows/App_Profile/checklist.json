@@ -127,7 +127,10 @@
    "react": "fetchCountryInfo calls UBTConnect Profile/DataActionGetCountryInfo with CurrentCountryCode; no retry, no refetch on focus; Action_FormatAddress runs on the data",
    "evidence": "app/src/api/country/repository.ts:49-55; app/src/api/client/queryClient.ts:15-18; app/src/pages/Profile/hooks/useProfile.ts:99; TST Profile.mvc.js:2830-2870",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "mcp+tst",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): A failed GetCountryInfo goes to the flow handler (D11; MCP OnDemand = TST -1; refreshed in actions without Handle Error).",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Profile-011",

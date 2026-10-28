@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -8,12 +8,14 @@ import { isCommunicationException, raiseToFlowHandler } from '@/platform/feedbac
 import { freshPage, recordBodies } from '@/test/testSupport';
 import { server } from '@/test/setup';
 import { usePendingPoliciesForm, type PendingPoliciesFormEvents } from './usePendingPoliciesForm';
+import { testQueryClient } from '@/platform/navigation/testRouter';
 
 /* The flows of Policy_Custom_AcceptPendingPolicies against the MSW mocks of the page (two fictional Connect policies,
    7001 and 7002; ActionAcceptPolicies removes the accepted ids, so the test that accepts runs last). The flow handler
    is replaced by a spy. */
-vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
+// The flow handler itself: the hook and the query-cache subscription (flowErrors.ts) both call it.
+vi.mock('@/legacy/os/exceptions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/legacy/os/exceptions')>()),
   raiseToFlowHandler: vi.fn(),
 }));
 
@@ -28,7 +30,7 @@ const inputs: PendingPoliciesInputs = {
 };
 
 function renderForm(events: PendingPoliciesFormEvents = {}, formInputs: PendingPoliciesInputs = inputs) {
-  const client = new QueryClient();
+  const client = testQueryClient();
   const wrapper = ({ children }: { children: ReactNode }) => (
     <QueryClientProvider client={client}>{children}</QueryClientProvider>
   );

@@ -9,7 +9,7 @@ import type { FeedConfigInputs } from './types';
     - No cache (staleTime 0, gcTime 0): each mount calls the server, as OutSystems does (call parity, plan v2 §5.4).
     - No retry and no refetch when the network comes back: the block fetched once.
     - A failed fetch logs "DataActionGetFeedConfig failed" (`meta.errorLog`, api/client/queryClient.ts), as the block
-      did. */
+      did, and goes to the flow handler (the query-cache subscription; TST shows the App_Common message, item 2 D5). */
 export function useFeedConfigQuery(inputs: FeedConfigInputs, enabled = true) {
   return useQuery({
     queryKey: feedKeys.config(inputs),

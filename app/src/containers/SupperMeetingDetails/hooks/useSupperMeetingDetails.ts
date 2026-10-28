@@ -58,7 +58,8 @@ export interface SupperMeetingDetailsFlows {
     - OnClick_NavigateToHousehold: with the carousel flag, the preload object of every listed household and
       HouseholdCarousel; otherwise HouseholdDetails.
     - Decision W23: OnReady runs once per mount (StrictMode runs the mount effect again: the second run only replaces
-      the liveness check). After an unmount, a started flow skips its state writes only; its calls already ran. */
+      the liveness check). After an unmount, a started flow skips its state writes; its calls already ran. A failure
+      after the unmount raises nothing (E9: TST shows no message for a left block; user 2026-10-28). */
 export function useSupperMeetingDetails(
   inSubdivsionId: string,
   flags: SupperMeetingDetailsFlags,
@@ -85,6 +86,11 @@ export function useSupperMeetingDetails(
   const write = (action: SupperMeetingDetailsAction) => {
     if (newestReadyRun.current()) dispatch(action);
   };
+  /** A failed refresh goes to the flow handler while the block is mounted. After the unmount TST shows no message for
+      the block the user left (E9, probe_fetch_errors.cjs --late; item2-solution.md §8.2, user 2026-10-28). */
+  const raiseLive = (error: unknown) => {
+    if (newestReadyRun.current()) raiseToFlowHandler(error);
+  };
 
   /** OnReady of SupperMeeting_HouseholdList: the refresh of GetSubdivisionHouseholds. */
   const refreshHouseholds = async () => {
@@ -93,7 +99,7 @@ export function useSupperMeetingDetails(
       list = await fetchSubdivisionHouseholds(subdivisionId);
     } catch (error) {
       write({ type: 'householdsFetchFailed' });
-      raiseToFlowHandler(error);
+      raiseLive(error);
       return;
     }
     write({ type: 'householdsFetched', list });
@@ -105,7 +111,7 @@ export function useSupperMeetingDetails(
     try {
       subdivision = await fetchSubdivisionDetails(subdivisionId);
     } catch (error) {
-      raiseToFlowHandler(error); // IsDataFetched stays False: the skeleton stays.
+      raiseLive(error); // IsDataFetched stays False: the skeleton stays.
       return;
     }
     write({ type: 'subdivisionFetched', subdivision });

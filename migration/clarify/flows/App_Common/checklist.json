@@ -2096,18 +2096,10 @@
    "react": "the same test and toasts",
    "evidence": "app/src/platform/feedback/exceptionMessages.ts:17-23; TST UBTConnect.controller.js:16110-16118",
    "verdict": "match",
-   "note": "DEV also tests navigator.onLine (§6.1).",
-   "verified": "pack",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "weak",
-    "by": [
-     "lines-same"
-    ],
-    "files": [
-     "UBTConnect.controller.js (lines-same)"
-    ]
-   }
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): React reads navigator.onLine at the moment of the error, as the CheckIsOnlineNow node of TST live (UC:16097-16158) and of the MCP action. | DEV also tests navigator.onLine (§6.1).",
+   "verified": "mcp+tst",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Common-162",
@@ -2177,19 +2169,10 @@
    "verdict": "match",
    "severity": "major",
    "finding": "F1",
-   "note": "Built 2026-10-27 (builds/B4-errors.md). A non-ok answer gives \"Request failed with status N\". No rule of ShowExceptionMessage matches it, so React shows the raw text as an error.",
-   "verified": "code",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): Checked again: MCP OnException node BubbleCommunicationException and TST ACF agree. | Built 2026-10-27 (builds/B4-errors.md). A non-ok answer gives \"Request failed with status N\". No rule of ShowExceptionMessage matches it, so React shows the raw text as an error.",
+   "verified": "mcp+tst",
    "fixed": "2026-10-27",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "weak",
-    "by": [
-     "lines-same"
-    ],
-    "files": [
-     "UBTConnect.App_Common.controller.js (lines-same)"
-    ]
-   }
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Common-167",
@@ -2200,17 +2183,9 @@
    "react": "the same",
    "evidence": "app/src/legacy/os/exceptions.ts:70-73; TST migration/shell/sources/UBTConnect.App_Common.controller.js:46-54",
    "verdict": "match",
-   "verified": "pack",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "weak",
-    "by": [
-     "lines-same"
-    ],
-    "files": [
-     "UBTConnect.App_Common.controller.js (lines-same)"
-    ]
-   }
+   "verified": "mcp+tst",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): Checked again: MCP OnException and TST ACF agree.",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Common-168",
@@ -2221,17 +2196,9 @@
    "react": "the same",
    "evidence": "app/src/legacy/os/exceptions.ts:74-77; TST migration/shell/sources/UBTConnect.App_Common.controller.js:61-71",
    "verdict": "match",
-   "verified": "pack",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "weak",
-    "by": [
-     "lines-same"
-    ],
-    "files": [
-     "UBTConnect.App_Common.controller.js (lines-same)"
-    ]
-   }
+   "verified": "mcp+tst",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): Checked again: MCP OnException (Has User Id?) and TST ACF agree.",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Common-169",
@@ -2242,17 +2209,9 @@
    "react": "the same; the route guard does the same for a member route",
    "evidence": "app/src/legacy/os/exceptions.ts:79-81; app/src/app/RouteGuard.tsx:46-52; TST migration/shell/sources/UBTConnect.App_Common.controller.js:79-82; migration/app-shell.spec.md U1",
    "verdict": "match",
-   "verified": "pack",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "weak",
-    "by": [
-     "lines-same"
-    ],
-    "files": [
-     "UBTConnect.App_Common.controller.js (lines-same)"
-    ]
-   }
+   "verified": "mcp+tst",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): Checked again: MCP OnException (Login, In_IsFromInvalidPermissions) and TST ACF agree.",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Common-170",
@@ -2265,18 +2224,10 @@
    "verdict": "partial",
    "severity": "info",
    "finding": "F5",
-   "note": "The visible effect of the runtime handler is not in local code.",
-   "verified": "pack",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "strong",
-    "by": [
-     "lines"
-    ],
-    "files": [
-     "UBTConnect.App_Common.controller.js (lines)"
-    ]
-   }
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): Built: the \"NoteCommunicationError\" test (ACF:98, same in the MCP OnException) and the error-page marker for a system exception (_error.html not captured); the ignore step comes first (ACF:24-26). | The visible effect of the runtime handler is not in local code.",
+   "verified": "mcp+tst",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Common-171",

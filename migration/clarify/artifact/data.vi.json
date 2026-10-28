@@ -22,7 +22,7 @@
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/2/3",
    "Questions": "4",
-   "Stale (strong)": "33 (2)"
+   "Stale (strong)": "27 (1)"
   },
   {
    "Group": "G1",
@@ -70,7 +70,7 @@
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/3/1",
    "Questions": "3",
-   "Stale (strong)": "102 (14)"
+   "Stale (strong)": "100 (14)"
   },
   {
    "Group": "G1",
@@ -198,7 +198,7 @@
    "unclear": "0",
    "Findings (B/M/m/i)": "0/3/2/0",
    "Questions": "0",
-   "Stale (strong)": "131 (7)"
+   "Stale (strong)": "130 (7)"
   },
   {
    "Group": "G2",
@@ -246,7 +246,7 @@
    "unclear": "0",
    "Findings (B/M/m/i)": "0/0/1/0",
    "Questions": "2",
-   "Stale (strong)": "36 (27)"
+   "Stale (strong)": "35 (27)"
   },
   {
    "Group": "G2",
@@ -310,7 +310,7 @@
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/2/1",
    "Questions": "2",
-   "Stale (strong)": "55 (7)"
+   "Stale (strong)": "54 (7)"
   },
   {
    "Group": "G3",
@@ -710,7 +710,7 @@
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/1/1",
    "Questions": "1",
-   "Stale (strong)": "91 (5)"
+   "Stale (strong)": "90 (5)"
   },
   {
    "Group": "X",
@@ -726,7 +726,7 @@
    "unclear": "0",
    "Findings (B/M/m/i)": "0/1/3/0",
    "Questions": "2",
-   "Stale (strong)": "101 (25)"
+   "Stale (strong)": "100 (24)"
   },
   {
    "Group": "",
@@ -742,7 +742,7 @@
    "unclear": "3",
    "Findings (B/M/m/i)": "3/27/56/29",
    "Questions": "",
-   "Stale (strong)": "1885 (422)"
+   "Stale (strong)": "1872 (420)"
   }
  ],
  "gaps": [

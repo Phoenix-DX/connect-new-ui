@@ -953,17 +953,10 @@
    "react": "raiseToFlowHandler(getDetails.error); the skeleton card stays",
    "evidence": "app/src/pages/OneSchoolGlobalDetails/hooks/useOneSchoolGlobalDetails.ts:58-61; TST OneSchoolGlobalDetails.mvc.js:1443-1444; migration/knowledge/auto-decisions-2026-10-15.md:56",
    "verdict": "match",
-   "verified": "pack",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "weak",
-    "by": [
-     "lines-same"
-    ],
-    "files": [
-     "UBTConnect.Directory_OneSchoolGlobal.OneSchoolGlobalDetails.mvc.js (lines-same)"
-    ]
-   }
+   "verified": "tst+probe",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): The own copy of the raise is removed (D13): one raise per failed fetch, an ignorable error is skipped, nothing after the unmount (E9).",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "Directory_OneSchoolGlobal-054",

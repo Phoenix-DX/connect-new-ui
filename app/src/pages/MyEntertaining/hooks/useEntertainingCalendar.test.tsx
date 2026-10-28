@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -7,6 +7,7 @@ import { getFeedbackMessage, resetFeedbackMessages, subscribeFeedback } from '@/
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import { useEntertainingCalendar } from './useEntertainingCalendar';
+import { testQueryClient } from '@/platform/navigation/testRouter';
 
 vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
@@ -19,7 +20,7 @@ const CONFIG = 'UBTConnect_EmbedMyEntertaining/Embedded_MyEntertaining/DataActio
 const INPUTS: EntertainingConfigInputs = { View: 'timeline', Theme: 'light', Sources: 'ldm', B2CTenant: 'tenant-a' };
 
 function wrapper({ children }: { children: ReactNode }) {
-  return <QueryClientProvider client={new QueryClient()}>{children}</QueryClientProvider>;
+  return <QueryClientProvider client={testQueryClient()}>{children}</QueryClientProvider>;
 }
 
 describe('useEntertainingCalendar', () => {

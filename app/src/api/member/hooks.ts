@@ -42,7 +42,8 @@ export function useMemberQuery(memberId: string, options: MemberQueryOptions<Mem
 /** DataActionFetchCount of FeedBlock_CommunityPopulation as a query, with the options of the block flow that it
     replaces: it fetches when the caller mounts, without a cache (each mount calls the server), without a retry and
     without a refetch when the network comes back. A failed fetch logs "DataActionFetchCount failed"
-    (`meta.errorLog`, api/client/queryClient.ts), as the block did. */
+    (`meta.errorLog`, api/client/queryClient.ts), as the block did, and goes to the flow handler (the query-cache
+    subscription of platform/feedback/flowErrors.ts; TST shows the App_Common message, item 2 D4). */
 export function useCommunityPopulationQuery() {
   return useQuery({
     queryKey: memberKeys.communityPopulation(),

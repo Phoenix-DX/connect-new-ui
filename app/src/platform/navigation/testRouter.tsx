@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react';
 import { render } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider, type QueryClient } from '@tanstack/react-query';
+import { createQueryClient } from '@/api/client/queryClient';
+import { installQueryErrorsToFlowHandler } from '@/platform/feedback/flowErrors';
 import { createMemoryRouter, Outlet, RouterProvider } from 'react-router';
 import { resetBackQueue } from './backQueue';
 import { resetHistoryStack } from './historyStack';
@@ -13,6 +15,26 @@ import { resetTransitionEvents } from './transitionEvents';
 import { resetViewCache } from './viewCache';
 
 /* Test helpers: the app's frame (NavigationHost + ScreenFrame around each route) on a memory router. */
+
+const testClients = new Set<{ client: QueryClient; uninstall: () => void }>();
+
+/** A QueryClient as the app has it: the options of createQueryClient and the flow-handler subscription of main.tsx
+    (a failed query fetch goes to the flow handler, platform/feedback/flowErrors.ts). */
+export function testQueryClient(): QueryClient {
+  const client = createQueryClient();
+  testClients.add({ client, uninstall: installQueryErrorsToFlowHandler(client) });
+  return client;
+}
+
+/** After each test (test/setup.ts): the subscriptions go and the queries are dropped, so a late answer of one test
+    does not raise a message in the next one. */
+export function disposeTestQueryClients(): void {
+  for (const { client, uninstall } of testClients) {
+    uninstall();
+    client.clear();
+  }
+  testClients.clear();
+}
 
 export function resetNavigation(): void {
   resetBackQueue();
@@ -27,7 +49,7 @@ export function resetNavigation(): void {
 export function renderRoutes(
   routes: Record<string, ReactNode>,
   initialPath: string,
-  queryClient = new QueryClient(),
+  queryClient = testQueryClient(),
   redirect?: NavigationRedirect,
 ) {
   const router = createMemoryRouter(

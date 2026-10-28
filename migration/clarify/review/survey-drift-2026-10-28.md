@@ -99,7 +99,8 @@ script that is lost; `impact.txt` held only its error message until the tool rep
 | Its screen names a changed screen or block, and no text field cites that file | weak | 1148 |
 
 A row can have more than one reason. In total, 1885 of 5412 rows are stale, and 422 of them are strong. The verdicts do
-not change. `INDEX.md` §1 has the column "Stale (strong)".
+not change. `INDEX.md` §1 has the column "Stale (strong)". A row that is judged again against the live code gets
+`rechecked` and loses its mark (item 2, 2026-10-28: 13 rows).
 
 | Flow | Stale | Strong | Rows |
 |---|---|---|---|

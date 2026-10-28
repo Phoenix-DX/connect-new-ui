@@ -19,9 +19,13 @@ beforeAll(async () => {
 beforeEach(() => {
   setReviewMarkers(true);
 });
-afterEach(() => {
+afterEach(async () => {
   cleanup();
   server.resetHandlers();
+  /* The query clients of the test lose their flow-handler subscription (testRouter.tsx testQueryClient), so a late
+     answer of this test does not raise a message in the next one. Loaded here for the same reason as app/dialogs.ts. */
+  const { disposeTestQueryClients } = await import('@/platform/navigation/testRouter');
+  disposeTestQueryClients();
 });
 afterAll(() => {
   server.close();

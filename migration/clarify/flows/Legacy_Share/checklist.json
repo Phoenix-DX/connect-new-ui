@@ -818,11 +818,12 @@
    "evidence": "app/src/pages/LegacyShareObject/hooks/useShareObject.ts:54-59",
    "tst": "present",
    "verdict": "match",
-   "note": "Fixed 2026-10-27 (fixes/G1-content.md). mock: app/src/pages/LegacyShareObject/mocks.ts:53-70 (recorded for Household; other types echo the type id as Label). Production needs the aggregate of Connect2_LegacyShared (Type_ShareObject static entity). Judge: when DisplayAge is True, the late change of User_AgeVisibility changes the query key (useShareObject.ts:25-30) and React fetches GetShareObjectTypeById a second time; TST fetches it once (OnParametersChanged, ScreenBlock_ShareObject.mvc.js:932-944, does not fire: the input is set before the block exists). Server side: row 081",
-   "verified": "live",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): A failed GetShareObjectTypeById goes to the flow handler (D10; MCP AtStart = TST 0). | Fixed 2026-10-27 (fixes/G1-content.md). mock: app/src/pages/LegacyShareObject/mocks.ts:53-70 (recorded for Household; other types echo the type id as Label). Production needs the aggregate of Connect2_LegacyShared (Type_ShareObject static entity). Judge: when DisplayAge is True, the late change of User_AgeVisibility changes the query key (useShareObject.ts:25-30) and React fetches GetShareObjectTypeById a second time; TST fetches it once (OnParametersChanged, ScreenBlock_ShareObject.mvc.js:932-944, does not fire: the input is set before the block exists). Server side: row 081",
+   "verified": "mcp+tst",
    "severity": "minor",
    "finding": "F2",
-   "fixed": "2026-10-27"
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "Legacy_Share-058",
@@ -1006,8 +1007,10 @@
    "evidence": "app/src/pages/LegacyShareObject/hooks/useProfileList.ts:109-139",
    "tst": "present",
    "verdict": "match",
-   "note": "mock handler app/src/pages/LegacyShareObject/mocks.ts:72 (ProfileList/DataActionGetAvailableUsers). Production needs that data action of Connect2_LegacyShared; its server logic is not in the dump or TST pack. Q2 of auto-decisions is deferred to the production phase",
-   "verified": "pack"
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): A failed GetAvailableUsers goes to the flow handler (D9; probe: \"Service Interruption\"; MCP AtStart = TST 0). | mock handler app/src/pages/LegacyShareObject/mocks.ts:72 (ProfileList/DataActionGetAvailableUsers). Production needs that data action of Connect2_LegacyShared; its server logic is not in the dump or TST pack. Q2 of auto-decisions is deferred to the production phase",
+   "verified": "mcp+tst+probe",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "Legacy_Share-072",

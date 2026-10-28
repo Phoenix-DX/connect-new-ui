@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useOneSchoolGlobalDetailsQuery, type OneSchoolGlobalDetails } from '@/api/locality';
 import type { OneSchoolGlobalDetailsInputs } from '@/pages/OneSchoolGlobalDetails/inputs';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState, useWasRestoredFromCache } from '@/platform/navigation';
 import {
   INITIAL_ONE_SCHOOL_GLOBAL_DETAILS_STATE,
@@ -55,10 +54,8 @@ export function useOneSchoolGlobalDetails(inputs: OneSchoolGlobalDetailsInputs):
   useEffect(() => {
     if (getDetails.data) dispatch({ type: 'detailsFetched', details: getDetails.data });
   }, [getDetails.data, dispatch]);
-  // A failed fetch goes to the screen's handleError, the Directory_OneSchoolGlobal flow handler.
-  useEffect(() => {
-    if (getDetails.error) raiseToFlowHandler(getDetails.error);
-  }, [getDetails.error]);
+  // A failed fetch goes to the screen's handleError, the Directory_OneSchoolGlobal flow handler, once per failed fetch:
+  // the query-cache subscription does it (platform/feedback/flowErrors.ts installQueryErrorsToFlowHandler).
 
   return {
     state,

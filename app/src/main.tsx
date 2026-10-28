@@ -12,7 +12,9 @@ import { applyDeviceClasses } from './platform/device/device';
 import { initFlagOverrides } from './platform/flags';
 import { config, FLAG_OVERRIDES_BUILT, MOCKS_BUILT } from './platform/config/config';
 import { ErrorBoundary } from './app/ErrorBoundary';
+import { ErrorPageGate } from './app/ErrorPageGate';
 import { connectDialogs } from './app/dialogs';
+import { installQueryErrorsToFlowHandler } from './platform/feedback/flowErrors';
 import { bootPlan } from './pwa/bootPlan';
 import { clearStaleServiceWorkers, registerAppServiceWorker } from './pwa/register';
 
@@ -21,6 +23,7 @@ applyDeviceClasses();
 window.addEventListener('resize', applyDeviceClasses);
 if (FLAG_OVERRIDES_BUILT) initFlagOverrides(); // ?ff= (dev and demo builds; plan v2 §3.1)
 connectDialogs(); // components/ui/Dialog markup with the platform triggers (app/dialogs.ts)
+installQueryErrorsToFlowHandler(queryClient); // a failed query fetch goes to the flow handler (flowErrors.ts)
 
 // OutSystems keeps --viewport-height on <body> in sync with the window.
 const syncViewport = () => {
@@ -53,7 +56,9 @@ void enableMocks().then((start) => {
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <ErrorBoundary>
-          <RouterProvider router={router} />
+          <ErrorPageGate>
+            <RouterProvider router={router} />
+          </ErrorPageGate>
         </ErrorBoundary>
       </QueryClientProvider>
     </StrictMode>,

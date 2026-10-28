@@ -12,7 +12,8 @@ Each row gets the reasons found (a row can have more than one):
   file        it cites a changed file without line numbers, or with lines that cannot be mapped;
   lines-same  it cites a changed file, but none of the cited lines changed;
   screen      its screen names a changed screen or block that no text field cites.
-A row is stale when one of its reasons is in --mark (default: all, user decision 2026-10-28). It gets
+A row is stale when one of its reasons is in --mark (default: all, user decision 2026-10-28), unless it has
+"rechecked" on or after --since (judged again against the live code; such a row keeps no stale mark). It gets
 "stale": {"since", "level", "by", "files"}; level "strong" = removed, lines or file; "weak" = only lines-same or screen.
 Read the strong rows first when a route is judged again. The verdict does not change. Running it again replaces the
 field. Writes <drift>/impact.txt: the count per reason and per flow (strong/weak), and the row ids.
@@ -173,7 +174,7 @@ def main():
                     v.discard("lines-same")
             by = {x for v in found.values() for x in v}
             rows_by.update(by)
-            if by & mark:
+            if by & mark and not (r.get("rechecked") or "") >= a.since:
                 r["stale"] = {"since": a.since, "level": "strong" if by & STRONG else "weak", "by": [x for x in REASONS if x in by],
                               "files": sorted(f"{f} ({'/'.join(x for x in REASONS if x in v)})" for f, v in found.items())}
                 ids.append((r["id"], r["stale"]["level"]))

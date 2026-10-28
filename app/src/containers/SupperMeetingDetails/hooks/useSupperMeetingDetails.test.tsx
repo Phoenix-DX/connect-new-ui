@@ -223,7 +223,7 @@ describe('useSupperMeetingDetails', () => {
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
   });
 
-  it('W23: failures after the unmount write no state; each still goes once to the flow handler (an app-level effect)', async () => {
+  it('failures after the unmount write no state and raise nothing: TST shows no message for a block the user left (E9)', async () => {
     const { households, subdivision } = pendingAnswers();
     const { unmount } = renderHook(() => useSupperMeetingDetails('1210', CAROUSEL_ON), { wrapper: strictWrapper });
     await settle();
@@ -233,7 +233,8 @@ describe('useSupperMeetingDetails', () => {
     households.reject(new Error('down'));
     await settle();
     expect(supperMeetingDetailsReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(2);
+    // probe_fetch_errors.cjs --late (migration/clarify/review/probe-fetch-errors-late.json): Back before the failure
+    expect(raiseToFlowHandler).not.toHaveBeenCalled();
   });
 
   it('a back navigation to the restored view keeps the saved state and makes no call (no skeleton)', async () => {

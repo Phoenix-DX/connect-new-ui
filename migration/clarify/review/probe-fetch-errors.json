@@ -1,0 +1,283 @@
+{
+ "ranAt": "2026-10-28T03:38:59.886Z",
+ "site": "UBTConnect TST",
+ "account": "the test account of site_auth (not named)",
+ "probes": [
+  {
+   "label": "control: HomeFeed, nothing aborted",
+   "action": "DataActionNoSuchAction",
+   "kind": "control",
+   "at": "/UBTConnect/HomeFeed",
+   "toastsAdded": [],
+   "unhandledRejections": [],
+   "aborted": 0,
+   "consoleErrors": [
+    "warning: Service Worker registration blocked by Playwright",
+    "warning: The action GetOS requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action GetBrowser requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action IsRunningAsPWA requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "pageerror: Cannot read properties of null (reading 'querySelector')",
+    "error: Pattern attribute value ^[a-zA-Z0-9.!#$%&’'*+/=?<redacted> is not a valid regular expression: Uncaught SyntaxError: Invalid regular expression: /^[a-zA-Z0-9.!#$%&’'*+/=?<redacted> Invalid character in character class"
+   ],
+   "messagesSeen": [],
+   "typeofController": "undefined",
+   "lexicalController": "undefined",
+   "result": "0 aborted; no message added; unhandled rejections: none; typeof window.controller = undefined; lexical controller = undefined; console: no controller error"
+  },
+  {
+   "label": "block: HomeFeed / FeedBlock_CommunityPopulation",
+   "action": "DataActionFetchCount",
+   "kind": "block",
+   "at": "/UBTConnect/HomeFeed",
+   "toastsAdded": [
+    {
+     "class": "feedback-message-wrapper",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message feedback-message-info feedback-message-autoclose feedback-message-autoclose",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message-text",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message--title",
+     "text": "Service Interruption"
+    },
+    {
+     "class": "feedback-message--body",
+     "text": "We’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functionality as quickly as p"
+    }
+   ],
+   "unhandledRejections": [],
+   "aborted": 1,
+   "consoleErrors": [
+    "warning: Service Worker registration blocked by Playwright",
+    "warning: The action GetOS requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action GetBrowser requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action IsRunningAsPWA requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "error: [2026-10-28T03:40:53.242Z]: Request failed with an error ",
+    "error: Failed to load resource: net::ERR_FAILED"
+   ],
+   "messagesSeen": [],
+   "typeofController": "undefined",
+   "lexicalController": "undefined",
+   "result": "1 aborted; message added: \"Service InterruptionWe’re currently experiencing unusually h\", \"Service Interruption\", \"We’re currently experiencing unusually high traffic, which m\"; unhandled rejections: none; typeof window.controller = undefined; lexical controller = undefined; console: no controller error"
+  },
+  {
+   "label": "screen: CountryDetails",
+   "action": "DataActionGetLocalityStatistics",
+   "kind": "screen",
+   "at": "/UBTConnect/CountryDetails",
+   "toastsAdded": [
+    {
+     "class": "feedback-message-wrapper",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message feedback-message-info feedback-message-autoclose feedback-message-autoclose",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message-text",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message--title",
+     "text": "Service Interruption"
+    },
+    {
+     "class": "feedback-message--body",
+     "text": "We’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functionality as quickly as p"
+    }
+   ],
+   "unhandledRejections": [],
+   "aborted": 1,
+   "consoleErrors": [
+    "warning: Service Worker registration blocked by Playwright",
+    "warning: The action GetOS requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action GetBrowser requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action IsRunningAsPWA requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "error: [2026-10-28T03:41:09.513Z]: Request failed with an error ",
+    "error: Failed to load resource: net::ERR_FAILED"
+   ],
+   "messagesSeen": [],
+   "typeofController": "undefined",
+   "lexicalController": "undefined",
+   "result": "1 aborted; message added: \"Service InterruptionWe’re currently experiencing unusually h\", \"Service Interruption\", \"We’re currently experiencing unusually high traffic, which m\"; unhandled rejections: none; typeof window.controller = undefined; lexical controller = undefined; console: no controller error"
+  },
+  {
+   "label": "block: SupperMeeting_Details / SupperMeeting_DetailsBlock (B4)",
+   "action": "DataActionGetSubdivision",
+   "kind": "block",
+   "at": "/UBTConnect/SupperMeeting_Details",
+   "toastsAdded": [
+    {
+     "class": "feedback-message-wrapper",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message feedback-message-info feedback-message-autoclose feedback-message-autoclose",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message-text",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message--title",
+     "text": "Service Interruption"
+    },
+    {
+     "class": "feedback-message--body",
+     "text": "We’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functionality as quickly as p"
+    }
+   ],
+   "unhandledRejections": [],
+   "aborted": 1,
+   "consoleErrors": [
+    "warning: Service Worker registration blocked by Playwright",
+    "warning: The action GetOS requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action GetBrowser requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action IsRunningAsPWA requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "error: [2026-10-28T03:41:24.481Z]: Request failed with an error ",
+    "error: Failed to load resource: net::ERR_FAILED",
+    "error: [2026-10-28T03:41:24.783Z]: 403 Forbidden "
+   ],
+   "messagesSeen": [],
+   "typeofController": "undefined",
+   "lexicalController": "undefined",
+   "result": "1 aborted; message added: \"Service InterruptionWe’re currently experiencing unusually h\", \"Service Interruption\", \"We’re currently experiencing unusually high traffic, which m\"; unhandled rejections: none; typeof window.controller = undefined; lexical controller = undefined; console: no controller error"
+  },
+  {
+   "label": "block of UBTConnect_EmbedFeed: HomeFeed / Embedded_FeedCMS",
+   "action": "DataActionGetFeedConfig",
+   "kind": "block-other-module",
+   "at": "/UBTConnect/HomeFeed",
+   "toastsAdded": [
+    {
+     "class": "feedback-message-wrapper",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message feedback-message-info feedback-message-autoclose feedback-message-autoclose",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message-text",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message--title",
+     "text": "Service Interruption"
+    },
+    {
+     "class": "feedback-message--body",
+     "text": "We’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functionality as quickly as p"
+    }
+   ],
+   "unhandledRejections": [],
+   "aborted": 1,
+   "consoleErrors": [
+    "warning: Service Worker registration blocked by Playwright",
+    "warning: The action GetOS requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action GetBrowser requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action IsRunningAsPWA requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "error: [2026-10-28T03:41:39.388Z]: Request failed with an error ",
+    "error: Failed to load resource: net::ERR_FAILED"
+   ],
+   "messagesSeen": [],
+   "typeofController": "undefined",
+   "lexicalController": "undefined",
+   "result": "1 aborted; message added: \"Service InterruptionWe’re currently experiencing unusually h\", \"Service Interruption\", \"We’re currently experiencing unusually high traffic, which m\"; unhandled rejections: none; typeof window.controller = undefined; lexical controller = undefined; console: no controller error"
+  },
+  {
+   "label": "block of UBTConnect_EmbedMyEntertaining: MyEntertaining / Embedded_MyEntertaining (B4)",
+   "action": "DataActionGetEntertainingConfig",
+   "kind": "block-other-module",
+   "at": "/UBTConnect/MyEntertaining",
+   "toastsAdded": [
+    {
+     "class": "feedback-message-wrapper",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message feedback-message-info feedback-message-autoclose feedback-message-autoclose",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message-text",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message--title",
+     "text": "Service Interruption"
+    },
+    {
+     "class": "feedback-message--body",
+     "text": "We’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functionality as quickly as p"
+    }
+   ],
+   "unhandledRejections": [],
+   "aborted": 1,
+   "consoleErrors": [
+    "warning: Service Worker registration blocked by Playwright",
+    "warning: The action GetOS requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action GetBrowser requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action IsRunningAsPWA requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "error: [2026-10-28T03:41:54.045Z]: Request failed with an error ",
+    "error: Failed to load resource: net::ERR_FAILED"
+   ],
+   "messagesSeen": [],
+   "typeofController": "undefined",
+   "lexicalController": "undefined",
+   "result": "1 aborted; message added: \"Service InterruptionWe’re currently experiencing unusually h\", \"Service Interruption\", \"We’re currently experiencing unusually high traffic, which m\"; unhandled rejections: none; typeof window.controller = undefined; lexical controller = undefined; console: no controller error"
+  },
+  {
+   "label": "block of Connect2_LegacyShared: LegacyShareObject / ProfileList search",
+   "action": "DataActionGetAvailableUsers",
+   "kind": "block-other-module",
+   "at": "/UBTConnect/LegacyShareObject",
+   "act": "done",
+   "toastsAdded": [
+    {
+     "class": "feedback-message-wrapper",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message feedback-message-info feedback-message-autoclose feedback-message-autoclose",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message-text",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message--title",
+     "text": "Service Interruption"
+    },
+    {
+     "class": "feedback-message--body",
+     "text": "We’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functionality as quickly as p"
+    }
+   ],
+   "unhandledRejections": [],
+   "aborted": 1,
+   "consoleErrors": [
+    "warning: Service Worker registration blocked by Playwright",
+    "warning: The action GetOS requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action GetBrowser requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "warning: The action IsRunningAsPWA requires the OutSystemsUI.js script and it is not loaded yet. Use the LoadOutSystemsUIScript action before the action to ensure that the script is defined.",
+    "error: [2026-10-28T03:42:09.989Z]: Request failed with an error ",
+    "error: Failed to load resource: net::ERR_FAILED"
+   ],
+   "messagesSeen": [],
+   "typeofController": "undefined",
+   "lexicalController": "undefined",
+   "result": "1 aborted; message added: \"Service InterruptionWe’re currently experiencing unusually h\", \"Service Interruption\", \"We’re currently experiencing unusually high traffic, which m\"; unhandled rejections: none; typeof window.controller = undefined; lexical controller = undefined; console: no controller error"
+  }
+ ],
+ "blocked": []
+}

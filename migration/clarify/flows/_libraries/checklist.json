@@ -2118,18 +2118,10 @@
    "evidence": "app/src/containers/ShareSheet/useShareSheet.ts:111-120",
    "tst": "present",
    "verdict": "match",
-   "note": "mock handlers: app/src/containers/ShareSheet/mocks.ts TST: ShareSheet.mvc.js:2031-2132, 2303-2372.",
-   "verified": "pack",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "strong",
-    "by": [
-     "lines"
-    ],
-    "files": [
-     "UBTConnect_Utils.CW_Share.ShareSheet.mvc.js (lines)"
-    ]
-   }
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): A failed GetAvailableMembers or GetRecentlyShared goes to the flow handler (D8; MCP OnDemand, no handler; block mechanism E3, not probed). | mock handlers: app/src/containers/ShareSheet/mocks.ts TST: ShareSheet.mvc.js:2031-2132, 2303-2372.",
+   "verified": "mcp+tst",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "_libraries-119",

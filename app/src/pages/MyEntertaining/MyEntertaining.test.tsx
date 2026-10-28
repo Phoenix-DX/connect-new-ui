@@ -1,11 +1,11 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { StrictMode } from 'react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { getFeedbackMessage, resetFeedbackMessages, subscribeFeedback } from '@/platform/feedback/feedbackStore';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
+import { renderRoutes, resetNavigation, testQueryClient } from '@/platform/navigation/testRouter';
 import { setClientVar } from '@/platform/session/session';
 import { calledActions, freshPage, recordBodies } from '@/test/testSupport';
 import { loadedEmbed, requireEmbed } from './components/connect2Entertaining';
@@ -25,7 +25,7 @@ const TOKEN = 'ActionAppManager_Get_UserIdToken';
 const TEN_MINUTES = 10 * 60 * 1000;
 
 function renderScreen(search: string, { strict = false } = {}) {
-  const client = new QueryClient({ defaultOptions: { queries: { retry: false } } });
+  const client = testQueryClient();
   const tree = (
     <QueryClientProvider client={client}>
       <MemoryRouter initialEntries={[`${PATH}${search}`]}>

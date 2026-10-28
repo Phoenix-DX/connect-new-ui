@@ -527,7 +527,10 @@
    "react": "handleFlowError (raiseToFlowHandler) once per failed fetch; retry false",
    "evidence": "app/src/pages/AcceptPendingPolicies/hooks/usePendingPoliciesForm.ts:66-70; app/src/api/policy/hooks.ts:18",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "tst",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): The own copy of the raise is removed (D13): the query-cache subscription raises once per failed fetch.",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Policies-045",

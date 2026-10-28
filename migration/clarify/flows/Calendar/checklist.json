@@ -1212,21 +1212,12 @@
    "evidence": "TST OutSystems.js:3853 (executeDataFetchAction: model.flush(), handleError(e)); TST UBTConnect.Calendar.controller.js:12-16; migration/knowledge/shell-facts.md U10; app/src/api/entertaining/hooks.ts:12-20; app/src/api/client/queryClient.ts:15-18",
    "tst": "present",
    "verdict": "match",
-   "note": "Built 2026-10-27 (builds/B4-errors.md). Same gap as App_Services F2 (Q3).",
-   "verified": "code",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): Checked again: probe on Embedded_MyEntertaining shows \"Service Interruption\"; the raise is now the query-cache subscription. | Built 2026-10-27 (builds/B4-errors.md). Same gap as App_Services F2 (Q3).",
+   "verified": "tst+probe",
    "severity": "major",
    "finding": "F1",
    "fixed": "2026-10-27",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "weak",
-    "by": [
-     "screen"
-    ],
-    "files": [
-     "UBTConnect_EmbedMyEntertaining.Blocks.Embedded_MyEntertaining.mvc.js (screen)"
-    ]
-   }
+   "rechecked": "2026-10-28"
   },
   {
    "id": "Calendar-061",

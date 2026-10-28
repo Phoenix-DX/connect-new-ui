@@ -1,11 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { CancelledError, type QueryClient } from '@tanstack/react-query';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
-import {
-  IgnorableSystemException,
-  NotRegisteredException,
-  ViewHasChangedException,
-  isInstanceOf,
-} from '@/legacy/os/os-exceptions';
+import { NotRegisteredException, ViewHasChangedException, isInstanceOf } from '@/legacy/os/os-exceptions';
 
 /* The errors of a client action flow, for pages and hooks: plan v2 §2.4 rule 9 lets only platform/, api/ and app/
    import legacy/os/. The barrel of platform/feedback does not export this module, because legacy/os/exceptions
@@ -29,30 +24,27 @@ export const isNotRegisteredException = (error: unknown): boolean => isInstanceO
 /** OS.Exceptions.isSystem: "Handle Error: AllExceptions" catches every error for which this is false. */
 export { isSystemException } from '@/legacy/os/exceptions';
 
-/** The status of a query that `useFetchErrorToFlowHandler` reads (fields of the TanStack Query result). */
-interface FetchErrorStatus {
-  isError: boolean;
-  error: unknown;
-  errorUpdatedAt: number;
-}
-
 /**
- * A failed fetch of a screen or block data action goes to the handleError of its screen or block, then to the flow
- * handler (`raiseToFlowHandler`), once per failed fetch. The runtime flushes the model and then calls handleError
- * (OutSystems.js:17, the rejection of a data fetch: `t.model.flush(),t.handleError(e)`). The flow handler ignores an
- * IgnorableSystemException, such as ViewHasChangedException (OS.ErrorHandling.ignoreError, App_Common ACF:24-26).
- * The query status still drives the `list-error` classes and the skeleton of the screen.
- * Decisions: App_Services Q3 (a), Calendar Q1 (a), Directory_SupperMeetings Q1 (a), user 2026-10-27.
+ * A failed fetch of a query goes to the flow handler (`raiseToFlowHandler`), once per failed fetch: the OutSystems
+ * runtime flushes the model, then calls the handleError of the screen or block, which ends in the App_Common handler
+ * (OutSystems.js executeDataFetchAction: `t.model.flush(),t.handleError(e)`; item2-fetch-errors.md E1–E3, confirmed
+ * by a read-only probe on TST for screens and for blocks of UBTConnect and of three other modules). One subscription on
+ * the query cache covers
+ * every query, so a page does nothing for a failed fetch; the query status still drives the skeleton and the
+ * `list-error` classes. A query that a flow awaits (refetch(), fetchQuery) and handles itself carries
+ * `meta: { errorFlow: 'caller' }` and is left alone. A cancelled fetch is not a failed fetch, and a fetch that fails
+ * after its screen or block unmounted (no observer) raises nothing, as TST (E9). main.tsx installs it on
+ * the app client; tests use testQueryClient() (platform/navigation/testRouter.tsx).
+ * Design (a) of migration/clarify/review/item2-solution.md, user 2026-10-28. Returns the uninstall function.
  */
-export function useFetchErrorToFlowHandler(query: FetchErrorStatus): void {
-  const errorAt = query.isError ? query.errorUpdatedAt : 0;
-  const { error } = query;
-  // The fetch that was raised last: StrictMode runs the effect again on mount, a new render does not raise again.
-  const raisedAt = useRef(0);
-  useEffect(() => {
-    if (errorAt === 0 || errorAt === raisedAt.current) return;
-    raisedAt.current = errorAt;
-    if (isInstanceOf(error, IgnorableSystemException)) return;
+export function installQueryErrorsToFlowHandler(client: QueryClient): () => void {
+  return client.getQueryCache().subscribe((event) => {
+    if (event.type !== 'updated' || event.action.type !== 'error') return;
+    const error: unknown = event.action.error;
+    if (error instanceof CancelledError || event.query.meta?.errorFlow === 'caller') return;
+    // No mounted caller: the user left the screen or block. TST shows no message then (E9, probe
+    // probe_fetch_errors.cjs --late; item2-solution.md §8.1, user 2026-10-28).
+    if (event.query.getObserversCount() === 0) return;
     raiseToFlowHandler(error);
-  }, [errorAt, error]);
+  });
 }

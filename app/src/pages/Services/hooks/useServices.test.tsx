@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { act, renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -11,6 +11,7 @@ import { setSignedInUser } from '@/platform/session/session';
 import { freshPage } from '@/test/testSupport';
 import { FAVOURITE_LIST, SUGGESTION_LIST } from './servicesState';
 import { useServices } from './useServices';
+import { testQueryClient } from '@/platform/navigation/testRouter';
 
 /* The flows of the screen with the MSW mocks (the recorded services). Only the paths that the page test cannot reach
    are here: a drag (SortableJS does not run in jsdom) and its failure. */
@@ -23,7 +24,7 @@ vi.mock('@/legacy/os/exceptions', async (importOriginal) => ({
 const SAVE = 'UBTConnect/ServiceAPIService_ConnectServices_ChangeOrder_Bulk';
 
 function wrapper({ children }: { children: ReactNode }) {
-  return <QueryClientProvider client={new QueryClient()}>{children}</QueryClientProvider>;
+  return <QueryClientProvider client={testQueryClient()}>{children}</QueryClientProvider>;
 }
 
 async function renderServices() {

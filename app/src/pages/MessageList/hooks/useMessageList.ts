@@ -103,6 +103,8 @@ export function useMessageList(
       fetchMessages(latest.current.variables, latest.current.messagesList, parameters.current.triggerPullToRefresh),
     enabled: false,
     retry: false,
+    // The flows await the refresh and raise a failure themselves (refreshGetMessages): not the cache subscription.
+    meta: { errorFlow: 'caller' },
   });
 
   /** OnAfterFetch_GetMessages: the list, SetUnreadNotificationsNumber(CountUnreadMessages), the unread totals per

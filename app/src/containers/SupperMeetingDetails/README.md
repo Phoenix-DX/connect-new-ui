@@ -49,4 +49,5 @@ once, and the household list gets the same id.
   `isDataFetched`). With no saved data, OnReady runs as on a new visit (user decision F22-26, 2026-10-24).
 - Decision W23: OnReady runs once per mount (a once-guard for StrictMode). After an unmount, a started flow skips its
   state writes only; its calls already ran. `hooks/useSupperMeetingDetails.test.tsx` covers it.
-  A failure after an unmount still goes to the flow handler: the message is an app-level side effect.
+  A failure after an unmount raises nothing: TST shows no message for a block the user left (E9, read-only probe
+  `migration/clarify/tools/probe_fetch_errors.cjs --late`; user 2026-10-28).

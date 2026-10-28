@@ -2,12 +2,7 @@ import { useMemo, useState } from 'react';
 import { changeServicesOrder, useUserServicesQuery, type CurrentService, type Service } from '@/api/service';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { raiseBubbledToFlowHandler } from '@/platform/feedback/bubbleErrors';
-import {
-  isCommunicationException,
-  isNotRegisteredException,
-  isSystemException,
-  useFetchErrorToFlowHandler,
-} from '@/platform/feedback/flowErrors';
+import { isCommunicationException, isNotRegisteredException, isSystemException } from '@/platform/feedback/flowErrors';
 import { currentUserId } from '@/platform/session/session';
 import { UBT_MessageType_Success } from '@/pages/Services/staticEntities';
 import {
@@ -59,8 +54,8 @@ export function useServices(): ServicesFlows {
   const lists = changed ?? getServices.data ?? EMPTY_SERVICES_LISTS;
   // OnAfterFetch_GetServices
   const referenceServices = useMemo(() => referenceServicesOf(getServices.data), [getServices.data]);
-  // A failed GetServices goes to the screen's handleError, then the App_Services flow and App_Common (F2, Q3 (a)).
-  useFetchErrorToFlowHandler(getServices);
+  // A failed GetServices goes to the screen's handleError, then the App_Services flow and App_Common (F2, Q3 (a)): the
+  // query-cache subscription does it (platform/feedback/flowErrors.ts installQueryErrorsToFlowHandler).
 
   /** The exception handlers of OnClick_SaveChanges and Handler_SortableListOnDragEnd (Services.mvc.js:1320-1362,
       1706-1743): CommunicationException and AllExceptions set isLoading False, then raise the bubble exception;

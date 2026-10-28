@@ -163,10 +163,11 @@
    "verdict": "match",
    "severity": "major",
    "finding": "F2",
-   "note": "Built 2026-10-27 (builds/B4-errors.md). CountryDetails has the same gap (app/src/pages/CountryDetails/hooks/useCountryDetails.ts:110-115).",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): Checked again; the raise is now the query-cache subscription (same behaviour). | Built 2026-10-27 (builds/B4-errors.md). CountryDetails has the same gap (app/src/pages/CountryDetails/hooks/useCountryDetails.ts:110-115).",
    "question": "Q3",
-   "verified": "code",
-   "fixed": "2026-10-27"
+   "verified": "mcp+tst",
+   "fixed": "2026-10-27",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Services-015",
@@ -467,8 +468,9 @@
    "verdict": "partial",
    "severity": "info",
    "finding": "F6",
-   "note": "No UI path: SkeletonSection makes the lists inert while isLoading is True.",
-   "verified": "pack"
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): Checked again: MCP Handler_SortableListOnDragEnd and TST agree. | No UI path: SkeletonSection makes the lists inert while isLoading is True.",
+   "verified": "mcp+tst",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Services-041",
@@ -715,10 +717,11 @@
    "verdict": "match",
    "severity": "major",
    "finding": "F1",
-   "note": "Built 2026-10-27 (builds/B4-errors.md). The code and the test say \"as in the original\"; TST resets isLoading in two branches.",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): Checked again: MCP OnClick_SaveChanges (isLoading False, then the bubble exceptions) and TST agree. | Built 2026-10-27 (builds/B4-errors.md). The code and the test say \"as in the original\"; TST resets isLoading in two branches.",
    "question": "Q2",
-   "verified": "code",
-   "fixed": "2026-10-27"
+   "verified": "mcp+tst",
+   "fixed": "2026-10-27",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Services-062",

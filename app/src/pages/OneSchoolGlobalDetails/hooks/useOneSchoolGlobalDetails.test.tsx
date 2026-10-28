@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryClientProvider, type QueryClient } from '@tanstack/react-query';
 import { act, render, renderHook } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
@@ -13,6 +13,7 @@ import {
   type OneSchoolGlobalDetailsState,
 } from './oneSchoolGlobalDetailsState';
 import { useOneSchoolGlobalDetails, type OneSchoolGlobalDetailsFlows } from './useOneSchoolGlobalDetails';
+import { testQueryClient } from '@/platform/navigation/testRouter';
 
 /** The reducer as a spy, so a test sees every state write. */
 vi.mock('./oneSchoolGlobalDetailsState', async (importOriginal) => {
@@ -24,8 +25,9 @@ vi.mock('@/api/locality/repository', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/locality/repository')>()),
   fetchOneSchoolGlobalDetails: vi.fn(),
 }));
-vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
+// The flow handler itself: the hook and the query-cache subscription (flowErrors.ts) both call it.
+vi.mock('@/legacy/os/exceptions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/legacy/os/exceptions')>()),
   raiseToFlowHandler: vi.fn(),
 }));
 /** A back navigation that the view cache restores (wasCurrentViewRestoredFromCache), with the saved variables. */
@@ -102,7 +104,7 @@ function pending() {
 
 beforeEach(() => {
   vi.clearAllMocks();
-  client = new QueryClient({ defaultOptions: { queries: { retry: false, refetchOnWindowFocus: false } } });
+  client = testQueryClient();
   viewCache.restored = false;
   viewCache.saved = undefined;
   vi.mocked(fetchOneSchoolGlobalDetails).mockResolvedValue(DETAILS);

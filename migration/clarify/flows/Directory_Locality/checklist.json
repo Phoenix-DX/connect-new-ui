@@ -204,8 +204,10 @@
    "react": "app/src/pages/BrowseCountries/hooks/useBrowseCountries.ts:87 `statisticsListClicked(eventId).catch(raiseToFlowHandler);` and comment :27-28 \"goes to the flow handler\"",
    "evidence": "app/src/pages/BrowseCountries/hooks/useBrowseCountries.ts:87",
    "verdict": "match",
-   "note": "Runtime default: a failed data fetch calls handleError, which the flow controller delegates to App_Common (migration/runtime-sources/UBTConnect.Directory_Locality.controller.js:12-16, fact of BrowseDirectory Q1 in migration/knowledge/auto-decisions-2026-10-15.md:12). raiseToFlowHandler does the same.",
-   "verified": "pack"
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): React did not raise the failed fetch before (D7, D4); now the query-cache subscription does. Probe on CountryDetails: \"Service Interruption\"; MCP GetLocalityStatistics OnDemand = TST -1. | Runtime default: a failed data fetch calls handleError, which the flow controller delegates to App_Common (migration/runtime-sources/UBTConnect.Directory_Locality.controller.js:12-16, fact of BrowseDirectory Q1 in migration/knowledge/auto-decisions-2026-10-15.md:12). raiseToFlowHandler does the same.",
+   "verified": "mcp+tst+probe",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "Directory_Locality-018",

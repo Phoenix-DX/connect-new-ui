@@ -68,6 +68,9 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
   - Rule for `isAlive` (decision W23): `isAlive` guards state writes only.
     - App-level side effects of a flow that already started run to the end after unmount: toast, navigation,
       counters, notification-opened and other server calls. Do not put them behind `isAlive`.
+    - Exception (E9, user 2026-10-28): the flow-handler message of a failed data fetch is not shown after the unmount
+      (TST shows none for a screen or block that the user left). Applied to the query subscription and to
+      `containers/SupperMeetingDetails`; the other W23 flows wait for a separate decision.
     - Use a once-guard so that StrictMode does not run them twice.
     - Write one unit test per screen. It unmounts the screen while the flow is pending. The side effects must run
       once and no state may change.
@@ -111,9 +114,14 @@ input goes to `pages/<Route>/inputs.ts`, not to `api.ts`. A `types.ts` that hold
     of `pages/AssembleDetail`) waits for this decision.
 - Flags are read by the page (`useFlag`) and passed in as a `flags` argument. A component never reads a flag (rule 4).
   Only pages, hooks and containers read flags: `npm run flags` fails on a new reader elsewhere.
-- A failed data action goes to the flow handler (`platform/feedback/flowErrors.ts`). For a data action that is a query,
-  call `useFetchErrorToFlowHandler(query)` in the hook: it raises once per failed fetch. The query status still sets
-  the `list-error` classes and the skeleton.
+- A failed data action goes to the flow handler. For a query, the hook does nothing: one subscription on the query
+  cache (`installQueryErrorsToFlowHandler`, `platform/feedback/flowErrors.ts`, installed by `main.tsx`) raises once per
+  failed fetch. It raises nothing when no mounted screen uses the query (the user left: TST shows no message, E9). The
+  query status still sets the `list-error` classes and the skeleton.
+  - A flow that awaits the fetch (`await refetch()`, `fetchQuery`) and handles the error itself sets
+    `meta: { errorFlow: 'caller' }` on the query, or the message shows twice.
+  - Tests render with `testQueryClient()` (`platform/navigation/testRouter.tsx`; `renderRoutes` uses it), which has the
+    subscription. A test with `new QueryClient()` sees no message.
 
 ## Container criterion
 

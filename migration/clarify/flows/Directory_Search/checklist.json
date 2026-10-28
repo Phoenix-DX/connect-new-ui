@@ -762,18 +762,10 @@
    "react": "app/src/api/search/repository.ts:25-33 `callAction('UBTConnect', 'ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions', { MaxRecords: 50, StartIndex: 0 })`; app/src/api/search/hooks.ts:10-17 `useQuery({ ..., enabled, retry: false })`; mock app/src/pages/Search/mocks.ts:44 `recordedHandler('UBTConnect', 'ScreenBlock_Search/ScreenDataSetGet_SearchBirthdayOptions')`",
    "evidence": "app/src/api/search/repository.ts:25-33 | present",
    "verdict": "match",
-   "note": "React call only; the server side is row 146",
-   "verified": "pack",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "weak",
-    "by": [
-     "screen"
-    ],
-    "files": [
-     "UBTConnect.Directory_Search.ScreenBlock_Search.mvc.js (screen)"
-    ]
-   }
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): A failed Get_SearchBirthdayOptions goes to the flow handler (D12; MCP OnDemand = TST -1; OnReady without Handle Error). | React call only; the server side is row 146",
+   "verified": "mcp+tst",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "Directory_Search-039",

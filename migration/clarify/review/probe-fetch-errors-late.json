@@ -1,0 +1,65 @@
+{
+ "ranAt": "2026-10-28T04:21:48.641Z",
+ "site": "UBTConnect TST",
+ "account": "the test account of site_auth (not named)",
+ "probes": [
+  {
+   "label": "late control: CountryDetails held, the user stays, then its read fails (a message is expected)",
+   "action": "DataActionGetLocalityStatistics",
+   "kind": "late",
+   "held": 1,
+   "openedScreen": "/UBTConnect/CountryDetails",
+   "atRelease": "/UBTConnect/CountryDetails",
+   "toastsAfterRelease": [
+    {
+     "class": "feedback-message-wrapper",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message feedback-message-info feedback-message-autoclose feedback-message-autoclose",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message-text",
+     "text": "Service InterruptionWe’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functiona"
+    },
+    {
+     "class": "feedback-message--title",
+     "text": "Service Interruption"
+    },
+    {
+     "class": "feedback-message--body",
+     "text": "We’re currently experiencing unusually high traffic, which may affect access to some services. Our team is working to restore full functionality as quickly as p"
+    }
+   ],
+   "unhandledRejections": [],
+   "atEnd": "/UBTConnect/CountryDetails",
+   "result": "held 1; opened /UBTConnect/CountryDetails; released at /UBTConnect/CountryDetails; message after release: \"Service InterruptionWe’re currently experiencing unusually h\", \"Service Interruption\", \"We’re currently experiencing unusually high traffic, which m\"; unhandled rejections: none"
+  },
+  {
+   "label": "late: CountryDetails (screen data action at start) left with Back, then its read fails",
+   "action": "DataActionGetLocalityStatistics",
+   "kind": "late",
+   "held": 1,
+   "openedScreen": "/UBTConnect/CountryDetails",
+   "atRelease": "/UBTConnect/HomeFeed",
+   "toastsAfterRelease": [],
+   "unhandledRejections": [],
+   "atEnd": "/UBTConnect/HomeFeed",
+   "result": "held 1; opened /UBTConnect/CountryDetails; released at /UBTConnect/HomeFeed; no message after release; unhandled rejections: none"
+  },
+  {
+   "label": "late: SupperMeeting_DetailsBlock (Refresh in the block OnReady) left with Back, then its read fails",
+   "action": "DataActionGetSubdivision",
+   "kind": "late",
+   "held": 1,
+   "openedScreen": "/UBTConnect/SupperMeeting_Details",
+   "atRelease": "/UBTConnect/HomeFeed",
+   "toastsAfterRelease": [],
+   "unhandledRejections": [],
+   "atEnd": "/UBTConnect/HomeFeed",
+   "result": "held 1; opened /UBTConnect/SupperMeeting_Details; released at /UBTConnect/HomeFeed; no message after release; unhandled rejections: none"
+  }
+ ],
+ "blocked": []
+}

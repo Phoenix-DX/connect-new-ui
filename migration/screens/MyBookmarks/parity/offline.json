@@ -5,7 +5,7 @@
  "viewport": "390x844",
  "flags": {},
  "steps": 0,
- "fingerprint": "c5b465744a97ca2a637f",
+ "fingerprint": "ff56a6441056af88f181",
  "options": {
   "text": true,
   "style": true,
@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-27T23:16:11.998Z",
+ "at": "2026-10-28T04:44:25.721Z",
  "counts": {},
  "exemptionsUsed": {
   "CAPTURE-ANIMATE-PHASE-MYBOOKMARKS-NETWORKWARNING-POSITION": 1,

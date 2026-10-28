@@ -67,10 +67,11 @@ Gates: `npm run ci` green (4338 tests, 0 new unused exports, build OK); the 64-r
 
 ## Follow-ups named by the agents (no decision needed, not built in this wave)
 
-- B4: `pages/CountryDetails/hooks/useCountryDetails.ts:115` (GetLocalityStatistics) has the same gap as App_Services
-  F2 (add `useFetchErrorToFlowHandler`). Other query callers (Search, Profile, CountryList, LegacyShareObject,
-  ShareSheet, HomeFeed) need a check against their TST block. `raiseToFlowHandler` lacks the `ignoreError` guard
-  (ACF:24-26) and shows a message for a system exception where TST rethrows (`builds/B4-errors.md`).
+- B4 (done 2026-10-28, item 2 of the user's list): checked again with the MCP and the live TST code, plus read-only
+  probes on TST (`../review/item2-fetch-errors.md`). The user approved the Fable design (`../review/item2-solution.md`):
+  one query-cache subscription raises a failed fetch once while a screen uses the query; `raiseToFlowHandler` has the
+  ignore step, the "NoteCommunicationError" test and the error-page marker; the communication message reads
+  `navigator.onLine`; SupperMeetingDetails raises nothing after the unmount (E9). `useFetchErrorToFlowHandler` is gone.
 - B10 (done by the orchestrator): the dead `fetchMilestoneScanFF` code is removed (`api/event`, its test, the README).
 - B6: no TST capture shows the address section (the captured account is a spouse): a capture with a householder
   account settles the review. `localityCache.allLocalitiesType` is "Connect_CacheType.AllLocalities" where the

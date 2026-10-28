@@ -12,14 +12,17 @@ import { getSessionStatus, subscribeSessionStatus } from '@/platform/session/mac
 import { registerPin } from '@/platform/session/pin';
 import { getClientVar, getShellState, readPin, setClientVar } from '@/platform/session/session';
 import { calledActions, freshPage } from '@/test/testSupport';
+import { getErrorPage, resetErrorPage } from '@/platform/feedback/errorPage';
 import {
   CommunicationException,
   InvalidLoginException,
   NotRegisteredException,
   SecurityException,
+  SystemException,
   UserException,
   raiseToFlowHandler,
 } from './exceptions';
+import { IgnorableSystemException, ViewHasChangedException } from './os-exceptions';
 
 /* The App_Common flow handler (raiseToFlowHandler), App_Common OnException in
    migration/shell/sources/UBTConnect.App_Common.controller.js (ACF): the SecurityException branch (ACF:61-89, G1) and
@@ -43,6 +46,7 @@ beforeEach(async () => {
   vi.mocked(signedOutRemotely).mockClear();
   resetFeedbackMessages();
   resetFeedbackDebounce();
+  resetErrorPage();
   await startApp(); // signed-out start
   window.__osCalls = [];
 });
@@ -247,5 +251,50 @@ describe('UBTConnect.BubbleCommunicationException, the first branch (ACF:31-44, 
     await vi.waitFor(() => {
       expect(getFeedbackMessage()?.message).toBe('The order could not be saved.');
     });
+  });
+});
+
+/* Item 2 (migration/clarify/review/item2-fetch-errors.md E4–E6, design approved by the user 2026-10-28):
+   App_Common OnException in the compiled order. MCP (DEV) OnException of App_Common has the same nodes. */
+describe('the ignore step comes first (ACF:24-26, OS.ErrorHandling.ignoreError; D1)', () => {
+  test('an IgnorableSystemException, such as ViewHasChangedException, shows nothing and opens no error page', () => {
+    act(() => {
+      raiseToFlowHandler(new ViewHasChangedException());
+      raiseToFlowHandler(new IgnorableSystemException('ignored'));
+    });
+    expect(getFeedbackMessage()).toBeNull();
+    expect(getErrorPage()).toBeNull();
+  });
+});
+
+describe('AllExceptions: the "NoteCommunicationError" test (ACF:98-110; D3)', () => {
+  test('a message that contains "NoteCommunicationError" shows ShowCommunicationExceptionMessage', () => {
+    act(() => {
+      // NotesSheet Handler_OnSubmitNote raises it for a CommunicationException (E8)
+      raiseToFlowHandler(new UserException('NoteCommunicationError', 'UBTConnect_Utils.CommunicationError'));
+    });
+    expect(getFeedbackMessage()?.message).toContain("<div class='feedback-message--title'>Service Interruption</div>");
+  });
+
+  test('the test is case sensitive (Index, ignoreCase False): another message keeps ShowExceptionMessage', async () => {
+    act(() => {
+      raiseToFlowHandler(new UserException('The notecommunicationerror text'));
+    });
+    await vi.waitFor(() => {
+      expect(getFeedbackMessage()?.message).toBe('The notecommunicationerror text.');
+    });
+  });
+});
+
+describe('a system exception that is not ignorable (ACF:119 `throw ex`, runtime navigateToErrorPage; D1 (b))', () => {
+  test('no message: the error page with the message of the exception', () => {
+    const error = vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    act(() => {
+      raiseToFlowHandler(new SystemException('The system is unavailable'));
+    });
+    expect(getFeedbackMessage()).toBeNull();
+    expect(getErrorPage()).toEqual({ message: 'The system is unavailable' });
+    expect(error).toHaveBeenCalled();
+    error.mockRestore();
   });
 });

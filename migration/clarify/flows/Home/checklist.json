@@ -1037,7 +1037,10 @@
    "react": "useCommunityPopulationQuery on mount: no retry, staleTime 0, gcTime 0, no refetch on reconnect",
    "evidence": "app/src/pages/HomeFeed/HomeFeedPage.tsx:79; app/src/api/member/hooks.ts:42-55; TST FeedBlock_CommunityPopulation.mvc.js:344",
    "verdict": "match",
-   "verified": "pack"
+   "verified": "mcp+tst+probe",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): A failed FetchCount now also goes to the flow handler (query-cache subscription); the TST probe shows \"Service Interruption\". The errorLog stays.",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "Home-065",
@@ -1180,19 +1183,10 @@
    "verdict": "match",
    "severity": "minor",
    "finding": "F2",
-   "verified": "live",
-   "fixed": "2026-10-27",
-   "note": "Fixed 2026-10-27 (fixes/C-errors.md).",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "weak",
-    "by": [
-     "lines-same"
-    ],
-    "files": [
-     "UBTConnect.Home.FeedBlock_Services.mvc.js (lines-same)"
-    ]
-   }
+   "verified": "mcp+tst",
+   "fixed": "2026-10-28",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): A failed GetServices goes to the flow handler (query-cache subscription), as the block handleError (D6). | Fixed 2026-10-27 (fixes/C-errors.md).",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "Home-075",
@@ -1960,19 +1954,10 @@
    "verdict": "match",
    "severity": "minor",
    "finding": "F2",
-   "verified": "live",
-   "fixed": "2026-10-27",
-   "note": "Fixed 2026-10-27 (fixes/C-errors.md).",
-   "stale": {
-    "since": "2026-10-27",
-    "level": "weak",
-    "by": [
-     "screen"
-    ],
-    "files": [
-     "UBTConnect.Home.FeedBlock_Updates.mvc.js (screen)"
-    ]
-   }
+   "verified": "mcp+tst",
+   "fixed": "2026-10-28",
+   "note": "Item 2 (2026-10-28; migration/clarify/review/item2-fetch-errors.md, item2-solution.md): A failed FetchUpdates goes to the flow handler (query-cache subscription), as the block handleError (D6; MCP: AtStart). | Fixed 2026-10-27 (fixes/C-errors.md).",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "Home-111",

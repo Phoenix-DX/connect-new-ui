@@ -29,7 +29,9 @@ Earlier status (third session): the clarify work was complete before the fix wav
   - Open for the user, later: the bookmarkCategory constant ("OneSchool Global" on TST).
 - The user's work list of 2026-10-28: one item at a time, and ask the user after each item.
   1. Survey drift check: done; decision (c) done (2026-10-28).
-  2. Error handling of the data calls (B4 follow-up).
+  2. Error handling of the data calls (B4 follow-up): done 2026-10-28 (`review/item2-fetch-errors.md`, §5 Status;
+     design `review/item2-solution.md`, approved by the user). Open for later: the other W23 flows (§8.2 b) and a
+     capture of `_error.html`.
   3. Merge the two custom dropdowns and add `useValidationWidget`.
   4. SanitizedHtml `<nobr>` and the double `?` of `generateScreenURL`.
   5. HostSurvey Tooltip and MultiResolutionImageLoader.
@@ -75,6 +77,13 @@ Open items for the user:
 
 ## Way of work that the user decided
 
+- Evidence (user, 2026-10-28): the MCP (DEV) first, then the compiled TST code; cite both. TST wins on a difference,
+  and the difference is written down. Runtime facts that the model cannot show come from TST and from read-only
+  probes (`tools/probe_fetch_errors.cjs`), when the user allows them.
+- A mismatch React ≠ TST (user, 2026-10-28): a Fable agent (React architect) proposes a design. The design keeps the
+  behaviour and the logic, not the OutSystems structure, and gives options and reasons. The user approves it. Then the
+  build follows: tests first, gates, records, a local commit.
+
 - Models: Sonnet reads and writes evidence (`READER.md`); Opus judges (`JUDGE.md`); Fable judges the hard flows
   (wrappers of referenced modules, many unclear rows) and the orchestrator's review pass.
 - At most 10 agents in parallel. After each wave: `agent_cost.py` on the transcripts, a waste report to the user, and
@@ -91,6 +100,7 @@ Open items for the user:
 | `tools/app_index.py`, `tools/kb_index.py`, `tools/decisions_index.py` | the React, KB and decision indexes of a pack |
 | `tools/tst_source.py list|show|grep` | TST compiled code (survey + `migration/runtime-sources/` + `migration/shell/sources/`) |
 | `tools/collect.py [--questions G<n>]` | `INDEX.md`; the questions of a group |
+| `tools/probe_fetch_errors.cjs [--late]` | read-only probe on TST: aborts or holds one read, records the message (the user allows each run) |
 | `tools/mark_stale.py [--mark …] [--dry-run]` | mark the checklist rows that rest on TST code changed by a later publish (`stale`, strong or weak); `review/survey-drift/impact.txt` |
 | `tools/answers.py` | record the user's answers; `decisions.md` |
 | `tools/agent_cost.py label=<transcript> …` | token-waste statistics of subagent transcripts |
