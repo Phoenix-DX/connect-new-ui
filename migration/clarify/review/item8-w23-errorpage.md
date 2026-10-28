@@ -127,3 +127,11 @@ Group C (2026-10-28, after the user opened Connect2_Assemble_MUI in Service Stud
 | Kind on the MCP | Names |
 |---|---|
 | IDataAction (R1) | Connect2_Assemble_MUI: GetAssembleEvent, GetAssembleEventTypes, GetAssembleMeetingSummaryList, GetSubdivisionName. Connect2_OrbitMobile_MUI: Get_EventInformation, Get_AdminEventsList, Get_EventQRCode, Get_EventsByMemberId, Get_HouseholdMembers. UBTConnect: GetAssembleNotes (Fetch AtStart) |
+
+Group D (2026-10-28): DEV = TST on every call.
+
+| Kind on the MCP | Names (module Connect2_OrbitMobile_MUI) |
+|---|---|
+| IDataAction (R1) | GetAccommodationGuest, GetCaptions, GetAccommodationHelper, GetAccommodationHost, Get_Document, Get_EventBookletFilters, Get_EventBookletGuests, Get_EventBookletHelpers, FetchEventNotes (Fetch AtStart), Get_EventDetails, Get_HasDocuments, Get_HasQRCode, Get_HostSurveyStatus, GetCoordinatorDetails, GetEventByEventId, GetGuestArrangements, GetHelperDetails, GetHostSurvey, GetMealGuest, GetMealHelper, GetMealHost, GetGmpMilestoneHost, GetEventsForCalendar, GetEventsForMyTimeline, Get_TransportDetail, GetEventDocuments |
+
+All four groups are checked: 76 data actions and aggregates, all of the kind that the TST code shows.
