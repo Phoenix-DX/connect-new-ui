@@ -22,7 +22,16 @@ gives these facts:
 | R5 | A feedback message (Message node) has no context check: it shows, also after the user left | `FeedbackMessageService.showFeedbackMessage` (module W325288) |
 | R6 | The error page opens only from a valid context: `navigateToErrorPage` returns when the context is out of context | `ErrorHandling` module W322831 (`o.isValidContext(s)`) |
 
-E9 of item 2 (a failed fetch after the user left shows no message) is R1. The client actions of a flow or of a module have a no-op
+E9 of item 2 (a failed fetch after the user left shows no message) is R1.
+
+Live check of R3 and R4 on TST (2026-10-28, `../tools/probe_leave_rules.cjs`, read-only guard on,
+`probe-leave-rules.json`):
+- The probe opened BrowseCountries, kept its controller and a call context, and left for Menu.
+- After the transition, the old context is out of context and the controller is disposed.
+- `navigateTo` with the old context throws OutOfContextException; the path stays `/UBTConnect/Menu` (R4).
+- The screen's own `Handler_StatisticsList_Clicked` throws ControllerDisposedException (R3).
+- Timing: at the navigation call and 150 ms later, the old screen is still the active screen. The switch comes when the
+  new screen is active. So on TST a flow of the old screen can still navigate while the new screen loads. The client actions of a flow or of a module have a no-op
 `ensureControllerAlive` (W524880), for example App_Common and UBTConnect_Utils. They run after the user left.
 
 So W23 differs from TST in three places:
