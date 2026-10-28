@@ -2,16 +2,27 @@ import { useEffect, useState } from 'react';
 import { markUpdateItemAsRead, markUpdateItemAsUnread, useFeedUpdatesQuery, type UpdateItem } from '@/api/update';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { getPreloadObject, setPreloadObject, useOsNavigate, useWasRestoredFromCache } from '@/platform/navigation';
+import {
+  getPreloadObject,
+  setPreloadObject,
+  useFlowScope,
+  useOsNavigate,
+  useWasRestoredFromCache,
+} from '@/platform/navigation';
 import { APP_ID } from '@/platform/navigation/paths';
-import { directory_Updates_GetCarouselPreloadedHouseholds } from '@/lib/ubtConnect/actions';
+import {
+  directory_Updates_GetCarouselPreloadedHouseholds,
+  directory_Updates_RefreshBottomBarCount,
+} from '@/lib/ubtConnect/actions';
 import { loadingItems, swipedItemsRead, withReadOverrides, type ReadOverrides } from './feedUpdatesState';
 
 /** The variables and the flows of the updates card of HomeFeed: the data action FetchUpdates, the read state of the
     items on the client, Event_ListItemOnClick, the actions of the context menu and the subscription upgrade. The page
     gives the result to the component FeedBlock_Updates.
-    The flows do not check that the block is still open: after MarkAsRead, the jump to HouseholdCarousel runs also when
-    the user left HomeFeed (W23, as before the hook).
+    Flow scope (item 8): MarkAsRead and MarkAsUnread are server actions (R2): their flows go on after the block
+    closes, and the module actions after them run (SetPreloadObject, Directory_Updates_RefreshBottomBarCount). The jump
+    to HouseholdCarousel does not happen when the user left HomeFeed (R4, useOsNavigate). It happens when only the
+    block closed and HomeFeed is still the active screen (isOutOfContext compares the screen, W518580).
     @origin UBTConnect.Home.FeedBlock_Updates */
 
 /** The events of the block. */
@@ -53,10 +64,12 @@ export interface FeedUpdatesView {
 }
 
 export function useFeedUpdates(
-  { onEventNoUpdates, onEventShare }: FeedUpdatesEvents,
+  events: FeedUpdatesEvents,
   { hasCarouselEnabled, hasExtendedShare }: FeedUpdatesFlags,
 ): FeedUpdatesView {
+  const { onEventNoUpdates, onEventShare } = events;
   const navigate = useOsNavigate();
+  const flow = useFlowScope(events);
   const restored = useWasRestoredFromCache();
   const updates = useFeedUpdatesQuery();
   // OnInitialize: in a restored view, the items swiped in the carousel are read.
@@ -84,7 +97,7 @@ export function useFeedUpdates(
       await showUpgradePopUp();
       return;
     }
-    await markUpdateItemAsRead(item.updateItemId); // then ScreenModel_Flush, which React does not need
+    await markUpdateItemAsRead(item.updateItemId); // R2; then ScreenModel_Flush, which React does not need
     if (hasCarouselEnabled) {
       // ListFilter(UI_UpdateItemList, HasAccess) → Directory_Updates_GetCarouselPreloadedHouseholds → SetPreloadObject,
       // shared since CR-HomeFeed-2.
@@ -98,8 +111,17 @@ export function useFeedUpdates(
           })),
       );
       setPreloadObject({ CarouselHouseholdItem: preloaded.CarouselHouseholdItem });
-      navigate(`/${APP_ID}/HouseholdCarousel`, { In_StartingHouseholdId: item.householdId });
+      navigate(`/${APP_ID}/HouseholdCarousel`, { In_StartingHouseholdId: item.householdId }); // R4 in useOsNavigate
     }
+  };
+
+  /** Event_MarkAsRead(UpdateItemId) / Event_MarkAsUnread(UpdateItemId) (FeedBlock_Updates :801-820, :751-770): the
+      server action, FetchUpdates.UI_UpdateItemList.Current.IsRead, then Directory_Updates_RefreshBottomBarCount(True)
+      (a module action: it runs also after the block closed). */
+  const markAs = async (item: UpdateItem, isRead: boolean) => {
+    await (isRead ? markUpdateItemAsRead : markUpdateItemAsUnread)(item.updateItemId); // R2
+    setRead(item.updateItemId, isRead);
+    await directory_Updates_RefreshBottomBarCount(true);
   };
 
   return {
@@ -107,7 +129,9 @@ export function useFeedUpdates(
     hasData: fetched !== undefined,
     isLoading: !updates.isSuccess && !updates.isError,
     hasFetchError: updates.isError,
-    onItemClick: (item) => void itemClick(item),
+    onItemClick: (item) => {
+      flow.run(() => itemClick(item));
+    },
     onShare: (item) => {
       // Handler__Share: GetHasExtendedShare → Event_Share. The other branch (ShowComingSoonMessage) is not built.
       if (hasExtendedShare) onEventShare?.(item.updateItemId, item);
@@ -116,14 +140,10 @@ export function useFeedUpdates(
       showFeedbackMessage('Send gift', PLATFORM_MESSAGE_TYPE.info);
     },
     onMarkAsRead: (item) => {
-      void markUpdateItemAsRead(item.updateItemId).then(() => {
-        setRead(item.updateItemId, true);
-      });
+      flow.run(() => markAs(item, true));
     },
     onMarkAsUnread: (item) => {
-      void markUpdateItemAsUnread(item.updateItemId).then(() => {
-        setRead(item.updateItemId, false);
-      });
+      flow.run(() => markAs(item, false));
     },
     onClickUpgrade: () => void showUpgradePopUp(),
   };

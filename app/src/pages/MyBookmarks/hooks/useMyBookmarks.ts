@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { fetchBookmarkById, fetchBookmarkGroupSummaries } from '@/api/bookmark';
 import {
   CommunicationException,
@@ -9,8 +8,7 @@ import {
 } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { setPreloadObject, useFlowState, type IsAlive } from '@/platform/navigation';
+import { setPreloadObject, useFlowState } from '@/platform/navigation';
 import { MyBookmarks_ObjectType } from '@/lib/ubtConnect/staticEntities';
 import { connect_LaunchDarkly_PermissionCheck, textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 import {
@@ -25,7 +23,6 @@ import {
   isTimeoutExceptionMessage,
   myBookmarksReducer,
   restoreMyBookmarks,
-  type MyBookmarksPatch,
   type MyBookmarksState,
 } from './myBookmarksState';
 
@@ -83,18 +80,17 @@ const ERROR = PLATFORM_MESSAGE_TYPE.error;
       error message and the refresh of GetGroupSummaries. Hidden: SendBookmarkedHiddenFeedbackMessage. Disabled: the
       upgrade pop-up. Otherwise the preload of the carousel (Contact, Campus&Co, OneSchool Global) and the event of the
       object type.
-    - Decision W23: OnReady runs once per mount (StrictMode runs the mount effect again: the second run only replaces
-      the liveness check). After an unmount, a started flow skips its state writes only; its calls, messages, pop-ups,
-      preload and events still run, and its errors still go to the flow handler.
+    - Flow scope (item 8): GetGroupSummaries is a data action (R1, `flow.fetch`): after the unmount its answer and its
+      failure are dropped (no message, no raise). GetBookmarkById is a module client action: its flow goes on after
+      the unmount (the messages, the upgrade pop-up, the refresh call and the preload run, R5), and the NavigateTo_*
+      events stop (R3: the parent handlers OnHandle_NavigateTo_* start with ensureControllerAlive; `flow.events`).
     @origin Connect2_MyBookmarks_MUI.MyBookmarksFlow.ScreenBlock_MyBookmarks */
 export function useMyBookmarks(events: MyBookmarksEvents): MyBookmarksFlows {
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
   const {
     state,
-    dispatch,
+    dispatch: write,
     latest,
-    events: eventsRef,
+    flow,
   } = useFlowState({
     viewName: VIEW_NAME,
     reducer: myBookmarksReducer,
@@ -102,23 +98,13 @@ export function useMyBookmarks(events: MyBookmarksEvents): MyBookmarksFlows {
     restore: restoreMyBookmarks,
     parameters: null,
     events,
-    // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady();
-    },
+    // The flow is defined below; the hook calls the one of the newest render (once per instance: useFlowState).
+    onReady: () => onReady(),
   });
-
-  /** A state write of a flow, skipped after the unmount (W23). */
-  const write = (patch: MyBookmarksPatch) => {
-    if (newestReadyRun.current()) dispatch(patch);
-  };
 
   /** Refresh Query GetGroupSummaries, then OnAfterFetch_GetGroupSummaries. */
   const refreshGetGroupSummaries = async () => {
-    write(groupSummariesFetched(await fetchBookmarkGroupSummaries(latest.current)));
+    write(groupSummariesFetched(await flow.fetch(fetchBookmarkGroupSummaries(latest.current)))); // R1
   };
 
   /** RefreshBookmarkData. */
@@ -160,6 +146,7 @@ export function useMyBookmarks(events: MyBookmarksEvents): MyBookmarksFlows {
 
   /** NavigateTo_BookmarkedItem(BookmarkId, ItemPosition, ObjectType). */
   const navigateToBookmarkedItem = async (bookmarkId: string, itemPosition: number, objectTypeIn: string) => {
+    // A module client action (GetBookmarkById): not wrapped, its flow goes on after the unmount.
     const { item, isBookmarkFound } = await fetchBookmarkById(
       bookmarkId,
       connect_LaunchDarkly_PermissionCheck('mobileDirectoryBookmarkNote'),
@@ -184,7 +171,7 @@ export function useMyBookmarks(events: MyBookmarksEvents): MyBookmarksFlows {
     const model = latest.current;
     if (item.objectType === T.Contact) {
       setPreloadObject({ IsPreloaded: true, PreloadedCarouselItems: model.allContacts.map(householdPreloadItem) });
-      eventsRef.current.onNavigateToHouseholds(
+      flow.events.onNavigateToHouseholds(
         selectedObjectId,
         model.contacts.totalCount,
         currentItemPosition,
@@ -192,15 +179,15 @@ export function useMyBookmarks(events: MyBookmarksEvents): MyBookmarksFlows {
         model.allContacts.map((c) => textToLongInteger(c.objectId)),
       );
     } else if (item.objectType === T.Locality) {
-      eventsRef.current.onNavigateToLocality(selectedObjectId, item.title, initialTab(item.objectType));
+      flow.events.onNavigateToLocality(selectedObjectId, item.title, initialTab(item.objectType));
     } else if (item.objectType === T.Subdivision) {
-      eventsRef.current.onNavigateToSubdivision(selectedObjectId);
+      flow.events.onNavigateToSubdivision(selectedObjectId);
     } else if (item.objectType === T.CampusCo || item.objectType === T.OneSchoolGlobal) {
       setPreloadObject({
         IsPreloaded: true,
         PreloadedCarouselItems: model.allCommunityBusiness.map(communityBusinessPreloadItem),
       });
-      eventsRef.current.onNavigateToCommunityBusinessCarousel(
+      flow.events.onNavigateToCommunityBusinessCarousel(
         selectedObjectId,
         objectTypeIn,
         model.communityBusinesses.totalCount,
@@ -212,10 +199,10 @@ export function useMyBookmarks(events: MyBookmarksEvents): MyBookmarksFlows {
   return {
     state,
     onBookmarkedItem: (bookmarkId, itemPosition, objectType) => {
-      navigateToBookmarkedItem(bookmarkId, itemPosition, objectType).catch(raiseToFlowHandler);
+      flow.run(() => navigateToBookmarkedItem(bookmarkId, itemPosition, objectType));
     },
     onTryAgain: () => {
-      refreshBookmarkData().catch(raiseToFlowHandler);
+      flow.run(refreshBookmarkData);
     },
   };
 }

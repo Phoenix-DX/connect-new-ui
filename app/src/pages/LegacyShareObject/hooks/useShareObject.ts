@@ -1,9 +1,8 @@
-import { useRef } from 'react';
 import { fetchHouseholdShareCard } from '@/api/household';
 import { fetchCommunityBusinessShareCard } from '@/api/locality';
 import { useShareObjectTypeLabelQuery } from '@/api/share';
 import { Type_ShareObject } from '@/pages/LegacyShareObject/components/staticEntities';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import {
   CARD_LOADED,
   communityBusinessCardLoaded,
@@ -11,7 +10,6 @@ import {
   INITIAL_SHARE_OBJECT_STATE,
   shareObjectReducer,
   textToLongInteger,
-  type ShareObjectPatch,
   type ShareObjectState,
 } from './shareObjectState';
 
@@ -47,8 +45,9 @@ const VIEW_NAME = 'Connect2_LegacyShared.Share_UI.ScreenBlock_ShareObject';
       IntegerToLongInteger(TextToInteger(ObjectId)), CheckVisibility False) for a household, or
       Get_UI_CommunityBusinessShareCard for Campus&Co and OneSchool Global; then IsLoading = False. An exception
       leaves IsLoading True and goes to the flow handler.
-    - Decision W23: after the unmount, the started OnReady skips its state writes only; its call and its exception
-      still run.
+    - Flow scope (item 8): GetHouseholdDetails and Get_UI_CommunityBusinessShareCard are server actions (R2): after
+      the unmount the call ends and its exception still goes to the flow handler; the state writes are no-ops
+      (`dispatch`). The type-label query is a screen aggregate with no after-effect.
     @origin Connect2_LegacyShared.Share_UI.ScreenBlock_ShareObject */
 export function useShareObject(parameters: ShareObjectParameters): ShareObjectFlows {
   const label = useShareObjectTypeLabelQuery({
@@ -57,13 +56,9 @@ export function useShareObject(parameters: ShareObjectParameters): ShareObjectFl
     In_CustomTitle: parameters.customTitle,
     User_AgeVisibility: parameters.userAgeVisibility,
   });
-  /* OnReady runs once per block. StrictMode (dev) runs the mount effect again on the same block: the second call only
-     replaces the liveness check, so the first flow writes the state while the block is there and calls once. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
   const {
     state,
-    dispatch,
+    dispatch: write,
     parameters: parametersRef,
   } = useFlowState({
     viewName: VIEW_NAME,
@@ -71,24 +66,15 @@ export function useShareObject(parameters: ShareObjectParameters): ShareObjectFl
     initial: INITIAL_SHARE_OBJECT_STATE,
     restore: () => INITIAL_SHARE_OBJECT_STATE,
     parameters,
-    // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady();
-    },
+    // The flow is defined below; the hook calls the one of the newest render (once per block: useFlowState).
+    onReady: () => onReady(),
   });
-
-  /** A state write after an await, skipped after the unmount (W23). */
-  const write = (patch: ShareObjectPatch) => {
-    if (newestReadyRun.current()) dispatch(patch);
-  };
 
   /** OnReady. useFlowState sends a rejection to the flow handler. */
   const onReady = async () => {
     const { shareObjectTypeId, objectId, userAgeVisibility } = parametersRef.current;
     if (shareObjectTypeId === Type_ShareObject.Household) {
+      // GetHouseholdDetails: a server action (R2).
       const card = await fetchHouseholdShareCard({
         HouseholdId: textToLongInteger(objectId),
         User_AgeVisibility: userAgeVisibility,
@@ -99,7 +85,7 @@ export function useShareObject(parameters: ShareObjectParameters): ShareObjectFl
       shareObjectTypeId === Type_ShareObject.CampusCo ||
       shareObjectTypeId === Type_ShareObject.OneSchoolGlobal
     ) {
-      const card = await fetchCommunityBusinessShareCard(textToLongInteger(objectId));
+      const card = await fetchCommunityBusinessShareCard(textToLongInteger(objectId)); // R2
       write(communityBusinessCardLoaded(card));
     }
     write(CARD_LOADED);

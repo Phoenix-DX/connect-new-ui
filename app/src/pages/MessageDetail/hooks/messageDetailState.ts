@@ -19,7 +19,7 @@ export interface MessageDetailState {
 }
 
 /** The changes of the state. */
-export type MessageDetailAction =
+type MessageDetailAction =
   /** GetMessageInstanceByIdOnAfterFetch, first node: MessageInstanceId = Message.MessageInstance.Id. */
   | { type: 'messageInstanceFetched'; message: MessageDetail }
   /** GetMessageTemplateParametersOnAfterFetch: the parameters; for Assemble, ShowAssembleAction. */

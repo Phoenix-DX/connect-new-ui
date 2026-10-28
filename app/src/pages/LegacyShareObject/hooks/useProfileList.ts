@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { shareObject, useAvailableUsersQuery, type AvailableUsersCallInputs } from '@/api/share';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import {
   availableUsersFetched,
@@ -12,7 +11,6 @@ import {
   profileListResults,
   profileShared,
   profileShareFailed,
-  type ProfileListPatch,
   type ProfileListResults,
   type ShareProfile,
 } from './profileListState';
@@ -72,20 +70,19 @@ const VIEW_NAME = 'Connect2_LegacyShared.Share_UI.ProfileList';
       user; a success marks the row as shared; a refusal (not allowed) or a failure (with its message) unmarks it, and
       a refusal raises SubscriptionDenied.
     - The old port keeps no block variable in the view cache: a back navigation starts from the defaults (`restore`).
-    - Decision W23: after the unmount, a started flow skips its state writes only; the share call, the feedback message
-      and SubscriptionDenied still run.
+    - Flow scope (item 8): ShareObject is a server action (R2): after the unmount its flow goes on and the feedback
+      message shows (R5), but SubscriptionDenied stops (R3: the parent handler Handler_ShareObject_SubscriptionDenied
+      starts with ensureControllerAlive, LegacyShareObject.mvc.js:307; `flow.events`). The GetAvailableUsers refresh
+      is R1 (`flow.fetch`). State writes after the unmount are no-ops (`dispatch`).
     The ProfileList event Share is never raised (its controller only declares it), so it is not ported.
     @origin Connect2_LegacyShared.Share_UI.ProfileList */
 export function useProfileList(parameters: ProfileListParameters, events: ProfileListEvents): ProfileListFlows {
-  /* The liveness of the block: false after the unmount. StrictMode (dev) runs the mount effect again on the same
-     block; the second run replaces the check. */
-  const alive = useRef<IsAlive>(() => true);
   const {
     state,
     dispatch,
     latest,
     parameters: parametersRef,
-    events: eventsRef,
+    flow,
   } = useFlowState({
     viewName: VIEW_NAME,
     reducer: profileListReducer,
@@ -93,16 +90,7 @@ export function useProfileList(parameters: ProfileListParameters, events: Profil
     restore: () => INITIAL_PROFILE_LIST_STATE,
     parameters,
     events,
-    onReady: (isAlive) => {
-      alive.current = isAlive;
-      return Promise.resolve();
-    },
   });
-
-  /** A state write after an await, skipped after the unmount (W23). */
-  const write = (patch: ProfileListPatch) => {
-    if (alive.current()) dispatch(patch);
-  };
 
   const requestCount = useRef(0);
   const waiters = useRef(new Map<number, () => void>());
@@ -141,14 +129,15 @@ export function useProfileList(parameters: ProfileListParameters, events: Profil
   /** Input_SearchFilterOnChange. */
   const onChangeSearchFilter = async (value: string) => {
     dispatch({ searchFilter: value });
-    if (value.trim() === '' && latest.current.hasSearched) await refreshAvailableUsers();
-    write({ hasSearched: false });
+    if (value.trim() === '' && latest.current.hasSearched) await flow.fetch(refreshAvailableUsers()); // R1
+    dispatch({ hasSearched: false });
   };
 
   /** DeferredHandleShareObjectList(TargetProfileId). */
   const deferredHandleShareObjectList = async (targetProfileId: string) => {
     const userInfo = appManager_GetCachedUserInfo();
     const { shareObjectId, shareObjectTypeId } = parametersRef.current;
+    // ShareObject: a server action (R2).
     const result = await shareObject({
       shareObjectTypeId,
       sharedObjectId: shareObjectId,
@@ -157,13 +146,13 @@ export function useProfileList(parameters: ProfileListParameters, events: Profil
     });
     if (result.isAllowed) {
       if (result.isSuccess) {
-        write(profileShared(latest.current, targetProfileId));
+        dispatch(profileShared(latest.current, targetProfileId));
         return;
       }
       showFeedbackMessage(result.message, PLATFORM_MESSAGE_TYPE.error);
     }
-    write(profileShareFailed(latest.current, targetProfileId));
-    if (!result.isAllowed) await eventsRef.current.onSubscriptionDenied();
+    dispatch(profileShareFailed(latest.current, targetProfileId));
+    if (!result.isAllowed) await flow.events.onSubscriptionDenied(); // R3
   };
 
   return {
@@ -173,21 +162,20 @@ export function useProfileList(parameters: ProfileListParameters, events: Profil
     shareProfiles: state.shareProfiles,
     noResultsFoundMessage: state.noResultsFoundMessage,
     onSearchFilterChange: (value) => {
-      onChangeSearchFilter(value).catch(raiseToFlowHandler);
+      flow.run(() => onChangeSearchFilter(value));
     },
     // JavaScript1: `event.keyCode == 13` (Enter) → SearchProfile (Refresh GetAvailableUsers, then HasSearched =
     // True), and the input loses the focus.
     onSearchFilterKeyUp: (event) => {
       if (event.key !== 'Enter') return;
-      refreshAvailableUsers()
-        .then(() => {
-          write({ hasSearched: true });
-        })
-        .catch(raiseToFlowHandler);
+      flow.run(async () => {
+        await flow.fetch(refreshAvailableUsers()); // R1
+        dispatch({ hasSearched: true });
+      });
       event.currentTarget.blur();
     },
     onShare: (profileId) => {
-      deferredHandleShareObjectList(profileId).catch(raiseToFlowHandler);
+      flow.run(() => deferredHandleShareObjectList(profileId));
     },
   };
 }

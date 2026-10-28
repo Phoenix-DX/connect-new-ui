@@ -195,7 +195,7 @@ describe('useConnectShare', () => {
   });
 });
 
-describe('useConnectShare after an unmount and in StrictMode (decision W23)', () => {
+describe('useConnectShare after an unmount and in StrictMode (flow scope, item 8)', () => {
   it('a Get_ShareDetails that fails after the unmount still runs the audit once and writes no state', async () => {
     vi.useFakeTimers();
     const pending = deferred<ShareDetails>();
@@ -213,7 +213,7 @@ describe('useConnectShare after an unmount and in StrictMode (decision W23)', ()
     expect(spy.navigate).not.toHaveBeenCalled();
   });
 
-  it('a share that answers after the unmount starts no alert timer and no redirect', async () => {
+  it('R3: a share that answers after the unmount starts no alert timer and no redirect', async () => {
     vi.useFakeTimers();
     const pending = deferred<ShareDetails>();
     vi.mocked(fetchShareDetails).mockReturnValue(pending.promise);

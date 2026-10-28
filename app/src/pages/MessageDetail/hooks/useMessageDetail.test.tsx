@@ -14,6 +14,8 @@ import {
 } from '@/api/message';
 import { markNotificationOpened } from '@/api/notification';
 import { CommunicationException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
+import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { getHasAssemble, getHasOrbitAccess, getHasOrbitHostSurvey } from '@/pages/MessageDetail/actions';
 import type { MessageDetailInputs } from '@/pages/MessageDetail/inputs';
 import { MessageInfoType, MessageSenderTarget, MessageType, ParameterName } from '@/pages/MessageDetail/staticEntities';
@@ -63,6 +65,10 @@ vi.mock('@/platform/feedback', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback')>()),
   feedbackMessageAutoClose: vi.fn(),
   showFeedbackMessage: vi.fn(),
+}));
+vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
+  raiseToFlowHandler: vi.fn(),
 }));
 vi.mock('@/platform/navigation', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/navigation')>()),
@@ -347,7 +353,14 @@ describe('useMessageDetail', () => {
   });
 });
 
-describe('useMessageDetail after an unmount and in StrictMode (decision W23)', () => {
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+
+describe('useMessageDetail after an unmount and in StrictMode (flow scope, item 8)', () => {
   /** GetMessageInstance answers only when the test resolves it. */
   function pendingMessageInstance() {
     let resolve: (value: MessageInstanceResult) => void = () => undefined;
@@ -367,32 +380,137 @@ describe('useMessageDetail after an unmount and in StrictMode (decision W23)', (
     };
   }
 
-  it('still shows the message and goes to the message list once, without a state write', async () => {
+  /** An answer of a call that the test gives later. */
+  function pending<T>() {
+    let resolve: (value: T) => void = () => undefined;
+    let reject: (error: unknown) => void = () => undefined;
+    const promise = new Promise<T>((res, rej) => {
+      resolve = res;
+      reject = rej;
+    });
+    return { promise, resolve, reject };
+  }
+
+  it('R1: unmount while GetMessageInstance is pending: no message, no navigation, no state write, no raise', async () => {
     const answerNow = pendingMessageInstance();
     const { unmount } = renderFlows();
     unmount();
     vi.mocked(messageDetailReducer).mockClear();
     answerNow({ isRetracted: true });
     await settle();
-    expect(feedbackMessageAutoClose).toHaveBeenCalledTimes(1);
-    expect(lastAutoClose()?.message).toBe('Sorry, this message is not available anymore.');
-    expect(replaceOnUpcomingNavigation).toHaveBeenCalledTimes(1);
-    expect(events.onNavigateToMessageList).toHaveBeenCalledTimes(1);
+    // GetMessageInstanceByIdOnAfterFetch (MessageDetail.js:921 and on) never starts.
+    expect(feedbackMessageAutoClose).not.toHaveBeenCalled();
+    expect(replaceOnUpcomingNavigation).not.toHaveBeenCalled();
+    expect(events.onNavigateToMessageList).not.toHaveBeenCalled();
     expect(messageDetailReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('still lowers the counter and calls Wrapper_NotificationOpened with the fetched id, without a state write', async () => {
+  it('R1: unmount while GetMessageInstance is pending: no counter, no Wrapper_NotificationOpened, no Login', async () => {
     setClientVar('Connect2_LegacyShared.UnreadNotificationsNumber', 4);
     const answerNow = pendingMessageInstance();
     const { unmount } = renderFlows({ ...inputs, MessageInstanceId: '0', MessageTemplateId: '3101' });
     unmount();
-    vi.mocked(messageDetailReducer).mockClear();
     answerNow({}, { isRead: false, messageInstanceId: '81014' });
     await settle();
-    expect(getClientVar('Connect2_LegacyShared.UnreadNotificationsNumber')).toBe(3);
+    expect(getClientVar('Connect2_LegacyShared.UnreadNotificationsNumber')).toBe(4);
+    expect(markNotificationOpened).not.toHaveBeenCalled();
+
+    setSignedInUser(null);
+    const answerSignedOut = pendingMessageInstance();
+    const signedOut = renderFlows();
+    signedOut.unmount();
+    answerSignedOut({}, { messageInstanceId: null });
+    await settle();
+    expect(events.onNavigateToLogin).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while GetMessageInstance is pending: its failure reaches no handler', async () => {
+    const call = pending<MessageInstanceResult>();
+    vi.mocked(fetchMessageInstance).mockReturnValueOnce(call.promise);
+    const { unmount } = renderFlows();
+    unmount();
+    call.reject(new CommunicationException('offline'));
+    await settle();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R2 then R3: unmount while Wrapper_NotificationOpened is pending: MessageRetractedFlow stops', async () => {
+    const opened = pending<boolean>();
+    vi.mocked(markNotificationOpened).mockReturnValueOnce(opened.promise);
+    answer({ isRead: false });
+    const { unmount } = renderFlows();
+    await settle();
     expect(markNotificationOpened).toHaveBeenCalledTimes(1);
-    expect(markNotificationOpened).toHaveBeenCalledWith('81014');
+    unmount();
+    opened.resolve(true);
+    await settle();
+    // _messageRetractedFlow$Action checks that the block is alive (MessageDetail.js:1388): no message, no event.
+    expect(feedbackMessageAutoClose).not.toHaveBeenCalled();
+    expect(replaceOnUpcomingNavigation).not.toHaveBeenCalled();
+    expect(events.onNavigateToMessageList).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while the template parameters are pending: no Cache_UserInfo_Get, no state write', async () => {
+    const templateParameters = pending<MessageParameter[]>();
+    vi.mocked(fetchMessageTemplateParameters).mockReturnValueOnce(templateParameters.promise);
+    answer({ senderTargetId: MessageSenderTarget.Orbit, sentAs: MessageSenderTarget.Orbit, messageContent: 'Camp' });
+    const { unmount } = renderFlows();
+    await settle();
+    expect(fetchMessageTemplateParameters).toHaveBeenCalledTimes(1);
+    unmount();
+    vi.mocked(messageDetailReducer).mockClear();
+    templateParameters.resolve([]);
+    await settle();
+    expect(getUserInformation).not.toHaveBeenCalled();
     expect(messageDetailReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R2 then R3: unmount while Get_OrbitNotificationParameters is pending: no NavigateTo event', async () => {
+    vi.mocked(fetchMessageTemplateParameters).mockResolvedValue([param(2, '7301'), param(3, 'Harvest Supper')]);
+    answer({ senderTargetId: MessageSenderTarget.Orbit, sentAs: MessageSenderTarget.Orbit });
+    const { result, unmount } = renderFlows();
+    await settle();
+    const orbit = pending<{ orbitMilestoneId: string; orbitEventId: string; orbitEventName: string }>();
+    vi.mocked(getOrbitNotificationParameters).mockReturnValueOnce(orbit.promise);
+    const click = result.current.onClickViewOrbitEvent(MessageSenderTarget.Orbit);
+    unmount();
+    orbit.resolve({ orbitMilestoneId: 'M-77', orbitEventId: '7301', orbitEventName: 'Harvest Supper' });
+    await click;
+    expect(events.onNavigateToOrbitMilestone).not.toHaveBeenCalled();
+  });
+
+  it('a card submit after the unmount: the refresh (R1) stops the flow; no "Thanks" message', async () => {
+    answer({ isAdaptiveCard: true });
+    const { result, unmount } = renderFlows();
+    await settle();
+    const stored = pending<undefined>();
+    vi.mocked(storeAdaptiveCardResponses).mockReturnValueOnce(stored.promise);
+    const submit = result.current
+      .adaptiveCardViewerOnExecuteAction('{}', 'rsvp', '{"answer":"yes"}')
+      .catch((error: unknown) => error);
+    vi.mocked(showFeedbackMessage).mockClear();
+    unmount();
+    stored.resolve(undefined);
+    // The caller (NotificationDetailBlock) sends it to the flow handler, which drops it.
+    expect(await submit).toBeInstanceOf(IgnorableSystemException);
+    expect(showFeedbackMessage).not.toHaveBeenCalled();
+  });
+
+  it('a card submit after the unmount: a failed StoreAdaptiveCardResponses (R2) still shows the message (R5)', async () => {
+    answer({ isAdaptiveCard: true });
+    const { result, unmount } = renderFlows();
+    await settle();
+    const stored = pending<undefined>();
+    vi.mocked(storeAdaptiveCardResponses).mockReturnValueOnce(stored.promise);
+    const submit = result.current.adaptiveCardViewerOnExecuteAction('{}', 'rsvp', '{"answer":"yes"}');
+    unmount();
+    stored.reject(new CommunicationException('offline'));
+    await submit;
+    expect(showFeedbackMessage).toHaveBeenLastCalledWith('Please check your internet connection!', 0);
   });
 
   it('runs OnReady once in StrictMode and still loads the message', async () => {

@@ -15,7 +15,7 @@ import { textToLongInteger } from '@/lib/ubtConnectUtils/actions';
 export type MyBookmarksState = BookmarkSummariesVariables;
 
 /** An assignment of one or more variables. */
-export type MyBookmarksPatch = Partial<MyBookmarksState>;
+type MyBookmarksPatch = Partial<MyBookmarksState>;
 
 const T = MyBookmarks_ObjectType;
 

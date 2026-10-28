@@ -21,8 +21,14 @@ import { INCREMENT_RECORDS, initialMessageListState, messageListReducer } from '
 import { setUnreadNotificationsNumber } from './unreadNotifications';
 
 /** The flows of the message list block: OnInitialize, OnReady, OnParametersChanged and the screen actions of the
-    view. The state and the triggers come from useFlowState: the flows read `latest`, `parameters` and `events`, as
-    OutSystems assigns variables at once.
+    view. The state and the triggers come from useFlowState: the flows read `latest` and `parameters`, as OutSystems
+    assigns variables at once.
+    Flow scope (item 8): GetMessages and GetMessageInstanceById2 are data actions (R1, `flow.fetch`): after the unmount
+    their answer and their failure are dropped, so OnAfterFetch_GetMessages (the unread number), ScrollToTop, the block
+    events, the info message and the refresh do not run. Wrapper_MarkAllAsReadNotifications, MarkMessageAsRead and
+    MarkMessageAsClear are server actions (R2): their flows go on, and stop at the next own action of the block
+    (RefreshMessages MessageList.js:1661, UpdateMessageRead :1952, UpdateMessageClear :1910: R3, `flow.own`). The
+    block events go through `flow.events` (R3).
     @origin Connect2_LegacyShared.MyNotifications.ScreenBlock_MessageList */
 
 /** The inputs of the block, and the session state that the block reads. */
@@ -78,13 +84,7 @@ export function useMessageList(
   events: MessageListEvents,
 ): MessageListFlows {
   const restoredFromCache = useWasRestoredFromCache();
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: VIEW_NAME,
     reducer: messageListReducer,
     // OnInitialize: DeviceHardwareId = the device UUID (AppManager_GetDeviceContext; "" on the web).
@@ -114,24 +114,26 @@ export function useMessageList(
     setUnreadNotificationsNumber(result.countUnreadMessages);
   };
 
-  /** Refresh Query GetMessages; a failure goes to the flow handler. Returns false when the flow stops. */
+  /** Refresh Query GetMessages (R1, `flow.fetch`); a failure goes to the flow handler with the flow scope. Returns
+      false when the flow stops. */
   const refreshGetMessages = async (): Promise<boolean> => {
-    const result = await getMessages.refetch();
+    const result = await flow.fetch(getMessages.refetch());
     if (result.isSuccess) {
       onAfterFetchGetMessages(result.data);
       return true;
     }
-    raiseToFlowHandler(result.error);
+    raiseToFlowHandler(result.error, flow);
     return false;
   };
 
-  /** RefreshMessages(IsScrollToTop): IsRefreshing True, refresh GetMessages, ScrollToTop JS. */
-  const refreshMessages = async (isScrollToTop: boolean): Promise<boolean> => {
+  /** RefreshMessages(IsScrollToTop): IsRefreshing True, refresh GetMessages, ScrollToTop JS. An own action of the
+      block (R3, MessageList.js:1661). */
+  const refreshMessages = flow.own(async (isScrollToTop: boolean): Promise<boolean> => {
     dispatch({ type: 'refreshStarted' });
     const ok = await refreshGetMessages();
     if (ok && isScrollToTop) scrollContentToTop();
     return ok;
-  };
+  });
 
   // OnInitialize of a view that the view cache restores: FocusCursor only (the variables come back with the view).
   const initializedRef = useRef<true | null>(null);
@@ -140,19 +142,17 @@ export function useMessageList(
     if (restoredFromCache) focusCursor();
   }
 
-  // OnReady: Refresh Query GetMessages, once (StrictMode runs the effects twice).
-  const readyRef = useRef(false);
+  /** OnReady: Refresh Query GetMessages. useFlowState runs it once per instance, also in StrictMode (item 8 §2.3). */
   async function onReady() {
-    if (readyRef.current) return;
-    readyRef.current = true;
     await refreshGetMessages();
   }
 
-  /** OnParametersChanged: Trigger_PullToRefresh → PullToRefresh, then the event PullToRefreshTriggered. */
+  /** OnParametersChanged: Trigger_PullToRefresh → PullToRefresh, then the event PullToRefreshTriggered (R3,
+      `flow.events`). */
   async function onParametersChanged() {
     if (!parameters.current.triggerPullToRefresh) return;
     await pullToRefresh();
-    eventsRef.current.onPullToRefreshTriggered();
+    flow.events.onPullToRefreshTriggered();
   }
 
   /** PullToRefresh: not refreshing → RefreshMessages(False). */
@@ -219,73 +219,62 @@ export function useMessageList(
     focusCursor();
   };
 
-  /** OnClick_GoToMessageDetail(MessageInstanceId): GetMessageInstanceById2; Exist → NavigateTo_MessageDetail,
-      otherwise the info message and a GetMessages refresh. */
+  /** OnClick_GoToMessageDetail(MessageInstanceId): GetMessageInstanceById2 (R1, `flow.fetch`); Exist →
+      NavigateTo_MessageDetail (R3, `flow.events`), otherwise the info message and a GetMessages refresh. */
   const onClickGoToMessageDetail = async (messageInstanceId: string): Promise<void> => {
     dispatch({ type: 'currentMessageSet', messageInstanceId });
-    let exists: boolean;
-    try {
-      exists = await fetchMessageInstanceExists(
+    const exists = await flow.fetch(
+      fetchMessageInstanceExists(
         latest.current.variables,
         latest.current.messagesList,
         parameters.current.triggerPullToRefresh,
-      );
-    } catch (e) {
-      raiseToFlowHandler(e);
-      return;
-    }
+      ),
+    );
     if (exists) {
-      eventsRef.current.onNavigateToMessageDetail(messageInstanceId);
+      flow.events.onNavigateToMessageDetail(messageInstanceId);
       return;
     }
     showFeedbackMessage('This message is no longer available', PLATFORM_MESSAGE_TYPE.info);
     await refreshGetMessages();
   };
 
-  /** OnClick_MarkAllAsRead: IsShowLoading, Wrapper_MarkAllAsReadNotifications; TotalChange > 0 → RefreshMessages and
-      SynchronizeNumberUnreadMessages; IsShowLoading False. */
+  /** OnClick_MarkAllAsRead: IsShowLoading, Wrapper_MarkAllAsReadNotifications (R2); TotalChange > 0 → RefreshMessages
+      (R3: stops the flow after the unmount) and SynchronizeNumberUnreadMessages; IsShowLoading False. */
   const onClickMarkAllAsRead = async () => {
     dispatch({ type: 'showLoadingSet', isShowLoading: true });
-    try {
-      const totalChange = await markAllNotificationsAsRead(markAllAsReadFilter(latest.current.variables));
-      if (totalChange > 0) {
-        if (!(await refreshMessages(false))) return;
-        await synchronizeNumberUnreadMessages();
-      }
-    } catch (e) {
-      raiseToFlowHandler(e);
-      return;
+    const totalChange = await markAllNotificationsAsRead(markAllAsReadFilter(latest.current.variables));
+    if (totalChange > 0) {
+      if (!(await refreshMessages(false))) return;
+      await synchronizeNumberUnreadMessages();
     }
     dispatch({ type: 'showLoadingSet', isShowLoading: false });
   };
 
-  /** UpdateMessageRead(MessageInstanceId): DecrementReadMessagesCounter, the row IsRead = True. */
-  const updateMessageRead = (messageInstanceId: string) => {
+  /** UpdateMessageRead(MessageInstanceId): DecrementReadMessagesCounter, the row IsRead = True. An own action of the
+      block (R3, MessageList.js:1952). */
+  const updateMessageRead = flow.own((messageInstanceId: string) => {
     decrementReadMessagesCounter();
     dispatch({ type: 'messageRead', messageInstanceId });
-  };
-  /** Swipe_EventsRead: MarkMessageAsRead → MessagesList.HasUnreadMessages, UpdateMessageRead. */
+  });
+  /** UpdateMessageClear(IsRead): not read → DecrementReadMessagesCounter. An own action of the block (R3,
+      MessageList.js:1910). */
+  const updateMessageClear = flow.own((isRead: boolean) => {
+    if (!isRead) decrementReadMessagesCounter();
+  });
+  /** Swipe_EventsRead: MarkMessageAsRead (R2) → MessagesList.HasUnreadMessages, UpdateMessageRead. */
   const swipeEventsRead = async (messageInstanceId: string) => {
-    try {
-      const hasUnreadMessages = await markMessageAsRead(messageInstanceId, latest.current.variables);
-      dispatch({ type: 'unreadMessagesChanged', hasUnreadMessages });
-      updateMessageRead(messageInstanceId);
-    } catch (e) {
-      raiseToFlowHandler(e);
-    }
+    const hasUnreadMessages = await markMessageAsRead(messageInstanceId, latest.current.variables);
+    dispatch({ type: 'unreadMessagesChanged', hasUnreadMessages });
+    updateMessageRead(messageInstanceId);
   };
-  /** Swipe_EventsClear: HideMessageClear, MarkMessageAsClear → HasUnreadMessages; no message left → IsEmptyMessage;
-      UpdateMessageClear(IsRead): not read → DecrementReadMessagesCounter. */
+  /** Swipe_EventsClear: HideMessageClear, MarkMessageAsClear (R2) → HasUnreadMessages; no message left →
+      IsEmptyMessage; UpdateMessageClear(IsRead). */
   const swipeEventsClear = async (messageInstanceId: string) => {
     dispatch({ type: 'messageHidden', messageInstanceId });
-    try {
-      const out = await markMessageAsClear(messageInstanceId, latest.current.variables);
-      dispatch({ type: 'unreadMessagesChanged', hasUnreadMessages: out.hasUnreadMessages });
-      if (!out.isHaveMessage) dispatch({ type: 'messagesEmptied' });
-      if (!out.isRead) decrementReadMessagesCounter();
-    } catch (e) {
-      raiseToFlowHandler(e);
-    }
+    const out = await markMessageAsClear(messageInstanceId, latest.current.variables);
+    dispatch({ type: 'unreadMessagesChanged', hasUnreadMessages: out.hasUnreadMessages });
+    if (!out.isHaveMessage) dispatch({ type: 'messagesEmptied' });
+    updateMessageClear(out.isRead);
   };
 
   /** OnScrollEnding: not refreshing → isLoadMore; when fetched and the list holds at least MaxRecords - 20 rows,
@@ -313,17 +302,35 @@ export function useMessageList(
     }
   };
 
+  /** A flow that a widget event starts and whose Promise the widget awaits (OSListItem keeps the class "active" until
+      it settles; OSList starts no new OnScrollEnding before): an unhandled error goes to the flow handler with the
+      flow scope, as `flow.run` does. */
+  const runAwaited =
+    <A extends unknown[]>(handler: (...args: A) => Promise<void>) =>
+    (...args: A): Promise<void> =>
+      handler(...args).catch((error: unknown) => {
+        raiseToFlowHandler(error, flow);
+      });
+
   return {
     variables: state.variables,
     messagesList: state.messagesList,
     isDataFetched: getMessages.isSuccess,
-    onPullToRefresh: () => void pullToRefresh(),
-    onCloseSearchAndFilter: () => void onClickCloseSearchAndFilter(),
+    onPullToRefresh: () => {
+      flow.run(pullToRefresh);
+    },
+    onCloseSearchAndFilter: () => {
+      flow.run(onClickCloseSearchAndFilter);
+    },
     onSearchStringChange: (value) => {
       dispatch({ type: 'searchStringChanged', value });
     },
-    onSearchSubmit: () => void onHandleSearchHistorySelectedItem(''),
-    onSearchClear: () => void onClickSearchClear(),
+    onSearchSubmit: () => {
+      flow.run(() => onHandleSearchHistorySelectedItem(''));
+    },
+    onSearchClear: () => {
+      flow.run(onClickSearchClear);
+    },
     onSearch: onClickSearch,
     onFilter: onClickFilter,
     onToggleShowFilters: toggleShowFilters,
@@ -333,16 +340,22 @@ export function useMessageList(
     onDismissWarning: () => {
       dispatch({ type: 'warningDismissed' });
     },
-    onSwipeEventsClear: swipeEventsClear,
-    onMarkAllRead: () => void onClickMarkAllAsRead(),
-    onGoToMessageDetail: onClickGoToMessageDetail,
-    onSwipeEventsRead: swipeEventsRead,
-    onScrollEnding,
+    onSwipeEventsClear: runAwaited(swipeEventsClear),
+    onMarkAllRead: () => {
+      flow.run(onClickMarkAllAsRead);
+    },
+    onGoToMessageDetail: runAwaited(onClickGoToMessageDetail),
+    onSwipeEventsRead: runAwaited(swipeEventsRead),
+    onScrollEnding: runAwaited(onScrollEnding),
     onMessageSort: (isAscending) => {
       dispatch({ type: 'sortChanged', isAscending });
     },
-    onResetFilters: () => void onClickResetFilters(),
-    onApplyFilters: () => void onClickApplyFilters(),
+    onResetFilters: () => {
+      flow.run(onClickResetFilters);
+    },
+    onApplyFilters: () => {
+      flow.run(onClickApplyFilters);
+    },
     onBackNavigation,
   };
 }

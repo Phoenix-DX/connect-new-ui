@@ -1063,3 +1063,6 @@ date,screen,phase,tokens,agent,tier,note
 2026-10-28,clarify-item8,build,156695,build-S0b-opus,opus,"item 8 S0b static _error.html, tests first, 59 calls"
 2026-10-28,clarify-item8,build,222522,build-S1a-opus,opus,"item 8 S1a group B 7 hooks, 85 calls (over budget)"
 2026-10-28,clarify-item8,build,178393,build-S1b-opus,opus,"item 8 S1b group B 8 hooks, 57 calls"
+2026-10-28,clarify-item8,build,171559,build-S2a-opus,opus,"item 8 S2a group A 4 of 5 hooks (MessageList left), 69 calls"
+2026-10-28,clarify-item8,build,219856,build-S2b-opus,opus,"item 8 S2b group A 8 hooks + N2, 55 calls"
+2026-10-28,clarify-item8,build,128283,build-S2c-opus,opus,"item 8 S2c MessageList, 47 calls"

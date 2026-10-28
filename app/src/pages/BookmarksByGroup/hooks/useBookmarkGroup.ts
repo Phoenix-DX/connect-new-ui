@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import {
   deleteBookmark,
   fetchBookmarkById,
@@ -9,8 +8,7 @@ import {
 import { exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
 import { showFeedbackMessage } from '@/platform/feedback';
 import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { setPreloadObject, useFlowState, type BackNavigationEvent, type IsAlive } from '@/platform/navigation';
+import { setPreloadObject, useFlowState, type BackNavigationEvent } from '@/platform/navigation';
 import { legacyDelete_LocalBookmarkByBookmarkId } from '@/platform/storage/localEntities';
 import { getCachedMyBookmarks, putCachedMyBookmarks } from '@/lib/legacyShared/actions';
 import {
@@ -35,7 +33,6 @@ import {
   restoredBookmarkGroupState,
   withNote,
   withoutRow,
-  type BookmarkGroupAction,
   type BookmarkGroupState,
 } from './bookmarkGroupState';
 
@@ -110,8 +107,11 @@ const setScrollToTop = () => {
     - OnInitialize: IsFromNavigationHistory = WasCurrentViewRestoredFromCache. A restored view takes the rows of the
       MyBookmarks cache (restoredBookmarkGroupState); a new visit starts with an empty list.
     - OnReady: RefreshBookmarkData(False), unless the view was restored.
-    - Decision W23: after an unmount, a started flow skips its state writes only. Its calls, the MyBookmarks cache
-      writes, the feedback messages, the dialogs and the navigation events still run. */
+    - Flow scope (item 8): GetAllBookmarksByGroup is a data action (R1, `flow.fetch`): after the unmount its answer and
+      its failure are dropped (no cache write, no scroll, no message, no raise). DeleteBookmarkByBookmarkId and
+      New_UpdateBookmarkNote are server actions and GetBookmarkById a module action: their flows go on (messages R5,
+      the device copy and the cache writes). The NavigateTo_* own actions of the block stop them (R3, `flow.own`: no
+      preload, no event; BookmarkGroup.js:2025, :2494, :2544, :2982). */
 export function useBookmarkGroup(
   blockId: string,
   { bookmarkGroup }: BookmarkGroupInputs,
@@ -119,18 +119,7 @@ export function useBookmarkGroup(
   events: BookmarkGroupEvents,
 ): BookmarkGroupFlows {
   const ids = bookmarkGroupIds(blockId);
-  /* OnReady runs once per block. StrictMode (dev) runs the mount effect again on the same block: the second call only
-     replaces the liveness check, so the first flow writes the state while the block is there and calls each action
-     once. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: VIEW_NAME,
     reducer: bookmarkGroupReducer,
     initial: INITIAL_BOOKMARK_GROUP_STATE,
@@ -138,19 +127,9 @@ export function useBookmarkGroup(
     restore: () => restoredBookmarkGroupState(getCachedMyBookmarks(bookmarkGroup).bookmarks.map(fromCacheRecord)),
     parameters: { bookmarkGroup },
     events,
-    // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady(restored);
-    },
+    // The flows are defined below; the hook calls the ones of the newest render (once per block: useFlowState).
+    onReady: (_isAlive, restored) => onReady(restored),
   });
-
-  /** A state write, skipped after the unmount (W23). */
-  const write = (action: BookmarkGroupAction) => {
-    if (newestReadyRun.current()) dispatch(action);
-  };
 
   /** PutCachedMyBookmarks(BookmarkGroup, BookmarkedItems): the Connect2_LegacyShared cache of BookmarkItem records. */
   const putCachedBookmarkedItems = (rows: readonly Bookmark[]) => {
@@ -164,21 +143,23 @@ export function useBookmarkGroup(
   /** Refresh Query GetAllBookmarksByGroup, then OnAfterFetch_GetAllBookmarksByGroup: BookmarkedItems, UpdatedTotal,
       IsFetchingBookmarks False, PutCachedMyBookmarks. */
   const fetchBookmarks = async () => {
-    const out = await fetchBookmarkGroup(bookmarkGroupCallInputs(parameters.current.bookmarkGroup, latest.current));
-    write({ type: 'fetched', result: out });
+    const out = await flow.fetch(
+      fetchBookmarkGroup(bookmarkGroupCallInputs(parameters.current.bookmarkGroup, latest.current)),
+    ); // R1
+    dispatch({ type: 'fetched', result: out });
     putCachedBookmarkedItems(out.results);
   };
 
   /** RefreshBookmarkData(IsScrollToTop): IsFetchingBookmarks True, refresh, SetScrollToTop when asked. AllExceptions:
       IsFetchingBookmarks False and an error message with the exception text; a system exception goes on. */
   const refreshBookmarkData = async (isScrollToTop: boolean) => {
-    write({ type: 'fetchStarted' });
+    dispatch({ type: 'fetchStarted' });
     try {
       await fetchBookmarks();
       if (isScrollToTop) setScrollToTop();
     } catch (e) {
       if (isSystemException(e)) throw e;
-      write({ type: 'fetchFailed' });
+      dispatch({ type: 'fetchFailed' });
       showFeedbackMessage(exceptionMessage(e), 3);
     }
   };
@@ -208,10 +189,10 @@ export function useBookmarkGroup(
       "Removed from your Bookmarks", UpdatedTotal - 1, Delete_LocalBookmarkByBookmarkId (the legacy local copy,
       CR-BookmarksByGroup-2) and PutCachedMyBookmarks; else an info message. */
   const onBookmarkToggle = async (bookmarkId: string, currentPosition: number) => {
-    const success = await deleteBookmark(bookmarkId);
+    const success = await deleteBookmark(bookmarkId); // R2
     if (success) {
       const next = withoutRow(latest.current.bookmarkedItems, currentPosition);
-      write({ type: 'bookmarkRemoved', currentPosition });
+      dispatch({ type: 'bookmarkRemoved', currentPosition });
       sendBookmarkedFeedbackMessage(false);
       await legacyDelete_LocalBookmarkByBookmarkId(bookmarkId);
       putCachedBookmarkedItems(next);
@@ -259,22 +240,69 @@ export function useBookmarkGroup(
   /** Handler_OnSaveBookmarkNote: UpdateNote (New_UpdateBookmarkNote with the trimmed note; on failure an error
       message), then the row's Note = Trim(note) and PutCachedMyBookmarks. */
   const onSaveBookmarkNote = (note: BookmarkNote) => {
-    updateBookmarkNote(note.bookmarkId, note.note.trim())
-      .then((success) => {
-        if (!success) showFeedbackMessage('There was an error, please try again.', 3);
-      })
-      .catch(raiseToFlowHandler);
+    flow.run(async () => {
+      const success = await updateBookmarkNote(note.bookmarkId, note.note.trim()); // R2
+      if (!success) showFeedbackMessage('There was an error, please try again.', 3);
+    });
     const next = withNote(latest.current.bookmarkedItems, note.bookmarkId, note.note.trim());
     dispatch({ type: 'noteSaved', bookmarkId: note.bookmarkId, note: note.note.trim() });
     putCachedBookmarkedItems(next);
   };
+
+  /** NavigateTo_HouseholdsCarousel (own action, R3): the block's preload, then the screen's (which replaces it). */
+  const navigateToHouseholdsCarousel = flow.own(
+    (objectId: string, currentRowNumber: number, rows: readonly Bookmark[]) => {
+      setPreloadObject({
+        IsPreloaded: true,
+        PreloadedCarouselItems: rows.map((b) => ({
+          Id: b.objectId,
+          Name: b.title,
+          IsDeceased: b.details.isDeceased,
+          Image: b.image,
+        })),
+      });
+      flow.events.onNavigateToHouseholdCarousel(
+        objectId,
+        currentRowNumber,
+        rows.map((b) => b.objectId),
+      );
+    },
+  );
+  /** NavigateTo_CommunityBusinessDetail (own action, R3). */
+  const navigateToCommunityBusinessDetail = flow.own(
+    (objectId: string, currentRowNumber: number, objectType: string, rows: readonly Bookmark[]) => {
+      setPreloadObject({
+        IsPreloaded: true,
+        PreloadedCarouselItems: rows.map((b) => ({
+          Id: b.objectId,
+          Name: b.title,
+          SignedURL: b.image,
+          CommunityBusinessTypeId:
+            b.objectType === MyBookmarks_ObjectType.CampusCo
+              ? CommunityBusinessType2.CampusCo
+              : b.objectType === MyBookmarks_ObjectType.OneSchoolGlobal
+                ? CommunityBusinessType2.OneSchoolGlobal
+                : '',
+        })),
+      });
+      flow.events.onNavigateToCommunityBusinessCarousel(objectId, currentRowNumber, objectType);
+    },
+  );
+  /** NavigateTo_Locality (own action, R3). */
+  const navigateToLocality = flow.own((localityId: string) => {
+    flow.events.onNavigateToLocality(localityId);
+  });
+  /** NavigateTo_Subdivision (own action, R3). */
+  const navigateToSubdivision = flow.own((objectId: string) => {
+    flow.events.onNavigateToSubdivision(objectId);
+  });
 
   /** OnClick_BookmarkedItem(BookmarkItemId, CurrentRowNumber): GetBookmarkById (CR-BookmarksByGroup-1). Found → not
       available (hidden message), disabled (App_Subscription_ShowUpgradePopUp), or RememberFocusedScrollAnchor (the
       view cache keeps the scroll), PutCachedMyBookmarks and the navigation of the group. Not found → an error message
       and a refresh. */
   const onClickBookmarkedItem = async (bookmarkItemId: string, currentRowNumber: number) => {
-    const found = await fetchBookmarkById(bookmarkItemId, hasBookmarkNote);
+    const found = await fetchBookmarkById(bookmarkItemId, hasBookmarkNote); // module action: not wrapped
     if (!found.isBookmarkFound) {
       showFeedbackMessage('That bookmark isn’t available', 3);
       await fetchBookmarks();
@@ -293,43 +321,14 @@ export function useBookmarkGroup(
     putCachedBookmarkedItems(rows);
     const group = parameters.current.bookmarkGroup;
     if (group === MyBookmarks_Group.Contacts) {
-      // NavigateTo_HouseholdsCarousel: the block's preload, then the screen's (which replaces it).
-      setPreloadObject({
-        IsPreloaded: true,
-        PreloadedCarouselItems: rows.map((b) => ({
-          Id: b.objectId,
-          Name: b.title,
-          IsDeceased: b.details.isDeceased,
-          Image: b.image,
-        })),
-      });
-      eventsRef.current.onNavigateToHouseholdCarousel(
-        item.objectId,
-        currentRowNumber,
-        rows.map((b) => b.objectId),
-      );
+      navigateToHouseholdsCarousel(item.objectId, currentRowNumber, rows);
     } else if (group === MyBookmarks_Group.Entities) {
-      // NavigateTo_CommunityBusinessDetail.
-      setPreloadObject({
-        IsPreloaded: true,
-        PreloadedCarouselItems: rows.map((b) => ({
-          Id: b.objectId,
-          Name: b.title,
-          SignedURL: b.image,
-          CommunityBusinessTypeId:
-            b.objectType === MyBookmarks_ObjectType.CampusCo
-              ? CommunityBusinessType2.CampusCo
-              : b.objectType === MyBookmarks_ObjectType.OneSchoolGlobal
-                ? CommunityBusinessType2.OneSchoolGlobal
-                : '',
-        })),
-      });
-      eventsRef.current.onNavigateToCommunityBusinessCarousel(item.objectId, currentRowNumber, item.objectType);
+      navigateToCommunityBusinessDetail(item.objectId, currentRowNumber, item.objectType, rows);
     } else if (group === MyBookmarks_Group.Locations) {
       if (item.objectType === MyBookmarks_ObjectType.Locality) {
-        eventsRef.current.onNavigateToLocality(item.details.localityId);
+        navigateToLocality(item.details.localityId);
       } else {
-        eventsRef.current.onNavigateToSubdivision(item.objectId);
+        navigateToSubdivision(item.objectId);
       }
     }
   };
@@ -337,13 +336,13 @@ export function useBookmarkGroup(
   return {
     state,
     onClickBookmarkedItem: (bookmarkItemId, currentRowNumber) => {
-      onClickBookmarkedItem(bookmarkItemId, currentRowNumber).catch(raiseToFlowHandler);
+      flow.run(() => onClickBookmarkedItem(bookmarkItemId, currentRowNumber));
     },
     onBookmarkToggle: (bookmarkId, currentPosition) => {
-      onBookmarkToggle(bookmarkId, currentPosition).catch(raiseToFlowHandler);
+      flow.run(() => onBookmarkToggle(bookmarkId, currentPosition));
     },
     onShareItem: (item, shareObjectTypeId, objectId, isRecordDisabled, entityTypeId) => {
-      onShareItem(item, shareObjectTypeId, objectId, isRecordDisabled, entityTypeId).catch(raiseToFlowHandler);
+      flow.run(() => onShareItem(item, shareObjectTypeId, objectId, isRecordDisabled, entityTypeId));
     },
     onSaveBookmarkNote,
     onCloseShareSheet: () => {

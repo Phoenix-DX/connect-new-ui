@@ -1,6 +1,7 @@
 import { act, renderHook } from '@testing-library/react';
 import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter, type Location } from 'react-router';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   deleteBookmark,
@@ -152,6 +153,12 @@ const strictWrapper = ({ children }: { children: ReactNode }) => (
     <MemoryRouter>{children}</MemoryRouter>
   </StrictMode>
 );
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 const settle = () =>
   act(async () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
@@ -463,7 +470,7 @@ describe('useBookmarkGroup', () => {
     expect(getPreloadObject()).toBeNull();
   });
 
-  it('W23: after the unmount, the started OnReady writes the cache once and no state', async () => {
+  it('R1: unmount while GetAllBookmarksByGroup is pending: no cache write (OnAfterFetch), no state, no raise', async () => {
     const answer = pending<BookmarkGroupList>(vi.mocked(fetchBookmarkGroup));
     let renders = 0;
     const { unmount } = renderHook(
@@ -480,13 +487,13 @@ describe('useBookmarkGroup', () => {
     answer.resolve(list(CONTACTS));
     await settle();
     expect(fetchBookmarkGroup).toHaveBeenCalledTimes(1);
-    expect(cachedIds('Contacts')).toEqual(['1', '2', '3']);
+    expect(cachedIds('Contacts')).toEqual([]);
     expect(bookmarkGroupReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('W23: a failed refresh after the unmount still shows its message once, without a state write', async () => {
+  it('R1: a refresh that fails after the unmount: no message, no raise, no state write', async () => {
     const answer = pending<BookmarkGroupList>(vi.mocked(fetchBookmarkGroup));
     const { unmount } = renderFlows('Contacts', true);
     await settle();
@@ -494,12 +501,12 @@ describe('useBookmarkGroup', () => {
     vi.mocked(bookmarkGroupReducer).mockClear();
     answer.reject(new UserException('Request failed with an error'));
     await settle();
-    expect(showFeedbackMessage).toHaveBeenCalledTimes(1);
-    expect(showFeedbackMessage).toHaveBeenCalledWith('Request failed with an error', 3);
+    expect(showFeedbackMessage).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
     expect(bookmarkGroupReducer).not.toHaveBeenCalled();
   });
 
-  it('W23: a BookmarkToggle that ends after the unmount: message, device copy and cache once, no state', async () => {
+  it('R2 + R5: a BookmarkToggle that ends after the unmount: message, device copy and cache once, no state', async () => {
     const { result, unmount } = renderFlows('Contacts', true);
     await settle();
     const deleted = pending<boolean>(vi.mocked(deleteBookmark));
@@ -517,7 +524,7 @@ describe('useBookmarkGroup', () => {
     expect(bookmarkGroupReducer).not.toHaveBeenCalled();
   });
 
-  it('W23: a row click that ends after the unmount still navigates once', async () => {
+  it('R3: GetBookmarkById (a module action) answers after the unmount: the cache write runs; no preload, no event', async () => {
     const { result, unmount } = renderFlows('Contacts', true);
     await settle();
     const answer = pending<BookmarkByIdResult>(vi.mocked(fetchBookmarkById));
@@ -527,11 +534,11 @@ describe('useBookmarkGroup', () => {
     unmount();
     answer.resolve(found(CONTACTS[2] as Bookmark));
     await settle();
-    expect(events.onNavigateToHouseholdCarousel).toHaveBeenCalledTimes(1);
-    expect(events.onNavigateToHouseholdCarousel).toHaveBeenCalledWith(
-      B.fields.id,
-      2,
-      CONTACTS.map((b) => b.objectId),
-    );
+    // PutCachedMyBookmarks is a module action; NavigateTo_HouseholdsCarousel (the preload and the event) is an own
+    // action of the block with ensureControllerAlive (BookmarkGroup.js:2025).
+    expect(cachedIds('Contacts')).toEqual(['1', '2', '3']);
+    expect(getPreloadObject()).toBeNull();
+    expect(events.onNavigateToHouseholdCarousel).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 });

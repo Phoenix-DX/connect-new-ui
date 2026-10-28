@@ -40,9 +40,11 @@ export interface ConnectShareView {
       DelayedShowFreeSubscriptionAlertJS: after 1 s, Action_SetShowFreeSubscriptionAlert(its ShowFreeSubscriptionAlert).
       An exception goes to the flow handler.
     - ScreenEvent_OnReady, once after the first render of the view: IsRedirect → Action_Redirect.
-    - Decision W23: after an unmount, the flow that started runs to its end (the audit call of
-      OnInitializeSharingScreen included) and writes no state. As in the old port, the 1 s timer is not started after the
-      unmount and stops with the screen, and OnReady does not run.
+    - Flow scope (item 8): OnInitializeSharingScreen is a module client action (no disposal check): after an unmount
+      its flow runs to its end (the audit call included) and writes no state. The 1 s timer is not started after the
+      unmount and stops with the screen. On TST the timer starts, but Action_SetShowFreeSubscriptionAlert stops at its
+      ensureControllerAlive (R3, ConnectShare.js:366): the same outcome, no pop-up. OnReady does not run after the
+      unmount (Action_Redirect has the same check, :447).
     @origin UBTConnect.Legacy_Share.ConnectShare */
 export function useConnectShare(inputs: ConnectShareInputs): ConnectShareView {
   const navigate = useOsNavigate();
@@ -72,7 +74,7 @@ export function useConnectShare(inputs: ConnectShareInputs): ConnectShareView {
     },
   });
 
-  /** A state write of a flow, skipped after the unmount (W23). */
+  /** A state write of a flow, skipped after the unmount (flow scope, item 8). */
   const write = (action: ConnectShareAction) => {
     if (newestRun.current()) dispatch(action);
   };

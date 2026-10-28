@@ -16,7 +16,7 @@ export interface NotesState extends NotesVariables {
 }
 
 /** An assignment of one or more screen variables. */
-export type NotesPatch = Partial<NotesState>;
+type NotesPatch = Partial<NotesState>;
 
 /** The reducer of the screen: each flow step assigns variables, as the OutSystems Assign nodes do. */
 export const notesReducer = (state: NotesState, patch: NotesPatch): NotesState => ({ ...state, ...patch });

@@ -27,7 +27,7 @@
   "unclosed": 0,
   "badNames": 0
  },
- "at": "2026-10-28T13:24:14.470Z",
+ "at": "2026-10-28T14:01:19.550Z",
  "counts": {},
  "exemptionsUsed": {
   "PULL-TO-REFRESH-FADEIN-PHASE": 1,
@@ -38,10 +38,10 @@
   "CAPTURE-BADGE-MASKED-TEXT-HOMEFEED": 1
  },
  "pixel": {
-  "ratio": 0.00027,
-  "maxCell": 0.0106,
+  "ratio": 0.00058,
+  "maxCell": 0.0288,
   "maxCellRatio": 0.03,
-  "diffPixels": 88,
+  "diffPixels": 191,
   "comparedPixels": 327313,
   "maxRatio": 0.002,
   "threshold": 0.1,
@@ -55,11 +55,11 @@
   ],
   "masks": 3,
   "hotspots": [
-   "200,240 (17px)",
-   "280,280 (17px)",
-   "200,280 (15px)",
-   "200,800 (11px)",
-   "280,240 (9px)"
+   "280,280 (46px)",
+   "280,240 (31px)",
+   "200,240 (19px)",
+   "360,240 (19px)",
+   "200,280 (18px)"
   ],
   "diffPng": "migration/screens/MessageList/parity/filter.diff.png"
  },

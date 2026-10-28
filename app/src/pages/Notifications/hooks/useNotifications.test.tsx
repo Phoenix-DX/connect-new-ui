@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchNotificationDateRanges, fetchNotifications, type NotificationItem } from '@/api/notification';
 import { CommunicationException, SystemException, UserException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { directory_Updates_RefreshBottomBarCount, scrollTop } from '@/lib/ubtConnect/actions';
 import { bottomSheetOpen } from '@/components/ui/lib/actions';
@@ -209,7 +210,7 @@ describe('useNotifications', () => {
     vi.mocked(fetchNotifications).mockRejectedValueOnce(failure);
     const { result } = renderFlows();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
     expect(result.current.state.isLoading).toBe(true);
   });
 
@@ -218,7 +219,7 @@ describe('useNotifications', () => {
     vi.mocked(fetchNotificationDateRanges).mockRejectedValueOnce(failure);
     renderFlows();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
     expect(fetchNotifications).not.toHaveBeenCalled();
   });
 
@@ -230,7 +231,7 @@ describe('useNotifications', () => {
     expect(result.current.state).toMatchObject({ isLoading: false, items: ITEMS });
   });
 
-  it('W23: after the unmount, the started flow makes its calls and side effects once and writes no state', async () => {
+  it('R1: unmount while GetDateRanges is pending: no FetchNotifications, no state write, no raise', async () => {
     const answerDateRanges = pendingDateRanges();
     let renders = 0;
     const { unmount } = renderHook(
@@ -246,32 +247,65 @@ describe('useNotifications', () => {
     setCached.mockClear();
     answerDateRanges();
     await settle();
+    // OnAfterFetch_GetDateRanges (Notifications.js:2254) never starts.
     expect(fetchNotificationDateRanges).toHaveBeenCalledTimes(1);
-    expect(fetchNotifications).toHaveBeenCalledTimes(1);
-    // The flow's variables still change: the call sends the default filter of the date ranges.
-    expect(vi.mocked(fetchNotifications).mock.calls[0]?.[0].filter_Updates).toMatchObject({
-      dateFrom: '2026-04-16',
-      dateTo: '2026-10-16',
-    });
-    expect(directory_Updates_RefreshBottomBarCount).toHaveBeenCalledTimes(1);
+    expect(fetchNotifications).not.toHaveBeenCalled();
+    expect(directory_Updates_RefreshBottomBarCount).not.toHaveBeenCalled();
     expect(setCached).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('W23: an exception after the unmount still goes to the flow handler, once', async () => {
-    const answerDateRanges = pendingDateRanges();
-    vi.mocked(fetchNotifications).mockRejectedValueOnce(new UserException('No notifications service'));
+  it('R1: unmount while FetchNotifications is pending: no bottom bar count, no state write, no raise', async () => {
+    let answerList: () => void = () => undefined;
+    vi.mocked(fetchNotifications).mockImplementationOnce(
+      () =>
+        new Promise((resolve) => {
+          answerList = () => {
+            resolve({ items: ITEMS, hasUnreadMessages: true, unreadNotificationsCount: 2 });
+          };
+        }),
+    );
     const { unmount } = renderHook(() => useNotifications(), { wrapper: strictWrapper });
     await settle();
+    expect(fetchNotifications).toHaveBeenCalledTimes(1);
     unmount();
     setCached.mockClear();
-    answerDateRanges();
+    answerList();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(vi.mocked(raiseToFlowHandler).mock.calls[0]?.[0]).toMatchObject({
-      specificType: 'UBTConnect.BubbleGenericException',
-    });
+    // OnAfterFetch_FetchNotifications (Notifications.js:2511-2548) never starts.
+    expect(directory_Updates_RefreshBottomBarCount).not.toHaveBeenCalled();
+    expect(setCached).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while FetchNotifications is pending: its failure reaches no handler', async () => {
+    let failList: () => void = () => undefined;
+    vi.mocked(fetchNotifications).mockImplementationOnce(
+      () =>
+        new Promise((_resolve, reject) => {
+          failList = () => {
+            reject(new UserException('No notifications service'));
+          };
+        }),
+    );
+    const { unmount } = renderHook(() => useNotifications(), { wrapper: strictWrapper });
+    await settle();
+    expect(fetchNotifications).toHaveBeenCalledTimes(1);
+    unmount();
+    setCached.mockClear();
+    failList();
+    await settle();
+    // Without R1, OnAfterFetch would raise BubbleGenericException (a user exception).
+    expect(raisedErrors()).toEqual([]);
     expect(setCached).not.toHaveBeenCalled();
   });
 });
+
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1). */
+function raisedErrors() {
+  return vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+}

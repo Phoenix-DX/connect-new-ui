@@ -806,7 +806,6 @@
   "src/pages/MessageList/components/MessageSearchHistory.tsx | type | MessageSearchHistoryProps",
   "src/pages/MessageList/components/TwoButtonsAligned.tsx | type | TwoButtonsAlignedProps",
   "src/pages/MessageList/components/WarningPrivateMessage.tsx | type | WarningPrivateMessageProps",
-  "src/pages/MessageList/hooks/useMessageList.ts | type | MessageListEvents",
   "src/pages/MessageList/hooks/useMessageList.ts | type | MessageListFlows",
   "src/pages/MessageList/hooks/useMessageList.ts | type | MessageListInputs",
   "src/pages/MilestoneDetail/components/MilestoneWrapperView.tsx | type | MilestoneWrapperViewProps",

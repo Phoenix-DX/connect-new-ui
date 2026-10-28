@@ -65,7 +65,7 @@ export const restoredBookmarkGroupState = (cachedRows: Bookmark[]): BookmarkGrou
 });
 
 /** The client actions of the block on its variables. */
-export type BookmarkGroupAction =
+type BookmarkGroupAction =
   /** RefreshBookmarkData: IsFetchingBookmarks True. */
   | { type: 'fetchStarted' }
   /** OnAfterFetch_GetAllBookmarksByGroup: BookmarkedItems, UpdatedTotal, IsFetchingBookmarks False. */

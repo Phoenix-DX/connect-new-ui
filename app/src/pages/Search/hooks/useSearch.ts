@@ -14,7 +14,6 @@ import {
   isInstanceOf,
   isSystemException,
   isUserException,
-  raiseToFlowHandler,
 } from '@/legacy/os/exceptions';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
@@ -136,16 +135,15 @@ export interface SearchFlows {
       then Action_RefreshSearch.
     - Event_SectionOnItemClick: saves the clicked result, then raises Event_SearchResultClick or navigates
       (Locality_Details, the HouseholdCarousel or HouseholdDetails).
+    Flow scope (item 8): the local-entity reads and writes run after the unmount (executeClientAggregate has no
+    check); the next own action Action_ClearResults then stops the flow (R3, `flow.own`). FetchSearchResults and the
+    Get_RecentClickedResults refresh of a tag change are R1 (`flow.fetch`): after the unmount nothing after them runs,
+    and a failure reaches no handler. Event_SearchResultClick goes through `flow.events` (R3); the navigation from a
+    left screen does not happen (R4, useOsNavigate).
     @origin UBTConnect.Directory_Search.ScreenBlock_Search */
 export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: SearchEvents = {}): SearchFlows {
   const navigate = useOsNavigate();
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Directory_Search.ScreenBlock_Search',
     reducer: searchReducer,
     initial: INITIAL_SEARCH_STATE,
@@ -219,44 +217,45 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     };
   }, [inSearchTargetId]);
 
-  // Action_ClearResults: refresh the recent lists, clear the three lists, HasSearched False.
-  const clearResults = (key: string, lastSearched: string, category: string) => {
+  // Action_ClearResults: refresh the recent lists, clear the three lists, HasSearched False. An own action (R3,
+  // Search.js:2754).
+  const clearResults = flow.own((key: string, lastSearched: string, category: string) => {
     refreshRecent(key, lastSearched, category);
     dispatch({ type: 'resultsCleared' });
-  };
+  });
 
   // Action_RefreshSearch.
   const refreshSearch = async (next: SearchVariables, tags: Tag[]) => {
     if (next.searchKeyCurrent.trim() === '') return; // Has Search Term, else End
-    // CheckIfSearchtermAlreadyExist + CreateOrUpdateConnectSearch_RecentSearchTerm, then Action_ClearResults
+    // CheckIfSearchtermAlreadyExist + CreateOrUpdateConnectSearch_RecentSearchTerm (local entities, no check), then
+    // Action_ClearResults
     await saveRecentSearchTerm(parameters.current.inSearchTargetId, next.searchKeyCurrent);
     clearResults(next.searchKeyCurrent, next.searchKeyLastSearched, next.selectedCategory);
     dispatch({ type: 'searchStarted', searchKey: next.searchKeyCurrent });
     const seq = ++fetchSeq.current;
     try {
-      const results = await fetchSearchResults(
-        { ...next, hasSearched: true, searchKeyLastSearched: next.searchKeyCurrent },
-        tags,
-        true,
-      );
+      const results = await flow.fetch(
+        fetchSearchResults({ ...next, hasSearched: true, searchKeyLastSearched: next.searchKeyCurrent }, tags, true),
+      ); // R1
       if (seq !== fetchSeq.current) return;
       // OnAfterFetch_FetchSearchResults.
       dispatch({ type: 'resultsFetched', results, selectedCategory: next.selectedCategory });
     } catch (error) {
+      // The raises go to the flow handler through flow.run. After the unmount the error is the ignorable
+      // ControllerDisposedException of flow.fetch (a system exception): R1, the catch does nothing.
       if (seq !== fetchSeq.current) return;
-      if (isInstanceOf(error, NotRegisteredException)) {
-        raiseToFlowHandler(error); // Raise Error: NotRegistered
-      } else if (isUserException(error, 'UBTConnect.BubbleCommunicationException')) {
+      if (isInstanceOf(error, NotRegisteredException)) throw error; // Raise Error: NotRegistered
+      if (isUserException(error, 'UBTConnect.BubbleCommunicationException')) {
         clearResults(next.searchKeyCurrent, next.searchKeyCurrent, next.selectedCategory); // Action_ClearResults3
         dispatch({ type: 'loadingEnded' });
-        raiseToFlowHandler(new UserException(exceptionMessage(error), 'UBTConnect.BubbleCommunicationException'));
-      } else if (!isSystemException(error)) {
+        throw new UserException(exceptionMessage(error), 'UBTConnect.BubbleCommunicationException');
+      }
+      if (!isSystemException(error)) {
         clearResults(next.searchKeyCurrent, next.searchKeyCurrent, next.selectedCategory); // Action_ClearResults2
         dispatch({ type: 'loadingEnded' });
-        raiseToFlowHandler(new UserException(exceptionMessage(error), 'UBTConnect.BubbleGenericException'));
-      } else {
-        raiseToFlowHandler(error);
+        throw new UserException(exceptionMessage(error), 'UBTConnect.BubbleGenericException');
       }
+      throw error;
     }
   };
 
@@ -270,7 +269,7 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     dispatch({ type: 'searchKeySet', text });
     const validation = validateSearchPhoneNumber(text);
     if (validation.isValid) {
-      void refreshSearch(variables({ searchKeyCurrent: text }), latest.current.tagList);
+      flow.run(() => refreshSearch(variables({ searchKeyCurrent: text }), latest.current.tagList));
       return;
     }
     feedbackMessageAutoClose({
@@ -286,7 +285,7 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
   // OnClick_RecentSearchTerm, also Search_BirthdayOptions Selected: search the term.
   const onRecentSearchTerm = (term: string) => {
     dispatch({ type: 'searchKeySet', text: term });
-    void refreshSearch(variables({ searchKeyCurrent: term }), latest.current.tagList);
+    flow.run(() => refreshSearch(variables({ searchKeyCurrent: term }), latest.current.tagList));
   };
   // OnClick_RecentSearchTerm_Remove: delete the row, refresh Get_RecentSearchTerms.
   const onRecentSearchTermRemove = (termId: string) => {
@@ -309,12 +308,14 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
   };
   // Event_HorizontalTagListChanged (ScreenBlock_Search.mvc.js:3929-3937): SelectedCategory and TagList, Refresh
   // Get_RecentClickedResults (max 5) with the new category, then Action_RefreshSearch. The refresh also runs when the
-  // term is blank, before the first search.
+  // term is blank, before the first search. Get_RecentClickedResults is a screen aggregate on TST (R1, Search.js:1856).
   const onTagListChanged = async (tagList: Tag[]) => {
     dispatch({ type: 'tagListChanged', tagList });
     const { searchKeyCurrent, selectedCategory } = latest.current;
     setRecentClicked(
-      await get_RecentClickedResults(parameters.current.inSearchTargetId, searchKeyCurrent, selectedCategory),
+      await flow.fetch(
+        get_RecentClickedResults(parameters.current.inSearchTargetId, searchKeyCurrent, selectedCategory),
+      ),
     );
     await refreshSearch(variables({ selectedCategory }), tagList);
   };
@@ -329,11 +330,11 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     // CreateOrUpdateConnectSearch_RecentClickedResults, then the ones beyond the limit are deleted
     await saveRecentClickedResult(target, searchResult, clientVar.searchRecentClickedResultsLimit.get());
     if (parameters.current.inIsEventNavigation) {
-      eventsRef.current.onEventSearchResultClick?.(searchResult); // Trigger Event: Event_SearchResultClick
+      flow.events.onEventSearchResultClick?.(searchResult); // Trigger Event: Event_SearchResultClick (R3)
       return;
     }
     if (searchResult.type === Connect_Entity.Locality) {
-      navigate('/UBTConnect/Locality_Details', { LocalityId: searchResult.id });
+      navigate('/UBTConnect/Locality_Details', { LocalityId: searchResult.id }); // R4 in useOsNavigate
       return;
     }
     const { results } = latest.current;
@@ -371,16 +372,16 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     onSubmit,
     onClearString,
     onTagListChanged: (tagList) => {
-      void onTagListChanged(tagList);
+      flow.run(() => onTagListChanged(tagList));
     },
     onRecentSearchTerm,
     onRecentSearchTermRemove,
     onRecentSearchRemoveAll,
     onRecentResultClick: (recent) => {
-      void itemClick(recentAsResult(recent), true);
+      flow.run(() => itemClick(recentAsResult(recent), true));
     },
     onResultClick: (searchResult) => {
-      void itemClick(searchResult, false);
+      flow.run(() => itemClick(searchResult, false));
     },
     // Event_FilterBottomSheet_tInitialized: BottomSheetId_Filter.
     onFilterSheetInitialized: (bottomSheetId) => {
@@ -394,9 +395,11 @@ export function useSearch(inputs: SearchInputs, flags: SearchFlags, events: Sear
     onApplyFilters: (optionLists, countriesTitle, hasFilters) => {
       const countryIds = optionLists.find((l) => l.Title === countriesTitle)?.SelectedIds ?? [];
       dispatch({ type: 'filtersApplied', selectedCountryIds: countryIds, hasFiltersApplied: hasFilters });
-      void refreshSearch(
-        variables({ selectedCountryIds: countryIds, hasFiltersApplied: hasFilters }),
-        latest.current.tagList,
+      flow.run(() =>
+        refreshSearch(
+          variables({ selectedCountryIds: countryIds, hasFiltersApplied: hasFilters }),
+          latest.current.tagList,
+        ),
       );
     },
   };

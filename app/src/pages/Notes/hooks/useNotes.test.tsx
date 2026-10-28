@@ -11,6 +11,7 @@ import {
   type NotesVariables,
 } from '@/api/note';
 import { CommunicationException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import {
   get_Note_DynamicFilter_YearOptions,
@@ -208,7 +209,7 @@ describe('useNotes: OnInitialize and OnReady', () => {
     vi.mocked(fetchNoteCards).mockRejectedValueOnce(failure);
     const { result } = renderFlows();
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
     expect(fetchNotePills).toHaveBeenCalledTimes(1);
     expect(result.current.state).toMatchObject({ notesLoading: true, pillsLoaded: false });
   });
@@ -370,7 +371,14 @@ describe('useNotes: the events of the blocks', () => {
   });
 });
 
-describe('useNotes after an unmount and in StrictMode (decision W23)', () => {
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3, R4). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+
+describe('useNotes after an unmount and in StrictMode (flow scope, item 8)', () => {
   it('runs OnInitialize and OnReady once in StrictMode', async () => {
     const { result } = renderHook(() => useNotes(), { wrapper: strictWrapper });
     await settle();
@@ -380,7 +388,7 @@ describe('useNotes after an unmount and in StrictMode (decision W23)', () => {
     expect(result.current.state.notesList).toEqual([FENWICK, ASHDOWN]);
   });
 
-  it('after the unmount, the started flow makes its calls once, with its variables, and writes no state', async () => {
+  it('R3: unmount while GetNotes_Pills (a module action) is pending: Refresh_GetNotes does not start', async () => {
     const firstPills = pending<NotePill[]>();
     vi.mocked(fetchNotePills).mockReturnValueOnce(firstPills.promise);
     let renders = 0;
@@ -398,27 +406,40 @@ describe('useNotes after an unmount and in StrictMode (decision W23)', () => {
     viewWrites.mockClear();
     firstPills.resolve(PILLS);
     await settle();
-    expect(fetchNoteCards).toHaveBeenCalledTimes(1);
-    // The flow's assignments still change the variables that its calls send.
-    expect(sentWith()).toMatchObject({ notesLoading: true, notePills: TAGS, years: ['2026', '2025'] });
-    expect(fetchNotePills).toHaveBeenCalledTimes(2);
+    // Notes.js:1076: the own action Refresh_GetNotes checks that the screen is alive; OnReady stops.
+    expect(fetchNoteCards).not.toHaveBeenCalled();
+    expect(fetchNotePills).toHaveBeenCalledTimes(1);
     expect(viewWrites).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('an exception after the unmount still goes to the flow handler, once, without a state write', async () => {
+  it('R1: unmount while GetNotes is pending: GetNotesOnAfterFetch does not run, no state write, no raise', async () => {
+    const getNotes = pending<NoteCardPage>();
+    vi.mocked(fetchNoteCards).mockReturnValueOnce(getNotes.promise);
+    const { unmount } = renderHook(() => useNotes(), { wrapper: strictWrapper });
+    await settle();
+    expect(fetchNotePills).toHaveBeenCalledTimes(1);
+    unmount();
+    viewWrites.mockClear();
+    getNotes.resolve(page([FENWICK, ASHDOWN]));
+    await settle();
+    // The first page would call ResetPillsVallues again (GetNotes_Pills): not after the unmount.
+    expect(fetchNotePills).toHaveBeenCalledTimes(1);
+    expect(viewWrites).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while GetNotes is pending: its failure reaches no handler and writes no state', async () => {
     const getNotes = pending<NoteCardPage>();
     vi.mocked(fetchNoteCards).mockReturnValueOnce(getNotes.promise);
     const { unmount } = renderHook(() => useNotes(), { wrapper: strictWrapper });
     await settle();
     unmount();
     viewWrites.mockClear();
-    const failure = new CommunicationException('The connection has timed out');
-    getNotes.reject(failure);
+    getNotes.reject(new CommunicationException('The connection has timed out'));
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raisedErrors()).toEqual([]);
     expect(viewWrites).not.toHaveBeenCalled();
   });
 

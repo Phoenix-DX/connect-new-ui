@@ -5,6 +5,7 @@ import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { shareObject, type ShareObjectResult } from '@/api/share';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import { recordBodies } from '@/test/testSupport';
@@ -256,7 +257,7 @@ describe('useProfileList', () => {
     expect(availableUsersCalls()).toBe(1);
   });
 
-  it('W23: a share that ends after the unmount raises SubscriptionDenied once and writes no state', async () => {
+  it('R2 + R3: a refused share that ends after the unmount: no SubscriptionDenied (the parent handler stops), no state', async () => {
     const { result, unmount } = renderFlows(true);
     await until(result, (flows) => {
       expect(flows.results).toBe('list');
@@ -270,11 +271,15 @@ describe('useProfileList', () => {
     refused.resolve({ isAllowed: false, isSuccess: false, message: '', shareId: '0' });
     await settle();
     expect(shareObject).toHaveBeenCalledTimes(1);
-    expect(events.onSubscriptionDenied).toHaveBeenCalledTimes(1);
+    // Handler_ShareObject_SubscriptionDenied starts with ensureControllerAlive (LegacyShareObject.mvc.js:307).
+    expect(events.onSubscriptionDenied).not.toHaveBeenCalled();
     expect(profileListReducer).not.toHaveBeenCalled();
+    expect(
+      vi.mocked(raiseToFlowHandler).mock.calls.filter(([error]) => !(error instanceof IgnorableSystemException)),
+    ).toEqual([]);
   });
 
-  it('W23: a failed share that ends after the unmount still shows its message once', async () => {
+  it('R2 + R5: a failed share that ends after the unmount still shows its message once', async () => {
     const { result, unmount } = renderFlows(true);
     await until(result, (flows) => {
       expect(flows.results).toBe('list');

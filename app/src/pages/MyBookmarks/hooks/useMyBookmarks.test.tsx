@@ -19,6 +19,7 @@ import {
 } from '@/legacy/os/exceptions';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { setPreloadObject } from '@/platform/navigation';
 import { connect_LaunchDarkly_PermissionCheck } from '@/lib/ubtConnectUtils/actions';
@@ -432,8 +433,15 @@ describe('useMyBookmarks: NavigateTo_BookmarkedItem', () => {
   });
 });
 
-describe('useMyBookmarks: W23 (unmount while a flow runs)', () => {
-  it('OnReady: the call once, the message after the unmount, no state write', async () => {
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+
+describe('useMyBookmarks: unmount while a flow runs (flow scope, item 8)', () => {
+  it('R1: OnReady, GetGroupSummaries fails after the unmount: the call once, no message, no raise, no state write', async () => {
     const answer = pendingSummaries();
     let renders = 0;
     const { unmount } = renderHook(
@@ -450,12 +458,13 @@ describe('useMyBookmarks: W23 (unmount while a flow runs)', () => {
     answer.reject(new CommunicationException('Request failed with an error'));
     await settle();
     expect(fetchBookmarkGroupSummaries).toHaveBeenCalledTimes(1);
-    expect(showFeedbackMessage).toHaveBeenCalledTimes(1);
+    expect(showFeedbackMessage).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
     expect(myBookmarksReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
   });
 
-  it('OnReady: an answer after the unmount writes no state', async () => {
+  it('R1: OnReady, an answer after the unmount writes no state and raises nothing', async () => {
     const answer = pendingSummaries();
     const { unmount } = renderHook(() => useMyBookmarks(events()), { wrapper });
     await settle();
@@ -464,10 +473,10 @@ describe('useMyBookmarks: W23 (unmount while a flow runs)', () => {
     answer.resolve(SUMMARIES);
     await settle();
     expect(myBookmarksReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('NavigateTo_BookmarkedItem: the preload and the event once after the unmount', async () => {
+  it('R3: GetBookmarkById (a module action) answers after the unmount: the preload runs, the event does not', async () => {
     const answer = pendingBookmark();
     const { result, ev, unmount } = await loaded();
     act(() => {
@@ -477,11 +486,11 @@ describe('useMyBookmarks: W23 (unmount while a flow runs)', () => {
     answer.resolve(found({}));
     await settle();
     expect(setPreloadObject).toHaveBeenCalledTimes(1);
-    expect(ev.onNavigateToHouseholds).toHaveBeenCalledTimes(1);
-    expect(ev.onNavigateToHouseholds).toHaveBeenCalledWith('501', '2', 0, '', ['501', '502']);
+    expect(ev.onNavigateToHouseholds).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('NavigateTo_BookmarkedItem of a gone bookmark: the message and the refresh call, no state write', async () => {
+  it('R5 + R1: a gone bookmark after the unmount: the message and the refresh call; its failure is dropped', async () => {
     const answer = pendingBookmark();
     const { result, unmount } = await loaded();
     act(() => {
@@ -489,10 +498,12 @@ describe('useMyBookmarks: W23 (unmount while a flow runs)', () => {
     });
     unmount();
     vi.mocked(myBookmarksReducer).mockClear();
+    vi.mocked(fetchBookmarkGroupSummaries).mockRejectedValueOnce(new CommunicationException('Request failed'));
     answer.resolve({ ...found({}), isBookmarkFound: false });
     await settle();
     expect(showFeedbackMessage).toHaveBeenCalledTimes(1);
     expect(fetchBookmarkGroupSummaries).toHaveBeenCalledTimes(2);
     expect(myBookmarksReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 });

@@ -3,24 +3,36 @@ import { act, renderHook, waitFor } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import type { SearchResult } from '@/api/search';
+import { fetchSearchResults, type SearchResult } from '@/api/search';
 import { raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { IgnorableSystemException, OutOfContextException } from '@/legacy/os/os-exceptions';
 import { feedbackMessageAutoClose } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { setPreloadObject } from '@/platform/navigation';
 import { saveRecentClickedResult } from '@/platform/storage/localEntities';
-import { resetNavigation } from '@/platform/navigation/testRouter';
+import { renderRoutes, resetNavigation } from '@/platform/navigation/testRouter';
 import { freshPage, recordBodies } from '@/test/testSupport';
 import { initialTagList } from './searchState';
-import { SEARCH_SCREEN_INPUTS, useSearch, type SearchFlags, type SearchInputs } from './useSearch';
+import { SEARCH_SCREEN_INPUTS, useSearch, type SearchFlags, type SearchFlows, type SearchInputs } from './useSearch';
 
 const navigate = vi.fn();
-
-vi.mock('@/platform/navigation', async (importOriginal) => ({
-  ...(await importOriginal<typeof import('@/platform/navigation')>()),
-  useOsNavigate: () => navigate,
-  setPreloadObject: vi.fn(),
-}));
+/** On: the hook gets the platform navigation with its R4 check (the tests of a screen that the user left). */
+const platformNavigation = vi.hoisted(() => ({ on: false }));
+vi.mock('@/platform/navigation', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/platform/navigation')>();
+  return {
+    ...actual,
+    useOsNavigate: () => {
+      const platform = actual.useOsNavigate();
+      return platformNavigation.on ? platform : navigate;
+    },
+    setPreloadObject: vi.fn(),
+  };
+});
+vi.mock('@/api/search', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/api/search')>();
+  return { ...actual, fetchSearchResults: vi.fn(actual.fetchSearchResults) };
+});
 vi.mock('@/platform/feedback', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback')>()),
   feedbackMessageAutoClose: vi.fn(),
@@ -49,6 +61,18 @@ function renderSearch(inputs: SearchInputs = SEARCH_SCREEN_INPUTS, flags = FLAGS
   return renderHook(() => useSearch(inputs, flags, { onEventSearchResultClick: onClick }), { wrapper });
 }
 
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3, R4). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+const searchCalls = () => (window.__osCalls ?? []).filter((c) => c.action === 'DataActionFetchSearchResults').length;
+const wait = (ms: number) =>
+  act(async () => {
+    await new Promise((resolve) => setTimeout(resolve, ms));
+  });
+
 /** Lets the flows that started finish. */
 const settle = () =>
   act(async () => {
@@ -72,6 +96,8 @@ beforeEach(() => {
 });
 afterEach(() => {
   sessionStorage.clear();
+  platformNavigation.on = false;
+  resetNavigation();
 });
 
 describe('useSearch', () => {
@@ -263,5 +289,96 @@ describe('useSearch', () => {
     await waitFor(() => {
       expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
     });
+  });
+});
+
+describe('useSearch after an unmount (flow scope, item 8)', () => {
+  it('R3: unmount while the term is saved: Action_ClearResults stops the flow, no FetchSearchResults', async () => {
+    const search = renderSearch();
+    await settle();
+    act(() => {
+      search.result.current.onSubmit('Vitale');
+    });
+    search.unmount();
+    await wait(20);
+    expect(searchCalls()).toBe(0);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while FetchSearchResults is pending: its failure reaches no handler', async () => {
+    const search = renderSearch();
+    await settle();
+    let fail: (error: unknown) => void = () => undefined;
+    vi.mocked(fetchSearchResults).mockReturnValueOnce(new Promise((_resolve, reject) => (fail = reject)));
+    act(() => {
+      search.result.current.onSubmit('Vitale');
+    });
+    await waitFor(() => {
+      expect(fetchSearchResults).toHaveBeenCalledTimes(1);
+    });
+    search.unmount();
+    fail(new Error('Service Interruption'));
+    await wait(20);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: a tag change, unmount while Get_RecentClickedResults is pending: no search', async () => {
+    const search = renderSearch();
+    await settle();
+    act(() => {
+      search.result.current.onChange('Vitale');
+    });
+    await settle();
+    act(() => {
+      search.result.current.onTagListChanged(initialTagList('Households'));
+    });
+    search.unmount();
+    await wait(20);
+    expect(searchCalls()).toBe(0);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R3: with In_IsEventNavigation, unmount while the click is saved: no Event_SearchResultClick', async () => {
+    const onClick = vi.fn();
+    const search = renderSearch({ ...SEARCH_SCREEN_INPUTS, inIsEventNavigation: true }, FLAGS, onClick);
+    await settle();
+    await searchFor(search, 'Vitale');
+    const [household] = search.result.current.state.results.households;
+    act(() => {
+      search.result.current.onResultClick(household as SearchResult);
+    });
+    search.unmount();
+    await wait(20);
+    expect(onClick).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R4: the user leaves while the click is saved: no navigation to Locality_Details, the flow stops', async () => {
+    platformNavigation.on = true;
+    const screen: { current: SearchFlows | null } = { current: null };
+    function Screen() {
+      screen.current = useSearch(SEARCH_SCREEN_INPUTS, FLAGS);
+      return null;
+    }
+    const { router, at } = renderRoutes(
+      { '/UBTConnect/Search': <Screen />, '/UBTConnect/Menu': <p>Menu</p> },
+      '/UBTConnect/Search',
+    );
+    await settle();
+    act(() => {
+      screen.current?.onSubmit('Vitale');
+    });
+    await waitFor(() => {
+      expect(screen.current?.state.results.places.length).toBeGreaterThan(0);
+    });
+    const [place] = screen.current?.state.results.places ?? [];
+    act(() => {
+      screen.current?.onResultClick(place as SearchResult);
+    });
+    await act(() => router.navigate('/UBTConnect/Menu'));
+    await wait(20);
+    expect(at()).toBe('/UBTConnect/Menu');
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(OutOfContextException), expect.anything());
+    expect(raisedErrors()).toEqual([]);
   });
 });

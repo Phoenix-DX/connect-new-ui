@@ -26,7 +26,7 @@ import {
 } from '@/pages/MessageDetail/actions';
 import { MessageInfoType, MessageSenderTarget } from '@/pages/MessageDetail/staticEntities';
 import { feedbackMessageAutoClose, PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import { replaceOnUpcomingNavigation, useFlowState, type IsAlive } from '@/platform/navigation';
+import { replaceOnUpcomingNavigation, useFlowState } from '@/platform/navigation';
 import { clientVar, currentUserId, isSignedIn } from '@/platform/session/session';
 import { decrementReadMessagesCounter } from '@/platform/session/unreadCounters';
 import { getUserInformation } from '@/platform/session/userInfo';
@@ -51,7 +51,6 @@ import {
   messageDetailReducer,
   needsTemplateParameters,
   textToLongInteger,
-  type MessageDetailAction,
 } from './messageDetailState';
 
 /** The flows of ScreenBlock_MessageDetail: OnReady (the refresh of GetMessageInstance), GetMessageInstanceByIdOnAfterFetch
@@ -119,14 +118,18 @@ function autoCloseError(message: string): void {
 }
 
 /** The state and the flows of the message detail. The state comes from useFlowState and the view cache keeps it.
-    Decision W23: a flow that started runs to its end, as in the old port. After an unmount it still shows its
-    messages, navigates, lowers the counters and makes its calls; only its state writes stop (`isAlive`). */
+    Flow scope (item 8):
+    - GetMessageInstance and GetMessageTemplateParametersByMessageTemplateId are data actions (R1, `flow.fetch`,
+      MessageDetail.js:848-863 and :820): after the unmount their answers and failures are dropped, so
+      GetMessageInstanceByIdOnAfterFetch (the toasts, the counters, Wrapper_NotificationOpened, the events) does not
+      run, and the card submit shows no "Thanks" message.
+    - Wrapper_NotificationOpened, Get_OrbitNotificationParameters, Get_OrbitHostSurveyNotificationParameters and
+      StoreAdaptiveCardResponses are server actions (R2): not wrapped. After them, MessageRetractedFlow is an own
+      action (R3, `flow.own`, MessageDetail.js:1388) and the events go through `flow.events` (R3: the screen handlers
+      check that the screen is alive, MessageDetailScreen.js:769, :827).
+    - Cache_SignedImageURL_Get and Cache_UserInfo_Get are module actions: they run after leaving, as on TST.
+    A state write after the unmount is a no-op (`dispatch`). */
 export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDetailEvents): MessageDetailFlows {
-  /* OnReady runs once per screen. StrictMode (dev) runs the mount effect again on the same screen: the second call
-     only replaces the liveness check, so the first flow writes the state while the screen is there and its side
-     effects run once. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
   /** WasCurrentViewRestoredFromCache of this view, for the refresh after a card submit. */
   const restoredView = useRef(false);
   const {
@@ -134,6 +137,7 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
     dispatch,
     latest,
     events: eventsRef,
+    flow,
   } = useFlowState({
     viewName: 'MyNotifications.ScreenBlock_MessageDetail',
     reducer: messageDetailReducer,
@@ -141,29 +145,19 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
     parameters: inputs,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
+    onReady: (_isAlive, restored) => {
       restoredView.current = restored;
       return onReady(restored);
     },
   });
 
-  /** The screen is still there: true until the unmount. */
-  const isAlive: IsAlive = () => newestReadyRun.current();
-  /** A state write of a flow, skipped after the unmount (W23). */
-  const write = (action: MessageDetailAction) => {
-    if (isAlive()) dispatch(action);
-  };
-
   /** The message, ReplaceOnUpcomingNavigation and the event NavigateTo_MessageList. MessageRetractedFlow is this
-      sequence with the "not available" message. */
-  const leaveToMessageList = (message: string) => {
+      sequence with the "not available" message: an own action (R3), so it stops after the unmount. */
+  const leaveToMessageList = flow.own((message: string) => {
     autoCloseError(message);
     replaceOnUpcomingNavigation();
-    eventsRef.current.onNavigateToMessageList();
-  };
+    flow.events.onNavigateToMessageList();
+  });
 
   /** The "Is Notification Read?" part of GetMessageInstanceByIdOnAfterFetch. `variables` are the block variables
       that the calls send. It returns null when the action ends early. */
@@ -177,9 +171,9 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
     if (!message.isRead) {
       if (message.messageInfoTypeId === MessageInfoType.WhatsNew) decrementReadWhatsNewsCounter();
       else decrementReadMessagesCounter();
-      const isRetracted = await markNotificationOpened(variables.MessageInstanceId);
+      const isRetracted = await markNotificationOpened(variables.MessageInstanceId); // server action (R2)
       if (isRetracted) {
-        leaveToMessageList(MESSAGE_NOT_AVAILABLE);
+        leaveToMessageList(MESSAGE_NOT_AVAILABLE); // MessageRetractedFlow (R3)
         return null;
       }
     }
@@ -192,8 +186,8 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
       // A restored view keeps the parameters of its cached state.
       let parameters = latest.current.parameters ?? [];
       if (!restored) {
-        parameters = await fetchMessageTemplateParameters(variables);
-        write({ type: 'templateParametersFetched', parameters, senderTargetId: message.senderTargetId });
+        parameters = await flow.fetch(fetchMessageTemplateParameters(variables)); // R1
+        dispatch({ type: 'templateParametersFetched', parameters, senderTargetId: message.senderTargetId });
       }
       if (isOrbitKind(message.senderTargetId)) {
         const userInformation = await getUserInformation();
@@ -216,10 +210,9 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
 
   /** GetMessageInstanceByIdOnAfterFetch. */
   const onAfterFetchMessageInstance = async (result: MessageInstanceResult, restored: boolean) => {
-    // MessageInstanceId = Message.MessageInstance.Id. The flow keeps its own copy: the next calls send it, also
-    // after an unmount, when the state write is skipped.
+    // MessageInstanceId = Message.MessageInstance.Id. The flow keeps its own copy, which the next calls send.
     const variables = { ...latest.current.variables, MessageInstanceId: result.message.messageInstanceId ?? '0' };
-    write({ type: 'messageInstanceFetched', message: result.message });
+    dispatch({ type: 'messageInstanceFetched', message: result.message });
     const access = messageAccess(result, isSignedIn());
     if (
       (access === 'cleared' || access === 'open') &&
@@ -237,14 +230,14 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
         leaveToMessageList(MESSAGE_NO_ACCESS);
         return;
       case 'login':
-        eventsRef.current.onNavigateToLogin();
+        flow.events.onNavigateToLogin();
         return;
       case 'open':
         break;
     }
     const prepared = await prepareMessage(result, variables, restored);
     if (prepared === null) return;
-    write({ type: 'messagePrepared', message: prepared });
+    dispatch({ type: 'messagePrepared', message: prepared });
   };
 
   /** OnReady: both ids null, the "invalid id" message; else the refresh of GetMessageInstance. */
@@ -254,7 +247,7 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
       showFeedbackMessage(MESSAGE_INVALID_ID, PLATFORM_MESSAGE_TYPE.error);
       return;
     }
-    const result = await fetchMessageInstance(latest.current.variables);
+    const result = await flow.fetch(fetchMessageInstance(latest.current.variables)); // R1
     await onAfterFetchMessageInstance(result, restored);
   };
 
@@ -270,16 +263,17 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
       return;
     }
     if (messageSenderTargetId === MessageSenderTarget.Orbit) {
-      const p = await getOrbitNotificationParameters(parameters);
+      const p = await getOrbitNotificationParameters(parameters); // server action (R2)
+      // The events after it: the screen handlers check that the screen is alive (R3, `flow.events`).
       if (p.orbitMilestoneId !== '' && p.orbitEventId !== '' && p.orbitEventName !== '') {
-        eventsRef.current.onNavigateToOrbitMilestone?.(
+        flow.events.onNavigateToOrbitMilestone?.(
           p.orbitMilestoneId,
           textToLongInteger(p.orbitEventId),
           p.orbitEventName,
         );
       } else if (p.orbitEventId !== '' && p.orbitEventName !== '') {
-        const userInformation = await getUserInformation();
-        eventsRef.current.onNavigateToOrbitEvent?.(
+        const userInformation = await getUserInformation(); // module action: runs after leaving
+        flow.events.onNavigateToOrbitEvent?.(
           userInformation.Directory_UserCurrent.MemberID,
           textToLongInteger(p.orbitEventId),
           p.orbitEventName,
@@ -290,10 +284,10 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
         showFeedbackMessage(MESSAGE_NO_HOST_SURVEY_ACCESS, PLATFORM_MESSAGE_TYPE.error);
         return;
       }
-      const p = await getOrbitHostSurveyNotificationParameters(parameters);
+      const p = await getOrbitHostSurveyNotificationParameters(parameters); // server action (R2)
       if (p.orbitEventId !== '' && p.orbitEventName !== '' && p.orbitStartDate !== null && p.orbitEndDate !== null) {
-        const userInformation = await getUserInformation();
-        eventsRef.current.onNavigateToOrbitHostSurvey?.(
+        const userInformation = await getUserInformation(); // module action: runs after leaving
+        flow.events.onNavigateToOrbitHostSurvey?.(
           userInformation.Directory_UserCurrent.MemberID,
           textToLongInteger(p.orbitEventId),
           p.orbitEventName,
@@ -352,6 +346,7 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
           await eventsRef.current.onAddAuditAndNavigateToEventDetail?.(data.eventHostId, data.eventId);
         }
       } else {
+        // A server action (R2): its failure still shows the connection message after the unmount (R5).
         await storeAdaptiveCardResponses({
           deviceHardwareId,
           adaptiveCardPayloadJSON: cardPayload,
@@ -359,7 +354,8 @@ export function useMessageDetail(inputs: MessageDetailInputs, events: MessageDet
           formDataJSON: formPayload,
           messageInstanceId: latest.current.variables.MessageInstanceId,
         });
-        const result = await fetchMessageInstance(latest.current.variables);
+        // R1: after the unmount the refresh stops the flow (ControllerDisposedException, not a CommunicationException).
+        const result = await flow.fetch(fetchMessageInstance(latest.current.variables));
         await onAfterFetchMessageInstance(result, restoredView.current);
         showFeedbackMessage(MESSAGE_FORM_THANKS, PLATFORM_MESSAGE_TYPE.info);
       }

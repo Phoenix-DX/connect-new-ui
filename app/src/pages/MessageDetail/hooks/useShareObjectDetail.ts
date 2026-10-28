@@ -46,6 +46,7 @@ export function useShareObjectDetail(
     latest,
     parameters,
     events: eventsRef,
+    flow,
   } = useFlowState({
     viewName: 'Share_UI.ShareObjectDetail_ExtendedShare',
     reducer: shareObjectDetailReducer,
@@ -58,16 +59,21 @@ export function useShareObjectDetail(
   });
 
   /** Refresh GetShare, then GetShareOnAfterFetch. GetShare sends the block variables: the inputs and the two locals as
-      they are when the fetch starts (after OnInitialize, or what the last GetShareOnAfterFetch set). */
+      they are when the fetch starts (after OnInitialize, or what the last GetShareOnAfterFetch set).
+      Flow scope (item 8): GetShare is a data action (R1, `flow.fetch`, ShareObjectDetail.js:456-464): after the unmount
+      its answer and its failure are dropped, so GetShareOnAfterFetch (the audit, :597-613) does not run. `isAlive`
+      also stops a superseded OnParametersChanged run (open point 5 (a)). */
   const refreshGetShare = async (isAlive: IsAlive) => {
     const { ShareId, HasAccessToDeceasedHousehold } = parameters.current;
     const { shareableObject, shareableUpdateItem } = latest.current;
-    const share = await fetchSharedObjectDetail({
-      shareId: ShareId,
-      hasAccessToDeceasedHousehold: HasAccessToDeceasedHousehold,
-      shareableObject,
-      shareableUpdateItem,
-    });
+    const share = await flow.fetch(
+      fetchSharedObjectDetail({
+        shareId: ShareId,
+        hasAccessToDeceasedHousehold: HasAccessToDeceasedHousehold,
+        shareableObject,
+        shareableUpdateItem,
+      }),
+    ); // R1
     // GetShareOnAfterFetch: AuditShareViewEvent, GetConnectEntity_ByShareType, then the locals.
     await auditShareViewEvent(ShareId, share.shareObjectTypeId);
     if (!isAlive()) return;

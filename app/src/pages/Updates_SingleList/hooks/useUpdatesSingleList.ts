@@ -8,7 +8,7 @@ import {
   type FilterUpdates,
   type UpdateItem,
 } from '@/api/update';
-import { UserException, exceptionMessage, isSystemException, raiseToFlowHandler } from '@/legacy/os/exceptions';
+import { UserException, exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
 import {
   getFocusedScrollAnchorOnBack,
   getPreloadObject,
@@ -68,26 +68,27 @@ function setStickyHeaderHeight() {
       the update at the bottom edge of the list header gives the date of CurrentBreakpoint.
     - The search, type and filter flows reload the list from the top; the read-state flows call the service actions,
       then recount the breakpoints and the bottom bar.
+    Flow scope (item 8): GetDateRanges and FetchUpdates are data actions (R1, `flow.fetch`): after the unmount their
+    answer and their failure are dropped, so OnAfterFetch (RefreshUpdates, the bottom bar count) does not run. The mark
+    actions are server actions (R2): their flows go on, and stop at the next own action of the screen
+    (RefreshUpdatesAndFlags, SetBadgeCountsToZero, RefreshUpdates: R3, `flow.own`). The navigation from a left screen
+    does not happen (R4, useOsNavigate).
     @origin UBTConnect.Directory_Updates.Updates_SingleList */
 export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSingleListFlows {
   const navigate = useOsNavigate();
-  const started = useRef(false);
   const {
     state,
     dispatch: set,
     latest,
+    flow,
   } = useFlowState({
     viewName: 'Directory_Updates.Updates_SingleList',
     reducer: updatesSingleListReducer,
     initial: INITIAL_UPDATES_SINGLE_LIST_STATE,
     restore: (saved) => restoreUpdatesSingleListState(saved, getPreloadObject()),
     parameters: null,
-    // OnReady runs once per screen instance, also when StrictMode runs the effects twice.
-    onReady: (_isAlive, restored) => {
-      if (started.current) return Promise.resolve();
-      started.current = true;
-      return onReady(restored);
-    },
+    // useFlowState runs OnReady once per screen instance, also when StrictMode runs the effects twice.
+    onReady: (_isAlive, restored) => onReady(restored),
   });
   /* The flows read the newest variables (state is the rendered copy). */
   const m = (): UpdatesSingleListState => latest.current;
@@ -155,11 +156,11 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
     [],
   );
 
-  /** RefreshUpdates → FetchUpdates, then OnAfterFetch_FetchUpdates. */
-  const refreshUpdates = async () => {
+  /** RefreshUpdates → FetchUpdates, then OnAfterFetch_FetchUpdates. An own action (R3). */
+  const refreshUpdates = flow.own(async () => {
     let out;
     try {
-      out = await fetchUpdatesList(m());
+      out = await flow.fetch(fetchUpdatesList(m())); // R1
     } catch (e) {
       set({ fetchStatus: 'error' });
       throw e;
@@ -180,7 +181,7 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
       set({ isLoading: false });
       throw new UserException(exceptionMessage(e), 'UBTConnect.BubbleGenericException');
     }
-  };
+  });
 
   /* ScreenEvent_OnReady (US:2325-2372): SetStickyHeaderHeight; restored → ReactiveInstance_ForceUpdate of List_Updates
      (the restored state renders the list again), SetupScrollListener, GetFocusedScrollAnchorOnBack, then
@@ -205,7 +206,7 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
     set({ isLoading: true, items: getSkeletonList_UI_Updates(10) });
     let ids: string[];
     try {
-      ids = await fetchUpdateDateRangeIds(m());
+      ids = await flow.fetch(fetchUpdateDateRangeIds(m())); // R1
     } catch (e) {
       set({ dateRangesFailed: true });
       throw e;
@@ -228,7 +229,7 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
     set({ ...patch, showMarkAll: false });
     scrollTop('.active-screen', 'instant');
     set({ isLoading: true });
-    refreshUpdates().catch(raiseToFlowHandler);
+    flow.run(() => refreshUpdates());
   };
   /** Handler_FilterSearchText. */
   const filterSearchText = (text: string) => {
@@ -268,42 +269,46 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
     const found = m().breakpoints.find((b) => b.sectionName === sectionName);
     if (found) set({ currentBreakpoint: found });
   };
-  /** RefreshUpdatesAndFlags(CurrentPosition), then SetMarkAllTag. */
-  const refreshUpdatesAndFlags = (position: number) => {
+  /** RefreshUpdatesAndFlags(CurrentPosition), then SetMarkAllTag. An own action (R3, US:1647). */
+  const refreshUpdatesAndFlags = flow.own((position: number) => {
     const r = directory_Updates_GetUpdatedBreakpoints(m().items, position, m().dateRanges, m().breakpoints);
     set({ breakpoints: r.updatedBreakpoints });
     if (m().currentBreakpoint.sectionName === r.changedBreakpoint.sectionName)
       updateCurrentBreakpoint(r.changedBreakpoint.sectionName);
     set({ showMarkAll: m().items.some((i) => !i.isRead) });
-  };
+  });
   const setIsRead = (position: number, isRead: boolean) => {
     set({ items: m().items.map((it, i) => (i === position ? { ...it, isRead } : it)) });
   };
   /** Handler_MarkAsRead(UpdateItemId, CurrentPosition). */
   const handlerMarkAsRead = async (updateItemId: string, position: number) => {
-    await markUpdateItemAsRead(updateItemId);
+    await markUpdateItemAsRead(updateItemId); // R2
     setIsRead(position, true);
     refreshUpdatesAndFlags(position);
     await directory_Updates_RefreshBottomBarCount(true);
   };
   /** Handler_MarkAsUnread(UpdateItemId, CurrentPosition). */
   const handlerMarkAsUnread = async (updateItemId: string, position: number) => {
-    await markUpdateItemAsUnread(updateItemId);
+    await markUpdateItemAsUnread(updateItemId); // R2
     setIsRead(position, false);
     refreshUpdatesAndFlags(position);
     await directory_Updates_RefreshBottomBarCount(true);
   };
-  /** Handler_MarkAllAsRead: a non-system error only clears isLoading. */
+  /** SetBadgeCountsToZero: the badge of each breakpoint and of CurrentBreakpoint. An own action (R3, US:2127). */
+  const setBadgeCountsToZero = flow.own(() => {
+    set({
+      breakpoints: m().breakpoints.map((b) => ({ ...b, badgeCount: 0 })),
+      currentBreakpoint: { ...m().currentBreakpoint, badgeCount: 0 },
+    });
+  });
+  /** Handler_MarkAllAsRead (US:2984-3030): a non-system error only clears isLoading. */
   const handlerMarkAllAsRead = async () => {
     set({ showMarkAll: false, isLoading: true });
     try {
-      await markAllUpdateItemsAsRead(m().filter_Updates);
-      set({
-        items: directory_Updates_MarkAllAsRead(m().items),
-        breakpoints: m().breakpoints.map((b) => ({ ...b, badgeCount: 0 })),
-        currentBreakpoint: { ...m().currentBreakpoint, badgeCount: 0 },
-        isLoading: false,
-      });
+      await markAllUpdateItemsAsRead(m().filter_Updates); // R2
+      set({ items: directory_Updates_MarkAllAsRead(m().items) });
+      setBadgeCountsToZero();
+      set({ isLoading: false });
       await directory_Updates_RefreshBottomBarCount(true);
       await refreshUpdates();
     } catch (e) {
@@ -333,7 +338,7 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
           })),
       );
       setPreloadObject({ CarouselHouseholdItem: preloaded.CarouselHouseholdItem });
-      navigate(`/${APP_ID}/HouseholdCarousel`, { In_StartingHouseholdId: item.householdId });
+      navigate(`/${APP_ID}/HouseholdCarousel`, { In_StartingHouseholdId: item.householdId }); // R4 in useOsNavigate
     } // HouseholdDetails branch (flag off) not built: default-only
   };
   /** Handler_OnShare. */
@@ -355,20 +360,20 @@ export function useUpdatesSingleList(flags: UpdatesSingleListFlags): UpdatesSing
     onToggleSearch,
     onFilterTypeChanged,
     onMarkAllAsRead: () => {
-      handlerMarkAllAsRead().catch(raiseToFlowHandler);
+      flow.run(handlerMarkAllAsRead);
     },
     onUpdateListHeader: (breakpoint) => {
       set({ currentBreakpoint: breakpoint });
     },
     onItemClick: (index) => {
-      onClickUpdateItem(index).catch(raiseToFlowHandler);
+      flow.run(() => onClickUpdateItem(index));
     },
     onItemShare,
     onItemMarkAsRead: (updateItemId, position) => {
-      handlerMarkAsRead(updateItemId, position).catch(raiseToFlowHandler);
+      flow.run(() => handlerMarkAsRead(updateItemId, position));
     },
     onItemMarkAsUnread: (updateItemId, position) => {
-      handlerMarkAsUnread(updateItemId, position).catch(raiseToFlowHandler);
+      flow.run(() => handlerMarkAsUnread(updateItemId, position));
     },
     onApplyFilters,
     onFilterSheetLoaded: (showSubscriptionOnClick) => {
