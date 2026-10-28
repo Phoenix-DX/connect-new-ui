@@ -4,6 +4,7 @@ import { Gallery } from '@/components/ui/Gallery';
 import { LegacyInputCounter } from '@/components/ui/LegacyInputCounter';
 import { BreakColumns, GutterSize } from '@/components/ui/lib/staticEntities';
 import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSDropdownCustom } from '@/components/ui/os/OSDropdownCustom';
 import { OSList } from '@/components/ui/os/OSList';
 import {
   DEFAULT_WIDGET_RECORD,
@@ -29,7 +30,6 @@ import {
   sameRoomNameIndex,
   type AccommodationEdit,
 } from './hostSurveyAccommodationItem';
-import { OSDropdownCustom } from './OSDropdownCustom';
 
 export interface HostSurvey_AccommodationItemProps {
   /** OutSystems instance id of the block. */
@@ -280,19 +280,24 @@ export function HostSurvey_AccommodationItem(props: HostSurvey_AccommodationItem
     }
   };
 
-  /** OnChange_NoOfBeds. */
-  const onChangeNoOfBeds = (numberOfBeds: string) => {
-    const s = setRoom({ NumberOfBeds: numberOfBeds });
+  /** OnChange_NoOfBeds (the dropdown has set NumberOfBeds). */
+  const onChangeNoOfBeds = () => {
+    const s = latest.current.edit;
     onChangeInputs(ids.bedsNumber, s.room);
     setEdit(resizeBeds(filterBedSizes(s, inBedSize, inGenderPreferences)));
   };
 
-  /** OnChange_BedSize(InputId, Position) → ValidateBedSizeInput_Single (no Either check): ValidValue = In_BedSize has
-      the chosen value. */
-  const onChangeBedSize = (position: number, value: string) => {
+  /** The variable of a bed dropdown: Beds[position]. */
+  const setBedSize = (position: number, value: string) => {
     const beds = [...latest.current.edit.room.Beds];
     beds[position] = value;
     setRoom({ Beds: beds });
+  };
+
+  /** OnChange_BedSize(InputId, Position) → ValidateBedSizeInput_Single (no Either check): ValidValue = In_BedSize has
+      the chosen value. */
+  const onChangeBedSize = (position: number) => {
+    const value = latest.current.edit.room.Beds[position] ?? '';
     const validValue = inBedSize.some((b) => b.JSON_Name === value);
     setBedMessages((m) => {
       const next = [...m];
@@ -437,13 +442,17 @@ export function HostSurvey_AccommodationItem(props: HostSurvey_AccommodationItem
           id={ids.bedsNumber}
           style="dropdown"
           emptyValue="Select number of beds"
+          mandatory
           enabled={enabled}
           list={edit.numberOfBeds}
-          valueOf={(n) => n}
-          renderItem={(n) => <span data-expression="">{n}</span>}
+          getValue={(n) => n}
+          renderRow={(n) => <span data-expression="">{n}</span>}
           value={room.NumberOfBeds}
           nullValue="0"
           record={record(ids.bedsNumber)}
+          onValueChange={(value) => {
+            setRoom({ NumberOfBeds: value });
+          }}
           onChange={onChangeNoOfBeds}
           onFocus={onFocusInputs(ids.bedsNumber)}
         />
@@ -472,15 +481,18 @@ export function HostSurvey_AccommodationItem(props: HostSurvey_AccommodationItem
                     id={ids.bedSize(i)}
                     style="dropdown"
                     emptyValue="Select bed type"
+                    mandatory
                     enabled={enabled}
                     list={edit.editBedSizes}
-                    valueOf={(b) => b.JSON_Name}
-                    renderItem={(b) => <span data-expression="">{b.Label}</span>}
+                    getValue={(b) => b.JSON_Name}
+                    renderRow={(b) => <span data-expression="">{b.Label}</span>}
                     value={bed}
-                    nullValue=""
                     record={{ validAttr: (bedMessages[i] ?? '') === '', validationMessageAttr: bedMessages[i] ?? '' }}
-                    onChange={(value) => {
-                      onChangeBedSize(i, value);
+                    onValueChange={(value) => {
+                      setBedSize(i, value);
+                    }}
+                    onChange={() => {
+                      onChangeBedSize(i);
                     }}
                     onFocus={onFocusInputs(ids.bedSize(i))}
                   />
@@ -498,16 +510,18 @@ export function HostSurvey_AccommodationItem(props: HostSurvey_AccommodationItem
           id={ids.floor}
           style="dropdown"
           emptyValue="Select floor"
+          mandatory
           enabled={enabled}
           list={inHouseFloors}
-          valueOf={(f) => f.JSON_Name}
-          renderItem={(f) => <span data-expression="">{f.Label}</span>}
+          getValue={(f) => f.JSON_Name}
+          renderRow={(f) => <span data-expression="">{f.Label}</span>}
           value={room.Floor}
-          nullValue=""
           record={record(ids.floor)}
-          onChange={(value) => {
-            const s = setRoom({ Floor: value });
-            onChangeInputs(ids.floor, s.room);
+          onValueChange={(value) => {
+            setRoom({ Floor: value });
+          }}
+          onChange={() => {
+            onChangeInputs(ids.floor, latest.current.edit.room);
           }}
           onFocus={onFocusInputs(ids.floor)}
         />

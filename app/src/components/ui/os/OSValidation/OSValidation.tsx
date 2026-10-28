@@ -65,19 +65,60 @@ export function ValidationMessage({ widgetId, record }: { widgetId: string; reco
   );
 }
 
-export interface InputWithVariableValidation {
+interface ValidationWidgetBinding {
   record: WidgetValidationRecord;
   /** The element's class with " not-valid" while a message shows (RV fillWithBuiltinProperties ≈210359). */
   className: (className: string | undefined) => string | undefined;
-  /** Input only: aria-describedby="<id>_DescribedBy" while a message shows (W ≈63689); TextArea has none (W ≈81231). */
-  ariaDescribedBy: string | undefined;
-  /** createValidationElement: rendered right after the element, inside the widget's wrapper span (W ≈64696, ≈81662). */
+  /** createValidationElement (RV ≈209993): the message span, rendered where the widget puts it. */
   validationElement: ReactNode;
 }
 
-/** An InputWithVariableWidget (OSWidgets.Input, OSWidgets.TextArea): registers in the service on mount, under the
-    enclosing Form, and is validated from the element's current value and `validity` (Input W ≈61150-61380, TextArea
-    W ≈80236: `inputedValue` = htmlElement.value, `inputedValueValidity` = htmlElement.validity). Typing does not clear a shown
+/** A built validation widget (RV ValidationWidget): it registers in the service on mount, under the enclosing Form,
+    and leaves on unmount (RV internalComponentWillMount / WillUnmount ≈209258), so `<Form>.Valid` aggregates its Valid
+    (recalculateAggregatorsState, OS ≈513161). `validate` is the widget's own; it defaults to RV
+    ValidationWidget.validate (≈209195: a valid result). The record re-renders the widget, also when an action assigns
+    it (`setWidgetValidity`). With no provider it registers nowhere and the record stays the default. */
+export function useValidationWidget({
+  id,
+  validate,
+}: {
+  id: string;
+  validate?: (service: ValidationService) => ValidationResult;
+}): ValidationWidgetBinding {
+  const service = useContext(ServiceContext);
+  const parentId = useContext(ParentContext);
+  const latest = useRef(validate);
+  useLayoutEffect(() => {
+    latest.current = validate;
+  });
+  useLayoutEffect(() => {
+    if (!service) return;
+    service.register({
+      id,
+      validationParentId: parentId,
+      validate: () => (latest.current ? latest.current(service) : new ValidationResult()),
+    });
+    return () => {
+      service.unregister(id);
+    };
+  }, [service, id, parentId]);
+  const record = useWidgetValidationRecord(id, service);
+  return {
+    record,
+    className: (className) => withNotValidClass(className, record),
+    validationElement: <ValidationMessage widgetId={id} record={record} />,
+  };
+}
+
+export interface InputWithVariableValidation extends ValidationWidgetBinding {
+  /** Input only: aria-describedby="<id>_DescribedBy" while a message shows (W ≈63689); TextArea has none (W ≈81231).
+      The validation element goes right after the element, inside the widget's wrapper span (W ≈64696, ≈81662). */
+  ariaDescribedBy: string | undefined;
+}
+
+/** An InputWithVariableWidget (OSWidgets.Input, OSWidgets.TextArea): a validation widget (useValidationWidget)
+    validated from the element's current value and `validity` (Input W ≈61150-61380, TextArea W ≈80236:
+    `inputedValue` = htmlElement.value, `inputedValueValidity` = htmlElement.validity). Typing does not clear a shown
     message: only the next validation does (Input / TextArea onChange only set the variable, W ≈61383, ≈79860). */
 export function useInputWithVariableValidation({
   id,
@@ -90,68 +131,25 @@ export function useInputWithVariableValidation({
   dataType: InputDataType;
   elementRef: RefObject<HTMLInputElement | HTMLTextAreaElement | null>;
 }): InputWithVariableValidation {
-  const service = useContext(ServiceContext);
-  const parentId = useContext(ParentContext);
-  const latest = useRef({ mandatory, dataType });
-  useLayoutEffect(() => {
-    latest.current = { mandatory, dataType };
+  const binding = useValidationWidget({
+    id,
+    validate: (service) => {
+      const element = elementRef.current;
+      return validateInputWithVariable(
+        {
+          inputedValue: element?.value ?? '',
+          inputedValueValidity: element?.validity,
+          isMandatory: mandatory,
+          dataType,
+        },
+        service,
+      );
+    },
   });
-  useLayoutEffect(() => {
-    if (!service) return;
-    service.register({
-      id,
-      validationParentId: parentId,
-      validate: () => {
-        const element = elementRef.current;
-        return validateInputWithVariable(
-          {
-            inputedValue: element?.value ?? '',
-            inputedValueValidity: element?.validity,
-            isMandatory: latest.current.mandatory,
-            dataType: latest.current.dataType,
-          },
-          service,
-        );
-      },
-    });
-    return () => {
-      service.unregister(id);
-    };
-  }, [service, id, parentId, elementRef]);
-  const record = useWidgetValidationRecord(id, service);
-  const shows = hasValidationMessage(record);
   return {
-    record,
-    className: (className) => withNotValidClass(className, record),
-    ariaDescribedBy: shows ? id + DESCRIBED_BY_SUFFIX : undefined,
-    validationElement: <ValidationMessage widgetId={id} record={record} />,
+    ...binding,
+    ariaDescribedBy: hasValidationMessage(binding.record) ? id + DESCRIBED_BY_SUFFIX : undefined,
   };
-}
-
-/** A validation widget of the original view whose markup is not built here (e.g. a `<NotCaptured>` input): it registers
-    in the service on mount, under the enclosing Form, and leaves on unmount (RV internalComponentWillMount /
-    WillUnmount ≈209258), so `<Form>.Valid` aggregates the Valid an action assigns to it (recalculateAggregatorsState,
-    OS ≈513161) as it would with the widget rendered. `validate` defaults to RV ValidationWidget.validate (≈209195: a
-    valid result). Renders nothing. */
-export function UnbuiltValidationWidget({ id, validate }: { id: string; validate?: () => ValidationResult }) {
-  const service = useContext(ServiceContext);
-  const parentId = useContext(ParentContext);
-  const latest = useRef(validate);
-  useLayoutEffect(() => {
-    latest.current = validate;
-  });
-  useLayoutEffect(() => {
-    if (!service) return;
-    service.register({
-      id,
-      validationParentId: parentId,
-      validate: () => (latest.current ? latest.current() : new ValidationResult()),
-    });
-    return () => {
-      service.unregister(id);
-    };
-  }, [service, id, parentId]);
-  return null;
 }
 
 export interface OSFormProps {

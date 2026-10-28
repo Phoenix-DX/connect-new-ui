@@ -1,11 +1,11 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { useRef, useState } from 'react';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import {
   OSForm,
-  UnbuiltValidationWidget,
   useInputWithVariableValidation,
   useScreenValidationService,
+  useValidationWidget,
   ValidationServiceProvider,
 } from './OSValidation';
 import {
@@ -236,6 +236,12 @@ describe('OSForm + input widgets (DOM)', () => {
   });
 });
 
+/** A validation widget with no markup of its own: only the binding of useValidationWidget. */
+function BareWidget({ id, validate }: { id: string; validate?: (service: Service) => ValidationResult }) {
+  useValidationWidget({ id, validate });
+  return null;
+}
+
 function ContactForm({
   onService,
   signedOut,
@@ -243,22 +249,76 @@ function ContactForm({
 }: {
   onService: (s: Service) => void;
   signedOut: boolean;
-  validateName?: () => ValidationResult;
+  validateName?: (service: Service) => ValidationResult;
 }) {
   const service = useScreenValidationService();
   onService(service);
   return (
     <ValidationServiceProvider service={service}>
       <OSForm id="Form_ContactUs" style="form OSFillParent">
-        {signedOut && <UnbuiltValidationWidget id="Input_FullName" validate={validateName} />}
+        {signedOut && <BareWidget id="Input_FullName" validate={validateName} />}
         <TestInput id="Input_Message" type="text" dataType="Text" mandatory={false} />
       </OSForm>
     </ValidationServiceProvider>
   );
 }
 
-describe('UnbuiltValidationWidget (a widget whose markup is not built)', () => {
-  it('renders nothing; the Valid an action assigns counts in the enclosing Form while it is mounted', () => {
+describe('useValidationWidget (a built validation widget that is not an input)', () => {
+  it('registers under the enclosing Form on mount and unregisters on unmount', () => {
+    let service!: Service;
+    const { rerender } = render(<ContactForm onService={(s) => (service = s)} signedOut />);
+    expect(service.isRegistered('Input_FullName')).toBe(true);
+    rerender(<ContactForm onService={(s) => (service = s)} signedOut={false} />);
+    expect(service.isRegistered('Input_FullName')).toBe(false);
+  });
+
+  it('calls validate with the service of the provider', () => {
+    let service!: Service;
+    const validate = vi.fn((s: Service) => new ValidationResult(false, s.getMandatoryValueMessage()));
+    render(<ContactForm onService={(s) => (service = s)} signedOut validateName={validate} />);
+    act(() => {
+      service.validate();
+    });
+    expect(validate).toHaveBeenCalledWith(service);
+    expect(service.getWidgetRecord('Input_FullName')).toEqual({
+      validAttr: false,
+      validationMessageAttr: 'This field is required.',
+    });
+  });
+
+  it('returns the record, the " not-valid" class and the message element of the widget', () => {
+    let service!: Service;
+    function Shown() {
+      const v = useValidationWidget({ id: 'Dropdown_Country' });
+      return (
+        <div className={v.className('dropdown-container dropdown')} id="Dropdown_Country">
+          {v.validationElement}
+        </div>
+      );
+    }
+    function Page({ onService }: { onService: (s: Service) => void }) {
+      const s = useScreenValidationService();
+      onService(s);
+      return (
+        <ValidationServiceProvider service={s}>
+          <Shown />
+        </ValidationServiceProvider>
+      );
+    }
+    render(<Page onService={(s) => (service = s)} />);
+    const element = document.getElementById('Dropdown_Country') as HTMLElement;
+    expect(element.className).toBe('dropdown-container dropdown');
+    expect(element.children).toHaveLength(0);
+    act(() => {
+      service.setWidgetValidity('Dropdown_Country', false, 'Select your country.');
+    });
+    expect(element.className).toBe('dropdown-container dropdown not-valid');
+    expect(element.innerHTML).toBe(
+      '<span id="Dropdown_Country_DescribedBy" class="validation-message">Select your country.</span>',
+    );
+  });
+
+  it('renders nothing of its own; the Valid an action assigns counts in the enclosing Form while it is mounted', () => {
     let service!: Service;
     const { container, rerender } = render(<ContactForm onService={(s) => (service = s)} signedOut />);
     const form = container.querySelector('form') as HTMLFormElement;

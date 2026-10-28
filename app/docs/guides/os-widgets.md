@@ -1,6 +1,6 @@
 # Platform widgets (`src/components`)
 
-OutSystems platform widgets (Form, Input validation, Popup, List, RadioGroup) are not OutSystems blocks. They do not
+OutSystems platform widgets (Form, Input validation, Popup, List, RadioGroup, Dropdown) are not OutSystems blocks. They do not
 live in `src/lib/<module>/`. Each widget is a port of the OutSystems client runtime and has no `@os-block` tag. Each folder has
 an `index.ts`; import from the folder. Header comments name the runtime file and the offsets that the port follows.
 
@@ -10,6 +10,7 @@ an `index.ts`; import from the folder. Header comments name the runtime file and
 | `OSPopup/usePopupWidget.ts` | page effects of every Popup widget                      |
 | `OSList/`                   | List and ListItem widgets, including swipe actions      |
 | `OSRadioGroup/`             | RadioGroup and RadioButton widgets                      |
+| `OSDropdownCustom/`         | the Dropdown widget in Custom mode                      |
 | `OSBlock.tsx`               | the wrapper OutSystems renders around every block       |
 | `FlagPanel.tsx`             | the feature-flag panel shown with `?ffpanel=1`          |
 
@@ -31,8 +32,11 @@ Ports the platform validation service and its React bindings.
   - `useScreenValidationService()`: one service for each screen. The service stays for the life of the screen.
   - `ValidationServiceProvider`.
   - `OSForm`: a validation aggregator. Its `Valid` is the conjunction of the `Valid` values of its children.
-  - `useInputWithVariableValidation`: registers an input and validates it from the element's value and `validity`.
-    It returns the `not-valid` class, `aria-describedby` and the message element.
+  - `useValidationWidget({ id, validate })`: registers a built validation widget under the enclosing `OSForm` and
+    unregisters it on unmount. `validate` is the widget's own; without it the widget is always valid. It returns the
+    record, the `not-valid` class and the message element. `OSDropdownCustom` uses it.
+  - `useInputWithVariableValidation`: `useValidationWidget` for an input. It validates from the element's value and
+    `validity`, and also returns `aria-describedby`.
   - `ValidationMessage` (`<span id="<id>_DescribedBy" class="validation-message">`).
   - `useWidgetValidationRecord`.
 - A widget outside a provider registers nowhere and is always valid. Typing does not clear a shown message. Only the
@@ -47,8 +51,8 @@ How a screen validates:
 5. Continue only when the call returns true.
 
 These files use the service: `src/pages/Profile/ProfilePage.tsx`, `src/pages/Login/LoginPage.tsx` (validate with no visible
-widget), `src/pages/ContactUsDetails/ContactUsDetailsPage.tsx` (`components/MessageTextArea.tsx`) and the shared Input block
-(`src/components/ui/Input/Input.tsx`).
+widget), `src/pages/ContactUsDetails/ContactUsDetailsPage.tsx` (`components/MessageTextArea.tsx`, and Dropdown_Country in
+`components/ContactUsMessageForm.tsx`) and the shared Input block (`src/components/ui/Input/Input.tsx`).
 Tests: `OSValidation.test.tsx`.
 
 ## OSPopup
@@ -83,6 +87,23 @@ in the folder.
 `div[data-radio-group][role=radiogroup]`. `RadioGroup` has an optional `onChange` that runs after paint.
 `aria-activedescendant` is set to the selected button. The validation message span is present when a message is set.
 `src/pages/Photobook/components/Photobook_Options_Right.tsx` uses these components.
+
+## OSDropdownCustom
+
+`OSDropdownCustom<T>` is the Dropdown widget in Custom mode. It is the only port of the runtime module: do not copy
+its markup into a page.
+
+- The caller gives `list`, `getValue(item)` and `renderRow(item, index)`, so page types stay with the caller.
+- Two event props: `onValueChange(value)` sets the variable, then `onChange()` is the OnChange event.
+- It registers through `useValidationWidget`. Inside a provider the record comes from the service. A block that
+  keeps the record itself passes `record`.
+- It ports the list position, the keyboard, the focus and the scroll to the selected row. A closed dropdown that
+  shows its message gets the expanded classes, as the runtime code does (not checked on TST).
+
+The prop table, the behaviour list and the parts not ported are in `src/components/ui/os/OSDropdownCustom/README.md`.
+`src/pages/ContactUsDetails/components/ContactUsMessageForm.tsx` and four HostSurvey blocks
+(`HostSurvey_AccommodationItem`, `HostSurvey_AddHelper`, `HostSurvey_HelperItem`, `HostSurvey_VehicleItem`) use it.
+Tests: `OSDropdownCustom.test.tsx`, `dropdownListPosition.test.ts`.
 
 ## OSBlock
 

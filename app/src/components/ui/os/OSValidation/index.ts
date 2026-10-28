@@ -1,8 +1,8 @@
 export {
   OSForm,
-  UnbuiltValidationWidget,
   useInputWithVariableValidation,
   useScreenValidationService,
+  useValidationWidget,
   useWidgetValidationRecord,
   ValidationMessage,
   ValidationServiceProvider,

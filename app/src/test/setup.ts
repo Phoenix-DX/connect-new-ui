@@ -5,6 +5,11 @@ import { afterAll, afterEach, beforeAll, beforeEach } from 'vitest';
 import { handlers } from '@/mocks/handlers';
 import { setReviewMarkers } from '@/legacy/os/reviewMarkers';
 
+/* jsdom has no Element.scrollIntoView (browsers do). The focus of a Custom Dropdown (OSDropdownCustom, as the runtime)
+   raises the HostSurvey OnFocus_Inputs, which scrolls the input into view: a no-op here. */
+const elementPrototype: Partial<Pick<Element, 'scrollIntoView'>> = Element.prototype;
+elementPrototype.scrollIntoView ??= () => undefined;
+
 /* Tests use the same MSW handlers as the browser, so they see the mocked API exactly as the app does. */
 export const server = setupServer(...handlers);
 

@@ -1,5 +1,6 @@
 import type { ContactUsForm, CountryName } from '@/api/message';
 import { ContactUs_Rate } from '@/components/contact/ContactUs_Rate';
+import { OSDropdownCustom } from '@/components/ui/os/OSDropdownCustom';
 import { OSForm } from '@/components/ui/os/OSValidation';
 import { DirectoryDetailSection } from '@/components/layout/DirectoryDetailSection';
 import { UBT_Icons2_Local } from '@/pages/ContactUsDetails/staticEntities';
@@ -10,7 +11,6 @@ import { UBT_Color, UBT_FontSize, UBT_FontWeight, UBT_Size } from '@/lib/ubtConn
 import { Skeleton } from '@/components/ui/Skeleton';
 import { TextAreaWithCounter } from '@/components/ui/TextAreaWithCounter';
 import { ContactUsFormInput } from './ContactUsFormInput';
-import { CountryDropdown } from './CountryDropdown';
 import type { ContactUsInputField } from '@/pages/ContactUsDetails/hooks/contactUsDetailsState';
 import { MessageTextArea } from './MessageTextArea';
 
@@ -142,13 +142,23 @@ export function ContactUsMessageForm({
                 <label className="mandatory OSFillParent" data-label="" htmlFor="Dropdown_Country">
                   Country
                 </label>
-                <CountryDropdown
+                {/* Dropdown_Country (TST ContactUsDetails.mvc.js:897-969): Values = Code, each row a Container with
+                    the country Name; a validation widget of Form_ContactUs (F3). */}
+                <OSDropdownCustom<CountryName>
                   id="Dropdown_Country"
-                  enabled={!isSubmiting}
+                  style="dropdown"
                   emptyValue="Select Your Country"
+                  mandatory
+                  enabled={!isSubmiting}
                   list={countries}
+                  getValue={(country) => country.code}
+                  renderRow={(country) => (
+                    <div data-container="">
+                      <span data-expression="">{country.name}</span>
+                    </div>
+                  )}
                   value={form.Country}
-                  onVariableChange={onCountryVariableChange}
+                  onValueChange={onCountryVariableChange}
                   onChange={onCountryChange}
                 />
               </div>

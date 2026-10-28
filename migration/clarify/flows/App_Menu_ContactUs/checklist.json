@@ -741,9 +741,10 @@
    "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "code",
+   "verified": "mcp+tst",
    "fixed": "2026-10-27",
-   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
+   "note": "Item 3 (2026-10-28; migration/clarify/review/item3-dropdowns.md, item3-solution.md): Dropdown_Country is the shared OSDropdownCustom (components/ui/os); markup unchanged; MCP IDropdown = TST. | Built 2026-10-27 (builds/B1-contactus.md).",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Menu_ContactUs-062",
@@ -1321,9 +1322,10 @@
    "verdict": "match",
    "severity": "blocker",
    "finding": "F1",
-   "verified": "code",
-   "fixed": "2026-10-27",
-   "note": "Built 2026-10-27 (builds/B1-contactus.md)."
+   "verified": "mcp+tst",
+   "fixed": "2026-10-28",
+   "note": "Item 3 (2026-10-28; migration/clarify/review/item3-dropdowns.md, item3-solution.md): Dropdown_Country registers in Form_ContactUs through useValidationWidget with the runtime validate (UnbuiltValidationWidget is gone); no visible change, no validate() call on the screen (F3). | Built 2026-10-27 (builds/B1-contactus.md).",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "App_Menu_ContactUs-111",

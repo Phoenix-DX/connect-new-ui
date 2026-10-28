@@ -32,7 +32,9 @@ Earlier status (third session): the clarify work was complete before the fix wav
   2. Error handling of the data calls (B4 follow-up): done 2026-10-28 (`review/item2-fetch-errors.md`, §5 Status;
      design `review/item2-solution.md`, approved by the user). Open for later: the other W23 flows (§8.2 b) and a
      capture of `_error.html`.
-  3. Merge the two custom dropdowns and add `useValidationWidget`.
+  3. Merge the two custom dropdowns and add `useValidationWidget`: done 2026-10-28 (`review/item3-dropdowns.md` §4;
+     design `review/item3-solution.md`, approved by the user; note `builds/item3-dropdowns.md`). Open: check D2 on
+     TST when the test account has a host survey.
   4. SanitizedHtml `<nobr>` and the double `?` of `generateScreenURL`.
   5. HostSurvey Tooltip and MultiResolutionImageLoader.
   6. The inputs of DataActionGetShare.
@@ -100,6 +102,7 @@ Open items for the user:
 | `tools/app_index.py`, `tools/kb_index.py`, `tools/decisions_index.py` | the React, KB and decision indexes of a pack |
 | `tools/tst_source.py list|show|grep` | TST compiled code (survey + `migration/runtime-sources/` + `migration/shell/sources/`) |
 | `tools/collect.py [--questions G<n>]` | `INDEX.md`; the questions of a group |
+| `tools/probe_dropdown_d2.cjs` | read-only probe on TST: a closed HostSurvey dropdown with a message (D2 of item 3); needs an Orbit event with a host survey |
 | `tools/probe_fetch_errors.cjs [--late]` | read-only probe on TST: aborts or holds one read, records the message (the user allows each run) |
 | `tools/mark_stale.py [--mark …] [--dry-run]` | mark the checklist rows that rest on TST code changed by a later publish (`stale`, strong or weak); `review/survey-drift/impact.txt` |
 | `tools/answers.py` | record the user's answers; `decisions.md` |

@@ -120,3 +120,23 @@ describe('HostSurvey_AddHelper search, pick and save', () => {
     expect(screen.getByText('Helper is required.')).toBeInTheDocument();
   });
 });
+
+describe('HostSurvey_AddHelper OnChange_HelperRoles (OSDropdownCustom)', () => {
+  const dropdown = () => document.getElementById('b2-b16-Dropdown_HelperRoles') as HTMLElement;
+  const openList = () => {
+    fireEvent.click(dropdown().querySelector('.dropdown-display') as Element);
+  };
+
+  it('D6: the empty row while the role is empty raises OnChange: "Helper role is required."; a role clears it', () => {
+    render(<HostSurvey_AddHelper {...props()} />);
+    openList();
+    fireEvent.click(dropdown().querySelector('.drowpdown-empty-value-row') as Element);
+    expect(screen.getByText('Helper role is required.')).toBeInTheDocument();
+    expect(dropdown().className).toContain('not-valid');
+    openList();
+    const row = [...dropdown().querySelectorAll('.dropdown-popup-row')].find((r) => r.textContent === 'Helper');
+    fireEvent.click(row as Element);
+    expect(screen.queryByText('Helper role is required.')).toBeNull();
+    expect(dropdown().querySelector('.dropdown-display-content')?.textContent).toBe('Helper');
+  });
+});

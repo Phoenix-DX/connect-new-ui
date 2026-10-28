@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { HostSurveyVehicle } from '@/api/event';
 import {
   DESCRIBED_BY_SUFFIX,
@@ -10,6 +10,7 @@ import {
   type WidgetValidationRecord,
 } from '@/components/ui/os/OSValidation';
 import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSDropdownCustom } from '@/components/ui/os/OSDropdownCustom';
 import type { StepProperties } from '@/pages/HostSurvey/hooks/hostSurveyState';
 import type { LocalVehicleOwner, LocalVehicleType } from '@/platform/storage/localEntities';
 import { HostSurvey_Item } from './HostSurvey_Item';
@@ -48,109 +49,6 @@ export interface HostSurvey_VehicleItemProps {
   onClickDelete: () => void;
   /** Event Click_Edit. */
   onClickEdit: () => void;
-}
-
-/** OSWidgets.Dropdown in Custom mode (OutSystems/ReactWidgets/DropdownCustom, migration/runtime-sources/
-    OutSystemsReactWidgets.js): div[data-dropdown].dropdown-container <Style> (+ not-valid) > div.dropdown-display
-    (+ dropdown-disabled, tabindex 0) > div.dropdown-display-content with the selected row's content, or
-    `<span>Empty Value</span>` when the value is not in the list. Open: div.dropdown-list > div.scrollable-list
-    scrollable-list-with-scroll > the empty-value row (div.dropdown-popup-row drowpdown-empty-value-row) and one
-    div.dropdown-popup-row per item (+ dropdown-popup-row-selected), then the fixed div.dropdown-background-window that
-    closes it; the validation message last. A row click sets the variable, raises OnChange and closes the list. The
-    list position (updateState: left, top, width and the dropdown-expanded-up / -down classes) is not ported. */
-function DropdownCustom({
-  id,
-  style,
-  emptyValue,
-  enabled,
-  options,
-  value,
-  record,
-  onSelect,
-  onFocus,
-}: {
-  id: string;
-  style: string;
-  emptyValue: string;
-  enabled: boolean;
-  options: readonly { value: string; content: ReactNode }[];
-  value: string;
-  record: WidgetValidationRecord;
-  onSelect: (value: string) => void;
-  onFocus: () => void;
-}) {
-  const [listVisible, setListVisible] = useState(false);
-  const selected = options.find((o) => o.value === value);
-  const select = (next: string) => {
-    onSelect(next);
-    setListVisible(false);
-  };
-  return (
-    <div
-      aria-describedby={hasValidationMessage(record) ? id + DESCRIBED_BY_SUFFIX : undefined}
-      className={withNotValidClass(`dropdown-container ${style}`, record)}
-      data-dropdown=""
-      id={id}
-      onFocus={onFocus}
-      onKeyDown={(e) => {
-        if (listVisible) {
-          if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') setListVisible(false);
-        } else if (e.key === 'Enter' || e.key === ' ') {
-          e.stopPropagation();
-          if (enabled) setListVisible(true);
-        }
-      }}
-    >
-      <div
-        className={`dropdown-display${enabled ? '' : ' dropdown-disabled'}`}
-        tabIndex={0}
-        onClick={(e) => {
-          e.stopPropagation();
-          if (enabled) setListVisible(true);
-        }}
-      >
-        <div className="dropdown-display-content">{selected ? selected.content : <span>{emptyValue}</span>}</div>
-      </div>
-      {listVisible && (
-        <div className="dropdown-list">
-          <div className="scrollable-list scrollable-list-with-scroll">
-            <div
-              className={`dropdown-popup-row drowpdown-empty-value-row${selected ? '' : ' dropdown-popup-row-selected'}`}
-              tabIndex={0}
-              onClick={() => {
-                select('');
-              }}
-            >
-              <span>{emptyValue}</span>
-            </div>
-            {options.map((o) => (
-              <div
-                key={o.value}
-                className={`dropdown-popup-row${o.value === value ? ' dropdown-popup-row-selected' : ''}`}
-                tabIndex={o.value === value ? 0 : undefined}
-                onClick={() => {
-                  select(o.value);
-                }}
-              >
-                {o.content}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-      {listVisible && (
-        <div
-          className="dropdown-background-window"
-          style={{ width: '100%', height: '100%', position: 'fixed', top: '0px', left: '0px' }}
-          onClick={(e) => {
-            e.stopPropagation();
-            setListVisible(false);
-          }}
-        />
-      )}
-      <ValidationMessage widgetId={id} record={record} />
-    </div>
-  );
 }
 
 /** A text input of the form (OSWidgets.Input): span.input-text > input.form-control OSFillParent, then the
@@ -332,19 +230,22 @@ export function HostSurvey_VehicleItem({
                   <label className="mandatory OSFillParent" data-label="" htmlFor={ownerId}>
                     Owner Type
                   </label>
-                  <DropdownCustom
+                  <OSDropdownCustom
                     id={ownerId}
                     style="dropdown"
                     emptyValue="Select type"
+                    mandatory
                     enabled={enabled}
-                    options={inOwnerType.map((o) => ({
-                      value: o.JSON_Name,
-                      content: <span data-expression="">{o.Label}</span>,
-                    }))}
+                    list={inOwnerType}
+                    getValue={(o) => o.JSON_Name}
+                    renderRow={(o) => <span data-expression="">{o.Label}</span>}
                     value={edit.OwnerType}
                     record={ownerRecord}
-                    onSelect={(value) => {
-                      change(VEHICLE_WIDGETS.ownerType, { ...editRef.current, OwnerType: value });
+                    onValueChange={(value) => {
+                      setEdit({ ...editRef.current, OwnerType: value });
+                    }}
+                    onChange={() => {
+                      write(vehicleOnChangeWrite(VEHICLE_WIDGETS.ownerType, editRef.current));
                     }}
                     onFocus={() => {
                       scrollInputIntoView(ownerId);
@@ -355,19 +256,22 @@ export function HostSurvey_VehicleItem({
                   <label className="mandatory OSFillParent" data-label="" htmlFor={typeId}>
                     Vehicle Type
                   </label>
-                  <DropdownCustom
+                  <OSDropdownCustom
                     id={typeId}
                     style="dropdown"
                     emptyValue="Select vehicle"
+                    mandatory
                     enabled={enabled}
-                    options={inVehicleType.map((t) => ({
-                      value: t.JSON_Name,
-                      content: <span data-expression="">{t.Label}</span>,
-                    }))}
+                    list={inVehicleType}
+                    getValue={(t) => t.JSON_Name}
+                    renderRow={(t) => <span data-expression="">{t.Label}</span>}
                     value={edit.VehicleType}
                     record={typeRecord}
-                    onSelect={(value) => {
-                      change(VEHICLE_WIDGETS.vehicleType, { ...editRef.current, VehicleType: value });
+                    onValueChange={(value) => {
+                      setEdit({ ...editRef.current, VehicleType: value });
+                    }}
+                    onChange={() => {
+                      write(vehicleOnChangeWrite(VEHICLE_WIDGETS.vehicleType, editRef.current));
                     }}
                     onFocus={() => {
                       scrollInputIntoView(typeId);

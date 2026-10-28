@@ -6958,11 +6958,12 @@
    "react": "not built: the data steps and the step header render <NotCaptured> (HostSurveyView.tsx:218, 228); HelperPills and VehiclePills of the summary too (:199-200)",
    "evidence": "tst_source.py list HostSurvey; app/src/pages/HostSurvey/components/HostSurveyView.tsx:199-200,218,228",
    "verdict": "match",
-   "verified": "code",
+   "verified": "mcp+tst",
    "severity": "blocker",
    "finding": "F1",
-   "note": "Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic. The item blocks exist on TST (not in the pack); their inputs and validations are read when the wizard is built.",
-   "fixed": "2026-10-27"
+   "note": "Item 3 (2026-10-28; migration/clarify/review/item3-dropdowns.md, item3-solution.md): The 7 dropdowns of the item blocks are the shared OSDropdownCustom: runtime list position, keyboard, focus, scroll; D6 (empty row raises OnChange) and D7/D8 for the vehicle dropdowns; D2 from the runtime code, not checked on TST (no Orbit event on the test account). | Built 2026-10-27 (builds/B2-hostsurvey.md). F1: the survey wizard is a NotCaptured placeholder (useHostSurvey.ts:54, HostSurveyView.tsx:218/228/241). Origin: auto-decisions-2026-10-16.md:73 (HostSurvey Q2, auto-accepted \"wizard/popups NotCaptured\"); not a user decision on the behaviour. The TST block holds the full logic. The item blocks exist on TST (not in the pack); their inputs and validations are read when the wizard is built.",
+   "fixed": "2026-10-28",
+   "rechecked": "2026-10-28"
   },
   {
    "id": "Legacy_OrbitEventsFlow-J015",

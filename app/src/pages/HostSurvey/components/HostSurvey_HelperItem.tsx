@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { HostSurveyHelper } from '@/api/event';
 import { HostSurveyPill } from '@/components/orbit/HostSurveyPill';
 import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSDropdownCustom } from '@/components/ui/os/OSDropdownCustom';
 import { DEFAULT_WIDGET_RECORD, type WidgetValidationRecord } from '@/components/ui/os/OSValidation';
 import type { StepProperties } from '@/pages/HostSurvey/hooks/hostSurveyState';
 import { getLocalHelperStatus, type LocalHelperRole } from '@/platform/storage/localEntities';
@@ -9,7 +10,6 @@ import { helperStatusPill, scrollInputIntoView } from './hostSurveyHelpers';
 import { Card_MemberInformation_Survey } from './Card_MemberInformation_Survey';
 import { HostSurvey_HelperPills } from './HostSurvey_HelperPills';
 import { HostSurvey_Item } from './HostSurvey_Item';
-import { OSDropdownCustom } from './OSDropdownCustom';
 import { createValidationMessage } from './actions';
 
 export interface HostSurvey_HelperItemProps {
@@ -174,17 +174,19 @@ export function HostSurvey_HelperItem({
                     id={dropdownId}
                     style="dropdown"
                     emptyValue="Select role"
+                    mandatory
                     enabled={!inIsSurveyConfirmed}
                     list={inFilteredHelperRoles}
-                    valueOf={(role) => role.JSON_Name}
-                    renderItem={(role) => <span data-expression="">{role.Label}</span>}
+                    getValue={(role) => role.JSON_Name}
+                    renderRow={(role) => <span data-expression="">{role.Label}</span>}
                     value={edit.HelperRole}
-                    nullValue=""
-                    onChange={(role) => {
+                    onValueChange={(role) => {
                       const next = { ...latest.current.edit, HelperRole: role };
                       latest.current = { ...latest.current, edit: next };
                       setEdit(next);
-                      onChangeHelperRoles(role);
+                    }}
+                    onChange={() => {
+                      onChangeHelperRoles(latest.current.edit.HelperRole);
                     }}
                     onFocus={() => {
                       scrollInputIntoView(dropdownId);

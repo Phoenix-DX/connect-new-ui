@@ -129,7 +129,12 @@ describe('HostSurvey_VehicleItem flows (VI :730-1302)', () => {
     setup(editing);
     choose('Dropdown_OwnerType', 'Host');
     choose('Dropdown_OwnerType', 'Select type');
-    expect(byName('Dropdown_OwnerType').className).toBe('dropdown-container dropdown not-valid');
+    // D2 (decision O2, from the runtime's updateState, not checked on TST): the closed dropdown that shows its message
+    // also gets the expanded classes (jsdom has no layout: "down").
+    expect(byName('Dropdown_OwnerType').className).toBe(
+      'dropdown-container dropdown not-valid dropdown-expanded dropdown-expanded-down',
+    );
+    expect(byName('Dropdown_OwnerType')).not.toHaveAttribute('aria-describedby');
     expect(screen.getByText('Owner type is required.')).toBeTruthy();
   });
 

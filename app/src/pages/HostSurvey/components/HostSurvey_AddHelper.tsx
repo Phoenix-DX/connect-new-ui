@@ -6,6 +6,7 @@ import { BottomSheet } from '@/components/ui/BottomSheet';
 import { InputWithIcon } from '@/components/ui/InputWithIcon';
 import { bottomSheetClose, bottomSheetOpen } from '@/components/ui/lib/actions';
 import { OSBlock } from '@/components/ui/os/OSBlock';
+import { OSDropdownCustom } from '@/components/ui/os/OSDropdownCustom';
 import { OSList } from '@/components/ui/os/OSList';
 import { DEFAULT_WIDGET_RECORD, type WidgetValidationRecord } from '@/components/ui/os/OSValidation';
 import { OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
@@ -22,7 +23,6 @@ import {
 } from './hostSurveyHelpers';
 import { HostSurvey_Item } from './HostSurvey_Item';
 import { OrbitNoResults } from '@/components/orbit/OrbitNoResults';
-import { OSDropdownCustom } from './OSDropdownCustom';
 
 export interface HostSurvey_AddHelperProps {
   /** OutSystems instance id of the block. */
@@ -431,18 +431,19 @@ export function HostSurvey_AddHelper({
                 id={dropdownId}
                 style="dropdown"
                 emptyValue="Select role"
-                enabled
+                mandatory
                 list={inHelperRoles}
-                valueOf={(role) => role.JSON_Name}
-                renderItem={(role) => <span data-expression="">{role.Label}</span>}
+                getValue={(role) => role.JSON_Name}
+                renderRow={(role) => <span data-expression="">{role.Label}</span>}
                 value={s.helpers.Role}
-                nullValue=""
-                onChange={(role) => {
-                  // The variable, then OnChange_HelperRoles.
+                onValueChange={(role) => {
+                  update({ helpers: { ...latest.current.helpers, Role: role } });
+                }}
+                onChange={() => {
+                  // OnChange_HelperRoles.
                   update({
-                    helpers: { ...latest.current.helpers, Role: role },
                     dropdown:
-                      role !== ''
+                      latest.current.helpers.Role !== ''
                         ? { validAttr: true, validationMessageAttr: '' }
                         : { validAttr: false, validationMessageAttr: createValidationMessage('Helper role', false) },
                   });

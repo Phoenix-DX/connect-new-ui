@@ -76,9 +76,9 @@ Gates: `npm run ci` green (4338 tests, 0 new unused exports, build OK); the 64-r
 - B6: no TST capture shows the address section (the captured account is a spouse): a capture with a householder
   account settles the review. `localityCache.allLocalitiesType` is "Connect_CacheType.AllLocalities" where the
   static entity says "AllLocalities" (FilterSheet uses it too): check in the review pass.
-- B1: two ports of the runtime's custom dropdown exist (`pages/ContactUsDetails/components/CountryDropdown.tsx`
-  and HostSurvey's `OSDropdownCustom.tsx`): merge them into `components/ui/os` after the wave, from B1's. OSValidation
-  has no hook to register a widget that is not an input (`UnbuiltValidationWidget` used): add `useValidationWidget`.
+- B1 (done 2026-10-28, item 3): the three dropdown ports are one platform widget
+  `components/ui/os/OSDropdownCustom` (design `../review/item3-solution.md`, approved by the user; note
+  `item3-dropdowns.md`). OSValidation has `useValidationWidget`; `UnbuiltValidationWidget` is gone.
   The eight-country mock list of GetCountriesNames is fictional (never recorded); keep it for the mock phase.
   `RangeSlider` is a new folder under `components/ui/` (noUiSlider 15.8.1 markup; the runtime file
   `OutSystemsUI_2_23.NoUISlider.js` fetched read-only, logged in `migration/knowledge/runtime-sources.md`).
@@ -86,8 +86,7 @@ Gates: `npm run ci` green (4338 tests, 0 new unused exports, build OK); the 64-r
   number. B9 (open): DataActionGetShare sends only ShareId and HasAccessToDeceasedHousehold.
 - B2 (done by the orchestrator): the FooterWithActions and NoResults clones merged into `components/orbit`; `npm run
   dup` is under its limit again.
-- B2 (open): `OSDropdownCustom` (HostSurvey) and `CountryDropdown` (ContactUs) merge into `components/ui/os` (list
-  position, keyboard); VehicleItem's local DropdownCustom follows. The OutSystems UI 2.23 Tooltip (duplicate room
+- B2: the dropdown merge is done (item 3, 2026-10-28). Open: the OutSystems UI 2.23 Tooltip (duplicate room
   name) and MultiResolutionImageLoader (Card_MemberInformation_Survey) are minimal ports to complete. The instance ids
   inside the data-step lists are `l<list>_<row>` without the runtime counter (no capture shows them).
 - B3 (done by the orchestrator): `api/event/index.ts` exports `milestoneBlocks.ts`; the page imports `@/api/event`.

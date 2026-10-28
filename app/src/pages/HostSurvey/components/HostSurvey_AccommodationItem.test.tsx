@@ -111,6 +111,33 @@ describe('HostSurvey_AccommodationItem', () => {
     expect(screen.getAllByText('Select bed type')).toHaveLength(2);
   });
 
+  it('a Bed Type dropdown sets its bed, then OnChange_BedSize checks it: the empty row shows "Bed type is required."', () => {
+    render(<HostSurvey_AccommodationItem {...props()} />);
+    fireEvent.click(screen.getByText('Select number of beds'));
+    fireEvent.click(screen.getByText('2'));
+    const bed = () =>
+      document.querySelectorAll<HTMLElement>('.orbit-host-survey-beds .dropdown-container')[0] as HTMLElement;
+    fireEvent.click(bed().querySelector('.dropdown-display') as Element);
+    fireEvent.click(screen.getByText('Queen'));
+    expect(bed().querySelector('.dropdown-display-content')?.textContent).toBe('Queen');
+    expect(screen.queryByText('Bed type is required.')).toBeNull();
+    fireEvent.click(bed().querySelector('.dropdown-display') as Element);
+    fireEvent.click(bed().querySelector('.drowpdown-empty-value-row') as Element);
+    expect(bed().querySelector('.dropdown-display-content')?.textContent).toBe('Select bed type');
+    expect(bed().className).toContain('not-valid');
+    expect(screen.getByText('Bed type is required.')).toBeInTheDocument();
+  });
+
+  it('D6: the Floor empty row while the floor is empty raises OnChange_Inputs: "Floor is required."', () => {
+    render(<HostSurvey_AccommodationItem {...props()} />);
+    fireEvent.click(screen.getByText('Select floor'));
+    fireEvent.click(document.querySelector('.dropdown-list .drowpdown-empty-value-row') as Element);
+    expect(screen.getByText('Floor is required.')).toBeInTheDocument();
+    fireEvent.click(screen.getByText('Select floor'));
+    fireEvent.click(screen.getByText('First Floor'));
+    expect(screen.queryByText('Floor is required.')).toBeNull();
+  });
+
   it('a confirmed survey hides Edit and Delete', () => {
     render(
       <HostSurvey_AccommodationItem

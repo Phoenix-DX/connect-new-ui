@@ -475,7 +475,6 @@
   "src/components/ui/os/OSValidation/index.ts | export | UBTCONNECT_VALIDATION_MESSAGES",
   "src/components/ui/os/OSValidation/index.ts | export | ValidationResult",
   "src/components/ui/os/OSValidation/index.ts | export | isEmptyValue",
-  "src/components/ui/os/OSValidation/index.ts | export | validateInputWithVariable",
   "src/components/ui/os/OSValidation/index.ts | type | InputWithVariable",
   "src/components/ui/os/OSValidation/index.ts | type | InputWithVariableValidation",
   "src/components/ui/os/OSValidation/index.ts | type | InputedValueValidity",
