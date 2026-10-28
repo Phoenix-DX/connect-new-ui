@@ -45,6 +45,8 @@ Earlier status (third session): the clarify work was complete before the fix wav
      `review/item6-solution.md`, approved by the user; note `builds/item6-getshare-inputs.md`). The call sends the
      four block variables, as TST. No visible change; ci green (4441 tests), parity 64 of 64 clean.
   7. The user's decisions: Photobook move log, `infra-gaps.md` §10.4 and §11.
+     - 7.1 Photobook move log: decided 2026-10-28, (a) not ported (`review/item7-photobook-move-log.md`); rows 074,
+       076, 105 are `differs`; no `unclear` row is left.
 
 Open items for the user:
 - The 13 decisions of the build wave: answered 2026-10-28.

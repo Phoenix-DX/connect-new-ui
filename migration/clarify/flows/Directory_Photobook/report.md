@@ -20,8 +20,8 @@ Path short forms in the tables: `P/` = `app/src/pages/Photobook/`, `C/` = `app/s
   The accepted pattern P-BACK says that the original refreshes the data in the background.
 - F2 (minor): the replay check of Carousel_OnSlideMoved does not test `CurrentPosition = 0` (BR-UBTCON-892).
 - F3 (info): the OnParametersChanged check of Photobook_Options_Player runs only when In_IsFinalItem changes.
-- Q1: the debug log of SplideEvent_Moved and its SetSplideEvent("moved") registration are not ported, and no recorded
-  decision covers them.
+- Q1: the debug log of SplideEvent_Moved and its SetSplideEvent("moved") registration are not ported. Decided (user,
+  2026-10-28): (a) do not port; rows 074, 076 and 105 are `differs` (`../../review/item7-photobook-move-log.md`).
 - Status: in React a user opens the photobook at the requested household and browses it. The user plays, pauses,
   replays, changes the speed, opens the caption, zooms, uses the gallery and closes to the household. The two data
   actions answer from mocks; production needs GetPhotobookHouseholds and GetImageCaptions_Photobook of

@@ -313,15 +313,15 @@
  },
  "Directory_Photobook:Q1": {
   "id": "Q1",
-  "question": "Photobook_Carousel registers SplideEvent_Moved on the Splide \"moved\" event (TST Photobook_Carousel :1041). The handler only writes \"New/Current: … \\",
-  "why": "Previous: … \\",
-  "options": "Destination: …\" to the console (:1422). React has neither. Do you accept that both stay out?",
-  "recommendation": "Rows 074, 076 and 105 need a recorded decision. CR-Photobook-1 (:34-36) covers only the toggle-drag failure logs. The NO-CONSOLE rule (`migration/stack.json` rules.forbidden, `migration/architecture.md:117`) is a lint rule for the code, not a decision on the original's debug output.",
+  "question": "Photobook_Carousel registers SplideEvent_Moved on the Splide \"moved\" event (TST Photobook_Carousel :1041). The handler only writes \"New/Current: … | Previous: … | Destination: …\" to the console (:1422). React has neither. Do you accept that both stay out?",
+  "why": "Rows 074, 076 and 105 need a recorded decision. CR-Photobook-1 (:34-36) covers only the toggle-drag failure logs.",
+  "options": "(a) Do not port (rows differs by decision); (b) port this log with log.debug; (c) port all JSUtils_Console_Log calls with log.debug.",
+  "recommendation": "(a)",
   "flow": "Directory_Photobook",
-  "answer": "Rows 074, 076 and 105 need a recorded decision. CR-Photobook-1 (:34-36) covers only the toggle-drag failure logs. The NO-CONSOLE rule (`migration/stack.json` rules.forbidden, `migration/architecture.md:117`) is a lint rule for the code, not a decision on the original's debug output.",
+  "answer": "(a) Do not port the move log: SetSplideEvent(moved) and the console line of SplideEvent_Moved stay out. Rows 074, 076 and 105 are differs by decision, as rows 089 and 091.",
   "by": "user",
-  "date": "2026-10-27",
-  "note": "the user accepted the recommendation of every question by id"
+  "date": "2026-10-28",
+  "note": "item 7.1: MCP + TST checked (review/item7-photobook-move-log.md); the earlier entry held the recommendation text, not a decision"
  },
  "Directory_SupperMeetings:Q1": {
   "id": "Q1",

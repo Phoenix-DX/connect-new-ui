@@ -21,7 +21,7 @@ Stale (strong): the rows that rest on TST code that changed after the verdict, a
 | G2 | [Directory_Locality](flows/Directory_Locality/report.md) | draft | 280 | 241 | 1 | 0 | 1 | 15 | 22 | 0 | 0/0/3/1 | 0 | 155 (15) |
 | G2 | [Directory_Household](flows/Directory_Household/report.md) | draft | 241 | 230 | 0 | 0 | 1 | 5 | 5 | 0 | 0/0/0/0 | 1 | 166 (2) |
 | G2 | [Directory_Search](flows/Directory_Search/report.md) | draft | 146 | 139 | 0 | 0 | 2 | 2 | 3 | 0 | 0/3/2/0 | 0 | 130 (7) |
-| G2 | [Directory_Photobook](flows/Directory_Photobook/report.md) | draft | 203 | 189 | 2 | 0 | 3 | 6 | 0 | 3 | 0/0/2/1 | 1 | 2 (1) |
+| G2 | [Directory_Photobook](flows/Directory_Photobook/report.md) | draft | 203 | 189 | 2 | 0 | 6 | 6 | 0 | 0 | 0/0/2/1 | 1 | 2 (1) |
 | G2 | [Directory_SupperMeetings](flows/Directory_SupperMeetings/report.md) | draft | 111 | 94 | 0 | 0 | 4 | 5 | 8 | 0 | 0/1/0/0 | 1 | 2 (0) |
 | G2 | [Directory_OneSchoolGlobal](flows/Directory_OneSchoolGlobal/report.md) | draft | 56 | 48 | 0 | 0 | 0 | 2 | 6 | 0 | 0/0/1/0 | 2 | 35 (27) |
 | G2 | [Directory_Updates](flows/Directory_Updates/report.md) | draft | 149 | 134 | 1 | 0 | 0 | 5 | 9 | 0 | 0/1/2/0 | 2 | 3 (0) |
@@ -54,7 +54,7 @@ Stale (strong): the rows that rest on TST code that changed after the verdict, a
 | X | [Calendar_Events](flows/Calendar_Events/report.md) | draft | 8 | 0 | 0 | 0 | 0 | 0 | 8 | 0 | 0/0/0/0 | 0 | 0 (0) |
 | X | [_shared](flows/_shared/report.md) | draft | 194 | 84 | 0 | 1 | 5 | 7 | 97 | 0 | 0/1/1/1 | 1 | 90 (5) |
 | X | [_libraries](flows/_libraries/report.md) | draft | 245 | 230 | 0 | 0 | 9 | 4 | 2 | 0 | 0/1/3/0 | 2 | 100 (24) |
-| | **total (45/45 flows)** | | 5412 | 4570 | 29 | 2 | 92 | 160 | 556 | 3 | 3/27/56/29 | | 1872 (420) |
+| | **total (45/45 flows)** | | 5412 | 4570 | 29 | 2 | 95 | 160 | 556 | 0 | 3/27/56/29 | | 1872 (420) |
 
 ## 2. Findings by severity (blocker and major first)
 
@@ -187,7 +187,7 @@ Info findings: 29 (in the reports, §5).
 | Flow | Id | Question | Recommendation | Answer |
 |---|---|---|---|---|
 | Directory_Household | - | No question | - |  |
-| Directory_Photobook | Q1 | Photobook_Carousel registers SplideEvent_Moved on the Splide "moved" event (TST Photobook_Carousel :1041). The handler only writes "New/Current: … \ | Rows 074, 076 and 105 need a recorded decision. CR-Photobook-1 (:34-36) covers only the toggle-drag failure logs. The NO-CONSOLE rule (`migration/stack.json` rules.forbidden, `migration/architecture.md:117`) is a lint rule for the code, not a decision on the original's debug output. | Rows 074, 076 and 105 need a recorded decision. CR-Photobook-1 (:34-36) covers only the toggle-drag failure logs. The NO-CONSOLE rule (`migration/stack.json` rules.forbidden, `migration/architecture.m (user, 2026-10-27) |
+| Directory_Photobook | Q1 | Photobook_Carousel registers SplideEvent_Moved on the Splide "moved" event (TST Photobook_Carousel :1041). The handler only writes "New/Current: … \ | Rows 074, 076 and 105 need a recorded decision. CR-Photobook-1 (:34-36) covers only the toggle-drag failure logs. The NO-CONSOLE rule (`migration/stack.json` rules.forbidden, `migration/architecture.md:117`) is a lint rule for the code, not a decision on the original's debug output. | (a) Do not port the move log: SetSplideEvent(moved) and the console line of SplideEvent_Moved stay out. Rows 074, 076 and 105 are differs by decision, as rows 089 and 091. (user, 2026-10-28) |
 | Directory_SupperMeetings | Q1 | Pass a failed GetSubdivision or GetSubdivisionHouseholds refresh to the flow handler, as TST does (F1)? | (a), with the same answer as App_Services Q3. | (a) Shared fix with App_Services Q3: the container passes a failed refresh to `raiseToFlowHandler` — (a), with the same answer as App_Services Q3. (user, 2026-10-27) |
 | Directory_OneSchoolGlobal | Q1 | OneSchoolGlobalDetails is open, and a navigation opens it with another `In_OneSchoolGlobalId`. Keep the React refetch, or follow TST (row 056)? | (c), then (a): a page that shows the data of the old id is an error for the user. | (c) Check on TST first: open a second link while the screen is open — (c), then (a): a page that shows the data of the old id is an error for the user. (user, 2026-10-27) |
 | Directory_OneSchoolGlobal | Q2 | Set the document title per route, as the TST runtime does (F1)? | (a): it follows TST in one place for all routes. | (a) Set `document.title` from the route title in the app shell, for all routes — (a): it follows TST in one place for all routes. (user, 2026-10-27) |
