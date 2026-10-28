@@ -4,7 +4,7 @@ import { userEvent } from '@testing-library/user-event';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, test, vi } from 'vitest';
 import { ControllerDisposedException, SystemException } from '@/legacy/os/os-exceptions';
-import { getErrorPage, resetErrorPage } from '@/platform/feedback/errorPage';
+import { showErrorPage } from '@/platform/feedback/errorPage';
 import { getFeedbackMessage, resetFeedbackMessages, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowScope, type FlowScope } from './flowScope';
@@ -15,6 +15,8 @@ import { renderRoutes, resetNavigation } from './testRouter';
    flow after the user left its screen or block (item8-w23-errorpage.md §1). The real flow handler runs; the spy only
    records its calls. */
 
+// The error page is a full window change (platform/feedback/errorPage.ts): recorded only.
+vi.mock('@/platform/feedback/errorPage', () => ({ showErrorPage: vi.fn() }));
 vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => {
   const original = await importOriginal<typeof import('@/platform/feedback/flowErrors')>();
   return { ...original, raiseToFlowHandler: vi.fn(original.raiseToFlowHandler) };
@@ -54,7 +56,7 @@ function Probe() {
 
 beforeEach(() => {
   resetNavigation();
-  resetErrorPage();
+  vi.mocked(showErrorPage).mockClear();
   resetFeedbackMessages();
   vi.mocked(raiseToFlowHandler).mockClear();
 });
@@ -115,7 +117,7 @@ describe('flow.fetch: a data action or an aggregate (R1, callServerDataSource W5
     for (const [error] of vi.mocked(raiseToFlowHandler).mock.calls) {
       expect(error).toBeInstanceOf(ControllerDisposedException);
     }
-    expect(getErrorPage()).toBeNull();
+    expect(showErrorPage).not.toHaveBeenCalled();
     expect(getFeedbackMessage()).toBeNull();
   });
 
@@ -131,7 +133,7 @@ describe('flow.fetch: a data action or an aggregate (R1, callServerDataSource W5
     await flush();
 
     expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([e]) => e)).not.toContain(error);
-    expect(getErrorPage()).toBeNull();
+    expect(showErrorPage).not.toHaveBeenCalled();
   });
 
   test('the screen is there, the call rejects: the failure goes on to the flow', async () => {
@@ -176,7 +178,7 @@ describe('a server action, a toast and an own action (R2, R5, R3)', () => {
     expect(refreshed).not.toHaveBeenCalled();
     expect(afterRefresh).not.toHaveBeenCalled();
     expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(ControllerDisposedException), expect.anything());
-    expect(getErrorPage()).toBeNull();
+    expect(showErrorPage).not.toHaveBeenCalled();
   });
 
   test('flow.own runs the action while the instance is there', () => {

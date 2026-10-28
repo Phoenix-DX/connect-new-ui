@@ -409,9 +409,13 @@ not import `platform/`. `src/app/dialogs.ts` (`connectDialogs()`, called by `mai
       `/UBTConnect/Login?In_IsFromInvalidPermissions=True` after `setAppCallbackCurrentLocation()`;
     - every other error that is not a system exception: a message with "NoteCommunicationError" (case sensitive,
       ACF:98) → communication message; else `showExceptionMessage(message, false)`;
-    - a system exception: TST raises it again and the runtime opens `_error.html`. `_error.html` is not captured:
-      the error is logged and `app/ErrorPageGate.tsx` shows the review marker with the message in place of the app
-      (`platform/feedback/errorPage.ts`; user 2026-10-28).
+    - a system exception: TST raises it again and the runtime opens `_error.html`. The clone does the same:
+      `showErrorPage` (`platform/feedback/errorPage.ts`) logs the error, writes the three sessionStorage keys of the
+      runtime (`$OS_UBTConnect$ErrorPageMessage`, `…ErrorPageExtraMessage`, `…ErrorPageExceptionInfo`) and loads the
+      static page `public/UBTConnect/_error.html` with `location.assign`. That page is outside the React tree: the
+      markup and styles of TST `_error.html`, one inline script (default message, RELOAD, after 2 s the app root
+      `/UBTConnect/`). It is a file, so the dev server, the demo hosts and the service worker serve it as a file,
+      not the app shell. Only an active flow scope, or no scope, opens it (R6). Item 8 S0b, user 2026-10-28.
   - A failed fetch of a screen or block data action that is a query goes to the flow handler once per failure: one
     subscription on the query cache, `installQueryErrorsToFlowHandler` of `src/platform/feedback/flowErrors.ts`
     (runtime: model flush, then handleError). It skips a cancelled fetch, a query with `meta.errorFlow: 'caller'`, and

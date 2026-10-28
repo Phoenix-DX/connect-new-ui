@@ -1,37 +1,32 @@
 import { log } from '@/platform/log/log';
 
-/* The runtime's error page (OS.ErrorHandling handleError → navigateToErrorPage, OutSystems.js): an error that no flow
-   handler takes, a system exception that App_Common raises again (ACF:119 `throw ex`), is logged
-   (`OS.Logger.error(null, e)`), then the app leaves for `_error.html` with the message of the exception. React has no
-   copy of `_error.html` (not captured): app/ErrorPageGate.tsx shows the review marker with the message in place of the
-   app (item 2 D1 (b), user 2026-10-28; migration/clarify/review/item2-solution.md §5.1). */
+/* The runtime's error page (OS.ErrorHandling handleError → navigateToErrorPage, OutSystems.js W322831): an error that
+   no flow handler takes, a system exception that App_Common raises again (ACF:119 `throw ex`), is logged
+   (`OS.Logger.error(null, e)`), the texts of the page go to sessionStorage, then the window changes to `_error.html`
+   (changeWindowLocation). The page is the static document public/UBTConnect/_error.html, outside the React tree, as on
+   TST (item 8 design B (a), user 2026-10-28; migration/clarify/review/item8-solution.md §3; facts P1-P7 of
+   item8-w23-errorpage.md §2). */
 
-interface ErrorPage {
-  message: string;
-}
+/** ErrorHandling ERROR_PAGE_HTML "_error.html" (W325084) under the application root. */
+const ERROR_PAGE_URL = '/UBTConnect/_error.html';
 
-let current: ErrorPage | null = null;
-const listeners = new Set<() => void>();
+/** ErrorHandlingStorage (W325084) through StorageObject (W38048): "$OS_" + the default storage namespace, which is the
+    home module (Application init, W493724) + "$" + the key; the value is JSON. _error.html reads the same keys. */
+const storageKey = (key: string) => `$OS_UBTConnect$${key}`;
 
-/** navigateToErrorPage(e): log the error, then the error page with its message. */
+/** navigateToErrorPage(e): log the error, store the texts of the page, then the page `_error.html`. */
 export function showErrorPage(error: unknown): void {
+  const name = error instanceof Error ? error.name : undefined;
   const message = error instanceof Error ? error.message : String(error);
-  log.error('error page', { name: error instanceof Error ? error.name : typeof error, message });
-  current = { message };
-  for (const listener of listeners) listener();
-}
-
-export const getErrorPage = (): ErrorPage | null => current;
-
-export function subscribeErrorPage(listener: () => void): () => void {
-  listeners.add(listener);
-  return () => {
-    listeners.delete(listener);
-  };
-}
-
-/** Tests: no error page. */
-export function resetErrorPage(): void {
-  current = null;
-  for (const listener of listeners) listener();
+  log.error('error page', { name: name ?? typeof error, message });
+  try {
+    // P7: handleError passes no message and no extra message, so the page shows its default text
+    sessionStorage.setItem(storageKey('ErrorPageMessage'), JSON.stringify(''));
+    sessionStorage.setItem(storageKey('ErrorPageExtraMessage'), JSON.stringify(''));
+    // getExceptionInfo (W45759); the page writes its message to the console only
+    sessionStorage.setItem(storageKey('ErrorPageExceptionInfo'), JSON.stringify({ name, message }));
+  } catch {
+    // no session storage (private mode, quota): the page shows its default texts
+  }
+  window.location.assign(ERROR_PAGE_URL);
 }

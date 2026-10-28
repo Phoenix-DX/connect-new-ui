@@ -12,7 +12,6 @@ import { applyDeviceClasses } from './platform/device/device';
 import { initFlagOverrides } from './platform/flags';
 import { config, FLAG_OVERRIDES_BUILT, MOCKS_BUILT } from './platform/config/config';
 import { ErrorBoundary } from './app/ErrorBoundary';
-import { ErrorPageGate } from './app/ErrorPageGate';
 import { connectDialogs } from './app/dialogs';
 import { installQueryErrorsToFlowHandler } from './platform/feedback/flowErrors';
 import { installIgnorableErrorFilter } from './platform/feedback/ignorableErrors';
@@ -58,9 +57,7 @@ void enableMocks().then((start) => {
     <StrictMode>
       <QueryClientProvider client={queryClient}>
         <ErrorBoundary>
-          <ErrorPageGate>
-            <RouterProvider router={router} />
-          </ErrorPageGate>
+          <RouterProvider router={router} />
         </ErrorBoundary>
       </QueryClientProvider>
     </StrictMode>,

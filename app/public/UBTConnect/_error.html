@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!--
+  The runtime's error page of UBTConnect, served at /UBTConnect/_error.html (ErrorHandling ERROR_PAGE_HTML, OutSystems.js
+  W325084). A copy of TST UBTConnect._error.html (migration/runtime-sources/UBTConnect._error.html, static GET of the
+  TST manifest): the head metas, the <style> block (:36-150) and the body (:155-170) as they are, ids and classes kept.
+  Design: migration/clarify/review/item8-solution.md §3 (design B (a), user 2026-10-28); facts P1-P7:
+  migration/clarify/review/item8-w23-errorpage.md §2.
+  Not copied: the OutSystemsApp user-agent script (:10-24; the clone has no native shell) and the runtime scripts
+  (:26-33, :171; they only run OS.ErrorScreen.initializeErrorPage, UBTConnect.error.js:9). The inline script at the end
+  of the body is a port of that ErrorScreen module (OutSystems.js W536056-538400). The app writes the stored texts and
+  then leaves for this page: app/src/platform/feedback/errorPage.ts (navigateToErrorPage, W322831).
+-->
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1" />
+
+    <style>
+body {
+    background-color: #f2f2f2;
+}
+
+#error-screen-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#error-screen-message-wrapper {
+    position: absolute;
+    top: 100px;
+    height: 150px !important;
+    width: 60%;
+    right: 20%;
+    text-align: center;
+}
+
+#error-screen-wrapper {
+    font-family: Open Sans, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    font-weight: normal;
+    color: #333;
+}
+
+#error-screen-message-text-extra {
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+.error-screen-button {
+    color: #5DBDE6;
+    background-color: #f2f2f2;
+    border: 0px;
+    font-size: 18px;
+    height: 120px;
+}
+
+#error-screen-show-detail-button {
+    height: 60px;
+    margin-top: -60px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#error-screen-spinner {
+    box-sizing: border-box;
+    height: 60px;
+    width: 60px;
+    margin-top: 30px;
+    margin-bottom: 27px;
+    -webkit-animation: 1s linear infinite errorSpinnerRotation;
+    animation: 1s linear infinite errorSpinnerRotation;
+    border: 20px solid rgba(0,0,0,.2);
+    border-radius: 100%;
+}
+
+#error-screen-spinner:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -6px;
+    top: -6px;
+    height: 100%;
+    width: 100%;
+    border: 6px solid transparent;
+    border-top: 6px solid rgba(0,0,0,.5);
+    border-radius: 100%;
+}
+
+#exception-detail {
+    display: block;
+    position: absolute;
+    margin-top: 0px;
+    margin-left: 30px;
+    top: 250px;
+    text-align: left;
+    width: 80%;
+}
+
+#error-screen-exception-message {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+#error-screen-exception-stack {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-left: 10px;
+}
+
+@-webkit-keyframes errorSpinnerRotation {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(359deg);
+    }
+}
+
+@keyframes errorSpinnerRotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}#error-screen-message-reload-button { display: inline; }
+#error-screen-spinner { display: none; }
+#exception-detail { display: none; }
+</style>
+
+</head>
+<body>
+    <div id="error-screen-wrapper">
+        <div id="error-screen-message-wrapper">
+            <div id="error-screen-message-text"></div>
+            <button class="error-screen-button" id="error-screen-message-reload-button"></button>
+            <div id="error-screen-spinner"></div>
+            <div id="error-screen-message-text-extra"></div>
+        </div>
+
+        <div id="exception-detail">
+            <button class="error-screen-button" id="error-screen-show-detail-button">Show Detail</button>
+            <div id="exception-detail-text" hidden>
+                <div id="error-screen-exception-message"></div>
+                <pre id="error-screen-exception-stack"></pre>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+(function () {
+    'use strict';
+
+    // P4: ErrorScreen defaults; UBTConnect.appDefinition.js sets errorPageConfig messages, extraMessage and
+    // reloadLabel to null and showExceptionStack to false, so these are the texts on TST.
+    var DEFAULT_MESSAGE = 'There was an error processing your request.';
+    var DEFAULT_EXTRA_MESSAGE = '';
+    var RELOAD_LABEL = 'RELOAD';
+    // P5: u() (W537441) reloads after 2 s; reloadApplication loads the application root.
+    var RELOAD_DELAY_MS = 2000;
+    var APP_ROOT = '/UBTConnect/';
+
+    /** ErrorHandlingStorage (W325084) through StorageObject (W38048): sessionStorage key "$OS_" + the home module +
+        "$" + key, JSON value; a missing value gives null, "undefined" gives undefined. */
+    function stored(key) {
+        try {
+            var value = window.sessionStorage.getItem('$OS_UBTConnect$' + key);
+            return value === null || value === 'undefined' ? null : JSON.parse(value);
+        } catch (e) {
+            return null; // no storage or an unreadable value: the defaults
+        }
+    }
+
+    var message = stored('ErrorPageMessage');
+    var extraMessage = stored('ErrorPageExtraMessage');
+    var exceptionInfo = stored('ErrorPageExceptionInfo');
+
+    // P7: the exception message goes to the console only (s(): console.error). #exception-detail stays hidden and
+    // is not filled (P4 showExceptionStack false; design §3.2).
+    if (exceptionInfo) {
+        console.error(String(exceptionInfo.message) + (exceptionInfo.stack ? '\n' + exceptionInfo.stack : ''));
+    }
+
+    var button = document.getElementById('error-screen-message-reload-button');
+    var spinner = document.getElementById('error-screen-spinner');
+    document.getElementById('error-screen-message-text').textContent = message || DEFAULT_MESSAGE;
+    document.getElementById('error-screen-message-text-extra').textContent = extraMessage || DEFAULT_EXTRA_MESSAGE;
+    button.textContent = RELOAD_LABEL;
+
+    // P5: RELOAD hides the button, shows the spinner and loads the application root 2 s later.
+    button.addEventListener('click', function () {
+        button.style.display = 'none';
+        spinner.style.display = 'inline-block';
+        window.setTimeout(function () {
+            window.location.assign(APP_ROOT);
+        }, RELOAD_DELAY_MS);
+    });
+})();
+    </script>
+
+</body>
+</html>
