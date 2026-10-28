@@ -25,7 +25,7 @@ export interface ViewDocumentsState {
 }
 
 /** An assignment of some variables (an OutSystems Assign node). */
-export type ViewDocumentsPatch = Partial<ViewDocumentsState>;
+type ViewDocumentsPatch = Partial<ViewDocumentsState>;
 
 /** The block variables before OnReady: no documents, nothing fetched. */
 export const INITIAL_VIEW_DOCUMENTS_STATE: ViewDocumentsState = {

@@ -33,7 +33,7 @@ export interface HelperDetailsState {
 }
 
 /** The changes of the state, in the order of the assignments of the block actions. */
-export type HelperDetailsAction =
+type HelperDetailsAction =
   /** RefreshData: IsFetchingData True. */
   | { type: 'fetchStarted' }
   /** OnAfterFetch_GetHelperHost: the answer of GetHelperDetails. */

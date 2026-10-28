@@ -43,7 +43,7 @@ interface MilestoneBlockState {
   contactByMessagePopupData: ContactByMessagePopupData;
 }
 
-export type MilestoneBlockAction =
+type MilestoneBlockAction =
   /** RefreshData (OnReady of MealHost): IsFetchingData = True. */
   | { type: 'fetchStarted' }
   /** OnAfterFetch of the data action: the response, IsFetchingCaptionData True (blocks with captions) and

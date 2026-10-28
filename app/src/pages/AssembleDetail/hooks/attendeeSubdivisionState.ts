@@ -34,7 +34,7 @@ export interface AttendeeSubdivisionState {
 }
 
 /** The assignments of the block. */
-export type AttendeeSubdivisionAction =
+type AttendeeSubdivisionAction =
   | { type: 'set'; patch: Partial<AttendeeSubdivisionState> }
   | { type: 'selectionToggled' }
   | { type: 'rowBookmarked'; index: number; isBookmarked: boolean }

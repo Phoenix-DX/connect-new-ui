@@ -37,7 +37,7 @@ export interface OrbitLandingState {
 }
 
 /** An assignment of one or more variables. */
-export type OrbitLandingPatch = Partial<OrbitLandingState>;
+type OrbitLandingPatch = Partial<OrbitLandingState>;
 
 /** The variables after OnInitialize (the block has none: the defaults). A view that the view cache restores starts
     from its saved state instead. */

@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchEventsForMyTimeline, type EventCalendar, type MyTimelineData } from '@/api/event';
 import { NotRegisteredException, SystemException, UserException, isUserException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import type { HouseholdClick } from '@/pages/LDM_MyEvents_V2/components/EventCard_V2';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
@@ -65,6 +66,12 @@ function pending<T>() {
   });
   return { promise, resolve, reject };
 }
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 const auditNames = () => vi.mocked(addAuditEvent_LDM).mock.calls.map(([name]) => name);
 const click = (overrides: Partial<HouseholdClick> = {}): HouseholdClick => ({
   householdId: '42438',
@@ -147,8 +154,8 @@ describe('useLdmMyEvents OnReady', () => {
   });
 });
 
-describe('useLdmMyEvents after the unmount (W23)', () => {
-  it('a pending fetch logs its audit event once and changes no state', async () => {
+describe('useLdmMyEvents after the unmount (flow scope, item 8)', () => {
+  it('R1: unmount while GetEventsForMyTimeline is pending: no audit event, no state write, nothing raised', async () => {
     const answer = pending<MyTimelineData>();
     vi.mocked(fetchEventsForMyTimeline).mockReturnValue(answer.promise);
     const { unmount } = renderFlows();
@@ -157,12 +164,12 @@ describe('useLdmMyEvents after the unmount (W23)', () => {
     unmount();
     answer.resolve(ANSWER);
     await settle();
-    expect(auditNames()).toEqual(['RequestAPI_CalendarEvents']);
+    expect(auditNames()).toEqual([]);
     expect(vi.mocked(ldmMyEventsReducer).mock.calls.length).toBe(writes);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('a pending fetch that fails raises UnknownError once and changes no state', async () => {
+  it('R1: unmount while GetEventsForMyTimeline is pending: its failure raises no UnknownError and writes no state', async () => {
     const answer = pending<MyTimelineData>();
     vi.mocked(fetchEventsForMyTimeline).mockReturnValue(answer.promise);
     const { unmount } = renderFlows();
@@ -171,9 +178,58 @@ describe('useLdmMyEvents after the unmount (W23)', () => {
     unmount();
     answer.reject(new Error('Request failed with status 500'));
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(isUserException(vi.mocked(raiseToFlowHandler).mock.lastCall?.[0])).toBe(true);
+    expect(raisedErrors()).toEqual([]);
     expect(vi.mocked(ldmMyEventsReducer).mock.calls.length).toBe(writes);
+  });
+
+  it('R1: unmount while new filters fetch: no RequestAPI_CalendarEvents, no MyTimelineApplyFilter', async () => {
+    const { result, unmount } = renderFlows();
+    await settle();
+    const answer = pending<MyTimelineData>();
+    vi.mocked(fetchEventsForMyTimeline).mockReturnValue(answer.promise);
+    let done: Promise<void> = Promise.resolve();
+    act(() => {
+      done = result.current.onMyTimelineFilter({ FromDate: '2025-01-01', ToDate: '2026-11-03', Localities: [] });
+    });
+    unmount();
+    answer.resolve(ANSWER);
+    await settle();
+    await done;
+    expect(auditNames()).toEqual(['RequestAPI_CalendarEvents']);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while ResetFilters fetches: no MyTimelineClearFilter', async () => {
+    const { result, unmount } = renderFlows();
+    await settle();
+    const answer = pending<MyTimelineData>();
+    vi.mocked(fetchEventsForMyTimeline).mockReturnValue(answer.promise);
+    let done: Promise<void> = Promise.resolve();
+    act(() => {
+      done = result.current.onResetFilters({ FromDate: '2024-10-28', ToDate: '2026-11-04', Localities: [] });
+    });
+    unmount();
+    answer.resolve(ANSWER);
+    await settle();
+    await done;
+    expect(auditNames()).toEqual(['RequestAPI_CalendarEvents']);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while SwipeUp fetches: its failure reaches no handler', async () => {
+    const { result, unmount } = renderFlows();
+    await settle();
+    const answer = pending<MyTimelineData>();
+    vi.mocked(fetchEventsForMyTimeline).mockReturnValue(answer.promise);
+    let done: Promise<void> = Promise.resolve();
+    act(() => {
+      done = result.current.onSwipeUp();
+    });
+    unmount();
+    answer.reject(new SystemException('Request failed with status 500'));
+    await settle();
+    await done;
+    expect(raisedErrors()).toEqual([]);
   });
 });
 

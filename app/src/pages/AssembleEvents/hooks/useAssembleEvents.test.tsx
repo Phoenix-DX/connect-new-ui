@@ -3,6 +3,8 @@ import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchSubdivisionName } from '@/api/locality';
+import { UserException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useAssembleEvents, type AssembleEventsBlockInputs } from './useAssembleEvents';
 import { fetchUserSubdivision, type UserSubdivision } from './userSubdivision';
@@ -38,6 +40,24 @@ const settle = () =>
   });
 const renderFlows = (inputs: AssembleEventsBlockInputs, strict = false) =>
   renderHook(() => useAssembleEvents(inputs), { wrapper: strict ? strictWrapper : wrapper });
+/** An answer that the test gives later. */
+function pending<T>(mock: { mockReturnValueOnce: (value: Promise<T>) => unknown }) {
+  let resolve: (value: T) => void = () => undefined;
+  let reject: (error: unknown) => void = () => undefined;
+  mock.mockReturnValueOnce(
+    new Promise<T>((res, rej) => {
+      resolve = res;
+      reject = rej;
+    }),
+  );
+  return { resolve, reject };
+}
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 
 beforeEach(() => {
   vi.mocked(fetchUserSubdivision).mockResolvedValue(USER_HALL);
@@ -83,22 +103,40 @@ describe('useAssembleEvents', () => {
     expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
     expect(result.current.subdivisionName).toBe('');
   });
+});
 
-  it('W23: an unmount while the call is pending skips the state write; the call and its error still run', async () => {
-    let reject: (error: unknown) => void = () => undefined;
-    vi.mocked(fetchSubdivisionName).mockReturnValueOnce(
-      new Promise<string>((_, rej) => {
-        reject = rej;
-      }),
-    );
+describe('useAssembleEvents after an unmount (flow scope, item 8)', () => {
+  it('R1: unmount while GetSubdivisionName is pending: the answer shows no name and raises nothing', async () => {
+    const call = pending<string>(vi.mocked(fetchSubdivisionName));
     const { result, unmount } = renderFlows(OTHER);
     await settle();
     unmount();
-    const error = new Error('late');
-    reject(error);
+    call.resolve('Patagonia');
     await settle();
     expect(fetchSubdivisionName).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+    expect(raisedErrors()).toEqual([]);
     expect(result.current.subdivisionName).toBe('');
+  });
+
+  it('R1: unmount while GetSubdivisionName is pending: its failure reaches no handler', async () => {
+    const call = pending<string>(vi.mocked(fetchSubdivisionName));
+    const { unmount } = renderFlows(OTHER);
+    await settle();
+    unmount();
+    call.reject(new Error('Service Interruption'));
+    await settle();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('GetCacheableUserInfo (a module action) fails after the unmount: the error still goes to the flow handler with the scope', async () => {
+    const call = pending<UserSubdivision>(vi.mocked(fetchUserSubdivision));
+    const { unmount } = renderFlows(OWN);
+    await settle();
+    unmount();
+    const error = new UserException('No user information', 'Connect2_LegacyShared.ObjectNotFound');
+    call.reject(error);
+    await settle();
+    expect(raisedErrors()).toEqual([error]);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
   });
 });

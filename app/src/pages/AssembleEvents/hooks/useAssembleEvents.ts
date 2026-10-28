@@ -1,6 +1,5 @@
-import { useRef } from 'react';
 import { fetchSubdivisionName } from '@/api/locality';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { fetchUserSubdivision, isUsersOwnSubdivision } from './userSubdivision';
 
 /** The flows of the block ScreenBlock_AssembleEvents: its OnReady gives the SubdivisionName of the title. The page
@@ -38,26 +37,19 @@ const reducer = (state: AssembleEventsState, patch: Partial<AssembleEventsState>
     - OnReady: a view that the view cache restored keeps its SubdivisionName and does nothing. Otherwise SubdivisionId
       0 gives the Subdivision.Name of GetCacheableUserInfo; another SubdivisionId gives the data action
       GetSubdivisionName (SubdivisionId, ShowBackNavigation, IsUserSubdivision). A failure goes to the flow handler.
-    - Decision W23: after an unmount, the started flow skips its state write only. Its call and its error still run.
+    - Flow scope (item 8): GetSubdivisionName is a data action (R1, `flow.fetch`): after the unmount its answer and
+      its failure are dropped. GetCacheableUserInfo is a module action: it runs after the unmount, and its failure
+      still goes to the flow handler with the scope; the state write after it is a no-op (`dispatch`).
     - Handler_AssyncException (an UnknownException) is not needed: the errors of the meeting list go to the flow
       handler directly. */
 export function useAssembleEvents(inputs: AssembleEventsBlockInputs): AssembleEventsFlows {
-  /* OnReady runs once per block. StrictMode (dev) runs the mount effect again on the same block: the second call only
-     replaces the liveness check, so the first flow writes the state while the block is there and calls once. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
-  const { state, dispatch, parameters } = useFlowState({
+  const { state, dispatch, parameters, flow } = useFlowState({
     viewName: VIEW_NAME,
     reducer,
     initial: INITIAL_STATE,
     parameters: inputs,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady(restored);
-    },
+    onReady: (_isAlive, restored) => onReady(restored),
   });
 
   /** OnReady. useFlowState sends a rejection to the flow handler. */
@@ -65,13 +57,15 @@ export function useAssembleEvents(inputs: AssembleEventsBlockInputs): AssembleEv
     if (restored) return;
     const { subdivisionId, showBackNavigation, isUserSubdivision } = parameters.current;
     const subdivisionName = isUsersOwnSubdivision(subdivisionId)
-      ? (await fetchUserSubdivision()).name
-      : await fetchSubdivisionName({
-          SubdivisionId: subdivisionId,
-          ShowBackNavigation: showBackNavigation,
-          IsUserSubdivision: isUserSubdivision,
-        });
-    if (newestReadyRun.current()) dispatch({ subdivisionName });
+      ? (await fetchUserSubdivision()).name // module action: not wrapped
+      : await flow.fetch(
+          fetchSubdivisionName({
+            SubdivisionId: subdivisionId,
+            ShowBackNavigation: showBackNavigation,
+            IsUserSubdivision: isUserSubdivision,
+          }),
+        ); // R1
+    dispatch({ subdivisionName });
   }
 
   return state;

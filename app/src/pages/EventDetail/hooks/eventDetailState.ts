@@ -91,7 +91,7 @@ export const INITIAL_EVENT_DETAIL_STATE: EventDetailState = {
 };
 
 /** The state changes of the flows and of the handlers. */
-export type EventDetailAction =
+type EventDetailAction =
   /** OnReady: IsFetchingData = True at the start. */
   | { type: 'fetchStarted' }
   /** OnAfterFetch_Get_EventDetails. */

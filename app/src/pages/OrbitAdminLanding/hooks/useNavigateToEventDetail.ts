@@ -4,10 +4,11 @@ import type { EventDetailTarget } from './adminLandingState';
 
 /** OnHandle_NavigateToEventDetail of the screen OrbitAdminLanding: the handler of the block event
     NavigateTo_EventDetail. It only opens OrbitAdminEventDetail with the event's id, start date, location, name, end
-    date and friendly type (the parameter names and order of the original; TST
-    UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:244-252). TST has no server call here: the
-    GetMilestoneScanFF call and the OrbitAdminMilestones branch are DEV only (Legacy_OrbitAdminFlow Q1).
-    Decision W23: the flow has no state; after an unmount it still navigates.
+    date and friendly type (the parameter names and order of the original; TST survey of 2026-10-13,
+    UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding.mvc.js:244-252). The TST publish of 2026-10-27 added a
+    GetMilestoneScanFF call and an OrbitAdminMilestones branch here (OrbitAdminLanding.js:244-290); the port waits
+    with the new TST screens (N1, user 2026-10-28; Legacy_OrbitAdminFlow Q1 read the older survey).
+    Flow scope (item 8): no await. A navigation from a screen that the user left does not happen (R4, useOsNavigate).
     @origin UBTConnect.Legacy_OrbitAdminFlow.OrbitAdminLanding */
 export function useNavigateToEventDetail(): (target: EventDetailTarget) => void {
   const navigate = useOsNavigate();

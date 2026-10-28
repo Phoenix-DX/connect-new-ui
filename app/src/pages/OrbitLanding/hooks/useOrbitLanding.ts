@@ -1,10 +1,8 @@
-import { useRef } from 'react';
 import { fetchEventsByMemberId, type Event_Screen, type Milestone_Screen, type YearItem } from '@/api/event';
 import { fetchOrbitHouseholdMembers, type OrbitHouseholdMember } from '@/api/household';
 import { getPopupMeasurements, onApplicationEvent_Orbit, scrollContentToTop } from '@/pages/OrbitLanding/actions';
 import { OrbitLandingFilter } from '@/pages/OrbitLanding/staticEntities';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import {
   callInputsOf,
@@ -19,7 +17,6 @@ import {
   RESET_FILTERS_AND_SORT,
   selectFirstMember,
   setAndSortEvents,
-  type OrbitLandingPatch,
   type OrbitLandingState,
 } from './orbitLandingState';
 
@@ -73,32 +70,21 @@ export interface OrbitLandingFlows {
       answer does nothing (P-BACK); restored without it, OnReady runs again (F40).
     - A member click refreshes the events of that member. The Filters and Sort popups filter and sort the loaded
       answer again, without a server call.
-    - Decision W23: after the unmount, a started flow writes no state. It goes on with its own copy of the variables,
-      so its calls send the same variables, and its server calls, audit events and errors (to the flow handler) still
-      happen, once.
+    - Flow scope (item 8): Get_HouseholdMembers and Get_EventsByMemberId are data actions (R1, `flow.fetch`): after the
+      unmount their answers and failures are dropped. So OnAfterFetch_Get_HouseholdMembers does not start
+      Get_EventsByMemberId (ScreenBlock_OrbitLanding.js:1653, :1674), the `.then` of OnReady (GetPopupMeasurements,
+      CurrentMemberId, :1729-1735) and the sort and scroll do not run, and a member refresh that answers after the
+      unmount sends no SwitchMember audit event (:1139, :1153). The block events go through `flow.events` (R3).
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks.ScreenBlock_OrbitLanding */
 export function useOrbitLanding(events: OrbitLandingEvents): OrbitLandingFlows {
-  /* OnReady runs once per block. StrictMode (dev) runs the mount effect again on the same block: the second call only
-     replaces the liveness check, so the first flow writes the state while the block is there. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
-  /** The variables of the flows that go on after the unmount (W23); null while the block is there. */
-  const afterUnmount = useRef<OrbitLandingState | null>(null);
-  const {
-    state,
-    dispatch,
-    latest,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, flow } = useFlowState({
     viewName: 'Orbit_ScreenBlocks.ScreenBlock_OrbitLanding',
     reducer: orbitLandingReducer,
     initial: INITIAL_ORBIT_LANDING_STATE,
     parameters: null,
     events,
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
+    // The flows are defined below; the hook calls the ones of the newest render.
+    onReady: (_isAlive, restored) => {
       /* A view restored with the Get_EventsByMemberId answer does nothing. A view left before that answer comes back
          with its saved variables and runs OnReady again. */
       // restored without data: call again (F40; OutSystems keeps the skeleton)
@@ -107,42 +93,34 @@ export function useOrbitLanding(events: OrbitLandingEvents): OrbitLandingFlows {
     },
   });
 
-  /** The variables as the flows read them: the newest state, or the flows' own copy after the unmount. */
-  const m = (): OrbitLandingState => afterUnmount.current ?? latest.current;
-  /** An assignment of a flow: a state write while the block is there; after the unmount, only the flows' copy. */
-  const set = (patch: OrbitLandingPatch) => {
-    if (newestReadyRun.current()) dispatch(patch);
-    else afterUnmount.current = { ...m(), ...patch };
-  };
-
   /** SetAndSortEvents, then ScrollContentToTop after a sort. */
   const setAndSort = (isSortASC: boolean, isForceSort: boolean) => {
-    const sorted = setAndSortEvents(m(), isSortASC, isForceSort);
+    const sorted = setAndSortEvents(latest.current, isSortASC, isForceSort);
     if (!sorted) return;
-    set(sorted);
+    dispatch(sorted);
     scrollContentToTop();
   };
 
   /** Refresh_GetEventsByMemberId: ResetFiltersAndSort, Get_EventsByMemberId, then OnAfterFetch_Get_EventsByMemberId
       (FilterEvents, SetAndSortEvents(True, False), YearsSelection and IsFetchingData False). */
   const refreshGetEventsByMemberId = async () => {
-    set(RESET_FILTERS_AND_SORT);
-    const out = await fetchEventsByMemberId(callInputsOf(m()));
-    set(eventsFetched(m(), out.events));
+    dispatch(RESET_FILTERS_AND_SORT);
+    const out = await flow.fetch(fetchEventsByMemberId(callInputsOf(latest.current))); // R1
+    dispatch(eventsFetched(latest.current, out.events));
     setAndSort(true, false);
-    set({ yearsSelection: out.yearFilter, isFetchingData: false });
+    dispatch({ yearsSelection: out.yearFilter, isFetchingData: false });
   };
 
   /** Refresh_GetHouseholdMembers and OnAfterFetch_Get_HouseholdMembers. */
   const refreshGetHouseholdMembers = async () => {
-    set({ isFetchingData: true });
-    const members = await fetchOrbitHouseholdMembers(callInputsOf(m()));
+    dispatch({ isFetchingData: true });
+    const members = await flow.fetch(fetchOrbitHouseholdMembers(callInputsOf(latest.current))); // R1
     const selected = selectFirstMember(members);
     if (!selected) {
-      set({ isFetchingData: false });
+      dispatch({ isFetchingData: false });
       return;
     }
-    set(selected);
+    dispatch(selected);
     await refreshGetEventsByMemberId();
   };
 
@@ -150,16 +128,16 @@ export function useOrbitLanding(events: OrbitLandingEvents): OrbitLandingFlows {
       TextToInteger(the cached user information's MemberId). useFlowState sends a rejection to the flow handler. */
   const onReady = async () => {
     await refreshGetHouseholdMembers();
-    set({ popupMeasurements: getPopupMeasurements() });
-    set({ currentMemberId: currentMemberIdOf(appManager_GetCachedUserInfo().MemberId) });
+    dispatch({ popupMeasurements: getPopupMeasurements() });
+    dispatch({ currentMemberId: currentMemberIdOf(appManager_GetCachedUserInfo().MemberId) });
   };
 
   /** OnHandle_ClickedHouseholdMember: the list with the new selection; another member refreshes the events, then
       OnApplicationEvent_SwitchMember. */
   const clickedHouseholdMember = async (memberList: OrbitHouseholdMember[], memberId: string) => {
-    set({ householdMembersList: memberList });
-    if (memberId === m().selectedMemberId) return;
-    set({ selectedMemberId: memberId, isFetchingData: true });
+    dispatch({ householdMembersList: memberList });
+    if (memberId === latest.current.selectedMemberId) return;
+    dispatch({ selectedMemberId: memberId, isFetchingData: true });
     await refreshGetEventsByMemberId();
     const selected = memberList.find((p) => p.isSelected);
     if (selected) onApplicationEvent_Orbit('SwitchMember', { MemberId: selected.memberId });
@@ -167,32 +145,32 @@ export function useOrbitLanding(events: OrbitLandingEvents): OrbitLandingFlows {
 
   /** OnToggle_FilterPopup / OnToggle_SortPopup: only with data and not while fetching. */
   const toggleFilterPopup = () => {
-    if (canTogglePopup(m())) set({ popup_FiltersOpened: !m().popup_FiltersOpened });
+    if (canTogglePopup(latest.current)) dispatch({ popup_FiltersOpened: !latest.current.popup_FiltersOpened });
   };
   const toggleSortPopup = () => {
-    if (canTogglePopup(m())) set({ popup_SortByOpened: !m().popup_SortByOpened });
+    if (canTogglePopup(latest.current)) dispatch({ popup_SortByOpened: !latest.current.popup_SortByOpened });
   };
 
   return {
     state,
     onMyCalendarClicked: () => {
-      eventsRef.current.onNavigateToMyCalendarOrbit(m().selectedMemberId);
+      flow.events.onNavigateToMyCalendarOrbit(latest.current.selectedMemberId);
     },
     onClickedHouseholdMember: (memberList, memberId) => {
-      clickedHouseholdMember(memberList, memberId).catch(raiseToFlowHandler);
+      flow.run(() => clickedHouseholdMember(memberList, memberId));
     },
     onViewPassportDetails: () => {
       // Nothing while fetching or without the signed-in member (Q3).
-      if (!canViewPassportDetails(m())) return;
-      eventsRef.current.onNavigateToPassportScan(m().selectedMemberId, m().currentMemberId);
+      if (!canViewPassportDetails(latest.current)) return;
+      flow.events.onNavigateToPassportScan(latest.current.selectedMemberId, latest.current.currentMemberId);
     },
     onToggleFilterPopup: toggleFilterPopup,
     onToggleSortPopup: toggleSortPopup,
     onApplyFilters: (selectedFilter, selectedYears) => {
       // Close the popup, keep the choice, FilterEvents, SetAndSortEvents(Upcoming, True), then the audit event.
       toggleFilterPopup();
-      set(filtersApplied(m(), selectedFilter, selectedYears));
-      setAndSort(m().eventFilter === OrbitLandingFilter.UpcomingEvents, true);
+      dispatch(filtersApplied(latest.current, selectedFilter, selectedYears));
+      setAndSort(latest.current.eventFilter === OrbitLandingFilter.UpcomingEvents, true);
       onApplicationEvent_Orbit('ApplyFilters', {
         Filter: String(selectedFilter),
         Years: selectedYears
@@ -208,20 +186,20 @@ export function useOrbitLanding(events: OrbitLandingEvents): OrbitLandingFlows {
       onApplicationEvent_Orbit('ApplySortBy', { IsSortASC: String(isSortASC) });
     },
     onEventCardClicked: (eventSummary) => {
-      eventsRef.current.onNavigateToEventDetail(
+      flow.events.onNavigateToEventDetail(
         eventSummary.EventId ?? NULL_ID,
         eventSummary.Title ?? '',
-        m().selectedMemberId,
+        latest.current.selectedMemberId,
       );
       onApplicationEvent_Orbit('ClickEvent', { EventId: eventSummary.EventId ?? NULL_ID });
     },
     onMilestoneCardClicked: (milestoneSummary) => {
       const type = milestoneSummary.OrbitMilestoneType ?? {};
-      eventsRef.current.onNavigateToTransportDetail(
+      flow.events.onNavigateToTransportDetail(
         milestoneSummary.MilestoneId ?? '',
         type.Id ?? '',
         milestoneSummary.Title ?? '',
-        m().selectedMemberId,
+        latest.current.selectedMemberId,
         type.TransportHeaderClass ?? '',
       );
       onApplicationEvent_Orbit('ClickMilestone', { MilestoneId: milestoneSummary.MilestoneId ?? '' });

@@ -1,7 +1,5 @@
-import { useRef } from 'react';
 import { fetchAdminEvents, type Event_Screen } from '@/api/event';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import {
   adminEventsCallInputsOf,
@@ -10,7 +8,6 @@ import {
   eventDetailTargetOf,
   INITIAL_ADMIN_LANDING_STATE,
   textToLongIntegerOrNull,
-  type AdminLandingPatch,
   type AdminLandingState,
   type EventDetailTarget,
 } from './adminLandingState';
@@ -38,52 +35,35 @@ export interface AdminLandingFlows {
       Integer, else the null identifier), then Refresh_GetEventsByMemberId: Get_AdminEventsList (on demand; it sends
       the block variables) and OnAfterFetch (EventsSummary = Response, IsFetchingData False).
     - OnHandle_EventCardClicked: the event NavigateTo_EventDetail, then OnApplicationEvent_ClickEvent.
-    - Decision W23: after an unmount, a started flow skips its state writes only. Its error still goes to the flow
-      handler, and a card click still navigates and records its audit event.
+    - Flow scope (item 8): Get_AdminEventsList is a data action (R1, `flow.fetch`): after the unmount its answer and its
+      failure are dropped, and OnAfterFetch does not run (ScreenBlock_AdminLanding.js:452, :460). The block event goes
+      through `flow.events` (R3). OnApplicationEvent_ClickEvent is a module action: it runs after the event, also when
+      the block left meanwhile (R2, :595-599).
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding */
 export function useAdminLanding(events: AdminLandingEvents): AdminLandingFlows {
-  /* OnReady runs once per screen. StrictMode (dev) runs the mount effect again on the same screen: the second call
-     only replaces the liveness check, so the first flow writes the state while the screen is there. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
-  const {
-    state,
-    dispatch,
-    latest,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, flow } = useFlowState({
     viewName: 'Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminLanding',
     reducer: adminLandingReducer,
     initial: INITIAL_ADMIN_LANDING_STATE,
     parameters: null,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady(restored);
-    },
+    onReady: (_isAlive, restored) => onReady(restored),
   });
-
-  /** A state write of the OnReady flow, skipped after the unmount (W23). */
-  const write = (patch: AdminLandingPatch) => {
-    if (newestReadyRun.current()) dispatch(patch);
-  };
 
   /** Refresh_GetEventsByMemberId: Get_AdminEventsList, then OnAfterFetch_Get_AdminEventsList. */
   const refreshGetEventsByMemberId = async () => {
-    const eventsSummary = await fetchAdminEvents(adminEventsCallInputsOf(latest.current));
-    write({ isDataFetched: true, eventsSummary, isFetchingData: false });
+    const eventsSummary = await flow.fetch(fetchAdminEvents(adminEventsCallInputsOf(latest.current))); // R1
+    dispatch({ isDataFetched: true, eventsSummary, isFetchingData: false });
   };
 
   /** OnReady. A rejection goes to the flow handler (useFlowState); the skeleton stays. */
   const onReady = async (restored: boolean) => {
     // restored without data: call again (F40; OutSystems keeps the skeleton)
     if (restored && latest.current.isDataFetched) return;
-    write({ isFetchingData: true });
+    dispatch({ isFetchingData: true });
     const userInformation = appManager_GetCachedUserInfo();
-    write({
+    dispatch({
       userFirstName: userInformation.FirstName,
       userMemberId: textToLongIntegerOrNull(userInformation.MemberId),
     });
@@ -92,14 +72,14 @@ export function useAdminLanding(events: AdminLandingEvents): AdminLandingFlows {
 
   /** OnHandle_EventCardClicked. */
   const eventCardClicked = async (eventSummary: Event_Screen, eventTypeFriendly: string) => {
-    await eventsRef.current.onNavigateToEventDetail(eventDetailTargetOf(eventSummary, eventTypeFriendly));
-    onApplicationEvent_ClickEvent(clickEventPayloadOf(eventSummary));
+    await flow.events.onNavigateToEventDetail(eventDetailTargetOf(eventSummary, eventTypeFriendly)); // R3
+    onApplicationEvent_ClickEvent(clickEventPayloadOf(eventSummary)); // module action: not wrapped (R2)
   };
 
   return {
     state,
     onEventCardClicked: (eventSummary, eventTypeFriendly) => {
-      eventCardClicked(eventSummary, eventTypeFriendly).catch(raiseToFlowHandler);
+      flow.run(() => eventCardClicked(eventSummary, eventTypeFriendly));
     },
   };
 }

@@ -1,8 +1,6 @@
-import { useRef } from 'react';
 import type { CountryWithMapPosition } from '@/api/country';
 import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { getUserInformation } from '@/platform/session/userInfo';
 import type { Assemble_FilterSheetProps } from '@/pages/AssembleEvents/components/Assemble_FilterSheet';
 import { hasAccessToRegion } from '@/lib/assemble/actions';
@@ -14,7 +12,6 @@ import {
   localitiesOf,
   NULL_SUBDIVISION_ID,
   searchCountries,
-  type AssembleFilterSheetPatch,
 } from './assembleFilterSheetState';
 import { fetchUserSubdivision } from './userSubdivision';
 
@@ -54,19 +51,19 @@ async function fetchSubscribedCountries(): Promise<CountryWithMapPosition[]> {
       A failure goes to the flow handler, and the Spinner stays.
     - The view cache does not bring the variables of the sheet back: a restored view starts from the defaults, and
       OnReady fetches again.
-    - Decision W23: after an unmount, a started flow skips its state writes only. Its calls, the ConfirmAction dialog
-      and its error still run. */
+    - Flow scope (item 8): FetchCountries is an own client action of the block (R3, `flow.own`; TST
+      `ensureControllerAlive("FetchCountries")`, Assemble_FilterSheet.js:800): when the user leaves while OnReady waits
+      for GetCacheableUserInfo, the reads of FetchCountries do not start and nothing is raised. GetCacheableUserInfo,
+      Cache_UserInfo_Get, GetCacheableRegionSubscribedCountries, HasAccessToRegion and ConfirmAction are module actions:
+      they run after the unmount (ConfirmAction resolves False when its dialog is gone), and their failures still go
+      to the flow handler with the scope. A state write after the unmount is a no-op (`dispatch`). */
 export function useAssembleFilterSheet(scope: string, events: AssembleFilterSheetEvents): AssembleFilterSheetFlows {
-  /* OnReady runs once per block. StrictMode (dev) runs the mount effect again on the same block: the second call only
-     replaces the liveness check, so the first flow writes the state while the block is there and calls each action
-     once. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
   const {
     state,
     dispatch,
     latest,
     events: eventsRef,
+    flow,
   } = useFlowState({
     viewName: VIEW_NAME,
     reducer: assembleFilterSheetReducer,
@@ -75,38 +72,28 @@ export function useAssembleFilterSheet(scope: string, events: AssembleFilterShee
     parameters: null,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady();
-    },
+    onReady: () => onReady(),
   });
 
-  /** A state write of a flow, skipped after the unmount (W23). */
-  const write = (patch: AssembleFilterSheetPatch) => {
-    if (newestReadyRun.current()) dispatch(patch);
-  };
-
-  /** FetchCountries. */
-  const fetchCountries = async () => {
-    write({ isCountriesDataFetched: false });
-    const countries = await fetchSubscribedCountries();
-    write({ countryDetailList: countries, tempCountryDetailList: countries, isCountriesDataFetched: true });
-  };
+  /** FetchCountries: an own client action of the block (R3). */
+  const fetchCountries = flow.own(async () => {
+    dispatch({ isCountriesDataFetched: false });
+    const countries = await fetchSubscribedCountries(); // module actions: not wrapped
+    dispatch({ countryDetailList: countries, tempCountryDetailList: countries, isCountriesDataFetched: true });
+  });
 
   /** OnReady. useFlowState sends a rejection to the flow handler. */
   async function onReady() {
-    write({ userSubdivisionId: (await fetchUserSubdivision()).id });
-    await fetchCountries();
+    dispatch({ userSubdivisionId: (await fetchUserSubdivision()).id }); // module action: not wrapped
+    await fetchCountries(); // R3: stops after the unmount
   }
 
   /** OnChange_SearchTearm: an empty term loads the subscribed countries again (from the cache) into both lists;
       otherwise TempCountryDetailList is the search result in CountryDetailList. */
   const onChangeSearchTerm = async (value: string) => {
     if (value === '') {
-      const countries = await fetchSubscribedCountries();
-      write({ countryDetailList: countries, tempCountryDetailList: countries });
+      const countries = await fetchSubscribedCountries(); // module actions: not wrapped
+      dispatch({ countryDetailList: countries, tempCountryDetailList: countries });
     } else {
       dispatch({ tempCountryDetailList: searchCountries(latest.current.countryDetailList, value) });
     }
@@ -117,10 +104,11 @@ export function useAssembleFilterSheet(scope: string, events: AssembleFilterShee
   const goToBrowseCountry = async (countryCode: string) => {
     if (countryCode === '') return;
     if (!(await hasAccessToRegion(countryCode, NULL_SUBDIVISION_ID))) {
+      // module action: runs after leaving, as on TST
       await confirmAction(`${scope}-FreeSubscriptionAlert`);
       return;
     }
-    write(localitiesOf(latest.current.tempCountryDetailList, countryCode));
+    dispatch(localitiesOf(latest.current.tempCountryDetailList, countryCode));
   };
 
   return {
@@ -135,10 +123,10 @@ export function useAssembleFilterSheet(scope: string, events: AssembleFilterShee
     isApplyEnabled: state.subdivisionId !== NULL_SUBDIVISION_ID,
     onSearchTermChange: (value) => {
       dispatch({ searchTerm: value });
-      onChangeSearchTerm(value).catch(raiseToFlowHandler);
+      flow.run(() => onChangeSearchTerm(value));
     },
     onCountryClicked: (countryCode) => {
-      goToBrowseCountry(countryCode).catch(raiseToFlowHandler);
+      flow.run(() => goToBrowseCountry(countryCode));
     },
     onBackToCountries: () => {
       dispatch(COUNTRY_STEP);
@@ -147,7 +135,7 @@ export function useAssembleFilterSheet(scope: string, events: AssembleFilterShee
       dispatch({ subdivisionId });
     },
     onFreeSubscriptionAlert: () => {
-      showUpgradePopUp().catch(raiseToFlowHandler);
+      flow.run(() => showUpgradePopUp());
     },
     onCancel: () => {
       eventsRef.current.onCancel();

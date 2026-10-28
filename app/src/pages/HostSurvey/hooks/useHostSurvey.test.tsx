@@ -3,6 +3,8 @@ import { StrictMode, useLayoutEffect } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchHostSurvey, postHostSurvey, type HostSurvey, type HostSurveyResult } from '@/api/event';
+import { ControllerDisposedException, IgnorableSystemException, SystemException } from '@/legacy/os/os-exceptions';
+import { feedbackMessageAfterTransition } from '@/pages/HostSurvey/actions';
 import type { HostSurveyInputs } from '@/pages/HostSurvey/inputs';
 import type { BackNavigationEvent } from '@/platform/navigation/backQueue';
 import { orbitStaticEntities } from '@/platform/bootstrap/mocks';
@@ -33,6 +35,10 @@ vi.mock('@/api/event', async (importOriginal) => ({
 vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
   raiseToFlowHandler: vi.fn(),
+}));
+vi.mock('@/pages/HostSurvey/actions', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@/pages/HostSurvey/actions')>()),
+  feedbackMessageAfterTransition: vi.fn(),
 }));
 /** A back navigation that the view cache restores (wasCurrentViewRestoredFromCache), with the saved variables. */
 const viewCache = vi.hoisted((): { restored: boolean; saved: unknown } => ({ restored: false, saved: undefined }));
@@ -282,8 +288,15 @@ describe('useHostSurvey: OnReady and GetHostSurvey', () => {
   });
 });
 
-describe('useHostSurvey: unmount while GetHostSurvey runs (decision W23)', () => {
-  it('the call runs once to its end and writes no state after the unmount', async () => {
+/** The errors that reach the flow handler, without the ignorable ones (ControllerDisposedException of a left block). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+
+describe('useHostSurvey: unmount while a flow runs (flow scope, item 8)', () => {
+  it('R1: unmount while GetHostSurvey is pending: no state write, no raise', async () => {
     const call = pending();
     const { unmount } = renderFlows();
     expect(fetchHostSurvey).toHaveBeenCalledTimes(1);
@@ -306,6 +319,63 @@ describe('useHostSurvey: unmount while GetHostSurvey runs (decision W23)', () =>
     expect(fetchHostSurvey).toHaveBeenCalledTimes(1);
     expect(hostSurveyReducer).not.toHaveBeenCalled();
     expect(raiseToFlowHandler).not.toHaveBeenCalled();
+  });
+
+  /** A pending survey on its navigation step with the ReturnBack popup open (a back navigation). */
+  async function returnBackPopUp() {
+    vi.mocked(fetchHostSurvey).mockResolvedValue(answer(survey('pending', true)));
+    const view = renderFlows();
+    await settle();
+    act(() => {
+      view.result.current.onBackNavigation(backEvent());
+    });
+    expect(view.result.current.state.popUpInfo.IsShowPopup_ReturnBack).toBe(true);
+    return view;
+  }
+
+  it('R2 then R3: unmount while PostHostSurvey (draft) is pending: the post ends, no NavigateTo_Back, no message', async () => {
+    let answerPost: (value: boolean) => void = () => undefined;
+    vi.mocked(postHostSurvey).mockReturnValue(
+      new Promise((resolve) => {
+        answerPost = resolve;
+      }),
+    );
+    const { result, unmount } = await returnBackPopUp();
+    vi.mocked(raiseToFlowHandler).mockClear();
+    act(() => {
+      result.current.onPopUpPrimary();
+    });
+    expect(postHostSurvey).toHaveBeenCalledTimes(1);
+    unmount();
+    vi.mocked(hostSurveyReducer).mockClear();
+    answerPost(true);
+    await settle();
+    expect(onNavigateToBack).not.toHaveBeenCalled();
+    expect(feedbackMessageAfterTransition).not.toHaveBeenCalled();
+    expect(hostSurveyReducer).not.toHaveBeenCalled();
+    // The own action NavigateTo_Back ends the flow with an ignorable exception.
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([error]) => error)).toEqual([
+      expect.any(ControllerDisposedException),
+    ]);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('N3: a system exception of PostHostSurvey goes to the flow handler with the flow scope', async () => {
+    const error = new SystemException('The server could not save the survey');
+    vi.mocked(postHostSurvey).mockRejectedValue(error);
+    const { result } = await returnBackPopUp();
+    vi.mocked(raiseToFlowHandler).mockClear();
+    act(() => {
+      result.current.onPopUpPrimary();
+    });
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(
+      error,
+      expect.objectContaining({ alive: expect.any(Function) as unknown }),
+    );
+    expect(onNavigateToBack).not.toHaveBeenCalled();
+    expect(feedbackMessageAfterTransition).not.toHaveBeenCalled();
   });
 });
 
@@ -404,6 +474,7 @@ describe('useHostSurvey: the Edit link and the back navigation', () => {
     expect(result.current.state.surveySubmitted).toBe(true);
     expect(result.current.state.popUpInfo.IsShowPopup_ReturnBack).toBe(false);
     expect(onNavigateToBack).toHaveBeenCalledTimes(1);
+    expect(feedbackMessageAfterTransition).toHaveBeenCalledWith('Thank you, your survey has been saved as a draft.', 1);
   });
 
   it('Discard Survey: SurveyDiscarded, no post, back', async () => {

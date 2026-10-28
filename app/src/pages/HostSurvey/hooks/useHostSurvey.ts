@@ -13,7 +13,7 @@ import { feedbackMessageAutoClose } from '@/platform/feedback/feedbackMessageAut
 import { isSystemException } from '@/platform/feedback/flowErrors';
 import type { BackNavigationEvent } from '@/platform/navigation/backQueue';
 import type { HostSurveyInputs } from '@/pages/HostSurvey/inputs';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import {
   HostSurveyStep,
   getLocalBedSizes,
@@ -140,28 +140,26 @@ const DATA_STEPS: readonly number[] = [
       opened by URL, so the flow goes on when the store changes (useOrbitStaticEntitiesVersion).
     - The data steps (decision Legacy_OrbitEventsFlow Q1 (a), built from the TST code): the footer buttons, the popups,
       the item events and PostHostSurvey below; their state parts are the pure client actions of hostSurveyState.
-    Decision W23: the call that started runs to its end after an unmount, but it writes no state then (`isAlive`).
-    StrictMode makes one call (`beforePaint` runs OnReady once). A failed call keeps the skeleton and reaches no
-    flow handler, as the port did before this step.
+    Flow scope (item 8): GetHostSurvey is a data action (R1, `flow.fetch`; HS :5517): after the unmount its answer is
+    dropped. StrictMode makes one call (`beforePaint` runs OnReady once). A failed call keeps the skeleton and reaches
+    no flow handler, as the port did before this step. PostHostSurvey is a server action (R2): its flow goes on after
+    the unmount; NavigateTo_Back is an own action of the block (R3, `flow.own`; HS :6706) that stops it, so the message
+    after the navigation is not reached (HS :6709). The navigation of the parent from a left screen is blocked by the
+    platform (R4); a message from a screen that is still mounted shows (R5). The footer and popup buttons run their
+    flow with `flow.run` (port gap N3): a system exception of the post goes to the flow handler with the scope.
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_HostSurvey.ScreenBlock_HostSurvey */
 export function useHostSurvey(inputs: HostSurveyInputs, events: HostSurveyEvents): HostSurveyFlows {
   /** A flow that waits for the store's first read (RefreshLocalSurveyStatus). */
   const waitingForStore = useRef(false);
 
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Orbit_ScreenBlocks_HostSurvey.ScreenBlock_HostSurvey',
     reducer: hostSurveyReducer,
     initial: INITIAL_HOST_SURVEY_STATE,
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive, restored) => onReady(isAlive, restored),
+    onReady: (_isAlive, restored) => onReady(restored),
     beforePaint: true,
   });
 
@@ -183,17 +181,17 @@ export function useHostSurvey(inputs: HostSurveyInputs, events: HostSurveyEvents
   }, [dispatch, latest]);
 
   /** OnReady, then RefreshData and OnAfterFetch_GetHostSurvey. */
-  const onReady = async (isAlive: IsAlive, restored: boolean) => {
+  const onReady = async (restored: boolean) => {
     if (restored) return;
     dispatch({ type: 'fetchStarted' });
     let result: HostSurveyResult;
     try {
-      result = await fetchHostSurvey(hostSurveyCallInputs(latest.current, parameters.current));
+      result = await flow.fetch(fetchHostSurvey(hostSurveyCallInputs(latest.current, parameters.current))); // R1
     } catch {
-      // A failed call shows nothing and the skeleton stays, as in the port before this step (no flow handler).
+      // A failed call shows nothing and the skeleton stays, as in the port before this step (no flow handler). After
+      // the unmount (R1) the flow stops here too.
       return;
     }
-    if (!isAlive()) return;
     // OnAfterFetch_GetHostSurvey.
     if (result.HasError) {
       dispatch({ type: 'fetchFailed' });
@@ -209,10 +207,10 @@ export function useHostSurvey(inputs: HostSurveyInputs, events: HostSurveyEvents
     if (waitingForStore.current) refreshLocalSurveyStatus();
   }, [storeVersion, refreshLocalSurveyStatus]);
 
-  /** NavigateTo_Back event of the block. */
-  const navigateToBack = () => {
-    eventsRef.current.onNavigateToBack();
-  };
+  /** NavigateTo_Back, an own action of the block (R3): the event NavigateTo_Back. After the unmount it stops the flow. */
+  const navigateToBack = flow.own(() => {
+    flow.events.onNavigateToBack();
+  });
   const validate = () => {
     dispatch({ type: 'stepEditValidated' });
   };
@@ -232,7 +230,7 @@ export function useHostSurvey(inputs: HostSurveyInputs, events: HostSurveyEvents
     if (latest.current.isPostingSurvey) return;
     dispatch({ type: 'postStarted' });
     try {
-      await postHostSurvey(latest.current.hostSurvey);
+      await postHostSurvey(latest.current.hostSurvey); // R2
     } catch (error) {
       if (isSystemException(error)) throw error;
       dispatch({ type: 'postFailed' });
@@ -425,11 +423,11 @@ export function useHostSurvey(inputs: HostSurveyInputs, events: HostSurveyEvents
     vehicleTypes: getLocalVehicleTypes(),
     onEditStep: selectStep,
     onPrimaryButton: () => {
-      void onPrimaryButton();
+      flow.run(onPrimaryButton);
     },
     onSecondaryButton,
     onPopUpPrimary: () => {
-      void onPopUpPrimary();
+      flow.run(onPopUpPrimary);
     },
     onPopUpSecondary,
     onPopUpClose: closePopUp,

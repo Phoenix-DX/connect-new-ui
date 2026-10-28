@@ -42,7 +42,7 @@ export interface AccommodationHostState {
   hasData: boolean;
 }
 
-export type AccommodationHostAction =
+type AccommodationHostAction =
   /** OnReady: IsFetchingData = True. */
   | { type: 'fetchStarted' }
   /** OnAfterFetch of GetAccommodationHost: AccommodationData, IsDataFetched and HasData. */

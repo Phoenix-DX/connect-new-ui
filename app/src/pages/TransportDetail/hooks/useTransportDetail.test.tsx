@@ -3,7 +3,7 @@ import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchTransportDetail, type TransportDetails } from '@/api/event';
-import { CommunicationException } from '@/legacy/os/os-exceptions';
+import { CommunicationException, ControllerDisposedException } from '@/legacy/os/os-exceptions';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { OrbitMilestoneType, OrbitSkeletonLoading } from '@/lib/orbit/staticEntities';
 import {
@@ -194,10 +194,10 @@ describe('useTransportDetail', () => {
   });
 });
 
-describe('useTransportDetail after an unmount and in StrictMode (decision W23)', () => {
-  /* W23: `isAlive` guards the state writes only. The flow has no app-level side effect after its call: the call that
-     started runs to its end, and a failure still goes to the flow handler. */
-  it('after an unmount during Get_TransportDetail: one call, no state write, no event', async () => {
+describe('useTransportDetail after an unmount and in StrictMode (flow scope, item 8)', () => {
+  /* R1: Get_TransportDetail is a data action. After the unmount its answer and its failure are dropped: the flow stops
+     with the ignorable ControllerDisposedException. */
+  it('R1: unmount during Get_TransportDetail: one call, no state write, no event, nothing raised', async () => {
     const answer = pending<TransportDetails>();
     vi.mocked(fetchTransportDetail).mockReturnValue(answer.promise);
     const { unmount } = renderFlows();
@@ -210,10 +210,13 @@ describe('useTransportDetail after an unmount and in StrictMode (decision W23)',
     expect(fetchTransportDetail).toHaveBeenCalledTimes(1);
     expect(transportDetailReducer).not.toHaveBeenCalled();
     expect(events.onNavigateToContactHelpdesk).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    // Only the ignorable ControllerDisposedException reaches the flow handler, which drops it (R1).
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.every(([e]) => e instanceof ControllerDisposedException)).toBe(
+      true,
+    );
   });
 
-  it('after an unmount during Get_TransportDetail, a failure still goes to the flow handler once', async () => {
+  it('R1: unmount during Get_TransportDetail: its failure reaches no handler', async () => {
     const answer = pending<TransportDetails>();
     vi.mocked(fetchTransportDetail).mockReturnValue(answer.promise);
     const { unmount } = renderFlows();
@@ -224,7 +227,7 @@ describe('useTransportDetail after an unmount and in StrictMode (decision W23)',
     answer.reject(error);
     await settle();
     expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(expect.any(ControllerDisposedException), expect.anything());
     expect(transportDetailReducer).not.toHaveBeenCalled();
   });
 

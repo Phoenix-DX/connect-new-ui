@@ -106,7 +106,7 @@ describe('AssembleEvents', () => {
     expect(assembleCalls()).toEqual([]);
   });
 
-  it('W23: a navigation away while OnReady waits runs each call once after the unmount, and nothing renders', async () => {
+  it('flow scope (item 8, R3): a navigation away while OnReady waits for the user starts no refresh and no FetchCountries', async () => {
     sessionStorage.setItem('mock:latency', '40');
     const { container, router } = renderRoutes(
       { [PATH]: <AssembleEvents />, '/UBTConnect/HomeFeed': <div id="home" /> },
@@ -118,13 +118,15 @@ describe('AssembleEvents', () => {
     await act(() => router.navigate(-1));
     await settle(200);
     expect(container.querySelector('[data-block="Assemble.ScreenBlock_AssembleEvents"]')).toBeNull();
-    const calls = (window.__osCalls ?? []).map((c) => `${c.module}/${c.action}`);
-    for (const action of [
+    // GetCacheableUserInfo is a module action: it runs once. The refreshes of AssembleSummary_List and FetchCountries
+    // of Assemble_FilterSheet are own client actions of the left blocks (R3): they do not start.
+    const watched = [
       'Connect2_LegacyShared/ActionGetUserInformation',
       'Connect2_Assemble_MUI/DataActionGetAssembleEventTypes',
       'Connect2_Assemble_MUI/DataActionGetAssembleMeetingSummaryList',
       'Connect2_LegacyShared/ActionGetCountriesBySubscription',
-    ])
-      expect(calls.filter((a) => a === action)).toHaveLength(1);
+    ];
+    const calls = (window.__osCalls ?? []).map((c) => `${c.module}/${c.action}`).filter((a) => watched.includes(a));
+    expect(calls).toEqual(['Connect2_LegacyShared/ActionGetUserInformation']);
   });
 });

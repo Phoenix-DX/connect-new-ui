@@ -7,6 +7,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { EventQRCodeData } from '@/api/event';
 import { fetchEventQRCode } from '@/api/event/repository';
 import { fetchLegacySignedImageURL } from '@/api/image/repository';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import type { QRCodeGenerateInputs } from '@/pages/QRCodeGenerate/inputs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
@@ -257,8 +258,15 @@ describe('useGenerateQrCode: OnReady and RefreshData', () => {
   });
 });
 
-describe('useGenerateQrCode after an unmount and in StrictMode (decision W23)', () => {
-  it('still calls Get_EventQRCode once with the assigned variables and writes no state after an unmount', async () => {
+describe('useGenerateQrCode after an unmount and in StrictMode (flow scope, item 8)', () => {
+  /** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1). */
+  const raisedErrors = () =>
+    vi
+      .mocked(raiseToFlowHandler)
+      .mock.calls.map(([error]) => error)
+      .filter((error) => !(error instanceof IgnorableSystemException));
+
+  it('R2: GetCacheableSignedImageURL answers after the unmount: Get_EventQRCode still goes out once with the assigned variables, no state write', async () => {
     const photo = pendingPhoto();
     const { unmount } = renderFlows();
     unmount();
@@ -268,19 +276,45 @@ describe('useGenerateQrCode after an unmount and in StrictMode (decision W23)', 
     expect(fetchEventQRCode).toHaveBeenCalledTimes(1);
     expect(fetchEventQRCode).toHaveBeenCalledWith(eventQRCodeCallInputs(AT_CALL, INPUTS));
     expect(generateQrCodeReducer).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('raises a failure after an unmount to the flow handler once, as the port before this step', async () => {
+  it('R1: unmount while Get_EventQRCode is pending: the answer writes no state and raises nothing', async () => {
     const qrCode = pendingQrCode();
     const { unmount } = renderFlows();
     await settle();
     unmount();
-    const error = new Error('Service Interruption');
-    qrCode.reject(error);
+    vi.mocked(generateQrCodeReducer).mockClear();
+    qrCode.resolve(DATA);
+    await settle();
+    expect(generateQrCodeReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while Get_EventQRCode is pending: its failure reaches no handler', async () => {
+    const qrCode = pendingQrCode();
+    const { unmount } = renderFlows();
+    await settle();
+    unmount();
+    qrCode.reject(new Error('Service Interruption'));
     await settle();
     expect(fetchEventQRCode).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R2: a failure of GetCacheableSignedImageURL after the unmount still goes to the flow handler, with the scope', async () => {
+    const error = new Error('Service Interruption');
+    let fail: (reason: Error) => void = () => undefined;
+    vi.mocked(fetchLegacySignedImageURL).mockReturnValueOnce(
+      new Promise((_resolve, reject) => {
+        fail = reject;
+      }),
+    );
+    const { unmount } = renderFlows();
+    unmount();
+    fail(error);
+    await settle();
+    expect(fetchEventQRCode).not.toHaveBeenCalled();
     expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
   });
 

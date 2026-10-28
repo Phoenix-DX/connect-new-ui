@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { getPreloadObject, useFlowState } from '@/platform/navigation';
 import {
   assembleDetailReducer,
@@ -23,18 +22,17 @@ export interface AssembleDetailFlows {
 /** The state and the flows of the block. `blockId` is the block instance id (`$b2`).
     - OnInitialize runs after the first render, as in the old port: on a new visit, OnInitialize_Preload and the title
       (initializeFromPreload); a view that the view cache restored keeps its variables. It runs once per block, also
-      when StrictMode (dev) runs the mount effect again.
-    - UpdateTitle: the title, unless it is empty. */
+      when StrictMode (dev) runs the mount effect again (the once-guard of useFlowState).
+    - UpdateTitle: the title, unless it is empty.
+    Flow scope (item 8): no flow of the block awaits (OnReady returns at once, UpdateTitle is synchronous), so no rule
+    of R1 to R4 applies. */
 export function useAssembleDetail(blockId: string, assembleEventTypeTile: string): AssembleDetailFlows {
-  const readyStarted = useRef(false);
   const { state, dispatch, parameters } = useFlowState({
     viewName: `Assemble.ScreenBlock_AssembleDetail#${blockId.replace(/\$/g, '')}`,
     reducer: assembleDetailReducer,
     initial: INITIAL_ASSEMBLE_DETAIL_STATE,
     parameters: { assembleEventTypeTile },
     onReady: (_isAlive, restored) => {
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
       if (!restored) dispatch(initializeFromPreload(getPreloadObject(), parameters.current.assembleEventTypeTile));
       return Promise.resolve();
     },

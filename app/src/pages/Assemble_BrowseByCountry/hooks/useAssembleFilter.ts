@@ -1,8 +1,6 @@
-import { useRef } from 'react';
 import type { CountryWithMapPosition } from '@/api/country';
 import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type BackNavigationEvent, type IsAlive } from '@/platform/navigation';
+import { useFlowState, type BackNavigationEvent } from '@/platform/navigation';
 import { getUserInformation } from '@/platform/session/userInfo';
 import { hasAccessToRegion } from '@/lib/assemble/actions';
 import { getCacheableRegionSubscribedCountries, getCacheableUserInfo } from '@/lib/legacyShared/actions';
@@ -15,7 +13,6 @@ import {
   INITIAL_ASSEMBLE_FILTER_STATE,
   isUserSubdivision,
   NULL_ID,
-  type AssembleFilterPatch,
   type AssembleFilterState,
 } from './assembleFilterState';
 
@@ -83,20 +80,21 @@ const scrollContentToTop = () => {
       GetCacheableUserInfo (UserInformation.Subdivision.Id), then FetchCountries (IsCountriesDataFetched False, the
       subscribed countries into CountryDetailList and TempCountryDetailList, IsCountriesDataFetched True). A failure
       goes to the flow handler, and the Spinner stays.
-    - Decision W23: after an unmount, a started flow skips its state writes only. Its calls, the ConfirmAction dialog
-      and its error still run. */
+    - Flow scope (item 8): FetchCountries is an own client action of the block (R3, `flow.own`; TST
+      `ensureControllerAlive("FetchCountries")`, ScreenBlock_Assemble_Filter.js:1033): when the user leaves while
+      OnReady waits for GetCacheableUserInfo, the reads of FetchCountries do not start and nothing is raised.
+      GetCacheableUserInfo, Cache_UserInfo_Get, GetCacheableRegionSubscribedCountries, HasAccessToRegion and
+      ConfirmAction are module actions: they run after the unmount (ConfirmAction resolves False when its dialog is
+      gone), and their failures still go to the flow handler with the scope. A state write after the unmount is a
+      no-op (`dispatch`). */
 export function useAssembleFilter(blockId: string, events: AssembleFilterEvents): AssembleFilterFlows {
   const ids = assembleFilterIds(blockId);
-  /* OnReady runs once per block. StrictMode (dev) runs the mount effect again on the same block: the second call only
-     replaces the liveness check, so the first flow writes the state while the block is there and calls each action
-     once. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
   const {
     state,
     dispatch,
     latest,
     events: eventsRef,
+    flow,
   } = useFlowState({
     viewName: VIEW_NAME,
     reducer: assembleFilterReducer,
@@ -104,39 +102,29 @@ export function useAssembleFilter(blockId: string, events: AssembleFilterEvents)
     parameters: null,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady(restored);
-    },
+    onReady: (_isAlive, restored) => onReady(restored),
   });
 
-  /** A state write after an await, skipped after the unmount (W23). */
-  const write = (patch: AssembleFilterPatch) => {
-    if (newestReadyRun.current()) dispatch(patch);
-  };
-
-  /** FetchCountries. */
-  const fetchCountries = async () => {
-    write({ isCountriesDataFetched: false });
-    const countries = await fetchSubscribedCountries();
-    write({ countryDetailList: countries, tempCountryDetailList: countries, isCountriesDataFetched: true });
-  };
+  /** FetchCountries: an own client action of the block (R3). */
+  const fetchCountries = flow.own(async () => {
+    dispatch({ isCountriesDataFetched: false });
+    const countries = await fetchSubscribedCountries(); // module actions: not wrapped
+    dispatch({ countryDetailList: countries, tempCountryDetailList: countries, isCountriesDataFetched: true });
+  });
 
   /** OnReady. useFlowState sends a rejection to the flow handler. */
   const onReady = async (restored: boolean) => {
     if (restored) return;
-    write({ userSubdivisionId: await fetchUserSubdivisionId() });
-    await fetchCountries();
+    dispatch({ userSubdivisionId: await fetchUserSubdivisionId() }); // module action: not wrapped
+    await fetchCountries(); // R3: stops after the unmount
   };
 
   /** OnChange_SearchTearm: an empty term loads the subscribed countries again (from the cache) into both lists;
       otherwise TempCountryDetailList is the ListFilter of CountryDetailList by name. */
   const onChangeSearchTerm = async (value: string) => {
     if (value === '') {
-      const countries = await fetchSubscribedCountries();
-      write({ countryDetailList: countries, tempCountryDetailList: countries });
+      const countries = await fetchSubscribedCountries(); // module actions: not wrapped
+      dispatch({ countryDetailList: countries, tempCountryDetailList: countries });
     } else {
       dispatch({ tempCountryDetailList: filterCountriesByName(latest.current.countryDetailList, value) });
     }
@@ -148,24 +136,25 @@ export function useAssembleFilter(blockId: string, events: AssembleFilterEvents)
     if (inCountryCode === '') return;
     const hasAccess = await hasAccessToRegion(inCountryCode, NULL_ID);
     if (!hasAccess) {
+      // module action: runs after leaving, as on TST
       await confirmAction(ids.freeSubscriptionAlert);
       return;
     }
-    write(countryChosen(latest.current.tempCountryDetailList, inCountryCode));
+    dispatch(countryChosen(latest.current.tempCountryDetailList, inCountryCode));
   };
 
   return {
     state,
     onSearchTermChange: (value) => {
       dispatch({ searchTerm: value });
-      onChangeSearchTerm(value).catch(raiseToFlowHandler);
+      flow.run(() => onChangeSearchTerm(value));
     },
     onCountryClicked: (countryCode) => {
-      goToBrowseCountry(countryCode).catch(raiseToFlowHandler);
+      flow.run(() => goToBrowseCountry(countryCode));
     },
     // Handler_FreeSubscriptionAlert: App_Subscription_ShowUpgradePopUp.
     onFreeSubscriptionAlert: () => {
-      showUpgradePopUp().catch(raiseToFlowHandler);
+      flow.run(() => showUpgradePopUp());
     },
     // Assemble_FilterLocalityByCountrySelectedSubdivisio: SubdivisionId.
     onSelectedSubdivision: (subdivisionId) => {

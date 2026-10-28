@@ -1,10 +1,8 @@
-import { useRef } from 'react';
 import { fetchHelperDetails, type HelperData } from '@/api/event';
 import { fetchLegacySignedImageURL } from '@/api/image';
 import type { ContactByPhonePopupData } from '@/components/contact/ContactPopupByPhone/types';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/lib/legacyShared/actions';
 import { checkDirectoryAccess, type GetCacheableSignedImageURL } from '@/lib/orbit/actions';
 import { DirectoryAPIFilter, ImageSigningSize } from '@/lib/orbit/staticEntities';
@@ -19,7 +17,6 @@ import {
   INITIAL_HELPER_DETAILS_STATE,
   restoreHelperDetailsState,
   type ContactPopupData,
-  type HelperDetailsAction,
   type HelperDetailsInputs,
 } from './helperDetailsState';
 
@@ -73,20 +70,15 @@ export interface HelperDetailsFlows {
       Otherwise IsFetchingData True, GetHelperDetails (the block variables of that moment), then
       OnAfterFetch_GetHelperHost (HelperData) and IsFetchingData False. A failure goes to the flow handler. The flow
       runs once, also under StrictMode.
-    - Decision W23: `isAlive` guards the state writes only. A flow that started runs to its end after the unmount: its
-      server calls, the navigation of OnHandle_ClickedMember, the upgrade popup, the application events and the flow
-      handler of a failure. */
+    - Flow scope (item 8): GetHelperDetails is a data action (R1, `flow.fetch`; HelperDetails.js:1324): after the
+      unmount its answer and its failure are dropped. CheckDirectoryAccess and the Connect2_LegacyShared cache actions
+      of BuildMemberCallData are module actions (R2): they run to their end, and `dispatch` drops their state writes
+      after the unmount. NavigateTo_HouseholdDetail is an own action of the block (R3, `flow.own`; HelperDetails.js:1252):
+      after the unmount it stops the flow, so neither the event nor OnApplicationEvent_ViewHousehold runs. The
+      navigation of the parent from a left screen is blocked by the platform (R4). Without access the upgrade popup
+      (a module action) still opens. */
 export function useHelperDetails(inputs: HelperDetailsInputs, events: HelperDetailsEvents): HelperDetailsFlows {
-  /** The block is there. OnReady (before paint) gets a check that is true until the unmount; the event flows use the
-      same one. They cannot start before OnReady, which runs at the mount. */
-  const blockAlive = useRef<IsAlive>(() => true);
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Orbit_ScreenBlocks.ScreenBlock_HelperDetails',
     reducer: helperDetailsReducer,
     initial: INITIAL_HELPER_DETAILS_STATE,
@@ -94,47 +86,40 @@ export function useHelperDetails(inputs: HelperDetailsInputs, events: HelperDeta
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive, restored) => {
-      blockAlive.current = isAlive;
-      return onReady(restored);
-    },
+    onReady: (_isAlive, restored) => onReady(restored),
     beforePaint: true,
   });
-
-  /** A state write, skipped after the unmount (W23). */
-  const write = (action: HelperDetailsAction) => {
-    if (blockAlive.current()) dispatch(action);
-  };
 
   /** OnReady, then RefreshData. */
   const onReady = async (restored: boolean) => {
     if (restored) return;
-    write({ type: 'fetchStarted' });
-    const helperData = await fetchHelperDetails(helperDetailsCallInputs(latest.current, parameters.current));
-    write({ type: 'helperDetailsFetched', helperData });
-    write({ type: 'fetchEnded' });
+    dispatch({ type: 'fetchStarted' });
+    const helperData = await flow.fetch(
+      fetchHelperDetails(helperDetailsCallInputs(latest.current, parameters.current)),
+    ); // R1
+    dispatch({ type: 'helperDetailsFetched', helperData });
+    dispatch({ type: 'fetchEnded' });
   };
 
   const popup = (patch: Partial<ContactPopupData>) => {
-    write({ type: 'contactPopupChanged', patch });
+    dispatch({ type: 'contactPopupChanged', patch });
   };
+
+  /** NavigateTo_HouseholdDetail(HouseholdId), an own action of the block (R3): the event NavigateTo_HouseholdDetail. */
+  const navigateToHouseholdDetail = flow.own((householdId: string) => {
+    flow.events.onNavigateToHouseholdDetail(householdId);
+  });
 
   /** OnHandle_ClickedMember(HouseholdId, Type = DirectoryAPIFilter.Member): CheckDirectoryAccess; with access
       NavigateTo_HouseholdDetail, then OnApplicationEvent_ViewHousehold; without it App_Subscription_ShowUpgradePopUp. */
-  const onClickedMember = (householdId: string) => {
-    void (async () => {
-      try {
-        const hasAccess = await checkDirectoryAccess(householdId, DirectoryAPIFilter.Member);
-        if (hasAccess) {
-          eventsRef.current.onNavigateToHouseholdDetail(householdId);
-          onApplicationEvent_ViewHousehold(householdId, parameters.current.In_EventId);
-        } else {
-          await showUpgradePopUp();
-        }
-      } catch (e) {
-        raiseToFlowHandler(e);
-      }
-    })();
+  const clickedMember = async (householdId: string) => {
+    const hasAccess = await checkDirectoryAccess(householdId, DirectoryAPIFilter.Member); // R2
+    if (hasAccess) {
+      navigateToHouseholdDetail(householdId); // R3: after the unmount the flow stops here
+      onApplicationEvent_ViewHousehold(householdId, parameters.current.In_EventId);
+    } else {
+      await showUpgradePopUp();
+    }
   };
 
   /** BuildMemberCallData(Phone, SignedPhotoURL, LocalityId, MemberId, CallName): the popup opens loading with the name
@@ -143,7 +128,7 @@ export function useHelperDetails(inputs: HelperDetailsInputs, events: HelperDeta
       Locality and CountryName = CountryName. Otherwise (Phone is not set, as compiled): the signed photo when ImageURL
       is "", then from the first contact Locality = LocalityName, Mobile / Home / Work phone, TimezoneName =
       Timezone.TimezoneLabel, TimezoneOffset = Timezone.OffsetSeconds and CountryName. Then IsFetchingTimezone and
-      IsLoading False. */
+      IsLoading False. The three reads are module actions (R2): they run after the unmount too. */
   const buildMemberCallData = async (
     phone: string,
     signedPhotoURL: string,
@@ -155,7 +140,7 @@ export function useHelperDetails(inputs: HelperDetailsInputs, events: HelperDeta
     const contacts = await getCacheableMemberContactList([memberId]);
     const first = contacts[0];
     if (first === undefined) {
-      write({ type: 'contactPhoneSet', phone });
+      dispatch({ type: 'contactPhoneSet', phone });
       popup({ IsLoading: false });
       const tz = await getCacheableTimezoneInfo(localityId);
       popup({
@@ -170,7 +155,7 @@ export function useHelperDetails(inputs: HelperDetailsInputs, events: HelperDeta
           ImageURL: await fetchLegacySignedImageURL(memberId, DirectoryAPIFilter.Member, ImageSigningSize.Small),
         });
       }
-      write({
+      dispatch({
         type: 'memberContactFetched',
         phones: {
           MobilePhone: first.MobilePhoneNumber,
@@ -197,7 +182,7 @@ export function useHelperDetails(inputs: HelperDetailsInputs, events: HelperDeta
     signedPhotoURL: string,
   ) => {
     if (phoneNumber === '') return;
-    void buildMemberCallData(phoneNumber, signedPhotoURL, localityId, memberId, callName).catch(raiseToFlowHandler);
+    flow.run(() => buildMemberCallData(phoneNumber, signedPhotoURL, localityId, memberId, callName));
   };
 
   /** OnHandle_ContactByPhone_Cancel: ShowPopup False. */
@@ -216,7 +201,7 @@ export function useHelperDetails(inputs: HelperDetailsInputs, events: HelperDeta
   const onContactHelpdesk = () => {
     const e = latest.current.helperData.EventDetails;
     const eventName = parameters.current.In_PreloadEventName;
-    eventsRef.current.onNavigateToContactHelpdesk(
+    flow.events.onNavigateToContactHelpdesk(
       getContactHelpdeskSubject_Event(eventName, e.StartDate, e.EndDate, e.Location),
       eventName,
     );
@@ -228,7 +213,9 @@ export function useHelperDetails(inputs: HelperDetailsInputs, events: HelperDeta
     isDataFetched: state.isDataFetched,
     contactByPhoneData: state.contactByPhoneData,
     getSignedImageURL: fetchLegacySignedImageURL,
-    onClickedMember,
+    onClickedMember: (householdId) => {
+      flow.run(() => clickedMember(householdId));
+    },
     onClickedMemberPhone,
     onContactByPhoneCancel,
     onCallClicked,

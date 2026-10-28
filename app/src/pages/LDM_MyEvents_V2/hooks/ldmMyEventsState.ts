@@ -38,7 +38,7 @@ export interface LdmMyEventsState {
 }
 
 /** The state changes of the block. */
-export type LdmMyEventsAction =
+type LdmMyEventsAction =
   /** GetMyTimelineData starts: IsFetchingMyTimeline True. */
   | { type: 'fetchStarted' }
   /** The refresh of GetEventsForMyTimeline failed. */

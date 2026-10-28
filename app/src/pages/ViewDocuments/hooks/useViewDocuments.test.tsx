@@ -4,6 +4,7 @@ import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchEventDocuments, type EventDocumentItem } from '@/api/event';
 import { CommunicationException, UserException } from '@/legacy/os/exceptions';
+import { ControllerDisposedException } from '@/legacy/os/os-exceptions';
 import type { ViewDocumentsInputs } from '@/pages/ViewDocuments/inputs';
 import { getFeedbackMessage, resetFeedbackMessages } from '@/platform/feedback/feedbackStore';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
@@ -278,7 +279,7 @@ describe('useViewDocuments', () => {
     });
   });
 
-  it('W23: after the unmount, the started flow makes its call once and writes no state', async () => {
+  it('R1: unmount while GetEventDocuments is pending: one call, no state write, nothing raised', async () => {
     const answer = pendingDocuments();
     let renders = 0;
     const { unmount } = renderHook(
@@ -297,10 +298,13 @@ describe('useViewDocuments', () => {
     expect(fetchEventDocuments).toHaveBeenCalledTimes(1);
     expect(viewDocumentsReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    // Only the ignorable ControllerDisposedException reaches the flow handler, which drops it (R1).
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.every(([e]) => e instanceof ControllerDisposedException)).toBe(
+      true,
+    );
   });
 
-  it('W23: an exception after the unmount still goes to the flow handler, once, without a state write', async () => {
+  it('R1: unmount while GetEventDocuments is pending: its failure reaches no handler, without a state write', async () => {
     const answer = pendingDocuments();
     const { unmount } = render(true, true);
     await settle();
@@ -309,7 +313,10 @@ describe('useViewDocuments', () => {
     const error = new CommunicationException('offline');
     answer.reject(error);
     await settle();
-    expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([raised]) => raised)).toEqual([error]);
+    const raised = vi.mocked(raiseToFlowHandler).mock.calls.map(([e]) => e);
+    expect(raised).toHaveLength(1);
+    expect(raised[0]).toBeInstanceOf(ControllerDisposedException);
+    expect(raised).not.toContain(error);
     expect(viewDocumentsReducer).not.toHaveBeenCalled();
   });
 });

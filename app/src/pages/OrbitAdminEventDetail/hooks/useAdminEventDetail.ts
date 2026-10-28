@@ -1,12 +1,10 @@
-import { useRef } from 'react';
 import { fetchAdminEventInformation, fetchScanEventQRCode } from '@/api/event';
 import { fetchLegacySignedImageURL } from '@/api/image';
 import { fetchMember } from '@/api/member';
 import { exceptionMessage, isSystemException, UserException } from '@/legacy/os/exceptions';
 import { checkBarcodePlugin, scanBarcode, SCANNER_CLOSED_BY_USER } from '@/platform/device/barcodePlugin';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import type { AdminEventDetailInputs } from '@/pages/OrbitAdminEventDetail/inputs';
 import { CameraDirection, ScanOrientation } from '@/pages/OrbitAdminEventDetail/staticEntities';
@@ -54,42 +52,34 @@ export interface AdminEventDetailFlows {
       its error message.
     - OnHandle_ScanCode: reads the QR code, GetMemberByMemberId, GetCacheableSignedImageURL, then the check-in
       GetScanEventQRCode (only for a code of this event), the result popup and the QRCodeScanned audit event.
-    - Decision W23: after an unmount, a started flow skips its state writes only. Its server calls, messages, audit
-      events and errors still happen, once.
+    - Flow scope (item 8): Get_EventInformation is a data action (R1, `flow.fetch`): after the unmount its answer and
+      its failure are dropped, and OnAfterFetch does not run. OnHandle_ScanCode and OnToggle_PopupQRCode are own
+      actions of the block (R3, `flow.own`; ensureControllerAlive, ScreenBlock_AdminEventDetail.js:935, :1048): a scan
+      that ends after the unmount stops at OnHandle_ScanCode; a flow that is already inside it stops at
+      OnToggle_PopupQRCode, before the QRCodeScanned audit event. CheckBarcodePlugin, ScanBarcode, the audit events,
+      GetMemberByMemberId, the signed image URL and the check-in GetScanEventQRCode are plugin, module or server
+      actions: not wrapped, they run after leaving (R2). The messages show (R5).
     @origin Connect2_OrbitMobile_MUI.Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail */
 export function useAdminEventDetail(inputs: AdminEventDetailInputs): AdminEventDetailFlows {
-  /* OnReady runs once per screen. StrictMode (dev) runs the mount effect again on the same screen: the second call only
-     replaces the liveness check, so the first flow writes the state while the screen is there. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
-  const { state, dispatch, latest, parameters } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'Orbit_ScreenBlocks_AdminFlow.ScreenBlock_AdminEventDetail',
     reducer: adminEventDetailReducer,
     initial: INITIAL_ADMIN_EVENT_DETAIL_STATE,
     parameters: inputs,
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady(restored);
-    },
+    // The flows are defined below; the hook calls the ones of the newest render.
+    onReady: (_isAlive, restored) => onReady(restored),
   });
-
-  /** A state write, skipped after the unmount (W23). */
-  const write = (patch: AdminEventDetailPatch) => {
-    if (newestReadyRun.current()) dispatch(patch);
-  };
 
   /** RefreshData: IsFetchingData True, Get_EventInformation, OnAfterFetch_Get_EventInformation. The call sends the
       block variables after the first assignment. */
   const refreshData = async () => {
     const fetching: AdminEventDetailPatch = { isFetchingData: true };
-    write(fetching);
-    const info = await fetchAdminEventInformation(
-      adminEventInformationInputs(parameters.current, { ...latest.current, ...fetching }),
-    );
-    write({ isDataFetched: true, hasQRCode: info.hasQRCode });
-    write({ eventType: info.orbitEventType, isFetchingData: false });
+    dispatch(fetching);
+    const info = await flow.fetch(
+      fetchAdminEventInformation(adminEventInformationInputs(parameters.current, { ...latest.current, ...fetching })),
+    ); // R1
+    dispatch({ isDataFetched: true, hasQRCode: info.hasQRCode });
+    dispatch({ eventType: info.orbitEventType, isFetchingData: false });
   };
 
   /** OnReady. A view that the view cache restored with the Get_EventInformation answer keeps its saved state.
@@ -100,40 +90,41 @@ export function useAdminEventDetail(inputs: AdminEventDetailInputs): AdminEventD
     await refreshData();
   };
 
-  /** OnToggle_PopupQRCode: QRCodePopupOpened = not QRCodePopupOpened. */
-  const onTogglePopupQRCode = () => {
-    write({ qrCodePopupOpened: !latest.current.qrCodePopupOpened });
-  };
+  /** OnToggle_PopupQRCode: QRCodePopupOpened = not QRCodePopupOpened. An own action (R3, :1048). */
+  const onTogglePopupQRCode = flow.own(() => {
+    dispatch({ qrCodePopupOpened: !latest.current.qrCodePopupOpened });
+  });
 
-  /** OnHandle_ScanCode(CodeScanned). */
-  const onHandleScanCode = async (codeScanned: string) => {
+  /** OnHandle_ScanCode(CodeScanned). An own action (R3, :935): OnClick_ScanQrCode calls it after ScanBarcode. */
+  const onHandleScanCode = flow.own(async (codeScanned: string) => {
     const event = parameters.current;
     try {
       const info = deserializeQRCodeInformation(codeScanned);
       // Has data?
       if (info.EventId === '0' || info.MemberId === '0') {
-        write({ isProcessingData: false });
+        dispatch({ isProcessingData: false });
         showFeedbackMessage(UNPROCESSABLE_QR_CODE, PLATFORM_MESSAGE_TYPE.info);
         return;
       }
-      const member = await fetchMember(info.MemberId);
+      const member = await fetchMember(info.MemberId); // server action: not wrapped (R2)
       const signedURL = await fetchLegacySignedImageURL(
         info.MemberId,
         DirectoryAPIFilter.Member,
         ImageSigningSize.Small,
-      );
-      write({ scannedUser: { ...latest.current.scannedUser, Member: member, SignedURL: signedURL } });
+      ); // module action: not wrapped (R2)
+      dispatch({ scannedUser: { ...latest.current.scannedUser, Member: member, SignedURL: signedURL } });
       // Same EventId?
       if (info.EventId !== event.In_EventId) {
-        write({
+        dispatch({
           scanResult: { Success: false, ErrorMessage: WRONG_EVENT },
           scannedUser: { ...latest.current.scannedUser, UserRole: '', Seats: [], Tag: '', GuestRole: '' },
         });
         onTogglePopupQRCode();
-        write({ isProcessingData: false });
+        dispatch({ isProcessingData: false });
         return;
       }
       const admin = appManager_GetCachedUserInfo();
+      // The check-in: a server action, not wrapped (R2).
       const result = await fetchScanEventQRCode(info.EventId, info.MemberId, member, {
         // AdminMemberId = IntegerToLongInteger(TextToInteger(MemberId)) (EB:1018).
         MemberId: textToIntegerToLongInteger(admin.MemberId),
@@ -142,7 +133,7 @@ export function useAdminEventDetail(inputs: AdminEventDetailInputs): AdminEventD
         Locality: admin.Locality,
         Country: admin.Country,
       });
-      write({
+      dispatch({
         scannedUser: {
           ...latest.current.scannedUser,
           UserRole: result.UserRole,
@@ -152,9 +143,9 @@ export function useAdminEventDetail(inputs: AdminEventDetailInputs): AdminEventD
         },
       });
       // Success?
-      write({ scanResult: { Success: result.Status.Success, ErrorMessage: result.Status.ErrorMessage } });
+      dispatch({ scanResult: { Success: result.Status.Success, ErrorMessage: result.Status.ErrorMessage } });
       onTogglePopupQRCode();
-      write({ isProcessingData: false });
+      dispatch({ isProcessingData: false });
       if (result.Status.Success) {
         // ScannedUser.Member is the member and ScannedUser.UserRole the role of the answer (assigned above).
         onApplicationEvent_Orbit('QRCodeScanned', {
@@ -167,28 +158,28 @@ export function useAdminEventDetail(inputs: AdminEventDetailInputs): AdminEventD
         });
       }
     } catch (e) {
-      // Handle Error: AllExceptions.
+      // Handle Error: AllExceptions. The ControllerDisposedException of an own action (R3) is a system exception.
       if (isSystemException(e)) throw e;
-      write({ isProcessingData: false });
+      dispatch({ isProcessingData: false });
       const message = exceptionMessage(e);
       // Index(ExceptionMessage, "Failed to deserialize JSON", ignoreCase True) <> -1 (EB:1150).
       if (containsIgnoreCase(message, 'Failed to deserialize JSON')) {
-        write({ scanError: { IsShowErrorMessage: true, Message: UNREADABLE_QR_CODE } });
+        dispatch({ scanError: { IsShowErrorMessage: true, Message: UNREADABLE_QR_CODE } });
         return;
       }
       throw new UserException(message, 'Connect2_OrbitMobile_MUI.UnknownError');
     }
-  };
+  });
 
   /** OnClick_ScanQrCode. */
   const onClickScanQrCode = async () => {
     if (!latest.current.hasQRCode) return;
-    const check = await checkBarcodePlugin();
+    const check = await checkBarcodePlugin(); // module action: not wrapped (R2)
     if (!check.IsAvailable) {
       showFeedbackMessage(check.Error.ErrorMessage, PLATFORM_MESSAGE_TYPE.info);
       return;
     }
-    write({ isProcessingData: true });
+    dispatch({ isProcessingData: true });
     const event = parameters.current;
     onApplicationEvent_Orbit('LaunchQRCodeScanner', {
       EventId: event.In_EventId,
@@ -213,14 +204,14 @@ export function useAdminEventDetail(inputs: AdminEventDetailInputs): AdminEventD
         AndroidScanningLibrary: 'Entities.AndroidScanningLibrary.ZXing',
       },
       { showFeedbackMessage },
-    );
+    ); // plugin action: not wrapped (R2)
     if (scan.Success) {
-      await onHandleScanCode(scan.ScanResult.Text);
+      await onHandleScanCode(scan.ScanResult.Text); // R3
       return;
     }
-    write({ isProcessingData: false });
+    dispatch({ isProcessingData: false });
     if (scan.Error.ErrorCode !== SCANNER_CLOSED_BY_USER) {
-      showFeedbackMessage(scan.Error.ErrorMessage, PLATFORM_MESSAGE_TYPE.info);
+      showFeedbackMessage(scan.Error.ErrorMessage, PLATFORM_MESSAGE_TYPE.info); // R5
     }
   };
 
@@ -232,20 +223,20 @@ export function useAdminEventDetail(inputs: AdminEventDetailInputs): AdminEventD
 
   /** OnHandle_OrbitErrorMessage: reset ScanError, then OnClick_ScanQrCode. */
   const onHandleOrbitErrorMessage = async () => {
-    write({ scanError: NO_SCAN_ERROR });
+    dispatch({ scanError: NO_SCAN_ERROR });
     await onClickScanQrCode();
   };
 
   return {
     state,
     onScanQrCodeClicked: () => {
-      void onClickScanQrCode().catch(raiseToFlowHandler);
+      flow.run(() => onClickScanQrCode());
     },
     onScanEventDone: () => {
-      void onHandleScanEventDone().catch(raiseToFlowHandler);
+      flow.run(() => onHandleScanEventDone());
     },
     onErrorMessageOk: () => {
-      void onHandleOrbitErrorMessage().catch(raiseToFlowHandler);
+      flow.run(() => onHandleOrbitErrorMessage());
     },
   };
 }

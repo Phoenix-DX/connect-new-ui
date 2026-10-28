@@ -7,7 +7,6 @@ import {
   type AssembleEventContact,
   type AssembleEventContactListState,
 } from './assembleEventContacts';
-import { useIsAlive, useReadyOnce } from './blockLifecycle';
 
 /** The flow of the block AssembleEventDetail_ContactList: OnReady. The component AssembleEventDetail_ContactList calls
     this hook.
@@ -25,26 +24,28 @@ async function fetchAssembleEventContacts(memberIds: readonly string[]): Promise
     - A view that the view cache restored keeps its saved contacts and makes no call (OnReady does nothing when
       WasCurrentViewRestoredFromCache is True). A restored view whose saved state has no fetched contacts (no saved
       state for the block, or the user left before the answer) calls as on a new visit.
-    - Decision W23: after the unmount, the flow skips its state write. */
+    - OnReady runs once per block, also when StrictMode (dev) runs the mount effect again (the once-guard of
+      useFlowState).
+    Flow scope (item 8): GetCacheableMemberContactList is a module action (R2, AssembleEventDetail_ContactList.js:291),
+    not a data action: it runs after the unmount, and its answer is dropped (`dispatch` is a no-op after the unmount).
+    Its failure goes to the flow handler with the flow scope (useFlowState, R6). */
 export function useAssembleEventContactList(
   blockId: string,
   contactIds: readonly string[],
 ): AssembleEventContactListState {
-  const isAlive = useIsAlive();
-  const readyOnce = useReadyOnce();
   const { state, dispatch, latest } = useFlowState({
     viewName: `Assemble.AssembleEventDetail_ContactList#${blockId.replace(/\$/g, '')}`,
     reducer: assembleEventContactListReducer,
     initial: initialAssembleEventContactListState(contactIds),
     parameters: { contactIds },
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (_isAlive, restored) => readyOnce(() => onReady(restored)),
+    onReady: (_isAlive, restored) => onReady(restored),
   });
 
   async function onReady(restored: boolean) {
     if (restored && latest.current.isDataFetched) return;
     const contacts = await fetchAssembleEventContacts(contactIds);
-    if (isAlive()) dispatch({ type: 'contactsFetched', contacts });
+    dispatch({ type: 'contactsFetched', contacts });
   }
 
   return state;

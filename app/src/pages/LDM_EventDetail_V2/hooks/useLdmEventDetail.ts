@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { fetchCoordinatorDetails, fetchEventByEventId, type DetailGuestItem } from '@/api/event';
 import { fetchHouseholdCoordinatesById } from '@/api/household';
 import { osImage } from '@/lib/os-assets';
@@ -11,8 +10,7 @@ import {
 import type { LdmEventDetailInputs } from '@/pages/LDM_EventDetail_V2/inputs';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { setPreloadObject, useFlowState, type IsAlive } from '@/platform/navigation';
+import { setPreloadObject, useFlowState } from '@/platform/navigation';
 import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/lib/orbit/actions';
 import { getOperatingSystem } from '@/lib/ubtConnectUtils/actions';
 import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
@@ -30,7 +28,6 @@ import {
   organiserMessageData,
   restoreLdmEventDetail,
   type ContactByEmailArgs,
-  type LdmEventDetailPatch,
   type LdmEventDetailState,
 } from './ldmEventDetailState';
 
@@ -93,22 +90,15 @@ const LDM_LOGO = 'img/Connect2_OrbitMobile_MUI.LDM_Logo.svg';
       variables and does nothing. Otherwise GetCoordinatorDetails (a failure keeps its defaults), then
       GetEventByEventId (OnAfterFetch: HasInformation = Out_HasContent, IsFetching False) and, on a forward visit only,
       AddAuditRequestAPIEvent(RequestAPI_EventDetail): a restored view without the answer fetches again without the
-      audit event (F40), so a visit sends one audit event. A failure sets HasFetchError and goes to the flow handler.
-    - Decision W23: after an unmount, a started flow skips its state writes only. Its audit event, its calls, its
-      navigation and its error still run, as in the old port. */
+      audit event (F40), so a visit sends at most one audit event (none when the user left before the answer: R1,
+      as TST). A failure sets HasFetchError and goes to the flow handler.
+    - Flow scope (item 8): GetCoordinatorDetails and GetEventByEventId are data actions (R1, `flow.fetch`): after the
+      unmount their answers and failures are dropped, so OnReady stops before the RequestAPI audit event and raises
+      nothing. The block events after an await stop (R3, `flow.events`; NavigateTo_HouseholdCarousel is an own action,
+      `flow.own`). The subscription checks and GetHouseholdCoordinates (a server action, R2) answer after leaving,
+      so the audit events after them still run. */
 export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEventDetailEvents): LdmEventDetailFlows {
-  /* OnReady runs once per block. StrictMode (dev) runs the mount effect again on the same block: the second call only
-     replaces the liveness check, so the first flow writes the state while the block is there and its calls and its
-     audit event run once. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: VIEW_NAME,
     reducer: ldmEventDetailReducer,
     initial: INITIAL_LDM_EVENT_DETAIL_STATE,
@@ -116,18 +106,8 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
     parameters: inputs,
     events,
     // The flows are defined below; the hook calls the ones of the newest render.
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady(restored);
-    },
+    onReady: (_isAlive, restored) => onReady(restored),
   });
-
-  /** A state write of a flow after an await, skipped after the unmount (W23). */
-  const write = (patch: LdmEventDetailPatch) => {
-    if (newestReadyRun.current()) dispatch(patch);
-  };
 
   /** Fetch at start and OnReady. `restored` is the flag of useFlowState: the restored re-run makes the same calls and
       writes, without the audit event. useFlowState sends a rejection to the flow handler. */
@@ -135,24 +115,30 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
     // restored without data: call again (F40; OutSystems keeps the skeleton)
     if (restored && !latest.current.isFetching) return;
     const callInputs = parameters.current;
-    fetchCoordinatorDetails(callInputs)
+    flow
+      .fetch(fetchCoordinatorDetails(callInputs)) // R1
       .then((coordinator) => {
-        write({ coordinator });
+        dispatch({ coordinator });
       })
       .catch(() => {
         // GetCoordinatorDetails keeps its defaults (Out_HasContent True); the view does not read its fetch error.
       });
     const start = getCurrentTimeInMill();
     try {
-      const out = await fetchEventByEventId(callInputs);
+      const out = await flow.fetch(fetchEventByEventId(callInputs)); // R1
       // OnAfterFetch_GetEventByEventId: HasInformation = Out_HasContent; Toggle_IsFetching(False).
-      write({ event: out.eventResponse, hasEventFetchError: false, hasInformation: out.hasContent, isFetching: false });
-      // One audit event per forward visit: the forward flow sent it (also after the unmount, W23).
+      dispatch({
+        event: out.eventResponse,
+        hasEventFetchError: false,
+        hasInformation: out.hasContent,
+        isFetching: false,
+      });
+      // A forward visit only (F40). After the unmount the flow stopped at the answer (R1): no audit event, as TST.
       if (!restored) {
         addAuditEvent_LDM('RequestAPI_EventDetail', { RequestTime: String(getCurrentTimeInMill() - start) });
       }
     } catch (e) {
-      write({ hasEventFetchError: true });
+      dispatch({ hasEventFetchError: true }); // a no-op after the unmount
       throw e;
     }
   };
@@ -172,17 +158,30 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
     const host = latest.current.event?.Host;
     if (!isHouseholdDisplayed || !host) return;
     if (host.RecordDisabled) await showUpgradePopUp();
-    else eventsRef.current.onNavigateToHouseholdDetail(host.HouseholderID);
+    else flow.events.onNavigateToHouseholdDetail(host.HouseholderID);
   };
+
+  /** NavigateTo_HouseholdCarousel, an own action of the block (R3: it stops after the unmount), with the screen's
+      Handler_NavigateTo_HouseholdCarousel: SetPreloadObject(the carousel list), then the event. On TST the screen
+      handler sets the preload (item8-w23-errorpage.md §4 N5), so after leaving neither runs. */
+  const navigateToHouseholdCarousel = flow.own(
+    (preloading: ReturnType<typeof carouselFilteredEventResults>['preloading'], householdId: string) => {
+      if (preloading) setPreloadObject(preloading);
+      flow.events.onNavigateToHouseholdCarousel(
+        householdId,
+        (latest.current.event?.Guests ?? []).map((g) => g.HouseholderID),
+      );
+    },
+  );
 
   /** OnHandle_GoToHousehold (ScreenBlock_EventDetail_V2.mvc.js :1505-1595): a displayed household: disabled record →
       App_Subscription_ShowUpgradePopUp. Else IsFreeSubscriptionPlan, IsRegionalSubscriptionPlan and
       CarouselFilteredEventResults(the guests, free or regional, the row number): the carousel list of the guests with
-      HouseholdDisplay (and without RecordDisabled under a free or regional plan) goes to SetPreloadObject, and the row
-      number goes down by the guests it leaves out before the row. Then AddAuditEventDetailEvent
-      (HostClickedGuestHousehold / GuestClickedOtherGuestHousehold) and NavigateTo_HouseholdCarousel with every guest's
-      HouseholderID. The event's other arguments (the list length, the row number, IsLimitedLDMHost) are not read by the
-      screen (LDM_EventDetail_V2.mvc.js :212-219), so they are not passed. */
+      HouseholdDisplay (and without RecordDisabled under a free or regional plan), and the row number goes down by the
+      guests it leaves out before the row. Then AddAuditEventDetailEvent (HostClickedGuestHousehold /
+      GuestClickedOtherGuestHousehold) and NavigateTo_HouseholdCarousel: the carousel list goes to SetPreloadObject and
+      the event gets every guest's HouseholderID. The event's other arguments (the list length, the row number,
+      IsLimitedLDMHost) are not read by the screen (LDM_EventDetail_V2.mvc.js :212-219), so they are not passed. */
   const goToHousehold = async (
     householdId: string,
     recordDisabled: boolean,
@@ -194,22 +193,18 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
       await showUpgradePopUp();
       return;
     }
-    const isFree = await isFreeSubscriptionPlan();
+    const isFree = await isFreeSubscriptionPlan(); // module actions: not wrapped, they answer after leaving
     const isRegional = await isRegionalSubscriptionPlan();
     const filtered = carouselFilteredEventResults(
       latest.current.event?.Guests ?? [],
       isFree || isRegional,
       currentRowNumber,
     );
-    if (filtered.preloading) setPreloadObject(filtered.preloading);
     const hosting = latest.current.event?.Host.Hosting ?? false;
     addAuditEvent_LDM(hosting ? 'HostClickedGuestHousehold' : 'GuestClickedOtherGuestHousehold', {
       HouseholdId: householdId,
     });
-    eventsRef.current.onNavigateToHouseholdCarousel(
-      householdId,
-      (latest.current.event?.Guests ?? []).map((g) => g.HouseholderID),
-    );
+    navigateToHouseholdCarousel(filtered.preloading, householdId);
   };
 
   /** OnHandle_HostCardAddress: online, with the host's and the main hall's addresses: GetHouseholdCoordinates
@@ -228,11 +223,11 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
       return;
     }
     try {
-      const coordinates = await fetchHouseholdCoordinatesById(host.HouseholderID);
+      const coordinates = await fetchHouseholdCoordinatesById(host.HouseholderID); // server action (R2)
       const mapsAddress = directionsQuery(host, coordinates);
       getOperatingSystem();
       addAuditEvent_LDM('MyTimelineGoogleMapsDirections', { EventDate: datePart(host.EventDate) });
-      eventsRef.current.onNavigateToWebMaps(1, mapsAddress);
+      flow.events.onNavigateToWebMaps(1, mapsAddress); // R3: nothing after the unmount
     } catch (e) {
       if (isSystemException(e)) throw e;
       const message = exceptionMessage(e);
@@ -259,7 +254,7 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
       if (bannerHeight !== latest.current.minBannerHeight) dispatch({ minBannerHeight: bannerHeight });
     },
     onHostInformation: (isHouseholdDisplayed) => {
-      hostInformation(isHouseholdDisplayed).catch(raiseToFlowHandler);
+      flow.run(() => hostInformation(isHouseholdDisplayed));
     },
     onContactHostMessage: () => {
       contactByMessage(hostMessageData(latest.current.event?.Host), false);
@@ -268,12 +263,10 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
       dispatch({ contactByPhoneData: hostPhoneCallData(latest.current.event?.Host) });
     },
     onHostAddress: () => {
-      hostCardAddress().catch(raiseToFlowHandler);
+      flow.run(() => hostCardAddress());
     },
     onGuestClicked: (guest, isHouseholdDisplayed, currentRowNumber) => {
-      goToHousehold(guest.HouseholderID, guest.RecordDisabled, isHouseholdDisplayed, currentRowNumber).catch(
-        raiseToFlowHandler,
-      );
+      flow.run(() => goToHousehold(guest.HouseholderID, guest.RecordDisabled, isHouseholdDisplayed, currentRowNumber));
     },
     onGuestMessage: (data) => {
       contactByMessage(data, false);
@@ -290,7 +283,7 @@ export function useLdmEventDetail(inputs: LdmEventDetailInputs, events: LdmEvent
     onContactByMessageEmail: () => {
       const args = contactByEmailArgs(latest.current);
       closeContactByMessage();
-      eventsRef.current.onNavigateToContactByEmail(args);
+      flow.events.onNavigateToContactByEmail(args);
     },
   };
 }

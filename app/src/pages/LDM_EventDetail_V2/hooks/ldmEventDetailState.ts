@@ -40,7 +40,7 @@ export interface LdmEventDetailState {
 }
 
 /** A change of the block variables: the assigned variables. */
-export type LdmEventDetailPatch = Partial<Omit<LdmEventDetailState, 'isSaved'>>;
+type LdmEventDetailPatch = Partial<Omit<LdmEventDetailState, 'isSaved'>>;
 
 /** SquarePhotoPx, MaxPhotoWidth, MaxPhotoHeight and MinBannerHeight defaults. */
 export const SQUARE_PHOTO_PX = 45;

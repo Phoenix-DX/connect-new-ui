@@ -11,6 +11,7 @@ import {
   type EventBookletMember,
 } from '@/api/event';
 import { UserException } from '@/legacy/os/exceptions';
+import { ControllerDisposedException, IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import type { EventBookletInputs } from '@/pages/EventBooklet/inputs';
 import type { PopupFilters } from '@/pages/EventBooklet/types';
 import { showFeedbackMessage } from '@/platform/feedback';
@@ -359,8 +360,15 @@ describe('useEventBooklet: screen actions', () => {
   });
 });
 
-describe('useEventBooklet after an unmount and in StrictMode (decision W23)', () => {
-  it('OnReady runs on after the unmount: the calls once, with the variables of the flow, and no screen write', async () => {
+/** The errors that reach the flow handler, without the ignorable ones (ControllerDisposedException of a left block). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
+
+describe('useEventBooklet after an unmount and in StrictMode (flow scope, item 8)', () => {
+  it('R3: unmount while SetBookletMaxRows is pending: the *_Async timers start no refresh, no state write', async () => {
     const maxRows = pending<undefined>();
     vi.mocked(setBookletMaxRows).mockReturnValue(maxRows.promise);
     const { unmount } = renderFlows();
@@ -369,21 +377,19 @@ describe('useEventBooklet after an unmount and in StrictMode (decision W23)', ()
     screenWrites.mockClear();
     maxRows.resolve(undefined);
     await settle();
-    expect(fetchEventBookletFilters).toHaveBeenCalledTimes(1);
-    expect(fetchEventBookletGuests).toHaveBeenCalledTimes(1);
-    expect(sent(fetchEventBookletGuests)).toMatchObject({
-      IsFetchingData: true,
-      PaginationSettings: { Guest_MaxRows: 10, Guest_PageNumber: 1, Guest_IsNewSearch: true },
-    });
+    expect(getLocalHelperRoles).not.toHaveBeenCalled();
+    expect(fetchEventBookletFilters).not.toHaveBeenCalled();
+    expect(fetchEventBookletGuests).not.toHaveBeenCalled();
     expect(screenWrites).not.toHaveBeenCalled();
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('a member click runs on after the unmount: the navigation and the event once, no screen write', async () => {
+  it('R2 then R3: unmount while CheckDirectoryAccess is pending: no navigation event, no ViewHousehold event', async () => {
     const info = vi.spyOn(log, 'info');
     const access = pending<boolean>();
     vi.mocked(checkDirectoryAccess).mockReturnValue(access.promise);
     const { result, unmount } = await loaded();
+    vi.mocked(raiseToFlowHandler).mockClear();
     act(() => {
       result.current.onClickedMember('880100');
     });
@@ -391,13 +397,17 @@ describe('useEventBooklet after an unmount and in StrictMode (decision W23)', ()
     screenWrites.mockClear();
     access.resolve(true);
     await settle();
-    expect(events.onNavigateToHouseholdDetail).toHaveBeenCalledTimes(1);
-    expect(info.mock.calls.filter((c) => c[0] === 'ApplicationEvent')).toHaveLength(1);
+    expect(events.onNavigateToHouseholdDetail).not.toHaveBeenCalled();
+    expect(info.mock.calls.filter((c) => c[0] === 'ApplicationEvent')).toEqual([]);
     expect(screenWrites).not.toHaveBeenCalled();
+    // The own action NavigateTo_HouseholdDetail ends the flow with an ignorable exception.
+    expect(vi.mocked(raiseToFlowHandler).mock.calls.map(([error]) => error)).toEqual([
+      expect.any(ControllerDisposedException),
+    ]);
     info.mockRestore();
   });
 
-  it('a failure after the unmount still goes to the flow handler, as in the old port', async () => {
+  it('R1: unmount while Get_EventBookletGuests is pending: its failure reaches no handler, no state write', async () => {
     let fail: (error: unknown) => void = () => undefined;
     vi.mocked(fetchEventBookletGuests).mockReturnValue(
       new Promise((_, reject) => {
@@ -409,8 +419,23 @@ describe('useEventBooklet after an unmount and in StrictMode (decision W23)', ()
     screenWrites.mockClear();
     fail(new Error('Request failed with status 500'));
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
+    expect(raisedErrors()).toEqual([]);
     expect(screenWrites).not.toHaveBeenCalled();
+  });
+
+  it('R1: invalid filters before the helper roles are fetched, then unmount: no Info message', async () => {
+    const maxRows = pending<undefined>();
+    vi.mocked(setBookletMaxRows).mockReturnValue(maxRows.promise);
+    const { result, unmount } = renderFlows();
+    const popup: PopupFilters = { ...result.current.state.availableFilters, IsGuest: false, IsHelper: false };
+    act(() => {
+      result.current.onApplyFilters(popup);
+    });
+    unmount();
+    await settle();
+    expect(getLocalHelperRoles).not.toHaveBeenCalled();
+    expect(showFeedbackMessage).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('runs OnReady once in StrictMode and still writes the state', async () => {

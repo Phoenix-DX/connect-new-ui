@@ -59,7 +59,7 @@ export interface AssembleSummaryListState {
   eventTypesStatus: FetchStatus;
 }
 
-export type AssembleSummaryListAction =
+type AssembleSummaryListAction =
   /** SetLocalSubdivisonId. */
   | { type: 'localSubdivisionSet'; localSubdivisionId: string }
   /** Refresh GetAssembleMeetingSummaryList starts. */

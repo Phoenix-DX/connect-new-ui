@@ -1,7 +1,6 @@
 import type { ContactByPhonePopupData } from '@/components/contact/ContactPopupByPhone/types';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback/feedbackStore';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { useFlowState } from '@/platform/navigation';
 import { hasAccessToRegion } from '@/lib/assemble/actions';
 import { getCacheableSignedPhotoURL, getSignedPhotosInBulk } from '@/lib/legacyShared/actions';
@@ -15,7 +14,6 @@ import {
   UNAVAILABLE,
   type AssembleEventContact,
 } from './assembleEventContacts';
-import { useIsAlive } from './blockLifecycle';
 
 /** The flows of the block AssembleEventDetail_Contact: the item click, the call and e-mail options and the two popups.
     The component AssembleEventDetail_Contact calls this hook.
@@ -76,18 +74,23 @@ export interface AssembleEventContactFlows {
     - Handler_ContactByEmail: the popup closes; the record's Email "Unavailable" → Info "Unfortunately, Email is not
       available" (it compares the record's Email, as compiled); else GetCacheableSignedPhotoURL and
       NavigateTo_EmailContact(URL, name, "", locality, country, e-mail, member id).
-    - Decision W23: after the unmount, a started flow skips its state writes only. */
+    Flow scope (item 8): HasAccessToRegion, App_Subscription_ShowUpgradePopUp and GetCacheableSignedPhotoURL are module
+    actions (R2, AssembleEventDetail_Contact.js:632, :640, :567): they run after the unmount, and the upgrade popup
+    still shows. The events NavigateTo_Household and NavigateTo_EmailContact go through `flow.events` (R3): on TST
+    their screen handlers start with ensureControllerAlive (screen_AssembleDetail.js:1049, :892), so an event from a
+    left block does nothing. A state write after the unmount is dropped (`dispatch`). A failure goes to the flow
+    handler with the flow scope (`flow.run`, R6). */
 export function useAssembleEventContact(
   blockId: string,
   contact: AssembleEventContact,
-  { onEmailContact, onNavigateToHousehold }: AssembleEventContactEvents,
+  events: AssembleEventContactEvents,
 ): AssembleEventContactFlows {
-  const isAlive = useIsAlive();
-  const { state, dispatch } = useFlowState({
+  const { state, dispatch, flow } = useFlowState({
     viewName: `Assemble.AssembleEventDetail_Contact#${blockId.replace(/\$/g, '')}`,
     reducer: assembleEventContactReducer,
     initial: INITIAL_ASSEMBLE_EVENT_CONTACT_STATE,
     parameters: { contact },
+    events,
   });
   const setPopupData = (data: ContactPopupData) => {
     dispatch({ type: 'contactPopupDataSet', contactPopupData: data });
@@ -101,13 +104,14 @@ export function useAssembleEventContact(
   const signedAvatar = async () => (avatar.SignedURL === '' ? signAvatar() : avatar.SignedURL);
 
   const onClickHostContact = async () => {
-    if (await hasAccessToRegion(c.CountryCode, c.LocalityId)) onNavigateToHousehold(c.HouseholdId);
+    if (await hasAccessToRegion(c.CountryCode, c.LocalityId))
+      flow.events.onNavigateToHousehold(c.HouseholdId); // R3
     else await showUpgradePopUp();
   };
   const onContactByMessage = async () => {
     setPopupData({ ...contactPopupData(c), IsLoading: true });
     const url = await signedAvatar();
-    if (isAlive()) setPopupData({ ...contactPopupData(c), ShowPopup: true, ImageURL: url, IsLoading: false });
+    setPopupData({ ...contactPopupData(c), ShowPopup: true, ImageURL: url, IsLoading: false });
   };
   const onContactByEmail = async () => {
     dispatch({ type: 'contactPopupClosed' });
@@ -116,7 +120,8 @@ export function useAssembleEventContact(
       return;
     }
     const url = await signAvatar();
-    onEmailContact({
+    // R3
+    flow.events.onEmailContact({
       avatarURL: url,
       contactName: c.ContactDetails.Name,
       contactSurname: '',
@@ -134,11 +139,10 @@ export function useAssembleEventContact(
     const phones = { MobilePhone: c.MobilePhoneNumber, HomePhone: c.HomePhoneNumber, WorkPhone: c.WorkPhoneNumber };
     setCallPopup({ ...phones, ContactPopupData: { ...contactPopupData(c), IsLoading: true } });
     const url = await signedAvatar();
-    if (isAlive())
-      setCallPopup({
-        ...phones,
-        ContactPopupData: { ...contactPopupData(c), ImageURL: url, ShowPopup: true, IsLoading: false },
-      });
+    setCallPopup({
+      ...phones,
+      ContactPopupData: { ...contactPopupData(c), ImageURL: url, ShowPopup: true, IsLoading: false },
+    });
   };
 
   return {
@@ -146,15 +150,23 @@ export function useAssembleEventContact(
     email: contactEmail(c),
     contactPopupData: state.contactPopupData,
     callPopup: state.callPopup,
-    onClickHostContact: () => void onClickHostContact().catch(raiseToFlowHandler),
-    onCallClicked: (n) => void onOptionsCall(n).catch(raiseToFlowHandler),
-    onEmailClicked: () => void onContactByMessage().catch(raiseToFlowHandler),
+    onClickHostContact: () => {
+      flow.run(onClickHostContact);
+    },
+    onCallClicked: (n) => {
+      flow.run(() => onOptionsCall(n));
+    },
+    onEmailClicked: () => {
+      flow.run(onContactByMessage);
+    },
     onCloseCallPopup: () => {
       dispatch({ type: 'callPopupClosed' });
     },
     onCancelContactByMessage: () => {
       dispatch({ type: 'contactPopupClosed' });
     },
-    onContactByEmail: () => void onContactByEmail().catch(raiseToFlowHandler),
+    onContactByEmail: () => {
+      flow.run(onContactByEmail);
+    },
   };
 }

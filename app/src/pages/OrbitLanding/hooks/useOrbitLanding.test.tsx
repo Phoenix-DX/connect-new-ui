@@ -5,6 +5,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { fetchEventsByMemberId, type EventsByMemberIdResult, type EventsSummaryItem } from '@/api/event';
 import { fetchOrbitHouseholdMembers, type OrbitHouseholdMember } from '@/api/household';
 import { CommunicationException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
+import { getPopupMeasurements, scrollContentToTop } from '@/pages/OrbitLanding/actions';
 import { OrbitLandingFilter } from '@/pages/OrbitLanding/staticEntities';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { log } from '@/platform/log/log';
@@ -28,6 +30,15 @@ vi.mock('@/api/event', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/api/event')>()),
   fetchEventsByMemberId: vi.fn(),
 }));
+/* The local reads and the scroll of the flows as spies; they run as compiled. */
+vi.mock('@/pages/OrbitLanding/actions', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/pages/OrbitLanding/actions')>();
+  return {
+    ...actual,
+    getPopupMeasurements: vi.fn(actual.getPopupMeasurements),
+    scrollContentToTop: vi.fn(actual.scrollContentToTop),
+  };
+});
 /* useFlowState sends a rejected OnReady to this flow handler; the member click sends its rejection here too. */
 vi.mock('@/platform/feedback/flowErrors', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/feedback/flowErrors')>()),
@@ -365,8 +376,16 @@ describe('useOrbitLanding', () => {
   });
 });
 
-describe('useOrbitLanding and decision W23', () => {
-  it('after the unmount, the started OnReady flow makes its next call once with the same variables and writes no state', async () => {
+describe('useOrbitLanding after an unmount (flow scope, item 8)', () => {
+  /** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1). */
+  const raisedErrors = () =>
+    vi
+      .mocked(raiseToFlowHandler)
+      .mock.calls.map(([error]) => error)
+      .filter((error) => !(error instanceof IgnorableSystemException));
+  const switchToSignedInMember = () => MEMBERS.map((m, i) => ({ ...m, isSelected: i === 1 }));
+
+  it('R1: unmount while GetHouseholdMembers is pending: OnAfterFetch does not run: no Get_EventsByMemberId, no state write', async () => {
     const members = pendingMembers();
     let renders = 0;
     const { unmount } = renderHook(
@@ -383,50 +402,65 @@ describe('useOrbitLanding and decision W23', () => {
     members.resolve(MEMBERS);
     await settle();
     expect(fetchOrbitHouseholdMembers).toHaveBeenCalledTimes(1);
-    expect(fetchEventsByMemberId).toHaveBeenCalledTimes(1);
-    expect(eventsBodies()[0]).toEqual({
-      SelectedMemberId: '7301',
-      IsFetchingData: true,
-      EventFilter: 1,
-      SortEventsASC: true,
-      Popup_SortByOpened: false,
-      Popup_FiltersOpened: false,
-      CurrentMemberId: '0',
-    });
+    expect(fetchEventsByMemberId).not.toHaveBeenCalled();
+    expect(getPopupMeasurements).not.toHaveBeenCalled();
     expect(orbitLandingReducer).not.toHaveBeenCalled();
     expect(renders).toBe(rendersAtUnmount);
-    expect(raiseToFlowHandler).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('an exception after the unmount still goes to the flow handler, once, without a state write', async () => {
+  it('R1: unmount while Get_EventsByMemberId is pending: the answer is dropped: no sort, no scroll, no measurements', async () => {
+    const answer = pendingEvents();
+    const { unmount } = renderHook(() => useOrbitLanding(events()), { wrapper: strictWrapper });
+    await settle();
+    expect(fetchEventsByMemberId).toHaveBeenCalledTimes(1);
+    unmount();
+    vi.mocked(orbitLandingReducer).mockClear();
+    answer.resolve(ANSWER);
+    await settle();
+    expect(scrollContentToTop).not.toHaveBeenCalled();
+    expect(getPopupMeasurements).not.toHaveBeenCalled();
+    expect(orbitLandingReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while Get_EventsByMemberId is pending: its failure reaches no handler and writes no state', async () => {
     const answer = pendingEvents();
     const { unmount } = renderHook(() => useOrbitLanding(events()), { wrapper: strictWrapper });
     await settle();
     unmount();
     vi.mocked(orbitLandingReducer).mockClear();
-    const error = new CommunicationException('offline');
-    answer.reject(error);
+    answer.reject(new CommunicationException('offline'));
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+    expect(raisedErrors()).toEqual([]);
     expect(orbitLandingReducer).not.toHaveBeenCalled();
   });
 
-  it('a member switch that ends after the unmount still raises its SwitchMember event, once, without a state write', async () => {
+  it('R1: a member switch whose refresh answers after the unmount: no SwitchMember event, no state write', async () => {
     const { result, unmount } = await loaded();
     const answer = pendingEvents();
     act(() => {
-      result.current.onClickedHouseholdMember(
-        MEMBERS.map((m, i) => ({ ...m, isSelected: i === 1 })),
-        MOCK_USER_ID,
-      );
+      result.current.onClickedHouseholdMember(switchToSignedInMember(), MOCK_USER_ID);
     });
     unmount();
     vi.mocked(orbitLandingReducer).mockClear();
     answer.resolve(ANSWER);
     await settle();
     expect(fetchEventsByMemberId).toHaveBeenCalledTimes(2);
-    expect(auditEvents()).toEqual([{ EventId: 'b04c43dd-331e-4dff-a1d6-c0b701802451', MemberId: MOCK_USER_ID }]);
+    expect(auditEvents()).toEqual([]);
     expect(orbitLandingReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('a member switch sends its failure to the flow handler with the flow scope', async () => {
+    const { result } = await loaded();
+    const error = new CommunicationException('offline');
+    vi.mocked(fetchEventsByMemberId).mockRejectedValueOnce(error);
+    act(() => {
+      result.current.onClickedHouseholdMember(switchToSignedInMember(), MOCK_USER_ID);
+    });
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+    expect(auditEvents()).toEqual([]);
   });
 });

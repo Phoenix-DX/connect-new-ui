@@ -1,11 +1,11 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { fetchEventsForMyTimeline, type EventCalendarFiltersAsText, type MyTimelineData } from '@/api/event';
 import { NotRegisteredException, UserException, exceptionMessage, isSystemException } from '@/legacy/os/exceptions';
 import type { HouseholdClick } from '@/pages/LDM_MyEvents_V2/components/EventCard_V2';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { addAuditEvent_LDM, getCurrentTimeInMill } from '@/lib/orbit/actions';
 import type { ContactByPhonePopupData, UI_ContactByMessage_WrapperData } from '@/lib/ubtConnectUtils/structures';
 import {
@@ -17,7 +17,6 @@ import {
   myTimelineCallInputs,
   restoreLdmMyEventsState,
   validateSameFilters,
-  type LdmMyEventsAction,
   type LdmMyEventsState,
 } from './ldmMyEventsState';
 
@@ -105,38 +104,27 @@ export interface LdmMyEventsFlows {
       GetMyTimelineData, then MyTimelineClearFilter with empty filters.
     - The event, household and contact handlers: audit events, the upgrade popup for a disabled record, the contact
       popups and the block events.
-    OnReady runs once per instance. Decision W23: after the unmount, a started flow skips its state writes, and its
-    audit events and raised errors still happen.
+    OnReady runs once per instance. Flow scope (item 8): GetEventsForMyTimeline is a data action (R1, `flow.fetch`):
+    after the unmount its answer and its failure are dropped, so GetMyTimelineData stops before the RequestAPI audit
+    event and raises nothing, and the filter flows stop before their filter audit events. The block events use
+    `flow.events` (R3).
     @origin Connect2_OrbitMobile_MUI.LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2 */
 export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
   const [initial] = useState(() => initialLdmMyEventsState(new Date()));
-  /* The once-guard of OnReady: StrictMode (dev) runs the mount effect twice on the same instance. The second call only
-     replaces the liveness check. */
-  const started = useRef(false);
-  const alive = useRef<IsAlive>(() => true);
-  const {
-    state,
-    dispatch,
-    latest,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, flow } = useFlowState({
     viewName: 'LDM_ScreenBlocks_V2.ScreenBlock_MyEvents_V2',
     reducer: ldmMyEventsReducer,
     initial,
     restore: restoreLdmMyEventsState,
     parameters: NO_PARAMETERS,
     events,
-    onReady: (isAlive, restored) => {
-      alive.current = isAlive;
-      if (started.current) return Promise.resolve();
-      started.current = true;
-      return onReady(restored);
-    },
+    // The flows are defined below; the hook calls the ones of the newest render.
+    onReady: (_isAlive, restored) => onReady(restored),
   });
 
-  /** A state write of a flow, skipped after the unmount (W23). */
-  const write = (action: LdmMyEventsAction) => {
-    if (alive.current()) dispatch(action);
+  /** The flows that the timeline waits for: an error goes to the flow handler with the scope (as `flow.run`). */
+  const raise = (e: unknown) => {
+    raiseToFlowHandler(e, flow);
   };
 
   /** Refresh Query GetEventsForMyTimeline: a failed fetch sets HasFetchError; OnAfterFetch replaces or appends the
@@ -144,25 +132,26 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
   async function refreshGetEventsForMyTimeline(): Promise<void> {
     let data: MyTimelineData;
     try {
-      data = await fetchEventsForMyTimeline(myTimelineCallInputs(latest.current));
+      data = await flow.fetch(fetchEventsForMyTimeline(myTimelineCallInputs(latest.current))); // R1
     } catch (e) {
-      write({ type: 'fetchFailed' });
+      dispatch({ type: 'fetchFailed' }); // a no-op after the unmount
       throw e;
     }
-    write({ type: 'fetched', data });
+    dispatch({ type: 'fetched', data });
   }
 
   async function getMyTimelineData(): Promise<void> {
-    write({ type: 'fetchStarted' });
+    dispatch({ type: 'fetchStarted' });
     const start = getCurrentTimeInMill();
     try {
       await refreshGetEventsForMyTimeline();
-      write({ type: 'fetchEnded' });
+      dispatch({ type: 'fetchEnded' });
       addAuditEvent_LDM('RequestAPI_CalendarEvents', { RequestTime: String(getCurrentTimeInMill() - start) });
     } catch (e) {
       if (e instanceof NotRegisteredException) throw new NotRegisteredException(exceptionMessage(e));
+      // ControllerDisposedException (R1 after the unmount) is a system exception: it goes on as it is.
       if (!isSystemException(e)) {
-        write({ type: 'fetchEnded' });
+        dispatch({ type: 'fetchEnded' });
         throw new UserException(exceptionMessage(e), UNKNOWN_ERROR);
       }
       throw e;
@@ -171,7 +160,7 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
 
   async function onReady(restored: boolean): Promise<void> {
     if (restored) {
-      write({ type: 'fetchEnded' });
+      dispatch({ type: 'fetchEnded' });
       return;
     }
     await getMyTimelineData();
@@ -179,14 +168,14 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
 
   async function onScrollEndingMyTimeline(): Promise<void> {
     if (!canFetchOlderEvents(latest.current, new Date())) return;
-    write({ type: 'olderWindowSet' });
+    dispatch({ type: 'olderWindowSet' });
     await getMyTimelineData();
   }
 
   /** OnHandle_SwipeUp (ScreenBlock_MyEvents_V2 :2335-2368): IncrementMyTimelineDates, then Refresh Query
       GetEventsForMyTimeline. The action has no exception handler: an error goes to the flow handler. */
   async function onHandleSwipeUp(): Promise<void> {
-    write({ type: 'olderWindowSet' });
+    dispatch({ type: 'olderWindowSet' });
     await refreshGetEventsForMyTimeline();
   }
 
@@ -195,13 +184,13 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
       addAuditEventFilterEvent('MyTimelineApplyFilter', selectedFilters);
       return;
     }
-    write({ type: 'filterApplied', filters: selectedFilters });
+    dispatch({ type: 'filterApplied', filters: selectedFilters });
     await getMyTimelineData();
     addAuditEventFilterEvent('MyTimelineApplyFilter', selectedFilters);
   }
 
   async function onHandleResetFilters(resetFilters: EventCalendarFiltersAsText): Promise<void> {
-    write({ type: 'filtersReset', filters: resetFilters });
+    dispatch({ type: 'filtersReset', filters: resetFilters });
     await getMyTimelineData();
     addAuditEventFilterEvent('MyTimelineClearFilter', { FromDate: '1900-01-01', ToDate: '1900-01-01', Localities: [] });
   }
@@ -213,21 +202,21 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
       return;
     }
     addAuditEvent_LDM('MyTimelineHouseholdClicked', { HouseholdId: click.householdId });
-    eventsRef.current.onNavigateToHouseholdCarousel(click.householdId, click.householdIdList);
+    flow.events.onNavigateToHouseholdCarousel(click.householdId, click.householdIdList);
   }
 
   return {
     state,
-    onScrollEnding: () => onScrollEndingMyTimeline().catch(raiseToFlowHandler),
-    onSwipeUp: () => onHandleSwipeUp().catch(raiseToFlowHandler),
-    onMyTimelineFilter: (selectedFilters) => onHandleMyTimelineFilter(selectedFilters).catch(raiseToFlowHandler),
-    onResetFilters: (resetFilters) => onHandleResetFilters(resetFilters).catch(raiseToFlowHandler),
+    onScrollEnding: () => onScrollEndingMyTimeline().catch(raise),
+    onSwipeUp: () => onHandleSwipeUp().catch(raise),
+    onMyTimelineFilter: (selectedFilters) => onHandleMyTimelineFilter(selectedFilters).catch(raise),
+    onResetFilters: (resetFilters) => onHandleResetFilters(resetFilters).catch(raise),
     onEventClicked: (eventHostId, eventId) => {
       addAuditEvent_LDM('MyTimelineEventClicked', { EventHostId: eventHostId });
-      eventsRef.current.onNavigateToEventDetail(eventHostId, eventId);
+      flow.events.onNavigateToEventDetail(eventHostId, eventId);
     },
     onHouseholdClicked: (click) => {
-      onHandleHouseholdClicked(click).catch(raiseToFlowHandler);
+      flow.run(() => onHandleHouseholdClicked(click));
     },
     onPhoneCall: (data) => {
       if (hasPhoneNumber(data)) dispatch({ type: 'phonePopupOpened', data });
@@ -237,7 +226,7 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
       dispatch({ type: 'messagePopupOpened', data });
     },
     onTryAgain: () => {
-      getMyTimelineData().catch(raiseToFlowHandler);
+      flow.run(() => getMyTimelineData());
     },
     onContactByPhoneClose: () => {
       dispatch({ type: 'phonePopupClosed' });
@@ -249,7 +238,7 @@ export function useLdmMyEvents(events: LdmMyEventsEvents): LdmMyEventsFlows {
       const data = latest.current.contactByMessageData;
       dispatch({ type: 'messagePopupClosed' });
       const popup = data.ContactPopupData ?? {};
-      eventsRef.current.onNavigateToContactByEmail(
+      flow.events.onNavigateToContactByEmail(
         popup.ImageURL ?? '',
         popup.Name ?? '',
         popup.Locality ?? '',

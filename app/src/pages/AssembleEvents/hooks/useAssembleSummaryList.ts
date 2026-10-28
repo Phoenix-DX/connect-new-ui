@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { fetchAssembleEventTypes, fetchAssembleMeetings, type AssembleEventFilter } from '@/api/event';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { setPreloadObject, useFlowState, type IsAlive } from '@/platform/navigation';
+import { setPreloadObject, useFlowState } from '@/platform/navigation';
 import { getAssembleEventListDateRangeFilter, getIANATimezone } from '@/pages/AssembleEvents/components/actions';
 import type { AssembleSummary_ListProps } from '@/pages/AssembleEvents/components/AssembleSummary_List';
 import {
@@ -10,7 +9,6 @@ import {
   listHeaderLabel,
   meetingListQuery,
   toListRows,
-  type AssembleSummaryListAction,
 } from './assembleSummaryListState';
 import { fetchUserSubdivision, isUsersOwnSubdivision } from './userSubdivision';
 
@@ -50,17 +48,14 @@ const scrollContentToTop = () => {
       GetCacheableUserInfo), then refreshes GetAssembleEventTypes, then GetAssembleMeetingSummaryList (the order of the
       capture). The errors of both go to the flow handler.
     - The flows read the newest variables (`latest`), as OutSystems assigns them at once.
-    - Decision W23: after an unmount, a started flow skips its state writes only. Its calls and its errors still
-      run. */
+    - Flow scope (item 8): GetAssembleEventTypes and GetAssembleMeetingSummaryList are data actions (R1,
+      `flow.fetch`): after the unmount their answers and failures are dropped. Their refreshes are own client actions
+      of the block (R3, `flow.own`; TST `ensureControllerAlive`, AssembleSummary_List.js:1504, :1565): when the user
+      leaves while OnReady waits for GetCacheableUserInfo (a module action), neither refresh starts. */
 export function useAssembleSummaryList(
   inputs: AssembleSummaryListInputs,
   events: AssembleSummaryListEvents,
 ): AssembleSummaryListFlows {
-  /* OnReady runs once per block. StrictMode (dev) runs the mount effect again on the same block: the second call only
-     replaces the liveness check, so the first flow writes the state while the block is there and calls each action
-     once. */
-  const readyStarted = useRef(false);
-  const newestReadyRun = useRef<IsAlive>(() => true);
   // OnInitialize: the variables of a new view (a restored view starts from its saved variables).
   const [initial] = useState(() => initialAssembleSummaryListState());
   const {
@@ -69,6 +64,7 @@ export function useAssembleSummaryList(
     latest,
     parameters,
     events: eventsRef,
+    flow,
   } = useFlowState({
     viewName: VIEW_NAME,
     reducer: assembleSummaryListReducer,
@@ -76,22 +72,13 @@ export function useAssembleSummaryList(
     parameters: inputs,
     events,
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive, restored) => {
-      newestReadyRun.current = isAlive;
-      if (readyStarted.current) return Promise.resolve();
-      readyStarted.current = true;
-      return onReady(restored);
-    },
+    onReady: (_isAlive, restored) => onReady(restored),
   });
 
-  /** A state write of a flow, skipped after the unmount (W23). */
-  const write = (action: AssembleSummaryListAction) => {
-    if (newestReadyRun.current()) dispatch(action);
-  };
-
   /** Refresh GetAssembleMeetingSummaryList for a page, with the newest filter, range and time zone, and its
-      OnAfterFetch: the meetings (appended or in place of the list), HasMoreRecords, IsHeaderLoading False. */
-  const refreshSummaryList = async (q: { page: number; local: string; append: boolean }) => {
+      OnAfterFetch: the meetings (appended or in place of the list), HasMoreRecords, IsHeaderLoading False. An own
+      client action of the block (R3). */
+  const refreshSummaryList = flow.own(async (q: { page: number; local: string; append: boolean }) => {
     const v = latest.current;
     const query = meetingListQuery(parameters.current.subdivisionId, {
       filter: v.filter,
@@ -100,27 +87,28 @@ export function useAssembleSummaryList(
       local: q.local,
       timezone: v.deviceTimezone,
     });
-    write({ type: 'summaryFetching' });
+    dispatch({ type: 'summaryFetching' });
     try {
-      const page = await fetchAssembleMeetings(query);
-      write({ type: 'summaryFetched', rows: toListRows(page), append: q.append });
+      const page = await flow.fetch(fetchAssembleMeetings(query)); // R1
+      dispatch({ type: 'summaryFetched', rows: toListRows(page), append: q.append });
     } catch (e) {
-      write({ type: 'summaryFailed' });
+      dispatch({ type: 'summaryFailed' });
       throw e;
     }
-  };
+  });
 
-  /** Refresh GetAssembleEventTypes and its OnAfterFetch: the meeting types of the filter. */
-  const refreshEventTypes = async () => {
-    write({ type: 'eventTypesFetching' });
+  /** Refresh GetAssembleEventTypes and its OnAfterFetch: the meeting types of the filter. An own client action of the
+      block (R3). */
+  const refreshEventTypes = flow.own(async () => {
+    dispatch({ type: 'eventTypesFetching' });
     try {
-      const types = await fetchAssembleEventTypes();
-      write({ type: 'eventTypesFetched', types });
+      const types = await flow.fetch(fetchAssembleEventTypes()); // R1
+      dispatch({ type: 'eventTypesFetched', types });
     } catch (e) {
-      write({ type: 'eventTypesFailed' });
+      dispatch({ type: 'eventTypesFailed' });
       throw e;
     }
-  };
+  });
 
   /** OnReady. useFlowState sends a rejection to the flow handler. */
   async function onReady(restored: boolean) {
@@ -133,14 +121,16 @@ export function useAssembleSummaryList(
       fetchSummary = v.summaryStatus !== 'fetched';
       fetchEventTypes = v.filter.AssembleEventType.length === 0 && v.eventTypesStatus !== 'fetched';
     } else {
-      // SetLocalSubdivisonId.
+      // SetLocalSubdivisonId. GetCacheableUserInfo is a module action: not wrapped.
       const { subdivisionId } = parameters.current;
       local = isUsersOwnSubdivision(subdivisionId) ? (await fetchUserSubdivision()).id : subdivisionId;
-      write({ type: 'localSubdivisionSet', localSubdivisionId: local });
+      dispatch({ type: 'localSubdivisionSet', localSubdivisionId: local });
     }
-    if (fetchEventTypes) refreshEventTypes().catch(raiseToFlowHandler);
+    // The two refreshes are own actions (R3): after the unmount each one throws ControllerDisposedException at its
+    // start, which the flow handler drops. The async wrappers turn that throw into a rejection for `flow.run`.
+    if (fetchEventTypes) flow.run(async () => refreshEventTypes());
     if (fetchSummary)
-      refreshSummaryList({ page: latest.current.pageNumber, local, append: false }).catch(raiseToFlowHandler);
+      flow.run(async () => refreshSummaryList({ page: latest.current.pageNumber, local, append: false }));
   }
 
   /** Refresh_EventList(Filter): IsFiltered, ScrollToTop JS, the filter label, the list cleared, page 1, the date range
@@ -159,7 +149,7 @@ export function useAssembleSummaryList(
   /** Handler_ApplyFilters(In_AssembleMeetingFilter): the filter, the drawer closes, Refresh_EventList. */
   const applyFilters = (filter: AssembleEventFilter) => {
     dispatch({ type: 'filtersApplied', filter });
-    refreshEventList(filter).catch(raiseToFlowHandler);
+    flow.run(() => refreshEventList(filter));
   };
 
   return {
@@ -181,7 +171,7 @@ export function useAssembleSummaryList(
     // Handler_ClearFilters: no meeting type selected, then Refresh_EventList.
     onClearFilters: () => {
       dispatch({ type: 'filtersCleared' });
-      refreshEventList(latest.current.filter).catch(raiseToFlowHandler);
+      flow.run(() => refreshEventList(latest.current.filter));
     },
     onApplyFilters: applyFilters,
     // List_AssembleSummaryCardsOnScrollEnding: when the list is fetched and the last page was full, the next page.
@@ -190,7 +180,7 @@ export function useAssembleSummaryList(
       if (v.summaryStatus !== 'fetched' || !v.hasMoreRecords) return;
       const page = v.pageNumber + 1;
       dispatch({ type: 'nextPageRequested' });
-      refreshSummaryList({ page, local: v.localSubdivisionId, append: true }).catch(raiseToFlowHandler);
+      flow.run(() => refreshSummaryList({ page, local: v.localSubdivisionId, append: true }));
     },
     // OnClick_AssembleMeetingSummaryCard: nothing for an unavailable meeting; else the AssembleDetailsPreloading
     // object, then NavigateTo_AssembleDetail(SeriesId, EventId, DateTime).

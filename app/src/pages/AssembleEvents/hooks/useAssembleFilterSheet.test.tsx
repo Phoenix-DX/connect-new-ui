@@ -3,6 +3,7 @@ import { StrictMode, type ReactNode } from 'react';
 import { MemoryRouter } from 'react-router';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { CountryWithMapPosition } from '@/api/country';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { confirmAction, showUpgradePopUp } from '@/platform/feedback/dialogs';
 import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
 import { mockUserInformation } from '@/platform/session/mockUser';
@@ -82,6 +83,12 @@ const settle = () =>
   act(async () => {
     await new Promise((resolve) => setTimeout(resolve, 0));
   });
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R3). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 
 let events: AssembleFilterSheetEvents;
 const renderFlows = (strict = false) =>
@@ -135,16 +142,53 @@ describe('useAssembleFilterSheet', () => {
     expect(result.current.isCountriesDataFetched).toBe(false);
   });
 
-  it('W23: an unmount while the countries load skips the state writes; the call still runs', async () => {
+  it('R3: unmount while GetCacheableUserInfo is pending: FetchCountries does not start; no state write, no raise', async () => {
+    const userHall = pending<UserSubdivision>(vi.mocked(fetchUserSubdivision));
+    const { unmount } = renderFlows();
+    await settle();
+    unmount();
+    vi.mocked(assembleFilterSheetReducer).mockClear();
+    userHall.resolve(USER_HALL);
+    await settle();
+    expect(getUserInformation).not.toHaveBeenCalled();
+    expect(getCacheableRegionSubscribedCountries).not.toHaveBeenCalled();
+    expect(assembleFilterSheetReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('GetCacheableRegionSubscribedCountries (a module action) answers after the unmount: no state write, no raise', async () => {
     const countries = pending<CountryWithMapPosition[]>(vi.mocked(getCacheableRegionSubscribedCountries));
     const { unmount } = renderFlows();
     await settle();
     unmount();
-    const writes = vi.mocked(assembleFilterSheetReducer).mock.calls.length;
+    vi.mocked(assembleFilterSheetReducer).mockClear();
     countries.resolve(COUNTRIES);
     await settle();
     expect(getCacheableRegionSubscribedCountries).toHaveBeenCalledTimes(1);
-    expect(vi.mocked(assembleFilterSheetReducer).mock.calls).toHaveLength(writes);
+    expect(assembleFilterSheetReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('HasAccessToRegion (a module action) answers after the unmount: ConfirmAction still opens; an access writes no state', async () => {
+    const { result, unmount } = renderFlows(true);
+    await settle();
+    const noAccess = pending<boolean>(vi.mocked(hasAccessToRegion));
+    act(() => {
+      result.current.onCountryClicked('GB');
+    });
+    const access = pending<boolean>(vi.mocked(hasAccessToRegion));
+    act(() => {
+      result.current.onCountryClicked('NZ');
+    });
+    unmount();
+    vi.mocked(assembleFilterSheetReducer).mockClear();
+    noAccess.resolve(false);
+    access.resolve(true);
+    await settle();
+    expect(confirmAction).toHaveBeenCalledTimes(1);
+    expect(confirmAction).toHaveBeenCalledWith('b5-FreeSubscriptionAlert');
+    expect(assembleFilterSheetReducer).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('the search: a term filters the shown list; an empty term loads the countries again', async () => {
@@ -209,5 +253,18 @@ describe('useAssembleFilterSheet', () => {
     expect(events.onCancel).toHaveBeenCalledTimes(1);
     result.current.onFreeSubscriptionAlert();
     expect(showUpgradePopUp).toHaveBeenCalledTimes(1);
+  });
+
+  it('a failed country click goes to the flow handler with the flow scope', async () => {
+    const error = new Error('No user information');
+    vi.mocked(hasAccessToRegion).mockRejectedValueOnce(error);
+    const { result } = renderFlows();
+    await settle();
+    act(() => {
+      result.current.onCountryClicked('GB');
+    });
+    await settle();
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+    expect(confirmAction).not.toHaveBeenCalled();
   });
 });

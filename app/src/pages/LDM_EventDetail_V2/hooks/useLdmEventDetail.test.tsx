@@ -11,6 +11,7 @@ import {
 } from '@/api/event';
 import { fetchHouseholdCoordinatesById } from '@/api/household';
 import { UserException } from '@/legacy/os/exceptions';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { coordinatorDetails, eventCalendarDetail, ldmEventById } from '@/mocks/fictional/ldm';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs';
@@ -136,6 +137,12 @@ function deferred<T>() {
     },
   };
 }
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 const reducerCalls = () => vi.mocked(ldmEventDetailReducer).mock.calls.length;
 const auditNames = () => vi.mocked(addAuditEvent_LDM).mock.calls.map(([name]) => name);
 /** The first audit event is AddAuditRequestAPIEvent(RequestAPI_EventDetail) with the request time in ms. */
@@ -273,7 +280,7 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
     expect(addAuditEvent_LDM).not.toHaveBeenCalled();
   });
 
-  it('F40: left after the coordinator answer and before the event, back: fetches again, one audit event in total', async () => {
+  it('F40: left after the coordinator answer and before the event, back: fetches again, no RequestAPI audit event (R1)', async () => {
     const event = deferred<EventByEventIdData>();
     const coordinator = deferred<CoordinatorDetailsData>();
     vi.mocked(fetchEventByEventId).mockReturnValueOnce(event.promise);
@@ -286,11 +293,10 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
     const saved = forward.result.current.state;
     expect(saved).toMatchObject({ isSaved: true, isFetching: true, event: null });
     forward.unmount();
-    // The forward flow sends its audit event after the unmount (W23).
+    // Flow scope (item 8), R1: the forward flow stops at the answer after the unmount, without its audit event.
     event.resolve(eventAnswer('70342'));
     await settle();
-    expect(addAuditEvent_LDM).toHaveBeenCalledTimes(1);
-    expectRequestAudit();
+    expect(addAuditEvent_LDM).not.toHaveBeenCalled();
 
     viewCache.restored = true;
     viewCache.saved = saved;
@@ -307,7 +313,8 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
       event: eventAnswer('70342').eventResponse,
       coordinator: coordinatorAnswer('70342'),
     });
-    expect(addAuditEvent_LDM).toHaveBeenCalledTimes(1);
+    // The restored re-run sends no audit event (F40); TST does nothing on a restored view (ED :2007-2008).
+    expect(addAuditEvent_LDM).not.toHaveBeenCalled();
   });
 
   it('F40: a restored view after a failed GetEventByEventId fetches again, without the audit event', async () => {
@@ -333,8 +340,8 @@ describe('useLdmEventDetail: fetch at start and OnReady', () => {
   });
 });
 
-describe('useLdmEventDetail: decision W23 (unmount while the flow runs)', () => {
-  it('a success after the unmount still sends the audit event once and writes no state', async () => {
+describe('useLdmEventDetail after an unmount (flow scope, item 8)', () => {
+  it('R1: unmount while GetEventByEventId is pending: no RequestAPI audit event, no state write, nothing raised', async () => {
     const event = deferred<EventByEventIdData>();
     const coordinator = deferred<CoordinatorDetailsData>();
     vi.mocked(fetchEventByEventId).mockReturnValueOnce(event.promise);
@@ -346,12 +353,12 @@ describe('useLdmEventDetail: decision W23 (unmount while the flow runs)', () => 
     coordinator.resolve(coordinatorAnswer('70342'));
     event.resolve(eventAnswer('70342'));
     await settle();
-    expect(addAuditEvent_LDM).toHaveBeenCalledTimes(1);
-    expectRequestAudit();
+    expect(addAuditEvent_LDM).not.toHaveBeenCalled();
     expect(reducerCalls()).toBe(writes);
+    expect(raisedErrors()).toEqual([]);
   });
 
-  it('a failure after the unmount still goes to the flow handler once and writes no state', async () => {
+  it('R1: unmount while GetEventByEventId is pending: its failure reaches no handler and writes no state', async () => {
     const event = deferred<EventByEventIdData>();
     vi.mocked(fetchEventByEventId).mockReturnValueOnce(event.promise);
     const { unmount } = renderFlows();
@@ -361,12 +368,11 @@ describe('useLdmEventDetail: decision W23 (unmount while the flow runs)', () => 
     const error = new Error('down');
     event.reject(error);
     await settle();
-    expect(raiseToFlowHandler).toHaveBeenCalledTimes(1);
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(error, expect.anything());
+    expect(raisedErrors()).toEqual([]);
     expect(reducerCalls()).toBe(writes);
   });
 
-  it('the directions started before the unmount still send the audit event and open the maps', async () => {
+  it('R2 + R3: GetHouseholdCoordinates answers after the unmount: the audit event runs, NavigateTo_WebMaps does not', async () => {
     const { result, unmount } = await loaded();
     const coordinates = deferred<{ Latitude: string; Longitude: string; UseCoordinates: boolean }>();
     vi.mocked(fetchHouseholdCoordinatesById).mockReturnValueOnce(coordinates.promise);
@@ -377,7 +383,28 @@ describe('useLdmEventDetail: decision W23 (unmount while the flow runs)', () => 
     coordinates.resolve({ Latitude: '-38.7180', Longitude: '-62.2650', UseCoordinates: true });
     await settle();
     expect(auditNames()).toEqual(['RequestAPI_EventDetail', 'MyTimelineGoogleMapsDirections']);
-    expect(events.onNavigateToWebMaps).toHaveBeenCalledTimes(1);
+    expect(events.onNavigateToWebMaps).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R3: the subscription checks answer after the unmount: the audit event runs; no carousel preload, no NavigateTo_HouseholdCarousel', async () => {
+    const { result, unmount } = await loaded();
+    const [, second] = eventAnswer('70342').eventResponse.Guests;
+    if (!second) throw new Error('no guest');
+    const isFree = deferred<boolean>();
+    vi.mocked(isFreeSubscriptionPlan).mockReturnValueOnce(isFree.promise);
+    clearPreloadObject();
+    act(() => {
+      result.current.onGuestClicked(second, true, 1);
+    });
+    unmount();
+    isFree.resolve(false);
+    await settle();
+    expect(isRegionalSubscriptionPlan).toHaveBeenCalledTimes(1);
+    expect(auditNames()).toEqual(['RequestAPI_EventDetail', 'GuestClickedOtherGuestHousehold']);
+    expect(getPreloadObject()).toBeNull();
+    expect(events.onNavigateToHouseholdCarousel).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
   });
 });
 

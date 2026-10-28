@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import {
   fetchMilestoneBlock,
   fetchMilestoneBlockCaptions,
@@ -8,9 +7,9 @@ import {
 import { fetchLegacySignedImageURL } from '@/api/image';
 import type { ContactByPhonePopupData } from '@/components/contact/ContactPopupByPhone/types';
 import { showUpgradePopUp } from '@/platform/feedback/dialogs/subscription';
-import { isUserException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { isUserException } from '@/platform/feedback/flowErrors';
 import { log } from '@/platform/log/log';
-import { useFlowState, type IsAlive } from '@/platform/navigation';
+import { useFlowState } from '@/platform/navigation';
 import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/lib/legacyShared/actions';
 import { checkDirectoryAccess, getFormattedDateTimeById } from '@/lib/orbit/actions';
 import { DirectoryAPIFilter, ImageSigningSize } from '@/lib/orbit/staticEntities';
@@ -24,7 +23,6 @@ import {
   milestoneBlockCallInputs,
   milestoneBlockReducer,
   MILESTONE_BLOCKS,
-  type MilestoneBlockAction,
   type MilestoneBlockInputs,
 } from './milestoneBlockState';
 
@@ -118,21 +116,18 @@ export interface MilestoneBlockFlows {
       restored view); a restored view without its data runs OnReady as a new visit (reads only).
     - OnInitialize (MealGuest, MealHelper) and the start of OnReady (AccommodationGuest, AccommodationHelper) close
       both popups, also on a restored view (`restore`).
-    - Decision W23: a flow that started runs to its end after the unmount; only its state writes stop. */
+    - Flow scope (item 8): the data action and GetCaptions are data actions (R1, `flow.fetch`): after the unmount
+      OnReady stops at the answer (no GetCaptions) and a late GetCaptions failure raises nothing. CheckDirectoryAccess
+      (a server action, R2) answers after leaving: the upgrade popup still shows, but NavigateTo_HouseholdDetail is an
+      own action of the block (R3, `flow.own`), so the event and the ViewHousehold application event after it stop.
+      The cache module actions of the popups run, and their state writes are dropped (`dispatch`). */
 export function useMilestoneBlock(
   kind: MilestoneBlockKind,
   inputs: MilestoneBlockInputs,
   events: MilestoneBlockEvents,
 ): MilestoneBlockFlows {
   const settings = MILESTONE_BLOCKS[kind];
-  const readyIsAlive = useRef<IsAlive>(() => true);
-  const {
-    state,
-    dispatch,
-    latest,
-    parameters,
-    events: eventsRef,
-  } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: settings.viewName,
     reducer: milestoneBlockReducer,
     initial: initialMilestoneBlockState(kind),
@@ -140,77 +135,70 @@ export function useMilestoneBlock(
     events,
     ...(settings.closesPopupsOnStart ? { restore: closePopups } : {}),
     // The flow is defined below; the hook calls the one of the newest render.
-    onReady: (isAlive, restored) => {
-      readyIsAlive.current = isAlive;
-      return onReady(isAlive, restored);
-    },
+    onReady: (_isAlive, restored) => onReady(restored),
     // As the old port of ScreenBlock_AccommodationHost: the first frame is the skeleton.
     beforePaint: true,
   });
 
-  const isAlive: IsAlive = () => readyIsAlive.current();
-  /** A state write of a flow that an event started, skipped after the unmount (W23). */
-  const write = (action: MilestoneBlockAction) => {
-    if (isAlive()) dispatch(action);
-  };
   const callInputs = () => milestoneBlockCallInputs(kind, latest.current, parameters.current);
 
   /** RefreshCaptionsData: GetCaptions → OnAfterFetch_GetCaptions; UnknownError → IsFetchingCaptionData False. */
   const refreshCaptionsData = async () => {
     if (kind === 'mealHost') return;
     try {
-      const out = await fetchMilestoneBlockCaptions(kind, callInputs());
-      write({ type: 'captionsFetched', success: out.Success, photobookCaption: out.PhotobookCaption });
+      const out = await flow.fetch(fetchMilestoneBlockCaptions(kind, callInputs())); // R1
+      dispatch({ type: 'captionsFetched', success: out.Success, photobookCaption: out.PhotobookCaption });
     } catch (e) {
       if (!isUserException(e, 'Connect2_OrbitMobile_MUI.UnknownError')) throw e;
-      write({ type: 'captionsFailed' });
+      dispatch({ type: 'captionsFailed' });
     }
   };
 
   /** OnReady. A view restored from the cache with its data does nothing (see above). */
-  const onReady = async (isReadyAlive: IsAlive, restored: boolean) => {
+  const onReady = async (restored: boolean) => {
     if (restored && hasMilestoneBlockData(latest.current)) return;
     // RefreshData (MealHost: OnReady) → IsFetchingData True and the data action.
     dispatch({ type: 'fetchStarted' });
-    const result = await fetchMilestoneBlock(kind, callInputs());
-    if (!isReadyAlive()) return;
+    const result = await flow.fetch(fetchMilestoneBlock(kind, callInputs())); // R1
     dispatch({ type: 'dataFetched', result, fetchesCaptions: settings.hasCaptions });
     // JS node RefreshCaptions: $actions.RefreshCaptionsData(), not awaited.
-    if (settings.hasCaptions) void refreshCaptionsData().catch(raiseToFlowHandler);
+    if (settings.hasCaptions) flow.run(refreshCaptionsData);
   };
 
   const phonePopup = (patch: Partial<ContactPopupData>, phones?: Partial<ContactByPhonePopupData>) => {
-    write({ type: 'contactByPhoneChanged', patch, phones });
+    dispatch({ type: 'contactByPhoneChanged', patch, phones });
   };
   const messagePopup = (
     patch: Partial<ContactPopupData>,
     wrapper?: Partial<UI_ContactByMessage_WrapperData>,
     countryName?: string,
   ) => {
-    write({ type: 'contactByMessageChanged', patch, wrapper, countryName });
+    dispatch({ type: 'contactByMessageChanged', patch, wrapper, countryName });
   };
 
   /** OnHandle_ClickedMember(HouseholdId, Type = DirectoryAPIFilter.Member): CheckDirectoryAccess; with access
       NavigateTo_HouseholdDetail, then OnApplicationEvent_ViewHousehold (logged with its ids, decision U17); without it
       App_Subscription_ShowUpgradePopUp. */
+  /** NavigateTo_HouseholdDetail(HouseholdId), an own action of the block (R3: it stops after the unmount). */
+  const navigateToHouseholdDetail = flow.own((householdId: string) => {
+    flow.events.onNavigateToHouseholdDetail(householdId);
+  });
+  const clickedMember = async (householdId: string) => {
+    // CheckDirectoryAccess: a module action with a server action (R2), not wrapped.
+    if (await checkDirectoryAccess(householdId, DirectoryAPIFilter.Member)) {
+      navigateToHouseholdDetail(householdId);
+      log.info('ApplicationEvent', {
+        Event: 'ViewHousehold',
+        TargetHouseholdId: householdId,
+        MilestoneId: parameters.current.In_MilestoneId,
+        EventId: latest.current.data.EventDetails.Id,
+      });
+    } else {
+      await showUpgradePopUp(); // module action: runs after leaving, as on TST
+    }
+  };
   const onClickedMember = (householdId: string) => {
-    void (async () => {
-      try {
-        if (await checkDirectoryAccess(householdId, DirectoryAPIFilter.Member)) {
-          eventsRef.current.onNavigateToHouseholdDetail(householdId);
-          log.info('ApplicationEvent', {
-            Event: 'ViewHousehold',
-            TargetHouseholdId: householdId,
-            MilestoneId: parameters.current.In_MilestoneId,
-            EventId: latest.current.data.EventDetails.Id,
-          });
-        } else {
-          await showUpgradePopUp();
-        }
-      } catch (e) {
-        raiseToFlowHandler(e);
-      }
-    })();
+    flow.run(() => clickedMember(householdId));
   };
 
   /** BuildMemberCallData / BuildCallDataMember(Phone, SignedPhotoURL, LocalityId, MemberId, CallName): the popup opens
@@ -269,7 +257,7 @@ export function useMilestoneBlock(
     signedPhotoURL: string,
   ) => {
     if (phoneNumber === '') return;
-    void buildMemberCallData(phoneNumber, signedPhotoURL, localityId, memberId, callName).catch(raiseToFlowHandler);
+    flow.run(() => buildMemberCallData(phoneNumber, signedPhotoURL, localityId, memberId, callName));
   };
 
   /** BuildCallDataHost(Phone, SignedPhotoURL, LocalityId, CountryName, HouseholdSurname, HouseholdName): Name,
@@ -312,9 +300,7 @@ export function useMilestoneBlock(
   const onClickedHostPhone = (phoneNumber: string) => {
     if (phoneNumber === '') return;
     const h = latest.current.data.HostInformation;
-    void buildCallDataHost(h.Phone, h.LocalityId, h.CountryName, h.HouseholdSurname, h.HouseholdName).catch(
-      raiseToFlowHandler,
-    );
+    flow.run(() => buildCallDataHost(h.Phone, h.LocalityId, h.CountryName, h.HouseholdSurname, h.HouseholdName));
   };
 
   /** OnHandle_ContactByPhone_Cancel: ShowPopup False. */
@@ -353,7 +339,7 @@ export function useMilestoneBlock(
       { Phone: h.MobilePhone, Email: h.Email },
       h.CountryName,
     );
-    void (async () => {
+    flow.run(async () => {
       const tz = await getCacheableTimezoneInfo(h.LocalityId);
       const imageURL = await fetchLegacySignedImageURL(
         h.HouseholderId,
@@ -367,7 +353,7 @@ export function useMilestoneBlock(
         ImageURL: imageURL,
         ...(fetchingTimezone ? { IsFetchingTimezone: false } : {}),
       });
-    })().catch(raiseToFlowHandler);
+    });
   };
 
   /** OnHandle_ContactHostByMessage_Cancel: ShowPopup False. */
@@ -397,7 +383,7 @@ export function useMilestoneBlock(
     const m = latest.current.contactByMessagePopupData.UI_ContactByMessage_WrapperData;
     const c = m.ContactPopupData ?? {};
     const d = latest.current.data;
-    eventsRef.current.onNavigateToContactByEmail(
+    flow.events.onNavigateToContactByEmail(
       c.ImageURL ?? '',
       c.Name ?? '',
       d.HostInformation.HouseholdSurname,
@@ -414,7 +400,7 @@ export function useMilestoneBlock(
       In_PreloadEventName). */
   const onContactHelpdesk = () => {
     const p = parameters.current;
-    eventsRef.current.onNavigateToContactHelpdesk(
+    flow.events.onNavigateToContactHelpdesk(
       subject(),
       settings.helpdeskEventNameIsEventName ? p.In_PreloadEventName : p.In_PreloadMilestoneName,
     );
@@ -425,7 +411,7 @@ export function useMilestoneBlock(
   const onClickGuestArrangements = (memberId: string, hasGuestArrangements: boolean) => {
     if (!hasGuestArrangements) return;
     const p = parameters.current;
-    eventsRef.current.onNavigateToGuestArrangements(
+    flow.events.onNavigateToGuestArrangements(
       memberId,
       p.In_OrbitMilestoneTypeId,
       latest.current.data.MilestoneTitle,

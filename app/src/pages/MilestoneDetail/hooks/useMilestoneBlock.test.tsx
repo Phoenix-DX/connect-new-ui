@@ -11,11 +11,13 @@ import {
   type MilestoneBlockResult,
 } from '@/api/event/milestoneBlocks';
 import { fetchLegacySignedImageURL } from '@/api/image';
+import { IgnorableSystemException } from '@/legacy/os/os-exceptions';
 import { UserException, raiseToFlowHandler } from '@/platform/feedback/flowErrors';
+import { addLogSink, type LogEntry } from '@/platform/log/log';
 import { useWasRestoredFromCache } from '@/platform/navigation/hooks';
 import { enterView, resetViewCache, saveView } from '@/platform/navigation/viewCache';
 import { getCacheableMemberContactList, getCacheableTimezoneInfo } from '@/lib/legacyShared/actions';
-import { getFormattedDateTimeById } from '@/lib/orbit/actions';
+import { checkDirectoryAccess, getFormattedDateTimeById } from '@/lib/orbit/actions';
 import type { MilestoneBlockInputs } from './milestoneBlockState';
 import { useMilestoneBlock, type MilestoneBlockEvents } from './useMilestoneBlock';
 
@@ -33,6 +35,10 @@ vi.mock('@/lib/legacyShared/actions', async (importOriginal) => ({
   getCacheableMemberContactList: vi.fn(),
   getCacheableTimezoneInfo: vi.fn(),
 }));
+vi.mock('@/lib/orbit/actions', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@/lib/orbit/actions')>();
+  return { ...actual, checkDirectoryAccess: vi.fn(actual.checkDirectoryAccess) };
+});
 vi.mock('@/platform/navigation/hooks', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/platform/navigation/hooks')>()),
   useWasRestoredFromCache: vi.fn(() => false),
@@ -107,6 +113,23 @@ const settle = () => act(() => Promise.resolve());
 const flush = async () => {
   for (let i = 0; i < 8; i++) await settle();
 };
+
+/** A call that answers or fails only when the test says so. */
+function deferred<T>() {
+  let resolve: (value: T) => void = () => undefined;
+  let reject: (error: unknown) => void = () => undefined;
+  const promise = new Promise<T>((res, rej) => {
+    resolve = res;
+    reject = rej;
+  });
+  return { promise, resolve, reject };
+}
+/** The errors that reached the flow handler, without the ignorable ones (the handler drops them: R1, R3). */
+const raisedErrors = () =>
+  vi
+    .mocked(raiseToFlowHandler)
+    .mock.calls.map(([error]) => error)
+    .filter((error) => !(error instanceof IgnorableSystemException));
 
 beforeEach(() => {
   resetViewCache();
@@ -185,7 +208,7 @@ describe('useMilestoneBlock: OnReady', () => {
     vi.mocked(fetchMilestoneBlockCaptions).mockRejectedValue(failure);
     const { result } = renderFlows('mealHelper');
     await flush();
-    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure);
+    expect(raiseToFlowHandler).toHaveBeenCalledWith(failure, expect.anything());
     expect(result.current.isFetchingCaptionData).toBe(true);
   });
 
@@ -363,6 +386,50 @@ describe('useMilestoneBlock: events', () => {
       'Saturday Lunch',
       '770021',
     );
+  });
+
+  it('R1: unmount while the data action is pending: no GetCaptions, nothing raised', async () => {
+    const answer = deferred<MilestoneBlockResult>();
+    vi.mocked(fetchMilestoneBlock).mockReturnValue(answer.promise);
+    const { unmount } = renderFlows('mealGuest');
+    unmount();
+    answer.resolve(RESULT);
+    await flush();
+    expect(fetchMilestoneBlockCaptions).not.toHaveBeenCalled();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R1: unmount while GetCaptions is pending: its failure reaches no handler', async () => {
+    const captions = deferred<{ Success: boolean; PhotobookCaption: string }>();
+    vi.mocked(fetchMilestoneBlockCaptions).mockReturnValue(captions.promise);
+    const { unmount } = renderFlows('mealHelper');
+    await flush();
+    expect(fetchMilestoneBlockCaptions).toHaveBeenCalledTimes(1);
+    unmount();
+    captions.reject(new Error('network'));
+    await flush();
+    expect(raisedErrors()).toEqual([]);
+  });
+
+  it('R2 + R3: CheckDirectoryAccess answers after the unmount: no NavigateTo_HouseholdDetail, no ViewHousehold', async () => {
+    const logs: LogEntry[] = [];
+    const removeSink = addLogSink((entry) => {
+      if (entry.message === 'ApplicationEvent') logs.push(entry);
+    });
+    const access = deferred<boolean>();
+    vi.mocked(checkDirectoryAccess).mockReturnValueOnce(access.promise);
+    const { result, unmount, handlers } = renderFlows('mealGuest');
+    await flush();
+    act(() => {
+      result.current.onClickedMember('880100');
+    });
+    unmount();
+    access.resolve(true);
+    await flush();
+    removeSink();
+    expect(handlers.onNavigateToHouseholdDetail).not.toHaveBeenCalled();
+    expect(logs).toEqual([]);
+    expect(raisedErrors()).toEqual([]);
   });
 
   it('closes the call popup on call', async () => {

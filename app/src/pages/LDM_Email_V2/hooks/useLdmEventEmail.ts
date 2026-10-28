@@ -1,10 +1,8 @@
-import { useRef } from 'react';
 import { fetchEventEmailCoordinator, sendEventContactEmail } from '@/api/message';
 import { useScreenValidationService, type ValidationService } from '@/components/ui/os/OSValidation';
 import { osImage } from '@/lib/os-assets';
 import { PLATFORM_MESSAGE_TYPE, showFeedbackMessage } from '@/platform/feedback';
-import { raiseToFlowHandler } from '@/platform/feedback/flowErrors';
-import { allowUpcomingNavigation, useFlowState, useNavigateBack, type IsAlive } from '@/platform/navigation';
+import { allowUpcomingNavigation, useFlowState, useNavigateBack } from '@/platform/navigation';
 import { appManager_GetCachedUserInfo } from '@/platform/session/cachedUserInfo';
 import type { ContactByPhonePopupData } from '@/lib/ubtConnectUtils/structures';
 import { preventNavigation, type NavigationEvent } from '@/lib/navigationEvent';
@@ -31,7 +29,6 @@ import {
   ldmEventEmailIds,
   ldmEventEmailReducer,
   restoreLdmEventEmailState,
-  type LdmEventEmailAction,
 } from './ldmEventEmailState';
 
 /** What the view renders, and the handlers of its widgets and blocks. */
@@ -77,43 +74,32 @@ export interface LdmEventEmailFlows {
       else EventContact, the audit event, the application event (EmailEvent as JSON), the success message after
       500 ms, Message = "", AllowUpcomingNavigation and the previous screen.
     - OnClick_Call: no phone number → an Info message; else the call popup of the coordinator.
-    OnReady runs once per instance (the page mounts a new instance for other EventHostId or In_EventId). Decision W23:
-    after the unmount, a started flow skips its state writes; its calls, messages, events, flow-handler errors and the
-    navigation still happen. */
+    OnReady runs once per instance (the page mounts a new instance for other EventHostId or In_EventId).
+    Flow scope (item 8): GetCoordinatorDetails is a data action (R1, `flow.fetch`): after the unmount its answer and its
+    failure are dropped, so OnReady and TryAgain stop there (no UserInfo, no flow handler). EventContact is a server
+    action (R2): after leaving, the audit event, the application event, the message timer (R5) and
+    AllowUpcomingNavigation still run; the back navigation from a left screen does not happen (R4, useNavigateBack). */
 export function useLdmEventEmail(blockId: string, inputs: EventEmailInputs): LdmEventEmailFlows {
   const ids = ldmEventEmailIds(blockId);
   const validation = useScreenValidationService();
   const navigateBack = useNavigateBack();
-  /* The once-guard of OnReady: StrictMode (dev) runs the mount effect twice on the same instance. The second call only
-     replaces the liveness check. */
-  const started = useRef(false);
-  const alive = useRef<IsAlive>(() => true);
-  const { state, dispatch, latest, parameters } = useFlowState({
+  const { state, dispatch, latest, parameters, flow } = useFlowState({
     viewName: 'LDM_ScreenBlocks_V2.ScreenBlock_Event_Email_V2',
     reducer: ldmEventEmailReducer,
     initial: INITIAL_LDM_EVENT_EMAIL_STATE,
     restore: restoreLdmEventEmailState,
     parameters: inputs,
-    onReady: (isAlive) => {
-      alive.current = isAlive;
-      if (started.current) return Promise.resolve();
-      started.current = true;
-      return onReady();
-    },
+    // The flows are defined below; the hook calls the ones of the newest render.
+    onReady: () => onReady(),
   });
 
-  /** A state write of a flow, skipped after the unmount (W23). */
-  const write = (action: LdmEventEmailAction) => {
-    if (alive.current()) dispatch(action);
-  };
-
   async function refreshGetCoordinatorDetails(): Promise<void> {
-    write({ type: 'fetchStarted' });
+    dispatch({ type: 'fetchStarted' });
     try {
-      const coordinator = await fetchEventEmailCoordinator(parameters.current);
-      write({ type: 'fetched', coordinator });
+      const coordinator = await flow.fetch(fetchEventEmailCoordinator(parameters.current)); // R1
+      dispatch({ type: 'fetched', coordinator });
     } catch (e) {
-      write({ type: 'fetchFailed' });
+      dispatch({ type: 'fetchFailed' }); // a no-op after the unmount
       throw e;
     }
   }
@@ -122,12 +108,12 @@ export function useLdmEventEmail(blockId: string, inputs: EventEmailInputs): Ldm
     const p = parameters.current;
     // LongIntegerToText of both inputs = "": never true for a Long Integer input.
     if (p.In_EventId === '' && p.In_EventHostId === '') {
-      write({ type: 'noContent' });
+      dispatch({ type: 'noContent' });
       return;
     }
     await refreshGetCoordinatorDetails();
-    write({ type: 'userInfoAssigned', userInfo: appManager_GetCachedUserInfo() });
-    write({ type: 'fetchEnded' });
+    dispatch({ type: 'userInfoAssigned', userInfo: appManager_GetCachedUserInfo() });
+    dispatch({ type: 'fetchEnded' });
   }
 
   /** OnChange_Message: TextArea_Message is valid when Trim(Message) <> "", else "Required Field!". */
@@ -144,19 +130,19 @@ export function useLdmEventEmail(blockId: string, inputs: EventEmailInputs): Ldm
     }
     validateMessage();
     if (!validation.isValid(ids.form)) {
-      if (!hasTypedMessage(latest.current)) write({ type: 'messageCleared' });
+      if (!hasTypedMessage(latest.current)) dispatch({ type: 'messageCleared' });
       return;
     }
     const p = parameters.current;
     const request = eventContactRequest(latest.current);
     const attachment = emailEventAttachment(latest.current);
-    await sendEventContactEmail(request);
+    await sendEventContactEmail(request); // server action (R2): not wrapped
     addAuditEventDetailEvent(ApplicationEvents_LDM.MyTimelineCoordinatorEmailed, p.EventDate, p.EventLocality);
     zOnApplicationEvent_Wrapper(emailApplicationEventId(p), attachment);
     scheduleFeedbackMessageAfterTransition(MESSAGE_SENT);
-    write({ type: 'messageCleared' });
+    dispatch({ type: 'messageCleared' });
     allowUpcomingNavigation();
-    navigateBack();
+    navigateBack(); // R4 in useNavigateBack
   }
 
   return {
@@ -174,7 +160,7 @@ export function useLdmEventEmail(blockId: string, inputs: EventEmailInputs): Ldm
       validateMessage();
     },
     onSubmitClick: () => {
-      onSubmitEmail().catch(raiseToFlowHandler);
+      flow.run(() => onSubmitEmail());
     },
     onCallClick: () => {
       if (coordinatorPhone(latest.current) === '') {
@@ -184,11 +170,10 @@ export function useLdmEventEmail(blockId: string, inputs: EventEmailInputs): Ldm
       dispatch({ type: 'callPopupOpened', imageURL: osImage(LDM_LOGO) });
     },
     onTryAgain: () => {
-      refreshGetCoordinatorDetails()
-        .then(() => {
-          write({ type: 'fetchEnded' });
-        })
-        .catch(raiseToFlowHandler);
+      flow.run(async () => {
+        await refreshGetCoordinatorDetails();
+        dispatch({ type: 'fetchEnded' });
+      });
     },
     onCallPopupClose: () => {
       dispatch({ type: 'callPopupClosed' });
