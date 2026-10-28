@@ -2,8 +2,9 @@
 
 ## Result
 - The flow scope (`app/src/platform/navigation/flowScope.ts`) replaces decision W23. After the user leaves:
-  a data action's answer and failure are dropped (R1); own actions and block events stop (R3); navigation stops (R4);
-  toasts and module actions run (R5); a left screen opens no error page (R6).
+  - a data action's answer and failure are dropped (R1);
+  - own actions and block events stop (R3), and navigation stops (R4);
+  - toasts and module actions run (R5), and a left screen opens no error page (R6).
 - 57 hooks follow it. The CI step `npm run flow-fetch` checks the R1 wraps.
 - The error page is the static `/UBTConnect/_error.html`, pixel-identical to TST (390×844).
 - Port gaps fixed on the way: N2 (bottom bar count), N3 (HostSurvey post error), N4 (AttendeeSubdivision scroll
