@@ -99,3 +99,14 @@ TST drops the answer (R1), so a back navigation restores the state of the time o
 | N4 | Assemble AttendeeSubdivision: TST calls `RememberFocusedScrollAnchor` before the household navigation; React does not | TST `AssembleEventDetail_AttendeeSubdivision` :747; `group-C.md:64` | port gap |
 | N5 | LDM_EventDetail_V2 GoToHousehold sets the carousel preload after the subscription checks. On TST the screen handler `Handler_NavigateTo_HouseholdCarousel` sets it (`NavigationHandler.SetPreloadObject`); after leaving, that screen action stops (R3) | `useLdmEventDetail.ts:204`; TST `LDM_EventDetail_V2.mvc.js` `_handler_NavigateTo_HouseholdCarousel$Action`; `group-D.md:101` | react-extra (X3), closed |
 | N6 | `ScreenBlock_MyBookmarks` and `ScreenBlock_BookmarkGroup` are not in the live survey (TST removed the modules, survey drift) | `group-A.md` sources note | known (deferred list) |
+
+## 5. MCP checks per group (before each build wave, user, 2026-10-28)
+
+The orchestrator checks the kind of each awaited call of a group with the MCP (DEV), one call at a time.
+
+Group B (2026-10-28): DEV = TST on every call.
+
+| Kind on the MCP | Names (module UBTConnect) |
+|---|---|
+| IDataAction (R1), each with the OnAfterFetch that the TST code calls in its `.then` where one exists | GetCountriesStatistics, GetLocalityStatistics, GetCommunityStatistics, GetHousehold, GetHousehold_Coordinates, Get_MemberDetails, Get_ParentHouseholdDetails, Get_LocalityDetails, GetLocalityHouseholds, GetInterchangesByLocalityId, Get_OneSchoolGlobal_List, Get_Subdivision_List, GetOneSchoolGlobalDetails, GetLocalityHouseholdIds (Fetch AtStart), GetHouseholdCaption, GetSubdivision, GetSubdivisionHouseholds |
+| Module client action (runs after leaving) | HasAccessToRegion (folder User; calls `UBTConnect_Utils.Cache_UserInfo_Get`, then only assignments) |
