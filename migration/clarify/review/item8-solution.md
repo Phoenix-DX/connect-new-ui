@@ -389,3 +389,7 @@ proves no regression). A pixel check of `_error.html` against one TST capture (s
   ResetPaginationSettings calls `ensureControllerAlive` (ScreenBlock_EventBooklet dump), so `flow.own` is right.
 - S5 adds a promise-returning `flow.run` variant (S1b Q1): five hooks need one (Locality OneSchoolGlobal and
   Subdivisions `onScrollEnding`, MessageList `runAwaited`, LDM_MyEvents handlers, Notes `onLoadMore`).
+- S5a Q1 (user, 2026-10-28): (a). The check script found two hooks outside the inventory that await a data action with
+  no scope: ContactUsDetails (DataAction_GetLocalityTimezone, DataAction_GetCountriesNames) and LDM
+  MyTimelineFilterButton (GetEventLocalitiesForFilter, then an audit). Both are IDataAction on the MCP. S5b moves both
+  to the flow scope and deletes their allow-list rows.
